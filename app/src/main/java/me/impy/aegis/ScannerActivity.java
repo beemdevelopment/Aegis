@@ -2,6 +2,7 @@ package me.impy.aegis;
 
 import android.Manifest;
 import android.app.Activity;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.util.TimeUtils;
@@ -13,6 +14,7 @@ import android.widget.Toast;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.Result;
 
+import java.io.Serializable;
 import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
@@ -53,14 +55,19 @@ public class ScannerActivity extends Activity implements ZXingScannerView.Result
         try {
             KeyInfo info = KeyInfo.FromURL(rawResult.getText());
 
-            String nowTimeString = (Long.toHexString(System.currentTimeMillis() / 1000 / info.getPeriod()));
-            Toast.makeText(this, TOTP.generateTOTP(info.getSecret(), nowTimeString, info.getDigits(), info.getAlgo()), Toast.LENGTH_LONG).show();
+            //String nowTimeString = (Long.toHexString(System.currentTimeMillis() / 1000 / info.getPeriod()));
+            //Toast.makeText(this, TOTP.generateTOTP(info.getSecret(), nowTimeString, info.getDigits(), info.getAlgo()), Toast.LENGTH_LONG).show();
+
+            Intent resultIntent = new Intent();
+            resultIntent.putExtra("Keyinfo", info);
+            setResult(Activity.RESULT_OK, resultIntent);
+            finish();
         } catch (Exception e) {
             e.printStackTrace();
         }
 
         // If you would like to resume scanning, call this method below:
-        mScannerView.resumeCameraPreview(this);
+        //mScannerView.resumeCameraPreview(this);
     }
 
     @Override

@@ -2,9 +2,11 @@ package me.impy.aegis.crypto;
 
 import android.net.Uri;
 
+import java.io.Serializable;
+
 import me.impy.aegis.encoding.Base32;
 
-public class KeyInfo {
+public class KeyInfo implements Serializable {
     private String type;
     private String label;
     private byte[] secret;
