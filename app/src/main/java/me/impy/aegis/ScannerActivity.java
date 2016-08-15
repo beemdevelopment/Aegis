@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
+import me.impy.aegis.crypto.KeyInfo;
 
 public class ScannerActivity extends Activity implements ZXingScannerView.ResultHandler {
     private ZXingScannerView mScannerView;
@@ -26,7 +27,7 @@ public class ScannerActivity extends Activity implements ZXingScannerView.Result
         mScannerView = new ZXingScannerView(this);   // Programmatically initialize the scanner view
         setContentView(mScannerView);                // Set the scanner view as the content view
         mScannerView.setFormats(getSupportedFormats());
-        mScannerView.
+
         ActivityCompat.requestPermissions(ScannerActivity.this, new String[]{Manifest.permission.CAMERA}, 1);
     }
 
@@ -44,8 +45,14 @@ public class ScannerActivity extends Activity implements ZXingScannerView.Result
     @Override
     public void handleResult(Result rawResult) {
         // Do something with the result here
-        Log.v("Aegis ", rawResult.getText()); // Prints scan results
-        Log.v("Aegis ", rawResult.getBarcodeFormat().toString()); // Prints the scan format (qrcode, pdf417 etc.)
+        Toast.makeText(this, rawResult.getText(), Toast.LENGTH_SHORT).show();
+
+        try {
+            KeyInfo info = KeyInfo.FromURL(rawResult.getText());
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         // If you would like to resume scanning, call this method below:
         mScannerView.resumeCameraPreview(this);
