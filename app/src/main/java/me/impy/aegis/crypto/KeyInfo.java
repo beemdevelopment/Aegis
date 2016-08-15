@@ -5,14 +5,86 @@ import android.net.Uri;
 import me.impy.aegis.encoding.Base32;
 
 public class KeyInfo {
-    private String _type;
-    private String _label;
-    private byte[] _secret;
-    private String _issuer;
-    private String _algo;
-    private int _digits;
-    private long _counter;
-    private String _period;
+    private String type;
+    private String label;
+    private byte[] secret;
+    private String issuer;
+    private String algo;
+    private int digits;
+    private long counter;
+    private int period;
+
+    public String getType() {
+        return type;
+    }
+
+    public KeyInfo setType(String type) {
+        this.type = type;
+        return this;
+    }
+
+    public String getLabel() {
+        return label;
+    }
+
+    public KeyInfo setLabel(String label) {
+        this.label = label;
+        return this;
+    }
+
+    public byte[] getSecret() {
+        return secret;
+    }
+
+    public KeyInfo setSecret(byte[] secret) {
+        this.secret = secret;
+        return this;
+    }
+
+    public String getIssuer() {
+        return issuer;
+    }
+
+    public KeyInfo setIssuer(String issuer) {
+        this.issuer = issuer;
+        return this;
+    }
+
+    public String getAlgo() {
+        return algo;
+    }
+
+    public KeyInfo setAlgo(String algo) {
+        this.algo = algo;
+        return this;
+    }
+
+    public int getDigits() {
+        return digits;
+    }
+
+    public KeyInfo setDigits(int digits) {
+        this.digits = digits;
+        return this;
+    }
+
+    public long getCounter() {
+        return counter;
+    }
+
+    public KeyInfo setCounter(long counter) {
+        this.counter = counter;
+        return this;
+    }
+
+    public int getPeriod() {
+        return period;
+    }
+
+    public KeyInfo setPeriod(int period) {
+        this.period = period;
+        return this;
+    }
 
     private KeyInfo() {
 
@@ -26,16 +98,16 @@ public class KeyInfo {
         }
 
         KeyInfo info = new KeyInfo();
-        info._type = url.getHost();
+        info.type = url.getHost();
 
         String secret = url.getQueryParameter("secret");
-        info._secret = Base32.decode(secret);
-        info._issuer = url.getQueryParameter("issuer");
-        info._label = url.getPath();
-        info._algo = url.getQueryParameter("algorithm");
-        info._period = url.getQueryParameter("period");
-        info._digits = url.getQueryParameter("digits") != null ? Integer.getInteger(url.getQueryParameter("digits")) : 6;
-        info._counter = url.getQueryParameter("counter") != null ? Long.getLong(url.getQueryParameter("counter")) : 0;
+        info.secret = Base32.decode(secret);
+        info.issuer = url.getQueryParameter("issuer");
+        info.label = url.getPath();
+        info.algo = url.getQueryParameter("algorithm") != null ? url.getQueryParameter("algorithm") : "HmacSHA1";
+        info.period = url.getQueryParameter("period") != null ? Integer.getInteger(url.getQueryParameter("period")) : 30;
+        info.digits = url.getQueryParameter("digits") != null ? Integer.getInteger(url.getQueryParameter("digits")) : 6;
+        info.counter = url.getQueryParameter("counter") != null ? Long.getLong(url.getQueryParameter("counter")) : 0;
 
         return info;
     }

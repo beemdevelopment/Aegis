@@ -85,9 +85,9 @@ public class TOTP {
      * @return: a numeric String in base 10 that includes
      * {@link truncationDigits} digits
      */
-    public static String generateTOTP(String key,
+    public static String generateTOTP(byte[] key,
                                       String time,
-                                      String returnDigits) {
+                                      int returnDigits) {
         return generateTOTP(key, time, returnDigits, "HmacSHA1");
     }
 
@@ -101,9 +101,9 @@ public class TOTP {
      * @return: a numeric String in base 10 that includes
      * {@link truncationDigits} digits
      */
-    public static String generateTOTP256(String key,
+    public static String generateTOTP256(byte[] key,
                                          String time,
-                                         String returnDigits) {
+                                         int returnDigits) {
         return generateTOTP(key, time, returnDigits, "HmacSHA256");
     }
 
@@ -117,9 +117,9 @@ public class TOTP {
      * @return: a numeric String in base 10 that includes
      * {@link truncationDigits} digits
      */
-    public static String generateTOTP512(String key,
+    public static String generateTOTP512(byte[] key,
                                          String time,
-                                         String returnDigits) {
+                                         int returnDigits) {
         return generateTOTP(key, time, returnDigits, "HmacSHA512");
     }
 
@@ -134,11 +134,10 @@ public class TOTP {
      * @return: a numeric String in base 10 that includes
      * {@link truncationDigits} digits
      */
-    public static String generateTOTP(String key,
+    public static String generateTOTP(byte[] key,
                                       String time,
-                                      String returnDigits,
+                                      int returnDigits,
                                       String crypto) {
-        int codeDigits = Integer.decode(returnDigits).intValue();
         String result = null;
 
         // Using the counter
@@ -149,8 +148,7 @@ public class TOTP {
 
         // Get the HEX in a Byte[]
         byte[] msg = hexStr2Bytes(time);
-        byte[] k = hexStr2Bytes(key);
-        byte[] hash = hmac_sha(crypto, k, msg);
+        byte[] hash = hmac_sha(crypto, key, msg);
 
         // put selected bytes into result int
         int offset = hash[hash.length - 1] & 0xf;
@@ -161,10 +159,10 @@ public class TOTP {
                         ((hash[offset + 2] & 0xff) << 8) |
                         (hash[offset + 3] & 0xff);
 
-        int otp = binary % DIGITS_POWER[codeDigits];
+        int otp = binary % DIGITS_POWER[returnDigits];
 
         result = Integer.toString(otp);
-        while (result.length() < codeDigits) {
+        while (result.length() < returnDigits) {
             result = "0" + result;
         }
         return result;

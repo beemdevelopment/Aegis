@@ -4,6 +4,7 @@ import android.Manifest;
 import android.app.Activity;
 import android.content.pm.PackageManager;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.util.TimeUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,11 +13,13 @@ import android.widget.Toast;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.Result;
 
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
 import me.impy.aegis.crypto.KeyInfo;
+import me.impy.aegis.crypto.TOTP;
 
 public class ScannerActivity extends Activity implements ZXingScannerView.ResultHandler {
     private ZXingScannerView mScannerView;
@@ -50,6 +53,8 @@ public class ScannerActivity extends Activity implements ZXingScannerView.Result
         try {
             KeyInfo info = KeyInfo.FromURL(rawResult.getText());
 
+            String nowTimeString = (Long.toHexString(System.currentTimeMillis() / 1000 / info.getPeriod()));
+            Toast.makeText(this, TOTP.generateTOTP(info.getSecret(), nowTimeString, info.getDigits(), info.getAlgo()), Toast.LENGTH_LONG).show();
         } catch (Exception e) {
             e.printStackTrace();
         }
