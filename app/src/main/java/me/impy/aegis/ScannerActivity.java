@@ -9,7 +9,11 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.google.zxing.BarcodeFormat;
 import com.google.zxing.Result;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
 
@@ -21,7 +25,8 @@ public class ScannerActivity extends Activity implements ZXingScannerView.Result
         super.onCreate(state);
         mScannerView = new ZXingScannerView(this);   // Programmatically initialize the scanner view
         setContentView(mScannerView);                // Set the scanner view as the content view
-
+        mScannerView.setFormats(getSupportedFormats());
+        mScannerView.
         ActivityCompat.requestPermissions(ScannerActivity.this, new String[]{Manifest.permission.CAMERA}, 1);
     }
 
@@ -65,5 +70,12 @@ public class ScannerActivity extends Activity implements ZXingScannerView.Result
                 return;
             }
         }
+    }
+
+    private List<BarcodeFormat> getSupportedFormats() {
+        ArrayList<BarcodeFormat> supportedFormats = new ArrayList<>();
+        supportedFormats.add(BarcodeFormat.QR_CODE);
+
+        return supportedFormats;
     }
 }
