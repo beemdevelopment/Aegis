@@ -18,17 +18,8 @@
                 android:layout_alignWithParentIfMissing="false"
                 android:gravity="bottom"
                 android:id="@+id/relativeLayout"
-                android:layout_alignParentStart="false"
-                android:layout_alignEnd="@+id/imageView">
+                android:layout_alignParentStart="false">
 
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/profile_name"
-                    android:text="Post title"
-                    android:textSize="20sp"
-                    android:layout_alignStart="@+id/profile_code" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -36,9 +27,21 @@
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:text="Medium Text"
                     android:id="@+id/profile_code"
-                    android:layout_below="@+id/profile_name"
                     android:layout_alignParentStart="true"
-                    android:layout_alignParentLeft="true"/>
+                    android:layout_alignParentLeft="true"
+                    android:textSize="36sp"
+                    android:textColor="?android:attr/textColorPrimary"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/profile_name"
+                    android:text="Post title"
+                    android:layout_below="@+id/profile_code"
+                    android:textSize="20sp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"/>
+
             </RelativeLayout>
         </LinearLayout>
 
