@@ -1,6 +1,7 @@
 package me.impy.aegis;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.inputmethodservice.Keyboard;
 import android.support.design.widget.FloatingActionButton;
@@ -14,6 +15,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.yarolegovich.lovelydialog.LovelyCustomDialog;
+import com.yarolegovich.lovelydialog.LovelyTextInputDialog;
 
 import java.util.ArrayList;
 
@@ -64,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
         if (requestCode == GET_KEYINFO) {
             // Make sure the request was successful
             if (resultCode == RESULT_OK) {
-                KeyProfile keyProfile = (KeyProfile)data.getSerializableExtra("KeyProfile");
+                final KeyProfile keyProfile = (KeyProfile)data.getSerializableExtra("KeyProfile");
 
                 String otp;
                 try {
@@ -75,8 +80,30 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 keyProfile.Code = otp;
-                mKeyProfiles.add(keyProfile);
-                mKeyProfileAdapter.notifyDataSetChanged();
+
+                new LovelyTextInputDialog(this, R.style.EditTextTintTheme)
+                        .setTopColorRes(R.color.colorHeaderSuccess)
+                        .setTitle("New profile added")
+                        .setMessage("How do you want to call it?")
+                        .setIcon(R.drawable.ic_check)
+                        .setInitialInput(keyProfile.Name)
+                        .setInputFilter("Nah, not possible man.", new LovelyTextInputDialog.TextFilter() {
+                            @Override
+                            public boolean check(String text) {
+                                return true;
+                                //return text.matches("\\w+");
+                            }
+                        })
+                        .setConfirmButton(android.R.string.ok, new LovelyTextInputDialog.OnTextInputConfirmListener() {
+                            @Override
+                            public void onTextInputConfirmed(String text) {
+                                keyProfile.Name = text;
+                                mKeyProfiles.add(keyProfile);
+                                mKeyProfileAdapter.notifyDataSetChanged();
+                            }
+                        })
+                        .show();
+
                 //TODO: do something with the result.
             }
         }
