@@ -2,26 +2,23 @@ package me.impy.aegis;
 
 import android.Manifest;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.support.v4.app.ActivityCompat;
-import android.support.v4.util.TimeUtils;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Toast;
 
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.Result;
 
-import java.io.Serializable;
-import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 
+import me.dm7.barcodescanner.core.IViewFinder;
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
 import me.impy.aegis.crypto.KeyInfo;
-import me.impy.aegis.crypto.TOTP;
+import me.impy.aegis.helpers.SquareFinderView;
 
 public class ScannerActivity extends Activity implements ZXingScannerView.ResultHandler {
     private ZXingScannerView mScannerView;
@@ -29,9 +26,15 @@ public class ScannerActivity extends Activity implements ZXingScannerView.Result
     @Override
     public void onCreate(Bundle state) {
         super.onCreate(state);
-        handleDummyResult();
+        //handleDummyResult();
 
-        mScannerView = new ZXingScannerView(this);   // Programmatically initialize the scanner view
+        mScannerView = new ZXingScannerView(this) {
+            @Override
+            protected IViewFinder createViewFinderView(Context context) {
+                return new SquareFinderView(context);
+            }
+        };
+
         setContentView(mScannerView);                // Set the scanner view as the content view
         mScannerView.setFormats(getSupportedFormats());
 
@@ -78,6 +81,7 @@ public class ScannerActivity extends Activity implements ZXingScannerView.Result
         Toast.makeText(this, rawResult.getText(), Toast.LENGTH_SHORT).show();
 
         try {
+            //TODO: Handle non TOTP / HOTP qr codes.
             KeyInfo info = KeyInfo.FromURL(rawResult.getText());
             KeyProfile keyProfile = new KeyProfile();
             keyProfile.KeyInfo = info;
@@ -93,7 +97,7 @@ public class ScannerActivity extends Activity implements ZXingScannerView.Result
         }
 
         // If you would like to resume scanning, call this method below:
-        //mScannerView.resumeCameraPreview(this);
+        mScannerView.resumeCameraPreview(this);
     }
 
     @Override
@@ -120,3 +124,4 @@ public class ScannerActivity extends Activity implements ZXingScannerView.Result
         return supportedFormats;
     }
 }
+
