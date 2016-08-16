@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
                 KeyInfo info = (KeyInfo)data.getSerializableExtra("Keyinfo");
 
                 String nowTimeString = (Long.toHexString(System.currentTimeMillis() / 1000 / info.getPeriod()));
-                String totp = TOTP.generateTOTP(info.getSecret(), nowTimeString, info.getDigits(), info.getAlgo());
+                String totp = TOTP.generateTOTP(info.getSecret(), nowTimeString, info.getDigits(), info.getAlgorithm());
 
                 tvTotp.setText(totp);
             }
