@@ -54,12 +54,9 @@ public class ScannerActivity extends Activity implements ZXingScannerView.Result
 
         try {
             KeyInfo info = KeyInfo.FromURL(rawResult.getText());
-
-            //String nowTimeString = (Long.toHexString(System.currentTimeMillis() / 1000 / info.getPeriod()));
-            //Toast.makeText(this, TOTP.generateTOTP(info.getSecret(), nowTimeString, info.getDigits(), info.getAlgo()), Toast.LENGTH_LONG).show();
-
             Intent resultIntent = new Intent();
             resultIntent.putExtra("Keyinfo", info);
+
             setResult(Activity.RESULT_OK, resultIntent);
             finish();
         } catch (Exception e) {
