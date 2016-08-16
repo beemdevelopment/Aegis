@@ -67,7 +67,7 @@ public class KeyInfo implements Serializable {
         // provider info used to disambiguate accounts
         // these parameters are not required but I don't want them to be null either
         String issuer = url.getQueryParameter("issuer");
-        String label = url.getQueryParameter("label");
+        String label = url.getPath();
         info.issuer = issuer != null ? issuer : "";
         info.label = label != null ? label : "";
 

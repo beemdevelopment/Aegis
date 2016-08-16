@@ -1,14 +1,19 @@
 package me.impy.aegis;
 
 import android.content.Intent;
+import android.inputmethodservice.Keyboard;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+
+import java.util.ArrayList;
 
 import me.impy.aegis.crypto.KeyInfo;
 import me.impy.aegis.crypto.OTP;
@@ -16,7 +21,9 @@ import me.impy.aegis.crypto.OTP;
 public class MainActivity extends AppCompatActivity {
 
     static final int GET_KEYINFO = 1;
-    TextView tvTotp;
+    RecyclerView rvKeyProfiles;
+    KeyProfileAdapter mKeyProfileAdapter;
+    ArrayList<KeyProfile> mKeyProfiles;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +41,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        tvTotp = (TextView) findViewById(R.id.textView2);
+        mKeyProfiles = new ArrayList<>();
+
+        rvKeyProfiles = (RecyclerView) findViewById(R.id.rvKeyProfiles);
+        LinearLayoutManager mLayoutManager = new LinearLayoutManager(this);
+        rvKeyProfiles.setLayoutManager(mLayoutManager);
+
+        mKeyProfileAdapter = new KeyProfileAdapter(mKeyProfiles);
+        rvKeyProfiles.setAdapter(mKeyProfileAdapter);
     }
 
     @Override
@@ -43,16 +57,20 @@ public class MainActivity extends AppCompatActivity {
         if (requestCode == GET_KEYINFO) {
             // Make sure the request was successful
             if (resultCode == RESULT_OK) {
-                KeyInfo info = (KeyInfo)data.getSerializableExtra("Keyinfo");
+                KeyProfile keyProfile = (KeyProfile)data.getSerializableExtra("KeyProfile");
 
                 String otp;
                 try {
-                    otp = OTP.generateOTP(info);
+                    otp = OTP.generateOTP(keyProfile.KeyInfo);
                 } catch (Exception e) {
                     e.printStackTrace();
                     return;
                 }
-                tvTotp.setText(otp);
+
+                keyProfile.Code = otp;
+                mKeyProfiles.add(keyProfile);
+                mKeyProfileAdapter.notifyDataSetChanged();
+                //TODO: do something with the result.
             }
         }
     }
