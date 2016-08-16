@@ -1,8 +1,10 @@
 package me.impy.aegis;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.inputmethodservice.Keyboard;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -17,6 +19,7 @@ import java.util.ArrayList;
 
 import me.impy.aegis.crypto.KeyInfo;
 import me.impy.aegis.crypto.OTP;
+import me.impy.aegis.helpers.DividerItemDecoration;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -24,6 +27,8 @@ public class MainActivity extends AppCompatActivity {
     RecyclerView rvKeyProfiles;
     KeyProfileAdapter mKeyProfileAdapter;
     ArrayList<KeyProfile> mKeyProfiles;
+    
+    int count = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +51,8 @@ public class MainActivity extends AppCompatActivity {
         rvKeyProfiles = (RecyclerView) findViewById(R.id.rvKeyProfiles);
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(this);
         rvKeyProfiles.setLayoutManager(mLayoutManager);
+
+        rvKeyProfiles.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
 
         mKeyProfileAdapter = new KeyProfileAdapter(mKeyProfiles);
         rvKeyProfiles.setAdapter(mKeyProfileAdapter);

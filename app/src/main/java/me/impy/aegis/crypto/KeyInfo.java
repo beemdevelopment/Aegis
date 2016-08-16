@@ -69,7 +69,7 @@ public class KeyInfo implements Serializable {
         String issuer = url.getQueryParameter("issuer");
         String label = url.getPath();
         info.issuer = issuer != null ? issuer : "";
-        info.label = label != null ? label : "";
+        info.label = label != null ? label.substring(1) : "";
 
         // just use the defaults if these parameters aren't set
         String algorithm = url.getQueryParameter("algorithm");
