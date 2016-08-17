@@ -60,7 +60,7 @@ public class ScannerActivity extends Activity implements ZXingScannerView.Result
             KeyInfo info = KeyInfo.FromURL("otpauth://totp/ACME%20Co:john@example.com?secret=HXDMVJECJJWSRB3HWIZR4IFUGFTMXBOZ");
             KeyProfile keyProfile = new KeyProfile();
             keyProfile.KeyInfo = info;
-            keyProfile.Name = info.getLabel();
+            keyProfile.Name = String.format("%s/%s", info.getIssuer(), info.getAccountName());
 
             Intent resultIntent = new Intent();
             resultIntent.putExtra("KeyProfile", keyProfile);
@@ -85,7 +85,7 @@ public class ScannerActivity extends Activity implements ZXingScannerView.Result
             KeyInfo info = KeyInfo.FromURL(rawResult.getText());
             KeyProfile keyProfile = new KeyProfile();
             keyProfile.KeyInfo = info;
-            keyProfile.Name = info.getLabel();
+            keyProfile.Name = String.format("%s/%s", info.getIssuer(), info.getAccountName());
 
             Intent resultIntent = new Intent();
             resultIntent.putExtra("KeyProfile", keyProfile);
