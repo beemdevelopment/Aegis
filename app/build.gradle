@@ -23,6 +23,7 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support:appcompat-v7:24.1.1'
+    compile 'com.github.nisrulz:recyclerviewhelper:24.1.1'
     compile 'com.android.support:design:24.1.1'
     compile 'com.amulyakhare:com.amulyakhare.textdrawable:1.0.1'
     compile 'me.dm7.barcodescanner:zxing:1.9'

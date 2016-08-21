@@ -17,15 +17,17 @@ import com.amulyakhare.textdrawable.util.ColorGenerator;
 
 import java.security.Key;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import github.nisrulz.recyclerviewhelper.RVHAdapter;
 import me.impy.aegis.crypto.OTP;
 import me.impy.aegis.helpers.ItemClickListener;
 
-public class KeyProfileAdapter extends RecyclerView.Adapter<KeyProfileAdapter.KeyProfileHolder> {
+public class KeyProfileAdapter extends RecyclerView.Adapter<KeyProfileAdapter.KeyProfileHolder> implements RVHAdapter {
     private ArrayList<KeyProfile> mKeyProfiles;
     private final List<KeyProfileHolder> lstHolders;
     private final ItemClickListener itemClickListener;
@@ -42,6 +44,29 @@ public class KeyProfileAdapter extends RecyclerView.Adapter<KeyProfileAdapter.Ke
                     }
         }
     };
+
+    @Override
+    public boolean onItemMove(int fromPosition, int toPosition) {
+        swap(fromPosition, toPosition);
+        return false;
+    }
+
+    @Override
+    public void onItemDismiss(int position, int direction) {
+        remove(position);
+    }
+
+
+    // Helper functions you might want to implement to make changes in the list as an event is fired
+    private void remove(int position) {
+        mKeyProfiles.remove(position);
+        notifyItemRemoved(position);
+    }
+
+    private void swap(int firstPosition, int secondPosition) {
+        Collections.swap(mKeyProfiles, firstPosition, secondPosition);
+        notifyItemMoved(firstPosition, secondPosition);
+    }
 
     public static class KeyProfileHolder extends RecyclerView.ViewHolder {
         TextView profileName;

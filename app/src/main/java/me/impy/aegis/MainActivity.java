@@ -14,6 +14,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -26,6 +27,8 @@ import com.yarolegovich.lovelydialog.LovelyTextInputDialog;
 
 import java.util.ArrayList;
 
+import github.nisrulz.recyclerviewhelper.RVHItemDividerDecoration;
+import github.nisrulz.recyclerviewhelper.RVHItemTouchHelperCallback;
 import me.impy.aegis.crypto.KeyInfo;
 import me.impy.aegis.crypto.OTP;
 import me.impy.aegis.helpers.DividerItemDecoration;
@@ -62,8 +65,6 @@ public class MainActivity extends AppCompatActivity  {
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(this);
         rvKeyProfiles.setLayoutManager(mLayoutManager);
 
-        rvKeyProfiles.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
-
         final Context context = this.getApplicationContext();
         ItemClickListener itemClickListener = new ItemClickListener() {
             @Override
@@ -77,6 +78,12 @@ public class MainActivity extends AppCompatActivity  {
         };
 
         mKeyProfileAdapter = new KeyProfileAdapter(mKeyProfiles, itemClickListener);
+        rvKeyProfiles.addItemDecoration(new RVHItemDividerDecoration(this, LinearLayoutManager.VERTICAL));
+
+        ItemTouchHelper.Callback callback = new RVHItemTouchHelperCallback(mKeyProfileAdapter, true, false, false);
+        ItemTouchHelper helper = new ItemTouchHelper(callback);
+        helper.attachToRecyclerView(rvKeyProfiles);
+
         rvKeyProfiles.setAdapter(mKeyProfileAdapter);
     }
 
