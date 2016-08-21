@@ -1,5 +1,6 @@
 package me.impy.aegis;
 
+import android.graphics.Color;
 import android.os.Handler;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -10,9 +11,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.amulyakhare.textdrawable.TextDrawable;
+import com.amulyakhare.textdrawable.util.ColorGenerator;
+
 import java.security.Key;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -37,18 +42,21 @@ public class KeyProfileAdapter extends RecyclerView.Adapter<KeyProfileAdapter.Ke
     public static class KeyProfileHolder extends RecyclerView.ViewHolder {
         TextView profileName;
         TextView profileCode;
+        ImageView profileDrawable;
         KeyProfile keyProfile;
 
         KeyProfileHolder(View itemView) {
             super(itemView);
             profileName = (TextView) itemView.findViewById(R.id.profile_name);
             profileCode = (TextView) itemView.findViewById(R.id.profile_code);
+            profileDrawable = (ImageView) itemView.findViewById(R.id.ivTextDrawable);
         }
 
         public void setData(KeyProfile profile) {
             this.keyProfile = profile;
             profileName.setText(profile.Name);
             profileCode.setText(profile.Code);
+            profileDrawable.setImageDrawable(generateTextDrawable(profile));
         }
 
         public void updateCode() {
@@ -62,6 +70,19 @@ public class KeyProfileAdapter extends RecyclerView.Adapter<KeyProfileAdapter.Ke
                 e.printStackTrace();
             }
             profileCode.setText(otp.substring(0, 3) + " " + otp.substring(3));
+        }
+
+        private TextDrawable generateTextDrawable(KeyProfile profile)
+        {
+            if(profileName == null)
+                return null;
+
+            ColorGenerator generator = ColorGenerator.MATERIAL; // or use DEFAULT
+            // generate color based on a key (same key returns the same color), useful for list/grid views
+            int profileKeyColor = generator.getColor(profile.Name);
+
+            TextDrawable newDrawable = TextDrawable.builder().buildRound(profile.Name.substring(0, 1), profileKeyColor);
+            return newDrawable;
         }
     }
 

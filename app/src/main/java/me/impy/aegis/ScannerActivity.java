@@ -26,7 +26,7 @@ public class ScannerActivity extends Activity implements ZXingScannerView.Result
     @Override
     public void onCreate(Bundle state) {
         super.onCreate(state);
-        //handleDummyResult();
+        handleDummyResult();
 
         mScannerView = new ZXingScannerView(this) {
             @Override

@@ -4,45 +4,63 @@
               android:layout_width="match_parent"
               android:layout_height="wrap_content">
 
-        <LinearLayout
-            android:orientation="vertical"
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:paddingLeft="16dp">
+
+            <ImageView android:layout_width="60dp"
+                       android:layout_height="60dp"
+                       android:id="@+id/ivTextDrawable"
+                       android:layout_centerVertical="true"
+                       android:layout_alignParentLeft="true"
+                       android:layout_alignParentStart="true"/>
+        </RelativeLayout>
+
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:layout_alignParentBottom="false"
+            android:layout_alignParentTop="false"
+            android:layout_alignWithParentIfMissing="false"
+            android:gravity="bottom"
+            android:id="@+id/relativeLayout"
+            android:layout_alignParentStart="false">
 
-            <RelativeLayout
-                android:layout_width="match_parent"
+
+            <TextView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="16dp"
-                android:layout_alignParentBottom="false"
-                android:layout_alignParentTop="false"
-                android:layout_alignWithParentIfMissing="false"
-                android:gravity="bottom"
-                android:id="@+id/relativeLayout"
-                android:layout_alignParentStart="false">
+                android:id="@+id/profile_name"
+                android:text="Post title"
+                android:textSize="20sp"
+                android:layout_below="@+id/profile_code"
+                android:layout_alignLeft="@+id/profile_code"
+                android:layout_alignStart="@+id/profile_code"
+                android:ellipsize="end"
+                android:maxLines="1"/>
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Medium Text"
+                android:id="@+id/profile_code"
+                android:textSize="36sp"
+                android:textColor="?android:attr/textColorPrimary"
+                android:layout_marginLeft="6dp"
+                android:layout_marginStart="6dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"/>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="Medium Text"
-                    android:id="@+id/profile_code"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentLeft="true"
-                    android:textSize="36sp"
-                    android:textColor="?android:attr/textColorPrimary"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/profile_name"
-                    android:text="Post title"
-                    android:layout_below="@+id/profile_code"
-                    android:textSize="20sp"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true"/>
-
-            </RelativeLayout>
-        </LinearLayout>
+        </RelativeLayout>
+    </LinearLayout>
 
 </LinearLayout>
