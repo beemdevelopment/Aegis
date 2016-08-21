@@ -2,6 +2,7 @@ package me.impy.aegis;
 
 import android.graphics.Color;
 import android.os.Handler;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -22,20 +23,23 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import me.impy.aegis.crypto.OTP;
+import me.impy.aegis.helpers.ItemClickListener;
 
 public class KeyProfileAdapter extends RecyclerView.Adapter<KeyProfileAdapter.KeyProfileHolder> {
     private ArrayList<KeyProfile> mKeyProfiles;
     private final List<KeyProfileHolder> lstHolders;
+    private final ItemClickListener itemClickListener;
+
 
     private Handler mHandler = new Handler();
     private Runnable updateRemainingTimeRunnable = new Runnable() {
-        @Override
-        public void run() {
-            synchronized (lstHolders) {
-                for (KeyProfileHolder holder : lstHolders) {
-                    holder.updateCode();
-                }
-            }
+                @Override
+                public void run() {
+                    synchronized (lstHolders) {
+                        for (KeyProfileHolder holder : lstHolders) {
+                            holder.updateCode();
+                        }
+                    }
         }
     };
 
@@ -45,7 +49,7 @@ public class KeyProfileAdapter extends RecyclerView.Adapter<KeyProfileAdapter.Ke
         ImageView profileDrawable;
         KeyProfile keyProfile;
 
-        KeyProfileHolder(View itemView) {
+        KeyProfileHolder(final View itemView) {
             super(itemView);
             profileName = (TextView) itemView.findViewById(R.id.profile_name);
             profileCode = (TextView) itemView.findViewById(R.id.profile_code);
@@ -69,6 +73,8 @@ public class KeyProfileAdapter extends RecyclerView.Adapter<KeyProfileAdapter.Ke
             } catch (Exception e) {
                 e.printStackTrace();
             }
+
+            this.keyProfile.Code = otp;
             profileCode.setText(otp.substring(0, 3) + " " + otp.substring(3));
         }
 
@@ -87,9 +93,11 @@ public class KeyProfileAdapter extends RecyclerView.Adapter<KeyProfileAdapter.Ke
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public KeyProfileAdapter(ArrayList<KeyProfile> keyProfiles) {
+    public KeyProfileAdapter(ArrayList<KeyProfile> keyProfiles, @NonNull ItemClickListener listener) {
         mKeyProfiles = keyProfiles;
         lstHolders = new ArrayList<>();
+
+        this.itemClickListener = listener;
         startUpdateTimer();
     }
 
@@ -111,7 +119,13 @@ public class KeyProfileAdapter extends RecyclerView.Adapter<KeyProfileAdapter.Ke
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_keyprofile, parent, false);
         // set the view's size, margins, paddings and layout parameters
 
-        KeyProfileHolder vh = new KeyProfileHolder(v);
+        final KeyProfileHolder vh = new KeyProfileHolder(v);
+        v.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                itemClickListener.onItemClicked(vh.keyProfile, view);
+            }
+        });
         return vh;
     }
 

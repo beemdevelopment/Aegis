@@ -1,5 +1,6 @@
 package me.impy.aegis;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
@@ -25,8 +26,9 @@ import java.util.ArrayList;
 import me.impy.aegis.crypto.KeyInfo;
 import me.impy.aegis.crypto.OTP;
 import me.impy.aegis.helpers.DividerItemDecoration;
+import me.impy.aegis.helpers.ItemClickListener;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity  {
 
     static final int GET_KEYINFO = 1;
     RecyclerView rvKeyProfiles;
@@ -59,7 +61,15 @@ public class MainActivity extends AppCompatActivity {
 
         rvKeyProfiles.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
 
-        mKeyProfileAdapter = new KeyProfileAdapter(mKeyProfiles);
+        final Context context = this.getApplicationContext();
+        ItemClickListener itemClickListener = new ItemClickListener() {
+            @Override
+            public void onItemClicked(Object item, Object view) {
+                Toast.makeText(context, ((KeyProfile)item).Code, Toast.LENGTH_SHORT).show();
+            }
+        };
+
+        mKeyProfileAdapter = new KeyProfileAdapter(mKeyProfiles, itemClickListener);
         rvKeyProfiles.setAdapter(mKeyProfileAdapter);
     }
 
