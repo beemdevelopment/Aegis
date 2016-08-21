@@ -1,5 +1,7 @@
 package me.impy.aegis;
 
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -15,6 +17,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.webkit.MimeTypeMap;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -65,7 +68,11 @@ public class MainActivity extends AppCompatActivity  {
         ItemClickListener itemClickListener = new ItemClickListener() {
             @Override
             public void onItemClicked(Object item, Object view) {
-                Toast.makeText(context, ((KeyProfile)item).Code, Toast.LENGTH_SHORT).show();
+                ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+                ClipData clip = ClipData.newPlainText("text/plain", ((KeyProfile)item).Code);
+                clipboard.setPrimaryClip(clip);
+
+                Toast.makeText(context, "Code successfully copied to the clipboard", Toast.LENGTH_SHORT).show();
             }
         };
 
