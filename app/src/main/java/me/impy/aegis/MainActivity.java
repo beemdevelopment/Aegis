@@ -27,6 +27,7 @@ import com.yarolegovich.lovelydialog.LovelyTextInputDialog;
 
 import java.util.ArrayList;
 
+import github.nisrulz.recyclerviewhelper.RVHItemClickListener;
 import github.nisrulz.recyclerviewhelper.RVHItemDividerDecoration;
 import github.nisrulz.recyclerviewhelper.RVHItemTouchHelperCallback;
 import me.impy.aegis.crypto.KeyInfo;
@@ -66,18 +67,18 @@ public class MainActivity extends AppCompatActivity  {
         rvKeyProfiles.setLayoutManager(mLayoutManager);
 
         final Context context = this.getApplicationContext();
-        ItemClickListener itemClickListener = new ItemClickListener() {
+        rvKeyProfiles.addOnItemTouchListener(new RVHItemClickListener(this, new RVHItemClickListener.OnItemClickListener() {
             @Override
-            public void onItemClicked(Object item, Object view) {
+            public void onItemClick(View view, int position) {
                 ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
-                ClipData clip = ClipData.newPlainText("text/plain", ((KeyProfile)item).Code);
+                ClipData clip = ClipData.newPlainText("text/plain", mKeyProfiles.get(position).Code);
                 clipboard.setPrimaryClip(clip);
 
                 Toast.makeText(context, "Code successfully copied to the clipboard", Toast.LENGTH_SHORT).show();
             }
-        };
+        }));
 
-        mKeyProfileAdapter = new KeyProfileAdapter(mKeyProfiles, itemClickListener);
+        mKeyProfileAdapter = new KeyProfileAdapter(mKeyProfiles);
         rvKeyProfiles.addItemDecoration(new RVHItemDividerDecoration(this, LinearLayoutManager.VERTICAL));
 
         ItemTouchHelper.Callback callback = new RVHItemTouchHelperCallback(mKeyProfileAdapter, true, false, false);

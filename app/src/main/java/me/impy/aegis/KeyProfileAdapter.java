@@ -30,8 +30,6 @@ import me.impy.aegis.helpers.ItemClickListener;
 public class KeyProfileAdapter extends RecyclerView.Adapter<KeyProfileAdapter.KeyProfileHolder> implements RVHAdapter {
     private ArrayList<KeyProfile> mKeyProfiles;
     private final List<KeyProfileHolder> lstHolders;
-    private final ItemClickListener itemClickListener;
-
 
     private Handler mHandler = new Handler();
     private Runnable updateRemainingTimeRunnable = new Runnable() {
@@ -118,11 +116,10 @@ public class KeyProfileAdapter extends RecyclerView.Adapter<KeyProfileAdapter.Ke
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public KeyProfileAdapter(ArrayList<KeyProfile> keyProfiles, @NonNull ItemClickListener listener) {
+    public KeyProfileAdapter(ArrayList<KeyProfile> keyProfiles) {
         mKeyProfiles = keyProfiles;
         lstHolders = new ArrayList<>();
 
-        this.itemClickListener = listener;
         startUpdateTimer();
     }
 
@@ -144,13 +141,7 @@ public class KeyProfileAdapter extends RecyclerView.Adapter<KeyProfileAdapter.Ke
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_keyprofile, parent, false);
         // set the view's size, margins, paddings and layout parameters
 
-        final KeyProfileHolder vh = new KeyProfileHolder(v);
-        v.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                itemClickListener.onItemClicked(vh.keyProfile, view);
-            }
-        });
+        KeyProfileHolder vh = new KeyProfileHolder(v);
         return vh;
     }
 
