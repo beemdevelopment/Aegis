@@ -43,6 +43,11 @@ public class KeyInfo implements Serializable {
 
     private KeyInfo() { }
 
+    public long getMillisTillNextRotation() {
+        long p = period * 1000;
+        return p - (System.currentTimeMillis() % p);
+    }
+
     public static KeyInfo FromURL(String s) throws Exception {
         final Uri url = Uri.parse(s);
         if (!url.getScheme().equals("otpauth")) {

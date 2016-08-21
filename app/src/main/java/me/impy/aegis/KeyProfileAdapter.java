@@ -1,16 +1,12 @@
 package me.impy.aegis;
 
 import android.os.Handler;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import java.security.Key;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
@@ -21,18 +17,8 @@ import me.impy.aegis.crypto.OTP;
 public class KeyProfileAdapter extends RecyclerView.Adapter<KeyProfileAdapter.KeyProfileHolder> {
     private ArrayList<KeyProfile> mKeyProfiles;
     private final List<KeyProfileHolder> lstHolders;
-
-    private Handler mHandler = new Handler();
-    private Runnable updateRemainingTimeRunnable = new Runnable() {
-        @Override
-        public void run() {
-            synchronized (lstHolders) {
-                for (KeyProfileHolder holder : lstHolders) {
-                    holder.updateCode();
-                }
-            }
-        }
-    };
+    private Timer timer;
+    private Handler uiHandler;
 
     public static class KeyProfileHolder extends RecyclerView.ViewHolder {
         TextView profileName;
@@ -69,18 +55,8 @@ public class KeyProfileAdapter extends RecyclerView.Adapter<KeyProfileAdapter.Ke
     public KeyProfileAdapter(ArrayList<KeyProfile> keyProfiles) {
         mKeyProfiles = keyProfiles;
         lstHolders = new ArrayList<>();
-        startUpdateTimer();
-    }
-
-    private void startUpdateTimer() {
-        Timer timer = new Timer();
-        timer.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                mHandler.post(updateRemainingTimeRunnable);
-            }
-            //TODO: Replace delay with seconds that are left
-        }, 0, 5000);
+        timer = new Timer();
+        uiHandler = new Handler();
     }
 
     // Create new views (invoked by the layout manager)
@@ -96,12 +72,25 @@ public class KeyProfileAdapter extends RecyclerView.Adapter<KeyProfileAdapter.Ke
 
     // Replace the contents of a view (invoked by the layout manager)
     @Override
-    public void onBindViewHolder(KeyProfileHolder holder, int position) {
+    public void onBindViewHolder(final KeyProfileHolder holder, int position) {
         holder.setData(mKeyProfiles.get(position));
-        synchronized (lstHolders) {
-            lstHolders.add(holder);
-        }
         holder.updateCode();
+        lstHolders.add(holder);
+
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                uiHandler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        // check if this key profile still exists
+                        if (lstHolders.contains(holder)) {
+                            holder.updateCode();
+                        }
+                    }
+                });
+            }
+        }, holder.keyProfile.KeyInfo.getMillisTillNextRotation(), holder.keyProfile.KeyInfo.getPeriod() * 1000);
     }
 
     // Return the size of your dataset (invoked by the layout manager)
