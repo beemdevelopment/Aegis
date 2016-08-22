@@ -32,5 +32,6 @@ dependencies {
     compile 'com.android.support:support-v4:24.1.1'
     compile 'com.android.support:recyclerview-v7:24.1.1'
     compile 'com.yarolegovich:lovely-dialog:1.0.4'
+    compile 'net.zetetic:android-database-sqlcipher:3.5.3@aar'
     testCompile 'junit:junit:4.12'
 }

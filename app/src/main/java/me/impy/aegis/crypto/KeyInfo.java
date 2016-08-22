@@ -12,7 +12,7 @@ public class KeyInfo implements Serializable {
     private String accountName;
     private String issuer;
     private long counter;
-    private String algorithm = "HmacSHA1";
+    private String algorithm = "SHA1";
     private int digits = 6;
     private int period = 30;
 
@@ -29,7 +29,7 @@ public class KeyInfo implements Serializable {
         return issuer;
     }
     public String getAlgorithm() {
-        return algorithm;
+        return "Hmac" + algorithm;
     }
     public int getDigits() {
         return digits;
@@ -41,7 +41,34 @@ public class KeyInfo implements Serializable {
         return period;
     }
 
-    private KeyInfo() { }
+    private KeyInfo() {
+    }
+
+    public void setCounter(long count) {
+        counter = count;
+    }
+
+    public String getURL() throws Exception {
+        Uri.Builder builder = new Uri.Builder();
+        builder.scheme("otpauth");
+        builder.authority(type);
+
+        builder.appendQueryParameter("period", Integer.toString(period));
+        builder.appendQueryParameter("algorithm", algorithm);
+        builder.appendQueryParameter("secret", Base32.encodeOriginal(secret));
+        if (type.equals("hotp")) {
+            builder.appendQueryParameter("counter", Long.toString(counter));
+        }
+
+        if (!issuer.equals("")) {
+            builder.path(String.format("%s:%s", issuer, accountName));
+            builder.appendQueryParameter("issuer", issuer);
+        } else {
+            builder.path(accountName);
+        }
+
+        return builder.build().toString();
+    }
 
     public long getMillisTillNextRotation() {
         long p = period * 1000;
@@ -96,21 +123,21 @@ public class KeyInfo implements Serializable {
         // just use the defaults if these parameters aren't set
         String algorithm = url.getQueryParameter("algorithm");
         if (algorithm != null) {
-            info.algorithm = "Hmac" + algorithm;
+            info.algorithm = algorithm;
         }
         String period = url.getQueryParameter("period");
         if (period != null) {
-            info.period = Integer.getInteger(period);
+            info.period = Integer.parseInt(period);
         }
         String digits = url.getQueryParameter("digits");
         if (digits != null) {
-            info.digits = Integer.getInteger(digits);
+            info.digits = Integer.parseInt(digits);
         }
 
         // 'counter' is required if the type is 'hotp'
         String counter = url.getQueryParameter("counter");
         if (counter != null) {
-            info.counter = Long.getLong(counter);
+            info.counter = Long.parseLong(counter);
         } else if (info.type.equals("hotp")) {
             throw new Exception("'counter' was not set which is required for 'hotp'");
         }

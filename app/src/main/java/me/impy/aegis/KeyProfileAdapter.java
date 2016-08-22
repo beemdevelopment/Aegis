@@ -74,7 +74,7 @@ public class KeyProfileAdapter extends RecyclerView.Adapter<KeyProfileAdapter.Ke
             }
             String otp = "";
             try {
-                otp = OTP.generateOTP(this.keyProfile.KeyInfo);
+                otp = OTP.generateOTP(this.keyProfile.Info);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -136,7 +136,7 @@ public class KeyProfileAdapter extends RecyclerView.Adapter<KeyProfileAdapter.Ke
                     }
                 });
             }
-        }, holder.keyProfile.KeyInfo.getMillisTillNextRotation(), holder.keyProfile.KeyInfo.getPeriod() * 1000);
+        }, holder.keyProfile.Info.getMillisTillNextRotation(), holder.keyProfile.Info.getPeriod() * 1000);
     }
 
     // Return the size of your dataset (invoked by the layout manager)

@@ -59,7 +59,7 @@ public class ScannerActivity extends Activity implements ZXingScannerView.Result
         try {
             KeyInfo info = KeyInfo.FromURL("otpauth://totp/ACME%20Co:john@example.com?secret=HXDMVJECJJWSRB3HWIZR4IFUGFTMXBOZ");
             KeyProfile keyProfile = new KeyProfile();
-            keyProfile.KeyInfo = info;
+            keyProfile.Info = info;
             keyProfile.Name = String.format("%s/%s", info.getIssuer(), info.getAccountName());
 
             Intent resultIntent = new Intent();
@@ -84,7 +84,7 @@ public class ScannerActivity extends Activity implements ZXingScannerView.Result
             //TODO: Handle non TOTP / HOTP qr codes.
             KeyInfo info = KeyInfo.FromURL(rawResult.getText());
             KeyProfile keyProfile = new KeyProfile();
-            keyProfile.KeyInfo = info;
+            keyProfile.Info = info;
             keyProfile.Name = String.format("%s/%s", info.getIssuer(), info.getAccountName());
 
             Intent resultIntent = new Intent();
