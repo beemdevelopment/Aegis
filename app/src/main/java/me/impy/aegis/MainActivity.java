@@ -113,8 +113,9 @@ public class MainActivity extends AppCompatActivity  {
                 }
 
                 keyProfile.Code = otp;
-
-                new LovelyTextInputDialog(this, R.style.EditTextTintTheme)
+                Intent intent = new Intent(this, AddProfileActivity.class);
+                startActivity(intent);
+               /* new LovelyTextInputDialog(this, R.style.EditTextTintTheme)
                         .setTopColorRes(R.color.colorHeaderSuccess)
                         .setTitle("New profile added")
                         .setMessage("How do you want to call it?")
@@ -141,7 +142,7 @@ public class MainActivity extends AppCompatActivity  {
                                 }
                             }
                         })
-                        .show();
+                        .show();*/
 
                 //TODO: do something with the result.
             }
