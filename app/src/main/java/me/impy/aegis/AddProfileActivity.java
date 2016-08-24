@@ -9,10 +9,20 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.widget.EditText;
+import android.widget.TextView;
+
+import me.impy.aegis.crypto.OTP;
 
 public class AddProfileActivity extends AppCompatActivity {
 
+    KeyProfile keyProfile;
+
     EditText profileName;
+    TextView tvAlgorithm;
+    TextView tvIssuer;
+    TextView tvPeriod;
+    TextView tvOtp;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,12 +30,17 @@ public class AddProfileActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_profile);
 
         profileName = (EditText) findViewById(R.id.addProfileName);
+        tvAlgorithm = (TextView) findViewById(R.id.tvAlgorithm);
+        tvIssuer = (TextView) findViewById(R.id.tvIssuer);
+        tvPeriod = (TextView) findViewById(R.id.tvPeriod);
+        tvOtp = (TextView) findViewById(R.id.tvOtp);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
-        final KeyProfile keyProfile = (KeyProfile)getIntent().getSerializableExtra("KeyProfile");
-        profileName.setText(keyProfile.Info.getAccountName());
+        keyProfile = (KeyProfile)getIntent().getSerializableExtra("KeyProfile");
+
+        initializeForm();
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -41,6 +56,25 @@ public class AddProfileActivity extends AppCompatActivity {
             }
         });
         //profileName.setText(keyProfile.Info.getAccountName());
+    }
+
+    private void initializeForm()
+    {
+        profileName.setText(keyProfile.Info.getAccountName());
+        tvAlgorithm.setText(keyProfile.Info.getAlgorithm());
+        tvIssuer.setText(keyProfile.Info.getIssuer());
+        tvPeriod.setText(keyProfile.Info.getPeriod() + " seconds");
+
+        String otp;
+        try {
+            otp = OTP.generateOTP(keyProfile.Info);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return;
+        }
+
+        keyProfile.Code = otp;
+        tvOtp.setText(otp.substring(0, 3) + " " + otp.substring(3));
     }
 
     @Override

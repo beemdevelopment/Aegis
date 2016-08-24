@@ -1,6 +1,7 @@
 <android.support.design.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -54,7 +55,111 @@
             android:layout_height="match_parent"
             android:layout_weight="0.4"
             android:background="@color/background"
-            android:orientation="horizontal"/>
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                >
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/ic_vpn_key_black_24dp"
+                    android:id="@+id/imageView3"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginTop="16dp"
+                    android:tint="@color/cardview_dark_background"/>
+
+                <TextView
+                    android:text="SHA1"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tvAlgorithm"
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginStart="16dp"
+                    android:textSize="18sp"
+                    android:layout_alignBottom="@+id/imageView3"
+                    android:layout_toRightOf="@+id/imageView3"
+                    android:layout_toEndOf="@+id/imageView3"/>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/ic_person_black_24dp"
+                    android:id="@+id/ivIssuer"
+                    android:layout_weight="1"
+                    android:layout_marginTop="10dp"
+                    android:tint="@color/cardview_dark_background"
+                    android:layout_below="@+id/imageView3"
+                    android:layout_alignLeft="@+id/imageView3"
+                    android:layout_alignStart="@+id/imageView3"/>
+
+                <TextView
+                    android:text="GitHub"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tvIssuer"
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:textSize="18sp"
+                    android:layout_alignBottom="@+id/ivIssuer"
+                    android:layout_alignLeft="@+id/tvAlgorithm"
+                    android:layout_alignStart="@+id/tvAlgorithm"/>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/ic_timelapse_black_24dp"
+                    android:id="@+id/ivPeriod"
+                    android:layout_weight="1"
+                    android:layout_marginTop="13dp"
+                    android:tint="@color/cardview_dark_background"
+                    android:layout_below="@+id/ivIssuer"
+                    android:layout_alignLeft="@+id/ivIssuer"
+                    android:layout_alignStart="@+id/ivIssuer"/>
+
+                <TextView
+                    android:text="30 seconds"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tvPeriod"
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:textSize="18sp"
+                    android:layout_alignBottom="@+id/ivPeriod"
+                    android:layout_alignLeft="@+id/tvIssuer"
+                    android:layout_alignStart="@+id/tvIssuer"
+                    android:layout_marginBottom="2dp"/>
+
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="Medium Text"
+                    android:id="@+id/tvOtp"
+                    android:textSize="36sp"
+                    android:textColor="@color/primary_text"
+                    android:layout_alignParentBottom="true"
+                    android:layout_toRightOf="@+id/tvAlgorithm"
+                    android:layout_toEndOf="@+id/tvAlgorithm"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal|center"/>
+            </LinearLayout>
+
+        </LinearLayout>
 
     </LinearLayout>
 
@@ -67,7 +172,8 @@
         app:layout_anchor="@id/viewA"
         app:layout_anchorGravity="bottom|right|end"
         android:src="@drawable/ic_check"/>
-        <!---->
+
+    <!---->
 
 
 </android.support.design.widget.CoordinatorLayout>
