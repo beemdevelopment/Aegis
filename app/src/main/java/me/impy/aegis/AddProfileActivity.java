@@ -25,6 +25,7 @@ public class AddProfileActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         final KeyProfile keyProfile = (KeyProfile)getIntent().getSerializableExtra("KeyProfile");
+        profileName.setText(keyProfile.Info.getAccountName());
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {

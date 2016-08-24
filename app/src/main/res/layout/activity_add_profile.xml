@@ -31,6 +31,7 @@
                     android:layout_weight="0.53"
                     android:gravity="bottom"
                     android:textSize="18sp"
+                    android:textColor="@color/primary_text_inverted"
                     android:layout_marginLeft="3dp"/>
 
                 <EditText
@@ -38,6 +39,7 @@
                     android:layout_height="wrap_content"
                     android:inputType="textPersonName"
                     android:ems="10"
+                    android:textColor="@color/primary_text_inverted"
                     android:paddingTop="0dp"
                     android:id="@+id/addProfileName"
                     android:textSize="28sp"
@@ -63,8 +65,9 @@
         android:layout_margin="16dp"
         android:clickable="true"
         app:layout_anchor="@id/viewA"
-        app:layout_anchorGravity="bottom|right|end"/>
-        <!--android:src="@drawable/ic_done"-->
+        app:layout_anchorGravity="bottom|right|end"
+        android:src="@drawable/ic_check"/>
+        <!---->
 
 
 </android.support.design.widget.CoordinatorLayout>
