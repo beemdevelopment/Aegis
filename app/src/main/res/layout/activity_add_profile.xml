@@ -39,7 +39,7 @@
                     android:inputType="textPersonName"
                     android:ems="10"
                     android:paddingTop="0dp"
-                    android:id="@+id/editText3"
+                    android:id="@+id/addProfileName"
                     android:textSize="28sp"
                     />
             </LinearLayout>

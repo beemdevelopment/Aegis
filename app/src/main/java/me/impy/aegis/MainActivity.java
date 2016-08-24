@@ -30,6 +30,8 @@ import me.impy.aegis.db.Database;
 public class MainActivity extends AppCompatActivity  {
 
     static final int GET_KEYINFO = 1;
+    static final int ADD_KEYINFO = 2;
+
     RecyclerView rvKeyProfiles;
     KeyProfileAdapter mKeyProfileAdapter;
     ArrayList<KeyProfile> mKeyProfiles;
@@ -104,17 +106,9 @@ public class MainActivity extends AppCompatActivity  {
             if (resultCode == RESULT_OK) {
                 final KeyProfile keyProfile = (KeyProfile)data.getSerializableExtra("KeyProfile");
 
-                String otp;
-                try {
-                    otp = OTP.generateOTP(keyProfile.Info);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    return;
-                }
-
-                keyProfile.Code = otp;
                 Intent intent = new Intent(this, AddProfileActivity.class);
-                startActivity(intent);
+                intent.putExtra("KeyProfile", keyProfile);
+                startActivityForResult(intent, ADD_KEYINFO);
                /* new LovelyTextInputDialog(this, R.style.EditTextTintTheme)
                         .setTopColorRes(R.color.colorHeaderSuccess)
                         .setTitle("New profile added")
@@ -145,6 +139,30 @@ public class MainActivity extends AppCompatActivity  {
                         .show();*/
 
                 //TODO: do something with the result.
+            }
+        }
+        else if (requestCode == ADD_KEYINFO) {
+            // Make sure the request was successful
+            if (resultCode == RESULT_OK) {
+                final KeyProfile keyProfile = (KeyProfile)data.getSerializableExtra("KeyProfile");
+
+                String otp;
+                try {
+                    otp = OTP.generateOTP(keyProfile.Info);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    return;
+                }
+
+                keyProfile.Code = otp;
+                mKeyProfiles.add(keyProfile);
+                mKeyProfileAdapter.notifyDataSetChanged();
+
+                try {
+                    database.addKey(keyProfile);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         }
     }

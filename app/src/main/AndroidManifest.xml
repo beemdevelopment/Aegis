@@ -23,7 +23,7 @@
         <activity android:name=".ScannerActivity">
         </activity>
         <activity android:name=".AddProfileActivity"
-                  android:theme="@style/Theme.AppCompat.NoActionBar"    >
+                  android:theme="@style/AppTheme.TransparentActionBar"    >
         </activity>
     </application>
 
