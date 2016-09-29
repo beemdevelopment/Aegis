@@ -89,8 +89,8 @@ public class KeyProfileAdapter extends RecyclerView.Adapter<KeyProfileAdapter.Ke
 
             long millisTillRotation = keyProfile.Info.getMillisTillNextRotation();
             long period = keyProfile.Info.getPeriod() * 1000;
-            int currentProgress = (int)((((double)period - millisTillRotation) / period) * 1000);
-            ObjectAnimator animation = ObjectAnimator.ofInt(progressBar, "progress", currentProgress, 1000);
+            int currentProgress = 1000 - (int)((((double)period - millisTillRotation) / period) * 1000);
+            ObjectAnimator animation = ObjectAnimator.ofInt(progressBar, "progress", currentProgress, 0);
             animation.setDuration(millisTillRotation);
             animation.setInterpolator(new LinearInterpolator());
             animation.start();
