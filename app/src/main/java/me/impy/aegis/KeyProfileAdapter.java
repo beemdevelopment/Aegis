@@ -1,11 +1,14 @@
 package me.impy.aegis;
 
+import android.animation.ObjectAnimator;
+import android.os.CountDownTimer;
 import android.os.Handler;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.amulyakhare.textdrawable.TextDrawable;
@@ -53,12 +56,17 @@ public class KeyProfileAdapter extends RecyclerView.Adapter<KeyProfileAdapter.Ke
         TextView profileCode;
         ImageView profileDrawable;
         KeyProfile keyProfile;
+        ProgressBar progressBar;
+
+        CountDownTimer mCountDownTimer;
+        int i = 0;
 
         KeyProfileHolder(final View itemView) {
             super(itemView);
             profileName = (TextView) itemView.findViewById(R.id.profile_name);
             profileCode = (TextView) itemView.findViewById(R.id.profile_code);
             profileDrawable = (ImageView) itemView.findViewById(R.id.ivTextDrawable);
+            progressBar = (ProgressBar) itemView.findViewById(R.id.progressBar);
         }
 
         public void setData(KeyProfile profile) {
@@ -81,6 +89,30 @@ public class KeyProfileAdapter extends RecyclerView.Adapter<KeyProfileAdapter.Ke
 
             this.keyProfile.Code = otp;
             profileCode.setText(otp.substring(0, 3) + " " + otp.substring(3));
+
+            i = Math.round((float)keyProfile.Info.getMillisTillNextRotation() / (float)((keyProfile.Info.getPeriod() * 1000)) * 100);
+            if(i == 100)
+            {
+                i = 0;
+            }
+            progressBar.setProgress(i);
+
+            mCountDownTimer = new CountDownTimer(keyProfile.Info.getMillisTillNextRotation(), (keyProfile.Info.getPeriod() * 1000 / 100)) {
+                @Override
+                public void onTick(long millisUntilFinished) {
+                    i++;
+                    progressBar.setProgress(i);
+                }
+
+                @Override
+                public void onFinish() {
+                    //Do what you want
+                    i = 0;
+                    progressBar.setProgress(i);
+                }
+            };
+
+            mCountDownTimer.start();
         }
 
         private TextDrawable generateTextDrawable(KeyProfile profile)
