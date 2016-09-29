@@ -2,4 +2,6 @@
     <string name="app_name">Aegis</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_intro">IntroActivity</string>
+    <string name="settings">Preferences</string>
+    <string name="pref_night_mode">Night mode</string>
 </resources>

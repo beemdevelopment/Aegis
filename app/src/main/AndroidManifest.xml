@@ -31,6 +31,9 @@
             android:label="@string/title_activity_intro"
             android:theme="@style/Theme.Intro">
         </activity>
+        <activity android:name=".PreferencesActivity"
+                  >
+        </activity>
     </application>
 
 </manifest>
