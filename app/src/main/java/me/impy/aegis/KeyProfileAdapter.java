@@ -1,12 +1,12 @@
 package me.impy.aegis;
 
 import android.animation.ObjectAnimator;
-import android.os.CountDownTimer;
 import android.os.Handler;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.LinearInterpolator;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -58,9 +58,6 @@ public class KeyProfileAdapter extends RecyclerView.Adapter<KeyProfileAdapter.Ke
         KeyProfile keyProfile;
         ProgressBar progressBar;
 
-        CountDownTimer mCountDownTimer;
-        int i = 100;
-
         KeyProfileHolder(final View itemView) {
             super(itemView);
             profileName = (TextView) itemView.findViewById(R.id.profile_name);
@@ -90,29 +87,13 @@ public class KeyProfileAdapter extends RecyclerView.Adapter<KeyProfileAdapter.Ke
             this.keyProfile.Code = otp;
             profileCode.setText(otp.substring(0, 3) + " " + otp.substring(3));
 
-            i = Math.round(100 - ((float)keyProfile.Info.getMillisTillNextRotation() / (float)((keyProfile.Info.getPeriod() * 1000)) * 100));
-            if(i == 0)
-            {
-                i = 100;
-            }
-            progressBar.setProgress(i);
-
-            mCountDownTimer = new CountDownTimer(keyProfile.Info.getMillisTillNextRotation(), (keyProfile.Info.getPeriod() * 1000 / 100)) {
-                @Override
-                public void onTick(long millisUntilFinished) {
-                    i--;
-                    progressBar.setProgress(i);
-                }
-
-                @Override
-                public void onFinish() {
-                    //Do what you want
-                    i = 100;
-                    progressBar.setProgress(i);
-                }
-            };
-
-            mCountDownTimer.start();
+            long millisTillRotation = keyProfile.Info.getMillisTillNextRotation();
+            long period = keyProfile.Info.getPeriod() * 1000;
+            int currentProgress = (int)((((double)period - millisTillRotation) / period) * 1000);
+            ObjectAnimator animation = ObjectAnimator.ofInt(progressBar, "progress", currentProgress, 1000);
+            animation.setDuration(millisTillRotation);
+            animation.setInterpolator(new LinearInterpolator());
+            animation.start();
         }
 
         private TextDrawable generateTextDrawable(KeyProfile profile)
