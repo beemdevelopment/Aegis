@@ -6,10 +6,14 @@
     <color name="colorPrimaryLight">#B3E5FC</color>
     <color name="colorAccent">#FF5252</color>
     <color name="primary_text">#212121</color>
-    <color name="secondary_text">#FF5252</color>
+    <color name="secondary_text">#434343</color>
     <color name="primary_text_inverted">#ffffff</color>
-    <color name="secondary_text_inverted">#efefef</color>
+    <color name="secondary_text_inverted">#efefef</color>b
     <color name="icons">#FFFFFF</color>
     <color name="divider">#BDBDBD</color>
     <color name="background">#ffffff</color>
+
+    <color name="primary_text_dark">#ffffff</color>
+    <color name="secondary_text_dark">#FF5252</color>
+    <color name="background_dark">#191919</color>
 </resources>

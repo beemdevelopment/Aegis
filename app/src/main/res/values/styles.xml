@@ -35,4 +35,47 @@
         <!--<item name="colorAccent">@color/</item>-->
     </style>
 
+    <style name="AppTheme.Default">
+        <item name="android:windowBackground">@color/background</item>
+
+        <item name="android:textColorPrimary">@color/primary_text</item>
+        <item name="android:textColorSecondary">@color/secondary_text</item>
+        <item name="primaryText">@color/primary_text</item>
+        <item name="secondaryText">@color/secondary_text</item>
+        <item name="background">@color/background</item>
+    </style>
+    <style name="AppTheme.Default.NoActionBar" parent="AppTheme.Default">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+    <style name="AppTheme.Default.TransparentActionBar" parent="AppTheme.Default">
+        <item name="android:actionBarStyle">@style/ThemeActionBar</item>
+        <item name="android:windowActionBarOverlay">true</item>
+        <!-- Support library compatibility -->
+        <item name="actionBarStyle">@style/ThemeActionBar</item>
+        <item name="windowActionBarOverlay">true</item>
+    </style>
+
+
+    <style name="AppTheme.Dark">
+        <item name="android:windowBackground">@color/background_dark</item>
+        <item name="android:textColorPrimary">@color/primary_text_dark</item>
+        <item name="android:textColorSecondary">@color/secondary_text_dark</item>
+        <item name="primaryText">@color/primary_text_dark</item>
+        <item name="secondaryText">@color/secondary_text_dark</item>
+        <item name="background">@color/background_dark</item>
+    </style>
+    <style name="AppTheme.Dark.NoActionBar" parent="AppTheme.Dark">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+    <style name="AppTheme.Dark.TransparentActionBar" parent="AppTheme.Dark">
+        <item name="android:actionBarStyle">@style/ThemeActionBar</item>
+        <item name="android:windowActionBarOverlay">true</item>
+        <!-- Support library compatibility -->
+        <item name="actionBarStyle">@style/ThemeActionBar</item>
+        <item name="windowActionBarOverlay">true</item>
+    </style>
+
+
 </resources>

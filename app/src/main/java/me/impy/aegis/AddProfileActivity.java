@@ -2,6 +2,8 @@ package me.impy.aegis;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -27,6 +29,7 @@ public class AddProfileActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setPreferredTheme();
         setContentView(R.layout.activity_add_profile);
 
         profileName = (EditText) findViewById(R.id.addProfileName);
@@ -85,6 +88,19 @@ public class AddProfileActivity extends AppCompatActivity {
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
+        }
+    }
+
+
+    private void setPreferredTheme()
+    {
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        if(sharedPreferences.getBoolean("pref_night_mode", false))
+        {
+                setTheme(R.style.AppTheme_Dark_TransparentActionBar);
+        } else
+        {
+                setTheme(R.style.AppTheme_Default_TransparentActionBar);
         }
     }
 }

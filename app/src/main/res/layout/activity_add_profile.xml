@@ -54,7 +54,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="0.4"
-            android:background="@color/background"
+            android:background="?attr/background"
             android:orientation="vertical">
 
             <RelativeLayout

@@ -1,11 +1,14 @@
 package me.impy.aegis;
 
+import android.app.FragmentManager;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -37,7 +40,8 @@ public class MainActivity extends AppCompatActivity  {
     KeyProfileAdapter mKeyProfileAdapter;
     ArrayList<KeyProfile> mKeyProfiles;
     Database database;
-    
+
+    boolean nightMode = false;
     int count = 0;
 
     @Override
@@ -49,6 +53,16 @@ public class MainActivity extends AppCompatActivity  {
         {
             Intent intro = new Intent(this, IntroActivity.class);
             startActivity(intro);
+        }
+
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        if(sharedPreferences.getBoolean("pref_night_mode", false))
+        {
+            nightMode = true;
+            setTheme(R.style.AppTheme_Dark_NoActionBar);
+        } else
+        {
+            setPreferredTheme();
         }
 
         setContentView(R.layout.activity_main);
@@ -147,6 +161,12 @@ public class MainActivity extends AppCompatActivity  {
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        setPreferredTheme();
+    }
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
@@ -170,5 +190,29 @@ public class MainActivity extends AppCompatActivity  {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void setPreferredTheme()
+    {
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        if(sharedPreferences.getBoolean("pref_night_mode", false))
+        {
+            if(!nightMode)
+            {
+                setTheme(R.style.AppTheme_Dark_NoActionBar);
+                finish();
+
+                startActivity(new Intent(this, this.getClass()));
+            }
+        } else
+        {
+            if(nightMode)
+            {
+                setTheme(R.style.AppTheme_Default_NoActionBar);
+                finish();
+
+                startActivity(new Intent(this, this.getClass()));
+            }
+        }
     }
 }
