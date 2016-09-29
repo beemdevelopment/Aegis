@@ -31,8 +31,8 @@
                     android:id="@+id/textView"
                     android:layout_weight="0.53"
                     android:gravity="bottom"
-                    android:textSize="18sp"
-                    android:textColor="@color/primary_text_inverted"
+                    android:textSize="16sp"
+                    android:textColor="@color/secondary_text_inverted"
                     android:layout_marginLeft="3dp"/>
 
                 <EditText
@@ -44,7 +44,7 @@
                     android:paddingTop="0dp"
                     android:id="@+id/addProfileName"
                     android:textSize="28sp"
-                    />
+                    android:paddingRight="0dp" />
             </LinearLayout>
 
         </LinearLayout>

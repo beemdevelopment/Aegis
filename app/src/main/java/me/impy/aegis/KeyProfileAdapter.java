@@ -92,7 +92,7 @@ public class KeyProfileAdapter extends RecyclerView.Adapter<KeyProfileAdapter.Ke
             // generate color based on a key (same key returns the same color), useful for list/grid views
             int profileKeyColor = generator.getColor(profile.Name);
 
-            TextDrawable newDrawable = TextDrawable.builder().buildRound(profile.Name.substring(0, 1), profileKeyColor);
+            TextDrawable newDrawable = TextDrawable.builder().buildRound(profile.Name.substring(0, 1).toUpperCase(), profileKeyColor);
             return newDrawable;
         }
     }

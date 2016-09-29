@@ -8,7 +8,7 @@
     <color name="primary_text">#212121</color>
     <color name="secondary_text">#434343</color>
     <color name="primary_text_inverted">#ffffff</color>
-    <color name="secondary_text_inverted">#FF5252</color>
+    <color name="secondary_text_inverted">#efefef</color>
     <color name="icons">#FFFFFF</color>
     <color name="divider">#BDBDBD</color>
     <color name="background">#ffffff</color>
