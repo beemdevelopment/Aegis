@@ -59,7 +59,7 @@ public class KeyProfileAdapter extends RecyclerView.Adapter<KeyProfileAdapter.Ke
         ProgressBar progressBar;
 
         CountDownTimer mCountDownTimer;
-        int i = 0;
+        int i = 100;
 
         KeyProfileHolder(final View itemView) {
             super(itemView);
@@ -90,24 +90,24 @@ public class KeyProfileAdapter extends RecyclerView.Adapter<KeyProfileAdapter.Ke
             this.keyProfile.Code = otp;
             profileCode.setText(otp.substring(0, 3) + " " + otp.substring(3));
 
-            i = Math.round((float)keyProfile.Info.getMillisTillNextRotation() / (float)((keyProfile.Info.getPeriod() * 1000)) * 100);
-            if(i == 100)
+            i = Math.round(100 - ((float)keyProfile.Info.getMillisTillNextRotation() / (float)((keyProfile.Info.getPeriod() * 1000)) * 100));
+            if(i == 0)
             {
-                i = 0;
+                i = 100;
             }
             progressBar.setProgress(i);
 
             mCountDownTimer = new CountDownTimer(keyProfile.Info.getMillisTillNextRotation(), (keyProfile.Info.getPeriod() * 1000 / 100)) {
                 @Override
                 public void onTick(long millisUntilFinished) {
-                    i++;
+                    i--;
                     progressBar.setProgress(i);
                 }
 
                 @Override
                 public void onFinish() {
                     //Do what you want
-                    i = 0;
+                    i = 100;
                     progressBar.setProgress(i);
                 }
             };
