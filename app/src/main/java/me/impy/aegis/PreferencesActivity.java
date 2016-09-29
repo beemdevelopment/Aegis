@@ -9,6 +9,7 @@ import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.AppCompatDelegate;
+import android.widget.Toast;
 
 public class PreferencesActivity extends AppCompatActivity {
 
@@ -35,14 +36,12 @@ public class PreferencesActivity extends AppCompatActivity {
             // Load the preferences from an XML resource
             addPreferencesFromResource(R.xml.preferences);
 
-            Preference nightModePreference = findPreference("pref_night_mode");
-            nightModePreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            final Preference nightModePreference = findPreference("pref_night_mode");
+            nightModePreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
                 @Override
-                public boolean onPreferenceClick(Preference preference) {
-                    //AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-                    Intent i = new Intent(getActivity(), MainActivity.class);
-                    //startActivity(i);
-                    return false;
+                public boolean onPreferenceChange(Preference preference, Object newValue) {
+                    Toast.makeText(getActivity(), "Night mode will be enabled after closing this screen", Toast.LENGTH_SHORT).show();
+                    return true;
                 }
             });
         }
