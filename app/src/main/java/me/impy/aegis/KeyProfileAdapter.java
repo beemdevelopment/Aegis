@@ -74,6 +74,7 @@ public class KeyProfileAdapter extends RecyclerView.Adapter<KeyProfileAdapter.Ke
         }
 
         public void updateCode() {
+            progressBar.setProgress(1000);
             if (this.keyProfile == null) {
                 return;
             }
