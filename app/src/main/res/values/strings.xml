@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Aegis</string>
     <string name="action_settings">Settings</string>
+    <string name="title_activity_intro">IntroActivity</string>
 </resources>

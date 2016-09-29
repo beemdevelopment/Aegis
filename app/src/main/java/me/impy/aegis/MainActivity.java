@@ -4,6 +4,7 @@ import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -42,6 +43,14 @@ public class MainActivity extends AppCompatActivity  {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        SharedPreferences prefs = this.getSharedPreferences("me.impy.aegis", Context.MODE_PRIVATE);
+        if(!prefs.getBoolean("passedIntro", false))
+        {
+            Intent intro = new Intent(this, IntroActivity.class);
+            startActivity(intro);
+        }
+
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -109,35 +118,6 @@ public class MainActivity extends AppCompatActivity  {
                 Intent intent = new Intent(this, AddProfileActivity.class);
                 intent.putExtra("KeyProfile", keyProfile);
                 startActivityForResult(intent, ADD_KEYINFO);
-               /* new LovelyTextInputDialog(this, R.style.EditTextTintTheme)
-                        .setTopColorRes(R.color.colorHeaderSuccess)
-                        .setTitle("New profile added")
-                        .setMessage("How do you want to call it?")
-                        .setIcon(R.drawable.ic_check)
-                        .setInitialInput(keyProfile.Name)
-                        .setInputFilter("Nah, not possible man.", new LovelyTextInputDialog.TextFilter() {
-                            @Override
-                            public boolean check(String text) {
-                                return true;
-                                //return text.matches("\\w+");
-                            }
-                        })
-                        .setConfirmButton(android.R.string.ok, new LovelyTextInputDialog.OnTextInputConfirmListener() {
-                            @Override
-                            public void onTextInputConfirmed(String text) {
-                                keyProfile.Name = text;
-                                mKeyProfiles.add(keyProfile);
-                                mKeyProfileAdapter.notifyDataSetChanged();
-
-                                try {
-                                    database.addKey(keyProfile);
-                                } catch (Exception e) {
-                                    e.printStackTrace();
-                                }
-                            }
-                        })
-                        .show();*/
-
                 //TODO: do something with the result.
             }
         }
