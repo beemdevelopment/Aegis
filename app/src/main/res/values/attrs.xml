@@ -3,4 +3,5 @@
     <attr name="primaryText" format="color" />
     <attr name="secondaryText" format="color" />
     <attr name="backgroundColor" format="color" />
+    <attr name="cardBackground" format="color" />
 </resources>

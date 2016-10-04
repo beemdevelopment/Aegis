@@ -7,11 +7,12 @@
               android:clickable="true"
               android:focusable="true"
               android:layout_height="wrap_content"
+              android:layout_marginTop="20dp"
               android:orientation="vertical">
 
     <LinearLayout
         android:orientation="horizontal"
-        android:background="?attr/background"
+        android:background="?attr/cardBackground"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -31,13 +32,18 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="16dp"
             android:layout_alignParentBottom="false"
             android:layout_alignParentTop="false"
             android:layout_alignWithParentIfMissing="false"
             android:gravity="bottom"
             android:id="@+id/relativeLayout"
-            android:layout_alignParentStart="false">
+            android:layout_alignParentStart="false"
+            android:paddingTop="12dp"
+            android:paddingBottom="16dp"
+            android:paddingEnd="16dp"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:paddingStart="16dp">
 
 
             <TextView
@@ -46,7 +52,8 @@
                 android:id="@+id/profile_name"
                 android:text="Post title"
                 android:textColor="?attr/secondaryText"
-                android:textSize="20sp"
+                android:includeFontPadding="false"
+                android:textSize="15sp"
                 android:layout_below="@+id/profile_code"
                 android:layout_alignLeft="@+id/profile_code"
                 android:layout_alignStart="@+id/profile_code"
@@ -57,15 +64,19 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
+                android:fontFamily="sans-serif-light"
                 android:text="Medium Text"
                 android:id="@+id/profile_code"
-                android:textSize="36sp"
-                android:textColor="?attr/primaryText"
+                android:includeFontPadding="false"
+                android:textSize="34sp"
+                android:textColor="?attr/colorPrimary"
                 android:layout_marginLeft="6dp"
                 android:layout_marginStart="6dp"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"/>
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="0dp"
+                android:textStyle="normal|bold"/>
 
         </RelativeLayout>
     </LinearLayout>

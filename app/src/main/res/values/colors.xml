@@ -11,7 +11,8 @@
     <color name="secondary_text_inverted">#efefef</color>b
     <color name="icons">#FFFFFF</color>
     <color name="divider">#BDBDBD</color>
-    <color name="background">#ffffff</color>
+    <color name="background">#f2f2f2</color>
+    <color name="card_background">#ffffff</color>
 
     <color name="primary_text_dark">#ffffff</color>
     <color name="secondary_text_dark">#FF5252</color>

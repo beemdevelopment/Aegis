@@ -43,6 +43,7 @@
         <item name="primaryText">@color/primary_text</item>
         <item name="secondaryText">@color/secondary_text</item>
         <item name="background">@color/background</item>
+        <item name="cardBackground">@color/card_background</item>
     </style>
     <style name="AppTheme.Default.NoActionBar" parent="AppTheme.Default">
         <item name="windowActionBar">false</item>
