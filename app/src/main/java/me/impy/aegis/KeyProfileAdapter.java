@@ -20,24 +20,26 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import github.nisrulz.recyclerviewhelper.RVHAdapter;
 import me.impy.aegis.crypto.OTP;
+import me.impy.aegis.helpers.ItemTouchHelperAdapter;
 
-public class KeyProfileAdapter extends RecyclerView.Adapter<KeyProfileAdapter.KeyProfileHolder> implements RVHAdapter {
-    private ArrayList<KeyProfile> mKeyProfiles;
+public class KeyProfileAdapter extends RecyclerView.Adapter<KeyProfileAdapter.KeyProfileHolder> implements ItemTouchHelperAdapter {
     private final List<KeyProfileHolder> lstHolders;
+    private ArrayList<KeyProfile> mKeyProfiles;
     private Timer timer;
     private Handler uiHandler;
 
-    @Override
-    public boolean onItemMove(int fromPosition, int toPosition) {
-        swap(fromPosition, toPosition);
-        return false;
+    // Provide a suitable constructor (depends on the kind of dataset)
+    public KeyProfileAdapter(ArrayList<KeyProfile> keyProfiles) {
+        mKeyProfiles = keyProfiles;
+        lstHolders = new ArrayList<>();
+        timer = new Timer();
+        uiHandler = new Handler();
     }
 
     @Override
-    public void onItemDismiss(int position, int direction) {
-        remove(position);
+    public void onItemDismiss(int position) {
+        return;
     }
 
     // Helper functions you might want to implement to make changes in the list as an event is fired
@@ -46,9 +48,50 @@ public class KeyProfileAdapter extends RecyclerView.Adapter<KeyProfileAdapter.Ke
         notifyItemRemoved(position);
     }
 
-    private void swap(int firstPosition, int secondPosition) {
+    @Override
+    public void onItemMove(int firstPosition, int secondPosition) {
         Collections.swap(mKeyProfiles, firstPosition, secondPosition);
         notifyItemMoved(firstPosition, secondPosition);
+    }
+
+    // Create new views (invoked by the layout manager)
+    @Override
+    public KeyProfileHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        // create a new view
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_keyprofile, parent, false);
+        // set the view's size, margins, paddings and layout parameters
+
+        KeyProfileHolder vh = new KeyProfileHolder(v);
+        return vh;
+    }
+
+    // Replace the contents of a view (invoked by the layout manager)
+    @Override
+    public void onBindViewHolder(final KeyProfileHolder holder, int position) {
+        holder.setData(mKeyProfiles.get(position));
+        holder.updateCode();
+        lstHolders.add(holder);
+
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                uiHandler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        // check if this key profile still exists
+                        if (lstHolders.contains(holder)) {
+                            holder.updateCode();
+                        }
+                    }
+                });
+            }
+        }, holder.keyProfile.Info.getMillisTillNextRotation(), holder.keyProfile.Info.getPeriod() * 1000);
+    }
+
+    // Return the size of your dataset (invoked by the layout manager)
+    @Override
+    public int getItemCount() {
+        return mKeyProfiles.size();
     }
 
     public static class KeyProfileHolder extends RecyclerView.ViewHolder {
@@ -109,53 +152,5 @@ public class KeyProfileAdapter extends RecyclerView.Adapter<KeyProfileAdapter.Ke
             TextDrawable newDrawable = TextDrawable.builder().buildRound(profile.Name.substring(0, 1).toUpperCase(), profileKeyColor);
             return newDrawable;
         }
-    }
-
-    // Provide a suitable constructor (depends on the kind of dataset)
-    public KeyProfileAdapter(ArrayList<KeyProfile> keyProfiles) {
-        mKeyProfiles = keyProfiles;
-        lstHolders = new ArrayList<>();
-        timer = new Timer();
-        uiHandler = new Handler();
-    }
-
-    // Create new views (invoked by the layout manager)
-    @Override
-    public KeyProfileHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        // create a new view
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_keyprofile, parent, false);
-        // set the view's size, margins, paddings and layout parameters
-
-        KeyProfileHolder vh = new KeyProfileHolder(v);
-        return vh;
-    }
-
-    // Replace the contents of a view (invoked by the layout manager)
-    @Override
-    public void onBindViewHolder(final KeyProfileHolder holder, int position) {
-        holder.setData(mKeyProfiles.get(position));
-        holder.updateCode();
-        lstHolders.add(holder);
-
-        timer.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                uiHandler.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        // check if this key profile still exists
-                        if (lstHolders.contains(holder)) {
-                            holder.updateCode();
-                        }
-                    }
-                });
-            }
-        }, holder.keyProfile.Info.getMillisTillNextRotation(), holder.keyProfile.Info.getPeriod() * 1000);
-    }
-
-    // Return the size of your dataset (invoked by the layout manager)
-    @Override
-    public int getItemCount() {
-        return mKeyProfiles.size();
     }
 }

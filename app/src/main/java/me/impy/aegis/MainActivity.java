@@ -24,12 +24,10 @@ import com.yarolegovich.lovelydialog.LovelyTextInputDialog;
 
 import java.util.ArrayList;
 
-import github.nisrulz.recyclerviewhelper.RVHItemClickListener;
-import github.nisrulz.recyclerviewhelper.RVHItemDividerDecoration;
-import github.nisrulz.recyclerviewhelper.RVHItemTouchHelperCallback;
 import me.impy.aegis.crypto.CryptoUtils;
 import me.impy.aegis.crypto.OTP;
 import me.impy.aegis.db.Database;
+import me.impy.aegis.helpers.SimpleItemTouchHelperCallback;
 
 public class MainActivity extends AppCompatActivity  {
 
@@ -90,7 +88,7 @@ public class MainActivity extends AppCompatActivity  {
         rvKeyProfiles.setLayoutManager(mLayoutManager);
 
         final Context context = this.getApplicationContext();
-        rvKeyProfiles.addOnItemTouchListener(new RVHItemClickListener(this, new RVHItemClickListener.OnItemClickListener() {
+        /*rvKeyProfiles.addOnItemTouchListener(new RVHItemClickListener(this, new RVHItemClickListener.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
                 ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
@@ -99,14 +97,18 @@ public class MainActivity extends AppCompatActivity  {
 
                 Toast.makeText(context, "Code successfully copied to the clipboard", Toast.LENGTH_SHORT).show();
             }
-        }));
+        }));*/
 
         mKeyProfileAdapter = new KeyProfileAdapter(mKeyProfiles);
-        rvKeyProfiles.addItemDecoration(new RVHItemDividerDecoration(this, LinearLayoutManager.VERTICAL));
+        //rvKeyProfiles.addItemDecoration(new RVHItemDividerDecoration(this, LinearLayoutManager.VERTICAL));
 
-        ItemTouchHelper.Callback callback = new RVHItemTouchHelperCallback(mKeyProfileAdapter, true, false, false);
-        ItemTouchHelper helper = new ItemTouchHelper(callback);
-        helper.attachToRecyclerView(rvKeyProfiles);
+        //ItemTouchHelper.Callback callback = new RVHItemTouchHelperCallback(mKeyProfileAdapter, true, false, false);
+        //ItemTouchHelper helper = new ItemTouchHelper(callback);
+        //helper.attachToRecyclerView(rvKeyProfiles);
+
+        ItemTouchHelper.Callback callback = new SimpleItemTouchHelperCallback(mKeyProfileAdapter);
+        ItemTouchHelper touchHelper = new ItemTouchHelper(callback);
+        touchHelper.attachToRecyclerView(rvKeyProfiles);
 
         rvKeyProfiles.setAdapter(mKeyProfileAdapter);
 
