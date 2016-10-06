@@ -17,8 +17,6 @@ import com.amulyakhare.textdrawable.util.ColorGenerator;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
 
 import me.impy.aegis.crypto.OTP;
 import me.impy.aegis.helpers.ItemTouchHelperAdapter;
@@ -26,14 +24,12 @@ import me.impy.aegis.helpers.ItemTouchHelperAdapter;
 public class KeyProfileAdapter extends RecyclerView.Adapter<KeyProfileAdapter.KeyProfileHolder> implements ItemTouchHelperAdapter {
     private final List<KeyProfileHolder> lstHolders;
     private ArrayList<KeyProfile> mKeyProfiles;
-    private Timer timer;
     private Handler uiHandler;
 
     // Provide a suitable constructor (depends on the kind of dataset)
     public KeyProfileAdapter(ArrayList<KeyProfile> keyProfiles) {
         mKeyProfiles = keyProfiles;
         lstHolders = new ArrayList<>();
-        timer = new Timer();
         uiHandler = new Handler();
     }
 
@@ -72,20 +68,18 @@ public class KeyProfileAdapter extends RecyclerView.Adapter<KeyProfileAdapter.Ke
         holder.updateCode();
         lstHolders.add(holder);
 
-        timer.schedule(new TimerTask() {
+        Runnable runnable = new Runnable() {
             @Override
             public void run() {
-                uiHandler.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        // check if this key profile still exists
-                        if (lstHolders.contains(holder)) {
-                            holder.updateCode();
-                        }
-                    }
-                });
+                // check if this key profile still exists
+                if (lstHolders.contains(holder)) {
+                    holder.updateCode();
+                }
+
+                uiHandler.postDelayed(this, holder.keyProfile.Info.getPeriod() * 1000);
             }
-        }, holder.keyProfile.Info.getMillisTillNextRotation(), holder.keyProfile.Info.getPeriod() * 1000);
+        };
+        uiHandler.postDelayed(runnable, holder.keyProfile.Info.getMillisTillNextRotation());
     }
 
     // Return the size of your dataset (invoked by the layout manager)
