@@ -42,7 +42,6 @@ public class MainActivity extends AppCompatActivity  {
     Database database;
 
     boolean nightMode = false;
-    int count = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,15 +69,11 @@ public class MainActivity extends AppCompatActivity  {
         setSupportActionBar(toolbar);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent scannerActivity = new Intent(getApplicationContext(), ScannerActivity.class);
-                startActivityForResult(scannerActivity, GET_KEYINFO);
-            }
+        fab.setOnClickListener(view -> {
+            Intent scannerActivity = new Intent(getApplicationContext(), ScannerActivity.class);
+            startActivityForResult(scannerActivity, GET_KEYINFO);
         });
 
-        // demo
         char[] password = "test".toCharArray();
         database = Database.createInstance(getApplicationContext(), "keys.db", password);
         CryptoUtils.zero(password);
@@ -102,11 +97,6 @@ public class MainActivity extends AppCompatActivity  {
         }));*/
 
         mKeyProfileAdapter = new KeyProfileAdapter(mKeyProfiles);
-        //rvKeyProfiles.addItemDecoration(new RVHItemDividerDecoration(this, LinearLayoutManager.VERTICAL));
-
-        //ItemTouchHelper.Callback callback = new RVHItemTouchHelperCallback(mKeyProfileAdapter, true, false, false);
-        //ItemTouchHelper helper = new ItemTouchHelper(callback);
-        //helper.attachToRecyclerView(rvKeyProfiles);
 
         ItemTouchHelper.Callback callback = new SimpleItemTouchHelperCallback(mKeyProfileAdapter);
         ItemTouchHelper touchHelper = new ItemTouchHelper(callback);
@@ -133,20 +123,16 @@ public class MainActivity extends AppCompatActivity  {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        // Check which request we're responding to
         if (requestCode == GET_KEYINFO) {
-            // Make sure the request was successful
             if (resultCode == RESULT_OK) {
                 final KeyProfile keyProfile = (KeyProfile)data.getSerializableExtra("KeyProfile");
 
                 Intent intent = new Intent(this, AddProfileActivity.class);
                 intent.putExtra("KeyProfile", keyProfile);
                 startActivityForResult(intent, ADD_KEYINFO);
-                //TODO: do something with the result.
             }
         }
         else if (requestCode == ADD_KEYINFO) {
-            // Make sure the request was successful
             if (resultCode == RESULT_OK) {
                 final KeyProfile keyProfile = (KeyProfile)data.getSerializableExtra("KeyProfile");
 
@@ -172,21 +158,6 @@ public class MainActivity extends AppCompatActivity  {
         }
     }
 
-    private void adjustOrder(int startPosition)
-    {
-        Comparator<KeyProfile> comparator = new Comparator<KeyProfile>() {
-            @Override
-            public int compare(KeyProfile keyProfile, KeyProfile t1) {
-                return keyProfile.Order - t1.Order;
-            }
-        };
-
-        for(int i = startPosition; i < mKeyProfiles.size(); i++)
-        {
-            mKeyProfiles.get(i).Order = i + 1;
-        }
-    }
-
     @Override
     protected void onResume() {
         super.onResume();
@@ -209,16 +180,12 @@ public class MainActivity extends AppCompatActivity  {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
@@ -235,25 +202,23 @@ public class MainActivity extends AppCompatActivity  {
 
     private void setPreferredTheme()
     {
+        boolean restart = false;
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        if(sharedPreferences.getBoolean("pref_night_mode", false))
-        {
-            if(!nightMode)
-            {
+        if(sharedPreferences.getBoolean("pref_night_mode", false)) {
+            if(!nightMode) {
                 setTheme(R.style.AppTheme_Dark_NoActionBar);
-                finish();
-
-                startActivity(new Intent(this, this.getClass()));
+                restart = true;
             }
-        } else
-        {
-            if(nightMode)
-            {
+        } else {
+            if(nightMode) {
                 setTheme(R.style.AppTheme_Default_NoActionBar);
-                finish();
-
-                startActivity(new Intent(this, this.getClass()));
+                restart = true;
             }
+        }
+
+        if(restart){
+            finish();
+            startActivity(new Intent(this, this.getClass()));
         }
     }
 }
