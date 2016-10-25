@@ -8,7 +8,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -17,10 +16,7 @@ import android.support.v7.widget.Toolbar;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Toast;
-
-import com.yarolegovich.lovelydialog.LovelyTextInputDialog;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -85,18 +81,14 @@ public class MainActivity extends AppCompatActivity  {
         rvKeyProfiles.setLayoutManager(mLayoutManager);
 
         final Context context = this.getApplicationContext();
-        /*rvKeyProfiles.addOnItemTouchListener(new RVHItemClickListener(this, new RVHItemClickListener.OnItemClickListener() {
-            @Override
-            public void onItemClick(View view, int position) {
-                ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
-                ClipData clip = ClipData.newPlainText("text/plain", mKeyProfiles.get(position).Code);
-                clipboard.setPrimaryClip(clip);
-
-                Toast.makeText(context, "Code successfully copied to the clipboard", Toast.LENGTH_SHORT).show();
-            }
-        }));*/
-
         mKeyProfileAdapter = new KeyProfileAdapter(mKeyProfiles);
+        mKeyProfileAdapter.setOnItemClickListener((position, v) -> {
+            ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+            ClipData clip = ClipData.newPlainText("text/plain", mKeyProfiles.get(position).Code);
+            clipboard.setPrimaryClip(clip);
+
+            Toast.makeText(context, "Code successfully copied to the clipboard", Toast.LENGTH_SHORT).show();
+        });
 
         ItemTouchHelper.Callback callback = new SimpleItemTouchHelperCallback(mKeyProfileAdapter);
         ItemTouchHelper touchHelper = new ItemTouchHelper(callback);
@@ -112,9 +104,7 @@ public class MainActivity extends AppCompatActivity  {
         Collections.sort(mKeyProfiles, comparator);
         
         try {
-            for (KeyProfile profile : database.getKeys()) {
-                mKeyProfiles.add(profile);
-            }
+            mKeyProfiles.addAll(database.getKeys());
             mKeyProfileAdapter.notifyDataSetChanged();
         } catch (Exception e) {
             e.printStackTrace();

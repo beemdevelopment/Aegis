@@ -22,14 +22,15 @@ import java.util.List;
 
 import me.impy.aegis.crypto.OTP;
 import me.impy.aegis.db.Database;
+import me.impy.aegis.helpers.ItemClickListener;
 import me.impy.aegis.helpers.ItemTouchHelperAdapter;
 
 public class KeyProfileAdapter extends RecyclerView.Adapter<KeyProfileAdapter.KeyProfileHolder> implements ItemTouchHelperAdapter {
     private final List<KeyProfileHolder> lstHolders;
     private ArrayList<KeyProfile> mKeyProfiles;
     private Handler uiHandler;
+    private static ItemClickListener itemClickListener;
 
-    // Provide a suitable constructor (depends on the kind of dataset)
     public KeyProfileAdapter(ArrayList<KeyProfile> keyProfiles) {
         mKeyProfiles = keyProfiles;
         lstHolders = new ArrayList<>();
@@ -41,7 +42,6 @@ public class KeyProfileAdapter extends RecyclerView.Adapter<KeyProfileAdapter.Ke
         return;
     }
 
-    // Helper functions you might want to implement to make changes in the list as an event is fired
     private void remove(int position) {
         mKeyProfiles.remove(position);
         notifyItemRemoved(position);
@@ -56,8 +56,7 @@ public class KeyProfileAdapter extends RecyclerView.Adapter<KeyProfileAdapter.Ke
         adjustOrder(secondPosition);
     }
 
-    private void adjustOrder(int startPosition)
-    {
+    private void adjustOrder(int startPosition) {
         Comparator<KeyProfile> comparator = new Comparator<KeyProfile>() {
             @Override
             public int compare(KeyProfile keyProfile, KeyProfile t1) {
@@ -65,29 +64,23 @@ public class KeyProfileAdapter extends RecyclerView.Adapter<KeyProfileAdapter.Ke
             }
         };
 
-        for(int i = startPosition; i < mKeyProfiles.size(); i++)
-        {
+        for (int i = startPosition; i < mKeyProfiles.size(); i++) {
             mKeyProfiles.get(i).Order = i + 1;
         }
     }
 
-    // Create new views (invoked by the layout manager)
-            @Override
-            public KeyProfileHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-                // create a new view
-                View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_keyprofile, parent, false);
-                // set the view's size, margins, paddings and layout parameters
+    @Override
+    public KeyProfileHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_keyprofile, parent, false);
+        KeyProfileHolder vh = new KeyProfileHolder(v);
+        return vh;
+    }
 
-                KeyProfileHolder vh = new KeyProfileHolder(v);
-                return vh;
-            }
-
-            // Replace the contents of a view (invoked by the layout manager)
-            @Override
-            public void onBindViewHolder(final KeyProfileHolder holder, int position) {
-                holder.setData(mKeyProfiles.get(position));
-                holder.updateCode();
-                lstHolders.add(holder);
+    @Override
+    public void onBindViewHolder(final KeyProfileHolder holder, int position) {
+        holder.setData(mKeyProfiles.get(position));
+        holder.updateCode();
+        lstHolders.add(holder);
 
         Runnable runnable = new Runnable() {
             @Override
@@ -103,13 +96,12 @@ public class KeyProfileAdapter extends RecyclerView.Adapter<KeyProfileAdapter.Ke
         uiHandler.postDelayed(runnable, holder.keyProfile.Info.getMillisTillNextRotation());
     }
 
-    // Return the size of your dataset (invoked by the layout manager)
     @Override
     public int getItemCount() {
         return mKeyProfiles.size();
     }
 
-    public static class KeyProfileHolder extends RecyclerView.ViewHolder {
+    public static class KeyProfileHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView profileName;
         TextView profileCode;
         ImageView profileDrawable;
@@ -122,6 +114,8 @@ public class KeyProfileAdapter extends RecyclerView.Adapter<KeyProfileAdapter.Ke
             profileCode = (TextView) itemView.findViewById(R.id.profile_code);
             profileDrawable = (ImageView) itemView.findViewById(R.id.ivTextDrawable);
             progressBar = (ProgressBar) itemView.findViewById(R.id.progressBar);
+
+            itemView.setOnClickListener(this);
         }
 
         public void setData(KeyProfile profile) {
@@ -148,16 +142,15 @@ public class KeyProfileAdapter extends RecyclerView.Adapter<KeyProfileAdapter.Ke
 
             long millisTillRotation = keyProfile.Info.getMillisTillNextRotation();
             long period = keyProfile.Info.getPeriod() * 1000;
-            int currentProgress = 1000 - (int)((((double)period - millisTillRotation) / period) * 1000);
+            int currentProgress = 1000 - (int) ((((double) period - millisTillRotation) / period) * 1000);
             ObjectAnimator animation = ObjectAnimator.ofInt(progressBar, "progress", currentProgress, 0);
             animation.setDuration(millisTillRotation);
             animation.setInterpolator(new LinearInterpolator());
             animation.start();
         }
 
-        private TextDrawable generateTextDrawable(KeyProfile profile)
-        {
-            if(profileName == null)
+        private TextDrawable generateTextDrawable(KeyProfile profile) {
+            if (profileName == null)
                 return null;
 
             ColorGenerator generator = ColorGenerator.MATERIAL; // or use DEFAULT
@@ -167,5 +160,19 @@ public class KeyProfileAdapter extends RecyclerView.Adapter<KeyProfileAdapter.Ke
             TextDrawable newDrawable = TextDrawable.builder().buildRound(profile.Name.substring(0, 1).toUpperCase(), profileKeyColor);
             return newDrawable;
         }
+
+        @Override
+        public void onClick(View view) {
+            itemClickListener.onItemClick(getAdapterPosition(), view);
+        }
+    }
+
+    public void setOnItemClickListener(ItemClickListener clickListener) {
+        KeyProfileAdapter.itemClickListener = clickListener;
+    }
+
+    public interface ItemClickListener
+    {
+        void onItemClick(int position, View v);
     }
 }

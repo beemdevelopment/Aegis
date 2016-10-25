@@ -1,6 +1,8 @@
 package me.impy.aegis.helpers;
 
-public interface ItemClickListener<M, V>
+import android.view.View;
+
+public interface ItemClickListener
 {
-    void onItemClicked(M item, V view);
+    void onItemClick(int position, View v);
 }
