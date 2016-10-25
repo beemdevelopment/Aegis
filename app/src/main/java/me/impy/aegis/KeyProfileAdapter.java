@@ -2,6 +2,7 @@ package me.impy.aegis;
 
 import android.animation.ObjectAnimator;
 import android.os.Handler;
+import android.provider.ContactsContract;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,11 +17,13 @@ import com.amulyakhare.textdrawable.util.ColorGenerator;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
 import me.impy.aegis.crypto.OTP;
+import me.impy.aegis.db.Database;
 import me.impy.aegis.helpers.ItemTouchHelperAdapter;
 
 public class KeyProfileAdapter extends RecyclerView.Adapter<KeyProfileAdapter.KeyProfileHolder> implements ItemTouchHelperAdapter {
@@ -52,28 +55,46 @@ public class KeyProfileAdapter extends RecyclerView.Adapter<KeyProfileAdapter.Ke
     public void onItemMove(int firstPosition, int secondPosition) {
         Collections.swap(mKeyProfiles, firstPosition, secondPosition);
         notifyItemMoved(firstPosition, secondPosition);
+
+        mKeyProfiles.get(firstPosition).Order = secondPosition;
+        adjustOrder(secondPosition);
+    }
+
+    private void adjustOrder(int startPosition)
+    {
+        Comparator<KeyProfile> comparator = new Comparator<KeyProfile>() {
+            @Override
+            public int compare(KeyProfile keyProfile, KeyProfile t1) {
+                return keyProfile.Order - t1.Order;
+            }
+        };
+
+        for(int i = startPosition; i < mKeyProfiles.size(); i++)
+        {
+            mKeyProfiles.get(i).Order = i + 1;
+        }
     }
 
     // Create new views (invoked by the layout manager)
-    @Override
-    public KeyProfileHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        // create a new view
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_keyprofile, parent, false);
-        // set the view's size, margins, paddings and layout parameters
-
-        KeyProfileHolder vh = new KeyProfileHolder(v);
-        return vh;
-    }
-
-    // Replace the contents of a view (invoked by the layout manager)
-    @Override
-    public void onBindViewHolder(final KeyProfileHolder holder, int position) {
-        holder.setData(mKeyProfiles.get(position));
-        holder.updateCode();
-        lstHolders.add(holder);
-
-        timer.schedule(new TimerTask() {
             @Override
+            public KeyProfileHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+                // create a new view
+                View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_keyprofile, parent, false);
+                // set the view's size, margins, paddings and layout parameters
+
+                KeyProfileHolder vh = new KeyProfileHolder(v);
+                return vh;
+            }
+
+            // Replace the contents of a view (invoked by the layout manager)
+            @Override
+            public void onBindViewHolder(final KeyProfileHolder holder, int position) {
+                holder.setData(mKeyProfiles.get(position));
+                holder.updateCode();
+                lstHolders.add(holder);
+
+                timer.schedule(new TimerTask() {
+                    @Override
             public void run() {
                 uiHandler.post(new Runnable() {
                     @Override

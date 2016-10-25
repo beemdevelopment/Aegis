@@ -6,6 +6,7 @@ import net.sqlcipher.Cursor;
 import net.sqlcipher.database.SQLiteDatabase;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import me.impy.aegis.KeyProfile;
@@ -43,8 +44,8 @@ public class Database {
     }
 
     public void updateKey(KeyProfile profile) throws Exception {
-        db.execSQL("update otp set name=? url=? where id=?",
-                new Object[]{ profile.Name, profile.Info.getURL(), profile.ID });
+        db.execSQL("update otp set name=?, url=?, 'order'=? where id=?",
+                new Object[]{ profile.Name, profile.Info.getURL(), profile.Order, profile.ID });
     }
 
     public void removeKey(KeyProfile profile) {
@@ -53,19 +54,20 @@ public class Database {
 
     public List<KeyProfile> getKeys() throws Exception {
         List<KeyProfile> list = new ArrayList<>();
-        Cursor cursor = db.rawQuery("select * from otp", null);
+        Cursor cursor = db.rawQuery("select * from otp order by 'order' desc", null);
 
         try {
             while (cursor.moveToNext()) {
                 KeyProfile profile = new KeyProfile();
                 profile.ID = cursor.getInt(cursor.getColumnIndexOrThrow("id"));
                 profile.Name = cursor.getString(cursor.getColumnIndexOrThrow("name"));
-
+                profile.Order = cursor.getInt(cursor.getColumnIndexOrThrow("order"));
                 String url = cursor.getString(cursor.getColumnIndexOrThrow("url"));
                 profile.Info = KeyInfo.FromURL(url);
 
                 list.add(profile);
             }
+            Collections.sort(list, (a, b) -> b.compareTo(a));
             return list;
         } finally {
             cursor.close();

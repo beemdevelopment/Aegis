@@ -18,7 +18,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         "create table otp (" +
         "id integer primary key autoincrement, " +
         "name varchar not null, " +
-        "url varchar not null)";
+        "url varchar not null, " +
+        "'order' integer)";
 
     public DatabaseHelper(Context context, String filename) {
         super(context, filename, null, Version);

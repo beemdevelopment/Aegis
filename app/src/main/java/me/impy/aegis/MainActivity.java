@@ -23,6 +23,8 @@ import android.widget.Toast;
 import com.yarolegovich.lovelydialog.LovelyTextInputDialog;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 import me.impy.aegis.crypto.CryptoUtils;
 import me.impy.aegis.crypto.OTP;
@@ -111,7 +113,14 @@ public class MainActivity extends AppCompatActivity  {
         touchHelper.attachToRecyclerView(rvKeyProfiles);
 
         rvKeyProfiles.setAdapter(mKeyProfileAdapter);
-
+        Comparator<KeyProfile> comparator = new Comparator<KeyProfile>() {
+            @Override
+            public int compare(KeyProfile keyProfile, KeyProfile t1) {
+                return keyProfile.Order - t1.Order;
+            }
+        };
+        Collections.sort(mKeyProfiles, comparator);
+        
         try {
             for (KeyProfile profile : database.getKeys()) {
                 mKeyProfiles.add(profile);
@@ -149,6 +158,7 @@ public class MainActivity extends AppCompatActivity  {
                     return;
                 }
 
+                keyProfile.Order = mKeyProfiles.size() + 1;
                 keyProfile.Code = otp;
                 mKeyProfiles.add(keyProfile);
                 mKeyProfileAdapter.notifyDataSetChanged();
@@ -162,10 +172,39 @@ public class MainActivity extends AppCompatActivity  {
         }
     }
 
+    private void adjustOrder(int startPosition)
+    {
+        Comparator<KeyProfile> comparator = new Comparator<KeyProfile>() {
+            @Override
+            public int compare(KeyProfile keyProfile, KeyProfile t1) {
+                return keyProfile.Order - t1.Order;
+            }
+        };
+
+        for(int i = startPosition; i < mKeyProfiles.size(); i++)
+        {
+            mKeyProfiles.get(i).Order = i + 1;
+        }
+    }
+
     @Override
     protected void onResume() {
         super.onResume();
         setPreferredTheme();
+    }
+
+    @Override
+    protected void onPause() {
+        for(int i = 0; i < mKeyProfiles.size(); i++)
+        {
+            try {
+                database.updateKey(mKeyProfiles.get(i));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+        super.onPause();
     }
 
     @Override
