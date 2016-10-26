@@ -9,6 +9,7 @@ public class KeyProfile implements Serializable {
     public String Name;
     public String Icon;
     public String Code;
+    public String Issuer;
     public KeyInfo Info;
     public int Order;
     public int ID;

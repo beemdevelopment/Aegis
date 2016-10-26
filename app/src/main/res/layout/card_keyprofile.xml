@@ -50,7 +50,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/profile_name"
-                android:text="Post title"
+                android:text="Keyprofile Title"
                 android:textColor="?attr/secondaryText"
                 android:includeFontPadding="false"
                 android:textSize="15sp"
@@ -59,6 +59,20 @@
                 android:layout_alignStart="@+id/profile_code"
                 android:ellipsize="end"
                 android:maxLines="1"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/profile_issuer"
+                android:text=" - Issuer"
+                android:textColor="@color/extra_info_text"
+                android:includeFontPadding="false"
+                android:textSize="15sp"
+                android:layout_toRightOf="@id/profile_name"
+                android:layout_below="@id/profile_code"
+                android:ellipsize="end"
+                android:maxLines="1"/>
+
 
             <TextView
                 android:layout_width="wrap_content"

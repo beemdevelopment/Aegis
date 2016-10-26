@@ -7,6 +7,7 @@
     <color name="colorAccent">#FF5252</color>
     <color name="primary_text">#212121</color>
     <color name="secondary_text">#434343</color>
+    <color name="extra_info_text">#8e8e8e</color>
     <color name="primary_text_inverted">#ffffff</color>
     <color name="secondary_text_inverted">#efefef</color>b
     <color name="icons">#FFFFFF</color>

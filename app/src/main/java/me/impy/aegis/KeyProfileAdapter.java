@@ -104,6 +104,7 @@ public class KeyProfileAdapter extends RecyclerView.Adapter<KeyProfileAdapter.Ke
     public static class KeyProfileHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView profileName;
         TextView profileCode;
+        TextView profileIssuer;
         ImageView profileDrawable;
         KeyProfile keyProfile;
         ProgressBar progressBar;
@@ -112,6 +113,7 @@ public class KeyProfileAdapter extends RecyclerView.Adapter<KeyProfileAdapter.Ke
             super(itemView);
             profileName = (TextView) itemView.findViewById(R.id.profile_name);
             profileCode = (TextView) itemView.findViewById(R.id.profile_code);
+            profileIssuer = (TextView) itemView.findViewById(R.id.profile_issuer);
             profileDrawable = (ImageView) itemView.findViewById(R.id.ivTextDrawable);
             progressBar = (ProgressBar) itemView.findViewById(R.id.progressBar);
 
@@ -122,6 +124,7 @@ public class KeyProfileAdapter extends RecyclerView.Adapter<KeyProfileAdapter.Ke
             this.keyProfile = profile;
             profileName.setText(profile.Name);
             profileCode.setText(profile.Code);
+            profileIssuer.setText(" - " + profile.Info.getIssuer());
             profileDrawable.setImageDrawable(generateTextDrawable(profile));
         }
 
@@ -153,8 +156,7 @@ public class KeyProfileAdapter extends RecyclerView.Adapter<KeyProfileAdapter.Ke
             if (profileName == null)
                 return null;
 
-            ColorGenerator generator = ColorGenerator.MATERIAL; // or use DEFAULT
-            // generate color based on a key (same key returns the same color), useful for list/grid views
+            ColorGenerator generator = ColorGenerator.MATERIAL;
             int profileKeyColor = generator.getColor(profile.Name);
 
             TextDrawable newDrawable = TextDrawable.builder().buildRound(profile.Name.substring(0, 1).toUpperCase(), profileKeyColor);
