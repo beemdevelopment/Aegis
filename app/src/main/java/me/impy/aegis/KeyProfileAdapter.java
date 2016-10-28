@@ -1,6 +1,7 @@
 package me.impy.aegis;
 
 import android.animation.ObjectAnimator;
+import android.content.ClipData;
 import android.os.Handler;
 import android.provider.ContactsContract;
 import android.support.v7.widget.RecyclerView;
@@ -30,6 +31,7 @@ public class KeyProfileAdapter extends RecyclerView.Adapter<KeyProfileAdapter.Ke
     private ArrayList<KeyProfile> mKeyProfiles;
     private Handler uiHandler;
     private static ItemClickListener itemClickListener;
+    private static LongItemClickListener longItemClickListener;
 
     public KeyProfileAdapter(ArrayList<KeyProfile> keyProfiles) {
         mKeyProfiles = keyProfiles;
@@ -101,7 +103,7 @@ public class KeyProfileAdapter extends RecyclerView.Adapter<KeyProfileAdapter.Ke
         return mKeyProfiles.size();
     }
 
-    public static class KeyProfileHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public static class KeyProfileHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
         TextView profileName;
         TextView profileCode;
         TextView profileIssuer;
@@ -118,6 +120,7 @@ public class KeyProfileAdapter extends RecyclerView.Adapter<KeyProfileAdapter.Ke
             progressBar = (ProgressBar) itemView.findViewById(R.id.progressBar);
 
             itemView.setOnClickListener(this);
+            itemView.setOnLongClickListener(this);
         }
 
         public void setData(KeyProfile profile) {
@@ -167,14 +170,29 @@ public class KeyProfileAdapter extends RecyclerView.Adapter<KeyProfileAdapter.Ke
         public void onClick(View view) {
             itemClickListener.onItemClick(getAdapterPosition(), view);
         }
+
+        @Override
+        public boolean onLongClick(View view) {
+            longItemClickListener.onLongItemClick(getAdapterPosition(), view);
+            return true;
+        }
     }
 
     public void setOnItemClickListener(ItemClickListener clickListener) {
         KeyProfileAdapter.itemClickListener = clickListener;
     }
 
+    public void setOnLongItemClickListener(LongItemClickListener clickListener) {
+        KeyProfileAdapter.longItemClickListener = clickListener;
+    }
+
     public interface ItemClickListener
     {
         void onItemClick(int position, View v);
+    }
+
+    public interface LongItemClickListener
+    {
+        void onLongItemClick(int position, View v);
     }
 }

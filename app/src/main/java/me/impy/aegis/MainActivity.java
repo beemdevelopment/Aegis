@@ -90,6 +90,11 @@ public class MainActivity extends AppCompatActivity  {
             Toast.makeText(context, "Code successfully copied to the clipboard", Toast.LENGTH_SHORT).show();
         });
 
+        mKeyProfileAdapter.setOnLongItemClickListener((position, v) -> {
+            EditProfileBottomSheetdialog bottomSheetDialog = EditProfileBottomSheetdialog.getInstance();
+            bottomSheetDialog.show(getSupportFragmentManager(), "Custom Bottom Sheet");
+        });
+
         ItemTouchHelper.Callback callback = new SimpleItemTouchHelperCallback(mKeyProfileAdapter);
         ItemTouchHelper touchHelper = new ItemTouchHelper(callback);
         touchHelper.attachToRecyclerView(rvKeyProfiles);

@@ -46,22 +46,6 @@
             />
     </RelativeLayout>
 
-    <android.support.v4.widget.NestedScrollView
-        android:id="@+id/bottom_sheet"
-        android:layout_width="match_parent"
-        android:layout_height="350dp"
-        android:clipToPadding="true"
-        android:background="@android:color/holo_orange_light"
-        app:layout_behavior="android.support.design.widget.BottomSheetBehavior"
-        >
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="@string/ipsum"
-            android:padding="16dp"
-            android:textSize="16sp"/>
-
-    </android.support.v4.widget.NestedScrollView>
 
 </android.support.design.widget.CoordinatorLayout>
