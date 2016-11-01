@@ -65,6 +65,7 @@
         <item name="primaryText">@color/primary_text_dark</item>
         <item name="secondaryText">@color/secondary_text_dark</item>
         <item name="background">@color/background_dark</item>
+        <item name="cardBackground">@color/card_background_dark</item>
     </style>
     <style name="AppTheme.Dark.NoActionBar" parent="AppTheme.Dark">
         <item name="windowActionBar">false</item>
