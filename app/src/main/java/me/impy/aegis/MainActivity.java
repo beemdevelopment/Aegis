@@ -4,11 +4,13 @@ import android.app.FragmentManager;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.support.design.widget.BottomSheetDialog;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -209,9 +211,36 @@ public class MainActivity extends AppCompatActivity  {
 
             Toast.makeText(this.getApplicationContext(), "Code successfully copied to the clipboard", Toast.LENGTH_SHORT).show();
         });
-        
-        return bottomDialog;
 
+        deleteLayout.setOnClickListener(view -> {
+            bottomDialog.dismiss();
+
+            KeyProfile keyProfile = mKeyProfiles.get(clickedItemPosition);
+            deleteProfile(keyProfile);
+        });
+
+        editLayout.setOnClickListener(view -> {
+            bottomDialog.dismiss();
+            Toast.makeText(this.getApplicationContext(), "Coming soon", Toast.LENGTH_SHORT).show();
+        });
+
+        return bottomDialog;
+    }
+
+    private void deleteProfile(KeyProfile profile)
+    {
+        new AlertDialog.Builder(MainActivity.this)
+                .setTitle("Delete entry")
+                .setMessage("Are you sure you want to delete this profile?")
+                .setPositiveButton(android.R.string.yes, (dialog, which) -> {
+                    database.removeKey(profile);
+                    mKeyProfiles.remove(clickedItemPosition);
+                    mKeyProfileAdapter.notifyItemRemoved(clickedItemPosition);
+                })
+                .setNegativeButton(android.R.string.no, (dialog, which) -> {
+
+                })
+                .show();
     }
 
     @Override
