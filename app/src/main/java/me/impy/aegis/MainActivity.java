@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+import android.support.design.widget.BottomSheetDialog;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -16,6 +17,9 @@ import android.support.v7.widget.Toolbar;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -38,6 +42,7 @@ public class MainActivity extends AppCompatActivity  {
     Database database;
 
     boolean nightMode = false;
+    int clickedItemPosition = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,18 +86,27 @@ public class MainActivity extends AppCompatActivity  {
         rvKeyProfiles.setLayoutManager(mLayoutManager);
 
         final Context context = this.getApplicationContext();
+        //EditProfileBottomSheetdialog bottomSheetDialog = EditProfileBottomSheetdialog.getInstance();
+
         mKeyProfileAdapter = new KeyProfileAdapter(mKeyProfiles);
         mKeyProfileAdapter.setOnItemClickListener((position, v) -> {
+            clickedItemPosition = position;
+            InitializeBottomSheet().show();
+        });
+
+        //View dialogView = bottomSheetDialog.getView();
+        //LinearLayout copyLayout = (LinearLayout)dialogView.findViewById(R.id.copy_button);
+        /*copyLayout.setOnClickListener(view -> {
             ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
-            ClipData clip = ClipData.newPlainText("text/plain", mKeyProfiles.get(position).Code);
+            ClipData clip = ClipData.newPlainText("text/plain", mKeyProfiles.get(clickedItemPosition).Code);
             clipboard.setPrimaryClip(clip);
 
             Toast.makeText(context, "Code successfully copied to the clipboard", Toast.LENGTH_SHORT).show();
-        });
+        });*/
 
         mKeyProfileAdapter.setOnLongItemClickListener((position, v) -> {
-            EditProfileBottomSheetdialog bottomSheetDialog = EditProfileBottomSheetdialog.getInstance();
-            bottomSheetDialog.show(getSupportFragmentManager(), "Custom Bottom Sheet");
+
+
         });
 
         ItemTouchHelper.Callback callback = new SimpleItemTouchHelperCallback(mKeyProfileAdapter);
@@ -171,6 +185,33 @@ public class MainActivity extends AppCompatActivity  {
         }
 
         super.onPause();
+    }
+
+    private BottomSheetDialog InitializeBottomSheet()
+    {
+        View bottomSheetView = getLayoutInflater ().inflate (R.layout.bottom_sheet_edit_profile, null);
+        LinearLayout copyLayout = (LinearLayout)bottomSheetView.findViewById(R.id.copy_button);
+        LinearLayout deleteLayout = (LinearLayout)bottomSheetView.findViewById(R.id.delete_button);
+        LinearLayout editLayout = (LinearLayout)bottomSheetView.findViewById(R.id.edit_button);
+        bottomSheetView.findViewById(R.id.edit_button);
+        BottomSheetDialog bottomDialog =  new BottomSheetDialog(this);
+        bottomDialog.setContentView(bottomSheetView);
+        bottomDialog.setCancelable (true);
+        bottomDialog.getWindow ().setLayout (LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT);
+        bottomDialog.show();
+
+        copyLayout.setOnClickListener(view -> {
+            bottomDialog.dismiss();
+            ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+            ClipData clip = ClipData.newPlainText("text/plain", mKeyProfiles.get(clickedItemPosition).Code);
+            clipboard.setPrimaryClip(clip);
+
+            Toast.makeText(this.getApplicationContext(), "Code successfully copied to the clipboard", Toast.LENGTH_SHORT).show();
+        });
+        
+        return bottomDialog;
+
     }
 
     @Override
