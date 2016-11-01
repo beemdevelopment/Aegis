@@ -4,4 +4,7 @@
     <string name="title_activity_intro">IntroActivity</string>
     <string name="settings">Preferences</string>
     <string name="pref_night_mode">Night mode</string>
+    <string name="pref_night_mode_description">Enable this to use darker colors</string>
+    <string name="pref_issuers">Show the issuer</string>
+    <string name="pref_issuers_description">Enable this to show the issuer next to the profile name</string>
 </resources>

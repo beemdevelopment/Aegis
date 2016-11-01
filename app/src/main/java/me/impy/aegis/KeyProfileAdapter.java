@@ -2,7 +2,9 @@ package me.impy.aegis;
 
 import android.animation.ObjectAnimator;
 import android.content.ClipData;
+import android.content.SharedPreferences;
 import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.provider.ContactsContract;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -110,9 +112,11 @@ public class KeyProfileAdapter extends RecyclerView.Adapter<KeyProfileAdapter.Ke
         ImageView profileDrawable;
         KeyProfile keyProfile;
         ProgressBar progressBar;
+        View _itemView;
 
         KeyProfileHolder(final View itemView) {
             super(itemView);
+            _itemView = itemView;
             profileName = (TextView) itemView.findViewById(R.id.profile_name);
             profileCode = (TextView) itemView.findViewById(R.id.profile_code);
             profileIssuer = (TextView) itemView.findViewById(R.id.profile_issuer);
@@ -127,7 +131,16 @@ public class KeyProfileAdapter extends RecyclerView.Adapter<KeyProfileAdapter.Ke
             this.keyProfile = profile;
             profileName.setText(profile.Name);
             profileCode.setText(profile.Code);
-            profileIssuer.setText(" - " + profile.Info.getIssuer());
+
+            // So that we can have text in the designer without showing it to our user
+            profileIssuer.setText("");
+
+            SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(_itemView.getContext());
+            if(sharedPreferences.getBoolean("pref_issuer", false))
+            {
+                profileIssuer.setText(" - " + profile.Info.getIssuer());
+            }
+
             profileDrawable.setImageDrawable(generateTextDrawable(profile));
         }
 

@@ -5,5 +5,12 @@
     <CheckBoxPreference
         android:defaultValue="false"
         android:key="pref_night_mode"
-        android:title="@string/pref_night_mode" />
+        android:title="@string/pref_night_mode"
+        android:summary="@string/pref_night_mode_description"/>
+
+    <CheckBoxPreference
+        android:defaultValue="false"
+        android:key="pref_issuer"
+        android:title="@string/pref_issuers"
+        android:summary="@string/pref_issuers_description"/>
 </PreferenceScreen>
