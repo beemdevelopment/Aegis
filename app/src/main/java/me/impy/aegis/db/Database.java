@@ -7,6 +7,7 @@ import net.sqlcipher.database.SQLiteDatabase;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import me.impy.aegis.KeyProfile;
@@ -67,7 +68,12 @@ public class Database {
 
                 list.add(profile);
             }
-            Collections.sort(list, (a, b) -> b.compareTo(a));
+            Collections.sort(list, new Comparator<KeyProfile>() {
+                @Override
+                public int compare(KeyProfile a, KeyProfile b) {
+                    return b.compareTo(a);
+                }
+            });
             return list;
         } finally {
             cursor.close();

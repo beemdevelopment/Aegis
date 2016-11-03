@@ -7,6 +7,11 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.ShortcutInfo;
+import android.content.pm.ShortcutManager;
+import android.graphics.drawable.Icon;
+import android.net.Uri;
+import android.os.Build;
 import android.preference.PreferenceManager;
 import android.support.design.widget.BottomSheetDialog;
 import android.support.design.widget.FloatingActionButton;
@@ -25,6 +30,7 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 
@@ -70,7 +76,7 @@ public class MainActivity extends AppCompatActivity  {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+        initializeAppShortcuts();
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(view -> {
             Intent scannerActivity = new Intent(getApplicationContext(), ScannerActivity.class);
@@ -264,6 +270,29 @@ public class MainActivity extends AppCompatActivity  {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void initializeAppShortcuts()
+    {
+        ShortcutManager shortcutManager = null;
+        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {
+            shortcutManager = getSystemService(ShortcutManager.class);
+            if(shortcutManager != null) {
+                if (shortcutManager.getDynamicShortcuts().size() == 0) {
+                    // Application restored. Need to re-publish dynamic shortcuts.
+
+
+                        ShortcutInfo shortcut = new ShortcutInfo.Builder(this, "id1")
+                                .setShortLabel("Web site")
+                                .setLongLabel("Add new profile")
+                                .setIcon(Icon.createWithResource(this.getApplicationContext(), R.drawable.intro_scanner))
+                                .setIntent(new Intent(Intent.ACTION_VIEW, Uri.EMPTY, this, ScannerActivity.class))
+                                .build();
+
+                        shortcutManager.setDynamicShortcuts(Arrays.asList(shortcut));
+                }
+            }
+        }
     }
 
     private void setPreferredTheme()
