@@ -1,10 +1,8 @@
 package me.impy.aegis;
 
-import android.app.FragmentManager;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ShortcutInfo;
@@ -12,6 +10,7 @@ import android.content.pm.ShortcutManager;
 import android.graphics.drawable.Icon;
 import android.net.Uri;
 import android.os.Build;
+import android.hardware.fingerprint.FingerprintManager;
 import android.preference.PreferenceManager;
 import android.support.design.widget.BottomSheetDialog;
 import android.support.design.widget.FloatingActionButton;
@@ -26,31 +25,43 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Objects;
 
+import javax.crypto.Cipher;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.SecretKey;
+
+import me.impy.aegis.crypto.CryptParameters;
+import me.impy.aegis.crypto.CryptResult;
 import me.impy.aegis.crypto.CryptoUtils;
+import me.impy.aegis.crypto.DerivationParameters;
+import me.impy.aegis.crypto.KeyStoreHandle;
 import me.impy.aegis.crypto.OTP;
 import me.impy.aegis.db.Database;
+import me.impy.aegis.db.DatabaseFile;
+import me.impy.aegis.finger.FingerprintAuthenticationDialogFragment;
 import me.impy.aegis.helpers.SimpleItemTouchHelperCallback;
 
-public class MainActivity extends AppCompatActivity  {
+public class MainActivity extends AppCompatActivity {
 
     static final int GET_KEYINFO = 1;
     static final int ADD_KEYINFO = 2;
 
     RecyclerView rvKeyProfiles;
     KeyProfileAdapter mKeyProfileAdapter;
-    ArrayList<KeyProfile> mKeyProfiles;
+    ArrayList<KeyProfile> mKeyProfiles = new ArrayList<>();
     Database database;
+    DatabaseFile databaseFile;
 
+    boolean blockSave = false;
     boolean nightMode = false;
     int clickedItemPosition = -1;
 
@@ -59,19 +70,16 @@ public class MainActivity extends AppCompatActivity  {
         super.onCreate(savedInstanceState);
 
         SharedPreferences prefs = this.getSharedPreferences("me.impy.aegis", Context.MODE_PRIVATE);
-        if(!prefs.getBoolean("passedIntro", false))
-        {
+        if (!prefs.getBoolean("passedIntro", false)) {
             Intent intro = new Intent(this, IntroActivity.class);
             startActivity(intro);
         }
 
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        if(sharedPreferences.getBoolean("pref_night_mode", false))
-        {
+        if (sharedPreferences.getBoolean("pref_night_mode", false)) {
             nightMode = true;
             setTheme(R.style.AppTheme_Dark_NoActionBar);
-        } else
-        {
+        } else {
             setPreferredTheme();
         }
 
@@ -80,42 +88,23 @@ public class MainActivity extends AppCompatActivity  {
         setSupportActionBar(toolbar);
         initializeAppShortcuts();
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setEnabled(false);
         fab.setOnClickListener(view -> {
+            blockSave = true;
             Intent scannerActivity = new Intent(getApplicationContext(), ScannerActivity.class);
             startActivityForResult(scannerActivity, GET_KEYINFO);
         });
 
-        char[] password = "test".toCharArray();
-        database = Database.createInstance(getApplicationContext(), "keys.db", password);
-        CryptoUtils.zero(password);
-
-        mKeyProfiles = new ArrayList<>();
-
         rvKeyProfiles = (RecyclerView) findViewById(R.id.rvKeyProfiles);
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(this);
         rvKeyProfiles.setLayoutManager(mLayoutManager);
-
-        final Context context = this.getApplicationContext();
-        //EditProfileBottomSheetdialog bottomSheetDialog = EditProfileBottomSheetdialog.getInstance();
 
         mKeyProfileAdapter = new KeyProfileAdapter(mKeyProfiles);
         mKeyProfileAdapter.setOnItemClickListener((position, v) -> {
             clickedItemPosition = position;
             InitializeBottomSheet().show();
         });
-
-        //View dialogView = bottomSheetDialog.getView();
-        //LinearLayout copyLayout = (LinearLayout)dialogView.findViewById(R.id.copy_button);
-        /*copyLayout.setOnClickListener(view -> {
-            ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
-            ClipData clip = ClipData.newPlainText("text/plain", mKeyProfiles.get(clickedItemPosition).Code);
-            clipboard.setPrimaryClip(clip);
-
-            Toast.makeText(context, "Code successfully copied to the clipboard", Toast.LENGTH_SHORT).show();
-        });*/
-
         mKeyProfileAdapter.setOnLongItemClickListener((position, v) -> {
-
 
         });
 
@@ -131,17 +120,13 @@ public class MainActivity extends AppCompatActivity  {
             }
         };
         Collections.sort(mKeyProfiles, comparator);
-        
-        try {
-            mKeyProfiles.addAll(database.getKeys());
-            mKeyProfileAdapter.notifyDataSetChanged();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+
+        loadDatabase(null);
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        blockSave = false;
         if (requestCode == GET_KEYINFO) {
             if (resultCode == RESULT_OK) {
                 final KeyProfile keyProfile = (KeyProfile)data.getSerializableExtra("KeyProfile");
@@ -153,7 +138,7 @@ public class MainActivity extends AppCompatActivity  {
         }
         else if (requestCode == ADD_KEYINFO) {
             if (resultCode == RESULT_OK) {
-                final KeyProfile keyProfile = (KeyProfile)data.getSerializableExtra("KeyProfile");
+                final KeyProfile keyProfile = (KeyProfile) data.getSerializableExtra("KeyProfile");
 
                 String otp;
                 try {
@@ -165,14 +150,17 @@ public class MainActivity extends AppCompatActivity  {
 
                 keyProfile.Order = mKeyProfiles.size() + 1;
                 keyProfile.Code = otp;
-                mKeyProfiles.add(keyProfile);
-                mKeyProfileAdapter.notifyDataSetChanged();
-
                 try {
                     database.addKey(keyProfile);
                 } catch (Exception e) {
                     e.printStackTrace();
+                    // TODO: feedback
+                    return;
                 }
+
+                mKeyProfiles.add(keyProfile);
+                mKeyProfileAdapter.notifyDataSetChanged();
+                saveDatabase(true, null);
             }
         }
     }
@@ -186,16 +174,82 @@ public class MainActivity extends AppCompatActivity  {
 
     @Override
     protected void onPause() {
-        for(int i = 0; i < mKeyProfiles.size(); i++)
-        {
-            try {
-                database.updateKey(mKeyProfiles.get(i));
-            } catch (Exception e) {
-                e.printStackTrace();
+        if (!blockSave) {
+            // update order of keys
+            for (int i = 0; i < mKeyProfiles.size(); i++) {
+                try {
+                    database.updateKey(mKeyProfiles.get(i));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
+
+            saveDatabase(false, null);
         }
 
         super.onPause();
+    }
+
+    private void promptFingerPrint(FingerprintAuthenticationDialogFragment.Action action, Cipher cipher) {
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
+            FingerprintAuthenticationDialogFragment fragment = new FingerprintAuthenticationDialogFragment();
+            fragment.setCryptoObject(new FingerprintManager.CryptoObject(cipher));
+            fragment.setStage(FingerprintAuthenticationDialogFragment.Stage.FINGERPRINT);
+            fragment.setAction(action);
+            fragment.show(getFragmentManager(), "");
+        }
+    }
+
+    public void onAuthenticated(FingerprintAuthenticationDialogFragment.Action action, FingerprintManager.CryptoObject obj) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            Cipher cipher = obj.getCipher();
+            switch (action) {
+                case SAVE:
+                    saveDatabase(false, cipher);
+                    break;
+                case LOAD:
+                    loadDatabase(cipher);
+                    break;
+            }
+        }
+    }
+
+    private void saveDatabase(boolean allowPrompt, Cipher cipher) {
+        try {
+            byte[] bytes = database.serialize();
+            CryptParameters cryptParams = null;
+            DerivationParameters derParams = null;
+
+            switch (databaseFile.getLevel()) {
+                case DatabaseFile.SEC_LEVEL_DERIVED:
+                    // TODO
+                    break;
+                case DatabaseFile.SEC_LEVEL_KEYSTORE:
+                    if (cipher == null) {
+                        KeyStoreHandle keyStore = new KeyStoreHandle();
+                        SecretKey key = keyStore.getKey();
+                        cipher = CryptoUtils.createCipher(key, Cipher.ENCRYPT_MODE);
+                    }
+
+                    CryptResult result = CryptoUtils.encrypt(bytes, cipher);
+                    bytes = result.Data;
+                    cryptParams = result.Parameters;
+                    break;
+            }
+
+            databaseFile.setContent(bytes);
+            databaseFile.setCryptParameters(cryptParams);
+            databaseFile.setDerivationParameters(derParams);
+            databaseFile.save();
+        } catch (IllegalBlockSizeException e) {
+            // TODO: is there a way to catch "Key user not authenticated" specifically aside from checking the exception message?
+            if (causeIsKeyUserNotAuthenticated(e) && allowPrompt && cipher != null) {
+                promptFingerPrint(FingerprintAuthenticationDialogFragment.Action.SAVE, cipher);
+            }
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private BottomSheetDialog InitializeBottomSheet()
@@ -242,7 +296,13 @@ public class MainActivity extends AppCompatActivity  {
                 .setTitle("Delete entry")
                 .setMessage("Are you sure you want to delete this profile?")
                 .setPositiveButton(android.R.string.yes, (dialog, which) -> {
-                    database.removeKey(profile);
+                    try {
+                        database.removeKey(profile);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        //TODO: feedback
+                        return;
+                    }
                     mKeyProfiles.remove(clickedItemPosition);
                     mKeyProfileAdapter.notifyItemRemoved(clickedItemPosition);
                 })
@@ -334,5 +394,109 @@ public class MainActivity extends AppCompatActivity  {
             finish();
             startActivity(new Intent(this, this.getClass()));
         }
+    }
+
+    private void loadDatabase(Cipher cipher) {
+        try {
+            databaseFile = DatabaseFile.load(getApplicationContext());
+        } catch (IOException e) {
+            // this file doesn't exist yet
+            try {
+                // TODO: prompt for security settings (level, auth, etc)
+                database = new Database();
+                databaseFile = new DatabaseFile(getApplicationContext());
+                databaseFile.setLevel(DatabaseFile.SEC_LEVEL_KEYSTORE);
+
+                if (databaseFile.getLevel() == DatabaseFile.SEC_LEVEL_KEYSTORE) {
+                    KeyStoreHandle store = new KeyStoreHandle();
+                    if (!store.keyExists()) {
+                        store.generateKey(true);
+                    }
+                }
+            } catch (Exception ex) {
+                e.printStackTrace();
+                return;
+            }
+        } catch (Exception e) {
+            // something else went wrong
+            e.printStackTrace();
+            return;
+        }
+
+        if (database == null) {
+            byte[] content = databaseFile.getContent();
+            switch (databaseFile.getLevel()) {
+                case DatabaseFile.SEC_LEVEL_NONE:
+                    try {
+                        Database temp = new Database();
+                        temp.deserialize(content);
+                        database = temp;
+                    } catch (Exception e) {
+                        // TODO: handle corrupt database
+                        e.printStackTrace();
+                        return;
+                    }
+                    break;
+                case DatabaseFile.SEC_LEVEL_DERIVED:
+                    // TODO: prompt for pin/pass
+                    /*CryptParameters cryptParams = dbFile.getCryptParameters();
+                    DerivationParameters derParams = dbFile.getDerivationParameters();
+                    SecretKey key = CryptoUtils.deriveKey("password".toCharArray(), derParams.Salt, (int)derParams.IterationCount);*/
+
+                    break;
+                case DatabaseFile.SEC_LEVEL_KEYSTORE:
+                    // TODO: prompt for fingerprint if auth is required
+                    try {
+                        CryptParameters params = databaseFile.getCryptParameters();
+
+                        if (cipher == null) {
+                            KeyStoreHandle store = new KeyStoreHandle();
+                            SecretKey key = store.getKey();
+                            cipher = CryptoUtils.createCipher(key, Cipher.DECRYPT_MODE, params.Nonce);
+                        }
+
+                        CryptResult result = null;
+                        //try {
+                            result = CryptoUtils.decrypt(content, cipher, params);
+                        //} catch (Exception e) {
+                        //    // we probably need to authenticate ourselves
+                        //    promptFingerPrint(1, cipher);
+                        //}
+                        if (result != null) {
+                            database = new Database();
+                            database.deserialize(result.Data);
+                        }
+                    } catch (IllegalBlockSizeException e) {
+                        if (causeIsKeyUserNotAuthenticated(e) && cipher != null) {
+                            promptFingerPrint(FingerprintAuthenticationDialogFragment.Action.LOAD, cipher);
+                        }
+                        e.printStackTrace();
+                        return;
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        return;
+                    }
+                    break;
+                default:
+                    // TODO: handle unknown security level
+                    return;
+            }
+        }
+
+        try {
+            mKeyProfiles.addAll(database.getKeys());
+            mKeyProfileAdapter.notifyDataSetChanged();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return;
+        }
+
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setEnabled(true);
+    }
+
+    private boolean causeIsKeyUserNotAuthenticated(Exception e) {
+        // TODO: is there a way to catch "Key user not authenticated" specifically aside from checking the exception message?
+        return e.getCause().getMessage().equals("Key user not authenticated");
     }
 }

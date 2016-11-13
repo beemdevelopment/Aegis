@@ -1,99 +1,94 @@
 package me.impy.aegis.db;
 
-import android.content.Context;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
-import net.sqlcipher.Cursor;
-import net.sqlcipher.database.SQLiteDatabase;
-
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 import me.impy.aegis.KeyProfile;
 import me.impy.aegis.crypto.KeyInfo;
 
 public class Database {
-    private static Database instance;
-    private static Boolean libsLoaded = false;
-    private SQLiteDatabase db;
+    private static final int version = 1;
+    private List<DatabaseEntry> entries = new ArrayList<>();
 
-    private Database(Context context, String filename, char[] password) {
-        DatabaseHelper helper = new DatabaseHelper(context, filename);
-        db = helper.getWritableDatabase(password);
-    }
-
-    public static Database createInstance(Context context, String filename, char[] password) {
-        // load the sqlcipher library, once
-        if (!libsLoaded) {
-            SQLiteDatabase.loadLibs(context);
-            libsLoaded = true;
+    public byte[] serialize() throws JSONException, UnsupportedEncodingException {
+        JSONArray array = new JSONArray();
+        for (DatabaseEntry e : entries) {
+            array.put(e.serialize());
         }
 
-        if (instance == null) {
-            instance = new Database(context, filename, password);
-        }
+        JSONObject obj = new JSONObject();
+        obj.put("version", version);
+        obj.put("entries", array);
 
-        return instance;
+        return obj.toString().getBytes("UTF-8");
     }
 
-    // adds a key to the database and returns it's ID
+    public void deserialize(byte[] data) throws Exception {
+        JSONObject obj = new JSONObject(new String(data, "UTF-8"));
+
+        // TODO: support different version deserialization providers
+        int ver = obj.getInt("version");
+        if (ver != version) {
+            throw new Exception("Unsupported version");
+        }
+
+        JSONArray array = obj.getJSONArray("entries");
+        for (int i = 0; i < array.length(); i++) {
+            DatabaseEntry e = new DatabaseEntry();
+            e.deserialize(array.getJSONObject(i));
+            entries.add(e);
+        }
+    }
+
     public void addKey(KeyProfile profile) throws Exception {
-        db.execSQL("insert into otp (name, url) values (?, ?)",
-                new Object[]{ profile.Name, profile.Info.getURL() });
-        profile.ID = getLastID(db, "otp");
+        DatabaseEntry e = new DatabaseEntry();
+        e.Name = profile.Name;
+        e.URL = profile.Info.getURL();
+        e.Order = profile.Order;
+        e.ID = entries.size() + 1;
+        profile.ID = e.ID;
+        entries.add(e);
     }
 
     public void updateKey(KeyProfile profile) throws Exception {
-        db.execSQL("update otp set name=?, url=?, 'order'=? where id=?",
-                new Object[]{ profile.Name, profile.Info.getURL(), profile.Order, profile.ID });
+        DatabaseEntry e = findEntry(profile);
+        e.Name = profile.Name;
+        e.URL = profile.Info.getURL();
+        e.Order = profile.Order;
     }
 
-    public void removeKey(KeyProfile profile) {
-        db.execSQL("delete from otp where id=?", new Object[]{ profile.ID });
+    public void removeKey(KeyProfile profile) throws Exception {
+        DatabaseEntry e = findEntry(profile);
+        entries.remove(e);
     }
 
     public List<KeyProfile> getKeys() throws Exception {
         List<KeyProfile> list = new ArrayList<>();
-        Cursor cursor = db.rawQuery("select * from otp order by 'order' desc", null);
 
-        try {
-            while (cursor.moveToNext()) {
-                KeyProfile profile = new KeyProfile();
-                profile.ID = cursor.getInt(cursor.getColumnIndexOrThrow("id"));
-                profile.Name = cursor.getString(cursor.getColumnIndexOrThrow("name"));
-                profile.Order = cursor.getInt(cursor.getColumnIndexOrThrow("order"));
-                String url = cursor.getString(cursor.getColumnIndexOrThrow("url"));
-                profile.Info = KeyInfo.FromURL(url);
-
-                list.add(profile);
-            }
-            Collections.sort(list, new Comparator<KeyProfile>() {
-                @Override
-                public int compare(KeyProfile a, KeyProfile b) {
-                    return b.compareTo(a);
-                }
-            });
-            return list;
-        } finally {
-            cursor.close();
+        for (DatabaseEntry e : entries) {
+            KeyProfile profile = new KeyProfile();
+            profile.Name = e.Name;
+            profile.Info = KeyInfo.FromURL(e.URL);
+            profile.Order = e.Order;
+            profile.ID = e.ID;
+            list.add(profile);
         }
+
+        return list;
     }
 
-    public void close() {
-        db.close();
-    }
-
-    private int getLastID(SQLiteDatabase db, String table) throws Exception {
-        Cursor cursor = db.rawQuery(String.format("select id from %s order by id desc limit 1", table), null);
-        try {
-            if (!cursor.moveToFirst()) {
-                throw new Exception("no items in the table, this should not happen here");
+    private DatabaseEntry findEntry(KeyProfile profile) throws Exception {
+        for (DatabaseEntry e : entries) {
+            if (e.ID == profile.ID) {
+                return e;
             }
-
-            return cursor.getInt(cursor.getColumnIndexOrThrow("id"));
-        } finally {
-            cursor.close();
         }
+
+        throw new Exception("Key doesn't exist");
     }
 }

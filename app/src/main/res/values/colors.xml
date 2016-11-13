@@ -19,4 +19,8 @@
     <color name="primary_text_dark">#ffffff</color>
     <color name="secondary_text_dark">#FF5252</color>
     <color name="background_dark">#191919</color>
+
+    <color name="warning_color">#f4511e</color>
+    <color name="hint_color">#42000000</color>
+    <color name="success_color">#009688</color>
 </resources>

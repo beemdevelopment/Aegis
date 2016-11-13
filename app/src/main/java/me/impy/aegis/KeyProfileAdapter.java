@@ -1,11 +1,9 @@
 package me.impy.aegis;
 
 import android.animation.ObjectAnimator;
-import android.content.ClipData;
 import android.content.SharedPreferences;
 import android.os.Handler;
 import android.preference.PreferenceManager;
-import android.provider.ContactsContract;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,8 +22,6 @@ import java.util.Comparator;
 import java.util.List;
 
 import me.impy.aegis.crypto.OTP;
-import me.impy.aegis.db.Database;
-import me.impy.aegis.helpers.ItemClickListener;
 import me.impy.aegis.helpers.ItemTouchHelperAdapter;
 
 public class KeyProfileAdapter extends RecyclerView.Adapter<KeyProfileAdapter.KeyProfileHolder> implements ItemTouchHelperAdapter {
