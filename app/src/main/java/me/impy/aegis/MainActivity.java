@@ -22,6 +22,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.support.v7.widget.helper.ItemTouchHelper;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -33,6 +34,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Objects;
 
 import me.impy.aegis.crypto.CryptoUtils;
 import me.impy.aegis.crypto.OTP;
@@ -274,19 +276,36 @@ public class MainActivity extends AppCompatActivity  {
 
     private void initializeAppShortcuts()
     {
+        String mode = getIntent().getStringExtra("Action");
+        if(mode != null)
+        {
+            Log.println(Log.DEBUG, "MODE: ", mode);
+            if(Objects.equals(mode, "Scan"))
+            {
+                Log.println(Log.DEBUG, "OKK ", "OKKK");
+                Intent scannerActivity = new Intent(getApplicationContext(), ScannerActivity.class);
+                startActivityForResult(scannerActivity, GET_KEYINFO);
+            }
+        }
+
         ShortcutManager shortcutManager = null;
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {
             shortcutManager = getSystemService(ShortcutManager.class);
             if(shortcutManager != null) {
+                //TODO: Remove this line
+                shortcutManager.removeAllDynamicShortcuts();
                 if (shortcutManager.getDynamicShortcuts().size() == 0) {
                     // Application restored. Need to re-publish dynamic shortcuts.
 
+                    Intent intent1 = new Intent(this.getBaseContext(), MainActivity.class);
+                    intent1.putExtra("Action", "Scan");
+                    intent1.setAction(Intent.ACTION_MAIN);
 
                         ShortcutInfo shortcut = new ShortcutInfo.Builder(this, "id1")
-                                .setShortLabel("Web site")
+                                .setShortLabel("New profile")
                                 .setLongLabel("Add new profile")
                                 .setIcon(Icon.createWithResource(this.getApplicationContext(), R.drawable.intro_scanner))
-                                .setIntent(new Intent(Intent.ACTION_VIEW, Uri.EMPTY, this, ScannerActivity.class))
+                                .setIntent(intent1)
                                 .build();
 
                         shortcutManager.setDynamicShortcuts(Arrays.asList(shortcut));
