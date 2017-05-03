@@ -21,7 +21,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-import me.impy.aegis.crypto.OTP;
+import me.impy.aegis.crypto.otp.OTP;
 import me.impy.aegis.helpers.ItemTouchHelperAdapter;
 
 public class KeyProfileAdapter extends RecyclerView.Adapter<KeyProfileAdapter.KeyProfileHolder> implements ItemTouchHelperAdapter {

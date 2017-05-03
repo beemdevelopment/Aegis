@@ -43,7 +43,7 @@ import javax.crypto.SecretKey;
 import me.impy.aegis.crypto.CryptResult;
 import me.impy.aegis.crypto.CryptoUtils;
 import me.impy.aegis.crypto.MasterKey;
-import me.impy.aegis.crypto.OTP;
+import me.impy.aegis.crypto.otp.OTP;
 import me.impy.aegis.crypto.slots.PasswordSlot;
 import me.impy.aegis.crypto.slots.Slot;
 import me.impy.aegis.crypto.slots.SlotCollection;

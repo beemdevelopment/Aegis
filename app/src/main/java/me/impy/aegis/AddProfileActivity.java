@@ -9,11 +9,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import me.impy.aegis.crypto.OTP;
+import me.impy.aegis.crypto.otp.OTP;
 
 public class AddProfileActivity extends AppCompatActivity {
 

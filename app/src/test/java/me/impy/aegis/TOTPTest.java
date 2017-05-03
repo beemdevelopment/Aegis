@@ -2,7 +2,7 @@ package me.impy.aegis;
 
 import org.junit.Test;
 
-import me.impy.aegis.crypto.TOTP;
+import me.impy.aegis.crypto.otp.TOTP;
 
 import static org.junit.Assert.*;
 

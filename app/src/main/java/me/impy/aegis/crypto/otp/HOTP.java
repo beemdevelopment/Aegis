@@ -1,4 +1,4 @@
-package me.impy.aegis.crypto;
+package me.impy.aegis.crypto.otp;
 
 /*
 * OneTimePasswordAlgorithm.java

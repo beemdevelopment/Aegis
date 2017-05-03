@@ -2,7 +2,7 @@ package me.impy.aegis;
 
 import org.junit.Test;
 
-import me.impy.aegis.crypto.HOTP;
+import me.impy.aegis.crypto.otp.HOTP;
 
 import static org.junit.Assert.*;
 

@@ -1,4 +1,6 @@
-package me.impy.aegis.crypto;
+package me.impy.aegis.crypto.otp;
+
+import me.impy.aegis.crypto.KeyInfo;
 
 public class OTP {
     private OTP() {
