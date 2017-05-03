@@ -32,14 +32,13 @@ public class KeyStoreHandle {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             KeyGenerator generator = KeyGenerator.getInstance(KeyProperties.KEY_ALGORITHM_AES, STORE_NAME);
             generator.init(new KeyGenParameterSpec.Builder(KEY_NAME,
-                    KeyProperties.PURPOSE_ENCRYPT | KeyProperties.PURPOSE_DECRYPT)
-                    .setBlockModes(KeyProperties.BLOCK_MODE_GCM)
-                    .setEncryptionPaddings(KeyProperties.ENCRYPTION_PADDING_NONE)
-                    .setUserAuthenticationRequired(authRequired)
-                    .setRandomizedEncryptionRequired(false)
-                    .setKeySize(CryptoUtils.CRYPTO_KEY_SIZE * 8)
-                    //.setUserAuthenticationValidityDurationSeconds(30);
-                    .build());
+                KeyProperties.PURPOSE_ENCRYPT | KeyProperties.PURPOSE_DECRYPT)
+                .setBlockModes(KeyProperties.BLOCK_MODE_ECB)
+                .setEncryptionPaddings(KeyProperties.ENCRYPTION_PADDING_NONE)
+                .setUserAuthenticationRequired(authRequired)
+                .setRandomizedEncryptionRequired(false)
+                .setKeySize(CryptoUtils.CRYPTO_KEY_SIZE * 8)
+                .build());
 
             return generator.generateKey();
         } else {

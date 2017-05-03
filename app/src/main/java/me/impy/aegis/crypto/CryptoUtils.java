@@ -13,6 +13,7 @@ import java.util.Arrays;
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
 import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.KeyGenerator;
 import javax.crypto.NoSuchPaddingException;
 import javax.crypto.SecretKey;
 import javax.crypto.SecretKeyFactory;
@@ -24,8 +25,11 @@ public class CryptoUtils {
     public static final byte CRYPTO_KEY_SIZE = 32;
     public static final byte CRYPTO_NONCE_SIZE = 12;
     public static final byte CRYPTO_SALT_SIZE = 32;
-    public static final String CRYPTO_CIPHER = "AES/GCM/NoPadding";
-    public static final String CRYPTO_DERIVE_ALGO = "PBKDF2WithHmacSHA256";
+    public static final short CRYPTO_ITERATION_COUNT = 10000;
+    public static final String CRYPTO_CIPHER_RAW = "AES/ECB/NoPadding";
+    public static final String CRYPTO_CIPHER_AEAD = "AES/GCM/NoPadding";
+    // TODO: use a separate library for an HMAC-SHA256 implementation
+    public static final String CRYPTO_DERIVE_ALGO = "PBKDF2WithHmacSHA1";
 
     public static SecretKey deriveKey(char[] password, byte[] salt, int iterations) throws NoSuchAlgorithmException, InvalidKeySpecException {
         SecretKeyFactory factory = SecretKeyFactory.getInstance(CRYPTO_DERIVE_ALGO);
@@ -40,7 +44,7 @@ public class CryptoUtils {
 
     public static Cipher createCipher(SecretKey key, int opmode, byte[] nonce) throws NoSuchPaddingException, NoSuchAlgorithmException, InvalidAlgorithmParameterException, InvalidKeyException {
         GCMParameterSpec spec = new GCMParameterSpec(CRYPTO_TAG_SIZE * 8, nonce);
-        Cipher cipher = Cipher.getInstance(CRYPTO_CIPHER);
+        Cipher cipher = Cipher.getInstance(CRYPTO_CIPHER_AEAD);
         cipher.init(opmode, key, spec);
         return cipher;
     }
@@ -73,6 +77,12 @@ public class CryptoUtils {
             Parameters = params;
             Data = decrypted;
         }};
+    }
+
+    public static SecretKey generateKey() throws NoSuchAlgorithmException {
+        KeyGenerator generator = KeyGenerator.getInstance("AES");
+        generator.init(CRYPTO_KEY_SIZE * 8);
+        return generator.generateKey();
     }
 
     public static byte[] generateSalt() {

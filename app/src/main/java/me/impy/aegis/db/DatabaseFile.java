@@ -7,68 +7,56 @@ import java.io.DataOutputStream;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
-import java.security.KeyStoreException;
-import java.security.NoSuchAlgorithmException;
-import java.security.cert.CertificateException;
+import java.lang.reflect.UndeclaredThrowableException;
 import java.util.Arrays;
 
 import me.impy.aegis.crypto.CryptParameters;
+import me.impy.aegis.crypto.slots.SlotCollection;
 import me.impy.aegis.crypto.CryptoUtils;
-import me.impy.aegis.crypto.DerivationParameters;
+import me.impy.aegis.util.LittleByteBuffer;
 
 public class DatabaseFile {
-    public static final byte SEC_LEVEL_NONE = 0x00;
-    public static final byte SEC_LEVEL_DERIVED = 0x01;
-    public static final byte SEC_LEVEL_KEYSTORE = 0x02;
     private static final byte bSectionEncryptionParameters = 0x00;
-    private static final byte bSectionDerivationParameters = 0x01;
+    private static final byte bSectionSlots = 0x01;
     private static final byte bSectionEnd = (byte) 0xFF;
     private static final byte bVersion = 1;
     private static final String dbFilename = "aegis.db";
 
     private final byte[] bHeader;
-    private final Context context;
 
-    private byte level;
     private byte[] content;
     private CryptParameters cryptParameters;
-    private DerivationParameters derivationParameters;
+    private SlotCollection slots;
 
-    public DatabaseFile(Context ctx) throws IOException, KeyStoreException, CertificateException, NoSuchAlgorithmException {
-        context = ctx;
-        bHeader = "AEGIS".getBytes("US_ASCII");
+    public DatabaseFile() {
+        try {
+            bHeader = "AEGIS".getBytes("US_ASCII");
+        } catch (Exception e) {
+            throw new UndeclaredThrowableException(e);
+        }
+        slots = new SlotCollection();
     }
 
     public byte[] serialize() throws IOException {
         CryptParameters cryptParams = getCryptParameters();
-        DerivationParameters derParams = getDerivationParameters();
         byte[] content = getContent();
-        byte level = getLevel();
 
         // this is dumb, java doesn't provide an endianness-aware data stream
         ByteArrayOutputStream byteStream = new ByteArrayOutputStream();
         DataOutputStream stream = new DataOutputStream(byteStream);
         stream.write(bHeader);
         stream.write(bVersion);
-        stream.write(level);
 
-        // we assume that all of the needed params for the security level are set
-        // if that's not the case, a NullPointerException will be thrown.
-        switch (level) {
-            case SEC_LEVEL_DERIVED:
-                ByteBuffer paramBuffer = newBuffer(/* iterations */ 8 + CryptoUtils.CRYPTO_SALT_SIZE);
-                paramBuffer.putLong(derParams.IterationCount);
-                paramBuffer.put(derParams.Salt);
-                writeSection(stream, bSectionDerivationParameters, paramBuffer.array());
-                // intentional fallthrough
-            case SEC_LEVEL_KEYSTORE:
-                paramBuffer = newBuffer(CryptoUtils.CRYPTO_NONCE_SIZE + CryptoUtils.CRYPTO_TAG_SIZE);
-                paramBuffer.put(cryptParams.Nonce);
-                paramBuffer.put(cryptParams.Tag);
-                writeSection(stream, bSectionEncryptionParameters, paramBuffer.array());
-                break;
+        if (cryptParams != null) {
+            LittleByteBuffer paramBuffer = LittleByteBuffer.allocate(CryptoUtils.CRYPTO_NONCE_SIZE + CryptoUtils.CRYPTO_TAG_SIZE);
+            paramBuffer.put(cryptParams.Nonce);
+            paramBuffer.put(cryptParams.Tag);
+            writeSection(stream, bSectionEncryptionParameters, paramBuffer.array());
+        }
+
+        if (slots != null) {
+            byte[] bytes = SlotCollection.serialize(slots);
+            writeSection(stream, bSectionSlots, bytes);
         }
 
         writeSection(stream, bSectionEnd, null);
@@ -77,7 +65,7 @@ public class DatabaseFile {
     }
 
     public void deserialize(byte[] data) throws Exception {
-        ByteBuffer buffer = newBuffer(data);
+        LittleByteBuffer buffer = LittleByteBuffer.wrap(data);
 
         byte[] header = new byte[bHeader.length];
         buffer.get(header);
@@ -91,17 +79,11 @@ public class DatabaseFile {
             throw new Exception("Unsupported version");
         }
 
-        byte level = buffer.get();
-        if (level > SEC_LEVEL_KEYSTORE) {
-            throw new Exception("Unsupported security level");
-        }
-        setLevel(level);
-
         CryptParameters cryptParams = null;
-        DerivationParameters derParams = null;
+        SlotCollection slots = null;
 
         for (section s = readSection(buffer); s.ID != bSectionEnd; s = readSection(buffer)) {
-            ByteBuffer sBuff = newBuffer(s.Data);
+            LittleByteBuffer sBuff = LittleByteBuffer.wrap(s.Data);
             switch (s.ID) {
                 case bSectionEncryptionParameters:
                     assertLength(s.Data, CryptoUtils.CRYPTO_NONCE_SIZE + CryptoUtils.CRYPTO_TAG_SIZE);
@@ -116,35 +98,25 @@ public class DatabaseFile {
                         Tag = tag;
                     }};
                     break;
-                case bSectionDerivationParameters:
-                    assertLength(s.Data, /* iterations */ 8 + CryptoUtils.CRYPTO_SALT_SIZE);
-
-                    long iterations = sBuff.getLong();
-                    byte[] salt = new byte[CryptoUtils.CRYPTO_SALT_SIZE];
-                    sBuff.get(salt);
-
-                    derParams = new DerivationParameters() {{
-                        IterationCount = iterations;
-                        Salt = salt;
-                    }};
+                case bSectionSlots:
+                    slots = SlotCollection.deserialize(s.Data);
                     break;
             }
         }
 
-        if ((level == SEC_LEVEL_DERIVED && (cryptParams == null || derParams == null))
-                || (level == SEC_LEVEL_KEYSTORE && cryptParams == null)) {
-            throw new Exception("Security level parameters missing");
-        }
-
         setCryptParameters(cryptParams);
-        setDerivationParameters(derParams);
+        setSlots(slots);
 
         byte[] content = new byte[buffer.remaining()];
         buffer.get(content);
         setContent(content);
     }
 
-    public void save() throws IOException {
+    public boolean isEncrypted() {
+        return slots != null && cryptParameters != null;
+    }
+
+    public void save(Context context) throws IOException {
         byte[] data = serialize();
 
         FileOutputStream file = context.openFileOutput(dbFilename, Context.MODE_PRIVATE);
@@ -158,7 +130,7 @@ public class DatabaseFile {
         file.read(data);
         file.close();
 
-        DatabaseFile db = new DatabaseFile(context);
+        DatabaseFile db = new DatabaseFile();
         db.deserialize(data);
         return db;
     }
@@ -166,7 +138,7 @@ public class DatabaseFile {
     private static void writeSection(DataOutputStream stream, byte id, byte[] data) throws IOException {
         stream.write(id);
 
-        ByteBuffer buffer = newBuffer(/* sizeof uint32_t */ 4);
+        LittleByteBuffer buffer = LittleByteBuffer.allocate(/* sizeof uint32_t */ 4);
         if (data == null) {
             buffer.putInt(0);
         } else {
@@ -179,7 +151,7 @@ public class DatabaseFile {
         }
     }
 
-    private static section readSection(ByteBuffer buffer) {
+    private static section readSection(LittleByteBuffer buffer) {
         section s = new section();
         s.ID = buffer.get();
 
@@ -188,18 +160,6 @@ public class DatabaseFile {
         buffer.get(s.Data);
 
         return s;
-    }
-
-    private static ByteBuffer newBuffer(byte[] data) {
-        ByteBuffer buffer = ByteBuffer.wrap(data);
-        buffer.order(ByteOrder.LITTLE_ENDIAN);
-        return buffer;
-    }
-
-    private static ByteBuffer newBuffer(int size) {
-        ByteBuffer buffer = ByteBuffer.allocate(size);
-        buffer.order(ByteOrder.LITTLE_ENDIAN);
-        return buffer;
     }
 
     private static void assertLength(byte[] bytes, int length) throws Exception {
@@ -224,20 +184,12 @@ public class DatabaseFile {
         this.cryptParameters = parameters;
     }
 
-    public DerivationParameters getDerivationParameters() {
-        return derivationParameters;
+    public SlotCollection getSlots() {
+        return slots;
     }
 
-    public void setDerivationParameters(DerivationParameters derivationParameters) {
-        this.derivationParameters = derivationParameters;
-    }
-
-    public byte getLevel() {
-        return level;
-    }
-
-    public void setLevel(byte level) {
-        this.level = level;
+    public void setSlots(SlotCollection slots) {
+        this.slots = slots;
     }
 
     private static class section {

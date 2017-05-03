@@ -124,4 +124,3 @@ public class ScannerActivity extends Activity implements ZXingScannerView.Result
         return supportedFormats;
     }
 }
-
