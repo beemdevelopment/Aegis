@@ -44,7 +44,9 @@ import me.impy.aegis.crypto.CryptResult;
 import me.impy.aegis.crypto.CryptoUtils;
 import me.impy.aegis.crypto.MasterKey;
 import me.impy.aegis.crypto.otp.OTP;
+import me.impy.aegis.crypto.slots.FingerprintSlot;
 import me.impy.aegis.crypto.slots.PasswordSlot;
+import me.impy.aegis.crypto.slots.RawSlot;
 import me.impy.aegis.crypto.slots.Slot;
 import me.impy.aegis.crypto.slots.SlotCollection;
 import me.impy.aegis.db.Database;
@@ -364,12 +366,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void createDatabase() {
         database = new Database();
-        try {
-            databaseFile = new DatabaseFile();
-        } catch (Exception e) {
-            // TODO: tell the user to stop using a weird platform
-            throw new UndeclaredThrowableException(e);
-        }
+        databaseFile = new DatabaseFile();
 
         try {
             masterKey = new MasterKey(null);
@@ -383,7 +380,7 @@ public class MainActivity extends AppCompatActivity {
         try {
             PasswordSlot slot = new PasswordSlot();
             byte[] salt = CryptoUtils.generateSalt();
-            SecretKey derivedKey = slot.deriveKey("testpassword".toCharArray(), salt, 1000);
+            SecretKey derivedKey = slot.deriveKey("testpassword".toCharArray(), salt, CryptoUtils.CRYPTO_ITERATION_COUNT);
             Cipher cipher = Slot.createCipher(derivedKey, Cipher.ENCRYPT_MODE);
             masterKey.encryptSlot(slot, cipher);
             slots.add(slot);
@@ -407,21 +404,22 @@ public class MainActivity extends AppCompatActivity {
 
         byte[] content = databaseFile.getContent();
         if (databaseFile.isEncrypted()) {
-            SlotCollection slots = databaseFile.getSlots();
-            for (Slot slot : slots) {
-                if (slot instanceof PasswordSlot) {
-                    try {
-                        PasswordSlot derSlot = (PasswordSlot)slot;
-                        SecretKey derivedKey = derSlot.deriveKey("testpassword".toCharArray());
-                        Cipher cipher = Slot.createCipher(derivedKey, Cipher.DECRYPT_MODE);
-                        masterKey = MasterKey.decryptSlot(slot, cipher);
-                    } catch (Exception e) {
-                        throw new UndeclaredThrowableException(e);
-                    }
-                    break;
+            try {
+                SlotCollection slots = databaseFile.getSlots();
+                // look up slots in order of preference
+                if (slots.has(FingerprintSlot.class)) {
+                    FingerprintSlot slot = slots.find(FingerprintSlot.class);
+                } else if (slots.has(PasswordSlot.class)) {
+                    PasswordSlot slot = slots.find(PasswordSlot.class);
+                    SecretKey derivedKey = slot.deriveKey("testpassword".toCharArray());
+                    Cipher cipher = Slot.createCipher(derivedKey, Cipher.DECRYPT_MODE);
+                    masterKey = MasterKey.decryptSlot(slot, cipher);
+                //} else if (slots.has(RawSlot.class)) {
                 } else {
-
+                    throw new Exception("the slot collection doesn't contain any supported slot types");
                 }
+            } catch (Exception e) {
+                throw new UndeclaredThrowableException(e);
             }
 
             CryptResult result;

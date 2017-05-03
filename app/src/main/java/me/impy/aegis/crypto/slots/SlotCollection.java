@@ -77,6 +77,10 @@ public class SlotCollection implements Iterable<Slot> {
         return null;
     }
 
+    public <T extends Slot> boolean has(Class<T> type) {
+        return find(type) != null;
+    }
+
     @Override
     public Iterator<Slot> iterator() {
         return _slots.iterator();
