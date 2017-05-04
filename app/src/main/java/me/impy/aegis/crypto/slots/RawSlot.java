@@ -23,7 +23,6 @@ public class RawSlot extends Slot {
         if (buffer.get() != getType()) {
             throw new Exception("slot type mismatch");
         }
-        buffer.get();
         _encryptedMasterKey = new byte[CryptoUtils.CRYPTO_KEY_SIZE];
         buffer.get(_encryptedMasterKey);
     }
