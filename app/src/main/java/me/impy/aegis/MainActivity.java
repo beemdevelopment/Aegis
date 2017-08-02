@@ -369,7 +369,7 @@ public class MainActivity extends AppCompatActivity {
         databaseFile = new DatabaseFile();
 
         try {
-            masterKey = new MasterKey(null);
+            masterKey = MasterKey.generate();
         } catch (NoSuchAlgorithmException e) {
             // TODO: tell the user to stop using a weird platform
             throw new UndeclaredThrowableException(e);

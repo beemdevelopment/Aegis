@@ -25,6 +25,7 @@ public class CryptoUtils {
     public static final byte CRYPTO_KEY_SIZE = 32;
     public static final byte CRYPTO_NONCE_SIZE = 12;
     public static final byte CRYPTO_SALT_SIZE = 32;
+    // TODO: decide on a 'secure-enough' iteration count
     public static final short CRYPTO_ITERATION_COUNT = 10000;
     public static final String CRYPTO_CIPHER_RAW = "AES/ECB/NoPadding";
     public static final String CRYPTO_CIPHER_AEAD = "AES/GCM/NoPadding";

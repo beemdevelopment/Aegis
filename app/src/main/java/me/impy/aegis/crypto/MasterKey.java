@@ -16,11 +16,20 @@ import me.impy.aegis.crypto.slots.Slot;
 public class MasterKey {
     private SecretKey _key;
 
-    public MasterKey(SecretKey key) throws NoSuchAlgorithmException {
+    public MasterKey(SecretKey key)  {
         if (key == null) {
-            key = CryptoUtils.generateKey();
+            throw new NullPointerException();
         }
         _key = key;
+    }
+
+    public static MasterKey generate() throws NoSuchAlgorithmException {
+        return new MasterKey(CryptoUtils.generateKey());
+    }
+
+    public void encryptSlot(Slot slot, Cipher cipher)
+            throws BadPaddingException, IllegalBlockSizeException {
+        slot.setKey(_key, cipher);
     }
 
     public static MasterKey decryptSlot(Slot slot, Cipher cipher)
@@ -40,9 +49,5 @@ public class MasterKey {
             NoSuchPaddingException, BadPaddingException, IllegalBlockSizeException, IOException {
         Cipher cipher = CryptoUtils.createCipher(_key, Cipher.DECRYPT_MODE, params.Nonce);
         return CryptoUtils.decrypt(bytes, cipher, params);
-    }
-
-    public void encryptSlot(Slot slot, Cipher cipher) throws BadPaddingException, IllegalBlockSizeException {
-        slot.setKey(_key, cipher);
     }
 }
