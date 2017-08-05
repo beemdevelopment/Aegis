@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<agency.tango.materialintroscreen.parallax.ParallaxLinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorHeaderSuccess"
+    android:orientation="vertical"
+    android:paddingBottom="164dp"
+    android:paddingTop="30dp">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="32dp">
+
+        <TextView
+            android:text="@string/choose_authentication_method"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="24sp"
+            android:textColor="@color/primary_text_inverted"
+            android:id="@+id/textView2" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_marginTop="12dp">
+
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:id="@+id/rg_authenticationMethod"
+                android:layout_height="187dp">
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:id="@+id/radioButton"
+                    android:text="@string/authentication_method_none"/>
+
+                <TextView
+                    android:text="@string/authentication_method_none_description"
+                    android:layout_width="match_parent"
+                    android:textColor="@color/secondary_text_inverted"
+                    android:layout_marginTop="-5dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    />
+
+                <RadioButton
+                    android:text="@string/authentication_method_password"
+                    android:layout_width="match_parent"
+                    android:textSize="16sp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/rb_password"/>
+
+                <TextView
+                    android:text="@string/authentication_method_password_description"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="-5dp"
+                    android:textColor="@color/secondary_text_inverted"
+                    android:layout_marginStart="32dp"
+                    />
+
+                <RadioButton
+                    android:text="@string/authentication_method_fingerprint"
+                    android:layout_width="match_parent"
+                    android:textSize="16sp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/rb_fingerprint"/>
+                <TextView
+                    android:text="@string/authentication_method_fingerprint_description"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="-5dp"
+                    android:textColor="@color/secondary_text_inverted"
+                    android:layout_marginStart="32dp"
+                    />
+
+            </RadioGroup>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:weightSum="1">
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</agency.tango.materialintroscreen.parallax.ParallaxLinearLayout>

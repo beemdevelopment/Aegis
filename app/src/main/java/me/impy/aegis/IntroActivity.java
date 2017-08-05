@@ -39,6 +39,9 @@ public class IntroActivity extends MaterialIntroActivity {
 
                     }
                 }, "Permission granted"));
+
+        addSlide(new CustomAuthenticationSlide());
+        addSlide(new CustomAuthenticatedSlide());
     }
 
     @Override

@@ -33,9 +33,9 @@
             android:label="@string/title_activity_intro"
             android:theme="@style/Theme.Intro">
         </activity>
-        <activity android:name=".PreferencesActivity"
-                  >
+        <activity android:name=".PreferencesActivity">
+        </activity>
+        <activity android:name=".SetPasswordActivity">
         </activity>
     </application>
-
 </manifest>
