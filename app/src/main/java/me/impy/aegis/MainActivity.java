@@ -54,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
     private static final int CODE_GET_KEYINFO = 0;
     private static final int CODE_ADD_KEYINFO = 1;
     private static final int CODE_DO_INTRO = 2;
+    private static final int CODE_DECRYPT = 3;
 
     RecyclerView rvKeyProfiles;
     KeyProfileAdapter mKeyProfileAdapter;
@@ -72,6 +73,18 @@ public class MainActivity extends AppCompatActivity {
         if (!prefs.getBoolean("passedIntro", false)) {
             Intent intro = new Intent(this, IntroActivity.class);
             startActivityForResult(intro, CODE_DO_INTRO);
+        } else {
+            try {
+                db.load();
+            } catch (Exception e) {
+                // TODO: feedback
+                throw new UndeclaredThrowableException(e);
+            }
+            if (!db.isDecrypted()) {
+                Intent intent = new Intent(this, AuthActivity.class);
+                intent.putExtra("slots", db.getFile().getSlots());
+                startActivityForResult(intent, CODE_DECRYPT);
+            }
         }
 
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
@@ -131,6 +144,9 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case CODE_DO_INTRO:
                 onDoIntroResult(resultCode, data);
+                break;
+            case CODE_DECRYPT:
+                onDecryptResult(resultCode, data);
                 break;
         }
     }
@@ -194,6 +210,20 @@ public class MainActivity extends AppCompatActivity {
             // TODO: feedback
             throw new UndeclaredThrowableException(e);
         }
+
+        loadKeyProfiles();
+    }
+
+    private void onDecryptResult(int resultCode, Intent data) {
+        MasterKey key = (MasterKey) data.getSerializableExtra("key");
+        try {
+            db.setMasterKey(key);
+        } catch (Exception e) {
+            // TODO: feedback
+            throw new UndeclaredThrowableException(e);
+        }
+
+        loadKeyProfiles();
     }
 
     @Override
@@ -304,7 +334,7 @@ public class MainActivity extends AppCompatActivity {
             {
                 Log.println(Log.DEBUG, "OKK ", "OKKK");
                 Intent scannerActivity = new Intent(getApplicationContext(), ScannerActivity.class);
-                startActivityForResult(scannerActivity, GET_KEYINFO);
+                startActivityForResult(scannerActivity, CODE_GET_KEYINFO);
             }
         }
 
@@ -356,70 +386,25 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    /*private void loadDatabase() {
-        try {
-            databaseFile = DatabaseFile.load(getApplicationContext());
-        } catch (IOException e) {
-            // the database file doesn't exist yet
-            //createDatabase();
-            saveDatabase();
-            return;
-        } catch (Exception e) {
-            // something else went wrong
-            throw new UndeclaredThrowableException(e);
-        }
-
-        byte[] content = databaseFile.getContent();
-        if (databaseFile.isEncrypted()) {
-            try {
-                SlotCollection slots = databaseFile.getSlots();
-                // look up slots in order of preference
-                if (slots.has(FingerprintSlot.class)) {
-                    FingerprintSlot slot = slots.find(FingerprintSlot.class);
-                } else if (slots.has(PasswordSlot.class)) {
-                    PasswordSlot slot = slots.find(PasswordSlot.class);
-                    SecretKey derivedKey = slot.deriveKey("testpassword".toCharArray());
-                    Cipher cipher = Slot.createCipher(derivedKey, Cipher.DECRYPT_MODE);
-                    masterKey = MasterKey.decryptSlot(slot, cipher);
-                //} else if (slots.has(RawSlot.class)) {
-                } else {
-                    throw new Exception("the slot collection doesn't contain any supported slot types");
-                }
-            } catch (Exception e) {
-                throw new UndeclaredThrowableException(e);
-            }
-
-            CryptResult result;
-            try {
-                result = masterKey.decrypt(content, databaseFile.getCryptParameters());
-            } catch (Exception e) {
-                throw new UndeclaredThrowableException(e);
-            }
-
-            content = result.Data;
-        }
-
-        database = new Database();
-        try {
-            database.deserialize(content);
-        } catch (Exception e) {
-            throw new UndeclaredThrowableException(e);
-        }
-
-        try {
-            mKeyProfiles.addAll(database.getKeys());
-            mKeyProfileAdapter.notifyDataSetChanged();
-        } catch (Exception e) {
-            throw new UndeclaredThrowableException(e);
-        }
-    }*/
-
     private void saveDatabase() {
+        if (!db.isDecrypted()) {
+            return;
+        }
+
         try {
             db.save();
         } catch (Exception e) {
             //TODO: feedback
             throw new UndeclaredThrowableException(e);
+        }
+    }
+
+    private void loadKeyProfiles() {
+        try {
+            mKeyProfiles.addAll(db.getKeys());
+            mKeyProfileAdapter.notifyDataSetChanged();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 

@@ -33,6 +33,8 @@
             android:label="@string/title_activity_intro"
             android:theme="@style/Theme.Intro">
         </activity>
+        <activity android:name=".AuthActivity">
+        </activity>
         <activity android:name=".PreferencesActivity">
         </activity>
         <activity android:name=".SetPasswordActivity">

@@ -66,6 +66,10 @@ public class DatabaseManager {
         return _db.getKeys();
     }
 
+    public DatabaseFile getFile() {
+        return _file;
+    }
+
     public boolean isLoaded() {
         return _file != null;
     }

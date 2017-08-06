@@ -1,5 +1,6 @@
 package me.impy.aegis;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,10 +20,13 @@ public class CustomAuthenticationSlide extends SlideFragment {
         buttonGroup = (RadioGroup) view.findViewById(R.id.rg_authenticationMethod);
 
         RadioButton button = (RadioButton) view.findViewById(R.id.rb_fingerprint);
-        button.setOnClickListener(v -> {
-            if (canMoveFurther()) {
-                buttonGroup.clearCheck();
-                Toast.makeText(getActivity().getBaseContext(), "Fingerprint is not supported yet", Toast.LENGTH_SHORT).show();
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (canMoveFurther()) {
+                    buttonGroup.clearCheck();
+                    Toast.makeText(CustomAuthenticationSlide.this.getActivity(), "Fingerprint is not supported yet", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 

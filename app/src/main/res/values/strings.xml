@@ -39,6 +39,8 @@
     <string name="authentication_method_fingerprint">Fingerprint</string>
     <string name="authentication_method_fingerprint_description">This allows you to use the fingerprints registered on this device to open the app</string>
     <string name="authentication_method_set_password">Password</string>
+    <string name="authentication_enter_password">Enter your password</string>
+    <string name="authentication">Open the database</string>
     <string name="set_password">Please enter a password</string>
     <string name="set_password_confirm">Please confirm the password</string>
 

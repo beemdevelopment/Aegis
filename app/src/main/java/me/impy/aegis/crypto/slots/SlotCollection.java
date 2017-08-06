@@ -1,12 +1,13 @@
 package me.impy.aegis.crypto.slots;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
 import me.impy.aegis.util.LittleByteBuffer;
 
-public class SlotCollection implements Iterable<Slot> {
+public class SlotCollection implements Iterable<Slot>, Serializable {
     private List<Slot> _slots = new ArrayList<>();
 
     public static byte[] serialize(SlotCollection slots) {

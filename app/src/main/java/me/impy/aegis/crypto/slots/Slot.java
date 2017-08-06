@@ -2,6 +2,7 @@ package me.impy.aegis.crypto.slots;
 
 import android.annotation.SuppressLint;
 
+import java.io.Serializable;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 
@@ -14,7 +15,7 @@ import javax.crypto.spec.SecretKeySpec;
 
 import me.impy.aegis.crypto.CryptoUtils;
 
-public abstract class Slot {
+public abstract class Slot implements Serializable {
     public final static byte TYPE_RAW = 0x00;
     public final static byte TYPE_DERIVED = 0x01;
     public final static byte TYPE_FINGERPRINT = 0x02;
