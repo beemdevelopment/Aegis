@@ -29,6 +29,7 @@ public class DatabaseManager {
     }
 
     public void setMasterKey(MasterKey key) throws Exception {
+        assertLoaded();
         byte[] encrypted = _file.getContent();
         CryptParameters params = _file.getCryptParameters();
         CryptResult result = key.decrypt(encrypted, params);
