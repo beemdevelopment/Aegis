@@ -1,5 +1,6 @@
 package me.impy.aegis;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.view.LayoutInflater;
@@ -22,6 +23,7 @@ import me.impy.aegis.crypto.slots.PasswordSlot;
 import me.impy.aegis.crypto.slots.Slot;
 
 public class CustomAuthenticatedSlide extends SlideFragment {
+    private int cryptType;
     private EditText textPassword;
     private EditText textPasswordConfirm;
 
@@ -31,6 +33,29 @@ public class CustomAuthenticatedSlide extends SlideFragment {
         textPassword = (EditText) view.findViewById(R.id.text_password);
         textPasswordConfirm = (EditText) view.findViewById(R.id.text_password_confirm);
         return view;
+    }
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+
+        if (!isVisibleToUser) {
+            return;
+        }
+
+        Intent intent = getActivity().getIntent();
+        cryptType = intent.getIntExtra("cryptType", 1337);
+
+        switch(cryptType) {
+            case CustomAuthenticationSlide.CRYPT_TYPE_NONE:
+                break;
+            case CustomAuthenticationSlide.CRYPT_TYPE_PASS:
+                break;
+            case CustomAuthenticationSlide.CRYPT_TYPE_FINGER:
+                break;
+            default:
+                throw new RuntimeException();
+        }
     }
 
     @Override
@@ -45,17 +70,30 @@ public class CustomAuthenticatedSlide extends SlideFragment {
 
     @Override
     public boolean canMoveFurther() {
-        char[] password = getEditTextChars(textPassword);
-        char[] passwordConfirm = getEditTextChars(textPasswordConfirm);
-        boolean equal = password.length != 0 && Arrays.equals(password, passwordConfirm);
-        CryptoUtils.zero(password);
-        CryptoUtils.zero(passwordConfirm);
-        return equal;
+        switch(cryptType) {
+            case CustomAuthenticationSlide.CRYPT_TYPE_NONE:
+                return true;
+            case CustomAuthenticationSlide.CRYPT_TYPE_PASS:
+                char[] password = getEditTextChars(textPassword);
+                char[] passwordConfirm = getEditTextChars(textPasswordConfirm);
+                boolean equal = password.length != 0 && Arrays.equals(password, passwordConfirm);
+                CryptoUtils.zero(password);
+                CryptoUtils.zero(passwordConfirm);
+                return equal;
+            case CustomAuthenticationSlide.CRYPT_TYPE_FINGER:
+                return false;
+            default:
+                throw new RuntimeException();
+        }
     }
 
     @Override
     public String cantMoveFurtherErrorMessage() {
         return "Passwords should be equal and non-empty";
+    }
+
+    public int getCryptType() {
+        return cryptType;
     }
 
     public Cipher getCipher(PasswordSlot slot, int mode)

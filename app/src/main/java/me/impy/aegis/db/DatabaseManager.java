@@ -40,9 +40,13 @@ public class DatabaseManager {
     public void save() throws Exception {
         assertDecrypted();
         byte[] bytes = _db.serialize();
-        CryptResult result = _key.encrypt(bytes);
-        _file.setContent(result.Data);
-        _file.setCryptParameters(result.Parameters);
+        if (!_file.isEncrypted()) {
+            _file.setContent(bytes);
+        } else {
+            CryptResult result = _key.encrypt(bytes);
+            _file.setContent(result.Data);
+            _file.setCryptParameters(result.Parameters);
+        }
         _file.save(_context);
     }
 

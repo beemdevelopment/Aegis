@@ -18,7 +18,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="24sp"
-            android:textColor="@color/primary_text_inverted"
             android:id="@+id/textView2" />
         <LinearLayout
             android:orientation="vertical"

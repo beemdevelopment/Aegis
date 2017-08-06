@@ -32,6 +32,7 @@ public class IntroActivity extends MaterialIntroActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        hideBackButton();
 
         addSlide(new SlideFragmentBuilder()
                 .backgroundColor(R.color.colorPrimary)
@@ -84,24 +85,48 @@ public class IntroActivity extends MaterialIntroActivity {
         Database database = new Database();
         DatabaseFile databaseFile = new DatabaseFile();
 
-        MasterKey masterKey;
+        int cryptType = authenticatedSlide.getCryptType();
+
+        // generate the master key
+        MasterKey masterKey = null;
+        if (cryptType != CustomAuthenticationSlide.CRYPT_TYPE_NONE) {
+            try {
+                masterKey = MasterKey.generate();
+            } catch (Exception e) {
+                setException(e);
+                return;
+            }
+        }
+
+        if (cryptType != CustomAuthenticationSlide.CRYPT_TYPE_NONE) {
+            try {
+                // encrypt the master key with a key derived from the user's password
+                // and add it to the list of slots
+                SlotCollection slots = databaseFile.getSlots();
+                PasswordSlot slot = new PasswordSlot();
+                Cipher cipher = authenticatedSlide.getCipher(slot, Cipher.ENCRYPT_MODE);
+                masterKey.encryptSlot(slot, cipher);
+                slots.add(slot);
+            } catch (Exception e) {
+                setException(e);
+                return;
+            }
+        }
+
+        if (cryptType != CustomAuthenticationSlide.CRYPT_TYPE_FINGER) {
+            // TODO
+        }
+
+        // finally, save the database
         try {
-            // generate the master key
-            masterKey = MasterKey.generate();
-
-            // encrypt the master key with a key derived from the user's password
-            // and add it to the list of slots
-            SlotCollection slots = databaseFile.getSlots();
-            PasswordSlot slot = new PasswordSlot();
-            Cipher cipher = authenticatedSlide.getCipher(slot, Cipher.ENCRYPT_MODE);
-            masterKey.encryptSlot(slot, cipher);
-            slots.add(slot);
-
-            // finally, save the database
             byte[] bytes = database.serialize();
-            CryptResult result = masterKey.encrypt(bytes);
-            databaseFile.setContent(result.Data);
-            databaseFile.setCryptParameters(result.Parameters);
+            if (cryptType == CustomAuthenticationSlide.CRYPT_TYPE_NONE) {
+                databaseFile.setContent(bytes);
+            } else {
+                CryptResult result = masterKey.encrypt(bytes);
+                databaseFile.setContent(result.Data);
+                databaseFile.setCryptParameters(result.Parameters);
+            }
             databaseFile.save(getApplicationContext());
         } catch (Exception e) {
             setException(e);

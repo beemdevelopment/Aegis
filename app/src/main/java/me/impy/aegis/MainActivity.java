@@ -84,6 +84,8 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(this, AuthActivity.class);
                 intent.putExtra("slots", db.getFile().getSlots());
                 startActivityForResult(intent, CODE_DECRYPT);
+            } else {
+                loadKeyProfiles();
             }
         }
 
