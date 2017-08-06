@@ -10,7 +10,6 @@ import android.content.pm.ShortcutManager;
 import android.graphics.drawable.Icon;
 import android.net.Uri;
 import android.os.Build;
-import android.hardware.fingerprint.FingerprintManager;
 import android.preference.PreferenceManager;
 import android.support.design.widget.BottomSheetDialog;
 import android.support.design.widget.FloatingActionButton;
@@ -30,7 +29,6 @@ import android.widget.Toast;
 
 import java.io.IOException;
 import java.lang.reflect.UndeclaredThrowableException;
-import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -41,30 +39,26 @@ import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
 
 import me.impy.aegis.crypto.CryptResult;
-import me.impy.aegis.crypto.CryptoUtils;
 import me.impy.aegis.crypto.MasterKey;
 import me.impy.aegis.crypto.otp.OTP;
 import me.impy.aegis.crypto.slots.FingerprintSlot;
 import me.impy.aegis.crypto.slots.PasswordSlot;
-import me.impy.aegis.crypto.slots.RawSlot;
 import me.impy.aegis.crypto.slots.Slot;
 import me.impy.aegis.crypto.slots.SlotCollection;
 import me.impy.aegis.db.Database;
 import me.impy.aegis.db.DatabaseFile;
-import me.impy.aegis.finger.FingerprintAuthenticationDialogFragment;
+import me.impy.aegis.db.DatabaseManager;
 import me.impy.aegis.helpers.SimpleItemTouchHelperCallback;
 
 public class MainActivity extends AppCompatActivity {
-
-    static final int GET_KEYINFO = 1;
-    static final int ADD_KEYINFO = 2;
+    private static final int CODE_GET_KEYINFO = 0;
+    private static final int CODE_ADD_KEYINFO = 1;
+    private static final int CODE_DO_INTRO = 2;
 
     RecyclerView rvKeyProfiles;
     KeyProfileAdapter mKeyProfileAdapter;
     ArrayList<KeyProfile> mKeyProfiles = new ArrayList<>();
-    MasterKey masterKey;
-    Database database;
-    DatabaseFile databaseFile;
+    private DatabaseManager db;
 
     boolean nightMode = false;
     int clickedItemPosition = -1;
@@ -72,11 +66,12 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        db = new DatabaseManager(getApplicationContext());
 
         SharedPreferences prefs = this.getSharedPreferences("me.impy.aegis", Context.MODE_PRIVATE);
         if (!prefs.getBoolean("passedIntro", false)) {
             Intent intro = new Intent(this, IntroActivity.class);
-            startActivity(intro);
+            startActivityForResult(intro, CODE_DO_INTRO);
         }
 
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
@@ -95,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
         fab.setEnabled(true);
         fab.setOnClickListener(view -> {
             Intent scannerActivity = new Intent(getApplicationContext(), ScannerActivity.class);
-            startActivityForResult(scannerActivity, GET_KEYINFO);
+            startActivityForResult(scannerActivity, CODE_GET_KEYINFO);
         });
 
         rvKeyProfiles = (RecyclerView) findViewById(R.id.rvKeyProfiles);
@@ -123,47 +118,81 @@ public class MainActivity extends AppCompatActivity {
             }
         };
         Collections.sort(mKeyProfiles, comparator);
-
-        loadDatabase();
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == GET_KEYINFO) {
-            if (resultCode == RESULT_OK) {
-                final KeyProfile keyProfile = (KeyProfile)data.getSerializableExtra("KeyProfile");
-
-                Intent intent = new Intent(this, AddProfileActivity.class);
-                intent.putExtra("KeyProfile", keyProfile);
-                startActivityForResult(intent, ADD_KEYINFO);
-            }
+        switch (requestCode) {
+            case CODE_GET_KEYINFO:
+                onGetKeyInfoResult(resultCode, data);
+                break;
+            case CODE_ADD_KEYINFO:
+                onAddKeyInfoResult(resultCode, data);
+                break;
+            case CODE_DO_INTRO:
+                onDoIntroResult(resultCode, data);
+                break;
         }
-        else if (requestCode == ADD_KEYINFO) {
-            if (resultCode == RESULT_OK) {
-                final KeyProfile keyProfile = (KeyProfile) data.getSerializableExtra("KeyProfile");
+    }
 
-                String otp;
-                try {
-                    otp = OTP.generateOTP(keyProfile.Info);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    return;
-                }
+    private void onGetKeyInfoResult(int resultCode, Intent data) {
+        if (resultCode != RESULT_OK) {
+            return;
+        }
 
-                keyProfile.Order = mKeyProfiles.size() + 1;
-                keyProfile.Code = otp;
-                try {
-                    database.addKey(keyProfile);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    // TODO: feedback
-                    return;
-                }
+        final KeyProfile keyProfile = (KeyProfile)data.getSerializableExtra("KeyProfile");
 
-                mKeyProfiles.add(keyProfile);
-                mKeyProfileAdapter.notifyDataSetChanged();
-                saveDatabase();
+        Intent intent = new Intent(this, AddProfileActivity.class);
+        intent.putExtra("KeyProfile", keyProfile);
+        startActivityForResult(intent, CODE_ADD_KEYINFO);
+    }
+
+    private void onAddKeyInfoResult(int resultCode, Intent data) {
+        if (resultCode != RESULT_OK) {
+            return;
+        }
+
+        final KeyProfile keyProfile = (KeyProfile) data.getSerializableExtra("KeyProfile");
+
+        String otp;
+        try {
+            otp = OTP.generateOTP(keyProfile.Info);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return;
+        }
+
+        keyProfile.Order = mKeyProfiles.size() + 1;
+        keyProfile.Code = otp;
+        try {
+            db.addKey(keyProfile);
+        } catch (Exception e) {
+            e.printStackTrace();
+            // TODO: feedback
+            return;
+        }
+
+        mKeyProfiles.add(keyProfile);
+        mKeyProfileAdapter.notifyDataSetChanged();
+        saveDatabase();
+    }
+
+    private void onDoIntroResult(int resultCode, Intent data) {
+        if (resultCode == IntroActivity.RESULT_EXCEPTION) {
+            // TODO: user feedback
+            Exception e = (Exception) data.getSerializableExtra("exception");
+            throw new UndeclaredThrowableException(e);
+        }
+
+        MasterKey key = (MasterKey) data.getSerializableExtra("key");
+        try {
+            db.load();
+            if (!db.isDecrypted()) {
+                db.setMasterKey(key);
             }
+        } catch (Exception e) {
+            // TODO: feedback
+            throw new UndeclaredThrowableException(e);
         }
     }
 
@@ -179,51 +208,14 @@ public class MainActivity extends AppCompatActivity {
         // update order of keys
         for (int i = 0; i < mKeyProfiles.size(); i++) {
             try {
-                database.updateKey(mKeyProfiles.get(i));
+                db.updateKey(mKeyProfiles.get(i));
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
 
         saveDatabase();
-
         super.onPause();
-    }
-
-    private void promptFingerPrint(FingerprintAuthenticationDialogFragment.Action action, Cipher cipher) {
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
-            FingerprintAuthenticationDialogFragment fragment = new FingerprintAuthenticationDialogFragment();
-            fragment.setCryptoObject(new FingerprintManager.CryptoObject(cipher));
-            fragment.setStage(FingerprintAuthenticationDialogFragment.Stage.FINGERPRINT);
-            fragment.setAction(action);
-            fragment.show(getFragmentManager(), "");
-        }
-    }
-
-    public void onAuthenticated(FingerprintAuthenticationDialogFragment.Action action, FingerprintManager.CryptoObject obj) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            Cipher cipher = obj.getCipher();
-            switch (action) {
-                case SAVE:
-                    saveDatabase();
-                    break;
-                case LOAD:
-                    loadDatabase();
-                    break;
-            }
-        }
-    }
-
-    private void saveDatabase() {
-        try {
-            byte[] bytes = database.serialize();
-            CryptResult result = masterKey.encrypt(bytes);
-            databaseFile.setContent(result.Data);
-            databaseFile.setCryptParameters(result.Parameters);
-            databaseFile.save(getApplicationContext());
-        } catch (Exception e) {
-            throw new UndeclaredThrowableException(e);
-        }
     }
 
     private BottomSheetDialog InitializeBottomSheet()
@@ -271,7 +263,7 @@ public class MainActivity extends AppCompatActivity {
             .setMessage("Are you sure you want to delete this profile?")
             .setPositiveButton(android.R.string.yes, (dialog, which) -> {
                 try {
-                    database.removeKey(profile);
+                    db.removeKey(profile);
                 } catch (Exception e) {
                     e.printStackTrace();
                     //TODO: feedback
@@ -364,37 +356,12 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void createDatabase() {
-        database = new Database();
-        databaseFile = new DatabaseFile();
-
-        try {
-            masterKey = MasterKey.generate();
-        } catch (NoSuchAlgorithmException e) {
-            // TODO: tell the user to stop using a weird platform
-            throw new UndeclaredThrowableException(e);
-        }
-
-        SlotCollection slots = databaseFile.getSlots();
-
-        try {
-            PasswordSlot slot = new PasswordSlot();
-            byte[] salt = CryptoUtils.generateSalt();
-            SecretKey derivedKey = slot.deriveKey("testpassword".toCharArray(), salt, CryptoUtils.CRYPTO_ITERATION_COUNT);
-            Cipher cipher = Slot.createCipher(derivedKey, Cipher.ENCRYPT_MODE);
-            masterKey.encryptSlot(slot, cipher);
-            slots.add(slot);
-        } catch (Exception e) {
-            throw new UndeclaredThrowableException(e);
-        }
-    }
-
-    private void loadDatabase() {
+    /*private void loadDatabase() {
         try {
             databaseFile = DatabaseFile.load(getApplicationContext());
         } catch (IOException e) {
             // the database file doesn't exist yet
-            createDatabase();
+            //createDatabase();
             saveDatabase();
             return;
         } catch (Exception e) {
@@ -443,6 +410,15 @@ public class MainActivity extends AppCompatActivity {
             mKeyProfiles.addAll(database.getKeys());
             mKeyProfileAdapter.notifyDataSetChanged();
         } catch (Exception e) {
+            throw new UndeclaredThrowableException(e);
+        }
+    }*/
+
+    private void saveDatabase() {
+        try {
+            db.save();
+        } catch (Exception e) {
+            //TODO: feedback
             throw new UndeclaredThrowableException(e);
         }
     }

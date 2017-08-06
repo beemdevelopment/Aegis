@@ -1,6 +1,7 @@
 package me.impy.aegis.crypto;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
@@ -13,7 +14,7 @@ import javax.crypto.SecretKey;
 
 import me.impy.aegis.crypto.slots.Slot;
 
-public class MasterKey {
+public class MasterKey implements Serializable {
     private SecretKey _key;
 
     public MasterKey(SecretKey key)  {
