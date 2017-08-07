@@ -81,14 +81,15 @@ This slot type contains no additional data.
 ##### Password
 
 With this slot type the key used for the master key encryption is derived from a
-user-provided password using PBKDF2 with SHA1 (should be changed to SHA256
-before initial release) as the underlying PRF. The parameters used for PBKDF2
-are stored as additional data.
+user-provided password. The key derivation function is scrypt. The parameters
+used for scrypt are stored as additional data.
 
-| Length | Contents                        |
-|:-------|:--------------------------------|
-| `8`    | `uint64_t` Number of iterations |
-| `32`   | Salt                            |
+| Length | Contents     |
+|:-------|:-------------|
+| `4`    | `uint32_t` N |
+| `4`    | `uint32_t` r |
+| `4`    | `uint32_t` p |
+| `32`   | Salt         |
 
 ##### Fingerprint
 
