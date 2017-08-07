@@ -118,8 +118,6 @@ public class CryptoUtils {
     private static byte[] toBytes(char[] chars) {
         CharBuffer charBuf = CharBuffer.wrap(chars);
         ByteBuffer byteBuf = Charset.forName("UTF-8").encode(charBuf);
-        byte[] bytes = Arrays.copyOfRange(byteBuf.array(), 0, byteBuf.limit());
-        zero(byteBuf.array());
-        return bytes;
+        return byteBuf.array();
     }
 }
