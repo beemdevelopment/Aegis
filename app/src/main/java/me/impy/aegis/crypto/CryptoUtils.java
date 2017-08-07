@@ -2,12 +2,14 @@ package me.impy.aegis.crypto;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.nio.ByteBuffer;
+import java.nio.CharBuffer;
+import java.nio.charset.Charset;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.security.spec.InvalidKeySpecException;
-import java.security.spec.KeySpec;
 import java.util.Arrays;
 
 import javax.crypto.BadPaddingException;
@@ -16,26 +18,30 @@ import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.KeyGenerator;
 import javax.crypto.NoSuchPaddingException;
 import javax.crypto.SecretKey;
-import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.GCMParameterSpec;
-import javax.crypto.spec.PBEKeySpec;
+import javax.crypto.spec.SecretKeySpec;
+
+import org.spongycastle.crypto.generators.SCrypt;
 
 public class CryptoUtils {
+    public static final String CRYPTO_CIPHER_RAW = "AES/ECB/NoPadding";
+    public static final String CRYPTO_CIPHER_AEAD = "AES/GCM/NoPadding";
     public static final byte CRYPTO_TAG_SIZE = 16;
     public static final byte CRYPTO_KEY_SIZE = 32;
     public static final byte CRYPTO_NONCE_SIZE = 12;
     public static final byte CRYPTO_SALT_SIZE = 32;
-    // TODO: decide on a 'secure-enough' iteration count
-    public static final short CRYPTO_ITERATION_COUNT = 10000;
-    public static final String CRYPTO_CIPHER_RAW = "AES/ECB/NoPadding";
-    public static final String CRYPTO_CIPHER_AEAD = "AES/GCM/NoPadding";
-    // TODO: use a separate library for an HMAC-SHA256 implementation
-    public static final String CRYPTO_DERIVE_ALGO = "PBKDF2WithHmacSHA1";
 
-    public static SecretKey deriveKey(char[] password, byte[] salt, int iterations) throws NoSuchAlgorithmException, InvalidKeySpecException {
-        SecretKeyFactory factory = SecretKeyFactory.getInstance(CRYPTO_DERIVE_ALGO);
-        KeySpec spec = new PBEKeySpec(password, salt, iterations, CRYPTO_KEY_SIZE * 8);
-        return factory.generateSecret(spec);
+    public static final int CRYPTO_SCRYPT_N = 2 << 14;
+    public static final int CRYPTO_SCRYPT_r = 8;
+    public static final int CRYPTO_SCRYPT_p = 1;
+
+    public static SecretKey deriveKey(char[] password, byte[] salt, int n, int r, int p) throws NoSuchAlgorithmException, InvalidKeySpecException {
+        byte[] bytes = toBytes(password);
+        byte[] keyBytes = SCrypt.generate(bytes, salt, n, r, p, CRYPTO_KEY_SIZE);
+        zero(bytes);
+        SecretKey key = new SecretKeySpec(keyBytes, 0, keyBytes.length, "AES");
+        zero(keyBytes);
+        return key;
     }
 
     public static Cipher createCipher(SecretKey key, int opmode) throws NoSuchPaddingException, NoSuchAlgorithmException, InvalidAlgorithmParameterException, InvalidKeyException {
@@ -107,5 +113,13 @@ public class CryptoUtils {
 
     public static void zero(byte[] data) {
         Arrays.fill(data, (byte) 0);
+    }
+
+    private static byte[] toBytes(char[] chars) {
+        CharBuffer charBuf = CharBuffer.wrap(chars);
+        ByteBuffer byteBuf = Charset.forName("UTF-8").encode(charBuf);
+        byte[] bytes = Arrays.copyOfRange(byteBuf.array(), 0, byteBuf.limit());
+        zero(byteBuf.array());
+        return bytes;
     }
 }

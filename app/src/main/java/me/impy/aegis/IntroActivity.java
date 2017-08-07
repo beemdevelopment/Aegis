@@ -74,7 +74,7 @@ public class IntroActivity extends MaterialIntroActivity {
     private void setException(Exception e) {
         Intent result = new Intent();
         result.putExtra("exception", e);
-        setResult(RESULT_OK, result);
+        setResult(RESULT_EXCEPTION, result);
     }
 
     @Override

@@ -26,10 +26,8 @@ android {
     }
 }
 
-
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.android.support:recyclerview-v7:25.0.0'
     compile 'com.android.support:recyclerview-v7:25.0.0'
     compile 'com.android.support:appcompat-v7:25.0.0'
     compile 'com.android.support:design:25.0.0'
@@ -40,5 +38,6 @@ dependencies {
     compile 'com.android.support:support-v4:25.0.0'
     compile 'com.yarolegovich:lovely-dialog:1.0.4'
     compile 'com.mattprecious.swirl:swirl:1.0.0'
+    compile 'com.madgag.spongycastle:core:1.56.0.0'
     testCompile 'junit:junit:4.12'
 }

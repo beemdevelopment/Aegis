@@ -101,7 +101,7 @@ public class CustomAuthenticatedSlide extends SlideFragment {
             InvalidKeyException, NoSuchPaddingException {
         char[] password = getPassword(true);
         byte[] salt = CryptoUtils.generateSalt();
-        SecretKey key = slot.deriveKey(password, salt, CryptoUtils.CRYPTO_ITERATION_COUNT);
+        SecretKey key = slot.deriveKey(password, salt, CryptoUtils.CRYPTO_SCRYPT_N, CryptoUtils.CRYPTO_SCRYPT_r, CryptoUtils.CRYPTO_SCRYPT_p);
         CryptoUtils.zero(password);
 
         return Slot.createCipher(key, mode);
