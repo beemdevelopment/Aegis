@@ -45,7 +45,7 @@ public class FingerprintUiHelper extends FingerprintManager.AuthenticationCallba
     /**
      * Constructor for {@link FingerprintUiHelper}.
      */
-    FingerprintUiHelper(FingerprintManager fingerprintManager,
+    public FingerprintUiHelper(FingerprintManager fingerprintManager,
                         ImageView icon, TextView errorTextView, Callback callback) {
         mFingerprintManager = fingerprintManager;
         mIcon = icon;
