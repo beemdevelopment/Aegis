@@ -409,9 +409,4 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
     }
-
-    private boolean causeIsKeyUserNotAuthenticated(Exception e) {
-        // TODO: is there a way to catch "Key user not authenticated" specifically aside from checking the exception message?
-        return e.getCause().getMessage().equals("Key user not authenticated");
-    }
 }

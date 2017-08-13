@@ -5,17 +5,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.view.View;
+import android.support.v4.app.Fragment;
 
-import java.lang.reflect.UndeclaredThrowableException;
-import java.security.NoSuchAlgorithmException;
+import com.github.paolorotolo.appintro.AppIntro;
+import com.github.paolorotolo.appintro.AppIntroFragment;
+import com.github.paolorotolo.appintro.model.SliderPage;
 
 import javax.crypto.Cipher;
 
-import agency.tango.materialintroscreen.MaterialIntroActivity;
-import agency.tango.materialintroscreen.MessageButtonBehaviour;
-import agency.tango.materialintroscreen.SlideFragmentBuilder;
 import me.impy.aegis.crypto.CryptResult;
 import me.impy.aegis.crypto.MasterKey;
 import me.impy.aegis.crypto.slots.PasswordSlot;
@@ -23,63 +20,77 @@ import me.impy.aegis.crypto.slots.SlotCollection;
 import me.impy.aegis.db.Database;
 import me.impy.aegis.db.DatabaseFile;
 
-public class IntroActivity extends MaterialIntroActivity {
+public class IntroActivity extends AppIntro {
     public static final int RESULT_OK = 0;
     public static final int RESULT_EXCEPTION = 1;
 
     private CustomAuthenticatedSlide authenticatedSlide;
+    private CustomAuthenticationSlide authenticationSlide;
+    private Fragment endSlide;
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        hideBackButton();
+        showSkipButton(false);
+        //showPagerIndicator(false);
+        setGoBackLock(true);
+        // TODO: remove this once github.com/apl-devs/AppIntro/issues/347 is fixed
+        setSwipeLock(true);
 
-        addSlide(new SlideFragmentBuilder()
-                .backgroundColor(R.color.colorPrimary)
-                .buttonsColor(R.color.colorAccent)
-                .image(R.drawable.intro_shield)
-                .title("Welcome")
-                .description("Aegis is a brand new open source(!) authenticator app which generates tokens for your accounts.")
-                .build());
+        SliderPage homeSliderPage = new SliderPage();
+        homeSliderPage.setTitle("Welcome");
+        homeSliderPage.setDescription("Aegis is a secure, free and open source 2FA app");
+        homeSliderPage.setImageDrawable(R.drawable.intro_shield);
+        homeSliderPage.setBgColor(getResources().getColor(R.color.colorPrimary));
+        addSlide(AppIntroFragment.newInstance(homeSliderPage));
 
-        addSlide(new SlideFragmentBuilder()
-                .backgroundColor(R.color.colorAccent)
-                .buttonsColor(R.color.colorPrimary)
-                .neededPermissions(new String[]{Manifest.permission.CAMERA})
-                .image(R.drawable.intro_scanner)
-                .title("Permissions")
-                .description("Aegis needs permission to your camera in order to function properly. This is needed to scan QR codes.")
-                .build(),
-                new MessageButtonBehaviour(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
+        SliderPage permSliderPage = new SliderPage();
+        permSliderPage.setTitle("Permissions");
+        permSliderPage.setDescription("Aegis needs permission to use your camera in order to scan QR codes.");
+        permSliderPage.setImageDrawable(R.drawable.intro_scanner);
+        permSliderPage.setBgColor(getResources().getColor(R.color.colorAccent));
+        addSlide(AppIntroFragment.newInstance(permSliderPage));
+        askForPermissions(new String[]{Manifest.permission.CAMERA}, 2);
 
-                    }
-                }, "Permission granted"));
-
-        addSlide(new CustomAuthenticationSlide());
-
+        authenticationSlide = new CustomAuthenticationSlide();
+        authenticationSlide.setBgColor(getResources().getColor(R.color.colorHeaderSuccess));
+        addSlide(authenticationSlide);
         authenticatedSlide = new CustomAuthenticatedSlide();
+        authenticatedSlide.setBgColor(getResources().getColor(R.color.colorPrimary));
         addSlide(authenticatedSlide);
 
-        addSlide(new SlideFragmentBuilder()
-                .backgroundColor(R.color.colorPrimary)
-                .buttonsColor(R.color.colorAccent)
-                .image(R.drawable.intro_shield)
-                .title("All done!")
-                .description("Aegis has been set up and is ready to go.")
-                .build());
+        SliderPage endSliderPage = new SliderPage();
+        endSliderPage.setTitle("All done!");
+        endSliderPage.setDescription("Aegis has been set up and is ready to go.");
+        endSliderPage.setImageDrawable(R.drawable.intro_shield);
+        endSliderPage.setBgColor(getResources().getColor(R.color.colorPrimary));
+        endSlide = AppIntroFragment.newInstance(endSliderPage);
+        addSlide(endSlide);
     }
 
     private void setException(Exception e) {
         Intent result = new Intent();
         result.putExtra("exception", e);
         setResult(RESULT_EXCEPTION, result);
+        finish();
     }
 
     @Override
-    public void onFinish() {
-        super.onFinish();
+    public void onSlideChanged(Fragment oldFragment, Fragment newFragment) {
+        // skip to the last slide if no encryption will be used
+        if (oldFragment == authenticationSlide && newFragment != endSlide) {
+            Intent intent = getIntent();
+            int cryptType = intent.getIntExtra("cryptType", CustomAuthenticationSlide.CRYPT_TYPE_INVALID);
+            if (cryptType == CustomAuthenticationSlide.CRYPT_TYPE_NONE) {
+                // TODO: no magic indices
+                getPager().setCurrentItem(5);
+            }
+        }
+    }
+
+    @Override
+    public void onDonePressed(Fragment currentFragment) {
+        super.onDonePressed(currentFragment);
 
         // create the database and database file
         Database database = new Database();
@@ -142,5 +153,6 @@ public class IntroActivity extends MaterialIntroActivity {
         // TODO: show the intro if we can't find any database files
         SharedPreferences prefs = this.getSharedPreferences("me.impy.aegis", Context.MODE_PRIVATE);
         prefs.edit().putBoolean("passedIntro", true).apply();
+        finish();
     }
 }

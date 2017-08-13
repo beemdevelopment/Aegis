@@ -7,24 +7,28 @@ import android.content.pm.PackageManager;
 import android.hardware.fingerprint.FingerprintManager;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.IdRes;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import agency.tango.materialintroscreen.SlideFragment;
+import com.github.paolorotolo.appintro.ISlidePolicy;
 
-public class CustomAuthenticationSlide extends SlideFragment {
-    public static final int CRYPT_TYPE_NONE = 0;
-    public static final int CRYPT_TYPE_PASS = 1;
-    public static final int CRYPT_TYPE_FINGER = 2;
+public class CustomAuthenticationSlide extends Fragment implements ISlidePolicy {
+    public static final int CRYPT_TYPE_INVALID = 0;
+    public static final int CRYPT_TYPE_NONE = 1;
+    public static final int CRYPT_TYPE_PASS = 2;
+    public static final int CRYPT_TYPE_FINGER = 3;
 
     private RadioGroup buttonGroup;
+    private int bgColor;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -34,7 +38,7 @@ public class CustomAuthenticationSlide extends SlideFragment {
         buttonGroup = (RadioGroup) view.findViewById(R.id.rg_authenticationMethod);
         buttonGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
-            public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
                 if (checkedId == -1) {
                     return;
                 }
@@ -72,26 +76,27 @@ public class CustomAuthenticationSlide extends SlideFragment {
             }
         }
 
+        view.findViewById(R.id.main).setBackgroundColor(bgColor);
         return view;
     }
 
-    @Override
-    public int backgroundColor() {
-        return R.color.colorHeaderSuccess;
+    public void setBgColor(int color) {
+        bgColor = color;
     }
 
     @Override
-    public int buttonsColor() {
-        return R.color.colorAccent;
-    }
-
-    @Override
-    public boolean canMoveFurther() {
+    public boolean isPolicyRespected() {
         return buttonGroup.getCheckedRadioButtonId() != -1;
     }
 
     @Override
-    public String cantMoveFurtherErrorMessage() {
-        return "Please select an authentication method";
+    public void onUserIllegallyRequestedNextPage() {
+        Snackbar snackbar = Snackbar.make(getView(), "Please select an authentication method", Snackbar.LENGTH_LONG);
+        snackbar.show();
     }
+
+    /*@Override
+    public int buttonsColor() {
+        return R.color.colorAccent;
+    }*/
 }
