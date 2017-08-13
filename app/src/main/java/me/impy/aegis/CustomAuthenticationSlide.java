@@ -13,11 +13,9 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.github.paolorotolo.appintro.ISlidePolicy;
 
@@ -53,9 +51,6 @@ public class CustomAuthenticationSlide extends Fragment implements ISlidePolicy 
                         break;
                     case R.id.rb_fingerprint:
                         id = CRYPT_TYPE_FINGER;
-                        // TODO: remove this
-                        group.clearCheck();
-                        Toast.makeText(context, "Fingerprint is not supported yet", Toast.LENGTH_SHORT).show();
                         break;
                     default:
                         throw new RuntimeException();

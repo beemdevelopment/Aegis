@@ -25,7 +25,7 @@ public abstract class Slot implements Serializable {
     // getKey decrypts the encrypted master key in this slot with the given key and returns it.
     public SecretKey getKey(Cipher cipher) throws BadPaddingException, IllegalBlockSizeException {
         byte[] decryptedKeyBytes = cipher.doFinal(_encryptedMasterKey);
-        SecretKey decryptedKey = new SecretKeySpec(decryptedKeyBytes, CryptoUtils.CRYPTO_CIPHER_RAW);
+        SecretKey decryptedKey = new SecretKeySpec(decryptedKeyBytes, CryptoUtils.CRYPTO_CIPHER_AEAD);
         CryptoUtils.zero(decryptedKeyBytes);
         return decryptedKey;
     }

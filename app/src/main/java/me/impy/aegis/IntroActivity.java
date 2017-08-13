@@ -15,6 +15,7 @@ import javax.crypto.Cipher;
 
 import me.impy.aegis.crypto.CryptResult;
 import me.impy.aegis.crypto.MasterKey;
+import me.impy.aegis.crypto.slots.FingerprintSlot;
 import me.impy.aegis.crypto.slots.PasswordSlot;
 import me.impy.aegis.crypto.slots.SlotCollection;
 import me.impy.aegis.db.Database;
@@ -107,13 +108,13 @@ public class IntroActivity extends AppIntro {
             }
         }
 
+        SlotCollection slots = databaseFile.getSlots();
         if (cryptType != CustomAuthenticationSlide.CRYPT_TYPE_NONE) {
             try {
                 // encrypt the master key with a key derived from the user's password
                 // and add it to the list of slots
-                SlotCollection slots = databaseFile.getSlots();
                 PasswordSlot slot = new PasswordSlot();
-                Cipher cipher = authenticatedSlide.getCipher(slot, Cipher.ENCRYPT_MODE);
+                Cipher cipher = authenticatedSlide.getCipher(slot);
                 masterKey.encryptSlot(slot, cipher);
                 slots.add(slot);
             } catch (Exception e) {
@@ -122,8 +123,18 @@ public class IntroActivity extends AppIntro {
             }
         }
 
-        if (cryptType != CustomAuthenticationSlide.CRYPT_TYPE_FINGER) {
-            // TODO
+        if (cryptType == CustomAuthenticationSlide.CRYPT_TYPE_FINGER) {
+            try {
+                // encrypt the master key with the fingerprint key
+                // and add it to the list of slots
+                FingerprintSlot slot = new FingerprintSlot();
+                Cipher cipher = authenticatedSlide.getCipher(slot);
+                masterKey.encryptSlot(slot, cipher);
+                slots.add(slot);
+            } catch (Exception e) {
+                setException(e);
+                return;
+            }
         }
 
         // finally, save the database

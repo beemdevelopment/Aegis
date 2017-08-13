@@ -17,7 +17,7 @@
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginTop="12dp">
 
         <TextView
@@ -58,6 +58,44 @@
             android:layout_below="@+id/textView4"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/box_fingerprint"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:visibility="invisible">
+
+        <TextView
+            android:text="Fingerprint"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="24sp"
+            android:textColor="@color/primary_text_inverted"/>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="12dp">
+
+            <ImageView
+                android:id="@+id/img_fingerprint"
+                android:layout_width="60dp"
+                android:layout_height="60dp" />
+
+            <TextView
+                android:id="@+id/text_fingerprint"
+                android:textColor="@color/primary_text_inverted"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="15dp"
+                android:text="Touch sensor"/>
+        </LinearLayout>
 
     </LinearLayout>
 

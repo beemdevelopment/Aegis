@@ -8,8 +8,8 @@
     tools:context="me.impy.aegis.AuthActivity">
     <LinearLayout
         android:orientation="vertical"
-        android:layout_width="344dp"
-        android:layout_height="495dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_margin="32dp"
         tools:layout_editor_absoluteY="8dp"
         tools:layout_editor_absoluteX="8dp">
@@ -39,6 +39,27 @@
                 android:layout_width="125dp"
                 android:layout_height="wrap_content"
                 android:text="Decrypt" />
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/box_fingerprint"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="12dp"
+            android:visibility="invisible">
+
+            <ImageView
+                android:id="@+id/img_fingerprint"
+                android:layout_width="60dp"
+                android:layout_height="60dp" />
+
+            <TextView
+                android:id="@+id/text_fingerprint"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="15dp"
+                android:text="Touch sensor"/>
         </LinearLayout>
     </LinearLayout>
 </android.support.design.widget.CoordinatorLayout>

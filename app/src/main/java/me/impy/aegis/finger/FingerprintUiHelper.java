@@ -1,4 +1,5 @@
-package me.impy.aegis.finger;
+// This file was originally taken from https://github.com/googlesamples/android-FingerprintDialog/blob/2feb02945ae220ebd1bc2c2b620a1d43e30daea8/Application/src/main/java/com/example/android/fingerprintdialog/FingerprintUiHelper.java
+// It has been modified to suit Aegis' needs
 
 /*
  * Copyright (C) 2015 The Android Open Source Project
@@ -15,6 +16,8 @@ package me.impy.aegis.finger;
  * See the License for the specific language governing permissions and
  * limitations under the License
  */
+
+package me.impy.aegis.finger;
 
 import android.hardware.fingerprint.FingerprintManager;
 import android.os.Build;
@@ -109,8 +112,6 @@ public class FingerprintUiHelper extends FingerprintManager.AuthenticationCallba
     public void onAuthenticationSucceeded(FingerprintManager.AuthenticationResult result) {
         mErrorTextView.removeCallbacks(mResetErrorTextRunnable);
         mIcon.setImageResource(R.drawable.ic_fingerprint_success);
-        mErrorTextView.setTextColor(
-                mErrorTextView.getResources().getColor(R.color.success_color, null));
         mErrorTextView.setText(
                 mErrorTextView.getResources().getString(R.string.fingerprint_success));
         mIcon.postDelayed(new Runnable() {
@@ -124,8 +125,6 @@ public class FingerprintUiHelper extends FingerprintManager.AuthenticationCallba
     private void showError(CharSequence error) {
         mIcon.setImageResource(R.drawable.ic_fingerprint_error);
         mErrorTextView.setText(error);
-        mErrorTextView.setTextColor(
-                mErrorTextView.getResources().getColor(R.color.warning_color, null));
         mErrorTextView.removeCallbacks(mResetErrorTextRunnable);
         mErrorTextView.postDelayed(mResetErrorTextRunnable, ERROR_TIMEOUT_MILLIS);
     }
@@ -133,8 +132,6 @@ public class FingerprintUiHelper extends FingerprintManager.AuthenticationCallba
     private Runnable mResetErrorTextRunnable = new Runnable() {
         @Override
         public void run() {
-            mErrorTextView.setTextColor(
-                    mErrorTextView.getResources().getColor(R.color.hint_color, null));
             mErrorTextView.setText(
                     mErrorTextView.getResources().getString(R.string.fingerprint_hint));
             mIcon.setImageResource(R.drawable.ic_fp_40px);
