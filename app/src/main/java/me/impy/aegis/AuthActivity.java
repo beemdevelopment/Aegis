@@ -62,6 +62,11 @@ public class AuthActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    public void onBackPressed() {
+        // ignore back button presses
+    }
+
     private char[] getPassword(boolean clear) {
         char[] password = getEditTextChars(textPassword);
         if (clear) {

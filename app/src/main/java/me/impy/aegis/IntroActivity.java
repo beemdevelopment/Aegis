@@ -34,8 +34,6 @@ public class IntroActivity extends AppIntro {
         showSkipButton(false);
         //showPagerIndicator(false);
         setGoBackLock(true);
-        // TODO: remove this once github.com/apl-devs/AppIntro/issues/347 is fixed
-        setSwipeLock(true);
 
         SliderPage homeSliderPage = new SliderPage();
         homeSliderPage.setTitle("Welcome");
