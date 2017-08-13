@@ -317,13 +317,18 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.action_settings) {
-            Intent preferencesActivity = new Intent(this, PreferencesActivity.class);
-            startActivity(preferencesActivity);
-            return true;
+        switch (item.getItemId()) {
+            case R.id.action_settings:
+                Intent preferencesActivity = new Intent(this, PreferencesActivity.class);
+                startActivity(preferencesActivity);
+                return true;
+            case R.id.action_lock:
+                // TODO: properly close the database
+                recreate();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
-
-        return super.onOptionsItemSelected(item);
     }
 
     private void initializeAppShortcuts()

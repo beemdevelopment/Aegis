@@ -3,6 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="me.impy.aegis.MainActivity">
     <item
+        android:id="@+id/action_lock"
+        android:icon="@drawable/ic_lock"
+        app:showAsAction="ifRoom"
+        android:title=""/>
+    <item
         android:id="@+id/action_settings"
         android:orderInCategory="100"
         android:title="@string/action_settings"
