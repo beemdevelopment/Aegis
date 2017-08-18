@@ -109,6 +109,8 @@ public class IntroActivity extends AppIntro {
         }
 
         SlotCollection slots = databaseFile.getSlots();
+        slots.setMasterHash(masterKey.getHash());
+
         if (cryptType != CustomAuthenticationSlide.CRYPT_TYPE_NONE) {
             try {
                 // encrypt the master key with a key derived from the user's password

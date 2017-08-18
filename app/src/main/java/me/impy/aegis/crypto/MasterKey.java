@@ -51,4 +51,8 @@ public class MasterKey implements Serializable {
         Cipher cipher = CryptoUtils.createCipher(_key, Cipher.DECRYPT_MODE, params.Nonce);
         return CryptoUtils.decrypt(bytes, cipher, params);
     }
+
+    public byte[] getHash() {
+        return CryptoUtils.hashKey(_key);
+    }
 }

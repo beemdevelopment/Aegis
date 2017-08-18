@@ -2,11 +2,13 @@ package me.impy.aegis;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.hardware.fingerprint.FingerprintManager;
 import android.os.Build;
 import android.support.v4.app.ActivityCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -14,14 +16,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RadioButton;
 import android.widget.TextView;
 
 import java.lang.reflect.UndeclaredThrowableException;
+import java.util.Arrays;
 
-import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
-import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.SecretKey;
 
 import me.impy.aegis.crypto.CryptoUtils;
@@ -101,13 +101,26 @@ public class AuthActivity extends AppCompatActivity implements FingerprintUiHelp
                     throw new UndeclaredThrowableException(e);
                 }
 
-                // send the master key back to the main activity
                 setKey(masterKey);
             }
         });
     }
 
     private void setKey(MasterKey key) {
+        if (!Arrays.equals(slots.getMasterHash(), key.getHash())) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setMessage("Unable to decrypt the master key with the given key.");
+            builder.setCancelable(false);
+            builder.setPositiveButton("OK",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+            builder.create().show();
+            return;
+        }
+
         // send the master key back to the main activity
         Intent result = new Intent();
         result.putExtra("key", key);

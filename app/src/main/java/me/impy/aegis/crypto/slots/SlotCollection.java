@@ -5,10 +5,14 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import javax.crypto.SecretKey;
+
+import me.impy.aegis.crypto.CryptoUtils;
 import me.impy.aegis.util.LittleByteBuffer;
 
 public class SlotCollection implements Iterable<Slot>, Serializable {
     private List<Slot> _slots = new ArrayList<>();
+    private byte[] _masterHash;
 
     public static byte[] serialize(SlotCollection slots) {
         // yep, no streams at this api level
@@ -16,8 +20,10 @@ public class SlotCollection implements Iterable<Slot>, Serializable {
         for (Slot slot : slots) {
             size += slot.getSize();
         }
+        size += CryptoUtils.CRYPTO_HASH_SIZE;
 
         LittleByteBuffer buffer = LittleByteBuffer.allocate(size);
+        buffer.put(slots.getMasterHash());
 
         for (Slot slot : slots) {
             byte[] bytes = slot.serialize();
@@ -27,8 +33,12 @@ public class SlotCollection implements Iterable<Slot>, Serializable {
     }
 
     public static SlotCollection deserialize(byte[] data) throws Exception {
-        SlotCollection slots = new SlotCollection();
         LittleByteBuffer buffer = LittleByteBuffer.wrap(data);
+        byte[] masterHash = new byte[CryptoUtils.CRYPTO_HASH_SIZE];
+        buffer.get(masterHash);
+
+        SlotCollection slots = new SlotCollection();
+        slots.setMasterHash(masterHash);
 
         while (buffer.remaining() > 0) {
             Slot slot;
@@ -85,5 +95,13 @@ public class SlotCollection implements Iterable<Slot>, Serializable {
     @Override
     public Iterator<Slot> iterator() {
         return _slots.iterator();
+    }
+
+    public void setMasterHash(byte[] masterHash) {
+        _masterHash = masterHash;
+    }
+
+    public byte[] getMasterHash() {
+        return _masterHash;
     }
 }

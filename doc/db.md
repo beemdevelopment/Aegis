@@ -54,9 +54,17 @@ ID can be one of:
 
 #### Slots
 
-This section contains a list of slots. All slots contain the master key
-encrypted with raw AES. The key that is used for encryption depends on the slot
-type.
+This section contains a SHA-256 hash of the master key and a list of slots. The
+hash is used to verify the integrity of a decrypted slot. Note that this is just
+for convenience, not security.
+
+| Length | Contents                  |
+|:-------|:--------------------------|
+| `32`   | `uint8_t` Master Key Hash |
+| `?`    | Slots                     |
+
+All slots contain the master key encrypted with raw AES. The key that is used for
+encryption depends on the slot type.
 
 A slot has the following structure.
 
