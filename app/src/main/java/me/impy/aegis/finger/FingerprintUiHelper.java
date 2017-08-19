@@ -36,7 +36,7 @@ import me.impy.aegis.R;
 public class FingerprintUiHelper extends FingerprintManager.AuthenticationCallback {
 
     private static final long ERROR_TIMEOUT_MILLIS = 1600;
-    private static final long SUCCESS_DELAY_MILLIS = 1300;
+    private static final long SUCCESS_DELAY_MILLIS = 100;
 
     private final FingerprintManager mFingerprintManager;
     private final SwirlView mIcon;
@@ -121,6 +121,14 @@ public class FingerprintUiHelper extends FingerprintManager.AuthenticationCallba
                 mCallback.onAuthenticated();
             }
         }, SUCCESS_DELAY_MILLIS);
+
+        // ugly hack to keep the fingerprint icon visible while also giving visual feedback of success to the user
+        mIcon.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                mIcon.setState(SwirlView.State.ON);
+            }
+        }, 500);
     }
 
     private void showError(CharSequence error) {
