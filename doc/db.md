@@ -8,8 +8,7 @@ The content of the database can be encrypted with AES in GCM mode. The nonce and
 authentication tag are stored in the plain section of this file.
 
 If there is no Slots and/or EncryptionParameters section in the file, it is
-implied that the content of is unencrypted and Aegis will try to interpret it as
-such.
+implied that the content is unencrypted and Aegis will try to parse it as such.
 
 ## Format
 
@@ -55,8 +54,8 @@ ID can be one of:
 #### Slots
 
 This section contains a SHA-256 hash of the master key and a list of slots. The
-hash is used to verify the integrity of a decrypted slot. Note that this is just
-for convenience, not security.
+hash is used to verify the integrity of a decrypted slot. Note that this is
+meant for convenience, not as a security measure.
 
 | Length | Contents                  |
 |:-------|:--------------------------|
