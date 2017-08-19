@@ -48,10 +48,10 @@
             android:layout_marginTop="12dp"
             android:visibility="invisible">
 
-            <ImageView
+            <com.mattprecious.swirl.SwirlView
                 android:id="@+id/img_fingerprint"
                 android:layout_width="60dp"
-                android:layout_height="60dp" />
+                android:layout_height="60dp"/>
 
             <TextView
                 android:id="@+id/text_fingerprint"

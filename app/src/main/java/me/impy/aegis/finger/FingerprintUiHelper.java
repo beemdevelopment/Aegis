@@ -23,8 +23,9 @@ import android.hardware.fingerprint.FingerprintManager;
 import android.os.Build;
 import android.os.CancellationSignal;
 import android.support.annotation.RequiresApi;
-import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.mattprecious.swirl.SwirlView;
 
 import me.impy.aegis.R;
 
@@ -38,7 +39,7 @@ public class FingerprintUiHelper extends FingerprintManager.AuthenticationCallba
     private static final long SUCCESS_DELAY_MILLIS = 1300;
 
     private final FingerprintManager mFingerprintManager;
-    private final ImageView mIcon;
+    private final SwirlView mIcon;
     private final TextView mErrorTextView;
     private final Callback mCallback;
     private CancellationSignal mCancellationSignal;
@@ -49,7 +50,7 @@ public class FingerprintUiHelper extends FingerprintManager.AuthenticationCallba
      * Constructor for {@link FingerprintUiHelper}.
      */
     public FingerprintUiHelper(FingerprintManager fingerprintManager,
-                        ImageView icon, TextView errorTextView, Callback callback) {
+                               SwirlView icon, TextView errorTextView, Callback callback) {
         mFingerprintManager = fingerprintManager;
         mIcon = icon;
         mErrorTextView = errorTextView;
@@ -73,7 +74,7 @@ public class FingerprintUiHelper extends FingerprintManager.AuthenticationCallba
         // noinspection ResourceType
         mFingerprintManager
                 .authenticate(cryptoObject, mCancellationSignal, 0 /* flags */, this, null);
-        mIcon.setImageResource(R.drawable.ic_fp_40px);
+        mIcon.setState(SwirlView.State.ON);
     }
 
     public void stopListening() {
@@ -111,7 +112,7 @@ public class FingerprintUiHelper extends FingerprintManager.AuthenticationCallba
     @Override
     public void onAuthenticationSucceeded(FingerprintManager.AuthenticationResult result) {
         mErrorTextView.removeCallbacks(mResetErrorTextRunnable);
-        mIcon.setImageResource(R.drawable.ic_fingerprint_success);
+        mIcon.setState(SwirlView.State.OFF);
         mErrorTextView.setText(
                 mErrorTextView.getResources().getString(R.string.fingerprint_success));
         mIcon.postDelayed(new Runnable() {
@@ -123,7 +124,7 @@ public class FingerprintUiHelper extends FingerprintManager.AuthenticationCallba
     }
 
     private void showError(CharSequence error) {
-        mIcon.setImageResource(R.drawable.ic_fingerprint_error);
+        mIcon.setState(SwirlView.State.ERROR);
         mErrorTextView.setText(error);
         mErrorTextView.removeCallbacks(mResetErrorTextRunnable);
         mErrorTextView.postDelayed(mResetErrorTextRunnable, ERROR_TIMEOUT_MILLIS);
@@ -134,7 +135,7 @@ public class FingerprintUiHelper extends FingerprintManager.AuthenticationCallba
         public void run() {
             mErrorTextView.setText(
                     mErrorTextView.getResources().getString(R.string.fingerprint_hint));
-            mIcon.setImageResource(R.drawable.ic_fp_40px);
+            mIcon.setState(SwirlView.State.ON);
         }
     };
 

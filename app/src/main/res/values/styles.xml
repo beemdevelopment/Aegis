@@ -25,6 +25,8 @@
     </style>
 
     <style name="Theme.Intro" parent="Theme.AppCompat.NoActionBar">
+        <item name="swirl_ridgeColor">@color/colorSwirlPrimary</item>
+        <item name="swirl_errorColor">@color/colorSwirlError</item>
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:windowIsTranslucent">true</item>
     </style>
@@ -44,8 +46,8 @@
 
     <style name="AppTheme.Default">
         <item name="android:windowBackground">@color/background</item>
-        <item name="swirl_ridgeColor">?android:attr/textColorSecondary</item>
-        <item name="swirl_errorColor">?android:attr/colorAccent</item>
+        <item name="swirl_ridgeColor">@color/colorSwirlPrimary</item>
+        <item name="swirl_errorColor">@color/colorSwirlError</item>
         <item name="android:textColorPrimary">@color/primary_text</item>
         <item name="android:textColorSecondary">@color/secondary_text</item>
         <item name="primaryText">@color/primary_text</item>

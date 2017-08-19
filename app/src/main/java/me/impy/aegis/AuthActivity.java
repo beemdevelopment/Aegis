@@ -14,19 +14,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import java.lang.reflect.UndeclaredThrowableException;
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
-import java.security.spec.InvalidKeySpecException;
+import com.mattprecious.swirl.SwirlView;
 
-import javax.crypto.BadPaddingException;
+import java.lang.reflect.UndeclaredThrowableException;
+
 import javax.crypto.Cipher;
-import javax.crypto.IllegalBlockSizeException;
-import javax.crypto.NoSuchPaddingException;
 import javax.crypto.SecretKey;
 
 import me.impy.aegis.crypto.CryptoUtils;
@@ -48,7 +43,7 @@ public class AuthActivity extends AppCompatActivity implements FingerprintUiHelp
 
     private SlotCollection slots;
     private LinearLayout boxFingerprint;
-    private ImageView imgFingerprint;
+    private SwirlView imgFingerprint;
     private TextView textFingerprint;
     private FingerprintUiHelper fingerHelper;
     private Cipher fingerCipher;
@@ -59,7 +54,7 @@ public class AuthActivity extends AppCompatActivity implements FingerprintUiHelp
         setContentView(R.layout.activity_auth);
         textPassword = (EditText) findViewById(R.id.text_password);
         boxFingerprint = (LinearLayout) findViewById(R.id.box_fingerprint);
-        imgFingerprint = (ImageView) findViewById(R.id.img_fingerprint);
+        imgFingerprint = (SwirlView) findViewById(R.id.img_fingerprint);
         textFingerprint = (TextView) findViewById(R.id.text_fingerprint);
 
         Intent intent = getIntent();

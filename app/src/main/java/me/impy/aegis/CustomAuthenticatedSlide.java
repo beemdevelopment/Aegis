@@ -10,12 +10,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.github.paolorotolo.appintro.ISlidePolicy;
 import com.github.paolorotolo.appintro.ISlideSelectionListener;
+import com.mattprecious.swirl.SwirlView;
 
 import java.lang.reflect.UndeclaredThrowableException;
 
@@ -37,7 +37,7 @@ public class CustomAuthenticatedSlide extends Fragment implements FingerprintUiH
     private int bgColor;
 
     private LinearLayout boxFingerprint;
-    private ImageView imgFingerprint;
+    private SwirlView imgFingerprint;
     private TextView textFingerprint;
     private FingerprintUiHelper fingerHelper;
     private KeyStoreHandle storeHandle;
@@ -50,7 +50,7 @@ public class CustomAuthenticatedSlide extends Fragment implements FingerprintUiH
         textPassword = (EditText) view.findViewById(R.id.text_password);
         textPasswordConfirm = (EditText) view.findViewById(R.id.text_password_confirm);
         boxFingerprint = (LinearLayout) view.findViewById(R.id.box_fingerprint);
-        imgFingerprint = (ImageView) view.findViewById(R.id.img_fingerprint);
+        imgFingerprint = (SwirlView) view.findViewById(R.id.img_fingerprint);
         textFingerprint = (TextView) view.findViewById(R.id.text_fingerprint);
         view.findViewById(R.id.main).setBackgroundColor(bgColor);
         return view;
