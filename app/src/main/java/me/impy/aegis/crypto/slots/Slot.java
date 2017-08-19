@@ -14,6 +14,7 @@ import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
 
 import me.impy.aegis.crypto.CryptoUtils;
+import me.impy.aegis.crypto.MasterKey;
 
 public abstract class Slot implements Serializable {
     public final static byte TYPE_RAW = 0x00;
@@ -31,8 +32,8 @@ public abstract class Slot implements Serializable {
     }
 
     // setKey encrypts the given master key with the given key and stores the result in this slot.
-    public void setKey(SecretKey masterKey, Cipher cipher) throws BadPaddingException, IllegalBlockSizeException {
-        byte[] masterKeyBytes = masterKey.getEncoded();
+    public void setKey(MasterKey masterKey, Cipher cipher) throws BadPaddingException, IllegalBlockSizeException {
+        byte[] masterKeyBytes = masterKey.getBytes();
         _encryptedMasterKey = cipher.doFinal(masterKeyBytes);
         CryptoUtils.zero(masterKeyBytes);
     }

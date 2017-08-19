@@ -19,9 +19,14 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.lang.reflect.UndeclaredThrowableException;
-import java.util.Arrays;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
 
+import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
 import javax.crypto.SecretKey;
 
 import me.impy.aegis.crypto.CryptoUtils;
@@ -31,6 +36,7 @@ import me.impy.aegis.crypto.slots.FingerprintSlot;
 import me.impy.aegis.crypto.slots.PasswordSlot;
 import me.impy.aegis.crypto.slots.Slot;
 import me.impy.aegis.crypto.slots.SlotCollection;
+import me.impy.aegis.crypto.slots.SlotIntegrityException;
 import me.impy.aegis.finger.FingerprintUiHelper;
 import me.impy.aegis.helpers.AuthHelper;
 
@@ -84,43 +90,70 @@ public class AuthActivity extends AppCompatActivity implements FingerprintUiHelp
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MasterKey masterKey = null;
-                try {
-                    if (slots.has(PasswordSlot.class)) {
-                        PasswordSlot slot = slots.find(PasswordSlot.class);
-                        char[] password = AuthHelper.getPassword(textPassword, true);
-                        SecretKey key = slot.deriveKey(password);
-                        CryptoUtils.zero(password);
-                        Cipher cipher = Slot.createCipher(key, Cipher.DECRYPT_MODE);
-                        masterKey = MasterKey.decryptSlot(slot, cipher);
-                    } else {
-                        throw new RuntimeException();
-                    }
-                } catch (Exception e) {
-                    // TODO: feedback
-                    throw new UndeclaredThrowableException(e);
-                }
-
-                setKey(masterKey);
+                trySlots(PasswordSlot.class);
             }
         });
     }
 
-    private void setKey(MasterKey key) {
-        if (!Arrays.equals(slots.getMasterHash(), key.getHash())) {
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setMessage("Unable to decrypt the master key with the given key.");
-            builder.setCancelable(false);
-            builder.setPositiveButton("OK",
+    private void showError() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Master key integrity check failed for every slot. Make sure you didn't mistype your password.");
+        builder.setCancelable(false);
+        builder.setPositiveButton("OK",
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         dialog.cancel();
                     }
                 });
-            builder.create().show();
-            return;
-        }
+        builder.create().show();
+    }
 
+    private MasterKey decryptPasswordSlot(PasswordSlot slot) throws Exception {
+        char[] password = AuthHelper.getPassword(textPassword, true);
+        SecretKey key = slot.deriveKey(password);
+        CryptoUtils.zero(password);
+        Cipher cipher = Slot.createCipher(key, Cipher.DECRYPT_MODE);
+        return slots.decrypt(slot, cipher);
+    }
+
+    private MasterKey decryptFingerSlot(FingerprintSlot slot) throws Exception {
+        return slots.decrypt(slot, fingerCipher);
+    }
+
+    private <T extends Slot> void trySlots(Class<T> type) {
+        try {
+            if (!slots.has(type)) {
+                throw new RuntimeException();
+            }
+
+            MasterKey masterKey = null;
+            for (Slot slot : slots.findAll(type)) {
+                try {
+                    if (slot instanceof PasswordSlot) {
+                        masterKey = decryptPasswordSlot((PasswordSlot) slot);
+                    } else if (slot instanceof FingerprintSlot) {
+                        masterKey = decryptFingerSlot((FingerprintSlot) slot);
+                    } else {
+                        throw new RuntimeException();
+                    }
+                    break;
+                } catch (SlotIntegrityException e) {
+                }
+            }
+
+            if (masterKey == null) {
+                throw new SlotIntegrityException();
+            }
+
+            setKey(masterKey);
+        } catch (SlotIntegrityException e) {
+            showError();
+        } catch (Exception e) {
+            throw new UndeclaredThrowableException(e);
+        }
+    }
+
+    private void setKey(MasterKey key) {
         // send the master key back to the main activity
         Intent result = new Intent();
         result.putExtra("key", key);
@@ -153,15 +186,7 @@ public class AuthActivity extends AppCompatActivity implements FingerprintUiHelp
 
     @Override
     public void onAuthenticated() {
-        MasterKey key;
-        FingerprintSlot slot = slots.find(FingerprintSlot.class);
-        try {
-            key = new MasterKey(slot.getKey(fingerCipher));
-        } catch (Exception e) {
-            throw new UndeclaredThrowableException(e);
-        }
-
-        setKey(key);
+        trySlots(FingerprintSlot.class);
     }
 
     @Override

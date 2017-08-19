@@ -12,8 +12,6 @@ import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 import javax.crypto.SecretKey;
 
-import me.impy.aegis.crypto.slots.Slot;
-
 public class MasterKey implements Serializable {
     private SecretKey _key;
 
@@ -26,16 +24,6 @@ public class MasterKey implements Serializable {
 
     public static MasterKey generate() throws NoSuchAlgorithmException {
         return new MasterKey(CryptoUtils.generateKey());
-    }
-
-    public void encryptSlot(Slot slot, Cipher cipher)
-            throws BadPaddingException, IllegalBlockSizeException {
-        slot.setKey(_key, cipher);
-    }
-
-    public static MasterKey decryptSlot(Slot slot, Cipher cipher)
-            throws BadPaddingException, IllegalBlockSizeException, NoSuchAlgorithmException {
-        return new MasterKey(slot.getKey(cipher));
     }
 
     public CryptResult encrypt(byte[] bytes)
@@ -54,5 +42,9 @@ public class MasterKey implements Serializable {
 
     public byte[] getHash() {
         return CryptoUtils.hashKey(_key);
+    }
+
+    public byte[] getBytes() {
+        return _key.getEncoded();
     }
 }

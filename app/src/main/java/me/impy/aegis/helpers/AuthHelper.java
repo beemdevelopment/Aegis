@@ -34,5 +34,4 @@ public class AuthHelper {
         CryptoUtils.zero(passwordConfirm);
         return equal;
     }
-
 }

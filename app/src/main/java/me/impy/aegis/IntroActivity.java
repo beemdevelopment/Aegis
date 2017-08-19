@@ -109,15 +109,13 @@ public class IntroActivity extends AppIntro {
         }
 
         SlotCollection slots = databaseFile.getSlots();
-        slots.setMasterHash(masterKey.getHash());
-
         if (cryptType != CustomAuthenticationSlide.CRYPT_TYPE_NONE) {
             try {
                 // encrypt the master key with a key derived from the user's password
                 // and add it to the list of slots
                 PasswordSlot slot = new PasswordSlot();
                 Cipher cipher = authenticatedSlide.getCipher(slot);
-                masterKey.encryptSlot(slot, cipher);
+                slots.encrypt(slot, masterKey, cipher);
                 slots.add(slot);
             } catch (Exception e) {
                 setException(e);
@@ -131,7 +129,7 @@ public class IntroActivity extends AppIntro {
                 // and add it to the list of slots
                 FingerprintSlot slot = new FingerprintSlot();
                 Cipher cipher = authenticatedSlide.getCipher(slot);
-                masterKey.encryptSlot(slot, cipher);
+                slots.encrypt(slot, masterKey, cipher);
                 slots.add(slot);
             } catch (Exception e) {
                 setException(e);
