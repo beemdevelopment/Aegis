@@ -8,7 +8,6 @@ import android.content.SharedPreferences;
 import android.content.pm.ShortcutInfo;
 import android.content.pm.ShortcutManager;
 import android.graphics.drawable.Icon;
-import android.net.Uri;
 import android.os.Build;
 import android.preference.PreferenceManager;
 import android.support.design.widget.BottomSheetDialog;
@@ -27,7 +26,6 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-import java.io.IOException;
 import java.lang.reflect.UndeclaredThrowableException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -35,18 +33,8 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Objects;
 
-import javax.crypto.Cipher;
-import javax.crypto.SecretKey;
-
-import me.impy.aegis.crypto.CryptResult;
 import me.impy.aegis.crypto.MasterKey;
 import me.impy.aegis.crypto.otp.OTP;
-import me.impy.aegis.crypto.slots.FingerprintSlot;
-import me.impy.aegis.crypto.slots.PasswordSlot;
-import me.impy.aegis.crypto.slots.Slot;
-import me.impy.aegis.crypto.slots.SlotCollection;
-import me.impy.aegis.db.Database;
-import me.impy.aegis.db.DatabaseFile;
 import me.impy.aegis.db.DatabaseManager;
 import me.impy.aegis.helpers.SimpleItemTouchHelperCallback;
 

@@ -26,7 +26,6 @@ public class ScannerActivity extends Activity implements ZXingScannerView.Result
     @Override
     public void onCreate(Bundle state) {
         super.onCreate(state);
-        handleDummyResult();
 
         mScannerView = new ZXingScannerView(this) {
             @Override
@@ -50,29 +49,6 @@ public class ScannerActivity extends Activity implements ZXingScannerView.Result
     public void onPause() {
         super.onPause();
         mScannerView.stopCamera();           // Stop camera on pause
-    }
-
-    public void handleDummyResult() {
-        // Do something with the result here
-        //Toast.makeText(this, rawResult.getText(), Toast.LENGTH_SHORT).show();
-
-        try {
-            KeyInfo info = KeyInfo.FromURL("otpauth://totp/ACME%20Co:john@example.com?secret=HXDMVJECJJWSRB3HWIZR4IFUGFTMXBOZ");
-            KeyProfile keyProfile = new KeyProfile();
-            keyProfile.Info = info;
-            keyProfile.Name = String.format("%s/%s", info.getIssuer(), info.getAccountName());
-
-            Intent resultIntent = new Intent();
-            resultIntent.putExtra("KeyProfile", keyProfile);
-
-            setResult(Activity.RESULT_OK, resultIntent);
-            finish();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        // If you would like to resume scanning, call this method below:
-        //mScannerView.resumeCameraPreview(this);
     }
 
     @Override
