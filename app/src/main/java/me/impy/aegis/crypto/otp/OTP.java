@@ -1,12 +1,15 @@
 package me.impy.aegis.crypto.otp;
 
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
+
 import me.impy.aegis.crypto.KeyInfo;
 
 public class OTP {
     private OTP() {
     }
 
-    public static String generateOTP(KeyInfo info) throws Exception {
+    public static String generateOTP(KeyInfo info) throws InvalidKeyException, NoSuchAlgorithmException {
         String otp;
 
         switch (info.getType()) {
@@ -18,8 +21,7 @@ public class OTP {
                 otp = HOTP.generateOTP(info.getSecret(), info.getCounter(), info.getDigits(), false, -1);
                 break;
             default:
-                // this should never happen
-                throw new Exception("unsupported type");
+                throw new RuntimeException();
         }
 
         return otp;

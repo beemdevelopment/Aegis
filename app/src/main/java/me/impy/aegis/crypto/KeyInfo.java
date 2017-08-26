@@ -16,38 +16,6 @@ public class KeyInfo implements Serializable {
     private int digits = 6;
     private int period = 30;
 
-    public String getType() {
-        return type;
-    }
-    public byte[] getSecret() {
-        return secret;
-    }
-    public String getAccountName() {
-        return accountName;
-    }
-    public String getIssuer() {
-        return issuer;
-    }
-    public String getAlgorithm() {
-        return "Hmac" + algorithm;
-    }
-    public int getDigits() {
-        return digits;
-    }
-    public long getCounter() {
-        return counter;
-    }
-    public int getPeriod() {
-        return period;
-    }
-
-    private KeyInfo() {
-    }
-
-    public void setCounter(long count) {
-        counter = count;
-    }
-
     public String getURL() throws Exception {
         Uri.Builder builder = new Uri.Builder();
         builder.scheme("otpauth");
@@ -75,7 +43,7 @@ public class KeyInfo implements Serializable {
         return p - (System.currentTimeMillis() % p);
     }
 
-    public static KeyInfo FromURL(String s) throws Exception {
+    public static KeyInfo fromURL(String s) throws Exception {
         final Uri url = Uri.parse(s);
         if (!url.getScheme().equals("otpauth")) {
             throw new Exception("unsupported protocol");
@@ -143,5 +111,58 @@ public class KeyInfo implements Serializable {
         }
 
         return info;
+    }
+
+    public String getType() {
+        return type;
+    }
+    public byte[] getSecret() {
+        return secret;
+    }
+    public String getAccountName() {
+        return accountName;
+    }
+    public String getIssuer() {
+        return issuer;
+    }
+    public String getAlgorithm() {
+        return "Hmac" + algorithm;
+    }
+    public int getDigits() {
+        return digits;
+    }
+    public long getCounter() {
+        return counter;
+    }
+    public int getPeriod() {
+        return period;
+    }
+
+    public void setType(String type) {
+        this.type = type.toLowerCase();
+    }
+    public void setSecret(byte[] secret) {
+        this.secret = secret;
+    }
+    public void setAccountName(String accountName) {
+        this.accountName = accountName;
+    }
+    public void setIssuer(String issuer) {
+        this.issuer = issuer;
+    }
+    public void setAlgorithm(String algorithm) {
+        if (algorithm.startsWith("Hmac")) {
+            algorithm = algorithm.substring(4);
+        }
+        this.algorithm = algorithm.toUpperCase();
+    }
+    public void setDigits(int digits) {
+        this.digits = digits;
+    }
+    public void setCounter(long count) {
+        counter = count;
+    }
+    public void setPeriod(int period) {
+        this.period = period;
     }
 }

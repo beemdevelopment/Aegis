@@ -73,7 +73,7 @@ public class Database {
         for (DatabaseEntry e : entries) {
             KeyProfile profile = new KeyProfile();
             profile.Name = e.Name;
-            profile.Info = KeyInfo.FromURL(e.URL);
+            profile.Info = KeyInfo.fromURL(e.URL);
             profile.Order = e.Order;
             profile.ID = e.ID;
             list.add(profile);

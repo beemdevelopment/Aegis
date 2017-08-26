@@ -26,16 +26,21 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.lang.reflect.UndeclaredThrowableException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.List;
 import java.util.Objects;
+import java.util.function.Function;
 
 import me.impy.aegis.crypto.MasterKey;
 import me.impy.aegis.crypto.otp.OTP;
 import me.impy.aegis.db.DatabaseManager;
+import me.impy.aegis.ext.FreeOTPImporter;
 import me.impy.aegis.helpers.SimpleItemTouchHelperCallback;
 
 public class MainActivity extends AppCompatActivity {
@@ -43,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
     private static final int CODE_ADD_KEYINFO = 1;
     private static final int CODE_DO_INTRO = 2;
     private static final int CODE_DECRYPT = 3;
+    private static final int CODE_IMPORT = 4;
 
     RecyclerView rvKeyProfiles;
     KeyProfileAdapter mKeyProfileAdapter;
@@ -138,7 +144,39 @@ public class MainActivity extends AppCompatActivity {
             case CODE_DECRYPT:
                 onDecryptResult(resultCode, data);
                 break;
+            case CODE_IMPORT:
+                onImportResult(resultCode, data);
+                break;
         }
+    }
+
+    private void onImportResult(int resultCode, Intent data) {
+        InputStream stream = null;
+        try {
+            try {
+                stream = getContentResolver().openInputStream(data.getData());
+            } catch (Exception e) {
+                Toast.makeText(this, "An error occurred while trying to open the file", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            FreeOTPImporter importer = new FreeOTPImporter(stream);
+            try {
+                for (KeyProfile profile : importer.convert()) {
+                    addKey(profile);
+                }
+            } catch (Exception e) {
+                Toast.makeText(this, "An error occurred while trying to parse the file", Toast.LENGTH_SHORT).show();
+                return;
+            }
+        } finally {
+            if (stream != null) {
+                try { stream.close(); }
+                catch (Exception e) { }
+            }
+        }
+
+        saveDatabase();
     }
 
     private void onGetKeyInfoResult(int resultCode, Intent data) {
@@ -158,29 +196,34 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
 
-        final KeyProfile keyProfile = (KeyProfile) data.getSerializableExtra("KeyProfile");
+        KeyProfile profile = (KeyProfile) data.getSerializableExtra("KeyProfile");
+        addKey(profile);
 
+        saveDatabase();
+    }
+
+    private void addKey(KeyProfile profile) {
         String otp;
         try {
-            otp = OTP.generateOTP(keyProfile.Info);
+            otp = OTP.generateOTP(profile.Info);
         } catch (Exception e) {
             e.printStackTrace();
             return;
         }
 
-        keyProfile.Order = mKeyProfiles.size() + 1;
-        keyProfile.Code = otp;
+        profile.Name = profile.Info.getAccountName();
+        profile.Order = mKeyProfiles.size() + 1;
+        profile.Code = otp;
         try {
-            db.addKey(keyProfile);
+            db.addKey(profile);
         } catch (Exception e) {
             e.printStackTrace();
             // TODO: feedback
             return;
         }
 
-        mKeyProfiles.add(keyProfile);
+        mKeyProfiles.add(profile);
         mKeyProfileAdapter.notifyDataSetChanged();
-        saveDatabase();
     }
 
     private void onDoIntroResult(int resultCode, Intent data) {
@@ -309,6 +352,11 @@ public class MainActivity extends AppCompatActivity {
             case R.id.action_settings:
                 Intent preferencesActivity = new Intent(this, PreferencesActivity.class);
                 startActivity(preferencesActivity);
+                return true;
+            case R.id.action_import:
+                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+                intent.setType("*/*");
+                startActivityForResult(intent, CODE_IMPORT);
                 return true;
             case R.id.action_lock:
                 // TODO: properly close the database

@@ -58,10 +58,9 @@ public class ScannerActivity extends Activity implements ZXingScannerView.Result
 
         try {
             //TODO: Handle non TOTP / HOTP qr codes.
-            KeyInfo info = KeyInfo.FromURL(rawResult.getText());
+            KeyInfo info = KeyInfo.fromURL(rawResult.getText());
             KeyProfile keyProfile = new KeyProfile();
             keyProfile.Info = info;
-            keyProfile.Name = String.format("%s/%s", info.getIssuer(), info.getAccountName());
 
             Intent resultIntent = new Intent();
             resultIntent.putExtra("KeyProfile", keyProfile);

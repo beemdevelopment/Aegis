@@ -16,6 +16,7 @@ import android.widget.TextView;
 import com.amulyakhare.textdrawable.TextDrawable;
 import com.amulyakhare.textdrawable.util.ColorGenerator;
 
+import java.lang.reflect.UndeclaredThrowableException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -149,7 +150,7 @@ public class KeyProfileAdapter extends RecyclerView.Adapter<KeyProfileAdapter.Ke
             try {
                 otp = OTP.generateOTP(this.keyProfile.Info);
             } catch (Exception e) {
-                e.printStackTrace();
+                throw new UndeclaredThrowableException(e);
             }
 
             this.keyProfile.Code = otp;
