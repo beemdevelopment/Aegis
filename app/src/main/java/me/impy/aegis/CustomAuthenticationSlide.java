@@ -25,16 +25,16 @@ public class CustomAuthenticationSlide extends Fragment implements ISlidePolicy 
     public static final int CRYPT_TYPE_PASS = 2;
     public static final int CRYPT_TYPE_FINGER = 3;
 
-    private RadioGroup buttonGroup;
-    private int bgColor;
+    private RadioGroup _buttonGroup;
+    private int _bgColor;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.fragment_authentication_slide, container, false);
         final Context context = getContext();
 
-        buttonGroup = (RadioGroup) view.findViewById(R.id.rg_authenticationMethod);
-        buttonGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+        _buttonGroup = (RadioGroup) view.findViewById(R.id.rg_authenticationMethod);
+        _buttonGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 if (checkedId == -1) {
@@ -71,17 +71,17 @@ public class CustomAuthenticationSlide extends Fragment implements ISlidePolicy 
             }
         }
 
-        view.findViewById(R.id.main).setBackgroundColor(bgColor);
+        view.findViewById(R.id.main).setBackgroundColor(_bgColor);
         return view;
     }
 
     public void setBgColor(int color) {
-        bgColor = color;
+        _bgColor = color;
     }
 
     @Override
     public boolean isPolicyRespected() {
-        return buttonGroup.getCheckedRadioButtonId() != -1;
+        return _buttonGroup.getCheckedRadioButtonId() != -1;
     }
 
     @Override
@@ -89,9 +89,4 @@ public class CustomAuthenticationSlide extends Fragment implements ISlidePolicy 
         Snackbar snackbar = Snackbar.make(getView(), "Please select an authentication method", Snackbar.LENGTH_LONG);
         snackbar.show();
     }
-
-    /*@Override
-    public int buttonsColor() {
-        return R.color.colorAccent;
-    }*/
 }

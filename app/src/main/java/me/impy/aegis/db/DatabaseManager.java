@@ -51,22 +51,17 @@ public class DatabaseManager {
         _file.save(_context);
     }
 
-    public void addKey(KeyProfile profile) throws Exception {
+    public void addKey(DatabaseEntry entry) throws Exception {
         assertDecrypted();
-        _db.addKey(profile);
+        _db.addKey(entry);
     }
 
-    public void updateKey(KeyProfile profile) throws Exception {
+    public void removeKey(DatabaseEntry entry) throws Exception {
         assertDecrypted();
-        _db.updateKey(profile);
+        _db.removeKey(entry);
     }
 
-    public void removeKey(KeyProfile profile) throws Exception {
-        assertDecrypted();
-        _db.removeKey(profile);
-    }
-
-    public List<KeyProfile> getKeys() throws Exception {
+    public List<DatabaseEntry> getKeys() throws Exception {
         assertDecrypted();
         return _db.getKeys();
     }

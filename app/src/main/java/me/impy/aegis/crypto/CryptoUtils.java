@@ -37,7 +37,7 @@ public class CryptoUtils {
     public static final byte CRYPTO_NONCE_SIZE = 12;
     public static final byte CRYPTO_SALT_SIZE = 32;
 
-    public static final int CRYPTO_SCRYPT_N = 2 << 14;
+    public static final int CRYPTO_SCRYPT_N = 1 << 15;
     public static final int CRYPTO_SCRYPT_r = 8;
     public static final int CRYPTO_SCRYPT_p = 1;
 

@@ -25,9 +25,9 @@ public class IntroActivity extends AppIntro {
     public static final int RESULT_OK = 0;
     public static final int RESULT_EXCEPTION = 1;
 
-    private CustomAuthenticatedSlide authenticatedSlide;
-    private CustomAuthenticationSlide authenticationSlide;
-    private Fragment endSlide;
+    private CustomAuthenticatedSlide _authenticatedSlide;
+    private CustomAuthenticationSlide _authenticationSlide;
+    private Fragment _endSlide;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,20 +51,20 @@ public class IntroActivity extends AppIntro {
         addSlide(AppIntroFragment.newInstance(permSliderPage));
         askForPermissions(new String[]{Manifest.permission.CAMERA}, 2);
 
-        authenticationSlide = new CustomAuthenticationSlide();
-        authenticationSlide.setBgColor(getResources().getColor(R.color.colorHeaderSuccess));
-        addSlide(authenticationSlide);
-        authenticatedSlide = new CustomAuthenticatedSlide();
-        authenticatedSlide.setBgColor(getResources().getColor(R.color.colorPrimary));
-        addSlide(authenticatedSlide);
+        _authenticationSlide = new CustomAuthenticationSlide();
+        _authenticationSlide.setBgColor(getResources().getColor(R.color.colorHeaderSuccess));
+        addSlide(_authenticationSlide);
+        _authenticatedSlide = new CustomAuthenticatedSlide();
+        _authenticatedSlide.setBgColor(getResources().getColor(R.color.colorPrimary));
+        addSlide(_authenticatedSlide);
 
         SliderPage endSliderPage = new SliderPage();
         endSliderPage.setTitle("All done!");
         endSliderPage.setDescription("Aegis has been set up and is ready to go.");
         endSliderPage.setImageDrawable(R.drawable.intro_shield);
         endSliderPage.setBgColor(getResources().getColor(R.color.colorPrimary));
-        endSlide = AppIntroFragment.newInstance(endSliderPage);
-        addSlide(endSlide);
+        _endSlide = AppIntroFragment.newInstance(endSliderPage);
+        addSlide(_endSlide);
     }
 
     private void setException(Exception e) {
@@ -77,7 +77,7 @@ public class IntroActivity extends AppIntro {
     @Override
     public void onSlideChanged(Fragment oldFragment, Fragment newFragment) {
         // skip to the last slide if no encryption will be used
-        if (oldFragment == authenticationSlide && newFragment != endSlide) {
+        if (oldFragment == _authenticationSlide && newFragment != _endSlide) {
             Intent intent = getIntent();
             int cryptType = intent.getIntExtra("cryptType", CustomAuthenticationSlide.CRYPT_TYPE_INVALID);
             if (cryptType == CustomAuthenticationSlide.CRYPT_TYPE_NONE) {
@@ -95,7 +95,7 @@ public class IntroActivity extends AppIntro {
         Database database = new Database();
         DatabaseFile databaseFile = new DatabaseFile();
 
-        int cryptType = authenticatedSlide.getCryptType();
+        int cryptType = _authenticatedSlide.getCryptType();
 
         // generate the master key
         MasterKey masterKey = null;
@@ -114,7 +114,7 @@ public class IntroActivity extends AppIntro {
                 // encrypt the master key with a key derived from the user's password
                 // and add it to the list of slots
                 PasswordSlot slot = new PasswordSlot();
-                Cipher cipher = authenticatedSlide.getCipher(slot);
+                Cipher cipher = _authenticatedSlide.getCipher(slot);
                 slots.encrypt(slot, masterKey, cipher);
                 slots.add(slot);
             } catch (Exception e) {
@@ -128,7 +128,7 @@ public class IntroActivity extends AppIntro {
                 // encrypt the master key with the fingerprint key
                 // and add it to the list of slots
                 FingerprintSlot slot = new FingerprintSlot();
-                Cipher cipher = authenticatedSlide.getCipher(slot);
+                Cipher cipher = _authenticatedSlide.getCipher(slot);
                 slots.encrypt(slot, masterKey, cipher);
                 slots.add(slot);
             } catch (Exception e) {

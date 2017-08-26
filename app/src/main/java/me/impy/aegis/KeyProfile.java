@@ -2,22 +2,24 @@ package me.impy.aegis;
 
 import java.io.Serializable;
 
-import me.impy.aegis.crypto.KeyInfo;
+import me.impy.aegis.db.DatabaseEntry;
 
 public class KeyProfile implements Serializable {
-    public String Name;
-    public String Icon;
-    public String Code;
-    public String Issuer;
-    public KeyInfo Info;
-    public int Order;
-    public int ID;
+    private String _code;
+    private DatabaseEntry _entry;
 
-    public int compareTo(KeyProfile another) {
-        if (this.Order>another.Order){
-            return -1;
-        }else{
-            return 1;
-        }
+    public KeyProfile(DatabaseEntry entry) {
+        _entry = entry;
+    }
+
+    public DatabaseEntry getEntry() {
+        return _entry;
+    }
+    public String getCode() {
+        return _code;
+    }
+
+    public void setCode(String code) {
+        _code = code;
     }
 }

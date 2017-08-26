@@ -9,24 +9,15 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 public class EditProfileBottomSheetdialog extends BottomSheetDialogFragment {
-    LinearLayout copyLayout;
+    LinearLayout _copyLayout;
 
     public static EditProfileBottomSheetdialog getInstance() {
         return new EditProfileBottomSheetdialog();
     }
 
-/*    @Override
-    public void setupDialog(Dialog dialog, int style) {
-        super.setupDialog(dialog, style);
-        View contentView = View.inflate(getContext(), R.layout.bottom_sheet_edit_profile, null);
-        dialog.setContentView(contentView);
-
-        copyLayout = (LinearLayout)contentView.findViewById(R.id.copy_button);
-    }*/
-
     public LinearLayout GetCopyLayout()
     {
-        return copyLayout;
+        return _copyLayout;
     }
 
     @Nullable

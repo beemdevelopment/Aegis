@@ -39,39 +39,36 @@ public class AuthActivity extends AppCompatActivity implements FingerprintUiHelp
     public static final int RESULT_OK = 0;
     public static final int RESULT_EXCEPTION = 1;
 
-    private EditText textPassword;
+    private EditText _textPassword;
 
-    private SlotCollection slots;
-    private LinearLayout boxFingerprint;
-    private SwirlView imgFingerprint;
-    private TextView textFingerprint;
-    private FingerprintUiHelper fingerHelper;
-    private Cipher fingerCipher;
+    private SlotCollection _slots;
+    private FingerprintUiHelper _fingerHelper;
+    private Cipher _fingerCipher;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_auth);
-        textPassword = (EditText) findViewById(R.id.text_password);
-        boxFingerprint = (LinearLayout) findViewById(R.id.box_fingerprint);
-        imgFingerprint = (SwirlView) findViewById(R.id.img_fingerprint);
-        textFingerprint = (TextView) findViewById(R.id.text_fingerprint);
+        _textPassword = (EditText) findViewById(R.id.text_password);
+        LinearLayout boxFingerprint = (LinearLayout) findViewById(R.id.box_fingerprint);
+        SwirlView imgFingerprint = (SwirlView) findViewById(R.id.img_fingerprint);
+        TextView textFingerprint = (TextView) findViewById(R.id.text_fingerprint);
 
         Intent intent = getIntent();
-        slots = (SlotCollection) intent.getSerializableExtra("slots");
+        _slots = (SlotCollection) intent.getSerializableExtra("slots");
 
         // only show the fingerprint controls if the api version is new enough, permission is granted, a scanner is found and a fingerprint slot is found
         Context context = getApplicationContext();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             FingerprintManager manager = (FingerprintManager) context.getSystemService(Context.FINGERPRINT_SERVICE);
             if (ActivityCompat.checkSelfPermission(context, Manifest.permission.USE_FINGERPRINT) == PackageManager.PERMISSION_GRANTED && manager.isHardwareDetected()) {
-                if (slots.has(FingerprintSlot.class)) {
+                if (_slots.has(FingerprintSlot.class)) {
                     try {
                         KeyStoreHandle handle = new KeyStoreHandle();
                         if (handle.keyExists()) {
                             SecretKey key = handle.getKey();
-                            fingerCipher = Slot.createCipher(key, Cipher.DECRYPT_MODE);
-                            fingerHelper = new FingerprintUiHelper(manager, imgFingerprint, textFingerprint, this);
+                            _fingerCipher = Slot.createCipher(key, Cipher.DECRYPT_MODE);
+                            _fingerHelper = new FingerprintUiHelper(manager, imgFingerprint, textFingerprint, this);
                             boxFingerprint.setVisibility(View.VISIBLE);
                         }
                     } catch (Exception e) {
@@ -104,25 +101,25 @@ public class AuthActivity extends AppCompatActivity implements FingerprintUiHelp
     }
 
     private MasterKey decryptPasswordSlot(PasswordSlot slot) throws Exception {
-        char[] password = AuthHelper.getPassword(textPassword, true);
+        char[] password = AuthHelper.getPassword(_textPassword, true);
         SecretKey key = slot.deriveKey(password);
         CryptoUtils.zero(password);
         Cipher cipher = Slot.createCipher(key, Cipher.DECRYPT_MODE);
-        return slots.decrypt(slot, cipher);
+        return _slots.decrypt(slot, cipher);
     }
 
     private MasterKey decryptFingerSlot(FingerprintSlot slot) throws Exception {
-        return slots.decrypt(slot, fingerCipher);
+        return _slots.decrypt(slot, _fingerCipher);
     }
 
     private <T extends Slot> void trySlots(Class<T> type) {
         try {
-            if (!slots.has(type)) {
+            if (!_slots.has(type)) {
                 throw new RuntimeException();
             }
 
             MasterKey masterKey = null;
-            for (Slot slot : slots.findAll(type)) {
+            for (Slot slot : _slots.findAll(type)) {
                 try {
                     if (slot instanceof PasswordSlot) {
                         masterKey = decryptPasswordSlot((PasswordSlot) slot);
@@ -132,8 +129,7 @@ public class AuthActivity extends AppCompatActivity implements FingerprintUiHelp
                         throw new RuntimeException();
                     }
                     break;
-                } catch (SlotIntegrityException e) {
-                }
+                } catch (SlotIntegrityException e) { }
             }
 
             if (masterKey == null) {
@@ -165,8 +161,8 @@ public class AuthActivity extends AppCompatActivity implements FingerprintUiHelp
     public void onResume() {
         super.onResume();
 
-        if (fingerHelper != null) {
-            fingerHelper.startListening(new FingerprintManager.CryptoObject(fingerCipher));
+        if (_fingerHelper != null) {
+            _fingerHelper.startListening(new FingerprintManager.CryptoObject(_fingerCipher));
         }
     }
 
@@ -174,8 +170,8 @@ public class AuthActivity extends AppCompatActivity implements FingerprintUiHelp
     public void onPause() {
         super.onPause();
 
-        if (fingerHelper != null) {
-            fingerHelper.stopListening();
+        if (_fingerHelper != null) {
+            _fingerHelper.stopListening();
         }
     }
 

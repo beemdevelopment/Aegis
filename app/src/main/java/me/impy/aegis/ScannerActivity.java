@@ -12,32 +12,34 @@ import android.widget.Toast;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.Result;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Collections;
 
 import me.dm7.barcodescanner.core.IViewFinder;
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
 import me.impy.aegis.crypto.KeyInfo;
+import me.impy.aegis.db.DatabaseEntry;
 import me.impy.aegis.helpers.SquareFinderView;
 
 public class ScannerActivity extends Activity implements ZXingScannerView.ResultHandler {
-    private ZXingScannerView mScannerView;
+    private static final int CODE_ASK_PERMS = 0;
+
+    private ZXingScannerView _scannerView;
 
     @Override
     public void onCreate(Bundle state) {
         super.onCreate(state);
 
-        mScannerView = new ZXingScannerView(this) {
+        _scannerView = new ZXingScannerView(this) {
             @Override
             protected IViewFinder createViewFinderView(Context context) {
                 return new SquareFinderView(context);
             }
         };
 
-        setContentView(mScannerView);                // Set the scanner view as the content view
-        mScannerView.setFormats(getSupportedFormats());
+        setContentView(_scannerView);
+        _scannerView.setFormats(Collections.singletonList(BarcodeFormat.QR_CODE));
 
-        ActivityCompat.requestPermissions(ScannerActivity.this, new String[]{Manifest.permission.CAMERA}, 1);
+        ActivityCompat.requestPermissions(ScannerActivity.this, new String[]{Manifest.permission.CAMERA}, CODE_ASK_PERMS);
     }
 
     @Override
@@ -48,54 +50,39 @@ public class ScannerActivity extends Activity implements ZXingScannerView.Result
     @Override
     public void onPause() {
         super.onPause();
-        mScannerView.stopCamera();           // Stop camera on pause
+        _scannerView.stopCamera();
     }
 
     @Override
     public void handleResult(Result rawResult) {
-        // Do something with the result here
-        Toast.makeText(this, rawResult.getText(), Toast.LENGTH_SHORT).show();
-
         try {
-            //TODO: Handle non TOTP / HOTP qr codes.
             KeyInfo info = KeyInfo.fromURL(rawResult.getText());
-            KeyProfile keyProfile = new KeyProfile();
-            keyProfile.Info = info;
+            KeyProfile profile = new KeyProfile(new DatabaseEntry(info));
 
             Intent resultIntent = new Intent();
-            resultIntent.putExtra("KeyProfile", keyProfile);
+            resultIntent.putExtra("KeyProfile", profile);
 
             setResult(Activity.RESULT_OK, resultIntent);
             finish();
         } catch (Exception e) {
-            e.printStackTrace();
+            Toast.makeText(this, "An error occurred while trying to parse the QR code contents", Toast.LENGTH_SHORT).show();
         }
 
-        // If you would like to resume scanning, call this method below:
-        mScannerView.resumeCameraPreview(this);
+        _scannerView.resumeCameraPreview(this);
     }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
         switch (requestCode) {
-            case 1: {
-                // If request is cancelled, the result arrays are empty.
+            case CODE_ASK_PERMS: {
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-
-                    mScannerView.setResultHandler(this); // Register ourselves as a handler for scan results.
-                    mScannerView.startCamera();          // Start camera on resume
+                    _scannerView.setResultHandler(this);
+                    _scannerView.startCamera();
                 } else {
                     Toast.makeText(ScannerActivity.this, "Permission denied to get access to the camera", Toast.LENGTH_SHORT).show();
                 }
-                return;
+                break;
             }
         }
-    }
-
-    private List<BarcodeFormat> getSupportedFormats() {
-        ArrayList<BarcodeFormat> supportedFormats = new ArrayList<>();
-        supportedFormats.add(BarcodeFormat.QR_CODE);
-
-        return supportedFormats;
     }
 }

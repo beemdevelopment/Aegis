@@ -13,8 +13,8 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-import me.impy.aegis.KeyProfile;
 import me.impy.aegis.crypto.KeyInfo;
+import me.impy.aegis.db.DatabaseEntry;
 
 public class FreeOTPImporter extends KeyConverter {
     public FreeOTPImporter(InputStream stream) {
@@ -27,9 +27,7 @@ public class FreeOTPImporter extends KeyConverter {
     }
 
     @Override
-    public List<KeyProfile> convert() throws Exception {
-        List<KeyProfile> keys = new ArrayList<>();
-
+    public List<DatabaseEntry> convert() throws Exception {
         XmlPullParser parser = Xml.newPullParser();
         parser.setFeature(XmlPullParser.FEATURE_PROCESS_NAMESPACES, false);
         parser.setInput(_stream, null);
@@ -37,7 +35,7 @@ public class FreeOTPImporter extends KeyConverter {
         return parse(parser);
     }
 
-    private static List<KeyProfile> parse(XmlPullParser parser) throws IOException, XmlPullParserException, JSONException {
+    private static List<DatabaseEntry> parse(XmlPullParser parser) throws IOException, XmlPullParserException, JSONException {
         List<Entry> entries = new ArrayList<>();
 
         parser.require(XmlPullParser.START_TAG, null, "map");
@@ -54,7 +52,7 @@ public class FreeOTPImporter extends KeyConverter {
             entries.add(parseEntry(parser));
         }
 
-        List<KeyProfile> profiles = new ArrayList<>();
+        List<DatabaseEntry> profiles = new ArrayList<>();
 
         for (Entry entry : entries) {
             if (entry.Name.equals("tokenOrder")) {
@@ -74,8 +72,8 @@ public class FreeOTPImporter extends KeyConverter {
                 byte[] secret = toBytes(obj.getJSONArray("secret"));
                 key.setSecret(secret);
 
-                KeyProfile profile = new KeyProfile();
-                profile.Info = key;
+                DatabaseEntry profile = new DatabaseEntry(null);
+                profile.setInfo(key);
                 profiles.add(profile);
             }
         }
@@ -92,7 +90,6 @@ public class FreeOTPImporter extends KeyConverter {
     }
 
     private static Entry parseEntry(XmlPullParser parser) throws IOException, XmlPullParserException {
-        KeyProfile profile = new KeyProfile();
         parser.require(XmlPullParser.START_TAG, null, "string");
         String name = parser.getAttributeValue(null, "name");
         String value = parseText(parser);

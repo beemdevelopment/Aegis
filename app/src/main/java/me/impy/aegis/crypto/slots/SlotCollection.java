@@ -82,6 +82,10 @@ public class SlotCollection implements Iterable<Slot>, Serializable {
         return _slots.size();
     }
 
+    public boolean isEmpty() {
+        return _slots.size() == 0;
+    }
+
     public <T extends Slot> T find(Class<T> type) {
         for (Slot slot : this) {
             if (slot.getClass() == type) {

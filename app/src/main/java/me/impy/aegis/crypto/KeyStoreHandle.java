@@ -15,17 +15,17 @@ import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
 
 public class KeyStoreHandle {
-    private final KeyStore keyStore;
+    private final KeyStore _keyStore;
     private static final String KEY_NAME = "AegisKey";
     private static final String STORE_NAME = "AndroidKeyStore";
 
     public KeyStoreHandle() throws KeyStoreException, CertificateException, NoSuchAlgorithmException, IOException {
-        keyStore = KeyStore.getInstance(STORE_NAME);
-        keyStore.load(null);
+        _keyStore = KeyStore.getInstance(STORE_NAME);
+        _keyStore.load(null);
     }
 
     public boolean keyExists() throws KeyStoreException {
-        return keyStore.containsAlias(KEY_NAME);
+        return _keyStore.containsAlias(KEY_NAME);
     }
 
     public SecretKey generateKey(boolean authRequired) throws Exception {
@@ -47,6 +47,6 @@ public class KeyStoreHandle {
     }
 
     public SecretKey getKey() throws UnrecoverableKeyException, NoSuchAlgorithmException, KeyStoreException {
-        return (SecretKey) keyStore.getKey(KEY_NAME, null);
+        return (SecretKey) _keyStore.getKey(KEY_NAME, null);
     }
 }

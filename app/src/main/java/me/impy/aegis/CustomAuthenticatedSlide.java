@@ -31,96 +31,91 @@ import me.impy.aegis.finger.FingerprintUiHelper;
 import me.impy.aegis.helpers.AuthHelper;
 
 public class CustomAuthenticatedSlide extends Fragment implements FingerprintUiHelper.Callback, ISlidePolicy, ISlideSelectionListener {
-    private int cryptType;
-    private EditText textPassword;
-    private EditText textPasswordConfirm;
-    private int bgColor;
+    private int _cryptType;
+    private EditText _textPassword;
+    private EditText _textPasswordConfirm;
+    private int _bgColor;
 
-    private LinearLayout boxFingerprint;
-    private SwirlView imgFingerprint;
-    private TextView textFingerprint;
-    private FingerprintUiHelper fingerHelper;
-    private KeyStoreHandle storeHandle;
-    private Cipher fingerCipher;
-    private boolean fingerAuthenticated;
+    private LinearLayout _boxFingerprint;
+    private SwirlView _imgFingerprint;
+    private TextView _textFingerprint;
+    private FingerprintUiHelper _fingerHelper;
+    private KeyStoreHandle _storeHandle;
+    private Cipher _fingerCipher;
+    private boolean _fingerAuthenticated;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.fragment_authenticated_slide, container, false);
-        textPassword = (EditText) view.findViewById(R.id.text_password);
-        textPasswordConfirm = (EditText) view.findViewById(R.id.text_password_confirm);
-        boxFingerprint = (LinearLayout) view.findViewById(R.id.box_fingerprint);
-        imgFingerprint = (SwirlView) view.findViewById(R.id.img_fingerprint);
-        textFingerprint = (TextView) view.findViewById(R.id.text_fingerprint);
-        view.findViewById(R.id.main).setBackgroundColor(bgColor);
+        _textPassword = (EditText) view.findViewById(R.id.text_password);
+        _textPasswordConfirm = (EditText) view.findViewById(R.id.text_password_confirm);
+        _boxFingerprint = (LinearLayout) view.findViewById(R.id.box_fingerprint);
+        _imgFingerprint = (SwirlView) view.findViewById(R.id.img_fingerprint);
+        _textFingerprint = (TextView) view.findViewById(R.id.text_fingerprint);
+        view.findViewById(R.id.main).setBackgroundColor(_bgColor);
         return view;
     }
 
-    /*@Override
-    public int buttonsColor() {
-        return R.color.colorAccent;
-    }*/
-
     public int getCryptType() {
-        return cryptType;
+        return _cryptType;
     }
 
     public Cipher getCipher(Slot slot) throws Exception {
         if (slot instanceof PasswordSlot) {
-            char[] password = AuthHelper.getPassword(textPassword, true);
+            char[] password = AuthHelper.getPassword(_textPassword, true);
             byte[] salt = CryptoUtils.generateSalt();
             SecretKey key = ((PasswordSlot)slot).deriveKey(password, salt, CryptoUtils.CRYPTO_SCRYPT_N, CryptoUtils.CRYPTO_SCRYPT_r, CryptoUtils.CRYPTO_SCRYPT_p);
             CryptoUtils.zero(password);
             return Slot.createCipher(key, Cipher.ENCRYPT_MODE);
         } else if (slot instanceof FingerprintSlot) {
-            return fingerCipher;
+            return _fingerCipher;
         } else {
             throw new RuntimeException();
         }
     }
 
     public void setBgColor(int color) {
-        bgColor = color;
+        _bgColor = color;
     }
 
     @Override
     public void onSlideSelected() {
         Intent intent = getActivity().getIntent();
-        cryptType = intent.getIntExtra("cryptType", CustomAuthenticationSlide.CRYPT_TYPE_INVALID);
+        _cryptType = intent.getIntExtra("cryptType", CustomAuthenticationSlide.CRYPT_TYPE_INVALID);
 
-        switch(cryptType) {
+        switch(_cryptType) {
             case CustomAuthenticationSlide.CRYPT_TYPE_NONE:
             case CustomAuthenticationSlide.CRYPT_TYPE_PASS:
                 break;
             case CustomAuthenticationSlide.CRYPT_TYPE_FINGER:
-                boxFingerprint.setVisibility(View.VISIBLE);
+                _boxFingerprint.setVisibility(View.VISIBLE);
 
                 SecretKey key;
                 try {
-                    if (storeHandle == null) {
-                        storeHandle = new KeyStoreHandle();
+                    if (_storeHandle == null) {
+                        _storeHandle = new KeyStoreHandle();
                     }
                     // TODO: consider regenerating the key if it exists
-                    if (!storeHandle.keyExists()) {
-                        key = storeHandle.generateKey(true);
+                    if (!_storeHandle.keyExists()) {
+                        key = _storeHandle.generateKey(true);
                     } else {
-                        key = storeHandle.getKey();
+                        key = _storeHandle.getKey();
                     }
                 } catch (Exception e) {
                     throw new UndeclaredThrowableException(e);
                 }
 
-                if (fingerHelper == null) {
+                if (_fingerHelper == null) {
                     FingerprintManager fingerManager = (FingerprintManager) getContext().getSystemService(Context.FINGERPRINT_SERVICE);
-                    fingerHelper = new FingerprintUiHelper(fingerManager, imgFingerprint, textFingerprint, this);
+                    _fingerHelper = new FingerprintUiHelper(fingerManager, _imgFingerprint, _textFingerprint, this);
                 }
 
                 try {
-                    fingerCipher = Slot.createCipher(key, Cipher.ENCRYPT_MODE);
+                    _fingerCipher = Slot.createCipher(key, Cipher.ENCRYPT_MODE);
                 } catch (Exception e) {
                     throw new UndeclaredThrowableException(e);
                 }
-                fingerHelper.startListening(new FingerprintManager.CryptoObject(fingerCipher));
+                _fingerHelper.startListening(new FingerprintManager.CryptoObject(_fingerCipher));
                 break;
             default:
                 throw new RuntimeException();
@@ -129,25 +124,25 @@ public class CustomAuthenticatedSlide extends Fragment implements FingerprintUiH
 
     @Override
     public void onSlideDeselected() {
-        if (fingerHelper != null) {
-            fingerAuthenticated = false;
-            boxFingerprint.setVisibility(View.INVISIBLE);
-            fingerHelper.stopListening();
+        if (_fingerHelper != null) {
+            _fingerAuthenticated = false;
+            _boxFingerprint.setVisibility(View.INVISIBLE);
+            _fingerHelper.stopListening();
         }
     }
 
     @Override
     public boolean isPolicyRespected() {
-        switch(cryptType) {
+        switch(_cryptType) {
             case CustomAuthenticationSlide.CRYPT_TYPE_NONE:
                 return true;
             case CustomAuthenticationSlide.CRYPT_TYPE_FINGER:
-                if (!fingerAuthenticated) {
+                if (!_fingerAuthenticated) {
                     return false;
                 }
                 // intentional fallthrough
             case CustomAuthenticationSlide.CRYPT_TYPE_PASS:
-                return AuthHelper.arePasswordsEqual(textPassword, textPasswordConfirm);
+                return AuthHelper.arePasswordsEqual(_textPassword, _textPasswordConfirm);
             default:
                 throw new RuntimeException();
         }
@@ -156,9 +151,9 @@ public class CustomAuthenticatedSlide extends Fragment implements FingerprintUiH
     @Override
     public void onUserIllegallyRequestedNextPage() {
         String message;
-        if (!AuthHelper.arePasswordsEqual(textPassword, textPasswordConfirm)) {
+        if (!AuthHelper.arePasswordsEqual(_textPassword, _textPasswordConfirm)) {
             message = "Passwords should be equal and non-empty";
-        } else if (!fingerAuthenticated) {
+        } else if (!_fingerAuthenticated) {
             message = "Register your fingerprint";
         } else {
             return;
@@ -173,7 +168,7 @@ public class CustomAuthenticatedSlide extends Fragment implements FingerprintUiH
 
     @Override
     public void onAuthenticated() {
-        fingerAuthenticated = true;
+        _fingerAuthenticated = true;
     }
 
     @Override

@@ -3,7 +3,7 @@ package me.impy.aegis.ext;
 import java.io.InputStream;
 import java.util.List;
 
-import me.impy.aegis.KeyProfile;
+import me.impy.aegis.db.DatabaseEntry;
 
 public abstract class KeyConverter {
     protected InputStream _stream;
@@ -12,5 +12,5 @@ public abstract class KeyConverter {
         _stream = stream;
     }
 
-    public abstract List<KeyProfile> convert() throws Exception;
+    public abstract List<DatabaseEntry> convert() throws Exception;
 }

@@ -16,50 +16,50 @@ import me.impy.aegis.crypto.CryptoUtils;
 import me.impy.aegis.util.LittleByteBuffer;
 
 public class DatabaseFile {
-    private static final byte bSectionEncryptionParameters = 0x00;
-    private static final byte bSectionSlots = 0x01;
-    private static final byte bSectionEnd = (byte) 0xFF;
-    private static final byte bVersion = 1;
-    private static final String dbFilename = "aegis.db";
+    private static final byte SECTION_ENCRYPTION_PARAMETERS = 0x00;
+    private static final byte SECTION_SLOTS = 0x01;
+    private static final byte SECTION_END = (byte) 0xFF;
+    private static final byte VERSION = 1;
+    private static final String FILENAME = "aegis.db";
 
-    private final byte[] bHeader;
+    private final byte[] HEADER;
 
-    private byte[] content;
-    private CryptParameters cryptParameters;
-    private SlotCollection slots;
+    private byte[] _content;
+    private CryptParameters _cryptParameters;
+    private SlotCollection _slots;
 
     public DatabaseFile() {
         try {
-            bHeader = "AEGIS".getBytes("US_ASCII");
+            HEADER = "AEGIS".getBytes("US_ASCII");
         } catch (Exception e) {
             throw new UndeclaredThrowableException(e);
         }
-        slots = new SlotCollection();
+        _slots = new SlotCollection();
     }
 
     public byte[] serialize() throws IOException {
-        CryptParameters cryptParams = getCryptParameters();
         byte[] content = getContent();
+        CryptParameters cryptParams = getCryptParameters();
 
         // this is dumb, java doesn't provide an endianness-aware data stream
         ByteArrayOutputStream byteStream = new ByteArrayOutputStream();
         DataOutputStream stream = new DataOutputStream(byteStream);
-        stream.write(bHeader);
-        stream.write(bVersion);
+        stream.write(HEADER);
+        stream.write(VERSION);
 
         if (cryptParams != null) {
             LittleByteBuffer paramBuffer = LittleByteBuffer.allocate(CryptoUtils.CRYPTO_NONCE_SIZE + CryptoUtils.CRYPTO_TAG_SIZE);
             paramBuffer.put(cryptParams.Nonce);
             paramBuffer.put(cryptParams.Tag);
-            writeSection(stream, bSectionEncryptionParameters, paramBuffer.array());
+            writeSection(stream, SECTION_ENCRYPTION_PARAMETERS, paramBuffer.array());
         }
 
-        if (slots != null) {
-            byte[] bytes = SlotCollection.serialize(slots);
-            writeSection(stream, bSectionSlots, bytes);
+        if (!_slots.isEmpty()) {
+            byte[] bytes = SlotCollection.serialize(_slots);
+            writeSection(stream, SECTION_SLOTS, bytes);
         }
 
-        writeSection(stream, bSectionEnd, null);
+        writeSection(stream, SECTION_END, null);
         stream.write(content);
         return byteStream.toByteArray();
     }
@@ -67,25 +67,25 @@ public class DatabaseFile {
     public void deserialize(byte[] data) throws Exception {
         LittleByteBuffer buffer = LittleByteBuffer.wrap(data);
 
-        byte[] header = new byte[bHeader.length];
+        byte[] header = new byte[HEADER.length];
         buffer.get(header);
-        if (!Arrays.equals(header, bHeader)) {
+        if (!Arrays.equals(header, HEADER)) {
             throw new Exception("Bad header");
         }
 
         // TODO: support different version deserialization providers
         byte version = buffer.get();
-        if (version != bVersion) {
+        if (version != VERSION) {
             throw new Exception("Unsupported version");
         }
 
         CryptParameters cryptParams = null;
-        SlotCollection slots = null;
+        SlotCollection slots = new SlotCollection();
 
-        for (section s = readSection(buffer); s.ID != bSectionEnd; s = readSection(buffer)) {
+        for (section s = readSection(buffer); s.ID != SECTION_END; s = readSection(buffer)) {
             LittleByteBuffer sBuff = LittleByteBuffer.wrap(s.Data);
             switch (s.ID) {
-                case bSectionEncryptionParameters:
+                case SECTION_ENCRYPTION_PARAMETERS:
                     assertLength(s.Data, CryptoUtils.CRYPTO_NONCE_SIZE + CryptoUtils.CRYPTO_TAG_SIZE);
 
                     byte[] nonce = new byte[CryptoUtils.CRYPTO_NONCE_SIZE];
@@ -98,7 +98,7 @@ public class DatabaseFile {
                         Tag = tag;
                     }};
                     break;
-                case bSectionSlots:
+                case SECTION_SLOTS:
                     slots = SlotCollection.deserialize(s.Data);
                     break;
             }
@@ -113,19 +113,19 @@ public class DatabaseFile {
     }
 
     public boolean isEncrypted() {
-        return slots != null && cryptParameters != null;
+        return !_slots.isEmpty() && _cryptParameters != null;
     }
 
     public void save(Context context) throws IOException {
         byte[] data = serialize();
 
-        FileOutputStream file = context.openFileOutput(dbFilename, Context.MODE_PRIVATE);
+        FileOutputStream file = context.openFileOutput(FILENAME, Context.MODE_PRIVATE);
         file.write(data);
         file.close();
     }
 
     public static DatabaseFile load(Context context) throws Exception {
-        FileInputStream file = context.openFileInput(dbFilename);
+        FileInputStream file = context.openFileInput(FILENAME);
         byte[] data = new byte[(int) file.getChannel().size()];
         file.read(data);
         file.close();
@@ -169,27 +169,27 @@ public class DatabaseFile {
     }
 
     public byte[] getContent() {
-        return content;
+        return _content;
     }
 
     public void setContent(byte[] content) {
-        this.content = content;
+        _content = content;
     }
 
     public CryptParameters getCryptParameters() {
-        return cryptParameters;
+        return _cryptParameters;
     }
 
     public void setCryptParameters(CryptParameters parameters) {
-        this.cryptParameters = parameters;
+        _cryptParameters = parameters;
     }
 
     public SlotCollection getSlots() {
-        return slots;
+        return _slots;
     }
 
     public void setSlots(SlotCollection slots) {
-        this.slots = slots;
+        _slots = slots;
     }
 
     private static class section {

@@ -7,39 +7,39 @@ import java.io.Serializable;
 import me.impy.aegis.encoding.Base32;
 
 public class KeyInfo implements Serializable {
-    private String type;
-    private byte[] secret;
-    private String accountName;
-    private String issuer;
-    private long counter;
-    private String algorithm = "SHA1";
-    private int digits = 6;
-    private int period = 30;
+    private String _type;
+    private byte[] _secret;
+    private String _accountName;
+    private String _issuer;
+    private long _counter;
+    private String _algorithm = "SHA1";
+    private int _digits = 6;
+    private int _period = 30;
 
     public String getURL() throws Exception {
         Uri.Builder builder = new Uri.Builder();
         builder.scheme("otpauth");
-        builder.authority(type);
+        builder.authority(_type);
 
-        builder.appendQueryParameter("period", Integer.toString(period));
-        builder.appendQueryParameter("algorithm", algorithm);
-        builder.appendQueryParameter("secret", Base32.encodeOriginal(secret));
-        if (type.equals("hotp")) {
-            builder.appendQueryParameter("counter", Long.toString(counter));
+        builder.appendQueryParameter("period", Integer.toString(_period));
+        builder.appendQueryParameter("algorithm", _algorithm);
+        builder.appendQueryParameter("secret", Base32.encodeOriginal(_secret));
+        if (_type.equals("hotp")) {
+            builder.appendQueryParameter("counter", Long.toString(_counter));
         }
 
-        if (!issuer.equals("")) {
-            builder.path(String.format("%s:%s", issuer, accountName));
-            builder.appendQueryParameter("issuer", issuer);
+        if (!_issuer.equals("")) {
+            builder.path(String.format("%s:%s", _issuer, _accountName));
+            builder.appendQueryParameter("issuer", _issuer);
         } else {
-            builder.path(accountName);
+            builder.path(_accountName);
         }
 
         return builder.build().toString();
     }
 
     public long getMillisTillNextRotation() {
-        long p = period * 1000;
+        long p = _period * 1000;
         return p - (System.currentTimeMillis() % p);
     }
 
@@ -52,8 +52,8 @@ public class KeyInfo implements Serializable {
         KeyInfo info = new KeyInfo();
 
         // only 'totp' and 'hotp' are supported
-        info.type = url.getHost();
-        if (info.type.equals("totp") && info.type.equals("hotp")) {
+        info._type = url.getHost();
+        if (info._type.equals("totp") && info._type.equals("hotp")) {
             throw new Exception("unsupported type");
         }
 
@@ -62,7 +62,7 @@ public class KeyInfo implements Serializable {
         if (secret == null) {
             throw new Exception("'secret' is not set");
         }
-        info.secret = Base32.decode(secret);
+        info._secret = Base32.decode(secret);
 
         // provider info used to disambiguate accounts
         String path = url.getPath();
@@ -74,39 +74,39 @@ public class KeyInfo implements Serializable {
             String[] strings = label.split(":");
 
             if (strings.length == 2) {
-                info.issuer = strings[0];
-                info.accountName = strings[1];
+                info._issuer = strings[0];
+                info._accountName = strings[1];
             } else {
                 // at this point, just dump the whole thing into the accountName
-                info.accountName = label;
+                info._accountName = label;
             }
         } else {
             // label only contains the account name
             // grab the issuer's info from the 'issuer' parameter if it's present
             String issuer = url.getQueryParameter("issuer");
-            info.issuer = issuer != null ? issuer : "";
-            info.accountName = label;
+            info._issuer = issuer != null ? issuer : "";
+            info._accountName = label;
         }
 
         // just use the defaults if these parameters aren't set
         String algorithm = url.getQueryParameter("algorithm");
         if (algorithm != null) {
-            info.algorithm = algorithm;
+            info._algorithm = algorithm;
         }
         String period = url.getQueryParameter("period");
         if (period != null) {
-            info.period = Integer.parseInt(period);
+            info._period = Integer.parseInt(period);
         }
         String digits = url.getQueryParameter("digits");
         if (digits != null) {
-            info.digits = Integer.parseInt(digits);
+            info._digits = Integer.parseInt(digits);
         }
 
         // 'counter' is required if the type is 'hotp'
         String counter = url.getQueryParameter("counter");
         if (counter != null) {
-            info.counter = Long.parseLong(counter);
-        } else if (info.type.equals("hotp")) {
+            info._counter = Long.parseLong(counter);
+        } else if (info._type.equals("hotp")) {
             throw new Exception("'counter' was not set which is required for 'hotp'");
         }
 
@@ -114,55 +114,55 @@ public class KeyInfo implements Serializable {
     }
 
     public String getType() {
-        return type;
+        return _type;
     }
     public byte[] getSecret() {
-        return secret;
+        return _secret;
     }
     public String getAccountName() {
-        return accountName;
+        return _accountName;
     }
     public String getIssuer() {
-        return issuer;
+        return _issuer;
     }
     public String getAlgorithm() {
-        return "Hmac" + algorithm;
+        return "Hmac" + _algorithm;
     }
     public int getDigits() {
-        return digits;
+        return _digits;
     }
     public long getCounter() {
-        return counter;
+        return _counter;
     }
     public int getPeriod() {
-        return period;
+        return _period;
     }
 
     public void setType(String type) {
-        this.type = type.toLowerCase();
+        _type = type.toLowerCase();
     }
     public void setSecret(byte[] secret) {
-        this.secret = secret;
+        _secret = secret;
     }
     public void setAccountName(String accountName) {
-        this.accountName = accountName;
+        _accountName = accountName;
     }
     public void setIssuer(String issuer) {
-        this.issuer = issuer;
+        _issuer = issuer;
     }
     public void setAlgorithm(String algorithm) {
         if (algorithm.startsWith("Hmac")) {
             algorithm = algorithm.substring(4);
         }
-        this.algorithm = algorithm.toUpperCase();
+        _algorithm = algorithm.toUpperCase();
     }
     public void setDigits(int digits) {
-        this.digits = digits;
+        _digits = digits;
     }
     public void setCounter(long count) {
-        counter = count;
+        _counter = count;
     }
     public void setPeriod(int period) {
-        this.period = period;
+        _period = period;
     }
 }

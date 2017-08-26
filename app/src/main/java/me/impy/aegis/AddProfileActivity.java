@@ -12,18 +12,18 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import me.impy.aegis.crypto.KeyInfo;
 import me.impy.aegis.crypto.otp.OTP;
 
 public class AddProfileActivity extends AppCompatActivity {
 
-    KeyProfile keyProfile;
+    KeyProfile _keyProfile;
 
-    EditText profileName;
-    TextView tvAlgorithm;
-    TextView tvIssuer;
-    TextView tvPeriod;
-    TextView tvOtp;
-
+    EditText _profileName;
+    TextView _textAlgorithm;
+    TextView _textIssuer;
+    TextView _textPeriod;
+    TextView _textOtp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,16 +31,16 @@ public class AddProfileActivity extends AppCompatActivity {
         setPreferredTheme();
         setContentView(R.layout.activity_add_profile);
 
-        profileName = (EditText) findViewById(R.id.addProfileName);
-        tvAlgorithm = (TextView) findViewById(R.id.tvAlgorithm);
-        tvIssuer = (TextView) findViewById(R.id.tvIssuer);
-        tvPeriod = (TextView) findViewById(R.id.tvPeriod);
-        tvOtp = (TextView) findViewById(R.id.tvOtp);
+        _profileName = (EditText) findViewById(R.id.addProfileName);
+        _textAlgorithm = (TextView) findViewById(R.id.tvAlgorithm);
+        _textIssuer = (TextView) findViewById(R.id.tvIssuer);
+        _textPeriod = (TextView) findViewById(R.id.tvPeriod);
+        _textOtp = (TextView) findViewById(R.id.tvOtp);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
-        keyProfile = (KeyProfile)getIntent().getSerializableExtra("KeyProfile");
+        _keyProfile = (KeyProfile) getIntent().getSerializableExtra("KeyProfile");
 
         initializeForm();
 
@@ -50,33 +50,33 @@ public class AddProfileActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent resultIntent = new Intent();
 
-                keyProfile.Name = profileName.getText().toString();
-                resultIntent.putExtra("KeyProfile", keyProfile);
+                _keyProfile.getEntry().setName(_profileName.getText().toString());
+                resultIntent.putExtra("KeyProfile", _keyProfile);
 
                 setResult(Activity.RESULT_OK, resultIntent);
                 finish();
             }
         });
-        //profileName.setText(keyProfile.Info.getAccountName());
+        //_profileName.setText(_keyProfile.Info.getAccountName());
     }
 
-    private void initializeForm()
-    {
-        profileName.setText(keyProfile.Info.getAccountName());
-        tvAlgorithm.setText(keyProfile.Info.getAlgorithm());
-        tvIssuer.setText(keyProfile.Info.getIssuer());
-        tvPeriod.setText(keyProfile.Info.getPeriod() + " seconds");
+    private void initializeForm() {
+        KeyInfo info = _keyProfile.getEntry().getInfo();
+        _profileName.setText(info.getAccountName());
+        _textAlgorithm.setText(info.getAlgorithm());
+        _textIssuer.setText(info.getIssuer());
+        _textPeriod.setText(info.getPeriod() + " seconds");
 
         String otp;
         try {
-            otp = OTP.generateOTP(keyProfile.Info);
+            otp = OTP.generateOTP(info);
         } catch (Exception e) {
             e.printStackTrace();
             return;
         }
 
-        keyProfile.Code = otp;
-        tvOtp.setText(otp.substring(0, 3) + " " + otp.substring(3));
+        _keyProfile.setCode(otp);
+        _textOtp.setText(otp.substring(0, 3) + " " + otp.substring(3));
     }
 
     @Override
@@ -90,16 +90,12 @@ public class AddProfileActivity extends AppCompatActivity {
         }
     }
 
-
-    private void setPreferredTheme()
-    {
+    private void setPreferredTheme() {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        if(sharedPreferences.getBoolean("pref_night_mode", false))
-        {
-                setTheme(R.style.AppTheme_Dark_TransparentActionBar);
-        } else
-        {
-                setTheme(R.style.AppTheme_Default_TransparentActionBar);
+        if (sharedPreferences.getBoolean("pref_night_mode", false)) {
+            setTheme(R.style.AppTheme_Dark_TransparentActionBar);
+        } else {
+            setTheme(R.style.AppTheme_Default_TransparentActionBar);
         }
     }
 }
