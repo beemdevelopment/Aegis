@@ -36,7 +36,6 @@ import java.util.Comparator;
 import java.util.Objects;
 
 import me.impy.aegis.crypto.MasterKey;
-import me.impy.aegis.crypto.otp.OTP;
 import me.impy.aegis.db.DatabaseEntry;
 import me.impy.aegis.db.DatabaseManager;
 import me.impy.aegis.ext.FreeOTPImporter;
@@ -214,19 +213,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void addKey(KeyProfile profile) {
+        profile.refreshCode();
+
         DatabaseEntry entry = profile.getEntry();
-
-        String otp;
-        try {
-            otp = OTP.generateOTP(entry.getInfo());
-        } catch (Exception e) {
-            e.printStackTrace();
-            return;
-        }
-
         entry.setName(entry.getInfo().getAccountName());
         entry.setOrder(_keyProfiles.size() + 1);
-        profile.setCode(otp);
         try {
             _db.addKey(entry);
         } catch (Exception e) {

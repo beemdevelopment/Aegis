@@ -16,13 +16,11 @@ import android.widget.TextView;
 import com.amulyakhare.textdrawable.TextDrawable;
 import com.amulyakhare.textdrawable.util.ColorGenerator;
 
-import java.lang.reflect.UndeclaredThrowableException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-import me.impy.aegis.crypto.otp.OTP;
 import me.impy.aegis.helpers.ItemTouchHelperAdapter;
 
 public class KeyProfileAdapter extends RecyclerView.Adapter<KeyProfileAdapter.KeyProfileHolder> implements ItemTouchHelperAdapter {
@@ -146,14 +144,7 @@ public class KeyProfileAdapter extends RecyclerView.Adapter<KeyProfileAdapter.Ke
             if (_keyProfile == null) {
                 return;
             }
-            String otp = "";
-            try {
-                otp = OTP.generateOTP(_keyProfile.getEntry().getInfo());
-            } catch (Exception e) {
-                throw new UndeclaredThrowableException(e);
-            }
-
-            _keyProfile.setCode(otp);
+            String otp = _keyProfile.refreshCode();
             _profileCode.setText(otp.substring(0, 3) + " " + otp.substring(3));
 
             long millisTillRotation = _keyProfile.getEntry().getInfo().getMillisTillNextRotation();

@@ -67,15 +67,7 @@ public class AddProfileActivity extends AppCompatActivity {
         _textIssuer.setText(info.getIssuer());
         _textPeriod.setText(info.getPeriod() + " seconds");
 
-        String otp;
-        try {
-            otp = OTP.generateOTP(info);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return;
-        }
-
-        _keyProfile.setCode(otp);
+        String otp = _keyProfile.refreshCode();
         _textOtp.setText(otp.substring(0, 3) + " " + otp.substring(3));
     }
 
