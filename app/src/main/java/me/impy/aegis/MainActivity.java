@@ -26,6 +26,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.lang.reflect.UndeclaredThrowableException;
 import java.util.ArrayList;
@@ -69,16 +70,21 @@ public class MainActivity extends AppCompatActivity {
         } else {
             try {
                 _db.load();
+                if (!_db.isDecrypted()) {
+                    Intent intent = new Intent(this, AuthActivity.class);
+                    intent.putExtra("slots", _db.getFile().getSlots());
+                    startActivityForResult(intent, CODE_DECRYPT);
+                } else {
+                    loadKeyProfiles();
+                }
+            } catch (FileNotFoundException e) {
+                // start the intro if the db file was not found
+                Toast.makeText(this, "Database file not found, starting over...", Toast.LENGTH_SHORT).show();
+                Intent intro = new Intent(this, IntroActivity.class);
+                startActivityForResult(intro, CODE_DO_INTRO);
             } catch (Exception e) {
                 // TODO: feedback
                 throw new UndeclaredThrowableException(e);
-            }
-            if (!_db.isDecrypted()) {
-                Intent intent = new Intent(this, AuthActivity.class);
-                intent.putExtra("slots", _db.getFile().getSlots());
-                startActivityForResult(intent, CODE_DECRYPT);
-            } else {
-                loadKeyProfiles();
             }
         }
 

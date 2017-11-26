@@ -159,7 +159,6 @@ public class IntroActivity extends AppIntro {
         setResult(RESULT_OK, result);
 
         // skip the intro from now on
-        // TODO: show the intro if we can't find any database files
         SharedPreferences prefs = this.getSharedPreferences("me.impy.aegis", Context.MODE_PRIVATE);
         prefs.edit().putBoolean("passedIntro", true).apply();
         finish();
