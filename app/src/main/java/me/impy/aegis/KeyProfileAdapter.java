@@ -41,29 +41,13 @@ public class KeyProfileAdapter extends RecyclerView.Adapter<KeyProfileAdapter.Ke
 
     }
 
-    private void remove(int position) {
-        _keyProfiles.remove(position);
-        notifyItemRemoved(position);
-    }
-
     @Override
     public void onItemMove(int firstPosition, int secondPosition) {
         Collections.swap(_keyProfiles, firstPosition, secondPosition);
         notifyItemMoved(firstPosition, secondPosition);
 
-        _keyProfiles.get(firstPosition).getEntry().setOrder(secondPosition);
-        adjustOrder(secondPosition);
-    }
-
-    private void adjustOrder(int startPosition) {
-        Comparator<KeyProfile> comparator = new Comparator<KeyProfile>() {
-            @Override
-            public int compare(KeyProfile keyProfile, KeyProfile t1) {
-                return keyProfile.getEntry().getOrder() - t1.getEntry().getOrder();
-            }
-        };
-
-        for (int i = startPosition; i < _keyProfiles.size(); i++) {
+        // update the order of all key profiles
+        for (int i = 0; i < _keyProfiles.size(); i++) {
             _keyProfiles.get(i).getEntry().setOrder(i + 1);
         }
     }

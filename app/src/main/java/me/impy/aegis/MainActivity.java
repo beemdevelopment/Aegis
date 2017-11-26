@@ -122,15 +122,7 @@ public class MainActivity extends AppCompatActivity {
         ItemTouchHelper.Callback callback = new SimpleItemTouchHelperCallback(_keyProfileAdapter);
         ItemTouchHelper touchHelper = new ItemTouchHelper(callback);
         touchHelper.attachToRecyclerView(rvKeyProfiles);
-
         rvKeyProfiles.setAdapter(_keyProfileAdapter);
-        Comparator<KeyProfile> comparator = new Comparator<KeyProfile>() {
-            @Override
-            public int compare(KeyProfile keyProfile, KeyProfile t1) {
-                return keyProfile.getEntry().getOrder() - t1.getEntry().getOrder();
-            }
-        };
-        Collections.sort(_keyProfiles, comparator);
     }
 
     @Override
@@ -445,6 +437,10 @@ public class MainActivity extends AppCompatActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        Collections.sort(_keyProfiles, (p1, p2) -> {
+            return p1.getEntry().getOrder() >= p2.getEntry().getOrder() ? 1 : -1;
+        });
     }
 
     private void updateLockIcon() {
