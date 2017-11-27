@@ -86,7 +86,7 @@ public class CustomAuthenticatedSlide extends Fragment implements FingerprintUiH
                     if (_storeHandle == null) {
                         _storeHandle = new KeyStoreHandle();
                     }
-                    // TODO: consider regenerating the key if it exists
+                    // TODO: consider regenerating the key here if it already exists
                     if (!_storeHandle.keyExists()) {
                         key = _storeHandle.generateKey(true);
                     } else {

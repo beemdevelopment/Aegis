@@ -81,7 +81,8 @@ public class MainActivity extends AppCompatActivity {
                 Intent intro = new Intent(this, IntroActivity.class);
                 startActivityForResult(intro, CODE_DO_INTRO);
             } catch (Exception e) {
-                // TODO: feedback
+                e.printStackTrace();
+                Toast.makeText(this, "An error occurred while trying to deserialize the database", Toast.LENGTH_LONG).show();
                 throw new UndeclaredThrowableException(e);
             }
         }
@@ -213,7 +214,7 @@ public class MainActivity extends AppCompatActivity {
             _db.addKey(entry);
         } catch (Exception e) {
             e.printStackTrace();
-            // TODO: feedback
+            Toast.makeText(this, "An error occurred while trying to add an entry", Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -235,8 +236,10 @@ public class MainActivity extends AppCompatActivity {
                 _db.setMasterKey(key);
             }
         } catch (Exception e) {
-            // TODO: feedback
-            throw new UndeclaredThrowableException(e);
+            e.printStackTrace();
+            Toast.makeText(this, "An error occurred while trying to load/decrypt the database", Toast.LENGTH_LONG).show();
+            recreate();
+            return;
         }
 
         loadKeyProfiles();
@@ -247,8 +250,10 @@ public class MainActivity extends AppCompatActivity {
         try {
             _db.setMasterKey(key);
         } catch (Exception e) {
-            // TODO: feedback
-            throw new UndeclaredThrowableException(e);
+            e.printStackTrace();
+            Toast.makeText(this, "An error occurred while trying to decrypt the database", Toast.LENGTH_LONG).show();
+            recreate();
+            return;
         }
 
         loadKeyProfiles();
@@ -315,14 +320,13 @@ public class MainActivity extends AppCompatActivity {
                     _db.removeKey(profile.getEntry());
                 } catch (Exception e) {
                     e.printStackTrace();
-                    //TODO: feedback
+                    Toast.makeText(this, "An error occurred while trying to delete an entry", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 _keyProfiles.remove(_clickedItemPosition);
                 _keyProfileAdapter.notifyItemRemoved(_clickedItemPosition);
             })
-            .setNegativeButton(android.R.string.no, (dialog, which) -> {
-            })
+            .setNegativeButton(android.R.string.no, null)
             .show();
     }
 
@@ -420,8 +424,8 @@ public class MainActivity extends AppCompatActivity {
         try {
             _db.save();
         } catch (Exception e) {
-            //TODO: feedback
-            throw new UndeclaredThrowableException(e);
+            e.printStackTrace();
+            Toast.makeText(this, "An error occurred while trying to save the database", Toast.LENGTH_LONG).show();
         }
     }
 
@@ -432,14 +436,16 @@ public class MainActivity extends AppCompatActivity {
             for (DatabaseEntry entry : _db.getKeys()) {
                 _keyProfiles.add(new KeyProfile(entry));
             }
-            _keyProfileAdapter.notifyDataSetChanged();
         } catch (Exception e) {
             e.printStackTrace();
+            Toast.makeText(this, "An error occurred while trying to load database entries", Toast.LENGTH_SHORT).show();
+            return;
         }
 
         Collections.sort(_keyProfiles, (p1, p2) -> {
             return p1.getEntry().getOrder() >= p2.getEntry().getOrder() ? 1 : -1;
         });
+        _keyProfileAdapter.notifyDataSetChanged();
     }
 
     private void updateLockIcon() {

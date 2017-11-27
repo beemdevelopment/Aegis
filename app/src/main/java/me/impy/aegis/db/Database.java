@@ -40,16 +40,16 @@ public class Database {
         }
     }
 
-    public void addKey(DatabaseEntry entry) throws Exception {
+    public void addKey(DatabaseEntry entry) {
         entry.setID(_entries.size() + 1);
         _entries.add(entry);
     }
 
-    public void removeKey(DatabaseEntry entry) throws Exception {
+    public void removeKey(DatabaseEntry entry) {
         _entries.remove(entry);
     }
 
-    public List<DatabaseEntry> getKeys() throws Exception {
+    public List<DatabaseEntry> getKeys() {
         return _entries;
     }
 }
