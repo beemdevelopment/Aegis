@@ -32,7 +32,6 @@ import java.lang.reflect.UndeclaredThrowableException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.Objects;
 
 import me.impy.aegis.crypto.MasterKey;

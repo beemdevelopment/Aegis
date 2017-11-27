@@ -35,7 +35,7 @@ import me.impy.aegis.crypto.slots.SlotIntegrityException;
 import me.impy.aegis.finger.FingerprintUiHelper;
 import me.impy.aegis.helpers.AuthHelper;
 
-public class AuthActivity extends AppCompatActivity implements FingerprintUiHelper.Callback {
+public class AuthActivity extends AppCompatActivity implements FingerprintUiHelper.Callback, SlotCollectionTask.Callback {
     public static final int RESULT_OK = 0;
     public static final int RESULT_EXCEPTION = 1;
 
@@ -82,7 +82,8 @@ public class AuthActivity extends AppCompatActivity implements FingerprintUiHelp
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                trySlots(PasswordSlot.class);
+                char[] password = AuthHelper.getPassword(_textPassword, true);
+                trySlots(PasswordSlot.class, password);
             }
         });
     }
@@ -100,48 +101,19 @@ public class AuthActivity extends AppCompatActivity implements FingerprintUiHelp
         builder.create().show();
     }
 
-    private MasterKey decryptPasswordSlot(PasswordSlot slot) throws Exception {
-        char[] password = AuthHelper.getPassword(_textPassword, true);
-        SecretKey key = slot.deriveKey(password);
-        CryptoUtils.zero(password);
-        Cipher cipher = Slot.createCipher(key, Cipher.DECRYPT_MODE);
-        return _slots.decrypt(slot, cipher);
-    }
+    /*DerivationTask task = new DerivationTask(this);
+    DerivationTask.Params params = new DerivationTask.Params() {{
+        Slots = _slots;
+        Slot = (PasswordSlot) slot;
+        Password = AuthHelper.getPassword(_textPassword, true);
+    }};
+    masterKey = task.execute(params).get();*/
 
-    private MasterKey decryptFingerSlot(FingerprintSlot slot) throws Exception {
-        return _slots.decrypt(slot, _fingerCipher);
-    }
-
-    private <T extends Slot> void trySlots(Class<T> type) {
-        try {
-            if (!_slots.has(type)) {
-                throw new RuntimeException();
-            }
-
-            MasterKey masterKey = null;
-            for (Slot slot : _slots.findAll(type)) {
-                try {
-                    if (slot instanceof PasswordSlot) {
-                        masterKey = decryptPasswordSlot((PasswordSlot) slot);
-                    } else if (slot instanceof FingerprintSlot) {
-                        masterKey = decryptFingerSlot((FingerprintSlot) slot);
-                    } else {
-                        throw new RuntimeException();
-                    }
-                    break;
-                } catch (SlotIntegrityException e) { }
-            }
-
-            if (masterKey == null) {
-                throw new SlotIntegrityException();
-            }
-
-            setKey(masterKey);
-        } catch (SlotIntegrityException e) {
-            showError();
-        } catch (Exception e) {
-            throw new UndeclaredThrowableException(e);
-        }
+    private <T extends Slot> void trySlots(Class<T> type, Object obj) {
+        new SlotCollectionTask<T>(type, this, this).execute(new SlotCollectionTask.Params(){{
+            Slots = _slots;
+            Obj = obj;
+        }});
     }
 
     private void setKey(MasterKey key) {
@@ -177,11 +149,20 @@ public class AuthActivity extends AppCompatActivity implements FingerprintUiHelp
 
     @Override
     public void onAuthenticated() {
-        trySlots(FingerprintSlot.class);
+        trySlots(FingerprintSlot.class, _fingerCipher);
     }
 
     @Override
     public void onError() {
 
+    }
+
+    @Override
+    public void onTaskFinished(MasterKey key) {
+        if (key != null) {
+            setKey(key);
+        } else {
+            showError();
+        }
     }
 }
