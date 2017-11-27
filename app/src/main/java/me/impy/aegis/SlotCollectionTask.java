@@ -26,6 +26,7 @@ public class SlotCollectionTask<T extends Slot> extends AsyncTask<SlotCollection
         _cb = cb;
         _type = type;
         _dialog = new ProgressDialog(context);
+        _dialog.setCancelable(false);
     }
 
     @Override
