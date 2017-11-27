@@ -52,7 +52,6 @@ public class MainActivity extends AppCompatActivity {
     private DatabaseManager _db;
 
     private boolean _nightMode = false;
-    private int _clickedItemPosition = -1;
 
     private Menu _menu;
 
@@ -111,13 +110,7 @@ public class MainActivity extends AppCompatActivity {
         rvKeyProfiles.setLayoutManager(mLayoutManager);
 
         _keyProfileAdapter = new KeyProfileAdapter(_keyProfiles);
-        _keyProfileAdapter.setOnItemClickListener((position, v) -> {
-            _clickedItemPosition = position;
-            InitializeBottomSheet().show();
-        });
-        _keyProfileAdapter.setOnLongItemClickListener((position, v) -> {
-
-        });
+        _keyProfileAdapter.setOnItemClickListener((position, v) -> createBottomSheet(position).show());
 
         ItemTouchHelper.Callback callback = new SimpleItemTouchHelperCallback(_keyProfileAdapter);
         ItemTouchHelper touchHelper = new ItemTouchHelper(callback);
@@ -272,34 +265,30 @@ public class MainActivity extends AppCompatActivity {
         super.onPause();
     }
 
-    private BottomSheetDialog InitializeBottomSheet()
-    {
-        View bottomSheetView = getLayoutInflater ().inflate (R.layout.bottom_sheet_edit_profile, null);
-        LinearLayout copyLayout = (LinearLayout)bottomSheetView.findViewById(R.id.copy_button);
-        LinearLayout deleteLayout = (LinearLayout)bottomSheetView.findViewById(R.id.delete_button);
-        LinearLayout editLayout = (LinearLayout)bottomSheetView.findViewById(R.id.edit_button);
+    private BottomSheetDialog createBottomSheet(int position) {
+        View bottomSheetView = getLayoutInflater().inflate(R.layout.bottom_sheet_edit_profile, null);
+        LinearLayout copyLayout = (LinearLayout) bottomSheetView.findViewById(R.id.copy_button);
+        LinearLayout deleteLayout = (LinearLayout) bottomSheetView.findViewById(R.id.delete_button);
+        LinearLayout editLayout = (LinearLayout) bottomSheetView.findViewById(R.id.edit_button);
         bottomSheetView.findViewById(R.id.edit_button);
-        BottomSheetDialog bottomDialog =  new BottomSheetDialog(this);
+        BottomSheetDialog bottomDialog = new BottomSheetDialog(this);
         bottomDialog.setContentView(bottomSheetView);
-        bottomDialog.setCancelable (true);
-        bottomDialog.getWindow ().setLayout (LinearLayout.LayoutParams.MATCH_PARENT,
+        bottomDialog.setCancelable(true);
+        bottomDialog.getWindow().setLayout(LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT);
         bottomDialog.show();
 
         copyLayout.setOnClickListener(view -> {
             bottomDialog.dismiss();
             ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
-            ClipData clip = ClipData.newPlainText("text/plain", _keyProfiles.get(_clickedItemPosition).getCode());
+            ClipData clip = ClipData.newPlainText("text/plain", _keyProfiles.get(position).getCode());
             clipboard.setPrimaryClip(clip);
-
-            Toast.makeText(this.getApplicationContext(), "Code successfully copied to the clipboard", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this.getApplicationContext(), "Code copied to the clipboard", Toast.LENGTH_SHORT).show();
         });
 
         deleteLayout.setOnClickListener(view -> {
             bottomDialog.dismiss();
-
-            KeyProfile keyProfile = _keyProfiles.get(_clickedItemPosition);
-            deleteProfile(keyProfile);
+            deleteProfile(position);
         });
 
         editLayout.setOnClickListener(view -> {
@@ -310,8 +299,9 @@ public class MainActivity extends AppCompatActivity {
         return bottomDialog;
     }
 
-    private void deleteProfile(KeyProfile profile)
+    private void deleteProfile(int position)
     {
+        KeyProfile profile = _keyProfiles.get(position);
         new AlertDialog.Builder(MainActivity.this)
             .setTitle("Delete entry")
             .setMessage("Are you sure you want to delete this profile?")
@@ -323,8 +313,8 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(this, "An error occurred while trying to delete an entry", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                _keyProfiles.remove(_clickedItemPosition);
-                _keyProfileAdapter.notifyItemRemoved(_clickedItemPosition);
+                _keyProfiles.remove(position);
+                _keyProfileAdapter.notifyItemRemoved(position);
             })
             .setNegativeButton(android.R.string.no, null)
             .show();

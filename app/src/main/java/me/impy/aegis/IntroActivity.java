@@ -15,7 +15,6 @@ import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
 
 import me.impy.aegis.crypto.CryptResult;
-import me.impy.aegis.crypto.CryptoUtils;
 import me.impy.aegis.crypto.MasterKey;
 import me.impy.aegis.crypto.slots.FingerprintSlot;
 import me.impy.aegis.crypto.slots.PasswordSlot;

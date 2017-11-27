@@ -151,12 +151,16 @@ public class KeyProfileAdapter extends RecyclerView.Adapter<KeyProfileAdapter.Ke
 
         @Override
         public void onClick(View view) {
-            _itemClickListener.onItemClick(getAdapterPosition(), view);
+            if (_itemClickListener != null) {
+                _itemClickListener.onItemClick(getAdapterPosition(), view);
+            }
         }
 
         @Override
         public boolean onLongClick(View view) {
-            _longItemClickListener.onLongItemClick(getAdapterPosition(), view);
+            if (_longItemClickListener != null) {
+                _longItemClickListener.onLongItemClick(getAdapterPosition(), view);
+            }
             return true;
         }
     }

@@ -13,7 +13,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import me.impy.aegis.crypto.KeyInfo;
-import me.impy.aegis.crypto.otp.OTP;
 
 public class AddProfileActivity extends AppCompatActivity {
 

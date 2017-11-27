@@ -24,14 +24,12 @@ import java.lang.reflect.UndeclaredThrowableException;
 import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
 
-import me.impy.aegis.crypto.CryptoUtils;
 import me.impy.aegis.crypto.KeyStoreHandle;
 import me.impy.aegis.crypto.MasterKey;
 import me.impy.aegis.crypto.slots.FingerprintSlot;
 import me.impy.aegis.crypto.slots.PasswordSlot;
 import me.impy.aegis.crypto.slots.Slot;
 import me.impy.aegis.crypto.slots.SlotCollection;
-import me.impy.aegis.crypto.slots.SlotIntegrityException;
 import me.impy.aegis.finger.FingerprintUiHelper;
 import me.impy.aegis.helpers.AuthHelper;
 
