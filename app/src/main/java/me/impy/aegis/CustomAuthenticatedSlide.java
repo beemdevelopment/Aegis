@@ -22,6 +22,7 @@ import java.lang.reflect.UndeclaredThrowableException;
 import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
 
+import me.impy.aegis.crypto.CryptoUtils;
 import me.impy.aegis.crypto.KeyStoreHandle;
 import me.impy.aegis.crypto.slots.Slot;
 import me.impy.aegis.finger.FingerprintUiHelper;
@@ -58,7 +59,7 @@ public class CustomAuthenticatedSlide extends Fragment implements FingerprintUiH
     }
 
     public char[] getPassword() {
-        AuthHelper.getPassword(_textPasswordConfirm, true);
+        AuthHelper.clearPassword(_textPasswordConfirm);
         return AuthHelper.getPassword(_textPassword, true);
     }
 

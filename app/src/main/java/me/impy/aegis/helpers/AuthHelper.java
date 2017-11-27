@@ -14,9 +14,13 @@ public class AuthHelper {
     public static char[] getPassword(EditText text, boolean clear) {
         char[] password = getEditTextChars(text);
         if (clear) {
-            text.getText().clear();
+            clearPassword(text);
         }
         return password;
+    }
+
+    public static void clearPassword(EditText text) {
+        text.getText().clear();
     }
 
     public static char[] getEditTextChars(EditText text) {
