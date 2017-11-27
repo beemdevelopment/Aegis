@@ -22,10 +22,7 @@ import java.lang.reflect.UndeclaredThrowableException;
 import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
 
-import me.impy.aegis.crypto.CryptoUtils;
 import me.impy.aegis.crypto.KeyStoreHandle;
-import me.impy.aegis.crypto.slots.FingerprintSlot;
-import me.impy.aegis.crypto.slots.PasswordSlot;
 import me.impy.aegis.crypto.slots.Slot;
 import me.impy.aegis.finger.FingerprintUiHelper;
 import me.impy.aegis.helpers.AuthHelper;
@@ -60,18 +57,12 @@ public class CustomAuthenticatedSlide extends Fragment implements FingerprintUiH
         return _cryptType;
     }
 
-    public Cipher getCipher(Slot slot) throws Exception {
-        if (slot instanceof PasswordSlot) {
-            char[] password = AuthHelper.getPassword(_textPassword, true);
-            byte[] salt = CryptoUtils.generateSalt();
-            SecretKey key = ((PasswordSlot)slot).deriveKey(password, salt, CryptoUtils.CRYPTO_SCRYPT_N, CryptoUtils.CRYPTO_SCRYPT_r, CryptoUtils.CRYPTO_SCRYPT_p);
-            CryptoUtils.zero(password);
-            return Slot.createCipher(key, Cipher.ENCRYPT_MODE);
-        } else if (slot instanceof FingerprintSlot) {
-            return _fingerCipher;
-        } else {
-            throw new RuntimeException();
-        }
+    public char[] getPassword() {
+        return AuthHelper.getPassword(_textPassword, true);
+    }
+
+    public Cipher getFingerCipher() {
+        return _fingerCipher;
     }
 
     public void setBgColor(int color) {

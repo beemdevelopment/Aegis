@@ -12,22 +12,30 @@ import com.github.paolorotolo.appintro.AppIntroFragment;
 import com.github.paolorotolo.appintro.model.SliderPage;
 
 import javax.crypto.Cipher;
+import javax.crypto.SecretKey;
 
 import me.impy.aegis.crypto.CryptResult;
+import me.impy.aegis.crypto.CryptoUtils;
 import me.impy.aegis.crypto.MasterKey;
 import me.impy.aegis.crypto.slots.FingerprintSlot;
 import me.impy.aegis.crypto.slots.PasswordSlot;
+import me.impy.aegis.crypto.slots.Slot;
 import me.impy.aegis.crypto.slots.SlotCollection;
 import me.impy.aegis.db.Database;
 import me.impy.aegis.db.DatabaseFile;
 
-public class IntroActivity extends AppIntro {
+public class IntroActivity extends AppIntro implements DerivationTask.Callback {
     public static final int RESULT_OK = 0;
     public static final int RESULT_EXCEPTION = 1;
 
     private CustomAuthenticatedSlide _authenticatedSlide;
     private CustomAuthenticationSlide _authenticationSlide;
     private Fragment _endSlide;
+
+    private Database _database;
+    private DatabaseFile _databaseFile;
+    private PasswordSlot _passwordSlot;
+    private Cipher _passwordCipher;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +73,10 @@ public class IntroActivity extends AppIntro {
         endSliderPage.setBgColor(getResources().getColor(R.color.colorPrimary));
         _endSlide = AppIntroFragment.newInstance(endSliderPage);
         addSlide(_endSlide);
+
+        // create the database and database file
+        _database = new Database();
+        _databaseFile = new DatabaseFile();
     }
 
     private void setException(Exception e) {
@@ -76,10 +88,17 @@ public class IntroActivity extends AppIntro {
 
     @Override
     public void onSlideChanged(Fragment oldFragment, Fragment newFragment) {
-        // skip to the last slide if no encryption will be used
-        if (oldFragment == _authenticationSlide && newFragment != _endSlide) {
-            Intent intent = getIntent();
-            int cryptType = intent.getIntExtra("cryptType", CustomAuthenticationSlide.CRYPT_TYPE_INVALID);
+        Intent intent = getIntent();
+        int cryptType = intent.getIntExtra("cryptType", CustomAuthenticationSlide.CRYPT_TYPE_INVALID);
+
+        if (newFragment == _endSlide && cryptType != CustomAuthenticationSlide.CRYPT_TYPE_NONE) {
+            _passwordSlot = new PasswordSlot();
+            new DerivationTask(this, this).execute(new DerivationTask.Params() {{
+                Slot = _passwordSlot;
+                Password = _authenticatedSlide.getPassword();
+            }});
+        } else if (oldFragment == _authenticationSlide && newFragment != _endSlide) {
+            // skip to the last slide if no encryption will be used
             if (cryptType == CustomAuthenticationSlide.CRYPT_TYPE_NONE) {
                 // TODO: no magic indices
                 getPager().setCurrentItem(5);
@@ -90,10 +109,6 @@ public class IntroActivity extends AppIntro {
     @Override
     public void onDonePressed(Fragment currentFragment) {
         super.onDonePressed(currentFragment);
-
-        // create the database and database file
-        Database database = new Database();
-        DatabaseFile databaseFile = new DatabaseFile();
 
         int cryptType = _authenticatedSlide.getCryptType();
 
@@ -108,15 +123,20 @@ public class IntroActivity extends AppIntro {
             }
         }
 
-        SlotCollection slots = databaseFile.getSlots();
+        SlotCollection slots = _databaseFile.getSlots();
         if (cryptType != CustomAuthenticationSlide.CRYPT_TYPE_NONE) {
             try {
                 // encrypt the master key with a key derived from the user's password
                 // and add it to the list of slots
-                PasswordSlot slot = new PasswordSlot();
-                Cipher cipher = _authenticatedSlide.getCipher(slot);
-                slots.encrypt(slot, masterKey, cipher);
-                slots.add(slot);
+                if (_passwordSlot == null || _passwordCipher == null) {
+                    throw new RuntimeException();
+                }
+                try {
+                    slots.encrypt(_passwordSlot, masterKey, _passwordCipher);
+                    slots.add(_passwordSlot);
+                } catch (Exception e) {
+                    setException(e);
+                }
             } catch (Exception e) {
                 setException(e);
                 return;
@@ -128,7 +148,7 @@ public class IntroActivity extends AppIntro {
                 // encrypt the master key with the fingerprint key
                 // and add it to the list of slots
                 FingerprintSlot slot = new FingerprintSlot();
-                Cipher cipher = _authenticatedSlide.getCipher(slot);
+                Cipher cipher = _authenticatedSlide.getFingerCipher();
                 slots.encrypt(slot, masterKey, cipher);
                 slots.add(slot);
             } catch (Exception e) {
@@ -139,15 +159,15 @@ public class IntroActivity extends AppIntro {
 
         // finally, save the database
         try {
-            byte[] bytes = database.serialize();
+            byte[] bytes = _database.serialize();
             if (cryptType == CustomAuthenticationSlide.CRYPT_TYPE_NONE) {
-                databaseFile.setContent(bytes);
+                _databaseFile.setContent(bytes);
             } else {
                 CryptResult result = masterKey.encrypt(bytes);
-                databaseFile.setContent(result.Data);
-                databaseFile.setCryptParameters(result.Parameters);
+                _databaseFile.setContent(result.Data);
+                _databaseFile.setCryptParameters(result.Parameters);
             }
-            databaseFile.save(getApplicationContext());
+            _databaseFile.save(getApplicationContext());
         } catch (Exception e) {
             setException(e);
             return;
@@ -162,5 +182,18 @@ public class IntroActivity extends AppIntro {
         SharedPreferences prefs = this.getSharedPreferences("me.impy.aegis", Context.MODE_PRIVATE);
         prefs.edit().putBoolean("passedIntro", true).apply();
         finish();
+    }
+
+    @Override
+    public void onTaskFinished(SecretKey key) {
+        if (key != null) {
+            try {
+                _passwordCipher = Slot.createCipher(key, Cipher.ENCRYPT_MODE);
+            } catch (Exception e) {
+                setException(e);
+            }
+        } else {
+            setException(new NullPointerException());
+        }
     }
 }

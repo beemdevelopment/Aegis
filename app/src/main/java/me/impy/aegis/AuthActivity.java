@@ -101,14 +101,6 @@ public class AuthActivity extends AppCompatActivity implements FingerprintUiHelp
         builder.create().show();
     }
 
-    /*DerivationTask task = new DerivationTask(this);
-    DerivationTask.Params params = new DerivationTask.Params() {{
-        Slots = _slots;
-        Slot = (PasswordSlot) slot;
-        Password = AuthHelper.getPassword(_textPassword, true);
-    }};
-    masterKey = task.execute(params).get();*/
-
     private <T extends Slot> void trySlots(Class<T> type, Object obj) {
         new SlotCollectionTask<T>(type, this, this).execute(new SlotCollectionTask.Params(){{
             Slots = _slots;
