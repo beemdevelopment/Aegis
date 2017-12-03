@@ -1,8 +1,13 @@
 package me.impy.aegis.util;
 
-/**
- * Created by alex on 12/3/17.
- */
+import java.io.ByteArrayInputStream;
 
-public class ByteInputStream {
+public class ByteInputStream extends ByteArrayInputStream {
+    public ByteInputStream(byte[] buf) {
+        super(buf);
+    }
+
+    public byte[] getBytes() {
+        return this.buf;
+    }
 }

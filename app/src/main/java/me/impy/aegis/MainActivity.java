@@ -25,17 +25,20 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.lang.reflect.UndeclaredThrowableException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 import me.impy.aegis.crypto.MasterKey;
 import me.impy.aegis.db.DatabaseEntry;
 import me.impy.aegis.db.DatabaseManager;
-import me.impy.aegis.ext.FreeOTPImporter;
+import me.impy.aegis.ext.DatabaseImporter;
 import me.impy.aegis.helpers.SimpleItemTouchHelperCallback;
+import me.impy.aegis.util.ByteInputStream;
 
 public class MainActivity extends AppCompatActivity {
     private static final int CODE_GET_KEYINFO = 0;
@@ -49,7 +52,6 @@ public class MainActivity extends AppCompatActivity {
     private DatabaseManager _db;
 
     private boolean _nightMode = false;
-
     private Menu _menu;
 
     @Override
@@ -145,28 +147,51 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
 
-        InputStream stream = null;
+        InputStream fileStream = null;
         try {
             try {
-                stream = getContentResolver().openInputStream(data.getData());
+                fileStream = getContentResolver().openInputStream(data.getData());
             } catch (Exception e) {
                 Toast.makeText(this, "An error occurred while trying to open the file", Toast.LENGTH_SHORT).show();
                 return;
             }
 
-            FreeOTPImporter importer = new FreeOTPImporter(stream);
+            ByteInputStream stream;
             try {
-                for (DatabaseEntry profile : importer.convert()) {
-                    addKey(new KeyProfile(profile));
+                int read;
+                byte[] buf = new byte[4096];
+                ByteArrayOutputStream outStream = new ByteArrayOutputStream();
+                while ((read = fileStream.read(buf, 0, buf.length)) != -1) {
+                    outStream.write(buf, 0, read);
                 }
+                stream = new ByteInputStream(outStream.toByteArray());
             } catch (Exception e) {
+                Toast.makeText(this, "An error occurred while trying to read the file", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            List<DatabaseEntry> entries = null;
+            for (DatabaseImporter converter : DatabaseImporter.create(stream)) {
+                try {
+                    entries = converter.convert();
+                    break;
+                } catch (Exception e) {
+                    stream.reset();
+                }
+            }
+
+            if (entries == null) {
                 Toast.makeText(this, "An error occurred while trying to parse the file", Toast.LENGTH_SHORT).show();
                 return;
             }
+
+            for (DatabaseEntry entry : entries) {
+                addKey(new KeyProfile(entry));
+            }
         } finally {
-            if (stream != null) {
+            if (fileStream != null) {
                 try {
-                    stream.close();
+                    fileStream.close();
                 } catch (Exception e) {
                 }
             }

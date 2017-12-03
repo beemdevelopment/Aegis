@@ -9,15 +9,15 @@ import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
 import me.impy.aegis.crypto.KeyInfo;
 import me.impy.aegis.db.DatabaseEntry;
+import me.impy.aegis.util.ByteInputStream;
 
-public class FreeOTPImporter extends KeyConverter {
-    public FreeOTPImporter(InputStream stream) {
+public class FreeOTPImporter extends DatabaseImporter {
+    public FreeOTPImporter(ByteInputStream stream) {
         super(stream);
     }
 
@@ -33,6 +33,11 @@ public class FreeOTPImporter extends KeyConverter {
         parser.setInput(_stream, null);
         parser.nextTag();
         return parse(parser);
+    }
+
+    @Override
+    public String getName() {
+        return "FreeOTP";
     }
 
     private static List<DatabaseEntry> parse(XmlPullParser parser) throws IOException, XmlPullParserException, JSONException {
