@@ -1,5 +1,6 @@
 package me.impy.aegis.db;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.Serializable;
@@ -17,7 +18,7 @@ public class DatabaseEntry implements Serializable {
         _info = info;
     }
 
-    public JSONObject serialize() throws Exception {
+    public JSONObject serialize() throws JSONException {
         JSONObject obj = new JSONObject();
         obj.put("id", _id);
         obj.put("name", _name);

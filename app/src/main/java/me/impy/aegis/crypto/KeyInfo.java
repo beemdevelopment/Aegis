@@ -16,7 +16,7 @@ public class KeyInfo implements Serializable {
     private int _digits = 6;
     private int _period = 30;
 
-    public String getURL() throws Exception {
+    public String getURL() {
         Uri.Builder builder = new Uri.Builder();
         builder.scheme("otpauth");
         builder.authority(_type);
