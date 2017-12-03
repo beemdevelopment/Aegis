@@ -9,8 +9,8 @@ import me.impy.aegis.crypto.KeyInfo;
 
 public class DatabaseEntry implements Serializable {
     public int _id;
-    public String _name;
-    public String _icon;
+    public String _name = "";
+    public String _icon = "";
     public KeyInfo _info;
     public int _order;
 
