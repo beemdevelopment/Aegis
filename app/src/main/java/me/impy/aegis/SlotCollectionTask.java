@@ -3,6 +3,7 @@ package me.impy.aegis;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
+import android.os.Process;
 
 import java.lang.reflect.UndeclaredThrowableException;
 
@@ -31,6 +32,8 @@ public class SlotCollectionTask<T extends Slot> extends AsyncTask<SlotCollection
 
     @Override
     protected MasterKey doInBackground(SlotCollectionTask.Params... args) {
+        Process.setThreadPriority(Process.THREAD_PRIORITY_BACKGROUND + Process.THREAD_PRIORITY_MORE_FAVORABLE);
+
         SlotCollectionTask.Params params = args[0];
         try {
             if (!params.Slots.has(_type)) {

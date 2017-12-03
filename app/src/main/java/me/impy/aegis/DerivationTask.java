@@ -3,6 +3,7 @@ package me.impy.aegis;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
+import android.os.Process;
 
 import javax.crypto.SecretKey;
 
@@ -21,6 +22,8 @@ public class DerivationTask extends AsyncTask<DerivationTask.Params, Void, Secre
 
     @Override
     protected SecretKey doInBackground(DerivationTask.Params... args) {
+        Process.setThreadPriority(Process.THREAD_PRIORITY_BACKGROUND + Process.THREAD_PRIORITY_MORE_FAVORABLE);
+
         DerivationTask.Params params = args[0];
         try {
             byte[] salt = CryptoUtils.generateSalt();
