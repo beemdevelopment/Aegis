@@ -19,7 +19,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.support.v7.widget.helper.ItemTouchHelper;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -30,9 +29,7 @@ import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.lang.reflect.UndeclaredThrowableException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
-import java.util.Objects;
 
 import me.impy.aegis.crypto.MasterKey;
 import me.impy.aegis.db.DatabaseEntry;
@@ -97,7 +94,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        // init the app shortcuts and execute any pending actions
         initializeAppShortcuts();
+        doShortcutActions();
+
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setEnabled(true);
         fab.setOnClickListener(view -> {
@@ -175,26 +176,20 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void onGetKeyInfoResult(int resultCode, Intent data) {
-        if (resultCode != RESULT_OK) {
-            return;
+        if (resultCode == RESULT_OK) {
+            KeyProfile keyProfile = (KeyProfile)data.getSerializableExtra("KeyProfile");
+            Intent intent = new Intent(this, AddProfileActivity.class);
+            intent.putExtra("KeyProfile", keyProfile);
+            startActivityForResult(intent, CODE_ADD_KEYINFO);
         }
-
-        final KeyProfile keyProfile = (KeyProfile)data.getSerializableExtra("KeyProfile");
-
-        Intent intent = new Intent(this, AddProfileActivity.class);
-        intent.putExtra("KeyProfile", keyProfile);
-        startActivityForResult(intent, CODE_ADD_KEYINFO);
     }
 
     private void onAddKeyInfoResult(int resultCode, Intent data) {
-        if (resultCode != RESULT_OK) {
-            return;
+        if (resultCode == RESULT_OK) {
+            KeyProfile profile = (KeyProfile) data.getSerializableExtra("KeyProfile");
+            addKey(profile);
+            saveDatabase();
         }
-
-        KeyProfile profile = (KeyProfile) data.getSerializableExtra("KeyProfile");
-        addKey(profile);
-
-        saveDatabase();
     }
 
     private void addKey(KeyProfile profile) {
@@ -250,6 +245,24 @@ public class MainActivity extends AppCompatActivity {
         }
 
         loadKeyProfiles();
+        doShortcutActions();
+    }
+
+    private void doShortcutActions() {
+        Intent intent = getIntent();
+        String mode = intent.getStringExtra("Action");
+        if (mode == null || !_db.isDecrypted()) {
+            return;
+        }
+
+        switch (mode) {
+            case "Scan":
+                Intent scannerActivity = new Intent(getApplicationContext(), ScannerActivity.class);
+                startActivityForResult(scannerActivity, CODE_GET_KEYINFO);
+                break;
+        }
+
+        intent.removeExtra("Action");
     }
 
     @Override
@@ -350,38 +363,31 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initializeAppShortcuts() {
-        String mode = getIntent().getStringExtra("Action");
-        if (mode != null) {
-            Log.println(Log.DEBUG, "MODE: ", mode);
-            if (Objects.equals(mode, "Scan")) {
-                Intent scannerActivity = new Intent(getApplicationContext(), ScannerActivity.class);
-                startActivityForResult(scannerActivity, CODE_GET_KEYINFO);
-            }
+        if (android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.N_MR1) {
+            return;
         }
 
-        ShortcutManager shortcutManager = null;
-        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {
-            shortcutManager = getSystemService(ShortcutManager.class);
-            if (shortcutManager != null) {
-                //TODO: Remove this line
-                shortcutManager.removeAllDynamicShortcuts();
-                if (shortcutManager.getDynamicShortcuts().size() == 0) {
-                    // Application restored. Need to re-publish dynamic shortcuts.
+        ShortcutManager shortcutManager = getSystemService(ShortcutManager.class);
+        if (shortcutManager == null) {
+            return;
+        }
 
-                    Intent intent1 = new Intent(this.getBaseContext(), MainActivity.class);
-                    intent1.putExtra("Action", "Scan");
-                    intent1.setAction(Intent.ACTION_MAIN);
+        // TODO: Remove this line
+        shortcutManager.removeAllDynamicShortcuts();
+        if (shortcutManager.getDynamicShortcuts().size() == 0) {
+            // Application restored. Need to re-publish dynamic shortcuts.
+            Intent intent = new Intent(this.getBaseContext(), MainActivity.class);
+            intent.putExtra("Action", "Scan");
+            intent.setAction(Intent.ACTION_MAIN);
 
-                    ShortcutInfo shortcut = new ShortcutInfo.Builder(this, "id1")
-                            .setShortLabel("New profile")
-                            .setLongLabel("Add new profile")
-                            .setIcon(Icon.createWithResource(this.getApplicationContext(), R.drawable.intro_scanner))
-                            .setIntent(intent1)
-                            .build();
+            ShortcutInfo shortcut = new ShortcutInfo.Builder(this, "id1")
+                    .setShortLabel("New profile")
+                    .setLongLabel("Add new profile")
+                    .setIcon(Icon.createWithResource(this.getApplicationContext(), R.drawable.intro_scanner))
+                    .setIntent(intent)
+                    .build();
 
-                    shortcutManager.setDynamicShortcuts(Arrays.asList(shortcut));
-                }
-            }
+            shortcutManager.setDynamicShortcuts(Collections.singletonList(shortcut));
         }
     }
 
@@ -393,11 +399,9 @@ public class MainActivity extends AppCompatActivity {
                 setTheme(R.style.AppTheme_Dark_NoActionBar);
                 restart = true;
             }
-        } else {
-            if (_nightMode) {
-                setTheme(R.style.AppTheme_Default_NoActionBar);
-                restart = true;
-            }
+        } else if (_nightMode) {
+            setTheme(R.style.AppTheme_Default_NoActionBar);
+            restart = true;
         }
 
         if (restart) {
