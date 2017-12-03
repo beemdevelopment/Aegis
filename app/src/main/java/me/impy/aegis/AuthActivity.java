@@ -88,6 +88,7 @@ public class AuthActivity extends AppCompatActivity implements FingerprintUiHelp
 
     private void showError() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Decryption error");
         builder.setMessage("Master key integrity check failed for every slot. Make sure you didn't mistype your password.");
         builder.setCancelable(false);
         builder.setPositiveButton("OK",
@@ -100,7 +101,7 @@ public class AuthActivity extends AppCompatActivity implements FingerprintUiHelp
     }
 
     private <T extends Slot> void trySlots(Class<T> type, Object obj) {
-        new SlotCollectionTask<T>(type, this, this).execute(new SlotCollectionTask.Params(){{
+        new SlotCollectionTask<>(type, this, this).execute(new SlotCollectionTask.Params(){{
             Slots = _slots;
             Obj = obj;
         }});
