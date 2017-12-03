@@ -298,9 +298,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onPause() {
+    protected void onStop() {
         saveDatabase();
-        super.onPause();
+        super.onStop();
     }
 
     private BottomSheetDialog createBottomSheet(int position) {
