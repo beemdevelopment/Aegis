@@ -41,7 +41,6 @@ public class Database {
     }
 
     public void addKey(DatabaseEntry entry) {
-        entry.setID(_entries.size() + 1);
         _entries.add(entry);
     }
 
