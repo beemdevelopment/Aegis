@@ -3,6 +3,7 @@ package me.impy.aegis.db;
 import android.content.Context;
 
 import java.io.ByteArrayOutputStream;
+import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -20,7 +21,6 @@ public class DatabaseFile {
     private static final byte SECTION_SLOTS = 0x01;
     private static final byte SECTION_END = (byte) 0xFF;
     private static final byte VERSION = 1;
-    private static final String FILENAME = "aegis.db";
 
     private final byte[] HEADER;
 
@@ -116,22 +116,34 @@ public class DatabaseFile {
         return !_slots.isEmpty() && _cryptParameters != null;
     }
 
-    public void save(Context context) throws IOException {
+    public void save(Context context, String filename) throws IOException {
         byte[] data = serialize();
 
-        FileOutputStream file = context.openFileOutput(FILENAME, Context.MODE_PRIVATE);
+        FileOutputStream file = context.openFileOutput(filename, Context.MODE_PRIVATE);
         file.write(data);
         file.close();
     }
 
-    public static DatabaseFile load(Context context) throws Exception {
-        FileInputStream file = context.openFileInput(FILENAME);
-        byte[] data = new byte[(int) file.getChannel().size()];
-        file.read(data);
-        file.close();
+    public static DatabaseFile load(Context context, String filename) throws Exception {
+        byte[] bytes;
+        FileInputStream file = null;
+
+        try {
+            file = context.openFileInput(filename);
+            DataInputStream stream = new DataInputStream(file);
+            bytes = new byte[(int) file.getChannel().size()];
+            stream.readFully(bytes);
+            stream.close();
+        } finally {
+            // always close the file
+            // there is no need to close the DataInputStream
+            if (file != null) {
+                file.close();
+            }
+        }
 
         DatabaseFile db = new DatabaseFile();
-        db.deserialize(data);
+        db.deserialize(bytes);
         return db;
     }
 

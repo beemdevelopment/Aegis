@@ -10,6 +10,8 @@ import me.impy.aegis.crypto.CryptResult;
 import me.impy.aegis.crypto.MasterKey;
 
 public class DatabaseManager {
+    public static final String FILENAME = "aegis.db";
+
     private MasterKey _key;
     private DatabaseFile _file;
     private Database _db;
@@ -20,7 +22,7 @@ public class DatabaseManager {
     }
 
     public void load() throws Exception {
-        _file = DatabaseFile.load(_context);
+        _file = DatabaseFile.load(_context, FILENAME);
         if (!_file.isEncrypted()) {
             byte[] bytes = _file.getContent();
             _db = new Database();
@@ -48,7 +50,7 @@ public class DatabaseManager {
             _file.setContent(result.Data);
             _file.setCryptParameters(result.Parameters);
         }
-        _file.save(_context);
+        _file.save(_context, FILENAME);
     }
 
     public void addKey(DatabaseEntry entry) throws Exception {

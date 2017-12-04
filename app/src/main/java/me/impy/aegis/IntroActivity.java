@@ -22,6 +22,7 @@ import me.impy.aegis.crypto.slots.Slot;
 import me.impy.aegis.crypto.slots.SlotCollection;
 import me.impy.aegis.db.Database;
 import me.impy.aegis.db.DatabaseFile;
+import me.impy.aegis.db.DatabaseManager;
 
 public class IntroActivity extends AppIntro implements DerivationTask.Callback {
     public static final int RESULT_OK = 0;
@@ -170,7 +171,7 @@ public class IntroActivity extends AppIntro implements DerivationTask.Callback {
                 _databaseFile.setContent(result.Data);
                 _databaseFile.setCryptParameters(result.Parameters);
             }
-            _databaseFile.save(getApplicationContext());
+            _databaseFile.save(getApplicationContext(), DatabaseManager.FILENAME);
         } catch (Exception e) {
             setException(e);
             return;
