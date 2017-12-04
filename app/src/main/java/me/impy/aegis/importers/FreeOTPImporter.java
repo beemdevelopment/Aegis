@@ -1,4 +1,4 @@
-package me.impy.aegis.ext;
+package me.impy.aegis.importers;
 
 import android.util.Xml;
 
@@ -22,8 +22,8 @@ public class FreeOTPImporter extends DatabaseImporter {
     }
 
     private static class Entry {
-        public String Name;
-        public String Value;
+        String Name;
+        String Value;
     }
 
     @Override

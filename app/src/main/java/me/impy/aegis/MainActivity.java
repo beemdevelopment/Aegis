@@ -36,7 +36,7 @@ import java.util.List;
 import me.impy.aegis.crypto.MasterKey;
 import me.impy.aegis.db.DatabaseEntry;
 import me.impy.aegis.db.DatabaseManager;
-import me.impy.aegis.ext.DatabaseImporter;
+import me.impy.aegis.importers.DatabaseImporter;
 import me.impy.aegis.helpers.SimpleItemTouchHelperCallback;
 import me.impy.aegis.util.ByteInputStream;
 
@@ -337,8 +337,7 @@ public class MainActivity extends AppCompatActivity {
         return bottomDialog;
     }
 
-    private void deleteProfile(int position)
-    {
+    private void deleteProfile(int position) {
         KeyProfile profile = _keyProfiles.get(position);
         new AlertDialog.Builder(MainActivity.this)
             .setTitle("Delete entry")

@@ -4,6 +4,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Database {
@@ -49,6 +50,6 @@ public class Database {
     }
 
     public List<DatabaseEntry> getKeys() {
-        return _entries;
+        return Collections.unmodifiableList(_entries);
     }
 }

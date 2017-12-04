@@ -193,7 +193,7 @@ public class DatabaseFile {
     }
 
     private static class section {
-        public byte ID;
-        public byte[] Data;
+        byte ID;
+        byte[] Data;
     }
 }

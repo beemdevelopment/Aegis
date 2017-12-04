@@ -1,4 +1,4 @@
-package me.impy.aegis.ext;
+package me.impy.aegis.importers;
 
 import java.util.List;
 
