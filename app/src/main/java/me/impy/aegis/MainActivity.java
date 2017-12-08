@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
     private static final int CODE_IMPORT = 4;
 
     private KeyProfileAdapter _keyProfileAdapter;
-    private ArrayList<KeyProfile> _keyProfiles = new ArrayList<>();
+    private ArrayList<KeyProfile> _keyProfiles;
     private DatabaseManager _db;
 
     private boolean _nightMode = false;
@@ -112,6 +112,7 @@ public class MainActivity extends AppCompatActivity {
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(this);
         rvKeyProfiles.setLayoutManager(mLayoutManager);
 
+        _keyProfiles = new ArrayList<>();
         _keyProfileAdapter = new KeyProfileAdapter(_keyProfiles);
         _keyProfileAdapter.setOnItemClickListener((position, v) -> createBottomSheet(position).show());
 
