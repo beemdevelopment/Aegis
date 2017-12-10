@@ -46,7 +46,8 @@
                 android:layout_width="match_parent"
                 android:textSize="16sp"
                 android:layout_height="wrap_content"
-                android:id="@+id/rb_password"/>
+                android:id="@+id/rb_password"
+                android:checked="true"/>
 
             <TextView
                 android:text="@string/authentication_method_password_description"
