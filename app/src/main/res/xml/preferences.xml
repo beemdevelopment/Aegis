@@ -13,4 +13,10 @@
         android:key="pref_issuer"
         android:title="@string/pref_issuers"
         android:summary="@string/pref_issuers_description"/>
+
+    <Preference
+        android:key="pref_export"
+        android:title="Export"
+        android:summary="Export the database"/>
+
 </PreferenceScreen>

@@ -1,5 +1,7 @@
 package me.impy.aegis;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.Preference;
@@ -9,13 +11,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
 public class PreferencesActivity extends AppCompatActivity {
+    public static final int ACTION_EXPORT = 0;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        SharedPreferences mySharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        if (mySharedPreferences.getBoolean("pref_night_mode", false)) {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        if (preferences.getBoolean("pref_night_mode", false)) {
             setTheme(R.style.AppTheme_Dark);
         } else {
             setTheme(R.style.AppTheme_Default);
@@ -29,7 +32,6 @@ public class PreferencesActivity extends AppCompatActivity {
         @Override
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
-
             addPreferencesFromResource(R.xml.preferences);
 
             final Preference nightModePreference = findPreference("pref_night_mode");
@@ -37,6 +39,20 @@ public class PreferencesActivity extends AppCompatActivity {
                 @Override
                 public boolean onPreferenceChange(Preference preference, Object newValue) {
                     Toast.makeText(getActivity(), "Night mode will be enabled after closing this screen", Toast.LENGTH_SHORT).show();
+                    return true;
+                }
+            });
+
+            Preference exportPreference = findPreference("pref_export");
+            exportPreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+                @Override
+                public boolean onPreferenceClick(Preference preference) {
+                    Intent intent = new Intent();
+                    intent.putExtra("action", ACTION_EXPORT);
+
+                    Activity activity = getActivity();
+                    activity.setResult(RESULT_OK, intent);
+                    activity.finish();
                     return true;
                 }
             });

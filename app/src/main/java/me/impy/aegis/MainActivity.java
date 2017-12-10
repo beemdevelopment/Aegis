@@ -3,11 +3,13 @@ package me.impy.aegis;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ShortcutInfo;
 import android.content.pm.ShortcutManager;
 import android.graphics.drawable.Icon;
+import android.media.MediaScannerConnection;
 import android.os.Build;
 import android.preference.PreferenceManager;
 import android.support.design.widget.BottomSheetDialog;
@@ -46,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
     private static final int CODE_DO_INTRO = 2;
     private static final int CODE_DECRYPT = 3;
     private static final int CODE_IMPORT = 4;
+    private static final int CODE_PREFERENCES = 5;
 
     private KeyProfileAdapter _keyProfileAdapter;
     private ArrayList<KeyProfile> _keyProfiles;
@@ -139,6 +142,54 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case CODE_IMPORT:
                 onImportResult(resultCode, data);
+                break;
+            case CODE_PREFERENCES:
+                onPreferencesResult(resultCode, data);
+                break;
+        }
+    }
+
+    private void onPreferencesResult(int resultCode, Intent data) {
+        if (resultCode != RESULT_OK) {
+            return;
+        }
+
+        // TODO: create a custom layout to show a message AND a checkbox
+        int action = data.getIntExtra("action", -1);
+        switch (action) {
+            case PreferencesActivity.ACTION_EXPORT:
+                final boolean[] checked = {true};
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this)
+                        .setTitle("Export the database")
+                        .setPositiveButton(android.R.string.ok, (dialog, which) -> {
+                            String filename;
+                            try {
+                                filename = _db.export(checked[0]);
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                                Toast.makeText(this, "An error occurred while trying to export the database", Toast.LENGTH_SHORT).show();
+                                return;
+                            }
+
+                            // make sure the new file is visible
+                            MediaScannerConnection.scanFile(this, new String[]{filename}, null, null);
+
+                            Toast.makeText(this, "The database has been exported to: " + filename, Toast.LENGTH_SHORT).show();
+                        })
+                        .setNegativeButton(android.R.string.cancel, null);
+                if (_db.getFile().isEncrypted()) {
+                    final String[] items = {"Keep the database encrypted"};
+                    final boolean[] checkedItems = {true};
+                    builder.setMultiChoiceItems(items, checkedItems, new DialogInterface.OnMultiChoiceClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int index, boolean isChecked) {
+                            checked[0] = isChecked;
+                        }
+                    });
+                } else {
+                    builder.setMessage("This action will export the database out of Android's private storage.");
+                }
+                builder.show();
                 break;
         }
     }
@@ -371,7 +422,7 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.action_settings:
                 Intent preferencesActivity = new Intent(this, PreferencesActivity.class);
-                startActivity(preferencesActivity);
+                startActivityForResult(preferencesActivity, CODE_PREFERENCES);
                 return true;
             case R.id.action_import:
                 Intent intent = new Intent(Intent.ACTION_GET_CONTENT);

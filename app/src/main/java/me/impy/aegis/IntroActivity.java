@@ -171,7 +171,7 @@ public class IntroActivity extends AppIntro implements DerivationTask.Callback {
                 _databaseFile.setContent(result.Data);
                 _databaseFile.setCryptParameters(result.Parameters);
             }
-            _databaseFile.save(getApplicationContext(), DatabaseManager.FILENAME);
+            DatabaseManager.save(getApplicationContext(), _databaseFile);
         } catch (Exception e) {
             setException(e);
             return;

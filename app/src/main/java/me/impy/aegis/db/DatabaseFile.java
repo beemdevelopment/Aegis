@@ -5,6 +5,7 @@ import android.content.Context;
 import java.io.ByteArrayOutputStream;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -114,37 +115,6 @@ public class DatabaseFile {
 
     public boolean isEncrypted() {
         return !_slots.isEmpty() && _cryptParameters != null;
-    }
-
-    public void save(Context context, String filename) throws IOException {
-        byte[] data = serialize();
-
-        FileOutputStream file = context.openFileOutput(filename, Context.MODE_PRIVATE);
-        file.write(data);
-        file.close();
-    }
-
-    public static DatabaseFile load(Context context, String filename) throws Exception {
-        byte[] bytes;
-        FileInputStream file = null;
-
-        try {
-            file = context.openFileInput(filename);
-            DataInputStream stream = new DataInputStream(file);
-            bytes = new byte[(int) file.getChannel().size()];
-            stream.readFully(bytes);
-            stream.close();
-        } finally {
-            // always close the file
-            // there is no need to close the DataInputStream
-            if (file != null) {
-                file.close();
-            }
-        }
-
-        DatabaseFile db = new DatabaseFile();
-        db.deserialize(bytes);
-        return db;
     }
 
     private static void writeSection(DataOutputStream stream, byte id, byte[] data) throws IOException {
