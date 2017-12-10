@@ -109,12 +109,13 @@ public class IntroActivity extends AppIntro implements DerivationTask.Callback {
     @Override
     public void onDonePressed(Fragment currentFragment) {
         super.onDonePressed(currentFragment);
-        // wait for the key derivation background task
-        if (_passwordSlot == null || _passwordCipher == null) {
-            return;
-        }
 
         int cryptType = _authenticatedSlide.getCryptType();
+        // wait for the key derivation background task
+        if (cryptType == CustomAuthenticationSlide.CRYPT_TYPE_NONE ||
+                _passwordSlot == null || _passwordCipher == null) {
+            return;
+        }
 
         // generate the master key
         MasterKey masterKey = null;
