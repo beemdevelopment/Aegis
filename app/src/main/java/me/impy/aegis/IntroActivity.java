@@ -112,8 +112,8 @@ public class IntroActivity extends AppIntro implements DerivationTask.Callback {
 
         int cryptType = _authenticatedSlide.getCryptType();
         // wait for the key derivation background task
-        if (cryptType == CustomAuthenticationSlide.CRYPT_TYPE_NONE ||
-                _passwordSlot == null || _passwordCipher == null) {
+        if (cryptType != CustomAuthenticationSlide.CRYPT_TYPE_NONE &&
+                (_passwordSlot == null || _passwordCipher == null)) {
             return;
         }
 

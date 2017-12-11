@@ -19,7 +19,7 @@ import android.widget.TextView;
 
 import com.github.paolorotolo.appintro.ISlidePolicy;
 
-public class CustomAuthenticationSlide extends Fragment implements ISlidePolicy {
+public class CustomAuthenticationSlide extends Fragment implements ISlidePolicy, RadioGroup.OnCheckedChangeListener {
     public static final int CRYPT_TYPE_INVALID = 0;
     public static final int CRYPT_TYPE_NONE = 1;
     public static final int CRYPT_TYPE_PASS = 2;
@@ -34,31 +34,8 @@ public class CustomAuthenticationSlide extends Fragment implements ISlidePolicy 
         final Context context = getContext();
 
         _buttonGroup = (RadioGroup) view.findViewById(R.id.rg_authenticationMethod);
-        _buttonGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-                if (checkedId == -1) {
-                    return;
-                }
-
-                int id;
-                switch (checkedId) {
-                    case R.id.rb_none:
-                        id = CRYPT_TYPE_NONE;
-                        break;
-                    case R.id.rb_password:
-                        id = CRYPT_TYPE_PASS;
-                        break;
-                    case R.id.rb_fingerprint:
-                        id = CRYPT_TYPE_FINGER;
-                        break;
-                    default:
-                        throw new RuntimeException();
-                }
-                Intent intent = getActivity().getIntent();
-                intent.putExtra("cryptType", id);
-            }
-        });
+        _buttonGroup.setOnCheckedChangeListener(this);
+        onCheckedChanged(_buttonGroup, _buttonGroup.getCheckedRadioButtonId());
 
         // only show the fingerprint option if the api version is new enough, permission is granted and a scanner is found
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -88,5 +65,29 @@ public class CustomAuthenticationSlide extends Fragment implements ISlidePolicy 
     public void onUserIllegallyRequestedNextPage() {
         Snackbar snackbar = Snackbar.make(getView(), "Please select an authentication method", Snackbar.LENGTH_LONG);
         snackbar.show();
+    }
+
+    @Override
+    public void onCheckedChanged(RadioGroup radioGroup, int i) {
+        if (i == -1) {
+            return;
+        }
+
+        int id;
+        switch (i) {
+            case R.id.rb_none:
+                id = CRYPT_TYPE_NONE;
+                break;
+            case R.id.rb_password:
+                id = CRYPT_TYPE_PASS;
+                break;
+            case R.id.rb_fingerprint:
+                id = CRYPT_TYPE_FINGER;
+                break;
+            default:
+                throw new RuntimeException();
+        }
+        Intent intent = getActivity().getIntent();
+        intent.putExtra("cryptType", id);
     }
 }

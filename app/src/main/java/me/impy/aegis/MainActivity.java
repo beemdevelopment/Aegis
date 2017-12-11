@@ -73,8 +73,6 @@ public class MainActivity extends AppCompatActivity {
                     Intent intent = new Intent(this, AuthActivity.class);
                     intent.putExtra("slots", _db.getFile().getSlots());
                     startActivityForResult(intent, CODE_DECRYPT);
-                } else {
-                    loadKeyProfiles();
                 }
             } catch (FileNotFoundException e) {
                 // start the intro if the db file was not found
@@ -118,6 +116,9 @@ public class MainActivity extends AppCompatActivity {
         _keyProfiles = new ArrayList<>();
         _keyProfileAdapter = new KeyProfileAdapter(_keyProfiles);
         _keyProfileAdapter.setOnItemClickListener((position, v) -> createBottomSheet(position).show());
+        if (_db.isDecrypted()) {
+            loadKeyProfiles();
+        }
 
         ItemTouchHelper.Callback callback = new SimpleItemTouchHelperCallback(_keyProfileAdapter);
         ItemTouchHelper touchHelper = new ItemTouchHelper(callback);
