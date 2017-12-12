@@ -49,6 +49,10 @@ public class Database {
         _entries.remove(entry);
     }
 
+    public void swapKeys(DatabaseEntry entry1, DatabaseEntry entry2) {
+        Collections.swap(_entries, _entries.indexOf(entry1), _entries.indexOf(entry2));
+    }
+
     public List<DatabaseEntry> getKeys() {
         return Collections.unmodifiableList(_entries);
     }

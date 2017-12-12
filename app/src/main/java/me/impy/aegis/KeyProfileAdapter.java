@@ -26,13 +26,13 @@ public class KeyProfileAdapter extends RecyclerView.Adapter<KeyProfileAdapter.Ke
     private final List<KeyProfileHolder> _holders;
     private ArrayList<KeyProfile> _keyProfiles;
     private Handler _uiHandler;
-    private static ItemClickListener _itemClickListener;
-    private static LongItemClickListener _longItemClickListener;
+    private static Listener _listener;
 
-    public KeyProfileAdapter(ArrayList<KeyProfile> keyProfiles) {
+    public KeyProfileAdapter(ArrayList<KeyProfile> keyProfiles, Listener listener) {
         _keyProfiles = keyProfiles;
         _holders = new ArrayList<>();
         _uiHandler = new Handler();
+        _listener = listener;
     }
 
     @Override
@@ -42,20 +42,18 @@ public class KeyProfileAdapter extends RecyclerView.Adapter<KeyProfileAdapter.Ke
 
     @Override
     public void onItemMove(int firstPosition, int secondPosition) {
+        // notify the database first
+        _listener.onKeyProfileMove(_keyProfiles.get(firstPosition), _keyProfiles.get(secondPosition));
+
+        // update our side of things
         Collections.swap(_keyProfiles, firstPosition, secondPosition);
         notifyItemMoved(firstPosition, secondPosition);
-
-        // update the order of all key profiles
-        for (int i = 0; i < _keyProfiles.size(); i++) {
-            _keyProfiles.get(i).getEntry().setOrder(i + 1);
-        }
     }
 
     @Override
     public KeyProfileHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_keyprofile, parent, false);
-        KeyProfileHolder vh = new KeyProfileHolder(v);
-        return vh;
+        return new KeyProfileHolder(v);
     }
 
     @Override
@@ -64,7 +62,7 @@ public class KeyProfileAdapter extends RecyclerView.Adapter<KeyProfileAdapter.Ke
         holder.updateCode();
         _holders.add(holder);
 
-        Runnable runnable = new Runnable() {
+        _uiHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 // check if this key profile still exists
@@ -74,8 +72,7 @@ public class KeyProfileAdapter extends RecyclerView.Adapter<KeyProfileAdapter.Ke
 
                 _uiHandler.postDelayed(this, holder._keyProfile.getEntry().getInfo().getPeriod() * 1000);
             }
-        };
-        _uiHandler.postDelayed(runnable, holder._keyProfile.getEntry().getInfo().getMillisTillNextRotation());
+        }, holder._keyProfile.getEntry().getInfo().getMillisTillNextRotation());
     }
 
     @Override
@@ -83,14 +80,14 @@ public class KeyProfileAdapter extends RecyclerView.Adapter<KeyProfileAdapter.Ke
         return _keyProfiles.size();
     }
 
-    public static class KeyProfileHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
-        TextView _profileName;
-        TextView _profileCode;
-        TextView _profileIssuer;
-        ImageView _profileDrawable;
-        KeyProfile _keyProfile;
-        ProgressBar _progressBar;
-        View _itemView;
+    public class KeyProfileHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
+        private TextView _profileName;
+        private TextView _profileCode;
+        private TextView _profileIssuer;
+        private ImageView _profileDrawable;
+        private KeyProfile _keyProfile;
+        private ProgressBar _progressBar;
+        private View _itemView;
 
         KeyProfileHolder(final View itemView) {
             super(itemView);
@@ -114,8 +111,7 @@ public class KeyProfileAdapter extends RecyclerView.Adapter<KeyProfileAdapter.Ke
             _profileIssuer.setText("");
 
             SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(_itemView.getContext());
-            if(sharedPreferences.getBoolean("pref_issuer", false))
-            {
+            if (sharedPreferences.getBoolean("pref_issuer", false)) {
                 _profileIssuer.setText(" - " + profile.getEntry().getInfo().getIssuer());
             }
 
@@ -140,8 +136,9 @@ public class KeyProfileAdapter extends RecyclerView.Adapter<KeyProfileAdapter.Ke
         }
 
         private TextDrawable generateTextDrawable(KeyProfile profile) {
-            if (_profileName == null)
+            if (_profileName == null) {
                 return null;
+            }
 
             ColorGenerator generator = ColorGenerator.MATERIAL;
             int profileKeyColor = generator.getColor(profile.getEntry().getName());
@@ -151,33 +148,18 @@ public class KeyProfileAdapter extends RecyclerView.Adapter<KeyProfileAdapter.Ke
 
         @Override
         public void onClick(View view) {
-            if (_itemClickListener != null) {
-                _itemClickListener.onItemClick(getAdapterPosition(), view);
-            }
+            _listener.onKeyProfileClick(_keyProfiles.get(getAdapterPosition()));
         }
 
         @Override
         public boolean onLongClick(View view) {
-            if (_longItemClickListener != null) {
-                _longItemClickListener.onLongItemClick(getAdapterPosition(), view);
-            }
-            return true;
+            return _listener.onLongKeyProfileClick(_keyProfiles.get(getAdapterPosition()));
         }
     }
 
-    public void setOnItemClickListener(ItemClickListener clickListener) {
-        KeyProfileAdapter._itemClickListener = clickListener;
-    }
-
-    public void setOnLongItemClickListener(LongItemClickListener clickListener) {
-        KeyProfileAdapter._longItemClickListener = clickListener;
-    }
-
-    public interface ItemClickListener {
-        void onItemClick(int position, View v);
-    }
-
-    public interface LongItemClickListener {
-        void onLongItemClick(int position, View v);
+    public interface Listener {
+        void onKeyProfileClick(KeyProfile profile);
+        boolean onLongKeyProfileClick(KeyProfile profile);
+        void onKeyProfileMove(KeyProfile profile1, KeyProfile profile2);
     }
 }

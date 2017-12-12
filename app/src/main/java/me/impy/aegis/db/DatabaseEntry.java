@@ -11,7 +11,6 @@ public class DatabaseEntry implements Serializable {
     public String _name = "";
     public String _icon = "";
     public KeyInfo _info;
-    public int _order;
 
     public DatabaseEntry(KeyInfo info) {
         _info = info;
@@ -21,14 +20,12 @@ public class DatabaseEntry implements Serializable {
         JSONObject obj = new JSONObject();
         obj.put("name", _name);
         obj.put("url", _info.getURL());
-        obj.put("order", _order);
         return obj;
     }
 
     public void deserialize(JSONObject obj) throws Exception {
         _name = obj.getString("name");
         _info = KeyInfo.fromURL(obj.getString("url"));
-        _order = obj.getInt("order");
     }
 
     public String getName() {
@@ -40,9 +37,6 @@ public class DatabaseEntry implements Serializable {
     public KeyInfo getInfo() {
         return _info;
     }
-    public int getOrder() {
-        return _order;
-    }
 
     public void setName(String name) {
         _name = name;
@@ -52,8 +46,5 @@ public class DatabaseEntry implements Serializable {
     }
     public void setInfo(KeyInfo info) {
         _info = info;
-    }
-    public void setOrder(int order) {
-        _order = order;
     }
 }

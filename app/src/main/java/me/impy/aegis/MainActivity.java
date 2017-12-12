@@ -42,7 +42,7 @@ import me.impy.aegis.importers.DatabaseImporter;
 import me.impy.aegis.helpers.SimpleItemTouchHelperCallback;
 import me.impy.aegis.util.ByteInputStream;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements KeyProfileAdapter.Listener {
     private static final int CODE_GET_KEYINFO = 0;
     private static final int CODE_ADD_KEYINFO = 1;
     private static final int CODE_DO_INTRO = 2;
@@ -114,8 +114,7 @@ public class MainActivity extends AppCompatActivity {
         rvKeyProfiles.setLayoutManager(mLayoutManager);
 
         _keyProfiles = new ArrayList<>();
-        _keyProfileAdapter = new KeyProfileAdapter(_keyProfiles);
-        _keyProfileAdapter.setOnItemClickListener((position, v) -> createBottomSheet(position).show());
+        _keyProfileAdapter = new KeyProfileAdapter(_keyProfiles, this);
         if (_db.isDecrypted()) {
             loadKeyProfiles();
         }
@@ -275,7 +274,6 @@ public class MainActivity extends AppCompatActivity {
 
         DatabaseEntry entry = profile.getEntry();
         entry.setName(entry.getInfo().getAccountName());
-        entry.setOrder(_keyProfiles.size() + 1);
         try {
             _db.addKey(entry);
         } catch (Exception e) {
@@ -356,7 +354,7 @@ public class MainActivity extends AppCompatActivity {
         super.onStop();
     }
 
-    private BottomSheetDialog createBottomSheet(int position) {
+    private BottomSheetDialog createBottomSheet(KeyProfile profile) {
         View bottomSheetView = getLayoutInflater().inflate(R.layout.bottom_sheet_edit_profile, null);
         LinearLayout copyLayout = (LinearLayout) bottomSheetView.findViewById(R.id.copy_button);
         LinearLayout deleteLayout = (LinearLayout) bottomSheetView.findViewById(R.id.delete_button);
@@ -372,14 +370,14 @@ public class MainActivity extends AppCompatActivity {
         copyLayout.setOnClickListener(view -> {
             bottomDialog.dismiss();
             ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
-            ClipData clip = ClipData.newPlainText("text/plain", _keyProfiles.get(position).getCode());
+            ClipData clip = ClipData.newPlainText("text/plain", profile.getCode());
             clipboard.setPrimaryClip(clip);
             Toast.makeText(this.getApplicationContext(), "Code copied to the clipboard", Toast.LENGTH_SHORT).show();
         });
 
         deleteLayout.setOnClickListener(view -> {
             bottomDialog.dismiss();
-            deleteProfile(position);
+            deleteProfile(profile);
         });
 
         editLayout.setOnClickListener(view -> {
@@ -390,8 +388,7 @@ public class MainActivity extends AppCompatActivity {
         return bottomDialog;
     }
 
-    private void deleteProfile(int position) {
-        KeyProfile profile = _keyProfiles.get(position);
+    private void deleteProfile(KeyProfile profile) {
         new AlertDialog.Builder(MainActivity.this)
             .setTitle("Delete entry")
             .setMessage("Are you sure you want to delete this profile?")
@@ -403,7 +400,8 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(this, "An error occurred while trying to delete an entry", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                _keyProfiles.remove(position);
+                int position = _keyProfiles.indexOf(profile);
+                _keyProfiles.remove(profile);
                 _keyProfileAdapter.notifyItemRemoved(position);
             })
             .setNegativeButton(android.R.string.no, null)
@@ -513,9 +511,6 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
 
-        Collections.sort(_keyProfiles, (p1, p2) -> {
-            return p1.getEntry().getOrder() >= p2.getEntry().getOrder() ? 1 : -1;
-        });
         _keyProfileAdapter.notifyDataSetChanged();
     }
 
@@ -524,6 +519,26 @@ public class MainActivity extends AppCompatActivity {
         if (_menu != null && _db.isDecrypted()) {
             MenuItem item = _menu.findItem(R.id.action_lock);
             item.setVisible(_db.getFile().isEncrypted());
+        }
+    }
+
+    @Override
+    public void onKeyProfileClick(KeyProfile profile) {
+        createBottomSheet(profile).show();
+    }
+
+    @Override
+    public boolean onLongKeyProfileClick(KeyProfile profile) {
+        return false;
+    }
+
+    @Override
+    public void onKeyProfileMove(KeyProfile profile1, KeyProfile profile2) {
+        try {
+            _db.swapKeys(profile1.getEntry(), profile2.getEntry());
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new UndeclaredThrowableException(e);
         }
     }
 }

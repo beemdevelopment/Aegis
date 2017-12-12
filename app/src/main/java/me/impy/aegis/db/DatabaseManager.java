@@ -136,6 +136,11 @@ public class DatabaseManager {
         _db.removeKey(entry);
     }
 
+    public void swapKeys(DatabaseEntry entry1, DatabaseEntry entry2) throws Exception {
+        assertDecrypted();
+        _db.swapKeys(entry1, entry2);
+    }
+
     public List<DatabaseEntry> getKeys() throws Exception {
         assertDecrypted();
         return _db.getKeys();
