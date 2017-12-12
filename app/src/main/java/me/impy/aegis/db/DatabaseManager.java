@@ -10,6 +10,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
 
+import me.impy.aegis.BuildConfig;
 import me.impy.aegis.crypto.CryptParameters;
 import me.impy.aegis.crypto.CryptResult;
 import me.impy.aegis.crypto.MasterKey;
@@ -108,7 +109,8 @@ public class DatabaseManager {
         File file;
         FileOutputStream stream = null;
         try {
-            File dir = new File(Environment.getExternalStorageDirectory(), "Aegis");
+            String dirName = !BuildConfig.DEBUG ? "Aegis" : "AegisDebug";
+            File dir = new File(Environment.getExternalStorageDirectory(), dirName);
             if (!dir.exists() && !dir.mkdirs()) {
                 throw new IOException("error creating external storage directory");
             }
