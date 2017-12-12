@@ -390,6 +390,8 @@ public class MainActivity extends AppCompatActivity implements KeyProfileAdapter
                     Toast.makeText(this, "An error occurred while trying to delete an entry", Toast.LENGTH_SHORT).show();
                     return;
                 }
+                saveDatabase();
+
                 _keyProfileAdapter.removeKey(profile);
             })
             .setNegativeButton(android.R.string.no, null)

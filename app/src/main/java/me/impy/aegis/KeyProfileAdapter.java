@@ -1,20 +1,10 @@
 package me.impy.aegis;
 
-import android.animation.ObjectAnimator;
-import android.content.SharedPreferences;
 import android.os.Handler;
-import android.preference.PreferenceManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.LinearInterpolator;
-import android.widget.ImageView;
-import android.widget.ProgressBar;
-import android.widget.TextView;
-
-import com.amulyakhare.textdrawable.TextDrawable;
-import com.amulyakhare.textdrawable.util.ColorGenerator;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -22,15 +12,13 @@ import java.util.List;
 
 import me.impy.aegis.helpers.ItemTouchHelperAdapter;
 
-public class KeyProfileAdapter extends RecyclerView.Adapter<KeyProfileAdapter.KeyProfileHolder> implements ItemTouchHelperAdapter {
-    private final List<KeyProfileHolder> _holders;
+public class KeyProfileAdapter extends RecyclerView.Adapter<KeyProfileHolder> implements ItemTouchHelperAdapter {
     private ArrayList<KeyProfile> _keyProfiles;
     private Handler _uiHandler;
     private static Listener _listener;
 
     public KeyProfileAdapter(Listener listener) {
         _keyProfiles = new ArrayList<>();
-        _holders = new ArrayList<>();
         _uiHandler = new Handler();
         _listener = listener;
     }
@@ -73,109 +61,49 @@ public class KeyProfileAdapter extends RecyclerView.Adapter<KeyProfileAdapter.Ke
 
     @Override
     public KeyProfileHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_keyprofile, parent, false);
-        return new KeyProfileHolder(v);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_keyprofile, parent, false);
+        return new KeyProfileHolder(view);
+    }
+
+    @Override
+    public void onViewRecycled(KeyProfileHolder holder) {
+        holder.setData(null);
+        super.onViewRecycled(holder);
     }
 
     @Override
     public void onBindViewHolder(final KeyProfileHolder holder, int position) {
-        holder.setData(_keyProfiles.get(position));
+        final KeyProfile profile = _keyProfiles.get(position);
+        holder.setData(profile);
         holder.updateCode();
-        _holders.add(holder);
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int position = holder.getAdapterPosition();
+                _listener.onKeyProfileClick(_keyProfiles.get(position));
+            }
+        });
+        holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                int position = holder.getAdapterPosition();
+                return _listener.onLongKeyProfileClick(_keyProfiles.get(position));
+            }
+        });
 
         _uiHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                // check if this key profile still exists
-                if (_holders.contains(holder)) {
-                    holder.updateCode();
+                if (holder.updateCode()) {
+                    _uiHandler.postDelayed(this, profile.getEntry().getInfo().getPeriod() * 1000);
                 }
-
-                _uiHandler.postDelayed(this, holder._keyProfile.getEntry().getInfo().getPeriod() * 1000);
             }
-        }, holder._keyProfile.getEntry().getInfo().getMillisTillNextRotation());
+        }, profile.getEntry().getInfo().getMillisTillNextRotation());
     }
 
     @Override
     public int getItemCount() {
         return _keyProfiles.size();
-    }
-
-    public class KeyProfileHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
-        private TextView _profileName;
-        private TextView _profileCode;
-        private TextView _profileIssuer;
-        private ImageView _profileDrawable;
-        private KeyProfile _keyProfile;
-        private ProgressBar _progressBar;
-        private View _itemView;
-
-        KeyProfileHolder(final View itemView) {
-            super(itemView);
-            _itemView = itemView;
-            _profileName = itemView.findViewById(R.id.profile_name);
-            _profileCode = itemView.findViewById(R.id.profile_code);
-            _profileIssuer = itemView.findViewById(R.id.profile_issuer);
-            _profileDrawable = itemView.findViewById(R.id.ivTextDrawable);
-            _progressBar = itemView.findViewById(R.id.progressBar);
-
-            itemView.setOnClickListener(this);
-            itemView.setOnLongClickListener(this);
-        }
-
-        public void setData(KeyProfile profile) {
-            _keyProfile = profile;
-            _profileName.setText(profile.getEntry().getName());
-            _profileCode.setText(profile.getCode());
-
-            // So that we can have text in the designer without showing it to our user
-            _profileIssuer.setText("");
-
-            SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(_itemView.getContext());
-            if (sharedPreferences.getBoolean("pref_issuer", false)) {
-                _profileIssuer.setText(" - " + profile.getEntry().getInfo().getIssuer());
-            }
-
-            _profileDrawable.setImageDrawable(generateTextDrawable(profile));
-        }
-
-        public void updateCode() {
-            _progressBar.setProgress(1000);
-            if (_keyProfile == null) {
-                return;
-            }
-            String otp = _keyProfile.refreshCode();
-            _profileCode.setText(otp.substring(0, 3) + " " + otp.substring(3));
-
-            long millisTillRotation = _keyProfile.getEntry().getInfo().getMillisTillNextRotation();
-            long period = _keyProfile.getEntry().getInfo().getPeriod() * 1000;
-            int currentProgress = 1000 - (int) ((((double) period - millisTillRotation) / period) * 1000);
-            ObjectAnimator animation = ObjectAnimator.ofInt(_progressBar, "progress", currentProgress, 0);
-            animation.setDuration(millisTillRotation);
-            animation.setInterpolator(new LinearInterpolator());
-            animation.start();
-        }
-
-        private TextDrawable generateTextDrawable(KeyProfile profile) {
-            if (_profileName == null) {
-                return null;
-            }
-
-            ColorGenerator generator = ColorGenerator.MATERIAL;
-            int profileKeyColor = generator.getColor(profile.getEntry().getName());
-
-            return TextDrawable.builder().buildRound(profile.getEntry().getName().substring(0, 1).toUpperCase(), profileKeyColor);
-        }
-
-        @Override
-        public void onClick(View view) {
-            _listener.onKeyProfileClick(_keyProfiles.get(getAdapterPosition()));
-        }
-
-        @Override
-        public boolean onLongClick(View view) {
-            return _listener.onLongKeyProfileClick(_keyProfiles.get(getAdapterPosition()));
-        }
     }
 
     public interface Listener {

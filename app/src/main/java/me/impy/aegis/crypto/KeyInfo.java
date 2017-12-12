@@ -28,7 +28,7 @@ public class KeyInfo implements Serializable {
             builder.appendQueryParameter("counter", Long.toString(_counter));
         }
 
-        if (!_issuer.equals("")) {
+        if (_issuer != null && !_issuer.equals("")) {
             builder.path(String.format("%s:%s", _issuer, _accountName));
             builder.appendQueryParameter("issuer", _issuer);
         } else {
