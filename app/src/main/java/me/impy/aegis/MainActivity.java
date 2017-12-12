@@ -51,7 +51,6 @@ public class MainActivity extends AppCompatActivity implements KeyProfileAdapter
     private static final int CODE_PREFERENCES = 5;
 
     private KeyProfileAdapter _keyProfileAdapter;
-    private ArrayList<KeyProfile> _keyProfiles;
     private DatabaseManager _db;
 
     private boolean _nightMode = false;
@@ -113,8 +112,7 @@ public class MainActivity extends AppCompatActivity implements KeyProfileAdapter
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(this);
         rvKeyProfiles.setLayoutManager(mLayoutManager);
 
-        _keyProfiles = new ArrayList<>();
-        _keyProfileAdapter = new KeyProfileAdapter(_keyProfiles, this);
+        _keyProfileAdapter = new KeyProfileAdapter(this);
         if (_db.isDecrypted()) {
             loadKeyProfiles();
         }
@@ -282,8 +280,7 @@ public class MainActivity extends AppCompatActivity implements KeyProfileAdapter
             return;
         }
 
-        _keyProfiles.add(profile);
-        _keyProfileAdapter.notifyDataSetChanged();
+        _keyProfileAdapter.addKey(profile);
     }
 
     private void onDoIntroResult(int resultCode, Intent data) {
@@ -400,9 +397,7 @@ public class MainActivity extends AppCompatActivity implements KeyProfileAdapter
                     Toast.makeText(this, "An error occurred while trying to delete an entry", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                int position = _keyProfiles.indexOf(profile);
-                _keyProfiles.remove(profile);
-                _keyProfileAdapter.notifyItemRemoved(position);
+                _keyProfileAdapter.removeKey(profile);
             })
             .setNegativeButton(android.R.string.no, null)
             .show();
@@ -501,9 +496,10 @@ public class MainActivity extends AppCompatActivity implements KeyProfileAdapter
     private void loadKeyProfiles() {
         updateLockIcon();
 
+        List<KeyProfile> profiles = new ArrayList<>();
         try {
             for (DatabaseEntry entry : _db.getKeys()) {
-                _keyProfiles.add(new KeyProfile(entry));
+                profiles.add(new KeyProfile(entry));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -511,7 +507,7 @@ public class MainActivity extends AppCompatActivity implements KeyProfileAdapter
             return;
         }
 
-        _keyProfileAdapter.notifyDataSetChanged();
+        _keyProfileAdapter.addKeys(profiles);
     }
 
     private void updateLockIcon() {

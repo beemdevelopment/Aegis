@@ -28,11 +28,27 @@ public class KeyProfileAdapter extends RecyclerView.Adapter<KeyProfileAdapter.Ke
     private Handler _uiHandler;
     private static Listener _listener;
 
-    public KeyProfileAdapter(ArrayList<KeyProfile> keyProfiles, Listener listener) {
-        _keyProfiles = keyProfiles;
+    public KeyProfileAdapter(Listener listener) {
+        _keyProfiles = new ArrayList<>();
         _holders = new ArrayList<>();
         _uiHandler = new Handler();
         _listener = listener;
+    }
+
+    public void addKey(KeyProfile profile) {
+        _keyProfiles.add(profile);
+        notifyDataSetChanged();
+    }
+
+    public void addKeys(List<KeyProfile> profiles) {
+        _keyProfiles.addAll(profiles);
+        notifyDataSetChanged();
+    }
+
+    public void removeKey(KeyProfile profile) {
+        int position = _keyProfiles.indexOf(profile);
+        _keyProfiles.remove(position);
+        notifyItemRemoved(position);
     }
 
     @Override
