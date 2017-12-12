@@ -6,6 +6,7 @@ import android.support.v7.widget.helper.ItemTouchHelper;
 public class SimpleItemTouchHelperCallback extends ItemTouchHelper.Callback {
 
     private final ItemTouchHelperAdapter _adapter;
+    private boolean _positionChanged = false;
 
     public SimpleItemTouchHelperCallback(ItemTouchHelperAdapter adapter) {
         _adapter = adapter;
@@ -32,11 +33,22 @@ public class SimpleItemTouchHelperCallback extends ItemTouchHelper.Callback {
     public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder,
                           RecyclerView.ViewHolder target) {
         _adapter.onItemMove(viewHolder.getAdapterPosition(), target.getAdapterPosition());
+        _positionChanged = true;
         return true;
     }
 
     @Override
     public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
         _adapter.onItemDismiss(viewHolder.getAdapterPosition());
+    }
+
+    @Override
+    public void clearView(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder) {
+        super.clearView(recyclerView, viewHolder);
+
+        if (_positionChanged) {
+            _adapter.onItemDrop(viewHolder.getAdapterPosition());
+            _positionChanged = false;
+        }
     }
 }

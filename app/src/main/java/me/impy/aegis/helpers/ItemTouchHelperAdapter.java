@@ -30,4 +30,11 @@ public interface ItemTouchHelperAdapter {
      * @see RecyclerView.ViewHolder#getAdapterPosition()
      */
     void onItemDismiss(int position);
+
+    /**
+     * Called when an item has been dropped after a drag.
+     *
+     * @param position The position of the moved item.
+     */
+    void onItemDrop(int position);
 }

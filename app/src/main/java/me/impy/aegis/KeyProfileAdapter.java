@@ -57,6 +57,11 @@ public class KeyProfileAdapter extends RecyclerView.Adapter<KeyProfileAdapter.Ke
     }
 
     @Override
+    public void onItemDrop(int position) {
+        _listener.onKeyProfileDrop(_keyProfiles.get(position));
+    }
+
+    @Override
     public void onItemMove(int firstPosition, int secondPosition) {
         // notify the database first
         _listener.onKeyProfileMove(_keyProfiles.get(firstPosition), _keyProfiles.get(secondPosition));
@@ -177,5 +182,6 @@ public class KeyProfileAdapter extends RecyclerView.Adapter<KeyProfileAdapter.Ke
         void onKeyProfileClick(KeyProfile profile);
         boolean onLongKeyProfileClick(KeyProfile profile);
         void onKeyProfileMove(KeyProfile profile1, KeyProfile profile2);
+        void onKeyProfileDrop(KeyProfile profile);
     }
 }

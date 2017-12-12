@@ -344,12 +344,6 @@ public class MainActivity extends AppCompatActivity implements KeyProfileAdapter
         setPreferredTheme();
     }
 
-    @Override
-    protected void onStop() {
-        saveDatabase();
-        super.onStop();
-    }
-
     private BottomSheetDialog createBottomSheet(KeyProfile profile) {
         View bottomSheetView = getLayoutInflater().inflate(R.layout.bottom_sheet_edit_profile, null);
         LinearLayout copyLayout = bottomSheetView.findViewById(R.id.copy_button);
@@ -474,16 +468,11 @@ public class MainActivity extends AppCompatActivity implements KeyProfileAdapter
         }
 
         if (restart) {
-            finish();
-            startActivity(new Intent(this, this.getClass()));
+            recreate();
         }
     }
 
     private void saveDatabase() {
-        if (!_db.isDecrypted()) {
-            return;
-        }
-
         try {
             _db.save();
         } catch (Exception e) {
@@ -535,5 +524,10 @@ public class MainActivity extends AppCompatActivity implements KeyProfileAdapter
             e.printStackTrace();
             throw new UndeclaredThrowableException(e);
         }
+    }
+
+    @Override
+    public void onKeyProfileDrop(KeyProfile profile) {
+        saveDatabase();
     }
 }
