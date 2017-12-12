@@ -147,14 +147,16 @@ public class MainActivity extends AppCompatActivity implements KeyProfileAdapter
     }
 
     private void onPreferencesResult(int resultCode, Intent data) {
-        if (resultCode != RESULT_OK) {
-            return;
+        // refresh the entire key profile list if needed
+        if (data.getBooleanExtra("needsRefresh", false)) {
+            _keyProfileAdapter.notifyDataSetChanged();
         }
 
-        // TODO: create a custom layout to show a message AND a checkbox
+        // perform any pending actions
         int action = data.getIntExtra("action", -1);
         switch (action) {
             case PreferencesActivity.ACTION_EXPORT:
+                // TODO: create a custom layout to show a message AND a checkbox
                 final boolean[] checked = {true};
                 AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this)
                         .setTitle("Export the database")

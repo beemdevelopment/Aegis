@@ -1,6 +1,5 @@
 package me.impy.aegis;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -28,13 +27,26 @@ public class PreferencesActivity extends AppCompatActivity {
     }
 
     public static class PreferencesFragment extends PreferenceFragment {
+        private Intent _result = new Intent();
+
+        private void setResult() {
+            getActivity().setResult(RESULT_OK, _result);
+        }
+
+        private void finish() {
+            setResult();
+            getActivity().finish();
+        }
 
         @Override
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             addPreferencesFromResource(R.xml.preferences);
 
-            final Preference nightModePreference = findPreference("pref_night_mode");
+            // set the result intent in advance
+            setResult();
+
+            Preference nightModePreference = findPreference("pref_night_mode");
             nightModePreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
                 @Override
                 public boolean onPreferenceChange(Preference preference, Object newValue) {
@@ -47,12 +59,17 @@ public class PreferencesActivity extends AppCompatActivity {
             exportPreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
                 @Override
                 public boolean onPreferenceClick(Preference preference) {
-                    Intent intent = new Intent();
-                    intent.putExtra("action", ACTION_EXPORT);
+                    _result.putExtra("action", ACTION_EXPORT);
+                    finish();
+                    return true;
+                }
+            });
 
-                    Activity activity = getActivity();
-                    activity.setResult(RESULT_OK, intent);
-                    activity.finish();
+            Preference issuerPreference = findPreference("pref_issuer");
+            issuerPreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+                @Override
+                public boolean onPreferenceChange(Preference preference, Object newValue) {
+                    _result.putExtra("needsRefresh", true);
                     return true;
                 }
             });
