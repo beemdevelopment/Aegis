@@ -341,7 +341,6 @@ public class MainActivity extends AppCompatActivity implements KeyProfileAdapter
     @Override
     protected void onResume() {
         super.onResume();
-        _keyProfileAdapter.notifyDataSetChanged();
         setPreferredTheme();
     }
 
