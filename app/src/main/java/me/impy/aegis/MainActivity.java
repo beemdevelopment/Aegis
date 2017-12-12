@@ -31,7 +31,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.lang.reflect.UndeclaredThrowableException;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -486,18 +485,15 @@ public class MainActivity extends AppCompatActivity implements KeyProfileAdapter
     private void loadKeyProfiles() {
         updateLockIcon();
 
-        List<KeyProfile> profiles = new ArrayList<>();
         try {
             for (DatabaseEntry entry : _db.getKeys()) {
-                profiles.add(new KeyProfile(entry));
+                _keyProfileAdapter.addKey(new KeyProfile(entry));
             }
         } catch (Exception e) {
             e.printStackTrace();
             Toast.makeText(this, "An error occurred while trying to load database entries", Toast.LENGTH_SHORT).show();
             return;
         }
-
-        _keyProfileAdapter.addKeys(profiles);
     }
 
     private void updateLockIcon() {

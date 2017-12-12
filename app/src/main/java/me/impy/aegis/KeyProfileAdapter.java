@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
 
 import me.impy.aegis.helpers.ItemTouchHelperAdapter;
 
@@ -25,12 +24,13 @@ public class KeyProfileAdapter extends RecyclerView.Adapter<KeyProfileHolder> im
 
     public void addKey(KeyProfile profile) {
         _keyProfiles.add(profile);
-        notifyDataSetChanged();
-    }
 
-    public void addKeys(List<KeyProfile> profiles) {
-        _keyProfiles.addAll(profiles);
-        notifyDataSetChanged();
+        int position = getItemCount() - 1;
+        if (position == 0) {
+            notifyDataSetChanged();
+        } else {
+            notifyItemInserted(position);
+        }
     }
 
     public void removeKey(KeyProfile profile) {

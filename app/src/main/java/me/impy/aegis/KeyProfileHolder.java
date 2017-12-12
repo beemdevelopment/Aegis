@@ -33,8 +33,7 @@ public class KeyProfileHolder extends RecyclerView.ViewHolder {
     }
 
     public void setData(KeyProfile profile) {
-        _keyProfile = profile;
-        if (_keyProfile == null) {
+        if ((_keyProfile = profile) == null) {
             return;
         }
 
