@@ -45,11 +45,11 @@ public class CustomAuthenticatedSlide extends Fragment implements FingerprintUiH
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.fragment_authenticated_slide, container, false);
-        _textPassword = (EditText) view.findViewById(R.id.text_password);
-        _textPasswordConfirm = (EditText) view.findViewById(R.id.text_password_confirm);
-        _boxFingerprint = (LinearLayout) view.findViewById(R.id.box_fingerprint);
-        _imgFingerprint = (SwirlView) view.findViewById(R.id.img_fingerprint);
-        _textFingerprint = (TextView) view.findViewById(R.id.text_fingerprint);
+        _textPassword = view.findViewById(R.id.text_password);
+        _textPasswordConfirm = view.findViewById(R.id.text_password_confirm);
+        _boxFingerprint = view.findViewById(R.id.box_fingerprint);
+        _imgFingerprint = view.findViewById(R.id.img_fingerprint);
+        _textFingerprint = view.findViewById(R.id.text_fingerprint);
         view.findViewById(R.id.main).setBackgroundColor(_bgColor);
         return view;
     }

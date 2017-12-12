@@ -47,10 +47,10 @@ public class AuthActivity extends AppCompatActivity implements FingerprintUiHelp
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_auth);
-        _textPassword = (EditText) findViewById(R.id.text_password);
-        LinearLayout boxFingerprint = (LinearLayout) findViewById(R.id.box_fingerprint);
-        SwirlView imgFingerprint = (SwirlView) findViewById(R.id.img_fingerprint);
-        TextView textFingerprint = (TextView) findViewById(R.id.text_fingerprint);
+        _textPassword = findViewById(R.id.text_password);
+        LinearLayout boxFingerprint = findViewById(R.id.box_fingerprint);
+        SwirlView imgFingerprint = findViewById(R.id.img_fingerprint);
+        TextView textFingerprint = findViewById(R.id.text_fingerprint);
 
         Intent intent = getIntent();
         _slots = (SlotCollection) intent.getSerializableExtra("slots");
@@ -76,7 +76,7 @@ public class AuthActivity extends AppCompatActivity implements FingerprintUiHelp
             }
         }
 
-        Button button = (Button) findViewById(R.id.button_decrypt);
+        Button button = findViewById(R.id.button_decrypt);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

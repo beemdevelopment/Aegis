@@ -108,11 +108,11 @@ public class KeyProfileAdapter extends RecyclerView.Adapter<KeyProfileAdapter.Ke
         KeyProfileHolder(final View itemView) {
             super(itemView);
             _itemView = itemView;
-            _profileName = (TextView) itemView.findViewById(R.id.profile_name);
-            _profileCode = (TextView) itemView.findViewById(R.id.profile_code);
-            _profileIssuer = (TextView) itemView.findViewById(R.id.profile_issuer);
-            _profileDrawable = (ImageView) itemView.findViewById(R.id.ivTextDrawable);
-            _progressBar = (ProgressBar) itemView.findViewById(R.id.progressBar);
+            _profileName = itemView.findViewById(R.id.profile_name);
+            _profileCode = itemView.findViewById(R.id.profile_code);
+            _profileIssuer = itemView.findViewById(R.id.profile_issuer);
+            _profileDrawable = itemView.findViewById(R.id.ivTextDrawable);
+            _progressBar = itemView.findViewById(R.id.progressBar);
 
             itemView.setOnClickListener(this);
             itemView.setOnLongClickListener(this);

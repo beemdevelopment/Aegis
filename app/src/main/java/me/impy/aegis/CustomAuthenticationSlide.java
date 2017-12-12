@@ -33,7 +33,7 @@ public class CustomAuthenticationSlide extends Fragment implements ISlidePolicy,
         final View view = inflater.inflate(R.layout.fragment_authentication_slide, container, false);
         final Context context = getContext();
 
-        _buttonGroup = (RadioGroup) view.findViewById(R.id.rg_authenticationMethod);
+        _buttonGroup = view.findViewById(R.id.rg_authenticationMethod);
         _buttonGroup.setOnCheckedChangeListener(this);
         onCheckedChanged(_buttonGroup, _buttonGroup.getCheckedRadioButtonId());
 
@@ -41,8 +41,8 @@ public class CustomAuthenticationSlide extends Fragment implements ISlidePolicy,
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             FingerprintManager fingerprintManager = (FingerprintManager) context.getSystemService(Context.FINGERPRINT_SERVICE);
             if (ActivityCompat.checkSelfPermission(context, Manifest.permission.USE_FINGERPRINT) == PackageManager.PERMISSION_GRANTED && fingerprintManager.isHardwareDetected()) {
-                RadioButton button = (RadioButton) view.findViewById(R.id.rb_fingerprint);
-                TextView text = (TextView) view.findViewById(R.id.text_rb_fingerprint);
+                RadioButton button =  view.findViewById(R.id.rb_fingerprint);
+                TextView text = view.findViewById(R.id.text_rb_fingerprint);
                 button.setVisibility(View.VISIBLE);
                 text.setVisibility(View.VISIBLE);
             }

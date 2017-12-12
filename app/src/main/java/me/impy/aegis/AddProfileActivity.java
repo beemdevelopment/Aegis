@@ -30,11 +30,11 @@ public class AddProfileActivity extends AppCompatActivity {
         setPreferredTheme();
         setContentView(R.layout.activity_add_profile);
 
-        _profileName = (EditText) findViewById(R.id.addProfileName);
-        _textAlgorithm = (TextView) findViewById(R.id.tvAlgorithm);
-        _textIssuer = (TextView) findViewById(R.id.tvIssuer);
-        _textPeriod = (TextView) findViewById(R.id.tvPeriod);
-        _textOtp = (TextView) findViewById(R.id.tvOtp);
+        _profileName = findViewById(R.id.addProfileName);
+        _textAlgorithm = findViewById(R.id.tvAlgorithm);
+        _textIssuer = findViewById(R.id.tvIssuer);
+        _textPeriod = findViewById(R.id.tvPeriod);
+        _textOtp = findViewById(R.id.tvOtp);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
@@ -43,7 +43,7 @@ public class AddProfileActivity extends AppCompatActivity {
 
         initializeForm();
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

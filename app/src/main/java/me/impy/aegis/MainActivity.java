@@ -94,21 +94,21 @@ public class MainActivity extends AppCompatActivity implements KeyProfileAdapter
         }
 
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         // init the app shortcuts and execute any pending actions
         initializeAppShortcuts();
         doShortcutActions();
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        FloatingActionButton fab = findViewById(R.id.fab);
         fab.setEnabled(true);
         fab.setOnClickListener(view -> {
             Intent scannerActivity = new Intent(getApplicationContext(), ScannerActivity.class);
             startActivityForResult(scannerActivity, CODE_GET_KEYINFO);
         });
 
-        RecyclerView rvKeyProfiles = (RecyclerView) findViewById(R.id.rvKeyProfiles);
+        RecyclerView rvKeyProfiles = findViewById(R.id.rvKeyProfiles);
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(this);
         rvKeyProfiles.setLayoutManager(mLayoutManager);
 
@@ -353,9 +353,9 @@ public class MainActivity extends AppCompatActivity implements KeyProfileAdapter
 
     private BottomSheetDialog createBottomSheet(KeyProfile profile) {
         View bottomSheetView = getLayoutInflater().inflate(R.layout.bottom_sheet_edit_profile, null);
-        LinearLayout copyLayout = (LinearLayout) bottomSheetView.findViewById(R.id.copy_button);
-        LinearLayout deleteLayout = (LinearLayout) bottomSheetView.findViewById(R.id.delete_button);
-        LinearLayout editLayout = (LinearLayout) bottomSheetView.findViewById(R.id.edit_button);
+        LinearLayout copyLayout = bottomSheetView.findViewById(R.id.copy_button);
+        LinearLayout deleteLayout = bottomSheetView.findViewById(R.id.delete_button);
+        LinearLayout editLayout = bottomSheetView.findViewById(R.id.edit_button);
         bottomSheetView.findViewById(R.id.edit_button);
         BottomSheetDialog bottomDialog = new BottomSheetDialog(this);
         bottomDialog.setContentView(bottomSheetView);
