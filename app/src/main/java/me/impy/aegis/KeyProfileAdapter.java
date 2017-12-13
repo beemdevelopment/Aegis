@@ -1,6 +1,5 @@
 package me.impy.aegis;
 
-import android.os.Handler;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,12 +12,10 @@ import me.impy.aegis.helpers.ItemTouchHelperAdapter;
 
 public class KeyProfileAdapter extends RecyclerView.Adapter<KeyProfileHolder> implements ItemTouchHelperAdapter {
     private ArrayList<KeyProfile> _keyProfiles;
-    private Handler _uiHandler;
     private static Listener _listener;
 
     public KeyProfileAdapter(Listener listener) {
         _keyProfiles = new ArrayList<>();
-        _uiHandler = new Handler();
         _listener = listener;
     }
 
@@ -75,7 +72,7 @@ public class KeyProfileAdapter extends RecyclerView.Adapter<KeyProfileHolder> im
     public void onBindViewHolder(final KeyProfileHolder holder, int position) {
         final KeyProfile profile = _keyProfiles.get(position);
         holder.setData(profile);
-        holder.updateCode();
+        holder.startUpdateLoop();
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -90,15 +87,6 @@ public class KeyProfileAdapter extends RecyclerView.Adapter<KeyProfileHolder> im
                 return _listener.onLongKeyProfileClick(_keyProfiles.get(position));
             }
         });
-
-        _uiHandler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                if (holder.updateCode()) {
-                    _uiHandler.postDelayed(this, profile.getEntry().getInfo().getPeriod() * 1000);
-                }
-            }
-        }, profile.getEntry().getInfo().getMillisTillNextRotation());
     }
 
     @Override

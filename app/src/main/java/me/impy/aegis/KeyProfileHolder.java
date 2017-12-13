@@ -2,6 +2,7 @@ package me.impy.aegis;
 
 import android.animation.ObjectAnimator;
 import android.content.SharedPreferences;
+import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -22,6 +23,9 @@ public class KeyProfileHolder extends RecyclerView.ViewHolder {
     private ProgressBar _progressBar;
     private View _itemView;
 
+    private Handler _uiHandler;
+    private boolean _running = false;
+
     KeyProfileHolder(final View itemView) {
         super(itemView);
         _itemView = itemView;
@@ -30,17 +34,17 @@ public class KeyProfileHolder extends RecyclerView.ViewHolder {
         _profileIssuer = itemView.findViewById(R.id.profile_issuer);
         _profileDrawable = itemView.findViewById(R.id.ivTextDrawable);
         _progressBar = itemView.findViewById(R.id.progressBar);
+        _uiHandler = new Handler();
     }
 
     public void setData(KeyProfile profile) {
         if ((_keyProfile = profile) == null) {
+            _running = false;
             return;
         }
 
         _profileName.setText(profile.getEntry().getName());
         _profileCode.setText(profile.getCode());
-
-        // So that we can have text in the designer without showing it to our user
         _profileIssuer.setText("");
 
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(_itemView.getContext());
@@ -51,17 +55,39 @@ public class KeyProfileHolder extends RecyclerView.ViewHolder {
         _profileDrawable.setImageDrawable(generateTextDrawable(profile));
     }
 
-    public boolean updateCode() {
-        _progressBar.setProgress(1000);
-        if (_keyProfile == null) {
-            return false;
+    public void startUpdateLoop() {
+        if (_running) {
+            return;
         }
+        _running = true;
+
+        updateCode();
+        _uiHandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if (_running) {
+                    updateCode();
+                    _uiHandler.postDelayed(this, _keyProfile.getEntry().getInfo().getMillisTillNextRotation());
+                }
+            }
+        }, _keyProfile.getEntry().getInfo().getMillisTillNextRotation());
+    }
+
+    private boolean updateCode() {
+        // reset the progress bar
+        int maxProgress = _progressBar.getMax();
+        _progressBar.setProgress(maxProgress);
+
+        // refresh the code
         String otp = _keyProfile.refreshCode();
         _profileCode.setText(otp.substring(0, 3) + " " + otp.substring(3));
 
+        // calculate the progress the bar should start at
         long millisTillRotation = _keyProfile.getEntry().getInfo().getMillisTillNextRotation();
-        long period = _keyProfile.getEntry().getInfo().getPeriod() * 1000;
-        int currentProgress = 1000 - (int) ((((double) period - millisTillRotation) / period) * 1000);
+        long period = _keyProfile.getEntry().getInfo().getPeriod() * maxProgress;
+        int currentProgress = maxProgress - (int) ((((double) period - millisTillRotation) / period) * maxProgress);
+
+        // start progress animation
         ObjectAnimator animation = ObjectAnimator.ofInt(_progressBar, "progress", currentProgress, 0);
         animation.setDuration(millisTillRotation);
         animation.setInterpolator(new LinearInterpolator());
