@@ -31,9 +31,12 @@
         </activity>
         <activity
             android:name=".IntroActivity"
-            android:theme="@style/Theme.Intro">
+            android:theme="@style/Theme.Intro"
+            android:launchMode="singleTop">
         </activity>
-        <activity android:name=".AuthActivity">
+        <activity
+            android:name=".AuthActivity"
+            android:launchMode="singleTop">
         </activity>
         <activity android:name=".PreferencesActivity">
         </activity>

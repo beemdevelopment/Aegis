@@ -339,6 +339,11 @@ public class MainActivity extends AppCompatActivity implements KeyProfileAdapter
         intent.removeExtra("Action");
     }
 
+    public void startActivityForResult(Intent intent, int requestCode) {
+        intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+        super.startActivityForResult(intent, requestCode);
+    }
+
     @Override
     protected void onResume() {
         super.onResume();
