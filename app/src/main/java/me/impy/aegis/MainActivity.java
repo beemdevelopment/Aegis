@@ -1,5 +1,6 @@
 package me.impy.aegis;
 
+import android.Manifest;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
@@ -37,17 +38,24 @@ import java.util.List;
 import me.impy.aegis.crypto.MasterKey;
 import me.impy.aegis.db.DatabaseEntry;
 import me.impy.aegis.db.DatabaseManager;
+import me.impy.aegis.helpers.PermissionHelper;
 import me.impy.aegis.importers.DatabaseImporter;
 import me.impy.aegis.helpers.SimpleItemTouchHelperCallback;
 import me.impy.aegis.util.ByteInputStream;
 
 public class MainActivity extends AppCompatActivity implements KeyProfileAdapter.Listener {
+    // activity request codes
     private static final int CODE_GET_KEYINFO = 0;
     private static final int CODE_ADD_KEYINFO = 1;
     private static final int CODE_DO_INTRO = 2;
     private static final int CODE_DECRYPT = 3;
     private static final int CODE_IMPORT = 4;
     private static final int CODE_PREFERENCES = 5;
+
+    // permission request codes
+    private static final int CODE_PERM_EXPORT = 0;
+    private static final int CODE_PERM_IMPORT = 1;
+    private static final int CODE_PERM_CAMERA = 2;
 
     private KeyProfileAdapter _keyProfileAdapter;
     private DatabaseManager _db;
@@ -103,8 +111,7 @@ public class MainActivity extends AppCompatActivity implements KeyProfileAdapter
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setEnabled(true);
         fab.setOnClickListener(view -> {
-            Intent scannerActivity = new Intent(getApplicationContext(), ScannerActivity.class);
-            startActivityForResult(scannerActivity, CODE_GET_KEYINFO);
+            onGetKeyInfo();
         });
 
         RecyclerView rvKeyProfiles = findViewById(R.id.rvKeyProfiles);
@@ -146,6 +153,26 @@ public class MainActivity extends AppCompatActivity implements KeyProfileAdapter
         }
     }
 
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        if (!PermissionHelper.checkResults(grantResults)) {
+            Toast.makeText(this, "Permission denied", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        switch (requestCode) {
+            case CODE_PERM_EXPORT:
+                onExport();
+                break;
+            case CODE_PERM_IMPORT:
+                onImport();
+                break;
+            case CODE_PERM_CAMERA:
+                onGetKeyInfo();
+                break;
+        }
+    }
+
     private void onPreferencesResult(int resultCode, Intent data) {
         // refresh the entire key profile list if needed
         if (data.getBooleanExtra("needsRefresh", false)) {
@@ -156,41 +183,55 @@ public class MainActivity extends AppCompatActivity implements KeyProfileAdapter
         int action = data.getIntExtra("action", -1);
         switch (action) {
             case PreferencesActivity.ACTION_EXPORT:
-                // TODO: create a custom layout to show a message AND a checkbox
-                final boolean[] checked = {true};
-                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this)
-                        .setTitle("Export the database")
-                        .setPositiveButton(android.R.string.ok, (dialog, which) -> {
-                            String filename;
-                            try {
-                                filename = _db.export(checked[0]);
-                            } catch (Exception e) {
-                                e.printStackTrace();
-                                Toast.makeText(this, "An error occurred while trying to export the database", Toast.LENGTH_SHORT).show();
-                                return;
-                            }
-
-                            // make sure the new file is visible
-                            MediaScannerConnection.scanFile(this, new String[]{filename}, null, null);
-
-                            Toast.makeText(this, "The database has been exported to: " + filename, Toast.LENGTH_SHORT).show();
-                        })
-                        .setNegativeButton(android.R.string.cancel, null);
-                if (_db.getFile().isEncrypted()) {
-                    final String[] items = {"Keep the database encrypted"};
-                    final boolean[] checkedItems = {true};
-                    builder.setMultiChoiceItems(items, checkedItems, new DialogInterface.OnMultiChoiceClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int index, boolean isChecked) {
-                            checked[0] = isChecked;
-                        }
-                    });
-                } else {
-                    builder.setMessage("This action will export the database out of Android's private storage.");
-                }
-                builder.show();
+                onExport();
                 break;
         }
+    }
+
+    private void onExport() {
+        if (!PermissionHelper.request(this, CODE_PERM_EXPORT, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+            return;
+        }
+
+        // TODO: create a custom layout to show a message AND a checkbox
+        final boolean[] checked = {true};
+        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this)
+                .setTitle("Export the database")
+                .setPositiveButton(android.R.string.ok, (dialog, which) -> {
+                    String filename;
+                    try {
+                        filename = _db.export(checked[0]);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        Toast.makeText(this, "An error occurred while trying to export the database", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+
+                    // make sure the new file is visible
+                    MediaScannerConnection.scanFile(this, new String[]{filename}, null, null);
+
+                    Toast.makeText(this, "The database has been exported to: " + filename, Toast.LENGTH_SHORT).show();
+                })
+                .setNegativeButton(android.R.string.cancel, null);
+        if (_db.getFile().isEncrypted()) {
+            final String[] items = {"Keep the database encrypted"};
+            final boolean[] checkedItems = {true};
+            builder.setMultiChoiceItems(items, checkedItems, new DialogInterface.OnMultiChoiceClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int index, boolean isChecked) {
+                    checked[0] = isChecked;
+                }
+            });
+        } else {
+            builder.setMessage("This action will export the database out of Android's private storage.");
+        }
+        builder.show();
+    }
+
+    private void onImport() {
+        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+        intent.setType("*/*");
+        startActivityForResult(intent, CODE_IMPORT);
     }
 
     private void onImportResult(int resultCode, Intent data) {
@@ -249,6 +290,15 @@ public class MainActivity extends AppCompatActivity implements KeyProfileAdapter
         }
 
         saveDatabase();
+    }
+
+    private void onGetKeyInfo() {
+        if (!PermissionHelper.request(this, CODE_PERM_CAMERA, Manifest.permission.CAMERA)) {
+            return;
+        }
+
+        Intent scannerActivity = new Intent(getApplicationContext(), ScannerActivity.class);
+        startActivityForResult(scannerActivity, CODE_GET_KEYINFO);
     }
 
     private void onGetKeyInfoResult(int resultCode, Intent data) {
@@ -420,9 +470,9 @@ public class MainActivity extends AppCompatActivity implements KeyProfileAdapter
                 startActivityForResult(preferencesActivity, CODE_PREFERENCES);
                 return true;
             case R.id.action_import:
-                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-                intent.setType("*/*");
-                startActivityForResult(intent, CODE_IMPORT);
+                if (PermissionHelper.request(this, CODE_PERM_IMPORT, Manifest.permission.CAMERA)) {
+                    onImport();
+                }
                 return true;
             case R.id.action_lock:
                 // TODO: properly close the database
