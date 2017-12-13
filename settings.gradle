@@ -1,1 +1,1 @@
-include ':app', ':cli'
+include ':app'

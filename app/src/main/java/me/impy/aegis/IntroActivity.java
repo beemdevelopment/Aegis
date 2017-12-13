@@ -53,11 +53,16 @@ public class IntroActivity extends AppIntro implements DerivationTask.Callback {
 
         SliderPage permSliderPage = new SliderPage();
         permSliderPage.setTitle("Permissions");
-        permSliderPage.setDescription("Aegis needs permission to use your camera in order to scan QR codes.");
+        permSliderPage.setDescription("Aegis needs permission to use your camera in order to scan QR codes. " +
+                "It also needs access to external storage to able to export the database.");
         permSliderPage.setImageDrawable(R.drawable.intro_scanner);
         permSliderPage.setBgColor(getResources().getColor(R.color.colorAccent));
         addSlide(AppIntroFragment.newInstance(permSliderPage));
-        askForPermissions(new String[]{Manifest.permission.CAMERA}, 2);
+        askForPermissions(new String[]{
+                Manifest.permission.CAMERA,
+                Manifest.permission.READ_EXTERNAL_STORAGE,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE
+        }, 2);
 
         _authenticationSlide = new CustomAuthenticationSlide();
         _authenticationSlide.setBgColor(getResources().getColor(R.color.colorHeaderSuccess));

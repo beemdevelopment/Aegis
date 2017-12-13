@@ -1,6 +1,0 @@
-apply plugin: 'java-library'
-
-dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    compile "com.beust:jcommander:1.71"
-}
