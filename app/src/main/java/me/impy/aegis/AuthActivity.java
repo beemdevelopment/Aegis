@@ -1,13 +1,9 @@
 package me.impy.aegis;
 
-import android.Manifest;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.hardware.fingerprint.FingerprintManager;
-import android.os.Build;
-import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -30,7 +26,7 @@ import me.impy.aegis.crypto.slots.FingerprintSlot;
 import me.impy.aegis.crypto.slots.PasswordSlot;
 import me.impy.aegis.crypto.slots.Slot;
 import me.impy.aegis.crypto.slots.SlotCollection;
-import me.impy.aegis.finger.FingerprintUiHelper;
+import me.impy.aegis.helpers.FingerprintUiHelper;
 import me.impy.aegis.helpers.AuthHelper;
 
 public class AuthActivity extends AppCompatActivity implements FingerprintUiHelper.Callback, SlotCollectionTask.Callback {
@@ -56,23 +52,18 @@ public class AuthActivity extends AppCompatActivity implements FingerprintUiHelp
         _slots = (SlotCollection) intent.getSerializableExtra("slots");
 
         // only show the fingerprint controls if the api version is new enough, permission is granted, a scanner is found and a fingerprint slot is found
-        Context context = getApplicationContext();
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            FingerprintManager manager = (FingerprintManager) context.getSystemService(Context.FINGERPRINT_SERVICE);
-            if (ActivityCompat.checkSelfPermission(context, Manifest.permission.USE_FINGERPRINT) == PackageManager.PERMISSION_GRANTED && manager.isHardwareDetected()) {
-                if (_slots.has(FingerprintSlot.class)) {
-                    try {
-                        KeyStoreHandle handle = new KeyStoreHandle();
-                        if (handle.keyExists()) {
-                            SecretKey key = handle.getKey();
-                            _fingerCipher = Slot.createCipher(key, Cipher.DECRYPT_MODE);
-                            _fingerHelper = new FingerprintUiHelper(manager, imgFingerprint, textFingerprint, this);
-                            boxFingerprint.setVisibility(View.VISIBLE);
-                        }
-                    } catch (Exception e) {
-                        throw new UndeclaredThrowableException(e);
-                    }
+        FingerprintManager manager = FingerprintUiHelper.getManager(this);
+        if (manager != null && _slots.has(FingerprintSlot.class)) {
+            try {
+                KeyStoreHandle handle = new KeyStoreHandle();
+                if (handle.keyExists()) {
+                    SecretKey key = handle.getKey();
+                    _fingerCipher = Slot.createCipher(key, Cipher.DECRYPT_MODE);
+                    _fingerHelper = new FingerprintUiHelper(manager, imgFingerprint, textFingerprint, this);
+                    boxFingerprint.setVisibility(View.VISIBLE);
                 }
+            } catch (Exception e) {
+                throw new UndeclaredThrowableException(e);
             }
         }
 

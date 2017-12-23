@@ -1,14 +1,10 @@
 package me.impy.aegis;
 
-import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.hardware.fingerprint.FingerprintManager;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +14,8 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.github.paolorotolo.appintro.ISlidePolicy;
+
+import me.impy.aegis.helpers.FingerprintUiHelper;
 
 public class CustomAuthenticationSlide extends Fragment implements ISlidePolicy, RadioGroup.OnCheckedChangeListener {
     public static final int CRYPT_TYPE_INVALID = 0;
@@ -31,21 +29,18 @@ public class CustomAuthenticationSlide extends Fragment implements ISlidePolicy,
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.fragment_authentication_slide, container, false);
-        final Context context = getContext();
 
         _buttonGroup = view.findViewById(R.id.rg_authenticationMethod);
         _buttonGroup.setOnCheckedChangeListener(this);
         onCheckedChanged(_buttonGroup, _buttonGroup.getCheckedRadioButtonId());
 
         // only show the fingerprint option if the api version is new enough, permission is granted and a scanner is found
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            FingerprintManager fingerprintManager = (FingerprintManager) context.getSystemService(Context.FINGERPRINT_SERVICE);
-            if (ActivityCompat.checkSelfPermission(context, Manifest.permission.USE_FINGERPRINT) == PackageManager.PERMISSION_GRANTED && fingerprintManager.isHardwareDetected()) {
-                RadioButton button =  view.findViewById(R.id.rb_fingerprint);
-                TextView text = view.findViewById(R.id.text_rb_fingerprint);
-                button.setVisibility(View.VISIBLE);
-                text.setVisibility(View.VISIBLE);
-            }
+        FingerprintManager manager = FingerprintUiHelper.getManager(getContext());
+        if (manager != null) {
+            RadioButton button = view.findViewById(R.id.rb_fingerprint);
+            TextView text = view.findViewById(R.id.text_rb_fingerprint);
+            button.setVisibility(View.VISIBLE);
+            text.setVisibility(View.VISIBLE);
         }
 
         view.findViewById(R.id.main).setBackgroundColor(_bgColor);
