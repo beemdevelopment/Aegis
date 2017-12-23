@@ -1,9 +1,7 @@
 package me.impy.aegis;
 
 import android.Manifest;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 
@@ -37,9 +35,13 @@ public class IntroActivity extends AppIntro implements DerivationTask.Callback {
     private PasswordSlot _passwordSlot;
     private Cipher _passwordCipher;
 
+    private AegisApplication _app;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        _app = (AegisApplication) getApplication();
+
         showSkipButton(false);
         //showPagerIndicator(false);
         setGoBackLock(true);
@@ -189,8 +191,7 @@ public class IntroActivity extends AppIntro implements DerivationTask.Callback {
         setResult(RESULT_OK, result);
 
         // skip the intro from now on
-        SharedPreferences prefs = this.getSharedPreferences("me.impy.aegis", Context.MODE_PRIVATE);
-        prefs.edit().putBoolean("passedIntro", true).apply();
+        _app.getPreferences().edit().putBoolean("pref_intro", true).apply();
         finish();
     }
 

@@ -6,13 +6,11 @@ import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.pm.ShortcutInfo;
 import android.content.pm.ShortcutManager;
 import android.graphics.drawable.Icon;
 import android.media.MediaScannerConnection;
 import android.os.Build;
-import android.preference.PreferenceManager;
 import android.support.design.widget.BottomSheetDialog;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
@@ -58,6 +56,7 @@ public class MainActivity extends AppCompatActivity implements KeyProfileAdapter
     private static final int CODE_PERM_CAMERA = 2;
 
     private KeyProfileAdapter _keyProfileAdapter;
+    private AegisApplication _app;
     private DatabaseManager _db;
 
     private boolean _nightMode = false;
@@ -66,40 +65,18 @@ public class MainActivity extends AppCompatActivity implements KeyProfileAdapter
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        _db = new DatabaseManager(getApplicationContext());
+        _app = (AegisApplication) getApplication();
+        _db = _app.getDatabaseManager();
 
-        SharedPreferences prefs = this.getSharedPreferences("me.impy.aegis", Context.MODE_PRIVATE);
-        if (!prefs.getBoolean("passedIntro", false)) {
-            Intent intro = new Intent(this, IntroActivity.class);
-            startActivityForResult(intro, CODE_DO_INTRO);
-        } else {
-            try {
-                _db.load();
-                if (!_db.isDecrypted()) {
-                    Intent intent = new Intent(this, AuthActivity.class);
-                    intent.putExtra("slots", _db.getFile().getSlots());
-                    startActivityForResult(intent, CODE_DECRYPT);
-                }
-            } catch (FileNotFoundException e) {
-                // start the intro if the db file was not found
-                Toast.makeText(this, "Database file not found, starting over...", Toast.LENGTH_SHORT).show();
-                Intent intro = new Intent(this, IntroActivity.class);
-                startActivityForResult(intro, CODE_DO_INTRO);
-            } catch (Exception e) {
-                e.printStackTrace();
-                Toast.makeText(this, "An error occurred while trying to deserialize the database", Toast.LENGTH_LONG).show();
-                throw new UndeclaredThrowableException(e);
-            }
-        }
-
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        if (sharedPreferences.getBoolean("pref_night_mode", false)) {
+        // set the theme
+        if (_app.getPreferences().getBoolean("pref_night_mode", false)) {
             _nightMode = true;
             setTheme(R.style.AppTheme_Dark_NoActionBar);
         } else {
             setPreferredTheme();
         }
 
+        // set up the main view
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -108,25 +85,49 @@ public class MainActivity extends AppCompatActivity implements KeyProfileAdapter
         initializeAppShortcuts();
         doShortcutActions();
 
+        // set up the floating action button
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setEnabled(true);
-        fab.setOnClickListener(view -> {
-            onGetKeyInfo();
-        });
+        fab.setOnClickListener(view -> onGetKeyInfo());
 
+        // set up the recycler view for the key profiles
+        _keyProfileAdapter = new KeyProfileAdapter(this, _app.getPreferences().getBoolean("pref_issuer", false));
         RecyclerView rvKeyProfiles = findViewById(R.id.rvKeyProfiles);
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(this);
         rvKeyProfiles.setLayoutManager(mLayoutManager);
-
-        _keyProfileAdapter = new KeyProfileAdapter(this);
-        if (_db.isDecrypted()) {
-            loadKeyProfiles();
-        }
-
         ItemTouchHelper.Callback callback = new SimpleItemTouchHelperCallback(_keyProfileAdapter);
         ItemTouchHelper touchHelper = new ItemTouchHelper(callback);
         touchHelper.attachToRecyclerView(rvKeyProfiles);
         rvKeyProfiles.setAdapter(_keyProfileAdapter);
+
+        if (!_app.isRunning() && !_db.isUnlocked()) {
+            if (!_app.getPreferences().getBoolean("pref_intro", false)) {
+                Intent intro = new Intent(this, IntroActivity.class);
+                startActivityForResult(intro, CODE_DO_INTRO);
+            } else {
+                try {
+                    _db.load();
+                    if (!_db.isUnlocked()) {
+                        Intent intent = new Intent(this, AuthActivity.class);
+                        intent.putExtra("slots", _db.getFile().getSlots());
+                        startActivityForResult(intent, CODE_DECRYPT);
+                    }
+                } catch (FileNotFoundException e) {
+                    // start the intro if the db file was not found
+                    Toast.makeText(this, "Database file not found, starting over...", Toast.LENGTH_SHORT).show();
+                    Intent intro = new Intent(this, IntroActivity.class);
+                    startActivityForResult(intro, CODE_DO_INTRO);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    Toast.makeText(this, "An error occurred while trying to deserialize the database", Toast.LENGTH_LONG).show();
+                    throw new UndeclaredThrowableException(e);
+                }
+            }
+        }
+
+        if (_db.isUnlocked()) {
+            loadKeyProfiles();
+        }
     }
 
     @Override
@@ -176,6 +177,8 @@ public class MainActivity extends AppCompatActivity implements KeyProfileAdapter
     private void onPreferencesResult(int resultCode, Intent data) {
         // refresh the entire key profile list if needed
         if (data.getBooleanExtra("needsRefresh", false)) {
+            boolean showIssuer = _app.getPreferences().getBoolean("pref_issuer", false);
+            _keyProfileAdapter.setShowIssuer(showIssuer);
             _keyProfileAdapter.notifyDataSetChanged();
         }
 
@@ -344,8 +347,8 @@ public class MainActivity extends AppCompatActivity implements KeyProfileAdapter
         MasterKey key = (MasterKey) data.getSerializableExtra("key");
         try {
             _db.load();
-            if (!_db.isDecrypted()) {
-                _db.setMasterKey(key);
+            if (!_db.isUnlocked()) {
+                _db.unlock(key);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -360,7 +363,7 @@ public class MainActivity extends AppCompatActivity implements KeyProfileAdapter
     private void onDecryptResult(int resultCode, Intent data) {
         MasterKey key = (MasterKey) data.getSerializableExtra("key");
         try {
-            _db.setMasterKey(key);
+            _db.unlock(key);
         } catch (Exception e) {
             e.printStackTrace();
             Toast.makeText(this, "An error occurred while trying to decrypt the database", Toast.LENGTH_LONG).show();
@@ -375,7 +378,7 @@ public class MainActivity extends AppCompatActivity implements KeyProfileAdapter
     private void doShortcutActions() {
         Intent intent = getIntent();
         String mode = intent.getStringExtra("Action");
-        if (mode == null || !_db.isDecrypted()) {
+        if (mode == null || !_db.isUnlocked()) {
             return;
         }
 
@@ -475,8 +478,16 @@ public class MainActivity extends AppCompatActivity implements KeyProfileAdapter
                 }
                 return true;
             case R.id.action_lock:
-                // TODO: properly close the database
-                recreate();
+                _keyProfileAdapter.clearKeys();
+                try {
+                    _db.lock();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    Toast.makeText(this, "An error occurred while trying to lock the database", Toast.LENGTH_LONG).show();
+                }
+                Intent intent = new Intent(this, AuthActivity.class);
+                intent.putExtra("slots", _db.getFile().getSlots());
+                startActivityForResult(intent, CODE_DECRYPT);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -514,8 +525,7 @@ public class MainActivity extends AppCompatActivity implements KeyProfileAdapter
 
     private void setPreferredTheme() {
         boolean restart = false;
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        if (sharedPreferences.getBoolean("pref_night_mode", false)) {
+        if (_app.getPreferences().getBoolean("pref_night_mode", false)) {
             if (!_nightMode) {
                 setTheme(R.style.AppTheme_Dark_NoActionBar);
                 restart = true;
@@ -555,7 +565,7 @@ public class MainActivity extends AppCompatActivity implements KeyProfileAdapter
 
     private void updateLockIcon() {
         // hide the lock icon if the database is not encrypted
-        if (_menu != null && _db.isDecrypted()) {
+        if (_menu != null && _db.isUnlocked()) {
             MenuItem item = _menu.findItem(R.id.action_lock);
             item.setVisible(_db.getFile().isEncrypted());
         }

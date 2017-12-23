@@ -1,9 +1,7 @@
 package me.impy.aegis;
 
 import android.animation.ObjectAnimator;
-import android.content.SharedPreferences;
 import android.os.Handler;
-import android.preference.PreferenceManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.animation.LinearInterpolator;
@@ -21,23 +19,21 @@ public class KeyProfileHolder extends RecyclerView.ViewHolder {
     private ImageView _profileDrawable;
     private KeyProfile _keyProfile;
     private ProgressBar _progressBar;
-    private View _itemView;
 
     private Handler _uiHandler;
     private boolean _running = false;
 
-    KeyProfileHolder(final View itemView) {
-        super(itemView);
-        _itemView = itemView;
-        _profileName = itemView.findViewById(R.id.profile_name);
-        _profileCode = itemView.findViewById(R.id.profile_code);
-        _profileIssuer = itemView.findViewById(R.id.profile_issuer);
-        _profileDrawable = itemView.findViewById(R.id.ivTextDrawable);
-        _progressBar = itemView.findViewById(R.id.progressBar);
+    KeyProfileHolder(final View view) {
+        super(view);
+        _profileName = view.findViewById(R.id.profile_name);
+        _profileCode = view.findViewById(R.id.profile_code);
+        _profileIssuer = view.findViewById(R.id.profile_issuer);
+        _profileDrawable = view.findViewById(R.id.ivTextDrawable);
+        _progressBar = view.findViewById(R.id.progressBar);
         _uiHandler = new Handler();
     }
 
-    public void setData(KeyProfile profile) {
+    public void setData(KeyProfile profile, boolean showIssuer) {
         if ((_keyProfile = profile) == null) {
             _running = false;
             return;
@@ -46,9 +42,7 @@ public class KeyProfileHolder extends RecyclerView.ViewHolder {
         _profileName.setText(profile.getEntry().getName());
         _profileCode.setText(profile.getCode());
         _profileIssuer.setText("");
-
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(_itemView.getContext());
-        if (sharedPreferences.getBoolean("pref_issuer", false)) {
+        if (showIssuer) {
             _profileIssuer.setText(" - " + profile.getEntry().getInfo().getIssuer());
         }
 

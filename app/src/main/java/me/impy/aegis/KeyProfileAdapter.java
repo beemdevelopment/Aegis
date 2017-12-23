@@ -13,10 +13,16 @@ import me.impy.aegis.helpers.ItemTouchHelperAdapter;
 public class KeyProfileAdapter extends RecyclerView.Adapter<KeyProfileHolder> implements ItemTouchHelperAdapter {
     private ArrayList<KeyProfile> _keyProfiles;
     private static Listener _listener;
+    private boolean _showIssuer;
 
-    public KeyProfileAdapter(Listener listener) {
+    public KeyProfileAdapter(Listener listener, boolean showIssuer) {
         _keyProfiles = new ArrayList<>();
         _listener = listener;
+        _showIssuer = showIssuer;
+    }
+
+    public void setShowIssuer(boolean showIssuer) {
+        _showIssuer = showIssuer;
     }
 
     public void addKey(KeyProfile profile) {
@@ -34,6 +40,11 @@ public class KeyProfileAdapter extends RecyclerView.Adapter<KeyProfileHolder> im
         int position = _keyProfiles.indexOf(profile);
         _keyProfiles.remove(position);
         notifyItemRemoved(position);
+    }
+
+    public void clearKeys() {
+        _keyProfiles.clear();
+        notifyDataSetChanged();
     }
 
     @Override
@@ -64,14 +75,14 @@ public class KeyProfileAdapter extends RecyclerView.Adapter<KeyProfileHolder> im
 
     @Override
     public void onViewRecycled(KeyProfileHolder holder) {
-        holder.setData(null);
+        holder.setData(null, _showIssuer);
         super.onViewRecycled(holder);
     }
 
     @Override
     public void onBindViewHolder(final KeyProfileHolder holder, int position) {
         final KeyProfile profile = _keyProfiles.get(position);
-        holder.setData(profile);
+        holder.setData(profile, _showIssuer);
         holder.startUpdateLoop();
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

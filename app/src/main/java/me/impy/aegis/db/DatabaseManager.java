@@ -57,7 +57,14 @@ public class DatabaseManager {
         }
     }
 
-    public void setMasterKey(MasterKey key) throws Exception {
+    public void lock() throws Exception {
+        assertUnlocked();
+        // TODO: properly clear everything
+        _key = null;
+        _db = null;
+    }
+
+    public void unlock(MasterKey key) throws Exception {
         assertLoaded();
         byte[] encrypted = _file.getContent();
         CryptParameters params = _file.getCryptParameters();
@@ -83,7 +90,7 @@ public class DatabaseManager {
     }
 
     public void save() throws Exception {
-        assertDecrypted();
+        assertUnlocked();
         byte[] dbBytes = _db.serialize();
         if (!_file.isEncrypted()) {
             _file.setContent(dbBytes);
@@ -96,7 +103,7 @@ public class DatabaseManager {
     }
 
     public String export(boolean encrypt) throws Exception {
-        assertDecrypted();
+        assertUnlocked();
         byte[] bytes = _db.serialize();
         encrypt = encrypt && getFile().isEncrypted();
         if (encrypt) {
@@ -129,22 +136,22 @@ public class DatabaseManager {
     }
 
     public void addKey(DatabaseEntry entry) throws Exception {
-        assertDecrypted();
+        assertUnlocked();
         _db.addKey(entry);
     }
 
     public void removeKey(DatabaseEntry entry) throws Exception {
-        assertDecrypted();
+        assertUnlocked();
         _db.removeKey(entry);
     }
 
     public void swapKeys(DatabaseEntry entry1, DatabaseEntry entry2) throws Exception {
-        assertDecrypted();
+        assertUnlocked();
         _db.swapKeys(entry1, entry2);
     }
 
     public List<DatabaseEntry> getKeys() throws Exception {
-        assertDecrypted();
+        assertUnlocked();
         return _db.getKeys();
     }
 
@@ -156,7 +163,7 @@ public class DatabaseManager {
         return _file != null;
     }
 
-    public boolean isDecrypted() {
+    public boolean isUnlocked() {
         return _db != null;
     }
 
@@ -166,10 +173,10 @@ public class DatabaseManager {
         }
     }
 
-    private void assertDecrypted() throws Exception {
+    private void assertUnlocked() throws Exception {
         assertLoaded();
-        if (!isDecrypted()) {
-            throw new Exception("database file has not been decrypted yet");
+        if (!isUnlocked()) {
+            throw new Exception("database file has not been unlocked yet");
         }
     }
 }

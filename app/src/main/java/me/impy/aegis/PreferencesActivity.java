@@ -1,23 +1,23 @@
 package me.impy.aegis;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
-import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
 public class PreferencesActivity extends AppCompatActivity {
     public static final int ACTION_EXPORT = 0;
 
+    private AegisApplication _app;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        _app = (AegisApplication) getApplication();
 
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-        if (preferences.getBoolean("pref_night_mode", false)) {
+        if (_app.getPreferences().getBoolean("pref_night_mode", false)) {
             setTheme(R.style.AppTheme_Dark);
         } else {
             setTheme(R.style.AppTheme_Default);

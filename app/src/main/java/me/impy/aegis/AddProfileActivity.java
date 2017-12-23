@@ -2,8 +2,6 @@ package me.impy.aegis;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -15,18 +13,21 @@ import android.widget.TextView;
 import me.impy.aegis.crypto.KeyInfo;
 
 public class AddProfileActivity extends AppCompatActivity {
+    private KeyProfile _keyProfile;
 
-    KeyProfile _keyProfile;
+    private EditText _profileName;
+    private TextView _textAlgorithm;
+    private TextView _textIssuer;
+    private TextView _textPeriod;
+    private TextView _textOtp;
 
-    EditText _profileName;
-    TextView _textAlgorithm;
-    TextView _textIssuer;
-    TextView _textPeriod;
-    TextView _textOtp;
+    private AegisApplication _app;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        _app = (AegisApplication) getApplication();
+
         setPreferredTheme();
         setContentView(R.layout.activity_add_profile);
 
@@ -82,8 +83,7 @@ public class AddProfileActivity extends AppCompatActivity {
     }
 
     private void setPreferredTheme() {
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        if (sharedPreferences.getBoolean("pref_night_mode", false)) {
+        if (_app.getPreferences().getBoolean("pref_night_mode", false)) {
             setTheme(R.style.AppTheme_Dark_TransparentActionBar);
         } else {
             setTheme(R.style.AppTheme_Default_TransparentActionBar);
