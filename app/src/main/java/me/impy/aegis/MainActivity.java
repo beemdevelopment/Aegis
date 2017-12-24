@@ -14,7 +14,6 @@ import android.os.Build;
 import android.support.design.widget.BottomSheetDialog;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -41,7 +40,7 @@ import me.impy.aegis.importers.DatabaseImporter;
 import me.impy.aegis.helpers.SimpleItemTouchHelperCallback;
 import me.impy.aegis.util.ByteInputStream;
 
-public class MainActivity extends AppCompatActivity implements KeyProfileAdapter.Listener {
+public class MainActivity extends AegisActivity implements KeyProfileAdapter.Listener {
     // activity request codes
     private static final int CODE_GET_KEYINFO = 0;
     private static final int CODE_ADD_KEYINFO = 1;
@@ -67,14 +66,6 @@ public class MainActivity extends AppCompatActivity implements KeyProfileAdapter
         super.onCreate(savedInstanceState);
         _app = (AegisApplication) getApplication();
         _db = _app.getDatabaseManager();
-
-        // set the theme
-        if (_app.getPreferences().getBoolean("pref_night_mode", false)) {
-            _nightMode = true;
-            setTheme(R.style.AppTheme_Dark_NoActionBar);
-        } else {
-            setPreferredTheme();
-        }
 
         // set up the main view
         setContentView(R.layout.activity_main);
@@ -108,9 +99,7 @@ public class MainActivity extends AppCompatActivity implements KeyProfileAdapter
                 try {
                     _db.load();
                     if (!_db.isUnlocked()) {
-                        Intent intent = new Intent(this, AuthActivity.class);
-                        intent.putExtra("slots", _db.getFile().getSlots());
-                        startActivityForResult(intent, CODE_DECRYPT);
+                        startAuthActivity();
                     }
                 } catch (FileNotFoundException e) {
                     // start the intro if the db file was not found
@@ -128,6 +117,16 @@ public class MainActivity extends AppCompatActivity implements KeyProfileAdapter
         if (_db.isUnlocked()) {
             loadKeyProfiles();
         }
+    }
+
+    @Override
+    protected void setPreferredTheme(boolean nightMode) {
+        if (nightMode) {
+            setTheme(R.style.AppTheme_Dark_NoActionBar);
+        } else if (_nightMode) {
+            setTheme(R.style.AppTheme_Default_NoActionBar);
+        }
+        _nightMode = nightMode;
     }
 
     @Override
@@ -353,7 +352,7 @@ public class MainActivity extends AppCompatActivity implements KeyProfileAdapter
         } catch (Exception e) {
             e.printStackTrace();
             Toast.makeText(this, "An error occurred while trying to load/decrypt the database", Toast.LENGTH_LONG).show();
-            recreate();
+            startAuthActivity();
             return;
         }
 
@@ -367,7 +366,7 @@ public class MainActivity extends AppCompatActivity implements KeyProfileAdapter
         } catch (Exception e) {
             e.printStackTrace();
             Toast.makeText(this, "An error occurred while trying to decrypt the database", Toast.LENGTH_LONG).show();
-            recreate();
+            startAuthActivity();
             return;
         }
 
@@ -400,7 +399,12 @@ public class MainActivity extends AppCompatActivity implements KeyProfileAdapter
     @Override
     protected void onResume() {
         super.onResume();
-        setPreferredTheme();
+
+        boolean nightMode = _app.getPreferences().getBoolean("pref_night_mode", false);
+        if (nightMode != _nightMode) {
+            setPreferredTheme(nightMode);
+            recreate();
+        }
     }
 
     private BottomSheetDialog createBottomSheet(KeyProfile profile) {
@@ -485,13 +489,17 @@ public class MainActivity extends AppCompatActivity implements KeyProfileAdapter
                     e.printStackTrace();
                     Toast.makeText(this, "An error occurred while trying to lock the database", Toast.LENGTH_LONG).show();
                 }
-                Intent intent = new Intent(this, AuthActivity.class);
-                intent.putExtra("slots", _db.getFile().getSlots());
-                startActivityForResult(intent, CODE_DECRYPT);
+                startAuthActivity();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    private void startAuthActivity() {
+        Intent intent = new Intent(this, AuthActivity.class);
+        intent.putExtra("slots", _db.getFile().getSlots());
+        startActivityForResult(intent, CODE_DECRYPT);
     }
 
     private void initializeAppShortcuts() {
@@ -523,23 +531,6 @@ public class MainActivity extends AppCompatActivity implements KeyProfileAdapter
         }
     }
 
-    private void setPreferredTheme() {
-        boolean restart = false;
-        if (_app.getPreferences().getBoolean("pref_night_mode", false)) {
-            if (!_nightMode) {
-                setTheme(R.style.AppTheme_Dark_NoActionBar);
-                restart = true;
-            }
-        } else if (_nightMode) {
-            setTheme(R.style.AppTheme_Default_NoActionBar);
-            restart = true;
-        }
-
-        if (restart) {
-            recreate();
-        }
-    }
-
     private void saveDatabase() {
         try {
             _db.save();
@@ -564,7 +555,7 @@ public class MainActivity extends AppCompatActivity implements KeyProfileAdapter
     }
 
     private void updateLockIcon() {
-        // hide the lock icon if the database is not encrypted
+        // hide the lock icon if the database is not unlocked
         if (_menu != null && _db.isUnlocked()) {
             MenuItem item = _menu.findItem(R.id.action_lock);
             item.setVisible(_db.getFile().isEncrypted());

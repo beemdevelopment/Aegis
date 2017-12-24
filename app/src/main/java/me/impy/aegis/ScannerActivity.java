@@ -20,13 +20,13 @@ import me.impy.aegis.crypto.KeyInfo;
 import me.impy.aegis.db.DatabaseEntry;
 import me.impy.aegis.helpers.SquareFinderView;
 
-public class ScannerActivity extends Activity implements ZXingScannerView.ResultHandler {
+public class ScannerActivity extends AegisActivity implements ZXingScannerView.ResultHandler {
     private static final int CODE_ASK_PERMS = 0;
 
     private ZXingScannerView _scannerView;
 
     @Override
-    public void onCreate(Bundle state) {
+    protected void onCreate(Bundle state) {
         super.onCreate(state);
 
         _scannerView = new ZXingScannerView(this) {
@@ -40,6 +40,11 @@ public class ScannerActivity extends Activity implements ZXingScannerView.Result
         _scannerView.setFormats(Collections.singletonList(BarcodeFormat.QR_CODE));
 
         ActivityCompat.requestPermissions(ScannerActivity.this, new String[]{Manifest.permission.CAMERA}, CODE_ASK_PERMS);
+    }
+
+    @Override
+    protected void setPreferredTheme(boolean nightMode) {
+
     }
 
     @Override

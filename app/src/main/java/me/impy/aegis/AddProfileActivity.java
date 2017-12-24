@@ -3,7 +3,6 @@ package me.impy.aegis;
 import android.app.Activity;
 import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -12,7 +11,7 @@ import android.widget.TextView;
 
 import me.impy.aegis.crypto.KeyInfo;
 
-public class AddProfileActivity extends AppCompatActivity {
+public class AddProfileActivity extends AegisActivity {
     private KeyProfile _keyProfile;
 
     private EditText _profileName;
@@ -21,14 +20,10 @@ public class AddProfileActivity extends AppCompatActivity {
     private TextView _textPeriod;
     private TextView _textOtp;
 
-    private AegisApplication _app;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        _app = (AegisApplication) getApplication();
 
-        setPreferredTheme();
         setContentView(R.layout.activity_add_profile);
 
         _profileName = findViewById(R.id.addProfileName);
@@ -60,6 +55,15 @@ public class AddProfileActivity extends AppCompatActivity {
         //_profileName.setText(_keyProfile.Info.getAccountName());
     }
 
+    @Override
+    protected void setPreferredTheme(boolean nightMode) {
+        if (nightMode) {
+            setTheme(R.style.AppTheme_Dark_TransparentActionBar);
+        } else {
+            setTheme(R.style.AppTheme_Default_TransparentActionBar);
+        }
+    }
+
     private void initializeForm() {
         KeyInfo info = _keyProfile.getEntry().getInfo();
         _profileName.setText(info.getAccountName());
@@ -79,14 +83,6 @@ public class AddProfileActivity extends AppCompatActivity {
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
-        }
-    }
-
-    private void setPreferredTheme() {
-        if (_app.getPreferences().getBoolean("pref_night_mode", false)) {
-            setTheme(R.style.AppTheme_Dark_TransparentActionBar);
-        } else {
-            setTheme(R.style.AppTheme_Default_TransparentActionBar);
         }
     }
 }

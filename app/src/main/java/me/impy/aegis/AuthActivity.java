@@ -4,7 +4,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.hardware.fingerprint.FingerprintManager;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -28,7 +27,7 @@ import me.impy.aegis.crypto.slots.SlotCollection;
 import me.impy.aegis.helpers.FingerprintUiHelper;
 import me.impy.aegis.helpers.AuthHelper;
 
-public class AuthActivity extends AppCompatActivity implements FingerprintUiHelper.Callback, SlotCollectionTask.Callback {
+public class AuthActivity extends AegisActivity implements FingerprintUiHelper.Callback, SlotCollectionTask.Callback {
     public static final int RESULT_OK = 0;
     public static final int RESULT_EXCEPTION = 1;
 
@@ -74,6 +73,15 @@ public class AuthActivity extends AppCompatActivity implements FingerprintUiHelp
                 trySlots(PasswordSlot.class, password);
             }
         });
+    }
+
+    @Override
+    protected void setPreferredTheme(boolean nightMode) {
+        if (nightMode) {
+            setTheme(R.style.AppTheme_Dark);
+        } else {
+            setTheme(R.style.AppTheme_Default);
+        }
     }
 
     private void showError() {

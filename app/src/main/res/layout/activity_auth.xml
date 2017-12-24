@@ -15,6 +15,7 @@
         tools:layout_editor_absoluteX="8dp">
         <TextView
             android:text="@string/authentication"
+            android:textColor="?attr/primaryText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="24sp"
@@ -28,7 +29,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/textView4"
-                android:text="@string/authentication_enter_password"/>
+                android:text="@string/authentication_enter_password"
+                android:textColor="?attr/secondaryText"/>
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -59,7 +61,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="15dp"
-                android:text="Touch sensor"/>
+                android:text="Touch sensor"
+                android:textColor="?attr/secondaryText"/>
         </LinearLayout>
     </LinearLayout>
 </android.support.design.widget.CoordinatorLayout>

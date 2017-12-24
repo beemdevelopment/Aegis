@@ -7,23 +7,23 @@ import android.preference.PreferenceFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
-public class PreferencesActivity extends AppCompatActivity {
+public class PreferencesActivity extends AegisActivity {
     public static final int ACTION_EXPORT = 0;
 
-    private AegisApplication _app;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        getFragmentManager().beginTransaction().replace(android.R.id.content, new PreferencesFragment()).commit();
+    }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        _app = (AegisApplication) getApplication();
-
-        if (_app.getPreferences().getBoolean("pref_night_mode", false)) {
+    protected void setPreferredTheme(boolean nightMode) {
+        if (nightMode) {
             setTheme(R.style.AppTheme_Dark);
         } else {
             setTheme(R.style.AppTheme_Default);
         }
-
-        getFragmentManager().beginTransaction().replace(android.R.id.content, new PreferencesFragment()).commit();
     }
 
     public static class PreferencesFragment extends PreferenceFragment {
