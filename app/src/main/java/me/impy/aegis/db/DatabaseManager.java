@@ -30,6 +30,8 @@ public class DatabaseManager {
     }
 
     public void load() throws Exception {
+        assertState(true, false);
+
         byte[] fileBytes;
         FileInputStream file = null;
 
@@ -58,14 +60,14 @@ public class DatabaseManager {
     }
 
     public void lock() throws Exception {
-        assertUnlocked();
+        assertState(false, true);
         // TODO: properly clear everything
         _key = null;
         _db = null;
     }
 
     public void unlock(MasterKey key) throws Exception {
-        assertLoaded();
+        assertState(true, true);
         byte[] encrypted = _file.getContent();
         CryptParameters params = _file.getCryptParameters();
         CryptResult result = key.decrypt(encrypted, params);
@@ -90,7 +92,7 @@ public class DatabaseManager {
     }
 
     public void save() throws Exception {
-        assertUnlocked();
+        assertState(false, true);
         byte[] dbBytes = _db.serialize();
         if (!_file.isEncrypted()) {
             _file.setContent(dbBytes);
@@ -103,7 +105,7 @@ public class DatabaseManager {
     }
 
     public String export(boolean encrypt) throws Exception {
-        assertUnlocked();
+        assertState(false, true);
         byte[] bytes = _db.serialize();
         encrypt = encrypt && getFile().isEncrypted();
         if (encrypt) {
@@ -136,22 +138,22 @@ public class DatabaseManager {
     }
 
     public void addKey(DatabaseEntry entry) throws Exception {
-        assertUnlocked();
+        assertState(false, true);
         _db.addKey(entry);
     }
 
     public void removeKey(DatabaseEntry entry) throws Exception {
-        assertUnlocked();
+        assertState(false, true);
         _db.removeKey(entry);
     }
 
     public void swapKeys(DatabaseEntry entry1, DatabaseEntry entry2) throws Exception {
-        assertUnlocked();
+        assertState(false, true);
         _db.swapKeys(entry1, entry2);
     }
 
     public List<DatabaseEntry> getKeys() throws Exception {
-        assertUnlocked();
+        assertState(false, true);
         return _db.getKeys();
     }
 
@@ -163,20 +165,21 @@ public class DatabaseManager {
         return _file != null;
     }
 
-    public boolean isUnlocked() {
-        return _db != null;
+    public boolean isLocked() {
+        return _db == null;
     }
 
-    private void assertLoaded() throws Exception {
-        if (!isLoaded()) {
+    private void assertState(boolean locked, boolean loaded) throws Exception {
+        if (isLoaded() && !loaded) {
             throw new Exception("database file has not been loaded yet");
+        } else if (!isLoaded() && loaded) {
+            throw new Exception("database file has is already been loaded");
         }
-    }
 
-    private void assertUnlocked() throws Exception {
-        assertLoaded();
-        if (!isUnlocked()) {
+        if (isLocked() && !locked) {
             throw new Exception("database file has not been unlocked yet");
+        } else if (!isLocked() && locked) {
+            throw new Exception("database file has is already been unlocked");
         }
     }
 }

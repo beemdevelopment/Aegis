@@ -91,14 +91,14 @@ public class MainActivity extends AegisActivity implements KeyProfileAdapter.Lis
         touchHelper.attachToRecyclerView(rvKeyProfiles);
         rvKeyProfiles.setAdapter(_keyProfileAdapter);
 
-        if (!_app.isRunning() && !_db.isUnlocked()) {
+        if (!_app.isRunning() && _db.isLocked()) {
             if (!_app.getPreferences().getBoolean("pref_intro", false)) {
                 Intent intro = new Intent(this, IntroActivity.class);
                 startActivityForResult(intro, CODE_DO_INTRO);
             } else {
                 try {
                     _db.load();
-                    if (!_db.isUnlocked()) {
+                    if (_db.isLocked()) {
                         startAuthActivity();
                     }
                 } catch (FileNotFoundException e) {
@@ -114,7 +114,7 @@ public class MainActivity extends AegisActivity implements KeyProfileAdapter.Lis
             }
         }
 
-        if (_db.isUnlocked()) {
+        if (!_db.isLocked()) {
             loadKeyProfiles();
         }
     }
@@ -346,7 +346,7 @@ public class MainActivity extends AegisActivity implements KeyProfileAdapter.Lis
         MasterKey key = (MasterKey) data.getSerializableExtra("key");
         try {
             _db.load();
-            if (!_db.isUnlocked()) {
+            if (_db.isLocked()) {
                 _db.unlock(key);
             }
         } catch (Exception e) {
@@ -377,7 +377,7 @@ public class MainActivity extends AegisActivity implements KeyProfileAdapter.Lis
     private void doShortcutActions() {
         Intent intent = getIntent();
         String mode = intent.getStringExtra("Action");
-        if (mode == null || !_db.isUnlocked()) {
+        if (mode == null || _db.isLocked()) {
             return;
         }
 
@@ -556,7 +556,7 @@ public class MainActivity extends AegisActivity implements KeyProfileAdapter.Lis
 
     private void updateLockIcon() {
         // hide the lock icon if the database is not unlocked
-        if (_menu != null && _db.isUnlocked()) {
+        if (_menu != null && !_db.isLocked()) {
             MenuItem item = _menu.findItem(R.id.action_lock);
             item.setVisible(_db.getFile().isEncrypted());
         }
