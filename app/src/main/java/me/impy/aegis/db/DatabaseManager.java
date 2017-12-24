@@ -29,6 +29,11 @@ public class DatabaseManager {
         _context = context;
     }
 
+    public boolean fileExists() {
+        File file = new File(_context.getFilesDir(), FILENAME);
+        return file.exists() && file.isFile();
+    }
+
     public void load() throws Exception {
         assertState(true, false);
 

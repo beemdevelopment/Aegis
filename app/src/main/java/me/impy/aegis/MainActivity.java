@@ -91,21 +91,23 @@ public class MainActivity extends AegisActivity implements KeyProfileAdapter.Lis
         touchHelper.attachToRecyclerView(rvKeyProfiles);
         rvKeyProfiles.setAdapter(_keyProfileAdapter);
 
+        // skip this part if this is the not initial startup and the database has been unlocked
         if (!_app.isRunning() && _db.isLocked()) {
-            if (!_app.getPreferences().getBoolean("pref_intro", false)) {
+            if (!_db.fileExists()) {
+                // the db doesn't exist, start the intro
+                if (_app.getPreferences().getBoolean("pref_intro", false)) {
+                    Toast.makeText(this, "Database file not found, starting over...", Toast.LENGTH_SHORT).show();
+                }
                 Intent intro = new Intent(this, IntroActivity.class);
                 startActivityForResult(intro, CODE_DO_INTRO);
             } else {
+                // the db exists, load the database
+                // if the database is still encrypted, start the auth activity
                 try {
                     _db.load();
                     if (_db.isLocked()) {
                         startAuthActivity();
                     }
-                } catch (FileNotFoundException e) {
-                    // start the intro if the db file was not found
-                    Toast.makeText(this, "Database file not found, starting over...", Toast.LENGTH_SHORT).show();
-                    Intent intro = new Intent(this, IntroActivity.class);
-                    startActivityForResult(intro, CODE_DO_INTRO);
                 } catch (Exception e) {
                     e.printStackTrace();
                     Toast.makeText(this, "An error occurred while trying to deserialize the database", Toast.LENGTH_LONG).show();
@@ -114,6 +116,7 @@ public class MainActivity extends AegisActivity implements KeyProfileAdapter.Lis
             }
         }
 
+        // if the database has been decrypted at this point, we can load the key profiles
         if (!_db.isLocked()) {
             loadKeyProfiles();
         }
