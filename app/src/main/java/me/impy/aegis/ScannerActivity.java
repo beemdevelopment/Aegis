@@ -1,11 +1,8 @@
 package me.impy.aegis;
 
-import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.support.v4.app.ActivityCompat;
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -21,8 +18,6 @@ import me.impy.aegis.db.DatabaseEntry;
 import me.impy.aegis.helpers.SquareFinderView;
 
 public class ScannerActivity extends AegisActivity implements ZXingScannerView.ResultHandler {
-    private static final int CODE_ASK_PERMS = 0;
-
     private ZXingScannerView _scannerView;
 
     @Override
@@ -35,11 +30,8 @@ public class ScannerActivity extends AegisActivity implements ZXingScannerView.R
                 return new SquareFinderView(context);
             }
         };
-
-        setContentView(_scannerView);
         _scannerView.setFormats(Collections.singletonList(BarcodeFormat.QR_CODE));
-
-        ActivityCompat.requestPermissions(ScannerActivity.this, new String[]{Manifest.permission.CAMERA}, CODE_ASK_PERMS);
+        setContentView(_scannerView);
     }
 
     @Override
@@ -74,20 +66,5 @@ public class ScannerActivity extends AegisActivity implements ZXingScannerView.R
         }
 
         _scannerView.resumeCameraPreview(this);
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
-        switch (requestCode) {
-            case CODE_ASK_PERMS: {
-                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    _scannerView.setResultHandler(this);
-                    _scannerView.startCamera();
-                } else {
-                    Toast.makeText(ScannerActivity.this, "Permission denied to get access to the camera", Toast.LENGTH_SHORT).show();
-                }
-                break;
-            }
-        }
     }
 }
