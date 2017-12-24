@@ -18,6 +18,11 @@
         <item name="windowActionBarOverlay">true</item>
     </style>
 
+    <style name="AppTheme.Fullscreen" parent="AppTheme.TransparentActionBar">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
+    </style>
+
     <style name="ThemeActionBar" parent="Widget.AppCompat.Light.ActionBar.Solid">
         <item name="android:background">@null</item>
         <!-- Support library compatibility -->

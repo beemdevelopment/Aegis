@@ -24,7 +24,11 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".ScannerActivity">
+        <activity
+            android:name=".ScannerActivity"
+            android:theme="@style/AppTheme.Fullscreen"
+            android:screenOrientation="portrait"
+            android:configChanges="keyboardHidden|orientation|screenSize">
         </activity>
         <activity
             android:name=".AddProfileActivity"

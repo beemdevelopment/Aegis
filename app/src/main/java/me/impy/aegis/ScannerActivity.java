@@ -23,6 +23,7 @@ public class ScannerActivity extends AegisActivity implements ZXingScannerView.R
     @Override
     protected void onCreate(Bundle state) {
         super.onCreate(state);
+        setTitle("Scan a QR code");
 
         _scannerView = new ZXingScannerView(this) {
             @Override
@@ -30,7 +31,10 @@ public class ScannerActivity extends AegisActivity implements ZXingScannerView.R
                 return new SquareFinderView(context);
             }
         };
+        _scannerView.setResultHandler(this);
         _scannerView.setFormats(Collections.singletonList(BarcodeFormat.QR_CODE));
+        _scannerView.startCamera();
+
         setContentView(_scannerView);
     }
 
