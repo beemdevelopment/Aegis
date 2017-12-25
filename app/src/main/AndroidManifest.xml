@@ -19,7 +19,7 @@
             android:label="@string/app_name"
             android:theme="@style/AppTheme.Default.NoActionBar"
             android:alwaysRetainTaskState="true"
-            android:relinquishTaskIdentity="false">
+            android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>

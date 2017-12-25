@@ -53,7 +53,6 @@ public class MainActivity extends AegisActivity implements KeyProfileView.Listen
     private DatabaseManager _db;
     private KeyProfileView _keyProfileView;
 
-    private String _pendingAction = null;
     private boolean _nightMode = false;
     private Menu _menu;
 
@@ -68,9 +67,8 @@ public class MainActivity extends AegisActivity implements KeyProfileView.Listen
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        // init the app shortcuts and execute any pending actions
+        // init the app shortcuts
         initializeAppShortcuts();
-        doShortcutActions();
 
         // set up the key profile view
         _keyProfileView = (KeyProfileView) getSupportFragmentManager().findFragmentById(R.id.key_profiles);
@@ -116,6 +114,16 @@ public class MainActivity extends AegisActivity implements KeyProfileView.Listen
     }
 
     @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        setIntent(intent);
+
+        if (!doShortcutActions()) {
+            startAuthActivity();
+        }
+    }
+
+    @Override
     protected void setPreferredTheme(boolean nightMode) {
         if (nightMode) {
             setTheme(R.style.AppTheme_Dark_NoActionBar);
@@ -127,6 +135,10 @@ public class MainActivity extends AegisActivity implements KeyProfileView.Listen
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (data == null) {
+            return;
+        }
+
         switch (requestCode) {
             case CODE_GET_KEYINFO:
                 onGetKeyInfoResult(resultCode, data);
@@ -373,20 +385,11 @@ public class MainActivity extends AegisActivity implements KeyProfileView.Listen
         startActivityForResult(scannerActivity, CODE_GET_KEYINFO);
     }
 
-    private void doShortcutActions() {
+    private boolean doShortcutActions() {
         Intent intent = getIntent();
         String action = intent.getStringExtra("action");
-        intent.removeExtra("action");
-        if (action == null) {
-            if (_pendingAction == null) {
-                return;
-            } else {
-                action = _pendingAction;
-            }
-        }
-        if (_db.isLocked()) {
-            _pendingAction = action;
-            return;
+        if (action == null || _db.isLocked()) {
+            return false;
         }
 
         switch (action) {
@@ -394,6 +397,9 @@ public class MainActivity extends AegisActivity implements KeyProfileView.Listen
                 startScanActivity();
                 break;
         }
+
+        intent.removeExtra("action");
+        return true;
     }
 
     public void startActivityForResult(Intent intent, int requestCode) {
