@@ -53,6 +53,7 @@ public class MainActivity extends AegisActivity implements KeyProfileView.Listen
     private DatabaseManager _db;
     private KeyProfileView _keyProfileView;
 
+    private String _pendingAction = null;
     private boolean _nightMode = false;
     private Menu _menu;
 
@@ -67,14 +68,14 @@ public class MainActivity extends AegisActivity implements KeyProfileView.Listen
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        // init the app shortcuts and execute any pending actions
+        initializeAppShortcuts();
+        doShortcutActions();
+
         // set up the key profile view
         _keyProfileView = (KeyProfileView) getSupportFragmentManager().findFragmentById(R.id.key_profiles);
         _keyProfileView.setListener(this);
         _keyProfileView.setShowIssuer(_app.getPreferences().getBoolean("pref_issuer", false));
-
-        // init the app shortcuts and execute any pending actions
-        initializeAppShortcuts();
-        doShortcutActions();
 
         // set up the floating action button
         FloatingActionButton fab = findViewById(R.id.fab);
@@ -94,7 +95,9 @@ public class MainActivity extends AegisActivity implements KeyProfileView.Listen
                 // the db exists, load the database
                 // if the database is still encrypted, start the auth activity
                 try {
-                    _db.load();
+                    if (!_db.isLoaded()) {
+                        _db.load();
+                    }
                     if (_db.isLocked()) {
                         startAuthActivity();
                     }
@@ -291,8 +294,7 @@ public class MainActivity extends AegisActivity implements KeyProfileView.Listen
             return;
         }
 
-        Intent scannerActivity = new Intent(getApplicationContext(), ScannerActivity.class);
-        startActivityForResult(scannerActivity, CODE_GET_KEYINFO);
+        startScanActivity();
     }
 
     private void onGetKeyInfoResult(int resultCode, Intent data) {
@@ -351,8 +353,8 @@ public class MainActivity extends AegisActivity implements KeyProfileView.Listen
         loadKeyProfiles();
     }
 
-    private void onDecryptResult(int resultCode, Intent data) {
-        MasterKey key = (MasterKey) data.getSerializableExtra("key");
+    private void onDecryptResult(int resultCode, Intent intent) {
+        MasterKey key = (MasterKey) intent.getSerializableExtra("key");
         try {
             _db.unlock(key);
         } catch (Exception e) {
@@ -366,21 +368,32 @@ public class MainActivity extends AegisActivity implements KeyProfileView.Listen
         doShortcutActions();
     }
 
+    private void startScanActivity() {
+        Intent scannerActivity = new Intent(getApplicationContext(), ScannerActivity.class);
+        startActivityForResult(scannerActivity, CODE_GET_KEYINFO);
+    }
+
     private void doShortcutActions() {
         Intent intent = getIntent();
-        String mode = intent.getStringExtra("Action");
-        if (mode == null || _db.isLocked()) {
+        String action = intent.getStringExtra("action");
+        intent.removeExtra("action");
+        if (action == null) {
+            if (_pendingAction == null) {
+                return;
+            } else {
+                action = _pendingAction;
+            }
+        }
+        if (_db.isLocked()) {
+            _pendingAction = action;
             return;
         }
 
-        switch (mode) {
-            case "Scan":
-                Intent scannerActivity = new Intent(getApplicationContext(), ScannerActivity.class);
-                startActivityForResult(scannerActivity, CODE_GET_KEYINFO);
+        switch (action) {
+            case "scan":
+                startScanActivity();
                 break;
         }
-
-        intent.removeExtra("Action");
     }
 
     public void startActivityForResult(Intent intent, int requestCode) {
@@ -509,7 +522,7 @@ public class MainActivity extends AegisActivity implements KeyProfileView.Listen
         if (shortcutManager.getDynamicShortcuts().size() == 0) {
             // Application restored. Need to re-publish dynamic shortcuts.
             Intent intent = new Intent(this.getBaseContext(), MainActivity.class);
-            intent.putExtra("Action", "Scan");
+            intent.putExtra("action", "scan");
             intent.setAction(Intent.ACTION_MAIN);
 
             ShortcutInfo shortcut = new ShortcutInfo.Builder(this, "id1")
