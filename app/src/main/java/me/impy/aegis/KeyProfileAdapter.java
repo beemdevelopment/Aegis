@@ -15,10 +15,9 @@ public class KeyProfileAdapter extends RecyclerView.Adapter<KeyProfileHolder> im
     private static Listener _listener;
     private boolean _showIssuer;
 
-    public KeyProfileAdapter(Listener listener, boolean showIssuer) {
+    public KeyProfileAdapter(Listener listener) {
         _keyProfiles = new ArrayList<>();
         _listener = listener;
-        _showIssuer = showIssuer;
     }
 
     public void setShowIssuer(boolean showIssuer) {

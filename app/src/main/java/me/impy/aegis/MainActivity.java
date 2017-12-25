@@ -15,10 +15,7 @@ import android.support.design.widget.BottomSheetDialog;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -26,7 +23,6 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import java.io.ByteArrayOutputStream;
-import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.lang.reflect.UndeclaredThrowableException;
 import java.util.Collections;
@@ -37,10 +33,9 @@ import me.impy.aegis.db.DatabaseEntry;
 import me.impy.aegis.db.DatabaseManager;
 import me.impy.aegis.helpers.PermissionHelper;
 import me.impy.aegis.importers.DatabaseImporter;
-import me.impy.aegis.helpers.SimpleItemTouchHelperCallback;
 import me.impy.aegis.util.ByteInputStream;
 
-public class MainActivity extends AegisActivity implements KeyProfileAdapter.Listener {
+public class MainActivity extends AegisActivity implements KeyProfileView.Listener {
     // activity request codes
     private static final int CODE_GET_KEYINFO = 0;
     private static final int CODE_ADD_KEYINFO = 1;
@@ -54,9 +49,9 @@ public class MainActivity extends AegisActivity implements KeyProfileAdapter.Lis
     private static final int CODE_PERM_IMPORT = 1;
     private static final int CODE_PERM_CAMERA = 2;
 
-    private KeyProfileAdapter _keyProfileAdapter;
     private AegisApplication _app;
     private DatabaseManager _db;
+    private KeyProfileView _keyProfileView;
 
     private boolean _nightMode = false;
     private Menu _menu;
@@ -72,6 +67,11 @@ public class MainActivity extends AegisActivity implements KeyProfileAdapter.Lis
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        // set up the key profile view
+        _keyProfileView = (KeyProfileView) getSupportFragmentManager().findFragmentById(R.id.key_profiles);
+        _keyProfileView.setListener(this);
+        _keyProfileView.setShowIssuer(_app.getPreferences().getBoolean("pref_issuer", false));
+
         // init the app shortcuts and execute any pending actions
         initializeAppShortcuts();
         doShortcutActions();
@@ -80,16 +80,6 @@ public class MainActivity extends AegisActivity implements KeyProfileAdapter.Lis
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setEnabled(true);
         fab.setOnClickListener(view -> onGetKeyInfo());
-
-        // set up the recycler view for the key profiles
-        _keyProfileAdapter = new KeyProfileAdapter(this, _app.getPreferences().getBoolean("pref_issuer", false));
-        RecyclerView rvKeyProfiles = findViewById(R.id.rvKeyProfiles);
-        LinearLayoutManager mLayoutManager = new LinearLayoutManager(this);
-        rvKeyProfiles.setLayoutManager(mLayoutManager);
-        ItemTouchHelper.Callback callback = new SimpleItemTouchHelperCallback(_keyProfileAdapter);
-        ItemTouchHelper touchHelper = new ItemTouchHelper(callback);
-        touchHelper.attachToRecyclerView(rvKeyProfiles);
-        rvKeyProfiles.setAdapter(_keyProfileAdapter);
 
         // skip this part if this is the not initial startup and the database has been unlocked
         if (!_app.isRunning() && _db.isLocked()) {
@@ -180,8 +170,7 @@ public class MainActivity extends AegisActivity implements KeyProfileAdapter.Lis
         // refresh the entire key profile list if needed
         if (data.getBooleanExtra("needsRefresh", false)) {
             boolean showIssuer = _app.getPreferences().getBoolean("pref_issuer", false);
-            _keyProfileAdapter.setShowIssuer(showIssuer);
-            _keyProfileAdapter.notifyDataSetChanged();
+            _keyProfileView.setShowIssuer(showIssuer);
         }
 
         // perform any pending actions
@@ -336,7 +325,7 @@ public class MainActivity extends AegisActivity implements KeyProfileAdapter.Lis
             return;
         }
 
-        _keyProfileAdapter.addKey(profile);
+        _keyProfileView.addKey(profile);
     }
 
     private void onDoIntroResult(int resultCode, Intent data) {
@@ -458,7 +447,7 @@ public class MainActivity extends AegisActivity implements KeyProfileAdapter.Lis
                 }
                 saveDatabase();
 
-                _keyProfileAdapter.removeKey(profile);
+                _keyProfileView.removeKey(profile);
             })
             .setNegativeButton(android.R.string.no, null)
             .show();
@@ -485,7 +474,7 @@ public class MainActivity extends AegisActivity implements KeyProfileAdapter.Lis
                 }
                 return true;
             case R.id.action_lock:
-                _keyProfileAdapter.clearKeys();
+                _keyProfileView.clearKeys();
                 try {
                     _db.lock();
                 } catch (Exception e) {
@@ -548,7 +537,7 @@ public class MainActivity extends AegisActivity implements KeyProfileAdapter.Lis
 
         try {
             for (DatabaseEntry entry : _db.getKeys()) {
-                _keyProfileAdapter.addKey(new KeyProfile(entry));
+                _keyProfileView.addKey(new KeyProfile(entry));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -566,19 +555,14 @@ public class MainActivity extends AegisActivity implements KeyProfileAdapter.Lis
     }
 
     @Override
-    public void onKeyProfileClick(KeyProfile profile) {
+    public void onEntryClick(KeyProfile profile) {
         createBottomSheet(profile).show();
     }
 
     @Override
-    public boolean onLongKeyProfileClick(KeyProfile profile) {
-        return false;
-    }
-
-    @Override
-    public void onKeyProfileMove(KeyProfile profile1, KeyProfile profile2) {
+    public void onEntryMove(DatabaseEntry entry1, DatabaseEntry entry2) {
         try {
-            _db.swapKeys(profile1.getEntry(), profile2.getEntry());
+            _db.swapKeys(entry1, entry2);
         } catch (Exception e) {
             e.printStackTrace();
             throw new UndeclaredThrowableException(e);
@@ -586,7 +570,7 @@ public class MainActivity extends AegisActivity implements KeyProfileAdapter.Lis
     }
 
     @Override
-    public void onKeyProfileDrop(KeyProfile profile) {
+    public void onEntryDrop(DatabaseEntry entry) {
         saveDatabase();
     }
 }
