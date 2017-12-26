@@ -82,10 +82,11 @@
             android:layout_height="match_parent"
             android:layout_marginTop="12dp">
 
-            <com.mattprecious.swirl.SwirlView
-                android:id="@+id/img_fingerprint"
+            <LinearLayout
+                android:id="@+id/img_fingerprint_insert"
                 android:layout_width="60dp"
-                android:layout_height="60dp"/>
+                android:layout_height="60dp"
+                android:orientation="horizontal"/>
 
             <TextView
                 android:id="@+id/text_fingerprint"

@@ -3,6 +3,7 @@ package me.impy.aegis;
 import android.content.Context;
 import android.content.Intent;
 import android.hardware.fingerprint.FingerprintManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
@@ -47,7 +48,13 @@ public class CustomAuthenticatedSlide extends Fragment implements FingerprintUiH
         _textPassword = view.findViewById(R.id.text_password);
         _textPasswordConfirm = view.findViewById(R.id.text_password_confirm);
         _boxFingerprint = view.findViewById(R.id.box_fingerprint);
-        _imgFingerprint = view.findViewById(R.id.img_fingerprint);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            ViewGroup insertPoint = view.findViewById(R.id.img_fingerprint_insert);
+            _imgFingerprint = new SwirlView(getContext());
+            insertPoint.addView(_imgFingerprint, 0, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+        }
+
         _textFingerprint = view.findViewById(R.id.text_fingerprint);
         view.findViewById(R.id.main).setBackgroundColor(_bgColor);
         return view;

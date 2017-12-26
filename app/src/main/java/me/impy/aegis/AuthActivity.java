@@ -3,9 +3,11 @@ package me.impy.aegis;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.hardware.fingerprint.FingerprintManager;
+import android.os.Build;
 import android.support.v7.app.AlertDialog;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -44,8 +46,14 @@ public class AuthActivity extends AegisActivity implements FingerprintUiHelper.C
         setContentView(R.layout.activity_auth);
         _textPassword = findViewById(R.id.text_password);
         LinearLayout boxFingerprint = findViewById(R.id.box_fingerprint);
-        SwirlView imgFingerprint = findViewById(R.id.img_fingerprint);
         TextView textFingerprint = findViewById(R.id.text_fingerprint);
+
+        SwirlView imgFingerprint = null;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            ViewGroup insertPoint = findViewById(R.id.img_fingerprint_insert);
+            imgFingerprint = new SwirlView(this);
+            insertPoint.addView(imgFingerprint, 0, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+        }
 
         Intent intent = getIntent();
         _slots = (SlotCollection) intent.getSerializableExtra("slots");
