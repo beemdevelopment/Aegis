@@ -6,11 +6,7 @@ import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.ShortcutInfo;
-import android.content.pm.ShortcutManager;
-import android.graphics.drawable.Icon;
 import android.media.MediaScannerConnection;
-import android.os.Build;
 import android.support.design.widget.BottomSheetDialog;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
@@ -25,7 +21,6 @@ import android.widget.Toast;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.lang.reflect.UndeclaredThrowableException;
-import java.util.Collections;
 import java.util.List;
 
 import me.impy.aegis.crypto.MasterKey;
@@ -66,9 +61,6 @@ public class MainActivity extends AegisActivity implements KeyProfileView.Listen
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        // init the app shortcuts
-        initializeAppShortcuts();
 
         // set up the key profile view
         _keyProfileView = (KeyProfileView) getSupportFragmentManager().findFragmentById(R.id.key_profiles);
@@ -511,35 +503,6 @@ public class MainActivity extends AegisActivity implements KeyProfileView.Listen
         Intent intent = new Intent(this, AuthActivity.class);
         intent.putExtra("slots", _db.getFile().getSlots());
         startActivityForResult(intent, CODE_DECRYPT);
-    }
-
-    private void initializeAppShortcuts() {
-        if (android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.N_MR1) {
-            return;
-        }
-
-        ShortcutManager shortcutManager = getSystemService(ShortcutManager.class);
-        if (shortcutManager == null) {
-            return;
-        }
-
-        // TODO: Remove this line
-        shortcutManager.removeAllDynamicShortcuts();
-        if (shortcutManager.getDynamicShortcuts().size() == 0) {
-            // Application restored. Need to re-publish dynamic shortcuts.
-            Intent intent = new Intent(this.getBaseContext(), MainActivity.class);
-            intent.putExtra("action", "scan");
-            intent.setAction(Intent.ACTION_MAIN);
-
-            ShortcutInfo shortcut = new ShortcutInfo.Builder(this, "id1")
-                    .setShortLabel("New profile")
-                    .setLongLabel("Add new profile")
-                    .setIcon(Icon.createWithResource(this.getApplicationContext(), R.drawable.intro_scanner))
-                    .setIntent(intent)
-                    .build();
-
-            shortcutManager.setDynamicShortcuts(Collections.singletonList(shortcut));
-        }
     }
 
     private void saveDatabase() {
