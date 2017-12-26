@@ -24,6 +24,7 @@ import me.impy.aegis.crypto.slots.FingerprintSlot;
 import me.impy.aegis.crypto.slots.PasswordSlot;
 import me.impy.aegis.crypto.slots.Slot;
 import me.impy.aegis.crypto.slots.SlotCollection;
+import me.impy.aegis.helpers.FingerprintHelper;
 import me.impy.aegis.helpers.FingerprintUiHelper;
 import me.impy.aegis.helpers.AuthHelper;
 
@@ -50,7 +51,7 @@ public class AuthActivity extends AegisActivity implements FingerprintUiHelper.C
         _slots = (SlotCollection) intent.getSerializableExtra("slots");
 
         // only show the fingerprint controls if the api version is new enough, permission is granted, a scanner is found and a fingerprint slot is found
-        FingerprintManager manager = FingerprintUiHelper.getManager(this);
+        FingerprintManager manager = FingerprintHelper.getManager(this);
         if (manager != null && _slots.has(FingerprintSlot.class)) {
             try {
                 KeyStoreHandle handle = new KeyStoreHandle();

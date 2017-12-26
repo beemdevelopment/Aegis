@@ -14,7 +14,7 @@ import android.widget.TextView;
 
 import com.github.paolorotolo.appintro.ISlidePolicy;
 
-import me.impy.aegis.helpers.FingerprintUiHelper;
+import me.impy.aegis.helpers.FingerprintHelper;
 
 public class CustomAuthenticationSlide extends Fragment implements ISlidePolicy, RadioGroup.OnCheckedChangeListener {
     public static final int CRYPT_TYPE_INVALID = 0;
@@ -28,13 +28,12 @@ public class CustomAuthenticationSlide extends Fragment implements ISlidePolicy,
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.fragment_authentication_slide, container, false);
-
         _buttonGroup = view.findViewById(R.id.rg_authenticationMethod);
         _buttonGroup.setOnCheckedChangeListener(this);
         onCheckedChanged(_buttonGroup, _buttonGroup.getCheckedRadioButtonId());
 
         // only show the fingerprint option if the api version is new enough, permission is granted and a scanner is found
-        FingerprintManager manager = FingerprintUiHelper.getManager(getContext());
+        FingerprintManager manager = FingerprintHelper.getManager(getContext());
         if (manager != null) {
             RadioButton button = view.findViewById(R.id.rb_fingerprint);
             TextView text = view.findViewById(R.id.text_rb_fingerprint);
