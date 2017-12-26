@@ -378,9 +378,13 @@ public class MainActivity extends AegisActivity implements KeyProfileView.Listen
     }
 
     private boolean doShortcutActions() {
+        // return false if an action was blocked by a locked database
+        // otherwise, always return true
         Intent intent = getIntent();
         String action = intent.getStringExtra("action");
-        if (action == null || _db.isLocked()) {
+        if (action == null) {
+            return true;
+        } else if (_db.isLocked()) {
             return false;
         }
 
