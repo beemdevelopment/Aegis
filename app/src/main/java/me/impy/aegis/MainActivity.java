@@ -110,7 +110,7 @@ public class MainActivity extends AegisActivity implements KeyProfileView.Listen
         super.onNewIntent(intent);
         setIntent(intent);
 
-        if (!doShortcutActions()) {
+        if (!doShortcutActions() || _db.isLocked()) {
             startAuthActivity();
         }
     }
