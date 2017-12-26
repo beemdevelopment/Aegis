@@ -21,6 +21,14 @@
 
     </android.support.design.widget.AppBarLayout>
 
+    <fragment
+        android:name="me.impy.aegis.KeyProfileView"
+        android:id="@+id/key_profiles"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+
+    <!-- note: the fab should always be the last element to be sure it's displayed on top -->
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
         android:layout_width="wrap_content"
@@ -29,12 +37,5 @@
         android:layout_margin="@dimen/fab_margin"
         android:src="@drawable/ic_add_black_24dp"
         android:tint="@color/background"/>
-
-    <fragment
-        android:name="me.impy.aegis.KeyProfileView"
-        android:id="@+id/key_profiles"
-        android:layout_height="match_parent"
-        android:layout_width="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
 
 </android.support.design.widget.CoordinatorLayout>
