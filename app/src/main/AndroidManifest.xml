@@ -27,6 +27,7 @@
         </activity>
         <activity
             android:name=".ScannerActivity"
+            android:label="Scan a QR code"
             android:theme="@style/AppTheme.Fullscreen"
             android:screenOrientation="portrait"
             android:configChanges="keyboardHidden|orientation|screenSize">

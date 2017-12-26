@@ -23,7 +23,6 @@ public class ScannerActivity extends AegisActivity implements ZXingScannerView.R
     @Override
     protected void onCreate(Bundle state) {
         super.onCreate(state);
-        setTitle("Scan a QR code");
 
         _scannerView = new ZXingScannerView(this) {
             @Override
