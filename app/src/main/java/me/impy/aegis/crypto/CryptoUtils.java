@@ -20,7 +20,7 @@ import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.KeyGenerator;
 import javax.crypto.NoSuchPaddingException;
 import javax.crypto.SecretKey;
-import javax.crypto.spec.GCMParameterSpec;
+import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 
 import org.spongycastle.crypto.generators.SCrypt;
@@ -56,7 +56,7 @@ public class CryptoUtils {
     }
 
     public static Cipher createCipher(SecretKey key, int opmode, byte[] nonce) throws NoSuchPaddingException, NoSuchAlgorithmException, InvalidAlgorithmParameterException, InvalidKeyException {
-        GCMParameterSpec spec = new GCMParameterSpec(CRYPTO_TAG_SIZE * 8, nonce);
+        IvParameterSpec spec = new IvParameterSpec(nonce);
         Cipher cipher = Cipher.getInstance(CRYPTO_CIPHER_AEAD);
         cipher.init(opmode, key, spec);
         return cipher;
