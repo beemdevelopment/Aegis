@@ -2,6 +2,7 @@ package me.impy.aegis;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.ArrayRes;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.text.Editable;
@@ -65,18 +66,24 @@ public class EditProfileActivity extends AegisActivity {
         _textSecret.setText(Base32.encodeOriginal(entry.getInfo().getSecret()));
         _textSecret.addTextChangedListener(watcher);
 
+        String type = entry.getInfo().getType();
         _spinnerType = findViewById(R.id.spinner_type);
         SpinnerHelper.fillSpinner(this, _spinnerType, R.array.otp_types_array);
+        _spinnerType.setSelection(getStringResourceIndex(R.array.otp_types_array, type), false);
         _spinnerType.setOnTouchListener(_selectedListener);
         _spinnerType.setOnItemSelectedListener(_selectedListener);
 
+        String algo = entry.getInfo().getAlgorithm(false);
         _spinnerAlgo = findViewById(R.id.spinner_algo);
         SpinnerHelper.fillSpinner(this, _spinnerAlgo, R.array.otp_algo_array);
+        _spinnerAlgo.setSelection(getStringResourceIndex(R.array.otp_algo_array, algo), false);
         _spinnerAlgo.setOnTouchListener(_selectedListener);
         _spinnerAlgo.setOnItemSelectedListener(_selectedListener);
 
+        String digits = Integer.toString(entry.getInfo().getDigits());
         _spinnerDigits = findViewById(R.id.spinner_digits);
         SpinnerHelper.fillSpinner(this, _spinnerDigits, R.array.otp_digits_array);
+        _spinnerDigits.setSelection(getStringResourceIndex(R.array.otp_digits_array, digits), false);
         _spinnerDigits.setOnTouchListener(_selectedListener);
         _spinnerDigits.setOnItemSelectedListener(_selectedListener);
     }
@@ -216,5 +223,15 @@ public class EditProfileActivity extends AegisActivity {
         public void onNothingSelected(AdapterView<?> parent) {
 
         }
+    }
+
+    private int getStringResourceIndex(@ArrayRes int id, String string) {
+        String[] res = getResources().getStringArray(id);
+        for (int i = 0; i < res.length; i++) {
+            if (res[i].equals(string)) {
+                return i;
+            }
+        }
+        return -1;
     }
 }

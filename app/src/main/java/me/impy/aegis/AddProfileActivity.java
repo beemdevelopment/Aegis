@@ -67,7 +67,7 @@ public class AddProfileActivity extends AegisActivity {
     private void initializeForm() {
         KeyInfo info = _keyProfile.getEntry().getInfo();
         _profileName.setText(info.getAccountName());
-        _textAlgorithm.setText(info.getAlgorithm());
+        _textAlgorithm.setText(info.getAlgorithm(false));
         _textIssuer.setText(info.getIssuer());
         _textPeriod.setText(info.getPeriod() + " seconds");
 

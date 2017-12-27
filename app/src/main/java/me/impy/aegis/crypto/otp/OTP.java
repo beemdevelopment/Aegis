@@ -15,7 +15,7 @@ public class OTP {
         switch (info.getType()) {
             case "totp":
                 String time = Long.toHexString(System.currentTimeMillis() / 1000 / info.getPeriod());
-                otp = TOTP.generateTOTP(info.getSecret(), time, info.getDigits(), info.getAlgorithm());
+                otp = TOTP.generateTOTP(info.getSecret(), time, info.getDigits(), info.getAlgorithm(true));
                 break;
             case "hotp":
                 otp = HOTP.generateOTP(info.getSecret(), info.getCounter(), info.getDigits(), false, -1);

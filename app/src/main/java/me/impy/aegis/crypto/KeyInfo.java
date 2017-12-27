@@ -21,6 +21,7 @@ public class KeyInfo implements Serializable {
         builder.scheme("otpauth");
         builder.authority(_type);
 
+        builder.appendQueryParameter("digits", Integer.toString(_digits));
         builder.appendQueryParameter("period", Integer.toString(_period));
         builder.appendQueryParameter("algorithm", _algorithm);
         builder.appendQueryParameter("secret", Base32.encodeOriginal(_secret));
@@ -125,8 +126,11 @@ public class KeyInfo implements Serializable {
     public String getIssuer() {
         return _issuer;
     }
-    public String getAlgorithm() {
-        return "Hmac" + _algorithm;
+    public String getAlgorithm(boolean java) {
+        if (java) {
+            return "Hmac" + _algorithm;
+        }
+        return _algorithm;
     }
     public int getDigits() {
         return _digits;

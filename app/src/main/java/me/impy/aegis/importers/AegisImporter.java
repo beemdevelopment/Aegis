@@ -16,7 +16,7 @@ public class AegisImporter extends DatabaseImporter {
     public List<DatabaseEntry> convert() throws Exception {
         byte[] bytes = _stream.getBytes();
         Database db = new Database();
-        db.deserialize(bytes);
+        db.deserialize(bytes, false);
         return db.getKeys();
     }
 

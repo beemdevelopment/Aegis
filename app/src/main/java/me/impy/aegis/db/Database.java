@@ -27,6 +27,10 @@ public class Database {
     }
 
     public void deserialize(byte[] data) throws Exception {
+        deserialize(data, true);
+    }
+
+    public void deserialize(byte[] data, boolean incCount) throws Exception {
         JSONObject obj = new JSONObject(new String(data, "UTF-8"));
 
         // TODO: support different VERSION deserialization providers
@@ -39,7 +43,15 @@ public class Database {
         for (int i = 0; i < array.length(); i++) {
             DatabaseEntry entry = new DatabaseEntry(null);
             entry.deserialize(array.getJSONObject(i));
-            addKey(entry);
+
+            // if incCount is false, don't increment the counter and don't set an ID
+            // this is used by the database importer to prevent an exception down the line
+            // TODO: find a better solution for this ugly hack
+            if (incCount) {
+                addKey(entry);
+            } else {
+                _entries.add(entry);
+            }
         }
     }
 
