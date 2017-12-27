@@ -34,10 +34,11 @@ public class MainActivity extends AegisActivity implements KeyProfileView.Listen
     // activity request codes
     private static final int CODE_GET_KEYINFO = 0;
     private static final int CODE_ADD_KEYINFO = 1;
-    private static final int CODE_DO_INTRO = 2;
-    private static final int CODE_DECRYPT = 3;
-    private static final int CODE_IMPORT = 4;
-    private static final int CODE_PREFERENCES = 5;
+    private static final int CODE_EDIT_KEYINFO = 2;
+    private static final int CODE_DO_INTRO = 3;
+    private static final int CODE_DECRYPT = 4;
+    private static final int CODE_IMPORT = 5;
+    private static final int CODE_PREFERENCES = 6;
 
     // permission request codes
     private static final int CODE_PERM_EXPORT = 0;
@@ -414,7 +415,7 @@ public class MainActivity extends AegisActivity implements KeyProfileView.Listen
         }
     }
 
-    private BottomSheetDialog createBottomSheet(KeyProfile profile) {
+    private BottomSheetDialog createBottomSheet(final KeyProfile profile) {
         View bottomSheetView = getLayoutInflater().inflate(R.layout.bottom_sheet_edit_profile, null);
         LinearLayout copyLayout = bottomSheetView.findViewById(R.id.copy_button);
         LinearLayout deleteLayout = bottomSheetView.findViewById(R.id.delete_button);
@@ -442,7 +443,9 @@ public class MainActivity extends AegisActivity implements KeyProfileView.Listen
 
         editLayout.setOnClickListener(view -> {
             bottomDialog.dismiss();
-            Toast.makeText(this.getApplicationContext(), "Coming soon", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(this, EditProfileActivity.class);
+            intent.putExtra("KeyProfile", profile);
+            startActivityForResult(intent, CODE_EDIT_KEYINFO);
         });
 
         return bottomDialog;

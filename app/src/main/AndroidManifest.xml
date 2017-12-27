@@ -37,6 +37,11 @@
             android:theme="@style/AppTheme.TransparentActionBar">
         </activity>
         <activity
+            android:name=".EditProfileActivity"
+            android:label="Edit profile"
+            android:theme="@style/AppTheme.TransparentActionBar">
+        </activity>
+        <activity
             android:name=".IntroActivity"
             android:theme="@style/Theme.Intro"
             android:launchMode="singleTop">
