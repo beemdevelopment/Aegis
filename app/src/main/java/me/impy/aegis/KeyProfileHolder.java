@@ -75,7 +75,7 @@ public class KeyProfileHolder extends RecyclerView.ViewHolder {
 
         // refresh the code
         String otp = _keyProfile.refreshCode();
-        _profileCode.setText(otp.substring(0, 3) + " " + otp.substring(3));
+        _profileCode.setText(otp.substring(0, otp.length() / 2) + " " + otp.substring(otp.length() / 2));
 
         // calculate the progress the bar should start at
         long millisTillRotation = _keyProfile.getEntry().getInfo().getMillisTillNextRotation();
