@@ -8,9 +8,10 @@ import java.io.Serializable;
 import me.impy.aegis.crypto.KeyInfo;
 
 public class DatabaseEntry implements Serializable {
-    public String _name = "";
-    public String _icon = "";
-    public KeyInfo _info;
+    private long _id = -1;
+    private String _name = "";
+    private String _icon = "";
+    private KeyInfo _info;
 
     public DatabaseEntry(KeyInfo info) {
         _info = info;
@@ -18,16 +19,21 @@ public class DatabaseEntry implements Serializable {
 
     public JSONObject serialize() throws JSONException {
         JSONObject obj = new JSONObject();
+        obj.put("id", _id);
         obj.put("name", _name);
         obj.put("url", _info.getURL());
         return obj;
     }
 
     public void deserialize(JSONObject obj) throws Exception {
+        _id = obj.getLong("id");
         _name = obj.getString("name");
         _info = KeyInfo.fromURL(obj.getString("url"));
     }
 
+    public long getID() {
+        return _id;
+    }
     public String getName() {
         return _name;
     }
@@ -38,6 +44,12 @@ public class DatabaseEntry implements Serializable {
         return _info;
     }
 
+    void setID(long id) throws Exception {
+        if (_id != -1) {
+            throw new Exception("this entry has already received an id");
+        }
+        _id = id;
+    }
     public void setName(String name) {
         _name = name;
     }

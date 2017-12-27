@@ -9,7 +9,9 @@ import java.util.List;
 
 public class Database {
     private static final int VERSION = 1;
+
     private List<DatabaseEntry> _entries = new ArrayList<>();
+    private long _counter = 0;
 
     public byte[] serialize() throws Exception {
         JSONArray array = new JSONArray();
@@ -20,6 +22,7 @@ public class Database {
         JSONObject obj = new JSONObject();
         obj.put("version", VERSION);
         obj.put("entries", array);
+        obj.put("counter", _counter);
 
         return obj.toString().getBytes("UTF-8");
     }
@@ -33,6 +36,8 @@ public class Database {
             throw new Exception("Unsupported version");
         }
 
+        _counter = obj.getLong("counter");
+
         JSONArray array = obj.getJSONArray("entries");
         for (int i = 0; i < array.length(); i++) {
             DatabaseEntry e = new DatabaseEntry(null);
@@ -41,7 +46,8 @@ public class Database {
         }
     }
 
-    public void addKey(DatabaseEntry entry) {
+    public void addKey(DatabaseEntry entry) throws Exception {
+        entry.setID(++_counter);
         _entries.add(entry);
     }
 
