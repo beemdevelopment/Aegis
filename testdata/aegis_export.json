@@ -1,0 +1,45 @@
+{
+    "version": 1,
+    "entries": [
+        {
+            "name": "Bob",
+            "url": "otpauth:\/\/totp\/Google%3ABob?digits=6&period=30&algorithm=SHA1&secret=KD3WHMYQ7K7DGV5QFJNN2ZUATBC44C7F&issuer=Google"
+        },
+        {
+            "name": "Henk",
+            "url": "otpauth:\/\/totp\/Scaleway%3AHenk?digits=6&period=10&algorithm=SHA256&secret=MBQX47S3XOSOF7YT2CO3LZNACULZNY4P&issuer=Scaleway"
+        },
+        {
+            "name": "Oh wait, they don't have TOTP",
+            "url": "otpauth:\/\/totp\/Namecheap%3AOh%20wait%2C%20they%20don't%20have%20TOTP?digits=8&period=30&algorithm=SHA512&secret=HIMV4HX3REXMUG236OOLN4GS7URI247Y&issuer=Namecheap"
+        },
+        {
+            "name": "Delete Me",
+            "url": "otpauth:\/\/totp\/Facebook%3ADelete%20Me?digits=6&period=60&algorithm=SHA1&secret=GSQ7E5FO3UFFVANS3NSMFE7RTMRMYNCV&issuer=Facebook"
+        },
+        {
+            "name": "nodejsc0d3r",
+            "url": "otpauth:\/\/totp\/Github%3Anodejsc0d3r?digits=6&period=50&algorithm=SHA1&secret=642GK5EROWKUAEBFRH6FWSMM4FRKS5IA&issuer=Github"
+        },
+        {
+            "name": "MoneroMan",
+            "url": "otpauth:\/\/totp\/Poloniex%3AMoneroMan?digits=8&period=30&algorithm=SHA256&secret=NUSLOF6CFEWNPAARBVJ5WFA5YRRQU4FG&issuer=Poloniex"
+        },
+        {
+            "name": "Lil' Droplet",
+            "url": "otpauth:\/\/totp\/DigitalOcean%3ALil'%20Droplet?digits=6&period=45&algorithm=SHA512&secret=6CAIGVYB5MQ6TSZLJ56HJBWU5S3H7FUC&issuer=DigitalOcean"
+        },
+        {
+            "name": "givemeabucket",
+            "url": "otpauth:\/\/totp\/Bitbucket%3Agivemeabucket?digits=6&period=20&algorithm=SHA1&secret=5KY3D2N53MRMIOMNKLLTNF3TDQJRDMEY&issuer=Bitbucket"
+        },
+        {
+            "name": "Pepe",
+            "url": "otpauth:\/\/totp\/4chan%3APepe?digits=8&period=30&algorithm=SHA1&secret=EIQMT7NHFYJUMBKQ35P34JGLG3MO7L2W&issuer=4chan"
+        },
+        {
+            "name": "alex",
+            "url": "otpauth:\/\/totp\/TTRSS%3Aalex?digits=6&period=30&algorithm=SHA1&secret=BEBXDJJVXKX3ZMAZLJUU5I5PONI4IYAL&issuer=TTRSS"
+        }
+    ]
+}
