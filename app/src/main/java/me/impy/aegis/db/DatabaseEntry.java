@@ -25,8 +25,10 @@ public class DatabaseEntry implements Serializable {
         return obj;
     }
 
-    public void deserialize(JSONObject obj) throws Exception {
-        _id = obj.getLong("id");
+    public void deserialize(JSONObject obj, boolean ignoreID) throws Exception {
+        if (!ignoreID) {
+            _id = obj.getLong("id");
+        }
         _name = obj.getString("name");
         _info = KeyInfo.fromURL(obj.getString("url"));
     }
