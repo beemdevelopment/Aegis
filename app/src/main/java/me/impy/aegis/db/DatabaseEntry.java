@@ -19,16 +19,12 @@ public class DatabaseEntry implements Serializable {
 
     public JSONObject serialize() throws JSONException {
         JSONObject obj = new JSONObject();
-        obj.put("id", _id);
         obj.put("name", _name);
         obj.put("url", _info.getURL());
         return obj;
     }
 
-    public void deserialize(JSONObject obj, boolean ignoreID) throws Exception {
-        if (!ignoreID) {
-            _id = obj.getLong("id");
-        }
+    public void deserialize(JSONObject obj) throws Exception {
         _name = obj.getString("name");
         _info = KeyInfo.fromURL(obj.getString("url"));
     }

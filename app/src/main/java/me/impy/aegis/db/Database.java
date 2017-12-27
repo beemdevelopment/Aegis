@@ -22,7 +22,6 @@ public class Database {
         JSONObject obj = new JSONObject();
         obj.put("version", VERSION);
         obj.put("entries", array);
-        obj.put("counter", _counter);
 
         return obj.toString().getBytes("UTF-8");
     }
@@ -36,25 +35,11 @@ public class Database {
             throw new Exception("Unsupported version");
         }
 
-        // if no counter is present, ignore and reset the id of all entries
-        boolean ignoreID = false;
-        if (!obj.has("counter")) {
-            ignoreID = true;
-        } else {
-            _counter = obj.getLong("counter");
-        }
-
         JSONArray array = obj.getJSONArray("entries");
         for (int i = 0; i < array.length(); i++) {
             DatabaseEntry entry = new DatabaseEntry(null);
-            entry.deserialize(array.getJSONObject(i), ignoreID);
-
-            // if the id was ignored, make sure it receives a new one
-            if (ignoreID) {
-                addKey(entry);
-            } else {
-                _entries.add(entry);
-            }
+            entry.deserialize(array.getJSONObject(i));
+            addKey(entry);
         }
     }
 
