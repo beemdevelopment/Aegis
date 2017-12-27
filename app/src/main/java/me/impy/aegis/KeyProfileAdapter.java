@@ -46,6 +46,18 @@ public class KeyProfileAdapter extends RecyclerView.Adapter<KeyProfileHolder> im
         notifyDataSetChanged();
     }
 
+    public void replaceKey(KeyProfile newProfile) {
+        for (KeyProfile oldProfile : _keyProfiles) {
+            if (oldProfile.getEntry().getID() == newProfile.getEntry().getID()) {
+                int position = _keyProfiles.indexOf(oldProfile);
+                _keyProfiles.set(position, newProfile);
+                notifyItemChanged(position);
+                return;
+            }
+        }
+        throw new AssertionError("no key profile found with the same id");
+    }
+
     @Override
     public void onItemDismiss(int position) {
 

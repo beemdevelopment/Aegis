@@ -114,13 +114,13 @@ The content of the database is a JSON file encoded in UTF-8.
 ```json
 {
     "version": 1,
+    "counter": 10,
     "entries":
     [
         {
             "id": 1,
             "name": "ACME Co/john@example.com",
             "url": "otpauth://totp/ACME%20Co:john@example.com?secret=HXDMVJECJJWSRB3HWIZR4IFUGFTMXBOZ&issuer=ACME%20Co&algorithm=SHA1&digits=6&period=30",
-            "order": 0,
         },
         ...
     ]

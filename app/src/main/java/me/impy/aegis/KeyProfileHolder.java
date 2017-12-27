@@ -46,7 +46,8 @@ public class KeyProfileHolder extends RecyclerView.ViewHolder {
             _profileIssuer.setText(" - " + profile.getEntry().getInfo().getIssuer());
         }
 
-        _profileDrawable.setImageDrawable(generateTextDrawable(profile));
+        TextDrawable drawable = profile.getDrawable();
+        _profileDrawable.setImageDrawable(drawable);
     }
 
     public void startUpdateLoop() {
@@ -87,16 +88,5 @@ public class KeyProfileHolder extends RecyclerView.ViewHolder {
         animation.setInterpolator(new LinearInterpolator());
         animation.start();
         return true;
-    }
-
-    private TextDrawable generateTextDrawable(KeyProfile profile) {
-        if (_profileName == null) {
-            return null;
-        }
-
-        ColorGenerator generator = ColorGenerator.MATERIAL;
-        int profileKeyColor = generator.getColor(profile.getEntry().getName());
-
-        return TextDrawable.builder().buildRound(profile.getEntry().getName().substring(0, 1).toUpperCase(), profileKeyColor);
     }
 }

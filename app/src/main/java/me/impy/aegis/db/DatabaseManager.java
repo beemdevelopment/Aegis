@@ -152,6 +152,11 @@ public class DatabaseManager {
         _db.removeKey(entry);
     }
 
+    public void replaceKey(DatabaseEntry entry) throws Exception {
+        assertState(false, true);
+        _db.replaceKey(entry);
+    }
+
     public void swapKeys(DatabaseEntry entry1, DatabaseEntry entry2) throws Exception {
         assertState(false, true);
         _db.swapKeys(entry1, entry2);

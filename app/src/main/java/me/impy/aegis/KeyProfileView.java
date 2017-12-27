@@ -79,6 +79,10 @@ public class KeyProfileView extends Fragment implements KeyProfileAdapter.Listen
         _adapter.clearKeys();
     }
 
+    public void replaceKey(KeyProfile profile) {
+        _adapter.replaceKey(profile);
+    }
+
     public interface Listener {
         void onEntryClick(KeyProfile profile);
         void onEntryMove(DatabaseEntry entry1, DatabaseEntry entry2);

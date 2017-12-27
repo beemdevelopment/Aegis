@@ -139,6 +139,9 @@ public class MainActivity extends AegisActivity implements KeyProfileView.Listen
             case CODE_ADD_KEYINFO:
                 onAddKeyInfoResult(resultCode, data);
                 break;
+            case CODE_EDIT_KEYINFO:
+                onEditKeyInfoResult(resultCode, data);
+                break;
             case CODE_DO_INTRO:
                 onDoIntroResult(resultCode, data);
                 break;
@@ -315,6 +318,23 @@ public class MainActivity extends AegisActivity implements KeyProfileView.Listen
         if (resultCode == RESULT_OK) {
             KeyProfile profile = (KeyProfile) data.getSerializableExtra("KeyProfile");
             addKey(profile);
+            saveDatabase();
+        }
+    }
+
+    private void onEditKeyInfoResult(int resultCode, Intent data) {
+        if (resultCode == RESULT_OK) {
+            // this profile has been serialized/deserialized and is no longer the same instance it once was
+            // to deal with this, the replaceKey functions are used
+            KeyProfile profile = (KeyProfile) data.getSerializableExtra("KeyProfile");
+            try {
+                _db.replaceKey(profile.getEntry());
+            } catch (Exception e) {
+                e.printStackTrace();
+                Toast.makeText(this, "An error occurred while trying to update an entry", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            _keyProfileView.replaceKey(profile);
             saveDatabase();
         }
     }

@@ -2,6 +2,9 @@
     <string name="app_name">Aegis</string>
     <string name="action_settings">Settings</string>
     <string name="action_import">Import</string>
+    <string name="action_delete">Delete</string>
+    <string name="discard">Discard</string>
+    <string name="save">Save</string>
     <string name="title_activity_intro">IntroActivity</string>
     <string name="settings">Preferences</string>
     <string name="pref_night_mode">Night mode</string>
@@ -30,6 +33,22 @@
         <item>None</item>
         <item>Password</item>
         <item>Password &amp; Fingerprint</item>
+    </string-array>
+
+    <string-array name="otp_types_array">
+        <item>TOTP</item>
+        <item>HOTP</item>
+    </string-array>
+
+    <string-array name="otp_algo_array">
+        <item>SHA1</item>
+        <item>SHA256</item>
+        <item>SHA512</item>
+    </string-array>
+
+    <string-array name="otp_digits_array">
+        <item>6</item>
+        <item>8</item>
     </string-array>
 
     <!-- TODO: Remove or change this placeholder text -->

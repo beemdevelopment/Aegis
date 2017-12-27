@@ -1,5 +1,8 @@
 package me.impy.aegis;
 
+import com.amulyakhare.textdrawable.TextDrawable;
+import com.amulyakhare.textdrawable.util.ColorGenerator;
+
 import java.io.Serializable;
 import java.lang.reflect.UndeclaredThrowableException;
 
@@ -28,5 +31,17 @@ public class KeyProfile implements Serializable {
             throw new UndeclaredThrowableException(e);
         }
         return _code;
+    }
+
+    public TextDrawable getDrawable() {
+        String name = _entry.getName();
+        if (name == null) {
+            return null;
+        }
+
+        ColorGenerator generator = ColorGenerator.MATERIAL;
+        int color = generator.getColor(name);
+
+        return TextDrawable.builder().buildRound(name.substring(0, 1).toUpperCase(), color);
     }
 }
