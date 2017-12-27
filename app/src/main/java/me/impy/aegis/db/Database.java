@@ -14,6 +14,10 @@ public class Database {
     private long _counter = 0;
 
     public byte[] serialize() throws Exception {
+        return serialize(false);
+    }
+
+    public byte[] serialize(boolean pretty) throws Exception {
         JSONArray array = new JSONArray();
         for (DatabaseEntry e : _entries) {
             array.put(e.serialize());
@@ -23,7 +27,8 @@ public class Database {
         obj.put("version", VERSION);
         obj.put("entries", array);
 
-        return obj.toString().getBytes("UTF-8");
+        String string = pretty ? obj.toString(4) : obj.toString();
+        return string.getBytes("UTF-8");
     }
 
     public void deserialize(byte[] data) throws Exception {

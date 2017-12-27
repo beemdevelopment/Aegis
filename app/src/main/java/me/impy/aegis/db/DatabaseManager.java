@@ -111,7 +111,7 @@ public class DatabaseManager {
 
     public String export(boolean encrypt) throws Exception {
         assertState(false, true);
-        byte[] bytes = _db.serialize();
+        byte[] bytes = _db.serialize(!encrypt);
         encrypt = encrypt && getFile().isEncrypted();
         if (encrypt) {
             CryptResult result = _key.encrypt(bytes);
