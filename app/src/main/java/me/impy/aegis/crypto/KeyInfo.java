@@ -7,11 +7,11 @@ import java.io.Serializable;
 import me.impy.aegis.encoding.Base32;
 
 public class KeyInfo implements Serializable {
-    private String _type;
+    private String _type = "totp";
     private byte[] _secret;
-    private String _accountName;
-    private String _issuer;
-    private long _counter;
+    private String _accountName = "";
+    private String _issuer = "";
+    private long _counter = 0;
     private String _algorithm = "SHA1";
     private int _digits = 6;
     private int _period = 30;

@@ -13,6 +13,10 @@ public class KeyProfile implements Serializable {
     private String _code;
     private DatabaseEntry _entry;
 
+    public KeyProfile() {
+        this(new DatabaseEntry());
+    }
+
     public KeyProfile(DatabaseEntry entry) {
         _entry = entry;
     }
@@ -35,7 +39,7 @@ public class KeyProfile implements Serializable {
 
     public TextDrawable getDrawable() {
         String name = _entry.getName();
-        if (name == null) {
+        if (name == null || name.length() <= 1) {
             return null;
         }
 

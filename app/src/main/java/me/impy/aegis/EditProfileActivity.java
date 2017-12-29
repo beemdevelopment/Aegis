@@ -40,52 +40,64 @@ public class EditProfileActivity extends AegisActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_profile);
 
-        _profile = (KeyProfile) getIntent().getSerializableExtra("KeyProfile");
-
         ActionBar bar = getSupportActionBar();
         bar.setHomeAsUpIndicator(R.drawable.ic_close);
         bar.setDisplayHomeAsUpEnabled(true);
 
+        // if the intent doesn't contain a KeyProfile, create a new oneZ
+        _profile = (KeyProfile) getIntent().getSerializableExtra("KeyProfile");
+        if (_profile == null) {
+            _profile = new KeyProfile();
+            setTitle("Add profile");
+        }
+
+        _textName = findViewById(R.id.text_name);
+        _textIssuer = findViewById(R.id.text_issuer);
+        _textPeriod = findViewById(R.id.text_period);
+        _textSecret = findViewById(R.id.text_secret);
+        _spinnerType = findViewById(R.id.spinner_type);
+        SpinnerHelper.fillSpinner(this, _spinnerType, R.array.otp_types_array);
+        _spinnerAlgo = findViewById(R.id.spinner_algo);
+        SpinnerHelper.fillSpinner(this, _spinnerAlgo, R.array.otp_algo_array);
+        _spinnerDigits = findViewById(R.id.spinner_digits);
+        SpinnerHelper.fillSpinner(this, _spinnerDigits, R.array.otp_digits_array);
+
+        updateFields();
+
+        _textName.addTextChangedListener(_textListener);
+        _textIssuer.addTextChangedListener(_textListener);
+        _textPeriod.addTextChangedListener(_textListener);
+        _textSecret.addTextChangedListener(_textListener);
+        _spinnerType.setOnTouchListener(_selectedListener);
+        _spinnerType.setOnItemSelectedListener(_selectedListener);
+        _spinnerAlgo.setOnTouchListener(_selectedListener);
+        _spinnerAlgo.setOnItemSelectedListener(_selectedListener);
+        _spinnerDigits.setOnTouchListener(_selectedListener);
+        _spinnerDigits.setOnItemSelectedListener(_selectedListener);
+    }
+
+    private void updateFields() {
+        DatabaseEntry entry = _profile.getEntry();
         ImageView imageView = findViewById(R.id.profile_drawable);
         imageView.setImageDrawable(_profile.getDrawable());
 
-        DatabaseEntry entry = _profile.getEntry();
-        _textName = findViewById(R.id.text_name);
         _textName.setText(entry.getName());
-        _textName.addTextChangedListener(watcher);
-
-        _textIssuer = findViewById(R.id.text_issuer);
         _textIssuer.setText(entry.getInfo().getIssuer());
-        _textIssuer.addTextChangedListener(watcher);
-
-        _textPeriod = findViewById(R.id.text_period);
         _textPeriod.setText(Integer.toString(entry.getInfo().getPeriod()));
-        _textPeriod.addTextChangedListener(watcher);
 
-        _textSecret = findViewById(R.id.text_secret);
-        _textSecret.setText(Base32.encodeOriginal(entry.getInfo().getSecret()));
-        _textSecret.addTextChangedListener(watcher);
+        byte[] secretBytes = entry.getInfo().getSecret();
+        if (secretBytes != null) {
+            _textSecret.setText(Base32.encodeOriginal(secretBytes));
+        }
 
         String type = entry.getInfo().getType();
-        _spinnerType = findViewById(R.id.spinner_type);
-        SpinnerHelper.fillSpinner(this, _spinnerType, R.array.otp_types_array);
         _spinnerType.setSelection(getStringResourceIndex(R.array.otp_types_array, type), false);
-        _spinnerType.setOnTouchListener(_selectedListener);
-        _spinnerType.setOnItemSelectedListener(_selectedListener);
 
         String algo = entry.getInfo().getAlgorithm(false);
-        _spinnerAlgo = findViewById(R.id.spinner_algo);
-        SpinnerHelper.fillSpinner(this, _spinnerAlgo, R.array.otp_algo_array);
         _spinnerAlgo.setSelection(getStringResourceIndex(R.array.otp_algo_array, algo), false);
-        _spinnerAlgo.setOnTouchListener(_selectedListener);
-        _spinnerAlgo.setOnItemSelectedListener(_selectedListener);
 
         String digits = Integer.toString(entry.getInfo().getDigits());
-        _spinnerDigits = findViewById(R.id.spinner_digits);
-        SpinnerHelper.fillSpinner(this, _spinnerDigits, R.array.otp_digits_array);
         _spinnerDigits.setSelection(getStringResourceIndex(R.array.otp_digits_array, digits), false);
-        _spinnerDigits.setOnTouchListener(_selectedListener);
-        _spinnerDigits.setOnItemSelectedListener(_selectedListener);
     }
 
     @Override
@@ -185,7 +197,7 @@ public class EditProfileActivity extends AegisActivity {
         _edited = true;
     }
 
-    private TextWatcher watcher = new TextWatcher() {
+    private TextWatcher _textListener = new TextWatcher() {
         @Override
         public void beforeTextChanged(CharSequence s, int start, int count, int after) {
             onFieldEdited();
