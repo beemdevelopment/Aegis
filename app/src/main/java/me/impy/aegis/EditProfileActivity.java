@@ -22,6 +22,7 @@ import me.impy.aegis.encoding.Base32;
 import me.impy.aegis.helpers.SpinnerHelper;
 
 public class EditProfileActivity extends AegisActivity {
+    private boolean _isNew = false;
     private boolean _edited = false;
     private KeyProfile _profile;
 
@@ -44,9 +45,10 @@ public class EditProfileActivity extends AegisActivity {
         bar.setHomeAsUpIndicator(R.drawable.ic_close);
         bar.setDisplayHomeAsUpEnabled(true);
 
-        // if the intent doesn't contain a KeyProfile, create a new oneZ
+        // if the intent doesn't contain a KeyProfile, create a new one
         _profile = (KeyProfile) getIntent().getSerializableExtra("KeyProfile");
         if (_profile == null) {
+            _isNew = true;
             _profile = new KeyProfile();
             setTitle("Add profile");
         }
@@ -141,6 +143,9 @@ public class EditProfileActivity extends AegisActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_edit, menu);
+        if (_isNew) {
+            menu.findItem(R.id.action_delete).setVisible(false);
+        }
         return true;
     }
 
