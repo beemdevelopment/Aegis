@@ -1,6 +1,8 @@
 package me.impy.aegis;
 
 import android.animation.ObjectAnimator;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.os.Handler;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -31,6 +33,9 @@ public class KeyProfileHolder extends RecyclerView.ViewHolder {
         _profileDrawable = view.findViewById(R.id.ivTextDrawable);
         _progressBar = view.findViewById(R.id.progressBar);
         _uiHandler = new Handler();
+
+        int primaryColorId = view.getContext().getResources().getColor(R.color.colorPrimary);
+        _progressBar.getProgressDrawable().setColorFilter(primaryColorId, PorterDuff.Mode.SRC_IN);
     }
 
     public void setData(KeyProfile profile, boolean showIssuer) {
