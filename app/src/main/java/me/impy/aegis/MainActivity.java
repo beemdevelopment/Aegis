@@ -369,7 +369,15 @@ public class MainActivity extends AegisActivity implements KeyProfileView.Listen
                 return;
             }
             _keyProfileView.replaceKey(profile);
-            saveDatabase();
+
+            // because of what's explained in the comment above, we had to replace the key before we can delete it
+            // this is an ugly solution and should be improved at some point
+            // TODO: make _db.removeKey and _db.replaceKey -> _db.updateKey work with id's instead of instances
+            if (data.getBooleanExtra("delete", false)) {
+                deleteProfile(profile);
+            } else {
+                saveDatabase();
+            }
         }
     }
 

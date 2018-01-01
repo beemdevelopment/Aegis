@@ -153,8 +153,17 @@ public class EditProfileActivity extends AegisActivity {
         return true;
     }
 
+    private void finish(boolean delete) {
+        Intent intent = new Intent();
+        intent.putExtra("KeyProfile", _profile);
+        intent.putExtra("delete", delete);
+        setResult(RESULT_OK, intent);
+        finish();
+    }
+
     private boolean onDelete() {
-        return false;
+        finish(true);
+        return true;
     }
 
     private boolean onSave() {
@@ -200,10 +209,7 @@ public class EditProfileActivity extends AegisActivity {
             return false;
         }
 
-        Intent intent = new Intent();
-        intent.putExtra("KeyProfile", _profile);
-        setResult(RESULT_OK, intent);
-        finish();
+        finish(false);
         return true;
     }
 
