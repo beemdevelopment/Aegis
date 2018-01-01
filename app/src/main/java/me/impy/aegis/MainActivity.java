@@ -376,14 +376,7 @@ public class MainActivity extends AegisActivity implements KeyProfileView.Listen
     private void onEnterKeyInfoResult(int resultCode, Intent data) {
         if (resultCode == RESULT_OK) {
             KeyProfile profile = (KeyProfile) data.getSerializableExtra("KeyProfile");
-            try {
-                addKey(profile);
-            } catch (Exception e) {
-                e.printStackTrace();
-                Toast.makeText(this, "An error occurred while trying to add an entry", Toast.LENGTH_SHORT).show();
-                return;
-            }
-            _keyProfileView.addKey(profile);
+            addKey(profile);
             saveDatabase();
         }
     }
