@@ -16,9 +16,12 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 
+import me.impy.aegis.crypto.CryptoUtils;
 import me.impy.aegis.crypto.KeyInfo;
+import me.impy.aegis.crypto.KeyInfoException;
 import me.impy.aegis.db.DatabaseEntry;
 import me.impy.aegis.encoding.Base32;
+import me.impy.aegis.helpers.AuthHelper;
 import me.impy.aegis.helpers.SpinnerHelper;
 
 public class EditProfileActivity extends AegisActivity {
@@ -89,7 +92,8 @@ public class EditProfileActivity extends AegisActivity {
 
         byte[] secretBytes = entry.getInfo().getSecret();
         if (secretBytes != null) {
-            _textSecret.setText(Base32.encodeOriginal(secretBytes));
+            char[] secretChars = Base32.encode(secretBytes);
+            _textSecret.setText(secretChars, 0, secretChars.length);
         }
 
         String type = entry.getInfo().getType();
@@ -154,6 +158,11 @@ public class EditProfileActivity extends AegisActivity {
     }
 
     private boolean onSave() {
+        if (_textSecret.length() == 0) {
+            onError("Secret is a required field.");
+            return false;
+        }
+
         int period;
         try {
             period = Integer.parseInt(_textPeriod.getText().toString());
@@ -176,12 +185,20 @@ public class EditProfileActivity extends AegisActivity {
         DatabaseEntry entry = _profile.getEntry();
         entry.setName(_textName.getText().toString());
         KeyInfo info = entry.getInfo();
-        info.setIssuer(_textIssuer.getText().toString());
-        info.setSecret(Base32.decode(_textSecret.getText().toString()));
-        info.setPeriod(period);
-        info.setDigits(digits);
-        info.setAlgorithm(algo);
-        info.setType(type);
+
+        try {
+            char[] secret = AuthHelper.getEditTextChars(_textSecret);
+            info.setSecret(secret);
+            CryptoUtils.zero(secret);
+            info.setIssuer(_textIssuer.getText().toString());
+            info.setPeriod(period);
+            info.setDigits(digits);
+            info.setAlgorithm(algo);
+            info.setType(type);
+        } catch (KeyInfoException e) {
+            onError("The entered info is incorrect: " + e.getMessage());
+            return false;
+        }
 
         Intent intent = new Intent();
         intent.putExtra("KeyProfile", _profile);
