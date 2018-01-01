@@ -6,12 +6,14 @@ import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Rect;
 import android.media.MediaScannerConnection;
 import android.support.design.widget.BottomSheetDialog;
 import android.support.v7.app.AlertDialog;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.Toast;
@@ -52,6 +54,7 @@ public class MainActivity extends AegisActivity implements KeyProfileView.Listen
 
     private boolean _nightMode = false;
     private Menu _menu;
+    private FloatingActionsMenu _fabMenu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,13 +72,13 @@ public class MainActivity extends AegisActivity implements KeyProfileView.Listen
         _keyProfileView.setShowIssuer(_app.getPreferences().getBoolean("pref_issuer", false));
 
         // set up the floating action button
-        FloatingActionsMenu fabMenu = findViewById(R.id.fab);
+        _fabMenu = findViewById(R.id.fab);
         findViewById(R.id.fab_enter).setOnClickListener(view -> {
-            fabMenu.collapse();
+            _fabMenu.collapse();
             onEnterKeyInfo();
         });
         findViewById(R.id.fab_scan).setOnClickListener(view -> {
-            fabMenu.collapse();
+            _fabMenu.collapse();
             onScanKeyInfo();
         });
 
@@ -110,6 +113,23 @@ public class MainActivity extends AegisActivity implements KeyProfileView.Listen
         if (!_db.isLocked()) {
             loadKeyProfiles();
         }
+    }
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent event) {
+        // collapse the fab menu on touch
+        if (event.getAction() == MotionEvent.ACTION_DOWN) {
+            if (_fabMenu.isExpanded()) {
+                Rect rect = new Rect();
+                _fabMenu.getGlobalVisibleRect(rect);
+
+                if (!rect.contains((int) event.getRawX(), (int) event.getRawY())) {
+                    _fabMenu.collapse();
+                }
+            }
+        }
+
+        return super.dispatchTouchEvent(event);
     }
 
     @Override
