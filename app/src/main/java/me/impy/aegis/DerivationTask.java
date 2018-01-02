@@ -1,8 +1,6 @@
 package me.impy.aegis;
 
-import android.app.ProgressDialog;
 import android.content.Context;
-import android.os.AsyncTask;
 import android.os.Process;
 
 import javax.crypto.SecretKey;
@@ -10,14 +8,12 @@ import javax.crypto.SecretKey;
 import me.impy.aegis.crypto.CryptoUtils;
 import me.impy.aegis.crypto.slots.PasswordSlot;
 
-public class DerivationTask extends AsyncTask<DerivationTask.Params, Void, SecretKey> {
+public class DerivationTask extends ProgressDialogTask<DerivationTask.Params, SecretKey> {
     private Callback _cb;
-    private ProgressDialog _dialog;
 
     public DerivationTask(Context context, Callback cb) {
+        super(context, "Deriving key from password");
         _cb = cb;
-        _dialog = new ProgressDialog(context);
-        _dialog.setCancelable(false);
     }
 
     @Override
@@ -36,16 +32,8 @@ public class DerivationTask extends AsyncTask<DerivationTask.Params, Void, Secre
     }
 
     @Override
-    protected void onPreExecute() {
-        _dialog.setMessage("Deriving key from password");
-        _dialog.show();
-    }
-
-    @Override
     protected void onPostExecute(SecretKey key) {
-        if (_dialog.isShowing()) {
-            _dialog.dismiss();
-        }
+        super.onPostExecute(key);
         _cb.onTaskFinished(key);
     }
 

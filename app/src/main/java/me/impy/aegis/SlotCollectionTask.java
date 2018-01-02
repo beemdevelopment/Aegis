@@ -1,8 +1,6 @@
 package me.impy.aegis;
 
-import android.app.ProgressDialog;
 import android.content.Context;
-import android.os.AsyncTask;
 import android.os.Process;
 
 import java.lang.reflect.UndeclaredThrowableException;
@@ -18,16 +16,14 @@ import me.impy.aegis.crypto.slots.Slot;
 import me.impy.aegis.crypto.slots.SlotCollection;
 import me.impy.aegis.crypto.slots.SlotIntegrityException;
 
-public class SlotCollectionTask<T extends Slot> extends AsyncTask<SlotCollectionTask.Params, Void, MasterKey> {
+public class SlotCollectionTask<T extends Slot> extends ProgressDialogTask<SlotCollectionTask.Params, MasterKey> {
     private Callback _cb;
     private Class<T> _type;
-    private ProgressDialog _dialog;
 
     public SlotCollectionTask(Class<T> type, Context context, Callback cb) {
+        super(context, "Decrypting database");
         _cb = cb;
         _type = type;
-        _dialog = new ProgressDialog(context);
-        _dialog.setCancelable(false);
     }
 
     @Override
@@ -71,16 +67,8 @@ public class SlotCollectionTask<T extends Slot> extends AsyncTask<SlotCollection
     }
 
     @Override
-    protected void onPreExecute() {
-        _dialog.setMessage("Decrypting database");
-        _dialog.show();
-    }
-
-    @Override
     protected void onPostExecute(MasterKey masterKey) {
-        if (_dialog.isShowing()) {
-            _dialog.dismiss();
-        }
+        super.onPostExecute(masterKey);
         _cb.onTaskFinished(masterKey);
     }
 
