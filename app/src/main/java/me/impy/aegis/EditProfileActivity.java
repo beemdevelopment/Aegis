@@ -16,6 +16,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 
+import com.amulyakhare.textdrawable.TextDrawable;
+
 import me.impy.aegis.crypto.CryptoUtils;
 import me.impy.aegis.crypto.KeyInfo;
 import me.impy.aegis.crypto.KeyInfoException;
@@ -23,11 +25,14 @@ import me.impy.aegis.db.DatabaseEntry;
 import me.impy.aegis.encoding.Base32;
 import me.impy.aegis.helpers.AuthHelper;
 import me.impy.aegis.helpers.SpinnerHelper;
+import me.impy.aegis.helpers.TextDrawableHelper;
 
 public class EditProfileActivity extends AegisActivity {
     private boolean _isNew = false;
     private boolean _edited = false;
     private KeyProfile _profile;
+
+    private ImageView _iconView;
 
     private EditText _textName;
     private EditText _textIssuer;
@@ -49,13 +54,17 @@ public class EditProfileActivity extends AegisActivity {
         bar.setDisplayHomeAsUpEnabled(true);
 
         // if the intent doesn't contain a KeyProfile, create a new one
-        _profile = (KeyProfile) getIntent().getSerializableExtra("KeyProfile");
+        Intent intent = getIntent();
+        _profile = (KeyProfile) intent.getSerializableExtra("KeyProfile");
+        _isNew = intent.getBooleanExtra("isNew", false);
         if (_profile == null) {
-            _isNew = true;
             _profile = new KeyProfile();
+        }
+        if (_isNew) {
             setTitle("Add profile");
         }
 
+        _iconView = findViewById(R.id.profile_drawable);
         _textName = findViewById(R.id.text_name);
         _textIssuer = findViewById(R.id.text_issuer);
         _textPeriod = findViewById(R.id.text_period);
@@ -79,12 +88,24 @@ public class EditProfileActivity extends AegisActivity {
         _spinnerAlgo.setOnItemSelectedListener(_selectedListener);
         _spinnerDigits.setOnTouchListener(_selectedListener);
         _spinnerDigits.setOnItemSelectedListener(_selectedListener);
+
+        // update the icon if the text changed
+        _textName.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) { }
+            @Override
+            public void afterTextChanged(Editable s) {
+                TextDrawable drawable = TextDrawableHelper.generate(s.toString());
+                _iconView.setImageDrawable(drawable);
+            }
+        });
     }
 
     private void updateFields() {
         DatabaseEntry entry = _profile.getEntry();
-        ImageView imageView = findViewById(R.id.profile_drawable);
-        imageView.setImageDrawable(_profile.getDrawable());
+        _iconView.setImageDrawable(_profile.getDrawable());
 
         _textName.setText(entry.getName());
         _textIssuer.setText(entry.getInfo().getIssuer());

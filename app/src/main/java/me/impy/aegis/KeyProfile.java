@@ -8,6 +8,7 @@ import java.lang.reflect.UndeclaredThrowableException;
 
 import me.impy.aegis.crypto.otp.OTP;
 import me.impy.aegis.db.DatabaseEntry;
+import me.impy.aegis.helpers.TextDrawableHelper;
 
 public class KeyProfile implements Serializable {
     private String _code;
@@ -38,14 +39,6 @@ public class KeyProfile implements Serializable {
     }
 
     public TextDrawable getDrawable() {
-        String name = _entry.getName();
-        if (name == null || name.length() <= 1) {
-            return null;
-        }
-
-        ColorGenerator generator = ColorGenerator.MATERIAL;
-        int color = generator.getColor(name);
-
-        return TextDrawable.builder().buildRound(name.substring(0, 1).toUpperCase(), color);
+        return TextDrawableHelper.generate(getEntry().getName());
     }
 }

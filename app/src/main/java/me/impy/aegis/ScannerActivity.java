@@ -58,6 +58,7 @@ public class ScannerActivity extends AegisActivity implements ZXingScannerView.R
         try {
             KeyInfo info = KeyInfo.fromURL(rawResult.getText());
             KeyProfile profile = new KeyProfile(new DatabaseEntry(info));
+            profile.getEntry().setName(info.getAccountName());
 
             Intent resultIntent = new Intent();
             resultIntent.putExtra("KeyProfile", profile);
