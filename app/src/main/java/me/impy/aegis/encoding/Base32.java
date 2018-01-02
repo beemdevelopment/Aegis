@@ -1,5 +1,7 @@
 package me.impy.aegis.encoding;
 
+// modified for use in Aegis
+
 /* (PD) 2001 The Bitzi Corporation
  * Please see http://bitzi.com/publicdomain for more info.
  *
@@ -20,7 +22,9 @@ package me.impy.aegis.encoding;
  * limitations under the License.
  */
 
-import java.io.UnsupportedEncodingException;
+import java.util.Arrays;
+
+import me.impy.aegis.crypto.CryptoUtils;
 
 /**
  * Base32 - encodes and decodes RFC3548 Base32
@@ -45,16 +49,6 @@ public class Base32 {
                     0x17,0x18,0x19,0xFF,0xFF,0xFF,0xFF,0xFF  // 'x', 'y', 'z', '{', '|', '}', '~', 'DEL'
             };
 
-    public static byte[] encode(byte[] data) throws UnsupportedEncodingException {
-        String lower = encodeOriginal(data).toLowerCase();
-        return lower.getBytes("US-ASCII");
-    }
-
-    public static byte[] decodeModified(String data) {
-        return decode(data.replace('8', 'L').replace('9', 'O'));
-    }
-
-
     /**
      * Encodes byte array to Base32 String.
      *
@@ -62,10 +56,10 @@ public class Base32 {
      * @return Encoded byte array <code>bytes</code> as a String.
      *
      */
-    static public String encodeOriginal(final byte[] bytes) {
-        int i = 0, index = 0, digit = 0;
+    public static char[] encode(final byte[] bytes) {
+        int i = 0, index = 0, digit = 0, j = 0;
         int currByte, nextByte;
-        StringBuffer base32 = new StringBuffer((bytes.length + 7) * 8 / 5);
+        char[] base32 = new char[(bytes.length + 7) * 8 / 5];
 
         while (i < bytes.length) {
             currByte = (bytes[i] >= 0) ? bytes[i] : (bytes[i] + 256); // unsign
@@ -90,10 +84,12 @@ public class Base32 {
                 if (index == 0)
                     i++;
             }
-            base32.append(base32Chars.charAt(digit));
+            base32[j++] = base32Chars.charAt(digit);
         }
 
-        return base32.toString();
+        char[] res = Arrays.copyOf(base32, j);
+        CryptoUtils.zero(base32);
+        return res;
     }
 
     /**
@@ -102,24 +98,13 @@ public class Base32 {
      * @param base32
      * @return Decoded <code>base32</code> String as a raw byte array.
      */
-    static public byte[] decode(final String base32) {
+    public static byte[] decode(final char[] base32) throws Base32Exception {
         int i, index, lookup, offset, digit;
-        byte[] bytes = new byte[base32.length() * 5 / 8];
+        byte[] bytes = new byte[base32.length * 5 / 8];
 
-        for (i = 0, index = 0, offset = 0; i < base32.length(); i++) {
-            lookup = base32.charAt(i) - '0';
-
-            /* Skip chars outside the lookup table */
-            if (lookup < 0 || lookup >= base32Lookup.length) {
-                continue;
-            }
-
-            digit = base32Lookup[lookup];
-
-            /* If this digit is not in the table, ignore it */
-            if (digit == 0xFF) {
-                continue;
-            }
+        for (i = 0, index = 0, offset = 0; i < base32.length; i++) {
+            lookup = base32[i] - '0';
+            digit = decodeDigit(lookup);
 
             if (index <= 3) {
                 index = (index + 5) % 8;
@@ -143,5 +128,21 @@ public class Base32 {
             }
         }
         return bytes;
+    }
+
+    private static int decodeDigit(int c) throws Base32Exception {
+        /* Skip chars outside the lookup table */
+        if (c < 0 || c >= base32Lookup.length) {
+            throw new Base32Exception("char not found in base32 lookup table");
+        }
+
+        int digit = base32Lookup[c];
+
+        /* If this digit is not in the table, ignore it */
+        if (digit == 0xFF) {
+            throw new Base32Exception("char not found in base32 lookup table");
+        }
+
+        return digit;
     }
 }

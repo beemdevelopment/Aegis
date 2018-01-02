@@ -66,17 +66,13 @@ public class Database {
     }
 
     public void removeKey(DatabaseEntry entry) {
+        entry = getKeyByID(entry.getID());
         _entries.remove(entry);
     }
 
     public void replaceKey(DatabaseEntry newEntry) {
-        for (DatabaseEntry oldEntry : _entries) {
-            if (oldEntry.getID() == newEntry.getID()) {
-                _entries.set(_entries.indexOf(oldEntry), newEntry);
-                return;
-            }
-        }
-        throw new AssertionError("no entry found with the same id");
+        DatabaseEntry oldEntry = getKeyByID(newEntry.getID());
+        _entries.set(_entries.indexOf(oldEntry), newEntry);
     }
 
     public void swapKeys(DatabaseEntry entry1, DatabaseEntry entry2) {
@@ -85,5 +81,14 @@ public class Database {
 
     public List<DatabaseEntry> getKeys() {
         return Collections.unmodifiableList(_entries);
+    }
+
+    private DatabaseEntry getKeyByID(long id) {
+        for (DatabaseEntry entry : _entries) {
+            if (entry.getID() == id) {
+                return entry;
+            }
+        }
+        throw new AssertionError("no entry found with the same id");
     }
 }

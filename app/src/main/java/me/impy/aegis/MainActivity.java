@@ -6,17 +6,19 @@ import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Rect;
 import android.media.MediaScannerConnection;
 import android.support.design.widget.BottomSheetDialog;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.Toast;
+
+import com.getbase.floatingactionbutton.FloatingActionsMenu;
 
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
@@ -32,13 +34,14 @@ import me.impy.aegis.util.ByteInputStream;
 
 public class MainActivity extends AegisActivity implements KeyProfileView.Listener {
     // activity request codes
-    private static final int CODE_GET_KEYINFO = 0;
+    private static final int CODE_SCAN_KEYINFO = 0;
     private static final int CODE_ADD_KEYINFO = 1;
     private static final int CODE_EDIT_KEYINFO = 2;
-    private static final int CODE_DO_INTRO = 3;
-    private static final int CODE_DECRYPT = 4;
-    private static final int CODE_IMPORT = 5;
-    private static final int CODE_PREFERENCES = 6;
+    private static final int CODE_ENTER_KEYINFO = 3;
+    private static final int CODE_DO_INTRO = 4;
+    private static final int CODE_DECRYPT = 5;
+    private static final int CODE_IMPORT = 6;
+    private static final int CODE_PREFERENCES = 7;
 
     // permission request codes
     private static final int CODE_PERM_EXPORT = 0;
@@ -51,6 +54,7 @@ public class MainActivity extends AegisActivity implements KeyProfileView.Listen
 
     private boolean _nightMode = false;
     private Menu _menu;
+    private FloatingActionsMenu _fabMenu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,8 +64,7 @@ public class MainActivity extends AegisActivity implements KeyProfileView.Listen
 
         // set up the main view
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        setSupportActionBar(findViewById(R.id.toolbar));
 
         // set up the key profile view
         _keyProfileView = (KeyProfileView) getSupportFragmentManager().findFragmentById(R.id.key_profiles);
@@ -69,9 +72,15 @@ public class MainActivity extends AegisActivity implements KeyProfileView.Listen
         _keyProfileView.setShowIssuer(_app.getPreferences().getBoolean("pref_issuer", false));
 
         // set up the floating action button
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setEnabled(true);
-        fab.setOnClickListener(view -> onGetKeyInfo());
+        _fabMenu = findViewById(R.id.fab);
+        findViewById(R.id.fab_enter).setOnClickListener(view -> {
+            _fabMenu.collapse();
+            onEnterKeyInfo();
+        });
+        findViewById(R.id.fab_scan).setOnClickListener(view -> {
+            _fabMenu.collapse();
+            onScanKeyInfo();
+        });
 
         // skip this part if this is the not initial startup and the database has been unlocked
         if (!_app.isRunning() && _db.isLocked()) {
@@ -107,6 +116,23 @@ public class MainActivity extends AegisActivity implements KeyProfileView.Listen
     }
 
     @Override
+    public boolean dispatchTouchEvent(MotionEvent event) {
+        // collapse the fab menu on touch
+        if (event.getAction() == MotionEvent.ACTION_DOWN) {
+            if (_fabMenu.isExpanded()) {
+                Rect rect = new Rect();
+                _fabMenu.getGlobalVisibleRect(rect);
+
+                if (!rect.contains((int) event.getRawX(), (int) event.getRawY())) {
+                    _fabMenu.collapse();
+                }
+            }
+        }
+
+        return super.dispatchTouchEvent(event);
+    }
+
+    @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
         setIntent(intent);
@@ -133,14 +159,17 @@ public class MainActivity extends AegisActivity implements KeyProfileView.Listen
         }
 
         switch (requestCode) {
-            case CODE_GET_KEYINFO:
-                onGetKeyInfoResult(resultCode, data);
+            case CODE_SCAN_KEYINFO:
+                onScanKeyInfoResult(resultCode, data);
                 break;
             case CODE_ADD_KEYINFO:
                 onAddKeyInfoResult(resultCode, data);
                 break;
             case CODE_EDIT_KEYINFO:
                 onEditKeyInfoResult(resultCode, data);
+                break;
+            case CODE_ENTER_KEYINFO:
+                onEnterKeyInfoResult(resultCode, data);
                 break;
             case CODE_DO_INTRO:
                 onDoIntroResult(resultCode, data);
@@ -172,7 +201,7 @@ public class MainActivity extends AegisActivity implements KeyProfileView.Listen
                 onImport();
                 break;
             case CODE_PERM_CAMERA:
-                onGetKeyInfo();
+                onScanKeyInfo();
                 break;
         }
     }
@@ -297,7 +326,12 @@ public class MainActivity extends AegisActivity implements KeyProfileView.Listen
         saveDatabase();
     }
 
-    private void onGetKeyInfo() {
+    private void onEnterKeyInfo() {
+        Intent intent = new Intent(this, EditProfileActivity.class);
+        startActivityForResult(intent, CODE_ENTER_KEYINFO);
+    }
+
+    private void onScanKeyInfo() {
         if (!PermissionHelper.request(this, CODE_PERM_CAMERA, Manifest.permission.CAMERA)) {
             return;
         }
@@ -305,7 +339,7 @@ public class MainActivity extends AegisActivity implements KeyProfileView.Listen
         startScanActivity();
     }
 
-    private void onGetKeyInfoResult(int resultCode, Intent data) {
+    private void onScanKeyInfoResult(int resultCode, Intent data) {
         if (resultCode == RESULT_OK) {
             KeyProfile keyProfile = (KeyProfile)data.getSerializableExtra("KeyProfile");
             Intent intent = new Intent(this, AddProfileActivity.class);
@@ -324,17 +358,29 @@ public class MainActivity extends AegisActivity implements KeyProfileView.Listen
 
     private void onEditKeyInfoResult(int resultCode, Intent data) {
         if (resultCode == RESULT_OK) {
-            // this profile has been serialized/deserialized and is no longer the same instance it once was
-            // to deal with this, the replaceKey functions are used
             KeyProfile profile = (KeyProfile) data.getSerializableExtra("KeyProfile");
-            try {
-                _db.replaceKey(profile.getEntry());
-            } catch (Exception e) {
-                e.printStackTrace();
-                Toast.makeText(this, "An error occurred while trying to update an entry", Toast.LENGTH_SHORT).show();
-                return;
+            if (!data.getBooleanExtra("delete", false)) {
+                // this profile has been serialized/deserialized and is no longer the same instance it once was
+                // to deal with this, the replaceKey functions are used
+                try {
+                    _db.replaceKey(profile.getEntry());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    Toast.makeText(this, "An error occurred while trying to update an entry", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                _keyProfileView.replaceKey(profile);
+                saveDatabase();
+            } else {
+                deleteProfile(profile);
             }
-            _keyProfileView.replaceKey(profile);
+        }
+    }
+
+    private void onEnterKeyInfoResult(int resultCode, Intent data) {
+        if (resultCode == RESULT_OK) {
+            KeyProfile profile = (KeyProfile) data.getSerializableExtra("KeyProfile");
+            addKey(profile);
             saveDatabase();
         }
     }
@@ -395,7 +441,7 @@ public class MainActivity extends AegisActivity implements KeyProfileView.Listen
 
     private void startScanActivity() {
         Intent scannerActivity = new Intent(getApplicationContext(), ScannerActivity.class);
-        startActivityForResult(scannerActivity, CODE_GET_KEYINFO);
+        startActivityForResult(scannerActivity, CODE_SCAN_KEYINFO);
     }
 
     private boolean doShortcutActions() {

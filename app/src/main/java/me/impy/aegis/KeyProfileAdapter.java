@@ -36,6 +36,7 @@ public class KeyProfileAdapter extends RecyclerView.Adapter<KeyProfileHolder> im
     }
 
     public void removeKey(KeyProfile profile) {
+        profile = getKeyByID(profile.getEntry().getID());
         int position = _keyProfiles.indexOf(profile);
         _keyProfiles.remove(position);
         notifyItemRemoved(position);
@@ -47,12 +48,16 @@ public class KeyProfileAdapter extends RecyclerView.Adapter<KeyProfileHolder> im
     }
 
     public void replaceKey(KeyProfile newProfile) {
-        for (KeyProfile oldProfile : _keyProfiles) {
-            if (oldProfile.getEntry().getID() == newProfile.getEntry().getID()) {
-                int position = _keyProfiles.indexOf(oldProfile);
-                _keyProfiles.set(position, newProfile);
-                notifyItemChanged(position);
-                return;
+        KeyProfile oldProfile = getKeyByID(newProfile.getEntry().getID());
+        int position = _keyProfiles.indexOf(oldProfile);
+        _keyProfiles.set(position, newProfile);
+        notifyItemChanged(position);
+    }
+
+    private KeyProfile getKeyByID(long id) {
+        for (KeyProfile profile : _keyProfiles) {
+            if (profile.getEntry().getID() == id) {
+                return profile;
             }
         }
         throw new AssertionError("no key profile found with the same id");

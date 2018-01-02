@@ -40,5 +40,6 @@ dependencies {
     compile 'com.mattprecious.swirl:swirl:1.0.0'
     compile 'com.madgag.spongycastle:core:1.56.0.0'
     compile 'com.github.apl-devs:appintro:v4.2.2'
+    compile 'com.getbase:floatingactionbutton:1.10.1'
     testCompile 'junit:junit:4.12'
 }

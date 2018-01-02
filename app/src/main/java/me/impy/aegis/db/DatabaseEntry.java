@@ -13,6 +13,10 @@ public class DatabaseEntry implements Serializable {
     private String _icon = "";
     private KeyInfo _info;
 
+    public DatabaseEntry() {
+        this(new KeyInfo());
+    }
+
     public DatabaseEntry(KeyInfo info) {
         _info = info;
     }

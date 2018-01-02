@@ -30,7 +30,7 @@
     </style>
 
     <style name="Theme.Intro" parent="Theme.AppCompat.NoActionBar">
-        <item name="swirl_ridgeColor">@color/colorSwirlPrimary</item>
+        <item name="swirl_ridgeColor">@color/primary_text_inverted</item>
         <item name="swirl_errorColor">@color/colorSwirlError</item>
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:windowIsTranslucent">true</item>
@@ -94,5 +94,9 @@
         <item name="windowActionBarOverlay">true</item>
     </style>
 
+    <style name="fab_label_style">
+        <item name="android:background">@drawable/fab_label_background</item>
+        <item name="android:textColor">#FFFFFF</item>
+    </style>
 
 </resources>

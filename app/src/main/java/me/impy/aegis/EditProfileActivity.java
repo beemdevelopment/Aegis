@@ -16,12 +16,16 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 
+import me.impy.aegis.crypto.CryptoUtils;
 import me.impy.aegis.crypto.KeyInfo;
+import me.impy.aegis.crypto.KeyInfoException;
 import me.impy.aegis.db.DatabaseEntry;
 import me.impy.aegis.encoding.Base32;
+import me.impy.aegis.helpers.AuthHelper;
 import me.impy.aegis.helpers.SpinnerHelper;
 
 public class EditProfileActivity extends AegisActivity {
+    private boolean _isNew = false;
     private boolean _edited = false;
     private KeyProfile _profile;
 
@@ -40,52 +44,66 @@ public class EditProfileActivity extends AegisActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_profile);
 
-        _profile = (KeyProfile) getIntent().getSerializableExtra("KeyProfile");
-
         ActionBar bar = getSupportActionBar();
         bar.setHomeAsUpIndicator(R.drawable.ic_close);
         bar.setDisplayHomeAsUpEnabled(true);
 
+        // if the intent doesn't contain a KeyProfile, create a new one
+        _profile = (KeyProfile) getIntent().getSerializableExtra("KeyProfile");
+        if (_profile == null) {
+            _isNew = true;
+            _profile = new KeyProfile();
+            setTitle("Add profile");
+        }
+
+        _textName = findViewById(R.id.text_name);
+        _textIssuer = findViewById(R.id.text_issuer);
+        _textPeriod = findViewById(R.id.text_period);
+        _textSecret = findViewById(R.id.text_secret);
+        _spinnerType = findViewById(R.id.spinner_type);
+        SpinnerHelper.fillSpinner(this, _spinnerType, R.array.otp_types_array);
+        _spinnerAlgo = findViewById(R.id.spinner_algo);
+        SpinnerHelper.fillSpinner(this, _spinnerAlgo, R.array.otp_algo_array);
+        _spinnerDigits = findViewById(R.id.spinner_digits);
+        SpinnerHelper.fillSpinner(this, _spinnerDigits, R.array.otp_digits_array);
+
+        updateFields();
+
+        _textName.addTextChangedListener(_textListener);
+        _textIssuer.addTextChangedListener(_textListener);
+        _textPeriod.addTextChangedListener(_textListener);
+        _textSecret.addTextChangedListener(_textListener);
+        _spinnerType.setOnTouchListener(_selectedListener);
+        _spinnerType.setOnItemSelectedListener(_selectedListener);
+        _spinnerAlgo.setOnTouchListener(_selectedListener);
+        _spinnerAlgo.setOnItemSelectedListener(_selectedListener);
+        _spinnerDigits.setOnTouchListener(_selectedListener);
+        _spinnerDigits.setOnItemSelectedListener(_selectedListener);
+    }
+
+    private void updateFields() {
+        DatabaseEntry entry = _profile.getEntry();
         ImageView imageView = findViewById(R.id.profile_drawable);
         imageView.setImageDrawable(_profile.getDrawable());
 
-        DatabaseEntry entry = _profile.getEntry();
-        _textName = findViewById(R.id.text_name);
         _textName.setText(entry.getName());
-        _textName.addTextChangedListener(watcher);
-
-        _textIssuer = findViewById(R.id.text_issuer);
         _textIssuer.setText(entry.getInfo().getIssuer());
-        _textIssuer.addTextChangedListener(watcher);
-
-        _textPeriod = findViewById(R.id.text_period);
         _textPeriod.setText(Integer.toString(entry.getInfo().getPeriod()));
-        _textPeriod.addTextChangedListener(watcher);
 
-        _textSecret = findViewById(R.id.text_secret);
-        _textSecret.setText(Base32.encodeOriginal(entry.getInfo().getSecret()));
-        _textSecret.addTextChangedListener(watcher);
+        byte[] secretBytes = entry.getInfo().getSecret();
+        if (secretBytes != null) {
+            char[] secretChars = Base32.encode(secretBytes);
+            _textSecret.setText(secretChars, 0, secretChars.length);
+        }
 
         String type = entry.getInfo().getType();
-        _spinnerType = findViewById(R.id.spinner_type);
-        SpinnerHelper.fillSpinner(this, _spinnerType, R.array.otp_types_array);
         _spinnerType.setSelection(getStringResourceIndex(R.array.otp_types_array, type), false);
-        _spinnerType.setOnTouchListener(_selectedListener);
-        _spinnerType.setOnItemSelectedListener(_selectedListener);
 
         String algo = entry.getInfo().getAlgorithm(false);
-        _spinnerAlgo = findViewById(R.id.spinner_algo);
-        SpinnerHelper.fillSpinner(this, _spinnerAlgo, R.array.otp_algo_array);
         _spinnerAlgo.setSelection(getStringResourceIndex(R.array.otp_algo_array, algo), false);
-        _spinnerAlgo.setOnTouchListener(_selectedListener);
-        _spinnerAlgo.setOnItemSelectedListener(_selectedListener);
 
         String digits = Integer.toString(entry.getInfo().getDigits());
-        _spinnerDigits = findViewById(R.id.spinner_digits);
-        SpinnerHelper.fillSpinner(this, _spinnerDigits, R.array.otp_digits_array);
         _spinnerDigits.setSelection(getStringResourceIndex(R.array.otp_digits_array, digits), false);
-        _spinnerDigits.setOnTouchListener(_selectedListener);
-        _spinnerDigits.setOnItemSelectedListener(_selectedListener);
     }
 
     @Override
@@ -129,14 +147,31 @@ public class EditProfileActivity extends AegisActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_edit, menu);
+        if (_isNew) {
+            menu.findItem(R.id.action_delete).setVisible(false);
+        }
         return true;
     }
 
+    private void finish(boolean delete) {
+        Intent intent = new Intent();
+        intent.putExtra("KeyProfile", _profile);
+        intent.putExtra("delete", delete);
+        setResult(RESULT_OK, intent);
+        finish();
+    }
+
     private boolean onDelete() {
-        return false;
+        finish(true);
+        return true;
     }
 
     private boolean onSave() {
+        if (_textSecret.length() == 0) {
+            onError("Secret is a required field.");
+            return false;
+        }
+
         int period;
         try {
             period = Integer.parseInt(_textPeriod.getText().toString());
@@ -159,17 +194,22 @@ public class EditProfileActivity extends AegisActivity {
         DatabaseEntry entry = _profile.getEntry();
         entry.setName(_textName.getText().toString());
         KeyInfo info = entry.getInfo();
-        info.setIssuer(_textIssuer.getText().toString());
-        info.setSecret(Base32.decode(_textSecret.getText().toString()));
-        info.setPeriod(period);
-        info.setDigits(digits);
-        info.setAlgorithm(algo);
-        info.setType(type);
 
-        Intent intent = new Intent();
-        intent.putExtra("KeyProfile", _profile);
-        setResult(RESULT_OK, intent);
-        finish();
+        try {
+            char[] secret = AuthHelper.getEditTextChars(_textSecret);
+            info.setSecret(secret);
+            CryptoUtils.zero(secret);
+            info.setIssuer(_textIssuer.getText().toString());
+            info.setPeriod(period);
+            info.setDigits(digits);
+            info.setAlgorithm(algo);
+            info.setType(type);
+        } catch (KeyInfoException e) {
+            onError("The entered info is incorrect: " + e.getMessage());
+            return false;
+        }
+
+        finish(false);
         return true;
     }
 
@@ -185,7 +225,7 @@ public class EditProfileActivity extends AegisActivity {
         _edited = true;
     }
 
-    private TextWatcher watcher = new TextWatcher() {
+    private TextWatcher _textListener = new TextWatcher() {
         @Override
         public void beforeTextChanged(CharSequence s, int start, int count, int after) {
             onFieldEdited();

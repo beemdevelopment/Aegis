@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import me.impy.aegis.crypto.KeyInfo;
+import me.impy.aegis.crypto.KeyInfoException;
 import me.impy.aegis.db.DatabaseEntry;
 import me.impy.aegis.util.ByteInputStream;
 
@@ -40,7 +41,8 @@ public class FreeOTPImporter extends DatabaseImporter {
         return "FreeOTP";
     }
 
-    private static List<DatabaseEntry> parse(XmlPullParser parser) throws IOException, XmlPullParserException, JSONException {
+    private static List<DatabaseEntry> parse(XmlPullParser parser)
+            throws IOException, XmlPullParserException, JSONException, KeyInfoException {
         List<Entry> entries = new ArrayList<>();
 
         parser.require(XmlPullParser.START_TAG, null, "map");

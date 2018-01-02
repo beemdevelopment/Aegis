@@ -39,7 +39,7 @@
         <activity
             android:name=".EditProfileActivity"
             android:label="Edit profile"
-            android:theme="@style/AppTheme.TransparentActionBar">
+            android:theme="@style/AppTheme.Default.TransparentActionBar">
         </activity>
         <activity
             android:name=".IntroActivity"
@@ -48,7 +48,8 @@
         </activity>
         <activity
             android:name=".AuthActivity"
-            android:launchMode="singleTop">
+            android:launchMode="singleTop"
+            android:theme="@style/AppTheme.Default.NoActionBar">
         </activity>
         <activity android:name=".PreferencesActivity">
         </activity>

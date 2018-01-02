@@ -5,6 +5,7 @@
     <color name="colorHeaderSuccess">#12b600</color>
     <color name="colorPrimaryLight">#5472d3</color>
     <color name="colorAccent">#FF5252</color>
+    <color name="colorAccentPressed">#FF5252</color>
     <color name="primary_text">#212121</color>
     <color name="secondary_text">#434343</color>
     <color name="extra_info_text">#8e8e8e</color>

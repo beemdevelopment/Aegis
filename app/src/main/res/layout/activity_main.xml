@@ -29,13 +29,38 @@
         app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
 
     <!-- note: the fab should always be the last element to be sure it's displayed on top -->
-    <android.support.design.widget.FloatingActionButton
+    <com.getbase.floatingactionbutton.FloatingActionsMenu
         android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
         android:src="@drawable/ic_add_black_24dp"
-        android:tint="@color/background"/>
+        app:fab_addButtonColorNormal="@color/colorAccent"
+        app:fab_addButtonColorPressed="@color/colorAccent"
+        app:fab_labelStyle="@style/fab_label_style"
+        app:fab_labelsPosition="left">
+
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_scan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:fab_title="Scan QR code"
+            app:fab_size="mini"
+            app:fab_colorNormal="@color/background"
+            app:fab_colorPressed="@color/background"
+            app:fab_icon="@drawable/ic_qrcode_scan"/>
+
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_enter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:fab_title="Enter manually"
+            app:fab_size="mini"
+            app:fab_colorNormal="@color/background"
+            app:fab_colorPressed="@color/background"
+            app:fab_icon="@drawable/ic_create_black_24dp"/>
+
+    </com.getbase.floatingactionbutton.FloatingActionsMenu>
 
 </android.support.design.widget.CoordinatorLayout>
