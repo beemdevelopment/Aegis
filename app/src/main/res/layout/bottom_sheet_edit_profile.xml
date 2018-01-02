@@ -14,7 +14,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="16dp"
-            android:src="@drawable/ic_delete_black_24dp"/>
+            android:src="@drawable/ic_content_copy_black_24dp"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
