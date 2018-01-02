@@ -1,185 +1,188 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:descendantFocusability="beforeDescendants"
-    android:focusableInTouchMode="true"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:orientation="vertical">
 
-    <LinearLayout android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="0.66"
-            android:background="@color/colorPrimary"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:id="@+id/profile_drawable"
-                android:layout_centerVertical="true"
-                android:layout_centerHorizontal="true"/>
-
-        </RelativeLayout>
-
-        <TableLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="0.33"
-            android:background="?attr/background"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:stretchColumns="1"
-            android:layout_marginEnd="35dp">
+            android:descendantFocusability="beforeDescendants"
+            android:focusableInTouchMode="true">
 
-            <TableRow
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp">
-                <ImageView android:layout_column="0"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_person_black_24dp"
-                    android:layout_weight="1"
-                    android:layout_marginTop="10dp"
-                    android:tint="@color/cardview_dark_background"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginEnd="20dp"/>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:background="@color/colorPrimary">
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:id="@+id/profile_drawable"
+                    android:layout_centerInParent="true"/>
 
-                <EditText android:layout_column="1"
-                    android:id="@+id/text_name"
-                    android:hint="Name"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-            </TableRow>
+            </RelativeLayout>
 
-            <TableRow
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp">
-                <EditText android:layout_column="1"
-                    android:id="@+id/text_issuer"
-                    android:hint="Issuer"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-            </TableRow>
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="?attr/background"
+                android:orientation="vertical"
+                android:stretchColumns="1"
+                android:layout_marginEnd="35dp">
 
-            <TableRow
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp">
-                <ImageView android:layout_column="0"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_info_outline_black_24dp"
-                    android:layout_weight="1"
-                    android:layout_marginTop="10dp"
-                    android:tint="@color/cardview_dark_background"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginEnd="20dp"/>
-
-                <LinearLayout android:layout_column="1"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-                    <Spinner
-                        android:id="@+id/spinner_type"
-                        android:layout_width="0dp"
+                <TableRow
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp">
+                    <ImageView android:layout_column="0"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="3"
-                        style="@style/Base.Widget.AppCompat.Spinner.Underlined"/>
-                    <Spinner
-                        android:id="@+id/spinner_algo"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="3"
-                        style="@style/Base.Widget.AppCompat.Spinner.Underlined"/>
-                    <Spinner
-                        android:id="@+id/spinner_digits"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="2"
-                        style="@style/Base.Widget.AppCompat.Spinner.Underlined"/>
-                </LinearLayout>
-
-            </TableRow>
-
-            <TableRow
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp">
-                <ImageView android:layout_column="0"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_timelapse_black_24dp"
-                    android:layout_weight="1"
-                    android:layout_marginTop="10dp"
-                    android:tint="@color/cardview_dark_background"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginEnd="20dp"/>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-                    <RelativeLayout
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_person_black_24dp"
                         android:layout_weight="1"
-                        android:orientation="vertical">
-                        <EditText
-                            android:id="@+id/text_period"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentStart="true"
-                            android:layout_gravity="center"
-                            android:inputType="numberDecimal"/>
-                        <TextView
-                            android:id="@+id/text_hint"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentEnd="true"
-                            android:layout_centerVertical="true"
-                            android:text="seconds"
-                            android:textSize="18sp"
-                            android:layout_marginEnd="10dp"
-                            android:textColor="#808080"/>
-                    </RelativeLayout>
-                    <LinearLayout
-                        android:layout_width="fill_parent"
+                        android:layout_marginTop="10dp"
+                        android:tint="@color/cardview_dark_background"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginEnd="20dp"/>
+
+                    <EditText android:layout_column="1"
+                        android:id="@+id/text_name"
+                        android:hint="Name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                </TableRow>
+
+                <TableRow
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp">
+                    <EditText android:layout_column="1"
+                        android:id="@+id/text_issuer"
+                        android:hint="Issuer"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                </TableRow>
+
+                <TableRow
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp">
+                    <ImageView android:layout_column="0"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"/>
-                </LinearLayout>
-            </TableRow>
+                        android:src="@drawable/ic_info_outline_black_24dp"
+                        android:layout_weight="1"
+                        android:layout_marginTop="10dp"
+                        android:tint="@color/cardview_dark_background"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginEnd="20dp"/>
 
-            <TableRow
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp">
-                <ImageView android:layout_column="0"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_vpn_key_black_24dp"
-                    android:layout_weight="1"
-                    android:layout_marginTop="10dp"
-                    android:tint="@color/cardview_dark_background"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginEnd="20dp"/>
-
-                <android.support.design.widget.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:hintEnabled="false"
-                    app:passwordToggleEnabled="true">
-
-                    <EditText
-                        android:id="@+id/text_secret"
+                    <LinearLayout android:layout_column="1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Secret (base32)"
-                        android:inputType="textPassword"/>
-                </android.support.design.widget.TextInputLayout>
-            </TableRow>
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical">
+                        <Spinner
+                            android:id="@+id/spinner_type"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="4"
+                            style="@style/Base.Widget.AppCompat.Spinner.Underlined"/>
+                        <Spinner
+                            android:id="@+id/spinner_algo"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="4"
+                            style="@style/Base.Widget.AppCompat.Spinner.Underlined"/>
+                        <Spinner
+                            android:id="@+id/spinner_digits"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="3"
+                            style="@style/Base.Widget.AppCompat.Spinner.Underlined"/>
+                    </LinearLayout>
 
-        </TableLayout>
+                </TableRow>
 
-    </LinearLayout>
-</android.support.design.widget.CoordinatorLayout>
+                <TableRow
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp">
+                    <ImageView android:layout_column="0"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_timelapse_black_24dp"
+                        android:layout_weight="1"
+                        android:layout_marginTop="10dp"
+                        android:tint="@color/cardview_dark_background"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginEnd="20dp"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <RelativeLayout
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+                            <EditText
+                                android:id="@+id/text_period"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentStart="true"
+                                android:layout_gravity="center"
+                                android:inputType="numberDecimal"/>
+                            <TextView
+                                android:id="@+id/text_hint"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentEnd="true"
+                                android:layout_centerVertical="true"
+                                android:text="seconds"
+                                android:textSize="18sp"
+                                android:layout_marginEnd="10dp"
+                                android:textColor="#808080"/>
+                        </RelativeLayout>
+                        <LinearLayout
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"/>
+                    </LinearLayout>
+                </TableRow>
+
+                <TableRow
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp">
+                    <ImageView android:layout_column="0"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_vpn_key_black_24dp"
+                        android:layout_weight="1"
+                        android:layout_marginTop="10dp"
+                        android:tint="@color/cardview_dark_background"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginEnd="20dp"/>
+
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:hintEnabled="false"
+                        app:passwordToggleEnabled="true">
+
+                        <android.support.design.widget.TextInputEditText
+                            android:id="@+id/text_secret"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Secret (base32)"
+                            android:inputType="textPassword"/>
+                    </android.support.design.widget.TextInputLayout>
+                </TableRow>
+
+            </TableLayout>
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
