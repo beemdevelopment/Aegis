@@ -358,25 +358,21 @@ public class MainActivity extends AegisActivity implements KeyProfileView.Listen
 
     private void onEditKeyInfoResult(int resultCode, Intent data) {
         if (resultCode == RESULT_OK) {
-            // this profile has been serialized/deserialized and is no longer the same instance it once was
-            // to deal with this, the replaceKey functions are used
             KeyProfile profile = (KeyProfile) data.getSerializableExtra("KeyProfile");
-            try {
-                _db.replaceKey(profile.getEntry());
-            } catch (Exception e) {
-                e.printStackTrace();
-                Toast.makeText(this, "An error occurred while trying to update an entry", Toast.LENGTH_SHORT).show();
-                return;
-            }
-            _keyProfileView.replaceKey(profile);
-
-            // because of what's explained in the comment above, we had to replace the key before we can delete it
-            // this is an ugly solution and should be improved at some point
-            // TODO: make _db.removeKey and _db.replaceKey -> _db.updateKey work with id's instead of instances
-            if (data.getBooleanExtra("delete", false)) {
-                deleteProfile(profile);
-            } else {
+            if (!data.getBooleanExtra("delete", false)) {
+                // this profile has been serialized/deserialized and is no longer the same instance it once was
+                // to deal with this, the replaceKey functions are used
+                try {
+                    _db.replaceKey(profile.getEntry());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    Toast.makeText(this, "An error occurred while trying to update an entry", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                _keyProfileView.replaceKey(profile);
                 saveDatabase();
+            } else {
+                deleteProfile(profile);
             }
         }
     }
