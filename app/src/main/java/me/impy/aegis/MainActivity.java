@@ -326,9 +326,17 @@ public class MainActivity extends AegisActivity implements KeyProfileView.Listen
         saveDatabase();
     }
 
-    private void onEnterKeyInfo() {
+    private void startEditProfileActivity(int requestCode, KeyProfile profile, boolean isNew) {
         Intent intent = new Intent(this, EditProfileActivity.class);
-        startActivityForResult(intent, CODE_ENTER_KEYINFO);
+        if (profile != null) {
+            intent.putExtra("KeyProfile", profile);
+        }
+        intent.putExtra("isNew", isNew);
+        startActivityForResult(intent, requestCode);
+    }
+
+    private void onEnterKeyInfo() {
+        startEditProfileActivity(CODE_ENTER_KEYINFO, null, true);
     }
 
     private void onScanKeyInfo() {
@@ -341,10 +349,8 @@ public class MainActivity extends AegisActivity implements KeyProfileView.Listen
 
     private void onScanKeyInfoResult(int resultCode, Intent data) {
         if (resultCode == RESULT_OK) {
-            KeyProfile keyProfile = (KeyProfile)data.getSerializableExtra("KeyProfile");
-            Intent intent = new Intent(this, AddProfileActivity.class);
-            intent.putExtra("KeyProfile", keyProfile);
-            startActivityForResult(intent, CODE_ADD_KEYINFO);
+            KeyProfile profile = (KeyProfile)data.getSerializableExtra("KeyProfile");
+            startEditProfileActivity(CODE_ADD_KEYINFO, profile, true);
         }
     }
 
@@ -509,9 +515,7 @@ public class MainActivity extends AegisActivity implements KeyProfileView.Listen
 
         editLayout.setOnClickListener(view -> {
             bottomDialog.dismiss();
-            Intent intent = new Intent(this, EditProfileActivity.class);
-            intent.putExtra("KeyProfile", profile);
-            startActivityForResult(intent, CODE_EDIT_KEYINFO);
+            startEditProfileActivity(CODE_EDIT_KEYINFO, profile, false);
         });
 
         return bottomDialog;
