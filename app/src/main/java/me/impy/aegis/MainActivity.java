@@ -557,7 +557,7 @@ public class MainActivity extends AegisActivity implements KeyProfileView.Listen
                 startActivityForResult(preferencesActivity, CODE_PREFERENCES);
                 return true;
             case R.id.action_import:
-                if (PermissionHelper.request(this, CODE_PERM_IMPORT, Manifest.permission.CAMERA)) {
+                if (PermissionHelper.request(this, CODE_PERM_IMPORT, Manifest.permission.READ_EXTERNAL_STORAGE)) {
                     onImport();
                 }
                 return true;
