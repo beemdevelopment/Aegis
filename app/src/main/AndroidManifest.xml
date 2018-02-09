@@ -49,5 +49,10 @@
         </activity>
         <activity android:name=".PreferencesActivity">
         </activity>
+        <activity
+            android:name=".SlotManagerActivity"
+            android:label="Manage key slots"
+            android:theme="@style/AppTheme.Default.NoActionBar">
+        </activity>
     </application>
 </manifest>

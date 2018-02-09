@@ -42,7 +42,6 @@ public class SlotCollectionTask<T extends Slot> extends ProgressDialogTask<SlotC
                     if (slot instanceof PasswordSlot) {
                         char[] password = (char[])params.Obj;
                         SecretKey key = ((PasswordSlot)slot).deriveKey(password);
-                        CryptoUtils.zero(password);
                         Cipher cipher = Slot.createCipher(key, Cipher.DECRYPT_MODE);
                         masterKey = params.Slots.decrypt(slot, cipher);
                     } else if (slot instanceof FingerprintSlot) {
@@ -63,6 +62,10 @@ public class SlotCollectionTask<T extends Slot> extends ProgressDialogTask<SlotC
             return null;
         } catch (Exception e) {
             throw new UndeclaredThrowableException(e);
+        } finally {
+            if (params.Obj instanceof char[]) {
+                CryptoUtils.zero((char[]) params.Obj);
+            }
         }
     }
 

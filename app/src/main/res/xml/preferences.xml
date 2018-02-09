@@ -15,6 +15,11 @@
         android:summary="@string/pref_issuers_description"/>
 
     <Preference
+        android:key="pref_slots"
+        android:title="Key slots"
+        android:summary="Manage the list of keys that can decrypt the database"/>
+
+    <Preference
         android:key="pref_export"
         android:title="Export"
         android:summary="Export the database"/>

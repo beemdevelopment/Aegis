@@ -26,6 +26,7 @@ import java.lang.reflect.UndeclaredThrowableException;
 import java.util.List;
 
 import me.impy.aegis.crypto.MasterKey;
+import me.impy.aegis.crypto.slots.SlotCollection;
 import me.impy.aegis.db.DatabaseEntry;
 import me.impy.aegis.db.DatabaseManager;
 import me.impy.aegis.helpers.PermissionHelper;
@@ -42,6 +43,7 @@ public class MainActivity extends AegisActivity implements KeyProfileView.Listen
     private static final int CODE_DECRYPT = 5;
     private static final int CODE_IMPORT = 6;
     private static final int CODE_PREFERENCES = 7;
+    private static final int CODE_SLOTS = 8;
 
     // permission request codes
     private static final int CODE_PERM_EXPORT = 0;
@@ -183,6 +185,8 @@ public class MainActivity extends AegisActivity implements KeyProfileView.Listen
             case CODE_PREFERENCES:
                 onPreferencesResult(resultCode, data);
                 break;
+            case CODE_SLOTS:
+                onSlotManagerResult(resultCode, data);
         }
     }
 
@@ -206,6 +210,16 @@ public class MainActivity extends AegisActivity implements KeyProfileView.Listen
         }
     }
 
+    private void onSlotManagerResult(int resultCode, Intent data) {
+        if (resultCode != RESULT_OK) {
+            return;
+        }
+
+        SlotCollection slots = (SlotCollection) data.getSerializableExtra("slots");
+        _db.getFile().setSlots(slots);
+        saveDatabase();
+    }
+
     private void onPreferencesResult(int resultCode, Intent data) {
         // refresh the entire key profile list if needed
         if (data.getBooleanExtra("needsRefresh", false)) {
@@ -218,6 +232,20 @@ public class MainActivity extends AegisActivity implements KeyProfileView.Listen
         switch (action) {
             case PreferencesActivity.ACTION_EXPORT:
                 onExport();
+                break;
+            case PreferencesActivity.ACTION_SLOTS:
+                MasterKey masterKey;
+                try {
+                    masterKey = _db.getMasterKey();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    Toast.makeText(this, "An error occurred while trying to obtain the database key", Toast.LENGTH_SHORT).show();
+                    break;
+                }
+                Intent intent = new Intent(this, SlotManagerActivity.class);
+                intent.putExtra("masterKey", masterKey);
+                intent.putExtra("slots", _db.getFile().getSlots());
+                startActivityForResult(intent, CODE_SLOTS);
                 break;
         }
     }
@@ -554,8 +582,9 @@ public class MainActivity extends AegisActivity implements KeyProfileView.Listen
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_settings:
-                Intent preferencesActivity = new Intent(this, PreferencesActivity.class);
-                startActivityForResult(preferencesActivity, CODE_PREFERENCES);
+                Intent intent = new Intent(this, PreferencesActivity.class);
+                intent.putExtra("encrypted", _db.getFile().isEncrypted());
+                startActivityForResult(intent, CODE_PREFERENCES);
                 return true;
             case R.id.action_import:
                 if (PermissionHelper.request(this, CODE_PERM_IMPORT, Manifest.permission.READ_EXTERNAL_STORAGE)) {

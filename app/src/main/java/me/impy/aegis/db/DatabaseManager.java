@@ -167,6 +167,11 @@ public class DatabaseManager {
         return _db.getKeys();
     }
 
+    public MasterKey getMasterKey() throws Exception {
+        assertState(false, true);
+        return _key;
+    }
+
     public DatabaseFile getFile() {
         return _file;
     }

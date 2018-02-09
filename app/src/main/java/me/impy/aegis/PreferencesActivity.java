@@ -9,12 +9,15 @@ import android.widget.Toast;
 
 public class PreferencesActivity extends AegisActivity {
     public static final int ACTION_EXPORT = 0;
+    public static final int ACTION_SLOTS = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        getFragmentManager().beginTransaction().replace(android.R.id.content, new PreferencesFragment()).commit();
+        PreferencesFragment fragment = new PreferencesFragment();
+        fragment.setArguments(getIntent().getExtras());
+        getFragmentManager().beginTransaction().replace(android.R.id.content, fragment).commit();
     }
 
     @Override
@@ -60,6 +63,17 @@ public class PreferencesActivity extends AegisActivity {
                 @Override
                 public boolean onPreferenceClick(Preference preference) {
                     _result.putExtra("action", ACTION_EXPORT);
+                    finish();
+                    return true;
+                }
+            });
+
+            Preference slotsPreference = findPreference("pref_slots");
+            slotsPreference.setEnabled(getArguments().getBoolean("encrypted"));
+            slotsPreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+                @Override
+                public boolean onPreferenceClick(Preference preference) {
+                    _result.putExtra("action", ACTION_SLOTS);
                     finish();
                     return true;
                 }

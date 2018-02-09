@@ -1,6 +1,5 @@
 package me.impy.aegis;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.hardware.fingerprint.FingerprintManager;
 import android.os.Build;
@@ -98,12 +97,7 @@ public class AuthActivity extends AegisActivity implements FingerprintUiHelper.C
         builder.setTitle("Decryption error");
         builder.setMessage("Master key integrity check failed for every slot. Make sure you didn't mistype your password.");
         builder.setCancelable(false);
-        builder.setPositiveButton("OK",
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        dialog.cancel();
-                    }
-                });
+        builder.setPositiveButton(android.R.string.ok, null);
         builder.create().show();
     }
 
