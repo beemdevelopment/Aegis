@@ -392,8 +392,6 @@ public class MainActivity extends AegisActivity implements KeyProfileView.Listen
     }
 
     private void addKey(KeyProfile profile) {
-        profile.refreshCode();
-
         DatabaseEntry entry = profile.getEntry();
         entry.setName(entry.getInfo().getAccountName());
         try {
@@ -485,6 +483,9 @@ public class MainActivity extends AegisActivity implements KeyProfileView.Listen
             setPreferredTheme(nightMode);
             recreate();
         }
+
+        // refresh all codes to prevent showing old ones
+        _keyProfileView.refresh();
     }
 
     private BottomSheetDialog createBottomSheet(final KeyProfile profile) {

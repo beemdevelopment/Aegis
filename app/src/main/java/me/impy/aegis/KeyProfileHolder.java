@@ -10,14 +10,13 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.amulyakhare.textdrawable.TextDrawable;
-import com.amulyakhare.textdrawable.util.ColorGenerator;
 
-public class KeyProfileHolder extends RecyclerView.ViewHolder {
+public class KeyProfileHolder extends RecyclerView.ViewHolder implements KeyProfile.Listener {
     private TextView _profileName;
     private TextView _profileCode;
     private TextView _profileIssuer;
     private ImageView _profileDrawable;
-    private KeyProfile _keyProfile;
+    private KeyProfile _profile;
     private ProgressBar _progressBar;
 
     private Handler _uiHandler;
@@ -34,11 +33,15 @@ public class KeyProfileHolder extends RecyclerView.ViewHolder {
     }
 
     public void setData(KeyProfile profile, boolean showIssuer) {
-        if ((_keyProfile = profile) == null) {
+        if (profile == null) {
+            _profile.setListener(null);
+            _profile = null;
             _running = false;
             return;
         }
+        _profile = profile;
 
+        profile.setListener(this);
         _profileName.setText(profile.getEntry().getName());
         _profileCode.setText(profile.getCode());
         _profileIssuer.setText("");
@@ -50,36 +53,34 @@ public class KeyProfileHolder extends RecyclerView.ViewHolder {
         _profileDrawable.setImageDrawable(drawable);
     }
 
-    public void startUpdateLoop() {
+    public void startRefreshLoop() {
         if (_running) {
             return;
         }
         _running = true;
 
-        updateCode();
+        _profile.refreshCode();
         _uiHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 if (_running) {
-                    updateCode();
-                    _uiHandler.postDelayed(this, _keyProfile.getEntry().getInfo().getMillisTillNextRotation());
+                    _profile.refreshCode();
+                    _uiHandler.postDelayed(this, _profile.getEntry().getInfo().getMillisTillNextRotation());
                 }
             }
-        }, _keyProfile.getEntry().getInfo().getMillisTillNextRotation());
+        }, _profile.getEntry().getInfo().getMillisTillNextRotation());
     }
 
-    private boolean updateCode() {
+    @Override
+    public void onRefreshCode(String otp) {
         // reset the progress bar
         int maxProgress = _progressBar.getMax();
         _progressBar.setProgress(maxProgress);
-
-        // refresh the code
-        String otp = _keyProfile.refreshCode();
         _profileCode.setText(otp.substring(0, otp.length() / 2) + " " + otp.substring(otp.length() / 2));
 
         // calculate the progress the bar should start at
-        long millisTillRotation = _keyProfile.getEntry().getInfo().getMillisTillNextRotation();
-        long period = _keyProfile.getEntry().getInfo().getPeriod() * maxProgress;
+        long millisTillRotation = _profile.getEntry().getInfo().getMillisTillNextRotation();
+        long period = _profile.getEntry().getInfo().getPeriod() * maxProgress;
         int currentProgress = maxProgress - (int) ((((double) period - millisTillRotation) / period) * maxProgress);
 
         // start progress animation
@@ -87,6 +88,5 @@ public class KeyProfileHolder extends RecyclerView.ViewHolder {
         animation.setDuration(millisTillRotation);
         animation.setInterpolator(new LinearInterpolator());
         animation.start();
-        return true;
     }
 }

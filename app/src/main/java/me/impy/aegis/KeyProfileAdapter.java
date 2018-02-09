@@ -54,6 +54,12 @@ public class KeyProfileAdapter extends RecyclerView.Adapter<KeyProfileHolder> im
         notifyItemChanged(position);
     }
 
+    public void refresh() {
+        for (KeyProfile profile : _keyProfiles) {
+            profile.refreshCode();
+        }
+    }
+
     private KeyProfile getKeyByID(long id) {
         for (KeyProfile profile : _keyProfiles) {
             if (profile.getEntry().getID() == id) {
@@ -99,7 +105,7 @@ public class KeyProfileAdapter extends RecyclerView.Adapter<KeyProfileHolder> im
     public void onBindViewHolder(final KeyProfileHolder holder, int position) {
         final KeyProfile profile = _keyProfiles.get(position);
         holder.setData(profile, _showIssuer);
-        holder.startUpdateLoop();
+        holder.startRefreshLoop();
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
