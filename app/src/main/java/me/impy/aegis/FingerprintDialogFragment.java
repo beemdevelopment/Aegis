@@ -22,6 +22,7 @@ import me.impy.aegis.helpers.FingerprintUiHelper;
 public class FingerprintDialogFragment extends SlotDialogFragment implements FingerprintUiHelper.Callback {
     private Cipher _cipher;
     private FingerprintUiHelper _helper;
+    private FingerprintSlot _slot;
 
     @NonNull
     @Override
@@ -32,8 +33,8 @@ public class FingerprintDialogFragment extends SlotDialogFragment implements Fin
 
         FingerprintManager manager = FingerprintHelper.getManager(getContext());
         try {
-            KeyStoreHandle handle = new KeyStoreHandle();
-            SecretKey key = handle.getKey();
+            _slot = new FingerprintSlot();
+            SecretKey key = new KeyStoreHandle().generateKey(_slot.getID());
             _cipher = Slot.createCipher(key, Cipher.ENCRYPT_MODE);
             _helper = new FingerprintUiHelper(manager, imgFingerprint, textFingerprint, this);
         } catch (Exception e) {
@@ -67,8 +68,7 @@ public class FingerprintDialogFragment extends SlotDialogFragment implements Fin
 
     @Override
     public void onAuthenticated() {
-        FingerprintSlot slot = new FingerprintSlot();
-        getListener().onSlotResult(slot, _cipher);
+        getListener().onSlotResult(_slot, _cipher);
         dismiss();
     }
 

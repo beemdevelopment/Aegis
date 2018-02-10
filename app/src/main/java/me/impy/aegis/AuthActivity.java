@@ -61,12 +61,17 @@ public class AuthActivity extends AegisActivity implements FingerprintUiHelper.C
         FingerprintManager manager = FingerprintHelper.getManager(this);
         if (manager != null && _slots.has(FingerprintSlot.class)) {
             try {
-                KeyStoreHandle handle = new KeyStoreHandle();
-                if (handle.keyExists()) {
-                    SecretKey key = handle.getKey();
-                    _fingerCipher = Slot.createCipher(key, Cipher.DECRYPT_MODE);
-                    _fingerHelper = new FingerprintUiHelper(manager, imgFingerprint, textFingerprint, this);
-                    boxFingerprint.setVisibility(View.VISIBLE);
+                // find a fingerprint slot with an id that matches an alias in the keystore
+                for (FingerprintSlot slot : _slots.findAll(FingerprintSlot.class)) {
+                    String id = slot.getID();
+                    KeyStoreHandle handle = new KeyStoreHandle();
+                    if (handle.containsKey(id)) {
+                        SecretKey key = handle.getKey(id);
+                        _fingerCipher = Slot.createCipher(key, Cipher.DECRYPT_MODE);
+                        _fingerHelper = new FingerprintUiHelper(manager, imgFingerprint, textFingerprint, this);
+                        boxFingerprint.setVisibility(View.VISIBLE);
+                        break;
+                    }
                 }
             } catch (Exception e) {
                 throw new UndeclaredThrowableException(e);

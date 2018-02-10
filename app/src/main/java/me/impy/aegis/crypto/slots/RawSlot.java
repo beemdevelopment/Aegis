@@ -13,6 +13,7 @@ public class RawSlot extends Slot {
     public byte[] serialize() {
         LittleByteBuffer buffer = LittleByteBuffer.allocate(getSize());
         buffer.put(getType());
+        buffer.put(_id);
         buffer.put(_encryptedMasterKey);
         return buffer.array();
     }
@@ -23,13 +24,15 @@ public class RawSlot extends Slot {
         if (buffer.get() != getType()) {
             throw new Exception("slot type mismatch");
         }
+        _id = new byte[ID_SIZE];
+        buffer.get(_id);
         _encryptedMasterKey = new byte[CryptoUtils.CRYPTO_KEY_SIZE];
         buffer.get(_encryptedMasterKey);
     }
 
     @Override
     public int getSize() {
-        return 1 + CryptoUtils.CRYPTO_KEY_SIZE;
+        return 1 + ID_SIZE + CryptoUtils.CRYPTO_KEY_SIZE;
     }
 
     @Override

@@ -24,6 +24,7 @@ import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
 
 import me.impy.aegis.crypto.KeyStoreHandle;
+import me.impy.aegis.crypto.slots.FingerprintSlot;
 import me.impy.aegis.crypto.slots.Slot;
 import me.impy.aegis.helpers.FingerprintUiHelper;
 import me.impy.aegis.helpers.AuthHelper;
@@ -39,6 +40,7 @@ public class CustomAuthenticatedSlide extends Fragment implements FingerprintUiH
     private TextView _textFingerprint;
     private FingerprintUiHelper _fingerHelper;
     private KeyStoreHandle _storeHandle;
+    private FingerprintSlot _slot;
     private Cipher _fingerCipher;
     private boolean _fingerAuthenticated;
 
@@ -93,13 +95,9 @@ public class CustomAuthenticatedSlide extends Fragment implements FingerprintUiH
                 try {
                     if (_storeHandle == null) {
                         _storeHandle = new KeyStoreHandle();
+                        _slot = new FingerprintSlot();
                     }
-                    // TODO: consider regenerating the key here if it already exists
-                    if (!_storeHandle.keyExists()) {
-                        key = _storeHandle.generateKey(true);
-                    } else {
-                        key = _storeHandle.getKey();
-                    }
+                    key = _storeHandle.generateKey(_slot.getID());
                 } catch (Exception e) {
                     throw new UndeclaredThrowableException(e);
                 }
@@ -160,7 +158,7 @@ public class CustomAuthenticatedSlide extends Fragment implements FingerprintUiH
 
         View view = getView();
         if (view != null) {
-            Snackbar snackbar = Snackbar.make(getView(), message, Snackbar.LENGTH_LONG);
+            Snackbar snackbar = Snackbar.make(view, message, Snackbar.LENGTH_LONG);
             snackbar.show();
         }
     }

@@ -120,7 +120,7 @@ public class CryptoUtils {
         return generateRandomBytes(CRYPTO_NONCE_SIZE);
     }
 
-    private static byte[] generateRandomBytes(int length) {
+    public static byte[] generateRandomBytes(int length) {
         SecureRandom random = new SecureRandom();
         byte[] data = new byte[length];
         random.nextBytes(data);

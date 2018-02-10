@@ -70,6 +70,7 @@ A slot has the following structure.
 | Length | Contents            |
 |:-------|:--------------------|
 | `1`    | `uint8_t` Type      |
+| `16`   | ID                  |
 | `32`   | Encrypted key       |
 | `?`    | Additional data     |
 

@@ -14,7 +14,9 @@ import android.widget.Toast;
 
 import javax.crypto.Cipher;
 
+import me.impy.aegis.crypto.KeyStoreHandle;
 import me.impy.aegis.crypto.MasterKey;
+import me.impy.aegis.crypto.slots.FingerprintSlot;
 import me.impy.aegis.crypto.slots.PasswordSlot;
 import me.impy.aegis.crypto.slots.Slot;
 import me.impy.aegis.crypto.slots.SlotCollection;
@@ -36,16 +38,10 @@ public class SlotManagerActivity extends AegisActivity implements SlotAdapter.Li
         bar.setHomeAsUpIndicator(R.drawable.ic_close);
         bar.setDisplayHomeAsUpEnabled(true);
 
-        // only show the fingerprint option if we can get an instance of the fingerprint manager
-        // TODO: also hide the option if this device's fingerprint has already been registered
-        if (FingerprintHelper.getManager(this) != null) {
-            findViewById(R.id.button_add_fingerprint).setOnClickListener(view -> {
-                FingerprintDialogFragment dialog = new FingerprintDialogFragment();
-                dialog.show(getSupportFragmentManager(), null);
-            });
-        } else {
-            findViewById(R.id.button_add_fingerprint).setVisibility(View.GONE);
-        }
+        findViewById(R.id.button_add_fingerprint).setOnClickListener(view -> {
+            FingerprintDialogFragment dialog = new FingerprintDialogFragment();
+            dialog.show(getSupportFragmentManager(), null);
+        });
 
         findViewById(R.id.button_add_password).setOnClickListener(view -> {
             PasswordDialogFragment dialog = new PasswordDialogFragment();
@@ -66,6 +62,26 @@ public class SlotManagerActivity extends AegisActivity implements SlotAdapter.Li
         for (Slot slot : _slots) {
             _adapter.addSlot(slot);
         }
+
+        updateFingerprintButton();
+    }
+
+    private void updateFingerprintButton() {
+        // only show the fingerprint option if we can get an instance of the fingerprint manager
+        // and if none of the slots in the collection has a matching alias in the keystore
+        int visibility = View.VISIBLE;
+        try {
+            KeyStoreHandle keyStore = new KeyStoreHandle();
+            for (FingerprintSlot slot : _slots.findAll(FingerprintSlot.class)) {
+                if (keyStore.containsKey(slot.getID()) && FingerprintHelper.getManager(this) != null) {
+                    visibility = View.GONE;
+                    break;
+                }
+            }
+        } catch (Exception e) {
+            visibility = View.GONE;
+        }
+        findViewById(R.id.button_add_fingerprint).setVisibility(visibility);
     }
 
     private boolean onSave() {
@@ -132,6 +148,7 @@ public class SlotManagerActivity extends AegisActivity implements SlotAdapter.Li
                 .setPositiveButton(android.R.string.yes, (dialog, whichButton) -> {
                     _slots.remove(slot);
                     _adapter.removeSlot(slot);
+                    updateFingerprintButton();
                 })
                 .setNegativeButton(android.R.string.no, null)
                 .show();
@@ -145,8 +162,10 @@ public class SlotManagerActivity extends AegisActivity implements SlotAdapter.Li
             onException(e);
             return;
         }
+
         _slots.add(slot);
         _adapter.addSlot(slot);
+        updateFingerprintButton();
     }
 
     @Override

@@ -57,7 +57,7 @@ public class PasswordSlot extends RawSlot {
 
     @Override
     public int getSize() {
-        return 1 + CryptoUtils.CRYPTO_KEY_SIZE + /* _n, _r, _p */ 4 + 4 + 4 + CryptoUtils.CRYPTO_SALT_SIZE;
+        return super.getSize() + /* _n, _r, _p */ 4 + 4 + 4 + CryptoUtils.CRYPTO_SALT_SIZE;
     }
 
     @Override
