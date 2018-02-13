@@ -1,12 +1,15 @@
 package me.impy.aegis.db.slots;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
 
 import javax.crypto.SecretKey;
 
 import me.impy.aegis.crypto.CryptoUtils;
-import me.impy.aegis.util.LittleByteBuffer;
+import me.impy.aegis.encoding.Hex;
 
 public class PasswordSlot extends RawSlot {
     private int _n;
@@ -19,27 +22,22 @@ public class PasswordSlot extends RawSlot {
     }
 
     @Override
-    public byte[] serialize() {
-        byte[] bytes = super.serialize();
-        LittleByteBuffer buffer = LittleByteBuffer.wrap(bytes);
-        buffer.position(super.getSize());
-        buffer.putInt(_n);
-        buffer.putInt(_r);
-        buffer.putInt(_p);
-        buffer.put(_salt);
-        return buffer.array();
+    public JSONObject serialize() throws JSONException {
+        JSONObject obj = super.serialize();
+        obj.put("n", _n);
+        obj.put("r", _r);
+        obj.put("p", _p);
+        obj.put("salt", Hex.toString(_salt));
+        return obj;
     }
 
     @Override
-    public void deserialize(byte[] data) throws Exception {
-        super.deserialize(data);
-        LittleByteBuffer buffer = LittleByteBuffer.wrap(data);
-        buffer.position(super.getSize());
-        _n = buffer.getInt();
-        _r = buffer.getInt();
-        _p = buffer.getInt();
-        _salt = new byte[CryptoUtils.CRYPTO_SALT_SIZE];
-        buffer.get(_salt);
+    public void deserialize(JSONObject obj) throws Exception {
+        super.deserialize(obj);
+        _n = obj.getInt("n");
+        _r = obj.getInt("r");
+        _p = obj.getInt("p");
+        _salt = Hex.toBytes(obj.getString("salt"));
     }
 
     public SecretKey deriveKey(char[] password, byte[] salt, int n, int r, int p) throws InvalidKeySpecException, NoSuchAlgorithmException {
@@ -53,11 +51,6 @@ public class PasswordSlot extends RawSlot {
 
     public SecretKey deriveKey(char[] password) throws InvalidKeySpecException, NoSuchAlgorithmException {
         return CryptoUtils.deriveKey(password, _salt, _n, _r, _p);
-    }
-
-    @Override
-    public int getSize() {
-        return super.getSize() + /* _n, _r, _p */ 4 + 4 + 4 + CryptoUtils.CRYPTO_SALT_SIZE;
     }
 
     @Override

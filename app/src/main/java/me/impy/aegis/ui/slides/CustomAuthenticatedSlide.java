@@ -41,7 +41,7 @@ public class CustomAuthenticatedSlide extends Fragment implements FingerprintUiH
     private TextView _textFingerprint;
     private FingerprintUiHelper _fingerHelper;
     private KeyStoreHandle _storeHandle;
-    private FingerprintSlot _slot;
+    private FingerprintSlot _fingerSlot;
     private Cipher _fingerCipher;
     private boolean _fingerAuthenticated;
 
@@ -75,6 +75,10 @@ public class CustomAuthenticatedSlide extends Fragment implements FingerprintUiH
         return _fingerCipher;
     }
 
+    public FingerprintSlot getFingerSlot() {
+        return _fingerSlot;
+    }
+
     public void setBgColor(int color) {
         _bgColor = color;
     }
@@ -95,9 +99,9 @@ public class CustomAuthenticatedSlide extends Fragment implements FingerprintUiH
                 try {
                     if (_storeHandle == null) {
                         _storeHandle = new KeyStoreHandle();
-                        _slot = new FingerprintSlot();
+                        _fingerSlot = new FingerprintSlot();
                     }
-                    key = _storeHandle.generateKey(_slot.getID());
+                    key = _storeHandle.generateKey(_fingerSlot.getID());
                 } catch (Exception e) {
                     throw new UndeclaredThrowableException(e);
                 }

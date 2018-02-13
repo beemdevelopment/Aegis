@@ -9,6 +9,8 @@ import com.github.paolorotolo.appintro.AppIntro;
 import com.github.paolorotolo.appintro.AppIntroFragment;
 import com.github.paolorotolo.appintro.model.SliderPage;
 
+import org.json.JSONObject;
+
 import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
 
@@ -164,7 +166,7 @@ public class IntroActivity extends AppIntro implements DerivationTask.Callback {
             try {
                 // encrypt the master key with the fingerprint key
                 // and add it to the list of slots
-                FingerprintSlot slot = new FingerprintSlot();
+                FingerprintSlot slot = _authenticatedSlide.getFingerSlot();
                 Cipher cipher = _authenticatedSlide.getFingerCipher();
                 slots.encrypt(slot, masterKey, cipher);
                 slots.add(slot);
@@ -176,13 +178,11 @@ public class IntroActivity extends AppIntro implements DerivationTask.Callback {
 
         // finally, save the database
         try {
-            byte[] bytes = _database.serialize();
+            JSONObject obj = _database.serialize();
             if (cryptType == CustomAuthenticationSlide.CRYPT_TYPE_NONE) {
-                _databaseFile.setContent(bytes);
+                _databaseFile.setContent(obj);
             } else {
-                CryptResult result = masterKey.encrypt(bytes);
-                _databaseFile.setContent(result.Data);
-                _databaseFile.setCryptParameters(result.Parameters);
+                _databaseFile.setContent(obj, masterKey);
             }
             DatabaseManager.save(getApplicationContext(), _databaseFile);
         } catch (Exception e) {

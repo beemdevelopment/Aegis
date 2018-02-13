@@ -2,6 +2,9 @@ package me.impy.aegis.db.slots;
 
 import android.annotation.SuppressLint;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.Serializable;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
@@ -51,14 +54,24 @@ public abstract class Slot implements Serializable {
         return cipher;
     }
 
+    public JSONObject serialize() throws JSONException {
+        JSONObject obj = new JSONObject();
+        obj.put("type", getType());
+        obj.put("id", Hex.toString(_id));
+        obj.put("key", Hex.toString(_encryptedMasterKey));
+        return obj;
+    }
+
+    public void deserialize(JSONObject obj) throws Exception {
+        if (obj.getInt("type") != getType()) {
+            throw new Exception("slot type mismatch");
+        }
+        _id = Hex.toBytes(obj.getString("id"));
+        _encryptedMasterKey = Hex.toBytes(obj.getString("key"));
+    }
+
+    public abstract byte getType();
     public String getID() {
         return Hex.toString(_id);
     }
-
-    public abstract int getSize();
-    public abstract byte getType();
-
-    // a slot has a binary representation
-    public abstract byte[] serialize();
-    public abstract void deserialize(byte[] data) throws Exception;
 }

@@ -15,11 +15,11 @@ public class Hex {
 
     private static final char[] hexCode = "0123456789abcdef".toCharArray();
 
-    public static byte[] toBytes(String s) {
+    public static byte[] toBytes(String s) throws HexException {
         final int len = s.length();
 
         if (len % 2 != 0)
-            throw new IllegalArgumentException("hexBinary needs to be even-length: " + s);
+            throw new HexException("hexBinary needs to be even-length: " + s);
 
         byte[] out = new byte[len / 2];
 
@@ -27,7 +27,7 @@ public class Hex {
             int h = hexToBin(s.charAt(i));
             int l = hexToBin(s.charAt(i + 1));
             if (h == -1 || l == -1)
-                throw new IllegalArgumentException("contains illegal character for hexBinary: " + s);
+                throw new HexException("contains illegal character for hexBinary: " + s);
 
             out[i / 2] = (byte) (h * 16 + l);
         }

@@ -1,5 +1,9 @@
 package me.impy.aegis.db.slots;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -9,44 +13,38 @@ import java.util.List;
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
 import javax.crypto.IllegalBlockSizeException;
-import me.impy.aegis.crypto.CryptoUtils;
 import me.impy.aegis.crypto.MasterKey;
-import me.impy.aegis.util.LittleByteBuffer;
+import me.impy.aegis.encoding.Hex;
 
 public class SlotCollection implements Iterable<Slot>, Serializable {
     private List<Slot> _slots = new ArrayList<>();
     private byte[] _masterHash;
 
-    public static byte[] serialize(SlotCollection slots) {
-        // yep, no streams at this api level
-        int size = 0;
-        for (Slot slot : slots) {
-            size += slot.getSize();
-        }
-        size += CryptoUtils.CRYPTO_HASH_SIZE;
+    public static JSONObject serialize(SlotCollection slots) throws JSONException {
+        JSONObject obj = new JSONObject();
+        obj.put("hash", Hex.toString(slots.getMasterHash()));
 
-        LittleByteBuffer buffer = LittleByteBuffer.allocate(size);
-        buffer.put(slots.getMasterHash());
-
+        JSONArray entries = new JSONArray();
         for (Slot slot : slots) {
-            byte[] bytes = slot.serialize();
-            buffer.put(bytes);
+            entries.put(slot.serialize());
         }
-        return buffer.array();
+
+        obj.put("entries", entries);
+        return obj;
     }
 
-    public static SlotCollection deserialize(byte[] data) throws Exception {
-        LittleByteBuffer buffer = LittleByteBuffer.wrap(data);
-        byte[] masterHash = new byte[CryptoUtils.CRYPTO_HASH_SIZE];
-        buffer.get(masterHash);
-
+    public static SlotCollection deserialize(JSONObject obj) throws Exception {
         SlotCollection slots = new SlotCollection();
+
+        byte[] masterHash = Hex.toBytes(obj.getString("hash"));
         slots.setMasterHash(masterHash);
 
-        while (buffer.remaining() > 0) {
+        JSONArray entries = obj.getJSONArray("entries");
+        for (int i = 0; i < entries.length(); i++) {
             Slot slot;
+            JSONObject slotObj = entries.getJSONObject(i);
 
-            switch (buffer.peek()) {
+            switch (slotObj.getInt("type")) {
                 case Slot.TYPE_RAW:
                     slot = new RawSlot();
                     break;
@@ -60,10 +58,7 @@ public class SlotCollection implements Iterable<Slot>, Serializable {
                     throw new Exception("unrecognized slot type");
             }
 
-            byte[] bytes = new byte[slot.getSize()];
-            buffer.get(bytes);
-
-            slot.deserialize(bytes);
+            slot.deserialize(slotObj);
             slots.add(slot);
         }
 
