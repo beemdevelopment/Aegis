@@ -2,26 +2,39 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
                   android:title="@string/settings">
 
-    <CheckBoxPreference
-        android:defaultValue="false"
-        android:key="pref_night_mode"
-        android:title="@string/pref_night_mode"
-        android:summary="@string/pref_night_mode_description"/>
+    <PreferenceCategory
+        android:title="Appearance">
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="pref_night_mode"
+            android:title="@string/pref_night_mode"
+            android:summary="@string/pref_night_mode_description"/>
 
-    <CheckBoxPreference
-        android:defaultValue="false"
-        android:key="pref_issuer"
-        android:title="@string/pref_issuers"
-        android:summary="@string/pref_issuers_description"/>
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="pref_issuer"
+            android:title="@string/pref_issuers"
+            android:summary="@string/pref_issuers_description"/>
+    </PreferenceCategory>
 
-    <Preference
-        android:key="pref_slots"
-        android:title="Key slots"
-        android:summary="Manage the list of keys that can decrypt the database"/>
+    <PreferenceCategory
+        android:title="Security">
+        <Preference
+            android:key="pref_slots"
+            android:title="Key slots"
+            android:summary="Manage the list of keys that can decrypt the database"/>
+    </PreferenceCategory>
 
-    <Preference
-        android:key="pref_export"
-        android:title="Export"
-        android:summary="Export the database"/>
+    <PreferenceCategory
+        android:title="Tools">
+        <Preference
+            android:key="pref_import"
+            android:title="Import"
+            android:summary="Import a database"/>
+        <Preference
+            android:key="pref_export"
+            android:title="Export"
+            android:summary="Export the database"/>
+    </PreferenceCategory>
 
 </PreferenceScreen>

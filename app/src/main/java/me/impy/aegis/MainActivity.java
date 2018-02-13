@@ -230,6 +230,11 @@ public class MainActivity extends AegisActivity implements KeyProfileView.Listen
         // perform any pending actions
         int action = data.getIntExtra("action", -1);
         switch (action) {
+            case PreferencesActivity.ACTION_IMPORT:
+                if (PermissionHelper.request(this, CODE_PERM_IMPORT, Manifest.permission.READ_EXTERNAL_STORAGE)) {
+                    onImport();
+                }
+                break;
             case PreferencesActivity.ACTION_EXPORT:
                 onExport();
                 break;
@@ -585,11 +590,6 @@ public class MainActivity extends AegisActivity implements KeyProfileView.Listen
                 Intent intent = new Intent(this, PreferencesActivity.class);
                 intent.putExtra("encrypted", _db.getFile().isEncrypted());
                 startActivityForResult(intent, CODE_PREFERENCES);
-                return true;
-            case R.id.action_import:
-                if (PermissionHelper.request(this, CODE_PERM_IMPORT, Manifest.permission.READ_EXTERNAL_STORAGE)) {
-                    onImport();
-                }
                 return true;
             case R.id.action_lock:
                 _keyProfileView.clearKeys();

@@ -8,11 +8,6 @@
         app:showAsAction="ifRoom"
         android:title=""/>
     <item
-        android:id="@+id/action_import"
-        android:orderInCategory="100"
-        android:title="@string/action_import"
-        app:showAsAction="never" />
-    <item
         android:id="@+id/action_settings"
         android:orderInCategory="100"
         android:title="@string/action_settings"

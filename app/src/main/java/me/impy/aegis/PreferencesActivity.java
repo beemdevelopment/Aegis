@@ -8,8 +8,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
 public class PreferencesActivity extends AegisActivity {
-    public static final int ACTION_EXPORT = 0;
-    public static final int ACTION_SLOTS = 1;
+    public static final int ACTION_IMPORT = 0;
+    public static final int ACTION_EXPORT = 1;
+    public static final int ACTION_SLOTS = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,8 +59,18 @@ public class PreferencesActivity extends AegisActivity {
                 }
             });
 
-            Preference exportPreference = findPreference("pref_export");
+            Preference exportPreference = findPreference("pref_import");
             exportPreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+                @Override
+                public boolean onPreferenceClick(Preference preference) {
+                    _result.putExtra("action", ACTION_IMPORT);
+                    finish();
+                    return true;
+                }
+            });
+
+            Preference importPreference = findPreference("pref_export");
+            importPreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
                 @Override
                 public boolean onPreferenceClick(Preference preference) {
                     _result.putExtra("action", ACTION_EXPORT);
