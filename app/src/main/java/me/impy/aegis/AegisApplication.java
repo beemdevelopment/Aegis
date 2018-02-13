@@ -13,6 +13,7 @@ import android.support.annotation.RequiresApi;
 import java.util.Collections;
 
 import me.impy.aegis.db.DatabaseManager;
+import me.impy.aegis.ui.MainActivity;
 
 public class AegisApplication extends Application {
     private boolean _running = false;

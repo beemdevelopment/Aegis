@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="me.impy.aegis.MainActivity">
+    tools:context="me.impy.aegis.ui.MainActivity">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -22,7 +22,7 @@
     </android.support.design.widget.AppBarLayout>
 
     <fragment
-        android:name="me.impy.aegis.KeyProfileView"
+        android:name="me.impy.aegis.ui.views.KeyProfileView"
         android:id="@+id/key_profiles"
         android:layout_height="match_parent"
         android:layout_width="match_parent"

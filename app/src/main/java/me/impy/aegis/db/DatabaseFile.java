@@ -7,7 +7,7 @@ import java.lang.reflect.UndeclaredThrowableException;
 import java.util.Arrays;
 
 import me.impy.aegis.crypto.CryptParameters;
-import me.impy.aegis.crypto.slots.SlotCollection;
+import me.impy.aegis.db.slots.SlotCollection;
 import me.impy.aegis.crypto.CryptoUtils;
 import me.impy.aegis.util.LittleByteBuffer;
 
