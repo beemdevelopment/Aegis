@@ -67,8 +67,7 @@ public class CustomAuthenticatedSlide extends Fragment implements FingerprintUiH
     }
 
     public char[] getPassword() {
-        AuthHelper.clearPassword(_textPasswordConfirm);
-        return AuthHelper.getPassword(_textPassword, true);
+        return AuthHelper.getEditTextChars(_textPassword);
     }
 
     public Cipher getFingerCipher() {

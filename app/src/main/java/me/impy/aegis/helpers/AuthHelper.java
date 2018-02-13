@@ -11,15 +11,7 @@ public class AuthHelper {
     private AuthHelper() {
     }
 
-    public static char[] getPassword(EditText text, boolean clear) {
-        char[] password = getEditTextChars(text);
-        if (clear) {
-            clearPassword(text);
-        }
-        return password;
-    }
-
-    public static void clearPassword(EditText text) {
+    public static void clearEditText(EditText text) {
         text.getText().clear();
     }
 
@@ -33,9 +25,6 @@ public class AuthHelper {
     public static boolean arePasswordsEqual(EditText text1, EditText text2) {
         char[] password = getEditTextChars(text1);
         char[] passwordConfirm = getEditTextChars(text2);
-        boolean equal = password.length != 0 && Arrays.equals(password, passwordConfirm);
-        CryptoUtils.zero(password);
-        CryptoUtils.zero(passwordConfirm);
-        return equal;
+        return password.length != 0 && Arrays.equals(password, passwordConfirm);
     }
 }

@@ -33,16 +33,13 @@ public abstract class Slot implements Serializable {
     // getKey decrypts the encrypted master key in this slot with the given key and returns it.
     public SecretKey getKey(Cipher cipher) throws BadPaddingException, IllegalBlockSizeException {
         byte[] decryptedKeyBytes = cipher.doFinal(_encryptedMasterKey);
-        SecretKey decryptedKey = new SecretKeySpec(decryptedKeyBytes, CryptoUtils.CRYPTO_CIPHER_AEAD);
-        CryptoUtils.zero(decryptedKeyBytes);
-        return decryptedKey;
+        return new SecretKeySpec(decryptedKeyBytes, CryptoUtils.CRYPTO_CIPHER_AEAD);
     }
 
     // setKey encrypts the given master key with the given key and stores the result in this slot.
     public void setKey(MasterKey masterKey, Cipher cipher) throws BadPaddingException, IllegalBlockSizeException {
         byte[] masterKeyBytes = masterKey.getBytes();
         _encryptedMasterKey = cipher.doFinal(masterKeyBytes);
-        CryptoUtils.zero(masterKeyBytes);
     }
 
     // suppress the AES ECB warning

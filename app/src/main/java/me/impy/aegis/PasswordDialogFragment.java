@@ -43,9 +43,7 @@ public class PasswordDialogFragment extends SlotDialogFragment {
                     return;
                 }
 
-                AuthHelper.clearPassword(textPasswordConfirm);
-                char[] password = AuthHelper.getPassword(textPassword, true);
-
+                char[] password = AuthHelper.getEditTextChars(textPassword);
                 PasswordSlot slot = new PasswordSlot();
                 DerivationTask task = new DerivationTask(getContext(), key -> {
                     Cipher cipher;

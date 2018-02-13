@@ -62,10 +62,6 @@ public class SlotCollectionTask<T extends Slot> extends ProgressDialogTask<SlotC
             return null;
         } catch (Exception e) {
             throw new UndeclaredThrowableException(e);
-        } finally {
-            if (params.Obj instanceof char[]) {
-                CryptoUtils.zero((char[]) params.Obj);
-            }
         }
     }
 

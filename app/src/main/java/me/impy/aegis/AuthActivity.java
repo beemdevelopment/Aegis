@@ -93,7 +93,7 @@ public class AuthActivity extends AegisActivity implements FingerprintUiHelper.C
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                char[] password = AuthHelper.getPassword(_textPassword, true);
+                char[] password = AuthHelper.getEditTextChars(_textPassword);
                 trySlots(PasswordSlot.class, password);
             }
         });

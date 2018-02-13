@@ -219,7 +219,6 @@ public class EditProfileActivity extends AegisActivity {
         try {
             char[] secret = AuthHelper.getEditTextChars(_textSecret);
             info.setSecret(secret);
-            CryptoUtils.zero(secret);
             info.setIssuer(_textIssuer.getText().toString());
             info.setPeriod(period);
             info.setDigits(digits);

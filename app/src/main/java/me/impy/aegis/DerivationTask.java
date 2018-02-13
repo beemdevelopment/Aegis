@@ -24,7 +24,6 @@ public class DerivationTask extends ProgressDialogTask<DerivationTask.Params, Se
         try {
             byte[] salt = CryptoUtils.generateSalt();
             SecretKey key = params.Slot.deriveKey(params.Password, salt, CryptoUtils.CRYPTO_SCRYPT_N, CryptoUtils.CRYPTO_SCRYPT_r, CryptoUtils.CRYPTO_SCRYPT_p);
-            CryptoUtils.zero(params.Password);
             return key;
         } catch (Exception e) {
             return null;
