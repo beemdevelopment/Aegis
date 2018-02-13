@@ -58,6 +58,7 @@ public class KeyProfileAdapter extends RecyclerView.Adapter<KeyProfileHolder> im
         for (KeyProfile profile : _keyProfiles) {
             profile.refreshCode();
         }
+        notifyDataSetChanged();
     }
 
     private KeyProfile getKeyByID(long id) {

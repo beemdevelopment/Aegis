@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import com.amulyakhare.textdrawable.TextDrawable;
 
-public class KeyProfileHolder extends RecyclerView.ViewHolder implements KeyProfile.Listener {
+public class KeyProfileHolder extends RecyclerView.ViewHolder {
     private TextView _profileName;
     private TextView _profileCode;
     private TextView _profileIssuer;
@@ -34,14 +34,12 @@ public class KeyProfileHolder extends RecyclerView.ViewHolder implements KeyProf
 
     public void setData(KeyProfile profile, boolean showIssuer) {
         if (profile == null) {
-            _profile.setListener(null);
             _profile = null;
             _running = false;
             return;
         }
         _profile = profile;
 
-        profile.setListener(this);
         _profileName.setText(profile.getEntry().getName());
         _profileCode.setText(profile.getCode());
         _profileIssuer.setText("");
@@ -59,20 +57,21 @@ public class KeyProfileHolder extends RecyclerView.ViewHolder implements KeyProf
         }
         _running = true;
 
-        _profile.refreshCode();
+        refreshCode();
         _uiHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 if (_running) {
-                    _profile.refreshCode();
+                    refreshCode();
                     _uiHandler.postDelayed(this, _profile.getEntry().getInfo().getMillisTillNextRotation());
                 }
             }
         }, _profile.getEntry().getInfo().getMillisTillNextRotation());
     }
 
-    @Override
-    public void onRefreshCode(String otp) {
+    public void refreshCode() {
+        String otp = _profile.refreshCode();
+
         // reset the progress bar
         int maxProgress = _progressBar.getMax();
         _progressBar.setProgress(maxProgress);
