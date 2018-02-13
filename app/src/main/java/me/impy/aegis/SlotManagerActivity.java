@@ -122,7 +122,7 @@ public class SlotManagerActivity extends AegisActivity implements SlotAdapter.Li
 
     @Override
     public void onEditSlot(Slot slot) {
-        EditText textName = new EditText(this);
+        /*EditText textName = new EditText(this);
         textName.setHint("Name");
 
         new AlertDialog.Builder(this)
@@ -132,7 +132,7 @@ public class SlotManagerActivity extends AegisActivity implements SlotAdapter.Li
                     String name = textName.getText().toString();
                 })
                 .setNegativeButton(android.R.string.cancel, null)
-                .show();
+                .show();*/
     }
 
     @Override
