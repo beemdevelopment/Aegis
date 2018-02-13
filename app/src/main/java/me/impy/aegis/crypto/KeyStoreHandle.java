@@ -1,17 +1,22 @@
 package me.impy.aegis.crypto;
 
+import android.annotation.SuppressLint;
 import android.os.Build;
 import android.security.keystore.KeyGenParameterSpec;
+import android.security.keystore.KeyPermanentlyInvalidatedException;
 import android.security.keystore.KeyProperties;
 
 import java.io.IOException;
+import java.security.InvalidKeyException;
 import java.security.KeyStore;
 import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
 import java.security.UnrecoverableKeyException;
 import java.security.cert.CertificateException;
 
+import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;
+import javax.crypto.NoSuchPaddingException;
 import javax.crypto.SecretKey;
 
 import me.impy.aegis.crypto.slots.FingerprintSlot;
@@ -47,7 +52,28 @@ public class KeyStoreHandle {
         }
     }
 
-    public SecretKey getKey(String id) throws UnrecoverableKeyException, NoSuchAlgorithmException, KeyStoreException {
-        return (SecretKey) _keyStore.getKey(id, null);
+    public SecretKey getKey(String id)
+            throws UnrecoverableKeyException, NoSuchAlgorithmException, KeyStoreException {
+        SecretKey key = (SecretKey) _keyStore.getKey(id, null);
+
+        // try to initialize a dummy cipher
+        // and see if KeyPermanentlyInvalidatedException is thrown
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            try {
+                @SuppressLint("GetInstance")
+                Cipher cipher = Cipher.getInstance(CryptoUtils.CRYPTO_CIPHER_RAW);
+                cipher.init(Cipher.ENCRYPT_MODE, key);
+            } catch (KeyPermanentlyInvalidatedException e) {
+                return null;
+            } catch (NoSuchPaddingException | InvalidKeyException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
+        return key;
+    }
+
+    public void deleteKey(String id) throws KeyStoreException {
+        _keyStore.deleteEntry(id);
     }
 }

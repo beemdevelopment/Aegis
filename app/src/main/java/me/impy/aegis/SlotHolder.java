@@ -6,6 +6,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import me.impy.aegis.crypto.KeyStoreHandle;
 import me.impy.aegis.crypto.slots.FingerprintSlot;
 import me.impy.aegis.crypto.slots.PasswordSlot;
 import me.impy.aegis.crypto.slots.RawSlot;
@@ -29,13 +30,19 @@ public class SlotHolder extends RecyclerView.ViewHolder {
 
     public void setData(Slot slot) {
         if (slot instanceof PasswordSlot) {
-            _slotName.setText("Password 1");
+            _slotName.setText("Password");
             _slotImg.setImageResource(R.drawable.ic_create_black_24dp);
         } else if (slot instanceof FingerprintSlot) {
-            _slotName.setText("Finger 1");
+            _slotName.setText("Finger");
             _slotImg.setImageResource(R.drawable.ic_fingerprint_black_24dp);
+            try {
+                KeyStoreHandle keyStore = new KeyStoreHandle();
+                if (keyStore.containsKey(slot.getID())) {
+                    _slotUsed.setVisibility(View.VISIBLE);
+                }
+            } catch (Exception e) { }
         } else if (slot instanceof RawSlot) {
-            _slotName.setText("Raw 1");
+            _slotName.setText("Raw");
             _slotImg.setImageResource(R.drawable.ic_vpn_key_black_24dp);
         } else {
             throw new RuntimeException();

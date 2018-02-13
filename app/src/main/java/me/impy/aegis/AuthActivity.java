@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.mattprecious.swirl.SwirlView;
 
 import java.lang.reflect.UndeclaredThrowableException;
+import java.security.InvalidKeyException;
 
 import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
@@ -30,9 +31,6 @@ import me.impy.aegis.helpers.FingerprintUiHelper;
 import me.impy.aegis.helpers.AuthHelper;
 
 public class AuthActivity extends AegisActivity implements FingerprintUiHelper.Callback, SlotCollectionTask.Callback {
-    public static final int RESULT_OK = 0;
-    public static final int RESULT_EXCEPTION = 1;
-
     private EditText _textPassword;
 
     private SlotCollection _slots;
@@ -45,6 +43,7 @@ public class AuthActivity extends AegisActivity implements FingerprintUiHelper.C
         setContentView(R.layout.activity_auth);
         _textPassword = findViewById(R.id.text_password);
         LinearLayout boxFingerprint = findViewById(R.id.box_fingerprint);
+        LinearLayout boxFingerprintInfo = findViewById(R.id.box_fingerprint_info);
         TextView textFingerprint = findViewById(R.id.text_fingerprint);
 
         SwirlView imgFingerprint = null;
@@ -60,6 +59,7 @@ public class AuthActivity extends AegisActivity implements FingerprintUiHelper.C
         // only show the fingerprint controls if the api version is new enough, permission is granted, a scanner is found and a fingerprint slot is found
         FingerprintManager manager = FingerprintHelper.getManager(this);
         if (manager != null && _slots.has(FingerprintSlot.class)) {
+            boolean invalidated = false;
             try {
                 // find a fingerprint slot with an id that matches an alias in the keystore
                 for (FingerprintSlot slot : _slots.findAll(FingerprintSlot.class)) {
@@ -67,14 +67,25 @@ public class AuthActivity extends AegisActivity implements FingerprintUiHelper.C
                     KeyStoreHandle handle = new KeyStoreHandle();
                     if (handle.containsKey(id)) {
                         SecretKey key = handle.getKey(id);
+                        // if 'key' is null, it was permanently invalidated
+                        if (key == null) {
+                            invalidated = true;
+                            continue;
+                        }
                         _fingerCipher = Slot.createCipher(key, Cipher.DECRYPT_MODE);
                         _fingerHelper = new FingerprintUiHelper(manager, imgFingerprint, textFingerprint, this);
                         boxFingerprint.setVisibility(View.VISIBLE);
+                        invalidated = false;
                         break;
                     }
                 }
             } catch (Exception e) {
                 throw new UndeclaredThrowableException(e);
+            }
+
+            // display a help message if a matching invalidated keystore entry was found
+            if (invalidated) {
+                boxFingerprintInfo.setVisibility(View.VISIBLE);
             }
         }
 
