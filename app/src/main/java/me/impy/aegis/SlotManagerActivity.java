@@ -1,6 +1,7 @@
 package me.impy.aegis;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
@@ -9,12 +10,12 @@ import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.Toast;
 
 import javax.crypto.Cipher;
 
 import me.impy.aegis.crypto.KeyStoreHandle;
+import me.impy.aegis.crypto.KeyStoreHandleException;
 import me.impy.aegis.crypto.MasterKey;
 import me.impy.aegis.crypto.slots.FingerprintSlot;
 import me.impy.aegis.crypto.slots.PasswordSlot;
@@ -70,15 +71,19 @@ public class SlotManagerActivity extends AegisActivity implements SlotAdapter.Li
         // only show the fingerprint option if we can get an instance of the fingerprint manager
         // and if none of the slots in the collection has a matching alias in the keystore
         int visibility = View.VISIBLE;
-        try {
-            KeyStoreHandle keyStore = new KeyStoreHandle();
-            for (FingerprintSlot slot : _slots.findAll(FingerprintSlot.class)) {
-                if (keyStore.containsKey(slot.getID()) && FingerprintHelper.getManager(this) != null) {
-                    visibility = View.GONE;
-                    break;
+        if (FingerprintHelper.isSupported()) {
+            try {
+                KeyStoreHandle keyStore = new KeyStoreHandle();
+                for (FingerprintSlot slot : _slots.findAll(FingerprintSlot.class)) {
+                    if (keyStore.containsKey(slot.getID()) && FingerprintHelper.getManager(this) != null) {
+                        visibility = View.GONE;
+                        break;
+                    }
                 }
+            } catch (KeyStoreHandleException e) {
+                visibility = View.GONE;
             }
-        } catch (Exception e) {
+        } else {
             visibility = View.GONE;
         }
         findViewById(R.id.button_add_fingerprint).setVisibility(visibility);

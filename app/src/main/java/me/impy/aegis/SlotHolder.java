@@ -7,10 +7,12 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import me.impy.aegis.crypto.KeyStoreHandle;
+import me.impy.aegis.crypto.KeyStoreHandleException;
 import me.impy.aegis.crypto.slots.FingerprintSlot;
 import me.impy.aegis.crypto.slots.PasswordSlot;
 import me.impy.aegis.crypto.slots.RawSlot;
 import me.impy.aegis.crypto.slots.Slot;
+import me.impy.aegis.helpers.FingerprintHelper;
 
 public class SlotHolder extends RecyclerView.ViewHolder {
     private TextView _slotUsed;
@@ -35,12 +37,14 @@ public class SlotHolder extends RecyclerView.ViewHolder {
         } else if (slot instanceof FingerprintSlot) {
             _slotName.setText("Finger");
             _slotImg.setImageResource(R.drawable.ic_fingerprint_black_24dp);
-            try {
-                KeyStoreHandle keyStore = new KeyStoreHandle();
-                if (keyStore.containsKey(slot.getID())) {
-                    _slotUsed.setVisibility(View.VISIBLE);
-                }
-            } catch (Exception e) { }
+            if (FingerprintHelper.isSupported()) {
+                try {
+                    KeyStoreHandle keyStore = new KeyStoreHandle();
+                    if (keyStore.containsKey(slot.getID())) {
+                        _slotUsed.setVisibility(View.VISIBLE);
+                    }
+                } catch (KeyStoreHandleException e) { }
+            }
         } else if (slot instanceof RawSlot) {
             _slotName.setText("Raw");
             _slotImg.setImageResource(R.drawable.ic_vpn_key_black_24dp);

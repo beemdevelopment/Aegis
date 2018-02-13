@@ -19,23 +19,29 @@ import javax.crypto.KeyGenerator;
 import javax.crypto.NoSuchPaddingException;
 import javax.crypto.SecretKey;
 
-import me.impy.aegis.crypto.slots.FingerprintSlot;
-
 public class KeyStoreHandle {
     private final KeyStore _keyStore;
     private static final String STORE_NAME = "AndroidKeyStore";
 
-    public KeyStoreHandle() throws KeyStoreException, CertificateException, NoSuchAlgorithmException, IOException {
-        _keyStore = KeyStore.getInstance(STORE_NAME);
-        _keyStore.load(null);
+    public KeyStoreHandle() throws KeyStoreHandleException {
+        try {
+            _keyStore = KeyStore.getInstance(STORE_NAME);
+            _keyStore.load(null);
+        } catch (KeyStoreException | CertificateException | NoSuchAlgorithmException | IOException e) {
+            throw new KeyStoreHandleException(e);
+        }
     }
 
-    public boolean containsKey(String id) throws KeyStoreException {
-        return _keyStore.containsAlias(id);
+    public boolean containsKey(String id) throws KeyStoreHandleException {
+        try {
+            return _keyStore.containsAlias(id);
+        } catch (KeyStoreException e) {
+            throw new KeyStoreHandleException(e);
+        }
     }
 
     public SecretKey generateKey(String id) throws Exception {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+        if (isSupported()) {
             KeyGenerator generator = KeyGenerator.getInstance(KeyProperties.KEY_ALGORITHM_AES, STORE_NAME);
             generator.init(new KeyGenParameterSpec.Builder(id,
                 KeyProperties.PURPOSE_ENCRYPT | KeyProperties.PURPOSE_DECRYPT)
@@ -58,7 +64,7 @@ public class KeyStoreHandle {
 
         // try to initialize a dummy cipher
         // and see if KeyPermanentlyInvalidatedException is thrown
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+        if (isSupported()) {
             try {
                 @SuppressLint("GetInstance")
                 Cipher cipher = Cipher.getInstance(CryptoUtils.CRYPTO_CIPHER_RAW);
@@ -75,5 +81,9 @@ public class KeyStoreHandle {
 
     public void deleteKey(String id) throws KeyStoreException {
         _keyStore.deleteEntry(id);
+    }
+
+    public static boolean isSupported() {
+        return Build.VERSION.SDK_INT >= Build.VERSION_CODES.M;
     }
 }
