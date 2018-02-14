@@ -2,6 +2,7 @@ package me.impy.aegis.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.preference.EditTextPreference;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.widget.Toast;
@@ -90,6 +91,16 @@ public class PreferencesActivity extends AegisActivity {
                     return true;
                 }
             });
+
+            EditTextPreference timeoutPreference = (EditTextPreference) findPreference("pref_timeout");
+            timeoutPreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+                @Override
+                public boolean onPreferenceChange(Preference preference, Object newValue) {
+                    preference.setSummary(String.format(getString(R.string.pref_timeout_summary), (String) newValue));
+                    return true;
+                }
+            });
+            timeoutPreference.getOnPreferenceChangeListener().onPreferenceChange(timeoutPreference, timeoutPreference.getText());
 
             Preference issuerPreference = findPreference("pref_issuer");
             issuerPreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
