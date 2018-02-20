@@ -3,6 +3,9 @@ package me.impy.aegis.db;
 import android.content.Context;
 import android.os.Environment;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.DataInputStream;
 import java.io.File;
 import java.io.FileInputStream;
@@ -16,9 +19,9 @@ import me.impy.aegis.crypto.CryptResult;
 import me.impy.aegis.crypto.MasterKey;
 
 public class DatabaseManager {
-    private static final String FILENAME = "aegis.db";
-    private static final String FILENAME_EXPORT = "aegis_export.db";
-    private static final String FILENAME_EXPORT_PLAIN = "aegis_export.json";
+    private static final String FILENAME = "aegis.json";
+    private static final String FILENAME_EXPORT = "aegis_export.json";
+    private static final String FILENAME_EXPORT_PLAIN = "aegis_export_plain.json";
 
     private MasterKey _key;
     private DatabaseFile _file;
@@ -58,9 +61,9 @@ public class DatabaseManager {
         _file.deserialize(fileBytes);
 
         if (!_file.isEncrypted()) {
-            byte[] contentBytes = _file.getContent();
+            JSONObject obj = _file.getContent();
             _db = new Database();
-            _db.deserialize(contentBytes);
+            _db.deserialize(obj);
         }
     }
 
@@ -73,15 +76,13 @@ public class DatabaseManager {
 
     public void unlock(MasterKey key) throws Exception {
         assertState(true, true);
-        byte[] encrypted = _file.getContent();
-        CryptParameters params = _file.getCryptParameters();
-        CryptResult result = key.decrypt(encrypted, params);
+        JSONObject obj = _file.getContent(key);
         _db = new Database();
-        _db.deserialize(result.Data);
+        _db.deserialize(obj);
         _key = key;
     }
 
-    public static void save(Context context, DatabaseFile file) throws IOException {
+    public static void save(Context context, DatabaseFile file) throws IOException, JSONException {
         byte[] bytes = file.serialize();
 
         FileOutputStream stream = null;
@@ -98,26 +99,21 @@ public class DatabaseManager {
 
     public void save() throws Exception {
         assertState(false, true);
-        byte[] dbBytes = _db.serialize();
-        if (!_file.isEncrypted()) {
-            _file.setContent(dbBytes);
+        JSONObject obj = _db.serialize();
+        if (_file.isEncrypted()) {
+            _file.setContent(obj, _key);
         } else {
-            CryptResult result = _key.encrypt(dbBytes);
-            _file.setContent(result.Data);
-            _file.setCryptParameters(result.Parameters);
+            _file.setContent(obj);
         }
         save(_context, _file);
     }
 
     public String export(boolean encrypt) throws Exception {
         assertState(false, true);
-        byte[] bytes = _db.serialize(!encrypt);
-        encrypt = encrypt && getFile().isEncrypted();
-        if (encrypt) {
-            CryptResult result = _key.encrypt(bytes);
-            _file.setContent(result.Data);
-            _file.setCryptParameters(result.Parameters);
-            bytes = _file.serialize();
+        if (encrypt && getFile().isEncrypted()) {
+            _file.setContent(_db.serialize(), _key);
+        } else {
+            _file.setContent(_db.serialize());
         }
 
         File file;
@@ -129,6 +125,7 @@ public class DatabaseManager {
                 throw new IOException("error creating external storage directory");
             }
 
+            byte[] bytes = _file.serialize();
             file = new File(dir.getAbsolutePath(), encrypt ? FILENAME_EXPORT : FILENAME_EXPORT_PLAIN);
             stream = new FileOutputStream(file);
             stream.write(bytes);
@@ -165,6 +162,11 @@ public class DatabaseManager {
     public List<DatabaseEntry> getKeys() throws Exception {
         assertState(false, true);
         return _db.getKeys();
+    }
+
+    public MasterKey getMasterKey() throws Exception {
+        assertState(false, true);
+        return _key;
     }
 
     public DatabaseFile getFile() {

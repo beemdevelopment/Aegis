@@ -44,10 +44,7 @@ public class CryptoUtils {
     public static SecretKey deriveKey(char[] password, byte[] salt, int n, int r, int p) throws NoSuchAlgorithmException, InvalidKeySpecException {
         byte[] bytes = toBytes(password);
         byte[] keyBytes = SCrypt.generate(bytes, salt, n, r, p, CRYPTO_KEY_SIZE);
-        zero(bytes);
-        SecretKey key = new SecretKeySpec(keyBytes, 0, keyBytes.length, "AES");
-        zero(keyBytes);
-        return key;
+        return new SecretKeySpec(keyBytes, 0, keyBytes.length, "AES");
     }
 
     public static Cipher createCipher(SecretKey key, int opmode) throws NoSuchPaddingException, NoSuchAlgorithmException, InvalidAlgorithmParameterException, InvalidKeyException {
@@ -102,7 +99,6 @@ public class CryptoUtils {
 
         byte[] bytes = key.getEncoded();
         hash.update(bytes);
-        CryptoUtils.zero(bytes);
         return hash.digest();
     }
 
@@ -120,19 +116,11 @@ public class CryptoUtils {
         return generateRandomBytes(CRYPTO_NONCE_SIZE);
     }
 
-    private static byte[] generateRandomBytes(int length) {
+    public static byte[] generateRandomBytes(int length) {
         SecureRandom random = new SecureRandom();
         byte[] data = new byte[length];
         random.nextBytes(data);
         return data;
-    }
-
-    public static void zero(char[] data) {
-        Arrays.fill(data, '\0');
-    }
-
-    public static void zero(byte[] data) {
-        Arrays.fill(data, (byte) 0);
     }
 
     private static byte[] toBytes(char[] chars) {

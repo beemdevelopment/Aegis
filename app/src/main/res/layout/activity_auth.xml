@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="me.impy.aegis.AuthActivity">
+    tools:context="me.impy.aegis.ui.AuthActivity">
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
@@ -48,7 +48,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="12dp"
-            android:visibility="invisible">
+            android:visibility="gone">
 
             <LinearLayout
                 android:id="@+id/img_fingerprint_insert"
@@ -62,8 +62,27 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="15dp"
-                android:text="Touch sensor"
+                android:text="@string/fingerprint_hint"
                 android:textColor="?attr/secondaryText"/>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/box_fingerprint_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingTop="12dp"
+            android:visibility="gone">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_info_outline_black_24dp"
+                android:layout_marginEnd="15dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="A fingerprint slot was found, but it appears to have been invalidated by the Android keystore. Go to &quot;Settings -> Key slots&quot; to readd your fingerprint."/>
         </LinearLayout>
     </LinearLayout>
 </android.support.design.widget.CoordinatorLayout>

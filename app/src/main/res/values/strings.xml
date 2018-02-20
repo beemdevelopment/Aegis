@@ -6,11 +6,20 @@
     <string name="discard">Discard</string>
     <string name="save">Save</string>
     <string name="title_activity_intro">IntroActivity</string>
+
     <string name="settings">Preferences</string>
-    <string name="pref_night_mode">Night mode</string>
-    <string name="pref_night_mode_description">Enable this to use darker colors</string>
-    <string name="pref_issuers">Show the issuer</string>
-    <string name="pref_issuers_description">Enable this to show the issuer next to the profile name</string>
+    <string name="pref_night_mode_title">Night mode</string>
+    <string name="pref_night_mode_summary">Enable this to use darker colors</string>
+    <string name="pref_issuer_title">Show the issuer</string>
+    <string name="pref_issuer_summary">Enable this to show the issuer next to the profile name</string>
+    <string name="pref_timeout_title">Timeout</string>
+    <string name="pref_timeout_summary">Automatically lock the database after %1$s seconds of inactivity</string>
+    <string name="pref_slots_title">Key slots</string>
+    <string name="pref_slots_summary">Manage the list of keys that can decrypt the database</string>
+    <string name="pref_import_title">Import</string>
+    <string name="pref_import_summary">Import a database</string>
+    <string name="pref_export_title">Export</string>
+    <string name="pref_export_summary">Export the database</string>
 
     <string name="fingerprint_hint">Touch sensor</string>
     <string name="fingerprint_not_recognized">Fingerprint not recognized. Try again</string>

@@ -15,7 +15,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.Default.NoActionBar"
             android:alwaysRetainTaskState="true"
@@ -26,28 +26,33 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ScannerActivity"
+            android:name=".ui.ScannerActivity"
             android:label="Scan a QR code"
             android:theme="@style/AppTheme.Fullscreen"
             android:screenOrientation="portrait"
             android:configChanges="keyboardHidden|orientation|screenSize">
         </activity>
         <activity
-            android:name=".EditProfileActivity"
+            android:name=".ui.EditProfileActivity"
             android:label="Edit profile"
             android:theme="@style/AppTheme.Default.TransparentActionBar">
         </activity>
         <activity
-            android:name=".IntroActivity"
+            android:name=".ui.IntroActivity"
             android:theme="@style/Theme.Intro"
             android:launchMode="singleTop">
         </activity>
         <activity
-            android:name=".AuthActivity"
+            android:name=".ui.AuthActivity"
             android:launchMode="singleTop"
             android:theme="@style/AppTheme.Default.NoActionBar">
         </activity>
-        <activity android:name=".PreferencesActivity">
+        <activity android:name=".ui.PreferencesActivity">
+        </activity>
+        <activity
+            android:name=".ui.SlotManagerActivity"
+            android:label="Manage key slots"
+            android:theme="@style/AppTheme.Default.NoActionBar">
         </activity>
     </application>
 </manifest>

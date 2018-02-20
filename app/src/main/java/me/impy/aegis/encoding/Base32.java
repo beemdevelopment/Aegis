@@ -87,9 +87,7 @@ public class Base32 {
             base32[j++] = base32Chars.charAt(digit);
         }
 
-        char[] res = Arrays.copyOf(base32, j);
-        CryptoUtils.zero(base32);
-        return res;
+        return Arrays.copyOf(base32, j);
     }
 
     /**

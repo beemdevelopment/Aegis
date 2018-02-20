@@ -13,11 +13,7 @@ public class Database {
     private List<DatabaseEntry> _entries = new ArrayList<>();
     private long _counter = 0;
 
-    public byte[] serialize() throws Exception {
-        return serialize(false);
-    }
-
-    public byte[] serialize(boolean pretty) throws Exception {
+    public JSONObject serialize() throws Exception {
         JSONArray array = new JSONArray();
         for (DatabaseEntry e : _entries) {
             array.put(e.serialize());
@@ -26,18 +22,14 @@ public class Database {
         JSONObject obj = new JSONObject();
         obj.put("version", VERSION);
         obj.put("entries", array);
-
-        String string = pretty ? obj.toString(4) : obj.toString();
-        return string.getBytes("UTF-8");
+        return obj;
     }
 
-    public void deserialize(byte[] data) throws Exception {
-        deserialize(data, true);
+    public void deserialize(JSONObject obj) throws Exception {
+        deserialize(obj, true);
     }
 
-    public void deserialize(byte[] data, boolean incCount) throws Exception {
-        JSONObject obj = new JSONObject(new String(data, "UTF-8"));
-
+    public void deserialize(JSONObject obj, boolean incCount) throws Exception {
         // TODO: support different VERSION deserialization providers
         int ver = obj.getInt("version");
         if (ver != VERSION) {
