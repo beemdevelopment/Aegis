@@ -79,7 +79,7 @@ public class SlotManagerActivity extends AegisActivity implements SlotAdapter.Li
             try {
                 KeyStoreHandle keyStore = new KeyStoreHandle();
                 for (FingerprintSlot slot : _slots.findAll(FingerprintSlot.class)) {
-                    if (keyStore.containsKey(slot.getID()) && FingerprintHelper.getManager(this) != null) {
+                    if (keyStore.containsKey(slot.getUUID().toString()) && FingerprintHelper.getManager(this) != null) {
                         visibility = View.GONE;
                         break;
                     }

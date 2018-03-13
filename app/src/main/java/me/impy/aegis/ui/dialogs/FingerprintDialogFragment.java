@@ -35,7 +35,7 @@ public class FingerprintDialogFragment extends SlotDialogFragment implements Fin
         FingerprintManager manager = FingerprintHelper.getManager(getContext());
         try {
             _slot = new FingerprintSlot();
-            SecretKey key = new KeyStoreHandle().generateKey(_slot.getID());
+            SecretKey key = new KeyStoreHandle().generateKey(_slot.getUUID().toString());
             _cipher = Slot.createCipher(key, Cipher.ENCRYPT_MODE);
             _helper = new FingerprintUiHelper(manager, imgFingerprint, textFingerprint, this);
         } catch (Exception e) {

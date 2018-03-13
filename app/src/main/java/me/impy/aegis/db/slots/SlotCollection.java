@@ -66,6 +66,11 @@ public class SlotCollection implements Iterable<Slot>, Serializable {
     }
 
     public void add(Slot slot) {
+        for (Slot s : this) {
+            if (s.getUUID().equals(slot.getUUID())) {
+                throw new AssertionError("slot found with the same uuid");
+            }
+        }
         _slots.add(slot);
     }
 

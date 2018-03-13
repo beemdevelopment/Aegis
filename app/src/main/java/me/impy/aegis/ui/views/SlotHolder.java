@@ -41,7 +41,7 @@ public class SlotHolder extends RecyclerView.ViewHolder {
             if (FingerprintHelper.isSupported()) {
                 try {
                     KeyStoreHandle keyStore = new KeyStoreHandle();
-                    if (keyStore.containsKey(slot.getID())) {
+                    if (keyStore.containsKey(slot.getUUID().toString())) {
                         _slotUsed.setVisibility(View.VISIBLE);
                     }
                 } catch (KeyStoreHandleException e) { }

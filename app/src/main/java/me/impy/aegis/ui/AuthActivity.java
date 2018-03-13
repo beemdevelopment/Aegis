@@ -64,7 +64,7 @@ public class AuthActivity extends AegisActivity implements FingerprintUiHelper.C
             try {
                 // find a fingerprint slot with an id that matches an alias in the keystore
                 for (FingerprintSlot slot : _slots.findAll(FingerprintSlot.class)) {
-                    String id = slot.getID();
+                    String id = slot.getUUID().toString();
                     KeyStoreHandle handle = new KeyStoreHandle();
                     if (handle.containsKey(id)) {
                         SecretKey key = handle.getKey(id);

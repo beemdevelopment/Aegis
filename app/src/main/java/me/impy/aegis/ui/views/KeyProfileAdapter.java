@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.UUID;
 
 import me.impy.aegis.R;
 import me.impy.aegis.helpers.ItemTouchHelperAdapter;
@@ -37,7 +38,7 @@ public class KeyProfileAdapter extends RecyclerView.Adapter<KeyProfileHolder> im
     }
 
     public void removeKey(KeyProfile profile) {
-        profile = getKeyByID(profile.getEntry().getID());
+        profile = getKeyByUUID(profile.getEntry().getUUID());
         int position = _keyProfiles.indexOf(profile);
         _keyProfiles.remove(position);
         notifyItemRemoved(position);
@@ -49,7 +50,7 @@ public class KeyProfileAdapter extends RecyclerView.Adapter<KeyProfileHolder> im
     }
 
     public void replaceKey(KeyProfile newProfile) {
-        KeyProfile oldProfile = getKeyByID(newProfile.getEntry().getID());
+        KeyProfile oldProfile = getKeyByUUID(newProfile.getEntry().getUUID());
         int position = _keyProfiles.indexOf(oldProfile);
         _keyProfiles.set(position, newProfile);
         notifyItemChanged(position);
@@ -62,9 +63,9 @@ public class KeyProfileAdapter extends RecyclerView.Adapter<KeyProfileHolder> im
         notifyDataSetChanged();
     }
 
-    private KeyProfile getKeyByID(long id) {
+    private KeyProfile getKeyByUUID(UUID uuid) {
         for (KeyProfile profile : _keyProfiles) {
-            if (profile.getEntry().getID() == id) {
+            if (profile.getEntry().getUUID().equals(uuid)) {
                 return profile;
             }
         }

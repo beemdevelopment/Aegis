@@ -40,9 +40,11 @@ public class DatabaseFile {
             cryptObj.put("tag", Hex.toString(_cryptParameters.Tag));
         }
 
+        // don't write the crypt parameters if the content is not encrypted
+        boolean plain = _content instanceof JSONObject || _slots.isEmpty() || cryptObj == null;
         JSONObject headerObj = new JSONObject();
-        headerObj.put("slots", _slots.isEmpty() ? JSONObject.NULL : SlotCollection.serialize(_slots));
-        headerObj.put("params", cryptObj != null ? cryptObj : JSONObject.NULL);
+        headerObj.put("slots", plain ? JSONObject.NULL : SlotCollection.serialize(_slots));
+        headerObj.put("params", plain ? JSONObject.NULL : cryptObj);
 
         JSONObject obj = new JSONObject();
         obj.put("version", VERSION);
@@ -99,6 +101,7 @@ public class DatabaseFile {
 
     public void setContent(JSONObject dbObj) {
         _content = dbObj;
+        _cryptParameters = null;
     }
 
     public void setContent(JSONObject dbObj, MasterKey key)

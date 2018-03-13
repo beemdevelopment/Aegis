@@ -19,7 +19,7 @@ public class AegisImporter extends DatabaseImporter {
         DatabaseFile file = new DatabaseFile();
         file.deserialize(bytes);
         Database db = new Database();
-        db.deserialize(file.getContent(), false);
+        db.deserialize(file.getContent());
         return db.getKeys();
     }
 

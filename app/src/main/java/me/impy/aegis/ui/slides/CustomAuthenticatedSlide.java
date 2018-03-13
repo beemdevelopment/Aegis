@@ -101,7 +101,7 @@ public class CustomAuthenticatedSlide extends Fragment implements FingerprintUiH
                         _storeHandle = new KeyStoreHandle();
                         _fingerSlot = new FingerprintSlot();
                     }
-                    key = _storeHandle.generateKey(_fingerSlot.getID());
+                    key = _storeHandle.generateKey(_fingerSlot.getUUID().toString());
                 } catch (Exception e) {
                     throw new UndeclaredThrowableException(e);
                 }

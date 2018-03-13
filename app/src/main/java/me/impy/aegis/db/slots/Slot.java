@@ -8,6 +8,7 @@ import org.json.JSONObject;
 import java.io.Serializable;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
+import java.util.UUID;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
@@ -24,13 +25,12 @@ public abstract class Slot implements Serializable {
     public final static byte TYPE_RAW = 0x00;
     public final static byte TYPE_DERIVED = 0x01;
     public final static byte TYPE_FINGERPRINT = 0x02;
-    public final static int ID_SIZE = 16;
 
-    protected byte[] _id;
+    protected UUID _uuid;
     protected byte[] _encryptedMasterKey;
 
     protected Slot() {
-        _id = CryptoUtils.generateRandomBytes(ID_SIZE);
+        _uuid = UUID.randomUUID();
     }
 
     // getKey decrypts the encrypted master key in this slot with the given key and returns it.
@@ -57,7 +57,7 @@ public abstract class Slot implements Serializable {
     public JSONObject serialize() throws JSONException {
         JSONObject obj = new JSONObject();
         obj.put("type", getType());
-        obj.put("id", Hex.toString(_id));
+        obj.put("uuid", _uuid.toString());
         obj.put("key", Hex.toString(_encryptedMasterKey));
         return obj;
     }
@@ -66,12 +66,18 @@ public abstract class Slot implements Serializable {
         if (obj.getInt("type") != getType()) {
             throw new Exception("slot type mismatch");
         }
-        _id = Hex.toBytes(obj.getString("id"));
+        // if there is no uuid, generate a new one
+        if (!obj.has("uuid")) {
+            _uuid = UUID.randomUUID();
+        } else {
+            _uuid = UUID.fromString(obj.getString("uuid"));
+        }
         _encryptedMasterKey = Hex.toBytes(obj.getString("key"));
     }
 
     public abstract byte getType();
-    public String getID() {
-        return Hex.toString(_id);
+
+    public UUID getUUID() {
+        return _uuid;
     }
 }

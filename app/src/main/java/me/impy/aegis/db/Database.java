@@ -6,12 +6,12 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.UUID;
 
 public class Database {
     private static final int VERSION = 1;
 
     private List<DatabaseEntry> _entries = new ArrayList<>();
-    private long _counter = 0;
 
     public JSONObject serialize() throws Exception {
         JSONArray array = new JSONArray();
@@ -26,10 +26,6 @@ public class Database {
     }
 
     public void deserialize(JSONObject obj) throws Exception {
-        deserialize(obj, true);
-    }
-
-    public void deserialize(JSONObject obj, boolean incCount) throws Exception {
         // TODO: support different VERSION deserialization providers
         int ver = obj.getInt("version");
         if (ver != VERSION) {
@@ -40,30 +36,24 @@ public class Database {
         for (int i = 0; i < array.length(); i++) {
             DatabaseEntry entry = new DatabaseEntry(null);
             entry.deserialize(array.getJSONObject(i));
-
-            // if incCount is false, don't increment the counter and don't set an ID
-            // this is used by the database importer to prevent an exception down the line
-            // TODO: find a better solution for this ugly hack
-            if (incCount) {
-                addKey(entry);
-            } else {
-                _entries.add(entry);
-            }
+            addKey(entry);
         }
     }
 
-    public void addKey(DatabaseEntry entry) throws Exception {
-        entry.setID(++_counter);
+    public void addKey(DatabaseEntry entry) {
+        if (tryGetKeyByUUID(entry.getUUID()) != null) {
+            throw new AssertionError("entry found with the same uuid");
+        }
         _entries.add(entry);
     }
 
     public void removeKey(DatabaseEntry entry) {
-        entry = getKeyByID(entry.getID());
+        entry = getKeyByUUID(entry.getUUID());
         _entries.remove(entry);
     }
 
     public void replaceKey(DatabaseEntry newEntry) {
-        DatabaseEntry oldEntry = getKeyByID(newEntry.getID());
+        DatabaseEntry oldEntry = getKeyByUUID(newEntry.getUUID());
         _entries.set(_entries.indexOf(oldEntry), newEntry);
     }
 
@@ -75,12 +65,20 @@ public class Database {
         return Collections.unmodifiableList(_entries);
     }
 
-    private DatabaseEntry getKeyByID(long id) {
+    private DatabaseEntry tryGetKeyByUUID(UUID uuid) {
         for (DatabaseEntry entry : _entries) {
-            if (entry.getID() == id) {
+            if (entry.getUUID().equals(uuid)) {
                 return entry;
             }
         }
-        throw new AssertionError("no entry found with the same id");
+        return null;
+    }
+
+    private DatabaseEntry getKeyByUUID(UUID uuid) {
+        DatabaseEntry entry = tryGetKeyByUUID(uuid);
+        if (entry == null) {
+            throw new AssertionError("no entry found with the same uuid");
+        }
+        return entry;
     }
 }

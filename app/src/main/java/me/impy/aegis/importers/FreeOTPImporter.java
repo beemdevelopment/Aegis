@@ -79,8 +79,7 @@ public class FreeOTPImporter extends DatabaseImporter {
                 byte[] secret = toBytes(obj.getJSONArray("secret"));
                 key.setSecret(secret);
 
-                DatabaseEntry profile = new DatabaseEntry(null);
-                profile.setInfo(key);
+                DatabaseEntry profile = new DatabaseEntry(key);
                 profiles.add(profile);
             }
         }

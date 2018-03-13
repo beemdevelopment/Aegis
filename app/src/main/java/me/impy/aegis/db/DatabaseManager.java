@@ -108,10 +108,13 @@ public class DatabaseManager {
 
     public String export(boolean encrypt) throws Exception {
         assertState(false, true);
+
+        DatabaseFile dbFile = new DatabaseFile();
+        dbFile.setSlots(_file.getSlots());
         if (encrypt && getFile().isEncrypted()) {
-            _file.setContent(_db.serialize(), _key);
+            dbFile.setContent(_db.serialize(), _key);
         } else {
-            _file.setContent(_db.serialize());
+            dbFile.setContent(_db.serialize());
         }
 
         File file;
@@ -123,7 +126,7 @@ public class DatabaseManager {
                 throw new IOException("error creating external storage directory");
             }
 
-            byte[] bytes = _file.serialize();
+            byte[] bytes = dbFile.serialize();
             file = new File(dir.getAbsolutePath(), encrypt ? FILENAME_EXPORT : FILENAME_EXPORT_PLAIN);
             stream = new FileOutputStream(file);
             stream.write(bytes);

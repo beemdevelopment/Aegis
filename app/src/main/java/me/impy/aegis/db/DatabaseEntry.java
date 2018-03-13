@@ -4,11 +4,13 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.Serializable;
+import java.util.UUID;
 
 import me.impy.aegis.crypto.KeyInfo;
+import me.impy.aegis.crypto.KeyInfoException;
 
 public class DatabaseEntry implements Serializable {
-    private long _id = -1;
+    private UUID _uuid;
     private String _name = "";
     private String _icon = "";
     private KeyInfo _info;
@@ -19,22 +21,30 @@ public class DatabaseEntry implements Serializable {
 
     public DatabaseEntry(KeyInfo info) {
         _info = info;
+        _uuid = UUID.randomUUID();
     }
 
     public JSONObject serialize() throws JSONException {
         JSONObject obj = new JSONObject();
+        obj.put("uuid", _uuid.toString());
         obj.put("name", _name);
         obj.put("url", _info.getURL());
         return obj;
     }
 
-    public void deserialize(JSONObject obj) throws Exception {
+    public void deserialize(JSONObject obj) throws JSONException, KeyInfoException {
+        // if there is no uuid, generate a new one
+        if (!obj.has("uuid")) {
+            _uuid = UUID.randomUUID();
+        } else {
+            _uuid = UUID.fromString(obj.getString("uuid"));
+        }
         _name = obj.getString("name");
         _info = KeyInfo.fromURL(obj.getString("url"));
     }
 
-    public long getID() {
-        return _id;
+    public UUID getUUID() {
+        return _uuid;
     }
     public String getName() {
         return _name;
@@ -46,12 +56,6 @@ public class DatabaseEntry implements Serializable {
         return _info;
     }
 
-    void setID(long id) throws Exception {
-        if (_id != -1) {
-            throw new Exception("this entry has already received an id");
-        }
-        _id = id;
-    }
     public void setName(String name) {
         _name = name;
     }
