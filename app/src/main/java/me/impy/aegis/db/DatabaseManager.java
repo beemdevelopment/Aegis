@@ -14,8 +14,6 @@ import java.io.IOException;
 import java.util.List;
 
 import me.impy.aegis.BuildConfig;
-import me.impy.aegis.crypto.CryptParameters;
-import me.impy.aegis.crypto.CryptResult;
 import me.impy.aegis.crypto.MasterKey;
 
 public class DatabaseManager {
