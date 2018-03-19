@@ -15,7 +15,7 @@ public class Hex {
 
     private static final char[] hexCode = "0123456789abcdef".toCharArray();
 
-    public static byte[] toBytes(String s) throws HexException {
+    public static byte[] decode(String s) throws HexException {
         final int len = s.length();
 
         if (len % 2 != 0)
@@ -35,7 +35,7 @@ public class Hex {
         return out;
     }
 
-    public static String toString(byte[] data) {
+    public static String encode(byte[] data) {
         StringBuilder r = new StringBuilder(data.length * 2);
         for (byte b : data) {
             r.append(hexCode[(b >> 4) & 0xF]);

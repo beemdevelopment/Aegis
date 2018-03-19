@@ -22,7 +22,7 @@ public class SlotCollection implements Iterable<Slot>, Serializable {
     public static JSONObject serialize(SlotCollection slots) throws SlotCollectionException {
         try {
             JSONObject obj = new JSONObject();
-            obj.put("hash", Hex.toString(slots.getMasterHash()));
+            obj.put("hash", Hex.encode(slots.getMasterHash()));
 
             JSONArray entries = new JSONArray();
             for (Slot slot : slots) {
@@ -40,7 +40,7 @@ public class SlotCollection implements Iterable<Slot>, Serializable {
         SlotCollection slots = new SlotCollection();
 
         try {
-            byte[] masterHash = Hex.toBytes(obj.getString("hash"));
+            byte[] masterHash = Hex.decode(obj.getString("hash"));
             slots.setMasterHash(masterHash);
 
             JSONArray entries = obj.getJSONArray("entries");

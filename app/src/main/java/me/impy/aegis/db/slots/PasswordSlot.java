@@ -29,7 +29,7 @@ public class PasswordSlot extends RawSlot {
             obj.put("n", _n);
             obj.put("r", _r);
             obj.put("p", _p);
-            obj.put("salt", Hex.toString(_salt));
+            obj.put("salt", Hex.encode(_salt));
             return obj;
         } catch (JSONException e) {
             throw new SlotException(e);
@@ -43,7 +43,7 @@ public class PasswordSlot extends RawSlot {
             _n = obj.getInt("n");
             _r = obj.getInt("r");
             _p = obj.getInt("p");
-            _salt = Hex.toBytes(obj.getString("salt"));
+            _salt = Hex.decode(obj.getString("salt"));
         } catch (JSONException | HexException e) {
             throw new SlotException(e);
         }

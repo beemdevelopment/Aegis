@@ -32,8 +32,8 @@ public class DatabaseFile {
             JSONObject cryptObj = null;
             if (_cryptParameters != null) {
                 cryptObj = new JSONObject();
-                cryptObj.put("nonce", Hex.toString(_cryptParameters.Nonce));
-                cryptObj.put("tag", Hex.toString(_cryptParameters.Tag));
+                cryptObj.put("nonce", Hex.encode(_cryptParameters.Nonce));
+                cryptObj.put("tag", Hex.encode(_cryptParameters.Tag));
             }
 
             // don't write the crypt parameters if the content is not encrypted
@@ -70,8 +70,8 @@ public class DatabaseFile {
             JSONObject cryptObj = headerObj.optJSONObject("params");
             if (cryptObj != null) {
                 _cryptParameters = new CryptParameters() {{
-                    Nonce = Hex.toBytes(cryptObj.getString("nonce"));
-                    Tag = Hex.toBytes(cryptObj.getString("tag"));
+                    Nonce = Hex.decode(cryptObj.getString("nonce"));
+                    Tag = Hex.decode(cryptObj.getString("tag"));
                 }};
             }
 

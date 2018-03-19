@@ -72,7 +72,7 @@ public abstract class Slot implements Serializable {
             JSONObject obj = new JSONObject();
             obj.put("type", getType());
             obj.put("uuid", _uuid.toString());
-            obj.put("key", Hex.toString(_encryptedMasterKey));
+            obj.put("key", Hex.encode(_encryptedMasterKey));
             return obj;
         } catch (JSONException e) {
             throw new SlotException(e);
@@ -90,7 +90,7 @@ public abstract class Slot implements Serializable {
             } else {
                 _uuid = UUID.fromString(obj.getString("uuid"));
             }
-            _encryptedMasterKey = Hex.toBytes(obj.getString("key"));
+            _encryptedMasterKey = Hex.decode(obj.getString("key"));
         } catch (JSONException | HexException e) {
             throw new SlotException(e);
         }
