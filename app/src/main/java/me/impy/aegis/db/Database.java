@@ -1,6 +1,7 @@
 package me.impy.aegis.db;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -8,35 +9,45 @@ import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 
+import me.impy.aegis.crypto.KeyInfoException;
+
 public class Database {
     private static final int VERSION = 1;
 
     private List<DatabaseEntry> _entries = new ArrayList<>();
 
-    public JSONObject serialize() throws Exception {
-        JSONArray array = new JSONArray();
-        for (DatabaseEntry e : _entries) {
-            array.put(e.serialize());
-        }
+    public JSONObject serialize() throws DatabaseException {
+        try {
+            JSONArray array = new JSONArray();
+            for (DatabaseEntry e : _entries) {
+                array.put(e.serialize());
+            }
 
-        JSONObject obj = new JSONObject();
-        obj.put("version", VERSION);
-        obj.put("entries", array);
-        return obj;
+            JSONObject obj = new JSONObject();
+            obj.put("version", VERSION);
+            obj.put("entries", array);
+            return obj;
+        } catch (JSONException e) {
+            throw new DatabaseException(e);
+        }
     }
 
-    public void deserialize(JSONObject obj) throws Exception {
+    public void deserialize(JSONObject obj) throws DatabaseException {
         // TODO: support different VERSION deserialization providers
-        int ver = obj.getInt("version");
-        if (ver != VERSION) {
-            throw new Exception("Unsupported version");
-        }
+        try {
+            int ver = obj.getInt("version");
+            if (ver != VERSION) {
+                throw new DatabaseException("Unsupported version");
+            }
 
-        JSONArray array = obj.getJSONArray("entries");
-        for (int i = 0; i < array.length(); i++) {
-            DatabaseEntry entry = new DatabaseEntry(null);
-            entry.deserialize(array.getJSONObject(i));
-            addKey(entry);
+            JSONArray array = obj.getJSONArray("entries");
+            for (int i = 0; i < array.length(); i++) {
+                DatabaseEntry entry = new DatabaseEntry(null);
+                entry.deserialize(array.getJSONObject(i));
+                addKey(entry);
+            }
+        } catch (JSONException | KeyInfoException e) {
+            throw new DatabaseException(e);
         }
     }
 

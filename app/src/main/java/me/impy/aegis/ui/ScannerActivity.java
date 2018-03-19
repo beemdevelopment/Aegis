@@ -1,6 +1,5 @@
 package me.impy.aegis.ui;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,6 +13,7 @@ import java.util.Collections;
 import me.dm7.barcodescanner.core.IViewFinder;
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
 import me.impy.aegis.crypto.KeyInfo;
+import me.impy.aegis.crypto.KeyInfoException;
 import me.impy.aegis.db.DatabaseEntry;
 import me.impy.aegis.helpers.SquareFinderView;
 import me.impy.aegis.ui.views.KeyProfile;
@@ -64,9 +64,9 @@ public class ScannerActivity extends AegisActivity implements ZXingScannerView.R
             Intent resultIntent = new Intent();
             resultIntent.putExtra("KeyProfile", profile);
 
-            setResult(Activity.RESULT_OK, resultIntent);
+            setResult(RESULT_OK, resultIntent);
             finish();
-        } catch (Exception e) {
+        } catch (KeyInfoException e) {
             Toast.makeText(this, "An error occurred while trying to parse the QR code contents", Toast.LENGTH_SHORT).show();
         }
 

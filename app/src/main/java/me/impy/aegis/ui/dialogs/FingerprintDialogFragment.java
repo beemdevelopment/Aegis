@@ -15,8 +15,10 @@ import javax.crypto.SecretKey;
 
 import me.impy.aegis.R;
 import me.impy.aegis.crypto.KeyStoreHandle;
+import me.impy.aegis.crypto.KeyStoreHandleException;
 import me.impy.aegis.db.slots.FingerprintSlot;
 import me.impy.aegis.db.slots.Slot;
+import me.impy.aegis.db.slots.SlotException;
 import me.impy.aegis.helpers.FingerprintHelper;
 import me.impy.aegis.helpers.FingerprintUiHelper;
 
@@ -38,7 +40,7 @@ public class FingerprintDialogFragment extends SlotDialogFragment implements Fin
             SecretKey key = new KeyStoreHandle().generateKey(_slot.getUUID().toString());
             _cipher = Slot.createCipher(key, Cipher.ENCRYPT_MODE);
             _helper = new FingerprintUiHelper(manager, imgFingerprint, textFingerprint, this);
-        } catch (Exception e) {
+        } catch (KeyStoreHandleException | SlotException e) {
             throw new RuntimeException(e);
         }
 

@@ -6,6 +6,7 @@ import java.io.Serializable;
 import java.lang.reflect.UndeclaredThrowableException;
 
 import me.impy.aegis.crypto.otp.OTP;
+import me.impy.aegis.crypto.otp.OTPException;
 import me.impy.aegis.db.DatabaseEntry;
 import me.impy.aegis.helpers.TextDrawableHelper;
 
@@ -31,7 +32,7 @@ public class KeyProfile implements Serializable {
     public String refreshCode() {
         try {
             _code = OTP.generateOTP(_entry.getInfo());
-        } catch (Exception e) {
+        } catch (OTPException e) {
             throw new UndeclaredThrowableException(e);
         }
         return _code;

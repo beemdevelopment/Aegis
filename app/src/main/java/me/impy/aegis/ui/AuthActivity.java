@@ -21,11 +21,13 @@ import javax.crypto.SecretKey;
 
 import me.impy.aegis.R;
 import me.impy.aegis.crypto.KeyStoreHandle;
+import me.impy.aegis.crypto.KeyStoreHandleException;
 import me.impy.aegis.crypto.MasterKey;
 import me.impy.aegis.db.slots.FingerprintSlot;
 import me.impy.aegis.db.slots.PasswordSlot;
 import me.impy.aegis.db.slots.Slot;
 import me.impy.aegis.db.slots.SlotCollection;
+import me.impy.aegis.db.slots.SlotException;
 import me.impy.aegis.helpers.FingerprintHelper;
 import me.impy.aegis.helpers.FingerprintUiHelper;
 import me.impy.aegis.helpers.EditTextHelper;
@@ -80,7 +82,7 @@ public class AuthActivity extends AegisActivity implements FingerprintUiHelper.C
                         break;
                     }
                 }
-            } catch (Exception e) {
+            } catch (KeyStoreHandleException | SlotException e) {
                 throw new UndeclaredThrowableException(e);
             }
 

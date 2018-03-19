@@ -25,6 +25,7 @@ import javax.crypto.SecretKey;
 
 import me.impy.aegis.R;
 import me.impy.aegis.crypto.KeyStoreHandle;
+import me.impy.aegis.crypto.KeyStoreHandleException;
 import me.impy.aegis.db.slots.FingerprintSlot;
 import me.impy.aegis.db.slots.Slot;
 import me.impy.aegis.helpers.FingerprintUiHelper;
@@ -102,7 +103,7 @@ public class CustomAuthenticatedSlide extends Fragment implements FingerprintUiH
                         _fingerSlot = new FingerprintSlot();
                     }
                     key = _storeHandle.generateKey(_fingerSlot.getUUID().toString());
-                } catch (Exception e) {
+                } catch (KeyStoreHandleException e) {
                     throw new UndeclaredThrowableException(e);
                 }
 

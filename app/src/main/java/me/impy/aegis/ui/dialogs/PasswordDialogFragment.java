@@ -15,6 +15,7 @@ import javax.crypto.Cipher;
 import me.impy.aegis.R;
 import me.impy.aegis.db.slots.PasswordSlot;
 import me.impy.aegis.db.slots.Slot;
+import me.impy.aegis.db.slots.SlotException;
 import me.impy.aegis.helpers.EditTextHelper;
 import me.impy.aegis.ui.tasks.DerivationTask;
 
@@ -51,7 +52,7 @@ public class PasswordDialogFragment extends SlotDialogFragment {
                     Cipher cipher;
                     try {
                         cipher = Slot.createCipher(key, Cipher.ENCRYPT_MODE);
-                    } catch (Exception e) {
+                    } catch (SlotException e) {
                         getListener().onException(e);
                         dialog.cancel();
                         return;

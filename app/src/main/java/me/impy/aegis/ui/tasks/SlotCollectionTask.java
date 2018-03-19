@@ -13,6 +13,7 @@ import me.impy.aegis.db.slots.FingerprintSlot;
 import me.impy.aegis.db.slots.PasswordSlot;
 import me.impy.aegis.db.slots.Slot;
 import me.impy.aegis.db.slots.SlotCollection;
+import me.impy.aegis.db.slots.SlotException;
 import me.impy.aegis.db.slots.SlotIntegrityException;
 
 public class SlotCollectionTask<T extends Slot> extends ProgressDialogTask<SlotCollectionTask.Params, MasterKey> {
@@ -59,7 +60,7 @@ public class SlotCollectionTask<T extends Slot> extends ProgressDialogTask<SlotC
             return masterKey;
         } catch (SlotIntegrityException e) {
             return null;
-        } catch (Exception e) {
+        } catch (SlotException e) {
             throw new UndeclaredThrowableException(e);
         }
     }

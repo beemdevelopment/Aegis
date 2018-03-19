@@ -21,6 +21,7 @@ import me.impy.aegis.db.slots.FingerprintSlot;
 import me.impy.aegis.db.slots.PasswordSlot;
 import me.impy.aegis.db.slots.Slot;
 import me.impy.aegis.db.slots.SlotCollection;
+import me.impy.aegis.db.slots.SlotException;
 import me.impy.aegis.helpers.FingerprintHelper;
 import me.impy.aegis.ui.dialogs.FingerprintDialogFragment;
 import me.impy.aegis.ui.dialogs.PasswordDialogFragment;
@@ -167,7 +168,7 @@ public class SlotManagerActivity extends AegisActivity implements SlotAdapter.Li
     public void onSlotResult(Slot slot, Cipher cipher) {
         try {
             _slots.encrypt(slot, _masterKey, cipher);
-        } catch (Exception e) {
+        } catch (SlotException e) {
             onException(e);
             return;
         }

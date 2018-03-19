@@ -27,7 +27,6 @@ import org.spongycastle.crypto.generators.SCrypt;
 
 public class CryptoUtils {
     public static final String CRYPTO_HASH = "SHA-256";
-    public static final byte CRYPTO_HASH_SIZE = 32;
 
     public static final String CRYPTO_CIPHER_RAW = "AES/ECB/NoPadding";
     public static final byte CRYPTO_KEY_SIZE = 32;
@@ -35,31 +34,36 @@ public class CryptoUtils {
     public static final String CRYPTO_CIPHER_AEAD = "AES/GCM/NoPadding";
     public static final byte CRYPTO_TAG_SIZE = 16;
     public static final byte CRYPTO_NONCE_SIZE = 12;
-    public static final byte CRYPTO_SALT_SIZE = 32;
 
     public static final int CRYPTO_SCRYPT_N = 1 << 15;
     public static final int CRYPTO_SCRYPT_r = 8;
     public static final int CRYPTO_SCRYPT_p = 1;
 
-    public static SecretKey deriveKey(char[] password, byte[] salt, int n, int r, int p) throws NoSuchAlgorithmException, InvalidKeySpecException {
+    public static SecretKey deriveKey(char[] password, byte[] salt, int n, int r, int p)
+            throws NoSuchAlgorithmException, InvalidKeySpecException {
         byte[] bytes = toBytes(password);
         byte[] keyBytes = SCrypt.generate(bytes, salt, n, r, p, CRYPTO_KEY_SIZE);
         return new SecretKeySpec(keyBytes, 0, keyBytes.length, "AES");
     }
 
-    public static Cipher createCipher(SecretKey key, int opmode) throws NoSuchPaddingException, NoSuchAlgorithmException, InvalidAlgorithmParameterException, InvalidKeyException {
+    public static Cipher createCipher(SecretKey key, int opmode)
+            throws NoSuchPaddingException, NoSuchAlgorithmException,
+            InvalidAlgorithmParameterException, InvalidKeyException {
         byte[] nonce = generateNonce();
         return createCipher(key, opmode, nonce);
     }
 
-    public static Cipher createCipher(SecretKey key, int opmode, byte[] nonce) throws NoSuchPaddingException, NoSuchAlgorithmException, InvalidAlgorithmParameterException, InvalidKeyException {
+    public static Cipher createCipher(SecretKey key, int opmode, byte[] nonce)
+            throws NoSuchPaddingException, NoSuchAlgorithmException,
+            InvalidAlgorithmParameterException, InvalidKeyException {
         IvParameterSpec spec = new IvParameterSpec(nonce);
         Cipher cipher = Cipher.getInstance(CRYPTO_CIPHER_AEAD);
         cipher.init(opmode, key, spec);
         return cipher;
     }
 
-    public static CryptResult encrypt(byte[] data, Cipher cipher) throws BadPaddingException, IllegalBlockSizeException {
+    public static CryptResult encrypt(byte[] data, Cipher cipher)
+            throws BadPaddingException, IllegalBlockSizeException {
         // split off the tag to store it separately
         byte[] result = cipher.doFinal(data);
         byte[] tag = Arrays.copyOfRange(result, result.length - CRYPTO_TAG_SIZE, result.length);
@@ -74,7 +78,8 @@ public class CryptoUtils {
         }};
     }
 
-    public static CryptResult decrypt(byte[] encrypted, Cipher cipher, CryptParameters params) throws IOException, BadPaddingException, IllegalBlockSizeException {
+    public static CryptResult decrypt(byte[] encrypted, Cipher cipher, CryptParameters params)
+            throws IOException, BadPaddingException, IllegalBlockSizeException {
         // append the tag to the ciphertext
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
         stream.write(encrypted);
@@ -94,7 +99,7 @@ public class CryptoUtils {
         try {
             hash = MessageDigest.getInstance(CRYPTO_HASH);
         } catch (NoSuchAlgorithmException e) {
-            throw new UndeclaredThrowableException(e);
+            throw new AssertionError(e);
         }
 
         byte[] bytes = key.getEncoded();
@@ -102,10 +107,14 @@ public class CryptoUtils {
         return hash.digest();
     }
 
-    public static SecretKey generateKey() throws NoSuchAlgorithmException {
-        KeyGenerator generator = KeyGenerator.getInstance("AES");
-        generator.init(CRYPTO_KEY_SIZE * 8);
-        return generator.generateKey();
+    public static SecretKey generateKey() {
+        try {
+            KeyGenerator generator = KeyGenerator.getInstance("AES");
+            generator.init(CRYPTO_KEY_SIZE * 8);
+            return generator.generateKey();
+        } catch (NoSuchAlgorithmException e) {
+            throw new AssertionError(e);
+        }
     }
 
     public static byte[] generateSalt() {

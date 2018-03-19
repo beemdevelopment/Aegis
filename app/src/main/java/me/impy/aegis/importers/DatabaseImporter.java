@@ -1,5 +1,6 @@
 package me.impy.aegis.importers;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -19,14 +20,15 @@ public abstract class DatabaseImporter {
         _stream = stream;
     }
 
-    public abstract List<DatabaseEntry> convert() throws Exception;
+    public abstract List<DatabaseEntry> convert() throws DatabaseImporterException;
 
     public abstract String getName();
 
     public static DatabaseImporter create(ByteInputStream stream, Class<? extends DatabaseImporter> type) {
         try {
             return type.getConstructor(ByteInputStream.class).newInstance(stream);
-        } catch (Exception e) {
+        } catch (IllegalAccessException | InstantiationException
+                | NoSuchMethodException | InvocationTargetException e) {
             throw new RuntimeException(e);
         }
     }

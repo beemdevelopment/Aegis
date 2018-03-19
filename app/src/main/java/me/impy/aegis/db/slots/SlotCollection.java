@@ -10,56 +10,63 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
-import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
-import javax.crypto.IllegalBlockSizeException;
 import me.impy.aegis.crypto.MasterKey;
 import me.impy.aegis.encoding.Hex;
+import me.impy.aegis.encoding.HexException;
 
 public class SlotCollection implements Iterable<Slot>, Serializable {
     private List<Slot> _slots = new ArrayList<>();
     private byte[] _masterHash;
 
-    public static JSONObject serialize(SlotCollection slots) throws JSONException {
-        JSONObject obj = new JSONObject();
-        obj.put("hash", Hex.toString(slots.getMasterHash()));
+    public static JSONObject serialize(SlotCollection slots) throws SlotCollectionException {
+        try {
+            JSONObject obj = new JSONObject();
+            obj.put("hash", Hex.toString(slots.getMasterHash()));
 
-        JSONArray entries = new JSONArray();
-        for (Slot slot : slots) {
-            entries.put(slot.serialize());
-        }
-
-        obj.put("entries", entries);
-        return obj;
-    }
-
-    public static SlotCollection deserialize(JSONObject obj) throws Exception {
-        SlotCollection slots = new SlotCollection();
-
-        byte[] masterHash = Hex.toBytes(obj.getString("hash"));
-        slots.setMasterHash(masterHash);
-
-        JSONArray entries = obj.getJSONArray("entries");
-        for (int i = 0; i < entries.length(); i++) {
-            Slot slot;
-            JSONObject slotObj = entries.getJSONObject(i);
-
-            switch (slotObj.getInt("type")) {
-                case Slot.TYPE_RAW:
-                    slot = new RawSlot();
-                    break;
-                case Slot.TYPE_DERIVED:
-                    slot = new PasswordSlot();
-                    break;
-                case Slot.TYPE_FINGERPRINT:
-                    slot = new FingerprintSlot();
-                    break;
-                default:
-                    throw new Exception("unrecognized slot type");
+            JSONArray entries = new JSONArray();
+            for (Slot slot : slots) {
+                entries.put(slot.serialize());
             }
 
-            slot.deserialize(slotObj);
-            slots.add(slot);
+            obj.put("entries", entries);
+            return obj;
+        } catch (SlotException | JSONException e) {
+            throw new SlotCollectionException(e);
+        }
+    }
+
+    public static SlotCollection deserialize(JSONObject obj) throws SlotCollectionException {
+        SlotCollection slots = new SlotCollection();
+
+        try {
+            byte[] masterHash = Hex.toBytes(obj.getString("hash"));
+            slots.setMasterHash(masterHash);
+
+            JSONArray entries = obj.getJSONArray("entries");
+            for (int i = 0; i < entries.length(); i++) {
+                Slot slot;
+                JSONObject slotObj = entries.getJSONObject(i);
+
+                switch (slotObj.getInt("type")) {
+                    case Slot.TYPE_RAW:
+                        slot = new RawSlot();
+                        break;
+                    case Slot.TYPE_DERIVED:
+                        slot = new PasswordSlot();
+                        break;
+                    case Slot.TYPE_FINGERPRINT:
+                        slot = new FingerprintSlot();
+                        break;
+                    default:
+                        throw new SlotException("unrecognized slot type");
+                }
+
+                slot.deserialize(slotObj);
+                slots.add(slot);
+            }
+        } catch (SlotException | JSONException | HexException e) {
+            throw new SlotCollectionException(e);
         }
 
         return slots;
@@ -114,14 +121,12 @@ public class SlotCollection implements Iterable<Slot>, Serializable {
         return _slots.iterator();
     }
 
-    public void encrypt(Slot slot, MasterKey key, Cipher cipher)
-            throws BadPaddingException, IllegalBlockSizeException {
+    public void encrypt(Slot slot, MasterKey key, Cipher cipher) throws SlotException {
         slot.setKey(key, cipher);
         setMasterHash(key.getHash());
     }
 
-    public MasterKey decrypt(Slot slot, Cipher cipher)
-            throws SlotIntegrityException, BadPaddingException, IllegalBlockSizeException {
+    public MasterKey decrypt(Slot slot, Cipher cipher) throws SlotException, SlotIntegrityException {
         byte[] hash = getMasterHash();
         MasterKey key = new MasterKey(slot.getKey(cipher));
         if (!Arrays.equals(hash, key.getHash())) {

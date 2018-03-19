@@ -21,6 +21,8 @@ import android.widget.Toast;
 import com.getbase.floatingactionbutton.FloatingActionsMenu;
 
 import java.io.ByteArrayOutputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.UndeclaredThrowableException;
 import java.util.List;
@@ -28,11 +30,13 @@ import java.util.List;
 import me.impy.aegis.AegisApplication;
 import me.impy.aegis.R;
 import me.impy.aegis.crypto.MasterKey;
+import me.impy.aegis.db.DatabaseManagerException;
 import me.impy.aegis.db.slots.SlotCollection;
 import me.impy.aegis.db.DatabaseEntry;
 import me.impy.aegis.db.DatabaseManager;
 import me.impy.aegis.helpers.PermissionHelper;
 import me.impy.aegis.importers.DatabaseImporter;
+import me.impy.aegis.importers.DatabaseImporterException;
 import me.impy.aegis.ui.views.KeyProfile;
 import me.impy.aegis.ui.views.KeyProfileView;
 import me.impy.aegis.util.ByteInputStream;
@@ -107,10 +111,10 @@ public class MainActivity extends AegisActivity implements KeyProfileView.Listen
                     if (_db.isLocked()) {
                         startAuthActivity();
                     }
-                } catch (Exception e) {
+                } catch (DatabaseManagerException e) {
                     e.printStackTrace();
                     Toast.makeText(this, "An error occurred while trying to deserialize the database", Toast.LENGTH_LONG).show();
-                    throw new UndeclaredThrowableException(e);
+                    finish();
                 }
             }
         }
@@ -243,14 +247,7 @@ public class MainActivity extends AegisActivity implements KeyProfileView.Listen
                 onExport();
                 break;
             case PreferencesActivity.ACTION_SLOTS:
-                MasterKey masterKey;
-                try {
-                    masterKey = _db.getMasterKey();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    Toast.makeText(this, "An error occurred while trying to obtain the database key", Toast.LENGTH_SHORT).show();
-                    break;
-                }
+                MasterKey masterKey = _db.getMasterKey();
                 Intent intent = new Intent(this, SlotManagerActivity.class);
                 intent.putExtra("masterKey", masterKey);
                 intent.putExtra("slots", _db.getFile().getSlots());
@@ -272,7 +269,7 @@ public class MainActivity extends AegisActivity implements KeyProfileView.Listen
                     String filename;
                     try {
                         filename = _db.export(checked[0]);
-                    } catch (Exception e) {
+                    } catch (DatabaseManagerException e) {
                         e.printStackTrace();
                         Toast.makeText(this, "An error occurred while trying to export the database", Toast.LENGTH_SHORT).show();
                         return;
@@ -314,8 +311,8 @@ public class MainActivity extends AegisActivity implements KeyProfileView.Listen
         try {
             try {
                 fileStream = getContentResolver().openInputStream(data.getData());
-            } catch (Exception e) {
-                Toast.makeText(this, "An error occurred while trying to open the file", Toast.LENGTH_SHORT).show();
+            } catch (FileNotFoundException e) {
+                Toast.makeText(this, "Error: File not found", Toast.LENGTH_SHORT).show();
                 return;
             }
 
@@ -328,7 +325,7 @@ public class MainActivity extends AegisActivity implements KeyProfileView.Listen
                     outStream.write(buf, 0, read);
                 }
                 stream = new ByteInputStream(outStream.toByteArray());
-            } catch (Exception e) {
+            } catch (IOException e) {
                 Toast.makeText(this, "An error occurred while trying to read the file", Toast.LENGTH_SHORT).show();
                 return;
             }
@@ -338,7 +335,7 @@ public class MainActivity extends AegisActivity implements KeyProfileView.Listen
                 try {
                     entries = converter.convert();
                     break;
-                } catch (Exception e) {
+                } catch (DatabaseImporterException e) {
                     stream.reset();
                 }
             }
@@ -355,7 +352,8 @@ public class MainActivity extends AegisActivity implements KeyProfileView.Listen
             if (fileStream != null) {
                 try {
                     fileStream.close();
-                } catch (Exception e) {
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
             }
         }
@@ -405,13 +403,7 @@ public class MainActivity extends AegisActivity implements KeyProfileView.Listen
             if (!data.getBooleanExtra("delete", false)) {
                 // this profile has been serialized/deserialized and is no longer the same instance it once was
                 // to deal with this, the replaceKey functions are used
-                try {
-                    _db.replaceKey(profile.getEntry());
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    Toast.makeText(this, "An error occurred while trying to update an entry", Toast.LENGTH_SHORT).show();
-                    return;
-                }
+                _db.replaceKey(profile.getEntry());
                 _keyProfileView.replaceKey(profile);
                 saveDatabase();
             } else {
@@ -431,14 +423,7 @@ public class MainActivity extends AegisActivity implements KeyProfileView.Listen
     private void addKey(KeyProfile profile) {
         DatabaseEntry entry = profile.getEntry();
         entry.setName(entry.getInfo().getAccountName());
-        try {
-            _db.addKey(entry);
-        } catch (Exception e) {
-            e.printStackTrace();
-            Toast.makeText(this, "An error occurred while trying to add an entry", Toast.LENGTH_SHORT).show();
-            return;
-        }
-
+        _db.addKey(entry);
         _keyProfileView.addKey(profile);
     }
 
@@ -455,7 +440,7 @@ public class MainActivity extends AegisActivity implements KeyProfileView.Listen
             if (_db.isLocked()) {
                 _db.unlock(key);
             }
-        } catch (Exception e) {
+        } catch (DatabaseManagerException e) {
             e.printStackTrace();
             Toast.makeText(this, "An error occurred while trying to load/decrypt the database", Toast.LENGTH_LONG).show();
             startAuthActivity();
@@ -469,7 +454,7 @@ public class MainActivity extends AegisActivity implements KeyProfileView.Listen
         MasterKey key = (MasterKey) intent.getSerializableExtra("key");
         try {
             _db.unlock(key);
-        } catch (Exception e) {
+        } catch (DatabaseManagerException e) {
             e.printStackTrace();
             Toast.makeText(this, "An error occurred while trying to decrypt the database", Toast.LENGTH_LONG).show();
             startAuthActivity();
@@ -564,13 +549,7 @@ public class MainActivity extends AegisActivity implements KeyProfileView.Listen
             .setTitle("Delete entry")
             .setMessage("Are you sure you want to delete this profile?")
             .setPositiveButton(android.R.string.yes, (dialog, which) -> {
-                try {
-                    _db.removeKey(profile.getEntry());
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    Toast.makeText(this, "An error occurred while trying to delete an entry", Toast.LENGTH_SHORT).show();
-                    return;
-                }
+                _db.removeKey(profile.getEntry());
                 saveDatabase();
 
                 _keyProfileView.removeKey(profile);
@@ -597,12 +576,7 @@ public class MainActivity extends AegisActivity implements KeyProfileView.Listen
                 return true;
             case R.id.action_lock:
                 _keyProfileView.clearKeys();
-                try {
-                    _db.lock();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    Toast.makeText(this, "An error occurred while trying to lock the database", Toast.LENGTH_LONG).show();
-                }
+                _db.lock();
                 startAuthActivity();
                 return true;
             default:
@@ -619,7 +593,7 @@ public class MainActivity extends AegisActivity implements KeyProfileView.Listen
     private void saveDatabase() {
         try {
             _db.save();
-        } catch (Exception e) {
+        } catch (DatabaseManagerException e) {
             e.printStackTrace();
             Toast.makeText(this, "An error occurred while trying to save the database", Toast.LENGTH_LONG).show();
         }
@@ -628,14 +602,8 @@ public class MainActivity extends AegisActivity implements KeyProfileView.Listen
     private void loadKeyProfiles() {
         updateLockIcon();
 
-        try {
-            for (DatabaseEntry entry : _db.getKeys()) {
-                _keyProfileView.addKey(new KeyProfile(entry));
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            Toast.makeText(this, "An error occurred while trying to load database entries", Toast.LENGTH_SHORT).show();
-            return;
+        for (DatabaseEntry entry : _db.getKeys()) {
+            _keyProfileView.addKey(new KeyProfile(entry));
         }
     }
 
@@ -654,12 +622,7 @@ public class MainActivity extends AegisActivity implements KeyProfileView.Listen
 
     @Override
     public void onEntryMove(DatabaseEntry entry1, DatabaseEntry entry2) {
-        try {
-            _db.swapKeys(entry1, entry2);
-        } catch (Exception e) {
-            e.printStackTrace();
-            throw new UndeclaredThrowableException(e);
-        }
+        _db.swapKeys(entry1, entry2);
     }
 
     @Override

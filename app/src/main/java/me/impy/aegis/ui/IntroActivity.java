@@ -18,6 +18,9 @@ import me.impy.aegis.AegisApplication;
 import me.impy.aegis.R;
 import me.impy.aegis.crypto.CryptResult;
 import me.impy.aegis.crypto.MasterKey;
+import me.impy.aegis.db.DatabaseException;
+import me.impy.aegis.db.DatabaseFileException;
+import me.impy.aegis.db.DatabaseManagerException;
 import me.impy.aegis.db.slots.FingerprintSlot;
 import me.impy.aegis.db.slots.PasswordSlot;
 import me.impy.aegis.db.slots.Slot;
@@ -25,6 +28,7 @@ import me.impy.aegis.db.slots.SlotCollection;
 import me.impy.aegis.db.Database;
 import me.impy.aegis.db.DatabaseFile;
 import me.impy.aegis.db.DatabaseManager;
+import me.impy.aegis.db.slots.SlotException;
 import me.impy.aegis.ui.slides.CustomAuthenticatedSlide;
 import me.impy.aegis.ui.slides.CustomAuthenticationSlide;
 import me.impy.aegis.ui.tasks.DerivationTask;
@@ -134,31 +138,21 @@ public class IntroActivity extends AppIntro implements DerivationTask.Callback {
         // generate the master key
         MasterKey masterKey = null;
         if (cryptType != CustomAuthenticationSlide.CRYPT_TYPE_NONE) {
-            try {
-                masterKey = MasterKey.generate();
-            } catch (Exception e) {
-                setException(e);
-                return;
-            }
+            masterKey = MasterKey.generate();
         }
 
         SlotCollection slots = _databaseFile.getSlots();
         if (cryptType != CustomAuthenticationSlide.CRYPT_TYPE_NONE) {
+            // encrypt the master key with a key derived from the user's password
+            // and add it to the list of slots
+            if (_passwordSlot == null || _passwordCipher == null) {
+                throw new RuntimeException();
+            }
             try {
-                // encrypt the master key with a key derived from the user's password
-                // and add it to the list of slots
-                if (_passwordSlot == null || _passwordCipher == null) {
-                    throw new RuntimeException();
-                }
-                try {
-                    slots.encrypt(_passwordSlot, masterKey, _passwordCipher);
-                    slots.add(_passwordSlot);
-                } catch (Exception e) {
-                    setException(e);
-                }
-            } catch (Exception e) {
+                slots.encrypt(_passwordSlot, masterKey, _passwordCipher);
+                slots.add(_passwordSlot);
+            } catch (SlotException e) {
                 setException(e);
-                return;
             }
         }
 
@@ -170,7 +164,7 @@ public class IntroActivity extends AppIntro implements DerivationTask.Callback {
                 Cipher cipher = _authenticatedSlide.getFingerCipher();
                 slots.encrypt(slot, masterKey, cipher);
                 slots.add(slot);
-            } catch (Exception e) {
+            } catch (SlotException e) {
                 setException(e);
                 return;
             }
@@ -185,7 +179,7 @@ public class IntroActivity extends AppIntro implements DerivationTask.Callback {
                 _databaseFile.setContent(obj, masterKey);
             }
             DatabaseManager.save(getApplicationContext(), _databaseFile);
-        } catch (Exception e) {
+        } catch (DatabaseException | DatabaseManagerException | DatabaseFileException e) {
             setException(e);
             return;
         }
@@ -205,7 +199,7 @@ public class IntroActivity extends AppIntro implements DerivationTask.Callback {
         if (key != null) {
             try {
                 _passwordCipher = Slot.createCipher(key, Cipher.ENCRYPT_MODE);
-            } catch (Exception e) {
+            } catch (SlotException e) {
                 setException(e);
             }
         } else {

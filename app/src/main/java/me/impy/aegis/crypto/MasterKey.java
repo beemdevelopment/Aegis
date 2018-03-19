@@ -22,22 +22,36 @@ public class MasterKey implements Serializable {
         _key = key;
     }
 
-    public static MasterKey generate() throws NoSuchAlgorithmException {
+    public static MasterKey generate() {
         return new MasterKey(CryptoUtils.generateKey());
     }
 
-    public CryptResult encrypt(byte[] bytes)
-            throws InvalidAlgorithmParameterException, NoSuchAlgorithmException, InvalidKeyException,
-            NoSuchPaddingException, BadPaddingException, IllegalBlockSizeException {
-        Cipher cipher = CryptoUtils.createCipher(_key, Cipher.ENCRYPT_MODE);
-        return CryptoUtils.encrypt(bytes, cipher);
+    public CryptResult encrypt(byte[] bytes) throws MasterKeyException {
+        try {
+            Cipher cipher = CryptoUtils.createCipher(_key, Cipher.ENCRYPT_MODE);
+            return CryptoUtils.encrypt(bytes, cipher);
+        } catch (NoSuchPaddingException
+                | NoSuchAlgorithmException
+                | InvalidAlgorithmParameterException
+                | InvalidKeyException | BadPaddingException
+                | IllegalBlockSizeException e) {
+            throw new MasterKeyException(e);
+        }
     }
 
-    public CryptResult decrypt(byte[] bytes, CryptParameters params)
-            throws InvalidAlgorithmParameterException, NoSuchAlgorithmException, InvalidKeyException,
-            NoSuchPaddingException, BadPaddingException, IllegalBlockSizeException, IOException {
-        Cipher cipher = CryptoUtils.createCipher(_key, Cipher.DECRYPT_MODE, params.Nonce);
-        return CryptoUtils.decrypt(bytes, cipher, params);
+    public CryptResult decrypt(byte[] bytes, CryptParameters params) throws MasterKeyException {
+        try {
+            Cipher cipher = CryptoUtils.createCipher(_key, Cipher.DECRYPT_MODE, params.Nonce);
+            return CryptoUtils.decrypt(bytes, cipher, params);
+        } catch (NoSuchPaddingException
+                | NoSuchAlgorithmException
+                | InvalidAlgorithmParameterException
+                | InvalidKeyException
+                | BadPaddingException
+                | IOException
+                | IllegalBlockSizeException e) {
+            throw new MasterKeyException(e);
+        }
     }
 
     public byte[] getHash() {

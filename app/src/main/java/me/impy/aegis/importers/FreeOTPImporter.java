@@ -28,12 +28,16 @@ public class FreeOTPImporter extends DatabaseImporter {
     }
 
     @Override
-    public List<DatabaseEntry> convert() throws Exception {
-        XmlPullParser parser = Xml.newPullParser();
-        parser.setFeature(XmlPullParser.FEATURE_PROCESS_NAMESPACES, false);
-        parser.setInput(_stream, null);
-        parser.nextTag();
-        return parse(parser);
+    public List<DatabaseEntry> convert() throws DatabaseImporterException {
+        try {
+            XmlPullParser parser = Xml.newPullParser();
+            parser.setFeature(XmlPullParser.FEATURE_PROCESS_NAMESPACES, false);
+            parser.setInput(_stream, null);
+            parser.nextTag();
+            return parse(parser);
+        } catch (KeyInfoException | XmlPullParserException | JSONException | IOException e) {
+            throw new DatabaseImporterException(e);
+        }
     }
 
     @Override
