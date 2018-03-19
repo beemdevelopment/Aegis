@@ -1,7 +1,5 @@
 package me.impy.aegis.db;
 
-import android.util.Base64;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -13,6 +11,8 @@ import me.impy.aegis.crypto.MasterKey;
 import me.impy.aegis.crypto.MasterKeyException;
 import me.impy.aegis.db.slots.SlotCollection;
 import me.impy.aegis.db.slots.SlotCollectionException;
+import me.impy.aegis.encoding.Base64;
+import me.impy.aegis.encoding.Base64Exception;
 import me.impy.aegis.encoding.Hex;
 import me.impy.aegis.encoding.HexException;
 
@@ -95,10 +95,10 @@ public class DatabaseFile {
 
     public JSONObject getContent(MasterKey key) throws DatabaseFileException {
         try {
-            byte[] bytes = Base64.decode((String) _content, Base64.NO_WRAP);
+            byte[] bytes = Base64.decode((String) _content);
             CryptResult result = key.decrypt(bytes, _cryptParameters);
             return new JSONObject(new String(result.Data, "UTF-8"));
-        } catch (MasterKeyException | JSONException | UnsupportedEncodingException e) {
+        } catch (MasterKeyException | JSONException | UnsupportedEncodingException | Base64Exception e) {
             throw new DatabaseFileException(e);
         }
     }
@@ -114,7 +114,7 @@ public class DatabaseFile {
             byte[] dbBytes = string.getBytes("UTF-8");
 
             CryptResult result = key.encrypt(dbBytes);
-            _content = new String(Base64.encode(result.Data, Base64.NO_WRAP), "UTF-8");
+            _content = Base64.encode(result.Data);
             _cryptParameters = result.Parameters;
         } catch (MasterKeyException | UnsupportedEncodingException | JSONException e) {
             throw new DatabaseFileException(e);
