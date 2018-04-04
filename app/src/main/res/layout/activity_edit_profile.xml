@@ -101,14 +101,11 @@
                 android:textStyle="bold" />
 
         </RelativeLayout>
-            <com.github.aakira.expandablelayout.ExpandableRelativeLayout
+            <RelativeLayout
                 android:id="@+id/expandableLayout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app:ael_expanded="false"
-                app:ael_duration="100"
-                app:ael_interpolator="accelerate"
-                app:ael_orientation="vertical">
+                android:visibility="invisible">
             <TableLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -231,7 +228,7 @@
                 </android.support.design.widget.TextInputLayout>
             </TableRow>
             </TableLayout>
-            </com.github.aakira.expandablelayout.ExpandableRelativeLayout>
+            </RelativeLayout>
 
     </LinearLayout>
 </ScrollView>

@@ -110,7 +110,7 @@ public class EditProfileActivity extends AegisActivity {
         });
 
 
-        ExpandableRelativeLayout content=(ExpandableRelativeLayout) findViewById(R.id.expandableLayout);
+        RelativeLayout expandableLayout = findViewById(R.id.expandableLayout);
         RelativeLayout header=(RelativeLayout) findViewById(R.id.accordian_header);
 
 //to toggle content
@@ -122,6 +122,10 @@ public class EditProfileActivity extends AegisActivity {
                 fadeOut.setDuration(220); // Fadeout duration should be 1000 milli seconds
                 header.startAnimation(fadeOut);
 
+                Animation fadeIn = new AlphaAnimation(0, 1);  // the 1, 0 here notifies that we want the opacity to go from opaque (1) to transparent (0)
+                fadeIn.setInterpolator(new AccelerateInterpolator());
+                fadeIn.setDuration(250); // Fadeout duration should be 1000 milli seconds
+
                 fadeOut.setAnimationListener(new Animation.AnimationListener() {
                     @Override
                     public void onAnimationStart(Animation animation) {
@@ -131,7 +135,24 @@ public class EditProfileActivity extends AegisActivity {
                     @Override
                     public void onAnimationEnd(Animation animation) {
                         header.setVisibility(View.GONE);
-                        content.toggle();
+                        expandableLayout.startAnimation(fadeIn);
+                    }
+
+                    @Override
+                    public void onAnimationRepeat(Animation animation) {
+
+                    }
+                });
+
+                fadeIn.setAnimationListener(new Animation.AnimationListener() {
+                    @Override
+                    public void onAnimationStart(Animation animation) {
+
+                    }
+
+                    @Override
+                    public void onAnimationEnd(Animation animation) {
+                        expandableLayout.setVisibility(View.VISIBLE);
                     }
 
                     @Override
