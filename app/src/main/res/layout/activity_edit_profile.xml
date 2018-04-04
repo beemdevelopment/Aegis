@@ -13,13 +13,21 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:background="@color/colorPrimary">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="200dp"
+            android:paddingTop="100dp"
             android:background="@color/colorPrimary">
             <ImageView
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:id="@+id/profile_drawable"
-                android:layout_centerInParent="true"/>
+                android:scaleType="centerCrop"
+                android:layout_centerHorizontal="true"/>
+            </RelativeLayout>/>
 
         </RelativeLayout>
 
