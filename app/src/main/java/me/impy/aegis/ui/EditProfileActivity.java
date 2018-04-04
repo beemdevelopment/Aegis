@@ -11,12 +11,18 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.animation.AccelerateInterpolator;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 
 import com.amulyakhare.textdrawable.TextDrawable;
+import com.github.aakira.expandablelayout.ExpandableLinearLayout;
+import com.github.aakira.expandablelayout.ExpandableRelativeLayout;
 
 import me.impy.aegis.R;
 import me.impy.aegis.crypto.KeyInfo;
@@ -100,6 +106,39 @@ public class EditProfileActivity extends AegisActivity {
             public void afterTextChanged(Editable s) {
                 TextDrawable drawable = TextDrawableHelper.generate(s.toString());
                 _iconView.setImageDrawable(drawable);
+            }
+        });
+
+
+        ExpandableRelativeLayout content=(ExpandableRelativeLayout) findViewById(R.id.expandableLayout);
+        RelativeLayout header=(RelativeLayout) findViewById(R.id.accordian_header);
+
+//to toggle content
+        header.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Animation fadeOut = new AlphaAnimation(1, 0);  // the 1, 0 here notifies that we want the opacity to go from opaque (1) to transparent (0)
+                fadeOut.setInterpolator(new AccelerateInterpolator());
+                fadeOut.setDuration(220); // Fadeout duration should be 1000 milli seconds
+                header.startAnimation(fadeOut);
+
+                fadeOut.setAnimationListener(new Animation.AnimationListener() {
+                    @Override
+                    public void onAnimationStart(Animation animation) {
+
+                    }
+
+                    @Override
+                    public void onAnimationEnd(Animation animation) {
+                        header.setVisibility(View.GONE);
+                        content.toggle();
+                    }
+
+                    @Override
+                    public void onAnimationRepeat(Animation animation) {
+
+                    }
+                });
             }
         });
     }

@@ -69,7 +69,53 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"/>
             </TableRow>
+        </TableLayout>
 
+        <RelativeLayout
+            android:foreground="?android:attr/selectableItemBackground"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/accordian_header"
+            android:focusable="true"
+            android:clickable="true">
+
+            <ImageView
+                android:id="@+id/down_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="14dp"
+                android:src="@drawable/ic_keyboard_arrow_down_black_24dp" />
+
+            <TextView
+                android:id="@+id/accordian_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="12dp"
+                android:layout_toEndOf="@+id/down_btn"
+                android:padding="16dp"
+                android:text="Advanced"
+                android:textColor="#333"
+                android:textStyle="bold" />
+
+        </RelativeLayout>
+            <com.github.aakira.expandablelayout.ExpandableRelativeLayout
+                android:id="@+id/expandableLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:ael_expanded="false"
+                app:ael_duration="100"
+                app:ael_interpolator="accelerate"
+                app:ael_orientation="vertical">
+            <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="?attr/background"
+                    android:orientation="vertical"
+                    android:stretchColumns="1"
+                    android:layout_marginEnd="35dp">
             <TableRow
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp">
@@ -184,8 +230,8 @@
                         android:inputType="textPassword"/>
                 </android.support.design.widget.TextInputLayout>
             </TableRow>
-
-        </TableLayout>
+            </TableLayout>
+            </com.github.aakira.expandablelayout.ExpandableRelativeLayout>
 
     </LinearLayout>
 </ScrollView>
