@@ -47,7 +47,7 @@
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_person_black_24dp"
                     android:layout_marginTop="10dp"
-                    android:tint="@color/cardview_dark_background"
+                    android:tint="#7f7f7f"
                     android:layout_marginStart="15dp"
                     android:layout_marginEnd="20dp"/>
 
@@ -56,6 +56,7 @@
                     android:hint="Name"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:backgroundTint="#949494"
                     android:layout_weight="1"/>
             </TableRow>
 
@@ -67,6 +68,7 @@
                     android:hint="Issuer"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:backgroundTint="#949494"
                     android:layout_weight="1"/>
             </TableRow>
         </TableLayout>
@@ -105,7 +107,7 @@
                 android:id="@+id/expandableLayout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:visibility="invisible">
+                android:visibility="visible">
             <TableLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -121,7 +123,7 @@
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_info_outline_black_24dp"
                     android:layout_marginTop="10dp"
-                    android:tint="@color/cardview_dark_background"
+                    android:tint="#7f7f7f"
                     android:layout_marginStart="15dp"
                     android:layout_marginEnd="20dp"/>
 
@@ -131,23 +133,37 @@
                     android:layout_weight="1"
                     android:orientation="horizontal"
                     android:gravity="center_vertical">
-                    <Spinner
+
+                    <android.support.v7.widget.AppCompatSpinner
                         android:id="@+id/spinner_type"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
+                        android:layout_marginLeft="-6dp"
+                        android:paddingRight="6dp"
+                        android:gravity="left"
+                        android:layout_gravity="left"
+                        android:backgroundTint="#e2e2e2"
                         style="@style/Base.Widget.AppCompat.Spinner.Underlined"/>
-                    <Spinner
+                    <android.support.v7.widget.AppCompatSpinner
                         android:id="@+id/spinner_algo"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
+                        android:layout_marginLeft="-6dp"
+                        android:paddingRight="6dp"
+                        android:textAlignment="center"
+                        android:backgroundTint="#e2e2e2"
                         style="@style/Base.Widget.AppCompat.Spinner.Underlined"/>
-                    <Spinner
+                    <android.support.v7.widget.AppCompatSpinner
                         android:id="@+id/spinner_digits"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="-6dp"
+                        android:paddingRight="6dp"
                         android:layout_weight="3"
+                        android:textAlignment="center"
+                        android:backgroundTint="#e2e2e2"
                         style="@style/Base.Widget.AppCompat.Spinner.Underlined"/>
                 </LinearLayout>
 
@@ -161,7 +177,7 @@
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_timelapse_black_24dp"
                     android:layout_marginTop="10dp"
-                    android:tint="@color/cardview_dark_background"
+                    android:tint="#7f7f7f"
                     android:layout_marginStart="15dp"
                     android:layout_marginEnd="20dp"/>
 
@@ -179,6 +195,7 @@
                             android:id="@+id/text_period"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:backgroundTint="#e2e2e2"
                             android:layout_alignParentStart="true"
                             android:layout_gravity="center"
                             android:inputType="numberDecimal"/>
@@ -187,6 +204,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentEnd="true"
+                            android:backgroundTint="#e2e2e2"
                             android:layout_centerVertical="true"
                             android:text="seconds"
                             android:textSize="18sp"
@@ -208,7 +226,7 @@
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_vpn_key_black_24dp"
                     android:layout_marginTop="10dp"
-                    android:tint="@color/cardview_dark_background"
+                    android:tint="#7f7f7f"
                     android:layout_marginStart="15dp"
                     android:layout_marginEnd="20dp"/>
 
@@ -216,6 +234,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:backgroundTint="#e2e2e2"
                     app:hintEnabled="false"
                     app:passwordToggleEnabled="true">
 
@@ -223,6 +242,7 @@
                         android:id="@+id/text_secret"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:backgroundTint="#e2e2e2"
                         android:hint="Secret (base32)"
                         android:inputType="textPassword"/>
                 </android.support.design.widget.TextInputLayout>
