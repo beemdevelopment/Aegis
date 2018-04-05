@@ -27,7 +27,7 @@
                 android:id="@+id/profile_drawable"
                 android:scaleType="centerCrop"
                 android:layout_centerHorizontal="true"/>
-            </RelativeLayout>/>
+            </RelativeLayout>
 
         </RelativeLayout>
 
@@ -107,7 +107,7 @@
                 android:id="@+id/expandableLayout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:visibility="visible">
+                android:visibility="invisible">
             <TableLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -143,7 +143,7 @@
                         android:paddingRight="6dp"
                         android:gravity="left"
                         android:layout_gravity="left"
-                        android:backgroundTint="#e2e2e2"
+                        android:backgroundTint="#949494"
                         style="@style/Base.Widget.AppCompat.Spinner.Underlined"/>
                     <android.support.v7.widget.AppCompatSpinner
                         android:id="@+id/spinner_algo"
@@ -153,7 +153,7 @@
                         android:layout_marginLeft="-6dp"
                         android:paddingRight="6dp"
                         android:textAlignment="center"
-                        android:backgroundTint="#e2e2e2"
+                        android:backgroundTint="#949494"
                         style="@style/Base.Widget.AppCompat.Spinner.Underlined"/>
                     <android.support.v7.widget.AppCompatSpinner
                         android:id="@+id/spinner_digits"
@@ -163,7 +163,7 @@
                         android:paddingRight="6dp"
                         android:layout_weight="3"
                         android:textAlignment="center"
-                        android:backgroundTint="#e2e2e2"
+                        android:backgroundTint="#949494"
                         style="@style/Base.Widget.AppCompat.Spinner.Underlined"/>
                 </LinearLayout>
 
@@ -195,7 +195,7 @@
                             android:id="@+id/text_period"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:backgroundTint="#e2e2e2"
+                            android:backgroundTint="#949494"
                             android:layout_alignParentStart="true"
                             android:layout_gravity="center"
                             android:inputType="numberDecimal"/>
@@ -204,7 +204,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentEnd="true"
-                            android:backgroundTint="#e2e2e2"
+                            android:backgroundTint="#949494"
                             android:layout_centerVertical="true"
                             android:text="seconds"
                             android:textSize="18sp"
@@ -234,7 +234,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:backgroundTint="#e2e2e2"
+                    android:backgroundTint="#949494"
                     app:hintEnabled="false"
                     app:passwordToggleEnabled="true">
 
@@ -242,7 +242,7 @@
                         android:id="@+id/text_secret"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:backgroundTint="#e2e2e2"
+                        android:backgroundTint="#949494"
                         android:hint="Secret (base32)"
                         android:inputType="textPassword"/>
                 </android.support.design.widget.TextInputLayout>

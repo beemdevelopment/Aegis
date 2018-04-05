@@ -81,6 +81,7 @@ public class CustomAuthenticationSlide extends Fragment implements ISlidePolicy,
             default:
                 throw new RuntimeException();
         }
+
         Intent intent = getActivity().getIntent();
         intent.putExtra("cryptType", id);
     }
