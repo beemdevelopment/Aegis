@@ -41,6 +41,5 @@ dependencies {
     compile 'com.madgag.spongycastle:core:1.56.0.0'
     compile 'com.github.apl-devs:appintro:v4.2.2'
     compile 'com.getbase:floatingactionbutton:1.10.1'
-    compile 'com.github.aakira:expandable-layout:1.6.0@aar'
     testCompile 'junit:junit:4.12'
 }

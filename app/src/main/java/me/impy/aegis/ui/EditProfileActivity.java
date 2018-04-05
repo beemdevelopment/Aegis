@@ -21,8 +21,6 @@ import android.widget.RelativeLayout;
 import android.widget.Spinner;
 
 import com.amulyakhare.textdrawable.TextDrawable;
-import com.github.aakira.expandablelayout.ExpandableLinearLayout;
-import com.github.aakira.expandablelayout.ExpandableRelativeLayout;
 
 import me.impy.aegis.R;
 import me.impy.aegis.crypto.KeyInfo;
