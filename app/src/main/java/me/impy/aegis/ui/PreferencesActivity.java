@@ -52,7 +52,7 @@ public class PreferencesActivity extends AegisActivity {
             // set the result intent in advance
             setResult();
 
-            Preference nightModePreference = findPreference("pref_night_mode");
+            Preference nightModePreference = findPreference("pref_dark_mode");
             nightModePreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
                 @Override
                 public boolean onPreferenceChange(Preference preference, Object newValue) {

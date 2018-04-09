@@ -56,7 +56,7 @@
                     android:hint="Name"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:backgroundTint="#949494"
+                    android:backgroundTint="#ff0000"
                     android:layout_weight="1"/>
             </TableRow>
 
@@ -234,6 +234,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    app:passwordToggleTint="#949494"
                     android:backgroundTint="#949494"
                     app:hintEnabled="false"
                     app:passwordToggleEnabled="true">
@@ -242,6 +243,7 @@
                         android:id="@+id/text_secret"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+
                         android:backgroundTint="#949494"
                         android:hint="Secret (base32)"
                         android:inputType="textPassword"/>

@@ -13,7 +13,7 @@ public abstract class AegisActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         _app = (AegisApplication) getApplication();
 
-        boolean nightMode = _app.getPreferences().getBoolean("pref_night_mode", false);
+        boolean nightMode = _app.getPreferences().getBoolean("pref_dark_mode", false);
         setPreferredTheme(nightMode);
     }
 

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="me.impy.aegis">
+    xmlns:tools="http://schemas.android.com/tools"
+    package="me.impy.aegis">
 
     <uses-permission android:name="android.permission.CAMERA"/>
     <uses-permission android:name="android.permission.USE_FINGERPRINT" />
@@ -13,11 +14,11 @@
         android:icon="@mipmap/icon"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        tools:replace="android:theme"
+        android:theme="@style/AppTheme.Default.NoActionBar">
         <activity
             android:name=".ui.MainActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.Default.NoActionBar"
             android:alwaysRetainTaskState="true"
             android:launchMode="singleTask">
             <intent-filter>
@@ -44,15 +45,13 @@
         </activity>
         <activity
             android:name=".ui.AuthActivity"
-            android:launchMode="singleTop"
-            android:theme="@style/AppTheme.Default.NoActionBar">
+            android:launchMode="singleTop">
         </activity>
         <activity android:name=".ui.PreferencesActivity">
         </activity>
         <activity
             android:name=".ui.SlotManagerActivity"
-            android:label="Manage key slots"
-            android:theme="@style/AppTheme.Default.NoActionBar">
+            android:label="Manage key slots">
         </activity>
     </application>
 </manifest>

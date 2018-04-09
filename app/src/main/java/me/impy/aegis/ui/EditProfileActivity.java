@@ -49,6 +49,8 @@ public class EditProfileActivity extends AegisActivity {
     private Spinner _spinnerDigits;
     private SpinnerItemSelectedListener _selectedListener = new SpinnerItemSelectedListener();
 
+    int _dialogStyle = android.R.style.Theme_Material_Light_Dialog_NoActionBar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -189,8 +191,10 @@ public class EditProfileActivity extends AegisActivity {
     @Override
     protected void setPreferredTheme(boolean nightMode) {
         if (nightMode) {
+            _dialogStyle = android.R.style.Theme_Material_Dialog_NoActionBar;
             setTheme(R.style.AppTheme_Dark_TransparentActionBar);
         } else {
+            _dialogStyle = android.R.style.Theme_Material_Light_Dialog_NoActionBar;
             setTheme(R.style.AppTheme_Default_TransparentActionBar);
         }
     }
@@ -202,7 +206,8 @@ public class EditProfileActivity extends AegisActivity {
             return;
         }
 
-        new AlertDialog.Builder(this)
+        new AlertDialog.Builder(this, _dialogStyle)
+                .setTitle("Discard changes?")
                 .setMessage("Your changes have not been saved")
                 .setPositiveButton(R.string.save, (dialog, which) -> onSave())
                 .setNegativeButton(R.string.discard, (dialog, which) -> super.onBackPressed())

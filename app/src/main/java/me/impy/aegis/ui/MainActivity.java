@@ -500,7 +500,7 @@ public class MainActivity extends AegisActivity implements KeyProfileView.Listen
     protected void onResume() {
         super.onResume();
 
-        boolean nightMode = _app.getPreferences().getBoolean("pref_night_mode", false);
+        boolean nightMode = _app.getPreferences().getBoolean("pref_dark_mode", false);
         if (nightMode != _nightMode) {
             setPreferredTheme(nightMode);
             recreate();

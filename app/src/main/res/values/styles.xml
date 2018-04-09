@@ -5,9 +5,9 @@
         <!-- Customize your theme here. -->
         <item name="swirl_ridgeColor">?android:attr/textColorSecondary</item>
         <item name="swirl_errorColor">?android:attr/colorAccent</item>
-        <item name="colorPrimary">@color/colorPrimary</item>
+<!--        <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorAccent">@color/colorAccent</item>-->
     </style>
 
     <style name="AppTheme.TransparentActionBar">
@@ -59,6 +59,10 @@
         <item name="secondaryText">@color/secondary_text</item>
         <item name="background">@color/background</item>
         <item name="cardBackground">@color/card_background</item>
+
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
     </style>
     <style name="AppTheme.Default.NoActionBar" parent="AppTheme.Default">
         <item name="windowActionBar">false</item>
@@ -81,6 +85,11 @@
         <item name="secondaryText">@color/secondary_text_dark</item>
         <item name="background">@color/background_dark</item>
         <item name="cardBackground">@color/card_background_dark</item>
+
+        <item name="android:textColorHint">@color/secondary_text</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
     </style>
     <style name="AppTheme.Dark.NoActionBar" parent="AppTheme.Dark">
         <item name="windowActionBar">false</item>
