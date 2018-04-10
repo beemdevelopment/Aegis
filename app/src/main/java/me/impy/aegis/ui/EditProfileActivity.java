@@ -288,6 +288,7 @@ public class EditProfileActivity extends AegisActivity {
             info.setDigits(digits);
             info.setAlgorithm(algo);
             info.setType(type);
+            info.setAccountName(_textName.getText().toString());
         } catch (KeyInfoException e) {
             onError("The entered info is incorrect: " + e.getMessage());
             return false;
