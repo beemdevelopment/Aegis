@@ -6,8 +6,8 @@
     <color name="colorPrimaryLight">#5472d3</color>
     <color name="colorAccent">#FF5252</color>
     <color name="colorAccentPressed">#FF5252</color>
-    <color name="primary_text">#0d47a1</color>
-    <color name="secondary_text">#434343</color>
+    <color name="primary_text">#212121</color>
+    <color name="secondary_text">#757575</color>
     <color name="extra_info_text">#8e8e8e</color>
     <color name="primary_text_inverted">#ffffff</color>
     <color name="secondary_text_inverted">#efefef</color>b
@@ -19,11 +19,14 @@
     <color name="colorSwirlPrimary">#434343</color>
     <color name="colorSwirlError">#FF5252</color>
 
-    <color name="card_background_dark">#212121</color>
+    <color name="code_primary_text">#0d47a1</color>
+    <color name="code_primary_text_dark">#ffffff</color>
+
+    <color name="card_background_dark">#424242</color>
     <color name="primary_text_dark">#ffffff</color>
     <color name="hint_text_dark">#a7a7a7</color>
     <color name="secondary_text_dark">#FF5252</color>
-    <color name="background_dark">#191919</color>
+    <color name="background_dark">#212121</color>
 
     <color name="warning_color">#f4511e</color>
     <color name="hint_color">#42000000</color>

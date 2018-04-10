@@ -85,7 +85,7 @@
                 android:id="@+id/profile_code"
                 android:includeFontPadding="false"
                 android:textSize="34sp"
-                android:textColor="?attr/primaryText"
+                android:textColor="?attr/codePrimaryText"
                 android:layout_marginLeft="6dp"
                 android:layout_marginStart="6dp"
                 android:layout_alignParentTop="true"
