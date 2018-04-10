@@ -16,6 +16,7 @@ import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.widget.AdapterView;
 import android.widget.EditText;
+import android.widget.ExpandableListAdapter;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
@@ -48,6 +49,9 @@ public class EditProfileActivity extends AegisActivity {
     private Spinner _spinnerAlgo;
     private Spinner _spinnerDigits;
     private SpinnerItemSelectedListener _selectedListener = new SpinnerItemSelectedListener();
+
+    private RelativeLayout _advancedSettingsHeader;
+    private RelativeLayout _advancedSettings;
 
     int _dialogStyle = android.R.style.Theme_Material_Light_Dialog_NoActionBar;
 
@@ -83,6 +87,9 @@ public class EditProfileActivity extends AegisActivity {
         _spinnerDigits = findViewById(R.id.spinner_digits);
         SpinnerHelper.fillSpinner(this, _spinnerDigits, R.array.otp_digits_array);
 
+        _advancedSettingsHeader = findViewById(R.id.accordian_header);
+        _advancedSettings = findViewById(R.id.expandableLayout);
+
         updateFields();
 
         _textName.addTextChangedListener(_textListener);
@@ -99,9 +106,13 @@ public class EditProfileActivity extends AegisActivity {
         // update the icon if the text changed
         _textName.addTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
             @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) { }
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+
             @Override
             public void afterTextChanged(Editable s) {
                 TextDrawable drawable = TextDrawableHelper.generate(s.toString());
@@ -109,59 +120,14 @@ public class EditProfileActivity extends AegisActivity {
             }
         });
 
-
-        RelativeLayout expandableLayout = findViewById(R.id.expandableLayout);
-        RelativeLayout header=(RelativeLayout) findViewById(R.id.accordian_header);
-
-//to toggle content
-        header.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Animation fadeOut = new AlphaAnimation(1, 0);  // the 1, 0 here notifies that we want the opacity to go from opaque (1) to transparent (0)
-                fadeOut.setInterpolator(new AccelerateInterpolator());
-                fadeOut.setDuration(220); // Fadeout duration should be 1000 milli seconds
-                header.startAnimation(fadeOut);
-
-                Animation fadeIn = new AlphaAnimation(0, 1);  // the 1, 0 here notifies that we want the opacity to go from opaque (1) to transparent (0)
-                fadeIn.setInterpolator(new AccelerateInterpolator());
-                fadeIn.setDuration(250); // Fadeout duration should be 1000 milli seconds
-
-                fadeOut.setAnimationListener(new Animation.AnimationListener() {
-                    @Override
-                    public void onAnimationStart(Animation animation) {
-
-                    }
-
-                    @Override
-                    public void onAnimationEnd(Animation animation) {
-                        header.setVisibility(View.GONE);
-                        expandableLayout.startAnimation(fadeIn);
-                    }
-
-                    @Override
-                    public void onAnimationRepeat(Animation animation) {
-
-                    }
-                });
-
-                fadeIn.setAnimationListener(new Animation.AnimationListener() {
-                    @Override
-                    public void onAnimationStart(Animation animation) {
-
-                    }
-
-                    @Override
-                    public void onAnimationEnd(Animation animation) {
-                        expandableLayout.setVisibility(View.VISIBLE);
-                    }
-
-                    @Override
-                    public void onAnimationRepeat(Animation animation) {
-
-                    }
-                });
-            }
+        _advancedSettingsHeader.setOnClickListener(v -> {
+            OpenAdvancedSettings();
         });
+
+        // Automatically open advanced settings since 'Secret' is required.
+        if(_isNew){
+            OpenAdvancedSettings();
+        }
     }
 
     private void updateFields() {
@@ -197,6 +163,52 @@ public class EditProfileActivity extends AegisActivity {
             _dialogStyle = android.R.style.Theme_Material_Light_Dialog_NoActionBar;
             setTheme(R.style.AppTheme_Default_TransparentActionBar);
         }
+    }
+
+    private void OpenAdvancedSettings() {
+        Animation fadeOut = new AlphaAnimation(1, 0);  // the 1, 0 here notifies that we want the opacity to go from opaque (1) to transparent (0)
+        fadeOut.setInterpolator(new AccelerateInterpolator());
+        fadeOut.setDuration(220); // Fadeout duration should be 1000 milli seconds
+        _advancedSettingsHeader.startAnimation(fadeOut);
+
+        Animation fadeIn = new AlphaAnimation(0, 1);  // the 1, 0 here notifies that we want the opacity to go from opaque (1) to transparent (0)
+        fadeIn.setInterpolator(new AccelerateInterpolator());
+        fadeIn.setDuration(250); // Fadeout duration should be 1000 milli seconds
+
+        fadeOut.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                _advancedSettingsHeader.setVisibility(View.GONE);
+                _advancedSettings.startAnimation(fadeIn);
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
+
+        fadeIn.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                _advancedSettings.setVisibility(View.VISIBLE);
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
     }
 
     @Override
