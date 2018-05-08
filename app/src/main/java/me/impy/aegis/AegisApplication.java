@@ -38,11 +38,11 @@ public class AegisApplication extends Application {
 
     public boolean isRunning() {
         // return false the first time this is called
-        if (_running) {
-            return true;
+        if (!_running) {
+            _running = true;
+            return false;
         }
-        _running = true;
-        return false;
+        return true;
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N_MR1)
