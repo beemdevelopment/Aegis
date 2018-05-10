@@ -45,8 +45,7 @@ public class MainActivity extends AegisActivity implements KeyProfileView.Listen
     private static final int CODE_SLOTS = 7;
 
     // permission request codes
-    private static final int CODE_PERM_EXPORT = 0;
-    private static final int CODE_PERM_CAMERA = 1;
+    private static final int CODE_PERM_CAMERA = 0;
 
     private AegisApplication _app;
     private DatabaseManager _db;
@@ -194,9 +193,6 @@ public class MainActivity extends AegisActivity implements KeyProfileView.Listen
         }
 
         switch (requestCode) {
-            case CODE_PERM_EXPORT:
-                onExport();
-                break;
             case CODE_PERM_CAMERA:
                 onScanKeyInfo();
                 break;
@@ -229,9 +225,6 @@ public class MainActivity extends AegisActivity implements KeyProfileView.Listen
         // perform any pending actions
         int action = data.getIntExtra("action", -1);
         switch (action) {
-            case PreferencesFragment.ACTION_EXPORT:
-                onExport();
-                break;
             case PreferencesFragment.ACTION_SLOTS:
                 MasterKey masterKey = _db.getMasterKey();
                 Intent intent = new Intent(this, SlotManagerActivity.class);
@@ -240,46 +233,6 @@ public class MainActivity extends AegisActivity implements KeyProfileView.Listen
                 startActivityForResult(intent, CODE_SLOTS);
                 break;
         }
-    }
-
-    private void onExport() {
-        if (!PermissionHelper.request(this, CODE_PERM_EXPORT, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
-            return;
-        }
-
-        // TODO: create a custom layout to show a message AND a checkbox
-        final boolean[] checked = {true};
-        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this)
-                .setTitle("Export the database")
-                .setPositiveButton(android.R.string.ok, (dialog, which) -> {
-                    String filename;
-                    try {
-                        filename = _db.export(checked[0]);
-                    } catch (DatabaseManagerException e) {
-                        e.printStackTrace();
-                        Toast.makeText(this, "An error occurred while trying to export the database", Toast.LENGTH_SHORT).show();
-                        return;
-                    }
-
-                    // make sure the new file is visible
-                    MediaScannerConnection.scanFile(this, new String[]{filename}, null, null);
-
-                    Toast.makeText(this, "The database has been exported to: " + filename, Toast.LENGTH_SHORT).show();
-                })
-                .setNegativeButton(android.R.string.cancel, null);
-        if (_db.getFile().isEncrypted()) {
-            final String[] items = {"Keep the database encrypted"};
-            final boolean[] checkedItems = {true};
-            builder.setMultiChoiceItems(items, checkedItems, new DialogInterface.OnMultiChoiceClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int index, boolean isChecked) {
-                    checked[0] = isChecked;
-                }
-            });
-        } else {
-            builder.setMessage("This action will export the database out of Android's private storage.");
-        }
-        builder.show();
     }
 
     private void startEditProfileActivity(int requestCode, KeyProfile profile, boolean isNew) {

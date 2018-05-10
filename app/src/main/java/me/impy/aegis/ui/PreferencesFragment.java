@@ -2,12 +2,15 @@ package me.impy.aegis.ui;
 
 import android.Manifest;
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.EditTextPreference;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
+import android.support.v7.app.AlertDialog;
 import android.widget.Toast;
 
 import java.io.FileNotFoundException;
@@ -35,10 +38,10 @@ public class PreferencesFragment extends PreferenceFragment {
 
     // permission request codes
     private static final int CODE_PERM_IMPORT = 0;
+    private static final int CODE_PERM_EXPORT = 1;
 
     // action codes
-    public static final int ACTION_EXPORT = 0;
-    public static final int ACTION_SLOTS = 1;
+    public static final int ACTION_SLOTS = 0;
 
     private Intent _result = new Intent();
     private DatabaseManager _db;
@@ -80,9 +83,7 @@ public class PreferencesFragment extends PreferenceFragment {
         exportPreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
-                if (PermissionHelper.request(getActivity(), CODE_PERM_IMPORT, Manifest.permission.READ_EXTERNAL_STORAGE)) {
-                    onImport();
-                }
+                onImport();
                 return true;
             }
         });
@@ -91,8 +92,7 @@ public class PreferencesFragment extends PreferenceFragment {
         importPreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
-                _result.putExtra("action", ACTION_EXPORT);
-                finish();
+                onExport();
                 return true;
             }
         });
@@ -139,6 +139,9 @@ public class PreferencesFragment extends PreferenceFragment {
             case CODE_PERM_IMPORT:
                 onImport();
                 break;
+            case CODE_PERM_EXPORT:
+                onExport();
+                break;
         }
     }
 
@@ -159,9 +162,11 @@ public class PreferencesFragment extends PreferenceFragment {
     }
 
     private void onImport() {
-        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-        intent.setType("*/*");
-        startActivityForResult(intent, CODE_IMPORT);
+        if (PermissionHelper.request(getActivity(), CODE_PERM_IMPORT, Manifest.permission.READ_EXTERNAL_STORAGE)) {
+            Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+            intent.setType("*/*");
+            startActivityForResult(intent, CODE_IMPORT);
+        }
     }
 
     private void onImportDecryptResult(int resultCode, Intent data) {
@@ -254,5 +259,45 @@ public class PreferencesFragment extends PreferenceFragment {
 
         _result.putExtra("needsReload", true);
         Toast.makeText(getActivity(), String.format(Locale.getDefault(), "Imported %d entries", entries.size()), Toast.LENGTH_LONG).show();
+    }
+
+    private void onExport() {
+        if (!PermissionHelper.request(getActivity(), CODE_PERM_EXPORT, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+            return;
+        }
+
+        // TODO: create a custom layout to show a message AND a checkbox
+        final boolean[] checked = {true};
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity())
+                .setTitle("Export the database")
+                .setPositiveButton(android.R.string.ok, (dialog, which) -> {
+                    String filename;
+                    try {
+                        filename = _db.export(checked[0]);
+                    } catch (DatabaseManagerException e) {
+                        e.printStackTrace();
+                        Toast.makeText(getActivity(), "An error occurred while trying to export the database", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+
+                    // make sure the new file is visible
+                    MediaScannerConnection.scanFile(getActivity(), new String[]{filename}, null, null);
+
+                    Toast.makeText(getActivity(), "The database has been exported to: " + filename, Toast.LENGTH_SHORT).show();
+                })
+                .setNegativeButton(android.R.string.cancel, null);
+        if (_db.getFile().isEncrypted()) {
+            final String[] items = {"Keep the database encrypted"};
+            final boolean[] checkedItems = {true};
+            builder.setMultiChoiceItems(items, checkedItems, new DialogInterface.OnMultiChoiceClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int index, boolean isChecked) {
+                    checked[0] = isChecked;
+                }
+            });
+        } else {
+            builder.setMessage("This action will export the database out of Android's private storage.");
+        }
+        builder.show();
     }
 }
