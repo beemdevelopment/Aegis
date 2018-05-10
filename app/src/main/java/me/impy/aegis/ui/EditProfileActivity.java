@@ -31,6 +31,7 @@ import me.impy.aegis.encoding.Base32;
 import me.impy.aegis.helpers.EditTextHelper;
 import me.impy.aegis.helpers.SpinnerHelper;
 import me.impy.aegis.helpers.TextDrawableHelper;
+import me.impy.aegis.ui.dialogs.Dialogs;
 import me.impy.aegis.ui.views.KeyProfile;
 
 public class EditProfileActivity extends AegisActivity {
@@ -231,14 +232,20 @@ public class EditProfileActivity extends AegisActivity {
         switch (item.getItemId()) {
             case android.R.id.home:
                 onBackPressed();
-                return true;
+                break;
             case R.id.action_save:
-                return onSave();
+                onSave();
+                break;
             case R.id.action_delete:
-                return onDelete();
+                Dialogs.showDeleteEntryDialog(this, (dialog, which) -> {
+                    finish(true);
+                });
+                break;
             default:
                 return super.onOptionsItemSelected(item);
         }
+
+        return true;
     }
 
     @Override
@@ -256,11 +263,6 @@ public class EditProfileActivity extends AegisActivity {
         intent.putExtra("delete", delete);
         setResult(RESULT_OK, intent);
         finish();
-    }
-
-    private boolean onDelete() {
-        finish(true);
-        return true;
     }
 
     private boolean onSave() {

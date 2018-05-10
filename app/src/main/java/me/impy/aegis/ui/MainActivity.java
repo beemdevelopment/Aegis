@@ -27,6 +27,7 @@ import me.impy.aegis.db.DatabaseManagerException;
 import me.impy.aegis.db.DatabaseEntry;
 import me.impy.aegis.db.DatabaseManager;
 import me.impy.aegis.helpers.PermissionHelper;
+import me.impy.aegis.ui.dialogs.Dialogs;
 import me.impy.aegis.ui.views.KeyProfile;
 import me.impy.aegis.ui.views.KeyProfileView;
 
@@ -378,7 +379,9 @@ public class MainActivity extends AegisActivity implements KeyProfileView.Listen
 
         deleteLayout.setOnClickListener(view -> {
             bottomDialog.dismiss();
-            deleteProfile(profile);
+            Dialogs.showDeleteEntryDialog(this, (dialog, which) -> {
+                deleteProfile(profile);
+            });
         });
 
         editLayout.setOnClickListener(view -> {
@@ -390,17 +393,10 @@ public class MainActivity extends AegisActivity implements KeyProfileView.Listen
     }
 
     private void deleteProfile(KeyProfile profile) {
-        new AlertDialog.Builder(MainActivity.this)
-            .setTitle("Delete entry")
-            .setMessage("Are you sure you want to delete this profile?")
-            .setPositiveButton(android.R.string.yes, (dialog, which) -> {
-                _db.removeKey(profile.getEntry());
-                saveDatabase();
+        _db.removeKey(profile.getEntry());
+        saveDatabase();
 
-                _keyProfileView.removeKey(profile);
-            })
-            .setNegativeButton(android.R.string.no, null)
-            .show();
+        _keyProfileView.removeKey(profile);
     }
 
     @Override
