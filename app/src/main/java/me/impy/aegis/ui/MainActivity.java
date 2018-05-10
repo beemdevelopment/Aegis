@@ -229,10 +229,10 @@ public class MainActivity extends AegisActivity implements KeyProfileView.Listen
         // perform any pending actions
         int action = data.getIntExtra("action", -1);
         switch (action) {
-            case PreferencesActivity.ACTION_EXPORT:
+            case PreferencesFragment.ACTION_EXPORT:
                 onExport();
                 break;
-            case PreferencesActivity.ACTION_SLOTS:
+            case PreferencesFragment.ACTION_SLOTS:
                 MasterKey masterKey = _db.getMasterKey();
                 Intent intent = new Intent(this, SlotManagerActivity.class);
                 intent.putExtra("masterKey", masterKey);
