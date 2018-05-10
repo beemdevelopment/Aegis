@@ -3,6 +3,7 @@ package me.impy.aegis.ui.tasks;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
+import android.os.Process;
 import android.support.annotation.CallSuper;
 
 public abstract class ProgressDialogTask<Params, Result> extends AsyncTask<Params, Void, Result> {
@@ -26,6 +27,10 @@ public abstract class ProgressDialogTask<Params, Result> extends AsyncTask<Param
         if (_dialog.isShowing()) {
             _dialog.dismiss();
         }
+    }
+
+    protected void setPriority() {
+        Process.setThreadPriority(Process.THREAD_PRIORITY_BACKGROUND + Process.THREAD_PRIORITY_MORE_FAVORABLE);
     }
 
     protected final ProgressDialog getDialog() {

@@ -1,7 +1,6 @@
 package me.impy.aegis.ui.tasks;
 
 import android.content.Context;
-import android.os.Process;
 
 import java.lang.reflect.UndeclaredThrowableException;
 
@@ -28,9 +27,9 @@ public class SlotCollectionTask<T extends Slot> extends ProgressDialogTask<SlotC
 
     @Override
     protected MasterKey doInBackground(SlotCollectionTask.Params... args) {
-        Process.setThreadPriority(Process.THREAD_PRIORITY_BACKGROUND + Process.THREAD_PRIORITY_MORE_FAVORABLE);
+        setPriority();
 
-        SlotCollectionTask.Params params = args[0];
+        Params params = args[0];
         try {
             if (!params.Slots.has(_type)) {
                 throw new RuntimeException();
