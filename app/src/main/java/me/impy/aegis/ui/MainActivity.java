@@ -20,12 +20,7 @@ import android.widget.Toast;
 
 import com.getbase.floatingactionbutton.FloatingActionsMenu;
 
-import java.io.ByteArrayOutputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
 import java.lang.reflect.UndeclaredThrowableException;
-import java.util.List;
 
 import me.impy.aegis.AegisApplication;
 import me.impy.aegis.R;
@@ -35,11 +30,8 @@ import me.impy.aegis.db.slots.SlotCollection;
 import me.impy.aegis.db.DatabaseEntry;
 import me.impy.aegis.db.DatabaseManager;
 import me.impy.aegis.helpers.PermissionHelper;
-import me.impy.aegis.importers.DatabaseImporter;
-import me.impy.aegis.importers.DatabaseImporterException;
 import me.impy.aegis.ui.views.KeyProfile;
 import me.impy.aegis.ui.views.KeyProfileView;
-import me.impy.aegis.util.ByteInputStream;
 
 public class MainActivity extends AegisActivity implements KeyProfileView.Listener {
     // activity request codes
@@ -49,14 +41,12 @@ public class MainActivity extends AegisActivity implements KeyProfileView.Listen
     private static final int CODE_ENTER_KEYINFO = 3;
     private static final int CODE_DO_INTRO = 4;
     private static final int CODE_DECRYPT = 5;
-    private static final int CODE_IMPORT = 6;
-    private static final int CODE_PREFERENCES = 7;
-    private static final int CODE_SLOTS = 8;
+    private static final int CODE_PREFERENCES = 6;
+    private static final int CODE_SLOTS = 7;
 
     // permission request codes
     private static final int CODE_PERM_EXPORT = 0;
-    private static final int CODE_PERM_IMPORT = 1;
-    private static final int CODE_PERM_CAMERA = 2;
+    private static final int CODE_PERM_CAMERA = 1;
 
     private AegisApplication _app;
     private DatabaseManager _db;
@@ -187,14 +177,12 @@ public class MainActivity extends AegisActivity implements KeyProfileView.Listen
             case CODE_DECRYPT:
                 onDecryptResult(resultCode, data);
                 break;
-            case CODE_IMPORT:
-                onImportResult(resultCode, data);
-                break;
             case CODE_PREFERENCES:
                 onPreferencesResult(resultCode, data);
                 break;
             case CODE_SLOTS:
                 onSlotManagerResult(resultCode, data);
+                break;
         }
     }
 
@@ -208,9 +196,6 @@ public class MainActivity extends AegisActivity implements KeyProfileView.Listen
         switch (requestCode) {
             case CODE_PERM_EXPORT:
                 onExport();
-                break;
-            case CODE_PERM_IMPORT:
-                onImport();
                 break;
             case CODE_PERM_CAMERA:
                 onScanKeyInfo();
@@ -230,6 +215,12 @@ public class MainActivity extends AegisActivity implements KeyProfileView.Listen
 
     private void onPreferencesResult(int resultCode, Intent data) {
         // refresh the entire key profile list if needed
+        if (data.getBooleanExtra("needsReload", false)) {
+            _keyProfileView.clearKeys();
+            for (DatabaseEntry entry : _db.getKeys()) {
+                _keyProfileView.addKey(new KeyProfile(entry));
+            }
+        }
         if (data.getBooleanExtra("needsRefresh", false)) {
             boolean showIssuer = _app.getPreferences().getBoolean("pref_issuer", false);
             _keyProfileView.setShowIssuer(showIssuer);
@@ -238,11 +229,6 @@ public class MainActivity extends AegisActivity implements KeyProfileView.Listen
         // perform any pending actions
         int action = data.getIntExtra("action", -1);
         switch (action) {
-            case PreferencesActivity.ACTION_IMPORT:
-                if (PermissionHelper.request(this, CODE_PERM_IMPORT, Manifest.permission.READ_EXTERNAL_STORAGE)) {
-                    onImport();
-                }
-                break;
             case PreferencesActivity.ACTION_EXPORT:
                 onExport();
                 break;
@@ -294,71 +280,6 @@ public class MainActivity extends AegisActivity implements KeyProfileView.Listen
             builder.setMessage("This action will export the database out of Android's private storage.");
         }
         builder.show();
-    }
-
-    private void onImport() {
-        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-        intent.setType("*/*");
-        startActivityForResult(intent, CODE_IMPORT);
-    }
-
-    private void onImportResult(int resultCode, Intent data) {
-        if (resultCode != RESULT_OK) {
-            return;
-        }
-
-        InputStream fileStream = null;
-        try {
-            try {
-                fileStream = getContentResolver().openInputStream(data.getData());
-            } catch (FileNotFoundException e) {
-                Toast.makeText(this, "Error: File not found", Toast.LENGTH_SHORT).show();
-                return;
-            }
-
-            ByteInputStream stream;
-            try {
-                int read;
-                byte[] buf = new byte[4096];
-                ByteArrayOutputStream outStream = new ByteArrayOutputStream();
-                while ((read = fileStream.read(buf, 0, buf.length)) != -1) {
-                    outStream.write(buf, 0, read);
-                }
-                stream = new ByteInputStream(outStream.toByteArray());
-            } catch (IOException e) {
-                Toast.makeText(this, "An error occurred while trying to read the file", Toast.LENGTH_SHORT).show();
-                return;
-            }
-
-            List<DatabaseEntry> entries = null;
-            for (DatabaseImporter converter : DatabaseImporter.create(stream)) {
-                try {
-                    entries = converter.convert();
-                    break;
-                } catch (DatabaseImporterException e) {
-                    stream.reset();
-                }
-            }
-
-            if (entries == null) {
-                Toast.makeText(this, "An error occurred while trying to parse the file", Toast.LENGTH_SHORT).show();
-                return;
-            }
-
-            for (DatabaseEntry entry : entries) {
-                addKey(new KeyProfile(entry));
-            }
-        } finally {
-            if (fileStream != null) {
-                try {
-                    fileStream.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-
-        saveDatabase();
     }
 
     private void startEditProfileActivity(int requestCode, KeyProfile profile, boolean isNew) {

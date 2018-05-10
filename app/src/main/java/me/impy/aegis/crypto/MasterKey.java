@@ -33,7 +33,8 @@ public class MasterKey implements Serializable {
         } catch (NoSuchPaddingException
                 | NoSuchAlgorithmException
                 | InvalidAlgorithmParameterException
-                | InvalidKeyException | BadPaddingException
+                | InvalidKeyException
+                | BadPaddingException
                 | IllegalBlockSizeException e) {
             throw new MasterKeyException(e);
         }
