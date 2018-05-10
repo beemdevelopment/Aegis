@@ -25,6 +25,7 @@ import me.impy.aegis.crypto.MasterKey;
 import me.impy.aegis.db.DatabaseEntry;
 import me.impy.aegis.db.DatabaseManager;
 import me.impy.aegis.db.DatabaseManagerException;
+import me.impy.aegis.db.slots.SlotCollection;
 import me.impy.aegis.helpers.PermissionHelper;
 import me.impy.aegis.importers.AegisImporter;
 import me.impy.aegis.importers.DatabaseImporter;
@@ -35,13 +36,11 @@ public class PreferencesFragment extends PreferenceFragment {
     // activity request codes
     private static final int CODE_IMPORT = 0;
     private static final int CODE_IMPORT_DECRYPT = 1;
+    private static final int CODE_SLOTS = 2;
 
     // permission request codes
     private static final int CODE_PERM_IMPORT = 0;
     private static final int CODE_PERM_EXPORT = 1;
-
-    // action codes
-    public static final int ACTION_SLOTS = 0;
 
     private Intent _result = new Intent();
     private DatabaseManager _db;
@@ -98,12 +97,15 @@ public class PreferencesFragment extends PreferenceFragment {
         });
 
         Preference slotsPreference = findPreference("pref_slots");
-        slotsPreference.setEnabled(getArguments().getBoolean("encrypted"));
+        slotsPreference.setEnabled(_db.getFile().isEncrypted());
         slotsPreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
-                _result.putExtra("action", ACTION_SLOTS);
-                finish();
+                MasterKey masterKey = _db.getMasterKey();
+                Intent intent = new Intent(getActivity(), SlotManagerActivity.class);
+                intent.putExtra("masterKey", masterKey);
+                intent.putExtra("slots", _db.getFile().getSlots());
+                startActivityForResult(intent, CODE_SLOTS);
                 return true;
             }
         });
@@ -158,6 +160,9 @@ public class PreferencesFragment extends PreferenceFragment {
             case CODE_IMPORT_DECRYPT:
                 onImportDecryptResult(resultCode, data);
                 break;
+            case CODE_SLOTS:
+                onSlotManagerResult(resultCode, data);
+                break;
         }
     }
 
@@ -184,6 +189,8 @@ public class PreferencesFragment extends PreferenceFragment {
             e.printStackTrace();
             Toast.makeText(getActivity(), "An error occurred while trying to parse the file", Toast.LENGTH_SHORT).show();
         }
+
+        _converter = null;
     }
 
     private void onImportResult(int resultCode, Intent data) {
@@ -249,11 +256,7 @@ public class PreferencesFragment extends PreferenceFragment {
             _db.addKey(entry);
         }
 
-        try {
-            _db.save();
-        } catch (DatabaseManagerException e) {
-            e.printStackTrace();
-            Toast.makeText(getActivity(), "An error occurred while trying to save the database", Toast.LENGTH_LONG).show();
+        if (!saveDatabase()) {
             return;
         }
 
@@ -299,5 +302,27 @@ public class PreferencesFragment extends PreferenceFragment {
             builder.setMessage("This action will export the database out of Android's private storage.");
         }
         builder.show();
+    }
+
+    private void onSlotManagerResult(int resultCode, Intent data) {
+        if (resultCode != Activity.RESULT_OK) {
+            return;
+        }
+
+        SlotCollection slots = (SlotCollection) data.getSerializableExtra("slots");
+        _db.getFile().setSlots(slots);
+        saveDatabase();
+    }
+
+    private boolean saveDatabase() {
+        try {
+            _db.save();
+        } catch (DatabaseManagerException e) {
+            e.printStackTrace();
+            Toast.makeText(getActivity(), "An error occurred while trying to save the database", Toast.LENGTH_LONG).show();
+            return false;
+        }
+
+        return true;
     }
 }

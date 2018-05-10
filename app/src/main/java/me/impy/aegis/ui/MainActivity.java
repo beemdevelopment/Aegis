@@ -4,10 +4,8 @@ import android.Manifest;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Rect;
-import android.media.MediaScannerConnection;
 import android.support.design.widget.BottomSheetDialog;
 import android.support.v7.app.AlertDialog;
 import android.os.Bundle;
@@ -26,7 +24,6 @@ import me.impy.aegis.AegisApplication;
 import me.impy.aegis.R;
 import me.impy.aegis.crypto.MasterKey;
 import me.impy.aegis.db.DatabaseManagerException;
-import me.impy.aegis.db.slots.SlotCollection;
 import me.impy.aegis.db.DatabaseEntry;
 import me.impy.aegis.db.DatabaseManager;
 import me.impy.aegis.helpers.PermissionHelper;
@@ -42,7 +39,6 @@ public class MainActivity extends AegisActivity implements KeyProfileView.Listen
     private static final int CODE_DO_INTRO = 4;
     private static final int CODE_DECRYPT = 5;
     private static final int CODE_PREFERENCES = 6;
-    private static final int CODE_SLOTS = 7;
 
     // permission request codes
     private static final int CODE_PERM_CAMERA = 0;
@@ -179,9 +175,6 @@ public class MainActivity extends AegisActivity implements KeyProfileView.Listen
             case CODE_PREFERENCES:
                 onPreferencesResult(resultCode, data);
                 break;
-            case CODE_SLOTS:
-                onSlotManagerResult(resultCode, data);
-                break;
         }
     }
 
@@ -199,16 +192,6 @@ public class MainActivity extends AegisActivity implements KeyProfileView.Listen
         }
     }
 
-    private void onSlotManagerResult(int resultCode, Intent data) {
-        if (resultCode != RESULT_OK) {
-            return;
-        }
-
-        SlotCollection slots = (SlotCollection) data.getSerializableExtra("slots");
-        _db.getFile().setSlots(slots);
-        saveDatabase();
-    }
-
     private void onPreferencesResult(int resultCode, Intent data) {
         // refresh the entire key profile list if needed
         if (data.getBooleanExtra("needsReload", false)) {
@@ -220,18 +203,6 @@ public class MainActivity extends AegisActivity implements KeyProfileView.Listen
         if (data.getBooleanExtra("needsRefresh", false)) {
             boolean showIssuer = _app.getPreferences().getBoolean("pref_issuer", false);
             _keyProfileView.setShowIssuer(showIssuer);
-        }
-
-        // perform any pending actions
-        int action = data.getIntExtra("action", -1);
-        switch (action) {
-            case PreferencesFragment.ACTION_SLOTS:
-                MasterKey masterKey = _db.getMasterKey();
-                Intent intent = new Intent(this, SlotManagerActivity.class);
-                intent.putExtra("masterKey", masterKey);
-                intent.putExtra("slots", _db.getFile().getSlots());
-                startActivityForResult(intent, CODE_SLOTS);
-                break;
         }
     }
 
@@ -445,7 +416,6 @@ public class MainActivity extends AegisActivity implements KeyProfileView.Listen
         switch (item.getItemId()) {
             case R.id.action_settings:
                 Intent intent = new Intent(this, PreferencesActivity.class);
-                intent.putExtra("encrypted", _db.getFile().isEncrypted());
                 startActivityForResult(intent, CODE_PREFERENCES);
                 return true;
             case R.id.action_lock:
