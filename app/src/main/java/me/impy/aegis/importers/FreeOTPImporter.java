@@ -28,6 +28,11 @@ public class FreeOTPImporter extends DatabaseImporter {
     }
 
     @Override
+    public void parse() throws DatabaseImporterException {
+
+    }
+
+    @Override
     public List<DatabaseEntry> convert() throws DatabaseImporterException {
         try {
             XmlPullParser parser = Xml.newPullParser();
@@ -38,6 +43,11 @@ public class FreeOTPImporter extends DatabaseImporter {
         } catch (KeyInfoException | XmlPullParserException | JSONException | IOException e) {
             throw new DatabaseImporterException(e);
         }
+    }
+
+    @Override
+    public boolean isEncrypted() {
+        return false;
     }
 
     @Override
