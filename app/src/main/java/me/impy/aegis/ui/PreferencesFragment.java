@@ -69,11 +69,11 @@ public class PreferencesFragment extends PreferenceFragment {
         // set the result intent in advance
         setResult();
 
-        Preference nightModePreference = findPreference("pref_dark_mode");
-        nightModePreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+        Preference darkModePreference = findPreference("pref_dark_mode");
+        darkModePreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
             @Override
             public boolean onPreferenceChange(Preference preference, Object newValue) {
-                Toast.makeText(getActivity(), "Night mode will be enabled after closing this screen", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "Dark mode setting will be applied after closing this screen", Toast.LENGTH_SHORT).show();
                 return true;
             }
         });

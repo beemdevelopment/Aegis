@@ -156,8 +156,8 @@ public class EditProfileActivity extends AegisActivity {
     }
 
     @Override
-    protected void setPreferredTheme(boolean nightMode) {
-        if (nightMode) {
+    protected void setPreferredTheme(boolean darkMode) {
+        if (darkMode) {
             _dialogStyle = android.R.style.Theme_Material_Dialog_NoActionBar;
             setTheme(R.style.AppTheme_Dark_TransparentActionBar);
         } else {

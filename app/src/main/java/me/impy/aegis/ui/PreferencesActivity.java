@@ -17,8 +17,8 @@ public class PreferencesActivity extends AegisActivity {
     }
 
     @Override
-    protected void setPreferredTheme(boolean nightMode) {
-        if (nightMode) {
+    protected void setPreferredTheme(boolean darkMode) {
+        if (darkMode) {
             setTheme(R.style.AppTheme_Dark);
         } else {
             setTheme(R.style.AppTheme_Default);

@@ -18,13 +18,13 @@ public abstract class AegisActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);
 
         // set the theme
-        boolean nightMode = _app.getPreferences().getBoolean("pref_dark_mode", false);
-        setPreferredTheme(nightMode);
+        boolean darkMode = _app.getPreferences().getBoolean("pref_dark_mode", false);
+        setPreferredTheme(darkMode);
     }
 
     protected AegisApplication getApp() {
         return _app;
     }
 
-    protected abstract void setPreferredTheme(boolean nightMode);
+    protected abstract void setPreferredTheme(boolean darkMode);
 }

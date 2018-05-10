@@ -7,7 +7,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Rect;
 import android.support.design.widget.BottomSheetDialog;
-import android.support.v7.app.AlertDialog;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -48,7 +47,7 @@ public class MainActivity extends AegisActivity implements KeyProfileView.Listen
     private DatabaseManager _db;
     private KeyProfileView _keyProfileView;
 
-    private boolean _nightMode = false;
+    private boolean _darkMode = false;
     private Menu _menu;
     private FloatingActionsMenu _fabMenu;
 
@@ -139,13 +138,13 @@ public class MainActivity extends AegisActivity implements KeyProfileView.Listen
     }
 
     @Override
-    protected void setPreferredTheme(boolean nightMode) {
-        if (nightMode) {
+    protected void setPreferredTheme(boolean darkMode) {
+        if (darkMode) {
             setTheme(R.style.AppTheme_Dark_NoActionBar);
-        } else if (_nightMode) {
+        } else if (_darkMode) {
             setTheme(R.style.AppTheme_Default_NoActionBar);
         }
-        _nightMode = nightMode;
+        _darkMode = darkMode;
     }
 
     @Override
@@ -346,9 +345,9 @@ public class MainActivity extends AegisActivity implements KeyProfileView.Listen
     protected void onResume() {
         super.onResume();
 
-        boolean nightMode = _app.getPreferences().getBoolean("pref_dark_mode", false);
-        if (nightMode != _nightMode) {
-            setPreferredTheme(nightMode);
+        boolean darkMode = _app.getPreferences().getBoolean("pref_dark_mode", false);
+        if (darkMode != _darkMode) {
+            setPreferredTheme(darkMode);
             recreate();
         }
 
