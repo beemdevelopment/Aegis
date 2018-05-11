@@ -44,7 +44,7 @@ public class PreferencesFragment extends PreferenceFragment {
     private static final int CODE_PERM_IMPORT = 0;
     private static final int CODE_PERM_EXPORT = 1;
 
-    private Intent _result = new Intent();
+    private Intent _result;
     private DatabaseManager _db;
 
     // this is used to keep a reference to a database converter
@@ -60,14 +60,14 @@ public class PreferencesFragment extends PreferenceFragment {
         _db = app.getDatabaseManager();
 
         // set the result intent in advance
-        getActivity().setResult(Activity.RESULT_OK, _result);
+        setResult(new Intent());
 
         Preference darkModePreference = findPreference("pref_dark_mode");
         darkModePreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
             @Override
             public boolean onPreferenceChange(Preference preference, Object newValue) {
                 _result.putExtra("needsRecreate", true);
-                Toast.makeText(getActivity(), "Dark mode setting will be applied after closing this screen", Toast.LENGTH_SHORT).show();
+                getActivity().recreate();
                 return true;
             }
         });
@@ -173,6 +173,15 @@ public class PreferencesFragment extends PreferenceFragment {
                 onSlotManagerResult(resultCode, data);
                 break;
         }
+    }
+
+    public Intent getResult() {
+        return _result;
+    }
+
+    public void setResult(Intent result) {
+        _result = result;
+        getActivity().setResult(Activity.RESULT_OK, _result);
     }
 
     private void onImport() {
