@@ -11,6 +11,8 @@ import android.preference.EditTextPreference;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.support.v7.app.AlertDialog;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Toast;
 
 import java.io.FileNotFoundException;
@@ -49,15 +51,6 @@ public class PreferencesFragment extends PreferenceFragment {
     // while the user provides credentials to decrypt it
     private DatabaseImporter _converter;
 
-    private void setResult() {
-        getActivity().setResult(Activity.RESULT_OK, _result);
-    }
-
-    private void finish() {
-        setResult();
-        getActivity().finish();
-    }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,12 +60,13 @@ public class PreferencesFragment extends PreferenceFragment {
         _db = app.getDatabaseManager();
 
         // set the result intent in advance
-        setResult();
+        getActivity().setResult(Activity.RESULT_OK, _result);
 
         Preference darkModePreference = findPreference("pref_dark_mode");
         darkModePreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
             @Override
             public boolean onPreferenceChange(Preference preference, Object newValue) {
+                _result.putExtra("needsRecreate", true);
                 Toast.makeText(getActivity(), "Dark mode setting will be applied after closing this screen", Toast.LENGTH_SHORT).show();
                 return true;
             }
@@ -125,6 +119,21 @@ public class PreferencesFragment extends PreferenceFragment {
             @Override
             public boolean onPreferenceChange(Preference preference, Object newValue) {
                 _result.putExtra("needsRefresh", true);
+                return true;
+            }
+        });
+
+        Preference screenPreference = findPreference("pref_secure_screen");
+        screenPreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+            @Override
+            public boolean onPreferenceChange(Preference preference, Object newValue) {
+                _result.putExtra("needsRecreate", true);
+                Window window = getActivity().getWindow();
+                if ((boolean)newValue) {
+                    window.addFlags(WindowManager.LayoutParams.FLAG_SECURE);
+                } else {
+                    window.clearFlags(WindowManager.LayoutParams.FLAG_SECURE);
+                }
                 return true;
             }
         });
@@ -260,7 +269,7 @@ public class PreferencesFragment extends PreferenceFragment {
             return;
         }
 
-        _result.putExtra("needsReload", true);
+        _result.putExtra("needsRecreate", true);
         Toast.makeText(getActivity(), String.format(Locale.getDefault(), "Imported %d entries", entries.size()), Toast.LENGTH_LONG).show();
     }
 

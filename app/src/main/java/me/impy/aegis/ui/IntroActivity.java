@@ -55,7 +55,9 @@ public class IntroActivity extends AppIntro implements DerivationTask.Callback {
         _app = (AegisApplication) getApplication();
 
         // set FLAG_SECURE on the window of every IntroActivity
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);
+        if (_app.getPreferences().getBoolean("pref_secure_screen", true)) {
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_SECURE);
+        }
 
         showSkipButton(false);
         //showPagerIndicator(false);

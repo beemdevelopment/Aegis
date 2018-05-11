@@ -19,6 +19,11 @@
 
     <PreferenceCategory
         android:title="Security">
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="pref_secure_screen"
+            android:title="@string/pref_secure_screen_title"
+            android:summary="@string/pref_secure_screen_summary"/>
         <EditTextPreference
             android:key="pref_timeout"
             android:title="@string/pref_timeout_title"

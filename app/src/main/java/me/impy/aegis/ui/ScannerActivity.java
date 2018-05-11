@@ -88,7 +88,7 @@ public class ScannerActivity extends AegisActivity implements ZXingScannerView.R
     }
 
     @Override
-    protected void setPreferredTheme(boolean nightMode) {
+    protected void setPreferredTheme(boolean darkMode) {
 
     }
 

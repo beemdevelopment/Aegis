@@ -16,7 +16,9 @@ public abstract class AegisActivity extends AppCompatActivity {
         _app = (AegisApplication) getApplication();
 
         // set FLAG_SECURE on the window of every AegisActivity
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);
+        if (_app.getPreferences().getBoolean("pref_secure_screen", true)) {
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_SECURE);
+        }
 
         // set the theme
         _darkMode = _app.getPreferences().getBoolean("pref_dark_mode", false);

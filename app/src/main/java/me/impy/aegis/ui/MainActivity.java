@@ -192,13 +192,9 @@ public class MainActivity extends AegisActivity implements KeyProfileView.Listen
 
     private void onPreferencesResult(int resultCode, Intent data) {
         // refresh the entire key profile list if needed
-        if (data.getBooleanExtra("needsReload", false)) {
-            _keyProfileView.clearKeys();
-            for (DatabaseEntry entry : _db.getKeys()) {
-                _keyProfileView.addKey(new KeyProfile(entry));
-            }
-        }
-        if (data.getBooleanExtra("needsRefresh", false)) {
+        if (data.getBooleanExtra("needsRecreate", false)) {
+            recreate();
+        } else if (data.getBooleanExtra("needsRefresh", false)) {
             boolean showIssuer = _app.getPreferences().getBoolean("pref_issuer", false);
             _keyProfileView.setShowIssuer(showIssuer);
         }
@@ -342,12 +338,6 @@ public class MainActivity extends AegisActivity implements KeyProfileView.Listen
     @Override
     protected void onResume() {
         super.onResume();
-
-        boolean darkMode = _app.getPreferences().getBoolean("pref_dark_mode", false);
-        if (darkMode != isDark()) {
-            setPreferredTheme(darkMode);
-            recreate();
-        }
 
         // refresh all codes to prevent showing old ones
         _keyProfileView.refresh();
