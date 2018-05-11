@@ -101,15 +101,6 @@ public class SlotManagerActivity extends AegisActivity implements SlotAdapter.Li
     }
 
     @Override
-    protected void setPreferredTheme(boolean darkMode) {
-        if (darkMode) {
-            setTheme(R.style.AppTheme_Dark);
-        } else {
-            setTheme(R.style.AppTheme);
-        }
-    }
-
-    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:

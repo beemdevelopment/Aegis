@@ -6,6 +6,7 @@ import android.view.WindowManager;
 
 import me.impy.aegis.AegisApplication;
 import me.impy.aegis.Preferences;
+import me.impy.aegis.R;
 
 public abstract class AegisActivity extends AppCompatActivity {
     private AegisApplication _app;
@@ -32,5 +33,11 @@ public abstract class AegisActivity extends AppCompatActivity {
         return _app.getPreferences();
     }
 
-    protected abstract void setPreferredTheme(boolean darkMode);
+    protected void setPreferredTheme(boolean darkMode) {
+        if (darkMode) {
+            setTheme(R.style.AppTheme_Dark);
+        } else {
+            setTheme(R.style.AppTheme);
+        }
+    }
 }

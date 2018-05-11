@@ -135,15 +135,6 @@ public class MainActivity extends AegisActivity implements KeyProfileView.Listen
     }
 
     @Override
-    protected void setPreferredTheme(boolean darkMode) {
-        if (darkMode) {
-            setTheme(R.style.AppTheme_Dark);
-        } else {
-            setTheme(R.style.AppTheme);
-        }
-    }
-
-    @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (data == null) {
             return;

@@ -102,15 +102,6 @@ public class AuthActivity extends AegisActivity implements FingerprintUiHelper.C
         });
     }
 
-    @Override
-    protected void setPreferredTheme(boolean darkMode) {
-        if (darkMode) {
-            setTheme(R.style.AppTheme_Dark);
-        } else {
-            setTheme(R.style.AppTheme);
-        }
-    }
-
     private void showError() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Decryption error");

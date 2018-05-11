@@ -2,8 +2,6 @@ package me.impy.aegis.ui;
 
 import android.os.Bundle;
 
-import me.impy.aegis.R;
-
 public class PreferencesActivity extends AegisActivity {
     private PreferencesFragment _fragment;
 
@@ -14,15 +12,6 @@ public class PreferencesActivity extends AegisActivity {
         _fragment = new PreferencesFragment();
         _fragment.setArguments(getIntent().getExtras());
         getFragmentManager().beginTransaction().replace(android.R.id.content, _fragment).commit();
-    }
-
-    @Override
-    protected void setPreferredTheme(boolean darkMode) {
-        if (darkMode) {
-            setTheme(R.style.AppTheme_Dark);
-        } else {
-            setTheme(R.style.AppTheme);
-        }
     }
 
     @Override

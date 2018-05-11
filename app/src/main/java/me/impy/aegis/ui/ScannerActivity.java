@@ -88,11 +88,6 @@ public class ScannerActivity extends AegisActivity implements ZXingScannerView.R
     }
 
     @Override
-    protected void setPreferredTheme(boolean darkMode) {
-
-    }
-
-    @Override
     public void onResume() {
         super.onResume();
         _scannerView.startCamera(getCameraId(_facing));
