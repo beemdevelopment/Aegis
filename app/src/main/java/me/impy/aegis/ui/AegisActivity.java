@@ -5,10 +5,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.WindowManager;
 
 import me.impy.aegis.AegisApplication;
+import me.impy.aegis.Preferences;
 
 public abstract class AegisActivity extends AppCompatActivity {
     private AegisApplication _app;
-    private boolean _darkMode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,21 +16,20 @@ public abstract class AegisActivity extends AppCompatActivity {
         _app = (AegisApplication) getApplication();
 
         // set FLAG_SECURE on the window of every AegisActivity
-        if (_app.getPreferences().getBoolean("pref_secure_screen", true)) {
+        if (getPreferences().isSecureScreenEnabled()) {
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_SECURE);
         }
 
         // set the theme
-        _darkMode = _app.getPreferences().getBoolean("pref_dark_mode", false);
-        setPreferredTheme(_darkMode);
+        setPreferredTheme(getPreferences().isDarkModeEnabled());
     }
 
     protected AegisApplication getApp() {
         return _app;
     }
 
-    protected boolean isDark() {
-        return _darkMode;
+    protected Preferences getPreferences() {
+        return _app.getPreferences();
     }
 
     protected abstract void setPreferredTheme(boolean darkMode);

@@ -15,9 +15,8 @@ import org.json.JSONObject;
 import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
 
-import me.impy.aegis.AegisApplication;
+import me.impy.aegis.Preferences;
 import me.impy.aegis.R;
-import me.impy.aegis.crypto.CryptResult;
 import me.impy.aegis.crypto.MasterKey;
 import me.impy.aegis.db.DatabaseException;
 import me.impy.aegis.db.DatabaseFileException;
@@ -47,15 +46,15 @@ public class IntroActivity extends AppIntro implements DerivationTask.Callback {
     private PasswordSlot _passwordSlot;
     private Cipher _passwordCipher;
 
-    private AegisApplication _app;
+    private Preferences _prefs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        _app = (AegisApplication) getApplication();
 
         // set FLAG_SECURE on the window of every IntroActivity
-        if (_app.getPreferences().getBoolean("pref_secure_screen", true)) {
+        _prefs = new Preferences(this);
+        if (_prefs.isSecureScreenEnabled()) {
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_SECURE);
         }
 
@@ -196,7 +195,7 @@ public class IntroActivity extends AppIntro implements DerivationTask.Callback {
         setResult(RESULT_OK, result);
 
         // skip the intro from now on
-        _app.getPreferences().edit().putBoolean("pref_intro", true).apply();
+        _prefs.setIntroDone(true);
         finish();
     }
 

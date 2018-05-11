@@ -2,12 +2,10 @@ package me.impy.aegis;
 
 import android.app.Application;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.pm.ShortcutInfo;
 import android.content.pm.ShortcutManager;
 import android.graphics.drawable.Icon;
 import android.os.Build;
-import android.preference.PreferenceManager;
 import android.support.annotation.RequiresApi;
 
 import java.util.Collections;
@@ -18,6 +16,7 @@ import me.impy.aegis.ui.MainActivity;
 public class AegisApplication extends Application {
     private boolean _running = false;
     private DatabaseManager _manager = new DatabaseManager(this);
+    private Preferences _prefs = new Preferences(this);
 
     @Override
     public void onCreate() {
@@ -32,8 +31,8 @@ public class AegisApplication extends Application {
         return _manager;
     }
 
-    public SharedPreferences getPreferences() {
-        return PreferenceManager.getDefaultSharedPreferences(this);
+    public Preferences getPreferences() {
+        return _prefs;
     }
 
     public boolean isRunning() {

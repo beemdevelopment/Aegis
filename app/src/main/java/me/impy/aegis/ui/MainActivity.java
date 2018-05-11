@@ -11,8 +11,6 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -63,7 +61,7 @@ public class MainActivity extends AegisActivity implements KeyProfileView.Listen
         // set up the key profile view
         _keyProfileView = (KeyProfileView) getSupportFragmentManager().findFragmentById(R.id.key_profiles);
         _keyProfileView.setListener(this);
-        _keyProfileView.setShowIssuer(_app.getPreferences().getBoolean("pref_issuer", false));
+        _keyProfileView.setShowIssuer(getPreferences().isIssuerVisible());
 
         // set up the floating action button
         _fabMenu = findViewById(R.id.fab);
@@ -80,7 +78,7 @@ public class MainActivity extends AegisActivity implements KeyProfileView.Listen
         if (!_app.isRunning() && _db.isLocked()) {
             if (!_db.fileExists()) {
                 // the db doesn't exist, start the intro
-                if (_app.getPreferences().getBoolean("pref_intro", false)) {
+                if (getPreferences().isIntroDone()) {
                     Toast.makeText(this, "Database file not found, starting over...", Toast.LENGTH_SHORT).show();
                 }
                 Intent intro = new Intent(this, IntroActivity.class);
@@ -195,7 +193,7 @@ public class MainActivity extends AegisActivity implements KeyProfileView.Listen
         if (data.getBooleanExtra("needsRecreate", false)) {
             recreate();
         } else if (data.getBooleanExtra("needsRefresh", false)) {
-            boolean showIssuer = _app.getPreferences().getBoolean("pref_issuer", false);
+            boolean showIssuer = getPreferences().isIssuerVisible();
             _keyProfileView.setShowIssuer(showIssuer);
         }
     }
