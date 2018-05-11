@@ -1,29 +1,5 @@
 <resources>
 
-    <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
-        <item name="swirl_ridgeColor">?android:attr/textColorSecondary</item>
-        <item name="swirl_errorColor">?android:attr/colorAccent</item>
-
-        <!--        <item name="colorPrimary">@color/colorPrimary</item>
-                <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-                <item name="colorAccent">@color/colorAccent</item>-->
-    </style>
-
-    <style name="AppTheme.TransparentActionBar">
-        <item name="android:actionBarStyle">@style/ThemeActionBar</item>
-        <item name="android:windowActionBarOverlay">true</item>
-        <!-- Support library compatibility -->
-        <item name="actionBarStyle">@style/ThemeActionBar</item>
-        <item name="windowActionBarOverlay">true</item>
-    </style>
-
-    <style name="AppTheme.Fullscreen" parent="AppTheme.TransparentActionBar">
-        <item name="android:windowNoTitle">true</item>
-        <item name="android:windowFullscreen">true</item>
-    </style>
-
     <style name="ThemeActionBar" parent="Widget.AppCompat.Light.ActionBar.Solid">
         <item name="android:background">@null</item>
         <!-- Support library compatibility -->
@@ -37,23 +13,11 @@
         <item name="android:windowIsTranslucent">true</item>
     </style>
 
-    <style name="AppTheme.NoActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
-    </style>
-
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
-
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
 
-    <style name="EditTextTintTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
-        <!--<item name="colorAccent">@color/</item>-->
-    </style>
-
-    <style name="AppTheme.Default">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="android:windowBackground">@color/background</item>
-        <item name="swirl_ridgeColor">@color/colorSwirlPrimary</item>
-        <item name="swirl_errorColor">@color/colorSwirlError</item>
         <item name="android:textColorPrimary">@color/primary_text</item>
         <item name="android:textColorSecondary">@color/secondary_text</item>
 
@@ -66,40 +30,50 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+
+        <item name="swirl_ridgeColor">@color/colorSwirlPrimary</item>
+        <item name="swirl_errorColor">@color/colorSwirlError</item>
     </style>
-    <style name="AppTheme.Default.NoActionBar" parent="AppTheme.Default">
+    <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
-    <style name="AppTheme.Default.TransparentActionBar" parent="AppTheme.Default">
+    <style name="AppTheme.TransparentActionBar">
         <item name="android:actionBarStyle">@style/ThemeActionBar</item>
         <item name="android:windowActionBarOverlay">true</item>
         <!-- Support library compatibility -->
         <item name="actionBarStyle">@style/ThemeActionBar</item>
         <item name="windowActionBarOverlay">true</item>
     </style>
+    <style name="AppTheme.Fullscreen" parent="AppTheme.TransparentActionBar">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
+    </style>
 
-
-    <style name="AppTheme.Dark">
+    <style name="AppTheme.Dark" parent="Theme.AppCompat">
         <item name="android:windowBackground">@color/background_dark</item>
         <item name="android:textColorPrimary">@color/primary_text_dark</item>
         <item name="android:textColorSecondary">@color/secondary_text_dark</item>
+
         <item name="primaryText">@color/primary_text_dark</item>
         <item name="secondaryText">@color/secondary_text_dark</item>
         <item name="background">@color/background_dark</item>
         <item name="cardBackground">@color/card_background_dark</item>
         <item name="codePrimaryText">@color/code_primary_text_dark</item>
 
-        <item name="android:textColorHint">@color/secondary_text</item>
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:textColorHint">@color/secondary_text</item>
+
+        <item name="swirl_ridgeColor">@color/colorSwirlPrimaryDark</item>
+        <item name="swirl_errorColor">@color/colorSwirlErrorDark</item>
     </style>
-    <style name="AppTheme.Dark.NoActionBar" parent="AppTheme.Dark">
+    <style name="AppTheme.Dark.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
-    <style name="AppTheme.Dark.TransparentActionBar" parent="AppTheme.Dark">
+    <style name="AppTheme.Dark.TransparentActionBar">
         <item name="android:actionBarStyle">@style/ThemeActionBar</item>
         <item name="android:windowActionBarOverlay">true</item>
         <!-- Support library compatibility -->

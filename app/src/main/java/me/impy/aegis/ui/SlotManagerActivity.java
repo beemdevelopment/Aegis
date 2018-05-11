@@ -36,10 +36,8 @@ public class SlotManagerActivity extends AegisActivity implements SlotAdapter.Li
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        // set up the view
         setContentView(R.layout.activity_slots);
-        setSupportActionBar(findViewById(R.id.toolbar));
+
         ActionBar bar = getSupportActionBar();
         bar.setHomeAsUpIndicator(R.drawable.ic_close);
         bar.setDisplayHomeAsUpEnabled(true);
@@ -105,9 +103,9 @@ public class SlotManagerActivity extends AegisActivity implements SlotAdapter.Li
     @Override
     protected void setPreferredTheme(boolean darkMode) {
         if (darkMode) {
-            setTheme(R.style.AppTheme_Dark_NoActionBar);
+            setTheme(R.style.AppTheme_Dark);
         } else {
-            setTheme(R.style.AppTheme_Default_NoActionBar);
+            setTheme(R.style.AppTheme);
         }
     }
 

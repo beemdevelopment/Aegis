@@ -16,7 +16,6 @@ import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.widget.AdapterView;
 import android.widget.EditText;
-import android.widget.ExpandableListAdapter;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
@@ -53,8 +52,6 @@ public class EditProfileActivity extends AegisActivity {
 
     private RelativeLayout _advancedSettingsHeader;
     private RelativeLayout _advancedSettings;
-
-    int _dialogStyle = android.R.style.Theme_Material_Light_Dialog_NoActionBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -122,12 +119,12 @@ public class EditProfileActivity extends AegisActivity {
         });
 
         _advancedSettingsHeader.setOnClickListener(v -> {
-            OpenAdvancedSettings();
+            openAdvancedSettings();
         });
 
         // Automatically open advanced settings since 'Secret' is required.
         if(_isNew){
-            OpenAdvancedSettings();
+            openAdvancedSettings();
         }
     }
 
@@ -158,15 +155,13 @@ public class EditProfileActivity extends AegisActivity {
     @Override
     protected void setPreferredTheme(boolean darkMode) {
         if (darkMode) {
-            _dialogStyle = android.R.style.Theme_Material_Dialog_NoActionBar;
             setTheme(R.style.AppTheme_Dark_TransparentActionBar);
         } else {
-            _dialogStyle = android.R.style.Theme_Material_Light_Dialog_NoActionBar;
-            setTheme(R.style.AppTheme_Default_TransparentActionBar);
+            setTheme(R.style.AppTheme_TransparentActionBar);
         }
     }
 
-    private void OpenAdvancedSettings() {
+    private void openAdvancedSettings() {
         Animation fadeOut = new AlphaAnimation(1, 0);  // the 1, 0 here notifies that we want the opacity to go from opaque (1) to transparent (0)
         fadeOut.setInterpolator(new AccelerateInterpolator());
         fadeOut.setDuration(220); // Fadeout duration should be 1000 milli seconds
@@ -219,7 +214,7 @@ public class EditProfileActivity extends AegisActivity {
             return;
         }
 
-        new AlertDialog.Builder(this, _dialogStyle)
+        new AlertDialog.Builder(this)
                 .setTitle("Discard changes?")
                 .setMessage("Your changes have not been saved")
                 .setPositiveButton(R.string.save, (dialog, which) -> onSave())

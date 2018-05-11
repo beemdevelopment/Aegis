@@ -18,6 +18,8 @@
 
     <color name="colorSwirlPrimary">#434343</color>
     <color name="colorSwirlError">#FF5252</color>
+    <color name="colorSwirlPrimaryDark">#FFFFFF</color>
+    <color name="colorSwirlErrorDark">#FF5252</color>
 
     <color name="code_primary_text">#0d47a1</color>
     <color name="code_primary_text_dark">#ffffff</color>

@@ -21,7 +21,7 @@ public class PreferencesActivity extends AegisActivity {
         if (darkMode) {
             setTheme(R.style.AppTheme_Dark);
         } else {
-            setTheme(R.style.AppTheme_Default);
+            setTheme(R.style.AppTheme);
         }
     }
 

@@ -107,7 +107,7 @@ public class AuthActivity extends AegisActivity implements FingerprintUiHelper.C
         if (darkMode) {
             setTheme(R.style.AppTheme_Dark);
         } else {
-            setTheme(R.style.AppTheme_Default);
+            setTheme(R.style.AppTheme);
         }
     }
 

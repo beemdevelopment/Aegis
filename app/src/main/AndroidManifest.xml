@@ -15,7 +15,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         tools:replace="android:theme"
-        android:theme="@style/AppTheme.Default.NoActionBar">
+        android:theme="@style/AppTheme.NoActionBar">
         <activity
             android:name=".ui.MainActivity"
             android:label="@string/app_name"
@@ -36,7 +36,7 @@
         <activity
             android:name=".ui.EditProfileActivity"
             android:label="Edit profile"
-            android:theme="@style/AppTheme.Default.TransparentActionBar">
+            android:theme="@style/AppTheme.TransparentActionBar">
         </activity>
         <activity
             android:name=".ui.IntroActivity"
@@ -51,7 +51,8 @@
         </activity>
         <activity
             android:name=".ui.SlotManagerActivity"
-            android:label="Manage key slots">
+            android:label="Manage key slots"
+            android:theme="@style/AppTheme.TransparentActionBar">
         </activity>
     </application>
 </manifest>

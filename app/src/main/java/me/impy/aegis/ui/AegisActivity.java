@@ -8,6 +8,7 @@ import me.impy.aegis.AegisApplication;
 
 public abstract class AegisActivity extends AppCompatActivity {
     private AegisApplication _app;
+    private boolean _darkMode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,12 +19,16 @@ public abstract class AegisActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);
 
         // set the theme
-        boolean darkMode = _app.getPreferences().getBoolean("pref_dark_mode", false);
-        setPreferredTheme(darkMode);
+        _darkMode = _app.getPreferences().getBoolean("pref_dark_mode", false);
+        setPreferredTheme(_darkMode);
     }
 
     protected AegisApplication getApp() {
         return _app;
+    }
+
+    protected boolean isDark() {
+        return _darkMode;
     }
 
     protected abstract void setPreferredTheme(boolean darkMode);

@@ -12,6 +12,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -47,7 +48,6 @@ public class MainActivity extends AegisActivity implements KeyProfileView.Listen
     private DatabaseManager _db;
     private KeyProfileView _keyProfileView;
 
-    private boolean _darkMode = false;
     private Menu _menu;
     private FloatingActionsMenu _fabMenu;
 
@@ -59,7 +59,6 @@ public class MainActivity extends AegisActivity implements KeyProfileView.Listen
 
         // set up the main view
         setContentView(R.layout.activity_main);
-        setSupportActionBar(findViewById(R.id.toolbar));
 
         // set up the key profile view
         _keyProfileView = (KeyProfileView) getSupportFragmentManager().findFragmentById(R.id.key_profiles);
@@ -140,11 +139,10 @@ public class MainActivity extends AegisActivity implements KeyProfileView.Listen
     @Override
     protected void setPreferredTheme(boolean darkMode) {
         if (darkMode) {
-            setTheme(R.style.AppTheme_Dark_NoActionBar);
-        } else if (_darkMode) {
-            setTheme(R.style.AppTheme_Default_NoActionBar);
+            setTheme(R.style.AppTheme_Dark);
+        } else {
+            setTheme(R.style.AppTheme);
         }
-        _darkMode = darkMode;
     }
 
     @Override
@@ -346,7 +344,7 @@ public class MainActivity extends AegisActivity implements KeyProfileView.Listen
         super.onResume();
 
         boolean darkMode = _app.getPreferences().getBoolean("pref_dark_mode", false);
-        if (darkMode != _darkMode) {
+        if (darkMode != isDark()) {
             setPreferredTheme(darkMode);
             recreate();
         }
@@ -356,39 +354,34 @@ public class MainActivity extends AegisActivity implements KeyProfileView.Listen
     }
 
     private BottomSheetDialog createBottomSheet(final KeyProfile profile) {
-        View bottomSheetView = getLayoutInflater().inflate(R.layout.bottom_sheet_edit_profile, null);
-        LinearLayout copyLayout = bottomSheetView.findViewById(R.id.copy_button);
-        LinearLayout deleteLayout = bottomSheetView.findViewById(R.id.delete_button);
-        LinearLayout editLayout = bottomSheetView.findViewById(R.id.edit_button);
-        bottomSheetView.findViewById(R.id.edit_button);
-        BottomSheetDialog bottomDialog = new BottomSheetDialog(this);
-        bottomDialog.setContentView(bottomSheetView);
-        bottomDialog.setCancelable(true);
-        bottomDialog.getWindow().setLayout(LinearLayout.LayoutParams.MATCH_PARENT,
+        BottomSheetDialog dialog = new BottomSheetDialog(this);
+        dialog.setContentView(R.layout.bottom_sheet_edit_profile);
+        dialog.setCancelable(true);
+        dialog.getWindow().setLayout(LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT);
-        bottomDialog.show();
+        dialog.show();
 
-        copyLayout.setOnClickListener(view -> {
-            bottomDialog.dismiss();
+        dialog.findViewById(R.id.copy_button).setOnClickListener(view -> {
+            dialog.dismiss();
             ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
             ClipData clip = ClipData.newPlainText("text/plain", profile.getCode());
             clipboard.setPrimaryClip(clip);
-            Toast.makeText(this.getApplicationContext(), "Code copied to the clipboard", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Code copied to the clipboard", Toast.LENGTH_SHORT).show();
         });
 
-        deleteLayout.setOnClickListener(view -> {
-            bottomDialog.dismiss();
-            Dialogs.showDeleteEntryDialog(this, (dialog, which) -> {
+        dialog.findViewById(R.id.delete_button).setOnClickListener(view -> {
+            dialog.dismiss();
+            Dialogs.showDeleteEntryDialog(this, (d, which) -> {
                 deleteProfile(profile);
             });
         });
 
-        editLayout.setOnClickListener(view -> {
-            bottomDialog.dismiss();
+        dialog.findViewById(R.id.edit_button).setOnClickListener(view -> {
+            dialog.dismiss();
             startEditProfileActivity(CODE_EDIT_KEYINFO, profile, false);
         });
 
-        return bottomDialog;
+        return dialog;
     }
 
     private void deleteProfile(KeyProfile profile) {

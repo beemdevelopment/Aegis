@@ -35,7 +35,7 @@
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="Slot name"
                 android:id="@+id/text_slot_name"
-                android:textColor="@color/primary_text"/>
+                android:textColor="?android:attr/textColorPrimary"/>
 
             <TextView
                 android:id="@+id/text_slot_used"
