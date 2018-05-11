@@ -95,7 +95,7 @@ public class ScannerActivity extends AegisActivity implements ZXingScannerView.R
     @Override
     public void onResume() {
         super.onResume();
-        _scannerView.startCamera();
+        _scannerView.startCamera(getCameraId(_facing));
     }
 
     @Override
