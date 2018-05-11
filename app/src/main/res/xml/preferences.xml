@@ -4,13 +4,13 @@
 
     <PreferenceCategory
         android:title="Appearance">
-        <CheckBoxPreference
+        <SwitchPreference
             android:defaultValue="false"
             android:key="pref_dark_mode"
             android:title="@string/pref_dark_mode_title"
             android:summary="@string/pref_dark_mode_summary"/>
 
-        <CheckBoxPreference
+        <SwitchPreference
             android:defaultValue="false"
             android:key="pref_issuer"
             android:title="@string/pref_issuer_title"
@@ -19,7 +19,7 @@
 
     <PreferenceCategory
         android:title="Security">
-        <CheckBoxPreference
+        <SwitchPreference
             android:defaultValue="true"
             android:key="pref_secure_screen"
             android:title="@string/pref_secure_screen_title"
