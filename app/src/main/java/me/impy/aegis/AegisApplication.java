@@ -15,12 +15,14 @@ import me.impy.aegis.ui.MainActivity;
 
 public class AegisApplication extends Application {
     private boolean _running = false;
-    private DatabaseManager _manager = new DatabaseManager(this);
-    private Preferences _prefs = new Preferences(this);
+    private DatabaseManager _manager;
+    private Preferences _prefs;
 
     @Override
     public void onCreate() {
         super.onCreate();
+        _manager = new DatabaseManager(this);
+        _prefs = new Preferences(this);
 
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {
             initAppShortcuts();
