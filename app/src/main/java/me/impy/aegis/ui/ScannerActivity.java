@@ -58,6 +58,11 @@ public class ScannerActivity extends AegisActivity implements ZXingScannerView.R
     }
 
     @Override
+    protected void setPreferredTheme(boolean darkMode) {
+        setTheme(R.style.AppTheme_Fullscreen);
+    }
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         _menu = menu;
         getMenuInflater().inflate(R.menu.menu_scanner, menu);
@@ -78,8 +83,8 @@ public class ScannerActivity extends AegisActivity implements ZXingScannerView.R
                         _facing = CAMERA_FACING_BACK;
                         break;
                 }
-                _scannerView.startCamera(getCameraId(_facing));
                 updateCameraIcon();
+                _scannerView.startCamera(getCameraId(_facing));
                 return true;
             case R.id.action_lock:
             default:
