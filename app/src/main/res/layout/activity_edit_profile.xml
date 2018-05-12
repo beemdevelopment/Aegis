@@ -34,7 +34,6 @@
         <TableLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="?attr/background"
             android:orientation="vertical"
             android:stretchColumns="1"
             android:layout_marginEnd="35dp">
@@ -111,7 +110,6 @@
             <TableLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="?attr/background"
                     android:orientation="vertical"
                     android:stretchColumns="1"
                     android:layout_marginEnd="35dp">

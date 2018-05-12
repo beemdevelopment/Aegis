@@ -17,19 +17,14 @@
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
 
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <item name="android:windowBackground">@color/background</item>
-        <item name="android:textColorPrimary">@color/primary_text</item>
-        <item name="android:textColorSecondary">@color/secondary_text</item>
-
         <item name="primaryText">@color/primary_text</item>
         <item name="secondaryText">@color/secondary_text</item>
-        <item name="background">@color/background</item>
         <item name="cardBackground">@color/card_background</item>
         <item name="codePrimaryText">@color/code_primary_text</item>
-
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="background">@color/background</item>
 
         <item name="swirl_ridgeColor">@color/colorSwirlPrimary</item>
         <item name="swirl_errorColor">@color/colorSwirlError</item>
@@ -51,20 +46,14 @@
     </style>
 
     <style name="AppTheme.Dark" parent="Theme.AppCompat">
-        <item name="android:windowBackground">@color/background_dark</item>
-        <item name="android:textColorPrimary">@color/primary_text_dark</item>
-        <item name="android:textColorSecondary">@color/secondary_text_dark</item>
-
         <item name="primaryText">@color/primary_text_dark</item>
         <item name="secondaryText">@color/secondary_text_dark</item>
-        <item name="background">@color/background_dark</item>
         <item name="cardBackground">@color/card_background_dark</item>
         <item name="codePrimaryText">@color/code_primary_text_dark</item>
-
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:textColorHint">@color/secondary_text</item>
+        <item name="background">@color/background_dark</item>
 
         <item name="swirl_ridgeColor">@color/colorSwirlPrimaryDark</item>
         <item name="swirl_errorColor">@color/colorSwirlErrorDark</item>

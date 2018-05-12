@@ -102,7 +102,6 @@
         android:padding="0dp"
         android:layout_margin="0dp"
         android:layout_width="match_parent"
-        android:background="?attr/background"
         android:layout_height="match_parent">
 
         <ProgressBar
