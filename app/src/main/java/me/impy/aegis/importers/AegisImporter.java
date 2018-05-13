@@ -35,10 +35,10 @@ public class AegisImporter extends DatabaseImporter {
     public List<DatabaseEntry> convert() throws DatabaseImporterException {
         try {
             JSONObject obj;
-            if (!_file.isEncrypted()) {
-                obj = _file.getContent();
-            } else {
+            if (_file.isEncrypted() && _key != null) {
                 obj = _file.getContent(_key);
+            } else {
+                obj = _file.getContent();
             }
 
             Database db = new Database();

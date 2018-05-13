@@ -11,7 +11,11 @@ import me.impy.aegis.util.ByteInputStream;
 
 public abstract class DatabaseImporter {
     private static List<Class<? extends DatabaseImporter>> _converters = Collections.unmodifiableList(
-            new ArrayList<>(Arrays.asList(AegisImporter.class, FreeOTPImporter.class))
+            new ArrayList<>(Arrays.asList(
+                    AegisImporter.class,
+                    FreeOTPImporter.class,
+                    AndOTPImporter.class
+            ))
     );
 
     protected ByteInputStream _stream;

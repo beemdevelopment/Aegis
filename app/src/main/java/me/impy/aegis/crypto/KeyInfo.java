@@ -155,7 +155,7 @@ public class KeyInfo implements Serializable {
         if (!isTypeValid(type)) {
             throw new KeyInfoException(String.format("unsupported otp type: %s", type));
         }
-        _type = type.toLowerCase();
+        _type = type;
     }
 
     public void setSecret(char[] base32) throws KeyInfoException {
