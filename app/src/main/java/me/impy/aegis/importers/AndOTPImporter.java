@@ -75,9 +75,4 @@ public class AndOTPImporter extends DatabaseImporter {
     public boolean isEncrypted() {
         return false;
     }
-
-    @Override
-    public String getName() {
-        return "andOTP";
-    }
 }

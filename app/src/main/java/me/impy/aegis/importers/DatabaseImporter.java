@@ -2,21 +2,24 @@ package me.impy.aegis.importers;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import me.impy.aegis.db.DatabaseEntry;
 import me.impy.aegis.util.ByteInputStream;
 
 public abstract class DatabaseImporter {
-    private static List<Class<? extends DatabaseImporter>> _converters = Collections.unmodifiableList(
-            new ArrayList<>(Arrays.asList(
-                    AegisImporter.class,
-                    FreeOTPImporter.class,
-                    AndOTPImporter.class
-            ))
-    );
+    private static Map<String, Class<? extends DatabaseImporter>> _importers;
+    static {
+        // note: keep this list sorted alphabetically
+        LinkedHashMap<String, Class<? extends DatabaseImporter>> importers = new LinkedHashMap<>();
+        importers.put("Aegis", AegisImporter.class);
+        importers.put("andOTP", AndOTPImporter.class);
+        importers.put("FreeOTP", FreeOTPImporter.class);
+        _importers = Collections.unmodifiableMap(importers);
+    }
 
     protected ByteInputStream _stream;
 
@@ -30,8 +33,6 @@ public abstract class DatabaseImporter {
 
     public abstract boolean isEncrypted();
 
-    public abstract String getName();
-
     public static DatabaseImporter create(ByteInputStream stream, Class<? extends DatabaseImporter> type) {
         try {
             return type.getConstructor(ByteInputStream.class).newInstance(stream);
@@ -43,9 +44,13 @@ public abstract class DatabaseImporter {
 
     public static List<DatabaseImporter> create(ByteInputStream stream) {
         List<DatabaseImporter> list = new ArrayList<>();
-        for (Class<? extends DatabaseImporter> type : _converters) {
+        for (Class<? extends DatabaseImporter> type : _importers.values()) {
             list.add(create(stream, type));
         }
         return list;
+    }
+
+    public static Map<String, Class<? extends DatabaseImporter>> getImporters() {
+        return _importers;
     }
 }

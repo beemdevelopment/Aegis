@@ -20,6 +20,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 import me.impy.aegis.AegisApplication;
 import me.impy.aegis.R;
@@ -49,7 +50,8 @@ public class PreferencesFragment extends PreferenceFragment {
 
     // this is used to keep a reference to a database converter
     // while the user provides credentials to decrypt it
-    private DatabaseImporter _converter;
+    private DatabaseImporter _importer;
+    private Class<? extends DatabaseImporter> _importerType;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -185,30 +187,46 @@ public class PreferencesFragment extends PreferenceFragment {
     }
 
     private void onImport() {
-        if (PermissionHelper.request(getActivity(), CODE_PERM_IMPORT, Manifest.permission.READ_EXTERNAL_STORAGE)) {
-            Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-            intent.setType("*/*");
-            startActivityForResult(intent, CODE_IMPORT);
-        }
+        Map<String, Class<? extends DatabaseImporter>> importers = DatabaseImporter.getImporters();
+        String[] names = importers.keySet().toArray(new String[importers.size()]);
+
+        new AlertDialog.Builder(getActivity())
+                .setTitle("Select the application you'd like to import a database from")
+                .setSingleChoiceItems(names, 0, null)
+                .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+
+                        int i = ((AlertDialog) dialog).getListView().getCheckedItemPosition();
+                        _importerType = importers.get(names[i]);
+
+                        if (PermissionHelper.request(getActivity(), CODE_PERM_IMPORT, Manifest.permission.READ_EXTERNAL_STORAGE)) {
+                            Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+                            intent.setType("*/*");
+                            startActivityForResult(intent, CODE_IMPORT);
+                        }
+                    }
+                })
+                .show();
     }
 
     private void onImportDecryptResult(int resultCode, Intent data) {
         if (resultCode != Activity.RESULT_OK) {
-            _converter = null;
+            _importer = null;
             return;
         }
 
         MasterKey key = (MasterKey) data.getSerializableExtra("key");
-        ((AegisImporter)_converter).setKey(key);
+        ((AegisImporter)_importer).setKey(key);
 
         try {
-            importDatabase(_converter);
+            importDatabase(_importer);
         } catch (DatabaseImporterException e) {
             e.printStackTrace();
             Toast.makeText(getActivity(), "An error occurred while trying to parse the file", Toast.LENGTH_SHORT).show();
         }
 
-        _converter = null;
+        _importer = null;
     }
 
     private void onImportResult(int resultCode, Intent data) {
@@ -239,37 +257,29 @@ public class PreferencesFragment extends PreferenceFragment {
             }
         }
 
-        boolean imported = false;
-        for (DatabaseImporter converter : DatabaseImporter.create(stream)) {
-            try {
-                converter.parse();
+        try {
+            DatabaseImporter importer = DatabaseImporter.create(stream, _importerType);
+            importer.parse();
 
-                // special case to decrypt encrypted aegis databases
-                if (converter.isEncrypted() && converter instanceof AegisImporter) {
-                    _converter = converter;
+            // special case to decrypt encrypted aegis databases
+            if (importer.isEncrypted() && importer instanceof AegisImporter) {
+                _importer = importer;
 
-                    Intent intent = new Intent(getActivity(), AuthActivity.class);
-                    intent.putExtra("slots", ((AegisImporter)_converter).getFile().getSlots());
-                    startActivityForResult(intent, CODE_IMPORT_DECRYPT);
-                    return;
-                }
-
-                importDatabase(converter);
-                imported = true;
-                break;
-            } catch (DatabaseImporterException e) {
-                e.printStackTrace();
-                stream.reset();
+                Intent intent = new Intent(getActivity(), AuthActivity.class);
+                intent.putExtra("slots", ((AegisImporter)_importer).getFile().getSlots());
+                startActivityForResult(intent, CODE_IMPORT_DECRYPT);
+                return;
             }
-        }
 
-        if (!imported) {
+            importDatabase(importer);
+        } catch (DatabaseImporterException e) {
+            e.printStackTrace();
             Toast.makeText(getActivity(), "An error occurred while trying to parse the file", Toast.LENGTH_SHORT).show();
         }
     }
 
-    private void importDatabase(DatabaseImporter converter) throws DatabaseImporterException {
-        List<DatabaseEntry> entries = converter.convert();
+    private void importDatabase(DatabaseImporter importer) throws DatabaseImporterException {
+        List<DatabaseEntry> entries = importer.convert();
         for (DatabaseEntry entry : entries) {
             _db.addKey(entry);
         }

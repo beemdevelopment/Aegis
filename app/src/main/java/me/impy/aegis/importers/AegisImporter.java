@@ -61,9 +61,4 @@ public class AegisImporter extends DatabaseImporter {
     public DatabaseFile getFile() {
         return _file;
     }
-
-    @Override
-    public String getName() {
-        return "Aegis";
-    }
 }

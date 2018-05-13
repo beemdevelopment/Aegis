@@ -50,11 +50,6 @@ public class FreeOTPImporter extends DatabaseImporter {
         return false;
     }
 
-    @Override
-    public String getName() {
-        return "FreeOTP";
-    }
-
     private static List<DatabaseEntry> parse(XmlPullParser parser)
             throws IOException, XmlPullParserException, JSONException, KeyInfoException {
         List<Entry> entries = new ArrayList<>();
