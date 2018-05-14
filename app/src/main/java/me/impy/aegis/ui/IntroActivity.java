@@ -146,7 +146,7 @@ public class IntroActivity extends AppIntro implements DerivationTask.Callback {
             masterKey = MasterKey.generate();
         }
 
-        SlotCollection slots = _databaseFile.getSlots();
+        SlotCollection slots = null;
         if (cryptType != CustomAuthenticationSlide.CRYPT_TYPE_NONE) {
             // encrypt the master key with a key derived from the user's password
             // and add it to the list of slots
@@ -154,8 +154,10 @@ public class IntroActivity extends AppIntro implements DerivationTask.Callback {
                 throw new RuntimeException();
             }
             try {
+                slots = new SlotCollection();
                 slots.encrypt(_passwordSlot, masterKey, _passwordCipher);
                 slots.add(_passwordSlot);
+                _databaseFile.setSlots(slots);
             } catch (SlotException e) {
                 setException(e);
             }
