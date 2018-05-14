@@ -46,7 +46,7 @@
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_person_black_24dp"
                     android:layout_marginTop="10dp"
-                    android:tint="#7f7f7f"
+                    android:tint="?attr/iconColorPrimary"
                     android:layout_marginStart="15dp"
                     android:layout_marginEnd="20dp"/>
 
@@ -88,7 +88,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginStart="14dp"
                 android:src="@drawable/ic_keyboard_arrow_down_black_24dp"
-                android:tint="#7f7f7f"/>
+                android:tint="?attr/iconColorPrimary"/>
 
             <TextView
                 android:id="@+id/accordian_title"
@@ -121,7 +121,7 @@
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_info_outline_black_24dp"
                     android:layout_marginTop="10dp"
-                    android:tint="#7f7f7f"
+                    android:tint="?attr/iconColorPrimary"
                     android:layout_marginStart="15dp"
                     android:layout_marginEnd="20dp"/>
 
@@ -175,7 +175,7 @@
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_timelapse_black_24dp"
                     android:layout_marginTop="10dp"
-                    android:tint="#7f7f7f"
+                    android:tint="?attr/iconColorPrimary"
                     android:layout_marginStart="15dp"
                     android:layout_marginEnd="20dp"/>
 
@@ -224,7 +224,7 @@
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_vpn_key_black_24dp"
                     android:layout_marginTop="10dp"
-                    android:tint="#7f7f7f"
+                    android:tint="?attr/iconColorPrimary"
                     android:layout_marginStart="15dp"
                     android:layout_marginEnd="20dp"/>
 

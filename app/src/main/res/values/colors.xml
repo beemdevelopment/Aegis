@@ -21,6 +21,11 @@
     <color name="colorSwirlPrimaryDark">#FFFFFF</color>
     <color name="colorSwirlErrorDark">#FF5252</color>
 
+    <color name="icon_primary">#212121</color>
+    <color name="icon_primary_inverted">#ffffff</color>
+    <color name="icon_primary_dark">#ffffff</color>
+    <color name="icon_primary_dark_inverted">#212121</color>
+
     <color name="code_primary_text">#0d47a1</color>
     <color name="code_primary_text_dark">#ffffff</color>
 

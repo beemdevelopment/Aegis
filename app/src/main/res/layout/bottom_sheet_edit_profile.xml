@@ -17,7 +17,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
-            android:src="@drawable/ic_content_copy_black_24dp"/>
+            android:src="@drawable/ic_content_copy_black_24dp"
+            android:tint="@color/icon_primary"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -37,7 +38,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
-            android:src="@drawable/ic_create_black_24dp"/>
+            android:src="@drawable/ic_create_black_24dp"
+            android:tint="@color/icon_primary"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -57,7 +59,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
-            android:src="@drawable/ic_delete_black_24dp"/>
+            android:src="@drawable/ic_delete_black_24dp"
+            android:tint="@color/icon_primary"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
