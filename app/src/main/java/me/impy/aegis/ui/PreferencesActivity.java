@@ -16,7 +16,7 @@ public class PreferencesActivity extends AegisActivity implements PasswordDialog
 
         _fragment = new PreferencesFragment();
         _fragment.setArguments(getIntent().getExtras());
-        getFragmentManager().beginTransaction().replace(android.R.id.content, _fragment).commit();
+        getSupportFragmentManager().beginTransaction().replace(android.R.id.content, _fragment).commit();
     }
 
     @Override

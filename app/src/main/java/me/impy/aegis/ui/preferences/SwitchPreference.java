@@ -3,10 +3,12 @@ package me.impy.aegis.ui.preferences;
 import android.content.Context;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
+import android.support.v7.preference.Preference;
+import android.support.v7.preference.SwitchPreferenceCompat;
 import android.util.AttributeSet;
 
-public class SwitchPreference extends android.preference.SwitchPreference {
-    private OnPreferenceChangeListener _listener;
+public class SwitchPreference extends SwitchPreferenceCompat {
+    private Preference.OnPreferenceChangeListener _listener;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public SwitchPreference(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {

@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.preference.PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
                   android:title="@string/settings">
 
     <PreferenceCategory
         android:title="Appearance">
-        <SwitchPreference
+        <android.support.v7.preference.SwitchPreferenceCompat
             android:defaultValue="false"
             android:key="pref_dark_mode"
             android:title="@string/pref_dark_mode_title"
             android:summary="@string/pref_dark_mode_summary"/>
 
-        <SwitchPreference
+        <android.support.v7.preference.SwitchPreferenceCompat
             android:defaultValue="false"
             android:key="pref_issuer"
             android:title="@string/pref_issuer_title"
@@ -19,7 +19,7 @@
 
     <PreferenceCategory
         android:title="Security">
-        <SwitchPreference
+        <android.support.v7.preference.SwitchPreferenceCompat
             android:defaultValue="true"
             android:key="pref_secure_screen"
             android:title="@string/pref_secure_screen_title"
@@ -54,4 +54,4 @@
             android:summary="@string/pref_export_summary"/>
     </PreferenceCategory>
 
-</PreferenceScreen>
+</android.support.v7.preference.PreferenceScreen>

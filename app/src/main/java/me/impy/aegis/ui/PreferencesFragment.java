@@ -7,11 +7,11 @@ import android.content.Intent;
 import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.Bundle;
-import android.preference.EditTextPreference;
-import android.preference.Preference;
-import android.preference.PreferenceFragment;
+import android.support.v7.preference.EditTextPreference;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.preference.Preference;
+import com.takisoft.fix.support.v7.preference.PreferenceFragmentCompat;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Toast;
@@ -42,7 +42,7 @@ import me.impy.aegis.ui.dialogs.PasswordDialogFragment;
 import me.impy.aegis.ui.preferences.SwitchPreference;
 import me.impy.aegis.util.ByteInputStream;
 
-public class PreferencesFragment extends PreferenceFragment implements PasswordDialogFragment.Listener {
+public class PreferencesFragment extends PreferenceFragmentCompat implements PasswordDialogFragment.Listener {
     // activity request codes
     private static final int CODE_IMPORT = 0;
     private static final int CODE_IMPORT_DECRYPT = 1;
@@ -64,8 +64,7 @@ public class PreferencesFragment extends PreferenceFragment implements PasswordD
     private Preference _slotsPreference;
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public void onCreatePreferencesFix(Bundle savedInstanceState, String rootKey) {
         addPreferencesFromResource(R.xml.preferences);
 
         AegisApplication app = (AegisApplication) getActivity().getApplication();
