@@ -23,6 +23,7 @@ import me.impy.aegis.db.slots.Slot;
 import me.impy.aegis.db.slots.SlotCollection;
 import me.impy.aegis.db.slots.SlotException;
 import me.impy.aegis.helpers.FingerprintHelper;
+import me.impy.aegis.ui.dialogs.Dialogs;
 import me.impy.aegis.ui.dialogs.FingerprintDialogFragment;
 import me.impy.aegis.ui.dialogs.PasswordDialogFragment;
 import me.impy.aegis.ui.views.SlotAdapter;
@@ -32,6 +33,8 @@ public class SlotManagerActivity extends AegisActivity implements SlotAdapter.Li
     private MasterKey _masterKey;
     private SlotCollection _slots;
     private SlotAdapter _adapter;
+
+    private boolean _edited = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,12 +95,11 @@ public class SlotManagerActivity extends AegisActivity implements SlotAdapter.Li
         findViewById(R.id.button_add_fingerprint).setVisibility(visibility);
     }
 
-    private boolean onSave() {
+    private void onSave() {
         Intent intent = new Intent();
         intent.putExtra("slots", _slots);
         setResult(RESULT_OK, intent);
         finish();
-        return true;
     }
 
     @Override
@@ -105,18 +107,34 @@ public class SlotManagerActivity extends AegisActivity implements SlotAdapter.Li
         switch (item.getItemId()) {
             case android.R.id.home:
                 onBackPressed();
-                return true;
+                break;
             case R.id.action_save:
-                return onSave();
+                onSave();
+                break;
             default:
                 return super.onOptionsItemSelected(item);
         }
+
+        return true;
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_slots, menu);
         return true;
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (!_edited) {
+            super.onBackPressed();
+            return;
+        }
+
+        Dialogs.showDiscardDialog(this,
+                (dialog, which) -> onSave(),
+                (dialog, which) -> super.onBackPressed()
+        );
     }
 
     @Override
@@ -129,6 +147,7 @@ public class SlotManagerActivity extends AegisActivity implements SlotAdapter.Li
                 .setView(textName)
                 .setPositiveButton(android.R.string.ok, (dialog, whichButton) -> {
                     String name = textName.getText().toString();
+                    _edited = true;
                 })
                 .setNegativeButton(android.R.string.cancel, null)
                 .show();*/
@@ -147,6 +166,7 @@ public class SlotManagerActivity extends AegisActivity implements SlotAdapter.Li
                 .setPositiveButton(android.R.string.yes, (dialog, whichButton) -> {
                     _slots.remove(slot);
                     _adapter.removeSlot(slot);
+                    _edited = true;
                     updateFingerprintButton();
                 })
                 .setNegativeButton(android.R.string.no, null)
@@ -164,6 +184,7 @@ public class SlotManagerActivity extends AegisActivity implements SlotAdapter.Li
 
         _slots.add(slot);
         _adapter.addSlot(slot);
+        _edited = true;
         updateFingerprintButton();
     }
 

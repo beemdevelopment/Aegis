@@ -214,12 +214,10 @@ public class EditProfileActivity extends AegisActivity {
             return;
         }
 
-        new AlertDialog.Builder(this)
-                .setTitle("Discard changes?")
-                .setMessage("Your changes have not been saved")
-                .setPositiveButton(R.string.save, (dialog, which) -> onSave())
-                .setNegativeButton(R.string.discard, (dialog, which) -> super.onBackPressed())
-                .show();
+        Dialogs.showDiscardDialog(this,
+                (dialog, which) -> onSave(),
+                (dialog, which) -> super.onBackPressed()
+        );
     }
 
     @Override
