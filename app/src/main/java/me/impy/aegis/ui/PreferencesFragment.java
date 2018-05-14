@@ -10,7 +10,6 @@ import android.os.Bundle;
 import android.preference.EditTextPreference;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
-import android.preference.SwitchPreference;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Window;
@@ -40,6 +39,7 @@ import me.impy.aegis.importers.AegisImporter;
 import me.impy.aegis.importers.DatabaseImporter;
 import me.impy.aegis.importers.DatabaseImporterException;
 import me.impy.aegis.ui.dialogs.PasswordDialogFragment;
+import me.impy.aegis.ui.preferences.SwitchPreference;
 import me.impy.aegis.util.ByteInputStream;
 
 public class PreferencesFragment extends PreferenceFragment implements PasswordDialogFragment.Listener {
@@ -413,7 +413,7 @@ public class PreferencesFragment extends PreferenceFragment implements PasswordD
 
     private void updateEncryptionPreference() {
         boolean encrypted = _db.getFile().isEncrypted();
-        _encryptionPreference.setChecked(encrypted);
+        _encryptionPreference.setChecked(encrypted, true);
         _slotsPreference.setEnabled(encrypted);
     }
 }
