@@ -10,7 +10,9 @@ import android.os.Bundle;
 import android.preference.EditTextPreference;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
+import android.preference.SwitchPreference;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Toast;
@@ -22,20 +24,25 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
+import javax.crypto.Cipher;
+
 import me.impy.aegis.AegisApplication;
 import me.impy.aegis.R;
 import me.impy.aegis.crypto.MasterKey;
 import me.impy.aegis.db.DatabaseEntry;
 import me.impy.aegis.db.DatabaseManager;
 import me.impy.aegis.db.DatabaseManagerException;
+import me.impy.aegis.db.slots.Slot;
 import me.impy.aegis.db.slots.SlotCollection;
+import me.impy.aegis.db.slots.SlotException;
 import me.impy.aegis.helpers.PermissionHelper;
 import me.impy.aegis.importers.AegisImporter;
 import me.impy.aegis.importers.DatabaseImporter;
 import me.impy.aegis.importers.DatabaseImporterException;
+import me.impy.aegis.ui.dialogs.PasswordDialogFragment;
 import me.impy.aegis.util.ByteInputStream;
 
-public class PreferencesFragment extends PreferenceFragment {
+public class PreferencesFragment extends PreferenceFragment implements PasswordDialogFragment.Listener {
     // activity request codes
     private static final int CODE_IMPORT = 0;
     private static final int CODE_IMPORT_DECRYPT = 1;
@@ -52,6 +59,9 @@ public class PreferencesFragment extends PreferenceFragment {
     // while the user provides credentials to decrypt it
     private DatabaseImporter _importer;
     private Class<? extends DatabaseImporter> _importerType;
+
+    private SwitchPreference _encryptionPreference;
+    private Preference _slotsPreference;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -92,20 +102,6 @@ public class PreferencesFragment extends PreferenceFragment {
             }
         });
 
-        Preference slotsPreference = findPreference("pref_slots");
-        slotsPreference.setEnabled(_db.getFile().isEncrypted());
-        slotsPreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
-            @Override
-            public boolean onPreferenceClick(Preference preference) {
-                MasterKey masterKey = _db.getMasterKey();
-                Intent intent = new Intent(getActivity(), SlotManagerActivity.class);
-                intent.putExtra("masterKey", masterKey);
-                intent.putExtra("slots", _db.getFile().getSlots());
-                startActivityForResult(intent, CODE_SLOTS);
-                return true;
-            }
-        });
-
         EditTextPreference timeoutPreference = (EditTextPreference) findPreference("pref_timeout");
         timeoutPreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
             @Override
@@ -139,6 +135,45 @@ public class PreferencesFragment extends PreferenceFragment {
                 return true;
             }
         });
+
+        _encryptionPreference = (SwitchPreference) findPreference("pref_encryption");
+        _encryptionPreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+            @Override
+            public boolean onPreferenceChange(Preference preference, Object newValue) {
+                if (!_db.getFile().isEncrypted()) {
+                    PasswordDialogFragment dialog = new PasswordDialogFragment();
+                    // TODO: find a less ugly way to obtain the fragment manager
+                    dialog.show(((AppCompatActivity)getActivity()).getSupportFragmentManager(), null);
+                } else {
+                    new AlertDialog.Builder(getActivity())
+                            .setTitle("Disable encryption")
+                            .setMessage("Are you sure you want to disable encryption? This will cause the database to be stored in plain text")
+                            .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    _db.disableEncryption();
+                                    saveDatabase();
+                                    updateEncryptionPreference();
+                                }
+                            })
+                            .setNegativeButton(android.R.string.no, null)
+                            .show();
+                }
+                return false;
+            }
+        });
+        _slotsPreference = findPreference("pref_slots");
+        _slotsPreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            @Override
+            public boolean onPreferenceClick(Preference preference) {
+                MasterKey masterKey = _db.getMasterKey();
+                Intent intent = new Intent(getActivity(), SlotManagerActivity.class);
+                intent.putExtra("masterKey", masterKey);
+                intent.putExtra("slots", _db.getFile().getSlots());
+                startActivityForResult(intent, CODE_SLOTS);
+                return true;
+            }
+        });
+        updateEncryptionPreference();
     }
 
     @Override
@@ -195,8 +230,6 @@ public class PreferencesFragment extends PreferenceFragment {
                 .setSingleChoiceItems(names, 0, null)
                 .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-
                         int i = ((AlertDialog) dialog).getListView().getCheckedItemPosition();
                         _importerType = importers.get(names[i]);
 
@@ -352,5 +385,35 @@ public class PreferencesFragment extends PreferenceFragment {
         }
 
         return true;
+    }
+
+    @Override
+    public void onSlotResult(Slot slot, Cipher cipher) {
+        MasterKey masterKey = MasterKey.generate();
+
+        SlotCollection slots = new SlotCollection();
+        try {
+            slots.encrypt(slot, masterKey, cipher);
+        } catch (SlotException e) {
+            onException(e);
+            return;
+        }
+        slots.add(slot);
+        _db.enableEncryption(masterKey, slots);
+
+        saveDatabase();
+        updateEncryptionPreference();
+    }
+
+    @Override
+    public void onException(Exception e) {
+        updateEncryptionPreference();
+        Toast.makeText(getActivity(), "An error occurred while trying to set the password: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+    }
+
+    private void updateEncryptionPreference() {
+        boolean encrypted = _db.getFile().isEncrypted();
+        _encryptionPreference.setChecked(encrypted);
+        _slotsPreference.setEnabled(encrypted);
     }
 }

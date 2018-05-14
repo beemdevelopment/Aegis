@@ -22,6 +22,8 @@
     <string name="pref_export_summary">Export the database</string>
     <string name="pref_secure_screen_title">Screen security</string>
     <string name="pref_secure_screen_summary">Block screenshots and other attempts to capture the screen within the app</string>
+    <string name="pref_encryption_title">Encryption</string>
+    <string name="pref_encryption_summary">Encrypt the database and unlock it with a password or fingerprint</string>
 
     <string name="fingerprint_hint">Touch sensor</string>
     <string name="fingerprint_not_recognized">Fingerprint not recognized. Try again</string>

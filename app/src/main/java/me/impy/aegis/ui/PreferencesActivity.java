@@ -2,7 +2,12 @@ package me.impy.aegis.ui;
 
 import android.os.Bundle;
 
-public class PreferencesActivity extends AegisActivity {
+import javax.crypto.Cipher;
+
+import me.impy.aegis.db.slots.Slot;
+import me.impy.aegis.ui.dialogs.PasswordDialogFragment;
+
+public class PreferencesActivity extends AegisActivity implements PasswordDialogFragment.Listener {
     private PreferencesFragment _fragment;
 
     @Override
@@ -35,5 +40,15 @@ public class PreferencesActivity extends AegisActivity {
         // this is done so we don't lose anything if the fragment calls recreate on this activity
         outState.putParcelable("result", _fragment.getResult());
         super.onSaveInstanceState(outState);
+    }
+
+    @Override
+    public void onSlotResult(Slot slot, Cipher cipher) {
+        _fragment.onSlotResult(slot, cipher);
+    }
+
+    @Override
+    public void onException(Exception e) {
+        _fragment.onException(e);
     }
 }

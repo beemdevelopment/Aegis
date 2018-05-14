@@ -31,6 +31,11 @@
             android:inputType="number"
             android:defaultValue="30"
             android:dialogTitle="Set number of seconds of inactivity before Aegis locks the database"/>
+        <SwitchPreference
+            android:key="pref_encryption"
+            android:title="@string/pref_encryption_title"
+            android:summary="@string/pref_encryption_summary"
+            android:persistent="false"/>
         <Preference
             android:key="pref_slots"
             android:title="@string/pref_slots_title"

@@ -23,21 +23,17 @@ public class DatabaseFile {
     private CryptParameters _cryptParameters;
     private SlotCollection _slots;
 
-    public DatabaseFile() {
-        _slots = new SlotCollection();
-    }
-
     public byte[] serialize() throws DatabaseFileException {
         try {
             JSONObject cryptObj = null;
-            if (_cryptParameters != null) {
+            if (isEncrypted()) {
                 cryptObj = new JSONObject();
                 cryptObj.put("nonce", Hex.encode(_cryptParameters.Nonce));
                 cryptObj.put("tag", Hex.encode(_cryptParameters.Tag));
             }
 
             // don't write the crypt parameters if the content is not encrypted
-            boolean plain = _content instanceof JSONObject || _slots.isEmpty() || cryptObj == null;
+            boolean plain = _content instanceof JSONObject || _slots == null || cryptObj == null;
             JSONObject headerObj = new JSONObject();
             headerObj.put("slots", plain ? JSONObject.NULL : SlotCollection.serialize(_slots));
             headerObj.put("params", plain ? JSONObject.NULL : cryptObj);
@@ -86,7 +82,7 @@ public class DatabaseFile {
     }
 
     public boolean isEncrypted() {
-        return !_slots.isEmpty() && _cryptParameters != null;
+        return _slots != null;
     }
 
     public JSONObject getContent() {
@@ -106,6 +102,7 @@ public class DatabaseFile {
     public void setContent(JSONObject dbObj) {
         _content = dbObj;
         _cryptParameters = null;
+        _slots = null;
     }
 
     public void setContent(JSONObject dbObj, MasterKey key) throws DatabaseFileException {

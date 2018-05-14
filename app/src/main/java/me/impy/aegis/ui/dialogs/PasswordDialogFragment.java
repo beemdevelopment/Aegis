@@ -48,7 +48,7 @@ public class PasswordDialogFragment extends SlotDialogFragment {
 
                 char[] password = EditTextHelper.getEditTextChars(textPassword);
                 PasswordSlot slot = new PasswordSlot();
-                DerivationTask task = new DerivationTask(getContext(), key -> {
+                DerivationTask task = new DerivationTask(getActivity(), key -> {
                     Cipher cipher;
                     try {
                         cipher = Slot.createCipher(key, Cipher.ENCRYPT_MODE);

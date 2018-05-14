@@ -327,6 +327,7 @@ public class MainActivity extends AegisActivity implements KeyProfileView.Listen
     @Override
     protected void onResume() {
         super.onResume();
+        updateLockIcon();
 
         // refresh all codes to prevent showing old ones
         _keyProfileView.refresh();
