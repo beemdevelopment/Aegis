@@ -26,6 +26,7 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="background">@color/background</item>
         <item name="preferenceCategory_marginBottom">0dp</item>
+        <item name="bottomSheetDialogTheme">@style/Theme.Design.Light.BottomSheetDialog</item>
 
         <item name="iconColorPrimary">@color/icon_primary</item>
         <item name="iconColorInverted">@color/icon_primary_inverted</item>
@@ -59,6 +60,7 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="background">@color/background_dark</item>
         <item name="preferenceCategory_marginBottom">0dp</item>
+        <item name="bottomSheetDialogTheme">@style/Theme.Design.BottomSheetDialog</item>
 
         <item name="iconColorPrimary">@color/icon_primary_dark</item>
         <item name="iconColorInverted">@color/icon_primary_dark_inverted</item>
