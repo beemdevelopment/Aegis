@@ -1,17 +1,22 @@
 package me.impy.aegis.ui;
 
 import android.Manifest;
+import android.animation.ObjectAnimator;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.PorterDuff;
 import android.graphics.Rect;
+import android.os.Handler;
 import android.support.design.widget.BottomSheetDialog;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
+import android.view.animation.LinearInterpolator;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.getbase.floatingactionbutton.FloatingActionsMenu;
@@ -45,15 +50,20 @@ public class MainActivity extends AegisActivity implements KeyProfileView.Listen
     private AegisApplication _app;
     private DatabaseManager _db;
     private KeyProfileView _keyProfileView;
+    private ProgressBar _progressBar;
 
     private Menu _menu;
     private FloatingActionsMenu _fabMenu;
+    private Handler _uiHandler;
+    private boolean _running = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         _app = (AegisApplication) getApplication();
         _db = _app.getDatabaseManager();
+
+        _uiHandler = new Handler();
 
         // set up the main view
         setContentView(R.layout.activity_main);
@@ -62,6 +72,10 @@ public class MainActivity extends AegisActivity implements KeyProfileView.Listen
         _keyProfileView = (KeyProfileView) getSupportFragmentManager().findFragmentById(R.id.key_profiles);
         _keyProfileView.setListener(this);
         _keyProfileView.setShowIssuer(getPreferences().isIssuerVisible());
+
+        _progressBar = findViewById(R.id.progressBar);
+        int primaryColorId = getResources().getColor(R.color.colorPrimary);
+        _progressBar.getProgressDrawable().setColorFilter(primaryColorId, PorterDuff.Mode.SRC_IN);
 
         // set up the floating action button
         _fabMenu = findViewById(R.id.fab);
@@ -417,6 +431,52 @@ public class MainActivity extends AegisActivity implements KeyProfileView.Listen
         for (DatabaseEntry entry : _db.getKeys()) {
             _keyProfileView.addKey(new KeyProfile(entry));
         }
+
+        if(_keyProfileView.allSamePeriod())
+        {
+            startRefreshLoop();
+        }
+    }
+
+    public void refreshCode()
+    {
+        _keyProfileView.refresh();
+        KeyProfile keyProfile = _keyProfileView.getKeyProfile(0);
+
+        // reset the progress bar
+        int maxProgress = _progressBar.getMax();
+        _progressBar.setProgress(maxProgress);
+
+        // calculate the progress the bar should start at
+        long millisTillRotation = keyProfile.getEntry().getInfo().getMillisTillNextRotation();
+        long period = keyProfile.getEntry().getInfo().getPeriod() * maxProgress;
+        int currentProgress = maxProgress - (int) ((((double) period - millisTillRotation) / period) * maxProgress);
+
+        // start progress animation
+        ObjectAnimator animation = ObjectAnimator.ofInt(_progressBar, "progress", currentProgress, 0);
+        animation.setDuration(millisTillRotation);
+        animation.setInterpolator(new LinearInterpolator());
+        animation.start();
+    }
+
+    public void startRefreshLoop() {
+        if (_running) {
+            return;
+        }
+        _running = true;
+
+        KeyProfile keyProfile = _keyProfileView.getKeyProfile(0);
+
+        refreshCode();
+        _uiHandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if (_running) {
+                    refreshCode();
+                    _uiHandler.postDelayed(this, keyProfile.getEntry().getInfo().getMillisTillNextRotation());
+                }
+            }
+        }, keyProfile.getEntry().getInfo().getMillisTillNextRotation());
     }
 
     private void updateLockIcon() {

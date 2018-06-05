@@ -15,6 +15,23 @@
         android:layout_width="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
 
+    <LinearLayout
+        android:orientation="horizontal"
+        android:padding="0dp"
+        android:layout_margin="0dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ProgressBar
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="4dp"
+            android:id="@+id/progressBar"
+            android:max="1000"
+            android:layout_weight="1"/>
+    </LinearLayout>
+
+
     <!-- note: the fab should always be the last element to be sure it's displayed on top -->
     <com.getbase.floatingactionbutton.FloatingActionsMenu
         android:id="@+id/fab"

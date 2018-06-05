@@ -49,6 +49,10 @@ public class KeyProfileAdapter extends RecyclerView.Adapter<KeyProfileHolder> im
         notifyDataSetChanged();
     }
 
+    public ArrayList<KeyProfile> getKeys() {
+        return _keyProfiles;
+    }
+
     public void replaceKey(KeyProfile newProfile) {
         KeyProfile oldProfile = getKeyByUUID(newProfile.getEntry().getUUID());
         int position = _keyProfiles.indexOf(oldProfile);
@@ -108,7 +112,12 @@ public class KeyProfileAdapter extends RecyclerView.Adapter<KeyProfileHolder> im
     public void onBindViewHolder(final KeyProfileHolder holder, int position) {
         final KeyProfile profile = _keyProfiles.get(position);
         holder.setData(profile, _showIssuer);
-        holder.startRefreshLoop();
+
+        if(!allSamePeriod())
+        {
+            holder.startRefreshLoop();
+        }
+
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -123,6 +132,21 @@ public class KeyProfileAdapter extends RecyclerView.Adapter<KeyProfileHolder> im
                 return _listener.onLongKeyProfileClick(_keyProfiles.get(position));
             }
         });
+    }
+
+    public boolean allSamePeriod()
+    {
+        ArrayList<KeyProfile> profiles = getKeys();
+        int period = profiles.get(0).getEntry().getInfo().getPeriod();
+
+        for (KeyProfile profile : profiles) {
+            if(period != profile.getEntry().getInfo().getPeriod())
+            {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     @Override

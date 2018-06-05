@@ -9,6 +9,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
 import me.impy.aegis.R;
 import me.impy.aegis.db.DatabaseEntry;
 import me.impy.aegis.helpers.SimpleItemTouchHelperCallback;
@@ -66,6 +69,16 @@ public class KeyProfileView extends Fragment implements KeyProfileAdapter.Listen
     public void setShowIssuer(boolean showIssuer) {
         _adapter.setShowIssuer(showIssuer);
         _adapter.notifyDataSetChanged();
+    }
+
+    public boolean allSamePeriod()
+    {
+        return _adapter.allSamePeriod();
+    }
+
+    public KeyProfile getKeyProfile(int index)
+    {
+        return _adapter.getKeys().get(index);
     }
 
     public void addKey(KeyProfile profile) {
