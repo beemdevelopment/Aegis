@@ -26,7 +26,7 @@ public class PreferencesActivity extends AegisActivity implements PasswordDialog
     }
 
     @Override
-    protected final void onRestoreInstanceState(final Bundle inState) {
+    protected void onRestoreInstanceState(final Bundle inState) {
         // pass the stored result intent back to the fragment
         if (inState.containsKey("result")) {
             _fragment.setResult(inState.getParcelable("result"));
@@ -35,7 +35,7 @@ public class PreferencesActivity extends AegisActivity implements PasswordDialog
     }
 
     @Override
-    protected final void onSaveInstanceState(final Bundle outState) {
+    protected void onSaveInstanceState(final Bundle outState) {
         // save the result intent of the fragment
         // this is done so we don't lose anything if the fragment calls recreate on this activity
         outState.putParcelable("result", _fragment.getResult());

@@ -49,25 +49,17 @@ public class PasswordSlot extends RawSlot {
         }
     }
 
-    public SecretKey deriveKey(char[] password, byte[] salt, int n, int r, int p) throws SlotException {
-        try {
-            SecretKey key = CryptoUtils.deriveKey(password, salt, n, r, p);
-            _n = n;
-            _r = r;
-            _p = p;
-            _salt = salt;
-            return key;
-        } catch (NoSuchAlgorithmException | InvalidKeySpecException e) {
-            throw new SlotException(e);
-        }
+    public SecretKey deriveKey(char[] password, byte[] salt, int n, int r, int p) {
+        SecretKey key = CryptoUtils.deriveKey(password, salt, n, r, p);
+        _n = n;
+        _r = r;
+        _p = p;
+        _salt = salt;
+        return key;
     }
 
-    public SecretKey deriveKey(char[] password) throws SlotException {
-        try {
-            return CryptoUtils.deriveKey(password, _salt, _n, _r, _p);
-        } catch (InvalidKeySpecException | NoSuchAlgorithmException e) {
-            throw new SlotException(e);
-        }
+    public SecretKey deriveKey(char[] password) {
+        return CryptoUtils.deriveKey(password, _salt, _n, _r, _p);
     }
 
     @Override

@@ -39,8 +39,7 @@ public class CryptoUtils {
     public static final int CRYPTO_SCRYPT_r = 8;
     public static final int CRYPTO_SCRYPT_p = 1;
 
-    public static SecretKey deriveKey(char[] password, byte[] salt, int n, int r, int p)
-            throws NoSuchAlgorithmException, InvalidKeySpecException {
+    public static SecretKey deriveKey(char[] password, byte[] salt, int n, int r, int p) {
         byte[] bytes = toBytes(password);
         byte[] keyBytes = SCrypt.generate(bytes, salt, n, r, p, CRYPTO_KEY_SIZE);
         return new SecretKeySpec(keyBytes, 0, keyBytes.length, "AES");
