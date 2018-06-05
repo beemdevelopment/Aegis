@@ -49,22 +49,11 @@ public class KeyProfileAdapter extends RecyclerView.Adapter<KeyProfileHolder> im
         notifyDataSetChanged();
     }
 
-    public ArrayList<KeyProfile> getKeys() {
-        return _keyProfiles;
-    }
-
     public void replaceKey(KeyProfile newProfile) {
         KeyProfile oldProfile = getKeyByUUID(newProfile.getEntry().getUUID());
         int position = _keyProfiles.indexOf(oldProfile);
         _keyProfiles.set(position, newProfile);
         notifyItemChanged(position);
-    }
-
-    public void refresh() {
-        for (KeyProfile profile : _keyProfiles) {
-            profile.refreshCode();
-        }
-        notifyDataSetChanged();
     }
 
     private KeyProfile getKeyByUUID(UUID uuid) {
@@ -104,17 +93,16 @@ public class KeyProfileAdapter extends RecyclerView.Adapter<KeyProfileHolder> im
 
     @Override
     public void onViewRecycled(KeyProfileHolder holder) {
-        holder.setData(null, _showIssuer);
+        holder.stopRefreshLoop();
         super.onViewRecycled(holder);
     }
 
     @Override
     public void onBindViewHolder(final KeyProfileHolder holder, int position) {
+        boolean uniform = isPeriodUniform();
         final KeyProfile profile = _keyProfiles.get(position);
-        holder.setData(profile, _showIssuer);
-
-        if(!allSamePeriod())
-        {
+        holder.setData(profile, _showIssuer, !uniform);
+        if (!uniform) {
             holder.startRefreshLoop();
         }
 
@@ -134,19 +122,23 @@ public class KeyProfileAdapter extends RecyclerView.Adapter<KeyProfileHolder> im
         });
     }
 
-    public boolean allSamePeriod()
-    {
-        ArrayList<KeyProfile> profiles = getKeys();
-        int period = profiles.get(0).getEntry().getInfo().getPeriod();
+    public int getUniformPeriod() {
+        if (_keyProfiles.isEmpty()) {
+            return -1;
+        }
 
-        for (KeyProfile profile : profiles) {
-            if(period != profile.getEntry().getInfo().getPeriod())
-            {
-                return false;
+        int period = _keyProfiles.get(0).getEntry().getInfo().getPeriod();
+        for (KeyProfile profile : _keyProfiles) {
+            if (period != profile.getEntry().getInfo().getPeriod()) {
+                return -1;
             }
         }
 
-        return true;
+        return period;
+    }
+
+    public boolean isPeriodUniform() {
+        return getUniformPeriod() != -1;
     }
 
     @Override

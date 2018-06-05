@@ -1,6 +1,8 @@
 package me.impy.aegis.ui.views;
 
+import android.graphics.PorterDuff;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -9,16 +11,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-
 import me.impy.aegis.R;
+import me.impy.aegis.crypto.KeyInfo;
 import me.impy.aegis.db.DatabaseEntry;
 import me.impy.aegis.helpers.SimpleItemTouchHelperCallback;
 
 public class KeyProfileView extends Fragment implements KeyProfileAdapter.Listener {
     private KeyProfileAdapter _adapter;
     private Listener _listener;
+
+    private PeriodProgressBar _progressBar;
+    private Handler _uiHandler;
+    private boolean _running = false;
+    private boolean _showProgress = false;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -30,6 +35,11 @@ public class KeyProfileView extends Fragment implements KeyProfileAdapter.Listen
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_keyprofile_view, container, false);
 
+        _uiHandler = new Handler();
+        _progressBar = view.findViewById(R.id.progressBar);
+        int primaryColorId = getResources().getColor(R.color.colorPrimary);
+        _progressBar.getProgressDrawable().setColorFilter(primaryColorId, PorterDuff.Mode.SRC_IN);
+
         // set up the recycler view
         RecyclerView rvKeyProfiles = view.findViewById(R.id.rvKeyProfiles);
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(view.getContext());
@@ -40,6 +50,53 @@ public class KeyProfileView extends Fragment implements KeyProfileAdapter.Listen
         rvKeyProfiles.setAdapter(_adapter);
 
         return view;
+    }
+
+    public void refresh() {
+        if (_showProgress) {
+            _progressBar.refresh();
+        }
+        _adapter.notifyDataSetChanged();
+    }
+
+    private void checkPeriodUniformity() {
+        boolean uniform = _adapter.isPeriodUniform();
+        if (uniform == _showProgress) {
+            return;
+        }
+        _showProgress = uniform;
+
+        if (_showProgress) {
+            _progressBar.setVisibility(View.VISIBLE);
+            _progressBar.setPeriod(_adapter.getUniformPeriod());
+            startRefreshLoop();
+        } else {
+            _progressBar.setVisibility(View.INVISIBLE);
+            stopRefreshLoop();
+        }
+    }
+
+    public void startRefreshLoop() {
+        if (_running) {
+            return;
+        }
+        _running = true;
+
+        refresh();
+        _uiHandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if (_running) {
+                    refresh();
+                    _uiHandler.postDelayed(this, KeyInfo.getMillisTillNextRotation(_adapter.getUniformPeriod()));
+                }
+            }
+        }, KeyInfo.getMillisTillNextRotation(_adapter.getUniformPeriod()));
+    }
+
+    private void stopRefreshLoop() {
+        refresh();
+        _running = false;
     }
 
     public void setListener(Listener listener) {
@@ -71,34 +128,24 @@ public class KeyProfileView extends Fragment implements KeyProfileAdapter.Listen
         _adapter.notifyDataSetChanged();
     }
 
-    public boolean allSamePeriod()
-    {
-        return _adapter.allSamePeriod();
-    }
-
-    public KeyProfile getKeyProfile(int index)
-    {
-        return _adapter.getKeys().get(index);
-    }
-
     public void addKey(KeyProfile profile) {
         _adapter.addKey(profile);
+        checkPeriodUniformity();
     }
 
     public void removeKey(KeyProfile profile) {
         _adapter.removeKey(profile);
+        checkPeriodUniformity();
     }
 
     public void clearKeys() {
         _adapter.clearKeys();
+        checkPeriodUniformity();
     }
 
     public void replaceKey(KeyProfile profile) {
         _adapter.replaceKey(profile);
-    }
-
-    public void refresh() {
-        _adapter.refresh();
+        checkPeriodUniformity();
     }
 
     public interface Listener {

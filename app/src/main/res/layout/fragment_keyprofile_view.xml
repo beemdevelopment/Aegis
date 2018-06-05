@@ -3,10 +3,20 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?attr/background">
+    android:background="?attr/background"
+    android:orientation="vertical">
+
+    <me.impy.aegis.ui.views.PeriodProgressBar
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="4dp"
+        android:id="@+id/progressBar"
+        android:max="1000"/>
+
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
         android:scrollbars="vertical"
-        android:id="@+id/rvKeyProfiles"/>
+        android:id="@+id/rvKeyProfiles"
+        android:layout_weight="1"/>
 </LinearLayout>

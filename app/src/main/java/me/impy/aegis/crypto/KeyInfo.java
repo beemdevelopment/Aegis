@@ -42,7 +42,11 @@ public class KeyInfo implements Serializable {
     }
 
     public long getMillisTillNextRotation() {
-        long p = _period * 1000;
+        return KeyInfo.getMillisTillNextRotation(_period);
+    }
+
+    public static long getMillisTillNextRotation(int period) {
+        long p = period * 1000;
         return p - (System.currentTimeMillis() % p);
     }
 

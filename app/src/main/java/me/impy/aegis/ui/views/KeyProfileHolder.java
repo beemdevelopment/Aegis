@@ -1,14 +1,10 @@
 package me.impy.aegis.ui.views;
 
-import android.animation.ObjectAnimator;
-import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.Handler;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.view.animation.LinearInterpolator;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.amulyakhare.textdrawable.TextDrawable;
@@ -21,7 +17,8 @@ public class KeyProfileHolder extends RecyclerView.ViewHolder {
     private TextView _profileIssuer;
     private ImageView _profileDrawable;
     private KeyProfile _profile;
-    private ProgressBar _progressBar;
+
+    private PeriodProgressBar _progressBar;
 
     private Handler _uiHandler;
     private boolean _running = false;
@@ -39,16 +36,15 @@ public class KeyProfileHolder extends RecyclerView.ViewHolder {
         _progressBar.getProgressDrawable().setColorFilter(primaryColorId, PorterDuff.Mode.SRC_IN);
     }
 
-    public void setData(KeyProfile profile, boolean showIssuer) {
-        if (profile == null) {
-            _profile = null;
-            _running = false;
-            return;
-        }
+    public void setData(KeyProfile profile, boolean showIssuer, boolean showProgress) {
         _profile = profile;
 
+        _progressBar.setVisibility(showProgress ? View.VISIBLE : View.INVISIBLE);
+        if (showProgress) {
+            _progressBar.setPeriod(profile.getEntry().getInfo().getPeriod());
+        }
+
         _profileName.setText(profile.getEntry().getName());
-        _profileCode.setText(profile.getCode());
         _profileIssuer.setText("");
         if (showIssuer) {
             _profileIssuer.setText(" - " + profile.getEntry().getInfo().getIssuer());
@@ -56,6 +52,8 @@ public class KeyProfileHolder extends RecyclerView.ViewHolder {
 
         TextDrawable drawable = profile.getDrawable();
         _profileDrawable.setImageDrawable(drawable);
+
+        refreshCode();
     }
 
     public void startRefreshLoop() {
@@ -64,35 +62,29 @@ public class KeyProfileHolder extends RecyclerView.ViewHolder {
         }
         _running = true;
 
-        refreshCode();
+        refresh();
         _uiHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 if (_running) {
-                    refreshCode();
+                    refresh();
                     _uiHandler.postDelayed(this, _profile.getEntry().getInfo().getMillisTillNextRotation());
                 }
             }
         }, _profile.getEntry().getInfo().getMillisTillNextRotation());
     }
 
-    public void refreshCode() {
+    public void stopRefreshLoop() {
+        _running = false;
+    }
+
+    private void refresh() {
+         refreshCode();
+        _progressBar.refresh();
+    }
+
+    private void refreshCode() {
         String otp = _profile.refreshCode();
-
-        // reset the progress bar
-        int maxProgress = _progressBar.getMax();
-        _progressBar.setProgress(maxProgress);
         _profileCode.setText(otp.substring(0, otp.length() / 2) + " " + otp.substring(otp.length() / 2));
-
-        // calculate the progress the bar should start at
-        long millisTillRotation = _profile.getEntry().getInfo().getMillisTillNextRotation();
-        long period = _profile.getEntry().getInfo().getPeriod() * maxProgress;
-        int currentProgress = maxProgress - (int) ((((double) period - millisTillRotation) / period) * maxProgress);
-
-        // start progress animation
-        ObjectAnimator animation = ObjectAnimator.ofInt(_progressBar, "progress", currentProgress, 0);
-        animation.setDuration(millisTillRotation);
-        animation.setInterpolator(new LinearInterpolator());
-        animation.start();
     }
 }
