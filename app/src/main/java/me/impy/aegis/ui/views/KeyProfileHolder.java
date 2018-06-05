@@ -1,7 +1,6 @@
 package me.impy.aegis.ui.views;
 
 import android.graphics.PorterDuff;
-import android.os.Handler;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
@@ -10,6 +9,7 @@ import android.widget.TextView;
 import com.amulyakhare.textdrawable.TextDrawable;
 
 import me.impy.aegis.R;
+import me.impy.aegis.helpers.UIRefresher;
 
 public class KeyProfileHolder extends RecyclerView.ViewHolder {
     private TextView _profileName;
@@ -20,20 +20,31 @@ public class KeyProfileHolder extends RecyclerView.ViewHolder {
 
     private PeriodProgressBar _progressBar;
 
-    private Handler _uiHandler;
-    private boolean _running = false;
+    private UIRefresher _refresher;
 
-    KeyProfileHolder(final View view) {
+    public KeyProfileHolder(final View view) {
         super(view);
         _profileName = view.findViewById(R.id.profile_name);
         _profileCode = view.findViewById(R.id.profile_code);
         _profileIssuer = view.findViewById(R.id.profile_issuer);
         _profileDrawable = view.findViewById(R.id.ivTextDrawable);
-        _progressBar = view.findViewById(R.id.progressBar);
-        _uiHandler = new Handler();
 
+        _progressBar = view.findViewById(R.id.progressBar);
         int primaryColorId = view.getContext().getResources().getColor(R.color.colorPrimary);
         _progressBar.getProgressDrawable().setColorFilter(primaryColorId, PorterDuff.Mode.SRC_IN);
+
+        _refresher = new UIRefresher(new UIRefresher.Listener() {
+            @Override
+            public void onRefresh() {
+                refreshCode();
+                _progressBar.refresh();
+            }
+
+            @Override
+            public long getMillisTillNextRefresh() {
+                return _profile.getEntry().getInfo().getMillisTillNextRotation();
+            }
+        });
     }
 
     public void setData(KeyProfile profile, boolean showIssuer, boolean showProgress) {
@@ -57,30 +68,11 @@ public class KeyProfileHolder extends RecyclerView.ViewHolder {
     }
 
     public void startRefreshLoop() {
-        if (_running) {
-            return;
-        }
-        _running = true;
-
-        refresh();
-        _uiHandler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                if (_running) {
-                    refresh();
-                    _uiHandler.postDelayed(this, _profile.getEntry().getInfo().getMillisTillNextRotation());
-                }
-            }
-        }, _profile.getEntry().getInfo().getMillisTillNextRotation());
+        _refresher.start();
     }
 
     public void stopRefreshLoop() {
-        _running = false;
-    }
-
-    private void refresh() {
-         refreshCode();
-        _progressBar.refresh();
+        _refresher.stop();
     }
 
     private void refreshCode() {

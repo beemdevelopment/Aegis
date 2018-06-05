@@ -2,7 +2,6 @@ package me.impy.aegis.ui.views;
 
 import android.graphics.PorterDuff;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -15,15 +14,16 @@ import me.impy.aegis.R;
 import me.impy.aegis.crypto.KeyInfo;
 import me.impy.aegis.db.DatabaseEntry;
 import me.impy.aegis.helpers.SimpleItemTouchHelperCallback;
+import me.impy.aegis.helpers.UIRefresher;
 
 public class KeyProfileView extends Fragment implements KeyProfileAdapter.Listener {
     private KeyProfileAdapter _adapter;
     private Listener _listener;
 
     private PeriodProgressBar _progressBar;
-    private Handler _uiHandler;
-    private boolean _running = false;
     private boolean _showProgress = false;
+
+    private UIRefresher _refresher;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -35,7 +35,6 @@ public class KeyProfileView extends Fragment implements KeyProfileAdapter.Listen
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_keyprofile_view, container, false);
 
-        _uiHandler = new Handler();
         _progressBar = view.findViewById(R.id.progressBar);
         int primaryColorId = getResources().getColor(R.color.colorPrimary);
         _progressBar.getProgressDrawable().setColorFilter(primaryColorId, PorterDuff.Mode.SRC_IN);
@@ -48,6 +47,18 @@ public class KeyProfileView extends Fragment implements KeyProfileAdapter.Listen
         ItemTouchHelper touchHelper = new ItemTouchHelper(callback);
         touchHelper.attachToRecyclerView(rvKeyProfiles);
         rvKeyProfiles.setAdapter(_adapter);
+
+        _refresher = new UIRefresher(new UIRefresher.Listener() {
+            @Override
+            public void onRefresh() {
+                refresh();
+            }
+
+            @Override
+            public long getMillisTillNextRefresh() {
+                return KeyInfo.getMillisTillNextRotation(_adapter.getUniformPeriod());
+            }
+        });
 
         return view;
     }
@@ -76,27 +87,13 @@ public class KeyProfileView extends Fragment implements KeyProfileAdapter.Listen
         }
     }
 
-    public void startRefreshLoop() {
-        if (_running) {
-            return;
-        }
-        _running = true;
-
-        refresh();
-        _uiHandler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                if (_running) {
-                    refresh();
-                    _uiHandler.postDelayed(this, KeyInfo.getMillisTillNextRotation(_adapter.getUniformPeriod()));
-                }
-            }
-        }, KeyInfo.getMillisTillNextRotation(_adapter.getUniformPeriod()));
+    private void startRefreshLoop() {
+        _refresher.start();
     }
 
     private void stopRefreshLoop() {
         refresh();
-        _running = false;
+        _refresher.stop();
     }
 
     public void setListener(Listener listener) {
