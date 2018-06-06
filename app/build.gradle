@@ -32,6 +32,7 @@ dependencies {
     implementation 'com.android.support:recyclerview-v7:27.1.1'
     implementation 'com.android.support:appcompat-v7:27.1.1'
     implementation 'com.android.support:design:27.1.1'
+    implementation 'de.hdodenhof:circleimageview:2.2.0'
     implementation 'com.takisoft.fix:preference-v7:27.1.1.1'
     implementation 'com.amulyakhare:com.amulyakhare.textdrawable:1.0.1'
     implementation 'me.dm7.barcodescanner:zxing:1.9'

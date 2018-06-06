@@ -29,6 +29,7 @@ import com.esafirm.imagepicker.features.ImagePicker;
 import com.esafirm.imagepicker.features.ReturnMode;
 import com.esafirm.imagepicker.model.Image;
 
+import de.hdodenhof.circleimageview.CircleImageView;
 import me.impy.aegis.R;
 import me.impy.aegis.crypto.KeyInfo;
 import me.impy.aegis.crypto.KeyInfoException;
@@ -45,7 +46,8 @@ public class EditProfileActivity extends AegisActivity {
     private boolean _edited = false;
     private KeyProfile _profile;
 
-    private ImageView _iconView;
+    private CircleImageView _iconView;
+    private ImageView _saveImageButton;
 
     private EditText _textName;
     private EditText _textIssuer;
@@ -84,6 +86,7 @@ public class EditProfileActivity extends AegisActivity {
 
         _iconView = findViewById(R.id.profile_drawable);
         _kropView = findViewById(R.id.krop_view);
+        _saveImageButton = findViewById(R.id.iv_saveImage);
         _textName = findViewById(R.id.text_name);
         _textIssuer = findViewById(R.id.text_issuer);
         _textPeriod = findViewById(R.id.text_period);
@@ -295,6 +298,14 @@ public class EditProfileActivity extends AegisActivity {
             Bitmap bitmap = BitmapFactory.decodeFile(image.getPath(),bmOptions);
             _kropView.setBitmap(bitmap);
             _kropView.setVisibility(View.VISIBLE);
+
+            _saveImageButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    _iconView.setImageBitmap(_kropView.getCroppedBitmap());
+                    _kropView.setVisibility(View.GONE);
+                }
+            });
         }
 
         super.onActivityResult(requestCode, resultCode, data);

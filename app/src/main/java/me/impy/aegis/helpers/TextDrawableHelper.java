@@ -15,6 +15,8 @@ public class TextDrawableHelper {
 
         ColorGenerator generator = ColorGenerator.MATERIAL;
         int color = generator.getColor(s);
-        return TextDrawable.builder().buildRound(s.substring(0, 1).toUpperCase(), color);
+        return TextDrawable.builder().beginConfig()
+                .width(100)
+                .height(100).endConfig().buildRect(s.substring(0, 1).toUpperCase(), color);
     }
 }
