@@ -12,6 +12,8 @@ import me.impy.aegis.R;
 import me.impy.aegis.db.DatabaseEntry;
 import me.impy.aegis.helpers.TextDrawableHelper;
 import me.impy.aegis.helpers.UiRefresher;
+import me.impy.aegis.otp.HotpInfo;
+import me.impy.aegis.otp.OtpInfoException;
 import me.impy.aegis.otp.TotpInfo;
 
 public class EntryHolder extends RecyclerView.ViewHolder {
@@ -20,6 +22,7 @@ public class EntryHolder extends RecyclerView.ViewHolder {
     private TextView _profileIssuer;
     private ImageView _profileDrawable;
     private DatabaseEntry _entry;
+    private ImageView _buttonRefresh;
 
     private PeriodProgressBar _progressBar;
 
@@ -31,6 +34,7 @@ public class EntryHolder extends RecyclerView.ViewHolder {
         _profileCode = view.findViewById(R.id.profile_code);
         _profileIssuer = view.findViewById(R.id.profile_issuer);
         _profileDrawable = view.findViewById(R.id.ivTextDrawable);
+        _buttonRefresh = view.findViewById(R.id.buttonRefresh);
 
         _progressBar = view.findViewById(R.id.progressBar);
         int primaryColorId = view.getContext().getResources().getColor(R.color.colorPrimary);
@@ -53,10 +57,14 @@ public class EntryHolder extends RecyclerView.ViewHolder {
     public void setData(DatabaseEntry entry, boolean showIssuer, boolean showProgress) {
         _entry = entry;
 
+        // only show the progress bar if there is no uniform period and the entry type is TotpInfo
         _progressBar.setVisibility(showProgress ? View.VISIBLE : View.INVISIBLE);
         if (showProgress) {
             _progressBar.setPeriod(((TotpInfo)entry.getInfo()).getPeriod());
         }
+
+        // only show the button if this entry is of type HotpInfo
+        _buttonRefresh.setVisibility(entry.getInfo() instanceof HotpInfo ? View.VISIBLE : View.GONE);
 
         _profileName.setText(entry.getName());
         _profileIssuer.setText("");
@@ -70,6 +78,10 @@ public class EntryHolder extends RecyclerView.ViewHolder {
         refreshCode();
     }
 
+    public void setOnRefreshClickListener(View.OnClickListener listener) {
+        _buttonRefresh.setOnClickListener(listener);
+    }
+
     public void startRefreshLoop() {
         _refresher.start();
     }
@@ -78,7 +90,7 @@ public class EntryHolder extends RecyclerView.ViewHolder {
         _refresher.stop();
     }
 
-    private void refreshCode() {
+    public void refreshCode() {
         String otp = _entry.getInfo().getOtp();
         _profileCode.setText(otp.substring(0, otp.length() / 2) + " " + otp.substring(otp.length() / 2));
     }

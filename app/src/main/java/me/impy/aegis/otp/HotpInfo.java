@@ -60,4 +60,8 @@ public class HotpInfo extends OtpInfo {
         }
         _counter = counter;
     }
+
+    public void incrementCounter() throws OtpInfoException {
+        setCounter(getCounter() + 1);
+    }
 }

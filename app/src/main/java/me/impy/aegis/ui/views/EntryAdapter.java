@@ -13,7 +13,9 @@ import java.util.UUID;
 import me.impy.aegis.R;
 import me.impy.aegis.db.DatabaseEntry;
 import me.impy.aegis.helpers.ItemTouchHelperAdapter;
+import me.impy.aegis.otp.HotpInfo;
 import me.impy.aegis.otp.OtpInfo;
+import me.impy.aegis.otp.OtpInfoException;
 import me.impy.aegis.otp.TotpInfo;
 
 public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements ItemTouchHelperAdapter {
@@ -124,6 +126,24 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
                 return _listener.onLongEntryClick(_entries.get(position));
             }
         });
+        holder.setOnRefreshClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // this will only be called if the entry is of type HotpInfo
+                try {
+                    ((HotpInfo)entry.getInfo()).incrementCounter();
+                } catch (OtpInfoException e) {
+                    throw new RuntimeException(e);
+                }
+
+                // notify the listener that the counter has been incremented
+                // this gives it a chance to save the database
+                _listener.onEntryChange(entry);
+
+                // finally, refresh the code in the UI
+                holder.refreshCode();
+            }
+        });
     }
 
     public int getUniformPeriod() {
@@ -163,5 +183,6 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
         boolean onLongEntryClick(DatabaseEntry entry);
         void onEntryMove(DatabaseEntry entry1, DatabaseEntry entry2);
         void onEntryDrop(DatabaseEntry entry);
+        void onEntryChange(DatabaseEntry entry);
     }
 }

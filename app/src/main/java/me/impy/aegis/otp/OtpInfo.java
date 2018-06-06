@@ -95,7 +95,6 @@ public abstract class OtpInfo implements Serializable {
             String algo = obj.getString("algo");
             int digits = obj.getInt("digits");
 
-
             switch (type) {
                 case "totp":
                     int period = obj.getInt("period");

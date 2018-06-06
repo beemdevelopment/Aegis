@@ -120,6 +120,11 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
         _listener.onEntryDrop(entry);
     }
 
+    @Override
+    public void onEntryChange(DatabaseEntry entry) {
+        _listener.onEntryChange(entry);
+    }
+
     public void setShowIssuer(boolean showIssuer) {
         _adapter.setShowIssuer(showIssuer);
         _adapter.notifyDataSetChanged();
@@ -149,5 +154,6 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
         void onEntryClick(DatabaseEntry entry);
         void onEntryMove(DatabaseEntry entry1, DatabaseEntry entry2);
         void onEntryDrop(DatabaseEntry entry);
+        void onEntryChange(DatabaseEntry entry);
     }
 }

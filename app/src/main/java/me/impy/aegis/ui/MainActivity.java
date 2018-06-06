@@ -438,4 +438,9 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
     public void onEntryDrop(DatabaseEntry entry) {
         saveDatabase();
     }
+
+    @Override
+    public void onEntryChange(DatabaseEntry entry) {
+        saveDatabase();
+    }
 }
