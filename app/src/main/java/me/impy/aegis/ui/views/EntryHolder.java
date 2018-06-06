@@ -58,7 +58,7 @@ public class EntryHolder extends RecyclerView.ViewHolder {
         _entry = entry;
 
         // only show the progress bar if there is no uniform period and the entry type is TotpInfo
-        _progressBar.setVisibility(showProgress ? View.VISIBLE : View.INVISIBLE);
+        _progressBar.setVisibility(showProgress ? View.VISIBLE : View.GONE);
         if (showProgress) {
             _progressBar.setPeriod(((TotpInfo)entry.getInfo()).getPeriod());
         }

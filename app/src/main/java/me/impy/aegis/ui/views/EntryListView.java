@@ -82,7 +82,7 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
             _progressBar.setPeriod(_adapter.getUniformPeriod());
             startRefreshLoop();
         } else {
-            _progressBar.setVisibility(View.INVISIBLE);
+            _progressBar.setVisibility(View.GONE);
             stopRefreshLoop();
         }
     }
