@@ -181,7 +181,8 @@ public class EditProfileActivity extends AegisActivity {
         }
         else
         {
-            _iconView.setImageDrawable(_profile.getDrawable(_iconView));
+            TextDrawable drawable = TextDrawableHelper.generate(entry.getInfo().getIssuer(), _iconView);
+            _iconView.setImageDrawable(drawable);
         }
 
         _textName.setText(entry.getName());
