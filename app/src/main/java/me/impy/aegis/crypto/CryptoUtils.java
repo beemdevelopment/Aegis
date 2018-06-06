@@ -1,5 +1,7 @@
 package me.impy.aegis.crypto;
 
+import android.os.Build;
+
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.nio.ByteBuffer;
@@ -9,6 +11,7 @@ import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
+import java.security.spec.AlgorithmParameterSpec;
 import java.util.Arrays;
 
 import javax.crypto.BadPaddingException;
@@ -18,6 +21,7 @@ import javax.crypto.KeyGenerator;
 import javax.crypto.NoSuchPaddingException;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.GCMParameterSpec;
+import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 
 import org.spongycastle.crypto.generators.SCrypt;
@@ -58,7 +62,13 @@ public class CryptoUtils {
         // generate the nonce if none is given
         // we are not allowed to do this ourselves as "setRandomizedEncryptionRequired" is set to true
         if (nonce != null) {
-            GCMParameterSpec spec = new GCMParameterSpec(CRYPTO_AEAD_TAG_SIZE * 8, nonce);
+            AlgorithmParameterSpec spec;
+            // apparently kitkat doesn't support GCMParameterSpec
+            if (Build.VERSION.SDK_INT == Build.VERSION_CODES.KITKAT) {
+                spec = new IvParameterSpec(nonce);
+            } else {
+                spec = new GCMParameterSpec(CRYPTO_AEAD_TAG_SIZE * 8, nonce);
+            }
             cipher.init(opmode, key, spec);
         } else {
             cipher.init(opmode, key);

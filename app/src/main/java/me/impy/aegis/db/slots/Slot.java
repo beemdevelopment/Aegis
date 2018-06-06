@@ -44,9 +44,9 @@ public abstract class Slot implements Serializable {
             CryptResult res = CryptoUtils.decrypt(_encryptedMasterKey, cipher, _encryptedMasterKeyParams);
             SecretKey key = new SecretKeySpec(res.getData(), CryptoUtils.CRYPTO_AEAD);
             return new MasterKey(key);
-        } catch (AEADBadTagException e) {
+        } catch (BadPaddingException e) {
             throw new SlotIntegrityException(e);
-        } catch (IOException | BadPaddingException | IllegalBlockSizeException e) {
+        } catch (IOException | IllegalBlockSizeException e) {
             throw new SlotException(e);
         }
     }
