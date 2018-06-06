@@ -23,12 +23,14 @@
             android:layout_height="match_parent"
             android:paddingLeft="16dp">
 
-            <ImageView android:layout_width="60dp"
-                       android:layout_height="60dp"
-                       android:id="@+id/ivTextDrawable"
-                       android:layout_centerVertical="true"
-                       android:layout_alignParentLeft="true"
-                       android:layout_alignParentStart="true"/>
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/ivTextDrawable"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_centerVertical="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                />
         </RelativeLayout>
 
         <RelativeLayout

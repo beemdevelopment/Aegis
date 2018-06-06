@@ -73,7 +73,7 @@ public class KeyProfileHolder extends RecyclerView.ViewHolder {
         }
         else
         {
-            TextDrawable drawable = profile.getDrawable();
+            TextDrawable drawable = profile.getDrawable(_profileDrawable);
             _profileDrawable.setImageDrawable(drawable);
         }
 

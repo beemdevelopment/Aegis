@@ -131,7 +131,7 @@ public class EditProfileActivity extends AegisActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-                TextDrawable drawable = TextDrawableHelper.generate(s.toString());
+                TextDrawable drawable = TextDrawableHelper.generate(s.toString(), _iconView);
                 _iconView.setImageDrawable(drawable);
             }
         });
@@ -166,7 +166,7 @@ public class EditProfileActivity extends AegisActivity {
 
     private void updateFields() {
         DatabaseEntry entry = _profile.getEntry();
-        _iconView.setImageDrawable(_profile.getDrawable());
+        _iconView.setImageDrawable(_profile.getDrawable(_iconView));
 
         _textName.setText(entry.getName());
         _textIssuer.setText(entry.getInfo().getIssuer());

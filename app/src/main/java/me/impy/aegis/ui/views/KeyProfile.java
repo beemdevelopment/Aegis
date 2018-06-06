@@ -1,5 +1,7 @@
 package me.impy.aegis.ui.views;
 
+import android.view.View;
+
 import com.amulyakhare.textdrawable.TextDrawable;
 
 import java.io.Serializable;
@@ -38,7 +40,7 @@ public class KeyProfile implements Serializable {
         return _code;
     }
 
-    public TextDrawable getDrawable() {
-        return TextDrawableHelper.generate(getEntry().getName());
+    public TextDrawable getDrawable(View view) {
+        return TextDrawableHelper.generate(getEntry().getName(), view);
     }
 }
