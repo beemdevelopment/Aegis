@@ -24,8 +24,6 @@ package me.impy.aegis.encoding;
 
 import java.util.Arrays;
 
-import me.impy.aegis.crypto.CryptoUtils;
-
 /**
  * Base32 - encodes and decodes RFC3548 Base32
  * (see http://www.faqs.org/rfcs/rfc3548.html )

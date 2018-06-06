@@ -12,37 +12,76 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import me.impy.aegis.crypto.KeyInfo;
-import me.impy.aegis.crypto.KeyInfoException;
 import me.impy.aegis.db.DatabaseEntry;
+import me.impy.aegis.otp.HotpInfo;
+import me.impy.aegis.otp.OtpInfo;
+import me.impy.aegis.otp.OtpInfoException;
+import me.impy.aegis.otp.TotpInfo;
 import me.impy.aegis.util.ByteInputStream;
 
-public class FreeOTPImporter extends DatabaseImporter {
-    public FreeOTPImporter(ByteInputStream stream) {
+public class FreeOtpImporter extends DatabaseImporter {
+    private List<XmlEntry> _xmlEntries;
+
+    public FreeOtpImporter(ByteInputStream stream) {
         super(stream);
     }
 
-    private static class Entry {
+    private static class XmlEntry {
         String Name;
         String Value;
     }
 
     @Override
     public void parse() throws DatabaseImporterException {
-
-    }
-
-    @Override
-    public List<DatabaseEntry> convert() throws DatabaseImporterException {
         try {
             XmlPullParser parser = Xml.newPullParser();
             parser.setFeature(XmlPullParser.FEATURE_PROCESS_NAMESPACES, false);
             parser.setInput(_stream, null);
             parser.nextTag();
-            return parse(parser);
-        } catch (KeyInfoException | XmlPullParserException | JSONException | IOException e) {
+            _xmlEntries = parse(parser);
+        } catch (XmlPullParserException | IOException e) {
             throw new DatabaseImporterException(e);
         }
+    }
+
+    @Override
+    public List<DatabaseEntry> convert() throws DatabaseImporterException {
+        List<DatabaseEntry> entries = new ArrayList<>();
+
+        try {
+            for (XmlEntry xmlEntry : _xmlEntries) {
+                if (xmlEntry.Name.equals("tokenOrder")) {
+                    // TODO: order
+                    JSONArray array = new JSONArray(xmlEntry.Value);
+                } else {
+                    JSONObject obj = new JSONObject(xmlEntry.Value);
+
+                    String type = obj.getString("type");
+                    String algo = obj.getString("algo");
+                    int digits = obj.getInt("digits");
+                    byte[] secret = toBytes(obj.getJSONArray("secret"));
+
+                    OtpInfo info;
+                    if (type.equals("totp")) {
+                        info = new TotpInfo(secret, algo, digits, obj.getInt("period"));
+                    } else if (type.equals("hotp")) {
+                        info = new HotpInfo(secret, algo, digits, obj.getLong("counter"));
+                    } else {
+                        throw new DatabaseImporterException("unsupported otp type: " + type);
+                    }
+
+                    String issuer = obj.getString("issuerExt");
+                    String name = obj.optString("label");
+
+                    DatabaseEntry entry = new DatabaseEntry(info, name, issuer);
+                    entries.add(entry);
+                }
+            }
+        } catch (OtpInfoException | JSONException e) {
+            throw new DatabaseImporterException(e);
+        }
+
+        return entries;
     }
 
     @Override
@@ -50,9 +89,9 @@ public class FreeOTPImporter extends DatabaseImporter {
         return false;
     }
 
-    private static List<DatabaseEntry> parse(XmlPullParser parser)
-            throws IOException, XmlPullParserException, JSONException, KeyInfoException {
-        List<Entry> entries = new ArrayList<>();
+    private static List<XmlEntry> parse(XmlPullParser parser)
+            throws IOException, XmlPullParserException {
+        List<XmlEntry> entries = new ArrayList<>();
 
         parser.require(XmlPullParser.START_TAG, null, "map");
         while (parser.next() != XmlPullParser.END_TAG) {
@@ -68,32 +107,7 @@ public class FreeOTPImporter extends DatabaseImporter {
             entries.add(parseEntry(parser));
         }
 
-        List<DatabaseEntry> profiles = new ArrayList<>();
-
-        for (Entry entry : entries) {
-            if (entry.Name.equals("tokenOrder")) {
-                // TODO: order
-                JSONArray array = new JSONArray(entry.Value);
-            } else {
-                JSONObject obj = new JSONObject(entry.Value);
-
-                KeyInfo key = new KeyInfo();
-                key.setAlgorithm(obj.getString("algo"));
-                key.setCounter(obj.getLong("counter"));
-                key.setDigits(obj.getInt("digits"));
-                key.setIssuer(obj.getString("issuerExt"));
-                key.setAccountName(obj.optString("label"));
-                key.setPeriod(obj.getInt("period"));
-                key.setType(obj.getString("type"));
-                byte[] secret = toBytes(obj.getJSONArray("secret"));
-                key.setSecret(secret);
-
-                DatabaseEntry profile = new DatabaseEntry(key);
-                profiles.add(profile);
-            }
-        }
-
-        return profiles;
+        return entries;
     }
 
     private static byte[] toBytes(JSONArray array) throws JSONException {
@@ -104,12 +118,16 @@ public class FreeOTPImporter extends DatabaseImporter {
         return bytes;
     }
 
-    private static Entry parseEntry(XmlPullParser parser) throws IOException, XmlPullParserException {
+    private static XmlEntry parseEntry(XmlPullParser parser) throws IOException, XmlPullParserException {
         parser.require(XmlPullParser.START_TAG, null, "string");
         String name = parser.getAttributeValue(null, "name");
         String value = parseText(parser);
         parser.require(XmlPullParser.END_TAG, null, "string");
-        return new Entry() {{ Name = name; Value = value; }};
+
+        XmlEntry entry = new XmlEntry();
+        entry.Name = name;
+        entry.Value = value;
+        return entry;
     }
 
     private static String parseText(XmlPullParser parser) throws IOException, XmlPullParserException {

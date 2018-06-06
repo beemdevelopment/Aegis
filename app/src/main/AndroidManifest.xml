@@ -34,7 +34,7 @@
             android:configChanges="keyboardHidden|orientation|screenSize">
         </activity>
         <activity
-            android:name=".ui.EditProfileActivity"
+            android:name=".ui.EditEntryActivity"
             android:label="Edit profile"
             android:theme="@style/AppTheme.TransparentActionBar">
         </activity>

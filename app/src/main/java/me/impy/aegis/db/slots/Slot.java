@@ -1,15 +1,16 @@
 package me.impy.aegis.db.slots;
 
-import android.annotation.SuppressLint;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.io.Serializable;
+import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.util.UUID;
 
+import javax.crypto.AEADBadTagException;
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
 import javax.crypto.IllegalBlockSizeException;
@@ -17,6 +18,8 @@ import javax.crypto.NoSuchPaddingException;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
 
+import me.impy.aegis.crypto.CryptParameters;
+import me.impy.aegis.crypto.CryptResult;
 import me.impy.aegis.crypto.CryptoUtils;
 import me.impy.aegis.crypto.MasterKey;
 import me.impy.aegis.encoding.Hex;
@@ -29,53 +32,70 @@ public abstract class Slot implements Serializable {
 
     protected UUID _uuid;
     protected byte[] _encryptedMasterKey;
+    protected CryptParameters _encryptedMasterKeyParams;
 
     protected Slot() {
         _uuid = UUID.randomUUID();
     }
 
-    // getKey decrypts the encrypted master key in this slot with the given key and returns it.
-    public SecretKey getKey(Cipher cipher) throws SlotException {
+    // getKey decrypts the encrypted master key in this slot using the given cipher and returns it.
+    public MasterKey getKey(Cipher cipher) throws SlotException, SlotIntegrityException {
         try {
-            byte[] decryptedKeyBytes = cipher.doFinal(_encryptedMasterKey);
-            return new SecretKeySpec(decryptedKeyBytes, CryptoUtils.CRYPTO_CIPHER_AEAD);
-        } catch (BadPaddingException | IllegalBlockSizeException e) {
+            CryptResult res = CryptoUtils.decrypt(_encryptedMasterKey, cipher, _encryptedMasterKeyParams);
+            SecretKey key = new SecretKeySpec(res.getData(), CryptoUtils.CRYPTO_AEAD);
+            return new MasterKey(key);
+        } catch (BadPaddingException e) {
+            throw new SlotIntegrityException(e);
+        } catch (IOException | IllegalBlockSizeException e) {
             throw new SlotException(e);
         }
     }
 
-    // setKey encrypts the given master key with the given key and stores the result in this slot.
+    // setKey encrypts the given master key using the given cipher and stores the result in this slot.
     public void setKey(MasterKey masterKey, Cipher cipher) throws SlotException {
         try {
             byte[] masterKeyBytes = masterKey.getBytes();
-            _encryptedMasterKey = cipher.doFinal(masterKeyBytes);
+            CryptResult res = CryptoUtils.encrypt(masterKeyBytes, cipher);
+            _encryptedMasterKey = res.getData();
+            _encryptedMasterKeyParams = res.getParams();
         } catch (BadPaddingException | IllegalBlockSizeException e) {
             throw new SlotException(e);
         }
     }
 
-    // suppress the AES ECB warning
-    // this is perfectly safe because we discard this cipher after passing CryptoUtils.CRYPTO_KEY_SIZE bytes through it
-    @SuppressLint("getInstance")
-    public static Cipher createCipher(SecretKey key, int mode) throws SlotException {
+    public static Cipher createEncryptCipher(SecretKey key) throws SlotException {
         try {
-            Cipher cipher = Cipher.getInstance(CryptoUtils.CRYPTO_CIPHER_RAW);
-            cipher.init(mode, key);
-            return cipher;
-        } catch (NoSuchPaddingException | NoSuchAlgorithmException | InvalidKeyException e) {
+            return CryptoUtils.createEncryptCipher(key);
+        } catch (InvalidAlgorithmParameterException
+                | NoSuchPaddingException
+                | NoSuchAlgorithmException
+                | InvalidKeyException e) {
             throw new SlotException(e);
         }
     }
 
-    public JSONObject serialize() throws SlotException {
+    public Cipher createDecryptCipher(SecretKey key) throws SlotException {
+        try {
+            return CryptoUtils.createDecryptCipher(key, _encryptedMasterKeyParams.getNonce());
+        } catch (InvalidAlgorithmParameterException
+                | NoSuchAlgorithmException
+                | InvalidKeyException
+                | NoSuchPaddingException e) {
+            throw new SlotException(e);
+        }
+    }
+
+    public JSONObject serialize() {
         try {
             JSONObject obj = new JSONObject();
+            JSONObject paramObj = _encryptedMasterKeyParams.toJson();
             obj.put("type", getType());
             obj.put("uuid", _uuid.toString());
             obj.put("key", Hex.encode(_encryptedMasterKey));
+            obj.put("key_params", paramObj);
             return obj;
         } catch (JSONException e) {
-            throw new SlotException(e);
+            throw new RuntimeException(e);
         }
     }
 
@@ -84,13 +104,17 @@ public abstract class Slot implements Serializable {
             if (obj.getInt("type") != getType()) {
                 throw new SlotException("slot type mismatch");
             }
+
             // if there is no uuid, generate a new one
             if (!obj.has("uuid")) {
                 _uuid = UUID.randomUUID();
             } else {
                 _uuid = UUID.fromString(obj.getString("uuid"));
             }
+
+            JSONObject paramObj = obj.getJSONObject("key_params");
             _encryptedMasterKey = Hex.decode(obj.getString("key"));
+            _encryptedMasterKeyParams = CryptParameters.parseJson(paramObj);
         } catch (JSONException | HexException e) {
             throw new SlotException(e);
         }

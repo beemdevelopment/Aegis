@@ -2,12 +2,12 @@ package me.impy.aegis.helpers;
 
 import android.os.Handler;
 
-public class UIRefresher {
+public class UiRefresher {
     private boolean _running;
     private Listener _listener;
     private Handler _handler;
 
-    public UIRefresher(Listener listener) {
+    public UiRefresher(Listener listener) {
         _listener = listener;
         _handler = new Handler();
     }

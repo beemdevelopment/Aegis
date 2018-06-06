@@ -1,5 +1,6 @@
 package me.impy.aegis.db;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -9,11 +10,10 @@ import me.impy.aegis.crypto.CryptParameters;
 import me.impy.aegis.crypto.CryptResult;
 import me.impy.aegis.crypto.MasterKey;
 import me.impy.aegis.crypto.MasterKeyException;
-import me.impy.aegis.db.slots.SlotCollection;
-import me.impy.aegis.db.slots.SlotCollectionException;
+import me.impy.aegis.db.slots.SlotList;
+import me.impy.aegis.db.slots.SlotListException;
 import me.impy.aegis.encoding.Base64;
 import me.impy.aegis.encoding.Base64Exception;
-import me.impy.aegis.encoding.Hex;
 import me.impy.aegis.encoding.HexException;
 
 public class DatabaseFile {
@@ -21,22 +21,15 @@ public class DatabaseFile {
 
     private Object _content;
     private CryptParameters _cryptParameters;
-    private SlotCollection _slots;
+    private SlotList _slots;
 
-    public byte[] serialize() throws DatabaseFileException {
+    public byte[] serialize() {
         try {
-            JSONObject cryptObj = null;
-            if (isEncrypted()) {
-                cryptObj = new JSONObject();
-                cryptObj.put("nonce", Hex.encode(_cryptParameters.Nonce));
-                cryptObj.put("tag", Hex.encode(_cryptParameters.Tag));
-            }
-
-            // don't write the crypt parameters if the content is not encrypted
-            boolean plain = _content instanceof JSONObject || _slots == null || cryptObj == null;
+            // don't write the crypt parameters and slots if the content is not encrypted
+            boolean plain = _content instanceof JSONObject || !isEncrypted();
             JSONObject headerObj = new JSONObject();
-            headerObj.put("slots", plain ? JSONObject.NULL : SlotCollection.serialize(_slots));
-            headerObj.put("params", plain ? JSONObject.NULL : cryptObj);
+            headerObj.put("slots", plain ? JSONObject.NULL : SlotList.serialize(_slots));
+            headerObj.put("params", plain ? JSONObject.NULL : _cryptParameters.toJson());
 
             JSONObject obj = new JSONObject();
             obj.put("version", VERSION);
@@ -45,8 +38,8 @@ public class DatabaseFile {
 
             String string = obj.toString(4);
             return string.getBytes("UTF-8");
-        } catch (SlotCollectionException | UnsupportedEncodingException | JSONException e) {
-            throw new DatabaseFileException(e);
+        } catch (JSONException | UnsupportedEncodingException e) {
+            throw new RuntimeException(e);
         }
     }
 
@@ -58,17 +51,14 @@ public class DatabaseFile {
                 throw new DatabaseFileException("unsupported version");
             }
 
-            JSONObject slotObj = headerObj.optJSONObject("slots");
+            JSONArray slotObj = headerObj.optJSONArray("slots");
             if (slotObj != null) {
-                _slots = SlotCollection.deserialize(slotObj);
+                _slots = SlotList.deserialize(slotObj);
             }
 
             JSONObject cryptObj = headerObj.optJSONObject("params");
             if (cryptObj != null) {
-                _cryptParameters = new CryptParameters() {{
-                    Nonce = Hex.decode(cryptObj.getString("nonce"));
-                    Tag = Hex.decode(cryptObj.getString("tag"));
-                }};
+                _cryptParameters = CryptParameters.parseJson(cryptObj);
             }
 
             if (cryptObj == null || slotObj == null) {
@@ -76,7 +66,7 @@ public class DatabaseFile {
             } else {
                 _content = obj.getString("db");
             }
-        } catch (SlotCollectionException | UnsupportedEncodingException | JSONException | HexException e) {
+        } catch (SlotListException | UnsupportedEncodingException | JSONException | HexException e) {
             throw new DatabaseFileException(e);
         }
     }
@@ -93,7 +83,7 @@ public class DatabaseFile {
         try {
             byte[] bytes = Base64.decode((String) _content);
             CryptResult result = key.decrypt(bytes, _cryptParameters);
-            return new JSONObject(new String(result.Data, "UTF-8"));
+            return new JSONObject(new String(result.getData(), "UTF-8"));
         } catch (MasterKeyException | JSONException | UnsupportedEncodingException | Base64Exception e) {
             throw new DatabaseFileException(e);
         }
@@ -111,18 +101,18 @@ public class DatabaseFile {
             byte[] dbBytes = string.getBytes("UTF-8");
 
             CryptResult result = key.encrypt(dbBytes);
-            _content = Base64.encode(result.Data);
-            _cryptParameters = result.Parameters;
+            _content = Base64.encode(result.getData());
+            _cryptParameters = result.getParams();
         } catch (MasterKeyException | UnsupportedEncodingException | JSONException e) {
             throw new DatabaseFileException(e);
         }
     }
 
-    public SlotCollection getSlots() {
+    public SlotList getSlots() {
         return _slots;
     }
 
-    public void setSlots(SlotCollection slots) {
+    public void setSlots(SlotList slots) {
         _slots = slots;
     }
 }

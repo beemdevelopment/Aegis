@@ -2,6 +2,9 @@ package me.impy.aegis;
 
 import org.junit.Test;
 
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
+
 import me.impy.aegis.crypto.otp.HOTP;
 
 import static org.junit.Assert.*;
@@ -22,7 +25,7 @@ public class HOTPTest {
     };
 
     @Test
-    public void vectorsMatch() throws Exception {
+    public void vectorsMatch() throws InvalidKeyException, NoSuchAlgorithmException {
         for (int i = 0; i < _vectors.length; i++) {
             String otp = HOTP.generateOTP(_secret, i, 6, false, -1);
             assertEquals(_vectors[i], otp);

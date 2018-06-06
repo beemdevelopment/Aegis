@@ -8,7 +8,7 @@ import android.util.AttributeSet;
 import android.view.animation.LinearInterpolator;
 import android.widget.ProgressBar;
 
-import me.impy.aegis.crypto.KeyInfo;
+import me.impy.aegis.otp.TotpInfo;
 
 public class PeriodProgressBar extends ProgressBar {
     private int _period;
@@ -40,7 +40,7 @@ public class PeriodProgressBar extends ProgressBar {
         setProgress(maxProgress);
 
         // calculate the progress the bar should start at
-        long millisTillRotation = KeyInfo.getMillisTillNextRotation(_period);
+        long millisTillRotation = TotpInfo.getMillisTillNextRotation(_period);
         long period = _period * maxProgress;
         int currentProgress = maxProgress - (int) ((((double) period - millisTillRotation) / period) * maxProgress);
 

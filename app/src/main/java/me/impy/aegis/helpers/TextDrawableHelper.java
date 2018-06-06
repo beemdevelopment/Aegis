@@ -8,13 +8,16 @@ public class TextDrawableHelper {
 
     }
 
-    public static TextDrawable generate(String s) {
-        if (s == null || s.length() <= 1) {
-            return null;
+    public static TextDrawable generate(String text, String fallback) {
+        if (text == null || text.isEmpty()) {
+            if (fallback == null || fallback.isEmpty()) {
+                return null;
+            }
+            text = fallback;
         }
 
         ColorGenerator generator = ColorGenerator.MATERIAL;
-        int color = generator.getColor(s);
-        return TextDrawable.builder().buildRound(s.substring(0, 1).toUpperCase(), color);
+        int color = generator.getColor(text);
+        return TextDrawable.builder().buildRound(text.substring(0, 1).toUpperCase(), color);
     }
 }

@@ -113,7 +113,7 @@ public class CustomAuthenticatedSlide extends Fragment implements FingerprintUiH
                 }
 
                 try {
-                    _fingerCipher = Slot.createCipher(key, Cipher.ENCRYPT_MODE);
+                    _fingerCipher = Slot.createEncryptCipher(key);
                 } catch (Exception e) {
                     throw new UndeclaredThrowableException(e);
                 }

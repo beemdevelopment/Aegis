@@ -19,31 +19,38 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
+import android.widget.TableRow;
 
 import com.amulyakhare.textdrawable.TextDrawable;
 
 import me.impy.aegis.R;
-import me.impy.aegis.crypto.KeyInfo;
-import me.impy.aegis.crypto.KeyInfoException;
 import me.impy.aegis.db.DatabaseEntry;
 import me.impy.aegis.encoding.Base32;
+import me.impy.aegis.encoding.Base32Exception;
 import me.impy.aegis.helpers.EditTextHelper;
 import me.impy.aegis.helpers.SpinnerHelper;
 import me.impy.aegis.helpers.TextDrawableHelper;
+import me.impy.aegis.otp.HotpInfo;
+import me.impy.aegis.otp.OtpInfo;
+import me.impy.aegis.otp.OtpInfoException;
+import me.impy.aegis.otp.TotpInfo;
 import me.impy.aegis.ui.dialogs.Dialogs;
-import me.impy.aegis.ui.views.KeyProfile;
 
-public class EditProfileActivity extends AegisActivity {
+public class EditEntryActivity extends AegisActivity {
     private boolean _isNew = false;
     private boolean _edited = false;
-    private KeyProfile _profile;
+    private DatabaseEntry _entry;
 
     private ImageView _iconView;
 
     private EditText _textName;
     private EditText _textIssuer;
     private EditText _textPeriod;
+    private EditText _textCounter;
     private EditText _textSecret;
+
+    private TableRow _rowPeriod;
+    private TableRow _rowCounter;
 
     private Spinner _spinnerType;
     private Spinner _spinnerAlgo;
@@ -56,27 +63,28 @@ public class EditProfileActivity extends AegisActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_edit_profile);
+        setContentView(R.layout.activity_edit_entry);
 
         ActionBar bar = getSupportActionBar();
         bar.setHomeAsUpIndicator(R.drawable.ic_close);
         bar.setDisplayHomeAsUpEnabled(true);
 
-        // if the intent doesn't contain a KeyProfile, create a new one
+        // retrieve info from the calling activity
         Intent intent = getIntent();
-        _profile = (KeyProfile) intent.getSerializableExtra("KeyProfile");
+        _entry = (DatabaseEntry) intent.getSerializableExtra("entry");
         _isNew = intent.getBooleanExtra("isNew", false);
-        if (_profile == null) {
-            _profile = new KeyProfile();
-        }
         if (_isNew) {
             setTitle("Add profile");
         }
 
+        // set up fields
         _iconView = findViewById(R.id.profile_drawable);
         _textName = findViewById(R.id.text_name);
         _textIssuer = findViewById(R.id.text_issuer);
         _textPeriod = findViewById(R.id.text_period);
+        _rowPeriod = findViewById(R.id.row_period);
+        _textCounter = findViewById(R.id.text_counter);
+        _rowCounter = findViewById(R.id.row_counter);
         _textSecret = findViewById(R.id.text_secret);
         _spinnerType = findViewById(R.id.spinner_type);
         SpinnerHelper.fillSpinner(this, _spinnerType, R.array.otp_types_array);
@@ -84,37 +92,84 @@ public class EditProfileActivity extends AegisActivity {
         SpinnerHelper.fillSpinner(this, _spinnerAlgo, R.array.otp_algo_array);
         _spinnerDigits = findViewById(R.id.spinner_digits);
         SpinnerHelper.fillSpinner(this, _spinnerDigits, R.array.otp_digits_array);
-
         _advancedSettingsHeader = findViewById(R.id.accordian_header);
         _advancedSettings = findViewById(R.id.expandableLayout);
 
-        updateFields();
+        // fill the fields with values if possible
+        if (_entry != null) {
+            TextDrawable drawable = TextDrawableHelper.generate(_entry.getIssuer(), _entry.getName());
+            _iconView.setImageDrawable(drawable);
 
+            _textName.setText(_entry.getName());
+            _textIssuer.setText(_entry.getIssuer());
+
+            OtpInfo info = _entry.getInfo();
+            if (info instanceof TotpInfo) {
+                _textPeriod.setText(Integer.toString(((TotpInfo) info).getPeriod()));
+                _rowPeriod.setVisibility(View.VISIBLE);
+            } else if (info instanceof HotpInfo) {
+                _textCounter.setText(Long.toString(((HotpInfo) info).getCounter()));
+                _rowCounter.setVisibility(View.VISIBLE);
+            } else {
+                throw new RuntimeException();
+            }
+
+            byte[] secretBytes = _entry.getInfo().getSecret();
+            if (secretBytes != null) {
+                char[] secretChars = Base32.encode(secretBytes);
+                _textSecret.setText(secretChars, 0, secretChars.length);
+            }
+
+            String type = _entry.getInfo().getType();
+            _spinnerType.setSelection(getStringResourceIndex(R.array.otp_types_array, type.toUpperCase()), false);
+
+            String algo = _entry.getInfo().getAlgorithm(false);
+            _spinnerAlgo.setSelection(getStringResourceIndex(R.array.otp_algo_array, algo), false);
+
+            String digits = Integer.toString(_entry.getInfo().getDigits());
+            _spinnerDigits.setSelection(getStringResourceIndex(R.array.otp_digits_array, digits), false);
+        }
+
+        // listen for changes to any of the fields
         _textName.addTextChangedListener(_textListener);
         _textIssuer.addTextChangedListener(_textListener);
         _textPeriod.addTextChangedListener(_textListener);
+        _textCounter.addTextChangedListener(_textListener);
         _textSecret.addTextChangedListener(_textListener);
-        _spinnerType.setOnTouchListener(_selectedListener);
-        _spinnerType.setOnItemSelectedListener(_selectedListener);
         _spinnerAlgo.setOnTouchListener(_selectedListener);
         _spinnerAlgo.setOnItemSelectedListener(_selectedListener);
         _spinnerDigits.setOnTouchListener(_selectedListener);
         _spinnerDigits.setOnItemSelectedListener(_selectedListener);
 
         // update the icon if the text changed
-        _textName.addTextChangedListener(new TextWatcher() {
+        _textIssuer.addTextChangedListener(_iconChangeListener);
+        _textName.addTextChangedListener(_iconChangeListener);
+
+        // show/hide period and counter fields on type change
+        _spinnerType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String type = _spinnerType.getSelectedItem().toString();
+
+                switch (type.toLowerCase()) {
+                    case "totp":
+                        _rowCounter.setVisibility(View.GONE);
+                        _rowPeriod.setVisibility(View.VISIBLE);
+                        break;
+                    case "hotp":
+                        _rowPeriod.setVisibility(View.GONE);
+                        _rowCounter.setVisibility(View.VISIBLE);
+                        break;
+                    default:
+                        throw new RuntimeException();
+                }
+
+                _selectedListener.onItemSelected(parent, view, position, id);
             }
 
             @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-            }
+            public void onNothingSelected(AdapterView<?> parent) {
 
-            @Override
-            public void afterTextChanged(Editable s) {
-                TextDrawable drawable = TextDrawableHelper.generate(s.toString());
-                _iconView.setImageDrawable(drawable);
             }
         });
 
@@ -122,34 +177,10 @@ public class EditProfileActivity extends AegisActivity {
             openAdvancedSettings();
         });
 
-        // Automatically open advanced settings since 'Secret' is required.
+        // automatically open advanced settings since 'Secret' is required.
         if(_isNew){
             openAdvancedSettings();
         }
-    }
-
-    private void updateFields() {
-        DatabaseEntry entry = _profile.getEntry();
-        _iconView.setImageDrawable(_profile.getDrawable());
-
-        _textName.setText(entry.getName());
-        _textIssuer.setText(entry.getInfo().getIssuer());
-        _textPeriod.setText(Integer.toString(entry.getInfo().getPeriod()));
-
-        byte[] secretBytes = entry.getInfo().getSecret();
-        if (secretBytes != null) {
-            char[] secretChars = Base32.encode(secretBytes);
-            _textSecret.setText(secretChars, 0, secretChars.length);
-        }
-
-        String type = entry.getInfo().getType();
-        _spinnerType.setSelection(getStringResourceIndex(R.array.otp_types_array, type), false);
-
-        String algo = entry.getInfo().getAlgorithm(false);
-        _spinnerAlgo.setSelection(getStringResourceIndex(R.array.otp_algo_array, algo), false);
-
-        String digits = Integer.toString(entry.getInfo().getDigits());
-        _spinnerDigits.setSelection(getStringResourceIndex(R.array.otp_digits_array, digits), false);
     }
 
     @Override
@@ -252,7 +283,7 @@ public class EditProfileActivity extends AegisActivity {
 
     private void finish(boolean delete) {
         Intent intent = new Intent();
-        intent.putExtra("KeyProfile", _profile);
+        intent.putExtra("entry", _entry);
         intent.putExtra("delete", delete);
         setResult(RESULT_OK, intent);
         finish();
@@ -261,14 +292,6 @@ public class EditProfileActivity extends AegisActivity {
     private boolean onSave() {
         if (_textSecret.length() == 0) {
             onError("Secret is a required field.");
-            return false;
-        }
-
-        int period;
-        try {
-            period = Integer.parseInt(_textPeriod.getText().toString());
-        } catch (NumberFormatException e) {
-            onError("Period is not an integer.");
             return false;
         }
 
@@ -283,24 +306,60 @@ public class EditProfileActivity extends AegisActivity {
             return false;
         }
 
-        DatabaseEntry entry = _profile.getEntry();
-        entry.setName(_textName.getText().toString());
-        KeyInfo info = entry.getInfo();
-
+        byte[] secret;
         try {
-            char[] secret = EditTextHelper.getEditTextChars(_textSecret);
-            info.setSecret(secret);
-            info.setIssuer(_textIssuer.getText().toString());
-            info.setPeriod(period);
+            secret = Base32.decode(EditTextHelper.getEditTextChars(_textSecret));
+        } catch (Base32Exception e) {
+            onError("Secret is not valid base32.");
+            return false;
+        }
+
+        // set otp info
+        OtpInfo info;
+        try {
+            switch (type.toLowerCase()) {
+                case "totp":
+                    int period;
+                    try {
+                        period = Integer.parseInt(_textPeriod.getText().toString());
+                    } catch (NumberFormatException e) {
+                        onError("Period is not an integer.");
+                        return false;
+                    }
+                    info = new TotpInfo(secret, algo, digits, period);
+                    break;
+                case "hotp":
+                    long counter;
+                    try {
+                        counter = Long.parseLong(_textCounter.getText().toString());
+                    } catch (NumberFormatException e) {
+                        onError("Counter is not an integer.");
+                        return false;
+                    }
+                    info = new HotpInfo(secret, algo, digits, counter);
+                    break;
+                default:
+                    throw new RuntimeException();
+            }
+
             info.setDigits(digits);
             info.setAlgorithm(algo);
-            info.setType(type);
-            info.setAccountName(_textName.getText().toString());
-        } catch (KeyInfoException e) {
+        } catch (OtpInfoException e) {
             onError("The entered info is incorrect: " + e.getMessage());
             return false;
         }
 
+        // set database entry info
+        DatabaseEntry entry = _entry;
+        if (entry == null) {
+            entry = new DatabaseEntry(info);
+        } else {
+            entry.setInfo(info);
+        }
+        entry.setIssuer(_textIssuer.getText().toString());
+        entry.setName(_textName.getText().toString());
+
+        _entry = entry;
         finish(false);
         return true;
     }
@@ -331,6 +390,22 @@ public class EditProfileActivity extends AegisActivity {
         @Override
         public void afterTextChanged(Editable s) {
             onFieldEdited();
+        }
+    };
+
+    private TextWatcher _iconChangeListener = new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+            TextDrawable drawable = TextDrawableHelper.generate(_textIssuer.getText().toString(), _textName.getText().toString());
+            _iconView.setImageDrawable(drawable);
         }
     };
 

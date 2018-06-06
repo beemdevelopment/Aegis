@@ -1,11 +1,15 @@
-package me.impy.aegis.crypto;
+package me.impy.aegis.otp;
 
-public class KeyInfoException extends Exception {
-    public KeyInfoException(String message) {
+public class GoogleAuthInfoException extends Exception {
+    public GoogleAuthInfoException(Throwable cause) {
+        super(cause);
+    }
+
+    public GoogleAuthInfoException(String message) {
         super(message);
     }
 
-    public KeyInfoException(String message, Throwable cause) {
+    public GoogleAuthInfoException(String message, Throwable cause) {
         super(message, cause);
     }
 

@@ -28,7 +28,7 @@ public class MasterKey implements Serializable {
 
     public CryptResult encrypt(byte[] bytes) throws MasterKeyException {
         try {
-            Cipher cipher = CryptoUtils.createCipher(_key, Cipher.ENCRYPT_MODE);
+            Cipher cipher = CryptoUtils.createEncryptCipher(_key);
             return CryptoUtils.encrypt(bytes, cipher);
         } catch (NoSuchPaddingException
                 | NoSuchAlgorithmException
@@ -42,7 +42,7 @@ public class MasterKey implements Serializable {
 
     public CryptResult decrypt(byte[] bytes, CryptParameters params) throws MasterKeyException {
         try {
-            Cipher cipher = CryptoUtils.createCipher(_key, Cipher.DECRYPT_MODE, params.Nonce);
+            Cipher cipher = CryptoUtils.createDecryptCipher(_key, params.getNonce());
             return CryptoUtils.decrypt(bytes, cipher, params);
         } catch (NoSuchPaddingException
                 | NoSuchAlgorithmException
@@ -53,10 +53,6 @@ public class MasterKey implements Serializable {
                 | IllegalBlockSizeException e) {
             throw new MasterKeyException(e);
         }
-    }
-
-    public byte[] getHash() {
-        return CryptoUtils.hashKey(_key);
     }
 
     public byte[] getBytes() {

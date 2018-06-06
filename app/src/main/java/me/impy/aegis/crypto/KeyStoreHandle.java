@@ -1,6 +1,5 @@
 package me.impy.aegis.crypto;
 
-import android.annotation.SuppressLint;
 import android.os.Build;
 import android.security.keystore.KeyGenParameterSpec;
 import android.security.keystore.KeyPermanentlyInvalidatedException;
@@ -51,11 +50,11 @@ public class KeyStoreHandle {
             KeyGenerator generator = KeyGenerator.getInstance(KeyProperties.KEY_ALGORITHM_AES, STORE_NAME);
             generator.init(new KeyGenParameterSpec.Builder(id,
                     KeyProperties.PURPOSE_ENCRYPT | KeyProperties.PURPOSE_DECRYPT)
-                    .setBlockModes(KeyProperties.BLOCK_MODE_ECB)
+                    .setBlockModes(KeyProperties.BLOCK_MODE_GCM)
                     .setEncryptionPaddings(KeyProperties.ENCRYPTION_PADDING_NONE)
                     .setUserAuthenticationRequired(true)
-                    .setRandomizedEncryptionRequired(false)
-                    .setKeySize(CryptoUtils.CRYPTO_KEY_SIZE * 8)
+                    .setRandomizedEncryptionRequired(true)
+                    .setKeySize(CryptoUtils.CRYPTO_AEAD_KEY_SIZE * 8)
                     .build());
 
             return generator.generateKey();
@@ -81,8 +80,7 @@ public class KeyStoreHandle {
         // and see if KeyPermanentlyInvalidatedException is thrown
         if (isSupported()) {
             try {
-                @SuppressLint("GetInstance")
-                Cipher cipher = Cipher.getInstance(CryptoUtils.CRYPTO_CIPHER_RAW);
+                Cipher cipher = Cipher.getInstance(CryptoUtils.CRYPTO_AEAD);
                 cipher.init(Cipher.ENCRYPT_MODE, key);
             } catch (KeyPermanentlyInvalidatedException e) {
                 return null;

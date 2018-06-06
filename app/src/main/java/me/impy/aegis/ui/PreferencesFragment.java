@@ -32,7 +32,7 @@ import me.impy.aegis.db.DatabaseEntry;
 import me.impy.aegis.db.DatabaseManager;
 import me.impy.aegis.db.DatabaseManagerException;
 import me.impy.aegis.db.slots.Slot;
-import me.impy.aegis.db.slots.SlotCollection;
+import me.impy.aegis.db.slots.SlotList;
 import me.impy.aegis.db.slots.SlotException;
 import me.impy.aegis.helpers.PermissionHelper;
 import me.impy.aegis.importers.AegisImporter;
@@ -313,7 +313,7 @@ public class PreferencesFragment extends PreferenceFragmentCompat implements Pas
     private void importDatabase(DatabaseImporter importer) throws DatabaseImporterException {
         List<DatabaseEntry> entries = importer.convert();
         for (DatabaseEntry entry : entries) {
-            _db.addKey(entry);
+            _db.addEntry(entry);
         }
 
         if (!saveDatabase()) {
@@ -369,7 +369,7 @@ public class PreferencesFragment extends PreferenceFragmentCompat implements Pas
             return;
         }
 
-        SlotCollection slots = (SlotCollection) data.getSerializableExtra("slots");
+        SlotList slots = (SlotList) data.getSerializableExtra("slots");
         _db.getFile().setSlots(slots);
         saveDatabase();
     }
@@ -390,9 +390,9 @@ public class PreferencesFragment extends PreferenceFragmentCompat implements Pas
     public void onSlotResult(Slot slot, Cipher cipher) {
         MasterKey masterKey = MasterKey.generate();
 
-        SlotCollection slots = new SlotCollection();
+        SlotList slots = new SlotList();
         try {
-            slots.encrypt(slot, masterKey, cipher);
+            slot.setKey(masterKey, cipher);
         } catch (SlotException e) {
             onException(e);
             return;

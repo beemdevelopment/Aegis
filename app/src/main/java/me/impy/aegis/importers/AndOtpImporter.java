@@ -8,17 +8,19 @@ import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
-import me.impy.aegis.crypto.KeyInfo;
-import me.impy.aegis.crypto.KeyInfoException;
 import me.impy.aegis.db.DatabaseEntry;
 import me.impy.aegis.encoding.Base32;
 import me.impy.aegis.encoding.Base32Exception;
+import me.impy.aegis.otp.HotpInfo;
+import me.impy.aegis.otp.OtpInfo;
+import me.impy.aegis.otp.OtpInfoException;
+import me.impy.aegis.otp.TotpInfo;
 import me.impy.aegis.util.ByteInputStream;
 
-public class AndOTPImporter extends DatabaseImporter {
+public class AndOtpImporter extends DatabaseImporter {
     private JSONArray _obj;
 
-    public AndOTPImporter(ByteInputStream stream) {
+    public AndOtpImporter(ByteInputStream stream) {
         super(stream);
     }
 
@@ -41,30 +43,35 @@ public class AndOTPImporter extends DatabaseImporter {
             for (int i = 0; i < _obj.length(); i++) {
                 JSONObject obj = _obj.getJSONObject(i);
 
-                KeyInfo key = new KeyInfo();
-                key.setAlgorithm(obj.getString("algorithm"));
-                key.setDigits(obj.getInt("digits"));
-                key.setPeriod(obj.getInt("period"));
-                key.setType(obj.getString("type"));
-                if (key.getType().equals("hotp")) {
-                    key.setCounter(obj.getLong("counter"));
+                String type = obj.getString("type");
+                String algo = obj.getString("algorithm");
+                int digits = obj.getInt("digits");
+                byte[] secret = Base32.decode(obj.getString("secret").toCharArray());
+
+                OtpInfo info;
+                if (type.equals("totp")) {
+                    info = new TotpInfo(secret, algo, digits, obj.getInt("period"));
+                } else if (type.equals("hotp")) {
+                    info = new HotpInfo(secret, algo, digits, obj.getLong("counter"));
+                } else {
+                    throw new DatabaseImporterException("unsupported otp type: " + type);
                 }
+
+                String issuer = "";
+                String name = "";
 
                 String[] parts = obj.getString("label").split(" - ");
                 if (parts.length > 1) {
-                    key.setIssuer(parts[0]);
-                    key.setAccountName(parts[1]);
+                    issuer = parts[0];
+                    name = parts[1];
                 } else {
-                    key.setAccountName(parts[0]);
+                    name = parts[0];
                 }
 
-                byte[] secret = Base32.decode(obj.getString("secret").toCharArray());
-                key.setSecret(secret);
-
-                DatabaseEntry entry = new DatabaseEntry(key);
+                DatabaseEntry entry = new DatabaseEntry(info, name, issuer);
                 entries.add(entry);
             }
-        } catch (Base32Exception | KeyInfoException | JSONException e) {
+        } catch (Base32Exception | OtpInfoException | JSONException e) {
             throw new DatabaseImporterException(e);
         }
 

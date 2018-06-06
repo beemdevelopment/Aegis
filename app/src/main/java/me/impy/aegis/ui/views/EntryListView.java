@@ -11,29 +11,29 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import me.impy.aegis.R;
-import me.impy.aegis.crypto.KeyInfo;
 import me.impy.aegis.db.DatabaseEntry;
 import me.impy.aegis.helpers.SimpleItemTouchHelperCallback;
-import me.impy.aegis.helpers.UIRefresher;
+import me.impy.aegis.helpers.UiRefresher;
+import me.impy.aegis.otp.TotpInfo;
 
-public class KeyProfileView extends Fragment implements KeyProfileAdapter.Listener {
-    private KeyProfileAdapter _adapter;
+public class EntryListView extends Fragment implements EntryAdapter.Listener {
+    private EntryAdapter _adapter;
     private Listener _listener;
 
     private PeriodProgressBar _progressBar;
     private boolean _showProgress = false;
 
-    private UIRefresher _refresher;
+    private UiRefresher _refresher;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        _adapter = new KeyProfileAdapter(this);
+        _adapter = new EntryAdapter(this);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_keyprofile_view, container, false);
+        View view = inflater.inflate(R.layout.fragment_entry_list_view, container, false);
 
         _progressBar = view.findViewById(R.id.progressBar);
         int primaryColorId = getResources().getColor(R.color.colorPrimary);
@@ -48,7 +48,7 @@ public class KeyProfileView extends Fragment implements KeyProfileAdapter.Listen
         touchHelper.attachToRecyclerView(rvKeyProfiles);
         rvKeyProfiles.setAdapter(_adapter);
 
-        _refresher = new UIRefresher(new UIRefresher.Listener() {
+        _refresher = new UiRefresher(new UiRefresher.Listener() {
             @Override
             public void onRefresh() {
                 refresh();
@@ -56,7 +56,7 @@ public class KeyProfileView extends Fragment implements KeyProfileAdapter.Listen
 
             @Override
             public long getMillisTillNextRefresh() {
-                return KeyInfo.getMillisTillNextRotation(_adapter.getUniformPeriod());
+                return TotpInfo.getMillisTillNextRotation(_adapter.getUniformPeriod());
             }
         });
 
@@ -82,7 +82,7 @@ public class KeyProfileView extends Fragment implements KeyProfileAdapter.Listen
             _progressBar.setPeriod(_adapter.getUniformPeriod());
             startRefreshLoop();
         } else {
-            _progressBar.setVisibility(View.INVISIBLE);
+            _progressBar.setVisibility(View.GONE);
             stopRefreshLoop();
         }
     }
@@ -101,23 +101,28 @@ public class KeyProfileView extends Fragment implements KeyProfileAdapter.Listen
     }
 
     @Override
-    public void onKeyProfileClick(KeyProfile profile) {
-        _listener.onEntryClick(profile);
+    public void onEntryClick(DatabaseEntry entry) {
+        _listener.onEntryClick(entry);
     }
 
     @Override
-    public boolean onLongKeyProfileClick(KeyProfile profile) {
+    public boolean onLongEntryClick(DatabaseEntry entry) {
         return false;
     }
 
     @Override
-    public void onKeyProfileMove(KeyProfile profile1, KeyProfile profile2) {
-        _listener.onEntryMove(profile1.getEntry(), profile2.getEntry());
+    public void onEntryMove(DatabaseEntry entry1, DatabaseEntry entry2) {
+        _listener.onEntryMove(entry1, entry2);
     }
 
     @Override
-    public void onKeyProfileDrop(KeyProfile profile) {
-        _listener.onEntryDrop(profile.getEntry());
+    public void onEntryDrop(DatabaseEntry entry) {
+        _listener.onEntryDrop(entry);
+    }
+
+    @Override
+    public void onEntryChange(DatabaseEntry entry) {
+        _listener.onEntryChange(entry);
     }
 
     public void setShowIssuer(boolean showIssuer) {
@@ -125,29 +130,30 @@ public class KeyProfileView extends Fragment implements KeyProfileAdapter.Listen
         _adapter.notifyDataSetChanged();
     }
 
-    public void addKey(KeyProfile profile) {
-        _adapter.addKey(profile);
+    public void addEntry(DatabaseEntry entry) {
+        _adapter.addEntry(entry);
         checkPeriodUniformity();
     }
 
-    public void removeKey(KeyProfile profile) {
-        _adapter.removeKey(profile);
+    public void removeEntry(DatabaseEntry entry) {
+        _adapter.removeEntry(entry);
         checkPeriodUniformity();
     }
 
-    public void clearKeys() {
-        _adapter.clearKeys();
+    public void clearEntries() {
+        _adapter.clearEntries();
         checkPeriodUniformity();
     }
 
-    public void replaceKey(KeyProfile profile) {
-        _adapter.replaceKey(profile);
+    public void replaceEntry(DatabaseEntry entry) {
+        _adapter.replaceEntry(entry);
         checkPeriodUniformity();
     }
 
     public interface Listener {
-        void onEntryClick(KeyProfile profile);
+        void onEntryClick(DatabaseEntry entry);
         void onEntryMove(DatabaseEntry entry1, DatabaseEntry entry2);
         void onEntryDrop(DatabaseEntry entry);
+        void onEntryChange(DatabaseEntry entry);
     }
 }

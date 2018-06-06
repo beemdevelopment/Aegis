@@ -6,47 +6,28 @@ import org.json.JSONObject;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
-import javax.crypto.Cipher;
-import me.impy.aegis.crypto.MasterKey;
-import me.impy.aegis.encoding.Hex;
-import me.impy.aegis.encoding.HexException;
-
-public class SlotCollection implements Iterable<Slot>, Serializable {
+public class SlotList implements Iterable<Slot>, Serializable {
     private List<Slot> _slots = new ArrayList<>();
-    private byte[] _masterHash;
 
-    public static JSONObject serialize(SlotCollection slots) throws SlotCollectionException {
-        try {
-            JSONObject obj = new JSONObject();
-            obj.put("hash", Hex.encode(slots.getMasterHash()));
-
-            JSONArray entries = new JSONArray();
-            for (Slot slot : slots) {
-                entries.put(slot.serialize());
-            }
-
-            obj.put("entries", entries);
-            return obj;
-        } catch (SlotException | JSONException e) {
-            throw new SlotCollectionException(e);
+    public static JSONArray serialize(SlotList slots) {
+        JSONArray array = new JSONArray();
+        for (Slot slot : slots) {
+            array.put(slot.serialize());
         }
+
+        return array;
     }
 
-    public static SlotCollection deserialize(JSONObject obj) throws SlotCollectionException {
-        SlotCollection slots = new SlotCollection();
+    public static SlotList deserialize(JSONArray array) throws SlotListException {
+        SlotList slots = new SlotList();
 
         try {
-            byte[] masterHash = Hex.decode(obj.getString("hash"));
-            slots.setMasterHash(masterHash);
-
-            JSONArray entries = obj.getJSONArray("entries");
-            for (int i = 0; i < entries.length(); i++) {
+            for (int i = 0; i < array.length(); i++) {
                 Slot slot;
-                JSONObject slotObj = entries.getJSONObject(i);
+                JSONObject slotObj = array.getJSONObject(i);
 
                 switch (slotObj.getInt("type")) {
                     case Slot.TYPE_RAW:
@@ -65,8 +46,8 @@ public class SlotCollection implements Iterable<Slot>, Serializable {
                 slot.deserialize(slotObj);
                 slots.add(slot);
             }
-        } catch (SlotException | JSONException | HexException e) {
-            throw new SlotCollectionException(e);
+        } catch (SlotException | JSONException e) {
+            throw new SlotListException(e);
         }
 
         return slots;
@@ -115,27 +96,5 @@ public class SlotCollection implements Iterable<Slot>, Serializable {
     @Override
     public Iterator<Slot> iterator() {
         return _slots.iterator();
-    }
-
-    public void encrypt(Slot slot, MasterKey key, Cipher cipher) throws SlotException {
-        slot.setKey(key, cipher);
-        setMasterHash(key.getHash());
-    }
-
-    public MasterKey decrypt(Slot slot, Cipher cipher) throws SlotException, SlotIntegrityException {
-        byte[] hash = getMasterHash();
-        MasterKey key = new MasterKey(slot.getKey(cipher));
-        if (!Arrays.equals(hash, key.getHash())) {
-            throw new SlotIntegrityException();
-        }
-        return key;
-    }
-
-    private void setMasterHash(byte[] masterHash) {
-        _masterHash = masterHash;
-    }
-
-    private byte[] getMasterHash() {
-        return _masterHash;
     }
 }
