@@ -1,6 +1,7 @@
 package me.impy.aegis.crypto;
 
 import android.net.Uri;
+import android.util.Base64;
 
 import java.io.Serializable;
 import java.util.Arrays;
@@ -17,6 +18,7 @@ public class KeyInfo implements Serializable {
     private String _algorithm = "SHA1";
     private int _digits = 6;
     private int _period = 30;
+    private String _image;
 
     public String getURL() {
         Uri.Builder builder = new Uri.Builder();
@@ -27,6 +29,9 @@ public class KeyInfo implements Serializable {
         builder.appendQueryParameter("period", Integer.toString(_period));
         builder.appendQueryParameter("algorithm", _algorithm);
         builder.appendQueryParameter("secret", new String(Base32.encode(_secret)));
+        if (_image != null && !_image.equals("")) {
+            builder.appendQueryParameter("image", _image);
+        }
         if (_type.equals("hotp")) {
             builder.appendQueryParameter("counter", Long.toString(_counter));
         }
@@ -103,6 +108,10 @@ public class KeyInfo implements Serializable {
         if (digits != null) {
             info.setDigits(Integer.parseInt(digits));
         }
+        String image = url.getQueryParameter("image");
+        if (image != null) {
+            info.setImage(Base64.decode(image, Base64.DEFAULT));
+        }
 
         // 'counter' is required if the type is 'hotp'
         String counter = url.getQueryParameter("counter");
@@ -171,6 +180,16 @@ public class KeyInfo implements Serializable {
         }
 
         setSecret(secret);
+    }
+
+    public void setImage(byte[] image)
+    {
+        _image = Base64.encodeToString(image, Base64.DEFAULT);
+    }
+
+    public byte[] getImage()
+    {
+        return Base64.decode(_image, Base64.DEFAULT);
     }
 
     public void setSecret(byte[] secret) {

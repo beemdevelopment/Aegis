@@ -3,7 +3,10 @@ package me.impy.aegis.ui;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.ArrayRes;
 import android.support.v7.app.ActionBar;
@@ -28,6 +31,8 @@ import com.avito.android.krop.KropView;
 import com.esafirm.imagepicker.features.ImagePicker;
 import com.esafirm.imagepicker.features.ReturnMode;
 import com.esafirm.imagepicker.model.Image;
+
+import java.io.ByteArrayOutputStream;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import me.impy.aegis.R;
@@ -349,6 +354,12 @@ public class EditProfileActivity extends AegisActivity {
             info.setAlgorithm(algo);
             info.setType(type);
             info.setAccountName(_textName.getText().toString());
+
+            ByteArrayOutputStream stream = new ByteArrayOutputStream();
+            drawableToBitmap(_iconView.getDrawable()).compress(Bitmap.CompressFormat.JPEG, 100, stream);
+            byte[] bitmapdata = stream.toByteArray();
+
+            info.setImage(bitmapdata);
         } catch (KeyInfoException e) {
             onError("The entered info is incorrect: " + e.getMessage());
             return false;
@@ -418,5 +429,26 @@ public class EditProfileActivity extends AegisActivity {
             }
         }
         return -1;
+    }
+
+    public static Bitmap drawableToBitmap(Drawable drawable) {
+        if (drawable instanceof BitmapDrawable) {
+            return ((BitmapDrawable) drawable).getBitmap();
+        }
+
+        final int width = !drawable.getBounds().isEmpty() ? drawable
+                .getBounds().width() : drawable.getIntrinsicWidth();
+
+        final int height = !drawable.getBounds().isEmpty() ? drawable
+                .getBounds().height() : drawable.getIntrinsicHeight();
+
+        final Bitmap bitmap = Bitmap.createBitmap(width <= 0 ? 1 : width,
+                height <= 0 ? 1 : height, Bitmap.Config.ARGB_8888);
+
+        Canvas canvas = new Canvas(bitmap);
+        drawable.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
+        drawable.draw(canvas);
+
+        return bitmap;
     }
 }
