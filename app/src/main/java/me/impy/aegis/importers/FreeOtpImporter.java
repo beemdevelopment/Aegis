@@ -123,7 +123,11 @@ public class FreeOtpImporter extends DatabaseImporter {
         String name = parser.getAttributeValue(null, "name");
         String value = parseText(parser);
         parser.require(XmlPullParser.END_TAG, null, "string");
-        return new XmlEntry() {{ Name = name; Value = value; }};
+
+        XmlEntry entry = new XmlEntry();
+        entry.Name = name;
+        entry.Value = value;
+        return entry;
     }
 
     private static String parseText(XmlPullParser parser) throws IOException, XmlPullParserException {

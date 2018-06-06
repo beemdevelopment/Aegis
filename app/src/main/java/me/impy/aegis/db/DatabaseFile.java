@@ -83,7 +83,7 @@ public class DatabaseFile {
         try {
             byte[] bytes = Base64.decode((String) _content);
             CryptResult result = key.decrypt(bytes, _cryptParameters);
-            return new JSONObject(new String(result.Data, "UTF-8"));
+            return new JSONObject(new String(result.getData(), "UTF-8"));
         } catch (MasterKeyException | JSONException | UnsupportedEncodingException | Base64Exception e) {
             throw new DatabaseFileException(e);
         }
@@ -101,8 +101,8 @@ public class DatabaseFile {
             byte[] dbBytes = string.getBytes("UTF-8");
 
             CryptResult result = key.encrypt(dbBytes);
-            _content = Base64.encode(result.Data);
-            _cryptParameters = result.Parameters;
+            _content = Base64.encode(result.getData());
+            _cryptParameters = result.getParams();
         } catch (MasterKeyException | UnsupportedEncodingException | JSONException e) {
             throw new DatabaseFileException(e);
         }

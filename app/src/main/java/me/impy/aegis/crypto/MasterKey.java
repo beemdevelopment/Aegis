@@ -42,7 +42,7 @@ public class MasterKey implements Serializable {
 
     public CryptResult decrypt(byte[] bytes, CryptParameters params) throws MasterKeyException {
         try {
-            Cipher cipher = CryptoUtils.createDecryptCipher(_key, params.Nonce);
+            Cipher cipher = CryptoUtils.createDecryptCipher(_key, params.getNonce());
             return CryptoUtils.decrypt(bytes, cipher, params);
         } catch (NoSuchPaddingException
                 | NoSuchAlgorithmException

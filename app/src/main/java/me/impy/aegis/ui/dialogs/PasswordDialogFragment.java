@@ -60,10 +60,7 @@ public class PasswordDialogFragment extends SlotDialogFragment {
                     getListener().onSlotResult(slot, cipher);
                     dialog.dismiss();
                 });
-                task.execute(new DerivationTask.Params() {{
-                    Slot = slot;
-                    Password = password;
-                }});
+                task.execute(new DerivationTask.Params(slot, password));
             });
         });
 

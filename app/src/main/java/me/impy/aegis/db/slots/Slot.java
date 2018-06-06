@@ -42,7 +42,7 @@ public abstract class Slot implements Serializable {
     public MasterKey getKey(Cipher cipher) throws SlotException, SlotIntegrityException {
         try {
             CryptResult res = CryptoUtils.decrypt(_encryptedMasterKey, cipher, _encryptedMasterKeyParams);
-            SecretKey key = new SecretKeySpec(res.Data, CryptoUtils.CRYPTO_AEAD);
+            SecretKey key = new SecretKeySpec(res.getData(), CryptoUtils.CRYPTO_AEAD);
             return new MasterKey(key);
         } catch (AEADBadTagException e) {
             throw new SlotIntegrityException(e);
@@ -56,8 +56,8 @@ public abstract class Slot implements Serializable {
         try {
             byte[] masterKeyBytes = masterKey.getBytes();
             CryptResult res = CryptoUtils.encrypt(masterKeyBytes, cipher);
-            _encryptedMasterKey = res.Data;
-            _encryptedMasterKeyParams = res.Parameters;
+            _encryptedMasterKey = res.getData();
+            _encryptedMasterKeyParams = res.getParams();
         } catch (BadPaddingException | IllegalBlockSizeException e) {
             throw new SlotException(e);
         }
@@ -76,7 +76,7 @@ public abstract class Slot implements Serializable {
 
     public Cipher createDecryptCipher(SecretKey key) throws SlotException {
         try {
-            return CryptoUtils.createDecryptCipher(key, _encryptedMasterKeyParams.Nonce);
+            return CryptoUtils.createDecryptCipher(key, _encryptedMasterKeyParams.getNonce());
         } catch (InvalidAlgorithmParameterException
                 | NoSuchAlgorithmException
                 | InvalidKeyException

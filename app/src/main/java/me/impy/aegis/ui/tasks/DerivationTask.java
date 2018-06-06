@@ -21,7 +21,7 @@ public class DerivationTask extends ProgressDialogTask<DerivationTask.Params, Se
 
         Params params = args[0];
         byte[] salt = CryptoUtils.generateSalt();
-        return params.Slot.deriveKey(params.Password, salt, CryptoUtils.CRYPTO_SCRYPT_N, CryptoUtils.CRYPTO_SCRYPT_r, CryptoUtils.CRYPTO_SCRYPT_p);
+        return params.getSlot().deriveKey(params.getPassword(), salt, CryptoUtils.CRYPTO_SCRYPT_N, CryptoUtils.CRYPTO_SCRYPT_r, CryptoUtils.CRYPTO_SCRYPT_p);
     }
 
     @Override
@@ -31,8 +31,21 @@ public class DerivationTask extends ProgressDialogTask<DerivationTask.Params, Se
     }
 
     public static class Params {
-        public PasswordSlot Slot;
-        public char[] Password;
+        private PasswordSlot _slot;
+        private char[] _password;
+
+        public Params(PasswordSlot slot, char[] password) {
+            _slot = slot;
+            _password = password;
+        }
+
+        public PasswordSlot getSlot() {
+            return _slot;
+        }
+
+        public char[] getPassword() {
+            return _password;
+        }
     }
 
     public interface Callback {

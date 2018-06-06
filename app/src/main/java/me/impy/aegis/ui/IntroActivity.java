@@ -115,10 +115,8 @@ public class IntroActivity extends AppIntro implements DerivationTask.Callback {
 
         if (newFragment == _endSlide && cryptType != CustomAuthenticationSlide.CRYPT_TYPE_NONE) {
             _passwordSlot = new PasswordSlot();
-            new DerivationTask(this, this).execute(new DerivationTask.Params() {{
-                Slot = _passwordSlot;
-                Password = _authenticatedSlide.getPassword();
-            }});
+            DerivationTask.Params params = new DerivationTask.Params(_passwordSlot, _authenticatedSlide.getPassword());
+            new DerivationTask(this, this).execute(params);
         } else if (oldFragment == _authenticationSlide && newFragment != _endSlide) {
             // skip to the last slide if no encryption will be used
             if (cryptType == CustomAuthenticationSlide.CRYPT_TYPE_NONE) {

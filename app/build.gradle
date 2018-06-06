@@ -38,7 +38,7 @@ dependencies {
     implementation 'com.android.support:cardview-v7:27.1.1'
     implementation 'com.android.support:support-v4:27.1.1'
     implementation 'com.mattprecious.swirl:swirl:1.0.0'
-    implementation 'com.madgag.spongycastle:core:1.56.0.0'
+    implementation 'com.madgag.spongycastle:core:1.58.0.0'
     implementation 'com.github.apl-devs:appintro:v4.2.2'
     implementation 'com.getbase:floatingactionbutton:1.10.1'
     testImplementation 'junit:junit:4.12'

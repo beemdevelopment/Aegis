@@ -74,13 +74,7 @@ public class CryptoUtils {
         byte[] tag = Arrays.copyOfRange(result, result.length - CRYPTO_AEAD_TAG_SIZE, result.length);
         byte[] encrypted = Arrays.copyOfRange(result, 0, result.length - CRYPTO_AEAD_TAG_SIZE);
 
-        return new CryptResult() {{
-            Parameters = new CryptParameters() {{
-                Nonce = cipher.getIV();
-                Tag = tag;
-            }};
-            Data = encrypted;
-        }};
+        return new CryptResult(encrypted, new CryptParameters(cipher.getIV(), tag));
     }
 
     public static CryptResult decrypt(byte[] encrypted, Cipher cipher, CryptParameters params)
@@ -88,15 +82,12 @@ public class CryptoUtils {
         // append the tag to the ciphertext
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
         stream.write(encrypted);
-        stream.write(params.Tag);
+        stream.write(params.getTag());
 
         encrypted = stream.toByteArray();
         byte[] decrypted = cipher.doFinal(encrypted);
 
-        return new CryptResult() {{
-            Parameters = params;
-            Data = decrypted;
-        }};
+        return new CryptResult(decrypted, params);
     }
 
     public static SecretKey generateKey() {

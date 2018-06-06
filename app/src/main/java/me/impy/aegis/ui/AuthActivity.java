@@ -31,9 +31,9 @@ import me.impy.aegis.db.slots.SlotException;
 import me.impy.aegis.helpers.FingerprintHelper;
 import me.impy.aegis.helpers.FingerprintUiHelper;
 import me.impy.aegis.helpers.EditTextHelper;
-import me.impy.aegis.ui.tasks.SlotCollectionTask;
+import me.impy.aegis.ui.tasks.SlotListTask;
 
-public class AuthActivity extends AegisActivity implements FingerprintUiHelper.Callback, SlotCollectionTask.Callback {
+public class AuthActivity extends AegisActivity implements FingerprintUiHelper.Callback, SlotListTask.Callback {
     private EditText _textPassword;
 
     private SlotList _slots;
@@ -112,10 +112,8 @@ public class AuthActivity extends AegisActivity implements FingerprintUiHelper.C
     }
 
     private <T extends Slot> void trySlots(Class<T> type, Object obj) {
-        new SlotCollectionTask<>(type, this, this).execute(new SlotCollectionTask.Params(){{
-            Slots = _slots;
-            Obj = obj;
-        }});
+        SlotListTask.Params params = new SlotListTask.Params(_slots, obj);
+        new SlotListTask<>(type, this, this).execute(params);
     }
 
     private void setKey(MasterKey key) {
