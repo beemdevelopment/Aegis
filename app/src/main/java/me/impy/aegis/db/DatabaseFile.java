@@ -23,7 +23,7 @@ public class DatabaseFile {
     private CryptParameters _cryptParameters;
     private SlotCollection _slots;
 
-    public byte[] serialize() throws DatabaseFileException {
+    public byte[] serialize() {
         try {
             JSONObject cryptObj = null;
             if (isEncrypted()) {
@@ -45,8 +45,8 @@ public class DatabaseFile {
 
             String string = obj.toString(4);
             return string.getBytes("UTF-8");
-        } catch (SlotCollectionException | UnsupportedEncodingException | JSONException e) {
-            throw new DatabaseFileException(e);
+        } catch (JSONException | UnsupportedEncodingException e) {
+            throw new RuntimeException(e);
         }
     }
 

@@ -16,8 +16,8 @@ public abstract class DatabaseImporter {
         // note: keep this list sorted alphabetically
         LinkedHashMap<String, Class<? extends DatabaseImporter>> importers = new LinkedHashMap<>();
         importers.put("Aegis", AegisImporter.class);
-        importers.put("andOTP", AndOTPImporter.class);
-        importers.put("FreeOTP", FreeOTPImporter.class);
+        importers.put("andOTP", AndOtpImporter.class);
+        importers.put("FreeOTP", FreeOtpImporter.class);
         _importers = Collections.unmodifiableMap(importers);
     }
 

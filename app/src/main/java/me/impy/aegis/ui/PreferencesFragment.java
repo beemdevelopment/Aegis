@@ -313,7 +313,7 @@ public class PreferencesFragment extends PreferenceFragmentCompat implements Pas
     private void importDatabase(DatabaseImporter importer) throws DatabaseImporterException {
         List<DatabaseEntry> entries = importer.convert();
         for (DatabaseEntry entry : entries) {
-            _db.addKey(entry);
+            _db.addEntry(entry);
         }
 
         if (!saveDatabase()) {

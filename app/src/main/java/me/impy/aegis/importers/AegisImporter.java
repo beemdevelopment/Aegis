@@ -43,7 +43,7 @@ public class AegisImporter extends DatabaseImporter {
 
             Database db = new Database();
             db.deserialize(obj);
-            return db.getKeys();
+            return db.getEntries();
         } catch (DatabaseException | DatabaseFileException e) {
             throw new DatabaseImporterException(e);
         }

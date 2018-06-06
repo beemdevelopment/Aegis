@@ -103,7 +103,7 @@ public class DatabaseManager {
                     stream.close();
                 }
             }
-        } catch (IOException | DatabaseFileException e) {
+        } catch (IOException e) {
             throw new DatabaseManagerException(e);
         }
     }
@@ -119,7 +119,7 @@ public class DatabaseManager {
                 _file.setContent(obj);
             }
             save(_context, _file);
-        } catch (DatabaseException | DatabaseFileException e) {
+        } catch (DatabaseFileException e) {
             throw new DatabaseManagerException(e);
         }
     }
@@ -157,34 +157,34 @@ public class DatabaseManager {
             }
 
             return file.getAbsolutePath();
-        } catch (DatabaseException | IOException | DatabaseFileException e) {
+        } catch (IOException | DatabaseFileException e) {
             throw new DatabaseManagerException(e);
         }
     }
 
-    public void addKey(DatabaseEntry entry) {
+    public void addEntry(DatabaseEntry entry) {
         assertState(false, true);
-        _db.addKey(entry);
+        _db.addEntry(entry);
     }
 
-    public void removeKey(DatabaseEntry entry) {
+    public void removeEntry(DatabaseEntry entry) {
         assertState(false, true);
-        _db.removeKey(entry);
+        _db.removeEntry(entry);
     }
 
-    public void replaceKey(DatabaseEntry entry) {
+    public void replaceEntry(DatabaseEntry entry) {
         assertState(false, true);
-        _db.replaceKey(entry);
+        _db.replaceEntry(entry);
     }
 
-    public void swapKeys(DatabaseEntry entry1, DatabaseEntry entry2) {
+    public void swapEntries(DatabaseEntry entry1, DatabaseEntry entry2) {
         assertState(false, true);
-        _db.swapKeys(entry1, entry2);
+        _db.swapEntries(entry1, entry2);
     }
 
-    public List<DatabaseEntry> getKeys() {
+    public List<DatabaseEntry> getEntries() {
         assertState(false, true);
-        return _db.getKeys();
+        return _db.getEntries();
     }
 
     public MasterKey getMasterKey() {

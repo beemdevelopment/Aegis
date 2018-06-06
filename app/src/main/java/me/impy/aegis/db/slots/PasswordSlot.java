@@ -3,9 +3,6 @@ package me.impy.aegis.db.slots;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.security.NoSuchAlgorithmException;
-import java.security.spec.InvalidKeySpecException;
-
 import javax.crypto.SecretKey;
 
 import me.impy.aegis.crypto.CryptoUtils;
@@ -23,7 +20,7 @@ public class PasswordSlot extends RawSlot {
     }
 
     @Override
-    public JSONObject serialize() throws SlotException {
+    public JSONObject serialize() {
         try {
             JSONObject obj = super.serialize();
             obj.put("n", _n);
@@ -32,7 +29,7 @@ public class PasswordSlot extends RawSlot {
             obj.put("salt", Hex.encode(_salt));
             return obj;
         } catch (JSONException e) {
-            throw new SlotException(e);
+            throw new RuntimeException(e);
         }
     }
 

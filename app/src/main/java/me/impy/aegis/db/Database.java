@@ -4,19 +4,16 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-import java.util.UUID;
 
-import me.impy.aegis.crypto.KeyInfoException;
+import me.impy.aegis.otp.OtpInfoException;
 
 public class Database {
     private static final int VERSION = 1;
 
-    private List<DatabaseEntry> _entries = new ArrayList<>();
+    private DatabaseEntryList _entries = new DatabaseEntryList();
 
-    public JSONObject serialize() throws DatabaseException {
+    public JSONObject serialize() {
         try {
             JSONArray array = new JSONArray();
             for (DatabaseEntry e : _entries) {
@@ -28,7 +25,7 @@ public class Database {
             obj.put("entries", array);
             return obj;
         } catch (JSONException e) {
-            throw new DatabaseException(e);
+            throw new RuntimeException(e);
         }
     }
 
@@ -44,52 +41,30 @@ public class Database {
             for (int i = 0; i < array.length(); i++) {
                 DatabaseEntry entry = new DatabaseEntry(null);
                 entry.deserialize(array.getJSONObject(i));
-                addKey(entry);
+                addEntry(entry);
             }
-        } catch (JSONException | KeyInfoException e) {
+        } catch (OtpInfoException | JSONException e) {
             throw new DatabaseException(e);
         }
     }
 
-    public void addKey(DatabaseEntry entry) {
-        if (tryGetKeyByUUID(entry.getUUID()) != null) {
-            throw new AssertionError("entry found with the same uuid");
-        }
+    public void addEntry(DatabaseEntry entry) {
         _entries.add(entry);
     }
 
-    public void removeKey(DatabaseEntry entry) {
-        entry = getKeyByUUID(entry.getUUID());
+    public void removeEntry(DatabaseEntry entry) {
         _entries.remove(entry);
     }
 
-    public void replaceKey(DatabaseEntry newEntry) {
-        DatabaseEntry oldEntry = getKeyByUUID(newEntry.getUUID());
-        _entries.set(_entries.indexOf(oldEntry), newEntry);
+    public void replaceEntry(DatabaseEntry newEntry) {
+        _entries.replace(newEntry);
     }
 
-    public void swapKeys(DatabaseEntry entry1, DatabaseEntry entry2) {
-        Collections.swap(_entries, _entries.indexOf(entry1), _entries.indexOf(entry2));
+    public void swapEntries(DatabaseEntry entry1, DatabaseEntry entry2) {
+        _entries.swap(entry1, entry2);
     }
 
-    public List<DatabaseEntry> getKeys() {
-        return Collections.unmodifiableList(_entries);
-    }
-
-    private DatabaseEntry tryGetKeyByUUID(UUID uuid) {
-        for (DatabaseEntry entry : _entries) {
-            if (entry.getUUID().equals(uuid)) {
-                return entry;
-            }
-        }
-        return null;
-    }
-
-    private DatabaseEntry getKeyByUUID(UUID uuid) {
-        DatabaseEntry entry = tryGetKeyByUUID(uuid);
-        if (entry == null) {
-            throw new AssertionError("no entry found with the same uuid");
-        }
-        return entry;
+    public List<DatabaseEntry> getEntries() {
+        return _entries.getList();
     }
 }

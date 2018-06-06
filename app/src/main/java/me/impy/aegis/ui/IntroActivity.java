@@ -18,7 +18,6 @@ import javax.crypto.SecretKey;
 import me.impy.aegis.Preferences;
 import me.impy.aegis.R;
 import me.impy.aegis.crypto.MasterKey;
-import me.impy.aegis.db.DatabaseException;
 import me.impy.aegis.db.DatabaseFileException;
 import me.impy.aegis.db.DatabaseManagerException;
 import me.impy.aegis.db.slots.FingerprintSlot;
@@ -186,7 +185,7 @@ public class IntroActivity extends AppIntro implements DerivationTask.Callback {
                 _databaseFile.setContent(obj, masterKey);
             }
             DatabaseManager.save(getApplicationContext(), _databaseFile);
-        } catch (DatabaseException | DatabaseManagerException | DatabaseFileException e) {
+        } catch (DatabaseManagerException | DatabaseFileException e) {
             setException(e);
             return;
         }

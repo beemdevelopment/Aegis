@@ -19,7 +19,7 @@ public class SlotCollection implements Iterable<Slot>, Serializable {
     private List<Slot> _slots = new ArrayList<>();
     private byte[] _masterHash;
 
-    public static JSONObject serialize(SlotCollection slots) throws SlotCollectionException {
+    public static JSONObject serialize(SlotCollection slots) {
         try {
             JSONObject obj = new JSONObject();
             obj.put("hash", Hex.encode(slots.getMasterHash()));
@@ -31,8 +31,8 @@ public class SlotCollection implements Iterable<Slot>, Serializable {
 
             obj.put("entries", entries);
             return obj;
-        } catch (SlotException | JSONException e) {
-            throw new SlotCollectionException(e);
+        } catch (JSONException e) {
+            throw new RuntimeException(e);
         }
     }
 

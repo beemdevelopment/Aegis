@@ -6,7 +6,6 @@ import javax.crypto.SecretKey;
 
 import me.impy.aegis.crypto.CryptoUtils;
 import me.impy.aegis.db.slots.PasswordSlot;
-import me.impy.aegis.db.slots.SlotException;
 
 public class DerivationTask extends ProgressDialogTask<DerivationTask.Params, SecretKey> {
     private Callback _cb;

@@ -67,7 +67,7 @@ public abstract class Slot implements Serializable {
         }
     }
 
-    public JSONObject serialize() throws SlotException {
+    public JSONObject serialize() {
         try {
             JSONObject obj = new JSONObject();
             obj.put("type", getType());
@@ -75,7 +75,7 @@ public abstract class Slot implements Serializable {
             obj.put("key", Hex.encode(_encryptedMasterKey));
             return obj;
         } catch (JSONException e) {
-            throw new SlotException(e);
+            throw new RuntimeException(e);
         }
     }
 

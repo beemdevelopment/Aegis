@@ -3,6 +3,7 @@ package me.impy.aegis.ui;
 import android.content.Context;
 import android.content.Intent;
 import android.hardware.Camera;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -16,11 +17,10 @@ import java.util.Collections;
 import me.dm7.barcodescanner.core.IViewFinder;
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
 import me.impy.aegis.R;
-import me.impy.aegis.crypto.KeyInfo;
-import me.impy.aegis.crypto.KeyInfoException;
 import me.impy.aegis.db.DatabaseEntry;
 import me.impy.aegis.helpers.SquareFinderView;
-import me.impy.aegis.ui.views.KeyProfile;
+import me.impy.aegis.otp.GoogleAuthInfo;
+import me.impy.aegis.otp.GoogleAuthInfoException;
 
 import static android.hardware.Camera.CameraInfo.CAMERA_FACING_BACK;
 import static android.hardware.Camera.CameraInfo.CAMERA_FACING_FRONT;
@@ -107,16 +107,19 @@ public class ScannerActivity extends AegisActivity implements ZXingScannerView.R
     @Override
     public void handleResult(Result rawResult) {
         try {
-            KeyInfo info = KeyInfo.fromURL(rawResult.getText());
-            KeyProfile profile = new KeyProfile(new DatabaseEntry(info));
-            profile.getEntry().setName(info.getAccountName());
+            // parse google auth uri
+            Uri uri = Uri.parse(rawResult.getText());
+            GoogleAuthInfo info = GoogleAuthInfo.parseUri(uri);
 
-            Intent resultIntent = new Intent();
-            resultIntent.putExtra("KeyProfile", profile);
+            DatabaseEntry entry = new DatabaseEntry(info.getOtpInfo());
+            entry.setIssuer(info.getIssuer());
+            entry.setName(info.getAccountName());
 
-            setResult(RESULT_OK, resultIntent);
+            Intent intent = new Intent();
+            intent.putExtra("entry", entry);
+            setResult(RESULT_OK, intent);
             finish();
-        } catch (KeyInfoException e) {
+        } catch (GoogleAuthInfoException e) {
             Toast.makeText(this, "An error occurred while trying to parse the QR code contents", Toast.LENGTH_SHORT).show();
         }
 

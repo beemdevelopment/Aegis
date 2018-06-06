@@ -26,15 +26,14 @@ import me.impy.aegis.db.DatabaseEntry;
 import me.impy.aegis.db.DatabaseManager;
 import me.impy.aegis.helpers.PermissionHelper;
 import me.impy.aegis.ui.dialogs.Dialogs;
-import me.impy.aegis.ui.views.KeyProfile;
-import me.impy.aegis.ui.views.KeyProfileView;
+import me.impy.aegis.ui.views.EntryListView;
 
-public class MainActivity extends AegisActivity implements KeyProfileView.Listener {
+public class MainActivity extends AegisActivity implements EntryListView.Listener {
     // activity request codes
-    private static final int CODE_SCAN_KEYINFO = 0;
-    private static final int CODE_ADD_KEYINFO = 1;
-    private static final int CODE_EDIT_KEYINFO = 2;
-    private static final int CODE_ENTER_KEYINFO = 3;
+    private static final int CODE_SCAN = 0;
+    private static final int CODE_ADD_ENTRY = 1;
+    private static final int CODE_EDIT_ENTRY = 2;
+    private static final int CODE_ENTER_ENTRY = 3;
     private static final int CODE_DO_INTRO = 4;
     private static final int CODE_DECRYPT = 5;
     private static final int CODE_PREFERENCES = 6;
@@ -44,7 +43,7 @@ public class MainActivity extends AegisActivity implements KeyProfileView.Listen
 
     private AegisApplication _app;
     private DatabaseManager _db;
-    private KeyProfileView _keyProfileView;
+    private EntryListView _entryListView;
 
     private Menu _menu;
     private FloatingActionsMenu _fabMenu;
@@ -58,20 +57,20 @@ public class MainActivity extends AegisActivity implements KeyProfileView.Listen
         // set up the main view
         setContentView(R.layout.activity_main);
 
-        // set up the key profile view
-        _keyProfileView = (KeyProfileView) getSupportFragmentManager().findFragmentById(R.id.key_profiles);
-        _keyProfileView.setListener(this);
-        _keyProfileView.setShowIssuer(getPreferences().isIssuerVisible());
+        // set up the entry view
+        _entryListView = (EntryListView) getSupportFragmentManager().findFragmentById(R.id.key_profiles);
+        _entryListView.setListener(this);
+        _entryListView.setShowIssuer(getPreferences().isIssuerVisible());
 
         // set up the floating action button
         _fabMenu = findViewById(R.id.fab);
         findViewById(R.id.fab_enter).setOnClickListener(view -> {
             _fabMenu.collapse();
-            onEnterKeyInfo();
+            onEnterEntry();
         });
         findViewById(R.id.fab_scan).setOnClickListener(view -> {
             _fabMenu.collapse();
-            onScanKeyInfo();
+            onScan();
         });
 
         // skip this part if this is the not initial startup and the database has been unlocked
@@ -101,9 +100,9 @@ public class MainActivity extends AegisActivity implements KeyProfileView.Listen
             }
         }
 
-        // if the database has been decrypted at this point, we can load the key profiles
+        // if the database has been decrypted at this point, we can load the entries
         if (!_db.isLocked()) {
-            loadKeyProfiles();
+            loadEntries();
         }
     }
 
@@ -141,17 +140,17 @@ public class MainActivity extends AegisActivity implements KeyProfileView.Listen
         }
 
         switch (requestCode) {
-            case CODE_SCAN_KEYINFO:
-                onScanKeyInfoResult(resultCode, data);
+            case CODE_SCAN:
+                onScanResult(resultCode, data);
                 break;
-            case CODE_ADD_KEYINFO:
-                onAddKeyInfoResult(resultCode, data);
+            case CODE_ADD_ENTRY:
+                onAddEntryResult(resultCode, data);
                 break;
-            case CODE_EDIT_KEYINFO:
-                onEditKeyInfoResult(resultCode, data);
+            case CODE_EDIT_ENTRY:
+                onEditEntryResult(resultCode, data);
                 break;
-            case CODE_ENTER_KEYINFO:
-                onEnterKeyInfoResult(resultCode, data);
+            case CODE_ENTER_ENTRY:
+                onEnterEntryResult(resultCode, data);
                 break;
             case CODE_DO_INTRO:
                 onDoIntroResult(resultCode, data);
@@ -174,35 +173,35 @@ public class MainActivity extends AegisActivity implements KeyProfileView.Listen
 
         switch (requestCode) {
             case CODE_PERM_CAMERA:
-                onScanKeyInfo();
+                onScan();
                 break;
         }
     }
 
     private void onPreferencesResult(int resultCode, Intent data) {
-        // refresh the entire key profile list if needed
+        // refresh the entire entry list if needed
         if (data.getBooleanExtra("needsRecreate", false)) {
             recreate();
         } else if (data.getBooleanExtra("needsRefresh", false)) {
             boolean showIssuer = getPreferences().isIssuerVisible();
-            _keyProfileView.setShowIssuer(showIssuer);
+            _entryListView.setShowIssuer(showIssuer);
         }
     }
 
-    private void startEditProfileActivity(int requestCode, KeyProfile profile, boolean isNew) {
-        Intent intent = new Intent(this, EditProfileActivity.class);
-        if (profile != null) {
-            intent.putExtra("KeyProfile", profile);
+    private void startEditProfileActivity(int requestCode, DatabaseEntry entry, boolean isNew) {
+        Intent intent = new Intent(this, EditEntryActivity.class);
+        if (entry != null) {
+            intent.putExtra("entry", entry);
         }
         intent.putExtra("isNew", isNew);
         startActivityForResult(intent, requestCode);
     }
 
-    private void onEnterKeyInfo() {
-        startEditProfileActivity(CODE_ENTER_KEYINFO, null, true);
+    private void onEnterEntry() {
+        startEditProfileActivity(CODE_ENTER_ENTRY, null, true);
     }
 
-    private void onScanKeyInfo() {
+    private void onScan() {
         if (!PermissionHelper.request(this, CODE_PERM_CAMERA, Manifest.permission.CAMERA)) {
             return;
         }
@@ -210,49 +209,47 @@ public class MainActivity extends AegisActivity implements KeyProfileView.Listen
         startScanActivity();
     }
 
-    private void onScanKeyInfoResult(int resultCode, Intent data) {
+    private void onScanResult(int resultCode, Intent data) {
         if (resultCode == RESULT_OK) {
-            KeyProfile profile = (KeyProfile)data.getSerializableExtra("KeyProfile");
-            startEditProfileActivity(CODE_ADD_KEYINFO, profile, true);
+            DatabaseEntry entry = (DatabaseEntry) data.getSerializableExtra("entry");
+            startEditProfileActivity(CODE_ADD_ENTRY, entry, true);
         }
     }
 
-    private void onAddKeyInfoResult(int resultCode, Intent data) {
+    private void onAddEntryResult(int resultCode, Intent data) {
         if (resultCode == RESULT_OK) {
-            KeyProfile profile = (KeyProfile) data.getSerializableExtra("KeyProfile");
-            addKey(profile);
+            DatabaseEntry entry = (DatabaseEntry) data.getSerializableExtra("entry");
+            addEntry(entry);
             saveDatabase();
         }
     }
 
-    private void onEditKeyInfoResult(int resultCode, Intent data) {
+    private void onEditEntryResult(int resultCode, Intent data) {
         if (resultCode == RESULT_OK) {
-            KeyProfile profile = (KeyProfile) data.getSerializableExtra("KeyProfile");
+            DatabaseEntry entry = (DatabaseEntry) data.getSerializableExtra("entry");
             if (!data.getBooleanExtra("delete", false)) {
                 // this profile has been serialized/deserialized and is no longer the same instance it once was
-                // to deal with this, the replaceKey functions are used
-                _db.replaceKey(profile.getEntry());
-                _keyProfileView.replaceKey(profile);
+                // to deal with this, the replaceEntry functions are used
+                _db.replaceEntry(entry);
+                _entryListView.replaceEntry(entry);
                 saveDatabase();
             } else {
-                deleteProfile(profile);
+                deleteEntry(entry);
             }
         }
     }
 
-    private void onEnterKeyInfoResult(int resultCode, Intent data) {
+    private void onEnterEntryResult(int resultCode, Intent data) {
         if (resultCode == RESULT_OK) {
-            KeyProfile profile = (KeyProfile) data.getSerializableExtra("KeyProfile");
-            addKey(profile);
+            DatabaseEntry entry = (DatabaseEntry) data.getSerializableExtra("entry");
+            addEntry(entry);
             saveDatabase();
         }
     }
 
-    private void addKey(KeyProfile profile) {
-        DatabaseEntry entry = profile.getEntry();
-        entry.setName(entry.getInfo().getAccountName());
-        _db.addKey(entry);
-        _keyProfileView.addKey(profile);
+    private void addEntry(DatabaseEntry entry) {
+        _db.addEntry(entry);
+        _entryListView.addEntry(entry);
     }
 
     private void onDoIntroResult(int resultCode, Intent data) {
@@ -275,7 +272,7 @@ public class MainActivity extends AegisActivity implements KeyProfileView.Listen
             return;
         }
 
-        loadKeyProfiles();
+        loadEntries();
     }
 
     private void onDecryptResult(int resultCode, Intent intent) {
@@ -289,13 +286,13 @@ public class MainActivity extends AegisActivity implements KeyProfileView.Listen
             return;
         }
 
-        loadKeyProfiles();
+        loadEntries();
         doShortcutActions();
     }
 
     private void startScanActivity() {
         Intent scannerActivity = new Intent(getApplicationContext(), ScannerActivity.class);
-        startActivityForResult(scannerActivity, CODE_SCAN_KEYINFO);
+        startActivityForResult(scannerActivity, CODE_SCAN);
     }
 
     private boolean doShortcutActions() {
@@ -330,12 +327,12 @@ public class MainActivity extends AegisActivity implements KeyProfileView.Listen
         updateLockIcon();
 
         // refresh all codes to prevent showing old ones
-        _keyProfileView.refresh();
+        _entryListView.refresh();
     }
 
-    private BottomSheetDialog createBottomSheet(final KeyProfile profile) {
+    private BottomSheetDialog createBottomSheet(final DatabaseEntry entry) {
         BottomSheetDialog dialog = new BottomSheetDialog(this);
-        dialog.setContentView(R.layout.bottom_sheet_edit_profile);
+        dialog.setContentView(R.layout.bottom_sheet_edit_entry);
         dialog.setCancelable(true);
         dialog.getWindow().setLayout(LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT);
@@ -344,7 +341,7 @@ public class MainActivity extends AegisActivity implements KeyProfileView.Listen
         dialog.findViewById(R.id.copy_button).setOnClickListener(view -> {
             dialog.dismiss();
             ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
-            ClipData clip = ClipData.newPlainText("text/plain", profile.getCode());
+            ClipData clip = ClipData.newPlainText("text/plain", entry.getInfo().getOtp());
             clipboard.setPrimaryClip(clip);
             Toast.makeText(this, "Code copied to the clipboard", Toast.LENGTH_SHORT).show();
         });
@@ -352,23 +349,23 @@ public class MainActivity extends AegisActivity implements KeyProfileView.Listen
         dialog.findViewById(R.id.delete_button).setOnClickListener(view -> {
             dialog.dismiss();
             Dialogs.showDeleteEntryDialog(this, (d, which) -> {
-                deleteProfile(profile);
+                deleteEntry(entry);
             });
         });
 
         dialog.findViewById(R.id.edit_button).setOnClickListener(view -> {
             dialog.dismiss();
-            startEditProfileActivity(CODE_EDIT_KEYINFO, profile, false);
+            startEditProfileActivity(CODE_EDIT_ENTRY, entry, false);
         });
 
         return dialog;
     }
 
-    private void deleteProfile(KeyProfile profile) {
-        _db.removeKey(profile.getEntry());
+    private void deleteEntry(DatabaseEntry entry) {
+        _db.removeEntry(entry);
         saveDatabase();
 
-        _keyProfileView.removeKey(profile);
+        _entryListView.removeEntry(entry);
     }
 
     @Override
@@ -387,7 +384,7 @@ public class MainActivity extends AegisActivity implements KeyProfileView.Listen
                 startActivityForResult(intent, CODE_PREFERENCES);
                 return true;
             case R.id.action_lock:
-                _keyProfileView.clearKeys();
+                _entryListView.clearEntries();
                 _db.lock();
                 startAuthActivity();
                 return true;
@@ -411,11 +408,11 @@ public class MainActivity extends AegisActivity implements KeyProfileView.Listen
         }
     }
 
-    private void loadKeyProfiles() {
+    private void loadEntries() {
         updateLockIcon();
 
-        for (DatabaseEntry entry : _db.getKeys()) {
-            _keyProfileView.addKey(new KeyProfile(entry));
+        for (DatabaseEntry entry : _db.getEntries()) {
+            _entryListView.addEntry(entry);
         }
     }
 
@@ -428,13 +425,13 @@ public class MainActivity extends AegisActivity implements KeyProfileView.Listen
     }
 
     @Override
-    public void onEntryClick(KeyProfile profile) {
-        createBottomSheet(profile).show();
+    public void onEntryClick(DatabaseEntry entry) {
+        createBottomSheet(entry).show();
     }
 
     @Override
     public void onEntryMove(DatabaseEntry entry1, DatabaseEntry entry2) {
-        _db.swapKeys(entry1, entry2);
+        _db.swapEntries(entry1, entry2);
     }
 
     @Override

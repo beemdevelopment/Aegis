@@ -5,8 +5,6 @@ import android.widget.EditText;
 
 import java.util.Arrays;
 
-import me.impy.aegis.crypto.CryptoUtils;
-
 public class EditTextHelper {
     private EditTextHelper() {
     }
