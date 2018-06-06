@@ -8,8 +8,10 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.github.paolorotolo.appintro.ISlidePolicy;
@@ -23,6 +25,7 @@ public class CustomAuthenticationSlide extends Fragment implements ISlidePolicy,
     public static final int CRYPT_TYPE_PASS = 2;
     public static final int CRYPT_TYPE_FINGER = 3;
 
+    private Spinner _authenticationSpinner;
     private RadioGroup _buttonGroup;
     private int _bgColor;
 
@@ -38,8 +41,8 @@ public class CustomAuthenticationSlide extends Fragment implements ISlidePolicy,
         if (manager != null) {
             RadioButton button = view.findViewById(R.id.rb_fingerprint);
             TextView text = view.findViewById(R.id.text_rb_fingerprint);
-            button.setVisibility(View.VISIBLE);
-            text.setVisibility(View.VISIBLE);
+            button.setEnabled(false);
+            text.setEnabled(false);
         }
 
         view.findViewById(R.id.main).setBackgroundColor(_bgColor);

@@ -58,7 +58,9 @@ public class IntroActivity extends AppIntro implements DerivationTask.Callback {
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_SECURE);
         }
 
+        setWizardMode(true);
         showSkipButton(false);
+        pager.setPagingEnabled(false);
         //showPagerIndicator(false);
         setGoBackLock(true);
 
@@ -68,19 +70,6 @@ public class IntroActivity extends AppIntro implements DerivationTask.Callback {
         homeSliderPage.setImageDrawable(R.drawable.intro_shield);
         homeSliderPage.setBgColor(getResources().getColor(R.color.colorPrimary));
         addSlide(AppIntroFragment.newInstance(homeSliderPage));
-
-        SliderPage permSliderPage = new SliderPage();
-        permSliderPage.setTitle("Permissions");
-        permSliderPage.setDescription("Aegis needs permission to use your camera in order to scan QR codes. " +
-                "It also needs access to external storage to able to export the database.");
-        permSliderPage.setImageDrawable(R.drawable.intro_scanner);
-        permSliderPage.setBgColor(getResources().getColor(R.color.colorAccent));
-        addSlide(AppIntroFragment.newInstance(permSliderPage));
-        askForPermissions(new String[]{
-                Manifest.permission.CAMERA,
-                Manifest.permission.READ_EXTERNAL_STORAGE,
-                Manifest.permission.WRITE_EXTERNAL_STORAGE
-        }, 2);
 
         _authenticationSlide = new CustomAuthenticationSlide();
         _authenticationSlide.setBgColor(getResources().getColor(R.color.colorHeaderSuccess));
@@ -124,7 +113,7 @@ public class IntroActivity extends AppIntro implements DerivationTask.Callback {
             // skip to the last slide if no encryption will be used
             if (cryptType == CustomAuthenticationSlide.CRYPT_TYPE_NONE) {
                 // TODO: no magic indices
-                getPager().setCurrentItem(5);
+                getPager().setCurrentItem(4);
             }
         }
     }
