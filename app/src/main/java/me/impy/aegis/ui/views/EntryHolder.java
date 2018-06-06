@@ -64,7 +64,7 @@ public class EntryHolder extends RecyclerView.ViewHolder {
             _profileIssuer.setText(" - " + entry.getIssuer());
         }
 
-        TextDrawable drawable = TextDrawableHelper.generate(entry.getName());
+        TextDrawable drawable = TextDrawableHelper.generate(entry.getIssuer(), entry.getName());
         _profileDrawable.setImageDrawable(drawable);
 
         refreshCode();

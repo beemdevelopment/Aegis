@@ -97,7 +97,7 @@ public class EditEntryActivity extends AegisActivity {
 
         // fill the fields with values if possible
         if (_entry != null) {
-            TextDrawable drawable = TextDrawableHelper.generate(_entry.getName());
+            TextDrawable drawable = TextDrawableHelper.generate(_entry.getIssuer(), _entry.getName());
             _iconView.setImageDrawable(drawable);
 
             _textName.setText(_entry.getName());
@@ -142,21 +142,8 @@ public class EditEntryActivity extends AegisActivity {
         _spinnerDigits.setOnItemSelectedListener(_selectedListener);
 
         // update the icon if the text changed
-        _textName.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                TextDrawable drawable = TextDrawableHelper.generate(s.toString());
-                _iconView.setImageDrawable(drawable);
-            }
-        });
+        _textIssuer.addTextChangedListener(_iconChangeListener);
+        _textName.addTextChangedListener(_iconChangeListener);
 
         // show/hide period and counter fields on type change
         _spinnerType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -403,6 +390,22 @@ public class EditEntryActivity extends AegisActivity {
         @Override
         public void afterTextChanged(Editable s) {
             onFieldEdited();
+        }
+    };
+
+    private TextWatcher _iconChangeListener = new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+            TextDrawable drawable = TextDrawableHelper.generate(_textIssuer.getText().toString(), _textName.getText().toString());
+            _iconView.setImageDrawable(drawable);
         }
     };
 
