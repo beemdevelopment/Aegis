@@ -51,7 +51,7 @@ public class PasswordDialogFragment extends SlotDialogFragment {
                 DerivationTask task = new DerivationTask(getActivity(), key -> {
                     Cipher cipher;
                     try {
-                        cipher = Slot.createCipher(key, Cipher.ENCRYPT_MODE);
+                        cipher = Slot.createEncryptCipher(key);
                     } catch (SlotException e) {
                         getListener().onException(e);
                         dialog.cancel();

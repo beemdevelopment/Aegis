@@ -26,7 +26,7 @@ import me.impy.aegis.crypto.MasterKey;
 import me.impy.aegis.db.slots.FingerprintSlot;
 import me.impy.aegis.db.slots.PasswordSlot;
 import me.impy.aegis.db.slots.Slot;
-import me.impy.aegis.db.slots.SlotCollection;
+import me.impy.aegis.db.slots.SlotList;
 import me.impy.aegis.db.slots.SlotException;
 import me.impy.aegis.helpers.FingerprintHelper;
 import me.impy.aegis.helpers.FingerprintUiHelper;
@@ -36,7 +36,7 @@ import me.impy.aegis.ui.tasks.SlotCollectionTask;
 public class AuthActivity extends AegisActivity implements FingerprintUiHelper.Callback, SlotCollectionTask.Callback {
     private EditText _textPassword;
 
-    private SlotCollection _slots;
+    private SlotList _slots;
     private FingerprintUiHelper _fingerHelper;
     private Cipher _fingerCipher;
 
@@ -57,7 +57,7 @@ public class AuthActivity extends AegisActivity implements FingerprintUiHelper.C
         }
 
         Intent intent = getIntent();
-        _slots = (SlotCollection) intent.getSerializableExtra("slots");
+        _slots = (SlotList) intent.getSerializableExtra("slots");
 
         // only show the fingerprint controls if the api version is new enough, permission is granted, a scanner is found and a fingerprint slot is found
         FingerprintManager manager = FingerprintHelper.getManager(this);
@@ -75,7 +75,7 @@ public class AuthActivity extends AegisActivity implements FingerprintUiHelper.C
                             invalidated = true;
                             continue;
                         }
-                        _fingerCipher = Slot.createCipher(key, Cipher.DECRYPT_MODE);
+                        _fingerCipher = slot.createDecryptCipher(key);
                         _fingerHelper = new FingerprintUiHelper(manager, imgFingerprint, textFingerprint, this);
                         boxFingerprint.setVisibility(View.VISIBLE);
                         invalidated = false;

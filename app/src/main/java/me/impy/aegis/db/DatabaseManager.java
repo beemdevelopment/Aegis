@@ -14,7 +14,7 @@ import java.util.List;
 
 import me.impy.aegis.BuildConfig;
 import me.impy.aegis.crypto.MasterKey;
-import me.impy.aegis.db.slots.SlotCollection;
+import me.impy.aegis.db.slots.SlotList;
 
 public class DatabaseManager {
     private static final String FILENAME = "aegis.json";
@@ -196,7 +196,7 @@ public class DatabaseManager {
         return _file;
     }
 
-    public void enableEncryption(MasterKey key, SlotCollection slots) {
+    public void enableEncryption(MasterKey key, SlotList slots) {
         assertState(false, true);
         _key = key;
         _file.setSlots(slots);

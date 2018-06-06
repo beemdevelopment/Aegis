@@ -23,7 +23,7 @@ import me.impy.aegis.db.DatabaseManagerException;
 import me.impy.aegis.db.slots.FingerprintSlot;
 import me.impy.aegis.db.slots.PasswordSlot;
 import me.impy.aegis.db.slots.Slot;
-import me.impy.aegis.db.slots.SlotCollection;
+import me.impy.aegis.db.slots.SlotList;
 import me.impy.aegis.db.Database;
 import me.impy.aegis.db.DatabaseFile;
 import me.impy.aegis.db.DatabaseManager;
@@ -145,7 +145,7 @@ public class IntroActivity extends AppIntro implements DerivationTask.Callback {
             masterKey = MasterKey.generate();
         }
 
-        SlotCollection slots = null;
+        SlotList slots = null;
         if (cryptType != CustomAuthenticationSlide.CRYPT_TYPE_NONE) {
             // encrypt the master key with a key derived from the user's password
             // and add it to the list of slots
@@ -153,8 +153,8 @@ public class IntroActivity extends AppIntro implements DerivationTask.Callback {
                 throw new RuntimeException();
             }
             try {
-                slots = new SlotCollection();
-                slots.encrypt(_passwordSlot, masterKey, _passwordCipher);
+                _passwordSlot.setKey(masterKey, _passwordCipher);
+                slots = new SlotList();
                 slots.add(_passwordSlot);
                 _databaseFile.setSlots(slots);
             } catch (SlotException e) {
@@ -168,7 +168,7 @@ public class IntroActivity extends AppIntro implements DerivationTask.Callback {
                 // and add it to the list of slots
                 FingerprintSlot slot = _authenticatedSlide.getFingerSlot();
                 Cipher cipher = _authenticatedSlide.getFingerCipher();
-                slots.encrypt(slot, masterKey, cipher);
+                slot.setKey(masterKey, cipher);
                 slots.add(slot);
             } catch (SlotException e) {
                 setException(e);
@@ -204,7 +204,7 @@ public class IntroActivity extends AppIntro implements DerivationTask.Callback {
     public void onTaskFinished(SecretKey key) {
         if (key != null) {
             try {
-                _passwordCipher = Slot.createCipher(key, Cipher.ENCRYPT_MODE);
+                _passwordCipher = Slot.createEncryptCipher(key);
             } catch (SlotException e) {
                 setException(e);
             }

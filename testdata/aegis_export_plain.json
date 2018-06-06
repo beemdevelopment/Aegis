@@ -52,7 +52,7 @@
                     "secret": "6CAIGVYB5MQ6TSZLJ56HJBWU5S3H7FUC",
                     "algo": "SHA512",
                     "digits": 6,
-                    "counter": 30
+                    "counter": 96
                 }
             },
             {
@@ -100,7 +100,7 @@
                     "secret": "EIQMT7NHFYJUMBKQ35P34JGLG3MO7L2W",
                     "algo": "SHA1",
                     "digits": 8,
-                    "counter": 20
+                    "counter": 30
                 }
             },
             {

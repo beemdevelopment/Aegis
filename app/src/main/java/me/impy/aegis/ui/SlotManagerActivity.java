@@ -20,7 +20,7 @@ import me.impy.aegis.crypto.MasterKey;
 import me.impy.aegis.db.slots.FingerprintSlot;
 import me.impy.aegis.db.slots.PasswordSlot;
 import me.impy.aegis.db.slots.Slot;
-import me.impy.aegis.db.slots.SlotCollection;
+import me.impy.aegis.db.slots.SlotList;
 import me.impy.aegis.db.slots.SlotException;
 import me.impy.aegis.helpers.FingerprintHelper;
 import me.impy.aegis.ui.dialogs.Dialogs;
@@ -31,7 +31,7 @@ import me.impy.aegis.ui.dialogs.SlotDialogFragment;
 
 public class SlotManagerActivity extends AegisActivity implements SlotAdapter.Listener, SlotDialogFragment.Listener {
     private MasterKey _masterKey;
-    private SlotCollection _slots;
+    private SlotList _slots;
     private SlotAdapter _adapter;
 
     private boolean _edited = false;
@@ -65,7 +65,7 @@ public class SlotManagerActivity extends AegisActivity implements SlotAdapter.Li
 
         // load the slots and masterKey
         _masterKey = (MasterKey) getIntent().getSerializableExtra("masterKey");
-        _slots = (SlotCollection) getIntent().getSerializableExtra("slots");
+        _slots = (SlotList) getIntent().getSerializableExtra("slots");
         for (Slot slot : _slots) {
             _adapter.addSlot(slot);
         }
@@ -176,7 +176,7 @@ public class SlotManagerActivity extends AegisActivity implements SlotAdapter.Li
     @Override
     public void onSlotResult(Slot slot, Cipher cipher) {
         try {
-            _slots.encrypt(slot, _masterKey, cipher);
+            slot.setKey(_masterKey, cipher);
         } catch (SlotException e) {
             onException(e);
             return;
