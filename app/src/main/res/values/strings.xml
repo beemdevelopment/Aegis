@@ -3,6 +3,7 @@
     <string name="action_settings">Settings</string>
     <string name="action_import">Import</string>
     <string name="action_delete">Delete</string>
+    <string name="action_default_image">Set default image</string>
     <string name="discard">Discard</string>
     <string name="save">Save</string>
     <string name="title_activity_intro">IntroActivity</string>

@@ -49,6 +49,8 @@ import me.impy.aegis.ui.views.KeyProfile;
 public class EditProfileActivity extends AegisActivity {
     private boolean _isNew = false;
     private boolean _edited = false;
+    private boolean _hasCustomImage = false;
+
     private KeyProfile _profile;
 
     private CircleImageView _iconView;
@@ -131,8 +133,11 @@ public class EditProfileActivity extends AegisActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-                TextDrawable drawable = TextDrawableHelper.generate(s.toString(), _iconView);
-                _iconView.setImageDrawable(drawable);
+                if(!_hasCustomImage)
+                {
+                    TextDrawable drawable = TextDrawableHelper.generate(s.toString(), _iconView);
+                    _iconView.setImageDrawable(drawable);
+                }
             }
         });
 
@@ -166,7 +171,18 @@ public class EditProfileActivity extends AegisActivity {
 
     private void updateFields() {
         DatabaseEntry entry = _profile.getEntry();
-        _iconView.setImageDrawable(_profile.getDrawable(_iconView));
+
+        if (_profile.getEntry().getInfo().getImage() != null)
+        {
+            byte[] imageBytes = _profile.getEntry().getInfo().getImage();
+            Bitmap image = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
+            _iconView.setImageBitmap(image);
+            _hasCustomImage = true;
+        }
+        else
+        {
+            _iconView.setImageDrawable(_profile.getDrawable(_iconView));
+        }
 
         _textName.setText(entry.getName());
         _textIssuer.setText(entry.getInfo().getIssuer());
@@ -270,6 +286,9 @@ public class EditProfileActivity extends AegisActivity {
                     finish(true);
                 });
                 break;
+            case R.id.action_default_image:
+                _iconView.setImageDrawable(_profile.getDrawable(_iconView));
+                _hasCustomImage = false;
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -283,6 +302,10 @@ public class EditProfileActivity extends AegisActivity {
         if (_isNew) {
             menu.findItem(R.id.action_delete).setVisible(false);
         }
+        if (!_hasCustomImage) {
+            menu.findItem(R.id.action_default_image).setVisible(false);
+        }
+
         return true;
     }
 
@@ -309,6 +332,7 @@ public class EditProfileActivity extends AegisActivity {
                 public void onClick(View v) {
                     _iconView.setImageBitmap(_kropView.getCroppedBitmap());
                     _kropView.setVisibility(View.GONE);
+                    _hasCustomImage = true;
                 }
             });
         }
@@ -355,11 +379,18 @@ public class EditProfileActivity extends AegisActivity {
             info.setType(type);
             info.setAccountName(_textName.getText().toString());
 
-            ByteArrayOutputStream stream = new ByteArrayOutputStream();
-            drawableToBitmap(_iconView.getDrawable()).compress(Bitmap.CompressFormat.JPEG, 100, stream);
-            byte[] bitmapdata = stream.toByteArray();
+            if(_hasCustomImage)
+            {
+                ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                drawableToBitmap(_iconView.getDrawable()).compress(Bitmap.CompressFormat.JPEG, 100, stream);
+                byte[] bitmapdata = stream.toByteArray();
 
-            info.setImage(bitmapdata);
+                info.setImage(bitmapdata);
+            }
+            else
+            {
+                info.setImage(null);
+            }
         } catch (KeyInfoException e) {
             onError("The entered info is incorrect: " + e.getMessage());
             return false;

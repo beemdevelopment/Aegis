@@ -65,7 +65,7 @@ public class KeyProfileHolder extends RecyclerView.ViewHolder {
             _profileIssuer.setText(" - " + profile.getEntry().getInfo().getIssuer());
         }
 
-        if (profile.getEntry().getInfo().getImage() != null)
+        if (profile.getEntry().getInfo().getImage() != null && !profile.getEntry().getInfo().getImage().equals(""))
         {
             byte[] imageBytes = profile.getEntry().getInfo().getImage();
             Bitmap image = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);

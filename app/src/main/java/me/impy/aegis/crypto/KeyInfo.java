@@ -184,12 +184,17 @@ public class KeyInfo implements Serializable {
 
     public void setImage(byte[] image)
     {
-        _image = Base64.encodeToString(image, Base64.DEFAULT);
+        if(image != null && !image.equals(""))
+        {
+            _image = Base64.encodeToString(image, Base64.DEFAULT);
+        } else {
+            _image = null;
+        }
     }
 
     public byte[] getImage()
     {
-        return Base64.decode(_image, Base64.DEFAULT);
+        return _image != null ? Base64.decode(_image, Base64.DEFAULT) : null;
     }
 
     public void setSecret(byte[] secret) {

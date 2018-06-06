@@ -11,4 +11,9 @@
         android:id="@+id/action_delete"
         android:title="@string/action_delete"
         app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/action_default_image"
+        android:title="@string/action_default_image"
+        app:showAsAction="never"/>
 </menu>
