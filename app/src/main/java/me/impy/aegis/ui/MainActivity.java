@@ -411,9 +411,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
     private void loadEntries() {
         updateLockIcon();
 
-        for (DatabaseEntry entry : _db.getEntries()) {
-            _entryListView.addEntry(entry);
-        }
+        _entryListView.addEntries(_db.getEntries());
     }
 
     private void updateLockIcon() {

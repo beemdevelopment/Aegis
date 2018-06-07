@@ -10,6 +10,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.List;
+
 import me.impy.aegis.R;
 import me.impy.aegis.db.DatabaseEntry;
 import me.impy.aegis.helpers.SimpleItemTouchHelperCallback;
@@ -132,6 +134,11 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
 
     public void addEntry(DatabaseEntry entry) {
         _adapter.addEntry(entry);
+        checkPeriodUniformity();
+    }
+
+    public void addEntries(List<DatabaseEntry> entries) {
+        _adapter.addEntries(entries);
         checkPeriodUniformity();
     }
 

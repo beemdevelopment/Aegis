@@ -18,10 +18,11 @@ public class TextDrawableHelper {
             text = fallback;
         }
 
-        ColorGenerator generator = ColorGenerator.MATERIAL;
-        int color = generator.getColor(text);
+        int color = ColorGenerator.MATERIAL.getColor(text);
         return TextDrawable.builder().beginConfig()
                 .width(view.getWidth())
-                .height(view.getHeight()).endConfig().buildRect(text.substring(0, 1).toUpperCase(), color);
+                .height(view.getHeight())
+                .endConfig()
+                .buildRect(text.substring(0, 1).toUpperCase(), color);
     }
 }

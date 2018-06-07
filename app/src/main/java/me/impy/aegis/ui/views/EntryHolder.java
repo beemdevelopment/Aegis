@@ -76,7 +76,7 @@ public class EntryHolder extends RecyclerView.ViewHolder {
             _profileIssuer.setText(" - " + entry.getIssuer());
         }
 
-        if (entry.getIcon() != null) {
+        if (_entry.hasIcon()) {
             byte[] imageBytes = entry.getIcon();
             Bitmap image = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
             _profileDrawable.setImageBitmap(image);

@@ -43,6 +43,11 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
         }
     }
 
+    public void addEntries(List<DatabaseEntry> entries) {
+        _entries.addAll(entries);
+        notifyDataSetChanged();
+    }
+
     public void removeEntry(DatabaseEntry entry) {
         entry = getEntryByUUID(entry.getUUID());
         int position = _entries.indexOf(entry);

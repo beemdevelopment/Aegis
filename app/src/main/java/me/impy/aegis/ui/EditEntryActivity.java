@@ -115,10 +115,10 @@ public class EditEntryActivity extends AegisActivity {
 
         // fill the fields with values if possible
         if (_entry != null) {
-            if (_entry.getIcon() != null) {
+            if (_entry.hasIcon()) {
                 byte[] imageBytes = _entry.getIcon();
-                Bitmap image = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
-                _iconView.setImageBitmap(image);
+                Bitmap bitmap = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
+                _iconView.setImageBitmap(bitmap);
                 _hasCustomImage = true;
             } else {
                 TextDrawable drawable = TextDrawableHelper.generate(_entry.getIssuer(), _entry.getName(), _iconView);

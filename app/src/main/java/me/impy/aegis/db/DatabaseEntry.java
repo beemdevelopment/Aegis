@@ -37,8 +37,8 @@ public class DatabaseEntry implements Serializable {
             obj.put("uuid", _uuid.toString());
             obj.put("name", _name);
             obj.put("issuer", _issuer);
-            obj.put("info", _info.toJson());
             obj.put("icon", _icon == null ? JSONObject.NULL : Base64.encode(_icon));
+            obj.put("info", _info.toJson());
         } catch (JSONException e) {
             throw new RuntimeException(e);
         }
@@ -55,12 +55,13 @@ public class DatabaseEntry implements Serializable {
         }
         _name = obj.getString("name");
         _issuer = obj.getString("issuer");
-        _info = OtpInfo.parseJson(obj.getString("type"), obj.getJSONObject("info"));
 
-        String icon = obj.optString("icon", null);
-        if (icon != null) {
-            _icon = Base64.decode(icon);
+        Object icon = obj.get("icon");
+        if (icon != JSONObject.NULL) {
+            _icon = Base64.decode((String) icon);
         }
+
+        _info = OtpInfo.parseJson(obj.getString("type"), obj.getJSONObject("info"));
     }
 
     public UUID getUUID() {
@@ -97,5 +98,9 @@ public class DatabaseEntry implements Serializable {
 
     public void setIcon(byte[] icon) {
         _icon = icon;
+    }
+
+    public boolean hasIcon() {
+        return _icon != null;
     }
 }
