@@ -10,6 +10,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.List;
+
 import me.impy.aegis.R;
 import me.impy.aegis.db.DatabaseEntry;
 import me.impy.aegis.helpers.SimpleItemTouchHelperCallback;
@@ -51,7 +53,7 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
         _refresher = new UiRefresher(new UiRefresher.Listener() {
             @Override
             public void onRefresh() {
-                refresh();
+                refresh(false);
             }
 
             @Override
@@ -63,11 +65,11 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
         return view;
     }
 
-    public void refresh() {
+    public void refresh(boolean hard) {
         if (_showProgress) {
             _progressBar.refresh();
         }
-        _adapter.notifyDataSetChanged();
+        _adapter.refresh(hard);
     }
 
     private void checkPeriodUniformity() {
@@ -88,11 +90,12 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
     }
 
     private void startRefreshLoop() {
+        refresh(true);
         _refresher.start();
     }
 
     private void stopRefreshLoop() {
-        refresh();
+        refresh(true);
         _refresher.stop();
     }
 
@@ -127,11 +130,16 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
 
     public void setShowIssuer(boolean showIssuer) {
         _adapter.setShowIssuer(showIssuer);
-        _adapter.notifyDataSetChanged();
+        _adapter.refresh(true);
     }
 
     public void addEntry(DatabaseEntry entry) {
         _adapter.addEntry(entry);
+        checkPeriodUniformity();
+    }
+
+    public void addEntries(List<DatabaseEntry> entries) {
+        _adapter.addEntries(entries);
         checkPeriodUniformity();
     }
 

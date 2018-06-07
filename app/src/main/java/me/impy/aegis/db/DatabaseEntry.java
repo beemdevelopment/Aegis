@@ -6,6 +6,8 @@ import org.json.JSONObject;
 import java.io.Serializable;
 import java.util.UUID;
 
+import me.impy.aegis.encoding.Base64;
+import me.impy.aegis.encoding.Base64Exception;
 import me.impy.aegis.otp.OtpInfo;
 import me.impy.aegis.otp.OtpInfoException;
 
@@ -13,8 +15,8 @@ public class DatabaseEntry implements Serializable {
     private UUID _uuid;
     private String _name = "";
     private String _issuer = "";
-    private String _icon = "";
     private OtpInfo _info;
+    private byte[] _icon;
 
     public DatabaseEntry(OtpInfo info) {
         _info = info;
@@ -35,6 +37,7 @@ public class DatabaseEntry implements Serializable {
             obj.put("uuid", _uuid.toString());
             obj.put("name", _name);
             obj.put("issuer", _issuer);
+            obj.put("icon", _icon == null ? JSONObject.NULL : Base64.encode(_icon));
             obj.put("info", _info.toJson());
         } catch (JSONException e) {
             throw new RuntimeException(e);
@@ -43,7 +46,7 @@ public class DatabaseEntry implements Serializable {
         return obj;
     }
 
-    public void deserialize(JSONObject obj) throws JSONException, OtpInfoException {
+    public void deserialize(JSONObject obj) throws JSONException, OtpInfoException, Base64Exception {
         // if there is no uuid, generate a new one
         if (!obj.has("uuid")) {
             _uuid = UUID.randomUUID();
@@ -52,6 +55,12 @@ public class DatabaseEntry implements Serializable {
         }
         _name = obj.getString("name");
         _issuer = obj.getString("issuer");
+
+        Object icon = obj.get("icon");
+        if (icon != JSONObject.NULL) {
+            _icon = Base64.decode((String) icon);
+        }
+
         _info = OtpInfo.parseJson(obj.getString("type"), obj.getJSONObject("info"));
     }
 
@@ -67,7 +76,7 @@ public class DatabaseEntry implements Serializable {
         return _issuer;
     }
 
-    public String getIcon() {
+    public byte[] getIcon() {
         return _icon;
     }
 
@@ -83,11 +92,15 @@ public class DatabaseEntry implements Serializable {
         _issuer = issuer;
     }
 
-    public void setIcon(String icon) {
+    public void setInfo(OtpInfo info) {
+        _info = info;
+    }
+
+    public void setIcon(byte[] icon) {
         _icon = icon;
     }
 
-    public void setInfo(OtpInfo info) {
-        _info = info;
+    public boolean hasIcon() {
+        return _icon != null;
     }
 }

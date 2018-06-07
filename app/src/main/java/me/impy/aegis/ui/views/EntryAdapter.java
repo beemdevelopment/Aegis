@@ -23,8 +23,12 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
     private static Listener _listener;
     private boolean _showIssuer;
 
+    // keeps track of the viewholders that are currently bound
+    private List<EntryHolder> _holders;
+
     public EntryAdapter(Listener listener) {
         _entries = new ArrayList<>();
+        _holders = new ArrayList<>();
         _listener = listener;
     }
 
@@ -41,6 +45,11 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
         } else {
             notifyItemInserted(position);
         }
+    }
+
+    public void addEntries(List<DatabaseEntry> entries) {
+        _entries.addAll(entries);
+        notifyDataSetChanged();
     }
 
     public void removeEntry(DatabaseEntry entry) {
@@ -69,6 +78,16 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
             }
         }
         throw new AssertionError("no entry found with the same id");
+    }
+
+    public void refresh(boolean hard) {
+        if (hard) {
+            notifyDataSetChanged();
+        } else {
+            for (EntryHolder holder : _holders) {
+                holder.refreshCode();
+            }
+        }
     }
 
     @Override
@@ -100,7 +119,7 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
     @Override
     public void onViewRecycled(EntryHolder holder) {
         holder.stopRefreshLoop();
-        super.onViewRecycled(holder);
+        _holders.remove(holder);
     }
 
     @Override
@@ -144,6 +163,8 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
                 holder.refreshCode();
             }
         });
+
+        _holders.add(holder);
     }
 
     public int getUniformPeriod() {

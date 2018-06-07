@@ -1,6 +1,12 @@
 package me.impy.aegis.ui;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.ArrayRes;
 import android.support.v7.app.ActionBar;
@@ -22,7 +28,14 @@ import android.widget.Spinner;
 import android.widget.TableRow;
 
 import com.amulyakhare.textdrawable.TextDrawable;
+import com.avito.android.krop.KropView;
+import com.esafirm.imagepicker.features.ImagePicker;
+import com.esafirm.imagepicker.features.ReturnMode;
+import com.esafirm.imagepicker.model.Image;
 
+import java.io.ByteArrayOutputStream;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 import me.impy.aegis.R;
 import me.impy.aegis.db.DatabaseEntry;
 import me.impy.aegis.encoding.Base32;
@@ -40,8 +53,9 @@ public class EditEntryActivity extends AegisActivity {
     private boolean _isNew = false;
     private boolean _edited = false;
     private DatabaseEntry _entry;
-
-    private ImageView _iconView;
+    private boolean _hasCustomImage = false;
+    private CircleImageView _iconView;
+    private ImageView _saveImageButton;
 
     private EditText _textName;
     private EditText _textIssuer;
@@ -56,6 +70,8 @@ public class EditEntryActivity extends AegisActivity {
     private Spinner _spinnerAlgo;
     private Spinner _spinnerDigits;
     private SpinnerItemSelectedListener _selectedListener = new SpinnerItemSelectedListener();
+
+    private KropView _kropView;
 
     private RelativeLayout _advancedSettingsHeader;
     private RelativeLayout _advancedSettings;
@@ -79,6 +95,8 @@ public class EditEntryActivity extends AegisActivity {
 
         // set up fields
         _iconView = findViewById(R.id.profile_drawable);
+        _kropView = findViewById(R.id.krop_view);
+        _saveImageButton = findViewById(R.id.iv_saveImage);
         _textName = findViewById(R.id.text_name);
         _textIssuer = findViewById(R.id.text_issuer);
         _textPeriod = findViewById(R.id.text_period);
@@ -97,8 +115,15 @@ public class EditEntryActivity extends AegisActivity {
 
         // fill the fields with values if possible
         if (_entry != null) {
-            TextDrawable drawable = TextDrawableHelper.generate(_entry.getIssuer(), _entry.getName());
-            _iconView.setImageDrawable(drawable);
+            if (_entry.hasIcon()) {
+                byte[] imageBytes = _entry.getIcon();
+                Bitmap bitmap = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
+                _iconView.setImageBitmap(bitmap);
+                _hasCustomImage = true;
+            } else {
+                TextDrawable drawable = TextDrawableHelper.generate(_entry.getIssuer(), _entry.getName(), _iconView);
+                _iconView.setImageDrawable(drawable);
+            }
 
             _textName.setText(_entry.getName());
             _textIssuer.setText(_entry.getIssuer());
@@ -170,6 +195,24 @@ public class EditEntryActivity extends AegisActivity {
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
 
+            }
+        });
+
+        ImagePicker imagePicker = ImagePicker.create(this)
+                .returnMode(ReturnMode.ALL) // set whether pick and / or camera action should return immediate result or not.
+                .folderMode(true) // folder mode (false by default)
+                .toolbarFolderTitle("Folder") // folder selection title
+                .toolbarImageTitle("Tap to select") // image selection title
+                .toolbarArrowColor(Color.BLACK) // Toolbar 'up' arrow color
+                .single() // single mode
+                .showCamera(false) // show camera or not (true by default)
+                .imageDirectory("Camera");
+
+        // Open ImagePicker when clicking on the icon
+        _iconView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                imagePicker.start(); // start image picker activity with request code
             }
         });
 
@@ -265,6 +308,10 @@ public class EditEntryActivity extends AegisActivity {
                     finish(true);
                 });
                 break;
+            case R.id.action_default_image:
+                TextDrawable drawable = TextDrawableHelper.generate(_entry.getIssuer(), _entry.getName(), _iconView);
+                _iconView.setImageDrawable(drawable);
+                _hasCustomImage = false;
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -278,6 +325,10 @@ public class EditEntryActivity extends AegisActivity {
         if (_isNew) {
             menu.findItem(R.id.action_delete).setVisible(false);
         }
+        if (!_hasCustomImage) {
+            menu.findItem(R.id.action_default_image).setVisible(false);
+        }
+
         return true;
     }
 
@@ -287,6 +338,29 @@ public class EditEntryActivity extends AegisActivity {
         intent.putExtra("delete", delete);
         setResult(RESULT_OK, intent);
         finish();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, final int resultCode, Intent data) {
+        if (ImagePicker.shouldHandle(requestCode, resultCode, data)) {
+            // or get a single image only
+            Image image = ImagePicker.getFirstImageOrNull(data);
+            BitmapFactory.Options bmOptions = new BitmapFactory.Options();
+            Bitmap bitmap = BitmapFactory.decodeFile(image.getPath(),bmOptions);
+            _kropView.setBitmap(bitmap);
+            _kropView.setVisibility(View.VISIBLE);
+
+            _saveImageButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    _iconView.setImageBitmap(_kropView.getCroppedBitmap());
+                    _kropView.setVisibility(View.GONE);
+                    _hasCustomImage = true;
+                }
+            });
+        }
+
+        super.onActivityResult(requestCode, resultCode, data);
     }
 
     private boolean onSave() {
@@ -359,6 +433,15 @@ public class EditEntryActivity extends AegisActivity {
         entry.setIssuer(_textIssuer.getText().toString());
         entry.setName(_textName.getText().toString());
 
+        if (_hasCustomImage) {
+            ByteArrayOutputStream stream = new ByteArrayOutputStream();
+            drawableToBitmap(_iconView.getDrawable()).compress(Bitmap.CompressFormat.JPEG, 100, stream);
+            byte[] bitmapdata = stream.toByteArray();
+            entry.setIcon(bitmapdata);
+        } else {
+            entry.setIcon(null);
+        }
+
         _entry = entry;
         finish(false);
         return true;
@@ -404,8 +487,10 @@ public class EditEntryActivity extends AegisActivity {
 
         @Override
         public void afterTextChanged(Editable s) {
-            TextDrawable drawable = TextDrawableHelper.generate(_textIssuer.getText().toString(), _textName.getText().toString());
-            _iconView.setImageDrawable(drawable);
+            if (!_hasCustomImage) {
+                TextDrawable drawable = TextDrawableHelper.generate(_textIssuer.getText().toString(), _textName.getText().toString(), _iconView);
+                _iconView.setImageDrawable(drawable);
+            }
         }
     };
 
@@ -440,5 +525,26 @@ public class EditEntryActivity extends AegisActivity {
             }
         }
         return -1;
+    }
+
+    public static Bitmap drawableToBitmap(Drawable drawable) {
+        if (drawable instanceof BitmapDrawable) {
+            return ((BitmapDrawable) drawable).getBitmap();
+        }
+
+        final int width = !drawable.getBounds().isEmpty() ? drawable
+                .getBounds().width() : drawable.getIntrinsicWidth();
+
+        final int height = !drawable.getBounds().isEmpty() ? drawable
+                .getBounds().height() : drawable.getIntrinsicHeight();
+
+        final Bitmap bitmap = Bitmap.createBitmap(width <= 0 ? 1 : width,
+                height <= 0 ? 1 : height, Bitmap.Config.ARGB_8888);
+
+        Canvas canvas = new Canvas(bitmap);
+        drawable.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
+        drawable.draw(canvas);
+
+        return bitmap;
     }
 }

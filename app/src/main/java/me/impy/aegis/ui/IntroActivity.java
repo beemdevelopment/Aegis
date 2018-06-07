@@ -1,6 +1,5 @@
 package me.impy.aegis.ui;
 
-import android.Manifest;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
