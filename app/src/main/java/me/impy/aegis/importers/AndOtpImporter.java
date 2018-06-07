@@ -43,7 +43,7 @@ public class AndOtpImporter extends DatabaseImporter {
             for (int i = 0; i < _obj.length(); i++) {
                 JSONObject obj = _obj.getJSONObject(i);
 
-                String type = obj.getString("type");
+                String type = obj.getString("type").toLowerCase();
                 String algo = obj.getString("algorithm");
                 int digits = obj.getInt("digits");
                 byte[] secret = Base32.decode(obj.getString("secret").toCharArray());

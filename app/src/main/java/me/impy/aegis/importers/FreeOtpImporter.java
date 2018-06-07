@@ -56,7 +56,7 @@ public class FreeOtpImporter extends DatabaseImporter {
                 } else {
                     JSONObject obj = new JSONObject(xmlEntry.Value);
 
-                    String type = obj.getString("type");
+                    String type = obj.getString("type").toLowerCase();
                     String algo = obj.getString("algo");
                     int digits = obj.getInt("digits");
                     byte[] secret = toBytes(obj.getJSONArray("secret"));
