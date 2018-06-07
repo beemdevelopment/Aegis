@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/main"
     android:orientation="vertical"
     android:layout_width="match_parent"
@@ -7,78 +8,94 @@
     android:padding="32dp">
 
     <TextView
-        android:text="@string/choose_authentication_method"
+        android:id="@+id/textView2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="24sp"
+        android:text="@string/choose_authentication_method"
+        android:textAlignment="center"
         android:textColor="@color/primary_text_inverted"
-        android:id="@+id/textView2" />
+        android:textSize="24sp"
+        android:layout_marginTop="30dp"
+        android:textStyle="bold" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="140dp"
+        android:layout_marginBottom="100dp"
+        android:layout_marginTop="70dp"
+        app:srcCompat="@drawable/ic_id_card" />
 
     <LinearLayout
-        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:layout_marginTop="12dp">
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="12dp"
+        android:orientation="horizontal">
+
 
         <RadioGroup
-            android:layout_width="match_parent"
             android:id="@+id/rg_authenticationMethod"
+            android:layout_width="match_parent"
             android:layout_height="187dp">
 
             <RadioButton
+                android:id="@+id/rb_none"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="16sp"
-                android:id="@+id/rb_none"
-                android:text="@string/authentication_method_none"/>
+                android:text="@string/authentication_method_none"
+                android:textSize="16sp" />
 
             <TextView
-                android:text="@string/authentication_method_none_description"
                 android:layout_width="match_parent"
-                android:textColor="@color/secondary_text_inverted"
-                android:layout_marginTop="-5dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
+                android:layout_marginTop="-5dp"
+                android:text="@string/authentication_method_none_description"
+                android:textColor="@color/secondary_text_inverted" />
+
+            <RadioButton
+                android:id="@+id/rb_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="@string/authentication_method_password"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="-5dp"
+                android:text="@string/authentication_method_password_description"
+                android:textColor="@color/secondary_text_inverted" />
+
+            <RadioButton
+                android:id="@+id/rb_fingerprint"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/authentication_method_fingerprint"
+                android:textSize="16sp"
                 />
 
-            <RadioButton
-                android:text="@string/authentication_method_password"
-                android:layout_width="match_parent"
-                android:textSize="16sp"
-                android:layout_height="wrap_content"
-                android:id="@+id/rb_password"
-                android:checked="true"/>
-
-            <TextView
-                android:text="@string/authentication_method_password_description"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="-5dp"
-                android:textColor="@color/secondary_text_inverted"
-                android:layout_marginStart="32dp"/>
-
-            <RadioButton
-                android:text="@string/authentication_method_fingerprint"
-                android:layout_width="match_parent"
-                android:textSize="16sp"
-                android:layout_height="wrap_content"
-                android:id="@+id/rb_fingerprint"
-                android:visibility="invisible"/>
             <TextView
                 android:id="@+id/text_rb_fingerprint"
-                android:text="@string/authentication_method_fingerprint_description"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="-5dp"
-                android:textColor="@color/secondary_text_inverted"
                 android:layout_marginStart="32dp"
-                android:visibility="invisible"/>
+                android:layout_marginTop="-5dp"
+
+                android:text="@string/authentication_method_fingerprint_description"
+                android:textColor="@color/disabled_textview_colors"
+                 />
 
         </RadioGroup>
 
     </LinearLayout>
 
+
     <LinearLayout
+
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

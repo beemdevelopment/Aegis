@@ -1,6 +1,10 @@
 package me.impy.aegis.ui.views;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.PorterDuff;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
@@ -72,8 +76,14 @@ public class EntryHolder extends RecyclerView.ViewHolder {
             _profileIssuer.setText(" - " + entry.getIssuer());
         }
 
-        TextDrawable drawable = TextDrawableHelper.generate(entry.getIssuer(), entry.getName());
-        _profileDrawable.setImageDrawable(drawable);
+        if (entry.getIcon() != null) {
+            byte[] imageBytes = entry.getIcon();
+            Bitmap image = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
+            _profileDrawable.setImageBitmap(image);
+        } else {
+            TextDrawable drawable = TextDrawableHelper.generate(entry.getIssuer(), entry.getName(), _profileDrawable);
+            _profileDrawable.setImageDrawable(drawable);
+        }
 
         refreshCode();
     }

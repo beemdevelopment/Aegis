@@ -6,6 +6,7 @@ import org.json.JSONObject;
 
 import java.util.List;
 
+import me.impy.aegis.encoding.Base64Exception;
 import me.impy.aegis.otp.OtpInfoException;
 
 public class Database {
@@ -43,7 +44,7 @@ public class Database {
                 entry.deserialize(array.getJSONObject(i));
                 addEntry(entry);
             }
-        } catch (OtpInfoException | JSONException e) {
+        } catch (Base64Exception | OtpInfoException | JSONException e) {
             throw new DatabaseException(e);
         }
     }

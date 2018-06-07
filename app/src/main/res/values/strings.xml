@@ -3,6 +3,7 @@
     <string name="action_settings">Settings</string>
     <string name="action_import">Import</string>
     <string name="action_delete">Delete</string>
+    <string name="action_default_image">Set default image</string>
     <string name="discard">Discard</string>
     <string name="save">Save</string>
     <string name="title_activity_intro">IntroActivity</string>
@@ -34,7 +35,7 @@
     <string name="authentication_method_none_description">The database will be stored in plain text</string>
     <string name="authentication_method_password">Password</string>
     <string name="authentication_method_password_description">The database will be encrypted with a key derived from a password</string>
-    <string name="authentication_method_fingerprint">Password &amp; Fingerprint</string>
+    <string name="authentication_method_fingerprint">Fingerprint</string>
     <string name="authentication_method_fingerprint_description">In addition to a password, fingerprints registered on this device can be used to decrypt the database</string>
     <string name="authentication_method_set_password">Password</string>
     <string name="authentication_enter_password">Enter your password</string>
@@ -45,7 +46,7 @@
     <string-array name="authentication_methods">
         <item>None</item>
         <item>Password</item>
-        <item>Password &amp; Fingerprint</item>
+        <item>Fingerprint</item>
     </string-array>
 
     <string-array name="otp_types_array">
