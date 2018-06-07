@@ -221,6 +221,10 @@ public class PreferencesFragment extends PreferenceFragmentCompat implements Pas
     }
 
     private void onImport() {
+        if (!PermissionHelper.request(getActivity(), CODE_PERM_IMPORT, Manifest.permission.READ_EXTERNAL_STORAGE)) {
+            return;
+        }
+
         Map<String, Class<? extends DatabaseImporter>> importers = DatabaseImporter.getImporters();
         String[] names = importers.keySet().toArray(new String[importers.size()]);
 
@@ -232,11 +236,9 @@ public class PreferencesFragment extends PreferenceFragmentCompat implements Pas
                         int i = ((AlertDialog) dialog).getListView().getCheckedItemPosition();
                         _importerType = importers.get(names[i]);
 
-                        if (PermissionHelper.request(getActivity(), CODE_PERM_IMPORT, Manifest.permission.READ_EXTERNAL_STORAGE)) {
-                            Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-                            intent.setType("*/*");
-                            startActivityForResult(intent, CODE_IMPORT);
-                        }
+                        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+                        intent.setType("*/*");
+                        startActivityForResult(intent, CODE_IMPORT);
                     }
                 })
                 .show();
