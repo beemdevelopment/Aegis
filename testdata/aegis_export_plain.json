@@ -12,6 +12,7 @@
                 "uuid": "8e986927-a7a3-4d35-88fb-509ae7960155",
                 "name": "Bob",
                 "issuer": "Google",
+                "icon": null,
                 "info": {
                     "secret": "KD3WHMYQ7K7DGV5QFJNN2ZUATBC44C7F",
                     "algo": "SHA1",
@@ -24,6 +25,7 @@
                 "uuid": "97155de0-fb6a-4dfa-ac59-2abe54f5d059",
                 "name": "Henk",
                 "issuer": "Scaleway",
+                "icon": null,
                 "info": {
                     "secret": "MBQX47S3XOSOF7YT2CO3LZNACULZNY4P",
                     "algo": "SHA256",
@@ -36,6 +38,7 @@
                 "uuid": "a6276843-3c95-43b7-a3ef-e824c5534801",
                 "name": "nodejsc0d3r",
                 "issuer": "Github",
+                "icon": null,
                 "info": {
                     "secret": "642GK5EROWKUAEBFRH6FWSMM4FRKS5IA",
                     "algo": "SHA1",
@@ -48,11 +51,12 @@
                 "uuid": "1748b48c-7496-4722-9048-17248e843773",
                 "name": "Lil' Droplet",
                 "issuer": "DigitalOcean",
+                "icon": null,
                 "info": {
                     "secret": "6CAIGVYB5MQ6TSZLJ56HJBWU5S3H7FUC",
                     "algo": "SHA512",
                     "digits": 6,
-                    "counter": 96
+                    "counter": 102
                 }
             },
             {
@@ -60,6 +64,7 @@
                 "uuid": "9eef3fa3-bdde-4954-bf37-58bf1d5d6e5f",
                 "name": "alex",
                 "issuer": "TTRSS",
+                "icon": null,
                 "info": {
                     "secret": "BEBXDJJVXKX3ZMAZLJUU5I5PONI4IYAL",
                     "algo": "SHA1",
@@ -72,6 +77,7 @@
                 "uuid": "159b3e5f-fff4-4ff5-997a-b8d1263ee446",
                 "name": "MoneroMan",
                 "issuer": "Poloniex",
+                "icon": null,
                 "info": {
                     "secret": "NUSLOF6CFEWNPAARBVJ5WFA5YRRQU4FG",
                     "algo": "SHA256",
@@ -84,6 +90,7 @@
                 "uuid": "8cd843e5-4122-48e1-8089-a3d0c769741f",
                 "name": "givemeabucket",
                 "issuer": "Bitbucket",
+                "icon": null,
                 "info": {
                     "secret": "5KY3D2N53MRMIOMNKLLTNF3TDQJRDMEY",
                     "algo": "SHA1",
@@ -96,6 +103,7 @@
                 "uuid": "77c6267a-b38a-40b9-a3a7-5a5ce11230bb",
                 "name": "Pepe",
                 "issuer": "4chan",
+                "icon": null,
                 "info": {
                     "secret": "EIQMT7NHFYJUMBKQ35P34JGLG3MO7L2W",
                     "algo": "SHA1",
@@ -108,6 +116,7 @@
                 "uuid": "435a3542-c566-4cc0-a5f4-39cd6ffe316d",
                 "name": "Delete Me",
                 "issuer": "Facebook",
+                "icon": null,
                 "info": {
                     "secret": "GSQ7E5FO3UFFVANS3NSMFE7RTMRMYNCV",
                     "algo": "SHA1",
@@ -120,6 +129,7 @@
                 "uuid": "7dca76af-fa6a-4585-8d47-5a8b78130c9c",
                 "name": "Oh wait, they don't have TOTP",
                 "issuer": "Namecheap",
+                "icon": null,
                 "info": {
                     "secret": "HIMV4HX3REXMUG236OOLN4GS7URI247Y",
                     "algo": "SHA512",
