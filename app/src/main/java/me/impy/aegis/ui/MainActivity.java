@@ -327,7 +327,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         updateLockIcon();
 
         // refresh all codes to prevent showing old ones
-        _entryListView.refresh();
+        _entryListView.refresh(true);
     }
 
     private BottomSheetDialog createBottomSheet(final DatabaseEntry entry) {
