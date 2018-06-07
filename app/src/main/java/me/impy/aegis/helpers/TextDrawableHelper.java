@@ -20,8 +20,8 @@ public class TextDrawableHelper {
 
         int color = ColorGenerator.MATERIAL.getColor(text);
         return TextDrawable.builder().beginConfig()
-                .width(view.getWidth())
-                .height(view.getHeight())
+                .width(view.getLayoutParams().width)
+                .height(view.getLayoutParams().height)
                 .endConfig()
                 .buildRect(text.substring(0, 1).toUpperCase(), color);
     }
