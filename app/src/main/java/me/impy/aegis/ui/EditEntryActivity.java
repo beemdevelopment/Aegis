@@ -310,7 +310,7 @@ public class EditEntryActivity extends AegisActivity {
                     finish(true);
                 });
                 break;
-            case R.id.action_default_image:
+            case R.id.action_default_icon:
                 TextDrawable drawable = TextDrawableHelper.generate(_entry.getIssuer(), _entry.getName(), _iconView);
                 _iconView.setImageDrawable(drawable);
                 _hasCustomImage = false;
@@ -328,7 +328,7 @@ public class EditEntryActivity extends AegisActivity {
             menu.findItem(R.id.action_delete).setVisible(false);
         }
         if (!_hasCustomImage) {
-            menu.findItem(R.id.action_default_image).setVisible(false);
+            menu.findItem(R.id.action_default_icon).setVisible(false);
         }
 
         return true;

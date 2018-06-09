@@ -142,7 +142,7 @@ public class PreferencesFragment extends PreferenceFragmentCompat implements Pas
                 if (!_db.getFile().isEncrypted()) {
                     PasswordDialogFragment dialog = new PasswordDialogFragment();
                     // TODO: find a less ugly way to obtain the fragment manager
-                    dialog.show(((AppCompatActivity)getActivity()).getSupportFragmentManager(), null);
+                    dialog.show(getActivity().getSupportFragmentManager(), null);
                 } else {
                     new AlertDialog.Builder(getActivity())
                             .setTitle("Disable encryption")

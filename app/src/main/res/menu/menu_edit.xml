@@ -13,7 +13,7 @@
         app:showAsAction="never"/>
 
     <item
-        android:id="@+id/action_default_image"
-        android:title="@string/action_default_image"
+        android:id="@+id/action_default_icon"
+        android:title="@string/action_default_icon"
         app:showAsAction="never"/>
 </menu>

@@ -99,7 +99,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         setIntent(intent);
 
         if (!doShortcutActions() || _db.isLocked()) {
-            startAuthActivity();
+            unlockDatabase(null);
         }
     }
 
@@ -155,6 +155,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         } else if (data.getBooleanExtra("needsRefresh", false)) {
             boolean showIssuer = getPreferences().isIssuerVisible();
             _entryListView.setShowIssuer(showIssuer);
+            _entryListView.refresh(true);
         }
     }
 
@@ -361,6 +362,10 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
     }
 
     private void unlockDatabase(MasterKey key) {
+        if (_loaded) {
+            return;
+        }
+
         try {
             if (!_db.isLoaded()) {
                 _db.load();
