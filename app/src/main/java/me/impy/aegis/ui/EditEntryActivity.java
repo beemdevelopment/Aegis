@@ -69,7 +69,7 @@ public class EditEntryActivity extends AegisActivity {
     private Spinner _spinnerType;
     private Spinner _spinnerAlgo;
     private Spinner _spinnerDigits;
-    private SpinnerItemSelectedListener _selectedListener = new SpinnerItemSelectedListener();
+    private SpinnerItemSelectedListener _selectedListener;
 
     private KropView _kropView;
 
@@ -110,6 +110,8 @@ public class EditEntryActivity extends AegisActivity {
         SpinnerHelper.fillSpinner(this, _spinnerAlgo, R.array.otp_algo_array);
         _spinnerDigits = findViewById(R.id.spinner_digits);
         SpinnerHelper.fillSpinner(this, _spinnerDigits, R.array.otp_digits_array);
+        _selectedListener = new SpinnerItemSelectedListener();
+
         _advancedSettingsHeader = findViewById(R.id.accordian_header);
         _advancedSettings = findViewById(R.id.expandableLayout);
 

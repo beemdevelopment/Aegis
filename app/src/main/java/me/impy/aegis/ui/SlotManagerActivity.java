@@ -34,12 +34,13 @@ public class SlotManagerActivity extends AegisActivity implements SlotAdapter.Li
     private SlotList _slots;
     private SlotAdapter _adapter;
 
-    private boolean _edited = false;
+    private boolean _edited;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_slots);
+        _edited = false;
 
         ActionBar bar = getSupportActionBar();
         bar.setHomeAsUpIndicator(R.drawable.ic_close);

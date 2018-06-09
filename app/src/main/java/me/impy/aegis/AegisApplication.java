@@ -14,7 +14,6 @@ import me.impy.aegis.db.DatabaseManager;
 import me.impy.aegis.ui.MainActivity;
 
 public class AegisApplication extends Application {
-    private boolean _running = false;
     private DatabaseManager _manager;
     private Preferences _prefs;
 
@@ -35,15 +34,6 @@ public class AegisApplication extends Application {
 
     public Preferences getPreferences() {
         return _prefs;
-    }
-
-    public boolean isRunning() {
-        // return false the first time this is called
-        if (!_running) {
-            _running = true;
-            return false;
-        }
-        return true;
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N_MR1)

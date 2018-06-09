@@ -23,7 +23,7 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
     private Listener _listener;
 
     private PeriodProgressBar _progressBar;
-    private boolean _showProgress = false;
+    private boolean _showProgress;
 
     private UiRefresher _refresher;
 
@@ -31,6 +31,7 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         _adapter = new EntryAdapter(this);
+        _showProgress = false;
     }
 
     @Override

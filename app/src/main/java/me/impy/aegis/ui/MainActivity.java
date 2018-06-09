@@ -43,16 +43,18 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
 
     private AegisApplication _app;
     private DatabaseManager _db;
-    private EntryListView _entryListView;
+    private boolean _loaded;
 
     private Menu _menu;
     private FloatingActionsMenu _fabMenu;
+    private EntryListView _entryListView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         _app = (AegisApplication) getApplication();
         _db = _app.getDatabaseManager();
+        _loaded = false;
 
         // set up the main view
         setContentView(R.layout.activity_main);
@@ -66,44 +68,12 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         _fabMenu = findViewById(R.id.fab);
         findViewById(R.id.fab_enter).setOnClickListener(view -> {
             _fabMenu.collapse();
-            onEnterEntry();
+            startEditProfileActivity(CODE_ENTER_ENTRY, null, true);
         });
         findViewById(R.id.fab_scan).setOnClickListener(view -> {
             _fabMenu.collapse();
-            onScan();
+            startScanActivity();
         });
-
-        // skip this part if this is the not initial startup and the database has been unlocked
-        if (!_app.isRunning() && _db.isLocked()) {
-            if (!_db.fileExists()) {
-                // the db doesn't exist, start the intro
-                if (getPreferences().isIntroDone()) {
-                    Toast.makeText(this, "Database file not found, starting over...", Toast.LENGTH_SHORT).show();
-                }
-                Intent intro = new Intent(this, IntroActivity.class);
-                startActivityForResult(intro, CODE_DO_INTRO);
-            } else {
-                // the db exists, load the database
-                // if the database is still encrypted, start the auth activity
-                try {
-                    if (!_db.isLoaded()) {
-                        _db.load();
-                    }
-                    if (_db.isLocked()) {
-                        startAuthActivity();
-                    }
-                } catch (DatabaseManagerException e) {
-                    e.printStackTrace();
-                    Toast.makeText(this, "An error occurred while trying to deserialize the database", Toast.LENGTH_LONG).show();
-                    finish();
-                }
-            }
-        }
-
-        // if the database has been decrypted at this point, we can load the entries
-        if (!_db.isLocked()) {
-            loadEntries();
-        }
     }
 
     @Override
@@ -248,33 +218,13 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         }
 
         MasterKey key = (MasterKey) data.getSerializableExtra("key");
-        try {
-            _db.load();
-            if (_db.isLocked()) {
-                _db.unlock(key);
-            }
-        } catch (DatabaseManagerException e) {
-            e.printStackTrace();
-            Toast.makeText(this, "An error occurred while trying to load/decrypt the database", Toast.LENGTH_LONG).show();
-            startAuthActivity();
-            return;
-        }
-
-        loadEntries();
+        unlockDatabase(key);
     }
 
     private void onDecryptResult(int resultCode, Intent intent) {
         MasterKey key = (MasterKey) intent.getSerializableExtra("key");
-        try {
-            _db.unlock(key);
-        } catch (DatabaseManagerException e) {
-            e.printStackTrace();
-            Toast.makeText(this, "An error occurred while trying to decrypt the database", Toast.LENGTH_LONG).show();
-            startAuthActivity();
-            return;
-        }
+        unlockDatabase(key);
 
-        loadEntries();
         doShortcutActions();
     }
 
@@ -316,10 +266,28 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
     @Override
     protected void onResume() {
         super.onResume();
-        updateLockIcon();
 
-        // refresh all codes to prevent showing old ones
-        _entryListView.refresh(true);
+        if (_db.isLocked()) {
+            // start the intro if the database file doesn't exist
+            if (!_db.isLoaded() && !_db.fileExists()) {
+                // the db doesn't exist, start the intro
+                if (getPreferences().isIntroDone()) {
+                    Toast.makeText(this, "Database file not found, starting intro...", Toast.LENGTH_SHORT).show();
+                }
+                Intent intro = new Intent(this, IntroActivity.class);
+                startActivityForResult(intro, CODE_DO_INTRO);
+                return;
+            } else {
+                unlockDatabase(null);
+            }
+        } else if (_loaded) {
+            // refresh all codes to prevent showing old ones
+            _entryListView.refresh(true);
+        } else {
+            loadEntries();
+        }
+
+        updateLockIcon();
     }
 
     private BottomSheetDialog createBottomSheet(final DatabaseEntry entry) {
@@ -376,13 +344,49 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
                 startActivityForResult(intent, CODE_PREFERENCES);
                 return true;
             case R.id.action_lock:
-                _entryListView.clearEntries();
-                _db.lock();
-                startAuthActivity();
+                lockDatabase();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    private void lockDatabase() {
+        if (_loaded) {
+            _entryListView.clearEntries();
+            _db.lock();
+            _loaded = false;
+            startAuthActivity();
+        }
+    }
+
+    private void unlockDatabase(MasterKey key) {
+        try {
+            if (!_db.isLoaded()) {
+                _db.load();
+            }
+            if (_db.isLocked()) {
+                if (key == null) {
+                    startAuthActivity();
+                    return;
+                } else {
+                    _db.unlock(key);
+                }
+            }
+        } catch (DatabaseManagerException e) {
+            e.printStackTrace();
+            Toast.makeText(this, "An error occurred while trying to load/decrypt the database", Toast.LENGTH_LONG).show();
+            startAuthActivity();
+            return;
+        }
+
+        loadEntries();
+    }
+
+    private void loadEntries() {
+        // load all entries
+        _entryListView.addEntries(_db.getEntries());
+        _loaded = true;
     }
 
     private void startAuthActivity() {
@@ -398,12 +402,6 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
             e.printStackTrace();
             Toast.makeText(this, "An error occurred while trying to save the database", Toast.LENGTH_LONG).show();
         }
-    }
-
-    private void loadEntries() {
-        updateLockIcon();
-
-        _entryListView.addEntries(_db.getEntries());
     }
 
     private void updateLockIcon() {
