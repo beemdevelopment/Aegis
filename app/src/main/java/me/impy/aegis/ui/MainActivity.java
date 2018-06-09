@@ -173,7 +173,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
 
         switch (requestCode) {
             case CODE_PERM_CAMERA:
-                onScan();
+                startScanActivity();
                 break;
         }
     }
@@ -195,18 +195,6 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         }
         intent.putExtra("isNew", isNew);
         startActivityForResult(intent, requestCode);
-    }
-
-    private void onEnterEntry() {
-        startEditProfileActivity(CODE_ENTER_ENTRY, null, true);
-    }
-
-    private void onScan() {
-        if (!PermissionHelper.request(this, CODE_PERM_CAMERA, Manifest.permission.CAMERA)) {
-            return;
-        }
-
-        startScanActivity();
     }
 
     private void onScanResult(int resultCode, Intent data) {
@@ -291,6 +279,10 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
     }
 
     private void startScanActivity() {
+        if (!PermissionHelper.request(this, CODE_PERM_CAMERA, Manifest.permission.CAMERA)) {
+            return;
+        }
+
         Intent scannerActivity = new Intent(getApplicationContext(), ScannerActivity.class);
         startActivityForResult(scannerActivity, CODE_SCAN);
     }
