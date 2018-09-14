@@ -101,7 +101,7 @@ public class PreferencesFragment extends PreferenceFragmentCompat implements Pas
             }
         });
 
-        EditTextPreference timeoutPreference = (EditTextPreference) findPreference("pref_timeout");
+        /*EditTextPreference timeoutPreference = (EditTextPreference) findPreference("pref_timeout");
         timeoutPreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
             @Override
             public boolean onPreferenceChange(Preference preference, Object newValue) {
@@ -109,7 +109,7 @@ public class PreferencesFragment extends PreferenceFragmentCompat implements Pas
                 return true;
             }
         });
-        timeoutPreference.getOnPreferenceChangeListener().onPreferenceChange(timeoutPreference, timeoutPreference.getText());
+        timeoutPreference.getOnPreferenceChangeListener().onPreferenceChange(timeoutPreference, timeoutPreference.getText());*/
 
         Preference issuerPreference = findPreference("pref_issuer");
         issuerPreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {

@@ -24,13 +24,13 @@
             android:key="pref_secure_screen"
             android:title="@string/pref_secure_screen_title"
             android:summary="@string/pref_secure_screen_summary"/>
-        <EditTextPreference
+        <!--<EditTextPreference
             android:key="pref_timeout"
             android:title="@string/pref_timeout_title"
             android:summary="@string/pref_timeout_summary"
             android:inputType="number"
             android:defaultValue="30"
-            android:dialogTitle="Set number of seconds of inactivity before Aegis locks the database"/>
+            android:dialogTitle="Set number of seconds of inactivity before Aegis locks the database"/>-->
         <me.impy.aegis.ui.preferences.SwitchPreference
             android:key="pref_encryption"
             android:title="@string/pref_encryption_title"
