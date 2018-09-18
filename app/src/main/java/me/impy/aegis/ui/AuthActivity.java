@@ -5,8 +5,10 @@ import android.hardware.fingerprint.FingerprintManager;
 import android.os.Build;
 import android.support.v7.app.AlertDialog;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -48,6 +50,14 @@ public class AuthActivity extends AegisActivity implements FingerprintUiHelper.C
         LinearLayout boxFingerprint = findViewById(R.id.box_fingerprint);
         LinearLayout boxFingerprintInfo = findViewById(R.id.box_fingerprint_info);
         TextView textFingerprint = findViewById(R.id.text_fingerprint);
+        Button decryptButton = findViewById(R.id.button_decrypt);
+
+        _textPassword.setOnEditorActionListener((v, actionId, event) -> {
+            if ((event != null && (event.getKeyCode() == KeyEvent.KEYCODE_ENTER)) || (actionId == EditorInfo.IME_ACTION_DONE)) {
+                decryptButton.performClick();
+            }
+            return false;
+        });
 
         SwirlView imgFingerprint = null;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -92,8 +102,7 @@ public class AuthActivity extends AegisActivity implements FingerprintUiHelper.C
             }
         }
 
-        Button button = findViewById(R.id.button_decrypt);
-        button.setOnClickListener(new View.OnClickListener() {
+        decryptButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 char[] password = EditTextHelper.getEditTextChars(_textPassword);
