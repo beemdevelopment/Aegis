@@ -25,7 +25,6 @@ import me.impy.aegis.db.slots.SlotException;
 import me.impy.aegis.helpers.FingerprintHelper;
 import me.impy.aegis.ui.dialogs.Dialogs;
 import me.impy.aegis.ui.dialogs.FingerprintDialogFragment;
-import me.impy.aegis.ui.dialogs.PasswordDialogFragment;
 import me.impy.aegis.ui.views.SlotAdapter;
 import me.impy.aegis.ui.dialogs.SlotDialogFragment;
 
@@ -48,11 +47,6 @@ public class SlotManagerActivity extends AegisActivity implements SlotAdapter.Li
 
         findViewById(R.id.button_add_fingerprint).setOnClickListener(view -> {
             FingerprintDialogFragment dialog = new FingerprintDialogFragment();
-            dialog.show(getSupportFragmentManager(), null);
-        });
-
-        findViewById(R.id.button_add_password).setOnClickListener(view -> {
-            PasswordDialogFragment dialog = new PasswordDialogFragment();
             dialog.show(getSupportFragmentManager(), null);
         });
 
