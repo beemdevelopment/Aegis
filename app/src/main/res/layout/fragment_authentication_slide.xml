@@ -25,7 +25,6 @@
         android:layout_marginTop="12dp"
         android:orientation="horizontal">
 
-
         <RadioGroup
             android:id="@+id/rg_authenticationMethod"
             android:layout_width="match_parent"

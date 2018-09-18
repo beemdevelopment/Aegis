@@ -72,11 +72,11 @@ public class SlotManagerActivity extends AegisActivity implements SlotAdapter.Li
         // only show the fingerprint option if we can get an instance of the fingerprint manager
         // and if none of the slots in the collection has a matching alias in the keystore
         int visibility = View.VISIBLE;
-        if (FingerprintHelper.isSupported()) {
+        if (FingerprintHelper.getManager(this) != null) {
             try {
                 KeyStoreHandle keyStore = new KeyStoreHandle();
                 for (FingerprintSlot slot : _slots.findAll(FingerprintSlot.class)) {
-                    if (keyStore.containsKey(slot.getUUID().toString()) && FingerprintHelper.getManager(this) != null) {
+                    if (keyStore.containsKey(slot.getUUID().toString())) {
                         visibility = View.GONE;
                         break;
                     }
