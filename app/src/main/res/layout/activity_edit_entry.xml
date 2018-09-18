@@ -13,8 +13,9 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="250dp"
-            android:background="@color/colorPrimary">
+            android:background="?attr/background"
+
+            android:layout_height="250dp">
 
             <de.hdodenhof.circleimageview.CircleImageView
                 xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -48,7 +49,10 @@
             </com.avito.android.krop.KropView>
 
         </RelativeLayout>
-
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/divider" />
         <TableLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -57,7 +61,7 @@
             android:layout_marginEnd="35dp">
 
             <TableRow
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginBottom="5dp">
                 <ImageView android:layout_column="0"
                     android:layout_width="wrap_content"
@@ -73,7 +77,7 @@
                     android:hint="Name"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:backgroundTint="#ff0000"
+                    android:backgroundTint="#949494"
                     android:layout_weight="1"/>
             </TableRow>
 

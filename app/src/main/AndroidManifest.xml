@@ -36,7 +36,7 @@
         <activity
             android:name=".ui.EditEntryActivity"
             android:label="Edit profile"
-            android:theme="@style/AppTheme.TransparentActionBar">
+            android:theme="@style/AppTheme.NoActionBar">
         </activity>
         <activity
             android:name=".ui.IntroActivity"
