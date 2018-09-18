@@ -25,7 +25,6 @@ import me.impy.aegis.db.slots.SlotException;
 import me.impy.aegis.helpers.FingerprintHelper;
 import me.impy.aegis.ui.dialogs.Dialogs;
 import me.impy.aegis.ui.dialogs.FingerprintDialogFragment;
-import me.impy.aegis.ui.dialogs.PasswordDialogFragment;
 import me.impy.aegis.ui.views.SlotAdapter;
 import me.impy.aegis.ui.dialogs.SlotDialogFragment;
 
@@ -51,11 +50,6 @@ public class SlotManagerActivity extends AegisActivity implements SlotAdapter.Li
             dialog.show(getSupportFragmentManager(), null);
         });
 
-        findViewById(R.id.button_add_password).setOnClickListener(view -> {
-            PasswordDialogFragment dialog = new PasswordDialogFragment();
-            dialog.show(getSupportFragmentManager(), null);
-        });
-
         // set up the recycler view
         _adapter = new SlotAdapter(this);
         RecyclerView slotsView = findViewById(R.id.list_slots);
@@ -78,11 +72,11 @@ public class SlotManagerActivity extends AegisActivity implements SlotAdapter.Li
         // only show the fingerprint option if we can get an instance of the fingerprint manager
         // and if none of the slots in the collection has a matching alias in the keystore
         int visibility = View.VISIBLE;
-        if (FingerprintHelper.isSupported()) {
+        if (FingerprintHelper.getManager(this) != null) {
             try {
                 KeyStoreHandle keyStore = new KeyStoreHandle();
                 for (FingerprintSlot slot : _slots.findAll(FingerprintSlot.class)) {
-                    if (keyStore.containsKey(slot.getUUID().toString()) && FingerprintHelper.getManager(this) != null) {
+                    if (keyStore.containsKey(slot.getUUID().toString())) {
                         visibility = View.GONE;
                         break;
                     }
