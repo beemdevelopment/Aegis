@@ -19,8 +19,8 @@ public class Preferences {
         return _prefs.getBoolean("pref_secure_screen", true);
     }
 
-    public boolean isIssuerVisible() {
-        return _prefs.getBoolean("pref_issuer", false);
+    public boolean isAccountNameVisible() {
+        return _prefs.getBoolean("pref_account_name", false);
     }
 
     public boolean isIntroDone() {

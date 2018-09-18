@@ -21,7 +21,7 @@ import me.impy.aegis.otp.TotpInfo;
 public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements ItemTouchHelperAdapter {
     private List<DatabaseEntry> _entries;
     private static Listener _listener;
-    private boolean _showIssuer;
+    private boolean _showAccountName;
 
     // keeps track of the viewholders that are currently bound
     private List<EntryHolder> _holders;
@@ -32,8 +32,8 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
         _listener = listener;
     }
 
-    public void setShowIssuer(boolean showIssuer) {
-        _showIssuer = showIssuer;
+    public void setShowAccountName(boolean showAccountName) {
+        _showAccountName = showAccountName;
     }
 
     public void addEntry(DatabaseEntry entry) {
@@ -126,7 +126,7 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
     public void onBindViewHolder(final EntryHolder holder, int position) {
         DatabaseEntry entry = _entries.get(position);
         boolean showProgress = !isPeriodUniform() && entry.getInfo() instanceof TotpInfo;
-        holder.setData(entry, _showIssuer, showProgress);
+        holder.setData(entry, _showAccountName, showProgress);
         if (showProgress) {
             holder.startRefreshLoop();
         }

@@ -12,9 +12,9 @@
 
         <android.support.v7.preference.SwitchPreferenceCompat
             android:defaultValue="false"
-            android:key="pref_issuer"
-            android:title="@string/pref_issuer_title"
-            android:summary="@string/pref_issuer_summary"/>
+            android:key="pref_account_name"
+            android:title="@string/pref_account_name_title"
+            android:summary="@string/pref_account_name_summary"/>
     </PreferenceCategory>
 
     <PreferenceCategory

@@ -34,7 +34,7 @@ public class EntryHolder extends RecyclerView.ViewHolder {
 
     public EntryHolder(final View view) {
         super(view);
-        _profileName = view.findViewById(R.id.profile_name);
+        _profileName = view.findViewById(R.id.profile_account_name);
         _profileCode = view.findViewById(R.id.profile_code);
         _profileIssuer = view.findViewById(R.id.profile_issuer);
         _profileDrawable = view.findViewById(R.id.ivTextDrawable);
@@ -58,7 +58,7 @@ public class EntryHolder extends RecyclerView.ViewHolder {
         });
     }
 
-    public void setData(DatabaseEntry entry, boolean showIssuer, boolean showProgress) {
+    public void setData(DatabaseEntry entry, boolean showAccountName, boolean showProgress) {
         _entry = entry;
 
         // only show the progress bar if there is no uniform period and the entry type is TotpInfo
@@ -70,10 +70,10 @@ public class EntryHolder extends RecyclerView.ViewHolder {
         // only show the button if this entry is of type HotpInfo
         _buttonRefresh.setVisibility(entry.getInfo() instanceof HotpInfo ? View.VISIBLE : View.GONE);
 
-        _profileName.setText(entry.getName());
-        _profileIssuer.setText("");
-        if (showIssuer) {
-            _profileIssuer.setText(" - " + entry.getIssuer());
+        _profileIssuer.setText(entry.getIssuer());
+        _profileName.setText("");
+        if (showAccountName) {
+            _profileName.setText(" - " + entry.getName());
         }
 
         if (_entry.hasIcon()) {

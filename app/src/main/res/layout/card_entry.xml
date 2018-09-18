@@ -52,8 +52,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/profile_name"
-                android:text="Keyprofile Title"
+                android:id="@+id/profile_issuer"
+                android:text="Issuer"
                 android:textColor="?attr/secondaryText"
                 android:includeFontPadding="false"
                 android:textSize="15sp"
@@ -66,12 +66,12 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/profile_issuer"
-                android:text=" - Issuer"
+                android:id="@+id/profile_account_name"
+                android:text=" - AccountName"
                 android:textColor="@color/extra_info_text"
                 android:includeFontPadding="false"
                 android:textSize="15sp"
-                android:layout_toRightOf="@id/profile_name"
+                android:layout_toRightOf="@id/profile_issuer"
                 android:layout_below="@id/profile_code"
                 android:ellipsize="end"
                 android:maxLines="1"/>

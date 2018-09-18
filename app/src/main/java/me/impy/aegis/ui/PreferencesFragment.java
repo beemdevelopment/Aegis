@@ -111,7 +111,7 @@ public class PreferencesFragment extends PreferenceFragmentCompat implements Pas
         });
         timeoutPreference.getOnPreferenceChangeListener().onPreferenceChange(timeoutPreference, timeoutPreference.getText());*/
 
-        Preference issuerPreference = findPreference("pref_issuer");
+        Preference issuerPreference = findPreference("pref_account_name");
         issuerPreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
             @Override
             public boolean onPreferenceChange(Preference preference, Object newValue) {

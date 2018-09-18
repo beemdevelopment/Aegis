@@ -62,7 +62,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         // set up the entry view
         _entryListView = (EntryListView) getSupportFragmentManager().findFragmentById(R.id.key_profiles);
         _entryListView.setListener(this);
-        _entryListView.setShowIssuer(getPreferences().isIssuerVisible());
+        _entryListView.setShowAccountName(getPreferences().isAccountNameVisible());
 
         // set up the floating action button
         _fabMenu = findViewById(R.id.fab);
@@ -153,8 +153,8 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         if (data.getBooleanExtra("needsRecreate", false)) {
             recreate();
         } else if (data.getBooleanExtra("needsRefresh", false)) {
-            boolean showIssuer = getPreferences().isIssuerVisible();
-            _entryListView.setShowIssuer(showIssuer);
+            boolean showAccountName = getPreferences().isAccountNameVisible();
+            _entryListView.setShowAccountName(showAccountName);
             _entryListView.refresh(true);
         }
     }

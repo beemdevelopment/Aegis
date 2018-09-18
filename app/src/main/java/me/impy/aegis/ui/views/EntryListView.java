@@ -129,8 +129,8 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
         _listener.onEntryChange(entry);
     }
 
-    public void setShowIssuer(boolean showIssuer) {
-        _adapter.setShowIssuer(showIssuer);
+    public void setShowAccountName(boolean showAccountName) {
+        _adapter.setShowAccountName(showAccountName);
     }
 
     public void addEntry(DatabaseEntry entry) {

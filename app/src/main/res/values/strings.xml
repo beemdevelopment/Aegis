@@ -11,8 +11,8 @@
     <string name="settings">Preferences</string>
     <string name="pref_dark_mode_title">Dark mode</string>
     <string name="pref_dark_mode_summary">Enable this to use darker colors</string>
-    <string name="pref_issuer_title">Show the issuer</string>
-    <string name="pref_issuer_summary">Enable this to show the issuer next to the profile name</string>
+    <string name="pref_account_name_title">Show the account name</string>
+    <string name="pref_account_name_summary">Enable this to show the account name next to the issuer</string>
     <string name="pref_timeout_title">Timeout</string>
     <string name="pref_timeout_summary">Automatically lock the database after %1$s seconds of inactivity</string>
     <string name="pref_slots_title">Key slots</string>
