@@ -11,14 +11,14 @@
     <application
         android:name=".AegisApplication"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
+        android:icon="@mipmap/${iconName}"
+        android:label="Aegis"
         android:supportsRtl="true"
         tools:replace="android:theme"
         android:theme="@style/AppTheme.NoActionBar">
         <activity
             android:name=".ui.MainActivity"
-            android:label="@string/app_name"
+            android:label="${title}"
             android:alwaysRetainTaskState="true"
             android:launchMode="singleTask">
             <intent-filter>
