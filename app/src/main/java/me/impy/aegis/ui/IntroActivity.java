@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.WindowManager;
 
-import com.github.paolorotolo.appintro.AppIntro;
 import com.github.paolorotolo.appintro.AppIntro2;
 import com.github.paolorotolo.appintro.AppIntroFragment;
 import com.github.paolorotolo.appintro.model.SliderPage;
@@ -69,7 +68,6 @@ public class IntroActivity extends AppIntro2 implements DerivationTask.Callback 
         homeSliderPage.setTitleColor(getResources().getColor(R.color.primary_text_dark));
         homeSliderPage.setDescription("Aegis is a secure, free and open source 2FA app");
         homeSliderPage.setDescColor(getResources().getColor(R.color.primary_text_dark));
-        homeSliderPage.setImageDrawable(R.drawable.intro_shield);
         homeSliderPage.setBgColor(getResources().getColor(R.color.colorSecondary));
         addSlide(AppIntroFragment.newInstance(homeSliderPage));
 
@@ -84,7 +82,6 @@ public class IntroActivity extends AppIntro2 implements DerivationTask.Callback 
         SliderPage endSliderPage = new SliderPage();
         endSliderPage.setTitle("All done!");
         endSliderPage.setDescription("Aegis has been set up and is ready to go.");
-        endSliderPage.setImageDrawable(R.drawable.intro_shield);
         endSliderPage.setBgColor(getResources().getColor(R.color.colorSecondary));
         _endSlide = AppIntroFragment.newInstance(endSliderPage);
         addSlide(_endSlide);
