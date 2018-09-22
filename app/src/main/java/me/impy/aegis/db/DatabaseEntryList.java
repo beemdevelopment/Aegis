@@ -19,19 +19,19 @@ public class DatabaseEntryList implements Iterable<DatabaseEntry>, Serializable 
     }
 
     public void add(DatabaseEntry entry) {
-        if (tryGetByUUID(entry.getUUID()) != null) {
+        if (getByUUID(entry.getUUID()) != null) {
             throw new AssertionError("entry found with the same uuid");
         }
         _entries.add(entry);
     }
 
     public void remove(DatabaseEntry entry) {
-        entry = getByUUID(entry.getUUID());
+        entry = mustGetByUUID(entry.getUUID());
         _entries.remove(entry);
     }
 
     public void replace(DatabaseEntry newEntry) {
-        DatabaseEntry oldEntry = getByUUID(newEntry.getUUID());
+        DatabaseEntry oldEntry = mustGetByUUID(newEntry.getUUID());
         _entries.set(_entries.indexOf(oldEntry), newEntry);
     }
 
@@ -43,7 +43,7 @@ public class DatabaseEntryList implements Iterable<DatabaseEntry>, Serializable 
         return Collections.unmodifiableList(_entries);
     }
 
-    private DatabaseEntry tryGetByUUID(UUID uuid) {
+    public DatabaseEntry getByUUID(UUID uuid) {
         for (DatabaseEntry entry : _entries) {
             if (entry.getUUID().equals(uuid)) {
                 return entry;
@@ -52,8 +52,8 @@ public class DatabaseEntryList implements Iterable<DatabaseEntry>, Serializable 
         return null;
     }
 
-    private DatabaseEntry getByUUID(UUID uuid) {
-        DatabaseEntry entry = tryGetByUUID(uuid);
+    private DatabaseEntry mustGetByUUID(UUID uuid) {
+        DatabaseEntry entry = getByUUID(uuid);
         if (entry == null) {
             throw new AssertionError("no entry found with the same uuid");
         }

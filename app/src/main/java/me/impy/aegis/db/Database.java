@@ -5,6 +5,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.List;
+import java.util.UUID;
 
 import me.impy.aegis.encoding.Base64Exception;
 import me.impy.aegis.otp.OtpInfoException;
@@ -67,5 +68,9 @@ public class Database {
 
     public List<DatabaseEntry> getEntries() {
         return _entries.getList();
+    }
+
+    public DatabaseEntry getEntryByUUID(UUID uuid) {
+        return _entries.getByUUID(uuid);
     }
 }

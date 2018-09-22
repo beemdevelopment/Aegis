@@ -7,9 +7,7 @@ import android.content.Intent;
 import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v7.preference.EditTextPreference;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.preference.Preference;
 import com.takisoft.fix.support.v7.preference.PreferenceFragmentCompat;
 import android.view.Window;
@@ -315,6 +313,11 @@ public class PreferencesFragment extends PreferenceFragmentCompat implements Pas
     private void importDatabase(DatabaseImporter importer) throws DatabaseImporterException {
         List<DatabaseEntry> entries = importer.convert();
         for (DatabaseEntry entry : entries) {
+            // temporary: randomize the UUID of duplicate entries and add them anyway
+            if (_db.getEntryByUUID(entry.getUUID()) != null) {
+                entry.resetUUID();
+            }
+
             _db.addEntry(entry);
         }
 

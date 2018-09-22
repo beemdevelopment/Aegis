@@ -11,6 +11,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
+import java.util.UUID;
 
 import me.impy.aegis.BuildConfig;
 import me.impy.aegis.crypto.MasterKey;
@@ -185,6 +186,11 @@ public class DatabaseManager {
     public List<DatabaseEntry> getEntries() {
         assertState(false, true);
         return _db.getEntries();
+    }
+
+    public DatabaseEntry getEntryByUUID(UUID uuid) {
+        assertState(false, true);
+        return _db.getEntryByUUID(uuid);
     }
 
     public MasterKey getMasterKey() {

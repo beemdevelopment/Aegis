@@ -64,6 +64,10 @@ public class DatabaseEntry implements Serializable {
         _info = OtpInfo.parseJson(obj.getString("type"), obj.getJSONObject("info"));
     }
 
+    public void resetUUID() {
+        _uuid = UUID.randomUUID();
+    }
+
     public UUID getUUID() {
         return _uuid;
     }
