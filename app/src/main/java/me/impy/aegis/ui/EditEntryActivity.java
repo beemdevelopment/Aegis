@@ -536,7 +536,7 @@ public class EditEntryActivity extends AegisActivity {
             ObjectInputStream ois = new ObjectInputStream(bais);
             return (DatabaseEntry) ois.readObject();
         } catch (ClassNotFoundException | IOException e) {
-            return null;
+            throw new RuntimeException(e);
         }
     }
 
