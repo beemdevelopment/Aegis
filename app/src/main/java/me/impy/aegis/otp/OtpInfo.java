@@ -4,6 +4,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.Serializable;
+import java.util.Arrays;
 
 import me.impy.aegis.encoding.Base32;
 import me.impy.aegis.encoding.Base32Exception;
@@ -112,5 +113,20 @@ public abstract class OtpInfo implements Serializable {
         }
 
         return info;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof OtpInfo)) {
+            return false;
+        }
+
+        OtpInfo info = (OtpInfo) o;
+        return Arrays.equals(getSecret(), info.getSecret())
+                && getAlgorithm(false).equals(info.getAlgorithm(false))
+                && getDigits() == info.getDigits();
     }
 }

@@ -63,4 +63,14 @@ public class TotpInfo extends OtpInfo {
         long p = period * 1000;
         return p - (System.currentTimeMillis() % p);
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!(o instanceof TotpInfo)) {
+            return false;
+        }
+
+        TotpInfo info = (TotpInfo) o;
+        return super.equals(o) && getPeriod() == info.getPeriod();
+    }
 }

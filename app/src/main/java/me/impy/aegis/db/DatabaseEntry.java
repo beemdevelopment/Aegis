@@ -4,6 +4,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.Serializable;
+import java.util.Arrays;
 import java.util.UUID;
 
 import me.impy.aegis.encoding.Base64;
@@ -106,5 +107,22 @@ public class DatabaseEntry implements Serializable {
 
     public boolean hasIcon() {
         return _icon != null;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof DatabaseEntry)) {
+            return false;
+        }
+
+        DatabaseEntry entry = (DatabaseEntry) o;
+        return getUUID().equals(entry.getUUID())
+                && getName().equals(entry.getName())
+                && getIssuer().equals(entry.getIssuer())
+                && getInfo().equals(entry.getInfo())
+                && Arrays.equals(getIcon(), entry.getIcon());
     }
 }

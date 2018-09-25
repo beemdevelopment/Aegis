@@ -64,4 +64,14 @@ public class HotpInfo extends OtpInfo {
     public void incrementCounter() throws OtpInfoException {
         setCounter(getCounter() + 1);
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!(o instanceof HotpInfo)) {
+            return false;
+        }
+
+        HotpInfo info = (HotpInfo) o;
+        return super.equals(o) && getCounter() == info.getCounter();
+    }
 }

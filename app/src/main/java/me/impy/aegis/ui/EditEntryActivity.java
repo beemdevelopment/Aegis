@@ -10,12 +10,11 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import androidx.annotation.ArrayRes;
 import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AlertDialog;
+
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.AlphaAnimation;
@@ -33,8 +32,14 @@ import com.esafirm.imagepicker.features.ImagePicker;
 import com.esafirm.imagepicker.features.ReturnMode;
 import com.esafirm.imagepicker.model.Image;
 
+import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.util.concurrent.atomic.AtomicReference;
 
+import androidx.appcompat.app.AlertDialog;
 import de.hdodenhof.circleimageview.CircleImageView;
 import me.impy.aegis.R;
 import me.impy.aegis.db.DatabaseEntry;
@@ -51,9 +56,10 @@ import me.impy.aegis.ui.dialogs.Dialogs;
 
 public class EditEntryActivity extends AegisActivity {
     private boolean _isNew = false;
-    private boolean _edited = false;
-    private DatabaseEntry _entry;
-    private boolean _hasCustomImage = false;
+    private DatabaseEntry _origEntry;
+    private boolean _hasCustomIcon = false;
+    // keep track of icon changes separately as the generated jpeg's are not deterministic
+    private boolean _hasChangedIcon = false;
     private CircleImageView _iconView;
     private ImageView _saveImageButton;
 
@@ -69,7 +75,6 @@ public class EditEntryActivity extends AegisActivity {
     private Spinner _spinnerType;
     private Spinner _spinnerAlgo;
     private Spinner _spinnerDigits;
-    private SpinnerItemSelectedListener _selectedListener;
 
     private KropView _kropView;
 
@@ -87,7 +92,7 @@ public class EditEntryActivity extends AegisActivity {
 
         // retrieve info from the calling activity
         Intent intent = getIntent();
-        _entry = (DatabaseEntry) intent.getSerializableExtra("entry");
+        _origEntry = (DatabaseEntry) intent.getSerializableExtra("entry");
         _isNew = intent.getBooleanExtra("isNew", false);
         if (_isNew) {
             setTitle("Add profile");
@@ -110,27 +115,26 @@ public class EditEntryActivity extends AegisActivity {
         SpinnerHelper.fillSpinner(this, _spinnerAlgo, R.array.otp_algo_array);
         _spinnerDigits = findViewById(R.id.spinner_digits);
         SpinnerHelper.fillSpinner(this, _spinnerDigits, R.array.otp_digits_array);
-        _selectedListener = new SpinnerItemSelectedListener();
 
         _advancedSettingsHeader = findViewById(R.id.accordian_header);
         _advancedSettings = findViewById(R.id.expandableLayout);
 
         // fill the fields with values if possible
-        if (_entry != null) {
-            if (_entry.hasIcon()) {
-                byte[] imageBytes = _entry.getIcon();
+        if (_origEntry != null) {
+            if (_origEntry.hasIcon()) {
+                byte[] imageBytes = _origEntry.getIcon();
                 Bitmap bitmap = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
                 _iconView.setImageBitmap(bitmap);
-                _hasCustomImage = true;
+                _hasCustomIcon = true;
             } else {
-                TextDrawable drawable = TextDrawableHelper.generate(_entry.getIssuer(), _entry.getName(), _iconView);
+                TextDrawable drawable = TextDrawableHelper.generate(_origEntry.getIssuer(), _origEntry.getName(), _iconView);
                 _iconView.setImageDrawable(drawable);
             }
 
-            _textName.setText(_entry.getName());
-            _textIssuer.setText(_entry.getIssuer());
+            _textName.setText(_origEntry.getName());
+            _textIssuer.setText(_origEntry.getIssuer());
 
-            OtpInfo info = _entry.getInfo();
+            OtpInfo info = _origEntry.getInfo();
             if (info instanceof TotpInfo) {
                 _textPeriod.setText(Integer.toString(((TotpInfo) info).getPeriod()));
                 _rowPeriod.setVisibility(View.VISIBLE);
@@ -141,32 +145,21 @@ public class EditEntryActivity extends AegisActivity {
                 throw new RuntimeException();
             }
 
-            byte[] secretBytes = _entry.getInfo().getSecret();
+            byte[] secretBytes = _origEntry.getInfo().getSecret();
             if (secretBytes != null) {
                 char[] secretChars = Base32.encode(secretBytes);
                 _textSecret.setText(secretChars, 0, secretChars.length);
             }
 
-            String type = _entry.getInfo().getType();
+            String type = _origEntry.getInfo().getType();
             _spinnerType.setSelection(getStringResourceIndex(R.array.otp_types_array, type.toUpperCase()), false);
 
-            String algo = _entry.getInfo().getAlgorithm(false);
+            String algo = _origEntry.getInfo().getAlgorithm(false);
             _spinnerAlgo.setSelection(getStringResourceIndex(R.array.otp_algo_array, algo), false);
 
-            String digits = Integer.toString(_entry.getInfo().getDigits());
+            String digits = Integer.toString(_origEntry.getInfo().getDigits());
             _spinnerDigits.setSelection(getStringResourceIndex(R.array.otp_digits_array, digits), false);
         }
-
-        // listen for changes to any of the fields
-        _textName.addTextChangedListener(_textListener);
-        _textIssuer.addTextChangedListener(_textListener);
-        _textPeriod.addTextChangedListener(_textListener);
-        _textCounter.addTextChangedListener(_textListener);
-        _textSecret.addTextChangedListener(_textListener);
-        _spinnerAlgo.setOnTouchListener(_selectedListener);
-        _spinnerAlgo.setOnItemSelectedListener(_selectedListener);
-        _spinnerDigits.setOnTouchListener(_selectedListener);
-        _spinnerDigits.setOnItemSelectedListener(_selectedListener);
 
         // update the icon if the text changed
         _textIssuer.addTextChangedListener(_iconChangeListener);
@@ -190,8 +183,6 @@ public class EditEntryActivity extends AegisActivity {
                     default:
                         throw new RuntimeException();
                 }
-
-                _selectedListener.onItemSelected(parent, view, position, id);
             }
 
             @Override
@@ -201,20 +192,21 @@ public class EditEntryActivity extends AegisActivity {
         });
 
         ImagePicker imagePicker = ImagePicker.create(this)
-                .returnMode(ReturnMode.ALL) // set whether pick and / or camera action should return immediate result or not.
-                .folderMode(true) // folder mode (false by default)
-                .toolbarFolderTitle("Folder") // folder selection title
-                .toolbarImageTitle("Tap to select") // image selection title
-                .toolbarArrowColor(Color.BLACK) // Toolbar 'up' arrow color
-                .single() // single mode
-                .showCamera(false) // show camera or not (true by default)
+                .returnMode(ReturnMode.ALL)
+                .folderMode(true)
+                .toolbarFolderTitle("Folder")
+                .toolbarImageTitle("Tap to select")
+                .toolbarArrowColor(Color.BLACK)
+                .single()
+                .showCamera(false)
                 .imageDirectory("Camera");
 
-        // Open ImagePicker when clicking on the icon
+        // open ImagePicker when clicking on the icon
         _iconView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                imagePicker.start(); // start image picker activity with request code
+                // start image picker activity with request code
+                imagePicker.start();
             }
         });
 
@@ -223,7 +215,7 @@ public class EditEntryActivity extends AegisActivity {
         });
 
         // automatically open advanced settings since 'Secret' is required.
-        if(_isNew){
+        if (_isNew) {
             openAdvancedSettings();
         }
     }
@@ -238,14 +230,14 @@ public class EditEntryActivity extends AegisActivity {
     }
 
     private void openAdvancedSettings() {
-        Animation fadeOut = new AlphaAnimation(1, 0);  // the 1, 0 here notifies that we want the opacity to go from opaque (1) to transparent (0)
+        Animation fadeOut = new AlphaAnimation(1, 0);
         fadeOut.setInterpolator(new AccelerateInterpolator());
-        fadeOut.setDuration(220); // Fadeout duration should be 1000 milli seconds
+        fadeOut.setDuration(220);
         _advancedSettingsHeader.startAnimation(fadeOut);
 
-        Animation fadeIn = new AlphaAnimation(0, 1);  // the 1, 0 here notifies that we want the opacity to go from opaque (1) to transparent (0)
+        Animation fadeIn = new AlphaAnimation(0, 1);
         fadeIn.setInterpolator(new AccelerateInterpolator());
-        fadeIn.setDuration(250); // Fadeout duration should be 1000 milli seconds
+        fadeIn.setDuration(250);
 
         fadeOut.setAnimationListener(new Animation.AnimationListener() {
             @Override
@@ -285,13 +277,32 @@ public class EditEntryActivity extends AegisActivity {
 
     @Override
     public void onBackPressed() {
-        if (!_edited) {
+        AtomicReference<String> msg = new AtomicReference<>();
+        AtomicReference<DatabaseEntry> entry = new AtomicReference<>();
+
+        try {
+            entry.set(parseEntry());
+        } catch (ParseException e) {
+            msg.set(e.getMessage());
+        }
+
+        // close the activity if the entry has not been changed
+        if (_origEntry != null && !_hasChangedIcon && _origEntry.equals(entry.get())) {
             super.onBackPressed();
             return;
         }
 
+        // ask for confirmation if the entry has been changed
         Dialogs.showDiscardDialog(this,
-                (dialog, which) -> onSave(),
+                (dialog, which) -> {
+                    // if the entry couldn't be parsed, we show an error dialog
+                    if (msg.get() != null) {
+                        onSaveError(msg.get());
+                        return;
+                    }
+
+                    finish(entry.get(), false);
+                },
                 (dialog, which) -> super.onBackPressed()
         );
     }
@@ -307,13 +318,14 @@ public class EditEntryActivity extends AegisActivity {
                 break;
             case R.id.action_delete:
                 Dialogs.showDeleteEntryDialog(this, (dialog, which) -> {
-                    finish(true);
+                    finish(_origEntry, true);
                 });
                 break;
             case R.id.action_default_icon:
-                TextDrawable drawable = TextDrawableHelper.generate(_entry.getIssuer(), _entry.getName(), _iconView);
+                TextDrawable drawable = TextDrawableHelper.generate(_origEntry.getIssuer(), _origEntry.getName(), _iconView);
                 _iconView.setImageDrawable(drawable);
-                _hasCustomImage = false;
+                _hasCustomIcon = false;
+                _hasChangedIcon = true;
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -327,16 +339,16 @@ public class EditEntryActivity extends AegisActivity {
         if (_isNew) {
             menu.findItem(R.id.action_delete).setVisible(false);
         }
-        if (!_hasCustomImage) {
+        if (!_hasCustomIcon) {
             menu.findItem(R.id.action_default_icon).setVisible(false);
         }
 
         return true;
     }
 
-    private void finish(boolean delete) {
+    private void finish(DatabaseEntry entry, boolean delete) {
         Intent intent = new Intent();
-        intent.putExtra("entry", _entry);
+        intent.putExtra("entry", entry);
         intent.putExtra("delete", delete);
         setResult(RESULT_OK, intent);
         finish();
@@ -345,7 +357,6 @@ public class EditEntryActivity extends AegisActivity {
     @Override
     protected void onActivityResult(int requestCode, final int resultCode, Intent data) {
         if (ImagePicker.shouldHandle(requestCode, resultCode, data)) {
-            // or get a single image only
             Image image = ImagePicker.getFirstImageOrNull(data);
             BitmapFactory.Options bmOptions = new BitmapFactory.Options();
             Bitmap bitmap = BitmapFactory.decodeFile(image.getPath(),bmOptions);
@@ -357,7 +368,8 @@ public class EditEntryActivity extends AegisActivity {
                 public void onClick(View v) {
                     _iconView.setImageBitmap(_kropView.getCroppedBitmap());
                     _kropView.setVisibility(View.GONE);
-                    _hasCustomImage = true;
+                    _hasCustomIcon = true;
+                    _hasChangedIcon = true;
                 }
             });
         }
@@ -365,10 +377,9 @@ public class EditEntryActivity extends AegisActivity {
         super.onActivityResult(requestCode, resultCode, data);
     }
 
-    private boolean onSave() {
+    private DatabaseEntry parseEntry() throws ParseException {
         if (_textSecret.length() == 0) {
-            onError("Secret is a required field.");
-            return false;
+            throw new ParseException("Secret is a required field.");
         }
 
         String type = _spinnerType.getSelectedItem().toString();
@@ -378,16 +389,14 @@ public class EditEntryActivity extends AegisActivity {
         try {
             digits = Integer.parseInt(_spinnerDigits.getSelectedItem().toString());
         } catch (NumberFormatException e) {
-            onError("Digits is not an integer.");
-            return false;
+            throw new ParseException("Digits is not an integer.");
         }
 
         byte[] secret;
         try {
             secret = Base32.decode(EditTextHelper.getEditTextChars(_textSecret));
         } catch (Base32Exception e) {
-            onError("Secret is not valid base32.");
-            return false;
+            throw new ParseException("Secret is not valid base32.");
         }
 
         // set otp info
@@ -399,8 +408,7 @@ public class EditEntryActivity extends AegisActivity {
                     try {
                         period = Integer.parseInt(_textPeriod.getText().toString());
                     } catch (NumberFormatException e) {
-                        onError("Period is not an integer.");
-                        return false;
+                        throw new ParseException("Period is not an integer.");
                     }
                     info = new TotpInfo(secret, algo, digits, period);
                     break;
@@ -409,8 +417,7 @@ public class EditEntryActivity extends AegisActivity {
                     try {
                         counter = Long.parseLong(_textCounter.getText().toString());
                     } catch (NumberFormatException e) {
-                        onError("Counter is not an integer.");
-                        return false;
+                        throw new ParseException("Counter is not an integer.");
                     }
                     info = new HotpInfo(secret, algo, digits, counter);
                     break;
@@ -421,35 +428,35 @@ public class EditEntryActivity extends AegisActivity {
             info.setDigits(digits);
             info.setAlgorithm(algo);
         } catch (OtpInfoException e) {
-            onError("The entered info is incorrect: " + e.getMessage());
-            return false;
+            throw new ParseException("The entered info is incorrect: " + e.getMessage());
         }
 
         // set database entry info
-        DatabaseEntry entry = _entry;
-        if (entry == null) {
+        DatabaseEntry entry;
+        if (_origEntry == null) {
             entry = new DatabaseEntry(info);
         } else {
+            entry = cloneEntry(_origEntry);
             entry.setInfo(info);
         }
         entry.setIssuer(_textIssuer.getText().toString());
         entry.setName(_textName.getText().toString());
 
-        if (_hasCustomImage) {
-            ByteArrayOutputStream stream = new ByteArrayOutputStream();
-            drawableToBitmap(_iconView.getDrawable()).compress(Bitmap.CompressFormat.JPEG, 100, stream);
-            byte[] bitmapdata = stream.toByteArray();
-            entry.setIcon(bitmapdata);
-        } else {
-            entry.setIcon(null);
+        if (_hasChangedIcon) {
+            if (_hasCustomIcon) {
+                ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                drawableToBitmap(_iconView.getDrawable()).compress(Bitmap.CompressFormat.JPEG, 100, stream);
+                byte[] data = stream.toByteArray();
+                entry.setIcon(data);
+            } else {
+                entry.setIcon(null);
+            }
         }
 
-        _entry = entry;
-        finish(false);
-        return true;
+        return entry;
     }
 
-    private void onError(String msg) {
+    private void onSaveError(String msg) {
         new AlertDialog.Builder(this)
                 .setTitle("Error saving profile")
                 .setMessage(msg)
@@ -457,26 +464,18 @@ public class EditEntryActivity extends AegisActivity {
                 .show();
     }
 
-    private void onFieldEdited() {
-        _edited = true;
+    private boolean onSave() {
+        DatabaseEntry entry;
+        try {
+            entry = parseEntry();
+        } catch (ParseException e) {
+            onSaveError(e.getMessage());
+            return false;
+        }
+
+        finish(entry, false);
+        return true;
     }
-
-    private TextWatcher _textListener = new TextWatcher() {
-        @Override
-        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-            onFieldEdited();
-        }
-
-        @Override
-        public void onTextChanged(CharSequence s, int start, int before, int count) {
-            onFieldEdited();
-        }
-
-        @Override
-        public void afterTextChanged(Editable s) {
-            onFieldEdited();
-        }
-    };
 
     private TextWatcher _iconChangeListener = new TextWatcher() {
         @Override
@@ -489,35 +488,12 @@ public class EditEntryActivity extends AegisActivity {
 
         @Override
         public void afterTextChanged(Editable s) {
-            if (!_hasCustomImage) {
+            if (!_hasCustomIcon) {
                 TextDrawable drawable = TextDrawableHelper.generate(_textIssuer.getText().toString(), _textName.getText().toString(), _iconView);
                 _iconView.setImageDrawable(drawable);
             }
         }
     };
-
-    private class SpinnerItemSelectedListener implements AdapterView.OnItemSelectedListener, View.OnTouchListener {
-        private boolean _userSelect = false;
-
-        @Override
-        public boolean onTouch(View v, MotionEvent event) {
-            _userSelect = true;
-            return false;
-        }
-
-        @Override
-        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-            if (_userSelect) {
-                onFieldEdited();
-                _userSelect = false;
-            }
-        }
-
-        @Override
-        public void onNothingSelected(AdapterView<?> parent) {
-
-        }
-    }
 
     private int getStringResourceIndex(@ArrayRes int id, String string) {
         String[] res = getResources().getStringArray(id);
@@ -529,7 +505,7 @@ public class EditEntryActivity extends AegisActivity {
         return -1;
     }
 
-    public static Bitmap drawableToBitmap(Drawable drawable) {
+    private static Bitmap drawableToBitmap(Drawable drawable) {
         if (drawable instanceof BitmapDrawable) {
             return ((BitmapDrawable) drawable).getBitmap();
         }
@@ -548,5 +524,25 @@ public class EditEntryActivity extends AegisActivity {
         drawable.draw(canvas);
 
         return bitmap;
+    }
+
+    private static DatabaseEntry cloneEntry(DatabaseEntry entry) {
+        try {
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            ObjectOutputStream oos = new ObjectOutputStream(baos);
+            oos.writeObject(entry);
+
+            ByteArrayInputStream bais = new ByteArrayInputStream(baos.toByteArray());
+            ObjectInputStream ois = new ObjectInputStream(bais);
+            return (DatabaseEntry) ois.readObject();
+        } catch (ClassNotFoundException | IOException e) {
+            return null;
+        }
+    }
+
+    private static class ParseException extends Exception {
+        public ParseException(String message) {
+            super(message);
+        }
     }
 }
