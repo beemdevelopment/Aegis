@@ -16,7 +16,7 @@
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
 
-    <style name="AppTheme" parent="PreferenceFixTheme.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="primaryText">@color/primary_text</item>
         <item name="secondaryText">@color/secondary_text</item>
         <item name="cardBackground">@color/card_background</item>
@@ -25,7 +25,6 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="background">@color/background</item>
-        <item name="preferenceCategory_marginBottom">0dp</item>
         <item name="bottomSheetDialogTheme">@style/Theme.Design.Light.BottomSheetDialog</item>
 
         <item name="iconColorPrimary">@color/icon_primary</item>
@@ -50,7 +49,7 @@
         <item name="android:windowFullscreen">true</item>
     </style>
 
-    <style name="AppTheme.Dark" parent="@style/PreferenceFixTheme">
+    <style name="AppTheme.Dark" parent="Theme.AppCompat">
         <item name="primaryText">@color/primary_text_dark</item>
         <item name="secondaryText">@color/secondary_text_dark</item>
         <item name="cardBackground">@color/card_background_dark</item>
@@ -59,7 +58,6 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="background">@color/background_dark</item>
-        <item name="preferenceCategory_marginBottom">0dp</item>
         <item name="bottomSheetDialogTheme">@style/Theme.Design.BottomSheetDialog</item>
 
         <item name="iconColorPrimary">@color/icon_primary_dark</item>

@@ -9,7 +9,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.preference.Preference;
-import com.takisoft.fix.support.v7.preference.PreferenceFragmentCompat;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Toast;
@@ -23,6 +22,7 @@ import java.util.Map;
 
 import javax.crypto.Cipher;
 
+import androidx.preference.PreferenceFragmentCompat;
 import me.impy.aegis.AegisApplication;
 import me.impy.aegis.R;
 import me.impy.aegis.crypto.MasterKey;
@@ -62,7 +62,7 @@ public class PreferencesFragment extends PreferenceFragmentCompat implements Pas
     private Preference _slotsPreference;
 
     @Override
-    public void onCreatePreferencesFix(Bundle savedInstanceState, String rootKey) {
+    public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
         addPreferencesFromResource(R.xml.preferences);
 
         AegisApplication app = (AegisApplication) getActivity().getApplication();

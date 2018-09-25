@@ -1,57 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.preference.PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
-                  android:title="@string/settings">
+<androidx.preference.PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:title="@string/settings">
 
     <PreferenceCategory
-        android:title="Appearance">
-        <android.support.v7.preference.SwitchPreferenceCompat
+        android:title="Appearance"
+        app:iconSpaceReserved="false">
+        <androidx.preference.SwitchPreferenceCompat
             android:defaultValue="false"
             android:key="pref_dark_mode"
             android:title="@string/pref_dark_mode_title"
-            android:summary="@string/pref_dark_mode_summary"/>
+            android:summary="@string/pref_dark_mode_summary"
+            app:iconSpaceReserved="false"/>
 
-        <android.support.v7.preference.SwitchPreferenceCompat
+        <androidx.preference.SwitchPreferenceCompat
             android:defaultValue="false"
             android:key="pref_account_name"
             android:title="@string/pref_account_name_title"
-            android:summary="@string/pref_account_name_summary"/>
+            android:summary="@string/pref_account_name_summary"
+            app:iconSpaceReserved="false"/>
     </PreferenceCategory>
 
     <PreferenceCategory
-        android:title="Security">
-        <android.support.v7.preference.SwitchPreferenceCompat
+        android:title="Security"
+        app:iconSpaceReserved="false">
+        <androidx.preference.SwitchPreferenceCompat
             android:defaultValue="true"
             android:key="pref_secure_screen"
             android:title="@string/pref_secure_screen_title"
-            android:summary="@string/pref_secure_screen_summary"/>
+            android:summary="@string/pref_secure_screen_summary"
+            app:iconSpaceReserved="false"/>
         <!--<EditTextPreference
             android:key="pref_timeout"
             android:title="@string/pref_timeout_title"
             android:summary="@string/pref_timeout_summary"
             android:inputType="number"
             android:defaultValue="30"
-            android:dialogTitle="Set number of seconds of inactivity before Aegis locks the database"/>-->
+            android:dialogTitle="Set number of seconds of inactivity before Aegis locks the database"
+            app:iconSpaceReserved="false"/>-->
         <me.impy.aegis.ui.preferences.SwitchPreference
             android:key="pref_encryption"
             android:title="@string/pref_encryption_title"
             android:summary="@string/pref_encryption_summary"
-            android:persistent="false"/>
+            android:persistent="false"
+            app:iconSpaceReserved="false"/>
         <Preference
             android:key="pref_slots"
             android:title="@string/pref_slots_title"
-            android:summary="@string/pref_slots_summary"/>
+            android:summary="@string/pref_slots_summary"
+            app:iconSpaceReserved="false"/>
     </PreferenceCategory>
 
     <PreferenceCategory
-        android:title="Tools">
+        android:title="Tools"
+        app:iconSpaceReserved="false">
         <Preference
             android:key="pref_import"
             android:title="@string/pref_import_title"
-            android:summary="@string/pref_import_summary"/>
+            android:summary="@string/pref_import_summary"
+            app:iconSpaceReserved="false"/>
         <Preference
             android:key="pref_export"
             android:title="@string/pref_export_title"
-            android:summary="@string/pref_export_summary"/>
+            android:summary="@string/pref_export_summary"
+            app:iconSpaceReserved="false"/>
     </PreferenceCategory>
 
 </androidx.preference.PreferenceScreen>
