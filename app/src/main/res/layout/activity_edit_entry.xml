@@ -154,7 +154,7 @@
                     android:orientation="horizontal"
                     android:gravity="center_vertical">
 
-                    <android.support.v7.widget.AppCompatSpinner
+                    <androidx.appcompat.widget.AppCompatSpinner
                         android:id="@+id/spinner_type"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -165,7 +165,7 @@
                         android:layout_gravity="left"
                         android:backgroundTint="#949494"
                         style="@style/Base.Widget.AppCompat.Spinner.Underlined"/>
-                    <android.support.v7.widget.AppCompatSpinner
+                    <androidx.appcompat.widget.AppCompatSpinner
                         android:id="@+id/spinner_algo"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -175,7 +175,7 @@
                         android:textAlignment="center"
                         android:backgroundTint="#949494"
                         style="@style/Base.Widget.AppCompat.Spinner.Underlined"/>
-                    <android.support.v7.widget.AppCompatSpinner
+                    <androidx.appcompat.widget.AppCompatSpinner
                         android:id="@+id/spinner_digits"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -287,7 +287,7 @@
                     android:layout_marginStart="15dp"
                     android:layout_marginEnd="20dp"/>
 
-                <android.support.design.widget.TextInputLayout
+                <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -296,7 +296,7 @@
                     app:hintEnabled="false"
                     app:passwordToggleEnabled="true">
 
-                    <android.support.design.widget.TextInputEditText
+                    <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/text_secret"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -304,7 +304,7 @@
                         android:backgroundTint="#949494"
                         android:hint="Secret (base32)"
                         android:inputType="textPassword"/>
-                </android.support.design.widget.TextInputLayout>
+                </com.google.android.material.textfield.TextInputLayout>
             </TableRow>
             </TableLayout>
             </RelativeLayout>

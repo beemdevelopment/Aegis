@@ -4,7 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Process;
-import android.support.annotation.CallSuper;
+import androidx.annotation.CallSuper;
 
 public abstract class ProgressDialogTask<Params, Result> extends AsyncTask<Params, Void, Result> {
     private ProgressDialog _dialog;

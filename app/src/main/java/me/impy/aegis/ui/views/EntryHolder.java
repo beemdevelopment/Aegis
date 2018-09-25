@@ -3,9 +3,8 @@ package me.impy.aegis.ui.views;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.PorterDuff;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
-import android.support.v7.widget.RecyclerView;
+
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -17,7 +16,6 @@ import me.impy.aegis.db.DatabaseEntry;
 import me.impy.aegis.helpers.TextDrawableHelper;
 import me.impy.aegis.helpers.UiRefresher;
 import me.impy.aegis.otp.HotpInfo;
-import me.impy.aegis.otp.OtpInfoException;
 import me.impy.aegis.otp.TotpInfo;
 
 public class EntryHolder extends RecyclerView.ViewHolder {

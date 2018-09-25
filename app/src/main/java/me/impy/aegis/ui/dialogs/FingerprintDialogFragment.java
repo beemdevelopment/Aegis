@@ -3,8 +3,8 @@ package me.impy.aegis.ui.dialogs;
 import android.app.Dialog;
 import android.hardware.fingerprint.FingerprintManager;
 import android.os.Bundle;
-import android.support.v7.app.AlertDialog;
-import android.support.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.annotation.NonNull;
 import android.view.View;
 import android.widget.TextView;
 

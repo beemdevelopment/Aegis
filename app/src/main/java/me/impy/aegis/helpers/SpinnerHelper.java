@@ -1,7 +1,7 @@
 package me.impy.aegis.helpers;
 
 import android.content.Context;
-import android.support.annotation.ArrayRes;
+import androidx.annotation.ArrayRes;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
