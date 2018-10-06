@@ -30,7 +30,7 @@ public class CryptParameters implements Serializable {
         return obj;
     }
 
-    public static CryptParameters parseJson(JSONObject obj) throws JSONException, HexException {
+    public static CryptParameters fromJson(JSONObject obj) throws JSONException, HexException {
         byte[] nonce = Hex.decode(obj.getString("nonce"));
         byte[] tag = Hex.decode(obj.getString("tag"));
         return new CryptParameters(nonce, tag);

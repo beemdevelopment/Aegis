@@ -12,16 +12,16 @@ import java.util.List;
 public class SlotList implements Iterable<Slot>, Serializable {
     private List<Slot> _slots = new ArrayList<>();
 
-    public static JSONArray serialize(SlotList slots) {
+    public JSONArray toJson() {
         JSONArray array = new JSONArray();
-        for (Slot slot : slots) {
-            array.put(slot.serialize());
+        for (Slot slot : this) {
+            array.put(slot.toJson());
         }
 
         return array;
     }
 
-    public static SlotList deserialize(JSONArray array) throws SlotListException {
+    public static SlotList fromJson(JSONArray array) throws SlotListException {
         SlotList slots = new SlotList();
 
         try {

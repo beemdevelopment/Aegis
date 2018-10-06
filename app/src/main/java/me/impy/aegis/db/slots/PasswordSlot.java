@@ -20,9 +20,9 @@ public class PasswordSlot extends RawSlot {
     }
 
     @Override
-    public JSONObject serialize() {
+    public JSONObject toJson() {
         try {
-            JSONObject obj = super.serialize();
+            JSONObject obj = super.toJson();
             obj.put("n", _n);
             obj.put("r", _r);
             obj.put("p", _p);

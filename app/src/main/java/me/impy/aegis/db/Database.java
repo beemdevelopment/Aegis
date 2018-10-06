@@ -12,14 +12,13 @@ import me.impy.aegis.otp.OtpInfoException;
 
 public class Database {
     private static final int VERSION = 1;
-
     private DatabaseEntryList _entries = new DatabaseEntryList();
 
-    public JSONObject serialize() {
+    public JSONObject toJson() {
         try {
             JSONArray array = new JSONArray();
             for (DatabaseEntry e : _entries) {
-                array.put(e.serialize());
+                array.put(e.toJson());
             }
 
             JSONObject obj = new JSONObject();
@@ -31,8 +30,9 @@ public class Database {
         }
     }
 
-    public void deserialize(JSONObject obj) throws DatabaseException {
-        // TODO: support different VERSION deserialization providers
+    public static Database fromJson(JSONObject obj) throws DatabaseException {
+        Database db = new Database();
+
         try {
             int ver = obj.getInt("version");
             if (ver != VERSION) {
@@ -41,13 +41,14 @@ public class Database {
 
             JSONArray array = obj.getJSONArray("entries");
             for (int i = 0; i < array.length(); i++) {
-                DatabaseEntry entry = new DatabaseEntry(null);
-                entry.deserialize(array.getJSONObject(i));
-                addEntry(entry);
+                DatabaseEntry entry = DatabaseEntry.fromJson(array.getJSONObject(i));
+                db.addEntry(entry);
             }
         } catch (Base64Exception | OtpInfoException | JSONException e) {
             throw new DatabaseException(e);
         }
+
+        return db;
     }
 
     public void addEntry(DatabaseEntry entry) {

@@ -16,7 +16,7 @@ import javax.crypto.SecretKey;
 
 import me.impy.aegis.Preferences;
 import me.impy.aegis.R;
-import me.impy.aegis.crypto.MasterKey;
+import me.impy.aegis.db.DatabaseFileCredentials;
 import me.impy.aegis.db.DatabaseFileException;
 import me.impy.aegis.db.DatabaseManagerException;
 import me.impy.aegis.db.slots.FingerprintSlot;
@@ -128,9 +128,9 @@ public class IntroActivity extends AppIntro2 implements DerivationTask.Callback 
         }
 
         // generate the master key
-        MasterKey masterKey = null;
+        DatabaseFileCredentials creds = null;
         if (cryptType != CustomAuthenticationSlide.CRYPT_TYPE_NONE) {
-            masterKey = MasterKey.generate();
+            creds = new DatabaseFileCredentials();
         }
 
         SlotList slots = null;
@@ -141,10 +141,8 @@ public class IntroActivity extends AppIntro2 implements DerivationTask.Callback 
                 throw new RuntimeException();
             }
             try {
-                _passwordSlot.setKey(masterKey, _passwordCipher);
-                slots = new SlotList();
-                slots.add(_passwordSlot);
-                _databaseFile.setSlots(slots);
+                _passwordSlot.setKey(creds.getKey(), _passwordCipher);
+                creds.getSlots().add(_passwordSlot);
             } catch (SlotException e) {
                 setException(e);
             }
@@ -156,8 +154,8 @@ public class IntroActivity extends AppIntro2 implements DerivationTask.Callback 
                 // and add it to the list of slots
                 FingerprintSlot slot = _authenticatedSlide.getFingerSlot();
                 Cipher cipher = _authenticatedSlide.getFingerCipher();
-                slot.setKey(masterKey, cipher);
-                slots.add(slot);
+                slot.setKey(creds.getKey(), cipher);
+                creds.getSlots().add(slot);
             } catch (SlotException e) {
                 setException(e);
                 return;
@@ -166,11 +164,11 @@ public class IntroActivity extends AppIntro2 implements DerivationTask.Callback 
 
         // finally, save the database
         try {
-            JSONObject obj = _database.serialize();
+            JSONObject obj = _database.toJson();
             if (cryptType == CustomAuthenticationSlide.CRYPT_TYPE_NONE) {
                 _databaseFile.setContent(obj);
             } else {
-                _databaseFile.setContent(obj, masterKey);
+                _databaseFile.setContent(obj, creds);
             }
             DatabaseManager.save(getApplicationContext(), _databaseFile);
         } catch (DatabaseManagerException | DatabaseFileException e) {
@@ -180,7 +178,7 @@ public class IntroActivity extends AppIntro2 implements DerivationTask.Callback 
 
         // send the master key back to the main activity
         Intent result = new Intent();
-        result.putExtra("key", masterKey);
+        result.putExtra("creds", creds);
         setResult(RESULT_OK, result);
 
         // skip the intro from now on

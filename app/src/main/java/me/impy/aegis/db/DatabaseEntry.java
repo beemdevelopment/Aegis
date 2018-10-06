@@ -9,6 +9,7 @@ import java.util.UUID;
 
 import me.impy.aegis.encoding.Base64;
 import me.impy.aegis.encoding.Base64Exception;
+import me.impy.aegis.otp.GoogleAuthInfo;
 import me.impy.aegis.otp.OtpInfo;
 import me.impy.aegis.otp.OtpInfoException;
 
@@ -19,9 +20,13 @@ public class DatabaseEntry implements Serializable {
     private OtpInfo _info;
     private byte[] _icon;
 
-    public DatabaseEntry(OtpInfo info) {
+    private DatabaseEntry(UUID uuid, OtpInfo info) {
+        _uuid = uuid;
         _info = info;
-        _uuid = UUID.randomUUID();
+    }
+
+    public DatabaseEntry(OtpInfo info) {
+        this(UUID.randomUUID(), info);
     }
 
     public DatabaseEntry(OtpInfo info, String name, String issuer) {
@@ -30,7 +35,11 @@ public class DatabaseEntry implements Serializable {
         setIssuer(issuer);
     }
 
-    public JSONObject serialize() {
+    public DatabaseEntry(GoogleAuthInfo info) {
+        this(info.getOtpInfo(), info.getAccountName(), info.getIssuer());
+    }
+
+    public JSONObject toJson() {
         JSONObject obj = new JSONObject();
 
         try {
@@ -47,22 +56,26 @@ public class DatabaseEntry implements Serializable {
         return obj;
     }
 
-    public void deserialize(JSONObject obj) throws JSONException, OtpInfoException, Base64Exception {
+    public static DatabaseEntry fromJson(JSONObject obj) throws JSONException, OtpInfoException, Base64Exception {
         // if there is no uuid, generate a new one
+        UUID uuid;
         if (!obj.has("uuid")) {
-            _uuid = UUID.randomUUID();
+            uuid = UUID.randomUUID();
         } else {
-            _uuid = UUID.fromString(obj.getString("uuid"));
+            uuid = UUID.fromString(obj.getString("uuid"));
         }
-        _name = obj.getString("name");
-        _issuer = obj.getString("issuer");
+
+        OtpInfo info = OtpInfo.fromJson(obj.getString("type"), obj.getJSONObject("info"));
+        DatabaseEntry entry = new DatabaseEntry(uuid, info);
+        entry.setName(obj.getString("name"));
+        entry.setIssuer(obj.getString("issuer"));
 
         Object icon = obj.get("icon");
         if (icon != JSONObject.NULL) {
-            _icon = Base64.decode((String) icon);
+            entry.setIcon(Base64.decode((String) icon));
         }
 
-        _info = OtpInfo.parseJson(obj.getString("type"), obj.getJSONObject("info"));
+        return entry;
     }
 
     public void resetUUID() {

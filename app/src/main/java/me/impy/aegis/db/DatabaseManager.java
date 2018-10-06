@@ -14,17 +14,17 @@ import java.util.List;
 import java.util.UUID;
 
 import me.impy.aegis.BuildConfig;
-import me.impy.aegis.crypto.MasterKey;
-import me.impy.aegis.db.slots.SlotList;
 
 public class DatabaseManager {
     private static final String FILENAME = "aegis.json";
     private static final String FILENAME_EXPORT = "aegis_export.json";
     private static final String FILENAME_EXPORT_PLAIN = "aegis_export_plain.json";
 
-    private MasterKey _key;
-    private DatabaseFile _file;
     private Database _db;
+    private DatabaseFile _file;
+    private DatabaseFileCredentials _creds;
+    private boolean _encrypt;
+
     private Context _context;
 
     public DatabaseManager(Context context) {
@@ -39,31 +39,17 @@ public class DatabaseManager {
     public void load() throws DatabaseManagerException {
         assertState(true, false);
 
-        try {
-            byte[] fileBytes;
-            FileInputStream file = null;
+        try (FileInputStream file = _context.openFileInput(FILENAME)) {
+            byte[] fileBytes = new byte[(int) file.getChannel().size()];
+            DataInputStream stream = new DataInputStream(file);
+            stream.readFully(fileBytes);
+            stream.close();
 
-            try {
-                file = _context.openFileInput(FILENAME);
-                fileBytes = new byte[(int) file.getChannel().size()];
-                DataInputStream stream = new DataInputStream(file);
-                stream.readFully(fileBytes);
-                stream.close();
-            } finally {
-                // always close the file stream
-                // there is no need to close the DataInputStream
-                if (file != null) {
-                    file.close();
-                }
-            }
-
-            _file = new DatabaseFile();
-            _file.deserialize(fileBytes);
-
-            if (!_file.isEncrypted()) {
+            _file = DatabaseFile.fromBytes(fileBytes);
+            _encrypt = _file.isEncrypted();
+            if (!isEncryptionEnabled()) {
                 JSONObject obj = _file.getContent();
-                _db = new Database();
-                _db.deserialize(obj);
+                _db = Database.fromJson(obj);
             }
         } catch (IOException | DatabaseFileException | DatabaseException e) {
             throw new DatabaseManagerException(e);
@@ -73,37 +59,26 @@ public class DatabaseManager {
     public void lock() {
         assertState(false, true);
         // TODO: properly clear everything
-        _key = null;
+        _creds = null;
         _db = null;
     }
 
-    public void unlock(MasterKey key) throws DatabaseManagerException {
+    public void unlock(DatabaseFileCredentials creds) throws DatabaseManagerException {
         assertState(true, true);
 
         try {
-            JSONObject obj = _file.getContent(key);
-            _db = new Database();
-            _db.deserialize(obj);
-            _key = key;
+            JSONObject obj = _file.getContent(creds);
+            _db = Database.fromJson(obj);
+            _creds = creds;
         } catch (DatabaseFileException | DatabaseException e) {
             throw new DatabaseManagerException(e);
         }
     }
 
     public static void save(Context context, DatabaseFile file) throws DatabaseManagerException {
-        try {
-            byte[] bytes = file.serialize();
-
-            FileOutputStream stream = null;
-            try {
-                stream = context.openFileOutput(FILENAME, Context.MODE_PRIVATE);
-                stream.write(bytes);
-            } finally {
-                // always close the file stream
-                if (stream != null) {
-                    stream.close();
-                }
-            }
+        byte[] bytes = file.toBytes();
+        try (FileOutputStream stream = context.openFileOutput(FILENAME, Context.MODE_PRIVATE)) {
+            stream.write(bytes);
         } catch (IOException e) {
             throw new DatabaseManagerException(e);
         }
@@ -113,9 +88,9 @@ public class DatabaseManager {
         assertState(false, true);
 
         try {
-            JSONObject obj = _db.serialize();
-            if (_file.isEncrypted()) {
-                _file.setContent(obj, _key);
+            JSONObject obj = _db.toJson();
+            if (isEncryptionEnabled()) {
+                _file.setContent(obj, _creds);
             } else {
                 _file.setContent(obj);
             }
@@ -130,31 +105,22 @@ public class DatabaseManager {
 
         try {
             DatabaseFile dbFile = new DatabaseFile();
-            dbFile.setSlots(_file.getSlots());
-            if (encrypt && getFile().isEncrypted()) {
-                dbFile.setContent(_db.serialize(), _key);
+            if (encrypt && isEncryptionEnabled()) {
+                dbFile.setContent(_db.toJson(), _creds);
             } else {
-                dbFile.setContent(_db.serialize());
+                dbFile.setContent(_db.toJson());
             }
 
-            File file;
-            FileOutputStream stream = null;
-            try {
-                String dirName = !BuildConfig.DEBUG ? "Aegis" : "AegisDebug";
-                File dir = new File(Environment.getExternalStorageDirectory(), dirName);
-                if (!dir.exists() && !dir.mkdirs()) {
-                    throw new IOException("error creating external storage directory");
-                }
+            String dirName = !BuildConfig.DEBUG ? "Aegis" : "AegisDebug";
+            File dir = new File(Environment.getExternalStorageDirectory(), dirName);
+            if (!dir.exists() && !dir.mkdirs()) {
+                throw new IOException("error creating external storage directory");
+            }
 
-                byte[] bytes = dbFile.serialize();
-                file = new File(dir.getAbsolutePath(), encrypt ? FILENAME_EXPORT : FILENAME_EXPORT_PLAIN);
-                stream = new FileOutputStream(file);
+            byte[] bytes = dbFile.toBytes();
+            File file = new File(dir.getAbsolutePath(), encrypt ? FILENAME_EXPORT : FILENAME_EXPORT_PLAIN);
+            try (FileOutputStream stream = new FileOutputStream(file)) {
                 stream.write(bytes);
-            } finally {
-                // always close the file stream
-                if (stream != null) {
-                    stream.close();
-                }
             }
 
             return file.getAbsolutePath();
@@ -193,25 +159,38 @@ public class DatabaseManager {
         return _db.getEntryByUUID(uuid);
     }
 
-    public MasterKey getMasterKey() {
+    public DatabaseFileCredentials getCredentials() {
         assertState(false, true);
-        return _key;
+        return _creds;
     }
 
-    public DatabaseFile getFile() {
-        return _file;
+    public void setCredentials(DatabaseFileCredentials creds) {
+        assertState(false, true);
+        _creds = creds;
     }
 
-    public void enableEncryption(MasterKey key, SlotList slots) {
-        assertState(false, true);
-        _key = key;
-        _file.setSlots(slots);
+    public DatabaseFile.Header getFileHeader() {
+        assertLoaded(true);
+        return _file.getHeader();
     }
 
-    public void disableEncryption() {
+    public boolean isEncryptionEnabled() {
+        assertLoaded(true);
+        return _encrypt;
+    }
+
+    public void enableEncryption(DatabaseFileCredentials creds) throws DatabaseManagerException {
         assertState(false, true);
-        _key = null;
-        _file.setSlots(null);
+        _creds = creds;
+        _encrypt = true;
+        save();
+    }
+
+    public void disableEncryption() throws DatabaseManagerException {
+        assertState(false, true);
+        _creds = null;
+        _encrypt = false;
+        save();
     }
 
     public boolean isLoaded() {
@@ -223,16 +202,20 @@ public class DatabaseManager {
     }
 
     private void assertState(boolean locked, boolean loaded) {
-        if (isLoaded() && !loaded) {
-            throw new AssertionError("database file has not been loaded yet");
-        } else if (!isLoaded() && loaded) {
-            throw new AssertionError("database file has is already been loaded");
-        }
+        assertLoaded(loaded);
 
         if (isLocked() && !locked) {
             throw new AssertionError("database file has not been unlocked yet");
         } else if (!isLocked() && locked) {
-            throw new AssertionError("database file has is already been unlocked");
+            throw new AssertionError("database file has already been unlocked");
+        }
+    }
+
+    private void assertLoaded(boolean loaded) {
+        if (isLoaded() && !loaded) {
+            throw new AssertionError("database file has already been loaded");
+        } else if (!isLoaded() && loaded) {
+            throw new AssertionError("database file has not been loaded yet");
         }
     }
 }

@@ -88,7 +88,7 @@ public abstract class OtpInfo implements Serializable {
         _digits = digits;
     }
 
-    public static OtpInfo parseJson(String type, JSONObject obj) throws OtpInfoException {
+    public static OtpInfo fromJson(String type, JSONObject obj) throws OtpInfoException {
         OtpInfo info;
 
         try {

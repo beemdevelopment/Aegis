@@ -25,6 +25,7 @@ import me.impy.aegis.R;
 import me.impy.aegis.crypto.KeyStoreHandle;
 import me.impy.aegis.crypto.KeyStoreHandleException;
 import me.impy.aegis.crypto.MasterKey;
+import me.impy.aegis.db.DatabaseFileCredentials;
 import me.impy.aegis.db.slots.FingerprintSlot;
 import me.impy.aegis.db.slots.PasswordSlot;
 import me.impy.aegis.db.slots.Slot;
@@ -128,7 +129,7 @@ public class AuthActivity extends AegisActivity implements FingerprintUiHelper.C
     private void setKey(MasterKey key) {
         // send the master key back to the main activity
         Intent result = new Intent();
-        result.putExtra("key", key);
+        result.putExtra("creds", new DatabaseFileCredentials(key, _slots));
         setResult(RESULT_OK, result);
         finish();
     }

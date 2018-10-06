@@ -42,14 +42,6 @@ public abstract class DatabaseImporter {
         }
     }
 
-    public static List<DatabaseImporter> create(ByteInputStream stream) {
-        List<DatabaseImporter> list = new ArrayList<>();
-        for (Class<? extends DatabaseImporter> type : _importers.values()) {
-            list.add(create(stream, type));
-        }
-        return list;
-    }
-
     public static Map<String, Class<? extends DatabaseImporter>> getImporters() {
         return _importers;
     }

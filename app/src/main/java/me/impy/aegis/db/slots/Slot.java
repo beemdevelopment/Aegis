@@ -10,7 +10,6 @@ import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.util.UUID;
 
-import javax.crypto.AEADBadTagException;
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
 import javax.crypto.IllegalBlockSizeException;
@@ -85,7 +84,7 @@ public abstract class Slot implements Serializable {
         }
     }
 
-    public JSONObject serialize() {
+    public JSONObject toJson() {
         try {
             JSONObject obj = new JSONObject();
             JSONObject paramObj = _encryptedMasterKeyParams.toJson();
@@ -114,7 +113,7 @@ public abstract class Slot implements Serializable {
 
             JSONObject paramObj = obj.getJSONObject("key_params");
             _encryptedMasterKey = Hex.decode(obj.getString("key"));
-            _encryptedMasterKeyParams = CryptParameters.parseJson(paramObj);
+            _encryptedMasterKeyParams = CryptParameters.fromJson(paramObj);
         } catch (JSONException | HexException e) {
             throw new SlotException(e);
         }

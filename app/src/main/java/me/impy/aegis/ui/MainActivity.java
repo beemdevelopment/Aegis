@@ -20,7 +20,7 @@ import java.lang.reflect.UndeclaredThrowableException;
 
 import me.impy.aegis.AegisApplication;
 import me.impy.aegis.R;
-import me.impy.aegis.crypto.MasterKey;
+import me.impy.aegis.db.DatabaseFileCredentials;
 import me.impy.aegis.db.DatabaseManagerException;
 import me.impy.aegis.db.DatabaseEntry;
 import me.impy.aegis.db.DatabaseManager;
@@ -218,13 +218,13 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
             throw new UndeclaredThrowableException(e);
         }
 
-        MasterKey key = (MasterKey) data.getSerializableExtra("key");
-        unlockDatabase(key);
+        DatabaseFileCredentials creds = (DatabaseFileCredentials) data.getSerializableExtra("creds");
+        unlockDatabase(creds);
     }
 
     private void onDecryptResult(int resultCode, Intent intent) {
-        MasterKey key = (MasterKey) intent.getSerializableExtra("key");
-        unlockDatabase(key);
+        DatabaseFileCredentials creds = (DatabaseFileCredentials) intent.getSerializableExtra("creds");
+        unlockDatabase(creds);
 
         doShortcutActions();
     }
@@ -361,7 +361,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         }
     }
 
-    private void unlockDatabase(MasterKey key) {
+    private void unlockDatabase(DatabaseFileCredentials creds) {
         if (_loaded) {
             return;
         }
@@ -371,15 +371,14 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
                 _db.load();
             }
             if (_db.isLocked()) {
-                if (key == null) {
+                if (creds == null) {
                     startAuthActivity();
                     return;
                 } else {
-                    _db.unlock(key);
+                    _db.unlock(creds);
                 }
             }
         } catch (DatabaseManagerException e) {
-            e.printStackTrace();
             Toast.makeText(this, "An error occurred while trying to load/decrypt the database", Toast.LENGTH_LONG).show();
             startAuthActivity();
             return;
@@ -396,7 +395,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
 
     private void startAuthActivity() {
         Intent intent = new Intent(this, AuthActivity.class);
-        intent.putExtra("slots", _db.getFile().getSlots());
+        intent.putExtra("slots", _db.getFileHeader().getSlots());
         startActivityForResult(intent, CODE_DECRYPT);
     }
 
@@ -404,7 +403,6 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         try {
             _db.save();
         } catch (DatabaseManagerException e) {
-            e.printStackTrace();
             Toast.makeText(this, "An error occurred while trying to save the database", Toast.LENGTH_LONG).show();
         }
     }
@@ -413,7 +411,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         // hide the lock icon if the database is not unlocked
         if (_menu != null && !_db.isLocked()) {
             MenuItem item = _menu.findItem(R.id.action_lock);
-            item.setVisible(_db.getFile().isEncrypted());
+            item.setVisible(_db.isEncryptionEnabled());
         }
     }
 

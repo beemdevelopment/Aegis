@@ -26,12 +26,12 @@ import javax.crypto.Cipher;
 
 import me.impy.aegis.AegisApplication;
 import me.impy.aegis.R;
-import me.impy.aegis.crypto.MasterKey;
 import me.impy.aegis.db.DatabaseEntry;
+import me.impy.aegis.db.DatabaseFileCredentials;
+import me.impy.aegis.db.DatabaseFileException;
 import me.impy.aegis.db.DatabaseManager;
 import me.impy.aegis.db.DatabaseManagerException;
 import me.impy.aegis.db.slots.Slot;
-import me.impy.aegis.db.slots.SlotList;
 import me.impy.aegis.db.slots.SlotException;
 import me.impy.aegis.helpers.PermissionHelper;
 import me.impy.aegis.importers.AegisImporter;
@@ -138,7 +138,7 @@ public class PreferencesFragment extends PreferenceFragmentCompat implements Pas
         _encryptionPreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
             @Override
             public boolean onPreferenceChange(Preference preference, Object newValue) {
-                if (!_db.getFile().isEncrypted()) {
+                if (!_db.isEncryptionEnabled()) {
                     PasswordDialogFragment dialog = new PasswordDialogFragment();
                     // TODO: find a less ugly way to obtain the fragment manager
                     dialog.show(getActivity().getSupportFragmentManager(), null);
@@ -148,8 +148,11 @@ public class PreferencesFragment extends PreferenceFragmentCompat implements Pas
                             .setMessage("Are you sure you want to disable encryption? This will cause the database to be stored in plain text")
                             .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int which) {
-                                    _db.disableEncryption();
-                                    saveDatabase();
+                                    try {
+                                        _db.disableEncryption();
+                                    } catch (DatabaseManagerException e) {
+                                        Toast.makeText(getActivity(), "An error occurred while enabling encryption", Toast.LENGTH_SHORT).show();
+                                    }
                                     updateEncryptionPreference();
                                 }
                             })
@@ -163,10 +166,8 @@ public class PreferencesFragment extends PreferenceFragmentCompat implements Pas
         _slotsPreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
-                MasterKey masterKey = _db.getMasterKey();
                 Intent intent = new Intent(getActivity(), SlotManagerActivity.class);
-                intent.putExtra("masterKey", masterKey);
-                intent.putExtra("slots", _db.getFile().getSlots());
+                intent.putExtra("creds", _db.getCredentials());
                 startActivityForResult(intent, CODE_SLOTS);
                 return true;
             }
@@ -249,13 +250,12 @@ public class PreferencesFragment extends PreferenceFragmentCompat implements Pas
             return;
         }
 
-        MasterKey key = (MasterKey) data.getSerializableExtra("key");
-        ((AegisImporter)_importer).setKey(key);
+        DatabaseFileCredentials creds = (DatabaseFileCredentials) data.getSerializableExtra("creds");
+        ((AegisImporter)_importer).setCredentials(creds);
 
         try {
             importDatabase(_importer);
         } catch (DatabaseImporterException e) {
-            e.printStackTrace();
             Toast.makeText(getActivity(), "An error occurred while trying to parse the file", Toast.LENGTH_SHORT).show();
         }
 
@@ -269,25 +269,16 @@ public class PreferencesFragment extends PreferenceFragmentCompat implements Pas
         }
 
         ByteInputStream stream;
-        InputStream fileStream = null;
 
-        try {
-            fileStream = getActivity().getContentResolver().openInputStream(uri);
+        try (InputStream fileStream = getActivity().getContentResolver().openInputStream(uri)) {
             stream = ByteInputStream.create(fileStream);
         } catch (FileNotFoundException e) {
             Toast.makeText(getActivity(), "Error: File not found", Toast.LENGTH_SHORT).show();
             return;
         } catch (IOException e) {
+            e.printStackTrace();
             Toast.makeText(getActivity(), "An error occurred while trying to read the file", Toast.LENGTH_SHORT).show();
             return;
-        } finally {
-            if (fileStream != null) {
-                try {
-                    fileStream.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
         }
 
         try {
@@ -299,7 +290,7 @@ public class PreferencesFragment extends PreferenceFragmentCompat implements Pas
                 _importer = importer;
 
                 Intent intent = new Intent(getActivity(), AuthActivity.class);
-                intent.putExtra("slots", ((AegisImporter)_importer).getFile().getSlots());
+                intent.putExtra("slots", ((AegisImporter)_importer).getFile().getHeader().getSlots());
                 startActivityForResult(intent, CODE_IMPORT_DECRYPT);
                 return;
             }
@@ -344,7 +335,6 @@ public class PreferencesFragment extends PreferenceFragmentCompat implements Pas
                     try {
                         filename = _db.export(checked[0]);
                     } catch (DatabaseManagerException e) {
-                        e.printStackTrace();
                         Toast.makeText(getActivity(), "An error occurred while trying to export the database", Toast.LENGTH_SHORT).show();
                         return;
                     }
@@ -355,7 +345,7 @@ public class PreferencesFragment extends PreferenceFragmentCompat implements Pas
                     Toast.makeText(getActivity(), "The database has been exported to: " + filename, Toast.LENGTH_SHORT).show();
                 })
                 .setNegativeButton(android.R.string.cancel, null);
-        if (_db.getFile().isEncrypted()) {
+        if (_db.isEncryptionEnabled()) {
             final String[] items = {"Keep the database encrypted"};
             final boolean[] checkedItems = {true};
             builder.setMultiChoiceItems(items, checkedItems, new DialogInterface.OnMultiChoiceClickListener() {
@@ -375,8 +365,8 @@ public class PreferencesFragment extends PreferenceFragmentCompat implements Pas
             return;
         }
 
-        SlotList slots = (SlotList) data.getSerializableExtra("slots");
-        _db.getFile().setSlots(slots);
+        DatabaseFileCredentials creds = (DatabaseFileCredentials) data.getSerializableExtra("creds");
+        _db.setCredentials(creds);
         saveDatabase();
     }
 
@@ -384,7 +374,6 @@ public class PreferencesFragment extends PreferenceFragmentCompat implements Pas
         try {
             _db.save();
         } catch (DatabaseManagerException e) {
-            e.printStackTrace();
             Toast.makeText(getActivity(), "An error occurred while trying to save the database", Toast.LENGTH_LONG).show();
             return false;
         }
@@ -394,19 +383,17 @@ public class PreferencesFragment extends PreferenceFragmentCompat implements Pas
 
     @Override
     public void onSlotResult(Slot slot, Cipher cipher) {
-        MasterKey masterKey = MasterKey.generate();
+        DatabaseFileCredentials creds = new DatabaseFileCredentials();
 
-        SlotList slots = new SlotList();
         try {
-            slot.setKey(masterKey, cipher);
-        } catch (SlotException e) {
+            slot.setKey(creds.getKey(), cipher);
+            creds.getSlots().add(slot);
+            _db.enableEncryption(creds);
+        } catch (DatabaseManagerException | SlotException e) {
             onException(e);
             return;
         }
-        slots.add(slot);
-        _db.enableEncryption(masterKey, slots);
 
-        saveDatabase();
         updateEncryptionPreference();
     }
 
@@ -417,7 +404,7 @@ public class PreferencesFragment extends PreferenceFragmentCompat implements Pas
     }
 
     private void updateEncryptionPreference() {
-        boolean encrypted = _db.getFile().isEncrypted();
+        boolean encrypted = _db.isEncryptionEnabled();
         _encryptionPreference.setChecked(encrypted, true);
         _slotsPreference.setEnabled(encrypted);
     }

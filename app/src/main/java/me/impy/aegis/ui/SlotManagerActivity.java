@@ -16,7 +16,7 @@ import javax.crypto.Cipher;
 import me.impy.aegis.R;
 import me.impy.aegis.crypto.KeyStoreHandle;
 import me.impy.aegis.crypto.KeyStoreHandleException;
-import me.impy.aegis.crypto.MasterKey;
+import me.impy.aegis.db.DatabaseFileCredentials;
 import me.impy.aegis.db.slots.FingerprintSlot;
 import me.impy.aegis.db.slots.PasswordSlot;
 import me.impy.aegis.db.slots.Slot;
@@ -29,8 +29,7 @@ import me.impy.aegis.ui.views.SlotAdapter;
 import me.impy.aegis.ui.dialogs.SlotDialogFragment;
 
 public class SlotManagerActivity extends AegisActivity implements SlotAdapter.Listener, SlotDialogFragment.Listener {
-    private MasterKey _masterKey;
-    private SlotList _slots;
+    private DatabaseFileCredentials _creds;
     private SlotAdapter _adapter;
 
     private boolean _edited;
@@ -59,9 +58,8 @@ public class SlotManagerActivity extends AegisActivity implements SlotAdapter.Li
         slotsView.setNestedScrollingEnabled(false);
 
         // load the slots and masterKey
-        _masterKey = (MasterKey) getIntent().getSerializableExtra("masterKey");
-        _slots = (SlotList) getIntent().getSerializableExtra("slots");
-        for (Slot slot : _slots) {
+        _creds = (DatabaseFileCredentials) getIntent().getSerializableExtra("creds");
+        for (Slot slot : _creds.getSlots()) {
             _adapter.addSlot(slot);
         }
 
@@ -75,7 +73,7 @@ public class SlotManagerActivity extends AegisActivity implements SlotAdapter.Li
         if (FingerprintHelper.getManager(this) != null) {
             try {
                 KeyStoreHandle keyStore = new KeyStoreHandle();
-                for (FingerprintSlot slot : _slots.findAll(FingerprintSlot.class)) {
+                for (FingerprintSlot slot : _creds.getSlots().findAll(FingerprintSlot.class)) {
                     if (keyStore.containsKey(slot.getUUID().toString())) {
                         visibility = View.GONE;
                         break;
@@ -92,7 +90,7 @@ public class SlotManagerActivity extends AegisActivity implements SlotAdapter.Li
 
     private void onSave() {
         Intent intent = new Intent();
-        intent.putExtra("slots", _slots);
+        intent.putExtra("creds", _creds);
         setResult(RESULT_OK, intent);
         finish();
     }
@@ -150,7 +148,8 @@ public class SlotManagerActivity extends AegisActivity implements SlotAdapter.Li
 
     @Override
     public void onRemoveSlot(Slot slot) {
-        if (slot instanceof PasswordSlot && _slots.findAll(PasswordSlot.class).size() <= 1) {
+        SlotList slots = _creds.getSlots();
+        if (slot instanceof PasswordSlot && slots.findAll(PasswordSlot.class).size() <= 1) {
             Toast.makeText(this, "You must have at least one password slot", Toast.LENGTH_SHORT).show();
             return;
         }
@@ -159,7 +158,7 @@ public class SlotManagerActivity extends AegisActivity implements SlotAdapter.Li
                 .setTitle("Remove slot")
                 .setMessage("Are you sure you want to remove this slot?")
                 .setPositiveButton(android.R.string.yes, (dialog, whichButton) -> {
-                    _slots.remove(slot);
+                    slots.remove(slot);
                     _adapter.removeSlot(slot);
                     _edited = true;
                     updateFingerprintButton();
@@ -171,13 +170,13 @@ public class SlotManagerActivity extends AegisActivity implements SlotAdapter.Li
     @Override
     public void onSlotResult(Slot slot, Cipher cipher) {
         try {
-            slot.setKey(_masterKey, cipher);
+            slot.setKey(_creds.getKey(), cipher);
         } catch (SlotException e) {
             onException(e);
             return;
         }
 
-        _slots.add(slot);
+        _creds.getSlots().add(slot);
         _adapter.addSlot(slot);
         _edited = true;
         updateFingerprintButton();
