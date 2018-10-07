@@ -58,7 +58,6 @@ public class DatabaseManager {
 
     public void lock() {
         assertState(false, true);
-        // TODO: properly clear everything
         _creds = null;
         _db = null;
     }

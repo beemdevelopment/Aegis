@@ -21,6 +21,7 @@ import me.impy.aegis.crypto.CryptParameters;
 import me.impy.aegis.crypto.CryptResult;
 import me.impy.aegis.crypto.CryptoUtils;
 import me.impy.aegis.crypto.MasterKey;
+import me.impy.aegis.crypto.SCryptParameters;
 import me.impy.aegis.encoding.Hex;
 import me.impy.aegis.encoding.HexException;
 
@@ -29,12 +30,18 @@ public abstract class Slot implements Serializable {
     public final static byte TYPE_DERIVED = 0x01;
     public final static byte TYPE_FINGERPRINT = 0x02;
 
-    protected UUID _uuid;
-    protected byte[] _encryptedMasterKey;
-    protected CryptParameters _encryptedMasterKeyParams;
+    private UUID _uuid;
+    private byte[] _encryptedMasterKey;
+    private CryptParameters _encryptedMasterKeyParams;
 
     protected Slot() {
         _uuid = UUID.randomUUID();
+    }
+
+    protected Slot(UUID uuid, byte[] key, CryptParameters keyParams) {
+        _uuid = uuid;
+        _encryptedMasterKey = key;
+        _encryptedMasterKeyParams = keyParams;
     }
 
     // getKey decrypts the encrypted master key in this slot using the given cipher and returns it.
@@ -87,36 +94,54 @@ public abstract class Slot implements Serializable {
     public JSONObject toJson() {
         try {
             JSONObject obj = new JSONObject();
-            JSONObject paramObj = _encryptedMasterKeyParams.toJson();
             obj.put("type", getType());
             obj.put("uuid", _uuid.toString());
             obj.put("key", Hex.encode(_encryptedMasterKey));
-            obj.put("key_params", paramObj);
+            obj.put("key_params", _encryptedMasterKeyParams.toJson());
             return obj;
         } catch (JSONException e) {
             throw new RuntimeException(e);
         }
     }
 
-    public void deserialize(JSONObject obj) throws SlotException {
+    public static Slot fromJson(JSONObject obj) throws SlotException {
+        Slot slot;
+
         try {
-            if (obj.getInt("type") != getType()) {
-                throw new SlotException("slot type mismatch");
-            }
-
-            // if there is no uuid, generate a new one
+            UUID uuid;
             if (!obj.has("uuid")) {
-                _uuid = UUID.randomUUID();
+                uuid = UUID.randomUUID();
             } else {
-                _uuid = UUID.fromString(obj.getString("uuid"));
+                uuid = UUID.fromString(obj.getString("uuid"));
             }
 
-            JSONObject paramObj = obj.getJSONObject("key_params");
-            _encryptedMasterKey = Hex.decode(obj.getString("key"));
-            _encryptedMasterKeyParams = CryptParameters.fromJson(paramObj);
+            byte[] key = Hex.decode(obj.getString("key"));
+            CryptParameters keyParams = CryptParameters.fromJson(obj.getJSONObject("key_params"));
+
+            switch (obj.getInt("type")) {
+                case Slot.TYPE_RAW:
+                    slot = new RawSlot(uuid, key, keyParams);
+                    break;
+                case Slot.TYPE_DERIVED:
+                    SCryptParameters scryptParams = new SCryptParameters(
+                        obj.getInt("n"),
+                        obj.getInt("r"),
+                        obj.getInt("p"),
+                        Hex.decode(obj.getString("salt"))
+                    );
+                    slot = new PasswordSlot(uuid, key, keyParams, scryptParams);
+                    break;
+                case Slot.TYPE_FINGERPRINT:
+                    slot = new FingerprintSlot(uuid, key, keyParams);
+                    break;
+                default:
+                    throw new SlotException("unrecognized slot type");
+            }
         } catch (JSONException | HexException e) {
             throw new SlotException(e);
         }
+
+        return slot;
     }
 
     public abstract byte getType();

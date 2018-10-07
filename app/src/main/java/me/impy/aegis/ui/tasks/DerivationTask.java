@@ -5,6 +5,7 @@ import android.content.Context;
 import javax.crypto.SecretKey;
 
 import me.impy.aegis.crypto.CryptoUtils;
+import me.impy.aegis.crypto.SCryptParameters;
 import me.impy.aegis.db.slots.PasswordSlot;
 
 public class DerivationTask extends ProgressDialogTask<DerivationTask.Params, SecretKey> {
@@ -21,7 +22,13 @@ public class DerivationTask extends ProgressDialogTask<DerivationTask.Params, Se
 
         Params params = args[0];
         byte[] salt = CryptoUtils.generateSalt();
-        return params.getSlot().deriveKey(params.getPassword(), salt, CryptoUtils.CRYPTO_SCRYPT_N, CryptoUtils.CRYPTO_SCRYPT_r, CryptoUtils.CRYPTO_SCRYPT_p);
+        SCryptParameters scryptParams = new SCryptParameters(
+                CryptoUtils.CRYPTO_SCRYPT_N,
+                CryptoUtils.CRYPTO_SCRYPT_r,
+                CryptoUtils.CRYPTO_SCRYPT_p,
+                salt
+        );
+        return params.getSlot().deriveKey(params.getPassword(), scryptParams);
     }
 
     @Override

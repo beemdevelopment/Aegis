@@ -1,9 +1,16 @@
 package me.impy.aegis.db.slots;
 
-public class RawSlot extends Slot {
+import java.util.UUID;
 
+import me.impy.aegis.crypto.CryptParameters;
+
+public class RawSlot extends Slot {
     public RawSlot() {
         super();
+    }
+
+    protected RawSlot(UUID uuid, byte[] key, CryptParameters keyParams) {
+        super(uuid, key, keyParams);
     }
 
     @Override

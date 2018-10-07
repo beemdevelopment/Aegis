@@ -30,15 +30,14 @@ public class CryptoUtils {
     public static final String CRYPTO_AEAD = "AES/GCM/NoPadding";
     public static final byte CRYPTO_AEAD_KEY_SIZE = 32;
     public static final byte CRYPTO_AEAD_TAG_SIZE = 16;
-    public static final byte CRYPTO_AEAD_NONCE_SIZE = 12;
 
     public static final int CRYPTO_SCRYPT_N = 1 << 15;
     public static final int CRYPTO_SCRYPT_r = 8;
     public static final int CRYPTO_SCRYPT_p = 1;
 
-    public static SecretKey deriveKey(char[] password, byte[] salt, int n, int r, int p) {
+    public static SecretKey deriveKey(char[] password, SCryptParameters params) {
         byte[] bytes = toBytes(password);
-        byte[] keyBytes = SCrypt.generate(bytes, salt, n, r, p, CRYPTO_AEAD_KEY_SIZE);
+        byte[] keyBytes = SCrypt.generate(bytes, params.getSalt(), params.getN(), params.getR(), params.getP(), CRYPTO_AEAD_KEY_SIZE);
         return new SecretKeySpec(keyBytes, 0, keyBytes.length, "AES");
     }
 

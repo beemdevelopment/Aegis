@@ -26,24 +26,8 @@ public class SlotList implements Iterable<Slot>, Serializable {
 
         try {
             for (int i = 0; i < array.length(); i++) {
-                Slot slot;
-                JSONObject slotObj = array.getJSONObject(i);
-
-                switch (slotObj.getInt("type")) {
-                    case Slot.TYPE_RAW:
-                        slot = new RawSlot();
-                        break;
-                    case Slot.TYPE_DERIVED:
-                        slot = new PasswordSlot();
-                        break;
-                    case Slot.TYPE_FINGERPRINT:
-                        slot = new FingerprintSlot();
-                        break;
-                    default:
-                        throw new SlotException("unrecognized slot type");
-                }
-
-                slot.deserialize(slotObj);
+                JSONObject obj = array.getJSONObject(i);
+                Slot slot = Slot.fromJson(obj);
                 slots.add(slot);
             }
         } catch (SlotException | JSONException e) {
