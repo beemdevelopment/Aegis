@@ -48,8 +48,8 @@ public class AegisApplication extends Application {
         intent.setAction(Intent.ACTION_MAIN);
 
         ShortcutInfo shortcut = new ShortcutInfo.Builder(this, "shortcut_new")
-                .setShortLabel("New profile")
-                .setLongLabel("Add new profile")
+                .setShortLabel(getString(R.string.new_profile))
+                .setLongLabel(getString(R.string.add_new_profile))
                 .setIcon(Icon.createWithResource(this, R.drawable.qr_scanner))
                 .setIntent(intent)
                 .build();

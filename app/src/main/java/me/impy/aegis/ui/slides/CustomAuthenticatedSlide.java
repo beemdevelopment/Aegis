@@ -154,9 +154,9 @@ public class CustomAuthenticatedSlide extends Fragment implements FingerprintUiH
     public void onUserIllegallyRequestedNextPage() {
         String message;
         if (!EditTextHelper.areEditTextsEqual(_textPassword, _textPasswordConfirm)) {
-            message = "Passwords should be equal and non-empty";
+            message = getString(R.string.password_equality_error);
         } else if (!_fingerAuthenticated) {
-            message = "Register your fingerprint";
+            message = getString(R.string.register_fingerprint);
         } else {
             return;
         }

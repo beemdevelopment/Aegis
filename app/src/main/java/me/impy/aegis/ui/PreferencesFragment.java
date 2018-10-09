@@ -144,14 +144,14 @@ public class PreferencesFragment extends PreferenceFragmentCompat implements Pas
                     dialog.show(getActivity().getSupportFragmentManager(), null);
                 } else {
                     new AlertDialog.Builder(getActivity())
-                            .setTitle("Disable encryption")
-                            .setMessage("Are you sure you want to disable encryption? This will cause the database to be stored in plain text")
+                            .setTitle(getString(R.string.disable_encryption))
+                            .setMessage(getString(R.string.disable_encryption_description))
                             .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int which) {
                                     try {
                                         _db.disableEncryption();
                                     } catch (DatabaseManagerException e) {
-                                        Toast.makeText(getActivity(), "An error occurred while enabling encryption", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(getActivity(), getString(R.string.encrypting_error), Toast.LENGTH_SHORT).show();
                                     }
                                     updateEncryptionPreference();
                                 }
@@ -178,7 +178,7 @@ public class PreferencesFragment extends PreferenceFragmentCompat implements Pas
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         if (!PermissionHelper.checkResults(grantResults)) {
-            Toast.makeText(getActivity(), "Permission denied", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), getString(R.string.permission_denied), Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -229,7 +229,7 @@ public class PreferencesFragment extends PreferenceFragmentCompat implements Pas
         String[] names = importers.keySet().toArray(new String[importers.size()]);
 
         new AlertDialog.Builder(getActivity())
-                .setTitle("Select the application you'd like to import a database from")
+                .setTitle(getString(R.string.choose_application))
                 .setSingleChoiceItems(names, 0, null)
                 .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
@@ -256,7 +256,7 @@ public class PreferencesFragment extends PreferenceFragmentCompat implements Pas
         try {
             importDatabase(_importer);
         } catch (DatabaseImporterException e) {
-            Toast.makeText(getActivity(), "An error occurred while trying to parse the file", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), getString(R.string.parsing_file_error), Toast.LENGTH_SHORT).show();
         }
 
         _importer = null;
@@ -273,11 +273,11 @@ public class PreferencesFragment extends PreferenceFragmentCompat implements Pas
         try (InputStream fileStream = getActivity().getContentResolver().openInputStream(uri)) {
             stream = ByteInputStream.create(fileStream);
         } catch (FileNotFoundException e) {
-            Toast.makeText(getActivity(), "Error: File not found", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), getString(R.string.file_not_found), Toast.LENGTH_SHORT).show();
             return;
         } catch (IOException e) {
             e.printStackTrace();
-            Toast.makeText(getActivity(), "An error occurred while trying to read the file", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), getString(R.string.reading_file_error), Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -298,7 +298,7 @@ public class PreferencesFragment extends PreferenceFragmentCompat implements Pas
             importDatabase(importer);
         } catch (DatabaseImporterException e) {
             e.printStackTrace();
-            Toast.makeText(getActivity(), "An error occurred while trying to parse the file", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), getString(R.string.parsing_file_error), Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -318,7 +318,7 @@ public class PreferencesFragment extends PreferenceFragmentCompat implements Pas
         }
 
         _result.putExtra("needsRecreate", true);
-        Toast.makeText(getActivity(), String.format(Locale.getDefault(), "Imported %d entries", entries.size()), Toast.LENGTH_LONG).show();
+        Toast.makeText(getActivity(), String.format(Locale.getDefault(), getString(R.string.imported_entries_count), entries.size()), Toast.LENGTH_LONG).show();
     }
 
     private void onExport() {
@@ -335,14 +335,14 @@ public class PreferencesFragment extends PreferenceFragmentCompat implements Pas
                     try {
                         filename = _db.export(checked[0]);
                     } catch (DatabaseManagerException e) {
-                        Toast.makeText(getActivity(), "An error occurred while trying to export the database", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), getString(R.string.exporting_database_error), Toast.LENGTH_SHORT).show();
                         return;
                     }
 
                     // make sure the new file is visible
                     MediaScannerConnection.scanFile(getActivity(), new String[]{filename}, null, null);
 
-                    Toast.makeText(getActivity(), "The database has been exported to: " + filename, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), getString(R.string.export_database_location) + filename, Toast.LENGTH_SHORT).show();
                 })
                 .setNegativeButton(android.R.string.cancel, null);
         if (_db.isEncryptionEnabled()) {
@@ -355,7 +355,7 @@ public class PreferencesFragment extends PreferenceFragmentCompat implements Pas
                 }
             });
         } else {
-            builder.setMessage("This action will export the database out of Android's private storage.");
+            builder.setMessage(getString(R.string.export_warning));
         }
         builder.show();
     }
@@ -374,7 +374,7 @@ public class PreferencesFragment extends PreferenceFragmentCompat implements Pas
         try {
             _db.save();
         } catch (DatabaseManagerException e) {
-            Toast.makeText(getActivity(), "An error occurred while trying to save the database", Toast.LENGTH_LONG).show();
+            Toast.makeText(getActivity(), getString(R.string.saving_error), Toast.LENGTH_LONG).show();
             return false;
         }
 
@@ -400,7 +400,7 @@ public class PreferencesFragment extends PreferenceFragmentCompat implements Pas
     @Override
     public void onException(Exception e) {
         updateEncryptionPreference();
-        Toast.makeText(getActivity(), "An error occurred while trying to set the password: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(getActivity(), getString(R.string.encryption_set_password_error) + e.getMessage(), Toast.LENGTH_SHORT).show();
     }
 
     private void updateEncryptionPreference() {

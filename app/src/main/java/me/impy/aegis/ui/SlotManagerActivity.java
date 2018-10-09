@@ -150,13 +150,13 @@ public class SlotManagerActivity extends AegisActivity implements SlotAdapter.Li
     public void onRemoveSlot(Slot slot) {
         SlotList slots = _creds.getSlots();
         if (slot instanceof PasswordSlot && slots.findAll(PasswordSlot.class).size() <= 1) {
-            Toast.makeText(this, "You must have at least one password slot", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.password_slot_error, Toast.LENGTH_SHORT).show();
             return;
         }
 
         new AlertDialog.Builder(this)
-                .setTitle("Remove slot")
-                .setMessage("Are you sure you want to remove this slot?")
+                .setTitle(R.string.remove_slot)
+                .setMessage(R.string.remove_slot_description)
                 .setPositiveButton(android.R.string.yes, (dialog, whichButton) -> {
                     slots.remove(slot);
                     _adapter.removeSlot(slot);
@@ -184,6 +184,6 @@ public class SlotManagerActivity extends AegisActivity implements SlotAdapter.Li
 
     @Override
     public void onException(Exception e) {
-        Toast.makeText(this, "An error occurred while trying to add a new slot: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, getString(R.string.adding_new_slot_error) + e.getMessage(), Toast.LENGTH_SHORT).show();
     }
 }

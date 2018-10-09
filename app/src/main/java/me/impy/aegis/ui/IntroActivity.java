@@ -64,9 +64,9 @@ public class IntroActivity extends AppIntro2 implements DerivationTask.Callback 
         setBarColor(getResources().getColor(R.color.colorPrimary));
 
         SliderPage homeSliderPage = new SliderPage();
-        homeSliderPage.setTitle("Welcome");
+        homeSliderPage.setTitle(getString(R.string.welcome));
         homeSliderPage.setTitleColor(getResources().getColor(R.color.primary_text_dark));
-        homeSliderPage.setDescription("Aegis is a secure, free and open source 2FA app");
+        homeSliderPage.setDescription(getString(R.string.app_description));
         homeSliderPage.setDescColor(getResources().getColor(R.color.primary_text_dark));
         homeSliderPage.setBgColor(getResources().getColor(R.color.colorSecondary));
         addSlide(AppIntroFragment.newInstance(homeSliderPage));
@@ -80,8 +80,8 @@ public class IntroActivity extends AppIntro2 implements DerivationTask.Callback 
         addSlide(_authenticatedSlide);
 
         SliderPage endSliderPage = new SliderPage();
-        endSliderPage.setTitle("All done!");
-        endSliderPage.setDescription("Aegis has been set up and is ready to go.");
+        endSliderPage.setTitle(getString(R.string.setup_completed));
+        endSliderPage.setDescription(getString(R.string.setup_completed_description));
         endSliderPage.setBgColor(getResources().getColor(R.color.colorSecondary));
         _endSlide = AppIntroFragment.newInstance(endSliderPage);
         addSlide(_endSlide);

@@ -57,7 +57,7 @@ public class CustomAuthenticationSlide extends Fragment implements ISlidePolicy,
 
     @Override
     public void onUserIllegallyRequestedNextPage() {
-        Snackbar snackbar = Snackbar.make(getView(), "Please select an authentication method", Snackbar.LENGTH_LONG);
+        Snackbar snackbar = Snackbar.make(getView(), getString(R.string.snackbar_authentication_method), Snackbar.LENGTH_LONG);
         snackbar.show();
     }
 

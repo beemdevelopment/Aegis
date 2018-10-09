@@ -5,6 +5,7 @@ import android.content.Context;
 import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
 
+import me.impy.aegis.R;
 import me.impy.aegis.crypto.MasterKey;
 import me.impy.aegis.db.slots.FingerprintSlot;
 import me.impy.aegis.db.slots.PasswordSlot;
@@ -18,7 +19,7 @@ public class SlotListTask<T extends Slot> extends ProgressDialogTask<SlotListTas
     private Class<T> _type;
 
     public SlotListTask(Class<T> type, Context context, Callback cb) {
-        super(context, "Decrypting database");
+        super(context, context.getString(R.string.unlocking_vault));
         _cb = cb;
         _type = type;
     }

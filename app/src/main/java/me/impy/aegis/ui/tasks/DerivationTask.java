@@ -4,6 +4,7 @@ import android.content.Context;
 
 import javax.crypto.SecretKey;
 
+import me.impy.aegis.R;
 import me.impy.aegis.crypto.CryptoUtils;
 import me.impy.aegis.crypto.SCryptParameters;
 import me.impy.aegis.db.slots.PasswordSlot;
@@ -12,7 +13,7 @@ public class DerivationTask extends ProgressDialogTask<DerivationTask.Params, Se
     private Callback _cb;
 
     public DerivationTask(Context context, Callback cb) {
-        super(context, "Deriving key from password");
+        super(context, context.getString(R.string.encrypting_vault));
         _cb = cb;
     }
 

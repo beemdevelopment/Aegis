@@ -137,7 +137,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         if (!PermissionHelper.checkResults(grantResults)) {
-            Toast.makeText(this, "Permission denied", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.permission_denied), Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -273,7 +273,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
             if (!_db.isLoaded() && !_db.fileExists()) {
                 // the db doesn't exist, start the intro
                 if (getPreferences().isIntroDone()) {
-                    Toast.makeText(this, "Database file not found, starting intro...", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, getString(R.string.vault_not_found), Toast.LENGTH_SHORT).show();
                 }
                 Intent intro = new Intent(this, IntroActivity.class);
                 startActivityForResult(intro, CODE_DO_INTRO);
@@ -304,7 +304,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
             ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
             ClipData clip = ClipData.newPlainText("text/plain", entry.getInfo().getOtp());
             clipboard.setPrimaryClip(clip);
-            Toast.makeText(this, "Code copied to the clipboard", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.code_copied), Toast.LENGTH_SHORT).show();
         });
 
         dialog.findViewById(R.id.delete_button).setOnClickListener(view -> {
@@ -379,7 +379,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
                 }
             }
         } catch (DatabaseManagerException e) {
-            Toast.makeText(this, "An error occurred while trying to load/decrypt the database", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, getString(R.string.decryption_error), Toast.LENGTH_LONG).show();
             startAuthActivity();
             return;
         }
@@ -403,7 +403,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         try {
             _db.save();
         } catch (DatabaseManagerException e) {
-            Toast.makeText(this, "An error occurred while trying to save the database", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, getString(R.string.saving_error), Toast.LENGTH_LONG).show();
         }
     }
 

@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.UUID;
 
 import me.impy.aegis.BuildConfig;
+import me.impy.aegis.R;
 
 public class DatabaseManager {
     private static final String FILENAME = "aegis.json";
@@ -110,7 +111,7 @@ public class DatabaseManager {
                 dbFile.setContent(_db.toJson());
             }
 
-            String dirName = !BuildConfig.DEBUG ? "Aegis" : "AegisDebug";
+            String dirName = !BuildConfig.DEBUG ? _context.getString(R.string.app_name) : _context.getString(R.string.app_name_dev);
             File dir = new File(Environment.getExternalStorageDirectory(), dirName);
             if (!dir.exists() && !dir.mkdirs()) {
                 throw new IOException("error creating external storage directory");

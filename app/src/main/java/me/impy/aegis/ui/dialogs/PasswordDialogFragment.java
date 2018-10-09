@@ -30,7 +30,7 @@ public class PasswordDialogFragment extends SlotDialogFragment {
         EditText textPasswordConfirm = view.findViewById(R.id.text_password_confirm);
 
         AlertDialog alert = new AlertDialog.Builder(getActivity())
-                .setTitle("Enter a new password")
+                .setTitle(R.string.set_password)
                 .setView(view)
                 .setPositiveButton(android.R.string.ok, null)
                 .setNegativeButton(android.R.string.cancel, null)

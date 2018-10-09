@@ -95,7 +95,7 @@ public class EditEntryActivity extends AegisActivity {
         _origEntry = (DatabaseEntry) intent.getSerializableExtra("entry");
         _isNew = intent.getBooleanExtra("isNew", false);
         if (_isNew) {
-            setTitle("Add profile");
+            setTitle(R.string.add_new_profile);
         }
 
         // set up fields
@@ -194,8 +194,8 @@ public class EditEntryActivity extends AegisActivity {
         ImagePicker imagePicker = ImagePicker.create(this)
                 .returnMode(ReturnMode.ALL)
                 .folderMode(true)
-                .toolbarFolderTitle("Folder")
-                .toolbarImageTitle("Tap to select")
+                .toolbarFolderTitle(getString(R.string.folder))
+                .toolbarImageTitle(getString(R.string.tap_to_select))
                 .toolbarArrowColor(Color.BLACK)
                 .single()
                 .showCamera(false)
@@ -458,7 +458,7 @@ public class EditEntryActivity extends AegisActivity {
 
     private void onSaveError(String msg) {
         new AlertDialog.Builder(this)
-                .setTitle("Error saving profile")
+                .setTitle(getString(R.string.saving_profile_error))
                 .setMessage(msg)
                 .setPositiveButton(android.R.string.ok, null)
                 .show();

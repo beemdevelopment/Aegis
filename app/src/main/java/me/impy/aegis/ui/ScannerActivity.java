@@ -47,7 +47,7 @@ public class ScannerActivity extends AegisActivity implements ZXingScannerView.R
         if (camera == -1) {
             camera = getFrontCameraId();
             if (camera == -1) {
-                Toast.makeText(this, "No cameras available", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, getString(R.string.no_cameras_available), Toast.LENGTH_LONG).show();
                 finish();
             }
             _facing = CAMERA_FACING_FRONT;
@@ -117,7 +117,7 @@ public class ScannerActivity extends AegisActivity implements ZXingScannerView.R
             setResult(RESULT_OK, intent);
             finish();
         } catch (GoogleAuthInfoException e) {
-            Toast.makeText(this, "An error occurred while trying to parse the QR code contents", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.read_qr_error), Toast.LENGTH_SHORT).show();
         }
 
         _scannerView.resumeCameraPreview(this);

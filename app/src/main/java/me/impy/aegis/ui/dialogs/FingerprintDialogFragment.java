@@ -45,7 +45,7 @@ public class FingerprintDialogFragment extends SlotDialogFragment implements Fin
         }
 
         return new AlertDialog.Builder(getActivity())
-                .setTitle("Register a new fingerprint")
+                .setTitle(R.string.register_fingerprint)
                 .setView(view)
                 .setNegativeButton(android.R.string.cancel, null)
                 .create();

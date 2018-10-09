@@ -13,8 +13,8 @@ public class Dialogs {
 
     public static AlertDialog showDeleteEntryDialog(Activity activity, DialogInterface.OnClickListener onDelete) {
         return new AlertDialog.Builder(activity)
-                .setTitle("Delete entry")
-                .setMessage("Are you sure you want to delete this entry?")
+                .setTitle(activity.getString(R.string.delete_entry))
+                .setMessage(activity.getString(R.string.delete_entry_description))
                 .setPositiveButton(android.R.string.yes, onDelete)
                 .setNegativeButton(android.R.string.no, null)
                 .show();
@@ -22,8 +22,8 @@ public class Dialogs {
 
     public static AlertDialog showDiscardDialog(Activity activity, DialogInterface.OnClickListener onSave, DialogInterface.OnClickListener onDiscard) {
         return new AlertDialog.Builder(activity)
-                .setTitle("Discard changes?")
-                .setMessage("Your changes have not been saved")
+                .setTitle(activity.getString(R.string.discard_changes))
+                .setMessage(activity.getString(R.string.discard_changes_description))
                 .setPositiveButton(R.string.save, onSave)
                 .setNegativeButton(R.string.discard, onDiscard)
                 .show();

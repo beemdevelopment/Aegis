@@ -33,10 +33,10 @@ public class SlotHolder extends RecyclerView.ViewHolder {
 
     public void setData(Slot slot) {
         if (slot instanceof PasswordSlot) {
-            _slotName.setText("Password");
+            _slotName.setText(R.string.password);
             _slotImg.setImageResource(R.drawable.ic_create_black_24dp);
         } else if (slot instanceof FingerprintSlot) {
-            _slotName.setText("Finger");
+            _slotName.setText(R.string.authentication_method_fingerprint);
             _slotImg.setImageResource(R.drawable.ic_fingerprint_black_24dp);
             if (FingerprintHelper.isSupported()) {
                 try {
@@ -47,7 +47,7 @@ public class SlotHolder extends RecyclerView.ViewHolder {
                 } catch (KeyStoreHandleException e) { }
             }
         } else if (slot instanceof RawSlot) {
-            _slotName.setText("Raw");
+            _slotName.setText(R.string.authentication_method_raw);
             _slotImg.setImageResource(R.drawable.ic_vpn_key_black_24dp);
         } else {
             throw new RuntimeException();
