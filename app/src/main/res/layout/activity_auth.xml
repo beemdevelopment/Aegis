@@ -40,7 +40,7 @@
                 android:id="@+id/button_decrypt"
                 android:layout_width="125dp"
                 android:layout_height="wrap_content"
-                android:text="Decrypt" />
+                android:text="@string/unlock" />
         </LinearLayout>
         <LinearLayout
             android:id="@+id/box_fingerprint"
@@ -82,7 +82,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="A fingerprint slot was found, but it appears to have been invalidated by the Android keystore. Go to &quot;Settings -> Key slots&quot; to readd your fingerprint."/>
+                android:text="@string/invalidated_fingerprint"/>
         </LinearLayout>
     </LinearLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

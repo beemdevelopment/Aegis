@@ -86,7 +86,7 @@
                 android:layout_marginBottom="5dp">
                 <EditText android:layout_column="1"
                     android:id="@+id/text_issuer"
-                    android:hint="Issuer"
+                    android:hint="@string/issuer"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:backgroundTint="#949494"
@@ -120,7 +120,7 @@
                 android:layout_marginStart="12dp"
                 android:layout_toEndOf="@+id/down_btn"
                 android:padding="16dp"
-                android:text="Advanced"
+                android:text="@string/advanced"
                 android:textStyle="bold" />
 
         </RelativeLayout>
@@ -228,7 +228,7 @@
                             android:layout_alignParentEnd="true"
                             android:backgroundTint="#949494"
                             android:layout_centerVertical="true"
-                            android:text="seconds"
+                            android:text="@string/seconds"
                             android:textSize="18sp"
                             android:layout_marginEnd="10dp"
                             android:textColor="#808080"/>
@@ -261,7 +261,7 @@
                     android:orientation="horizontal">
                     <EditText
                         android:id="@+id/text_counter"
-                        android:hint="Counter"
+                        android:hint="@string/counter"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -302,7 +302,7 @@
                         android:layout_height="wrap_content"
 
                         android:backgroundTint="#949494"
-                        android:hint="Secret (base32)"
+                        android:hint="@string/secret"
                         android:inputType="textPassword"/>
                 </com.google.android.material.textfield.TextInputLayout>
             </TableRow>

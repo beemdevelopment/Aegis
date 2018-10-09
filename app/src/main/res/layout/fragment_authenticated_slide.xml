@@ -70,7 +70,7 @@
         android:visibility="invisible">
 
         <TextView
-            android:text="Fingerprint"
+            android:text="@string/authentication_method_fingerprint"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="24sp"

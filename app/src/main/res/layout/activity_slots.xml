@@ -48,7 +48,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Add fingerprint"
+                    android:text="@string/add_fingerprint"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:textColor="?android:attr/textColorSecondary"/>
             </LinearLayout>
@@ -77,7 +77,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="The database is only as secure as your weakest key.\n\nWhen a new fingerprint is enrolled, all keys are wiped from the keystore. You should always have at least one password slot to prevent accidental data loss."/>
+                    android:text="@string/slots_warning"/>
             </LinearLayout>
 
         </LinearLayout>

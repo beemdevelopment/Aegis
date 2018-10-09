@@ -22,7 +22,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Copy"/>
+            android:text="@string/copy"/>
 
     </LinearLayout>
     <LinearLayout
@@ -43,7 +43,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Edit"/>
+            android:text="@string/edit"/>
 
     </LinearLayout>
     <LinearLayout
@@ -64,7 +64,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Delete"/>
+            android:text="@string/delete"/>
 
     </LinearLayout>
 

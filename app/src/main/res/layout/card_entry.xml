@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
               android:foreground="?android:attr/selectableItemBackground"
               android:clickable="true"
               android:focusable="true"
@@ -53,7 +54,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/profile_issuer"
-                android:text="Issuer"
+                android:text="@string/issuer"
                 android:textColor="?attr/secondaryText"
                 android:includeFontPadding="false"
                 android:textSize="15sp"
@@ -64,17 +65,17 @@
                 android:maxLines="1"/>
 
             <TextView
+                android:id="@+id/profile_account_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/profile_account_name"
-                android:text=" - AccountName"
-                android:textColor="@color/extra_info_text"
-                android:includeFontPadding="false"
-                android:textSize="15sp"
-                android:layout_toRightOf="@id/profile_issuer"
                 android:layout_below="@id/profile_code"
+                android:layout_toRightOf="@id/profile_issuer"
                 android:ellipsize="end"
-                android:maxLines="1"/>
+                android:includeFontPadding="false"
+                android:maxLines="1"
+                android:textColor="@color/extra_info_text"
+                android:textSize="15sp"
+                tools:text=" - AccountName" />
 
 
             <TextView
@@ -82,7 +83,7 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:fontFamily="sans-serif-light"
-                android:text="Medium Text"
+                tools:text="012 345"
                 android:id="@+id/profile_code"
                 android:includeFontPadding="false"
                 android:textSize="34sp"
