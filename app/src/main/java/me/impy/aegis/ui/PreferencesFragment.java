@@ -162,6 +162,15 @@ public class PreferencesFragment extends PreferenceFragmentCompat implements Pas
                 return false;
             }
         });
+
+        Preference setPasswordPreference = findPreference("pref_password");
+        setPasswordPreference.setOnPreferenceClickListener(preference -> {
+            PasswordDialogFragment dialog = new PasswordDialogFragment();
+            // TODO: find a less ugly way to obtain the fragment manager
+            dialog.show(getActivity().getSupportFragmentManager(), null);
+            return false;
+        });
+
         _slotsPreference = findPreference("pref_slots");
         _slotsPreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override

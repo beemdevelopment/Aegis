@@ -45,6 +45,14 @@
             android:summary="@string/pref_encryption_summary"
             android:persistent="false"
             app:iconSpaceReserved="false"/>
+
+        <Preference
+            android:key="pref_password"
+            android:title="@string/pref_set_password_title"
+            android:summary="@string/pref_set_password_summary"
+            android:dependency="pref_encryption"
+            app:iconSpaceReserved="false"/>
+
         <Preference
             android:key="pref_slots"
             android:title="@string/pref_slots_title"

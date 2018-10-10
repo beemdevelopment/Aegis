@@ -27,6 +27,8 @@
     <string name="pref_secure_screen_summary">Block screenshots and other attempts to capture the screen within the app</string>
     <string name="pref_encryption_title">Encryption</string>
     <string name="pref_encryption_summary">Encrypt the database and unlock it with a password or fingerprint</string>
+    <string name="pref_set_password_title">Change password</string>
+    <string name="pref_set_password_summary">Set a new password which you will need to unlock your vault</string>
 
     <string name="fingerprint_hint">Touch sensor</string>
     <string name="fingerprint_not_recognized">Fingerprint not recognized. Try again.</string>
