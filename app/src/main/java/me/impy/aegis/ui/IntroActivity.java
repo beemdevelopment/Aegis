@@ -65,6 +65,7 @@ public class IntroActivity extends AppIntro2 implements DerivationTask.Callback 
 
         SliderPage homeSliderPage = new SliderPage();
         homeSliderPage.setTitle(getString(R.string.welcome));
+        homeSliderPage.setImageDrawable(R.drawable.icon_foreground_white);
         homeSliderPage.setTitleColor(getResources().getColor(R.color.primary_text_dark));
         homeSliderPage.setDescription(getString(R.string.app_description));
         homeSliderPage.setDescColor(getResources().getColor(R.color.primary_text_dark));
