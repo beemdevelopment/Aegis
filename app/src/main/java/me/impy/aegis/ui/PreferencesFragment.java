@@ -25,6 +25,7 @@ import java.util.Map;
 import javax.crypto.Cipher;
 
 import me.impy.aegis.AegisApplication;
+import me.impy.aegis.BuildConfig;
 import me.impy.aegis.R;
 import me.impy.aegis.db.DatabaseEntry;
 import me.impy.aegis.db.DatabaseFileCredentials;
@@ -172,6 +173,11 @@ public class PreferencesFragment extends PreferenceFragmentCompat implements Pas
         });
 
         _slotsPreference = findPreference("pref_slots");
+        if (BuildConfig.DEBUG) {
+            _slotsPreference.setVisible(true);
+        } else {
+            _slotsPreference.setVisible(false);
+        }
         _slotsPreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
