@@ -108,8 +108,7 @@ public class ScannerActivity extends AegisActivity implements ZXingScannerView.R
     public void handleResult(Result rawResult) {
         try {
             // parse google auth uri
-            Uri uri = Uri.parse(rawResult.getText());
-            GoogleAuthInfo info = GoogleAuthInfo.parseUri(uri);
+            GoogleAuthInfo info = GoogleAuthInfo.parseUri(rawResult.getText());
             DatabaseEntry entry = new DatabaseEntry(info);
 
             Intent intent = new Intent();

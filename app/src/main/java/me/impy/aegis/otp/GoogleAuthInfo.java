@@ -48,6 +48,14 @@ public class GoogleAuthInfo {
         return builder.build();
     }
 
+    public static GoogleAuthInfo parseUri(String s) throws GoogleAuthInfoException {
+        Uri uri = Uri.parse(s);
+        if (uri == null) {
+            throw new GoogleAuthInfoException("bad uri format");
+        }
+        return GoogleAuthInfo.parseUri(uri);
+    }
+
     public static GoogleAuthInfo parseUri(Uri uri) throws GoogleAuthInfoException {
         if (!uri.getScheme().equals("otpauth")) {
             throw new GoogleAuthInfoException("unsupported protocol");
