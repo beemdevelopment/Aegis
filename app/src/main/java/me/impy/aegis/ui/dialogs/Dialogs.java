@@ -12,6 +12,8 @@ import android.widget.TextView;
 
 import com.mattprecious.swirl.SwirlView;
 
+import java.util.concurrent.atomic.AtomicReference;
+
 import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
 
@@ -64,13 +66,14 @@ public class Dialogs {
                 .setNegativeButton(android.R.string.cancel, null)
                 .create();
 
-        final Button[] buttonOK = new Button[1];
+        final AtomicReference<Button> buttonOK = new AtomicReference<>();
         alert.setOnShowListener(dialog -> {
-            buttonOK[0] = alert.getButton(AlertDialog.BUTTON_POSITIVE);
-            buttonOK[0].setEnabled(false);
+            Button button = alert.getButton(AlertDialog.BUTTON_POSITIVE);
+            button.setEnabled(false);
+            buttonOK.set(button);
 
             // replace the default listener
-            buttonOK[0].setOnClickListener(v -> {
+            button.setOnClickListener(v -> {
                 if (!EditTextHelper.areEditTextsEqual(textPassword, textPasswordConfirm)) {
                     return;
                 }
@@ -96,7 +99,7 @@ public class Dialogs {
         TextWatcher watcher = new TextWatcher() {
             public void onTextChanged(CharSequence c, int start, int before, int count) {
                 boolean equal = EditTextHelper.areEditTextsEqual(textPassword, textPasswordConfirm);
-                buttonOK[0].setEnabled(equal);
+                buttonOK.get().setEnabled(equal);
             }
             public void beforeTextChanged(CharSequence c, int start, int count, int after) { }
             public void afterTextChanged(Editable c) { }
@@ -114,7 +117,7 @@ public class Dialogs {
 
         Cipher cipher;
         FingerprintSlot slot;
-        final FingerprintUiHelper[] helper = new FingerprintUiHelper[1];
+        final AtomicReference<FingerprintUiHelper> helper = new AtomicReference<>();
         FingerprintManager manager = FingerprintHelper.getManager(activity);
 
         try {
@@ -130,11 +133,11 @@ public class Dialogs {
                 .setView(view)
                 .setNegativeButton(android.R.string.cancel, null)
                 .setOnDismissListener(d -> {
-                    helper[0].stopListening();
+                    helper.get().stopListening();
                 })
                 .show();
 
-        helper[0] = new FingerprintUiHelper(manager, imgFingerprint, textFingerprint, new FingerprintUiHelper.Callback() {
+        helper.set(new FingerprintUiHelper(manager, imgFingerprint, textFingerprint, new FingerprintUiHelper.Callback() {
             @Override
             public void onAuthenticated() {
                 listener.onSlotResult(slot, cipher);
@@ -145,9 +148,9 @@ public class Dialogs {
             public void onError() {
 
             }
-        });
+        }));
 
-        helper[0].startListening(new FingerprintManager.CryptoObject(cipher));
+        helper.get().startListening(new FingerprintManager.CryptoObject(cipher));
     }
 
     public interface SlotListener {

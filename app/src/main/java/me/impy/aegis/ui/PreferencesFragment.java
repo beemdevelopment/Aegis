@@ -21,6 +21,7 @@ import java.io.InputStream;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.concurrent.atomic.AtomicReference;
 
 import javax.crypto.Cipher;
 
@@ -363,13 +364,13 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
         }
 
         // TODO: create a custom layout to show a message AND a checkbox
-        final boolean[] checked = {true};
+        final AtomicReference<Boolean> checked = new AtomicReference<>(true);
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity())
                 .setTitle("Export the database")
                 .setPositiveButton(android.R.string.ok, (dialog, which) -> {
                     String filename;
                     try {
-                        filename = _db.export(checked[0]);
+                        filename = _db.export(checked.get());
                     } catch (DatabaseManagerException e) {
                         Toast.makeText(getActivity(), getString(R.string.exporting_database_error), Toast.LENGTH_SHORT).show();
                         return;
@@ -387,7 +388,7 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
             builder.setMultiChoiceItems(items, checkedItems, new DialogInterface.OnMultiChoiceClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int index, boolean isChecked) {
-                    checked[0] = isChecked;
+                    checked.set(isChecked);
                 }
             });
         } else {
