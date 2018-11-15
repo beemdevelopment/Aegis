@@ -24,11 +24,9 @@ import me.impy.aegis.db.slots.SlotList;
 import me.impy.aegis.db.slots.SlotException;
 import me.impy.aegis.helpers.FingerprintHelper;
 import me.impy.aegis.ui.dialogs.Dialogs;
-import me.impy.aegis.ui.dialogs.FingerprintDialogFragment;
 import me.impy.aegis.ui.views.SlotAdapter;
-import me.impy.aegis.ui.dialogs.SlotDialogFragment;
 
-public class SlotManagerActivity extends AegisActivity implements SlotAdapter.Listener, SlotDialogFragment.Listener {
+public class SlotManagerActivity extends AegisActivity implements SlotAdapter.Listener, Dialogs.SlotListener {
     private DatabaseFileCredentials _creds;
     private SlotAdapter _adapter;
 
@@ -45,8 +43,11 @@ public class SlotManagerActivity extends AegisActivity implements SlotAdapter.Li
         bar.setDisplayHomeAsUpEnabled(true);
 
         findViewById(R.id.button_add_fingerprint).setOnClickListener(view -> {
-            FingerprintDialogFragment dialog = new FingerprintDialogFragment();
-            dialog.show(getSupportFragmentManager(), null);
+            Dialogs.showFingerprintDialog(this ,this);
+        });
+
+        findViewById(R.id.button_add_password).setOnClickListener(view -> {
+            Dialogs.showSetPasswordDialog(this, this);
         });
 
         // set up the recycler view

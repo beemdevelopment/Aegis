@@ -29,20 +29,23 @@ import me.impy.aegis.BuildConfig;
 import me.impy.aegis.R;
 import me.impy.aegis.db.DatabaseEntry;
 import me.impy.aegis.db.DatabaseFileCredentials;
-import me.impy.aegis.db.DatabaseFileException;
 import me.impy.aegis.db.DatabaseManager;
 import me.impy.aegis.db.DatabaseManagerException;
+import me.impy.aegis.db.slots.FingerprintSlot;
+import me.impy.aegis.db.slots.PasswordSlot;
 import me.impy.aegis.db.slots.Slot;
 import me.impy.aegis.db.slots.SlotException;
+import me.impy.aegis.db.slots.SlotList;
+import me.impy.aegis.helpers.FingerprintHelper;
 import me.impy.aegis.helpers.PermissionHelper;
 import me.impy.aegis.importers.AegisImporter;
 import me.impy.aegis.importers.DatabaseImporter;
 import me.impy.aegis.importers.DatabaseImporterException;
-import me.impy.aegis.ui.dialogs.PasswordDialogFragment;
+import me.impy.aegis.ui.dialogs.Dialogs;
 import me.impy.aegis.ui.preferences.SwitchPreference;
 import me.impy.aegis.util.ByteInputStream;
 
-public class PreferencesFragment extends PreferenceFragmentCompat implements PasswordDialogFragment.Listener {
+public class PreferencesFragment extends PreferenceFragmentCompat {
     // activity request codes
     private static final int CODE_IMPORT = 0;
     private static final int CODE_IMPORT_DECRYPT = 1;
@@ -61,6 +64,8 @@ public class PreferencesFragment extends PreferenceFragmentCompat implements Pas
     private Class<? extends DatabaseImporter> _importerType;
 
     private SwitchPreference _encryptionPreference;
+    private SwitchPreference _fingerprintPreference;
+    private Preference _setPasswordPreference;
     private Preference _slotsPreference;
 
     @Override
@@ -140,9 +145,7 @@ public class PreferencesFragment extends PreferenceFragmentCompat implements Pas
             @Override
             public boolean onPreferenceChange(Preference preference, Object newValue) {
                 if (!_db.isEncryptionEnabled()) {
-                    PasswordDialogFragment dialog = new PasswordDialogFragment();
-                    // TODO: find a less ugly way to obtain the fragment manager
-                    dialog.show(getActivity().getSupportFragmentManager(), null);
+                    Dialogs.showSetPasswordDialog(getActivity(), new EnableEncryptionListener());
                 } else {
                     new AlertDialog.Builder(getActivity())
                             .setTitle(getString(R.string.disable_encryption))
@@ -154,7 +157,7 @@ public class PreferencesFragment extends PreferenceFragmentCompat implements Pas
                                     } catch (DatabaseManagerException e) {
                                         Toast.makeText(getActivity(), getString(R.string.encrypting_error), Toast.LENGTH_SHORT).show();
                                     }
-                                    updateEncryptionPreference();
+                                    updateEncryptionPreferences();
                                 }
                             })
                             .setNegativeButton(android.R.string.no, null)
@@ -164,20 +167,37 @@ public class PreferencesFragment extends PreferenceFragmentCompat implements Pas
             }
         });
 
-        Preference setPasswordPreference = findPreference("pref_password");
-        setPasswordPreference.setOnPreferenceClickListener(preference -> {
-            PasswordDialogFragment dialog = new PasswordDialogFragment();
-            // TODO: find a less ugly way to obtain the fragment manager
-            dialog.show(getActivity().getSupportFragmentManager(), null);
+        _fingerprintPreference = (SwitchPreference) findPreference("pref_fingerprint");
+        _fingerprintPreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+            @Override
+            public boolean onPreferenceChange(Preference preference, Object newValue) {
+                DatabaseFileCredentials creds = _db.getCredentials();
+                SlotList slots = creds.getSlots();
+
+                if (!slots.has(FingerprintSlot.class)) {
+                    Dialogs.showFingerprintDialog(getActivity(), new RegisterFingerprintListener());
+                } else {
+                    // remove the fingerprint slot
+                    FingerprintSlot slot = slots.find(FingerprintSlot.class);
+                    slots.remove(slot);
+                    _db.setCredentials(creds);
+
+                    saveDatabase();
+                    updateEncryptionPreferences();
+                }
+
+                return false;
+            }
+        });
+
+        _setPasswordPreference = findPreference("pref_password");
+        _setPasswordPreference.setOnPreferenceClickListener(preference -> {
+            Dialogs.showSetPasswordDialog(getActivity(), new SetPasswordListener());
             return false;
         });
 
+
         _slotsPreference = findPreference("pref_slots");
-        if (BuildConfig.DEBUG) {
-            _slotsPreference.setVisible(true);
-        } else {
-            _slotsPreference.setVisible(false);
-        }
         _slotsPreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
@@ -187,7 +207,8 @@ public class PreferencesFragment extends PreferenceFragmentCompat implements Pas
                 return true;
             }
         });
-        updateEncryptionPreference();
+
+        updateEncryptionPreferences();
     }
 
     @Override
@@ -383,6 +404,7 @@ public class PreferencesFragment extends PreferenceFragmentCompat implements Pas
         DatabaseFileCredentials creds = (DatabaseFileCredentials) data.getSerializableExtra("creds");
         _db.setCredentials(creds);
         saveDatabase();
+        updateEncryptionPreferences();
     }
 
     private boolean saveDatabase() {
@@ -396,31 +418,108 @@ public class PreferencesFragment extends PreferenceFragmentCompat implements Pas
         return true;
     }
 
-    @Override
-    public void onSlotResult(Slot slot, Cipher cipher) {
-        DatabaseFileCredentials creds = new DatabaseFileCredentials();
-
-        try {
-            slot.setKey(creds.getKey(), cipher);
-            creds.getSlots().add(slot);
-            _db.enableEncryption(creds);
-        } catch (DatabaseManagerException | SlotException e) {
-            onException(e);
-            return;
-        }
-
-        updateEncryptionPreference();
-    }
-
-    @Override
-    public void onException(Exception e) {
-        updateEncryptionPreference();
-        Toast.makeText(getActivity(), getString(R.string.encryption_set_password_error) + e.getMessage(), Toast.LENGTH_SHORT).show();
-    }
-
-    private void updateEncryptionPreference() {
+    private void updateEncryptionPreferences() {
         boolean encrypted = _db.isEncryptionEnabled();
         _encryptionPreference.setChecked(encrypted, true);
+        _setPasswordPreference.setVisible(encrypted);
+        _fingerprintPreference.setVisible(encrypted);
         _slotsPreference.setEnabled(encrypted);
+
+        if (encrypted) {
+            SlotList slots = _db.getCredentials().getSlots();
+            boolean multiPassword = slots.findAll(PasswordSlot.class).size() > 1;
+            boolean multiFinger = slots.findAll(FingerprintSlot.class).size() > 1;
+            boolean showSlots = BuildConfig.DEBUG || multiPassword || multiFinger;
+            _setPasswordPreference.setEnabled(!multiPassword);
+            _fingerprintPreference.setEnabled(FingerprintHelper.getManager(getContext()) != null && !multiFinger);
+            _fingerprintPreference.setChecked(slots.has(FingerprintSlot.class), true);
+            _slotsPreference.setVisible(showSlots);
+        } else {
+            _setPasswordPreference.setEnabled(false);
+            _fingerprintPreference.setEnabled(false);
+            _fingerprintPreference.setChecked(false, true);
+            _slotsPreference.setVisible(false);
+        }
+    }
+
+    private class SetPasswordListener implements Dialogs.SlotListener {
+        @Override
+        public void onSlotResult(Slot slot, Cipher cipher) {
+            DatabaseFileCredentials creds = new DatabaseFileCredentials();
+
+            try {
+                slot.setKey(creds.getKey(), cipher);
+                creds.getSlots().add(slot);
+                _db.enableEncryption(creds);
+            } catch (DatabaseManagerException | SlotException e) {
+                onException(e);
+                return;
+            }
+
+            updateEncryptionPreferences();
+        }
+
+        @Override
+        public void onException(Exception e) {
+            updateEncryptionPreferences();
+            Toast.makeText(getActivity(), getString(R.string.encryption_set_password_error) + e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private class RegisterFingerprintListener implements Dialogs.SlotListener {
+        @Override
+        public void onSlotResult(Slot slot, Cipher cipher) {
+            DatabaseFileCredentials creds = _db.getCredentials();
+            SlotList slots = creds.getSlots();
+
+            try {
+                slot.setKey(creds.getKey(), cipher);
+            } catch (SlotException e) {
+                onException(e);
+                return;
+            }
+
+            slots.add(slot);
+            _db.setCredentials(creds);
+
+            saveDatabase();
+            updateEncryptionPreferences();
+        }
+
+        @Override
+        public void onException(Exception e) {
+            Toast.makeText(getActivity(), getString(R.string.encryption_enable_fingerprint_error) + e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private class EnableEncryptionListener implements Dialogs.SlotListener {
+        @Override
+        public void onSlotResult(Slot slot, Cipher cipher) {
+            DatabaseFileCredentials creds = _db.getCredentials();
+            SlotList slots = creds.getSlots();
+
+            try {
+                // encrypt the master key for this slot
+                slot.setKey(creds.getKey(), cipher);
+
+                // remove the old master password slot
+                PasswordSlot oldSlot = creds.getSlots().find(PasswordSlot.class);
+                slots.remove(oldSlot);
+
+                // add the new master password slot
+                slots.add(slot);
+            } catch (SlotException e) {
+                onException(e);
+                return;
+            }
+
+            _db.setCredentials(creds);
+            saveDatabase();
+        }
+
+        @Override
+        public void onException(Exception e) {
+            Toast.makeText(getActivity(), getString(R.string.encryption_set_password_error) + e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
     }
 }

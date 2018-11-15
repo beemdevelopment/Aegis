@@ -53,6 +53,13 @@
             android:dependency="pref_encryption"
             app:iconSpaceReserved="false"/>
 
+        <me.impy.aegis.ui.preferences.SwitchPreference
+            android:key="pref_fingerprint"
+            android:title="@string/pref_fingerprint_title"
+            android:summary="@string/pref_fingerprint_summary"
+            android:persistent="false"
+            app:iconSpaceReserved="false"/>
+
         <Preference
             android:key="pref_slots"
             android:title="@string/pref_slots_title"
