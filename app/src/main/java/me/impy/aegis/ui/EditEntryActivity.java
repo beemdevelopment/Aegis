@@ -52,7 +52,6 @@ import me.impy.aegis.otp.HotpInfo;
 import me.impy.aegis.otp.OtpInfo;
 import me.impy.aegis.otp.OtpInfoException;
 import me.impy.aegis.otp.TotpInfo;
-import me.impy.aegis.ui.dialogs.Dialogs;
 
 public class EditEntryActivity extends AegisActivity {
     private boolean _isNew = false;
@@ -457,11 +456,11 @@ public class EditEntryActivity extends AegisActivity {
     }
 
     private void onSaveError(String msg) {
-        new AlertDialog.Builder(this)
+        Dialogs.showSecureDialog(new AlertDialog.Builder(this)
                 .setTitle(getString(R.string.saving_profile_error))
                 .setMessage(msg)
                 .setPositiveButton(android.R.string.ok, null)
-                .show();
+                .create());
     }
 
     private boolean onSave() {

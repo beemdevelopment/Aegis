@@ -25,7 +25,6 @@ import me.impy.aegis.db.DatabaseManagerException;
 import me.impy.aegis.db.DatabaseEntry;
 import me.impy.aegis.db.DatabaseManager;
 import me.impy.aegis.helpers.PermissionHelper;
-import me.impy.aegis.ui.dialogs.Dialogs;
 import me.impy.aegis.ui.views.EntryListView;
 
 public class MainActivity extends AegisActivity implements EntryListView.Listener {

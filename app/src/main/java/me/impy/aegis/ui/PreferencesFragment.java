@@ -42,7 +42,6 @@ import me.impy.aegis.helpers.PermissionHelper;
 import me.impy.aegis.importers.AegisImporter;
 import me.impy.aegis.importers.DatabaseImporter;
 import me.impy.aegis.importers.DatabaseImporterException;
-import me.impy.aegis.ui.dialogs.Dialogs;
 import me.impy.aegis.ui.preferences.SwitchPreference;
 import me.impy.aegis.util.ByteInputStream;
 
@@ -148,7 +147,7 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
                 if (!_db.isEncryptionEnabled()) {
                     Dialogs.showSetPasswordDialog(getActivity(), new EnableEncryptionListener());
                 } else {
-                    new AlertDialog.Builder(getActivity())
+                    Dialogs.showSecureDialog(new AlertDialog.Builder(getActivity())
                             .setTitle(getString(R.string.disable_encryption))
                             .setMessage(getString(R.string.disable_encryption_description))
                             .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
@@ -162,7 +161,7 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
                                 }
                             })
                             .setNegativeButton(android.R.string.no, null)
-                            .show();
+                            .create());
                 }
                 return false;
             }
@@ -265,7 +264,7 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
         Map<String, Class<? extends DatabaseImporter>> importers = DatabaseImporter.getImporters();
         String[] names = importers.keySet().toArray(new String[importers.size()]);
 
-        new AlertDialog.Builder(getActivity())
+        Dialogs.showSecureDialog(new AlertDialog.Builder(getActivity())
                 .setTitle(getString(R.string.choose_application))
                 .setSingleChoiceItems(names, 0, null)
                 .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
@@ -278,7 +277,7 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
                         startActivityForResult(intent, CODE_IMPORT);
                     }
                 })
-                .show();
+                .create());
     }
 
     private void onImportDecryptResult(int resultCode, Intent data) {
@@ -394,7 +393,7 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
         } else {
             builder.setMessage(getString(R.string.export_warning));
         }
-        builder.show();
+        Dialogs.showSecureDialog(builder.create());
     }
 
     private void onSlotManagerResult(int resultCode, Intent data) {

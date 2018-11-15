@@ -5,6 +5,7 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Process;
 import androidx.annotation.CallSuper;
+import me.impy.aegis.ui.Dialogs;
 
 public abstract class ProgressDialogTask<Params, Result> extends AsyncTask<Params, Void, Result> {
     private ProgressDialog _dialog;
@@ -13,6 +14,7 @@ public abstract class ProgressDialogTask<Params, Result> extends AsyncTask<Param
         _dialog = new ProgressDialog(context);
         _dialog.setCancelable(false);
         _dialog.setMessage(message);
+        Dialogs.secureDialog(_dialog);
     }
 
     @CallSuper

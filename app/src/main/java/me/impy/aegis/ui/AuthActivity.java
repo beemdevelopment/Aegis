@@ -113,12 +113,12 @@ public class AuthActivity extends AegisActivity implements FingerprintUiHelper.C
     }
 
     private void showError() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle(getString(R.string.unlock_vault_error));
-        builder.setMessage(getString(R.string.unlock_vault_error_description));
-        builder.setCancelable(false);
-        builder.setPositiveButton(android.R.string.ok, null);
-        builder.create().show();
+        Dialogs.showSecureDialog(new AlertDialog.Builder(this)
+                .setTitle(getString(R.string.unlock_vault_error))
+                .setMessage(getString(R.string.unlock_vault_error_description))
+                .setCancelable(false)
+                .setPositiveButton(android.R.string.ok, null)
+                .create());
     }
 
     private <T extends Slot> void trySlots(Class<T> type, Object obj) {

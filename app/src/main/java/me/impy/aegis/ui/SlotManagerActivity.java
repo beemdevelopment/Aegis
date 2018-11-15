@@ -23,7 +23,6 @@ import me.impy.aegis.db.slots.Slot;
 import me.impy.aegis.db.slots.SlotList;
 import me.impy.aegis.db.slots.SlotException;
 import me.impy.aegis.helpers.FingerprintHelper;
-import me.impy.aegis.ui.dialogs.Dialogs;
 import me.impy.aegis.ui.views.SlotAdapter;
 
 public class SlotManagerActivity extends AegisActivity implements SlotAdapter.Listener, Dialogs.SlotListener {
@@ -155,7 +154,7 @@ public class SlotManagerActivity extends AegisActivity implements SlotAdapter.Li
             return;
         }
 
-        new AlertDialog.Builder(this)
+        Dialogs.showSecureDialog(new AlertDialog.Builder(this)
                 .setTitle(R.string.remove_slot)
                 .setMessage(R.string.remove_slot_description)
                 .setPositiveButton(android.R.string.yes, (dialog, whichButton) -> {
@@ -165,7 +164,7 @@ public class SlotManagerActivity extends AegisActivity implements SlotAdapter.Li
                     updateFingerprintButton();
                 })
                 .setNegativeButton(android.R.string.no, null)
-                .show();
+                .create());
     }
 
     @Override

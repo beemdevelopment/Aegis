@@ -1,11 +1,13 @@
-package me.impy.aegis.ui.dialogs;
+package me.impy.aegis.ui;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.hardware.fingerprint.FingerprintManager;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -36,22 +38,31 @@ public class Dialogs {
 
     }
 
+    public static void secureDialog(Dialog dialog) {
+        dialog.getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);
+    }
+
+    public static void showSecureDialog(Dialog dialog) {
+        secureDialog(dialog);
+        dialog.show();
+    }
+
     public static void showDeleteEntryDialog(Activity activity, DialogInterface.OnClickListener onDelete) {
-        new AlertDialog.Builder(activity)
+        showSecureDialog(new AlertDialog.Builder(activity)
                 .setTitle(activity.getString(R.string.delete_entry))
                 .setMessage(activity.getString(R.string.delete_entry_description))
                 .setPositiveButton(android.R.string.yes, onDelete)
                 .setNegativeButton(android.R.string.no, null)
-                .show();
+                .create());
     }
 
     public static void showDiscardDialog(Activity activity, DialogInterface.OnClickListener onSave, DialogInterface.OnClickListener onDiscard) {
-        new AlertDialog.Builder(activity)
+        showSecureDialog(new AlertDialog.Builder(activity)
                 .setTitle(activity.getString(R.string.discard_changes))
                 .setMessage(activity.getString(R.string.discard_changes_description))
                 .setPositiveButton(R.string.save, onSave)
                 .setNegativeButton(R.string.discard, onDiscard)
-                .show();
+                .create());
     }
 
     public static void showSetPasswordDialog(Activity activity, Dialogs.SlotListener listener) {
@@ -59,7 +70,7 @@ public class Dialogs {
         EditText textPassword = view.findViewById(R.id.text_password);
         EditText textPasswordConfirm = view.findViewById(R.id.text_password_confirm);
 
-        AlertDialog alert = new AlertDialog.Builder(activity)
+        AlertDialog dialog = new AlertDialog.Builder(activity)
                 .setTitle(R.string.set_password)
                 .setView(view)
                 .setPositiveButton(android.R.string.ok, null)
@@ -67,8 +78,8 @@ public class Dialogs {
                 .create();
 
         final AtomicReference<Button> buttonOK = new AtomicReference<>();
-        alert.setOnShowListener(dialog -> {
-            Button button = alert.getButton(AlertDialog.BUTTON_POSITIVE);
+        dialog.setOnShowListener(d -> {
+            Button button = dialog.getButton(AlertDialog.BUTTON_POSITIVE);
             button.setEnabled(false);
             buttonOK.set(button);
 
@@ -107,7 +118,7 @@ public class Dialogs {
         textPassword.addTextChangedListener(watcher);
         textPasswordConfirm.addTextChangedListener(watcher);
 
-        alert.show();
+        showSecureDialog(dialog);
     }
 
     public static void showFingerprintDialog(Activity activity, Dialogs.SlotListener listener) {
@@ -135,7 +146,7 @@ public class Dialogs {
                 .setOnDismissListener(d -> {
                     helper.get().stopListening();
                 })
-                .show();
+                .create();
 
         helper.set(new FingerprintUiHelper(manager, imgFingerprint, textFingerprint, new FingerprintUiHelper.Callback() {
             @Override
@@ -151,6 +162,7 @@ public class Dialogs {
         }));
 
         helper.get().startListening(new FingerprintManager.CryptoObject(cipher));
+        showSecureDialog(dialog);
     }
 
     public interface SlotListener {
