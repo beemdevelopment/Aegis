@@ -445,18 +445,26 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
     private class SetPasswordListener implements Dialogs.SlotListener {
         @Override
         public void onSlotResult(Slot slot, Cipher cipher) {
-            DatabaseFileCredentials creds = new DatabaseFileCredentials();
+            DatabaseFileCredentials creds = _db.getCredentials();
+            SlotList slots = creds.getSlots();
 
             try {
+                // encrypt the master key for this slot
                 slot.setKey(creds.getKey(), cipher);
-                creds.getSlots().add(slot);
-                _db.enableEncryption(creds);
-            } catch (DatabaseManagerException | SlotException e) {
+
+                // remove the old master password slot
+                PasswordSlot oldSlot = creds.getSlots().find(PasswordSlot.class);
+                slots.remove(oldSlot);
+
+                // add the new master password slot
+                slots.add(slot);
+            } catch (SlotException e) {
                 onException(e);
                 return;
             }
 
-            updateEncryptionPreferences();
+            _db.setCredentials(creds);
+            saveDatabase();
         }
 
         @Override
@@ -495,26 +503,18 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
     private class EnableEncryptionListener implements Dialogs.SlotListener {
         @Override
         public void onSlotResult(Slot slot, Cipher cipher) {
-            DatabaseFileCredentials creds = _db.getCredentials();
-            SlotList slots = creds.getSlots();
+            DatabaseFileCredentials creds = new DatabaseFileCredentials();
 
             try {
-                // encrypt the master key for this slot
                 slot.setKey(creds.getKey(), cipher);
-
-                // remove the old master password slot
-                PasswordSlot oldSlot = creds.getSlots().find(PasswordSlot.class);
-                slots.remove(oldSlot);
-
-                // add the new master password slot
-                slots.add(slot);
-            } catch (SlotException e) {
+                creds.getSlots().add(slot);
+                _db.enableEncryption(creds);
+            } catch (DatabaseManagerException | SlotException e) {
                 onException(e);
                 return;
             }
 
-            _db.setCredentials(creds);
-            saveDatabase();
+            updateEncryptionPreferences();
         }
 
         @Override
