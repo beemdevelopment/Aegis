@@ -7,6 +7,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
 import androidx.annotation.ArrayRes;
 import androidx.appcompat.app.ActionBar;
@@ -34,7 +35,9 @@ import com.esafirm.imagepicker.model.Image;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.concurrent.atomic.AtomicReference;
@@ -54,6 +57,8 @@ import me.impy.aegis.otp.OtpInfoException;
 import me.impy.aegis.otp.TotpInfo;
 
 public class EditEntryActivity extends AegisActivity {
+    private static final int PICK_IMAGE_REQUEST = 0;
+
     private boolean _isNew = false;
     private DatabaseEntry _origEntry;
     private boolean _hasCustomIcon = false;
@@ -190,28 +195,15 @@ public class EditEntryActivity extends AegisActivity {
             }
         });
 
-        ImagePicker imagePicker = ImagePicker.create(this)
-                .returnMode(ReturnMode.ALL)
-                .folderMode(true)
-                .toolbarFolderTitle(getString(R.string.folder))
-                .toolbarImageTitle(getString(R.string.tap_to_select))
-                .toolbarArrowColor(Color.BLACK)
-                .single()
-                .showCamera(false)
-                .imageDirectory("Camera");
+        _iconView.setOnClickListener(v -> {
+            Intent galleryIntent = new Intent(Intent.ACTION_PICK);
+            galleryIntent.setDataAndType(android.provider.MediaStore.Images.Media.INTERNAL_CONTENT_URI, "image/*");
 
-        // open ImagePicker when clicking on the icon
-        _iconView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // start image picker activity with request code
-                imagePicker.start();
-            }
+            Intent chooserIntent = Intent.createChooser(galleryIntent, "Select photo");
+            startActivityForResult(Intent.createChooser(chooserIntent, "Select photo"), PICK_IMAGE_REQUEST);
         });
 
-        _advancedSettingsHeader.setOnClickListener(v -> {
-            openAdvancedSettings();
-        });
+        _advancedSettingsHeader.setOnClickListener(v -> openAdvancedSettings());
 
         // automatically open advanced settings since 'Secret' is required.
         if (_isNew) {
@@ -355,12 +347,20 @@ public class EditEntryActivity extends AegisActivity {
 
     @Override
     protected void onActivityResult(int requestCode, final int resultCode, Intent data) {
-        if (ImagePicker.shouldHandle(requestCode, resultCode, data)) {
-            Image image = ImagePicker.getFirstImageOrNull(data);
-            BitmapFactory.Options bmOptions = new BitmapFactory.Options();
-            Bitmap bitmap = BitmapFactory.decodeFile(image.getPath(),bmOptions);
-            _kropView.setBitmap(bitmap);
-            _kropView.setVisibility(View.VISIBLE);
+        if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
+            Uri inputFile = (data.getData());
+            InputStream inputStream;
+            Bitmap bitmap;
+            try {
+                inputStream = getContentResolver().openInputStream(inputFile);
+                BitmapFactory.Options bmOptions = new BitmapFactory.Options();
+                bitmap = BitmapFactory.decodeStream(inputStream, null, bmOptions);
+                _kropView.setBitmap(bitmap);
+                _kropView.setVisibility(View.VISIBLE);
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+
 
             _saveImageButton.setOnClickListener(new View.OnClickListener() {
                 @Override
