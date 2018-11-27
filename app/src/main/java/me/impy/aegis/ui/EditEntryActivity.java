@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -29,9 +28,6 @@ import android.widget.TableRow;
 
 import com.amulyakhare.textdrawable.TextDrawable;
 import com.avito.android.krop.KropView;
-import com.esafirm.imagepicker.features.ImagePicker;
-import com.esafirm.imagepicker.features.ReturnMode;
-import com.esafirm.imagepicker.model.Image;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
