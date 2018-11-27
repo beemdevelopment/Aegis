@@ -48,8 +48,7 @@
     <string name="authentication">Unlock the vault</string>
     <string name="set_password">Please enter a password</string>
     <string name="set_password_confirm">Please confirm the password</string>
-    <string name="invalidated_fingerprint">A change in your device\'s security settings has been detected. Please go to \"Settings -> Key slots\" and re-add your fingerprint.</string>
-
+    <string name="invalidated_fingerprint">A change in your device\'s security settings has been detected. Please go to \"Settings -> Fingerprint\" and re-add your fingerprint.</string>
 
     <string-array name="authentication_methods">
         <item>None</item>
