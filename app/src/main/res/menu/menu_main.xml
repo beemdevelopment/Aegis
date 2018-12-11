@@ -6,7 +6,23 @@
         android:id="@+id/action_lock"
         android:icon="@drawable/ic_lock"
         app:showAsAction="ifRoom"
-        android:title=""/>
+        android:title="@string/lock"/>
+    <item
+        android:id="@+id/action_filter"
+        android:icon="@drawable/ic_baseline_filter_list_24dp"
+        app:showAsAction="ifRoom"
+        android:title="@string/filter">
+        <menu>
+            <group
+                android:id="@+id/action_filter_group"
+                android:checkableBehavior="single">
+                <item
+                    android:id="@+id/menu_filter_all"
+                    android:title="@string/all"
+                    android:checked="true" />
+            </group>
+        </menu>
+    </item>
     <item
         android:id="@+id/action_settings"
         android:orderInCategory="100"

@@ -20,14 +20,17 @@ import me.impy.aegis.otp.TotpInfo;
 
 public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements ItemTouchHelperAdapter {
     private List<DatabaseEntry> _entries;
+    private List<DatabaseEntry> _shownEntries;
     private static Listener _listener;
     private boolean _showAccountName;
+    private String _groupFilter;
 
     // keeps track of the viewholders that are currently bound
     private List<EntryHolder> _holders;
 
     public EntryAdapter(Listener listener) {
         _entries = new ArrayList<>();
+        _shownEntries = new ArrayList<>();
         _holders = new ArrayList<>();
         _listener = listener;
     }
@@ -38,6 +41,9 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
 
     public void addEntry(DatabaseEntry entry) {
         _entries.add(entry);
+        if (!isEntryFiltered(entry)) {
+            _shownEntries.add(entry);
+        }
 
         int position = getItemCount() - 1;
         if (position == 0) {
@@ -49,26 +55,59 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
 
     public void addEntries(List<DatabaseEntry> entries) {
         _entries.addAll(entries);
+        for (DatabaseEntry entry : entries) {
+            if (!isEntryFiltered(entry)) {
+                _shownEntries.add(entry);
+            }
+        }
         notifyDataSetChanged();
     }
 
     public void removeEntry(DatabaseEntry entry) {
         entry = getEntryByUUID(entry.getUUID());
-        int position = _entries.indexOf(entry);
-        _entries.remove(position);
-        notifyItemRemoved(position);
+        _entries.remove(entry);
+
+        if (_shownEntries.contains(entry)) {
+            int position = _shownEntries.indexOf(entry);
+            _shownEntries.remove(position);
+            notifyItemRemoved(position);
+        }
     }
 
     public void clearEntries() {
         _entries.clear();
+        _shownEntries.clear();
         notifyDataSetChanged();
     }
 
     public void replaceEntry(DatabaseEntry newEntry) {
         DatabaseEntry oldEntry = getEntryByUUID(newEntry.getUUID());
-        int position = _entries.indexOf(oldEntry);
-        _entries.set(position, newEntry);
-        notifyItemChanged(position);
+        _entries.set(_entries.indexOf(oldEntry), newEntry);
+
+        if (_shownEntries.contains(oldEntry)) {
+            int position = _shownEntries.indexOf(oldEntry);
+            if (isEntryFiltered(newEntry)) {
+                _shownEntries.remove(position);
+                notifyItemRemoved(position);
+            } else {
+                _shownEntries.set(position, newEntry);
+                notifyItemChanged(position);
+            }
+        } else if (!isEntryFiltered(newEntry)) {
+            // TODO: preserve order
+            _shownEntries.add(newEntry);
+
+            int position = getItemCount() - 1;
+            notifyItemInserted(position);
+        }
+    }
+
+    private boolean isEntryFiltered(DatabaseEntry entry) {
+        String group = entry.getGroup();
+        if (_groupFilter == null) {
+            return false;
+        }
+        return group == null || !group.equals(_groupFilter);
     }
 
     private DatabaseEntry getEntryByUUID(UUID uuid) {
@@ -90,6 +129,17 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
         }
     }
 
+    public void setGroupFilter(String group) {
+        _groupFilter = group;
+        _shownEntries.clear();
+        for (DatabaseEntry entry : _entries) {
+            if (!isEntryFiltered(entry)) {
+                _shownEntries.add(entry);
+            }
+        }
+        notifyDataSetChanged();
+    }
+
     @Override
     public void onItemDismiss(int position) {
 
@@ -97,16 +147,27 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
 
     @Override
     public void onItemDrop(int position) {
-        _listener.onEntryDrop(_entries.get(position));
+        // moving entries is not allowed when a filter is applied
+        if (_groupFilter != null) {
+            return;
+        }
+
+        _listener.onEntryDrop(_shownEntries.get(position));
     }
 
     @Override
     public void onItemMove(int firstPosition, int secondPosition) {
+        // moving entries is not allowed when a filter is applied
+        if (_groupFilter != null) {
+            return;
+        }
+
         // notify the database first
         _listener.onEntryMove(_entries.get(firstPosition), _entries.get(secondPosition));
 
         // update our side of things
         Collections.swap(_entries, firstPosition, secondPosition);
+        Collections.swap(_shownEntries, firstPosition, secondPosition);
         notifyItemMoved(firstPosition, secondPosition);
     }
 
@@ -124,7 +185,7 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
 
     @Override
     public void onBindViewHolder(final EntryHolder holder, int position) {
-        DatabaseEntry entry = _entries.get(position);
+        DatabaseEntry entry = _shownEntries.get(position);
         boolean showProgress = !isPeriodUniform() && entry.getInfo() instanceof TotpInfo;
         holder.setData(entry, _showAccountName, showProgress);
         if (showProgress) {
@@ -135,14 +196,14 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
             @Override
             public void onClick(View v) {
                 int position = holder.getAdapterPosition();
-                _listener.onEntryClick(_entries.get(position));
+                _listener.onEntryClick(_shownEntries.get(position));
             }
         });
         holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
                 int position = holder.getAdapterPosition();
-                return _listener.onLongEntryClick(_entries.get(position));
+                return _listener.onLongEntryClick(_shownEntries.get(position));
             }
         });
         holder.setOnRefreshClickListener(new View.OnClickListener() {
@@ -169,7 +230,7 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
 
     public int getUniformPeriod() {
         List<TotpInfo> infos = new ArrayList<>();
-        for (DatabaseEntry entry : _entries) {
+        for (DatabaseEntry entry : _shownEntries) {
             OtpInfo info = entry.getInfo();
             if (info instanceof TotpInfo) {
                 infos.add((TotpInfo) info);
@@ -196,7 +257,7 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
 
     @Override
     public int getItemCount() {
-        return _entries.size();
+        return _shownEntries.size();
     }
 
     public interface Listener {

@@ -1,6 +1,8 @@
 package me.impy.aegis.ui;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -36,6 +38,11 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.text.Collator;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+import java.util.TreeSet;
 import java.util.concurrent.atomic.AtomicReference;
 
 import androidx.appcompat.app.AlertDialog;
@@ -57,6 +64,7 @@ public class EditEntryActivity extends AegisActivity {
 
     private boolean _isNew = false;
     private DatabaseEntry _origEntry;
+    private TreeSet<String> _groups;
     private boolean _hasCustomIcon = false;
     // keep track of icon changes separately as the generated jpeg's are not deterministic
     private boolean _hasChangedIcon = false;
@@ -75,6 +83,8 @@ public class EditEntryActivity extends AegisActivity {
     private Spinner _spinnerType;
     private Spinner _spinnerAlgo;
     private Spinner _spinnerDigits;
+    private Spinner _spinnerGroup;
+    private List<String> _spinnerGroupList = new ArrayList<>();
 
     private KropView _kropView;
 
@@ -94,6 +104,8 @@ public class EditEntryActivity extends AegisActivity {
         Intent intent = getIntent();
         _origEntry = (DatabaseEntry) intent.getSerializableExtra("entry");
         _isNew = intent.getBooleanExtra("isNew", false);
+        _groups = new TreeSet<String>(Collator.getInstance());
+        _groups.addAll(intent.getStringArrayListExtra("groups"));
         if (_isNew) {
             setTitle(R.string.add_new_profile);
         }
@@ -115,6 +127,9 @@ public class EditEntryActivity extends AegisActivity {
         SpinnerHelper.fillSpinner(this, _spinnerAlgo, R.array.otp_algo_array);
         _spinnerDigits = findViewById(R.id.spinner_digits);
         SpinnerHelper.fillSpinner(this, _spinnerDigits, R.array.otp_digits_array);
+        _spinnerGroup = findViewById(R.id.spinner_group);
+        updateGroupSpinnerList();
+        SpinnerHelper.fillSpinner(this, _spinnerGroup, _spinnerGroupList);
 
         _advancedSettingsHeader = findViewById(R.id.accordian_header);
         _advancedSettings = findViewById(R.id.expandableLayout);
@@ -159,6 +174,12 @@ public class EditEntryActivity extends AegisActivity {
 
             String digits = Integer.toString(_origEntry.getInfo().getDigits());
             _spinnerDigits.setSelection(getStringResourceIndex(R.array.otp_digits_array, digits), false);
+
+            String group = _origEntry.getGroup();
+            if (group != null) {
+                int pos = _groups.contains(group) ? _groups.headSet(group).size() : -1;
+                _spinnerGroup.setSelection(pos + 1, false);
+            }
         }
 
         // update the icon if the text changed
@@ -182,6 +203,38 @@ public class EditEntryActivity extends AegisActivity {
                         break;
                     default:
                         throw new RuntimeException();
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        final Activity activity = this;
+        _spinnerGroup.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            private int prevPosition;
+
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if (position == _spinnerGroupList.size() - 1) {
+                    Dialogs.showTextInputDialog(activity, R.string.enter_group_name, new Dialogs.TextInputListener() {
+                        @Override
+                        public void onTextInputResult(String text) {
+                            if (text.isEmpty()) {
+                                return;
+                            }
+                            _groups.add(text);
+                            // reset the selection to "No group" to work around a quirk
+                            _spinnerGroup.setSelection(0, false);
+                            updateGroupSpinnerList();
+                            _spinnerGroup.setSelection(_spinnerGroupList.indexOf(text), false);
+                        }
+                    });
+                    _spinnerGroup.setSelection(prevPosition, false);
+                } else {
+                    prevPosition = position;
                 }
             }
 
@@ -260,6 +313,14 @@ public class EditEntryActivity extends AegisActivity {
 
             }
         });
+    }
+
+    private void updateGroupSpinnerList() {
+        Resources res = getResources();
+        _spinnerGroupList.clear();
+        _spinnerGroupList.add(res.getString(R.string.no_group));
+        _spinnerGroupList.addAll(_groups);
+        _spinnerGroupList.add(res.getString(R.string.new_group));
     }
 
     @Override
@@ -436,6 +497,14 @@ public class EditEntryActivity extends AegisActivity {
         }
         entry.setIssuer(_textIssuer.getText().toString());
         entry.setName(_textName.getText().toString());
+
+        int groupPos = _spinnerGroup.getSelectedItemPosition();
+        if (groupPos != 0) {
+            String group = _spinnerGroupList.get(_spinnerGroup.getSelectedItemPosition());
+            entry.setGroup(group);
+        } else {
+            entry.setGroup(null);
+        }
 
         if (_hasChangedIcon) {
             if (_hasCustomIcon) {

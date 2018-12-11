@@ -11,12 +11,15 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
+import android.view.SubMenu;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.getbase.floatingactionbutton.FloatingActionsMenu;
 
 import java.lang.reflect.UndeclaredThrowableException;
+import java.util.ArrayList;
+import java.util.TreeSet;
 
 import me.impy.aegis.AegisApplication;
 import me.impy.aegis.R;
@@ -43,6 +46,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
     private AegisApplication _app;
     private DatabaseManager _db;
     private boolean _loaded;
+    private String _checkedGroup;
 
     private Menu _menu;
     private FloatingActionsMenu _fabMenu;
@@ -164,6 +168,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
             intent.putExtra("entry", entry);
         }
         intent.putExtra("isNew", isNew);
+        intent.putExtra("groups", new ArrayList<>(_db.getGroups()));
         startActivityForResult(intent, requestCode);
     }
 
@@ -185,14 +190,14 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
     private void onEditEntryResult(int resultCode, Intent data) {
         if (resultCode == RESULT_OK) {
             DatabaseEntry entry = (DatabaseEntry) data.getSerializableExtra("entry");
-            if (!data.getBooleanExtra("delete", false)) {
+            if (data.getBooleanExtra("delete", false)) {
+                deleteEntry(entry);
+            } else {
                 // this profile has been serialized/deserialized and is no longer the same instance it once was
                 // to deal with this, the replaceEntry functions are used
                 _db.replaceEntry(entry);
                 _entryListView.replaceEntry(entry);
                 saveDatabase();
-            } else {
-                deleteEntry(entry);
             }
         }
     }
@@ -203,6 +208,38 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
             addEntry(entry);
             saveDatabase();
         }
+    }
+
+    private void updateGroupFilterMenu() {
+        SubMenu menu = _menu.findItem(R.id.action_filter).getSubMenu();
+        for (int i = menu.size() - 1; i >= 0; i--) {
+            MenuItem item = menu.getItem(i);
+            if (item.getItemId() == R.id.menu_filter_all) {
+                continue;
+            }
+            menu.removeItem(item.getItemId());
+        }
+
+        // if the group no longer exists, switch back to 'All'
+        TreeSet<String> groups = _db.getGroups();
+        if (_checkedGroup != null && !groups.contains(_checkedGroup)) {
+            menu.findItem(R.id.menu_filter_all).setChecked(true);
+            setGroupFilter(null);
+        }
+
+        for (String group : groups) {
+            MenuItem item = menu.add(R.id.action_filter_group, Menu.NONE, Menu.NONE, group);
+            if (group.equals(_checkedGroup)) {
+                item.setChecked(true);
+            }
+        }
+
+        menu.setGroupCheckable(R.id.action_filter_group, true, true);
+    }
+
+    private void setGroupFilter(String group) {
+        _checkedGroup = group;
+        _entryListView.setGroupFilter(group);
     }
 
     private void addEntry(DatabaseEntry entry) {
@@ -281,6 +318,11 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
                 unlockDatabase(null);
             }
         } else if (_loaded) {
+            // update the list of groups in the filter menu
+            if (_menu != null) {
+                updateGroupFilterMenu();
+            }
+
             // refresh all codes to prevent showing old ones
             _entryListView.refresh(true);
         } else {
@@ -310,6 +352,10 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
             dialog.dismiss();
             Dialogs.showDeleteEntryDialog(this, (d, which) -> {
                 deleteEntry(entry);
+                // update the filter list if the group no longer exists
+                if (!_db.getGroups().contains(entry.getGroup())) {
+                    updateGroupFilterMenu();
+                }
             });
         });
 
@@ -333,6 +379,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         _menu = menu;
         getMenuInflater().inflate(R.menu.menu_main, menu);
         updateLockIcon();
+        updateGroupFilterMenu();
         return true;
     }
 
@@ -347,6 +394,15 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
                 lockDatabase();
                 return true;
             default:
+                if (item.getGroupId() == R.id.action_filter_group) {
+                    item.setChecked(true);
+
+                    String group = null;
+                    if (item.getItemId() != R.id.menu_filter_all) {
+                        group = item.getTitle().toString();
+                    }
+                    setGroupFilter(group);
+                }
                 return super.onOptionsItemSelected(item);
         }
     }

@@ -2,6 +2,7 @@ package me.impy.aegis.ui;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.hardware.fingerprint.FingerprintManager;
 import android.text.Editable;
@@ -19,6 +20,7 @@ import java.util.concurrent.atomic.AtomicReference;
 import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
 
+import androidx.annotation.StringRes;
 import androidx.appcompat.app.AlertDialog;
 
 import me.impy.aegis.R;
@@ -45,6 +47,21 @@ public class Dialogs {
     public static void showSecureDialog(Dialog dialog) {
         secureDialog(dialog);
         dialog.show();
+    }
+
+    public static void showTextInputDialog(Context context, @StringRes int titleId, TextInputListener listener) {
+        EditText input = new EditText(context);
+
+        showSecureDialog(new AlertDialog.Builder(context)
+                .setTitle(titleId)
+                .setView(input)
+                .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        listener.onTextInputResult(input.getText().toString());
+                    }
+                })
+                .create());
     }
 
     public static void showDeleteEntryDialog(Activity activity, DialogInterface.OnClickListener onDelete) {
@@ -163,6 +180,10 @@ public class Dialogs {
 
         helper.get().startListening(new FingerprintManager.CryptoObject(cipher));
         showSecureDialog(dialog);
+    }
+
+    public interface TextInputListener {
+        void onTextInputResult(String text);
     }
 
     public interface SlotListener {

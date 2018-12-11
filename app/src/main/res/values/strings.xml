@@ -134,4 +134,11 @@
     <string name="remove_slot">Remove slot</string>
     <string name="remove_slot_description">Are you sure you want to remove this slot?</string>
     <string name="adding_new_slot_error">An error occurred while trying to add a new slot:</string>
+    <string name="filter">Filter</string>
+    <string name="lock">Lock</string>
+    <string name="all">All</string>
+    <string name="name">Name</string>
+    <string name="no_group">No group</string>
+    <string name="new_group">New group</string>
+    <string name="enter_group_name">Enter a group name</string>
 </resources>

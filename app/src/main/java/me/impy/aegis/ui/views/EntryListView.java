@@ -21,6 +21,7 @@ import me.impy.aegis.otp.TotpInfo;
 public class EntryListView extends Fragment implements EntryAdapter.Listener {
     private EntryAdapter _adapter;
     private Listener _listener;
+    private SimpleItemTouchHelperCallback _touchCallback;
 
     private PeriodProgressBar _progressBar;
     private boolean _showProgress;
@@ -46,8 +47,8 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
         RecyclerView rvKeyProfiles = view.findViewById(R.id.rvKeyProfiles);
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(view.getContext());
         rvKeyProfiles.setLayoutManager(mLayoutManager);
-        ItemTouchHelper.Callback callback = new SimpleItemTouchHelperCallback(_adapter);
-        ItemTouchHelper touchHelper = new ItemTouchHelper(callback);
+        _touchCallback = new SimpleItemTouchHelperCallback(_adapter);
+        ItemTouchHelper touchHelper = new ItemTouchHelper(_touchCallback);
         touchHelper.attachToRecyclerView(rvKeyProfiles);
         rvKeyProfiles.setAdapter(_adapter);
 
@@ -64,6 +65,12 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
         });
 
         return view;
+    }
+
+    public void setGroupFilter(String group) {
+        _adapter.setGroupFilter(group);
+        _touchCallback.setIsLongPressDragEnabled(group == null);
+        checkPeriodUniformity();
     }
 
     public void refresh(boolean hard) {

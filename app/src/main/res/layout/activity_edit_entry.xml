@@ -74,7 +74,7 @@
 
                 <EditText android:layout_column="1"
                     android:id="@+id/text_name"
-                    android:hint="Name"
+                    android:hint="@string/name"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:backgroundTint="#949494"
@@ -84,13 +84,27 @@
             <TableRow
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp">
-                <EditText android:layout_column="1"
-                    android:id="@+id/text_issuer"
-                    android:hint="@string/issuer"
+                <LinearLayout android:layout_column="1"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:backgroundTint="#949494"
-                    android:layout_weight="1"/>
+                    android:layout_weight="1"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+                    <EditText
+                        android:id="@+id/text_issuer"
+                        android:hint="@string/issuer"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="#949494"
+                        android:layout_weight="1"/>
+                    <androidx.appcompat.widget.AppCompatSpinner
+                        android:id="@+id/spinner_group"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:backgroundTint="#949494"
+                        style="@style/Base.Widget.AppCompat.Spinner.Underlined"/>
+                </LinearLayout>
             </TableRow>
         </TableLayout>
 

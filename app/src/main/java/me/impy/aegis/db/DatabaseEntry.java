@@ -5,6 +5,7 @@ import org.json.JSONObject;
 
 import java.io.Serializable;
 import java.util.Arrays;
+import java.util.Objects;
 import java.util.UUID;
 
 import me.impy.aegis.encoding.Base64;
@@ -17,6 +18,7 @@ public class DatabaseEntry implements Serializable {
     private UUID _uuid;
     private String _name = "";
     private String _issuer = "";
+    private String _group;
     private OtpInfo _info;
     private byte[] _icon;
 
@@ -47,6 +49,7 @@ public class DatabaseEntry implements Serializable {
             obj.put("uuid", _uuid.toString());
             obj.put("name", _name);
             obj.put("issuer", _issuer);
+            obj.put("group", _group);
             obj.put("icon", _icon == null ? JSONObject.NULL : Base64.encode(_icon));
             obj.put("info", _info.toJson());
         } catch (JSONException e) {
@@ -69,6 +72,7 @@ public class DatabaseEntry implements Serializable {
         DatabaseEntry entry = new DatabaseEntry(uuid, info);
         entry.setName(obj.getString("name"));
         entry.setIssuer(obj.getString("issuer"));
+        entry.setGroup(obj.optString("group", null));
 
         Object icon = obj.get("icon");
         if (icon != JSONObject.NULL) {
@@ -94,6 +98,10 @@ public class DatabaseEntry implements Serializable {
         return _issuer;
     }
 
+    public String getGroup() {
+        return _group;
+    }
+
     public byte[] getIcon() {
         return _icon;
     }
@@ -108,6 +116,10 @@ public class DatabaseEntry implements Serializable {
 
     public void setIssuer(String issuer) {
         _issuer = issuer;
+    }
+
+    public void setGroup(String group) {
+        _group = group;
     }
 
     public void setInfo(OtpInfo info) {
@@ -135,6 +147,7 @@ public class DatabaseEntry implements Serializable {
         return getUUID().equals(entry.getUUID())
                 && getName().equals(entry.getName())
                 && getIssuer().equals(entry.getIssuer())
+                && Objects.equals(getGroup(), entry.getGroup())
                 && getInfo().equals(entry.getInfo())
                 && Arrays.equals(getIcon(), entry.getIcon());
     }

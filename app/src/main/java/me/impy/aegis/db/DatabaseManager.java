@@ -10,7 +10,9 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.Collator;
 import java.util.List;
+import java.util.TreeSet;
 import java.util.UUID;
 
 import me.impy.aegis.BuildConfig;
@@ -157,6 +159,17 @@ public class DatabaseManager {
     public DatabaseEntry getEntryByUUID(UUID uuid) {
         assertState(false, true);
         return _db.getEntryByUUID(uuid);
+    }
+
+    public TreeSet<String> getGroups() {
+        TreeSet<String> groups = new TreeSet<>(Collator.getInstance());
+        for (DatabaseEntry entry : getEntries()) {
+            String group = entry.getGroup();
+            if (group != null) {
+                groups.add(group);
+            }
+        }
+        return groups;
     }
 
     public DatabaseFileCredentials getCredentials() {
