@@ -23,6 +23,7 @@ import javax.crypto.SecretKey;
 import androidx.annotation.StringRes;
 import androidx.appcompat.app.AlertDialog;
 
+import me.impy.aegis.Preferences;
 import me.impy.aegis.R;
 import me.impy.aegis.crypto.KeyStoreHandle;
 import me.impy.aegis.crypto.KeyStoreHandleException;
@@ -45,7 +46,9 @@ public class Dialogs {
     }
 
     public static void showSecureDialog(Dialog dialog) {
-        secureDialog(dialog);
+        if (new Preferences(dialog.getContext()).isSecureScreenEnabled()) {
+            secureDialog(dialog);
+        }
         dialog.show();
     }
 
