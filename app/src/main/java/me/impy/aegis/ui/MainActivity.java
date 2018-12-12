@@ -379,7 +379,9 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         _menu = menu;
         getMenuInflater().inflate(R.menu.menu_main, menu);
         updateLockIcon();
-        updateGroupFilterMenu();
+        if (_loaded) {
+            updateGroupFilterMenu();
+        }
         return true;
     }
 
