@@ -67,6 +67,7 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
     private SwitchPreference _fingerprintPreference;
     private Preference _setPasswordPreference;
     private Preference _slotsPreference;
+    private Preference _groupsPreference;
 
     @Override
     public void onCreatePreferencesFix(Bundle savedInstanceState, String rootKey) {
@@ -208,6 +209,15 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
             }
         });
 
+        _groupsPreference = findPreference("pref_groups");
+        _groupsPreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            @Override
+            public boolean onPreferenceClick(Preference preference) {
+                Intent intent = new Intent(getActivity(), GroupManagerActivity.class);
+                startActivity(intent);
+                return true;
+            }
+        });
         updateEncryptionPreferences();
     }
 

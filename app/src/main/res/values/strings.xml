@@ -142,4 +142,6 @@
     <string name="new_group">New group...</string>
     <string name="enter_group_name">Enter a group name</string>
     <string name="group_name_hint">Group name</string>
+    <string name="preference_manage_groups">Edit groups</string>
+    <string name="preference_manage_groups_summary">Manage and delete your groups here</string>
 </resources>

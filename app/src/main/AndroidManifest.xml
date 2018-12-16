@@ -54,5 +54,10 @@
             android:label="Manage key slots"
             android:theme="@style/AppTheme.TransparentActionBar">
         </activity>
+        <activity
+            android:name=".ui.GroupManagerActivity"
+            android:label="Manage groups"
+            android:theme="@style/AppTheme.TransparentActionBar">
+        </activity>
     </application>
 </manifest>
