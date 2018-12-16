@@ -142,7 +142,7 @@ public class Dialogs {
         EditText groupName = view.findViewById(R.id.text_groupname);
 
         AlertDialog dialog = new AlertDialog.Builder(activity)
-                .setTitle(R.string.set_password)
+                .setTitle(R.string.set_group)
                 .setView(view)
                 .setPositiveButton(android.R.string.ok, (dialog1, which) ->
                         listener.onTextInputResult(groupName.getText().toString()))
