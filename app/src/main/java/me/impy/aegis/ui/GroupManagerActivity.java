@@ -5,6 +5,7 @@ import android.os.Bundle;
 import java.util.TreeSet;
 
 import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import me.impy.aegis.AegisApplication;
@@ -52,7 +53,15 @@ public class GroupManagerActivity extends AegisActivity implements GroupAdapter.
 
     @Override
     public void onRemoveGroup(String group) {
-        _db.removeGroup(group);
-        groups.remove(group);
+        Dialogs.showSecureDialog(new AlertDialog.Builder(this)
+                .setTitle(R.string.remove_group)
+                .setMessage(R.string.remove_group_description)
+                .setPositiveButton(android.R.string.yes, (dialog, whichButton) -> {
+                    _db.removeGroup(group);
+                    groups.remove(group);
+                    _adapter.removeGroup(group);
+                })
+                .setNegativeButton(android.R.string.no, null)
+                .create());
     }
 }

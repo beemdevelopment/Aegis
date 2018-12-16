@@ -133,6 +133,8 @@
     <string name="password_slot_error">You must have at least one password slot</string>
     <string name="remove_slot">Remove slot</string>
     <string name="remove_slot_description">Are you sure you want to remove this slot?</string>
+    <string name="remove_group">Remove group</string>
+    <string name="remove_group_description">Are you sure you want to remove this group? Entries in this group will automatically switch to \'No group\'.</string>
     <string name="adding_new_slot_error">An error occurred while trying to add a new slot:</string>
     <string name="filter">Filter</string>
     <string name="lock">Lock</string>
