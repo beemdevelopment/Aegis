@@ -58,12 +58,8 @@ public class Dialogs {
         showSecureDialog(new AlertDialog.Builder(context)
                 .setTitle(titleId)
                 .setView(input)
-                .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        listener.onTextInputResult(input.getText().toString());
-                    }
-                })
+                .setPositiveButton(android.R.string.ok, (dialog, which) ->
+                        listener.onTextInputResult(input.getText().toString()))
                 .create());
     }
 
@@ -137,6 +133,20 @@ public class Dialogs {
         };
         textPassword.addTextChangedListener(watcher);
         textPasswordConfirm.addTextChangedListener(watcher);
+
+        showSecureDialog(dialog);
+    }
+
+    public static void showCreateNewGroupDialog(Activity activity, TextInputListener listener) {
+        View view = activity.getLayoutInflater().inflate(R.layout.dialog_newgroup, null);
+        EditText groupName = view.findViewById(R.id.text_groupname);
+
+        AlertDialog dialog = new AlertDialog.Builder(activity)
+                .setTitle(R.string.set_password)
+                .setView(view)
+                .setPositiveButton(android.R.string.ok, (dialog1, which) ->
+                        listener.onTextInputResult(groupName.getText().toString()))
+                .create();
 
         showSecureDialog(dialog);
     }

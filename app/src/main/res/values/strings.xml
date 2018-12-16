@@ -139,6 +139,7 @@
     <string name="all">All</string>
     <string name="name">Name</string>
     <string name="no_group">No group</string>
-    <string name="new_group">New group</string>
+    <string name="new_group">New group...</string>
     <string name="enter_group_name">Enter a group name</string>
+    <string name="group_name_hint">Group name</string>
 </resources>
