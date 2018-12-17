@@ -238,6 +238,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
     }
 
     private void setGroupFilter(String group) {
+        getSupportActionBar().setSubtitle(group);
         _checkedGroup = group;
         _entryListView.setGroupFilter(group);
     }
