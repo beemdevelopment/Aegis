@@ -1,5 +1,6 @@
 package me.impy.aegis.ui.views;
 
+import android.content.Context;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
@@ -9,6 +10,8 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AnimationUtils;
+import android.view.animation.LayoutAnimationController;
 
 import java.util.List;
 
@@ -23,6 +26,7 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
     private Listener _listener;
     private SimpleItemTouchHelperCallback _touchCallback;
 
+    private RecyclerView _rvKeyProfiles;
     private PeriodProgressBar _progressBar;
     private boolean _showProgress;
 
@@ -44,14 +48,18 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
         _progressBar.getProgressDrawable().setColorFilter(primaryColorId, PorterDuff.Mode.SRC_IN);
 
         // set up the recycler view
-        RecyclerView rvKeyProfiles = view.findViewById(R.id.rvKeyProfiles);
+        _rvKeyProfiles = view.findViewById(R.id.rvKeyProfiles);
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(view.getContext());
-        rvKeyProfiles.setLayoutManager(mLayoutManager);
+        _rvKeyProfiles.setLayoutManager(mLayoutManager);
         _touchCallback = new SimpleItemTouchHelperCallback(_adapter);
         ItemTouchHelper touchHelper = new ItemTouchHelper(_touchCallback);
-        touchHelper.attachToRecyclerView(rvKeyProfiles);
-        rvKeyProfiles.setAdapter(_adapter);
+        touchHelper.attachToRecyclerView(_rvKeyProfiles);
+        _rvKeyProfiles.setAdapter(_adapter);
 
+        int resId = R.anim.layout_animation_fall_down;
+        LayoutAnimationController animation = AnimationUtils.loadLayoutAnimation(getContext(), resId);
+        _rvKeyProfiles.setLayoutAnimation(animation);
+        
         _refresher = new UiRefresher(new UiRefresher.Listener() {
             @Override
             public void onRefresh() {
@@ -71,6 +79,8 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
         _adapter.setGroupFilter(group);
         _touchCallback.setIsLongPressDragEnabled(group == null);
         checkPeriodUniformity();
+
+        runLayoutAnimation(_rvKeyProfiles);
     }
 
     public void refresh(boolean hard) {
@@ -163,6 +173,16 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
     public void replaceEntry(DatabaseEntry entry) {
         _adapter.replaceEntry(entry);
         checkPeriodUniformity();
+    }
+
+    private void runLayoutAnimation(final RecyclerView recyclerView) {
+        final Context context = recyclerView.getContext();
+        final LayoutAnimationController controller =
+                AnimationUtils.loadLayoutAnimation(context, R.anim.layout_animation_fall_down);
+
+        recyclerView.setLayoutAnimation(controller);
+        recyclerView.getAdapter().notifyDataSetChanged();
+        recyclerView.scheduleLayoutAnimation();
     }
 
     public interface Listener {
