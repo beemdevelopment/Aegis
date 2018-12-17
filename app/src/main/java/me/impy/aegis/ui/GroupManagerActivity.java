@@ -1,6 +1,7 @@
 package me.impy.aegis.ui;
 
 import android.os.Bundle;
+import android.view.MenuItem;
 
 import java.util.TreeSet;
 
@@ -63,5 +64,18 @@ public class GroupManagerActivity extends AegisActivity implements GroupAdapter.
                 })
                 .setNegativeButton(android.R.string.no, null)
                 .create());
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                break;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+
+        return true;
     }
 }

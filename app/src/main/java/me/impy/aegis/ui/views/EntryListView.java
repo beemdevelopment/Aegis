@@ -59,7 +59,7 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
         int resId = R.anim.layout_animation_fall_down;
         LayoutAnimationController animation = AnimationUtils.loadLayoutAnimation(getContext(), resId);
         _rvKeyProfiles.setLayoutAnimation(animation);
-        
+
         _refresher = new UiRefresher(new UiRefresher.Listener() {
             @Override
             public void onRefresh() {
