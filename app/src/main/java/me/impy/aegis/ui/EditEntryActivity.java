@@ -104,7 +104,7 @@ public class EditEntryActivity extends AegisActivity {
         Intent intent = getIntent();
         _origEntry = (DatabaseEntry) intent.getSerializableExtra("entry");
         _isNew = intent.getBooleanExtra("isNew", false);
-        _groups = new TreeSet<String>(Collator.getInstance());
+        _groups = new TreeSet<>(Collator.getInstance());
         _groups.addAll(intent.getStringArrayListExtra("groups"));
         if (_isNew) {
             setTitle(R.string.add_new_profile);

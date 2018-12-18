@@ -1,38 +1,32 @@
 package me.impy.aegis.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 
+import java.text.Collator;
+import java.util.ArrayList;
 import java.util.TreeSet;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import me.impy.aegis.AegisApplication;
 import me.impy.aegis.R;
-import me.impy.aegis.db.DatabaseFileCredentials;
-import me.impy.aegis.db.DatabaseManager;
-import me.impy.aegis.db.slots.Slot;
 import me.impy.aegis.ui.views.GroupAdapter;
-import me.impy.aegis.ui.views.SlotAdapter;
 
 public class GroupManagerActivity extends AegisActivity implements GroupAdapter.Listener {
-    private AegisApplication _app;
-    private DatabaseManager _db;
     private GroupAdapter _adapter;
-
-    TreeSet<String> groups;
+    private TreeSet<String> _groups;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_groups);
 
-        _app = (AegisApplication) getApplication();
-        _db = _app.getDatabaseManager();
-
-        groups = _db.getGroups();
+        Intent intent = getIntent();
+        _groups = new TreeSet<>(Collator.getInstance());
+        _groups.addAll(intent.getStringArrayListExtra("groups"));
 
         ActionBar bar = getSupportActionBar();
         bar.setHomeAsUpIndicator(R.drawable.ic_close);
@@ -46,8 +40,7 @@ public class GroupManagerActivity extends AegisActivity implements GroupAdapter.
         slotsView.setAdapter(_adapter);
         slotsView.setNestedScrollingEnabled(false);
 
-        // load the slots and masterKey
-        for (String group : groups) {
+        for (String group : _groups) {
             _adapter.addGroup(group);
         }
     }
@@ -58,8 +51,7 @@ public class GroupManagerActivity extends AegisActivity implements GroupAdapter.
                 .setTitle(R.string.remove_group)
                 .setMessage(R.string.remove_group_description)
                 .setPositiveButton(android.R.string.yes, (dialog, whichButton) -> {
-                    _db.removeGroup(group);
-                    groups.remove(group);
+                    _groups.remove(group);
                     _adapter.removeGroup(group);
                 })
                 .setNegativeButton(android.R.string.no, null)
@@ -77,5 +69,13 @@ public class GroupManagerActivity extends AegisActivity implements GroupAdapter.
         }
 
         return true;
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent();
+        intent.putExtra("groups", new ArrayList<>(_groups));
+        setResult(RESULT_OK, intent);
+        finish();
     }
 }

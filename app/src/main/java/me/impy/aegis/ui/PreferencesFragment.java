@@ -18,6 +18,8 @@ import com.takisoft.preferencex.PreferenceFragmentCompat;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -50,6 +52,7 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
     private static final int CODE_IMPORT = 0;
     private static final int CODE_IMPORT_DECRYPT = 1;
     private static final int CODE_SLOTS = 2;
+    private static final int CODE_GROUPS = 3;
 
     // permission request codes
     private static final int CODE_PERM_IMPORT = 0;
@@ -197,7 +200,6 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
             return false;
         });
 
-
         _slotsPreference = findPreference("pref_slots");
         _slotsPreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
@@ -214,7 +216,8 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
             @Override
             public boolean onPreferenceClick(Preference preference) {
                 Intent intent = new Intent(getActivity(), GroupManagerActivity.class);
-                startActivity(intent);
+                intent.putExtra("groups", new ArrayList<>(_db.getGroups()));
+                startActivityForResult(intent, CODE_GROUPS);
                 return true;
             }
         });
@@ -253,6 +256,9 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
                 break;
             case CODE_SLOTS:
                 onSlotManagerResult(resultCode, data);
+                break;
+            case CODE_GROUPS:
+                onGroupManagerResult(resultCode, data);
                 break;
         }
     }
@@ -415,6 +421,16 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
         _db.setCredentials(creds);
         saveDatabase();
         updateEncryptionPreferences();
+    }
+
+    private void onGroupManagerResult(int resultCode, Intent data) {
+        HashSet<String> groups = new HashSet<>(data.getStringArrayListExtra("groups"));
+
+        for (DatabaseEntry entry : _db.getEntries()) {
+            if (!groups.contains(entry.getGroup())) {
+                entry.setGroup(null);
+            }
+        }
     }
 
     private boolean saveDatabase() {

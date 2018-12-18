@@ -162,6 +162,8 @@ public class DatabaseManager {
     }
 
     public TreeSet<String> getGroups() {
+        assertState(false, true);
+
         TreeSet<String> groups = new TreeSet<>(Collator.getInstance());
         for (DatabaseEntry entry : getEntries()) {
             String group = entry.getGroup();
@@ -170,17 +172,6 @@ public class DatabaseManager {
             }
         }
         return groups;
-    }
-
-    public void removeGroup(String groupName) {
-        TreeSet<String> groups = new TreeSet<>(Collator.getInstance());
-        for (DatabaseEntry entry : getEntries()) {
-            String group = entry.getGroup();
-            if (group != null && group.equals(groupName)) {
-                entry.setGroup(null);
-                _db.replaceEntry(entry);
-            }
-        }
     }
 
     public DatabaseFileCredentials getCredentials() {
