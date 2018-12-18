@@ -424,6 +424,10 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
     }
 
     private void onGroupManagerResult(int resultCode, Intent data) {
+        if (resultCode != Activity.RESULT_OK) {
+            return;
+        }
+
         HashSet<String> groups = new HashSet<>(data.getStringArrayListExtra("groups"));
 
         for (DatabaseEntry entry : _db.getEntries()) {
