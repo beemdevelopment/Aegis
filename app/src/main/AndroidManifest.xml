@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="me.impy.aegis">
+    package="com.beemdevelopment.aegis">
 
     <uses-permission android:name="android.permission.CAMERA"/>
     <uses-permission android:name="android.permission.USE_FINGERPRINT" />
@@ -9,7 +9,7 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
     <application
-        android:name=".AegisApplication"
+        android:name="com.beemdevelopment.aegis.AegisApplication"
         android:allowBackup="true"
         android:icon="@mipmap/${iconName}"
         android:label="Aegis"
@@ -17,7 +17,7 @@
         tools:replace="android:theme"
         android:theme="@style/AppTheme.NoActionBar">
         <activity
-            android:name=".ui.MainActivity"
+            android:name="com.beemdevelopment.aegis.ui.MainActivity"
             android:label="${title}"
             android:alwaysRetainTaskState="true"
             android:launchMode="singleTask">
@@ -27,35 +27,35 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.ScannerActivity"
+            android:name="com.beemdevelopment.aegis.ui.ScannerActivity"
             android:label="Scan a QR code"
             android:theme="@style/AppTheme.Fullscreen"
             android:screenOrientation="portrait"
             android:configChanges="keyboardHidden|orientation|screenSize">
         </activity>
         <activity
-            android:name=".ui.EditEntryActivity"
+            android:name="com.beemdevelopment.aegis.ui.EditEntryActivity"
             android:label="Edit profile"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
         <activity
-            android:name=".ui.IntroActivity"
+            android:name="com.beemdevelopment.aegis.ui.IntroActivity"
             android:theme="@style/Theme.Intro"
             android:launchMode="singleTop">
         </activity>
         <activity
-            android:name=".ui.AuthActivity"
+            android:name="com.beemdevelopment.aegis.ui.AuthActivity"
             android:launchMode="singleTop">
         </activity>
-        <activity android:name=".ui.PreferencesActivity">
+        <activity android:name="com.beemdevelopment.aegis.ui.PreferencesActivity">
         </activity>
         <activity
-            android:name=".ui.SlotManagerActivity"
+            android:name="com.beemdevelopment.aegis.ui.SlotManagerActivity"
             android:label="Manage key slots"
             android:theme="@style/AppTheme.TransparentActionBar">
         </activity>
         <activity
-            android:name=".ui.GroupManagerActivity"
+            android:name="com.beemdevelopment.aegis.ui.GroupManagerActivity"
             android:label="Manage groups"
             android:theme="@style/AppTheme.TransparentActionBar">
         </activity>

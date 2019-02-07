@@ -4,7 +4,7 @@ android {
     compileSdkVersion 28
 
     defaultConfig {
-        applicationId "me.impy.aegis"
+        applicationId "com.beemdevelopment.aegis"
         minSdkVersion 19
         targetSdkVersion 28
         versionCode 1

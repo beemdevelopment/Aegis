@@ -6,7 +6,7 @@
     android:background="?attr/background"
     android:orientation="vertical">
 
-    <me.impy.aegis.ui.views.PeriodProgressBar
+    <com.beemdevelopment.aegis.ui.views.PeriodProgressBar
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="match_parent"
         android:layout_height="4dp"

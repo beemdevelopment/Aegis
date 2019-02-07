@@ -6,10 +6,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="me.impy.aegis.ui.MainActivity">
+    tools:context="com.beemdevelopment.aegis.com.impy.aegis.ui.MainActivity">
 
     <fragment
-        android:name="me.impy.aegis.ui.views.EntryListView"
+        android:name="com.beemdevelopment.aegis.ui.views.EntryListView"
         android:id="@+id/key_profiles"
         android:layout_height="match_parent"
         android:layout_width="match_parent"

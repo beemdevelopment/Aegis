@@ -120,7 +120,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <me.impy.aegis.ui.views.PeriodProgressBar
+        <com.beemdevelopment.aegis.ui.views.PeriodProgressBar
             style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="wrap_content"
             android:layout_height="4dp"

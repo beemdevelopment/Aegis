@@ -5,6 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="me.impy.aegis.ui.IntroActivity">
+    tools:context="com.beemdevelopment.aegis.com.impy.aegis.ui.IntroActivity">
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

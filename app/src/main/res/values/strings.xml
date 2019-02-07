@@ -106,7 +106,7 @@
     <string name="tap_to_select">Tap to select</string>
     <string name="saving_profile_error">Error saving profile</string>
     <string name="welcome">Welcome</string>
-    <string name="app_description">Aegis is an free, secure and open source 2FA app</string>
+    <string name="app_description">Aegis is a free, secure and open source 2FA app</string>
     <string name="setup_completed">Setup completed</string>
     <string name="setup_completed_description">Aegis has been setup and is ready to go.</string>
     <string name="vault_not_found">Vault not found, starting setup…</string>
