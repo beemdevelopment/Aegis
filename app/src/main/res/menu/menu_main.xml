@@ -19,7 +19,7 @@
                 <item
                     android:id="@+id/menu_filter_all"
                     android:title="@string/all"
-                    android:checked="true" />
+                    android:checked="false" />
             </group>
         </menu>
     </item>

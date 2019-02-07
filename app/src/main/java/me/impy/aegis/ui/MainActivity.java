@@ -5,6 +5,7 @@ import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Rect;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import android.os.Bundle;
@@ -77,6 +78,13 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
             _fabMenu.collapse();
             startScanActivity();
         });
+
+        SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
+        String lastUsedGroup = sharedPref.getString(getString(R.string.setting_groupname), null);
+        if (lastUsedGroup != null)
+        {
+            setGroupFilter(lastUsedGroup);
+        }
     }
 
     @Override
@@ -212,6 +220,8 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
 
     private void updateGroupFilterMenu() {
         SubMenu menu = _menu.findItem(R.id.action_filter).getSubMenu();
+        menu.findItem(R.id.menu_filter_all).setChecked(false);
+
         for (int i = menu.size() - 1; i >= 0; i--) {
             MenuItem item = menu.getItem(i);
             if (item.getItemId() == R.id.menu_filter_all) {
@@ -241,6 +251,11 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         getSupportActionBar().setSubtitle(group);
         _checkedGroup = group;
         _entryListView.setGroupFilter(group);
+
+        SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putString(getString(R.string.setting_groupname), group);
+        editor.commit();
     }
 
     private void addEntry(DatabaseEntry entry) {
@@ -398,12 +413,14 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
                 return true;
             default:
                 if (item.getGroupId() == R.id.action_filter_group) {
-                    item.setChecked(true);
 
                     String group = null;
                     if (item.getItemId() != R.id.menu_filter_all) {
                         group = item.getTitle().toString();
                     }
+
+                    item.setChecked(false);
+
                     setGroupFilter(group);
                 }
                 return super.onOptionsItemSelected(item);

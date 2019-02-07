@@ -11,6 +11,7 @@
     <string name="title_activity_intro">IntroActivity</string>
 
     <string name="settings">Preferences</string>
+    <string name="setting_groupname">last_used_group</string>
     <string name="pref_dark_mode_title">Dark mode</string>
     <string name="pref_dark_mode_summary">Enable this to use darker colors</string>
     <string name="pref_account_name_title">Show the account name</string>
