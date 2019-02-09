@@ -5,30 +5,29 @@ Aegis is a free, secure and open source 2FA app for Android.
 # Features
 
 - Free and open source
+- Secure
+  - Encryption (AES-256)
+    - Password (scrypt)
+	- Fingerprint (Android Keystore)
+  - Screen capture prevention
 - Multiple ways to add new entries
   - Scan QR code
   - Enter details manually
+  - Import
+    - andOTP
+    - FreeOTP
+- Supported algorithms:
+   - HOTP ([RFC 4226](https://tools.ietf.org/html/rfc4226))
+   - TOTP ([RFC 6238](https://tools.ietf.org/html/rfc6238))
 - Compatible with Google Authenticator
 - Organization
-  - Custom or default avatars
+  - Custom or default icons
   - Drag and drop
   - Custom groups
   - Advanced entry editing
 - Material design
   - Light and dark themes
-- Security
-  - Encryption
-    - Password
-	- Fingerprint
-  - Screen capture prevention
-- Import
-   - Aegis
-   - andOTP
-   - FreeOTP
 - Export (plaintext or encrypted)
-- Supported algorithms:
-   - TOTP ([RFC 6238](https://tools.ietf.org/html/rfc6238))
-   - HOTP ([RFC 4226](https://tools.ietf.org/html/rfc4226))
 
 ## Screenshots
 
@@ -43,7 +42,7 @@ Aegis is a free, secure and open source 2FA app for Android.
 
 Aegis is available in the Google Play Store.
 
-[<img height=80 alt="Get it on Google Play" src="https://play.google.com/intl/en_us/badges/images/generic/en-play-badge.png" />]()
+[<img height=80 alt="Get it on Google Play" src="https://play.google.com/intl/en_us/badges/images/generic/en-play-badge.png" />](http://play.google.com/store/apps/details?id=com.beemdevelopment.aegis)
 
 There are plans to make it available on F-Droid as well.
 
