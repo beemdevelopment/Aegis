@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/main"
     android:orientation="vertical"
     android:layout_width="match_parent"
@@ -20,15 +19,14 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_alignParentBottom="true"
+        android:layout_height="match_parent"
         android:layout_marginTop="12dp"
         android:orientation="horizontal">
 
         <RadioGroup
             android:id="@+id/rg_authenticationMethod"
             android:layout_width="match_parent"
-            android:layout_height="187dp">
+            android:layout_height="wrap_content">
 
             <RadioButton
                 android:id="@+id/rb_none"
@@ -67,8 +65,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/authentication_method_fingerprint"
-                android:textSize="16sp"
-                />
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/text_rb_fingerprint"
@@ -79,20 +76,9 @@
                 android:layout_marginTop="-5dp"
 
                 android:text="@string/authentication_method_fingerprint_description"
-                android:textColor="@color/disabled_textview_colors"
-                 />
+                android:textColor="@color/disabled_textview_colors" />
 
         </RadioGroup>
-
-    </LinearLayout>
-
-
-    <LinearLayout
-
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:weightSum="1">
 
     </LinearLayout>
 
