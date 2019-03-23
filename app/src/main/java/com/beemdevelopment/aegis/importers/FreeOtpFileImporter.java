@@ -1,5 +1,6 @@
 package com.beemdevelopment.aegis.importers;
 
+import android.content.Context;
 import android.util.Xml;
 
 import org.json.JSONArray;
@@ -19,11 +20,11 @@ import com.beemdevelopment.aegis.otp.OtpInfoException;
 import com.beemdevelopment.aegis.otp.TotpInfo;
 import com.beemdevelopment.aegis.util.ByteInputStream;
 
-public class FreeOtpImporter extends DatabaseImporter {
+public class FreeOtpFileImporter extends DatabaseFileImporter {
     private List<XmlEntry> _xmlEntries;
 
-    public FreeOtpImporter(ByteInputStream stream) {
-        super(stream);
+    public FreeOtpFileImporter(Context context, ByteInputStream stream) {
+        super(context, stream);
     }
 
     private static class XmlEntry {

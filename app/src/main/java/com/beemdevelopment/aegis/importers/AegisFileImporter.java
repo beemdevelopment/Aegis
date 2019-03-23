@@ -1,5 +1,7 @@
 package com.beemdevelopment.aegis.importers;
 
+import android.content.Context;
+
 import org.json.JSONObject;
 
 import java.util.List;
@@ -12,12 +14,12 @@ import com.beemdevelopment.aegis.db.DatabaseFileCredentials;
 import com.beemdevelopment.aegis.db.DatabaseFileException;
 import com.beemdevelopment.aegis.util.ByteInputStream;
 
-public class AegisImporter extends DatabaseImporter {
+public class AegisFileImporter extends DatabaseFileImporter {
     private DatabaseFileCredentials _creds;
     private DatabaseFile _file;
 
-    public AegisImporter(ByteInputStream stream) {
-        super(stream);
+    public AegisFileImporter(Context context, ByteInputStream stream) {
+        super(context, stream);
     }
 
     @Override

@@ -29,6 +29,7 @@ android {
 }
 
 dependencies {
+    def libsuVersion = '2.3.2'
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'com.amulyakhare:com.amulyakhare.textdrawable:1.0.1'
     implementation 'androidx.appcompat:appcompat:1.0.2'
@@ -45,5 +46,7 @@ dependencies {
     implementation 'com.mattprecious.swirl:swirl:1.0.0'
     implementation 'de.hdodenhof:circleimageview:2.2.0'
     implementation 'me.dm7.barcodescanner:zxing:1.9'
+    implementation "com.github.topjohnwu.libsu:core:${libsuVersion}"
+    implementation "com.github.topjohnwu.libsu:io:${libsuVersion}"
     testImplementation 'junit:junit:4.12'
 }

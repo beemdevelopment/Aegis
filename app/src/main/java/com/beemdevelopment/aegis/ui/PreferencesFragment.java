@@ -16,7 +16,9 @@ import android.widget.Toast;
 import com.beemdevelopment.aegis.db.DatabaseFileCredentials;
 import com.beemdevelopment.aegis.helpers.FingerprintHelper;
 import com.beemdevelopment.aegis.helpers.PermissionHelper;
-import com.beemdevelopment.aegis.importers.AegisImporter;
+import com.beemdevelopment.aegis.importers.AegisFileImporter;
+import com.beemdevelopment.aegis.importers.DatabaseAppImporter;
+import com.beemdevelopment.aegis.importers.DatabaseFileImporter;
 import com.beemdevelopment.aegis.importers.DatabaseImporter;
 import com.beemdevelopment.aegis.importers.DatabaseImporterException;
 import com.beemdevelopment.aegis.ui.preferences.SwitchPreference;
@@ -46,6 +48,7 @@ import com.beemdevelopment.aegis.db.slots.PasswordSlot;
 import com.beemdevelopment.aegis.db.slots.Slot;
 import com.beemdevelopment.aegis.db.slots.SlotException;
 import com.beemdevelopment.aegis.db.slots.SlotList;
+import com.topjohnwu.superuser.Shell;
 
 public class PreferencesFragment extends PreferenceFragmentCompat {
     // activity request codes
@@ -63,8 +66,8 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
 
     // this is used to keep a reference to a database converter
     // while the user provides credentials to decrypt it
-    private DatabaseImporter _importer;
-    private Class<? extends DatabaseImporter> _importerType;
+    private DatabaseFileImporter _importer;
+    private Class<? extends DatabaseFileImporter> _importerType;
 
     private SwitchPreference _encryptionPreference;
     private SwitchPreference _fingerprintPreference;
@@ -92,8 +95,8 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
             }
         });
 
-        Preference exportPreference = findPreference("pref_import");
-        exportPreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+        Preference importPreference = findPreference("pref_import");
+        importPreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
                 onImport();
@@ -101,8 +104,18 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
             }
         });
 
-        Preference importPreference = findPreference("pref_export");
-        importPreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+        Preference importAppPreference = findPreference("pref_import_app");
+        importAppPreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            @Override
+            public boolean onPreferenceClick(Preference preference) {
+                onImportApp();
+                return true;
+            }
+        });
+
+
+        Preference exportPreference = findPreference("pref_export");
+        exportPreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
                 onExport();
@@ -277,7 +290,7 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
             return;
         }
 
-        Map<String, Class<? extends DatabaseImporter>> importers = DatabaseImporter.getImporters();
+        Map<String, Class<? extends DatabaseFileImporter>> importers = DatabaseFileImporter.getImporters();
         String[] names = importers.keySet().toArray(new String[importers.size()]);
 
         Dialogs.showSecureDialog(new AlertDialog.Builder(getActivity())
@@ -296,6 +309,43 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
                 .create());
     }
 
+    private void onImportApp() {
+        Map<String, Class<? extends DatabaseAppImporter>> importers = DatabaseAppImporter.getImporters();
+        String[] names = importers.keySet().toArray(new String[importers.size()]);
+
+        Dialogs.showSecureDialog(new AlertDialog.Builder(getActivity())
+                .setTitle(getString(R.string.choose_application))
+                .setSingleChoiceItems(names, 0, null)
+                .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        int i = ((AlertDialog) dialog).getListView().getCheckedItemPosition();
+                        try {
+                            DatabaseAppImporter importer;
+                            // obtain the global root shell and close it immediately after we're done
+                            // TODO: find a way to use SuFileInputStream with Shell.newInstance()
+                            try (Shell shell = Shell.getShell()) {
+                                if (!shell.isRoot()) {
+                                    Toast.makeText(getActivity(), getString(R.string.root_error), Toast.LENGTH_SHORT).show();
+                                    return;
+                                }
+                                importer = DatabaseAppImporter.create(getContext(), importers.get(names[i]));
+                                importer.parse();
+                            } catch (IOException e) {
+                                Toast.makeText(getActivity(), getString(R.string.root_error), Toast.LENGTH_SHORT).show();
+                                return;
+                            }
+                            importDatabase(importer);
+                        } catch (DatabaseImporterException e) {
+                            e.printStackTrace();
+
+                            String msg = String.format("%s: %s", getString(R.string.parsing_file_error), e.getMessage());
+                            Toast.makeText(getActivity(), msg, Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                })
+                .create());
+    }
+
     private void onImportDecryptResult(int resultCode, Intent data) {
         if (resultCode != Activity.RESULT_OK) {
             _importer = null;
@@ -303,7 +353,7 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
         }
 
         DatabaseFileCredentials creds = (DatabaseFileCredentials) data.getSerializableExtra("creds");
-        ((AegisImporter)_importer).setCredentials(creds);
+        ((AegisFileImporter)_importer).setCredentials(creds);
 
         try {
             importDatabase(_importer);
@@ -337,15 +387,15 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
         }
 
         try {
-            DatabaseImporter importer = DatabaseImporter.create(stream, _importerType);
+            DatabaseFileImporter importer = DatabaseFileImporter.create(getContext(), stream, _importerType);
             importer.parse();
 
             // special case to decrypt encrypted aegis databases
-            if (importer.isEncrypted() && importer instanceof AegisImporter) {
+            if (importer.isEncrypted() && importer instanceof AegisFileImporter) {
                 _importer = importer;
 
                 Intent intent = new Intent(getActivity(), AuthActivity.class);
-                intent.putExtra("slots", ((AegisImporter)_importer).getFile().getHeader().getSlots());
+                intent.putExtra("slots", ((AegisFileImporter)_importer).getFile().getHeader().getSlots());
                 startActivityForResult(intent, CODE_IMPORT_DECRYPT);
                 return;
             }

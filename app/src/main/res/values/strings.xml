@@ -19,8 +19,10 @@
     <string name="pref_timeout_summary">Automatically lock the database after %1$s seconds of inactivity</string>
     <string name="pref_slots_title">Key slots</string>
     <string name="pref_slots_summary">Manage the list of keys that can decrypt the database</string>
-    <string name="pref_import_title">Import</string>
-    <string name="pref_import_summary">Import a database</string>
+    <string name="pref_import_file_title">Import from file</string>
+    <string name="pref_import_file_summary">Import a database from a file</string>
+    <string name="pref_import_app_title">Import from app</string>
+    <string name="pref_import_app_summary">Import a database from an app (requires root access)</string>
     <string name="pref_export_title">Export</string>
     <string name="pref_export_summary">Export the database</string>
     <string name="pref_secure_screen_title">Screen security</string>
@@ -121,6 +123,7 @@
     <string name="parsing_file_error">An error occurred while trying to parse the file</string>
     <string name="file_not_found">Error: File not found</string>
     <string name="reading_file_error">An error occurred while trying to read the file</string>
+    <string name="root_error">Error: unable to obtain root access</string>
     <string name="imported_entries_count">Imported %d entries</string>
     <string name="exporting_database_error">An error occurred while trying to export the database</string>
     <string name="export_database_location">The database has been exported to:</string>

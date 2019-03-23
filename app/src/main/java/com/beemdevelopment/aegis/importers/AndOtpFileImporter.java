@@ -1,5 +1,7 @@
 package com.beemdevelopment.aegis.importers;
 
+import android.content.Context;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -17,11 +19,11 @@ import com.beemdevelopment.aegis.otp.OtpInfoException;
 import com.beemdevelopment.aegis.otp.TotpInfo;
 import com.beemdevelopment.aegis.util.ByteInputStream;
 
-public class AndOtpImporter extends DatabaseImporter {
+public class AndOtpFileImporter extends DatabaseFileImporter {
     private JSONArray _obj;
 
-    public AndOtpImporter(ByteInputStream stream) {
-        super(stream);
+    public AndOtpFileImporter(Context context, ByteInputStream stream) {
+        super(context, stream);
     }
 
     @Override
