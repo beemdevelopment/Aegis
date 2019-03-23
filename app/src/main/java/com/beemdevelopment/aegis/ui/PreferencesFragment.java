@@ -308,7 +308,10 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
         try {
             importDatabase(_importer);
         } catch (DatabaseImporterException e) {
-            Toast.makeText(getActivity(), getString(R.string.parsing_file_error), Toast.LENGTH_SHORT).show();
+            e.printStackTrace();
+
+            String msg = String.format("%s: %s", getString(R.string.parsing_file_error), e.getMessage());
+            Toast.makeText(getActivity(), msg, Toast.LENGTH_SHORT).show();
         }
 
         _importer = null;
@@ -350,7 +353,9 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
             importDatabase(importer);
         } catch (DatabaseImporterException e) {
             e.printStackTrace();
-            Toast.makeText(getActivity(), getString(R.string.parsing_file_error), Toast.LENGTH_SHORT).show();
+
+            String msg = String.format("%s: %s", getString(R.string.parsing_file_error), e.getMessage());
+            Toast.makeText(getActivity(), msg, Toast.LENGTH_SHORT).show();
         }
     }
 
