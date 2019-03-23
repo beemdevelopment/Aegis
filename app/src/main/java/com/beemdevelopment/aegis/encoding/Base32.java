@@ -99,6 +99,17 @@ public class Base32 {
         byte[] bytes = new byte[base32.length * 5 / 8];
 
         for (i = 0, index = 0, offset = 0; i < base32.length; i++) {
+            // stop decoding when a padding char is encountered
+            if (base32[i] == '=') {
+                // make sure the rest is also padding, but don't bother verifying the length
+                for (int j = i + 1; j < base32.length; j++) {
+                    if (base32[j] != '=') {
+                        throw new Base32Exception("bad padding");
+                    }
+                }
+                break;
+            }
+
             lookup = base32[i] - '0';
             digit = decodeDigit(lookup);
 
