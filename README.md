@@ -56,6 +56,7 @@ There are plans to make it available on F-Droid as well.
 - [Swirl](https://github.com/mattprecious/swirl) by Matthew Precious
 - [CircleImageView](https://github.com/hdodenhof/CircleImageView) by Henning Dodenhof
 - [barcodescanner](https://github.com/dm77/barcodescanner) by Dushyanth
+- [libsu](https://github.com/topjohnwu/libsu) by John Wu
 
 ## License
 
