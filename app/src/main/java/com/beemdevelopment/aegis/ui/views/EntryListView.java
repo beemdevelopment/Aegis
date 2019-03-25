@@ -155,6 +155,10 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
         _adapter.setTapToReveal(tapToReveal);
     }
 
+    public void setTapToRevealTime(int number) {
+        _adapter.setTapToRevealTime(number);
+    }
+
     public void addEntry(DatabaseEntry entry) {
         _adapter.addEntry(entry);
         checkPeriodUniformity();

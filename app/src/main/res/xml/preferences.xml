@@ -43,6 +43,13 @@
             android:title="@string/pref_tap_to_reveal_title"
             android:summary="@string/pref_tap_to_reveal_summary"
             app:iconSpaceReserved="false"/>
+
+        <Preference
+            android:key="pref_tap_to_reveal_time"
+            android:title="@string/pref_tap_to_reveal_time_title"
+            android:dependency="pref_tap_to_reveal"
+            app:iconSpaceReserved="false"/>
+
         <!--<EditTextPreference
             android:key="pref_timeout"
             android:title="@string/pref_timeout_title"

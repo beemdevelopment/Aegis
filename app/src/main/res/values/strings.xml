@@ -29,6 +29,7 @@
     <string name="pref_secure_screen_summary">Block screenshots and other attempts to capture the screen within the app</string>
     <string name="pref_tap_to_reveal_title">Tap to reveal</string>
     <string name="pref_tap_to_reveal_summary">Tokens will be hidden by default. Tap on the tokens to reveal code.</string>
+    <string name="pref_tap_to_reveal_time_title">Timeout for tap to reveal</string>
     <string name="pref_encryption_title">Encryption</string>
     <string name="pref_encryption_summary">Encrypt the database and unlock it with a password or fingerprint</string>
     <string name="pref_fingerprint_title">Fingerprint</string>
@@ -52,6 +53,7 @@
     <string name="authentication">Unlock the vault</string>
     <string name="set_password">Please enter a password</string>
     <string name="set_group">Please enter a group name</string>
+    <string name="set_number">Please enter a number</string>
     <string name="set_password_confirm">Please confirm the password</string>
     <string name="invalidated_fingerprint">A change in your device\'s security settings has been detected. Please go to \"Settings -> Fingerprint\" and re-add your fingerprint.</string>
 

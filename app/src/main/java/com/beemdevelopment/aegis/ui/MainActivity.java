@@ -68,6 +68,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         _entryListView.setListener(this);
         _entryListView.setShowAccountName(getPreferences().isAccountNameVisible());
         _entryListView.setTapToReveal(getPreferences().isTapToRevealEnabled());
+        _entryListView.setTapToRevealTime(getPreferences().getTapToRevealTime());
 
         // set up the floating action button
         _fabMenu = findViewById(R.id.fab);
@@ -160,8 +161,10 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         } else if (data.getBooleanExtra("needsRefresh", false)) {
             boolean showAccountName = getPreferences().isAccountNameVisible();
             boolean tapToReveal = getPreferences().isTapToRevealEnabled();
+            int tapToRevealTime = getPreferences().getTapToRevealTime();
             _entryListView.setShowAccountName(showAccountName);
             _entryListView.setTapToReveal(tapToReveal);
+            _entryListView.setTapToRevealTime(tapToRevealTime);
             _entryListView.refresh(true);
         }
     }

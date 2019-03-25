@@ -25,6 +25,7 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
     private static Listener _listener;
     private boolean _showAccountName;
     private boolean _tapToReveal;
+    private int _tapToRevealTime;
     private String _groupFilter;
 
     // keeps track of the viewholders that are currently bound
@@ -43,6 +44,10 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
 
     public void setTapToReveal(boolean tapToReveal) {
         _tapToReveal = tapToReveal;
+    }
+
+    public void setTapToRevealTime(int number) {
+        _tapToRevealTime = number;
     }
 
     public void addEntry(DatabaseEntry entry) {
@@ -194,6 +199,7 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
         DatabaseEntry entry = _shownEntries.get(position);
         boolean showProgress = !isPeriodUniform() && entry.getInfo() instanceof TotpInfo;
         holder.setData(entry, _showAccountName, showProgress, _tapToReveal);
+        holder.setTapToRevealTime(_tapToRevealTime);
         if (showProgress) {
             holder.startRefreshLoop();
         }

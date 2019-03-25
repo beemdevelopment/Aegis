@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.NumberPicker;
 import android.widget.TextView;
 
 import com.beemdevelopment.aegis.crypto.KeyStoreHandle;
@@ -152,6 +153,24 @@ public class Dialogs {
         showSecureDialog(dialog);
     }
 
+    public static void showNumberPickerDialog(Activity activity, NumberInputListener listener) {
+        View view = activity.getLayoutInflater().inflate(R.layout.dialog_number_picker, null);
+        NumberPicker numberPicker = view.findViewById(R.id.numberPicker);
+        numberPicker.setMinValue(3);
+        numberPicker.setMaxValue(60);
+        numberPicker.setValue(new Preferences(activity.getApplicationContext()).getTapToRevealTime());
+        numberPicker.setWrapSelectorWheel(true);
+
+        AlertDialog dialog = new AlertDialog.Builder(activity)
+                .setTitle(R.string.set_number)
+                .setView(view)
+                .setPositiveButton(android.R.string.ok, (dialog1, which) ->
+                        listener.onNumberInputResult(numberPicker.getValue()))
+                .create();
+
+        showSecureDialog(dialog);
+    }
+
     public static void showFingerprintDialog(Activity activity, Dialogs.SlotListener listener) {
         View view = activity.getLayoutInflater().inflate(R.layout.dialog_fingerprint, null);
         TextView textFingerprint = view.findViewById(R.id.text_fingerprint);
@@ -194,6 +213,10 @@ public class Dialogs {
 
         helper.get().startListening(new FingerprintManager.CryptoObject(cipher));
         showSecureDialog(dialog);
+    }
+
+    public interface NumberInputListener {
+        void onNumberInputResult(int number);
     }
 
     public interface TextInputListener {

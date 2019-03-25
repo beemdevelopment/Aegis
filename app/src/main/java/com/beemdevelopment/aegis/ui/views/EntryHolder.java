@@ -31,6 +31,7 @@ public class EntryHolder extends RecyclerView.ViewHolder {
 
     private boolean _codeIsRevealed;
     private boolean _tapToReveal;
+    private int _tapToRevealTime;
 
     private PeriodProgressBar _progressBar;
 
@@ -105,6 +106,10 @@ public class EntryHolder extends RecyclerView.ViewHolder {
         }
     }
 
+    public void setTapToRevealTime(int number) {
+        _tapToRevealTime = number;
+    }
+
     public void setOnRefreshClickListener(View.OnClickListener listener) {
         _buttonRefresh.setOnClickListener(listener);
     }
@@ -123,7 +128,7 @@ public class EntryHolder extends RecyclerView.ViewHolder {
 
     public void revealCode() {
         updateCode();
-        _hiddenHandler.postDelayed(this::hideCode, 30000);
+        _hiddenHandler.postDelayed(this::hideCode, _tapToRevealTime * 1000);
         _codeIsRevealed = true;
     }
 

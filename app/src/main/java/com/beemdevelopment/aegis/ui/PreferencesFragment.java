@@ -13,6 +13,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Toast;
 
+import com.beemdevelopment.aegis.Preferences;
 import com.beemdevelopment.aegis.db.DatabaseFileCredentials;
 import com.beemdevelopment.aegis.helpers.FingerprintHelper;
 import com.beemdevelopment.aegis.helpers.PermissionHelper;
@@ -163,7 +164,22 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
             }
         });
 
-
+        Preference tapToRevealTimePreference = findPreference("pref_tap_to_reveal_time");
+        tapToRevealTimePreference.setSummary(app.getPreferences().getTapToRevealTime() + " seconds");
+        tapToRevealTimePreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            @Override
+            public boolean onPreferenceClick(Preference preference) {
+                Dialogs.showNumberPickerDialog(getActivity(), new Dialogs.NumberInputListener() {
+                    @Override
+                    public void onNumberInputResult(int number) {
+                        app.getPreferences().setTapToRevealTime(number);
+                        tapToRevealTimePreference.setSummary(number + " seconds");
+                        _result.putExtra("needsRefresh", true);
+                    }
+                });
+                return false;
+            }
+        });
 
         _encryptionPreference = (SwitchPreference) findPreference("pref_encryption");
         _encryptionPreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {

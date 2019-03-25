@@ -35,6 +35,15 @@ public class Preferences {
         _prefs.edit().putBoolean("pref_intro", done).apply();
     }
 
+    public void setTapToRevealTime(int number) {
+        _prefs.edit().putInt("pref_tap_to_reveal_time", number).apply();
+    }
+
+    public int getTapToRevealTime() {
+        return _prefs.getInt("pref_tap_to_reveal_time", 30);
+    }
+
+
     public int getTimeout() {
         return _prefs.getInt("pref_timeout", -1);
     }
