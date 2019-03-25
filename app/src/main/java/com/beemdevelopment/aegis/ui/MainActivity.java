@@ -1,6 +1,8 @@
 package com.beemdevelopment.aegis.ui;
 
 import android.Manifest;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
@@ -12,6 +14,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.SubMenu;
+import android.view.View;
+import android.view.animation.AccelerateInterpolator;
+import android.view.animation.DecelerateInterpolator;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -30,6 +35,9 @@ import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.db.DatabaseManagerException;
 import com.beemdevelopment.aegis.db.DatabaseEntry;
 import com.beemdevelopment.aegis.db.DatabaseManager;
+
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import androidx.interpolator.view.animation.FastOutSlowInInterpolator;
 
 public class MainActivity extends AegisActivity implements EntryListView.Listener {
     // activity request codes
@@ -498,5 +506,40 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
     @Override
     public void onEntryChange(DatabaseEntry entry) {
         saveDatabase();
+    }
+
+    private boolean isAnimating;
+
+    @Override
+    public void onScroll(int dx, int dy) {
+        if (dy > 0 && _fabMenu.getVisibility() == View.VISIBLE && !isAnimating) {
+            isAnimating = true;
+            CoordinatorLayout.LayoutParams lp = (CoordinatorLayout.LayoutParams) _fabMenu.getLayoutParams();
+            int fabBottomMargin = lp.bottomMargin;
+            _fabMenu.animate()
+                    .translationY(_fabMenu.getHeight() + fabBottomMargin)
+                    .setInterpolator(new AccelerateInterpolator(2))
+                    .setListener(new AnimatorListenerAdapter() {
+                        @Override
+                        public void onAnimationEnd(Animator animation) {
+                            isAnimating = false;
+                            _fabMenu.setVisibility(View.INVISIBLE);
+                            super.onAnimationEnd(animation);
+                        }
+                    }).start();
+        }
+         else if (dy < 0 && _fabMenu.getVisibility() != View.VISIBLE && !isAnimating) {
+            _fabMenu.setVisibility(View.VISIBLE);
+            _fabMenu.animate()
+                    .translationY(0)
+                    .setInterpolator(new DecelerateInterpolator(2))
+                    .setListener(new AnimatorListenerAdapter() {
+                        @Override
+                        public void onAnimationEnd(Animator animation) {
+                            isAnimating = false;
+                            super.onAnimationEnd(animation);
+                        }
+                    }).start();
+        }
     }
 }

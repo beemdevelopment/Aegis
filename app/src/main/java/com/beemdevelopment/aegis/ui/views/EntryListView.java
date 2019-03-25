@@ -3,6 +3,8 @@ package com.beemdevelopment.aegis.ui.views;
 import android.content.Context;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
+
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -33,6 +35,8 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
 
     private UiRefresher _refresher;
 
+    private RecyclerView.OnScrollChangeListener _onScrollListener;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,6 +54,14 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
 
         // set up the recycler view
         _rvKeyProfiles = view.findViewById(R.id.rvKeyProfiles);
+        _rvKeyProfiles.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                _listener.onScroll(dx, dy);
+            }
+        });
+
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(view.getContext());
         _rvKeyProfiles.setLayoutManager(mLayoutManager);
         _touchCallback = new SimpleItemTouchHelperCallback(_adapter);
@@ -199,5 +211,7 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
         void onEntryMove(DatabaseEntry entry1, DatabaseEntry entry2);
         void onEntryDrop(DatabaseEntry entry);
         void onEntryChange(DatabaseEntry entry);
+        void onScroll(int dx, int dy);
+
     }
 }
