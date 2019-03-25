@@ -74,17 +74,13 @@
         <item>SHA512</item>
     </string-array>
 
-    <string-array name="otp_digits_array">
-        <item>6</item>
-        <item>8</item>
-    </string-array>
-
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="unlock">Unlock</string>
     <string name="advanced">Advanced</string>
     <string name="seconds">seconds</string>
     <string name="counter">Counter</string>
+    <string name="digits">Digits</string>
     <string name="secret">Secret</string>
     <string name="scan">Scan QR code</string>
     <string name="enter_manually">Enter manually</string>

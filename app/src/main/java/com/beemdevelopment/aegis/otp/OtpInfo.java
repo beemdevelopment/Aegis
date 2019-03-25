@@ -78,7 +78,8 @@ public abstract class OtpInfo implements Serializable {
     }
 
     public static boolean isDigitsValid(int digits) {
-        return digits == 6 || digits == 8;
+        // allow a max of 10 digits, as truncation will only extract 31 bits
+        return digits > 0 && digits <= 10;
     }
 
     public void setDigits(int digits) throws OtpInfoException {

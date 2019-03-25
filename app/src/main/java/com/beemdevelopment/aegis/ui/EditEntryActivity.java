@@ -74,6 +74,7 @@ public class EditEntryActivity extends AegisActivity {
     private EditText _textIssuer;
     private EditText _textPeriod;
     private EditText _textCounter;
+    private EditText _textDigits;
     private EditText _textSecret;
 
     private TableRow _rowPeriod;
@@ -81,7 +82,6 @@ public class EditEntryActivity extends AegisActivity {
 
     private Spinner _spinnerType;
     private Spinner _spinnerAlgo;
-    private Spinner _spinnerDigits;
     private Spinner _spinnerGroup;
     private List<String> _spinnerGroupList = new ArrayList<>();
 
@@ -116,6 +116,7 @@ public class EditEntryActivity extends AegisActivity {
         _textName = findViewById(R.id.text_name);
         _textIssuer = findViewById(R.id.text_issuer);
         _textPeriod = findViewById(R.id.text_period);
+        _textDigits = findViewById(R.id.text_digits);
         _rowPeriod = findViewById(R.id.row_period);
         _textCounter = findViewById(R.id.text_counter);
         _rowCounter = findViewById(R.id.row_counter);
@@ -124,8 +125,6 @@ public class EditEntryActivity extends AegisActivity {
         SpinnerHelper.fillSpinner(this, _spinnerType, R.array.otp_types_array);
         _spinnerAlgo = findViewById(R.id.spinner_algo);
         SpinnerHelper.fillSpinner(this, _spinnerAlgo, R.array.otp_algo_array);
-        _spinnerDigits = findViewById(R.id.spinner_digits);
-        SpinnerHelper.fillSpinner(this, _spinnerDigits, R.array.otp_digits_array);
         _spinnerGroup = findViewById(R.id.spinner_group);
         updateGroupSpinnerList();
         SpinnerHelper.fillSpinner(this, _spinnerGroup, _spinnerGroupList);
@@ -158,6 +157,7 @@ public class EditEntryActivity extends AegisActivity {
             } else {
                 throw new RuntimeException();
             }
+            _textDigits.setText(Integer.toString(info.getDigits()));
 
             byte[] secretBytes = _origEntry.getInfo().getSecret();
             if (secretBytes != null) {
@@ -170,9 +170,6 @@ public class EditEntryActivity extends AegisActivity {
 
             String algo = _origEntry.getInfo().getAlgorithm(false);
             _spinnerAlgo.setSelection(getStringResourceIndex(R.array.otp_algo_array, algo), false);
-
-            String digits = Integer.toString(_origEntry.getInfo().getDigits());
-            _spinnerDigits.setSelection(getStringResourceIndex(R.array.otp_digits_array, digits), false);
 
             String group = _origEntry.getGroup();
             if (group != null) {
@@ -439,7 +436,7 @@ public class EditEntryActivity extends AegisActivity {
 
         int digits;
         try {
-            digits = Integer.parseInt(_spinnerDigits.getSelectedItem().toString());
+            digits = Integer.parseInt(_textDigits.getText().toString());
         } catch (NumberFormatException e) {
             throw new ParseException("Digits is not an integer.");
         }

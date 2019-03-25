@@ -171,9 +171,8 @@
                     <androidx.appcompat.widget.AppCompatSpinner
                         android:id="@+id/spinner_type"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_weight="4"
-                        android:layout_marginLeft="-6dp"
                         android:paddingRight="6dp"
                         android:gravity="left"
                         android:layout_gravity="left"
@@ -182,23 +181,19 @@
                     <androidx.appcompat.widget.AppCompatSpinner
                         android:id="@+id/spinner_algo"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_weight="4"
-                        android:layout_marginLeft="-6dp"
                         android:paddingRight="6dp"
-                        android:textAlignment="center"
                         android:backgroundTint="#949494"
                         style="@style/Base.Widget.AppCompat.Spinner.Underlined"/>
-                    <androidx.appcompat.widget.AppCompatSpinner
-                        android:id="@+id/spinner_digits"
+                    <EditText
+                        android:id="@+id/text_digits"
+                        android:hint="@string/digits"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="-6dp"
                         android:paddingRight="6dp"
                         android:layout_weight="3"
-                        android:textAlignment="center"
-                        android:backgroundTint="#949494"
-                        style="@style/Base.Widget.AppCompat.Spinner.Underlined"/>
+                        android:backgroundTint="#949494"/>
                 </LinearLayout>
 
             </TableRow>
