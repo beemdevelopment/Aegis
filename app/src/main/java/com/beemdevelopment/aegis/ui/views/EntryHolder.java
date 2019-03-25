@@ -134,7 +134,11 @@ public class EntryHolder extends RecyclerView.ViewHolder {
 
     private void updateCode() {
         String otp = _entry.getInfo().getOtp();
-        _profileCode.setText(otp.substring(0, otp.length() / 2) + " " + otp.substring(otp.length() / 2));
+        int offset = 0;
+        if (otp.length() % 2 != 0) {
+            offset = 1;
+        }
+        _profileCode.setText(otp.substring(0, (otp.length() / 2) + offset) + " " + otp.substring(otp.length() / 2));
     }
 
     public void hideCode() {

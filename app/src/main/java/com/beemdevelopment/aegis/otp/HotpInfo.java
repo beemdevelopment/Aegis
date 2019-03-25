@@ -28,7 +28,7 @@ public class HotpInfo extends OtpInfo {
     @Override
     public String getOtp() {
         try {
-            return HOTP.generateOTP(getSecret(), getCounter(), getDigits(), false, -1);
+            return HOTP.generateOTP(getSecret(), getAlgorithm(true), getDigits(), getCounter());
         } catch (NoSuchAlgorithmException | InvalidKeyException e) {
             throw new RuntimeException();
         }

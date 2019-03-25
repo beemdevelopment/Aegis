@@ -3,31 +3,49 @@ package com.beemdevelopment.aegis;
 import org.junit.Test;
 
 import com.beemdevelopment.aegis.crypto.otp.TOTP;
+import com.beemdevelopment.aegis.encoding.Hex;
+import com.beemdevelopment.aegis.encoding.HexException;
+
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 
 import static org.junit.Assert.*;
 
 public class TOTPTest {
+    private static class Vector {
+        public long Time;
+        public String OTP;
+        public String Algo;
+
+        public Vector(long time, String otp, String algo) {
+            Time = time;
+            OTP = otp;
+            Algo = algo;
+        }
+    }
+
     // https://tools.ietf.org/html/rfc6238#appendix-B
-    private final String[][] _vectors = {
-            // time, OPT, algorithm
-            {"0000000000000001", "94287082", "HmacSHA1"},
-            {"0000000000000001", "46119246", "HmacSHA256"},
-            {"0000000000000001", "90693936", "HmacSHA512"},
-            {"00000000023523EC", "07081804", "HmacSHA1"},
-            {"00000000023523EC", "68084774", "HmacSHA256"},
-            {"00000000023523EC", "25091201", "HmacSHA512"},
-            {"00000000023523ED", "14050471", "HmacSHA1"},
-            {"00000000023523ED", "67062674", "HmacSHA256"},
-            {"00000000023523ED", "99943326", "HmacSHA512"},
-            {"000000000273EF07", "89005924", "HmacSHA1"},
-            {"000000000273EF07", "91819424", "HmacSHA256"},
-            {"000000000273EF07", "93441116", "HmacSHA512"},
-            {"0000000003F940AA", "69279037", "HmacSHA1"},
-            {"0000000003F940AA", "90698825", "HmacSHA256"},
-            {"0000000003F940AA", "38618901", "HmacSHA512"},
-            {"0000000027BC86AA", "65353130", "HmacSHA1"},
-            {"0000000027BC86AA", "77737706", "HmacSHA256"},
-            {"0000000027BC86AA", "47863826", "HmacSHA512"}
+    private final Vector[] _vectors = {
+            new Vector(59, "94287082", "HmacSHA1"),
+            new Vector(59, "46119246", "HmacSHA256"),
+            new Vector(59, "90693936", "HmacSHA512"),
+            new Vector(1111111109, "07081804", "HmacSHA1"),
+            new Vector(1111111109, "68084774", "HmacSHA256"),
+            new Vector(1111111109, "25091201", "HmacSHA512"),
+            new Vector(1111111111, "14050471", "HmacSHA1"),
+            new Vector(1111111111, "67062674", "HmacSHA256"),
+            new Vector(1111111111, "99943326", "HmacSHA512"),
+            new Vector(1234567890, "89005924", "HmacSHA1"),
+            new Vector(1234567890, "91819424", "HmacSHA256"),
+            new Vector(1234567890, "93441116", "HmacSHA512"),
+            new Vector(2000000000, "69279037", "HmacSHA1"),
+            new Vector(2000000000, "90698825", "HmacSHA256"),
+            new Vector(2000000000, "38618901", "HmacSHA512"),
+            new Vector(20000000000L, "65353130", "HmacSHA1"),
+            new Vector(20000000000L, "77737706", "HmacSHA256"),
+            new Vector(20000000000L, "47863826", "HmacSHA512")
     };
 
     private final byte[] _seed = new byte[]{
@@ -50,11 +68,11 @@ public class TOTPTest {
     };
 
     @Test
-    public void vectorsMatch() {
-        for (String[] vector : _vectors) {
+    public void vectorsMatch() throws NoSuchAlgorithmException, InvalidKeyException, HexException {
+        for (Vector vector : _vectors) {
             byte[] seed;
 
-            switch (vector[2]) {
+            switch (vector.Algo) {
                 case "HmacSHA1":
                     seed = _seed;
                     break;
@@ -69,8 +87,8 @@ public class TOTPTest {
                     return;
             }
 
-            String otp = TOTP.generateTOTP(seed, vector[0], 8, vector[2]);
-            assertEquals(vector[1], otp);
+            String otp = TOTP.generateOTP(seed, vector.Algo, 8, 30, vector.Time);
+            assertEquals(vector.OTP, otp);
         }
     }
 }

@@ -5,6 +5,9 @@ import com.beemdevelopment.aegis.crypto.otp.TOTP;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
+
 public class TotpInfo extends OtpInfo {
     private int _period;
 
@@ -20,8 +23,11 @@ public class TotpInfo extends OtpInfo {
 
     @Override
     public String getOtp() {
-        String time = Long.toHexString(System.currentTimeMillis() / 1000 / getPeriod());
-        return TOTP.generateTOTP(getSecret(), time, getDigits(), getAlgorithm(true));
+        try {
+            return TOTP.generateOTP(getSecret(), getAlgorithm(true), getDigits(), getPeriod());
+        } catch (InvalidKeyException | NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
