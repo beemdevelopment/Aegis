@@ -159,7 +159,9 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
             recreate();
         } else if (data.getBooleanExtra("needsRefresh", false)) {
             boolean showAccountName = getPreferences().isAccountNameVisible();
+            boolean tapToReveal = getPreferences().isTapToRevealEnabled();
             _entryListView.setShowAccountName(showAccountName);
+            _entryListView.setTapToReveal(tapToReveal);
             _entryListView.refresh(true);
         }
     }

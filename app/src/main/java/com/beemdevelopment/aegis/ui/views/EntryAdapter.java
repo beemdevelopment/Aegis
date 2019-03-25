@@ -126,13 +126,11 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
     }
 
     public void refresh(boolean hard) {
-        if (!_tapToReveal) {
-            if (hard) {
-                notifyDataSetChanged();
-            } else {
-                for (EntryHolder holder : _holders) {
-                    holder.refreshCode();
-                }
+        if (hard) {
+            notifyDataSetChanged();
+        } else {
+            for (EntryHolder holder : _holders) {
+                holder.refreshCode();
             }
         }
     }
