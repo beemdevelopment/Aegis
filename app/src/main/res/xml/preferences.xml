@@ -37,6 +37,12 @@
             android:title="@string/pref_secure_screen_title"
             android:summary="@string/pref_secure_screen_summary"
             app:iconSpaceReserved="false"/>
+        <androidx.preference.SwitchPreferenceCompat
+            android:defaultValue="false"
+            android:key="pref_tap_to_reveal"
+            android:title="@string/pref_tap_to_reveal_title"
+            android:summary="@string/pref_tap_to_reveal_summary"
+            app:iconSpaceReserved="false"/>
         <!--<EditTextPreference
             android:key="pref_timeout"
             android:title="@string/pref_timeout_title"

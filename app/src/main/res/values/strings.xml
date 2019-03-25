@@ -27,6 +27,8 @@
     <string name="pref_export_summary">Export the database</string>
     <string name="pref_secure_screen_title">Screen security</string>
     <string name="pref_secure_screen_summary">Block screenshots and other attempts to capture the screen within the app</string>
+    <string name="pref_tap_to_reveal_title">Tap to reveal</string>
+    <string name="pref_tap_to_reveal_summary">Tokens will be hidden by default. Tap on the tokens to reveal code.</string>
     <string name="pref_encryption_title">Encryption</string>
     <string name="pref_encryption_summary">Encrypt the database and unlock it with a password or fingerprint</string>
     <string name="pref_fingerprint_title">Fingerprint</string>
@@ -150,4 +152,5 @@
     <string name="group_name_hint">Group name</string>
     <string name="preference_manage_groups">Edit groups</string>
     <string name="preference_manage_groups_summary">Manage and delete your groups here</string>
+    <string name="tap_to_reveal">Hidden</string>
 </resources>

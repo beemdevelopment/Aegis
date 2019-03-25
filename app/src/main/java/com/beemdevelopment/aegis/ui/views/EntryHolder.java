@@ -17,6 +17,7 @@ import com.beemdevelopment.aegis.otp.TotpInfo;
 
 import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.db.DatabaseEntry;
+import android.os.Handler;
 
 public class EntryHolder extends RecyclerView.ViewHolder {
     private TextView _profileName;
@@ -26,12 +27,20 @@ public class EntryHolder extends RecyclerView.ViewHolder {
     private DatabaseEntry _entry;
     private ImageView _buttonRefresh;
 
+    private View _currentView;
+
+    private boolean _codeIsRevealed;
+    private boolean _tapToReveal;
+
     private PeriodProgressBar _progressBar;
 
     private UiRefresher _refresher;
+    private Handler _hiddenHandler;
 
     public EntryHolder(final View view) {
         super(view);
+        _currentView = view;
+
         _profileName = view.findViewById(R.id.profile_account_name);
         _profileCode = view.findViewById(R.id.profile_code);
         _profileIssuer = view.findViewById(R.id.profile_issuer);
@@ -45,7 +54,10 @@ public class EntryHolder extends RecyclerView.ViewHolder {
         _refresher = new UiRefresher(new UiRefresher.Listener() {
             @Override
             public void onRefresh() {
-                refreshCode();
+                if (!_tapToReveal) {
+                    refreshCode();
+                }
+
                 _progressBar.refresh();
             }
 
@@ -54,10 +66,13 @@ public class EntryHolder extends RecyclerView.ViewHolder {
                 return ((TotpInfo)_entry.getInfo()).getMillisTillNextRotation();
             }
         });
+
+        _hiddenHandler = new Handler();
     }
 
-    public void setData(DatabaseEntry entry, boolean showAccountName, boolean showProgress) {
+    public void setData(DatabaseEntry entry, boolean showAccountName, boolean showProgress, boolean tapToReveal) {
         _entry = entry;
+        _tapToReveal = tapToReveal;
 
         // only show the progress bar if there is no uniform period and the entry type is TotpInfo
         _progressBar.setVisibility(showProgress ? View.VISIBLE : View.GONE);
@@ -83,7 +98,11 @@ public class EntryHolder extends RecyclerView.ViewHolder {
             _profileDrawable.setImageDrawable(drawable);
         }
 
-        refreshCode();
+        if (tapToReveal) {
+            _profileCode.setText(_currentView.getContext().getResources().getString(R.string.tap_to_reveal));
+        } else {
+            refreshCode();
+        }
     }
 
     public void setOnRefreshClickListener(View.OnClickListener listener) {
@@ -99,7 +118,27 @@ public class EntryHolder extends RecyclerView.ViewHolder {
     }
 
     public void refreshCode() {
+        updateCode();
+        _codeIsRevealed = true;
+    }
+
+    public void revealCode() {
+        updateCode();
+        _hiddenHandler.postDelayed(this::hideCode, 30000);
+        _codeIsRevealed = true;
+    }
+
+    private void updateCode() {
         String otp = _entry.getInfo().getOtp();
         _profileCode.setText(otp.substring(0, otp.length() / 2) + " " + otp.substring(otp.length() / 2));
+    }
+
+    public void hideCode() {
+        _profileCode.setText(_currentView.getContext().getResources().getString(R.string.tap_to_reveal));
+        _codeIsRevealed = false;
+    }
+
+    public boolean codeIsRevealed() {
+        return _codeIsRevealed;
     }
 }

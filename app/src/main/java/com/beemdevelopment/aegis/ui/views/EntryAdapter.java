@@ -24,6 +24,7 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
     private List<DatabaseEntry> _shownEntries;
     private static Listener _listener;
     private boolean _showAccountName;
+    private boolean _tapToReveal;
     private String _groupFilter;
 
     // keeps track of the viewholders that are currently bound
@@ -38,6 +39,10 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
 
     public void setShowAccountName(boolean showAccountName) {
         _showAccountName = showAccountName;
+    }
+
+    public void setTapToReveal(boolean tapToReveal) {
+        _tapToReveal = tapToReveal;
     }
 
     public void addEntry(DatabaseEntry entry) {
@@ -121,11 +126,13 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
     }
 
     public void refresh(boolean hard) {
-        if (hard) {
-            notifyDataSetChanged();
-        } else {
-            for (EntryHolder holder : _holders) {
-                holder.refreshCode();
+        if (!_tapToReveal) {
+            if (hard) {
+                notifyDataSetChanged();
+            } else {
+                for (EntryHolder holder : _holders) {
+                    holder.refreshCode();
+                }
             }
         }
     }
@@ -188,7 +195,7 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
     public void onBindViewHolder(final EntryHolder holder, int position) {
         DatabaseEntry entry = _shownEntries.get(position);
         boolean showProgress = !isPeriodUniform() && entry.getInfo() instanceof TotpInfo;
-        holder.setData(entry, _showAccountName, showProgress);
+        holder.setData(entry, _showAccountName, showProgress, _tapToReveal);
         if (showProgress) {
             holder.startRefreshLoop();
         }
@@ -197,7 +204,11 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
             @Override
             public void onClick(View v) {
                 int position = holder.getAdapterPosition();
-                _listener.onEntryClick(_shownEntries.get(position));
+                if (_tapToReveal && !holder.codeIsRevealed()) {
+                    holder.revealCode();
+                } else {
+                    _listener.onEntryClick(_shownEntries.get(position));
+                }
             }
         });
         holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {

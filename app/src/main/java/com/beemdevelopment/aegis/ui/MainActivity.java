@@ -67,6 +67,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         _entryListView = (EntryListView) getSupportFragmentManager().findFragmentById(R.id.key_profiles);
         _entryListView.setListener(this);
         _entryListView.setShowAccountName(getPreferences().isAccountNameVisible());
+        _entryListView.setTapToReveal(getPreferences().isTapToRevealEnabled());
 
         // set up the floating action button
         _fabMenu = findViewById(R.id.fab);

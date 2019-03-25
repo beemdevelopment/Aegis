@@ -15,6 +15,10 @@ public class Preferences {
         return _prefs.getBoolean("pref_dark_mode", false);
     }
 
+    public boolean isTapToRevealEnabled() {
+        return _prefs.getBoolean("pref_tap_to_reveal", false);
+    }
+
     public boolean isSecureScreenEnabled() {
         return _prefs.getBoolean("pref_secure_screen", true);
     }

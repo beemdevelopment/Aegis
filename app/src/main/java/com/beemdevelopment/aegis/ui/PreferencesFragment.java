@@ -142,6 +142,12 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
             }
         });
 
+        Preference tapToRevealPreference = findPreference("pref_tap_to_reveal");
+        tapToRevealPreference.setOnPreferenceChangeListener((preference, newValue) -> {
+            _result.putExtra("needsRefresh", true);
+            return true;
+        });
+
         Preference screenPreference = findPreference("pref_secure_screen");
         screenPreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
             @Override
@@ -156,6 +162,8 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
                 return true;
             }
         });
+
+
 
         _encryptionPreference = (SwitchPreference) findPreference("pref_encryption");
         _encryptionPreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
