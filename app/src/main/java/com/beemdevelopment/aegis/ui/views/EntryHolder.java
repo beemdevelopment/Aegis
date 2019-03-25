@@ -119,7 +119,6 @@ public class EntryHolder extends RecyclerView.ViewHolder {
 
     public void refreshCode() {
         updateCode();
-        _codeIsRevealed = true;
     }
 
     public void revealCode() {

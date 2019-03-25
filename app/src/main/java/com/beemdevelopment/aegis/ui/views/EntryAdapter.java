@@ -261,6 +261,12 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
         return period;
     }
 
+    @Override
+    public void onViewDetachedFromWindow(final EntryHolder holder) {
+        holder.hideCode();
+        super.onViewDetachedFromWindow(holder);
+    }
+
     public boolean isPeriodUniform() {
         return getUniformPeriod() != -1;
     }
