@@ -1,0 +1,32 @@
+Aegis Authenticator is a free, secure and open source app to manage your
+2-step verification tokens for your online services.
+
+'''Encryption'''
+All of your one-time passwords are stored in a vault. If you choose
+to set a password, which is highly recommended, the vault will be encrypted
+using AES-256. If someone with malicious intent gets a hold of the vault file,
+it’s impossible for them to retrieve the contents without knowing the password.
+
+'''Fingerprint unlock'''
+Entering your password each time you need access to a
+one-time password can be cumbersome. Fortunately, you can also enable
+fingerprint unlock if your device has a fingerprint scanner.
+
+'''Compatibility'''
+Aegis supports the HOTP and TOTP algorithms. These two algorithms are
+industry-standard and widely supported, making Aegis compatible with
+thousands of services. Some examples are: Google, GitHub, Dropbox, Facebook
+and Instagram.
+
+It is also compatible with Google Authenticator. Any website that shows a QR
+code for Google Authenticator also works with Aegis.
+
+'''Groups'''
+Have a lot of one-time passwords? Add them to custom groups for easier
+access. Personal, Work and Social can each get their own group.
+
+'''Backups'''
+To make sure you will never lose access to your online accounts Aegis
+Authenticator supports exporting your vault which you can import onto a new
+device. Aegis Authenticator also allows you to import AndOTP and FreeOTP
+databases so switching to Aegis is made easier for you.

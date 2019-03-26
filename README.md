@@ -31,12 +31,12 @@ Aegis is a free, secure and open source 2FA app for Android.
 
 ## Screenshots
 
-[<img width=200 alt="Main Activity" src="assets/screenshot_main.png?raw=true">](assets/screenshot_main.png?raw=true)
-[<img width=200 alt="Settings Activity" src="assets/screenshot_settings.png?raw=true">](/assets/screenshot_settings.png?raw=true)
-[<img width=200 alt="Edit Activity" src="assets/screenshot_edit.png?raw=true">](/assets/screenshot_edit.png?raw=true)
+[<img width=200 alt="Main Activity" src="metadata/en-US/images/phoneScreenshots/screenshot_main.png?raw=true">](metadata/en-US/images/phoneScreenshots/screenshot_main.png?raw=true)
+[<img width=200 alt="Settings Activity" src="metadata/en-US/images/phoneScreenshots/screenshot_settings.png?raw=true">](/metadata/en-US/images/phoneScreenshots/screenshot_settings.png?raw=true)
+[<img width=200 alt="Edit Activity" src="metadata/en-US/images/phoneScreenshots/screenshot_edit.png?raw=true">](/metadata/en-US/images/phoneScreenshots/screenshot_edit.png?raw=true).png
 
-[<img width=200 alt="Main Activity" src="assets/screenshot_main_group.png?raw=true">](assets/screenshot_main_group.png?raw=true)
-[<img width=200 alt="Main Activity" src="assets/screenshot_main_dark.png?raw=true">](assets/screenshot_main_dark.png?raw=true)
+[<img width=200 alt="Main Activity" src="metadata/en-US/images/phoneScreenshots/screenshot_main_group.png?raw=true">](metadata/en-US/images/phoneScreenshots/screenshot_main_group.png?raw=true)
+[<img width=200 alt="Main Activity" src="metadata/en-US/images/phoneScreenshots/screenshot_main_dark.png?raw=true">](metadata/en-US/images/phoneScreenshots/screenshot_main_dark.png?raw=true)
 
 ## Downloads
 
