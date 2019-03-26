@@ -369,8 +369,10 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
             Dialogs.showDeleteEntryDialog(this, (d, which) -> {
                 deleteEntry(entry);
                 // update the filter list if the group no longer exists
-                if (!_db.getGroups().contains(entry.getGroup())) {
-                    updateGroupFilterMenu();
+                if (entry.getGroup() != null) {
+                    if (!_db.getGroups().contains(entry.getGroup())) {
+                        updateGroupFilterMenu();
+                    }
                 }
             });
         });
