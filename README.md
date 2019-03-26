@@ -10,6 +10,7 @@ Aegis is a free, secure and open source 2FA app for Android.
     - Password (scrypt)
 	- Fingerprint (Android Keystore)
   - Screen capture prevention
+  - Tap to reveal ability
 - Multiple ways to add new entries
   - Scan QR code
   - Enter details manually
