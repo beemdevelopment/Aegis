@@ -208,7 +208,7 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
             @Override
             public void onClick(View v) {
                 int position = holder.getAdapterPosition();
-                if (_tapToReveal && !holder.codeIsRevealed()) {
+                if (_tapToReveal && holder.isCodeHidden()) {
                     holder.revealCode();
                 } else {
                     _listener.onEntryClick(_shownEntries.get(position));
@@ -227,7 +227,7 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
             public void onClick(View v) {
                 // this will only be called if the entry is of type HotpInfo
                 try {
-                    ((HotpInfo)entry.getInfo()).incrementCounter();
+                    ((HotpInfo) entry.getInfo()).incrementCounter();
                 } catch (OtpInfoException e) {
                     throw new RuntimeException(e);
                 }
@@ -265,12 +265,6 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
         }
 
         return period;
-    }
-
-    @Override
-    public void onViewDetachedFromWindow(final EntryHolder holder) {
-        holder.hideCode();
-        super.onViewDetachedFromWindow(holder);
     }
 
     public boolean isPeriodUniform() {

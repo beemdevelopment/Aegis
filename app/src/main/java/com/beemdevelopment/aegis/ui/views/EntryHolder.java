@@ -29,8 +29,7 @@ public class EntryHolder extends RecyclerView.ViewHolder {
 
     private View _currentView;
 
-    private boolean _codeIsRevealed;
-    private boolean _tapToReveal;
+    private boolean _hidden;
     private int _tapToRevealTime;
 
     private PeriodProgressBar _progressBar;
@@ -55,7 +54,7 @@ public class EntryHolder extends RecyclerView.ViewHolder {
         _refresher = new UiRefresher(new UiRefresher.Listener() {
             @Override
             public void onRefresh() {
-                if (!_tapToReveal) {
+                if (!isCodeHidden()) {
                     refreshCode();
                 }
 
@@ -71,9 +70,9 @@ public class EntryHolder extends RecyclerView.ViewHolder {
         _hiddenHandler = new Handler();
     }
 
-    public void setData(DatabaseEntry entry, boolean showAccountName, boolean showProgress, boolean tapToReveal) {
+    public void setData(DatabaseEntry entry, boolean showAccountName, boolean showProgress, boolean hidden) {
         _entry = entry;
-        _tapToReveal = tapToReveal;
+        _hidden = hidden;
 
         // only show the progress bar if there is no uniform period and the entry type is TotpInfo
         _progressBar.setVisibility(showProgress ? View.VISIBLE : View.GONE);
@@ -99,8 +98,11 @@ public class EntryHolder extends RecyclerView.ViewHolder {
             _profileDrawable.setImageDrawable(drawable);
         }
 
-        if (tapToReveal) {
-            _profileCode.setText(_currentView.getContext().getResources().getString(R.string.tap_to_reveal));
+        // cancel any scheduled hideCode calls
+        _hiddenHandler.removeCallbacksAndMessages(null);
+
+        if (_hidden) {
+            hideCode();
         } else {
             refreshCode();
         }
@@ -123,30 +125,31 @@ public class EntryHolder extends RecyclerView.ViewHolder {
     }
 
     public void refreshCode() {
-        updateCode();
+        if (!isCodeHidden()) {
+            updateCode();
+        }
+    }
+
+    private void updateCode() {
+        String otp = _entry.getInfo().getOtp();
+        String text = otp.substring(0, (otp.length() / 2)
+                + (otp.length() % 2)) + " "
+                + otp.substring(otp.length() / 2);
+        _profileCode.setText(text);
     }
 
     public void revealCode() {
         updateCode();
         _hiddenHandler.postDelayed(this::hideCode, _tapToRevealTime * 1000);
-        _codeIsRevealed = true;
+        _hidden = false;
     }
 
-    private void updateCode() {
-        String otp = _entry.getInfo().getOtp();
-        int offset = 0;
-        if (otp.length() % 2 != 0) {
-            offset = 1;
-        }
-        _profileCode.setText(otp.substring(0, (otp.length() / 2) + offset) + " " + otp.substring(otp.length() / 2));
-    }
-
-    public void hideCode() {
+    private void hideCode() {
         _profileCode.setText(_currentView.getContext().getResources().getString(R.string.tap_to_reveal));
-        _codeIsRevealed = false;
+        _hidden = true;
     }
 
-    public boolean codeIsRevealed() {
-        return _codeIsRevealed;
+    public boolean isCodeHidden() {
+        return _hidden;
     }
 }
