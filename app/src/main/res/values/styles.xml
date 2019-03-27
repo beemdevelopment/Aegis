@@ -66,6 +66,16 @@
         <item name="swirl_ridgeColor">@color/colorSwirlPrimaryDark</item>
         <item name="swirl_errorColor">@color/colorSwirlErrorDark</item>
     </style>
+
+    <style name="AppTheme.TrueBlack" parent="AppTheme.Dark">
+        <item name="colorPrimary">@color/background_true_dark</item>
+
+        <item name="cardBackground">@color/background_true_dark</item>
+        <item name="background">@color/background_true_dark</item>
+        <item name="bottomSheetDialogTheme">@style/Theme.Design.BottomSheetDialog</item>
+        <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item>
+    </style>
+
     <style name="AppTheme.Dark.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>

@@ -35,6 +35,7 @@
     <color name="hint_text_dark">#a7a7a7</color>
     <color name="secondary_text_dark">#FF5252</color>
     <color name="background_dark">#212121</color>
+    <color name="background_true_dark">#000000</color>
 
     <color name="warning_color">#f4511e</color>
     <color name="hint_color">#42000000</color>

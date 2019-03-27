@@ -2,6 +2,7 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
+    android:background="?attr/background"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
     <LinearLayout
@@ -11,7 +12,7 @@
         android:id="@+id/copy_button"
         android:clickable="true"
         android:focusable="true"
-        android:background="?attr/selectableItemBackground"
+        android:background="?attr/background"
         android:orientation="horizontal">
         <ImageView
             android:layout_width="wrap_content"
@@ -31,7 +32,7 @@
         android:padding="16dp"
         android:clickable="true"
         android:focusable="true"
-        android:background="?attr/selectableItemBackground"
+        android:background="?attr/background"
         android:id="@+id/edit_button"
         android:orientation="horizontal">
         <ImageView
@@ -53,7 +54,7 @@
         android:id="@+id/delete_button"
         android:clickable="true"
         android:focusable="true"
-        android:background="?attr/selectableItemBackground"
+
         android:orientation="horizontal">
         <ImageView
             android:layout_width="wrap_content"
