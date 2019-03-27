@@ -69,10 +69,10 @@
 
     <style name="AppTheme.TrueBlack" parent="AppTheme.Dark">
         <item name="colorPrimary">@color/background_true_dark</item>
-
         <item name="cardBackground">@color/background_true_dark</item>
         <item name="background">@color/background_true_dark</item>
         <item name="bottomSheetDialogTheme">@style/Theme.Design.BottomSheetDialog</item>
+        <item name="colorPrimaryDark">@color/background_true_dark</item>
         <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item>
     </style>
 
