@@ -65,3 +65,7 @@ There are plans to make it available on F-Droid as well.
 ## License
 
 This project is licensed under the GNU General Public License v3.0. See the [LICENSE](LICENSE) file for details.
+
+## Attribution
+
+The icon is largely based on a design by Freepik from Flaticon.
