@@ -1,7 +1,6 @@
 package com.beemdevelopment.aegis.ui.views;
 
 import android.content.Context;
-import android.graphics.PorterDuff;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -49,8 +48,6 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
         View view = inflater.inflate(R.layout.fragment_entry_list_view, container, false);
 
         _progressBar = view.findViewById(R.id.progressBar);
-        int primaryColorId = getResources().getColor(R.color.colorPrimary);
-        _progressBar.getProgressDrawable().setColorFilter(primaryColorId, PorterDuff.Mode.SRC_IN);
 
         // set up the recycler view
         _rvKeyProfiles = view.findViewById(R.id.rvKeyProfiles);
