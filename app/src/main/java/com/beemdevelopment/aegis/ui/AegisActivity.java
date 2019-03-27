@@ -7,6 +7,7 @@ import android.view.WindowManager;
 import com.beemdevelopment.aegis.AegisApplication;
 import com.beemdevelopment.aegis.Preferences;
 import com.beemdevelopment.aegis.R;
+import com.beemdevelopment.aegis.Theme;
 
 public abstract class AegisActivity extends AppCompatActivity {
     private AegisApplication _app;
@@ -22,7 +23,7 @@ public abstract class AegisActivity extends AppCompatActivity {
         }
 
         // set the theme
-        setPreferredTheme(getPreferences().isDarkModeEnabled());
+        setPreferredTheme(Theme.fromInteger(getPreferences().getCurrentTheme()));
     }
 
     protected AegisApplication getApp() {
@@ -33,11 +34,19 @@ public abstract class AegisActivity extends AppCompatActivity {
         return _app.getPreferences();
     }
 
-    protected void setPreferredTheme(boolean darkMode) {
-        if (darkMode) {
-            setTheme(R.style.AppTheme_Dark);
-        } else {
-            setTheme(R.style.AppTheme);
+    protected void setPreferredTheme(Theme theme) {
+        switch (theme) {
+            case LIGHT:
+                setTheme(R.style.AppTheme);
+                break;
+
+            case DARK:
+                setTheme(R.style.AppTheme_Dark);
+                break;
+
+            case AMOLED:
+                setTheme(R.style.AppTheme_TrueBlack);
+                break;
         }
     }
 }

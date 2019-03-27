@@ -30,6 +30,7 @@ import android.widget.TableRow;
 
 import com.amulyakhare.textdrawable.TextDrawable;
 import com.avito.android.krop.KropView;
+import com.beemdevelopment.aegis.Theme;
 import com.beemdevelopment.aegis.encoding.Base32;
 import com.beemdevelopment.aegis.encoding.Base32Exception;
 import com.beemdevelopment.aegis.helpers.EditTextHelper;
@@ -250,15 +251,6 @@ public class EditEntryActivity extends AegisActivity {
         // automatically open advanced settings since 'Secret' is required.
         if (_isNew) {
             openAdvancedSettings();
-        }
-    }
-
-    @Override
-    protected void setPreferredTheme(boolean darkMode) {
-        if (darkMode) {
-            setTheme(R.style.AppTheme_Dark);
-        } else {
-            setTheme(R.style.AppTheme);
         }
     }
 

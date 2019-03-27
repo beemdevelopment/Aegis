@@ -8,6 +8,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.beemdevelopment.aegis.Theme;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.Result;
 import com.beemdevelopment.aegis.helpers.SquareFinderView;
@@ -57,7 +58,7 @@ public class ScannerActivity extends AegisActivity implements ZXingScannerView.R
     }
 
     @Override
-    protected void setPreferredTheme(boolean darkMode) {
+    protected void setPreferredTheme(Theme theme) {
         setTheme(R.style.AppTheme_Fullscreen);
     }
 

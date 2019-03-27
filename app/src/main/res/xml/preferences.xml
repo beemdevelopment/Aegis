@@ -7,7 +7,7 @@
     <PreferenceCategory
         android:title="Appearance"
         app:iconSpaceReserved="false">
-        <androidx.preference.SwitchPreferenceCompat
+        <Preference
             android:defaultValue="false"
             android:key="pref_dark_mode"
             android:title="@string/pref_dark_mode_title"

@@ -2,6 +2,9 @@ package com.beemdevelopment.aegis.ui;
 
 import android.os.Bundle;
 
+import com.beemdevelopment.aegis.R;
+import com.beemdevelopment.aegis.Theme;
+
 public class PreferencesActivity extends AegisActivity {
     private PreferencesFragment _fragment;
 
@@ -35,5 +38,19 @@ public class PreferencesActivity extends AegisActivity {
         // this is done so we don't lose anything if the fragment calls recreate on this activity
         outState.putParcelable("result", _fragment.getResult());
         super.onSaveInstanceState(outState);
+    }
+
+    @Override
+    protected void setPreferredTheme(Theme theme) {
+        switch (theme) {
+            case LIGHT:
+                setTheme(R.style.AppTheme);
+                break;
+
+            case DARK:
+            case AMOLED:
+                setTheme(R.style.AppTheme_Dark);
+                break;
+        }
     }
 }

@@ -43,6 +43,15 @@ public class Preferences {
         return _prefs.getInt("pref_tap_to_reveal_time", 30);
     }
 
+    public int getCurrentTheme() {
+        return _prefs.getInt("pref_current_theme", 0);
+    }
+
+    public void setCurrentTheme(Theme theme) {
+        _prefs.edit().putInt("pref_current_theme", theme.ordinal()).apply();
+
+    }
+
 
     public int getTimeout() {
         return _prefs.getInt("pref_timeout", -1);
