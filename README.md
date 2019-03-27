@@ -14,9 +14,12 @@ Aegis is a free, secure and open source 2FA app for Android.
 - Multiple ways to add new entries
   - Scan QR code
   - Enter details manually
-  - Import
+  - Import from files
     - andOTP
     - FreeOTP
+    - Aegis
+  - Import from apps (requires root):
+    - Google Authenticator
 - Supported algorithms:
    - HOTP ([RFC 4226](https://tools.ietf.org/html/rfc4226))
    - TOTP ([RFC 6238](https://tools.ietf.org/html/rfc6238))
@@ -34,7 +37,7 @@ Aegis is a free, secure and open source 2FA app for Android.
 
 [<img width=200 alt="Main Activity" src="metadata/en-US/images/phoneScreenshots/screenshot_main.png?raw=true">](metadata/en-US/images/phoneScreenshots/screenshot_main.png?raw=true)
 [<img width=200 alt="Settings Activity" src="metadata/en-US/images/phoneScreenshots/screenshot_settings.png?raw=true">](/metadata/en-US/images/phoneScreenshots/screenshot_settings.png?raw=true)
-[<img width=200 alt="Edit Activity" src="metadata/en-US/images/phoneScreenshots/screenshot_edit.png?raw=true">](/metadata/en-US/images/phoneScreenshots/screenshot_edit.png?raw=true).png
+[<img width=200 alt="Edit Activity" src="metadata/en-US/images/phoneScreenshots/screenshot_edit.png?raw=true">](/metadata/en-US/images/phoneScreenshots/screenshot_edit.png?raw=true)
 
 [<img width=200 alt="Main Activity" src="metadata/en-US/images/phoneScreenshots/screenshot_main_group.png?raw=true">](metadata/en-US/images/phoneScreenshots/screenshot_main_group.png?raw=true)
 [<img width=200 alt="Main Activity" src="metadata/en-US/images/phoneScreenshots/screenshot_main_dark.png?raw=true">](metadata/en-US/images/phoneScreenshots/screenshot_main_dark.png?raw=true)
@@ -62,3 +65,7 @@ There are plans to make it available on F-Droid as well.
 ## License
 
 This project is licensed under the GNU General Public License v3.0. See the [LICENSE](LICENSE) file for details.
+
+## Attribution
+
+The icon is largely based on a design by Freepik from Flaticon.
