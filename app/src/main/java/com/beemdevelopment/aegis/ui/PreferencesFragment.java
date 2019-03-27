@@ -9,11 +9,16 @@ import android.net.Uri;
 import android.os.Bundle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.preference.Preference;
+
+import android.view.Gravity;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.AdapterView;
 import android.widget.Toast;
 
 import com.beemdevelopment.aegis.Preferences;
+import com.beemdevelopment.aegis.Theme;
 import com.beemdevelopment.aegis.db.DatabaseFileCredentials;
 import com.beemdevelopment.aegis.helpers.FingerprintHelper;
 import com.beemdevelopment.aegis.helpers.PermissionHelper;
@@ -87,6 +92,34 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
         setResult(new Intent());
 
         Preference darkModePreference = findPreference("pref_dark_mode");
+        darkModePreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            @Override
+            public boolean onPreferenceClick(Preference preference) {
+                String[] themeNames = {"Light theme", "Dark theme", "Amoled theme"};
+                int checkedTheme = app.getPreferences().getCurrentTheme();
+
+                Dialogs.showSecureDialog(new AlertDialog.Builder(getActivity())
+                        .setTitle(getString(R.string.choose_theme))
+                        .setSingleChoiceItems(themeNames, checkedTheme, (dialog, which) -> {
+                            int i = ((AlertDialog) dialog).getListView().getCheckedItemPosition();
+                            Theme selectedTheme = Theme.fromInteger(i);
+                            app.getPreferences().setCurrentTheme(selectedTheme);
+
+                            if (selectedTheme == Theme.AMOLED)
+                            {
+                                Toast.makeText(app, "Due to a bug in a third party library, the amoled theme is not visible here.", Toast.LENGTH_LONG).show();
+                            }
+
+                            _result.putExtra("needsRecreate", true);
+                            getActivity().recreate();
+                        })
+                        .setPositiveButton(android.R.string.ok, null)
+                        .create());
+
+                return true;
+            }
+        });
+
         darkModePreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
             @Override
             public boolean onPreferenceChange(Preference preference, Object newValue) {
