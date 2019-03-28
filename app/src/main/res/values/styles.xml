@@ -76,6 +76,10 @@
         <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item>
     </style>
 
+    <style name="AppTheme.TrueBlack.Preferences" parent="AppTheme.TrueBlack">
+        <item name="android:windowBackground">@color/background_true_dark</item>
+    </style>
+
     <style name="AppTheme.Dark.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>

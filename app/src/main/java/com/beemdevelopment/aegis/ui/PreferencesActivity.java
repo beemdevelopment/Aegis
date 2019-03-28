@@ -48,8 +48,11 @@ public class PreferencesActivity extends AegisActivity {
                 break;
 
             case DARK:
-            case AMOLED:
                 setTheme(R.style.AppTheme_Dark);
+                break;
+
+            case AMOLED:
+                setTheme(R.style.AppTheme_TrueBlack_Preferences);
                 break;
         }
     }
