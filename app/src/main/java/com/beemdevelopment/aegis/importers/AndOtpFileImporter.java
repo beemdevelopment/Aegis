@@ -6,7 +6,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,11 +29,9 @@ public class AndOtpFileImporter extends DatabaseFileImporter {
     @Override
     public void parse() throws DatabaseImporterException {
         try {
-            _obj = new JSONArray(new String(_stream.getBytes(), "UTF-8"));
+            _obj = new JSONArray(new String(_stream.getBytes(), StandardCharsets.UTF_8));
         } catch (JSONException e) {
             throw new DatabaseImporterException(e);
-        } catch (UnsupportedEncodingException e) {
-            throw new RuntimeException(e);
         }
     }
 

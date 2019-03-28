@@ -6,7 +6,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.CharBuffer;
-import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
@@ -122,7 +122,7 @@ public class CryptoUtils {
 
     private static byte[] toBytes(char[] chars) {
         CharBuffer charBuf = CharBuffer.wrap(chars);
-        ByteBuffer byteBuf = Charset.forName("UTF-8").encode(charBuf);
+        ByteBuffer byteBuf = StandardCharsets.UTF_8.encode(charBuf);
         return byteBuf.array();
     }
 }

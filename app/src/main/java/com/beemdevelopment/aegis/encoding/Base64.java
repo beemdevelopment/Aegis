@@ -1,6 +1,6 @@
 package com.beemdevelopment.aegis.encoding;
 
-import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 
 public class Base64 {
     private static final int _flags = android.util.Base64.NO_WRAP;
@@ -19,11 +19,6 @@ public class Base64 {
 
     public static String encode(byte[] data) {
         byte[] encoded = android.util.Base64.encode(data, _flags);
-
-        try {
-            return new String(encoded, "UTF-8");
-        } catch (UnsupportedEncodingException e) {
-            throw new RuntimeException(e);
-        }
+        return new String(encoded, StandardCharsets.UTF_8);
     }
 }

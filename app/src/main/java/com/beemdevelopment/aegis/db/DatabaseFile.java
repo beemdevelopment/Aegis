@@ -12,7 +12,7 @@ import com.beemdevelopment.aegis.encoding.HexException;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 
 public class DatabaseFile {
     public static final byte VERSION = 1;
@@ -54,8 +54,8 @@ public class DatabaseFile {
 
         try {
             String string = obj.toString(4);
-            return string.getBytes("UTF-8");
-        } catch (JSONException | UnsupportedEncodingException e) {
+            return string.getBytes(StandardCharsets.UTF_8);
+        } catch (JSONException e) {
             throw new RuntimeException(e);
         }
     }
@@ -79,9 +79,9 @@ public class DatabaseFile {
 
     public static DatabaseFile fromBytes(byte[] data) throws DatabaseFileException {
         try {
-            JSONObject obj = new JSONObject(new String(data, "UTF-8"));
+            JSONObject obj = new JSONObject(new String(data, StandardCharsets.UTF_8));
             return DatabaseFile.fromJson(obj);
-        } catch (UnsupportedEncodingException | JSONException e) {
+        } catch (JSONException e) {
             throw new DatabaseFileException(e);
         }
     }
@@ -94,8 +94,8 @@ public class DatabaseFile {
         try {
             byte[] bytes = Base64.decode((String) _content);
             CryptResult result = creds.decrypt(bytes, _header.getParams());
-            return new JSONObject(new String(result.getData(), "UTF-8"));
-        } catch (MasterKeyException | JSONException | UnsupportedEncodingException | Base64Exception e) {
+            return new JSONObject(new String(result.getData(), StandardCharsets.UTF_8));
+        } catch (MasterKeyException | JSONException | Base64Exception e) {
             throw new DatabaseFileException(e);
         }
     }
@@ -108,12 +108,12 @@ public class DatabaseFile {
     public void setContent(JSONObject obj, DatabaseFileCredentials creds) throws DatabaseFileException {
         try {
             String string = obj.toString(4);
-            byte[] dbBytes = string.getBytes("UTF-8");
+            byte[] dbBytes = string.getBytes(StandardCharsets.UTF_8);
 
             CryptResult result = creds.encrypt(dbBytes);
             _content = Base64.encode(result.getData());
             _header = new Header(creds.getSlots(), result.getParams());
-        } catch (MasterKeyException | UnsupportedEncodingException | JSONException e) {
+        } catch (MasterKeyException | JSONException e) {
             throw new DatabaseFileException(e);
         }
     }
