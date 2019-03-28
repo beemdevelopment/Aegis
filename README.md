@@ -29,8 +29,10 @@ Aegis is a free, secure and open source 2FA app for Android.
   - Drag and drop
   - Custom groups
   - Advanced entry editing
-- Material design
-  - Light and dark themes
+- Material design with multiple themes:
+  - Light theme
+  - Dark theme
+  - Amoled / true dark theme
 - Export (plaintext or encrypted)
 
 ## Screenshots
