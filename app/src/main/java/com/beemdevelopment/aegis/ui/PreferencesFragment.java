@@ -106,6 +106,8 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
                             int i = ((AlertDialog) dialog).getListView().getCheckedItemPosition();
                             app.getPreferences().setCurrentTheme(Theme.fromInteger(i));
 
+                            dialog.dismiss();
+
                             _result.putExtra("needsRecreate", true);
                             getActivity().recreate();
                         })
