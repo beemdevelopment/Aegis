@@ -16,4 +16,24 @@ public enum Theme {
         }
         return null;
     }
+
+    public static String getThemeName(int x) {
+        switch(x) {
+            case 0:
+                return "Light theme";
+            case 1:
+                return "Dark theme";
+            case 2:
+                return "Amoled theme";
+        }
+        return null;
+    }
+
+    public static String[] getThemeNames() {
+        return new String[] {
+                "Light theme",
+                "Dark theme",
+                "Amoled theme"
+        };
+    }
 }

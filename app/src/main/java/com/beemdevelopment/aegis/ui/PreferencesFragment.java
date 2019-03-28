@@ -91,24 +91,20 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
         // set the result intent in advance
         setResult(new Intent());
 
+        int currentTheme = app.getPreferences().getCurrentTheme();
         Preference darkModePreference = findPreference("pref_dark_mode");
+        darkModePreference.setSummary("Selected: " + Theme.getThemeName(currentTheme));
         darkModePreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
-                String[] themeNames = {"Light theme", "Dark theme", "Amoled theme"};
+                String[] themeNames = Theme.getThemeNames();
                 int checkedTheme = app.getPreferences().getCurrentTheme();
 
                 Dialogs.showSecureDialog(new AlertDialog.Builder(getActivity())
                         .setTitle(getString(R.string.choose_theme))
                         .setSingleChoiceItems(themeNames, checkedTheme, (dialog, which) -> {
                             int i = ((AlertDialog) dialog).getListView().getCheckedItemPosition();
-                            Theme selectedTheme = Theme.fromInteger(i);
-                            app.getPreferences().setCurrentTheme(selectedTheme);
-
-                            if (selectedTheme == Theme.AMOLED)
-                            {
-                                Toast.makeText(app, "Due to a bug in a third party library, the amoled theme is not visible here.", Toast.LENGTH_LONG).show();
-                            }
+                            app.getPreferences().setCurrentTheme(Theme.fromInteger(i));
 
                             _result.putExtra("needsRecreate", true);
                             getActivity().recreate();
