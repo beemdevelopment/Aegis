@@ -37,7 +37,6 @@ import com.beemdevelopment.aegis.db.DatabaseEntry;
 import com.beemdevelopment.aegis.db.DatabaseManager;
 
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
-import androidx.interpolator.view.animation.FastOutSlowInInterpolator;
 
 public class MainActivity extends AegisActivity implements EntryListView.Listener {
     // activity request codes

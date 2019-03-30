@@ -32,7 +32,7 @@ public class GoogleAuthAppImporter extends DatabaseAppImporter {
     @SuppressLint("SdCardPath")
     private static final String _filename = "/data/data/com.google.android.apps.authenticator2/databases/databases";
 
-    private List<DatabaseEntry> _entries = new ArrayList<>();
+    private List<Entry> _entries = new ArrayList<>();
 
     public GoogleAuthAppImporter(Context context) {
         super(context);
@@ -61,34 +61,11 @@ public class GoogleAuthAppImporter extends DatabaseAppImporter {
                 }
 
                 do {
-                    int type = getInt(cursor, "type");
-                    byte[] secret = Base32.decode(getString(cursor, "secret").toCharArray());
-
-                    OtpInfo info;
-                    switch (type) {
-                        case TYPE_TOTP:
-                            info = new TotpInfo(secret);
-                            break;
-                        case TYPE_HOTP:
-                            info = new HotpInfo(secret, getInt(cursor, "counter"));
-                            break;
-                        default:
-                            throw new DatabaseImporterException("unsupported otp type: " + type);
-                    }
-
-                    String name = getString(cursor, "email", "");
-                    String issuer = getString(cursor, "issuer", "");
-
-                    String[] parts = name.split(":");
-                    if (parts.length == 2) {
-                        name = parts[1];
-                    }
-
-                    DatabaseEntry entry = new DatabaseEntry(info, name, issuer);
+                    Entry entry = new Entry(cursor);
                     _entries.add(entry);
                 } while(cursor.moveToNext());
             }
-        } catch (SQLiteException | OtpInfoException | Base32Exception e) {
+        } catch (SQLiteException e) {
             throw new DatabaseImporterException(e);
         } finally {
             // always delete the temporary file
@@ -97,8 +74,47 @@ public class GoogleAuthAppImporter extends DatabaseAppImporter {
     }
 
     @Override
-    public List<DatabaseEntry> convert() {
-        return _entries;
+    public DatabaseImporterResult convert() {
+        DatabaseImporterResult result = new DatabaseImporterResult();
+
+        for (Entry sqlEntry : _entries) {
+            try {
+                DatabaseEntry entry = convertEntry(sqlEntry);
+                result.addEntry(entry);
+            } catch (DatabaseImporterEntryException e) {
+                result.addError(e);
+            }
+        }
+
+        return result;
+    }
+
+    private static DatabaseEntry convertEntry(Entry entry) throws DatabaseImporterEntryException {
+        try {
+            byte[] secret = Base32.decode(entry.getSecret().toCharArray());
+
+            OtpInfo info;
+            switch (entry.getType()) {
+                case TYPE_TOTP:
+                    info = new TotpInfo(secret);
+                    break;
+                case TYPE_HOTP:
+                    info = new HotpInfo(secret, entry.getCounter());
+                    break;
+                default:
+                    throw new DatabaseImporterException("unsupported otp type: " + entry.getType());
+            }
+
+            String name = entry.getEmail();
+            String[] parts = name.split(":");
+            if (parts.length == 2) {
+                name = parts[1];
+            }
+
+            return new DatabaseEntry(info, name, entry.getIssuer());
+        } catch (Base32Exception | OtpInfoException | DatabaseImporterException e) {
+            throw new DatabaseImporterEntryException(e, entry.toString());
+        }
     }
 
     @Override
@@ -120,5 +136,45 @@ public class GoogleAuthAppImporter extends DatabaseAppImporter {
 
     private static int getInt(Cursor cursor, String columnName) {
         return cursor.getInt(cursor.getColumnIndex(columnName));
+    }
+
+    private static long getLong(Cursor cursor, String columnName) {
+        return cursor.getLong(cursor.getColumnIndex(columnName));
+    }
+
+    private static class Entry {
+        private int _type;
+        private String _secret;
+        private String _email;
+        private String _issuer;
+        private long _counter;
+
+        public Entry(Cursor cursor) {
+            _type = getInt(cursor, "type");
+            _secret = getString(cursor, "secret");
+            _email = getString(cursor, "email", "");
+            _issuer = getString(cursor, "issuer", "");
+            _counter = getLong(cursor, "counter");
+        }
+
+        public int getType() {
+            return _type;
+        }
+
+        public String getSecret() {
+            return _secret;
+        }
+
+        public String getEmail() {
+            return _email;
+        }
+
+        public String getIssuer() {
+            return _issuer;
+        }
+
+        public long getCounter() {
+            return _counter;
+        }
     }
 }

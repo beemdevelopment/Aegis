@@ -32,7 +32,7 @@ public abstract class DatabaseFileImporter implements DatabaseImporter {
 
     public abstract void parse() throws DatabaseImporterException;
 
-    public abstract List<DatabaseEntry> convert() throws DatabaseImporterException;
+    public abstract DatabaseImporterResult convert() throws DatabaseImporterException;
 
     public abstract boolean isEncrypted();
 

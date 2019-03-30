@@ -124,7 +124,7 @@
     <string name="file_not_found">Error: File not found</string>
     <string name="reading_file_error">An error occurred while trying to read the file</string>
     <string name="root_error">Error: unable to obtain root access</string>
-    <string name="imported_entries_count">Imported %d entries</string>
+    <string name="imported_entries_count">Imported %d entries. %d errors.</string>
     <string name="exporting_database_error">An error occurred while trying to export the database</string>
     <string name="export_database_location">The database has been exported to:</string>
     <string name="export_warning">This action will export the database out of Aegis\' private storage.</string>
@@ -140,6 +140,7 @@
     <string name="remove_group">Remove group</string>
     <string name="remove_group_description">Are you sure you want to remove this group? Entries in this group will automatically switch to \'No group\'.</string>
     <string name="adding_new_slot_error">An error occurred while trying to add a new slot:</string>
+    <string name="details">Details</string>
     <string name="filter">Filter</string>
     <string name="lock">Lock</string>
     <string name="all">All</string>

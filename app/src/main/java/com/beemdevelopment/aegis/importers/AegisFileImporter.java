@@ -2,16 +2,16 @@ package com.beemdevelopment.aegis.importers;
 
 import android.content.Context;
 
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.List;
-
-import com.beemdevelopment.aegis.db.Database;
 import com.beemdevelopment.aegis.db.DatabaseEntry;
-import com.beemdevelopment.aegis.db.DatabaseException;
 import com.beemdevelopment.aegis.db.DatabaseFile;
 import com.beemdevelopment.aegis.db.DatabaseFileCredentials;
 import com.beemdevelopment.aegis.db.DatabaseFileException;
+import com.beemdevelopment.aegis.encoding.Base64Exception;
+import com.beemdevelopment.aegis.otp.OtpInfoException;
 import com.beemdevelopment.aegis.util.ByteInputStream;
 
 public class AegisFileImporter extends DatabaseFileImporter {
@@ -33,7 +33,9 @@ public class AegisFileImporter extends DatabaseFileImporter {
     }
 
     @Override
-    public List<DatabaseEntry> convert() throws DatabaseImporterException {
+    public DatabaseImporterResult convert() throws DatabaseImporterException {
+        DatabaseImporterResult result = new DatabaseImporterResult();
+
         try {
             JSONObject obj;
             if (_file.isEncrypted() && _creds != null) {
@@ -42,10 +44,28 @@ public class AegisFileImporter extends DatabaseFileImporter {
                 obj = _file.getContent();
             }
 
-            Database db = Database.fromJson(obj);
-            return db.getEntries();
-        } catch (DatabaseException | DatabaseFileException e) {
+            JSONArray array = obj.getJSONArray("entries");
+            for (int i = 0; i < array.length(); i++) {
+                JSONObject entryObj = array.getJSONObject(i);
+                try {
+                    DatabaseEntry entry = convertEntry(entryObj);
+                    result.addEntry(entry);
+                } catch (DatabaseImporterEntryException e) {
+                    result.addError(e);
+                }
+            }
+        } catch (JSONException | DatabaseFileException e) {
             throw new DatabaseImporterException(e);
+        }
+
+        return result;
+    }
+
+    private static DatabaseEntry convertEntry(JSONObject obj) throws DatabaseImporterEntryException {
+        try {
+            return DatabaseEntry.fromJson(obj);
+        } catch (JSONException | OtpInfoException | Base64Exception e) {
+            throw new DatabaseImporterEntryException(e, obj.toString());
         }
     }
 

@@ -46,43 +46,48 @@ public class FreeOtpFileImporter extends DatabaseFileImporter {
     }
 
     @Override
-    public List<DatabaseEntry> convert() throws DatabaseImporterException {
-        List<DatabaseEntry> entries = new ArrayList<>();
+    public DatabaseImporterResult convert() {
+        DatabaseImporterResult result = new DatabaseImporterResult();
 
-        try {
-            for (XmlEntry xmlEntry : _xmlEntries) {
-                if (xmlEntry.Name.equals("tokenOrder")) {
-                    // TODO: order
-                    JSONArray array = new JSONArray(xmlEntry.Value);
-                } else {
-                    JSONObject obj = new JSONObject(xmlEntry.Value);
-
-                    String type = obj.getString("type").toLowerCase();
-                    String algo = obj.getString("algo");
-                    int digits = obj.getInt("digits");
-                    byte[] secret = toBytes(obj.getJSONArray("secret"));
-
-                    OtpInfo info;
-                    if (type.equals("totp")) {
-                        info = new TotpInfo(secret, algo, digits, obj.getInt("period"));
-                    } else if (type.equals("hotp")) {
-                        info = new HotpInfo(secret, algo, digits, obj.getLong("counter"));
-                    } else {
-                        throw new DatabaseImporterException("unsupported otp type: " + type);
-                    }
-
-                    String issuer = obj.getString("issuerExt");
-                    String name = obj.optString("label");
-
-                    DatabaseEntry entry = new DatabaseEntry(info, name, issuer);
-                    entries.add(entry);
+        for (XmlEntry xmlEntry : _xmlEntries) {
+            // TODO: order
+            if (!xmlEntry.Name.equals("tokenOrder")) {
+                try {
+                    DatabaseEntry entry = convertEntry(xmlEntry);
+                    result.addEntry(entry);
+                } catch (DatabaseImporterEntryException e) {
+                    result.addError(e);
                 }
             }
-        } catch (OtpInfoException | JSONException e) {
-            throw new DatabaseImporterException(e);
         }
 
-        return entries;
+        return result;
+    }
+
+    private static DatabaseEntry convertEntry(XmlEntry xmlEntry) throws DatabaseImporterEntryException {
+        try {
+            JSONObject obj = new JSONObject(xmlEntry.Value);
+
+            String type = obj.getString("type").toLowerCase();
+            String algo = obj.getString("algo");
+            int digits = obj.getInt("digits");
+            byte[] secret = toBytes(obj.getJSONArray("secret"));
+
+            OtpInfo info;
+            if (type.equals("totp")) {
+                info = new TotpInfo(secret, algo, digits, obj.getInt("period"));
+            } else if (type.equals("hotp")) {
+                info = new HotpInfo(secret, algo, digits, obj.getLong("counter"));
+            } else {
+                throw new DatabaseImporterException("unsupported otp type: " + type);
+            }
+
+            String issuer = obj.getString("issuerExt");
+            String name = obj.optString("label");
+            return new DatabaseEntry(info, name, issuer);
+        } catch (DatabaseImporterException | OtpInfoException | JSONException e) {
+            throw new DatabaseImporterEntryException(e, xmlEntry.Value);
+        }
     }
 
     @Override

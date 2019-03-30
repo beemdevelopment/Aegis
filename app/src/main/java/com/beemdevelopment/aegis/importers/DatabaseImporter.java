@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface DatabaseImporter {
     void parse() throws DatabaseImporterException;
-    List<DatabaseEntry> convert() throws DatabaseImporterException;
+    DatabaseImporterResult convert() throws DatabaseImporterException;
     boolean isEncrypted();
     Context getContext();
 }

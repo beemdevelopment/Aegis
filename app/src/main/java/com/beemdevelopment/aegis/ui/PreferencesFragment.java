@@ -26,9 +26,12 @@ import com.beemdevelopment.aegis.importers.AegisFileImporter;
 import com.beemdevelopment.aegis.importers.DatabaseAppImporter;
 import com.beemdevelopment.aegis.importers.DatabaseFileImporter;
 import com.beemdevelopment.aegis.importers.DatabaseImporter;
+import com.beemdevelopment.aegis.importers.DatabaseImporterEntryException;
 import com.beemdevelopment.aegis.importers.DatabaseImporterException;
+import com.beemdevelopment.aegis.importers.DatabaseImporterResult;
 import com.beemdevelopment.aegis.ui.preferences.SwitchPreference;
 import com.beemdevelopment.aegis.util.ByteInputStream;
+import com.google.android.material.snackbar.Snackbar;
 import com.takisoft.preferencex.PreferenceFragmentCompat;
 
 import java.io.FileNotFoundException;
@@ -465,7 +468,10 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
     }
 
     private void importDatabase(DatabaseImporter importer) throws DatabaseImporterException {
-        List<DatabaseEntry> entries = importer.convert();
+        DatabaseImporterResult result = importer.convert();
+        List<DatabaseEntry> entries = result.getEntries();
+        List<DatabaseImporterEntryException> errors = result.getErrors();
+
         for (DatabaseEntry entry : entries) {
             // temporary: randomize the UUID of duplicate entries and add them anyway
             if (_db.getEntryByUUID(entry.getUUID()) != null) {
@@ -480,7 +486,13 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
         }
 
         _result.putExtra("needsRecreate", true);
-        Toast.makeText(getActivity(), String.format(Locale.getDefault(), getString(R.string.imported_entries_count), entries.size()), Toast.LENGTH_LONG).show();
+        Snackbar bar = Snackbar.make(getView(), String.format(Locale.getDefault(), getString(R.string.imported_entries_count), entries.size(), errors.size()), Snackbar.LENGTH_LONG);
+        if (errors.size() == 0) {
+            bar.setAction(R.string.details, v -> {
+
+            });
+        }
+        bar.show();
     }
 
     private void onExport() {
