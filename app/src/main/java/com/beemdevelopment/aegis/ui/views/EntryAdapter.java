@@ -5,7 +5,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.beemdevelopment.aegis.SortCategory;
 import com.beemdevelopment.aegis.helpers.ItemTouchHelperAdapter;
+import com.beemdevelopment.aegis.helpers.comparators.IssuerNameComparator;
 import com.beemdevelopment.aegis.otp.HotpInfo;
 import com.beemdevelopment.aegis.otp.OtpInfo;
 import com.beemdevelopment.aegis.otp.OtpInfoException;
@@ -27,6 +29,7 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
     private boolean _tapToReveal;
     private int _tapToRevealTime;
     private String _groupFilter;
+    private SortCategory _sortCategory;
 
     // keeps track of the viewholders that are currently bound
     private List<EntryHolder> _holders;
@@ -149,6 +152,21 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
             }
         }
         notifyDataSetChanged();
+    }
+
+    public void setSortCategory(SortCategory sortCategory) {
+        if (_sortCategory != sortCategory && sortCategory != SortCategory.CUSTOM) {
+            Collections.sort(_shownEntries, SortCategory.getComparator(sortCategory));
+
+            if(SortCategory.isReversed(sortCategory))
+            {
+                Collections.reverse(_shownEntries);
+            }
+
+            notifyDataSetChanged();
+        }
+
+        _sortCategory = sortCategory;
     }
 
     @Override

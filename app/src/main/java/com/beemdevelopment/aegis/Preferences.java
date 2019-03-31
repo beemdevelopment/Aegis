@@ -39,6 +39,15 @@ public class Preferences {
         _prefs.edit().putInt("pref_tap_to_reveal_time", number).apply();
     }
 
+    public void setCurrentSortCategory(SortCategory category) {
+        _prefs.edit().putInt("pref_current_sort_category", category.ordinal()).apply();
+    }
+
+    public int getCurrentSortCategory() {
+        return _prefs.getInt("pref_current_sort_category", 0);
+    }
+
+
     public int getTapToRevealTime() {
         return _prefs.getInt("pref_tap_to_reveal_time", 30);
     }
