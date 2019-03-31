@@ -14,6 +14,7 @@ import com.beemdevelopment.aegis.encoding.Base32Exception;
 import com.beemdevelopment.aegis.otp.HotpInfo;
 import com.beemdevelopment.aegis.otp.OtpInfo;
 import com.beemdevelopment.aegis.otp.OtpInfoException;
+import com.beemdevelopment.aegis.otp.SteamInfo;
 import com.beemdevelopment.aegis.otp.TotpInfo;
 import com.beemdevelopment.aegis.util.ByteInputStream;
 
@@ -60,12 +61,18 @@ public class AndOtpFileImporter extends DatabaseFileImporter {
             byte[] secret = Base32.decode(obj.getString("secret").toCharArray());
 
             OtpInfo info;
-            if (type.equals("totp")) {
-                info = new TotpInfo(secret, algo, digits, obj.getInt("period"));
-            } else if (type.equals("hotp")) {
-                info = new HotpInfo(secret, algo, digits, obj.getLong("counter"));
-            } else {
-                throw new DatabaseImporterException("unsupported otp type: " + type);
+            switch (type) {
+                case "hotp":
+                    info = new HotpInfo(secret, algo, digits, obj.getLong("counter"));
+                    break;
+                case "totp":
+                    info = new TotpInfo(secret, algo, digits, obj.getInt("period"));
+                    break;
+                case "steam":
+                    info = new SteamInfo(secret, algo, digits, obj.getInt("period"));
+                    break;
+                default:
+                    throw new DatabaseImporterException("unsupported otp type: " + type);
             }
 
             String name;
