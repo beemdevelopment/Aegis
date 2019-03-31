@@ -34,7 +34,7 @@
                 android:id="@+id/action_sort_category"
                 android:checkableBehavior="single">
                 <item
-                    android:id="@+id/sort_custom"
+                    android:id="@+id/menu_sort_custom"
                     android:title="@string/sort_custom"
                     android:checked="true" />
                 <item

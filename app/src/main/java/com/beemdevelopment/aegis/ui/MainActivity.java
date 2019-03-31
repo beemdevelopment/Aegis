@@ -275,6 +275,10 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         _entryListView.setSortCategory(sortCategory);
     }
 
+    private void updateSortCategoryMenu(SortCategory sortCategory) {
+        _menu.findItem(SortCategory.getMenuItem(sortCategory)).setChecked(true);
+    }
+
     private void addEntry(DatabaseEntry entry) {
         _db.addEntry(entry);
         _entryListView.addEntry(entry);
@@ -416,6 +420,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         updateLockIcon();
         if (_loaded) {
             updateGroupFilterMenu();
+            updateSortCategoryMenu(SortCategory.fromInteger(getPreferences().getCurrentSortCategory()));
         }
         return true;
     }
@@ -462,13 +467,14 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
                             sortCategory = SortCategory.ACCOUNTREVERSED;
                             break;
 
-                        case R.id.sort_custom:
+                        case R.id.menu_sort_custom:
                         default:
                             sortCategory = SortCategory.CUSTOM;
                             break;
                     }
 
                     setSortCategory(sortCategory);
+                    getPreferences().setCurrentSortCategory(sortCategory);
                 }
                 return super.onOptionsItemSelected(item);
         }
@@ -507,6 +513,8 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         }
 
         loadEntries();
+        SortCategory currentSortCategory = SortCategory.fromInteger(getPreferences().getCurrentSortCategory());
+        setSortCategory(currentSortCategory);
     }
 
     private void loadEntries() {
