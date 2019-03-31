@@ -26,4 +26,16 @@ public enum SortCategory {
         }
         return null;
     }
+
+    public static boolean isReversed(SortCategory sortCategory) {
+        switch(sortCategory)
+        {
+            case ACCOUNTREVERSED:
+            case ISSUERREVERSED:
+                return true;
+
+            default:
+                return true;
+        }
+    }
 }

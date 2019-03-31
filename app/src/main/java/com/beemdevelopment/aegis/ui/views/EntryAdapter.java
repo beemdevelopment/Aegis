@@ -155,12 +155,11 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
     }
 
     public void setSortCategory(SortCategory sortCategory) {
-        if (_sortCategory != sortCategory)
-        {
+        if (_sortCategory != sortCategory) {
             _sortCategory = sortCategory;
             Collections.sort(_shownEntries, new IssuerNameComparator());
 
-            if(sortCategory == SortCategory.ACCOUNTREVERSED || sortCategory == SortCategory.ISSUERREVERSED)
+            if(SortCategory.isReversed(sortCategory))
             {
                 Collections.reverse(_shownEntries);
             }
