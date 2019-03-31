@@ -265,6 +265,13 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
 
     private void setSortCategory(SortCategory sortCategory) {
         _sortCategory = sortCategory;
+
+        if(sortCategory == SortCategory.CUSTOM)
+        {
+            _entryListView.clearEntries();
+            loadEntries();
+        }
+
         _entryListView.setSortCategory(sortCategory);
     }
 
@@ -457,7 +464,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
 
                         case R.id.sort_custom:
                         default:
-                            sortCategory = SortCategory.ACCOUNTREVERSED;
+                            sortCategory = SortCategory.CUSTOM;
                             break;
                     }
 

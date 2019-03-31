@@ -155,9 +155,8 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
     }
 
     public void setSortCategory(SortCategory sortCategory) {
-        if (_sortCategory != sortCategory) {
-            _sortCategory = sortCategory;
-            Collections.sort(_shownEntries, new IssuerNameComparator());
+        if (_sortCategory != sortCategory && sortCategory != SortCategory.CUSTOM) {
+            Collections.sort(_shownEntries, SortCategory.getComparator(sortCategory));
 
             if(SortCategory.isReversed(sortCategory))
             {
@@ -166,6 +165,8 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
 
             notifyDataSetChanged();
         }
+
+        _sortCategory = sortCategory;
     }
 
     @Override
