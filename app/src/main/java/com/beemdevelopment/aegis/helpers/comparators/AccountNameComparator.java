@@ -7,6 +7,6 @@ import java.util.Comparator;
 public class AccountNameComparator implements Comparator<DatabaseEntry> {
     @Override
     public int compare(DatabaseEntry a, DatabaseEntry b) {
-        return a.getName().compareTo(b.getName());
+        return a.getName().compareToIgnoreCase(b.getName());
     }
 }

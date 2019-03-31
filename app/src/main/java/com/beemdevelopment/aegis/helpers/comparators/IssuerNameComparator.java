@@ -8,6 +8,6 @@ import java.util.Comparator;
 public class IssuerNameComparator implements Comparator<DatabaseEntry> {
     @Override
     public int compare(DatabaseEntry a, DatabaseEntry b) {
-        return a.getIssuer().compareTo(b.getIssuer());
+        return a.getIssuer().compareToIgnoreCase(b.getIssuer());
     }
 }
