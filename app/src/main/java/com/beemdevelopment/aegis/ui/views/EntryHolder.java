@@ -27,6 +27,8 @@ public class EntryHolder extends RecyclerView.ViewHolder {
     private DatabaseEntry _entry;
     private ImageView _buttonRefresh;
 
+    private View _entryDivider;
+
     private View _currentView;
 
     private boolean _hidden;
@@ -46,6 +48,8 @@ public class EntryHolder extends RecyclerView.ViewHolder {
         _profileIssuer = view.findViewById(R.id.profile_issuer);
         _profileDrawable = view.findViewById(R.id.ivTextDrawable);
         _buttonRefresh = view.findViewById(R.id.buttonRefresh);
+
+        _entryDivider = view.findViewById(R.id.entryDivider);
 
         _progressBar = view.findViewById(R.id.progressBar);
         int primaryColorId = view.getContext().getResources().getColor(R.color.colorPrimary);
@@ -78,6 +82,10 @@ public class EntryHolder extends RecyclerView.ViewHolder {
         _progressBar.setVisibility(showProgress ? View.VISIBLE : View.GONE);
         if (showProgress) {
             _progressBar.setPeriod(((TotpInfo)entry.getInfo()).getPeriod());
+
+            if (_entryDivider != null) {
+                _entryDivider.setVisibility(View.GONE);
+            }
         }
 
         // only show the button if this entry is of type HotpInfo
