@@ -21,6 +21,35 @@
                     android:title="@string/all"
                     android:checked="true" />
             </group>
+
+        </menu>
+    </item>
+    <item
+        android:id="@+id/action_sort"
+        android:icon="@drawable/ic_action_sort"
+        app:showAsAction="always"
+        android:title="@string/filter">
+        <menu>
+            <group
+                android:id="@+id/action_sort_category"
+                android:checkableBehavior="single">
+                <item
+                    android:id="@+id/sort_custom"
+                    android:title="@string/sort_custom"
+                    android:checked="true" />
+                <item
+                    android:id="@+id/menu_sort_alphabetically_name"
+                    android:title="@string/sort_alphabetically_name"/>
+                <item
+                    android:id="@+id/menu_sort_alphabetically_name_reverse"
+                    android:title="@string/sort_alphabetically_name_reverse"/>
+                <item
+                    android:id="@+id/menu_sort_alphabetically"
+                    android:title="@string/sort_alphabetically"/>
+                <item
+                    android:id="@+id/menu_sort_alphabetically_reverse"
+                    android:title="@string/sort_alphabetically_reverse"/>
+            </group>
         </menu>
     </item>
     <item

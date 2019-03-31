@@ -146,6 +146,11 @@
     <string name="all">All</string>
     <string name="name">Name</string>
     <string name="no_group">No group</string>
+    <string name="sort_alphabetically">Issuer (A to Z)</string>
+    <string name="sort_alphabetically_reverse">Issuer (Z to A)</string>
+    <string name="sort_alphabetically_name">Account (A to Z)</string>
+    <string name="sort_alphabetically_name_reverse">Account (Z to A)</string>
+    <string name="sort_custom">Custom</string>
     <string name="new_group">New group...</string>
     <string name="enter_group_name">Enter a group name</string>
     <string name="group_name_hint">Group name</string>

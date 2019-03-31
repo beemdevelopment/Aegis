@@ -8,6 +8,9 @@ import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Rect;
+
+import com.beemdevelopment.aegis.SortCategory;
+import com.beemdevelopment.aegis.helpers.comparators.IssuerNameComparator;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import android.os.Bundle;
 import android.view.Menu;
@@ -27,6 +30,8 @@ import com.beemdevelopment.aegis.ui.views.EntryListView;
 
 import java.lang.reflect.UndeclaredThrowableException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.TreeSet;
 
 import com.beemdevelopment.aegis.AegisApplication;
@@ -55,6 +60,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
     private DatabaseManager _db;
     private boolean _loaded;
     private String _checkedGroup;
+    private SortCategory _sortCategory;
 
     private Menu _menu;
     private FloatingActionsMenu _fabMenu;
@@ -257,6 +263,11 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         _entryListView.setGroupFilter(group);
     }
 
+    private void setSortCategory(SortCategory sortCategory) {
+        _sortCategory = sortCategory;
+        _entryListView.setSortCategory(sortCategory);
+    }
+
     private void addEntry(DatabaseEntry entry) {
         _db.addEntry(entry);
         _entryListView.addEntry(entry);
@@ -422,6 +433,36 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
                     }
                     setGroupFilter(group);
                 }
+
+                if (item.getGroupId() == R.id.action_sort_category) {
+                    item.setChecked(true);
+
+                    SortCategory sortCategory;
+                    switch (item.getItemId()) {
+                        case R.id.menu_sort_alphabetically:
+                            sortCategory = SortCategory.ISSUER;
+                            break;
+
+                        case R.id.menu_sort_alphabetically_reverse:
+                            sortCategory = SortCategory.ISSUERREVERSED;
+                            break;
+
+                        case R.id.menu_sort_alphabetically_name:
+                            sortCategory = SortCategory.ACCOUNT;
+                            break;
+
+                        case R.id.menu_sort_alphabetically_name_reverse:
+                            sortCategory = SortCategory.ACCOUNTREVERSED;
+                            break;
+
+                        case R.id.sort_custom:
+                        default:
+                            sortCategory = SortCategory.ACCOUNTREVERSED;
+                            break;
+                    }
+
+                    setSortCategory(sortCategory);
+                }
                 return super.onOptionsItemSelected(item);
         }
     }
@@ -463,7 +504,8 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
 
     private void loadEntries() {
         // load all entries
-        _entryListView.addEntries(_db.getEntries());
+        List<DatabaseEntry> entries = new ArrayList<DatabaseEntry>(_db.getEntries());
+        _entryListView.addEntries(entries);
         _loaded = true;
     }
 

@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
 import android.view.animation.LayoutAnimationController;
 
+import com.beemdevelopment.aegis.SortCategory;
 import com.beemdevelopment.aegis.helpers.SimpleItemTouchHelperCallback;
 import com.beemdevelopment.aegis.helpers.UiRefresher;
 import com.beemdevelopment.aegis.otp.TotpInfo;
@@ -90,6 +91,11 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
         _touchCallback.setIsLongPressDragEnabled(group == null);
         checkPeriodUniformity();
 
+        runLayoutAnimation(_rvKeyProfiles);
+    }
+
+    public void setSortCategory(SortCategory sortCategory) {
+        _adapter.setSortCategory(sortCategory);
         runLayoutAnimation(_rvKeyProfiles);
     }
 
