@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.beemdevelopment.aegis.SortCategory;
+import com.beemdevelopment.aegis.ViewMode;
 import com.beemdevelopment.aegis.helpers.ItemTouchHelperAdapter;
 import com.beemdevelopment.aegis.helpers.comparators.IssuerNameComparator;
 import com.beemdevelopment.aegis.otp.HotpInfo;
@@ -30,6 +31,8 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
     private int _tapToRevealTime;
     private String _groupFilter;
     private SortCategory _sortCategory;
+
+    private ViewMode _viewMode;
 
     // keeps track of the viewholders that are currently bound
     private List<EntryHolder> _holders;
@@ -169,6 +172,10 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
         _sortCategory = sortCategory;
     }
 
+    public void setViewMode(ViewMode viewMode) {
+        _viewMode = viewMode;
+    }
+
     @Override
     public void onItemDismiss(int position) {
 
@@ -203,6 +210,12 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
     @Override
     public EntryHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_entry_compact, parent, false);
+        if (_viewMode == ViewMode.NORMAL) {
+            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_entry, parent, false);
+        } else if (_viewMode == ViewMode.COMPACT) {
+            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_entry_compact, parent, false);
+        }
+
         return new EntryHolder(view);
     }
 

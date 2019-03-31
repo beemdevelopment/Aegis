@@ -15,6 +15,7 @@ import android.view.animation.AnimationUtils;
 import android.view.animation.LayoutAnimationController;
 
 import com.beemdevelopment.aegis.SortCategory;
+import com.beemdevelopment.aegis.ViewMode;
 import com.beemdevelopment.aegis.helpers.SimpleItemTouchHelperCallback;
 import com.beemdevelopment.aegis.helpers.UiRefresher;
 import com.beemdevelopment.aegis.otp.TotpInfo;
@@ -99,6 +100,10 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
 
         _adapter.setSortCategory(sortCategory);
         runLayoutAnimation(_rvKeyProfiles);
+    }
+
+    public void setViewMode(ViewMode viewMode) {
+        _adapter.setViewMode(viewMode);
     }
 
     public void refresh(boolean hard) {

@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.graphics.Rect;
 
 import com.beemdevelopment.aegis.SortCategory;
+import com.beemdevelopment.aegis.ViewMode;
 import com.beemdevelopment.aegis.helpers.comparators.IssuerNameComparator;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import android.os.Bundle;
@@ -168,8 +169,14 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
     }
 
     private void onPreferencesResult(int resultCode, Intent data) {
+        ViewMode viewMode = ViewMode.fromInteger(getPreferences().getCurrentViewMode());
+        _entryListView.setViewMode(viewMode);
+
         // refresh the entire entry list if needed
         if (data.getBooleanExtra("needsRecreate", false)) {
+
+            _entryListView.clearEntries();
+            _entryListView.addEntries(_db.getEntries());
             recreate();
         } else if (data.getBooleanExtra("needsRefresh", false)) {
             boolean showAccountName = getPreferences().isAccountNameVisible();
@@ -179,6 +186,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
             _entryListView.setTapToReveal(tapToReveal);
             _entryListView.setTapToRevealTime(tapToRevealTime);
             _entryListView.refresh(true);
+
         }
     }
 
