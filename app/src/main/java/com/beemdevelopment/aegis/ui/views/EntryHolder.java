@@ -13,6 +13,8 @@ import com.amulyakhare.textdrawable.TextDrawable;
 import com.beemdevelopment.aegis.helpers.TextDrawableHelper;
 import com.beemdevelopment.aegis.helpers.UiRefresher;
 import com.beemdevelopment.aegis.otp.HotpInfo;
+import com.beemdevelopment.aegis.otp.OtpInfo;
+import com.beemdevelopment.aegis.otp.SteamInfo;
 import com.beemdevelopment.aegis.otp.TotpInfo;
 
 import com.beemdevelopment.aegis.R;
@@ -139,10 +141,18 @@ public class EntryHolder extends RecyclerView.ViewHolder {
     }
 
     private void updateCode() {
-        String otp = _entry.getInfo().getOtp();
-        String text = otp.substring(0, (otp.length() / 2)
-                + (otp.length() % 2)) + " "
-                + otp.substring(otp.length() / 2);
+        OtpInfo info = _entry.getInfo();
+
+        String text;
+        if (info instanceof SteamInfo) {
+            text = info.getOtp();
+        } else {
+            String otp = info.getOtp();
+            text = otp.substring(0, (otp.length() / 2)
+                    + (otp.length() % 2)) + " "
+                    + otp.substring(otp.length() / 2);
+        }
+
         _profileCode.setText(text);
     }
 

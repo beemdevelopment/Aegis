@@ -590,8 +590,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
                             super.onAnimationEnd(animation);
                         }
                     }).start();
-        }
-         else if (dy < 0 && _fabMenu.getVisibility() != View.VISIBLE && !isAnimating) {
+        } else if (dy < 0 && _fabMenu.getVisibility() != View.VISIBLE && !isAnimating) {
             _fabMenu.setVisibility(View.VISIBLE);
             _fabMenu.animate()
                     .translationY(0)

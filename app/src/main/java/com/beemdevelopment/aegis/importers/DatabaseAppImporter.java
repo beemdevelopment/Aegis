@@ -16,6 +16,7 @@ public abstract class DatabaseAppImporter implements DatabaseImporter {
         // note: keep this list sorted alphabetically
         LinkedHashMap<String, Class<? extends DatabaseAppImporter>> importers = new LinkedHashMap<>();
         importers.put("Google Authenticator", GoogleAuthAppImporter.class);
+        importers.put("Steam", SteamAppImporter.class);
         _importers = Collections.unmodifiableMap(importers);
     }
 

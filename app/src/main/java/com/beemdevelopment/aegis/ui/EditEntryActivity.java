@@ -30,7 +30,6 @@ import android.widget.TableRow;
 
 import com.amulyakhare.textdrawable.TextDrawable;
 import com.avito.android.krop.KropView;
-import com.beemdevelopment.aegis.Theme;
 import com.beemdevelopment.aegis.encoding.Base32;
 import com.beemdevelopment.aegis.encoding.Base32Exception;
 import com.beemdevelopment.aegis.helpers.EditTextHelper;
@@ -39,6 +38,7 @@ import com.beemdevelopment.aegis.helpers.TextDrawableHelper;
 import com.beemdevelopment.aegis.otp.HotpInfo;
 import com.beemdevelopment.aegis.otp.OtpInfo;
 import com.beemdevelopment.aegis.otp.OtpInfoException;
+import com.beemdevelopment.aegis.otp.SteamInfo;
 import com.beemdevelopment.aegis.otp.TotpInfo;
 
 import java.io.ByteArrayInputStream;
@@ -167,7 +167,7 @@ public class EditEntryActivity extends AegisActivity {
             }
 
             String type = _origEntry.getInfo().getType();
-            _spinnerType.setSelection(getStringResourceIndex(R.array.otp_types_array, type.toUpperCase()), false);
+            _spinnerType.setSelection(getStringResourceIndex(R.array.otp_types_array, type), false);
 
             String algo = _origEntry.getInfo().getAlgorithm(false);
             _spinnerAlgo.setSelection(getStringResourceIndex(R.array.otp_algo_array, algo), false);
@@ -190,11 +190,12 @@ public class EditEntryActivity extends AegisActivity {
                 String type = _spinnerType.getSelectedItem().toString();
 
                 switch (type.toLowerCase()) {
-                    case "totp":
+                    case TotpInfo.ID:
+                    case SteamInfo.ID:
                         _rowCounter.setVisibility(View.GONE);
                         _rowPeriod.setVisibility(View.VISIBLE);
                         break;
-                    case "hotp":
+                    case HotpInfo.ID:
                         _rowPeriod.setVisibility(View.GONE);
                         _rowCounter.setVisibility(View.VISIBLE);
                         break;
@@ -418,6 +419,14 @@ public class EditEntryActivity extends AegisActivity {
         super.onActivityResult(requestCode, resultCode, data);
     }
 
+    private int parsePeriod() throws ParseException {
+        try {
+            return Integer.parseInt(_textPeriod.getText().toString());
+        } catch (NumberFormatException e) {
+            throw new ParseException("Period is not an integer.");
+        }
+    }
+
     private DatabaseEntry parseEntry() throws ParseException {
         if (_textSecret.length() == 0) {
             throw new ParseException("Secret is a required field.");
@@ -444,16 +453,13 @@ public class EditEntryActivity extends AegisActivity {
         OtpInfo info;
         try {
             switch (type.toLowerCase()) {
-                case "totp":
-                    int period;
-                    try {
-                        period = Integer.parseInt(_textPeriod.getText().toString());
-                    } catch (NumberFormatException e) {
-                        throw new ParseException("Period is not an integer.");
-                    }
-                    info = new TotpInfo(secret, algo, digits, period);
+                case TotpInfo.ID:
+                    info = new TotpInfo(secret, algo, digits, parsePeriod());
                     break;
-                case "hotp":
+                case SteamInfo.ID:
+                    info = new SteamInfo(secret, algo, digits, parsePeriod());
+                    break;
+                case HotpInfo.ID:
                     long counter;
                     try {
                         counter = Long.parseLong(_textCounter.getText().toString());
@@ -547,7 +553,7 @@ public class EditEntryActivity extends AegisActivity {
     private int getStringResourceIndex(@ArrayRes int id, String string) {
         String[] res = getResources().getStringArray(id);
         for (int i = 0; i < res.length; i++) {
-            if (res[i].equals(string)) {
+            if (res[i].equalsIgnoreCase(string)) {
                 return i;
             }
         }

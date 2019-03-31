@@ -515,11 +515,6 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
 
         _result.putExtra("needsRecreate", true);
         Snackbar bar = Snackbar.make(getView(), String.format(Locale.getDefault(), getString(R.string.imported_entries_count), entries.size(), errors.size()), Snackbar.LENGTH_LONG);
-        if (errors.size() == 0) {
-            bar.setAction(R.string.details, v -> {
-
-            });
-        }
         bar.show();
     }
 

@@ -6,6 +6,7 @@ import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 
 import com.beemdevelopment.aegis.crypto.otp.HOTP;
+import com.beemdevelopment.aegis.crypto.otp.OTP;
 
 import static org.junit.Assert.*;
 
@@ -27,8 +28,8 @@ public class HOTPTest {
     @Test
     public void vectorsMatch() throws InvalidKeyException, NoSuchAlgorithmException {
         for (int i = 0; i < _vectors.length; i++) {
-            String otp = HOTP.generateOTP(_secret, "HmacSHA1", 6, i);
-            assertEquals(_vectors[i], otp);
+            OTP otp = HOTP.generateOTP(_secret, "HmacSHA1", 6, i);
+            assertEquals(_vectors[i], otp.toString());
         }
     }
 }

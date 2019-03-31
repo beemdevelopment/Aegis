@@ -8,13 +8,13 @@ public class TOTP {
     private TOTP() {
     }
 
-    public static String generateOTP(byte[] secret, String algo, int digits, long period, long seconds)
+    public static OTP generateOTP(byte[] secret, String algo, int digits, long period, long seconds)
             throws InvalidKeyException, NoSuchAlgorithmException {
         long counter = (long) Math.floor((double) seconds / period);
         return HOTP.generateOTP(secret, algo, digits, counter);
     }
 
-    public static String generateOTP(byte[] secret, String algo, int digits, long period)
+    public static OTP generateOTP(byte[] secret, String algo, int digits, long period)
             throws InvalidKeyException, NoSuchAlgorithmException {
         return generateOTP(secret, algo, digits, period, System.currentTimeMillis() / 1000);
     }

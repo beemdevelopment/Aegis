@@ -3,7 +3,6 @@ package com.beemdevelopment.aegis.ui.views;
 import android.content.Context;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -35,8 +34,6 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
     private boolean _showProgress;
 
     private UiRefresher _refresher;
-
-    private RecyclerView.OnScrollChangeListener _onScrollListener;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

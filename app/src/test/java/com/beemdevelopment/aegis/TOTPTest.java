@@ -2,6 +2,7 @@ package com.beemdevelopment.aegis;
 
 import org.junit.Test;
 
+import com.beemdevelopment.aegis.crypto.otp.OTP;
 import com.beemdevelopment.aegis.crypto.otp.TOTP;
 import com.beemdevelopment.aegis.encoding.Hex;
 import com.beemdevelopment.aegis.encoding.HexException;
@@ -87,8 +88,8 @@ public class TOTPTest {
                     return;
             }
 
-            String otp = TOTP.generateOTP(seed, vector.Algo, 8, 30, vector.Time);
-            assertEquals(vector.OTP, otp);
+            OTP otp = TOTP.generateOTP(seed, vector.Algo, 8, 30, vector.Time);
+            assertEquals(vector.OTP, otp.toString());
         }
     }
 }

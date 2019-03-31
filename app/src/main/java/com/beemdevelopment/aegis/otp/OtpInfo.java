@@ -98,13 +98,14 @@ public abstract class OtpInfo implements Serializable {
             int digits = obj.getInt("digits");
 
             switch (type) {
-                case "totp":
-                    int period = obj.getInt("period");
-                    info = new TotpInfo(secret, algo, digits, period);
+                case TotpInfo.ID:
+                    info = new TotpInfo(secret, algo, digits, obj.getInt("period"));
                     break;
-                case "hotp":
-                    long counter = obj.getLong("counter");
-                    info = new HotpInfo(secret, algo, digits, counter);
+                case SteamInfo.ID:
+                    info = new SteamInfo(secret, algo, digits, obj.getInt("period"));
+                    break;
+                case HotpInfo.ID:
+                    info = new HotpInfo(secret, algo, digits, obj.getLong("counter"));
                     break;
                 default:
                     throw new OtpInfoException("unsupported otp type: " + type);
@@ -126,7 +127,8 @@ public abstract class OtpInfo implements Serializable {
         }
 
         OtpInfo info = (OtpInfo) o;
-        return Arrays.equals(getSecret(), info.getSecret())
+        return getType().equals(info.getType())
+                && Arrays.equals(getSecret(), info.getSecret())
                 && getAlgorithm(false).equals(info.getAlgorithm(false))
                 && getDigits() == info.getDigits();
     }
