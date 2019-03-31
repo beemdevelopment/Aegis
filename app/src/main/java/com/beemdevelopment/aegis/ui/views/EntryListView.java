@@ -95,6 +95,8 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
     }
 
     public void setSortCategory(SortCategory sortCategory) {
+        _touchCallback.setIsLongPressDragEnabled(sortCategory == SortCategory.CUSTOM);
+
         _adapter.setSortCategory(sortCategory);
         runLayoutAnimation(_rvKeyProfiles);
     }
