@@ -12,6 +12,7 @@
 
     <string name="settings">Preferences</string>
     <string name="pref_select_theme_title">Theme</string>
+    <string name="pref_view_mode_title">View mode</string>
     <string name="pref_account_name_title">Show the account name</string>
     <string name="pref_account_name_summary">Enable this to show the account name next to the issuer</string>
     <string name="pref_timeout_title">Timeout</string>
@@ -120,6 +121,7 @@
     <string name="permission_denied">Permission denied</string>
     <string name="choose_application">Select the application you\'d like to import a database from</string>
     <string name="choose_theme">Select your desired theme</string>
+    <string name="choose_view_mode">Select your desired view mode</string>
     <string name="parsing_file_error">An error occurred while trying to parse the file</string>
     <string name="file_not_found">Error: File not found</string>
     <string name="reading_file_error">An error occurred while trying to read the file</string>

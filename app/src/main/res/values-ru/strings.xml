@@ -12,6 +12,7 @@
 
     <string name="settings">Предпочтения</string>
     <string name="pref_select_theme_title">Тема</string>
+    <string name="pref_view_mode_title">Select view mode</string>
     <string name="pref_account_name_title">Показать имя аккаунта</string>
     <string name="pref_account_name_summary">Включите это, чтобы показать имя учетной записи рядом с эмитентом</string>
     <string name="pref_timeout_title">Тайм-аут</string>

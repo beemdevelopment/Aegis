@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import com.beemdevelopment.aegis.Preferences;
 import com.beemdevelopment.aegis.Theme;
+import com.beemdevelopment.aegis.ViewMode;
 import com.beemdevelopment.aegis.db.DatabaseFileCredentials;
 import com.beemdevelopment.aegis.helpers.FingerprintHelper;
 import com.beemdevelopment.aegis.helpers.PermissionHelper;
@@ -126,6 +127,33 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
             public boolean onPreferenceChange(Preference preference, Object newValue) {
                 _result.putExtra("needsRecreate", true);
                 getActivity().recreate();
+                return true;
+            }
+        });
+
+        int currentViewMode = app.getPreferences().getCurrentViewMode();
+        Preference viewModePreference = findPreference("pref_view_mode");
+        viewModePreference.setSummary("Selected: " + ViewMode.getViewModeName(currentViewMode));
+        viewModePreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            @Override
+            public boolean onPreferenceClick(Preference preference) {
+                String[] viewModes = ViewMode.getViewModeNames();
+                int checkedMode = app.getPreferences().getCurrentViewMode();
+
+                Dialogs.showSecureDialog(new AlertDialog.Builder(getActivity())
+                        .setTitle(getString(R.string.choose_view_mode))
+                        .setSingleChoiceItems(viewModes, checkedMode, (dialog, which) -> {
+                            int i = ((AlertDialog) dialog).getListView().getCheckedItemPosition();
+                            app.getPreferences().setCurrentViewMode(ViewMode.fromInteger(i));
+
+                            dialog.dismiss();
+
+                            _result.putExtra("needsRecreate", true);
+                            getActivity().recreate();
+                        })
+                        .setPositiveButton(android.R.string.ok, null)
+                        .create());
+
                 return true;
             }
         });

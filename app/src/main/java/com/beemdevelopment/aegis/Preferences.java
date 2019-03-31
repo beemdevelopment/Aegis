@@ -61,6 +61,16 @@ public class Preferences {
 
     }
 
+    public int getCurrentViewMode() {
+        return _prefs.getInt("pref_current_view_mode", 0);
+    }
+
+    public void setCurrentViewMode(ViewMode viewMode) {
+        _prefs.edit().putInt("pref_current_view_mode", viewMode.ordinal()).apply();
+
+    }
+
+
 
     public int getTimeout() {
         return _prefs.getInt("pref_timeout", -1);
