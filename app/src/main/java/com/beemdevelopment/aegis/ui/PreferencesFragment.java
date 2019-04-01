@@ -148,8 +148,8 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
 
                             dialog.dismiss();
 
+                            viewModePreference.setSummary("Selected: " + ViewMode.getViewModeName(i));
                             _result.putExtra("needsRecreate", true);
-                            getActivity().recreate();
                         })
                         .setPositiveButton(android.R.string.ok, null)
                         .create());

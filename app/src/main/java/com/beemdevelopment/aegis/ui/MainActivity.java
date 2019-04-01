@@ -83,6 +83,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         _entryListView.setShowAccountName(getPreferences().isAccountNameVisible());
         _entryListView.setTapToReveal(getPreferences().isTapToRevealEnabled());
         _entryListView.setTapToRevealTime(getPreferences().getTapToRevealTime());
+        _entryListView.setViewMode(ViewMode.fromInteger(getPreferences().getCurrentViewMode()));
 
         // set up the floating action button
         _fabMenu = findViewById(R.id.fab);
@@ -169,22 +170,18 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
     }
 
     private void onPreferencesResult(int resultCode, Intent data) {
-        ViewMode viewMode = ViewMode.fromInteger(getPreferences().getCurrentViewMode());
-        _entryListView.setViewMode(viewMode);
-
         // refresh the entire entry list if needed
         if (data.getBooleanExtra("needsRecreate", false)) {
-
-            _entryListView.clearEntries();
-            _entryListView.addEntries(_db.getEntries());
             recreate();
         } else if (data.getBooleanExtra("needsRefresh", false)) {
             boolean showAccountName = getPreferences().isAccountNameVisible();
             boolean tapToReveal = getPreferences().isTapToRevealEnabled();
             int tapToRevealTime = getPreferences().getTapToRevealTime();
+            int viewMode = getPreferences().getCurrentViewMode();
             _entryListView.setShowAccountName(showAccountName);
             _entryListView.setTapToReveal(tapToReveal);
             _entryListView.setTapToRevealTime(tapToRevealTime);
+
             _entryListView.refresh(true);
 
         }
