@@ -69,7 +69,7 @@ public class AndOtpFileImporter extends DatabaseFileImporter {
                     info = new TotpInfo(secret, algo, digits, obj.getInt("period"));
                     break;
                 case "steam":
-                    info = new SteamInfo(secret, algo, digits, obj.getInt("period"));
+                    info = new SteamInfo(secret, algo, digits, obj.optInt("period", 30));
                     break;
                 default:
                     throw new DatabaseImporterException("unsupported otp type: " + type);
