@@ -114,6 +114,7 @@
     <string name="setup_completed_description">Aegis has been setup and is ready to go.</string>
     <string name="vault_not_found">Vault not found, starting setup…</string>
     <string name="code_copied">Code copied to the clipboard</string>
+    <string name="errors_copied">Errors copied to the clipboard</string>
     <string name="decryption_error">An error occurred while trying to unlock the vault</string>
     <string name="saving_error">An error occurred while trying to save the vault</string>
     <string name="disable_encryption">Disable encryption</string>
@@ -128,6 +129,7 @@
     <string name="reading_file_error">An error occurred while trying to read the file</string>
     <string name="root_error">Error: unable to obtain root access</string>
     <string name="imported_entries_count">Imported %d entries. %d errors.</string>
+    <string name="import_error_title">One or more errors occurred during the import</string>
     <string name="exporting_database_error">An error occurred while trying to export the database</string>
     <string name="export_database_location">The database has been exported to:</string>
     <string name="export_warning">This action will export the database out of Aegis\' private storage.</string>

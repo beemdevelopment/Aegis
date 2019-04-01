@@ -2,6 +2,9 @@ package com.beemdevelopment.aegis.ui;
 
 import android.Manifest;
 import android.app.Activity;
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.media.MediaScannerConnection;
@@ -10,6 +13,7 @@ import android.os.Bundle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.preference.Preference;
 
+import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
@@ -514,7 +518,29 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
         }
 
         _result.putExtra("needsRecreate", true);
+
         Snackbar bar = Snackbar.make(getView(), String.format(Locale.getDefault(), getString(R.string.imported_entries_count), entries.size(), errors.size()), Snackbar.LENGTH_LONG);
+        if (errors.size() > 0) {
+            bar.setAction(R.string.details, v -> {
+                List<String> messages = new ArrayList<>();
+                for (DatabaseImporterEntryException e : errors) {
+                    messages.add(e.getMessage());
+                }
+
+                String message = TextUtils.join("\n\n", messages);
+                Dialogs.showSecureDialog(new AlertDialog.Builder(getActivity())
+                        .setTitle(R.string.import_error_title)
+                        .setMessage(message)
+                        .setPositiveButton(android.R.string.ok, null)
+                        .setNeutralButton(android.R.string.copy, (dialog, which) -> {
+                            ClipboardManager clipboard = (ClipboardManager) getActivity().getSystemService(Context.CLIPBOARD_SERVICE);
+                            ClipData clip = ClipData.newPlainText("text/plain", message);
+                            clipboard.setPrimaryClip(clip);
+                            Toast.makeText(getActivity(), getString(R.string.errors_copied), Toast.LENGTH_SHORT).show();
+                        })
+                        .create());
+            });
+        }
         bar.show();
     }
 
