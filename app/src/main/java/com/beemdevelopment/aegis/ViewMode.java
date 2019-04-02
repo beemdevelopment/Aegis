@@ -2,7 +2,8 @@ package com.beemdevelopment.aegis;
 
 public enum ViewMode {
     NORMAL,
-    COMPACT;
+    COMPACT,
+    SMALL;
 
     public static ViewMode fromInteger(int x) {
         switch(x) {
@@ -10,6 +11,8 @@ public enum ViewMode {
                 return NORMAL;
             case 1:
                 return COMPACT;
+            case 2:
+                return SMALL;
         }
         return null;
     }
@@ -20,6 +23,8 @@ public enum ViewMode {
                 return "Normal";
             case 1:
                 return "Compact";
+            case 2:
+                return "Small";
         }
         return null;
     }
@@ -27,7 +32,8 @@ public enum ViewMode {
     public static String[] getViewModeNames() {
         return new String[] {
                 "Normal",
-                "Compact"
+                "Compact",
+                "Small"
         };
     }
 }

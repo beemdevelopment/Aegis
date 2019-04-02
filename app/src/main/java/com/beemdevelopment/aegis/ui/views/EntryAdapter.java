@@ -209,11 +209,13 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
 
     @Override
     public EntryHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_entry_compact, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_entry, parent, false);
         if (_viewMode == ViewMode.NORMAL) {
             view = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_entry, parent, false);
         } else if (_viewMode == ViewMode.COMPACT) {
             view = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_entry_compact, parent, false);
+        } else if (_viewMode == ViewMode.SMALL) {
+            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_entry_small, parent, false);
         }
 
         return new EntryHolder(view);

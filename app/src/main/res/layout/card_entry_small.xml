@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:foreground="?android:attr/selectableItemBackground"
+    android:clickable="true"
+    android:focusable="true"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="20dp"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:background="?attr/cardBackground"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:paddingLeft="16dp">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/ivTextDrawable"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_centerVertical="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_alignParentBottom="false"
+            android:layout_alignParentTop="false"
+            android:layout_alignWithParentIfMissing="false"
+            android:gravity="bottom"
+            android:id="@+id/relativeLayout"
+            android:layout_alignParentStart="false"
+            android:paddingTop="6dp"
+            android:paddingBottom="8dp"
+            android:paddingEnd="8dp"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:paddingStart="8dp">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/profile_issuer"
+                android:text="@string/issuer"
+                android:textColor="?attr/secondaryText"
+                android:includeFontPadding="false"
+                android:textSize="13sp"
+                android:layout_below="@+id/profile_code"
+                android:layout_alignLeft="@+id/profile_code"
+                android:layout_alignStart="@+id/profile_code"
+                android:ellipsize="end"
+                android:maxLines="1"/>
+
+            <TextView
+                android:id="@+id/profile_account_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/profile_code"
+                android:layout_toRightOf="@id/profile_issuer"
+                android:ellipsize="end"
+                android:includeFontPadding="false"
+                android:maxLines="1"
+                android:textColor="@color/extra_info_text"
+                android:textSize="13sp"
+                tools:text=" - AccountName" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:fontFamily="sans-serif-light"
+                tools:text="012 345"
+                android:id="@+id/profile_code"
+                android:includeFontPadding="false"
+                android:textSize="26sp"
+                android:textColor="?attr/codePrimaryText"
+                android:layout_marginLeft="6dp"
+                android:layout_marginStart="6dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="0dp"
+                android:textStyle="normal|bold"/>
+
+        </RelativeLayout>
+        <ImageView
+            android:id="@+id/buttonRefresh"
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:padding="8dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:src="@drawable/ic_refresh_black_24dp"
+            android:tint="?attr/iconColorPrimary"
+            android:background="?android:attr/selectableItemBackground" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:padding="0dp"
+        android:layout_margin="0dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.beemdevelopment.aegis.ui.views.PeriodProgressBar
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="3dp"
+            android:id="@+id/progressBar"
+            android:max="1000"
+            android:layout_weight="1"/>
+    </LinearLayout>
+</LinearLayout>
