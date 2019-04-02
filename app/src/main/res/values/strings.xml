@@ -11,6 +11,9 @@
     <string name="title_activity_intro">IntroActivity</string>
 
     <string name="settings">Preferences</string>
+    <string name="pref_appearance_group_title">Appearance</string>
+    <string name="pref_security_group_title">Security</string>
+    <string name="pref_tools_group_title">Tools</string>
     <string name="pref_select_theme_title">Theme</string>
     <string name="pref_view_mode_title">View mode</string>
     <string name="pref_account_name_title">Show the account name</string>
