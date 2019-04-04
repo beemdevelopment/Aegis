@@ -41,7 +41,7 @@ public class CustomAuthenticatedSlide extends Fragment implements FingerprintUiH
     private FingerprintUiHelper _fingerHelper;
     private KeyStoreHandle _storeHandle;
     private FingerprintSlot _fingerSlot;
-    private Cipher _fingerCipher;
+    private FingerprintManager.CryptoObject _fingerCryptoObj;
     private boolean _fingerAuthenticated;
 
     @Override
@@ -71,7 +71,7 @@ public class CustomAuthenticatedSlide extends Fragment implements FingerprintUiH
     }
 
     public Cipher getFingerCipher() {
-        return _fingerCipher;
+        return _fingerCryptoObj.getCipher();
     }
 
     public FingerprintSlot getFingerSlot() {
@@ -111,11 +111,12 @@ public class CustomAuthenticatedSlide extends Fragment implements FingerprintUiH
                 }
 
                 try {
-                    _fingerCipher = Slot.createEncryptCipher(key);
+                    Cipher cipher = Slot.createEncryptCipher(key);
+                    _fingerCryptoObj = new FingerprintManager.CryptoObject(cipher);
                 } catch (Exception e) {
                     throw new RuntimeException(e);
                 }
-                _fingerHelper.startListening(new FingerprintManager.CryptoObject(_fingerCipher));
+                _fingerHelper.startListening(_fingerCryptoObj);
                 break;
             default:
                 throw new RuntimeException();

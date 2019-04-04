@@ -39,7 +39,7 @@ public class AuthActivity extends AegisActivity implements FingerprintUiHelper.C
 
     private SlotList _slots;
     private FingerprintUiHelper _fingerHelper;
-    private Cipher _fingerCipher;
+    private FingerprintManager.CryptoObject _fingerCryptoObj;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,7 +84,8 @@ public class AuthActivity extends AegisActivity implements FingerprintUiHelper.C
                             invalidated = true;
                             continue;
                         }
-                        _fingerCipher = slot.createDecryptCipher(key);
+                        Cipher cipher = slot.createDecryptCipher(key);
+                        _fingerCryptoObj = new FingerprintManager.CryptoObject(cipher);
                         _fingerHelper = new FingerprintUiHelper(manager, imgFingerprint, textFingerprint, this);
                         boxFingerprint.setVisibility(View.VISIBLE);
                         invalidated = false;
@@ -142,7 +143,7 @@ public class AuthActivity extends AegisActivity implements FingerprintUiHelper.C
         super.onResume();
 
         if (_fingerHelper != null) {
-            _fingerHelper.startListening(new FingerprintManager.CryptoObject(_fingerCipher));
+            _fingerHelper.startListening(_fingerCryptoObj);
         }
     }
 
@@ -157,7 +158,7 @@ public class AuthActivity extends AegisActivity implements FingerprintUiHelper.C
 
     @Override
     public void onAuthenticated() {
-        trySlots(FingerprintSlot.class, _fingerCipher);
+        trySlots(FingerprintSlot.class, _fingerCryptoObj.getCipher());
     }
 
     @Override

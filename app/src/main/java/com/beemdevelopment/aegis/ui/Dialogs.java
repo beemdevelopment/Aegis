@@ -178,7 +178,7 @@ public class Dialogs {
         TextView textFingerprint = view.findViewById(R.id.text_fingerprint);
         SwirlView imgFingerprint = view.findViewById(R.id.img_fingerprint);
 
-        Cipher cipher;
+        FingerprintManager.CryptoObject obj;
         FingerprintSlot slot;
         final AtomicReference<FingerprintUiHelper> helper = new AtomicReference<>();
         FingerprintManager manager = FingerprintHelper.getManager(activity);
@@ -186,7 +186,8 @@ public class Dialogs {
         try {
             slot = new FingerprintSlot();
             SecretKey key = new KeyStoreHandle().generateKey(slot.getUUID().toString());
-            cipher = Slot.createEncryptCipher(key);
+            Cipher cipher = Slot.createEncryptCipher(key);
+            obj = new FingerprintManager.CryptoObject(cipher);
         } catch (KeyStoreHandleException | SlotException e) {
             throw new RuntimeException(e);
         }
@@ -203,7 +204,7 @@ public class Dialogs {
         helper.set(new FingerprintUiHelper(manager, imgFingerprint, textFingerprint, new FingerprintUiHelper.Callback() {
             @Override
             public void onAuthenticated() {
-                listener.onSlotResult(slot, cipher);
+                listener.onSlotResult(slot, obj.getCipher());
                 dialog.dismiss();
             }
 
@@ -213,7 +214,7 @@ public class Dialogs {
             }
         }));
 
-        helper.get().startListening(new FingerprintManager.CryptoObject(cipher));
+        helper.get().startListening(obj);
         showSecureDialog(dialog);
     }
 
