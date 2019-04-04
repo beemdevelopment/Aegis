@@ -14,6 +14,7 @@ import java.security.NoSuchAlgorithmException;
 import java.security.NoSuchProviderException;
 import java.security.UnrecoverableKeyException;
 import java.security.cert.CertificateException;
+import java.util.Collections;
 
 import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;
@@ -95,6 +96,16 @@ public class KeyStoreHandle {
     public void deleteKey(String id) throws KeyStoreHandleException {
         try {
             _keyStore.deleteEntry(id);
+        } catch (KeyStoreException e) {
+            throw new KeyStoreHandleException(e);
+        }
+    }
+
+    public void clear() throws KeyStoreHandleException {
+        try {
+            for (String alias : Collections.list(_keyStore.aliases())) {
+                deleteKey(alias);
+            }
         } catch (KeyStoreException e) {
             throw new KeyStoreHandleException(e);
         }

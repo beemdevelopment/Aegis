@@ -119,7 +119,8 @@
     <string name="saving_error">An error occurred while trying to save the vault</string>
     <string name="disable_encryption">Disable encryption</string>
     <string name="disable_encryption_description">Are you sure you want to disable encryption? This will cause the vault to be stored in plain text.</string>
-    <string name="encrypting_error">An error occurred while enabling encryption</string>
+    <string name="enable_encryption_error">An error occurred while enabling encryption</string>
+    <string name="disable_encryption_error">An error occurred while disabling encryption</string>
     <string name="permission_denied">Permission denied</string>
     <string name="choose_application">Select the application you\'d like to import a database from</string>
     <string name="choose_theme">Select your desired theme</string>

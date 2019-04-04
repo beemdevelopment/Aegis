@@ -20,6 +20,8 @@ import com.beemdevelopment.aegis.BuildConfig;
 import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.Theme;
 import com.beemdevelopment.aegis.ViewMode;
+import com.beemdevelopment.aegis.crypto.KeyStoreHandle;
+import com.beemdevelopment.aegis.crypto.KeyStoreHandleException;
 import com.beemdevelopment.aegis.db.DatabaseEntry;
 import com.beemdevelopment.aegis.db.DatabaseFileCredentials;
 import com.beemdevelopment.aegis.db.DatabaseManager;
@@ -257,8 +259,18 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
                                     try {
                                         _db.disableEncryption();
                                     } catch (DatabaseManagerException e) {
-                                        Toast.makeText(getActivity(), getString(R.string.encrypting_error), Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(getActivity(), getString(R.string.disable_encryption_error), Toast.LENGTH_SHORT).show();
+                                        return;
                                     }
+
+                                    // clear the KeyStore
+                                    try {
+                                        KeyStoreHandle handle = new KeyStoreHandle();
+                                        handle.clear();
+                                    } catch (KeyStoreHandleException e) {
+                                        e.printStackTrace();
+                                    }
+
                                     updateEncryptionPreferences();
                                 }
                             })
@@ -283,6 +295,14 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
                     FingerprintSlot slot = slots.find(FingerprintSlot.class);
                     slots.remove(slot);
                     _db.setCredentials(creds);
+
+                    // remove the KeyStore key
+                    try {
+                        KeyStoreHandle handle = new KeyStoreHandle();
+                        handle.deleteKey(slot.getUUID().toString());
+                    } catch (KeyStoreHandleException e) {
+                        e.printStackTrace();
+                    }
 
                     saveDatabase();
                     updateEncryptionPreferences();

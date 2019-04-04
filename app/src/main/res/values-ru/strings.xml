@@ -106,7 +106,7 @@
     <string name="saving_error">Произошла ошибка при попытке сохранить хранилище</string>
     <string name="disable_encryption">Отключить шифрование</string>
     <string name="disable_encryption_description">Вы уверены что хотите отключить шифрование? Это приведет к хранению хранилища в виде простого текста.</string>
-    <string name="encrypting_error">Произошла ошибка при включении шифрования</string>
+    <string name="enable_encryption_error">Произошла ошибка при включении шифрования</string>
     <string name="permission_denied">Доступ запрещен</string>
     <string name="choose_application">Выберите приложение из которого вы хотите импортировать базу данных.</string>
     <string name="choose_theme">Выберите тему</string>
