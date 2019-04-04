@@ -2,30 +2,29 @@ package com.beemdevelopment.aegis.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AlertDialog;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.crypto.KeyStoreHandle;
 import com.beemdevelopment.aegis.crypto.KeyStoreHandleException;
 import com.beemdevelopment.aegis.db.DatabaseFileCredentials;
+import com.beemdevelopment.aegis.db.slots.FingerprintSlot;
+import com.beemdevelopment.aegis.db.slots.PasswordSlot;
+import com.beemdevelopment.aegis.db.slots.Slot;
+import com.beemdevelopment.aegis.db.slots.SlotException;
+import com.beemdevelopment.aegis.db.slots.SlotList;
 import com.beemdevelopment.aegis.helpers.FingerprintHelper;
 import com.beemdevelopment.aegis.ui.views.SlotAdapter;
 
 import javax.crypto.Cipher;
 
-import com.beemdevelopment.aegis.R;
-
-import com.beemdevelopment.aegis.db.slots.FingerprintSlot;
-import com.beemdevelopment.aegis.db.slots.PasswordSlot;
-import com.beemdevelopment.aegis.db.slots.Slot;
-import com.beemdevelopment.aegis.db.slots.SlotList;
-import com.beemdevelopment.aegis.db.slots.SlotException;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 public class SlotManagerActivity extends AegisActivity implements SlotAdapter.Listener, Dialogs.SlotListener {
     private DatabaseFileCredentials _creds;

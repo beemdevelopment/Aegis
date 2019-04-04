@@ -3,7 +3,6 @@ package com.beemdevelopment.aegis.ui;
 import android.content.Intent;
 import android.hardware.fingerprint.FingerprintManager;
 import android.os.Build;
-import androidx.appcompat.app.AlertDialog;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
@@ -14,28 +13,26 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.crypto.KeyStoreHandle;
 import com.beemdevelopment.aegis.crypto.KeyStoreHandleException;
 import com.beemdevelopment.aegis.crypto.MasterKey;
 import com.beemdevelopment.aegis.db.DatabaseFileCredentials;
+import com.beemdevelopment.aegis.db.slots.FingerprintSlot;
+import com.beemdevelopment.aegis.db.slots.PasswordSlot;
+import com.beemdevelopment.aegis.db.slots.Slot;
+import com.beemdevelopment.aegis.db.slots.SlotException;
+import com.beemdevelopment.aegis.db.slots.SlotList;
 import com.beemdevelopment.aegis.helpers.EditTextHelper;
 import com.beemdevelopment.aegis.helpers.FingerprintHelper;
 import com.beemdevelopment.aegis.helpers.FingerprintUiHelper;
 import com.beemdevelopment.aegis.ui.tasks.SlotListTask;
 import com.mattprecious.swirl.SwirlView;
 
-import java.lang.reflect.UndeclaredThrowableException;
-
 import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
 
-import com.beemdevelopment.aegis.R;
-
-import com.beemdevelopment.aegis.db.slots.FingerprintSlot;
-import com.beemdevelopment.aegis.db.slots.PasswordSlot;
-import com.beemdevelopment.aegis.db.slots.Slot;
-import com.beemdevelopment.aegis.db.slots.SlotList;
-import com.beemdevelopment.aegis.db.slots.SlotException;
+import androidx.appcompat.app.AlertDialog;
 
 public class AuthActivity extends AegisActivity implements FingerprintUiHelper.Callback, SlotListTask.Callback {
     private EditText _textPassword;
@@ -95,7 +92,7 @@ public class AuthActivity extends AegisActivity implements FingerprintUiHelper.C
                     }
                 }
             } catch (KeyStoreHandleException | SlotException e) {
-                throw new UndeclaredThrowableException(e);
+                throw new RuntimeException(e);
             }
 
             // display a help message if a matching invalidated keystore entry was found

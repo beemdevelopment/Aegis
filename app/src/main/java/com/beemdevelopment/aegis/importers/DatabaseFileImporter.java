@@ -2,14 +2,12 @@ package com.beemdevelopment.aegis.importers;
 
 import android.content.Context;
 
+import com.beemdevelopment.aegis.util.ByteInputStream;
+
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collections;
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
-
-import com.beemdevelopment.aegis.db.DatabaseEntry;
-import com.beemdevelopment.aegis.util.ByteInputStream;
 
 public abstract class DatabaseFileImporter implements DatabaseImporter {
     private static Map<String, Class<? extends DatabaseFileImporter>> _importers;

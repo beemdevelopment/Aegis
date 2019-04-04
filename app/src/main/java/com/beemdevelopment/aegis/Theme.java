@@ -6,7 +6,7 @@ public enum Theme {
     AMOLED;
 
     public static Theme fromInteger(int x) {
-        switch(x) {
+        switch (x) {
             case 0:
                 return LIGHT;
             case 1:
@@ -18,7 +18,7 @@ public enum Theme {
     }
 
     public static String getThemeName(int x) {
-        switch(x) {
+        switch (x) {
             case 0:
                 return "Light theme";
             case 1:
@@ -30,7 +30,7 @@ public enum Theme {
     }
 
     public static String[] getThemeNames() {
-        return new String[] {
+        return new String[]{
                 "Light theme",
                 "Dark theme",
                 "Amoled theme"

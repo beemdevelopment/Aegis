@@ -1,13 +1,13 @@
 package com.beemdevelopment.aegis.db;
 
-import androidx.annotation.NonNull;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.UUID;
+
+import androidx.annotation.NonNull;
 
 public class DatabaseEntryList implements Iterable<DatabaseEntry>, Serializable {
     private List<DatabaseEntry> _entries = new ArrayList<>();

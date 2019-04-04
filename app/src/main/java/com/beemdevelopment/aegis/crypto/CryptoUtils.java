@@ -2,6 +2,8 @@ package com.beemdevelopment.aegis.crypto;
 
 import android.os.Build;
 
+import org.spongycastle.crypto.generators.SCrypt;
+
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.nio.ByteBuffer;
@@ -23,8 +25,6 @@ import javax.crypto.SecretKey;
 import javax.crypto.spec.GCMParameterSpec;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
-
-import org.spongycastle.crypto.generators.SCrypt;
 
 public class CryptoUtils {
     public static final String CRYPTO_AEAD = "AES/GCM/NoPadding";

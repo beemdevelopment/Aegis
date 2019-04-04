@@ -1,11 +1,12 @@
 package com.beemdevelopment.aegis.ui.views;
 
-import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.beemdevelopment.aegis.R;
+
+import androidx.recyclerview.widget.RecyclerView;
 
 public class GroupHolder extends RecyclerView.ViewHolder {
     private TextView _slotName;

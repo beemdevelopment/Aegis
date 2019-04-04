@@ -10,21 +10,25 @@ import android.content.Intent;
 import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.Bundle;
-import androidx.appcompat.app.AlertDialog;
-import androidx.preference.Preference;
-
 import android.text.TextUtils;
-import android.view.Gravity;
-import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.AdapterView;
 import android.widget.Toast;
 
-import com.beemdevelopment.aegis.Preferences;
+import com.beemdevelopment.aegis.AegisApplication;
+import com.beemdevelopment.aegis.BuildConfig;
+import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.Theme;
 import com.beemdevelopment.aegis.ViewMode;
+import com.beemdevelopment.aegis.db.DatabaseEntry;
 import com.beemdevelopment.aegis.db.DatabaseFileCredentials;
+import com.beemdevelopment.aegis.db.DatabaseManager;
+import com.beemdevelopment.aegis.db.DatabaseManagerException;
+import com.beemdevelopment.aegis.db.slots.FingerprintSlot;
+import com.beemdevelopment.aegis.db.slots.PasswordSlot;
+import com.beemdevelopment.aegis.db.slots.Slot;
+import com.beemdevelopment.aegis.db.slots.SlotException;
+import com.beemdevelopment.aegis.db.slots.SlotList;
 import com.beemdevelopment.aegis.helpers.FingerprintHelper;
 import com.beemdevelopment.aegis.helpers.PermissionHelper;
 import com.beemdevelopment.aegis.importers.AegisFileImporter;
@@ -38,6 +42,7 @@ import com.beemdevelopment.aegis.ui.preferences.SwitchPreference;
 import com.beemdevelopment.aegis.util.ByteInputStream;
 import com.google.android.material.snackbar.Snackbar;
 import com.takisoft.preferencex.PreferenceFragmentCompat;
+import com.topjohnwu.superuser.Shell;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -51,18 +56,8 @@ import java.util.concurrent.atomic.AtomicReference;
 
 import javax.crypto.Cipher;
 
-import com.beemdevelopment.aegis.AegisApplication;
-import com.beemdevelopment.aegis.BuildConfig;
-import com.beemdevelopment.aegis.R;
-import com.beemdevelopment.aegis.db.DatabaseEntry;
-import com.beemdevelopment.aegis.db.DatabaseManager;
-import com.beemdevelopment.aegis.db.DatabaseManagerException;
-import com.beemdevelopment.aegis.db.slots.FingerprintSlot;
-import com.beemdevelopment.aegis.db.slots.PasswordSlot;
-import com.beemdevelopment.aegis.db.slots.Slot;
-import com.beemdevelopment.aegis.db.slots.SlotException;
-import com.beemdevelopment.aegis.db.slots.SlotList;
-import com.topjohnwu.superuser.Shell;
+import androidx.appcompat.app.AlertDialog;
+import androidx.preference.Preference;
 
 public class PreferencesFragment extends PreferenceFragmentCompat {
     // activity request codes

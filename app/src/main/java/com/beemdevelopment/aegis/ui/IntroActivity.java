@@ -2,35 +2,34 @@ package com.beemdevelopment.aegis.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
-import androidx.fragment.app.Fragment;
 import android.view.WindowManager;
 
-import com.github.paolorotolo.appintro.AppIntro2;
-import com.github.paolorotolo.appintro.AppIntroFragment;
-import com.github.paolorotolo.appintro.model.SliderPage;
+import com.beemdevelopment.aegis.Preferences;
+import com.beemdevelopment.aegis.R;
+import com.beemdevelopment.aegis.db.Database;
+import com.beemdevelopment.aegis.db.DatabaseFile;
 import com.beemdevelopment.aegis.db.DatabaseFileCredentials;
+import com.beemdevelopment.aegis.db.DatabaseFileException;
+import com.beemdevelopment.aegis.db.DatabaseManager;
+import com.beemdevelopment.aegis.db.DatabaseManagerException;
+import com.beemdevelopment.aegis.db.slots.FingerprintSlot;
+import com.beemdevelopment.aegis.db.slots.PasswordSlot;
+import com.beemdevelopment.aegis.db.slots.Slot;
+import com.beemdevelopment.aegis.db.slots.SlotException;
+import com.beemdevelopment.aegis.db.slots.SlotList;
 import com.beemdevelopment.aegis.ui.slides.CustomAuthenticatedSlide;
 import com.beemdevelopment.aegis.ui.slides.CustomAuthenticationSlide;
 import com.beemdevelopment.aegis.ui.tasks.DerivationTask;
+import com.github.paolorotolo.appintro.AppIntro2;
+import com.github.paolorotolo.appintro.AppIntroFragment;
+import com.github.paolorotolo.appintro.model.SliderPage;
 
 import org.json.JSONObject;
 
 import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
 
-import com.beemdevelopment.aegis.Preferences;
-import com.beemdevelopment.aegis.R;
-
-import com.beemdevelopment.aegis.db.DatabaseFileException;
-import com.beemdevelopment.aegis.db.DatabaseManagerException;
-import com.beemdevelopment.aegis.db.slots.FingerprintSlot;
-import com.beemdevelopment.aegis.db.slots.PasswordSlot;
-import com.beemdevelopment.aegis.db.slots.Slot;
-import com.beemdevelopment.aegis.db.slots.SlotList;
-import com.beemdevelopment.aegis.db.Database;
-import com.beemdevelopment.aegis.db.DatabaseFile;
-import com.beemdevelopment.aegis.db.DatabaseManager;
-import com.beemdevelopment.aegis.db.slots.SlotException;
+import androidx.fragment.app.Fragment;
 
 public class IntroActivity extends AppIntro2 implements DerivationTask.Callback {
     public static final int RESULT_OK = 0;

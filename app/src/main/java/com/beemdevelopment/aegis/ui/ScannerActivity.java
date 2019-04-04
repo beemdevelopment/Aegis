@@ -8,19 +8,19 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.Theme;
-import com.google.zxing.BarcodeFormat;
-import com.google.zxing.Result;
+import com.beemdevelopment.aegis.db.DatabaseEntry;
 import com.beemdevelopment.aegis.helpers.SquareFinderView;
 import com.beemdevelopment.aegis.otp.GoogleAuthInfo;
 import com.beemdevelopment.aegis.otp.GoogleAuthInfoException;
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.Result;
 
 import java.util.Collections;
 
 import me.dm7.barcodescanner.core.IViewFinder;
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
-import com.beemdevelopment.aegis.R;
-import com.beemdevelopment.aegis.db.DatabaseEntry;
 
 import static android.hardware.Camera.CameraInfo.CAMERA_FACING_BACK;
 import static android.hardware.Camera.CameraInfo.CAMERA_FACING_FRONT;

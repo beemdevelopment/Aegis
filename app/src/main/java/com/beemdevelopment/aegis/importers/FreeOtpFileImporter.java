@@ -3,6 +3,13 @@ package com.beemdevelopment.aegis.importers;
 import android.content.Context;
 import android.util.Xml;
 
+import com.beemdevelopment.aegis.db.DatabaseEntry;
+import com.beemdevelopment.aegis.otp.HotpInfo;
+import com.beemdevelopment.aegis.otp.OtpInfo;
+import com.beemdevelopment.aegis.otp.OtpInfoException;
+import com.beemdevelopment.aegis.otp.TotpInfo;
+import com.beemdevelopment.aegis.util.ByteInputStream;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -12,13 +19,6 @@ import org.xmlpull.v1.XmlPullParserException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
-import com.beemdevelopment.aegis.db.DatabaseEntry;
-import com.beemdevelopment.aegis.otp.HotpInfo;
-import com.beemdevelopment.aegis.otp.OtpInfo;
-import com.beemdevelopment.aegis.otp.OtpInfoException;
-import com.beemdevelopment.aegis.otp.TotpInfo;
-import com.beemdevelopment.aegis.util.ByteInputStream;
 
 public class FreeOtpFileImporter extends DatabaseFileImporter {
     private List<XmlEntry> _xmlEntries;

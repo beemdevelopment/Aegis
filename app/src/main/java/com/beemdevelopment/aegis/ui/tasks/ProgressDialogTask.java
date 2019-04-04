@@ -4,8 +4,10 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Process;
-import androidx.annotation.CallSuper;
+
 import com.beemdevelopment.aegis.ui.Dialogs;
+
+import androidx.annotation.CallSuper;
 
 public abstract class ProgressDialogTask<Params, Result> extends AsyncTask<Params, Void, Result> {
     private ProgressDialog _dialog;

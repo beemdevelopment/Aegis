@@ -13,7 +13,7 @@ public enum SortCategory {
     ISSUERREVERSED;
 
     public static SortCategory fromInteger(int x) {
-        switch(x) {
+        switch (x) {
             case 0:
                 return CUSTOM;
             case 1:
@@ -29,7 +29,7 @@ public enum SortCategory {
     }
 
     public static Comparator getComparator(SortCategory sortCategory) {
-        switch(sortCategory) {
+        switch (sortCategory) {
             case ACCOUNT:
             case ACCOUNTREVERSED:
                 return new AccountNameComparator();
@@ -43,7 +43,7 @@ public enum SortCategory {
     }
 
     public static boolean isReversed(SortCategory sortCategory) {
-        switch(sortCategory) {
+        switch (sortCategory) {
             case ACCOUNTREVERSED:
             case ISSUERREVERSED:
                 return true;
@@ -65,7 +65,6 @@ public enum SortCategory {
                 return R.id.menu_sort_alphabetically;
             case ISSUERREVERSED:
                 return R.id.menu_sort_alphabetically_reverse;
-
             default:
                 return R.id.menu_sort_custom;
         }

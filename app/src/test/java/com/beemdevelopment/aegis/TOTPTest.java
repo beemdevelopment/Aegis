@@ -1,14 +1,11 @@
 package com.beemdevelopment.aegis;
 
-import org.junit.Test;
-
 import com.beemdevelopment.aegis.crypto.otp.OTP;
 import com.beemdevelopment.aegis.crypto.otp.TOTP;
-import com.beemdevelopment.aegis.encoding.Hex;
 import com.beemdevelopment.aegis.encoding.HexException;
 
-import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
+import org.junit.Test;
+
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 

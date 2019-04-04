@@ -2,14 +2,12 @@ package com.beemdevelopment.aegis.ui.tasks;
 
 import android.content.Context;
 
+import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.crypto.CryptoUtils;
 import com.beemdevelopment.aegis.crypto.SCryptParameters;
+import com.beemdevelopment.aegis.db.slots.PasswordSlot;
 
 import javax.crypto.SecretKey;
-
-import com.beemdevelopment.aegis.R;
-
-import com.beemdevelopment.aegis.db.slots.PasswordSlot;
 
 public class DerivationTask extends ProgressDialogTask<DerivationTask.Params, SecretKey> {
     private Callback _cb;

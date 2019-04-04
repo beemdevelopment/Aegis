@@ -3,12 +3,13 @@ package com.beemdevelopment.aegis.ui.views;
 import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.os.Build;
-import androidx.annotation.RequiresApi;
 import android.util.AttributeSet;
 import android.view.animation.LinearInterpolator;
 import android.widget.ProgressBar;
 
 import com.beemdevelopment.aegis.otp.TotpInfo;
+
+import androidx.annotation.RequiresApi;
 
 public class PeriodProgressBar extends ProgressBar {
     private int _period;

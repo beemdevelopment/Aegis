@@ -1,12 +1,12 @@
 package com.beemdevelopment.aegis;
 
+import com.beemdevelopment.aegis.crypto.otp.HOTP;
+import com.beemdevelopment.aegis.crypto.otp.OTP;
+
 import org.junit.Test;
 
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
-
-import com.beemdevelopment.aegis.crypto.otp.HOTP;
-import com.beemdevelopment.aegis.crypto.otp.OTP;
 
 import static org.junit.Assert.*;
 

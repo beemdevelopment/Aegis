@@ -22,12 +22,12 @@ package com.beemdevelopment.aegis.helpers;
 import android.hardware.fingerprint.FingerprintManager;
 import android.os.Build;
 import android.os.CancellationSignal;
-import androidx.annotation.RequiresApi;
 import android.widget.TextView;
 
+import com.beemdevelopment.aegis.R;
 import com.mattprecious.swirl.SwirlView;
 
-import com.beemdevelopment.aegis.R;
+import androidx.annotation.RequiresApi;
 
 /**
  * Small helper class to manage text/icon around fingerprint authentication UI.

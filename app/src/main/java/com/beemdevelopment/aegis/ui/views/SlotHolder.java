@@ -1,21 +1,20 @@
 package com.beemdevelopment.aegis.ui.views;
 
-import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.crypto.KeyStoreHandle;
 import com.beemdevelopment.aegis.crypto.KeyStoreHandleException;
-import com.beemdevelopment.aegis.helpers.FingerprintHelper;
-
-import com.beemdevelopment.aegis.R;
-
 import com.beemdevelopment.aegis.db.slots.FingerprintSlot;
 import com.beemdevelopment.aegis.db.slots.PasswordSlot;
 import com.beemdevelopment.aegis.db.slots.RawSlot;
 import com.beemdevelopment.aegis.db.slots.Slot;
+import com.beemdevelopment.aegis.helpers.FingerprintHelper;
+
+import androidx.recyclerview.widget.RecyclerView;
 
 public class SlotHolder extends RecyclerView.ViewHolder {
     private TextView _slotUsed;

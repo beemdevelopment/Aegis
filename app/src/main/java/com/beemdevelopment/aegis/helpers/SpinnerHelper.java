@@ -1,11 +1,12 @@
 package com.beemdevelopment.aegis.helpers;
 
 import android.content.Context;
-import androidx.annotation.ArrayRes;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
 import java.util.List;
+
+import androidx.annotation.ArrayRes;
 
 public class SpinnerHelper {
     private SpinnerHelper() {

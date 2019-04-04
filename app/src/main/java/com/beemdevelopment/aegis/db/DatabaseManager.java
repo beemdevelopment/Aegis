@@ -3,6 +3,9 @@ package com.beemdevelopment.aegis.db;
 import android.content.Context;
 import android.os.Environment;
 
+import com.beemdevelopment.aegis.BuildConfig;
+import com.beemdevelopment.aegis.R;
+
 import org.json.JSONObject;
 
 import java.io.DataInputStream;
@@ -14,9 +17,6 @@ import java.text.Collator;
 import java.util.List;
 import java.util.TreeSet;
 import java.util.UUID;
-
-import com.beemdevelopment.aegis.BuildConfig;
-import com.beemdevelopment.aegis.R;
 
 public class DatabaseManager {
     private static final String FILENAME = "aegis.json";

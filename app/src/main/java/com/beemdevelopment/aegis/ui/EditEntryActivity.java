@@ -10,9 +10,6 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
-import androidx.annotation.ArrayRes;
-import androidx.appcompat.app.ActionBar;
-
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.Menu;
@@ -30,6 +27,8 @@ import android.widget.TableRow;
 
 import com.amulyakhare.textdrawable.TextDrawable;
 import com.avito.android.krop.KropView;
+import com.beemdevelopment.aegis.R;
+import com.beemdevelopment.aegis.db.DatabaseEntry;
 import com.beemdevelopment.aegis.encoding.Base32;
 import com.beemdevelopment.aegis.encoding.Base32Exception;
 import com.beemdevelopment.aegis.helpers.EditTextHelper;
@@ -54,10 +53,10 @@ import java.util.List;
 import java.util.TreeSet;
 import java.util.concurrent.atomic.AtomicReference;
 
+import androidx.annotation.ArrayRes;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import de.hdodenhof.circleimageview.CircleImageView;
-import com.beemdevelopment.aegis.R;
-import com.beemdevelopment.aegis.db.DatabaseEntry;
 
 public class EditEntryActivity extends AegisActivity {
     private static final int PICK_IMAGE_REQUEST = 0;

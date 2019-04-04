@@ -4,10 +4,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.beemdevelopment.aegis.R;
+
 import java.util.ArrayList;
 
 import androidx.recyclerview.widget.RecyclerView;
-import com.beemdevelopment.aegis.R;
 
 public class GroupAdapter extends RecyclerView.Adapter<GroupHolder> {
     private GroupAdapter.Listener _listener;

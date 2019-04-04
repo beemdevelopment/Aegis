@@ -4,10 +4,9 @@ import com.beemdevelopment.aegis.crypto.CryptParameters;
 import com.beemdevelopment.aegis.crypto.CryptResult;
 import com.beemdevelopment.aegis.crypto.MasterKey;
 import com.beemdevelopment.aegis.crypto.MasterKeyException;
+import com.beemdevelopment.aegis.db.slots.SlotList;
 
 import java.io.Serializable;
-
-import com.beemdevelopment.aegis.db.slots.SlotList;
 
 public class DatabaseFileCredentials implements Serializable {
     private MasterKey _key;

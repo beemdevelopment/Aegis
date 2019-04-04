@@ -14,8 +14,14 @@ import android.widget.EditText;
 import android.widget.NumberPicker;
 import android.widget.TextView;
 
+import com.beemdevelopment.aegis.Preferences;
+import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.crypto.KeyStoreHandle;
 import com.beemdevelopment.aegis.crypto.KeyStoreHandleException;
+import com.beemdevelopment.aegis.db.slots.FingerprintSlot;
+import com.beemdevelopment.aegis.db.slots.PasswordSlot;
+import com.beemdevelopment.aegis.db.slots.Slot;
+import com.beemdevelopment.aegis.db.slots.SlotException;
 import com.beemdevelopment.aegis.helpers.EditTextHelper;
 import com.beemdevelopment.aegis.helpers.FingerprintHelper;
 import com.beemdevelopment.aegis.helpers.FingerprintUiHelper;
@@ -29,14 +35,6 @@ import javax.crypto.SecretKey;
 
 import androidx.annotation.StringRes;
 import androidx.appcompat.app.AlertDialog;
-
-import com.beemdevelopment.aegis.Preferences;
-import com.beemdevelopment.aegis.R;
-
-import com.beemdevelopment.aegis.db.slots.FingerprintSlot;
-import com.beemdevelopment.aegis.db.slots.PasswordSlot;
-import com.beemdevelopment.aegis.db.slots.Slot;
-import com.beemdevelopment.aegis.db.slots.SlotException;
 
 public class Dialogs {
     private Dialogs() {
@@ -130,8 +128,12 @@ public class Dialogs {
                 boolean equal = EditTextHelper.areEditTextsEqual(textPassword, textPasswordConfirm);
                 buttonOK.get().setEnabled(equal);
             }
-            public void beforeTextChanged(CharSequence c, int start, int count, int after) { }
-            public void afterTextChanged(Editable c) { }
+
+            public void beforeTextChanged(CharSequence c, int start, int count, int after) {
+            }
+
+            public void afterTextChanged(Editable c) {
+            }
         };
         textPassword.addTextChangedListener(watcher);
         textPasswordConfirm.addTextChangedListener(watcher);

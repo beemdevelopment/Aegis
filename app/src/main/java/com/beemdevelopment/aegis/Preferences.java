@@ -11,10 +11,6 @@ public class Preferences {
         _prefs = PreferenceManager.getDefaultSharedPreferences(context);
     }
 
-    public boolean isDarkModeEnabled() {
-        return _prefs.getBoolean("pref_dark_mode", false);
-    }
-
     public boolean isTapToRevealEnabled() {
         return _prefs.getBoolean("pref_tap_to_reveal", false);
     }
@@ -47,7 +43,6 @@ public class Preferences {
         return _prefs.getInt("pref_current_sort_category", 0);
     }
 
-
     public int getTapToRevealTime() {
         return _prefs.getInt("pref_tap_to_reveal_time", 30);
     }
@@ -58,7 +53,6 @@ public class Preferences {
 
     public void setCurrentTheme(Theme theme) {
         _prefs.edit().putInt("pref_current_theme", theme.ordinal()).apply();
-
     }
 
     public int getCurrentViewMode() {
@@ -67,10 +61,7 @@ public class Preferences {
 
     public void setCurrentViewMode(ViewMode viewMode) {
         _prefs.edit().putInt("pref_current_view_mode", viewMode.ordinal()).apply();
-
     }
-
-
 
     public int getTimeout() {
         return _prefs.getInt("pref_timeout", -1);

@@ -5,8 +5,6 @@ import android.content.Intent;
 import android.hardware.fingerprint.FingerprintManager;
 import android.os.Build;
 import android.os.Bundle;
-import com.google.android.material.snackbar.Snackbar;
-import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,23 +12,22 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.github.paolorotolo.appintro.ISlidePolicy;
-import com.github.paolorotolo.appintro.ISlideSelectionListener;
+import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.crypto.KeyStoreHandle;
 import com.beemdevelopment.aegis.crypto.KeyStoreHandleException;
+import com.beemdevelopment.aegis.db.slots.FingerprintSlot;
+import com.beemdevelopment.aegis.db.slots.Slot;
 import com.beemdevelopment.aegis.helpers.EditTextHelper;
 import com.beemdevelopment.aegis.helpers.FingerprintUiHelper;
+import com.github.paolorotolo.appintro.ISlidePolicy;
+import com.github.paolorotolo.appintro.ISlideSelectionListener;
+import com.google.android.material.snackbar.Snackbar;
 import com.mattprecious.swirl.SwirlView;
-
-import java.lang.reflect.UndeclaredThrowableException;
 
 import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
 
-import com.beemdevelopment.aegis.R;
-
-import com.beemdevelopment.aegis.db.slots.FingerprintSlot;
-import com.beemdevelopment.aegis.db.slots.Slot;
+import androidx.fragment.app.Fragment;
 
 public class CustomAuthenticatedSlide extends Fragment implements FingerprintUiHelper.Callback, ISlidePolicy, ISlideSelectionListener {
     private int _cryptType;
@@ -105,7 +102,7 @@ public class CustomAuthenticatedSlide extends Fragment implements FingerprintUiH
                     }
                     key = _storeHandle.generateKey(_fingerSlot.getUUID().toString());
                 } catch (KeyStoreHandleException e) {
-                    throw new UndeclaredThrowableException(e);
+                    throw new RuntimeException(e);
                 }
 
                 if (_fingerHelper == null) {
@@ -116,7 +113,7 @@ public class CustomAuthenticatedSlide extends Fragment implements FingerprintUiH
                 try {
                     _fingerCipher = Slot.createEncryptCipher(key);
                 } catch (Exception e) {
-                    throw new UndeclaredThrowableException(e);
+                    throw new RuntimeException(e);
                 }
                 _fingerHelper.startListening(new FingerprintManager.CryptoObject(_fingerCipher));
                 break;

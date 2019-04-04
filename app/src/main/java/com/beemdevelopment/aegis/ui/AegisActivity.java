@@ -1,13 +1,14 @@
 package com.beemdevelopment.aegis.ui;
 
 import android.os.Bundle;
-import androidx.appcompat.app.AppCompatActivity;
 import android.view.WindowManager;
 
 import com.beemdevelopment.aegis.AegisApplication;
 import com.beemdevelopment.aegis.Preferences;
 import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.Theme;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public abstract class AegisActivity extends AppCompatActivity {
     private AegisApplication _app;
@@ -39,11 +40,9 @@ public abstract class AegisActivity extends AppCompatActivity {
             case LIGHT:
                 setTheme(R.style.AppTheme);
                 break;
-
             case DARK:
                 setTheme(R.style.AppTheme_Dark);
                 break;
-
             case AMOLED:
                 setTheme(R.style.AppTheme_TrueBlack);
                 break;

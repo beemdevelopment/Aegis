@@ -1,14 +1,14 @@
 package com.beemdevelopment.aegis.ui.views;
 
-import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.SortCategory;
 import com.beemdevelopment.aegis.ViewMode;
+import com.beemdevelopment.aegis.db.DatabaseEntry;
 import com.beemdevelopment.aegis.helpers.ItemTouchHelperAdapter;
-import com.beemdevelopment.aegis.helpers.comparators.IssuerNameComparator;
 import com.beemdevelopment.aegis.otp.HotpInfo;
 import com.beemdevelopment.aegis.otp.OtpInfo;
 import com.beemdevelopment.aegis.otp.OtpInfoException;
@@ -19,8 +19,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 
-import com.beemdevelopment.aegis.R;
-import com.beemdevelopment.aegis.db.DatabaseEntry;
+import androidx.recyclerview.widget.RecyclerView;
 
 public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements ItemTouchHelperAdapter {
     private List<DatabaseEntry> _entries;
@@ -161,8 +160,7 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
         if (_sortCategory != sortCategory && sortCategory != SortCategory.CUSTOM) {
             Collections.sort(_shownEntries, SortCategory.getComparator(sortCategory));
 
-            if(SortCategory.isReversed(sortCategory))
-            {
+            if (SortCategory.isReversed(sortCategory)) {
                 Collections.reverse(_shownEntries);
             }
 

@@ -1,14 +1,15 @@
 package com.beemdevelopment.aegis.ui.views;
 
-import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import java.util.ArrayList;
-
 import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.db.slots.Slot;
+
+import java.util.ArrayList;
+
+import androidx.recyclerview.widget.RecyclerView;
 
 public class SlotAdapter extends RecyclerView.Adapter<SlotHolder> {
     private Listener _listener;

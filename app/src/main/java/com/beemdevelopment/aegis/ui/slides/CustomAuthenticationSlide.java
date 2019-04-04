@@ -3,8 +3,6 @@ package com.beemdevelopment.aegis.ui.slides;
 import android.content.Intent;
 import android.hardware.fingerprint.FingerprintManager;
 import android.os.Bundle;
-import com.google.android.material.snackbar.Snackbar;
-import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,10 +10,12 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
-import com.github.paolorotolo.appintro.ISlidePolicy;
-import com.beemdevelopment.aegis.helpers.FingerprintHelper;
-
 import com.beemdevelopment.aegis.R;
+import com.beemdevelopment.aegis.helpers.FingerprintHelper;
+import com.github.paolorotolo.appintro.ISlidePolicy;
+import com.google.android.material.snackbar.Snackbar;
+
+import androidx.fragment.app.Fragment;
 
 public class CustomAuthenticationSlide extends Fragment implements ISlidePolicy, RadioGroup.OnCheckedChangeListener {
     public static final int CRYPT_TYPE_INVALID = 0;

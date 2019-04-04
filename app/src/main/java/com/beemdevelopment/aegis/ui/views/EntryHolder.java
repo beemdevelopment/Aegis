@@ -3,13 +3,14 @@ package com.beemdevelopment.aegis.ui.views;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.PorterDuff;
-
-import androidx.recyclerview.widget.RecyclerView;
+import android.os.Handler;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.amulyakhare.textdrawable.TextDrawable;
+import com.beemdevelopment.aegis.R;
+import com.beemdevelopment.aegis.db.DatabaseEntry;
 import com.beemdevelopment.aegis.helpers.TextDrawableHelper;
 import com.beemdevelopment.aegis.helpers.UiRefresher;
 import com.beemdevelopment.aegis.otp.HotpInfo;
@@ -17,9 +18,7 @@ import com.beemdevelopment.aegis.otp.OtpInfo;
 import com.beemdevelopment.aegis.otp.SteamInfo;
 import com.beemdevelopment.aegis.otp.TotpInfo;
 
-import com.beemdevelopment.aegis.R;
-import com.beemdevelopment.aegis.db.DatabaseEntry;
-import android.os.Handler;
+import androidx.recyclerview.widget.RecyclerView;
 
 public class EntryHolder extends RecyclerView.ViewHolder {
     private TextView _profileName;

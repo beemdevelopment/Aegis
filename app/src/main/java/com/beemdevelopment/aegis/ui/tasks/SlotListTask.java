@@ -2,19 +2,17 @@ package com.beemdevelopment.aegis.ui.tasks;
 
 import android.content.Context;
 
-import com.beemdevelopment.aegis.crypto.MasterKey;
-
-import javax.crypto.Cipher;
-import javax.crypto.SecretKey;
-
 import com.beemdevelopment.aegis.R;
-
+import com.beemdevelopment.aegis.crypto.MasterKey;
 import com.beemdevelopment.aegis.db.slots.FingerprintSlot;
 import com.beemdevelopment.aegis.db.slots.PasswordSlot;
 import com.beemdevelopment.aegis.db.slots.Slot;
-import com.beemdevelopment.aegis.db.slots.SlotList;
 import com.beemdevelopment.aegis.db.slots.SlotException;
 import com.beemdevelopment.aegis.db.slots.SlotIntegrityException;
+import com.beemdevelopment.aegis.db.slots.SlotList;
+
+import javax.crypto.Cipher;
+import javax.crypto.SecretKey;
 
 public class SlotListTask<T extends Slot> extends ProgressDialogTask<SlotListTask.Params, MasterKey> {
     private Callback _cb;

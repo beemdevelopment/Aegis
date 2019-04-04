@@ -8,11 +8,6 @@ import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Rect;
-
-import com.beemdevelopment.aegis.SortCategory;
-import com.beemdevelopment.aegis.ViewMode;
-import com.beemdevelopment.aegis.helpers.comparators.IssuerNameComparator;
-import com.google.android.material.bottomsheet.BottomSheetDialog;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -24,23 +19,22 @@ import android.view.animation.DecelerateInterpolator;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-import com.getbase.floatingactionbutton.FloatingActionsMenu;
-import com.beemdevelopment.aegis.db.DatabaseFileCredentials;
-import com.beemdevelopment.aegis.helpers.PermissionHelper;
-import com.beemdevelopment.aegis.ui.views.EntryListView;
-
-import java.lang.reflect.UndeclaredThrowableException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.TreeSet;
-
 import com.beemdevelopment.aegis.AegisApplication;
 import com.beemdevelopment.aegis.R;
-
-import com.beemdevelopment.aegis.db.DatabaseManagerException;
+import com.beemdevelopment.aegis.SortCategory;
+import com.beemdevelopment.aegis.ViewMode;
 import com.beemdevelopment.aegis.db.DatabaseEntry;
+import com.beemdevelopment.aegis.db.DatabaseFileCredentials;
 import com.beemdevelopment.aegis.db.DatabaseManager;
+import com.beemdevelopment.aegis.db.DatabaseManagerException;
+import com.beemdevelopment.aegis.helpers.PermissionHelper;
+import com.beemdevelopment.aegis.ui.views.EntryListView;
+import com.getbase.floatingactionbutton.FloatingActionsMenu;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.TreeSet;
 
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 
@@ -61,11 +55,12 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
     private DatabaseManager _db;
     private boolean _loaded;
     private String _checkedGroup;
-    private SortCategory _sortCategory;
 
     private Menu _menu;
     private FloatingActionsMenu _fabMenu;
     private EntryListView _entryListView;
+
+    private boolean _isAnimating;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -177,13 +172,10 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
             boolean showAccountName = getPreferences().isAccountNameVisible();
             boolean tapToReveal = getPreferences().isTapToRevealEnabled();
             int tapToRevealTime = getPreferences().getTapToRevealTime();
-            int viewMode = getPreferences().getCurrentViewMode();
             _entryListView.setShowAccountName(showAccountName);
             _entryListView.setTapToReveal(tapToReveal);
             _entryListView.setTapToRevealTime(tapToRevealTime);
-
             _entryListView.refresh(true);
-
         }
     }
 
@@ -269,10 +261,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
     }
 
     private void setSortCategory(SortCategory sortCategory) {
-        _sortCategory = sortCategory;
-
-        if(sortCategory == SortCategory.CUSTOM)
-        {
+        if (sortCategory == SortCategory.CUSTOM) {
             _entryListView.clearEntries();
             loadEntries();
         }
@@ -293,7 +282,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         if (resultCode == IntroActivity.RESULT_EXCEPTION) {
             // TODO: user feedback
             Exception e = (Exception) data.getSerializableExtra("exception");
-            throw new UndeclaredThrowableException(e);
+            throw new RuntimeException(e);
         }
 
         DatabaseFileCredentials creds = (DatabaseFileCredentials) data.getSerializableExtra("creds");
@@ -459,19 +448,15 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
                         case R.id.menu_sort_alphabetically:
                             sortCategory = SortCategory.ISSUER;
                             break;
-
                         case R.id.menu_sort_alphabetically_reverse:
                             sortCategory = SortCategory.ISSUERREVERSED;
                             break;
-
                         case R.id.menu_sort_alphabetically_name:
                             sortCategory = SortCategory.ACCOUNT;
                             break;
-
                         case R.id.menu_sort_alphabetically_name_reverse:
                             sortCategory = SortCategory.ACCOUNTREVERSED;
                             break;
-
                         case R.id.menu_sort_custom:
                         default:
                             sortCategory = SortCategory.CUSTOM;
@@ -571,12 +556,10 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         saveDatabase();
     }
 
-    private boolean isAnimating;
-
     @Override
     public void onScroll(int dx, int dy) {
-        if (dy > 0 && _fabMenu.getVisibility() == View.VISIBLE && !isAnimating) {
-            isAnimating = true;
+        if (dy > 0 && _fabMenu.getVisibility() == View.VISIBLE && !_isAnimating) {
+            _isAnimating = true;
             CoordinatorLayout.LayoutParams lp = (CoordinatorLayout.LayoutParams) _fabMenu.getLayoutParams();
             int fabBottomMargin = lp.bottomMargin;
             _fabMenu.animate()
@@ -585,12 +568,12 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
                     .setListener(new AnimatorListenerAdapter() {
                         @Override
                         public void onAnimationEnd(Animator animation) {
-                            isAnimating = false;
+                            _isAnimating = false;
                             _fabMenu.setVisibility(View.INVISIBLE);
                             super.onAnimationEnd(animation);
                         }
                     }).start();
-        } else if (dy < 0 && _fabMenu.getVisibility() != View.VISIBLE && !isAnimating) {
+        } else if (dy < 0 && _fabMenu.getVisibility() != View.VISIBLE && !_isAnimating) {
             _fabMenu.setVisibility(View.VISIBLE);
             _fabMenu.animate()
                     .translationY(0)
@@ -598,7 +581,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
                     .setListener(new AnimatorListenerAdapter() {
                         @Override
                         public void onAnimationEnd(Animator animation) {
-                            isAnimating = false;
+                            _isAnimating = false;
                             super.onAnimationEnd(animation);
                         }
                     }).start();

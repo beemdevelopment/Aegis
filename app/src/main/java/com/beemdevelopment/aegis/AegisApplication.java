@@ -10,9 +10,9 @@ import android.os.Build;
 import com.beemdevelopment.aegis.db.DatabaseManager;
 import com.beemdevelopment.aegis.ui.MainActivity;
 
-import androidx.annotation.RequiresApi;
-
 import java.util.Collections;
+
+import androidx.annotation.RequiresApi;
 
 public class AegisApplication extends Application {
     private DatabaseManager _manager;

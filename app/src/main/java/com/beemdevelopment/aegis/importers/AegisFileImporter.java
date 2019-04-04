@@ -2,10 +2,6 @@ package com.beemdevelopment.aegis.importers;
 
 import android.content.Context;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import com.beemdevelopment.aegis.db.DatabaseEntry;
 import com.beemdevelopment.aegis.db.DatabaseFile;
 import com.beemdevelopment.aegis.db.DatabaseFileCredentials;
@@ -13,6 +9,10 @@ import com.beemdevelopment.aegis.db.DatabaseFileException;
 import com.beemdevelopment.aegis.encoding.Base64Exception;
 import com.beemdevelopment.aegis.otp.OtpInfoException;
 import com.beemdevelopment.aegis.util.ByteInputStream;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class AegisFileImporter extends DatabaseFileImporter {
     private DatabaseFileCredentials _creds;

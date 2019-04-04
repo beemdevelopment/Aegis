@@ -6,7 +6,7 @@ public enum ViewMode {
     SMALL;
 
     public static ViewMode fromInteger(int x) {
-        switch(x) {
+        switch (x) {
             case 0:
                 return NORMAL;
             case 1:
@@ -18,7 +18,7 @@ public enum ViewMode {
     }
 
     public static String getViewModeName(int x) {
-        switch(x) {
+        switch (x) {
             case 0:
                 return "Normal";
             case 1:
@@ -30,7 +30,7 @@ public enum ViewMode {
     }
 
     public static String[] getViewModeNames() {
-        return new String[] {
+        return new String[]{
                 "Normal",
                 "Compact",
                 "Small"
