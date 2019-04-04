@@ -21,6 +21,8 @@ import javax.crypto.KeyGenerator;
 import javax.crypto.NoSuchPaddingException;
 import javax.crypto.SecretKey;
 
+import androidx.annotation.RequiresApi;
+
 public class KeyStoreHandle {
     private final KeyStore _keyStore;
     private static final String STORE_NAME = "AndroidKeyStore";
@@ -77,20 +79,31 @@ public class KeyStoreHandle {
             throw new KeyStoreHandleException(e);
         }
 
-        // try to initialize a dummy cipher
-        // and see if KeyPermanentlyInvalidatedException is thrown
-        if (isSupported()) {
-            try {
-                Cipher cipher = Cipher.getInstance(CryptoUtils.CRYPTO_AEAD);
-                cipher.init(Cipher.ENCRYPT_MODE, key);
-            } catch (KeyPermanentlyInvalidatedException e) {
-                return null;
-            } catch (NoSuchAlgorithmException | NoSuchPaddingException | InvalidKeyException e) {
-                throw new RuntimeException(e);
-            }
+        if (isSupported() && isKeyPermanentlyInvalidated(key)) {
+            return null;
         }
 
         return key;
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    private static boolean isKeyPermanentlyInvalidated(SecretKey key) {
+        // try to initialize a dummy cipher
+        // and see if KeyPermanentlyInvalidatedException is thrown
+        try {
+            Cipher cipher = Cipher.getInstance(CryptoUtils.CRYPTO_AEAD);
+            cipher.init(Cipher.ENCRYPT_MODE, key);
+        } catch (NoSuchAlgorithmException | NoSuchPaddingException | InvalidKeyException e) {
+            // apparently KitKat doesn't like KeyPermanentlyInvalidatedException, even when guarded with a version check
+            // it will throw a java.lang.VerifyError when its listed in a 'catch' statement
+            // so instead, check for it here
+            if (e instanceof KeyPermanentlyInvalidatedException) {
+                return true;
+            }
+            throw new RuntimeException(e);
+        }
+
+        return false;
     }
 
     public void deleteKey(String id) throws KeyStoreHandleException {
