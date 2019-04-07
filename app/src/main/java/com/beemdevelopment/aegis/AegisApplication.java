@@ -1,7 +1,10 @@
 package com.beemdevelopment.aegis;
 
 import android.app.Application;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.pm.ShortcutInfo;
 import android.content.pm.ShortcutManager;
 import android.graphics.drawable.Icon;
@@ -23,6 +26,10 @@ public class AegisApplication extends Application {
         super.onCreate();
         _manager = new DatabaseManager(this);
         _prefs = new Preferences(this);
+
+        // listen for SCREEN_OFF events
+        ScreenOffReceiver receiver = new ScreenOffReceiver();
+        registerReceiver(receiver, new IntentFilter(Intent.ACTION_SCREEN_OFF));
 
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {
             initAppShortcuts();
@@ -56,5 +63,21 @@ public class AegisApplication extends Application {
                 .build();
 
         shortcutManager.setDynamicShortcuts(Collections.singletonList(shortcut));
+    }
+
+    public boolean isAutoLockEnabled() {
+        return _prefs.isAutoLockEnabled() && _manager.isEncryptionEnabled() && !_manager.isLocked();
+    }
+
+    private class ScreenOffReceiver extends BroadcastReceiver {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if (isAutoLockEnabled()) {
+                _manager.lock();
+                Intent newIntent = new Intent(getApplicationContext(), MainActivity.class);
+                newIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(newIntent);
+            }
+        }
     }
 }
