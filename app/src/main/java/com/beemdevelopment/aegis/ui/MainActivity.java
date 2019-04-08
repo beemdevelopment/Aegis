@@ -114,9 +114,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         super.onNewIntent(intent);
         setIntent(intent);
 
-        if (!doShortcutActions() || _db.isLocked()) {
-            unlockDatabase(null);
-        }
+        doShortcutActions();
     }
 
     @Override
@@ -305,15 +303,11 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         startActivityForResult(scannerActivity, CODE_SCAN);
     }
 
-    private boolean doShortcutActions() {
-        // return false if an action was blocked by a locked database
-        // otherwise, always return true
+    private void doShortcutActions() {
         Intent intent = getIntent();
         String action = intent.getStringExtra("action");
-        if (action == null) {
-            return true;
-        } else if (_db.isLocked()) {
-            return false;
+        if (action == null || _db.isLocked()) {
+            return;
         }
 
         switch (action) {
@@ -323,11 +317,9 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         }
 
         intent.removeExtra("action");
-        return true;
     }
 
     public void startActivityForResult(Intent intent, int requestCode) {
-        intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
         super.startActivityForResult(intent, requestCode);
     }
 
@@ -361,6 +353,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         }
 
         updateLockIcon();
+        doShortcutActions();
     }
 
     private BottomSheetDialog createBottomSheet(final DatabaseEntry entry) {

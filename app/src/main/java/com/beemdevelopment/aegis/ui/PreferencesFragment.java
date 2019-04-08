@@ -339,6 +339,11 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
                 return true;
             }
         });
+    }
+
+    @Override
+    public void onActivityCreated (Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
         updateEncryptionPreferences();
     }
 

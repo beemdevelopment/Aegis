@@ -15,11 +15,11 @@
         android:label="Aegis"
         android:supportsRtl="true"
         tools:replace="android:theme"
-        android:theme="@style/AppTheme.NoActionBar">
+        android:theme="@style/AppTheme.NoActionBar"
+        tools:ignore="GoogleAppIndexingWarning">
         <activity
             android:name="com.beemdevelopment.aegis.ui.MainActivity"
             android:label="${title}"
-            android:alwaysRetainTaskState="true"
             android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -40,12 +40,9 @@
         </activity>
         <activity
             android:name="com.beemdevelopment.aegis.ui.IntroActivity"
-            android:theme="@style/Theme.Intro"
-            android:launchMode="singleTop">
+            android:theme="@style/Theme.Intro">
         </activity>
-        <activity
-            android:name="com.beemdevelopment.aegis.ui.AuthActivity"
-            android:launchMode="singleTop">
+        <activity android:name="com.beemdevelopment.aegis.ui.AuthActivity">
         </activity>
         <activity android:name="com.beemdevelopment.aegis.ui.PreferencesActivity">
         </activity>
