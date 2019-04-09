@@ -17,16 +17,16 @@ public enum Theme {
         return null;
     }
 
-    public static String getThemeName(int x) {
+    public static int getThemeNameResource(int x) {
         switch (x) {
             case 0:
-                return "Light theme";
+                return R.string.light_theme_title;
             case 1:
-                return "Dark theme";
+                return R.string.dark_theme_title;
             case 2:
-                return "Amoled theme";
+                return R.string.amoled_theme_title;
         }
-        return null;
+        return R.string.light_theme_title;
     }
 
     public static String[] getThemeNames() {
@@ -34,6 +34,14 @@ public enum Theme {
                 "Light theme",
                 "Dark theme",
                 "Amoled theme"
+        };
+    }
+
+    public static int[] getThemeNameResources() {
+        return new int[] {
+            R.string.light_theme_title,
+            R.string.dark_theme_title,
+            R.string.amoled_theme_title
         };
     }
 }

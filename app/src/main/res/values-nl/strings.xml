@@ -152,4 +152,11 @@
     <string name="preference_manage_groups">Groepen bewerken</string>
     <string name="preference_manage_groups_summary">Beheer en verwijder hier je groepen</string>
     <string name="tap_to_reveal">Verborgen</string>
+    <string name="dark_theme_title">Donker thema</string>
+    <string name="light_theme_title">Licht thema</string>
+    <string name="amoled_theme_title">Amoled thema</string>
+    <string name="selected">Geselecteerd</string>
+    <string name="normal_viewmode_title">Normaal</string>
+    <string name="compact_mode_title">Compact</string>
+    <string name="small_mode_title">Klein</string>
 </resources>

@@ -168,4 +168,11 @@
     <string name="preference_manage_groups">Edit groups</string>
     <string name="preference_manage_groups_summary">Manage and delete your groups here</string>
     <string name="tap_to_reveal">Hidden</string>
+    <string name="selected">Selected</string>
+    <string name="dark_theme_title">Dark theme</string>
+    <string name="light_theme_title">Light theme</string>
+    <string name="amoled_theme_title">Amoled theme</string>
+    <string name="normal_viewmode_title">Normal</string>
+    <string name="compact_mode_title">Compact</string>
+    <string name="small_mode_title">Small</string>
 </resources>

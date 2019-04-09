@@ -17,16 +17,17 @@ public enum ViewMode {
         return null;
     }
 
-    public static String getViewModeName(int x) {
+    public static int getViewModeNameResource(int x) {
         switch (x) {
             case 0:
-                return "Normal";
+                return R.string.normal_viewmode_title;
             case 1:
-                return "Compact";
+                return R.string.compact_mode_title;
             case 2:
-                return "Small";
+                return R.string.small_mode_title;
         }
-        return null;
+
+        return R.string.normal_viewmode_title;
     }
 
     public static String[] getViewModeNames() {
@@ -34,6 +35,14 @@ public enum ViewMode {
                 "Normal",
                 "Compact",
                 "Small"
+        };
+    }
+
+    public static int[] getViewModeNameResources() {
+        return new int[] {
+                R.string.normal_viewmode_title,
+                R.string.compact_mode_title,
+                R.string.small_mode_title
         };
     }
 }

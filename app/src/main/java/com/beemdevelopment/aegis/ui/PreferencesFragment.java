@@ -98,11 +98,11 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
 
         int currentTheme = app.getPreferences().getCurrentTheme();
         Preference darkModePreference = findPreference("pref_dark_mode");
-        darkModePreference.setSummary("Selected: " + Theme.getThemeName(currentTheme));
+        darkModePreference.setSummary(String.format("%s: %s", getString(R.string.selected), getString(Theme.getThemeNameResource(currentTheme))));
         darkModePreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
-                String[] themeNames = Theme.getThemeNames();
+                String[] themeNames = getStringsFromResourceIds(Theme.getThemeNameResources());
                 int checkedTheme = app.getPreferences().getCurrentTheme();
 
                 Dialogs.showSecureDialog(new AlertDialog.Builder(getActivity())
@@ -134,11 +134,11 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
 
         int currentViewMode = app.getPreferences().getCurrentViewMode();
         Preference viewModePreference = findPreference("pref_view_mode");
-        viewModePreference.setSummary("Selected: " + ViewMode.getViewModeName(currentViewMode));
+        viewModePreference.setSummary(String.format("%s: %s", getString(R.string.selected), getString(ViewMode.getViewModeNameResource(currentViewMode))));
         viewModePreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
-                String[] viewModes = ViewMode.getViewModeNames();
+                String[] viewModes = getStringsFromResourceIds(ViewMode.getViewModeNameResources());
                 int checkedMode = app.getPreferences().getCurrentViewMode();
 
                 Dialogs.showSecureDialog(new AlertDialog.Builder(getActivity())
@@ -149,7 +149,7 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
 
                             dialog.dismiss();
 
-                            viewModePreference.setSummary("Selected: " + ViewMode.getViewModeName(i));
+                            viewModePreference.setSummary(String.format("%s: %s", getString(R.string.selected), getString(ViewMode.getViewModeNameResource(i))));
                             _result.putExtra("needsRecreate", true);
                         })
                         .setPositiveButton(android.R.string.ok, null)
@@ -661,6 +661,15 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
             _fingerprintPreference.setChecked(false, true);
             _slotsPreference.setVisible(false);
         }
+    }
+
+    private String[] getStringsFromResourceIds(int[] resourceIds) {
+        String[] strings = new String[resourceIds.length];
+        for(int i = 0; i < resourceIds.length; i++) {
+            strings[i] = getString(resourceIds[i]);
+        }
+
+        return strings;
     }
 
     private class SetPasswordListener implements Dialogs.SlotListener {
