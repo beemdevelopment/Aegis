@@ -153,21 +153,26 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
                 _shownEntries.add(entry);
             }
         }
+
+        sortList(_sortCategory);
         notifyDataSetChanged();
     }
 
     public void setSortCategory(SortCategory sortCategory) {
         if (_sortCategory != sortCategory && sortCategory != SortCategory.CUSTOM) {
-            Collections.sort(_shownEntries, SortCategory.getComparator(sortCategory));
-
-            if (SortCategory.isReversed(sortCategory)) {
-                Collections.reverse(_shownEntries);
-            }
-
+            sortList(sortCategory);
             notifyDataSetChanged();
         }
 
         _sortCategory = sortCategory;
+    }
+
+    private void sortList(SortCategory sortCategory) {
+        Collections.sort(_shownEntries, SortCategory.getComparator(sortCategory));
+
+        if (SortCategory.isReversed(sortCategory)) {
+            Collections.reverse(_shownEntries);
+        }
     }
 
     public void setViewMode(ViewMode viewMode) {
