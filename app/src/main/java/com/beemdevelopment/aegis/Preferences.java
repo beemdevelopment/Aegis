@@ -27,6 +27,10 @@ public class Preferences {
         return _prefs.getBoolean("pref_intro", false);
     }
 
+    public boolean isAutoLockEnabled() {
+        return _prefs.getBoolean("pref_auto_lock", true);
+    }
+
     public void setIntroDone(boolean done) {
         _prefs.edit().putBoolean("pref_intro", done).apply();
     }

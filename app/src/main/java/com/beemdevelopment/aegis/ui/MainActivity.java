@@ -356,6 +356,15 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         doShortcutActions();
     }
 
+    @Override
+    public void onBackPressed() {
+        if (_app.isAutoLockEnabled()) {
+            lockDatabase();
+        }
+
+        super.onBackPressed();
+    }
+
     private BottomSheetDialog createBottomSheet(final DatabaseEntry entry) {
         BottomSheetDialog dialog = new BottomSheetDialog(this);
         dialog.setContentView(R.layout.bottom_sheet_edit_entry);
@@ -421,6 +430,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
                 return true;
             case R.id.action_lock:
                 lockDatabase();
+                startAuthActivity();
                 return true;
             default:
                 if (item.getGroupId() == R.id.action_filter_group) {
@@ -468,7 +478,6 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
             _entryListView.clearEntries();
             _db.lock();
             _loaded = false;
-            startAuthActivity();
         }
     }
 

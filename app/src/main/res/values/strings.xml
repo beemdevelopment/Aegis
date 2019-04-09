@@ -33,6 +33,8 @@
     <string name="pref_tap_to_reveal_title">Tap to reveal</string>
     <string name="pref_tap_to_reveal_summary">Tokens will be hidden by default. Tap on the tokens to reveal code.</string>
     <string name="pref_tap_to_reveal_time_title">Timeout for tap to reveal</string>
+    <string name="pref_auto_lock_title">Auto lock</string>
+    <string name="pref_auto_lock_summary">Automatically lock when you close the app or lock your device.</string>
     <string name="pref_encryption_title">Encryption</string>
     <string name="pref_encryption_summary">Encrypt the database and unlock it with a password or fingerprint</string>
     <string name="pref_fingerprint_title">Fingerprint</string>
