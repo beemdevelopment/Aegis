@@ -5,7 +5,7 @@
     android:title="@string/settings">
 
     <PreferenceCategory
-        android:title="Appearance"
+        android:title="@string/pref_appearance_group_title"
         app:iconSpaceReserved="false">
         <Preference
             android:defaultValue="false"
@@ -34,7 +34,7 @@
     </PreferenceCategory>
 
     <PreferenceCategory
-        android:title="Security"
+        android:title="@string/pref_security_group_title"
         app:iconSpaceReserved="false">
         <androidx.preference.SwitchPreferenceCompat
             android:defaultValue="true"
@@ -92,7 +92,7 @@
     </PreferenceCategory>
 
     <PreferenceCategory
-        android:title="Tools"
+        android:title="@string/pref_tools_group_title"
         app:iconSpaceReserved="false">
         <Preference
             android:key="pref_import"
