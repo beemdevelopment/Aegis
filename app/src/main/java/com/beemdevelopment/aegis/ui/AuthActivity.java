@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
@@ -109,6 +110,11 @@ public class AuthActivity extends AegisActivity implements FingerprintUiHelper.C
                 trySlots(PasswordSlot.class, password);
             }
         });
+
+        if (_fingerHelper == null) {
+            _textPassword.requestFocus();
+            getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
+        }
     }
 
     private void showError() {
