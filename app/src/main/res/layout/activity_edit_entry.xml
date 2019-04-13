@@ -38,7 +38,7 @@
                 app:krop_aspectX="1"
                 app:krop_aspectY="1"
                 app:krop_offset="70dp"
-                app:krop_overlayColor="#aaffffff" >
+                app:krop_overlayColor="#aadddddd" >
 
                 <ImageView
                     android:id="@+id/iv_saveImage"
