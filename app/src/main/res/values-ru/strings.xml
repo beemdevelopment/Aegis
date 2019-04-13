@@ -60,12 +60,6 @@
     <string name="set_password_confirm">Пожалуйста, подтвердите пароль</string>
     <string name="invalidated_fingerprint">Обнаружено изменение настроек безопасности вашего устройства. Перейдите в «Настройки - Отпечаток пальца» и повторно добавьте свой отпечаток пальца.</string>
 
-    <string-array name="authentication_methods">
-        <item>Нет</item>
-        <item>Пароль</item>
-        <item>Отпечаток пальца</item>
-    </string-array>
-
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Привет пустой фрагмент</string>
     <string name="unlock">Разблокировать</string>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="authentication_methods">
+        <item>@string/authentication_method_none</item>
+        <item>@string/authentication_method_password</item>
+        <item>@string/authentication_method_fingerprint</item>
+    </string-array>
+
+    <string-array name="otp_types_array">
+        <item>TOTP</item>
+        <item>HOTP</item>
+        <item>Steam</item>
+    </string-array>
+
+    <string-array name="otp_algo_array">
+        <item>SHA1</item>
+        <item>SHA256</item>
+        <item>SHA512</item>
+    </string-array>
+</resources>

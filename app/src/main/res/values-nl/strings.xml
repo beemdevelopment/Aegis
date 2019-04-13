@@ -60,12 +60,6 @@
     <string name="set_password_confirm">Bevestig het wachtwoord</string>
     <string name="invalidated_fingerprint">Er is een verandering in de beveiligingsinstellingen van je toestel gedetecteerd. Ga naar \"Instellingen -> Vingerafdruk\" om je vingerafdruk opnieuw toe te voegen.</string>
 
-    <string-array name="authentication_methods">
-        <item>Geen</item>
-        <item>Wachtwoord</item>
-        <item>Vingerafdruk</item>
-    </string-array>
-
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hallo leeg fragment</string>
     <string name="unlock">Ontgrendel</string>
