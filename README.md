@@ -54,13 +54,15 @@ src="metadata/en-US/images/phoneScreenshots/screenshot_main_dark.png?raw=true">]
 
 ## Downloads
 
-Aegis is available in the Google Play Store. It will also be available on
-F-Droid soon.
+Aegis is available on the Google Play Store and on F-Droid.
 
 [<img height=80 alt="Get it on Google Play"
 src="https://play.google.com/intl/en_us/badges/images/generic/en-play-badge.png"
 />](http://play.google.com/store/apps/details?id=com.beemdevelopment.aegis)
-
+[<img height="80" alt="Get it on F-Droid"
+src="https://fdroid.gitlab.io/artwork/badge/get-it-on.png"
+/>](https://f-droid.org/app/com.beemdevelopment.aegis)
+      
 ### Verification
 
 APK releases on Google Play and GitHub are signed using the same key. They can
