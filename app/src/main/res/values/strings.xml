@@ -8,7 +8,6 @@
     <string name="discard">Discard</string>
     <string name="save">Save</string>
     <string name="issuer">Issuer</string>
-    <string name="title_activity_intro">IntroActivity</string>
 
     <string name="settings">Preferences</string>
     <string name="pref_appearance_group_title">Appearance</string>
@@ -62,26 +61,6 @@
     <string name="set_password_confirm">Please confirm the password</string>
     <string name="invalidated_fingerprint">A change in your device\'s security settings has been detected. Please go to \"Settings -> Fingerprint\" and re-add your fingerprint.</string>
 
-    <string-array name="authentication_methods">
-        <item>None</item>
-        <item>Password</item>
-        <item>Fingerprint</item>
-    </string-array>
-
-    <string-array name="otp_types_array">
-        <item>TOTP</item>
-        <item>HOTP</item>
-        <item>Steam</item>
-    </string-array>
-
-    <string-array name="otp_algo_array">
-        <item>SHA1</item>
-        <item>SHA256</item>
-        <item>SHA512</item>
-    </string-array>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="unlock">Unlock</string>
     <string name="advanced">Advanced</string>
     <string name="seconds">seconds</string>
@@ -162,7 +141,7 @@
     <string name="sort_alphabetically_name">Account (A to Z)</string>
     <string name="sort_alphabetically_name_reverse">Account (Z to A)</string>
     <string name="sort_custom">Custom</string>
-    <string name="new_group">New group...</string>
+    <string name="new_group">New group…</string>
     <string name="enter_group_name">Enter a group name</string>
     <string name="group_name_hint">Group name</string>
     <string name="preference_manage_groups">Edit groups</string>
