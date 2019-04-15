@@ -71,7 +71,7 @@
     <string name="enter_manually">Enter manually</string>
     <string name="add_fingerprint">Add fingerprint</string>
     <string name="add_password">Add password</string>
-    <string name="slots_warning">The vault is only as secure as your weakest secret.  When a new fingerprint is added to your device, you will to reactivate fingerprint authentication within Aegis.</string>
+    <string name="slots_warning">The vault is only as secure as your weakest secret. When a new fingerprint is added to your device, you will need to reactivate fingerprint authentication within Aegis.</string>
     <string name="copy">Copy</string>
     <string name="edit">Edit</string>
     <string name="delete">Delete</string>
@@ -81,7 +81,7 @@
     <string name="add_new_profile">Add new profile</string>
     <string name="unlock_vault_error">Couldn\'t unlock vault</string>
     <string name="unlock_vault_error_description">Incorrect password. Make sure you didn\'t mistype your password.</string>
-    <string name="password_equality_error">Passwords should be equal and non-empty</string>
+    <string name="password_equality_error">Passwords should be identical and non-empty</string>
     <string name="register_fingerprint">Register your fingerprint</string>
     <string name="snackbar_authentication_method">Please select an authentication method</string>
     <string name="encrypting_vault">Encrypting the vault</string>
