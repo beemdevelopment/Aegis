@@ -8,7 +8,6 @@
     <string name="discard">Отмена</string>
     <string name="save">Сохранить</string>
     <string name="issuer">Эмитент</string>
-    <string name="title_activity_intro">IntroActivity</string>
 
     <string name="settings">Предпочтения</string>
     <string name="pref_appearance_group_title">Appearance</string>
@@ -60,8 +59,6 @@
     <string name="set_password_confirm">Пожалуйста, подтвердите пароль</string>
     <string name="invalidated_fingerprint">Обнаружено изменение настроек безопасности вашего устройства. Перейдите в «Настройки - Отпечаток пальца» и повторно добавьте свой отпечаток пальца.</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Привет пустой фрагмент</string>
     <string name="unlock">Разблокировать</string>
     <string name="advanced">Расширенные</string>
     <string name="seconds">секунд</string>
