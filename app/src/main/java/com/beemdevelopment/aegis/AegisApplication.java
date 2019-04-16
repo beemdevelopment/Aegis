@@ -1,5 +1,6 @@
 package com.beemdevelopment.aegis;
 
+import android.animation.ValueAnimator;
 import android.app.Application;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -9,6 +10,8 @@ import android.content.pm.ShortcutInfo;
 import android.content.pm.ShortcutManager;
 import android.graphics.drawable.Icon;
 import android.os.Build;
+import android.provider.Settings;
+import android.widget.Toast;
 
 import com.beemdevelopment.aegis.db.DatabaseManager;
 import com.beemdevelopment.aegis.ui.MainActivity;
@@ -30,6 +33,8 @@ public class AegisApplication extends Application {
         // listen for SCREEN_OFF events
         ScreenOffReceiver receiver = new ScreenOffReceiver();
         registerReceiver(receiver, new IntentFilter(Intent.ACTION_SCREEN_OFF));
+
+        setGlobalDurationScale();
 
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {
             initAppShortcuts();
@@ -67,6 +72,17 @@ public class AegisApplication extends Application {
 
     public boolean isAutoLockEnabled() {
         return _prefs.isAutoLockEnabled() && _manager.isEncryptionEnabled() && !_manager.isLocked();
+    }
+
+    private void setGlobalDurationScale() {
+        float durationScale = Settings.Global.getFloat(getContentResolver(), Settings.Global.ANIMATOR_DURATION_SCALE, 0);
+        if (durationScale != 1) {
+            try {
+                ValueAnimator.class.getMethod("setDurationScale", float.class).invoke(null, 1f);
+            } catch (Throwable t) {
+                Toast.makeText(this, "Unable to reset animator duration scale. Progressbars will be invisible", Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 
     private class ScreenOffReceiver extends BroadcastReceiver {
