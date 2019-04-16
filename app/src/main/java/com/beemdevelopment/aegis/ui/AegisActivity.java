@@ -1,8 +1,12 @@
 package com.beemdevelopment.aegis.ui;
 
+import android.animation.ValueAnimator;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.view.WindowManager;
+import android.widget.Toast;
 
 import com.beemdevelopment.aegis.AegisApplication;
 import com.beemdevelopment.aegis.Preferences;
@@ -35,6 +39,9 @@ public abstract class AegisActivity extends AppCompatActivity {
 
         // set the theme
         setPreferredTheme(Theme.fromInteger(getPreferences().getCurrentTheme()));
+
+        // apply a dirty hack to make progress bars work even if animations are disabled
+        setGlobalAnimationDurationScale();
     }
 
     protected AegisApplication getApp() {
@@ -56,6 +63,17 @@ public abstract class AegisActivity extends AppCompatActivity {
             case AMOLED:
                 setTheme(R.style.AppTheme_TrueBlack);
                 break;
+        }
+    }
+
+    private void setGlobalAnimationDurationScale() {
+        float durationScale = Settings.Global.getFloat(getContentResolver(), Settings.Global.ANIMATOR_DURATION_SCALE, 0);
+        if (durationScale != 1) {
+            try {
+                ValueAnimator.class.getMethod("setDurationScale", float.class).invoke(null, 1f);
+            } catch (Throwable t) {
+                Toast.makeText(this, R.string.progressbar_error, Toast.LENGTH_SHORT).show();
+            }
         }
     }
 }
