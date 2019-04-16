@@ -1,6 +1,5 @@
 package com.beemdevelopment.aegis.importers;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -14,7 +13,6 @@ import com.beemdevelopment.aegis.otp.OtpInfo;
 import com.beemdevelopment.aegis.otp.OtpInfoException;
 import com.beemdevelopment.aegis.otp.TotpInfo;
 import com.topjohnwu.superuser.ShellUtils;
-import com.topjohnwu.superuser.io.SuFile;
 import com.topjohnwu.superuser.io.SuFileInputStream;
 
 import java.io.File;
@@ -29,13 +27,13 @@ public class GoogleAuthAppImporter extends DatabaseAppImporter {
     private static final int TYPE_TOTP = 0;
     private static final int TYPE_HOTP = 1;
 
-    @SuppressLint("SdCardPath")
-    private static final String _filename = "/data/data/com.google.android.apps.authenticator2/databases/databases";
+    private static final String _subPath = "databases/databases";
+    private static final String _pkgName = "com.google.android.apps.authenticator2";
 
     private List<Entry> _entries = new ArrayList<>();
 
-    public GoogleAuthAppImporter(Context context) {
-        super(context);
+    public GoogleAuthAppImporter(Context context) throws DatabaseImporterException {
+        super(context, _pkgName, _subPath);
     }
 
     @Override
@@ -45,7 +43,7 @@ public class GoogleAuthAppImporter extends DatabaseAppImporter {
         try {
             // create a temporary copy of the database so that SQLiteDatabase can open it
             file = File.createTempFile("google-import-", "", getContext().getCacheDir());
-            try (SuFileInputStream in = new SuFileInputStream(new SuFile(_filename))) {
+            try (SuFileInputStream in = new SuFileInputStream(getPath())) {
                 try (FileOutputStream out = new FileOutputStream(file)) {
                     ShellUtils.pump(in, out);
                 }

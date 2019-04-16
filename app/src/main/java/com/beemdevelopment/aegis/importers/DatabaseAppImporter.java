@@ -1,6 +1,9 @@
 package com.beemdevelopment.aegis.importers;
 
 import android.content.Context;
+import android.content.pm.PackageManager;
+
+import com.topjohnwu.superuser.io.SuFile;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collections;
@@ -17,10 +20,22 @@ public abstract class DatabaseAppImporter implements DatabaseImporter {
         _importers = Collections.unmodifiableMap(importers);
     }
 
+    private SuFile _path;
     private Context _context;
 
-    protected DatabaseAppImporter(Context context) {
+    protected DatabaseAppImporter(Context context, String pkgName, String subPath) throws DatabaseImporterException {
         _context = context;
+
+        try {
+            PackageManager man = context.getPackageManager();
+            _path = new SuFile(man.getApplicationInfo(pkgName, 0).dataDir, subPath);
+        } catch (PackageManager.NameNotFoundException e) {
+            throw new DatabaseImporterException(e);
+        }
+    }
+
+    protected SuFile getPath() {
+        return _path;
     }
 
     public abstract void parse() throws DatabaseImporterException;

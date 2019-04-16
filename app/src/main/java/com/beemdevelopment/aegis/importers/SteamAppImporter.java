@@ -1,6 +1,5 @@
 package com.beemdevelopment.aegis.importers;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 
 import com.beemdevelopment.aegis.db.DatabaseEntry;
@@ -21,19 +20,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SteamAppImporter extends DatabaseAppImporter {
-    @SuppressLint("SdCardPath")
-    private static final String _path = "/data/data/com.valvesoftware.android.steam.community/files";
+    private static final String _subDir = "files";
+    private static final String _pkgName = "com.valvesoftware.android.steam.community";
 
     private List<JSONObject> _objs = new ArrayList<>();
 
-    public SteamAppImporter(Context context) {
-        super(context);
+    public SteamAppImporter(Context context) throws DatabaseImporterException {
+        super(context, _pkgName, _subDir);
     }
 
     @Override
     public void parse() throws DatabaseImporterException {
-        SuFile dir = new SuFile(_path);
-        for (SuFile file : dir.listFiles((d, name) -> name.startsWith("Steamguard-"))) {
+        SuFile[] files = getPath().listFiles((d, name) -> name.startsWith("Steamguard-"));
+        if (files == null || files.length == 0) {
+            throw new DatabaseImporterException(String.format("Empty directory: %s", getPath().getAbsolutePath()));
+        }
+
+        for (SuFile file : files) {
             try (SuFileInputStream in = new SuFileInputStream(file)) {
                 try (ByteInputStream stream = ByteInputStream.create(in)) {
                     JSONObject obj = new JSONObject(new String(stream.getBytes(), StandardCharsets.UTF_8));
