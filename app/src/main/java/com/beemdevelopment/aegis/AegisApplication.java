@@ -66,7 +66,7 @@ public class AegisApplication extends Application {
     }
 
     public boolean isAutoLockEnabled() {
-        return _prefs.isAutoLockEnabled() && _manager.isEncryptionEnabled() && !_manager.isLocked();
+        return _prefs.isAutoLockEnabled() && _manager.isLoaded() && _manager.isEncryptionEnabled() && !_manager.isLocked();
     }
 
     private class ScreenOffReceiver extends BroadcastReceiver {
