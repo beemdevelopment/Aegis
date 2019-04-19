@@ -39,6 +39,17 @@
             app:fab_icon="@drawable/ic_qrcode_scan"/>
 
         <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_scan_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:fab_title="@string/scan_image"
+            app:fab_size="mini"
+            app:fab_colorNormal="@color/background"
+            app:fab_colorPressed="@color/background"
+            app:fab_icon="@drawable/ic_add_photo_24px"/>
+
+
+        <com.getbase.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab_enter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
