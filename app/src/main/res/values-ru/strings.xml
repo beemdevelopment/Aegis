@@ -108,7 +108,7 @@
     <string name="file_not_found">Ошибка: файл не найден</string>
     <string name="reading_file_error">Произошла ошибка при попытке прочитать файл</string>
     <string name="root_error">Ошибка: невозможно получить root-доступ</string>
-    <string name="imported_entries_count">Импортироаано %d записей. %d ошибки.</string>
+    <string name="imported_entries_count">Импортироаано %d записей</string>
     <string name="exporting_database_error">Произошла ошибка при попытке экспорта базы данных</string>
     <string name="export_database_location">База данных была экспортирована в:</string>
     <string name="export_warning">Это действие экспортирует базу данных из личного хранилища Aegis.</string>

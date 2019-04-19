@@ -109,7 +109,7 @@
     <string name="file_not_found">Fout: Bestand niet gevonden</string>
     <string name="reading_file_error">Er is een fout opgetreden tijdens het lezen van het bestand</string>
     <string name="root_error">Fout: Er kon geen root-access verkregen worden</string>
-    <string name="imported_entries_count">%d items geïmporteerd. %d fouten.</string>
+    <string name="imported_entries_count">%d items geïmporteerd</string>
     <string name="import_error_title">Er zijn fouten opgetreden tijdens het importeren</string>
     <string name="exporting_database_error">Er is een fout opgetreden tijdens het exporteren van de database</string>
     <string name="export_database_location">De database is geëxporteerd naar:</string>

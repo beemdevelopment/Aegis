@@ -2,15 +2,11 @@ package com.beemdevelopment.aegis.ui;
 
 import android.Manifest;
 import android.app.Activity;
-import android.content.ClipData;
-import android.content.ClipboardManager;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Toast;
@@ -42,7 +38,6 @@ import com.beemdevelopment.aegis.importers.DatabaseImporterException;
 import com.beemdevelopment.aegis.importers.DatabaseImporterResult;
 import com.beemdevelopment.aegis.ui.preferences.SwitchPreference;
 import com.beemdevelopment.aegis.util.ByteInputStream;
-import com.google.android.material.snackbar.Snackbar;
 import com.takisoft.preferencex.PreferenceFragmentCompat;
 import com.topjohnwu.superuser.Shell;
 
@@ -52,7 +47,6 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicReference;
 
@@ -67,6 +61,7 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
     private static final int CODE_IMPORT_DECRYPT = 1;
     private static final int CODE_SLOTS = 2;
     private static final int CODE_GROUPS = 3;
+    private static final int CODE_SELECT_ENTRIES = 4;
 
     // permission request codes
     private static final int CODE_PERM_IMPORT = 0;
@@ -382,6 +377,8 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
                 break;
             case CODE_GROUPS:
                 onGroupManagerResult(resultCode, data);
+            case CODE_SELECT_ENTRIES:
+                onSelectEntriesResult(resultCode, data);
                 break;
         }
     }
@@ -524,44 +521,10 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
         List<DatabaseEntry> entries = result.getEntries();
         List<DatabaseImporterEntryException> errors = result.getErrors();
 
-        for (DatabaseEntry entry : entries) {
-            // temporary: randomize the UUID of duplicate entries and add them anyway
-            if (_db.getEntryByUUID(entry.getUUID()) != null) {
-                entry.resetUUID();
-            }
-
-            _db.addEntry(entry);
-        }
-
-        if (!saveDatabase()) {
-            return;
-        }
-
-        _result.putExtra("needsRecreate", true);
-
-        Snackbar bar = Snackbar.make(getView(), String.format(Locale.getDefault(), getString(R.string.imported_entries_count), entries.size(), errors.size()), Snackbar.LENGTH_LONG);
-        if (errors.size() > 0) {
-            bar.setAction(R.string.details, v -> {
-                List<String> messages = new ArrayList<>();
-                for (DatabaseImporterEntryException e : errors) {
-                    messages.add(e.getMessage());
-                }
-
-                String message = TextUtils.join("\n\n", messages);
-                Dialogs.showSecureDialog(new AlertDialog.Builder(getActivity())
-                        .setTitle(R.string.import_error_title)
-                        .setMessage(message)
-                        .setPositiveButton(android.R.string.ok, null)
-                        .setNeutralButton(android.R.string.copy, (dialog, which) -> {
-                            ClipboardManager clipboard = (ClipboardManager) getActivity().getSystemService(Context.CLIPBOARD_SERVICE);
-                            ClipData clip = ClipData.newPlainText("text/plain", message);
-                            clipboard.setPrimaryClip(clip);
-                            Toast.makeText(getActivity(), getString(R.string.errors_copied), Toast.LENGTH_SHORT).show();
-                        })
-                        .create());
-            });
-        }
-        bar.show();
+        Intent intent = new Intent(getActivity(), SelectEntriesActivity.class);
+        intent.putExtra("entries", (ArrayList<DatabaseEntry>) entries);
+        intent.putExtra("errors", (ArrayList<DatabaseImporterEntryException>) errors);
+        startActivityForResult(intent, CODE_SELECT_ENTRIES);
     }
 
     private void onExport() {
@@ -626,6 +589,31 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
                 entry.setGroup(null);
             }
         }
+    }
+
+    private void onSelectEntriesResult(int resultCode, Intent data) {
+        if (resultCode != Activity.RESULT_OK) {
+            return;
+        }
+
+        List<DatabaseEntry> entries = (ArrayList<DatabaseEntry>) data.getSerializableExtra("entries");
+        for (DatabaseEntry entry : entries) {
+            // temporary: randomize the UUID of duplicate entries and add them anyway
+            if (_db.getEntryByUUID(entry.getUUID()) != null) {
+                entry.resetUUID();
+            }
+
+            _db.addEntry(entry);
+        }
+
+        if (!saveDatabase()) {
+            return;
+        }
+
+        String toastMessage = getResources().getString(R.string.imported_entries_count, entries.size());
+        Toast.makeText(getContext(), toastMessage, Toast.LENGTH_SHORT).show();
+
+        _result.putExtra("needsRecreate", true);
     }
 
     private boolean saveDatabase() {
