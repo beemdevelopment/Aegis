@@ -68,6 +68,7 @@
     <string name="digits">Digits</string>
     <string name="secret">Secret</string>
     <string name="scan">Scan QR code</string>
+    <string name="scan_image">Scan image</string>
     <string name="enter_manually">Enter manually</string>
     <string name="add_fingerprint">Add fingerprint</string>
     <string name="add_password">Add password</string>
@@ -155,4 +156,6 @@
     <string name="normal_viewmode_title">Normal</string>
     <string name="compact_mode_title">Compact</string>
     <string name="small_mode_title">Small</string>
+    <string name="unable_to_read_qrcode">Unable to read and process QR code</string>
+    <string name="select_picture">Select picture</string>
 </resources>

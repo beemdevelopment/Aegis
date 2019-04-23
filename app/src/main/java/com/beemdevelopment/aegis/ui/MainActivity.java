@@ -7,7 +7,10 @@ import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Rect;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -28,10 +31,25 @@ import com.beemdevelopment.aegis.db.DatabaseFileCredentials;
 import com.beemdevelopment.aegis.db.DatabaseManager;
 import com.beemdevelopment.aegis.db.DatabaseManagerException;
 import com.beemdevelopment.aegis.helpers.PermissionHelper;
+import com.beemdevelopment.aegis.otp.GoogleAuthInfo;
+import com.beemdevelopment.aegis.otp.GoogleAuthInfoException;
 import com.beemdevelopment.aegis.ui.views.EntryListView;
 import com.getbase.floatingactionbutton.FloatingActionsMenu;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
+import com.google.zxing.BinaryBitmap;
+import com.google.zxing.ChecksumException;
+import com.google.zxing.FormatException;
+import com.google.zxing.LuminanceSource;
+import com.google.zxing.MultiFormatReader;
+import com.google.zxing.NotFoundException;
+import com.google.zxing.RGBLuminanceSource;
+import com.google.zxing.Reader;
+import com.google.zxing.Result;
+import com.google.zxing.common.HybridBinarizer;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.TreeSet;
@@ -47,6 +65,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
     private static final int CODE_DO_INTRO = 4;
     private static final int CODE_DECRYPT = 5;
     private static final int CODE_PREFERENCES = 6;
+    private static final int CODE_SCAN_IMAGE = 7;
 
     // permission request codes
     private static final int CODE_PERM_CAMERA = 0;
@@ -85,6 +104,15 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         findViewById(R.id.fab_enter).setOnClickListener(view -> {
             _fabMenu.collapse();
             startEditProfileActivity(CODE_ENTER_ENTRY, null, true);
+        });
+        findViewById(R.id.fab_scan_image).setOnClickListener(view -> {
+            _fabMenu.collapse();
+
+            Intent galleryIntent = new Intent(Intent.ACTION_PICK);
+            galleryIntent.setDataAndType(android.provider.MediaStore.Images.Media.INTERNAL_CONTENT_URI, "image/*");
+
+            Intent chooserIntent = Intent.createChooser(galleryIntent, getString(R.string.select_picture));
+            startActivityForResult(Intent.createChooser(chooserIntent, getString(R.string.select_picture)), CODE_SCAN_IMAGE);
         });
         findViewById(R.id.fab_scan).setOnClickListener(view -> {
             _fabMenu.collapse();
@@ -145,6 +173,8 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
             case CODE_PREFERENCES:
                 onPreferencesResult(resultCode, data);
                 break;
+            case CODE_SCAN_IMAGE:
+                onScanImageResult(resultCode, data);
         }
     }
 
@@ -222,6 +252,38 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
             DatabaseEntry entry = (DatabaseEntry) data.getSerializableExtra("entry");
             addEntry(entry);
             saveDatabase();
+        }
+    }
+
+    private void onScanImageResult(int resultCode, Intent intent) {
+        if (resultCode == RESULT_OK) {
+            Uri inputFile = (intent.getData());
+            Bitmap bitmap;
+
+            try {
+                BitmapFactory.Options bmOptions = new BitmapFactory.Options();
+
+                try (InputStream inputStream = getContentResolver().openInputStream(inputFile)) {
+                    bitmap = BitmapFactory.decodeStream(inputStream, null, bmOptions);
+                }
+
+                int[] intArray = new int[bitmap.getWidth() * bitmap.getHeight()];
+                bitmap.getPixels(intArray, 0, bitmap.getWidth(), 0, 0, bitmap.getWidth(), bitmap.getHeight());
+
+                LuminanceSource source = new RGBLuminanceSource(bitmap.getWidth(), bitmap.getHeight(), intArray);
+                BinaryBitmap binaryBitmap = new BinaryBitmap(new HybridBinarizer(source));
+
+                Reader reader = new MultiFormatReader();
+                Result result = reader.decode(binaryBitmap);
+
+                GoogleAuthInfo info = GoogleAuthInfo.parseUri(result.getText());
+                DatabaseEntry entry = new DatabaseEntry(info);
+
+                startEditProfileActivity(CODE_ADD_ENTRY, entry, true);
+            } catch (NotFoundException | IOException | ChecksumException | FormatException | GoogleAuthInfoException e) {
+                Toast.makeText(this, getString(R.string.unable_to_read_qrcode), Toast.LENGTH_SHORT).show();
+                e.printStackTrace();
+            }
         }
     }
 
