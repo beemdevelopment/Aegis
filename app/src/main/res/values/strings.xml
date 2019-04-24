@@ -113,6 +113,7 @@
     <string name="parsing_file_error">An error occurred while trying to parse the file</string>
     <string name="file_not_found">Error: File not found</string>
     <string name="reading_file_error">An error occurred while trying to read the file</string>
+    <string name="app_lookup_error">Error: App is not installed</string>
     <string name="root_error">Error: unable to obtain root access</string>
     <string name="imported_entries_count">Imported %d entries</string>
     <string name="read_entries_count">Read %d entries. %d errors.</string>

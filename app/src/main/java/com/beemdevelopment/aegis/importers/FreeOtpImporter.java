@@ -8,7 +8,6 @@ import com.beemdevelopment.aegis.otp.HotpInfo;
 import com.beemdevelopment.aegis.otp.OtpInfo;
 import com.beemdevelopment.aegis.otp.OtpInfoException;
 import com.beemdevelopment.aegis.otp.TotpInfo;
-import com.beemdevelopment.aegis.util.ByteInputStream;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -20,79 +19,93 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FreeOtpFileImporter extends DatabaseFileImporter {
-    private List<XmlEntry> _xmlEntries;
+public class FreeOtpImporter extends DatabaseImporter {
+    private static final String _subPath = "shared_prefs/tokens.xml";
+    private static final String _pkgName = "org.fedorahosted.freeotp";
 
-    public FreeOtpFileImporter(Context context, ByteInputStream stream) {
-        super(context, stream);
-    }
-
-    private static class XmlEntry {
-        String Name;
-        String Value;
+    public FreeOtpImporter(Context context) {
+        super(context);
     }
 
     @Override
-    public void parse() throws DatabaseImporterException {
+    protected String getAppPkgName() {
+        return _pkgName;
+    }
+
+    @Override
+    protected String getAppSubPath() {
+        return _subPath;
+    }
+
+    public State read(FileReader reader) throws DatabaseImporterException {
         try {
             XmlPullParser parser = Xml.newPullParser();
             parser.setFeature(XmlPullParser.FEATURE_PROCESS_NAMESPACES, false);
-            parser.setInput(_stream, null);
+            parser.setInput(reader.getStream(), null);
             parser.nextTag();
-            _xmlEntries = parse(parser);
+
+            List<XmlEntry> entries = parse(parser);
+            return new State(entries);
         } catch (XmlPullParserException | IOException e) {
             throw new DatabaseImporterException(e);
         }
     }
 
-    @Override
-    public DatabaseImporterResult convert() {
-        DatabaseImporterResult result = new DatabaseImporterResult();
+    public static class State extends DatabaseImporter.State {
+        private List<XmlEntry> _entries;
 
-        for (XmlEntry xmlEntry : _xmlEntries) {
-            // TODO: order
-            if (!xmlEntry.Name.equals("tokenOrder")) {
-                try {
-                    DatabaseEntry entry = convertEntry(xmlEntry);
-                    result.addEntry(entry);
-                } catch (DatabaseImporterEntryException e) {
-                    result.addError(e);
+        private State(List<XmlEntry> entries) {
+            super(false);
+            _entries = entries;
+        }
+
+        @Override
+        public Result convert() {
+            Result result = new Result();
+
+            for (XmlEntry xmlEntry : _entries) {
+                // TODO: order
+                if (!xmlEntry.Name.equals("tokenOrder")) {
+                    try {
+                        DatabaseEntry entry = convertEntry(xmlEntry);
+                        result.addEntry(entry);
+                    } catch (DatabaseImporterEntryException e) {
+                        result.addError(e);
+                    }
                 }
             }
+
+            return result;
         }
 
-        return result;
-    }
+        private static DatabaseEntry convertEntry(XmlEntry entry) throws DatabaseImporterEntryException {
+            try {
+                JSONObject obj = new JSONObject(entry.Value);
 
-    private static DatabaseEntry convertEntry(XmlEntry xmlEntry) throws DatabaseImporterEntryException {
-        try {
-            JSONObject obj = new JSONObject(xmlEntry.Value);
+                String type = obj.getString("type").toLowerCase();
+                String algo = obj.getString("algo");
+                int digits = obj.getInt("digits");
+                byte[] secret = toBytes(obj.getJSONArray("secret"));
 
-            String type = obj.getString("type").toLowerCase();
-            String algo = obj.getString("algo");
-            int digits = obj.getInt("digits");
-            byte[] secret = toBytes(obj.getJSONArray("secret"));
+                OtpInfo info;
+                switch (type) {
+                    case "totp":
+                        info = new TotpInfo(secret, algo, digits, obj.getInt("period"));
+                        break;
+                    case "hotp":
+                        info = new HotpInfo(secret, algo, digits, obj.getLong("counter"));
+                        break;
+                    default:
+                        throw new DatabaseImporterException("unsupported otp type: " + type);
+                }
 
-            OtpInfo info;
-            if (type.equals("totp")) {
-                info = new TotpInfo(secret, algo, digits, obj.getInt("period"));
-            } else if (type.equals("hotp")) {
-                info = new HotpInfo(secret, algo, digits, obj.getLong("counter"));
-            } else {
-                throw new DatabaseImporterException("unsupported otp type: " + type);
+                String issuer = obj.getString("issuerExt");
+                String name = obj.optString("label");
+                return new DatabaseEntry(info, name, issuer);
+            } catch (DatabaseImporterException | OtpInfoException | JSONException e) {
+                throw new DatabaseImporterEntryException(e, entry.Value);
             }
-
-            String issuer = obj.getString("issuerExt");
-            String name = obj.optString("label");
-            return new DatabaseEntry(info, name, issuer);
-        } catch (DatabaseImporterException | OtpInfoException | JSONException e) {
-            throw new DatabaseImporterEntryException(e, xmlEntry.Value);
         }
-    }
-
-    @Override
-    public boolean isEncrypted() {
-        return false;
     }
 
     private static List<XmlEntry> parse(XmlPullParser parser)
@@ -162,5 +175,10 @@ public class FreeOtpFileImporter extends DatabaseFileImporter {
                     break;
             }
         }
+    }
+
+    private static class XmlEntry {
+        String Name;
+        String Value;
     }
 }

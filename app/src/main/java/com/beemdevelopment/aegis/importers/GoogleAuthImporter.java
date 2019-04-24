@@ -13,7 +13,6 @@ import com.beemdevelopment.aegis.otp.OtpInfo;
 import com.beemdevelopment.aegis.otp.OtpInfoException;
 import com.beemdevelopment.aegis.otp.TotpInfo;
 import com.topjohnwu.superuser.ShellUtils;
-import com.topjohnwu.superuser.io.SuFileInputStream;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -23,30 +22,35 @@ import java.util.List;
 
 import static android.database.sqlite.SQLiteDatabase.OPEN_READONLY;
 
-public class GoogleAuthAppImporter extends DatabaseAppImporter {
+public class GoogleAuthImporter extends DatabaseImporter {
     private static final int TYPE_TOTP = 0;
     private static final int TYPE_HOTP = 1;
 
     private static final String _subPath = "databases/databases";
     private static final String _pkgName = "com.google.android.apps.authenticator2";
 
-    private List<Entry> _entries = new ArrayList<>();
-
-    public GoogleAuthAppImporter(Context context) throws DatabaseImporterException {
-        super(context, _pkgName, _subPath);
+    public GoogleAuthImporter(Context context) {
+        super(context);
     }
 
     @Override
-    public void parse() throws DatabaseImporterException {
+    protected String getAppPkgName() {
+        return _pkgName;
+    }
+
+    @Override
+    protected String getAppSubPath() {
+        return _subPath;
+    }
+
+    public State read(FileReader reader) throws DatabaseImporterException {
         File file;
 
         try {
             // create a temporary copy of the database so that SQLiteDatabase can open it
             file = File.createTempFile("google-import-", "", getContext().getCacheDir());
-            try (SuFileInputStream in = new SuFileInputStream(getPath())) {
-                try (FileOutputStream out = new FileOutputStream(file)) {
-                    ShellUtils.pump(in, out);
-                }
+            try (FileOutputStream out = new FileOutputStream(file)) {
+                ShellUtils.pump(reader.getStream(), out);
             }
         } catch (IOException e) {
             throw new DatabaseImporterException(e);
@@ -54,14 +58,16 @@ public class GoogleAuthAppImporter extends DatabaseAppImporter {
 
         try (SQLiteDatabase db = SQLiteDatabase.openDatabase(file.getAbsolutePath(), null, OPEN_READONLY, null)) {
             try (Cursor cursor = db.rawQuery("SELECT * FROM accounts", null)) {
-                if (!cursor.moveToFirst()) {
-                    return;
+                List<Entry> entries = new ArrayList<>();
+
+                if (cursor.moveToFirst()) {
+                    do {
+                        Entry entry = new Entry(cursor);
+                        entries.add(entry);
+                    } while(cursor.moveToNext());
                 }
 
-                do {
-                    Entry entry = new Entry(cursor);
-                    _entries.add(entry);
-                } while(cursor.moveToNext());
+                return new State(entries);
             }
         } catch (SQLiteException e) {
             throw new DatabaseImporterException(e);
@@ -71,53 +77,57 @@ public class GoogleAuthAppImporter extends DatabaseAppImporter {
         }
     }
 
-    @Override
-    public DatabaseImporterResult convert() {
-        DatabaseImporterResult result = new DatabaseImporterResult();
+    public static class State extends DatabaseImporter.State {
+        private List<Entry> _entries;
 
-        for (Entry sqlEntry : _entries) {
+        private State(List<Entry> entries) {
+            super(false);
+            _entries = entries;
+        }
+
+        @Override
+        public Result convert() {
+            Result result = new Result();
+
+            for (Entry sqlEntry : _entries) {
+                try {
+                    DatabaseEntry entry = convertEntry(sqlEntry);
+                    result.addEntry(entry);
+                } catch (DatabaseImporterEntryException e) {
+                    result.addError(e);
+                }
+            }
+
+            return result;
+        }
+
+        private static DatabaseEntry convertEntry(Entry entry) throws DatabaseImporterEntryException {
             try {
-                DatabaseEntry entry = convertEntry(sqlEntry);
-                result.addEntry(entry);
-            } catch (DatabaseImporterEntryException e) {
-                result.addError(e);
+                byte[] secret = Base32.decode(entry.getSecret().toCharArray());
+
+                OtpInfo info;
+                switch (entry.getType()) {
+                    case TYPE_TOTP:
+                        info = new TotpInfo(secret);
+                        break;
+                    case TYPE_HOTP:
+                        info = new HotpInfo(secret, entry.getCounter());
+                        break;
+                    default:
+                        throw new DatabaseImporterException("unsupported otp type: " + entry.getType());
+                }
+
+                String name = entry.getEmail();
+                String[] parts = name.split(":");
+                if (parts.length == 2) {
+                    name = parts[1];
+                }
+
+                return new DatabaseEntry(info, name, entry.getIssuer());
+            } catch (Base32Exception | OtpInfoException | DatabaseImporterException e) {
+                throw new DatabaseImporterEntryException(e, entry.toString());
             }
         }
-
-        return result;
-    }
-
-    private static DatabaseEntry convertEntry(Entry entry) throws DatabaseImporterEntryException {
-        try {
-            byte[] secret = Base32.decode(entry.getSecret().toCharArray());
-
-            OtpInfo info;
-            switch (entry.getType()) {
-                case TYPE_TOTP:
-                    info = new TotpInfo(secret);
-                    break;
-                case TYPE_HOTP:
-                    info = new HotpInfo(secret, entry.getCounter());
-                    break;
-                default:
-                    throw new DatabaseImporterException("unsupported otp type: " + entry.getType());
-            }
-
-            String name = entry.getEmail();
-            String[] parts = name.split(":");
-            if (parts.length == 2) {
-                name = parts[1];
-            }
-
-            return new DatabaseEntry(info, name, entry.getIssuer());
-        } catch (Base32Exception | OtpInfoException | DatabaseImporterException e) {
-            throw new DatabaseImporterEntryException(e, entry.toString());
-        }
-    }
-
-    @Override
-    public boolean isEncrypted() {
-        return false;
     }
 
     private static String getString(Cursor cursor, String columnName) {
