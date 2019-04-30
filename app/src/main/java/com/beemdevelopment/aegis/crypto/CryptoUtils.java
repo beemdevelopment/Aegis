@@ -35,10 +35,14 @@ public class CryptoUtils {
     public static final int CRYPTO_SCRYPT_r = 8;
     public static final int CRYPTO_SCRYPT_p = 1;
 
+    public static SecretKey deriveKey(byte[] input, SCryptParameters params) {
+        byte[] keyBytes = SCrypt.generate(input, params.getSalt(), params.getN(), params.getR(), params.getP(), CRYPTO_AEAD_KEY_SIZE);
+        return new SecretKeySpec(keyBytes, 0, keyBytes.length, "AES");
+    }
+
     public static SecretKey deriveKey(char[] password, SCryptParameters params) {
         byte[] bytes = toBytes(password);
-        byte[] keyBytes = SCrypt.generate(bytes, params.getSalt(), params.getN(), params.getR(), params.getP(), CRYPTO_AEAD_KEY_SIZE);
-        return new SecretKeySpec(keyBytes, 0, keyBytes.length, "AES");
+        return deriveKey(bytes, params);
     }
 
     public static Cipher createEncryptCipher(SecretKey key)
@@ -123,6 +127,8 @@ public class CryptoUtils {
     private static byte[] toBytes(char[] chars) {
         CharBuffer charBuf = CharBuffer.wrap(chars);
         ByteBuffer byteBuf = StandardCharsets.UTF_8.encode(charBuf);
-        return byteBuf.array();
+        byte[] bytes = new byte[byteBuf.limit()];
+        byteBuf.get(bytes);
+        return bytes;
     }
 }
