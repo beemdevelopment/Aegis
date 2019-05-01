@@ -30,6 +30,7 @@ public class CryptoUtils {
     public static final String CRYPTO_AEAD = "AES/GCM/NoPadding";
     public static final byte CRYPTO_AEAD_KEY_SIZE = 32;
     public static final byte CRYPTO_AEAD_TAG_SIZE = 16;
+    public static final byte CRYPTO_AEAD_NONCE_SIZE = 12;
 
     public static final int CRYPTO_SCRYPT_N = 1 << 15;
     public static final int CRYPTO_SCRYPT_r = 8;
@@ -92,9 +93,14 @@ public class CryptoUtils {
 
     public static CryptResult decrypt(byte[] encrypted, Cipher cipher, CryptParameters params)
             throws IOException, BadPaddingException, IllegalBlockSizeException {
+        return decrypt(encrypted, 0, encrypted.length, cipher, params);
+    }
+
+    public static CryptResult decrypt(byte[] encrypted, int encryptedOffset, int encryptedLen, Cipher cipher, CryptParameters params)
+            throws IOException, BadPaddingException, IllegalBlockSizeException {
         // append the tag to the ciphertext
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
-        stream.write(encrypted);
+        stream.write(encrypted, encryptedOffset, encryptedLen);
         stream.write(params.getTag());
 
         encrypted = stream.toByteArray();
@@ -124,7 +130,7 @@ public class CryptoUtils {
         return data;
     }
 
-    private static byte[] toBytes(char[] chars) {
+    public static byte[] toBytes(char[] chars) {
         CharBuffer charBuf = CharBuffer.wrap(chars);
         ByteBuffer byteBuf = StandardCharsets.UTF_8.encode(charBuf);
         byte[] bytes = new byte[byteBuf.limit()];
