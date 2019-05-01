@@ -30,6 +30,7 @@ import com.beemdevelopment.aegis.db.DatabaseEntry;
 import com.beemdevelopment.aegis.db.DatabaseFileCredentials;
 import com.beemdevelopment.aegis.db.DatabaseManager;
 import com.beemdevelopment.aegis.db.DatabaseManagerException;
+import com.beemdevelopment.aegis.helpers.FabScrollHelper;
 import com.beemdevelopment.aegis.helpers.PermissionHelper;
 import com.beemdevelopment.aegis.otp.GoogleAuthInfo;
 import com.beemdevelopment.aegis.otp.GoogleAuthInfoException;
@@ -79,7 +80,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
     private FloatingActionsMenu _fabMenu;
     private EntryListView _entryListView;
 
-    private boolean _isAnimating;
+    private FabScrollHelper _fabScrollHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -118,6 +119,8 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
             _fabMenu.collapse();
             startScanActivity();
         });
+
+        _fabScrollHelper = new FabScrollHelper(_fabMenu);
     }
 
     @Override
@@ -622,33 +625,6 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
 
     @Override
     public void onScroll(int dx, int dy) {
-        if (dy > 0 && _fabMenu.getVisibility() == View.VISIBLE && !_isAnimating) {
-            _isAnimating = true;
-            CoordinatorLayout.LayoutParams lp = (CoordinatorLayout.LayoutParams) _fabMenu.getLayoutParams();
-            int fabBottomMargin = lp.bottomMargin;
-            _fabMenu.animate()
-                    .translationY(_fabMenu.getHeight() + fabBottomMargin)
-                    .setInterpolator(new AccelerateInterpolator(2))
-                    .setListener(new AnimatorListenerAdapter() {
-                        @Override
-                        public void onAnimationEnd(Animator animation) {
-                            _isAnimating = false;
-                            _fabMenu.setVisibility(View.INVISIBLE);
-                            super.onAnimationEnd(animation);
-                        }
-                    }).start();
-        } else if (dy < 0 && _fabMenu.getVisibility() != View.VISIBLE && !_isAnimating) {
-            _fabMenu.setVisibility(View.VISIBLE);
-            _fabMenu.animate()
-                    .translationY(0)
-                    .setInterpolator(new DecelerateInterpolator(2))
-                    .setListener(new AnimatorListenerAdapter() {
-                        @Override
-                        public void onAnimationEnd(Animator animation) {
-                            _isAnimating = false;
-                            super.onAnimationEnd(animation);
-                        }
-                    }).start();
-        }
+        _fabScrollHelper.onScroll(dx, dy);
     }
 }

@@ -114,7 +114,8 @@
     <string name="file_not_found">Error: File not found</string>
     <string name="reading_file_error">An error occurred while trying to read the file</string>
     <string name="root_error">Error: unable to obtain root access</string>
-    <string name="imported_entries_count">Imported %d entries. %d errors.</string>
+    <string name="imported_entries_count">Imported %d entries</string>
+    <string name="read_entries_count">Read %d entries. %d errors.</string>
     <string name="import_error_title">One or more errors occurred during the import</string>
     <string name="exporting_database_error">An error occurred while trying to export the database</string>
     <string name="export_database_location">The database has been exported to:</string>
@@ -156,6 +157,10 @@
     <string name="normal_viewmode_title">Normal</string>
     <string name="compact_mode_title">Compact</string>
     <string name="small_mode_title">Small</string>
+    <string name="unknown_issuer">Unknown issuer</string>
+    <string name="unknown_account_name">Unknown account name</string>
+    <string name="import_error_dialog">Aegis could not import %d tokens. These tokens will be skipped. Press \'details\' to see more information about the errors.</string>
     <string name="unable_to_read_qrcode">Unable to read and process QR code</string>
     <string name="select_picture">Select picture</string>
+    <string name="toggle_checkboxes">Toggle checkboxes</string>
 </resources>
