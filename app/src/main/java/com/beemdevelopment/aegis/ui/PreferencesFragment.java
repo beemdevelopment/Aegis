@@ -4,6 +4,7 @@ import android.Manifest;
 import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.Bundle;
@@ -20,6 +21,7 @@ import com.beemdevelopment.aegis.crypto.KeyStoreHandle;
 import com.beemdevelopment.aegis.crypto.KeyStoreHandleException;
 import com.beemdevelopment.aegis.db.DatabaseEntry;
 import com.beemdevelopment.aegis.db.DatabaseFileCredentials;
+import com.beemdevelopment.aegis.db.DatabaseFileException;
 import com.beemdevelopment.aegis.db.DatabaseManager;
 import com.beemdevelopment.aegis.db.DatabaseManagerException;
 import com.beemdevelopment.aegis.db.slots.FingerprintSlot;
@@ -29,25 +31,22 @@ import com.beemdevelopment.aegis.db.slots.SlotException;
 import com.beemdevelopment.aegis.db.slots.SlotList;
 import com.beemdevelopment.aegis.helpers.FingerprintHelper;
 import com.beemdevelopment.aegis.helpers.PermissionHelper;
-import com.beemdevelopment.aegis.importers.AegisFileImporter;
-import com.beemdevelopment.aegis.importers.DatabaseAppImporter;
-import com.beemdevelopment.aegis.importers.DatabaseFileImporter;
+import com.beemdevelopment.aegis.importers.AegisImporter;
 import com.beemdevelopment.aegis.importers.DatabaseImporter;
 import com.beemdevelopment.aegis.importers.DatabaseImporterEntryException;
 import com.beemdevelopment.aegis.importers.DatabaseImporterException;
-import com.beemdevelopment.aegis.importers.DatabaseImporterResult;
 import com.beemdevelopment.aegis.ui.preferences.SwitchPreference;
-import com.beemdevelopment.aegis.util.ByteInputStream;
 import com.takisoft.preferencex.PreferenceFragmentCompat;
 import com.topjohnwu.superuser.Shell;
+import com.topjohnwu.superuser.io.SuFile;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.concurrent.atomic.AtomicReference;
 
 import javax.crypto.Cipher;
@@ -70,10 +69,9 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
     private Intent _result;
     private DatabaseManager _db;
 
-    // this is used to keep a reference to a database converter
-    // while the user provides credentials to decrypt it
-    private DatabaseFileImporter _importer;
-    private Class<? extends DatabaseFileImporter> _importerType;
+    // keep a reference to the type of database converter the user selected
+    private Class<? extends DatabaseImporter> _importerType;
+    private AegisImporter.State _importerState;
 
     private SwitchPreference _encryptionPreference;
     private SwitchPreference _fingerprintPreference;
@@ -377,6 +375,7 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
                 break;
             case CODE_GROUPS:
                 onGroupManagerResult(resultCode, data);
+                break;
             case CODE_SELECT_ENTRIES:
                 onSelectEntriesResult(resultCode, data);
                 break;
@@ -397,8 +396,8 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
             return;
         }
 
-        Map<String, Class<? extends DatabaseFileImporter>> importers = DatabaseFileImporter.getImporters();
-        String[] names = importers.keySet().toArray(new String[importers.size()]);
+        Map<String, Class<? extends DatabaseImporter>> importers = DatabaseImporter.getImporters();
+        String[] names = importers.keySet().toArray(new String[0]);
 
         Dialogs.showSecureDialog(new AlertDialog.Builder(getActivity())
                 .setTitle(getString(R.string.choose_application))
@@ -417,61 +416,95 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
     }
 
     private void onImportApp() {
-        Map<String, Class<? extends DatabaseAppImporter>> importers = DatabaseAppImporter.getImporters();
-        String[] names = importers.keySet().toArray(new String[importers.size()]);
+        Map<String, Class<? extends DatabaseImporter>> importers = DatabaseImporter.getAppImporters();
+        String[] names = importers.keySet().toArray(new String[0]);
 
         Dialogs.showSecureDialog(new AlertDialog.Builder(getActivity())
                 .setTitle(getString(R.string.choose_application))
                 .setSingleChoiceItems(names, 0, null)
-                .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        int i = ((AlertDialog) dialog).getListView().getCheckedItemPosition();
-                        try {
-                            DatabaseAppImporter importer;
-                            // obtain the global root shell and close it immediately after we're done
-                            // TODO: find a way to use SuFileInputStream with Shell.newInstance()
-                            try (Shell shell = Shell.getShell()) {
-                                if (!shell.isRoot()) {
-                                    Toast.makeText(getActivity(), getString(R.string.root_error), Toast.LENGTH_SHORT).show();
-                                    return;
-                                }
-                                importer = DatabaseAppImporter.create(getContext(), importers.get(names[i]));
-                                importer.parse();
-                            } catch (IOException e) {
-                                Toast.makeText(getActivity(), getString(R.string.root_error), Toast.LENGTH_SHORT).show();
-                                return;
-                            }
-                            importDatabase(importer);
-                        } catch (DatabaseImporterException e) {
-                            e.printStackTrace();
-
-                            String msg = String.format("%s: %s", getString(R.string.parsing_file_error), e.getMessage());
-                            Toast.makeText(getActivity(), msg, Toast.LENGTH_SHORT).show();
-                        }
-                    }
+                .setPositiveButton(android.R.string.ok, (dialog, which) -> {
+                    int i = ((AlertDialog) dialog).getListView().getCheckedItemPosition();
+                    Class<? extends DatabaseImporter> importerType = Objects.requireNonNull(importers.get(names[i]));
+                    DatabaseImporter importer = DatabaseImporter.create(getContext(), importerType);
+                    importApp(importer);
                 })
                 .create());
     }
 
+    private void importApp(DatabaseImporter importer) {
+        // obtain the global root shell and close it immediately after we're done
+        // TODO: find a way to use SuFileInputStream with Shell.newInstance()
+        try (Shell shell = Shell.getShell()) {
+            if (!shell.isRoot()) {
+                Toast.makeText(getActivity(), R.string.root_error, Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            SuFile file = importer.getAppPath();
+            try (DatabaseImporter.FileReader reader = DatabaseImporter.FileReader.open(file)) {
+                importDatabase(importer, reader);
+            }
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+            Toast.makeText(getActivity(), R.string.app_lookup_error, Toast.LENGTH_SHORT).show();
+        } catch (IOException | DatabaseImporterException e) {
+            e.printStackTrace();
+            Toast.makeText(getActivity(), getString(R.string.reading_file_error), Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void importDatabase(DatabaseImporter importer, DatabaseImporter.FileReader reader) {
+        try {
+            DatabaseImporter.State state = importer.read(reader);
+            if (state.isEncrypted()) {
+                // temporary special case for encrypted Aegis databases
+                if (state instanceof AegisImporter.EncryptedState) {
+                    _importerState = state;
+
+                    Intent intent = new Intent(getActivity(), AuthActivity.class);
+                    intent.putExtra("slots", ((AegisImporter.EncryptedState) state).getSlots());
+                    startActivityForResult(intent, CODE_IMPORT_DECRYPT);
+                } else {
+                    state.decrypt(getActivity(), new DatabaseImporter.DecryptListener() {
+                        @Override
+                        public void onStateDecrypted(DatabaseImporter.State state) {
+                            importDatabase(state);
+                        }
+
+                        @Override
+                        public void onError(Exception e) {
+                            Toast.makeText(getActivity(), R.string.decryption_error, Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
+            } else {
+                importDatabase(state);
+            }
+        } catch (DatabaseImporterException e) {
+            e.printStackTrace();
+            String msg = String.format("%s: %s", getString(R.string.parsing_file_error), e.getMessage());
+            Toast.makeText(getActivity(), msg, Toast.LENGTH_SHORT).show();
+        }
+    }
+
     private void onImportDecryptResult(int resultCode, Intent data) {
         if (resultCode != Activity.RESULT_OK) {
-            _importer = null;
+            _importerState = null;
             return;
         }
 
         DatabaseFileCredentials creds = (DatabaseFileCredentials) data.getSerializableExtra("creds");
-        ((AegisFileImporter)_importer).setCredentials(creds);
-
+        DatabaseImporter.State state;
         try {
-            importDatabase(_importer);
-        } catch (DatabaseImporterException e) {
+            state = ((AegisImporter.EncryptedState) _importerState).decrypt(creds);
+        } catch (DatabaseFileException e) {
             e.printStackTrace();
-
-            String msg = String.format("%s: %s", getString(R.string.parsing_file_error), e.getMessage());
-            Toast.makeText(getActivity(), msg, Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), R.string.decryption_error, Toast.LENGTH_SHORT).show();
+            return;
         }
 
-        _importer = null;
+        importDatabase(state);
+        _importerState = null;
     }
 
     private void onImportResult(int resultCode, Intent data) {
@@ -480,44 +513,28 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
             return;
         }
 
-        ByteInputStream stream;
-
-        try (InputStream fileStream = getActivity().getContentResolver().openInputStream(uri)) {
-            stream = ByteInputStream.create(fileStream);
+        try (DatabaseImporter.FileReader reader = DatabaseImporter.FileReader.open(getContext(), uri)) {
+            DatabaseImporter importer = DatabaseImporter.create(getContext(), _importerType);
+            importDatabase(importer, reader);
         } catch (FileNotFoundException e) {
             Toast.makeText(getActivity(), getString(R.string.file_not_found), Toast.LENGTH_SHORT).show();
-            return;
         } catch (IOException e) {
             e.printStackTrace();
             Toast.makeText(getActivity(), getString(R.string.reading_file_error), Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        try {
-            DatabaseFileImporter importer = DatabaseFileImporter.create(getContext(), stream, _importerType);
-            importer.parse();
-
-            // special case to decrypt encrypted aegis databases
-            if (importer.isEncrypted() && importer instanceof AegisFileImporter) {
-                _importer = importer;
-
-                Intent intent = new Intent(getActivity(), AuthActivity.class);
-                intent.putExtra("slots", ((AegisFileImporter)_importer).getFile().getHeader().getSlots());
-                startActivityForResult(intent, CODE_IMPORT_DECRYPT);
-                return;
-            }
-
-            importDatabase(importer);
-        } catch (DatabaseImporterException e) {
-            e.printStackTrace();
-
-            String msg = String.format("%s: %s", getString(R.string.parsing_file_error), e.getMessage());
-            Toast.makeText(getActivity(), msg, Toast.LENGTH_SHORT).show();
         }
     }
 
-    private void importDatabase(DatabaseImporter importer) throws DatabaseImporterException {
-        DatabaseImporterResult result = importer.convert();
+    private void importDatabase(DatabaseImporter.State state) {
+        DatabaseImporter.Result result;
+        try {
+            result = state.convert();
+        } catch (DatabaseImporterException e) {
+            e.printStackTrace();
+            String msg = String.format("%s: %s", getString(R.string.parsing_file_error), e.getMessage());
+            Toast.makeText(getContext(), msg, Toast.LENGTH_LONG).show();
+            return;
+        }
+
         List<DatabaseEntry> entries = result.getEntries();
         List<DatabaseImporterEntryException> errors = result.getErrors();
 
