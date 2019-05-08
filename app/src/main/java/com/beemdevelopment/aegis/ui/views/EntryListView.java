@@ -28,7 +28,7 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
     private Listener _listener;
     private SimpleItemTouchHelperCallback _touchCallback;
 
-    private RecyclerView _rvKeyProfiles;
+    private RecyclerView _recyclerView;
     private PeriodProgressBar _progressBar;
     private boolean _showProgress;
 
@@ -44,12 +44,11 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_entry_list_view, container, false);
-
         _progressBar = view.findViewById(R.id.progressBar);
 
         // set up the recycler view
-        _rvKeyProfiles = view.findViewById(R.id.rvKeyProfiles);
-        _rvKeyProfiles.addOnScrollListener(new RecyclerView.OnScrollListener() {
+        _recyclerView = view.findViewById(R.id.rvKeyProfiles);
+        _recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
@@ -58,15 +57,15 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
         });
 
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(view.getContext());
-        _rvKeyProfiles.setLayoutManager(mLayoutManager);
+        _recyclerView.setLayoutManager(mLayoutManager);
         _touchCallback = new SimpleItemTouchHelperCallback(_adapter);
         ItemTouchHelper touchHelper = new ItemTouchHelper(_touchCallback);
-        touchHelper.attachToRecyclerView(_rvKeyProfiles);
-        _rvKeyProfiles.setAdapter(_adapter);
+        touchHelper.attachToRecyclerView(_recyclerView);
+        _recyclerView.setAdapter(_adapter);
 
         int resId = R.anim.layout_animation_fall_down;
         LayoutAnimationController animation = AnimationUtils.loadLayoutAnimation(getContext(), resId);
-        _rvKeyProfiles.setLayoutAnimation(animation);
+        _recyclerView.setLayoutAnimation(animation);
 
         _refresher = new UiRefresher(new UiRefresher.Listener() {
             @Override
@@ -83,23 +82,26 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
         return view;
     }
 
-    public void setGroupFilter(String group) {
-        _adapter.setGroupFilter(group);
+    public void setGroupFilter(String group, boolean apply) {
         _touchCallback.setIsLongPressDragEnabled(group == null);
-        checkPeriodUniformity();
+        _adapter.setGroupFilter(group, apply);
 
-        runLayoutAnimation(_rvKeyProfiles);
+        if (apply) {
+            runEntriesAnimation();
+        }
     }
 
-    public void setSortCategory(SortCategory sortCategory) {
+    public void setSortCategory(SortCategory sortCategory, boolean apply) {
         _touchCallback.setIsLongPressDragEnabled(sortCategory == SortCategory.CUSTOM);
+        _adapter.setSortCategory(sortCategory, apply);
 
-        _adapter.setSortCategory(sortCategory);
-        runLayoutAnimation(_rvKeyProfiles);
+        if (apply) {
+            runEntriesAnimation();
+        }
     }
 
-    public void setViewMode(ViewMode viewMode) {
-        _adapter.setViewMode(viewMode);
+    public void setViewMode(ViewMode mode) {
+        _adapter.setViewMode(mode);
     }
 
     public void refresh(boolean hard) {
@@ -107,33 +109,6 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
             _progressBar.refresh();
         }
         _adapter.refresh(hard);
-    }
-
-    private void checkPeriodUniformity() {
-        boolean uniform = _adapter.isPeriodUniform();
-        if (uniform == _showProgress) {
-            return;
-        }
-        _showProgress = uniform;
-
-        if (_showProgress) {
-            _progressBar.setVisibility(View.VISIBLE);
-            _progressBar.setPeriod(_adapter.getUniformPeriod());
-            startRefreshLoop();
-        } else {
-            _progressBar.setVisibility(View.GONE);
-            stopRefreshLoop();
-        }
-    }
-
-    private void startRefreshLoop() {
-        refresh(true);
-        _refresher.start();
-    }
-
-    private void stopRefreshLoop() {
-        refresh(true);
-        _refresher.stop();
     }
 
     public void setListener(Listener listener) {
@@ -165,6 +140,19 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
         _listener.onEntryChange(entry);
     }
 
+    @Override
+    public void onPeriodUniformityChanged(boolean isUniform) {
+        _showProgress = isUniform;
+        if (_showProgress) {
+            _progressBar.setVisibility(View.VISIBLE);
+            _progressBar.setPeriod(_adapter.getUniformPeriod());
+            _refresher.start();
+        } else {
+            _progressBar.setVisibility(View.GONE);
+            _refresher.stop();
+        }
+    }
+
     public void setShowAccountName(boolean showAccountName) {
         _adapter.setShowAccountName(showAccountName);
     }
@@ -179,37 +167,31 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
 
     public void addEntry(DatabaseEntry entry) {
         _adapter.addEntry(entry);
-        checkPeriodUniformity();
     }
 
     public void addEntries(List<DatabaseEntry> entries) {
         _adapter.addEntries(entries);
-        checkPeriodUniformity();
     }
 
     public void removeEntry(DatabaseEntry entry) {
         _adapter.removeEntry(entry);
-        checkPeriodUniformity();
     }
 
     public void clearEntries() {
         _adapter.clearEntries();
-        checkPeriodUniformity();
     }
 
     public void replaceEntry(DatabaseEntry entry) {
         _adapter.replaceEntry(entry);
-        checkPeriodUniformity();
     }
 
-    private void runLayoutAnimation(final RecyclerView recyclerView) {
-        final Context context = recyclerView.getContext();
+    public void runEntriesAnimation() {
+        final Context context = _recyclerView.getContext();
         final LayoutAnimationController controller =
                 AnimationUtils.loadLayoutAnimation(context, R.anim.layout_animation_fall_down);
 
-        recyclerView.setLayoutAnimation(controller);
-        recyclerView.getAdapter().notifyDataSetChanged();
-        recyclerView.scheduleLayoutAnimation();
+        _recyclerView.setLayoutAnimation(controller);
+        _recyclerView.scheduleLayoutAnimation();
     }
 
     public interface Listener {

@@ -1,69 +1,61 @@
 package com.beemdevelopment.aegis;
 
+import com.beemdevelopment.aegis.db.DatabaseEntry;
 import com.beemdevelopment.aegis.helpers.comparators.AccountNameComparator;
 import com.beemdevelopment.aegis.helpers.comparators.IssuerNameComparator;
 
+import java.util.Collections;
 import java.util.Comparator;
 
 public enum SortCategory {
     CUSTOM,
     ACCOUNT,
-    ACCOUNTREVERSED,
+    ACCOUNT_REVERSED,
     ISSUER,
-    ISSUERREVERSED;
+    ISSUER_REVERSED;
+
+    private static SortCategory[] _values;
+
+    static {
+        _values = values();
+    }
 
     public static SortCategory fromInteger(int x) {
-        switch (x) {
-            case 0:
-                return CUSTOM;
-            case 1:
-                return ACCOUNT;
-            case 2:
-                return ACCOUNTREVERSED;
-            case 3:
-                return ISSUER;
-            case 4:
-                return ISSUERREVERSED;
-        }
-        return null;
+        return _values[x];
     }
 
-    public static Comparator getComparator(SortCategory sortCategory) {
-        switch (sortCategory) {
+    public Comparator<DatabaseEntry> getComparator() {
+        Comparator<DatabaseEntry> comparator = null;
+
+        switch (this) {
             case ACCOUNT:
-            case ACCOUNTREVERSED:
-                return new AccountNameComparator();
+                comparator = new AccountNameComparator();
+                break;
+            case ACCOUNT_REVERSED:
+                comparator = Collections.reverseOrder(new AccountNameComparator());
+                break;
             case ISSUER:
-            case ISSUERREVERSED:
-                return new IssuerNameComparator();
-            case CUSTOM:
-                return new IssuerNameComparator();
+                comparator = new IssuerNameComparator();
+                break;
+            case ISSUER_REVERSED:
+                comparator = Collections.reverseOrder(new IssuerNameComparator());
+                break;
         }
-        return null;
+
+        return comparator;
     }
 
-    public static boolean isReversed(SortCategory sortCategory) {
-        switch (sortCategory) {
-            case ACCOUNTREVERSED:
-            case ISSUERREVERSED:
-                return true;
-
-            default:
-                return false;
-        }
-    }
-
-    public static int getMenuItem(SortCategory sortCategory) {
-        switch (sortCategory) {
+    public int getMenuItem() {
+        switch (this) {
             case CUSTOM:
                 return R.id.menu_sort_custom;
             case ACCOUNT:
                 return R.id.menu_sort_alphabetically_name;
-            case ACCOUNTREVERSED:
+            case ACCOUNT_REVERSED:
                 return R.id.menu_sort_alphabetically_name_reverse;
             case ISSUER:
                 return R.id.menu_sort_alphabetically;
-            case ISSUERREVERSED:
+            case ISSUER_REVERSED:
                 return R.id.menu_sort_alphabetically_reverse;
             default:
                 return R.id.menu_sort_custom;

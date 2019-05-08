@@ -4,7 +4,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.SortCategory;
 import com.beemdevelopment.aegis.ViewMode;
 import com.beemdevelopment.aegis.db.DatabaseEntry;
@@ -16,6 +15,7 @@ import com.beemdevelopment.aegis.otp.TotpInfo;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.UUID;
 
@@ -30,8 +30,8 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
     private int _tapToRevealTime;
     private String _groupFilter;
     private SortCategory _sortCategory;
-
     private ViewMode _viewMode;
+    private boolean _isPeriodUniform = true;
 
     // keeps track of the viewholders that are currently bound
     private List<EntryHolder> _holders;
@@ -57,26 +57,43 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
 
     public void addEntry(DatabaseEntry entry) {
         _entries.add(entry);
-        if (!isEntryFiltered(entry)) {
-            _shownEntries.add(entry);
+        if (isEntryFiltered(entry)) {
+            return;
         }
 
-        int position = getItemCount() - 1;
-        if (position == 0) {
-            notifyDataSetChanged();
-        } else {
-            notifyItemInserted(position);
+        boolean added = false;
+        Comparator<DatabaseEntry> comparator = _sortCategory.getComparator();
+        if (comparator != null) {
+            // insert the entry in the correct order
+            // note: this assumes that _shownEntries has already been sorted
+            for (int i = 0; i < _shownEntries.size(); i++) {
+                if (comparator.compare(_shownEntries.get(i), entry) > 0) {
+                    _shownEntries.add(i, entry);
+                    notifyItemInserted(i);
+                    added = true;
+                    break;
+                }
+            }
         }
+
+        if (!added){
+            _shownEntries.add(entry);
+
+            int position = getItemCount() - 1;
+            if (position == 0) {
+                notifyDataSetChanged();
+            } else {
+                notifyItemInserted(position);
+            }
+        }
+
+        checkPeriodUniformity();
     }
 
     public void addEntries(List<DatabaseEntry> entries) {
         _entries.addAll(entries);
-        for (DatabaseEntry entry : entries) {
-            if (!isEntryFiltered(entry)) {
-                _shownEntries.add(entry);
-            }
-        }
-        notifyDataSetChanged();
+        updateShownEntries();
+        checkPeriodUniformity();
     }
 
     public void removeEntry(DatabaseEntry entry) {
@@ -88,6 +105,8 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
             _shownEntries.remove(position);
             notifyItemRemoved(position);
         }
+
+        checkPeriodUniformity();
     }
 
     public void clearEntries() {
@@ -116,6 +135,8 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
             int position = getItemCount() - 1;
             notifyItemInserted(position);
         }
+
+        checkPeriodUniformity();
     }
 
     private boolean isEntryFiltered(DatabaseEntry entry) {
@@ -145,34 +166,45 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
         }
     }
 
-    public void setGroupFilter(String group) {
+    public void setGroupFilter(String group, boolean apply) {
+        if (_groupFilter != null && _groupFilter.equals(group)) {
+            return;
+        }
         _groupFilter = group;
+        if (apply) {
+            updateShownEntries();
+            checkPeriodUniformity();
+        }
+    }
+
+    public void setSortCategory(SortCategory category, boolean apply) {
+        if (_sortCategory == category) {
+            return;
+        }
+        _sortCategory = category;
+        if (apply) {
+            updateShownEntries();
+        }
+    }
+
+    private void updateShownEntries() {
+        // clear the list of shown entries first
         _shownEntries.clear();
+
+        // add entries back that are not filtered out
         for (DatabaseEntry entry : _entries) {
             if (!isEntryFiltered(entry)) {
                 _shownEntries.add(entry);
             }
         }
 
-        sortList(_sortCategory);
+        // sort the remaining list of entries
+        Comparator<DatabaseEntry> comparator = _sortCategory.getComparator();
+        if (comparator != null) {
+            Collections.sort(_shownEntries, comparator);
+        }
+
         notifyDataSetChanged();
-    }
-
-    public void setSortCategory(SortCategory sortCategory) {
-        if (_sortCategory != sortCategory && sortCategory != SortCategory.CUSTOM) {
-            sortList(sortCategory);
-            notifyDataSetChanged();
-        }
-
-        _sortCategory = sortCategory;
-    }
-
-    private void sortList(SortCategory sortCategory) {
-        Collections.sort(_shownEntries, SortCategory.getComparator(sortCategory));
-
-        if (SortCategory.isReversed(sortCategory)) {
-            Collections.reverse(_shownEntries);
-        }
     }
 
     public void setViewMode(ViewMode viewMode) {
@@ -211,16 +243,14 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
     }
 
     @Override
-    public EntryHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_entry, parent, false);
-        if (_viewMode == ViewMode.NORMAL) {
-            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_entry, parent, false);
-        } else if (_viewMode == ViewMode.COMPACT) {
-            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_entry_compact, parent, false);
-        } else if (_viewMode == ViewMode.SMALL) {
-            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_entry_small, parent, false);
-        }
+    public int getItemViewType(int position) {
+        return _viewMode.getLayoutId();
+    }
 
+    @Override
+    public EntryHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        LayoutInflater inflater = LayoutInflater.from(parent.getContext());
+        View view = inflater.inflate(_viewMode.getLayoutId(), parent, false);
         return new EntryHolder(view);
     }
 
@@ -236,9 +266,6 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
         boolean showProgress = !isPeriodUniform() && entry.getInfo() instanceof TotpInfo;
         holder.setData(entry, _showAccountName, showProgress, _tapToReveal);
         holder.setTapToRevealTime(_tapToRevealTime);
-        if (showProgress) {
-            holder.startRefreshLoop();
-        }
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -280,6 +307,20 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
         _holders.add(holder);
     }
 
+    private void checkPeriodUniformity() {
+        boolean uniform = isPeriodUniform();
+        if (uniform == _isPeriodUniform) {
+            return;
+        }
+        _isPeriodUniform = uniform;
+
+        for (EntryHolder holder : _holders) {
+            holder.setShowProgress(!_isPeriodUniform);
+        }
+
+        _listener.onPeriodUniformityChanged(_isPeriodUniform);
+    }
+
     public int getUniformPeriod() {
         List<TotpInfo> infos = new ArrayList<>();
         for (DatabaseEntry entry : _shownEntries) {
@@ -318,5 +359,6 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
         void onEntryMove(DatabaseEntry entry1, DatabaseEntry entry2);
         void onEntryDrop(DatabaseEntry entry);
         void onEntryChange(DatabaseEntry entry);
+        void onPeriodUniformityChanged(boolean uniform);
     }
 }
