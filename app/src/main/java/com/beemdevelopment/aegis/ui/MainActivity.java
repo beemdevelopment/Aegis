@@ -147,6 +147,11 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
             return;
         }
 
+        // don't process any activity results if the vault is locked
+        if (requestCode != CODE_DECRYPT && _db.isLocked()) {
+            return;
+        }
+
         switch (requestCode) {
             case CODE_SCAN:
                 onScanResult(resultCode, data);
@@ -371,10 +376,6 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         intent.removeExtra("action");
     }
 
-    public void startActivityForResult(Intent intent, int requestCode) {
-        super.startActivityForResult(intent, requestCode);
-    }
-
     @Override
     protected void onResume() {
         super.onResume();
@@ -411,7 +412,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
     @Override
     public void onBackPressed() {
         if (_app.isAutoLockEnabled()) {
-            lockDatabase();
+            _app.lock();
         }
 
         super.onBackPressed();
@@ -481,7 +482,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
                 startActivityForResult(intent, CODE_PREFERENCES);
                 return true;
             case R.id.action_lock:
-                lockDatabase();
+                _app.lock();
                 startAuthActivity();
                 return true;
             default:
@@ -525,14 +526,6 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         }
     }
 
-    private void lockDatabase() {
-        if (_loaded) {
-            _entryListView.clearEntries();
-            _db.lock();
-            _loaded = false;
-        }
-    }
-
     private void unlockDatabase(DatabaseFileCredentials creds) {
         if (_loaded) {
             return;
@@ -570,6 +563,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
     private void startAuthActivity() {
         Intent intent = new Intent(this, AuthActivity.class);
         intent.putExtra("slots", _db.getFileHeader().getSlots());
+        intent.putExtra("requiresUnlock", false);
         startActivityForResult(intent, CODE_DECRYPT);
     }
 
@@ -612,5 +606,12 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
     @Override
     public void onScroll(int dx, int dy) {
         _fabScrollHelper.onScroll(dx, dy);
+    }
+
+    @Override
+    public void onLocked() {
+        _entryListView.clearEntries();
+        _loaded = false;
+        super.onLocked();
     }
 }
