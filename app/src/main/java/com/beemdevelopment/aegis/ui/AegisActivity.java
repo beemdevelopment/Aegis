@@ -20,8 +20,11 @@ public abstract class AegisActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
         _app = (AegisApplication) getApplication();
+
+        // set the theme and create the activity
+        setPreferredTheme(Theme.fromInteger(getPreferences().getCurrentTheme()));
+        super.onCreate(savedInstanceState);
 
         // if the app was killed, relaunch MainActivity and close everything else
         if (!(this instanceof MainActivity) && !(this instanceof AuthActivity) && _app.getDatabaseManager().isLocked()) {
@@ -36,9 +39,6 @@ public abstract class AegisActivity extends AppCompatActivity {
         if (getPreferences().isSecureScreenEnabled()) {
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_SECURE);
         }
-
-        // set the theme
-        setPreferredTheme(Theme.fromInteger(getPreferences().getCurrentTheme()));
 
         // apply a dirty hack to make progress bars work even if animations are disabled
         setGlobalAnimationDurationScale();
