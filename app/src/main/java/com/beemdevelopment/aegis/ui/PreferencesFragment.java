@@ -284,7 +284,9 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
                 SlotList slots = creds.getSlots();
 
                 if (!slots.has(FingerprintSlot.class)) {
-                    Dialogs.showFingerprintDialog(getActivity(), new RegisterFingerprintListener());
+                    if (FingerprintHelper.isSupported() && FingerprintHelper.isAvailable(getContext())) {
+                        Dialogs.showFingerprintDialog(getActivity(), new RegisterFingerprintListener());
+                    }
                 } else {
                     // remove the fingerprint slot
                     FingerprintSlot slot = slots.find(FingerprintSlot.class);
@@ -669,8 +671,9 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
             boolean multiPassword = slots.findAll(PasswordSlot.class).size() > 1;
             boolean multiFinger = slots.findAll(FingerprintSlot.class).size() > 1;
             boolean showSlots = BuildConfig.DEBUG || multiPassword || multiFinger;
+            boolean canUseFinger = FingerprintHelper.isSupported() && FingerprintHelper.isAvailable(getContext());
             _setPasswordPreference.setEnabled(!multiPassword);
-            _fingerprintPreference.setEnabled(FingerprintHelper.getManager(getContext()) != null && !multiFinger);
+            _fingerprintPreference.setEnabled(canUseFinger && !multiFinger);
             _fingerprintPreference.setChecked(slots.has(FingerprintSlot.class), true);
             _slotsPreference.setVisible(showSlots);
         } else {
