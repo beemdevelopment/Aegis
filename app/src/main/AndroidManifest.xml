@@ -19,15 +19,13 @@
         tools:replace="android:theme">
         <activity
             android:name=".ui.SelectEntriesActivity"
-            android:label="Select entries"
-            android:theme="@style/AppTheme.TransparentActionBar"></activity>
+            android:label="Select entries" />
         <activity
             android:name=".ui.MainActivity"
             android:label="${title}"
             android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -35,12 +33,10 @@
             android:name=".ui.ScannerActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:label="Scan a QR code"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.Fullscreen" />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.EditEntryActivity"
-            android:label="Edit profile"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:label="Edit profile" />
         <activity
             android:name=".ui.IntroActivity"
             android:theme="@style/Theme.Intro" />
@@ -48,12 +44,10 @@
         <activity android:name=".ui.PreferencesActivity" />
         <activity
             android:name=".ui.SlotManagerActivity"
-            android:label="Manage key slots"
-            android:theme="@style/AppTheme.TransparentActionBar" />
+            android:label="Manage key slots" />
         <activity
             android:name=".ui.GroupManagerActivity"
-            android:label="Manage groups"
-            android:theme="@style/AppTheme.TransparentActionBar" />
+            android:label="Manage groups" />
     </application>
 
 </manifest>
