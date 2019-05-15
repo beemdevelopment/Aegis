@@ -97,7 +97,7 @@ public class SelectEntriesActivity extends AegisActivity {
                     ClipboardManager clipboard = (ClipboardManager) this.getSystemService(Context.CLIPBOARD_SERVICE);
                     ClipData clip = ClipData.newPlainText("text/plain", message);
                     clipboard.setPrimaryClip(clip);
-                    Toast.makeText(this, getString(R.string.errors_copied), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, R.string.errors_copied, Toast.LENGTH_SHORT).show();
                 })
                 .create());
     }

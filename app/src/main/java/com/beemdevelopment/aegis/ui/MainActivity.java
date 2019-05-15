@@ -1,8 +1,6 @@
 package com.beemdevelopment.aegis.ui;
 
 import android.Manifest;
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
@@ -16,9 +14,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.SubMenu;
-import android.view.View;
-import android.view.animation.AccelerateInterpolator;
-import android.view.animation.DecelerateInterpolator;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -48,14 +43,11 @@ import com.google.zxing.Reader;
 import com.google.zxing.Result;
 import com.google.zxing.common.HybridBinarizer;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.TreeSet;
-
-import androidx.coordinatorlayout.widget.CoordinatorLayout;
 
 public class MainActivity extends AegisActivity implements EntryListView.Listener {
     // activity request codes
@@ -98,7 +90,8 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         _entryListView.setShowAccountName(getPreferences().isAccountNameVisible());
         _entryListView.setTapToReveal(getPreferences().isTapToRevealEnabled());
         _entryListView.setTapToRevealTime(getPreferences().getTapToRevealTime());
-        _entryListView.setViewMode(ViewMode.fromInteger(getPreferences().getCurrentViewMode()));
+        _entryListView.setSortCategory(getPreferences().getCurrentSortCategory(), false);
+        _entryListView.setViewMode(getPreferences().getCurrentViewMode());
 
         // set up the floating action button
         _fabMenu = findViewById(R.id.fab);
@@ -203,9 +196,11 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
             boolean showAccountName = getPreferences().isAccountNameVisible();
             boolean tapToReveal = getPreferences().isTapToRevealEnabled();
             int tapToRevealTime = getPreferences().getTapToRevealTime();
+            ViewMode viewMode = getPreferences().getCurrentViewMode();
             _entryListView.setShowAccountName(showAccountName);
             _entryListView.setTapToReveal(tapToReveal);
             _entryListView.setTapToRevealTime(tapToRevealTime);
+            _entryListView.setViewMode(viewMode);
             _entryListView.refresh(true);
         }
     }
@@ -317,23 +312,15 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         menu.setGroupCheckable(R.id.action_filter_group, true, true);
     }
 
+    private void updateSortCategoryMenu() {
+        SortCategory category = getPreferences().getCurrentSortCategory();
+        _menu.findItem(category.getMenuItem()).setChecked(true);
+    }
+
     private void setGroupFilter(String group) {
         getSupportActionBar().setSubtitle(group);
         _checkedGroup = group;
-        _entryListView.setGroupFilter(group);
-    }
-
-    private void setSortCategory(SortCategory sortCategory) {
-        if (sortCategory == SortCategory.CUSTOM) {
-            _entryListView.clearEntries();
-            loadEntries();
-        }
-
-        _entryListView.setSortCategory(sortCategory);
-    }
-
-    private void updateSortCategoryMenu(SortCategory sortCategory) {
-        _menu.findItem(SortCategory.getMenuItem(sortCategory)).setChecked(true);
+        _entryListView.setGroupFilter(group, true);
     }
 
     private void addEntry(DatabaseEntry entry) {
@@ -412,7 +399,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
             }
 
             // refresh all codes to prevent showing old ones
-            _entryListView.refresh(true);
+            _entryListView.refresh(false);
         } else {
             loadEntries();
         }
@@ -481,7 +468,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         updateLockIcon();
         if (_loaded) {
             updateGroupFilterMenu();
-            updateSortCategoryMenu(SortCategory.fromInteger(getPreferences().getCurrentSortCategory()));
+            updateSortCategoryMenu();
         }
         return true;
     }
@@ -517,13 +504,13 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
                             sortCategory = SortCategory.ISSUER;
                             break;
                         case R.id.menu_sort_alphabetically_reverse:
-                            sortCategory = SortCategory.ISSUERREVERSED;
+                            sortCategory = SortCategory.ISSUER_REVERSED;
                             break;
                         case R.id.menu_sort_alphabetically_name:
                             sortCategory = SortCategory.ACCOUNT;
                             break;
                         case R.id.menu_sort_alphabetically_name_reverse:
-                            sortCategory = SortCategory.ACCOUNTREVERSED;
+                            sortCategory = SortCategory.ACCOUNT_REVERSED;
                             break;
                         case R.id.menu_sort_custom:
                         default:
@@ -531,7 +518,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
                             break;
                     }
 
-                    setSortCategory(sortCategory);
+                    _entryListView.setSortCategory(sortCategory, true);
                     getPreferences().setCurrentSortCategory(sortCategory);
                 }
                 return super.onOptionsItemSelected(item);
@@ -570,14 +557,13 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         }
 
         loadEntries();
-        SortCategory currentSortCategory = SortCategory.fromInteger(getPreferences().getCurrentSortCategory());
-        setSortCategory(currentSortCategory);
     }
 
     private void loadEntries() {
         // load all entries
         List<DatabaseEntry> entries = new ArrayList<DatabaseEntry>(_db.getEntries());
         _entryListView.addEntries(entries);
+        _entryListView.runEntriesAnimation();
         _loaded = true;
     }
 
