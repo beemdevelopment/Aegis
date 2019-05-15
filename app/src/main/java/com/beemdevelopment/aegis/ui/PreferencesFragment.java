@@ -89,18 +89,17 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
         // set the result intent in advance
         setResult(new Intent());
 
-        int currentTheme = app.getPreferences().getCurrentTheme();
+        int currentTheme = app.getPreferences().getCurrentTheme().ordinal();
         Preference darkModePreference = findPreference("pref_dark_mode");
-        darkModePreference.setSummary(String.format("%s: %s", getString(R.string.selected), getString(Theme.getThemeNameResource(currentTheme))));
+        darkModePreference.setSummary(String.format("%s: %s", getString(R.string.selected), getResources().getStringArray(R.array.theme_titles)[currentTheme]));
         darkModePreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
-                String[] themeNames = getStringsFromResourceIds(Theme.getThemeNameResources());
-                int checkedTheme = app.getPreferences().getCurrentTheme();
+                int currentTheme = app.getPreferences().getCurrentTheme().ordinal();
 
                 Dialogs.showSecureDialog(new AlertDialog.Builder(getActivity())
-                        .setTitle(getString(R.string.choose_theme))
-                        .setSingleChoiceItems(themeNames, checkedTheme, (dialog, which) -> {
+                        .setTitle(R.string.choose_theme)
+                        .setSingleChoiceItems(R.array.theme_titles, currentTheme, (dialog, which) -> {
                             int i = ((AlertDialog) dialog).getListView().getCheckedItemPosition();
                             app.getPreferences().setCurrentTheme(Theme.fromInteger(i));
 
@@ -116,34 +115,22 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
             }
         });
 
-        darkModePreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
-            @Override
-            public boolean onPreferenceChange(Preference preference, Object newValue) {
-                _result.putExtra("needsRecreate", true);
-                getActivity().recreate();
-                return true;
-            }
-        });
-
-        int currentViewMode = app.getPreferences().getCurrentViewMode();
+        int currentViewMode = app.getPreferences().getCurrentViewMode().ordinal();
         Preference viewModePreference = findPreference("pref_view_mode");
-        viewModePreference.setSummary(String.format("%s: %s", getString(R.string.selected), getString(ViewMode.getViewModeNameResource(currentViewMode))));
+        viewModePreference.setSummary(String.format("%s: %s", getString(R.string.selected), getResources().getStringArray(R.array.view_mode_titles)[currentViewMode]));
         viewModePreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
-                String[] viewModes = getStringsFromResourceIds(ViewMode.getViewModeNameResources());
-                int checkedMode = app.getPreferences().getCurrentViewMode();
+                int currentViewMode = app.getPreferences().getCurrentViewMode().ordinal();
 
                 Dialogs.showSecureDialog(new AlertDialog.Builder(getActivity())
-                        .setTitle(getString(R.string.choose_view_mode))
-                        .setSingleChoiceItems(viewModes, checkedMode, (dialog, which) -> {
+                        .setTitle(R.string.choose_view_mode)
+                        .setSingleChoiceItems(R.array.view_mode_titles, currentViewMode, (dialog, which) -> {
                             int i = ((AlertDialog) dialog).getListView().getCheckedItemPosition();
                             app.getPreferences().setCurrentViewMode(ViewMode.fromInteger(i));
-
+                            viewModePreference.setSummary(String.format("%s: %s", getString(R.string.selected), getResources().getStringArray(R.array.view_mode_titles)[i]));
+                            _result.putExtra("needsRefresh", true);
                             dialog.dismiss();
-
-                            viewModePreference.setSummary(String.format("%s: %s", getString(R.string.selected), getString(ViewMode.getViewModeNameResource(i))));
-                            _result.putExtra("needsRecreate", true);
                         })
                         .setPositiveButton(android.R.string.ok, null)
                         .create());
@@ -245,14 +232,14 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
                     Dialogs.showSetPasswordDialog(getActivity(), new EnableEncryptionListener());
                 } else {
                     Dialogs.showSecureDialog(new AlertDialog.Builder(getActivity())
-                            .setTitle(getString(R.string.disable_encryption))
+                            .setTitle(R.string.disable_encryption)
                             .setMessage(getString(R.string.disable_encryption_description))
                             .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int which) {
                                     try {
                                         _db.disableEncryption();
                                     } catch (DatabaseManagerException e) {
-                                        Toast.makeText(getActivity(), getString(R.string.disable_encryption_error), Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(getActivity(), R.string.disable_encryption_error, Toast.LENGTH_SHORT).show();
                                         return;
                                     }
 
@@ -343,7 +330,7 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         if (!PermissionHelper.checkResults(grantResults)) {
-            Toast.makeText(getActivity(), getString(R.string.permission_denied), Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), R.string.permission_denied, Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -400,7 +387,7 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
         String[] names = importers.keySet().toArray(new String[0]);
 
         Dialogs.showSecureDialog(new AlertDialog.Builder(getActivity())
-                .setTitle(getString(R.string.choose_application))
+                .setTitle(R.string.choose_application)
                 .setSingleChoiceItems(names, 0, null)
                 .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
@@ -420,7 +407,7 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
         String[] names = importers.keySet().toArray(new String[0]);
 
         Dialogs.showSecureDialog(new AlertDialog.Builder(getActivity())
-                .setTitle(getString(R.string.choose_application))
+                .setTitle(R.string.choose_application)
                 .setSingleChoiceItems(names, 0, null)
                 .setPositiveButton(android.R.string.ok, (dialog, which) -> {
                     int i = ((AlertDialog) dialog).getListView().getCheckedItemPosition();
@@ -449,7 +436,7 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
             Toast.makeText(getActivity(), R.string.app_lookup_error, Toast.LENGTH_SHORT).show();
         } catch (IOException | DatabaseImporterException e) {
             e.printStackTrace();
-            Toast.makeText(getActivity(), getString(R.string.reading_file_error), Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), R.string.reading_file_error, Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -517,10 +504,10 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
             DatabaseImporter importer = DatabaseImporter.create(getContext(), _importerType);
             importDatabase(importer, reader);
         } catch (FileNotFoundException e) {
-            Toast.makeText(getActivity(), getString(R.string.file_not_found), Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), R.string.file_not_found, Toast.LENGTH_SHORT).show();
         } catch (IOException e) {
             e.printStackTrace();
-            Toast.makeText(getActivity(), getString(R.string.reading_file_error), Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), R.string.reading_file_error, Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -558,7 +545,7 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
                     try {
                         filename = _db.export(checked.get());
                     } catch (DatabaseManagerException e) {
-                        Toast.makeText(getActivity(), getString(R.string.exporting_database_error), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), R.string.exporting_database_error, Toast.LENGTH_SHORT).show();
                         return;
                     }
 
@@ -578,7 +565,7 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
                 }
             });
         } else {
-            builder.setMessage(getString(R.string.export_warning));
+            builder.setMessage(R.string.export_warning);
         }
         Dialogs.showSecureDialog(builder.create());
     }
@@ -637,7 +624,7 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
         try {
             _db.save();
         } catch (DatabaseManagerException e) {
-            Toast.makeText(getActivity(), getString(R.string.saving_error), Toast.LENGTH_LONG).show();
+            Toast.makeText(getActivity(), R.string.saving_error, Toast.LENGTH_LONG).show();
             return false;
         }
 
@@ -666,15 +653,6 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
             _fingerprintPreference.setChecked(false, true);
             _slotsPreference.setVisible(false);
         }
-    }
-
-    private String[] getStringsFromResourceIds(int[] resourceIds) {
-        String[] strings = new String[resourceIds.length];
-        for(int i = 0; i < resourceIds.length; i++) {
-            strings[i] = getString(resourceIds[i]);
-        }
-
-        return strings;
     }
 
     private class SetPasswordListener implements Dialogs.SlotListener {

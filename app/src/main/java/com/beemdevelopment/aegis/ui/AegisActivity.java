@@ -38,7 +38,7 @@ public abstract class AegisActivity extends AppCompatActivity {
         }
 
         // set the theme
-        setPreferredTheme(Theme.fromInteger(getPreferences().getCurrentTheme()));
+        setPreferredTheme(getPreferences().getCurrentTheme());
 
         // apply a dirty hack to make progress bars work even if animations are disabled
         setGlobalAnimationDurationScale();

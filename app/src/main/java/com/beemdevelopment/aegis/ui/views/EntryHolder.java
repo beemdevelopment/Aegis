@@ -27,10 +27,7 @@ public class EntryHolder extends RecyclerView.ViewHolder {
     private ImageView _profileDrawable;
     private DatabaseEntry _entry;
     private ImageView _buttonRefresh;
-
     private View _entryDivider;
-
-    private View _currentView;
 
     private boolean _hidden;
     private int _tapToRevealTime;
@@ -42,7 +39,6 @@ public class EntryHolder extends RecyclerView.ViewHolder {
 
     public EntryHolder(final View view) {
         super(view);
-        _currentView = view;
 
         _profileName = view.findViewById(R.id.profile_account_name);
         _profileCode = view.findViewById(R.id.profile_code);
@@ -80,14 +76,7 @@ public class EntryHolder extends RecyclerView.ViewHolder {
         _hidden = hidden;
 
         // only show the progress bar if there is no uniform period and the entry type is TotpInfo
-        _progressBar.setVisibility(showProgress ? View.VISIBLE : View.GONE);
-        if (showProgress) {
-            _progressBar.setPeriod(((TotpInfo)entry.getInfo()).getPeriod());
-
-            if (_entryDivider != null) {
-                _entryDivider.setVisibility(View.GONE);
-            }
-        }
+        setShowProgress(showProgress);
 
         // only show the button if this entry is of type HotpInfo
         _buttonRefresh.setVisibility(entry.getInfo() instanceof HotpInfo ? View.VISIBLE : View.GONE);
@@ -123,6 +112,25 @@ public class EntryHolder extends RecyclerView.ViewHolder {
 
     public void setOnRefreshClickListener(View.OnClickListener listener) {
         _buttonRefresh.setOnClickListener(listener);
+    }
+
+    public void setShowProgress(boolean showProgress) {
+        if (_entry.getInfo() instanceof HotpInfo) {
+            showProgress = false;
+        }
+
+        _progressBar.setVisibility(showProgress ? View.VISIBLE : View.GONE);
+        if (showProgress) {
+            _progressBar.setPeriod(((TotpInfo) _entry.getInfo()).getPeriod());
+
+            if (_entryDivider != null) {
+                _entryDivider.setVisibility(View.GONE);
+            }
+
+            startRefreshLoop();
+        } else {
+            stopRefreshLoop();
+        }
     }
 
     public void startRefreshLoop() {
@@ -162,7 +170,7 @@ public class EntryHolder extends RecyclerView.ViewHolder {
     }
 
     private void hideCode() {
-        _profileCode.setText(_currentView.getContext().getResources().getString(R.string.tap_to_reveal));
+        _profileCode.setText(R.string.tap_to_reveal);
         _hidden = true;
     }
 

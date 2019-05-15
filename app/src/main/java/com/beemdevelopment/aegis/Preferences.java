@@ -43,24 +43,24 @@ public class Preferences {
         _prefs.edit().putInt("pref_current_sort_category", category.ordinal()).apply();
     }
 
-    public int getCurrentSortCategory() {
-        return _prefs.getInt("pref_current_sort_category", 0);
+    public SortCategory getCurrentSortCategory() {
+        return SortCategory.fromInteger(_prefs.getInt("pref_current_sort_category", 0));
     }
 
     public int getTapToRevealTime() {
         return _prefs.getInt("pref_tap_to_reveal_time", 30);
     }
 
-    public int getCurrentTheme() {
-        return _prefs.getInt("pref_current_theme", 0);
+    public Theme getCurrentTheme() {
+        return Theme.fromInteger(_prefs.getInt("pref_current_theme", 0));
     }
 
     public void setCurrentTheme(Theme theme) {
         _prefs.edit().putInt("pref_current_theme", theme.ordinal()).apply();
     }
 
-    public int getCurrentViewMode() {
-        return _prefs.getInt("pref_current_view_mode", 0);
+    public ViewMode getCurrentViewMode() {
+        return ViewMode.fromInteger(_prefs.getInt("pref_current_view_mode", 0));
     }
 
     public void setCurrentViewMode(ViewMode viewMode) {
