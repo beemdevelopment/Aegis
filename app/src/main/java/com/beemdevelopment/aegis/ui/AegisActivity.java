@@ -23,7 +23,7 @@ public abstract class AegisActivity extends AppCompatActivity {
         _app = (AegisApplication) getApplication();
 
         // set the theme and create the activity
-        setPreferredTheme(Theme.fromInteger(getPreferences().getCurrentTheme()));
+        setPreferredTheme(getPreferences().getCurrentTheme());
         super.onCreate(savedInstanceState);
 
         // if the app was killed, relaunch MainActivity and close everything else
