@@ -1,5 +1,6 @@
 package com.beemdevelopment.aegis.ui;
 
+import android.content.Context;
 import android.content.Intent;
 import android.hardware.fingerprint.FingerprintManager;
 import android.os.Build;
@@ -9,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -106,6 +108,9 @@ public class AuthActivity extends AegisActivity implements FingerprintUiHelper.C
         decryptButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+
                 char[] password = EditTextHelper.getEditTextChars(_textPassword);
                 trySlots(PasswordSlot.class, password);
             }
@@ -122,7 +127,7 @@ public class AuthActivity extends AegisActivity implements FingerprintUiHelper.C
                 .setTitle(getString(R.string.unlock_vault_error))
                 .setMessage(getString(R.string.unlock_vault_error_description))
                 .setCancelable(false)
-                .setPositiveButton(android.R.string.ok, null)
+                .setPositiveButton(android.R.string.ok, (dialog, which) -> selectPassword())
                 .create());
     }
 
@@ -137,6 +142,13 @@ public class AuthActivity extends AegisActivity implements FingerprintUiHelper.C
         result.putExtra("creds", new DatabaseFileCredentials(key, _slots));
         setResult(RESULT_OK, result);
         finish();
+    }
+
+    private void selectPassword() {
+        _textPassword.selectAll();
+
+        InputMethodManager imm = (InputMethodManager)   getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
     }
 
     @Override
