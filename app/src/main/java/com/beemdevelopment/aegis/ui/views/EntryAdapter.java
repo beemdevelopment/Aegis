@@ -93,7 +93,7 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
     public void addEntries(List<DatabaseEntry> entries) {
         _entries.addAll(entries);
         updateShownEntries();
-        checkPeriodUniformity();
+        checkPeriodUniformity(true);
     }
 
     public void removeEntry(DatabaseEntry entry) {
@@ -308,8 +308,12 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
     }
 
     private void checkPeriodUniformity() {
+        checkPeriodUniformity(false);
+    }
+
+    private void checkPeriodUniformity(boolean force) {
         boolean uniform = isPeriodUniform();
-        if (uniform == _isPeriodUniform) {
+        if (!force && uniform == _isPeriodUniform) {
             return;
         }
         _isPeriodUniform = uniform;
