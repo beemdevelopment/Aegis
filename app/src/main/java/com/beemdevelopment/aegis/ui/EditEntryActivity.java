@@ -444,7 +444,7 @@ public class EditEntryActivity extends AegisActivity {
 
         byte[] secret;
         try {
-            secret = Base32.decode(EditTextHelper.getEditTextChars(_textSecret));
+            secret = Base32.decode(EditTextHelper.getEditTextChars(_textSecret, true));
         } catch (Base32Exception e) {
             throw new ParseException("Secret is not valid base32.");
         }
