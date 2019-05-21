@@ -7,8 +7,8 @@ android {
         applicationId "com.beemdevelopment.aegis"
         minSdkVersion 19
         targetSdkVersion 28
-        versionCode 10
-        versionName "0.4"
+        versionCode 11
+        versionName "0.4.1"
     }
     buildTypes {
         debug {
