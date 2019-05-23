@@ -7,8 +7,7 @@
     android:paddingEnd="20dp"
     android:paddingTop="20dp">
     <EditText
-        android:id="@+id/text_groupname"
-        android:hint="@string/group_name_hint"
+        android:id="@+id/text_input"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 </LinearLayout>

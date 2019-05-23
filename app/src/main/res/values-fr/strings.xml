@@ -119,7 +119,7 @@
     <string name="export_database_location">La base de données a été exportée vers :</string>
     <string name="export_warning">Cette action va exporter la base de données en dehors du stockage privé d\'Aegis.</string>
     <string name="encryption_set_password_error">Une erreur est survenue en essayant de définir le mot de passe : </string>
-    <string name="encryption_enable_fingerprint_error">Une erreur est survenue en essayant d'activer le déverrouillage par empreinte digitale : </string>
+    <string name="encryption_enable_fingerprint_error">Une erreur est survenue en essayant d\'activer le déverrouillage par empreinte digitale : </string>
     <string name="no_cameras_available">Aucun appareil photo disponible</string>
     <string name="read_qr_error">Une erreur est survenue en essayant de lire le code QR</string>
     <string name="authentication_method_raw">Brut</string>
@@ -129,7 +129,7 @@
     <string name="remove_slot_description">Êtes-vous sûr de vouloir supprimer cet emplacement ?</string>
     <string name="remove_group">Supprimer groupe</string>
     <string name="remove_group_description">Êtes-vous sûr de vouloir supprimer ce groupe ? Les entrées dans ce groupe seront basculées automatiquement dans \"Aucun groupe\".</string>
-    <string name="adding_new_slot_error">Une erreur est survenue en essayant d'ajouter un nouvel emplacement :</string>
+    <string name="adding_new_slot_error">Une erreur est survenue en essayant d\'ajouter un nouvel emplacement :</string>
     <string name="details">Détails</string>
     <string name="filter">Filtre</string>
     <string name="lock">Verrouiller</string>

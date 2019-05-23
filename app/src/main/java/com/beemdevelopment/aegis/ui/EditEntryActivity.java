@@ -216,15 +216,16 @@ public class EditEntryActivity extends AegisActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if (position == _spinnerGroupList.size() - 1) {
-                    Dialogs.showCreateNewGroupDialog(activity, text -> {
-                        if (text.isEmpty()) {
+                    Dialogs.showTextInputDialog(activity, R.string.set_group, R.string.group_name_hint, text -> {
+                        String str = new String(text);
+                        if (str.isEmpty()) {
                             return;
                         }
-                        _groups.add(text);
+                        _groups.add(str);
                         // reset the selection to "No group" to work around a quirk
                         _spinnerGroup.setSelection(0, false);
                         updateGroupSpinnerList();
-                        _spinnerGroup.setSelection(_spinnerGroupList.indexOf(text), false);
+                        _spinnerGroup.setSelection(_spinnerGroupList.indexOf(str), false);
                     });
                     _spinnerGroup.setSelection(prevPosition, false);
                 } else {

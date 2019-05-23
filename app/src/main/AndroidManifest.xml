@@ -3,58 +3,51 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.beemdevelopment.aegis">
 
-    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.USE_FINGERPRINT" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
-        android:name="com.beemdevelopment.aegis.AegisApplication"
+        android:name=".AegisApplication"
         android:allowBackup="true"
         android:icon="@mipmap/${iconName}"
         android:label="Aegis"
         android:supportsRtl="true"
-        tools:replace="android:theme"
         android:theme="@style/AppTheme.NoActionBar"
-        tools:ignore="GoogleAppIndexingWarning">
+        tools:ignore="GoogleAppIndexingWarning"
+        tools:replace="android:theme">
         <activity
-            android:name="com.beemdevelopment.aegis.ui.MainActivity"
+            android:name=".ui.SelectEntriesActivity"
+            android:label="Select entries" />
+        <activity
+            android:name=".ui.MainActivity"
             android:label="${title}"
             android:launchMode="singleTask">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
-            android:name="com.beemdevelopment.aegis.ui.ScannerActivity"
+            android:name=".ui.ScannerActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
             android:label="Scan a QR code"
-            android:theme="@style/AppTheme.Fullscreen"
-            android:screenOrientation="portrait"
-            android:configChanges="keyboardHidden|orientation|screenSize">
-        </activity>
+            android:screenOrientation="portrait" />
         <activity
-            android:name="com.beemdevelopment.aegis.ui.EditEntryActivity"
-            android:label="Edit profile"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
+            android:name=".ui.EditEntryActivity"
+            android:label="Edit profile" />
         <activity
-            android:name="com.beemdevelopment.aegis.ui.IntroActivity"
-            android:theme="@style/Theme.Intro">
-        </activity>
-        <activity android:name="com.beemdevelopment.aegis.ui.AuthActivity">
-        </activity>
-        <activity android:name="com.beemdevelopment.aegis.ui.PreferencesActivity">
-        </activity>
+            android:name=".ui.IntroActivity"
+            android:theme="@style/Theme.Intro" />
+        <activity android:name=".ui.AuthActivity" />
+        <activity android:name=".ui.PreferencesActivity" />
         <activity
-            android:name="com.beemdevelopment.aegis.ui.SlotManagerActivity"
-            android:label="Manage key slots"
-            android:theme="@style/AppTheme.TransparentActionBar">
-        </activity>
+            android:name=".ui.SlotManagerActivity"
+            android:label="Manage key slots" />
         <activity
-            android:name="com.beemdevelopment.aegis.ui.GroupManagerActivity"
-            android:label="Manage groups"
-            android:theme="@style/AppTheme.TransparentActionBar">
-        </activity>
+            android:name=".ui.GroupManagerActivity"
+            android:label="Manage groups" />
     </application>
+
 </manifest>

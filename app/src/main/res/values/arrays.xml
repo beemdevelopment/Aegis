@@ -17,4 +17,16 @@
         <item>SHA256</item>
         <item>SHA512</item>
     </string-array>
+
+    <string-array name="theme_titles">
+        <item>@string/light_theme_title</item>
+        <item>@string/dark_theme_title</item>
+        <item>@string/amoled_theme_title</item>
+    </string-array>
+
+    <string-array name="view_mode_titles">
+        <item>@string/normal_viewmode_title</item>
+        <item>@string/compact_mode_title</item>
+        <item>@string/small_mode_title</item>
+    </string-array>
 </resources>

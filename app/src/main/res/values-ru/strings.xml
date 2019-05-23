@@ -8,7 +8,6 @@
     <string name="discard">Отмена</string>
     <string name="save">Сохранить</string>
     <string name="issuer">Эмитент</string>
-    <string name="title_activity_intro">IntroActivity</string>
 
     <string name="settings">Предпочтения</string>
     <string name="pref_appearance_group_title">Appearance</string>
@@ -60,8 +59,6 @@
     <string name="set_password_confirm">Пожалуйста, подтвердите пароль</string>
     <string name="invalidated_fingerprint">Обнаружено изменение настроек безопасности вашего устройства. Перейдите в «Настройки - Отпечаток пальца» и повторно добавьте свой отпечаток пальца.</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Привет пустой фрагмент</string>
     <string name="unlock">Разблокировать</string>
     <string name="advanced">Расширенные</string>
     <string name="seconds">секунд</string>
@@ -111,7 +108,7 @@
     <string name="file_not_found">Ошибка: файл не найден</string>
     <string name="reading_file_error">Произошла ошибка при попытке прочитать файл</string>
     <string name="root_error">Ошибка: невозможно получить root-доступ</string>
-    <string name="imported_entries_count">Импортироаано %d записей. %d ошибки.</string>
+    <string name="imported_entries_count">Импортироаано %d записей</string>
     <string name="exporting_database_error">Произошла ошибка при попытке экспорта базы данных</string>
     <string name="export_database_location">База данных была экспортирована в:</string>
     <string name="export_warning">Это действие экспортирует базу данных из личного хранилища Aegis.</string>

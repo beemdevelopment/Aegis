@@ -58,7 +58,7 @@ public class GoogleAuthInfo {
 
     public static GoogleAuthInfo parseUri(Uri uri) throws GoogleAuthInfoException {
         String scheme = uri.getScheme();
-        if (scheme == null || scheme.equals("otpauth")) {
+        if (scheme == null || !scheme.equals("otpauth")) {
             throw new GoogleAuthInfoException("unsupported protocol");
         }
 

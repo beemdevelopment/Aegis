@@ -13,19 +13,23 @@ import android.os.Build;
 import com.beemdevelopment.aegis.db.DatabaseManager;
 import com.beemdevelopment.aegis.ui.MainActivity;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 import androidx.annotation.RequiresApi;
 
 public class AegisApplication extends Application {
     private DatabaseManager _manager;
     private Preferences _prefs;
+    private List<LockListener> _lockListeners;
 
     @Override
     public void onCreate() {
         super.onCreate();
         _manager = new DatabaseManager(this);
         _prefs = new Preferences(this);
+        _lockListeners = new ArrayList<>();
 
         // listen for SCREEN_OFF events
         ScreenOffReceiver receiver = new ScreenOffReceiver();
@@ -42,6 +46,25 @@ public class AegisApplication extends Application {
 
     public Preferences getPreferences() {
         return _prefs;
+    }
+
+    public boolean isAutoLockEnabled() {
+        return _prefs.isAutoLockEnabled() && _manager.isLoaded() && _manager.isEncryptionEnabled() && !_manager.isLocked();
+    }
+
+    public void registerLockListener(LockListener listener) {
+        _lockListeners.add(listener);
+    }
+
+    public void unregisterLockListener(LockListener listener) {
+        _lockListeners.remove(listener);
+    }
+
+    public void lock() {
+        _manager.lock();
+        for (LockListener listener : _lockListeners) {
+            listener.onLocked();
+        }
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N_MR1)
@@ -65,19 +88,16 @@ public class AegisApplication extends Application {
         shortcutManager.setDynamicShortcuts(Collections.singletonList(shortcut));
     }
 
-    public boolean isAutoLockEnabled() {
-        return _prefs.isAutoLockEnabled() && _manager.isEncryptionEnabled() && !_manager.isLocked();
-    }
-
     private class ScreenOffReceiver extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
             if (isAutoLockEnabled()) {
-                _manager.lock();
-                Intent newIntent = new Intent(getApplicationContext(), MainActivity.class);
-                newIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                startActivity(newIntent);
+                lock();
             }
         }
+    }
+
+    public interface LockListener {
+        void onLocked();
     }
 }

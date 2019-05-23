@@ -2,6 +2,8 @@
 
 Aegis is a free, secure and open source 2FA app for Android.
 
+Aegis' security design and vault format is described in detail in [this document](docs/vault.md).
+
 # Features
 
 - Free and open source

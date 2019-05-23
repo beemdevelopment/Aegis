@@ -1,21 +1,19 @@
 package com.beemdevelopment.aegis.ui;
 
 import android.Manifest;
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Rect;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.SubMenu;
-import android.view.View;
-import android.view.animation.AccelerateInterpolator;
-import android.view.animation.DecelerateInterpolator;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -27,16 +25,29 @@ import com.beemdevelopment.aegis.db.DatabaseEntry;
 import com.beemdevelopment.aegis.db.DatabaseFileCredentials;
 import com.beemdevelopment.aegis.db.DatabaseManager;
 import com.beemdevelopment.aegis.db.DatabaseManagerException;
+import com.beemdevelopment.aegis.helpers.FabScrollHelper;
 import com.beemdevelopment.aegis.helpers.PermissionHelper;
+import com.beemdevelopment.aegis.otp.GoogleAuthInfo;
+import com.beemdevelopment.aegis.otp.GoogleAuthInfoException;
 import com.beemdevelopment.aegis.ui.views.EntryListView;
 import com.getbase.floatingactionbutton.FloatingActionsMenu;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
+import com.google.zxing.BinaryBitmap;
+import com.google.zxing.ChecksumException;
+import com.google.zxing.FormatException;
+import com.google.zxing.LuminanceSource;
+import com.google.zxing.MultiFormatReader;
+import com.google.zxing.NotFoundException;
+import com.google.zxing.RGBLuminanceSource;
+import com.google.zxing.Reader;
+import com.google.zxing.Result;
+import com.google.zxing.common.HybridBinarizer;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.TreeSet;
-
-import androidx.coordinatorlayout.widget.CoordinatorLayout;
 
 public class MainActivity extends AegisActivity implements EntryListView.Listener {
     // activity request codes
@@ -47,6 +58,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
     private static final int CODE_DO_INTRO = 4;
     private static final int CODE_DECRYPT = 5;
     private static final int CODE_PREFERENCES = 6;
+    private static final int CODE_SCAN_IMAGE = 7;
 
     // permission request codes
     private static final int CODE_PERM_CAMERA = 0;
@@ -60,7 +72,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
     private FloatingActionsMenu _fabMenu;
     private EntryListView _entryListView;
 
-    private boolean _isAnimating;
+    private FabScrollHelper _fabScrollHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,7 +90,8 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         _entryListView.setShowAccountName(getPreferences().isAccountNameVisible());
         _entryListView.setTapToReveal(getPreferences().isTapToRevealEnabled());
         _entryListView.setTapToRevealTime(getPreferences().getTapToRevealTime());
-        _entryListView.setViewMode(ViewMode.fromInteger(getPreferences().getCurrentViewMode()));
+        _entryListView.setSortCategory(getPreferences().getCurrentSortCategory(), false);
+        _entryListView.setViewMode(getPreferences().getCurrentViewMode());
 
         // set up the floating action button
         _fabMenu = findViewById(R.id.fab);
@@ -86,10 +99,21 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
             _fabMenu.collapse();
             startEditProfileActivity(CODE_ENTER_ENTRY, null, true);
         });
+        findViewById(R.id.fab_scan_image).setOnClickListener(view -> {
+            _fabMenu.collapse();
+
+            Intent galleryIntent = new Intent(Intent.ACTION_PICK);
+            galleryIntent.setDataAndType(android.provider.MediaStore.Images.Media.INTERNAL_CONTENT_URI, "image/*");
+
+            Intent chooserIntent = Intent.createChooser(galleryIntent, getString(R.string.select_picture));
+            startActivityForResult(Intent.createChooser(chooserIntent, getString(R.string.select_picture)), CODE_SCAN_IMAGE);
+        });
         findViewById(R.id.fab_scan).setOnClickListener(view -> {
             _fabMenu.collapse();
             startScanActivity();
         });
+
+        _fabScrollHelper = new FabScrollHelper(_fabMenu);
     }
 
     @Override
@@ -123,6 +147,11 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
             return;
         }
 
+        // don't process any activity results if the vault is locked
+        if (requestCode != CODE_DECRYPT && _db.isLocked()) {
+            return;
+        }
+
         switch (requestCode) {
             case CODE_SCAN:
                 onScanResult(resultCode, data);
@@ -145,6 +174,8 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
             case CODE_PREFERENCES:
                 onPreferencesResult(resultCode, data);
                 break;
+            case CODE_SCAN_IMAGE:
+                onScanImageResult(resultCode, data);
         }
     }
 
@@ -170,9 +201,11 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
             boolean showAccountName = getPreferences().isAccountNameVisible();
             boolean tapToReveal = getPreferences().isTapToRevealEnabled();
             int tapToRevealTime = getPreferences().getTapToRevealTime();
+            ViewMode viewMode = getPreferences().getCurrentViewMode();
             _entryListView.setShowAccountName(showAccountName);
             _entryListView.setTapToReveal(tapToReveal);
             _entryListView.setTapToRevealTime(tapToRevealTime);
+            _entryListView.setViewMode(viewMode);
             _entryListView.refresh(true);
         }
     }
@@ -225,6 +258,38 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         }
     }
 
+    private void onScanImageResult(int resultCode, Intent intent) {
+        if (resultCode == RESULT_OK) {
+            Uri inputFile = (intent.getData());
+            Bitmap bitmap;
+
+            try {
+                BitmapFactory.Options bmOptions = new BitmapFactory.Options();
+
+                try (InputStream inputStream = getContentResolver().openInputStream(inputFile)) {
+                    bitmap = BitmapFactory.decodeStream(inputStream, null, bmOptions);
+                }
+
+                int[] intArray = new int[bitmap.getWidth() * bitmap.getHeight()];
+                bitmap.getPixels(intArray, 0, bitmap.getWidth(), 0, 0, bitmap.getWidth(), bitmap.getHeight());
+
+                LuminanceSource source = new RGBLuminanceSource(bitmap.getWidth(), bitmap.getHeight(), intArray);
+                BinaryBitmap binaryBitmap = new BinaryBitmap(new HybridBinarizer(source));
+
+                Reader reader = new MultiFormatReader();
+                Result result = reader.decode(binaryBitmap);
+
+                GoogleAuthInfo info = GoogleAuthInfo.parseUri(result.getText());
+                DatabaseEntry entry = new DatabaseEntry(info);
+
+                startEditProfileActivity(CODE_ADD_ENTRY, entry, true);
+            } catch (NotFoundException | IOException | ChecksumException | FormatException | GoogleAuthInfoException e) {
+                Toast.makeText(this, getString(R.string.unable_to_read_qrcode), Toast.LENGTH_SHORT).show();
+                e.printStackTrace();
+            }
+        }
+    }
+
     private void updateGroupFilterMenu() {
         SubMenu menu = _menu.findItem(R.id.action_filter).getSubMenu();
         for (int i = menu.size() - 1; i >= 0; i--) {
@@ -252,23 +317,15 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         menu.setGroupCheckable(R.id.action_filter_group, true, true);
     }
 
+    private void updateSortCategoryMenu() {
+        SortCategory category = getPreferences().getCurrentSortCategory();
+        _menu.findItem(category.getMenuItem()).setChecked(true);
+    }
+
     private void setGroupFilter(String group) {
         getSupportActionBar().setSubtitle(group);
         _checkedGroup = group;
-        _entryListView.setGroupFilter(group);
-    }
-
-    private void setSortCategory(SortCategory sortCategory) {
-        if (sortCategory == SortCategory.CUSTOM) {
-            _entryListView.clearEntries();
-            loadEntries();
-        }
-
-        _entryListView.setSortCategory(sortCategory);
-    }
-
-    private void updateSortCategoryMenu(SortCategory sortCategory) {
-        _menu.findItem(SortCategory.getMenuItem(sortCategory)).setChecked(true);
+        _entryListView.setGroupFilter(group, true);
     }
 
     private void addEntry(DatabaseEntry entry) {
@@ -319,10 +376,6 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         intent.removeExtra("action");
     }
 
-    public void startActivityForResult(Intent intent, int requestCode) {
-        super.startActivityForResult(intent, requestCode);
-    }
-
     @Override
     protected void onResume() {
         super.onResume();
@@ -347,7 +400,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
             }
 
             // refresh all codes to prevent showing old ones
-            _entryListView.refresh(true);
+            _entryListView.refresh(false);
         } else {
             loadEntries();
         }
@@ -359,7 +412,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
     @Override
     public void onBackPressed() {
         if (_app.isAutoLockEnabled()) {
-            lockDatabase();
+            _app.lock();
         }
 
         super.onBackPressed();
@@ -416,7 +469,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         updateLockIcon();
         if (_loaded) {
             updateGroupFilterMenu();
-            updateSortCategoryMenu(SortCategory.fromInteger(getPreferences().getCurrentSortCategory()));
+            updateSortCategoryMenu();
         }
         return true;
     }
@@ -429,7 +482,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
                 startActivityForResult(intent, CODE_PREFERENCES);
                 return true;
             case R.id.action_lock:
-                lockDatabase();
+                _app.lock();
                 startAuthActivity();
                 return true;
             default:
@@ -452,13 +505,13 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
                             sortCategory = SortCategory.ISSUER;
                             break;
                         case R.id.menu_sort_alphabetically_reverse:
-                            sortCategory = SortCategory.ISSUERREVERSED;
+                            sortCategory = SortCategory.ISSUER_REVERSED;
                             break;
                         case R.id.menu_sort_alphabetically_name:
                             sortCategory = SortCategory.ACCOUNT;
                             break;
                         case R.id.menu_sort_alphabetically_name_reverse:
-                            sortCategory = SortCategory.ACCOUNTREVERSED;
+                            sortCategory = SortCategory.ACCOUNT_REVERSED;
                             break;
                         case R.id.menu_sort_custom:
                         default:
@@ -466,18 +519,10 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
                             break;
                     }
 
-                    setSortCategory(sortCategory);
+                    _entryListView.setSortCategory(sortCategory, true);
                     getPreferences().setCurrentSortCategory(sortCategory);
                 }
                 return super.onOptionsItemSelected(item);
-        }
-    }
-
-    private void lockDatabase() {
-        if (_loaded) {
-            _entryListView.clearEntries();
-            _db.lock();
-            _loaded = false;
         }
     }
 
@@ -505,20 +550,20 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         }
 
         loadEntries();
-        SortCategory currentSortCategory = SortCategory.fromInteger(getPreferences().getCurrentSortCategory());
-        setSortCategory(currentSortCategory);
     }
 
     private void loadEntries() {
         // load all entries
         List<DatabaseEntry> entries = new ArrayList<DatabaseEntry>(_db.getEntries());
         _entryListView.addEntries(entries);
+        _entryListView.runEntriesAnimation();
         _loaded = true;
     }
 
     private void startAuthActivity() {
         Intent intent = new Intent(this, AuthActivity.class);
         intent.putExtra("slots", _db.getFileHeader().getSlots());
+        intent.putExtra("requiresUnlock", false);
         startActivityForResult(intent, CODE_DECRYPT);
     }
 
@@ -560,33 +605,13 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
 
     @Override
     public void onScroll(int dx, int dy) {
-        if (dy > 0 && _fabMenu.getVisibility() == View.VISIBLE && !_isAnimating) {
-            _isAnimating = true;
-            CoordinatorLayout.LayoutParams lp = (CoordinatorLayout.LayoutParams) _fabMenu.getLayoutParams();
-            int fabBottomMargin = lp.bottomMargin;
-            _fabMenu.animate()
-                    .translationY(_fabMenu.getHeight() + fabBottomMargin)
-                    .setInterpolator(new AccelerateInterpolator(2))
-                    .setListener(new AnimatorListenerAdapter() {
-                        @Override
-                        public void onAnimationEnd(Animator animation) {
-                            _isAnimating = false;
-                            _fabMenu.setVisibility(View.INVISIBLE);
-                            super.onAnimationEnd(animation);
-                        }
-                    }).start();
-        } else if (dy < 0 && _fabMenu.getVisibility() != View.VISIBLE && !_isAnimating) {
-            _fabMenu.setVisibility(View.VISIBLE);
-            _fabMenu.animate()
-                    .translationY(0)
-                    .setInterpolator(new DecelerateInterpolator(2))
-                    .setListener(new AnimatorListenerAdapter() {
-                        @Override
-                        public void onAnimationEnd(Animator animation) {
-                            _isAnimating = false;
-                            super.onAnimationEnd(animation);
-                        }
-                    }).start();
-        }
+        _fabScrollHelper.onScroll(dx, dy);
+    }
+
+    @Override
+    public void onLocked() {
+        _entryListView.clearEntries();
+        _loaded = false;
+        super.onLocked();
     }
 }

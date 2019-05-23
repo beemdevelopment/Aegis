@@ -1,48 +1,33 @@
 package com.beemdevelopment.aegis;
 
+import androidx.annotation.LayoutRes;
+
 public enum ViewMode {
     NORMAL,
     COMPACT,
     SMALL;
 
+    private static ViewMode[] _values;
+
+    static {
+        _values = values();
+    }
+
     public static ViewMode fromInteger(int x) {
-        switch (x) {
-            case 0:
-                return NORMAL;
-            case 1:
-                return COMPACT;
-            case 2:
-                return SMALL;
+        return _values[x];
+    }
+
+    @LayoutRes
+    public int getLayoutId() {
+        switch (this) {
+            case NORMAL:
+                return R.layout.card_entry;
+            case COMPACT:
+                return R.layout.card_entry_compact;
+            case SMALL:
+                return R.layout.card_entry_small;
+            default:
+                return R.layout.card_entry;
         }
-        return null;
-    }
-
-    public static int getViewModeNameResource(int x) {
-        switch (x) {
-            case 0:
-                return R.string.normal_viewmode_title;
-            case 1:
-                return R.string.compact_mode_title;
-            case 2:
-                return R.string.small_mode_title;
-        }
-
-        return R.string.normal_viewmode_title;
-    }
-
-    public static String[] getViewModeNames() {
-        return new String[]{
-                "Normal",
-                "Compact",
-                "Small"
-        };
-    }
-
-    public static int[] getViewModeNameResources() {
-        return new int[] {
-                R.string.normal_viewmode_title,
-                R.string.compact_mode_title,
-                R.string.small_mode_title
-        };
     }
 }
