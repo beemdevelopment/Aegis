@@ -68,6 +68,7 @@
     <string name="digits">Chiffres</string>
     <string name="secret">Code secret</string>
     <string name="scan">Scanner code QR</string>
+    <string name="scan_image">Scanner image</string>
     <string name="enter_manually">Saisir manuellement</string>
     <string name="add_fingerprint">Ajouter une empreinte digitale</string>
     <string name="add_password">Ajouter un mot de passe</string>
@@ -112,8 +113,10 @@
     <string name="parsing_file_error">Une erreur est survenue en essayant d\'analyser le fichier</string>
     <string name="file_not_found">Erreur : Fichier introuvable</string>
     <string name="reading_file_error">Une erreur est survenue en essayant de lire le fichier</string>
+    <string name="app_lookup_error">Erreur: l\'application n\'est pas installée</string>
     <string name="root_error">Erreur : impossible d\'obtenir l\'accès root</string>
     <string name="imported_entries_count">%d entrées importées. %d erreurs.</string>
+    <string name="read_entries_count">%d entrées lues. %d erreurs.</string>
     <string name="import_error_title">Une ou plusieurs erreurs sont survenues lors de l\'importation</string>
     <string name="exporting_database_error">Une erreur est survenue en essayant d\'exporter la base de données</string>
     <string name="export_database_location">La base de données a été exportée vers :</string>
@@ -130,6 +133,7 @@
     <string name="remove_group">Supprimer groupe</string>
     <string name="remove_group_description">Êtes-vous sûr de vouloir supprimer ce groupe ? Les entrées dans ce groupe seront basculées automatiquement dans \"Aucun groupe\".</string>
     <string name="adding_new_slot_error">Une erreur est survenue en essayant d\'ajouter un nouvel emplacement :</string>
+    <string name="progressbar_error">Impossible de réinitialiser l\'échelle de durée d\'animation. Les barres de progression seront invisibles.</string>
     <string name="details">Détails</string>
     <string name="filter">Filtre</string>
     <string name="lock">Verrouiller</string>
@@ -154,4 +158,10 @@
     <string name="normal_viewmode_title">Normal</string>
     <string name="compact_mode_title">Compact</string>
     <string name="small_mode_title">Petit</string>
+    <string name="unknown_issuer">Émetteur inconnu</string>
+    <string name="unknown_account_name">Nom de compte inconnu</string>
+    <string name="import_error_dialog">Aegis n\'a pas pu importer %d jetons. Ces jetons seront ignorés. Appuyer sur \"détails\" pour voir plus d\'informations à propos des erreurs.</string>
+    <string name="unable_to_read_qrcode">Impossible de lire et traiter le code QR</string>
+    <string name="select_picture">Sélectionner image</string>
+    <string name="toggle_checkboxes">Basculer les cases</string>
 </resources>
