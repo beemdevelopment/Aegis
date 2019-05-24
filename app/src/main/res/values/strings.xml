@@ -127,6 +127,7 @@
     <string name="read_qr_error">An error occurred while trying to read the QR code</string>
     <string name="authentication_method_raw">Raw</string>
     <string name="unlocking_vault">Unlocking the vault</string>
+    <string name="unlocking_vault_repair">Unlocking the vault (repairing)</string>
     <string name="password_slot_error">You must have at least one password slot</string>
     <string name="remove_slot">Remove slot</string>
     <string name="remove_slot_description">Are you sure you want to remove this slot?</string>

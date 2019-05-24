@@ -19,7 +19,6 @@ import android.widget.TextView;
 import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.crypto.KeyStoreHandle;
 import com.beemdevelopment.aegis.crypto.KeyStoreHandleException;
-import com.beemdevelopment.aegis.crypto.MasterKey;
 import com.beemdevelopment.aegis.db.DatabaseFileCredentials;
 import com.beemdevelopment.aegis.db.slots.FingerprintSlot;
 import com.beemdevelopment.aegis.db.slots.PasswordSlot;
@@ -136,14 +135,6 @@ public class AuthActivity extends AegisActivity implements FingerprintUiHelper.C
         new SlotListTask<>(type, this, this).execute(params);
     }
 
-    private void setKey(MasterKey key) {
-        // send the master key back to the main activity
-        Intent result = new Intent();
-        result.putExtra("creds", new DatabaseFileCredentials(key, _slots));
-        setResult(RESULT_OK, result);
-        finish();
-    }
-
     private void selectPassword() {
         _textPassword.selectAll();
 
@@ -185,9 +176,19 @@ public class AuthActivity extends AegisActivity implements FingerprintUiHelper.C
     }
 
     @Override
-    public void onTaskFinished(MasterKey key) {
-        if (key != null) {
-            setKey(key);
+    public void onTaskFinished(SlotListTask.Result result) {
+        if (result != null) {
+            // replace the old slot with the repaired one
+            if (result.isSlotRepaired()) {
+                _slots.replace(result.getSlot());
+            }
+
+            // send the master key back to the main activity
+            Intent intent = new Intent();
+            intent.putExtra("creds", new DatabaseFileCredentials(result.getKey(), _slots));
+            intent.putExtra("repairedSlot", result.isSlotRepaired());
+            setResult(RESULT_OK, intent);
+            finish();
         } else {
             showError();
         }

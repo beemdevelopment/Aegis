@@ -137,4 +137,11 @@ public class CryptoUtils {
         byteBuf.get(bytes);
         return bytes;
     }
+
+    @Deprecated
+    public static byte[] toBytesOld(char[] chars) {
+        CharBuffer charBuf = CharBuffer.wrap(chars);
+        ByteBuffer byteBuf = StandardCharsets.UTF_8.encode(charBuf);
+        return byteBuf.array();
+    }
 }

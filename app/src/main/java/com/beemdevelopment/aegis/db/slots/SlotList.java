@@ -8,6 +8,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.UUID;
 
 public class SlotList implements Iterable<Slot>, Serializable {
     private List<Slot> _slots = new ArrayList<>();
@@ -75,6 +76,28 @@ public class SlotList implements Iterable<Slot>, Serializable {
 
     public <T extends Slot> boolean has(Class<T> type) {
         return find(type) != null;
+    }
+
+    public void replace(Slot newSlot) {
+        Slot oldSlot = mustGetByUUID(newSlot.getUUID());
+        _slots.set(_slots.indexOf(oldSlot), newSlot);
+    }
+
+    public Slot getByUUID(UUID uuid) {
+        for (Slot slot : _slots) {
+            if (slot.getUUID().equals(uuid)) {
+                return slot;
+            }
+        }
+        return null;
+    }
+
+    private Slot mustGetByUUID(UUID uuid) {
+        Slot slot = getByUUID(uuid);
+        if (slot == null) {
+            throw new AssertionError(String.format("no slot found with UUID: %s", uuid.toString()));
+        }
+        return slot;
     }
 
     @Override
