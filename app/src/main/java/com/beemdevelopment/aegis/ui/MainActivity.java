@@ -489,7 +489,6 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
                 return true;
             case R.id.action_lock:
                 _app.lock();
-                startAuthActivity();
                 return true;
             default:
                 if (item.getGroupId() == R.id.action_filter_group) {
@@ -615,6 +614,11 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
     public void onLocked() {
         _entryListView.clearEntries();
         _loaded = false;
+
+        if (isOpen()) {
+            startAuthActivity();
+        }
+
         super.onLocked();
     }
 }
