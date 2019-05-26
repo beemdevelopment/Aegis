@@ -17,6 +17,7 @@ import androidx.annotation.CallSuper;
 import androidx.appcompat.app.AppCompatActivity;
 
 public abstract class AegisActivity extends AppCompatActivity implements AegisApplication.LockListener {
+    private boolean _resumed;
     private AegisApplication _app;
 
     @Override
@@ -53,6 +54,18 @@ public abstract class AegisActivity extends AppCompatActivity implements AegisAp
         super.onDestroy();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        _resumed = true;
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        _resumed = false;
+    }
+
     @CallSuper
     @Override
     public void onLocked() {
@@ -82,6 +95,13 @@ public abstract class AegisActivity extends AppCompatActivity implements AegisAp
                 setTheme(R.style.AppTheme_TrueBlack);
                 break;
         }
+    }
+
+    /**
+     * Reports whether this Activity has been resumed. (i.e. onResume was called)
+     */
+    protected boolean isOpen() {
+        return _resumed;
     }
 
     /**
