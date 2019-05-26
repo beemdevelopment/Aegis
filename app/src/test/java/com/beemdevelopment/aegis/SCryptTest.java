@@ -7,6 +7,8 @@ import com.beemdevelopment.aegis.encoding.HexException;
 
 import org.junit.Test;
 
+import java.util.Arrays;
+
 import javax.crypto.SecretKey;
 
 import static org.junit.Assert.*;
@@ -22,19 +24,20 @@ public class SCryptTest {
                 salt
         );
 
+        byte[] head = new byte[]{'t', 'e', 's', 't'};
         byte[] expectedKey = Hex.decode("41cd8110d0c66ede16f97ce84fd8e2bd2269c9318532a01437789dfbadd1392e");
-        byte[][] inputs = new byte[][]{
-                new byte[]{'t', 'e', 's', 't'},
-                new byte[]{'t', 'e', 's', 't', '\0'},
-                new byte[]{'t', 'e', 's', 't', '\0', '\0'},
-                new byte[]{'t', 'e', 's', 't', '\0', '\0', '\0'},
-                new byte[]{'t', 'e', 's', 't', '\0', '\0', '\0', '\0'},
-                new byte[]{'t', 'e', 's', 't', '\0', '\0', '\0', '\0', '\0'},
-        };
 
-        for (byte[] input : inputs) {
+        for (int i = 0; i < 128; i += 4) {
+            byte[] input = new byte[head.length + i];
+            System.arraycopy(head, 0, input, 0, head.length);
+
+            // once the length of the input is over 64 bytes, trailing nulls do not cause a collision anymore
             SecretKey key = CryptoUtils.deriveKey(input, params);
-            assertArrayEquals(expectedKey, key.getEncoded());
+            if (input.length <= 64) {
+                assertArrayEquals(expectedKey, key.getEncoded());
+            } else {
+                assertFalse(Arrays.equals(expectedKey, key.getEncoded()));
+            }
         }
     }
 }

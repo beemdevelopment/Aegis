@@ -346,7 +346,13 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
 
     private void onDecryptResult(int resultCode, Intent intent) {
         DatabaseFileCredentials creds = (DatabaseFileCredentials) intent.getSerializableExtra("creds");
-        unlockDatabase(creds);
+        boolean unlocked = unlockDatabase(creds);
+
+        // save the database in case a slot was repaired
+        if (unlocked && intent.getBooleanExtra("repairedSlot", false)) {
+            _db.setCredentials(creds);
+            saveDatabase();
+        }
 
         doShortcutActions();
     }
@@ -526,11 +532,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         }
     }
 
-    private void unlockDatabase(DatabaseFileCredentials creds) {
-        if (_loaded) {
-            return;
-        }
-
+    private boolean unlockDatabase(DatabaseFileCredentials creds) {
         try {
             if (!_db.isLoaded()) {
                 _db.load();
@@ -538,7 +540,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
             if (_db.isLocked()) {
                 if (creds == null) {
                     startAuthActivity();
-                    return;
+                    return false;
                 } else {
                     _db.unlock(creds);
                 }
@@ -546,10 +548,11 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         } catch (DatabaseManagerException e) {
             Toast.makeText(this, getString(R.string.decryption_error), Toast.LENGTH_LONG).show();
             startAuthActivity();
-            return;
+            return false;
         }
 
         loadEntries();
+        return true;
     }
 
     private void loadEntries() {

@@ -129,7 +129,8 @@ public abstract class Slot implements Serializable {
                         obj.getInt("p"),
                         Hex.decode(obj.getString("salt"))
                     );
-                    slot = new PasswordSlot(uuid, key, keyParams, scryptParams);
+                    boolean repaired = obj.optBoolean("repaired", false);
+                    slot = new PasswordSlot(uuid, key, keyParams, scryptParams, repaired);
                     break;
                 case Slot.TYPE_FINGERPRINT:
                     slot = new FingerprintSlot(uuid, key, keyParams);
