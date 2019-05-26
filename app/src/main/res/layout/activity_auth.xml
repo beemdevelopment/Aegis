@@ -38,7 +38,8 @@
                 android:id="@+id/text_password"/>
             <Button
                 android:id="@+id/button_decrypt"
-                android:layout_width="125dp"
+                android:minWidth="125dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/unlock" />
         </LinearLayout>
