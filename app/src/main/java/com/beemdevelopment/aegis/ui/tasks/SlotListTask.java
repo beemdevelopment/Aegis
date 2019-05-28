@@ -61,19 +61,23 @@ public class SlotListTask<T extends Slot> extends ProgressDialogTask<SlotListTas
             throws SlotIntegrityException, SlotException {
         MasterKey masterKey;
         SecretKey key = slot.deriveKey(password);
-
-        // a bug introduced in afb9e59 caused 64-byte passwords to produce a different key than before
-        // so, try the old password encode function if the encoded password is longer than 64 bytes
         byte[] oldPasswordBytes = CryptoUtils.toBytesOld(password);
-        if (!slot.isRepaired() && oldPasswordBytes.length > 64) {
+
+        try {
+            masterKey = decryptPasswordSlot(slot, key);
+        } catch (SlotIntegrityException e) {
+            // a bug introduced in afb9e59 caused passwords longer than 64 bytes to produce a different key than before
+            // so, try again with the old password encode function if the password is longer than 64 bytes
+            if (slot.isRepaired() || oldPasswordBytes.length <= 64) {
+                throw e;
+            }
+
             ProgressDialog dialog = getDialog();
             dialog.setMessage(dialog.getContext().getString(R.string.unlocking_vault_repair));
 
             // try to decrypt the password slot with the old key
             SecretKey oldKey = slot.deriveKey(oldPasswordBytes);
             masterKey = decryptPasswordSlot(slot, oldKey);
-        } else {
-            masterKey = decryptPasswordSlot(slot, key);
         }
 
         // if necessary, repair the slot by re-encrypting the master key with the correct key
