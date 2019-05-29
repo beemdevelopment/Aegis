@@ -31,12 +31,14 @@ public abstract class DatabaseImporter {
         // note: keep these lists sorted alphabetically
         _importers = new LinkedHashMap<>();
         _importers.put("Aegis", AegisImporter.class);
+        _importers.put("Authy", AuthyImporter.class);
         _importers.put("andOTP", AndOtpImporter.class);
         _importers.put("FreeOTP", FreeOtpImporter.class);
         _importers.put("Google Authenticator", GoogleAuthImporter.class);
         _importers.put("Steam", SteamImporter.class);
 
         _appImporters = new LinkedHashMap<>();
+        _appImporters.put("Authy", AuthyImporter.class);
         _appImporters.put("FreeOTP", FreeOtpImporter.class);
         _appImporters.put("Google Authenticator", GoogleAuthImporter.class);
         _appImporters.put("Steam", SteamImporter.class);
