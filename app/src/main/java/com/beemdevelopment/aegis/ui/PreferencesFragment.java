@@ -40,9 +40,11 @@ import com.beemdevelopment.aegis.ui.preferences.SwitchPreference;
 import com.takisoft.preferencex.PreferenceFragmentCompat;
 import com.topjohnwu.superuser.Shell;
 import com.topjohnwu.superuser.io.SuFile;
+import com.topjohnwu.superuser.io.SuFileInputStream;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -430,7 +432,8 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
             }
 
             SuFile file = importer.getAppPath();
-            try (DatabaseImporter.FileReader reader = DatabaseImporter.FileReader.open(file)) {
+            try (SuFileInputStream stream = new SuFileInputStream(file)) {
+                DatabaseImporter.FileReader reader = new DatabaseImporter.FileReader(stream, true);
                 importDatabase(importer, reader);
             }
         } catch (PackageManager.NameNotFoundException e) {
@@ -502,8 +505,9 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
             return;
         }
 
-        try (DatabaseImporter.FileReader reader = DatabaseImporter.FileReader.open(getContext(), uri)) {
+        try (InputStream stream = getContext().getContentResolver().openInputStream(uri)) {
             DatabaseImporter importer = DatabaseImporter.create(getContext(), _importerType);
+            DatabaseImporter.FileReader reader = new DatabaseImporter.FileReader(stream);
             importDatabase(importer, reader);
         } catch (FileNotFoundException e) {
             Toast.makeText(getActivity(), R.string.file_not_found, Toast.LENGTH_SHORT).show();

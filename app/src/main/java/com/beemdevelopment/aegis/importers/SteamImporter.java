@@ -43,6 +43,7 @@ public class SteamImporter extends DatabaseImporter {
         return new SuFile(_subDir, files[0].getName()).getPath();
     }
 
+    @Override
     public State read(FileReader reader) throws DatabaseImporterException {
         try (ByteInputStream stream = ByteInputStream.create(reader.getStream())) {
             JSONObject obj = new JSONObject(new String(stream.getBytes(), StandardCharsets.UTF_8));
