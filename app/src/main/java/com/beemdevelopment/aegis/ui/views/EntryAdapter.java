@@ -31,6 +31,7 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
     private String _groupFilter;
     private SortCategory _sortCategory;
     private ViewMode _viewMode;
+    private String _searchFilter;
     private boolean _isPeriodUniform = true;
 
     // keeps track of the viewholders that are currently bound
@@ -141,10 +142,13 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
 
     private boolean isEntryFiltered(DatabaseEntry entry) {
         String group = entry.getGroup();
-        if (_groupFilter == null) {
-            return false;
+        String issuer = entry.getIssuer().toLowerCase();
+
+        if (_groupFilter != null && (group == null || !group.equals(_groupFilter))) {
+            return true;
         }
-        return group == null || !group.equals(_groupFilter);
+
+        return _searchFilter != null && !issuer.contains(_searchFilter);
     }
 
     private DatabaseEntry getEntryByUUID(UUID uuid) {
@@ -185,6 +189,11 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
         if (apply) {
             updateShownEntries();
         }
+    }
+
+    public void setSearchFilter(String search) {
+        _searchFilter = search != null ? search.toLowerCase() : null;
+        updateShownEntries();
     }
 
     private void updateShownEntries() {
