@@ -148,7 +148,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         }
 
         // don't process any activity results if the vault is locked
-        if (requestCode != CODE_DECRYPT && _db.isLocked()) {
+        if (requestCode != CODE_DECRYPT && requestCode != CODE_DO_INTRO && _db.isLocked()) {
             return;
         }
 
