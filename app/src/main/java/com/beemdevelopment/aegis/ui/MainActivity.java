@@ -15,7 +15,10 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.SubMenu;
 import android.widget.LinearLayout;
+import android.widget.SearchView;
 import android.widget.Toast;
+
+import androidx.core.view.MenuItemCompat;
 
 import com.beemdevelopment.aegis.AegisApplication;
 import com.beemdevelopment.aegis.R;
@@ -67,8 +70,10 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
     private DatabaseManager _db;
     private boolean _loaded;
     private String _checkedGroup;
+    private boolean _searchSubmitted;
 
     private Menu _menu;
+    private SearchView _searchView;
     private FloatingActionsMenu _fabMenu;
     private EntryListView _entryListView;
 
@@ -417,6 +422,16 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
 
     @Override
     public void onBackPressed() {
+        if (!_searchView.isIconified() || _searchSubmitted ) {
+            _searchSubmitted = false;
+            _entryListView.setSearchFilter(null);
+
+            collapseSearchView();
+            setTitle("Aegis");
+            setGroupFilter(_checkedGroup);
+            return;
+        }
+
         if (_app.isAutoLockEnabled()) {
             _app.lock();
         }
@@ -477,6 +492,31 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
             updateGroupFilterMenu();
             updateSortCategoryMenu();
         }
+
+        MenuItem searchViewMenuItem = menu.findItem(R.id.mi_search);
+
+        _searchView = (SearchView) searchViewMenuItem.getActionView();
+        _searchView.setFocusable(false);
+        _searchView.setQueryHint(getString(R.string.search));
+        _searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                setTitle(getString(R.string.search));
+                getSupportActionBar().setSubtitle(s);
+                _searchSubmitted = true;
+                collapseSearchView();
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                if (!_searchSubmitted) {
+                    _entryListView.setSearchFilter(s);
+                }
+                return false;
+            }
+        });
+
         return true;
     }
 
@@ -529,6 +569,11 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
                 }
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    private void collapseSearchView() {
+        _searchView.setQuery(null, false);
+        _searchView.setIconified(true);
     }
 
     private boolean unlockDatabase(DatabaseFileCredentials creds) {

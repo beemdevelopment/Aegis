@@ -165,4 +165,5 @@
     <string name="unable_to_read_qrcode">Unable to read and process QR code</string>
     <string name="select_picture">Select picture</string>
     <string name="toggle_checkboxes">Toggle checkboxes</string>
+    <string name="search">Search</string>
 </resources>

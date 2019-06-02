@@ -100,6 +100,11 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
         }
     }
 
+    public void setSearchFilter(String search) {
+        _touchCallback.setIsLongPressDragEnabled(search == null);
+        _adapter.setSearchFilter(search);
+    }
+
     public void setViewMode(ViewMode mode) {
         _adapter.setViewMode(mode);
     }
