@@ -56,17 +56,7 @@ public class ImportEntriesAdapter extends RecyclerView.Adapter<ImportEntryHolder
         return _entries.size();
     }
 
-    public List<DatabaseEntry> getSelectedEntries() {
-        List<DatabaseEntry> entries = new ArrayList<>();
-
-        for (ImportEntry entry : getCheckedEntries()) {
-            entries.add(entry.getDatabaseEntry());
-        }
-
-        return entries;
-    }
-
-    private List<ImportEntry> getCheckedEntries() {
+    public List<ImportEntry> getCheckedEntries() {
         List<ImportEntry> entries = new ArrayList<>();
 
         for (ImportEntry entry : _entries) {

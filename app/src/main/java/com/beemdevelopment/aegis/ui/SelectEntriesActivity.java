@@ -17,7 +17,6 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.beemdevelopment.aegis.R;
-import com.beemdevelopment.aegis.db.DatabaseEntry;
 import com.beemdevelopment.aegis.helpers.FabScrollHelper;
 import com.beemdevelopment.aegis.importers.DatabaseImporterEntryException;
 import com.beemdevelopment.aegis.ui.models.ImportEntry;
@@ -56,12 +55,11 @@ public class SelectEntriesActivity extends AegisActivity {
         entriesView.setNestedScrollingEnabled(false);
 
         Intent intent = getIntent();
-        List<DatabaseEntry> entries = (ArrayList<DatabaseEntry>) intent.getSerializableExtra("entries");
+        List<ImportEntry> entries = (ArrayList<ImportEntry>) intent.getSerializableExtra("entries");
         List<DatabaseImporterEntryException> errors = (ArrayList<DatabaseImporterEntryException>) intent.getSerializableExtra("errors");
 
-        for (DatabaseEntry entry : entries) {
-            ImportEntry importEntry = new ImportEntry(entry);
-            _adapter.addEntry(importEntry);
+        for (ImportEntry entry : entries) {
+            _adapter.addEntry(entry);
         }
 
         if (errors.size() > 0) {
@@ -103,9 +101,9 @@ public class SelectEntriesActivity extends AegisActivity {
     }
 
     private void returnSelectedEntries() {
-        List<DatabaseEntry> entries = _adapter.getSelectedEntries();
+        List<ImportEntry> entries = _adapter.getCheckedEntries();
         Intent intent = new Intent();
-        intent.putExtra("entries", (ArrayList<DatabaseEntry>) entries);
+        intent.putExtra("entries", (ArrayList<ImportEntry>) entries);
         setResult(RESULT_OK, intent);
         finish();
     }

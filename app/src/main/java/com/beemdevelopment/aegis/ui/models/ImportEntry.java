@@ -2,21 +2,37 @@ package com.beemdevelopment.aegis.ui.models;
 
 import com.beemdevelopment.aegis.db.DatabaseEntry;
 
-public class ImportEntry {
-    private DatabaseEntry _entry;
+import java.io.Serializable;
+import java.util.UUID;
+
+public class ImportEntry implements Serializable {
+    private UUID _uuid;
+    private String _name;
+    private String _issuer;
+
+    private transient Listener _listener;
     private boolean _isChecked = true;
-    private Listener _listener;
 
     public ImportEntry(DatabaseEntry entry) {
-        _entry = entry;
+        _uuid = entry.getUUID();
+        _name = entry.getName();
+        _issuer = entry.getIssuer();
+    }
+
+    public UUID getUUID() {
+        return _uuid;
+    }
+
+    public String getName() {
+        return _name;
+    }
+
+    public String getIssuer() {
+        return _issuer;
     }
 
     public void setOnCheckedChangedListener(Listener listener) {
         _listener = listener;
-    }
-
-    public DatabaseEntry getDatabaseEntry() {
-        return _entry;
     }
 
     public boolean isChecked() {

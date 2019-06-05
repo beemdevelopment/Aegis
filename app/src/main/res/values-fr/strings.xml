@@ -115,7 +115,7 @@
     <string name="reading_file_error">Une erreur est survenue en essayant de lire le fichier</string>
     <string name="app_lookup_error">Erreur: l\'application n\'est pas installée</string>
     <string name="root_error">Erreur : impossible d\'obtenir l\'accès root</string>
-    <string name="imported_entries_count">%d entrées importées. %d erreurs.</string>
+    <string name="imported_entries_count">%d entrées importées</string>
     <string name="read_entries_count">%d entrées lues. %d erreurs.</string>
     <string name="import_error_title">Une ou plusieurs erreurs sont survenues lors de l\'importation</string>
     <string name="exporting_database_error">Une erreur est survenue en essayant d\'exporter la base de données</string>

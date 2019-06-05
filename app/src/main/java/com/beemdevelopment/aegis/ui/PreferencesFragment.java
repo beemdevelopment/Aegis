@@ -35,6 +35,7 @@ import com.beemdevelopment.aegis.importers.AegisImporter;
 import com.beemdevelopment.aegis.importers.DatabaseImporter;
 import com.beemdevelopment.aegis.importers.DatabaseImporterEntryException;
 import com.beemdevelopment.aegis.importers.DatabaseImporterException;
+import com.beemdevelopment.aegis.ui.models.ImportEntry;
 import com.beemdevelopment.aegis.ui.preferences.SwitchPreference;
 import com.takisoft.preferencex.PreferenceFragmentCompat;
 import com.topjohnwu.superuser.Shell;
@@ -72,6 +73,7 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
     // keep a reference to the type of database converter the user selected
     private Class<? extends DatabaseImporter> _importerType;
     private AegisImporter.State _importerState;
+    private List<DatabaseEntry> _importerEntries;
 
     private SwitchPreference _encryptionPreference;
     private SwitchPreference _fingerprintPreference;
@@ -522,12 +524,15 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
             return;
         }
 
-        List<DatabaseEntry> entries = result.getEntries();
-        List<DatabaseImporterEntryException> errors = result.getErrors();
+        _importerEntries = result.getEntries();
+        List<ImportEntry> entries = new ArrayList<>();
+        for (DatabaseEntry entry : _importerEntries) {
+            entries.add(new ImportEntry(entry));
+        }
 
         Intent intent = new Intent(getActivity(), SelectEntriesActivity.class);
-        intent.putExtra("entries", (ArrayList<DatabaseEntry>) entries);
-        intent.putExtra("errors", (ArrayList<DatabaseImporterEntryException>) errors);
+        intent.putExtra("entries", (ArrayList<ImportEntry>) entries);
+        intent.putExtra("errors", (ArrayList<DatabaseImporterEntryException>) result.getErrors());
         startActivityForResult(intent, CODE_SELECT_ENTRIES);
     }
 
@@ -600,21 +605,34 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
             return;
         }
 
-        List<DatabaseEntry> entries = (ArrayList<DatabaseEntry>) data.getSerializableExtra("entries");
-        for (DatabaseEntry entry : entries) {
-            // temporary: randomize the UUID of duplicate entries and add them anyway
-            if (_db.getEntryByUUID(entry.getUUID()) != null) {
-                entry.resetUUID();
+        List<ImportEntry> selectedEntries = (ArrayList<ImportEntry>) data.getSerializableExtra("entries");
+        for (ImportEntry selectedEntry : selectedEntries) {
+            DatabaseEntry savedEntry = null;
+            for (DatabaseEntry entry : _importerEntries) {
+                if (entry.getUUID().equals(selectedEntry.getUUID())) {
+                    savedEntry = entry;
+                    break;
+                }
             }
 
-            _db.addEntry(entry);
+            if (savedEntry == null) {
+                throw new RuntimeException();
+            }
+
+            // temporary: randomize the UUID of duplicate entries and add them anyway
+            if (_db.getEntryByUUID(savedEntry.getUUID()) != null) {
+                savedEntry.resetUUID();
+            }
+
+            _db.addEntry(savedEntry);
         }
 
+        _importerEntries = null;
         if (!saveDatabase()) {
             return;
         }
 
-        String toastMessage = getResources().getString(R.string.imported_entries_count, entries.size());
+        String toastMessage = getResources().getString(R.string.imported_entries_count, selectedEntries.size());
         Toast.makeText(getContext(), toastMessage, Toast.LENGTH_SHORT).show();
 
         _result.putExtra("needsRecreate", true);
