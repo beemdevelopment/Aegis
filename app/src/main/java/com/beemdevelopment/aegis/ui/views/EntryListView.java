@@ -1,6 +1,7 @@
 package com.beemdevelopment.aegis.ui.views;
 
 import android.content.Context;
+import android.graphics.Rect;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,7 +19,10 @@ import com.beemdevelopment.aegis.otp.TotpInfo;
 
 import java.util.List;
 
+import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -29,8 +33,10 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
     private SimpleItemTouchHelperCallback _touchCallback;
 
     private RecyclerView _recyclerView;
+    private RecyclerView.ItemDecoration _dividerDecoration;
     private PeriodProgressBar _progressBar;
     private boolean _showProgress;
+    private ViewMode _viewMode;
 
     private UiRefresher _refresher;
 
@@ -38,11 +44,10 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         _adapter = new EntryAdapter(this);
-        _showProgress = false;
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_entry_list_view, container, false);
         _progressBar = view.findViewById(R.id.progressBar);
 
@@ -106,7 +111,9 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
     }
 
     public void setViewMode(ViewMode mode) {
-        _adapter.setViewMode(mode);
+        _viewMode = mode;
+        updateDividerDecoration();
+        _adapter.setViewMode(_viewMode);
     }
 
     public void refresh(boolean hard) {
@@ -147,7 +154,7 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
 
     @Override
     public void onPeriodUniformityChanged(boolean isUniform) {
-        _showProgress = isUniform;
+        setShowProgress(isUniform);
         if (_showProgress) {
             _progressBar.setVisibility(View.VISIBLE);
             _progressBar.setPeriod(_adapter.getUniformPeriod());
@@ -199,11 +206,51 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
         _recyclerView.scheduleLayoutAnimation();
     }
 
+    private void setShowProgress(boolean showProgress) {
+        _showProgress = showProgress;
+        updateDividerDecoration();
+    }
+
+    private void updateDividerDecoration() {
+        if (_dividerDecoration != null) {
+            _recyclerView.removeItemDecoration(_dividerDecoration);
+        }
+
+        float height = _viewMode.getDividerHeight();
+        if (_showProgress && height == 0) {
+            DividerItemDecoration divider = new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL);
+            divider.setDrawable(ContextCompat.getDrawable(getContext(), R.drawable.entry_divider));
+            _dividerDecoration = divider;
+        } else {
+            _dividerDecoration = new VerticalSpaceItemDecoration(height);
+        }
+
+        _recyclerView.addItemDecoration(_dividerDecoration);
+    }
+
     public interface Listener {
         void onEntryClick(DatabaseEntry entry);
         void onEntryMove(DatabaseEntry entry1, DatabaseEntry entry2);
         void onEntryDrop(DatabaseEntry entry);
         void onEntryChange(DatabaseEntry entry);
         void onScroll(int dx, int dy);
+    }
+
+    private class VerticalSpaceItemDecoration extends RecyclerView.ItemDecoration {
+        private int _height;
+
+        private VerticalSpaceItemDecoration(float dp) {
+            // convert dp to pixels
+            _height = (int) (dp * (getContext().getResources().getDisplayMetrics().densityDpi / 160f));
+        }
+
+        @Override
+        public void getItemOffsets(@NonNull Rect outRect, @NonNull View view, @NonNull RecyclerView parent, @NonNull RecyclerView.State state) {
+            if (parent.getChildAdapterPosition(view) == 0) {
+                // the first item should also have a top margin
+                outRect.top = _height;
+            }
+            outRect.bottom = _height;
+        }
     }
 }
