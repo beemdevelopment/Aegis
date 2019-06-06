@@ -31,9 +31,8 @@ public class ImportEntryHolder extends RecyclerView.ViewHolder implements Import
         _entry = entry;
 
         Context context = itemView.getContext();
-        DatabaseEntry dbEntry = entry.getDatabaseEntry();
-        _issuer.setText(!dbEntry.getIssuer().isEmpty() ? dbEntry.getIssuer() : context.getString(R.string.unknown_issuer));
-        _accountName.setText(!dbEntry.getName().isEmpty() ? dbEntry.getName() : context.getString(R.string.unknown_account_name));
+        _issuer.setText(!entry.getIssuer().isEmpty() ? entry.getIssuer() : context.getString(R.string.unknown_issuer));
+        _accountName.setText(!entry.getName().isEmpty() ? entry.getName() : context.getString(R.string.unknown_account_name));
         _checkbox.setChecked(entry.isChecked());
     }
 
