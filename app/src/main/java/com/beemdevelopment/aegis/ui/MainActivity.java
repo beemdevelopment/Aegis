@@ -516,6 +516,12 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
                 return false;
             }
         });
+        _searchView.setOnSearchClickListener(v -> {
+            if (_searchSubmitted) {
+                _searchSubmitted = false;
+                _entryListView.setSearchFilter(null);
+            }
+        });
 
         return true;
     }
