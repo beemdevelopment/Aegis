@@ -40,12 +40,9 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.target.CustomTarget;
 import com.bumptech.glide.request.transition.Transition;
+import com.beemdevelopment.aegis.util.Cloner;
 
-import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.text.Collator;
 import java.util.ArrayList;
 import java.util.List;
@@ -391,6 +388,7 @@ public class EditEntryActivity extends AegisActivity {
         setResult(RESULT_OK, intent);
         finish();
     }
+
     @Override
     protected void onActivityResult(int requestCode, final int resultCode, Intent data) {
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
@@ -492,7 +490,7 @@ public class EditEntryActivity extends AegisActivity {
         if (_origEntry == null) {
             entry = new DatabaseEntry(info);
         } else {
-            entry = cloneEntry(_origEntry);
+            entry = Cloner.clone(_origEntry);
             entry.setInfo(info);
         }
         entry.setIssuer(_textIssuer.getText().toString());
@@ -568,20 +566,6 @@ public class EditEntryActivity extends AegisActivity {
             }
         }
         return -1;
-    }
-
-    private static DatabaseEntry cloneEntry(DatabaseEntry entry) {
-        try {
-            ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            ObjectOutputStream oos = new ObjectOutputStream(baos);
-            oos.writeObject(entry);
-
-            ByteArrayInputStream bais = new ByteArrayInputStream(baos.toByteArray());
-            ObjectInputStream ois = new ObjectInputStream(bais);
-            return (DatabaseEntry) ois.readObject();
-        } catch (ClassNotFoundException | IOException e) {
-            throw new RuntimeException(e);
-        }
     }
 
     private static class ParseException extends Exception {

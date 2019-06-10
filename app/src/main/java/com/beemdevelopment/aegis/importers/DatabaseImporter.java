@@ -6,6 +6,7 @@ import android.net.Uri;
 
 import com.beemdevelopment.aegis.db.DatabaseEntry;
 import com.beemdevelopment.aegis.util.ByteInputStream;
+import com.beemdevelopment.aegis.util.UUIDMap;
 import com.topjohnwu.superuser.io.SuFile;
 import com.topjohnwu.superuser.io.SuFileInputStream;
 
@@ -115,7 +116,7 @@ public abstract class DatabaseImporter {
     }
 
     public static class Result {
-        private List<DatabaseEntry> _entries = new ArrayList<>();
+        private UUIDMap<DatabaseEntry> _entries = new UUIDMap<>();
         private List<DatabaseImporterEntryException> _errors = new ArrayList<>();
 
         public void addEntry(DatabaseEntry entry) {
@@ -126,7 +127,7 @@ public abstract class DatabaseImporter {
             _errors.add(error);
         }
 
-        public List<DatabaseEntry> getEntries() {
+        public UUIDMap<DatabaseEntry> getEntries() {
             return _entries;
         }
 

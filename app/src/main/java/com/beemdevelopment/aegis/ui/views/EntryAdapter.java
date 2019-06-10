@@ -17,7 +17,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-import java.util.UUID;
 
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -109,7 +108,6 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
     }
 
     public void removeEntry(DatabaseEntry entry) {
-        entry = getEntryByUUID(entry.getUUID());
         _entries.remove(entry);
 
         if (_shownEntries.contains(entry)) {
@@ -128,8 +126,7 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
         checkPeriodUniformity();
     }
 
-    public void replaceEntry(DatabaseEntry newEntry) {
-        DatabaseEntry oldEntry = getEntryByUUID(newEntry.getUUID());
+    public void replaceEntry(DatabaseEntry oldEntry, DatabaseEntry newEntry) {
         _entries.set(_entries.indexOf(oldEntry), newEntry);
 
         if (_shownEntries.contains(oldEntry)) {
@@ -161,15 +158,6 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
         }
 
         return _searchFilter != null && !issuer.contains(_searchFilter);
-    }
-
-    private DatabaseEntry getEntryByUUID(UUID uuid) {
-        for (DatabaseEntry entry : _entries) {
-            if (entry.getUUID().equals(uuid)) {
-                return entry;
-            }
-        }
-        throw new AssertionError("no entry found with the same id");
     }
 
     public void refresh(boolean hard) {
