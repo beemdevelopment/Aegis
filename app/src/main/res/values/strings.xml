@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">Aegis</string>
+    <string name="app_name_full">Aegis Authenticator</string>
     <string name="app_name_dev">AegisDev</string>
     <string name="action_settings">Settings</string>
     <string name="action_import">Import</string>
@@ -166,4 +167,7 @@
     <string name="select_picture">Select picture</string>
     <string name="toggle_checkboxes">Toggle checkboxes</string>
     <string name="search">Search</string>
+    <string name="channel_name_lock_status">Lock status</string>
+    <string name="channel_description_lock_status">Aegis can create a persistent notification to notify you when the vault is locked</string>
+    <string name="vault_unlocked_state">Vault is unlocked. Tap here to lock.</string>
 </resources>

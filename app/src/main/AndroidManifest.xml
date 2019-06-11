@@ -48,6 +48,8 @@
         <activity
             android:name=".ui.GroupManagerActivity"
             android:label="Manage groups" />
+
+        <service android:name=".services.NotificationService" />
     </application>
 
 </manifest>
