@@ -14,12 +14,14 @@ android {
         debug {
             minifyEnabled false
             applicationIdSuffix ".debug"
-            manifestPlaceholders = [title:"AegisDev", iconName:"ic_launcher_debug"]
+            manifestPlaceholders = [title: "AegisDev", iconName: "ic_launcher_debug"]
+            resValue "bool", "pref_secure_screen_default", "false"
         }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            manifestPlaceholders = [title:"Aegis", iconName:"ic_launcher"]
+            manifestPlaceholders = [title: "Aegis", iconName: "ic_launcher"]
+            resValue "bool", "pref_secure_screen_default", "true"
         }
     }
     compileOptions {
