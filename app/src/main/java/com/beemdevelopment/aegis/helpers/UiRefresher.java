@@ -12,6 +12,11 @@ public class UiRefresher {
         _handler = new Handler();
     }
 
+    public void destroy() {
+        stop();
+        _listener = null;
+    }
+
     public void start() {
         if (_running) {
             return;
@@ -22,15 +27,14 @@ public class UiRefresher {
         _handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                if (_running) {
-                    _listener.onRefresh();
-                    _handler.postDelayed(this, _listener.getMillisTillNextRefresh());
-                }
+                _listener.onRefresh();
+                _handler.postDelayed(this, _listener.getMillisTillNextRefresh());
             }
         }, _listener.getMillisTillNextRefresh());
     }
 
     public void stop() {
+        _handler.removeCallbacksAndMessages(null);
         _running = false;
     }
 

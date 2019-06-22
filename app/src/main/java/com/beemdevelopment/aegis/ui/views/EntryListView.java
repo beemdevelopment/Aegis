@@ -53,10 +53,17 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         _adapter = new EntryAdapter(this);
+        _showProgress = false;
     }
 
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public void onDestroy() {
+        _adapter.destroy();
+        super.onDestroy();
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_entry_list_view, container, false);
         _progressBar = view.findViewById(R.id.progressBar);
 
@@ -104,6 +111,12 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
 
     public void setPreloadView(View view) {
         _preloadSizeProvider.setView(view);
+    }
+
+    @Override
+    public void onDestroyView() {
+        _refresher.destroy();
+        super.onDestroyView();
     }
 
     public void setGroupFilter(String group, boolean apply) {

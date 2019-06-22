@@ -18,8 +18,6 @@ import android.widget.LinearLayout;
 import android.widget.SearchView;
 import android.widget.Toast;
 
-import androidx.core.view.MenuItemCompat;
-
 import com.beemdevelopment.aegis.AegisApplication;
 import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.SortCategory;
@@ -119,6 +117,12 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         });
 
         _fabScrollHelper = new FabScrollHelper(_fabMenu);
+    }
+
+    @Override
+    protected void onDestroy() {
+        _entryListView.setListener(null);
+        super.onDestroy();
     }
 
     @Override
@@ -434,6 +438,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
 
         if (_app.isAutoLockEnabled()) {
             _app.lock();
+            return;
         }
 
         super.onBackPressed();
