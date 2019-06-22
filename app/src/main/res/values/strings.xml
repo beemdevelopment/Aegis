@@ -15,6 +15,7 @@
     <string name="pref_tools_group_title">Tools</string>
     <string name="pref_select_theme_title">Theme</string>
     <string name="pref_view_mode_title">View mode</string>
+    <string name="pref_lang_title">Language</string>
     <string name="pref_account_name_title">Show the account name</string>
     <string name="pref_account_name_summary">Enable this to show the account name next to the issuer</string>
     <string name="pref_timeout_title">Timeout</string>

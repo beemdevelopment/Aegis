@@ -2,7 +2,11 @@ package com.beemdevelopment.aegis;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
+import android.os.Build;
 import android.preference.PreferenceManager;
+
+import java.util.Locale;
 
 public class Preferences {
     private SharedPreferences _prefs;
@@ -69,5 +73,19 @@ public class Preferences {
 
     public int getTimeout() {
         return _prefs.getInt("pref_timeout", -1);
+    }
+
+    public Locale getLocale() {
+        String lang = _prefs.getString("pref_lang", "system");
+
+        if (lang.equals("system")) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                return Resources.getSystem().getConfiguration().getLocales().get(0);
+            } else {
+                return Resources.getSystem().getConfiguration().locale;
+            }
+        }
+
+        return new Locale(lang);
     }
 }

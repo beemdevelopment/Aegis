@@ -117,6 +117,13 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
             }
         });
 
+        Preference langPreference = findPreference("pref_lang");
+        langPreference.setOnPreferenceChangeListener((preference, newValue) -> {
+            _result.putExtra("needsRecreate", true);
+            getActivity().recreate();
+            return true;
+        });
+
         int currentViewMode = app.getPreferences().getCurrentViewMode().ordinal();
         Preference viewModePreference = findPreference("pref_view_mode");
         viewModePreference.setSummary(String.format("%s: %s", getString(R.string.selected), getResources().getStringArray(R.array.view_mode_titles)[currentViewMode]));
