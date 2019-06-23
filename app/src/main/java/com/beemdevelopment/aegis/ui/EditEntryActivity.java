@@ -4,11 +4,8 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Canvas;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -39,12 +36,14 @@ import com.beemdevelopment.aegis.otp.OtpInfo;
 import com.beemdevelopment.aegis.otp.OtpInfoException;
 import com.beemdevelopment.aegis.otp.SteamInfo;
 import com.beemdevelopment.aegis.otp.TotpInfo;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.target.CustomTarget;
+import com.bumptech.glide.request.transition.Transition;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.text.Collator;
@@ -54,6 +53,8 @@ import java.util.TreeSet;
 import java.util.concurrent.atomic.AtomicReference;
 
 import androidx.annotation.ArrayRes;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -135,9 +136,12 @@ public class EditEntryActivity extends AegisActivity {
         // fill the fields with values if possible
         if (_origEntry != null) {
             if (_origEntry.hasIcon()) {
-                byte[] imageBytes = _origEntry.getIcon();
-                Bitmap bitmap = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
-                _iconView.setImageBitmap(bitmap);
+                Glide.with(this)
+                    .asDrawable()
+                    .load(_origEntry)
+                    .diskCacheStrategy(DiskCacheStrategy.NONE)
+                    .skipMemoryCache(false)
+                    .into(_iconView);
                 _hasCustomIcon = true;
             } else {
                 TextDrawable drawable = TextDrawableHelper.generate(_origEntry.getIssuer(), _origEntry.getName(), _iconView);
@@ -387,28 +391,33 @@ public class EditEntryActivity extends AegisActivity {
         setResult(RESULT_OK, intent);
         finish();
     }
-
     @Override
     protected void onActivityResult(int requestCode, final int resultCode, Intent data) {
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
-            Uri inputFile = (data.getData());
-            InputStream inputStream;
-            Bitmap bitmap;
-            try {
-                inputStream = getContentResolver().openInputStream(inputFile);
-                BitmapFactory.Options bmOptions = new BitmapFactory.Options();
-                bitmap = BitmapFactory.decodeStream(inputStream, null, bmOptions);
-                _kropView.setBitmap(bitmap);
-                _kropView.setVisibility(View.VISIBLE);
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            }
+            Glide.with(this)
+                .asBitmap()
+                .load(data.getData())
+                .diskCacheStrategy(DiskCacheStrategy.NONE)
+                .skipMemoryCache(false)
+                .into(new CustomTarget<Bitmap>() {
+                    @Override
+                    public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
+                        _kropView.setBitmap(resource);
+                    }
 
+                    @Override
+                    public void onLoadCleared(@Nullable Drawable placeholder) {
+
+                    }
+                });
+            _iconView.setVisibility(View.GONE);
+            _kropView.setVisibility(View.VISIBLE);
 
             _saveImageButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     _iconView.setImageBitmap(_kropView.getCroppedBitmap());
+                    _iconView.setVisibility(View.VISIBLE);
                     _kropView.setVisibility(View.GONE);
                     _hasCustomIcon = true;
                     _hasChangedIcon = true;
@@ -499,8 +508,9 @@ public class EditEntryActivity extends AegisActivity {
 
         if (_hasChangedIcon) {
             if (_hasCustomIcon) {
+                Bitmap bitmap = ((BitmapDrawable) _iconView.getDrawable()).getBitmap();
                 ByteArrayOutputStream stream = new ByteArrayOutputStream();
-                drawableToBitmap(_iconView.getDrawable()).compress(Bitmap.CompressFormat.JPEG, 100, stream);
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 90, stream);
                 byte[] data = stream.toByteArray();
                 entry.setIcon(data);
             } else {
@@ -558,27 +568,6 @@ public class EditEntryActivity extends AegisActivity {
             }
         }
         return -1;
-    }
-
-    private static Bitmap drawableToBitmap(Drawable drawable) {
-        if (drawable instanceof BitmapDrawable) {
-            return ((BitmapDrawable) drawable).getBitmap();
-        }
-
-        final int width = !drawable.getBounds().isEmpty() ? drawable
-                .getBounds().width() : drawable.getIntrinsicWidth();
-
-        final int height = !drawable.getBounds().isEmpty() ? drawable
-                .getBounds().height() : drawable.getIntrinsicHeight();
-
-        final Bitmap bitmap = Bitmap.createBitmap(width <= 0 ? 1 : width,
-                height <= 0 ? 1 : height, Bitmap.Config.ARGB_8888);
-
-        Canvas canvas = new Canvas(bitmap);
-        drawable.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
-        drawable.draw(canvas);
-
-        return bitmap;
     }
 
     private static DatabaseEntry cloneEntry(DatabaseEntry entry) {

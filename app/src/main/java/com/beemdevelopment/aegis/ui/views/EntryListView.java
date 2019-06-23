@@ -16,10 +16,18 @@ import com.beemdevelopment.aegis.db.DatabaseEntry;
 import com.beemdevelopment.aegis.helpers.SimpleItemTouchHelperCallback;
 import com.beemdevelopment.aegis.helpers.UiRefresher;
 import com.beemdevelopment.aegis.otp.TotpInfo;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.ListPreloader;
+import com.bumptech.glide.RequestBuilder;
+import com.bumptech.glide.integration.recyclerview.RecyclerViewPreloader;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.util.ViewPreloadSizeProvider;
 
+import java.util.Collections;
 import java.util.List;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DividerItemDecoration;
@@ -34,6 +42,7 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
 
     private RecyclerView _recyclerView;
     private RecyclerView.ItemDecoration _dividerDecoration;
+    private ViewPreloadSizeProvider<DatabaseEntry> _preloadSizeProvider;
     private PeriodProgressBar _progressBar;
     private boolean _showProgress;
     private ViewMode _viewMode;
@@ -61,8 +70,14 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
             }
         });
 
-        LinearLayoutManager mLayoutManager = new LinearLayoutManager(view.getContext());
-        _recyclerView.setLayoutManager(mLayoutManager);
+        // set up icon preloading
+        _preloadSizeProvider = new ViewPreloadSizeProvider<>();
+        IconPreloadProvider modelProvider = new IconPreloadProvider();
+        RecyclerViewPreloader<DatabaseEntry> preloader = new RecyclerViewPreloader<>(Glide.with(this), modelProvider, _preloadSizeProvider, 10);
+        _recyclerView.addOnScrollListener(preloader);
+
+        LinearLayoutManager layoutManager = new LinearLayoutManager(view.getContext());
+        _recyclerView.setLayoutManager(layoutManager);
         _touchCallback = new SimpleItemTouchHelperCallback(_adapter);
         ItemTouchHelper touchHelper = new ItemTouchHelper(_touchCallback);
         touchHelper.attachToRecyclerView(_recyclerView);
@@ -85,6 +100,10 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
         });
 
         return view;
+    }
+
+    public void setPreloadView(View view) {
+        _preloadSizeProvider.setView(view);
     }
 
     public void setGroupFilter(String group, boolean apply) {
@@ -251,6 +270,28 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
                 outRect.top = _height;
             }
             outRect.bottom = _height;
+        }
+    }
+
+    private class IconPreloadProvider implements ListPreloader.PreloadModelProvider<DatabaseEntry> {
+        @NonNull
+        @Override
+        public List<DatabaseEntry> getPreloadItems(int position) {
+            DatabaseEntry entry = _adapter.getEntryAt(position);
+            if (!entry.hasIcon()) {
+                return Collections.emptyList();
+            }
+            return Collections.singletonList(entry);
+        }
+
+        @Nullable
+        @Override
+        public RequestBuilder getPreloadRequestBuilder(@NonNull DatabaseEntry entry) {
+            return Glide.with(EntryListView.this)
+                        .asDrawable()
+                        .load(entry)
+                        .diskCacheStrategy(DiskCacheStrategy.NONE)
+                        .skipMemoryCache(false);
         }
     }
 }
