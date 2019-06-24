@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.beemdevelopment.aegis.com.impy.aegis.ui.ScannerActivity">
+    tools:context="com.beemdevelopment.aegis.ui.ScannerActivity">
     <item
         android:id="@+id/action_camera"
         android:icon="@drawable/ic_camera_front_24dp"

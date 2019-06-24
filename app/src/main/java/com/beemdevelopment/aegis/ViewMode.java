@@ -30,4 +30,15 @@ public enum ViewMode {
                 return R.layout.card_entry;
         }
     }
+
+    /**
+     * Retrieves the height (in dp) that the divider between entries should have in this view mode.
+     */
+    public float getDividerHeight() {
+        if (this == ViewMode.COMPACT) {
+            return 0;
+        }
+
+        return 20;
+    }
 }

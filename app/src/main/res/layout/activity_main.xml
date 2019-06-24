@@ -6,14 +6,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="com.beemdevelopment.aegis.com.impy.aegis.ui.MainActivity">
+    tools:context="com.beemdevelopment.aegis.ui.MainActivity">
 
     <fragment
         android:name="com.beemdevelopment.aegis.ui.views.EntryListView"
         android:id="@+id/key_profiles"
         android:layout_height="match_parent"
         android:layout_width="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"/>
 
     <!-- note: the fab should always be the last element to be sure it's displayed on top -->
     <com.getbase.floatingactionbutton.FloatingActionsMenu

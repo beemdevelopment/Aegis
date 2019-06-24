@@ -128,10 +128,4 @@
             android:layout_weight="1"/>
     </LinearLayout>
 
-    <View
-        android:id="@+id/entryDivider"
-        android:layout_width="match_parent"
-        android:layout_height="0.1dp"
-        android:background="@color/divider" />
-
 </LinearLayout>

@@ -27,7 +27,6 @@ public class EntryHolder extends RecyclerView.ViewHolder {
     private ImageView _profileDrawable;
     private DatabaseEntry _entry;
     private ImageView _buttonRefresh;
-    private View _entryDivider;
 
     private boolean _hidden;
     private int _tapToRevealTime;
@@ -45,8 +44,6 @@ public class EntryHolder extends RecyclerView.ViewHolder {
         _profileIssuer = view.findViewById(R.id.profile_issuer);
         _profileDrawable = view.findViewById(R.id.ivTextDrawable);
         _buttonRefresh = view.findViewById(R.id.buttonRefresh);
-
-        _entryDivider = view.findViewById(R.id.entryDivider);
 
         _progressBar = view.findViewById(R.id.progressBar);
         int primaryColorId = view.getContext().getResources().getColor(R.color.colorPrimary);
@@ -122,11 +119,6 @@ public class EntryHolder extends RecyclerView.ViewHolder {
         _progressBar.setVisibility(showProgress ? View.VISIBLE : View.GONE);
         if (showProgress) {
             _progressBar.setPeriod(((TotpInfo) _entry.getInfo()).getPeriod());
-
-            if (_entryDivider != null) {
-                _entryDivider.setVisibility(View.GONE);
-            }
-
             startRefreshLoop();
         } else {
             stopRefreshLoop();
