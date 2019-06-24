@@ -37,7 +37,7 @@
         android:title="@string/pref_security_group_title"
         app:iconSpaceReserved="false">
         <androidx.preference.SwitchPreferenceCompat
-            android:defaultValue="true"
+            android:defaultValue="@bool/pref_secure_screen_default"
             android:key="pref_secure_screen"
             android:title="@string/pref_secure_screen_title"
             android:summary="@string/pref_secure_screen_summary"
