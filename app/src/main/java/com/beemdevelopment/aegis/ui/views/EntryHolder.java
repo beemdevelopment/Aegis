@@ -1,7 +1,5 @@
 package com.beemdevelopment.aegis.ui.views;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.PorterDuff;
 import android.os.Handler;
 import android.view.View;
@@ -17,7 +15,10 @@ import com.beemdevelopment.aegis.otp.HotpInfo;
 import com.beemdevelopment.aegis.otp.OtpInfo;
 import com.beemdevelopment.aegis.otp.SteamInfo;
 import com.beemdevelopment.aegis.otp.TotpInfo;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class EntryHolder extends RecyclerView.ViewHolder {
@@ -84,15 +85,6 @@ public class EntryHolder extends RecyclerView.ViewHolder {
             _profileName.setText(" - " + entry.getName());
         }
 
-        if (_entry.hasIcon()) {
-            byte[] imageBytes = entry.getIcon();
-            Bitmap image = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
-            _profileDrawable.setImageBitmap(image);
-        } else {
-            TextDrawable drawable = TextDrawableHelper.generate(entry.getIssuer(), entry.getName(), _profileDrawable);
-            _profileDrawable.setImageDrawable(drawable);
-        }
-
         // cancel any scheduled hideCode calls
         _hiddenHandler.removeCallbacksAndMessages(null);
 
@@ -101,6 +93,24 @@ public class EntryHolder extends RecyclerView.ViewHolder {
         } else {
             refreshCode();
         }
+    }
+
+    public void loadIcon(Fragment fragment) {
+        if (_entry.hasIcon()) {
+            Glide.with(fragment)
+                .asDrawable()
+                .load(_entry)
+                .diskCacheStrategy(DiskCacheStrategy.NONE)
+                .skipMemoryCache(false)
+                .into(_profileDrawable);
+        } else {
+            TextDrawable drawable = TextDrawableHelper.generate(_entry.getIssuer(), _entry.getName(), _profileDrawable);
+            _profileDrawable.setImageDrawable(drawable);
+        }
+    }
+
+    public ImageView getIconView() {
+        return _profileDrawable;
     }
 
     public void setTapToRevealTime(int number) {

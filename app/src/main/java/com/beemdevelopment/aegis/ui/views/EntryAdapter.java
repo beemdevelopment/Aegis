@@ -22,9 +22,9 @@ import java.util.UUID;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements ItemTouchHelperAdapter {
+    private EntryListView _view;
     private List<DatabaseEntry> _entries;
     private List<DatabaseEntry> _shownEntries;
-    private static Listener _listener;
     private boolean _showAccountName;
     private boolean _tapToReveal;
     private int _tapToRevealTime;
@@ -37,11 +37,11 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
     // keeps track of the viewholders that are currently bound
     private List<EntryHolder> _holders;
 
-    public EntryAdapter(Listener listener) {
+    public EntryAdapter(EntryListView view) {
         _entries = new ArrayList<>();
         _shownEntries = new ArrayList<>();
         _holders = new ArrayList<>();
-        _listener = listener;
+        _view = view;
     }
 
     public void setShowAccountName(boolean showAccountName) {
@@ -54,6 +54,10 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
 
     public void setTapToRevealTime(int number) {
         _tapToRevealTime = number;
+    }
+
+    public DatabaseEntry getEntryAt(int position) {
+        return _shownEntries.get(position);
     }
 
     public void addEntry(DatabaseEntry entry) {
@@ -232,7 +236,7 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
             return;
         }
 
-        _listener.onEntryDrop(_shownEntries.get(position));
+        _view.onEntryDrop(_shownEntries.get(position));
     }
 
     @Override
@@ -243,7 +247,7 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
         }
 
         // notify the database first
-        _listener.onEntryMove(_entries.get(firstPosition), _entries.get(secondPosition));
+        _view.onEntryMove(_entries.get(firstPosition), _entries.get(secondPosition));
 
         // update our side of things
         Collections.swap(_entries, firstPosition, secondPosition);
@@ -260,7 +264,9 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
     public EntryHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         View view = inflater.inflate(_viewMode.getLayoutId(), parent, false);
-        return new EntryHolder(view);
+        EntryHolder holder = new EntryHolder(view);
+        _view.setPreloadView(holder.getIconView());
+        return holder;
     }
 
     @Override
@@ -275,6 +281,7 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
         boolean showProgress = !isPeriodUniform() && entry.getInfo() instanceof TotpInfo;
         holder.setData(entry, _showAccountName, showProgress, _tapToReveal);
         holder.setTapToRevealTime(_tapToRevealTime);
+        holder.loadIcon(_view);
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -283,7 +290,7 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
                 if (_tapToReveal && holder.isCodeHidden()) {
                     holder.revealCode();
                 } else {
-                    _listener.onEntryClick(_shownEntries.get(position));
+                    _view.onEntryClick(_shownEntries.get(position));
                 }
             }
         });
@@ -291,7 +298,7 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
             @Override
             public boolean onLongClick(View v) {
                 int position = holder.getAdapterPosition();
-                return _listener.onLongEntryClick(_shownEntries.get(position));
+                return _view.onLongEntryClick(_shownEntries.get(position));
             }
         });
         holder.setOnRefreshClickListener(new View.OnClickListener() {
@@ -306,7 +313,7 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
 
                 // notify the listener that the counter has been incremented
                 // this gives it a chance to save the database
-                _listener.onEntryChange(entry);
+                _view.onEntryChange(entry);
 
                 // finally, refresh the code in the UI
                 holder.refreshCode();
@@ -331,7 +338,7 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
             holder.setShowProgress(!_isPeriodUniform);
         }
 
-        _listener.onPeriodUniformityChanged(_isPeriodUniform);
+        _view.onPeriodUniformityChanged(_isPeriodUniform);
     }
 
     public int getUniformPeriod() {
