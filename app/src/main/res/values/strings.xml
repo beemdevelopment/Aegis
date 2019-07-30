@@ -59,7 +59,7 @@
     <string name="set_group">Please enter a group name</string>
     <string name="set_number">Please enter a number</string>
     <string name="set_password_confirm">Please confirm the password</string>
-    <string name="invalidated_fingerprint">A change in your device\'s security settings has been detected. Please go to \"Settings -> Fingerprint\" and re-add your fingerprint.</string>
+    <string name="invalidated_fingerprint">A change in your device\'s security settings has been detected. Please go to \"Aegis -> Settings -> Fingerprint\" and re-add your fingerprint.</string>
 
     <string name="unlock">Unlock</string>
     <string name="advanced">Advanced</string>
