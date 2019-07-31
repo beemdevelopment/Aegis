@@ -65,6 +65,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
 
     // permission request codes
     private static final int CODE_PERM_CAMERA = 0;
+    private static final int CODE_PERM_READ_STORAGE = 1;
 
     private AegisApplication _app;
     private DatabaseManager _db;
@@ -106,12 +107,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         });
         findViewById(R.id.fab_scan_image).setOnClickListener(view -> {
             _fabMenu.collapse();
-
-            Intent galleryIntent = new Intent(Intent.ACTION_PICK);
-            galleryIntent.setDataAndType(android.provider.MediaStore.Images.Media.INTERNAL_CONTENT_URI, "image/*");
-
-            Intent chooserIntent = Intent.createChooser(galleryIntent, getString(R.string.select_picture));
-            startActivityForResult(Intent.createChooser(chooserIntent, getString(R.string.select_picture)), CODE_SCAN_IMAGE);
+            startScanImageActivity();
         });
         findViewById(R.id.fab_scan).setOnClickListener(view -> {
             _fabMenu.collapse();
@@ -194,6 +190,9 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         switch (requestCode) {
             case CODE_PERM_CAMERA:
                 startScanActivity();
+                break;
+            case CODE_PERM_READ_STORAGE:
+                startScanImageActivity();
                 break;
         }
     }
@@ -369,6 +368,18 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
 
         Intent scannerActivity = new Intent(getApplicationContext(), ScannerActivity.class);
         startActivityForResult(scannerActivity, CODE_SCAN);
+    }
+
+    private void startScanImageActivity() {
+        if (!PermissionHelper.request(this, CODE_PERM_READ_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE)) {
+            return;
+        }
+
+        Intent galleryIntent = new Intent(Intent.ACTION_PICK);
+        galleryIntent.setDataAndType(android.provider.MediaStore.Images.Media.INTERNAL_CONTENT_URI, "image/*");
+
+        Intent chooserIntent = Intent.createChooser(galleryIntent, getString(R.string.select_picture));
+        startActivityForResult(Intent.createChooser(chooserIntent, getString(R.string.select_picture)), CODE_SCAN_IMAGE);
     }
 
     private void doShortcutActions() {
