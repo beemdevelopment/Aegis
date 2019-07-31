@@ -1,10 +1,12 @@
 package com.beemdevelopment.aegis.db;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Environment;
 
 import com.beemdevelopment.aegis.BuildConfig;
 import com.beemdevelopment.aegis.R;
+import com.beemdevelopment.aegis.services.NotificationService;
 
 import org.json.JSONObject;
 
@@ -72,6 +74,7 @@ public class DatabaseManager {
             JSONObject obj = _file.getContent(creds);
             _db = Database.fromJson(obj);
             _creds = creds;
+            _context.startService(new Intent(_context, NotificationService.class));
         } catch (DatabaseFileException | DatabaseException e) {
             throw new DatabaseManagerException(e);
         }

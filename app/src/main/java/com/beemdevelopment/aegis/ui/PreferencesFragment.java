@@ -35,6 +35,7 @@ import com.beemdevelopment.aegis.importers.AegisImporter;
 import com.beemdevelopment.aegis.importers.DatabaseImporter;
 import com.beemdevelopment.aegis.importers.DatabaseImporterEntryException;
 import com.beemdevelopment.aegis.importers.DatabaseImporterException;
+import com.beemdevelopment.aegis.services.NotificationService;
 import com.beemdevelopment.aegis.ui.models.ImportEntry;
 import com.beemdevelopment.aegis.ui.preferences.SwitchPreference;
 import com.takisoft.preferencex.PreferenceFragmentCompat;
@@ -253,6 +254,7 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
                                         e.printStackTrace();
                                     }
 
+                                    getActivity().stopService(new Intent(getActivity(), NotificationService.class));
                                     updateEncryptionPreferences();
                                 }
                             })
@@ -745,6 +747,7 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
                 return;
             }
 
+            getActivity().startService(new Intent(getActivity(), NotificationService.class));
             updateEncryptionPreferences();
         }
 
