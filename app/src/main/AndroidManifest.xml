@@ -12,6 +12,7 @@
         android:name=".AegisApplication"
         android:allowBackup="true"
         android:icon="@mipmap/${iconName}"
+        android:roundIcon="@mipmap/ic_launcher_round"
         android:label="Aegis"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar"
