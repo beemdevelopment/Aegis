@@ -19,6 +19,15 @@
             android:title="@string/pref_view_mode_title"
             app:iconSpaceReserved="false"/>
 
+        <ListPreference
+            android:key="pref_lang"
+            android:title="@string/pref_lang_title"
+            android:summary="%s"
+            android:entries="@array/pref_lang_entries"
+            android:entryValues="@array/pref_lang_values"
+            android:defaultValue="system"
+            app:iconSpaceReserved="false"/>
+
         <androidx.preference.SwitchPreferenceCompat
             android:defaultValue="false"
             android:key="pref_account_name"

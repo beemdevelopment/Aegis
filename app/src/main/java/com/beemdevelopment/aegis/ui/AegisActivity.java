@@ -2,6 +2,7 @@ package com.beemdevelopment.aegis.ui;
 
 import android.animation.ValueAnimator;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
@@ -16,6 +17,8 @@ import com.beemdevelopment.aegis.Theme;
 import androidx.annotation.CallSuper;
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.Locale;
+
 public abstract class AegisActivity extends AppCompatActivity implements AegisApplication.LockListener {
     private boolean _resumed;
     private AegisApplication _app;
@@ -24,8 +27,10 @@ public abstract class AegisActivity extends AppCompatActivity implements AegisAp
     protected void onCreate(Bundle savedInstanceState) {
         _app = (AegisApplication) getApplication();
 
-        // set the theme and create the activity
-        setPreferredTheme(getPreferences().getCurrentTheme());
+        // set the theme and locale before creating the activity
+        Preferences prefs = getPreferences();
+        setPreferredTheme(prefs.getCurrentTheme());
+        setLocale(prefs.getLocale());
         super.onCreate(savedInstanceState);
 
         // if the app was killed, relaunch MainActivity and close everything else
@@ -95,6 +100,15 @@ public abstract class AegisActivity extends AppCompatActivity implements AegisAp
                 setTheme(R.style.AppTheme_TrueBlack);
                 break;
         }
+    }
+
+    protected void setLocale(Locale locale) {
+        Locale.setDefault(locale);
+
+        Configuration config = new Configuration();
+        config.locale = locale;
+
+        getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
     }
 
     /**
