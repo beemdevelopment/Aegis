@@ -29,4 +29,21 @@
         <item>@string/compact_mode_title</item>
         <item>@string/small_mode_title</item>
     </string-array>
+
+    <string-array name="pref_lang_entries">
+        <item>System default</item>
+        <item>Dutch</item>
+        <item>English</item>
+        <item>French</item>
+        <item>Russian</item>
+    </string-array>
+
+    <string-array name="pref_lang_values" translatable="false">
+        <item>system</item>
+        <item>nl</item>
+        <item>en</item>
+        <item>fr</item>
+        <item>ru</item>
+    </string-array>
+
 </resources>

@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">Aegis</string>
-    <string name="app_name_full">Aegis Authenticator</string>
     <string name="app_name_dev">AegisDev</string>
     <string name="action_settings">Настройки</string>
     <string name="action_import">Импорт</string>
@@ -141,10 +140,10 @@
     <string name="lock">Заблокировать</string>
     <string name="all">Все</string>
     <string name="name">Имя</string>
-    <string name="sort_alphabetically">Эмитенг (от А до Я)</string>
-    <string name="sort_alphabetically_reverse">Эмитент (от Я до А)</string>
-    <string name="sort_alphabetically_name">Учетная запись (от А до Я)</string>
-    <string name="sort_alphabetically_name_reverse">Учетная запись (от Я до А)</string>
+    <string name="sort_alphabetically">Эмитент (в алфавитном порядке)</string>
+    <string name="sort_alphabetically_reverse">Эмитент (в обратном порядке)</string>
+    <string name="sort_alphabetically_name">Учетная запись (в алфавитном порядке)</string>
+    <string name="sort_alphabetically_name_reverse">Учетная запись (в обратном порядке)</string>
     <string name="sort_custom">Произвольно</string>
     <string name="no_group">Нет группы</string>
     <string name="new_group">Новая группа…</string>
