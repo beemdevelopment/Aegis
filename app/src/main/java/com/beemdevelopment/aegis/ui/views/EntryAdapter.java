@@ -44,6 +44,13 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
         _view = view;
     }
 
+    public void destroy() {
+        for (EntryHolder holder : _holders) {
+            holder.destroy();
+        }
+        _view = null;
+    }
+
     public void setShowAccountName(boolean showAccountName) {
         _showAccountName = showAccountName;
     }
@@ -118,6 +125,7 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
         _entries.clear();
         _shownEntries.clear();
         notifyDataSetChanged();
+        checkPeriodUniformity();
     }
 
     public void replaceEntry(DatabaseEntry newEntry) {

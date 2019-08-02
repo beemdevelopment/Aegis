@@ -135,6 +135,10 @@ public class EntryHolder extends RecyclerView.ViewHolder {
         }
     }
 
+    public void destroy() {
+        _refresher.destroy();
+    }
+
     public void startRefreshLoop() {
         _refresher.start();
     }
