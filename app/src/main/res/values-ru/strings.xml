@@ -47,7 +47,7 @@
 
     <string name="choose_authentication_method">Безопасность</string>
     <string name="authentication_method_none">Нет</string>
-    <string name="authentication_method_none_description">Вам не нужен пароль для разблокировки хранилища и оно не будет зашифровано. Этот вариант не рекомендуется.</string>
+    <string name="authentication_method_none_description">Вам не нужен пароль для разблокировки хранилища, и оно не будет зашифровано. Этот вариант не рекомендуется.</string>
     <string name="authentication_method_password">Пароль</string>
     <string name="authentication_method_password_description">Вам нужен пароль, чтобы разблокировать хранилище.</string>
     <string name="authentication_method_fingerprint">Отпечаток пальца</string>
