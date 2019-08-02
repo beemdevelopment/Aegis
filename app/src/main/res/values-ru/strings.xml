@@ -150,7 +150,7 @@
     <string name="enter_group_name">Введите название группы</string>
     <string name="group_name_hint">Название группы</string>
     <string name="preference_manage_groups">Редактировать группы</string>
-    <string name="preference_manage_groups_summary">Управление и удаление ваших групп</string>
+    <string name="preference_manage_groups_summary">Редактирование и удаление ваших групп</string>
     <string name="tap_to_reveal">Скрытый</string>
     <string name="selected">Выбрано</string>
     <string name="dark_theme_title">Темная тема</string>
