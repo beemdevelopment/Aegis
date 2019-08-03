@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
 import android.view.animation.LayoutAnimationController;
+import android.widget.Toast;
 
 import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.SortCategory;
@@ -128,6 +129,12 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
         }
     }
 
+    public void setActionModeState(boolean enabled, DatabaseEntry entry) {
+        _touchCallback.setSelectedEntry(entry);
+        _touchCallback.setIsLongPressDragEnabled(enabled && _adapter.isDragAndDropAllowed());
+        _adapter.setSelectedEntry(entry);
+    }
+
     public void setSortCategory(SortCategory sortCategory, boolean apply) {
         _touchCallback.setIsLongPressDragEnabled(sortCategory == SortCategory.CUSTOM);
         _adapter.setSortCategory(sortCategory, apply);
@@ -164,9 +171,9 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
         _listener.onEntryClick(entry);
     }
 
-    @Override
     public boolean onLongEntryClick(DatabaseEntry entry) {
-        return false;
+        _listener.onLongEntryClick(entry);
+        return true;
     }
 
     @Override
@@ -265,6 +272,7 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
         void onEntryMove(DatabaseEntry entry1, DatabaseEntry entry2);
         void onEntryDrop(DatabaseEntry entry);
         void onEntryChange(DatabaseEntry entry);
+        void onLongEntryClick(DatabaseEntry entry);
         void onScroll(int dx, int dy);
     }
 

@@ -25,6 +25,7 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
     private EntryListView _view;
     private List<DatabaseEntry> _entries;
     private List<DatabaseEntry> _shownEntries;
+    private DatabaseEntry _selectedEntry;
     private boolean _showAccountName;
     private boolean _tapToReveal;
     private int _tapToRevealTime;
@@ -197,6 +198,7 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
         if (_sortCategory == category) {
             return;
         }
+
         _sortCategory = category;
         if (apply) {
             updateShownEntries();
@@ -286,6 +288,8 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
     @Override
     public void onBindViewHolder(final EntryHolder holder, int position) {
         DatabaseEntry entry = _shownEntries.get(position);
+        holder.setFocused(entry == _selectedEntry);
+
         boolean showProgress = !isPeriodUniform() && entry.getInfo() instanceof TotpInfo;
         holder.setData(entry, _showAccountName, showProgress, _tapToReveal);
         holder.setTapToRevealTime(_tapToRevealTime);
@@ -295,7 +299,7 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
             @Override
             public void onClick(View v) {
                 int position = holder.getAdapterPosition();
-                if (_tapToReveal && holder.isCodeHidden()) {
+                if (_tapToReveal && holder.isCodeHidden() && _selectedEntry == null) {
                     holder.revealCode();
                 } else {
                     _view.onEntryClick(_shownEntries.get(position));
@@ -306,6 +310,11 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
             @Override
             public boolean onLongClick(View v) {
                 int position = holder.getAdapterPosition();
+                if (_selectedEntry == null) {
+                    setSelectedEntry(_shownEntries.get(position));
+                    holder.setFocused(true);
+                }
+
                 return _view.onLongEntryClick(_shownEntries.get(position));
             }
         });
@@ -370,6 +379,18 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
         }
 
         return period;
+    }
+
+    public void setSelectedEntry(DatabaseEntry entry) {
+        if (entry == null) {
+            notifyItemChanged(_shownEntries.indexOf(_selectedEntry));
+        }
+
+        _selectedEntry = entry;
+    }
+
+    public boolean isDragAndDropAllowed() {
+        return _sortCategory == SortCategory.CUSTOM && _groupFilter == null && _searchFilter == null;
     }
 
     public boolean isPeriodUniform() {

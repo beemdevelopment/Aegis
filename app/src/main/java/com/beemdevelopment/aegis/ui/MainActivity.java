@@ -1,6 +1,7 @@
 package com.beemdevelopment.aegis.ui;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
@@ -11,12 +12,17 @@ import android.graphics.Rect;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.SubMenu;
 import android.widget.LinearLayout;
 import android.widget.SearchView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.view.ActionMode;
+import androidx.core.view.MenuItemCompat;
 
 import com.beemdevelopment.aegis.AegisApplication;
 import com.beemdevelopment.aegis.R;
@@ -71,12 +77,17 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
     private String _checkedGroup;
     private boolean _searchSubmitted;
 
+    private DatabaseEntry _selectedEntry;
+    private ActionMode _actionMode;
+
     private Menu _menu;
     private SearchView _searchView;
     private FloatingActionsMenu _fabMenu;
     private EntryListView _entryListView;
 
     private FabScrollHelper _fabScrollHelper;
+
+    private ActionMode.Callback _actionModeCallbacks = new ActionModeCallbacks();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -455,43 +466,6 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         super.onBackPressed();
     }
 
-    private BottomSheetDialog createBottomSheet(final DatabaseEntry entry) {
-        BottomSheetDialog dialog = new BottomSheetDialog(this);
-        dialog.setContentView(R.layout.bottom_sheet_edit_entry);
-        dialog.setCancelable(true);
-        dialog.getWindow().setLayout(LinearLayout.LayoutParams.MATCH_PARENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT);
-        dialog.show();
-
-        dialog.findViewById(R.id.copy_button).setOnClickListener(view -> {
-            dialog.dismiss();
-            ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
-            ClipData clip = ClipData.newPlainText("text/plain", entry.getInfo().getOtp());
-            clipboard.setPrimaryClip(clip);
-            Toast.makeText(this, getString(R.string.code_copied), Toast.LENGTH_SHORT).show();
-        });
-
-        dialog.findViewById(R.id.delete_button).setOnClickListener(view -> {
-            dialog.dismiss();
-            Dialogs.showDeleteEntryDialog(this, (d, which) -> {
-                deleteEntry(entry);
-                // update the filter list if the group no longer exists
-                if (entry.getGroup() != null) {
-                    if (!_db.getGroups().contains(entry.getGroup())) {
-                        updateGroupFilterMenu();
-                    }
-                }
-            });
-        });
-
-        dialog.findViewById(R.id.edit_button).setOnClickListener(view -> {
-            dialog.dismiss();
-            startEditProfileActivity(CODE_EDIT_ENTRY, entry, false);
-        });
-
-        return dialog;
-    }
-
     private void deleteEntry(DatabaseEntry entry) {
         _db.removeEntry(entry);
         saveDatabase();
@@ -654,7 +628,29 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
 
     @Override
     public void onEntryClick(DatabaseEntry entry) {
-        createBottomSheet(entry).show();
+        if (_selectedEntry != null) {
+            if (_selectedEntry == entry) {
+                _actionMode.finish();
+            }
+
+            return;
+        }
+
+        ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+        ClipData clip = ClipData.newPlainText("text/plain", entry.getInfo().getOtp());
+        clipboard.setPrimaryClip(clip);
+        Toast.makeText(this, getString(R.string.code_copied), Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onLongEntryClick(DatabaseEntry entry) {
+        if (_selectedEntry != null) {
+            return;
+        }
+
+        _selectedEntry = entry;
+        _entryListView.setActionModeState(true, entry);
+        _actionMode = this.startSupportActionMode(_actionModeCallbacks);
     }
 
     @Override
@@ -679,6 +675,10 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
 
     @Override
     public void onLocked() {
+        if (_actionMode != null) {
+            _actionMode.finish();
+        }
+
         _entryListView.clearEntries();
         _loaded = false;
 
@@ -687,5 +687,51 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         }
 
         super.onLocked();
+    }
+
+    private class ActionModeCallbacks implements ActionMode.Callback {
+            @Override
+            public boolean onCreateActionMode(ActionMode mode, Menu menu) {
+                MenuInflater inflater = mode.getMenuInflater();
+                inflater.inflate(R.menu.menu_action_mode, menu);
+                return true;
+            }
+
+            @Override
+            public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
+                return false;
+            }
+
+            @Override
+            public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.action_edit:
+                        startEditProfileActivity(CODE_EDIT_ENTRY, _selectedEntry, false);
+                        mode.finish();
+                        return true;
+
+                    case R.id.action_delete:
+                        Dialogs.showDeleteEntryDialog(MainActivity.this, (d, which) -> {
+                            deleteEntry(_selectedEntry);
+
+                            if (_selectedEntry.getGroup() != null) {
+                                if (!_db.getGroups().contains(_selectedEntry.getGroup())) {
+                                    updateGroupFilterMenu();
+                                }
+                            }
+                            mode.finish();
+                        });
+                        return true;
+                    default:
+                        return false;
+                }
+            }
+
+            @Override
+            public void onDestroyActionMode(ActionMode mode) {
+                _entryListView.setActionModeState(false, null);
+                _selectedEntry = null;
+                _actionMode = null;
+            }
     }
 }

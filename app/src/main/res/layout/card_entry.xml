@@ -11,6 +11,7 @@
     <LinearLayout
         android:orientation="horizontal"
         android:background="?attr/cardBackground"
+        android:id="@+id/rlCardEntry"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
         android:layout_width="match_parent"

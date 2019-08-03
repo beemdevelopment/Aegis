@@ -3,7 +3,14 @@ package com.beemdevelopment.aegis.helpers;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.beemdevelopment.aegis.db.DatabaseEntry;
+import com.beemdevelopment.aegis.ui.views.EntryAdapter;
+
+import java.util.Map;
+
 public class SimpleItemTouchHelperCallback extends ItemTouchHelper.Callback {
+
+    private DatabaseEntry _selectedEntry;
 
     private final ItemTouchHelperAdapter _adapter;
     private boolean _positionChanged = false;
@@ -22,6 +29,10 @@ public class SimpleItemTouchHelperCallback extends ItemTouchHelper.Callback {
         _isLongPressDragEnabled = enabled;
     }
 
+    public void setSelectedEntry(DatabaseEntry entry) {
+        _selectedEntry = entry;
+    }
+
     @Override
     public boolean isItemViewSwipeEnabled() {
         return false;
@@ -30,7 +41,15 @@ public class SimpleItemTouchHelperCallback extends ItemTouchHelper.Callback {
     @Override
     public int getMovementFlags(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder) {
         int dragFlags = ItemTouchHelper.UP | ItemTouchHelper.DOWN;
-        int swipeFlags = ItemTouchHelper.START | ItemTouchHelper.END;
+        int swipeFlags = 0;
+
+        int position = viewHolder.getAdapterPosition();
+        EntryAdapter adapter = (EntryAdapter)recyclerView.getAdapter();
+        if (adapter.getEntryAt(position) != _selectedEntry)
+        {
+            dragFlags = 0;
+        }
+
         return makeMovementFlags(dragFlags, swipeFlags);
     }
 
@@ -56,4 +75,6 @@ public class SimpleItemTouchHelperCallback extends ItemTouchHelper.Callback {
             _positionChanged = false;
         }
     }
+
+
 }
