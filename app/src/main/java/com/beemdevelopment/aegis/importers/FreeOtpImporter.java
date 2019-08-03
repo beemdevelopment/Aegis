@@ -7,7 +7,9 @@ import com.beemdevelopment.aegis.db.DatabaseEntry;
 import com.beemdevelopment.aegis.otp.HotpInfo;
 import com.beemdevelopment.aegis.otp.OtpInfo;
 import com.beemdevelopment.aegis.otp.OtpInfoException;
+import com.beemdevelopment.aegis.otp.SteamInfo;
 import com.beemdevelopment.aegis.otp.TotpInfo;
+import com.beemdevelopment.aegis.util.PreferenceParser;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -37,6 +39,7 @@ public class FreeOtpImporter extends DatabaseImporter {
         return _subPath;
     }
 
+    @Override
     public State read(FileReader reader) throws DatabaseImporterException {
         try {
             XmlPullParser parser = Xml.newPullParser();
@@ -44,17 +47,22 @@ public class FreeOtpImporter extends DatabaseImporter {
             parser.setInput(reader.getStream(), null);
             parser.nextTag();
 
-            List<XmlEntry> entries = parse(parser);
+            List<JSONObject> entries = new ArrayList<>();
+            for (PreferenceParser.XmlEntry entry : PreferenceParser.parse(parser)) {
+                if (!entry.Name.equals("tokenOrder")) {
+                    entries.add(new JSONObject(entry.Value));
+                }
+            }
             return new State(entries);
-        } catch (XmlPullParserException | IOException e) {
+        } catch (XmlPullParserException | IOException | JSONException e) {
             throw new DatabaseImporterException(e);
         }
     }
 
     public static class State extends DatabaseImporter.State {
-        private List<XmlEntry> _entries;
+        private List<JSONObject> _entries;
 
-        private State(List<XmlEntry> entries) {
+        public State(List<JSONObject> entries) {
             super(false);
             _entries = entries;
         }
@@ -63,34 +71,37 @@ public class FreeOtpImporter extends DatabaseImporter {
         public Result convert() {
             Result result = new Result();
 
-            for (XmlEntry xmlEntry : _entries) {
-                // TODO: order
-                if (!xmlEntry.Name.equals("tokenOrder")) {
-                    try {
-                        DatabaseEntry entry = convertEntry(xmlEntry);
-                        result.addEntry(entry);
-                    } catch (DatabaseImporterEntryException e) {
-                        result.addError(e);
-                    }
+            for (JSONObject obj : _entries) {
+                try {
+                    DatabaseEntry entry = convertEntry(obj);
+                    result.addEntry(entry);
+                } catch (DatabaseImporterEntryException e) {
+                    result.addError(e);
                 }
             }
 
             return result;
         }
 
-        private static DatabaseEntry convertEntry(XmlEntry entry) throws DatabaseImporterEntryException {
+        private static DatabaseEntry convertEntry(JSONObject obj) throws DatabaseImporterEntryException {
             try {
-                JSONObject obj = new JSONObject(entry.Value);
-
                 String type = obj.getString("type").toLowerCase();
                 String algo = obj.getString("algo");
                 int digits = obj.getInt("digits");
                 byte[] secret = toBytes(obj.getJSONArray("secret"));
 
+                String issuer = obj.getString("issuerExt");
+                String name = obj.optString("label");
+
                 OtpInfo info;
                 switch (type) {
                     case "totp":
-                        info = new TotpInfo(secret, algo, digits, obj.getInt("period"));
+                        int period = obj.getInt("period");
+                        if (issuer.equals("Steam")) {
+                            info = new SteamInfo(secret, algo, digits, period);
+                        } else {
+                            info = new TotpInfo(secret, algo, digits, period);
+                        }
                         break;
                     case "hotp":
                         info = new HotpInfo(secret, algo, digits, obj.getLong("counter"));
@@ -99,18 +110,16 @@ public class FreeOtpImporter extends DatabaseImporter {
                         throw new DatabaseImporterException("unsupported otp type: " + type);
                 }
 
-                String issuer = obj.getString("issuerExt");
-                String name = obj.optString("label");
                 return new DatabaseEntry(info, name, issuer);
             } catch (DatabaseImporterException | OtpInfoException | JSONException e) {
-                throw new DatabaseImporterEntryException(e, entry.Value);
+                throw new DatabaseImporterEntryException(e, obj.toString());
             }
         }
     }
 
-    private static List<XmlEntry> parse(XmlPullParser parser)
-            throws IOException, XmlPullParserException {
-        List<XmlEntry> entries = new ArrayList<>();
+    private static List<JSONObject> parseXml(XmlPullParser parser)
+            throws IOException, XmlPullParserException, JSONException {
+        List<JSONObject> entries = new ArrayList<>();
 
         parser.require(XmlPullParser.START_TAG, null, "map");
         while (parser.next() != XmlPullParser.END_TAG) {
@@ -123,7 +132,10 @@ public class FreeOtpImporter extends DatabaseImporter {
                 continue;
             }
 
-            entries.add(parseEntry(parser));
+            JSONObject entry = parseXmlEntry(parser);
+            if (entry != null) {
+                entries.add(entry);
+            }
         }
 
         return entries;
@@ -137,19 +149,21 @@ public class FreeOtpImporter extends DatabaseImporter {
         return bytes;
     }
 
-    private static XmlEntry parseEntry(XmlPullParser parser) throws IOException, XmlPullParserException {
+    private static JSONObject parseXmlEntry(XmlPullParser parser)
+            throws IOException, XmlPullParserException, JSONException {
         parser.require(XmlPullParser.START_TAG, null, "string");
         String name = parser.getAttributeValue(null, "name");
-        String value = parseText(parser);
+        String value = parseXmlText(parser);
         parser.require(XmlPullParser.END_TAG, null, "string");
 
-        XmlEntry entry = new XmlEntry();
-        entry.Name = name;
-        entry.Value = value;
-        return entry;
+        if (name.equals("tokenOrder")) {
+            return null;
+        }
+
+        return new JSONObject(value);
     }
 
-    private static String parseText(XmlPullParser parser) throws IOException, XmlPullParserException {
+    private static String parseXmlText(XmlPullParser parser) throws IOException, XmlPullParserException {
         String text = "";
         if (parser.next() == XmlPullParser.TEXT) {
             text = parser.getText();
@@ -175,10 +189,5 @@ public class FreeOtpImporter extends DatabaseImporter {
                     break;
             }
         }
-    }
-
-    private static class XmlEntry {
-        String Name;
-        String Value;
     }
 }

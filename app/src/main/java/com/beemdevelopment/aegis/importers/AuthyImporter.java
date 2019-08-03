@@ -9,6 +9,7 @@ import com.beemdevelopment.aegis.encoding.Base32Exception;
 import com.beemdevelopment.aegis.otp.OtpInfo;
 import com.beemdevelopment.aegis.otp.OtpInfoException;
 import com.beemdevelopment.aegis.otp.TotpInfo;
+import com.beemdevelopment.aegis.util.PreferenceParser;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -36,6 +37,7 @@ public class AuthyImporter extends DatabaseImporter {
         return _subPath;
     }
 
+    @Override
     public State read(FileReader reader) throws DatabaseImporterException {
         try {
             XmlPullParser parser = Xml.newPullParser();
@@ -43,8 +45,14 @@ public class AuthyImporter extends DatabaseImporter {
             parser.setInput(reader.getStream(), null);
             parser.nextTag();
 
-            JSONArray entries = parse(parser);
-            return new State(entries);
+            JSONArray array = new JSONArray();
+            for (PreferenceParser.XmlEntry entry : PreferenceParser.parse(parser)) {
+                if (entry.Name.equals("com.authy.storage.tokens.authenticator.key")) {
+                    array = new JSONArray(entry.Value);
+                }
+            }
+
+            return new State(array);
         } catch (XmlPullParserException | JSONException | IOException e) {
             throw new DatabaseImporterException(e);
         }
@@ -57,7 +65,6 @@ public class AuthyImporter extends DatabaseImporter {
             super(false);
             _obj = obj;
         }
-
 
         @Override
         public Result convert() throws DatabaseImporterException {
@@ -115,72 +122,6 @@ public class AuthyImporter extends DatabaseImporter {
 
             info.Name = info.Name.replace(info.Issuer + seperator, "");
         }
-    }
-
-    private static JSONArray parse(XmlPullParser parser)
-            throws IOException, XmlPullParserException, JSONException {
-        JSONArray entries = new JSONArray();
-
-        parser.require(XmlPullParser.START_TAG, null, "map");
-        while (parser.next() != XmlPullParser.END_TAG) {
-            if (parser.getEventType() != XmlPullParser.START_TAG) {
-                continue;
-            }
-
-            if (!parser.getName().equals("string")) {
-                skip(parser);
-                continue;
-            }
-
-            return new JSONArray(parseEntry(parser).Value);
-        }
-
-        return entries;
-    }
-
-    private static XmlEntry parseEntry(XmlPullParser parser) throws IOException, XmlPullParserException {
-        parser.require(XmlPullParser.START_TAG, null, "string");
-        String name = parser.getAttributeValue(null, "name");
-        String value = parseText(parser);
-        parser.require(XmlPullParser.END_TAG, null, "string");
-
-        XmlEntry entry = new XmlEntry();
-        entry.Name = name;
-        entry.Value = value;
-        return entry;
-    }
-
-    private static String parseText(XmlPullParser parser) throws IOException, XmlPullParserException {
-        String text = "";
-        if (parser.next() == XmlPullParser.TEXT) {
-            text = parser.getText();
-            parser.nextTag();
-        }
-        return text;
-    }
-
-    private static void skip(XmlPullParser parser) throws IOException, XmlPullParserException {
-        // source: https://developer.android.com/training/basics/network-ops/xml.html
-        if (parser.getEventType() != XmlPullParser.START_TAG) {
-            throw new IllegalStateException();
-        }
-
-        int depth = 1;
-        while (depth != 0) {
-            switch (parser.next()) {
-                case XmlPullParser.END_TAG:
-                    depth--;
-                    break;
-                case XmlPullParser.START_TAG:
-                    depth++;
-                    break;
-            }
-        }
-    }
-
-    private static class XmlEntry {
-        String Name;
-        String Value;
     }
 
     private static class AuthyEntryInfo {

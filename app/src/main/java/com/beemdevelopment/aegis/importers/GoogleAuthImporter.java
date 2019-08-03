@@ -43,6 +43,7 @@ public class GoogleAuthImporter extends DatabaseImporter {
         return _subPath;
     }
 
+    @Override
     public State read(FileReader reader) throws DatabaseImporterException {
         File file;
 

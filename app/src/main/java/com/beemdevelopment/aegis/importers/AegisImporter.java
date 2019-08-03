@@ -32,6 +32,7 @@ public class AegisImporter extends DatabaseImporter {
         throw new UnsupportedOperationException();
     }
 
+    @Override
     public State read(FileReader reader) throws DatabaseImporterException {
         try {
             byte[] bytes = reader.readAll();

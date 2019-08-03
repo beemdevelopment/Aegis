@@ -50,6 +50,7 @@ public class AndOtpImporter extends DatabaseImporter {
         throw new UnsupportedOperationException();
     }
 
+    @Override
     public State read(FileReader reader) throws DatabaseImporterException {
         byte[] bytes;
         try {
@@ -110,6 +111,7 @@ public class AndOtpImporter extends DatabaseImporter {
             }
         }
 
+        @Override
         public void decrypt(Context context, DecryptListener listener) {
             Dialogs.showPasswordInputDialog(context, password -> {
                 try {

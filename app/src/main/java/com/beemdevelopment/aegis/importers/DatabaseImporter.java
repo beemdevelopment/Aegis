@@ -34,12 +34,14 @@ public abstract class DatabaseImporter {
         _importers.put("Authy", AuthyImporter.class);
         _importers.put("andOTP", AndOtpImporter.class);
         _importers.put("FreeOTP", FreeOtpImporter.class);
+        _importers.put("FreeOTP+", FreeOtpPlusImporter.class);
         _importers.put("Google Authenticator", GoogleAuthImporter.class);
         _importers.put("Steam", SteamImporter.class);
 
         _appImporters = new LinkedHashMap<>();
         _appImporters.put("Authy", AuthyImporter.class);
         _appImporters.put("FreeOTP", FreeOtpImporter.class);
+        _appImporters.put("FreeOTP+", FreeOtpPlusImporter.class);
         _appImporters.put("Google Authenticator", GoogleAuthImporter.class);
         _appImporters.put("Steam", SteamImporter.class);
     }
@@ -133,43 +135,35 @@ public abstract class DatabaseImporter {
         }
     }
 
-    public static class FileReader implements Closeable {
+    public static class FileReader {
         private InputStream _stream;
+        private boolean _internal;
 
-        private FileReader(InputStream stream) {
+        public FileReader(InputStream stream) {
+            this(stream, false);
+        }
+
+        public FileReader(InputStream stream, boolean internal) {
             _stream = stream;
-        }
-
-        public static FileReader open(String filename)
-                throws FileNotFoundException {
-            FileInputStream stream = new FileInputStream(filename);
-            return new FileReader(stream);
-        }
-
-        public static FileReader open(SuFile file)
-                throws FileNotFoundException {
-            SuFileInputStream stream = new SuFileInputStream(file);
-            return new FileReader(stream);
-        }
-
-        public static FileReader open(Context context, Uri uri)
-                throws FileNotFoundException {
-            InputStream stream = context.getContentResolver().openInputStream(uri);
-            return new FileReader(stream);
+            _internal = internal;
         }
 
         public byte[] readAll() throws IOException {
-            ByteInputStream stream = ByteInputStream.create(_stream);
-            return stream.getBytes();
+            try (ByteInputStream stream = ByteInputStream.create(_stream)) {
+                return stream.getBytes();
+            }
         }
 
         public InputStream getStream() {
             return _stream;
         }
 
-        @Override
-        public void close() throws IOException {
-            _stream.close();
+        /**
+         * Reports whether this reader reads the internal state of an app.
+         * @return true if reading from internal file, false if reading from external file
+         */
+        public boolean isInternal() {
+            return _internal;
         }
     }
 
