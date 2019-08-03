@@ -402,6 +402,33 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         intent.removeExtra("action");
     }
 
+    private void handleDeeplink() {
+        if (_db.isLocked()) {
+            return;
+        }
+        
+        Intent intent = getIntent();
+        if (Intent.ACTION_VIEW.equals(intent.getAction())) {
+            Uri uri = intent.getData();
+            getIntent().setData(null);
+            getIntent().setAction(null);
+
+            GoogleAuthInfo info = null;
+            try {
+                info = GoogleAuthInfo.parseUri(uri);
+            } catch (GoogleAuthInfoException e) {
+                Toast.makeText(this, getString(R.string.unable_to_read_qrcode), Toast.LENGTH_SHORT).show();
+                e.printStackTrace();
+            }
+
+            if (info != null) {
+                DatabaseEntry entry = new DatabaseEntry(info);
+                startEditProfileActivity(CODE_ADD_ENTRY, entry, true);
+            }
+        }
+
+    }
+
     @Override
     protected void onResume() {
         super.onResume();
@@ -431,6 +458,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
             loadEntries();
         }
 
+        handleDeeplink();
         updateLockIcon();
         doShortcutActions();
     }
