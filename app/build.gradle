@@ -10,6 +10,13 @@ android {
         versionCode 14
         versionName "0.4.3"
     }
+
+    testOptions {
+        unitTests.all {
+            useJUnitPlatform()
+        }
+    }
+
     buildTypes {
         debug {
             minifyEnabled false
@@ -24,6 +31,7 @@ android {
             resValue "bool", "pref_secure_screen_default", "true"
         }
     }
+
     compileOptions {
         targetCompatibility 1.8
         sourceCompatibility 1.8
@@ -57,5 +65,6 @@ dependencies {
     }
     annotationProcessor 'androidx.annotation:annotation:1.1.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
-    testImplementation 'junit:junit:4.12'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.4.2'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.4.2'
 }

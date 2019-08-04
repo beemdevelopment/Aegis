@@ -38,6 +38,7 @@ import com.beemdevelopment.aegis.importers.DatabaseImporterException;
 import com.beemdevelopment.aegis.services.NotificationService;
 import com.beemdevelopment.aegis.ui.models.ImportEntry;
 import com.beemdevelopment.aegis.ui.preferences.SwitchPreference;
+import com.beemdevelopment.aegis.util.UUIDMap;
 import com.takisoft.preferencex.PreferenceFragmentCompat;
 import com.topjohnwu.superuser.Shell;
 import com.topjohnwu.superuser.io.SuFile;
@@ -76,7 +77,7 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
     // keep a reference to the type of database converter the user selected
     private Class<? extends DatabaseImporter> _importerType;
     private AegisImporter.State _importerState;
-    private List<DatabaseEntry> _importerEntries;
+    private UUIDMap<DatabaseEntry> _importerEntries;
 
     private SwitchPreference _encryptionPreference;
     private SwitchPreference _fingerprintPreference;
@@ -620,20 +621,10 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
 
         List<ImportEntry> selectedEntries = (ArrayList<ImportEntry>) data.getSerializableExtra("entries");
         for (ImportEntry selectedEntry : selectedEntries) {
-            DatabaseEntry savedEntry = null;
-            for (DatabaseEntry entry : _importerEntries) {
-                if (entry.getUUID().equals(selectedEntry.getUUID())) {
-                    savedEntry = entry;
-                    break;
-                }
-            }
-
-            if (savedEntry == null) {
-                throw new RuntimeException();
-            }
+            DatabaseEntry savedEntry = _importerEntries.getByUUID(selectedEntry.getUUID());
 
             // temporary: randomize the UUID of duplicate entries and add them anyway
-            if (_db.getEntryByUUID(savedEntry.getUUID()) != null) {
+            if (_db.isEntryDuplicate(savedEntry)) {
                 savedEntry.resetUUID();
             }
 

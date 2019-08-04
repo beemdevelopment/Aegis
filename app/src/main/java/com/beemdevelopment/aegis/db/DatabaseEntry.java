@@ -5,17 +5,16 @@ import com.beemdevelopment.aegis.encoding.Base64Exception;
 import com.beemdevelopment.aegis.otp.GoogleAuthInfo;
 import com.beemdevelopment.aegis.otp.OtpInfo;
 import com.beemdevelopment.aegis.otp.OtpInfoException;
+import com.beemdevelopment.aegis.util.UUIDMap;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Objects;
 import java.util.UUID;
 
-public class DatabaseEntry implements Serializable {
-    private UUID _uuid;
+public class DatabaseEntry extends UUIDMap.Value {
     private String _name = "";
     private String _issuer = "";
     private String _group;
@@ -23,12 +22,13 @@ public class DatabaseEntry implements Serializable {
     private byte[] _icon;
 
     private DatabaseEntry(UUID uuid, OtpInfo info) {
-        _uuid = uuid;
+        super(uuid);
         _info = info;
     }
 
     public DatabaseEntry(OtpInfo info) {
-        this(UUID.randomUUID(), info);
+        super();
+        _info = info;
     }
 
     public DatabaseEntry(OtpInfo info, String name, String issuer) {
@@ -46,7 +46,7 @@ public class DatabaseEntry implements Serializable {
 
         try {
             obj.put("type", _info.getType());
-            obj.put("uuid", _uuid.toString());
+            obj.put("uuid", getUUID().toString());
             obj.put("name", _name);
             obj.put("issuer", _issuer);
             obj.put("group", _group);
@@ -80,14 +80,6 @@ public class DatabaseEntry implements Serializable {
         }
 
         return entry;
-    }
-
-    public void resetUUID() {
-        _uuid = UUID.randomUUID();
-    }
-
-    public UUID getUUID() {
-        return _uuid;
     }
 
     public String getName() {
@@ -136,15 +128,12 @@ public class DatabaseEntry implements Serializable {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
         if (!(o instanceof DatabaseEntry)) {
             return false;
         }
 
         DatabaseEntry entry = (DatabaseEntry) o;
-        return getUUID().equals(entry.getUUID())
+        return super.equals(entry)
                 && getName().equals(entry.getName())
                 && getIssuer().equals(entry.getIssuer())
                 && Objects.equals(getGroup(), entry.getGroup())

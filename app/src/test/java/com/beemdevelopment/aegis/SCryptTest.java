@@ -5,13 +5,13 @@ import com.beemdevelopment.aegis.crypto.SCryptParameters;
 import com.beemdevelopment.aegis.encoding.Hex;
 import com.beemdevelopment.aegis.encoding.HexException;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 
 import javax.crypto.SecretKey;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class SCryptTest {
     @Test

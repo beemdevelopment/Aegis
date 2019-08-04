@@ -3,12 +3,12 @@ package com.beemdevelopment.aegis;
 import com.beemdevelopment.aegis.crypto.otp.HOTP;
 import com.beemdevelopment.aegis.crypto.otp.OTP;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class HOTPTest {
     // https://tools.ietf.org/html/rfc4226#page-32

@@ -251,8 +251,8 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
             } else {
                 // this profile has been serialized/deserialized and is no longer the same instance it once was
                 // to deal with this, the replaceEntry functions are used
-                _db.replaceEntry(entry);
-                _entryListView.replaceEntry(entry);
+                DatabaseEntry oldEntry = _db.replaceEntry(entry);
+                _entryListView.replaceEntry(oldEntry, entry);
                 saveDatabase();
             }
         }
@@ -521,10 +521,10 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
     }
 
     private void deleteEntry(DatabaseEntry entry) {
-        _db.removeEntry(entry);
+        DatabaseEntry oldEntry = _db.removeEntry(entry);
         saveDatabase();
 
-        _entryListView.removeEntry(entry);
+        _entryListView.removeEntry(oldEntry);
     }
 
     @Override

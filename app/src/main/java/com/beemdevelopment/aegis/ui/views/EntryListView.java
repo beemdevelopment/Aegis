@@ -225,8 +225,8 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
         _adapter.clearEntries();
     }
 
-    public void replaceEntry(DatabaseEntry entry) {
-        _adapter.replaceEntry(entry);
+    public void replaceEntry(DatabaseEntry oldEntry, DatabaseEntry newEntry) {
+        _adapter.replaceEntry(oldEntry, newEntry);
     }
 
     public void runEntriesAnimation() {

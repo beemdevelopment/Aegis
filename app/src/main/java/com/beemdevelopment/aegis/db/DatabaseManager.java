@@ -16,7 +16,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.Collator;
-import java.util.List;
+import java.util.Collection;
 import java.util.TreeSet;
 import java.util.UUID;
 
@@ -136,32 +136,32 @@ public class DatabaseManager {
 
     public void addEntry(DatabaseEntry entry) {
         assertState(false, true);
-        _db.addEntry(entry);
+        _db.getEntries().add(entry);
     }
 
-    public void removeEntry(DatabaseEntry entry) {
+    public DatabaseEntry removeEntry(DatabaseEntry entry) {
         assertState(false, true);
-        _db.removeEntry(entry);
+        return _db.getEntries().remove(entry);
     }
 
-    public void replaceEntry(DatabaseEntry entry) {
+    public DatabaseEntry replaceEntry(DatabaseEntry entry) {
         assertState(false, true);
-        _db.replaceEntry(entry);
+        return _db.getEntries().replace(entry);
     }
 
     public void swapEntries(DatabaseEntry entry1, DatabaseEntry entry2) {
         assertState(false, true);
-        _db.swapEntries(entry1, entry2);
+        _db.getEntries().swap(entry1, entry2);
     }
 
-    public List<DatabaseEntry> getEntries() {
+    public boolean isEntryDuplicate(DatabaseEntry entry) {
         assertState(false, true);
-        return _db.getEntries();
+        return _db.getEntries().has(entry);
     }
 
-    public DatabaseEntry getEntryByUUID(UUID uuid) {
+    public Collection<DatabaseEntry> getEntries() {
         assertState(false, true);
-        return _db.getEntryByUUID(uuid);
+        return _db.getEntries().getValues();
     }
 
     public TreeSet<String> getGroups() {

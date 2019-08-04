@@ -7,12 +7,12 @@ import com.beemdevelopment.aegis.crypto.MasterKey;
 import com.beemdevelopment.aegis.crypto.SCryptParameters;
 import com.beemdevelopment.aegis.encoding.Hex;
 import com.beemdevelopment.aegis.encoding.HexException;
+import com.beemdevelopment.aegis.util.UUIDMap;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
-import java.io.Serializable;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
@@ -25,26 +25,29 @@ import javax.crypto.NoSuchPaddingException;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
 
-public abstract class Slot implements Serializable {
+public abstract class Slot extends UUIDMap.Value {
     public final static byte TYPE_RAW = 0x00;
     public final static byte TYPE_DERIVED = 0x01;
     public final static byte TYPE_FINGERPRINT = 0x02;
 
-    private UUID _uuid;
     private byte[] _encryptedMasterKey;
     private CryptParameters _encryptedMasterKeyParams;
 
     protected Slot() {
-        _uuid = UUID.randomUUID();
+        super();
     }
 
     protected Slot(UUID uuid, byte[] key, CryptParameters keyParams) {
-        _uuid = uuid;
+        super(uuid);
         _encryptedMasterKey = key;
         _encryptedMasterKeyParams = keyParams;
     }
 
-    // getKey decrypts the encrypted master key in this slot using the given cipher and returns it.
+    /**
+     * Decrypts the encrypted master key in this slot using the given cipher and returns it.
+     * @throws SlotException if a generic crypto operation error occurred.
+     * @throws SlotIntegrityException if an error occurred while verifying the integrity of the slot.
+     */
     public MasterKey getKey(Cipher cipher) throws SlotException, SlotIntegrityException {
         try {
             CryptResult res = CryptoUtils.decrypt(_encryptedMasterKey, cipher, _encryptedMasterKeyParams);
@@ -57,7 +60,10 @@ public abstract class Slot implements Serializable {
         }
     }
 
-    // setKey encrypts the given master key using the given cipher and stores the result in this slot.
+    /**
+     * Encrypts the given master key using the given cipher and stores the result in this slot.
+     * @throws SlotException if a generic crypto operation error occurred.
+     */
     public void setKey(MasterKey masterKey, Cipher cipher) throws SlotException {
         try {
             byte[] masterKeyBytes = masterKey.getBytes();
@@ -95,7 +101,7 @@ public abstract class Slot implements Serializable {
         try {
             JSONObject obj = new JSONObject();
             obj.put("type", getType());
-            obj.put("uuid", _uuid.toString());
+            obj.put("uuid", getUUID().toString());
             obj.put("key", Hex.encode(_encryptedMasterKey));
             obj.put("key_params", _encryptedMasterKeyParams.toJson());
             return obj;
@@ -146,8 +152,4 @@ public abstract class Slot implements Serializable {
     }
 
     public abstract byte getType();
-
-    public UUID getUUID() {
-        return _uuid;
-    }
 }
