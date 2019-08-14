@@ -156,17 +156,19 @@ public class EntryHolder extends RecyclerView.ViewHolder {
     private void updateCode() {
         OtpInfo info = _entry.getInfo();
 
-        String text;
-        if (info instanceof SteamInfo) {
-            text = info.getOtp();
-        } else {
-            String otp = info.getOtp();
-            text = otp.substring(0, (otp.length() / 2)
-                    + (otp.length() % 2)) + " "
-                    + otp.substring(otp.length() / 2);
+        String otp = info.getOtp();
+        if (!(info instanceof SteamInfo)) {
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < otp.length(); i++) {
+                if (i != 0 && i % 3 == 0) {
+                    sb.append(" ");
+                }
+                sb.append(otp.charAt(i));
+            }
+            otp = sb.toString();
         }
 
-        _profileCode.setText(text);
+        _profileCode.setText(otp);
     }
 
     public void revealCode() {
