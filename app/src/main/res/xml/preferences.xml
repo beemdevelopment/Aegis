@@ -52,12 +52,6 @@
             android:summary="@string/pref_secure_screen_summary"
             app:iconSpaceReserved="false"/>
         <androidx.preference.SwitchPreferenceCompat
-            android:defaultValue="true"
-            android:key="pref_auto_lock"
-            android:title="@string/pref_auto_lock_title"
-            android:summary="@string/pref_auto_lock_summary"
-            app:iconSpaceReserved="false"/>
-        <androidx.preference.SwitchPreferenceCompat
             android:defaultValue="false"
             android:key="pref_tap_to_reveal"
             android:title="@string/pref_tap_to_reveal_title"
@@ -96,6 +90,14 @@
             android:title="@string/pref_fingerprint_title"
             android:summary="@string/pref_fingerprint_summary"
             android:persistent="false"
+            app:iconSpaceReserved="false"/>
+
+        <androidx.preference.SwitchPreferenceCompat
+            android:defaultValue="true"
+            android:key="pref_auto_lock"
+            android:dependency="pref_encryption"
+            android:title="@string/pref_auto_lock_title"
+            android:summary="@string/pref_auto_lock_summary"
             app:iconSpaceReserved="false"/>
 
         <Preference
