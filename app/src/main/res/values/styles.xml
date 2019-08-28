@@ -6,6 +6,10 @@
         <item name="background">@null</item>
     </style>
 
+    <style name="AppTheme.ActionMode" parent="@style/Widget.AppCompat.ActionMode">
+        <item name="android:actionModeBackground">@color/colorPrimary</item>
+    </style>
+
     <style name="Theme.Intro" parent="Theme.AppCompat.NoActionBar">
         <item name="swirl_ridgeColor">@color/primary_text_inverted</item>
         <item name="swirl_errorColor">@color/colorSwirlError</item>
@@ -20,18 +24,44 @@
         <item name="primaryText">@color/primary_text</item>
         <item name="secondaryText">@color/secondary_text</item>
         <item name="cardBackground">@color/card_background</item>
+        <item name="cardBackgroundFocused">@color/card_background_focused</item>
         <item name="codePrimaryText">@color/code_primary_text</item>
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="background">@color/background</item>
-        <item name="bottomSheetDialogTheme">@style/Theme.Design.Light.BottomSheetDialog</item>
 
         <item name="iconColorPrimary">@color/icon_primary</item>
         <item name="iconColorInverted">@color/icon_primary_inverted</item>
 
         <item name="swirl_ridgeColor">@color/colorSwirlPrimary</item>
         <item name="swirl_errorColor">@color/colorSwirlError</item>
+
+        <item name="actionModeStyle">@style/ActionModeStyle</item>
+        <item name="actionBarTheme">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item>
+    </style>
+    <style name="ActionModeStyle" parent="@style/Widget.AppCompat.Light.ActionMode.Inverse">
+        <item name="background">@color/colorPrimary</item>
+        <item name="titleTextStyle">@style/ActionModeTitleTextStyle</item>
+        <item name="iconColorPrimary">@color/icon_primary</item>
+        <item name="iconColorInverted">@color/icon_primary_inverted</item>
+    </style>
+    <style name="ActionModeStyle.Dark" parent="@style/Widget.AppCompat.Light.ActionMode.Inverse">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="background">@color/colorPrimary</item>
+        <item name="titleTextStyle">@style/ActionModeTitleTextStyle</item>
+        <item name="iconColorPrimary">@color/icon_primary</item>
+        <item name="iconColorInverted">@color/icon_primary_inverted</item>
+    </style>
+    <style name="ActionModeStyle.TrueBlack" parent="@style/Widget.AppCompat.Light.ActionMode.Inverse">
+        <item name="colorPrimary">@color/background_true_dark</item>
+        <item name="background">@color/background_true_dark</item>
+        <item name="titleTextStyle">@style/ActionModeTitleTextStyle</item>
+        <item name="iconColorPrimary">@color/icon_primary</item>
+        <item name="iconColorInverted">@color/icon_primary_inverted</item>
+    </style>
+    <style name="ActionModeTitleTextStyle" parent="@style/TextAppearance.AppCompat.Widget.ActionMode.Title">
+        <item name="android:textColor">@android:color/white</item>
     </style>
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
@@ -53,27 +83,30 @@
         <item name="primaryText">@color/primary_text_dark</item>
         <item name="secondaryText">@color/secondary_text_dark</item>
         <item name="cardBackground">@color/card_background_dark</item>
+        <item name="cardBackgroundFocused">@color/card_background_focused_dark</item>
         <item name="codePrimaryText">@color/code_primary_text_dark</item>
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="background">@color/background_dark</item>
-        <item name="bottomSheetDialogTheme">@style/Theme.Design.BottomSheetDialog</item>
 
         <item name="iconColorPrimary">@color/icon_primary_dark</item>
         <item name="iconColorInverted">@color/icon_primary_dark_inverted</item>
 
         <item name="swirl_ridgeColor">@color/colorSwirlPrimaryDark</item>
         <item name="swirl_errorColor">@color/colorSwirlErrorDark</item>
+
+        <item name="actionModeStyle">@style/ActionModeStyle.Dark</item>
     </style>
 
     <style name="AppTheme.TrueBlack" parent="AppTheme.Dark">
         <item name="colorPrimary">@color/background_true_dark</item>
         <item name="cardBackground">@color/background_true_dark</item>
         <item name="background">@color/background_true_dark</item>
-        <item name="bottomSheetDialogTheme">@style/Theme.Design.BottomSheetDialog</item>
+        <item name="cardBackgroundFocused">@color/card_background_focused_true_dark</item>
         <item name="colorPrimaryDark">@color/background_true_dark</item>
         <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item>
+        <item name="actionModeStyle">@style/ActionModeStyle.TrueBlack</item>
     </style>
 
     <style name="AppTheme.TrueBlack.Preferences" parent="AppTheme.TrueBlack">

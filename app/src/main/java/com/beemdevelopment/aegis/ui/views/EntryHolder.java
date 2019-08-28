@@ -10,6 +10,7 @@ import com.amulyakhare.textdrawable.TextDrawable;
 import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.db.DatabaseEntry;
 import com.beemdevelopment.aegis.helpers.TextDrawableHelper;
+import com.beemdevelopment.aegis.helpers.ThemeHelper;
 import com.beemdevelopment.aegis.helpers.UiRefresher;
 import com.beemdevelopment.aegis.otp.HotpInfo;
 import com.beemdevelopment.aegis.otp.OtpInfo;
@@ -33,12 +34,15 @@ public class EntryHolder extends RecyclerView.ViewHolder {
     private int _tapToRevealTime;
 
     private PeriodProgressBar _progressBar;
+    private View _view;
 
     private UiRefresher _refresher;
     private Handler _hiddenHandler;
 
     public EntryHolder(final View view) {
         super(view);
+
+        _view = view.findViewById(R.id.rlCardEntry);
 
         _profileName = view.findViewById(R.id.profile_account_name);
         _profileCode = view.findViewById(R.id.profile_code);
@@ -49,6 +53,7 @@ public class EntryHolder extends RecyclerView.ViewHolder {
         _progressBar = view.findViewById(R.id.progressBar);
         int primaryColorId = view.getContext().getResources().getColor(R.color.colorPrimary);
         _progressBar.getProgressDrawable().setColorFilter(primaryColorId, PorterDuff.Mode.SRC_IN);
+        _view.setBackground(_view.getContext().getResources().getDrawable(R.color.card_background));
 
         _refresher = new UiRefresher(new UiRefresher.Listener() {
             @Override
@@ -133,6 +138,15 @@ public class EntryHolder extends RecyclerView.ViewHolder {
         } else {
             stopRefreshLoop();
         }
+    }
+
+    public void setFocused(boolean focused) {
+        if (focused) {
+            _view.setBackgroundColor(ThemeHelper.getThemeColor(R.attr.cardBackgroundFocused, _view.getContext().getTheme()));
+        } else {
+            _view.setBackgroundColor(ThemeHelper.getThemeColor(R.attr.cardBackground, _view.getContext().getTheme()));
+        }
+        _view.setSelected(focused);
     }
 
     public void destroy() {
