@@ -55,7 +55,12 @@ public class TotpInfo extends OtpInfo {
     }
 
     public static boolean isPeriodValid(int period) {
-        return period > 0;
+        if (period <= 0) {
+            return false;
+        }
+
+        // check for the possibility of an overflow when converting to milliseconds
+        return period <= Integer.MAX_VALUE / 1000;
     }
 
     public void setPeriod(int period) throws OtpInfoException {
