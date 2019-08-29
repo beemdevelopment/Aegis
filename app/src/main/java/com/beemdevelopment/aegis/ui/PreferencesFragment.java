@@ -81,6 +81,7 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
 
     private SwitchPreference _encryptionPreference;
     private SwitchPreference _fingerprintPreference;
+    private Preference _autoLockPreference;
     private Preference _setPasswordPreference;
     private Preference _slotsPreference;
     private Preference _groupsPreference;
@@ -333,6 +334,8 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
                 return true;
             }
         });
+
+        _autoLockPreference = findPreference("pref_auto_lock");
     }
 
     @Override
@@ -659,6 +662,7 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
         _setPasswordPreference.setVisible(encrypted);
         _fingerprintPreference.setVisible(encrypted);
         _slotsPreference.setEnabled(encrypted);
+        _autoLockPreference.setVisible(encrypted);
 
         if (encrypted) {
             SlotList slots = _db.getCredentials().getSlots();
