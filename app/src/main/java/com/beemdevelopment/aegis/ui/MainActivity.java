@@ -74,7 +74,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
     private AegisApplication _app;
     private DatabaseManager _db;
     private boolean _loaded;
-    private String _checkedGroup;
+    private String _selectedGroup;
     private boolean _searchSubmitted;
 
     private DatabaseEntry _selectedEntry;
@@ -235,6 +235,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
             intent.putExtra("entry", entry);
         }
         intent.putExtra("isNew", isNew);
+        intent.putExtra("selectedGroup", _selectedGroup);
         intent.putExtra("groups", new ArrayList<>(_db.getGroups()));
         startActivityForResult(intent, requestCode);
     }
@@ -321,14 +322,14 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
 
         // if the group no longer exists, switch back to 'All'
         TreeSet<String> groups = _db.getGroups();
-        if (_checkedGroup != null && !groups.contains(_checkedGroup)) {
+        if (_selectedGroup != null && !groups.contains(_selectedGroup)) {
             menu.findItem(R.id.menu_filter_all).setChecked(true);
             setGroupFilter(null);
         }
 
         for (String group : groups) {
             MenuItem item = menu.add(R.id.action_filter_group, Menu.NONE, Menu.NONE, group);
-            if (group.equals(_checkedGroup)) {
+            if (group.equals(_selectedGroup)) {
                 item.setChecked(true);
             }
         }
@@ -343,7 +344,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
 
     private void setGroupFilter(String group) {
         getSupportActionBar().setSubtitle(group);
-        _checkedGroup = group;
+        _selectedGroup = group;
         _entryListView.setGroupFilter(group, true);
     }
 
@@ -482,7 +483,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
 
             collapseSearchView();
             setTitle("Aegis");
-            setGroupFilter(_checkedGroup);
+            setGroupFilter(_selectedGroup);
             return;
         }
 
