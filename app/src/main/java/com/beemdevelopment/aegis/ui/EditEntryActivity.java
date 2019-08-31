@@ -107,6 +107,8 @@ public class EditEntryActivity extends AegisActivity {
             setTitle(R.string.add_new_profile);
         }
 
+        String selectedGroup = intent.getStringExtra("selectedGroup");
+
         // set up fields
         _iconView = findViewById(R.id.profile_drawable);
         _kropView = findViewById(R.id.krop_view);
@@ -173,10 +175,7 @@ public class EditEntryActivity extends AegisActivity {
             _spinnerAlgo.setSelection(getStringResourceIndex(R.array.otp_algo_array, algo), false);
 
             String group = _origEntry.getGroup();
-            if (group != null) {
-                int pos = _groups.contains(group) ? _groups.headSet(group).size() : -1;
-                _spinnerGroup.setSelection(pos + 1, false);
-            }
+            setGroup(group);
         }
 
         // update the icon if the text changed
@@ -253,9 +252,19 @@ public class EditEntryActivity extends AegisActivity {
         // automatically open advanced settings since 'Secret' is required.
         if (_isNew) {
             openAdvancedSettings();
+
+            setGroup(selectedGroup);
         }
     }
 
+    private void setGroup(String groupName) {
+        if (groupName == null) {
+            return;
+        }
+
+        int pos = _groups.contains(groupName) ? _groups.headSet(groupName).size() : -1;
+        _spinnerGroup.setSelection(pos + 1, false);
+    }
     private void openAdvancedSettings() {
         Animation fadeOut = new AlphaAnimation(1, 0);
         fadeOut.setInterpolator(new AccelerateInterpolator());
