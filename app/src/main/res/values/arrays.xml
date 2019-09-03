@@ -35,6 +35,7 @@
         <item>Dutch</item>
         <item>English</item>
         <item>French</item>
+        <item>German</item>
         <item>Russian</item>
     </string-array>
 
@@ -43,6 +44,7 @@
         <item>nl</item>
         <item>en</item>
         <item>fr</item>
+        <item>de</item>
         <item>ru</item>
     </string-array>
 
