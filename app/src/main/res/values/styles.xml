@@ -17,8 +17,9 @@
         <item name="android:windowIsTranslucent">true</item>
     </style>
 
-    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
-    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="primaryText">@color/primary_text</item>
@@ -39,34 +40,43 @@
 
         <item name="actionModeStyle">@style/ActionModeStyle</item>
         <item name="actionBarTheme">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item>
+        <item name="alertDialogTheme">@style/DialogStyle</item>
     </style>
+
     <style name="ActionModeStyle" parent="@style/Widget.AppCompat.Light.ActionMode.Inverse">
         <item name="background">@color/colorPrimary</item>
         <item name="titleTextStyle">@style/ActionModeTitleTextStyle</item>
         <item name="iconColorPrimary">@color/icon_primary</item>
         <item name="iconColorInverted">@color/icon_primary_inverted</item>
     </style>
+
     <style name="ActionModeStyle.Dark" parent="@style/Widget.AppCompat.Light.ActionMode.Inverse">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="background">@color/colorPrimary</item>
         <item name="titleTextStyle">@style/ActionModeTitleTextStyle</item>
         <item name="iconColorPrimary">@color/icon_primary</item>
         <item name="iconColorInverted">@color/icon_primary_inverted</item>
+        <item name="alertDialogStyle">@style/DialogStyle.Dark</item>
     </style>
+
     <style name="ActionModeStyle.TrueBlack" parent="@style/Widget.AppCompat.Light.ActionMode.Inverse">
         <item name="colorPrimary">@color/background_true_dark</item>
         <item name="background">@color/background_true_dark</item>
         <item name="titleTextStyle">@style/ActionModeTitleTextStyle</item>
         <item name="iconColorPrimary">@color/icon_primary</item>
         <item name="iconColorInverted">@color/icon_primary_inverted</item>
+        <item name="alertDialogStyle">@style/DialogStyle.TrueDark</item>
     </style>
+
     <style name="ActionModeTitleTextStyle" parent="@style/TextAppearance.AppCompat.Widget.ActionMode.Title">
         <item name="android:textColor">@android:color/white</item>
     </style>
+
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
+
     <style name="AppTheme.TransparentActionBar">
         <item name="android:actionBarStyle">@style/ThemeActionBar</item>
         <item name="android:windowActionBarOverlay">true</item>
@@ -74,6 +84,7 @@
         <item name="actionBarStyle">@style/ThemeActionBar</item>
         <item name="windowActionBarOverlay">true</item>
     </style>
+
     <style name="AppTheme.Fullscreen" parent="AppTheme.TransparentActionBar">
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowFullscreen">true</item>
@@ -97,6 +108,8 @@
         <item name="swirl_errorColor">@color/colorSwirlErrorDark</item>
 
         <item name="actionModeStyle">@style/ActionModeStyle.Dark</item>
+        <item name="alertDialogTheme">@style/DialogStyle.Dark</item>
+
     </style>
 
     <style name="AppTheme.TrueBlack" parent="AppTheme.Dark">
@@ -107,6 +120,8 @@
         <item name="colorPrimaryDark">@color/background_true_dark</item>
         <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item>
         <item name="actionModeStyle">@style/ActionModeStyle.TrueBlack</item>
+        <item name="alertDialogTheme">@style/DialogStyle.TrueDark</item>
+
     </style>
 
     <style name="AppTheme.TrueBlack.Preferences" parent="AppTheme.TrueBlack">
@@ -117,6 +132,7 @@
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
+
     <style name="AppTheme.Dark.TransparentActionBar">
         <item name="android:actionBarStyle">@style/ThemeActionBar</item>
         <item name="android:windowActionBarOverlay">true</item>
@@ -129,5 +145,35 @@
         <item name="android:background">@drawable/fab_label_background</item>
         <item name="android:textColor">#FFFFFF</item>
     </style>
+
+    <style name="AppTheme.NoActionBar.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="DialogStyle" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:background">@color/card_background</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="textColorAlertDialogListItem">@color/primary_text</item>
+    </style>
+
+    <style name="DialogStyle.Dark" parent="Theme.AppCompat.Dialog">
+        <item name="android:background">@color/card_background_dark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="textColorAlertDialogListItem">@color/primary_text_dark</item>
+
+        <!--The following lines are needed because the non-light version of this parent changes the
+        min width to 80% or something. Looks weird.-->
+        <item name="android:windowMinWidthMajor">97%</item>
+        <item name="android:windowMinWidthMinor">97%</item>
+    </style>
+
+    <style name="DialogStyle.TrueDark" parent="DialogStyle.Dark">
+        <item name="android:background">@color/card_background_focused_true_dark</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.NoActionBar.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
 </resources>

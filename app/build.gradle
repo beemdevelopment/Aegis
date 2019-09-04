@@ -70,11 +70,15 @@ dependencies {
     implementation "com.github.topjohnwu.libsu:io:${libsuVersion}"
     implementation 'com.github.bumptech.glide:annotations:4.9.0'
     implementation 'com.github.bumptech.glide:glide:4.9.0'
-    implementation ("com.github.bumptech.glide:recyclerview-integration:4.9.0") {
+    implementation "com.mikepenz:iconics-core:3.2.5"
+    implementation 'com.mikepenz:material-design-iconic-typeface:2.2.0.5@aar'
+    implementation 'de.psdev.licensesdialog:licensesdialog:2.1.0'
+    implementation("com.github.bumptech.glide:recyclerview-integration:4.9.0") {
         transitive = false
     }
     annotationProcessor 'androidx.annotation:annotation:1.1.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.4.2'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.4.2'
+
 }

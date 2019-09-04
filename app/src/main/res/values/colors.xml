@@ -9,6 +9,7 @@
     <color name="colorAccentPressed">#FF5252</color>
     <color name="primary_text">#212121</color>
     <color name="secondary_text">#757575</color>
+    <color name="icon_about">#757575</color>
     <color name="extra_info_text">#8e8e8e</color>
     <color name="primary_text_inverted">#ffffff</color>
     <color name="secondary_text_inverted">#efefef</color>b
@@ -31,7 +32,7 @@
     <color name="code_primary_text">#0d47a1</color>
     <color name="code_primary_text_dark">#ffffff</color>
 
-    <color name="card_background_dark">#424242</color>
+    <color name="card_background_dark">#363636</color>
     <color name="card_background_focused_dark">#6B6B6B</color>
     <color name="card_background_focused_true_dark">#1B1B1B</color>
     <color name="primary_text_dark">#ffffff</color>
