@@ -5,6 +5,7 @@ import com.beemdevelopment.aegis.encoding.Base64Exception;
 import com.beemdevelopment.aegis.otp.GoogleAuthInfo;
 import com.beemdevelopment.aegis.otp.OtpInfo;
 import com.beemdevelopment.aegis.otp.OtpInfoException;
+import com.beemdevelopment.aegis.otp.TotpInfo;
 import com.beemdevelopment.aegis.util.UUIDMap;
 
 import org.json.JSONException;
@@ -133,11 +134,34 @@ public class DatabaseEntry extends UUIDMap.Value {
         }
 
         DatabaseEntry entry = (DatabaseEntry) o;
-        return super.equals(entry)
-                && getName().equals(entry.getName())
+        return super.equals(entry) && equivalates(entry);
+    }
+
+    /**
+     * Reports whether this entry is equivalent to the given entry. The UUIDs of these
+     * entries are ignored during the comparison, so they are not necessarily the same
+     * instance.
+     */
+    public boolean equivalates(DatabaseEntry entry) {
+        return getName().equals(entry.getName())
                 && getIssuer().equals(entry.getIssuer())
                 && Objects.equals(getGroup(), entry.getGroup())
                 && getInfo().equals(entry.getInfo())
                 && Arrays.equals(getIcon(), entry.getIcon());
+    }
+
+    /**
+     * Reports whether this entry has its values set to the defaults.
+     */
+    public boolean isDefault() {
+        return equivalates(getDefault());
+    }
+
+    public static DatabaseEntry getDefault() {
+        try {
+            return new DatabaseEntry(new TotpInfo(null));
+        } catch (OtpInfoException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
