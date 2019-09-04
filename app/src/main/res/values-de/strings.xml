@@ -109,7 +109,7 @@
     <string name="enable_encryption_error">Bei der Aktivierung der Verschlüsselung ist ein Fehler aufgetreten.</string>
     <string name="disable_encryption_error">Bei der Deaktivierung der Verschlüsselung ist ein Fehler aufgetreten.</string>
     <string name="permission_denied">Zugriff verweigert</string>
-    <string name="choose_application">Wähle die Anwendung aus, aus der du eine Datenbank importieren möchtest./string>
+    <string name="choose_application">Wähle die Anwendung aus, aus der du eine Datenbank importieren möchtest.</string>
     <string name="choose_theme">Wähle das gewünschte Thema aus</string>
     <string name="choose_view_mode">Wähle den gewünschten Ansichtsmodus aus</string>
     <string name="parsing_file_error">Beim Versuch, die Datei zu analysieren, ist ein Fehler aufgetreten.</string>
