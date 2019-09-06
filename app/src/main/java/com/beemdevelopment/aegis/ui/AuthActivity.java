@@ -1,5 +1,6 @@
 package com.beemdevelopment.aegis.ui;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.hardware.fingerprint.FingerprintManager;
@@ -44,6 +45,7 @@ public class AuthActivity extends AegisActivity implements FingerprintUiHelper.C
     private FingerprintManager.CryptoObject _fingerCryptoObj;
 
     @Override
+    @SuppressLint("NewApi")
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_auth);
@@ -71,9 +73,10 @@ public class AuthActivity extends AegisActivity implements FingerprintUiHelper.C
         _slots = (SlotList) intent.getSerializableExtra("slots");
 
         // only show the fingerprint controls if the api version is new enough, permission is granted, a scanner is found and a fingerprint slot is found
-        FingerprintManager manager = FingerprintHelper.getManager(this);
-        if (manager != null && _slots.has(FingerprintSlot.class)) {
+        if (_slots.has(FingerprintSlot.class) && FingerprintHelper.isSupported() && FingerprintHelper.isAvailable(this)) {
             boolean invalidated = false;
+            FingerprintManager manager = FingerprintHelper.getManager(this);
+
             try {
                 // find a fingerprint slot with an id that matches an alias in the keystore
                 for (FingerprintSlot slot : _slots.findAll(FingerprintSlot.class)) {
@@ -148,6 +151,7 @@ public class AuthActivity extends AegisActivity implements FingerprintUiHelper.C
     }
 
     @Override
+    @SuppressLint("NewApi")
     public void onResume() {
         super.onResume();
 
@@ -157,6 +161,7 @@ public class AuthActivity extends AegisActivity implements FingerprintUiHelper.C
     }
 
     @Override
+    @SuppressLint("NewApi")
     public void onPause() {
         super.onPause();
 
@@ -166,6 +171,7 @@ public class AuthActivity extends AegisActivity implements FingerprintUiHelper.C
     }
 
     @Override
+    @SuppressLint("NewApi")
     public void onAuthenticated() {
         trySlots(FingerprintSlot.class, _fingerCryptoObj.getCipher());
     }

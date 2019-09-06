@@ -1,5 +1,6 @@
 package com.beemdevelopment.aegis.ui.slides;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.hardware.fingerprint.FingerprintManager;
 import android.os.Bundle;
@@ -34,8 +35,7 @@ public class CustomAuthenticationSlide extends Fragment implements ISlidePolicy,
         onCheckedChanged(_buttonGroup, _buttonGroup.getCheckedRadioButtonId());
 
         // only enable the fingerprint option if the api version is new enough, permission is granted and a scanner is found
-        FingerprintManager manager = FingerprintHelper.getManager(getContext());
-        if (manager != null) {
+        if (FingerprintHelper.isSupported() && FingerprintHelper.isAvailable(getContext())) {
             RadioButton button = view.findViewById(R.id.rb_fingerprint);
             TextView text = view.findViewById(R.id.text_rb_fingerprint);
             button.setEnabled(true);

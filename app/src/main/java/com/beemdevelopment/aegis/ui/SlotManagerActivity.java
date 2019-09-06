@@ -43,7 +43,9 @@ public class SlotManagerActivity extends AegisActivity implements SlotAdapter.Li
         bar.setDisplayHomeAsUpEnabled(true);
 
         findViewById(R.id.button_add_fingerprint).setOnClickListener(view -> {
-            Dialogs.showFingerprintDialog(this ,this);
+            if (FingerprintHelper.isSupported() && FingerprintHelper.isAvailable(this)) {
+                Dialogs.showFingerprintDialog(this ,this);
+            }
         });
 
         findViewById(R.id.button_add_password).setOnClickListener(view -> {
@@ -71,7 +73,7 @@ public class SlotManagerActivity extends AegisActivity implements SlotAdapter.Li
         // only show the fingerprint option if we can get an instance of the fingerprint manager
         // and if none of the slots in the collection has a matching alias in the keystore
         int visibility = View.VISIBLE;
-        if (FingerprintHelper.getManager(this) != null) {
+        if (FingerprintHelper.isSupported() && FingerprintHelper.isAvailable(this)) {
             try {
                 KeyStoreHandle keyStore = new KeyStoreHandle();
                 for (FingerprintSlot slot : _creds.getSlots().findAll(FingerprintSlot.class)) {

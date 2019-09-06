@@ -1,5 +1,6 @@
 package com.beemdevelopment.aegis.ui.slides;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.hardware.fingerprint.FingerprintManager;
@@ -70,6 +71,7 @@ public class CustomAuthenticatedSlide extends Fragment implements FingerprintUiH
         return EditTextHelper.getEditTextChars(_textPassword);
     }
 
+    @SuppressLint("NewApi")
     public Cipher getFingerCipher() {
         return _fingerCryptoObj.getCipher();
     }
@@ -83,6 +85,7 @@ public class CustomAuthenticatedSlide extends Fragment implements FingerprintUiH
     }
 
     @Override
+    @SuppressLint("NewApi")
     public void onSlideSelected() {
         Intent intent = getActivity().getIntent();
         _cryptType = intent.getIntExtra("cryptType", CustomAuthenticationSlide.CRYPT_TYPE_INVALID);
@@ -124,6 +127,7 @@ public class CustomAuthenticatedSlide extends Fragment implements FingerprintUiH
     }
 
     @Override
+    @SuppressLint("NewApi")
     public void onSlideDeselected() {
         if (_fingerHelper != null) {
             _fingerAuthenticated = false;

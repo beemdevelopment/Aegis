@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.hardware.fingerprint.FingerprintManager;
+import android.os.Build;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.TextWatcher;
@@ -35,6 +36,7 @@ import java.util.concurrent.atomic.AtomicReference;
 import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
 
+import androidx.annotation.RequiresApi;
 import androidx.annotation.StringRes;
 import androidx.appcompat.app.AlertDialog;
 
@@ -178,6 +180,7 @@ public class Dialogs {
         showSecureDialog(dialog);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     public static void showFingerprintDialog(Activity activity, Dialogs.SlotListener listener) {
         View view = activity.getLayoutInflater().inflate(R.layout.dialog_fingerprint, null);
         TextView textFingerprint = view.findViewById(R.id.text_fingerprint);

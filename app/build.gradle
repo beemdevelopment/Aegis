@@ -11,9 +11,19 @@ android {
         versionName "1.0-beta1"
     }
 
+    lintOptions {
+        abortOnError true
+        disable "MissingTranslation"
+    }
+
     testOptions {
         unitTests.all {
             useJUnitPlatform()
+
+            ignoreFailures false
+            testLogging {
+                events "passed", "skipped", "failed", "standardOut", "standardError"
+            }
         }
     }
 
