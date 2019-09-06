@@ -8,7 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
 import android.view.animation.LayoutAnimationController;
-import android.widget.Toast;
+import android.widget.LinearLayout;
 
 import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.SortCategory;
@@ -47,6 +47,7 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
     private PeriodProgressBar _progressBar;
     private boolean _showProgress;
     private ViewMode _viewMode;
+    private LinearLayout _emptyStateView;
 
     private UiRefresher _refresher;
 
@@ -106,6 +107,8 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
                 return TotpInfo.getMillisTillNextRotation(_adapter.getUniformPeriod());
             }
         });
+
+        _emptyStateView = view.findViewById(R.id.vEmptyList);
 
         return view;
     }
@@ -218,14 +221,17 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
 
     public void addEntry(DatabaseEntry entry) {
         _adapter.addEntry(entry);
+        updateEmptyState();
     }
 
     public void addEntries(List<DatabaseEntry> entries) {
         _adapter.addEntries(entries);
+        updateEmptyState();
     }
 
     public void removeEntry(DatabaseEntry entry) {
         _adapter.removeEntry(entry);
+        updateEmptyState();
     }
 
     public void clearEntries() {
@@ -265,6 +271,16 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
         }
 
         _recyclerView.addItemDecoration(_dividerDecoration);
+    }
+
+    private void updateEmptyState() {
+        if (_adapter.getItemCount() > 0) {
+            _recyclerView.setVisibility(View.VISIBLE);
+            _emptyStateView.setVisibility(View.GONE);
+        } else {
+            _recyclerView.setVisibility(View.GONE);
+            _emptyStateView.setVisibility(View.VISIBLE);
+        }
     }
 
     public interface Listener {
