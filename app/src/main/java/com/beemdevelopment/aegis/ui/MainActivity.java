@@ -227,9 +227,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
 
     private void startEditProfileActivity(int requestCode, DatabaseEntry entry, boolean isNew) {
         Intent intent = new Intent(this, EditEntryActivity.class);
-        if (entry != null) {
-            intent.putExtra("entry", entry);
-        }
+        intent.putExtra("entry", entry != null ? entry : DatabaseEntry.getDefault());
         intent.putExtra("isNew", isNew);
         intent.putExtra("selectedGroup", _selectedGroup);
         intent.putExtra("groups", new ArrayList<>(_db.getGroups()));

@@ -133,50 +133,48 @@ public class EditEntryActivity extends AegisActivity {
         _advancedSettings = findViewById(R.id.expandableLayout);
 
         // fill the fields with values if possible
-        if (_origEntry != null) {
-            if (_origEntry.hasIcon()) {
-                Glide.with(this)
-                    .asDrawable()
-                    .load(_origEntry)
-                    .diskCacheStrategy(DiskCacheStrategy.NONE)
-                    .skipMemoryCache(false)
-                    .into(_iconView);
-                _hasCustomIcon = true;
-            } else {
-                TextDrawable drawable = TextDrawableHelper.generate(_origEntry.getIssuer(), _origEntry.getName(), _iconView);
-                _iconView.setImageDrawable(drawable);
-            }
-
-            _textName.setText(_origEntry.getName());
-            _textIssuer.setText(_origEntry.getIssuer());
-
-            OtpInfo info = _origEntry.getInfo();
-            if (info instanceof TotpInfo) {
-                _textPeriod.setText(Integer.toString(((TotpInfo) info).getPeriod()));
-                _rowPeriod.setVisibility(View.VISIBLE);
-            } else if (info instanceof HotpInfo) {
-                _textCounter.setText(Long.toString(((HotpInfo) info).getCounter()));
-                _rowCounter.setVisibility(View.VISIBLE);
-            } else {
-                throw new RuntimeException();
-            }
-            _textDigits.setText(Integer.toString(info.getDigits()));
-
-            byte[] secretBytes = _origEntry.getInfo().getSecret();
-            if (secretBytes != null) {
-                char[] secretChars = Base32.encode(secretBytes);
-                _textSecret.setText(secretChars, 0, secretChars.length);
-            }
-
-            String type = _origEntry.getInfo().getType();
-            _spinnerType.setSelection(getStringResourceIndex(R.array.otp_types_array, type), false);
-
-            String algo = _origEntry.getInfo().getAlgorithm(false);
-            _spinnerAlgo.setSelection(getStringResourceIndex(R.array.otp_algo_array, algo), false);
-
-            String group = _origEntry.getGroup();
-            setGroup(group);
+        if (_origEntry.hasIcon()) {
+            Glide.with(this)
+                .asDrawable()
+                .load(_origEntry)
+                .diskCacheStrategy(DiskCacheStrategy.NONE)
+                .skipMemoryCache(false)
+                .into(_iconView);
+            _hasCustomIcon = true;
+        } else {
+            TextDrawable drawable = TextDrawableHelper.generate(_origEntry.getIssuer(), _origEntry.getName(), _iconView);
+            _iconView.setImageDrawable(drawable);
         }
+
+        _textName.setText(_origEntry.getName());
+        _textIssuer.setText(_origEntry.getIssuer());
+
+        OtpInfo info = _origEntry.getInfo();
+        if (info instanceof TotpInfo) {
+            _textPeriod.setText(Integer.toString(((TotpInfo) info).getPeriod()));
+            _rowPeriod.setVisibility(View.VISIBLE);
+        } else if (info instanceof HotpInfo) {
+            _textCounter.setText(Long.toString(((HotpInfo) info).getCounter()));
+            _rowCounter.setVisibility(View.VISIBLE);
+        } else {
+            throw new RuntimeException();
+        }
+        _textDigits.setText(Integer.toString(info.getDigits()));
+
+        byte[] secretBytes = _origEntry.getInfo().getSecret();
+        if (secretBytes != null) {
+            char[] secretChars = Base32.encode(secretBytes);
+            _textSecret.setText(secretChars, 0, secretChars.length);
+        }
+
+        String type = _origEntry.getInfo().getType();
+        _spinnerType.setSelection(getStringResourceIndex(R.array.otp_types_array, type), false);
+
+        String algo = _origEntry.getInfo().getAlgorithm(false);
+        _spinnerAlgo.setSelection(getStringResourceIndex(R.array.otp_algo_array, algo), false);
+
+        String group = _origEntry.getGroup();
+        setGroup(group);
 
         // update the icon if the text changed
         _textIssuer.addTextChangedListener(_iconChangeListener);
@@ -331,7 +329,7 @@ public class EditEntryActivity extends AegisActivity {
         }
 
         // close the activity if the entry has not been changed
-        if (_origEntry != null && !_hasChangedIcon && _origEntry.equals(entry.get())) {
+        if (!_hasChangedIcon && _origEntry.equals(entry.get())) {
             super.onBackPressed();
             return;
         }
@@ -465,7 +463,6 @@ public class EditEntryActivity extends AegisActivity {
             throw new ParseException("Secret is not valid base32.");
         }
 
-        // set otp info
         OtpInfo info;
         try {
             switch (type.toLowerCase()) {
@@ -494,14 +491,8 @@ public class EditEntryActivity extends AegisActivity {
             throw new ParseException("The entered info is incorrect: " + e.getMessage());
         }
 
-        // set database entry info
-        DatabaseEntry entry;
-        if (_origEntry == null) {
-            entry = new DatabaseEntry(info);
-        } else {
-            entry = Cloner.clone(_origEntry);
-            entry.setInfo(info);
-        }
+        DatabaseEntry entry = Cloner.clone(_origEntry);
+        entry.setInfo(info);
         entry.setIssuer(_textIssuer.getText().toString());
         entry.setName(_textName.getText().toString());
 
