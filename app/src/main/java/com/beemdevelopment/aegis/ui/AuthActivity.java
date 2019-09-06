@@ -17,6 +17,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.beemdevelopment.aegis.R;
+import com.beemdevelopment.aegis.CancelAction;
 import com.beemdevelopment.aegis.crypto.KeyStoreHandle;
 import com.beemdevelopment.aegis.crypto.KeyStoreHandleException;
 import com.beemdevelopment.aegis.db.DatabaseFileCredentials;
@@ -39,6 +40,7 @@ import androidx.appcompat.app.AlertDialog;
 public class AuthActivity extends AegisActivity implements FingerprintUiHelper.Callback, SlotListTask.Callback {
     private EditText _textPassword;
 
+    private CancelAction _cancelAction;
     private SlotList _slots;
     private FingerprintUiHelper _fingerHelper;
     private FingerprintManager.CryptoObject _fingerCryptoObj;
@@ -69,6 +71,7 @@ public class AuthActivity extends AegisActivity implements FingerprintUiHelper.C
 
         Intent intent = getIntent();
         _slots = (SlotList) intent.getSerializableExtra("slots");
+        _cancelAction = (CancelAction) intent.getSerializableExtra("cancelAction");
 
         // only show the fingerprint controls if the api version is new enough, permission is granted, a scanner is found and a fingerprint slot is found
         FingerprintManager manager = FingerprintHelper.getManager(this);
@@ -144,7 +147,15 @@ public class AuthActivity extends AegisActivity implements FingerprintUiHelper.C
 
     @Override
     public void onBackPressed() {
-        // ignore back button presses
+        switch (_cancelAction) {
+            case KILL:
+                finishAffinity();
+
+            case CLOSE:
+                Intent intent = new Intent();
+                setResult(RESULT_CANCELED, intent);
+                finish();
+        }
     }
 
     @Override

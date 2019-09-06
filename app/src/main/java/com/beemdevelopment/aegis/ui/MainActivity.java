@@ -1,7 +1,6 @@
 package com.beemdevelopment.aegis.ui;
 
 import android.Manifest;
-import android.app.Activity;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
@@ -16,17 +15,15 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.SubMenu;
-import android.widget.LinearLayout;
 import android.widget.SearchView;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.view.ActionMode;
-import androidx.core.view.MenuItemCompat;
 
 import com.beemdevelopment.aegis.AegisApplication;
 import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.SortCategory;
+import com.beemdevelopment.aegis.CancelAction;
 import com.beemdevelopment.aegis.ViewMode;
 import com.beemdevelopment.aegis.db.DatabaseEntry;
 import com.beemdevelopment.aegis.db.DatabaseFileCredentials;
@@ -38,7 +35,6 @@ import com.beemdevelopment.aegis.otp.GoogleAuthInfo;
 import com.beemdevelopment.aegis.otp.GoogleAuthInfoException;
 import com.beemdevelopment.aegis.ui.views.EntryListView;
 import com.getbase.floatingactionbutton.FloatingActionsMenu;
-import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.zxing.BinaryBitmap;
 import com.google.zxing.ChecksumException;
 import com.google.zxing.FormatException;
@@ -636,6 +632,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         Intent intent = new Intent(this, AuthActivity.class);
         intent.putExtra("slots", _db.getFileHeader().getSlots());
         intent.putExtra("requiresUnlock", false);
+        intent.putExtra("cancelAction", CancelAction.KILL);
         startActivityForResult(intent, CODE_DECRYPT);
     }
 

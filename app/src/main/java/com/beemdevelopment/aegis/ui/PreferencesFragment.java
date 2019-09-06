@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.beemdevelopment.aegis.AegisApplication;
 import com.beemdevelopment.aegis.BuildConfig;
+import com.beemdevelopment.aegis.CancelAction;
 import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.Theme;
 import com.beemdevelopment.aegis.ViewMode;
@@ -468,6 +469,7 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
 
                     Intent intent = new Intent(getActivity(), AuthActivity.class);
                     intent.putExtra("slots", ((AegisImporter.EncryptedState) state).getSlots());
+                    intent.putExtra("cancelAction", CancelAction.CLOSE);
                     startActivityForResult(intent, CODE_IMPORT_DECRYPT);
                 } else {
                     state.decrypt(getActivity(), new DatabaseImporter.DecryptListener() {
