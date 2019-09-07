@@ -1,15 +1,13 @@
 package com.beemdevelopment.aegis.ui;
 
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.content.res.Resources;
-import android.graphics.Color;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
-import com.beemdevelopment.aegis.Preferences;
+import com.beemdevelopment.aegis.BuildConfig;
 import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.Theme;
 import com.beemdevelopment.aegis.helpers.ThemeHelper;
@@ -22,7 +20,6 @@ import androidx.core.view.LayoutInflaterCompat;
 
 import de.psdev.licensesdialog.LicenseResolver;
 import de.psdev.licensesdialog.LicensesDialog;
-import de.psdev.licensesdialog.licenses.License;
 
 public class AboutActivity extends AegisActivity {
 
@@ -48,7 +45,7 @@ public class AboutActivity extends AegisActivity {
         btnLicenses.setOnClickListener(v -> showLicenseDialog());
 
         TextView appVersion = findViewById(R.id.app_version);
-        appVersion.setText(getCurrentVersion());
+        appVersion.setText(getCurrentAppVersion());
 
         View btnGithub = findViewById(R.id.btn_github);
         btnGithub.setOnClickListener(v -> openUrl(GITHUB));
@@ -74,13 +71,12 @@ public class AboutActivity extends AegisActivity {
         });
     }
 
-    private String getCurrentVersion() {
-        try {
-            return getPackageManager().getPackageInfo(getPackageName(), 0).versionName;
-        } catch (PackageManager.NameNotFoundException e) {
-            e.printStackTrace();
+    private static String getCurrentAppVersion() {
+        if (BuildConfig.DEBUG) {
+            return String.format("%s-%s (%s)", BuildConfig.VERSION_NAME, BuildConfig.GIT_HASH, BuildConfig.GIT_BRANCH);
         }
-        return "Unknown version";
+
+        return BuildConfig.VERSION_NAME;
     }
 
     private void openUrl(String url) {

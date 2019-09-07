@@ -1,5 +1,17 @@
 apply plugin: 'com.android.application'
 
+def getCmdOutput = { cmd ->
+    def stdout = new ByteArrayOutputStream()
+    exec {
+        commandLine cmd
+        standardOutput = stdout
+    }
+    return stdout.toString().trim()
+}
+
+def getGitHash = { -> return getCmdOutput(["git", "rev-parse", "--short", "HEAD"]) }
+def getGitBranch = { -> return getCmdOutput(["git", "rev-parse", "--abbrev-ref", "HEAD"]) }
+
 android {
     compileSdkVersion 28
 
@@ -9,6 +21,8 @@ android {
         targetSdkVersion 28
         versionCode 21
         versionName "1.0.2"
+        buildConfigField "String", "GIT_HASH", "\"${getGitHash()}\""
+        buildConfigField "String", "GIT_BRANCH", "\"${getGitBranch()}\""
     }
 
     lintOptions {
@@ -80,5 +94,4 @@ dependencies {
     annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.4.2'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.4.2'
-
 }
