@@ -1,8 +1,11 @@
 package com.beemdevelopment.aegis.ui.views;
 
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.SortCategory;
@@ -19,15 +22,15 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-import androidx.recyclerview.widget.RecyclerView;
-
 public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements ItemTouchHelperAdapter {
     private EntryListView _view;
     private List<DatabaseEntry> _entries;
     private List<DatabaseEntry> _shownEntries;
     private DatabaseEntry _selectedEntry;
+    private DatabaseEntry _highlightedEntry;
     private boolean _showAccountName;
     private boolean _searchAccountName;
+    private boolean _highlightEntry;
     private boolean _tapToReveal;
     private int _tapToRevealTime;
     private String _groupFilter;
@@ -35,6 +38,7 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
     private ViewMode _viewMode;
     private String _searchFilter;
     private boolean _isPeriodUniform = true;
+    private Handler _dimHandler;
 
     // keeps track of the viewholders that are currently bound
     private List<EntryHolder> _holders;
@@ -43,6 +47,7 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
         _entries = new ArrayList<>();
         _shownEntries = new ArrayList<>();
         _holders = new ArrayList<>();
+        _dimHandler = new Handler();
         _view = view;
     }
 
@@ -65,7 +70,13 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
         _tapToRevealTime = number;
     }
 
-    public void setSearchAccountName(boolean searchAccountName) { _searchAccountName = searchAccountName; }
+    public void setSearchAccountName(boolean searchAccountName) {
+        _searchAccountName = searchAccountName;
+    }
+
+    public void setHighlightEntry(boolean highlightEntry) {
+        _highlightEntry = highlightEntry;
+    }
 
     public DatabaseEntry getEntryAt(int position) {
         return _shownEntries.get(position);
@@ -293,19 +304,34 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
         DatabaseEntry entry = _shownEntries.get(position);
         holder.setFocused(entry == _selectedEntry);
 
+        boolean dimmed = _highlightedEntry != null && _highlightedEntry != entry;
         boolean showProgress = !isPeriodUniform() && entry.getInfo() instanceof TotpInfo;
-        holder.setData(entry, _showAccountName, showProgress, _tapToReveal);
+        holder.setData(entry, _showAccountName, showProgress, _tapToReveal, dimmed);
         holder.setTapToRevealTime(_tapToRevealTime);
         holder.loadIcon(_view);
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int position = holder.getAdapterPosition();
-                if (_tapToReveal && holder.isCodeHidden() && _selectedEntry == null) {
-                    holder.revealCode();
-                } else {
-                    _view.onEntryClick(_shownEntries.get(position));
+                boolean handled = false;
+
+                if (_selectedEntry == null) {
+                    if (_tapToReveal && holder.isCodeHidden()) {
+                        holder.revealCode();
+                    }
+
+                    if (_highlightEntry) {
+                        if (_highlightedEntry == entry) {
+                            resetHighlight();
+                            handled = true;
+                        } else {
+                            highlightEntry(entry);
+                        }
+                    }
+                }
+
+                if (!handled) {
+                    _view.onEntryClick(entry);
                 }
             }
         });
@@ -384,9 +410,34 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
         return period;
     }
 
+    private void highlightEntry(DatabaseEntry entry) {
+        _highlightedEntry = entry;
+        _dimHandler.removeCallbacksAndMessages(null);
+
+        for (EntryHolder holder : _holders) {
+            if (holder.getEntry() != _highlightedEntry) {
+                holder.dim();
+            } else {
+                holder.highlight();
+            }
+        }
+
+        _dimHandler.postDelayed(this::resetHighlight, _tapToRevealTime * 1000);
+    }
+
+    private void resetHighlight() {
+        _highlightedEntry = null;
+
+        for (EntryHolder holder : _holders) {
+            holder.highlight();
+        }
+    }
+
     public void setSelectedEntry(DatabaseEntry entry) {
         if (entry == null) {
             notifyItemChanged(_shownEntries.indexOf(_selectedEntry));
+        } else if (_highlightEntry) {
+            resetHighlight();
         }
 
         _selectedEntry = entry;

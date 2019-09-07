@@ -207,6 +207,12 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
             return true;
         });
 
+        Preference entryHighlightPreference = findPreference("pref_highlight_entry");
+        entryHighlightPreference.setOnPreferenceChangeListener((preference, newValue) -> {
+            _result.putExtra("needsRefresh", true);
+            return true;
+        });
+
         Preference tapToRevealPreference = findPreference("pref_tap_to_reveal");
         tapToRevealPreference.setOnPreferenceChangeListener((preference, newValue) -> {
             _result.putExtra("needsRefresh", true);
@@ -348,7 +354,7 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
     }
 
     @Override
-    public void onActivityCreated (Bundle savedInstanceState) {
+    public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         updateEncryptionPreferences();
     }
