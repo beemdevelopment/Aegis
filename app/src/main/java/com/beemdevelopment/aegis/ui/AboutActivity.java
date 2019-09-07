@@ -1,11 +1,14 @@
 package com.beemdevelopment.aegis.ui;
 
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.beemdevelopment.aegis.BuildConfig;
 import com.beemdevelopment.aegis.R;
@@ -16,6 +19,7 @@ import com.mikepenz.iconics.Iconics;
 import com.mikepenz.iconics.context.IconicsLayoutInflater2;
 import com.mikepenz.material_design_iconic_typeface_library.MaterialDesignIconic;
 
+import androidx.annotation.StringRes;
 import androidx.core.view.LayoutInflaterCompat;
 
 import de.psdev.licensesdialog.LicenseResolver;
@@ -46,6 +50,11 @@ public class AboutActivity extends AegisActivity {
 
         TextView appVersion = findViewById(R.id.app_version);
         appVersion.setText(getCurrentAppVersion());
+
+        View btnAppVersion = findViewById(R.id.btn_app_version);
+        btnAppVersion.setOnClickListener(v -> {
+            copyToClipboard(getCurrentAppVersion(), R.string.version_copied);
+        });
 
         View btnGithub = findViewById(R.id.btn_github);
         btnGithub.setOnClickListener(v -> openUrl(GITHUB));
@@ -85,6 +94,13 @@ public class AboutActivity extends AegisActivity {
         browserIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
         startActivity(browserIntent);
+    }
+
+    private void copyToClipboard(String text, @StringRes int messageId) {
+        ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+        ClipData data = ClipData.newPlainText("text/plain", text);
+        clipboard.setPrimaryClip(data);
+        Toast.makeText(this, messageId, Toast.LENGTH_SHORT).show();
     }
 
     private void openMail(String mailaddress) {

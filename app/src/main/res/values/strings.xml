@@ -104,6 +104,7 @@
     <string name="vault_not_found">Vault not found, starting setup…</string>
     <string name="code_copied">Code copied to the clipboard</string>
     <string name="errors_copied">Errors copied to the clipboard</string>
+    <string name="version_copied">Version copied to the clipboard</string>
     <string name="decryption_error">An error occurred while trying to unlock the vault</string>
     <string name="saving_error">An error occurred while trying to save the vault</string>
     <string name="disable_encryption">Disable encryption</string>
