@@ -65,7 +65,7 @@ public class IntroActivity extends AppIntro2 implements DerivationTask.Callback 
 
         SliderPage homeSliderPage = new SliderPage();
         homeSliderPage.setTitle(getString(R.string.welcome));
-        homeSliderPage.setImageDrawable(R.drawable.icon_foreground_white);
+        homeSliderPage.setImageDrawable(R.drawable.app_icon);
         homeSliderPage.setTitleColor(getResources().getColor(R.color.primary_text_dark));
         homeSliderPage.setDescription(getString(R.string.app_description));
         homeSliderPage.setDescColor(getResources().getColor(R.color.primary_text_dark));
@@ -83,7 +83,7 @@ public class IntroActivity extends AppIntro2 implements DerivationTask.Callback 
         SliderPage endSliderPage = new SliderPage();
         endSliderPage.setTitle(getString(R.string.setup_completed));
         endSliderPage.setDescription(getString(R.string.setup_completed_description));
-        endSliderPage.setImageDrawable(R.drawable.icon_foreground_white);
+        endSliderPage.setImageDrawable(R.drawable.app_icon);
         endSliderPage.setBgColor(getResources().getColor(R.color.colorSecondary));
         _endSlide = AppIntroFragment.newInstance(endSliderPage);
         addSlide(_endSlide);
