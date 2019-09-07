@@ -22,4 +22,47 @@
         android:id="@+id/rvKeyProfiles"
         android:layoutAnimation="@anim/layout_animation_fall_down"
         android:layout_weight="1"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center|fill_vertical"
+        android:id="@+id/vEmptyList"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingBottom="150dp">
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/ic_qrcode_scan"
+                android:tint="?attr/primaryText" />
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/empty_list_title"
+                android:paddingTop="17dp"
+                android:textColor="?attr/primaryText"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:lineSpacingExtra="5dp"
+                android:paddingTop="7dp"
+                android:text="@string/empty_list"
+                android:textAlignment="center" />
+        </LinearLayout>
+
+    </LinearLayout>
 </LinearLayout>

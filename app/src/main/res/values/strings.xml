@@ -171,4 +171,6 @@
     <string name="channel_name_lock_status">Lock status</string>
     <string name="channel_description_lock_status">Aegis can create a persistent notification to notify you when the vault is locked</string>
     <string name="vault_unlocked_state">Vault is unlocked. Tap here to lock.</string>
+    <string name="empty_list">There are no codes to be shown. Start adding entries by tapping the plus sign in the bottom right corner</string>
+    <string name="empty_list_title">No entries found</string>
 </resources>
