@@ -45,6 +45,7 @@ import com.google.zxing.RGBLuminanceSource;
 import com.google.zxing.Reader;
 import com.google.zxing.Result;
 import com.google.zxing.common.HybridBinarizer;
+import com.mikepenz.iconics.context.IconicsContextWrapper;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -88,6 +89,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         _app = (AegisApplication) getApplication();
         _db = _app.getDatabaseManager();
         _loaded = false;
@@ -497,6 +499,11 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
     }
 
     @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(IconicsContextWrapper.wrap(newBase));
+    }
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         _menu = menu;
         getMenuInflater().inflate(R.menu.menu_main, menu);
@@ -542,10 +549,16 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.action_settings:
+            case R.id.action_settings: {
                 Intent intent = new Intent(this, PreferencesActivity.class);
                 startActivityForResult(intent, CODE_PREFERENCES);
                 return true;
+            }
+            case R.id.action_about: {
+                Intent intent = new Intent(this, AboutActivity.class);
+                startActivity(intent);
+                return true;
+            }
             case R.id.action_lock:
                 _app.lock();
                 return true;

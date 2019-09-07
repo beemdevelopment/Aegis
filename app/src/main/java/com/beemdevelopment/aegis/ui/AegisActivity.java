@@ -22,6 +22,7 @@ import java.util.Locale;
 public abstract class AegisActivity extends AppCompatActivity implements AegisApplication.LockListener {
     private boolean _resumed;
     private AegisApplication _app;
+    private Theme _currentTheme;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,6 +90,8 @@ public abstract class AegisActivity extends AppCompatActivity implements AegisAp
     }
 
     protected void setPreferredTheme(Theme theme) {
+        _currentTheme = theme;
+
         switch (theme) {
             case LIGHT:
                 setTheme(R.style.AppTheme);
@@ -135,5 +138,9 @@ public abstract class AegisActivity extends AppCompatActivity implements AegisAp
                 Toast.makeText(this, R.string.progressbar_error, Toast.LENGTH_SHORT).show();
             }
         }
+    }
+
+    protected Theme getCurrentTheme() {
+        return _currentTheme;
     }
 }

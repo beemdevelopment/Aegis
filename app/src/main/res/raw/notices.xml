@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<notices>
+    <notice>
+        <name>TextDrawable</name>
+        <url>https://github.com/amulyakhare/TextDrawable</url>
+        <copyright>Copyright (C) 2014 Amulya Khare</copyright>
+        <license>MIT License</license>
+    </notice>
+    <notice>
+        <name>Preferencex</name>
+        <url>https://github.com/takisoft/preferencex-android</url>
+        <copyright />
+        <license>Apache Software License 2.0</license>
+    </notice>
+    <notice>
+        <name>FloatingActionButton</name>
+        <url>https://github.com/futuresimple/android-floating-action-button</url>
+        <copyright>Copyright 2014 Jerzy Chalupski</copyright>
+        <license>Apache Software License 2.0</license>
+    </notice>
+    <notice>
+        <name>AppIntro</name>
+        <url>https://github.com/AppIntro/AppIntro</url>
+        <copyright/>
+        <license>Apache Software License 2.0</license>
+    </notice>
+    <notice>
+        <name>Krop</name>
+        <url>https://github.com/avito-tech/krop</url>
+        <copyright>Copyright (c) 2017 Avito Technology</copyright>
+        <license>MIT License</license>
+    </notice>
+    <notice>
+        <name>Spongycastle</name>
+        <url>https://github.com/rtyley/spongycastle/</url>
+        <copyright>Copyright (c) 2000-2017 The Legion of the Bouncy Castle Inc. (http://www.bouncycastle.org)</copyright>
+        <license>Apache Software License 2.0</license>
+    </notice>
+    <notice>
+        <name>Swirl</name>
+        <url>https://github.com/mattprecious/swirl</url>
+        <copyright>Copyright 2016 Matthew Precious</copyright>
+        <license>Apache Software License 2.0</license>
+    </notice>
+    <notice>
+        <name>CircleImageView</name>
+        <url>https://github.com/hdodenhof/CircleImageView</url>
+        <copyright>Copyright 2014 - 2019 Henning Dodenhof</copyright>
+        <license>Apache Software License 2.0</license>
+    </notice>
+    <notice>
+        <name>Barcodescanner</name>
+        <url>https://github.com/dm77/barcodescanner</url>
+        <copyright>Copyright (c) 2014 Dushyanth Maguluru</copyright>
+        <license>Apache Software License 2.0</license>
+    </notice>
+    <notice>
+        <name>libsu</name>
+        <url>https://github.com/topjohnwu/libsu</url>
+        <license>Apache Software License 2.0</license>
+    </notice>
+    <notice>
+        <name>Glide</name>
+        <url>https://github.com/bumptech/glide</url>
+        <license>Glide License</license>
+    </notice>
+    <notice>
+        <name>Iconics</name>
+        <url>https://github.com/mikepenz/Android-Iconics</url>
+        <copyright/>
+        <license>Apache Software License 2.0</license>
+    </notice>
+    <notice>
+        <name>Android Support Libraries</name>
+        <url>http://developer.android.com/tools/support-library/index.html</url>
+        <copyright>Copyright (C) 2016 The Android Open Source Project</copyright>
+        <license>Apache Software License 2.0</license>
+    </notice>
+</notices>
