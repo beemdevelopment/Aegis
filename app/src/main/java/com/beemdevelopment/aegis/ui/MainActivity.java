@@ -473,7 +473,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
 
     @Override
     public void onBackPressed() {
-        if (!_searchView.isIconified() || _searchSubmitted ) {
+        if ((_searchView != null && !_searchView.isIconified()) || _searchSubmitted ) {
             _searchSubmitted = false;
             _entryListView.setSearchFilter(null);
 
