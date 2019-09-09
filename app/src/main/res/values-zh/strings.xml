@@ -6,7 +6,7 @@
     <string name="org_name_full">Beem Development</string>
     <string name="action_settings">设置</string>
     <string name="action_about">关于</string>
-    <string name="action_import">进口</string>
+    <string name="action_import">导入</string>
     <string name="action_delete">删除</string>
     <string name="action_default_icon">恢复默认图标</string>
     <string name="discard">丢弃</string>
