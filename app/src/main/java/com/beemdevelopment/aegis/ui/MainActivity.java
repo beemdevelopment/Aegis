@@ -516,32 +516,38 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         MenuItem searchViewMenuItem = menu.findItem(R.id.mi_search);
 
         _searchView = (SearchView) searchViewMenuItem.getActionView();
-        _searchView.setFocusable(false);
-        _searchView.setQueryHint(getString(R.string.search));
-        _searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String s) {
-                setTitle(getString(R.string.search));
-                getSupportActionBar().setSubtitle(s);
-                _searchSubmitted = true;
-                collapseSearchView();
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String s) {
-                if (!_searchSubmitted) {
-                    _entryListView.setSearchFilter(s);
+        if (_searchView != null)
+        {
+            _searchView.setFocusable(false);
+            _searchView.setQueryHint(getString(R.string.search));
+            _searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+                @Override
+                public boolean onQueryTextSubmit(String s) {
+                    setTitle(getString(R.string.search));
+                    getSupportActionBar().setSubtitle(s);
+                    _searchSubmitted = true;
+                    collapseSearchView();
+                    return false;
                 }
-                return false;
-            }
-        });
-        _searchView.setOnSearchClickListener(v -> {
-            if (_searchSubmitted) {
-                _searchSubmitted = false;
-                _entryListView.setSearchFilter(null);
-            }
-        });
+
+                @Override
+                public boolean onQueryTextChange(String s) {
+                    if (!_searchSubmitted) {
+                        _entryListView.setSearchFilter(s);
+                    }
+                    return false;
+                }
+            });
+            _searchView.setOnSearchClickListener(v -> {
+                if (_searchSubmitted) {
+                    _searchSubmitted = false;
+                    _entryListView.setSearchFilter(null);
+                }
+            });
+        } else {
+            searchViewMenuItem.setVisible(false);
+        }
+
 
         return true;
     }
