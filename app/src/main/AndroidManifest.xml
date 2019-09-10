@@ -10,7 +10,7 @@
 
     <application
         android:name=".AegisApplication"
-        android:allowBackup="true"
+        android:allowBackup="false"
         android:icon="@mipmap/${iconName}"
         android:label="Aegis"
         android:supportsRtl="true"
