@@ -15,10 +15,10 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.SubMenu;
-import android.widget.SearchView;
 import android.widget.Toast;
 
 import androidx.appcompat.view.ActionMode;
+import androidx.appcompat.widget.SearchView;
 
 import com.beemdevelopment.aegis.AegisApplication;
 import com.beemdevelopment.aegis.R;
@@ -414,7 +414,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         if (_db.isLocked()) {
             return;
         }
-        
+
         Intent intent = getIntent();
         if (Intent.ACTION_VIEW.equals(intent.getAction())) {
             Uri uri = intent.getData();
@@ -473,7 +473,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
 
     @Override
     public void onBackPressed() {
-        if ((_searchView != null && !_searchView.isIconified()) || _searchSubmitted ) {
+        if (!_searchView.isIconified() || _searchSubmitted) {
             _searchSubmitted = false;
             _entryListView.setSearchFilter(null);
 
@@ -516,38 +516,32 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         MenuItem searchViewMenuItem = menu.findItem(R.id.mi_search);
 
         _searchView = (SearchView) searchViewMenuItem.getActionView();
-        if (_searchView != null)
-        {
-            _searchView.setFocusable(false);
-            _searchView.setQueryHint(getString(R.string.search));
-            _searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-                @Override
-                public boolean onQueryTextSubmit(String s) {
-                    setTitle(getString(R.string.search));
-                    getSupportActionBar().setSubtitle(s);
-                    _searchSubmitted = true;
-                    collapseSearchView();
-                    return false;
-                }
+        _searchView.setFocusable(false);
+        _searchView.setQueryHint(getString(R.string.search));
+        _searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                setTitle(getString(R.string.search));
+                getSupportActionBar().setSubtitle(s);
+                _searchSubmitted = true;
+                collapseSearchView();
+                return false;
+            }
 
-                @Override
-                public boolean onQueryTextChange(String s) {
-                    if (!_searchSubmitted) {
-                        _entryListView.setSearchFilter(s);
-                    }
-                    return false;
+            @Override
+            public boolean onQueryTextChange(String s) {
+                if (!_searchSubmitted) {
+                    _entryListView.setSearchFilter(s);
                 }
-            });
-            _searchView.setOnSearchClickListener(v -> {
-                if (_searchSubmitted) {
-                    _searchSubmitted = false;
-                    _entryListView.setSearchFilter(null);
-                }
-            });
-        } else {
-            searchViewMenuItem.setVisible(false);
-        }
-
+                return false;
+            }
+        });
+        _searchView.setOnSearchClickListener(v -> {
+            if (_searchSubmitted) {
+                _searchSubmitted = false;
+                _entryListView.setSearchFilter(null);
+            }
+        });
 
         return true;
     }
