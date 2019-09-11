@@ -201,6 +201,12 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
             }
         });
 
+        Preference searchAccountNamePreference = findPreference("pref_search_names");
+        searchAccountNamePreference.setOnPreferenceChangeListener((preference, newValue) -> {
+            _result.putExtra("needsRefresh", true);
+            return true;
+        });
+
         Preference tapToRevealPreference = findPreference("pref_tap_to_reveal");
         tapToRevealPreference.setOnPreferenceChangeListener((preference, newValue) -> {
             _result.putExtra("needsRefresh", true);

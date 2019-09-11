@@ -14,6 +14,7 @@
 
     <string name="settings">Preferences</string>
     <string name="pref_appearance_group_title">Appearance</string>
+    <string name="pref_general_group_title">General</string>
     <string name="pref_security_group_title">Security</string>
     <string name="pref_tools_group_title">Tools</string>
     <string name="pref_select_theme_title">Theme</string>
@@ -155,6 +156,8 @@
     <string name="group_name_hint">Group name</string>
     <string name="preference_manage_groups">Edit groups</string>
     <string name="preference_manage_groups_summary">Manage and delete your groups here</string>
+    <string name="pref_search_name_title">Search in account names</string>
+    <string name="pref_search_name_summary">Include account name matches in the search results</string>
     <string name="tap_to_reveal">Hidden</string>
     <string name="selected">Selected</string>
     <string name="dark_theme_title">Dark theme</string>
