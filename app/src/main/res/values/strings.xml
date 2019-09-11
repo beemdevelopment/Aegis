@@ -189,7 +189,7 @@
     <string name="about_support">Support</string>
     <string name="support_rate">Rate</string>
     <string name="support_rate_description">Support us by leaving a review in the Google Play Store</string>
-    <string name="webview_error">This device doesn\'t support web view, which is necessary to view the change log. It is missing a system component.</string>
+    <string name="webview_error">This device doesn\'t support web view, which is necessary to view the changelog. It is missing a system component.</string>
     <string name="email">Email</string>
 
     <string name="custom_notices_format_style" translatable="false" >
