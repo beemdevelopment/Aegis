@@ -43,6 +43,17 @@
     </PreferenceCategory>
 
     <PreferenceCategory
+        android:title="@string/pref_general_group_title"
+        app:iconSpaceReserved="false">
+        <androidx.preference.SwitchPreferenceCompat
+            android:defaultValue="false"
+            android:key="pref_search_names"
+            android:title="@string/pref_search_name_title"
+            android:summary="@string/pref_search_name_summary"
+            app:iconSpaceReserved="false"/>
+    </PreferenceCategory>
+
+    <PreferenceCategory
         android:title="@string/pref_security_group_title"
         app:iconSpaceReserved="false">
         <androidx.preference.SwitchPreferenceCompat

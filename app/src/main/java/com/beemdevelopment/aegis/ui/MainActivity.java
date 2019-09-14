@@ -101,6 +101,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         _entryListView = (EntryListView) getSupportFragmentManager().findFragmentById(R.id.key_profiles);
         _entryListView.setListener(this);
         _entryListView.setShowAccountName(getPreferences().isAccountNameVisible());
+        _entryListView.setSearchAccountName(getPreferences().isSearchAccountNameEnabled());
         _entryListView.setTapToReveal(getPreferences().isTapToRevealEnabled());
         _entryListView.setTapToRevealTime(getPreferences().getTapToRevealTime());
         _entryListView.setSortCategory(getPreferences().getCurrentSortCategory(), false);
@@ -216,10 +217,12 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
             recreate();
         } else if (data.getBooleanExtra("needsRefresh", false)) {
             boolean showAccountName = getPreferences().isAccountNameVisible();
+            boolean searchAccountName = getPreferences().isSearchAccountNameEnabled();
             boolean tapToReveal = getPreferences().isTapToRevealEnabled();
             int tapToRevealTime = getPreferences().getTapToRevealTime();
             ViewMode viewMode = getPreferences().getCurrentViewMode();
             _entryListView.setShowAccountName(showAccountName);
+            _entryListView.setSearchAccountName(searchAccountName);
             _entryListView.setTapToReveal(tapToReveal);
             _entryListView.setTapToRevealTime(tapToRevealTime);
             _entryListView.setViewMode(viewMode);

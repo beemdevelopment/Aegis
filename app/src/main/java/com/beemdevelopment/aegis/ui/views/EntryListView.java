@@ -211,6 +211,10 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
         _adapter.setShowAccountName(showAccountName);
     }
 
+    public void setSearchAccountName(boolean searchAccountName) {
+        _adapter.setSearchAccountName(searchAccountName);
+    }
+
     public void setTapToReveal(boolean tapToReveal) {
         _adapter.setTapToReveal(tapToReveal);
     }

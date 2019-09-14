@@ -26,6 +26,7 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
     private List<DatabaseEntry> _shownEntries;
     private DatabaseEntry _selectedEntry;
     private boolean _showAccountName;
+    private boolean _searchAccountName;
     private boolean _tapToReveal;
     private int _tapToRevealTime;
     private String _groupFilter;
@@ -62,6 +63,8 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
     public void setTapToRevealTime(int number) {
         _tapToRevealTime = number;
     }
+
+    public void setSearchAccountName(boolean searchAccountName) { _searchAccountName = searchAccountName; }
 
     public DatabaseEntry getEntryAt(int position) {
         return _shownEntries.get(position);
@@ -153,12 +156,17 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
     private boolean isEntryFiltered(DatabaseEntry entry) {
         String group = entry.getGroup();
         String issuer = entry.getIssuer().toLowerCase();
+        String name = entry.getName().toLowerCase();
 
         if (_groupFilter != null && (group == null || !group.equals(_groupFilter))) {
             return true;
         }
 
-        return _searchFilter != null && !issuer.contains(_searchFilter);
+        if (_searchFilter == null) {
+            return false;
+        }
+
+        return !issuer.contains(_searchFilter) && !(_searchAccountName && name.contains(_searchFilter));
     }
 
     public void refresh(boolean hard) {

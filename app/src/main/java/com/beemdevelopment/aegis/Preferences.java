@@ -19,6 +19,8 @@ public class Preferences {
         return _prefs.getBoolean("pref_tap_to_reveal", false);
     }
 
+    public boolean isSearchAccountNameEnabled() { return _prefs.getBoolean("pref_search_names", false); }
+
     public boolean isSecureScreenEnabled() {
         // screen security should be enabled by default, but not for debug builds
         return _prefs.getBoolean("pref_secure_screen", !BuildConfig.DEBUG);
