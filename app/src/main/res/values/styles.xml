@@ -146,11 +146,6 @@
         <item name="android:textColor">#FFFFFF</item>
     </style>
 
-    <style name="AppTheme.NoActionBar.NoActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
-    </style>
-
     <style name="DialogStyle" parent="Theme.AppCompat.Light.Dialog.Alert">
         <item name="android:background">@color/card_background</item>
         <item name="colorAccent">@color/colorAccent</item>

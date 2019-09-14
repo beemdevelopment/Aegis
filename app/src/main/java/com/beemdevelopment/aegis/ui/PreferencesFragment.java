@@ -40,7 +40,6 @@ import com.beemdevelopment.aegis.services.NotificationService;
 import com.beemdevelopment.aegis.ui.models.ImportEntry;
 import com.beemdevelopment.aegis.ui.preferences.SwitchPreference;
 import com.beemdevelopment.aegis.util.UUIDMap;
-import com.takisoft.preferencex.PreferenceFragmentCompat;
 import com.topjohnwu.superuser.Shell;
 import com.topjohnwu.superuser.io.SuFile;
 import com.topjohnwu.superuser.io.SuFileInputStream;
@@ -59,6 +58,7 @@ import javax.crypto.Cipher;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.preference.Preference;
+import androidx.preference.PreferenceFragmentCompat;
 
 public class PreferencesFragment extends PreferenceFragmentCompat {
     // activity request codes
@@ -88,7 +88,7 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
     private Preference _groupsPreference;
 
     @Override
-    public void onCreatePreferencesFix(Bundle savedInstanceState, String rootKey) {
+    public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
         addPreferencesFromResource(R.xml.preferences);
 
         AegisApplication app = (AegisApplication) getActivity().getApplication();
