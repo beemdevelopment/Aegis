@@ -29,7 +29,7 @@
             app:iconSpaceReserved="false"/>
 
         <androidx.preference.SwitchPreferenceCompat
-            android:defaultValue="false"
+            android:defaultValue="true"
             android:key="pref_account_name"
             android:title="@string/pref_account_name_title"
             android:summary="@string/pref_account_name_summary"
