@@ -1,15 +1,16 @@
 package com.beemdevelopment.aegis.ui;
 
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.content.res.Resources;
-import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import com.beemdevelopment.aegis.Preferences;
+import com.beemdevelopment.aegis.BuildConfig;
 import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.Theme;
 import com.beemdevelopment.aegis.helpers.ThemeHelper;
@@ -18,11 +19,11 @@ import com.mikepenz.iconics.Iconics;
 import com.mikepenz.iconics.context.IconicsLayoutInflater2;
 import com.mikepenz.material_design_iconic_typeface_library.MaterialDesignIconic;
 
+import androidx.annotation.StringRes;
 import androidx.core.view.LayoutInflaterCompat;
 
 import de.psdev.licensesdialog.LicenseResolver;
 import de.psdev.licensesdialog.LicensesDialog;
-import de.psdev.licensesdialog.licenses.License;
 
 public class AboutActivity extends AegisActivity {
 
@@ -48,7 +49,12 @@ public class AboutActivity extends AegisActivity {
         btnLicenses.setOnClickListener(v -> showLicenseDialog());
 
         TextView appVersion = findViewById(R.id.app_version);
-        appVersion.setText(getCurrentVersion());
+        appVersion.setText(getCurrentAppVersion());
+
+        View btnAppVersion = findViewById(R.id.btn_app_version);
+        btnAppVersion.setOnClickListener(v -> {
+            copyToClipboard(getCurrentAppVersion(), R.string.version_copied);
+        });
 
         View btnGithub = findViewById(R.id.btn_github);
         btnGithub.setOnClickListener(v -> openUrl(GITHUB));
@@ -74,13 +80,12 @@ public class AboutActivity extends AegisActivity {
         });
     }
 
-    private String getCurrentVersion() {
-        try {
-            return getPackageManager().getPackageInfo(getPackageName(), 0).versionName;
-        } catch (PackageManager.NameNotFoundException e) {
-            e.printStackTrace();
+    private static String getCurrentAppVersion() {
+        if (BuildConfig.DEBUG) {
+            return String.format("%s-%s (%s)", BuildConfig.VERSION_NAME, BuildConfig.GIT_HASH, BuildConfig.GIT_BRANCH);
         }
-        return "Unknown version";
+
+        return BuildConfig.VERSION_NAME;
     }
 
     private void openUrl(String url) {
@@ -89,6 +94,13 @@ public class AboutActivity extends AegisActivity {
         browserIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
         startActivity(browserIntent);
+    }
+
+    private void copyToClipboard(String text, @StringRes int messageId) {
+        ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+        ClipData data = ClipData.newPlainText("text/plain", text);
+        clipboard.setPrimaryClip(data);
+        Toast.makeText(this, messageId, Toast.LENGTH_SHORT).show();
     }
 
     private void openMail(String mailaddress) {
