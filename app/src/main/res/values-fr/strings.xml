@@ -1,7 +1,10 @@
 <resources>
     <string name="app_name">Aegis</string>
+    <string name="app_name_full">Aegis Authenticator</string>
     <string name="app_name_dev">AegisDev</string>
+    <string name="org_name_full">Beem Development</string>
     <string name="action_settings">Paramètres</string>
+    <string name="action_about">À propos</string>
     <string name="action_import">Importer</string>
     <string name="action_delete">Supprimer</string>
     <string name="action_default_icon">Restaurer l\'icône par défaut</string>
@@ -11,10 +14,12 @@
 
     <string name="settings">Préférences</string>
     <string name="pref_appearance_group_title">Apparence</string>
+    <string name="pref_general_group_title">Général</string>
     <string name="pref_security_group_title">Sécurité</string>
     <string name="pref_tools_group_title">Outils</string>
     <string name="pref_select_theme_title">Thème</string>
     <string name="pref_view_mode_title">Mode d\'affichage</string>
+    <string name="pref_lang_title">Langue</string>
     <string name="pref_account_name_title">Afficher le nom du compte</string>
     <string name="pref_account_name_summary">Activer pour afficher le nom de compte près de l\'émetteur</string>
     <string name="pref_timeout_title">Délai</string>
@@ -59,7 +64,7 @@
     <string name="set_group">Veuillez saisir un nom de groupe</string>
     <string name="set_number">Veuillez saisir un nombre</string>
     <string name="set_password_confirm">Veuillez confirmer le mot de passe</string>
-    <string name="invalidated_fingerprint">Un changement dans les paramètres de sécurité de votre appareil a été détecté. Veuillez aller dans \"Paramètres -> Empreinte digitale\" et ajouter à nouveau votre empreinte digitale.</string>
+    <string name="invalidated_fingerprint">Un changement dans les paramètres de sécurité de votre appareil a été détecté. Veuillez aller dans \"Aegis -> Paramètres -> Empreinte digitale\" et ajouter à nouveau votre empreinte digitale.</string>
 
     <string name="unlock">Déverrouiller</string>
     <string name="advanced">Avancé</string>
@@ -127,6 +132,7 @@
     <string name="read_qr_error">Une erreur est survenue en essayant de lire le code QR</string>
     <string name="authentication_method_raw">Brut</string>
     <string name="unlocking_vault">Déverrouillage du coffre-fort</string>
+    <string name="unlocking_vault_repair">Déverrouillage du coffre-fort (réparation)</string>
     <string name="password_slot_error">Vous devez avoir au moins un emplacement de mot de passe</string>
     <string name="remove_slot">Supprimer emplacement</string>
     <string name="remove_slot_description">Êtes-vous sûr de vouloir supprimer cet emplacement ?</string>
@@ -150,6 +156,8 @@
     <string name="group_name_hint">Nom de groupe</string>
     <string name="preference_manage_groups">Modifier les groupes</string>
     <string name="preference_manage_groups_summary">Gérez et supprimez vos groupes ici</string>
+    <string name="pref_search_name_title">Rechercher dans les noms de comptes</string>
+    <string name="pref_search_name_summary">Inclure les correspondances de noms de comptes dans les résultats de recherche</string>
     <string name="tap_to_reveal">Masqué</string>
     <string name="selected">Sélectionné</string>
     <string name="dark_theme_title">Thème sombre</string>
@@ -164,4 +172,29 @@
     <string name="unable_to_read_qrcode">Impossible de lire et traiter le code QR</string>
     <string name="select_picture">Sélectionner image</string>
     <string name="toggle_checkboxes">Basculer les cases</string>
+    <string name="search">Recherche</string>
+    <string name="channel_name_lock_status">Statut du verrouillage</string>
+    <string name="channel_description_lock_status">Aegis peut créer une notification persistante pour vous notifier quand le coffre-fort est verrouillé</string>
+    <string name="vault_unlocked_state">Le coffre-fort est déverrouillé. Appuyer ici pour verrouiller.</string>
+    <string name="title_activity_about">À propos</string>
+    <string name="version">Version</string>
+    <string name="changelog">Historique des modifications</string>
+    <string name="whats_new">Les nouveautés</string>
+    <string name="github">GitHub</string>
+    <string name="github_description">Code source, problèmes et informations</string>
+    <string name="licenses">Licences</string>
+    <string name="licenses_description">Licences des bibliothèques utilisées par Aegis</string>
+    <string name="author_alex">Alexander Bakker</string>
+    <string name="country_netherlands">Pays-Bas</string>
+    <string name="author_michael">Michael Schättgen</string>
+    <string name="email_us">Écrire un email</string>
+    <string name="visit_website">Visiter notre site internet</string>
+    <string name="about_support">Soutien</string>
+    <string name="support_rate">Noter</string>
+    <string name="support_rate_description">Soutenez-nous en laissant un avis sur le Google Play Store</string>
+    <string name="webview_error">Cet appareil ne supporte pas web view, qui est nécessaire pour voir l\'historique des modifications. C\'est un composant système manquant.</string>
+    <string name="email">Email</string>
+
+    <string name="empty_list">Il n\'y a pas de code à afficher. Commencez à ajouter des entrées en appuyant sur le signe plus dans le coin inférieur droit</string>
+    <string name="empty_list_title">Aucune entrée trouvée</string>
 </resources>
