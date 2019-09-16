@@ -27,7 +27,7 @@ public class Preferences {
     }
 
     public boolean isAccountNameVisible() {
-        return _prefs.getBoolean("pref_account_name", false);
+        return _prefs.getBoolean("pref_account_name", true);
     }
 
     public boolean isIntroDone() {
