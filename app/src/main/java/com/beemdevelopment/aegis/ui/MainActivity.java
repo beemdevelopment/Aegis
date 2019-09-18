@@ -333,6 +333,10 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
             }
         }
 
+        if (groups.size() > 0) {
+            menu.add(R.id.action_filter_group, Menu.NONE, 10, R.string.filter_ungrouped);
+        }
+
         menu.setGroupCheckable(R.id.action_filter_group, true, true);
     }
 

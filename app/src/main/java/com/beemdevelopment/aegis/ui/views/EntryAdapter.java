@@ -4,6 +4,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.SortCategory;
 import com.beemdevelopment.aegis.ViewMode;
 import com.beemdevelopment.aegis.db.DatabaseEntry;
@@ -158,8 +159,14 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
         String issuer = entry.getIssuer().toLowerCase();
         String name = entry.getName().toLowerCase();
 
-        if (_groupFilter != null && (group == null || !group.equals(_groupFilter))) {
-            return true;
+        if (_groupFilter != null) {
+            if (group == null && _groupFilter.equals(_view.getContext().getString(R.string.filter_ungrouped))) {
+                return false;
+            }
+
+            if (group == null || !group.equals(_groupFilter)) {
+                return true;
+            }
         }
 
         if (_searchFilter == null) {

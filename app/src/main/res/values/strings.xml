@@ -143,6 +143,7 @@
     <string name="progressbar_error">Unable to reset animator duration scale. Progress bars will be invisible.</string>
     <string name="details">Details</string>
     <string name="filter">Filter</string>
+    <string name="filter_ungrouped">Ungrouped</string>
     <string name="lock">Lock</string>
     <string name="all">All</string>
     <string name="name">Name</string>
