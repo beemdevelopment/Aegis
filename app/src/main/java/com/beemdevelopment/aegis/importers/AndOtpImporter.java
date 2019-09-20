@@ -2,6 +2,9 @@ package com.beemdevelopment.aegis.importers;
 
 import android.content.Context;
 
+import androidx.appcompat.app.AlertDialog;
+
+import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.crypto.CryptParameters;
 import com.beemdevelopment.aegis.crypto.CryptResult;
 import com.beemdevelopment.aegis.crypto.CryptoUtils;
@@ -20,11 +23,14 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
+import java.security.spec.KeySpec;
 import java.util.Arrays;
 
 import javax.crypto.BadPaddingException;
@@ -32,9 +38,18 @@ import javax.crypto.Cipher;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 import javax.crypto.SecretKey;
+import javax.crypto.SecretKeyFactory;
+import javax.crypto.spec.PBEKeySpec;
 import javax.crypto.spec.SecretKeySpec;
 
 public class AndOtpImporter extends DatabaseImporter {
+    private static final int INT_SIZE = 4;
+    private static final int NONCE_SIZE = 12;
+    private static final int TAG_SIZE = 16;
+    private static final int SALT_SIZE = 12;
+    private static final int KEY_SIZE = 256; // bits
+
+    private static final int MAX_ITERATIONS = 10000;
 
     public AndOtpImporter(Context context) {
         super(context);
@@ -81,30 +96,48 @@ public class AndOtpImporter extends DatabaseImporter {
             _data = data;
         }
 
-        public DecryptedState decrypt(char[] password) throws DatabaseImporterException {
+        private DecryptedState decrypt(char[] password, boolean oldFormat) throws DatabaseImporterException {
             try {
-                // WARNING: DON'T DO THIS IN YOUR OWN CODE
-                // this exists solely to support encrypted andOTP backups
-                // it is not a secure way to derive a key from a password
-                MessageDigest hash = MessageDigest.getInstance("SHA-256");
-                byte[] keyBytes = hash.digest(CryptoUtils.toBytes(password));
-                SecretKey key = new SecretKeySpec(keyBytes, "AES");
+                SecretKey key;
+                int offset = 0;
+
+                if (oldFormat) {
+                    // WARNING: DON'T DO THIS IN YOUR OWN CODE
+                    // this exists solely to support the old andOTP backup format
+                    // it is not a secure way to derive a key from a password
+                    MessageDigest hash = MessageDigest.getInstance("SHA-256");
+                    byte[] keyBytes = hash.digest(CryptoUtils.toBytes(password));
+                    key = new SecretKeySpec(keyBytes, "AES");
+                } else {
+                    offset = INT_SIZE + SALT_SIZE;
+
+                    byte[] iterBytes = Arrays.copyOfRange(_data, 0, INT_SIZE);
+                    int iterations = ByteBuffer.wrap(iterBytes).getInt();
+                    if (iterations < 1 || iterations > MAX_ITERATIONS) {
+                        throw new DatabaseImporterException(String.format("Invalid number of iterations for PBKDF: %d", iterations));
+                    }
+
+                    byte[] salt = Arrays.copyOfRange(_data, INT_SIZE, offset);
+                    SecretKeyFactory factory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA1");
+                    KeySpec spec = new PBEKeySpec(password, salt, iterations, KEY_SIZE);
+                    key = factory.generateSecret(spec);
+                }
 
                 // extract nonce and tag
-                byte[] nonce = Arrays.copyOfRange(_data, 0, CryptoUtils.CRYPTO_AEAD_NONCE_SIZE);
-                byte[] tag = Arrays.copyOfRange(_data, _data.length - CryptoUtils.CRYPTO_AEAD_TAG_SIZE, _data.length);
+                byte[] nonce = Arrays.copyOfRange(_data, offset, offset + NONCE_SIZE);
+                byte[] tag = Arrays.copyOfRange(_data, _data.length - TAG_SIZE, _data.length);
                 CryptParameters params = new CryptParameters(nonce, tag);
 
                 Cipher cipher = CryptoUtils.createDecryptCipher(key, nonce);
-                int offset = CryptoUtils.CRYPTO_AEAD_NONCE_SIZE;
-                int len = _data.length - CryptoUtils.CRYPTO_AEAD_NONCE_SIZE - CryptoUtils.CRYPTO_AEAD_TAG_SIZE;
-                CryptResult result = CryptoUtils.decrypt(_data, offset, len, cipher, params);
+                int len = _data.length - offset - NONCE_SIZE - TAG_SIZE;
+                CryptResult result = CryptoUtils.decrypt(_data, offset + NONCE_SIZE, len, cipher, params);
                 return read(result.getData());
             } catch (IOException | BadPaddingException | JSONException e) {
                 throw new DatabaseImporterException(e);
             } catch (NoSuchAlgorithmException
                     | InvalidAlgorithmParameterException
                     | InvalidKeyException
+                    | InvalidKeySpecException
                     | NoSuchPaddingException
                     | IllegalBlockSizeException e) {
                 throw new RuntimeException(e);
@@ -113,14 +146,26 @@ public class AndOtpImporter extends DatabaseImporter {
 
         @Override
         public void decrypt(Context context, DecryptListener listener) {
-            Dialogs.showPasswordInputDialog(context, password -> {
-                try {
-                    DecryptedState state = decrypt(password);
-                    listener.onStateDecrypted(state);
-                } catch (DatabaseImporterException e) {
-                    listener.onError(e);
-                }
-            });
+            String[] choices = new String[]{
+                    context.getResources().getString(R.string.andotp_new_format),
+                    context.getResources().getString(R.string.andotp_old_format)
+            };
+
+            Dialogs.showSecureDialog(new AlertDialog.Builder(context)
+                    .setTitle(R.string.choose_andotp_importer)
+                    .setSingleChoiceItems(choices, 0, null)
+                    .setPositiveButton(android.R.string.ok, (dialog, which) -> {
+                        int i = ((AlertDialog) dialog).getListView().getCheckedItemPosition();
+                        Dialogs.showPasswordInputDialog(context, password -> {
+                            try {
+                                DecryptedState state = decrypt(password, i != 0);
+                                listener.onStateDecrypted(state);
+                            } catch (DatabaseImporterException e) {
+                                listener.onError(e);
+                            }
+                        });
+                    })
+                    .create());
         }
     }
 
