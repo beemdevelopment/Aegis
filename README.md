@@ -97,9 +97,9 @@ Certificate fingerprints:
 ```
 
 ### Downloadable Icons
-
+**aegis-icons** by @krisu5
 [<img width=500 alt="Main Activity"
-src="https://raw.githubusercontent.com/krisu5/aegis-icons/master/showcase.png">](https://raw.githubusercontent.com/krisu5/aegis-icons/master/showcase.png)
+src="https://raw.githubusercontent.com/krisu5/aegis-icons/master/showcase.png">](https://github.com/krisu5/aegis-icons)
 
 ## Libraries
 
