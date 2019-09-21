@@ -100,7 +100,7 @@ Certificate fingerprints:
 
 - [aegis-icons](https://github.com/krisu5/aegis-icons) by krisu5
 
-[<img width=500 alt="Main Activity"
+[<img width=500 alt="Aegis-icons preview"
 src="https://raw.githubusercontent.com/krisu5/aegis-icons/master/showcase.png">](https://github.com/krisu5/aegis-icons)
 
 ## Libraries
