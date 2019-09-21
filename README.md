@@ -96,6 +96,11 @@ Certificate fingerprints:
    SHA256: C6:DB:80:A8:E1:4E:52:30:C1:DE:84:15:EF:82:0D:13:DC:90:1D:8F:E3:3C:F3:AC:B5:7B:68:62:D8:58:A8:23
 ```
 
+### Downloadable Icons
+
+[<img width=500 alt="Main Activity"
+src="https://raw.githubusercontent.com/krisu5/aegis-icons/master/showcase.png">](https://raw.githubusercontent.com/krisu5/aegis-icons/master/showcase.png)
+
 ## Libraries
 
 - [TextDrawable](https://github.com/amulyakhare/TextDrawable) by Amulya Khare
