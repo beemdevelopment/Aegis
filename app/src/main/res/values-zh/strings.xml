@@ -116,7 +116,7 @@
     <string name="reading_file_error">试图读取文件时出错</string>
     <string name="app_lookup_error">错误：应用未安装</string>
     <string name="root_error">错误：无法获得 root 权限</string>
-    <string name="imported_entries_count">导入 %!d 项条目</string>
+    <string name="imported_entries_count">导入 %d 项条目</string>
     <string name="read_entries_count">读取 %!d 项条目。 %!d 项错误。</string>
     <string name="import_error_title">导入时发生一个或多个错误</string>
     <string name="exporting_database_error">试图导出数据库时出错</string>

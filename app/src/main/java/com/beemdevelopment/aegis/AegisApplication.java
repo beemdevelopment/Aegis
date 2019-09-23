@@ -15,6 +15,8 @@ import android.os.Build;
 import com.beemdevelopment.aegis.db.DatabaseManager;
 import com.beemdevelopment.aegis.services.NotificationService;
 import com.beemdevelopment.aegis.ui.MainActivity;
+import com.mikepenz.iconics.Iconics;
+import com.mikepenz.material_design_iconic_typeface_library.MaterialDesignIconic;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -36,6 +38,9 @@ public class AegisApplication extends Application {
         _manager = new DatabaseManager(this);
         _prefs = new Preferences(this);
         _lockListeners = new ArrayList<>();
+
+        Iconics.init(this);
+        Iconics.registerFont(new MaterialDesignIconic());
 
         // listen for SCREEN_OFF events
         ScreenOffReceiver receiver = new ScreenOffReceiver();

@@ -192,6 +192,8 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
             case CODE_SCAN_IMAGE:
                 onScanImageResult(resultCode, data);
         }
+
+        super.onActivityResult(requestCode, resultCode, data);
     }
 
     @Override
@@ -503,11 +505,6 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         saveDatabase();
 
         _entryListView.removeEntry(oldEntry);
-    }
-
-    @Override
-    protected void attachBaseContext(Context newBase) {
-        super.attachBaseContext(IconicsContextWrapper.wrap(newBase));
     }
 
     @Override

@@ -10,17 +10,15 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.StringRes;
+import androidx.core.view.LayoutInflaterCompat;
+
 import com.beemdevelopment.aegis.BuildConfig;
 import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.Theme;
 import com.beemdevelopment.aegis.helpers.ThemeHelper;
 import com.beemdevelopment.aegis.ui.glide.GlideLicense;
-import com.mikepenz.iconics.Iconics;
 import com.mikepenz.iconics.context.IconicsLayoutInflater2;
-import com.mikepenz.material_design_iconic_typeface_library.MaterialDesignIconic;
-
-import androidx.annotation.StringRes;
-import androidx.core.view.LayoutInflaterCompat;
 
 import de.psdev.licensesdialog.LicenseResolver;
 import de.psdev.licensesdialog.LicensesDialog;
@@ -41,9 +39,6 @@ public class AboutActivity extends AegisActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about);
-
-        Iconics.init(getApplicationContext());
-        Iconics.registerFont(new MaterialDesignIconic());
 
         View btnLicenses = findViewById(R.id.btn_licenses);
         btnLicenses.setOnClickListener(v -> showLicenseDialog());
