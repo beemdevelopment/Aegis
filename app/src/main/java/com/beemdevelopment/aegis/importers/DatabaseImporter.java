@@ -38,6 +38,7 @@ public abstract class DatabaseImporter {
         _importers.put("FreeOTP+", FreeOtpPlusImporter.class);
         _importers.put("Google Authenticator", GoogleAuthImporter.class);
         _importers.put("Steam", SteamImporter.class);
+        _importers.put("WinAuth", WinAuthImporter.class);
 
         _appImporters = new LinkedHashMap<>();
         _appImporters.put("Authy", AuthyImporter.class);
