@@ -42,17 +42,22 @@ Aegis' security design and vault format is described in detail in [this document
 
 ## Screenshots
 
-[<img width=200 alt="Main Activity"
-src="metadata/en-US/images/phoneScreenshots/screenshot_main.png?raw=true">](metadata/en-US/images/phoneScreenshots/screenshot_main.png?raw=true)
-[<img width=200 alt="Settings Activity"
-src="metadata/en-US/images/phoneScreenshots/screenshot_settings.png?raw=true">](/metadata/en-US/images/phoneScreenshots/screenshot_settings.png?raw=true)
-[<img width=200 alt="Edit Activity"
-src="metadata/en-US/images/phoneScreenshots/screenshot_edit.png?raw=true">](/metadata/en-US/images/phoneScreenshots/screenshot_edit.png?raw=true)
+[<img width=200 alt="Screenshot 1"
+src="metadata/en-US/images/phoneScreenshots/screenshot1.png?raw=true">](metadata/en-US/images/phoneScreenshots/screenshot1.png?raw=true)
+[<img width=200 alt="Screenshot 2"
+src="metadata/en-US/images/phoneScreenshots/screenshot2.png?raw=true">](/metadata/en-US/images/phoneScreenshots/screenshot2.png?raw=true)
+[<img width=200 alt="Screenshot 3"
+src="metadata/en-US/images/phoneScreenshots/screenshot3.png?raw=true">](/metadata/en-US/images/phoneScreenshots/screenshot3.png?raw=true)
 
-[<img width=200 alt="Main Activity"
-src="metadata/en-US/images/phoneScreenshots/screenshot_main_group.png?raw=true">](metadata/en-US/images/phoneScreenshots/screenshot_main_group.png?raw=true)
-[<img width=200 alt="Main Activity"
-src="metadata/en-US/images/phoneScreenshots/screenshot_main_dark.png?raw=true">](metadata/en-US/images/phoneScreenshots/screenshot_main_dark.png?raw=true)
+[<img width=200 alt="Screenshot 4"
+src="metadata/en-US/images/phoneScreenshots/screenshot4.png?raw=true">](metadata/en-US/images/phoneScreenshots/screenshot4.png?raw=true)
+[<img width=200 alt="Screenshot 5"
+src="metadata/en-US/images/phoneScreenshots/screenshot5.png?raw=true">](metadata/en-US/images/phoneScreenshots/screenshot5.png?raw=true)
+[<img width=200 alt="Screenshot 6"
+src="metadata/en-US/images/phoneScreenshots/screenshot6.png?raw=true">](metadata/en-US/images/phoneScreenshots/screenshot6.png?raw=true)
+
+[<img width=200 alt="Screenshot 7"
+src="metadata/en-US/images/phoneScreenshots/screenshot7.png?raw=true">](metadata/en-US/images/phoneScreenshots/screenshot7.png?raw=true)
 
 ## Downloads
 
@@ -114,7 +119,3 @@ Certificate fingerprints:
 
 This project is licensed under the GNU General Public License v3.0. See the
 [LICENSE](LICENSE) file for details.
-
-## Attribution
-
-The icon is largely based on a design by Freepik from Flaticon.

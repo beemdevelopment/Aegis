@@ -34,6 +34,3 @@ databases so switching to Aegis is made easier for you.
 <b>Open source and license</b>
 Aegis Authenticator is open source (licensed under GPL v3) and the source code
 can be found here: http://github.com/beemdevelopment/Aegis
-
-<b>Attribution</b>
-The icon is largely based on a design by Freepik from Flaticon.
