@@ -2,7 +2,8 @@
 
 Aegis is a free, secure and open source 2FA app for Android.
 
-Aegis' security design and vault format is described in detail in [this document](docs/vault.md).
+Aegis' security design and vault format is described in detail in [this
+document](docs/vault.md).
 
 # Features
 
@@ -100,6 +101,16 @@ Certificate fingerprints:
    SHA1: 59:FB:63:B7:1F:CE:95:74:6C:EB:1E:1A:CB:2C:2E:45:E5:FF:13:50
    SHA256: C6:DB:80:A8:E1:4E:52:30:C1:DE:84:15:EF:82:0D:13:DC:90:1D:8F:E3:3C:F3:AC:B5:7B:68:62:D8:58:A8:23
 ```
+
+### Community
+
+- [aegis-icons](https://github.com/krisu5/aegis-icons)
+
+  While we're still working on better icon support in Aegis, krisu5 has started
+  a third-party repository for icons that you may want to check out.
+
+  [<img width=500 alt="Aegis-icons preview"
+  src="https://raw.githubusercontent.com/krisu5/aegis-icons/master/showcase.png">](https://github.com/krisu5/aegis-icons)
 
 ## Libraries
 
