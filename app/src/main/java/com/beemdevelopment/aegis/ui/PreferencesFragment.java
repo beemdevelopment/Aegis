@@ -116,7 +116,7 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
                             _result.putExtra("needsRecreate", true);
                             getActivity().recreate();
                         })
-                        .setPositiveButton(android.R.string.ok, null)
+                        .setNegativeButton(android.R.string.cancel, null)
                         .create());
 
                 return true;
@@ -147,7 +147,7 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
                             _result.putExtra("needsRefresh", true);
                             dialog.dismiss();
                         })
-                        .setPositiveButton(android.R.string.ok, null)
+                        .setNegativeButton(android.R.string.cancel, null)
                         .create());
 
                 return true;
