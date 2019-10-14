@@ -6,6 +6,9 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.amulyakhare.textdrawable.TextDrawable;
 import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.db.DatabaseEntry;
@@ -19,10 +22,10 @@ import com.beemdevelopment.aegis.otp.TotpInfo;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.RecyclerView;
-
 public class EntryHolder extends RecyclerView.ViewHolder {
+    private static final float DEFAULT_ALPHA = 1.0f;
+    private static final float DIMMED_ALPHA = 0.2f;
+
     private TextView _profileName;
     private TextView _profileCode;
     private TextView _profileIssuer;
@@ -74,7 +77,7 @@ public class EntryHolder extends RecyclerView.ViewHolder {
         _hiddenHandler = new Handler();
     }
 
-    public void setData(DatabaseEntry entry, boolean showAccountName, boolean showProgress, boolean hidden) {
+    public void setData(DatabaseEntry entry, boolean showAccountName, boolean showProgress, boolean hidden, boolean dimmed) {
         _entry = entry;
         _hidden = hidden;
 
@@ -98,6 +101,12 @@ public class EntryHolder extends RecyclerView.ViewHolder {
         } else {
             refreshCode();
         }
+
+        itemView.setAlpha(dimmed ? DIMMED_ALPHA : DEFAULT_ALPHA);
+    }
+
+    public DatabaseEntry getEntry() {
+        return _entry;
     }
 
     public void loadIcon(Fragment fragment) {
@@ -189,6 +198,18 @@ public class EntryHolder extends RecyclerView.ViewHolder {
         updateCode();
         _hiddenHandler.postDelayed(this::hideCode, _tapToRevealTime * 1000);
         _hidden = false;
+    }
+
+    public void dim() {
+        animateAlphaTo(DIMMED_ALPHA);
+    }
+
+    public void highlight() {
+        animateAlphaTo(DEFAULT_ALPHA);
+    }
+
+    private void animateAlphaTo(float alpha) {
+        itemView.animate().alpha(alpha).setDuration(200).start();
     }
 
     private void hideCode() {

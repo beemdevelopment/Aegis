@@ -51,6 +51,12 @@
             android:title="@string/pref_search_name_title"
             android:summary="@string/pref_search_name_summary"
             app:iconSpaceReserved="false"/>
+        <androidx.preference.SwitchPreferenceCompat
+            android:defaultValue="false"
+            android:key="pref_highlight_entry"
+            android:title="@string/pref_highlight_entry_title"
+            android:summary="@string/pref_highlight_entry_summary"
+            app:iconSpaceReserved="false"/>
     </PreferenceCategory>
 
     <PreferenceCategory
