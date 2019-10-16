@@ -7,26 +7,29 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
+import androidx.biometric.BiometricPrompt;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.crypto.KeyStoreHandle;
 import com.beemdevelopment.aegis.crypto.KeyStoreHandleException;
 import com.beemdevelopment.aegis.db.DatabaseFileCredentials;
-import com.beemdevelopment.aegis.db.slots.FingerprintSlot;
+import com.beemdevelopment.aegis.db.slots.BiometricSlot;
 import com.beemdevelopment.aegis.db.slots.PasswordSlot;
 import com.beemdevelopment.aegis.db.slots.Slot;
 import com.beemdevelopment.aegis.db.slots.SlotException;
 import com.beemdevelopment.aegis.db.slots.SlotList;
-import com.beemdevelopment.aegis.helpers.FingerprintHelper;
+import com.beemdevelopment.aegis.helpers.BiometricSlotInitializer;
+import com.beemdevelopment.aegis.helpers.BiometricsHelper;
 import com.beemdevelopment.aegis.ui.views.SlotAdapter;
 
 import javax.crypto.Cipher;
 
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AlertDialog;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
-public class SlotManagerActivity extends AegisActivity implements SlotAdapter.Listener, Dialogs.SlotListener {
+public class SlotManagerActivity extends AegisActivity implements SlotAdapter.Listener {
     private DatabaseFileCredentials _creds;
     private SlotAdapter _adapter;
 
@@ -42,14 +45,19 @@ public class SlotManagerActivity extends AegisActivity implements SlotAdapter.Li
         bar.setHomeAsUpIndicator(R.drawable.ic_close);
         bar.setDisplayHomeAsUpEnabled(true);
 
-        findViewById(R.id.button_add_fingerprint).setOnClickListener(view -> {
-            if (FingerprintHelper.isSupported() && FingerprintHelper.isAvailable(this)) {
-                Dialogs.showFingerprintDialog(this ,this);
+        findViewById(R.id.button_add_biometric).setOnClickListener(view -> {
+            if (BiometricsHelper.isAvailable(this)) {
+                BiometricSlotInitializer initializer = new BiometricSlotInitializer(SlotManagerActivity.this, new RegisterBiometricsListener());
+                BiometricPrompt.PromptInfo info = new BiometricPrompt.PromptInfo.Builder()
+                        .setTitle(getString(R.string.add_biometric_slot))
+                        .setNegativeButtonText(getString(android.R.string.cancel))
+                        .build();
+                initializer.authenticate(info);
             }
         });
 
         findViewById(R.id.button_add_password).setOnClickListener(view -> {
-            Dialogs.showSetPasswordDialog(this, this);
+            Dialogs.showSetPasswordDialog(this, new PasswordListener());
         });
 
         // set up the recycler view
@@ -66,17 +74,17 @@ public class SlotManagerActivity extends AegisActivity implements SlotAdapter.Li
             _adapter.addSlot(slot);
         }
 
-        updateFingerprintButton();
+        updateBiometricsButton();
     }
 
-    private void updateFingerprintButton() {
-        // only show the fingerprint option if we can get an instance of the fingerprint manager
+    private void updateBiometricsButton() {
+        // only show the biometrics option if we can get an instance of the biometrics manager
         // and if none of the slots in the collection has a matching alias in the keystore
         int visibility = View.VISIBLE;
-        if (FingerprintHelper.isSupported() && FingerprintHelper.isAvailable(this)) {
+        if (BiometricsHelper.isAvailable(this)) {
             try {
                 KeyStoreHandle keyStore = new KeyStoreHandle();
-                for (FingerprintSlot slot : _creds.getSlots().findAll(FingerprintSlot.class)) {
+                for (BiometricSlot slot : _creds.getSlots().findAll(BiometricSlot.class)) {
                     if (keyStore.containsKey(slot.getUUID().toString())) {
                         visibility = View.GONE;
                         break;
@@ -88,7 +96,7 @@ public class SlotManagerActivity extends AegisActivity implements SlotAdapter.Li
         } else {
             visibility = View.GONE;
         }
-        findViewById(R.id.button_add_fingerprint).setVisibility(visibility);
+        findViewById(R.id.button_add_biometric).setVisibility(visibility);
     }
 
     private void onSave() {
@@ -164,29 +172,60 @@ public class SlotManagerActivity extends AegisActivity implements SlotAdapter.Li
                     slots.remove(slot);
                     _adapter.removeSlot(slot);
                     _edited = true;
-                    updateFingerprintButton();
+                    updateBiometricsButton();
                 })
                 .setNegativeButton(android.R.string.no, null)
                 .create());
     }
 
-    @Override
-    public void onSlotResult(Slot slot, Cipher cipher) {
-        try {
-            slot.setKey(_creds.getKey(), cipher);
-        } catch (SlotException e) {
-            onException(e);
-            return;
-        }
-
+    private void addSlot(Slot slot) {
         _creds.getSlots().add(slot);
         _adapter.addSlot(slot);
         _edited = true;
-        updateFingerprintButton();
+        updateBiometricsButton();
     }
 
-    @Override
-    public void onException(Exception e) {
-        Toast.makeText(this, getString(R.string.adding_new_slot_error) + e.getMessage(), Toast.LENGTH_SHORT).show();
+    private void showSlotError(String error) {
+        Toast.makeText(SlotManagerActivity.this, getString(R.string.adding_new_slot_error) + error, Toast.LENGTH_SHORT).show();
+    }
+
+    private class RegisterBiometricsListener implements BiometricSlotInitializer.Listener {
+
+        @Override
+        public void onInitializeSlot(BiometricSlot slot, Cipher cipher) {
+            try {
+                slot.setKey(_creds.getKey(), cipher);
+                addSlot(slot);
+            } catch (SlotException e) {
+                onSlotInitializationFailed(0, e.toString());
+            }
+        }
+
+        @Override
+        public void onSlotInitializationFailed(int errorCode, @NonNull CharSequence errString) {
+            if (!BiometricsHelper.isCanceled(errorCode)) {
+                showSlotError(errString.toString());
+            }
+        }
+    }
+
+    private class PasswordListener implements Dialogs.SlotListener {
+
+        @Override
+        public void onSlotResult(Slot slot, Cipher cipher) {
+            try {
+                slot.setKey(_creds.getKey(), cipher);
+            } catch (SlotException e) {
+                onException(e);
+                return;
+            }
+
+            addSlot(slot);
+        }
+
+        @Override
+        public void onException(Exception e) {
+            showSlotError(e.toString());
+        }
     }
 }

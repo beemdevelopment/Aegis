@@ -36,22 +36,14 @@
     <string name="pref_auto_lock_summary">Автоматическая блокировка при закрытии приложения и блокировке устройства.</string>
     <string name="pref_encryption_title">Шифрование</string>
     <string name="pref_encryption_summary">Зашифруйте базу данных и разблокируйте ее с помощью пароля или отпечатка пальца</string>
-    <string name="pref_fingerprint_title">Отпечаток пальца</string>
-    <string name="pref_fingerprint_summary">Разрешить разблокировку хранилища при помощи отпечатков пальцев, зарегистрированных на этом устройстве</string>
     <string name="pref_set_password_title">Изменить пароль</string>
     <string name="pref_set_password_summary">Установите новый пароль, который вам понадобится, чтобы разблокировать ваше хранилище</string>
-
-    <string name="fingerprint_hint">Прикоснитесь к сенсору</string>
-    <string name="fingerprint_not_recognized">Отпечаток пальца не распознан. Попробуйте снова.</string>
-    <string name="fingerprint_success">Отпечаток пальца распознан</string>
 
     <string name="choose_authentication_method">Безопасность</string>
     <string name="authentication_method_none">Нет</string>
     <string name="authentication_method_none_description">Вам не нужен пароль для разблокировки хранилища, и оно не будет зашифровано. Этот вариант не рекомендуется.</string>
     <string name="authentication_method_password">Пароль</string>
     <string name="authentication_method_password_description">Вам нужен пароль, чтобы разблокировать хранилище.</string>
-    <string name="authentication_method_fingerprint">Отпечаток пальца</string>
-    <string name="authentication_method_fingerprint_description">В дополнение к паролю, для разблокировки хранилища можно использовать отпечатки пальцев, зарегистрированные на этом устройстве.</string>
     <string name="authentication_method_set_password">Пароль</string>
     <string name="authentication_enter_password">Введите свой пароль</string>
     <string name="authentication">Разблокировать хранилище</string>
@@ -59,7 +51,6 @@
     <string name="set_group">Пожалуйста, введите название группы</string>
     <string name="set_number">Пожалуйста, введите номер</string>
     <string name="set_password_confirm">Пожалуйста, подтвердите пароль</string>
-    <string name="invalidated_fingerprint">Обнаружено изменение настроек безопасности вашего устройства. Перейдите в «Настройки - Отпечаток пальца» и повторно добавьте свой отпечаток пальца.</string>
 
     <string name="unlock">Разблокировать</string>
     <string name="advanced">Расширенные</string>
@@ -70,7 +61,6 @@
     <string name="scan">Сканировать QR-код</string>
     <string name="scan_image">Сканировать изображение</string>
     <string name="enter_manually">Ввести вручную</string>
-    <string name="add_fingerprint">Добавить отпечаток</string>
     <string name="add_password">Добавить пароль</string>
     <string name="slots_warning">Хранилище надежно защищено. При добавлении нового отпечатка пальца на ваше устройство необходимо будет заново настроить разблокировку хранилища по отпечатку пальца в Aegis.</string>
     <string name="copy">Копировать</string>
@@ -83,7 +73,6 @@
     <string name="unlock_vault_error">Не удалось разблокировать хранилище</string>
     <string name="unlock_vault_error_description">Некорректный пароль. Убедитесь, что вы не допустили опечатку в вашем пароле.</string>
     <string name="password_equality_error">Пароли должны быть одинаковыми и непустыми</string>
-    <string name="register_fingerprint">Зарегистрируйте свой отпечаток пальца</string>
     <string name="snackbar_authentication_method">Пожалуйста, выберите метод аутентификации</string>
     <string name="encrypting_vault">Шифрование хранилища</string>
     <string name="delete_entry">Удалить запись</string>
@@ -122,7 +111,6 @@
     <string name="export_database_location">База данных была экспортирована в:</string>
     <string name="export_warning">Это действие экспортирует базу данных из приватного хранилища Aegis.</string>
     <string name="encryption_set_password_error">Произошла ошибка при попытке установить пароль:</string>
-    <string name="encryption_enable_fingerprint_error">Произошла ошибка при попытке разблокировать отпечаток пальца:</string>
     <string name="no_cameras_available">Нет доступных камер</string>
     <string name="read_qr_error">Произошла ошибка при попытке прочитать QR-код</string>
     <string name="authentication_method_raw">Необработанный</string>

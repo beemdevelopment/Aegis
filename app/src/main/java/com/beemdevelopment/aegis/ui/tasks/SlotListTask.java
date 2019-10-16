@@ -6,7 +6,7 @@ import android.content.Context;
 import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.crypto.CryptoUtils;
 import com.beemdevelopment.aegis.crypto.MasterKey;
-import com.beemdevelopment.aegis.db.slots.FingerprintSlot;
+import com.beemdevelopment.aegis.db.slots.BiometricSlot;
 import com.beemdevelopment.aegis.db.slots.PasswordSlot;
 import com.beemdevelopment.aegis.db.slots.Slot;
 import com.beemdevelopment.aegis.db.slots.SlotException;
@@ -38,8 +38,8 @@ public class SlotListTask<T extends Slot> extends ProgressDialogTask<SlotListTas
                 if (slot instanceof PasswordSlot) {
                     char[] password = (char[]) params.getObj();
                     return decryptPasswordSlot((PasswordSlot) slot, password);
-                } else if (slot instanceof FingerprintSlot) {
-                    return decryptFingerprintSlot((FingerprintSlot) slot, (Cipher) params.getObj());
+                } else if (slot instanceof BiometricSlot) {
+                    return decryptBiometricSlot((BiometricSlot) slot, (Cipher) params.getObj());
                 }
             } catch (SlotException e) {
                 throw new RuntimeException(e);
@@ -51,7 +51,7 @@ public class SlotListTask<T extends Slot> extends ProgressDialogTask<SlotListTas
         return null;
     }
 
-    private Result decryptFingerprintSlot(FingerprintSlot slot, Cipher cipher)
+    private Result decryptBiometricSlot(BiometricSlot slot, Cipher cipher)
             throws SlotException, SlotIntegrityException {
         MasterKey key = slot.getKey(cipher);
         return new Result(key, slot);

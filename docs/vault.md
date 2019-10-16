@@ -70,8 +70,8 @@ __master key__.
 
 Aegis supports unlocking a vault with multiple different credentials. The main
 credential is a key derived from a user-provided password. In addition to that,
-users can also add a key backed by the Android KeyStore (authorized by the scan
-of a fingerprint) as a credential.
+users can also add a key backed by the Android KeyStore (authorized by biometrics)
+as a credential.
 
 #### Slots
 
@@ -146,7 +146,7 @@ The different slot types are identified with a numerical ID.
 | Type        | ID   |
 | :---------- | :--- |
 | Raw         | 0x00 |
-| Fingerprint | 0x01 |
+| Biometric   | 0x01 |
 | Password    | 0x02 |
 
 ##### Raw
@@ -172,9 +172,9 @@ a unique randomly generated ``UUID`` (version 4).
 }
 ```
 
-##### Fingerprint
+##### Biometric
 
-The structure of the Fingerprint slot is exactly the same as the Raw slot. The
+The structure of the Biometric slot is exactly the same as the Raw slot. The
 difference is that the wrapper key is backed by the Android KeyStore, whereas
 Raw slots don't imply use of a particular storage type.
 

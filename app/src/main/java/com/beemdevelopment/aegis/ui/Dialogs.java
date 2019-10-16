@@ -4,8 +4,6 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.hardware.fingerprint.FingerprintManager;
-import android.os.Build;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.TextWatcher;
@@ -18,30 +16,21 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.NumberPicker;
-import android.widget.TextView;
+
+import androidx.annotation.StringRes;
+import androidx.appcompat.app.AlertDialog;
 
 import com.beemdevelopment.aegis.Preferences;
 import com.beemdevelopment.aegis.R;
-import com.beemdevelopment.aegis.crypto.KeyStoreHandle;
-import com.beemdevelopment.aegis.crypto.KeyStoreHandleException;
-import com.beemdevelopment.aegis.db.slots.FingerprintSlot;
 import com.beemdevelopment.aegis.db.slots.PasswordSlot;
 import com.beemdevelopment.aegis.db.slots.Slot;
 import com.beemdevelopment.aegis.db.slots.SlotException;
 import com.beemdevelopment.aegis.helpers.EditTextHelper;
-import com.beemdevelopment.aegis.helpers.FingerprintHelper;
-import com.beemdevelopment.aegis.helpers.FingerprintUiHelper;
 import com.beemdevelopment.aegis.ui.tasks.DerivationTask;
-import com.mattprecious.swirl.SwirlView;
 
 import java.util.concurrent.atomic.AtomicReference;
 
 import javax.crypto.Cipher;
-import javax.crypto.SecretKey;
-
-import androidx.annotation.RequiresApi;
-import androidx.annotation.StringRes;
-import androidx.appcompat.app.AlertDialog;
 
 public class Dialogs {
     private Dialogs() {
@@ -192,52 +181,6 @@ public class Dialogs {
                         listener.onNumberInputResult(numberPicker.getValue()))
                 .create();
 
-        showSecureDialog(dialog);
-    }
-
-    @RequiresApi(api = Build.VERSION_CODES.M)
-    public static void showFingerprintDialog(Activity activity, Dialogs.SlotListener listener) {
-        View view = activity.getLayoutInflater().inflate(R.layout.dialog_fingerprint, null);
-        TextView textFingerprint = view.findViewById(R.id.text_fingerprint);
-        SwirlView imgFingerprint = view.findViewById(R.id.img_fingerprint);
-
-        FingerprintManager.CryptoObject obj;
-        FingerprintSlot slot;
-        final AtomicReference<FingerprintUiHelper> helper = new AtomicReference<>();
-        FingerprintManager manager = FingerprintHelper.getManager(activity);
-
-        try {
-            slot = new FingerprintSlot();
-            SecretKey key = new KeyStoreHandle().generateKey(slot.getUUID().toString());
-            Cipher cipher = Slot.createEncryptCipher(key);
-            obj = new FingerprintManager.CryptoObject(cipher);
-        } catch (KeyStoreHandleException | SlotException e) {
-            throw new RuntimeException(e);
-        }
-
-        AlertDialog dialog = new AlertDialog.Builder(activity)
-                .setTitle(R.string.register_fingerprint)
-                .setView(view)
-                .setNegativeButton(android.R.string.cancel, null)
-                .setOnDismissListener(d -> {
-                    helper.get().stopListening();
-                })
-                .create();
-
-        helper.set(new FingerprintUiHelper(manager, imgFingerprint, textFingerprint, new FingerprintUiHelper.Callback() {
-            @Override
-            public void onAuthenticated() {
-                listener.onSlotResult(slot, obj.getCipher());
-                dialog.dismiss();
-            }
-
-            @Override
-            public void onError() {
-
-            }
-        }));
-
-        helper.get().startListening(obj);
         showSecureDialog(dialog);
     }
 

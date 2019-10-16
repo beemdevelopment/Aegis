@@ -3,7 +3,7 @@
     <string-array name="authentication_methods">
         <item>@string/authentication_method_none</item>
         <item>@string/authentication_method_password</item>
-        <item>@string/authentication_method_fingerprint</item>
+        <item>@string/authentication_method_biometrics</item>
     </string-array>
 
     <string-array name="otp_types_array">

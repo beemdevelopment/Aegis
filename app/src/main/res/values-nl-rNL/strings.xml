@@ -36,22 +36,14 @@
     <string name="pref_tap_to_reveal_time_title">Time-out voor drukken om te laten zien</string>
     <string name="pref_encryption_title">Encryptie</string>
     <string name="pref_encryption_summary">Encrypt de database en ontgrendel deze met een wachtwoord of vingerafdruk</string>
-    <string name="pref_fingerprint_title">Vingerafdruk</string>
-    <string name="pref_fingerprint_summary">Schakel in om met de op dit toestel geregistreerde vingerafdrukken de kluis te kunnen ontgrendelen</string>
     <string name="pref_set_password_title">Wachtwoord wijzigen</string>
     <string name="pref_set_password_summary">Stel een nieuw wachtwoord in waarmee je de kluis kunt ontgrendelen</string>
-
-    <string name="fingerprint_hint">Aanraaksensor</string>
-    <string name="fingerprint_not_recognized">Vingerafdruk niet herkend. Probeer opnieuw.</string>
-    <string name="fingerprint_success">Vingerafdruk herkend</string>
 
     <string name="choose_authentication_method">Beveiliging</string>
     <string name="authentication_method_none">Geen</string>
     <string name="authentication_method_none_description">Je hebt geen wachtwoord nodig om de kluis te ontgrendelen en de kluis zal niet worden geëncrypt. Deze optie wordt niet aanbevolen.</string>
     <string name="authentication_method_password">Wachtwoord</string>
     <string name="authentication_method_password_description">Je hebt een wachtwoord nodig om de kluis te ontgrendelen.</string>
-    <string name="authentication_method_fingerprint">Vingerafdruk</string>
-    <string name="authentication_method_fingerprint_description">Als toevoeging op een wachtwoord kan er ook gebruik gemaakt worden van de op dit toestel geregistreerde vingerafdrukken om de kluis te ontgrendelen.</string>
     <string name="authentication_method_set_password">Wachtwoord</string>
     <string name="authentication_enter_password">Vul je wachtwoord in</string>
     <string name="authentication">Kluis ontgrendelen</string>
@@ -59,7 +51,6 @@
     <string name="set_group">Vul een groepsnaam in</string>
     <string name="set_number">Kies een getal</string>
     <string name="set_password_confirm">Bevestig het wachtwoord</string>
-    <string name="invalidated_fingerprint">Er is een verandering in de beveiligingsinstellingen van je toestel gedetecteerd. Ga naar \"Instellingen -> Vingerafdruk\" om je vingerafdruk opnieuw toe te voegen.</string>
 
     <string name="unlock">Ontgrendel</string>
     <string name="advanced">Geavanceerd</string>
@@ -69,7 +60,6 @@
     <string name="secret">Sleutel</string>
     <string name="scan">Scan QR-code</string>
     <string name="enter_manually">Handmatig invoeren</string>
-    <string name="add_fingerprint">Vingerafdruk toevoegen</string>
     <string name="add_password">Wachtwoord toevoegen</string>
     <string name="slots_warning">De kluis is slechts even veilig als je zwakste wachtwoord. Wanneer een nieuw vingerafdruk is toegevoegd aan je toestel, moet authenticatie met vingerafdruk opnieuw worden geactiveerd binnen Aegis.</string>
     <string name="copy">Kopiëren</string>
@@ -82,7 +72,6 @@
     <string name="unlock_vault_error">Kluis kon niet worden ontgrendeld</string>
     <string name="unlock_vault_error_description">Wachtwoord onjuist. Controleer of je het wachtwoord correct hebt ingetypt.</string>
     <string name="password_equality_error">Wachtwoorden moeten overeen komen en mogen niet leeg zijn</string>
-    <string name="register_fingerprint">Registreer je vingerafdruk</string>
     <string name="snackbar_authentication_method">Kies een inlogmethode</string>
     <string name="encrypting_vault">De kluis wordt geëncrypt</string>
     <string name="delete_entry">Item verwijderen</string>
@@ -117,7 +106,6 @@
     <string name="export_database_location">De database is geëxporteerd naar:</string>
     <string name="export_warning">Deze actie zal de database uit de privé-opslag van Aegis exporteren.</string>
     <string name="encryption_set_password_error">Er is een fout opgetreden tijdens het instellen van het wachtwoord: </string>
-    <string name="encryption_enable_fingerprint_error">Er is een fout opgetreden tijdens het inschakelen van ontgrendeling met vingerafdruk: </string>
     <string name="no_cameras_available">Geen camera\'s beschikbaar</string>
     <string name="read_qr_error">Er is een fout opgetreden tijdens het lezen van de QR-code</string>
     <string name="authentication_method_raw">Onbewerkt</string>

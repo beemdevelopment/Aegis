@@ -11,7 +11,7 @@ document](docs/vault.md).
 - Secure
   - Encryption (AES-256)
     - Password (scrypt)
-    - Fingerprint (Android Keystore)
+    - Biometrics (Android Keystore)
   - Screen capture prevention
   - Tap to reveal ability
 - Multiple ways to add new entries
@@ -120,7 +120,6 @@ Certificate fingerprints:
 - [AppIntro](https://github.com/AppIntro/AppIntro) by Paolo Rotolo
 - [Krop](https://github.com/avito-tech/krop) by Avito Technology
 - [SpongyCastle](https://github.com/rtyley/spongycastle) by Roberto Tyley
-- [Swirl](https://github.com/mattprecious/swirl) by Matthew Precious
 - [CircleImageView](https://github.com/hdodenhof/CircleImageView) by Henning
   Dodenhof
 - [barcodescanner](https://github.com/dm77/barcodescanner) by Dushyanth

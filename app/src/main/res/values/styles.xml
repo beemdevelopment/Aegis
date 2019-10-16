@@ -11,8 +11,6 @@
     </style>
 
     <style name="Theme.Intro" parent="Theme.AppCompat.NoActionBar">
-        <item name="swirl_ridgeColor">@color/primary_text_inverted</item>
-        <item name="swirl_errorColor">@color/colorSwirlError</item>
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:windowIsTranslucent">true</item>
     </style>
@@ -34,9 +32,6 @@
 
         <item name="iconColorPrimary">@color/icon_primary</item>
         <item name="iconColorInverted">@color/icon_primary_inverted</item>
-
-        <item name="swirl_ridgeColor">@color/colorSwirlPrimary</item>
-        <item name="swirl_errorColor">@color/colorSwirlError</item>
 
         <item name="actionModeStyle">@style/ActionModeStyle</item>
         <item name="actionBarTheme">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item>
@@ -103,9 +98,6 @@
 
         <item name="iconColorPrimary">@color/icon_primary_dark</item>
         <item name="iconColorInverted">@color/icon_primary_dark_inverted</item>
-
-        <item name="swirl_ridgeColor">@color/colorSwirlPrimaryDark</item>
-        <item name="swirl_errorColor">@color/colorSwirlErrorDark</item>
 
         <item name="actionModeStyle">@style/ActionModeStyle.Dark</item>
         <item name="alertDialogTheme">@style/DialogStyle.Dark</item>

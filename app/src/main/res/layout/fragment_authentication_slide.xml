@@ -60,22 +60,22 @@
                 android:textColor="@color/secondary_text_inverted" />
 
             <RadioButton
-                android:id="@+id/rb_fingerprint"
+                android:id="@+id/rb_biometrics"
                 android:enabled="false"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/authentication_method_fingerprint"
+                android:text="@string/authentication_method_biometrics"
                 android:textSize="16sp" />
 
             <TextView
-                android:id="@+id/text_rb_fingerprint"
+                android:id="@+id/text_rb_biometrics"
                 android:enabled="false"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="-5dp"
 
-                android:text="@string/authentication_method_fingerprint_description"
+                android:text="@string/authentication_method_biometrics_description"
                 android:textColor="@color/disabled_textview_colors" />
 
         </RadioGroup>

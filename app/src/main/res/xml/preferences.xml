@@ -103,9 +103,9 @@
             app:iconSpaceReserved="false"/>
 
         <com.beemdevelopment.aegis.ui.preferences.SwitchPreference
-            android:key="pref_fingerprint"
-            android:title="@string/pref_fingerprint_title"
-            android:summary="@string/pref_fingerprint_summary"
+            android:key="pref_biometrics"
+            android:title="@string/pref_biometrics_title"
+            android:summary="@string/pref_biometrics_summary"
             android:persistent="false"
             app:iconSpaceReserved="false"/>
 

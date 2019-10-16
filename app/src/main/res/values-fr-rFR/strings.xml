@@ -41,22 +41,14 @@
     <string name="pref_auto_lock_summary">Verrouiller automatiquement lorsque vous fermez l\'application ou verrouillez votre appareil.</string>
     <string name="pref_encryption_title">Chiffrement</string>
     <string name="pref_encryption_summary">Chiffrer la base de données et la déverrouiller avec un mot de passe ou une empreinte digitale</string>
-    <string name="pref_fingerprint_title">Empreinte digitale</string>
-    <string name="pref_fingerprint_summary">Autoriser les empreintes digitales enregistrées sur cet appareil à déverrouiller le coffre-fort</string>
     <string name="pref_set_password_title">Changer le mot de passe</string>
     <string name="pref_set_password_summary">Définir un mot de passe dont vous aurez besoin pour déverrouiller votre coffre-fort</string>
-
-    <string name="fingerprint_hint">Appuyez sur le capteur</string>
-    <string name="fingerprint_not_recognized">Empreinte digitale non reconnue. Réessayez.</string>
-    <string name="fingerprint_success">Empreinte digitale reconnue</string>
 
     <string name="choose_authentication_method">Sécurité</string>
     <string name="authentication_method_none">Aucun</string>
     <string name="authentication_method_none_description">Vous n\'avez pas besoin d\'un mot de passe pour déverrouiller le coffre-fort et il ne sera pas chiffré. Cette option n\'est pas recommandée.</string>
     <string name="authentication_method_password">Mot de passe</string>
     <string name="authentication_method_password_description">Vous avez besoin d\'un mot de passe pour déverrouiller le coffre-fort.</string>
-    <string name="authentication_method_fingerprint">Empreinte digitale</string>
-    <string name="authentication_method_fingerprint_description">En plus d\'un mot de passe, les empreintes digitales enregistrées sur cet appareil peuvent être utilisées pour déverrouiller le coffre-fort.</string>
     <string name="authentication_method_set_password">Mot de passe</string>
     <string name="authentication_enter_password">Saisissez votre mot de passe</string>
     <string name="authentication">Déverrouiller le coffre-fort</string>
@@ -64,7 +56,6 @@
     <string name="set_group">Veuillez saisir un nom de groupe</string>
     <string name="set_number">Veuillez saisir un nombre</string>
     <string name="set_password_confirm">Veuillez confirmer le mot de passe</string>
-    <string name="invalidated_fingerprint">Un changement dans les paramètres de sécurité de votre appareil a été détecté. Veuillez aller dans \"Aegis -> Paramètres -> Empreinte digitale\" et ajouter à nouveau votre empreinte digitale.</string>
 
     <string name="unlock">Déverrouiller</string>
     <string name="advanced">Avancé</string>
@@ -75,7 +66,6 @@
     <string name="scan">Scanner code QR</string>
     <string name="scan_image">Scanner image</string>
     <string name="enter_manually">Saisir manuellement</string>
-    <string name="add_fingerprint">Ajouter une empreinte digitale</string>
     <string name="add_password">Ajouter un mot de passe</string>
     <string name="slots_warning">Le coffre-fort est seulement aussi sécurisé que votre code secret le plus faible. Quand une nouvelle empreinte digitale est ajoutée à votre appareil, vous devrez réactiver l\'authentification par empreinte digitale dans Aegis.</string>
     <string name="copy">Copier</string>
@@ -88,7 +78,6 @@
     <string name="unlock_vault_error">Impossible de déverrouiller le coffre-fort</string>
     <string name="unlock_vault_error_description">Mot de passe incorrect. Assurez-vous de ne pas avoir fait de faute de frappe lors de la saisie de votre mot de passe.</string>
     <string name="password_equality_error">Les mots de passe doivent être identiques et non vides</string>
-    <string name="register_fingerprint">Enregistrer votre empreinte digitale</string>
     <string name="snackbar_authentication_method">Veuillez sélectionner une méthode d\'authentification</string>
     <string name="encrypting_vault">Chiffrement du coffre-fort</string>
     <string name="delete_entry">Supprimer entrée</string>
@@ -127,7 +116,6 @@
     <string name="export_database_location">La base de données a été exportée vers :</string>
     <string name="export_warning">Cette action va exporter la base de données en dehors du stockage privé d\'Aegis.</string>
     <string name="encryption_set_password_error">Une erreur est survenue en essayant de définir le mot de passe : </string>
-    <string name="encryption_enable_fingerprint_error">Une erreur est survenue en essayant d\'activer le déverrouillage par empreinte digitale : </string>
     <string name="no_cameras_available">Aucun appareil photo disponible</string>
     <string name="read_qr_error">Une erreur est survenue en essayant de lire le code QR</string>
     <string name="authentication_method_raw">Brut</string>
