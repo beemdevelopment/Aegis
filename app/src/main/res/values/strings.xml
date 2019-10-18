@@ -217,4 +217,7 @@
     </string>
     <string name="empty_list">There are no codes to be shown. Start adding entries by tapping the plus sign in the bottom right corner</string>
     <string name="empty_list_title">No entries found</string>
+    <string name="manage_key_slots">Manage key slots</string>
+    <string name="this_device">(this_device)</string>
+    <string name="keep_the_database_encrypted">Keep the database encrypted</string>
 </resources>

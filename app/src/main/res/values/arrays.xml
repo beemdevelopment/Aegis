@@ -31,7 +31,7 @@
     </string-array>
 
     <string-array name="pref_lang_entries">
-        <item>System default</item>
+        <item>系统默认</item>
         <item>Dutch</item>
         <item>English</item>
         <item>French</item>

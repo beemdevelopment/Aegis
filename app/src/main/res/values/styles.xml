@@ -13,8 +13,8 @@
     <style name="Theme.Intro" parent="Theme.AppCompat.NoActionBar">
         <item name="swirl_ridgeColor">@color/primary_text_inverted</item>
         <item name="swirl_errorColor">@color/colorSwirlError</item>
-        <item name="android:windowBackground">@android:color/transparent</item>
-        <item name="android:windowIsTranslucent">true</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
     </style>
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />

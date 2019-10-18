@@ -73,7 +73,7 @@
     <string name="enter_manually">手动输入</string>
     <string name="add_fingerprint">添加指纹</string>
     <string name="add_password">添加密码</string>
-    <string name="slots_warning">数据库与您最薄弱的秘密一样安全。向设备添加新指纹时，您需要在 Aegis 中重新激活指纹身份验证。</string>
+    <string name="slots_warning">数据库与您最薄弱的秘密那样安全。向设备添加新指纹时，您需要在 Aegis 中重新激活指纹身份验证。</string>
     <string name="copy">复制</string>
     <string name="edit">编辑</string>
     <string name="delete">删除</string>
@@ -150,7 +150,7 @@
     <string name="new_group">新群组…</string>
     <string name="enter_group_name">输入组名</string>
     <string name="group_name_hint">群组名称</string>
-    <string name="preference_manage_groups">编辑群体</string>
+    <string name="preference_manage_groups">编辑群组</string>
     <string name="preference_manage_groups_summary">管理和删除您的群组</string>
     <string name="tap_to_reveal">隐藏</string>
     <string name="selected">选择</string>
@@ -190,4 +190,12 @@
     <string name="email">电子邮件</string>
     <string name="empty_list">没有要显示的代码。点击右下角的加号开始添加条目</string>
     <string name="empty_list_title">未找到条目</string>
+    <string name="pref_search_name_title">搜索账户名称</string>
+    <string name="pref_search_name_summary">在搜索结果中包含帐户名称匹配项</string>
+    <string name="pref_highlight_entry_title">点击时突出显示令牌</string>
+    <string name="pref_highlight_entry_summary">通过在点击时暂时突出显示令牌，使令牌更易于彼此区分</string>
+    <string name="pref_general_group_title">一般</string>
+    <string name="manage_key_slots">管理密钥槽</string>
+    <string name="this_device">(本机)</string>
+    <string name="keep_the_database_encrypted">保持数据库加密</string>
 </resources>

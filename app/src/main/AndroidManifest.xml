@@ -59,10 +59,10 @@
         <activity android:name=".ui.PreferencesActivity" />
         <activity
             android:name=".ui.SlotManagerActivity"
-            android:label="Manage key slots" />
+            android:label="@string/manage_key_slots" />
         <activity
             android:name=".ui.GroupManagerActivity"
-            android:label="Manage groups" />
+            android:label="@string/preference_manage_groups" />
 
         <service android:name=".services.NotificationService" />
     </application>

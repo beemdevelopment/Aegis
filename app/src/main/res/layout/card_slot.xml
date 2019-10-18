@@ -34,13 +34,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Slot name"
                 android:id="@+id/text_slot_name"
                 android:textColor="?android:attr/textColorPrimary"/>
 
             <TextView
                 android:id="@+id/text_slot_used"
-                android:text="(this device)"
+                android:text="@string/this_device"
                 android:visibility="gone"
                 android:layout_marginStart="5dp"
                 android:layout_width="wrap_content"
