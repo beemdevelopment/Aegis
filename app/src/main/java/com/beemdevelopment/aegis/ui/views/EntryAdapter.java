@@ -27,7 +27,7 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
     private List<DatabaseEntry> _entries;
     private List<DatabaseEntry> _shownEntries;
     private DatabaseEntry _selectedEntry;
-    private DatabaseEntry _highlightedEntry;
+    private DatabaseEntry _focusedEntry;
     private boolean _showAccountName;
     private boolean _searchAccountName;
     private boolean _highlightEntry;
@@ -304,10 +304,10 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
         DatabaseEntry entry = _shownEntries.get(position);
         holder.setFocused(entry == _selectedEntry);
 
-        boolean dimmed = _highlightedEntry != null && _highlightedEntry != entry;
+        boolean hidden = _tapToReveal && entry != _focusedEntry;
+        boolean dimmed = _highlightEntry && _focusedEntry != null && _focusedEntry != entry;
         boolean showProgress = !isPeriodUniform() && entry.getInfo() instanceof TotpInfo;
-        holder.setData(entry, _showAccountName, showProgress, _tapToReveal, dimmed);
-        holder.setTapToRevealTime(_tapToRevealTime);
+        holder.setData(entry, _showAccountName, showProgress, hidden, dimmed);
         holder.loadIcon(_view);
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -316,16 +316,12 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
                 boolean handled = false;
 
                 if (_selectedEntry == null) {
-                    if (_tapToReveal && holder.isCodeHidden()) {
-                        holder.revealCode();
-                    }
-
-                    if (_highlightEntry) {
-                        if (_highlightedEntry == entry) {
-                            resetHighlight();
+                    if (_highlightEntry || _tapToReveal) {
+                        if (_focusedEntry == entry) {
+                            resetFocus();
                             handled = true;
                         } else {
-                            highlightEntry(entry);
+                            focusEntry(entry);
                         }
                     }
                 }
@@ -410,34 +406,49 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
         return period;
     }
 
-    private void highlightEntry(DatabaseEntry entry) {
-        _highlightedEntry = entry;
+    private void focusEntry(DatabaseEntry entry) {
+        _focusedEntry = entry;
         _dimHandler.removeCallbacksAndMessages(null);
 
         for (EntryHolder holder : _holders) {
-            if (holder.getEntry() != _highlightedEntry) {
-                holder.dim();
+            if (holder.getEntry() != _focusedEntry) {
+                if (_highlightEntry) {
+                    holder.dim();
+                }
+                if (_tapToReveal) {
+                    holder.hideCode();
+                }
             } else {
-                holder.highlight();
+                if (_highlightEntry) {
+                    holder.highlight();
+                }
+                if (_tapToReveal) {
+                    holder.revealCode();
+                }
             }
         }
 
-        _dimHandler.postDelayed(this::resetHighlight, _tapToRevealTime * 1000);
+        _dimHandler.postDelayed(this::resetFocus, _tapToRevealTime * 1000);
     }
 
-    private void resetHighlight() {
-        _highlightedEntry = null;
-
+    private void resetFocus() {
         for (EntryHolder holder : _holders) {
-            holder.highlight();
+            if (_highlightEntry) {
+                holder.highlight();
+            }
+            if (_tapToReveal) {
+                holder.hideCode();
+            }
         }
+
+        _focusedEntry = null;
     }
 
     public void setSelectedEntry(DatabaseEntry entry) {
         if (entry == null) {
             notifyItemChanged(_shownEntries.indexOf(_selectedEntry));
         } else if (_highlightEntry) {
-            resetHighlight();
+            resetFocus();
         }
 
         _selectedEntry = entry;

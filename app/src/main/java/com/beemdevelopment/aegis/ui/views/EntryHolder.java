@@ -1,7 +1,6 @@
 package com.beemdevelopment.aegis.ui.views;
 
 import android.graphics.PorterDuff;
-import android.os.Handler;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -34,13 +33,11 @@ public class EntryHolder extends RecyclerView.ViewHolder {
     private ImageView _buttonRefresh;
 
     private boolean _hidden;
-    private int _tapToRevealTime;
 
     private PeriodProgressBar _progressBar;
     private View _view;
 
     private UiRefresher _refresher;
-    private Handler _hiddenHandler;
 
     public EntryHolder(final View view) {
         super(view);
@@ -61,7 +58,7 @@ public class EntryHolder extends RecyclerView.ViewHolder {
         _refresher = new UiRefresher(new UiRefresher.Listener() {
             @Override
             public void onRefresh() {
-                if (!isCodeHidden()) {
+                if (_hidden) {
                     refreshCode();
                 }
 
@@ -73,8 +70,6 @@ public class EntryHolder extends RecyclerView.ViewHolder {
                 return ((TotpInfo)_entry.getInfo()).getMillisTillNextRotation();
             }
         });
-
-        _hiddenHandler = new Handler();
     }
 
     public void setData(DatabaseEntry entry, boolean showAccountName, boolean showProgress, boolean hidden, boolean dimmed) {
@@ -92,9 +87,6 @@ public class EntryHolder extends RecyclerView.ViewHolder {
         if (showAccountName) {
             _profileName.setText(" - " + entry.getName());
         }
-
-        // cancel any scheduled hideCode calls
-        _hiddenHandler.removeCallbacksAndMessages(null);
 
         if (_hidden) {
             hideCode();
@@ -125,10 +117,6 @@ public class EntryHolder extends RecyclerView.ViewHolder {
 
     public ImageView getIconView() {
         return _profileDrawable;
-    }
-
-    public void setTapToRevealTime(int number) {
-        _tapToRevealTime = number;
     }
 
     public void setOnRefreshClickListener(View.OnClickListener listener) {
@@ -171,7 +159,7 @@ public class EntryHolder extends RecyclerView.ViewHolder {
     }
 
     public void refreshCode() {
-        if (!isCodeHidden()) {
+        if (!_hidden) {
             updateCode();
         }
     }
@@ -196,8 +184,12 @@ public class EntryHolder extends RecyclerView.ViewHolder {
 
     public void revealCode() {
         updateCode();
-        _hiddenHandler.postDelayed(this::hideCode, _tapToRevealTime * 1000);
         _hidden = false;
+    }
+
+    public void hideCode() {
+        _profileCode.setText(R.string.tap_to_reveal);
+        _hidden = true;
     }
 
     public void dim() {
@@ -210,14 +202,5 @@ public class EntryHolder extends RecyclerView.ViewHolder {
 
     private void animateAlphaTo(float alpha) {
         itemView.animate().alpha(alpha).setDuration(200).start();
-    }
-
-    private void hideCode() {
-        _profileCode.setText(R.string.tap_to_reveal);
-        _hidden = true;
-    }
-
-    public boolean isCodeHidden() {
-        return _hidden;
     }
 }
