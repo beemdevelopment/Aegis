@@ -2,7 +2,9 @@
     <string name="app_name">Aegis</string>
     <string name="app_name_full">Aegis Authenticator</string>
     <string name="app_name_dev">AegisDev</string>
+    <string name="org_name_full" translatable="false">Beem Development</string>
     <string name="action_settings">Einstellungen</string>
+    <string name="action_about">Über</string>
     <string name="action_import">Importieren</string>
     <string name="action_delete">Löschen</string>
     <string name="action_default_icon">Standard-Symbol wiederherstellen</string>
@@ -12,6 +14,7 @@
 
     <string name="settings">Einstellungen</string>
     <string name="pref_appearance_group_title">Aussehen</string>
+    <string name="pref_general_group_title">Allgemein</string>
     <string name="pref_security_group_title">Sicherheit</string>
     <string name="pref_tools_group_title">Hilfsmittel</string>
     <string name="pref_select_theme_title">Thema</string>
@@ -102,6 +105,7 @@
     <string name="vault_not_found">Tresor nicht gefunden, Starten der Einrichtung…</string>
     <string name="code_copied">Code in die Zwischenablage kopiert</string>
     <string name="errors_copied">Fehlermeldungen in die Zwischenablage kopiert</string>
+    <string name="version_copied">Version in die Zwischenablage kopiert</string>
     <string name="decryption_error">Beim Versuch, den Tresor zu entsperren, ist ein Fehler aufgetreten.</string>
     <string name="saving_error">Beim Versuch, den Tresor zu speichern, ist ein Fehler aufgetreten.</string>
     <string name="disable_encryption">Verschlüsselung deaktivieren</string>
@@ -109,6 +113,9 @@
     <string name="enable_encryption_error">Bei der Aktivierung der Verschlüsselung ist ein Fehler aufgetreten.</string>
     <string name="disable_encryption_error">Bei der Deaktivierung der Verschlüsselung ist ein Fehler aufgetreten.</string>
     <string name="permission_denied">Zugriff verweigert</string>
+    <string name="andotp_new_format">Neues Format (v0.6.3 oder neuer) </string>
+    <string name="andotp_old_format">Altes Format (v0.6.2 oder älter) </string>
+    <string name="choose_andotp_importer">Welches Format hat die Sicherungsdatei von andOTP?</string>
     <string name="choose_application">Wähle die Anwendung aus, aus der du eine Datenbank importieren möchtest.</string>
     <string name="choose_theme">Wähle das gewünschte Thema aus</string>
     <string name="choose_view_mode">Wähle den gewünschten Ansichtsmodus aus</string>
@@ -139,6 +146,7 @@
     <string name="progressbar_error">Die Skala der Animationsdauer kann nicht zurückgesetzt werden. Fortschrittsbalken werden unsichtbar sein.</string>
     <string name="details">Details</string>
     <string name="filter">Filter</string>
+    <string name="filter_ungrouped">Filter nicht gruppiert</string>
     <string name="lock">Sperren</string>
     <string name="all">Alle</string>
     <string name="name">Name</string>
@@ -153,6 +161,10 @@
     <string name="group_name_hint">Gruppenname</string>
     <string name="preference_manage_groups">Gruppen bearbeiten</string>
     <string name="preference_manage_groups_summary">Verwalte und lösche deine Gruppen hier</string>
+    <string name="pref_search_name_title">Suche in Kontonamen</string>
+    <string name="pref_search_name_summary">Kontonamen in die Suchergebnisse einbeziehen</string>
+    <string name="pref_highlight_entry_title">Schlüssel beim drücken hervorheben</string>
+    <string name="pref_highlight_entry_summary">Macht es einfacher Schlüssel voneinander zu unterscheiden, in dem sie beim drücken temporär hervorgehoben werden</string>
     <string name="tap_to_reveal">Versteckt</string>
     <string name="selected">Ausgewählt</string>
     <string name="dark_theme_title">Dunkles Thema</string>
@@ -171,4 +183,38 @@
     <string name="channel_name_lock_status">Sperrstatus</string>
     <string name="channel_description_lock_status">Aegis kann eine dauerhafte Benachrichtigung erstellen, um dich zu benachrichtigen, wenn der Tresor gesperrt ist.</string>
     <string name="vault_unlocked_state">Der Tresor ist freigeschaltet. Hier tippen, um zu sperren.</string>
+    <string name="title_activity_about">Über</string>
+    <string name="version">Version</string>
+    <string name="changelog">Änderungen</string>
+    <string name="whats_new">Was ist neu</string>
+    <string name="github" translatable="false">GitHub</string>
+    <string name="github_description">Quelltext, Probleme und Informationen</string>
+    <string name="licenses">Lizenzen</string>
+    <string name="licenses_description">Lizenzen der Bibiliotheken die Aegis nutzt</string>
+    <string name="author_alex" translatable="false">Alexander Bakker</string>
+    <string name="country_netherlands">Niederlande</string>
+    <string name="author_michael" translatable="false">Michael Schättgen</string>
+    <string name="email_us">E-Mail schreiben</string>
+    <string name="visit_website">Besuche unsere Webseite</string>
+    <string name="about_support">Support</string>
+    <string name="support_rate">Bewerten</string>
+    <string name="support_rate_description">Unterstütze uns in dem Du im Google Play Store eine Bewertung hinterlässt</string>
+    <string name="webview_error">Dieses Gerät unterstützt kein Webview, welches zum Ansehen der Änderungsbeschreibung erforderlich ist. Die Systemkomponente ist nicht vorhanden.</string>
+    <string name="email">E-Mail</string>
+
+    <string name="custom_notices_format_style" translatable="false" >
+        body {
+            background-color: #%1$s;
+            color: #%2$s;
+            font-family: sans-serif;
+            overflow-wrap: break-word;
+        }
+        pre {
+            background-color: #%3$s;
+            padding: 1em;
+            white-space: pre-wrap;
+        }
+    </string>
+    <string name="empty_list">Es gibt keine Codes zum anzeigen. Beginne damit Einträge durch das drücken des Plus in der unteren rechten Ecke hinzuzufügen.</string>
+    <string name="empty_list_title">Keine Einträge gefunden</string>
 </resources>
