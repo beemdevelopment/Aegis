@@ -9,10 +9,13 @@ import android.os.Build;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.TextWatcher;
+import android.text.method.PasswordTransformationMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.NumberPicker;
 import android.widget.TextView;
@@ -78,6 +81,18 @@ public class Dialogs {
         View view = activity.getLayoutInflater().inflate(R.layout.dialog_password, null);
         EditText textPassword = view.findViewById(R.id.text_password);
         EditText textPasswordConfirm = view.findViewById(R.id.text_password_confirm);
+        CheckBox switchToggleVisibility = view.findViewById(R.id.check_toggle_visibility);
+
+        switchToggleVisibility.setOnCheckedChangeListener((CompoundButton.OnCheckedChangeListener) (buttonView, isChecked) -> {
+            if (isChecked) {
+                textPassword.setTransformationMethod(null);
+                textPassword.clearFocus();
+                textPasswordConfirm.setEnabled(false);
+            } else {
+                textPassword.setTransformationMethod(new PasswordTransformationMethod());
+                textPasswordConfirm.setEnabled(true);
+            }
+        });
 
         AlertDialog dialog = new AlertDialog.Builder(activity)
                 .setTitle(R.string.set_password)
@@ -94,7 +109,7 @@ public class Dialogs {
 
             // replace the default listener
             button.setOnClickListener(v -> {
-                if (!EditTextHelper.areEditTextsEqual(textPassword, textPasswordConfirm)) {
+                if (!EditTextHelper.areEditTextsEqual(textPassword, textPasswordConfirm) && !switchToggleVisibility.isChecked()) {
                     return;
                 }
 
@@ -119,7 +134,7 @@ public class Dialogs {
         TextWatcher watcher = new TextWatcher() {
             public void onTextChanged(CharSequence c, int start, int before, int count) {
                 boolean equal = EditTextHelper.areEditTextsEqual(textPassword, textPasswordConfirm);
-                buttonOK.get().setEnabled(equal);
+                buttonOK.get().setEnabled(equal || switchToggleVisibility.isChecked());
             }
 
             public void beforeTextChanged(CharSequence c, int start, int count, int after) {

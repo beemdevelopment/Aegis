@@ -83,6 +83,7 @@
     <string name="delete">Delete</string>
     <string name="password">Password</string>
     <string name="confirm_password">Confirm password</string>
+    <string name="show_password">Show password</string>
     <string name="new_profile">New profile</string>
     <string name="add_new_profile">Add new profile</string>
     <string name="unlock_vault_error">Couldn\'t unlock vault</string>

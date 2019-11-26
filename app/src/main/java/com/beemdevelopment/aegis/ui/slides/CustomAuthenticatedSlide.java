@@ -6,9 +6,12 @@ import android.content.Intent;
 import android.hardware.fingerprint.FingerprintManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.method.PasswordTransformationMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -34,6 +37,7 @@ public class CustomAuthenticatedSlide extends Fragment implements FingerprintUiH
     private int _cryptType;
     private EditText _textPassword;
     private EditText _textPasswordConfirm;
+    private CheckBox _checkPasswordVisibility;
     private int _bgColor;
 
     private LinearLayout _boxFingerprint;
@@ -50,6 +54,7 @@ public class CustomAuthenticatedSlide extends Fragment implements FingerprintUiH
         final View view = inflater.inflate(R.layout.fragment_authenticated_slide, container, false);
         _textPassword = view.findViewById(R.id.text_password);
         _textPasswordConfirm = view.findViewById(R.id.text_password_confirm);
+        _checkPasswordVisibility = view.findViewById(R.id.check_toggle_visibility);
         _boxFingerprint = view.findViewById(R.id.box_fingerprint);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -57,6 +62,17 @@ public class CustomAuthenticatedSlide extends Fragment implements FingerprintUiH
             _imgFingerprint = new SwirlView(getContext());
             insertPoint.addView(_imgFingerprint, 0, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
         }
+
+        _checkPasswordVisibility.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if (isChecked) {
+                _textPassword.setTransformationMethod(null);
+                _textPassword.clearFocus();
+                _textPasswordConfirm.setEnabled(false);
+            } else {
+                _textPassword.setTransformationMethod(new PasswordTransformationMethod());
+                _textPasswordConfirm.setEnabled(true);
+            }
+        });
 
         _textFingerprint = view.findViewById(R.id.text_fingerprint);
         view.findViewById(R.id.main).setBackgroundColor(_bgColor);
@@ -147,7 +163,11 @@ public class CustomAuthenticatedSlide extends Fragment implements FingerprintUiH
                 }
                 // intentional fallthrough
             case CustomAuthenticationSlide.CRYPT_TYPE_PASS:
-                return EditTextHelper.areEditTextsEqual(_textPassword, _textPasswordConfirm);
+                if (EditTextHelper.getEditTextChars(_textPassword).length > 0) {
+                    return EditTextHelper.areEditTextsEqual(_textPassword, _textPasswordConfirm) || _checkPasswordVisibility.isChecked();
+                }
+
+                return false;
             default:
                 throw new RuntimeException();
         }
@@ -156,7 +176,7 @@ public class CustomAuthenticatedSlide extends Fragment implements FingerprintUiH
     @Override
     public void onUserIllegallyRequestedNextPage() {
         String message;
-        if (!EditTextHelper.areEditTextsEqual(_textPassword, _textPasswordConfirm)) {
+        if (!EditTextHelper.areEditTextsEqual(_textPassword, _textPasswordConfirm) && !_checkPasswordVisibility.isChecked()) {
             message = getString(R.string.password_equality_error);
         } else if (!_fingerAuthenticated) {
             message = getString(R.string.register_fingerprint);

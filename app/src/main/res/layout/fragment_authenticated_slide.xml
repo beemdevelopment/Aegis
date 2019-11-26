@@ -59,6 +59,13 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"/>
 
+        <CheckBox
+            android:id="@+id/check_toggle_visibility"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="@string/show_password" />
+
     </LinearLayout>
 
     <LinearLayout
