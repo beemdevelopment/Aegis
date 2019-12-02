@@ -1,11 +1,7 @@
 package com.beemdevelopment.aegis.ui;
 
 import android.content.Intent;
-import android.graphics.Color;
-import android.os.Build;
 import android.os.Bundle;
-import android.view.View;
-import android.view.Window;
 import android.view.WindowManager;
 
 import com.beemdevelopment.aegis.Preferences;
@@ -54,10 +50,12 @@ public class IntroActivity extends AppIntro2 implements DerivationTask.Callback 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         // set FLAG_SECURE on the window of every IntroActivity
+        
         _prefs = new Preferences(this);
         if (_prefs.isSecureScreenEnabled()) {
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_SECURE);
         }
+        
         setWizardMode(true);
         showSkipButton(false);
         pager.setPagingEnabled(false);
