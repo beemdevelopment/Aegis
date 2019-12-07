@@ -2,6 +2,13 @@
 <menu xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
     <item
+        android:id="@+id/action_copy"
+        android:orderInCategory="80"
+        android:icon="@drawable/ic_content_copy_white_24dp"
+        android:title="@string/copy"
+        app:showAsAction="always" />
+
+    <item
         android:id="@+id/action_edit"
         android:orderInCategory="90"
         android:icon="@drawable/ic_mode_edit"

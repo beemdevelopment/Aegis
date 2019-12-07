@@ -21,9 +21,9 @@ import androidx.appcompat.view.ActionMode;
 import androidx.appcompat.widget.SearchView;
 
 import com.beemdevelopment.aegis.AegisApplication;
+import com.beemdevelopment.aegis.CancelAction;
 import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.SortCategory;
-import com.beemdevelopment.aegis.CancelAction;
 import com.beemdevelopment.aegis.ViewMode;
 import com.beemdevelopment.aegis.db.DatabaseEntry;
 import com.beemdevelopment.aegis.db.DatabaseFileCredentials;
@@ -45,7 +45,6 @@ import com.google.zxing.RGBLuminanceSource;
 import com.google.zxing.Reader;
 import com.google.zxing.Result;
 import com.google.zxing.common.HybridBinarizer;
-import com.mikepenz.iconics.context.IconicsContextWrapper;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -680,10 +679,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
             return;
         }
 
-        ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
-        ClipData clip = ClipData.newPlainText("text/plain", entry.getInfo().getOtp());
-        clipboard.setPrimaryClip(clip);
-        Toast.makeText(this, getString(R.string.code_copied), Toast.LENGTH_SHORT).show();
+        copyEntryCode(entry);
     }
 
     @Override
@@ -733,6 +729,13 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         super.onLocked();
     }
 
+    private void copyEntryCode(DatabaseEntry entry) {
+        ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+        ClipData clip = ClipData.newPlainText("text/plain", entry.getInfo().getOtp());
+        clipboard.setPrimaryClip(clip);
+        Toast.makeText(this, getString(R.string.code_copied), Toast.LENGTH_SHORT).show();
+    }
+
     private class ActionModeCallbacks implements ActionMode.Callback {
             @Override
             public boolean onCreateActionMode(ActionMode mode, Menu menu) {
@@ -749,6 +752,11 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
             @Override
             public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
                 switch (item.getItemId()) {
+                    case R.id.action_copy:
+                        copyEntryCode(_selectedEntry);
+                        mode.finish();
+                        return true;
+
                     case R.id.action_edit:
                         startEditProfileActivity(CODE_EDIT_ENTRY, _selectedEntry, false);
                         mode.finish();
