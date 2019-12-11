@@ -1,6 +1,5 @@
 package com.beemdevelopment.aegis.ui.tasks;
 
-import android.app.ProgressDialog;
 import android.content.Context;
 
 import com.beemdevelopment.aegis.R;
@@ -72,8 +71,7 @@ public class SlotListTask<T extends Slot> extends ProgressDialogTask<SlotListTas
                 throw e;
             }
 
-            ProgressDialog dialog = getDialog();
-            dialog.setMessage(dialog.getContext().getString(R.string.unlocking_vault_repair));
+            publishProgress(getDialog().getContext().getString(R.string.unlocking_vault_repair));
 
             // try to decrypt the password slot with the old key
             SecretKey oldKey = slot.deriveKey(oldPasswordBytes);
