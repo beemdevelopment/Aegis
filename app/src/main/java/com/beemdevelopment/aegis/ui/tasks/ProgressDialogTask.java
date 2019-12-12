@@ -9,7 +9,7 @@ import com.beemdevelopment.aegis.ui.Dialogs;
 
 import androidx.annotation.CallSuper;
 
-public abstract class ProgressDialogTask<Params, Result> extends AsyncTask<Params, Void, Result> {
+public abstract class ProgressDialogTask<Params, Result> extends AsyncTask<Params, String, Result> {
     private ProgressDialog _dialog;
 
     public ProgressDialogTask(Context context, String message) {
@@ -30,6 +30,13 @@ public abstract class ProgressDialogTask<Params, Result> extends AsyncTask<Param
     protected void onPostExecute(Result result) {
         if (_dialog.isShowing()) {
             _dialog.dismiss();
+        }
+    }
+
+    @Override
+    protected void onProgressUpdate(String... values) {
+        if (values.length == 1) {
+            _dialog.setMessage(values[0]);
         }
     }
 
