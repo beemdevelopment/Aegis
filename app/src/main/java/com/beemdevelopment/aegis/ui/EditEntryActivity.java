@@ -459,7 +459,11 @@ public class EditEntryActivity extends AegisActivity {
         byte[] secret;
         try {
             secret = Base32.decode(EditTextHelper.getEditTextChars(_textSecret, true));
-        } catch (Base32Exception e) {
+        } catch (Base32Exception | ArrayIndexOutOfBoundsException e) {
+            throw new ParseException("Secret is not valid base32.");
+        }
+
+        if (secret.length == 0) {
             throw new ParseException("Secret is not valid base32.");
         }
 
