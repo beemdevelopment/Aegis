@@ -37,12 +37,6 @@
         <license>Apache Software License 2.0</license>
     </notice>
     <notice>
-        <name>Swirl</name>
-        <url>https://github.com/mattprecious/swirl</url>
-        <copyright>Copyright 2016 Matthew Precious</copyright>
-        <license>Apache Software License 2.0</license>
-    </notice>
-    <notice>
         <name>CircleImageView</name>
         <url>https://github.com/hdodenhof/CircleImageView</url>
         <copyright>Copyright 2014 - 2019 Henning Dodenhof</copyright>

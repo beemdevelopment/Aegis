@@ -12,6 +12,12 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.biometric.BiometricPrompt;
+import androidx.preference.Preference;
+import androidx.preference.PreferenceFragmentCompat;
+
 import com.beemdevelopment.aegis.AegisApplication;
 import com.beemdevelopment.aegis.BuildConfig;
 import com.beemdevelopment.aegis.CancelAction;
@@ -25,12 +31,13 @@ import com.beemdevelopment.aegis.db.DatabaseFileCredentials;
 import com.beemdevelopment.aegis.db.DatabaseFileException;
 import com.beemdevelopment.aegis.db.DatabaseManager;
 import com.beemdevelopment.aegis.db.DatabaseManagerException;
-import com.beemdevelopment.aegis.db.slots.FingerprintSlot;
+import com.beemdevelopment.aegis.db.slots.BiometricSlot;
 import com.beemdevelopment.aegis.db.slots.PasswordSlot;
 import com.beemdevelopment.aegis.db.slots.Slot;
 import com.beemdevelopment.aegis.db.slots.SlotException;
 import com.beemdevelopment.aegis.db.slots.SlotList;
-import com.beemdevelopment.aegis.helpers.FingerprintHelper;
+import com.beemdevelopment.aegis.helpers.BiometricSlotInitializer;
+import com.beemdevelopment.aegis.helpers.BiometricsHelper;
 import com.beemdevelopment.aegis.helpers.PermissionHelper;
 import com.beemdevelopment.aegis.importers.AegisImporter;
 import com.beemdevelopment.aegis.importers.DatabaseImporter;
@@ -56,10 +63,6 @@ import java.util.concurrent.atomic.AtomicReference;
 
 import javax.crypto.Cipher;
 
-import androidx.appcompat.app.AlertDialog;
-import androidx.preference.Preference;
-import androidx.preference.PreferenceFragmentCompat;
-
 public class PreferencesFragment extends PreferenceFragmentCompat {
     // activity request codes
     private static final int CODE_IMPORT = 0;
@@ -81,7 +84,7 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
     private UUIDMap<DatabaseEntry> _importerEntries;
 
     private SwitchPreference _encryptionPreference;
-    private SwitchPreference _fingerprintPreference;
+    private SwitchPreference _biometricsPreference;
     private Preference _autoLockPreference;
     private Preference _setPasswordPreference;
     private Preference _slotsPreference;
@@ -289,20 +292,25 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
             }
         });
 
-        _fingerprintPreference = (SwitchPreference) findPreference("pref_fingerprint");
-        _fingerprintPreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+        _biometricsPreference = (SwitchPreference) findPreference("pref_biometrics");
+        _biometricsPreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
             @Override
             public boolean onPreferenceChange(Preference preference, Object newValue) {
                 DatabaseFileCredentials creds = _db.getCredentials();
                 SlotList slots = creds.getSlots();
 
-                if (!slots.has(FingerprintSlot.class)) {
-                    if (FingerprintHelper.isSupported() && FingerprintHelper.isAvailable(getContext())) {
-                        Dialogs.showFingerprintDialog(getActivity(), new RegisterFingerprintListener());
+                if (!slots.has(BiometricSlot.class)) {
+                    if (BiometricsHelper.isAvailable(getContext())) {
+                        BiometricSlotInitializer initializer = new BiometricSlotInitializer(PreferencesFragment.this, new RegisterBiometricsListener());
+                        BiometricPrompt.PromptInfo info = new BiometricPrompt.PromptInfo.Builder()
+                                .setTitle(getString(R.string.set_up_biometric))
+                                .setNegativeButtonText(getString(android.R.string.cancel))
+                                .build();
+                        initializer.authenticate(info);
                     }
                 } else {
-                    // remove the fingerprint slot
-                    FingerprintSlot slot = slots.find(FingerprintSlot.class);
+                    // remove the biometric slot
+                    BiometricSlot slot = slots.find(BiometricSlot.class);
                     slots.remove(slot);
                     _db.setCredentials(creds);
 
@@ -676,24 +684,24 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
         boolean encrypted = _db.isEncryptionEnabled();
         _encryptionPreference.setChecked(encrypted, true);
         _setPasswordPreference.setVisible(encrypted);
-        _fingerprintPreference.setVisible(encrypted);
+        _biometricsPreference.setVisible(encrypted);
         _slotsPreference.setEnabled(encrypted);
         _autoLockPreference.setVisible(encrypted);
 
         if (encrypted) {
             SlotList slots = _db.getCredentials().getSlots();
             boolean multiPassword = slots.findAll(PasswordSlot.class).size() > 1;
-            boolean multiFinger = slots.findAll(FingerprintSlot.class).size() > 1;
-            boolean showSlots = BuildConfig.DEBUG || multiPassword || multiFinger;
-            boolean canUseFinger = FingerprintHelper.isSupported() && FingerprintHelper.isAvailable(getContext());
+            boolean multiBio = slots.findAll(BiometricSlot.class).size() > 1;
+            boolean showSlots = BuildConfig.DEBUG || multiPassword || multiBio;
+            boolean canUseBio = BiometricsHelper.isAvailable(getContext());
             _setPasswordPreference.setEnabled(!multiPassword);
-            _fingerprintPreference.setEnabled(canUseFinger && !multiFinger);
-            _fingerprintPreference.setChecked(slots.has(FingerprintSlot.class), true);
+            _biometricsPreference.setEnabled(canUseBio && !multiBio);
+            _biometricsPreference.setChecked(slots.has(BiometricSlot.class), true);
             _slotsPreference.setVisible(showSlots);
         } else {
             _setPasswordPreference.setEnabled(false);
-            _fingerprintPreference.setEnabled(false);
-            _fingerprintPreference.setChecked(false, true);
+            _biometricsPreference.setEnabled(false);
+            _biometricsPreference.setChecked(false, true);
             _slotsPreference.setVisible(false);
         }
     }
@@ -730,20 +738,17 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
         }
     }
 
-    private class RegisterFingerprintListener implements Dialogs.SlotListener {
+    private class RegisterBiometricsListener implements BiometricSlotInitializer.Listener {
         @Override
-        public void onSlotResult(Slot slot, Cipher cipher) {
+        public void onInitializeSlot(BiometricSlot slot, Cipher cipher) {
             DatabaseFileCredentials creds = _db.getCredentials();
-            SlotList slots = creds.getSlots();
-
             try {
                 slot.setKey(creds.getKey(), cipher);
             } catch (SlotException e) {
-                onException(e);
+                onSlotInitializationFailed(0, e.toString());
                 return;
             }
-
-            slots.add(slot);
+            creds.getSlots().add(slot);
             _db.setCredentials(creds);
 
             saveDatabase();
@@ -751,8 +756,10 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
         }
 
         @Override
-        public void onException(Exception e) {
-            Toast.makeText(getActivity(), getString(R.string.encryption_enable_fingerprint_error) + e.getMessage(), Toast.LENGTH_SHORT).show();
+        public void onSlotInitializationFailed(int errorCode, @NonNull CharSequence errString) {
+            if (!BiometricsHelper.isCanceled(errorCode)) {
+                Toast.makeText(getActivity(), String.format("%s: %s", getString(R.string.encryption_enable_biometrics_error), errString), Toast.LENGTH_LONG).show();
+            }
         }
     }
 

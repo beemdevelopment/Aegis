@@ -68,43 +68,4 @@
 
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/box_fingerprint"
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:visibility="invisible">
-
-        <TextView
-            android:text="@string/authentication_method_fingerprint"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="24sp"
-            android:textColor="@color/primary_text_inverted"/>
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="12dp">
-
-            <LinearLayout
-                android:id="@+id/img_fingerprint_insert"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:orientation="horizontal"/>
-
-            <TextView
-                android:id="@+id/text_fingerprint"
-                android:textColor="@color/primary_text_inverted"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="15dp"
-                android:text="@string/fingerprint_hint"/>
-        </LinearLayout>
-
-    </LinearLayout>
-
 </LinearLayout>

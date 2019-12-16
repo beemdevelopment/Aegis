@@ -19,11 +19,6 @@
     <color name="card_background">#ffffff</color>
     <color name="card_background_focused">#DBDBDB</color>
 
-    <color name="colorSwirlPrimary">#434343</color>
-    <color name="colorSwirlError">#FF5252</color>
-    <color name="colorSwirlPrimaryDark">#FFFFFF</color>
-    <color name="colorSwirlErrorDark">#FF5252</color>
-
     <color name="icon_primary">#757575</color>
     <color name="icon_primary_inverted">#ffffff</color>
     <color name="icon_primary_dark">#ffffff</color>

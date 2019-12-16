@@ -5,16 +5,16 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.crypto.KeyStoreHandle;
 import com.beemdevelopment.aegis.crypto.KeyStoreHandleException;
-import com.beemdevelopment.aegis.db.slots.FingerprintSlot;
+import com.beemdevelopment.aegis.db.slots.BiometricSlot;
 import com.beemdevelopment.aegis.db.slots.PasswordSlot;
 import com.beemdevelopment.aegis.db.slots.RawSlot;
 import com.beemdevelopment.aegis.db.slots.Slot;
-import com.beemdevelopment.aegis.helpers.FingerprintHelper;
-
-import androidx.recyclerview.widget.RecyclerView;
+import com.beemdevelopment.aegis.helpers.BiometricsHelper;
 
 public class SlotHolder extends RecyclerView.ViewHolder {
     private TextView _slotUsed;
@@ -36,10 +36,10 @@ public class SlotHolder extends RecyclerView.ViewHolder {
         if (slot instanceof PasswordSlot) {
             _slotName.setText(R.string.password);
             _slotImg.setImageResource(R.drawable.ic_create_black_24dp);
-        } else if (slot instanceof FingerprintSlot) {
-            _slotName.setText(R.string.authentication_method_fingerprint);
+        } else if (slot instanceof BiometricSlot) {
+            _slotName.setText(R.string.authentication_method_biometrics);
             _slotImg.setImageResource(R.drawable.ic_fingerprint_black_24dp);
-            if (FingerprintHelper.isSupported()) {
+            if (BiometricsHelper.isAvailable(itemView.getContext())) {
                 try {
                     KeyStoreHandle keyStore = new KeyStoreHandle();
                     if (keyStore.containsKey(slot.getUUID().toString())) {

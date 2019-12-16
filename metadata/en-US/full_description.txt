@@ -7,10 +7,10 @@ to set a password, which is highly recommended, the vault will be encrypted
 using AES-256. If someone with malicious intent gets a hold of the vault file,
 it’s impossible for them to retrieve the contents without knowing the password.
 
-<b>Fingerprint unlock</b>
+<b>Biometric unlock</b>
 Entering your password each time you need access to a
 one-time password can be cumbersome. Fortunately, you can also enable
-fingerprint unlock if your device has a fingerprint scanner.
+biometric unlock if your device has a biometrics sensor.
 
 <b>Compatibility</b>
 Aegis supports the HOTP and TOTP algorithms. These two algorithms are

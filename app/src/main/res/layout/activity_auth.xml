@@ -49,40 +49,29 @@
                     android:inputType="textPassword" />
             </com.google.android.material.textfield.TextInputLayout>
 
-            <Button
-                android:id="@+id/button_decrypt"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:minWidth="125dp"
-                android:text="@string/unlock" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/box_fingerprint"
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="12dp"
-            android:visibility="gone">
-
             <LinearLayout
-                android:id="@+id/img_fingerprint_insert"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:orientation="horizontal"/>
-
-            <TextView
-                android:id="@+id/text_fingerprint"
+                android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="15dp"
-                android:text="@string/fingerprint_hint"
-                android:textColor="?attr/secondaryText"/>
+                android:layout_height="wrap_content">
+                <Button
+                    android:id="@+id/button_decrypt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minWidth="125dp"
+                    android:text="@string/unlock" />
+                <Button
+                    android:id="@+id/button_biometrics"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minWidth="125dp"
+                    android:text="@string/biometrics"
+                    android:visibility="gone" />
+            </LinearLayout>
+
         </LinearLayout>
+
         <LinearLayout
-            android:id="@+id/box_fingerprint_info"
+            android:id="@+id/box_biometric_info"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -98,7 +87,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/invalidated_fingerprint"/>
+                android:text="@string/invalidated_biometrics"/>
         </LinearLayout>
     </LinearLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

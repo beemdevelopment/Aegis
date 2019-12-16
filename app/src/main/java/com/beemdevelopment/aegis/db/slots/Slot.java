@@ -28,7 +28,7 @@ import javax.crypto.spec.SecretKeySpec;
 public abstract class Slot extends UUIDMap.Value {
     public final static byte TYPE_RAW = 0x00;
     public final static byte TYPE_DERIVED = 0x01;
-    public final static byte TYPE_FINGERPRINT = 0x02;
+    public final static byte TYPE_BIOMETRIC = 0x02;
 
     private byte[] _encryptedMasterKey;
     private CryptParameters _encryptedMasterKeyParams;
@@ -138,8 +138,8 @@ public abstract class Slot extends UUIDMap.Value {
                     boolean repaired = obj.optBoolean("repaired", false);
                     slot = new PasswordSlot(uuid, key, keyParams, scryptParams, repaired);
                     break;
-                case Slot.TYPE_FINGERPRINT:
-                    slot = new FingerprintSlot(uuid, key, keyParams);
+                case Slot.TYPE_BIOMETRIC:
+                    slot = new BiometricSlot(uuid, key, keyParams);
                     break;
                 default:
                     throw new SlotException("unrecognized slot type");

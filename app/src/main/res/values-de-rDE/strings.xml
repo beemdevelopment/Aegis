@@ -38,22 +38,14 @@
     <string name="pref_auto_lock_summary">Automatische Sperre, wenn die App geschlossen oder dein Gerät gesperrt wird.</string>
     <string name="pref_encryption_title">Verschlüsselung</string>
     <string name="pref_encryption_summary">Verschlüssele die Datenbank und entsperre mit einem Passwort oder Fingerabdruck.</string>
-    <string name="pref_fingerprint_title">Fingerabdruck</string>
-    <string name="pref_fingerprint_summary">Ermöglicht es, dass auf diesem Gerät registrierte Fingerabdrücke den Tresor freischalten.</string>
     <string name="pref_set_password_title">Passwort ändern</string>
     <string name="pref_set_password_summary">Legen ein neues Passwort fest, das erforderlich ist, um deinen Tresor freizuschalten.</string>
-
-    <string name="fingerprint_hint">Berührungssensor</string>
-    <string name="fingerprint_not_recognized">Fingerabdruck nicht erkannt. Versuche es noch einmal.</string>
-    <string name="fingerprint_success">Fingerabdruck erkannt</string>
 
     <string name="choose_authentication_method">Sicherheit</string>
     <string name="authentication_method_none">Keine</string>
     <string name="authentication_method_none_description">Du brauchst kein Passwort, um den Tresor freizuschalten, und es wird nicht verschlüsselt. Diese Option wird nicht empfohlen.</string>
     <string name="authentication_method_password">Passwort</string>
     <string name="authentication_method_password_description">Du benötigst ein Passwort, um den Tresor freizuschalten.</string>
-    <string name="authentication_method_fingerprint">Fingerabdruck</string>
-    <string name="authentication_method_fingerprint_description">Zusätzlich zu einem Passwort können auf diesem Gerät registrierte Fingerabdrücke verwendet werden, um den Tresor freizuschalten.</string>
     <string name="authentication_method_set_password">Passwort</string>
     <string name="authentication_enter_password">Gib dein Passwort ein</string>
     <string name="authentication">Entsperre den Tresor.</string>
@@ -61,7 +53,6 @@
     <string name="set_group">Bitte gib einen Gruppennamen ein</string>
     <string name="set_number">Bitte gib eine Zahl ein</string>
     <string name="set_password_confirm">Bitte bestätige das Passwort</string>
-    <string name="invalidated_fingerprint">Es wurde eine Änderung der Sicherheitseinstellungen deines Geräts festgestellt. Bitte gehe zu \"Aegis -> Einstellungen -> Fingerabdruck\" und füge deinen Fingerabdruck erneut hinzu.</string>
 
     <string name="unlock">Entsperren</string>
     <string name="advanced">Fortgeschritten</string>
@@ -72,7 +63,6 @@
     <string name="scan">QR-Code scannen</string>
     <string name="scan_image">Bild scannen</string>
     <string name="enter_manually">Manuell eingeben</string>
-    <string name="add_fingerprint">Fingerabdruck hinzufügen</string>
     <string name="add_password">Passwort hinzufügen</string>
     <string name="slots_warning">Der Tresor ist nur so sicher wie dein schwächster Schlüssel. Wenn ein neuer Fingerabdruck zu deinem Gerät hinzugefügt wird, musst du die Fingerabdruck-Authentifizierung in Aegis reaktivieren.</string>
     <string name="copy">Kopieren</string>
@@ -85,7 +75,6 @@
     <string name="unlock_vault_error">Der Tresor konnte nicht entsperrt werden.</string>
     <string name="unlock_vault_error_description">Falsches Passwort. Achte darauf, dass du dein Passwort nicht falsch eingibst.</string>
     <string name="password_equality_error">Passwörter sollten identisch und nicht leer sein.</string>
-    <string name="register_fingerprint">Registriere deinen Fingerabdruck</string>
     <string name="snackbar_authentication_method">Bitte wähle eine Authentifizierungsmethode aus</string>
     <string name="encrypting_vault">Verschlüsseln des Tresors</string>
     <string name="delete_entry">Eintrag löschen</string>
@@ -124,7 +113,6 @@
     <string name="export_database_location">Die Datenbank wurde exportiert nach:</string>
     <string name="export_warning">Diese Aktion exportiert die Datenbank aus dem privaten Speicher von Aegis.</string>
     <string name="encryption_set_password_error">Beim Versuch, das Passwort festzulegen, ist ein Fehler aufgetreten: </string>
-    <string name="encryption_enable_fingerprint_error">Beim Versuch den Fingerabdruck zu entsperren, ist ein Fehler aufgetreten: </string>
     <string name="no_cameras_available">Keine Kameras verfügbar</string>
     <string name="read_qr_error">Beim Versuch, den QR-Code zu lesen, ist ein Fehler aufgetreten.</string>
     <string name="authentication_method_raw">Raw</string>

@@ -67,6 +67,7 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'com.amulyakhare:com.amulyakhare.textdrawable:1.0.1'
     implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation "androidx.biometric:biometric:1.0.0"
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'androidx.preference:preference:1.1.0'
     implementation 'com.google.android.material:material:1.0.0'
@@ -75,7 +76,6 @@ dependencies {
     implementation 'com.github.apl-devs:appintro:5.1.0'
     implementation 'com.github.avito-tech:krop:0.44'
     implementation 'com.madgag.spongycastle:core:1.58.0.0'
-    implementation 'com.mattprecious.swirl:swirl:1.2.0'
     implementation 'de.hdodenhof:circleimageview:3.0.1'
     implementation 'me.dm7.barcodescanner:zxing:1.9.8'
     implementation "com.github.topjohnwu.libsu:core:${libsuVersion}"

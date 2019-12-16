@@ -40,20 +40,13 @@
     <string name="pref_auto_lock_summary">关闭应用或锁定设备时自动锁定</string>
     <string name="pref_encryption_title">加密</string>
     <string name="pref_encryption_summary">加密数据库并使用密码或指纹解锁数据库</string>
-    <string name="pref_fingerprint_title">指纹</string>
-    <string name="pref_fingerprint_summary">允许在此设备上注册的指纹解锁数据库</string>
     <string name="pref_set_password_title">更改密码</string>
     <string name="pref_set_password_summary">设置解锁数据库所需的新密码</string>
-    <string name="fingerprint_hint">触摸感应器</string>
-    <string name="fingerprint_not_recognized">无法识别指纹。再试一次。</string>
-    <string name="fingerprint_success">识别指纹</string>
     <string name="choose_authentication_method">安全</string>
     <string name="authentication_method_none">未设置</string>
     <string name="authentication_method_none_description">您无需密码即可解锁保管库，也不会对其进行加密。不建议使用此选项。</string>
     <string name="authentication_method_password">密码</string>
     <string name="authentication_method_password_description">您需要密码来解锁数据库。</string>
-    <string name="authentication_method_fingerprint">指纹</string>
-    <string name="authentication_method_fingerprint_description">除了密码之外，在此设备上注册的指纹也可用于解锁数据库。</string>
     <string name="authentication_method_set_password">密码</string>
     <string name="authentication_enter_password">输入您的密码</string>
     <string name="authentication">打开数据库</string>
@@ -61,7 +54,6 @@
     <string name="set_group">请输入组名</string>
     <string name="set_number">请输入号码</string>
     <string name="set_password_confirm">请确认密码</string>
-    <string name="invalidated_fingerprint">检测到设备安全设置更改。请到“Aegis- &gt;设置- &gt;指纹”，重新添加您的指纹。</string>
     <string name="unlock">解锁</string>
     <string name="advanced">高级设置</string>
     <string name="seconds">秒</string>
@@ -71,7 +63,6 @@
     <string name="scan">扫描二维码</string>
     <string name="scan_image">扫描图像</string>
     <string name="enter_manually">手动输入</string>
-    <string name="add_fingerprint">添加指纹</string>
     <string name="add_password">添加密码</string>
     <string name="slots_warning">数据库与您最薄弱的秘密一样安全。向设备添加新指纹时，您需要在 Aegis 中重新激活指纹身份验证。</string>
     <string name="copy">复制</string>
@@ -84,7 +75,6 @@
     <string name="unlock_vault_error">无法解锁数据库</string>
     <string name="unlock_vault_error_description">密码错误。确保您未输错密码。</string>
     <string name="password_equality_error">密码应该是相同且非空的。</string>
-    <string name="register_fingerprint">注册您的指纹</string>
     <string name="snackbar_authentication_method">请选择身份验证方法</string>
     <string name="encrypting_vault">加密数据库</string>
     <string name="delete_entry">删除条目</string>
@@ -123,7 +113,6 @@
     <string name="export_database_location">数据库已经导出至：</string>
     <string name="export_warning">此操作将导出 Aegis 专用存储的数据库。</string>
     <string name="encryption_set_password_error">试图设置密码时出错：</string>
-    <string name="encryption_enable_fingerprint_error">试图启用指纹解锁时出错：</string>
     <string name="no_cameras_available">未找到可用的相机</string>
     <string name="read_qr_error">试图读取二维码时出错</string>
     <string name="authentication_method_raw">源文件</string>
