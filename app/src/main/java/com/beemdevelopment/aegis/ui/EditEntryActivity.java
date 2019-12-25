@@ -25,7 +25,7 @@ import android.widget.TableRow;
 import com.amulyakhare.textdrawable.TextDrawable;
 import com.avito.android.krop.KropView;
 import com.beemdevelopment.aegis.R;
-import com.beemdevelopment.aegis.db.DatabaseEntry;
+import com.beemdevelopment.aegis.vault.VaultEntry;
 import com.beemdevelopment.aegis.encoding.Base32;
 import com.beemdevelopment.aegis.encoding.Base32Exception;
 import com.beemdevelopment.aegis.helpers.EditTextHelper;
@@ -60,7 +60,7 @@ public class EditEntryActivity extends AegisActivity {
     private static final int PICK_IMAGE_REQUEST = 0;
 
     private boolean _isNew = false;
-    private DatabaseEntry _origEntry;
+    private VaultEntry _origEntry;
     private TreeSet<String> _groups;
     private boolean _hasCustomIcon = false;
     // keep track of icon changes separately as the generated jpeg's are not deterministic
@@ -99,7 +99,7 @@ public class EditEntryActivity extends AegisActivity {
 
         // retrieve info from the calling activity
         Intent intent = getIntent();
-        _origEntry = (DatabaseEntry) intent.getSerializableExtra("entry");
+        _origEntry = (VaultEntry) intent.getSerializableExtra("entry");
         _isNew = intent.getBooleanExtra("isNew", false);
         _groups = new TreeSet<>(Collator.getInstance());
         _groups.addAll(intent.getStringArrayListExtra("groups"));
@@ -320,7 +320,7 @@ public class EditEntryActivity extends AegisActivity {
     @Override
     public void onBackPressed() {
         AtomicReference<String> msg = new AtomicReference<>();
-        AtomicReference<DatabaseEntry> entry = new AtomicReference<>();
+        AtomicReference<VaultEntry> entry = new AtomicReference<>();
 
         try {
             entry.set(parseEntry());
@@ -388,7 +388,7 @@ public class EditEntryActivity extends AegisActivity {
         return true;
     }
 
-    private void finish(DatabaseEntry entry, boolean delete) {
+    private void finish(VaultEntry entry, boolean delete) {
         Intent intent = new Intent();
         intent.putExtra("entry", entry);
         intent.putExtra("delete", delete);
@@ -441,7 +441,7 @@ public class EditEntryActivity extends AegisActivity {
         }
     }
 
-    private DatabaseEntry parseEntry() throws ParseException {
+    private VaultEntry parseEntry() throws ParseException {
         if (_textSecret.length() == 0) {
             throw new ParseException("Secret is a required field.");
         }
@@ -491,7 +491,7 @@ public class EditEntryActivity extends AegisActivity {
             throw new ParseException("The entered info is incorrect: " + e.getMessage());
         }
 
-        DatabaseEntry entry = Cloner.clone(_origEntry);
+        VaultEntry entry = Cloner.clone(_origEntry);
         entry.setInfo(info);
         entry.setIssuer(_textIssuer.getText().toString());
         entry.setName(_textName.getText().toString());
@@ -528,7 +528,7 @@ public class EditEntryActivity extends AegisActivity {
     }
 
     private boolean onSave() {
-        DatabaseEntry entry;
+        VaultEntry entry;
         try {
             entry = parseEntry();
         } catch (ParseException e) {

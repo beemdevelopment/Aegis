@@ -86,7 +86,7 @@
             android:summary="@string/pref_timeout_summary"
             android:inputType="number"
             android:defaultValue="30"
-            android:dialogTitle="Set number of seconds of inactivity before Aegis locks the database"
+            android:dialogTitle="Set number of seconds of inactivity before Aegis locks the vault"
             app:iconSpaceReserved="false"/>-->
         <com.beemdevelopment.aegis.ui.preferences.SwitchPreference
             android:key="pref_encryption"

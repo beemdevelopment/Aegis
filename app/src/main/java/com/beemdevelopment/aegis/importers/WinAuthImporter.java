@@ -1,7 +1,7 @@
 package com.beemdevelopment.aegis.importers;
 
 import android.content.Context;
-import com.beemdevelopment.aegis.db.DatabaseEntry;
+import com.beemdevelopment.aegis.vault.VaultEntry;
 import com.beemdevelopment.aegis.otp.GoogleAuthInfo;
 import com.beemdevelopment.aegis.otp.GoogleAuthInfoException;
 
@@ -57,7 +57,7 @@ public class WinAuthImporter extends DatabaseImporter {
 
             for (String line : _lines) {
                 try {
-                    DatabaseEntry entry = convertEntry(line);
+                    VaultEntry entry = convertEntry(line);
                     result.addEntry(entry);
                 } catch (DatabaseImporterEntryException e) {
                     result.addError(e);
@@ -67,14 +67,14 @@ public class WinAuthImporter extends DatabaseImporter {
             return result;
         }
 
-        private static DatabaseEntry convertEntry(String line) throws DatabaseImporterEntryException {
+        private static VaultEntry convertEntry(String line) throws DatabaseImporterEntryException {
             try {
                 GoogleAuthInfo info = GoogleAuthInfo.parseUri(line);
-                DatabaseEntry databaseEntry = new DatabaseEntry(info);
-                databaseEntry.setIssuer(databaseEntry.getName());
-                databaseEntry.setName("WinAuth");
+                VaultEntry vaultEntry = new VaultEntry(info);
+                vaultEntry.setIssuer(vaultEntry.getName());
+                vaultEntry.setName("WinAuth");
 
-                return databaseEntry;
+                return vaultEntry;
             } catch (GoogleAuthInfoException e) {
                 throw new DatabaseImporterEntryException(e, line);
             }

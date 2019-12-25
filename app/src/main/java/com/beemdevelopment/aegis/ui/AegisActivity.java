@@ -3,7 +3,6 @@ package com.beemdevelopment.aegis.ui;
 import android.animation.ValueAnimator;
 import android.content.Intent;
 import android.content.res.Configuration;
-import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.view.WindowManager;
@@ -126,7 +125,7 @@ public abstract class AegisActivity extends AppCompatActivity implements AegisAp
      * the vault was locked by an external trigger while the Activity was still open.
      */
     private boolean isOrphan() {
-        return !(this instanceof MainActivity) && _app.getDatabaseManager().isLocked();
+        return !(this instanceof MainActivity) && _app.getVaultManager().isLocked();
     }
 
     private void setGlobalAnimationDurationScale() {

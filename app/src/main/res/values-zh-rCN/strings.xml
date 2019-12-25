@@ -109,8 +109,8 @@
     <string name="imported_entries_count">导入 %d 项条目</string>
     <string name="read_entries_count">读取 %!d 项条目。 %!d 项错误。</string>
     <string name="import_error_title">导入时发生一个或多个错误</string>
-    <string name="exporting_database_error">试图导出数据库时出错</string>
-    <string name="export_database_location">数据库已经导出至：</string>
+    <string name="exporting_vault_error">试图导出数据库时出错</string>
+    <string name="export_vault_location">数据库已经导出至：</string>
     <string name="export_warning">此操作将导出 Aegis 专用存储的数据库。</string>
     <string name="encryption_set_password_error">试图设置密码时出错：</string>
     <string name="no_cameras_available">未找到可用的相机</string>

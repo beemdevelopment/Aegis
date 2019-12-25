@@ -1,12 +1,12 @@
 package com.beemdevelopment.aegis.helpers.comparators;
 
-import com.beemdevelopment.aegis.db.DatabaseEntry;
+import com.beemdevelopment.aegis.vault.VaultEntry;
 
 import java.util.Comparator;
 
-public class IssuerNameComparator implements Comparator<DatabaseEntry> {
+public class IssuerNameComparator implements Comparator<VaultEntry> {
     @Override
-    public int compare(DatabaseEntry a, DatabaseEntry b) {
+    public int compare(VaultEntry a, VaultEntry b) {
         return a.getIssuer().compareToIgnoreCase(b.getIssuer());
     }
 }

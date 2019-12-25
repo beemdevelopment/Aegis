@@ -3,7 +3,7 @@ package com.beemdevelopment.aegis.importers;
 import android.content.Context;
 import android.util.Xml;
 
-import com.beemdevelopment.aegis.db.DatabaseEntry;
+import com.beemdevelopment.aegis.vault.VaultEntry;
 import com.beemdevelopment.aegis.encoding.Base32;
 import com.beemdevelopment.aegis.encoding.Base32Exception;
 import com.beemdevelopment.aegis.otp.OtpInfo;
@@ -74,7 +74,7 @@ public class AuthyImporter extends DatabaseImporter {
                 for (int i = 0; i < _obj.length(); i++) {
                     JSONObject entryObj = _obj.getJSONObject(i);
                     try {
-                        DatabaseEntry entry = convertEntry(entryObj);
+                        VaultEntry entry = convertEntry(entryObj);
                         result.addEntry(entry);
                     } catch (DatabaseImporterEntryException e) {
                         result.addError(e);
@@ -87,7 +87,7 @@ public class AuthyImporter extends DatabaseImporter {
             return result;
         }
 
-        private static DatabaseEntry convertEntry(JSONObject entry) throws DatabaseImporterEntryException {
+        private static VaultEntry convertEntry(JSONObject entry) throws DatabaseImporterEntryException {
             try {
                 AuthyEntryInfo authyEntryInfo = new AuthyEntryInfo();
                 authyEntryInfo.OriginalName = entry.getString("originalName");
@@ -101,7 +101,7 @@ public class AuthyImporter extends DatabaseImporter {
 
                 OtpInfo info = new TotpInfo(secret, "SHA1", digits, 30);
 
-                return new DatabaseEntry(info, authyEntryInfo.Name, authyEntryInfo.Issuer);
+                return new VaultEntry(info, authyEntryInfo.Name, authyEntryInfo.Issuer);
             } catch (OtpInfoException | JSONException | Base32Exception e) {
                 throw new DatabaseImporterEntryException(e, entry.toString());
             }

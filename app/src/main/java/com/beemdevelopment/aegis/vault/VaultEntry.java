@@ -1,4 +1,4 @@
-package com.beemdevelopment.aegis.db;
+package com.beemdevelopment.aegis.vault;
 
 import com.beemdevelopment.aegis.encoding.Base64;
 import com.beemdevelopment.aegis.encoding.Base64Exception;
@@ -15,30 +15,30 @@ import java.util.Arrays;
 import java.util.Objects;
 import java.util.UUID;
 
-public class DatabaseEntry extends UUIDMap.Value {
+public class VaultEntry extends UUIDMap.Value {
     private String _name = "";
     private String _issuer = "";
     private String _group;
     private OtpInfo _info;
     private byte[] _icon;
 
-    private DatabaseEntry(UUID uuid, OtpInfo info) {
+    private VaultEntry(UUID uuid, OtpInfo info) {
         super(uuid);
         _info = info;
     }
 
-    public DatabaseEntry(OtpInfo info) {
+    public VaultEntry(OtpInfo info) {
         super();
         _info = info;
     }
 
-    public DatabaseEntry(OtpInfo info, String name, String issuer) {
+    public VaultEntry(OtpInfo info, String name, String issuer) {
         this(info);
         setName(name);
         setIssuer(issuer);
     }
 
-    public DatabaseEntry(GoogleAuthInfo info) {
+    public VaultEntry(GoogleAuthInfo info) {
         this(info.getOtpInfo(), info.getAccountName(), info.getIssuer());
     }
 
@@ -60,7 +60,7 @@ public class DatabaseEntry extends UUIDMap.Value {
         return obj;
     }
 
-    public static DatabaseEntry fromJson(JSONObject obj) throws JSONException, OtpInfoException, Base64Exception {
+    public static VaultEntry fromJson(JSONObject obj) throws JSONException, OtpInfoException, Base64Exception {
         // if there is no uuid, generate a new one
         UUID uuid;
         if (!obj.has("uuid")) {
@@ -70,7 +70,7 @@ public class DatabaseEntry extends UUIDMap.Value {
         }
 
         OtpInfo info = OtpInfo.fromJson(obj.getString("type"), obj.getJSONObject("info"));
-        DatabaseEntry entry = new DatabaseEntry(uuid, info);
+        VaultEntry entry = new VaultEntry(uuid, info);
         entry.setName(obj.getString("name"));
         entry.setIssuer(obj.getString("issuer"));
         entry.setGroup(obj.optString("group", null));
@@ -129,11 +129,11 @@ public class DatabaseEntry extends UUIDMap.Value {
 
     @Override
     public boolean equals(Object o) {
-        if (!(o instanceof DatabaseEntry)) {
+        if (!(o instanceof VaultEntry)) {
             return false;
         }
 
-        DatabaseEntry entry = (DatabaseEntry) o;
+        VaultEntry entry = (VaultEntry) o;
         return super.equals(entry) && equivalates(entry);
     }
 
@@ -142,7 +142,7 @@ public class DatabaseEntry extends UUIDMap.Value {
      * entries are ignored during the comparison, so they are not necessarily the same
      * instance.
      */
-    public boolean equivalates(DatabaseEntry entry) {
+    public boolean equivalates(VaultEntry entry) {
         return getName().equals(entry.getName())
                 && getIssuer().equals(entry.getIssuer())
                 && Objects.equals(getGroup(), entry.getGroup())
@@ -157,9 +157,9 @@ public class DatabaseEntry extends UUIDMap.Value {
         return equivalates(getDefault());
     }
 
-    public static DatabaseEntry getDefault() {
+    public static VaultEntry getDefault() {
         try {
-            return new DatabaseEntry(new TotpInfo(null));
+            return new VaultEntry(new TotpInfo(null));
         } catch (OtpInfoException e) {
             throw new RuntimeException(e);
         }

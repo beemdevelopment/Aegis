@@ -15,7 +15,7 @@ import androidx.biometric.BiometricPrompt;
 import androidx.fragment.app.Fragment;
 
 import com.beemdevelopment.aegis.R;
-import com.beemdevelopment.aegis.db.slots.BiometricSlot;
+import com.beemdevelopment.aegis.vault.slots.BiometricSlot;
 import com.beemdevelopment.aegis.helpers.BiometricSlotInitializer;
 import com.beemdevelopment.aegis.helpers.BiometricsHelper;
 import com.beemdevelopment.aegis.helpers.EditTextHelper;

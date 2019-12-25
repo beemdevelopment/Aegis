@@ -2,11 +2,11 @@ package com.beemdevelopment.aegis.importers;
 
 import android.content.Context;
 
-import com.beemdevelopment.aegis.db.DatabaseEntry;
-import com.beemdevelopment.aegis.db.DatabaseFile;
-import com.beemdevelopment.aegis.db.DatabaseFileCredentials;
-import com.beemdevelopment.aegis.db.DatabaseFileException;
-import com.beemdevelopment.aegis.db.slots.SlotList;
+import com.beemdevelopment.aegis.vault.VaultEntry;
+import com.beemdevelopment.aegis.vault.VaultFile;
+import com.beemdevelopment.aegis.vault.VaultFileCredentials;
+import com.beemdevelopment.aegis.vault.VaultFileException;
+import com.beemdevelopment.aegis.vault.slots.SlotList;
 import com.beemdevelopment.aegis.encoding.Base64Exception;
 import com.beemdevelopment.aegis.otp.OtpInfoException;
 
@@ -36,20 +36,20 @@ public class AegisImporter extends DatabaseImporter {
     public State read(FileReader reader) throws DatabaseImporterException {
         try {
             byte[] bytes = reader.readAll();
-            DatabaseFile file = DatabaseFile.fromBytes(bytes);
+            VaultFile file = VaultFile.fromBytes(bytes);
             if (file.isEncrypted()) {
                 return new EncryptedState(file);
             }
             return new DecryptedState(file.getContent());
-        } catch (DatabaseFileException | IOException e) {
+        } catch (VaultFileException | IOException e) {
             throw new DatabaseImporterException(e);
         }
     }
 
     public static class EncryptedState extends State {
-        private DatabaseFile _file;
+        private VaultFile _file;
 
-        private EncryptedState(DatabaseFile file) {
+        private EncryptedState(VaultFile file) {
             super(true);
             _file = file;
         }
@@ -58,7 +58,7 @@ public class AegisImporter extends DatabaseImporter {
             return _file.getHeader().getSlots();
         }
 
-        public State decrypt(DatabaseFileCredentials creds) throws DatabaseFileException {
+        public State decrypt(VaultFileCredentials creds) throws VaultFileException {
             JSONObject obj = _file.getContent(creds);
             return new DecryptedState(obj);
         }
@@ -86,7 +86,7 @@ public class AegisImporter extends DatabaseImporter {
                 for (int i = 0; i < array.length(); i++) {
                     JSONObject entryObj = array.getJSONObject(i);
                     try {
-                        DatabaseEntry entry = convertEntry(entryObj);
+                        VaultEntry entry = convertEntry(entryObj);
                         result.addEntry(entry);
                     } catch (DatabaseImporterEntryException e) {
                         result.addError(e);
@@ -99,9 +99,9 @@ public class AegisImporter extends DatabaseImporter {
             return result;
         }
 
-        private static DatabaseEntry convertEntry(JSONObject obj) throws DatabaseImporterEntryException {
+        private static VaultEntry convertEntry(JSONObject obj) throws DatabaseImporterEntryException {
             try {
-                return DatabaseEntry.fromJson(obj);
+                return VaultEntry.fromJson(obj);
             } catch (JSONException | OtpInfoException | Base64Exception e) {
                 throw new DatabaseImporterEntryException(e, obj.toString());
             }

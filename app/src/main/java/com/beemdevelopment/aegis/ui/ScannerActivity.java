@@ -10,7 +10,7 @@ import android.widget.Toast;
 
 import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.Theme;
-import com.beemdevelopment.aegis.db.DatabaseEntry;
+import com.beemdevelopment.aegis.vault.VaultEntry;
 import com.beemdevelopment.aegis.helpers.SquareFinderView;
 import com.beemdevelopment.aegis.otp.GoogleAuthInfo;
 import com.beemdevelopment.aegis.otp.GoogleAuthInfoException;
@@ -109,7 +109,7 @@ public class ScannerActivity extends AegisActivity implements ZXingScannerView.R
         try {
             // parse google auth uri
             GoogleAuthInfo info = GoogleAuthInfo.parseUri(rawResult.getText());
-            DatabaseEntry entry = new DatabaseEntry(info);
+            VaultEntry entry = new VaultEntry(info);
 
             Intent intent = new Intent();
             intent.putExtra("entry", entry);

@@ -12,9 +12,11 @@ import android.content.pm.ShortcutManager;
 import android.graphics.drawable.Icon;
 import android.os.Build;
 
-import com.beemdevelopment.aegis.db.DatabaseManager;
+import androidx.annotation.RequiresApi;
+
 import com.beemdevelopment.aegis.services.NotificationService;
 import com.beemdevelopment.aegis.ui.MainActivity;
+import com.beemdevelopment.aegis.vault.VaultManager;
 import com.mikepenz.iconics.Iconics;
 import com.mikepenz.material_design_iconic_typeface_library.MaterialDesignIconic;
 
@@ -22,20 +24,18 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import androidx.annotation.RequiresApi;
-
 public class AegisApplication extends Application {
-    private DatabaseManager _manager;
+    private VaultManager _manager;
     private Preferences _prefs;
     private List<LockListener> _lockListeners;
 
     private static final String CODE_LOCK_STATUS_ID = "lock_status_channel";
-    private static final String CODE_LOCK_DATABASE_ACTION = "lock_database";
+    private static final String CODE_LOCK_VAULT_ACTION = "lock_vault";
 
     @Override
     public void onCreate() {
         super.onCreate();
-        _manager = new DatabaseManager(this);
+        _manager = new VaultManager(this);
         _prefs = new Preferences(this);
         _lockListeners = new ArrayList<>();
 
@@ -46,7 +46,7 @@ public class AegisApplication extends Application {
         ScreenOffReceiver receiver = new ScreenOffReceiver();
         IntentFilter intentFilter = new IntentFilter();
         intentFilter.addAction(Intent.ACTION_SCREEN_OFF);
-        intentFilter.addAction(CODE_LOCK_DATABASE_ACTION);
+        intentFilter.addAction(CODE_LOCK_VAULT_ACTION);
         registerReceiver(receiver, intentFilter);
 
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {
@@ -58,7 +58,7 @@ public class AegisApplication extends Application {
         }
     }
 
-    public DatabaseManager getDatabaseManager() {
+    public VaultManager getVaultManager() {
         return _manager;
     }
 

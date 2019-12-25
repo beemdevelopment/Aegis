@@ -3,7 +3,7 @@ package com.beemdevelopment.aegis.importers;
 import android.content.Context;
 import android.util.Xml;
 
-import com.beemdevelopment.aegis.db.DatabaseEntry;
+import com.beemdevelopment.aegis.vault.VaultEntry;
 import com.beemdevelopment.aegis.otp.HotpInfo;
 import com.beemdevelopment.aegis.otp.OtpInfo;
 import com.beemdevelopment.aegis.otp.OtpInfoException;
@@ -73,7 +73,7 @@ public class FreeOtpImporter extends DatabaseImporter {
 
             for (JSONObject obj : _entries) {
                 try {
-                    DatabaseEntry entry = convertEntry(obj);
+                    VaultEntry entry = convertEntry(obj);
                     result.addEntry(entry);
                 } catch (DatabaseImporterEntryException e) {
                     result.addError(e);
@@ -83,7 +83,7 @@ public class FreeOtpImporter extends DatabaseImporter {
             return result;
         }
 
-        private static DatabaseEntry convertEntry(JSONObject obj) throws DatabaseImporterEntryException {
+        private static VaultEntry convertEntry(JSONObject obj) throws DatabaseImporterEntryException {
             try {
                 String type = obj.getString("type").toLowerCase();
                 String algo = obj.getString("algo");
@@ -110,7 +110,7 @@ public class FreeOtpImporter extends DatabaseImporter {
                         throw new DatabaseImporterException("unsupported otp type: " + type);
                 }
 
-                return new DatabaseEntry(info, name, issuer);
+                return new VaultEntry(info, name, issuer);
             } catch (DatabaseImporterException | OtpInfoException | JSONException e) {
                 throw new DatabaseImporterEntryException(e, obj.toString());
             }

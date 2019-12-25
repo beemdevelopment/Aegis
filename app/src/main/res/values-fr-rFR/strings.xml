@@ -112,8 +112,8 @@
     <string name="imported_entries_count">%d entrées importées</string>
     <string name="read_entries_count">%d entrées lues. %d erreurs.</string>
     <string name="import_error_title">Une ou plusieurs erreurs sont survenues lors de l\'importation</string>
-    <string name="exporting_database_error">Une erreur est survenue en essayant d\'exporter la base de données</string>
-    <string name="export_database_location">La base de données a été exportée vers :</string>
+    <string name="exporting_vault_error">Une erreur est survenue en essayant d\'exporter la base de données</string>
+    <string name="export_vault_location">La base de données a été exportée vers :</string>
     <string name="export_warning">Cette action va exporter la base de données en dehors du stockage privé d\'Aegis.</string>
     <string name="encryption_set_password_error">Une erreur est survenue en essayant de définir le mot de passe : </string>
     <string name="no_cameras_available">Aucun appareil photo disponible</string>

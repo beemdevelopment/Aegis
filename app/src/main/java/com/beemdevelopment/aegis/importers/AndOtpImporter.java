@@ -8,7 +8,7 @@ import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.crypto.CryptParameters;
 import com.beemdevelopment.aegis.crypto.CryptResult;
 import com.beemdevelopment.aegis.crypto.CryptoUtils;
-import com.beemdevelopment.aegis.db.DatabaseEntry;
+import com.beemdevelopment.aegis.vault.VaultEntry;
 import com.beemdevelopment.aegis.encoding.Base32;
 import com.beemdevelopment.aegis.encoding.Base32Exception;
 import com.beemdevelopment.aegis.otp.HotpInfo;
@@ -184,7 +184,7 @@ public class AndOtpImporter extends DatabaseImporter {
             for (int i = 0; i < _obj.length(); i++) {
                 try {
                     JSONObject obj = _obj.getJSONObject(i);
-                    DatabaseEntry entry = convertEntry(obj);
+                    VaultEntry entry = convertEntry(obj);
                     result.addEntry(entry);
                 } catch (JSONException e) {
                     throw new DatabaseImporterException(e);
@@ -196,7 +196,7 @@ public class AndOtpImporter extends DatabaseImporter {
             return result;
         }
 
-        private static DatabaseEntry convertEntry(JSONObject obj) throws DatabaseImporterEntryException {
+        private static VaultEntry convertEntry(JSONObject obj) throws DatabaseImporterEntryException {
             try {
                 String type = obj.getString("type").toLowerCase();
                 String algo = obj.getString("algorithm");
@@ -229,7 +229,7 @@ public class AndOtpImporter extends DatabaseImporter {
                     name = parts[0];
                 }
 
-                return new DatabaseEntry(info, name, issuer);
+                return new VaultEntry(info, name, issuer);
             } catch (DatabaseImporterException | Base32Exception | OtpInfoException | JSONException e) {
                 throw new DatabaseImporterEntryException(e, obj.toString());
             }

@@ -1,4 +1,4 @@
-package com.beemdevelopment.aegis.db;
+package com.beemdevelopment.aegis.vault;
 
 import com.beemdevelopment.aegis.encoding.Base64Exception;
 import com.beemdevelopment.aegis.otp.OtpInfoException;
@@ -8,14 +8,14 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class Database {
+public class Vault {
     private static final int VERSION = 1;
-    private UUIDMap<DatabaseEntry> _entries = new UUIDMap<>();
+    private UUIDMap<VaultEntry> _entries = new UUIDMap<>();
 
     public JSONObject toJson() {
         try {
             JSONArray array = new JSONArray();
-            for (DatabaseEntry e : _entries) {
+            for (VaultEntry e : _entries) {
                 array.put(e.toJson());
             }
 
@@ -28,29 +28,29 @@ public class Database {
         }
     }
 
-    public static Database fromJson(JSONObject obj) throws DatabaseException {
-        Database db = new Database();
-        UUIDMap<DatabaseEntry> entries = db.getEntries();
+    public static Vault fromJson(JSONObject obj) throws VaultException {
+        Vault vault = new Vault();
+        UUIDMap<VaultEntry> entries = vault.getEntries();
 
         try {
             int ver = obj.getInt("version");
             if (ver != VERSION) {
-                throw new DatabaseException("Unsupported version");
+                throw new VaultException("Unsupported version");
             }
 
             JSONArray array = obj.getJSONArray("entries");
             for (int i = 0; i < array.length(); i++) {
-                DatabaseEntry entry = DatabaseEntry.fromJson(array.getJSONObject(i));
+                VaultEntry entry = VaultEntry.fromJson(array.getJSONObject(i));
                 entries.add(entry);
             }
         } catch (Base64Exception | OtpInfoException | JSONException e) {
-            throw new DatabaseException(e);
+            throw new VaultException(e);
         }
 
-        return db;
+        return vault;
     }
 
-    public UUIDMap<DatabaseEntry> getEntries() {
+    public UUIDMap<VaultEntry> getEntries() {
         return _entries;
     }
 }

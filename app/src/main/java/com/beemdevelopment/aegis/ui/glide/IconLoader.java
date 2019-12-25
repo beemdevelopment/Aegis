@@ -2,7 +2,7 @@ package com.beemdevelopment.aegis.ui.glide;
 
 import androidx.annotation.NonNull;
 
-import com.beemdevelopment.aegis.db.DatabaseEntry;
+import com.beemdevelopment.aegis.vault.VaultEntry;
 import com.bumptech.glide.Priority;
 import com.bumptech.glide.load.DataSource;
 import com.bumptech.glide.load.Options;
@@ -13,21 +13,21 @@ import com.bumptech.glide.load.model.MultiModelLoaderFactory;
 
 import java.nio.ByteBuffer;
 
-public class IconLoader implements ModelLoader<DatabaseEntry, ByteBuffer> {
+public class IconLoader implements ModelLoader<VaultEntry, ByteBuffer> {
     @Override
-    public LoadData<ByteBuffer> buildLoadData(@NonNull DatabaseEntry model, int width, int height, @NonNull Options options) {
+    public LoadData<ByteBuffer> buildLoadData(@NonNull VaultEntry model, int width, int height, @NonNull Options options) {
         return new LoadData<>(new UUIDKey(model.getUUID()), new Fetcher(model));
     }
 
     @Override
-    public boolean handles(@NonNull DatabaseEntry model) {
+    public boolean handles(@NonNull VaultEntry model) {
         return true;
     }
 
     public static class Fetcher implements DataFetcher<ByteBuffer> {
-        private DatabaseEntry _model;
+        private VaultEntry _model;
 
-        private Fetcher(DatabaseEntry model) {
+        private Fetcher(VaultEntry model) {
             _model = model;
         }
 
@@ -61,10 +61,10 @@ public class IconLoader implements ModelLoader<DatabaseEntry, ByteBuffer> {
         }
     }
 
-    public static class Factory implements ModelLoaderFactory<DatabaseEntry, ByteBuffer> {
+    public static class Factory implements ModelLoaderFactory<VaultEntry, ByteBuffer> {
         @NonNull
         @Override
-        public ModelLoader<DatabaseEntry, ByteBuffer> build(@NonNull MultiModelLoaderFactory unused) {
+        public ModelLoader<VaultEntry, ByteBuffer> build(@NonNull MultiModelLoaderFactory unused) {
             return new IconLoader();
         }
 

@@ -1,10 +1,10 @@
-package com.beemdevelopment.aegis.db;
+package com.beemdevelopment.aegis.vault;
 
 import com.beemdevelopment.aegis.crypto.CryptParameters;
 import com.beemdevelopment.aegis.crypto.CryptResult;
 import com.beemdevelopment.aegis.crypto.MasterKeyException;
-import com.beemdevelopment.aegis.db.slots.SlotList;
-import com.beemdevelopment.aegis.db.slots.SlotListException;
+import com.beemdevelopment.aegis.vault.slots.SlotList;
+import com.beemdevelopment.aegis.vault.slots.SlotListException;
 import com.beemdevelopment.aegis.encoding.Base64;
 import com.beemdevelopment.aegis.encoding.Base64Exception;
 import com.beemdevelopment.aegis.encoding.HexException;
@@ -14,17 +14,17 @@ import org.json.JSONObject;
 
 import java.nio.charset.StandardCharsets;
 
-public class DatabaseFile {
+public class VaultFile {
     public static final byte VERSION = 1;
 
     private Object _content;
     private Header _header;
 
-    public DatabaseFile() {
+    public VaultFile() {
 
     }
 
-    private DatabaseFile(Object content, Header header) {
+    private VaultFile(Object content, Header header) {
         _content = content;
         _header = header;
     }
@@ -60,29 +60,29 @@ public class DatabaseFile {
         }
     }
 
-    public static DatabaseFile fromJson(JSONObject obj) throws DatabaseFileException {
+    public static VaultFile fromJson(JSONObject obj) throws VaultFileException {
         try {
             if (obj.getInt("version") > VERSION) {
-                throw new DatabaseFileException("unsupported version");
+                throw new VaultFileException("unsupported version");
             }
 
             Header header = Header.fromJson(obj.getJSONObject("header"));
             if (!header.isEmpty()) {
-                return new DatabaseFile(obj.getString("db"), header);
+                return new VaultFile(obj.getString("db"), header);
             }
 
-            return new DatabaseFile(obj.getJSONObject("db"), header);
+            return new VaultFile(obj.getJSONObject("db"), header);
         } catch (JSONException e) {
-            throw new DatabaseFileException(e);
+            throw new VaultFileException(e);
         }
     }
 
-    public static DatabaseFile fromBytes(byte[] data) throws DatabaseFileException {
+    public static VaultFile fromBytes(byte[] data) throws VaultFileException {
         try {
             JSONObject obj = new JSONObject(new String(data, StandardCharsets.UTF_8));
-            return DatabaseFile.fromJson(obj);
+            return VaultFile.fromJson(obj);
         } catch (JSONException e) {
-            throw new DatabaseFileException(e);
+            throw new VaultFileException(e);
         }
     }
 
@@ -90,13 +90,13 @@ public class DatabaseFile {
         return (JSONObject) _content;
     }
 
-    public JSONObject getContent(DatabaseFileCredentials creds) throws DatabaseFileException {
+    public JSONObject getContent(VaultFileCredentials creds) throws VaultFileException {
         try {
             byte[] bytes = Base64.decode((String) _content);
             CryptResult result = creds.decrypt(bytes, _header.getParams());
             return new JSONObject(new String(result.getData(), StandardCharsets.UTF_8));
         } catch (MasterKeyException | JSONException | Base64Exception e) {
-            throw new DatabaseFileException(e);
+            throw new VaultFileException(e);
         }
     }
 
@@ -105,16 +105,16 @@ public class DatabaseFile {
         _header = new Header(null, null);
     }
 
-    public void setContent(JSONObject obj, DatabaseFileCredentials creds) throws DatabaseFileException {
+    public void setContent(JSONObject obj, VaultFileCredentials creds) throws VaultFileException {
         try {
             String string = obj.toString(4);
-            byte[] dbBytes = string.getBytes(StandardCharsets.UTF_8);
+            byte[] vaultBytes = string.getBytes(StandardCharsets.UTF_8);
 
-            CryptResult result = creds.encrypt(dbBytes);
+            CryptResult result = creds.encrypt(vaultBytes);
             _content = Base64.encode(result.getData());
             _header = new Header(creds.getSlots(), result.getParams());
         } catch (MasterKeyException | JSONException e) {
-            throw new DatabaseFileException(e);
+            throw new VaultFileException(e);
         }
     }
 
@@ -127,7 +127,7 @@ public class DatabaseFile {
             _params = params;
         }
 
-        public static Header fromJson(JSONObject obj) throws DatabaseFileException {
+        public static Header fromJson(JSONObject obj) throws VaultFileException {
             if (obj.isNull("slots") && obj.isNull("params")) {
                 return new Header(null, null);
             }
@@ -137,7 +137,7 @@ public class DatabaseFile {
                 CryptParameters params = CryptParameters.fromJson(obj.getJSONObject("params"));
                 return new Header(slots, params);
             } catch (SlotListException | JSONException | HexException e) {
-                throw new DatabaseFileException(e);
+                throw new VaultFileException(e);
             }
         }
 

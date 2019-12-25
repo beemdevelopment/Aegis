@@ -3,14 +3,12 @@ package com.beemdevelopment.aegis.helpers;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.beemdevelopment.aegis.db.DatabaseEntry;
+import com.beemdevelopment.aegis.vault.VaultEntry;
 import com.beemdevelopment.aegis.ui.views.EntryAdapter;
-
-import java.util.Map;
 
 public class SimpleItemTouchHelperCallback extends ItemTouchHelper.Callback {
 
-    private DatabaseEntry _selectedEntry;
+    private VaultEntry _selectedEntry;
 
     private final ItemTouchHelperAdapter _adapter;
     private boolean _positionChanged = false;
@@ -29,7 +27,7 @@ public class SimpleItemTouchHelperCallback extends ItemTouchHelper.Callback {
         _isLongPressDragEnabled = enabled;
     }
 
-    public void setSelectedEntry(DatabaseEntry entry) {
+    public void setSelectedEntry(VaultEntry entry) {
         _selectedEntry = entry;
     }
 

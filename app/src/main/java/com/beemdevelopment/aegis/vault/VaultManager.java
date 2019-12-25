@@ -1,4 +1,4 @@
-package com.beemdevelopment.aegis.db;
+package com.beemdevelopment.aegis.vault;
 
 import android.content.Context;
 import android.content.Intent;
@@ -18,21 +18,20 @@ import java.io.IOException;
 import java.text.Collator;
 import java.util.Collection;
 import java.util.TreeSet;
-import java.util.UUID;
 
-public class DatabaseManager {
+public class VaultManager {
     private static final String FILENAME = "aegis.json";
     private static final String FILENAME_EXPORT = "aegis_export.json";
     private static final String FILENAME_EXPORT_PLAIN = "aegis_export_plain.json";
 
-    private Database _db;
-    private DatabaseFile _file;
-    private DatabaseFileCredentials _creds;
+    private Vault _vault;
+    private VaultFile _file;
+    private VaultFileCredentials _creds;
     private boolean _encrypt;
 
     private Context _context;
 
-    public DatabaseManager(Context context) {
+    public VaultManager(Context context) {
         _context = context;
     }
 
@@ -41,7 +40,7 @@ public class DatabaseManager {
         return file.exists() && file.isFile();
     }
 
-    public void load() throws DatabaseManagerException {
+    public void load() throws VaultManagerException {
         assertState(true, false);
 
         try (FileInputStream file = _context.openFileInput(FILENAME)) {
@@ -50,70 +49,70 @@ public class DatabaseManager {
             stream.readFully(fileBytes);
             stream.close();
 
-            _file = DatabaseFile.fromBytes(fileBytes);
+            _file = VaultFile.fromBytes(fileBytes);
             _encrypt = _file.isEncrypted();
             if (!isEncryptionEnabled()) {
                 JSONObject obj = _file.getContent();
-                _db = Database.fromJson(obj);
+                _vault = Vault.fromJson(obj);
             }
-        } catch (IOException | DatabaseFileException | DatabaseException e) {
-            throw new DatabaseManagerException(e);
+        } catch (IOException | VaultFileException | VaultException e) {
+            throw new VaultManagerException(e);
         }
     }
 
     public void lock() {
         assertState(false, true);
         _creds = null;
-        _db = null;
+        _vault = null;
     }
 
-    public void unlock(DatabaseFileCredentials creds) throws DatabaseManagerException {
+    public void unlock(VaultFileCredentials creds) throws VaultManagerException {
         assertState(true, true);
 
         try {
             JSONObject obj = _file.getContent(creds);
-            _db = Database.fromJson(obj);
+            _vault = Vault.fromJson(obj);
             _creds = creds;
             _context.startService(new Intent(_context, NotificationService.class));
-        } catch (DatabaseFileException | DatabaseException e) {
-            throw new DatabaseManagerException(e);
+        } catch (VaultFileException | VaultException e) {
+            throw new VaultManagerException(e);
         }
     }
 
-    public static void save(Context context, DatabaseFile file) throws DatabaseManagerException {
+    public static void save(Context context, VaultFile file) throws VaultManagerException {
         byte[] bytes = file.toBytes();
         try (FileOutputStream stream = context.openFileOutput(FILENAME, Context.MODE_PRIVATE)) {
             stream.write(bytes);
         } catch (IOException e) {
-            throw new DatabaseManagerException(e);
+            throw new VaultManagerException(e);
         }
     }
 
-    public void save() throws DatabaseManagerException {
+    public void save() throws VaultManagerException {
         assertState(false, true);
 
         try {
-            JSONObject obj = _db.toJson();
+            JSONObject obj = _vault.toJson();
             if (isEncryptionEnabled()) {
                 _file.setContent(obj, _creds);
             } else {
                 _file.setContent(obj);
             }
             save(_context, _file);
-        } catch (DatabaseFileException e) {
-            throw new DatabaseManagerException(e);
+        } catch (VaultFileException e) {
+            throw new VaultManagerException(e);
         }
     }
 
-    public String export(boolean encrypt) throws DatabaseManagerException {
+    public String export(boolean encrypt) throws VaultManagerException {
         assertState(false, true);
 
         try {
-            DatabaseFile dbFile = new DatabaseFile();
+            VaultFile vaultFile = new VaultFile();
             if (encrypt && isEncryptionEnabled()) {
-                dbFile.setContent(_db.toJson(), _creds);
+                vaultFile.setContent(_vault.toJson(), _creds);
             } else {
-                dbFile.setContent(_db.toJson());
+                vaultFile.setContent(_vault.toJson());
             }
 
             String dirName = !BuildConfig.DEBUG ? _context.getString(R.string.app_name) : _context.getString(R.string.app_name_dev);
@@ -122,53 +121,53 @@ public class DatabaseManager {
                 throw new IOException("error creating external storage directory");
             }
 
-            byte[] bytes = dbFile.toBytes();
+            byte[] bytes = vaultFile.toBytes();
             File file = new File(dir.getAbsolutePath(), encrypt ? FILENAME_EXPORT : FILENAME_EXPORT_PLAIN);
             try (FileOutputStream stream = new FileOutputStream(file)) {
                 stream.write(bytes);
             }
 
             return file.getAbsolutePath();
-        } catch (IOException | DatabaseFileException e) {
-            throw new DatabaseManagerException(e);
+        } catch (IOException | VaultFileException e) {
+            throw new VaultManagerException(e);
         }
     }
 
-    public void addEntry(DatabaseEntry entry) {
+    public void addEntry(VaultEntry entry) {
         assertState(false, true);
-        _db.getEntries().add(entry);
+        _vault.getEntries().add(entry);
     }
 
-    public DatabaseEntry removeEntry(DatabaseEntry entry) {
+    public VaultEntry removeEntry(VaultEntry entry) {
         assertState(false, true);
-        return _db.getEntries().remove(entry);
+        return _vault.getEntries().remove(entry);
     }
 
-    public DatabaseEntry replaceEntry(DatabaseEntry entry) {
+    public VaultEntry replaceEntry(VaultEntry entry) {
         assertState(false, true);
-        return _db.getEntries().replace(entry);
+        return _vault.getEntries().replace(entry);
     }
 
-    public void swapEntries(DatabaseEntry entry1, DatabaseEntry entry2) {
+    public void swapEntries(VaultEntry entry1, VaultEntry entry2) {
         assertState(false, true);
-        _db.getEntries().swap(entry1, entry2);
+        _vault.getEntries().swap(entry1, entry2);
     }
 
-    public boolean isEntryDuplicate(DatabaseEntry entry) {
+    public boolean isEntryDuplicate(VaultEntry entry) {
         assertState(false, true);
-        return _db.getEntries().has(entry);
+        return _vault.getEntries().has(entry);
     }
 
-    public Collection<DatabaseEntry> getEntries() {
+    public Collection<VaultEntry> getEntries() {
         assertState(false, true);
-        return _db.getEntries().getValues();
+        return _vault.getEntries().getValues();
     }
 
     public TreeSet<String> getGroups() {
         assertState(false, true);
 
         TreeSet<String> groups = new TreeSet<>(Collator.getInstance());
-        for (DatabaseEntry entry : getEntries()) {
+        for (VaultEntry entry : getEntries()) {
             String group = entry.getGroup();
             if (group != null) {
                 groups.add(group);
@@ -177,17 +176,17 @@ public class DatabaseManager {
         return groups;
     }
 
-    public DatabaseFileCredentials getCredentials() {
+    public VaultFileCredentials getCredentials() {
         assertState(false, true);
         return _creds;
     }
 
-    public void setCredentials(DatabaseFileCredentials creds) {
+    public void setCredentials(VaultFileCredentials creds) {
         assertState(false, true);
         _creds = creds;
     }
 
-    public DatabaseFile.Header getFileHeader() {
+    public VaultFile.Header getFileHeader() {
         assertLoaded(true);
         return _file.getHeader();
     }
@@ -197,14 +196,14 @@ public class DatabaseManager {
         return _encrypt;
     }
 
-    public void enableEncryption(DatabaseFileCredentials creds) throws DatabaseManagerException {
+    public void enableEncryption(VaultFileCredentials creds) throws VaultManagerException {
         assertState(false, true);
         _creds = creds;
         _encrypt = true;
         save();
     }
 
-    public void disableEncryption() throws DatabaseManagerException {
+    public void disableEncryption() throws VaultManagerException {
         assertState(false, true);
         _creds = null;
         _encrypt = false;
@@ -216,24 +215,24 @@ public class DatabaseManager {
     }
 
     public boolean isLocked() {
-        return _db == null;
+        return _vault == null;
     }
 
     private void assertState(boolean locked, boolean loaded) {
         assertLoaded(loaded);
 
         if (isLocked() && !locked) {
-            throw new AssertionError("database file has not been unlocked yet");
+            throw new AssertionError("vault file has not been unlocked yet");
         } else if (!isLocked() && locked) {
-            throw new AssertionError("database file has already been unlocked");
+            throw new AssertionError("vault file has already been unlocked");
         }
     }
 
     private void assertLoaded(boolean loaded) {
         if (isLoaded() && !loaded) {
-            throw new AssertionError("database file has already been loaded");
+            throw new AssertionError("vault file has already been loaded");
         } else if (!isLoaded() && loaded) {
-            throw new AssertionError("database file has not been loaded yet");
+            throw new AssertionError("vault file has not been loaded yet");
         }
     }
 }

@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.amulyakhare.textdrawable.TextDrawable;
 import com.beemdevelopment.aegis.R;
-import com.beemdevelopment.aegis.db.DatabaseEntry;
+import com.beemdevelopment.aegis.vault.VaultEntry;
 import com.beemdevelopment.aegis.helpers.TextDrawableHelper;
 import com.beemdevelopment.aegis.helpers.ThemeHelper;
 import com.beemdevelopment.aegis.helpers.UiRefresher;
@@ -29,7 +29,7 @@ public class EntryHolder extends RecyclerView.ViewHolder {
     private TextView _profileCode;
     private TextView _profileIssuer;
     private ImageView _profileDrawable;
-    private DatabaseEntry _entry;
+    private VaultEntry _entry;
     private ImageView _buttonRefresh;
 
     private boolean _hidden;
@@ -72,7 +72,7 @@ public class EntryHolder extends RecyclerView.ViewHolder {
         });
     }
 
-    public void setData(DatabaseEntry entry, boolean showAccountName, boolean showProgress, boolean hidden, boolean dimmed) {
+    public void setData(VaultEntry entry, boolean showAccountName, boolean showProgress, boolean hidden, boolean dimmed) {
         _entry = entry;
         _hidden = hidden;
 
@@ -97,7 +97,7 @@ public class EntryHolder extends RecyclerView.ViewHolder {
         itemView.setAlpha(dimmed ? DIMMED_ALPHA : DEFAULT_ALPHA);
     }
 
-    public DatabaseEntry getEntry() {
+    public VaultEntry getEntry() {
         return _entry;
     }
 
