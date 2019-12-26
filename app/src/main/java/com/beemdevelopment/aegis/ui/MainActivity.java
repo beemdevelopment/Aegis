@@ -679,10 +679,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
             return;
         }
 
-        ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
-        ClipData clip = ClipData.newPlainText("text/plain", entry.getInfo().getOtp());
-        clipboard.setPrimaryClip(clip);
-        Toast.makeText(this, getString(R.string.code_copied), Toast.LENGTH_SHORT).show();
+        copyEntryCode(entry);
     }
 
     @Override
@@ -732,6 +729,13 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         super.onLocked();
     }
 
+    private void copyEntryCode(DatabaseEntry entry) {
+        ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+        ClipData clip = ClipData.newPlainText("text/plain", entry.getInfo().getOtp());
+        clipboard.setPrimaryClip(clip);
+        Toast.makeText(this, getString(R.string.code_copied), Toast.LENGTH_SHORT).show();
+    }
+
     private class ActionModeCallbacks implements ActionMode.Callback {
             @Override
             public boolean onCreateActionMode(ActionMode mode, Menu menu) {
@@ -748,6 +752,11 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
             @Override
             public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
                 switch (item.getItemId()) {
+                    case R.id.action_copy:
+                        copyEntryCode(_selectedEntry);
+                        mode.finish();
+                        return true;
+
                     case R.id.action_edit:
                         startEditProfileActivity(CODE_EDIT_ENTRY, _selectedEntry, false);
                         mode.finish();
