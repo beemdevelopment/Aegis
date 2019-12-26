@@ -75,10 +75,14 @@ public class ChangelogDialog extends DialogFragment {
 
     private String replaceStylesheet(String changelog) {
         int backgroundColorResource = _themeStyle == Theme.AMOLED ? R.attr.cardBackgroundFocused : R.attr.cardBackground;
-        String backgroundColor = String.format("%06X", (0xFFFFFF & ThemeHelper.getThemeColor(backgroundColorResource, getContext().getTheme())));
-        String textColor = String.format("%06X", (0xFFFFFF & ThemeHelper.getThemeColor(R.attr.primaryText, getContext().getTheme())));
+        String backgroundColor = colorToCSS(ThemeHelper.getThemeColor(backgroundColorResource, getContext().getTheme()));
+        String textColor = colorToCSS(0xFFFFFF & ThemeHelper.getThemeColor(R.attr.primaryText, getContext().getTheme()));
 
         return String.format(changelog, backgroundColor, textColor);
+    }
+
+    private static String colorToCSS(int color) {
+        return String.format("rgb(%d, %d, %d)", Color.red(color), Color.green(color), Color.blue(color));
     }
 
     public ChangelogDialog setTheme(Theme theme) {
