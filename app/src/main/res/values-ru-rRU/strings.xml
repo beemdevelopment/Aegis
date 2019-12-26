@@ -1,6 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Aegis</string>
-    <string name="app_name_dev">AegisDev</string>
     <string name="action_settings">Настройки</string>
     <string name="action_import">Импорт</string>
     <string name="action_delete">Удалить</string>
@@ -8,7 +7,6 @@
     <string name="discard">Отмена</string>
     <string name="save">Сохранить</string>
     <string name="issuer">Эмитент</string>
-
     <string name="settings">Предпочтения</string>
     <string name="pref_appearance_group_title">Внешний вид</string>
     <string name="pref_security_group_title">Безопасность</string>
@@ -38,7 +36,6 @@
     <string name="pref_encryption_summary">Зашифруйте базу данных и разблокируйте ее с помощью пароля или отпечатка пальца</string>
     <string name="pref_set_password_title">Изменить пароль</string>
     <string name="pref_set_password_summary">Установите новый пароль, который вам понадобится, чтобы разблокировать ваше хранилище</string>
-
     <string name="choose_authentication_method">Безопасность</string>
     <string name="authentication_method_none">Нет</string>
     <string name="authentication_method_none_description">Вам не нужен пароль для разблокировки хранилища, и оно не будет зашифровано. Этот вариант не рекомендуется.</string>
@@ -51,7 +48,6 @@
     <string name="set_group">Пожалуйста, введите название группы</string>
     <string name="set_number">Пожалуйста, введите номер</string>
     <string name="set_password_confirm">Пожалуйста, подтвердите пароль</string>
-
     <string name="unlock">Разблокировать</string>
     <string name="advanced">Расширенные</string>
     <string name="seconds">секунд</string>
@@ -107,8 +103,6 @@
     <string name="imported_entries_count">Импортировано %d записей</string>
     <string name="read_entries_count">Прочитано %d записей. %d ошибок.</string>
     <string name="import_error_title">При импорте произошла одна или несколько ошибок</string>
-    <string name="exporting_vault_error">Произошла ошибка при попытке экспорта базы данных</string>
-    <string name="export_vault_location">База данных была экспортирована в:</string>
     <string name="export_warning">Это действие экспортирует базу данных из приватного хранилища Aegis.</string>
     <string name="encryption_set_password_error">Произошла ошибка при попытке установить пароль:</string>
     <string name="no_cameras_available">Нет доступных камер</string>
@@ -128,12 +122,12 @@
     <string name="lock">Заблокировать</string>
     <string name="all">Все</string>
     <string name="name">Имя</string>
+    <string name="no_group">Нет группы</string>
     <string name="sort_alphabetically">Эмитент (в алфавитном порядке)</string>
     <string name="sort_alphabetically_reverse">Эмитент (в обратном порядке)</string>
     <string name="sort_alphabetically_name">Учетная запись (в алфавитном порядке)</string>
     <string name="sort_alphabetically_name_reverse">Учетная запись (в обратном порядке)</string>
     <string name="sort_custom">Произвольно</string>
-    <string name="no_group">Нет группы</string>
     <string name="new_group">Новая группа…</string>
     <string name="enter_group_name">Введите название группы</string>
     <string name="group_name_hint">Название группы</string>
