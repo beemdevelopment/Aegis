@@ -22,9 +22,9 @@ import androidx.appcompat.app.AlertDialog;
 
 import com.beemdevelopment.aegis.Preferences;
 import com.beemdevelopment.aegis.R;
-import com.beemdevelopment.aegis.db.slots.PasswordSlot;
-import com.beemdevelopment.aegis.db.slots.Slot;
-import com.beemdevelopment.aegis.db.slots.SlotException;
+import com.beemdevelopment.aegis.vault.slots.PasswordSlot;
+import com.beemdevelopment.aegis.vault.slots.Slot;
+import com.beemdevelopment.aegis.vault.slots.SlotException;
 import com.beemdevelopment.aegis.helpers.EditTextHelper;
 import com.beemdevelopment.aegis.ui.tasks.DerivationTask;
 

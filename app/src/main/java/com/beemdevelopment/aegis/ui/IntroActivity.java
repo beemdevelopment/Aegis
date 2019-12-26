@@ -8,16 +8,16 @@ import androidx.fragment.app.Fragment;
 
 import com.beemdevelopment.aegis.Preferences;
 import com.beemdevelopment.aegis.R;
-import com.beemdevelopment.aegis.db.Database;
-import com.beemdevelopment.aegis.db.DatabaseFile;
-import com.beemdevelopment.aegis.db.DatabaseFileCredentials;
-import com.beemdevelopment.aegis.db.DatabaseFileException;
-import com.beemdevelopment.aegis.db.DatabaseManager;
-import com.beemdevelopment.aegis.db.DatabaseManagerException;
-import com.beemdevelopment.aegis.db.slots.BiometricSlot;
-import com.beemdevelopment.aegis.db.slots.PasswordSlot;
-import com.beemdevelopment.aegis.db.slots.Slot;
-import com.beemdevelopment.aegis.db.slots.SlotException;
+import com.beemdevelopment.aegis.vault.Vault;
+import com.beemdevelopment.aegis.vault.VaultFile;
+import com.beemdevelopment.aegis.vault.VaultFileCredentials;
+import com.beemdevelopment.aegis.vault.VaultFileException;
+import com.beemdevelopment.aegis.vault.VaultManager;
+import com.beemdevelopment.aegis.vault.VaultManagerException;
+import com.beemdevelopment.aegis.vault.slots.BiometricSlot;
+import com.beemdevelopment.aegis.vault.slots.PasswordSlot;
+import com.beemdevelopment.aegis.vault.slots.Slot;
+import com.beemdevelopment.aegis.vault.slots.SlotException;
 import com.beemdevelopment.aegis.ui.slides.CustomAuthenticatedSlide;
 import com.beemdevelopment.aegis.ui.slides.CustomAuthenticationSlide;
 import com.beemdevelopment.aegis.ui.tasks.DerivationTask;
@@ -38,8 +38,8 @@ public class IntroActivity extends AppIntro2 implements DerivationTask.Callback 
     private CustomAuthenticationSlide _authenticationSlide;
     private Fragment _endSlide;
 
-    private Database _database;
-    private DatabaseFile _databaseFile;
+    private Vault _vault;
+    private VaultFile _vaultFile;
     private PasswordSlot _passwordSlot;
     private Cipher _passwordCipher;
 
@@ -87,9 +87,8 @@ public class IntroActivity extends AppIntro2 implements DerivationTask.Callback 
         _endSlide = AppIntroFragment.newInstance(endSliderPage);
         addSlide(_endSlide);
 
-        // create the database and database file
-        _database = new Database();
-        _databaseFile = new DatabaseFile();
+        _vault = new Vault();
+        _vaultFile = new VaultFile();
     }
 
     private void setException(Exception e) {
@@ -129,9 +128,9 @@ public class IntroActivity extends AppIntro2 implements DerivationTask.Callback 
         }
 
         // generate the master key
-        DatabaseFileCredentials creds = null;
+        VaultFileCredentials creds = null;
         if (cryptType != CustomAuthenticationSlide.CRYPT_TYPE_NONE) {
-            creds = new DatabaseFileCredentials();
+            creds = new VaultFileCredentials();
         }
 
         if (cryptType != CustomAuthenticationSlide.CRYPT_TYPE_NONE) {
@@ -158,16 +157,16 @@ public class IntroActivity extends AppIntro2 implements DerivationTask.Callback 
             creds.getSlots().add(slot);
         }
 
-        // finally, save the database
+        // finally, save the vault
         try {
-            JSONObject obj = _database.toJson();
+            JSONObject obj = _vault.toJson();
             if (cryptType == CustomAuthenticationSlide.CRYPT_TYPE_NONE) {
-                _databaseFile.setContent(obj);
+                _vaultFile.setContent(obj);
             } else {
-                _databaseFile.setContent(obj, creds);
+                _vaultFile.setContent(obj, creds);
             }
-            DatabaseManager.save(getApplicationContext(), _databaseFile);
-        } catch (DatabaseManagerException | DatabaseFileException e) {
+            VaultManager.save(getApplicationContext(), _vaultFile);
+        } catch (VaultManagerException | VaultFileException e) {
             setException(e);
             return;
         }

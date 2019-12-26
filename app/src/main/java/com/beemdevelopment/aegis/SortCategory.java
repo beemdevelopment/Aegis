@@ -1,6 +1,6 @@
 package com.beemdevelopment.aegis;
 
-import com.beemdevelopment.aegis.db.DatabaseEntry;
+import com.beemdevelopment.aegis.vault.VaultEntry;
 import com.beemdevelopment.aegis.helpers.comparators.AccountNameComparator;
 import com.beemdevelopment.aegis.helpers.comparators.IssuerNameComparator;
 
@@ -24,8 +24,8 @@ public enum SortCategory {
         return _values[x];
     }
 
-    public Comparator<DatabaseEntry> getComparator() {
-        Comparator<DatabaseEntry> comparator = null;
+    public Comparator<VaultEntry> getComparator() {
+        Comparator<VaultEntry> comparator = null;
 
         switch (this) {
             case ACCOUNT:

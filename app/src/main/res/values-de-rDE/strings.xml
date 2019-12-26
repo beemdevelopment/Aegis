@@ -109,8 +109,8 @@
     <string name="imported_entries_count">Importierte %d Einträge</string>
     <string name="read_entries_count">%d Einträge gelesen. %d Fehler.</string>
     <string name="import_error_title">Beim Import sind ein oder mehrere Fehler aufgetreten.</string>
-    <string name="exporting_database_error">Beim Versuch, die Datenbank zu exportieren, ist ein Fehler aufgetreten.</string>
-    <string name="export_database_location">Die Datenbank wurde exportiert nach:</string>
+    <string name="exporting_vault_error">Beim Versuch, die Datenbank zu exportieren, ist ein Fehler aufgetreten.</string>
+    <string name="export_vault_location">Die Datenbank wurde exportiert nach:</string>
     <string name="export_warning">Diese Aktion exportiert die Datenbank aus dem privaten Speicher von Aegis.</string>
     <string name="encryption_set_password_error">Beim Versuch, das Passwort festzulegen, ist ein Fehler aufgetreten: </string>
     <string name="no_cameras_available">Keine Kameras verfügbar</string>

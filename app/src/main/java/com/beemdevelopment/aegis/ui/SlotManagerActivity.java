@@ -17,12 +17,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.crypto.KeyStoreHandle;
 import com.beemdevelopment.aegis.crypto.KeyStoreHandleException;
-import com.beemdevelopment.aegis.db.DatabaseFileCredentials;
-import com.beemdevelopment.aegis.db.slots.BiometricSlot;
-import com.beemdevelopment.aegis.db.slots.PasswordSlot;
-import com.beemdevelopment.aegis.db.slots.Slot;
-import com.beemdevelopment.aegis.db.slots.SlotException;
-import com.beemdevelopment.aegis.db.slots.SlotList;
+import com.beemdevelopment.aegis.vault.VaultFileCredentials;
+import com.beemdevelopment.aegis.vault.slots.BiometricSlot;
+import com.beemdevelopment.aegis.vault.slots.PasswordSlot;
+import com.beemdevelopment.aegis.vault.slots.Slot;
+import com.beemdevelopment.aegis.vault.slots.SlotException;
+import com.beemdevelopment.aegis.vault.slots.SlotList;
 import com.beemdevelopment.aegis.helpers.BiometricSlotInitializer;
 import com.beemdevelopment.aegis.helpers.BiometricsHelper;
 import com.beemdevelopment.aegis.ui.views.SlotAdapter;
@@ -30,7 +30,7 @@ import com.beemdevelopment.aegis.ui.views.SlotAdapter;
 import javax.crypto.Cipher;
 
 public class SlotManagerActivity extends AegisActivity implements SlotAdapter.Listener {
-    private DatabaseFileCredentials _creds;
+    private VaultFileCredentials _creds;
     private SlotAdapter _adapter;
 
     private boolean _edited;
@@ -69,7 +69,7 @@ public class SlotManagerActivity extends AegisActivity implements SlotAdapter.Li
         slotsView.setNestedScrollingEnabled(false);
 
         // load the slots and masterKey
-        _creds = (DatabaseFileCredentials) getIntent().getSerializableExtra("creds");
+        _creds = (VaultFileCredentials) getIntent().getSerializableExtra("creds");
         for (Slot slot : _creds.getSlots()) {
             _adapter.addSlot(slot);
         }

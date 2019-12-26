@@ -3,7 +3,7 @@ package com.beemdevelopment.aegis.importers;
 import android.content.Context;
 import android.content.pm.PackageManager;
 
-import com.beemdevelopment.aegis.db.DatabaseEntry;
+import com.beemdevelopment.aegis.vault.VaultEntry;
 import com.beemdevelopment.aegis.encoding.Base64;
 import com.beemdevelopment.aegis.encoding.Base64Exception;
 import com.beemdevelopment.aegis.otp.OtpInfoException;
@@ -66,7 +66,7 @@ public class SteamImporter extends DatabaseImporter {
             Result result = new Result();
 
             try {
-                DatabaseEntry entry = convertEntry(_obj);
+                VaultEntry entry = convertEntry(_obj);
                 result.addEntry(entry);
             } catch (DatabaseImporterEntryException e) {
                 result.addError(e);
@@ -75,13 +75,13 @@ public class SteamImporter extends DatabaseImporter {
             return result;
         }
 
-        private static DatabaseEntry convertEntry(JSONObject obj) throws DatabaseImporterEntryException {
+        private static VaultEntry convertEntry(JSONObject obj) throws DatabaseImporterEntryException {
             try {
                 byte[] secret = Base64.decode(obj.getString("shared_secret"));
                 SteamInfo info = new SteamInfo(secret);
 
                 String account = obj.getString("account_name");
-                return new DatabaseEntry(info, account, "Steam");
+                return new VaultEntry(info, account, "Steam");
             } catch (JSONException | Base64Exception | OtpInfoException e) {
                 throw new DatabaseImporterEntryException(e, obj.toString());
             }

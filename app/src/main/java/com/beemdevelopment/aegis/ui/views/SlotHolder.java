@@ -10,10 +10,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.crypto.KeyStoreHandle;
 import com.beemdevelopment.aegis.crypto.KeyStoreHandleException;
-import com.beemdevelopment.aegis.db.slots.BiometricSlot;
-import com.beemdevelopment.aegis.db.slots.PasswordSlot;
-import com.beemdevelopment.aegis.db.slots.RawSlot;
-import com.beemdevelopment.aegis.db.slots.Slot;
+import com.beemdevelopment.aegis.vault.slots.BiometricSlot;
+import com.beemdevelopment.aegis.vault.slots.PasswordSlot;
+import com.beemdevelopment.aegis.vault.slots.RawSlot;
+import com.beemdevelopment.aegis.vault.slots.Slot;
 import com.beemdevelopment.aegis.helpers.BiometricsHelper;
 
 public class SlotHolder extends RecyclerView.ViewHolder {

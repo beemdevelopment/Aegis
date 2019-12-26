@@ -5,12 +5,12 @@ import android.content.Context;
 import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.crypto.CryptoUtils;
 import com.beemdevelopment.aegis.crypto.MasterKey;
-import com.beemdevelopment.aegis.db.slots.BiometricSlot;
-import com.beemdevelopment.aegis.db.slots.PasswordSlot;
-import com.beemdevelopment.aegis.db.slots.Slot;
-import com.beemdevelopment.aegis.db.slots.SlotException;
-import com.beemdevelopment.aegis.db.slots.SlotIntegrityException;
-import com.beemdevelopment.aegis.db.slots.SlotList;
+import com.beemdevelopment.aegis.vault.slots.BiometricSlot;
+import com.beemdevelopment.aegis.vault.slots.PasswordSlot;
+import com.beemdevelopment.aegis.vault.slots.Slot;
+import com.beemdevelopment.aegis.vault.slots.SlotException;
+import com.beemdevelopment.aegis.vault.slots.SlotIntegrityException;
+import com.beemdevelopment.aegis.vault.slots.SlotList;
 
 import javax.crypto.Cipher;
 import javax.crypto.SecretKey;

@@ -1,4 +1,4 @@
-package com.beemdevelopment.aegis.db.slots;
+package com.beemdevelopment.aegis.vault.slots;
 
 import com.beemdevelopment.aegis.crypto.CryptParameters;
 

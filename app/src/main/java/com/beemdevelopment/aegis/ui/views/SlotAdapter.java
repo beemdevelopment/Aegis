@@ -5,7 +5,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.beemdevelopment.aegis.R;
-import com.beemdevelopment.aegis.db.slots.Slot;
+import com.beemdevelopment.aegis.vault.slots.Slot;
 
 import java.util.ArrayList;
 

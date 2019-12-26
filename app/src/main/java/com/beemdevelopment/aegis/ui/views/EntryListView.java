@@ -22,7 +22,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.SortCategory;
 import com.beemdevelopment.aegis.ViewMode;
-import com.beemdevelopment.aegis.db.DatabaseEntry;
+import com.beemdevelopment.aegis.vault.VaultEntry;
 import com.beemdevelopment.aegis.helpers.SimpleItemTouchHelperCallback;
 import com.beemdevelopment.aegis.helpers.UiRefresher;
 import com.beemdevelopment.aegis.otp.TotpInfo;
@@ -43,7 +43,7 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
 
     private RecyclerView _recyclerView;
     private RecyclerView.ItemDecoration _dividerDecoration;
-    private ViewPreloadSizeProvider<DatabaseEntry> _preloadSizeProvider;
+    private ViewPreloadSizeProvider<VaultEntry> _preloadSizeProvider;
     private PeriodProgressBar _progressBar;
     private boolean _showProgress;
     private ViewMode _viewMode;
@@ -82,7 +82,7 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
         // set up icon preloading
         _preloadSizeProvider = new ViewPreloadSizeProvider<>();
         IconPreloadProvider modelProvider = new IconPreloadProvider();
-        RecyclerViewPreloader<DatabaseEntry> preloader = new RecyclerViewPreloader<>(Glide.with(this), modelProvider, _preloadSizeProvider, 10);
+        RecyclerViewPreloader<VaultEntry> preloader = new RecyclerViewPreloader<>(Glide.with(this), modelProvider, _preloadSizeProvider, 10);
         _recyclerView.addOnScrollListener(preloader);
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(view.getContext());
@@ -132,7 +132,7 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
         }
     }
 
-    public void setActionModeState(boolean enabled, DatabaseEntry entry) {
+    public void setActionModeState(boolean enabled, VaultEntry entry) {
         _touchCallback.setSelectedEntry(entry);
         _touchCallback.setIsLongPressDragEnabled(enabled && _adapter.isDragAndDropAllowed());
         _adapter.setSelectedEntry(entry);
@@ -170,27 +170,27 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
     }
 
     @Override
-    public void onEntryClick(DatabaseEntry entry) {
+    public void onEntryClick(VaultEntry entry) {
         _listener.onEntryClick(entry);
     }
 
-    public boolean onLongEntryClick(DatabaseEntry entry) {
+    public boolean onLongEntryClick(VaultEntry entry) {
         _listener.onLongEntryClick(entry);
         return true;
     }
 
     @Override
-    public void onEntryMove(DatabaseEntry entry1, DatabaseEntry entry2) {
+    public void onEntryMove(VaultEntry entry1, VaultEntry entry2) {
         _listener.onEntryMove(entry1, entry2);
     }
 
     @Override
-    public void onEntryDrop(DatabaseEntry entry) {
+    public void onEntryDrop(VaultEntry entry) {
         _listener.onEntryDrop(entry);
     }
 
     @Override
-    public void onEntryChange(DatabaseEntry entry) {
+    public void onEntryChange(VaultEntry entry) {
         _listener.onEntryChange(entry);
     }
 
@@ -227,17 +227,17 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
         _adapter.setTapToRevealTime(number);
     }
 
-    public void addEntry(DatabaseEntry entry) {
+    public void addEntry(VaultEntry entry) {
         _adapter.addEntry(entry);
         updateEmptyState();
     }
 
-    public void addEntries(List<DatabaseEntry> entries) {
+    public void addEntries(List<VaultEntry> entries) {
         _adapter.addEntries(entries);
         updateEmptyState();
     }
 
-    public void removeEntry(DatabaseEntry entry) {
+    public void removeEntry(VaultEntry entry) {
         _adapter.removeEntry(entry);
         updateEmptyState();
     }
@@ -246,7 +246,7 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
         _adapter.clearEntries();
     }
 
-    public void replaceEntry(DatabaseEntry oldEntry, DatabaseEntry newEntry) {
+    public void replaceEntry(VaultEntry oldEntry, VaultEntry newEntry) {
         _adapter.replaceEntry(oldEntry, newEntry);
     }
 
@@ -292,11 +292,11 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
     }
 
     public interface Listener {
-        void onEntryClick(DatabaseEntry entry);
-        void onEntryMove(DatabaseEntry entry1, DatabaseEntry entry2);
-        void onEntryDrop(DatabaseEntry entry);
-        void onEntryChange(DatabaseEntry entry);
-        void onLongEntryClick(DatabaseEntry entry);
+        void onEntryClick(VaultEntry entry);
+        void onEntryMove(VaultEntry entry1, VaultEntry entry2);
+        void onEntryDrop(VaultEntry entry);
+        void onEntryChange(VaultEntry entry);
+        void onLongEntryClick(VaultEntry entry);
         void onScroll(int dx, int dy);
     }
 
@@ -318,11 +318,11 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
         }
     }
 
-    private class IconPreloadProvider implements ListPreloader.PreloadModelProvider<DatabaseEntry> {
+    private class IconPreloadProvider implements ListPreloader.PreloadModelProvider<VaultEntry> {
         @NonNull
         @Override
-        public List<DatabaseEntry> getPreloadItems(int position) {
-            DatabaseEntry entry = _adapter.getEntryAt(position);
+        public List<VaultEntry> getPreloadItems(int position) {
+            VaultEntry entry = _adapter.getEntryAt(position);
             if (!entry.hasIcon()) {
                 return Collections.emptyList();
             }
@@ -331,7 +331,7 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
 
         @Nullable
         @Override
-        public RequestBuilder getPreloadRequestBuilder(@NonNull DatabaseEntry entry) {
+        public RequestBuilder getPreloadRequestBuilder(@NonNull VaultEntry entry) {
             return Glide.with(EntryListView.this)
                         .asDrawable()
                         .load(entry)

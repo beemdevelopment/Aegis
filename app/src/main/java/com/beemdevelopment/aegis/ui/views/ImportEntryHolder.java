@@ -6,7 +6,6 @@ import android.widget.CheckBox;
 import android.widget.TextView;
 
 import com.beemdevelopment.aegis.R;
-import com.beemdevelopment.aegis.db.DatabaseEntry;
 import com.beemdevelopment.aegis.ui.models.ImportEntry;
 
 import androidx.recyclerview.widget.RecyclerView;

@@ -9,14 +9,13 @@ import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
-import com.beemdevelopment.aegis.AegisApplication;
 import com.beemdevelopment.aegis.R;
 
 public class NotificationService extends Service {
-    public static final int DATABASE_UNLOCKED_ID = 1;
+    public static final int VAULT_UNLOCKED_ID = 1;
 
     private static final String CODE_LOCK_STATUS_ID = "lock_status_channel";
-    private static final String CODE_LOCK_DATABASE_ACTION = "lock_database";
+    private static final String CODE_LOCK_VAULT_ACTION = "lock_vault";
 
     public NotificationService() {
 
@@ -31,7 +30,7 @@ public class NotificationService extends Service {
     }
 
     public void serviceMethod() {
-        Intent intentAction = new Intent(CODE_LOCK_DATABASE_ACTION);
+        Intent intentAction = new Intent(CODE_LOCK_VAULT_ACTION);
         PendingIntent lockDatabaseIntent = PendingIntent.getBroadcast(this,1,intentAction, 0);
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this,  CODE_LOCK_STATUS_ID)
                 .setSmallIcon(R.drawable.ic_fingerprint_black_24dp)
@@ -42,7 +41,7 @@ public class NotificationService extends Service {
                 .setContentIntent(lockDatabaseIntent);
 
         NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
-        notificationManager.notify(DATABASE_UNLOCKED_ID, builder.build());
+        notificationManager.notify(VAULT_UNLOCKED_ID, builder.build());
     }
 
     @Override
@@ -50,7 +49,7 @@ public class NotificationService extends Service {
         super.onDestroy();
 
         NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
-        notificationManager.cancel(DATABASE_UNLOCKED_ID);
+        notificationManager.cancel(VAULT_UNLOCKED_ID);
     }
 
     @Nullable

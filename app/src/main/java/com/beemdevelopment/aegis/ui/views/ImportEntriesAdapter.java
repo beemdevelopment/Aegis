@@ -5,7 +5,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.beemdevelopment.aegis.R;
-import com.beemdevelopment.aegis.db.DatabaseEntry;
 import com.beemdevelopment.aegis.ui.models.ImportEntry;
 
 import java.util.ArrayList;

@@ -21,19 +21,19 @@ import androidx.appcompat.view.ActionMode;
 import androidx.appcompat.widget.SearchView;
 
 import com.beemdevelopment.aegis.AegisApplication;
+import com.beemdevelopment.aegis.CancelAction;
 import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.SortCategory;
-import com.beemdevelopment.aegis.CancelAction;
 import com.beemdevelopment.aegis.ViewMode;
-import com.beemdevelopment.aegis.db.DatabaseEntry;
-import com.beemdevelopment.aegis.db.DatabaseFileCredentials;
-import com.beemdevelopment.aegis.db.DatabaseManager;
-import com.beemdevelopment.aegis.db.DatabaseManagerException;
 import com.beemdevelopment.aegis.helpers.FabScrollHelper;
 import com.beemdevelopment.aegis.helpers.PermissionHelper;
 import com.beemdevelopment.aegis.otp.GoogleAuthInfo;
 import com.beemdevelopment.aegis.otp.GoogleAuthInfoException;
 import com.beemdevelopment.aegis.ui.views.EntryListView;
+import com.beemdevelopment.aegis.vault.VaultEntry;
+import com.beemdevelopment.aegis.vault.VaultFileCredentials;
+import com.beemdevelopment.aegis.vault.VaultManager;
+import com.beemdevelopment.aegis.vault.VaultManagerException;
 import com.getbase.floatingactionbutton.FloatingActionsMenu;
 import com.google.zxing.BinaryBitmap;
 import com.google.zxing.ChecksumException;
@@ -45,7 +45,6 @@ import com.google.zxing.RGBLuminanceSource;
 import com.google.zxing.Reader;
 import com.google.zxing.Result;
 import com.google.zxing.common.HybridBinarizer;
-import com.mikepenz.iconics.context.IconicsContextWrapper;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -69,12 +68,12 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
     private static final int CODE_PERM_READ_STORAGE = 1;
 
     private AegisApplication _app;
-    private DatabaseManager _db;
+    private VaultManager _vault;
     private boolean _loaded;
     private String _selectedGroup;
     private boolean _searchSubmitted;
 
-    private DatabaseEntry _selectedEntry;
+    private VaultEntry _selectedEntry;
     private ActionMode _actionMode;
 
     private Menu _menu;
@@ -91,7 +90,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         super.onCreate(savedInstanceState);
 
         _app = (AegisApplication) getApplication();
-        _db = _app.getDatabaseManager();
+        _vault = _app.getVaultManager();
         _loaded = false;
 
         // set up the main view
@@ -164,7 +163,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         }
 
         // don't process any activity results if the vault is locked
-        if (requestCode != CODE_DECRYPT && requestCode != CODE_DO_INTRO && _db.isLocked()) {
+        if (requestCode != CODE_DECRYPT && requestCode != CODE_DO_INTRO && _vault.isLocked()) {
             return;
         }
 
@@ -235,50 +234,50 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         }
     }
 
-    private void startEditProfileActivity(int requestCode, DatabaseEntry entry, boolean isNew) {
+    private void startEditProfileActivity(int requestCode, VaultEntry entry, boolean isNew) {
         Intent intent = new Intent(this, EditEntryActivity.class);
-        intent.putExtra("entry", entry != null ? entry : DatabaseEntry.getDefault());
+        intent.putExtra("entry", entry != null ? entry : VaultEntry.getDefault());
         intent.putExtra("isNew", isNew);
         intent.putExtra("selectedGroup", _selectedGroup);
-        intent.putExtra("groups", new ArrayList<>(_db.getGroups()));
+        intent.putExtra("groups", new ArrayList<>(_vault.getGroups()));
         startActivityForResult(intent, requestCode);
     }
 
     private void onScanResult(int resultCode, Intent data) {
         if (resultCode == RESULT_OK) {
-            DatabaseEntry entry = (DatabaseEntry) data.getSerializableExtra("entry");
+            VaultEntry entry = (VaultEntry) data.getSerializableExtra("entry");
             startEditProfileActivity(CODE_ADD_ENTRY, entry, true);
         }
     }
 
     private void onAddEntryResult(int resultCode, Intent data) {
         if (resultCode == RESULT_OK) {
-            DatabaseEntry entry = (DatabaseEntry) data.getSerializableExtra("entry");
+            VaultEntry entry = (VaultEntry) data.getSerializableExtra("entry");
             addEntry(entry);
-            saveDatabase();
+            saveVault();
         }
     }
 
     private void onEditEntryResult(int resultCode, Intent data) {
         if (resultCode == RESULT_OK) {
-            DatabaseEntry entry = (DatabaseEntry) data.getSerializableExtra("entry");
+            VaultEntry entry = (VaultEntry) data.getSerializableExtra("entry");
             if (data.getBooleanExtra("delete", false)) {
                 deleteEntry(entry);
             } else {
                 // this profile has been serialized/deserialized and is no longer the same instance it once was
                 // to deal with this, the replaceEntry functions are used
-                DatabaseEntry oldEntry = _db.replaceEntry(entry);
+                VaultEntry oldEntry = _vault.replaceEntry(entry);
                 _entryListView.replaceEntry(oldEntry, entry);
-                saveDatabase();
+                saveVault();
             }
         }
     }
 
     private void onEnterEntryResult(int resultCode, Intent data) {
         if (resultCode == RESULT_OK) {
-            DatabaseEntry entry = (DatabaseEntry) data.getSerializableExtra("entry");
+            VaultEntry entry = (VaultEntry) data.getSerializableExtra("entry");
             addEntry(entry);
-            saveDatabase();
+            saveVault();
         }
     }
 
@@ -304,7 +303,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
                 Result result = reader.decode(binaryBitmap);
 
                 GoogleAuthInfo info = GoogleAuthInfo.parseUri(result.getText());
-                DatabaseEntry entry = new DatabaseEntry(info);
+                VaultEntry entry = new VaultEntry(info);
 
                 startEditProfileActivity(CODE_ADD_ENTRY, entry, true);
             } catch (NotFoundException | IOException | ChecksumException | FormatException | GoogleAuthInfoException e) {
@@ -325,7 +324,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         }
 
         // if the group no longer exists, switch back to 'All'
-        TreeSet<String> groups = _db.getGroups();
+        TreeSet<String> groups = _vault.getGroups();
         if (_selectedGroup != null && !groups.contains(_selectedGroup)) {
             menu.findItem(R.id.menu_filter_all).setChecked(true);
             setGroupFilter(null);
@@ -356,8 +355,8 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         _entryListView.setGroupFilter(group, true);
     }
 
-    private void addEntry(DatabaseEntry entry) {
-        _db.addEntry(entry);
+    private void addEntry(VaultEntry entry) {
+        _vault.addEntry(entry);
         _entryListView.addEntry(entry);
     }
 
@@ -368,18 +367,18 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
             throw new RuntimeException(e);
         }
 
-        DatabaseFileCredentials creds = (DatabaseFileCredentials) data.getSerializableExtra("creds");
-        unlockDatabase(creds);
+        VaultFileCredentials creds = (VaultFileCredentials) data.getSerializableExtra("creds");
+        unlockVault(creds);
     }
 
     private void onDecryptResult(int resultCode, Intent intent) {
-        DatabaseFileCredentials creds = (DatabaseFileCredentials) intent.getSerializableExtra("creds");
-        boolean unlocked = unlockDatabase(creds);
+        VaultFileCredentials creds = (VaultFileCredentials) intent.getSerializableExtra("creds");
+        boolean unlocked = unlockVault(creds);
 
-        // save the database in case a slot was repaired
+        // save the vault in case a slot was repaired
         if (unlocked && intent.getBooleanExtra("repairedSlot", false)) {
-            _db.setCredentials(creds);
-            saveDatabase();
+            _vault.setCredentials(creds);
+            saveVault();
         }
 
         doShortcutActions();
@@ -409,7 +408,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
     private void doShortcutActions() {
         Intent intent = getIntent();
         String action = intent.getStringExtra("action");
-        if (action == null || _db.isLocked()) {
+        if (action == null || _vault.isLocked()) {
             return;
         }
 
@@ -423,7 +422,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
     }
 
     private void handleDeeplink() {
-        if (_db.isLocked()) {
+        if (_vault.isLocked()) {
             return;
         }
 
@@ -442,7 +441,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
             }
 
             if (info != null) {
-                DatabaseEntry entry = new DatabaseEntry(info);
+                VaultEntry entry = new VaultEntry(info);
                 startEditProfileActivity(CODE_ADD_ENTRY, entry, true);
             }
         }
@@ -453,10 +452,10 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
     protected void onResume() {
         super.onResume();
 
-        if (_db.isLocked()) {
-            // start the intro if the database file doesn't exist
-            if (!_db.isLoaded() && !_db.fileExists()) {
-                // the db doesn't exist, start the intro
+        if (_vault.isLocked()) {
+            // start the intro if the vault file doesn't exist
+            if (!_vault.isLoaded() && !_vault.fileExists()) {
+                // the vault doesn't exist, start the intro
                 if (getPreferences().isIntroDone()) {
                     Toast.makeText(this, getString(R.string.vault_not_found), Toast.LENGTH_SHORT).show();
                 }
@@ -464,7 +463,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
                 startActivityForResult(intro, CODE_DO_INTRO);
                 return;
             } else {
-                unlockDatabase(null);
+                unlockVault(null);
             }
         } else if (_loaded) {
             // update the list of groups in the filter menu
@@ -503,9 +502,9 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         super.onBackPressed();
     }
 
-    private void deleteEntry(DatabaseEntry entry) {
-        DatabaseEntry oldEntry = _db.removeEntry(entry);
-        saveDatabase();
+    private void deleteEntry(VaultEntry entry) {
+        VaultEntry oldEntry = _vault.removeEntry(entry);
+        saveVault();
 
         _entryListView.removeEntry(oldEntry);
     }
@@ -615,20 +614,20 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         _searchView.setIconified(true);
     }
 
-    private boolean unlockDatabase(DatabaseFileCredentials creds) {
+    private boolean unlockVault(VaultFileCredentials creds) {
         try {
-            if (!_db.isLoaded()) {
-                _db.load();
+            if (!_vault.isLoaded()) {
+                _vault.load();
             }
-            if (_db.isLocked()) {
+            if (_vault.isLocked()) {
                 if (creds == null) {
                     startAuthActivity();
                     return false;
                 } else {
-                    _db.unlock(creds);
+                    _vault.unlock(creds);
                 }
             }
-        } catch (DatabaseManagerException e) {
+        } catch (VaultManagerException e) {
             Toast.makeText(this, getString(R.string.decryption_error), Toast.LENGTH_LONG).show();
             startAuthActivity();
             return false;
@@ -640,7 +639,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
 
     private void loadEntries() {
         // load all entries
-        List<DatabaseEntry> entries = new ArrayList<DatabaseEntry>(_db.getEntries());
+        List<VaultEntry> entries = new ArrayList<VaultEntry>(_vault.getEntries());
         _entryListView.addEntries(entries);
         _entryListView.runEntriesAnimation();
         _loaded = true;
@@ -648,30 +647,30 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
 
     private void startAuthActivity() {
         Intent intent = new Intent(this, AuthActivity.class);
-        intent.putExtra("slots", _db.getFileHeader().getSlots());
+        intent.putExtra("slots", _vault.getFileHeader().getSlots());
         intent.putExtra("requiresUnlock", false);
         intent.putExtra("cancelAction", CancelAction.KILL);
         startActivityForResult(intent, CODE_DECRYPT);
     }
 
-    private void saveDatabase() {
+    private void saveVault() {
         try {
-            _db.save();
-        } catch (DatabaseManagerException e) {
+            _vault.save();
+        } catch (VaultManagerException e) {
             Toast.makeText(this, getString(R.string.saving_error), Toast.LENGTH_LONG).show();
         }
     }
 
     private void updateLockIcon() {
-        // hide the lock icon if the database is not unlocked
-        if (_menu != null && !_db.isLocked()) {
+        // hide the lock icon if the vault is not unlocked
+        if (_menu != null && !_vault.isLocked()) {
             MenuItem item = _menu.findItem(R.id.action_lock);
-            item.setVisible(_db.isEncryptionEnabled());
+            item.setVisible(_vault.isEncryptionEnabled());
         }
     }
 
     @Override
-    public void onEntryClick(DatabaseEntry entry) {
+    public void onEntryClick(VaultEntry entry) {
         if (_selectedEntry != null) {
             if (_selectedEntry == entry) {
                 _actionMode.finish();
@@ -687,7 +686,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
     }
 
     @Override
-    public void onLongEntryClick(DatabaseEntry entry) {
+    public void onLongEntryClick(VaultEntry entry) {
         if (_selectedEntry != null) {
             return;
         }
@@ -698,18 +697,18 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
     }
 
     @Override
-    public void onEntryMove(DatabaseEntry entry1, DatabaseEntry entry2) {
-        _db.swapEntries(entry1, entry2);
+    public void onEntryMove(VaultEntry entry1, VaultEntry entry2) {
+        _vault.swapEntries(entry1, entry2);
     }
 
     @Override
-    public void onEntryDrop(DatabaseEntry entry) {
-        saveDatabase();
+    public void onEntryDrop(VaultEntry entry) {
+        saveVault();
     }
 
     @Override
-    public void onEntryChange(DatabaseEntry entry) {
-        saveDatabase();
+    public void onEntryChange(VaultEntry entry) {
+        saveVault();
     }
 
     @Override
@@ -759,7 +758,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
                             deleteEntry(_selectedEntry);
 
                             if (_selectedEntry.getGroup() != null) {
-                                if (!_db.getGroups().contains(_selectedEntry.getGroup())) {
+                                if (!_vault.getGroups().contains(_selectedEntry.getGroup())) {
                                     updateGroupFilterMenu();
                                 }
                             }

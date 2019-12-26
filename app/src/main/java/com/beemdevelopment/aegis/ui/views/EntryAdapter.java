@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.SortCategory;
 import com.beemdevelopment.aegis.ViewMode;
-import com.beemdevelopment.aegis.db.DatabaseEntry;
+import com.beemdevelopment.aegis.vault.VaultEntry;
 import com.beemdevelopment.aegis.helpers.ItemTouchHelperAdapter;
 import com.beemdevelopment.aegis.otp.HotpInfo;
 import com.beemdevelopment.aegis.otp.OtpInfo;
@@ -24,10 +24,10 @@ import java.util.List;
 
 public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements ItemTouchHelperAdapter {
     private EntryListView _view;
-    private List<DatabaseEntry> _entries;
-    private List<DatabaseEntry> _shownEntries;
-    private DatabaseEntry _selectedEntry;
-    private DatabaseEntry _focusedEntry;
+    private List<VaultEntry> _entries;
+    private List<VaultEntry> _shownEntries;
+    private VaultEntry _selectedEntry;
+    private VaultEntry _focusedEntry;
     private boolean _showAccountName;
     private boolean _searchAccountName;
     private boolean _highlightEntry;
@@ -78,18 +78,18 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
         _highlightEntry = highlightEntry;
     }
 
-    public DatabaseEntry getEntryAt(int position) {
+    public VaultEntry getEntryAt(int position) {
         return _shownEntries.get(position);
     }
 
-    public void addEntry(DatabaseEntry entry) {
+    public void addEntry(VaultEntry entry) {
         _entries.add(entry);
         if (isEntryFiltered(entry)) {
             return;
         }
 
         boolean added = false;
-        Comparator<DatabaseEntry> comparator = _sortCategory.getComparator();
+        Comparator<VaultEntry> comparator = _sortCategory.getComparator();
         if (comparator != null) {
             // insert the entry in the correct order
             // note: this assumes that _shownEntries has already been sorted
@@ -117,13 +117,13 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
         checkPeriodUniformity();
     }
 
-    public void addEntries(List<DatabaseEntry> entries) {
+    public void addEntries(List<VaultEntry> entries) {
         _entries.addAll(entries);
         updateShownEntries();
         checkPeriodUniformity(true);
     }
 
-    public void removeEntry(DatabaseEntry entry) {
+    public void removeEntry(VaultEntry entry) {
         _entries.remove(entry);
 
         if (_shownEntries.contains(entry)) {
@@ -142,7 +142,7 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
         checkPeriodUniformity();
     }
 
-    public void replaceEntry(DatabaseEntry oldEntry, DatabaseEntry newEntry) {
+    public void replaceEntry(VaultEntry oldEntry, VaultEntry newEntry) {
         _entries.set(_entries.indexOf(oldEntry), newEntry);
 
         if (_shownEntries.contains(oldEntry)) {
@@ -165,7 +165,7 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
         checkPeriodUniformity();
     }
 
-    private boolean isEntryFiltered(DatabaseEntry entry) {
+    private boolean isEntryFiltered(VaultEntry entry) {
         String group = entry.getGroup();
         String issuer = entry.getIssuer().toLowerCase();
         String name = entry.getName().toLowerCase();
@@ -229,14 +229,14 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
         _shownEntries.clear();
 
         // add entries back that are not filtered out
-        for (DatabaseEntry entry : _entries) {
+        for (VaultEntry entry : _entries) {
             if (!isEntryFiltered(entry)) {
                 _shownEntries.add(entry);
             }
         }
 
         // sort the remaining list of entries
-        Comparator<DatabaseEntry> comparator = _sortCategory.getComparator();
+        Comparator<VaultEntry> comparator = _sortCategory.getComparator();
         if (comparator != null) {
             Collections.sort(_shownEntries, comparator);
         }
@@ -270,7 +270,7 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
             return;
         }
 
-        // notify the database first
+        // notify the vault first
         _view.onEntryMove(_entries.get(firstPosition), _entries.get(secondPosition));
 
         // update our side of things
@@ -301,7 +301,7 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
 
     @Override
     public void onBindViewHolder(final EntryHolder holder, int position) {
-        DatabaseEntry entry = _shownEntries.get(position);
+        VaultEntry entry = _shownEntries.get(position);
         holder.setFocused(entry == _selectedEntry);
 
         boolean hidden = _tapToReveal && entry != _focusedEntry;
@@ -354,7 +354,7 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
                 }
 
                 // notify the listener that the counter has been incremented
-                // this gives it a chance to save the database
+                // this gives it a chance to save the vault
                 _view.onEntryChange(entry);
 
                 // finally, refresh the code in the UI
@@ -385,7 +385,7 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
 
     public int getUniformPeriod() {
         List<TotpInfo> infos = new ArrayList<>();
-        for (DatabaseEntry entry : _shownEntries) {
+        for (VaultEntry entry : _shownEntries) {
             OtpInfo info = entry.getInfo();
             if (info instanceof TotpInfo) {
                 infos.add((TotpInfo) info);
@@ -406,7 +406,7 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
         return period;
     }
 
-    private void focusEntry(DatabaseEntry entry) {
+    private void focusEntry(VaultEntry entry) {
         _focusedEntry = entry;
         _dimHandler.removeCallbacksAndMessages(null);
 
@@ -444,7 +444,7 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
         _focusedEntry = null;
     }
 
-    public void setSelectedEntry(DatabaseEntry entry) {
+    public void setSelectedEntry(VaultEntry entry) {
         if (entry == null) {
             notifyItemChanged(_shownEntries.indexOf(_selectedEntry));
         } else if (_highlightEntry) {
@@ -468,11 +468,11 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
     }
 
     public interface Listener {
-        void onEntryClick(DatabaseEntry entry);
-        boolean onLongEntryClick(DatabaseEntry entry);
-        void onEntryMove(DatabaseEntry entry1, DatabaseEntry entry2);
-        void onEntryDrop(DatabaseEntry entry);
-        void onEntryChange(DatabaseEntry entry);
+        void onEntryClick(VaultEntry entry);
+        boolean onLongEntryClick(VaultEntry entry);
+        void onEntryMove(VaultEntry entry1, VaultEntry entry2);
+        void onEntryDrop(VaultEntry entry);
+        void onEntryChange(VaultEntry entry);
         void onPeriodUniformityChanged(boolean uniform);
     }
 }

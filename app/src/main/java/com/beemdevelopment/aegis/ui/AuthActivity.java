@@ -21,12 +21,12 @@ import com.beemdevelopment.aegis.CancelAction;
 import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.crypto.KeyStoreHandle;
 import com.beemdevelopment.aegis.crypto.KeyStoreHandleException;
-import com.beemdevelopment.aegis.db.DatabaseFileCredentials;
-import com.beemdevelopment.aegis.db.slots.BiometricSlot;
-import com.beemdevelopment.aegis.db.slots.PasswordSlot;
-import com.beemdevelopment.aegis.db.slots.Slot;
-import com.beemdevelopment.aegis.db.slots.SlotException;
-import com.beemdevelopment.aegis.db.slots.SlotList;
+import com.beemdevelopment.aegis.vault.VaultFileCredentials;
+import com.beemdevelopment.aegis.vault.slots.BiometricSlot;
+import com.beemdevelopment.aegis.vault.slots.PasswordSlot;
+import com.beemdevelopment.aegis.vault.slots.Slot;
+import com.beemdevelopment.aegis.vault.slots.SlotException;
+import com.beemdevelopment.aegis.vault.slots.SlotList;
 import com.beemdevelopment.aegis.helpers.BiometricsHelper;
 import com.beemdevelopment.aegis.helpers.EditTextHelper;
 import com.beemdevelopment.aegis.helpers.UiThreadExecutor;
@@ -189,7 +189,7 @@ public class AuthActivity extends AegisActivity implements SlotListTask.Callback
 
             // send the master key back to the main activity
             Intent intent = new Intent();
-            intent.putExtra("creds", new DatabaseFileCredentials(result.getKey(), _slots));
+            intent.putExtra("creds", new VaultFileCredentials(result.getKey(), _slots));
             intent.putExtra("repairedSlot", result.isSlotRepaired());
             setResult(RESULT_OK, intent);
             finish();

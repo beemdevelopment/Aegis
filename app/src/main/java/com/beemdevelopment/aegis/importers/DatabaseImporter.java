@@ -2,17 +2,12 @@ package com.beemdevelopment.aegis.importers;
 
 import android.content.Context;
 import android.content.pm.PackageManager;
-import android.net.Uri;
 
-import com.beemdevelopment.aegis.db.DatabaseEntry;
+import com.beemdevelopment.aegis.vault.VaultEntry;
 import com.beemdevelopment.aegis.util.ByteInputStream;
 import com.beemdevelopment.aegis.util.UUIDMap;
 import com.topjohnwu.superuser.io.SuFile;
-import com.topjohnwu.superuser.io.SuFileInputStream;
 
-import java.io.Closeable;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.InvocationTargetException;
@@ -117,10 +112,10 @@ public abstract class DatabaseImporter {
     }
 
     public static class Result {
-        private UUIDMap<DatabaseEntry> _entries = new UUIDMap<>();
+        private UUIDMap<VaultEntry> _entries = new UUIDMap<>();
         private List<DatabaseImporterEntryException> _errors = new ArrayList<>();
 
-        public void addEntry(DatabaseEntry entry) {
+        public void addEntry(VaultEntry entry) {
             _entries.add(entry);
         }
 
@@ -128,7 +123,7 @@ public abstract class DatabaseImporter {
             _errors.add(error);
         }
 
-        public UUIDMap<DatabaseEntry> getEntries() {
+        public UUIDMap<VaultEntry> getEntries() {
             return _entries;
         }
 

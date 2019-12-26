@@ -1,6 +1,6 @@
 package com.beemdevelopment.aegis.ui.models;
 
-import com.beemdevelopment.aegis.db.DatabaseEntry;
+import com.beemdevelopment.aegis.vault.VaultEntry;
 
 import java.io.Serializable;
 import java.util.UUID;
@@ -13,7 +13,7 @@ public class ImportEntry implements Serializable {
     private transient Listener _listener;
     private boolean _isChecked = true;
 
-    public ImportEntry(DatabaseEntry entry) {
+    public ImportEntry(VaultEntry entry) {
         _uuid = entry.getUUID();
         _name = entry.getName();
         _issuer = entry.getIssuer();

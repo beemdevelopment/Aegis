@@ -1,23 +1,23 @@
-package com.beemdevelopment.aegis.db;
+package com.beemdevelopment.aegis.vault;
 
 import com.beemdevelopment.aegis.crypto.CryptParameters;
 import com.beemdevelopment.aegis.crypto.CryptResult;
 import com.beemdevelopment.aegis.crypto.MasterKey;
 import com.beemdevelopment.aegis.crypto.MasterKeyException;
-import com.beemdevelopment.aegis.db.slots.SlotList;
+import com.beemdevelopment.aegis.vault.slots.SlotList;
 
 import java.io.Serializable;
 
-public class DatabaseFileCredentials implements Serializable {
+public class VaultFileCredentials implements Serializable {
     private MasterKey _key;
     private SlotList _slots;
 
-    public DatabaseFileCredentials() {
+    public VaultFileCredentials() {
         _key = MasterKey.generate();
         _slots = new SlotList();
     }
 
-    public DatabaseFileCredentials(MasterKey key, SlotList slots) {
+    public VaultFileCredentials(MasterKey key, SlotList slots) {
         _key = key;
         _slots = slots;
     }

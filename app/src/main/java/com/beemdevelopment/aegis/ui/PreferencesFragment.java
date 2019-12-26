@@ -26,16 +26,16 @@ import com.beemdevelopment.aegis.Theme;
 import com.beemdevelopment.aegis.ViewMode;
 import com.beemdevelopment.aegis.crypto.KeyStoreHandle;
 import com.beemdevelopment.aegis.crypto.KeyStoreHandleException;
-import com.beemdevelopment.aegis.db.DatabaseEntry;
-import com.beemdevelopment.aegis.db.DatabaseFileCredentials;
-import com.beemdevelopment.aegis.db.DatabaseFileException;
-import com.beemdevelopment.aegis.db.DatabaseManager;
-import com.beemdevelopment.aegis.db.DatabaseManagerException;
-import com.beemdevelopment.aegis.db.slots.BiometricSlot;
-import com.beemdevelopment.aegis.db.slots.PasswordSlot;
-import com.beemdevelopment.aegis.db.slots.Slot;
-import com.beemdevelopment.aegis.db.slots.SlotException;
-import com.beemdevelopment.aegis.db.slots.SlotList;
+import com.beemdevelopment.aegis.vault.VaultEntry;
+import com.beemdevelopment.aegis.vault.VaultFileCredentials;
+import com.beemdevelopment.aegis.vault.VaultFileException;
+import com.beemdevelopment.aegis.vault.VaultManager;
+import com.beemdevelopment.aegis.vault.VaultManagerException;
+import com.beemdevelopment.aegis.vault.slots.BiometricSlot;
+import com.beemdevelopment.aegis.vault.slots.PasswordSlot;
+import com.beemdevelopment.aegis.vault.slots.Slot;
+import com.beemdevelopment.aegis.vault.slots.SlotException;
+import com.beemdevelopment.aegis.vault.slots.SlotList;
 import com.beemdevelopment.aegis.helpers.BiometricSlotInitializer;
 import com.beemdevelopment.aegis.helpers.BiometricsHelper;
 import com.beemdevelopment.aegis.helpers.PermissionHelper;
@@ -76,12 +76,12 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
     private static final int CODE_PERM_EXPORT = 1;
 
     private Intent _result;
-    private DatabaseManager _db;
+    private VaultManager _vault;
 
     // keep a reference to the type of database converter the user selected
     private Class<? extends DatabaseImporter> _importerType;
     private AegisImporter.State _importerState;
-    private UUIDMap<DatabaseEntry> _importerEntries;
+    private UUIDMap<VaultEntry> _importerEntries;
 
     private SwitchPreference _encryptionPreference;
     private SwitchPreference _biometricsPreference;
@@ -95,7 +95,7 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
         addPreferencesFromResource(R.xml.preferences);
 
         AegisApplication app = (AegisApplication) getActivity().getApplication();
-        _db = app.getDatabaseManager();
+        _vault = app.getVaultManager();
 
         // set the result intent in advance
         setResult(new Intent());
@@ -258,7 +258,7 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
         _encryptionPreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
             @Override
             public boolean onPreferenceChange(Preference preference, Object newValue) {
-                if (!_db.isEncryptionEnabled()) {
+                if (!_vault.isEncryptionEnabled()) {
                     Dialogs.showSetPasswordDialog(getActivity(), new EnableEncryptionListener());
                 } else {
                     Dialogs.showSecureDialog(new AlertDialog.Builder(getActivity())
@@ -267,8 +267,8 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
                             .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int which) {
                                     try {
-                                        _db.disableEncryption();
-                                    } catch (DatabaseManagerException e) {
+                                        _vault.disableEncryption();
+                                    } catch (VaultManagerException e) {
                                         Toast.makeText(getActivity(), R.string.disable_encryption_error, Toast.LENGTH_SHORT).show();
                                         return;
                                     }
@@ -296,7 +296,7 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
         _biometricsPreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
             @Override
             public boolean onPreferenceChange(Preference preference, Object newValue) {
-                DatabaseFileCredentials creds = _db.getCredentials();
+                VaultFileCredentials creds = _vault.getCredentials();
                 SlotList slots = creds.getSlots();
 
                 if (!slots.has(BiometricSlot.class)) {
@@ -312,7 +312,7 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
                     // remove the biometric slot
                     BiometricSlot slot = slots.find(BiometricSlot.class);
                     slots.remove(slot);
-                    _db.setCredentials(creds);
+                    _vault.setCredentials(creds);
 
                     // remove the KeyStore key
                     try {
@@ -322,7 +322,7 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
                         e.printStackTrace();
                     }
 
-                    saveDatabase();
+                    saveVault();
                     updateEncryptionPreferences();
                 }
 
@@ -341,7 +341,7 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
             @Override
             public boolean onPreferenceClick(Preference preference) {
                 Intent intent = new Intent(getActivity(), SlotManagerActivity.class);
-                intent.putExtra("creds", _db.getCredentials());
+                intent.putExtra("creds", _vault.getCredentials());
                 startActivityForResult(intent, CODE_SLOTS);
                 return true;
             }
@@ -352,7 +352,7 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
             @Override
             public boolean onPreferenceClick(Preference preference) {
                 Intent intent = new Intent(getActivity(), GroupManagerActivity.class);
-                intent.putExtra("groups", new ArrayList<>(_db.getGroups()));
+                intent.putExtra("groups", new ArrayList<>(_vault.getGroups()));
                 startActivityForResult(intent, CODE_GROUPS);
                 return true;
             }
@@ -485,7 +485,7 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
         try {
             DatabaseImporter.State state = importer.read(reader);
             if (state.isEncrypted()) {
-                // temporary special case for encrypted Aegis databases
+                // temporary special case for encrypted Aegis vaults
                 if (state instanceof AegisImporter.EncryptedState) {
                     _importerState = state;
 
@@ -522,11 +522,11 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
             return;
         }
 
-        DatabaseFileCredentials creds = (DatabaseFileCredentials) data.getSerializableExtra("creds");
+        VaultFileCredentials creds = (VaultFileCredentials) data.getSerializableExtra("creds");
         DatabaseImporter.State state;
         try {
             state = ((AegisImporter.EncryptedState) _importerState).decrypt(creds);
-        } catch (DatabaseFileException e) {
+        } catch (VaultFileException e) {
             e.printStackTrace();
             Toast.makeText(getActivity(), R.string.decryption_error, Toast.LENGTH_SHORT).show();
             return;
@@ -567,7 +567,7 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
 
         _importerEntries = result.getEntries();
         List<ImportEntry> entries = new ArrayList<>();
-        for (DatabaseEntry entry : _importerEntries) {
+        for (VaultEntry entry : _importerEntries) {
             entries.add(new ImportEntry(entry));
         }
 
@@ -585,24 +585,24 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
         // TODO: create a custom layout to show a message AND a checkbox
         final AtomicReference<Boolean> checked = new AtomicReference<>(true);
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity())
-                .setTitle("Export the database")
+                .setTitle(R.string.pref_export_summary)
                 .setPositiveButton(android.R.string.ok, (dialog, which) -> {
                     String filename;
                     try {
-                        filename = _db.export(checked.get());
-                    } catch (DatabaseManagerException e) {
-                        Toast.makeText(getActivity(), R.string.exporting_database_error, Toast.LENGTH_SHORT).show();
+                        filename = _vault.export(checked.get());
+                    } catch (VaultManagerException e) {
+                        Toast.makeText(getActivity(), R.string.exporting_vault_error, Toast.LENGTH_SHORT).show();
                         return;
                     }
 
                     // make sure the new file is visible
                     MediaScannerConnection.scanFile(getActivity(), new String[]{filename}, null, null);
 
-                    Toast.makeText(getActivity(), getString(R.string.export_database_location) + filename, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), getString(R.string.export_vault_location) + filename, Toast.LENGTH_SHORT).show();
                 })
                 .setNegativeButton(android.R.string.cancel, null);
-        if (_db.isEncryptionEnabled()) {
-            final String[] items = {"Keep the database encrypted"};
+        if (_vault.isEncryptionEnabled()) {
+            final String[] items = {"Keep the vault encrypted"};
             final boolean[] checkedItems = {true};
             builder.setMultiChoiceItems(items, checkedItems, new DialogInterface.OnMultiChoiceClickListener() {
                 @Override
@@ -621,9 +621,9 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
             return;
         }
 
-        DatabaseFileCredentials creds = (DatabaseFileCredentials) data.getSerializableExtra("creds");
-        _db.setCredentials(creds);
-        saveDatabase();
+        VaultFileCredentials creds = (VaultFileCredentials) data.getSerializableExtra("creds");
+        _vault.setCredentials(creds);
+        saveVault();
         updateEncryptionPreferences();
     }
 
@@ -634,7 +634,7 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
 
         HashSet<String> groups = new HashSet<>(data.getStringArrayListExtra("groups"));
 
-        for (DatabaseEntry entry : _db.getEntries()) {
+        for (VaultEntry entry : _vault.getEntries()) {
             if (!groups.contains(entry.getGroup())) {
                 entry.setGroup(null);
             }
@@ -648,18 +648,18 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
 
         List<ImportEntry> selectedEntries = (ArrayList<ImportEntry>) data.getSerializableExtra("entries");
         for (ImportEntry selectedEntry : selectedEntries) {
-            DatabaseEntry savedEntry = _importerEntries.getByUUID(selectedEntry.getUUID());
+            VaultEntry savedEntry = _importerEntries.getByUUID(selectedEntry.getUUID());
 
             // temporary: randomize the UUID of duplicate entries and add them anyway
-            if (_db.isEntryDuplicate(savedEntry)) {
+            if (_vault.isEntryDuplicate(savedEntry)) {
                 savedEntry.resetUUID();
             }
 
-            _db.addEntry(savedEntry);
+            _vault.addEntry(savedEntry);
         }
 
         _importerEntries = null;
-        if (!saveDatabase()) {
+        if (!saveVault()) {
             return;
         }
 
@@ -669,10 +669,10 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
         _result.putExtra("needsRecreate", true);
     }
 
-    private boolean saveDatabase() {
+    private boolean saveVault() {
         try {
-            _db.save();
-        } catch (DatabaseManagerException e) {
+            _vault.save();
+        } catch (VaultManagerException e) {
             Toast.makeText(getActivity(), R.string.saving_error, Toast.LENGTH_LONG).show();
             return false;
         }
@@ -681,7 +681,7 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
     }
 
     private void updateEncryptionPreferences() {
-        boolean encrypted = _db.isEncryptionEnabled();
+        boolean encrypted = _vault.isEncryptionEnabled();
         _encryptionPreference.setChecked(encrypted, true);
         _setPasswordPreference.setVisible(encrypted);
         _biometricsPreference.setVisible(encrypted);
@@ -689,7 +689,7 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
         _autoLockPreference.setVisible(encrypted);
 
         if (encrypted) {
-            SlotList slots = _db.getCredentials().getSlots();
+            SlotList slots = _vault.getCredentials().getSlots();
             boolean multiPassword = slots.findAll(PasswordSlot.class).size() > 1;
             boolean multiBio = slots.findAll(BiometricSlot.class).size() > 1;
             boolean showSlots = BuildConfig.DEBUG || multiPassword || multiBio;
@@ -709,7 +709,7 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
     private class SetPasswordListener implements Dialogs.SlotListener {
         @Override
         public void onSlotResult(Slot slot, Cipher cipher) {
-            DatabaseFileCredentials creds = _db.getCredentials();
+            VaultFileCredentials creds = _vault.getCredentials();
             SlotList slots = creds.getSlots();
 
             try {
@@ -727,8 +727,8 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
                 return;
             }
 
-            _db.setCredentials(creds);
-            saveDatabase();
+            _vault.setCredentials(creds);
+            saveVault();
         }
 
         @Override
@@ -741,7 +741,7 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
     private class RegisterBiometricsListener implements BiometricSlotInitializer.Listener {
         @Override
         public void onInitializeSlot(BiometricSlot slot, Cipher cipher) {
-            DatabaseFileCredentials creds = _db.getCredentials();
+            VaultFileCredentials creds = _vault.getCredentials();
             try {
                 slot.setKey(creds.getKey(), cipher);
             } catch (SlotException e) {
@@ -749,9 +749,9 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
                 return;
             }
             creds.getSlots().add(slot);
-            _db.setCredentials(creds);
+            _vault.setCredentials(creds);
 
-            saveDatabase();
+            saveVault();
             updateEncryptionPreferences();
         }
 
@@ -766,13 +766,13 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
     private class EnableEncryptionListener implements Dialogs.SlotListener {
         @Override
         public void onSlotResult(Slot slot, Cipher cipher) {
-            DatabaseFileCredentials creds = new DatabaseFileCredentials();
+            VaultFileCredentials creds = new VaultFileCredentials();
 
             try {
                 slot.setKey(creds.getKey(), cipher);
                 creds.getSlots().add(slot);
-                _db.enableEncryption(creds);
-            } catch (DatabaseManagerException | SlotException e) {
+                _vault.enableEncryption(creds);
+            } catch (VaultManagerException | SlotException e) {
                 onException(e);
                 return;
             }
