@@ -729,7 +729,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         super.onLocked();
     }
 
-    private void copyEntryCode(DatabaseEntry entry) {
+    private void copyEntryCode(VaultEntry entry) {
         ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
         ClipData clip = ClipData.newPlainText("text/plain", entry.getInfo().getOtp());
         clipboard.setPrimaryClip(clip);
