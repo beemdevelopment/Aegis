@@ -1,6 +1,6 @@
 package com.beemdevelopment.aegis.vault;
 
-import com.beemdevelopment.aegis.encoding.Base64Exception;
+import com.beemdevelopment.aegis.encoding.EncodingException;
 import com.beemdevelopment.aegis.otp.OtpInfoException;
 import com.beemdevelopment.aegis.util.UUIDMap;
 
@@ -43,7 +43,7 @@ public class Vault {
                 VaultEntry entry = VaultEntry.fromJson(array.getJSONObject(i));
                 entries.add(entry);
             }
-        } catch (Base64Exception | OtpInfoException | JSONException e) {
+        } catch (EncodingException | OtpInfoException | JSONException e) {
             throw new VaultException(e);
         }
 

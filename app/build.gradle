@@ -21,6 +21,7 @@ android {
         targetSdkVersion 29
         versionCode 28
         versionName "1.1.4"
+        multiDexEnabled true
         buildConfigField "String", "GIT_HASH", "\"${getGitHash()}\""
         buildConfigField "String", "GIT_BRANCH", "\"${getGitBranch()}\""
     }
@@ -72,6 +73,7 @@ dependencies {
     implementation 'androidx.preference:preference:1.1.0'
     implementation 'com.google.android.material:material:1.0.0'
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
+    implementation 'com.google.guava:guava:28.2-android'
     implementation 'com.getbase:floatingactionbutton:1.10.1'
     implementation 'com.github.apl-devs:appintro:5.1.0'
     implementation 'com.github.avito-tech:krop:0.44'
@@ -91,5 +93,6 @@ dependencies {
     annotationProcessor 'androidx.annotation:annotation:1.1.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.10.0'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.5.2'
+    testImplementation 'com.google.guava:guava:28.2-jre"'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.5.2'
 }

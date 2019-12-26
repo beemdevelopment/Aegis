@@ -2,8 +2,8 @@ package com.beemdevelopment.aegis;
 
 import com.beemdevelopment.aegis.crypto.CryptoUtils;
 import com.beemdevelopment.aegis.crypto.SCryptParameters;
+import com.beemdevelopment.aegis.encoding.EncodingException;
 import com.beemdevelopment.aegis.encoding.Hex;
-import com.beemdevelopment.aegis.encoding.HexException;
 
 import org.junit.jupiter.api.Test;
 
@@ -15,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class SCryptTest {
     @Test
-    public void testTrailingNullCollision() throws HexException {
+    public void testTrailingNullCollision() throws EncodingException {
         byte[] salt = new byte[0];
         SCryptParameters params = new SCryptParameters(
                 CryptoUtils.CRYPTO_SCRYPT_N,

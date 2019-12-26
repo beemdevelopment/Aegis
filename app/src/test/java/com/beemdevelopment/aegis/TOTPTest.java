@@ -2,14 +2,14 @@ package com.beemdevelopment.aegis;
 
 import com.beemdevelopment.aegis.crypto.otp.OTP;
 import com.beemdevelopment.aegis.crypto.otp.TOTP;
-import com.beemdevelopment.aegis.encoding.HexException;
 
 import org.junit.jupiter.api.Test;
 
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
 public class TOTPTest {
     private static class Vector {
@@ -66,7 +66,7 @@ public class TOTPTest {
     };
 
     @Test
-    public void vectorsMatch() throws NoSuchAlgorithmException, InvalidKeyException, HexException {
+    public void vectorsMatch() throws NoSuchAlgorithmException, InvalidKeyException {
         for (Vector vector : _vectors) {
             byte[] seed;
 

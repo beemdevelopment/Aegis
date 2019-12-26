@@ -5,8 +5,8 @@ import com.beemdevelopment.aegis.crypto.CryptResult;
 import com.beemdevelopment.aegis.crypto.CryptoUtils;
 import com.beemdevelopment.aegis.crypto.MasterKey;
 import com.beemdevelopment.aegis.crypto.SCryptParameters;
+import com.beemdevelopment.aegis.encoding.EncodingException;
 import com.beemdevelopment.aegis.encoding.Hex;
-import com.beemdevelopment.aegis.encoding.HexException;
 import com.beemdevelopment.aegis.util.UUIDMap;
 
 import org.json.JSONException;
@@ -144,7 +144,7 @@ public abstract class Slot extends UUIDMap.Value {
                 default:
                     throw new SlotException("unrecognized slot type");
             }
-        } catch (JSONException | HexException e) {
+        } catch (JSONException | EncodingException e) {
             throw new SlotException(e);
         }
 

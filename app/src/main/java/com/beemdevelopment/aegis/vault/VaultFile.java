@@ -3,11 +3,10 @@ package com.beemdevelopment.aegis.vault;
 import com.beemdevelopment.aegis.crypto.CryptParameters;
 import com.beemdevelopment.aegis.crypto.CryptResult;
 import com.beemdevelopment.aegis.crypto.MasterKeyException;
+import com.beemdevelopment.aegis.encoding.Base64;
+import com.beemdevelopment.aegis.encoding.EncodingException;
 import com.beemdevelopment.aegis.vault.slots.SlotList;
 import com.beemdevelopment.aegis.vault.slots.SlotListException;
-import com.beemdevelopment.aegis.encoding.Base64;
-import com.beemdevelopment.aegis.encoding.Base64Exception;
-import com.beemdevelopment.aegis.encoding.HexException;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -95,7 +94,7 @@ public class VaultFile {
             byte[] bytes = Base64.decode((String) _content);
             CryptResult result = creds.decrypt(bytes, _header.getParams());
             return new JSONObject(new String(result.getData(), StandardCharsets.UTF_8));
-        } catch (MasterKeyException | JSONException | Base64Exception e) {
+        } catch (MasterKeyException | JSONException | EncodingException e) {
             throw new VaultFileException(e);
         }
     }
@@ -136,7 +135,7 @@ public class VaultFile {
                 SlotList slots = SlotList.fromJson(obj.getJSONArray("slots"));
                 CryptParameters params = CryptParameters.fromJson(obj.getJSONObject("params"));
                 return new Header(slots, params);
-            } catch (SlotListException | JSONException | HexException e) {
+            } catch (SlotListException | JSONException | EncodingException e) {
                 throw new VaultFileException(e);
             }
         }
