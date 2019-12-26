@@ -32,6 +32,7 @@ public abstract class DatabaseImporter {
         _importers.put("FreeOTP", FreeOtpImporter.class);
         _importers.put("FreeOTP+", FreeOtpPlusImporter.class);
         _importers.put("Google Authenticator", GoogleAuthImporter.class);
+        _importers.put("Microsoft Authenticator", MicrosoftAuthImporter.class);
         _importers.put("Steam", SteamImporter.class);
         _importers.put("WinAuth", WinAuthImporter.class);
 
@@ -40,6 +41,7 @@ public abstract class DatabaseImporter {
         _appImporters.put("FreeOTP", FreeOtpImporter.class);
         _appImporters.put("FreeOTP+", FreeOtpPlusImporter.class);
         _appImporters.put("Google Authenticator", GoogleAuthImporter.class);
+        _appImporters.put("Microsoft Authenticator", MicrosoftAuthImporter.class);
         _appImporters.put("Steam", SteamImporter.class);
     }
 
