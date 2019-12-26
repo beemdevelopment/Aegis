@@ -1,8 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Aegis</string>
-    <string name="app_name_full">Aegis Authenticator</string>
-    <string name="app_name_dev">AegisDev</string>
-    <string name="org_name_full">Beem Development</string>
     <string name="action_settings">Paramètres</string>
     <string name="action_about">À propos</string>
     <string name="action_import">Importer</string>
@@ -11,7 +8,6 @@
     <string name="discard">Annuler</string>
     <string name="save">Enregistrer</string>
     <string name="issuer">Émetteur</string>
-
     <string name="settings">Préférences</string>
     <string name="pref_appearance_group_title">Apparence</string>
     <string name="pref_general_group_title">Général</string>
@@ -43,7 +39,6 @@
     <string name="pref_encryption_summary">Chiffrer la base de données et la déverrouiller avec un mot de passe ou une empreinte digitale</string>
     <string name="pref_set_password_title">Changer le mot de passe</string>
     <string name="pref_set_password_summary">Définir un mot de passe dont vous aurez besoin pour déverrouiller votre coffre-fort</string>
-
     <string name="choose_authentication_method">Sécurité</string>
     <string name="authentication_method_none">Aucun</string>
     <string name="authentication_method_none_description">Vous n\'avez pas besoin d\'un mot de passe pour déverrouiller le coffre-fort et il ne sera pas chiffré. Cette option n\'est pas recommandée.</string>
@@ -56,7 +51,6 @@
     <string name="set_group">Veuillez saisir un nom de groupe</string>
     <string name="set_number">Veuillez saisir un nombre</string>
     <string name="set_password_confirm">Veuillez confirmer le mot de passe</string>
-
     <string name="unlock">Déverrouiller</string>
     <string name="advanced">Avancé</string>
     <string name="seconds">secondes</string>
@@ -94,6 +88,7 @@
     <string name="vault_not_found">Coffre-fort introuvable, lancement de la configuration…</string>
     <string name="code_copied">Code copié dans le presse-papier</string>
     <string name="errors_copied">Erreurs copiées dans le presse-papier</string>
+    <string name="version_copied">Version copiée dans le presse-papier</string>
     <string name="decryption_error">Une erreur est survenue en essayant de déverrouiller le coffre-fort</string>
     <string name="saving_error">Une erreur est survenue en essayant d\'enregistrer le coffre-fort</string>
     <string name="disable_encryption">Désactiver le chiffrement</string>
@@ -112,8 +107,6 @@
     <string name="imported_entries_count">%d entrées importées</string>
     <string name="read_entries_count">%d entrées lues. %d erreurs.</string>
     <string name="import_error_title">Une ou plusieurs erreurs sont survenues lors de l\'importation</string>
-    <string name="exporting_vault_error">Une erreur est survenue en essayant d\'exporter la base de données</string>
-    <string name="export_vault_location">La base de données a été exportée vers :</string>
     <string name="export_warning">Cette action va exporter la base de données en dehors du stockage privé d\'Aegis.</string>
     <string name="encryption_set_password_error">Une erreur est survenue en essayant de définir le mot de passe : </string>
     <string name="no_cameras_available">Aucun appareil photo disponible</string>
@@ -168,13 +161,10 @@
     <string name="version">Version</string>
     <string name="changelog">Historique des modifications</string>
     <string name="whats_new">Les nouveautés</string>
-    <string name="github">GitHub</string>
     <string name="github_description">Code source, problèmes et informations</string>
     <string name="licenses">Licences</string>
     <string name="licenses_description">Licences des bibliothèques utilisées par Aegis</string>
-    <string name="author_alex">Alexander Bakker</string>
     <string name="country_netherlands">Pays-Bas</string>
-    <string name="author_michael">Michael Schättgen</string>
     <string name="email_us">Écrire un email</string>
     <string name="visit_website">Visiter notre site internet</string>
     <string name="about_support">Soutien</string>
@@ -182,7 +172,6 @@
     <string name="support_rate_description">Soutenez-nous en laissant un avis sur le Google Play Store</string>
     <string name="webview_error">Cet appareil ne supporte pas web view, qui est nécessaire pour voir l\'historique des modifications. C\'est un composant système manquant.</string>
     <string name="email">Email</string>
-
     <string name="empty_list">Il n\'y a pas de code à afficher. Commencez à ajouter des entrées en appuyant sur le signe plus dans le coin inférieur droit</string>
     <string name="empty_list_title">Aucune entrée trouvée</string>
 </resources>
