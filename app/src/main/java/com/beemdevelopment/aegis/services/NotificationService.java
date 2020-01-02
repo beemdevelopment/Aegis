@@ -17,22 +17,17 @@ public class NotificationService extends Service {
     private static final String CODE_LOCK_STATUS_ID = "lock_status_channel";
     private static final String CODE_LOCK_VAULT_ACTION = "lock_vault";
 
-    public NotificationService() {
-
-    }
-
     @Override
     public int onStartCommand(Intent intent,int flags, int startId){
         super.onStartCommand(intent, flags, startId);
-
         serviceMethod();
         return Service.START_STICKY;
     }
 
     public void serviceMethod() {
         Intent intentAction = new Intent(CODE_LOCK_VAULT_ACTION);
-        PendingIntent lockDatabaseIntent = PendingIntent.getBroadcast(this,1,intentAction, 0);
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(this,  CODE_LOCK_STATUS_ID)
+        PendingIntent lockDatabaseIntent = PendingIntent.getBroadcast(this, 1, intentAction, 0);
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CODE_LOCK_STATUS_ID)
                 .setSmallIcon(R.drawable.ic_fingerprint_black_24dp)
                 .setContentTitle(getString(R.string.app_name_full))
                 .setContentText(getString(R.string.vault_unlocked_state))
@@ -46,10 +41,15 @@ public class NotificationService extends Service {
 
     @Override
     public void onDestroy() {
-        super.onDestroy();
-
         NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
         notificationManager.cancel(VAULT_UNLOCKED_ID);
+        super.onDestroy();
+    }
+
+    @Override
+    public void onTaskRemoved(Intent rootIntent) {
+        super.onTaskRemoved(rootIntent);
+        stopSelf();
     }
 
     @Nullable
