@@ -19,8 +19,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar"
         tools:ignore="GoogleAppIndexingWarning"
-        tools:replace="android:theme"
-        android:requestLegacyExternalStorage="true">
+        tools:replace="android:theme">
         <activity
             android:name=".ui.AboutActivity"
             android:label="@string/title_activity_about"></activity>

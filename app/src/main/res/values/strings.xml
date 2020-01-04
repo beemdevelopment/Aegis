@@ -127,7 +127,7 @@
     <string name="read_entries_count">Read %d entries. %d errors.</string>
     <string name="import_error_title">One or more errors occurred during the import</string>
     <string name="exporting_vault_error">An error occurred while trying to export the vault</string>
-    <string name="export_vault_location">The vault has been exported to:</string>
+    <string name="exported_vault">The vault has been exported</string>
     <string name="export_warning">This action will export the vault out of Aegis\' private storage.</string>
     <string name="encryption_set_password_error">An error occurred while trying to set the password: </string>
     <string name="encryption_enable_biometrics_error">An error occurred while trying to enable biometric unlock</string>
