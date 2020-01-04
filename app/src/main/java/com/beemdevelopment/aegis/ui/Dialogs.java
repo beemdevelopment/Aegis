@@ -214,6 +214,31 @@ public class Dialogs {
         showSecureDialog(dialog);
     }
 
+    public static void showBackupVersionsPickerDialog(Activity activity, NumberInputListener listener) {
+        final int max = 30;
+        String[] numbers = new String[max / 5];
+        for (int i = 0; i < numbers.length; i++) {
+            numbers[i] = Integer.toString(i * 5 + 5);
+        }
+
+        View view = activity.getLayoutInflater().inflate(R.layout.dialog_number_picker, null);
+        NumberPicker numberPicker = view.findViewById(R.id.numberPicker);
+        numberPicker.setDisplayedValues(numbers);
+        numberPicker.setMaxValue(numbers.length - 1);
+        numberPicker.setMinValue(0);
+        numberPicker.setValue(new Preferences(activity.getApplicationContext()).getBackupsVersionCount() / 5 - 1);
+        numberPicker.setWrapSelectorWheel(false);
+
+        AlertDialog dialog = new AlertDialog.Builder(activity)
+                .setTitle(R.string.set_number)
+                .setView(view)
+                .setPositiveButton(android.R.string.ok, (dialog1, which) ->
+                        listener.onNumberInputResult(numberPicker.getValue()))
+                .create();
+
+        showSecureDialog(dialog);
+    }
+
     public interface NumberInputListener {
         void onNumberInputResult(int number);
     }

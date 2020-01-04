@@ -5,6 +5,7 @@ import android.content.Intent;
 
 import androidx.core.util.AtomicFile;
 
+import com.beemdevelopment.aegis.Preferences;
 import com.beemdevelopment.aegis.services.NotificationService;
 
 import org.json.JSONObject;
@@ -18,9 +19,9 @@ import java.util.Collection;
 import java.util.TreeSet;
 
 public class VaultManager {
-    private static final String FILENAME = "aegis.json";
-    public static final String FILENAME_EXPORT = "aegis_export.json";
-    public static final String FILENAME_EXPORT_PLAIN = "aegis_export_plain.json";
+    public static final String FILENAME = "aegis.json";
+    public static final String FILENAME_EXPORT = "aegis-export.json";
+    public static final String FILENAME_EXPORT_PLAIN = "aegis-export-plain.json";
 
     private Vault _vault;
     private VaultFile _file;
@@ -28,9 +29,13 @@ public class VaultManager {
     private boolean _encrypt;
 
     private Context _context;
+    private Preferences _prefs;
+    private VaultBackupManager _backups;
 
     public VaultManager(Context context) {
         _context = context;
+        _prefs = new Preferences(context);
+        _backups = new VaultBackupManager(context);
     }
 
     public boolean fileExists() {
@@ -102,6 +107,10 @@ public class VaultManager {
                 _file.setContent(obj);
             }
             save(_context, _file);
+
+            if (_prefs.isBackupsEnabled()) {
+                backup();
+            }
         } catch (VaultFileException e) {
             throw new VaultManagerException(e);
         }
@@ -123,6 +132,11 @@ public class VaultManager {
         } catch (IOException | VaultFileException e) {
             throw new VaultManagerException(e);
         }
+    }
+
+    public void backup() throws VaultManagerException {
+        assertState(false, true);
+        _backups.create(_prefs.getBackupsLocation(), _prefs.getBackupsVersionCount());
     }
 
     public void addEntry(VaultEntry entry) {
