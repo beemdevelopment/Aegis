@@ -2,10 +2,7 @@ package com.beemdevelopment.aegis.vault;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Environment;
 
-import com.beemdevelopment.aegis.BuildConfig;
-import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.services.NotificationService;
 
 import org.json.JSONObject;
@@ -15,14 +12,15 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.text.Collator;
 import java.util.Collection;
 import java.util.TreeSet;
 
 public class VaultManager {
     private static final String FILENAME = "aegis.json";
-    private static final String FILENAME_EXPORT = "aegis_export.json";
-    private static final String FILENAME_EXPORT_PLAIN = "aegis_export_plain.json";
+    public static final String FILENAME_EXPORT = "aegis_export";
+    public static final String FILENAME_EXPORT_PLAIN = "aegis_export_plain";
 
     private Vault _vault;
     private VaultFile _file;
@@ -104,7 +102,7 @@ public class VaultManager {
         }
     }
 
-    public String export(boolean encrypt) throws VaultManagerException {
+    public void export(OutputStream stream, boolean encrypt) throws VaultManagerException {
         assertState(false, true);
 
         try {
@@ -115,19 +113,8 @@ public class VaultManager {
                 vaultFile.setContent(_vault.toJson());
             }
 
-            String dirName = !BuildConfig.DEBUG ? _context.getString(R.string.app_name) : _context.getString(R.string.app_name_dev);
-            File dir = new File(Environment.getExternalStorageDirectory(), dirName);
-            if (!dir.exists() && !dir.mkdirs()) {
-                throw new IOException("error creating external storage directory");
-            }
-
             byte[] bytes = vaultFile.toBytes();
-            File file = new File(dir.getAbsolutePath(), encrypt ? FILENAME_EXPORT : FILENAME_EXPORT_PLAIN);
-            try (FileOutputStream stream = new FileOutputStream(file)) {
-                stream.write(bytes);
-            }
-
-            return file.getAbsolutePath();
+            stream.write(bytes);
         } catch (IOException | VaultFileException e) {
             throw new VaultManagerException(e);
         }

@@ -5,7 +5,6 @@ import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.Window;
@@ -26,16 +25,6 @@ import com.beemdevelopment.aegis.Theme;
 import com.beemdevelopment.aegis.ViewMode;
 import com.beemdevelopment.aegis.crypto.KeyStoreHandle;
 import com.beemdevelopment.aegis.crypto.KeyStoreHandleException;
-import com.beemdevelopment.aegis.vault.VaultEntry;
-import com.beemdevelopment.aegis.vault.VaultFileCredentials;
-import com.beemdevelopment.aegis.vault.VaultFileException;
-import com.beemdevelopment.aegis.vault.VaultManager;
-import com.beemdevelopment.aegis.vault.VaultManagerException;
-import com.beemdevelopment.aegis.vault.slots.BiometricSlot;
-import com.beemdevelopment.aegis.vault.slots.PasswordSlot;
-import com.beemdevelopment.aegis.vault.slots.Slot;
-import com.beemdevelopment.aegis.vault.slots.SlotException;
-import com.beemdevelopment.aegis.vault.slots.SlotList;
 import com.beemdevelopment.aegis.helpers.BiometricSlotInitializer;
 import com.beemdevelopment.aegis.helpers.BiometricsHelper;
 import com.beemdevelopment.aegis.helpers.PermissionHelper;
@@ -47,6 +36,16 @@ import com.beemdevelopment.aegis.services.NotificationService;
 import com.beemdevelopment.aegis.ui.models.ImportEntry;
 import com.beemdevelopment.aegis.ui.preferences.SwitchPreference;
 import com.beemdevelopment.aegis.util.UUIDMap;
+import com.beemdevelopment.aegis.vault.VaultEntry;
+import com.beemdevelopment.aegis.vault.VaultFileCredentials;
+import com.beemdevelopment.aegis.vault.VaultFileException;
+import com.beemdevelopment.aegis.vault.VaultManager;
+import com.beemdevelopment.aegis.vault.VaultManagerException;
+import com.beemdevelopment.aegis.vault.slots.BiometricSlot;
+import com.beemdevelopment.aegis.vault.slots.PasswordSlot;
+import com.beemdevelopment.aegis.vault.slots.Slot;
+import com.beemdevelopment.aegis.vault.slots.SlotException;
+import com.beemdevelopment.aegis.vault.slots.SlotList;
 import com.topjohnwu.superuser.Shell;
 import com.topjohnwu.superuser.io.SuFile;
 import com.topjohnwu.superuser.io.SuFileInputStream;
@@ -54,6 +53,7 @@ import com.topjohnwu.superuser.io.SuFileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -70,6 +70,8 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
     private static final int CODE_SLOTS = 2;
     private static final int CODE_GROUPS = 3;
     private static final int CODE_SELECT_ENTRIES = 4;
+    private static final int CODE_EXPORT = 5;
+    private static final int CODE_EXPORT_ENCRYPT = 6;
 
     // permission request codes
     private static final int CODE_PERM_IMPORT = 0;
@@ -406,6 +408,11 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
             case CODE_SELECT_ENTRIES:
                 onSelectEntriesResult(resultCode, data);
                 break;
+            case CODE_EXPORT:
+                // intentional fallthrough
+            case CODE_EXPORT_ENCRYPT:
+                onExportResult(resultCode, data, requestCode == CODE_EXPORT_ENCRYPT);
+                break;
         }
     }
 
@@ -587,18 +594,12 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity())
                 .setTitle(R.string.pref_export_summary)
                 .setPositiveButton(android.R.string.ok, (dialog, which) -> {
-                    String filename;
-                    try {
-                        filename = _vault.export(checked.get());
-                    } catch (VaultManagerException e) {
-                        Toast.makeText(getActivity(), R.string.exporting_vault_error, Toast.LENGTH_SHORT).show();
-                        return;
-                    }
+                    Intent intent = new Intent(Intent.ACTION_CREATE_DOCUMENT)
+                            .addCategory(Intent.CATEGORY_OPENABLE)
+                            .setType("application/json")
+                            .putExtra(Intent.EXTRA_TITLE, checked.get() ? VaultManager.FILENAME_EXPORT : VaultManager.FILENAME_EXPORT_PLAIN);
 
-                    // make sure the new file is visible
-                    MediaScannerConnection.scanFile(getActivity(), new String[]{filename}, null, null);
-
-                    Toast.makeText(getActivity(), getString(R.string.export_vault_location) + filename, Toast.LENGTH_SHORT).show();
+                    startActivityForResult(intent, checked.get() ? CODE_EXPORT_ENCRYPT : CODE_EXPORT);
                 })
                 .setNegativeButton(android.R.string.cancel, null);
         if (_vault.isEncryptionEnabled()) {
@@ -667,6 +668,22 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
         Toast.makeText(getContext(), toastMessage, Toast.LENGTH_SHORT).show();
 
         _result.putExtra("needsRecreate", true);
+    }
+
+    private void onExportResult(int resultCode, Intent data, boolean encrypt) {
+        Uri uri = data.getData();
+        if (resultCode != Activity.RESULT_OK || uri == null) {
+            return;
+        }
+
+        try (OutputStream stream = getContext().getContentResolver().openOutputStream(uri, "w")) {
+            _vault.export(stream, encrypt);
+        } catch (IOException | VaultManagerException e) {
+            Toast.makeText(getActivity(), R.string.exporting_vault_error, Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        Toast.makeText(getActivity(), getString(R.string.exported_vault), Toast.LENGTH_SHORT).show();
     }
 
     private boolean saveVault() {
