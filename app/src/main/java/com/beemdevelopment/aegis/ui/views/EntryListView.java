@@ -132,10 +132,14 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
         }
     }
 
+    public void setIsLongPressDragEnabled(boolean enabled) {
+        _touchCallback.setIsLongPressDragEnabled(enabled);
+    }
+
     public void setActionModeState(boolean enabled, VaultEntry entry) {
         _touchCallback.setSelectedEntry(entry);
         _touchCallback.setIsLongPressDragEnabled(enabled && _adapter.isDragAndDropAllowed());
-        _adapter.setSelectedEntry(entry);
+        _adapter.addSelectedEntry(entry);
     }
 
     public void setSortCategory(SortCategory sortCategory, boolean apply) {
@@ -193,6 +197,12 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
     public void onEntryChange(VaultEntry entry) {
         _listener.onEntryChange(entry);
     }
+
+    @Override
+    public void onSelect(VaultEntry entry) { _listener.onSelect(entry); }
+
+    @Override
+    public void onDeselect(VaultEntry entry) { _listener.onDeselect(entry); }
 
     @Override
     public void onPeriodUniformityChanged(boolean isUniform) {
@@ -298,6 +308,8 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
         void onEntryChange(VaultEntry entry);
         void onLongEntryClick(VaultEntry entry);
         void onScroll(int dx, int dy);
+        void onSelect(VaultEntry entry);
+        void onDeselect(VaultEntry entry);
     }
 
     private class VerticalSpaceItemDecoration extends RecyclerView.ItemDecoration {

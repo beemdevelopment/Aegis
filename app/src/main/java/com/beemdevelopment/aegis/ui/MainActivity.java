@@ -73,7 +73,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
     private String _selectedGroup;
     private boolean _searchSubmitted;
 
-    private VaultEntry _selectedEntry;
+    private List<VaultEntry> _selectedEntries;
     private ActionMode _actionMode;
 
     private Menu _menu;
@@ -123,6 +123,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         });
 
         _fabScrollHelper = new FabScrollHelper(_fabMenu);
+        _selectedEntries = new ArrayList<>();
     }
 
     @Override
@@ -502,6 +503,15 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         super.onBackPressed();
     }
 
+    private void deleteEntries(List<VaultEntry> entries) {
+        for (VaultEntry entry: entries) {
+            VaultEntry oldEntry = _vault.removeEntry(entry);
+            _entryListView.removeEntry(oldEntry);
+        }
+
+        saveVault();
+    }
+
     private void deleteEntry(VaultEntry entry) {
         VaultEntry oldEntry = _vault.removeEntry(entry);
         saveVault();
@@ -671,9 +681,11 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
 
     @Override
     public void onEntryClick(VaultEntry entry) {
-        if (_selectedEntry != null) {
-            if (_selectedEntry == entry) {
+        if (_actionMode != null) {
+            if (_selectedEntries.isEmpty()) {
                 _actionMode.finish();
+            } else {
+                setIsMultipleSelected(_selectedEntries.size() > 1);
             }
 
             return;
@@ -683,12 +695,28 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
     }
 
     @Override
+    public void onSelect(VaultEntry entry) {
+        _selectedEntries.add(entry);
+    }
+
+    @Override
+    public void onDeselect(VaultEntry entry) {
+        _selectedEntries.remove(entry);
+    }
+
+    private void setIsMultipleSelected(boolean multipleSelected) {
+        _entryListView.setIsLongPressDragEnabled(!multipleSelected);
+        _actionMode.getMenu().findItem(R.id.action_edit).setVisible(!multipleSelected);
+        _actionMode.getMenu().findItem(R.id.action_copy).setVisible(!multipleSelected);
+    }
+
+    @Override
     public void onLongEntryClick(VaultEntry entry) {
-        if (_selectedEntry != null) {
+        if (!_selectedEntries.isEmpty()) {
             return;
         }
 
-        _selectedEntry = entry;
+        _selectedEntries.add(entry);
         _entryListView.setActionModeState(true, entry);
         _actionMode = this.startSupportActionMode(_actionModeCallbacks);
     }
@@ -753,26 +781,29 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
             public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.action_copy:
-                        copyEntryCode(_selectedEntry);
+                        copyEntryCode(_selectedEntries.get(0));
                         mode.finish();
                         return true;
 
                     case R.id.action_edit:
-                        startEditProfileActivity(CODE_EDIT_ENTRY, _selectedEntry, false);
+                        startEditProfileActivity(CODE_EDIT_ENTRY, _selectedEntries.get(0), false);
                         mode.finish();
                         return true;
 
                     case R.id.action_delete:
-                        Dialogs.showDeleteEntryDialog(MainActivity.this, (d, which) -> {
-                            deleteEntry(_selectedEntry);
+                        Dialogs.showDeleteEntriesDialog(MainActivity.this, (d, which) -> {
+                            deleteEntries(_selectedEntries);
 
-                            if (_selectedEntry.getGroup() != null) {
-                                if (!_vault.getGroups().contains(_selectedEntry.getGroup())) {
-                                    updateGroupFilterMenu();
+                            for (VaultEntry entry : _selectedEntries) {
+                                if (entry.getGroup() != null) {
+                                    if (!_vault.getGroups().contains(entry.getGroup())) {
+                                        updateGroupFilterMenu();
+                                    }
                                 }
                             }
+
                             mode.finish();
-                        });
+                        }, _selectedEntries.size());
                         return true;
                     default:
                         return false;
@@ -782,7 +813,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
             @Override
             public void onDestroyActionMode(ActionMode mode) {
                 _entryListView.setActionModeState(false, null);
-                _selectedEntry = null;
+                _selectedEntries.clear();
                 _actionMode = null;
             }
     }

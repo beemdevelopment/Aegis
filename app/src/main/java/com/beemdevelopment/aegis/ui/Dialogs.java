@@ -57,6 +57,24 @@ public class Dialogs {
                 .create());
     }
 
+    public static void showDeleteEntriesDialog(Activity activity, DialogInterface.OnClickListener onDelete, int totalEntries) {
+        String title, message;
+        if (totalEntries > 1) {
+            title = activity.getString(R.string.delete_entries);
+            message = String.format(activity.getString(R.string.delete_entries_description), totalEntries);
+        } else {
+            title = activity.getString(R.string.delete_entry);
+            message = activity.getString(R.string.delete_entry_description);
+        }
+
+        showSecureDialog(new AlertDialog.Builder(activity)
+                .setTitle(title)
+                .setMessage(message)
+                .setPositiveButton(android.R.string.yes, onDelete)
+                .setNegativeButton(android.R.string.no, null)
+                .create());
+    }
+
     public static void showDiscardDialog(Activity activity, DialogInterface.OnClickListener onSave, DialogInterface.OnClickListener onDiscard) {
         showSecureDialog(new AlertDialog.Builder(activity)
                 .setTitle(activity.getString(R.string.discard_changes))

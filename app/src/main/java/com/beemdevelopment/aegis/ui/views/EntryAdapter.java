@@ -26,7 +26,7 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
     private EntryListView _view;
     private List<VaultEntry> _entries;
     private List<VaultEntry> _shownEntries;
-    private VaultEntry _selectedEntry;
+    private List<VaultEntry> _selectedEntries;
     private VaultEntry _focusedEntry;
     private boolean _showAccountName;
     private boolean _searchAccountName;
@@ -46,6 +46,7 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
     public EntryAdapter(EntryListView view) {
         _entries = new ArrayList<>();
         _shownEntries = new ArrayList<>();
+        _selectedEntries = new ArrayList<>();
         _holders = new ArrayList<>();
         _dimHandler = new Handler();
         _view = view;
@@ -302,7 +303,7 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
     @Override
     public void onBindViewHolder(final EntryHolder holder, int position) {
         VaultEntry entry = _shownEntries.get(position);
-        holder.setFocused(entry == _selectedEntry);
+        holder.setFocused(_selectedEntries.contains(entry));
 
         boolean hidden = _tapToReveal && entry != _focusedEntry;
         boolean dimmed = _highlightEntry && _focusedEntry != null && _focusedEntry != entry;
@@ -315,7 +316,7 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
             public void onClick(View v) {
                 boolean handled = false;
 
-                if (_selectedEntry == null) {
+                if (_selectedEntries.isEmpty()) {
                     if (_highlightEntry || _tapToReveal) {
                         if (_focusedEntry == entry) {
                             resetFocus();
@@ -323,6 +324,16 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
                         } else {
                             focusEntry(entry);
                         }
+                    }
+                } else {
+                    if (_selectedEntries.contains(entry)) {
+                        _view.onDeselect(entry);
+                        removeSelectedEntry(entry);
+                        holder.setFocused(false);
+                    } else {
+                        holder.setFocused(true);
+                        addSelectedEntry(entry);
+                        _view.onSelect(entry);
                     }
                 }
 
@@ -335,8 +346,7 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
             @Override
             public boolean onLongClick(View v) {
                 int position = holder.getAdapterPosition();
-                if (_selectedEntry == null) {
-                    setSelectedEntry(_shownEntries.get(position));
+                if (_selectedEntries.isEmpty()) {
                     holder.setFocused(true);
                 }
 
@@ -444,14 +454,23 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
         _focusedEntry = null;
     }
 
-    public void setSelectedEntry(VaultEntry entry) {
+    public void removeSelectedEntry(VaultEntry entry) {
+        _selectedEntries.remove(entry);
+    }
+
+    public void addSelectedEntry(VaultEntry entry) {
         if (entry == null) {
-            notifyItemChanged(_shownEntries.indexOf(_selectedEntry));
+            for (VaultEntry vaultEntry: _selectedEntries) {
+                notifyItemChanged(_shownEntries.indexOf(vaultEntry));
+            }
+
+            _selectedEntries.clear();
+            return;
         } else if (_highlightEntry) {
             resetFocus();
         }
 
-        _selectedEntry = entry;
+        _selectedEntries.add(entry);
     }
 
     public boolean isDragAndDropAllowed() {
@@ -474,5 +493,7 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
         void onEntryDrop(VaultEntry entry);
         void onEntryChange(VaultEntry entry);
         void onPeriodUniformityChanged(boolean uniform);
+        void onSelect(VaultEntry entry);
+        void onDeselect(VaultEntry entry);
     }
 }
