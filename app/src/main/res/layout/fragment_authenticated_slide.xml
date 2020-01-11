@@ -14,11 +14,19 @@
         android:textColor="@color/primary_text_inverted"
         android:id="@+id/textView2" />
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/authentication_method_password_explanation"
+        android:textColor="#FFFF00"
+        android:textStyle="bold"
+        android:layout_marginTop="24dp" />
+
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp">
+        android:layout_marginTop="24dp">
 
         <TextView
             android:layout_width="match_parent"
