@@ -395,10 +395,6 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
     }
 
     private void startScanImageActivity() {
-        if (!PermissionHelper.request(this, CODE_PERM_READ_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE)) {
-            return;
-        }
-
         Intent galleryIntent = new Intent(Intent.ACTION_PICK);
         galleryIntent.setDataAndType(android.provider.MediaStore.Images.Media.INTERNAL_CONTENT_URI, "image/*");
 

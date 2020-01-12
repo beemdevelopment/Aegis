@@ -1,6 +1,5 @@
 package com.beemdevelopment.aegis.ui;
 
-import android.Manifest;
 import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -27,7 +26,6 @@ import com.beemdevelopment.aegis.crypto.KeyStoreHandle;
 import com.beemdevelopment.aegis.crypto.KeyStoreHandleException;
 import com.beemdevelopment.aegis.helpers.BiometricSlotInitializer;
 import com.beemdevelopment.aegis.helpers.BiometricsHelper;
-import com.beemdevelopment.aegis.helpers.PermissionHelper;
 import com.beemdevelopment.aegis.importers.AegisImporter;
 import com.beemdevelopment.aegis.importers.DatabaseImporter;
 import com.beemdevelopment.aegis.importers.DatabaseImporterEntryException;
@@ -72,10 +70,6 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
     private static final int CODE_SELECT_ENTRIES = 4;
     private static final int CODE_EXPORT = 5;
     private static final int CODE_EXPORT_ENCRYPT = 6;
-
-    // permission request codes
-    private static final int CODE_PERM_IMPORT = 0;
-    private static final int CODE_PERM_EXPORT = 1;
 
     private Intent _result;
     private VaultManager _vault;
@@ -163,7 +157,7 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
         importPreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
-                onImport();
+                startImport();
                 return true;
             }
         });
@@ -177,12 +171,11 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
             }
         });
 
-
         Preference exportPreference = findPreference("pref_export");
         exportPreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
-                onExport();
+                startExport();
                 return true;
             }
         });
@@ -370,23 +363,6 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
-        if (!PermissionHelper.checkResults(grantResults)) {
-            Toast.makeText(getActivity(), R.string.permission_denied, Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        switch (requestCode) {
-            case CODE_PERM_IMPORT:
-                onImport();
-                break;
-            case CODE_PERM_EXPORT:
-                onExport();
-                break;
-        }
-    }
-
-    @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (data == null) {
             return;
@@ -425,11 +401,7 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
         getActivity().setResult(Activity.RESULT_OK, _result);
     }
 
-    private void onImport() {
-        if (!PermissionHelper.request(getActivity(), CODE_PERM_IMPORT, Manifest.permission.READ_EXTERNAL_STORAGE)) {
-            return;
-        }
-
+    private void startImport() {
         Map<String, Class<? extends DatabaseImporter>> importers = DatabaseImporter.getImporters();
         String[] names = importers.keySet().toArray(new String[0]);
 
@@ -584,11 +556,7 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
         startActivityForResult(intent, CODE_SELECT_ENTRIES);
     }
 
-    private void onExport() {
-        if (!PermissionHelper.request(getActivity(), CODE_PERM_EXPORT, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
-            return;
-        }
-
+    private void startExport() {
         // TODO: create a custom layout to show a message AND a checkbox
         final AtomicReference<Boolean> checked = new AtomicReference<>(true);
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity())
