@@ -38,6 +38,7 @@ public class CustomAuthenticationSlide extends Fragment implements ISlidePolicy,
             TextView text = view.findViewById(R.id.text_rb_biometrics);
             button.setEnabled(true);
             text.setEnabled(true);
+            _buttonGroup.check(R.id.rb_biometrics);
         }
 
         view.findViewById(R.id.main).setBackgroundColor(_bgColor);

@@ -47,10 +47,12 @@
     <string name="pref_set_password_summary">Set a new password which you will need to unlock your vault</string>
 
     <string name="choose_authentication_method">Security</string>
+    <string name="authentication_method_explanation">Aegis is a security-focused 2FA app. Tokens are stored in a vault, that can optionally be encrypted with a password of your choosing. If an attacker obtains your encrypted vault file, they will not be able to access the contents without knowing the password.\n\nWe\'ve preselected the option that we think would fit best for your device.</string>
     <string name="authentication_method_none">None</string>
-    <string name="authentication_method_none_description">You don\'t need a password to unlock the vault and it will not be encrypted. This option is not recommended.</string>
+    <string name="authentication_method_none_description">No password is needed to unlock the vault and it will not be encrypted. <b>This option is not recommended</b>.</string>
     <string name="authentication_method_password">Password</string>
-    <string name="authentication_method_password_description">You need a password to unlock the vault.</string>
+    <string name="authentication_method_password_description">A password is needed to unlock the vault.</string>
+    <string name="authentication_method_password_explanation">Warning: If you forget your password, you will permanently lose access to your tokens. There is no way to recover them without the password.</string>
     <string name="authentication_method_biometrics">Biometrics</string>
     <string name="authentication_method_biometrics_description">In addition to a password, biometrics registered on this device, like a fingerprint or your face, can be used to unlock the vault.</string>
     <string name="authentication_method_set_password">Password</string>
