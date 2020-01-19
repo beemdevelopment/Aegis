@@ -2,15 +2,18 @@ package com.beemdevelopment.aegis.ui;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -18,19 +21,20 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.biometric.BiometricPrompt;
 
 import com.beemdevelopment.aegis.CancelAction;
+import com.beemdevelopment.aegis.Preferences;
 import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.crypto.KeyStoreHandle;
 import com.beemdevelopment.aegis.crypto.KeyStoreHandleException;
+import com.beemdevelopment.aegis.helpers.BiometricsHelper;
+import com.beemdevelopment.aegis.helpers.EditTextHelper;
+import com.beemdevelopment.aegis.helpers.UiThreadExecutor;
+import com.beemdevelopment.aegis.ui.tasks.SlotListTask;
 import com.beemdevelopment.aegis.vault.VaultFileCredentials;
 import com.beemdevelopment.aegis.vault.slots.BiometricSlot;
 import com.beemdevelopment.aegis.vault.slots.PasswordSlot;
 import com.beemdevelopment.aegis.vault.slots.Slot;
 import com.beemdevelopment.aegis.vault.slots.SlotException;
 import com.beemdevelopment.aegis.vault.slots.SlotList;
-import com.beemdevelopment.aegis.helpers.BiometricsHelper;
-import com.beemdevelopment.aegis.helpers.EditTextHelper;
-import com.beemdevelopment.aegis.helpers.UiThreadExecutor;
-import com.beemdevelopment.aegis.ui.tasks.SlotListTask;
 
 import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
@@ -43,9 +47,12 @@ public class AuthActivity extends AegisActivity implements SlotListTask.Callback
     private BiometricPrompt.CryptoObject _bioCryptoObj;
     private BiometricPrompt _bioPrompt;
 
+    private Preferences _prefs;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        _prefs = new Preferences(this);
         setContentView(R.layout.activity_auth);
         _textPassword = findViewById(R.id.text_password);
         LinearLayout boxBiometricInfo = findViewById(R.id.box_biometric_info);
@@ -112,11 +119,6 @@ public class AuthActivity extends AegisActivity implements SlotListTask.Callback
         biometricsButton.setOnClickListener(v -> {
             showBiometricPrompt();
         });
-
-        if (_bioCryptoObj == null) {
-            _textPassword.requestFocus();
-            getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
-        }
     }
 
     private void showError() {
@@ -158,8 +160,31 @@ public class AuthActivity extends AegisActivity implements SlotListTask.Callback
         super.onResume();
 
         if (_bioPrompt != null) {
-            showBiometricPrompt();
+            if (_prefs.isPasswordReminderNeeded()) {
+                focusPasswordField();
+                showPasswordReminder();
+            } else {
+                showBiometricPrompt();
+            }
+        } else {
+            focusPasswordField();
         }
+    }
+
+    private void focusPasswordField() {
+        _textPassword.requestFocus();
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
+    }
+
+    private void showPasswordReminder() {
+        View popupLayout = getLayoutInflater().inflate(R.layout.popup_password, null);
+        PopupWindow popup = new PopupWindow(popupLayout, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        popup.setFocusable(true);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
+            popup.setElevation(5.0f);
+        }
+        _textPassword.post(() -> popup.showAsDropDown(_textPassword));
+        _textPassword.postDelayed(popup::dismiss, 5000);
     }
 
     public void showBiometricPrompt() {
@@ -185,6 +210,10 @@ public class AuthActivity extends AegisActivity implements SlotListTask.Callback
             // replace the old slot with the repaired one
             if (result.isSlotRepaired()) {
                 _slots.replace(result.getSlot());
+            }
+
+            if (result.getSlot().getType() == Slot.TYPE_DERIVED) {
+                _prefs.resetPasswordReminderTimestamp();
             }
 
             // send the master key back to the main activity
