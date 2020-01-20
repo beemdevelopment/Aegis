@@ -19,9 +19,9 @@
     <string name="pref_account_name_title">Toon de accountnaam</string>
     <string name="pref_account_name_summary">Schakel in om de accountnaam naast de uitgever te tonen</string>
     <string name="pref_timeout_title">Time-out</string>
-    <string name="pref_timeout_summary">Automatisch database vergrendelen na %1$s seconden zonder activiteit</string>
+    <string name="pref_timeout_summary">Automatisch kluis vergrendelen na %1$s seconden zonder activiteit</string>
     <string name="pref_slots_title">Vergrendelingssleutels</string>
-    <string name="pref_slots_summary">Beheer de lijst van vergrendelingssleutels die de database kunnen decrypten</string>
+    <string name="pref_slots_summary">Beheer de lijst van vergrendelingssleutels die de kluis kunnen decrypten</string>
     <string name="pref_import_file_title">Importeren vanuit een bestand</string>
     <string name="pref_import_file_summary">Database importeren vanuit een bestand</string>
     <string name="pref_import_app_title">Importeren vanuit een app</string>
