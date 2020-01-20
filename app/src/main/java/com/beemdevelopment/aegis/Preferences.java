@@ -6,13 +6,19 @@ import android.content.res.Resources;
 import android.os.Build;
 import android.preference.PreferenceManager;
 
+import java.util.Date;
 import java.util.Locale;
+import java.util.concurrent.TimeUnit;
 
 public class Preferences {
     private SharedPreferences _prefs;
 
     public Preferences(Context context) {
         _prefs = PreferenceManager.getDefaultSharedPreferences(context);
+
+        if (getPasswordReminderTimestamp().getTime() == 0) {
+            resetPasswordReminderTimestamp();
+        }
     }
 
     public boolean isTapToRevealEnabled() {
@@ -30,6 +36,24 @@ public class Preferences {
     public boolean isSecureScreenEnabled() {
         // screen security should be enabled by default, but not for debug builds
         return _prefs.getBoolean("pref_secure_screen", !BuildConfig.DEBUG);
+    }
+
+    public boolean isPasswordReminderEnabled() {
+        return _prefs.getBoolean("pref_password_reminder", true);
+    }
+
+    public boolean isPasswordReminderNeeded() {
+        long diff = new Date().getTime() - getPasswordReminderTimestamp().getTime();
+        long days = TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);
+        return isPasswordReminderEnabled() && days >= 7;
+    }
+
+    public Date getPasswordReminderTimestamp() {
+        return new Date(_prefs.getLong("pref_password_reminder_counter", 0));
+    }
+
+    public void resetPasswordReminderTimestamp() {
+        _prefs.edit().putLong("pref_password_reminder_counter", new Date().getTime()).apply();
     }
 
     public boolean isAccountNameVisible() {

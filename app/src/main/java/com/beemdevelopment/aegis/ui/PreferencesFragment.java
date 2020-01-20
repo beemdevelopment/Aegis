@@ -85,6 +85,7 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
     private Preference _setPasswordPreference;
     private Preference _slotsPreference;
     private Preference _groupsPreference;
+    private Preference _passwordReminderPreference;
 
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
@@ -354,6 +355,7 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
         });
 
         _autoLockPreference = findPreference("pref_auto_lock");
+        _passwordReminderPreference = findPreference("pref_password_reminder");
     }
 
     @Override
@@ -683,11 +685,13 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
             _biometricsPreference.setEnabled(canUseBio && !multiBio);
             _biometricsPreference.setChecked(slots.has(BiometricSlot.class), true);
             _slotsPreference.setVisible(showSlots);
+            _passwordReminderPreference.setVisible(slots.has(BiometricSlot.class));
         } else {
             _setPasswordPreference.setEnabled(false);
             _biometricsPreference.setEnabled(false);
             _biometricsPreference.setChecked(false, true);
             _slotsPreference.setVisible(false);
+            _passwordReminderPreference.setVisible(false);
         }
     }
 

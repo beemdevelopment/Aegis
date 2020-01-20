@@ -32,6 +32,8 @@
     <string name="pref_import_app_summary">Import tokens from an app (requires root access)</string>
     <string name="pref_export_title">Export</string>
     <string name="pref_export_summary">Export the vault</string>
+    <string name="pref_password_reminder_title">Password reminder</string>
+    <string name="pref_password_reminder_summary">Show a reminder to enter the password every once in a while, so that you don\'t forget it.</string>
     <string name="pref_secure_screen_title">Screen security</string>
     <string name="pref_secure_screen_summary">Block screenshots and other attempts to capture the screen within the app</string>
     <string name="pref_tap_to_reveal_title">Tap to reveal</string>
@@ -63,6 +65,7 @@
     <string name="set_number">Please enter a number</string>
     <string name="set_password_confirm">Please confirm the password</string>
     <string name="invalidated_biometrics">A change in your device\'s security settings has been detected. Please go to \"Aegis -> Settings -> Biometrics\" and re-enable biometric unlock.</string>
+    <string name="password_reminder">It\'s been a while since you\'ve entered your password. Do you still remember it?</string>
 
     <string name="unlock">Unlock</string>
     <string name="biometrics">Biometrics</string>
