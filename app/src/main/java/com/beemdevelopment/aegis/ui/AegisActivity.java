@@ -110,7 +110,7 @@ public abstract class AegisActivity extends AppCompatActivity implements AegisAp
         Configuration config = new Configuration();
         config.locale = locale;
 
-        getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
+        this.getResources().updateConfiguration(config, this.getResources().getDisplayMetrics());
     }
 
     /**

@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.Window;
 import android.view.WindowManager;
@@ -124,11 +125,16 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
         });
 
         Preference langPreference = findPreference("pref_lang");
-        langPreference.setOnPreferenceChangeListener((preference, newValue) -> {
-            _result.putExtra("needsRecreate", true);
-            getActivity().recreate();
-            return true;
-        });
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            langPreference.setOnPreferenceChangeListener((preference, newValue) -> {
+                _result.putExtra("needsRecreate", true);
+                getActivity().recreate();
+                return true;
+            });
+        } else {
+            // Setting locale doesn't work on Marshmallow or below
+            langPreference.setVisible(false);
+        }
 
         int currentViewMode = app.getPreferences().getCurrentViewMode().ordinal();
         Preference viewModePreference = findPreference("pref_view_mode");
