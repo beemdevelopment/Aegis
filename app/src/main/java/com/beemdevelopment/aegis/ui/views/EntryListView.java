@@ -205,11 +205,12 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
     public void onDeselect(VaultEntry entry) { _listener.onDeselect(entry); }
 
     @Override
-    public void onPeriodUniformityChanged(boolean isUniform) {
+    public void onPeriodUniformityChanged(boolean isUniform, int period) {
         setShowProgress(isUniform);
         if (_showProgress) {
+            _refresher.stop();
             _progressBar.setVisibility(View.VISIBLE);
-            _progressBar.setPeriod(_adapter.getUniformPeriod());
+            _progressBar.setPeriod(period);
             _refresher.start();
         } else {
             _progressBar.setVisibility(View.GONE);

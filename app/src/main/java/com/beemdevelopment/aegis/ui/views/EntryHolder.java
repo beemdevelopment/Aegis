@@ -58,7 +58,7 @@ public class EntryHolder extends RecyclerView.ViewHolder {
         _refresher = new UiRefresher(new UiRefresher.Listener() {
             @Override
             public void onRefresh() {
-                if (_hidden) {
+                if (!_hidden) {
                     refreshCode();
                 }
 

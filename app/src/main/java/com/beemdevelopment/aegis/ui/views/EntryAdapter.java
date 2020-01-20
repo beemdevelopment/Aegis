@@ -38,6 +38,7 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
     private ViewMode _viewMode;
     private String _searchFilter;
     private boolean _isPeriodUniform = true;
+    private int _uniformPeriod = -1;
     private Handler _dimHandler;
 
     // keeps track of the viewholders that are currently bound
@@ -380,17 +381,19 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
     }
 
     private void checkPeriodUniformity(boolean force) {
+        int uniformPeriod = getUniformPeriod();
         boolean uniform = isPeriodUniform();
-        if (!force && uniform == _isPeriodUniform) {
+        if (!force && uniform == _isPeriodUniform && uniformPeriod == _uniformPeriod) {
             return;
         }
         _isPeriodUniform = uniform;
+        _uniformPeriod = uniformPeriod;
 
         for (EntryHolder holder : _holders) {
             holder.setShowProgress(!_isPeriodUniform);
         }
 
-        _view.onPeriodUniformityChanged(_isPeriodUniform);
+        _view.onPeriodUniformityChanged(_isPeriodUniform, _uniformPeriod);
     }
 
     public int getUniformPeriod() {
@@ -478,7 +481,11 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
     }
 
     public boolean isPeriodUniform() {
-        return getUniformPeriod() != -1;
+        return isPeriodUniform(getUniformPeriod());
+    }
+
+    private static boolean isPeriodUniform(int period) {
+        return period != -1;
     }
 
     @Override
@@ -492,7 +499,7 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
         void onEntryMove(VaultEntry entry1, VaultEntry entry2);
         void onEntryDrop(VaultEntry entry);
         void onEntryChange(VaultEntry entry);
-        void onPeriodUniformityChanged(boolean uniform);
+        void onPeriodUniformityChanged(boolean uniform, int period);
         void onSelect(VaultEntry entry);
         void onDeselect(VaultEntry entry);
     }
