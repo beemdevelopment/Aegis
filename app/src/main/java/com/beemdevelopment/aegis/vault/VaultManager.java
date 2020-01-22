@@ -19,8 +19,8 @@ import java.util.TreeSet;
 
 public class VaultManager {
     private static final String FILENAME = "aegis.json";
-    public static final String FILENAME_EXPORT = "aegis_export";
-    public static final String FILENAME_EXPORT_PLAIN = "aegis_export_plain";
+    public static final String FILENAME_EXPORT = "aegis_export.json";
+    public static final String FILENAME_EXPORT_PLAIN = "aegis_export_plain.json";
 
     private Vault _vault;
     private VaultFile _file;
