@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <style name="ThemeActionBar" parent="Widget.AppCompat.Light.ActionBar.Solid">
         <item name="android:background">@null</item>
@@ -36,6 +36,9 @@
         <item name="actionModeStyle">@style/ActionModeStyle</item>
         <item name="actionBarTheme">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item>
         <item name="alertDialogTheme">@style/DialogStyle</item>
+
+        <item name="android:navigationBarColor" tools:targetApi="o_mr1">@color/background</item>
+        <item name="android:windowLightNavigationBar" tools:targetApi="o_mr1">true</item>
     </style>
 
     <style name="ActionModeStyle" parent="@style/Widget.AppCompat.Light.ActionMode.Inverse">
@@ -70,6 +73,8 @@
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+        <item name="android:windowDrawsSystemBarBackgrounds" tools:targetApi="lollipop">true</item>
+        <item name="android:statusBarColor" tools:targetApi="lollipop">@android:color/transparent</item>
     </style>
 
     <style name="AppTheme.TransparentActionBar">
@@ -102,6 +107,8 @@
         <item name="actionModeStyle">@style/ActionModeStyle.Dark</item>
         <item name="alertDialogTheme">@style/DialogStyle.Dark</item>
 
+        <item name="android:navigationBarColor" tools:targetApi="lollipop">@color/background_dark</item>
+        <item name="android:windowLightNavigationBar" tools:targetApi="o_mr1">false</item>
     </style>
 
     <style name="AppTheme.TrueBlack" parent="AppTheme.Dark">
@@ -114,6 +121,8 @@
         <item name="actionModeStyle">@style/ActionModeStyle.TrueBlack</item>
         <item name="alertDialogTheme">@style/DialogStyle.TrueDark</item>
 
+        <item name="android:navigationBarColor" tools:targetApi="lollipop">@color/background_true_dark</item>
+        <item name="android:windowLightNavigationBar" tools:targetApi="o_mr1">false</item>
     </style>
 
     <style name="AppTheme.TrueBlack.Preferences" parent="AppTheme.TrueBlack">
