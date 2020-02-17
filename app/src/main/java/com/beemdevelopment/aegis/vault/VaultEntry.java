@@ -1,7 +1,7 @@
 package com.beemdevelopment.aegis.vault;
 
 import com.beemdevelopment.aegis.encoding.Base64;
-import com.beemdevelopment.aegis.encoding.Base64Exception;
+import com.beemdevelopment.aegis.encoding.EncodingException;
 import com.beemdevelopment.aegis.otp.GoogleAuthInfo;
 import com.beemdevelopment.aegis.otp.OtpInfo;
 import com.beemdevelopment.aegis.otp.OtpInfoException;
@@ -60,7 +60,7 @@ public class VaultEntry extends UUIDMap.Value {
         return obj;
     }
 
-    public static VaultEntry fromJson(JSONObject obj) throws JSONException, OtpInfoException, Base64Exception {
+    public static VaultEntry fromJson(JSONObject obj) throws JSONException, OtpInfoException, EncodingException {
         // if there is no uuid, generate a new one
         UUID uuid;
         if (!obj.has("uuid")) {

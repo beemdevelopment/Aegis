@@ -10,7 +10,7 @@ import com.beemdevelopment.aegis.crypto.CryptResult;
 import com.beemdevelopment.aegis.crypto.CryptoUtils;
 import com.beemdevelopment.aegis.vault.VaultEntry;
 import com.beemdevelopment.aegis.encoding.Base32;
-import com.beemdevelopment.aegis.encoding.Base32Exception;
+import com.beemdevelopment.aegis.encoding.EncodingException;
 import com.beemdevelopment.aegis.otp.HotpInfo;
 import com.beemdevelopment.aegis.otp.OtpInfo;
 import com.beemdevelopment.aegis.otp.OtpInfoException;
@@ -201,7 +201,7 @@ public class AndOtpImporter extends DatabaseImporter {
                 String type = obj.getString("type").toLowerCase();
                 String algo = obj.getString("algorithm");
                 int digits = obj.getInt("digits");
-                byte[] secret = Base32.decode(obj.getString("secret").toCharArray());
+                byte[] secret = Base32.decode(obj.getString("secret"));
 
                 OtpInfo info;
                 switch (type) {
@@ -230,7 +230,7 @@ public class AndOtpImporter extends DatabaseImporter {
                 }
 
                 return new VaultEntry(info, name, issuer);
-            } catch (DatabaseImporterException | Base32Exception | OtpInfoException | JSONException e) {
+            } catch (DatabaseImporterException | EncodingException | OtpInfoException | JSONException e) {
                 throw new DatabaseImporterEntryException(e, obj.toString());
             }
         }

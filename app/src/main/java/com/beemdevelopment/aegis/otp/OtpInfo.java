@@ -1,7 +1,7 @@
 package com.beemdevelopment.aegis.otp;
 
 import com.beemdevelopment.aegis.encoding.Base32;
-import com.beemdevelopment.aegis.encoding.Base32Exception;
+import com.beemdevelopment.aegis.encoding.EncodingException;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -93,7 +93,7 @@ public abstract class OtpInfo implements Serializable {
         OtpInfo info;
 
         try {
-            byte[] secret = Base32.decode(obj.getString("secret").toCharArray());
+            byte[] secret = Base32.decode(obj.getString("secret"));
             String algo = obj.getString("algo");
             int digits = obj.getInt("digits");
 
@@ -110,7 +110,7 @@ public abstract class OtpInfo implements Serializable {
                 default:
                     throw new OtpInfoException("unsupported otp type: " + type);
             }
-        } catch (Base32Exception | JSONException e) {
+        } catch (EncodingException | JSONException e) {
             throw new OtpInfoException(e);
         }
 

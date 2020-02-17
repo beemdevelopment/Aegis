@@ -3,7 +3,7 @@ package com.beemdevelopment.aegis.otp;
 import android.net.Uri;
 
 import com.beemdevelopment.aegis.encoding.Base32;
-import com.beemdevelopment.aegis.encoding.Base32Exception;
+import com.beemdevelopment.aegis.encoding.EncodingException;
 
 public class GoogleAuthInfo {
     private OtpInfo _info;
@@ -71,8 +71,8 @@ public class GoogleAuthInfo {
         // decode secret
         byte[] secret;
         try {
-            secret = Base32.decode(encodedSecret.toCharArray());
-        } catch (Base32Exception e) {
+            secret = Base32.decode(encodedSecret);
+        } catch (EncodingException e) {
             throw new GoogleAuthInfoException("bad secret", e);
         }
 

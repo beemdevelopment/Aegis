@@ -5,7 +5,7 @@ import android.util.Xml;
 
 import com.beemdevelopment.aegis.vault.VaultEntry;
 import com.beemdevelopment.aegis.encoding.Base32;
-import com.beemdevelopment.aegis.encoding.Base32Exception;
+import com.beemdevelopment.aegis.encoding.EncodingException;
 import com.beemdevelopment.aegis.otp.OtpInfo;
 import com.beemdevelopment.aegis.otp.OtpInfoException;
 import com.beemdevelopment.aegis.otp.TotpInfo;
@@ -97,12 +97,12 @@ public class AuthyImporter extends DatabaseImporter {
                 sanitizeEntryInfo(authyEntryInfo);
 
                 int digits = entry.getInt("digits");
-                byte[] secret = Base32.decode(entry.getString("decryptedSecret").toCharArray());
+                byte[] secret = Base32.decode(entry.getString("decryptedSecret"));
 
                 OtpInfo info = new TotpInfo(secret, "SHA1", digits, 30);
 
                 return new VaultEntry(info, authyEntryInfo.Name, authyEntryInfo.Issuer);
-            } catch (OtpInfoException | JSONException | Base32Exception e) {
+            } catch (OtpInfoException | JSONException | EncodingException e) {
                 throw new DatabaseImporterEntryException(e, entry.toString());
             }
         }
