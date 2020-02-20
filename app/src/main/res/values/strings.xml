@@ -67,6 +67,8 @@
     <string name="invalidated_biometrics">A change in your device\'s security settings has been detected. Please go to \"Aegis -> Settings -> Biometrics\" and re-enable biometric unlock.</string>
     <string name="password_reminder">It\'s been a while since you\'ve entered your password. Do you still remember it?</string>
 
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
     <string name="unlock">Unlock</string>
     <string name="biometrics">Biometrics</string>
     <string name="advanced">Advanced</string>
@@ -122,6 +124,7 @@
     <string name="andotp_new_format">New format (v0.6.3 or newer) </string>
     <string name="andotp_old_format">Old format (v0.6.2 or older) </string>
     <string name="choose_andotp_importer">Which format does the andOTP backup file have?</string>
+    <string name="choose_totpauth_importer">Is this TOTP Authenticator backup encrypted with a password?</string>
     <string name="choose_application">Select the application you\'d like to import from</string>
     <string name="choose_theme">Select your desired theme</string>
     <string name="choose_view_mode">Select your desired view mode</string>
