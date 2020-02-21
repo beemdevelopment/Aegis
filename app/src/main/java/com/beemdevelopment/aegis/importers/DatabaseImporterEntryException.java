@@ -13,11 +13,6 @@ public class DatabaseImporterEntryException extends Exception {
         _text = text;
     }
 
-    public DatabaseImporterEntryException(String message, String text) {
-        super(message);
-        _text = text;
-    }
-
     public String getText() {
         return _text;
     }
