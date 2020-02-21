@@ -66,6 +66,7 @@
     <string name="set_password_confirm">Please confirm the password</string>
     <string name="invalidated_biometrics">A change in your device\'s security settings has been detected. Please go to \"Aegis -> Settings -> Biometrics\" and re-enable biometric unlock.</string>
     <string name="password_reminder">It\'s been a while since you\'ve entered your password. Do you still remember it?</string>
+    <string name="enter_password_authy_message">It looks like your Authy tokens are encrypted. Please close Aegis, open Authy and unlock the tokens with your password. Instead, Aegis can also attempt to decrypt your Authy tokens for you, if you enter your password below.</string>
 
     <string name="yes">Yes</string>
     <string name="no">No</string>
