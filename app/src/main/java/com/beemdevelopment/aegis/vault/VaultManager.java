@@ -3,13 +3,13 @@ package com.beemdevelopment.aegis.vault;
 import android.content.Context;
 import android.content.Intent;
 
+import androidx.core.util.AtomicFile;
+
 import com.beemdevelopment.aegis.services.NotificationService;
 
 import org.json.JSONObject;
 
-import java.io.DataInputStream;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -41,12 +41,9 @@ public class VaultManager {
     public void load() throws VaultManagerException {
         assertState(true, false);
 
-        try (FileInputStream file = _context.openFileInput(FILENAME)) {
-            byte[] fileBytes = new byte[(int) file.getChannel().size()];
-            DataInputStream stream = new DataInputStream(file);
-            stream.readFully(fileBytes);
-            stream.close();
-
+        AtomicFile file = new AtomicFile(new File(_context.getFilesDir(), FILENAME));
+        try {
+            byte[] fileBytes = file.readFully();
             _file = VaultFile.fromBytes(fileBytes);
             _encrypt = _file.isEncrypted();
             if (!isEncryptionEnabled()) {
@@ -77,11 +74,19 @@ public class VaultManager {
         }
     }
 
-    public static void save(Context context, VaultFile file) throws VaultManagerException {
-        byte[] bytes = file.toBytes();
-        try (FileOutputStream stream = context.openFileOutput(FILENAME, Context.MODE_PRIVATE)) {
+    public static void save(Context context, VaultFile vaultFile) throws VaultManagerException {
+        byte[] bytes = vaultFile.toBytes();
+        AtomicFile file = new AtomicFile(new File(context.getFilesDir(), FILENAME));
+
+        FileOutputStream stream = null;
+        try {
+            stream = file.startWrite();
             stream.write(bytes);
+            file.finishWrite(stream);
         } catch (IOException e) {
+            if (stream != null) {
+                file.failWrite(stream);
+            }
             throw new VaultManagerException(e);
         }
     }
