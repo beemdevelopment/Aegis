@@ -101,7 +101,7 @@ public class GoogleAuthInfo {
                 default:
                     throw new GoogleAuthInfoException(String.format("unsupported otp type: %s", type));
             }
-        } catch (OtpInfoException e) {
+        } catch (OtpInfoException | NumberFormatException e) {
             throw new GoogleAuthInfoException(e);
         }
 
@@ -141,7 +141,7 @@ public class GoogleAuthInfo {
             if (digits != null) {
                 info.setDigits(Integer.parseInt(digits));
             }
-        } catch (OtpInfoException e) {
+        } catch (OtpInfoException | NumberFormatException e) {
             throw new GoogleAuthInfoException(e);
         }
 
