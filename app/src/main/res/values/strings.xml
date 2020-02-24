@@ -179,7 +179,7 @@
     <string name="selected">Selected</string>
     <string name="dark_theme_title">Dark theme</string>
     <string name="light_theme_title">Light theme</string>
-    <string name="amoled_theme_title">Amoled theme</string>
+    <string name="amoled_theme_title">AMOLED theme</string>
     <string name="normal_viewmode_title">Normal</string>
     <string name="compact_mode_title">Compact</string>
     <string name="small_mode_title">Small</string>
