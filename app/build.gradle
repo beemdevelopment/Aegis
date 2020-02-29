@@ -19,7 +19,7 @@ android {
         applicationId "com.beemdevelopment.aegis"
         minSdkVersion 19
         targetSdkVersion 29
-        versionCode 28
+        versionCode 29
         versionName "1.1.4"
         multiDexEnabled true
         buildConfigField "String", "GIT_HASH", "\"${getGitHash()}\""
