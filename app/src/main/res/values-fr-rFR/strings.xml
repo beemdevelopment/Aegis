@@ -86,7 +86,6 @@
     <string name="setup_completed">Configuration terminée</string>
     <string name="setup_completed_description">Aegis a été configuré et est prêt à être utilisé.</string>
     <string name="vault_not_found">Coffre-fort introuvable, lancement de la configuration…</string>
-    <string name="code_copied">Code copié dans le presse-papier</string>
     <string name="errors_copied">Erreurs copiées dans le presse-papier</string>
     <string name="version_copied">Version copiée dans le presse-papier</string>
     <string name="decryption_error">Une erreur est survenue en essayant de déverrouiller le coffre-fort</string>

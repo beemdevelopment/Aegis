@@ -49,6 +49,28 @@
             android:paddingRight="8dp"
             android:paddingStart="8dp">
 
+        <TextView
+            android:id="@+id/profile_copied"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:includeFontPadding="false"
+            android:maxLines="1"
+            android:text="@string/copied"
+            android:layout_above="@+id/description"
+            android:layout_alignLeft="@+id/profile_code"
+            android:layout_alignStart="@+id/profile_code"
+            android:textColor="?attr/secondaryText"
+            android:textSize="13sp"
+            android:visibility="invisible" />
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/description"
+            android:layout_below="@+id/profile_code"
+            android:layout_alignLeft="@+id/profile_code"
+            android:layout_alignStart="@+id/profile_code">
+
 
             <TextView
                 android:layout_width="wrap_content"
@@ -58,9 +80,6 @@
                 android:textColor="?attr/secondaryText"
                 android:includeFontPadding="false"
                 android:textSize="13sp"
-                android:layout_below="@+id/profile_code"
-                android:layout_alignLeft="@+id/profile_code"
-                android:layout_alignStart="@+id/profile_code"
                 android:ellipsize="end"
                 android:maxLines="1"/>
 
@@ -68,7 +87,6 @@
                 android:id="@+id/profile_account_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/profile_code"
                 android:layout_toRightOf="@id/profile_issuer"
                 android:ellipsize="end"
                 android:includeFontPadding="false"
@@ -76,7 +94,7 @@
                 android:textColor="@color/extra_info_text"
                 android:textSize="13sp"
                 tools:text=" - AccountName" />
-
+        </RelativeLayout>
 
             <TextView
                 android:layout_width="wrap_content"
