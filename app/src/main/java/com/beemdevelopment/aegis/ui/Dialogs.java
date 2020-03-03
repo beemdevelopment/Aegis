@@ -93,11 +93,12 @@ public class Dialogs {
         switchToggleVisibility.setOnCheckedChangeListener((CompoundButton.OnCheckedChangeListener) (buttonView, isChecked) -> {
             if (isChecked) {
                 textPassword.setTransformationMethod(null);
+                textPasswordConfirm.setTransformationMethod(null);
                 textPassword.clearFocus();
-                textPasswordConfirm.setEnabled(false);
+                textPasswordConfirm.clearFocus();
             } else {
                 textPassword.setTransformationMethod(new PasswordTransformationMethod());
-                textPasswordConfirm.setEnabled(true);
+                textPasswordConfirm.setTransformationMethod(new PasswordTransformationMethod());
             }
         });
 
@@ -116,7 +117,7 @@ public class Dialogs {
 
             // replace the default listener
             button.setOnClickListener(v -> {
-                if (!EditTextHelper.areEditTextsEqual(textPassword, textPasswordConfirm) && !switchToggleVisibility.isChecked()) {
+                if (!EditTextHelper.areEditTextsEqual(textPassword, textPasswordConfirm)) {
                     return;
                 }
 
@@ -141,7 +142,7 @@ public class Dialogs {
         TextWatcher watcher = new TextWatcher() {
             public void onTextChanged(CharSequence c, int start, int before, int count) {
                 boolean equal = EditTextHelper.areEditTextsEqual(textPassword, textPasswordConfirm);
-                buttonOK.get().setEnabled(equal || switchToggleVisibility.isChecked());
+                buttonOK.get().setEnabled(equal);
             }
 
             public void beforeTextChanged(CharSequence c, int start, int count, int after) {

@@ -45,11 +45,12 @@ public class CustomAuthenticatedSlide extends Fragment implements ISlidePolicy, 
         _checkPasswordVisibility.setOnCheckedChangeListener((buttonView, isChecked) -> {
             if (isChecked) {
                 _textPassword.setTransformationMethod(null);
+                _textPasswordConfirm.setTransformationMethod(null);
                 _textPassword.clearFocus();
-                _textPasswordConfirm.setEnabled(false);
+                _textPasswordConfirm.clearFocus();
             } else {
                 _textPassword.setTransformationMethod(new PasswordTransformationMethod());
-                _textPasswordConfirm.setEnabled(true);
+                _textPasswordConfirm.setTransformationMethod(new PasswordTransformationMethod());
             }
         });
 
@@ -113,7 +114,7 @@ public class CustomAuthenticatedSlide extends Fragment implements ISlidePolicy, 
                 // intentional fallthrough
             case CustomAuthenticationSlide.CRYPT_TYPE_PASS:
                 if (EditTextHelper.getEditTextChars(_textPassword).length > 0) {
-                    return EditTextHelper.areEditTextsEqual(_textPassword, _textPasswordConfirm) || _checkPasswordVisibility.isChecked();
+                    return EditTextHelper.areEditTextsEqual(_textPassword, _textPasswordConfirm);
                 }
 
                 return false;
@@ -125,7 +126,7 @@ public class CustomAuthenticatedSlide extends Fragment implements ISlidePolicy, 
     @Override
     public void onUserIllegallyRequestedNextPage() {
         String message;
-        if (!EditTextHelper.areEditTextsEqual(_textPassword, _textPasswordConfirm) && !_checkPasswordVisibility.isChecked()) {
+        if (!EditTextHelper.areEditTextsEqual(_textPassword, _textPasswordConfirm)) {
             message = getString(R.string.password_equality_error);
 
             View view = getView();
