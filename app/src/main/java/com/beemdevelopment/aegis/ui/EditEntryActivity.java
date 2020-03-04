@@ -22,12 +22,18 @@ import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TableRow;
 
+import androidx.annotation.ArrayRes;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
+
 import com.amulyakhare.textdrawable.TextDrawable;
 import com.avito.android.krop.KropView;
 import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.vault.VaultEntry;
 import com.beemdevelopment.aegis.encoding.Base32;
-import com.beemdevelopment.aegis.encoding.Base32Exception;
+import com.beemdevelopment.aegis.encoding.EncodingException;
 import com.beemdevelopment.aegis.helpers.EditTextHelper;
 import com.beemdevelopment.aegis.helpers.SpinnerHelper;
 import com.beemdevelopment.aegis.helpers.TextDrawableHelper;
@@ -36,11 +42,11 @@ import com.beemdevelopment.aegis.otp.OtpInfo;
 import com.beemdevelopment.aegis.otp.OtpInfoException;
 import com.beemdevelopment.aegis.otp.SteamInfo;
 import com.beemdevelopment.aegis.otp.TotpInfo;
+import com.beemdevelopment.aegis.util.Cloner;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.target.CustomTarget;
 import com.bumptech.glide.request.transition.Transition;
-import com.beemdevelopment.aegis.util.Cloner;
 
 import java.io.ByteArrayOutputStream;
 import java.text.Collator;
@@ -49,11 +55,6 @@ import java.util.List;
 import java.util.TreeSet;
 import java.util.concurrent.atomic.AtomicReference;
 
-import androidx.annotation.ArrayRes;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AlertDialog;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class EditEntryActivity extends AegisActivity {
@@ -163,8 +164,8 @@ public class EditEntryActivity extends AegisActivity {
 
         byte[] secretBytes = _origEntry.getInfo().getSecret();
         if (secretBytes != null) {
-            char[] secretChars = Base32.encode(secretBytes);
-            _textSecret.setText(secretChars, 0, secretChars.length);
+            String secretString = Base32.encode(secretBytes);
+            _textSecret.setText(secretString);
         }
 
         String type = _origEntry.getInfo().getType();
@@ -458,8 +459,11 @@ public class EditEntryActivity extends AegisActivity {
 
         byte[] secret;
         try {
-            secret = Base32.decode(EditTextHelper.getEditTextChars(_textSecret, true));
-        } catch (Base32Exception e) {
+            secret = Base32.decode(new String(EditTextHelper.getEditTextChars(_textSecret, true)));
+            if (secret.length == 0) {
+                throw new ParseException("Secret cannot be empty");
+            }
+        } catch (EncodingException e) {
             throw new ParseException("Secret is not valid base32.");
         }
 

@@ -2,13 +2,13 @@ package com.beemdevelopment.aegis.importers;
 
 import android.content.Context;
 
+import com.beemdevelopment.aegis.encoding.EncodingException;
+import com.beemdevelopment.aegis.otp.OtpInfoException;
 import com.beemdevelopment.aegis.vault.VaultEntry;
 import com.beemdevelopment.aegis.vault.VaultFile;
 import com.beemdevelopment.aegis.vault.VaultFileCredentials;
 import com.beemdevelopment.aegis.vault.VaultFileException;
 import com.beemdevelopment.aegis.vault.slots.SlotList;
-import com.beemdevelopment.aegis.encoding.Base64Exception;
-import com.beemdevelopment.aegis.otp.OtpInfoException;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -102,7 +102,7 @@ public class AegisImporter extends DatabaseImporter {
         private static VaultEntry convertEntry(JSONObject obj) throws DatabaseImporterEntryException {
             try {
                 return VaultEntry.fromJson(obj);
-            } catch (JSONException | OtpInfoException | Base64Exception e) {
+            } catch (JSONException | OtpInfoException | EncodingException e) {
                 throw new DatabaseImporterEntryException(e, obj.toString());
             }
         }
