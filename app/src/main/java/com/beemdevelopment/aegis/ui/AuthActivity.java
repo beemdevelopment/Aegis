@@ -191,6 +191,7 @@ public class AuthActivity extends AegisActivity implements SlotListTask.Callback
         BiometricPrompt.PromptInfo info = new BiometricPrompt.PromptInfo.Builder()
                 .setTitle(getString(R.string.authentication))
                 .setNegativeButtonText(getString(android.R.string.cancel))
+                .setConfirmationRequired(false)
                 .build();
         _bioPrompt.authenticate(info, _bioCryptoObj);
     }
