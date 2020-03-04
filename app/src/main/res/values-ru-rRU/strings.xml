@@ -151,4 +151,12 @@
     <string name="channel_name_lock_status">Статус блокировки</string>
     <string name="channel_description_lock_status">Aegis может создать постоянное уведомление для отображения статуса блокировки хранилища</string>
     <string name="vault_unlocked_state">Хранилище разблокировано. Нажмите для блокировки.</string>
+    <string name="action_about">О программе</string>
+    <string name="about_support">Поддержка</string>
+    <string name="add_biometric">Добавить биометрию</string>
+    <string name="add_fingerprint">Добавить отпечаток</string>
+    <string name="andotp_new_format">Новый формат (версия 0.6.3 или новее)</string>
+    <string name="andotp_old_format">Старый формат (версия 0.6.2 или старее)</string>
+    <string name="authentication_method_biometrics">Биометрия</string>
+    <string name="add_biometric_slot">Добавить биометрический слот</string>
 </resources>
