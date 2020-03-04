@@ -154,7 +154,6 @@
     <string name="action_about">О программе</string>
     <string name="about_support">Поддержка</string>
     <string name="add_biometric">Добавить биометрию</string>
-    <string name="add_fingerprint">Добавить отпечаток</string>
     <string name="andotp_new_format">Новый формат (версия 0.6.3 или новее)</string>
     <string name="andotp_old_format">Старый формат (версия 0.6.2 или старее)</string>
     <string name="authentication_method_biometrics">Биометрия</string>
