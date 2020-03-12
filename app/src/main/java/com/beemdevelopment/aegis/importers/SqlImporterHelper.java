@@ -2,10 +2,12 @@ package com.beemdevelopment.aegis.importers;
 
 import android.content.Context;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteException;
 
 import com.topjohnwu.superuser.ShellUtils;
+
+import net.sqlcipher.database.SQLiteDatabase;
+import net.sqlcipher.database.SQLiteDatabaseHook;
+import net.sqlcipher.database.SQLiteException;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -19,9 +21,18 @@ import static android.database.sqlite.SQLiteDatabase.OPEN_READONLY;
 
 public class SqlImporterHelper {
     private Context _context;
+    private char[] _password;
+    private boolean _compatibilityMode;
 
     public SqlImporterHelper(Context context) {
         _context = context;
+        _password = null;
+    }
+
+    public SqlImporterHelper(Context context, char[] password, boolean compatibilityMode) {
+        _context = context;
+        _password = password;
+        _compatibilityMode = compatibilityMode;
     }
 
     public <T extends Entry> List<T> read(Class<T> type, InputStream inStream, String table) throws DatabaseImporterException {
@@ -37,7 +48,22 @@ public class SqlImporterHelper {
             throw new DatabaseImporterException(e);
         }
 
-        try (SQLiteDatabase db = SQLiteDatabase.openDatabase(file.getAbsolutePath(), null, OPEN_READONLY, null)) {
+        SQLiteDatabase.loadLibs(_context);
+        SQLiteDatabaseHook compatibilityHook = new SQLiteDatabaseHook() {
+            @Override
+            public void preKey(SQLiteDatabase database) {
+
+            }
+
+            @Override
+            public void postKey(SQLiteDatabase database) {
+                if (_compatibilityMode) {
+                    database.compileStatement("PRAGMA cipher_compatibility = 3;");
+                }
+            }
+        };
+
+        try (SQLiteDatabase db = SQLiteDatabase.openDatabase(file.getAbsolutePath(), _password, null, OPEN_READONLY, compatibilityHook)) {
             try (Cursor cursor = db.rawQuery(String.format("SELECT * FROM %s", table), null)) {
                 List<T> entries = new ArrayList<>();
 
@@ -82,7 +108,7 @@ public class SqlImporterHelper {
     }
 
     public static abstract class Entry {
-        public Entry (Cursor cursor) {
+        public Entry(Cursor cursor) {
 
         }
     }

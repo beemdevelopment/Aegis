@@ -90,6 +90,7 @@ dependencies {
     implementation("com.github.bumptech.glide:recyclerview-integration:4.9.0") {
         transitive = false
     }
+    implementation 'net.zetetic:android-database-sqlcipher:4.3.0'
     annotationProcessor 'androidx.annotation:annotation:1.1.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.10.0'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.5.2'
