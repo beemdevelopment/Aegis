@@ -21,7 +21,7 @@
     <string name="pref_view_mode_title">视图模式</string>
     <string name="pref_lang_title">语言</string>
     <string name="pref_account_name_title">显示帐户名称</string>
-    <string name="pref_account_name_summary">在应用名称旁边显示账户名称</string>
+    <string name="pref_account_name_summary">在服务商名称旁边显示账户名称</string>
     <string name="pref_timeout_title">超时</string>
     <string name="pref_timeout_summary">在无操作 %1$s 秒后自动锁定数据库</string>
     <string name="pref_slots_title">键槽</string>
