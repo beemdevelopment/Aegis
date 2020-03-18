@@ -70,4 +70,9 @@
         <copyright>Copyright (C) 2016 The Android Open Source Project</copyright>
         <license>Apache Software License 2.0</license>
     </notice>
+    <notice>
+        <name>SQLCipher for Android</name>
+        <url>https://github.com/sqlcipher/android-database-sqlcipher</url>
+        <license>Apache Software License 2.0</license>
+    </notice>
 </notices>

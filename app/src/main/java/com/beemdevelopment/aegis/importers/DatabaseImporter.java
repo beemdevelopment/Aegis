@@ -27,6 +27,7 @@ public abstract class DatabaseImporter {
         // note: keep these lists sorted alphabetically
         _importers = new LinkedHashMap<>();
         _importers.put("Aegis", AegisImporter.class);
+        _importers.put("Authenticator Plus", AuthenticatorPlusImporter.class);
         _importers.put("Authy", AuthyImporter.class);
         _importers.put("andOTP", AndOtpImporter.class);
         _importers.put("FreeOTP", FreeOtpImporter.class);
