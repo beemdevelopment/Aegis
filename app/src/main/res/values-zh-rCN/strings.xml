@@ -1,8 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name" translatable="false">Aegis</string>
-    <string name="app_name_full" translatable="false">Aegis Authenticator</string>
-    <string name="app_name_dev" translatable="false">AegisDev</string>
-    <string name="org_name_full" translatable="false">Beem Development</string>
     <string name="action_settings">设置</string>
     <string name="action_about">关于</string>
     <string name="action_import">导入</string>
@@ -11,7 +8,6 @@
     <string name="discard">Discard</string>
     <string name="save">保存</string>
     <string name="issuer">Issuer</string>
-
     <string name="settings">偏好设置</string>
     <string name="pref_appearance_group_title">外观</string>
     <string name="pref_general_group_title">常规</string>
@@ -21,7 +17,7 @@
     <string name="pref_view_mode_title">视图模式</string>
     <string name="pref_lang_title">语言</string>
     <string name="pref_account_name_title">显示帐户名称</string>
-    <string name="pref_account_name_summary">在服务商名称旁边显示账户名称</string>
+    <string name="pref_account_name_summary">在应用名称旁边显示账户名称</string>
     <string name="pref_timeout_title">超时</string>
     <string name="pref_timeout_summary">在无操作 %1$s 秒后自动锁定数据库</string>
     <string name="pref_slots_title">键槽</string>
@@ -47,11 +43,10 @@
     <string name="pref_biometrics_summary">通过生物识别验证来解锁数据库</string>
     <string name="pref_set_password_title">更改密码</string>
     <string name="pref_set_password_summary">设置解锁数据库所需的新密码</string>
-
     <string name="choose_authentication_method">安全</string>
-    <string name="authentication_method_explanation">Aegis 是一款专注于安全性的2FA应用程序。令牌存储在数据库中，可以选择使用您选择的密码进行加密。 如果攻击者获得了加密的保险库文件，他们将无法在不知道密码的情况下访问内容。\n\n 我们已预先选择了我们认为最适合您的设备的选项。</string>
+    <string name="authentication_method_explanation">Aegis 是一款专注于安全性的2FA应用程序。令牌存储在数据库中，可以选择使用您选择的密码进行加密。 如果攻击者获得了加密的保险库文件，他们将无法在不知道密码的情况下访问内容。我们已预先选择了我们认为最适合您的设备的选项。</string>
     <string name="authentication_method_none">未设置</string>
-    <string name="authentication_method_none_description">您无需密码即可解锁数据库，并且不会对其进行加密。<b>不建议使用此选项</b>。</string>
+    <string name="authentication_method_none_description">您无需密码即可解锁数据库，并且不会对其进行加密。不建议使用此选项。</string>
     <string name="authentication_method_password">密码</string>
     <string name="authentication_method_password_description">需要密码来解锁数据库。</string>
     <string name="authentication_method_password_explanation">警告：如果忘记密码，将永久失去对令牌的访问权限。 没有密码，则无法恢复它们。</string>
@@ -67,7 +62,6 @@
     <string name="invalidated_biometrics">您的设备更改了安全设置。请在 \"Aegis -> 设置 -> 生物识别 \"，然后重新启用生物识别解锁。</string>
     <string name="password_reminder">已经有一段时间没有输入密码了。您还记得密码吗？</string>
     <string name="enter_password_authy_message">您的 Authy 令牌似乎已加密。请关闭Aegis，打开Authy，然后使用您的密码解锁令牌。 另外，如果您在下面输入密码，Aegis 也可以尝试为您解密 Authy 令牌。</string>
-
     <string name="yes">确定</string>
     <string name="no">取消</string>
     <string name="unlock">解锁</string>
@@ -197,13 +191,10 @@
     <string name="version">版本</string>
     <string name="changelog">更新日志</string>
     <string name="whats_new">新增功能</string>
-    <string name="github" translatable="false">GitHub</string>
     <string name="github_description">源代码、问题和信息</string>
     <string name="licenses">许可证</string>
     <string name="licenses_description">Aegis 使用的许可证和库</string>
-    <string name="author_alex" translatable="false">Alexander Bakker</string>
     <string name="country_netherlands">荷兰</string>
-    <string name="author_michael" translatable="false">Michael Schättgen</string>
     <string name="email_us">发送电子邮件</string>
     <string name="visit_website">访问我们的网站</string>
     <string name="about_support">支持</string>
@@ -211,20 +202,6 @@
     <string name="support_rate_description">通过在 Google Play 商店留下评论来支持我们</string>
     <string name="webview_error">此设备不支持 WebView，这是查看更改日志所必需的。缺少系统组件。</string>
     <string name="email">电子邮件</string>
-
-    <string name="custom_notices_format_style" translatable="false" >
-        body {
-            background-color: #%1$s;
-            color: #%2$s;
-            font-family: sans-serif;
-            overflow-wrap: break-word;
-        }
-        pre {
-            background-color: #%3$s;
-            padding: 1em;
-            white-space: pre-wrap;
-        }
-    </string>
     <string name="empty_list">没有可显示的验证码。点击右下角的加号，开始添加条目</string>
     <string name="empty_list_title">未找到条目</string>
 </resources>
