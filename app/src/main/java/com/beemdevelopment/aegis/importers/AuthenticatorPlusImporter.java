@@ -101,7 +101,14 @@ public class AuthenticatorPlusImporter extends DatabaseImporter {
                     name = parts[1];
                 }
 
-                return new VaultEntry(info, name, entry.getIssuer());
+                // Authenticator Plus saves all entries to the "All Accounts" category by default
+                // If an entry is in this category, we can consider it as uncategorized
+                String group = entry.getGroup();
+                if (group.equals("All Accounts")) {
+                    return new VaultEntry(info, name, entry.getIssuer());
+                }
+
+                return new VaultEntry(info, name, entry.getIssuer(), entry.getGroup());
             } catch (EncodingException | OtpInfoException | DatabaseImporterException e) {
                 throw new DatabaseImporterEntryException(e, entry.toString());
             }
@@ -129,6 +136,7 @@ public class AuthenticatorPlusImporter extends DatabaseImporter {
         private String _secret;
         private String _email;
         private String _issuer;
+        private String _group;
         private long _counter;
 
         public Entry(Cursor cursor) {
@@ -137,6 +145,7 @@ public class AuthenticatorPlusImporter extends DatabaseImporter {
             _secret = SqlImporterHelper.getString(cursor, "secret");
             _email = SqlImporterHelper.getString(cursor, "email", "");
             _issuer = SqlImporterHelper.getString(cursor, "issuer", "");
+            _group = SqlImporterHelper.getString(cursor, "category", "");
             _counter = SqlImporterHelper.getLong(cursor, "counter");
         }
 
@@ -154,6 +163,10 @@ public class AuthenticatorPlusImporter extends DatabaseImporter {
 
         public String getIssuer() {
             return _issuer;
+        }
+
+        public String getGroup() {
+            return _group;
         }
 
         public long getCounter() {

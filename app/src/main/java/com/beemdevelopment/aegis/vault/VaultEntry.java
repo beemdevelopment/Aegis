@@ -38,6 +38,13 @@ public class VaultEntry extends UUIDMap.Value {
         setIssuer(issuer);
     }
 
+    public VaultEntry(OtpInfo info, String name, String issuer, String group) {
+        this(info);
+        setName(name);
+        setIssuer(issuer);
+        setGroup(group);
+    }
+
     public VaultEntry(GoogleAuthInfo info) {
         this(info.getOtpInfo(), info.getAccountName(), info.getIssuer());
     }
