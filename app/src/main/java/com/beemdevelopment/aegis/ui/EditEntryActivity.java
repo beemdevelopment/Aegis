@@ -105,7 +105,7 @@ public class EditEntryActivity extends AegisActivity {
         _groups = new TreeSet<>(Collator.getInstance());
         _groups.addAll(intent.getStringArrayListExtra("groups"));
         if (_isNew) {
-            setTitle(R.string.add_new_profile);
+            setTitle(R.string.add_new_entry);
         }
 
         String selectedGroup = intent.getStringExtra("selectedGroup");

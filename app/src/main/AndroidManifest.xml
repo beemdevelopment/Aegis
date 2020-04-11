@@ -49,7 +49,7 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.EditEntryActivity"
-            android:label="Edit profile" />
+            android:label="Edit entry" />
         <activity
             android:name=".ui.IntroActivity"
             android:theme="@style/Theme.Intro" />

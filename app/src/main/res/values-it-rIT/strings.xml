@@ -73,8 +73,6 @@
     <string name="password">Password</string>
     <string name="confirm_password">Conferma password</string>
     <string name="show_password">Mostra password</string>
-    <string name="new_profile">Nuovo profilo</string>
-    <string name="add_new_profile">Aggiungi nuovo profilo</string>
     <string name="unlock_vault_error">Impossibile sbloccare la cassaforte</string>
     <string name="unlock_vault_error_description">Password errata. Assicurati di non aver sbagliato a digitare.</string>
     <string name="password_equality_error">Le password devono essere identiche e non vuote</string>

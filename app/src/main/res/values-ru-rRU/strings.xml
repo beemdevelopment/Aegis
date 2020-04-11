@@ -64,8 +64,6 @@
     <string name="delete">Удалить</string>
     <string name="password">Пароль</string>
     <string name="confirm_password">Подтвердите пароль</string>
-    <string name="new_profile">Новый профиль</string>
-    <string name="add_new_profile">Добавить новый профиль</string>
     <string name="unlock_vault_error">Не удалось разблокировать хранилище</string>
     <string name="unlock_vault_error_description">Некорректный пароль. Убедитесь, что вы не допустили опечатку в вашем пароле.</string>
     <string name="password_equality_error">Пароли должны быть одинаковыми и непустыми</string>

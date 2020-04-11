@@ -85,8 +85,6 @@
     <string name="password">密码</string>
     <string name="confirm_password">确认密码</string>
     <string name="show_password">显示密码</string>
-    <string name="new_profile">新的配置文件</string>
-    <string name="add_new_profile">添加新配置文件</string>
     <string name="unlock_vault_error">无法解锁数据库</string>
     <string name="unlock_vault_error_description">密码错误。确保您未输错密码。</string>
     <string name="password_equality_error">密码应该是相同且非空的。</string>
