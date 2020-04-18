@@ -25,7 +25,11 @@ public class GoogleAuthInfo {
         builder.scheme("otpauth");
 
         if (_info instanceof TotpInfo) {
-            builder.authority("totp");
+            if (_info instanceof SteamInfo) {
+                builder.authority("steam");
+            } else {
+                builder.authority("totp");
+            }
             builder.appendQueryParameter("period", Integer.toString(((TotpInfo)_info).getPeriod()));
         } else if (_info instanceof HotpInfo) {
             builder.authority("hotp");
@@ -88,6 +92,14 @@ public class GoogleAuthInfo {
                         totpInfo.setPeriod(Integer.parseInt(period));
                     }
                     info = totpInfo;
+                    break;
+                case "steam":
+                    SteamInfo steamInfo = new SteamInfo(secret);
+                    period = uri.getQueryParameter("period");
+                    if (period != null) {
+                        steamInfo.setPeriod(Integer.parseInt(period));
+                    }
+                    info = steamInfo;
                     break;
                 case "hotp":
                     HotpInfo hotpInfo = new HotpInfo(secret);
