@@ -2,11 +2,12 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-              android:foreground="?android:attr/selectableItemBackground"
-              android:clickable="true"
-              android:focusable="true"
-              android:layout_height="wrap_content"
-              android:orientation="vertical">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:foreground="?android:attr/selectableItemBackground"
+    android:clickable="true"
+    android:focusable="true"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
     <LinearLayout
         android:orientation="horizontal"
@@ -30,6 +31,17 @@
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/ivSelected"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/item_selected"
+                android:visibility="gone"
+                app:civ_circle_background_color="@color/colorSecondary" />
         </RelativeLayout>
 
         <RelativeLayout

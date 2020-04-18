@@ -14,7 +14,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.amulyakhare.textdrawable.TextDrawable;
 import com.beemdevelopment.aegis.R;
-import com.beemdevelopment.aegis.vault.VaultEntry;
 import com.beemdevelopment.aegis.helpers.TextDrawableHelper;
 import com.beemdevelopment.aegis.helpers.ThemeHelper;
 import com.beemdevelopment.aegis.helpers.UiRefresher;
@@ -22,6 +21,7 @@ import com.beemdevelopment.aegis.otp.HotpInfo;
 import com.beemdevelopment.aegis.otp.OtpInfo;
 import com.beemdevelopment.aegis.otp.SteamInfo;
 import com.beemdevelopment.aegis.otp.TotpInfo;
+import com.beemdevelopment.aegis.vault.VaultEntry;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
@@ -37,6 +37,9 @@ public class EntryHolder extends RecyclerView.ViewHolder {
     private VaultEntry _entry;
     private ImageView _buttonRefresh;
     private RelativeLayout _description;
+  
+    private final ImageView _selected;
+    private final Handler _selectedHandler;
 
     private boolean _hidden;
 
@@ -45,6 +48,9 @@ public class EntryHolder extends RecyclerView.ViewHolder {
 
     private UiRefresher _refresher;
     private Handler _animationHandler;
+
+    private Animation _scaleIn;
+    private Animation _scaleOut;
 
     public EntryHolder(final View view) {
         super(view);
@@ -58,11 +64,16 @@ public class EntryHolder extends RecyclerView.ViewHolder {
         _description = view.findViewById(R.id.description);
         _profileDrawable = view.findViewById(R.id.ivTextDrawable);
         _buttonRefresh = view.findViewById(R.id.buttonRefresh);
+        _selected = view.findViewById(R.id.ivSelected);
+        _selectedHandler = new Handler();
 
         _progressBar = view.findViewById(R.id.progressBar);
         int primaryColorId = view.getContext().getResources().getColor(R.color.colorPrimary);
         _progressBar.getProgressDrawable().setColorFilter(primaryColorId, PorterDuff.Mode.SRC_IN);
         _view.setBackground(_view.getContext().getResources().getDrawable(R.color.card_background));
+
+        _scaleIn = AnimationUtils.loadAnimation(view.getContext(), R.anim.item_scale_in);
+        _scaleOut = AnimationUtils.loadAnimation(view.getContext(), R.anim.item_scale_out);
 
         _refresher = new UiRefresher(new UiRefresher.Listener() {
             @Override
@@ -76,7 +87,7 @@ public class EntryHolder extends RecyclerView.ViewHolder {
 
             @Override
             public long getMillisTillNextRefresh() {
-                return ((TotpInfo)_entry.getInfo()).getMillisTillNextRotation();
+                return ((TotpInfo) _entry.getInfo()).getMillisTillNextRotation();
             }
         });
     }
@@ -84,6 +95,10 @@ public class EntryHolder extends RecyclerView.ViewHolder {
     public void setData(VaultEntry entry, boolean showAccountName, boolean showProgress, boolean hidden, boolean dimmed) {
         _entry = entry;
         _hidden = hidden;
+
+        _selected.clearAnimation();
+        _selected.setVisibility(View.GONE);
+        _selectedHandler.removeCallbacksAndMessages(null);
 
         // only show the progress bar if there is no uniform period and the entry type is TotpInfo
         setShowProgress(showProgress);
@@ -148,11 +163,23 @@ public class EntryHolder extends RecyclerView.ViewHolder {
 
     public void setFocused(boolean focused) {
         if (focused) {
+            _selected.setVisibility(View.VISIBLE);
             _view.setBackgroundColor(ThemeHelper.getThemeColor(R.attr.cardBackgroundFocused, _view.getContext().getTheme()));
         } else {
             _view.setBackgroundColor(ThemeHelper.getThemeColor(R.attr.cardBackground, _view.getContext().getTheme()));
         }
         _view.setSelected(focused);
+    }
+
+    public void setFocusedAndAnimate(boolean focused) {
+        setFocused(focused);
+
+        if (focused) {
+            _selected.startAnimation(_scaleIn);
+        } else {
+            _selected.startAnimation(_scaleOut);
+            _selectedHandler.postDelayed(() -> _selected.setVisibility(View.GONE), 150);
+        }
     }
 
     public void destroy() {

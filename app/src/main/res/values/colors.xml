@@ -29,7 +29,7 @@
 
     <color name="card_background_dark">#363636</color>
     <color name="card_background_focused_dark">#6B6B6B</color>
-    <color name="card_background_focused_true_dark">#1B1B1B</color>
+    <color name="card_background_focused_true_dark">#363636</color>
     <color name="primary_text_dark">#ffffff</color>
     <color name="hint_text_dark">#a7a7a7</color>
     <color name="secondary_text_dark">#FF5252</color>
