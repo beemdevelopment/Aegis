@@ -320,6 +320,8 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
                 boolean handled = false;
 
                 if (_selectedEntries.isEmpty()) {
+                    holder.animateCopyText();
+
                     if (_highlightEntry || _tapToReveal) {
                         if (_focusedEntry == entry) {
                             resetFocus();
@@ -342,7 +344,6 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
 
                 if (!handled) {
                     _view.onEntryClick(entry);
-                    holder.animateCopyText();
                 }
             }
         });
