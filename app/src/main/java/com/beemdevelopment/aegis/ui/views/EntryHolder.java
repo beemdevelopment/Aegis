@@ -113,11 +113,13 @@ public class EntryHolder extends RecyclerView.ViewHolder {
         // only show the button if this entry is of type HotpInfo
         _buttonRefresh.setVisibility(entry.getInfo() instanceof HotpInfo ? View.VISIBLE : View.GONE);
 
-        _profileIssuer.setText(entry.getIssuer());
-        _profileName.setText("");
-        if (showAccountName) {
-            _profileName.setText(" - " + entry.getName());
+        String profileIssuer = entry.getIssuer();
+        String profileName = showAccountName ? entry.getName() : "";
+        if (!profileIssuer.isEmpty() && !profileName.isEmpty()) {
+            profileName = " - " + profileName;
         }
+        _profileIssuer.setText(profileIssuer);
+        _profileName.setText(profileName);
 
         if (_hidden) {
             hideCode();
