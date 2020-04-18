@@ -133,6 +133,32 @@
     </PreferenceCategory>
 
     <PreferenceCategory
+        android:title="@string/pref_backups_group_title"
+        app:iconSpaceReserved="false">
+        <androidx.preference.SwitchPreferenceCompat
+            android:defaultValue="false"
+            android:key="pref_backups"
+            android:title="@string/pref_backups_title"
+            android:summary="@string/pref_backups_summary"
+            app:iconSpaceReserved="false"/>
+        <Preference
+            android:key="pref_backups_location"
+            android:title="@string/pref_backups_location_title"
+            android:summary="@string/pref_backups_location_summary"
+            app:iconSpaceReserved="false"/>
+        <Preference
+            android:key="pref_backups_trigger"
+            android:title="@string/pref_backups_trigger_title"
+            android:summary="@string/pref_backups_trigger_summary"
+            app:iconSpaceReserved="false"/>
+        <Preference
+            android:key="pref_backups_versions"
+            android:title="@string/pref_backups_versions_title"
+            android:summary="@string/pref_backups_versions_summary"
+            app:iconSpaceReserved="false"/>
+    </PreferenceCategory>
+
+    <PreferenceCategory
         android:title="@string/pref_tools_group_title"
         app:iconSpaceReserved="false">
         <Preference

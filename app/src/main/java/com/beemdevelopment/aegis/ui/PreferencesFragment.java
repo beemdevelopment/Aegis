@@ -16,10 +16,12 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.biometric.BiometricPrompt;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
+import androidx.preference.SwitchPreferenceCompat;
 
 import com.beemdevelopment.aegis.AegisApplication;
 import com.beemdevelopment.aegis.BuildConfig;
 import com.beemdevelopment.aegis.CancelAction;
+import com.beemdevelopment.aegis.Preferences;
 import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.Theme;
 import com.beemdevelopment.aegis.ViewMode;
@@ -71,8 +73,10 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
     private static final int CODE_SELECT_ENTRIES = 4;
     private static final int CODE_EXPORT = 5;
     private static final int CODE_EXPORT_ENCRYPT = 6;
+    private static final int CODE_BACKUPS = 7;
 
     private Intent _result;
+    private Preferences _prefs;
     private VaultManager _vault;
 
     // keep a reference to the type of database converter the user selected
@@ -87,30 +91,35 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
     private Preference _slotsPreference;
     private Preference _groupsPreference;
     private Preference _passwordReminderPreference;
+    private SwitchPreferenceCompat _backupsPreference;
+    private Preference _backupsLocationPreference;
+    private Preference _backupsTriggerPreference;
+    private Preference _backupsVersionsPreference;
 
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
         addPreferencesFromResource(R.xml.preferences);
 
         AegisApplication app = (AegisApplication) getActivity().getApplication();
+        _prefs = app.getPreferences();
         _vault = app.getVaultManager();
 
         // set the result intent in advance
         setResult(new Intent());
 
-        int currentTheme = app.getPreferences().getCurrentTheme().ordinal();
+        int currentTheme = _prefs.getCurrentTheme().ordinal();
         Preference darkModePreference = findPreference("pref_dark_mode");
         darkModePreference.setSummary(String.format("%s: %s", getString(R.string.selected), getResources().getStringArray(R.array.theme_titles)[currentTheme]));
         darkModePreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
-                int currentTheme = app.getPreferences().getCurrentTheme().ordinal();
+                int currentTheme = _prefs.getCurrentTheme().ordinal();
 
                 Dialogs.showSecureDialog(new AlertDialog.Builder(getActivity())
                         .setTitle(R.string.choose_theme)
                         .setSingleChoiceItems(R.array.theme_titles, currentTheme, (dialog, which) -> {
                             int i = ((AlertDialog) dialog).getListView().getCheckedItemPosition();
-                            app.getPreferences().setCurrentTheme(Theme.fromInteger(i));
+                            _prefs.setCurrentTheme(Theme.fromInteger(i));
 
                             dialog.dismiss();
 
@@ -136,19 +145,19 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
             langPreference.setVisible(false);
         }
 
-        int currentViewMode = app.getPreferences().getCurrentViewMode().ordinal();
+        int currentViewMode = _prefs.getCurrentViewMode().ordinal();
         Preference viewModePreference = findPreference("pref_view_mode");
         viewModePreference.setSummary(String.format("%s: %s", getString(R.string.selected), getResources().getStringArray(R.array.view_mode_titles)[currentViewMode]));
         viewModePreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
-                int currentViewMode = app.getPreferences().getCurrentViewMode().ordinal();
+                int currentViewMode = _prefs.getCurrentViewMode().ordinal();
 
                 Dialogs.showSecureDialog(new AlertDialog.Builder(getActivity())
                         .setTitle(R.string.choose_view_mode)
                         .setSingleChoiceItems(R.array.view_mode_titles, currentViewMode, (dialog, which) -> {
                             int i = ((AlertDialog) dialog).getListView().getCheckedItemPosition();
-                            app.getPreferences().setCurrentViewMode(ViewMode.fromInteger(i));
+                            _prefs.setCurrentViewMode(ViewMode.fromInteger(i));
                             viewModePreference.setSummary(String.format("%s: %s", getString(R.string.selected), getResources().getStringArray(R.array.view_mode_titles)[i]));
                             _result.putExtra("needsRefresh", true);
                             dialog.dismiss();
@@ -360,6 +369,51 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
             }
         });
 
+        _backupsPreference = findPreference("pref_backups");
+        _backupsPreference.setOnPreferenceChangeListener((preference, newValue) -> {
+            if ((boolean) newValue) {
+                selectBackupsLocation();
+            } else {
+                _prefs.setIsBackupsEnabled(false);
+                updateBackupPreference();
+            }
+
+            return false;
+        });
+
+        Uri backupLocation = _prefs.getBackupsLocation();
+        _backupsLocationPreference = findPreference("pref_backups_location");
+        if (backupLocation != null) {
+            _backupsLocationPreference.setSummary(String.format("%s: %s", getString(R.string.pref_backups_location_summary), Uri.decode(backupLocation.toString())));
+        }
+        _backupsLocationPreference.setOnPreferenceClickListener(preference -> {
+            selectBackupsLocation();
+            return false;
+        });
+
+        _backupsTriggerPreference = findPreference("pref_backups_trigger");
+        _backupsTriggerPreference.setOnPreferenceClickListener(preference -> {
+            if (_prefs.isBackupsEnabled()) {
+                try {
+                    _vault.backup();
+                } catch (VaultManagerException e) {
+                    Toast.makeText(getContext(), String.format("Error creating backup: %s", e.getMessage()), Toast.LENGTH_LONG).show();
+                }
+            }
+            return true;
+        });
+
+        _backupsVersionsPreference = findPreference("pref_backups_versions");
+        _backupsVersionsPreference.setSummary(String.format(getString(R.string.pref_backups_versions_summary), _prefs.getBackupsVersionCount()));
+        _backupsVersionsPreference.setOnPreferenceClickListener(preference -> {
+            Dialogs.showBackupVersionsPickerDialog(getActivity(), number -> {
+                number = number * 5 + 5;
+                _prefs.setBackupsVersionCount(number);
+                _backupsVersionsPreference.setSummary(String.format(getString(R.string.pref_backups_versions_summary), number));
+            });
+            return false;
+        });
+
         _autoLockPreference = findPreference("pref_auto_lock");
         _passwordReminderPreference = findPreference("pref_password_reminder");
     }
@@ -368,6 +422,7 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         updateEncryptionPreferences();
+        updateBackupPreference();
     }
 
     @Override
@@ -396,6 +451,8 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
                 // intentional fallthrough
             case CODE_EXPORT_ENCRYPT:
                 onExportResult(resultCode, data, requestCode == CODE_EXPORT_ENCRYPT);
+            case CODE_BACKUPS:
+                onSelectBackupsLocationResult(resultCode, data);
                 break;
         }
     }
@@ -662,6 +719,21 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
         Toast.makeText(getActivity(), getString(R.string.exported_vault), Toast.LENGTH_SHORT).show();
     }
 
+    private void onSelectBackupsLocationResult(int resultCode, Intent data) {
+        Uri uri = data.getData();
+        if (resultCode != Activity.RESULT_OK || uri == null) {
+            return;
+        }
+
+        int flags = data.getFlags() & (Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
+        getContext().getContentResolver().takePersistableUriPermission(data.getData(), flags);
+
+        _prefs.setBackupsLocation(uri);
+        _prefs.setIsBackupsEnabled(true);
+        _backupsLocationPreference.setSummary(String.format("%s: %s", getString(R.string.pref_backups_location_summary), Uri.decode(uri.toString())));
+        updateBackupPreference();
+    }
+
     private boolean saveVault() {
         try {
             _vault.save();
@@ -699,6 +771,28 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
             _slotsPreference.setVisible(false);
             _passwordReminderPreference.setVisible(false);
         }
+
+        updateBackupPreference();
+    }
+
+    private void updateBackupPreference() {
+        boolean encrypted = _vault.isEncryptionEnabled();
+        boolean backupEnabled = _prefs.isBackupsEnabled() && encrypted;
+        _backupsPreference.setChecked(backupEnabled);
+        _backupsPreference.setEnabled(encrypted);
+        _backupsLocationPreference.setVisible(backupEnabled);
+        _backupsTriggerPreference.setVisible(backupEnabled);
+        _backupsVersionsPreference.setVisible(backupEnabled);
+    }
+
+    private void selectBackupsLocation() {
+        Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT_TREE);
+        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION
+                | Intent.FLAG_GRANT_WRITE_URI_PERMISSION
+                | Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION
+                | Intent.FLAG_GRANT_PREFIX_URI_PERMISSION);
+
+        startActivityForResult(intent, CODE_BACKUPS);
     }
 
     private class SetPasswordListener implements Dialogs.SlotListener {

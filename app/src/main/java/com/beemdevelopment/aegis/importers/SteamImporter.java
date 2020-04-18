@@ -3,12 +3,11 @@ package com.beemdevelopment.aegis.importers;
 import android.content.Context;
 import android.content.pm.PackageManager;
 
-import com.beemdevelopment.aegis.encoding.EncodingException;
-import com.beemdevelopment.aegis.vault.VaultEntry;
 import com.beemdevelopment.aegis.encoding.Base64;
+import com.beemdevelopment.aegis.encoding.EncodingException;
 import com.beemdevelopment.aegis.otp.OtpInfoException;
 import com.beemdevelopment.aegis.otp.SteamInfo;
-import com.beemdevelopment.aegis.util.ByteInputStream;
+import com.beemdevelopment.aegis.vault.VaultEntry;
 import com.topjohnwu.superuser.io.SuFile;
 
 import org.json.JSONException;
@@ -45,8 +44,9 @@ public class SteamImporter extends DatabaseImporter {
 
     @Override
     public State read(FileReader reader) throws DatabaseImporterException {
-        try (ByteInputStream stream = ByteInputStream.create(reader.getStream())) {
-            JSONObject obj = new JSONObject(new String(stream.getBytes(), StandardCharsets.UTF_8));
+        try {
+            byte[] bytes = reader.readAll();
+            JSONObject obj = new JSONObject(new String(bytes, StandardCharsets.UTF_8));
             return new State(obj);
         } catch (IOException | JSONException e) {
             throw new DatabaseImporterException(e);
