@@ -757,7 +757,6 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
         ClipData clip = ClipData.newPlainText("text/plain", entry.getInfo().getOtp());
         clipboard.setPrimaryClip(clip);
-        Toast.makeText(this, getString(R.string.code_copied), Toast.LENGTH_SHORT).show();
     }
 
     private class ActionModeCallbacks implements ActionMode.Callback {

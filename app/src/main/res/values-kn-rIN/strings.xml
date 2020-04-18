@@ -84,7 +84,6 @@
     <string name="setup_completed">ತಯಾರಿ ಪೂರ್ಣಗೊಂಡಿದೆ</string>
     <string name="setup_completed_description">Aegis ತಯಾರಿಯಾಗಿದೆ ಹಾಗು ಮುಂದುವರೆಯಲು ಸಿದ್ಧವಾಗಿದೆ.</string>
     <string name="vault_not_found">ವೌಲ್ಟ್ ಸಿಗಲಿಲ್ಲ, ತಯಾರಿಯನ್ನು ಪ್ರಾರಂಭಿಸಲಾಗುತ್ತಿದೆ…</string>
-    <string name="code_copied">ಸಂಕೇತವನ್ನು ಕ್ಲಿಪ್ಬೋರ್ಡಿಗೆ ನಕಲಿಸಲಾಗಿದೆ</string>
     <string name="errors_copied">ದೋಷಗಳು ಕ್ಲಿಪ್ಬೋರ್ಡಿಗೆ ನಕಲಿಸಲಾಗಿದೆ</string>
     <string name="version_copied">ಅವೃತ್ತಿ ಕ್ಲಿಪ್ಬೋರ್ಡಿಗೆ ನಕಲಿಸಲಾಗಿದೆ</string>
     <string name="decryption_error">ವೌಲ್ಟಿನ ಬೀಗವನ್ನು ತೆರೆಯುವಾಗ ಒಂದು ದೋಷ ಸಂಭವಿಸಿದೆ</string>

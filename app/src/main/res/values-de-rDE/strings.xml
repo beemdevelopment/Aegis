@@ -84,7 +84,6 @@
     <string name="setup_completed">Einrichten abgeschlossen</string>
     <string name="setup_completed_description">Aegis ist eingerichtet und einsatzbereit.</string>
     <string name="vault_not_found">Tresor nicht gefunden, Starten der Einrichtung…</string>
-    <string name="code_copied">Code in die Zwischenablage kopiert</string>
     <string name="errors_copied">Fehlermeldungen in die Zwischenablage kopiert</string>
     <string name="version_copied">Version in die Zwischenablage kopiert</string>
     <string name="decryption_error">Beim Versuch, den Tresor zu entsperren, ist ein Fehler aufgetreten.</string>

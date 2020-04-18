@@ -81,7 +81,6 @@
     <string name="setup_completed">Настройка завершена</string>
     <string name="setup_completed_description">Aegis настроен и готов к работе.</string>
     <string name="vault_not_found">Хранилище не найдено, запуск первоначальной настройки…</string>
-    <string name="code_copied">Код скопирован в буфер обмена</string>
     <string name="errors_copied">Ошибки скопированы в буфер обмена</string>
     <string name="decryption_error">Произошла ошибка при попытке разблокировать хранилище</string>
     <string name="saving_error">Произошла ошибка при попытке сохранить хранилище</string>

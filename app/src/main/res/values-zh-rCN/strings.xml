@@ -104,7 +104,6 @@
     <string name="setup_completed">设置完成</string>
     <string name="setup_completed_description">Aegis 设置完成，可以开始使用了。</string>
     <string name="vault_not_found">数据库未找到，开始设置……</string>
-    <string name="code_copied">验证码已复制到剪贴板</string>
     <string name="errors_copied">错误已复制到剪贴板</string>
     <string name="version_copied">版本号已复制到剪贴板</string>
     <string name="decryption_error">试图解锁数据库时出错</string>

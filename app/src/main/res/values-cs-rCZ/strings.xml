@@ -92,7 +92,6 @@
     <string name="setup_completed">Nastavení dokončeno</string>
     <string name="setup_completed_description">Aegis je nastaven a připraven k používání.</string>
     <string name="vault_not_found">Trezor nebyl nenalezen, spouštím nastavení…</string>
-    <string name="code_copied">Kód zkopírován do schránky</string>
     <string name="errors_copied">Chyby zkopírovány do schránky</string>
     <string name="version_copied">Verze zkopírována do schránky</string>
     <string name="decryption_error">Při odemykání trezoru došlo k chybě</string>
