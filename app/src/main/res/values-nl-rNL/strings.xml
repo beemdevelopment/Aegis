@@ -67,8 +67,6 @@
     <string name="delete">Verwijderen</string>
     <string name="password">Wachtwoord</string>
     <string name="confirm_password">Bevestig wachtwoord</string>
-    <string name="new_profile">Nieuw profiel</string>
-    <string name="add_new_profile">Profiel toevoegen</string>
     <string name="unlock_vault_error">Kluis kon niet worden ontgrendeld</string>
     <string name="unlock_vault_error_description">Wachtwoord onjuist. Controleer of je het wachtwoord correct hebt ingetypt.</string>
     <string name="password_equality_error">Wachtwoorden moeten overeen komen en mogen niet leeg zijn</string>
@@ -86,7 +84,6 @@
     <string name="setup_completed">Configuratie voltooid</string>
     <string name="setup_completed_description">Aegis is geconfigureerd en is klaar voor gebruik.</string>
     <string name="vault_not_found">Kluis niet gevonden, configuratie wordt gestart…</string>
-    <string name="code_copied">Code gekopieerd naar klembord</string>
     <string name="errors_copied">Fouten zijn gekopieerd naar klembord</string>
     <string name="version_copied">Versie is gekopieerd naar het klembord</string>
     <string name="decryption_error">Er is een fout opgetreden tijdens het ontgrendelen van de kluis</string>

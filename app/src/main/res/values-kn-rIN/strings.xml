@@ -67,8 +67,6 @@
     <string name="delete">ಅಳಿಸು</string>
     <string name="password">ಗುಪ್ತಪದ</string>
     <string name="confirm_password">ಗುಪ್ತಪದವನ್ನು ಖಚಿತಗೊಳಿಸು</string>
-    <string name="new_profile">ಹೊಸ ಪ್ರೊಫೈಲ್</string>
-    <string name="add_new_profile">ಹೊಸ ಪ್ರೊಫೈಲನ್ನು ಸೇರಿಸು</string>
     <string name="unlock_vault_error">ವೌಲ್ಟಿನ ಬೀಗವನ್ನು ತೆರೆಯಲು ಆಗಲಿಲ್ಲ</string>
     <string name="unlock_vault_error_description">ಗುಪ್ತಪದ ತಪ್ಪಾಗಿದೆ. ತಪ್ಪಾಗಿ ಗುಪ್ತಪದವನ್ನು ನಮೂದಿಸಲಿಲ್ಲ ಎಂದು ಖಚಿತಗೊಳಿಸು.</string>
     <string name="password_equality_error">ಗುಪ್ತಪದಗಾಳು ಒಂದೇ ಆಗಿರಾಬೇಕು ಹಾಗು ಖಾಲಿ ಆಗಿರಬಾರದು</string>
@@ -86,7 +84,6 @@
     <string name="setup_completed">ತಯಾರಿ ಪೂರ್ಣಗೊಂಡಿದೆ</string>
     <string name="setup_completed_description">Aegis ತಯಾರಿಯಾಗಿದೆ ಹಾಗು ಮುಂದುವರೆಯಲು ಸಿದ್ಧವಾಗಿದೆ.</string>
     <string name="vault_not_found">ವೌಲ್ಟ್ ಸಿಗಲಿಲ್ಲ, ತಯಾರಿಯನ್ನು ಪ್ರಾರಂಭಿಸಲಾಗುತ್ತಿದೆ…</string>
-    <string name="code_copied">ಸಂಕೇತವನ್ನು ಕ್ಲಿಪ್ಬೋರ್ಡಿಗೆ ನಕಲಿಸಲಾಗಿದೆ</string>
     <string name="errors_copied">ದೋಷಗಳು ಕ್ಲಿಪ್ಬೋರ್ಡಿಗೆ ನಕಲಿಸಲಾಗಿದೆ</string>
     <string name="version_copied">ಅವೃತ್ತಿ ಕ್ಲಿಪ್ಬೋರ್ಡಿಗೆ ನಕಲಿಸಲಾಗಿದೆ</string>
     <string name="decryption_error">ವೌಲ್ಟಿನ ಬೀಗವನ್ನು ತೆರೆಯುವಾಗ ಒಂದು ದೋಷ ಸಂಭವಿಸಿದೆ</string>

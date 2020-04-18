@@ -67,8 +67,6 @@
     <string name="delete">Supprimer</string>
     <string name="password">Mot de passe</string>
     <string name="confirm_password">Confirmer mot de passe</string>
-    <string name="new_profile">Nouveau profil</string>
-    <string name="add_new_profile">Ajouter un nouveau profil</string>
     <string name="unlock_vault_error">Impossible de déverrouiller le coffre-fort</string>
     <string name="unlock_vault_error_description">Mot de passe incorrect. Assurez-vous de ne pas avoir fait de faute de frappe lors de la saisie de votre mot de passe.</string>
     <string name="password_equality_error">Les mots de passe doivent être identiques et non vides</string>
@@ -86,7 +84,6 @@
     <string name="setup_completed">Configuration terminée</string>
     <string name="setup_completed_description">Aegis a été configuré et est prêt à être utilisé.</string>
     <string name="vault_not_found">Coffre-fort introuvable, lancement de la configuration…</string>
-    <string name="code_copied">Code copié dans le presse-papier</string>
     <string name="errors_copied">Erreurs copiées dans le presse-papier</string>
     <string name="version_copied">Version copiée dans le presse-papier</string>
     <string name="decryption_error">Une erreur est survenue en essayant de déverrouiller le coffre-fort</string>

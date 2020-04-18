@@ -73,8 +73,6 @@
     <string name="password">Password</string>
     <string name="confirm_password">Conferma password</string>
     <string name="show_password">Mostra password</string>
-    <string name="new_profile">Nuovo profilo</string>
-    <string name="add_new_profile">Aggiungi nuovo profilo</string>
     <string name="unlock_vault_error">Impossibile sbloccare la cassaforte</string>
     <string name="unlock_vault_error_description">Password errata. Assicurati di non aver sbagliato a digitare.</string>
     <string name="password_equality_error">Le password devono essere identiche e non vuote</string>
@@ -92,7 +90,6 @@
     <string name="setup_completed">Configurazione completata</string>
     <string name="setup_completed_description">Aegis è stata configurata, sei pronto a partire.</string>
     <string name="vault_not_found">Cassaforte non trovata, avvio configurazione…</string>
-    <string name="code_copied">Codice copiato negli appunti</string>
     <string name="errors_copied">Codice errore copiato negli appunti</string>
     <string name="version_copied">Versione copiata negli appunti</string>
     <string name="decryption_error">Si è verificato un errore nello sblocco della cassaforte</string>

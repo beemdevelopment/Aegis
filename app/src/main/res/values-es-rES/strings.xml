@@ -76,8 +76,6 @@
     <string name="password">Contraseña</string>
     <string name="confirm_password">Confirmar contraseña</string>
     <string name="show_password">Mostrar contraseña</string>
-    <string name="new_profile">Nuevo perfil</string>
-    <string name="add_new_profile">Añadir nuevo perfil</string>
     <string name="unlock_vault_error">No se pudo desbloquear la caja fuerte</string>
     <string name="unlock_vault_error_description">Contraseña incorrecta. Asegúrese de no haberla introducido erróneamente.</string>
     <string name="password_equality_error">Las contraseñas deben ser idénticas y no estar en blanco</string>
@@ -95,7 +93,6 @@
     <string name="setup_completed">Configuración completada</string>
     <string name="setup_completed_description">Aegis se ha configurado y está listo para funcionar.</string>
     <string name="vault_not_found">Caja fuerte no encontrada, iniciando la configuración…</string>
-    <string name="code_copied">Código copiado al portapapeles</string>
     <string name="errors_copied">Errores copiados al portapapeles</string>
     <string name="version_copied">Versión copiada al portapapeles</string>
     <string name="decryption_error">Se ha producido un error tratando de desbloquear la caja fuerte</string>

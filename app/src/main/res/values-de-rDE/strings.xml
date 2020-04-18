@@ -67,8 +67,6 @@
     <string name="delete">Löschen</string>
     <string name="password">Passwort</string>
     <string name="confirm_password">Passwort bestätigen</string>
-    <string name="new_profile">Neues Profil</string>
-    <string name="add_new_profile">Neues Profil hinzufügen</string>
     <string name="unlock_vault_error">Der Tresor konnte nicht entsperrt werden.</string>
     <string name="unlock_vault_error_description">Falsches Passwort. Achte darauf, dass du dein Passwort nicht falsch eingibst.</string>
     <string name="password_equality_error">Passwörter sollten identisch und nicht leer sein.</string>
@@ -86,7 +84,6 @@
     <string name="setup_completed">Einrichten abgeschlossen</string>
     <string name="setup_completed_description">Aegis ist eingerichtet und einsatzbereit.</string>
     <string name="vault_not_found">Tresor nicht gefunden, Starten der Einrichtung…</string>
-    <string name="code_copied">Code in die Zwischenablage kopiert</string>
     <string name="errors_copied">Fehlermeldungen in die Zwischenablage kopiert</string>
     <string name="version_copied">Version in die Zwischenablage kopiert</string>
     <string name="decryption_error">Beim Versuch, den Tresor zu entsperren, ist ein Fehler aufgetreten.</string>

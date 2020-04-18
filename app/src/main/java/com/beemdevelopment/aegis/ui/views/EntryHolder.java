@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
@@ -31,9 +32,12 @@ public class EntryHolder extends RecyclerView.ViewHolder {
     private TextView _profileName;
     private TextView _profileCode;
     private TextView _profileIssuer;
+    private TextView _profileCopied;
     private ImageView _profileDrawable;
     private VaultEntry _entry;
     private ImageView _buttonRefresh;
+    private RelativeLayout _description;
+  
     private final ImageView _selected;
     private final Handler _selectedHandler;
 
@@ -43,6 +47,7 @@ public class EntryHolder extends RecyclerView.ViewHolder {
     private View _view;
 
     private UiRefresher _refresher;
+    private Handler _animationHandler;
 
     private Animation _scaleIn;
     private Animation _scaleOut;
@@ -55,6 +60,8 @@ public class EntryHolder extends RecyclerView.ViewHolder {
         _profileName = view.findViewById(R.id.profile_account_name);
         _profileCode = view.findViewById(R.id.profile_code);
         _profileIssuer = view.findViewById(R.id.profile_issuer);
+        _profileCopied = view.findViewById(R.id.profile_copied);
+        _description = view.findViewById(R.id.description);
         _profileDrawable = view.findViewById(R.id.ivTextDrawable);
         _buttonRefresh = view.findViewById(R.id.buttonRefresh);
         _selected = view.findViewById(R.id.ivSelected);
@@ -227,6 +234,29 @@ public class EntryHolder extends RecyclerView.ViewHolder {
 
     public void highlight() {
         animateAlphaTo(DEFAULT_ALPHA);
+    }
+
+    public void animateCopyText() {
+        if (_animationHandler != null) {
+            _animationHandler.removeCallbacksAndMessages(null);
+        }
+        Animation slideDownFadeIn = AnimationUtils.loadAnimation(itemView.getContext(), R.anim.slide_down_fade_in);
+        Animation slideDownFadeOut = AnimationUtils.loadAnimation(itemView.getContext(), R.anim.slide_down_fade_out);
+        Animation fadeOut = AnimationUtils.loadAnimation(itemView.getContext(), R.anim.fade_out);
+        Animation fadeIn = AnimationUtils.loadAnimation(itemView.getContext(), R.anim.fade_in);
+
+        _profileCopied.startAnimation(slideDownFadeIn);
+        _description.startAnimation(slideDownFadeOut);
+
+
+        _animationHandler = new Handler();
+        _animationHandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                _profileCopied.startAnimation(fadeOut);
+                _description.startAnimation(fadeIn);
+            }
+        }, 3000);
     }
 
     private void animateAlphaTo(float alpha) {

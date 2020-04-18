@@ -64,8 +64,6 @@
     <string name="delete">Удалить</string>
     <string name="password">Пароль</string>
     <string name="confirm_password">Подтвердите пароль</string>
-    <string name="new_profile">Новый профиль</string>
-    <string name="add_new_profile">Добавить новый профиль</string>
     <string name="unlock_vault_error">Не удалось разблокировать хранилище</string>
     <string name="unlock_vault_error_description">Некорректный пароль. Убедитесь, что вы не допустили опечатку в вашем пароле.</string>
     <string name="password_equality_error">Пароли должны быть одинаковыми и непустыми</string>
@@ -83,7 +81,6 @@
     <string name="setup_completed">Настройка завершена</string>
     <string name="setup_completed_description">Aegis настроен и готов к работе.</string>
     <string name="vault_not_found">Хранилище не найдено, запуск первоначальной настройки…</string>
-    <string name="code_copied">Код скопирован в буфер обмена</string>
     <string name="errors_copied">Ошибки скопированы в буфер обмена</string>
     <string name="decryption_error">Произошла ошибка при попытке разблокировать хранилище</string>
     <string name="saving_error">Произошла ошибка при попытке сохранить хранилище</string>

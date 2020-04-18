@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.pm.PackageManager;
 
 import com.beemdevelopment.aegis.vault.VaultEntry;
-import com.beemdevelopment.aegis.util.ByteInputStream;
+import com.beemdevelopment.aegis.util.IOUtils;
 import com.beemdevelopment.aegis.util.UUIDMap;
 import com.topjohnwu.superuser.io.SuFile;
 
@@ -34,6 +34,7 @@ public abstract class DatabaseImporter {
         _importers.put("FreeOTP+", FreeOtpPlusImporter.class);
         _importers.put("Google Authenticator", GoogleAuthImporter.class);
         _importers.put("Microsoft Authenticator", MicrosoftAuthImporter.class);
+        _importers.put("Plain text", GoogleAuthUriImporter.class);
         _importers.put("Steam", SteamImporter.class);
         _importers.put("TOTP Authenticator", TotpAuthenticatorImporter.class);
         _importers.put("WinAuth", WinAuthImporter.class);
@@ -151,9 +152,7 @@ public abstract class DatabaseImporter {
         }
 
         public byte[] readAll() throws IOException {
-            try (ByteInputStream stream = ByteInputStream.create(_stream)) {
-                return stream.getBytes();
-            }
+            return IOUtils.readAll(_stream);
         }
 
         public InputStream getStream() {

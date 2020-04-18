@@ -75,8 +75,6 @@
     <string name="password">Heslo</string>
     <string name="confirm_password">Potvrdit heslo</string>
     <string name="show_password">Zobrazit heslo</string>
-    <string name="new_profile">Nový profil</string>
-    <string name="add_new_profile">Přidat nový profil</string>
     <string name="unlock_vault_error">Trezor nelze odemknout</string>
     <string name="unlock_vault_error_description">Nesprávné heslo. Ujistěte se, že je zadané správně.</string>
     <string name="password_equality_error">Hesla musí být stejná a nesmí být prázdná</string>
@@ -94,7 +92,6 @@
     <string name="setup_completed">Nastavení dokončeno</string>
     <string name="setup_completed_description">Aegis je nastaven a připraven k používání.</string>
     <string name="vault_not_found">Trezor nebyl nenalezen, spouštím nastavení…</string>
-    <string name="code_copied">Kód zkopírován do schránky</string>
     <string name="errors_copied">Chyby zkopírovány do schránky</string>
     <string name="version_copied">Verze zkopírována do schránky</string>
     <string name="decryption_error">Při odemykání trezoru došlo k chybě</string>
