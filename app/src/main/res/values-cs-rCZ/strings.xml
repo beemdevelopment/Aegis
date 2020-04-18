@@ -75,8 +75,6 @@
     <string name="password">Heslo</string>
     <string name="confirm_password">Potvrdit heslo</string>
     <string name="show_password">Zobrazit heslo</string>
-    <string name="new_profile">Nový profil</string>
-    <string name="add_new_profile">Přidat nový profil</string>
     <string name="unlock_vault_error">Trezor nelze odemknout</string>
     <string name="unlock_vault_error_description">Nesprávné heslo. Ujistěte se, že je zadané správně.</string>
     <string name="password_equality_error">Hesla musí být stejná a nesmí být prázdná</string>

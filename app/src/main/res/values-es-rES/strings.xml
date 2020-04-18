@@ -76,8 +76,6 @@
     <string name="password">Contraseña</string>
     <string name="confirm_password">Confirmar contraseña</string>
     <string name="show_password">Mostrar contraseña</string>
-    <string name="new_profile">Nuevo perfil</string>
-    <string name="add_new_profile">Añadir nuevo perfil</string>
     <string name="unlock_vault_error">No se pudo desbloquear la caja fuerte</string>
     <string name="unlock_vault_error_description">Contraseña incorrecta. Asegúrese de no haberla introducido erróneamente.</string>
     <string name="password_equality_error">Las contraseñas deben ser idénticas y no estar en blanco</string>

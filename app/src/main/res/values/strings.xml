@@ -91,8 +91,8 @@
     <string name="password">Password</string>
     <string name="confirm_password">Confirm password</string>
     <string name="show_password">Show password</string>
-    <string name="new_profile">New profile</string>
-    <string name="add_new_profile">Add new profile</string>
+    <string name="new_entry">New entry</string>
+    <string name="add_new_entry">Add new entry</string>
     <string name="unlock_vault_error">Couldn\'t unlock vault</string>
     <string name="unlock_vault_error_description">Incorrect password. Make sure you didn\'t mistype your password.</string>
     <string name="password_equality_error">Passwords should be identical and non-empty</string>
