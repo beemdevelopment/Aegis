@@ -39,21 +39,4 @@ public class PreferencesActivity extends AegisActivity {
         outState.putParcelable("result", _fragment.getResult());
         super.onSaveInstanceState(outState);
     }
-
-    @Override
-    protected void setPreferredTheme(Theme theme) {
-        switch (theme) {
-            case LIGHT:
-                setTheme(R.style.AppTheme);
-                break;
-
-            case DARK:
-                setTheme(R.style.AppTheme_Dark);
-                break;
-
-            case AMOLED:
-                setTheme(R.style.AppTheme_TrueBlack_Preferences);
-                break;
-        }
-    }
 }

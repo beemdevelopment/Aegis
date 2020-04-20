@@ -90,7 +90,7 @@ public class Preferences {
     }
 
     public Theme getCurrentTheme() {
-        return Theme.fromInteger(_prefs.getInt("pref_current_theme", 0));
+        return Theme.fromInteger(_prefs.getInt("pref_current_theme", Theme.SYSTEM.ordinal()));
     }
 
     public void setCurrentTheme(Theme theme) {

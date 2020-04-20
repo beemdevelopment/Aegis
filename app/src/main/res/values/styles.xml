@@ -70,9 +70,7 @@
         <item name="android:textColor">@android:color/white</item>
     </style>
 
-    <style name="AppTheme.NoActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
+    <style name="AppTheme.NoActionBar" parent="Theme.AppCompat.DayNight.NoActionBar">
         <item name="android:windowDrawsSystemBarBackgrounds" tools:targetApi="lollipop">true</item>
         <item name="android:statusBarColor" tools:targetApi="lollipop">@android:color/transparent</item>
     </style>
@@ -123,9 +121,7 @@
 
         <item name="android:navigationBarColor" tools:targetApi="lollipop">@color/background_true_dark</item>
         <item name="android:windowLightNavigationBar" tools:targetApi="o_mr1">false</item>
-    </style>
 
-    <style name="AppTheme.TrueBlack.Preferences" parent="AppTheme.TrueBlack">
         <item name="android:windowBackground">@color/background_true_dark</item>
     </style>
 

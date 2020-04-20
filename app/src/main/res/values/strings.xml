@@ -189,6 +189,8 @@
     <string name="dark_theme_title">Dark theme</string>
     <string name="light_theme_title">Light theme</string>
     <string name="amoled_theme_title">AMOLED theme</string>
+    <string name="system_theme_title">Set by Battery Saver</string>
+    <string name="system_amoled_theme_title">Set by Battery Saver (AMOLED)</string>
     <string name="normal_viewmode_title">Normal</string>
     <string name="compact_mode_title">Compact</string>
     <string name="small_mode_title">Small</string>

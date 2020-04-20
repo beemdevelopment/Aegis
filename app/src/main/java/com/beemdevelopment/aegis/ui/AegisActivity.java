@@ -89,6 +89,19 @@ public abstract class AegisActivity extends AppCompatActivity implements AegisAp
     }
 
     protected void setPreferredTheme(Theme theme) {
+        if (theme == Theme.SYSTEM || theme == Theme.SYSTEM_AMOLED) {
+            // set the theme based on the system theme
+            int currentNightMode = getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
+            switch (currentNightMode) {
+                case Configuration.UI_MODE_NIGHT_NO:
+                    theme = Theme.LIGHT;
+                    break;
+                case Configuration.UI_MODE_NIGHT_YES:
+                    theme = theme == Theme.SYSTEM_AMOLED ? Theme.AMOLED : Theme.DARK;
+                    break;
+            }
+        }
+
         _currentTheme = theme;
 
         switch (theme) {
