@@ -206,6 +206,12 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
         });
         timeoutPreference.getOnPreferenceChangeListener().onPreferenceChange(timeoutPreference, timeoutPreference.getText());*/
 
+        Preference codeDigitGroupingPreference = findPreference("pref_code_group_size");
+        codeDigitGroupingPreference.setOnPreferenceChangeListener((preference, newValue) -> {
+            _result.putExtra("needsRefresh", true);
+            return true;
+        });
+
         Preference issuerPreference = findPreference("pref_account_name");
         issuerPreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
             @Override

@@ -41,6 +41,8 @@ public class EntryHolder extends RecyclerView.ViewHolder {
     private final ImageView _selected;
     private final Handler _selectedHandler;
 
+    private int _codeGroupSize = 6;
+
     private boolean _hidden;
 
     private PeriodProgressBar _progressBar;
@@ -92,9 +94,14 @@ public class EntryHolder extends RecyclerView.ViewHolder {
         });
     }
 
-    public void setData(VaultEntry entry, boolean showAccountName, boolean showProgress, boolean hidden, boolean dimmed) {
+    public void setData(VaultEntry entry, int codeGroupSize, boolean showAccountName, boolean showProgress, boolean hidden, boolean dimmed) {
         _entry = entry;
         _hidden = hidden;
+
+        if (codeGroupSize <= 0)
+            throw new IllegalArgumentException("Code group size cannot be zero or negative");
+
+        _codeGroupSize = codeGroupSize;
 
         _selected.clearAnimation();
         _selected.setVisibility(View.GONE);
@@ -207,7 +214,7 @@ public class EntryHolder extends RecyclerView.ViewHolder {
         if (!(info instanceof SteamInfo)) {
             StringBuilder sb = new StringBuilder();
             for (int i = 0; i < otp.length(); i++) {
-                if (i != 0 && i % 3 == 0) {
+                if (i != 0 && i % _codeGroupSize == 0) {
                     sb.append(" ");
                 }
                 sb.append(otp.charAt(i));

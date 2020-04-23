@@ -4,8 +4,6 @@ import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -30,6 +28,7 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
     private List<VaultEntry> _shownEntries;
     private List<VaultEntry> _selectedEntries;
     private VaultEntry _focusedEntry;
+    private int _codeGroupSize;
     private boolean _showAccountName;
     private boolean _searchAccountName;
     private boolean _highlightEntry;
@@ -60,6 +59,10 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
             holder.destroy();
         }
         _view = null;
+    }
+
+    public void setCodeGroupSize(int codeGroupeSize) {
+        _codeGroupSize = codeGroupeSize;
     }
 
     public void setShowAccountName(boolean showAccountName) {
@@ -310,7 +313,7 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
         boolean hidden = _tapToReveal && entry != _focusedEntry;
         boolean dimmed = _highlightEntry && _focusedEntry != null && _focusedEntry != entry;
         boolean showProgress = !isPeriodUniform() && entry.getInfo() instanceof TotpInfo;
-        holder.setData(entry, _showAccountName, showProgress, hidden, dimmed);
+        holder.setData(entry, _codeGroupSize, _showAccountName, showProgress, hidden, dimmed);
         holder.setFocused(_selectedEntries.contains(entry));
         holder.loadIcon(_view);
 
