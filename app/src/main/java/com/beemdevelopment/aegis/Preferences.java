@@ -61,6 +61,14 @@ public class Preferences {
         return _prefs.getBoolean("pref_account_name", true);
     }
 
+    public int getCodeGroupSize() {
+        if (_prefs.getBoolean("pref_code_group_size", false)) {
+            return 2;
+        } else {
+            return 3;
+        }
+    }
+
     public boolean isIntroDone() {
         return _prefs.getBoolean("pref_intro", false);
     }

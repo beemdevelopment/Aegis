@@ -223,6 +223,10 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
         }
     }
 
+    public void setCodeGroupSize(int codeGrouping) {
+        _adapter.setCodeGroupSize(codeGrouping);
+    }
+
     public void setShowAccountName(boolean showAccountName) {
         _adapter.setShowAccountName(showAccountName);
     }
