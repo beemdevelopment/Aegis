@@ -162,12 +162,18 @@ public class AuthActivity extends AegisActivity implements SlotListTask.Callback
         if (_bioPrompt != null) {
             if (_prefs.isPasswordReminderNeeded()) {
                 focusPasswordField();
-                showPasswordReminder();
             } else {
                 showBiometricPrompt();
             }
         } else {
             focusPasswordField();
+        }
+    }
+
+    @Override
+    public void onAttachedToWindow() {
+        if (_bioPrompt != null && _prefs.isPasswordReminderNeeded()) {
+            showPasswordReminder();
         }
     }
 
