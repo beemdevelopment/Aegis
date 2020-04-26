@@ -179,7 +179,8 @@ public class AuthActivity extends AegisActivity implements SlotListTask.Callback
     private void showPasswordReminder() {
         View popupLayout = getLayoutInflater().inflate(R.layout.popup_password, null);
         PopupWindow popup = new PopupWindow(popupLayout, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        popup.setFocusable(true);
+        popup.setFocusable(false);
+        popup.setOutsideTouchable(true);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
             popup.setElevation(5.0f);
         }
