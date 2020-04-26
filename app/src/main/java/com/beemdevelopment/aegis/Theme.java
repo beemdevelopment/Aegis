@@ -3,7 +3,9 @@ package com.beemdevelopment.aegis;
 public enum Theme {
     LIGHT,
     DARK,
-    AMOLED;
+    AMOLED,
+    SYSTEM,
+    SYSTEM_AMOLED;
 
     private static Theme[] _values;
 

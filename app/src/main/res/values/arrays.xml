@@ -22,6 +22,8 @@
         <item>@string/light_theme_title</item>
         <item>@string/dark_theme_title</item>
         <item>@string/amoled_theme_title</item>
+        <item>@string/system_theme_title</item>
+        <item>@string/system_amoled_theme_title</item>
     </string-array>
 
     <string-array name="view_mode_titles">
