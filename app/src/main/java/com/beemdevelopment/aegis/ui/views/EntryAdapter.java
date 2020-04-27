@@ -20,7 +20,9 @@ import com.beemdevelopment.aegis.otp.TotpInfo;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements ItemTouchHelperAdapter {
     private EntryListView _view;
@@ -312,7 +314,7 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
 
         boolean hidden = _tapToReveal && entry != _focusedEntry;
         boolean dimmed = _highlightEntry && _focusedEntry != null && _focusedEntry != entry;
-        boolean showProgress = !isPeriodUniform() && entry.getInfo() instanceof TotpInfo;
+        boolean showProgress = entry.getInfo() instanceof TotpInfo && ((TotpInfo) entry.getInfo()).getPeriod() != getMostFrequentPeriod();
         holder.setData(entry, _codeGroupSize, _showAccountName, showProgress, hidden, dimmed);
         holder.setFocused(_selectedEntries.contains(entry));
         holder.loadIcon(_view);
@@ -388,22 +390,26 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
     }
 
     private void checkPeriodUniformity(boolean force) {
-        int uniformPeriod = getUniformPeriod();
+        int mostFrequentPeriod = getMostFrequentPeriod();
         boolean uniform = isPeriodUniform();
-        if (!force && uniform == _isPeriodUniform && uniformPeriod == _uniformPeriod) {
+
+        if (!force && uniform == _isPeriodUniform && mostFrequentPeriod == _uniformPeriod) {
             return;
         }
+
         _isPeriodUniform = uniform;
-        _uniformPeriod = uniformPeriod;
+        _uniformPeriod = mostFrequentPeriod;
 
         for (EntryHolder holder : _holders) {
-            holder.setShowProgress(!_isPeriodUniform);
+            if ((holder.getEntry().getInfo() instanceof TotpInfo)) {
+                holder.setShowProgress(((TotpInfo) holder.getEntry().getInfo()).getPeriod() != mostFrequentPeriod);
+            }
         }
 
         _view.onPeriodUniformityChanged(_isPeriodUniform, _uniformPeriod);
     }
 
-    public int getUniformPeriod() {
+    public int getMostFrequentPeriod() {
         List<TotpInfo> infos = new ArrayList<>();
         for (VaultEntry entry : _shownEntries) {
             OtpInfo info = entry.getInfo();
@@ -416,14 +422,26 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
             return -1;
         }
 
-        int period = infos.get(0).getPeriod();
+        Map<Integer, Integer> occurrences = new HashMap<>();
         for (TotpInfo info : infos) {
-            if (period != info.getPeriod()) {
-                return -1;
+            int period = info.getPeriod();
+            if(occurrences.containsKey(period)) {
+                occurrences.put(period, occurrences.get(period) + 1);
+            } else {
+                occurrences.put(period, 1);
             }
         }
 
-        return period;
+        Integer maxValue = 0;
+        Integer maxKey = 0;
+        for (Map.Entry<Integer, Integer> entry : occurrences.entrySet()){
+            if(entry.getValue() > maxValue){
+                maxValue = entry.getValue();
+                maxKey = entry.getKey();
+            }
+        }
+
+        return maxValue > 1 ? maxKey : -1;
     }
 
     private void focusEntry(VaultEntry entry) {
@@ -494,7 +512,7 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
     }
 
     public boolean isPeriodUniform() {
-        return isPeriodUniform(getUniformPeriod());
+        return isPeriodUniform(getMostFrequentPeriod());
     }
 
     private static boolean isPeriodUniform(int period) {
