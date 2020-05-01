@@ -104,7 +104,7 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
 
             @Override
             public long getMillisTillNextRefresh() {
-                return TotpInfo.getMillisTillNextRotation(_adapter.getUniformPeriod());
+                return TotpInfo.getMillisTillNextRotation(_adapter.getMostFrequentPeriod());
             }
         });
 
