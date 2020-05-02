@@ -51,17 +51,17 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.TreeSet;
+import java.util.UUID;
 
 public class MainActivity extends AegisActivity implements EntryListView.Listener {
     // activity request codes
     private static final int CODE_SCAN = 0;
     private static final int CODE_ADD_ENTRY = 1;
     private static final int CODE_EDIT_ENTRY = 2;
-    private static final int CODE_ENTER_ENTRY = 3;
-    private static final int CODE_DO_INTRO = 4;
-    private static final int CODE_DECRYPT = 5;
-    private static final int CODE_PREFERENCES = 6;
-    private static final int CODE_SCAN_IMAGE = 7;
+    private static final int CODE_DO_INTRO = 3;
+    private static final int CODE_DECRYPT = 4;
+    private static final int CODE_PREFERENCES = 5;
+    private static final int CODE_SCAN_IMAGE = 6;
 
     // permission request codes
     private static final int CODE_PERM_CAMERA = 0;
@@ -112,7 +112,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         _fabMenu = findViewById(R.id.fab);
         findViewById(R.id.fab_enter).setOnClickListener(view -> {
             _fabMenu.collapse();
-            startEditProfileActivity(CODE_ENTER_ENTRY, null, true);
+            startEditEntryActivity(CODE_ADD_ENTRY, null, true);
         });
         findViewById(R.id.fab_scan_image).setOnClickListener(view -> {
             _fabMenu.collapse();
@@ -179,9 +179,6 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
             case CODE_EDIT_ENTRY:
                 onEditEntryResult(resultCode, data);
                 break;
-            case CODE_ENTER_ENTRY:
-                onEnterEntryResult(resultCode, data);
-                break;
             case CODE_DO_INTRO:
                 onDoIntroResult(resultCode, data);
                 break;
@@ -238,50 +235,42 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         }
     }
 
-    private void startEditProfileActivity(int requestCode, VaultEntry entry, boolean isNew) {
+    private void startEditEntryActivity(int requestCode, VaultEntry entry, boolean isNew) {
         Intent intent = new Intent(this, EditEntryActivity.class);
-        intent.putExtra("entry", entry != null ? entry : VaultEntry.getDefault());
-        intent.putExtra("isNew", isNew);
+        if (isNew) {
+            intent.putExtra("newEntry", entry != null ? entry : VaultEntry.getDefault());
+        } else {
+            intent.putExtra("entryUUID", entry.getUUID());
+        }
         intent.putExtra("selectedGroup", _selectedGroup);
-        intent.putExtra("groups", new ArrayList<>(_vault.getGroups()));
         startActivityForResult(intent, requestCode);
     }
 
     private void onScanResult(int resultCode, Intent data) {
         if (resultCode == RESULT_OK) {
             VaultEntry entry = (VaultEntry) data.getSerializableExtra("entry");
-            startEditProfileActivity(CODE_ADD_ENTRY, entry, true);
+            startEditEntryActivity(CODE_ADD_ENTRY, entry, true);
         }
     }
 
     private void onAddEntryResult(int resultCode, Intent data) {
         if (resultCode == RESULT_OK) {
-            VaultEntry entry = (VaultEntry) data.getSerializableExtra("entry");
-            addEntry(entry);
-            saveVault();
+            UUID entryUUID = (UUID) data.getSerializableExtra("entryUUID");
+            VaultEntry entry = _vault.getEntryByUUID(entryUUID);
+            _entryListView.addEntry(entry);
         }
     }
 
     private void onEditEntryResult(int resultCode, Intent data) {
         if (resultCode == RESULT_OK) {
-            VaultEntry entry = (VaultEntry) data.getSerializableExtra("entry");
-            if (data.getBooleanExtra("delete", false)) {
-                deleteEntry(entry);
-            } else {
-                // this profile has been serialized/deserialized and is no longer the same instance it once was
-                // to deal with this, the replaceEntry functions are used
-                VaultEntry oldEntry = _vault.replaceEntry(entry);
-                _entryListView.replaceEntry(oldEntry, entry);
-                saveVault();
-            }
-        }
-    }
+            UUID entryUUID = (UUID) data.getSerializableExtra("entryUUID");
 
-    private void onEnterEntryResult(int resultCode, Intent data) {
-        if (resultCode == RESULT_OK) {
-            VaultEntry entry = (VaultEntry) data.getSerializableExtra("entry");
-            addEntry(entry);
-            saveVault();
+            if (data.getBooleanExtra("delete", false)) {
+                _entryListView.removeEntry(entryUUID);
+            } else {
+                VaultEntry entry = _vault.getEntryByUUID(entryUUID);
+                _entryListView.replaceEntry(entryUUID, entry);
+            }
         }
     }
 
@@ -309,7 +298,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
                 GoogleAuthInfo info = GoogleAuthInfo.parseUri(result.getText());
                 VaultEntry entry = new VaultEntry(info);
 
-                startEditProfileActivity(CODE_ADD_ENTRY, entry, true);
+                startEditEntryActivity(CODE_ADD_ENTRY, entry, true);
             } catch (NotFoundException | IOException | ChecksumException | FormatException | GoogleAuthInfoException e) {
                 Toast.makeText(this, getString(R.string.unable_to_read_qrcode), Toast.LENGTH_SHORT).show();
                 e.printStackTrace();
@@ -357,11 +346,6 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         getSupportActionBar().setSubtitle(group);
         _selectedGroup = group;
         _entryListView.setGroupFilter(group, true);
-    }
-
-    private void addEntry(VaultEntry entry) {
-        _vault.addEntry(entry);
-        _entryListView.addEntry(entry);
     }
 
     private void onDoIntroResult(int resultCode, Intent data) {
@@ -442,10 +426,9 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
 
             if (info != null) {
                 VaultEntry entry = new VaultEntry(info);
-                startEditProfileActivity(CODE_ADD_ENTRY, entry, true);
+                startEditEntryActivity(CODE_ADD_ENTRY, entry, true);
             }
         }
-
     }
 
     @Override
@@ -509,13 +492,6 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         }
 
         saveVault();
-    }
-
-    private void deleteEntry(VaultEntry entry) {
-        VaultEntry oldEntry = _vault.removeEntry(entry);
-        saveVault();
-
-        _entryListView.removeEntry(oldEntry);
     }
 
     @Override
@@ -662,14 +638,6 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         startActivityForResult(intent, CODE_DECRYPT);
     }
 
-    private void saveVault() {
-        try {
-            _vault.save();
-        } catch (VaultManagerException e) {
-            Toast.makeText(this, getString(R.string.saving_error), Toast.LENGTH_LONG).show();
-        }
-    }
-
     private void updateLockIcon() {
         // hide the lock icon if the vault is not unlocked
         if (_menu != null && !_vault.isLocked()) {
@@ -784,7 +752,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
                         return true;
 
                     case R.id.action_edit:
-                        startEditProfileActivity(CODE_EDIT_ENTRY, _selectedEntries.get(0), false);
+                        startEditEntryActivity(CODE_EDIT_ENTRY, _selectedEntries.get(0), false);
                         mode.finish();
                         return true;
 

@@ -10,12 +10,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.SortCategory;
 import com.beemdevelopment.aegis.ViewMode;
-import com.beemdevelopment.aegis.vault.VaultEntry;
 import com.beemdevelopment.aegis.helpers.ItemTouchHelperAdapter;
 import com.beemdevelopment.aegis.otp.HotpInfo;
 import com.beemdevelopment.aegis.otp.OtpInfo;
 import com.beemdevelopment.aegis.otp.OtpInfoException;
 import com.beemdevelopment.aegis.otp.TotpInfo;
+import com.beemdevelopment.aegis.vault.VaultEntry;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -23,6 +23,7 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements ItemTouchHelperAdapter {
     private EntryListView _view;
@@ -144,6 +145,11 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
         checkPeriodUniformity();
     }
 
+    public void removeEntry(UUID uuid) {
+        VaultEntry entry = getEntryByUUID(uuid);
+        removeEntry(entry);
+    }
+
     public void clearEntries() {
         _entries.clear();
         _shownEntries.clear();
@@ -151,7 +157,8 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
         checkPeriodUniformity();
     }
 
-    public void replaceEntry(VaultEntry oldEntry, VaultEntry newEntry) {
+    public void replaceEntry(UUID uuid, VaultEntry newEntry) {
+        VaultEntry oldEntry = getEntryByUUID(uuid);
         _entries.set(_entries.indexOf(oldEntry), newEntry);
 
         if (_shownEntries.contains(oldEntry)) {
@@ -172,6 +179,16 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
         }
 
         checkPeriodUniformity();
+    }
+
+    private VaultEntry getEntryByUUID(UUID uuid) {
+        for (VaultEntry entry : _entries) {
+            if (entry.getUUID().equals(uuid)) {
+                return entry;
+            }
+        }
+
+        return null;
     }
 
     private boolean isEntryFiltered(VaultEntry entry) {

@@ -17,6 +17,7 @@ import java.io.OutputStream;
 import java.text.Collator;
 import java.util.Collection;
 import java.util.TreeSet;
+import java.util.UUID;
 
 public class VaultManager {
     public static final String FILENAME = "aegis.json";
@@ -142,6 +143,11 @@ public class VaultManager {
     public void addEntry(VaultEntry entry) {
         assertState(false, true);
         _vault.getEntries().add(entry);
+    }
+
+    public VaultEntry getEntryByUUID(UUID uuid) {
+        assertState(false, true);
+        return _vault.getEntries().getByUUID(uuid);
     }
 
     public VaultEntry removeEntry(VaultEntry entry) {

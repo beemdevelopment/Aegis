@@ -22,10 +22,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.SortCategory;
 import com.beemdevelopment.aegis.ViewMode;
-import com.beemdevelopment.aegis.vault.VaultEntry;
 import com.beemdevelopment.aegis.helpers.SimpleItemTouchHelperCallback;
 import com.beemdevelopment.aegis.helpers.UiRefresher;
 import com.beemdevelopment.aegis.otp.TotpInfo;
+import com.beemdevelopment.aegis.vault.VaultEntry;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.ListPreloader;
 import com.bumptech.glide.RequestBuilder;
@@ -35,6 +35,7 @@ import com.bumptech.glide.util.ViewPreloadSizeProvider;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.UUID;
 
 public class EntryListView extends Fragment implements EntryAdapter.Listener {
     private EntryAdapter _adapter;
@@ -262,12 +263,17 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
         updateEmptyState();
     }
 
+    public void removeEntry(UUID uuid) {
+        _adapter.removeEntry(uuid);
+        updateEmptyState();
+    }
+
     public void clearEntries() {
         _adapter.clearEntries();
     }
 
-    public void replaceEntry(VaultEntry oldEntry, VaultEntry newEntry) {
-        _adapter.replaceEntry(oldEntry, newEntry);
+    public void replaceEntry(UUID uuid, VaultEntry newEntry) {
+        _adapter.replaceEntry(uuid, newEntry);
     }
 
     public void runEntriesAnimation() {

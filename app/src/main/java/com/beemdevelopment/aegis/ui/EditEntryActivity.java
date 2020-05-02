@@ -31,7 +31,6 @@ import androidx.appcompat.app.AlertDialog;
 import com.amulyakhare.textdrawable.TextDrawable;
 import com.avito.android.krop.KropView;
 import com.beemdevelopment.aegis.R;
-import com.beemdevelopment.aegis.vault.VaultEntry;
 import com.beemdevelopment.aegis.encoding.Base32;
 import com.beemdevelopment.aegis.encoding.EncodingException;
 import com.beemdevelopment.aegis.helpers.EditTextHelper;
@@ -43,16 +42,18 @@ import com.beemdevelopment.aegis.otp.OtpInfoException;
 import com.beemdevelopment.aegis.otp.SteamInfo;
 import com.beemdevelopment.aegis.otp.TotpInfo;
 import com.beemdevelopment.aegis.util.Cloner;
+import com.beemdevelopment.aegis.vault.VaultEntry;
+import com.beemdevelopment.aegis.vault.VaultManager;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.target.CustomTarget;
 import com.bumptech.glide.request.transition.Transition;
 
 import java.io.ByteArrayOutputStream;
-import java.text.Collator;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.TreeSet;
+import java.util.UUID;
 import java.util.concurrent.atomic.AtomicReference;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -89,10 +90,15 @@ public class EditEntryActivity extends AegisActivity {
     private RelativeLayout _advancedSettingsHeader;
     private RelativeLayout _advancedSettings;
 
+    private VaultManager _vault;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_entry);
+
+        _vault = getApp().getVaultManager();
+        _groups = _vault.getGroups();
 
         ActionBar bar = getSupportActionBar();
         bar.setHomeAsUpIndicator(R.drawable.ic_close);
@@ -100,11 +106,12 @@ public class EditEntryActivity extends AegisActivity {
 
         // retrieve info from the calling activity
         Intent intent = getIntent();
-        _origEntry = (VaultEntry) intent.getSerializableExtra("entry");
-        _isNew = intent.getBooleanExtra("isNew", false);
-        _groups = new TreeSet<>(Collator.getInstance());
-        _groups.addAll(intent.getStringArrayListExtra("groups"));
-        if (_isNew) {
+        UUID entryUUID = (UUID) intent.getSerializableExtra("entryUUID");
+        if (entryUUID != null) {
+            _origEntry = _vault.getEntryByUUID(entryUUID);
+        } else {
+            _origEntry = (VaultEntry) intent.getSerializableExtra("newEntry");
+            _isNew = true;
             setTitle(R.string.add_new_entry);
         }
 
@@ -185,9 +192,8 @@ public class EditEntryActivity extends AegisActivity {
         _spinnerType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String type = _spinnerType.getSelectedItem().toString();
-
-                switch (type.toLowerCase()) {
+                String type = _spinnerType.getSelectedItem().toString().toLowerCase();
+                switch (type) {
                     case TotpInfo.ID:
                     case SteamInfo.ID:
                         _rowCounter.setVisibility(View.GONE);
@@ -251,7 +257,6 @@ public class EditEntryActivity extends AegisActivity {
         // automatically open advanced settings since 'Secret' is required.
         if (_isNew) {
             openAdvancedSettings();
-
             setGroup(selectedGroup);
         }
     }
@@ -264,6 +269,7 @@ public class EditEntryActivity extends AegisActivity {
         int pos = _groups.contains(groupName) ? _groups.headSet(groupName).size() : -1;
         _spinnerGroup.setSelection(pos + 1, false);
     }
+
     private void openAdvancedSettings() {
         Animation fadeOut = new AlphaAnimation(1, 0);
         fadeOut.setInterpolator(new AccelerateInterpolator());
@@ -344,7 +350,7 @@ public class EditEntryActivity extends AegisActivity {
                         return;
                     }
 
-                    finish(entry.get(), false);
+                    addAndFinish(entry.get());
                 },
                 (dialog, which) -> super.onBackPressed()
         );
@@ -361,7 +367,7 @@ public class EditEntryActivity extends AegisActivity {
                 break;
             case R.id.action_delete:
                 Dialogs.showDeleteEntryDialog(this, (dialog, which) -> {
-                    finish(_origEntry, true);
+                    deleteAndFinish(_origEntry);
                 });
                 break;
             case R.id.action_default_icon:
@@ -389,12 +395,30 @@ public class EditEntryActivity extends AegisActivity {
         return true;
     }
 
-    private void finish(VaultEntry entry, boolean delete) {
+    private void addAndFinish(VaultEntry entry) {
+        if (_isNew) {
+            _vault.addEntry(entry);
+        } else {
+            _vault.replaceEntry(entry);
+        }
+
+        saveAndFinish(entry, false);
+    }
+
+    private void deleteAndFinish(VaultEntry entry) {
+        _vault.removeEntry(entry);
+        saveAndFinish(entry, true);
+    }
+
+    private void saveAndFinish(VaultEntry entry, boolean delete) {
         Intent intent = new Intent();
-        intent.putExtra("entry", entry);
+        intent.putExtra("entryUUID", entry.getUUID());
         intent.putExtra("delete", delete);
-        setResult(RESULT_OK, intent);
-        finish();
+
+        if (saveVault()) {
+            setResult(RESULT_OK, intent);
+            finish();
+        }
     }
 
     @Override
@@ -540,7 +564,7 @@ public class EditEntryActivity extends AegisActivity {
             return false;
         }
 
-        finish(entry, false);
+        addAndFinish(entry);
         return true;
     }
 
