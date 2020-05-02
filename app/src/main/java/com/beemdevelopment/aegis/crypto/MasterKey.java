@@ -17,7 +17,7 @@ public class MasterKey implements Serializable {
 
     public MasterKey(SecretKey key)  {
         if (key == null) {
-            throw new NullPointerException();
+            throw new IllegalArgumentException("Key cannot be null");
         }
         _key = key;
     }

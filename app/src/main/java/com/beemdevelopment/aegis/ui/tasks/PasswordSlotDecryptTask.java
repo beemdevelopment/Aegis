@@ -5,41 +5,32 @@ import android.content.Context;
 import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.crypto.CryptoUtils;
 import com.beemdevelopment.aegis.crypto.MasterKey;
-import com.beemdevelopment.aegis.vault.slots.BiometricSlot;
 import com.beemdevelopment.aegis.vault.slots.PasswordSlot;
 import com.beemdevelopment.aegis.vault.slots.Slot;
 import com.beemdevelopment.aegis.vault.slots.SlotException;
 import com.beemdevelopment.aegis.vault.slots.SlotIntegrityException;
-import com.beemdevelopment.aegis.vault.slots.SlotList;
+
+import java.util.List;
 
 import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
 
-public class SlotListTask<T extends Slot> extends ProgressDialogTask<SlotListTask.Params, SlotListTask.Result> {
+public class PasswordSlotDecryptTask extends ProgressDialogTask<PasswordSlotDecryptTask.Params, PasswordSlotDecryptTask.Result> {
     private Callback _cb;
-    private Class<T> _type;
 
-    public SlotListTask(Class<T> type, Context context, Callback cb) {
+    public PasswordSlotDecryptTask(Context context, Callback cb) {
         super(context, context.getString(R.string.unlocking_vault));
         _cb = cb;
-        _type = type;
     }
 
     @Override
-    protected Result doInBackground(SlotListTask.Params... args) {
+    protected Result doInBackground(PasswordSlotDecryptTask.Params... args) {
         setPriority();
 
         Params params = args[0];
-        SlotList slots = params.getSlots();
-
-        for (Slot slot : slots.findAll(_type)) {
+        for (PasswordSlot slot : params.getSlots()) {
             try {
-                if (slot instanceof PasswordSlot) {
-                    char[] password = (char[]) params.getObj();
-                    return decryptPasswordSlot((PasswordSlot) slot, password);
-                } else if (slot instanceof BiometricSlot) {
-                    return decryptBiometricSlot((BiometricSlot) slot, (Cipher) params.getObj());
-                }
+                return decryptPasswordSlot(slot, params.getPassword());
             } catch (SlotException e) {
                 throw new RuntimeException(e);
             } catch (SlotIntegrityException ignored) {
@@ -48,12 +39,6 @@ public class SlotListTask<T extends Slot> extends ProgressDialogTask<SlotListTas
         }
 
         return null;
-    }
-
-    private Result decryptBiometricSlot(BiometricSlot slot, Cipher cipher)
-            throws SlotException, SlotIntegrityException {
-        MasterKey key = slot.getKey(cipher);
-        return new Result(key, slot);
     }
 
     private Result decryptPasswordSlot(PasswordSlot slot, char[] password)
@@ -103,35 +88,35 @@ public class SlotListTask<T extends Slot> extends ProgressDialogTask<SlotListTas
     }
 
     public static class Params {
-        private SlotList _slots;
-        private Object _obj;
+        private List<PasswordSlot> _slots;
+        private char[] _password;
 
-        public Params(SlotList slots, Object obj) {
+        public Params(List<PasswordSlot> slots, char[] password) {
             _slots = slots;
-            _obj = obj;
+            _password = password;
         }
 
-        public SlotList getSlots() {
+        public List<PasswordSlot> getSlots() {
             return _slots;
         }
 
-        public Object getObj() {
-            return _obj;
+        public char[] getPassword() {
+            return _password;
         }
     }
 
     public static class Result {
         private MasterKey _key;
-        private Slot _slot;
+        private PasswordSlot _slot;
         private boolean _repaired;
 
-        public Result(MasterKey key, Slot slot, boolean repaired) {
+        public Result(MasterKey key, PasswordSlot slot, boolean repaired) {
             _key = key;
             _slot = slot;
             _repaired = repaired;
         }
 
-        public Result(MasterKey key, Slot slot) {
+        public Result(MasterKey key, PasswordSlot slot) {
             this(key, slot, false);
         }
 

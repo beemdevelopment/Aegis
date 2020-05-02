@@ -107,7 +107,6 @@ public class ScannerActivity extends AegisActivity implements ZXingScannerView.R
     @Override
     public void handleResult(Result rawResult) {
         try {
-            // parse google auth uri
             GoogleAuthInfo info = GoogleAuthInfo.parseUri(rawResult.getText().trim());
             VaultEntry entry = new VaultEntry(info);
 
@@ -116,10 +115,11 @@ public class ScannerActivity extends AegisActivity implements ZXingScannerView.R
             setResult(RESULT_OK, intent);
             finish();
         } catch (GoogleAuthInfoException e) {
-            Toast.makeText(this, getString(R.string.read_qr_error), Toast.LENGTH_SHORT).show();
+            e.printStackTrace();
+            Dialogs.showErrorDialog(this, R.string.read_qr_error, e, (dialog, which) -> {
+                _scannerView.resumeCameraPreview(this);
+            });
         }
-
-        _scannerView.resumeCameraPreview(this);
     }
 
     private void updateCameraIcon() {

@@ -9,16 +9,16 @@ import com.beemdevelopment.aegis.vault.slots.PasswordSlot;
 
 import javax.crypto.SecretKey;
 
-public class DerivationTask extends ProgressDialogTask<DerivationTask.Params, SecretKey> {
+public class KeyDerivationTask extends ProgressDialogTask<KeyDerivationTask.Params, KeyDerivationTask.Result> {
     private Callback _cb;
 
-    public DerivationTask(Context context, Callback cb) {
+    public KeyDerivationTask(Context context, Callback cb) {
         super(context, context.getString(R.string.encrypting_vault));
         _cb = cb;
     }
 
     @Override
-    protected SecretKey doInBackground(DerivationTask.Params... args) {
+    protected Result doInBackground(KeyDerivationTask.Params... args) {
         setPriority();
 
         Params params = args[0];
@@ -29,13 +29,16 @@ public class DerivationTask extends ProgressDialogTask<DerivationTask.Params, Se
                 CryptoUtils.CRYPTO_SCRYPT_p,
                 salt
         );
-        return params.getSlot().deriveKey(params.getPassword(), scryptParams);
+
+        PasswordSlot slot = params.getSlot();
+        SecretKey key = slot.deriveKey(params.getPassword(), scryptParams);
+        return new Result(slot, key);
     }
 
     @Override
-    protected void onPostExecute(SecretKey key) {
-        super.onPostExecute(key);
-        _cb.onTaskFinished(key);
+    protected void onPostExecute(Result result) {
+        super.onPostExecute(result);
+        _cb.onTaskFinished(result.getSlot(), result.getKey());
     }
 
     public static class Params {
@@ -56,7 +59,25 @@ public class DerivationTask extends ProgressDialogTask<DerivationTask.Params, Se
         }
     }
 
+    public static class Result {
+        private PasswordSlot _slot;
+        private SecretKey _key;
+
+        public Result(PasswordSlot slot, SecretKey key) {
+            _slot = slot;
+            _key = key;
+        }
+
+        public PasswordSlot getSlot() {
+            return _slot;
+        }
+
+        public SecretKey getKey() {
+            return _key;
+        }
+    }
+
     public interface Callback {
-        void onTaskFinished(SecretKey key);
+        void onTaskFinished(PasswordSlot slot, SecretKey key);
     }
 }

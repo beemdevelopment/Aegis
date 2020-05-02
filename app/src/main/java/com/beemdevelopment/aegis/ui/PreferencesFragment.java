@@ -287,7 +287,8 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
                                     try {
                                         _vault.disableEncryption();
                                     } catch (VaultManagerException e) {
-                                        Toast.makeText(getActivity(), R.string.disable_encryption_error, Toast.LENGTH_SHORT).show();
+                                        e.printStackTrace();
+                                        Dialogs.showErrorDialog(getContext(), R.string.disable_encryption_error, e);
                                         return;
                                     }
 
@@ -404,7 +405,8 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
                 try {
                     _vault.backup();
                 } catch (VaultManagerException e) {
-                    Toast.makeText(getContext(), String.format("Error creating backup: %s", e.getMessage()), Toast.LENGTH_LONG).show();
+                    e.printStackTrace();
+                    Dialogs.showErrorDialog(getContext(), R.string.backup_error, e);
                 }
             }
             return true;
@@ -553,7 +555,8 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
 
                         @Override
                         public void onError(Exception e) {
-                            Toast.makeText(getActivity(), R.string.decryption_error, Toast.LENGTH_SHORT).show();
+                            e.printStackTrace();
+                            Dialogs.showErrorDialog(getContext(), R.string.decryption_error, e);
                         }
                     });
                 }
@@ -562,8 +565,7 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
             }
         } catch (DatabaseImporterException e) {
             e.printStackTrace();
-            String msg = String.format("%s: %s", getString(R.string.parsing_file_error), e.getMessage());
-            Toast.makeText(getActivity(), msg, Toast.LENGTH_SHORT).show();
+            Dialogs.showErrorDialog(getContext(), R.string.parsing_file_error, e);
         }
     }
 
@@ -579,7 +581,7 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
             state = ((AegisImporter.EncryptedState) _importerState).decrypt(creds);
         } catch (VaultFileException e) {
             e.printStackTrace();
-            Toast.makeText(getActivity(), R.string.decryption_error, Toast.LENGTH_SHORT).show();
+            Dialogs.showErrorDialog(getContext(), R.string.decryption_error, e);
             return;
         }
 
@@ -601,7 +603,7 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
             Toast.makeText(getActivity(), R.string.file_not_found, Toast.LENGTH_SHORT).show();
         } catch (IOException e) {
             e.printStackTrace();
-            Toast.makeText(getActivity(), R.string.reading_file_error, Toast.LENGTH_SHORT).show();
+            Dialogs.showErrorDialog(getContext(), R.string.reading_file_error, e);
         }
     }
 
@@ -611,8 +613,7 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
             result = state.convert();
         } catch (DatabaseImporterException e) {
             e.printStackTrace();
-            String msg = String.format("%s: %s", getString(R.string.parsing_file_error), e.getMessage());
-            Toast.makeText(getContext(), msg, Toast.LENGTH_LONG).show();
+            Dialogs.showErrorDialog(getContext(), R.string.parsing_file_error, e);
             return;
         }
 
@@ -722,7 +723,8 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
         try (OutputStream stream = getContext().getContentResolver().openOutputStream(uri, "w")) {
             _vault.export(stream, encrypt);
         } catch (IOException | VaultManagerException e) {
-            Toast.makeText(getActivity(), R.string.exporting_vault_error, Toast.LENGTH_SHORT).show();
+            e.printStackTrace();
+            Dialogs.showErrorDialog(getContext(), R.string.exporting_vault_error, e);
             return;
         }
 
@@ -748,7 +750,8 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
         try {
             _vault.save();
         } catch (VaultManagerException e) {
-            Toast.makeText(getActivity(), R.string.saving_error, Toast.LENGTH_LONG).show();
+            e.printStackTrace();
+            Dialogs.showErrorDialog(getContext(), R.string.saving_error, e);
             return false;
         }
 
@@ -832,8 +835,9 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
 
         @Override
         public void onException(Exception e) {
+            e.printStackTrace();
             updateEncryptionPreferences();
-            Toast.makeText(getActivity(), getString(R.string.encryption_set_password_error) + e.getMessage(), Toast.LENGTH_SHORT).show();
+            Dialogs.showErrorDialog(getContext(), R.string.encryption_set_password_error, e);
         }
     }
 
@@ -844,6 +848,7 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
             try {
                 slot.setKey(creds.getKey(), cipher);
             } catch (SlotException e) {
+                e.printStackTrace();
                 onSlotInitializationFailed(0, e.toString());
                 return;
             }
@@ -857,7 +862,7 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
         @Override
         public void onSlotInitializationFailed(int errorCode, @NonNull CharSequence errString) {
             if (!BiometricsHelper.isCanceled(errorCode)) {
-                Toast.makeText(getActivity(), String.format("%s: %s", getString(R.string.encryption_enable_biometrics_error), errString), Toast.LENGTH_LONG).show();
+                Dialogs.showErrorDialog(getContext(), R.string.encryption_enable_biometrics_error, errString);
             }
         }
     }
@@ -882,7 +887,8 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
 
         @Override
         public void onException(Exception e) {
-            Toast.makeText(getActivity(), getString(R.string.encryption_set_password_error) + e.getMessage(), Toast.LENGTH_SHORT).show();
+            e.printStackTrace();
+            Dialogs.showErrorDialog(getContext(), R.string.encryption_set_password_error, e);
         }
     }
 }

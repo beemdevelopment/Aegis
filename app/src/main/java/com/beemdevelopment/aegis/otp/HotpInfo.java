@@ -34,7 +34,7 @@ public class HotpInfo extends OtpInfo {
             OTP otp = HOTP.generateOTP(getSecret(), getAlgorithm(true), getDigits(), getCounter());
             return otp.toString();
         } catch (NoSuchAlgorithmException | InvalidKeyException e) {
-            throw new RuntimeException();
+            throw new RuntimeException(e);
         }
     }
 
