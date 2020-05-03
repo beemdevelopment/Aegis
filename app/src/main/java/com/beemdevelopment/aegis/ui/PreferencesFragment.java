@@ -37,6 +37,7 @@ import com.beemdevelopment.aegis.services.NotificationService;
 import com.beemdevelopment.aegis.ui.models.ImportEntry;
 import com.beemdevelopment.aegis.ui.preferences.SwitchPreference;
 import com.beemdevelopment.aegis.util.UUIDMap;
+import com.beemdevelopment.aegis.vault.VaultBackupManager;
 import com.beemdevelopment.aegis.vault.VaultEntry;
 import com.beemdevelopment.aegis.vault.VaultFileCredentials;
 import com.beemdevelopment.aegis.vault.VaultFileException;
@@ -633,10 +634,13 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity())
                 .setTitle(R.string.pref_export_summary)
                 .setPositiveButton(android.R.string.ok, (dialog, which) -> {
+                    String filename = checked.get() ? VaultManager.FILENAME_EXPORT : VaultManager.FILENAME_EXPORT_PLAIN;
+                    filename = new VaultBackupManager.FileInfo(filename).toString();
+
                     Intent intent = new Intent(Intent.ACTION_CREATE_DOCUMENT)
                             .addCategory(Intent.CATEGORY_OPENABLE)
                             .setType("application/json")
-                            .putExtra(Intent.EXTRA_TITLE, checked.get() ? VaultManager.FILENAME_EXPORT : VaultManager.FILENAME_EXPORT_PLAIN);
+                            .putExtra(Intent.EXTRA_TITLE, filename);
 
                     startActivityForResult(intent, checked.get() ? CODE_EXPORT_ENCRYPT : CODE_EXPORT);
                 })
