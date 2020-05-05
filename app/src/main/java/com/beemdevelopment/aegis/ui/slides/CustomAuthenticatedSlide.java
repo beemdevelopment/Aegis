@@ -15,17 +15,17 @@ import androidx.biometric.BiometricPrompt;
 import androidx.fragment.app.Fragment;
 
 import com.beemdevelopment.aegis.R;
-import com.beemdevelopment.aegis.vault.slots.BiometricSlot;
 import com.beemdevelopment.aegis.helpers.BiometricSlotInitializer;
 import com.beemdevelopment.aegis.helpers.BiometricsHelper;
 import com.beemdevelopment.aegis.helpers.EditTextHelper;
-import com.github.paolorotolo.appintro.ISlidePolicy;
-import com.github.paolorotolo.appintro.ISlideSelectionListener;
+import com.beemdevelopment.aegis.vault.slots.BiometricSlot;
+import com.github.appintro.SlidePolicy;
+import com.github.appintro.SlideSelectionListener;
 import com.google.android.material.snackbar.Snackbar;
 
 import javax.crypto.Cipher;
 
-public class CustomAuthenticatedSlide extends Fragment implements ISlidePolicy, ISlideSelectionListener {
+public class CustomAuthenticatedSlide extends Fragment implements SlidePolicy, SlideSelectionListener {
     private int _cryptType;
     private EditText _textPassword;
     private EditText _textPasswordConfirm;
