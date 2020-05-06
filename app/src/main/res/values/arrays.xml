@@ -38,6 +38,7 @@
         <item>English</item>
         <item>French</item>
         <item>German</item>
+        <item>Hungarian</item>
         <item>Russian</item>
         <item>简体中文</item>
     </string-array>
@@ -48,6 +49,7 @@
         <item>en</item>
         <item>fr</item>
         <item>de</item>
+        <item>hu</item>
         <item>ru</item>
         <item>zh</item>
     </string-array>
