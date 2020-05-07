@@ -237,6 +237,9 @@
             padding: 1em;
             white-space: pre-wrap;
         }
+        a {
+            color: #%4$s;
+        }
     </string>
     <string name="empty_list">There are no codes to be shown. Start adding entries by tapping the plus sign in the bottom right corner</string>
     <string name="empty_list_title">No entries found</string>
