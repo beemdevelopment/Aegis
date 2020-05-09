@@ -2,6 +2,8 @@ package com.beemdevelopment.aegis.ui;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.text.Editable;
@@ -16,17 +18,18 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.NumberPicker;
+import android.widget.TextView;
 
 import androidx.annotation.StringRes;
 import androidx.appcompat.app.AlertDialog;
 
 import com.beemdevelopment.aegis.Preferences;
 import com.beemdevelopment.aegis.R;
+import com.beemdevelopment.aegis.helpers.EditTextHelper;
+import com.beemdevelopment.aegis.ui.tasks.KeyDerivationTask;
 import com.beemdevelopment.aegis.vault.slots.PasswordSlot;
 import com.beemdevelopment.aegis.vault.slots.Slot;
 import com.beemdevelopment.aegis.vault.slots.SlotException;
-import com.beemdevelopment.aegis.helpers.EditTextHelper;
-import com.beemdevelopment.aegis.ui.tasks.DerivationTask;
 
 import java.util.concurrent.atomic.AtomicReference;
 
@@ -123,7 +126,7 @@ public class Dialogs {
 
                 char[] password = EditTextHelper.getEditTextChars(textPassword);
                 PasswordSlot slot = new PasswordSlot();
-                DerivationTask task = new DerivationTask(activity, key -> {
+                KeyDerivationTask task = new KeyDerivationTask(activity, (passSlot, key) -> {
                     Cipher cipher;
                     try {
                         cipher = Slot.createEncryptCipher(key);
@@ -135,7 +138,7 @@ public class Dialogs {
                     listener.onSlotResult(slot, cipher);
                     dialog.dismiss();
                 });
-                task.execute(new DerivationTask.Params(slot, password));
+                task.execute(new KeyDerivationTask.Params(slot, password));
             });
         });
 
@@ -237,6 +240,57 @@ public class Dialogs {
                 .create();
 
         showSecureDialog(dialog);
+    }
+
+    public static void showErrorDialog(Context context, @StringRes int message, Exception e) {
+        showErrorDialog(context, message, e, null);
+    }
+
+    public static void showErrorDialog(Context context, @StringRes int message, CharSequence error) {
+        showErrorDialog(context, message, error, null);
+    }
+
+    public static void showErrorDialog(Context context, @StringRes int message, Exception e, DialogInterface.OnClickListener listener) {
+        showErrorDialog(context, message, e.toString(), listener);
+    }
+
+    public static void showErrorDialog(Context context, @StringRes int message, CharSequence error, DialogInterface.OnClickListener listener) {
+        View view = LayoutInflater.from(context).inflate(R.layout.dialog_error, null);
+        TextView textDetails = view.findViewById(R.id.error_details);
+        textDetails.setText(error);
+        TextView textMessage = view.findViewById(R.id.error_message);
+        textMessage.setText(message);
+
+        AlertDialog dialog = new AlertDialog.Builder(context)
+                .setTitle(R.string.error_occurred)
+                .setView(view)
+                .setPositiveButton(android.R.string.ok, (dialog1, which) -> {
+                    if (listener != null) {
+                        listener.onClick(dialog1, which);
+                    }
+                })
+                .setNeutralButton(R.string.details, (dialog1, which) -> {
+                    textDetails.setVisibility(View.VISIBLE);
+                })
+                .create();
+
+        dialog.setOnShowListener(d -> {
+            Button button = dialog.getButton(AlertDialog.BUTTON_NEUTRAL);
+            button.setOnClickListener(v -> {
+                if (textDetails.getVisibility() == View.GONE) {
+                    textDetails.setVisibility(View.VISIBLE);
+                    button.setText(R.string.copy);
+                } else {
+                    ClipboardManager clipboard = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
+                    if (clipboard != null) {
+                        ClipData clip = ClipData.newPlainText("text/plain", error);
+                        clipboard.setPrimaryClip(clip);
+                    }
+                }
+            });
+        });
+
+        Dialogs.showSecureDialog(dialog);
     }
 
     public interface NumberInputListener {

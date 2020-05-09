@@ -31,7 +31,7 @@ import com.beemdevelopment.aegis.otp.GoogleAuthInfo;
 import com.beemdevelopment.aegis.otp.GoogleAuthInfoException;
 import com.beemdevelopment.aegis.ui.views.EntryListView;
 import com.beemdevelopment.aegis.vault.VaultEntry;
-import com.beemdevelopment.aegis.vault.VaultFileCredentials;
+import com.beemdevelopment.aegis.vault.VaultFile;
 import com.beemdevelopment.aegis.vault.VaultManager;
 import com.beemdevelopment.aegis.vault.VaultManagerException;
 import com.getbase.floatingactionbutton.FloatingActionsMenu;
@@ -160,36 +160,36 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (data == null) {
+        // don't process any activity results if the vault is locked
+        if (requestCode != CODE_DECRYPT && requestCode != CODE_DO_INTRO && _app.isVaultLocked()) {
             return;
         }
 
-        // don't process any activity results if the vault is locked
-        if (requestCode != CODE_DECRYPT && requestCode != CODE_DO_INTRO && _vault.isLocked()) {
+        if (resultCode != RESULT_OK) {
             return;
         }
 
         switch (requestCode) {
             case CODE_SCAN:
-                onScanResult(resultCode, data);
+                onScanResult(data);
                 break;
             case CODE_ADD_ENTRY:
-                onAddEntryResult(resultCode, data);
+                onAddEntryResult(data);
                 break;
             case CODE_EDIT_ENTRY:
-                onEditEntryResult(resultCode, data);
+                onEditEntryResult(data);
                 break;
             case CODE_DO_INTRO:
-                onDoIntroResult(resultCode, data);
+                onDoIntroResult();
                 break;
             case CODE_DECRYPT:
-                onDecryptResult(resultCode, data);
+                onDecryptResult();
                 break;
             case CODE_PREFERENCES:
-                onPreferencesResult(resultCode, data);
+                onPreferencesResult(data);
                 break;
             case CODE_SCAN_IMAGE:
-                onScanImageResult(resultCode, data);
+                onScanImageResult(data);
         }
 
         super.onActivityResult(requestCode, resultCode, data);
@@ -212,7 +212,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         }
     }
 
-    private void onPreferencesResult(int resultCode, Intent data) {
+    private void onPreferencesResult(Intent data) {
         // refresh the entire entry list if needed
         if (data.getBooleanExtra("needsRecreate", false)) {
             recreate();
@@ -246,63 +246,55 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         startActivityForResult(intent, requestCode);
     }
 
-    private void onScanResult(int resultCode, Intent data) {
-        if (resultCode == RESULT_OK) {
-            VaultEntry entry = (VaultEntry) data.getSerializableExtra("entry");
-            startEditEntryActivity(CODE_ADD_ENTRY, entry, true);
-        }
+    private void onScanResult(Intent data) {
+        VaultEntry entry = (VaultEntry) data.getSerializableExtra("entry");
+        startEditEntryActivity(CODE_ADD_ENTRY, entry, true);
     }
 
-    private void onAddEntryResult(int resultCode, Intent data) {
-        if (resultCode == RESULT_OK) {
-            UUID entryUUID = (UUID) data.getSerializableExtra("entryUUID");
+    private void onAddEntryResult(Intent data) {
+        UUID entryUUID = (UUID) data.getSerializableExtra("entryUUID");
+        VaultEntry entry = _vault.getEntryByUUID(entryUUID);
+        _entryListView.addEntry(entry);
+    }
+
+    private void onEditEntryResult(Intent data) {
+        UUID entryUUID = (UUID) data.getSerializableExtra("entryUUID");
+
+        if (data.getBooleanExtra("delete", false)) {
+            _entryListView.removeEntry(entryUUID);
+        } else {
             VaultEntry entry = _vault.getEntryByUUID(entryUUID);
-            _entryListView.addEntry(entry);
+            _entryListView.replaceEntry(entryUUID, entry);
         }
     }
 
-    private void onEditEntryResult(int resultCode, Intent data) {
-        if (resultCode == RESULT_OK) {
-            UUID entryUUID = (UUID) data.getSerializableExtra("entryUUID");
+    private void onScanImageResult(Intent intent) {
+        Uri inputFile = (intent.getData());
+        Bitmap bitmap;
 
-            if (data.getBooleanExtra("delete", false)) {
-                _entryListView.removeEntry(entryUUID);
-            } else {
-                VaultEntry entry = _vault.getEntryByUUID(entryUUID);
-                _entryListView.replaceEntry(entryUUID, entry);
+        try {
+            BitmapFactory.Options bmOptions = new BitmapFactory.Options();
+
+            try (InputStream inputStream = getContentResolver().openInputStream(inputFile)) {
+                bitmap = BitmapFactory.decodeStream(inputStream, null, bmOptions);
             }
-        }
-    }
 
-    private void onScanImageResult(int resultCode, Intent intent) {
-        if (resultCode == RESULT_OK) {
-            Uri inputFile = (intent.getData());
-            Bitmap bitmap;
+            int[] intArray = new int[bitmap.getWidth() * bitmap.getHeight()];
+            bitmap.getPixels(intArray, 0, bitmap.getWidth(), 0, 0, bitmap.getWidth(), bitmap.getHeight());
 
-            try {
-                BitmapFactory.Options bmOptions = new BitmapFactory.Options();
+            LuminanceSource source = new RGBLuminanceSource(bitmap.getWidth(), bitmap.getHeight(), intArray);
+            BinaryBitmap binaryBitmap = new BinaryBitmap(new HybridBinarizer(source));
 
-                try (InputStream inputStream = getContentResolver().openInputStream(inputFile)) {
-                    bitmap = BitmapFactory.decodeStream(inputStream, null, bmOptions);
-                }
+            Reader reader = new MultiFormatReader();
+            Result result = reader.decode(binaryBitmap);
 
-                int[] intArray = new int[bitmap.getWidth() * bitmap.getHeight()];
-                bitmap.getPixels(intArray, 0, bitmap.getWidth(), 0, 0, bitmap.getWidth(), bitmap.getHeight());
+            GoogleAuthInfo info = GoogleAuthInfo.parseUri(result.getText());
+            VaultEntry entry = new VaultEntry(info);
 
-                LuminanceSource source = new RGBLuminanceSource(bitmap.getWidth(), bitmap.getHeight(), intArray);
-                BinaryBitmap binaryBitmap = new BinaryBitmap(new HybridBinarizer(source));
-
-                Reader reader = new MultiFormatReader();
-                Result result = reader.decode(binaryBitmap);
-
-                GoogleAuthInfo info = GoogleAuthInfo.parseUri(result.getText());
-                VaultEntry entry = new VaultEntry(info);
-
-                startEditEntryActivity(CODE_ADD_ENTRY, entry, true);
-            } catch (NotFoundException | IOException | ChecksumException | FormatException | GoogleAuthInfoException e) {
-                Toast.makeText(this, getString(R.string.unable_to_read_qrcode), Toast.LENGTH_SHORT).show();
-                e.printStackTrace();
-            }
+            startEditEntryActivity(CODE_ADD_ENTRY, entry, true);
+        } catch (NotFoundException | IOException | ChecksumException | FormatException | GoogleAuthInfoException e) {
+            e.printStackTrace();
+            Dialogs.showErrorDialog(this, R.string.unable_to_read_qrcode, e);
         }
     }
 
@@ -348,28 +340,14 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         _entryListView.setGroupFilter(group, true);
     }
 
-    private void onDoIntroResult(int resultCode, Intent data) {
-        if (resultCode == IntroActivity.RESULT_EXCEPTION) {
-            // TODO: user feedback
-            Exception e = (Exception) data.getSerializableExtra("exception");
-            throw new RuntimeException(e);
-        }
-
-        VaultFileCredentials creds = (VaultFileCredentials) data.getSerializableExtra("creds");
-        unlockVault(creds);
+    private void onDoIntroResult() {
+        _vault = _app.getVaultManager();
+        loadEntries();
     }
 
-    private void onDecryptResult(int resultCode, Intent intent) {
-        VaultFileCredentials creds = (VaultFileCredentials) intent.getSerializableExtra("creds");
-        boolean unlocked = unlockVault(creds);
-
-        // save the vault in case a slot was repaired
-        if (unlocked && intent.getBooleanExtra("repairedSlot", false)) {
-            _vault.setCredentials(creds);
-            saveVault();
-        }
-
-        doShortcutActions();
+    private void onDecryptResult() {
+        _vault = _app.getVaultManager();
+        loadEntries();
     }
 
     private void startScanActivity() {
@@ -392,7 +370,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
     private void doShortcutActions() {
         Intent intent = getIntent();
         String action = intent.getStringExtra("action");
-        if (action == null || _vault.isLocked()) {
+        if (action == null || _app.isVaultLocked()) {
             return;
         }
 
@@ -406,7 +384,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
     }
 
     private void handleDeeplink() {
-        if (_vault.isLocked()) {
+        if (_app.isVaultLocked()) {
             return;
         }
 
@@ -420,8 +398,8 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
             try {
                 info = GoogleAuthInfo.parseUri(uri);
             } catch (GoogleAuthInfoException e) {
-                Toast.makeText(this, getString(R.string.unable_to_read_qrcode), Toast.LENGTH_SHORT).show();
                 e.printStackTrace();
+                Dialogs.showErrorDialog(this, R.string.unable_to_read_qrcode, e);
             }
 
             if (info != null) {
@@ -435,19 +413,33 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
     protected void onResume() {
         super.onResume();
 
-        if (_vault.isLocked()) {
+        if (_vault == null) {
             // start the intro if the vault file doesn't exist
-            if (!_vault.isLoaded() && !_vault.fileExists()) {
-                // the vault doesn't exist, start the intro
+            if (!VaultManager.fileExists(this)) {
                 if (getPreferences().isIntroDone()) {
                     Toast.makeText(this, getString(R.string.vault_not_found), Toast.LENGTH_SHORT).show();
                 }
                 Intent intro = new Intent(this, IntroActivity.class);
                 startActivityForResult(intro, CODE_DO_INTRO);
                 return;
-            } else {
-                unlockVault(null);
             }
+
+            // read the vault from disk
+            // if this fails, show the error to the user and close the app
+            try {
+                VaultFile vaultFile = _app.loadVaultFile();
+                if (!vaultFile.isEncrypted()) {
+                    _vault = _app.initVaultManager(vaultFile, null);
+                }
+            } catch (VaultManagerException e) {
+                e.printStackTrace();
+                Dialogs.showErrorDialog(this, R.string.vault_load_error, e, (dialog1, which) -> finish());
+                return;
+            }
+        }
+
+        if (_app.isVaultLocked()) {
+            startAuthActivity();
         } else if (_loaded) {
             // update the list of groups in the filter menu
             if (_menu != null) {
@@ -599,32 +591,8 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         _searchView.setIconified(true);
     }
 
-    private boolean unlockVault(VaultFileCredentials creds) {
-        try {
-            if (!_vault.isLoaded()) {
-                _vault.load();
-            }
-            if (_vault.isLocked()) {
-                if (creds == null) {
-                    startAuthActivity();
-                    return false;
-                } else {
-                    _vault.unlock(creds);
-                }
-            }
-        } catch (VaultManagerException e) {
-            Toast.makeText(this, getString(R.string.decryption_error), Toast.LENGTH_LONG).show();
-            startAuthActivity();
-            return false;
-        }
-
-        loadEntries();
-        return true;
-    }
-
     private void loadEntries() {
-        // load all entries
-        List<VaultEntry> entries = new ArrayList<VaultEntry>(_vault.getEntries());
+        List<VaultEntry> entries = new ArrayList<>(_vault.getEntries());
         _entryListView.addEntries(entries);
         _entryListView.runEntriesAnimation();
         _loaded = true;
@@ -632,15 +600,13 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
 
     private void startAuthActivity() {
         Intent intent = new Intent(this, AuthActivity.class);
-        intent.putExtra("slots", _vault.getFileHeader().getSlots());
-        intent.putExtra("requiresUnlock", false);
         intent.putExtra("cancelAction", CancelAction.KILL);
         startActivityForResult(intent, CODE_DECRYPT);
     }
 
     private void updateLockIcon() {
         // hide the lock icon if the vault is not unlocked
-        if (_menu != null && !_vault.isLocked()) {
+        if (_menu != null && !_app.isVaultLocked()) {
             MenuItem item = _menu.findItem(R.id.action_lock);
             item.setVisible(_vault.isEncryptionEnabled());
         }

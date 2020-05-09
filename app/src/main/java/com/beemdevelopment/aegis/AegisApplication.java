@@ -16,7 +16,11 @@ import androidx.annotation.RequiresApi;
 
 import com.beemdevelopment.aegis.services.NotificationService;
 import com.beemdevelopment.aegis.ui.MainActivity;
+import com.beemdevelopment.aegis.vault.Vault;
+import com.beemdevelopment.aegis.vault.VaultFile;
+import com.beemdevelopment.aegis.vault.VaultFileCredentials;
 import com.beemdevelopment.aegis.vault.VaultManager;
+import com.beemdevelopment.aegis.vault.VaultManagerException;
 import com.mikepenz.iconics.Iconics;
 import com.mikepenz.material_design_iconic_typeface_library.MaterialDesignIconic;
 
@@ -25,6 +29,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class AegisApplication extends Application {
+    private VaultFile _vaultFile;
     private VaultManager _manager;
     private Preferences _prefs;
     private List<LockListener> _lockListeners;
@@ -35,7 +40,6 @@ public class AegisApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        _manager = new VaultManager(this);
         _prefs = new Preferences(this);
         _lockListeners = new ArrayList<>();
 
@@ -58,6 +62,47 @@ public class AegisApplication extends Application {
         }
     }
 
+    public boolean isVaultLocked() {
+        return _manager == null;
+    }
+
+    /**
+     * Loads the vault file from disk at the default location, stores an internal
+     * reference to it for future use and returns it. This must only be called before
+     * initVaultManager() or after lock().
+     */
+    public VaultFile loadVaultFile() throws VaultManagerException {
+        if (!isVaultLocked()) {
+            throw new AssertionError("loadVaultFile() may only be called before initVaultManager() or after lock()");
+        }
+
+        if (_vaultFile == null) {
+            _vaultFile = VaultManager.readFile(this);
+        }
+
+        return _vaultFile;
+    }
+
+    /**
+     * Initializes the vault manager by decrypting the given vaultFile with the given
+     * creds. This removes the internal reference to the raw vault file.
+     */
+    public VaultManager initVaultManager(VaultFile vaultFile, VaultFileCredentials creds) throws VaultManagerException {
+        _vaultFile = null;
+        _manager = VaultManager.init(this, vaultFile, creds);
+        return _manager;
+    }
+
+    /**
+     * Initializes the vault manager with the given vault and creds. This removes the
+     * internal reference to the raw vault file.
+     */
+    public VaultManager initVaultManager(Vault vault, VaultFileCredentials creds) {
+        _vaultFile = null;
+        _manager = new VaultManager(this, vault, creds);
+        return _manager;
+    }
+
     public VaultManager getVaultManager() {
         return _manager;
     }
@@ -67,7 +112,7 @@ public class AegisApplication extends Application {
     }
 
     public boolean isAutoLockEnabled() {
-        return _prefs.isAutoLockEnabled() && _manager.isLoaded() && _manager.isEncryptionEnabled() && !_manager.isLocked();
+        return _prefs.isAutoLockEnabled() && _manager.isEncryptionEnabled() && !isVaultLocked();
     }
 
     public void registerLockListener(LockListener listener) {
@@ -79,7 +124,7 @@ public class AegisApplication extends Application {
     }
 
     public void lock() {
-        _manager.lock();
+        _manager = null;
         for (LockListener listener : _lockListeners) {
             listener.onLocked();
         }

@@ -51,7 +51,7 @@ public class SlotHolder extends RecyclerView.ViewHolder {
             _slotName.setText(R.string.authentication_method_raw);
             _slotImg.setImageResource(R.drawable.ic_vpn_key_black_24dp);
         } else {
-            throw new RuntimeException();
+            throw new RuntimeException(String.format("Unsupported Slot type: %s", slot.getClass()));
         }
     }
 

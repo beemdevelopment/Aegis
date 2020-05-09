@@ -2,8 +2,9 @@ package com.beemdevelopment.aegis.crypto;
 
 import android.os.Build;
 import android.security.keystore.KeyGenParameterSpec;
-import android.security.keystore.KeyPermanentlyInvalidatedException;
 import android.security.keystore.KeyProperties;
+
+import androidx.annotation.RequiresApi;
 
 import java.io.IOException;
 import java.security.InvalidAlgorithmParameterException;
@@ -12,6 +13,7 @@ import java.security.KeyStore;
 import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
 import java.security.NoSuchProviderException;
+import java.security.ProviderException;
 import java.security.UnrecoverableKeyException;
 import java.security.cert.CertificateException;
 import java.util.Collections;
@@ -20,8 +22,6 @@ import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;
 import javax.crypto.NoSuchPaddingException;
 import javax.crypto.SecretKey;
-
-import androidx.annotation.RequiresApi;
 
 public class KeyStoreHandle {
     private final KeyStore _keyStore;
@@ -61,6 +61,14 @@ public class KeyStoreHandle {
                     .build());
 
             return generator.generateKey();
+        } catch (ProviderException e) {
+            // a ProviderException can occur at runtime with buggy Keymaster HAL implementations
+            // so if this was caused by a KeyStoreException, throw a KeyStoreHandleException instead
+            Throwable cause = e.getCause();
+            if (cause instanceof KeyStoreException) {
+                throw new KeyStoreHandleException(cause);
+            }
+            throw e;
         } catch (NoSuchAlgorithmException | NoSuchProviderException | InvalidAlgorithmParameterException e) {
             throw new KeyStoreHandleException(e);
         }
@@ -88,18 +96,14 @@ public class KeyStoreHandle {
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     private static boolean isKeyPermanentlyInvalidated(SecretKey key) {
-        // try to initialize a dummy cipher
-        // and see if KeyPermanentlyInvalidatedException is thrown
+        // try to initialize a dummy cipher and see if an InvalidKeyException is thrown
         try {
             Cipher cipher = Cipher.getInstance(CryptoUtils.CRYPTO_AEAD);
             cipher.init(Cipher.ENCRYPT_MODE, key);
-        } catch (NoSuchAlgorithmException | NoSuchPaddingException | InvalidKeyException e) {
-            // apparently KitKat doesn't like KeyPermanentlyInvalidatedException, even when guarded with a version check
-            // it will throw a java.lang.VerifyError when its listed in a 'catch' statement
-            // so instead, check for it here
-            if (e instanceof KeyPermanentlyInvalidatedException) {
-                return true;
-            }
+        } catch (InvalidKeyException e) {
+            // some devices throw a plain InvalidKeyException, not KeyPermanentlyInvalidatedException
+            return true;
+        } catch (NoSuchAlgorithmException | NoSuchPaddingException e) {
             throw new RuntimeException(e);
         }
 

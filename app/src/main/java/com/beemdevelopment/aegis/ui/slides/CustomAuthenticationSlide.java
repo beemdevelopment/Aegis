@@ -78,7 +78,7 @@ public class CustomAuthenticationSlide extends Fragment implements SlidePolicy, 
                 id = CRYPT_TYPE_BIOMETRIC;
                 break;
             default:
-                throw new RuntimeException();
+                throw new RuntimeException(String.format("Unsupported security setting: %d", i));
         }
 
         Intent intent = getActivity().getIntent();

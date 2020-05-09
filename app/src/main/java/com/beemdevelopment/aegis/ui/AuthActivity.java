@@ -20,34 +20,45 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.biometric.BiometricPrompt;
 
+import com.beemdevelopment.aegis.AegisApplication;
 import com.beemdevelopment.aegis.CancelAction;
 import com.beemdevelopment.aegis.Preferences;
 import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.crypto.KeyStoreHandle;
 import com.beemdevelopment.aegis.crypto.KeyStoreHandleException;
+import com.beemdevelopment.aegis.crypto.MasterKey;
 import com.beemdevelopment.aegis.helpers.BiometricsHelper;
 import com.beemdevelopment.aegis.helpers.EditTextHelper;
 import com.beemdevelopment.aegis.helpers.UiThreadExecutor;
-import com.beemdevelopment.aegis.ui.tasks.SlotListTask;
+import com.beemdevelopment.aegis.ui.tasks.PasswordSlotDecryptTask;
+import com.beemdevelopment.aegis.vault.VaultFile;
 import com.beemdevelopment.aegis.vault.VaultFileCredentials;
+import com.beemdevelopment.aegis.vault.VaultManager;
+import com.beemdevelopment.aegis.vault.VaultManagerException;
 import com.beemdevelopment.aegis.vault.slots.BiometricSlot;
 import com.beemdevelopment.aegis.vault.slots.PasswordSlot;
 import com.beemdevelopment.aegis.vault.slots.Slot;
 import com.beemdevelopment.aegis.vault.slots.SlotException;
+import com.beemdevelopment.aegis.vault.slots.SlotIntegrityException;
 import com.beemdevelopment.aegis.vault.slots.SlotList;
+
+import java.util.List;
 
 import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
 
-public class AuthActivity extends AegisActivity implements SlotListTask.Callback {
+public class AuthActivity extends AegisActivity {
     private EditText _textPassword;
 
     private CancelAction _cancelAction;
     private SlotList _slots;
-    private BiometricPrompt.CryptoObject _bioCryptoObj;
+
+    private SecretKey _bioKey;
+    private BiometricSlot _bioSlot;
     private BiometricPrompt _bioPrompt;
 
     private Preferences _prefs;
+    private boolean _stateless;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,8 +78,21 @@ public class AuthActivity extends AegisActivity implements SlotListTask.Callback
         });
 
         Intent intent = getIntent();
-        _slots = (SlotList) intent.getSerializableExtra("slots");
         _cancelAction = (CancelAction) intent.getSerializableExtra("cancelAction");
+        _slots = (SlotList) intent.getSerializableExtra("slots");
+        _stateless = _slots != null;
+        if (!_stateless) {
+            VaultFile vaultFile;
+            try {
+                vaultFile = getApp().loadVaultFile();
+            } catch (VaultManagerException e) {
+                e.printStackTrace();
+                Dialogs.showErrorDialog(this, R.string.vault_load_error, e, (dialog, which) -> onBackPressed());
+                return;
+            }
+
+            _slots = vaultFile.getHeader().getSlots();
+        }
 
         // only show the biometric prompt if the api version is new enough, permission is granted, a scanner is found and a biometric slot is found
         if (_slots.has(BiometricSlot.class) && BiometricsHelper.isAvailable(this)) {
@@ -87,16 +111,16 @@ public class AuthActivity extends AegisActivity implements SlotListTask.Callback
                             continue;
                         }
 
-                        Cipher cipher = slot.createDecryptCipher(key);
-                        _bioCryptoObj = new BiometricPrompt.CryptoObject(cipher);
-                        _bioPrompt = new BiometricPrompt(this, new UiThreadExecutor(), new BiometricPromptListener());
+                        _bioSlot = slot;
+                        _bioKey = key;
                         biometricsButton.setVisibility(View.VISIBLE);
                         invalidated = false;
                         break;
                     }
                 }
-            } catch (KeyStoreHandleException | SlotException e) {
-                throw new RuntimeException(e);
+            } catch (KeyStoreHandleException e) {
+                e.printStackTrace();
+                Dialogs.showErrorDialog(this, R.string.biometric_init_error, e);
             }
 
             // display a help message if a matching invalidated keystore entry was found
@@ -105,34 +129,19 @@ public class AuthActivity extends AegisActivity implements SlotListTask.Callback
             }
         }
 
-        decryptButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
-                imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+        decryptButton.setOnClickListener(v -> {
+            InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
 
-                char[] password = EditTextHelper.getEditTextChars(_textPassword);
-                trySlots(PasswordSlot.class, password);
-            }
+            char[] password = EditTextHelper.getEditTextChars(_textPassword);
+            List<PasswordSlot> slots = _slots.findAll(PasswordSlot.class);
+            PasswordSlotDecryptTask.Params params = new PasswordSlotDecryptTask.Params(slots, password);
+            new PasswordSlotDecryptTask(AuthActivity.this, new PasswordDerivationListener()).execute(params);
         });
 
         biometricsButton.setOnClickListener(v -> {
             showBiometricPrompt();
         });
-    }
-
-    private void showError() {
-        Dialogs.showSecureDialog(new AlertDialog.Builder(this)
-                .setTitle(getString(R.string.unlock_vault_error))
-                .setMessage(getString(R.string.unlock_vault_error_description))
-                .setCancelable(false)
-                .setPositiveButton(android.R.string.ok, (dialog, which) -> selectPassword())
-                .create());
-    }
-
-    private <T extends Slot> void trySlots(Class<T> type, Object obj) {
-        SlotListTask.Params params = new SlotListTask.Params(_slots, obj);
-        new SlotListTask<>(type, this, this).execute(params);
     }
 
     private void selectPassword() {
@@ -147,10 +156,7 @@ public class AuthActivity extends AegisActivity implements SlotListTask.Callback
         switch (_cancelAction) {
             case KILL:
                 finishAffinity();
-
             case CLOSE:
-                Intent intent = new Intent();
-                setResult(RESULT_CANCELED, intent);
                 finish();
         }
     }
@@ -159,7 +165,7 @@ public class AuthActivity extends AegisActivity implements SlotListTask.Callback
     public void onResume() {
         super.onResume();
 
-        if (_bioPrompt != null) {
+        if (_bioKey != null) {
             if (_prefs.isPasswordReminderNeeded()) {
                 focusPasswordField();
             } else {
@@ -195,12 +201,24 @@ public class AuthActivity extends AegisActivity implements SlotListTask.Callback
     }
 
     public void showBiometricPrompt() {
+        Cipher cipher;
+        try {
+            cipher = _bioSlot.createDecryptCipher(_bioKey);
+        } catch (SlotException e) {
+            e.printStackTrace();
+            Dialogs.showErrorDialog(this, R.string.biometric_init_error, e);
+            return;
+        }
+
+        BiometricPrompt.CryptoObject cryptoObj = new BiometricPrompt.CryptoObject(cipher);
+        _bioPrompt = new BiometricPrompt(this, new UiThreadExecutor(), new BiometricPromptListener());
+
         BiometricPrompt.PromptInfo info = new BiometricPrompt.PromptInfo.Builder()
                 .setTitle(getString(R.string.authentication))
                 .setNegativeButtonText(getString(android.R.string.cancel))
                 .setConfirmationRequired(false)
                 .build();
-        _bioPrompt.authenticate(info, _bioCryptoObj);
+        _bioPrompt.authenticate(info, cryptoObj);
     }
 
     @Override
@@ -212,26 +230,56 @@ public class AuthActivity extends AegisActivity implements SlotListTask.Callback
         }
     }
 
-    @Override
-    public void onTaskFinished(SlotListTask.Result result) {
-        if (result != null) {
-            // replace the old slot with the repaired one
-            if (result.isSlotRepaired()) {
-                _slots.replace(result.getSlot());
-            }
+    private void finish(MasterKey key, boolean isSlotRepaired) {
+        VaultFileCredentials creds = new VaultFileCredentials(key, _slots);
 
-            if (result.getSlot().getType() == Slot.TYPE_DERIVED) {
-                _prefs.resetPasswordReminderTimestamp();
-            }
-
-            // send the master key back to the main activity
+        if (_stateless) {
+            // send the master key back to the calling activity
             Intent intent = new Intent();
-            intent.putExtra("creds", new VaultFileCredentials(result.getKey(), _slots));
-            intent.putExtra("repairedSlot", result.isSlotRepaired());
+            intent.putExtra("creds", creds);
             setResult(RESULT_OK, intent);
-            finish();
         } else {
-            showError();
+            try {
+                AegisApplication app = getApp();
+                VaultManager vault = app.initVaultManager(app.loadVaultFile(), creds);
+                if (isSlotRepaired) {
+                    vault.setCredentials(creds);
+                    saveVault();
+                }
+            } catch (VaultManagerException e) {
+                e.printStackTrace();
+                Dialogs.showErrorDialog(this, R.string.decryption_corrupt_error, e);
+                return;
+            }
+
+            setResult(RESULT_OK);
+        }
+
+        finish();
+    }
+
+    private class PasswordDerivationListener implements PasswordSlotDecryptTask.Callback {
+        @Override
+        public void onTaskFinished(PasswordSlotDecryptTask.Result result) {
+            if (result != null) {
+                // replace the old slot with the repaired one
+                if (result.isSlotRepaired()) {
+                    _slots.replace(result.getSlot());
+                }
+
+                if (result.getSlot().getType() == Slot.TYPE_DERIVED) {
+                    _prefs.resetPasswordReminderTimestamp();
+                }
+
+                finish(result.getKey(), result.isSlotRepaired());
+            } else {
+                Dialogs.showSecureDialog(new AlertDialog.Builder(AuthActivity.this)
+                        .setTitle(getString(R.string.unlock_vault_error))
+                        .setMessage(getString(R.string.unlock_vault_error_description))
+                        .setCancelable(false)
+                        .setPositiveButton(android.R.string.ok, (dialog, which) -> selectPassword())
+                        .create());
+            }
         }
     }
 
@@ -247,7 +295,19 @@ public class AuthActivity extends AegisActivity implements SlotListTask.Callback
         @Override
         public void onAuthenticationSucceeded(@NonNull BiometricPrompt.AuthenticationResult result) {
             super.onAuthenticationSucceeded(result);
-            trySlots(BiometricSlot.class, _bioCryptoObj.getCipher());
+
+            MasterKey key;
+            BiometricSlot slot = _slots.find(BiometricSlot.class);
+
+            try {
+                key = slot.getKey(result.getCryptoObject().getCipher());
+            } catch (SlotException | SlotIntegrityException e) {
+                e.printStackTrace();
+                Dialogs.showErrorDialog(AuthActivity.this, R.string.biometric_decrypt_error, e);
+                return;
+            }
+
+            finish(key, false);
         }
 
         @Override

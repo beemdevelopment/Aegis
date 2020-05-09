@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.biometric.BiometricPrompt;
@@ -18,22 +17,29 @@ import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.helpers.BiometricSlotInitializer;
 import com.beemdevelopment.aegis.helpers.BiometricsHelper;
 import com.beemdevelopment.aegis.helpers.EditTextHelper;
+import com.beemdevelopment.aegis.ui.Dialogs;
+import com.beemdevelopment.aegis.ui.IntroActivity;
+import com.beemdevelopment.aegis.ui.tasks.KeyDerivationTask;
+import com.beemdevelopment.aegis.vault.VaultFileCredentials;
 import com.beemdevelopment.aegis.vault.slots.BiometricSlot;
+import com.beemdevelopment.aegis.vault.slots.PasswordSlot;
+import com.beemdevelopment.aegis.vault.slots.Slot;
+import com.beemdevelopment.aegis.vault.slots.SlotException;
 import com.github.appintro.SlidePolicy;
 import com.github.appintro.SlideSelectionListener;
 import com.google.android.material.snackbar.Snackbar;
 
 import javax.crypto.Cipher;
+import javax.crypto.SecretKey;
 
 public class CustomAuthenticatedSlide extends Fragment implements SlidePolicy, SlideSelectionListener {
-    private int _cryptType;
+    private int _bgColor;
     private EditText _textPassword;
     private EditText _textPasswordConfirm;
     private CheckBox _checkPasswordVisibility;
-    private int _bgColor;
 
-    private BiometricSlot _bioSlot;
-    private Cipher _bioCipher;
+    private int _cryptType;
+    private VaultFileCredentials _creds;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -54,6 +60,7 @@ public class CustomAuthenticatedSlide extends Fragment implements SlidePolicy, S
             }
         });
 
+        _creds = new VaultFileCredentials();
         view.findViewById(R.id.main).setBackgroundColor(_bgColor);
         return view;
     }
@@ -62,23 +69,15 @@ public class CustomAuthenticatedSlide extends Fragment implements SlidePolicy, S
         return _cryptType;
     }
 
-    public BiometricSlot getBiometricSlot() {
-        return _bioSlot;
-    }
-
-    public Cipher getBiometriCipher() {
-        return _bioCipher;
-    }
-
-    public char[] getPassword() {
-        return EditTextHelper.getEditTextChars(_textPassword);
+    public VaultFileCredentials getCredentials() {
+        return _creds;
     }
 
     public void setBgColor(int color) {
         _bgColor = color;
     }
 
-    public void showBiometricPrompt() {
+    private void showBiometricPrompt() {
         BiometricSlotInitializer initializer = new BiometricSlotInitializer(this, new BiometricsListener());
         BiometricPrompt.PromptInfo info = new BiometricPrompt.PromptInfo.Builder()
                 .setTitle(getString(R.string.set_up_biometric))
@@ -87,14 +86,16 @@ public class CustomAuthenticatedSlide extends Fragment implements SlidePolicy, S
         initializer.authenticate(info);
     }
 
+    private void deriveKey() {
+        PasswordSlot slot = new PasswordSlot();
+        KeyDerivationTask.Params params = new KeyDerivationTask.Params(slot, EditTextHelper.getEditTextChars(_textPassword));
+        new KeyDerivationTask(getContext(), new PasswordDerivationListener()).execute(params);
+    }
+
     @Override
     public void onSlideSelected() {
         Intent intent = getActivity().getIntent();
         _cryptType = intent.getIntExtra("cryptType", CustomAuthenticationSlide.CRYPT_TYPE_INVALID);
-
-        if (_cryptType == CustomAuthenticationSlide.CRYPT_TYPE_BIOMETRIC) {
-            showBiometricPrompt();
-        }
     }
 
     @Override
@@ -108,13 +109,13 @@ public class CustomAuthenticatedSlide extends Fragment implements SlidePolicy, S
             case CustomAuthenticationSlide.CRYPT_TYPE_NONE:
                 return true;
             case CustomAuthenticationSlide.CRYPT_TYPE_BIOMETRIC:
-                if (_bioSlot == null) {
+                if (!_creds.getSlots().has(BiometricSlot.class)) {
                     return false;
                 }
                 // intentional fallthrough
             case CustomAuthenticationSlide.CRYPT_TYPE_PASS:
-                if (EditTextHelper.getEditTextChars(_textPassword).length > 0) {
-                    return EditTextHelper.areEditTextsEqual(_textPassword, _textPasswordConfirm);
+                if (EditTextHelper.areEditTextsEqual(_textPassword, _textPasswordConfirm)) {
+                    return _creds.getSlots().has(PasswordSlot.class);
                 }
 
                 return false;
@@ -134,23 +135,49 @@ public class CustomAuthenticatedSlide extends Fragment implements SlidePolicy, S
                 Snackbar snackbar = Snackbar.make(view, message, Snackbar.LENGTH_LONG);
                 snackbar.show();
             }
-        } else if (_bioSlot == null) {
+        } else if (_cryptType != CustomAuthenticationSlide.CRYPT_TYPE_BIOMETRIC) {
+            deriveKey();
+        } else if (!_creds.getSlots().has(BiometricSlot.class)) {
             showBiometricPrompt();
         }
     }
 
-    private class BiometricsListener implements BiometricSlotInitializer.Listener {
+    private class PasswordDerivationListener implements KeyDerivationTask.Callback {
+        @Override
+        public void onTaskFinished(PasswordSlot slot, SecretKey key) {
+            try {
+                Cipher cipher = Slot.createEncryptCipher(key);
+                slot.setKey(_creds.getKey(), cipher);
+                _creds.getSlots().add(slot);
+            } catch (SlotException e) {
+                e.printStackTrace();
+                Dialogs.showErrorDialog(getContext(), R.string.enable_encryption_error, e);
+                return;
+            }
 
+            ((IntroActivity) getActivity()).goToNextSlide();
+        }
+    }
+
+    private class BiometricsListener implements BiometricSlotInitializer.Listener {
         @Override
         public void onInitializeSlot(BiometricSlot slot, Cipher cipher) {
-            _bioSlot = slot;
-            _bioCipher = cipher;
+            try {
+                slot.setKey(_creds.getKey(), cipher);
+                _creds.getSlots().add(slot);
+            } catch (SlotException e) {
+                e.printStackTrace();
+                onSlotInitializationFailed(0, e.toString());
+                return;
+            }
+
+            deriveKey();
         }
 
         @Override
         public void onSlotInitializationFailed(int errorCode, @NonNull CharSequence errString) {
             if (!BiometricsHelper.isCanceled(errorCode)) {
-                Toast.makeText(CustomAuthenticatedSlide.this.getContext(), errString, Toast.LENGTH_LONG).show();
+                Dialogs.showErrorDialog(getContext(), R.string.encryption_enable_biometrics_error, errString);
             }
         }
     }

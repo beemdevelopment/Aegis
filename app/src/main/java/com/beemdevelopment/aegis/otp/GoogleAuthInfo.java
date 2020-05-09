@@ -35,7 +35,7 @@ public class GoogleAuthInfo {
             builder.authority("hotp");
             builder.appendQueryParameter("counter", Long.toString(((HotpInfo)_info).getCounter()));
         } else {
-            throw new RuntimeException();
+            throw new RuntimeException(String.format("Unsupported OtpInfo type: %s", _info.getClass()));
         }
 
         builder.appendQueryParameter("digits", Integer.toString(_info.getDigits()));
@@ -55,7 +55,7 @@ public class GoogleAuthInfo {
     public static GoogleAuthInfo parseUri(String s) throws GoogleAuthInfoException {
         Uri uri = Uri.parse(s);
         if (uri == null) {
-            throw new GoogleAuthInfoException("bad uri format");
+            throw new GoogleAuthInfoException(String.format("Bad URI format: %s", s));
         }
         return GoogleAuthInfo.parseUri(uri);
     }
@@ -63,13 +63,13 @@ public class GoogleAuthInfo {
     public static GoogleAuthInfo parseUri(Uri uri) throws GoogleAuthInfoException {
         String scheme = uri.getScheme();
         if (scheme == null || !scheme.equals("otpauth")) {
-            throw new GoogleAuthInfoException("unsupported protocol");
+            throw new GoogleAuthInfoException("Unsupported protocol");
         }
 
         // 'secret' is a required parameter
         String encodedSecret = uri.getQueryParameter("secret");
         if (encodedSecret == null) {
-            throw new GoogleAuthInfoException("'secret' is not set");
+            throw new GoogleAuthInfoException("Parameter 'secret' is not present");
         }
 
         // decode secret
@@ -77,13 +77,17 @@ public class GoogleAuthInfo {
         try {
             secret = Base32.decode(encodedSecret);
         } catch (EncodingException e) {
-            throw new GoogleAuthInfoException("bad secret", e);
+            throw new GoogleAuthInfoException("Bad secret", e);
         }
 
         // check the otp type
         OtpInfo info;
         try {
             String type = uri.getHost();
+            if (type == null) {
+                throw new GoogleAuthInfoException(String.format("Host not present in URI: %s", uri.toString()));
+            }
+
             switch (type) {
                 case "totp":
                     TotpInfo totpInfo = new TotpInfo(secret);
@@ -105,13 +109,13 @@ public class GoogleAuthInfo {
                     HotpInfo hotpInfo = new HotpInfo(secret);
                     String counter = uri.getQueryParameter("counter");
                     if (counter == null) {
-                        throw new GoogleAuthInfoException("'counter' was not set");
+                        throw new GoogleAuthInfoException("Parameter 'counter' is not present");
                     }
                     hotpInfo.setCounter(Long.parseLong(counter));
                     info = hotpInfo;
                     break;
                 default:
-                    throw new GoogleAuthInfoException(String.format("unsupported otp type: %s", type));
+                    throw new GoogleAuthInfoException(String.format("Unsupported OTP type: %s", type));
             }
         } catch (OtpInfoException | NumberFormatException e) {
             throw new GoogleAuthInfoException(e);
