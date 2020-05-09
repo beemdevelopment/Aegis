@@ -54,7 +54,7 @@
             android:gravity="bottom"
             android:id="@+id/relativeLayout"
             android:layout_alignParentStart="false"
-            android:paddingTop="12dp"
+            android:paddingTop="18dp"
             android:paddingBottom="16dp"
             android:paddingEnd="16dp"
             android:paddingLeft="16dp"
@@ -72,28 +72,28 @@
                 android:layout_alignLeft="@+id/profile_code"
                 android:layout_alignStart="@+id/profile_code"
                 android:textColor="?attr/secondaryText"
-                android:textSize="15sp"
+                android:textSize="16sp"
                 android:visibility="invisible" />
 
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/description"
-                android:layout_below="@+id/profile_code"
                 android:layout_alignLeft="@+id/profile_code"
                 android:layout_alignStart="@+id/profile_code">
 
 
                 <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/profile_issuer"
-                android:text="@string/issuer"
-                android:textColor="?attr/secondaryText"
-                android:includeFontPadding="false"
-                android:textSize="15sp"
-                android:ellipsize="end"
-                android:maxLines="1"/>
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/profile_issuer"
+                    android:text="@string/issuer"
+                    android:textStyle="bold"
+                    android:textColor="?attr/primaryText"
+                    android:includeFontPadding="false"
+                    android:textSize="16sp"
+                    android:ellipsize="end"
+                    android:maxLines="1"/>
 
             <TextView
                 android:id="@+id/profile_account_name"
@@ -103,8 +103,8 @@
                 android:ellipsize="end"
                 android:includeFontPadding="false"
                 android:maxLines="1"
-                android:textColor="@color/extra_info_text"
-                android:textSize="15sp"
+                android:textColor="@color/secondary_text"
+                android:textSize="16sp"
                 tools:text=" - AccountName" />
 
             </RelativeLayout>
@@ -117,12 +117,12 @@
                 android:fontFamily="sans-serif-light"
                 tools:text="012 345"
                 android:id="@+id/profile_code"
+                android:layout_below="@id/description"
                 android:includeFontPadding="false"
                 android:textSize="34sp"
                 android:textColor="?attr/codePrimaryText"
                 android:layout_marginLeft="6dp"
                 android:layout_marginStart="6dp"
-                android:layout_alignParentTop="true"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:layout_marginTop="0dp"

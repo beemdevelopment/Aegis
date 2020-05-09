@@ -8,7 +8,7 @@
     <color name="colorAccent">#FF5252</color>
     <color name="colorAccentPressed">#FF5252</color>
     <color name="primary_text">#212121</color>
-    <color name="secondary_text">#757575</color>
+    <color name="secondary_text">#A0A0A0</color>
     <color name="icon_about">#757575</color>
     <color name="extra_info_text">#8e8e8e</color>
     <color name="primary_text_inverted">#ffffff</color>
@@ -24,7 +24,7 @@
     <color name="icon_primary_dark">#ffffff</color>
     <color name="icon_primary_dark_inverted">#212121</color>
 
-    <color name="code_primary_text">#0d47a1</color>
+    <color name="code_primary_text">#1058C9</color>
     <color name="code_primary_text_dark">#ffffff</color>
 
     <color name="card_background_dark">#363636</color>
