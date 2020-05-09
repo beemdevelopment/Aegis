@@ -44,16 +44,27 @@ android {
 
     buildTypes {
         debug {
-            minifyEnabled false
             applicationIdSuffix ".debug"
             manifestPlaceholders = [title: "AegisDev", iconName: "ic_launcher_debug"]
             resValue "bool", "pref_secure_screen_default", "false"
+            postprocessing {
+                removeUnusedCode true
+                removeUnusedResources true
+                obfuscate false
+                optimizeCode false
+                proguardFiles getDefaultProguardFile('proguard-defaults.txt'), 'proguard-rules.pro'
+            }
         }
         release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             manifestPlaceholders = [title: "Aegis", iconName: "ic_launcher"]
             resValue "bool", "pref_secure_screen_default", "true"
+            postprocessing {
+                removeUnusedCode true
+                removeUnusedResources true
+                obfuscate false
+                optimizeCode true
+                proguardFiles getDefaultProguardFile('proguard-defaults.txt'), 'proguard-rules.pro'
+            }
         }
     }
 
