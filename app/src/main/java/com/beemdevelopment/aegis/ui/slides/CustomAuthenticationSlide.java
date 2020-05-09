@@ -13,10 +13,10 @@ import androidx.fragment.app.Fragment;
 
 import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.helpers.BiometricsHelper;
-import com.github.paolorotolo.appintro.ISlidePolicy;
+import com.github.appintro.SlidePolicy;
 import com.google.android.material.snackbar.Snackbar;
 
-public class CustomAuthenticationSlide extends Fragment implements ISlidePolicy, RadioGroup.OnCheckedChangeListener {
+public class CustomAuthenticationSlide extends Fragment implements SlidePolicy, RadioGroup.OnCheckedChangeListener {
     public static final int CRYPT_TYPE_INVALID = 0;
     public static final int CRYPT_TYPE_NONE = 1;
     public static final int CRYPT_TYPE_PASS = 2;

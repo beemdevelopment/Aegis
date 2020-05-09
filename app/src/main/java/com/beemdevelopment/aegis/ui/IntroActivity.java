@@ -8,6 +8,9 @@ import androidx.fragment.app.Fragment;
 
 import com.beemdevelopment.aegis.Preferences;
 import com.beemdevelopment.aegis.R;
+import com.beemdevelopment.aegis.ui.slides.CustomAuthenticatedSlide;
+import com.beemdevelopment.aegis.ui.slides.CustomAuthenticationSlide;
+import com.beemdevelopment.aegis.ui.tasks.DerivationTask;
 import com.beemdevelopment.aegis.vault.Vault;
 import com.beemdevelopment.aegis.vault.VaultFile;
 import com.beemdevelopment.aegis.vault.VaultFileCredentials;
@@ -18,12 +21,9 @@ import com.beemdevelopment.aegis.vault.slots.BiometricSlot;
 import com.beemdevelopment.aegis.vault.slots.PasswordSlot;
 import com.beemdevelopment.aegis.vault.slots.Slot;
 import com.beemdevelopment.aegis.vault.slots.SlotException;
-import com.beemdevelopment.aegis.ui.slides.CustomAuthenticatedSlide;
-import com.beemdevelopment.aegis.ui.slides.CustomAuthenticationSlide;
-import com.beemdevelopment.aegis.ui.tasks.DerivationTask;
-import com.github.paolorotolo.appintro.AppIntro2;
-import com.github.paolorotolo.appintro.AppIntroFragment;
-import com.github.paolorotolo.appintro.model.SliderPage;
+import com.github.appintro.AppIntro2;
+import com.github.appintro.AppIntroFragment;
+import com.github.appintro.model.SliderPage;
 
 import org.json.JSONObject;
 
@@ -56,10 +56,9 @@ public class IntroActivity extends AppIntro2 implements DerivationTask.Callback 
         }
 
         setWizardMode(true);
-        showSkipButton(false);
-        pager.setPagingEnabled(false);
-        //showPagerIndicator(false);
-        setGoBackLock(true);
+        setSkipButtonEnabled(false);
+        showStatusBar(true);
+        setSystemBackButtonLocked(true);
         setBarColor(getResources().getColor(R.color.colorPrimary));
 
         SliderPage homeSliderPage = new SliderPage();
@@ -67,13 +66,12 @@ public class IntroActivity extends AppIntro2 implements DerivationTask.Callback 
         homeSliderPage.setImageDrawable(R.drawable.app_icon);
         homeSliderPage.setTitleColor(getResources().getColor(R.color.primary_text_dark));
         homeSliderPage.setDescription(getString(R.string.app_description));
-        homeSliderPage.setDescColor(getResources().getColor(R.color.primary_text_dark));
-        homeSliderPage.setBgColor(getResources().getColor(R.color.colorSecondary));
+        homeSliderPage.setDescriptionColor(getResources().getColor(R.color.primary_text_dark));
+        homeSliderPage.setBackgroundColor(getResources().getColor(R.color.colorSecondary));
         addSlide(AppIntroFragment.newInstance(homeSliderPage));
 
         _authenticationSlide = new CustomAuthenticationSlide();
         _authenticationSlide.setBgColor(getResources().getColor(R.color.colorSecondary));
-        //_authenticationSlide.setDescColor(getResources().getColor(R.color.primary_text_dark));
         addSlide(_authenticationSlide);
         _authenticatedSlide = new CustomAuthenticatedSlide();
         _authenticatedSlide.setBgColor(getResources().getColor(R.color.colorSecondary));
@@ -83,7 +81,7 @@ public class IntroActivity extends AppIntro2 implements DerivationTask.Callback 
         endSliderPage.setTitle(getString(R.string.setup_completed));
         endSliderPage.setDescription(getString(R.string.setup_completed_description));
         endSliderPage.setImageDrawable(R.drawable.app_icon);
-        endSliderPage.setBgColor(getResources().getColor(R.color.colorSecondary));
+        endSliderPage.setBackgroundColor(getResources().getColor(R.color.colorSecondary));
         _endSlide = AppIntroFragment.newInstance(endSliderPage);
         addSlide(_endSlide);
 
@@ -111,9 +109,11 @@ public class IntroActivity extends AppIntro2 implements DerivationTask.Callback 
             // skip to the last slide if no encryption will be used
             if (cryptType == CustomAuthenticationSlide.CRYPT_TYPE_NONE) {
                 // TODO: no magic indices
-                getPager().setCurrentItem(4);
+                goToNextSlide(false);
             }
         }
+
+        setSwipeLock(true);
     }
 
     @Override
