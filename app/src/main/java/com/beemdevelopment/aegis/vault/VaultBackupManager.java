@@ -41,7 +41,7 @@ public class VaultBackupManager {
     }
 
     public void create(Uri dirUri, int versionsToKeep) throws VaultManagerException {
-        FileInfo fileInfo = new FileInfo(FILENAME_PREFIX, Calendar.getInstance().getTime());
+        FileInfo fileInfo = new FileInfo(FILENAME_PREFIX);
         DocumentFile dir = DocumentFile.fromTreeUri(_context, dirUri);
 
         Log.i(TAG, String.format("Creating backup at %s: %s", Uri.decode(dir.getUri().toString()), fileInfo.toString()));
@@ -112,13 +112,17 @@ public class VaultBackupManager {
         }
     }
 
-    private static class FileInfo {
+    public static class FileInfo {
         private String _filename;
         private Date _date;
 
         public FileInfo(String filename, Date date) {
             _filename = filename;
             _date = date;
+        }
+
+        public FileInfo(String filename) {
+            this(filename, Calendar.getInstance().getTime());
         }
 
         public static FileInfo parseFilename(String filename) throws ParseException {
