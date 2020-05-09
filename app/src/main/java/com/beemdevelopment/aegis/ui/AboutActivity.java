@@ -10,6 +10,9 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.AttrRes;
+import androidx.annotation.ColorInt;
+import androidx.annotation.ColorRes;
 import androidx.annotation.StringRes;
 import androidx.core.view.LayoutInflaterCompat;
 
@@ -110,11 +113,12 @@ public class AboutActivity extends AegisActivity {
     private void showLicenseDialog() {
         String stylesheet = getString(R.string.custom_notices_format_style);
         int backgroundColorResource = getCurrentTheme() == Theme.AMOLED ? R.attr.cardBackgroundFocused : R.attr.cardBackground;
-        String backgroundColor = String.format("%06X", (0xFFFFFF & ThemeHelper.getThemeColor(backgroundColorResource, getTheme())));
-        String textColor = String.format("%06X", (0xFFFFFF & ThemeHelper.getThemeColor(R.attr.primaryText, getTheme())));
-        String licenseColor = String.format("%06X", (0xFFFFFF & ThemeHelper.getThemeColor(R.attr.cardBackgroundFocused, getTheme())));
+        String backgroundColor = getThemeColorAsHex(backgroundColorResource);
+        String textColor = getThemeColorAsHex(R.attr.primaryText);
+        String licenseColor = getThemeColorAsHex(R.attr.cardBackgroundFocused);
+        String linkColor = getThemeColorAsHex(R.attr.colorAccent);
 
-        stylesheet = String.format(stylesheet, backgroundColor, textColor, licenseColor);
+        stylesheet = String.format(stylesheet, backgroundColor, textColor, licenseColor, linkColor);
 
         LicenseResolver.registerLicense(new GlideLicense());
         new LicensesDialog.Builder(this)
@@ -124,5 +128,9 @@ public class AboutActivity extends AegisActivity {
                 .setIncludeOwnLicense(true)
                 .build()
                 .show();
+    }
+
+    private String getThemeColorAsHex(@AttrRes int attributeId) {
+        return String.format("%06X", (0xFFFFFF & ThemeHelper.getThemeColor(attributeId, getTheme())));
     }
 }
