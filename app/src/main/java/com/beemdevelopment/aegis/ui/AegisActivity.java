@@ -8,13 +8,14 @@ import android.provider.Settings;
 import android.view.WindowManager;
 import android.widget.Toast;
 
+import androidx.annotation.CallSuper;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.beemdevelopment.aegis.AegisApplication;
 import com.beemdevelopment.aegis.Preferences;
 import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.Theme;
-
-import androidx.annotation.CallSuper;
-import androidx.appcompat.app.AppCompatActivity;
+import com.beemdevelopment.aegis.vault.VaultManagerException;
 
 import java.util.Locale;
 
@@ -124,6 +125,16 @@ public abstract class AegisActivity extends AppCompatActivity implements AegisAp
         config.locale = locale;
 
         this.getResources().updateConfiguration(config, this.getResources().getDisplayMetrics());
+    }
+
+    protected boolean saveVault() {
+        try {
+            getApp().getVaultManager().save();
+            return true;
+        } catch (VaultManagerException e) {
+            Toast.makeText(this, getString(R.string.saving_error), Toast.LENGTH_LONG).show();
+            return false;
+        }
     }
 
     /**
