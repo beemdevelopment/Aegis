@@ -159,4 +159,12 @@ public class Preferences {
     public void setBackupsVersionCount(int versions) {
         _prefs.edit().putInt("pref_backups_versions", versions).apply();
     }
+
+    public boolean isTimeSyncWarningEnabled() {
+        return _prefs.getBoolean("pref_warn_time_sync", true);
+    }
+
+    public void setIsTimeSyncWarningEnabled(boolean enabled) {
+        _prefs.edit().putBoolean("pref_warn_time_sync", enabled).apply();
+    }
 }

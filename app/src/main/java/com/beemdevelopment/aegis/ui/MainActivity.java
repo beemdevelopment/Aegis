@@ -10,6 +10,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Rect;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -343,11 +344,23 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
     private void onDoIntroResult() {
         _vault = _app.getVaultManager();
         loadEntries();
+        checkTimeSyncSetting();
+    }
+
+    private void checkTimeSyncSetting() {
+        boolean autoTime = Settings.Global.getInt(getContentResolver(), Settings.Global.AUTO_TIME, 1) == 1;
+        if (!autoTime && getPreferences().isTimeSyncWarningEnabled()) {
+            Dialogs.showTimeSyncWarningDialog(this, (dialog, which) -> {
+                Intent intent = new Intent(Settings.ACTION_DATE_SETTINGS);
+                startActivity(intent);
+            });
+        }
     }
 
     private void onDecryptResult() {
         _vault = _app.getVaultManager();
         loadEntries();
+        checkTimeSyncSetting();
     }
 
     private void startScanActivity() {
@@ -450,6 +463,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
             _entryListView.refresh(false);
         } else {
             loadEntries();
+            checkTimeSyncSetting();
         }
 
         handleDeeplink();

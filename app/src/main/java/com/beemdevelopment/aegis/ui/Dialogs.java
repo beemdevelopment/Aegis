@@ -6,6 +6,8 @@ import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.provider.Settings;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.TextWatcher;
@@ -291,6 +293,31 @@ public class Dialogs {
         });
 
         Dialogs.showSecureDialog(dialog);
+    }
+
+    public static void showTimeSyncWarningDialog(Context context, Dialog.OnClickListener listener) {
+        Preferences prefs = new Preferences(context);
+        View view = LayoutInflater.from(context).inflate(R.layout.dialog_time_sync, null);
+        CheckBox checkBox = view.findViewById(R.id.check_warning_disable);
+
+        showSecureDialog(new AlertDialog.Builder(context)
+                .setTitle(R.string.time_sync_warning_title)
+                .setView(view)
+                .setCancelable(false)
+                .setPositiveButton(R.string.yes, (dialog, which) -> {
+                    if (checkBox.isChecked()) {
+                        prefs.setIsTimeSyncWarningEnabled(false);
+                    }
+                    if (listener != null) {
+                        listener.onClick(dialog, which);
+                    }
+                })
+                .setNegativeButton(R.string.no, (dialog, which) -> {
+                    if (checkBox.isChecked()) {
+                        prefs.setIsTimeSyncWarningEnabled(false);
+                    }
+                })
+                .create());
     }
 
     public interface NumberInputListener {
