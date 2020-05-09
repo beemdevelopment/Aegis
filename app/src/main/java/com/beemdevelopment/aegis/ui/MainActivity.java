@@ -248,8 +248,17 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
     }
 
     private void onScanResult(Intent data) {
-        VaultEntry entry = (VaultEntry) data.getSerializableExtra("entry");
-        startEditEntryActivity(CODE_ADD_ENTRY, entry, true);
+        List<VaultEntry> entries = (ArrayList<VaultEntry>) data.getSerializableExtra("entries");
+        if (entries.size() == 1) {
+            startEditEntryActivity(CODE_ADD_ENTRY, entries.get(0), true);
+        } else {
+            for (VaultEntry entry : entries) {
+                _vault.addEntry(entry);
+                _entryListView.addEntry(entry);
+            }
+
+            saveVault();
+        }
     }
 
     private void onAddEntryResult(Intent data) {

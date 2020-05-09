@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+option java_package = "com.beemdevelopment.aegis";
+option java_outer_classname = "GoogleAuthProtos";
+
+message MigrationPayload {
+  enum Algorithm {
+    ALGO_INVALID = 0;
+    ALGO_SHA1 = 1;
+  }
+
+  enum OtpType {
+    OTP_INVALID = 0;
+    OTP_HOTP = 1;
+    OTP_TOTP = 2;
+  }
+
+  message OtpParameters {
+    bytes secret = 1;
+    string name = 2;
+    string issuer = 3;
+    Algorithm algorithm = 4;
+    int32 digits = 5;
+    OtpType type = 6;
+    int64 counter = 7;
+  }
+
+  repeated OtpParameters otp_parameters = 1;
+  int32 version = 2;
+  int32 batch_size = 3;
+  int32 batch_index = 4;
+  int32 batch_id = 5;
+}
