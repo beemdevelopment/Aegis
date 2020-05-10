@@ -17,6 +17,5 @@
 #}
 
 -keep class com.beemdevelopment.aegis.importers.** { *; }
--keep class net.sqlcipher.** { *; }
 
 -keep class * extends com.google.protobuf.GeneratedMessageLite { *; }
