@@ -2,7 +2,6 @@ package com.beemdevelopment.aegis.ui;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
@@ -12,8 +11,9 @@ import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
+import android.widget.ImageView;
 import android.widget.PopupWindow;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -66,7 +66,8 @@ public class AuthActivity extends AegisActivity {
         _prefs = new Preferences(this);
         setContentView(R.layout.activity_auth);
         _textPassword = findViewById(R.id.text_password);
-        LinearLayout boxBiometricInfo = findViewById(R.id.box_biometric_info);
+        ImageView biometricIcon = findViewById(R.id.biometric_icon);
+        TextView biometricInfo = findViewById(R.id.biometric_info);
         Button decryptButton = findViewById(R.id.button_decrypt);
         Button biometricsButton = findViewById(R.id.button_biometrics);
 
@@ -125,7 +126,8 @@ public class AuthActivity extends AegisActivity {
 
             // display a help message if a matching invalidated keystore entry was found
             if (invalidated) {
-                boxBiometricInfo.setVisibility(View.VISIBLE);
+                biometricIcon.setVisibility(View.VISIBLE);
+                biometricInfo.setVisibility(View.VISIBLE);
             }
         }
 
@@ -193,9 +195,7 @@ public class AuthActivity extends AegisActivity {
         PopupWindow popup = new PopupWindow(popupLayout, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         popup.setFocusable(false);
         popup.setOutsideTouchable(true);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
-            popup.setElevation(5.0f);
-        }
+        popup.setElevation(5.0f);
         _textPassword.post(() -> popup.showAsDropDown(_textPassword));
         _textPassword.postDelayed(popup::dismiss, 5000);
     }

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal">
@@ -16,14 +17,15 @@
         android:paddingEnd="10dp"
         android:paddingTop="12.5dp"
         android:paddingBottom="12.5dp"
-        android:foreground="?android:attr/selectableItemBackground">
+        android:background="?android:attr/selectableItemBackground">
 
         <ImageView
             android:id="@+id/img_slot"
             android:tint="?attr/iconColorPrimary"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_marginEnd="15dp"/>
+            android:layout_marginEnd="15dp"
+            android:importantForAccessibility="no" />
 
         <LinearLayout
             android:layout_width="0dp"
@@ -34,13 +36,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Slot name"
+                tools:text="Slot name"
                 android:id="@+id/text_slot_name"
                 android:textColor="?android:attr/textColorPrimary"/>
 
             <TextView
                 android:id="@+id/text_slot_used"
-                android:text="(this device)"
+                tools:text="(this device)"
                 android:visibility="gone"
                 android:layout_marginStart="5dp"
                 android:layout_width="wrap_content"
@@ -59,18 +61,19 @@
         android:layout_marginTop="12.5dp"
         android:layout_marginBottom="12.5dp"/>
 
-    <ImageView
+    <ImageButton
         android:id="@+id/button_delete"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:clickable="true"
         android:focusable="true"
         android:src="@drawable/ic_delete_black_24dp"
+        android:contentDescription="@string/delete"
         android:tint="?attr/iconColorPrimary"
         android:paddingStart="15dp"
         android:paddingEnd="15dp"
         android:paddingTop="12.5dp"
         android:paddingBottom="12.5dp"
-        android:foreground="?android:attr/selectableItemBackground"/>
+        android:background="?android:attr/selectableItemBackground"/>
 
 </LinearLayout>

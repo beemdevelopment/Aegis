@@ -8,7 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
 import android.view.animation.LayoutAnimationController;
-import android.widget.LinearLayout;
+import android.widget.FrameLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -48,7 +48,7 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
     private PeriodProgressBar _progressBar;
     private boolean _showProgress;
     private ViewMode _viewMode;
-    private LinearLayout _emptyStateView;
+    private FrameLayout _emptyStateView;
 
     private UiRefresher _refresher;
 
@@ -72,10 +72,10 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
 
         // set up the recycler view
         _recyclerView = view.findViewById(R.id.rvKeyProfiles);
+        _recyclerView.setHasFixedSize(true);
         _recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-                super.onScrolled(recyclerView, dx, dy);
                 _listener.onScroll(dx, dy);
             }
         });

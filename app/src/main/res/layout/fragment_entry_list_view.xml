@@ -23,7 +23,7 @@
         android:layoutAnimation="@anim/layout_animation_fall_down"
         android:layout_weight="1"/>
 
-    <LinearLayout
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center|fill_vertical"
@@ -33,7 +33,6 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1"
             android:gravity="center"
             android:orientation="vertical"
             android:paddingBottom="150dp">
@@ -43,10 +42,11 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:src="@drawable/ic_qrcode_scan"
-                android:tint="?attr/primaryText" />
+                android:tint="?attr/primaryText"
+                android:importantForAccessibility="no" />
 
             <TextView
-                android:id="@+id/textView"
+                android:id="@+id/title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/empty_list_title"
@@ -55,7 +55,7 @@
                 android:textSize="18sp" />
 
             <TextView
-                android:id="@+id/textView5"
+                android:id="@+id/description"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:lineSpacingExtra="5dp"
@@ -64,5 +64,5 @@
                 android:textAlignment="center" />
         </LinearLayout>
 
-    </LinearLayout>
+    </FrameLayout>
 </LinearLayout>

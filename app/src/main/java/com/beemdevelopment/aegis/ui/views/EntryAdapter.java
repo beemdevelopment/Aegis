@@ -307,7 +307,7 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
 
     @Override
     public int getItemViewType(int position) {
-        return _viewMode.getLayoutId();
+        return _viewMode.ordinal();
     }
 
     @Override

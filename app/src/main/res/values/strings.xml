@@ -11,6 +11,7 @@
     <string name="discard">Discard</string>
     <string name="save">Save</string>
     <string name="issuer">Issuer</string>
+    <string name="refresh">Refresh</string>
 
     <string name="settings">Preferences</string>
     <string name="pref_appearance_group_title">Appearance</string>

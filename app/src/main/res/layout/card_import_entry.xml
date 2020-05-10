@@ -1,76 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:foreground="?android:attr/selectableItemBackground"
+    android:layout_height="wrap_content"
+    android:background="?attr/cardBackground"
     android:clickable="true"
     android:focusable="true"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:foreground="?android:attr/selectableItemBackground"
+    android:paddingStart="16dp"
+    android:paddingTop="12dp"
+    android:paddingEnd="16dp"
+    android:paddingBottom="16dp">
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:background="?attr/cardBackground"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+    <TextView
+        android:id="@+id/profile_issuer"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:fontFamily="sans-serif-light"
+        android:includeFontPadding="false"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="?attr/primaryText"
+        android:textSize="18sp"
+        android:textStyle="normal|bold"
+        app:layout_constraintBottom_toTopOf="@id/profile_account_name"
+        app:layout_constraintEnd_toStartOf="@id/checkbox_import_entry"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintVertical_chainStyle="packed"
+        tools:text="@string/issuer" />
 
-        <RelativeLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_alignParentBottom="false"
-            android:layout_alignParentTop="false"
-            android:layout_alignWithParentIfMissing="false"
-            android:gravity="bottom"
-            android:id="@+id/relativeLayout"
-            android:layout_alignParentStart="false"
-            android:paddingTop="12dp"
-            android:paddingBottom="16dp"
-            android:paddingEnd="16dp"
-            android:paddingLeft="16dp"
-            android:paddingRight="16dp"
-            android:paddingStart="16dp">
+    <TextView
+        android:id="@+id/profile_account_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/profile_issuer"
+        android:layout_marginTop="2dp"
+        android:ellipsize="end"
+        android:includeFontPadding="false"
+        android:maxLines="1"
+        android:textColor="@color/extra_info_text"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/profile_issuer"
+        app:layout_constraintStart_toStartOf="@id/profile_issuer"
+        app:layout_constraintTop_toBottomOf="@id/profile_issuer"
+        tools:text="AccountName" />
 
-            <TextView
-                android:id="@+id/profile_issuer"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:layout_marginTop="0dp"
-                android:fontFamily="sans-serif-light"
-                android:includeFontPadding="false"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="?attr/primaryText"
-                android:textSize="18sp"
-                android:textStyle="normal|bold"
-                tools:text="@string/issuer" />
+    <CheckBox
+        android:id="@+id/checkbox_import_entry"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="6dp"
+        android:clickable="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/profile_issuer"
+        app:layout_constraintTop_toTopOf="parent" />
 
-
-            <TextView
-                android:id="@+id/profile_account_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/profile_issuer"
-                android:layout_marginTop="2dp"
-                android:ellipsize="end"
-                android:includeFontPadding="false"
-                android:maxLines="1"
-                android:textColor="@color/extra_info_text"
-                android:textSize="14sp"
-                tools:text="AccountName" />
-
-            <CheckBox
-                android:id="@+id/checkbox_import_entry"
-                android:clickable="false"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentEnd="true"
-                android:layout_marginTop="6dp"
-                android:layout_marginEnd="6dp" />
-
-        </RelativeLayout>
-    </LinearLayout>
-
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
