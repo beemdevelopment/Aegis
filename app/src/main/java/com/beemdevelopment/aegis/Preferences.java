@@ -46,7 +46,7 @@ public class Preferences {
     public boolean isPasswordReminderNeeded() {
         long diff = new Date().getTime() - getPasswordReminderTimestamp().getTime();
         long days = TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);
-        return isPasswordReminderEnabled() && days >= 7;
+        return isPasswordReminderEnabled() && days >= 30;
     }
 
     public Date getPasswordReminderTimestamp() {
