@@ -72,6 +72,7 @@ public class EntryHolder extends RecyclerView.ViewHolder {
         _progressBar = view.findViewById(R.id.progressBar);
         int primaryColorId = view.getContext().getResources().getColor(R.color.colorPrimary);
         _progressBar.getProgressDrawable().setColorFilter(primaryColorId, PorterDuff.Mode.SRC_IN);
+        _view.setBackground(_view.getContext().getResources().getDrawable(R.color.card_background));
 
         _scaleIn = AnimationUtils.loadAnimation(view.getContext(), R.anim.item_scale_in);
         _scaleOut = AnimationUtils.loadAnimation(view.getContext(), R.anim.item_scale_out);

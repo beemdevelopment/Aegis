@@ -22,8 +22,7 @@
                 android:id="@+id/list_slots"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:scrollbars="vertical"
-                tools:listitem="@layout/card_slot" />
+                android:scrollbars="vertical"/>
 
             <LinearLayout
                 android:id="@+id/button_add_password"
@@ -43,8 +42,7 @@
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_plus_black_24dp"
                     android:tint="@color/colorAccent"
-                    android:layout_marginEnd="15dp"
-                    android:importantForAccessibility="no" />
+                    android:layout_marginEnd="15dp"/>
 
                 <TextView
                     android:layout_width="match_parent"
@@ -72,8 +70,7 @@
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_plus_black_24dp"
                     android:tint="@color/colorAccent"
-                    android:layout_marginEnd="15dp"
-                    android:importantForAccessibility="no" />
+                    android:layout_marginEnd="15dp"/>
 
                 <TextView
                     android:layout_width="match_parent"
@@ -102,8 +99,7 @@
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_info_outline_black_24dp"
                     android:tint="?attr/iconColorPrimary"
-                    android:layout_marginEnd="15dp"
-                    android:importantForAccessibility="no" />
+                    android:layout_marginEnd="15dp"/>
 
                 <TextView
                     android:layout_width="match_parent"

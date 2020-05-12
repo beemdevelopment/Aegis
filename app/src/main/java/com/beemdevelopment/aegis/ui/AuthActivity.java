@@ -2,6 +2,7 @@ package com.beemdevelopment.aegis.ui;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
@@ -195,7 +196,9 @@ public class AuthActivity extends AegisActivity {
         PopupWindow popup = new PopupWindow(popupLayout, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         popup.setFocusable(false);
         popup.setOutsideTouchable(true);
-        popup.setElevation(5.0f);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
+            popup.setElevation(5.0f);
+        }
         _textPassword.post(() -> popup.showAsDropDown(_textPassword));
         _textPassword.postDelayed(popup::dismiss, 5000);
     }

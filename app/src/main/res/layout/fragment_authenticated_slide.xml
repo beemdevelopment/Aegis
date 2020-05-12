@@ -27,7 +27,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/textView4"
-        android:labelFor="@id/text_password"
         android:text="@string/set_password"/>
 
     <EditText
@@ -36,14 +35,12 @@
         android:inputType="textPassword"
         android:ems="10"
         android:id="@+id/text_password"
-        android:layout_marginTop="10dp"
-        android:autofillHints="newPassword" />
+        android:layout_marginTop="10dp" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/textView3"
-        android:labelFor="@id/text_password_confirm"
         android:text="@string/set_password_confirm"
         android:layout_marginTop="20dp" />
 
@@ -53,8 +50,7 @@
         android:inputType="textPassword"
         android:ems="10"
         android:id="@+id/text_password_confirm"
-        android:layout_marginTop="8dp"
-        android:autofillHints="newPassword" />
+        android:layout_marginTop="8dp" />
 
     <CheckBox
         android:id="@+id/check_toggle_visibility"

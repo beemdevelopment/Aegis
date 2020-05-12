@@ -16,8 +16,7 @@
         android:foreground="?android:attr/selectableItemBackground"
         android:paddingBottom="60dp"
         android:clipToPadding="false"
-        android:scrollbars="vertical"
-        tools:listitem="@layout/card_import_entry" />
+        android:scrollbars="vertical"/>
 
     <com.getbase.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
