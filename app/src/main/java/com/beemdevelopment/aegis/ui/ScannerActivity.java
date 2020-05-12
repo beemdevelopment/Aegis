@@ -3,6 +3,7 @@ package com.beemdevelopment.aegis.ui;
 import android.content.Context;
 import android.content.Intent;
 import android.hardware.Camera;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -10,14 +11,16 @@ import android.widget.Toast;
 
 import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.Theme;
-import com.beemdevelopment.aegis.vault.VaultEntry;
 import com.beemdevelopment.aegis.helpers.SquareFinderView;
 import com.beemdevelopment.aegis.otp.GoogleAuthInfo;
 import com.beemdevelopment.aegis.otp.GoogleAuthInfoException;
+import com.beemdevelopment.aegis.vault.VaultEntry;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.Result;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 import me.dm7.barcodescanner.core.IViewFinder;
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
@@ -30,10 +33,15 @@ public class ScannerActivity extends AegisActivity implements ZXingScannerView.R
     private Menu _menu;
     private int _facing = CAMERA_FACING_BACK;
 
+    private int _batchId = 0;
+    private int _batchIndex = -1;
+    private List<VaultEntry> _entries;
+
     @Override
     protected void onCreate(Bundle state) {
         super.onCreate(state);
 
+        _entries = new ArrayList<>();
         _scannerView = new ZXingScannerView(this) {
             @Override
             protected IViewFinder createViewFinderView(Context context) {
@@ -107,19 +115,61 @@ public class ScannerActivity extends AegisActivity implements ZXingScannerView.R
     @Override
     public void handleResult(Result rawResult) {
         try {
-            GoogleAuthInfo info = GoogleAuthInfo.parseUri(rawResult.getText().trim());
-            VaultEntry entry = new VaultEntry(info);
+            Uri uri = Uri.parse(rawResult.getText().trim());
+            if (uri.getScheme() != null && uri.getScheme().equals(GoogleAuthInfo.SCHEME_EXPORT)) {
+                handleExportUri(uri);
+            } else {
+                handleUri(uri);
+            }
 
-            Intent intent = new Intent();
-            intent.putExtra("entry", entry);
-            setResult(RESULT_OK, intent);
-            finish();
+            _scannerView.resumeCameraPreview(this);
         } catch (GoogleAuthInfoException e) {
             e.printStackTrace();
             Dialogs.showErrorDialog(this, R.string.read_qr_error, e, (dialog, which) -> {
                 _scannerView.resumeCameraPreview(this);
             });
         }
+    }
+
+    private void handleUri(Uri uri) throws GoogleAuthInfoException {
+        GoogleAuthInfo info = GoogleAuthInfo.parseUri(uri);
+        List<VaultEntry> entries = new ArrayList<>();
+        entries.add(new VaultEntry(info));
+        finish(entries);
+    }
+
+    private void handleExportUri(Uri uri) throws GoogleAuthInfoException {
+        GoogleAuthInfo.Export export = GoogleAuthInfo.parseExportUri(uri);
+
+        if (_batchId == 0) {
+            _batchId = export.getBatchId();
+        }
+
+        int batchIndex = export.getBatchIndex();
+        if (_batchId != export.getBatchId()) {
+            Toast.makeText(this, R.string.google_qr_export_unrelated, Toast.LENGTH_SHORT).show();
+        } else if (_batchIndex == -1 || _batchIndex == batchIndex - 1) {
+            for (GoogleAuthInfo info : export.getEntries()) {
+                VaultEntry entry = new VaultEntry(info);
+                _entries.add(entry);
+            }
+
+            _batchIndex = batchIndex;
+            if (_batchIndex + 1 == export.getBatchSize()) {
+                finish(_entries);
+            }
+
+            Toast.makeText(this, getString(R.string.google_qr_export_scanned, _batchIndex + 1, export.getBatchSize()), Toast.LENGTH_SHORT).show();
+        } else if (_batchIndex != batchIndex) {
+            Toast.makeText(this, getString(R.string.google_qr_export_unexpected, _batchIndex + 1, batchIndex + 1), Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void finish(List<VaultEntry> entries) {
+        Intent intent = new Intent();
+        intent.putExtra("entries", (ArrayList<VaultEntry>) entries);
+        setResult(RESULT_OK, intent);
+        finish();
     }
 
     private void updateCameraIcon() {

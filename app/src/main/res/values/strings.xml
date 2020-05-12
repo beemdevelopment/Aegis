@@ -234,6 +234,9 @@
     <string name="time_sync_warning_title">Automatic time synchronization</string>
     <string name="time_sync_warning_message">Aegis relies on the system time to be in sync to generate correct codes. A deviation of only a few seconds could result in incorrect codes. It looks like your device is not configured to automatically synchronize the time. Would you like to do so now?</string>
     <string name="time_sync_warning_disable">Stop warning me. I know what I\'m doing.</string>
+    <string name="google_qr_export_unrelated">Unrelated QR code found. Try restarting the scanner.</string>
+    <string name="google_qr_export_scanned">Scanned %d/%d QR codes</string>
+    <string name="google_qr_export_unexpected">Expected QR code #%d, but scanned #%d instead</string>
 
     <string name="custom_notices_format_style" translatable="false" >
         body {

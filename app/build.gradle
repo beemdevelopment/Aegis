@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'com.google.protobuf'
 
 def getCmdOutput = { cmd ->
     def stdout = new ByteArrayOutputStream()
@@ -74,9 +75,25 @@ android {
     }
 }
 
+protobuf {
+    protoc {
+        artifact = 'com.google.protobuf:protoc:3.8.0'
+    }
+    generateProtoTasks {
+        all().each { task ->
+            task.builtins {
+                java {
+                    option "lite"
+                }
+            }
+        }
+    }
+}
+
 dependencies {
     def libsuVersion = '2.5.1'
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'com.google.protobuf:protobuf-javalite:3.8.0'
     implementation 'com.amulyakhare:com.amulyakhare.textdrawable:1.0.1'
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation "androidx.biometric:biometric:1.0.1"

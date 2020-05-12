@@ -2,10 +2,19 @@ package com.beemdevelopment.aegis.otp;
 
 import android.net.Uri;
 
+import com.beemdevelopment.aegis.GoogleAuthProtos;
 import com.beemdevelopment.aegis.encoding.Base32;
+import com.beemdevelopment.aegis.encoding.Base64;
 import com.beemdevelopment.aegis.encoding.EncodingException;
+import com.google.protobuf.InvalidProtocolBufferException;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class GoogleAuthInfo {
+    public static final String SCHEME = "otpauth";
+    public static final String SCHEME_EXPORT = "otpauth-migration";
+
     private OtpInfo _info;
     private String _accountName;
     private String _issuer;
@@ -22,7 +31,7 @@ public class GoogleAuthInfo {
 
     public Uri getUri() {
         Uri.Builder builder = new Uri.Builder();
-        builder.scheme("otpauth");
+        builder.scheme(SCHEME);
 
         if (_info instanceof TotpInfo) {
             if (_info instanceof SteamInfo) {
@@ -62,7 +71,7 @@ public class GoogleAuthInfo {
 
     public static GoogleAuthInfo parseUri(Uri uri) throws GoogleAuthInfoException {
         String scheme = uri.getScheme();
-        if (scheme == null || !scheme.equals("otpauth")) {
+        if (scheme == null || !scheme.equals(SCHEME)) {
             throw new GoogleAuthInfoException("Unsupported protocol");
         }
 
@@ -164,11 +173,107 @@ public class GoogleAuthInfo {
         return new GoogleAuthInfo(info, accountName, issuer);
     }
 
+    public static Export parseExportUri(String s) throws GoogleAuthInfoException {
+        Uri uri = Uri.parse(s);
+        if (uri == null) {
+            throw new GoogleAuthInfoException("Bad URI format");
+        }
+        return GoogleAuthInfo.parseExportUri(uri);
+    }
+
+    public static Export parseExportUri(Uri uri) throws GoogleAuthInfoException {
+        String scheme = uri.getScheme();
+        if (scheme == null || !scheme.equals(SCHEME_EXPORT)) {
+            throw new GoogleAuthInfoException("Unsupported protocol");
+        }
+
+        String host = uri.getHost();
+        if (host == null || !host.equals("offline")) {
+            throw new GoogleAuthInfoException("Unsupported host");
+        }
+
+        String data = uri.getQueryParameter("data");
+        if (data == null) {
+            throw new GoogleAuthInfoException("Parameter 'data' is not set");
+        }
+
+        GoogleAuthProtos.MigrationPayload payload;
+        try {
+            byte[] bytes = Base64.decode(data);
+            payload = GoogleAuthProtos.MigrationPayload.parseFrom(bytes);
+        } catch (EncodingException | InvalidProtocolBufferException e) {
+            throw new GoogleAuthInfoException(e);
+        }
+
+        List<GoogleAuthInfo> infos = new ArrayList<>();
+        for (GoogleAuthProtos.MigrationPayload.OtpParameters params : payload.getOtpParametersList()) {
+            OtpInfo otp;
+            try {
+                byte[] secret = params.getSecret().toByteArray();
+                switch (params.getType()) {
+                    case OTP_HOTP:
+                        otp = new HotpInfo(secret, params.getCounter());
+                        break;
+                    case OTP_TOTP:
+                        otp = new TotpInfo(secret);
+                        break;
+                    default:
+                        throw new GoogleAuthInfoException(String.format("Unsupported algorithm: %d", params.getType().ordinal()));
+                }
+            } catch (OtpInfoException e){
+                throw new GoogleAuthInfoException(e);
+            }
+
+            String name = params.getName();
+            String issuer = params.getIssuer();
+            int colonI = name.indexOf(':');
+            if (issuer.isEmpty() && colonI != -1) {
+                issuer = name.substring(0, colonI);
+                name = name.substring(colonI + 1);
+            }
+
+            GoogleAuthInfo info = new GoogleAuthInfo(otp, name, issuer);
+            infos.add(info);
+        }
+
+        return new Export(infos, payload.getBatchId(), payload.getBatchIndex(), payload.getBatchSize());
+    }
+
     public String getIssuer() {
         return _issuer;
     }
 
     public String getAccountName() {
         return _accountName;
+    }
+
+    public static class Export {
+        private int _batchId;
+        private int _batchIndex;
+        private int _batchSize;
+        private List<GoogleAuthInfo> _entries;
+
+        public Export(List<GoogleAuthInfo> entries, int batchId, int batchIndex, int batchSize) {
+            _batchId = batchId;
+            _batchIndex = batchIndex;
+            _batchSize = batchSize;
+            _entries = entries;
+        }
+
+        public List<GoogleAuthInfo> getEntries() {
+            return _entries;
+        }
+
+        public int getBatchSize() {
+            return _batchSize;
+        }
+
+        public int getBatchIndex() {
+            return _batchIndex;
+        }
+
+        public int getBatchId() {
+            return _batchId;
+        }
     }
 }
