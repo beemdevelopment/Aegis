@@ -38,7 +38,11 @@
         <item>English</item>
         <item>French</item>
         <item>German</item>
+        <item>Polish</item>
+        <item>Italian</item>
+        <item>Finnish</item>
         <item>Hungarian</item>
+        <item>Greek</item>
         <item>Russian</item>
         <item>简体中文</item>
     </string-array>
@@ -49,7 +53,11 @@
         <item>en</item>
         <item>fr</item>
         <item>de</item>
+        <item>pl</item>
+        <item>it</item>
+        <item>fi</item>
         <item>hu</item>
+        <item>el</item>
         <item>ru</item>
         <item>zh</item>
     </string-array>
