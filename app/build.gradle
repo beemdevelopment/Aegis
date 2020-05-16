@@ -106,7 +106,7 @@ dependencies {
     implementation 'com.getbase:floatingactionbutton:1.10.1'
     implementation 'com.github.apl-devs:appintro:6.0.0'
     implementation 'com.github.avito-tech:krop:0.44'
-    implementation 'com.madgag.spongycastle:core:1.58.0.0'
+    implementation 'org.bouncycastle:bcprov-jdk15on:1.65'
     implementation 'de.hdodenhof:circleimageview:3.0.1'
     implementation 'me.dm7.barcodescanner:zxing:1.9.8'
     implementation "com.github.topjohnwu.libsu:core:${libsuVersion}"

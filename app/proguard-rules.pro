@@ -19,3 +19,4 @@
 -keep class com.beemdevelopment.aegis.importers.** { *; }
 
 -keep class * extends com.google.protobuf.GeneratedMessageLite { *; }
+-keep class !org.bouncycastle.jce.provider.X509LDAPCertStoreSpi { *; }

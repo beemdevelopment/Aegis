@@ -93,7 +93,7 @@
     <string name="delete_entry">删除条目</string>
     <string name="delete_entry_description">您确定要删除这个条目吗？</string>
     <string name="delete_entries">删除条目</string>
-    <string name="delete_entries_description">您确定要删除 ％d 个条目吗？</string>
+    <string name="delete_entries_description">您确定要删除 %d 个条目吗？</string>
     <string name="discard_changes">放弃更改？</string>
     <string name="discard_changes_description">您的更改尚未保存</string>
     <string name="folder">文件夹</string>
