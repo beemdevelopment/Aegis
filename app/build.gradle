@@ -94,6 +94,7 @@ dependencies {
     def libsuVersion = '2.5.1'
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'com.google.protobuf:protobuf-javalite:3.8.0'
+    implementation 'net.lingala.zip4j:zip4j:2.5.2'
     implementation 'com.amulyakhare:com.amulyakhare.textdrawable:1.0.1'
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation "androidx.biometric:biometric:1.0.1"
@@ -118,7 +119,6 @@ dependencies {
     implementation("com.github.bumptech.glide:recyclerview-integration:4.9.0") {
         transitive = false
     }
-    implementation 'net.zetetic:android-database-sqlcipher:4.3.0'
     annotationProcessor 'androidx.annotation:annotation:1.1.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.10.0'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.5.2'
