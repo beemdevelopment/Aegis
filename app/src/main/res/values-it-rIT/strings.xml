@@ -48,7 +48,6 @@
     <string name="authentication_method_biometrics_description">Oltre a una password, i dati biometrici registrati su questo dispositivo, come un\'impronta digitale o il tuo volto, possono essere utilizzati per sbloccare la cassaforte.</string>
     <string name="authentication_method_set_password">Password</string>
     <string name="authentication_enter_password">Inserisci la tua password</string>
-    <string name="authentication">Sblocca la cassaforte</string>
     <string name="set_password">Inserisci una password</string>
     <string name="set_group">Inserisci il nome di un gruppo</string>
     <string name="set_number">Inserisci un numero</string>
@@ -115,8 +114,6 @@
     <string name="import_error_title">Errori durante l\'importazione</string>
     <string name="exporting_vault_error">Si è verificato un errore durante il tentativo di esportare la cassaforte</string>
     <string name="export_warning">Questa azione esporterà la cassaforte dall\'archivio privato di Aegis.</string>
-    <string name="encryption_set_password_error">Errore durante l\'impostazione della password: </string>
-    <string name="encryption_enable_biometrics_error">Si è verificato un errore durante il tentativo di abilitare lo sblocco biometrico</string>
     <string name="no_cameras_available">Nessuna fotocamera disponibile</string>
     <string name="read_qr_error">Errore di lettura del codice QR</string>
     <string name="authentication_method_raw">Raw</string>
@@ -154,7 +151,6 @@
     <string name="selected">Selezionato</string>
     <string name="dark_theme_title">Tema scuro</string>
     <string name="light_theme_title">Tema chiaro</string>
-    <string name="amoled_theme_title">Tema Amoled (nero)</string>
     <string name="normal_viewmode_title">Normale</string>
     <string name="compact_mode_title">Compatto</string>
     <string name="small_mode_title">Piccolo</string>
