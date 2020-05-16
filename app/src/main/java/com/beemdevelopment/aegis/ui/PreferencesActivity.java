@@ -2,9 +2,6 @@ package com.beemdevelopment.aegis.ui;
 
 import android.os.Bundle;
 
-import com.beemdevelopment.aegis.R;
-import com.beemdevelopment.aegis.Theme;
-
 public class PreferencesActivity extends AegisActivity {
     private PreferencesFragment _fragment;
 
@@ -12,9 +9,13 @@ public class PreferencesActivity extends AegisActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        _fragment = new PreferencesFragment();
-        _fragment.setArguments(getIntent().getExtras());
-        getSupportFragmentManager().beginTransaction().replace(android.R.id.content, _fragment).commit();
+        if (savedInstanceState == null) {
+            _fragment = new PreferencesFragment();
+            _fragment.setArguments(getIntent().getExtras());
+            getSupportFragmentManager().beginTransaction().replace(android.R.id.content, _fragment).commit();
+        } else {
+            _fragment = (PreferencesFragment) getSupportFragmentManager().findFragmentById(android.R.id.content);
+        }
     }
 
     @Override
