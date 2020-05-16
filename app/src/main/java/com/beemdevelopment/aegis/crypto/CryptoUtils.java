@@ -3,7 +3,6 @@ package com.beemdevelopment.aegis.crypto;
 import android.os.Build;
 
 import org.bouncycastle.crypto.generators.SCrypt;
-import org.bouncycastle.jce.provider.BouncyCastleProvider;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -13,9 +12,7 @@ import java.nio.charset.StandardCharsets;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
-import java.security.Provider;
 import java.security.SecureRandom;
-import java.security.Security;
 import java.security.spec.AlgorithmParameterSpec;
 import java.util.Arrays;
 
@@ -38,15 +35,6 @@ public class CryptoUtils {
     public static final int CRYPTO_SCRYPT_N = 1 << 15;
     public static final int CRYPTO_SCRYPT_r = 8;
     public static final int CRYPTO_SCRYPT_p = 1;
-
-    // replace the BC provider from Android with the one bundled with the app
-    static {
-        final Provider provider = Security.getProvider(BouncyCastleProvider.PROVIDER_NAME);
-        if (provider != null && !provider.getClass().equals(BouncyCastleProvider.class)) {
-            Security.removeProvider(BouncyCastleProvider.PROVIDER_NAME);
-            Security.addProvider(new BouncyCastleProvider());
-        }
-    }
 
     public static SecretKey deriveKey(byte[] input, SCryptParameters params) {
         byte[] keyBytes = SCrypt.generate(input, params.getSalt(), params.getN(), params.getR(), params.getP(), CRYPTO_AEAD_KEY_SIZE);
