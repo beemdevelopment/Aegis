@@ -10,19 +10,19 @@
     android:orientation="vertical">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/rlCardEntry"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:orientation="horizontal"
         android:background="?attr/cardBackground"
+        android:id="@+id/rlCardEntry"
         android:paddingTop="10dp"
-        android:paddingBottom="10dp">
+        android:paddingBottom="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <FrameLayout
             android:id="@+id/ivIcon"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toStartOf="@id/profile_code"
@@ -39,119 +39,87 @@
                 android:layout_height="60dp"
                 android:src="@drawable/item_selected"
                 android:visibility="gone"
-                app:civ_circle_background_color="@color/colorSecondary"
-                tools:visibility="visible" />
-
+                tools:visibility="visible"
+                app:civ_circle_background_color="@color/colorSecondary" />
         </FrameLayout>
 
         <TextView
-            android:id="@+id/profile_code"
-            style="@style/card_code_style"
+            android:id="@+id/profile_copied"
+            style="@style/card_issuer_style"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_alignParentBottom="false"
-            android:layout_alignParentTop="false"
-            android:layout_alignWithParentIfMissing="false"
-            android:gravity="bottom"
-            android:id="@+id/relativeLayout"
-            android:layout_alignParentStart="false"
-            android:paddingTop="18dp"
-            android:paddingBottom="16dp"
-            android:paddingEnd="16dp"
-            android:paddingLeft="16dp"
-            android:paddingRight="16dp"
-            android:paddingStart="16dp">
+            android:text="@string/copied"
+            android:textColor="?attr/secondaryText"
+            android:textSize="16sp"
+            android:visibility="invisible"
+            app:layout_constraintTop_toTopOf="@id/profile_issuer"
+            app:layout_constraintBottom_toBottomOf="@id/profile_issuer"
+            app:layout_constraintStart_toStartOf="@id/profile_issuer"
+            app:layout_constraintEnd_toEndOf="@id/profile_account_name" />
 
-            <TextView
-                android:id="@+id/profile_copied"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:includeFontPadding="false"
-                android:maxLines="1"
-                android:text="@string/copied"
-                android:layout_above="@+id/description"
-                android:layout_alignLeft="@+id/profile_code"
-                android:layout_alignStart="@+id/profile_code"
-                android:textColor="?attr/secondaryText"
-                android:textSize="16sp"
-                android:visibility="invisible" />
+        <TextView
+            android:id="@+id/profile_issuer"
+            style="@style/card_issuer_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:text="@string/issuer"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@id/profile_code"
+            app:layout_constraintEnd_toStartOf="@id/profile_account_name"
+            app:layout_constraintStart_toStartOf="@id/profile_code"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0"
+            app:layout_constraintVertical_chainStyle="packed" />
 
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/description"
-                android:layout_alignLeft="@+id/profile_code"
-                android:layout_alignStart="@+id/profile_code">
+        <TextView
+            android:id="@+id/profile_account_name"
+            style="@style/card_issuer_style"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textColor="@color/secondary_text"
+            android:textSize="16sp"
+            tools:text=" - AccountName"
+            app:layout_constraintTop_toTopOf="@id/profile_issuer"
+            app:layout_constraintBottom_toBottomOf="@id/profile_issuer"
+            app:layout_constraintStart_toEndOf="@id/profile_issuer"
+            app:layout_constraintEnd_toEndOf="@id/profile_code" />
 
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            tools:text="012 345"
+            android:id="@+id/profile_code"
+            style="@style/card_code_style"
+            android:textSize="34sp"
+            android:layout_marginBottom="16dp"
+            android:layout_marginStart="22dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintTop_toBottomOf="@id/profile_issuer"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/ivIcon"
+            app:layout_constraintEnd_toStartOf="@id/buttonRefresh" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/profile_issuer"
-                    android:text="@string/issuer"
-                    android:textStyle="bold"
-                    android:textColor="?attr/primaryText"
-                    android:includeFontPadding="false"
-                    android:textSize="16sp"
-                    android:ellipsize="end"
-                    android:maxLines="1"/>
-
-            <TextView
-                android:id="@+id/profile_account_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_toRightOf="@id/profile_issuer"
-                android:ellipsize="end"
-                android:includeFontPadding="false"
-                android:maxLines="1"
-                android:textColor="@color/secondary_text"
-                android:textSize="16sp"
-                tools:text=" - AccountName" />
-
-            </RelativeLayout>
-
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:fontFamily="sans-serif-light"
-                tools:text="012 345"
-                android:id="@+id/profile_code"
-                android:layout_below="@id/description"
-                android:includeFontPadding="false"
-                android:textSize="34sp"
-                android:textColor="?attr/codePrimaryText"
-                android:layout_marginLeft="6dp"
-                android:layout_marginStart="6dp"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_marginTop="0dp"
-                android:textStyle="normal|bold"/>
-
-        </RelativeLayout>
         <ImageView
             android:id="@+id/buttonRefresh"
+            android:visibility="gone"
+            tools:visibility="visible"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
-            android:background="?android:attr/selectableItemBackground"
-            android:clickable="true"
-            android:contentDescription="@string/refresh"
-            android:focusable="true"
             android:padding="8dp"
+            android:clickable="true"
+            android:focusable="true"
             android:src="@drawable/ic_refresh_black_24dp"
             android:tint="?attr/iconColorPrimary"
-            android:visibility="gone"
+            android:background="?android:attr/selectableItemBackground"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@id/profile_code"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:visibility="visible" />
-
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.beemdevelopment.aegis.ui.views.PeriodProgressBar
@@ -159,7 +127,6 @@
         android:layout_width="match_parent"
         android:layout_height="4dp"
         android:id="@+id/progressBar"
-        android:max="1000"
-        android:layout_weight="1" />
+        android:max="1000" />
 
 </LinearLayout>

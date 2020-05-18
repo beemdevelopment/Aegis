@@ -71,8 +71,8 @@
     </style>
 
     <style name="AppTheme.NoActionBar" parent="Theme.AppCompat.DayNight.NoActionBar">
-        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
-        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowDrawsSystemBarBackgrounds" tools:targetApi="lollipop">true</item>
+        <item name="android:statusBarColor" tools:targetApi="lollipop">@android:color/transparent</item>
     </style>
 
     <style name="AppTheme.TransparentActionBar">
@@ -105,7 +105,7 @@
         <item name="actionModeStyle">@style/ActionModeStyle.Dark</item>
         <item name="alertDialogTheme">@style/DialogStyle.Dark</item>
 
-        <item name="android:navigationBarColor">@color/background_dark</item>
+        <item name="android:navigationBarColor" tools:targetApi="lollipop">@color/background_dark</item>
         <item name="android:windowLightNavigationBar" tools:targetApi="o_mr1">false</item>
     </style>
 
@@ -119,7 +119,7 @@
         <item name="actionModeStyle">@style/ActionModeStyle.TrueBlack</item>
         <item name="alertDialogTheme">@style/DialogStyle.TrueDark</item>
 
-        <item name="android:navigationBarColor">@color/background_true_dark</item>
+        <item name="android:navigationBarColor" tools:targetApi="lollipop">@color/background_true_dark</item>
         <item name="android:windowLightNavigationBar" tools:targetApi="o_mr1">false</item>
 
         <item name="android:windowBackground">@color/background_true_dark</item>
@@ -179,7 +179,7 @@
         <item name="android:ellipsize">end</item>
         <item name="android:includeFontPadding">false</item>
         <item name="android:maxLines">1</item>
-        <item name="android:textColor">?attr/secondaryText</item>
+        <item name="android:textColor">?attr/primaryText</item>
     </style>
 
 </resources>

@@ -17,13 +17,13 @@
         android:paddingEnd="10dp"
         android:paddingTop="12.5dp"
         android:paddingBottom="12.5dp"
-        android:background="?android:attr/selectableItemBackground">
+        android:foreground="?android:attr/selectableItemBackground">
 
         <TextView
             android:id="@+id/text_group_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:text="Group name"
+            android:text="Group name"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="?android:attr/textColorPrimary" />
 
@@ -32,7 +32,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
-            tools:text="... entries"
+            android:text="... entries"
             android:visibility="visible" />
 
     </LinearLayout>
@@ -46,14 +46,13 @@
         android:layout_marginTop="12.5dp"
         android:layout_marginBottom="12.5dp"/>
 
-    <ImageButton
+    <ImageView
         android:id="@+id/button_delete"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:clickable="true"
         android:focusable="true"
-        android:background="?android:attr/selectableItemBackground"
-        android:contentDescription="@string/delete"
+        android:foreground="?android:attr/selectableItemBackground"
         android:paddingStart="15dp"
         android:paddingTop="12.5dp"
         android:paddingEnd="15dp"
