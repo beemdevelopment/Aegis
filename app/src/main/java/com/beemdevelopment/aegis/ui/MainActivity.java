@@ -745,6 +745,20 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
                         mode.finish();
                         return true;
 
+                    case R.id.action_share_qr:
+                        Intent intent = new Intent(getBaseContext(), TransferEntriesActivity.class);
+                        ArrayList<GoogleAuthInfo> authInfos = new ArrayList<>();
+                        for (VaultEntry entry : _selectedEntries) {
+                            GoogleAuthInfo authInfo = new GoogleAuthInfo(entry.getInfo(), entry.getName(), entry.getIssuer());
+                            authInfos.add(authInfo);
+                        }
+
+                        intent.putExtra("authInfos", authInfos);
+                        startActivity(intent);
+
+                        mode.finish();
+                        return true;
+
                     case R.id.action_delete:
                         Dialogs.showDeleteEntriesDialog(MainActivity.this, (d, which) -> {
                             deleteEntries(_selectedEntries);

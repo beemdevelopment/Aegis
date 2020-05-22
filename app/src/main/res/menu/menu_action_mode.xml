@@ -22,4 +22,12 @@
         android:icon="@drawable/ic_delete_white"
         android:tint="?attr/iconColorPrimary"
         app:showAsAction="always"/>
+
+    <item
+        android:id="@+id/action_share_qr"
+        android:title="@string/action_delete"
+        android:orderInCategory="100"
+        android:icon="@drawable/ic_qr_code_full"
+        android:tint="?attr/iconColorPrimary"
+        app:showAsAction="always"/>
 </menu>
