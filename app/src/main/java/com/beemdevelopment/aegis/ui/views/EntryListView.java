@@ -33,6 +33,7 @@ import com.bumptech.glide.integration.recyclerview.RecyclerViewPreloader;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.util.ViewPreloadSizeProvider;
 
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
@@ -253,7 +254,7 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
         updateEmptyState();
     }
 
-    public void addEntries(List<VaultEntry> entries) {
+    public void addEntries(Collection<VaultEntry> entries) {
         _adapter.addEntries(entries);
         updateEmptyState();
     }

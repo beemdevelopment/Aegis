@@ -18,6 +18,7 @@ import com.beemdevelopment.aegis.otp.TotpInfo;
 import com.beemdevelopment.aegis.vault.VaultEntry;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -127,7 +128,7 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
         checkPeriodUniformity();
     }
 
-    public void addEntries(List<VaultEntry> entries) {
+    public void addEntries(Collection<VaultEntry> entries) {
         _entries.addAll(entries);
         updateShownEntries();
         checkPeriodUniformity(true);
