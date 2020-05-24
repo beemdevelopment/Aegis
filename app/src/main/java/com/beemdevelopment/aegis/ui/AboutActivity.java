@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -42,6 +43,11 @@ public class AboutActivity extends AegisActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about);
+
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+        }
 
         View btnLicenses = findViewById(R.id.btn_licenses);
         btnLicenses.setOnClickListener(v -> showLicenseDialog());
@@ -132,5 +138,18 @@ public class AboutActivity extends AegisActivity {
 
     private String getThemeColorAsHex(@AttrRes int attributeId) {
         return String.format("%06X", (0xFFFFFF & ThemeHelper.getThemeColor(attributeId, getTheme())));
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                break;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+
+        return true;
     }
 }

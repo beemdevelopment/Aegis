@@ -11,7 +11,6 @@ import java.text.Collator;
 import java.util.ArrayList;
 import java.util.TreeSet;
 
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -29,9 +28,10 @@ public class GroupManagerActivity extends AegisActivity implements GroupAdapter.
         _groups = new TreeSet<>(Collator.getInstance());
         _groups.addAll(intent.getStringArrayListExtra("groups"));
 
-        ActionBar bar = getSupportActionBar();
-        bar.setHomeAsUpIndicator(R.drawable.ic_close);
-        bar.setDisplayHomeAsUpEnabled(true);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+        }
 
         // set up the recycler view
         _adapter = new GroupAdapter(this);
