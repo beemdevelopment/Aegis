@@ -6,6 +6,7 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -67,6 +68,7 @@ public class EditEntryActivity extends AegisActivity {
     private boolean _hasCustomIcon = false;
     // keep track of icon changes separately as the generated jpeg's are not deterministic
     private boolean _hasChangedIcon = false;
+    private boolean _isEditingIcon;
     private CircleImageView _iconView;
     private ImageView _saveImageButton;
 
@@ -245,11 +247,7 @@ public class EditEntryActivity extends AegisActivity {
         });
 
         _iconView.setOnClickListener(v -> {
-            Intent galleryIntent = new Intent(Intent.ACTION_PICK);
-            galleryIntent.setDataAndType(android.provider.MediaStore.Images.Media.INTERNAL_CONTENT_URI, "image/*");
-
-            Intent chooserIntent = Intent.createChooser(galleryIntent, "Select photo");
-            startActivityForResult(Intent.createChooser(chooserIntent, "Select photo"), PICK_IMAGE_REQUEST);
+            startIconSelectionActivity();
         });
 
         _advancedSettingsHeader.setOnClickListener(v -> openAdvancedSettings());
@@ -326,6 +324,11 @@ public class EditEntryActivity extends AegisActivity {
 
     @Override
     public void onBackPressed() {
+        if (_isEditingIcon) {
+            stopEditingIcon(false);
+            return;
+        }
+
         AtomicReference<String> msg = new AtomicReference<>();
         AtomicReference<VaultEntry> entry = new AtomicReference<>();
 
@@ -370,6 +373,9 @@ public class EditEntryActivity extends AegisActivity {
                     deleteAndFinish(_origEntry);
                 });
                 break;
+            case R.id.action_edit_icon:
+                startIconSelectionActivity();
+                break;
             case R.id.action_default_icon:
                 TextDrawable drawable = TextDrawableHelper.generate(_origEntry.getIssuer(), _origEntry.getName(), _iconView);
                 _iconView.setImageDrawable(drawable);
@@ -380,6 +386,52 @@ public class EditEntryActivity extends AegisActivity {
         }
 
         return true;
+    }
+
+    private void startIconSelectionActivity() {
+        Intent galleryIntent = new Intent(Intent.ACTION_PICK);
+        galleryIntent.setDataAndType(android.provider.MediaStore.Images.Media.INTERNAL_CONTENT_URI, "image/*");
+
+        Intent chooserIntent = Intent.createChooser(galleryIntent, getString(R.string.select_icon));
+        startActivityForResult(Intent.createChooser(chooserIntent, getString(R.string.select_icon)), PICK_IMAGE_REQUEST);
+    }
+
+    private void startEditingIcon(Uri data) {
+        Glide.with(this)
+                .asBitmap()
+                .load(data)
+                .diskCacheStrategy(DiskCacheStrategy.NONE)
+                .skipMemoryCache(false)
+                .into(new CustomTarget<Bitmap>() {
+                    @Override
+                    public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
+                        _kropView.setBitmap(resource);
+                    }
+
+                    @Override
+                    public void onLoadCleared(@Nullable Drawable placeholder) {
+
+                    }
+                });
+        _iconView.setVisibility(View.GONE);
+        _kropView.setVisibility(View.VISIBLE);
+
+        _saveImageButton.setOnClickListener(v -> {
+            stopEditingIcon(true);
+        });
+
+        _isEditingIcon = true;
+    }
+
+    private void stopEditingIcon(boolean save) {
+        if (save) {
+            _iconView.setImageBitmap(_kropView.getCroppedBitmap());
+        }
+        _iconView.setVisibility(View.VISIBLE);
+        _kropView.setVisibility(View.GONE);
+        _hasCustomIcon = _hasCustomIcon || save;
+        _hasChangedIcon = save;
+        _isEditingIcon = false;
     }
 
     @Override
@@ -424,35 +476,7 @@ public class EditEntryActivity extends AegisActivity {
     @Override
     protected void onActivityResult(int requestCode, final int resultCode, Intent data) {
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
-            Glide.with(this)
-                .asBitmap()
-                .load(data.getData())
-                .diskCacheStrategy(DiskCacheStrategy.NONE)
-                .skipMemoryCache(false)
-                .into(new CustomTarget<Bitmap>() {
-                    @Override
-                    public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
-                        _kropView.setBitmap(resource);
-                    }
-
-                    @Override
-                    public void onLoadCleared(@Nullable Drawable placeholder) {
-
-                    }
-                });
-            _iconView.setVisibility(View.GONE);
-            _kropView.setVisibility(View.VISIBLE);
-
-            _saveImageButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    _iconView.setImageBitmap(_kropView.getCroppedBitmap());
-                    _iconView.setVisibility(View.VISIBLE);
-                    _kropView.setVisibility(View.GONE);
-                    _hasCustomIcon = true;
-                    _hasChangedIcon = true;
-                }
-            });
+            startEditingIcon(data.getData());
         }
 
         super.onActivityResult(requestCode, resultCode, data);
@@ -556,6 +580,10 @@ public class EditEntryActivity extends AegisActivity {
     }
 
     private boolean onSave() {
+        if (_isEditingIcon) {
+            stopEditingIcon(true);
+        }
+
         VaultEntry entry;
         try {
             entry = parseEntry();
