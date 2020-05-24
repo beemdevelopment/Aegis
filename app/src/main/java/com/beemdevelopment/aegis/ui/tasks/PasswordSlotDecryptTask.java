@@ -10,8 +10,6 @@ import com.beemdevelopment.aegis.vault.slots.Slot;
 import com.beemdevelopment.aegis.vault.slots.SlotException;
 import com.beemdevelopment.aegis.vault.slots.SlotIntegrityException;
 
-import java.util.List;
-
 import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
 
@@ -28,21 +26,17 @@ public class PasswordSlotDecryptTask extends ProgressDialogTask<PasswordSlotDecr
         setPriority();
 
         Params params = args[0];
-        return decrypt(params.getSlots(), params.getPassword());
+        return decrypt(params.getSlot(), params.getPassword());
     }
 
-    public static Result decrypt(List<PasswordSlot> slots, char[] password) {
-        for (PasswordSlot slot : slots) {
-            try {
-                return decryptPasswordSlot(slot, password);
-            } catch (SlotException e) {
-                throw new RuntimeException(e);
-            } catch (SlotIntegrityException ignored) {
-
-            }
+    public static Result decrypt(PasswordSlot slot, char[] password) {
+        try {
+            return decryptPasswordSlot(slot, password);
+        } catch (SlotException e) {
+            throw new RuntimeException(e);
+        } catch (SlotIntegrityException ignored) {
+            return null;
         }
-
-        return null;
     }
 
     public static Result decryptPasswordSlot(PasswordSlot slot, char[] password)
@@ -90,16 +84,16 @@ public class PasswordSlotDecryptTask extends ProgressDialogTask<PasswordSlotDecr
     }
 
     public static class Params {
-        private List<PasswordSlot> _slots;
+        private PasswordSlot _slot;
         private char[] _password;
 
-        public Params(List<PasswordSlot> slots, char[] password) {
-            _slots = slots;
+        public Params(PasswordSlot slot, char[] password) {
+            _slot = slot;
             _password = password;
         }
 
-        public List<PasswordSlot> getSlots() {
-            return _slots;
+        public PasswordSlot getSlot() {
+            return _slot;
         }
 
         public char[] getPassword() {

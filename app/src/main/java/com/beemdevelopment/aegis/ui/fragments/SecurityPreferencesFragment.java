@@ -21,8 +21,8 @@ import com.beemdevelopment.aegis.crypto.KeyStoreHandleException;
 import com.beemdevelopment.aegis.helpers.BiometricSlotInitializer;
 import com.beemdevelopment.aegis.helpers.BiometricsHelper;
 import com.beemdevelopment.aegis.services.NotificationService;
-import com.beemdevelopment.aegis.ui.dialogs.Dialogs;
 import com.beemdevelopment.aegis.ui.SlotManagerActivity;
+import com.beemdevelopment.aegis.ui.dialogs.Dialogs;
 import com.beemdevelopment.aegis.ui.preferences.SwitchPreference;
 import com.beemdevelopment.aegis.ui.tasks.PasswordSlotDecryptTask;
 import com.beemdevelopment.aegis.vault.VaultFileCredentials;
@@ -32,8 +32,6 @@ import com.beemdevelopment.aegis.vault.slots.PasswordSlot;
 import com.beemdevelopment.aegis.vault.slots.Slot;
 import com.beemdevelopment.aegis.vault.slots.SlotException;
 import com.beemdevelopment.aegis.vault.slots.SlotList;
-
-import java.util.List;
 
 import javax.crypto.Cipher;
 
@@ -138,7 +136,7 @@ public class SecurityPreferencesFragment extends PreferencesFragment {
                 }
             } else {
                 // remove the biometric slot
-                BiometricSlot slot = slots.find(BiometricSlot.class);
+                BiometricSlot slot = slots.get(BiometricSlot.class);
                 slots.remove(slot);
                 getVault().setCredentials(creds);
 
@@ -179,8 +177,8 @@ public class SecurityPreferencesFragment extends PreferencesFragment {
 
             Dialogs.showPasswordInputDialog(getActivity(), R.string.set_password_confirm, R.string.pin_keyboard_description, password -> {
                 if (isDigitsOnly(new String(password))) {
-                    List<PasswordSlot> slots = getVault().getCredentials().getSlots().findAll(PasswordSlot.class);
-                    PasswordSlotDecryptTask.Params params = new PasswordSlotDecryptTask.Params(slots, password);
+                    PasswordSlot slot = getVault().getCredentials().getSlots().get(PasswordSlot.class);
+                    PasswordSlotDecryptTask.Params params = new PasswordSlotDecryptTask.Params(slot, password);
                     PasswordSlotDecryptTask task = new PasswordSlotDecryptTask(getActivity(), new PasswordConfirmationListener());
                     task.execute(getLifecycle(), params);
                 } else {
@@ -260,14 +258,11 @@ public class SecurityPreferencesFragment extends PreferencesFragment {
 
         if (encrypted) {
             SlotList slots = getVault().getCredentials().getSlots();
-            boolean multiPassword = slots.findAll(PasswordSlot.class).size() > 1;
-            boolean multiBio = slots.findAll(BiometricSlot.class).size() > 1;
-            boolean showSlots = BuildConfig.DEBUG || multiPassword || multiBio;
             boolean canUseBio = BiometricsHelper.isAvailable(getContext());
-            _setPasswordPreference.setEnabled(!multiPassword);
-            _biometricsPreference.setEnabled(canUseBio && !multiBio);
+            _setPasswordPreference.setEnabled(true);
+            _biometricsPreference.setEnabled(canUseBio);
             _biometricsPreference.setChecked(slots.has(BiometricSlot.class), true);
-            _slotsPreference.setVisible(showSlots);
+            _slotsPreference.setVisible(BuildConfig.DEBUG);
             _passwordReminderPreference.setVisible(slots.has(BiometricSlot.class));
         } else {
             _setPasswordPreference.setEnabled(false);
@@ -311,7 +306,7 @@ public class SecurityPreferencesFragment extends PreferencesFragment {
                 slot.setKey(creds.getKey(), cipher);
 
                 // remove the old master password slot
-                PasswordSlot oldSlot = creds.getSlots().find(PasswordSlot.class);
+                PasswordSlot oldSlot = creds.getSlots().get(PasswordSlot.class);
                 if (oldSlot != null) {
                     slots.remove(oldSlot);
                 }

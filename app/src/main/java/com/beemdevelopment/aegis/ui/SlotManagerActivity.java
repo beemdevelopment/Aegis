@@ -76,21 +76,19 @@ public class SlotManagerActivity extends AegisActivity implements SlotAdapter.Li
             _adapter.addSlot(slot);
         }
 
-        updateBiometricsButton();
+        updateSlotButtons();
     }
 
-    private void updateBiometricsButton() {
+    private void updateSlotButtons() {
         // only show the biometrics option if we can get an instance of the biometrics manager
         // and if none of the slots in the collection has a matching alias in the keystore
         int visibility = View.VISIBLE;
         if (BiometricsHelper.isAvailable(this)) {
             try {
                 KeyStoreHandle keyStore = new KeyStoreHandle();
-                for (BiometricSlot slot : _creds.getSlots().findAll(BiometricSlot.class)) {
-                    if (keyStore.containsKey(slot.getUUID().toString())) {
-                        visibility = View.GONE;
-                        break;
-                    }
+                BiometricSlot slot = _creds.getSlots().get(BiometricSlot.class);
+                if (slot != null && keyStore.containsKey(slot.getUUID().toString())) {
+                    visibility = View.GONE;
                 }
             } catch (KeyStoreHandleException e) {
                 visibility = View.GONE;
@@ -99,6 +97,9 @@ public class SlotManagerActivity extends AegisActivity implements SlotAdapter.Li
             visibility = View.GONE;
         }
         findViewById(R.id.button_add_biometric).setVisibility(visibility);
+
+        visibility = _creds.getSlots().has(PasswordSlot.class) ? View.GONE : View.VISIBLE;
+        findViewById(R.id.button_add_password).setVisibility(visibility);
     }
 
     private void onSave() {
@@ -162,7 +163,7 @@ public class SlotManagerActivity extends AegisActivity implements SlotAdapter.Li
     @Override
     public void onRemoveSlot(Slot slot) {
         SlotList slots = _creds.getSlots();
-        if (slot instanceof PasswordSlot && slots.findAll(PasswordSlot.class).size() <= 1) {
+        if (slot instanceof PasswordSlot && slots.has(PasswordSlot.class)) {
             Toast.makeText(this, R.string.password_slot_error, Toast.LENGTH_SHORT).show();
             return;
         }
@@ -174,7 +175,7 @@ public class SlotManagerActivity extends AegisActivity implements SlotAdapter.Li
                     slots.remove(slot);
                     _adapter.removeSlot(slot);
                     _edited = true;
-                    updateBiometricsButton();
+                    updateSlotButtons();
                 })
                 .setNegativeButton(android.R.string.no, null)
                 .create());
@@ -184,7 +185,7 @@ public class SlotManagerActivity extends AegisActivity implements SlotAdapter.Li
         _creds.getSlots().add(slot);
         _adapter.addSlot(slot);
         _edited = true;
-        updateBiometricsButton();
+        updateSlotButtons();
     }
 
     private void showSlotError(String error) {

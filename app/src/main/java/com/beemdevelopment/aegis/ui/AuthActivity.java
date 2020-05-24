@@ -45,8 +45,6 @@ import com.beemdevelopment.aegis.vault.slots.SlotException;
 import com.beemdevelopment.aegis.vault.slots.SlotIntegrityException;
 import com.beemdevelopment.aegis.vault.slots.SlotList;
 
-import java.util.List;
-
 import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
 
@@ -109,22 +107,20 @@ public class AuthActivity extends AegisActivity {
 
             try {
                 // find a biometric slot with an id that matches an alias in the keystore
-                for (BiometricSlot slot : _slots.findAll(BiometricSlot.class)) {
-                    String id = slot.getUUID().toString();
-                    KeyStoreHandle handle = new KeyStoreHandle();
-                    if (handle.containsKey(id)) {
-                        SecretKey key = handle.getKey(id);
-                        // if 'key' is null, it was permanently invalidated
-                        if (key == null) {
-                            invalidated = true;
-                            continue;
-                        }
+                BiometricSlot slot = _slots.get(BiometricSlot.class);
+                String id = slot.getUUID().toString();
 
+                KeyStoreHandle handle = new KeyStoreHandle();
+                if (handle.containsKey(id)) {
+                    SecretKey key = handle.getKey(id);
+                    // if 'key' is null, it was permanently invalidated
+                    if (key == null) {
+                        invalidated = true;
+                    } else {
                         _bioSlot = slot;
                         _bioKey = key;
                         biometricsButton.setVisibility(View.VISIBLE);
                         invalidated = false;
-                        break;
                     }
                 }
             } catch (KeyStoreHandleException e) {
@@ -144,8 +140,8 @@ public class AuthActivity extends AegisActivity {
             imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
 
             char[] password = EditTextHelper.getEditTextChars(_textPassword);
-            List<PasswordSlot> slots = _slots.findAll(PasswordSlot.class);
-            PasswordSlotDecryptTask.Params params = new PasswordSlotDecryptTask.Params(slots, password);
+            PasswordSlot slot = _slots.get(PasswordSlot.class);
+            PasswordSlotDecryptTask.Params params = new PasswordSlotDecryptTask.Params(slot, password);
             PasswordSlotDecryptTask task = new PasswordSlotDecryptTask(AuthActivity.this, new PasswordDerivationListener());
             task.execute(getLifecycle(), params);
         });
@@ -333,7 +329,7 @@ public class AuthActivity extends AegisActivity {
             _bioPrompt = null;
 
             MasterKey key;
-            BiometricSlot slot = _slots.find(BiometricSlot.class);
+            BiometricSlot slot = _slots.get(BiometricSlot.class);
 
             try {
                 key = slot.getKey(result.getCryptoObject().getCipher());

@@ -6,9 +6,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class SlotList extends UUIDMap<Slot> {
     public JSONArray toJson() {
         JSONArray array = new JSONArray();
@@ -35,7 +32,16 @@ public class SlotList extends UUIDMap<Slot> {
         return slots;
     }
 
-    public <T extends Slot> T find(Class<T> type) {
+    @Override
+    public void add(Slot slot) {
+        if (has(slot.getClass())) {
+            throw new AssertionError(String.format("Only one slot of type %s is allowed in a SlotList", slot.getClass().getSimpleName()));
+        }
+
+        super.add(slot);
+    }
+
+    public <T extends Slot> T get(Class<T> type) {
         for (Slot slot : this) {
             if (slot.getClass() == type) {
                 return type.cast(slot);
@@ -44,17 +50,7 @@ public class SlotList extends UUIDMap<Slot> {
         return null;
     }
 
-    public <T extends Slot> List<T> findAll(Class<T> type) {
-        ArrayList<T> list = new ArrayList<>();
-        for (Slot slot : this) {
-            if (slot.getClass() == type) {
-                list.add(type.cast(slot));
-            }
-        }
-        return list;
-    }
-
     public <T extends Slot> boolean has(Class<T> type) {
-        return find(type) != null;
+        return get(type) != null;
     }
 }
