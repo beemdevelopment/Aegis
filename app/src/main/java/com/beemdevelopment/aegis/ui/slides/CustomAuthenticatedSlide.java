@@ -60,7 +60,6 @@ public class CustomAuthenticatedSlide extends Fragment implements SlidePolicy, S
             }
         });
 
-        _creds = new VaultFileCredentials();
         view.findViewById(R.id.main).setBackgroundColor(_bgColor);
         return view;
     }
@@ -96,6 +95,7 @@ public class CustomAuthenticatedSlide extends Fragment implements SlidePolicy, S
     public void onSlideSelected() {
         Intent intent = getActivity().getIntent();
         _cryptType = intent.getIntExtra("cryptType", CustomAuthenticationSlide.CRYPT_TYPE_INVALID);
+        _creds = new VaultFileCredentials();
     }
 
     @Override
