@@ -108,6 +108,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         _entryListView.setTapToRevealTime(getPreferences().getTapToRevealTime());
         _entryListView.setSortCategory(getPreferences().getCurrentSortCategory(), false);
         _entryListView.setViewMode(getPreferences().getCurrentViewMode());
+        _entryListView.setIsCopyOnTapEnabled(getPreferences().isCopyOnTapEnabled());
 
         // set up the floating action button
         _fabMenu = findViewById(R.id.fab);
@@ -226,6 +227,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
                 boolean tapToReveal = getPreferences().isTapToRevealEnabled();
                 int tapToRevealTime = getPreferences().getTapToRevealTime();
                 ViewMode viewMode = getPreferences().getCurrentViewMode();
+                boolean copyOnTap = getPreferences().isCopyOnTapEnabled();
                 _entryListView.setShowAccountName(showAccountName);
                 _entryListView.setCodeGroupSize(codeGroupSize);
                 _entryListView.setSearchAccountName(searchAccountName);
@@ -233,6 +235,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
                 _entryListView.setTapToReveal(tapToReveal);
                 _entryListView.setTapToRevealTime(tapToRevealTime);
                 _entryListView.setViewMode(viewMode);
+                _entryListView.setIsCopyOnTapEnabled(copyOnTap);
                 _entryListView.refresh(true);
             }
         }
@@ -655,8 +658,6 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
 
             return;
         }
-
-        copyEntryCode(entry);
     }
 
     @Override
@@ -699,6 +700,10 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
     @Override
     public void onEntryChange(VaultEntry entry) {
         saveVault();
+    }
+
+    public void onEntryCopy(VaultEntry entry) {
+        copyEntryCode(entry);
     }
 
     @Override

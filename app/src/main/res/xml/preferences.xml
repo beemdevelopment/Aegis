@@ -60,6 +60,12 @@
             app:iconSpaceReserved="false"/>
         <androidx.preference.SwitchPreferenceCompat
             android:defaultValue="false"
+            android:key="pref_copy_on_tap"
+            android:title="@string/pref_copy_on_tap_title"
+            android:summary="@string/pref_copy_on_tap_summary"
+            app:iconSpaceReserved="false"/>
+        <androidx.preference.SwitchPreferenceCompat
+            android:defaultValue="false"
             android:key="pref_highlight_entry"
             android:title="@string/pref_highlight_entry_title"
             android:summary="@string/pref_highlight_entry_summary"
