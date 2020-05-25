@@ -110,7 +110,11 @@ public class IntroActivity extends AppIntro2 {
             return;
         }
 
-        _app.initVaultManager(vault, creds);
+        if (cryptType == CustomAuthenticationSlide.CRYPT_TYPE_NONE) {
+            _app.initVaultManager(vault, null);
+        } else {
+            _app.initVaultManager(vault, creds);
+        }
 
         // skip the intro from now on
         _prefs.setIntroDone(true);
