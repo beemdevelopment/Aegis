@@ -16,6 +16,8 @@
 #   public *;
 #}
 
+-keepattributes SourceFile,LineNumberTable
+
 -keep class com.beemdevelopment.aegis.importers.** { *; }
 
 -keep class * extends com.google.protobuf.GeneratedMessageLite { *; }
