@@ -112,7 +112,7 @@ public class AegisApplication extends Application {
     }
 
     public boolean isAutoLockEnabled() {
-        return _prefs.isAutoLockEnabled() && _manager.isEncryptionEnabled() && !isVaultLocked();
+        return _prefs.isAutoLockEnabled() && !isVaultLocked() && _manager.isEncryptionEnabled() ;
     }
 
     public void registerLockListener(LockListener listener) {
