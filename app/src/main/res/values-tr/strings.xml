@@ -1,8 +1,4 @@
 <resources>
-    <string name="app_name" translatable="false">Aegis</string>
-    <string name="app_name_full" translatable="false">Aegis Authenticator</string>
-    <string name="app_name_dev" translatable="false">AegisDev</string>
-    <string name="org_name_full" translatable="false">Beem Development</string>
     <string name="action_settings">Ayarlar</string>
     <string name="action_about">Hakkında</string>
     <string name="action_import">İçe aktar</string>
@@ -170,8 +166,8 @@
     <string name="remove_slot_description">Bu elemanı silmek istediğinize emin misiniz?</string>
     <string name="remove_group">Grubu sil</string>
     <string name="remove_group_description">Bu grubu silmek istediğinize emin misiniz? Bu gruptaki girdiler otomatik olarak \'Grupsuz\' grubuna geçecek.</string>
-    <string name="adding_new_slot_error">An error occurred while trying to add a new slot:</string>
-    <string name="progressbar_error">Unable to reset animator duration scale. Progress bars will be invisible.</string>
+    <string name="adding_new_slot_error">Yeni bir anahtarlık oluşturmaya çalışırken hata oluştu:</string>
+    <string name="progressbar_error">Animatör süresi ölçeği sıfırlanamıyor. İlerleme çubukları görünmez olacak.</string>
     <string name="details">Detaylar</string>
     <string name="filter">Filtrele</string>
     <string name="filter_ungrouped">Gruplandırılmamış</string>
@@ -217,13 +213,10 @@
     <string name="version">Sürüm</string>
     <string name="changelog">Değişiklik Günlüğü</string>
     <string name="whats_new">Yeni ne var?</string>
-    <string name="github" translatable="false">GitHub</string>
     <string name="github_description">Kaynak kod, sorunlar ve bilgiler</string>
     <string name="licenses">Lisanslar</string>
     <string name="licenses_description">Aegis\'in kullandığı kütüphanelerin lisansları</string>
-    <string name="author_alex" translatable="false">Alexander Bakker</string>
     <string name="country_netherlands">Hollanda</string>
-    <string name="author_michael" translatable="false">Michael Schättgen</string>
     <string name="email_us">Bir e-posta yazın</string>
     <string name="visit_website">Sitemizi ziyaret edin</string>
     <string name="about_support">Destek</string>
@@ -238,22 +231,6 @@
     <string name="google_qr_export_scanned">%d/%d QR kod tarandıQR</string>
     <string name="google_qr_export_unexpected">Beklenen QR kodu #%d idi, ancak bunun yerine #%d tarandı</string>
 
-    <string name="custom_notices_format_style" translatable="false" >
-        body {
-            background-color: #%1$s;
-            color: #%2$s;
-            font-family: sans-serif;
-            overflow-wrap: break-word;
-        }
-        pre {
-            background-color: #%3$s;
-            padding: 1em;
-            white-space: pre-wrap;
-        }
-        a {
-            color: #%4$s;
-        }
-    </string>
     <string name="empty_list">Gösterilecek kod yok. Girdi eklemeye sağ alt köşedeki artı işaretine dokunarak başlayın.</string>
     <string name="empty_list_title">Hiçbir girdi bulunamadı.</string>
 </resources>
