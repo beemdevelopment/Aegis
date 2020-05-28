@@ -460,6 +460,7 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
                 // intentional fallthrough
             case CODE_EXPORT_ENCRYPT:
                 onExportResult(resultCode, data, requestCode == CODE_EXPORT_ENCRYPT);
+                break;
             case CODE_BACKUPS:
                 onSelectBackupsLocationResult(resultCode, data);
                 break;
