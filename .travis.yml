@@ -1,15 +1,55 @@
-language: android
+language: shell
+os: linux
+dist: bionic
 env:
   global:
-    - ANDROID_HOME=/usr/local/android-sdk
-android:
-  components:
-  - android-29
-  - build-tools-29.0.2
+    - TERM=dumb
+    - ABI=x86_64
+    - EMU_FLAVOR=default
+    - ADB_INSTALL_TIMEOUT=16
+    - ANDROID_HOME=${HOME}/android
+    - ANDROID_SDK_ROOT=${ANDROID_HOME}
+    - TOOLS=${ANDROID_HOME}/cmdline-tools
+    - PATH=${ANDROID_HOME}/emulator:${TOOLS}/tools/bin:${ANDROID_HOME}/platform-tools:${PATH}
+  jobs:
+    - API=21
+    - API=23
+    #- API=25 <- inconsistent
+    - API=27
+    - API=28
+    #- API=29 <- emulator crashes
+    #- API=R EMU_FLAVOR=google_apis <- too heavy, re-enable when AOSP image is available
 before_install:
-  - mkdir -p $ANDROID_HOME/licenses
-  - echo "8933bad161af4178b1185d1a37fbf41ea5269c55" > $ANDROID_HOME/licenses/android-sdk-license
-  - echo "d56f5187479451eabf01fb78af6dfcb131a6481e" >> $ANDROID_HOME/licenses/android-sdk-license
-  - echo "24333f8a63b6825ea9c5514f83c2829b004d1fee" >> $ANDROID_HOME/licenses/android-sdk-license
+  - mkdir -p ${ANDROID_HOME}/licenses
+  - echo "8933bad161af4178b1185d1a37fbf41ea5269c55" > ${ANDROID_HOME}/licenses/android-sdk-license
+  - echo "d56f5187479451eabf01fb78af6dfcb131a6481e" >> ${ANDROID_HOME}/licenses/android-sdk-license
+  - echo "24333f8a63b6825ea9c5514f83c2829b004d1fee" >> ${ANDROID_HOME}/licenses/android-sdk-license
+install:
+  - mkdir -p ${TOOLS}
+  - travis_retry wget https://dl.google.com/android/repository/commandlinetools-linux-6514223_latest.zip -O ${TOOLS}/tools.zip
+  - unzip ${TOOLS}/tools.zip -d ${TOOLS}
+  - yes | travis_retry sdkmanager "platform-tools" > /dev/null
+  - yes | travis_retry sdkmanager "tools" > /dev/null
+  - yes | travis_retry sdkmanager "build-tools;29.0.2" > /dev/null
+  - yes | travis_retry sdkmanager "platforms;android-29" > /dev/null
+  - yes | travis_retry sdkmanager "emulator" > /dev/null
+  - yes | travis_retry sdkmanager "system-images;android-$API;$EMU_FLAVOR;$ABI" > /dev/null
+  - travis_retry sudo apt-get -yq --no-install-suggests install qemu-kvm
+before_script:
+  - sudo gpasswd -a $USER kvm
 script:
-  - ./gradlew build test
+  - ./gradlew assemble check
+  - echo no | avdmanager create avd --force -n test -k "system-images;android-$API;$EMU_FLAVOR;$ABI" -d "Nexus 5X" -c 128M
+  - sudo -E sudo -u $USER -E bash -c "${ANDROID_HOME}/emulator/emulator -verbose -avd test -gpu swiftshader_indirect -no-audio -no-boot-anim -no-snapshot -no-window -camera-back none -camera-front none -selinux permissive -memory 3072 &" 
+  - adb wait-for-device shell 'while [[ -z $(getprop sys.boot_completed) ]]; do sleep 1; done;'
+  - adb shell settings put global window_animation_scale 0
+  - adb shell settings put global transition_animation_scale 0
+  - adb shell settings put global animator_duration_scale 0
+  - adb reboot
+  - adb wait-for-device shell 'while [[ -z $(getprop sys.boot_completed) ]]; do sleep 1; done;'
+  - adb shell input keyevent 82 &
+  - bash .travis/android-wait-for-launcher.sh
+  - adb logcat -c
+  - ./gradlew connectedCheck
+after_failure:
+  - adb logcat -d
