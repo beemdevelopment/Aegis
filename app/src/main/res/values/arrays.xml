@@ -45,6 +45,7 @@
         <item>Greek</item>
         <item>Russian</item>
         <item>简体中文</item>
+        <item>Turkish</item>
     </string-array>
 
     <string-array name="pref_lang_values" translatable="false">
@@ -60,6 +61,8 @@
         <item>el</item>
         <item>ru</item>
         <item>zh</item>
+        <item>tr</item>
     </string-array>
 
 </resources>
+
