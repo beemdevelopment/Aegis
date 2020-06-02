@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="authentication_methods">
+        <item>@string/authentication_method_none</item>
+        <item>@string/authentication_method_password</item>
+        <item>@string/authentication_method_biometrics</item>
+    </string-array>
+
+    <string-array name="otp_types_array">
+        <item>TOTP</item>
+        <item>HOTP</item>
+        <item>Steam</item>
+    </string-array>
+
+    <string-array name="otp_algo_array">
+        <item>SHA1</item>
+        <item>SHA256</item>
+        <item>SHA512</item>
+    </string-array>
+
+    <string-array name="theme_titles">
+        <item>@string/light_theme_title</item>
+        <item>@string/dark_theme_title</item>
+        <item>@string/amoled_theme_title</item>
+        <item>@string/system_theme_title</item>
+        <item>@string/system_amoled_theme_title</item>
+    </string-array>
+
+    <string-array name="view_mode_titles">
+        <item>@string/normal_viewmode_title</item>
+        <item>@string/compact_mode_title</item>
+        <item>@string/small_mode_title</item>
+    </string-array>
+
+    <string-array name="pref_lang_entries">
+        <item>System default</item>
+        <item>Dutch</item>
+        <item>English</item>
+        <item>French</item>
+        <item>German</item>
+        <item>Polish</item>
+        <item>Italian</item>
+        <item>Finnish</item>
+        <item>Hungarian</item>
+        <item>Greek</item>
+        <item>Russian</item>
+        <item>简体中文</item>
+        <item>Turkish</item>
+    </string-array>
+
+    <string-array name="pref_lang_values" translatable="false">
+        <item>system</item>
+        <item>nl</item>
+        <item>en</item>
+        <item>fr</item>
+        <item>de</item>
+        <item>pl</item>
+        <item>it</item>
+        <item>fi</item>
+        <item>hu</item>
+        <item>el</item>
+        <item>ru</item>
+        <item>zh</item>
+        <item>tr</item>
+    </string-array>
+
+</resources>
+
