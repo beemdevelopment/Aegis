@@ -54,7 +54,9 @@
             android:name=".ui.IntroActivity"
             android:theme="@style/Theme.Intro" />
         <activity android:name=".ui.AuthActivity" />
-        <activity android:name=".ui.PreferencesActivity" />
+        <activity
+            android:name=".ui.PreferencesActivity"
+            android:label="@string/title_activity_preferences" />
         <activity
             android:name=".ui.SlotManagerActivity"
             android:label="Manage key slots" />
