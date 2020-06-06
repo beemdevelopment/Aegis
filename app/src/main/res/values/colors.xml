@@ -9,6 +9,8 @@
     <color name="colorAccentPressed">#FF5252</color>
     <color name="primary_text">#212121</color>
     <color name="secondary_text">#A0A0A0</color>
+    <color name="auth_text">#4c4c4c</color>
+    <color name="auth_button">#0d86c1</color>
     <color name="icon_about">#757575</color>
     <color name="extra_info_text">#8e8e8e</color>
     <color name="primary_text_inverted">#ffffff</color>
@@ -34,6 +36,7 @@
     <color name="hint_text_dark">#a7a7a7</color>
     <color name="secondary_text_dark">#FF5252</color>
     <color name="background_dark">#212121</color>
+    <color name="background_dark_statusbar">#101010</color>
     <color name="background_true_dark">#000000</color>
 
     <color name="warning_color">#f4511e</color>

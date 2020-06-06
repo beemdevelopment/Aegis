@@ -41,6 +41,47 @@
         <item name="android:windowLightNavigationBar" tools:targetApi="o_mr1">true</item>
     </style>
 
+    <style name="AppTheme.Light.NoActionBar" parent="AppTheme">
+        <item name="android:statusBarColor">@color/background</item>
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="primaryText">@color/primary_text</item>
+        <item name="background">@color/card_background</item>
+        <item name="authText">@color/auth_text</item>
+
+        <item name="android:navigationBarColor" tools:targetApi="o_mr1">@color/background</item>
+        <item name="android:windowLightStatusBar" tools:targetApi="o_mr1">true</item>
+        <item name="android:windowLightNavigationBar" tools:targetApi="o_mr1">true</item>
+    </style>
+
+    <style name="AppTheme.Dark.NoActionBar" parent="AppTheme">
+        <item name="android:statusBarColor">@color/background_dark_statusbar</item>
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="primaryText">@color/primary_text_dark</item>
+        <item name="background">@color/background_dark</item>
+        <item name="authText">@color/primary_text_inverted</item>
+
+        <item name="android:navigationBarColor" tools:targetApi="o_mr1">@color/background_dark</item>
+        <item name="android:windowLightNavigationBar" tools:targetApi="o_mr1">true</item>
+    </style>
+
+    <style name="AppTheme.TrueBlack.NoActionBar" parent="AppTheme">
+        <item name="android:statusBarColor">@color/background_true_dark</item>
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="primaryText">@color/primary_text_dark</item>
+        <item name="background">@color/background_true_dark</item>
+        <item name="authText">@color/primary_text_inverted</item>
+
+        <item name="android:navigationBarColor" tools:targetApi="lollipop">@color/background_true_dark</item>
+        <item name="android:windowLightNavigationBar" tools:targetApi="o_mr1">false</item>
+
+    </style>
+
     <style name="ActionModeStyle" parent="@style/Widget.AppCompat.Light.ActionMode.Inverse">
         <item name="background">@color/colorPrimary</item>
         <item name="titleTextStyle">@style/ActionModeTitleTextStyle</item>
@@ -123,11 +164,6 @@
         <item name="android:windowLightNavigationBar" tools:targetApi="o_mr1">false</item>
 
         <item name="android:windowBackground">@color/background_true_dark</item>
-    </style>
-
-    <style name="AppTheme.Dark.NoActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
     </style>
 
     <style name="AppTheme.Dark.TransparentActionBar">

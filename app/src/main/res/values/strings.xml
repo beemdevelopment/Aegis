@@ -72,6 +72,11 @@
     <string name="authentication_method_set_password">Password</string>
     <string name="authentication_enter_password">Enter your password</string>
     <string name="authentication">Unlock the vault</string>
+
+    <!-- The newline (\n) on the following line is just for aesthetic purposes !-->
+    <string name="authentication_multiline">Unlock\nthe vault</string>
+
+    <string name="auth_use_biometrics">Or tap here to use <font fgcolor='#FF0D86C1'>biometrics</font></string>
     <string name="set_password">Please enter a password</string>
     <string name="set_group">Please enter a group name</string>
     <string name="set_number">Please enter a number</string>

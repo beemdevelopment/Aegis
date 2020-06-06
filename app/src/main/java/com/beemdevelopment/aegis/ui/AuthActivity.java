@@ -2,6 +2,7 @@ package com.beemdevelopment.aegis.ui;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.KeyEvent;
@@ -14,6 +15,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -24,6 +26,7 @@ import com.beemdevelopment.aegis.AegisApplication;
 import com.beemdevelopment.aegis.CancelAction;
 import com.beemdevelopment.aegis.Preferences;
 import com.beemdevelopment.aegis.R;
+import com.beemdevelopment.aegis.Theme;
 import com.beemdevelopment.aegis.crypto.KeyStoreHandle;
 import com.beemdevelopment.aegis.crypto.KeyStoreHandleException;
 import com.beemdevelopment.aegis.crypto.MasterKey;
@@ -68,7 +71,7 @@ public class AuthActivity extends AegisActivity {
         _textPassword = findViewById(R.id.text_password);
         LinearLayout boxBiometricInfo = findViewById(R.id.box_biometric_info);
         Button decryptButton = findViewById(R.id.button_decrypt);
-        Button biometricsButton = findViewById(R.id.button_biometrics);
+        TextView biometricsButton = findViewById(R.id.button_biometrics);
 
         _textPassword.setOnEditorActionListener((v, actionId, event) -> {
             if ((event != null && (event.getKeyCode() == KeyEvent.KEYCODE_ENTER)) || (actionId == EditorInfo.IME_ACTION_DONE)) {
@@ -126,6 +129,7 @@ public class AuthActivity extends AegisActivity {
             // display a help message if a matching invalidated keystore entry was found
             if (invalidated) {
                 boxBiometricInfo.setVisibility(View.VISIBLE);
+                biometricsButton.setVisibility(View.GONE);
             }
         }
 
@@ -142,6 +146,34 @@ public class AuthActivity extends AegisActivity {
         biometricsButton.setOnClickListener(v -> {
             showBiometricPrompt();
         });
+    }
+
+    @Override
+    protected void setPreferredTheme(Theme theme) {
+        if (theme == Theme.SYSTEM || theme == Theme.SYSTEM_AMOLED) {
+            // set the theme based on the system theme
+            int currentNightMode = getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
+            switch (currentNightMode) {
+                case Configuration.UI_MODE_NIGHT_NO:
+                    theme = Theme.LIGHT;
+                    break;
+                case Configuration.UI_MODE_NIGHT_YES:
+                    theme = theme == Theme.SYSTEM_AMOLED ? Theme.AMOLED : Theme.DARK;
+                    break;
+            }
+        }
+
+        switch (theme) {
+            case LIGHT:
+                setTheme(R.style.AppTheme_Light_NoActionBar);
+                break;
+            case DARK:
+                setTheme(R.style.AppTheme_Dark_NoActionBar);
+                break;
+            case AMOLED:
+                setTheme(R.style.AppTheme_TrueBlack_NoActionBar);
+                break;
+        }
     }
 
     private void selectPassword() {
