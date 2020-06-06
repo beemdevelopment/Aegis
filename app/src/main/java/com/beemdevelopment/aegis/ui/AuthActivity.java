@@ -178,7 +178,7 @@ public class AuthActivity extends AegisActivity {
 
     @Override
     public void onAttachedToWindow() {
-        if (_bioPrompt != null && _prefs.isPasswordReminderNeeded()) {
+        if (_bioKey != null && _prefs.isPasswordReminderNeeded()) {
             showPasswordReminder();
         }
     }
