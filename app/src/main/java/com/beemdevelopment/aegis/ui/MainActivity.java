@@ -215,24 +215,26 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
 
     private void onPreferencesResult(Intent data) {
         // refresh the entire entry list if needed
-        if (data.getBooleanExtra("needsRecreate", false)) {
-            recreate();
-        } else if (data.getBooleanExtra("needsRefresh", false)) {
-            boolean showAccountName = getPreferences().isAccountNameVisible();
-            int codeGroupSize = getPreferences().getCodeGroupSize();
-            boolean searchAccountName = getPreferences().isSearchAccountNameEnabled();
-            boolean highlightEntry = getPreferences().isEntryHighlightEnabled();
-            boolean tapToReveal = getPreferences().isTapToRevealEnabled();
-            int tapToRevealTime = getPreferences().getTapToRevealTime();
-            ViewMode viewMode = getPreferences().getCurrentViewMode();
-            _entryListView.setShowAccountName(showAccountName);
-            _entryListView.setCodeGroupSize(codeGroupSize);
-            _entryListView.setSearchAccountName(searchAccountName);
-            _entryListView.setHighlightEntry(highlightEntry);
-            _entryListView.setTapToReveal(tapToReveal);
-            _entryListView.setTapToRevealTime(tapToRevealTime);
-            _entryListView.setViewMode(viewMode);
-            _entryListView.refresh(true);
+        if (_loaded) {
+            if (data.getBooleanExtra("needsRecreate", false)) {
+                recreate();
+            } else if (data.getBooleanExtra("needsRefresh", false)) {
+                boolean showAccountName = getPreferences().isAccountNameVisible();
+                int codeGroupSize = getPreferences().getCodeGroupSize();
+                boolean searchAccountName = getPreferences().isSearchAccountNameEnabled();
+                boolean highlightEntry = getPreferences().isEntryHighlightEnabled();
+                boolean tapToReveal = getPreferences().isTapToRevealEnabled();
+                int tapToRevealTime = getPreferences().getTapToRevealTime();
+                ViewMode viewMode = getPreferences().getCurrentViewMode();
+                _entryListView.setShowAccountName(showAccountName);
+                _entryListView.setCodeGroupSize(codeGroupSize);
+                _entryListView.setSearchAccountName(searchAccountName);
+                _entryListView.setHighlightEntry(highlightEntry);
+                _entryListView.setTapToReveal(tapToReveal);
+                _entryListView.setTapToRevealTime(tapToRevealTime);
+                _entryListView.setViewMode(viewMode);
+                _entryListView.refresh(true);
+            }
         }
     }
 
@@ -254,7 +256,9 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         } else {
             for (VaultEntry entry : entries) {
                 _vault.addEntry(entry);
-                _entryListView.addEntry(entry);
+                if (_loaded) {
+                    _entryListView.addEntry(entry);
+                }
             }
 
             saveVault();
@@ -262,19 +266,23 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
     }
 
     private void onAddEntryResult(Intent data) {
-        UUID entryUUID = (UUID) data.getSerializableExtra("entryUUID");
-        VaultEntry entry = _vault.getEntryByUUID(entryUUID);
-        _entryListView.addEntry(entry);
+        if (_loaded) {
+            UUID entryUUID = (UUID) data.getSerializableExtra("entryUUID");
+            VaultEntry entry = _vault.getEntryByUUID(entryUUID);
+            _entryListView.addEntry(entry);
+        }
     }
 
     private void onEditEntryResult(Intent data) {
-        UUID entryUUID = (UUID) data.getSerializableExtra("entryUUID");
+        if (_loaded) {
+            UUID entryUUID = (UUID) data.getSerializableExtra("entryUUID");
 
-        if (data.getBooleanExtra("delete", false)) {
-            _entryListView.removeEntry(entryUUID);
-        } else {
-            VaultEntry entry = _vault.getEntryByUUID(entryUUID);
-            _entryListView.replaceEntry(entryUUID, entry);
+            if (data.getBooleanExtra("delete", false)) {
+                _entryListView.removeEntry(entryUUID);
+            } else {
+                VaultEntry entry = _vault.getEntryByUUID(entryUUID);
+                _entryListView.replaceEntry(entryUUID, entry);
+            }
         }
     }
 
@@ -615,10 +623,11 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
     }
 
     private void loadEntries() {
-        List<VaultEntry> entries = new ArrayList<>(_vault.getEntries());
-        _entryListView.addEntries(entries);
-        _entryListView.runEntriesAnimation();
-        _loaded = true;
+        if (!_loaded) {
+            _entryListView.addEntries(_vault.getEntries());
+            _entryListView.runEntriesAnimation();
+            _loaded = true;
+        }
     }
 
     private void startAuthActivity() {
