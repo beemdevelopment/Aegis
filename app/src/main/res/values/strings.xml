@@ -7,6 +7,7 @@
     <string name="action_about">About</string>
     <string name="action_import">Import</string>
     <string name="action_delete">Delete</string>
+    <string name="action_edit_icon">Edit icon</string>
     <string name="action_default_icon">Restore default icon</string>
     <string name="discard">Discard</string>
     <string name="save">Save</string>
@@ -209,6 +210,7 @@
     <string name="import_error_dialog">Aegis could not import %d tokens. These tokens will be skipped. Press \'details\' to see more information about the errors.</string>
     <string name="unable_to_read_qrcode">Unable to read and process QR code</string>
     <string name="select_picture">Select picture</string>
+    <string name="select_icon">Select icon</string>
     <string name="toggle_checkboxes">Toggle checkboxes</string>
     <string name="search">Search</string>
     <string name="channel_name_lock_status">Lock status</string>

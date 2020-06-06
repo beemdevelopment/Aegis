@@ -8,12 +8,15 @@
         app:showAsAction="ifRoom"
         android:title="@string/save"/>
     <item
-        android:id="@+id/action_delete"
-        android:title="@string/action_delete"
+        android:id="@+id/action_edit_icon"
+        android:title="@string/action_edit_icon"
         app:showAsAction="never"/>
-
     <item
         android:id="@+id/action_default_icon"
         android:title="@string/action_default_icon"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/action_delete"
+        android:title="@string/action_delete"
         app:showAsAction="never"/>
 </menu>
