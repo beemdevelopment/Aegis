@@ -91,37 +91,43 @@ protobuf {
 }
 
 dependencies {
+    def glideVersion = '4.11.0'
+    def guavaVersion = '29.0'
+    def junitVersion = '5.6.2'
     def libsuVersion = '2.5.1'
+
+    annotationProcessor 'androidx.annotation:annotation:1.1.0'
+    annotationProcessor "com.github.bumptech.glide:compiler:${glideVersion}"
+
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'com.google.protobuf:protobuf-javalite:3.8.0'
-    implementation 'net.lingala.zip4j:zip4j:2.5.2'
-    implementation 'com.amulyakhare:com.amulyakhare.textdrawable:1.0.1'
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation "androidx.biometric:biometric:1.0.1"
     implementation 'androidx.cardview:cardview:1.0.0'
-    implementation 'androidx.preference:preference:1.1.0'
-    implementation 'com.google.android.material:material:1.0.0'
+    implementation 'androidx.preference:preference:1.1.1'
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
-    implementation 'com.google.guava:guava:28.2-android'
+    implementation 'com.amulyakhare:com.amulyakhare.textdrawable:1.0.1'
     implementation 'com.getbase:floatingactionbutton:1.10.1'
     implementation 'com.github.apl-devs:appintro:6.0.0'
     implementation 'com.github.avito-tech:krop:0.44'
-    implementation 'org.bouncycastle:bcprov-jdk15on:1.65'
-    implementation 'de.hdodenhof:circleimageview:3.0.1'
-    implementation 'me.dm7.barcodescanner:zxing:1.9.8'
-    implementation "com.github.topjohnwu.libsu:core:${libsuVersion}"
-    implementation "com.github.topjohnwu.libsu:io:${libsuVersion}"
-    implementation 'com.github.bumptech.glide:annotations:4.10.0'
-    implementation 'com.github.bumptech.glide:glide:4.10.0'
-    implementation "com.mikepenz:iconics-core:3.2.5"
-    implementation 'com.mikepenz:material-design-iconic-typeface:2.2.0.5@aar'
-    implementation 'de.psdev.licensesdialog:licensesdialog:2.1.0'
-    implementation("com.github.bumptech.glide:recyclerview-integration:4.9.0") {
+    implementation "com.github.bumptech.glide:annotations:${glideVersion}"
+    implementation "com.github.bumptech.glide:glide:${glideVersion}"
+    implementation("com.github.bumptech.glide:recyclerview-integration:${glideVersion}") {
         transitive = false
     }
-    annotationProcessor 'androidx.annotation:annotation:1.1.0'
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.10.0'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.5.2'
-    testImplementation 'com.google.guava:guava:28.2-jre"'
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.5.2'
+    implementation "com.github.topjohnwu.libsu:core:${libsuVersion}"
+    implementation "com.github.topjohnwu.libsu:io:${libsuVersion}"
+    implementation "com.google.guava:guava:${guavaVersion}-android"
+    implementation 'com.google.android.material:material:1.1.0'
+    implementation 'com.google.protobuf:protobuf-javalite:3.12.1'
+    implementation "com.mikepenz:iconics-core:3.2.5"
+    implementation 'com.mikepenz:material-design-iconic-typeface:2.2.0.5@aar'
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
+    implementation 'de.psdev.licensesdialog:licensesdialog:2.1.0'
+    implementation 'me.dm7.barcodescanner:zxing:1.9.8'
+    implementation 'net.lingala.zip4j:zip4j:2.6.0'
+    implementation 'org.bouncycastle:bcprov-jdk15on:1.65'
+
+    testImplementation "com.google.guava:guava:${guavaVersion}-jre"
+    testImplementation "org.junit.jupiter:junit-jupiter-api:${junitVersion}"
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:${junitVersion}"
 }
