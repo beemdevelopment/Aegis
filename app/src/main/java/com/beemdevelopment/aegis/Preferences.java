@@ -167,4 +167,8 @@ public class Preferences {
     public void setIsTimeSyncWarningEnabled(boolean enabled) {
         _prefs.edit().putBoolean("pref_warn_time_sync", enabled).apply();
     }
+
+    public boolean isCopyOnTapEnabled() {
+        return _prefs.getBoolean("pref_copy_on_tap", false);
+    }
 }

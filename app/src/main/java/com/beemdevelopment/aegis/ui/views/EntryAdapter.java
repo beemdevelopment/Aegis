@@ -38,6 +38,7 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
     private boolean _highlightEntry;
     private boolean _tapToReveal;
     private int _tapToRevealTime;
+    private boolean _copyOnTap;
     private String _groupFilter;
     private SortCategory _sortCategory;
     private ViewMode _viewMode;
@@ -87,6 +88,10 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
 
     public void setHighlightEntry(boolean highlightEntry) {
         _highlightEntry = highlightEntry;
+    }
+
+    public void setIsCopyOnTapEnabled(boolean enabled) {
+        _copyOnTap = enabled;
     }
 
     public VaultEntry getEntryAt(int position) {
@@ -343,7 +348,10 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
                 boolean handled = false;
 
                 if (_selectedEntries.isEmpty()) {
-                    holder.animateCopyText();
+                    if (_copyOnTap) {
+                        _view.onEntryCopy(entry);
+                        holder.animateCopyText();
+                    }
 
                     if (_highlightEntry || _tapToReveal) {
                         if (_focusedEntry == entry) {
@@ -548,6 +556,7 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
         void onEntryMove(VaultEntry entry1, VaultEntry entry2);
         void onEntryDrop(VaultEntry entry);
         void onEntryChange(VaultEntry entry);
+        void onEntryCopy(VaultEntry entry);
         void onPeriodUniformityChanged(boolean uniform, int period);
         void onSelect(VaultEntry entry);
         void onDeselect(VaultEntry entry);

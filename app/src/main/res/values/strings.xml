@@ -195,6 +195,8 @@
     <string name="pref_search_name_summary">Include account name matches in the search results</string>
     <string name="pref_highlight_entry_title">Highlight tokens when tapped</string>
     <string name="pref_highlight_entry_summary">Make tokens easier to distinguish from each other by temporarily highlighting them when tapped</string>
+    <string name="pref_copy_on_tap_title">Copy tokens when tapped</string>
+    <string name="pref_copy_on_tap_summary">Copy tokens to the clipboard by tapping them</string>
     <string name="tap_to_reveal">Hidden</string>
     <string name="selected">Selected</string>
     <string name="dark_theme_title">Dark theme</string>

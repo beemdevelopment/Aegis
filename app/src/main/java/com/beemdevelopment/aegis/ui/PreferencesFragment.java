@@ -228,6 +228,12 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
             return true;
         });
 
+        Preference copyOnTapPreference = findPreference("pref_copy_on_tap");
+        copyOnTapPreference.setOnPreferenceChangeListener((preference, newValue) -> {
+            _result.putExtra("needsRefresh", true);
+            return true;
+        });
+        
         Preference entryHighlightPreference = findPreference("pref_highlight_entry");
         entryHighlightPreference.setOnPreferenceChangeListener((preference, newValue) -> {
             _result.putExtra("needsRefresh", true);

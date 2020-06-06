@@ -138,6 +138,10 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
         _touchCallback.setIsLongPressDragEnabled(enabled);
     }
 
+    public void setIsCopyOnTapEnabled(boolean enabled) {
+       _adapter.setIsCopyOnTapEnabled(enabled);
+    }
+
     public void setActionModeState(boolean enabled, VaultEntry entry) {
         _touchCallback.setSelectedEntry(entry);
         _touchCallback.setIsLongPressDragEnabled(enabled && _adapter.isDragAndDropAllowed());
@@ -203,6 +207,11 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
     @Override
     public void onEntryChange(VaultEntry entry) {
         _listener.onEntryChange(entry);
+    }
+
+    @Override
+    public void onEntryCopy(VaultEntry entry) {
+        _listener.onEntryCopy(entry);
     }
 
     @Override
@@ -323,6 +332,7 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
         void onEntryMove(VaultEntry entry1, VaultEntry entry2);
         void onEntryDrop(VaultEntry entry);
         void onEntryChange(VaultEntry entry);
+        void onEntryCopy(VaultEntry entry);
         void onLongEntryClick(VaultEntry entry);
         void onScroll(int dx, int dy);
         void onSelect(VaultEntry entry);
