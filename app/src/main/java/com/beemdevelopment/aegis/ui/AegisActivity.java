@@ -1,10 +1,8 @@
 package com.beemdevelopment.aegis.ui;
 
-import android.animation.ValueAnimator;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
-import android.provider.Settings;
 import android.view.WindowManager;
 import android.widget.Toast;
 
@@ -46,9 +44,6 @@ public abstract class AegisActivity extends AppCompatActivity implements AegisAp
         if (getPreferences().isSecureScreenEnabled()) {
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_SECURE);
         }
-
-        // apply a dirty hack to make progress bars work even if animations are disabled
-        setGlobalAnimationDurationScale();
 
         // register a callback to listen for lock events
         _app.registerLockListener(this);
@@ -150,17 +145,6 @@ public abstract class AegisActivity extends AppCompatActivity implements AegisAp
      */
     private boolean isOrphan() {
         return !(this instanceof MainActivity) && _app.isVaultLocked();
-    }
-
-    private void setGlobalAnimationDurationScale() {
-        float durationScale = Settings.Global.getFloat(getContentResolver(), Settings.Global.ANIMATOR_DURATION_SCALE, 0);
-        if (durationScale != 1) {
-            try {
-                ValueAnimator.class.getMethod("setDurationScale", float.class).invoke(null, 1f);
-            } catch (Throwable t) {
-                Toast.makeText(this, R.string.progressbar_error, Toast.LENGTH_SHORT).show();
-            }
-        }
     }
 
     protected Theme getCurrentTheme() {

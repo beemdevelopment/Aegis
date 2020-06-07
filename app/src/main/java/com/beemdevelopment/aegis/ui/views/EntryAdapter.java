@@ -224,7 +224,7 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
             notifyDataSetChanged();
         } else {
             for (EntryHolder holder : _holders) {
-                holder.refreshCode();
+                holder.refresh();
             }
         }
     }

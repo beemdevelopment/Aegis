@@ -45,7 +45,7 @@ public class EntryHolder extends RecyclerView.ViewHolder {
 
     private boolean _hidden;
 
-    private PeriodProgressBar _progressBar;
+    private TotpProgressBar _progressBar;
     private View _view;
 
     private UiRefresher _refresher;
@@ -84,8 +84,6 @@ public class EntryHolder extends RecyclerView.ViewHolder {
                 if (!_hidden) {
                     refreshCode();
                 }
-
-                _progressBar.refresh();
             }
 
             @Override
@@ -199,10 +197,17 @@ public class EntryHolder extends RecyclerView.ViewHolder {
 
     public void startRefreshLoop() {
         _refresher.start();
+        _progressBar.start();
     }
 
     public void stopRefreshLoop() {
         _refresher.stop();
+        _progressBar.stop();
+    }
+
+    public void refresh() {
+        _progressBar.restart();
+        refreshCode();
     }
 
     public void refreshCode() {

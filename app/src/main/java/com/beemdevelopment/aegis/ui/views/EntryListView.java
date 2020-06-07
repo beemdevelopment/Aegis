@@ -23,8 +23,6 @@ import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.SortCategory;
 import com.beemdevelopment.aegis.ViewMode;
 import com.beemdevelopment.aegis.helpers.SimpleItemTouchHelperCallback;
-import com.beemdevelopment.aegis.helpers.UiRefresher;
-import com.beemdevelopment.aegis.otp.TotpInfo;
 import com.beemdevelopment.aegis.vault.VaultEntry;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.ListPreloader;
@@ -46,12 +44,10 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
     private RecyclerView _recyclerView;
     private RecyclerView.ItemDecoration _dividerDecoration;
     private ViewPreloadSizeProvider<VaultEntry> _preloadSizeProvider;
-    private PeriodProgressBar _progressBar;
+    private TotpProgressBar _progressBar;
     private boolean _showProgress;
     private ViewMode _viewMode;
     private LinearLayout _emptyStateView;
-
-    private UiRefresher _refresher;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -97,19 +93,6 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
         int resId = R.anim.layout_animation_fall_down;
         LayoutAnimationController animation = AnimationUtils.loadLayoutAnimation(getContext(), resId);
         _recyclerView.setLayoutAnimation(animation);
-
-        _refresher = new UiRefresher(new UiRefresher.Listener() {
-            @Override
-            public void onRefresh() {
-                refresh(false);
-            }
-
-            @Override
-            public long getMillisTillNextRefresh() {
-                return TotpInfo.getMillisTillNextRotation(_adapter.getMostFrequentPeriod());
-            }
-        });
-
         _emptyStateView = view.findViewById(R.id.vEmptyList);
 
         return view;
@@ -121,7 +104,6 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
 
     @Override
     public void onDestroyView() {
-        _refresher.destroy();
         super.onDestroyView();
     }
 
@@ -175,8 +157,9 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
 
     public void refresh(boolean hard) {
         if (_showProgress) {
-            _progressBar.refresh();
+            _progressBar.restart();
         }
+
         _adapter.refresh(hard);
     }
 
@@ -224,13 +207,12 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
     public void onPeriodUniformityChanged(boolean isUniform, int period) {
         setShowProgress(isUniform);
         if (_showProgress) {
-            _refresher.stop();
             _progressBar.setVisibility(View.VISIBLE);
             _progressBar.setPeriod(period);
-            _refresher.start();
+            _progressBar.start();
         } else {
             _progressBar.setVisibility(View.GONE);
-            _refresher.stop();
+            _progressBar.stop();
         }
     }
 
