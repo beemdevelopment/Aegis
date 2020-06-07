@@ -126,8 +126,8 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
     }
 
     public void setGroupFilter(String group, boolean apply) {
-        _touchCallback.setIsLongPressDragEnabled(group == null);
         _adapter.setGroupFilter(group, apply);
+        _touchCallback.setIsLongPressDragEnabled(_adapter.isDragAndDropAllowed());
 
         if (apply) {
             runEntriesAnimation();
@@ -135,7 +135,7 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
     }
 
     public void setIsLongPressDragEnabled(boolean enabled) {
-        _touchCallback.setIsLongPressDragEnabled(enabled);
+        _touchCallback.setIsLongPressDragEnabled(enabled && _adapter.isDragAndDropAllowed());
     }
 
     public void setIsCopyOnTapEnabled(boolean enabled) {
@@ -154,8 +154,8 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
     }
 
     public void setSortCategory(SortCategory sortCategory, boolean apply) {
-        _touchCallback.setIsLongPressDragEnabled(sortCategory == SortCategory.CUSTOM);
         _adapter.setSortCategory(sortCategory, apply);
+        _touchCallback.setIsLongPressDragEnabled(_adapter.isDragAndDropAllowed());
 
         if (apply) {
             runEntriesAnimation();
@@ -163,8 +163,8 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
     }
 
     public void setSearchFilter(String search) {
-        _touchCallback.setIsLongPressDragEnabled(search == null);
         _adapter.setSearchFilter(search);
+        _touchCallback.setIsLongPressDragEnabled(_adapter.isDragAndDropAllowed());
     }
 
     public void setViewMode(ViewMode mode) {
