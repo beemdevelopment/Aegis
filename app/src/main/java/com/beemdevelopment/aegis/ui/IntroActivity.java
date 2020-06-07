@@ -8,8 +8,8 @@ import androidx.fragment.app.Fragment;
 import com.beemdevelopment.aegis.AegisApplication;
 import com.beemdevelopment.aegis.Preferences;
 import com.beemdevelopment.aegis.R;
-import com.beemdevelopment.aegis.ui.slides.CustomAuthenticatedSlide;
-import com.beemdevelopment.aegis.ui.slides.CustomAuthenticationSlide;
+import com.beemdevelopment.aegis.ui.slides.SecuritySetupSlide;
+import com.beemdevelopment.aegis.ui.slides.SecurityPickerSlide;
 import com.beemdevelopment.aegis.vault.Vault;
 import com.beemdevelopment.aegis.vault.VaultFile;
 import com.beemdevelopment.aegis.vault.VaultFileCredentials;
@@ -23,8 +23,8 @@ import com.github.appintro.model.SliderPage;
 import org.json.JSONObject;
 
 public class IntroActivity extends AppIntro2 {
-    private CustomAuthenticatedSlide _authenticatedSlide;
-    private CustomAuthenticationSlide _authenticationSlide;
+    private SecuritySetupSlide securitySetupSlide;
+    private SecurityPickerSlide _securityPickerSlide;
     private Fragment _endSlide;
 
     private AegisApplication _app;
@@ -56,12 +56,12 @@ public class IntroActivity extends AppIntro2 {
         homeSliderPage.setBackgroundColor(getResources().getColor(R.color.colorSecondary));
         addSlide(AppIntroFragment.newInstance(homeSliderPage));
 
-        _authenticationSlide = new CustomAuthenticationSlide();
-        _authenticationSlide.setBgColor(getResources().getColor(R.color.colorSecondary));
-        addSlide(_authenticationSlide);
-        _authenticatedSlide = new CustomAuthenticatedSlide();
-        _authenticatedSlide.setBgColor(getResources().getColor(R.color.colorSecondary));
-        addSlide(_authenticatedSlide);
+        _securityPickerSlide = new SecurityPickerSlide();
+        _securityPickerSlide.setBgColor(getResources().getColor(R.color.colorSecondary));
+        addSlide(_securityPickerSlide);
+        securitySetupSlide = new SecuritySetupSlide();
+        securitySetupSlide.setBgColor(getResources().getColor(R.color.colorSecondary));
+        addSlide(securitySetupSlide);
 
         SliderPage endSliderPage = new SliderPage();
         endSliderPage.setTitle(getString(R.string.setup_completed));
@@ -74,10 +74,10 @@ public class IntroActivity extends AppIntro2 {
 
     @Override
     public void onSlideChanged(Fragment oldFragment, Fragment newFragment) {
-        if (oldFragment == _authenticationSlide && newFragment != _endSlide) {
+        if (oldFragment == _securityPickerSlide && newFragment != _endSlide) {
             // skip to the last slide if no encryption will be used
-            int cryptType = getIntent().getIntExtra("cryptType", CustomAuthenticationSlide.CRYPT_TYPE_INVALID);
-            if (cryptType == CustomAuthenticationSlide.CRYPT_TYPE_NONE) {
+            int cryptType = getIntent().getIntExtra("cryptType", SecurityPickerSlide.CRYPT_TYPE_INVALID);
+            if (cryptType == SecurityPickerSlide.CRYPT_TYPE_NONE) {
                 // TODO: no magic indices
                 goToNextSlide(false);
             }
@@ -90,14 +90,14 @@ public class IntroActivity extends AppIntro2 {
     public void onDonePressed(Fragment currentFragment) {
         super.onDonePressed(currentFragment);
 
-        int cryptType = _authenticatedSlide.getCryptType();
-        VaultFileCredentials creds = _authenticatedSlide.getCredentials();
+        int cryptType = securitySetupSlide.getCryptType();
+        VaultFileCredentials creds = securitySetupSlide.getCredentials();
 
         Vault vault = new Vault();
         VaultFile vaultFile = new VaultFile();
         try {
             JSONObject obj = vault.toJson();
-            if (cryptType == CustomAuthenticationSlide.CRYPT_TYPE_NONE) {
+            if (cryptType == SecurityPickerSlide.CRYPT_TYPE_NONE) {
                 vaultFile.setContent(obj);
             } else {
                 vaultFile.setContent(obj, creds);
@@ -110,7 +110,7 @@ public class IntroActivity extends AppIntro2 {
             return;
         }
 
-        if (cryptType == CustomAuthenticationSlide.CRYPT_TYPE_NONE) {
+        if (cryptType == SecurityPickerSlide.CRYPT_TYPE_NONE) {
             _app.initVaultManager(vault, null);
         } else {
             _app.initVaultManager(vault, creds);

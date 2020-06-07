@@ -16,7 +16,7 @@ import com.beemdevelopment.aegis.helpers.BiometricsHelper;
 import com.github.appintro.SlidePolicy;
 import com.google.android.material.snackbar.Snackbar;
 
-public class CustomAuthenticationSlide extends Fragment implements SlidePolicy, RadioGroup.OnCheckedChangeListener {
+public class SecurityPickerSlide extends Fragment implements SlidePolicy, RadioGroup.OnCheckedChangeListener {
     public static final int CRYPT_TYPE_INVALID = 0;
     public static final int CRYPT_TYPE_NONE = 1;
     public static final int CRYPT_TYPE_PASS = 2;
@@ -27,7 +27,7 @@ public class CustomAuthenticationSlide extends Fragment implements SlidePolicy, 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        final View view = inflater.inflate(R.layout.fragment_authentication_slide, container, false);
+        final View view = inflater.inflate(R.layout.fragment_security_picker_slide, container, false);
         _buttonGroup = view.findViewById(R.id.rg_authenticationMethod);
         _buttonGroup.setOnCheckedChangeListener(this);
         onCheckedChanged(_buttonGroup, _buttonGroup.getCheckedRadioButtonId());
