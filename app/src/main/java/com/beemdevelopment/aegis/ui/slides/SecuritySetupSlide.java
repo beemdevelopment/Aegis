@@ -32,7 +32,7 @@ import com.google.android.material.snackbar.Snackbar;
 import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
 
-public class CustomAuthenticatedSlide extends Fragment implements SlidePolicy, SlideSelectionListener {
+public class SecuritySetupSlide extends Fragment implements SlidePolicy, SlideSelectionListener {
     private int _bgColor;
     private EditText _textPassword;
     private EditText _textPasswordConfirm;
@@ -43,7 +43,7 @@ public class CustomAuthenticatedSlide extends Fragment implements SlidePolicy, S
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        final View view = inflater.inflate(R.layout.fragment_authenticated_slide, container, false);
+        final View view = inflater.inflate(R.layout.fragment_security_setup_slide, container, false);
         _textPassword = view.findViewById(R.id.text_password);
         _textPasswordConfirm = view.findViewById(R.id.text_password_confirm);
         _checkPasswordVisibility = view.findViewById(R.id.check_toggle_visibility);
@@ -94,8 +94,8 @@ public class CustomAuthenticatedSlide extends Fragment implements SlidePolicy, S
     @Override
     public void onSlideSelected() {
         Intent intent = getActivity().getIntent();
-        _cryptType = intent.getIntExtra("cryptType", CustomAuthenticationSlide.CRYPT_TYPE_INVALID);
-        if (_cryptType != CustomAuthenticationSlide.CRYPT_TYPE_NONE) {
+        _cryptType = intent.getIntExtra("cryptType", SecurityPickerSlide.CRYPT_TYPE_INVALID);
+        if (_cryptType != SecurityPickerSlide.CRYPT_TYPE_NONE) {
             _creds = new VaultFileCredentials();
         }
     }
@@ -108,14 +108,14 @@ public class CustomAuthenticatedSlide extends Fragment implements SlidePolicy, S
     @Override
     public boolean isPolicyRespected() {
         switch (_cryptType) {
-            case CustomAuthenticationSlide.CRYPT_TYPE_NONE:
+            case SecurityPickerSlide.CRYPT_TYPE_NONE:
                 return true;
-            case CustomAuthenticationSlide.CRYPT_TYPE_BIOMETRIC:
+            case SecurityPickerSlide.CRYPT_TYPE_BIOMETRIC:
                 if (!_creds.getSlots().has(BiometricSlot.class)) {
                     return false;
                 }
                 // intentional fallthrough
-            case CustomAuthenticationSlide.CRYPT_TYPE_PASS:
+            case SecurityPickerSlide.CRYPT_TYPE_PASS:
                 if (EditTextHelper.areEditTextsEqual(_textPassword, _textPasswordConfirm)) {
                     return _creds.getSlots().has(PasswordSlot.class);
                 }
@@ -137,7 +137,7 @@ public class CustomAuthenticatedSlide extends Fragment implements SlidePolicy, S
                 Snackbar snackbar = Snackbar.make(view, message, Snackbar.LENGTH_LONG);
                 snackbar.show();
             }
-        } else if (_cryptType != CustomAuthenticationSlide.CRYPT_TYPE_BIOMETRIC) {
+        } else if (_cryptType != SecurityPickerSlide.CRYPT_TYPE_BIOMETRIC) {
             deriveKey();
         } else if (!_creds.getSlots().has(BiometricSlot.class)) {
             showBiometricPrompt();
