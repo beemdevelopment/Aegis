@@ -83,6 +83,10 @@ public class IntroActivity extends AppIntro2 {
             }
         }
 
+        if (newFragment == _endSlide) {
+            setWizardMode(false);
+        }
+
         setSwipeLock(true);
     }
 
