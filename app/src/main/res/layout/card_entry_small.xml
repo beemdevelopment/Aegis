@@ -150,7 +150,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.beemdevelopment.aegis.ui.views.PeriodProgressBar
+        <com.beemdevelopment.aegis.ui.views.TotpProgressBar
             style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="wrap_content"
             android:layout_height="3dp"

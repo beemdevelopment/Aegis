@@ -6,14 +6,14 @@
     android:background="?attr/background"
     android:orientation="vertical">
 
-    <com.beemdevelopment.aegis.ui.views.PeriodProgressBar
+    <com.beemdevelopment.aegis.ui.views.TotpProgressBar
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="match_parent"
         android:layout_height="4dp"
         android:progressDrawable="@drawable/progress_horizontal"
         android:id="@+id/progressBar"
         android:visibility="gone"
-        android:max="1000"/>
+        android:max="5000"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
