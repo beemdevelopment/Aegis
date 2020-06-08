@@ -21,23 +21,20 @@
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:paddingLeft="16dp">
+            android:paddingStart="16dp">
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/ivTextDrawable"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_centerVertical="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                />
+                android:layout_alignParentStart="true" />
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/ivSelected"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_alignParentStart="true"
-                android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
                 android:src="@drawable/item_selected"
                 android:visibility="gone"
@@ -48,12 +45,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:layout_alignParentBottom="false"
-            android:layout_alignParentTop="false"
-            android:layout_alignWithParentIfMissing="false"
             android:gravity="bottom"
             android:id="@+id/relativeLayout"
-            android:layout_alignParentStart="false"
             android:paddingTop="18dp"
             android:paddingBottom="16dp"
             android:paddingEnd="16dp"
@@ -69,7 +62,6 @@
                 android:maxLines="1"
                 android:text="@string/copied"
                 android:layout_above="@+id/description"
-                android:layout_alignLeft="@+id/profile_code"
                 android:layout_alignStart="@+id/profile_code"
                 android:textColor="?attr/secondaryText"
                 android:textSize="16sp"
@@ -79,9 +71,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/description"
-                android:layout_alignLeft="@+id/profile_code"
                 android:layout_alignStart="@+id/profile_code">
-
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -95,20 +85,20 @@
                     android:ellipsize="end"
                     android:maxLines="1"/>
 
-            <TextView
-                android:id="@+id/profile_account_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_toRightOf="@id/profile_issuer"
-                android:ellipsize="end"
-                android:includeFontPadding="false"
-                android:maxLines="1"
-                android:textColor="@color/secondary_text"
-                android:textSize="16sp"
-                tools:text=" - AccountName" />
+                <TextView
+                    android:id="@+id/profile_account_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toEndOf="@id/profile_issuer"
+                    android:layout_marginStart="2dp"
+                    android:ellipsize="end"
+                    android:includeFontPadding="false"
+                    android:maxLines="1"
+                    android:textColor="@color/secondary_text"
+                    android:textSize="16sp"
+                    tools:text=" - AccountName" />
 
             </RelativeLayout>
-
 
             <TextView
                 android:layout_width="wrap_content"
@@ -117,13 +107,12 @@
                 android:fontFamily="sans-serif-light"
                 tools:text="012 345"
                 android:id="@+id/profile_code"
+                android:layoutDirection="ltr"
                 android:layout_below="@id/description"
                 android:includeFontPadding="false"
                 android:textSize="34sp"
                 android:textColor="?attr/codePrimaryText"
-                android:layout_marginLeft="6dp"
                 android:layout_marginStart="6dp"
-                android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:layout_marginTop="0dp"
                 android:textStyle="normal|bold"/>
@@ -154,7 +143,7 @@
 
         <com.beemdevelopment.aegis.ui.views.TotpProgressBar
             style="?android:attr/progressBarStyleHorizontal"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="4dp"
             android:id="@+id/progressBar"
             android:max="5000"
