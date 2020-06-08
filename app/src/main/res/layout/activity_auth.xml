@@ -7,37 +7,44 @@
     android:fitsSystemWindows="true"
     android:background="?attr/background"
     tools:context="com.beemdevelopment.aegis.ui.AuthActivity">
+
     <LinearLayout
-        android:orientation="vertical"
+        android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="32dp"
-        tools:layout_editor_absoluteY="8dp"
-        tools:layout_editor_absoluteX="8dp">
+        android:layout_height="match_parent"
+        android:layout_margin="48dp"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="8dp">
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginBottom="20dp"
+            app:srcCompat="@drawable/ic_aegis_iconx" />
+
         <TextView
-            android:text="@string/authentication"
-            android:textColor="?attr/primaryText"
+            android:id="@+id/textView2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="24sp"
-            android:id="@+id/textView2" />
+            android:fontFamily="sans-serif-light"
+            android:singleLine="false"
+            android:text="@string/authentication_multiline"
+            android:textColor="?attr/authText"
+            android:textFontWeight="500"
+            android:textSize="46sp" />
+
         <LinearLayout
-            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="12dp">
-
-            <TextView
-                android:id="@+id/textView4"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/authentication_enter_password"
-                android:textColor="?attr/secondaryText" />
+            android:layout_marginTop="12dp"
+            android:orientation="vertical">
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:paddingBottom="25dp"
                 app:hintEnabled="false"
                 app:passwordToggleEnabled="true"
                 app:passwordToggleTint="#949494">
@@ -46,48 +53,72 @@
                     android:id="@+id/text_password"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="textPassword" />
+                    android:hint="@string/password"
+                    android:inputType="textPassword"
+                    android:textColor="?attr/primaryText"
+                    android:textColorHint="?attr/authText"
+                    app:backgroundTint="?attr/authText" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <LinearLayout
-                android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingBottom="25dp">
+
                 <Button
                     android:id="@+id/button_decrypt"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="@drawable/button_rounded_corners"
                     android:minWidth="125dp"
-                    android:text="@string/unlock" />
-                <Button
-                    android:id="@+id/button_biometrics"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:minWidth="125dp"
-                    android:text="@string/biometrics"
-                    android:visibility="gone" />
+                    android:text="@string/unlock"
+                    android:textColor="@color/primary_text_inverted"
+                    android:textStyle="bold" />
+
             </LinearLayout>
 
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/box_biometric_info"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingTop="12dp"
-            android:visibility="gone">
-
-            <ImageView
+            <TextView
+                android:id="@+id/button_biometrics"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_info_outline_black_24dp"
-                android:layout_marginEnd="15dp"/>
+                android:layout_gravity="center"
+                android:minWidth="125dp"
+                android:text="@string/auth_use_biometrics"
+                android:textColor="?attr/authText"
+                android:visibility="gone" />
 
-            <TextView
+            <LinearLayout
+                android:id="@+id/box_biometric_info"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/invalidated_biometrics"/>
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_info_outline_black_24dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/invalidated_biometrics" />
+            </LinearLayout>
         </LinearLayout>
+
     </LinearLayout>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center"
+        android:textStyle="bold"
+        android:textAllCaps="true"
+        android:text="@string/app_name_full"
+        android:paddingBottom="50dp"
+        android:textColor="@color/divider" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

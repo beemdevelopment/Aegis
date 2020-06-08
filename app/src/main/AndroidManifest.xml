@@ -59,7 +59,8 @@
         <activity
             android:name=".ui.IntroActivity"
             android:theme="@style/Theme.Intro" />
-        <activity android:name=".ui.AuthActivity" />
+        <activity android:name=".ui.AuthActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ui.PreferencesActivity"
             android:label="@string/title_activity_preferences" />
