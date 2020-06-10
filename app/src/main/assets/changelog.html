@@ -41,6 +41,7 @@
             <li>Add support for importing a plain text Google Authenticator URI file</li>
             <li>Add support for importing from the new Google Authenticator export QR codes</li>
             <li>Add support for otpauth://steam URI's</li>
+            <li>Add an option to copy tokens on tap (and disable it by default)</li>
             <li>Improve method to notify users on copy</li>
             <li>Add support for backups</li>
             <li>Improve multiselect flow</li>
@@ -49,17 +50,23 @@
             <li>Use most frequent period to show progress</li>
             <li>Append a timestamp to the filename of exported vaults</li>
             <li>Add Hungarian translation</li>
+            <li>Add Turkish translation</li>
             <li>Display a warning if automatic time sync is not enabled</li>
             <li>Minor card entry layout overhaul</li>
+            <li>Ability to transfer tokens with qr codes</li>
+            <li>Lockscreen overhaul</li>
         </ul>
         <h4>Fixes</h4>
         <ul>
             <li>Improve overall exception handling and error feedback to the user</li>
+            <li>Improve icon editing flow</li>
             <li>Protect writes of the vault file against corruption with AtomicFile</li>
             <li>Make the parsing logic of the QR code URI more robust</li>
             <li>Importing from Authy now asks for password if needed</li>
             <li>Update Russian localization</li>
             <li>Increase password reminder period to 30 days</li>
+            <li>Fix importing andOTP backups with more than 10000 PBKDF iterations</li>
+            <li>Respect the global animator duration scale setting</li>
         </ul>
         <p>Various other minor improvements</p>
         <h3>Version 1.1.4</h3>
