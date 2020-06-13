@@ -96,7 +96,7 @@ public class VaultManager {
         }
     }
 
-    public void save() throws VaultManagerException {
+    public void save(boolean backup) throws VaultManagerException {
         try {
             JSONObject obj = _vault.toJson();
 
@@ -108,12 +108,17 @@ public class VaultManager {
             }
 
             save(_context, file);
-
-            if (_prefs.isBackupsEnabled()) {
-                backup();
-            }
         } catch (VaultFileException e) {
             throw new VaultManagerException(e);
+        }
+
+        if (backup && _prefs.isBackupsEnabled()) {
+            try {
+                backup();
+                _prefs.setBackupsError(null);
+            } catch (VaultManagerException e) {
+                _prefs.setBackupsError(e);
+            }
         }
     }
 
@@ -190,11 +195,11 @@ public class VaultManager {
 
     public void enableEncryption(VaultFileCredentials creds) throws VaultManagerException {
         _creds = creds;
-        save();
+        save(true);
     }
 
     public void disableEncryption() throws VaultManagerException {
         _creds = null;
-        save();
+        save(true);
     }
 }
