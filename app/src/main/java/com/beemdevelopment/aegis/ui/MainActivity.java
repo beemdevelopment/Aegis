@@ -16,6 +16,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.SubMenu;
+import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import androidx.appcompat.view.ActionMode;
@@ -81,6 +83,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
     private SearchView _searchView;
     private FloatingActionsMenu _fabMenu;
     private EntryListView _entryListView;
+    private LinearLayout _btnBackupError;
 
     private FabScrollHelper _fabScrollHelper;
 
@@ -123,6 +126,11 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         findViewById(R.id.fab_scan).setOnClickListener(view -> {
             _fabMenu.collapse();
             startScanActivity();
+        });
+
+        _btnBackupError = findViewById(R.id.btn_backup_error);
+        _btnBackupError.setOnClickListener(view -> {
+            startPreferencesActivity("pref_backups");
         });
 
         _fabScrollHelper = new FabScrollHelper(_fabMenu);
@@ -264,7 +272,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
                 }
             }
 
-            saveVault();
+            saveVault(true);
         }
     }
 
@@ -400,6 +408,12 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         startActivityForResult(Intent.createChooser(chooserIntent, getString(R.string.select_picture)), CODE_SCAN_IMAGE);
     }
 
+    private void startPreferencesActivity(String preference) {
+        Intent intent = new Intent(this, PreferencesActivity.class);
+        intent.putExtra("pref", preference);
+        startActivityForResult(intent, CODE_PREFERENCES);
+    }
+
     private void doShortcutActions() {
         Intent intent = getIntent();
         String action = intent.getStringExtra("action");
@@ -489,6 +503,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         handleDeeplink();
         updateLockIcon();
         doShortcutActions();
+        updateBackupErrorBar();
     }
 
     @Override
@@ -517,7 +532,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
             _entryListView.removeEntry(oldEntry);
         }
 
-        saveVault();
+        saveVault(true);
     }
 
     @Override
@@ -567,8 +582,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_settings: {
-                Intent intent = new Intent(this, PreferencesActivity.class);
-                startActivityForResult(intent, CODE_PREFERENCES);
+                startPreferencesActivity(null);
                 return true;
             }
             case R.id.action_about: {
@@ -647,6 +661,15 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         }
     }
 
+    private void updateBackupErrorBar() {
+        String error = null;
+        if (_app.getPreferences().isBackupsEnabled()) {
+            error = _app.getPreferences().getBackupsError();
+        }
+
+        _btnBackupError.setVisibility(error == null ? View.GONE : View.VISIBLE);
+    }
+
     @Override
     public void onEntryClick(VaultEntry entry) {
         if (_actionMode != null) {
@@ -694,12 +717,12 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
 
     @Override
     public void onEntryDrop(VaultEntry entry) {
-        saveVault();
+        saveVault(false);
     }
 
     @Override
     public void onEntryChange(VaultEntry entry) {
-        saveVault();
+        saveVault(true);
     }
 
     public void onEntryCopy(VaultEntry entry) {

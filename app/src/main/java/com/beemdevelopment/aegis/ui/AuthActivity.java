@@ -36,7 +36,6 @@ import com.beemdevelopment.aegis.helpers.UiThreadExecutor;
 import com.beemdevelopment.aegis.ui.tasks.PasswordSlotDecryptTask;
 import com.beemdevelopment.aegis.vault.VaultFile;
 import com.beemdevelopment.aegis.vault.VaultFileCredentials;
-import com.beemdevelopment.aegis.vault.VaultManager;
 import com.beemdevelopment.aegis.vault.VaultManagerException;
 import com.beemdevelopment.aegis.vault.slots.BiometricSlot;
 import com.beemdevelopment.aegis.vault.slots.PasswordSlot;
@@ -273,10 +272,9 @@ public class AuthActivity extends AegisActivity {
         } else {
             try {
                 AegisApplication app = getApp();
-                VaultManager vault = app.initVaultManager(app.loadVaultFile(), creds);
+                app.initVaultManager(app.loadVaultFile(), creds);
                 if (isSlotRepaired) {
-                    vault.setCredentials(creds);
-                    saveVault();
+                    saveVault(true);
                 }
             } catch (VaultManagerException e) {
                 e.printStackTrace();

@@ -160,6 +160,14 @@ public class Preferences {
         _prefs.edit().putInt("pref_backups_versions", versions).apply();
     }
 
+    public void setBackupsError(Exception e) {
+        _prefs.edit().putString("pref_backups_error", e == null ? null : e.toString()).apply();
+    }
+
+    public String getBackupsError() {
+        return _prefs.getString("pref_backups_error", null);
+    }
+
     public boolean isTimeSyncWarningEnabled() {
         return _prefs.getBoolean("pref_warn_time_sync", true);
     }

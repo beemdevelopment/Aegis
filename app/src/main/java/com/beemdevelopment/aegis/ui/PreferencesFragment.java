@@ -434,8 +434,8 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
     }
 
     @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
+    public void onResume() {
+        super.onResume();
         updateEncryptionPreferences();
         updateBackupPreference();
     }
@@ -749,13 +749,14 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
 
         _prefs.setBackupsLocation(uri);
         _prefs.setIsBackupsEnabled(true);
+        _prefs.setBackupsError(null);
         _backupsLocationPreference.setSummary(String.format("%s: %s", getString(R.string.pref_backups_location_summary), Uri.decode(uri.toString())));
         updateBackupPreference();
     }
 
     private boolean saveVault() {
         try {
-            _vault.save();
+            _vault.save(true);
         } catch (VaultManagerException e) {
             e.printStackTrace();
             Dialogs.showErrorDialog(getContext(), R.string.saving_error, e);

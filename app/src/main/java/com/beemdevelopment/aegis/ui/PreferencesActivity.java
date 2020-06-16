@@ -1,5 +1,6 @@
 package com.beemdevelopment.aegis.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 
@@ -21,6 +22,18 @@ public class PreferencesActivity extends AegisActivity {
             getSupportFragmentManager().beginTransaction().replace(android.R.id.content, _fragment).commit();
         } else {
             _fragment = (PreferencesFragment) getSupportFragmentManager().findFragmentById(android.R.id.content);
+        }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        Intent intent = getIntent();
+        String preference = intent.getStringExtra("pref");
+        if (preference != null) {
+            _fragment.scrollToPreference(preference);
+            intent.removeExtra("pref");
         }
     }
 

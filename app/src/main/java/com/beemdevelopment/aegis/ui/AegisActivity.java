@@ -122,9 +122,9 @@ public abstract class AegisActivity extends AppCompatActivity implements AegisAp
         this.getResources().updateConfiguration(config, this.getResources().getDisplayMetrics());
     }
 
-    protected boolean saveVault() {
+    protected boolean saveVault(boolean backup) {
         try {
-            getApp().getVaultManager().save();
+            getApp().getVaultManager().save(backup);
             return true;
         } catch (VaultManagerException e) {
             Toast.makeText(this, getString(R.string.saving_error), Toast.LENGTH_LONG).show();

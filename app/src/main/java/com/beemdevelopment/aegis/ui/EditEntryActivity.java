@@ -467,7 +467,7 @@ public class EditEntryActivity extends AegisActivity {
         intent.putExtra("entryUUID", entry.getUUID());
         intent.putExtra("delete", delete);
 
-        if (saveVault()) {
+        if (saveVault(true)) {
             setResult(RESULT_OK, intent);
             finish();
         }
