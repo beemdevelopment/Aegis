@@ -7,6 +7,7 @@
     <string name="action_about">About</string>
     <string name="action_import">Import</string>
     <string name="action_delete">Delete</string>
+    <string name="action_transfer">Transfer</string>
     <string name="action_edit_icon">Edit icon</string>
     <string name="action_default_icon">Restore default icon</string>
     <string name="discard">Discard</string>
