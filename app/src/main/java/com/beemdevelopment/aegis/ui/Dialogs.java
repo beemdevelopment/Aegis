@@ -7,6 +7,8 @@ import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.provider.Settings;
 import android.text.Editable;
 import android.text.InputType;
@@ -20,6 +22,7 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.NumberPicker;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.StringRes;
@@ -28,10 +31,14 @@ import androidx.appcompat.app.AlertDialog;
 import com.beemdevelopment.aegis.Preferences;
 import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.helpers.EditTextHelper;
+import com.beemdevelopment.aegis.helpers.PasswordStrengthHelper;
 import com.beemdevelopment.aegis.ui.tasks.KeyDerivationTask;
 import com.beemdevelopment.aegis.vault.slots.PasswordSlot;
 import com.beemdevelopment.aegis.vault.slots.Slot;
 import com.beemdevelopment.aegis.vault.slots.SlotException;
+import com.google.android.material.textfield.TextInputLayout;
+import com.nulabinc.zxcvbn.Strength;
+import com.nulabinc.zxcvbn.Zxcvbn;
 
 import java.util.concurrent.atomic.AtomicReference;
 
@@ -90,9 +97,13 @@ public class Dialogs {
     }
 
     public static void showSetPasswordDialog(Activity activity, Dialogs.SlotListener listener) {
+        Zxcvbn zxcvbn = new Zxcvbn();
         View view = activity.getLayoutInflater().inflate(R.layout.dialog_password, null);
         EditText textPassword = view.findViewById(R.id.text_password);
         EditText textPasswordConfirm = view.findViewById(R.id.text_password_confirm);
+        ProgressBar barPasswordStrength = view.findViewById(R.id.progressBar);
+        TextView textPasswordStrength = view.findViewById(R.id.text_password_strength);
+        TextInputLayout textPasswordWrapper = view.findViewById(R.id.text_password_wrapper);
         CheckBox switchToggleVisibility = view.findViewById(R.id.check_toggle_visibility);
 
         switchToggleVisibility.setOnCheckedChangeListener((CompoundButton.OnCheckedChangeListener) (buttonView, isChecked) -> {
@@ -145,14 +156,24 @@ public class Dialogs {
         });
 
         TextWatcher watcher = new TextWatcher() {
+            @Override
             public void onTextChanged(CharSequence c, int start, int before, int count) {
                 boolean equal = EditTextHelper.areEditTextsEqual(textPassword, textPasswordConfirm);
                 buttonOK.get().setEnabled(equal);
+
+                Strength strength = zxcvbn.measure(textPassword.getText());
+                barPasswordStrength.setProgress(strength.getScore());
+                barPasswordStrength.setProgressTintList(ColorStateList.valueOf(Color.parseColor(PasswordStrengthHelper.getColor(strength.getScore()))));
+                textPasswordStrength.setText((textPassword.getText().length() != 0) ? PasswordStrengthHelper.getString(strength.getScore(), activity) : "");
+                textPasswordWrapper.setError(strength.getFeedback().getWarning());
+                strength.wipe();
             }
 
+            @Override
             public void beforeTextChanged(CharSequence c, int start, int count, int after) {
             }
 
+            @Override
             public void afterTextChanged(Editable c) {
             }
         };

@@ -28,44 +28,47 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp">
 
-        <TextView
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/text_password_wrapper"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentStart="true"
-            android:id="@+id/textView4"
-            android:text="@string/set_password"/>
+            android:layout_height="wrap_content">
 
-        <EditText
+            <EditText
+                android:id="@+id/text_password"
+                android:hint="@string/set_password"
+                android:inputType="textPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/text_password_confirm_wrapper"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPassword"
-            android:ems="10"
-            android:id="@+id/text_password"
-            android:layout_below="@+id/textView3"
-            android:layout_alignParentStart="true"
+            android:layout_marginTop="10dp">
+
+            <EditText
+                android:hint="@string/set_password_confirm"
+                android:id="@+id/text_password_confirm"
+                android:inputType="textPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:layout_alignParentEnd="true"/>
-
+            android:max="4"
+            android:paddingStart="4dp"
+            android:paddingEnd="3.5dp" />
         <TextView
-            android:layout_width="match_parent"
+            android:id="@+id/text_password_strength"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/textView3"
-            android:text="@string/set_password_confirm"
-            android:layout_marginTop="20dp"
-            android:layout_below="@+id/textView4"
-            />
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textPassword"
-            android:ems="10"
-            android:id="@+id/text_password_confirm"
-            android:layout_marginTop="8dp"
-            android:layout_below="@+id/textView4"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentEnd="true"/>
+            android:layout_gravity="end" />
 
         <CheckBox
             android:id="@+id/check_toggle_visibility"
