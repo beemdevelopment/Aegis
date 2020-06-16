@@ -25,7 +25,7 @@
 
     <item
         android:id="@+id/action_share_qr"
-        android:title="@string/action_delete"
+        android:title="@string/action_transfer"
         android:orderInCategory="100"
         android:icon="@drawable/ic_qr_code_full"
         android:tint="?attr/iconColorPrimary"
