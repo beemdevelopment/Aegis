@@ -4,17 +4,20 @@ import android.content.Context;
 
 import com.beemdevelopment.aegis.encoding.EncodingException;
 import com.beemdevelopment.aegis.otp.OtpInfoException;
+import com.beemdevelopment.aegis.util.IOUtils;
 import com.beemdevelopment.aegis.vault.VaultEntry;
 import com.beemdevelopment.aegis.vault.VaultFile;
 import com.beemdevelopment.aegis.vault.VaultFileCredentials;
 import com.beemdevelopment.aegis.vault.VaultFileException;
 import com.beemdevelopment.aegis.vault.slots.SlotList;
+import com.topjohnwu.superuser.io.SuFile;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.io.InputStream;
 
 public class AegisImporter extends DatabaseImporter {
 
@@ -23,19 +26,14 @@ public class AegisImporter extends DatabaseImporter {
     }
 
     @Override
-    protected String getAppPkgName() {
+    protected SuFile getAppPath() {
         throw new UnsupportedOperationException();
     }
 
     @Override
-    protected String getAppSubPath() {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public State read(FileReader reader) throws DatabaseImporterException {
+    public State read(InputStream stream, boolean isInternal) throws DatabaseImporterException {
         try {
-            byte[] bytes = reader.readAll();
+            byte[] bytes = IOUtils.readAll(stream);
             VaultFile file = VaultFile.fromBytes(bytes);
             if (file.isEncrypted()) {
                 return new EncryptedState(file);

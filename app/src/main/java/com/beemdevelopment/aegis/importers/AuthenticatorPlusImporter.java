@@ -3,6 +3,8 @@ package com.beemdevelopment.aegis.importers;
 import android.content.Context;
 
 import com.beemdevelopment.aegis.ui.Dialogs;
+import com.beemdevelopment.aegis.util.IOUtils;
+import com.topjohnwu.superuser.io.SuFile;
 
 import net.lingala.zip4j.io.inputstream.ZipInputStream;
 import net.lingala.zip4j.model.LocalFileHeader;
@@ -11,6 +13,7 @@ import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 
 public class AuthenticatorPlusImporter extends DatabaseImporter {
     private static final String FILENAME = "Accounts.txt";
@@ -20,19 +23,14 @@ public class AuthenticatorPlusImporter extends DatabaseImporter {
     }
 
     @Override
-    protected String getAppPkgName() {
+    protected SuFile getAppPath() {
         throw new UnsupportedOperationException();
     }
 
     @Override
-    protected String getAppSubPath() {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public State read(FileReader reader) throws DatabaseImporterException {
+    public State read(InputStream stream, boolean isInternal) throws DatabaseImporterException {
         try {
-            return new EncryptedState(reader.readAll());
+            return new EncryptedState(IOUtils.readAll(stream));
         } catch (IOException e) {
             throw new DatabaseImporterException(e);
         }
@@ -55,9 +53,8 @@ public class AuthenticatorPlusImporter extends DatabaseImporter {
                     while ((header = zipStream.getNextEntry()) != null) {
                         File file = new File(header.getFileName());
                         if (file.getName().equals(FILENAME)) {
-                            FileReader reader = new FileReader(zipStream);
                             GoogleAuthUriImporter importer = new GoogleAuthUriImporter(context);
-                            GoogleAuthUriImporter.State state = importer.read(reader);
+                            DatabaseImporter.State state = importer.read(zipStream);
                             listener.onStateDecrypted(state);
                             return;
                         }

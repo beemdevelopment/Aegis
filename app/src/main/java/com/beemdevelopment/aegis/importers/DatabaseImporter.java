@@ -3,10 +3,10 @@ package com.beemdevelopment.aegis.importers;
 import android.content.Context;
 import android.content.pm.PackageManager;
 
-import com.beemdevelopment.aegis.vault.VaultEntry;
-import com.beemdevelopment.aegis.util.IOUtils;
 import com.beemdevelopment.aegis.util.UUIDMap;
+import com.beemdevelopment.aegis.vault.VaultEntry;
 import com.topjohnwu.superuser.io.SuFile;
+import com.topjohnwu.superuser.io.SuFileInputStream;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -57,20 +57,27 @@ public abstract class DatabaseImporter {
         return _context;
     }
 
-    public SuFile getAppPath() throws DatabaseImporterException, PackageManager.NameNotFoundException {
-        return getAppPath(getAppPkgName(), getAppSubPath());
-    }
+    protected abstract SuFile getAppPath() throws DatabaseImporterException, PackageManager.NameNotFoundException;
 
     protected SuFile getAppPath(String pkgName, String subPath) throws PackageManager.NameNotFoundException {
         PackageManager man = getContext().getPackageManager();
         return new SuFile(man.getApplicationInfo(pkgName, 0).dataDir, subPath);
     }
 
-    protected abstract String getAppPkgName();
+    protected abstract State read(InputStream stream, boolean isInternal) throws DatabaseImporterException;
 
-    protected abstract String getAppSubPath() throws DatabaseImporterException, PackageManager.NameNotFoundException;
+    public State read(InputStream stream) throws DatabaseImporterException {
+        return read(stream, false);
+    }
 
-    public abstract State read(FileReader reader) throws DatabaseImporterException;
+    public State readFromApp() throws PackageManager.NameNotFoundException, DatabaseImporterException {
+        SuFile file = getAppPath();
+        try (SuFileInputStream stream = new SuFileInputStream(file)) {
+            return read(stream, true);
+        } catch (IOException e) {
+            throw new DatabaseImporterException(e);
+        }
+    }
 
     public static DatabaseImporter create(Context context, Class<? extends DatabaseImporter> type) {
         try {
@@ -135,36 +142,6 @@ public abstract class DatabaseImporter {
 
         public List<DatabaseImporterEntryException> getErrors() {
             return _errors;
-        }
-    }
-
-    public static class FileReader {
-        private InputStream _stream;
-        private boolean _internal;
-
-        public FileReader(InputStream stream) {
-            this(stream, false);
-        }
-
-        public FileReader(InputStream stream, boolean internal) {
-            _stream = stream;
-            _internal = internal;
-        }
-
-        public byte[] readAll() throws IOException {
-            return IOUtils.readAll(_stream);
-        }
-
-        public InputStream getStream() {
-            return _stream;
-        }
-
-        /**
-         * Reports whether this reader reads the internal state of an app.
-         * @return true if reading from internal file, false if reading from external file
-         */
-        public boolean isInternal() {
-            return _internal;
         }
     }
 

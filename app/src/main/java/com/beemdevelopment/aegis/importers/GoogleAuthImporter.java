@@ -1,6 +1,7 @@
 package com.beemdevelopment.aegis.importers;
 
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 
 import com.beemdevelopment.aegis.encoding.Base32;
@@ -10,7 +11,9 @@ import com.beemdevelopment.aegis.otp.OtpInfo;
 import com.beemdevelopment.aegis.otp.OtpInfoException;
 import com.beemdevelopment.aegis.otp.TotpInfo;
 import com.beemdevelopment.aegis.vault.VaultEntry;
+import com.topjohnwu.superuser.io.SuFile;
 
+import java.io.InputStream;
 import java.util.List;
 
 public class GoogleAuthImporter extends DatabaseImporter {
@@ -25,19 +28,22 @@ public class GoogleAuthImporter extends DatabaseImporter {
     }
 
     @Override
-    protected String getAppPkgName() {
-        return _pkgName;
+    protected SuFile getAppPath() throws PackageManager.NameNotFoundException {
+        return getAppPath(_pkgName, _subPath);
     }
-
+    
     @Override
-    protected String getAppSubPath() {
-        return _subPath;
-    }
-
-    @Override
-    public State read(FileReader reader) throws DatabaseImporterException {
+    public State read(InputStream stream, boolean isInternal) throws DatabaseImporterException {
         SqlImporterHelper helper = new SqlImporterHelper(getContext());
-        List<Entry> entries = helper.read(Entry.class, reader.getStream(), "accounts");
+        List<Entry> entries = helper.read(Entry.class, stream, "accounts");
+        return new State(entries);
+    }
+
+    @Override
+    public DatabaseImporter.State readFromApp() throws PackageManager.NameNotFoundException, DatabaseImporterException {
+        SuFile path = getAppPath();
+        SqlImporterHelper helper = new SqlImporterHelper(getContext());
+        List<Entry> entries = helper.read(Entry.class, path, "accounts");
         return new State(entries);
     }
 

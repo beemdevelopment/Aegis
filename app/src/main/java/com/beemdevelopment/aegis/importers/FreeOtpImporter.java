@@ -1,15 +1,17 @@
 package com.beemdevelopment.aegis.importers;
 
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.util.Xml;
 
-import com.beemdevelopment.aegis.vault.VaultEntry;
 import com.beemdevelopment.aegis.otp.HotpInfo;
 import com.beemdevelopment.aegis.otp.OtpInfo;
 import com.beemdevelopment.aegis.otp.OtpInfoException;
 import com.beemdevelopment.aegis.otp.SteamInfo;
 import com.beemdevelopment.aegis.otp.TotpInfo;
 import com.beemdevelopment.aegis.util.PreferenceParser;
+import com.beemdevelopment.aegis.vault.VaultEntry;
+import com.topjohnwu.superuser.io.SuFile;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -18,6 +20,7 @@ import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,21 +33,16 @@ public class FreeOtpImporter extends DatabaseImporter {
     }
 
     @Override
-    protected String getAppPkgName() {
-        return _pkgName;
+    protected SuFile getAppPath() throws PackageManager.NameNotFoundException {
+        return getAppPath(_pkgName, _subPath);
     }
 
     @Override
-    protected String getAppSubPath() {
-        return _subPath;
-    }
-
-    @Override
-    public State read(FileReader reader) throws DatabaseImporterException {
+    public State read(InputStream stream, boolean isInternal) throws DatabaseImporterException {
         try {
             XmlPullParser parser = Xml.newPullParser();
             parser.setFeature(XmlPullParser.FEATURE_PROCESS_NAMESPACES, false);
-            parser.setInput(reader.getStream(), null);
+            parser.setInput(stream, null);
             parser.nextTag();
 
             List<JSONObject> entries = new ArrayList<>();
