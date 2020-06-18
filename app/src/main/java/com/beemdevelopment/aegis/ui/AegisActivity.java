@@ -144,7 +144,7 @@ public abstract class AegisActivity extends AppCompatActivity implements AegisAp
      * the vault was locked by an external trigger while the Activity was still open.
      */
     private boolean isOrphan() {
-        return !(this instanceof MainActivity) && _app.isVaultLocked();
+        return !(this instanceof MainActivity) && !(this instanceof AuthActivity) && _app.isVaultLocked();
     }
 
     protected Theme getCurrentTheme() {
