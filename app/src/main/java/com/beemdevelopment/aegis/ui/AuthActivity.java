@@ -145,6 +145,10 @@ public class AuthActivity extends AegisActivity {
         biometricsButton.setOnClickListener(v -> {
             showBiometricPrompt();
         });
+
+        if (_bioKey != null) {
+            showBiometricPrompt();
+        }
     }
 
     @Override
@@ -196,13 +200,7 @@ public class AuthActivity extends AegisActivity {
     public void onResume() {
         super.onResume();
 
-        if (_bioKey != null) {
-            if (_prefs.isPasswordReminderNeeded()) {
-                focusPasswordField();
-            } else {
-                showBiometricPrompt();
-            }
-        } else {
+        if (_bioKey == null || _prefs.isPasswordReminderNeeded()) {
             focusPasswordField();
         }
     }
@@ -250,15 +248,6 @@ public class AuthActivity extends AegisActivity {
                 .setConfirmationRequired(false)
                 .build();
         _bioPrompt.authenticate(info, cryptoObj);
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-
-        if (_bioPrompt != null) {
-            _bioPrompt.cancelAuthentication();
-        }
     }
 
     private void finish(MasterKey key, boolean isSlotRepaired) {
