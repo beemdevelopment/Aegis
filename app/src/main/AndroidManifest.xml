@@ -32,8 +32,7 @@
             android:label="Select entries" />
         <activity
             android:name=".ui.MainActivity"
-            android:label="${title}"
-            android:launchMode="singleTask">
+            android:label="${title}">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
