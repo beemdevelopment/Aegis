@@ -16,6 +16,8 @@
     <string name="pref_select_theme_title">Thema</string>
     <string name="pref_view_mode_title">Weergavemodus</string>
     <string name="pref_lang_title">Taal</string>
+    <string name="pref_code_group_size_title">Groeperen cijfers code</string>
+    <string name="pref_code_group_size_summary">Toon code in groepen van 2 cijfers, in plaats van groepering per 3 cijfers</string>
     <string name="pref_account_name_title">Toon de accountnaam</string>
     <string name="pref_account_name_summary">Schakel in om de accountnaam naast de uitgever te tonen</string>
     <string name="pref_timeout_title">Time-out</string>
@@ -24,6 +26,8 @@
     <string name="pref_slots_summary">Beheer de lijst van vergrendelingssleutels die de kluis kunnen decrypten</string>
     <string name="pref_import_file_title">Importeren vanuit een bestand</string>
     <string name="pref_import_file_summary">Importeer tokens vanuit een bestand</string>
+    <string name="pref_backups_title">Reservekopie kluis</string>
+    <string name="pref_backups_summary">Maak reservekopieën van de kluis naar externe opslag. Alleen mogelijk bij geëncrypteerde kluizen.</string>
     <string name="pref_import_app_title">Importeren vanuit een app</string>
     <string name="pref_import_app_summary">Importeer tokens vanuit een app (vereist root-access)</string>
     <string name="pref_export_title">Exporteren</string>
@@ -93,6 +97,7 @@
     <string name="setup_completed">Configuratie voltooid</string>
     <string name="setup_completed_description">Aegis is geconfigureerd en is klaar voor gebruik.</string>
     <string name="vault_not_found">Kluis niet gevonden, configuratie wordt gestart…</string>
+    <string name="copied">Gekopieerd</string>
     <string name="errors_copied">Fouten zijn gekopieerd naar klembord</string>
     <string name="version_copied">Versie is gekopieerd naar het klembord</string>
     <string name="decryption_error">Er is een fout opgetreden tijdens het ontgrendelen van de kluis</string>
@@ -143,9 +148,13 @@
     <string name="group_name_hint">Groepsnaam</string>
     <string name="preference_manage_groups">Groepen bewerken</string>
     <string name="preference_manage_groups_summary">Beheer en verwijder hier je groepen</string>
+    <string name="title_activity_preferences">Instellingen</string>
     <string name="pref_search_name_title">Zoek in accountnamen</string>
     <string name="pref_search_name_summary">Neem accountnaamovereenkomsten op in de zoekresultaten</string>
     <string name="pref_highlight_entry_title">Tokens markeren na aantikken</string>
+    <string name="pref_highlight_entry_summary">Maak onderscheid tussen verschillende tokens duidelijker door ze te markeren na aantikken</string>
+    <string name="pref_copy_on_tap_title">Kopiëer tokens bij aantikken</string>
+    <string name="pref_copy_on_tap_summary">Kopiëer tokens naar het klembord wanneer ze worden aangetikt</string>
     <string name="tap_to_reveal">Verborgen</string>
     <string name="selected">Geselecteerd</string>
     <string name="dark_theme_title">Donker thema</string>
