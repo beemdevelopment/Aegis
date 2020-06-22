@@ -147,7 +147,6 @@
     <string name="pref_search_name_summary">Includi il nome dell\'account nei risultati di ricerca</string>
     <string name="pref_highlight_entry_title">Evidenzia i token quando premuti</string>
     <string name="pref_highlight_entry_summary">Rendi i token più facili da distinguere, evidenziandoli temporaneamente quando vengono toccati</string>
-    <string name="tap_to_reveal">Nascosto</string>
     <string name="selected">Selezionato</string>
     <string name="dark_theme_title">Tema scuro</string>
     <string name="light_theme_title">Tema chiaro</string>

@@ -24,10 +24,12 @@ import com.beemdevelopment.aegis.otp.TotpInfo;
 import com.beemdevelopment.aegis.vault.VaultEntry;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.google.zxing.common.StringUtils;
 
 public class EntryHolder extends RecyclerView.ViewHolder {
     private static final float DEFAULT_ALPHA = 1.0f;
     private static final float DIMMED_ALPHA = 0.2f;
+    private static final char HIDDEN_CHAR = '●';
 
     private TextView _profileName;
     private TextView _profileCode;
@@ -221,17 +223,23 @@ public class EntryHolder extends RecyclerView.ViewHolder {
 
         String otp = info.getOtp();
         if (!(info instanceof SteamInfo)) {
-            StringBuilder sb = new StringBuilder();
-            for (int i = 0; i < otp.length(); i++) {
-                if (i != 0 && i % _codeGroupSize == 0) {
-                    sb.append(" ");
-                }
-                sb.append(otp.charAt(i));
-            }
-            otp = sb.toString();
+            otp = formatCode(otp);
         }
 
         _profileCode.setText(otp);
+    }
+
+    private String formatCode(String code) {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < code.length(); i++) {
+            if (i != 0 && i % _codeGroupSize == 0) {
+                sb.append(" ");
+            }
+            sb.append(code.charAt(i));
+        }
+        code = sb.toString();
+
+        return code;
     }
 
     public void revealCode() {
@@ -240,7 +248,9 @@ public class EntryHolder extends RecyclerView.ViewHolder {
     }
 
     public void hideCode() {
-        _profileCode.setText(R.string.tap_to_reveal);
+        String hiddenText = new String(new char[_entry.getInfo().getDigits()]).replace("\0", Character.toString(HIDDEN_CHAR));
+        hiddenText = formatCode(hiddenText);
+        _profileCode.setText(hiddenText);
         _hidden = true;
     }
 
