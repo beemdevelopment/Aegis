@@ -64,5 +64,13 @@
         <item>tr</item>
     </string-array>
 
+    <string-array name="password_strength">
+        <item>@string/password_strength_very_weak</item>
+        <item>@string/password_strength_weak</item>
+        <item>@string/password_strength_fair</item>
+        <item>@string/password_strength_good</item>
+        <item>@string/password_strength_strong</item>
+    </string-array>
+
 </resources>
 

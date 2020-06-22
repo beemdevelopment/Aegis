@@ -1,13 +1,19 @@
 package com.beemdevelopment.aegis.ui.slides;
 
 import android.content.Intent;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.text.method.PasswordTransformationMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.biometric.BiometricPrompt;
@@ -17,6 +23,7 @@ import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.helpers.BiometricSlotInitializer;
 import com.beemdevelopment.aegis.helpers.BiometricsHelper;
 import com.beemdevelopment.aegis.helpers.EditTextHelper;
+import com.beemdevelopment.aegis.helpers.PasswordStrengthHelper;
 import com.beemdevelopment.aegis.ui.Dialogs;
 import com.beemdevelopment.aegis.ui.IntroActivity;
 import com.beemdevelopment.aegis.ui.tasks.KeyDerivationTask;
@@ -28,6 +35,9 @@ import com.beemdevelopment.aegis.vault.slots.SlotException;
 import com.github.appintro.SlidePolicy;
 import com.github.appintro.SlideSelectionListener;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.android.material.textfield.TextInputLayout;
+import com.nulabinc.zxcvbn.Strength;
+import com.nulabinc.zxcvbn.Zxcvbn;
 
 import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
@@ -37,16 +47,23 @@ public class SecuritySetupSlide extends Fragment implements SlidePolicy, SlideSe
     private EditText _textPassword;
     private EditText _textPasswordConfirm;
     private CheckBox _checkPasswordVisibility;
+    private ProgressBar _barPasswordStrength;
+    private TextView _textPasswordStrength;
+    private TextInputLayout _textPasswordWrapper;
 
     private int _cryptType;
     private VaultFileCredentials _creds;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        Zxcvbn zxcvbn = new Zxcvbn();
         final View view = inflater.inflate(R.layout.fragment_security_setup_slide, container, false);
         _textPassword = view.findViewById(R.id.text_password);
         _textPasswordConfirm = view.findViewById(R.id.text_password_confirm);
         _checkPasswordVisibility = view.findViewById(R.id.check_toggle_visibility);
+        _barPasswordStrength = view.findViewById(R.id.progressBar);
+        _textPasswordStrength = view.findViewById(R.id.text_password_strength);
+        _textPasswordWrapper = view.findViewById(R.id.text_password_wrapper);
 
         _checkPasswordVisibility.setOnCheckedChangeListener((buttonView, isChecked) -> {
             if (isChecked) {
@@ -57,6 +74,26 @@ public class SecuritySetupSlide extends Fragment implements SlidePolicy, SlideSe
             } else {
                 _textPassword.setTransformationMethod(new PasswordTransformationMethod());
                 _textPasswordConfirm.setTransformationMethod(new PasswordTransformationMethod());
+            }
+        });
+
+        _textPassword.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                Strength strength = zxcvbn.measure(_textPassword.getText());
+                _barPasswordStrength.setProgress(strength.getScore());
+                _barPasswordStrength.setProgressTintList(ColorStateList.valueOf(Color.parseColor(PasswordStrengthHelper.getColor(strength.getScore()))));
+                _textPasswordStrength.setText((_textPassword.getText().length() != 0) ? PasswordStrengthHelper.getString(strength.getScore(), getContext()) : "");
+                _textPasswordWrapper.setError(strength.getFeedback().getWarning());
+                strength.wipe();
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
             }
         });
 

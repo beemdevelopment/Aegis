@@ -276,4 +276,10 @@
     <string name="previous">Previous</string>
     <string name="transfer_entry">Transfer entry</string>
     <string name="transfer_entry_description">Scan this QR code with the authenticator app you would like to transfer this entry to</string>
+
+    <string name="password_strength_very_weak">Very weak</string>
+    <string name="password_strength_weak">Weak</string>
+    <string name="password_strength_fair">Fair</string>
+    <string name="password_strength_good">Good</string>
+    <string name="password_strength_strong">Strong</string>
 </resources>
