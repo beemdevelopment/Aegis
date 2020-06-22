@@ -136,7 +136,6 @@
     <string name="preference_manage_groups_summary">ಇಲ್ಲಿ ನಿಮ್ಮ ಗುಂಪುಗಳನ್ನು ನಿರ್ವಹಿಸು ಮತ್ತು ಅಳಿಸು</string>
     <string name="pref_search_name_title">ಖಾತೆಯ ಹೆಸರುಗಳಲ್ಲಿ ಹುಡುಕು</string>
     <string name="pref_search_name_summary">ಹುಡುಕಾಟ ಫಲಿತಂಶದಲ್ಲಿ ಖಾತೆಯ ಹೆಸರನ್ನು ಒಳಗೊಂಡಿಸು</string>
-    <string name="tap_to_reveal">ಬಚ್ಚಿಟ್ಟಿರುವುದು</string>
     <string name="selected">ಆಯ್ಕೆ ಮಾಡಿರುವುದು</string>
     <string name="dark_theme_title">ಗಾಢ ಥೀಮ್</string>
     <string name="light_theme_title">ತಿಳಿ ಥೀಮ್</string>

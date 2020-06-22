@@ -186,7 +186,6 @@
     <string name="pref_search_name_summary">Uwzględnij nazwę konta w wynikach wyszukiwania</string>
     <string name="pref_highlight_entry_title">Podświetl tokeny podczas kliknięcia</string>
     <string name="pref_highlight_entry_summary">Wyróżnij tokeny od siebie, poprzez tymczasowe podświetlenie po ich kliknięciu</string>
-    <string name="tap_to_reveal">Ukryty</string>
     <string name="selected">Wybrany</string>
     <string name="dark_theme_title">Ciemny motyw</string>
     <string name="light_theme_title">Jasny motyw</string>
