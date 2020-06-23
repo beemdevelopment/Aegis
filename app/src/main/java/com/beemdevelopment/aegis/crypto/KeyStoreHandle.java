@@ -63,9 +63,9 @@ public class KeyStoreHandle {
             return generator.generateKey();
         } catch (ProviderException e) {
             // a ProviderException can occur at runtime with buggy Keymaster HAL implementations
-            // so if this was caused by a KeyStoreException, throw a KeyStoreHandleException instead
+            // so if this was caused by an android.security.KeyStoreException, throw a KeyStoreHandleException instead
             Throwable cause = e.getCause();
-            if (cause instanceof KeyStoreException) {
+            if (cause != null && cause.getClass().getName().equals("android.security.KeyStoreException")) {
                 throw new KeyStoreHandleException(cause);
             }
             throw e;
