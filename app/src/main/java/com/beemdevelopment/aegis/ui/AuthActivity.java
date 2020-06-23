@@ -59,6 +59,10 @@ public class AuthActivity extends AegisActivity {
     private BiometricSlot _bioSlot;
     private BiometricPrompt _bioPrompt;
 
+    // the first time this activity is resumed after creation, it's possible to inhibit showing the
+    // biometric prompt by setting 'inhibitBioPrompt' to false through the intent
+    private boolean _inhibitBioPrompt;
+
     private Preferences _prefs;
     private boolean _stateless;
 
@@ -80,6 +84,7 @@ public class AuthActivity extends AegisActivity {
         });
 
         Intent intent = getIntent();
+        _inhibitBioPrompt = savedInstanceState == null ? !intent.getBooleanExtra("_inhibitBioPrompt", true) : savedInstanceState.getBoolean("_inhibitBioPrompt");
         _cancelAction = (CancelAction) intent.getSerializableExtra("cancelAction");
         _slots = (SlotList) intent.getSerializableExtra("slots");
         _stateless = _slots != null;
@@ -145,10 +150,12 @@ public class AuthActivity extends AegisActivity {
         biometricsButton.setOnClickListener(v -> {
             showBiometricPrompt();
         });
+    }
 
-        if (_bioKey != null) {
-            showBiometricPrompt();
-        }
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putBoolean("inhibitBioPrompt", _inhibitBioPrompt);
     }
 
     @Override
@@ -203,6 +210,22 @@ public class AuthActivity extends AegisActivity {
         if (_bioKey == null || _prefs.isPasswordReminderNeeded()) {
             focusPasswordField();
         }
+
+        if (_bioKey != null && _bioPrompt == null && !_inhibitBioPrompt) {
+            _bioPrompt = showBiometricPrompt();
+        }
+
+        _inhibitBioPrompt = false;
+    }
+
+    @Override
+    public void onPause() {
+        if (!isChangingConfigurations() && _bioPrompt != null) {
+            _bioPrompt.cancelAuthentication();
+            _bioPrompt = null;
+        }
+
+        super.onPause();
     }
 
     @Override
@@ -229,25 +252,26 @@ public class AuthActivity extends AegisActivity {
         _textPassword.postDelayed(popup::dismiss, 5000);
     }
 
-    public void showBiometricPrompt() {
+    public BiometricPrompt showBiometricPrompt() {
         Cipher cipher;
         try {
             cipher = _bioSlot.createDecryptCipher(_bioKey);
         } catch (SlotException e) {
             e.printStackTrace();
             Dialogs.showErrorDialog(this, R.string.biometric_init_error, e);
-            return;
+            return null;
         }
 
         BiometricPrompt.CryptoObject cryptoObj = new BiometricPrompt.CryptoObject(cipher);
-        _bioPrompt = new BiometricPrompt(this, new UiThreadExecutor(), new BiometricPromptListener());
+        BiometricPrompt prompt = new BiometricPrompt(this, new UiThreadExecutor(), new BiometricPromptListener());
 
         BiometricPrompt.PromptInfo info = new BiometricPrompt.PromptInfo.Builder()
                 .setTitle(getString(R.string.authentication))
                 .setNegativeButtonText(getString(android.R.string.cancel))
                 .setConfirmationRequired(false)
                 .build();
-        _bioPrompt.authenticate(info, cryptoObj);
+        prompt.authenticate(info, cryptoObj);
+        return prompt;
     }
 
     private void finish(MasterKey key, boolean isSlotRepaired) {
@@ -306,6 +330,8 @@ public class AuthActivity extends AegisActivity {
         @Override
         public void onAuthenticationError(int errorCode, @NonNull CharSequence errString) {
             super.onAuthenticationError(errorCode, errString);
+            _bioPrompt = null;
+
             if (!BiometricsHelper.isCanceled(errorCode)) {
                 Toast.makeText(AuthActivity.this, errString, Toast.LENGTH_LONG).show();
             }
@@ -314,6 +340,7 @@ public class AuthActivity extends AegisActivity {
         @Override
         public void onAuthenticationSucceeded(@NonNull BiometricPrompt.AuthenticationResult result) {
             super.onAuthenticationSucceeded(result);
+            _bioPrompt = null;
 
             MasterKey key;
             BiometricSlot slot = _slots.find(BiometricSlot.class);
