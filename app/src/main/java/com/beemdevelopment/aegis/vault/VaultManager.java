@@ -19,8 +19,8 @@ import java.util.UUID;
 
 public class VaultManager {
     public static final String FILENAME = "aegis.json";
-    public static final String FILENAME_EXPORT = "aegis-export.json";
-    public static final String FILENAME_EXPORT_PLAIN = "aegis-export-plain.json";
+    public static final String FILENAME_PREFIX_EXPORT = "aegis-export";
+    public static final String FILENAME_PREFIX_EXPORT_PLAIN = "aegis-export-plain";
 
     private Vault _vault;
     private VaultFileCredentials _creds;
