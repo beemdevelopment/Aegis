@@ -828,7 +828,9 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
 
                 // remove the old master password slot
                 PasswordSlot oldSlot = creds.getSlots().find(PasswordSlot.class);
-                slots.remove(oldSlot);
+                if (oldSlot != null) {
+                    slots.remove(oldSlot);
+                }
 
                 // add the new master password slot
                 slots.add(slot);
