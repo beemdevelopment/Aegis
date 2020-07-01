@@ -9,4 +9,11 @@
     <attr name="codePrimaryText" format="color" />
     <attr name="iconColorPrimary" format="color" />
     <attr name="iconColorInverted" format="color" />
+
+    <declare-styleable name="SlideIndicator">
+        <attr name="dot_radius" format="dimension" />
+        <attr name="dot_separation" format="dimension" />
+        <attr name="dot_color" format="color" />
+        <attr name="dot_color_selected" format="color" />
+    </declare-styleable>
 </resources>
