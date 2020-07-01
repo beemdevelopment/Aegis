@@ -20,6 +20,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.view.ActionMode;
 import androidx.appcompat.widget.SearchView;
 
@@ -76,6 +77,9 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
     private String _selectedGroup;
     private boolean _searchSubmitted;
 
+    private boolean _isAuthenticating;
+    private boolean _isDoingIntro;
+
     private List<VaultEntry> _selectedEntries;
     private ActionMode _actionMode;
 
@@ -92,13 +96,16 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
 
         _app = (AegisApplication) getApplication();
         _vault = _app.getVaultManager();
         _loaded = false;
 
-        // set up the main view
-        setContentView(R.layout.activity_main);
+        if (savedInstanceState != null) {
+            _isAuthenticating = savedInstanceState.getBoolean("isAuthenticating");
+            _isDoingIntro = savedInstanceState.getBoolean("isDoingIntro");
+        }
 
         // set up the entry view
         _entryListView = (EntryListView) getSupportFragmentManager().findFragmentById(R.id.key_profiles);
@@ -138,6 +145,13 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
     }
 
     @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putBoolean("isAuthenticating", _isAuthenticating);
+        outState.putBoolean("isDoingIntro", _isDoingIntro);
+    }
+
+    @Override
     protected void onDestroy() {
         _entryListView.setListener(null);
         super.onDestroy();
@@ -162,6 +176,9 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        _isAuthenticating = false;
+        _isDoingIntro = false;
+
         if (resultCode != RESULT_OK) {
             return;
         }
@@ -449,12 +466,13 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
 
         if (_vault == null) {
             // start the intro if the vault file doesn't exist
-            if (!VaultManager.fileExists(this)) {
+            if (!_isDoingIntro && !VaultManager.fileExists(this)) {
                 if (getPreferences().isIntroDone()) {
                     Toast.makeText(this, getString(R.string.vault_not_found), Toast.LENGTH_SHORT).show();
                 }
                 Intent intro = new Intent(this, IntroActivity.class);
                 startActivityForResult(intro, CODE_DO_INTRO);
+                _isDoingIntro = true;
                 return;
             }
 
@@ -635,10 +653,13 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
     }
 
     private void startAuthActivity(boolean inhibitBioPrompt) {
-        Intent intent = new Intent(this, AuthActivity.class);
-        intent.putExtra("cancelAction", CancelAction.KILL);
-        intent.putExtra("inhibitBioPrompt", inhibitBioPrompt);
-        startActivityForResult(intent, CODE_DECRYPT);
+        if (!_isAuthenticating) {
+            Intent intent = new Intent(this, AuthActivity.class);
+            intent.putExtra("cancelAction", CancelAction.KILL);
+            intent.putExtra("inhibitBioPrompt", inhibitBioPrompt);
+            startActivityForResult(intent, CODE_DECRYPT);
+            _isAuthenticating = true;
+        }
     }
 
     private void updateLockIcon() {
