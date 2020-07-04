@@ -34,7 +34,7 @@
     <string name="pref_import_file_title">Import from file</string>
     <string name="pref_import_file_summary">Import tokens from a file</string>
     <string name="pref_backups_title">Backup the vault</string>
-    <string name="pref_backups_summary">Create backups of the vault on external storage. This is only supported for encrypted vaults.</string>
+    <string name="pref_backups_summary">Automatically create backups of the vault on external storage when changes are made. This is only supported for encrypted vaults.</string>
     <string name="pref_backups_location_title">Directory for backup files</string>
     <string name="pref_backups_location_summary">Backups will be stored at</string>
     <string name="pref_backups_trigger_title">Trigger backup</string>
