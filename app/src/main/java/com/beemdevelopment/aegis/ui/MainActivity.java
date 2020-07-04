@@ -161,20 +161,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
     }
 
     @Override
-    protected void onNewIntent(Intent intent) {
-        super.onNewIntent(intent);
-        setIntent(intent);
-
-        doShortcutActions();
-    }
-
-    @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        // don't process any activity results if the vault is locked
-        if (requestCode != CODE_DECRYPT && requestCode != CODE_DO_INTRO && _app.isVaultLocked()) {
-            return;
-        }
-
         if (resultCode != RESULT_OK) {
             return;
         }

@@ -35,7 +35,7 @@ public abstract class AegisActivity extends AppCompatActivity implements AegisAp
         // if the app was killed, relaunch MainActivity and close everything else
         if (savedInstanceState != null && isOrphan()) {
             Intent intent = new Intent(this, MainActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
             return;
         }

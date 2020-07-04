@@ -141,6 +141,7 @@ public class AegisApplication extends Application {
 
         Intent intent = new Intent(this, MainActivity.class);
         intent.putExtra("action", "scan");
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         intent.setAction(Intent.ACTION_MAIN);
 
         ShortcutInfo shortcut = new ShortcutInfo.Builder(this, "shortcut_new")
