@@ -17,13 +17,16 @@ import com.beemdevelopment.aegis.otp.SteamInfo;
 import com.beemdevelopment.aegis.otp.TotpInfo;
 import com.beemdevelopment.aegis.ui.Dialogs;
 import com.beemdevelopment.aegis.ui.tasks.ProgressDialogTask;
+import com.beemdevelopment.aegis.util.IOUtils;
 import com.beemdevelopment.aegis.vault.VaultEntry;
+import com.topjohnwu.superuser.io.SuFile;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;
 import java.security.InvalidAlgorithmParameterException;
@@ -55,20 +58,15 @@ public class AndOtpImporter extends DatabaseImporter {
     }
 
     @Override
-    protected String getAppPkgName() {
+    protected SuFile getAppPath() {
         throw new UnsupportedOperationException();
     }
 
     @Override
-    protected String getAppSubPath() {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public State read(FileReader reader) throws DatabaseImporterException {
+    public State read(InputStream stream, boolean isInternal) throws DatabaseImporterException {
         byte[] bytes;
         try {
-            bytes = reader.readAll();
+            bytes = IOUtils.readAll(stream);
         } catch (IOException e) {
             throw new DatabaseImporterException(e);
         }

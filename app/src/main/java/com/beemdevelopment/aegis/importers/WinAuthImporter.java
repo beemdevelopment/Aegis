@@ -3,6 +3,9 @@ package com.beemdevelopment.aegis.importers;
 import android.content.Context;
 
 import com.beemdevelopment.aegis.vault.VaultEntry;
+import com.topjohnwu.superuser.io.SuFile;
+
+import java.io.InputStream;
 
 public class WinAuthImporter extends DatabaseImporter {
     public WinAuthImporter(Context context) {
@@ -10,32 +13,27 @@ public class WinAuthImporter extends DatabaseImporter {
     }
 
     @Override
-    protected String getAppPkgName() {
-        return null;
+    protected SuFile getAppPath() {
+        throw new UnsupportedOperationException();
     }
 
     @Override
-    protected String getAppSubPath() {
-        return null;
-    }
-
-    @Override
-    public WinAuthImporter.State read(FileReader reader) throws DatabaseImporterException {
+    public WinAuthImporter.State read(InputStream stream, boolean isInternal) throws DatabaseImporterException {
         GoogleAuthUriImporter importer = new GoogleAuthUriImporter(getContext());
-        GoogleAuthUriImporter.State state = importer.read(reader);
+        DatabaseImporter.State state = importer.read(stream);
         return new State(state);
     }
 
     public static class State extends DatabaseImporter.State {
-        private GoogleAuthUriImporter.State _state;
+        private DatabaseImporter.State _state;
 
-        private State(GoogleAuthUriImporter.State state) {
+        private State(DatabaseImporter.State state) {
             super(false);
             _state = state;
         }
 
         @Override
-        public Result convert() {
+        public Result convert() throws DatabaseImporterException {
             Result result = _state.convert();
 
             for (VaultEntry entry : result.getEntries()) {

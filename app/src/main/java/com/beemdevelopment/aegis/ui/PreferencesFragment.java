@@ -49,8 +49,6 @@ import com.beemdevelopment.aegis.vault.slots.Slot;
 import com.beemdevelopment.aegis.vault.slots.SlotException;
 import com.beemdevelopment.aegis.vault.slots.SlotList;
 import com.topjohnwu.superuser.Shell;
-import com.topjohnwu.superuser.io.SuFile;
-import com.topjohnwu.superuser.io.SuFileInputStream;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -527,11 +525,8 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
                 return;
             }
 
-            SuFile file = importer.getAppPath();
-            try (SuFileInputStream stream = new SuFileInputStream(file)) {
-                DatabaseImporter.FileReader reader = new DatabaseImporter.FileReader(stream, true);
-                importDatabase(importer, reader);
-            }
+            DatabaseImporter.State state = importer.readFromApp();
+            processImporterState(state);
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
             Toast.makeText(getActivity(), R.string.app_lookup_error, Toast.LENGTH_SHORT).show();
@@ -541,9 +536,8 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
         }
     }
 
-    private void importDatabase(DatabaseImporter importer, DatabaseImporter.FileReader reader) {
+    private void processImporterState(DatabaseImporter.State state) {
         try {
-            DatabaseImporter.State state = importer.read(reader);
             if (state.isEncrypted()) {
                 // temporary special case for encrypted Aegis vaults
                 if (state instanceof AegisImporter.EncryptedState) {
@@ -604,11 +598,11 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
 
         try (InputStream stream = getContext().getContentResolver().openInputStream(uri)) {
             DatabaseImporter importer = DatabaseImporter.create(getContext(), _importerType);
-            DatabaseImporter.FileReader reader = new DatabaseImporter.FileReader(stream);
-            importDatabase(importer, reader);
+            DatabaseImporter.State state = importer.read(stream);
+            processImporterState(state);
         } catch (FileNotFoundException e) {
             Toast.makeText(getActivity(), R.string.file_not_found, Toast.LENGTH_SHORT).show();
-        } catch (IOException e) {
+        } catch (DatabaseImporterException | IOException e) {
             e.printStackTrace();
             Dialogs.showErrorDialog(getContext(), R.string.reading_file_error, e);
         }
