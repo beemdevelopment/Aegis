@@ -25,6 +25,9 @@ android {
         multiDexEnabled true
         buildConfigField "String", "GIT_HASH", "\"${getGitHash()}\""
         buildConfigField "String", "GIT_BRANCH", "\"${getGitBranch()}\""
+
+        testInstrumentationRunner "com.beemdevelopment.aegis.AegisTestRunner"
+        testInstrumentationRunnerArguments clearPackageData: 'true'
     }
 
     lintOptions {
@@ -123,7 +126,7 @@ dependencies {
     implementation "com.github.topjohnwu.libsu:core:${libsuVersion}"
     implementation "com.github.topjohnwu.libsu:io:${libsuVersion}"
     implementation "com.google.guava:guava:${guavaVersion}-android"
-    implementation 'com.google.android.material:material:1.1.0'
+    implementation 'com.google.android.material:material:1.0.0'
     implementation 'com.google.protobuf:protobuf-javalite:3.12.1'
     implementation 'com.google.zxing:core:3.4.0'
     implementation "com.mikepenz:iconics-core:3.2.5"
@@ -133,6 +136,16 @@ dependencies {
     implementation 'de.psdev.licensesdialog:licensesdialog:2.1.0'
     implementation 'net.lingala.zip4j:zip4j:2.6.0'
     implementation 'org.bouncycastle:bcprov-jdk15on:1.65'
+
+    androidTestImplementation 'androidx.test:core:1.2.0'
+    androidTestImplementation 'androidx.test:runner:1.2.0'
+    androidTestImplementation 'androidx.test:rules:1.2.0'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-contrib:3.2.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-intents:3.2.0'
+    androidTestImplementation 'junit:junit:4.13'
+    androidTestUtil 'androidx.test:orchestrator:1.2.0'
 
     testImplementation "com.google.guava:guava:${guavaVersion}-jre"
     testImplementation "org.junit.jupiter:junit-jupiter-api:${junitVersion}"
