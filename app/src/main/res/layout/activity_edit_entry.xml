@@ -21,13 +21,11 @@
             android:layout_height="250dp">
 
             <de.hdodenhof.circleimageview.CircleImageView
-                xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:id="@+id/profile_drawable"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true"
-                />
+                android:layout_centerVertical="true" />
 
             <com.avito.android.krop.KropView
                 android:id="@+id/krop_view"
@@ -45,7 +43,7 @@
                     android:id="@+id/iv_saveImage"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="bottom|right"
+                    android:layout_gravity="bottom|end"
                     android:layout_margin="15dp"
                     android:src="@drawable/ic_check_black_24dp"
                     android:tint="?attr/iconColorPrimary" />
@@ -176,9 +174,9 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="4"
-                        android:paddingRight="6dp"
-                        android:gravity="left"
-                        android:layout_gravity="left"
+                        android:paddingEnd="6dp"
+                        android:gravity="start"
+                        android:layout_gravity="start"
                         android:backgroundTint="#949494"
                         style="@style/Base.Widget.AppCompat.Spinner.Underlined"/>
                     <androidx.appcompat.widget.AppCompatSpinner
@@ -186,7 +184,7 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="4"
-                        android:paddingRight="6dp"
+                        android:paddingEnd="6dp"
                         android:backgroundTint="#949494"
                         style="@style/Base.Widget.AppCompat.Spinner.Underlined"/>
                     <EditText
@@ -194,7 +192,7 @@
                         android:hint="@string/digits"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:paddingRight="6dp"
+                        android:paddingEnd="6dp"
                         android:layout_weight="3"
                         android:backgroundTint="#949494"/>
                 </LinearLayout>

@@ -49,6 +49,7 @@
     <!-- note: the fab should always be the last element to be sure it's displayed on top -->
     <com.getbase.floatingactionbutton.FloatingActionsMenu
         android:id="@+id/fab"
+        style="@style/FloatingActionButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
@@ -56,8 +57,7 @@
         android:src="@drawable/ic_add_black_24dp"
         app:fab_addButtonColorNormal="@color/colorAccent"
         app:fab_addButtonColorPressed="@color/colorAccent"
-        app:fab_labelStyle="@style/fab_label_style"
-        app:fab_labelsPosition="left">
+        app:fab_labelStyle="@style/fab_label_style">
 
         <com.getbase.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab_scan"
