@@ -636,7 +636,7 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity())
                 .setTitle(R.string.pref_export_summary)
                 .setPositiveButton(android.R.string.ok, (dialog, which) -> {
-                    String filename = checked.get() ? VaultManager.FILENAME_EXPORT : VaultManager.FILENAME_EXPORT_PLAIN;
+                    String filename = checked.get() ? VaultManager.FILENAME_PREFIX_EXPORT : VaultManager.FILENAME_PREFIX_EXPORT_PLAIN;
                     filename = new VaultBackupManager.FileInfo(filename).toString();
 
                     Intent intent = new Intent(Intent.ACTION_CREATE_DOCUMENT)
