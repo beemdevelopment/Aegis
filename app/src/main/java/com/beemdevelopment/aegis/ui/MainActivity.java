@@ -473,7 +473,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         }
 
         if (_app.isVaultLocked()) {
-            startAuthActivity();
+            startAuthActivity(true);
         } else if (_loaded) {
             // update the list of groups in the filter menu
             if (_menu != null) {
@@ -634,9 +634,10 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         }
     }
 
-    private void startAuthActivity() {
+    private void startAuthActivity(boolean inhibitBioPrompt) {
         Intent intent = new Intent(this, AuthActivity.class);
         intent.putExtra("cancelAction", CancelAction.KILL);
+        intent.putExtra("inhibitBioPrompt", inhibitBioPrompt);
         startActivityForResult(intent, CODE_DECRYPT);
     }
 
@@ -731,7 +732,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         _loaded = false;
 
         if (isOpen()) {
-            startAuthActivity();
+            startAuthActivity(false);
         }
 
         super.onLocked();
