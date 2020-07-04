@@ -65,8 +65,8 @@ public class TotpProgressBar extends ProgressBar {
         int currentProgress = (int) (maxProgress * ((float) millisTillRotation / (_period * 1000)));
 
         // start progress animation, compensating for any changes to the animator duration scale settings
-        int animPart = maxProgress / _period;
-        int animEnd = (currentProgress / animPart) * animPart;
+        float animPart = (float) maxProgress / _period;
+        int animEnd = (int) ((currentProgress / animPart) * animPart);
         int animPartDuration = (int) (1000 / _animDurationScale);
         float animDurationFraction = (float) (currentProgress - animEnd) / animPart;
         int realAnimDuration =  (int) (1000 * animDurationFraction);

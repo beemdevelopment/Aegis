@@ -148,7 +148,7 @@
             android:layout_width="0dp"
             android:layout_height="3dp"
             android:id="@+id/progressBar"
-            android:max="1000"
+            android:max="5000"
             android:layout_weight="1"/>
     </LinearLayout>
 
