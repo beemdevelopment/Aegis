@@ -183,7 +183,7 @@ public class Dialogs {
         showSecureDialog(dialog);
     }
 
-    private static void showTextInputDialog(Context context, @StringRes int titleId, @StringRes int messageId, @StringRes int hintId, TextInputListener listener, boolean isSecret) {
+    private static void showTextInputDialog(Context context, @StringRes int titleId, @StringRes int messageId, @StringRes int hintId, TextInputListener listener, DialogInterface.OnDismissListener dismissListener, boolean isSecret) {
         View view = LayoutInflater.from(context).inflate(R.layout.dialog_text_input, null);
         EditText input = view.findViewById(R.id.text_input);
         if (isSecret) {
@@ -198,6 +198,11 @@ public class Dialogs {
                     char[] text = EditTextHelper.getEditTextChars(input);
                     listener.onTextInputResult(text);
                 });
+
+        if (dismissListener != null) {
+            builder.setOnDismissListener(dismissListener);
+        }
+
         if (messageId != 0) {
             builder.setMessage(messageId);
         }
@@ -207,7 +212,7 @@ public class Dialogs {
     }
 
     private static void showTextInputDialog(Context context, @StringRes int titleId, @StringRes int hintId, TextInputListener listener, boolean isSecret) {
-        showTextInputDialog(context, titleId, 0, hintId, listener, isSecret);
+        showTextInputDialog(context, titleId, 0, hintId, listener, null, isSecret);
     }
 
     public static void showTextInputDialog(Context context, @StringRes int titleId, @StringRes int hintId, TextInputListener listener) {
@@ -219,7 +224,11 @@ public class Dialogs {
     }
 
     public static void showPasswordInputDialog(Context context, @StringRes int messageId, TextInputListener listener) {
-        showTextInputDialog(context, R.string.set_password, messageId, R.string.password, listener, true);
+        showTextInputDialog(context, R.string.set_password, messageId, R.string.password, listener, null, true);
+    }
+
+    public static void showPasswordInputDialog(Context context, @StringRes int setPasswordMessageId, @StringRes int messageId, TextInputListener listener, DialogInterface.OnDismissListener dismissListener) {
+        showTextInputDialog(context, setPasswordMessageId, messageId, R.string.password, listener, dismissListener, true);
     }
 
     public static void showNumberPickerDialog(Activity activity, NumberInputListener listener) {

@@ -131,6 +131,13 @@
             app:iconSpaceReserved="false"/>
 
         <androidx.preference.SwitchPreferenceCompat
+            android:key="pref_pin_keyboard"
+            android:dependency="pref_encryption"
+            android:title="@string/pref_pin_keyboard_title"
+            android:summary="@string/pref_pin_keyboard_summary"
+            app:iconSpaceReserved="false"/>
+
+        <androidx.preference.SwitchPreferenceCompat
             android:defaultValue="true"
             android:key="pref_auto_lock"
             android:dependency="pref_encryption"
