@@ -143,7 +143,7 @@ public abstract class AegisActivity extends AppCompatActivity implements AegisAp
      * Reports whether this Activity instance has become an orphan. This can happen if
      * the vault was locked by an external trigger while the Activity was still open.
      */
-    private boolean isOrphan() {
+    protected boolean isOrphan() {
         return !(this instanceof MainActivity) && !(this instanceof AuthActivity) && _app.isVaultLocked();
     }
 

@@ -84,7 +84,11 @@ public class AuthActivity extends AegisActivity {
         });
 
         Intent intent = getIntent();
-        _inhibitBioPrompt = savedInstanceState == null ? !intent.getBooleanExtra("_inhibitBioPrompt", true) : savedInstanceState.getBoolean("_inhibitBioPrompt");
+        if (savedInstanceState == null) {
+            _inhibitBioPrompt = intent.getBooleanExtra("inhibitBioPrompt", false);
+        } else {
+            _inhibitBioPrompt = savedInstanceState.getBoolean("inhibitBioPrompt", false);
+        }
         _cancelAction = (CancelAction) intent.getSerializableExtra("cancelAction");
         _slots = (SlotList) intent.getSerializableExtra("slots");
         _stateless = _slots != null;
@@ -207,11 +211,12 @@ public class AuthActivity extends AegisActivity {
     public void onResume() {
         super.onResume();
 
-        if (_bioKey == null || _prefs.isPasswordReminderNeeded()) {
+        boolean remindPassword = _prefs.isPasswordReminderNeeded();
+        if (_bioKey == null || remindPassword) {
             focusPasswordField();
         }
 
-        if (_bioKey != null && _bioPrompt == null && !_inhibitBioPrompt) {
+        if (_bioKey != null && _bioPrompt == null && !_inhibitBioPrompt && !remindPassword) {
             _bioPrompt = showBiometricPrompt();
         }
 
@@ -233,6 +238,11 @@ public class AuthActivity extends AegisActivity {
         if (_bioKey != null && _prefs.isPasswordReminderNeeded()) {
             showPasswordReminder();
         }
+    }
+
+    @Override
+    protected boolean isOrphan() {
+        return _stateless && super.isOrphan();
     }
 
     private void focusPasswordField() {
