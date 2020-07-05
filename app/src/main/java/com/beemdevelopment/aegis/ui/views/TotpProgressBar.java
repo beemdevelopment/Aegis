@@ -66,11 +66,12 @@ public class TotpProgressBar extends ProgressBar {
 
         // start progress animation, compensating for any changes to the animator duration scale settings
         float animPart = (float) maxProgress / _period;
-        int animEnd = (int) ((currentProgress / animPart) * animPart);
-        int animPartDuration = (int) (1000 / _animDurationScale);
+        int animEnd = (int) (Math.floor(currentProgress / animPart) * animPart);
+        int animPartDuration = _animDurationScale > 0 ? (int) (1000 / _animDurationScale) : 0;
         float animDurationFraction = (float) (currentProgress - animEnd) / animPart;
-        int realAnimDuration =  (int) (1000 * animDurationFraction);
+        int realAnimDuration = (int) (1000 * animDurationFraction);
         int animDuration =  (int) (animPartDuration * animDurationFraction);
+
         ObjectAnimator animation = ObjectAnimator.ofInt(this, "progress", currentProgress, animEnd);
         animation.setDuration(animDuration);
         animation.setInterpolator(new LinearInterpolator());
