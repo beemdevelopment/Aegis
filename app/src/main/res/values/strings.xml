@@ -13,6 +13,7 @@
     <string name="discard">Discard</string>
     <string name="save">Save</string>
     <string name="issuer">Issuer</string>
+    <string name="suggested">Suggested</string>
 
     <string name="settings">Preferences</string>
     <string name="pref_cat_appearance_app">App</string>
@@ -29,6 +30,8 @@
     <string name="pref_section_import_export_summary">Import backups of Aegis or other authenticator apps. Create manual exports of your Aegis vault.</string>
     <string name="pref_section_backups_title">Backups</string>
     <string name="pref_section_backups_summary">Set up automatic backups to a location of your choosing or enable participation in Android\'s backup system.</string>
+    <string name="pref_section_icon_packs">Icon packs</string>
+    <string name="pref_section_icon_packs_summary">Manage and import icon packs</string>
     <string name="pref_select_theme_title">Theme</string>
     <string name="pref_view_mode_title">View mode</string>
     <string name="pref_lang_title">Language</string>
@@ -149,6 +152,7 @@
     <string name="encrypting_vault">Encrypting the vault</string>
     <string name="exporting_vault">Exporting the vault</string>
     <string name="reading_file">Reading file</string>
+    <string name="importing_icon_pack">Importing icon pack</string>
     <string name="delete_entry">Delete entry</string>
     <string name="delete_entry_description">Are you sure you want to delete this entry?</string>
     <string name="delete_entry_explanation">This action does not disable 2FA for <b>%s</b>. To prevent losing access, make sure that you have disabled 2FA or that you have an alternative way to generate codes for this service.</string>
@@ -185,6 +189,15 @@
     <string name="backup_successful">The backup was scheduled successfully</string>
     <string name="backup_error">An error occurred while trying to create a backup</string>
     <string name="documentsui_error">DocumentsUI appears to be missing from your device. This is an important system component necessary for the selection and creation of documents. If you used a tool to &quot;debloat&quot; your device, you may have accidentally deleted it and will have to reinstall it.</string>
+    <string name="icon_pack_import_error">An error occurred while trying to import an icon pack</string>
+    <string name="icon_pack_import_exists_error">The icon pack you\'re trying to import already exists. Do you want to overwrite it?</string>
+    <string name="icon_pack_delete_error">An error occurred while trying to delete an icon pack</string>
+    <plurals name="icon_pack_info">
+        <item quantity="one">%d icon</item>
+        <item quantity="other">%d icons</item>
+    </plurals>
+    <string name="icon_pack">Icon pack</string>
+    <string name="icon_custom">Custom</string>
     <string name="permission_denied">Permission denied</string>
     <string name="andotp_new_format">New format (v0.6.3 or newer) </string>
     <string name="andotp_old_format">Old format (v0.6.2 or older) </string>
@@ -219,6 +232,8 @@
     <string name="remove_slot_description">Are you sure you want to remove this slot?</string>
     <string name="remove_group">Remove group</string>
     <string name="remove_group_description">Are you sure you want to remove this group? Entries in this group will automatically switch to \'No group\'.</string>
+    <string name="remove_icon_pack">Remove icon pack</string>
+    <string name="remove_icon_pack_description">Are you sure you want to remove this icon pack? Entries that use icons from this pack will not be affected.</string>
     <string name="adding_new_slot_error">An error occurred while trying to add a new slot:</string>
     <string name="progressbar_error">Unable to reset animator duration scale. Progress bars will be invisible.</string>
     <string name="details">Details</string>
@@ -237,6 +252,7 @@
     <string name="group_name_hint">Group name</string>
     <string name="preference_manage_groups">Edit groups</string>
     <string name="preference_manage_groups_summary">Manage and delete your groups here</string>
+
     <string name="pref_highlight_entry_title">Highlight tokens when tapped</string>
     <string name="pref_highlight_entry_summary">Make tokens easier to distinguish from each other by temporarily highlighting them when tapped</string>
     <string name="pref_copy_on_tap_title">Copy tokens when tapped</string>
@@ -320,6 +336,10 @@
     <string name="empty_list_title">No entries found</string>
     <string name="empty_group_list">There are no groups to be shown. Add groups in the edit screen of an entry</string>
     <string name="empty_group_list_title">No groups found</string>
+    <string name="no_icon_packs">No icon packs have been imported yet. Tap the plus sign to import one. Tip: try <a href="https://github.com/aegis-icons/aegis-icons/releases/latest">krisu5\'s icon pack</a>.</string>
+    <string name="no_icon_packs_title">No icon packs</string>
+    <string name="pick_icon">Pick an icon</string>
+    <string name="uncategorized">Uncategorized</string>
     <string name="done">Done</string>
     <plurals name="entries_count">
         <item quantity="one">%d / %d entry</item>

@@ -5,13 +5,12 @@ import android.content.DialogInterface;
 
 import androidx.lifecycle.Lifecycle;
 
-import com.beemdevelopment.aegis.encoding.EncodingException;
 import com.beemdevelopment.aegis.helpers.ContextHelper;
-import com.beemdevelopment.aegis.otp.OtpInfoException;
 import com.beemdevelopment.aegis.ui.dialogs.Dialogs;
 import com.beemdevelopment.aegis.ui.tasks.PasswordSlotDecryptTask;
 import com.beemdevelopment.aegis.util.IOUtils;
 import com.beemdevelopment.aegis.vault.VaultEntry;
+import com.beemdevelopment.aegis.vault.VaultEntryException;
 import com.beemdevelopment.aegis.vault.VaultFile;
 import com.beemdevelopment.aegis.vault.VaultFileCredentials;
 import com.beemdevelopment.aegis.vault.VaultFileException;
@@ -140,7 +139,7 @@ public class AegisImporter extends DatabaseImporter {
         private static VaultEntry convertEntry(JSONObject obj) throws DatabaseImporterEntryException {
             try {
                 return VaultEntry.fromJson(obj);
-            } catch (JSONException | OtpInfoException | EncodingException e) {
+            } catch (VaultEntryException e) {
                 throw new DatabaseImporterEntryException(e, obj.toString());
             }
         }

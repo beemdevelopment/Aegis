@@ -35,6 +35,7 @@ public class ImportFileTask extends ProgressDialogTask<Uri, ImportFileTask.Resul
 
             return new Result(tempFile, null);
         } catch (IOException e) {
+            e.printStackTrace();
             return new Result(null, e);
         }
     }

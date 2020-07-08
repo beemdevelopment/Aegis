@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
 
@@ -13,7 +14,7 @@ import com.beemdevelopment.aegis.ui.fragments.PreferencesFragment;
 
 public class PreferencesActivity extends AegisActivity implements
         PreferenceFragmentCompat.OnPreferenceStartFragmentCallback {
-    private PreferencesFragment _fragment;
+    private Fragment _fragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,18 +59,22 @@ public class PreferencesActivity extends AegisActivity implements
 
     @Override
     protected void onRestoreInstanceState(final Bundle inState) {
-        // pass the stored result intent back to the fragment
-        if (inState.containsKey("result")) {
-            _fragment.setResult(inState.getParcelable("result"));
+        if (_fragment instanceof PreferencesFragment) {
+            // pass the stored result intent back to the fragment
+            if (inState.containsKey("result")) {
+                ((PreferencesFragment) _fragment).setResult(inState.getParcelable("result"));
+            }
         }
         super.onRestoreInstanceState(inState);
     }
 
     @Override
     protected void onSaveInstanceState(final Bundle outState) {
-        // save the result intent of the fragment
-        // this is done so we don't lose anything if the fragment calls recreate on this activity
-        outState.putParcelable("result", _fragment.getResult());
+        if (_fragment instanceof PreferencesFragment) {
+            // save the result intent of the fragment
+            // this is done so we don't lose anything if the fragment calls recreate on this activity
+            outState.putParcelable("result", ((PreferencesFragment) _fragment).getResult());
+        }
         super.onSaveInstanceState(outState);
     }
 
@@ -86,7 +91,7 @@ public class PreferencesActivity extends AegisActivity implements
 
     @Override
     public boolean onPreferenceStartFragment(PreferenceFragmentCompat caller, Preference pref) {
-        _fragment = (PreferencesFragment) getSupportFragmentManager().getFragmentFactory().instantiate(getClassLoader(), pref.getFragment());
+        _fragment = getSupportFragmentManager().getFragmentFactory().instantiate(getClassLoader(), pref.getFragment());
         _fragment.setArguments(pref.getExtras());
         _fragment.setTargetFragment(caller, 0);
         showFragment(_fragment);
@@ -95,7 +100,7 @@ public class PreferencesActivity extends AegisActivity implements
         return true;
     }
 
-    private void showFragment(PreferencesFragment fragment) {
+    private void showFragment(Fragment fragment) {
         getSupportFragmentManager().beginTransaction()
                 .setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left, R.anim.slide_in_left, R.anim.slide_out_right)
                 .replace(R.id.content, fragment)
