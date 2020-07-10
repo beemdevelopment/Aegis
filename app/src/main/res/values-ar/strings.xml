@@ -1,9 +1,5 @@
 <?xml version="1.0"?>
 <resources>
-    <string name="app_name" translatable="false">Aegis</string>
-    <string name="app_name_full" translatable="false">Aegis Authenticator</string>
-    <string name="app_name_dev" translatable="false">AegisDev</string>
-    <string name="org_name_full" translatable="false">Beem Development</string>
     <string name="action_settings">الإعدادات</string>
     <string name="action_about">عن</string>
     <string name="action_import">استيراد</string>
@@ -63,7 +59,7 @@
     <string name="pref_set_password_summary">تعيين كلمة مرور جديدة، ستحتاجها لفتح قفل المخزن</string>
 
     <string name="choose_authentication_method">الأمان</string>
-    <string name="authentication_method_explanation">تطبيق Aegis هو تطبيق مصادقة يركز على الأمان. تخزّن الرموز في مخزن، يمكن تشفيره اختياريًا بكلمة مرور من اختيارك. إذا حصل مهاجم على ملف المخزن المشفر الخاص بك، فإنه لن يتمكن من الوصول إلى المحتوى بدون معرفة كلمة المرور. \n\n لقد حددنا مسبقًا الخيار الذي نعتقد أنه يناسب جهازك.</string>
+    <string name="authentication_method_explanation">تطبيق Aegis هو تطبيق مصادقة يركز على الأمان. تخزّن الرموز في مخزن، يمكن تشفيره اختياريًا بكلمة مرور من اختيارك. إذا حصل مهاجم على ملف المخزن المشفر الخاص بك، فإنه لن يتمكن من الوصول إلى المحتوى بدون معرفة كلمة المرور.\n\nلقد حددنا مسبقًا الخيار الذي نعتقد أنه يناسب جهازك.</string>
     <string name="authentication_method_none">بلا</string>
     <string name="authentication_method_none_description">لا حاجة لكلمة المرور لفك قفل المخزن، ولن يتم تشفيره. <b>لا ينصح بهذا الخيار</b>.</string>
     <string name="authentication_method_password">كلمة المرور</string>
@@ -76,14 +72,14 @@
     <string name="authentication">افتح قفل لمخزن</string>
 
     <!-- The newline (\n) on the following line is just for aesthetic purposes !-->
-    <string name="authentication_multiline">افتح قفل \n المخزن</string>
+    <string name="authentication_multiline">افتح قفل\nالمخزن</string>
 
     <string name="auth_use_biometrics">أو انقر هنا لاستعمال <font fgcolor="#FF0D86C1">البيومترية</font></string>
     <string name="set_password">الرجاءإدخال كلمة المرور</string>
     <string name="set_group">الرجاء إدخال اسم المجموعة</string>
     <string name="set_number">الرجاء إدخال رقم</string>
     <string name="set_password_confirm">الرجاء تأكيد كلمة المرور</string>
-    <string name="invalidated_biometrics">تم كشف تغيير في إعدادات أمان جهازك. الرجاء الذهاب إلى \&quot; Aegis -&gt; الإعدادات -&gt; البيومترية \&quot; وأعد تفعيل الفتح البيومتري.</string>
+    <string name="invalidated_biometrics">تم كشف تغيير في إعدادات أمان جهازك. الرجاء الذهاب إلى \" Aegis -> الإعدادات -> البيومترية \" وأعد تفعيل الفتح البيومتري.</string>
     <string name="password_reminder">لقد مرت فترة طويلة منذ أن أدخلت كلمة مرورك. هل مازلت تتذكرها؟</string>
     <string name="enter_password_authy_message">يبدو أن رموز Authy الخاصة بك مشفرة. الرجاء إغلاق Aegis، وفتح Authy وفتح قفل الرموز بكلمة مرورك. بدلًا من ذلك، Aegis يمكنه أيضًا محاولة فك تشفير رموز Authy الخاصة بك، إذا قمت بإدخال كلمة مرورك أدناه.</string>
 
@@ -215,7 +211,7 @@
     <string name="small_mode_title">صغير</string>
     <string name="unknown_issuer">مصدِّر غير معروف</string>
     <string name="unknown_account_name">اسم الحساب غير معروف</string>
-    <string name="import_error_dialog">لم يستطع Aegis استيراد %d رمو.ز سيتم تجاوز تلك الرموز. اضغط على &quot;التفاصيل&quot; لمشاهدة المزيد من المعلومات حول الأخطاء.</string>
+    <string name="import_error_dialog">لم يستطع Aegis استيراد %d رمو.ز سيتم تجاوز تلك الرموز. اضغط على \'التفاصيل\' لمشاهدة المزيد من المعلومات حول الأخطاء.</string>
     <string name="unable_to_read_qrcode">تعذّر قراءة ومعالجة كود QR</string>
     <string name="unable_to_generate_qrcode">تعذّر توليد كود QR</string>
     <string name="select_picture">اختر صورة</string>
@@ -229,13 +225,10 @@
     <string name="version">الإصدار</string>
     <string name="changelog">سجل التغيير</string>
     <string name="whats_new">ما الجديد</string>
-    <string name="github" translatable="false">GitHub</string>
     <string name="github_description">الكود المصدري، والمشاكل، والمعلومات</string>
     <string name="licenses">الرخصات</string>
     <string name="licenses_description">الرخصات المكتبات التي يستعملها Aegis</string>
-    <string name="author_alex" translatable="false">Alexander Bakker</string>
     <string name="country_netherlands">هولندا</string>
-    <string name="author_michael" translatable="false">Michael Schättgen</string>
     <string name="email_us">اكتب بريد الكتروني</string>
     <string name="visit_website">قم بزيارة موقعنا</string>
     <string name="about_support">الدعم</string>
@@ -250,29 +243,11 @@
     <string name="google_qr_export_scanned">تم مسح %d/%d كود QR</string>
     <string name="google_qr_export_unexpected">انتظرت كود QR #%d، ولكن مسحت #%d بدلًا منه</string>
     <string name="backup_error_bar_message"><b>النسخ الاحتياطي للمخزن فشل مؤخرًا</b></string>
-
-    <string name="custom_notices_format_style" translatable="false">
-        body {
-            background-color: #%1$s;
-            color: #%2$s;
-            font-family: sans-serif;
-            overflow-wrap: break-word;
-        }
-        pre {
-            background-color: #%3$s;
-            padding: 1em;
-            white-space: pre-wrap;
-        }
-        a {
-            color: #%4$s;
-        }
-    </string>
     <string name="empty_list">لا توجد أكواد لعرضها. ابدأ بإضافة مدخلات بالنقر على علامة الزائد في أسفل الركن الأيسر</string>
     <string name="empty_list_title">لم يتم العثور على مدخلات</string>
     <string name="done">تم</string>
     <string name="title_activity_transfer">نقل المدخلات</string>
-    <string name="entries_count">
-%d / %d  مدخلات</string>
+    <string name="entries_count">%d / %d  مدخلات</string>
     <string name="next">التالي</string>
     <string name="previous">السابق</string>
     <string name="transfer_entry">نقل الإدخال</string>
