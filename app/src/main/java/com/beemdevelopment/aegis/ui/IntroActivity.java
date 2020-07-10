@@ -8,19 +8,26 @@ import androidx.fragment.app.Fragment;
 import com.beemdevelopment.aegis.AegisApplication;
 import com.beemdevelopment.aegis.Preferences;
 import com.beemdevelopment.aegis.R;
-import com.beemdevelopment.aegis.ui.slides.SecuritySetupSlide;
 import com.beemdevelopment.aegis.ui.slides.SecurityPickerSlide;
+import com.beemdevelopment.aegis.ui.slides.SecuritySetupSlide;
 import com.beemdevelopment.aegis.vault.Vault;
 import com.beemdevelopment.aegis.vault.VaultFile;
 import com.beemdevelopment.aegis.vault.VaultFileCredentials;
 import com.beemdevelopment.aegis.vault.VaultFileException;
 import com.beemdevelopment.aegis.vault.VaultManager;
 import com.beemdevelopment.aegis.vault.VaultManagerException;
+import com.beemdevelopment.aegis.vault.slots.BiometricSlot;
+import com.beemdevelopment.aegis.vault.slots.PasswordSlot;
 import com.github.appintro.AppIntro2;
 import com.github.appintro.AppIntroFragment;
 import com.github.appintro.model.SliderPage;
 
 import org.json.JSONObject;
+
+import static com.beemdevelopment.aegis.ui.slides.SecurityPickerSlide.CRYPT_TYPE_BIOMETRIC;
+import static com.beemdevelopment.aegis.ui.slides.SecurityPickerSlide.CRYPT_TYPE_INVALID;
+import static com.beemdevelopment.aegis.ui.slides.SecurityPickerSlide.CRYPT_TYPE_NONE;
+import static com.beemdevelopment.aegis.ui.slides.SecurityPickerSlide.CRYPT_TYPE_PASS;
 
 public class IntroActivity extends AppIntro2 {
     private SecuritySetupSlide securitySetupSlide;
@@ -76,8 +83,8 @@ public class IntroActivity extends AppIntro2 {
     public void onSlideChanged(Fragment oldFragment, Fragment newFragment) {
         if (oldFragment == _securityPickerSlide && newFragment != _endSlide) {
             // skip to the last slide if no encryption will be used
-            int cryptType = getIntent().getIntExtra("cryptType", SecurityPickerSlide.CRYPT_TYPE_INVALID);
-            if (cryptType == SecurityPickerSlide.CRYPT_TYPE_NONE) {
+            int cryptType = getIntent().getIntExtra("cryptType", CRYPT_TYPE_INVALID);
+            if (cryptType == CRYPT_TYPE_NONE) {
                 // TODO: no magic indices
                 goToNextSlide(false);
             }
@@ -96,12 +103,23 @@ public class IntroActivity extends AppIntro2 {
 
         int cryptType = securitySetupSlide.getCryptType();
         VaultFileCredentials creds = securitySetupSlide.getCredentials();
+        if (cryptType == CRYPT_TYPE_INVALID
+                || (cryptType == CRYPT_TYPE_NONE && creds != null)
+                || (cryptType == CRYPT_TYPE_PASS && (creds == null || !creds.getSlots().has(PasswordSlot.class)))
+                || (cryptType == CRYPT_TYPE_BIOMETRIC && (creds == null || !creds.getSlots().has(PasswordSlot.class) || !creds.getSlots().has(BiometricSlot.class)))) {
+            Dialogs.showErrorDialog(this, R.string.intro_crypto_error, String.format("State of SecuritySetupSlide not properly propagated, cryptType: %d, creds: %s", cryptType, creds), (dialog, which) -> finishIntro(CRYPT_TYPE_NONE, null));
+            return;
+        }
 
+        finishIntro(cryptType, creds);
+    }
+
+    private void finishIntro(int cryptType, VaultFileCredentials creds) {
         Vault vault = new Vault();
         VaultFile vaultFile = new VaultFile();
         try {
             JSONObject obj = vault.toJson();
-            if (cryptType == SecurityPickerSlide.CRYPT_TYPE_NONE) {
+            if (cryptType == CRYPT_TYPE_NONE) {
                 vaultFile.setContent(obj);
             } else {
                 vaultFile.setContent(obj, creds);
@@ -114,7 +132,7 @@ public class IntroActivity extends AppIntro2 {
             return;
         }
 
-        if (cryptType == SecurityPickerSlide.CRYPT_TYPE_NONE) {
+        if (cryptType == CRYPT_TYPE_NONE) {
             _app.initVaultManager(vault, null);
         } else {
             _app.initVaultManager(vault, creds);

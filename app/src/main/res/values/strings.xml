@@ -154,6 +154,7 @@
     <string name="choose_application">Select the application you\'d like to import from</string>
     <string name="choose_theme">Select your desired theme</string>
     <string name="choose_view_mode">Select your desired view mode</string>
+    <string name="intro_crypto_error">An error occurred while trying to set up encryption for your vault. Please try setting up encryption manually in the settings menu of Aegis.</string>
     <string name="parsing_file_error">An error occurred while trying to parse the file</string>
     <string name="file_not_found">Error: File not found</string>
     <string name="reading_file_error">An error occurred while trying to read the file</string>
