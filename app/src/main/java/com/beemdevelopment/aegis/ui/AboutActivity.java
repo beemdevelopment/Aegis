@@ -12,8 +12,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.AttrRes;
-import androidx.annotation.ColorInt;
-import androidx.annotation.ColorRes;
 import androidx.annotation.StringRes;
 import androidx.core.view.LayoutInflaterCompat;
 
@@ -80,7 +78,7 @@ public class AboutActivity extends AegisActivity {
 
         View btnChangelog = findViewById(R.id.btn_changelog);
         btnChangelog.setOnClickListener(v -> {
-            ChangelogDialog.create().setTheme(getCurrentTheme()).show(getSupportFragmentManager(), "CHANGELOG_DIALOG");
+            ChangelogDialog.create().setTheme(getConfiguredTheme()).show(getSupportFragmentManager(), "CHANGELOG_DIALOG");
         });
     }
 
@@ -118,7 +116,7 @@ public class AboutActivity extends AegisActivity {
 
     private void showLicenseDialog() {
         String stylesheet = getString(R.string.custom_notices_format_style);
-        int backgroundColorResource = getCurrentTheme() == Theme.AMOLED ? R.attr.cardBackgroundFocused : R.attr.cardBackground;
+        int backgroundColorResource = getConfiguredTheme() == Theme.AMOLED ? R.attr.cardBackgroundFocused : R.attr.cardBackground;
         String backgroundColor = getThemeColorAsHex(backgroundColorResource);
         String textColor = getThemeColorAsHex(R.attr.primaryText);
         String licenseColor = getThemeColorAsHex(R.attr.cardBackgroundFocused);

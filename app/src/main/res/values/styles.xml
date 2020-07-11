@@ -55,7 +55,7 @@
         <item name="android:windowLightNavigationBar" tools:targetApi="o_mr1">true</item>
     </style>
 
-    <style name="AppTheme.Dark.NoActionBar" parent="AppTheme">
+    <style name="AppTheme.Dark.NoActionBar" parent="AppTheme.Dark">
         <item name="android:statusBarColor">@color/background_dark_statusbar</item>
         <item name="windowNoTitle">true</item>
         <item name="windowActionBar">false</item>
@@ -68,7 +68,7 @@
         <item name="android:windowLightNavigationBar" tools:targetApi="o_mr1">true</item>
     </style>
 
-    <style name="AppTheme.TrueBlack.NoActionBar" parent="AppTheme">
+    <style name="AppTheme.TrueBlack.NoActionBar" parent="AppTheme.TrueBlack">
         <item name="android:statusBarColor">@color/background_true_dark</item>
         <item name="windowNoTitle">true</item>
         <item name="windowActionBar">false</item>
