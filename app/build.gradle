@@ -75,6 +75,7 @@ android {
     compileOptions {
         targetCompatibility 1.8
         sourceCompatibility 1.8
+        coreLibraryDesugaringEnabled true
     }
 }
 
@@ -150,4 +151,6 @@ dependencies {
     testImplementation "com.google.guava:guava:${guavaVersion}-jre"
     testImplementation "org.junit.jupiter:junit-jupiter-api:${junitVersion}"
     testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:${junitVersion}"
+
+    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.0.9'
 }
