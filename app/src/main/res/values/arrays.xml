@@ -34,36 +34,38 @@
 
     <string-array name="pref_lang_entries">
         <item>System default</item>
+        <item>Arabic</item>
         <item>Dutch</item>
         <item>English</item>
+        <item>Finnish</item>
         <item>French</item>
         <item>German</item>
-        <item>Polish</item>
-        <item>Italian</item>
-        <item>Finnish</item>
-        <item>Hungarian</item>
         <item>Greek</item>
-        <item>Russian</item>
-        <item>简体中文</item>
-        <item>Turkish</item>
+        <item>Hungarian</item>
+        <item>Italian</item>
+        <item>Polish</item>
         <item>Portuguese</item>
+        <item>Russian</item>
+        <item>Simplified Chinese</item>
+        <item>Turkish</item>
     </string-array>
 
     <string-array name="pref_lang_values" translatable="false">
         <item>system</item>
+        <item>ar</item>
         <item>nl</item>
         <item>en</item>
+        <item>fi</item>
         <item>fr</item>
         <item>de</item>
-        <item>pl</item>
-        <item>it</item>
-        <item>fi</item>
-        <item>hu</item>
         <item>el</item>
+        <item>hu</item>
+        <item>it</item>
+        <item>pl</item>
+        <item>pt</item>
         <item>ru</item>
         <item>zh</item>
         <item>tr</item>
-        <item>pt</item>
     </string-array>
 
     <string-array name="password_strength">
