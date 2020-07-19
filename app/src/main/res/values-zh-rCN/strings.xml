@@ -10,6 +10,7 @@
     <string name="discard">放弃</string>
     <string name="save">保存</string>
     <string name="issuer">服务商</string>
+
     <string name="settings">偏好设置</string>
     <string name="pref_appearance_group_title">外观</string>
     <string name="pref_general_group_title">常规</string>
@@ -20,7 +21,7 @@
     <string name="pref_view_mode_title">视图模式</string>
     <string name="pref_lang_title">语言</string>
     <string name="pref_code_group_size_title">分组显示验证码</string>
-    <string name="pref_code_group_size_summary">以2位分组而不是3位分组显示代码</string>
+    <string name="pref_code_group_size_summary">以 2 位分组而不是 3 位分组显示验证码</string>
     <string name="pref_account_name_title">显示帐户名称</string>
     <string name="pref_account_name_summary">在应用名称旁边显示账户名称</string>
     <string name="pref_timeout_title">超时</string>
@@ -37,12 +38,12 @@
     <string name="pref_backups_trigger_summary">手动触发备份</string>
     <string name="pref_backups_versions_title">保留备份文件版本数量</string>
     <string name="pref_backups_versions_summary">保留备份 %1$d 版本</string>
-    <string name="pref_import_app_title">从其他程序导入</string>
-    <string name="pref_import_app_summary">从其他应用程序导入令牌(需要 root 权限)</string>
+    <string name="pref_import_app_title">从应用导入</string>
+    <string name="pref_import_app_summary">从其他应用导入令牌（需要 root 权限）</string>
     <string name="pref_export_title">导出</string>
     <string name="pref_export_summary">导出数据库</string>
     <string name="pref_password_reminder_title">密码提醒</string>
-    <string name="pref_password_reminder_summary">提示您每隔一段时间输入一次密码，以免忘记密码。</string>
+    <string name="pref_password_reminder_summary">每隔一段时间提醒您输入一次密码，以免忘记密码。</string>
     <string name="pref_secure_screen_title">屏幕安全</string>
     <string name="pref_secure_screen_summary">阻止屏幕截图，以及其他试图在本应用中捕获屏幕的行为</string>
     <string name="pref_tap_to_reveal_title">点击显示</string>
@@ -56,27 +57,32 @@
     <string name="pref_biometrics_summary">通过生物识别验证来解锁数据库</string>
     <string name="pref_set_password_title">更改密码</string>
     <string name="pref_set_password_summary">设置解锁数据库所需的新密码</string>
+
     <string name="choose_authentication_method">安全</string>
-    <string name="authentication_method_explanation">Aegis 是一款专注于安全性的 2FA 应用程序。令牌存储在数据库中，可以选择使用您选择的密码进行加密。 如果攻击者获得了加密的保险库文件，他们将无法在不知道密码的情况下访问内容。\n\n我们已预先选择了我们认为最适合您的设备的选项。</string>
-    <string name="authentication_method_none">未设置</string>
+    <string name="authentication_method_explanation">Aegis 是一款专注于安全性的双重认证（2FA）应用。令牌存储在数据库中，可以选择使用您选择的密码进行加密。如果攻击者获得了加密的数据库文件，他们将无法在不知道密码的情况下访问内容。\n\n我们已预先选择了我们认为最适合您的设备的选项。</string>
+    <string name="authentication_method_none">无</string>
     <string name="authentication_method_none_description">您无需密码即可解锁数据库，并且不会对其进行加密。<b>不建议使用此选项</b>。</string>
     <string name="authentication_method_password">密码</string>
     <string name="authentication_method_password_description">需要密码来解锁数据库。</string>
-    <string name="authentication_method_password_explanation">警告：如果忘记密码，将永久失去对令牌的访问权限。 没有密码，则无法恢复它们。</string>
+    <string name="authentication_method_password_explanation">警告：如果忘记密码，将永久失去对令牌的访问权限。没有密码，则无法恢复它们。</string>
     <string name="authentication_method_biometrics">生物识别</string>
-    <string name="authentication_method_biometrics_description">除密码外，在此设备上注册的生物识别信息(例如指纹或人脸)，也可用于解锁数据库。</string>
+    <string name="authentication_method_biometrics_description">除密码外，在此设备上注册的生物识别信息（例如指纹或人脸），也可用于解锁数据库。</string>
     <string name="authentication_method_set_password">密码</string>
     <string name="authentication_enter_password">输入您的密码</string>
     <string name="authentication">解锁数据库</string>
+
+    <!-- The newline (\n) on the following line is just for aesthetic purposes !-->
     <string name="authentication_multiline">解锁\n数据库</string>
+
     <string name="auth_use_biometrics">或者点击此处以使用 <font fgcolor='#FF0D86C1'>生物识别</font></string>
     <string name="set_password">请输入密码</string>
     <string name="set_group">请输入群组名称</string>
     <string name="set_number">请选择时长</string>
     <string name="set_password_confirm">请确认密码</string>
-    <string name="invalidated_biometrics">您的设备更改了安全设置。请在 \"Aegis -> 设置 -> 生物识别\"，然后重新启用生物识别解锁。</string>
+    <string name="invalidated_biometrics">您的设备更改了安全设置。请前往“Aegis -> 设置 -> 生物识别”重新启用生物识别解锁。</string>
     <string name="password_reminder">您已经有一段时间没有输入密码了。您还记得您的密码吗？</string>
     <string name="enter_password_authy_message">您的 Authy 令牌似乎已加密。请关闭 Aegis，打开 Authy，然后使用您的密码解锁令牌。另外，如果您在下面输入密码，Aegis 也可以尝试为您解密 Authy 令牌。</string>
+
     <string name="yes">确定</string>
     <string name="no">取消</string>
     <string name="unlock">解锁</string>
@@ -103,12 +109,12 @@
     <string name="new_entry">新建条目</string>
     <string name="add_new_entry">添加新的条目</string>
     <string name="unlock_vault_error">无法解锁数据库</string>
-    <string name="unlock_vault_error_description">密码错误。确保您未输错密码。</string>
-    <string name="password_equality_error">密码应该是相同且非空的。</string>
+    <string name="unlock_vault_error_description">密码错误。请确保您未输错密码。</string>
+    <string name="password_equality_error">密码应相同且非空</string>
     <string name="snackbar_authentication_method">请选择身份验证方法</string>
-    <string name="encrypting_vault">加密数据库</string>
+    <string name="encrypting_vault">正在加密数据库</string>
     <string name="delete_entry">删除条目</string>
-    <string name="delete_entry_description">您确定要删除这项条目吗？</string>
+    <string name="delete_entry_description">您确定要删除此条目吗？</string>
     <string name="delete_entries">删除条目</string>
     <string name="delete_entries_description">您确定要删除 %d 项条目吗？</string>
     <string name="discard_changes">放弃更改？</string>
@@ -120,7 +126,7 @@
     <string name="app_description">Aegis 是一款免费，安全和开源的双重认证（2FA）应用</string>
     <string name="setup_completed">设置完成</string>
     <string name="setup_completed_description">Aegis 设置完成，可以开始使用了。</string>
-    <string name="vault_not_found">数据库未找到，开始设置…</string>
+    <string name="vault_not_found">未找到数据库，开始设置…</string>
     <string name="copied">已复制</string>
     <string name="errors_copied">错误已复制到剪贴板</string>
     <string name="version_copied">版本号已复制到剪贴板</string>
@@ -138,10 +144,10 @@
     <string name="disable_encryption_error">禁用加密时出错</string>
     <string name="backup_error">尝试创建备份时发生错误</string>
     <string name="permission_denied">获取权限失败</string>
-    <string name="andotp_new_format">新格式(v0.6.3及以上版本) </string>
-    <string name="andotp_old_format">旧格式(v0.6.2以下版本) </string>
+    <string name="andotp_new_format">新格式（v0.6.3 及以上版本）</string>
+    <string name="andotp_old_format">旧格式（v0.6.2 以下版本）</string>
     <string name="choose_andotp_importer">是哪种格式的 andOTP 备份文件？</string>
-    <string name="choose_totpauth_importer">此 TOTP Authenticator 备份是否已使用密码加密？</string>
+    <string name="choose_totpauth_importer">此 TOTP 验证器备份是否已使用密码加密？</string>
     <string name="choose_application">选择您想要从中导入数据库的应用</string>
     <string name="choose_theme">选择您想要的主题</string>
     <string name="choose_view_mode">选择您想要的视图模式</string>
@@ -157,15 +163,15 @@
     <string name="exported_vault">数据库已导出</string>
     <string name="export_warning">此操作将把数据库从 Aegis 私有存储空间中导出。</string>
     <string name="encryption_set_password_error">试图设置密码时发生错误。</string>
-    <string name="encryption_enable_biometrics_error">尝试启用生物识别解锁时发生错误。某些设备的生物识别认证实施不佳，您很可能就是其中之一。考虑改用仅密码配置。</string>
+    <string name="encryption_enable_biometrics_error">尝试启用生物识别解锁时发生错误。某些设备的生物识别认证实现不佳，您的很可能就是其中之一。考虑改用仅密码配置。</string>
     <string name="no_cameras_available">无可用的摄像头</string>
     <string name="read_qr_error">试图读取二维码时出错</string>
     <string name="authentication_method_raw">源文件</string>
     <string name="unlocking_vault">解锁数据库</string>
-    <string name="unlocking_vault_repair">解锁数据库(修复)</string>
+    <string name="unlocking_vault_repair">解锁数据库（修复）</string>
     <string name="password_slot_error">您必须至少有一个密码槽</string>
     <string name="remove_slot">删除槽</string>
-    <string name="remove_slot_description">您确定要删除这个位置吗?</string>
+    <string name="remove_slot_description">您确定要删除这个槽吗？</string>
     <string name="remove_group">删除群组</string>
     <string name="remove_group_description">您确定要删除这个群组吗？此群组内的条目将自动移动到“无群组”。</string>
     <string name="adding_new_slot_error">试图添加新槽时出错：</string>
@@ -177,13 +183,13 @@
     <string name="all">所有</string>
     <string name="name">名称</string>
     <string name="no_group">无群组</string>
-    <string name="sort_alphabetically">服务商 (A 到 Z)</string>
-    <string name="sort_alphabetically_reverse">服务商 (Z 到 A)</string>
-    <string name="sort_alphabetically_name">账户 (A 到 Z)</string>
-    <string name="sort_alphabetically_name_reverse">账户 (Z 到 A)</string>
+    <string name="sort_alphabetically">服务商（A 到 Z）</string>
+    <string name="sort_alphabetically_reverse">服务商（Z 到 A）</string>
+    <string name="sort_alphabetically_name">账户（A 到 Z）</string>
+    <string name="sort_alphabetically_name_reverse">账户（Z 到 A）</string>
     <string name="sort_custom">自定义</string>
-    <string name="new_group">新群组…</string>
-    <string name="enter_group_name">输入组名</string>
+    <string name="new_group">新建群组…</string>
+    <string name="enter_group_name">输入群组名</string>
     <string name="group_name_hint">群组名称</string>
     <string name="preference_manage_groups">编辑群组</string>
     <string name="preference_manage_groups_summary">管理和删除您的群组</string>
@@ -197,19 +203,19 @@
     <string name="selected">选择</string>
     <string name="dark_theme_title">黑暗主题</string>
     <string name="light_theme_title">明亮主题</string>
-    <string name="amoled_theme_title">纯黑主题</string>
+    <string name="amoled_theme_title">AMOLED 主题</string>
     <string name="system_theme_title">由省电模式设定</string>
-    <string name="system_amoled_theme_title">由省电模式 (AMOLED) 设置</string>
+    <string name="system_amoled_theme_title">由省电模式设置 (AMOLED)</string>
     <string name="normal_viewmode_title">标准</string>
     <string name="compact_mode_title">紧凑</string>
     <string name="small_mode_title">小巧</string>
     <string name="unknown_issuer">未知的服务商</string>
     <string name="unknown_account_name">未知的帐户名称</string>
-    <string name="import_error_dialog">Aegis 无法导入 %d 令牌。这些令牌将被忽略。点击“详细信息”查看更多关于错误的信息。</string>
+    <string name="import_error_dialog">Aegis 无法导入 %d 个令牌。这些令牌将被忽略。点击“详细信息”查看更多关于错误的信息。</string>
     <string name="unable_to_read_qrcode">无法读取和处理二维码</string>
     <string name="unable_to_generate_qrcode">无法生成二维码</string>
     <string name="select_picture">选择图片</string>
-    <string name="select_icon">设置图标</string>
+    <string name="select_icon">选择图标</string>
     <string name="toggle_checkboxes">切换复选框</string>
     <string name="search">搜索</string>
     <string name="channel_name_lock_status">锁定状态</string>
@@ -219,7 +225,7 @@
     <string name="version">版本</string>
     <string name="changelog">更新日志</string>
     <string name="whats_new">新增功能</string>
-    <string name="github_description">源代码、问题和信息</string>
+    <string name="github_description">源代码，问题和信息</string>
     <string name="licenses">许可证</string>
     <string name="licenses_description">Aegis 使用的许可证和库</string>
     <string name="country_netherlands">荷兰</string>
@@ -234,9 +240,10 @@
     <string name="time_sync_warning_message">Aegis 依靠系统时间来同步生成正确的验证码。仅几秒钟的偏差可能会导致验证码错误。您的设备似乎未配置为自动同步时间。您现在要设置自动同步时间吗？</string>
     <string name="time_sync_warning_disable">不要再次提醒。我知道我在做什么。</string>
     <string name="google_qr_export_unrelated">找到不相关的二维码。请尝试重新扫描。</string>
-    <string name="google_qr_export_scanned">扫描 %d/%d 二维码</string>
+    <string name="google_qr_export_scanned">已扫描 %d/%d 二维码</string>
     <string name="google_qr_export_unexpected">预期二维码 #%d，已扫描 #%d</string>
     <string name="backup_error_bar_message"><b>数据库最近备份失败</b></string>
+    
     <string name="empty_list">没有可显示的验证码。点击右下角的加号，开始添加条目</string>
     <string name="empty_list_title">未找到条目</string>
     <string name="done">完成</string>
@@ -244,6 +251,12 @@
     <string name="entries_count">%d / %d 项条目</string>
     <string name="next">下一个</string>
     <string name="previous">上一个</string>
-    <string name="transfer_entry">转移条目</string>
-    <string name="transfer_entry_description">使用您想将此条目转移到的其它身份验证器应用程序扫描此二维码</string>
+    <string name="transfer_entry">迁移条目</string>
+    <string name="transfer_entry_description">使用您想将此条目迁移到的其它身份验证器应用扫描此二维码</string>
+
+    <string name="password_strength_very_weak">很弱</string>
+    <string name="password_strength_weak">弱</string>
+    <string name="password_strength_fair">中等</string>
+    <string name="password_strength_good">好</string>
+    <string name="password_strength_strong">强</string>
 </resources>
