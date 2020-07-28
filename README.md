@@ -1,7 +1,7 @@
 <img align="left" width="80" height="80" src="metadata/en-US/images/icon.png"
 alt="App icon">
 
-# Aegis Authenticator [![CI](https://api.travis-ci.com/beemdevelopment/Aegis.svg?branch=master)](https://travis-ci.com/github/beemdevelopment/aegis) [![Crowdin](https://badges.crowdin.net/aegis-authenticator/localized.svg)](https://crowdin.com/project/aegis-authenticator) [![Donate](https://img.shields.io/badge/donate-buy%20us%20a%20beer-%23FF813F)](https://www.buymeacoffee.com/beemdevelopment)
+# Aegis Authenticator [![CI](https://api.travis-ci.com/beemdevelopment/Aegis.svg?branch=master)](https://travis-ci.com/github/beemdevelopment/aegis) [![Crowdin](https://badges.crowdin.net/aegis-authenticator/localized.svg)](https://crowdin.com/project/aegis-authenticator) [![Donate](https://img.shields.io/badge/donate-buy%20us%20a%20beer-%23FF813F)](https://www.buymeacoffee.com/beemdevelopment) [![Matrix](https://img.shields.io/badge/chat-Matrix-blue)](https://matrix.to/#/#aegis:matrix.org)
 
 __Aegis Authenticator__ is a free, secure and open source 2FA app for Android.
 It aims to provide a secure authenticator for your online services, while also
