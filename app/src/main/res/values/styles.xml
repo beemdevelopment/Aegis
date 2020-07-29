@@ -19,7 +19,7 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppThemeBase" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="primaryText">@color/primary_text</item>
         <item name="secondaryText">@color/secondary_text</item>
         <item name="cardBackground">@color/card_background</item>
@@ -36,12 +36,12 @@
         <item name="actionModeStyle">@style/ActionModeStyle</item>
         <item name="actionBarTheme">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item>
         <item name="alertDialogTheme">@style/DialogStyle</item>
-
-        <item name="android:navigationBarColor" tools:targetApi="o_mr1">@color/background</item>
-        <item name="android:windowLightNavigationBar" tools:targetApi="o_mr1">true</item>
     </style>
 
-    <style name="AppTheme.Light.NoActionBar" parent="AppTheme">
+    <style name="AppTheme" parent="AppThemeBase">
+    </style>
+
+    <style name="AppThemeBase.Light.NoActionBar" parent="AppTheme">
         <item name="android:statusBarColor">@color/background</item>
         <item name="windowNoTitle">true</item>
         <item name="windowActionBar">false</item>
@@ -49,10 +49,9 @@
         <item name="primaryText">@color/primary_text</item>
         <item name="background">@color/card_background</item>
         <item name="authText">@color/auth_text</item>
+    </style>
 
-        <item name="android:navigationBarColor" tools:targetApi="o_mr1">@color/background</item>
-        <item name="android:windowLightStatusBar" tools:targetApi="o_mr1">true</item>
-        <item name="android:windowLightNavigationBar" tools:targetApi="o_mr1">true</item>
+    <style name="AppTheme.Light.NoActionBar" parent="AppThemeBase.Light.NoActionBar">
     </style>
 
     <style name="AppTheme.Dark.NoActionBar" parent="AppTheme">
