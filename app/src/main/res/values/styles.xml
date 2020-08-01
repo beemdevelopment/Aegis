@@ -57,7 +57,6 @@
         <item name="windowNoTitle">true</item>
         <item name="windowActionBar">false</item>
         <item name="android:windowContentOverlay">@null</item>
->>>>>>> Replace AppIntro with a new custom intro
         <item name="primaryText">@color/primary_text_dark</item>
         <item name="background">@color/background_dark</item>
         <item name="authText">@color/primary_text_inverted</item>
@@ -77,7 +76,6 @@
 
         <item name="android:navigationBarColor" tools:targetApi="lollipop">@color/background_true_dark</item>
         <item name="android:windowLightNavigationBar" tools:targetApi="o_mr1">false</item>
-
     </style>
 
     <style name="ActionModeStyle" parent="@style/Widget.AppCompat.Light.ActionMode.Inverse">
