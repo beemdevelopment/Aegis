@@ -392,8 +392,12 @@ public class EditEntryActivity extends AegisActivity {
         Intent galleryIntent = new Intent(Intent.ACTION_PICK);
         galleryIntent.setDataAndType(android.provider.MediaStore.Images.Media.INTERNAL_CONTENT_URI, "image/*");
 
+        Intent fileIntent = new Intent(Intent.ACTION_GET_CONTENT);
+        fileIntent.setType("image/*");
+
         Intent chooserIntent = Intent.createChooser(galleryIntent, getString(R.string.select_icon));
-        startActivityForResult(Intent.createChooser(chooserIntent, getString(R.string.select_icon)), PICK_IMAGE_REQUEST);
+        chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS, new Intent[] { fileIntent });
+        startActivityForResult(chooserIntent, PICK_IMAGE_REQUEST);
     }
 
     private void startEditingIcon(Uri data) {
