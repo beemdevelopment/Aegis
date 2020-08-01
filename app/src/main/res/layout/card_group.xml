@@ -28,17 +28,9 @@
                 android:id="@+id/text_group_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Group name"
+                android:text="@string/group_name_hint"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textColor="?android:attr/textColorPrimary" />
-
-            <TextView
-                android:id="@+id/text_slot_used"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:text="... entries"
-                android:visibility="visible" />
 
         </LinearLayout>
 

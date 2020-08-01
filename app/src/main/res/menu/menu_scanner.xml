@@ -7,7 +7,7 @@
     <item
         android:id="@+id/action_camera"
         android:icon="@drawable/ic_camera_front_24dp"
-        android:title="Switch camera"
+        android:title="@string/switch_camera"
         app:showAsAction="always"/>
 
 </menu>

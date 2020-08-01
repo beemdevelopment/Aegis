@@ -678,14 +678,9 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
                 })
                 .setNegativeButton(android.R.string.cancel, null);
         if (_vault.isEncryptionEnabled()) {
-            final String[] items = {"Keep the vault encrypted"};
+            final String[] items = {getString(R.string.pref_export_keep_encrypted)};
             final boolean[] checkedItems = {true};
-            builder.setMultiChoiceItems(items, checkedItems, new DialogInterface.OnMultiChoiceClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int index, boolean isChecked) {
-                    checked.set(isChecked);
-                }
-            });
+            builder.setMultiChoiceItems(items, checkedItems, (dialog, index, isChecked) -> checked.set(isChecked));
         } else {
             builder.setMessage(R.string.export_warning);
         }

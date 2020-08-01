@@ -4,11 +4,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.beemdevelopment.aegis.R;
 
 import java.util.ArrayList;
-
-import androidx.recyclerview.widget.RecyclerView;
 
 public class GroupAdapter extends RecyclerView.Adapter<GroupHolder> {
     private GroupAdapter.Listener _listener;
@@ -38,7 +38,7 @@ public class GroupAdapter extends RecyclerView.Adapter<GroupHolder> {
 
     @Override
     public GroupHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_slot, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_group, parent, false);
         return new GroupHolder(view);
     }
 

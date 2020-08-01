@@ -4,9 +4,9 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.beemdevelopment.aegis.R;
-
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.beemdevelopment.aegis.R;
 
 public class GroupHolder extends RecyclerView.ViewHolder {
     private TextView _slotName;
@@ -14,7 +14,7 @@ public class GroupHolder extends RecyclerView.ViewHolder {
 
     public GroupHolder(final View view) {
         super(view);
-        _slotName = view.findViewById(R.id.text_slot_name);
+        _slotName = view.findViewById(R.id.text_group_name);
         _buttonDelete = view.findViewById(R.id.button_delete);
     }
 

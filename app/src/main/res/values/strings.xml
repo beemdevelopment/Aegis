@@ -45,6 +45,7 @@
     <string name="pref_import_app_summary">Import tokens from an app (requires root access)</string>
     <string name="pref_export_title">Export</string>
     <string name="pref_export_summary">Export the vault</string>
+    <string name="pref_export_keep_encrypted">Keep the vault encrypted</string>
     <string name="pref_password_reminder_title">Password reminder</string>
     <string name="pref_password_reminder_summary">Show a reminder to enter the password every once in a while, so that you don\'t forget it.</string>
     <string name="pref_secure_screen_title">Screen security</string>
@@ -174,6 +175,7 @@
     <string name="unlocking_vault">Unlocking the vault</string>
     <string name="unlocking_vault_repair">Unlocking the vault (repairing)</string>
     <string name="password_slot_error">You must have at least one password slot</string>
+    <string name="slot_this_device">(this devices)</string>
     <string name="remove_slot">Remove slot</string>
     <string name="remove_slot_description">Are you sure you want to remove this slot?</string>
     <string name="remove_group">Remove group</string>
@@ -197,7 +199,6 @@
     <string name="group_name_hint">Group name</string>
     <string name="preference_manage_groups">Edit groups</string>
     <string name="preference_manage_groups_summary">Manage and delete your groups here</string>
-    <string name="title_activity_preferences">Settings</string>
     <string name="pref_search_name_title">Search in account names</string>
     <string name="pref_search_name_summary">Include account name matches in the search results</string>
     <string name="pref_highlight_entry_title">Highlight tokens when tapped</string>
@@ -228,7 +229,6 @@
     <string name="channel_name_lock_status">Lock status</string>
     <string name="channel_description_lock_status">Aegis can create a persistent notification to notify you when the vault is locked</string>
     <string name="vault_unlocked_state">Vault is unlocked. Tap here to lock.</string>
-    <string name="title_activity_about">About</string>
     <string name="version">Version</string>
     <string name="changelog">Changelog</string>
     <string name="whats_new">What\'s new</string>
@@ -253,6 +253,7 @@
     <string name="google_qr_export_scanned">Scanned %d/%d QR codes</string>
     <string name="google_qr_export_unexpected">Expected QR code #%d, but scanned #%d instead</string>
     <string name="backup_error_bar_message"><b>Vault backup failed recently</b></string>
+    <string name="switch_camera">Switch camera</string>
 
     <string name="custom_notices_format_style" translatable="false" >
         body {
@@ -273,7 +274,6 @@
     <string name="empty_list">There are no codes to be shown. Start adding entries by tapping the plus sign in the bottom right corner</string>
     <string name="empty_list_title">No entries found</string>
     <string name="done">Done</string>
-    <string name="title_activity_transfer">Transfer entries</string>
     <string name="entries_count">%d / %d entries</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
@@ -287,4 +287,13 @@
     <string name="password_strength_strong">Strong</string>
     <string name="pref_pin_keyboard_title">Use PIN keyboard on lockscreen</string>
     <string name="pref_pin_keyboard_summary">Enable this if you want to enable the PIN keyboard on the lockscreen. This only works for numeric passwords</string>
+
+    <string name="title_activity_preferences">Settings</string>
+    <string name="title_activity_manage_groups">Manage groups</string>
+    <string name="title_activity_transfer">Transfer entries</string>
+    <string name="title_activity_about">About</string>
+    <string name="title_activity_edit_entry">Edit entry</string>
+    <string name="title_activity_scan_qr">Scan a QR code</string>
+    <string name="title_activity_manage_slots">Manage key slots</string>
+    <string name="title_activity_select_entries">Select entries</string>
 </resources>
