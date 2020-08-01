@@ -82,6 +82,7 @@
     <string name="set_group">Please enter a group name</string>
     <string name="set_number">Please enter a number</string>
     <string name="set_password_confirm">Please confirm the password</string>
+    <string name="invalid_password">The password is incorrect</string>
     <string name="invalidated_biometrics">A change in your device\'s security settings has been detected. Please go to \"Aegis -> Settings -> Biometrics\" and re-enable biometric unlock.</string>
     <string name="password_reminder">It\'s been a while since you\'ve entered your password. Do you still remember it?</string>
     <string name="enter_password_authy_message">It looks like your Authy tokens are encrypted. Please close Aegis, open Authy and unlock the tokens with your password. Instead, Aegis can also attempt to decrypt your Authy tokens for you, if you enter your password below.</string>
@@ -203,6 +204,9 @@
     <string name="pref_highlight_entry_summary">Make tokens easier to distinguish from each other by temporarily highlighting them when tapped</string>
     <string name="pref_copy_on_tap_title">Copy tokens when tapped</string>
     <string name="pref_copy_on_tap_summary">Copy tokens to the clipboard by tapping them</string>
+    <string name="pin_keyboard_description">Enter your password to enable the PIN keyboard. Note that this only works if your password only consists of numbers</string>
+    <string name="pin_keyboard_error">Error enabling PIN keyboard</string>
+    <string name="pin_keyboard_error_description">It\'s not possible to set PIN keyboard. Your password must only consists of numbers.</string>
     <string name="selected">Selected</string>
     <string name="dark_theme_title">Dark theme</string>
     <string name="light_theme_title">Light theme</string>
@@ -281,4 +285,6 @@
     <string name="password_strength_fair">Fair</string>
     <string name="password_strength_good">Good</string>
     <string name="password_strength_strong">Strong</string>
+    <string name="pref_pin_keyboard_title">Use PIN keyboard on lockscreen</string>
+    <string name="pref_pin_keyboard_summary">Enable this if you want to enable the PIN keyboard on the lockscreen. This only works for numeric passwords</string>
 </resources>

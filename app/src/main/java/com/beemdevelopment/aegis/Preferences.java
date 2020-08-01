@@ -168,6 +168,10 @@ public class Preferences {
         return _prefs.getString("pref_backups_error", null);
     }
 
+    public boolean isPinKeyboardEnabled() {
+        return _prefs.getBoolean("pref_pin_keyboard", false);
+    }
+
     public boolean isTimeSyncWarningEnabled() {
         return _prefs.getBoolean("pref_warn_time_sync", true);
     }

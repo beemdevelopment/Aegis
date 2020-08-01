@@ -36,6 +36,7 @@ import com.beemdevelopment.aegis.importers.DatabaseImporterException;
 import com.beemdevelopment.aegis.services.NotificationService;
 import com.beemdevelopment.aegis.ui.models.ImportEntry;
 import com.beemdevelopment.aegis.ui.preferences.SwitchPreference;
+import com.beemdevelopment.aegis.ui.tasks.PasswordSlotDecryptTask;
 import com.beemdevelopment.aegis.util.UUIDMap;
 import com.beemdevelopment.aegis.vault.VaultBackupManager;
 import com.beemdevelopment.aegis.vault.VaultEntry;
@@ -62,6 +63,8 @@ import java.util.Objects;
 import java.util.concurrent.atomic.AtomicReference;
 
 import javax.crypto.Cipher;
+
+import static android.text.TextUtils.isDigitsOnly;
 
 public class PreferencesFragment extends PreferenceFragmentCompat {
     // activity request codes
@@ -90,6 +93,7 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
     private Preference _slotsPreference;
     private Preference _groupsPreference;
     private Preference _passwordReminderPreference;
+    private SwitchPreferenceCompat _pinKeyboardPreference;
     private SwitchPreferenceCompat _backupsPreference;
     private Preference _backupsLocationPreference;
     private Preference _backupsTriggerPreference;
@@ -368,6 +372,32 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
                 startActivityForResult(intent, CODE_SLOTS);
                 return true;
             }
+        });
+
+        _pinKeyboardPreference = findPreference("pref_pin_keyboard");
+        _pinKeyboardPreference.setOnPreferenceChangeListener((preference, o) -> {
+            if ((boolean)o) {
+                return true;
+            }
+
+            Dialogs.showPasswordInputDialog(getActivity(), R.string.set_password_confirm, R.string.pin_keyboard_description, password -> {
+                if (isDigitsOnly(new String(password))) {
+                    List<PasswordSlot> slots = _vault.getCredentials().getSlots().findAll(PasswordSlot.class);
+                    PasswordSlotDecryptTask.Params params = new PasswordSlotDecryptTask.Params(slots, password);
+                    new PasswordSlotDecryptTask(getActivity(), new PasswordConfirmationListener()).execute(params);
+                } else {
+                    setPinKeyboardPreference(false);
+                    Dialogs.showSecureDialog(new AlertDialog.Builder(getActivity())
+                            .setTitle(R.string.pin_keyboard_error)
+                            .setMessage(R.string.pin_keyboard_error_description)
+                            .setCancelable(false)
+                            .setPositiveButton(android.R.string.ok, null)
+                            .create());
+                }
+            }, dialog -> {
+                setPinKeyboardPreference(false);
+            });
+            return false;
         });
 
         _groupsPreference = findPreference("pref_groups");
@@ -767,6 +797,7 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
         _biometricsPreference.setVisible(encrypted);
         _slotsPreference.setEnabled(encrypted);
         _autoLockPreference.setVisible(encrypted);
+        _pinKeyboardPreference.setVisible(encrypted);
 
         if (encrypted) {
             SlotList slots = _vault.getCredentials().getSlots();
@@ -808,6 +839,10 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
                 | Intent.FLAG_GRANT_PREFIX_URI_PERMISSION);
 
         startActivityForResult(intent, CODE_BACKUPS);
+    }
+
+    private void setPinKeyboardPreference(boolean enable) {
+        _pinKeyboardPreference.setChecked(enable);
     }
 
     private class SetPasswordListener implements Dialogs.SlotListener {
@@ -893,6 +928,23 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
         public void onException(Exception e) {
             e.printStackTrace();
             Dialogs.showErrorDialog(getContext(), R.string.encryption_set_password_error, e);
+        }
+    }
+
+    private class PasswordConfirmationListener implements PasswordSlotDecryptTask.Callback {
+        @Override
+        public void onTaskFinished(PasswordSlotDecryptTask.Result result) {
+            if (result != null) {
+                setPinKeyboardPreference(true);
+            } else {
+                Dialogs.showSecureDialog(new AlertDialog.Builder(getActivity())
+                        .setTitle(R.string.pin_keyboard_error)
+                        .setMessage(R.string.invalid_password)
+                        .setCancelable(false)
+                        .setPositiveButton(android.R.string.ok, null)
+                        .create());
+                setPinKeyboardPreference(false);
+            }
         }
     }
 }

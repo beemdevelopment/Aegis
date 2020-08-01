@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -59,6 +60,8 @@ public class AuthActivity extends AegisActivity {
     private BiometricSlot _bioSlot;
     private BiometricPrompt _bioPrompt;
 
+    private int _failedUnlockAttempts;
+
     // the first time this activity is resumed after creation, it's possible to inhibit showing the
     // biometric prompt by setting 'inhibitBioPrompt' to false through the intent
     private boolean _inhibitBioPrompt;
@@ -82,6 +85,10 @@ public class AuthActivity extends AegisActivity {
             }
             return false;
         });
+
+        if (_prefs.isPinKeyboardEnabled()) {
+            _textPassword.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_VARIATION_PASSWORD);
+        }
 
         Intent intent = getIntent();
         _inhibitBioPrompt = savedInstanceState == null ? !intent.getBooleanExtra("_inhibitBioPrompt", true) : savedInstanceState.getBoolean("_inhibitBioPrompt");
@@ -253,6 +260,9 @@ public class AuthActivity extends AegisActivity {
     }
 
     public BiometricPrompt showBiometricPrompt() {
+        InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(_textPassword.getWindowToken(), 0);
+
         Cipher cipher;
         try {
             cipher = _bioSlot.createDecryptCipher(_bioKey);
@@ -301,6 +311,21 @@ public class AuthActivity extends AegisActivity {
         finish();
     }
 
+    private void onInvalidPassword() {
+        Dialogs.showSecureDialog(new AlertDialog.Builder(AuthActivity.this)
+                .setTitle(getString(R.string.unlock_vault_error))
+                .setMessage(getString(R.string.unlock_vault_error_description))
+                .setCancelable(false)
+                .setPositiveButton(android.R.string.ok, (dialog, which) -> selectPassword())
+                .create());
+
+        _failedUnlockAttempts ++;
+
+        if (_failedUnlockAttempts >= 3) {
+            _textPassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+        }
+    }
+
     private class PasswordDerivationListener implements PasswordSlotDecryptTask.Callback {
         @Override
         public void onTaskFinished(PasswordSlotDecryptTask.Result result) {
@@ -316,12 +341,7 @@ public class AuthActivity extends AegisActivity {
 
                 finish(result.getKey(), result.isSlotRepaired());
             } else {
-                Dialogs.showSecureDialog(new AlertDialog.Builder(AuthActivity.this)
-                        .setTitle(getString(R.string.unlock_vault_error))
-                        .setMessage(getString(R.string.unlock_vault_error_description))
-                        .setCancelable(false)
-                        .setPositiveButton(android.R.string.ok, (dialog, which) -> selectPassword())
-                        .create());
+                onInvalidPassword();
             }
         }
     }
