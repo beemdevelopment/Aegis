@@ -10,11 +10,6 @@
         <item name="android:actionModeBackground">@color/colorPrimary</item>
     </style>
 
-    <style name="Theme.Intro" parent="Theme.AppCompat.NoActionBar">
-        <item name="android:windowBackground">@android:color/transparent</item>
-        <item name="android:windowIsTranslucent">true</item>
-    </style>
-
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
@@ -36,6 +31,9 @@
         <item name="actionModeStyle">@style/ActionModeStyle</item>
         <item name="actionBarTheme">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item>
         <item name="alertDialogTheme">@style/DialogStyle</item>
+
+        <item name="dot_color">@color/indicator_dot</item>
+        <item name="dot_color_selected">@color/indicator_dot_selected</item>
     </style>
 
     <style name="AppTheme" parent="AppThemeBase">
@@ -59,6 +57,7 @@
         <item name="windowNoTitle">true</item>
         <item name="windowActionBar">false</item>
         <item name="android:windowContentOverlay">@null</item>
+>>>>>>> Replace AppIntro with a new custom intro
         <item name="primaryText">@color/primary_text_dark</item>
         <item name="background">@color/background_dark</item>
         <item name="authText">@color/primary_text_inverted</item>
@@ -147,6 +146,9 @@
 
         <item name="android:navigationBarColor" tools:targetApi="lollipop">@color/background_dark</item>
         <item name="android:windowLightNavigationBar" tools:targetApi="o_mr1">false</item>
+
+        <item name="dot_color">@color/indicator_dot_dark</item>
+        <item name="dot_color_selected">@color/indicator_dot_selected_dark</item>
     </style>
 
     <style name="AppTheme.TrueBlack" parent="AppTheme.Dark">

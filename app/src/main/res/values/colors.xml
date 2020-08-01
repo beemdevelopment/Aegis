@@ -26,6 +26,11 @@
     <color name="icon_primary_dark">#ffffff</color>
     <color name="icon_primary_dark_inverted">#212121</color>
 
+    <color name="indicator_dot">#aaaaaa</color>
+    <color name="indicator_dot_selected">#4c4c4c</color>
+    <color name="indicator_dot_dark">#656565</color>
+    <color name="indicator_dot_selected_dark">#ffffff</color>
+
     <color name="code_primary_text">#1058C9</color>
     <color name="code_primary_text_dark">#ffffff</color>
 

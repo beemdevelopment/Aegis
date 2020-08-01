@@ -57,7 +57,8 @@
             android:label="@string/title_activity_edit_entry" />
         <activity
             android:name=".ui.IntroActivity"
-            android:theme="@style/Theme.Intro" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.AuthActivity"
             android:theme="@style/AppTheme.NoActionBar" />
