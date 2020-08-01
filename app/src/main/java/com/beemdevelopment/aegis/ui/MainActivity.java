@@ -491,7 +491,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         }
 
         if (_app.isVaultLocked()) {
-            startAuthActivity(true);
+            startAuthActivity(false);
         } else if (_loaded) {
             // update the list of groups in the filter menu
             if (_menu != null) {
@@ -753,7 +753,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         _loaded = false;
 
         if (isOpen()) {
-            startAuthActivity(false);
+            startAuthActivity(true);
         }
 
         super.onLocked();
