@@ -375,8 +375,8 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
         });
 
         _pinKeyboardPreference = findPreference("pref_pin_keyboard");
-        _pinKeyboardPreference.setOnPreferenceChangeListener((preference, o) -> {
-            if ((boolean)o) {
+        _pinKeyboardPreference.setOnPreferenceChangeListener((preference, newValue) -> {
+            if (!(boolean) newValue) {
                 return true;
             }
 
