@@ -54,12 +54,12 @@
     <string name="authentication_method_biometrics_description">Εκτός από έναν κωδικό, τα βιομετρικά στοιχεία που έχουν καταχωρηθεί σε αυτήν τη συσκευή, όπως ένα δακτυλικό αποτύπωμα ή το πρόσωπο σας, μπορούν να χρησιμοποιηθούν για να ξεκλειδώσετε τη λίστα σας.</string>
     <string name="authentication_method_set_password">Κωδικός</string>
     <string name="authentication_enter_password">Εισάγετε τον κωδικό σας</string>
+    <!-- The newline (\n) on the following line is just for aesthetic purposes !-->
     <string name="set_password">Παρακαλώ εισάγετε κωδικό</string>
     <string name="set_group">Παρακαλώ εισάγετε όνομα ομάδας</string>
     <string name="set_number">Παρακαλώ εισάγετε αριθμό</string>
     <string name="set_password_confirm">Παρακαλώ επιβεβαιώστε τον κωδικό</string>
     <string name="invalidated_biometrics">Έχει εντοπιστεί μια αλλαγή στις ρυθμίσεις ασφαλείας της συσκευής σας. Παρακαλώ πηγαίνετε στο \"Aegis -&gt; Ρυθμίσεις -&gt; Βιομετρική σύνδεση και ενεργοποιήστε ξανά το βιομετρικό ξεκλείδωμα.</string>
-    <string name="password_reminder">Έχει περάσει λίγος καιρός από τότε που εισάγατε τον κωδικό σας. Τον θυμάστε ακόμα;</string>
     <string name="unlock">Ξεκλείδωμα</string>
     <string name="biometrics">Βιομετρική σύνδεση</string>
     <string name="advanced">Σύνθετες</string>
@@ -98,7 +98,6 @@
     <string name="welcome">Καλώς ήρθατε</string>
     <string name="app_description">Το Aegis είναι μια δωρεάν εφαρμογή 2FA, ασφαλής και ανοικτού κώδικα</string>
     <string name="setup_completed">Η εγκατάσταση ολοκληρώθηκε</string>
-    <string name="setup_completed_description">Το Aegis έχει ρυθμιστεί και είναι έτοιμο προς χρήση.</string>
     <string name="vault_not_found">Η λίστα δεν βρέθηκε, έναρξη ρύθμισης…</string>
     <string name="errors_copied">Σφάλμα αντιγραφής στο πρόχειρο</string>
     <string name="version_copied">Η έκδοση αντιγράφτηκε στο πρόχειρο</string>
@@ -175,7 +174,6 @@
     <string name="channel_name_lock_status">Κατάσταση κλειδώματος</string>
     <string name="channel_description_lock_status">To Aegis μπορεί να δημιουργήσει μια επίμονη ειδοποίηση για να σας ειδοποιήσει όταν η λίστα είναι κλειδωμένη</string>
     <string name="vault_unlocked_state">Λίστα ξεκλείδωτη. Πατήστε για κλείδωμα.</string>
-    <string name="title_activity_about">Σχετικά</string>
     <string name="version">Έκδοση</string>
     <string name="changelog">Αρχείο καταγραφής αλλαγών</string>
     <string name="whats_new">Τι νέο υπάρχει</string>
@@ -192,4 +190,5 @@
     <string name="email">Email</string>
     <string name="empty_list">Δεν υπάρχουν κωδικοί προς εμφάνιση. Προσθήκη καταχωρήσεων πατώντας στο σύμβολο συν στην κάτω δεξιά γωνία</string>
     <string name="empty_list_title">Δεν βρέθηκε καμία καταχώρηση</string>
+    <string name="title_activity_about">Σχετικά</string>
 </resources>

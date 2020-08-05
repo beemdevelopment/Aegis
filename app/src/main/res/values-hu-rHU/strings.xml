@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="action_settings">Beállítások</string>
     <string name="action_about">Névjegy</string>
@@ -7,7 +8,6 @@
     <string name="discard">Elvetés</string>
     <string name="save">Mentés</string>
     <string name="issuer">Kibocsátó</string>
-
     <string name="settings">Beállítások</string>
     <string name="pref_appearance_group_title">Megjelenés</string>
     <string name="pref_general_group_title">Általános</string>
@@ -54,7 +54,6 @@
     <string name="pref_biometrics_summary">Biometrikus hitelesítés engedélyezése a széf feloldásához</string>
     <string name="pref_set_password_title">Jelszó módosítása</string>
     <string name="pref_set_password_summary">Új jelszó beállítása, mellyel feloldhatja a széfet</string>
-
     <string name="choose_authentication_method">Biztonság</string>
     <string name="authentication_method_explanation">Az Aegis egy biztonságközpontú 2FA alkalmazás. A tokenek egy széfben vannak tárolva, mely akár tetszőleges jelszóval titkosítható. Ha egy támadó megszerzi a titkosított széffájlt, a jelszó ismerete nélkül akkor sem fog tudni hozzáférni a tartalmához.\n\nElőre ezt a beállítást választottuk, mert úgy véljük ez lenne a legmegfelelőbb az eszköze számára.</string>
     <string name="authentication_method_none">Nincs</string>
@@ -67,14 +66,14 @@
     <string name="authentication_method_set_password">Jelszó</string>
     <string name="authentication_enter_password">Adja meg a jelszavát</string>
     <string name="authentication">A széf feloldása</string>
+    <!-- The newline (\n) on the following line is just for aesthetic purposes !-->
     <string name="set_password">Adja meg a jelszavát</string>
     <string name="set_group">Adja meg a csoport nevét</string>
     <string name="set_number">Adjon meg egy számot</string>
     <string name="set_password_confirm">Erősítse meg a jelszót</string>
-    <string name="invalidated_biometrics">A jelszava biztonsági beállításainak változása észlelve. Ugorjon az „Aegis -> Beállítások -> Biometrikus” részhez, és engedélyezze újra a biometrikus feloldást.</string>
+    <string name="invalidated_biometrics">A jelszava biztonsági beállításainak változása észlelve. Ugorjon az „Aegis -&gt; Beállítások -&gt; Biometrikus” részhez, és engedélyezze újra a biometrikus feloldást.</string>
     <string name="password_reminder">Egy ideje nem írta be a jelszavát. Emlékszik még rá?</string>
     <string name="enter_password_authy_message">Úgy néz ki, hogy az Authy tokenek titkosítottak. Zárja be az Aegist, nyissa meg az Authyt, és oldja fel a tokeneket a jelszavával. Vagy az Aegis is megpróbálhatja visszafejteni az Authy tokeneket, ha megadja a jelszót lent.</string>
-
     <string name="yes">Igen</string>
     <string name="no">Nem</string>
     <string name="unlock">Feloldás</string>
@@ -201,7 +200,6 @@
     <string name="channel_name_lock_status">Állapot zárolása</string>
     <string name="channel_description_lock_status">Az Aegis állandó értesítést tud megjeleníteni, ha a széf zárolva van</string>
     <string name="vault_unlocked_state">A széf feloldott. Koppintson a zároláshoz.</string>
-    <string name="title_activity_about">Névjegy</string>
     <string name="version">Verzió</string>
     <string name="changelog">Változásnapló</string>
     <string name="whats_new">Újdonságok</string>
@@ -216,7 +214,7 @@
     <string name="support_rate_description">Támogasson minket azzal, hogy értékelést ír a Google Play Áruházban</string>
     <string name="webview_error">Az eszköz nem támogtja a webes nézetet, ami szükséges a változásnapló megtekintéséhez. Ez egy hiányzó rendszerösszetevő.</string>
     <string name="email">E-mail</string>
-
     <string name="empty_list">Nincs megjeleníthető kód. Adjon hozzá bejegyzéseket a jobb alsó sarokban lévő plusz jelre koppintva.</string>
     <string name="empty_list_title">Nem található bejegyzés</string>
+    <string name="title_activity_about">Névjegy</string>
 </resources>

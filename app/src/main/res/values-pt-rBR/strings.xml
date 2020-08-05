@@ -15,7 +15,6 @@
     <string name="pref_general_group_title">Geral</string>
     <string name="pref_security_group_title">Segurança</string>
     <string name="pref_tools_group_title">Ferramentas</string>
-    <string name="pref_backups_group_title">Backups</string>
     <string name="pref_select_theme_title">Tema</string>
     <string name="pref_view_mode_title">Modo de visualização</string>
     <string name="pref_lang_title">Idioma</string>
@@ -70,12 +69,12 @@
     <string name="authentication">Desbloquear o cofre</string>
     <!-- The newline (\n) on the following line is just for aesthetic purposes !-->
     <string name="authentication_multiline">Desbloquear\o cofre</string>
-    <string name="auth_use_biometrics">Ou toque aqui para usar <font fgcolor='#FF0D86C1'>biometria</font></string>
+    <string name="auth_use_biometrics">Ou toque aqui para usar <font fgcolor="#FF0D86C1">biometria</font></string>
     <string name="set_password">Por favor insira uma senha</string>
     <string name="set_group">Por favor insira um nome de grupo</string>
     <string name="set_number">Por favor insira um número</string>
     <string name="set_password_confirm">Por favor confirme a senha</string>
-    <string name="invalidated_biometrics">Uma mudança nas configurações de segurança do seu dispositivo foi detectada. Por favor vá a \"Aegis -> Configurações -> Biometria\" e reative o desbloqueio biométrico.</string>
+    <string name="invalidated_biometrics">Uma mudança nas configurações de segurança do seu dispositivo foi detectada. Por favor vá a \"Aegis -&gt; Configurações -&gt; Biometria\" e reative o desbloqueio biométrico.</string>
     <string name="password_reminder">Faz um tempo desde que você inseriu sua senha. Você ainda lembra ela?</string>
     <string name="enter_password_authy_message">Parece que seus Authy tokens estão encriptados. Por favor feche o Aegis, abra o Authy e desbloqueie os tokens com sua senha. Alternativamente, Aegis também pode tentar decriptar seus Authy tokens para você, se você inserir sua senha abaixo.</string>
     <string name="yes">Sim</string>
@@ -161,7 +160,6 @@
     <string name="encryption_enable_biometrics_error">Um erro ocorreu durante a tentativa de habilitar o desbloqueio biométrico. Alguns dispositivos têm implementações pobres de autenticação biométrica e é provável que o seu é um deles. Considere mudar para uma configuração com apenas senha.</string>
     <string name="no_cameras_available">Nenhuma câmera disponível</string>
     <string name="read_qr_error">Um erro ocorreu durante a tentativa de ler o QR code</string>
-    <string name="authentication_method_raw">Raw</string>
     <string name="unlocking_vault">Desbloqueando o cofre</string>
     <string name="unlocking_vault_repair">Desbloque o cofre (reparando)</string>
     <string name="password_slot_error">Você deve ter ao menos uma senha</string>
@@ -188,7 +186,6 @@
     <string name="group_name_hint">Nome do grupo</string>
     <string name="preference_manage_groups">Editar grupos</string>
     <string name="preference_manage_groups_summary">Gerencie e delete seus grupos aqui</string>
-    <string name="title_activity_preferences">Configurações</string>
     <string name="pref_search_name_title">Procurar nos nomes de contas</string>
     <string name="pref_search_name_summary">Inclue correspondências de nomes de contas no resultados de pesquisa</string>
     <string name="pref_highlight_entry_title">Destacar tokens quando tocados</string>
@@ -201,7 +198,6 @@
     <string name="amoled_theme_title">Tema AMOLED</string>
     <string name="system_theme_title">Definir pela economia de bateria</string>
     <string name="system_amoled_theme_title">Definir pela economia de bateria (AMOLED)</string>
-    <string name="normal_viewmode_title">Normal</string>
     <string name="compact_mode_title">Compacto</string>
     <string name="small_mode_title">Pequeno</string>
     <string name="unknown_issuer">Nome do serviço desconhecido</string>
@@ -216,7 +212,6 @@
     <string name="channel_name_lock_status">Estado de bloqueio</string>
     <string name="channel_description_lock_status">Aegis pode criar uma notificação persistente para notificar você quando o cofre está bloqueado</string>
     <string name="vault_unlocked_state">Cofre está desbloqueado. Toque aqui para bloquear.</string>
-    <string name="title_activity_about">Sobre</string>
     <string name="version">Versão</string>
     <string name="changelog">Registro de Mudanças</string>
     <string name="whats_new">O que há de novo</string>
@@ -230,7 +225,6 @@
     <string name="support_rate">Avalie</string>
     <string name="support_rate_description">Nos apoie deixando uma crítica na Google Play Store</string>
     <string name="webview_error">Esse dispositivo não suporta web view, a qual é necessária para ver o registro de mudanças. Está faltando um componente do sistema.</string>
-    <string name="email">Email</string>
     <string name="time_sync_warning_title">Sincronização automática de hora</string>
     <string name="time_sync_warning_message">Aegis depende da hora do sistema para ficar em sincronia para gerar os códigos corretos. Uma diferença de apenas alguns segundos poderia resultar em códigos incorretos. Parece que seu dispositivo não está configurado para sincronizar automaticamente a hora. Gostaria de ativar essa opção agora?</string>
     <string name="time_sync_warning_disable">Pare de me avisar. Eu sei o que estou fazendo.</string>
@@ -241,7 +235,6 @@
     <string name="empty_list">Não existem códigos a serem exibidos. Comece a adicionar entradas apertando o sinal de adição no canto inferior direito</string>
     <string name="empty_list_title">Nenhuma entrada encontrada</string>
     <string name="done">Terminado</string>
-    <string name="title_activity_transfer">Transferir entradas</string>
     <string name="entries_count">%d / %d entradas</string>
     <string name="next">Próximo</string>
     <string name="previous">Anterior</string>
@@ -252,4 +245,7 @@
     <string name="password_strength_fair">Média</string>
     <string name="password_strength_good">Boa</string>
     <string name="password_strength_strong">Forte</string>
+    <string name="title_activity_preferences">Configurações</string>
+    <string name="title_activity_transfer">Transferir entradas</string>
+    <string name="title_activity_about">Sobre</string>
 </resources>

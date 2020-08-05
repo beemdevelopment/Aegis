@@ -18,9 +18,9 @@
     <string name="pref_view_mode_title">Näyttötila</string>
     <string name="pref_lang_title">Kieli</string>
     <string name="pref_code_group_size_title">Koodin numeroiden ryhmittely</string>
-    <string name="pref_code_group_size_summary">Näytä koodi 2-numeroisessa ryhmässä 3-numeroisen ryhmittelyn sijasta</string>
+    <string name="pref_code_group_size_summary">Näytä koodi kahden numeron ryhmissä, kolminumeroisen ryhmittelyn sijasta</string>
     <string name="pref_account_name_title">Näytä tilin nimi</string>
-    <string name="pref_account_name_summary">Ota käyttöön nähdäksesi tilinimen sen myöntäjän rinnalla</string>
+    <string name="pref_account_name_summary">Ota käyttöön nähdäksesi tilin nimen sen myöntäjän rinnalla</string>
     <string name="pref_timeout_title">Aikakatkaisu</string>
     <string name="pref_timeout_summary">Lukitse holvi automaattisesti %1$s sekunnin käyttämättömyyden jälkeen</string>
     <string name="pref_slots_title">Avainpaikat</string>
@@ -28,9 +28,8 @@
     <string name="pref_import_file_title">Tuo tiedostosta</string>
     <string name="pref_import_file_summary">Tuo todennustunnukset tiedostosta</string>
     <string name="pref_backups_title">Varmuuskopioi holvi</string>
-    <string name="pref_backups_summary">Tallenna holvin varmuuskopiot ulkoiseen tallennustilaan. Tätä tuetaan vain jos holvi on salattu.</string>
     <string name="pref_backups_location_title">Varmuuskopiotiedostojen hakemisto</string>
-    <string name="pref_backups_location_summary">Varmuuskopiot tallennetaan kohteeseen</string>
+    <string name="pref_backups_location_summary">Varmuuskopiot tallennetaan sijaintiin</string>
     <string name="pref_backups_trigger_title">Varmuuskopion käynnistys</string>
     <string name="pref_backups_trigger_summary">Käynnistä varmuuskopio manuaalisesti</string>
     <string name="pref_backups_versions_title">Säilytettävien versioiden määrä</string>
@@ -38,12 +37,12 @@
     <string name="pref_import_app_title">Tuo sovelluksesta</string>
     <string name="pref_import_app_summary">Tuo todennustunnukset sovelluksesta (vaatii root-oikeuden)</string>
     <string name="pref_export_title">Vie</string>
-    <string name="pref_export_summary">Vie holvi tiedostoon</string>
-    <string name="pref_password_reminder_title">Salasanan muistutus</string>
+    <string name="pref_export_summary">Vie holvi</string>
+    <string name="pref_password_reminder_title">Salasanamuistutus</string>
     <string name="pref_password_reminder_summary">Muistuttaa sinua silloin tällöin syöttämään salasanasi, jottet unohda sitä.</string>
     <string name="pref_secure_screen_title">Näyttöturvallisuus</string>
-    <string name="pref_secure_screen_summary">Estä kuvakaappaukset ja muut yritykset tallentaa näyttöä sovelluksessa ollessa käytössä</string>
-    <string name="pref_tap_to_reveal_title">Napauta paljastaaksesi</string>
+    <string name="pref_secure_screen_summary">Estä kuvakaappaukset ja muut yritykset tallentaa näyttöä sovelluksen ollessa käytössä</string>
+    <string name="pref_tap_to_reveal_title">Paljasta napauttamalla</string>
     <string name="pref_tap_to_reveal_summary">Todennustunnukset piilotetaan oletuksena. Napauta todennustunnusta paljastaaksesi sen koodi.</string>
     <string name="pref_tap_to_reveal_time_title">Kuinka kauan todennustunnus on näkyvissä napautuksen jälkeen</string>
     <string name="pref_auto_lock_title">Lukitse automaattisesti</string>
@@ -65,13 +64,13 @@
     <string name="authentication_method_biometrics_description">Holvin voi avata sekä salasanalla että laitteeseen tallennettujen biometristen tietojen, kuten sormenjälkesi tai kasvojesi avulla.</string>
     <string name="authentication_method_set_password">Salasana</string>
     <string name="authentication_enter_password">Syötä salasanasi</string>
-    <string name="authentication">Avaa\nholvi</string>
+    <!-- The newline (\n) on the following line is just for aesthetic purposes !-->
+    <string name="auth_use_biometrics">Tai napauta tästä käyttääksesi <font fgcolor="#FF0D86C1">biometriikkaa</font></string>
     <string name="set_password">Ole hyvä ja syötä salasana</string>
     <string name="set_group">Ole hyvä ja syötä ryhmän nimi</string>
     <string name="set_number">Ole hyvä ja syötä numero</string>
     <string name="set_password_confirm">Ole hyvä ja vahvista salasana</string>
     <string name="invalidated_biometrics">Laitteesi suojausasetuksissa on havaittu muutos. Sinun tulee ottaa biometrinen avaaminen uudelleen käyttöön Aegisin asetuksissa.</string>
-    <string name="password_reminder">On kulunut jonkin aikaa siitä, kun olet syöttänyt salasanasi. Muistatko sen vielä?</string>
     <string name="enter_password_authy_message">Näyttää siltä, että Authy-todennustunnuksesi ovat salattuja. Sulje Aegis, käynnistä Authy ja avaa sen lukitus salasanallasi. Aegis voi myös yrittää avata lukituksen puolestasi, jos syötät salasanasi alle.</string>
     <string name="yes">Kyllä</string>
     <string name="no">Ei</string>
@@ -115,7 +114,6 @@
     <string name="welcome">Tervetuloa</string>
     <string name="app_description">Aegis on ilmainen, turvallinen ja avoimen lähdekoodin 2FA-sovellus</string>
     <string name="setup_completed">Määritys on valmis</string>
-    <string name="setup_completed_description">Aegis on määritetty ja valmis käyttöön.</string>
     <string name="vault_not_found">Holvia ei löydy, aloitetaan määritys…</string>
     <string name="copied">Kopioitu</string>
     <string name="errors_copied">Virheet kopioitiin leikepöydälle</string>
@@ -206,7 +204,6 @@
     <string name="channel_name_lock_status">Lukituksen tila</string>
     <string name="channel_description_lock_status">Aegis voi luoda pysyvän ilmoituksen, joka kertoo sinulle koska holvi on lukittu</string>
     <string name="vault_unlocked_state">Holvi on lukittu. Avaa napauttamalla.</string>
-    <string name="title_activity_about">Tietoja</string>
     <string name="version">Versio</string>
     <string name="changelog">Muutosloki</string>
     <string name="whats_new">Mitä uutta</string>
@@ -229,4 +226,5 @@
     <string name="google_qr_export_unexpected">Odotettiin QR-koodia #%d, mutta skannattu #%d sen sijaan</string>
     <string name="empty_list">Ei näytettäviä koodeja. Aloita kohteiden lisääminen napauttamalla plusmerkkiä oikeassa alakulmassa</string>
     <string name="empty_list_title">Kohteita ei löytynyt</string>
+    <string name="title_activity_about">Tietoja</string>
 </resources>

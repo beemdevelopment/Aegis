@@ -28,12 +28,12 @@
     <string name="pref_import_file_title">Importuj z pliku</string>
     <string name="pref_import_file_summary">Importuj tokeny z aplikacji</string>
     <string name="pref_backups_title">Utwórz kopię zapasową sejfu</string>
-    <string name="pref_backups_summary">Utwórz kopie zapasowe sejfu w pamięci zewnętrznej. Funkcja ta wspiera tylko zaszyfrowane sejfy.</string>
     <string name="pref_backups_location_title">Folder plików kopii zapasowej</string>
     <string name="pref_backups_location_summary">Kopia zapasowa będzie przechowywana w</string>
     <string name="pref_backups_trigger_title">Uruchom kopie zapasowe</string>
     <string name="pref_backups_trigger_summary">Utwórz kopię zapasową ręcznie</string>
     <string name="pref_backups_versions_title">Liczba kopii do zachowania</string>
+    <string name="pref_backups_versions_summary">Zachowaj %1$d wersji kopii zapasowej</string>
     <string name="pref_import_app_title">Importuj z aplikacji</string>
     <string name="pref_import_app_summary">Importuj tokeny z innej aplikacji (wymagane jest konto root)</string>
     <string name="pref_export_title">Eksportuj</string>
@@ -54,7 +54,7 @@
     <string name="pref_set_password_title">Zmień hasło</string>
     <string name="pref_set_password_summary">Ustaw nowe hasło do odblokowywania sejfu</string>
     <string name="choose_authentication_method">Bezpieczeństwo</string>
-    <string name="authentication_method_explanation">Aegis to aplikacja 2FA zorientowana na bezpieczeństwo. Tokeny są przechowywane w sejfie, który może zostać opcjonalnie zaszyfrowany przy użyciu wybranego przez Ciebie hasła. Jeśli atakujący uzyska zaszyfrowany plik sejfu, nie będzie mógł uzyskać dostępu do zawartości bez znajomości hasła.\n\nZaznaczyliśmy opcję, która najlepiej powinna pasować do Twojego urządzenia.</string>
+    <string name="authentication_method_explanation">Aegis to aplikacja uwierzytelniająca zorientowana na bezpieczeństwo. Tokeny są przechowywane w sejfie, który może zostać opcjonalnie zaszyfrowany przy użyciu wybranego przez Ciebie hasła. Jeśli atakujący uzyska zaszyfrowany plik sejfu, nie będzie mógł uzyskać dostępu do zawartości bez znajomości hasła.\n\nZaznaczyliśmy opcję, która najlepiej powinna pasować do Twojego urządzenia.</string>
     <string name="authentication_method_none">Brak</string>
     <string name="authentication_method_none_description">Hasło nie jest wymagane, aby odblokować sejf i dane nie zostaną zaszyfrowane. <b>Ta opcja nie jest zalecana</b>.</string>
     <string name="authentication_method_password">Hasło</string>
@@ -64,13 +64,13 @@
     <string name="authentication_method_biometrics_description">Oprócz hasła, do odblokowania sejfu możesz użyć danych biometrycznej przechowywanych na tym urządzeniu, takich jak odcisk palca lub twarz.</string>
     <string name="authentication_method_set_password">Hasło</string>
     <string name="authentication_enter_password">Wpisz hasło</string>
-    <string name="authentication">Odblokuj\nsejf</string>
+    <!-- The newline (\n) on the following line is just for aesthetic purposes !-->
+    <string name="auth_use_biometrics">Lub kliknij tutaj, aby użyć <font fgcolor="#FF0D86C1">danych biometrycznych</font></string>
     <string name="set_password">Wpisz hasło</string>
     <string name="set_group">Wpisz nazwę grupy</string>
     <string name="set_number">Wpisz numer</string>
     <string name="set_password_confirm">Potwierdź hasło</string>
     <string name="invalidated_biometrics">Ustawienia zabezpieczeń urządzenia zostały zmienione. Przejdź do \"Aegis -&gt; Ustawienia -&gt; Autoryzacja biometryczna\" i włącz ponownie tę funkcję.</string>
-    <string name="password_reminder">Minęło trochę czasu, odkąd wpisałeś hasło. Czy pamiętasz je nadal?</string>
     <string name="enter_password_authy_message">Wygląda na to, że Twoje tokeny Authy są zaszyfrowane. Zamknij aplikację Aegis, otwórz Authy i odblokuj tokeny za pomocą hasła. Możesz również wpisać poniżej te hasło i aplikacja Aegis spróbuje odszyfrować tokeny Authy.</string>
     <string name="yes">Tak</string>
     <string name="no">Nie</string>
@@ -105,16 +105,15 @@
     <string name="delete_entry">Usuń wpis</string>
     <string name="delete_entry_description">Czy na pewno chcesz usunąć ten wpis?</string>
     <string name="delete_entries">Usuń wpisy</string>
-    <string name="delete_entries_description">Czy na pewno chcesz usunąć %d wpisy?</string>
+    <string name="delete_entries_description">Czy na pewno chcesz usunąć te wpisy?</string>
     <string name="discard_changes">Czy chcesz odrzucić zmiany?</string>
     <string name="discard_changes_description">Zmiany nie zostały zapisane</string>
     <string name="folder">Folder</string>
     <string name="tap_to_select">Kliknij, aby wybrać</string>
     <string name="saving_profile_error">Wystąpił błąd podczas zapisywania profilu</string>
     <string name="welcome">Witaj</string>
-    <string name="app_description">Aegis jest darmową, bezpieczną i otwartoźródłową aplikacją 2FA</string>
+    <string name="app_description">Aegis jest darmową, bezpieczną i otwartoźródłową aplikacją uwierzytelniającą</string>
     <string name="setup_completed">Konfiguracja została zakończona</string>
-    <string name="setup_completed_description">Aplikacja Aegis została skonfigurowana i jest gotowa do użycia.</string>
     <string name="vault_not_found">Sejf nie został znaleziony. Rozpoczynam konfigurację…</string>
     <string name="copied">Skopiowano</string>
     <string name="errors_copied">Błędy zostały skopiowane do schowka</string>
@@ -137,7 +136,7 @@
     <string name="andotp_old_format">Stary format (wersja 0.6.2 lub starsza) </string>
     <string name="choose_andotp_importer">Jaki format pliku kopii zapasowej aplikacji andOTP posiadasz?</string>
     <string name="choose_totpauth_importer">Czy kopia zapasowa aplikacji TOTP Authenticator jest zaszyfrowana za pomocą hasła?</string>
-    <string name="choose_application">Wybierz aplikację, z której chcesz zaimportować dane</string>
+    <string name="choose_application">Wybierz aplikację z której chcesz zaimportować dane</string>
     <string name="choose_theme">Wybierz motyw jaki chcesz</string>
     <string name="choose_view_mode">Wybierz widok jaki chcesz</string>
     <string name="parsing_file_error">Wystąpił błąd podczas przetwarzania pliku</string>
@@ -145,7 +144,7 @@
     <string name="reading_file_error">Wystąpił błąd podczas odczytywania pliku</string>
     <string name="app_lookup_error">Błąd: Aplikacja nie jest zainstalowana</string>
     <string name="root_error">Błąd: Nie można uzyskać dostępu do konta root</string>
-    <string name="imported_entries_count">%d wpisy zostały zaimportowane</string>
+    <string name="imported_entries_count">Wpisy zostały zaimportowane</string>
     <string name="read_entries_count">Wpisy (%d) zostały odczytane. Liczba błędów: %d.</string>
     <string name="import_error_title">Wystąpił co najmniej jeden błąd podczas importowania</string>
     <string name="exporting_vault_error">Wystąpił błąd podczas eksportowania sejfu</string>
@@ -185,10 +184,10 @@
     <string name="pref_search_name_title">Przeszukaj nazwy kont</string>
     <string name="pref_search_name_summary">Uwzględnij nazwę konta w wynikach wyszukiwania</string>
     <string name="pref_highlight_entry_title">Podświetl tokeny podczas kliknięcia</string>
-    <string name="pref_highlight_entry_summary">Wyróżnij tokeny od siebie, poprzez tymczasowe podświetlenie po ich kliknięciu</string>
+    <string name="pref_highlight_entry_summary">Wyróżnij tokeny od siebie poprzez tymczasowe podświetlenie po ich kliknięciu</string>
     <string name="selected">Wybrany</string>
-    <string name="dark_theme_title">Ciemny motyw</string>
-    <string name="light_theme_title">Jasny motyw</string>
+    <string name="dark_theme_title">Motyw ciemny</string>
+    <string name="light_theme_title">Motyw jasny</string>
     <string name="amoled_theme_title">Motyw AMOLED</string>
     <string name="system_theme_title">Ustawiony przy funkcję oszczędzania energii</string>
     <string name="system_amoled_theme_title">Ustawiony przy funkcję oszczędzania energii (AMOLED)</string>
@@ -205,7 +204,6 @@
     <string name="channel_name_lock_status">Status blokady</string>
     <string name="channel_description_lock_status">Aplikacja Aegis może utworzyć stałe powiadomienie, aby powiadomić Cię, gdy sejf jest zamknięty</string>
     <string name="vault_unlocked_state">Sejf jest odblokowany. Kliknij, aby zablokować.</string>
-    <string name="title_activity_about">O aplikacji</string>
     <string name="version">Wersja</string>
     <string name="changelog">Lista zmian</string>
     <string name="whats_new">Co nowego</string>
@@ -226,6 +224,7 @@
     <string name="google_qr_export_unrelated">Znaleziono niepowiązany kod QR. Spróbuj ponownie uruchomić skaner.</string>
     <string name="google_qr_export_scanned">Zeskanowano %d/%d kodów QR</string>
     <string name="google_qr_export_unexpected">Aplikacja oczekiwała kodu QR nr %d, lecz zeskanowano kod nr %d</string>
-    <string name="empty_list">Brak kodów do wyświetlenia. Dodaj wpisy, klikając znaku plus w prawym dolnym rogu</string>
+    <string name="empty_list">Brak kodów do wyświetlenia. Dodaj wpisy, klikając na znak plusa w prawym dolnym rogu</string>
     <string name="empty_list_title">Nie znaleziono wpisów</string>
+    <string name="title_activity_about">O aplikacji</string>
 </resources>

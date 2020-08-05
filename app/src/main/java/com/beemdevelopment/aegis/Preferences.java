@@ -128,7 +128,12 @@ public class Preferences {
             }
         }
 
-        return new Locale(lang);
+        String[] parts = lang.split("_");
+        if (parts.length == 1) {
+            return new Locale(parts[0]);
+        }
+
+        return new Locale(parts[0], parts[1]);
     }
 
     public boolean isBackupsEnabled() {

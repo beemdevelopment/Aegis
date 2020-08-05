@@ -19,15 +19,10 @@
     <string name="pref_account_name_title">ಖಾತೆಯ ಹೆಸರನ್ನು ತೋರಿಸು</string>
     <string name="pref_account_name_summary">ಖಾತೆಯ ಹೆಸರನ್ನು ನೀಡುವವರ ಪಕ್ಕ ತೋರಿಸುವುದಕ್ಕೆ ಇದನ್ನು ಸಕ್ರಿಯಗೊಳಿಸು</string>
     <string name="pref_timeout_title">ಕಾಲಾವಧಿ</string>
-    <string name="pref_timeout_summary">%1$s ಸೆಕಂಡುಗಳ ನಿಷ್ಕ್ರಿಯತೆಯ ನಂತರ ಸ್ವಯಂಚಾಲಿತವಾಗಿ ಡೇಟಾಬೇಸಿಗೆ ಬೀಗ ಹಾಕು</string>
     <string name="pref_slots_title">ಬೀಗದ ಕೈಯ್ಯಿನ ಸ್ಲಾಟುಗಳು</string>
-    <string name="pref_slots_summary">ಡೇಟಾಬೇಸನ್ನು ಅಸಂಕೇತೀಕರಿಸುವ ಬೀಗದ ಕೈಗಳ ಪಟ್ಟಿಯನ್ನು ನಿರ್ವಹಿಸು</string>
     <string name="pref_import_file_title">ಫೈಲಿಂದ ಆಮದಿಸು</string>
-    <string name="pref_import_file_summary">ಫೈಲಿಂದ ಒಂದು ಡೇಟಾಬೇಸನ್ನು ಆಮದಿಸು</string>
     <string name="pref_import_app_title">ಅಪ್ಲಿಕೇಶನಿಂದ ಆಮದಿಸು</string>
-    <string name="pref_import_app_summary">ಅಪ್ಲಿಕೇಶನಿಂದ ಒಂದು ಡೇಟಾಬೇಸನ್ನು ಆಮದಿಸು (ನಿರ್ವಾಹಕರ ಪ್ರವೇಶ ಅಗತ್ಯವಾಗಿದೆ)</string>
     <string name="pref_export_title">ರಫ್ತು ಮಾಡು</string>
-    <string name="pref_export_summary">ಡೇಟಾಬೇಸನ್ನು ರಫ್ತು ಮಾಡು</string>
     <string name="pref_secure_screen_title">ಪರದೆಯ ಭದ್ರತೆ</string>
     <string name="pref_secure_screen_summary">ಅಪ್ಲಿಕೇಶನ್ ಒಳಗೆ ಪರದೆ ಚಿತ್ರ ಹಾಗು ಪರದೆಯನ್ನು ಸೆರೆಹಿಡಿಯುವ ಇತರ ಪ್ರಯತ್ನಗಳನ್ನು ನಿರ್ಬಂಧಿಸು</string>
     <string name="pref_tap_to_reveal_title">ನೋಡುವುದಕ್ಕೆ ಟ್ಯಾಪ್ ಮಾಡು</string>
@@ -36,17 +31,14 @@
     <string name="pref_auto_lock_title">ಸ್ವಯಂಚಾಲಿತವಾಗಿ ಬೀಗ ಹಾಕು</string>
     <string name="pref_auto_lock_summary">ನೀವು ಅಪ್ಲಿಕೇಶನವನ್ನು ಮುಚ್ಚಿದಾಗ ಅಥವ ಡಿವೈಸಿಗೆ ಬೀಗ ಹಾಕಿದಾಗ, ಸ್ವಯಂಚಾಲಿತವಾಗಿ ಬೀಗ ಹಾಕು.</string>
     <string name="pref_encryption_title">ಗೂಢಲಿಪೀಕರಣ</string>
-    <string name="pref_encryption_summary">ಡೇಟಾಬೇಸನ್ನು ಗೂಢಲಿಪೀಕರಿಸು ಹಾಗು ಗುಪ್ತಪದ ಅಥವ ಬೆರಳಚ್ಚು ಜೊತೆ ಬೀಗವನ್ನು ತೆರೆ</string>
     <string name="pref_set_password_title">ಗುಪ್ತಪದವನ್ನು ಬದಲಾಯಿಸು</string>
     <string name="pref_set_password_summary">ವೌಲ್ಟ್ ಅನ್ನು ತೆರೆಯಲು ಹೊಸಾ ಗುಪ್ತಪದವನ್ನು ಆಯ್ಕೆ ಮಾಡಿ</string>
     <string name="choose_authentication_method">ಭದ್ರತೆ</string>
     <string name="authentication_method_none">ಯಾವುದೂ ಇಲ್ಲ</string>
-    <string name="authentication_method_none_description">ವೌಲ್ಟ್ ಅನ್ನು ತೆರೆಯಲು ಯಾವುದೇ ಗುಪ್ತಪದ ಬೇಡ ಹಾಗು ಅದನ್ನು ಗೂಢಲಿಪೀಕರಿಸಲ್ಲ. ಈ ಆಯ್ಕೆಯನ್ನು ಶಿಫಾರಸು ಮಾಡಲ್ಲ.</string>
     <string name="authentication_method_password">ಗುಪ್ತಪದ</string>
-    <string name="authentication_method_password_description">ವೌಲ್ಟ್ ಅನ್ನು ತೆರೆಯಲು ನಿಮಗೆ ಒಂದು ಗುಪ್ತಪದ ಅಗತ್ಯವಾಗಿದೆ.</string>
     <string name="authentication_method_set_password">ಗುಪ್ತಪದ</string>
     <string name="authentication_enter_password">ನಿಮ್ಮ ಗುಪ್ತಪದವನ್ನು ನಮೂದಿಸಿ</string>
-    <string name="authentication">ವೌಲ್ಟಿನ ಬೀಗವನ್ನು ತೆರೆ</string>
+    <!-- The newline (\n) on the following line is just for aesthetic purposes !-->
     <string name="set_password">ದಯವಿಟ್ಟು ಗುಪ್ತಪದವನ್ನು ನಮೂದಿಸಿ</string>
     <string name="set_group">ದಯವಿಟ್ಟು ಒಂದು ಗುಂಪಿನ ಹೆಸರವನ್ನು ನಮೂದಿಸಿ</string>
     <string name="set_number">ದಯವಿಟ್ಟು ಒಂದು ಸಂಖ್ಯೆಯನ್ನು ನಮೂದಿಸಿ</string>
@@ -61,7 +53,6 @@
     <string name="scan_image">ಚಿತ್ರವನ್ನು ಸ್ಕ್ಯಾನ್ ಮಾಡು</string>
     <string name="enter_manually">ಕೈಯಾರೆ ನಮೂದಿಸಿ</string>
     <string name="add_password">ಗುಪ್ತಪದವನ್ನು ಸೇರಿಸಿ</string>
-    <string name="slots_warning">ವೌಲ್ಟ್ ನಿಮ್ಮ ದುರ್ಬಲ ರಹಸ್ಯದಷ್ಟೇ ಭದ್ರವಾಗಿರುತ್ತದೆ. ಹೊಸ ಬೆರಳಚ್ಚು ನಿಮ್ಮ ಸಾಧನಕ್ಕೆ ಸೇರಿದಾಗ, ನೀವು ಬೆರಳಚ್ಚಿನ ದೃಢೀಕರಣವನ್ನು Aegis ಒಳಗೆ ಪುನಃ ಸಕ್ರಿಯಗೊಳಿಸಬೇಕು.</string>
     <string name="copy">ನಕಲಿಸು</string>
     <string name="edit">ಸಂಪಾದಿಸು</string>
     <string name="delete">ಅಳಿಸು</string>
@@ -82,7 +73,6 @@
     <string name="welcome">ಸ್ವಾಗತ</string>
     <string name="app_description">Aegis ಒಂದು ಉಚಿತ, ಸುರಕ್ಷಿತ, ಹಾಗು ಮುಕ್ತ ಸಂಪನ್ಮೂಲ 2FA ಅಪ್ಲಿಕೇಶನ್</string>
     <string name="setup_completed">ತಯಾರಿ ಪೂರ್ಣಗೊಂಡಿದೆ</string>
-    <string name="setup_completed_description">Aegis ತಯಾರಿಯಾಗಿದೆ ಹಾಗು ಮುಂದುವರೆಯಲು ಸಿದ್ಧವಾಗಿದೆ.</string>
     <string name="vault_not_found">ವೌಲ್ಟ್ ಸಿಗಲಿಲ್ಲ, ತಯಾರಿಯನ್ನು ಪ್ರಾರಂಭಿಸಲಾಗುತ್ತಿದೆ…</string>
     <string name="errors_copied">ದೋಷಗಳು ಕ್ಲಿಪ್ಬೋರ್ಡಿಗೆ ನಕಲಿಸಲಾಗಿದೆ</string>
     <string name="version_copied">ಅವೃತ್ತಿ ಕ್ಲಿಪ್ಬೋರ್ಡಿಗೆ ನಕಲಿಸಲಾಗಿದೆ</string>
@@ -93,7 +83,6 @@
     <string name="enable_encryption_error">ಗೂಢಲಿಪೀಕರಣವನ್ನು ಸಕ್ರಿಯಗೊಳಿಸುವಾಗ ಒಂದು ದೋಷ ಸಂಭವಿಸಿದೆ</string>
     <string name="disable_encryption_error">ಗೂಢಲಿಪೀಕರಣವನ್ನು ನಿಷ್ಕ್ರಿಯಗೊಳಿಸುವಾಗ ಒಂದು ದೋಷ ಸಂಭವಿಸಿದೆ</string>
     <string name="permission_denied">ಅನುಮತಿ ನಿರಾಕರಿಸಲಾಗಿದೆ</string>
-    <string name="choose_application">ಡೇಟಾಬೇಸನ್ನು ಅಮದಿಸಲು ನಿಮ್ಮ ಇಚ್ಛೆಯ ಅಪ್ಲಿಕೇಶನವನ್ನು ಆಯ್ಕೆ ಮಾಡಿ</string>
     <string name="choose_theme">ನಿಮ್ಮ ಇಚ್ಛೆಯ ಥೀಮನ್ನು ಆಯ್ಕೆ ಮಾಡಿ</string>
     <string name="choose_view_mode">ನಿಮ್ಮ ಇಚ್ಛೆಯ ವೀಕ್ಷಣೆ ರೀತಿಯನ್ನು ಆಯ್ಕೆ ಮಾಡಿ</string>
     <string name="parsing_file_error">ಫೈಲನ್ನು ಪಾರ್ಸ್ ಮಾಡುವಾಗ ಒಂದು ದೋಷ ಸಂಭವಿಸಿದೆ</string>
@@ -104,8 +93,6 @@
     <string name="imported_entries_count">%d ಎಂಟ್ರಿಗಳನ್ನು ಆಮದು ಮಾಡಲಾಗಿದೆ</string>
     <string name="read_entries_count">%d ಎಂಟ್ರಿಗಳನ್ನು ಓದಲಾಗಿದೆ. %d ದೋಷಗಳು.</string>
     <string name="import_error_title">ಅಮದಿಸುವಾಗ ಒಂದು ಅಥವಾ ಜಾಸ್ತಿ ದೋಷಗಳು ಸಂಭವಿಸಿದೆ</string>
-    <string name="export_warning">ಈ ಕ್ರಿಯೆ ಡೇಟಾಬೇಸನ್ನು Aegisಇನ ಖಾಸಗಿ ಸಂಗ್ರಹಣೆಯಿಂದ ರಫ್ತು ಮಾಡುತ್ತದೆ.</string>
-    <string name="encryption_set_password_error">ಗುಪ್ತಪದವನ್ನು ಹೊಂದಿಸಲು ಪ್ರಯತ್ನಿಸುವಾಗ ಒಂದು ದೋಷ ಸಂಭವಿಸಿದೆ: </string>
     <string name="no_cameras_available">ಯಾವುದೇ ಕ್ಯಾಮರಾಗಳು ಲಭ್ಯವಿಲ್ಲ</string>
     <string name="read_qr_error">ಕ್ಯೂ ಆರ್ ಸಂಕೇತವನ್ನು ಓದಲು ಪ್ರಯತ್ನಿಸುವಾಗ ಒಂದು ದೋಷ ಸಂಭವಿಸಿದೆ</string>
     <string name="authentication_method_raw">ಕಚ್ಚಾ</string>
@@ -139,7 +126,6 @@
     <string name="selected">ಆಯ್ಕೆ ಮಾಡಿರುವುದು</string>
     <string name="dark_theme_title">ಗಾಢ ಥೀಮ್</string>
     <string name="light_theme_title">ತಿಳಿ ಥೀಮ್</string>
-    <string name="amoled_theme_title">ಅಮೊಲೆಡ್ ಥೀಮ್</string>
     <string name="normal_viewmode_title">ಸಾಮಾನ್ಯ</string>
     <string name="compact_mode_title">ದಟ್ಟ</string>
     <string name="small_mode_title">ಸಣ್ಣ</string>
@@ -153,7 +139,6 @@
     <string name="channel_name_lock_status">ಬೀಗ ಹಾಕಿರುವ ಸ್ಥಿತಿ</string>
     <string name="channel_description_lock_status">Aegis ವೌಲ್ಟಿನ ಬೀಗ ಹಾಕಿದೆ ಎಂದು ನಿನಗೆ ತಿಳಿಸಲು ಒಂದು ಶಾಶ್ವತ ಅಧಿಸೂಚನೆಯನ್ನು ರಚಿಸಬುಹುದು</string>
     <string name="vault_unlocked_state">ವೌಲ್ಟಿನ ಬೀಗ ಹಾಕಿಲ್ಲ. ಬೀಗವನ್ನು ಹಾಕುವುದಕ್ಕೆ ಇಲ್ಲಿ ಒತ್ತಿ.</string>
-    <string name="title_activity_about">ಅಪ್ಲಿಕೇಶನ್ ಬಗ್ಗೆ</string>
     <string name="version">ಆವೃತ್ತಿ</string>
     <string name="changelog">ಬದಲಾವಣೆ ಲಾಗ್</string>
     <string name="whats_new">ಹೊಸತೇನಿದೆ</string>
@@ -170,4 +155,5 @@
     <string name="email">ಈಮೇಲ್</string>
     <string name="empty_list">ತೋರಿಸುವುದಕ್ಕೆ ಯಾವುದೇ ಸಂಕೇತವು ಇಲ್ಲ. ಎಂಟ್ರಿಗಳನ್ನು ಸೇರಿಸಲು ಕೆಳಗಿನ ಬಲ ಮೂಲೆಯಲ್ಲಿರುವ ಹೆಚ್ಚಿನ ಚಿಹ್ನೆಯನ್ನು ಒತ್ತು</string>
     <string name="empty_list_title">ಯಾವುದೇ ಎಂಟ್ರಿಗಳು ಕಂಡುಬಂದಿಲ್ಲ</string>
+    <string name="title_activity_about">ಅಪ್ಲಿಕೇಶನ್ ಬಗ್ಗೆ</string>
 </resources>

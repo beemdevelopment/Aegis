@@ -13,9 +13,12 @@
     <string name="pref_general_group_title">Obecné</string>
     <string name="pref_security_group_title">Zabezpečení</string>
     <string name="pref_tools_group_title">Nástroje</string>
+    <string name="pref_backups_group_title">Zálohy</string>
     <string name="pref_select_theme_title">Vzhled</string>
     <string name="pref_view_mode_title">Režim zobrazení</string>
     <string name="pref_lang_title">Jazyk</string>
+    <string name="pref_code_group_size_title">Seskupení číslic kódu</string>
+    <string name="pref_code_group_size_summary">Seskupit číslice kódu po dvou číslicích namísto po třech číslicích</string>
     <string name="pref_account_name_title">Zobrazit název účtu</string>
     <string name="pref_account_name_summary">Zobrazit název účtu vedle poskytovatele</string>
     <string name="pref_timeout_title">Časový limit</string>
@@ -24,6 +27,13 @@
     <string name="pref_slots_summary">Správa seznamu klíčů, které mohou dešifrovat trezor</string>
     <string name="pref_import_file_title">Importovat ze souboru</string>
     <string name="pref_import_file_summary">Importovat tokeny ze souboru</string>
+    <string name="pref_backups_title">Zálohovat trezor</string>
+    <string name="pref_backups_location_title">Složka pro soubory záloh</string>
+    <string name="pref_backups_location_summary">Zálohy budou uloženy v</string>
+    <string name="pref_backups_trigger_title">Spustit zálohování</string>
+    <string name="pref_backups_trigger_summary">Ručně spustit zálohování</string>
+    <string name="pref_backups_versions_title">Počet verzí k uchování</string>
+    <string name="pref_backups_versions_summary">Uchovat %1$d verzí záloh</string>
     <string name="pref_import_app_title">Importovat z aplikace</string>
     <string name="pref_import_app_summary">Importovat tokeny z aplikace (vyžaduje root přístup)</string>
     <string name="pref_export_title">Exportovat</string>
@@ -54,12 +64,16 @@
     <string name="authentication_method_biometrics_description">Kromě hesla půjde k odemčení trezoru použít také biometrické prvky registrované v tomto zařízení jako je otisk prstu nebo tvář.</string>
     <string name="authentication_method_set_password">Heslo</string>
     <string name="authentication_enter_password">Zadejte své heslo</string>
+    <!-- The newline (\n) on the following line is just for aesthetic purposes !-->
+    <string name="auth_use_biometrics">Nebo klepněte sem pro použití <font fgcolor="#FF0D86C1">biometrie</font></string>
     <string name="set_password">Zadejte heslo</string>
     <string name="set_group">Zadejte název skupiny</string>
     <string name="set_number">Zadejte číslo</string>
     <string name="set_password_confirm">Potvrďte heslo</string>
     <string name="invalidated_biometrics">Zjištěna změna nastavení zabezpečení zařízení. Přejděte do „Aegis“ → „Nastavení“ → „Biometrie“ a povolte biometrické odemknutí znovu.</string>
-    <string name="password_reminder">Od posledního zadání vašeho hesla uplynulo už mnoho vody. Stále si ho pamatujete?</string>
+    <string name="enter_password_authy_message">Vypadá to, že vaše Authy tokeny jsou šifrovány. Prosím, zavřete Aegis, otevřete Authy a odemkněte tokeny pomocí vašeho hesla. Alternativně se může Aegis pokusit dešifrovat vaše Authy tokeny, pokud zadáte své heslo níže.</string>
+    <string name="yes">Ano</string>
+    <string name="no">Ne</string>
     <string name="unlock">Odemknout</string>
     <string name="biometrics">Biometrie</string>
     <string name="advanced">Pokročilé</string>
@@ -81,6 +95,8 @@
     <string name="password">Heslo</string>
     <string name="confirm_password">Potvrdit heslo</string>
     <string name="show_password">Zobrazit heslo</string>
+    <string name="new_entry">Nový záznam</string>
+    <string name="add_new_entry">Přidat nový záznam</string>
     <string name="unlock_vault_error">Trezor nelze odemknout</string>
     <string name="unlock_vault_error_description">Nesprávné heslo. Ujistěte se, že je zadané správně.</string>
     <string name="password_equality_error">Hesla musí být stejná a nesmí být prázdná</string>
@@ -98,20 +114,28 @@
     <string name="welcome">Vítejte</string>
     <string name="app_description">Aegis je bezpečná, bezplatná a open source 2FA aplikace</string>
     <string name="setup_completed">Nastavení dokončeno</string>
-    <string name="setup_completed_description">Aegis je nastaven a připraven k používání.</string>
     <string name="vault_not_found">Trezor nebyl nenalezen, spouštím nastavení…</string>
+    <string name="copied">Zkopírováno</string>
     <string name="errors_copied">Chyby zkopírovány do schránky</string>
     <string name="version_copied">Verze zkopírována do schránky</string>
+    <string name="error_occurred">Došlo k chybě</string>
     <string name="decryption_error">Při odemykání trezoru došlo k chybě</string>
+    <string name="decryption_corrupt_error">Došlo k chybě při odemykání trezoru. Váš trezor může být poškozen.</string>
     <string name="saving_error">Při pokusu o uložení trezoru došlo k chybě</string>
+    <string name="vault_init_error">Při pokusu o inicializaci trezoru došlo k chybě</string>
+    <string name="vault_load_error">Při pokusu o načtení trezoru z úložiště došlo k chybě</string>
+    <string name="biometric_decrypt_error">Došlo k chybě při dešifrování trezorů s biometrickým ověřením. To se obvykle děje pouze v případě, že došlo ke změně nastavení zabezpečení vašeho zařízení. Odemkněte trezor pomocí vašeho hesla a znovu nastavte biometrické ověření v nastavení Aegis.</string>
+    <string name="biometric_init_error">Došlo k chybě při přípravě biometrického ověření. To se obvykle děje pouze v případě, že došlo ke změně nastavení zabezpečení vašeho zařízení. Odemkněte trezor pomocí vašeho hesla a znovu nastavte biometrické ověření v nastavení Aegis.</string>
     <string name="disable_encryption">Vypnout šifrování</string>
     <string name="disable_encryption_description">Opravdu chcete vypnout šifrování úložiště? Obsah trezoru pak bude uložen jako prostý text.</string>
     <string name="enable_encryption_error">Při zapínání šifrování došlo k chybě</string>
     <string name="disable_encryption_error">Při vypínání šifrování došlo k chybě</string>
+    <string name="backup_error">Při pokusu o vytvoření zálohy došlo k chybě</string>
     <string name="permission_denied">Přístup zamítnut</string>
     <string name="andotp_new_format">Nový formát (v0.6.3 nebo novější) </string>
     <string name="andotp_old_format">Starý formát (v0.6.2 a starší) </string>
     <string name="choose_andotp_importer">Jaký formát má záložní andOTP soubor?</string>
+    <string name="choose_totpauth_importer">Je tato záloha TOTP autentifikátoru šifrována heslem?</string>
     <string name="choose_application">Zvolte aplikaci, ze které chcete importovat údaje</string>
     <string name="choose_theme">Vyberte si vzhled rozhraní</string>
     <string name="choose_view_mode">Vyberte si režim zobrazení</string>
@@ -126,6 +150,8 @@
     <string name="exporting_vault_error">Při pokusu o export trezoru došlo k chybě</string>
     <string name="exported_vault">Trezor byl exportován</string>
     <string name="export_warning">Trezor bude exportován mimo soukromé úložiště aplikace Aegis.</string>
+    <string name="encryption_set_password_error">Při pokusu o nastavení hesla došlo k chybě.</string>
+    <string name="encryption_enable_biometrics_error">Došlo k chybě při povolování biometrického odemknutí. Některá zařízení mají špatnou implementaci biometrického ověření. Bohužel, je pravděpodobné, že to vaše je jedním z nich. Zvažte možnost odemykání pouze heslem.</string>
     <string name="no_cameras_available">Fotoaparát není dostupný</string>
     <string name="read_qr_error">Při pokusu o přečtení QR kódu došlo k chybě</string>
     <string name="authentication_method_raw">Prosté</string>
@@ -162,6 +188,9 @@
     <string name="selected">Vybráno</string>
     <string name="dark_theme_title">Tmavý vzhled</string>
     <string name="light_theme_title">Světlý vzhled</string>
+    <string name="amoled_theme_title">AMOLED vzhled</string>
+    <string name="system_theme_title">Dle spořiče baterie</string>
+    <string name="system_amoled_theme_title">Dle spořiče baterie (AMOLED)</string>
     <string name="normal_viewmode_title">Normální</string>
     <string name="compact_mode_title">Kompaktní</string>
     <string name="small_mode_title">Malý</string>
@@ -175,7 +204,6 @@
     <string name="channel_name_lock_status">Stav zámku</string>
     <string name="channel_description_lock_status">Aegis může vytvořit trvalé oznámení, které vás upozorní, když je trezor uzamčen</string>
     <string name="vault_unlocked_state">Trezor je odemčený. Klepnutím uzamkněte.</string>
-    <string name="title_activity_about">O aplikaci</string>
     <string name="version">Verze</string>
     <string name="changelog">Seznam změn</string>
     <string name="whats_new">Co je nového?</string>
@@ -190,6 +218,13 @@
     <string name="support_rate_description">Podpořte nás napsáním recenze v obchodě Google Play</string>
     <string name="webview_error">Vaše zařízení nepodporuje WebView, které je nutné pro zobrazení seznamu změn. Tato komponenta zřejmě chybí v systému.</string>
     <string name="email">E-mail</string>
+    <string name="time_sync_warning_title">Automatická synchronizace času</string>
+    <string name="time_sync_warning_message">Aegis při generování správných kódů spoléhá na synchronizaci systémového času. Odchylka pouze několika sekund může mít za následek nesprávné kódy. Zdá se, že vaše zařízení není nakonfigurováno pro automatickou synchronizaci času. Chcete nastavit automatickou synchronizaci času?</string>
+    <string name="time_sync_warning_disable">Už mě neupozorňujte. Vím, co dělám.</string>
+    <string name="google_qr_export_unrelated">Nalezen nesouvisející QR kód. Zkuste skener restartovat.</string>
+    <string name="google_qr_export_scanned">Naskenování %d/%d QR kódů</string>
+    <string name="google_qr_export_unexpected">Očekáván QR kód #%d, avšak naskenován byl #%d</string>
     <string name="empty_list">Žádné kódy. Začněte přidáním položek pomocí tlačítka + v pravém dolním rohu.</string>
     <string name="empty_list_title">Žádné záznamy nenalezeny</string>
+    <string name="title_activity_about">O aplikaci</string>
 </resources>
