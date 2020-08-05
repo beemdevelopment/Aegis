@@ -114,6 +114,15 @@ Certificate fingerprints:
   [<img width=500 alt="Aegis-icons preview"
   src="https://raw.githubusercontent.com/krisu5/aegis-icons/master/showcase.png">](https://github.com/krisu5/aegis-icons)
 
+## Contributing
+
+Looking to contribute to Aegis? That's great! There are a couple of ways to help
+out. Translations, bug reports and pull requests are all greatly appreciated.
+Please refer to our [contributing guidelines](CONTRIBUTING.md) to get started.
+
+Swing by our Matrix room to interact with other contributors:
+[#aegis:matrix.org](https://matrix.to/#/#aegis:matrix.org).
+
 ## License
 
 This project is licensed under the GNU General Public License v3.0. See the
