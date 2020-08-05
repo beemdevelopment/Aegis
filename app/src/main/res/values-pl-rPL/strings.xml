@@ -105,7 +105,6 @@
     <string name="delete_entry">Usuń wpis</string>
     <string name="delete_entry_description">Czy na pewno chcesz usunąć ten wpis?</string>
     <string name="delete_entries">Usuń wpisy</string>
-    <string name="delete_entries_description">Czy na pewno chcesz usunąć te wpisy?</string>
     <string name="discard_changes">Czy chcesz odrzucić zmiany?</string>
     <string name="discard_changes_description">Zmiany nie zostały zapisane</string>
     <string name="folder">Folder</string>
@@ -144,8 +143,6 @@
     <string name="reading_file_error">Wystąpił błąd podczas odczytywania pliku</string>
     <string name="app_lookup_error">Błąd: Aplikacja nie jest zainstalowana</string>
     <string name="root_error">Błąd: Nie można uzyskać dostępu do konta root</string>
-    <string name="imported_entries_count">Wpisy zostały zaimportowane</string>
-    <string name="read_entries_count">Wpisy (%d) zostały odczytane. Liczba błędów: %d.</string>
     <string name="import_error_title">Wystąpił co najmniej jeden błąd podczas importowania</string>
     <string name="exporting_vault_error">Wystąpił błąd podczas eksportowania sejfu</string>
     <string name="exported_vault">Sejf został wyeksportowany</string>
@@ -196,7 +193,6 @@
     <string name="small_mode_title">Mały</string>
     <string name="unknown_issuer">Nieznany wydawca</string>
     <string name="unknown_account_name">Nieznana nazwa konta</string>
-    <string name="import_error_dialog">Aplikacja Aegis nie może zaimportować %d tokenów. Te tokeny zostaną pominięte. Kliknij \'Szczegóły\', aby zobaczyć więcej informacji o błędach.</string>
     <string name="unable_to_read_qrcode">Nie można odczytać i przetworzyć kodu QR</string>
     <string name="select_picture">Wybierz obraz</string>
     <string name="toggle_checkboxes">Przełącz pola wyboru</string>
@@ -222,7 +218,6 @@
     <string name="time_sync_warning_message">Aby wygenerować poprawne kody, aplikacja Aegis korzysta z synchronizacji czasu systemowego. Różnica czasu zaledwie kilku sekund może spowodować nieprawidłowe kody. Wygląda na to, że Twoje urządzenie nie jest skonfigurowane do automatycznej synchronizacji czasu. Czy chcesz skorzystać z tej funkcji?</string>
     <string name="time_sync_warning_disable">Nie ostrzegaj mnie. Wiem co robię.</string>
     <string name="google_qr_export_unrelated">Znaleziono niepowiązany kod QR. Spróbuj ponownie uruchomić skaner.</string>
-    <string name="google_qr_export_scanned">Zeskanowano %d/%d kodów QR</string>
     <string name="google_qr_export_unexpected">Aplikacja oczekiwała kodu QR nr %d, lecz zeskanowano kod nr %d</string>
     <string name="empty_list">Brak kodów do wyświetlenia. Dodaj wpisy, klikając na znak plusa w prawym dolnym rogu</string>
     <string name="empty_list_title">Nie znaleziono wpisów</string>

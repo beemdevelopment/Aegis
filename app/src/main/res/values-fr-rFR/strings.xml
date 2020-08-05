@@ -105,7 +105,6 @@
     <string name="delete_entry">Supprimer entrée</string>
     <string name="delete_entry_description">Êtes-vous sûr de vouloir supprimer cette entrée ?</string>
     <string name="delete_entries">Supprimer les entrées</string>
-    <string name="delete_entries_description">Êtes-vous sûr de vouloir supprimer %d entrées ?</string>
     <string name="discard_changes">Annuler les modifications ?</string>
     <string name="discard_changes_description">Vos modifications n\'ont pas été enregistrées</string>
     <string name="folder">Dossier</string>
@@ -144,8 +143,6 @@
     <string name="reading_file_error">Une erreur est survenue en essayant de lire le fichier</string>
     <string name="app_lookup_error">Erreur: l\'application n\'est pas installée</string>
     <string name="root_error">Erreur : impossible d\'obtenir l\'accès root</string>
-    <string name="imported_entries_count">%d entrées importées</string>
-    <string name="read_entries_count">%d entrées lues. %d erreurs.</string>
     <string name="import_error_title">Une ou plusieurs erreurs sont survenues lors de l\'importation</string>
     <string name="exporting_vault_error">Une erreur est survenue en essayant d\'exporter le coffre-fort</string>
     <string name="exported_vault">Le coffre-fort a été exporté</string>
@@ -196,7 +193,6 @@
     <string name="small_mode_title">Petit</string>
     <string name="unknown_issuer">Émetteur inconnu</string>
     <string name="unknown_account_name">Nom de compte inconnu</string>
-    <string name="import_error_dialog">Aegis n\'a pas pu importer %d jetons. Ces jetons seront ignorés. Appuyer sur \"détails\" pour voir plus d\'informations à propos des erreurs.</string>
     <string name="unable_to_read_qrcode">Impossible de lire et traiter le code QR</string>
     <string name="select_picture">Sélectionner image</string>
     <string name="toggle_checkboxes">Basculer les cases</string>
@@ -222,7 +218,6 @@
     <string name="time_sync_warning_message">Aegis s\'appuie sur l\'heure du système pour être synchronisé pour générer des codes corrects. Une déviation de quelques secondes seulement pourrait entraîner des codes incorrects. Il semble que votre appareil n\'est pas configuré pour synchroniser automatiquement le temps. Voulez-vous le faire maintenant ?</string>
     <string name="time_sync_warning_disable">Arrêtez de m\'avertir. Je sais ce que je fais.</string>
     <string name="google_qr_export_unrelated">Code QR non lié trouvé. Essayez de redémarrer le scanner.</string>
-    <string name="google_qr_export_scanned">%d/%d codes QR scannés</string>
     <string name="google_qr_export_unexpected">Code QR attendu #%d, mais #%d scanné à la place</string>
     <string name="empty_list">Il n\'y a pas de code à afficher. Commencez à ajouter des entrées en appuyant sur le signe plus dans le coin inférieur droit</string>
     <string name="empty_list_title">Aucune entrée trouvée</string>

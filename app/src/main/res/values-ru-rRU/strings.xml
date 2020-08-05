@@ -105,7 +105,6 @@
     <string name="delete_entry">Удалить запись</string>
     <string name="delete_entry_description">Вы уверены что хотите удалить эту запись?</string>
     <string name="delete_entries">Удалить записи</string>
-    <string name="delete_entries_description">Вы уверенны, что хотите удалить %d записей?</string>
     <string name="discard_changes">Отменить изменения?</string>
     <string name="discard_changes_description">Ваши изменения не были сохранены</string>
     <string name="folder">Папка</string>
@@ -144,8 +143,6 @@
     <string name="reading_file_error">Произошла ошибка при попытке прочитать файл</string>
     <string name="app_lookup_error">Ошибка: приложение не установлено</string>
     <string name="root_error">Ошибка: невозможно получить права суперпользователя</string>
-    <string name="imported_entries_count">Импортировано %d записей</string>
-    <string name="read_entries_count">Прочитано %d записей. %d ошибок.</string>
     <string name="import_error_title">При импорте произошла одна или несколько ошибок</string>
     <string name="exporting_vault_error">Произошла ошибка при попытке экспортировать хранилище</string>
     <string name="exported_vault">Хранилище экспортировано</string>
@@ -196,7 +193,6 @@
     <string name="small_mode_title">Уменьшенный</string>
     <string name="unknown_issuer">Неизвестный эмитент</string>
     <string name="unknown_account_name">Неизвестное название учетной записи</string>
-    <string name="import_error_dialog">Aegis не удалось импортировать %d pfgbctq. Эти записи будут проигнорированы. Нажмите \'подробнее\' чтобы получить больше информации о возникших ошибках.</string>
     <string name="unable_to_read_qrcode">Не удалось прочитать и обработать QR-код</string>
     <string name="select_picture">Выберите изображение</string>
     <string name="toggle_checkboxes">Установите переключатели</string>
@@ -222,7 +218,6 @@
     <string name="time_sync_warning_message">Aegis полагается на системное время для генерации правильных кодов. Отклонение всего в несколько секунд может привести к неверным кодам. Кажется, ваше устройство не настроено для автоматической синхронизации времени. Хотите сделать это сейчас?</string>
     <string name="time_sync_warning_disable">Прекратите меня предупреждать, я знаю, что делаю.</string>
     <string name="google_qr_export_unrelated">Найден несвязанный QR-код. Попробуйте перезапустить сканер.</string>
-    <string name="google_qr_export_scanned">Сканировано %d/%d QR-кодов</string>
     <string name="google_qr_export_unexpected">Ожидался QR-код #%d, но вместо этого отсканирован #%d</string>
     <string name="empty_list">Коды для отображения отсутствуют. Начните добавление записей, нажав на знак плюса в правом нижнем углу</string>
     <string name="empty_list_title">Не найдено записей</string>

@@ -71,7 +71,7 @@ public class Dialogs {
         String title, message;
         if (totalEntries > 1) {
             title = activity.getString(R.string.delete_entries);
-            message = String.format(activity.getString(R.string.delete_entries_description), totalEntries);
+            message = activity.getResources().getQuantityString(R.plurals.delete_entries_description, totalEntries, totalEntries);
         } else {
             title = activity.getString(R.string.delete_entry);
             message = activity.getString(R.string.delete_entry_description);

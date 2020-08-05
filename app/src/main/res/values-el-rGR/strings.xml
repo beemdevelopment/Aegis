@@ -89,7 +89,6 @@
     <string name="delete_entry">Διαγραφή καταχώρησης</string>
     <string name="delete_entry_description">Είστε βέβαιοι ότι θέλετε να διαγράψετε αυτή την καταχώρηση;</string>
     <string name="delete_entries">Διαγραφή καταχωρήσεων</string>
-    <string name="delete_entries_description">Είστε βέβαιοι ότι θέλετε να διαγράψετε %d καταχωρήσεις;</string>
     <string name="discard_changes">Απόρριψη αλλαγών;</string>
     <string name="discard_changes_description">Οι αλλαγές σας δεν έχουν αποθηκευτεί</string>
     <string name="folder">Φάκελος</string>
@@ -119,8 +118,6 @@
     <string name="reading_file_error">Παρουσιάστηκε σφάλμα κατά την προσπάθεια ανάγνωσης του αρχείου</string>
     <string name="app_lookup_error">Σφάλμα: Η εφαρμογή δεν έχει εγκατασταθεί</string>
     <string name="root_error">Σφάλμα: δεν είναι δυνατή η απόκτηση πρόσβασης root</string>
-    <string name="imported_entries_count">Εισήχθησαν %d καταχωρήσεις</string>
-    <string name="read_entries_count">Αναγνώστηκαν %d καταχωρήσεις. %d σφάλματα.</string>
     <string name="import_error_title">Παρουσιάστηκαν ένα ή περισσότερα σφάλματα κατά την εισαγωγή</string>
     <string name="exporting_vault_error">Παρουσιάστηκε σφάλμα κατά την προσπάθεια εξαγωγής της λίστας</string>
     <string name="exported_vault">Η λίστα έχει εξαχθεί</string>
@@ -166,7 +163,6 @@
     <string name="small_mode_title">Μικρή</string>
     <string name="unknown_issuer">Άγνωστος εκδότης</string>
     <string name="unknown_account_name">Άγνωστο όνομα λογαριασμού</string>
-    <string name="import_error_dialog">Το Aegis δεν μπόρεσε να εισαγάγει %d αναγνωριστικά. Αυτά θα παραληφθούν. Πατήστε \'Λεπτομέρειες\' για να δείτε περισσότερες πληροφορίες σχετικά με τα σφάλματα.</string>
     <string name="unable_to_read_qrcode">Αδυναμία ανάγνωσης και επεξεργασίας κώδικα QR</string>
     <string name="select_picture">Επιλέξτε εικόνα</string>
     <string name="toggle_checkboxes">Εναλλαγή πλαισίων ελέγχου</string>

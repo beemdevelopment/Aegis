@@ -105,7 +105,6 @@
     <string name="delete_entry">Excluir entrada</string>
     <string name="delete_entry_description">Tem a certeza de que quer excluir esta entrada?</string>
     <string name="delete_entries">Excluir entradas</string>
-    <string name="delete_entries_description">Tem certeza que deseja excluir %d entradas?</string>
     <string name="discard_changes">Descartar alterações?</string>
     <string name="discard_changes_description">Suas alterações não foram salvas</string>
     <string name="folder">Pasta</string>
@@ -144,8 +143,6 @@
     <string name="reading_file_error">Ocorreu um erro ao tentar ler o arquivo</string>
     <string name="app_lookup_error">Erro: O aplicativo não está instalado</string>
     <string name="root_error">Erro: incapaz de obter acesso root</string>
-    <string name="imported_entries_count">%d entradas importadas</string>
-    <string name="read_entries_count">%d entradas lidas. %d erros.</string>
     <string name="import_error_title">Um ou mais erros ocorreram durante a importação</string>
     <string name="exporting_vault_error">Ocorreu um erro ao tentar exportar o cofre</string>
     <string name="exported_vault">O cofre foi exportado</string>
@@ -196,7 +193,6 @@
     <string name="small_mode_title">Pequena</string>
     <string name="unknown_issuer">Emissor desconhecido</string>
     <string name="unknown_account_name">Nome de conta desconhecido</string>
-    <string name="import_error_dialog">Aegis não pôde importar %d tokens. Estes tokens serão ignorados. Pressione \'detalhes\' para ver mais informações sobre os erros.</string>
     <string name="unable_to_read_qrcode">Incapaz de ler e processar o código QR</string>
     <string name="select_picture">Selecionar imagem</string>
     <string name="toggle_checkboxes">Alternar caixas de seleção</string>
@@ -222,7 +218,6 @@
     <string name="time_sync_warning_message">O Aegis depende da hora do sistema para estar sincronizado para gerar códigos corretos. Um desvio de apenas alguns segundos pode resultar em códigos incorretos. Parece que seu dispositivo não está configurado para sincronizar automaticamente o tempo. Gostaria de fazer isso agora?</string>
     <string name="time_sync_warning_disable">Pare de me avisar. Eu sei o que estou fazendo.</string>
     <string name="google_qr_export_unrelated">Código QR não relacionado. Tente reiniciar o scanner.</string>
-    <string name="google_qr_export_scanned">%d/%d Códigos QR escaneados</string>
     <string name="google_qr_export_unexpected">#%d códigos QR eram esperados, mas #%d foram escaneados em vez disso</string>
     <string name="empty_list">Não há códigos a serem mostrados. Comece a adicionar entradas tocando no sinal de mais no canto inferior direito</string>
     <string name="empty_list_title">Nenhuma entrada encontrada</string>

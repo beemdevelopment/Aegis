@@ -111,7 +111,6 @@
     <string name="delete_entry">حذف المدخلات</string>
     <string name="delete_entry_description">هل ترغب حقًا في حذف هذا المدخل؟</string>
     <string name="delete_entries">حذف المدخلات</string>
-    <string name="delete_entries_description">هل ترغب حقًا في حذف %d مدخلات؟</string>
     <string name="discard_changes">تجاهل التغييرات؟</string>
     <string name="discard_changes_description">لم يتم حفظ تغييراتك</string>
     <string name="folder">مجلد</string>
@@ -151,8 +150,6 @@
     <string name="reading_file_error">حدث خطأ أثناء محاولة قراءة الملف</string>
     <string name="app_lookup_error">ّخطأ: التطبيق غير مثبت</string>
     <string name="root_error">خطأ: تعذّر الوصول إلى الجذر root</string>
-    <string name="imported_entries_count">تم استيراد %d مدخلات</string>
-    <string name="read_entries_count">قراءة %d مدخلات. %d أخطاء.</string>
     <string name="import_error_title">حدث خطأ أو أكثر أثناء الاستيراد</string>
     <string name="exporting_vault_error">حدث خطأ أثناء محاولة تصدير المخزن</string>
     <string name="exported_vault">تم تصدير المخزن</string>
@@ -205,7 +202,6 @@
     <string name="small_mode_title">صغير</string>
     <string name="unknown_issuer">مصدِّر غير معروف</string>
     <string name="unknown_account_name">اسم الحساب غير معروف</string>
-    <string name="import_error_dialog">لم يستطع Aegis استيراد %d رمو.ز سيتم تجاوز تلك الرموز. اضغط على \'التفاصيل\' لمشاهدة المزيد من المعلومات حول الأخطاء.</string>
     <string name="unable_to_read_qrcode">تعذّر قراءة ومعالجة كود QR</string>
     <string name="unable_to_generate_qrcode">تعذّر توليد كود QR</string>
     <string name="select_picture">اختر صورة</string>
@@ -233,13 +229,11 @@
     <string name="time_sync_warning_message">يعتمد Aegis على وقت النظام لتوليد الأكواد الصحيحة. انحراف بمقادر بضعة ثواني يمكن أن يؤدي إلى أكواد خاطئة. يبدوا أن جهازك غير معيّن إلى مزامنة الوقت تلقائيًا. هل ترغب بفعل ذلك الآن؟</string>
     <string name="time_sync_warning_disable">إيقاف تحذيري. أنا أعرف ما أفعله.</string>
     <string name="google_qr_export_unrelated">تم العثور على كود QR لا علاقة له. حاول إعادة تشغيل الماسح.</string>
-    <string name="google_qr_export_scanned">تم مسح %d/%d كود QR</string>
     <string name="google_qr_export_unexpected">انتظرت كود QR #%d، ولكن مسحت #%d بدلًا منه</string>
     <string name="backup_error_bar_message"><b>النسخ الاحتياطي للمخزن فشل مؤخرًا</b></string>
     <string name="empty_list">لا توجد أكواد لعرضها. ابدأ بإضافة مدخلات بالنقر على علامة الزائد في أسفل الركن الأيسر</string>
     <string name="empty_list_title">لم يتم العثور على مدخلات</string>
     <string name="done">تم</string>
-    <string name="entries_count">%d / %d  مدخلات</string>
     <string name="next">التالي</string>
     <string name="previous">السابق</string>
     <string name="transfer_entry">نقل الإدخال</string>

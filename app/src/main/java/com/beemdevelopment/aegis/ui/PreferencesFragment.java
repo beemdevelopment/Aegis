@@ -734,7 +734,7 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
             return;
         }
 
-        String toastMessage = getResources().getString(R.string.imported_entries_count, selectedEntries.size());
+        String toastMessage = getResources().getQuantityString(R.plurals.imported_entries_count, selectedEntries.size(), selectedEntries.size());
         Toast.makeText(getContext(), toastMessage, Toast.LENGTH_SHORT).show();
 
         _result.putExtra("needsRecreate", true);

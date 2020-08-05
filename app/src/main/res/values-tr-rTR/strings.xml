@@ -146,8 +146,6 @@
     <string name="reading_file_error">Dosyayı okumaya çalışırken bir hata meydana geldi</string>
     <string name="app_lookup_error">Hata: Uygulama yüklenmemiş</string>
     <string name="root_error">Hata: Kök kullanıcı erişimi elde edilemedi</string>
-    <string name="imported_entries_count">%d girdi içe aktarıldı.</string>
-    <string name="read_entries_count">%d girdi okundu. %d hatalı.</string>
     <string name="import_error_title">İçe aktarmaya çalışırken bir veya birden fazla hata meydana geldi</string>
     <string name="exporting_vault_error">Kasayı dışarıya aktarmaya çalışırken hata meydana geldi</string>
     <string name="exported_vault">Kasa dışarıya aktarıldı</string>
@@ -197,7 +195,6 @@
     <string name="small_mode_title">Küçük</string>
     <string name="unknown_issuer">Bilinmeyen sağlayıcı</string>
     <string name="unknown_account_name">Bilinmeyen hesap adı</string>
-    <string name="import_error_dialog">Aegis %d kodu içeriye aktaramadı. Bu kodlar atlanacak. Hatalar hakkında daha fazla bilgi görmek için \'Detaylar\'a dokunun.</string>
     <string name="unable_to_read_qrcode">QR kod okunamadı ve işlenemedi</string>
     <string name="select_picture">Resim seç</string>
     <string name="toggle_checkboxes">Kutucukları işaretleyin</string>
@@ -223,7 +220,6 @@
     <string name="time_sync_warning_message">Aegis doğru kodları oluşturmak üzere sistem zamanın senkron olmasına ihtiyaç duyar. Birkaç saniyelik sapma hatalı kod oluşumuna neden olabilir. Görünüşe göre cihazınız zamanı otomatik senkronize etmeye ayarlanmamış. Şimdi ayarlamak ister misiniz?</string>
     <string name="time_sync_warning_disable">Beni uyarmayı bırak. Ne yaptığımı biliyorum.</string>
     <string name="google_qr_export_unrelated">Alakasız QR kod bulundu. Tarayıcıyı yeniden başlatmayı deneyin.</string>
-    <string name="google_qr_export_scanned">%d/%d QR kod tarandıQR</string>
     <string name="google_qr_export_unexpected">Beklenen QR kodu #%d idi, ancak bunun yerine #%d tarandı</string>
     <string name="empty_list">Gösterilecek kod yok. Girdi eklemeye sağ alt köşedeki artı işaretine dokunarak başlayın.</string>
     <string name="empty_list_title">Hiçbir girdi bulunamadı.</string>

@@ -105,7 +105,6 @@
     <string name="delete_entry">Poista kohde</string>
     <string name="delete_entry_description">Haluatko varmasti poistaa tämän kohteen?</string>
     <string name="delete_entries">Poista kohteet</string>
-    <string name="delete_entries_description">Haluatko varmasti poistaa %d kohdetta?</string>
     <string name="discard_changes">Hylätäänkö muutokset?</string>
     <string name="discard_changes_description">Muutoksiasi ei ole tallennettu</string>
     <string name="folder">Kansio</string>
@@ -144,8 +143,6 @@
     <string name="reading_file_error">Tiedoston lukemisessa tapahtui virhe</string>
     <string name="app_lookup_error">Virhe: Sovellusta ei ole asennettu</string>
     <string name="root_error">Virhe: root-oikeuksia ei voitu saada</string>
-    <string name="imported_entries_count">%d kohdetta tuotu</string>
-    <string name="read_entries_count">Luettiin %d kohdetta. %d virhettä.</string>
     <string name="import_error_title">Yksi tai useampi virhettä tapahtui tuonnin aikana</string>
     <string name="exporting_vault_error">Holvin viennissä tapahtui virhe</string>
     <string name="exported_vault">Holvi on viety</string>
@@ -196,7 +193,6 @@
     <string name="small_mode_title">Pieni</string>
     <string name="unknown_issuer">Tuntematon myöntäjä</string>
     <string name="unknown_account_name">Tuntematon tilinimi</string>
-    <string name="import_error_dialog">Aegis ei voinut tuoda %d todennustunnusta. Nämä todennustunnukset ohitetaan. Paina \'tiedot\' nähdäksesi lisätietoa virheistä.</string>
     <string name="unable_to_read_qrcode">QR-koodia ei voi lukea ja käsitellä</string>
     <string name="select_picture">Valitse kuva</string>
     <string name="toggle_checkboxes">Kytke valintaruudut</string>
@@ -222,7 +218,6 @@
     <string name="time_sync_warning_message">Oikeiden koodien luomiseksi, Aegis vaatii, että järjestelmän aika on synkronoitu. Vain muutaman sekunnin poikkeama voi johtaa virheellisiin koodeihin. Näyttää siltä, että laitettasi ei ole määritetty synkronoimaan aika automaattisesti. Haluatko tehdä niin nyt?</string>
     <string name="time_sync_warning_disable">Lopeta varoitus. Tiedän mitä teen.</string>
     <string name="google_qr_export_unrelated">Asiaankuulumaton QR-koodi löytyi. Yritä käynnistää skanneri uudelleen.</string>
-    <string name="google_qr_export_scanned">%d/%d QR-koodia skannattu</string>
     <string name="google_qr_export_unexpected">Odotettiin QR-koodia #%d, mutta skannattu #%d sen sijaan</string>
     <string name="empty_list">Ei näytettäviä koodeja. Aloita kohteiden lisääminen napauttamalla plusmerkkiä oikeassa alakulmassa</string>
     <string name="empty_list_title">Kohteita ei löytynyt</string>

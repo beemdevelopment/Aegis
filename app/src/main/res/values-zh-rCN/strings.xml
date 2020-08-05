@@ -111,7 +111,6 @@
     <string name="delete_entry">删除条目</string>
     <string name="delete_entry_description">您确定要删除此条目吗？</string>
     <string name="delete_entries">删除条目</string>
-    <string name="delete_entries_description">您确定要删除 %d 项条目吗？</string>
     <string name="discard_changes">放弃更改？</string>
     <string name="discard_changes_description">您的更改尚未保存</string>
     <string name="folder">文件夹</string>
@@ -151,8 +150,6 @@
     <string name="reading_file_error">试图读取文件时出错</string>
     <string name="app_lookup_error">错误：应用未安装</string>
     <string name="root_error">错误：无法获得 root 权限</string>
-    <string name="imported_entries_count">导入 %d 项条目</string>
-    <string name="read_entries_count">读取 %d 项条目。%d 项错误。</string>
     <string name="import_error_title">导入时发生一个或多个错误</string>
     <string name="exporting_vault_error">试图导出数据库时出错</string>
     <string name="exported_vault">数据库已导出</string>
@@ -205,7 +202,6 @@
     <string name="small_mode_title">小巧</string>
     <string name="unknown_issuer">未知的服务商</string>
     <string name="unknown_account_name">未知的帐户名称</string>
-    <string name="import_error_dialog">Aegis 无法导入 %d 个令牌。这些令牌将被忽略。点击“详细信息”查看更多关于错误的信息。</string>
     <string name="unable_to_read_qrcode">无法读取和处理二维码</string>
     <string name="unable_to_generate_qrcode">无法生成二维码</string>
     <string name="select_picture">选择图片</string>
@@ -233,13 +229,11 @@
     <string name="time_sync_warning_message">Aegis 依靠系统时间来同步生成正确的验证码。仅几秒钟的偏差可能会导致验证码错误。您的设备似乎未配置为自动同步时间。您现在要设置自动同步时间吗？</string>
     <string name="time_sync_warning_disable">不要再次提醒。我知道我在做什么。</string>
     <string name="google_qr_export_unrelated">找到不相关的二维码。请尝试重新扫描。</string>
-    <string name="google_qr_export_scanned">已扫描 %d/%d 二维码</string>
     <string name="google_qr_export_unexpected">预期二维码 #%d，已扫描 #%d</string>
     <string name="backup_error_bar_message"><b>数据库最近备份失败</b></string>
     <string name="empty_list">没有可显示的验证码。点击右下角的加号，开始添加条目</string>
     <string name="empty_list_title">未找到条目</string>
     <string name="done">完成</string>
-    <string name="entries_count">%d / %d 项条目</string>
     <string name="next">下一个</string>
     <string name="previous">上一个</string>
     <string name="transfer_entry">迁移条目</string>
