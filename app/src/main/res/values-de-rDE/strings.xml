@@ -108,8 +108,6 @@
     <string name="reading_file_error">Beim Versuch, die Datei zu lesen, ist ein Fehler aufgetreten.</string>
     <string name="app_lookup_error">Fehler: App ist nicht installiert</string>
     <string name="root_error">Fehler: Es konnte kein Root-Zugriff gewährt werden.</string>
-    <string name="imported_entries_count">Importierte %d Einträge</string>
-    <string name="read_entries_count">%d Einträge gelesen. %d Fehler.</string>
     <string name="import_error_title">Beim Import sind ein oder mehrere Fehler aufgetreten.</string>
     <string name="no_cameras_available">Keine Kameras verfügbar</string>
     <string name="read_qr_error">Beim Versuch, den QR-Code zu lesen, ist ein Fehler aufgetreten.</string>
@@ -151,7 +149,6 @@
     <string name="small_mode_title">Klein</string>
     <string name="unknown_issuer">Unbekannter Herausgeber</string>
     <string name="unknown_account_name">Unbekannter Kontoname</string>
-    <string name="import_error_dialog">Aegis konnte %d Tokens nicht importieren. Diese Tokens werden übersprungen. Drücke \'details\', um mehr Informationen über die Fehler zu erhalten.</string>
     <string name="unable_to_read_qrcode">QR-Code kann nicht gelesen und verarbeitet werden.</string>
     <string name="select_picture">Bild auswählen</string>
     <string name="toggle_checkboxes">Markierungen umschalten</string>

@@ -90,8 +90,6 @@
     <string name="reading_file_error">ಫೈಲನ್ನು ಓದಲು ಪ್ರಯತ್ನಿಸುವಾಗ ಒಂದು ದೋಷ ಸಂಭವಿಸಿದೆ</string>
     <string name="app_lookup_error">ದೋಷ: ಅಪ್ಲಿಕೇಶನ್ನು ಸ್ಥಾಪನೆಗೊಂಡಿಲ್ಲ</string>
     <string name="root_error">ದೋಷ: ನಿರ್ವಾಹಕ ಪ್ರವೇಶವನ್ನು ಪಡೆಯಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ</string>
-    <string name="imported_entries_count">%d ಎಂಟ್ರಿಗಳನ್ನು ಆಮದು ಮಾಡಲಾಗಿದೆ</string>
-    <string name="read_entries_count">%d ಎಂಟ್ರಿಗಳನ್ನು ಓದಲಾಗಿದೆ. %d ದೋಷಗಳು.</string>
     <string name="import_error_title">ಅಮದಿಸುವಾಗ ಒಂದು ಅಥವಾ ಜಾಸ್ತಿ ದೋಷಗಳು ಸಂಭವಿಸಿದೆ</string>
     <string name="no_cameras_available">ಯಾವುದೇ ಕ್ಯಾಮರಾಗಳು ಲಭ್ಯವಿಲ್ಲ</string>
     <string name="read_qr_error">ಕ್ಯೂ ಆರ್ ಸಂಕೇತವನ್ನು ಓದಲು ಪ್ರಯತ್ನಿಸುವಾಗ ಒಂದು ದೋಷ ಸಂಭವಿಸಿದೆ</string>
@@ -131,7 +129,6 @@
     <string name="small_mode_title">ಸಣ್ಣ</string>
     <string name="unknown_issuer">ಗೊತ್ತಿಲ್ಲದಿರುವ ನೀಡುವವರು</string>
     <string name="unknown_account_name">ಗೊತ್ತಿಲ್ಲದಿರುವ ಖಾತೆಯ ಹೆಸರು</string>
-    <string name="import_error_dialog">%d ಟೋಕನ್ಗಳನ್ನು ಅಮದಿ ಮಾಡಲು Aegisಇಗೆ ಸಾಧ್ಯವಾಗಲಿಲ್ಲ. ಈ ಟೋಕನ್ಗಳನ್ನು ಬಿಟ್ಟುಬಿಡಲಾಗುತ್ತದೆ. ದೋಷಗಳ ಬಗ್ಗೆ ಇನ್ನು ಮಾಹಿತಿಯನ್ನು ನೋಡಲು \'ವಿವರಗಳು\' ಎಂದು ಒತ್ತು.</string>
     <string name="unable_to_read_qrcode">ಕ್ಯೂ ಆರ್ ಸಂಕೇತವನ್ನು ಓದವುದಕ್ಕೆ ಹಾಗು ಪ್ರಕ್ರಿಯಿಸುವುದಕ್ಕೆ ಸಾಧ್ಯವಾಗಲಿಲ್ಲ</string>
     <string name="select_picture">ಚಿತ್ರವನ್ನು ಆಯ್ಕೆ ಮಾಡು</string>
     <string name="toggle_checkboxes">ಚೆಕ್ಬಾಕ್ಸ್ಗಳನ್ನು ಟಾಗಲ್ ಮಾಡು</string>

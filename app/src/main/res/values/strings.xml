@@ -121,7 +121,10 @@
     <string name="delete_entry">Delete entry</string>
     <string name="delete_entry_description">Are you sure you want to delete this entry?</string>
     <string name="delete_entries">Delete entries</string>
-    <string name="delete_entries_description">Are you sure you want to delete %d entries?</string>
+    <plurals name="delete_entries_description">
+        <item quantity="one">Are you sure you want to delete %d entry?</item>
+        <item quantity="other">Are you sure you want to delete %d entries?</item>
+    </plurals>
     <string name="discard_changes">Discard changes?</string>
     <string name="discard_changes_description">Your changes have not been saved</string>
     <string name="folder">Folder</string>
@@ -161,8 +164,10 @@
     <string name="reading_file_error">An error occurred while trying to read the file</string>
     <string name="app_lookup_error">Error: App is not installed</string>
     <string name="root_error">Error: unable to obtain root access</string>
-    <string name="imported_entries_count">Imported %d entries</string>
-    <string name="read_entries_count">Read %d entries. %d errors.</string>
+    <plurals name="imported_entries_count">
+        <item quantity="one">Imported %d entry</item>
+        <item quantity="other">Imported %d entries</item>
+    </plurals>
     <string name="import_error_title">One or more errors occurred during the import</string>
     <string name="exporting_vault_error">An error occurred while trying to export the vault</string>
     <string name="exported_vault">The vault has been exported</string>
@@ -219,7 +224,10 @@
     <string name="small_mode_title">Small</string>
     <string name="unknown_issuer">Unknown issuer</string>
     <string name="unknown_account_name">Unknown account name</string>
-    <string name="import_error_dialog">Aegis could not import %d tokens. These tokens will be skipped. Press \'details\' to see more information about the errors.</string>
+    <plurals name="import_error_dialog">
+        <item quantity="one">Aegis could not import %d token. These tokens will be skipped. Press \'details\' to see more information about the errors.</item>
+        <item quantity="other">Aegis could not import %d tokens. These tokens will be skipped. Press \'details\' to see more information about the errors.</item>
+    </plurals>
     <string name="unable_to_read_qrcode">Unable to read and process QR code</string>
     <string name="unable_to_generate_qrcode">Unable to generate QR code</string>
     <string name="select_picture">Select picture</string>
@@ -250,7 +258,10 @@
     <string name="time_sync_warning_message">Aegis relies on the system time to be in sync to generate correct codes. A deviation of only a few seconds could result in incorrect codes. It looks like your device is not configured to automatically synchronize the time. Would you like to do so now?</string>
     <string name="time_sync_warning_disable">Stop warning me. I know what I\'m doing.</string>
     <string name="google_qr_export_unrelated">Unrelated QR code found. Try restarting the scanner.</string>
-    <string name="google_qr_export_scanned">Scanned %d/%d QR codes</string>
+    <plurals name="google_qr_export_scanned">
+        <item quantity="one">Scanned %d/%d QR codes</item>
+        <item quantity="other">Scanned %d/%d QR codes</item>
+    </plurals>
     <string name="google_qr_export_unexpected">Expected QR code #%d, but scanned #%d instead</string>
     <string name="backup_error_bar_message"><b>Vault backup failed recently</b></string>
     <string name="switch_camera">Switch camera</string>
@@ -274,7 +285,10 @@
     <string name="empty_list">There are no codes to be shown. Start adding entries by tapping the plus sign in the bottom right corner</string>
     <string name="empty_list_title">No entries found</string>
     <string name="done">Done</string>
-    <string name="entries_count">%d / %d entries</string>
+    <plurals name="entries_count">
+        <item quantity="one">%d / %d entry</item>
+        <item quantity="other">%d / %d entries</item>
+    </plurals>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
     <string name="transfer_entry">Transfer entry</string>

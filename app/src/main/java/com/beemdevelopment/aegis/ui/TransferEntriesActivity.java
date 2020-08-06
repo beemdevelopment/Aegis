@@ -9,11 +9,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.otp.GoogleAuthInfo;
-import com.beemdevelopment.aegis.vault.VaultEntry;
 import com.beemdevelopment.aegis.vault.VaultManager;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.WriterException;
@@ -22,7 +20,6 @@ import com.google.zxing.qrcode.QRCodeWriter;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 public class TransferEntriesActivity extends AegisActivity {
     private List<GoogleAuthInfo> _authInfos;
@@ -58,7 +55,6 @@ public class TransferEntriesActivity extends AegisActivity {
         _authInfos = (ArrayList<GoogleAuthInfo>) intent.getSerializableExtra("authInfos");
 
         int controlVisibility = _authInfos.size() != 1 ? View.VISIBLE : View.INVISIBLE;
-        _entriesCount.setVisibility(controlVisibility);
         _nextButton.setVisibility(controlVisibility);
 
         _nextButton.setOnClickListener(v -> {
@@ -108,7 +104,7 @@ public class TransferEntriesActivity extends AegisActivity {
         GoogleAuthInfo selectedEntry = _authInfos.get(_currentEntryCount - 1);
         _issuer.setText(selectedEntry.getIssuer());
         _accountName.setText(selectedEntry.getAccountName());
-        _entriesCount.setText(String.format(getString(R.string.entries_count), _currentEntryCount, _authInfos.size()));
+        _entriesCount.setText(getResources().getQuantityString(R.plurals.entries_count, _authInfos.size(), _currentEntryCount, _authInfos.size()));
 
         QRCodeWriter writer = new QRCodeWriter();
         BitMatrix bitMatrix = null;

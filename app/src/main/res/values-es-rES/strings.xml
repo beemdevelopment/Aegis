@@ -105,7 +105,6 @@
     <string name="delete_entry">Eliminar entrada</string>
     <string name="delete_entry_description">¿Está seguro de que desea eliminar esta entrada?</string>
     <string name="delete_entries">Eliminar entradas</string>
-    <string name="delete_entries_description">¿Está seguro de que desea eliminar %d entradas?</string>
     <string name="discard_changes">¿Descartar cambios?</string>
     <string name="discard_changes_description">Sus cambios no se han guardado</string>
     <string name="folder">Carpeta</string>
@@ -144,8 +143,6 @@
     <string name="reading_file_error">Se ha producido un error tratando de leer el archivo</string>
     <string name="app_lookup_error">Error: La aplicación no está instalada</string>
     <string name="root_error">Error: No se puede obtener acceso root</string>
-    <string name="imported_entries_count">Importadas %d entradas</string>
-    <string name="read_entries_count">Leídas %d entradas. %d errores.</string>
     <string name="import_error_title">Se han producido uno o más errores durante la importación</string>
     <string name="exporting_vault_error">Se ha producido un error tratando de exportar la caja fuerte</string>
     <string name="exported_vault">La caja fuerte ha sido exportada</string>
@@ -196,7 +193,6 @@
     <string name="small_mode_title">Pequeño</string>
     <string name="unknown_issuer">Emisor desconocido</string>
     <string name="unknown_account_name">Nombre de cuenta desconocido</string>
-    <string name="import_error_dialog">Aegis no pudo importar %d tokens. Estos tokens se omitirán. Pulse \'detalles\' para ver más información sobre los errores.</string>
     <string name="unable_to_read_qrcode">No se puede leer y procesar el código QR</string>
     <string name="select_picture">Seleccionar imagen</string>
     <string name="toggle_checkboxes">Activar casillas de verificación</string>
@@ -222,7 +218,6 @@
     <string name="time_sync_warning_message">Aegis depende de la sincronización de la hora del sistema para generar códigos correctos. Una desviación de solo unos segundos podría generar códigos incorrectos. Parece que su dispositivo no está configurado para sincronizar automáticamente la hora. ¿Le gustaría hacerlo ahora?</string>
     <string name="time_sync_warning_disable">Deja de advertirme. Sé lo que estoy haciendo.</string>
     <string name="google_qr_export_unrelated">Encontrado código QR no relacionado. Intente reiniciar el escáner.</string>
-    <string name="google_qr_export_scanned">Escaneados %d/%d códigos QR</string>
     <string name="google_qr_export_unexpected">Se esperaba un código QR #%d, pero en su lugar se escaneó #%d</string>
     <string name="empty_list">No hay códigos que mostrar. Comience añadiendo entradas pulsando el signo + en la esquina inferior derecha</string>
     <string name="empty_list_title">No hay entradas</string>

@@ -107,7 +107,6 @@
     <string name="delete_entry">A bejegyzés törlése</string>
     <string name="delete_entry_description">Biztos, hogy törli ezt a bejegyzést?</string>
     <string name="delete_entries">Bejegyzések törlése</string>
-    <string name="delete_entries_description">Biztos, hogy törli azt a(z) %d bejegyzést?</string>
     <string name="discard_changes">Elveti a változásokat?</string>
     <string name="discard_changes_description">A változásai nem lettek mentve</string>
     <string name="folder">Mappa</string>
@@ -140,8 +139,6 @@
     <string name="reading_file_error">Hiba történt a fájl olvasásakor</string>
     <string name="app_lookup_error">Hiba: Az alkalmazás nincs telepítve</string>
     <string name="root_error">Hiba: Nem szerezhető root jogosultság</string>
-    <string name="imported_entries_count">%d bejegyzés importálva</string>
-    <string name="read_entries_count">%d bejegyzés beolvasva. %d hiba.</string>
     <string name="import_error_title">Egy vagy több hiba történt az importálás során</string>
     <string name="exporting_vault_error">Hiba történt a széf exportálásakor</string>
     <string name="exported_vault">A széf exportálva</string>
@@ -192,7 +189,6 @@
     <string name="small_mode_title">Apró</string>
     <string name="unknown_issuer">Ismeretlen kibocsátó</string>
     <string name="unknown_account_name">Ismeretlen fióknév</string>
-    <string name="import_error_dialog">Az Aegis nem tudott importálni %d tokent. Ezek a tokenek ki lesznek hagyva. Nyomjon a „részletekre” több információ megtekintéséhez a hibával kapcsolatosan.</string>
     <string name="unable_to_read_qrcode">A QR-kód nem olvasható be és dolgozható fel</string>
     <string name="select_picture">Válasszon képet</string>
     <string name="toggle_checkboxes">Jelölőmezők be/ki</string>

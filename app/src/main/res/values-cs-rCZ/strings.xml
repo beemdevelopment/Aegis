@@ -105,7 +105,6 @@
     <string name="delete_entry">Odstranit položku</string>
     <string name="delete_entry_description">Opravdu chcete odstranit tuto položku?</string>
     <string name="delete_entries">Odstranit položky</string>
-    <string name="delete_entries_description">Opravdu chcete odstranit %d položek?</string>
     <string name="discard_changes">Zahodit změny?</string>
     <string name="discard_changes_description">Změny nebyly uloženy</string>
     <string name="folder">Složka</string>
@@ -144,8 +143,6 @@
     <string name="reading_file_error">Při pokusu o čtení souboru došlo k chybě</string>
     <string name="app_lookup_error">Chyba: Aplikace není nainstalována</string>
     <string name="root_error">Chyba: Nelze získat root přístup</string>
-    <string name="imported_entries_count">Naimportováno %d záznamů</string>
-    <string name="read_entries_count">Čtení %d záznamů. %d chyb.</string>
     <string name="import_error_title">Při importu došlo k jedné nebo více chybám</string>
     <string name="exporting_vault_error">Při pokusu o export trezoru došlo k chybě</string>
     <string name="exported_vault">Trezor byl exportován</string>
@@ -196,7 +193,6 @@
     <string name="small_mode_title">Malý</string>
     <string name="unknown_issuer">Neznámý poskytovatel</string>
     <string name="unknown_account_name">Neznámý název účtu</string>
-    <string name="import_error_dialog">Nepovedlo se naimportovat %d tokenů a byly přeskočeny. Klepněte na „podrobnosti“ pro více informací o chybách.</string>
     <string name="unable_to_read_qrcode">QR kód nelze přečíst a zpracovat</string>
     <string name="select_picture">Vyberte obrázek</string>
     <string name="toggle_checkboxes">Přepnout zaškrtávací políčka</string>
@@ -222,7 +218,6 @@
     <string name="time_sync_warning_message">Aegis při generování správných kódů spoléhá na synchronizaci systémového času. Odchylka pouze několika sekund může mít za následek nesprávné kódy. Zdá se, že vaše zařízení není nakonfigurováno pro automatickou synchronizaci času. Chcete nastavit automatickou synchronizaci času?</string>
     <string name="time_sync_warning_disable">Už mě neupozorňujte. Vím, co dělám.</string>
     <string name="google_qr_export_unrelated">Nalezen nesouvisející QR kód. Zkuste skener restartovat.</string>
-    <string name="google_qr_export_scanned">Naskenování %d/%d QR kódů</string>
     <string name="google_qr_export_unexpected">Očekáván QR kód #%d, avšak naskenován byl #%d</string>
     <string name="empty_list">Žádné kódy. Začněte přidáním položek pomocí tlačítka + v pravém dolním rohu.</string>
     <string name="empty_list_title">Žádné záznamy nenalezeny</string>

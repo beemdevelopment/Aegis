@@ -105,7 +105,6 @@
     <string name="delete_entry">Item verwijderen</string>
     <string name="delete_entry_description">Weet je zeker dat je dit item wilt verwijderen?</string>
     <string name="delete_entries">Items verwijderen</string>
-    <string name="delete_entries_description">Weet je zeker dat je %d items wilt verwijderen?</string>
     <string name="discard_changes">Wijzigingen ongedaan maken?</string>
     <string name="discard_changes_description">Je wijzigingen zijn niet opgeslagen</string>
     <string name="folder">Map</string>
@@ -144,8 +143,6 @@
     <string name="reading_file_error">Er is een fout opgetreden tijdens het lezen van het bestand</string>
     <string name="app_lookup_error">Fout: App is niet geïnstalleerd</string>
     <string name="root_error">Fout: Er kon geen root-access verkregen worden</string>
-    <string name="imported_entries_count">%d items geïmporteerd</string>
-    <string name="read_entries_count">%d rijen gevonden. %d foutmeldingen.</string>
     <string name="import_error_title">Er zijn fouten opgetreden tijdens het importeren</string>
     <string name="exporting_vault_error">Er is een fout opgetreden tijdens het exporteren van de kluis</string>
     <string name="exported_vault">De kluis is geëxporteerd</string>
@@ -196,7 +193,6 @@
     <string name="small_mode_title">Klein</string>
     <string name="unknown_issuer">Onbekende uitgever</string>
     <string name="unknown_account_name">Onbekende accountnaam</string>
-    <string name="import_error_dialog">Aegis kon %d tokens niet importeren. Deze tokens zullen worden overgeslagen. Druk op \'details\' om meer informatie over de fouten te zien.</string>
     <string name="unable_to_read_qrcode">Kan QR-code niet lezen en verwerken</string>
     <string name="select_picture">Foto selecteren</string>
     <string name="toggle_checkboxes">Selectie omdraaien</string>
@@ -222,7 +218,6 @@
     <string name="time_sync_warning_message">Aegis is afhankelijk van een gesynchroniseerde systeemtijd om juiste codes te genereren. Een afwijking van slechts enkele seconden kan leiden tot onjuiste codes. Het lijkt erop dat uw apparaat niet is geconfigureerd om de tijd automatisch te synchroniseren. Wilt u dit nu doen?</string>
     <string name="time_sync_warning_disable">Stop met me te waarschuwen. Ik weet wat ik doe.</string>
     <string name="google_qr_export_unrelated">Ongerelateerde QR-code gevonden. Probeer de scanner opnieuw te starten.</string>
-    <string name="google_qr_export_scanned">%d/%d QR-codes gescand</string>
     <string name="google_qr_export_unexpected">QR-code #%d werd verwacht, maar in plaats daarvan #%d gescand</string>
     <string name="empty_list">Er zijn geen codes om te tonen. Begin met het toevoegen van items door op het plusteken in de rechteronderhoek te tikken</string>
     <string name="empty_list_title">Geen items gevonden</string>

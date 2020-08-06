@@ -110,7 +110,6 @@
     <string name="delete_entry">Deletar entrada</string>
     <string name="delete_entry_description">Você tem certeza que deseja deletar essa entrada?</string>
     <string name="delete_entries">Deletar entradas</string>
-    <string name="delete_entries_description">Você tem certeza que deseja deletar %d entradas?</string>
     <string name="discard_changes">Descartar mudanças?</string>
     <string name="discard_changes_description">Suas mudanças não foram salvas</string>
     <string name="folder">Pasta</string>
@@ -150,8 +149,6 @@
     <string name="reading_file_error">Um erro ocorreu durante a tentativa de ler o arquivo</string>
     <string name="app_lookup_error">Erro: App não está instalado</string>
     <string name="root_error">Erro: Não foi possível obter acesso root</string>
-    <string name="imported_entries_count">Importadas %d entradas</string>
-    <string name="read_entries_count">Lidas %d entradas. %d erros.</string>
     <string name="import_error_title">Um ou mais erros ocorreram durante a importação</string>
     <string name="exporting_vault_error">Um erro ocorreu durante a tentativa de exportar o cofre</string>
     <string name="exported_vault">O cofre foi exportado</string>
@@ -202,7 +199,6 @@
     <string name="small_mode_title">Pequeno</string>
     <string name="unknown_issuer">Nome do serviço desconhecido</string>
     <string name="unknown_account_name">Nome da conta desconhecido</string>
-    <string name="import_error_dialog">Aegis não pôde importar %d tokens. Esses tokens serão pulados. Pressione \'detalhes\' para ver mais informações sobre os erros.</string>
     <string name="unable_to_read_qrcode">Não foi possível ler e processar o QR code</string>
     <string name="unable_to_generate_qrcode">Não foi possível gerar o QR code</string>
     <string name="select_picture">Selecionar imagem</string>
@@ -229,13 +225,11 @@
     <string name="time_sync_warning_message">Aegis depende da hora do sistema para ficar em sincronia para gerar os códigos corretos. Uma diferença de apenas alguns segundos poderia resultar em códigos incorretos. Parece que seu dispositivo não está configurado para sincronizar automaticamente a hora. Gostaria de ativar essa opção agora?</string>
     <string name="time_sync_warning_disable">Pare de me avisar. Eu sei o que estou fazendo.</string>
     <string name="google_qr_export_unrelated">QR code não relacionado encontrado. Tente reiniciar o scanner.</string>
-    <string name="google_qr_export_scanned">Escanneou %d/%d QR codes</string>
     <string name="google_qr_export_unexpected">Esperados #%d QR code, mas escaneados #%d ao invés</string>
     <string name="backup_error_bar_message"><b>Backup do cofre falhou recentemente</b></string>
     <string name="empty_list">Não existem códigos a serem exibidos. Comece a adicionar entradas apertando o sinal de adição no canto inferior direito</string>
     <string name="empty_list_title">Nenhuma entrada encontrada</string>
     <string name="done">Terminado</string>
-    <string name="entries_count">%d / %d entradas</string>
     <string name="next">Próximo</string>
     <string name="previous">Anterior</string>
     <string name="transfer_entry">Transferir entrada</string>

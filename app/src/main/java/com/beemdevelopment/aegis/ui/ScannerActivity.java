@@ -189,7 +189,7 @@ public class ScannerActivity extends AegisActivity implements QrCodeAnalyzer.Lis
                 finish(_entries);
             }
 
-            Toast.makeText(this, getString(R.string.google_qr_export_scanned, _batchIndex + 1, export.getBatchSize()), Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getResources().getQuantityString(R.plurals.google_qr_export_scanned, export.getBatchSize(), _batchIndex + 1, export.getBatchSize()), Toast.LENGTH_SHORT).show();
         } else if (_batchIndex != batchIndex) {
             Toast.makeText(this, getString(R.string.google_qr_export_unexpected, _batchIndex + 1, batchIndex + 1), Toast.LENGTH_SHORT).show();
         }

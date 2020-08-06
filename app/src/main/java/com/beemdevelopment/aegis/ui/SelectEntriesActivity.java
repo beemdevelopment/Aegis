@@ -1,11 +1,5 @@
 package com.beemdevelopment.aegis.ui;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AlertDialog;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
@@ -15,6 +9,12 @@ import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.helpers.FabScrollHelper;
@@ -74,7 +74,7 @@ public class SelectEntriesActivity extends AegisActivity {
     private void showErrorDialog(List<DatabaseImporterEntryException> errors) {
         Dialogs.showSecureDialog(new AlertDialog.Builder(this)
                 .setTitle(R.string.import_error_title)
-                .setMessage(getString(R.string.import_error_dialog, errors.size()))
+                .setMessage(getResources().getQuantityString(R.plurals.import_error_dialog, errors.size(), errors.size()))
                 .setPositiveButton(android.R.string.ok, null)
                 .setNeutralButton(getString(R.string.details), (dialog, which) -> showDetailedErrorDialog(errors))
                 .create());
