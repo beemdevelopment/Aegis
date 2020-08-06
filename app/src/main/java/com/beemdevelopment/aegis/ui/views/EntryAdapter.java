@@ -2,6 +2,7 @@ package com.beemdevelopment.aegis.ui.views;
 
 import android.os.Handler;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -49,6 +50,7 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
 
     // keeps track of the viewholders that are currently bound
     private List<EntryHolder> _holders;
+    private EntryHolder _dragHandleHolder; // holder with enabled drag handle
 
     public EntryAdapter(EntryListView view) {
         _entries = new ArrayList<>();
@@ -386,7 +388,29 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
                     holder.setFocusedAndAnimate(true);
                 }
 
-                return _view.onLongEntryClick(_shownEntries.get(position));
+                boolean returnVal = _view.onLongEntryClick(_shownEntries.get(position));
+
+                boolean dragEnabled = _selectedEntries.size() == 0
+                        || _selectedEntries.size() == 1 && _selectedEntries.get(0) == holder.getEntry();
+                if (dragEnabled && isDragAndDropAllowed()) {
+                    _view.startDrag(_dragHandleHolder);
+                }
+
+                return returnVal;
+            }
+        });
+        holder.itemView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                // Start drag if this is the only item selected
+                if (event.getActionMasked() == MotionEvent.ACTION_MOVE
+                        && _selectedEntries.size() == 1
+                        && _selectedEntries.get(0) == holder.getEntry()
+                        && isDragAndDropAllowed()) {
+                    _view.startDrag(_dragHandleHolder);
+                    return true;
+                }
+                return false;
             }
         });
         holder.setOnRefreshClickListener(new View.OnClickListener() {
@@ -508,8 +532,33 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
         _focusedEntry = null;
     }
 
+    private void updateDraggableStatus() {
+        if (!isDragAndDropAllowed()) {
+            return;
+        }
+
+        if (_selectedEntries.size() == 1 && _dragHandleHolder == null) {
+            // Find and enable dragging for the single selected EntryHolder
+            // Not nice but this is the best method I could find
+            for (int i = 0; i < _holders.size(); i++) {
+                if (_holders.get(i).getEntry() == _selectedEntries.get(0)) {
+                    _dragHandleHolder = _holders.get(i);
+                    _dragHandleHolder.setShowDragHandle(true);
+                    _view.setSelectedEntry(_selectedEntries.get(0));
+                    return;
+                }
+            }
+        } else if (_dragHandleHolder != null) {
+            // Disable dragging if necessary when more/less than 1 selected entry
+            _dragHandleHolder.setShowDragHandle(false);
+            _dragHandleHolder = null;
+            _view.setSelectedEntry(null);
+        }
+    }
+
     public void removeSelectedEntry(VaultEntry entry) {
         _selectedEntries.remove(entry);
+        updateDraggableStatus();
     }
 
     public void addSelectedEntry(VaultEntry entry) {
@@ -518,6 +567,7 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
         }
 
         _selectedEntries.add(entry);
+        updateDraggableStatus();
     }
 
     public void deselectAllEntries() {
@@ -531,6 +581,8 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
         }
 
         _selectedEntries.clear();
+
+        updateDraggableStatus();
     }
 
     public boolean isDragAndDropAllowed() {
