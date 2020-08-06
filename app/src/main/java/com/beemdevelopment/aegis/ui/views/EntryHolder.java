@@ -39,6 +39,7 @@ public class EntryHolder extends RecyclerView.ViewHolder {
     private VaultEntry _entry;
     private ImageView _buttonRefresh;
     private RelativeLayout _description;
+    private ImageView _dragHandle;
   
     private final ImageView _selected;
     private final Handler _selectedHandler;
@@ -69,6 +70,8 @@ public class EntryHolder extends RecyclerView.ViewHolder {
         _profileDrawable = view.findViewById(R.id.ivTextDrawable);
         _buttonRefresh = view.findViewById(R.id.buttonRefresh);
         _selected = view.findViewById(R.id.ivSelected);
+        _dragHandle = view.findViewById(R.id.drag_handle);
+
         _selectedHandler = new Handler();
         _animationHandler = new Handler();
 
@@ -156,6 +159,14 @@ public class EntryHolder extends RecyclerView.ViewHolder {
 
     public void setOnRefreshClickListener(View.OnClickListener listener) {
         _buttonRefresh.setOnClickListener(listener);
+    }
+
+    public void setShowDragHandle(boolean showDragHandle) {
+        if (showDragHandle) {
+            _dragHandle.setVisibility(View.VISIBLE);
+        } else {
+            _dragHandle.setVisibility(View.INVISIBLE);
+        }
     }
 
     public void setShowProgress(boolean showProgress) {

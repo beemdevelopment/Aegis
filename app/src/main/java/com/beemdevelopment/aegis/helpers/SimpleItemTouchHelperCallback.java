@@ -43,7 +43,7 @@ public class SimpleItemTouchHelperCallback extends ItemTouchHelper.Callback {
 
         int position = viewHolder.getAdapterPosition();
         EntryAdapter adapter = (EntryAdapter)recyclerView.getAdapter();
-        if (adapter.getEntryAt(position) != _selectedEntry)
+        if (adapter.getEntryAt(position) != _selectedEntry || !isLongPressDragEnabled())
         {
             dragFlags = 0;
         }
