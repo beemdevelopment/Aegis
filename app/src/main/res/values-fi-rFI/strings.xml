@@ -33,7 +33,6 @@
     <string name="pref_backups_trigger_title">Varmuuskopion käynnistys</string>
     <string name="pref_backups_trigger_summary">Käynnistä varmuuskopio manuaalisesti</string>
     <string name="pref_backups_versions_title">Säilytettävien versioiden määrä</string>
-    <string name="pref_backups_versions_summary">Säilytä %1$d versiota varmuuskopiosta</string>
     <string name="pref_import_app_title">Tuo sovelluksesta</string>
     <string name="pref_import_app_summary">Tuo todennustunnukset sovelluksesta (vaatii root-oikeuden)</string>
     <string name="pref_export_title">Vie</string>

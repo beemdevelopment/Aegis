@@ -35,7 +35,6 @@
     <string name="pref_backups_trigger_title">Ativar backup</string>
     <string name="pref_backups_trigger_summary">Ativa manualmente um backup</string>
     <string name="pref_backups_versions_title">Quantidade de versões a manter</string>
-    <string name="pref_backups_versions_summary">Mantém %1$d versões do backup</string>
     <string name="pref_import_app_title">Importar de um app</string>
     <string name="pref_import_app_summary">Importa tokens de um app (requere acesso root)</string>
     <string name="pref_export_title">Exportar</string>

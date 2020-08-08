@@ -174,7 +174,6 @@
         <Preference
             android:key="pref_backups_versions"
             android:title="@string/pref_backups_versions_title"
-            android:summary="@string/pref_backups_versions_summary"
             app:iconSpaceReserved="false"/>
     </PreferenceCategory>
 

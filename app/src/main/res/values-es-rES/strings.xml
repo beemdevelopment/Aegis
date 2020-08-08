@@ -33,7 +33,6 @@
     <string name="pref_backups_trigger_title">Lanzar una copia de seguridad</string>
     <string name="pref_backups_trigger_summary">Lanzar una copia de seguridad manualmente</string>
     <string name="pref_backups_versions_title">Número de versiones a conservar</string>
-    <string name="pref_backups_versions_summary">Mantener %1$d versiones de la copia de seguridad</string>
     <string name="pref_import_app_title">Importar desde una aplicación</string>
     <string name="pref_import_app_summary">Importar tokens desde una aplicación (requiere acceso root)</string>
     <string name="pref_export_title">Exportar</string>

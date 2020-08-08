@@ -33,7 +33,6 @@
     <string name="pref_backups_trigger_title">Trigger back-up</string>
     <string name="pref_backups_trigger_summary">Handmatig een back-up aanzetten</string>
     <string name="pref_backups_versions_title">Aantal versies om te behouden</string>
-    <string name="pref_backups_versions_summary">Behoud %1$d versies van de back-up</string>
     <string name="pref_import_app_title">Importeren vanuit een app</string>
     <string name="pref_import_app_summary">Importeer tokens vanuit een app (vereist root-access)</string>
     <string name="pref_export_title">Exporteren</string>

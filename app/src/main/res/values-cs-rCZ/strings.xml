@@ -33,7 +33,6 @@
     <string name="pref_backups_trigger_title">Spustit zálohování</string>
     <string name="pref_backups_trigger_summary">Ručně spustit zálohování</string>
     <string name="pref_backups_versions_title">Počet verzí k uchování</string>
-    <string name="pref_backups_versions_summary">Uchovat %1$d verzí záloh</string>
     <string name="pref_import_app_title">Importovat z aplikace</string>
     <string name="pref_import_app_summary">Importovat tokeny z aplikace (vyžaduje root přístup)</string>
     <string name="pref_export_title">Exportovat</string>

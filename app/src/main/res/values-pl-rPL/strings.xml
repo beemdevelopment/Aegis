@@ -33,7 +33,6 @@
     <string name="pref_backups_trigger_title">Uruchom kopie zapasowe</string>
     <string name="pref_backups_trigger_summary">Utwórz kopię zapasową ręcznie</string>
     <string name="pref_backups_versions_title">Liczba kopii do zachowania</string>
-    <string name="pref_backups_versions_summary">Zachowaj %1$d wersji kopii zapasowej</string>
     <string name="pref_import_app_title">Importuj z aplikacji</string>
     <string name="pref_import_app_summary">Importuj tokeny z innej aplikacji (wymagane jest konto root)</string>
     <string name="pref_export_title">Eksportuj</string>
