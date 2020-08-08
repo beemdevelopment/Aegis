@@ -34,7 +34,6 @@
     <string name="pref_backups_trigger_title">Yedeklemeyi tetikle</string>
     <string name="pref_backups_trigger_summary">Yedeklemeyi elle tetikle</string>
     <string name="pref_backups_versions_title">Saklanacak sürüm sayısı</string>
-    <string name="pref_backups_versions_summary">Yedeklerin %1$d versiyonunu tut</string>
     <string name="pref_import_app_title">Uygulamadan içeriye aktar</string>
     <string name="pref_import_app_summary">Başka bir uygulamanın veritabanını içeriye aktar (kök kullanıcı erişimi gerektirir)</string>
     <string name="pref_export_title">Dışarıya aktar</string>

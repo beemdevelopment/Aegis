@@ -34,7 +34,6 @@
     <string name="pref_backups_trigger_title">Biztonsági mentés készítése</string>
     <string name="pref_backups_trigger_summary">Biztonsági mentés kézi indítása</string>
     <string name="pref_backups_versions_title">Megtartandó verziók száma</string>
-    <string name="pref_backups_versions_summary">Biztonsági mentés megtartása %1$d verzióról</string>
     <string name="pref_import_app_title">Importálás alkalmazásból</string>
     <string name="pref_import_app_summary">Tokenek importálása alkalmazásból (root hozzáférés szükséges)</string>
     <string name="pref_export_title">Exportálás</string>

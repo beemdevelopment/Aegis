@@ -36,7 +36,6 @@
     <string name="pref_backups_trigger_title">触发备份</string>
     <string name="pref_backups_trigger_summary">手动触发备份</string>
     <string name="pref_backups_versions_title">保留备份文件版本数量</string>
-    <string name="pref_backups_versions_summary">保留备份 %1$d 版本</string>
     <string name="pref_import_app_title">从应用导入</string>
     <string name="pref_import_app_summary">从其他应用导入令牌（需要 root 权限）</string>
     <string name="pref_export_title">导出</string>

@@ -40,7 +40,10 @@
     <string name="pref_backups_trigger_title">Trigger backup</string>
     <string name="pref_backups_trigger_summary">Manually trigger a backup</string>
     <string name="pref_backups_versions_title">Amount of versions to keep</string>
-    <string name="pref_backups_versions_summary">Keep %1$d versions of the backup</string>
+    <plurals name="pref_backups_versions_summary">
+        <item quantity="one">Keep %1$d version of the backup</item>
+        <item quantity="other">Keep %1$d versions of the backup</item>
+    </plurals>
     <string name="pref_import_app_title">Import from app</string>
     <string name="pref_import_app_summary">Import tokens from an app (requires root access)</string>
     <string name="pref_export_title">Export</string>

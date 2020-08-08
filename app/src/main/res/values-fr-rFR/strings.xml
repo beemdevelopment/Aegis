@@ -33,7 +33,6 @@
     <string name="pref_backups_trigger_title">Déclencher la sauvegarde</string>
     <string name="pref_backups_trigger_summary">Déclencher manuellement une sauvegarde</string>
     <string name="pref_backups_versions_title">Nombre de versions à conserver</string>
-    <string name="pref_backups_versions_summary">Garder %1$d versions de la sauvegarde</string>
     <string name="pref_import_app_title">Importer depuis une application</string>
     <string name="pref_import_app_summary">Importer des jetons depuis une application (nécessite un accès root)</string>
     <string name="pref_export_title">Exporter</string>

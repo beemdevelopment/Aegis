@@ -30,7 +30,6 @@
     <string name="pref_backups_trigger_title">Sicherung auslösen</string>
     <string name="pref_backups_trigger_summary">Manuell eine Sicherung auslösen</string>
     <string name="pref_backups_versions_title">Anzahl der zu behaltenden Versionen</string>
-    <string name="pref_backups_versions_summary">Behalte %1$d Versionen der Sicherung</string>
     <string name="pref_import_app_title">Aus App importieren</string>
     <string name="pref_export_title">Exportieren</string>
     <string name="pref_export_summary">Datenbank exportieren</string>

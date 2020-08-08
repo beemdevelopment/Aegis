@@ -36,7 +36,6 @@
     <string name="pref_backups_trigger_title">اصنع نسخة احتياطية</string>
     <string name="pref_backups_trigger_summary">قم بعمل نسخة احتياطية يدويًّا</string>
     <string name="pref_backups_versions_title">عدد النسخ التي يتم الاحتفاظ بها</string>
-    <string name="pref_backups_versions_summary">احتفظ بـ %1$d نسخ احتياطية</string>
     <string name="pref_import_app_title">استيراد من تطبيق</string>
     <string name="pref_import_app_summary">استيراد الرموز من تطبيق (يتطلب الوصول إلى الجذر root)</string>
     <string name="pref_export_title">تصدير</string>

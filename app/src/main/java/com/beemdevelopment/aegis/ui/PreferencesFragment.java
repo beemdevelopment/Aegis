@@ -447,12 +447,12 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
         });
 
         _backupsVersionsPreference = findPreference("pref_backups_versions");
-        _backupsVersionsPreference.setSummary(String.format(getString(R.string.pref_backups_versions_summary), _prefs.getBackupsVersionCount()));
+        _backupsVersionsPreference.setSummary(getResources().getQuantityString(R.plurals.pref_backups_versions_summary, _prefs.getBackupsVersionCount(), _prefs.getBackupsVersionCount()));
         _backupsVersionsPreference.setOnPreferenceClickListener(preference -> {
             Dialogs.showBackupVersionsPickerDialog(getActivity(), number -> {
                 number = number * 5 + 5;
                 _prefs.setBackupsVersionCount(number);
-                _backupsVersionsPreference.setSummary(String.format(getString(R.string.pref_backups_versions_summary), number));
+                _backupsVersionsPreference.setSummary(getResources().getQuantityString(R.plurals.pref_backups_versions_summary, _prefs.getBackupsVersionCount(), _prefs.getBackupsVersionCount()));
             });
             return false;
         });
