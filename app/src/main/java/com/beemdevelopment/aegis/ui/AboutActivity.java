@@ -19,7 +19,8 @@ import com.beemdevelopment.aegis.BuildConfig;
 import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.Theme;
 import com.beemdevelopment.aegis.helpers.ThemeHelper;
-import com.beemdevelopment.aegis.ui.glide.GlideLicense;
+import com.beemdevelopment.aegis.licenses.GlideLicense;
+import com.beemdevelopment.aegis.licenses.ProtobufLicense;
 import com.mikepenz.iconics.context.IconicsLayoutInflater2;
 
 import de.psdev.licensesdialog.LicenseResolver;
@@ -125,6 +126,8 @@ public class AboutActivity extends AegisActivity {
         stylesheet = String.format(stylesheet, backgroundColor, textColor, licenseColor, linkColor);
 
         LicenseResolver.registerLicense(new GlideLicense());
+        LicenseResolver.registerLicense(new ProtobufLicense());
+
         new LicensesDialog.Builder(this)
                 .setNotices(R.raw.notices)
                 .setTitle(R.string.licenses)

@@ -1,39 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <notices>
     <notice>
-        <name>TextDrawable</name>
-        <url>https://github.com/amulyakhare/TextDrawable</url>
-        <copyright>Copyright (C) 2014 Amulya Khare</copyright>
-        <license>MIT License</license>
-    </notice>
-    <notice>
-        <name>Preferencex</name>
-        <url>https://github.com/takisoft/preferencex-android</url>
-        <copyright />
+        <name>Android Jetpack Libraries</name>
+        <url>https://developer.android.com/jetpack/androidx</url>
+        <copyright>Copyright (C) 2020 The Android Open Source Project</copyright>
         <license>Apache Software License 2.0</license>
-    </notice>
-    <notice>
-        <name>FloatingActionButton</name>
-        <url>https://github.com/futuresimple/android-floating-action-button</url>
-        <copyright>Copyright 2014 Jerzy Chalupski</copyright>
-        <license>Apache Software License 2.0</license>
-    </notice>
-    <notice>
-        <name>AppIntro</name>
-        <url>https://github.com/AppIntro/AppIntro</url>
-        <copyright/>
-        <license>Apache Software License 2.0</license>
-    </notice>
-    <notice>
-        <name>Krop</name>
-        <url>https://github.com/avito-tech/krop</url>
-        <copyright>Copyright (c) 2017 Avito Technology</copyright>
-        <license>MIT License</license>
     </notice>
     <notice>
         <name>Bouncy Castle</name>
         <url>https://www.bouncycastle.org/</url>
-        <copyright>Copyright (c) 2000-2019 The Legion of the Bouncy Castle Inc. (http://www.bouncycastle.org)</copyright>
+        <copyright>Copyright (c) 2000-2020 The Legion of the Bouncy Castle Inc. (http://www.bouncycastle.org)</copyright>
         <license>MIT License</license>
     </notice>
     <notice>
@@ -43,14 +19,14 @@
         <license>Apache Software License 2.0</license>
     </notice>
     <notice>
-        <name>Barcodescanner</name>
-        <url>https://github.com/dm77/barcodescanner</url>
-        <copyright>Copyright (c) 2014 Dushyanth Maguluru</copyright>
+        <name>FloatingActionButton</name>
+        <url>https://github.com/futuresimple/android-floating-action-button</url>
+        <copyright>Copyright 2014 Jerzy Chalupski</copyright>
         <license>Apache Software License 2.0</license>
     </notice>
     <notice>
-        <name>libsu</name>
-        <url>https://github.com/topjohnwu/libsu</url>
+        <name>Guava</name>
+        <url>https://github.com/google/guava</url>
         <license>Apache Software License 2.0</license>
     </notice>
     <notice>
@@ -65,14 +41,51 @@
         <license>Apache Software License 2.0</license>
     </notice>
     <notice>
-        <name>Android Support Libraries</name>
-        <url>http://developer.android.com/tools/support-library/index.html</url>
-        <copyright>Copyright (C) 2016 The Android Open Source Project</copyright>
+        <name>Krop</name>
+        <url>https://github.com/avito-tech/krop</url>
+        <copyright>Copyright (c) 2017 Avito Technology</copyright>
+        <license>MIT License</license>
+    </notice>
+    <notice>
+        <name>libsu</name>
+        <url>https://github.com/topjohnwu/libsu</url>
         <license>Apache Software License 2.0</license>
     </notice>
     <notice>
-        <name>SQLCipher for Android</name>
-        <url>https://github.com/sqlcipher/android-database-sqlcipher</url>
+        <name>LicensesDialog</name>
+        <url>https://github.com/PSDev/LicensesDialog</url>
+        <license>Apache Software License 2.0</license>
+    </notice>
+    <notice>
+        <name>Material Components for Android</name>
+        <url>https://github.com/material-components/material-components-android</url>
+        <license>Apache Software License 2.0</license>
+    </notice>
+    <notice>
+        <name>Protocol Buffers</name>
+        <url>https://github.com/protocolbuffers/protobuf/tree/master/java</url>
+        <license>Protocol Buffers License</license>
+    </notice>
+    <notice>
+        <name>TextDrawable</name>
+        <url>https://github.com/amulyakhare/TextDrawable</url>
+        <copyright>Copyright (C) 2014 Amulya Khare</copyright>
+        <license>MIT License</license>
+    </notice>
+    <notice>
+        <name>Zip4j</name>
+        <url>https://github.com/srikanth-lingala/zip4j</url>
+        <license>Apache Software License 2.0</license>
+    </notice>
+    <notice>
+        <name>zxcvbn4j</name>
+        <url>https://github.com/nulab/zxcvbn4j</url>
+        <copyright>Copyright (c) 2014 Nulab Inc</copyright>
+        <license>MIT License</license>
+    </notice>
+    <notice>
+        <name>ZXing Buffers</name>
+        <url>https://github.com/zxing/zxing</url>
         <license>Apache Software License 2.0</license>
     </notice>
 </notices>
