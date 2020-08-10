@@ -33,6 +33,12 @@
     <string name="pref_backups_trigger_title">Запуск рез. копирования</string>
     <string name="pref_backups_trigger_summary">Ручной запуск рез. копирования</string>
     <string name="pref_backups_versions_title">Количество хранимых версий</string>
+    <plurals name="pref_backups_versions_summary">
+        <item quantity="one">Оставить %1$d версию резервной копии</item>
+        <item quantity="few">Хранить %1$d версий рез. копии</item>
+        <item quantity="many">Хранить %1$d версий рез. копии</item>
+        <item quantity="other">Хранить %1$d версий рез. копии</item>
+    </plurals>
     <string name="pref_import_app_title">Импорт из приложения</string>
     <string name="pref_import_app_summary">Импорт базы данных из другого приложения (требуются права суперпользователя)</string>
     <string name="pref_export_title">Экспорт в файл</string>

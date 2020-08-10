@@ -4,6 +4,7 @@
     <string name="action_about">Acerca de</string>
     <string name="action_import">Importar</string>
     <string name="action_delete">Eliminar</string>
+    <string name="action_edit_icon">Editar icono</string>
     <string name="action_default_icon">Restaurar icono predeterminado</string>
     <string name="discard">Descartar</string>
     <string name="save">Guardar</string>
@@ -63,12 +64,15 @@
     <string name="authentication_method_biometrics_description">Además de una contraseña, la biometría registrada en este dispositivo, como una huella digital o su cara, pueden ser usados para desbloquear la caja fuerte.</string>
     <string name="authentication_method_set_password">Contraseña</string>
     <string name="authentication_enter_password">Introduzca su contraseña</string>
+    <string name="authentication">Desbloquear la caja fuerte</string>
     <!-- The newline (\n) on the following line is just for aesthetic purposes !-->
+    <string name="authentication_multiline">Desbloquear\nla caja fuerte</string>
     <string name="auth_use_biometrics">O pulse aquí para utilizar la <font fgcolor="#FF0D86C1">biometría</font></string>
     <string name="set_password">Por favor introduzca una contraseña</string>
     <string name="set_group">Por favor introduzca un nombre de grupo</string>
     <string name="set_number">Por favor introduzca un número</string>
     <string name="set_password_confirm">Por favor confirme la contraseña</string>
+    <string name="invalid_password">La contraseña es incorrecta</string>
     <string name="invalidated_biometrics">Se ha detectado un cambio en la configuración de seguridad de su dispositivo. Por favor, vaya a \"Aegis -&gt; Configuración -&gt; Seguridad\" y vuelva a activar el desbloqueo biométrico.</string>
     <string name="enter_password_authy_message">Parece que sus tokens de Authy están cifrados. Por favor, cierre Aegis, abra Authy y desbloquee los tokens con su contraseña. En su lugar, Aegis también puede intentar descifrar sus tokens de Authy por usted, si introduce su contraseña a continuación.</string>
     <string name="yes">Si</string>
@@ -194,6 +198,7 @@
     <string name="unknown_account_name">Nombre de cuenta desconocido</string>
     <string name="unable_to_read_qrcode">No se puede leer y procesar el código QR</string>
     <string name="select_picture">Seleccionar imagen</string>
+    <string name="select_icon">Seleccionar icono</string>
     <string name="toggle_checkboxes">Activar casillas de verificación</string>
     <string name="search">Buscar</string>
     <string name="channel_name_lock_status">Estado de bloqueo</string>
@@ -218,7 +223,21 @@
     <string name="time_sync_warning_disable">Deja de advertirme. Sé lo que estoy haciendo.</string>
     <string name="google_qr_export_unrelated">Encontrado código QR no relacionado. Intente reiniciar el escáner.</string>
     <string name="google_qr_export_unexpected">Se esperaba un código QR #%d, pero en su lugar se escaneó #%d</string>
+    <string name="switch_camera">Cambiar cámara</string>
     <string name="empty_list">No hay códigos que mostrar. Comience añadiendo entradas pulsando el signo + en la esquina inferior derecha</string>
     <string name="empty_list_title">No hay entradas</string>
+    <string name="done">Hecho</string>
+    <string name="next">Siguiente</string>
+    <string name="previous">Anterior</string>
+    <string name="password_strength_very_weak">Muy débil</string>
+    <string name="password_strength_weak">Débil</string>
+    <string name="password_strength_fair">Aceptable</string>
+    <string name="password_strength_good">Buena</string>
+    <string name="password_strength_strong">Fuerte</string>
+    <string name="title_activity_preferences">Configuración</string>
+    <string name="title_activity_manage_groups">Gestionar grupos</string>
     <string name="title_activity_about">Acerca de</string>
+    <string name="title_activity_edit_entry">Editar entrada</string>
+    <string name="title_activity_scan_qr">Escanear un código QR</string>
+    <string name="title_activity_select_entries">Seleccionar entradas</string>
 </resources>

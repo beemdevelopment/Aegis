@@ -2,8 +2,10 @@
 <resources>
     <string name="action_settings">Impostazioni</string>
     <string name="action_about">Informazioni su</string>
-    <string name="action_import">Importare</string>
+    <string name="action_import">Importa</string>
     <string name="action_delete">Elimina</string>
+    <string name="action_transfer">Trasferisci</string>
+    <string name="action_edit_icon">Modifica icona</string>
     <string name="action_default_icon">Ripristina icona predefinita</string>
     <string name="discard">Annulla</string>
     <string name="save">Salva</string>
@@ -28,15 +30,21 @@
     <string name="pref_import_file_title">Importa da file</string>
     <string name="pref_import_file_summary">Importa token da file</string>
     <string name="pref_backups_title">Backup della cassaforte</string>
+    <string name="pref_backups_summary">Crea automaticamente backup della cassaforte su memoria esterna quando ci sono nuove modifiche. Questo è supportato solo per cassaforti cifrate.</string>
     <string name="pref_backups_location_title">Cartella per i file di backup</string>
     <string name="pref_backups_location_summary">I backup saranno salvati in</string>
     <string name="pref_backups_trigger_title">Esegui backup</string>
     <string name="pref_backups_trigger_summary">Esegui backup manualmente</string>
     <string name="pref_backups_versions_title">Quantità di versioni da mantenere</string>
+    <plurals name="pref_backups_versions_summary">
+        <item quantity="one">Mantieni %1$d versione del backup</item>
+        <item quantity="other">Mantieni %1$d versioni del backup</item>
+    </plurals>
     <string name="pref_import_app_title">Importa da un\'app</string>
     <string name="pref_import_app_summary">Importa token da app (richiede accesso root)</string>
     <string name="pref_export_title">Esporta</string>
     <string name="pref_export_summary">Esporta la cassaforte</string>
+    <string name="pref_export_keep_encrypted">Mantieni la cassaforte crittografata</string>
     <string name="pref_password_reminder_title">Promemoria password</string>
     <string name="pref_password_reminder_summary">Mostra un promemoria per inserire la password una volta ogni tanto, in modo da non dimenticarla.</string>
     <string name="pref_secure_screen_title">Sicurezza schermo</string>
@@ -63,13 +71,17 @@
     <string name="authentication_method_biometrics_description">Oltre a una password, i dati biometrici registrati su questo dispositivo, come un\'impronta digitale o il tuo volto, possono essere utilizzati per sbloccare la cassaforte.</string>
     <string name="authentication_method_set_password">Password</string>
     <string name="authentication_enter_password">Inserisci la tua password</string>
+    <string name="authentication">Sblocca la cassaforte</string>
     <!-- The newline (\n) on the following line is just for aesthetic purposes !-->
+    <string name="authentication_multiline">Sblocca\nla cassaforte</string>
     <string name="auth_use_biometrics">Oppure tocca qui per usare <font fgcolor="#FF0D86C1">dati biometrici</font></string>
     <string name="set_password">Inserisci una password</string>
     <string name="set_group">Inserisci il nome di un gruppo</string>
     <string name="set_number">Inserisci un numero</string>
     <string name="set_password_confirm">Conferma la tua password</string>
+    <string name="invalid_password">La password è errata</string>
     <string name="invalidated_biometrics">È stata rilevata una modifica delle impostazioni di sicurezza del dispositivo. Vai a \"Aegis -&gt; Impostazioni -&gt; Sicurezza\" e riattiva lo sblocco biometrico.</string>
+    <string name="password_reminder">Inserisci la tua password. A volte ti chiediamo di farlo in modo da non dimenticarla.</string>
     <string name="enter_password_authy_message">Sembra che i tuoi token di \"Authy\" siano crittografati. ChiudereAegis, aprire \"Authy\" e sbloccare i token con la password. Alternativamente Aegis può anche tentare di decifrare i tuoi token \"Authy\", inserisci la password qui sotto.</string>
     <string name="yes">Si</string>
     <string name="no">No</string>
@@ -104,6 +116,10 @@
     <string name="delete_entry">Elimina elemento</string>
     <string name="delete_entry_description">Sei sicuro di voler eliminare questa voce?</string>
     <string name="delete_entries">Elimina elemento</string>
+    <plurals name="delete_entries_description">
+        <item quantity="one">Sei sicuro di voler eliminare %d elemento?</item>
+        <item quantity="other">Sei sicuro di voler eliminare %d elementi?</item>
+    </plurals>
     <string name="discard_changes">Annullare le modifiche?</string>
     <string name="discard_changes_description">Le modifiche non sono state salvate</string>
     <string name="folder">Cartella</string>
@@ -112,6 +128,7 @@
     <string name="welcome">Benvenuto</string>
     <string name="app_description">Aegis è un\'app 2FA gratuita, sicura e open source</string>
     <string name="setup_completed">Configurazione completata</string>
+    <string name="setup_completed_description">Aegis è stata configurata, sei pronto a partire.</string>
     <string name="vault_not_found">Cassaforte non trovata, avvio configurazione…</string>
     <string name="copied">Copiato</string>
     <string name="errors_copied">Codice errore copiato negli appunti</string>
@@ -142,6 +159,10 @@
     <string name="reading_file_error">Errore di lettura del file</string>
     <string name="app_lookup_error">Errore: App non installata</string>
     <string name="root_error">Errore: impossibile ottenere permessi root</string>
+    <plurals name="imported_entries_count">
+        <item quantity="one">Importato %d elemento</item>
+        <item quantity="other">Importati %d elementi</item>
+    </plurals>
     <string name="import_error_title">Errori durante l\'importazione</string>
     <string name="exporting_vault_error">Si è verificato un errore durante il tentativo di esportare la cassaforte</string>
     <string name="exported_vault">La cassaforte è stata esportata</string>
@@ -154,6 +175,7 @@
     <string name="unlocking_vault">Sblocco della cassaforte</string>
     <string name="unlocking_vault_repair">Sblocco della cassaforte (riparazione)</string>
     <string name="password_slot_error">Devi avere almeno uno slot password</string>
+    <string name="slot_this_device">(questo dispositivo)</string>
     <string name="remove_slot">Rimuovi slot</string>
     <string name="remove_slot_description">Sei sicuro di voler rimuovere questo slot?</string>
     <string name="remove_group">Rimuovi gruppo</string>
@@ -181,6 +203,11 @@
     <string name="pref_search_name_summary">Includi il nome dell\'account nei risultati di ricerca</string>
     <string name="pref_highlight_entry_title">Evidenzia i token quando premuti</string>
     <string name="pref_highlight_entry_summary">Rendi i token più facili da distinguere, evidenziandoli temporaneamente quando vengono toccati</string>
+    <string name="pref_copy_on_tap_title">Copia i token con un tocco</string>
+    <string name="pref_copy_on_tap_summary">Copia i token negli appunti toccandoli</string>
+    <string name="pin_keyboard_description">Inserisci la password per abilitare la tastiera PIN. Funziona solo se la password è composta di soli numeri</string>
+    <string name="pin_keyboard_error">Errore nell\'abilitare la tastiera PIN</string>
+    <string name="pin_keyboard_error_description">Non è possibile impostare la tastiera PIN. La password dev\'essere composta solo da numeri.</string>
     <string name="selected">Selezionato</string>
     <string name="dark_theme_title">Tema scuro</string>
     <string name="light_theme_title">Tema chiaro</string>
@@ -192,8 +219,14 @@
     <string name="small_mode_title">Piccolo</string>
     <string name="unknown_issuer">Login sconosciuto</string>
     <string name="unknown_account_name">Nome account sconosciuto</string>
+    <plurals name="import_error_dialog">
+        <item quantity="one">Aegis non può importare %d token. Questi token verranno saltati. Premi \'dettagli\' per vedere ulteriori informazioni sugli errori.</item>
+        <item quantity="other">Aegis non può importare %d token. Questi token verranno saltati. Premi \'dettagli\' per vedere ulteriori informazioni sugli errori.</item>
+    </plurals>
     <string name="unable_to_read_qrcode">Impossibile verificare il codice QR</string>
+    <string name="unable_to_generate_qrcode">Impossibile generare il codice QR</string>
     <string name="select_picture">Seleziona immagine</string>
+    <string name="select_icon">Seleziona icona</string>
     <string name="toggle_checkboxes">Spunta</string>
     <string name="search">Cerca</string>
     <string name="channel_name_lock_status">Stato blocco</string>
@@ -217,8 +250,37 @@
     <string name="time_sync_warning_message">Aegis si basa sul tempo di sistema per essere sincronizzati per generare codici corretti. Una deviazione di pochi secondi potrebbe portare a codici errati. Sembra che il tuo dispositivo non sia configurato per sincronizzare automaticamente l\'ora. Vuoi farlo ora?</string>
     <string name="time_sync_warning_disable">Smettetela di avvertirmi. So cosa sto facendo.</string>
     <string name="google_qr_export_unrelated">Trovato codice QR non correlato. Prova a riavviare lo scanner.</string>
+    <plurals name="google_qr_export_scanned">
+        <item quantity="one">Scansionato %d/%d codici QR</item>
+        <item quantity="other">Scansionati %d/%d codici QR</item>
+    </plurals>
     <string name="google_qr_export_unexpected">Previsto codice QR #%d, ma scansionato #%d invece</string>
+    <string name="backup_error_bar_message"><b>Backup della cassaforte fallito recentemente</b></string>
+    <string name="switch_camera">Cambia fotocamera</string>
     <string name="empty_list">Non ci sono codici. Aggiungine uno premendo il \'+\' in basso a destra</string>
     <string name="empty_list_title">Nessun elemento trovato</string>
+    <string name="done">Fine</string>
+    <plurals name="entries_count">
+        <item quantity="one">%d / %d voce</item>
+        <item quantity="other">%d / %d voci</item>
+    </plurals>
+    <string name="next">Avanti</string>
+    <string name="previous">Indietro</string>
+    <string name="transfer_entry">Trasferisci voce</string>
+    <string name="transfer_entry_description">Scansiona questo codice QR con l\'app di autenticazione a cui vuoi trasferire questa voce</string>
+    <string name="password_strength_very_weak">Molto debole</string>
+    <string name="password_strength_weak">Debole</string>
+    <string name="password_strength_fair">Sufficiente</string>
+    <string name="password_strength_good">Buona</string>
+    <string name="password_strength_strong">Forte</string>
+    <string name="pref_pin_keyboard_title">Usa la tastiera PIN nella schermata di blocco</string>
+    <string name="pref_pin_keyboard_summary">Abilita questa opzione se vuoi abilitare la tastiera PIN nella schermata di blocco. Funziona solo per le password numeriche</string>
+    <string name="title_activity_preferences">Impostazioni</string>
+    <string name="title_activity_manage_groups">Gestisci gruppi</string>
+    <string name="title_activity_transfer">Trasferisci voci</string>
     <string name="title_activity_about">Informazioni su</string>
+    <string name="title_activity_edit_entry">Modifica voce</string>
+    <string name="title_activity_scan_qr">Scansiona un codice QR</string>
+    <string name="title_activity_manage_slots">Gestisci slot di chiavi</string>
+    <string name="title_activity_select_entries">Seleziona voci</string>
 </resources>

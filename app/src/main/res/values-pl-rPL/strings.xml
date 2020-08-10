@@ -4,7 +4,9 @@
     <string name="action_about">O aplikacji</string>
     <string name="action_import">Importuj</string>
     <string name="action_delete">Usuń</string>
-    <string name="action_default_icon">Przywróć domyślne ikony</string>
+    <string name="action_transfer">Przenieś</string>
+    <string name="action_edit_icon">Edytuj ikonę</string>
+    <string name="action_default_icon">Przywróć domyślną ikonę</string>
     <string name="discard">Odrzuć</string>
     <string name="save">Zapisz</string>
     <string name="issuer">Wydawca</string>
@@ -28,15 +30,23 @@
     <string name="pref_import_file_title">Importuj z pliku</string>
     <string name="pref_import_file_summary">Importuj tokeny z aplikacji</string>
     <string name="pref_backups_title">Utwórz kopię zapasową sejfu</string>
+    <string name="pref_backups_summary">Automatycznie utwórz kopie zapasowe sejfu w pamięci zewnętrznej. Funkcja ta wspiera tylko zaszyfrowane sejfy.</string>
     <string name="pref_backups_location_title">Folder plików kopii zapasowej</string>
     <string name="pref_backups_location_summary">Kopia zapasowa będzie przechowywana w</string>
     <string name="pref_backups_trigger_title">Uruchom kopie zapasowe</string>
     <string name="pref_backups_trigger_summary">Utwórz kopię zapasową ręcznie</string>
     <string name="pref_backups_versions_title">Liczba kopii do zachowania</string>
+    <plurals name="pref_backups_versions_summary">
+        <item quantity="one">Zachowaj %1$d wersję kopii zapasowej</item>
+        <item quantity="few">Zachowaj %1$d wersje kopii zapasowej</item>
+        <item quantity="many">Zachowaj %1$d wersji kopii zapasowej</item>
+        <item quantity="other">Zachowaj %1$d wersji kopii zapasowej</item>
+    </plurals>
     <string name="pref_import_app_title">Importuj z aplikacji</string>
     <string name="pref_import_app_summary">Importuj tokeny z innej aplikacji (wymagane jest konto root)</string>
     <string name="pref_export_title">Eksportuj</string>
     <string name="pref_export_summary">Eksportuj sejf</string>
+    <string name="pref_export_keep_encrypted">Zachowaj sejf zaszyfrowany</string>
     <string name="pref_password_reminder_title">Przypomnienie hasła</string>
     <string name="pref_password_reminder_summary">Co pewien czas pokazuj przypomnienie, aby wpisać hasło. Dzięki temu go nie zapomnisz.</string>
     <string name="pref_secure_screen_title">Zabezpieczenie ekranu</string>
@@ -45,7 +55,7 @@
     <string name="pref_tap_to_reveal_summary">Tokeny zostaną domyślnie ukryte. Kliknij na token, aby pokazać kod.</string>
     <string name="pref_tap_to_reveal_time_title">Limit czasu dla odkrycia</string>
     <string name="pref_auto_lock_title">Automatyczna blokada</string>
-    <string name="pref_auto_lock_summary">Zablokuj aplikację po jej zamknięciu lub zablokowaniu urządzenia.</string>
+    <string name="pref_auto_lock_summary">Automatycznie zablokuj aplikację po jej zamknięciu lub zablokowaniu urządzenia.</string>
     <string name="pref_encryption_title">Szyfrowanie</string>
     <string name="pref_encryption_summary">Zaszyfruj sejf i odblokuj go za pomocą hasła lub autoryzacji biometrycznej</string>
     <string name="pref_biometrics_title">Autoryzacja biometryczna</string>
@@ -63,13 +73,17 @@
     <string name="authentication_method_biometrics_description">Oprócz hasła, do odblokowania sejfu możesz użyć danych biometrycznej przechowywanych na tym urządzeniu, takich jak odcisk palca lub twarz.</string>
     <string name="authentication_method_set_password">Hasło</string>
     <string name="authentication_enter_password">Wpisz hasło</string>
+    <string name="authentication">Odblokuj sejf</string>
     <!-- The newline (\n) on the following line is just for aesthetic purposes !-->
+    <string name="authentication_multiline">Odblokuj\nsejf</string>
     <string name="auth_use_biometrics">Lub kliknij tutaj, aby użyć <font fgcolor="#FF0D86C1">danych biometrycznych</font></string>
     <string name="set_password">Wpisz hasło</string>
     <string name="set_group">Wpisz nazwę grupy</string>
     <string name="set_number">Wpisz numer</string>
     <string name="set_password_confirm">Potwierdź hasło</string>
+    <string name="invalid_password">Hasło jest nieprawidłowe</string>
     <string name="invalidated_biometrics">Ustawienia zabezpieczeń urządzenia zostały zmienione. Przejdź do \"Aegis -&gt; Ustawienia -&gt; Autoryzacja biometryczna\" i włącz ponownie tę funkcję.</string>
+    <string name="password_reminder">Wpisz hasło. Co pewien czas zostaniesz o nie zapytany, aby nie zapomnieć hasła.</string>
     <string name="enter_password_authy_message">Wygląda na to, że Twoje tokeny Authy są zaszyfrowane. Zamknij aplikację Aegis, otwórz Authy i odblokuj tokeny za pomocą hasła. Możesz również wpisać poniżej te hasło i aplikacja Aegis spróbuje odszyfrować tokeny Authy.</string>
     <string name="yes">Tak</string>
     <string name="no">Nie</string>
@@ -104,6 +118,12 @@
     <string name="delete_entry">Usuń wpis</string>
     <string name="delete_entry_description">Czy na pewno chcesz usunąć ten wpis?</string>
     <string name="delete_entries">Usuń wpisy</string>
+    <plurals name="delete_entries_description">
+        <item quantity="one">Czy na pewno chcesz usunąć %d wpis?</item>
+        <item quantity="few">Czy na pewno chcesz usunąć %d wpisy?</item>
+        <item quantity="many">Czy na pewno chcesz usunąć %d wpisów?</item>
+        <item quantity="other">Czy na pewno chcesz usunąć %d wpisów?</item>
+    </plurals>
     <string name="discard_changes">Czy chcesz odrzucić zmiany?</string>
     <string name="discard_changes_description">Zmiany nie zostały zapisane</string>
     <string name="folder">Folder</string>
@@ -112,6 +132,7 @@
     <string name="welcome">Witaj</string>
     <string name="app_description">Aegis jest darmową, bezpieczną i otwartoźródłową aplikacją uwierzytelniającą</string>
     <string name="setup_completed">Konfiguracja została zakończona</string>
+    <string name="setup_completed_description">Aplikacja Aegis została skonfigurowana i jest gotowa do użycia.</string>
     <string name="vault_not_found">Sejf nie został znaleziony. Rozpoczynam konfigurację…</string>
     <string name="copied">Skopiowano</string>
     <string name="errors_copied">Błędy zostały skopiowane do schowka</string>
@@ -142,6 +163,12 @@
     <string name="reading_file_error">Wystąpił błąd podczas odczytywania pliku</string>
     <string name="app_lookup_error">Błąd: Aplikacja nie jest zainstalowana</string>
     <string name="root_error">Błąd: Nie można uzyskać dostępu do konta root</string>
+    <plurals name="imported_entries_count">
+        <item quantity="one">%d wpis został zaimportowany</item>
+        <item quantity="few">%d wpisy zostały zaimportowane</item>
+        <item quantity="many">%d wpisów zostało zaimportowanych</item>
+        <item quantity="other">%d wpisów zostało zaimportowanych</item>
+    </plurals>
     <string name="import_error_title">Wystąpił co najmniej jeden błąd podczas importowania</string>
     <string name="exporting_vault_error">Wystąpił błąd podczas eksportowania sejfu</string>
     <string name="exported_vault">Sejf został wyeksportowany</string>
@@ -154,6 +181,7 @@
     <string name="unlocking_vault">Odblokowywanie sejfu</string>
     <string name="unlocking_vault_repair">Odblokowywanie sejfu (naprawa)</string>
     <string name="password_slot_error">Musisz posiadać co najmniej jeden slot hasła</string>
+    <string name="slot_this_device">(to urządzenie)</string>
     <string name="remove_slot">Usuń slot</string>
     <string name="remove_slot_description">Czy na pewno chcesz usunąć ten slot?</string>
     <string name="remove_group">Usuń grupę</string>
@@ -181,6 +209,11 @@
     <string name="pref_search_name_summary">Uwzględnij nazwę konta w wynikach wyszukiwania</string>
     <string name="pref_highlight_entry_title">Podświetl tokeny podczas kliknięcia</string>
     <string name="pref_highlight_entry_summary">Wyróżnij tokeny od siebie poprzez tymczasowe podświetlenie po ich kliknięciu</string>
+    <string name="pref_copy_on_tap_title">Kopiuj tokeny podczas kliknięcia</string>
+    <string name="pref_copy_on_tap_summary">Kopiuj tokeny do schowka podczas kliknięcia</string>
+    <string name="pin_keyboard_description">Wpisz hasło, aby włączyć klawiaturę numeryczną. Pamiętaj, że ta klawiatura działa tylko dla hasła numerycznego</string>
+    <string name="pin_keyboard_error">Wystąpił błąd podczas włączania klawiatury numerycznej</string>
+    <string name="pin_keyboard_error_description">Ustawienie klawiatury numerycznej jest niemożliwe. Hasło musi zawierać tylko cyfry.</string>
     <string name="selected">Wybrany</string>
     <string name="dark_theme_title">Motyw ciemny</string>
     <string name="light_theme_title">Motyw jasny</string>
@@ -192,8 +225,16 @@
     <string name="small_mode_title">Mały</string>
     <string name="unknown_issuer">Nieznany wydawca</string>
     <string name="unknown_account_name">Nieznana nazwa konta</string>
+    <plurals name="import_error_dialog">
+        <item quantity="one">Aplikacja Aegis nie może zaimportować %d tokenu. Te tokeny zostaną pominięte. Kliknij \'Szczegóły\', aby zobaczyć więcej informacji o błędach.</item>
+        <item quantity="few">Aplikacja Aegis nie może zaimportować %d tokenów. Te tokeny zostaną pominięte. Kliknij \'Szczegóły\', aby zobaczyć więcej informacji o błędach.</item>
+        <item quantity="many">Aplikacja Aegis nie może zaimportować %d tokenów. Te tokeny zostaną pominięte. Kliknij \'Szczegóły\', aby zobaczyć więcej informacji o błędach.</item>
+        <item quantity="other">Aplikacja Aegis nie może zaimportować %d tokenów. Te tokeny zostaną pominięte. Kliknij \'Szczegóły\', aby zobaczyć więcej informacji o błędach.</item>
+    </plurals>
     <string name="unable_to_read_qrcode">Nie można odczytać i przetworzyć kodu QR</string>
+    <string name="unable_to_generate_qrcode">Nie udało się wygenerować kodu QR</string>
     <string name="select_picture">Wybierz obraz</string>
+    <string name="select_icon">Wybierz ikonę</string>
     <string name="toggle_checkboxes">Przełącz pola wyboru</string>
     <string name="search">Szukaj</string>
     <string name="channel_name_lock_status">Status blokady</string>
@@ -217,8 +258,41 @@
     <string name="time_sync_warning_message">Aby wygenerować poprawne kody, aplikacja Aegis korzysta z synchronizacji czasu systemowego. Różnica czasu zaledwie kilku sekund może spowodować nieprawidłowe kody. Wygląda na to, że Twoje urządzenie nie jest skonfigurowane do automatycznej synchronizacji czasu. Czy chcesz skorzystać z tej funkcji?</string>
     <string name="time_sync_warning_disable">Nie ostrzegaj mnie. Wiem co robię.</string>
     <string name="google_qr_export_unrelated">Znaleziono niepowiązany kod QR. Spróbuj ponownie uruchomić skaner.</string>
+    <plurals name="google_qr_export_scanned">
+        <item quantity="one">Zeskanowano %d/%d kodów QR</item>
+        <item quantity="few">Zeskanowano %d/%d kodów QR</item>
+        <item quantity="many">Zeskanowano %d/%d kodów QR</item>
+        <item quantity="other">Zeskanowano %d/%d kodów QR</item>
+    </plurals>
     <string name="google_qr_export_unexpected">Aplikacja oczekiwała kodu QR nr %d, lecz zeskanowano kod nr %d</string>
+    <string name="backup_error_bar_message"><b>Ostatnia kopia zapasowa sejfu nie powiodła się</b></string>
+    <string name="switch_camera">Przełącz aparat</string>
     <string name="empty_list">Brak kodów do wyświetlenia. Dodaj wpisy, klikając na znak plusa w prawym dolnym rogu</string>
     <string name="empty_list_title">Nie znaleziono wpisów</string>
+    <string name="done">Gotowe</string>
+    <plurals name="entries_count">
+        <item quantity="one">Wpis %d / %d</item>
+        <item quantity="few">Wpis %d / %d</item>
+        <item quantity="many">Wpis %d / %d</item>
+        <item quantity="other">Wpis %d / %d</item>
+    </plurals>
+    <string name="next">Następny</string>
+    <string name="previous">Poprzedni</string>
+    <string name="transfer_entry">Przenieś wpis</string>
+    <string name="transfer_entry_description">Zeskanuj kod QR za pomocą aplikacji uwierzytelniającej, do której chcesz przenieść ten wpis</string>
+    <string name="password_strength_very_weak">Bardzo słabe</string>
+    <string name="password_strength_weak">Słabe</string>
+    <string name="password_strength_fair">Przyzwoite</string>
+    <string name="password_strength_good">Dobre</string>
+    <string name="password_strength_strong">Silne</string>
+    <string name="pref_pin_keyboard_title">Używaj klawiatury numerycznej na ekranie blokady</string>
+    <string name="pref_pin_keyboard_summary">Włącz tę opcję, jeśli chcesz włączyć klawiaturę numeryczną na ekranie blokady. Ta klawiatura działa tylko z numerycznymi hasłami</string>
+    <string name="title_activity_preferences">Ustawienia</string>
+    <string name="title_activity_manage_groups">Zarządzaj grupami</string>
+    <string name="title_activity_transfer">Przenieś wpisy</string>
     <string name="title_activity_about">O aplikacji</string>
+    <string name="title_activity_edit_entry">Edytuj wpis</string>
+    <string name="title_activity_scan_qr">Skanuj kod QR</string>
+    <string name="title_activity_manage_slots">Zarządzaj slotami klucza</string>
+    <string name="title_activity_select_entries">Zaznacz wpisy</string>
 </resources>

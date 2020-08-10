@@ -4,6 +4,8 @@
     <string name="action_about">O aplikaci</string>
     <string name="action_import">Importovat</string>
     <string name="action_delete">Odstranit</string>
+    <string name="action_transfer">Přenést</string>
+    <string name="action_edit_icon">Upravit ikonu</string>
     <string name="action_default_icon">Obnovit původní ikonu</string>
     <string name="discard">Zahodit</string>
     <string name="save">Uložit</string>
@@ -28,6 +30,7 @@
     <string name="pref_import_file_title">Importovat ze souboru</string>
     <string name="pref_import_file_summary">Importovat tokeny ze souboru</string>
     <string name="pref_backups_title">Zálohovat trezor</string>
+    <string name="pref_backups_summary">Automaticky zálohovat trezor na externí úložiště při provedení změn. Tato možnost je dostupná jen pro šifrované trezory.</string>
     <string name="pref_backups_location_title">Složka pro soubory záloh</string>
     <string name="pref_backups_location_summary">Zálohy budou uloženy v</string>
     <string name="pref_backups_trigger_title">Spustit zálohování</string>
@@ -37,6 +40,7 @@
     <string name="pref_import_app_summary">Importovat tokeny z aplikace (vyžaduje root přístup)</string>
     <string name="pref_export_title">Exportovat</string>
     <string name="pref_export_summary">Exportovat trezor</string>
+    <string name="pref_export_keep_encrypted">Ponechat trezor zašifrovaný</string>
     <string name="pref_password_reminder_title">Připomenutí hesla</string>
     <string name="pref_password_reminder_summary">Jednou za čas zobrazit výzvu pro zadání hesla, abyste ho nezapomněli.</string>
     <string name="pref_secure_screen_title">Zabezpečení obrazovky</string>
@@ -63,13 +67,17 @@
     <string name="authentication_method_biometrics_description">Kromě hesla půjde k odemčení trezoru použít také biometrické prvky registrované v tomto zařízení jako je otisk prstu nebo tvář.</string>
     <string name="authentication_method_set_password">Heslo</string>
     <string name="authentication_enter_password">Zadejte své heslo</string>
+    <string name="authentication">Odemknout trezor</string>
     <!-- The newline (\n) on the following line is just for aesthetic purposes !-->
+    <string name="authentication_multiline">Odemknout\ntrezor</string>
     <string name="auth_use_biometrics">Nebo klepněte sem pro použití <font fgcolor="#FF0D86C1">biometrie</font></string>
     <string name="set_password">Zadejte heslo</string>
     <string name="set_group">Zadejte název skupiny</string>
     <string name="set_number">Zadejte číslo</string>
     <string name="set_password_confirm">Potvrďte heslo</string>
+    <string name="invalid_password">Heslo je nesprávné</string>
     <string name="invalidated_biometrics">Zjištěna změna nastavení zabezpečení zařízení. Přejděte do „Aegis“ → „Nastavení“ → „Biometrie“ a povolte biometrické odemknutí znovu.</string>
+    <string name="password_reminder">Zadejte své heslo. Občas se na něj ptáme, abyste ho nezapomněli.</string>
     <string name="enter_password_authy_message">Vypadá to, že vaše Authy tokeny jsou šifrovány. Prosím, zavřete Aegis, otevřete Authy a odemkněte tokeny pomocí vašeho hesla. Alternativně se může Aegis pokusit dešifrovat vaše Authy tokeny, pokud zadáte své heslo níže.</string>
     <string name="yes">Ano</string>
     <string name="no">Ne</string>
@@ -112,6 +120,7 @@
     <string name="welcome">Vítejte</string>
     <string name="app_description">Aegis je bezpečná, bezplatná a open source 2FA aplikace</string>
     <string name="setup_completed">Nastavení dokončeno</string>
+    <string name="setup_completed_description">Aplikace Aegis je nastavena a připravena k používání.</string>
     <string name="vault_not_found">Trezor nebyl nenalezen, spouštím nastavení…</string>
     <string name="copied">Zkopírováno</string>
     <string name="errors_copied">Chyby zkopírovány do schránky</string>
@@ -154,6 +163,7 @@
     <string name="unlocking_vault">Odemykání trezoru</string>
     <string name="unlocking_vault_repair">Odemykání trezoru (opravuji)</string>
     <string name="password_slot_error">Je potřeba alespoň jeden slot hesla</string>
+    <string name="slot_this_device">(toto zařízení)</string>
     <string name="remove_slot">Odstranit slot</string>
     <string name="remove_slot_description">Opravdu chcete tento slot odstranit?</string>
     <string name="remove_group">Odstranit skupinu</string>
@@ -181,6 +191,11 @@
     <string name="pref_search_name_summary">Zahrnout shody názvů účtů do výsledků hledání</string>
     <string name="pref_highlight_entry_title">Zvýraznit tokeny po klepnutí</string>
     <string name="pref_highlight_entry_summary">Usnadnit vzájemné rozlišení tokenů dočasným zvýrazněním po kleputí</string>
+    <string name="pref_copy_on_tap_title">Zkopírovat tokeny po klepnutí</string>
+    <string name="pref_copy_on_tap_summary">Zkopírovat tokeny do schránky po klepnutí na ně</string>
+    <string name="pin_keyboard_description">Zadejte své heslo pro povolení PIN klávesnice. Toto funguje jen pokud používáte číselné heslo.</string>
+    <string name="pin_keyboard_error">Při povolování PIN klávesnice došlo k chybě</string>
+    <string name="pin_keyboard_error_description">PIN klávesnici nelze nastavit. Heslo se pro takový případ musí skládat pouze z číslic.</string>
     <string name="selected">Vybráno</string>
     <string name="dark_theme_title">Tmavý vzhled</string>
     <string name="light_theme_title">Světlý vzhled</string>
@@ -193,7 +208,9 @@
     <string name="unknown_issuer">Neznámý poskytovatel</string>
     <string name="unknown_account_name">Neznámý název účtu</string>
     <string name="unable_to_read_qrcode">QR kód nelze přečíst a zpracovat</string>
+    <string name="unable_to_generate_qrcode">QR kód nelze vygenerovat</string>
     <string name="select_picture">Vyberte obrázek</string>
+    <string name="select_icon">Vybrat ikonu</string>
     <string name="toggle_checkboxes">Přepnout zaškrtávací políčka</string>
     <string name="search">Hledat</string>
     <string name="channel_name_lock_status">Stav zámku</string>
@@ -218,7 +235,28 @@
     <string name="time_sync_warning_disable">Už mě neupozorňujte. Vím, co dělám.</string>
     <string name="google_qr_export_unrelated">Nalezen nesouvisející QR kód. Zkuste skener restartovat.</string>
     <string name="google_qr_export_unexpected">Očekáván QR kód #%d, avšak naskenován byl #%d</string>
+    <string name="backup_error_bar_message"><b>Vytvoření zálohy trezoru se nedávno nezdařilo</b></string>
+    <string name="switch_camera">Přepnout fotoaparát</string>
     <string name="empty_list">Žádné kódy. Začněte přidáním položek pomocí tlačítka + v pravém dolním rohu.</string>
     <string name="empty_list_title">Žádné záznamy nenalezeny</string>
+    <string name="done">Hotovo</string>
+    <string name="next">Další</string>
+    <string name="previous">Předchozí</string>
+    <string name="transfer_entry">Přenést položku</string>
+    <string name="transfer_entry_description">Naskenujte tento QR kód ověřovací aplikací, do které chcete položku přenést</string>
+    <string name="password_strength_very_weak">Velmi slabé</string>
+    <string name="password_strength_weak">Slabé</string>
+    <string name="password_strength_fair">Docela dobré</string>
+    <string name="password_strength_good">Dobré</string>
+    <string name="password_strength_strong">Silné</string>
+    <string name="pref_pin_keyboard_title">Použít PIN klávesnici na zamykací obrazovce</string>
+    <string name="pref_pin_keyboard_summary">Tuto možnost povolte, chcete-li používat PIN klávesnici na zamykací obrazovce. Toto funguje jen pokud používáte číselné heslo.</string>
+    <string name="title_activity_preferences">Nastavení</string>
+    <string name="title_activity_manage_groups">Správa skupin</string>
+    <string name="title_activity_transfer">Přenést položky</string>
     <string name="title_activity_about">O aplikaci</string>
+    <string name="title_activity_edit_entry">Upravit položku</string>
+    <string name="title_activity_scan_qr">Naskenovat QR kód</string>
+    <string name="title_activity_manage_slots">Spravovat sloty klíčů</string>
+    <string name="title_activity_select_entries">Vybrat položky</string>
 </resources>

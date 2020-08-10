@@ -36,10 +36,14 @@
     <string name="pref_backups_trigger_title">触发备份</string>
     <string name="pref_backups_trigger_summary">手动触发备份</string>
     <string name="pref_backups_versions_title">保留备份文件版本数量</string>
+    <plurals name="pref_backups_versions_summary">
+        <item quantity="other">保留 %1$d 个版本备份</item>
+    </plurals>
     <string name="pref_import_app_title">从应用导入</string>
     <string name="pref_import_app_summary">从其他应用导入令牌（需要 root 权限）</string>
     <string name="pref_export_title">导出</string>
     <string name="pref_export_summary">导出数据库</string>
+    <string name="pref_export_keep_encrypted">保持数据库加密</string>
     <string name="pref_password_reminder_title">密码提醒</string>
     <string name="pref_password_reminder_summary">每隔一段时间提醒您输入一次密码，以免忘记密码。</string>
     <string name="pref_secure_screen_title">屏幕安全</string>
@@ -74,6 +78,7 @@
     <string name="set_group">请输入群组名称</string>
     <string name="set_number">请选择时长</string>
     <string name="set_password_confirm">请确认密码</string>
+    <string name="invalid_password">密码错误</string>
     <string name="invalidated_biometrics">您的设备更改了安全设置。请前往“Aegis -&gt; 设置 -&gt; 生物识别”重新启用生物识别解锁。</string>
     <string name="password_reminder">您已经有一段时间没有输入密码了。您还记得您的密码吗？</string>
     <string name="enter_password_authy_message">您的 Authy 令牌似乎已加密。请关闭 Aegis，打开 Authy，然后使用您的密码解锁令牌。另外，如果您在下面输入密码，Aegis 也可以尝试为您解密 Authy 令牌。</string>
@@ -110,6 +115,9 @@
     <string name="delete_entry">删除条目</string>
     <string name="delete_entry_description">您确定要删除此条目吗？</string>
     <string name="delete_entries">删除条目</string>
+    <plurals name="delete_entries_description">
+        <item quantity="other">您确定要删除 %d 个项目吗？</item>
+    </plurals>
     <string name="discard_changes">放弃更改？</string>
     <string name="discard_changes_description">您的更改尚未保存</string>
     <string name="folder">文件夹</string>
@@ -149,6 +157,9 @@
     <string name="reading_file_error">试图读取文件时出错</string>
     <string name="app_lookup_error">错误：应用未安装</string>
     <string name="root_error">错误：无法获得 root 权限</string>
+    <plurals name="imported_entries_count">
+        <item quantity="other">已导入 %d 个项目</item>
+    </plurals>
     <string name="import_error_title">导入时发生一个或多个错误</string>
     <string name="exporting_vault_error">试图导出数据库时出错</string>
     <string name="exported_vault">数据库已导出</string>
@@ -161,6 +172,7 @@
     <string name="unlocking_vault">解锁数据库</string>
     <string name="unlocking_vault_repair">解锁数据库（修复）</string>
     <string name="password_slot_error">您必须至少有一个密码槽</string>
+    <string name="slot_this_device">（本设备）</string>
     <string name="remove_slot">删除槽</string>
     <string name="remove_slot_description">您确定要删除这个槽吗？</string>
     <string name="remove_group">删除群组</string>
@@ -190,6 +202,9 @@
     <string name="pref_highlight_entry_summary">使令牌在点击后暂时高亮显示以便区分</string>
     <string name="pref_copy_on_tap_title">点击时复制令牌</string>
     <string name="pref_copy_on_tap_summary">通过点击将令牌复制到剪贴板</string>
+    <string name="pin_keyboard_description">请输入您的密码以启用 PIN 键盘。请注意，只有当您的密码仅由数字构成时才能使用</string>
+    <string name="pin_keyboard_error">启用 PIN 键盘时出错</string>
+    <string name="pin_keyboard_error_description">无法设置 PIN 键盘。您的密码只能包含数字。</string>
     <string name="selected">选择</string>
     <string name="dark_theme_title">黑暗主题</string>
     <string name="light_theme_title">明亮主题</string>
@@ -201,6 +216,9 @@
     <string name="small_mode_title">小巧</string>
     <string name="unknown_issuer">未知的服务商</string>
     <string name="unknown_account_name">未知的帐户名称</string>
+    <plurals name="import_error_dialog">
+        <item quantity="other">Aegis 无法导入 %d 个令牌。这些令牌将被忽略。点击“详细信息”查看更多关于错误的信息。</item>
+    </plurals>
     <string name="unable_to_read_qrcode">无法读取和处理二维码</string>
     <string name="unable_to_generate_qrcode">无法生成二维码</string>
     <string name="select_picture">选择图片</string>
@@ -228,11 +246,18 @@
     <string name="time_sync_warning_message">Aegis 依靠系统时间来同步生成正确的验证码。仅几秒钟的偏差可能会导致验证码错误。您的设备似乎未配置为自动同步时间。您现在要设置自动同步时间吗？</string>
     <string name="time_sync_warning_disable">不要再次提醒。我知道我在做什么。</string>
     <string name="google_qr_export_unrelated">找到不相关的二维码。请尝试重新扫描。</string>
+    <plurals name="google_qr_export_scanned">
+        <item quantity="other">已扫描 %d/%d 二维码</item>
+    </plurals>
     <string name="google_qr_export_unexpected">预期二维码 #%d，已扫描 #%d</string>
     <string name="backup_error_bar_message"><b>数据库最近备份失败</b></string>
+    <string name="switch_camera">切换摄像头</string>
     <string name="empty_list">没有可显示的验证码。点击右下角的加号，开始添加条目</string>
     <string name="empty_list_title">未找到条目</string>
     <string name="done">完成</string>
+    <plurals name="entries_count">
+        <item quantity="other">%d / %d 项条目</item>
+    </plurals>
     <string name="next">下一个</string>
     <string name="previous">上一个</string>
     <string name="transfer_entry">迁移条目</string>
@@ -242,7 +267,14 @@
     <string name="password_strength_fair">中等</string>
     <string name="password_strength_good">好</string>
     <string name="password_strength_strong">强</string>
+    <string name="pref_pin_keyboard_title">在锁屏界面上使用 PIN 键盘</string>
+    <string name="pref_pin_keyboard_summary">如果您想要在锁屏界面启用 PIN 键盘，请启用此选项。这只适用于数字密码</string>
     <string name="title_activity_preferences">设置</string>
+    <string name="title_activity_manage_groups">管理群组</string>
     <string name="title_activity_transfer">转移条目</string>
     <string name="title_activity_about">关于</string>
+    <string name="title_activity_edit_entry">编辑项目</string>
+    <string name="title_activity_scan_qr">扫描二维码</string>
+    <string name="title_activity_manage_slots">管理密钥槽位</string>
+    <string name="title_activity_select_entries">选择项目</string>
 </resources>
