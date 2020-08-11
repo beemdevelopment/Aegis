@@ -4,10 +4,10 @@ import com.beemdevelopment.aegis.crypto.CryptParameters;
 import com.beemdevelopment.aegis.crypto.CryptResult;
 import com.beemdevelopment.aegis.crypto.CryptoUtils;
 import com.beemdevelopment.aegis.crypto.MasterKey;
-import com.beemdevelopment.aegis.crypto.SCryptParameters;
 import com.beemdevelopment.aegis.encoding.EncodingException;
 import com.beemdevelopment.aegis.encoding.Hex;
 import com.beemdevelopment.aegis.util.UUIDMap;
+import com.beemdevelopment.sodium.SCrypt;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -129,11 +129,14 @@ public abstract class Slot extends UUIDMap.Value {
                     slot = new RawSlot(uuid, key, keyParams);
                     break;
                 case Slot.TYPE_DERIVED:
-                    SCryptParameters scryptParams = new SCryptParameters(
-                        obj.getInt("n"),
-                        obj.getInt("r"),
-                        obj.getInt("p"),
-                        Hex.decode(obj.getString("salt"))
+                    SCrypt.Parameters scryptParams = new SCrypt.Parameters(
+                            new SCrypt.CostParameters(
+                                obj.getInt("n"),
+                                obj.getInt("r"),
+                                obj.getInt("p")
+                            ),
+                            Hex.decode(obj.getString("salt")),
+                            CryptoUtils.CRYPTO_AEAD_KEY_SIZE
                     );
                     boolean repaired = obj.optBoolean("repaired", false);
                     slot = new PasswordSlot(uuid, key, keyParams, scryptParams, repaired);

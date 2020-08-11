@@ -2,7 +2,8 @@ package com.beemdevelopment.aegis.crypto;
 
 import android.os.Build;
 
-import org.bouncycastle.crypto.generators.SCrypt;
+import com.beemdevelopment.sodium.SCrypt;
+import com.beemdevelopment.sodium.Sodium;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -35,15 +36,29 @@ public class CryptoUtils {
     public static final int CRYPTO_SCRYPT_N = 1 << 15;
     public static final int CRYPTO_SCRYPT_r = 8;
     public static final int CRYPTO_SCRYPT_p = 1;
+    public static final int CRYPTO_SALT_SIZE = 32;
 
-    public static SecretKey deriveKey(byte[] input, SCryptParameters params) {
-        byte[] keyBytes = SCrypt.generate(input, params.getSalt(), params.getN(), params.getR(), params.getP(), CRYPTO_AEAD_KEY_SIZE);
+    static {
+        if (!Sodium.init()) {
+            throw new RuntimeException("sodium_init returned -1");
+        }
+    }
+
+    public static SecretKey deriveKey(char[] password, SCrypt.Parameters params) {
+        byte[] bytes = toBytes(password);
+        return deriveKey(bytes, params);
+    }
+
+    public static SecretKey deriveKey(byte[] input, SCrypt.Parameters params) {
+        byte[] keyBytes = SCrypt.deriveKey(input, params);
         return new SecretKeySpec(keyBytes, 0, keyBytes.length, "AES");
     }
 
-    public static SecretKey deriveKey(char[] password, SCryptParameters params) {
-        byte[] bytes = toBytes(password);
-        return deriveKey(bytes, params);
+    public static SCrypt.Parameters generateKeyDerivationParameters() {
+        return SCrypt.Parameters.generate(
+                new SCrypt.CostParameters(CRYPTO_SCRYPT_N, CRYPTO_SCRYPT_r, CRYPTO_SCRYPT_p),
+                CRYPTO_SALT_SIZE,
+                CRYPTO_AEAD_KEY_SIZE);
     }
 
     public static Cipher createEncryptCipher(SecretKey key)
@@ -117,10 +132,6 @@ public class CryptoUtils {
         } catch (NoSuchAlgorithmException e) {
             throw new AssertionError(e);
         }
-    }
-
-    public static byte[] generateSalt() {
-        return generateRandomBytes(CRYPTO_AEAD_KEY_SIZE);
     }
 
     public static byte[] generateRandomBytes(int length) {
