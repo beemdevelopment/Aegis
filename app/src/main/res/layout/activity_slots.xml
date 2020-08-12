@@ -41,7 +41,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_plus_black_24dp"
-                    android:tint="@color/colorAccent"
+                    app:tint="@color/colorAccent"
                     android:layout_marginEnd="15dp"/>
 
                 <TextView
@@ -69,7 +69,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_plus_black_24dp"
-                    android:tint="@color/colorAccent"
+                    app:tint="@color/colorAccent"
                     android:layout_marginEnd="15dp"/>
 
                 <TextView
@@ -98,7 +98,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_info_outline_black_24dp"
-                    android:tint="?attr/iconColorPrimary"
+                    app:tint="?attr/iconColorPrimary"
                     android:layout_marginEnd="15dp"/>
 
                 <TextView
