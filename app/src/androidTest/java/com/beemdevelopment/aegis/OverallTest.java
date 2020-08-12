@@ -5,9 +5,9 @@ import androidx.test.core.app.ApplicationProvider;
 import androidx.test.espresso.AmbiguousViewMatcherException;
 import androidx.test.espresso.ViewInteraction;
 import androidx.test.espresso.contrib.RecyclerViewActions;
+import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.filters.LargeTest;
-import androidx.test.rule.ActivityTestRule;
 
 import com.beemdevelopment.aegis.crypto.CryptoUtils;
 import com.beemdevelopment.aegis.encoding.Base32;
@@ -54,7 +54,7 @@ public class OverallTest extends AegisTest {
     private static final String _groupName = "Test";
 
     @Rule
-    public final ActivityTestRule<MainActivity> activityRule = new ActivityTestRule<>(MainActivity.class);
+    public final ActivityScenarioRule<MainActivity> activityRule = new ActivityScenarioRule<>(MainActivity.class);
 
     @Test
     public void doOverallTest() {
