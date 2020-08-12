@@ -136,7 +136,7 @@
                 android:clickable="true"
                 android:focusable="true"
                 android:src="@drawable/ic_refresh_black_24dp"
-                android:tint="?attr/iconColorPrimary"
+                app:tint="?attr/iconColorPrimary"
                 android:background="?android:attr/selectableItemBackground" />
 
             <ImageView

@@ -28,7 +28,7 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:tint="@color/icon_primary_inverted"
+                app:tint="@color/icon_primary_inverted"
                 android:src="@drawable/ic_alert_black_24dp" />
             <TextView
                 android:layout_width="wrap_content"
