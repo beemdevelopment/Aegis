@@ -49,7 +49,6 @@
     <string name="pref_tap_to_reveal_summary">Ve výchozím stavu budou kódy skryté. Kód zobrazíte klepnutím na token.</string>
     <string name="pref_tap_to_reveal_time_title">Prodleva zobrazení kódu</string>
     <string name="pref_auto_lock_title">Automatické uzamknutí</string>
-    <string name="pref_auto_lock_summary">Automaticky uzamknout trezor při zavření aplikace, nebo uzamčení zařízení.</string>
     <string name="pref_encryption_title">Šifrování</string>
     <string name="pref_encryption_summary">Šifrovat trezor a odemykat jej pomocí hesla, nebo biometrie</string>
     <string name="pref_biometrics_title">Biometrické odemknutí</string>

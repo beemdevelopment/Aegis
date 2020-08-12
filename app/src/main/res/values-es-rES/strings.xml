@@ -46,7 +46,6 @@
     <string name="pref_tap_to_reveal_summary">Los tokens se ocultarán por defecto. Pulse sobre ellos para revelar el código.</string>
     <string name="pref_tap_to_reveal_time_title">Tiempo de espera de pulsar para mostrar</string>
     <string name="pref_auto_lock_title">Bloqueo automático</string>
-    <string name="pref_auto_lock_summary">Bloquear automáticamente cuando cierre la aplicación o bloquee su dispositivo.</string>
     <string name="pref_encryption_title">Cifrado</string>
     <string name="pref_encryption_summary">Cifra la base de datos y la desbloquea mediante una contraseña o biometría</string>
     <string name="pref_biometrics_title">Desbloqueo biométrico</string>

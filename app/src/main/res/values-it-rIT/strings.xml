@@ -53,7 +53,6 @@
     <string name="pref_tap_to_reveal_summary">I token saranno nascosti. Toccandone uno viene mostrato il codice.</string>
     <string name="pref_tap_to_reveal_time_title">Timeout visualizzazione codice OTP</string>
     <string name="pref_auto_lock_title">Blocco automatico</string>
-    <string name="pref_auto_lock_summary">Blocca automaticamente quando chiudi l\'app o blocca il dispositivo.</string>
     <string name="pref_encryption_title">Crittografia</string>
     <string name="pref_encryption_summary">Cripta il database e sbloccalo con password o impronta digitale</string>
     <string name="pref_biometrics_title">Sblocco biometrico</string>

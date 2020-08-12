@@ -46,7 +46,6 @@
     <string name="pref_tap_to_reveal_summary">A tokenek alapból rejtve lesznek. Koppintson a tokenekre, hogy megjelenjen a kód.</string>
     <string name="pref_tap_to_reveal_time_title">Értintésre történő megjelenítés időtúllépése</string>
     <string name="pref_auto_lock_title">Automatikus zárolás</string>
-    <string name="pref_auto_lock_summary">Automatikus zárolás, ha bezárja az alkalmazást vagy zárolja a képernyőt.</string>
     <string name="pref_encryption_title">Titkosítás</string>
     <string name="pref_encryption_summary">A széf titkosítása, és jelszavas vagy biometrikus feloldás beállítása</string>
     <string name="pref_biometrics_title">Biometrikus feloldás</string>

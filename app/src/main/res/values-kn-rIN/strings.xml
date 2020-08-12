@@ -29,7 +29,6 @@
     <string name="pref_tap_to_reveal_summary">ಪೂರ್ವನಿಯೋಜಿತವಾಗಿ ಟೋಕನ್ಗಳನ್ನು ಮರೆಮಾಡಲಾಗುತ್ತದೆ. ಸಂಕೇತವನ್ನು ಬಹಿರಂಗಪಡಿಸುವುದಕ್ಕೆ ಟೋಕನ್ಗಳನ್ನು ಒತ್ತು.</string>
     <string name="pref_tap_to_reveal_time_title">\'ನೋಡುವುದಕ್ಕೆ ಟ್ಯಾಪ್ ಮಾಡಿ\'ಗೆ ಸಮಯದ ಅವಧಿ</string>
     <string name="pref_auto_lock_title">ಸ್ವಯಂಚಾಲಿತವಾಗಿ ಬೀಗ ಹಾಕು</string>
-    <string name="pref_auto_lock_summary">ನೀವು ಅಪ್ಲಿಕೇಶನವನ್ನು ಮುಚ್ಚಿದಾಗ ಅಥವ ಡಿವೈಸಿಗೆ ಬೀಗ ಹಾಕಿದಾಗ, ಸ್ವಯಂಚಾಲಿತವಾಗಿ ಬೀಗ ಹಾಕು.</string>
     <string name="pref_encryption_title">ಗೂಢಲಿಪೀಕರಣ</string>
     <string name="pref_set_password_title">ಗುಪ್ತಪದವನ್ನು ಬದಲಾಯಿಸು</string>
     <string name="pref_set_password_summary">ವೌಲ್ಟ್ ಅನ್ನು ತೆರೆಯಲು ಹೊಸಾ ಗುಪ್ತಪದವನ್ನು ಆಯ್ಕೆ ಮಾಡಿ</string>

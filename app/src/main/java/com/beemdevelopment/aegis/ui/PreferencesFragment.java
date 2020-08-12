@@ -20,7 +20,6 @@ import androidx.preference.SwitchPreferenceCompat;
 
 import com.beemdevelopment.aegis.AegisApplication;
 import com.beemdevelopment.aegis.BuildConfig;
-import com.beemdevelopment.aegis.CancelAction;
 import com.beemdevelopment.aegis.Preferences;
 import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.Theme;
@@ -235,7 +234,7 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
             _result.putExtra("needsRefresh", true);
             return true;
         });
-        
+
         Preference entryHighlightPreference = findPreference("pref_highlight_entry");
         entryHighlightPreference.setOnPreferenceChangeListener((preference, newValue) -> {
             _result.putExtra("needsRefresh", true);
@@ -254,7 +253,7 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
             public boolean onPreferenceChange(Preference preference, Object newValue) {
                 _result.putExtra("needsRecreate", true);
                 Window window = getActivity().getWindow();
-                if ((boolean)newValue) {
+                if ((boolean) newValue) {
                     window.addFlags(WindowManager.LayoutParams.FLAG_SECURE);
                 } else {
                     window.clearFlags(WindowManager.LayoutParams.FLAG_SECURE);
@@ -458,6 +457,35 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
         });
 
         _autoLockPreference = findPreference("pref_auto_lock");
+        _autoLockPreference.setSummary(getAutoLockSummary());
+        _autoLockPreference.setOnPreferenceClickListener((preference) -> {
+            final int[] items = Preferences.AUTO_LOCK_SETTINGS;
+            final String[] textItems = getResources().getStringArray(R.array.pref_auto_lock_types);
+            final boolean[] checkedItems = new boolean[items.length];
+            for (int i = 0; i < items.length; i++) {
+                checkedItems[i] = _prefs.isAutoLockTypeEnabled(items[i]);
+            }
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity())
+                    .setTitle(R.string.pref_auto_lock_prompt)
+                    .setMultiChoiceItems(textItems, checkedItems, (dialog, index, isChecked) -> checkedItems[index] = isChecked)
+                    .setPositiveButton(android.R.string.ok, (dialog, which) -> {
+                        int autoLock = Preferences.AUTO_LOCK_OFF;
+                        for (int i = 0; i < checkedItems.length; i++) {
+                            if (checkedItems[i]) {
+                                autoLock |= items[i];
+                            }
+                        }
+
+                        _prefs.setAutoLockMask(autoLock);
+                        _autoLockPreference.setSummary(getAutoLockSummary());
+                    })
+                    .setNegativeButton(android.R.string.cancel, null);
+            Dialogs.showSecureDialog(builder.create());
+
+            return false;
+        });
+
         _passwordReminderPreference = findPreference("pref_password_reminder");
     }
 
@@ -575,7 +603,6 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
 
                     Intent intent = new Intent(getActivity(), AuthActivity.class);
                     intent.putExtra("slots", ((AegisImporter.EncryptedState) state).getSlots());
-                    intent.putExtra("cancelAction", CancelAction.CLOSE);
                     startActivityForResult(intent, CODE_IMPORT_DECRYPT);
                 } else {
                     state.decrypt(getActivity(), new DatabaseImporter.DecryptListener() {
@@ -840,6 +867,28 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
 
     private void setPinKeyboardPreference(boolean enable) {
         _pinKeyboardPreference.setChecked(enable);
+    }
+
+    private String getAutoLockSummary() {
+        final int[] settings = Preferences.AUTO_LOCK_SETTINGS;
+        final String[] descriptions = getResources().getStringArray(R.array.pref_auto_lock_types);
+
+        StringBuilder builder = new StringBuilder();
+        for (int i = 0; i < settings.length; i++) {
+            if (_prefs.isAutoLockTypeEnabled(settings[i])) {
+                if (builder.length() != 0) {
+                    builder.append(", ");
+                }
+
+                builder.append(descriptions[i].toLowerCase());
+            }
+        }
+
+        if (builder.length() == 0) {
+            return getString(R.string.pref_auto_lock_summary_disabled);
+        }
+
+        return getString(R.string.pref_auto_lock_summary, builder.toString());
     }
 
     private class SetPasswordListener implements Dialogs.SlotListener {

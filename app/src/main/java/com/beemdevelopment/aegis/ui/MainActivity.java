@@ -25,7 +25,7 @@ import androidx.appcompat.view.ActionMode;
 import androidx.appcompat.widget.SearchView;
 
 import com.beemdevelopment.aegis.AegisApplication;
-import com.beemdevelopment.aegis.CancelAction;
+import com.beemdevelopment.aegis.Preferences;
 import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.SortCategory;
 import com.beemdevelopment.aegis.ViewMode;
@@ -523,8 +523,8 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
             return;
         }
 
-        if (_app.isAutoLockEnabled()) {
-            _app.lock();
+        if (_app.isAutoLockEnabled(Preferences.AUTO_LOCK_ON_BACK_BUTTON)) {
+            _app.lock(false);
             return;
         }
 
@@ -596,7 +596,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
                 return true;
             }
             case R.id.action_lock:
-                _app.lock();
+                _app.lock(true);
                 return true;
             default:
                 if (item.getGroupId() == R.id.action_filter_group) {
@@ -655,7 +655,6 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
     private void startAuthActivity(boolean inhibitBioPrompt) {
         if (!_isAuthenticating) {
             Intent intent = new Intent(this, AuthActivity.class);
-            intent.putExtra("cancelAction", CancelAction.KILL);
             intent.putExtra("inhibitBioPrompt", inhibitBioPrompt);
             startActivityForResult(intent, CODE_DECRYPT);
             _isAuthenticating = true;
@@ -747,7 +746,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
     public void onListChange() { _fabScrollHelper.setVisible(true); }
 
     @Override
-    public void onLocked() {
+    public void onLocked(boolean userInitiated) {
         if (_actionMode != null) {
             _actionMode.finish();
         }
@@ -755,11 +754,11 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         _entryListView.clearEntries();
         _loaded = false;
 
-        if (isOpen()) {
+        if (userInitiated) {
             startAuthActivity(true);
+        } else {
+            super.onLocked(userInitiated);
         }
-
-        super.onLocked();
     }
 
     private void copyEntryCode(VaultEntry entry) {

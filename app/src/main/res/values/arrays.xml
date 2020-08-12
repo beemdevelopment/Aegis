@@ -84,5 +84,9 @@
         <item>@string/password_strength_strong</item>
     </string-array>
 
+    <string-array name="pref_auto_lock_types">
+        <item>@string/pref_auto_lock_type_back_button</item>
+        <item>@string/pref_auto_lock_type_minimize</item>
+        <item>@string/pref_auto_lock_type_device_lock</item>
+    </string-array>
 </resources>
-

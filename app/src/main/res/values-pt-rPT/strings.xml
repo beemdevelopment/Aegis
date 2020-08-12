@@ -45,7 +45,6 @@
     <string name="pref_tap_to_reveal_summary">Tokens serão ocultados por padrão. Toque nos tokens para revelar código.</string>
     <string name="pref_tap_to_reveal_time_title">Tempo limite para o tocar e mostrar</string>
     <string name="pref_auto_lock_title">Bloqueio automático</string>
-    <string name="pref_auto_lock_summary">Bloquear automaticamente quando você fechar o app ou bloquear seu dispositivo.</string>
     <string name="pref_encryption_title">Encriptação</string>
     <string name="pref_encryption_summary">Criptografe o cofre e desbloqueie-o com uma senha ou sua digital</string>
     <string name="pref_biometrics_title">Desbloqueio biométrico</string>

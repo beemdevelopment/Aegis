@@ -137,10 +137,10 @@
             android:summary="@string/pref_pin_keyboard_summary"
             app:iconSpaceReserved="false"/>
 
-        <androidx.preference.SwitchPreferenceCompat
-            android:defaultValue="true"
+        <Preference
             android:key="pref_auto_lock"
             android:dependency="pref_encryption"
+            android:persistent="false"
             android:title="@string/pref_auto_lock_title"
             android:summary="@string/pref_auto_lock_summary"
             app:iconSpaceReserved="false"/>

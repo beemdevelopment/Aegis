@@ -45,7 +45,6 @@
     <string name="pref_tap_to_reveal_summary">Codes zullen standaard worden verborgen. Tik een uitgever aan om de code te onthullen.</string>
     <string name="pref_tap_to_reveal_time_title">Time-out voor aantikken om te onthullen</string>
     <string name="pref_auto_lock_title">Automatisch vergrendelen</string>
-    <string name="pref_auto_lock_summary">Kluis automatisch vergrendelen wanneer je de app sluit of je toestel vergrendelt.</string>
     <string name="pref_encryption_title">Encryptie</string>
     <string name="pref_encryption_summary">Encrypt de kluis en ontgrendel deze met een wachtwoord of biometrie</string>
     <string name="pref_biometrics_title">Ontgrendelen met biometrie</string>

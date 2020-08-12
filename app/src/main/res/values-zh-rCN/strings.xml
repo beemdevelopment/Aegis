@@ -52,7 +52,6 @@
     <string name="pref_tap_to_reveal_summary">默认情况下，令牌将被隐藏。为了显示验证码，需要点击令牌。</string>
     <string name="pref_tap_to_reveal_time_title">点击令牌后，验证码的显示时间</string>
     <string name="pref_auto_lock_title">自动锁定</string>
-    <string name="pref_auto_lock_summary">关闭应用或锁定设备时自动锁定</string>
     <string name="pref_encryption_title">加密</string>
     <string name="pref_encryption_summary">加密数据库，并在解锁时要求密码或生物识别验证。</string>
     <string name="pref_biometrics_title">生物识别解锁</string>

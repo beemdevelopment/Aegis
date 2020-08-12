@@ -48,7 +48,6 @@
     <string name="pref_tap_to_reveal_summary">سيتم اخفاء الرموز افتراضيًا. انقر على الرموز لكشف الكود.</string>
     <string name="pref_tap_to_reveal_time_title">مهلة النقر للكشف</string>
     <string name="pref_auto_lock_title">القفل التلقائي</string>
-    <string name="pref_auto_lock_summary">القفل التلقائي عند إغلاق التطبيق أو قفل الجهاز</string>
     <string name="pref_encryption_title">التشفير</string>
     <string name="pref_encryption_summary">قم بتشفير المخزن وفك قفله بكملة مرور أو مصادقة بيومترية</string>
     <string name="pref_biometrics_title">فتح القفل البيومتري</string>

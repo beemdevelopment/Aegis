@@ -12,7 +12,12 @@ import android.content.pm.ShortcutManager;
 import android.graphics.drawable.Icon;
 import android.os.Build;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
+import androidx.lifecycle.Lifecycle;
+import androidx.lifecycle.LifecycleEventObserver;
+import androidx.lifecycle.LifecycleOwner;
+import androidx.lifecycle.ProcessLifecycleOwner;
 
 import com.beemdevelopment.aegis.services.NotificationService;
 import com.beemdevelopment.aegis.ui.MainActivity;
@@ -52,6 +57,9 @@ public class AegisApplication extends Application {
         intentFilter.addAction(Intent.ACTION_SCREEN_OFF);
         intentFilter.addAction(CODE_LOCK_VAULT_ACTION);
         registerReceiver(receiver, intentFilter);
+
+        // lock the app if the user moves the application to the background
+        ProcessLifecycleOwner.get().getLifecycle().addObserver(new AppLifecycleObserver());
 
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {
             initAppShortcuts();
@@ -111,8 +119,8 @@ public class AegisApplication extends Application {
         return _prefs;
     }
 
-    public boolean isAutoLockEnabled() {
-        return _prefs.isAutoLockEnabled() && !isVaultLocked() && _manager.isEncryptionEnabled() ;
+    public boolean isAutoLockEnabled(int autoLockType) {
+        return _prefs.isAutoLockTypeEnabled(autoLockType) && !isVaultLocked() && _manager.isEncryptionEnabled();
     }
 
     public void registerLockListener(LockListener listener) {
@@ -123,10 +131,14 @@ public class AegisApplication extends Application {
         _lockListeners.remove(listener);
     }
 
-    public void lock() {
+    /**
+     * Locks the vault and the app.
+     * @param userInitiated whether or not the user initiated the lock in MainActivity.
+     */
+    public void lock(boolean userInitiated) {
         _manager = null;
         for (LockListener listener : _lockListeners) {
-            listener.onLocked();
+            listener.onLocked(userInitiated);
         }
 
         stopService(new Intent(AegisApplication.this, NotificationService.class));
@@ -168,16 +180,29 @@ public class AegisApplication extends Application {
         }
     }
 
-    public class ScreenOffReceiver extends BroadcastReceiver {
+    private class AppLifecycleObserver implements LifecycleEventObserver {
+        @Override
+        public void onStateChanged(@NonNull LifecycleOwner source, @NonNull Lifecycle.Event event) {
+            if (event == Lifecycle.Event.ON_STOP && isAutoLockEnabled(Preferences.AUTO_LOCK_ON_MINIMIZE)) {
+                lock(false);
+            }
+        }
+    }
+
+    private class ScreenOffReceiver extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
-            if (isAutoLockEnabled()) {
-                lock();
+            if (isAutoLockEnabled(Preferences.AUTO_LOCK_ON_DEVICE_LOCK)) {
+                lock(false);
             }
         }
     }
 
     public interface LockListener {
-        void onLocked();
+        /**
+         * When called, the app/vault has been locked and the listener should perform its cleanup operations.
+         * @param userInitiated whether or not the user initiated the lock in MainActivity.
+         */
+        void onLocked(boolean userInitiated);
     }
 }
