@@ -744,6 +744,9 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
     }
 
     @Override
+    public void onListChange() { _fabScrollHelper.setVisible(true); }
+
+    @Override
     public void onLocked() {
         if (_actionMode != null) {
             _actionMode.finish();

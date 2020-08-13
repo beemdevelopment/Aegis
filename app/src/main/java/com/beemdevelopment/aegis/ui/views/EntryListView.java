@@ -236,6 +236,9 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
         }
     }
 
+    @Override
+    public void onListChange() { _listener.onListChange(); }
+
     public void setCodeGroupSize(int codeGrouping) {
         _adapter.setCodeGroupSize(codeGrouping);
     }
@@ -339,6 +342,7 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
         void onScroll(int dx, int dy);
         void onSelect(VaultEntry entry);
         void onDeselect(VaultEntry entry);
+        void onListChange();
     }
 
     private class VerticalSpaceItemDecoration extends RecyclerView.ItemDecoration {
