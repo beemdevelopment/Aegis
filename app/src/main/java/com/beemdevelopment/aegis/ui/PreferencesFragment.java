@@ -710,6 +710,8 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
                 entry.setGroup(null);
             }
         }
+
+        saveVault();
     }
 
     private void onSelectEntriesResult(int resultCode, Intent data) {
