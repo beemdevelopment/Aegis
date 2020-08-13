@@ -287,6 +287,8 @@
     </string>
     <string name="empty_list">There are no codes to be shown. Start adding entries by tapping the plus sign in the bottom right corner</string>
     <string name="empty_list_title">No entries found</string>
+    <string name="empty_group_list">There are no groups to be shown. Add groups in the edit screen of an entry</string>
+    <string name="empty_group_list_title">No groups found</string>
     <string name="done">Done</string>
     <plurals name="entries_count">
         <item quantity="one">%d / %d entry</item>
