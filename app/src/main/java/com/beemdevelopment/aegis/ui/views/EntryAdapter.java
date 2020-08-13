@@ -132,6 +132,7 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
             }
         }
 
+        _view.onListChange();
         checkPeriodUniformity();
     }
 
@@ -150,6 +151,7 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
             notifyItemRemoved(position);
         }
 
+        _view.onListChange();
         checkPeriodUniformity();
     }
 
@@ -275,6 +277,7 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
             Collections.sort(_shownEntries, comparator);
         }
 
+        _view.onListChange();
         notifyDataSetChanged();
     }
 
@@ -612,5 +615,6 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
         void onPeriodUniformityChanged(boolean uniform, int period);
         void onSelect(VaultEntry entry);
         void onDeselect(VaultEntry entry);
+        void onListChange();
     }
 }

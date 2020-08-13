@@ -18,6 +18,26 @@ public class FabScrollHelper {
 
     public void onScroll(int dx, int dy) {
         if (dy > 0 && _fabMenu.getVisibility() == View.VISIBLE && !_isAnimating) {
+            setVisible(false);
+        } else if (dy < 0 && _fabMenu.getVisibility() != View.VISIBLE && !_isAnimating) {
+            setVisible(true);
+        }
+    }
+
+    public void setVisible(boolean visible) {
+        if (visible) {
+            _fabMenu.setVisibility(View.VISIBLE);
+            _fabMenu.animate()
+                    .translationY(0)
+                    .setInterpolator(new DecelerateInterpolator(2))
+                    .setListener(new AnimatorListenerAdapter() {
+                        @Override
+                        public void onAnimationEnd(Animator animation) {
+                            _isAnimating = false;
+                            super.onAnimationEnd(animation);
+                        }
+                    }).start();
+        } else {
             _isAnimating = true;
             CoordinatorLayout.LayoutParams lp = (CoordinatorLayout.LayoutParams) _fabMenu.getLayoutParams();
             int fabBottomMargin = lp.bottomMargin;
@@ -32,18 +52,7 @@ public class FabScrollHelper {
                             super.onAnimationEnd(animation);
                         }
                     }).start();
-        } else if (dy < 0 && _fabMenu.getVisibility() != View.VISIBLE && !_isAnimating) {
-            _fabMenu.setVisibility(View.VISIBLE);
-            _fabMenu.animate()
-                    .translationY(0)
-                    .setInterpolator(new DecelerateInterpolator(2))
-                    .setListener(new AnimatorListenerAdapter() {
-                        @Override
-                        public void onAnimationEnd(Animator animation) {
-                            _isAnimating = false;
-                            super.onAnimationEnd(animation);
-                        }
-                    }).start();
         }
+
     }
 }
