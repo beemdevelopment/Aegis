@@ -31,8 +31,6 @@ import static org.hamcrest.Matchers.not;
 @RunWith(AndroidJUnit4.class)
 @LargeTest
 public class IntroTest extends AegisTest {
-    private static final String _password = "test";
-
     @Rule
     public final ActivityScenarioRule<IntroActivity> activityRule = new ActivityScenarioRule<>(IntroActivity.class);
 
@@ -69,10 +67,10 @@ public class IntroTest extends AegisTest {
         prev.check(matches(not(isDisplayed())));
         next.perform(click());
         next.perform(click());
-        onView(withId(R.id.text_password)).perform(typeText(_password), closeSoftKeyboard());
-        onView(withId(R.id.text_password_confirm)).perform(typeText(_password + "1"), closeSoftKeyboard());
+        onView(withId(R.id.text_password)).perform(typeText(VAULT_PASSWORD), closeSoftKeyboard());
+        onView(withId(R.id.text_password_confirm)).perform(typeText(VAULT_PASSWORD + "1"), closeSoftKeyboard());
         next.perform(click());
-        onView(withId(R.id.text_password_confirm)).perform(replaceText(_password), closeSoftKeyboard());
+        onView(withId(R.id.text_password_confirm)).perform(replaceText(VAULT_PASSWORD), closeSoftKeyboard());
         prev.perform(click());
         prev.perform(click());
         prev.check(matches(not(isDisplayed())));
