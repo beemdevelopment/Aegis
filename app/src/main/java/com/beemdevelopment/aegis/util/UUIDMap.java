@@ -45,6 +45,13 @@ public class UUIDMap <T extends UUIDMap.Value> implements Iterable<T>, Serializa
     }
 
     /**
+     * Clears the internal map.
+     */
+    public void wipe() {
+        _map.clear();
+    }
+
+    /**
      * Replaces an old value (with the same UUID as the new given value) in the
      * internal map with the new given value.
      * @throws AssertionError if no map value exists with the UUID of the given value.

@@ -38,6 +38,7 @@ import com.beemdevelopment.aegis.ui.models.ImportEntry;
 import com.beemdevelopment.aegis.ui.preferences.SwitchPreference;
 import com.beemdevelopment.aegis.ui.tasks.PasswordSlotDecryptTask;
 import com.beemdevelopment.aegis.util.UUIDMap;
+import com.beemdevelopment.aegis.vault.Vault;
 import com.beemdevelopment.aegis.vault.VaultBackupManager;
 import com.beemdevelopment.aegis.vault.VaultEntry;
 import com.beemdevelopment.aegis.vault.VaultFileCredentials;
@@ -657,6 +658,7 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
         Intent intent = new Intent(getActivity(), SelectEntriesActivity.class);
         intent.putExtra("entries", (ArrayList<ImportEntry>) entries);
         intent.putExtra("errors", (ArrayList<DatabaseImporterEntryException>) result.getErrors());
+        intent.putExtra("vaultContainsEntries", _vault.getEntries().size() > 0);
         startActivityForResult(intent, CODE_SELECT_ENTRIES);
     }
 
@@ -717,6 +719,11 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
     private void onSelectEntriesResult(int resultCode, Intent data) {
         if (resultCode != Activity.RESULT_OK) {
             return;
+        }
+
+        boolean wipeEntries = data.getBooleanExtra("wipeEntries", false);
+        if (wipeEntries) {
+            _vault.wipeEntries();
         }
 
         List<ImportEntry> selectedEntries = (ArrayList<ImportEntry>) data.getSerializableExtra("entries");
