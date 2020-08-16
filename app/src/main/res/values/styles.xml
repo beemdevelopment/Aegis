@@ -24,6 +24,7 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="background">@color/background</item>
+        <item name="divider">@color/divider</item>
 
         <item name="iconColorPrimary">@color/icon_primary</item>
         <item name="iconColorInverted">@color/icon_primary_inverted</item>
@@ -135,6 +136,7 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="background">@color/background_dark</item>
+        <item name="divider">@color/divider_dark</item>
 
         <item name="iconColorPrimary">@color/icon_primary_dark</item>
         <item name="iconColorInverted">@color/icon_primary_dark_inverted</item>
@@ -158,6 +160,7 @@
         <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item>
         <item name="actionModeStyle">@style/ActionModeStyle.TrueBlack</item>
         <item name="alertDialogTheme">@style/DialogStyle.TrueDark</item>
+        <item name="divider">@color/divider_true_dark</item>
 
         <item name="android:navigationBarColor" tools:targetApi="lollipop">@color/background_true_dark</item>
         <item name="android:windowLightNavigationBar" tools:targetApi="o_mr1">false</item>
