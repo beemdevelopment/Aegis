@@ -452,7 +452,11 @@ public class EditEntryActivity extends AegisActivity {
     }
 
     private void addAndFinish(VaultEntry entry) {
-        if (_isNew) {
+        // It's possible that the new entry was already added to the vault, but writing the
+        // vault to disk failed, causing the user to tap 'Save' again. Calling addEntry
+        // again would cause a crash in that case, so the isEntryDuplicate check prevents
+        // that.
+        if (_isNew && !_vault.isEntryDuplicate(entry)) {
             _vault.addEntry(entry);
         } else {
             _vault.replaceEntry(entry);
