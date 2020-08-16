@@ -233,6 +233,37 @@ public class Dialogs {
         showTextInputDialog(context, setPasswordMessageId, messageId, R.string.password, listener, dismissListener, true);
     }
 
+    public static void showCheckboxDialog(Context context, @StringRes int titleId, @StringRes int messageId, @StringRes int checkboxMessageId, CheckboxInputListener listener) {
+        View view = LayoutInflater.from(context).inflate(R.layout.dialog_checkbox, null);
+        CheckBox checkBox = view.findViewById(R.id.checkbox);
+        checkBox.setText(checkboxMessageId);
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(context)
+                .setTitle(titleId)
+                .setView(view)
+                .setNegativeButton(R.string.no, (dialog1, which) ->
+                        listener.onCheckboxInputResult(false))
+                .setPositiveButton(R.string.yes, (dialog1, which) ->
+                        listener.onCheckboxInputResult(checkBox.isChecked()));
+
+        if (messageId != 0) {
+            builder.setMessage(messageId);
+        }
+
+        AlertDialog dialog = builder.create();
+
+        final AtomicReference<Button> buttonOK = new AtomicReference<>();
+        dialog.setOnShowListener(d -> {
+            Button button = dialog.getButton(AlertDialog.BUTTON_POSITIVE);
+            button.setEnabled(false);
+            buttonOK.set(button);
+        });
+
+        checkBox.setOnCheckedChangeListener((buttonView, isChecked) -> buttonOK.get().setEnabled(isChecked));
+
+        showSecureDialog(dialog);
+    }
+
     public static void showNumberPickerDialog(Activity activity, NumberInputListener listener) {
         View view = activity.getLayoutInflater().inflate(R.layout.dialog_number_picker, null);
         NumberPicker numberPicker = view.findViewById(R.id.numberPicker);
@@ -350,6 +381,10 @@ public class Dialogs {
                     }
                 })
                 .create());
+    }
+
+    public interface CheckboxInputListener {
+        void onCheckboxInputResult(boolean checkbox);
     }
 
     public interface NumberInputListener {

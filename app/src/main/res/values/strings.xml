@@ -315,4 +315,7 @@
     <string name="title_activity_scan_qr">Scan a QR code</string>
     <string name="title_activity_manage_slots">Manage key slots</string>
     <string name="title_activity_select_entries">Select entries</string>
+    <string name="dialog_wipe_entries_title">Wipe entries</string>
+    <string name="dialog_wipe_entries_message">Your vault already contains entries. Do you want to remove these entries before importing this file?\n\n<b>In doing so, you will permanently lose access to the existing entries in the vault.</b></string>
+    <string name="dialog_wipe_entries_checkbox">Wipe vault contents</string>
 </resources>

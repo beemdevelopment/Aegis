@@ -154,6 +154,10 @@ public class VaultManager {
         return _vault.getEntries().remove(entry);
     }
 
+    public void wipeEntries() {
+        _vault.getEntries().wipe();
+    }
+
     public VaultEntry replaceEntry(VaultEntry entry) {
         return _vault.getEntries().replace(entry);
     }

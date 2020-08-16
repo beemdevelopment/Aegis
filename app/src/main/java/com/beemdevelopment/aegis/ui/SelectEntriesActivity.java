@@ -25,10 +25,12 @@ import com.getbase.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class SelectEntriesActivity extends AegisActivity {
     private ImportEntriesAdapter _adapter;
     private FabScrollHelper _fabScrollHelper;
+    private boolean _vaultContainsEntries;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +59,7 @@ public class SelectEntriesActivity extends AegisActivity {
         Intent intent = getIntent();
         List<ImportEntry> entries = (ArrayList<ImportEntry>) intent.getSerializableExtra("entries");
         List<DatabaseImporterEntryException> errors = (ArrayList<DatabaseImporterEntryException>) intent.getSerializableExtra("errors");
+        _vaultContainsEntries = intent.getBooleanExtra("vaultContainsEntries", false);
 
         for (ImportEntry entry : entries) {
             _adapter.addEntry(entry);
@@ -67,7 +70,13 @@ public class SelectEntriesActivity extends AegisActivity {
         }
 
         FloatingActionButton fabMenu = findViewById(R.id.fab);
-        fabMenu.setOnClickListener(v -> returnSelectedEntries());
+        fabMenu.setOnClickListener(v -> {
+            if (_vaultContainsEntries) {
+                showWipeEntriesDialog();
+            } else {
+                returnSelectedEntries(false);
+            }
+        });
         _fabScrollHelper = new FabScrollHelper(fabMenu);
     }
 
@@ -100,10 +109,19 @@ public class SelectEntriesActivity extends AegisActivity {
                 .create());
     }
 
-    private void returnSelectedEntries() {
-        List<ImportEntry> entries = _adapter.getCheckedEntries();
+    private void showWipeEntriesDialog() {
+        Dialogs.showCheckboxDialog(this, R.string.dialog_wipe_entries_title,
+                R.string.dialog_wipe_entries_message,
+                R.string.dialog_wipe_entries_checkbox,
+                this::returnSelectedEntries
+        );
+    }
+
+    private void returnSelectedEntries(boolean wipeEntries) {
         Intent intent = new Intent();
+        List<ImportEntry> entries = _adapter.getCheckedEntries();
         intent.putExtra("entries", (ArrayList<ImportEntry>) entries);
+        intent.putExtra("wipeEntries", wipeEntries);
         setResult(RESULT_OK, intent);
         finish();
     }
