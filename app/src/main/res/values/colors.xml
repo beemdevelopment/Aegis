@@ -34,8 +34,8 @@
     <color name="code_primary_text">#1058C9</color>
     <color name="code_primary_text_dark">#ffffff</color>
 
-    <color name="card_background_dark">#363636</color>
-    <color name="card_background_focused_dark">#6B6B6B</color>
+    <color name="card_background_dark">#2B2B2B</color>
+    <color name="card_background_focused_dark">#303030</color>
     <color name="card_background_focused_true_dark">#363636</color>
     <color name="primary_text_dark">#ffffff</color>
     <color name="hint_text_dark">#a7a7a7</color>
@@ -43,6 +43,8 @@
     <color name="background_dark">#212121</color>
     <color name="background_dark_statusbar">#101010</color>
     <color name="background_true_dark">#000000</color>
+    <color name="divider_dark">#393939</color>
+    <color name="divider_true_dark">#222222</color>
 
     <color name="warning_color">#f4511e</color>
     <color name="hint_color">#42000000</color>
