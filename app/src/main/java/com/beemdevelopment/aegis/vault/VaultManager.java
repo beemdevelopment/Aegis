@@ -46,6 +46,12 @@ public class VaultManager {
         return file.exists() && file.isFile();
     }
 
+    public static void deleteFile(Context context) {
+        AtomicFile file = new AtomicFile(new File(context.getFilesDir(), FILENAME));
+
+        file.delete();
+    }
+
     public static VaultFile readFile(Context context) throws VaultManagerException {
         AtomicFile file = new AtomicFile(new File(context.getFilesDir(), FILENAME));
 

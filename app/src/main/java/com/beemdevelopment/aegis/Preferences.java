@@ -45,6 +45,10 @@ public class Preferences {
         return _prefs.getBoolean("pref_highlight_entry", false);
     }
 
+    public boolean isPanicTriggerEnabled() {
+        return _prefs.getBoolean("pref_panic_trigger", false);
+    }
+
     public boolean isSecureScreenEnabled() {
         // screen security should be enabled by default, but not for debug builds
         return _prefs.getBoolean("pref_secure_screen", !BuildConfig.DEBUG);
