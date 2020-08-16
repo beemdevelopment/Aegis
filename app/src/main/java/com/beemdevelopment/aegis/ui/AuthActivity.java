@@ -154,7 +154,8 @@ public class AuthActivity extends AegisActivity {
             char[] password = EditTextHelper.getEditTextChars(_textPassword);
             List<PasswordSlot> slots = _slots.findAll(PasswordSlot.class);
             PasswordSlotDecryptTask.Params params = new PasswordSlotDecryptTask.Params(slots, password);
-            new PasswordSlotDecryptTask(AuthActivity.this, new PasswordDerivationListener()).execute(params);
+            PasswordSlotDecryptTask task = new PasswordSlotDecryptTask(AuthActivity.this, new PasswordDerivationListener());
+            task.execute(getLifecycle(), params);
         });
 
         biometricsButton.setOnClickListener(v -> {

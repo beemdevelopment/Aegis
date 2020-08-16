@@ -23,6 +23,7 @@ import android.widget.NumberPicker;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import androidx.activity.ComponentActivity;
 import androidx.annotation.StringRes;
 import androidx.appcompat.app.AlertDialog;
 
@@ -94,7 +95,7 @@ public class Dialogs {
                 .create());
     }
 
-    public static void showSetPasswordDialog(Activity activity, Dialogs.SlotListener listener) {
+    public static void showSetPasswordDialog(ComponentActivity activity, Dialogs.SlotListener listener) {
         Zxcvbn zxcvbn = new Zxcvbn();
         View view = activity.getLayoutInflater().inflate(R.layout.dialog_password, null);
         EditText textPassword = view.findViewById(R.id.text_password);
@@ -150,7 +151,8 @@ public class Dialogs {
                     listener.onSlotResult(slot, cipher);
                     dialog.dismiss();
                 });
-                task.execute(new KeyDerivationTask.Params(slot, password));
+                KeyDerivationTask.Params params = new KeyDerivationTask.Params(slot, password);
+                task.execute(activity.getLifecycle(), params);
             });
         });
 
