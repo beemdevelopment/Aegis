@@ -440,10 +440,10 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         }
 
         Intent intent = getIntent();
-        if (Intent.ACTION_VIEW.equals(intent.getAction())) {
-            Uri uri = intent.getData();
-            getIntent().setData(null);
-            getIntent().setAction(null);
+        Uri uri = intent.getData();
+        if (Intent.ACTION_VIEW.equals(intent.getAction()) && uri != null) {
+            intent.setData(null);
+            intent.setAction(null);
 
             GoogleAuthInfo info = null;
             try {

@@ -9,10 +9,8 @@ import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.filters.LargeTest;
 
-import com.beemdevelopment.aegis.crypto.CryptoUtils;
 import com.beemdevelopment.aegis.encoding.Base32;
 import com.beemdevelopment.aegis.otp.HotpInfo;
-import com.beemdevelopment.aegis.otp.OtpInfo;
 import com.beemdevelopment.aegis.otp.SteamInfo;
 import com.beemdevelopment.aegis.otp.TotpInfo;
 import com.beemdevelopment.aegis.ui.MainActivity;
@@ -24,7 +22,6 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -50,7 +47,6 @@ import static org.hamcrest.Matchers.anything;
 @RunWith(AndroidJUnit4.class)
 @LargeTest
 public class OverallTest extends AegisTest {
-    private static final String _password = "test";
     private static final String _groupName = "Test";
 
     @Rule
@@ -62,8 +58,8 @@ public class OverallTest extends AegisTest {
         next.perform(click());
         onView(withId(R.id.rb_password)).perform(click());
         next.perform(click());
-        onView(withId(R.id.text_password)).perform(typeText(_password), closeSoftKeyboard());
-        onView(withId(R.id.text_password_confirm)).perform(typeText(_password), closeSoftKeyboard());
+        onView(withId(R.id.text_password)).perform(typeText(VAULT_PASSWORD), closeSoftKeyboard());
+        onView(withId(R.id.text_password_confirm)).perform(typeText(VAULT_PASSWORD), closeSoftKeyboard());
         next.perform(click());
         onView(withId(R.id.btnNext)).perform(click());
 
@@ -125,7 +121,7 @@ public class OverallTest extends AegisTest {
 
         openContextualActionModeOverflowMenu();
         onView(withText(R.string.lock)).perform(click());
-        onView(withId(R.id.text_password)).perform(typeText(_password), closeSoftKeyboard());
+        onView(withId(R.id.text_password)).perform(typeText(VAULT_PASSWORD), closeSoftKeyboard());
         onView(withId(R.id.button_decrypt)).perform(click());
         vault = getVault();
 
@@ -138,8 +134,8 @@ public class OverallTest extends AegisTest {
         assertNull(vault.getCredentials());
 
         onView(withId(androidx.preference.R.id.recycler_view)).perform(RecyclerViewActions.actionOnItem(hasDescendant(withText(R.string.pref_encryption_title)), click()));
-        onView(withId(R.id.text_password)).perform(typeText(_password), closeSoftKeyboard());
-        onView(withId(R.id.text_password_confirm)).perform(typeText(_password), closeSoftKeyboard());
+        onView(withId(R.id.text_password)).perform(typeText(VAULT_PASSWORD), closeSoftKeyboard());
+        onView(withId(R.id.text_password_confirm)).perform(typeText(VAULT_PASSWORD), closeSoftKeyboard());
         onView(withId(android.R.id.button1)).perform(click());
 
         assertTrue(vault.isEncryptionEnabled());
@@ -190,18 +186,5 @@ public class OverallTest extends AegisTest {
         onView(withId(R.id.text_secret)).perform(typeText(secret), closeSoftKeyboard());
 
         onView(withId(R.id.action_save)).perform(click());
-    }
-
-    private <T extends OtpInfo> VaultEntry generateEntry(Class<T> type, String name, String issuer) {
-        byte[] secret = CryptoUtils.generateRandomBytes(20);
-
-        OtpInfo info;
-        try {
-            info = type.getConstructor(byte[].class).newInstance(secret);
-        } catch (IllegalAccessException | InstantiationException | InvocationTargetException | NoSuchMethodException e) {
-            throw new RuntimeException(e);
-        }
-
-        return new VaultEntry(info, name, issuer);
     }
 }
