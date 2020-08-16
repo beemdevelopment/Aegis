@@ -125,7 +125,8 @@ public class SecuritySetupSlide extends SlideFragment {
     private void deriveKey() {
         PasswordSlot slot = new PasswordSlot();
         KeyDerivationTask.Params params = new KeyDerivationTask.Params(slot, EditTextHelper.getEditTextChars(_textPassword));
-        new KeyDerivationTask(getContext(), new PasswordDerivationListener()).execute(params);
+        KeyDerivationTask task = new KeyDerivationTask(getContext(), new PasswordDerivationListener());
+        task.execute(getLifecycle(), params);
     }
 
     @Override

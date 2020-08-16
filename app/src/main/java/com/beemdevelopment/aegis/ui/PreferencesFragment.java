@@ -37,6 +37,7 @@ import com.beemdevelopment.aegis.services.NotificationService;
 import com.beemdevelopment.aegis.ui.models.ImportEntry;
 import com.beemdevelopment.aegis.ui.preferences.SwitchPreference;
 import com.beemdevelopment.aegis.ui.tasks.PasswordSlotDecryptTask;
+import com.beemdevelopment.aegis.ui.tasks.ProgressDialogTask;
 import com.beemdevelopment.aegis.util.UUIDMap;
 import com.beemdevelopment.aegis.vault.VaultBackupManager;
 import com.beemdevelopment.aegis.vault.VaultEntry;
@@ -384,7 +385,8 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
                 if (isDigitsOnly(new String(password))) {
                     List<PasswordSlot> slots = _vault.getCredentials().getSlots().findAll(PasswordSlot.class);
                     PasswordSlotDecryptTask.Params params = new PasswordSlotDecryptTask.Params(slots, password);
-                    new PasswordSlotDecryptTask(getActivity(), new PasswordConfirmationListener()).execute(params);
+                    PasswordSlotDecryptTask task = new PasswordSlotDecryptTask(getActivity(), new PasswordConfirmationListener());
+                    task.execute(getLifecycle(), params);
                 } else {
                     setPinKeyboardPreference(false);
                     Dialogs.showSecureDialog(new AlertDialog.Builder(getActivity())
