@@ -45,7 +45,6 @@
     <string name="pref_tap_to_reveal_summary">Les jetons seront masqués par défaut. Appuyer sur le jeton pour révéler le code.</string>
     <string name="pref_tap_to_reveal_time_title">Délai pour appuyer pour révéler</string>
     <string name="pref_auto_lock_title">Verrouillage automatique</string>
-    <string name="pref_auto_lock_summary">Verrouiller automatiquement lorsque vous fermez l\'application ou verrouillez votre appareil.</string>
     <string name="pref_encryption_title">Chiffrement</string>
     <string name="pref_encryption_summary">Chiffrer le coffre-fort et le déverrouiller avec un mot de passe ou la biométrie</string>
     <string name="pref_biometrics_title">Déverrouillage biométrique</string>

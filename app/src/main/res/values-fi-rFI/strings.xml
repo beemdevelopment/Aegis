@@ -45,7 +45,6 @@
     <string name="pref_tap_to_reveal_summary">Todennustunnukset piilotetaan oletuksena. Napauta todennustunnusta paljastaaksesi sen koodi.</string>
     <string name="pref_tap_to_reveal_time_title">Kuinka kauan todennustunnus on näkyvissä napautuksen jälkeen</string>
     <string name="pref_auto_lock_title">Lukitse automaattisesti</string>
-    <string name="pref_auto_lock_summary">Lukitsee sovelluksen automaattisesti, kun suljet sen tai lukitset laitteesi.</string>
     <string name="pref_encryption_title">Salaus</string>
     <string name="pref_encryption_summary">Salaa holvi ja avaa se salasanalla tai biometriikalla</string>
     <string name="pref_biometrics_title">Biometrinen avaaminen</string>

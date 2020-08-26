@@ -51,7 +51,6 @@
     <string name="pref_tap_to_reveal_summary">Коды будут скрыты по умолчанию. Нажмите на токен, чтобы показать код.</string>
     <string name="pref_tap_to_reveal_time_title">Тайм-аут для отображения по нажатию</string>
     <string name="pref_auto_lock_title">Автоматическая блокировка</string>
-    <string name="pref_auto_lock_summary">Автоматическая блокировка при закрытии приложения и блокировке устройства.</string>
     <string name="pref_encryption_title">Шифрование</string>
     <string name="pref_encryption_summary">Зашифруйте хранилище и разблокируйте его с помощью пароля или биометрии</string>
     <string name="pref_biometrics_title">Биометрическая разблокировка</string>

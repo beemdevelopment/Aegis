@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.WindowManager;
 import android.widget.Toast;
 
-import androidx.annotation.CallSuper;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.beemdevelopment.aegis.AegisApplication;
@@ -20,9 +19,7 @@ import java.util.Locale;
 import java.util.Map;
 
 public abstract class AegisActivity extends AppCompatActivity implements AegisApplication.LockListener {
-    private boolean _resumed;
     private AegisApplication _app;
-    private Theme _configuredTheme;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +36,7 @@ public abstract class AegisActivity extends AppCompatActivity implements AegisAp
             Intent intent = new Intent(this, MainActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
+            finish();
             return;
         }
 
@@ -58,24 +56,9 @@ public abstract class AegisActivity extends AppCompatActivity implements AegisAp
     }
 
     @Override
-    protected void onResume() {
-        super.onResume();
-        _resumed = true;
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        _resumed = false;
-    }
-
-    @CallSuper
-    @Override
-    public void onLocked() {
-        if (isOrphan()) {
-            setResult(RESULT_CANCELED, null);
-            finish();
-        }
+    public void onLocked(boolean userInitiated) {
+        setResult(RESULT_CANCELED, null);
+        finishAndRemoveTask();
     }
 
     protected AegisApplication getApp() {
@@ -137,13 +120,6 @@ public abstract class AegisActivity extends AppCompatActivity implements AegisAp
             Toast.makeText(this, getString(R.string.saving_error), Toast.LENGTH_LONG).show();
             return false;
         }
-    }
-
-    /**
-     * Reports whether this Activity has been resumed. (i.e. onResume was called)
-     */
-    protected boolean isOpen() {
-        return _resumed;
     }
 
     /**

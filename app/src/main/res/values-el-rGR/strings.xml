@@ -36,7 +36,6 @@
     <string name="pref_tap_to_reveal_summary">Απόκρυψη αναγνωριστικών από προεπιλογή. Πατήστε στα αναγνωριστικά για προβολή κωδικού.</string>
     <string name="pref_tap_to_reveal_time_title">Χρονικό όριο πατήματος προβολής</string>
     <string name="pref_auto_lock_title">Αυτόματο κλείδωμα</string>
-    <string name="pref_auto_lock_summary">Αυτόματο κλείδωμα στο κλείσιμο της εφαρμογής ή στο κλείδωμα της συσκευή σας.</string>
     <string name="pref_encryption_title">Κρυπτογράφηση</string>
     <string name="pref_encryption_summary">Κρυπτογράφηση λίστας και ξεκλείδωμα με κωδικό ή βιομετρική μέθοδο</string>
     <string name="pref_biometrics_title">Βιομετρικό ξεκλείδωμα</string>

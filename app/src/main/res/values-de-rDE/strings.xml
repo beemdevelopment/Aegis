@@ -41,7 +41,6 @@
     <string name="pref_tap_to_reveal_summary">Schlüssel werden standardmäßig ausgeblendet. Tippe auf die Schlüssel, um den Code anzuzeigen.</string>
     <string name="pref_tap_to_reveal_time_title">Zeitüberschreitung für Tippen zum Anzeigen</string>
     <string name="pref_auto_lock_title">Automatische Sperre</string>
-    <string name="pref_auto_lock_summary">Automatische Sperre, wenn die App geschlossen oder dein Gerät gesperrt wird.</string>
     <string name="pref_encryption_title">Verschlüsselung</string>
     <string name="pref_biometrics_title">Biometische Entsperrung</string>
     <string name="pref_biometrics_summary">Erlauben, die Datenbank mit biometrischer Authentifizierung zu entsperren</string>

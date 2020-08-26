@@ -46,7 +46,6 @@
     <string name="pref_tap_to_reveal_summary">Kodlar varsayılan olarak gizlenir. Kodu görmek için üstüne dokunun</string>
     <string name="pref_tap_to_reveal_time_title">Gösterme için zaman aşımı</string>
     <string name="pref_auto_lock_title">Otomatik kilitleme</string>
-    <string name="pref_auto_lock_summary">Cihazı kilitlediğimde veya uygulamayı kapattığımda otomatik olarak kilitle.</string>
     <string name="pref_encryption_title">Şifreleme</string>
     <string name="pref_encryption_summary">Kasayı şifrele ve açmak için bir parola veya biyometrik doğrulama kullan</string>
     <string name="pref_biometrics_title">Biyometrik kilit açma</string>

@@ -23,7 +23,6 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.biometric.BiometricPrompt;
 
 import com.beemdevelopment.aegis.AegisApplication;
-import com.beemdevelopment.aegis.CancelAction;
 import com.beemdevelopment.aegis.Preferences;
 import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.ThemeMap;
@@ -52,9 +51,7 @@ import javax.crypto.SecretKey;
 public class AuthActivity extends AegisActivity {
     private EditText _textPassword;
 
-    private CancelAction _cancelAction;
     private SlotList _slots;
-
     private SecretKey _bioKey;
     private BiometricSlot _bioSlot;
     private BiometricPrompt _bioPrompt;
@@ -62,7 +59,7 @@ public class AuthActivity extends AegisActivity {
     private int _failedUnlockAttempts;
 
     // the first time this activity is resumed after creation, it's possible to inhibit showing the
-    // biometric prompt by setting 'inhibitBioPrompt' to false through the intent
+    // biometric prompt by setting 'inhibitBioPrompt' to true through the intent
     private boolean _inhibitBioPrompt;
 
     private Preferences _prefs;
@@ -95,7 +92,6 @@ public class AuthActivity extends AegisActivity {
         } else {
             _inhibitBioPrompt = savedInstanceState.getBoolean("inhibitBioPrompt", false);
         }
-        _cancelAction = (CancelAction) intent.getSerializableExtra("cancelAction");
         _slots = (SlotList) intent.getSerializableExtra("slots");
         _stateless = _slots != null;
         if (!_stateless) {
@@ -183,11 +179,10 @@ public class AuthActivity extends AegisActivity {
 
     @Override
     public void onBackPressed() {
-        switch (_cancelAction) {
-            case KILL:
-                finishAffinity();
-            case CLOSE:
-                finish();
+        if (_stateless) {
+            super.onBackPressed();
+        } else {
+            finishAffinity();
         }
     }
 

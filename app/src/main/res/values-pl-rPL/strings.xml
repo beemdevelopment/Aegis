@@ -55,7 +55,6 @@
     <string name="pref_tap_to_reveal_summary">Tokeny zostaną domyślnie ukryte. Kliknij na token, aby pokazać kod.</string>
     <string name="pref_tap_to_reveal_time_title">Limit czasu dla odkrycia</string>
     <string name="pref_auto_lock_title">Automatyczna blokada</string>
-    <string name="pref_auto_lock_summary">Automatycznie zablokuj aplikację po jej zamknięciu lub zablokowaniu urządzenia.</string>
     <string name="pref_encryption_title">Szyfrowanie</string>
     <string name="pref_encryption_summary">Zaszyfruj sejf i odblokuj go za pomocą hasła lub autoryzacji biometrycznej</string>
     <string name="pref_biometrics_title">Autoryzacja biometryczna</string>
