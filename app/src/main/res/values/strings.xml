@@ -221,6 +221,7 @@
     <string name="pin_keyboard_description">Enter your password to enable the PIN keyboard. Note that this only works if your password only consists of numbers</string>
     <string name="pin_keyboard_error">Error enabling PIN keyboard</string>
     <string name="pin_keyboard_error_description">It\'s not possible to set PIN keyboard. Your password must only consists of numbers.</string>
+    <string name="pin_keyboard_disabled">Password changed. The PIN keyboard will no longer be shown.</string>
     <string name="selected">Selected</string>
     <string name="dark_theme_title">Dark theme</string>
     <string name="light_theme_title">Light theme</string>

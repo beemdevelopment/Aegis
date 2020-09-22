@@ -36,9 +36,7 @@ import com.beemdevelopment.aegis.services.NotificationService;
 import com.beemdevelopment.aegis.ui.models.ImportEntry;
 import com.beemdevelopment.aegis.ui.preferences.SwitchPreference;
 import com.beemdevelopment.aegis.ui.tasks.PasswordSlotDecryptTask;
-import com.beemdevelopment.aegis.ui.tasks.ProgressDialogTask;
 import com.beemdevelopment.aegis.util.UUIDMap;
-import com.beemdevelopment.aegis.vault.Vault;
 import com.beemdevelopment.aegis.vault.VaultBackupManager;
 import com.beemdevelopment.aegis.vault.VaultEntry;
 import com.beemdevelopment.aegis.vault.VaultFileCredentials;
@@ -925,6 +923,11 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
 
             _vault.setCredentials(creds);
             saveVault();
+
+            if (_prefs.isPinKeyboardEnabled()) {
+                setPinKeyboardPreference(false);
+                Toast.makeText(getContext(), R.string.pin_keyboard_disabled, Toast.LENGTH_SHORT).show();
+            }
         }
 
         @Override
