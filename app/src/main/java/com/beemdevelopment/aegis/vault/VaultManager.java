@@ -1,11 +1,10 @@
 package com.beemdevelopment.aegis.vault;
 
 import android.content.Context;
-import android.content.Intent;
 
 import androidx.core.util.AtomicFile;
 
-import com.beemdevelopment.aegis.services.NotificationService;
+import com.beemdevelopment.aegis.Preferences;
 
 import org.json.JSONObject;
 
@@ -16,62 +15,68 @@ import java.io.OutputStream;
 import java.text.Collator;
 import java.util.Collection;
 import java.util.TreeSet;
+import java.util.UUID;
 
 public class VaultManager {
-    private static final String FILENAME = "aegis.json";
-    public static final String FILENAME_EXPORT = "aegis_export.json";
-    public static final String FILENAME_EXPORT_PLAIN = "aegis_export_plain.json";
+    public static final String FILENAME = "aegis.json";
+    public static final String FILENAME_PREFIX_EXPORT = "aegis-export";
+    public static final String FILENAME_PREFIX_EXPORT_PLAIN = "aegis-export-plain";
 
     private Vault _vault;
-    private VaultFile _file;
     private VaultFileCredentials _creds;
-    private boolean _encrypt;
 
     private Context _context;
+    private Preferences _prefs;
+    private VaultBackupManager _backups;
 
-    public VaultManager(Context context) {
+    public VaultManager(Context context, Vault vault, VaultFileCredentials creds) {
         _context = context;
+        _prefs = new Preferences(context);
+        _backups = new VaultBackupManager(context);
+        _vault = vault;
+        _creds = creds;
     }
 
-    public boolean fileExists() {
-        File file = new File(_context.getFilesDir(), FILENAME);
+    public VaultManager(Context context, Vault vault) {
+        this(context, vault, null);
+    }
+
+    public static boolean fileExists(Context context) {
+        File file = new File(context.getFilesDir(), FILENAME);
         return file.exists() && file.isFile();
     }
 
-    public void load() throws VaultManagerException {
-        assertState(true, false);
+    public static VaultFile readFile(Context context) throws VaultManagerException {
+        AtomicFile file = new AtomicFile(new File(context.getFilesDir(), FILENAME));
 
-        AtomicFile file = new AtomicFile(new File(_context.getFilesDir(), FILENAME));
         try {
             byte[] fileBytes = file.readFully();
-            _file = VaultFile.fromBytes(fileBytes);
-            _encrypt = _file.isEncrypted();
-            if (!isEncryptionEnabled()) {
-                JSONObject obj = _file.getContent();
-                _vault = Vault.fromJson(obj);
-            }
-        } catch (IOException | VaultFileException | VaultException e) {
+            return VaultFile.fromBytes(fileBytes);
+        } catch (IOException | VaultFileException e) {
             throw new VaultManagerException(e);
         }
     }
 
-    public void lock() {
-        assertState(false, true);
-        _creds = null;
-        _vault = null;
-    }
+    public static VaultManager init(Context context, VaultFile file, VaultFileCredentials creds) throws VaultManagerException {
+        if (file.isEncrypted() && creds == null) {
+            throw new IllegalArgumentException("The VaultFile is encrypted but the given VaultFileCredentials is null");
+        }
 
-    public void unlock(VaultFileCredentials creds) throws VaultManagerException {
-        assertState(true, true);
-
+        Vault vault;
         try {
-            JSONObject obj = _file.getContent(creds);
-            _vault = Vault.fromJson(obj);
-            _creds = creds;
-            _context.startService(new Intent(_context, NotificationService.class));
-        } catch (VaultFileException | VaultException e) {
+            JSONObject obj;
+            if (!file.isEncrypted()) {
+                obj = file.getContent();
+            } else {
+                obj = file.getContent(creds);
+            }
+
+            vault = Vault.fromJson(obj);
+        } catch (VaultException | VaultFileException e) {
             throw new VaultManagerException(e);
         }
+
+        return new VaultManager(context, vault, creds);
     }
 
     public static void save(Context context, VaultFile vaultFile) throws VaultManagerException {
@@ -91,25 +96,33 @@ public class VaultManager {
         }
     }
 
-    public void save() throws VaultManagerException {
-        assertState(false, true);
-
+    public void save(boolean backup) throws VaultManagerException {
         try {
             JSONObject obj = _vault.toJson();
+
+            VaultFile file = new VaultFile();
             if (isEncryptionEnabled()) {
-                _file.setContent(obj, _creds);
+                file.setContent(obj, _creds);
             } else {
-                _file.setContent(obj);
+                file.setContent(obj);
             }
-            save(_context, _file);
+
+            save(_context, file);
         } catch (VaultFileException e) {
             throw new VaultManagerException(e);
+        }
+
+        if (backup && _prefs.isBackupsEnabled()) {
+            try {
+                backup();
+                _prefs.setBackupsError(null);
+            } catch (VaultManagerException e) {
+                _prefs.setBackupsError(e);
+            }
         }
     }
 
     public void export(OutputStream stream, boolean encrypt) throws VaultManagerException {
-        assertState(false, true);
-
         try {
             VaultFile vaultFile = new VaultFile();
             if (encrypt && isEncryptionEnabled()) {
@@ -125,39 +138,43 @@ public class VaultManager {
         }
     }
 
+    public void backup() throws VaultManagerException {
+        _backups.create(_prefs.getBackupsLocation(), _prefs.getBackupsVersionCount());
+    }
+
     public void addEntry(VaultEntry entry) {
-        assertState(false, true);
         _vault.getEntries().add(entry);
     }
 
+    public VaultEntry getEntryByUUID(UUID uuid) {
+        return _vault.getEntries().getByUUID(uuid);
+    }
+
     public VaultEntry removeEntry(VaultEntry entry) {
-        assertState(false, true);
         return _vault.getEntries().remove(entry);
     }
 
+    public void wipeEntries() {
+        _vault.getEntries().wipe();
+    }
+
     public VaultEntry replaceEntry(VaultEntry entry) {
-        assertState(false, true);
         return _vault.getEntries().replace(entry);
     }
 
     public void swapEntries(VaultEntry entry1, VaultEntry entry2) {
-        assertState(false, true);
         _vault.getEntries().swap(entry1, entry2);
     }
 
     public boolean isEntryDuplicate(VaultEntry entry) {
-        assertState(false, true);
         return _vault.getEntries().has(entry);
     }
 
     public Collection<VaultEntry> getEntries() {
-        assertState(false, true);
         return _vault.getEntries().getValues();
     }
 
     public TreeSet<String> getGroups() {
-        assertState(false, true);
-
         TreeSet<String> groups = new TreeSet<>(Collator.getInstance());
         for (VaultEntry entry : getEntries()) {
             String group = entry.getGroup();
@@ -169,62 +186,24 @@ public class VaultManager {
     }
 
     public VaultFileCredentials getCredentials() {
-        assertState(false, true);
         return _creds;
     }
 
     public void setCredentials(VaultFileCredentials creds) {
-        assertState(false, true);
         _creds = creds;
-    }
-
-    public VaultFile.Header getFileHeader() {
-        assertLoaded(true);
-        return _file.getHeader();
     }
 
     public boolean isEncryptionEnabled() {
-        assertLoaded(true);
-        return _encrypt;
+        return _creds != null;
     }
 
     public void enableEncryption(VaultFileCredentials creds) throws VaultManagerException {
-        assertState(false, true);
         _creds = creds;
-        _encrypt = true;
-        save();
+        save(true);
     }
 
     public void disableEncryption() throws VaultManagerException {
-        assertState(false, true);
         _creds = null;
-        _encrypt = false;
-        save();
-    }
-
-    public boolean isLoaded() {
-        return _file != null;
-    }
-
-    public boolean isLocked() {
-        return _vault == null;
-    }
-
-    private void assertState(boolean locked, boolean loaded) {
-        assertLoaded(loaded);
-
-        if (isLocked() && !locked) {
-            throw new AssertionError("vault file has not been unlocked yet");
-        } else if (!isLocked() && locked) {
-            throw new AssertionError("vault file has already been unlocked");
-        }
-    }
-
-    private void assertLoaded(boolean loaded) {
-        if (isLoaded() && !loaded) {
-            throw new AssertionError("vault file has already been loaded");
-        } else if (!isLoaded() && loaded) {
-            throw new AssertionError("vault file has not been loaded yet");
-        }
+        save(true);
     }
 }

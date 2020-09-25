@@ -22,10 +22,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.SortCategory;
 import com.beemdevelopment.aegis.ViewMode;
-import com.beemdevelopment.aegis.vault.VaultEntry;
 import com.beemdevelopment.aegis.helpers.SimpleItemTouchHelperCallback;
 import com.beemdevelopment.aegis.helpers.UiRefresher;
 import com.beemdevelopment.aegis.otp.TotpInfo;
+import com.beemdevelopment.aegis.vault.VaultEntry;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.ListPreloader;
 import com.bumptech.glide.RequestBuilder;
@@ -33,18 +33,21 @@ import com.bumptech.glide.integration.recyclerview.RecyclerViewPreloader;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.util.ViewPreloadSizeProvider;
 
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import java.util.UUID;
 
 public class EntryListView extends Fragment implements EntryAdapter.Listener {
     private EntryAdapter _adapter;
     private Listener _listener;
     private SimpleItemTouchHelperCallback _touchCallback;
+    private ItemTouchHelper _touchHelper;
 
     private RecyclerView _recyclerView;
     private RecyclerView.ItemDecoration _dividerDecoration;
     private ViewPreloadSizeProvider<VaultEntry> _preloadSizeProvider;
-    private PeriodProgressBar _progressBar;
+    private TotpProgressBar _progressBar;
     private boolean _showProgress;
     private ViewMode _viewMode;
     private LinearLayout _emptyStateView;
@@ -88,8 +91,8 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
         LinearLayoutManager layoutManager = new LinearLayoutManager(view.getContext());
         _recyclerView.setLayoutManager(layoutManager);
         _touchCallback = new SimpleItemTouchHelperCallback(_adapter);
-        ItemTouchHelper touchHelper = new ItemTouchHelper(_touchCallback);
-        touchHelper.attachToRecyclerView(_recyclerView);
+        _touchHelper = new ItemTouchHelper(_touchCallback);
+        _touchHelper.attachToRecyclerView(_recyclerView);
         _recyclerView.setAdapter(_adapter);
 
         int resId = R.anim.layout_animation_fall_down;
@@ -104,7 +107,7 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
 
             @Override
             public long getMillisTillNextRefresh() {
-                return TotpInfo.getMillisTillNextRotation(_adapter.getUniformPeriod());
+                return TotpInfo.getMillisTillNextRotation(_adapter.getMostFrequentPeriod());
             }
         });
 
@@ -124,8 +127,8 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
     }
 
     public void setGroupFilter(String group, boolean apply) {
-        _touchCallback.setIsLongPressDragEnabled(group == null);
         _adapter.setGroupFilter(group, apply);
+        _touchCallback.setIsLongPressDragEnabled(_adapter.isDragAndDropAllowed());
 
         if (apply) {
             runEntriesAnimation();
@@ -133,18 +136,27 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
     }
 
     public void setIsLongPressDragEnabled(boolean enabled) {
-        _touchCallback.setIsLongPressDragEnabled(enabled);
+        _touchCallback.setIsLongPressDragEnabled(enabled && _adapter.isDragAndDropAllowed());
+    }
+
+    public void setIsCopyOnTapEnabled(boolean enabled) {
+       _adapter.setIsCopyOnTapEnabled(enabled);
     }
 
     public void setActionModeState(boolean enabled, VaultEntry entry) {
         _touchCallback.setSelectedEntry(entry);
         _touchCallback.setIsLongPressDragEnabled(enabled && _adapter.isDragAndDropAllowed());
-        _adapter.addSelectedEntry(entry);
+
+        if (enabled) {
+            _adapter.addSelectedEntry(entry);
+        } else {
+            _adapter.deselectAllEntries();
+        }
     }
 
     public void setSortCategory(SortCategory sortCategory, boolean apply) {
-        _touchCallback.setIsLongPressDragEnabled(sortCategory == SortCategory.CUSTOM);
         _adapter.setSortCategory(sortCategory, apply);
+        _touchCallback.setIsLongPressDragEnabled(_adapter.isDragAndDropAllowed());
 
         if (apply) {
             runEntriesAnimation();
@@ -152,8 +164,12 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
     }
 
     public void setSearchFilter(String search) {
-        _touchCallback.setIsLongPressDragEnabled(search == null);
         _adapter.setSearchFilter(search);
+        _touchCallback.setIsLongPressDragEnabled(_adapter.isDragAndDropAllowed());
+    }
+
+    public void setSelectedEntry(VaultEntry entry) {
+        _touchCallback.setSelectedEntry(entry);
     }
 
     public void setViewMode(ViewMode mode) {
@@ -162,10 +178,15 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
         _adapter.setViewMode(_viewMode);
     }
 
+    public void startDrag(RecyclerView.ViewHolder viewHolder) {
+        _touchHelper.startDrag(viewHolder);
+    }
+
     public void refresh(boolean hard) {
         if (_showProgress) {
-            _progressBar.refresh();
+            _progressBar.restart();
         }
+
         _adapter.refresh(hard);
     }
 
@@ -199,6 +220,11 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
     }
 
     @Override
+    public void onEntryCopy(VaultEntry entry) {
+        _listener.onEntryCopy(entry);
+    }
+
+    @Override
     public void onSelect(VaultEntry entry) { _listener.onSelect(entry); }
 
     @Override
@@ -208,14 +234,22 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
     public void onPeriodUniformityChanged(boolean isUniform, int period) {
         setShowProgress(isUniform);
         if (_showProgress) {
-            _refresher.stop();
             _progressBar.setVisibility(View.VISIBLE);
             _progressBar.setPeriod(period);
+            _progressBar.start();
             _refresher.start();
         } else {
             _progressBar.setVisibility(View.GONE);
+            _progressBar.stop();
             _refresher.stop();
         }
+    }
+
+    @Override
+    public void onListChange() { _listener.onListChange(); }
+
+    public void setCodeGroupSize(int codeGrouping) {
+        _adapter.setCodeGroupSize(codeGrouping);
     }
 
     public void setShowAccountName(boolean showAccountName) {
@@ -243,7 +277,7 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
         updateEmptyState();
     }
 
-    public void addEntries(List<VaultEntry> entries) {
+    public void addEntries(Collection<VaultEntry> entries) {
         _adapter.addEntries(entries);
         updateEmptyState();
     }
@@ -253,12 +287,17 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
         updateEmptyState();
     }
 
+    public void removeEntry(UUID uuid) {
+        _adapter.removeEntry(uuid);
+        updateEmptyState();
+    }
+
     public void clearEntries() {
         _adapter.clearEntries();
     }
 
-    public void replaceEntry(VaultEntry oldEntry, VaultEntry newEntry) {
-        _adapter.replaceEntry(oldEntry, newEntry);
+    public void replaceEntry(UUID uuid, VaultEntry newEntry) {
+        _adapter.replaceEntry(uuid, newEntry);
     }
 
     public void runEntriesAnimation() {
@@ -307,10 +346,12 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
         void onEntryMove(VaultEntry entry1, VaultEntry entry2);
         void onEntryDrop(VaultEntry entry);
         void onEntryChange(VaultEntry entry);
+        void onEntryCopy(VaultEntry entry);
         void onLongEntryClick(VaultEntry entry);
         void onScroll(int dx, int dy);
         void onSelect(VaultEntry entry);
         void onDeselect(VaultEntry entry);
+        void onListChange();
     }
 
     private class VerticalSpaceItemDecoration extends RecyclerView.ItemDecoration {

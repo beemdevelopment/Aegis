@@ -7,6 +7,8 @@
     <string name="action_about">About</string>
     <string name="action_import">Import</string>
     <string name="action_delete">Delete</string>
+    <string name="action_transfer">Transfer</string>
+    <string name="action_edit_icon">Edit icon</string>
     <string name="action_default_icon">Restore default icon</string>
     <string name="discard">Discard</string>
     <string name="save">Save</string>
@@ -17,9 +19,12 @@
     <string name="pref_general_group_title">General</string>
     <string name="pref_security_group_title">Security</string>
     <string name="pref_tools_group_title">Tools</string>
+    <string name="pref_backups_group_title">Backups</string>
     <string name="pref_select_theme_title">Theme</string>
     <string name="pref_view_mode_title">View mode</string>
     <string name="pref_lang_title">Language</string>
+    <string name="pref_code_group_size_title">Code digit grouping</string>
+    <string name="pref_code_group_size_summary">Show code in 2-digit grouping instead of 3-digit grouping</string>
     <string name="pref_account_name_title">Show the account name</string>
     <string name="pref_account_name_summary">Enable this to show the account name next to the issuer</string>
     <string name="pref_timeout_title">Timeout</string>
@@ -28,10 +33,22 @@
     <string name="pref_slots_summary">Manage the list of keys that can decrypt the vault</string>
     <string name="pref_import_file_title">Import from file</string>
     <string name="pref_import_file_summary">Import tokens from a file</string>
+    <string name="pref_backups_title">Backup the vault</string>
+    <string name="pref_backups_summary">Automatically create backups of the vault on external storage when changes are made. This is only supported for encrypted vaults.</string>
+    <string name="pref_backups_location_title">Directory for backup files</string>
+    <string name="pref_backups_location_summary">Backups will be stored at</string>
+    <string name="pref_backups_trigger_title">Trigger backup</string>
+    <string name="pref_backups_trigger_summary">Manually trigger a backup</string>
+    <string name="pref_backups_versions_title">Amount of versions to keep</string>
+    <plurals name="pref_backups_versions_summary">
+        <item quantity="one">Keep %1$d version of the backup</item>
+        <item quantity="other">Keep %1$d versions of the backup</item>
+    </plurals>
     <string name="pref_import_app_title">Import from app</string>
     <string name="pref_import_app_summary">Import tokens from an app (requires root access)</string>
     <string name="pref_export_title">Export</string>
     <string name="pref_export_summary">Export the vault</string>
+    <string name="pref_export_keep_encrypted">Keep the vault encrypted</string>
     <string name="pref_password_reminder_title">Password reminder</string>
     <string name="pref_password_reminder_summary">Show a reminder to enter the password every once in a while, so that you don\'t forget it.</string>
     <string name="pref_secure_screen_title">Screen security</string>
@@ -40,7 +57,12 @@
     <string name="pref_tap_to_reveal_summary">Tokens will be hidden by default. Tap on the tokens to reveal code.</string>
     <string name="pref_tap_to_reveal_time_title">Timeout for tap to reveal</string>
     <string name="pref_auto_lock_title">Auto lock</string>
-    <string name="pref_auto_lock_summary">Automatically lock when you close the app or lock your device.</string>
+    <string name="pref_auto_lock_summary">When %s</string>
+    <string name="pref_auto_lock_summary_disabled">Disabled</string>
+    <string name="pref_auto_lock_prompt">Automatically lock Aegis when</string>
+    <string name="pref_auto_lock_type_back_button">The back button is pressed</string>
+    <string name="pref_auto_lock_type_minimize">The app is minimized</string>
+    <string name="pref_auto_lock_type_device_lock">The device is locked</string>
     <string name="pref_encryption_title">Encryption</string>
     <string name="pref_encryption_summary">Encrypt the vault and unlock it with a password or biometrics</string>
     <string name="pref_biometrics_title">Biometric unlock</string>
@@ -60,12 +82,18 @@
     <string name="authentication_method_set_password">Password</string>
     <string name="authentication_enter_password">Enter your password</string>
     <string name="authentication">Unlock the vault</string>
+
+    <!-- The newline (\n) on the following line is just for aesthetic purposes !-->
+    <string name="authentication_multiline">Unlock\nthe vault</string>
+
+    <string name="auth_use_biometrics">Or tap here to use <font fgcolor='#FF0D86C1'>biometrics</font></string>
     <string name="set_password">Please enter a password</string>
     <string name="set_group">Please enter a group name</string>
     <string name="set_number">Please enter a number</string>
     <string name="set_password_confirm">Please confirm the password</string>
+    <string name="invalid_password">The password is incorrect</string>
     <string name="invalidated_biometrics">A change in your device\'s security settings has been detected. Please go to \"Aegis -> Settings -> Biometrics\" and re-enable biometric unlock.</string>
-    <string name="password_reminder">It\'s been a while since you\'ve entered your password. Do you still remember it?</string>
+    <string name="password_reminder">Please enter your password. We occasionally ask you to do this so that don\'t forget it.</string>
     <string name="enter_password_authy_message">It looks like your Authy tokens are encrypted. Please close Aegis, open Authy and unlock the tokens with your password. Instead, Aegis can also attempt to decrypt your Authy tokens for you, if you enter your password below.</string>
 
     <string name="yes">Yes</string>
@@ -91,8 +119,8 @@
     <string name="password">Password</string>
     <string name="confirm_password">Confirm password</string>
     <string name="show_password">Show password</string>
-    <string name="new_profile">New profile</string>
-    <string name="add_new_profile">Add new profile</string>
+    <string name="new_entry">New entry</string>
+    <string name="add_new_entry">Add new entry</string>
     <string name="unlock_vault_error">Couldn\'t unlock vault</string>
     <string name="unlock_vault_error_description">Incorrect password. Make sure you didn\'t mistype your password.</string>
     <string name="password_equality_error">Passwords should be identical and non-empty</string>
@@ -101,7 +129,10 @@
     <string name="delete_entry">Delete entry</string>
     <string name="delete_entry_description">Are you sure you want to delete this entry?</string>
     <string name="delete_entries">Delete entries</string>
-    <string name="delete_entries_description">Are you sure you want to delete %d entries?</string>
+    <plurals name="delete_entries_description">
+        <item quantity="one">Are you sure you want to delete %d entry?</item>
+        <item quantity="other">Are you sure you want to delete %d entries?</item>
+    </plurals>
     <string name="discard_changes">Discard changes?</string>
     <string name="discard_changes_description">Your changes have not been saved</string>
     <string name="folder">Folder</string>
@@ -110,17 +141,24 @@
     <string name="welcome">Welcome</string>
     <string name="app_description">Aegis is a free, secure and open source 2FA app</string>
     <string name="setup_completed">Setup completed</string>
-    <string name="setup_completed_description">Aegis has been setup and is ready to go.</string>
+    <string name="setup_completed_description">Aegis has been set up and is ready to go.</string>
     <string name="vault_not_found">Vault not found, starting setup…</string>
-    <string name="code_copied">Code copied to the clipboard</string>
+    <string name="copied">Copied</string>
     <string name="errors_copied">Errors copied to the clipboard</string>
     <string name="version_copied">Version copied to the clipboard</string>
+    <string name="error_occurred">An error occurred</string>
     <string name="decryption_error">An error occurred while trying to unlock the vault</string>
+    <string name="decryption_corrupt_error">An error occurred while trying to unlock the vault. Your vault file might be corrupt.</string>
     <string name="saving_error">An error occurred while trying to save the vault</string>
+    <string name="vault_init_error">An error occurred while trying to initialize the vault</string>
+    <string name="vault_load_error">An error occurred while trying to load the vault from storage</string>
+    <string name="biometric_decrypt_error">An error occurred while trying to decrypt the vault with biometric authentication. This usually only happens if the security settings of your device were changed. Please unlock the vault with your password and reconfigure biometric authentication in the settings of Aegis.</string>
+    <string name="biometric_init_error">An error occurred while trying to prepare biometric authentication. This usually only happens if the security settings of your device were changed. Please unlock the vault with your password and reconfigure biometric authentication in the settings of Aegis.</string>
     <string name="disable_encryption">Disable encryption</string>
     <string name="disable_encryption_description">Are you sure you want to disable encryption? This will cause the vault to be stored in plain text.</string>
     <string name="enable_encryption_error">An error occurred while enabling encryption</string>
     <string name="disable_encryption_error">An error occurred while disabling encryption</string>
+    <string name="backup_error">An error occurred while trying to create a backup</string>
     <string name="permission_denied">Permission denied</string>
     <string name="andotp_new_format">New format (v0.6.3 or newer) </string>
     <string name="andotp_old_format">Old format (v0.6.2 or older) </string>
@@ -134,20 +172,23 @@
     <string name="reading_file_error">An error occurred while trying to read the file</string>
     <string name="app_lookup_error">Error: App is not installed</string>
     <string name="root_error">Error: unable to obtain root access</string>
-    <string name="imported_entries_count">Imported %d entries</string>
-    <string name="read_entries_count">Read %d entries. %d errors.</string>
+    <plurals name="imported_entries_count">
+        <item quantity="one">Imported %d entry</item>
+        <item quantity="other">Imported %d entries</item>
+    </plurals>
     <string name="import_error_title">One or more errors occurred during the import</string>
     <string name="exporting_vault_error">An error occurred while trying to export the vault</string>
     <string name="exported_vault">The vault has been exported</string>
     <string name="export_warning">This action will export the vault out of Aegis\' private storage.</string>
-    <string name="encryption_set_password_error">An error occurred while trying to set the password: </string>
-    <string name="encryption_enable_biometrics_error">An error occurred while trying to enable biometric unlock</string>
+    <string name="encryption_set_password_error">An error occurred while trying to set the password.</string>
+    <string name="encryption_enable_biometrics_error">An error occurred while trying to enable biometric unlock. Some devices have poor implementations of biometric authentication and it is likely that yours is one of them. Consider switching to a password-only configuration instead.</string>
     <string name="no_cameras_available">No cameras available</string>
     <string name="read_qr_error">An error occurred while trying to read the QR code</string>
     <string name="authentication_method_raw">Raw</string>
     <string name="unlocking_vault">Unlocking the vault</string>
     <string name="unlocking_vault_repair">Unlocking the vault (repairing)</string>
     <string name="password_slot_error">You must have at least one password slot</string>
+    <string name="slot_this_device">(this devices)</string>
     <string name="remove_slot">Remove slot</string>
     <string name="remove_slot_description">Are you sure you want to remove this slot?</string>
     <string name="remove_group">Remove group</string>
@@ -175,25 +216,36 @@
     <string name="pref_search_name_summary">Include account name matches in the search results</string>
     <string name="pref_highlight_entry_title">Highlight tokens when tapped</string>
     <string name="pref_highlight_entry_summary">Make tokens easier to distinguish from each other by temporarily highlighting them when tapped</string>
-    <string name="tap_to_reveal">Hidden</string>
+    <string name="pref_copy_on_tap_title">Copy tokens when tapped</string>
+    <string name="pref_copy_on_tap_summary">Copy tokens to the clipboard by tapping them</string>
+    <string name="pin_keyboard_description">Enter your password to enable the PIN keyboard. Note that this only works if your password only consists of numbers</string>
+    <string name="pin_keyboard_error">Error enabling PIN keyboard</string>
+    <string name="pin_keyboard_error_description">It\'s not possible to set PIN keyboard. Your password must only consists of numbers.</string>
+    <string name="pin_keyboard_disabled">Password changed. The PIN keyboard will no longer be shown.</string>
     <string name="selected">Selected</string>
     <string name="dark_theme_title">Dark theme</string>
     <string name="light_theme_title">Light theme</string>
     <string name="amoled_theme_title">AMOLED theme</string>
+    <string name="system_theme_title">Set by Battery Saver</string>
+    <string name="system_amoled_theme_title">Set by Battery Saver (AMOLED)</string>
     <string name="normal_viewmode_title">Normal</string>
     <string name="compact_mode_title">Compact</string>
     <string name="small_mode_title">Small</string>
     <string name="unknown_issuer">Unknown issuer</string>
     <string name="unknown_account_name">Unknown account name</string>
-    <string name="import_error_dialog">Aegis could not import %d tokens. These tokens will be skipped. Press \'details\' to see more information about the errors.</string>
+    <plurals name="import_error_dialog">
+        <item quantity="one">Aegis could not import %d token. These tokens will be skipped. Press \'details\' to see more information about the errors.</item>
+        <item quantity="other">Aegis could not import %d tokens. These tokens will be skipped. Press \'details\' to see more information about the errors.</item>
+    </plurals>
     <string name="unable_to_read_qrcode">Unable to read and process QR code</string>
+    <string name="unable_to_generate_qrcode">Unable to generate QR code</string>
     <string name="select_picture">Select picture</string>
+    <string name="select_icon">Select icon</string>
     <string name="toggle_checkboxes">Toggle checkboxes</string>
     <string name="search">Search</string>
     <string name="channel_name_lock_status">Lock status</string>
     <string name="channel_description_lock_status">Aegis can create a persistent notification to notify you when the vault is locked</string>
     <string name="vault_unlocked_state">Vault is unlocked. Tap here to lock.</string>
-    <string name="title_activity_about">About</string>
     <string name="version">Version</string>
     <string name="changelog">Changelog</string>
     <string name="whats_new">What\'s new</string>
@@ -211,6 +263,17 @@
     <string name="support_rate_description">Support us by leaving a review in the Google Play Store</string>
     <string name="webview_error">This device doesn\'t support web view, which is necessary to view the changelog. It is missing a system component.</string>
     <string name="email">Email</string>
+    <string name="time_sync_warning_title">Automatic time synchronization</string>
+    <string name="time_sync_warning_message">Aegis relies on the system time to be in sync to generate correct codes. A deviation of only a few seconds could result in incorrect codes. It looks like your device is not configured to automatically synchronize the time. Would you like to do so now?</string>
+    <string name="time_sync_warning_disable">Stop warning me. I know what I\'m doing.</string>
+    <string name="google_qr_export_unrelated">Unrelated QR code found. Try restarting the scanner.</string>
+    <plurals name="google_qr_export_scanned">
+        <item quantity="one">Scanned %d/%d QR codes</item>
+        <item quantity="other">Scanned %d/%d QR codes</item>
+    </plurals>
+    <string name="google_qr_export_unexpected">Expected QR code #%d, but scanned #%d instead</string>
+    <string name="backup_error_bar_message"><b>Vault backup failed recently</b></string>
+    <string name="switch_camera">Switch camera</string>
 
     <string name="custom_notices_format_style" translatable="false" >
         body {
@@ -224,7 +287,41 @@
             padding: 1em;
             white-space: pre-wrap;
         }
+        a {
+            color: #%4$s;
+        }
     </string>
     <string name="empty_list">There are no codes to be shown. Start adding entries by tapping the plus sign in the bottom right corner</string>
     <string name="empty_list_title">No entries found</string>
+    <string name="empty_group_list">There are no groups to be shown. Add groups in the edit screen of an entry</string>
+    <string name="empty_group_list_title">No groups found</string>
+    <string name="done">Done</string>
+    <plurals name="entries_count">
+        <item quantity="one">%d / %d entry</item>
+        <item quantity="other">%d / %d entries</item>
+    </plurals>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+    <string name="transfer_entry">Transfer entry</string>
+    <string name="transfer_entry_description">Scan this QR code with the authenticator app you would like to transfer this entry to</string>
+
+    <string name="password_strength_very_weak">Very weak</string>
+    <string name="password_strength_weak">Weak</string>
+    <string name="password_strength_fair">Fair</string>
+    <string name="password_strength_good">Good</string>
+    <string name="password_strength_strong">Strong</string>
+    <string name="pref_pin_keyboard_title">Use PIN keyboard on lockscreen</string>
+    <string name="pref_pin_keyboard_summary">Enable this if you want to enable the PIN keyboard on the lockscreen. This only works for numeric passwords</string>
+
+    <string name="title_activity_preferences">Settings</string>
+    <string name="title_activity_manage_groups">Manage groups</string>
+    <string name="title_activity_transfer">Transfer entries</string>
+    <string name="title_activity_about">About</string>
+    <string name="title_activity_edit_entry">Edit entry</string>
+    <string name="title_activity_scan_qr">Scan a QR code</string>
+    <string name="title_activity_manage_slots">Manage key slots</string>
+    <string name="title_activity_select_entries">Select entries</string>
+    <string name="dialog_wipe_entries_title">Wipe entries</string>
+    <string name="dialog_wipe_entries_message">Your vault already contains entries. Do you want to remove these entries before importing this file?\n\n<b>In doing so, you will permanently lose access to the existing entries in the vault.</b></string>
+    <string name="dialog_wipe_entries_checkbox">Wipe vault contents</string>
 </resources>

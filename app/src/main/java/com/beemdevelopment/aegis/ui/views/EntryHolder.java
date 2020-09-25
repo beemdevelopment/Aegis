@@ -1,10 +1,12 @@
 package com.beemdevelopment.aegis.ui.views;
 
 import android.graphics.PorterDuff;
+import android.os.Handler;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
@@ -22,25 +24,40 @@ import com.beemdevelopment.aegis.otp.TotpInfo;
 import com.beemdevelopment.aegis.vault.VaultEntry;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.google.zxing.common.StringUtils;
 
 public class EntryHolder extends RecyclerView.ViewHolder {
     private static final float DEFAULT_ALPHA = 1.0f;
     private static final float DIMMED_ALPHA = 0.2f;
+    private static final char HIDDEN_CHAR = '●';
 
     private TextView _profileName;
     private TextView _profileCode;
     private TextView _profileIssuer;
+    private TextView _profileCopied;
     private ImageView _profileDrawable;
     private VaultEntry _entry;
     private ImageView _buttonRefresh;
+
+    private ImageView _buttonRefresh;
+    private RelativeLayout _description;
+    private ImageView _dragHandle;
+  
     private final ImageView _selected;
+    private final Handler _selectedHandler;
+
+    private int _codeGroupSize = 6;
 
     private boolean _hidden;
 
-    private PeriodProgressBar _progressBar;
+    private TotpProgressBar _progressBar;
     private View _view;
 
     private UiRefresher _refresher;
+    private Handler _animationHandler;
+
+    private Animation _scaleIn;
+    private Animation _scaleOut;
 
     private Animation _scaleIn;
     private Animation _scaleOut;
@@ -53,9 +70,15 @@ public class EntryHolder extends RecyclerView.ViewHolder {
         _profileName = view.findViewById(R.id.profile_account_name);
         _profileCode = view.findViewById(R.id.profile_code);
         _profileIssuer = view.findViewById(R.id.profile_issuer);
+        _profileCopied = view.findViewById(R.id.profile_copied);
+        _description = view.findViewById(R.id.description);
         _profileDrawable = view.findViewById(R.id.ivTextDrawable);
         _buttonRefresh = view.findViewById(R.id.buttonRefresh);
         _selected = view.findViewById(R.id.ivSelected);
+        _dragHandle = view.findViewById(R.id.drag_handle);
+
+        _selectedHandler = new Handler();
+        _animationHandler = new Handler();
 
         _progressBar = view.findViewById(R.id.progressBar);
         int primaryColorId = view.getContext().getResources().getColor(R.color.colorPrimary);
@@ -71,8 +94,6 @@ public class EntryHolder extends RecyclerView.ViewHolder {
                 if (!_hidden) {
                     refreshCode();
                 }
-
-                _progressBar.refresh();
             }
 
             @Override
@@ -82,9 +103,19 @@ public class EntryHolder extends RecyclerView.ViewHolder {
         });
     }
 
-    public void setData(VaultEntry entry, boolean showAccountName, boolean showProgress, boolean hidden, boolean dimmed) {
+    public void setData(VaultEntry entry, int codeGroupSize, boolean showAccountName, boolean showProgress, boolean hidden, boolean dimmed) {
         _entry = entry;
         _hidden = hidden;
+
+        if (codeGroupSize <= 0)
+            throw new IllegalArgumentException("Code group size cannot be zero or negative");
+
+        _codeGroupSize = codeGroupSize;
+
+        _selected.clearAnimation();
+        _selected.setVisibility(View.GONE);
+        _selectedHandler.removeCallbacksAndMessages(null);
+        _animationHandler.removeCallbacksAndMessages(null);
 
         // only show the progress bar if there is no uniform period and the entry type is TotpInfo
         setShowProgress(showProgress);
@@ -92,11 +123,13 @@ public class EntryHolder extends RecyclerView.ViewHolder {
         // only show the button if this entry is of type HotpInfo
         _buttonRefresh.setVisibility(entry.getInfo() instanceof HotpInfo ? View.VISIBLE : View.GONE);
 
-        _profileIssuer.setText(entry.getIssuer());
-        _profileName.setText("");
-        if (showAccountName) {
-            _profileName.setText(" - " + entry.getName());
+        String profileIssuer = entry.getIssuer();
+        String profileName = showAccountName ? entry.getName() : "";
+        if (!profileIssuer.isEmpty() && !profileName.isEmpty()) {
+            profileName = String.format(" (%s)", profileName);
         }
+        _profileIssuer.setText(profileIssuer);
+        _profileName.setText(profileName);
 
         if (_hidden) {
             hideCode();
@@ -133,6 +166,14 @@ public class EntryHolder extends RecyclerView.ViewHolder {
         _buttonRefresh.setOnClickListener(listener);
     }
 
+    public void setShowDragHandle(boolean showDragHandle) {
+        if (showDragHandle) {
+            _dragHandle.setVisibility(View.VISIBLE);
+        } else {
+            _dragHandle.setVisibility(View.INVISIBLE);
+        }
+    }
+
     public void setShowProgress(boolean showProgress) {
         if (_entry.getInfo() instanceof HotpInfo) {
             showProgress = false;
@@ -149,6 +190,7 @@ public class EntryHolder extends RecyclerView.ViewHolder {
 
     public void setFocused(boolean focused) {
         if (focused) {
+            _selected.setVisibility(View.VISIBLE);
             _view.setBackgroundColor(ThemeHelper.getThemeColor(R.attr.cardBackgroundFocused, _view.getContext().getTheme()));
             _selected.setVisibility(View.VISIBLE);
             _selected.startAnimation(_scaleIn);
@@ -160,16 +202,34 @@ public class EntryHolder extends RecyclerView.ViewHolder {
         _view.setSelected(focused);
     }
 
+    public void setFocusedAndAnimate(boolean focused) {
+        setFocused(focused);
+
+        if (focused) {
+            _selected.startAnimation(_scaleIn);
+        } else {
+            _selected.startAnimation(_scaleOut);
+            _selectedHandler.postDelayed(() -> _selected.setVisibility(View.GONE), 150);
+        }
+    }
+
     public void destroy() {
         _refresher.destroy();
     }
 
     public void startRefreshLoop() {
         _refresher.start();
+        _progressBar.start();
     }
 
     public void stopRefreshLoop() {
         _refresher.stop();
+        _progressBar.stop();
+    }
+
+    public void refresh() {
+        _progressBar.restart();
+        refreshCode();
     }
 
     public void refreshCode() {
@@ -183,17 +243,23 @@ public class EntryHolder extends RecyclerView.ViewHolder {
 
         String otp = info.getOtp();
         if (!(info instanceof SteamInfo)) {
-            StringBuilder sb = new StringBuilder();
-            for (int i = 0; i < otp.length(); i++) {
-                if (i != 0 && i % 3 == 0) {
-                    sb.append(" ");
-                }
-                sb.append(otp.charAt(i));
-            }
-            otp = sb.toString();
+            otp = formatCode(otp);
         }
 
         _profileCode.setText(otp);
+    }
+
+    private String formatCode(String code) {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < code.length(); i++) {
+            if (i != 0 && i % _codeGroupSize == 0) {
+                sb.append(" ");
+            }
+            sb.append(code.charAt(i));
+        }
+        code = sb.toString();
+
+        return code;
     }
 
     public void revealCode() {
@@ -202,7 +268,9 @@ public class EntryHolder extends RecyclerView.ViewHolder {
     }
 
     public void hideCode() {
-        _profileCode.setText(R.string.tap_to_reveal);
+        String hiddenText = new String(new char[_entry.getInfo().getDigits()]).replace("\0", Character.toString(HIDDEN_CHAR));
+        hiddenText = formatCode(hiddenText);
+        _profileCode.setText(hiddenText);
         _hidden = true;
     }
 
@@ -212,6 +280,23 @@ public class EntryHolder extends RecyclerView.ViewHolder {
 
     public void highlight() {
         animateAlphaTo(DEFAULT_ALPHA);
+    }
+
+    public void animateCopyText() {
+        _animationHandler.removeCallbacksAndMessages(null);
+
+        Animation slideDownFadeIn = AnimationUtils.loadAnimation(itemView.getContext(), R.anim.slide_down_fade_in);
+        Animation slideDownFadeOut = AnimationUtils.loadAnimation(itemView.getContext(), R.anim.slide_down_fade_out);
+        Animation fadeOut = AnimationUtils.loadAnimation(itemView.getContext(), R.anim.fade_out);
+        Animation fadeIn = AnimationUtils.loadAnimation(itemView.getContext(), R.anim.fade_in);
+
+        _profileCopied.startAnimation(slideDownFadeIn);
+        _description.startAnimation(slideDownFadeOut);
+
+        _animationHandler.postDelayed(() -> {
+            _profileCopied.startAnimation(fadeOut);
+            _description.startAnimation(fadeIn);
+        }, 3000);
     }
 
     private void animateAlphaTo(float alpha) {

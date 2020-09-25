@@ -22,6 +22,8 @@
         <item>@string/light_theme_title</item>
         <item>@string/dark_theme_title</item>
         <item>@string/amoled_theme_title</item>
+        <item>@string/system_theme_title</item>
+        <item>@string/system_amoled_theme_title</item>
     </string-array>
 
     <string-array name="view_mode_titles">
@@ -32,22 +34,59 @@
 
     <string-array name="pref_lang_entries">
         <item>System default</item>
+        <item>Arabic</item>
+        <item>Chinese Simplified</item>
+        <item>Czech</item>
         <item>Dutch</item>
         <item>English</item>
+        <item>Finnish</item>
         <item>French</item>
         <item>German</item>
+        <item>Greek</item>
+        <item>Hungarian</item>
+        <item>Italian</item>
+        <item>Kannada</item>
+        <item>Polish</item>
+        <item>Portuguese</item>
+        <item>Portuguese (Brazilian)</item>
         <item>Russian</item>
-        <item>简体中文</item>
+        <item>Spanish</item>
+        <item>Turkish</item>
     </string-array>
 
     <string-array name="pref_lang_values" translatable="false">
         <item>system</item>
+        <item>ar</item>
+        <item>zh</item>
+        <item>cs</item>
         <item>nl</item>
         <item>en</item>
+        <item>fi</item>
         <item>fr</item>
         <item>de</item>
+        <item>el</item>
+        <item>hu</item>
+        <item>it</item>
+        <item>kn</item>
+        <item>pl</item>
+        <item>pt</item>
+        <item>pt_BR</item>
         <item>ru</item>
-        <item>zh</item>
+        <item>es</item>
+        <item>tr</item>
     </string-array>
 
+    <string-array name="password_strength">
+        <item>@string/password_strength_very_weak</item>
+        <item>@string/password_strength_weak</item>
+        <item>@string/password_strength_fair</item>
+        <item>@string/password_strength_good</item>
+        <item>@string/password_strength_strong</item>
+    </string-array>
+
+    <string-array name="pref_auto_lock_types">
+        <item>@string/pref_auto_lock_type_back_button</item>
+        <item>@string/pref_auto_lock_type_minimize</item>
+        <item>@string/pref_auto_lock_type_device_lock</item>
+    </string-array>
 </resources>

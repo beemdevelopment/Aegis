@@ -8,16 +8,48 @@
     android:fitsSystemWindows="true"
     tools:context="com.beemdevelopment.aegis.ui.MainActivity">
 
-    <fragment
-        android:name="com.beemdevelopment.aegis.ui.views.EntryListView"
-        android:id="@+id/key_profiles"
-        android:layout_height="match_parent"
+    <LinearLayout
         android:layout_width="match_parent"
-        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"/>
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <LinearLayout
+            android:id="@+id/btn_backup_error"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:visibility="gone"
+            android:clickable="true"
+            android:focusable="true"
+            android:paddingHorizontal="10dp"
+            android:paddingVertical="10dp"
+            android:background="@color/colorAccent"
+            android:foreground="?android:selectableItemBackground"
+            android:gravity="center">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:tint="@color/icon_primary_inverted"
+                android:src="@drawable/ic_alert_black_24dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/backup_error_bar_message"
+                android:textColor="@color/primary_text_inverted"
+                android:layout_marginStart="5dp" />
+        </LinearLayout>
+
+        <fragment
+            android:name="com.beemdevelopment.aegis.ui.views.EntryListView"
+            android:id="@+id/key_profiles"
+            android:layout_height="fill_parent"
+            android:layout_width="match_parent"
+            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"/>
+    </LinearLayout>
 
     <!-- note: the fab should always be the last element to be sure it's displayed on top -->
     <com.getbase.floatingactionbutton.FloatingActionsMenu
         android:id="@+id/fab"
+        style="@style/FloatingActionButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
@@ -25,8 +57,7 @@
         android:src="@drawable/ic_add_black_24dp"
         app:fab_addButtonColorNormal="@color/colorAccent"
         app:fab_addButtonColorPressed="@color/colorAccent"
-        app:fab_labelStyle="@style/fab_label_style"
-        app:fab_labelsPosition="left">
+        app:fab_labelStyle="@style/fab_label_style">
 
         <com.getbase.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab_scan"

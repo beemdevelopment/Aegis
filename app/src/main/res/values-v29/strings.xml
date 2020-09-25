@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="system_theme_title">System default</string>
+    <string name="system_amoled_theme_title">System default (AMOLED)</string>
+</resources>

@@ -2,12 +2,13 @@ package com.beemdevelopment.aegis.importers;
 
 import android.content.Context;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteException;
 
-import com.topjohnwu.superuser.ShellUtils;
-
-import net.sqlcipher.database.SQLiteDatabase;
-import net.sqlcipher.database.SQLiteDatabaseHook;
-import net.sqlcipher.database.SQLiteException;
+import com.beemdevelopment.aegis.util.IOUtils;
+import com.google.common.io.Files;
+import com.topjohnwu.superuser.io.SuFile;
+import com.topjohnwu.superuser.io.SuFileInputStream;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -21,49 +22,81 @@ import static android.database.sqlite.SQLiteDatabase.OPEN_READONLY;
 
 public class SqlImporterHelper {
     private Context _context;
-    private char[] _password;
-    private boolean _compatibilityMode;
 
     public SqlImporterHelper(Context context) {
         _context = context;
-        _password = null;
     }
 
-    public SqlImporterHelper(Context context, char[] password, boolean compatibilityMode) {
-        _context = context;
-        _password = password;
-        _compatibilityMode = compatibilityMode;
+    public <T extends Entry> List<T> read(Class<T> type, SuFile path, String table) throws DatabaseImporterException {
+        File dir = Files.createTempDir();
+        File mainFile = new File(dir, path.getName());
+
+        List<File> fileCopies = new ArrayList<>();
+        for (SuFile file : SqlImporterHelper.findDatabaseFiles(path)) {
+            // create temporary copies of the database files so that SQLiteDatabase can open them
+            File fileCopy = null;
+            try (SuFileInputStream inStream = new SuFileInputStream(file)) {
+                fileCopy = new File(dir, file.getName());
+                try (FileOutputStream out = new FileOutputStream(fileCopy)) {
+                    IOUtils.copy(inStream, out);
+                }
+                fileCopies.add(fileCopy);
+            } catch (IOException e) {
+                if (fileCopy != null) {
+                    fileCopy.delete();
+                }
+
+                for (File fileCopy2 : fileCopies) {
+                    fileCopy2.delete();
+                }
+
+                throw new DatabaseImporterException(e);
+            }
+        }
+
+        try {
+            return read(type, mainFile, table);
+        } finally {
+            for (File fileCopy : fileCopies) {
+                fileCopy.delete();
+            }
+        }
+    }
+
+    private static SuFile[] findDatabaseFiles(SuFile path) throws DatabaseImporterException {
+        SuFile[] files = path.getParentFile().listFiles((d, name) -> name.startsWith(path.getName()));
+        if (files == null || files.length == 0) {
+            throw new DatabaseImporterException(String.format("File does not exist: %s", path.getAbsolutePath()));
+        }
+
+        return files;
     }
 
     public <T extends Entry> List<T> read(Class<T> type, InputStream inStream, String table) throws DatabaseImporterException {
-        File file;
-
+        File file = null;
         try {
             // create a temporary copy of the database so that SQLiteDatabase can open it
             file = File.createTempFile("db-import-", "", _context.getCacheDir());
             try (FileOutputStream out = new FileOutputStream(file)) {
-                ShellUtils.pump(inStream, out);
+                IOUtils.copy(inStream, out);
             }
         } catch (IOException e) {
+            if (file != null) {
+                file.delete();
+            }
             throw new DatabaseImporterException(e);
         }
 
-        SQLiteDatabase.loadLibs(_context);
-        SQLiteDatabaseHook compatibilityHook = new SQLiteDatabaseHook() {
-            @Override
-            public void preKey(SQLiteDatabase database) {
+        try {
+            return read(type, file, table);
+        } finally {
+            // always delete the temporary file
+            file.delete();
+        }
+    }
 
-            }
-
-            @Override
-            public void postKey(SQLiteDatabase database) {
-                if (_compatibilityMode) {
-                    database.compileStatement("PRAGMA cipher_compatibility = 3;");
-                }
-            }
-        };
-
-        try (SQLiteDatabase db = SQLiteDatabase.openDatabase(file.getAbsolutePath(), _password, null, OPEN_READONLY, compatibilityHook)) {
+    private <T extends Entry> List<T> read(Class<T> type, File file, String table) throws DatabaseImporterException {
+        try (SQLiteDatabase db = SQLiteDatabase.openDatabase(file.getAbsolutePath(), null, OPEN_READONLY)) {
             try (Cursor cursor = db.rawQuery(String.format("SELECT * FROM %s", table), null)) {
                 List<T> entries = new ArrayList<>();
 
@@ -81,9 +114,6 @@ public class SqlImporterHelper {
             }
         } catch (SQLiteException e) {
             throw new DatabaseImporterException(e);
-        } finally {
-            // always delete the temporary file
-            file.delete();
         }
     }
 

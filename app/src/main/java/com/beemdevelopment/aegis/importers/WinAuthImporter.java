@@ -1,14 +1,11 @@
 package com.beemdevelopment.aegis.importers;
 
 import android.content.Context;
-import com.beemdevelopment.aegis.vault.VaultEntry;
-import com.beemdevelopment.aegis.otp.GoogleAuthInfo;
-import com.beemdevelopment.aegis.otp.GoogleAuthInfoException;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
+import com.beemdevelopment.aegis.vault.VaultEntry;
+import com.topjohnwu.superuser.io.SuFile;
+
+import java.io.InputStream;
 
 public class WinAuthImporter extends DatabaseImporter {
     public WinAuthImporter(Context context) {
@@ -16,68 +13,35 @@ public class WinAuthImporter extends DatabaseImporter {
     }
 
     @Override
-    protected String getAppPkgName() {
-        return null;
+    protected SuFile getAppPath() {
+        throw new UnsupportedOperationException();
     }
 
     @Override
-    protected String getAppSubPath() {
-        return null;
-    }
-
-    @Override
-    public WinAuthImporter.State read(FileReader reader) throws DatabaseImporterException {
-        ArrayList<String> lines = new ArrayList<>();
-
-        try {
-            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(reader.getStream()));
-            String line;
-
-            while ((line = bufferedReader.readLine()) != null) {
-                lines.add(line);
-            }
-        } catch (IOException e) {
-            throw new DatabaseImporterException(e);
-        }
-
-        return new State(lines);
+    public WinAuthImporter.State read(InputStream stream, boolean isInternal) throws DatabaseImporterException {
+        GoogleAuthUriImporter importer = new GoogleAuthUriImporter(getContext());
+        DatabaseImporter.State state = importer.read(stream);
+        return new State(state);
     }
 
     public static class State extends DatabaseImporter.State {
-        private ArrayList<String> _lines;
+        private DatabaseImporter.State _state;
 
-        private State(ArrayList<String> lines) {
+        private State(DatabaseImporter.State state) {
             super(false);
-            _lines = lines;
+            _state = state;
         }
 
         @Override
-        public Result convert() {
-            Result result = new Result();
+        public Result convert() throws DatabaseImporterException {
+            Result result = _state.convert();
 
-            for (String line : _lines) {
-                try {
-                    VaultEntry entry = convertEntry(line);
-                    result.addEntry(entry);
-                } catch (DatabaseImporterEntryException e) {
-                    result.addError(e);
-                }
+            for (VaultEntry entry : result.getEntries()) {
+                entry.setIssuer(entry.getName());
+                entry.setName("WinAuth");
             }
 
             return result;
-        }
-
-        private static VaultEntry convertEntry(String line) throws DatabaseImporterEntryException {
-            try {
-                GoogleAuthInfo info = GoogleAuthInfo.parseUri(line);
-                VaultEntry vaultEntry = new VaultEntry(info);
-                vaultEntry.setIssuer(vaultEntry.getName());
-                vaultEntry.setName("WinAuth");
-
-                return vaultEntry;
-            } catch (GoogleAuthInfoException e) {
-                throw new DatabaseImporterEntryException(e, line);
-            }
         }
     }
 }

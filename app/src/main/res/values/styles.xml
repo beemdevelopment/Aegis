@@ -10,16 +10,11 @@
         <item name="android:actionModeBackground">@color/colorPrimary</item>
     </style>
 
-    <style name="Theme.Intro" parent="Theme.AppCompat.NoActionBar">
-        <item name="android:windowBackground">@android:color/transparent</item>
-        <item name="android:windowIsTranslucent">true</item>
-    </style>
-
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppThemeBase" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="primaryText">@color/primary_text</item>
         <item name="secondaryText">@color/secondary_text</item>
         <item name="cardBackground">@color/card_background</item>
@@ -29,6 +24,7 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="background">@color/background</item>
+        <item name="divider">@color/divider</item>
 
         <item name="iconColorPrimary">@color/icon_primary</item>
         <item name="iconColorInverted">@color/icon_primary_inverted</item>
@@ -37,8 +33,50 @@
         <item name="actionBarTheme">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item>
         <item name="alertDialogTheme">@style/DialogStyle</item>
 
-        <item name="android:navigationBarColor" tools:targetApi="o_mr1">@color/background</item>
+        <item name="dot_color">@color/indicator_dot</item>
+        <item name="dot_color_selected">@color/indicator_dot_selected</item>
+    </style>
+
+    <style name="AppTheme" parent="AppThemeBase">
+    </style>
+
+    <style name="AppThemeBase.Light.NoActionBar" parent="AppTheme">
+        <item name="android:statusBarColor">@color/background</item>
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="primaryText">@color/primary_text</item>
+        <item name="background">@color/card_background</item>
+        <item name="authText">@color/auth_text</item>
+    </style>
+
+    <style name="AppTheme.Light.NoActionBar" parent="AppThemeBase.Light.NoActionBar">
+    </style>
+
+    <style name="AppTheme.Dark.NoActionBar" parent="AppTheme.Dark">
+        <item name="android:statusBarColor">@color/background_dark_statusbar</item>
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="primaryText">@color/primary_text_dark</item>
+        <item name="background">@color/background_dark</item>
+        <item name="authText">@color/primary_text_inverted</item>
+
+        <item name="android:navigationBarColor" tools:targetApi="o_mr1">@color/background_dark</item>
         <item name="android:windowLightNavigationBar" tools:targetApi="o_mr1">true</item>
+    </style>
+
+    <style name="AppTheme.TrueBlack.NoActionBar" parent="AppTheme.TrueBlack">
+        <item name="android:statusBarColor">@color/background_true_dark</item>
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="primaryText">@color/primary_text_dark</item>
+        <item name="background">@color/background_true_dark</item>
+        <item name="authText">@color/primary_text_inverted</item>
+
+        <item name="android:navigationBarColor" tools:targetApi="lollipop">@color/background_true_dark</item>
+        <item name="android:windowLightNavigationBar" tools:targetApi="o_mr1">false</item>
     </style>
 
     <style name="ActionModeStyle" parent="@style/Widget.AppCompat.Light.ActionMode.Inverse">
@@ -70,9 +108,7 @@
         <item name="android:textColor">@android:color/white</item>
     </style>
 
-    <style name="AppTheme.NoActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
+    <style name="AppTheme.NoActionBar" parent="Theme.AppCompat.DayNight.NoActionBar">
         <item name="android:windowDrawsSystemBarBackgrounds" tools:targetApi="lollipop">true</item>
         <item name="android:statusBarColor" tools:targetApi="lollipop">@android:color/transparent</item>
     </style>
@@ -100,6 +136,7 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="background">@color/background_dark</item>
+        <item name="divider">@color/divider_dark</item>
 
         <item name="iconColorPrimary">@color/icon_primary_dark</item>
         <item name="iconColorInverted">@color/icon_primary_dark_inverted</item>
@@ -109,6 +146,9 @@
 
         <item name="android:navigationBarColor" tools:targetApi="lollipop">@color/background_dark</item>
         <item name="android:windowLightNavigationBar" tools:targetApi="o_mr1">false</item>
+
+        <item name="dot_color">@color/indicator_dot_dark</item>
+        <item name="dot_color_selected">@color/indicator_dot_selected_dark</item>
     </style>
 
     <style name="AppTheme.TrueBlack" parent="AppTheme.Dark">
@@ -120,18 +160,12 @@
         <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item>
         <item name="actionModeStyle">@style/ActionModeStyle.TrueBlack</item>
         <item name="alertDialogTheme">@style/DialogStyle.TrueDark</item>
+        <item name="divider">@color/divider_true_dark</item>
 
         <item name="android:navigationBarColor" tools:targetApi="lollipop">@color/background_true_dark</item>
         <item name="android:windowLightNavigationBar" tools:targetApi="o_mr1">false</item>
-    </style>
 
-    <style name="AppTheme.TrueBlack.Preferences" parent="AppTheme.TrueBlack">
         <item name="android:windowBackground">@color/background_true_dark</item>
-    </style>
-
-    <style name="AppTheme.Dark.NoActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
     </style>
 
     <style name="AppTheme.Dark.TransparentActionBar">
@@ -171,5 +205,9 @@
     <style name="AppTheme.NoActionBar.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="AppTheme.NoActionBar.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="FloatingActionButton">
+        <item name="fab_labelsPosition">left</item>
+    </style>
 
 </resources>

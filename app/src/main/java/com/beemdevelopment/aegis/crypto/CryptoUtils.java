@@ -2,7 +2,7 @@ package com.beemdevelopment.aegis.crypto;
 
 import android.os.Build;
 
-import org.spongycastle.crypto.generators.SCrypt;
+import org.bouncycastle.crypto.generators.SCrypt;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;

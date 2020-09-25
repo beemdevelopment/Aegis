@@ -1,5 +1,5 @@
 <set xmlns:android="http://schemas.android.com/apk/res/android"
-    android:duration="250">
+    android:duration="150">
 
     <scale
         android:fromXScale="0"

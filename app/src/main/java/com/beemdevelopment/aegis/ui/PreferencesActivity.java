@@ -1,9 +1,8 @@
 package com.beemdevelopment.aegis.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
-
-import com.beemdevelopment.aegis.R;
-import com.beemdevelopment.aegis.Theme;
+import android.view.MenuItem;
 
 public class PreferencesActivity extends AegisActivity {
     private PreferencesFragment _fragment;
@@ -12,9 +11,30 @@ public class PreferencesActivity extends AegisActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        _fragment = new PreferencesFragment();
-        _fragment.setArguments(getIntent().getExtras());
-        getSupportFragmentManager().beginTransaction().replace(android.R.id.content, _fragment).commit();
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+        }
+
+        if (savedInstanceState == null) {
+            _fragment = new PreferencesFragment();
+            _fragment.setArguments(getIntent().getExtras());
+            getSupportFragmentManager().beginTransaction().replace(android.R.id.content, _fragment).commit();
+        } else {
+            _fragment = (PreferencesFragment) getSupportFragmentManager().findFragmentById(android.R.id.content);
+        }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        Intent intent = getIntent();
+        String preference = intent.getStringExtra("pref");
+        if (preference != null) {
+            _fragment.scrollToPreference(preference);
+            intent.removeExtra("pref");
+        }
     }
 
     @Override
@@ -41,19 +61,15 @@ public class PreferencesActivity extends AegisActivity {
     }
 
     @Override
-    protected void setPreferredTheme(Theme theme) {
-        switch (theme) {
-            case LIGHT:
-                setTheme(R.style.AppTheme);
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
                 break;
-
-            case DARK:
-                setTheme(R.style.AppTheme_Dark);
-                break;
-
-            case AMOLED:
-                setTheme(R.style.AppTheme_TrueBlack_Preferences);
-                break;
+            default:
+                return super.onOptionsItemSelected(item);
         }
+
+        return true;
     }
 }

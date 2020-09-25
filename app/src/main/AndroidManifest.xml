@@ -6,8 +6,12 @@
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.USE_BIOMETRIC" />
 
-    <uses-feature android:name="android.hardware.camera" android:required="false" />
-    <uses-feature android:name="android.hardware.camera.autofocus" android:required="false" />
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.camera.autofocus"
+        android:required="false" />
 
     <application
         android:name=".AegisApplication"
@@ -18,16 +22,17 @@
         android:theme="@style/AppTheme.NoActionBar"
         tools:ignore="GoogleAppIndexingWarning"
         tools:replace="android:theme">
+        <activity android:name=".ui.TransferEntriesActivity"
+            android:label="@string/title_activity_transfer" />
         <activity
             android:name=".ui.AboutActivity"
             android:label="@string/title_activity_about" />
         <activity
             android:name=".ui.SelectEntriesActivity"
-            android:label="Select entries" />
+            android:label="@string/title_activity_select_entries" />
         <activity
             android:name=".ui.MainActivity"
-            android:label="${title}"
-            android:launchMode="singleTask">
+            android:label="${title}">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -45,22 +50,27 @@
         <activity
             android:name=".ui.ScannerActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
-            android:label="Scan a QR code"
+            android:label="@string/title_activity_scan_qr"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.EditEntryActivity"
-            android:label="Edit profile" />
+            android:label="@string/title_activity_edit_entry" />
         <activity
             android:name=".ui.IntroActivity"
-            android:theme="@style/Theme.Intro" />
-        <activity android:name=".ui.AuthActivity" />
-        <activity android:name=".ui.PreferencesActivity" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.AuthActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ui.PreferencesActivity"
+            android:label="@string/title_activity_preferences" />
         <activity
             android:name=".ui.SlotManagerActivity"
-            android:label="Manage key slots" />
+            android:label="@string/title_activity_manage_slots" />
         <activity
             android:name=".ui.GroupManagerActivity"
-            android:label="Manage groups" />
+            android:label="@string/title_activity_manage_groups" />
 
         <service android:name=".services.NotificationService" />
     </application>

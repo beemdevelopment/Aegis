@@ -1,45 +1,46 @@
-# Aegis
+<img align="left" width="80" height="80" src="metadata/en-US/images/icon.png"
+alt="App icon">
 
-Aegis is a free, secure and open source 2FA app for Android.
+# Aegis Authenticator [![CI](https://api.travis-ci.org/beemdevelopment/Aegis.svg?branch=master)](https://travis-ci.org/github/beemdevelopment/aegis) [![Crowdin](https://badges.crowdin.net/aegis-authenticator/localized.svg)](https://crowdin.com/project/aegis-authenticator) [![Donate](https://img.shields.io/badge/donate-buy%20us%20a%20beer-%23FF813F)](https://www.buymeacoffee.com/beemdevelopment) [![Matrix](https://img.shields.io/badge/chat-Matrix-blue)](https://matrix.to/#/#aegis:matrix.org)
 
-Aegis' security design and vault format is described in detail in [this
-document](docs/vault.md).
+__Aegis Authenticator__ is a free, secure and open source 2FA app for Android.
+It aims to provide a secure authenticator for your online services, while also
+including some features missing in existing authenticator apps, like proper
+encryption and backups. Aegis supports HOTP and TOTP, making it compatible with
+thousands of services.
 
-# Features
+The security design of the app and the vault format is described in detail in
+[this document](docs/vault.md).
+
+## Features
 
 - Free and open source
 - Secure
-  - Encryption (AES-256)
+  - The vault is encrypted (AES-256-GCM), and can be unlocked with:
     - Password (scrypt)
     - Biometrics (Android Keystore)
   - Screen capture prevention
-  - Tap to reveal ability
-- Multiple ways to add new entries
-  - Scan QR code
-  - Enter details manually
-  - Import from files
-    - andOTP
-    - FreeOTP
-    - Aegis
-  - Import from apps (requires root):
-    - Google Authenticator
-    - Steam
-- Supported algorithms:
-   - HOTP ([RFC 4226](https://tools.ietf.org/html/rfc4226))
-   - TOTP ([RFC 6238](https://tools.ietf.org/html/rfc6238))
-   - Steam ([RFC 6238](https://tools.ietf.org/html/rfc6238) with custom
-     encoding)
+  - Tap to reveal
 - Compatible with Google Authenticator
+- Supports industry standard algorithms:
+  [HOTP](https://tools.ietf.org/html/rfc4226) and
+  [TOTP](https://tools.ietf.org/html/rfc6238)
+- Lots of ways to add new entries
+  - Scan a QR code or an image of one
+  - Enter details manually
+  - Import from other authenticator apps: Authenticator Plus, Authy, andOTP,
+    FreeOTP, FreeOTP+, Google Authenticator, Microsoft Authenticator, Plain
+    text, Steam, TOTP Authenticator and WinAuth (root access is required for
+    some of these)
 - Organization
-  - Custom or default icons
-  - Drag and drop
-  - Custom groups
+  - Alphabetic/custom sorting
+  - Custom or automatically generated icons
+  - Group entries together
   - Advanced entry editing
-- Material design with multiple themes:
-  - Light theme
-  - Dark theme
-  - Amoled / true dark theme
+  - Search by name/issuer
+- Material design with multiple themes: Light, Dark, AMOLED
 - Export (plaintext or encrypted)
+- Automatic backups of the vault to a location of your choosing
 
 ## Screenshots
 
@@ -106,24 +107,21 @@ Certificate fingerprints:
 
 - [aegis-icons](https://github.com/krisu5/aegis-icons)
 
-  While we're still working on better icon support in Aegis, krisu5 has started
-  a third-party repository for icons that you may want to check out.
+  While we're still [working on better icon
+  support](https://github.com/beemdevelopment/Aegis/issues/509) in Aegis, krisu5
+  has started a third-party repository for icons that you may want to check out.
 
   [<img width=500 alt="Aegis-icons preview"
   src="https://raw.githubusercontent.com/krisu5/aegis-icons/master/showcase.png">](https://github.com/krisu5/aegis-icons)
 
-## Libraries
+## Contributing
 
-- [TextDrawable](https://github.com/amulyakhare/TextDrawable) by Amulya Khare
-- [FloatingActionButton](https://github.com/Clans/FloatingActionButton) by
-  Dmytro Tarianyk
-- [AppIntro](https://github.com/AppIntro/AppIntro) by Paolo Rotolo
-- [Krop](https://github.com/avito-tech/krop) by Avito Technology
-- [SpongyCastle](https://github.com/rtyley/spongycastle) by Roberto Tyley
-- [CircleImageView](https://github.com/hdodenhof/CircleImageView) by Henning
-  Dodenhof
-- [barcodescanner](https://github.com/dm77/barcodescanner) by Dushyanth
-- [libsu](https://github.com/topjohnwu/libsu) by John Wu
+Looking to contribute to Aegis? That's great! There are a couple of ways to help
+out. Translations, bug reports and pull requests are all greatly appreciated.
+Please refer to our [contributing guidelines](CONTRIBUTING.md) to get started.
+
+Swing by our Matrix room to interact with other contributors:
+[#aegis:matrix.org](https://matrix.to/#/#aegis:matrix.org).
 
 ## License
 

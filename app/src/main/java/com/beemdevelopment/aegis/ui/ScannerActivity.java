@@ -1,64 +1,82 @@
 package com.beemdevelopment.aegis.ui;
 
-import android.content.Context;
 import android.content.Intent;
-import android.hardware.Camera;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.camera.core.CameraInfoUnavailableException;
+import androidx.camera.core.CameraSelector;
+import androidx.camera.core.ImageAnalysis;
+import androidx.camera.core.Preview;
+import androidx.camera.lifecycle.ProcessCameraProvider;
+import androidx.camera.view.PreviewView;
+import androidx.core.content.ContextCompat;
+
 import com.beemdevelopment.aegis.R;
-import com.beemdevelopment.aegis.Theme;
-import com.beemdevelopment.aegis.vault.VaultEntry;
-import com.beemdevelopment.aegis.helpers.SquareFinderView;
+import com.beemdevelopment.aegis.helpers.QrCodeAnalyzer;
 import com.beemdevelopment.aegis.otp.GoogleAuthInfo;
 import com.beemdevelopment.aegis.otp.GoogleAuthInfoException;
-import com.google.zxing.BarcodeFormat;
+import com.beemdevelopment.aegis.vault.VaultEntry;
+import com.google.common.util.concurrent.ListenableFuture;
 import com.google.zxing.Result;
 
-import java.util.Collections;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.ExecutionException;
 
-import me.dm7.barcodescanner.core.IViewFinder;
-import me.dm7.barcodescanner.zxing.ZXingScannerView;
+public class ScannerActivity extends AegisActivity implements QrCodeAnalyzer.Listener {
+    private ProcessCameraProvider _cameraProvider;
+    private ListenableFuture<ProcessCameraProvider> _cameraProviderFuture;
 
-import static android.hardware.Camera.CameraInfo.CAMERA_FACING_BACK;
-import static android.hardware.Camera.CameraInfo.CAMERA_FACING_FRONT;
+    private List<Integer> _lenses;
+    private int _currentLens;
 
-public class ScannerActivity extends AegisActivity implements ZXingScannerView.ResultHandler {
-    private ZXingScannerView _scannerView;
     private Menu _menu;
-    private int _facing = CAMERA_FACING_BACK;
+    private PreviewView _previewView;
+
+    private int _batchId = 0;
+    private int _batchIndex = -1;
+    private List<VaultEntry> _entries;
 
     @Override
-    protected void onCreate(Bundle state) {
-        super.onCreate(state);
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_scanner);
 
-        _scannerView = new ZXingScannerView(this) {
-            @Override
-            protected IViewFinder createViewFinderView(Context context) {
-                return new SquareFinderView(context);
+        _entries = new ArrayList<>();
+        _lenses = new ArrayList<>();
+        _previewView = findViewById(R.id.preview_view);
+
+        _cameraProviderFuture = ProcessCameraProvider.getInstance(this);
+        _cameraProviderFuture.addListener(() -> {
+            try {
+                _cameraProvider = _cameraProviderFuture.get();
+            } catch (ExecutionException | InterruptedException e) {
+                // if we're to believe the Android documentation, this should never happen
+                // https://developer.android.com/training/camerax/preview#check-provider
+                throw new RuntimeException(e);
             }
-        };
-        _scannerView.setResultHandler(this);
-        _scannerView.setFormats(Collections.singletonList(BarcodeFormat.QR_CODE));
 
-        int camera = getRearCameraId();
-        if (camera == -1) {
-            camera = getFrontCameraId();
-            if (camera == -1) {
+            addCamera(CameraSelector.LENS_FACING_BACK);
+            addCamera(CameraSelector.LENS_FACING_FRONT);
+            if (_lenses.size() == 0) {
                 Toast.makeText(this, getString(R.string.no_cameras_available), Toast.LENGTH_LONG).show();
                 finish();
+                return;
             }
-            _facing = CAMERA_FACING_FRONT;
-        }
-        _scannerView.startCamera(camera);
+            _currentLens = _lenses.get(0);
+            updateCameraIcon();
 
-        setContentView(_scannerView);
+            bindPreview(_cameraProvider);
+        }, ContextCompat.getMainExecutor(this));
     }
 
     @Override
-    protected void setPreferredTheme(Theme theme) {
+    protected void onSetTheme() {
         setTheme(R.style.AppTheme_Fullscreen);
     }
 
@@ -66,72 +84,43 @@ public class ScannerActivity extends AegisActivity implements ZXingScannerView.R
     public boolean onCreateOptionsMenu(Menu menu) {
         _menu = menu;
         getMenuInflater().inflate(R.menu.menu_scanner, menu);
-        updateCameraIcon();
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.action_camera:
-                _scannerView.stopCamera();
-                switch (_facing) {
-                    case CAMERA_FACING_BACK:
-                        _facing = CAMERA_FACING_FRONT;
-                        break;
-                    case CAMERA_FACING_FRONT:
-                        _facing = CAMERA_FACING_BACK;
-                        break;
-                }
-                updateCameraIcon();
-                _scannerView.startCamera(getCameraId(_facing));
-                return true;
-            case R.id.action_lock:
-            default:
-                return super.onOptionsItemSelected(item);
+        if (item.getItemId() == R.id.action_camera) {
+            _cameraProvider.unbindAll();
+            _currentLens = _currentLens == CameraSelector.LENS_FACING_BACK ? CameraSelector.LENS_FACING_FRONT : CameraSelector.LENS_FACING_BACK;
+            bindPreview(_cameraProvider);
+            updateCameraIcon();
+            return true;
         }
+
+        return super.onOptionsItemSelected(item);
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        _scannerView.startCamera(getCameraId(_facing));
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        _scannerView.stopCamera();
-    }
-
-    @Override
-    public void handleResult(Result rawResult) {
+    private void addCamera(int lens) {
         try {
-            // parse google auth uri
-            GoogleAuthInfo info = GoogleAuthInfo.parseUri(rawResult.getText().trim());
-            VaultEntry entry = new VaultEntry(info);
-
-            Intent intent = new Intent();
-            intent.putExtra("entry", entry);
-            setResult(RESULT_OK, intent);
-            finish();
-        } catch (GoogleAuthInfoException e) {
-            Toast.makeText(this, getString(R.string.read_qr_error), Toast.LENGTH_SHORT).show();
+            CameraSelector camera = new CameraSelector.Builder().requireLensFacing(lens).build();
+            if (_cameraProvider.hasCamera(camera)) {
+                _lenses.add(lens);
+            }
+        } catch (CameraInfoUnavailableException e) {
+            e.printStackTrace();
         }
-
-        _scannerView.resumeCameraPreview(this);
     }
 
     private void updateCameraIcon() {
         if (_menu != null) {
             MenuItem item = _menu.findItem(R.id.action_camera);
-            boolean dual = getFrontCameraId() != -1 && getRearCameraId() != -1;
+            boolean dual = _lenses.size() > 1;
             if (dual) {
-                switch (_facing) {
-                    case CAMERA_FACING_BACK:
+                switch (_currentLens) {
+                    case CameraSelector.LENS_FACING_BACK:
                         item.setIcon(R.drawable.ic_camera_front_24dp);
                         break;
-                    case CAMERA_FACING_FRONT:
+                    case CameraSelector.LENS_FACING_FRONT:
                         item.setIcon(R.drawable.ic_camera_rear_24dp);
                         break;
                 }
@@ -140,23 +129,76 @@ public class ScannerActivity extends AegisActivity implements ZXingScannerView.R
         }
     }
 
-    private static int getCameraId(int facing) {
-        Camera.CameraInfo info = new Camera.CameraInfo();
-        for (int i = 0; i < Camera.getNumberOfCameras(); ++i) {
-            Camera.getCameraInfo(i, info);
-            if (info.facing == facing) {
-                return i;
+    private void bindPreview(@NonNull ProcessCameraProvider cameraProvider) {
+        Preview preview = new Preview.Builder().build();
+        preview.setSurfaceProvider(_previewView.createSurfaceProvider());
+
+        CameraSelector selector = new CameraSelector.Builder()
+                .requireLensFacing(_currentLens)
+                .build();
+
+        ImageAnalysis analysis = new ImageAnalysis.Builder()
+                .setBackpressureStrategy(ImageAnalysis.STRATEGY_KEEP_ONLY_LATEST)
+                .build();
+        analysis.setAnalyzer(ContextCompat.getMainExecutor(this), new QrCodeAnalyzer(this));
+
+        cameraProvider.bindToLifecycle(this, selector, preview, analysis);
+    }
+
+    @Override
+    public void onQrCodeDetected(Result result) {
+        try {
+            Uri uri = Uri.parse(result.getText().trim());
+            if (uri.getScheme() != null && uri.getScheme().equals(GoogleAuthInfo.SCHEME_EXPORT)) {
+                handleExportUri(uri);
+            } else {
+                handleUri(uri);
             }
+        } catch (GoogleAuthInfoException e) {
+            e.printStackTrace();
+            Dialogs.showErrorDialog(this, R.string.read_qr_error, e, ((dialog, which) -> bindPreview(_cameraProvider)));
+            _cameraProvider.unbindAll();
+        }
+    }
+
+    private void handleUri(Uri uri) throws GoogleAuthInfoException {
+        GoogleAuthInfo info = GoogleAuthInfo.parseUri(uri);
+        List<VaultEntry> entries = new ArrayList<>();
+        entries.add(new VaultEntry(info));
+        finish(entries);
+    }
+
+    private void handleExportUri(Uri uri) throws GoogleAuthInfoException {
+        GoogleAuthInfo.Export export = GoogleAuthInfo.parseExportUri(uri);
+
+        if (_batchId == 0) {
+            _batchId = export.getBatchId();
         }
 
-        return -1;
+        int batchIndex = export.getBatchIndex();
+        if (_batchId != export.getBatchId()) {
+            Toast.makeText(this, R.string.google_qr_export_unrelated, Toast.LENGTH_SHORT).show();
+        } else if (_batchIndex == -1 || _batchIndex == batchIndex - 1) {
+            for (GoogleAuthInfo info : export.getEntries()) {
+                VaultEntry entry = new VaultEntry(info);
+                _entries.add(entry);
+            }
+
+            _batchIndex = batchIndex;
+            if (_batchIndex + 1 == export.getBatchSize()) {
+                finish(_entries);
+            }
+
+            Toast.makeText(this, getResources().getQuantityString(R.plurals.google_qr_export_scanned, export.getBatchSize(), _batchIndex + 1, export.getBatchSize()), Toast.LENGTH_SHORT).show();
+        } else if (_batchIndex != batchIndex) {
+            Toast.makeText(this, getString(R.string.google_qr_export_unexpected, _batchIndex + 1, batchIndex + 1), Toast.LENGTH_SHORT).show();
+        }
     }
 
-    private static int getRearCameraId() {
-        return getCameraId(CAMERA_FACING_BACK);
-    }
-
-    private static int getFrontCameraId() {
-        return getCameraId(CAMERA_FACING_FRONT);
+    private void finish(List<VaultEntry> entries) {
+        Intent intent = new Intent();
+        intent.putExtra("entries", (ArrayList<VaultEntry>) entries);
+        setResult(RESULT_OK, intent);
+        finish();
     }
 }

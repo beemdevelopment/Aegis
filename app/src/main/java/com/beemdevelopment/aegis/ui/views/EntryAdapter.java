@@ -2,6 +2,7 @@ package com.beemdevelopment.aegis.ui.views;
 
 import android.os.Handler;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -10,17 +11,21 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.SortCategory;
 import com.beemdevelopment.aegis.ViewMode;
-import com.beemdevelopment.aegis.vault.VaultEntry;
 import com.beemdevelopment.aegis.helpers.ItemTouchHelperAdapter;
 import com.beemdevelopment.aegis.otp.HotpInfo;
 import com.beemdevelopment.aegis.otp.OtpInfo;
 import com.beemdevelopment.aegis.otp.OtpInfoException;
 import com.beemdevelopment.aegis.otp.TotpInfo;
+import com.beemdevelopment.aegis.vault.VaultEntry;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 
 public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements ItemTouchHelperAdapter {
     private EntryListView _view;
@@ -28,11 +33,13 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
     private List<VaultEntry> _shownEntries;
     private List<VaultEntry> _selectedEntries;
     private VaultEntry _focusedEntry;
+    private int _codeGroupSize;
     private boolean _showAccountName;
     private boolean _searchAccountName;
     private boolean _highlightEntry;
     private boolean _tapToReveal;
     private int _tapToRevealTime;
+    private boolean _copyOnTap;
     private String _groupFilter;
     private SortCategory _sortCategory;
     private ViewMode _viewMode;
@@ -43,6 +50,7 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
 
     // keeps track of the viewholders that are currently bound
     private List<EntryHolder> _holders;
+    private EntryHolder _dragHandleHolder; // holder with enabled drag handle
 
     public EntryAdapter(EntryListView view) {
         _entries = new ArrayList<>();
@@ -58,6 +66,10 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
             holder.destroy();
         }
         _view = null;
+    }
+
+    public void setCodeGroupSize(int codeGroupeSize) {
+        _codeGroupSize = codeGroupeSize;
     }
 
     public void setShowAccountName(boolean showAccountName) {
@@ -78,6 +90,10 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
 
     public void setHighlightEntry(boolean highlightEntry) {
         _highlightEntry = highlightEntry;
+    }
+
+    public void setIsCopyOnTapEnabled(boolean enabled) {
+        _copyOnTap = enabled;
     }
 
     public VaultEntry getEntryAt(int position) {
@@ -116,10 +132,11 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
             }
         }
 
+        _view.onListChange();
         checkPeriodUniformity();
     }
 
-    public void addEntries(List<VaultEntry> entries) {
+    public void addEntries(Collection<VaultEntry> entries) {
         _entries.addAll(entries);
         updateShownEntries();
         checkPeriodUniformity(true);
@@ -134,7 +151,13 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
             notifyItemRemoved(position);
         }
 
+        _view.onListChange();
         checkPeriodUniformity();
+    }
+
+    public void removeEntry(UUID uuid) {
+        VaultEntry entry = getEntryByUUID(uuid);
+        removeEntry(entry);
     }
 
     public void clearEntries() {
@@ -144,7 +167,8 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
         checkPeriodUniformity();
     }
 
-    public void replaceEntry(VaultEntry oldEntry, VaultEntry newEntry) {
+    public void replaceEntry(UUID uuid, VaultEntry newEntry) {
+        VaultEntry oldEntry = getEntryByUUID(uuid);
         _entries.set(_entries.indexOf(oldEntry), newEntry);
 
         if (_shownEntries.contains(oldEntry)) {
@@ -165,6 +189,16 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
         }
 
         checkPeriodUniformity();
+    }
+
+    private VaultEntry getEntryByUUID(UUID uuid) {
+        for (VaultEntry entry : _entries) {
+            if (entry.getUUID().equals(uuid)) {
+                return entry;
+            }
+        }
+
+        return null;
     }
 
     private boolean isEntryFiltered(VaultEntry entry) {
@@ -194,7 +228,7 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
             notifyDataSetChanged();
         } else {
             for (EntryHolder holder : _holders) {
-                holder.refreshCode();
+                holder.refresh();
             }
         }
     }
@@ -243,6 +277,7 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
             Collections.sort(_shownEntries, comparator);
         }
 
+        _view.onListChange();
         notifyDataSetChanged();
     }
 
@@ -304,12 +339,12 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
     @Override
     public void onBindViewHolder(final EntryHolder holder, int position) {
         VaultEntry entry = _shownEntries.get(position);
-        holder.setFocused(_selectedEntries.contains(entry));
 
         boolean hidden = _tapToReveal && entry != _focusedEntry;
         boolean dimmed = _highlightEntry && _focusedEntry != null && _focusedEntry != entry;
-        boolean showProgress = !isPeriodUniform() && entry.getInfo() instanceof TotpInfo;
-        holder.setData(entry, _showAccountName, showProgress, hidden, dimmed);
+        boolean showProgress = entry.getInfo() instanceof TotpInfo && ((TotpInfo) entry.getInfo()).getPeriod() != getMostFrequentPeriod();
+        holder.setData(entry, _codeGroupSize, _showAccountName, showProgress, hidden, dimmed);
+        holder.setFocused(_selectedEntries.contains(entry));
         holder.loadIcon(_view);
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -318,6 +353,11 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
                 boolean handled = false;
 
                 if (_selectedEntries.isEmpty()) {
+                    if (_copyOnTap) {
+                        _view.onEntryCopy(entry);
+                        holder.animateCopyText();
+                    }
+
                     if (_highlightEntry || _tapToReveal) {
                         if (_focusedEntry == entry) {
                             resetFocus();
@@ -330,9 +370,9 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
                     if (_selectedEntries.contains(entry)) {
                         _view.onDeselect(entry);
                         removeSelectedEntry(entry);
-                        holder.setFocused(false);
+                        holder.setFocusedAndAnimate(false);
                     } else {
-                        holder.setFocused(true);
+                        holder.setFocusedAndAnimate(true);
                         addSelectedEntry(entry);
                         _view.onSelect(entry);
                     }
@@ -348,10 +388,32 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
             public boolean onLongClick(View v) {
                 int position = holder.getAdapterPosition();
                 if (_selectedEntries.isEmpty()) {
-                    holder.setFocused(true);
+                    holder.setFocusedAndAnimate(true);
                 }
 
-                return _view.onLongEntryClick(_shownEntries.get(position));
+                boolean returnVal = _view.onLongEntryClick(_shownEntries.get(position));
+
+                boolean dragEnabled = _selectedEntries.size() == 0
+                        || _selectedEntries.size() == 1 && _selectedEntries.get(0) == holder.getEntry();
+                if (dragEnabled && isDragAndDropAllowed()) {
+                    _view.startDrag(_dragHandleHolder);
+                }
+
+                return returnVal;
+            }
+        });
+        holder.itemView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                // Start drag if this is the only item selected
+                if (event.getActionMasked() == MotionEvent.ACTION_MOVE
+                        && _selectedEntries.size() == 1
+                        && _selectedEntries.get(0) == holder.getEntry()
+                        && isDragAndDropAllowed()) {
+                    _view.startDrag(_dragHandleHolder);
+                    return true;
+                }
+                return false;
             }
         });
         holder.setOnRefreshClickListener(new View.OnClickListener() {
@@ -381,22 +443,26 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
     }
 
     private void checkPeriodUniformity(boolean force) {
-        int uniformPeriod = getUniformPeriod();
+        int mostFrequentPeriod = getMostFrequentPeriod();
         boolean uniform = isPeriodUniform();
-        if (!force && uniform == _isPeriodUniform && uniformPeriod == _uniformPeriod) {
+
+        if (!force && uniform == _isPeriodUniform && mostFrequentPeriod == _uniformPeriod) {
             return;
         }
+
         _isPeriodUniform = uniform;
-        _uniformPeriod = uniformPeriod;
+        _uniformPeriod = mostFrequentPeriod;
 
         for (EntryHolder holder : _holders) {
-            holder.setShowProgress(!_isPeriodUniform);
+            if ((holder.getEntry().getInfo() instanceof TotpInfo)) {
+                holder.setShowProgress(((TotpInfo) holder.getEntry().getInfo()).getPeriod() != mostFrequentPeriod);
+            }
         }
 
         _view.onPeriodUniformityChanged(_isPeriodUniform, _uniformPeriod);
     }
 
-    public int getUniformPeriod() {
+    public int getMostFrequentPeriod() {
         List<TotpInfo> infos = new ArrayList<>();
         for (VaultEntry entry : _shownEntries) {
             OtpInfo info = entry.getInfo();
@@ -409,14 +475,26 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
             return -1;
         }
 
-        int period = infos.get(0).getPeriod();
+        Map<Integer, Integer> occurrences = new HashMap<>();
         for (TotpInfo info : infos) {
-            if (period != info.getPeriod()) {
-                return -1;
+            int period = info.getPeriod();
+            if(occurrences.containsKey(period)) {
+                occurrences.put(period, occurrences.get(period) + 1);
+            } else {
+                occurrences.put(period, 1);
             }
         }
 
-        return period;
+        Integer maxValue = 0;
+        Integer maxKey = 0;
+        for (Map.Entry<Integer, Integer> entry : occurrences.entrySet()){
+            if(entry.getValue() > maxValue){
+                maxValue = entry.getValue();
+                maxKey = entry.getKey();
+            }
+        }
+
+        return maxValue > 1 ? maxKey : -1;
     }
 
     private void focusEntry(VaultEntry entry) {
@@ -457,23 +535,57 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
         _focusedEntry = null;
     }
 
+    private void updateDraggableStatus() {
+        if (!isDragAndDropAllowed()) {
+            return;
+        }
+
+        if (_selectedEntries.size() == 1 && _dragHandleHolder == null) {
+            // Find and enable dragging for the single selected EntryHolder
+            // Not nice but this is the best method I could find
+            for (int i = 0; i < _holders.size(); i++) {
+                if (_holders.get(i).getEntry() == _selectedEntries.get(0)) {
+                    _dragHandleHolder = _holders.get(i);
+                    _dragHandleHolder.setShowDragHandle(true);
+                    _view.setSelectedEntry(_selectedEntries.get(0));
+                    return;
+                }
+            }
+        } else if (_dragHandleHolder != null) {
+            // Disable dragging if necessary when more/less than 1 selected entry
+            _dragHandleHolder.setShowDragHandle(false);
+            _dragHandleHolder = null;
+            _view.setSelectedEntry(null);
+        }
+    }
+
     public void removeSelectedEntry(VaultEntry entry) {
         _selectedEntries.remove(entry);
+        updateDraggableStatus();
     }
 
     public void addSelectedEntry(VaultEntry entry) {
-        if (entry == null) {
-            for (VaultEntry vaultEntry: _selectedEntries) {
-                notifyItemChanged(_shownEntries.indexOf(vaultEntry));
-            }
-
-            _selectedEntries.clear();
-            return;
-        } else if (_highlightEntry) {
+        if (_highlightEntry) {
             resetFocus();
         }
 
         _selectedEntries.add(entry);
+        updateDraggableStatus();
+    }
+
+    public void deselectAllEntries() {
+        for (VaultEntry entry: _selectedEntries) {
+            for (EntryHolder holder : _holders) {
+                if (holder.getEntry() == entry) {
+                    holder.setFocusedAndAnimate(false);
+                    break;
+                }
+            }
+        }
+
+        _selectedEntries.clear();
+
+        updateDraggableStatus();
     }
 
     public boolean isDragAndDropAllowed() {
@@ -481,7 +593,7 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
     }
 
     public boolean isPeriodUniform() {
-        return isPeriodUniform(getUniformPeriod());
+        return isPeriodUniform(getMostFrequentPeriod());
     }
 
     private static boolean isPeriodUniform(int period) {
@@ -499,8 +611,10 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
         void onEntryMove(VaultEntry entry1, VaultEntry entry2);
         void onEntryDrop(VaultEntry entry);
         void onEntryChange(VaultEntry entry);
+        void onEntryCopy(VaultEntry entry);
         void onPeriodUniformityChanged(boolean uniform, int period);
         void onSelect(VaultEntry entry);
         void onDeselect(VaultEntry entry);
+        void onListChange();
     }
 }

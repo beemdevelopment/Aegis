@@ -6,6 +6,7 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -31,7 +32,6 @@ import androidx.appcompat.app.AlertDialog;
 import com.amulyakhare.textdrawable.TextDrawable;
 import com.avito.android.krop.KropView;
 import com.beemdevelopment.aegis.R;
-import com.beemdevelopment.aegis.vault.VaultEntry;
 import com.beemdevelopment.aegis.encoding.Base32;
 import com.beemdevelopment.aegis.encoding.EncodingException;
 import com.beemdevelopment.aegis.helpers.EditTextHelper;
@@ -43,16 +43,18 @@ import com.beemdevelopment.aegis.otp.OtpInfoException;
 import com.beemdevelopment.aegis.otp.SteamInfo;
 import com.beemdevelopment.aegis.otp.TotpInfo;
 import com.beemdevelopment.aegis.util.Cloner;
+import com.beemdevelopment.aegis.vault.VaultEntry;
+import com.beemdevelopment.aegis.vault.VaultManager;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.target.CustomTarget;
 import com.bumptech.glide.request.transition.Transition;
 
 import java.io.ByteArrayOutputStream;
-import java.text.Collator;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.TreeSet;
+import java.util.UUID;
 import java.util.concurrent.atomic.AtomicReference;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -66,6 +68,7 @@ public class EditEntryActivity extends AegisActivity {
     private boolean _hasCustomIcon = false;
     // keep track of icon changes separately as the generated jpeg's are not deterministic
     private boolean _hasChangedIcon = false;
+    private boolean _isEditingIcon;
     private CircleImageView _iconView;
     private ImageView _saveImageButton;
 
@@ -89,10 +92,15 @@ public class EditEntryActivity extends AegisActivity {
     private RelativeLayout _advancedSettingsHeader;
     private RelativeLayout _advancedSettings;
 
+    private VaultManager _vault;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_entry);
+
+        _vault = getApp().getVaultManager();
+        _groups = _vault.getGroups();
 
         ActionBar bar = getSupportActionBar();
         bar.setHomeAsUpIndicator(R.drawable.ic_close);
@@ -100,12 +108,13 @@ public class EditEntryActivity extends AegisActivity {
 
         // retrieve info from the calling activity
         Intent intent = getIntent();
-        _origEntry = (VaultEntry) intent.getSerializableExtra("entry");
-        _isNew = intent.getBooleanExtra("isNew", false);
-        _groups = new TreeSet<>(Collator.getInstance());
-        _groups.addAll(intent.getStringArrayListExtra("groups"));
-        if (_isNew) {
-            setTitle(R.string.add_new_profile);
+        UUID entryUUID = (UUID) intent.getSerializableExtra("entryUUID");
+        if (entryUUID != null) {
+            _origEntry = _vault.getEntryByUUID(entryUUID);
+        } else {
+            _origEntry = (VaultEntry) intent.getSerializableExtra("newEntry");
+            _isNew = true;
+            setTitle(R.string.add_new_entry);
         }
 
         String selectedGroup = intent.getStringExtra("selectedGroup");
@@ -158,7 +167,7 @@ public class EditEntryActivity extends AegisActivity {
             _textCounter.setText(Long.toString(((HotpInfo) info).getCounter()));
             _rowCounter.setVisibility(View.VISIBLE);
         } else {
-            throw new RuntimeException();
+            throw new RuntimeException(String.format("Unsupported OtpInfo type: %s", info.getClass()));
         }
         _textDigits.setText(Integer.toString(info.getDigits()));
 
@@ -185,9 +194,8 @@ public class EditEntryActivity extends AegisActivity {
         _spinnerType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String type = _spinnerType.getSelectedItem().toString();
-
-                switch (type.toLowerCase()) {
+                String type = _spinnerType.getSelectedItem().toString().toLowerCase();
+                switch (type) {
                     case TotpInfo.ID:
                     case SteamInfo.ID:
                         _rowCounter.setVisibility(View.GONE);
@@ -198,7 +206,7 @@ public class EditEntryActivity extends AegisActivity {
                         _rowCounter.setVisibility(View.VISIBLE);
                         break;
                     default:
-                        throw new RuntimeException();
+                        throw new RuntimeException(String.format("Unsupported OTP type: %s", type));
                 }
             }
 
@@ -239,11 +247,7 @@ public class EditEntryActivity extends AegisActivity {
         });
 
         _iconView.setOnClickListener(v -> {
-            Intent galleryIntent = new Intent(Intent.ACTION_PICK);
-            galleryIntent.setDataAndType(android.provider.MediaStore.Images.Media.INTERNAL_CONTENT_URI, "image/*");
-
-            Intent chooserIntent = Intent.createChooser(galleryIntent, "Select photo");
-            startActivityForResult(Intent.createChooser(chooserIntent, "Select photo"), PICK_IMAGE_REQUEST);
+            startIconSelectionActivity();
         });
 
         _advancedSettingsHeader.setOnClickListener(v -> openAdvancedSettings());
@@ -251,7 +255,6 @@ public class EditEntryActivity extends AegisActivity {
         // automatically open advanced settings since 'Secret' is required.
         if (_isNew) {
             openAdvancedSettings();
-
             setGroup(selectedGroup);
         }
     }
@@ -264,6 +267,7 @@ public class EditEntryActivity extends AegisActivity {
         int pos = _groups.contains(groupName) ? _groups.headSet(groupName).size() : -1;
         _spinnerGroup.setSelection(pos + 1, false);
     }
+
     private void openAdvancedSettings() {
         Animation fadeOut = new AlphaAnimation(1, 0);
         fadeOut.setInterpolator(new AccelerateInterpolator());
@@ -320,6 +324,11 @@ public class EditEntryActivity extends AegisActivity {
 
     @Override
     public void onBackPressed() {
+        if (_isEditingIcon) {
+            stopEditingIcon(false);
+            return;
+        }
+
         AtomicReference<String> msg = new AtomicReference<>();
         AtomicReference<VaultEntry> entry = new AtomicReference<>();
 
@@ -344,7 +353,7 @@ public class EditEntryActivity extends AegisActivity {
                         return;
                     }
 
-                    finish(entry.get(), false);
+                    addAndFinish(entry.get());
                 },
                 (dialog, which) -> super.onBackPressed()
         );
@@ -361,8 +370,11 @@ public class EditEntryActivity extends AegisActivity {
                 break;
             case R.id.action_delete:
                 Dialogs.showDeleteEntryDialog(this, (dialog, which) -> {
-                    finish(_origEntry, true);
+                    deleteAndFinish(_origEntry);
                 });
+                break;
+            case R.id.action_edit_icon:
+                startIconSelectionActivity();
                 break;
             case R.id.action_default_icon:
                 TextDrawable drawable = TextDrawableHelper.generate(_origEntry.getIssuer(), _origEntry.getName(), _iconView);
@@ -374,6 +386,56 @@ public class EditEntryActivity extends AegisActivity {
         }
 
         return true;
+    }
+
+    private void startIconSelectionActivity() {
+        Intent galleryIntent = new Intent(Intent.ACTION_PICK);
+        galleryIntent.setDataAndType(android.provider.MediaStore.Images.Media.INTERNAL_CONTENT_URI, "image/*");
+
+        Intent fileIntent = new Intent(Intent.ACTION_GET_CONTENT);
+        fileIntent.setType("image/*");
+
+        Intent chooserIntent = Intent.createChooser(galleryIntent, getString(R.string.select_icon));
+        chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS, new Intent[] { fileIntent });
+        startActivityForResult(chooserIntent, PICK_IMAGE_REQUEST);
+    }
+
+    private void startEditingIcon(Uri data) {
+        Glide.with(this)
+                .asBitmap()
+                .load(data)
+                .diskCacheStrategy(DiskCacheStrategy.NONE)
+                .skipMemoryCache(false)
+                .into(new CustomTarget<Bitmap>() {
+                    @Override
+                    public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
+                        _kropView.setBitmap(resource);
+                    }
+
+                    @Override
+                    public void onLoadCleared(@Nullable Drawable placeholder) {
+
+                    }
+                });
+        _iconView.setVisibility(View.GONE);
+        _kropView.setVisibility(View.VISIBLE);
+
+        _saveImageButton.setOnClickListener(v -> {
+            stopEditingIcon(true);
+        });
+
+        _isEditingIcon = true;
+    }
+
+    private void stopEditingIcon(boolean save) {
+        if (save) {
+            _iconView.setImageBitmap(_kropView.getCroppedBitmap());
+        }
+        _iconView.setVisibility(View.VISIBLE);
+        _kropView.setVisibility(View.GONE);
+        _hasCustomIcon = _hasCustomIcon || save;
+        _hasChangedIcon = save;
+        _isEditingIcon = false;
     }
 
     @Override
@@ -389,46 +451,40 @@ public class EditEntryActivity extends AegisActivity {
         return true;
     }
 
-    private void finish(VaultEntry entry, boolean delete) {
+    private void addAndFinish(VaultEntry entry) {
+        // It's possible that the new entry was already added to the vault, but writing the
+        // vault to disk failed, causing the user to tap 'Save' again. Calling addEntry
+        // again would cause a crash in that case, so the isEntryDuplicate check prevents
+        // that.
+        if (_isNew && !_vault.isEntryDuplicate(entry)) {
+            _vault.addEntry(entry);
+        } else {
+            _vault.replaceEntry(entry);
+        }
+
+        saveAndFinish(entry, false);
+    }
+
+    private void deleteAndFinish(VaultEntry entry) {
+        _vault.removeEntry(entry);
+        saveAndFinish(entry, true);
+    }
+
+    private void saveAndFinish(VaultEntry entry, boolean delete) {
         Intent intent = new Intent();
-        intent.putExtra("entry", entry);
+        intent.putExtra("entryUUID", entry.getUUID());
         intent.putExtra("delete", delete);
-        setResult(RESULT_OK, intent);
-        finish();
+
+        if (saveVault(true)) {
+            setResult(RESULT_OK, intent);
+            finish();
+        }
     }
 
     @Override
     protected void onActivityResult(int requestCode, final int resultCode, Intent data) {
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
-            Glide.with(this)
-                .asBitmap()
-                .load(data.getData())
-                .diskCacheStrategy(DiskCacheStrategy.NONE)
-                .skipMemoryCache(false)
-                .into(new CustomTarget<Bitmap>() {
-                    @Override
-                    public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
-                        _kropView.setBitmap(resource);
-                    }
-
-                    @Override
-                    public void onLoadCleared(@Nullable Drawable placeholder) {
-
-                    }
-                });
-            _iconView.setVisibility(View.GONE);
-            _kropView.setVisibility(View.VISIBLE);
-
-            _saveImageButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    _iconView.setImageBitmap(_kropView.getCroppedBitmap());
-                    _iconView.setVisibility(View.VISIBLE);
-                    _kropView.setVisibility(View.GONE);
-                    _hasCustomIcon = true;
-                    _hasChangedIcon = true;
-                }
-            });
+            startEditingIcon(data.getData());
         }
 
         super.onActivityResult(requestCode, resultCode, data);
@@ -486,7 +542,7 @@ public class EditEntryActivity extends AegisActivity {
                     info = new HotpInfo(secret, algo, digits, counter);
                     break;
                 default:
-                    throw new RuntimeException();
+                    throw new RuntimeException(String.format("Unsupported OTP type: %s", type));
             }
 
             info.setDigits(digits);
@@ -532,6 +588,10 @@ public class EditEntryActivity extends AegisActivity {
     }
 
     private boolean onSave() {
+        if (_isEditingIcon) {
+            stopEditingIcon(true);
+        }
+
         VaultEntry entry;
         try {
             entry = parseEntry();
@@ -540,7 +600,7 @@ public class EditEntryActivity extends AegisActivity {
             return false;
         }
 
-        finish(entry, false);
+        addAndFinish(entry);
         return true;
     }
 

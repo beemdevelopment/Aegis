@@ -6,10 +6,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.AttrRes;
 import androidx.annotation.StringRes;
 import androidx.core.view.LayoutInflaterCompat;
 
@@ -17,7 +19,8 @@ import com.beemdevelopment.aegis.BuildConfig;
 import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.Theme;
 import com.beemdevelopment.aegis.helpers.ThemeHelper;
-import com.beemdevelopment.aegis.ui.glide.GlideLicense;
+import com.beemdevelopment.aegis.licenses.GlideLicense;
+import com.beemdevelopment.aegis.licenses.ProtobufLicense;
 import com.mikepenz.iconics.context.IconicsLayoutInflater2;
 
 import de.psdev.licensesdialog.LicenseResolver;
@@ -39,6 +42,11 @@ public class AboutActivity extends AegisActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about);
+
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+        }
 
         View btnLicenses = findViewById(R.id.btn_licenses);
         btnLicenses.setOnClickListener(v -> showLicenseDialog());
@@ -71,7 +79,7 @@ public class AboutActivity extends AegisActivity {
 
         View btnChangelog = findViewById(R.id.btn_changelog);
         btnChangelog.setOnClickListener(v -> {
-            ChangelogDialog.create().setTheme(getCurrentTheme()).show(getSupportFragmentManager(), "CHANGELOG_DIALOG");
+            ChangelogDialog.create().setTheme(getConfiguredTheme()).show(getSupportFragmentManager(), "CHANGELOG_DIALOG");
         });
     }
 
@@ -109,14 +117,17 @@ public class AboutActivity extends AegisActivity {
 
     private void showLicenseDialog() {
         String stylesheet = getString(R.string.custom_notices_format_style);
-        int backgroundColorResource = getCurrentTheme() == Theme.AMOLED ? R.attr.cardBackgroundFocused : R.attr.cardBackground;
-        String backgroundColor = String.format("%06X", (0xFFFFFF & ThemeHelper.getThemeColor(backgroundColorResource, getTheme())));
-        String textColor = String.format("%06X", (0xFFFFFF & ThemeHelper.getThemeColor(R.attr.primaryText, getTheme())));
-        String licenseColor = String.format("%06X", (0xFFFFFF & ThemeHelper.getThemeColor(R.attr.cardBackgroundFocused, getTheme())));
+        int backgroundColorResource = getConfiguredTheme() == Theme.AMOLED ? R.attr.cardBackgroundFocused : R.attr.cardBackground;
+        String backgroundColor = getThemeColorAsHex(backgroundColorResource);
+        String textColor = getThemeColorAsHex(R.attr.primaryText);
+        String licenseColor = getThemeColorAsHex(R.attr.cardBackgroundFocused);
+        String linkColor = getThemeColorAsHex(R.attr.colorAccent);
 
-        stylesheet = String.format(stylesheet, backgroundColor, textColor, licenseColor);
+        stylesheet = String.format(stylesheet, backgroundColor, textColor, licenseColor, linkColor);
 
         LicenseResolver.registerLicense(new GlideLicense());
+        LicenseResolver.registerLicense(new ProtobufLicense());
+
         new LicensesDialog.Builder(this)
                 .setNotices(R.raw.notices)
                 .setTitle(R.string.licenses)
@@ -124,5 +135,22 @@ public class AboutActivity extends AegisActivity {
                 .setIncludeOwnLicense(true)
                 .build()
                 .show();
+    }
+
+    private String getThemeColorAsHex(@AttrRes int attributeId) {
+        return String.format("%06X", (0xFFFFFF & ThemeHelper.getThemeColor(attributeId, getTheme())));
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                break;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+
+        return true;
     }
 }

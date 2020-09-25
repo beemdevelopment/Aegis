@@ -12,7 +12,7 @@
         android:id="@+id/action_edit"
         android:orderInCategory="90"
         android:icon="@drawable/ic_mode_edit"
-        android:title="Edit"
+        android:title="@string/edit"
         app:showAsAction="always" />
 
     <item
@@ -20,6 +20,14 @@
         android:title="@string/action_delete"
         android:orderInCategory="100"
         android:icon="@drawable/ic_delete_white"
+        android:tint="?attr/iconColorPrimary"
+        app:showAsAction="always"/>
+
+    <item
+        android:id="@+id/action_share_qr"
+        android:title="@string/action_transfer"
+        android:orderInCategory="100"
+        android:icon="@drawable/ic_qr_code_full"
         android:tint="?attr/iconColorPrimary"
         app:showAsAction="always"/>
 </menu>

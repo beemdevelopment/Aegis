@@ -1,13 +1,18 @@
 package com.beemdevelopment.aegis.ui.tasks;
 
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Process;
 
-import com.beemdevelopment.aegis.ui.Dialogs;
-
 import androidx.annotation.CallSuper;
+import androidx.annotation.Nullable;
+import androidx.lifecycle.Lifecycle;
+import androidx.lifecycle.LifecycleObserver;
+import androidx.lifecycle.OnLifecycleEvent;
+
+import com.beemdevelopment.aegis.ui.Dialogs;
 
 public abstract class ProgressDialogTask<Params, Result> extends AsyncTask<Params, String, Result> {
     private ProgressDialog _dialog;
@@ -46,5 +51,30 @@ public abstract class ProgressDialogTask<Params, Result> extends AsyncTask<Param
 
     protected final ProgressDialog getDialog() {
         return _dialog;
+    }
+
+    @SafeVarargs
+    public final void execute(@Nullable Lifecycle lifecycle, Params... params) {
+        if (lifecycle != null) {
+            LifecycleObserver observer = new Observer(getDialog());
+            lifecycle.addObserver(observer);
+        }
+        execute(params);
+    }
+
+    private static class Observer implements LifecycleObserver {
+        private Dialog _dialog;
+
+        public Observer(Dialog dialog) {
+            _dialog = dialog;
+        }
+
+        @OnLifecycleEvent(Lifecycle.Event.ON_PAUSE)
+        void onPause() {
+            if (_dialog != null && _dialog.isShowing()) {
+                _dialog.dismiss();
+                _dialog = null;
+            }
+        }
     }
 }

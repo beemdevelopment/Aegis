@@ -3,6 +3,7 @@ package com.beemdevelopment.aegis;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
+import android.net.Uri;
 import android.os.Build;
 import android.preference.PreferenceManager;
 
@@ -11,6 +12,17 @@ import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
 public class Preferences {
+    public static final int AUTO_LOCK_OFF = 1 << 0;
+    public static final int AUTO_LOCK_ON_BACK_BUTTON = 1 << 1;
+    public static final int AUTO_LOCK_ON_MINIMIZE = 1 << 2;
+    public static final int AUTO_LOCK_ON_DEVICE_LOCK = 1 << 3;
+
+    public static final int[] AUTO_LOCK_SETTINGS = {
+            AUTO_LOCK_ON_BACK_BUTTON,
+            AUTO_LOCK_ON_MINIMIZE,
+            AUTO_LOCK_ON_DEVICE_LOCK
+    };
+
     private SharedPreferences _prefs;
 
     public Preferences(Context context) {
@@ -45,7 +57,7 @@ public class Preferences {
     public boolean isPasswordReminderNeeded() {
         long diff = new Date().getTime() - getPasswordReminderTimestamp().getTime();
         long days = TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);
-        return isPasswordReminderEnabled() && days >= 7;
+        return isPasswordReminderEnabled() && days >= 30;
     }
 
     public Date getPasswordReminderTimestamp() {
@@ -60,12 +72,37 @@ public class Preferences {
         return _prefs.getBoolean("pref_account_name", true);
     }
 
+    public int getCodeGroupSize() {
+        if (_prefs.getBoolean("pref_code_group_size", false)) {
+            return 2;
+        } else {
+            return 3;
+        }
+    }
+
     public boolean isIntroDone() {
         return _prefs.getBoolean("pref_intro", false);
     }
 
+    private int getAutoLockMask() {
+        final int def = AUTO_LOCK_ON_BACK_BUTTON | AUTO_LOCK_ON_DEVICE_LOCK;
+        if (!_prefs.contains("pref_auto_lock_mask")) {
+            return _prefs.getBoolean("pref_auto_lock", true) ? def : AUTO_LOCK_OFF;
+        }
+
+        return _prefs.getInt("pref_auto_lock_mask", def);
+    }
+
     public boolean isAutoLockEnabled() {
-        return _prefs.getBoolean("pref_auto_lock", true);
+        return getAutoLockMask() != AUTO_LOCK_OFF;
+    }
+
+    public boolean isAutoLockTypeEnabled(int autoLockType) {
+        return (getAutoLockMask() & autoLockType) == autoLockType;
+    }
+
+    public void setAutoLockMask(int autoLock) {
+        _prefs.edit().putInt("pref_auto_lock_mask", autoLock).apply();
     }
 
     public void setIntroDone(boolean done) {
@@ -89,7 +126,7 @@ public class Preferences {
     }
 
     public Theme getCurrentTheme() {
-        return Theme.fromInteger(_prefs.getInt("pref_current_theme", 0));
+        return Theme.fromInteger(_prefs.getInt("pref_current_theme", Theme.SYSTEM.ordinal()));
     }
 
     public void setCurrentTheme(Theme theme) {
@@ -119,6 +156,64 @@ public class Preferences {
             }
         }
 
-        return new Locale(lang);
+        String[] parts = lang.split("_");
+        if (parts.length == 1) {
+            return new Locale(parts[0]);
+        }
+
+        return new Locale(parts[0], parts[1]);
+    }
+
+    public boolean isBackupsEnabled() {
+        return _prefs.getBoolean("pref_backups", false);
+    }
+
+    public void setIsBackupsEnabled(boolean enabled) {
+        _prefs.edit().putBoolean("pref_backups", enabled).apply();
+    }
+
+    public Uri getBackupsLocation() {
+        String str = _prefs.getString("pref_backups_location", null);
+        if (str != null) {
+            return Uri.parse(str);
+        }
+
+        return null;
+    }
+
+    public void setBackupsLocation(Uri location) {
+        _prefs.edit().putString("pref_backups_location", location == null ? null : location.toString()).apply();
+    }
+
+    public int getBackupsVersionCount() {
+        return _prefs.getInt("pref_backups_versions", 5);
+    }
+
+    public void setBackupsVersionCount(int versions) {
+        _prefs.edit().putInt("pref_backups_versions", versions).apply();
+    }
+
+    public void setBackupsError(Exception e) {
+        _prefs.edit().putString("pref_backups_error", e == null ? null : e.toString()).apply();
+    }
+
+    public String getBackupsError() {
+        return _prefs.getString("pref_backups_error", null);
+    }
+
+    public boolean isPinKeyboardEnabled() {
+        return _prefs.getBoolean("pref_pin_keyboard", false);
+    }
+
+    public boolean isTimeSyncWarningEnabled() {
+        return _prefs.getBoolean("pref_warn_time_sync", true);
+    }
+
+    public void setIsTimeSyncWarningEnabled(boolean enabled) {
+        _prefs.edit().putBoolean("pref_warn_time_sync", enabled).apply();
+    }
+
+    public boolean isCopyOnTapEnabled() {
+        return _prefs.getBoolean("pref_copy_on_tap", false);
     }
 }

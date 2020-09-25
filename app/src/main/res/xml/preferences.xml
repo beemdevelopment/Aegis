@@ -29,6 +29,13 @@
             app:iconSpaceReserved="false"/>
 
         <androidx.preference.SwitchPreferenceCompat
+            android:defaultValue="false"
+            android:key="pref_code_group_size"
+            android:title="@string/pref_code_group_size_title"
+            android:summary="@string/pref_code_group_size_summary"
+            app:iconSpaceReserved="false"/>
+
+        <androidx.preference.SwitchPreferenceCompat
             android:defaultValue="true"
             android:key="pref_account_name"
             android:title="@string/pref_account_name_title"
@@ -50,6 +57,12 @@
             android:key="pref_search_names"
             android:title="@string/pref_search_name_title"
             android:summary="@string/pref_search_name_summary"
+            app:iconSpaceReserved="false"/>
+        <androidx.preference.SwitchPreferenceCompat
+            android:defaultValue="false"
+            android:key="pref_copy_on_tap"
+            android:title="@string/pref_copy_on_tap_title"
+            android:summary="@string/pref_copy_on_tap_summary"
             app:iconSpaceReserved="false"/>
         <androidx.preference.SwitchPreferenceCompat
             android:defaultValue="false"
@@ -118,9 +131,16 @@
             app:iconSpaceReserved="false"/>
 
         <androidx.preference.SwitchPreferenceCompat
-            android:defaultValue="true"
+            android:key="pref_pin_keyboard"
+            android:dependency="pref_encryption"
+            android:title="@string/pref_pin_keyboard_title"
+            android:summary="@string/pref_pin_keyboard_summary"
+            app:iconSpaceReserved="false"/>
+
+        <Preference
             android:key="pref_auto_lock"
             android:dependency="pref_encryption"
+            android:persistent="false"
             android:title="@string/pref_auto_lock_title"
             android:summary="@string/pref_auto_lock_summary"
             app:iconSpaceReserved="false"/>
@@ -129,6 +149,31 @@
             android:key="pref_slots"
             android:title="@string/pref_slots_title"
             android:summary="@string/pref_slots_summary"
+            app:iconSpaceReserved="false"/>
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="@string/pref_backups_group_title"
+        app:iconSpaceReserved="false">
+        <androidx.preference.SwitchPreferenceCompat
+            android:defaultValue="false"
+            android:key="pref_backups"
+            android:title="@string/pref_backups_title"
+            android:summary="@string/pref_backups_summary"
+            app:iconSpaceReserved="false"/>
+        <Preference
+            android:key="pref_backups_location"
+            android:title="@string/pref_backups_location_title"
+            android:summary="@string/pref_backups_location_summary"
+            app:iconSpaceReserved="false"/>
+        <Preference
+            android:key="pref_backups_trigger"
+            android:title="@string/pref_backups_trigger_title"
+            android:summary="@string/pref_backups_trigger_summary"
+            app:iconSpaceReserved="false"/>
+        <Preference
+            android:key="pref_backups_versions"
+            android:title="@string/pref_backups_versions_title"
             app:iconSpaceReserved="false"/>
     </PreferenceCategory>
 

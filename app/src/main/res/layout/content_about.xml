@@ -62,6 +62,7 @@
                 <ImageView
                     android:layout_width="20dp"
                     android:layout_height="20dp"
+                    android:importantForAccessibility="no"
                     app:ico_color="@color/icon_about"
                     app:ico_icon="gmi-info-outline"
                     app:ico_size="16dp" />
@@ -71,7 +72,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="32dp"
-                    android:layout_marginLeft="32dp"
                     android:orientation="vertical"
                     android:paddingTop="8dp"
                     android:paddingBottom="8dp">
@@ -97,7 +97,7 @@
                 android:id="@+id/btn_changelog"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:foreground="?attr/selectableItemBackground"
+                android:background="?attr/selectableItemBackground"
                 android:clickable="true"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
@@ -108,6 +108,7 @@
                 <ImageView
                     android:layout_width="20dp"
                     android:layout_height="20dp"
+                    android:importantForAccessibility="no"
                     app:ico_color="@color/icon_about"
                     app:ico_icon="gmi-time-restore"
                     app:ico_size="16dp" />
@@ -116,7 +117,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="32dp"
-                    android:layout_marginLeft="32dp"
                     android:orientation="vertical"
                     android:paddingTop="8dp"
                     android:paddingBottom="8dp">
@@ -150,6 +150,7 @@
                 <ImageView
                     android:layout_width="20dp"
                     android:layout_height="20dp"
+                    android:importantForAccessibility="no"
                     app:ico_color="@color/icon_about"
                     app:ico_icon="gmi-github"
                     app:ico_size="16dp" />
@@ -158,7 +159,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="32dp"
-                    android:layout_marginLeft="32dp"
                     android:orientation="vertical"
                     android:paddingTop="8dp"
                     android:paddingBottom="8dp">
@@ -192,6 +192,7 @@
                 <ImageView
                     android:layout_width="20dp"
                     android:layout_height="20dp"
+                    android:importantForAccessibility="no"
                     app:ico_color="@color/icon_about"
                     app:ico_icon="gmi-file-text"
                     app:ico_size="16dp" />
@@ -200,7 +201,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="32dp"
-                    android:layout_marginLeft="32dp"
                     android:orientation="vertical"
                     android:paddingTop="8dp"
                     android:paddingBottom="8dp">
@@ -267,6 +267,7 @@
                 <ImageView
                     android:layout_width="20dp"
                     android:layout_height="20dp"
+                    android:importantForAccessibility="no"
                     app:ico_color="@color/icon_about"
                     app:ico_icon="gmi-account"
                     app:ico_size="16dp" />
@@ -275,7 +276,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="32dp"
-                    android:layout_marginLeft="32dp"
                     android:orientation="vertical"
                     android:paddingTop="8dp"
                     android:paddingBottom="8dp">
@@ -312,6 +312,7 @@
                 <ImageView
                     android:layout_width="20dp"
                     android:layout_height="20dp"
+                    android:importantForAccessibility="no"
                     app:ico_color="@color/icon_about"
                     app:ico_icon="gmi-account"
                     app:ico_size="16dp" />
@@ -320,7 +321,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="32dp"
-                    android:layout_marginLeft="32dp"
                     android:orientation="vertical"
                     android:paddingTop="8dp"
                     android:paddingBottom="8dp">
@@ -357,6 +357,7 @@
                 <ImageView
                     android:layout_width="20dp"
                     android:layout_height="20dp"
+                    android:importantForAccessibility="no"
                     app:ico_color="@color/icon_about"
                     app:ico_icon="gmi-email"
                     app:ico_size="16dp" />
@@ -365,7 +366,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="32dp"
-                    android:layout_marginLeft="32dp"
                     android:paddingTop="8dp"
                     android:paddingBottom="8dp"
                     android:text="@string/email_us"
@@ -389,6 +389,7 @@
                 <ImageView
                     android:layout_width="20dp"
                     android:layout_height="20dp"
+                    android:importantForAccessibility="no"
                     app:ico_color="@color/icon_about"
                     app:ico_icon="gmi-globe"
                     app:ico_size="16dp" />
@@ -396,7 +397,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="32dp"
-                    android:layout_marginLeft="32dp"
                     android:paddingTop="8dp"
                     android:paddingBottom="8dp"
                     android:text="@string/visit_website"
@@ -438,7 +438,7 @@
                 android:id="@+id/btn_rate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:foreground="?attr/selectableItemBackground"
+                android:background="?attr/selectableItemBackground"
                 android:clickable="true"
                 android:gravity="center_vertical"
                 android:minHeight="@dimen/list_item_height"
@@ -450,6 +450,7 @@
                 <ImageView
                     android:layout_width="20dp"
                     android:layout_height="20dp"
+                    android:importantForAccessibility="no"
                     app:ico_color="@color/icon_about"
                     app:ico_icon="gmi-star"
                     app:ico_size="16dp" />
@@ -458,7 +459,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="32dp"
-                    android:layout_marginLeft="32dp"
                     android:orientation="vertical"
                     android:paddingTop="8dp"
                     android:paddingBottom="8dp">

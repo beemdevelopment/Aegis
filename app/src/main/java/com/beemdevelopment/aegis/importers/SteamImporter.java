@@ -3,18 +3,19 @@ package com.beemdevelopment.aegis.importers;
 import android.content.Context;
 import android.content.pm.PackageManager;
 
-import com.beemdevelopment.aegis.encoding.EncodingException;
-import com.beemdevelopment.aegis.vault.VaultEntry;
 import com.beemdevelopment.aegis.encoding.Base64;
+import com.beemdevelopment.aegis.encoding.EncodingException;
 import com.beemdevelopment.aegis.otp.OtpInfoException;
 import com.beemdevelopment.aegis.otp.SteamInfo;
-import com.beemdevelopment.aegis.util.ByteInputStream;
+import com.beemdevelopment.aegis.util.IOUtils;
+import com.beemdevelopment.aegis.vault.VaultEntry;
 import com.topjohnwu.superuser.io.SuFile;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 
 public class SteamImporter extends DatabaseImporter {
@@ -26,27 +27,23 @@ public class SteamImporter extends DatabaseImporter {
     }
 
     @Override
-    protected String getAppPkgName() {
-        return _pkgName;
-    }
-
-    @Override
-    protected String getAppSubPath() throws DatabaseImporterException, PackageManager.NameNotFoundException {
+    protected SuFile getAppPath() throws DatabaseImporterException, PackageManager.NameNotFoundException {
         // NOTE: this assumes that a global root shell has already been obtained by the caller
-        SuFile path = getAppPath(getAppPkgName(), _subDir);
+        SuFile path = getAppPath(_pkgName, _subDir);
         SuFile[] files = path.listFiles((d, name) -> name.startsWith("Steamguard-"));
         if (files == null || files.length == 0) {
             throw new DatabaseImporterException(String.format("Empty directory: %s", path.getAbsolutePath()));
         }
 
         // TODO: handle multiple files (can this even occur?)
-        return new SuFile(_subDir, files[0].getName()).getPath();
+        return files[0];
     }
 
     @Override
-    public State read(FileReader reader) throws DatabaseImporterException {
-        try (ByteInputStream stream = ByteInputStream.create(reader.getStream())) {
-            JSONObject obj = new JSONObject(new String(stream.getBytes(), StandardCharsets.UTF_8));
+    public State read(InputStream stream, boolean isInternal) throws DatabaseImporterException {
+        try {
+            byte[] bytes = IOUtils.readAll(stream);
+            JSONObject obj = new JSONObject(new String(bytes, StandardCharsets.UTF_8));
             return new State(obj);
         } catch (IOException | JSONException e) {
             throw new DatabaseImporterException(e);
