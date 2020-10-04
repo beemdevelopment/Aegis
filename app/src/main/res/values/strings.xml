@@ -158,6 +158,7 @@
     <string name="disable_encryption_description">Are you sure you want to disable encryption? This will cause the vault to be stored in plain text.</string>
     <string name="enable_encryption_error">An error occurred while enabling encryption</string>
     <string name="disable_encryption_error">An error occurred while disabling encryption</string>
+    <string name="backup_successful">The backup was created successfully</string>
     <string name="backup_error">An error occurred while trying to create a backup</string>
     <string name="permission_denied">Permission denied</string>
     <string name="andotp_new_format">New format (v0.6.3 or newer) </string>

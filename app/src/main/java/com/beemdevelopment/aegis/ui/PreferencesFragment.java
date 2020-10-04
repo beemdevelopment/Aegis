@@ -438,6 +438,7 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
             if (_prefs.isBackupsEnabled()) {
                 try {
                     _vault.backup();
+                    Toast.makeText(getActivity(), R.string.backup_successful, Toast.LENGTH_LONG).show();
                 } catch (VaultManagerException e) {
                     e.printStackTrace();
                     Dialogs.showErrorDialog(getContext(), R.string.backup_error, e);
