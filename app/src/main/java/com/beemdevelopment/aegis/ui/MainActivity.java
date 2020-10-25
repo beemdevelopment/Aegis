@@ -43,12 +43,12 @@ import com.google.zxing.BinaryBitmap;
 import com.google.zxing.ChecksumException;
 import com.google.zxing.FormatException;
 import com.google.zxing.LuminanceSource;
-import com.google.zxing.MultiFormatReader;
 import com.google.zxing.NotFoundException;
 import com.google.zxing.RGBLuminanceSource;
 import com.google.zxing.Reader;
 import com.google.zxing.Result;
 import com.google.zxing.common.HybridBinarizer;
+import com.google.zxing.qrcode.QRCodeReader;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -318,7 +318,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
             LuminanceSource source = new RGBLuminanceSource(bitmap.getWidth(), bitmap.getHeight(), intArray);
             BinaryBitmap binaryBitmap = new BinaryBitmap(new HybridBinarizer(source));
 
-            Reader reader = new MultiFormatReader();
+            Reader reader = new QRCodeReader();
             Result result = reader.decode(binaryBitmap);
 
             GoogleAuthInfo info = GoogleAuthInfo.parseUri(result.getText());
@@ -408,8 +408,12 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         Intent galleryIntent = new Intent(Intent.ACTION_PICK);
         galleryIntent.setDataAndType(android.provider.MediaStore.Images.Media.INTERNAL_CONTENT_URI, "image/*");
 
+        Intent fileIntent = new Intent(Intent.ACTION_GET_CONTENT);
+        fileIntent.setType("image/*");
+
         Intent chooserIntent = Intent.createChooser(galleryIntent, getString(R.string.select_picture));
-        startActivityForResult(Intent.createChooser(chooserIntent, getString(R.string.select_picture)), CODE_SCAN_IMAGE);
+        chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS, new Intent[] { fileIntent });
+        startActivityForResult(chooserIntent, CODE_SCAN_IMAGE);
     }
 
     private void startPreferencesActivity(String preference) {
