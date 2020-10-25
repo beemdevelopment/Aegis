@@ -144,7 +144,6 @@
     <string name="import_error_title">Une ou plusieurs erreurs sont survenues lors de l\'importation</string>
     <string name="exporting_vault_error">Une erreur est survenue en essayant d\'exporter le coffre-fort</string>
     <string name="exported_vault">Le coffre-fort a été exporté</string>
-    <string name="export_warning">Cette action va exporter le coffre-fort hors du stockage privé d\'Aegis.</string>
     <string name="encryption_set_password_error">Une erreur est survenue en essayant de définir le mot de passe.</string>
     <string name="encryption_enable_biometrics_error">Une erreur est survenue lors de l\'activation du déverrouillage biométrique. Certains appareils ont de mauvaises implémentations d\'authentification biométrique et il est probable que le vôtre soit l\'un d\'entre eux. Pensez plutôt à basculer vers une configuration avec uniquement des mots de passe.</string>
     <string name="no_cameras_available">Aucun appareil photo disponible</string>

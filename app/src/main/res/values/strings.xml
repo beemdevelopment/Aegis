@@ -48,7 +48,6 @@
     <string name="pref_import_app_summary">Import tokens from an app (requires root access)</string>
     <string name="pref_export_title">Export</string>
     <string name="pref_export_summary">Export the vault</string>
-    <string name="pref_export_keep_encrypted">Keep the vault encrypted</string>
     <string name="pref_password_reminder_title">Password reminder</string>
     <string name="pref_password_reminder_summary">Show a reminder to enter the password every once in a while, so that you don\'t forget it.</string>
     <string name="pref_secure_screen_title">Screen security</string>
@@ -69,6 +68,13 @@
     <string name="pref_biometrics_summary">Allow biometric authentication to unlock the vault</string>
     <string name="pref_set_password_title">Change password</string>
     <string name="pref_set_password_summary">Set a new password which you will need to unlock your vault</string>
+
+    <string name="export_encrypted">Encrypt the vault</string>
+    <string name="export_help">This action will export the vault out of Aegis\' internal storage. Select the format you\'d like your export to be in:</string>
+    <string name="export_warning_unencrypted">You are about to export an unencrypted copy of your Aegis vault. <b>This is not recommended</b>.</string>
+    <string name="export_warning_accept">I understand the risk</string>
+    <string name="export_format_aegis">Aegis (.JSON)</string>
+    <string name="export_format_google_auth_uri">Text file (.TXT)</string>
 
     <string name="choose_authentication_method">Security</string>
     <string name="authentication_method_explanation">Aegis is a security-focused 2FA app. Tokens are stored in a vault, that can optionally be encrypted with a password of your choosing. If an attacker obtains your encrypted vault file, they will not be able to access the contents without knowing the password.\n\nWe\'ve preselected the option that we think would fit best for your device.</string>
@@ -96,6 +102,7 @@
     <string name="password_reminder">Please enter your password. We occasionally ask you to do this so that don\'t forget it.</string>
     <string name="enter_password_authy_message">It looks like your Authy tokens are encrypted. Please close Aegis, open Authy and unlock the tokens with your password. Instead, Aegis can also attempt to decrypt your Authy tokens for you, if you enter your password below.</string>
 
+    <string name="share">Share</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
     <string name="unlock">Unlock</string>
@@ -180,7 +187,6 @@
     <string name="import_error_title">One or more errors occurred during the import</string>
     <string name="exporting_vault_error">An error occurred while trying to export the vault</string>
     <string name="exported_vault">The vault has been exported</string>
-    <string name="export_warning">This action will export the vault out of Aegis\' private storage.</string>
     <string name="encryption_set_password_error">An error occurred while trying to set the password.</string>
     <string name="encryption_enable_biometrics_error">An error occurred while trying to enable biometric unlock. Some devices have poor implementations of biometric authentication and it is likely that yours is one of them. Consider switching to a password-only configuration instead.</string>
     <string name="no_cameras_available">No cameras available</string>

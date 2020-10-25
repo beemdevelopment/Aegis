@@ -7,7 +7,7 @@ import android.preference.PreferenceManager;
 import androidx.test.core.app.ApplicationProvider;
 import androidx.test.runner.AndroidJUnitRunner;
 
-import java.io.File;
+import com.beemdevelopment.aegis.util.IOUtils;
 
 public class AegisTestRunner extends AndroidJUnitRunner {
     @Override
@@ -15,7 +15,7 @@ public class AegisTestRunner extends AndroidJUnitRunner {
         Context context = app.getApplicationContext();
 
         // clear internal storage so that there is no vault file
-        clearDirectory(context.getFilesDir(), false);
+        IOUtils.clearDirectory(context.getFilesDir(), false);
 
         // clear preferences so that the intro is started from MainActivity
         ApplicationProvider.getApplicationContext().getFilesDir();
@@ -25,22 +25,5 @@ public class AegisTestRunner extends AndroidJUnitRunner {
                 .apply();
 
         super.callApplicationOnCreate(app);
-    }
-
-    private static void clearDirectory(File dir, boolean deleteParent) {
-        File[] files = dir.listFiles();
-        if (files != null) {
-            for (File file : files) {
-                if (file.isDirectory()) {
-                    clearDirectory(file, true);
-                } else {
-                    file.delete();
-                }
-            }
-        }
-
-        if (deleteParent) {
-            dir.delete();
-        }
     }
 }

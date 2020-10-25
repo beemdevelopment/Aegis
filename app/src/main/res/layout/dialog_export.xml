@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingBottom="10dp"
+    android:paddingTop="10dp">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:layout_marginEnd="25dp"
+        android:text="@string/export_help" />
+    <androidx.appcompat.widget.AppCompatSpinner
+        android:id="@+id/spinner_export_format"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="5dp" />
+    <CheckBox
+        android:id="@+id/checkbox_export_encrypt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="5dp"
+        android:text="@string/export_encrypted"
+        android:checked="true" />
+    <TextView
+        android:id="@+id/text_export_warning"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginTop="5dp"
+        android:text="@string/export_warning_unencrypted"
+        android:textColor="#FF0000"
+        android:visibility="gone" />
+    <CheckBox
+        android:id="@+id/checkbox_accept"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="5dp"
+        android:text="@string/export_warning_accept"
+        android:checked="false"
+        android:visibility="gone" />
+</LinearLayout>

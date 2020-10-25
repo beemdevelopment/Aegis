@@ -89,4 +89,9 @@
         <item>@string/pref_auto_lock_type_minimize</item>
         <item>@string/pref_auto_lock_type_device_lock</item>
     </string-array>
+
+    <string-array name="export_formats">
+        <item>@string/export_format_aegis</item>
+        <item>@string/export_format_google_auth_uri</item>
+    </string-array>
 </resources>

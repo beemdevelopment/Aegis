@@ -46,7 +46,6 @@
     <string name="pref_import_app_summary">Importuj tokeny z innej aplikacji (wymagane jest konto root)</string>
     <string name="pref_export_title">Eksportuj</string>
     <string name="pref_export_summary">Eksportuj sejf</string>
-    <string name="pref_export_keep_encrypted">Zachowaj sejf zaszyfrowany</string>
     <string name="pref_password_reminder_title">Przypomnienie hasła</string>
     <string name="pref_password_reminder_summary">Co pewien czas pokazuj przypomnienie, aby wpisać hasło. Dzięki temu go nie zapomnisz.</string>
     <string name="pref_secure_screen_title">Zabezpieczenie ekranu</string>
@@ -171,7 +170,6 @@
     <string name="import_error_title">Wystąpił co najmniej jeden błąd podczas importowania</string>
     <string name="exporting_vault_error">Wystąpił błąd podczas eksportowania sejfu</string>
     <string name="exported_vault">Sejf został wyeksportowany</string>
-    <string name="export_warning">Ta czynność wyeksportuje sejf z prywatnej przestrzeni dyskowej aplikacji Aegis.</string>
     <string name="encryption_set_password_error">Wystąpił błąd podczas ustawiania hasła.</string>
     <string name="encryption_enable_biometrics_error">Wystąpił błąd podczas włączania autoryzacji biometrycznej. Niektóre urządzenia posiadają słabe wsparcie dla tej funkcji i jest prawdopodobne, że Twoje urządzenie jest jednym z nich. Rozważ zmianę konfiguracji za pomocą hasła.</string>
     <string name="no_cameras_available">Aparat jest niedostępny</string>

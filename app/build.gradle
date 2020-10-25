@@ -13,6 +13,8 @@ def getCmdOutput = { cmd ->
 def getGitHash = { -> return getCmdOutput(["git", "rev-parse", "--short", "HEAD"]) }
 def getGitBranch = { -> return getCmdOutput(["git", "rev-parse", "--abbrev-ref", "HEAD"]) }
 
+def fileProviderAuthority = "com.beemdevelopment.aegis.fileprovider"
+
 android {
     compileSdkVersion 30
 
@@ -25,6 +27,8 @@ android {
         multiDexEnabled true
         buildConfigField "String", "GIT_HASH", "\"${getGitHash()}\""
         buildConfigField "String", "GIT_BRANCH", "\"${getGitBranch()}\""
+        buildConfigField("String", "FILE_PROVIDER_AUTHORITY", "\"${fileProviderAuthority}\"")
+        manifestPlaceholders = [fileProviderAuthority: "${fileProviderAuthority}"]
 
         testInstrumentationRunner "com.beemdevelopment.aegis.AegisTestRunner"
         testInstrumentationRunnerArguments clearPackageData: 'true'

@@ -43,7 +43,6 @@
     <string name="pref_import_app_summary">从其他应用导入令牌（需要 root 权限）</string>
     <string name="pref_export_title">导出</string>
     <string name="pref_export_summary">导出数据库</string>
-    <string name="pref_export_keep_encrypted">保持数据库加密</string>
     <string name="pref_password_reminder_title">密码提醒</string>
     <string name="pref_password_reminder_summary">每隔一段时间提醒您输入一次密码，以免忘记密码。</string>
     <string name="pref_secure_screen_title">屏幕安全</string>
@@ -162,7 +161,6 @@
     <string name="import_error_title">导入时发生一个或多个错误</string>
     <string name="exporting_vault_error">试图导出数据库时出错</string>
     <string name="exported_vault">数据库已导出</string>
-    <string name="export_warning">此操作将把数据库从 Aegis 私有存储空间中导出。</string>
     <string name="encryption_set_password_error">试图设置密码时发生错误。</string>
     <string name="encryption_enable_biometrics_error">尝试启用生物识别解锁时发生错误。某些设备的生物识别认证实现不佳，您的很可能就是其中之一。考虑改用仅密码配置。</string>
     <string name="no_cameras_available">无可用的摄像头</string>

@@ -120,7 +120,6 @@
     <string name="import_error_title">Παρουσιάστηκαν ένα ή περισσότερα σφάλματα κατά την εισαγωγή</string>
     <string name="exporting_vault_error">Παρουσιάστηκε σφάλμα κατά την προσπάθεια εξαγωγής της λίστας</string>
     <string name="exported_vault">Η λίστα έχει εξαχθεί</string>
-    <string name="export_warning">Αυτή η ενέργεια θα εξάγει τη λίστα από την ιδιωτική αποθήκη του Aegis.</string>
     <string name="no_cameras_available">Δεν υπάρχουν διαθέσιμες κάμερες</string>
     <string name="read_qr_error">Παρουσιάστηκε σφάλμα κατά την προσπάθεια ανάγνωσης του κώδικα QR</string>
     <string name="authentication_method_raw">Ακατέργαστη</string>
