@@ -37,6 +37,7 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
     private boolean _showAccountName;
     private boolean _searchAccountName;
     private boolean _highlightEntry;
+    private boolean _tempHighlightEntry;
     private boolean _tapToReveal;
     private int _tapToRevealTime;
     private boolean _copyOnTap;
@@ -92,6 +93,10 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
         _highlightEntry = highlightEntry;
     }
 
+    public void setTempHighlightEntry(boolean highlightEntry) {
+        _tempHighlightEntry = highlightEntry;
+    }
+
     public void setIsCopyOnTapEnabled(boolean enabled) {
         _copyOnTap = enabled;
     }
@@ -100,13 +105,13 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
         return _shownEntries.get(position);
     }
 
-    public void addEntry(VaultEntry entry) {
+    public int addEntry(VaultEntry entry) {
         _entries.add(entry);
         if (isEntryFiltered(entry)) {
-            return;
+            return -1;
         }
 
-        boolean added = false;
+        int position = -1;
         Comparator<VaultEntry> comparator = _sortCategory.getComparator();
         if (comparator != null) {
             // insert the entry in the correct order
@@ -115,16 +120,16 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
                 if (comparator.compare(_shownEntries.get(i), entry) > 0) {
                     _shownEntries.add(i, entry);
                     notifyItemInserted(i);
-                    added = true;
+                    position = i;
                     break;
                 }
             }
         }
 
-        if (!added){
+        if (position < 0){
             _shownEntries.add(entry);
 
-            int position = getItemCount() - 1;
+            position = getItemCount() - 1;
             if (position == 0) {
                 notifyDataSetChanged();
             } else {
@@ -134,6 +139,7 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
 
         _view.onListChange();
         checkPeriodUniformity();
+        return position;
     }
 
     public void addEntries(Collection<VaultEntry> entries) {
@@ -341,7 +347,7 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
         VaultEntry entry = _shownEntries.get(position);
 
         boolean hidden = _tapToReveal && entry != _focusedEntry;
-        boolean dimmed = _highlightEntry && _focusedEntry != null && _focusedEntry != entry;
+        boolean dimmed = (_highlightEntry || _tempHighlightEntry) && _focusedEntry != null && _focusedEntry != entry;
         boolean showProgress = entry.getInfo() instanceof TotpInfo && ((TotpInfo) entry.getInfo()).getPeriod() != getMostFrequentPeriod();
         holder.setData(entry, _codeGroupSize, _showAccountName, showProgress, hidden, dimmed);
         holder.setFocused(_selectedEntries.contains(entry));
@@ -358,12 +364,12 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
                         holder.animateCopyText();
                     }
 
-                    if (_highlightEntry || _tapToReveal) {
+                    if (_highlightEntry || _tempHighlightEntry || _tapToReveal) {
                         if (_focusedEntry == entry) {
                             resetFocus();
                             handled = true;
                         } else {
-                            focusEntry(entry);
+                            focusEntry(entry, _tapToRevealTime);
                         }
                     }
                 } else {
@@ -497,20 +503,20 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
         return maxValue > 1 ? maxKey : -1;
     }
 
-    private void focusEntry(VaultEntry entry) {
+    public void focusEntry(VaultEntry entry, int secondsToFocus) {
         _focusedEntry = entry;
         _dimHandler.removeCallbacksAndMessages(null);
 
         for (EntryHolder holder : _holders) {
             if (holder.getEntry() != _focusedEntry) {
-                if (_highlightEntry) {
+                if (_highlightEntry || _tempHighlightEntry) {
                     holder.dim();
                 }
                 if (_tapToReveal) {
                     holder.hideCode();
                 }
             } else {
-                if (_highlightEntry) {
+                if (_highlightEntry || _tempHighlightEntry) {
                     holder.highlight();
                 }
                 if (_tapToReveal) {
@@ -519,12 +525,12 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
             }
         }
 
-        _dimHandler.postDelayed(this::resetFocus, _tapToRevealTime * 1000);
+        _dimHandler.postDelayed(this::resetFocus, secondsToFocus * 1000);
     }
 
     private void resetFocus() {
         for (EntryHolder holder : _holders) {
-            if (_highlightEntry) {
+            if (_focusedEntry != null) {
                 holder.highlight();
             }
             if (_tapToReveal) {
@@ -533,6 +539,7 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
         }
 
         _focusedEntry = null;
+        _tempHighlightEntry = false;
     }
 
     private void updateDraggableStatus() {
@@ -565,7 +572,7 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
     }
 
     public void addSelectedEntry(VaultEntry entry) {
-        if (_highlightEntry) {
+        if (_focusedEntry != null) {
             resetFocus();
         }
 

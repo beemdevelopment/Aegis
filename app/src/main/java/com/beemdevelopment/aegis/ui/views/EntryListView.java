@@ -1,9 +1,11 @@
 package com.beemdevelopment.aegis.ui.views;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
@@ -273,8 +275,39 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
     }
 
     public void addEntry(VaultEntry entry) {
-        _adapter.addEntry(entry);
+        addEntry(entry, false);
+    }
+
+    @SuppressLint("ClickableViewAccessibility")
+    public void addEntry(VaultEntry entry, boolean focusEntry) {
+        int position = _adapter.addEntry(entry);
         updateEmptyState();
+
+        if (focusEntry && position >= 0) {
+            RecyclerView.OnScrollListener scrollListener = new RecyclerView.OnScrollListener() {
+                @Override
+                public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+                    if (newState == RecyclerView.SCROLL_STATE_IDLE) {
+                        _recyclerView.removeOnScrollListener(this);
+                        _adapter.setTempHighlightEntry(true);
+
+                        final int secondsToFocus = 3;
+                        _adapter.focusEntry(entry, secondsToFocus);
+                    }
+                }
+            };
+            _recyclerView.addOnScrollListener(scrollListener);
+            _recyclerView.setOnTouchListener((v, event) -> {
+                if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                    _recyclerView.removeOnScrollListener(scrollListener);
+                    _recyclerView.stopScroll();
+                    _recyclerView.setOnTouchListener(null);
+                }
+
+                return false;
+            });
+            _recyclerView.smoothScrollToPosition(position);
+        }
     }
 
     public void addEntries(Collection<VaultEntry> entries) {
