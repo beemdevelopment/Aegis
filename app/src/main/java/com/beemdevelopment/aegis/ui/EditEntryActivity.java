@@ -37,6 +37,7 @@ import com.beemdevelopment.aegis.encoding.EncodingException;
 import com.beemdevelopment.aegis.helpers.EditTextHelper;
 import com.beemdevelopment.aegis.helpers.SpinnerHelper;
 import com.beemdevelopment.aegis.helpers.TextDrawableHelper;
+import com.beemdevelopment.aegis.otp.GoogleAuthInfo;
 import com.beemdevelopment.aegis.otp.HotpInfo;
 import com.beemdevelopment.aegis.otp.OtpInfo;
 import com.beemdevelopment.aegis.otp.OtpInfoException;
@@ -515,7 +516,8 @@ public class EditEntryActivity extends AegisActivity {
 
         byte[] secret;
         try {
-            secret = Base32.decode(new String(EditTextHelper.getEditTextChars(_textSecret, true)));
+            String secretString = new String(EditTextHelper.getEditTextChars(_textSecret));
+            secret = GoogleAuthInfo.parseSecret(secretString);
             if (secret.length == 0) {
                 throw new ParseException("Secret cannot be empty");
             }

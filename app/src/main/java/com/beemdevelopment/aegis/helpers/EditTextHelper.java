@@ -9,22 +9,10 @@ public class EditTextHelper {
     private EditTextHelper() {
     }
 
-    public static void clearEditText(EditText text) {
-        text.getText().clear();
-    }
-
     public static char[] getEditTextChars(EditText text) {
-        return getEditTextChars(text, false);
-    }
-
-    public static char[] getEditTextChars(EditText text, boolean removeSpaces) {
-        String editTextString = text.getText().toString();
-        if (removeSpaces) {
-            editTextString = editTextString.replaceAll("\\s","");
-        }
-
-        char[] chars = new char[editTextString.length()];
-        editTextString.getChars(0, editTextString.length(), chars, 0);
+        Editable editable = text.getText();
+        char[] chars = new char[editable.length()];
+        editable.getChars(0, editable.length(), chars, 0);
         return chars;
     }
 
