@@ -131,7 +131,7 @@ public class ScannerActivity extends AegisActivity implements QrCodeAnalyzer.Lis
 
     private void bindPreview(@NonNull ProcessCameraProvider cameraProvider) {
         Preview preview = new Preview.Builder().build();
-        preview.setSurfaceProvider(_previewView.createSurfaceProvider());
+        preview.setSurfaceProvider(_previewView.getSurfaceProvider());
 
         CameraSelector selector = new CameraSelector.Builder()
                 .requireLensFacing(_currentLens)
