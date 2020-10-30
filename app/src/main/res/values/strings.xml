@@ -325,4 +325,8 @@
     <string name="dialog_wipe_entries_title">Wipe entries</string>
     <string name="dialog_wipe_entries_message">Your vault already contains entries. Do you want to remove these entries before importing this file?\n\n<b>In doing so, you will permanently lose access to the existing entries in the vault.</b></string>
     <string name="dialog_wipe_entries_checkbox">Wipe vault contents</string>
+
+    <string name="panic_trigger_ignore_toast">Aegis received panic trigger but setting is disabled, ignoring</string>
+    <string name="pref_panic_trigger_title">Delete vault on panic trigger</string>
+    <string name="pref_panic_trigger_summary">Delete vault when a panic trigger is received from Ripple</string>
 </resources>
