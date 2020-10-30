@@ -15,10 +15,12 @@ import android.text.method.PasswordTransformationMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.NumberPicker;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -31,6 +33,7 @@ import com.beemdevelopment.aegis.Preferences;
 import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.helpers.EditTextHelper;
 import com.beemdevelopment.aegis.helpers.PasswordStrengthHelper;
+import com.beemdevelopment.aegis.importers.DatabaseImporter;
 import com.beemdevelopment.aegis.ui.tasks.KeyDerivationTask;
 import com.beemdevelopment.aegis.vault.slots.PasswordSlot;
 import com.beemdevelopment.aegis.vault.slots.Slot;
@@ -39,6 +42,7 @@ import com.google.android.material.textfield.TextInputLayout;
 import com.nulabinc.zxcvbn.Strength;
 import com.nulabinc.zxcvbn.Zxcvbn;
 
+import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
 
 import javax.crypto.Cipher;
@@ -383,6 +387,37 @@ public class Dialogs {
                 .create());
     }
 
+    public static void showImportersDialog(Context context, boolean isDirect, ImporterListener listener) {
+        List<DatabaseImporter.Definition> importers = DatabaseImporter.getImporters(isDirect);
+        String[] names = importers.stream().map(DatabaseImporter.Definition::getName).toArray(String[]::new);
+
+        View view = LayoutInflater.from(context).inflate(R.layout.dialog_importers, null);
+        TextView helpText = view.findViewById(R.id.text_importer_help);
+        setImporterHelpText(helpText, importers.get(0), isDirect);
+        ListView listView = view.findViewById(R.id.list_importers);
+        listView.setAdapter(new ArrayAdapter<>(context, R.layout.card_importer, names));
+        listView.setItemChecked(0, true);
+        listView.setOnItemClickListener((parent, view1, position, id) -> {
+            setImporterHelpText(helpText, importers.get(position), isDirect);
+        });
+
+        Dialogs.showSecureDialog(new AlertDialog.Builder(context)
+                .setTitle(R.string.choose_application)
+                .setView(view)
+                .setPositiveButton(android.R.string.ok, (dialog1, which) -> {
+                    listener.onImporterSelectionResult(importers.get(listView.getCheckedItemPosition()));
+                })
+                .create());
+    }
+
+    private static void setImporterHelpText(TextView view, DatabaseImporter.Definition definition, boolean isDirect) {
+        if (isDirect) {
+            view.setText(view.getResources().getString(R.string.importer_help_direct, definition.getName()));
+        } else {
+            view.setText(definition.getHelp());
+        }
+    }
+
     public interface CheckboxInputListener {
         void onCheckboxInputResult(boolean checkbox);
     }
@@ -398,5 +433,9 @@ public class Dialogs {
     public interface SlotListener {
         void onSlotResult(Slot slot, Cipher cipher);
         void onException(Exception e);
+    }
+
+    public interface ImporterListener {
+        void onImporterSelectionResult(DatabaseImporter.Definition definition);
     }
 }

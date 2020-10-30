@@ -57,8 +57,6 @@ import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
-import java.util.Objects;
 import java.util.concurrent.atomic.AtomicReference;
 
 import javax.crypto.Cipher;
@@ -175,7 +173,13 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
         importPreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
-                startImport();
+                Dialogs.showImportersDialog(getContext(), false, definition -> {
+                    _importerType = definition.getType();
+
+                    Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+                    intent.setType("*/*");
+                    startActivityForResult(intent, CODE_IMPORT);
+                });
                 return true;
             }
         });
@@ -184,7 +188,10 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
         importAppPreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
-                onImportApp();
+                Dialogs.showImportersDialog(getContext(), true, definition -> {
+                    DatabaseImporter importer = DatabaseImporter.create(getContext(), definition.getType());
+                    importApp(importer);
+                });
                 return true;
             }
         });
@@ -538,42 +545,6 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
     public void setResult(Intent result) {
         _result = result;
         getActivity().setResult(Activity.RESULT_OK, _result);
-    }
-
-    private void startImport() {
-        Map<String, Class<? extends DatabaseImporter>> importers = DatabaseImporter.getImporters();
-        String[] names = importers.keySet().toArray(new String[0]);
-
-        Dialogs.showSecureDialog(new AlertDialog.Builder(getActivity())
-                .setTitle(R.string.choose_application)
-                .setSingleChoiceItems(names, 0, null)
-                .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        int i = ((AlertDialog) dialog).getListView().getCheckedItemPosition();
-                        _importerType = importers.get(names[i]);
-
-                        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-                        intent.setType("*/*");
-                        startActivityForResult(intent, CODE_IMPORT);
-                    }
-                })
-                .create());
-    }
-
-    private void onImportApp() {
-        Map<String, Class<? extends DatabaseImporter>> importers = DatabaseImporter.getAppImporters();
-        String[] names = importers.keySet().toArray(new String[0]);
-
-        Dialogs.showSecureDialog(new AlertDialog.Builder(getActivity())
-                .setTitle(R.string.choose_application)
-                .setSingleChoiceItems(names, 0, null)
-                .setPositiveButton(android.R.string.ok, (dialog, which) -> {
-                    int i = ((AlertDialog) dialog).getListView().getCheckedItemPosition();
-                    Class<? extends DatabaseImporter> importerType = Objects.requireNonNull(importers.get(names[i]));
-                    DatabaseImporter importer = DatabaseImporter.create(getContext(), importerType);
-                    importApp(importer);
-                })
-                .create());
     }
 
     private void importApp(DatabaseImporter importer) {
