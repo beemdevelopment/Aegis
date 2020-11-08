@@ -144,7 +144,6 @@
     <string name="import_error_title">Er zijn fouten opgetreden tijdens het importeren</string>
     <string name="exporting_vault_error">Er is een fout opgetreden tijdens het exporteren van de kluis</string>
     <string name="exported_vault">De kluis is geëxporteerd</string>
-    <string name="export_warning">Deze actie zal de kluis uit de privé-opslag van Aegis exporteren.</string>
     <string name="encryption_set_password_error">Er is een fout opgetreden tijdens het instellen van het wachtwoord.</string>
     <string name="encryption_enable_biometrics_error">Er is een fout opgetreden bij het inschakelen van biometrische verificatie. Sommige apparaten hebben een gebrekkige implementatie van biometrische authenticatie en het is waarschijnlijk dat die van u er een van is. Overweeg om over te schakelen naar een \'Alleen wachtwoordconfiguratie\'.</string>
     <string name="no_cameras_available">Geen camera\'s beschikbaar</string>

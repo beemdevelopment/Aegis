@@ -144,7 +144,6 @@
     <string name="import_error_title">Yksi tai useampi virhettä tapahtui tuonnin aikana</string>
     <string name="exporting_vault_error">Holvin viennissä tapahtui virhe</string>
     <string name="exported_vault">Holvi on viety</string>
-    <string name="export_warning">Tämä toiminto vie holvin Aegisin yksityisestä tallennustilasta.</string>
     <string name="encryption_set_password_error">Salasanan asetuksessa tapahtui virhe.</string>
     <string name="encryption_enable_biometrics_error">Biometrisen todennuksen käyttöönotossa tapahtui virhe. Biometrinen todennus on toteutettu huonosti joissain laitteissa, ja on todennäköistä, että omasi on yksi niistä. Harkitse vaihtamista vain salasanan käyttämiseen.</string>
     <string name="no_cameras_available">Kameroita ei ole saatavilla</string>

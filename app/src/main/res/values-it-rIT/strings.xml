@@ -44,7 +44,6 @@
     <string name="pref_import_app_summary">Importa token da app (richiede accesso root)</string>
     <string name="pref_export_title">Esporta</string>
     <string name="pref_export_summary">Esporta la cassaforte</string>
-    <string name="pref_export_keep_encrypted">Mantieni la cassaforte crittografata</string>
     <string name="pref_password_reminder_title">Promemoria password</string>
     <string name="pref_password_reminder_summary">Mostra un promemoria per inserire la password una volta ogni tanto, in modo da non dimenticarla.</string>
     <string name="pref_secure_screen_title">Sicurezza schermo</string>
@@ -165,7 +164,6 @@
     <string name="import_error_title">Errori durante l\'importazione</string>
     <string name="exporting_vault_error">Si è verificato un errore durante il tentativo di esportare la cassaforte</string>
     <string name="exported_vault">La cassaforte è stata esportata</string>
-    <string name="export_warning">Questa azione esporterà la cassaforte dall\'archivio privato di Aegis.</string>
     <string name="encryption_set_password_error">Si è verificato un errore durante il tentativo di impostare la password.</string>
     <string name="encryption_enable_biometrics_error">Si è verificato un errore durante il tentativo di attivare lo sblocco biometrico. Alcuni dispositivi hanno scarse implementazioni di autenticazione biometrica ed è probabile che il vostro sia uno di questi. Considera il passaggio a una configurazione con solo password.</string>
     <string name="no_cameras_available">Nessuna fotocamera disponibile</string>

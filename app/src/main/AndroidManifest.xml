@@ -71,10 +71,6 @@
         <activity
             android:name=".ui.GroupManagerActivity"
             android:label="@string/title_activity_manage_groups" />
-        <activity android:name=".ui.ExitActivity" />
-
-        <service android:name=".services.NotificationService" />
-
         <activity
             android:name=".ui.PanicResponderActivity"
             android:launchMode="singleInstance"
@@ -85,6 +81,20 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+        <activity android:name=".ui.ExitActivity" />
+
+        <service android:name=".services.NotificationService" />
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${fileProviderAuthority}"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths">
+            </meta-data>
+        </provider>
     </application>
 
 </manifest>

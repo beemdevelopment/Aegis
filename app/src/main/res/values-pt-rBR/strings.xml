@@ -150,7 +150,6 @@
     <string name="import_error_title">Um ou mais erros ocorreram durante a importação</string>
     <string name="exporting_vault_error">Um erro ocorreu durante a tentativa de exportar o cofre</string>
     <string name="exported_vault">O cofre foi exportado</string>
-    <string name="export_warning">Essa ação exportará o cofre para fora do armazenamento privado do Aegis.</string>
     <string name="encryption_set_password_error">Um erro ocorreu durante a tentativa de definir a senha.</string>
     <string name="encryption_enable_biometrics_error">Um erro ocorreu durante a tentativa de habilitar o desbloqueio biométrico. Alguns dispositivos têm implementações pobres de autenticação biométrica e é provável que o seu é um deles. Considere mudar para uma configuração com apenas senha.</string>
     <string name="no_cameras_available">Nenhuma câmera disponível</string>

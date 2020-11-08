@@ -150,7 +150,6 @@
     <string name="import_error_title">При импорте произошла одна или несколько ошибок</string>
     <string name="exporting_vault_error">Произошла ошибка при попытке экспортировать хранилище</string>
     <string name="exported_vault">Хранилище экспортировано</string>
-    <string name="export_warning">Это действие экспортирует базу данных из приватного хранилища Aegis.</string>
     <string name="encryption_set_password_error">Произошла ошибка при попытке установить пароль.</string>
     <string name="encryption_enable_biometrics_error">Не удалось включить биометрическую разблокировку. На некоторых устройствах плохо реализована эта функция, и, возможно, это ваш случай. Попробуйте вместо этого использовать пароль.</string>
     <string name="no_cameras_available">Нет доступных камер</string>

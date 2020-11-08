@@ -147,7 +147,6 @@
     <string name="import_error_title">İçe aktarmaya çalışırken bir veya birden fazla hata meydana geldi</string>
     <string name="exporting_vault_error">Kasayı dışarıya aktarmaya çalışırken hata meydana geldi</string>
     <string name="exported_vault">Kasa dışarıya aktarıldı</string>
-    <string name="export_warning">Bu hareket kasayı Aegis\'in özel depolama alanından dışarıya aktaracak!</string>
     <string name="encryption_set_password_error">Parola atamayı denerken bir hata meydana geldi.</string>
     <string name="encryption_enable_biometrics_error">Biyometrik kilit açmayı aktifleştirirken bir hata meydana geldi. Bazı cihazlarda biyometrik kimlik doğrulama kötü uygulanmış olabilir ve görünüşe göre cihazınız bu cihazlardan biri. Bunun yerine sadece parola ile doğrulama ayarına geçiş yapın.</string>
     <string name="no_cameras_available">Hiçbir kamera kullanılabilir değil</string>

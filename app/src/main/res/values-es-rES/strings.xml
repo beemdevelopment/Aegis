@@ -148,7 +148,6 @@
     <string name="import_error_title">Se han producido uno o más errores durante la importación</string>
     <string name="exporting_vault_error">Se ha producido un error tratando de exportar la caja fuerte</string>
     <string name="exported_vault">La caja fuerte ha sido exportada</string>
-    <string name="export_warning">Esta acción exportará la caja fuerte fuera del almacenamiento privado de Aegis.</string>
     <string name="encryption_set_password_error">Se ha producido un error tratando de establecer la contraseña.</string>
     <string name="encryption_enable_biometrics_error">Se ha producido un error mientras se trataba de habilitar el desbloqueo biométrico. Algunos dispositivos tienen implementaciones deficientes de autenticación biométrica y es probable que el suyo sea uno de ellos. Considere cambiar a una configuración de sólo contraseña en su lugar.</string>
     <string name="no_cameras_available">No hay ninguna cámara disponible</string>

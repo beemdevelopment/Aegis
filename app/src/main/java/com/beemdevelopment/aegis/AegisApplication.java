@@ -21,6 +21,7 @@ import androidx.lifecycle.ProcessLifecycleOwner;
 
 import com.beemdevelopment.aegis.services.NotificationService;
 import com.beemdevelopment.aegis.ui.MainActivity;
+import com.beemdevelopment.aegis.util.IOUtils;
 import com.beemdevelopment.aegis.vault.Vault;
 import com.beemdevelopment.aegis.vault.VaultFile;
 import com.beemdevelopment.aegis.vault.VaultFileCredentials;
@@ -60,6 +61,9 @@ public class AegisApplication extends Application {
 
         // lock the app if the user moves the application to the background
         ProcessLifecycleOwner.get().getLifecycle().addObserver(new AppLifecycleObserver());
+
+        // clear the cache directory on startup, to make sure no temporary vault export files remain
+        IOUtils.clearDirectory(getCacheDir(), false);
 
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {
             initAppShortcuts();

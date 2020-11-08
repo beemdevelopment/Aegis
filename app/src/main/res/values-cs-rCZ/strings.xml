@@ -40,7 +40,6 @@
     <string name="pref_import_app_summary">Importovat tokeny z aplikace (vyžaduje root přístup)</string>
     <string name="pref_export_title">Exportovat</string>
     <string name="pref_export_summary">Exportovat trezor</string>
-    <string name="pref_export_keep_encrypted">Ponechat trezor zašifrovaný</string>
     <string name="pref_password_reminder_title">Připomenutí hesla</string>
     <string name="pref_password_reminder_summary">Jednou za čas zobrazit výzvu pro zadání hesla, abyste ho nezapomněli.</string>
     <string name="pref_secure_screen_title">Zabezpečení obrazovky</string>
@@ -153,7 +152,6 @@
     <string name="import_error_title">Při importu došlo k jedné nebo více chybám</string>
     <string name="exporting_vault_error">Při pokusu o export trezoru došlo k chybě</string>
     <string name="exported_vault">Trezor byl exportován</string>
-    <string name="export_warning">Trezor bude exportován mimo soukromé úložiště aplikace Aegis.</string>
     <string name="encryption_set_password_error">Při pokusu o nastavení hesla došlo k chybě.</string>
     <string name="encryption_enable_biometrics_error">Došlo k chybě při povolování biometrického odemknutí. Některá zařízení mají špatnou implementaci biometrického ověření. Bohužel, je pravděpodobné, že to vaše je jedním z nich. Zvažte možnost odemykání pouze heslem.</string>
     <string name="no_cameras_available">Fotoaparát není dostupný</string>

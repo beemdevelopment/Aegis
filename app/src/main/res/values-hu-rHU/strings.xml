@@ -140,7 +140,6 @@
     <string name="import_error_title">Egy vagy több hiba történt az importálás során</string>
     <string name="exporting_vault_error">Hiba történt a széf exportálásakor</string>
     <string name="exported_vault">A széf exportálva</string>
-    <string name="export_warning">Ez a művelet exportálni fogja a széfet az Aegis saját tárterületéről.</string>
     <string name="encryption_set_password_error">Hiba történt a jelszó beállításakor: </string>
     <string name="encryption_enable_biometrics_error">Hiba történt a biometrikus feloldás engedélyezésekor</string>
     <string name="no_cameras_available">Nem érhető el kamera</string>

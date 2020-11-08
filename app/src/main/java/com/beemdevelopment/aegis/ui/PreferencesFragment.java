@@ -7,13 +7,21 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.biometric.BiometricPrompt;
+import androidx.core.content.FileProvider;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
 import androidx.preference.SwitchPreferenceCompat;
@@ -28,6 +36,7 @@ import com.beemdevelopment.aegis.crypto.KeyStoreHandle;
 import com.beemdevelopment.aegis.crypto.KeyStoreHandleException;
 import com.beemdevelopment.aegis.helpers.BiometricSlotInitializer;
 import com.beemdevelopment.aegis.helpers.BiometricsHelper;
+import com.beemdevelopment.aegis.helpers.SpinnerHelper;
 import com.beemdevelopment.aegis.importers.AegisImporter;
 import com.beemdevelopment.aegis.importers.DatabaseImporter;
 import com.beemdevelopment.aegis.importers.DatabaseImporterEntryException;
@@ -50,14 +59,15 @@ import com.beemdevelopment.aegis.vault.slots.SlotException;
 import com.beemdevelopment.aegis.vault.slots.SlotList;
 import com.topjohnwu.superuser.Shell;
 
+import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicReference;
 
 import javax.crypto.Cipher;
 
@@ -71,8 +81,9 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
     private static final int CODE_GROUPS = 3;
     private static final int CODE_SELECT_ENTRIES = 4;
     private static final int CODE_EXPORT = 5;
-    private static final int CODE_EXPORT_ENCRYPT = 6;
-    private static final int CODE_BACKUPS = 7;
+    private static final int CODE_EXPORT_PLAIN = 6;
+    private static final int CODE_EXPORT_GOOGLE_URI = 7;
+    private static final int CODE_BACKUPS = 8;
 
     private Intent _result;
     private Preferences _prefs;
@@ -529,8 +540,10 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
                 break;
             case CODE_EXPORT:
                 // intentional fallthrough
-            case CODE_EXPORT_ENCRYPT:
-                onExportResult(resultCode, data, requestCode == CODE_EXPORT_ENCRYPT);
+            case CODE_EXPORT_PLAIN:
+                // intentional fallthrough
+            case CODE_EXPORT_GOOGLE_URI:
+                onExportResult(requestCode, resultCode, data);
                 break;
             case CODE_BACKUPS:
                 onSelectBackupsLocationResult(resultCode, data);
@@ -662,30 +675,111 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
     }
 
     private void startExport() {
-        // TODO: create a custom layout to show a message AND a checkbox
-        final AtomicReference<Boolean> checked = new AtomicReference<>(true);
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity())
+        View view = LayoutInflater.from(getContext()).inflate(R.layout.dialog_export, null);
+        TextView warningText = view.findViewById(R.id.text_export_warning);
+        CheckBox checkBoxEncrypt = view.findViewById(R.id.checkbox_export_encrypt);
+        CheckBox checkBoxAccept = view.findViewById(R.id.checkbox_accept);
+        Spinner spinner = view.findViewById(R.id.spinner_export_format);
+        SpinnerHelper.fillSpinner(getContext(), spinner, R.array.export_formats);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                checkBoxEncrypt.setChecked(position == 0);
+                checkBoxEncrypt.setEnabled(position == 0);
+                warningText.setVisibility(checkBoxEncrypt.isChecked() ? View.GONE : View.VISIBLE);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        AlertDialog dialog = new AlertDialog.Builder(getContext())
                 .setTitle(R.string.pref_export_summary)
-                .setPositiveButton(android.R.string.ok, (dialog, which) -> {
-                    String filename = checked.get() ? VaultManager.FILENAME_PREFIX_EXPORT : VaultManager.FILENAME_PREFIX_EXPORT_PLAIN;
-                    filename = new VaultBackupManager.FileInfo(filename).toString();
+                .setView(view)
+                .setNeutralButton(R.string.share, null)
+                .setPositiveButton(android.R.string.ok, null)
+                .setNegativeButton(android.R.string.cancel, null)
+                .create();
 
-                    Intent intent = new Intent(Intent.ACTION_CREATE_DOCUMENT)
-                            .addCategory(Intent.CATEGORY_OPENABLE)
-                            .setType("application/json")
-                            .putExtra(Intent.EXTRA_TITLE, filename);
+        dialog.setOnShowListener(d -> {
+            Button btnPos = dialog.getButton(AlertDialog.BUTTON_POSITIVE);
+            Button btnNeutral = dialog.getButton(AlertDialog.BUTTON_NEUTRAL);
 
-                    startActivityForResult(intent, checked.get() ? CODE_EXPORT_ENCRYPT : CODE_EXPORT);
-                })
-                .setNegativeButton(android.R.string.cancel, null);
-        if (_vault.isEncryptionEnabled()) {
-            final String[] items = {getString(R.string.pref_export_keep_encrypted)};
-            final boolean[] checkedItems = {true};
-            builder.setMultiChoiceItems(items, checkedItems, (dialog, index, isChecked) -> checked.set(isChecked));
-        } else {
-            builder.setMessage(R.string.export_warning);
-        }
-        Dialogs.showSecureDialog(builder.create());
+            checkBoxEncrypt.setOnCheckedChangeListener((buttonView, isChecked) -> {
+                warningText.setVisibility(isChecked ? View.GONE : View.VISIBLE);
+                checkBoxAccept.setVisibility(isChecked ? View.GONE : View.VISIBLE);
+                checkBoxAccept.setChecked(false);
+                btnPos.setEnabled(isChecked);
+                btnNeutral.setEnabled(isChecked);
+            });
+
+            checkBoxAccept.setOnCheckedChangeListener((buttonView, isChecked) -> {
+                btnPos.setEnabled(isChecked);
+                btnNeutral.setEnabled(isChecked);
+            });
+
+            btnPos.setOnClickListener(v -> {
+                dialog.dismiss();
+
+                if (!checkBoxEncrypt.isChecked() && !checkBoxAccept.isChecked()) {
+                    return;
+                }
+
+                int requestCode = getExportRequestCode(spinner.getSelectedItemPosition(), checkBoxEncrypt.isChecked());
+                VaultBackupManager.FileInfo fileInfo = getExportFileInfo(spinner.getSelectedItemPosition(), checkBoxEncrypt.isChecked());
+                Intent intent = new Intent(Intent.ACTION_CREATE_DOCUMENT)
+                        .addCategory(Intent.CATEGORY_OPENABLE)
+                        .setType(getExportMimeType(requestCode))
+                        .putExtra(Intent.EXTRA_TITLE, fileInfo.toString());
+
+                startActivityForResult(intent, requestCode);
+            });
+
+            btnNeutral.setOnClickListener(v -> {
+                dialog.dismiss();
+
+                if (!checkBoxEncrypt.isChecked() && !checkBoxAccept.isChecked()) {
+                    return;
+                }
+
+                File file;
+                try {
+                    VaultBackupManager.FileInfo fileInfo = getExportFileInfo(spinner.getSelectedItemPosition(), checkBoxEncrypt.isChecked());
+                    File dir = new File(getContext().getCacheDir(), "export");
+                    if (!dir.exists() && !dir.mkdir()) {
+                        throw new IOException(String.format("Unable to create directory %s", dir));
+                    }
+                    file = File.createTempFile(fileInfo.getFilename() + "-", "." + fileInfo.getExtension(), dir);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    Dialogs.showErrorDialog(getContext(), R.string.exporting_vault_error, e);
+                    return;
+                }
+
+                int requestCode = getExportRequestCode(spinner.getSelectedItemPosition(), checkBoxEncrypt.isChecked());
+                startExportVault(requestCode, cb -> {
+                    try (OutputStream stream = new FileOutputStream(file)) {
+                        cb.exportVault(stream);
+                    } catch (IOException | VaultManagerException e) {
+                        e.printStackTrace();
+                        Dialogs.showErrorDialog(getContext(), R.string.exporting_vault_error, e);
+                        return;
+                    }
+
+                    Uri uri = FileProvider.getUriForFile(getContext(), BuildConfig.FILE_PROVIDER_AUTHORITY, file);
+                    Intent intent = new Intent(Intent.ACTION_SEND)
+                            .setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+                            .setType(getExportMimeType(requestCode))
+                            .putExtra(Intent.EXTRA_STREAM, uri);
+                    Intent chooser = Intent.createChooser(intent, getString(R.string.pref_export_summary));
+                    startActivity(chooser);
+                });
+            });
+        });
+
+        Dialogs.showSecureDialog(dialog);
     }
 
     private void onSlotManagerResult(int resultCode, Intent data) {
@@ -748,21 +842,81 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
         _result.putExtra("needsRecreate", true);
     }
 
-    private void onExportResult(int resultCode, Intent data, boolean encrypt) {
+    private static int getExportRequestCode(int spinnerPos, boolean encrypt) {
+        if (spinnerPos == 0) {
+            return encrypt ? CODE_EXPORT : CODE_EXPORT_PLAIN;
+        }
+
+        return CODE_EXPORT_GOOGLE_URI;
+    }
+
+    private static VaultBackupManager.FileInfo getExportFileInfo(int spinnerPos, boolean encrypt) {
+        if (spinnerPos == 0) {
+            String filename = encrypt ? VaultManager.FILENAME_PREFIX_EXPORT : VaultManager.FILENAME_PREFIX_EXPORT_PLAIN;
+            return new VaultBackupManager.FileInfo(filename);
+        }
+
+        return new VaultBackupManager.FileInfo(VaultManager.FILENAME_PREFIX_EXPORT_URI, "txt");
+    }
+
+    private static String getExportMimeType(int requestCode) {
+        return requestCode == CODE_EXPORT_GOOGLE_URI ? "text/plain" : "application/json";
+    }
+
+    private void startExportVault(int requestCode, StartExportCallback cb) {
+        switch (requestCode) {
+            case CODE_EXPORT:
+                if (_vault.isEncryptionEnabled()) {
+                    cb.exportVault(stream -> _vault.export(stream));
+                } else {
+                    Dialogs.showSetPasswordDialog(getActivity(), new Dialogs.SlotListener() {
+                        @Override
+                        public void onSlotResult(Slot slot, Cipher cipher) {
+                            VaultFileCredentials creds = new VaultFileCredentials();
+
+                            try {
+                                slot.setKey(creds.getKey(), cipher);
+                                creds.getSlots().add(slot);
+                            } catch (SlotException e) {
+                                onException(e);
+                                return;
+                            }
+
+                            cb.exportVault(stream -> _vault.export(stream, creds));
+                        }
+
+                        @Override
+                        public void onException(Exception e) {
+
+                        }
+                    });
+                }
+                break;
+            case CODE_EXPORT_PLAIN:
+                cb.exportVault((stream) -> _vault.export(stream, null));
+                break;
+            case CODE_EXPORT_GOOGLE_URI:
+                cb.exportVault((stream) -> _vault.exportGoogleUris(stream));
+                break;
+        }
+    }
+
+    private void onExportResult(int requestCode, int resultCode, Intent data) {
         Uri uri = data.getData();
         if (resultCode != Activity.RESULT_OK || uri == null) {
             return;
         }
 
-        try (OutputStream stream = getContext().getContentResolver().openOutputStream(uri, "w")) {
-            _vault.export(stream, encrypt);
-        } catch (IOException | VaultManagerException e) {
-            e.printStackTrace();
-            Dialogs.showErrorDialog(getContext(), R.string.exporting_vault_error, e);
-            return;
-        }
+        startExportVault(requestCode, cb -> {
+            try (OutputStream stream = getContext().getContentResolver().openOutputStream(uri, "w")) {
+                cb.exportVault(stream);
+            } catch (IOException | VaultManagerException e) {
+                e.printStackTrace();
+                Dialogs.showErrorDialog(getContext(), R.string.exporting_vault_error, e);
+            }
 
-        Toast.makeText(getActivity(), getString(R.string.exported_vault), Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), getString(R.string.exported_vault), Toast.LENGTH_SHORT).show();
+        });
     }
 
     private void onSelectBackupsLocationResult(int resultCode, Intent data) {
@@ -976,5 +1130,13 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
                 setPinKeyboardPreference(false);
             }
         }
+    }
+
+    private interface FinishExportCallback {
+        void exportVault(OutputStream stream) throws IOException, VaultManagerException;
+    }
+
+    private interface StartExportCallback {
+        void exportVault(FinishExportCallback exportCb);
     }
 }

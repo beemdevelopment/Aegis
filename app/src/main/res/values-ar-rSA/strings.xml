@@ -151,7 +151,6 @@
     <string name="import_error_title">حدث خطأ أو أكثر أثناء الاستيراد</string>
     <string name="exporting_vault_error">حدث خطأ أثناء محاولة تصدير المخزن</string>
     <string name="exported_vault">تم تصدير المخزن</string>
-    <string name="export_warning">هذا الفعل سيصدّر المخزن خارج ذاكرة Aegis الخاصة.</string>
     <string name="encryption_set_password_error">حدث خطأ أثناء محاولة تعيين كلمة مرور.</string>
     <string name="encryption_enable_biometrics_error">حدث خطأ  أثناء محاولة تفعيل فتح القفل البيومتري. لبعض الأجهزة تنفيذ رديئ للمصادقة البيومترية، والأرجح أن جهازك أحدها. بدلًا من ذلك، فكّر بتحويل الإعدادات إلى كلمة مرور فقط.</string>
     <string name="no_cameras_available">لا توجد كاميرا متاحة</string>
