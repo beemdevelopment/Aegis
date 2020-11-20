@@ -140,7 +140,9 @@ public class AegisApplication extends Application {
      * @param userInitiated whether or not the user initiated the lock in MainActivity.
      */
     public void lock(boolean userInitiated) {
+        _manager.destroy();
         _manager = null;
+
         for (LockListener listener : _lockListeners) {
             listener.onLocked(userInitiated);
         }

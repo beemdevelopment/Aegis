@@ -44,6 +44,7 @@ import com.beemdevelopment.aegis.importers.DatabaseImporterException;
 import com.beemdevelopment.aegis.services.NotificationService;
 import com.beemdevelopment.aegis.ui.models.ImportEntry;
 import com.beemdevelopment.aegis.ui.preferences.SwitchPreference;
+import com.beemdevelopment.aegis.ui.tasks.ExportTask;
 import com.beemdevelopment.aegis.ui.tasks.PasswordSlotDecryptTask;
 import com.beemdevelopment.aegis.util.UUIDMap;
 import com.beemdevelopment.aegis.vault.VaultBackupManager;
@@ -747,11 +748,7 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
                 File file;
                 try {
                     VaultBackupManager.FileInfo fileInfo = getExportFileInfo(spinner.getSelectedItemPosition(), checkBoxEncrypt.isChecked());
-                    File dir = new File(getContext().getCacheDir(), "export");
-                    if (!dir.exists() && !dir.mkdir()) {
-                        throw new IOException(String.format("Unable to create directory %s", dir));
-                    }
-                    file = File.createTempFile(fileInfo.getFilename() + "-", "." + fileInfo.getExtension(), dir);
+                    file = File.createTempFile(fileInfo.getFilename() + "-", "." + fileInfo.getExtension(), getExportCacheDir());
                 } catch (IOException e) {
                     e.printStackTrace();
                     Dialogs.showErrorDialog(getContext(), R.string.exporting_vault_error, e);
@@ -863,6 +860,15 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
         return requestCode == CODE_EXPORT_GOOGLE_URI ? "text/plain" : "application/json";
     }
 
+    private File getExportCacheDir() throws IOException {
+        File dir = new File(getContext().getCacheDir(), "export");
+        if (!dir.exists() && !dir.mkdir()) {
+            throw new IOException(String.format("Unable to create directory %s", dir));
+        }
+
+        return dir;
+    }
+
     private void startExportVault(int requestCode, StartExportCallback cb) {
         switch (requestCode) {
             case CODE_EXPORT:
@@ -907,15 +913,28 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
             return;
         }
 
+
         startExportVault(requestCode, cb -> {
-            try (OutputStream stream = getContext().getContentResolver().openOutputStream(uri, "w")) {
-                cb.exportVault(stream);
-            } catch (IOException | VaultManagerException e) {
+            File file;
+            OutputStream outStream = null;
+            try {
+                file = File.createTempFile(VaultManager.FILENAME_PREFIX_EXPORT + "-", ".json", getExportCacheDir());
+                outStream = new FileOutputStream(file);
+                cb.exportVault(outStream);
+
+                new ExportTask(getContext(), new ExportResultListener()).execute(getLifecycle(), new ExportTask.Params(file, uri));
+            } catch (VaultManagerException | IOException e) {
                 e.printStackTrace();
                 Dialogs.showErrorDialog(getContext(), R.string.exporting_vault_error, e);
+            } finally {
+                try {
+                    if (outStream != null) {
+                        outStream.close();
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
-
-            Toast.makeText(getActivity(), getString(R.string.exported_vault), Toast.LENGTH_SHORT).show();
         });
     }
 
@@ -1128,6 +1147,18 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
                         .setPositiveButton(android.R.string.ok, null)
                         .create());
                 setPinKeyboardPreference(false);
+            }
+        }
+    }
+
+    private class ExportResultListener implements ExportTask.Callback {
+        @Override
+        public void onTaskFinished(Exception e) {
+            if (e != null) {
+                e.printStackTrace();
+                Dialogs.showErrorDialog(getContext(), R.string.exporting_vault_error, e);
+            } else {
+                Toast.makeText(getContext(), getString(R.string.exported_vault), Toast.LENGTH_SHORT).show();
             }
         }
     }
