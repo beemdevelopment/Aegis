@@ -271,7 +271,7 @@ public class Dialogs {
     public static void showNumberPickerDialog(Activity activity, NumberInputListener listener) {
         View view = activity.getLayoutInflater().inflate(R.layout.dialog_number_picker, null);
         NumberPicker numberPicker = view.findViewById(R.id.numberPicker);
-        numberPicker.setMinValue(3);
+        numberPicker.setMinValue(1);
         numberPicker.setMaxValue(60);
         numberPicker.setValue(new Preferences(activity.getApplicationContext()).getTapToRevealTime());
         numberPicker.setWrapSelectorWheel(true);
