@@ -12,8 +12,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.AttrRes;
-import androidx.annotation.ColorInt;
-import androidx.annotation.ColorRes;
 import androidx.annotation.StringRes;
 import androidx.core.view.LayoutInflaterCompat;
 
@@ -21,7 +19,8 @@ import com.beemdevelopment.aegis.BuildConfig;
 import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.Theme;
 import com.beemdevelopment.aegis.helpers.ThemeHelper;
-import com.beemdevelopment.aegis.ui.glide.GlideLicense;
+import com.beemdevelopment.aegis.licenses.GlideLicense;
+import com.beemdevelopment.aegis.licenses.ProtobufLicense;
 import com.mikepenz.iconics.context.IconicsLayoutInflater2;
 
 import de.psdev.licensesdialog.LicenseResolver;
@@ -80,7 +79,7 @@ public class AboutActivity extends AegisActivity {
 
         View btnChangelog = findViewById(R.id.btn_changelog);
         btnChangelog.setOnClickListener(v -> {
-            ChangelogDialog.create().setTheme(getCurrentTheme()).show(getSupportFragmentManager(), "CHANGELOG_DIALOG");
+            ChangelogDialog.create().setTheme(getConfiguredTheme()).show(getSupportFragmentManager(), "CHANGELOG_DIALOG");
         });
     }
 
@@ -118,7 +117,7 @@ public class AboutActivity extends AegisActivity {
 
     private void showLicenseDialog() {
         String stylesheet = getString(R.string.custom_notices_format_style);
-        int backgroundColorResource = getCurrentTheme() == Theme.AMOLED ? R.attr.cardBackgroundFocused : R.attr.cardBackground;
+        int backgroundColorResource = getConfiguredTheme() == Theme.AMOLED ? R.attr.cardBackgroundFocused : R.attr.cardBackground;
         String backgroundColor = getThemeColorAsHex(backgroundColorResource);
         String textColor = getThemeColorAsHex(R.attr.primaryText);
         String licenseColor = getThemeColorAsHex(R.attr.cardBackgroundFocused);
@@ -127,6 +126,8 @@ public class AboutActivity extends AegisActivity {
         stylesheet = String.format(stylesheet, backgroundColor, textColor, licenseColor, linkColor);
 
         LicenseResolver.registerLicense(new GlideLicense());
+        LicenseResolver.registerLicense(new ProtobufLicense());
+
         new LicensesDialog.Builder(this)
                 .setNotices(R.raw.notices)
                 .setTitle(R.string.licenses)

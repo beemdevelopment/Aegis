@@ -5,6 +5,7 @@ import android.content.Context;
 import androidx.core.util.AtomicFile;
 
 import com.beemdevelopment.aegis.Preferences;
+import com.beemdevelopment.aegis.otp.GoogleAuthInfo;
 
 import org.json.JSONObject;
 
@@ -12,6 +13,8 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.io.PrintStream;
+import java.nio.charset.StandardCharsets;
 import java.text.Collator;
 import java.util.Collection;
 import java.util.TreeSet;
@@ -21,6 +24,7 @@ public class VaultManager {
     public static final String FILENAME = "aegis.json";
     public static final String FILENAME_PREFIX_EXPORT = "aegis-export";
     public static final String FILENAME_PREFIX_EXPORT_PLAIN = "aegis-export-plain";
+    public static final String FILENAME_PREFIX_EXPORT_URI = "aegis-export-uri";
 
     private Vault _vault;
     private VaultFileCredentials _creds;
@@ -44,6 +48,12 @@ public class VaultManager {
     public static boolean fileExists(Context context) {
         File file = new File(context.getFilesDir(), FILENAME);
         return file.exists() && file.isFile();
+    }
+
+    public static void deleteFile(Context context) {
+        AtomicFile file = new AtomicFile(new File(context.getFilesDir(), FILENAME));
+
+        file.delete();
     }
 
     public static VaultFile readFile(Context context) throws VaultManagerException {
@@ -122,11 +132,23 @@ public class VaultManager {
         }
     }
 
-    public void export(OutputStream stream, boolean encrypt) throws VaultManagerException {
+    /**
+     * Exports the vault bt serializing it and writing it to the given OutputStream. If encryption
+     * is enabled, the vault will be encrypted automatically.
+     */
+    public void export(OutputStream stream) throws VaultManagerException {
+        export(stream, getCredentials());
+    }
+
+    /**
+     * Exports the vault by serializing it and writing it to the given OutputStream. If creds is
+     * not null, it will be used to encrypt the vault first.
+     */
+    public void export(OutputStream stream, VaultFileCredentials creds) throws VaultManagerException {
         try {
             VaultFile vaultFile = new VaultFile();
-            if (encrypt && isEncryptionEnabled()) {
-                vaultFile.setContent(_vault.toJson(), _creds);
+            if (creds != null) {
+                vaultFile.setContent(_vault.toJson(), creds);
             } else {
                 vaultFile.setContent(_vault.toJson());
             }
@@ -134,6 +156,21 @@ public class VaultManager {
             byte[] bytes = vaultFile.toBytes();
             stream.write(bytes);
         } catch (IOException | VaultFileException e) {
+            throw new VaultManagerException(e);
+        }
+    }
+
+    /**
+     * Exports the vault by serializing the list of entries to a newline-separated list of
+     * Google Authenticator URI's and writing it to the given OutputStream.
+     */
+    public void exportGoogleUris(OutputStream outStream) throws VaultManagerException {
+        try (PrintStream stream = new PrintStream(outStream, false, StandardCharsets.UTF_8.toString())) {
+            for (VaultEntry entry : getEntries()) {
+                GoogleAuthInfo info = new GoogleAuthInfo(entry.getInfo(), entry.getName(), entry.getIssuer());
+                stream.println(info.getUri().toString());
+            }
+        } catch (IOException e) {
             throw new VaultManagerException(e);
         }
     }
@@ -152,6 +189,10 @@ public class VaultManager {
 
     public VaultEntry removeEntry(VaultEntry entry) {
         return _vault.getEntries().remove(entry);
+    }
+
+    public void wipeEntries() {
+        _vault.getEntries().wipe();
     }
 
     public VaultEntry replaceEntry(VaultEntry entry) {

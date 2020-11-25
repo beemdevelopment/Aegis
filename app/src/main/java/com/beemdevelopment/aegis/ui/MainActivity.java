@@ -25,10 +25,11 @@ import androidx.appcompat.view.ActionMode;
 import androidx.appcompat.widget.SearchView;
 
 import com.beemdevelopment.aegis.AegisApplication;
-import com.beemdevelopment.aegis.CancelAction;
+import com.beemdevelopment.aegis.Preferences;
 import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.SortCategory;
 import com.beemdevelopment.aegis.ViewMode;
+import com.beemdevelopment.aegis.helpers.BitmapHelper;
 import com.beemdevelopment.aegis.helpers.FabScrollHelper;
 import com.beemdevelopment.aegis.helpers.PermissionHelper;
 import com.beemdevelopment.aegis.otp.GoogleAuthInfo;
@@ -43,12 +44,12 @@ import com.google.zxing.BinaryBitmap;
 import com.google.zxing.ChecksumException;
 import com.google.zxing.FormatException;
 import com.google.zxing.LuminanceSource;
-import com.google.zxing.MultiFormatReader;
 import com.google.zxing.NotFoundException;
 import com.google.zxing.RGBLuminanceSource;
 import com.google.zxing.Reader;
 import com.google.zxing.Result;
 import com.google.zxing.common.HybridBinarizer;
+import com.google.zxing.qrcode.QRCodeReader;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -310,6 +311,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
 
             try (InputStream inputStream = getContentResolver().openInputStream(inputFile)) {
                 bitmap = BitmapFactory.decodeStream(inputStream, null, bmOptions);
+                bitmap = BitmapHelper.resize(bitmap, 640, 480);
             }
 
             int[] intArray = new int[bitmap.getWidth() * bitmap.getHeight()];
@@ -318,7 +320,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
             LuminanceSource source = new RGBLuminanceSource(bitmap.getWidth(), bitmap.getHeight(), intArray);
             BinaryBitmap binaryBitmap = new BinaryBitmap(new HybridBinarizer(source));
 
-            Reader reader = new MultiFormatReader();
+            Reader reader = new QRCodeReader();
             Result result = reader.decode(binaryBitmap);
 
             GoogleAuthInfo info = GoogleAuthInfo.parseUri(result.getText());
@@ -408,8 +410,12 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         Intent galleryIntent = new Intent(Intent.ACTION_PICK);
         galleryIntent.setDataAndType(android.provider.MediaStore.Images.Media.INTERNAL_CONTENT_URI, "image/*");
 
+        Intent fileIntent = new Intent(Intent.ACTION_GET_CONTENT);
+        fileIntent.setType("image/*");
+
         Intent chooserIntent = Intent.createChooser(galleryIntent, getString(R.string.select_picture));
-        startActivityForResult(Intent.createChooser(chooserIntent, getString(R.string.select_picture)), CODE_SCAN_IMAGE);
+        chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS, new Intent[] { fileIntent });
+        startActivityForResult(chooserIntent, CODE_SCAN_IMAGE);
     }
 
     private void startPreferencesActivity(String preference) {
@@ -440,10 +446,10 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         }
 
         Intent intent = getIntent();
-        if (Intent.ACTION_VIEW.equals(intent.getAction())) {
-            Uri uri = intent.getData();
-            getIntent().setData(null);
-            getIntent().setAction(null);
+        Uri uri = intent.getData();
+        if (Intent.ACTION_VIEW.equals(intent.getAction()) && uri != null) {
+            intent.setData(null);
+            intent.setAction(null);
 
             GoogleAuthInfo info = null;
             try {
@@ -491,7 +497,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         }
 
         if (_app.isVaultLocked()) {
-            startAuthActivity(true);
+            startAuthActivity(false);
         } else if (_loaded) {
             // update the list of groups in the filter menu
             if (_menu != null) {
@@ -523,8 +529,8 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
             return;
         }
 
-        if (_app.isAutoLockEnabled()) {
-            _app.lock();
+        if (_app.isAutoLockEnabled(Preferences.AUTO_LOCK_ON_BACK_BUTTON)) {
+            _app.lock(false);
             return;
         }
 
@@ -596,7 +602,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
                 return true;
             }
             case R.id.action_lock:
-                _app.lock();
+                _app.lock(true);
                 return true;
             default:
                 if (item.getGroupId() == R.id.action_filter_group) {
@@ -655,7 +661,6 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
     private void startAuthActivity(boolean inhibitBioPrompt) {
         if (!_isAuthenticating) {
             Intent intent = new Intent(this, AuthActivity.class);
-            intent.putExtra("cancelAction", CancelAction.KILL);
             intent.putExtra("inhibitBioPrompt", inhibitBioPrompt);
             startActivityForResult(intent, CODE_DECRYPT);
             _isAuthenticating = true;
@@ -744,7 +749,10 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
     }
 
     @Override
-    public void onLocked() {
+    public void onListChange() { _fabScrollHelper.setVisible(true); }
+
+    @Override
+    public void onLocked(boolean userInitiated) {
         if (_actionMode != null) {
             _actionMode.finish();
         }
@@ -752,11 +760,11 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         _entryListView.clearEntries();
         _loaded = false;
 
-        if (isOpen()) {
-            startAuthActivity(false);
+        if (userInitiated) {
+            startAuthActivity(true);
+        } else {
+            super.onLocked(userInitiated);
         }
-
-        super.onLocked();
     }
 
     private void copyEntryCode(VaultEntry entry) {

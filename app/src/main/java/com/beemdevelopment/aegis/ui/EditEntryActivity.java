@@ -37,6 +37,7 @@ import com.beemdevelopment.aegis.encoding.EncodingException;
 import com.beemdevelopment.aegis.helpers.EditTextHelper;
 import com.beemdevelopment.aegis.helpers.SpinnerHelper;
 import com.beemdevelopment.aegis.helpers.TextDrawableHelper;
+import com.beemdevelopment.aegis.otp.GoogleAuthInfo;
 import com.beemdevelopment.aegis.otp.HotpInfo;
 import com.beemdevelopment.aegis.otp.OtpInfo;
 import com.beemdevelopment.aegis.otp.OtpInfoException;
@@ -392,8 +393,12 @@ public class EditEntryActivity extends AegisActivity {
         Intent galleryIntent = new Intent(Intent.ACTION_PICK);
         galleryIntent.setDataAndType(android.provider.MediaStore.Images.Media.INTERNAL_CONTENT_URI, "image/*");
 
+        Intent fileIntent = new Intent(Intent.ACTION_GET_CONTENT);
+        fileIntent.setType("image/*");
+
         Intent chooserIntent = Intent.createChooser(galleryIntent, getString(R.string.select_icon));
-        startActivityForResult(Intent.createChooser(chooserIntent, getString(R.string.select_icon)), PICK_IMAGE_REQUEST);
+        chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS, new Intent[] { fileIntent });
+        startActivityForResult(chooserIntent, PICK_IMAGE_REQUEST);
     }
 
     private void startEditingIcon(Uri data) {
@@ -448,7 +453,11 @@ public class EditEntryActivity extends AegisActivity {
     }
 
     private void addAndFinish(VaultEntry entry) {
-        if (_isNew) {
+        // It's possible that the new entry was already added to the vault, but writing the
+        // vault to disk failed, causing the user to tap 'Save' again. Calling addEntry
+        // again would cause a crash in that case, so the isEntryDuplicate check prevents
+        // that.
+        if (_isNew && !_vault.isEntryDuplicate(entry)) {
             _vault.addEntry(entry);
         } else {
             _vault.replaceEntry(entry);
@@ -507,7 +516,8 @@ public class EditEntryActivity extends AegisActivity {
 
         byte[] secret;
         try {
-            secret = Base32.decode(new String(EditTextHelper.getEditTextChars(_textSecret, true)));
+            String secretString = new String(EditTextHelper.getEditTextChars(_textSecret));
+            secret = GoogleAuthInfo.parseSecret(secretString);
             if (secret.length == 0) {
                 throw new ParseException("Secret cannot be empty");
             }

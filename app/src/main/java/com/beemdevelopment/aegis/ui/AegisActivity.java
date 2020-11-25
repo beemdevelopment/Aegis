@@ -6,21 +6,20 @@ import android.os.Bundle;
 import android.view.WindowManager;
 import android.widget.Toast;
 
-import androidx.annotation.CallSuper;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.beemdevelopment.aegis.AegisApplication;
 import com.beemdevelopment.aegis.Preferences;
 import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.Theme;
+import com.beemdevelopment.aegis.ThemeMap;
 import com.beemdevelopment.aegis.vault.VaultManagerException;
 
 import java.util.Locale;
+import java.util.Map;
 
 public abstract class AegisActivity extends AppCompatActivity implements AegisApplication.LockListener {
-    private boolean _resumed;
     private AegisApplication _app;
-    private Theme _currentTheme;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +27,7 @@ public abstract class AegisActivity extends AppCompatActivity implements AegisAp
 
         // set the theme and locale before creating the activity
         Preferences prefs = getPreferences();
-        setPreferredTheme(prefs.getCurrentTheme());
+        onSetTheme();
         setLocale(prefs.getLocale());
         super.onCreate(savedInstanceState);
 
@@ -37,6 +36,7 @@ public abstract class AegisActivity extends AppCompatActivity implements AegisAp
             Intent intent = new Intent(this, MainActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
+            finish();
             return;
         }
 
@@ -56,24 +56,9 @@ public abstract class AegisActivity extends AppCompatActivity implements AegisAp
     }
 
     @Override
-    protected void onResume() {
-        super.onResume();
-        _resumed = true;
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        _resumed = false;
-    }
-
-    @CallSuper
-    @Override
-    public void onLocked() {
-        if (isOrphan()) {
-            setResult(RESULT_CANCELED, null);
-            finish();
-        }
+    public void onLocked(boolean userInitiated) {
+        setResult(RESULT_CANCELED, null);
+        finishAndRemoveTask();
     }
 
     protected AegisApplication getApp() {
@@ -84,9 +69,26 @@ public abstract class AegisActivity extends AppCompatActivity implements AegisAp
         return _app.getPreferences();
     }
 
-    protected void setPreferredTheme(Theme theme) {
+    /**
+     * Called when the activity is expected to set its theme.
+     */
+    protected void onSetTheme() {
+        setTheme(ThemeMap.DEFAULT);
+    }
+
+    /**
+     * Sets the theme of the activity. The actual style that is set is picked from the
+     * given map, based on the theme configured by the user.
+     */
+    protected void setTheme(Map<Theme, Integer> themeMap) {
+        int theme = themeMap.get(getConfiguredTheme());
+        setTheme(theme);
+    }
+
+    protected Theme getConfiguredTheme() {
+        Theme theme = getPreferences().getCurrentTheme();
+
         if (theme == Theme.SYSTEM || theme == Theme.SYSTEM_AMOLED) {
-            // set the theme based on the system theme
             int currentNightMode = getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
             switch (currentNightMode) {
                 case Configuration.UI_MODE_NIGHT_NO:
@@ -98,19 +100,7 @@ public abstract class AegisActivity extends AppCompatActivity implements AegisAp
             }
         }
 
-        _currentTheme = theme;
-
-        switch (theme) {
-            case LIGHT:
-                setTheme(R.style.AppTheme);
-                break;
-            case DARK:
-                setTheme(R.style.AppTheme_Dark);
-                break;
-            case AMOLED:
-                setTheme(R.style.AppTheme_TrueBlack);
-                break;
-        }
+        return theme;
     }
 
     protected void setLocale(Locale locale) {
@@ -133,21 +123,10 @@ public abstract class AegisActivity extends AppCompatActivity implements AegisAp
     }
 
     /**
-     * Reports whether this Activity has been resumed. (i.e. onResume was called)
-     */
-    protected boolean isOpen() {
-        return _resumed;
-    }
-
-    /**
      * Reports whether this Activity instance has become an orphan. This can happen if
      * the vault was locked by an external trigger while the Activity was still open.
      */
-    private boolean isOrphan() {
-        return !(this instanceof MainActivity) && !(this instanceof AuthActivity) && _app.isVaultLocked();
-    }
-
-    protected Theme getCurrentTheme() {
-        return _currentTheme;
+    protected boolean isOrphan() {
+        return !(this instanceof MainActivity) && !(this instanceof AuthActivity) && !(this instanceof IntroActivity) && _app.isVaultLocked();
     }
 }

@@ -50,7 +50,7 @@ public class GoogleAuthInfo implements Serializable {
 
         builder.appendQueryParameter("digits", Integer.toString(_info.getDigits()));
         builder.appendQueryParameter("algorithm", _info.getAlgorithm(false));
-        builder.appendQueryParameter("secret", new String(Base32.encode(_info.getSecret())));
+        builder.appendQueryParameter("secret", Base32.encode(_info.getSecret()));
 
         if (_issuer != null && !_issuer.equals("")) {
             builder.path(String.format("%s:%s", _issuer, _accountName));
@@ -82,15 +82,13 @@ public class GoogleAuthInfo implements Serializable {
             throw new GoogleAuthInfoException("Parameter 'secret' is not present");
         }
 
-        // decode secret
         byte[] secret;
         try {
-            secret = Base32.decode(encodedSecret);
+            secret = parseSecret(encodedSecret);
         } catch (EncodingException e) {
             throw new GoogleAuthInfoException("Bad secret", e);
         }
 
-        // check the otp type
         OtpInfo info;
         try {
             String type = uri.getHost();
@@ -172,6 +170,14 @@ public class GoogleAuthInfo implements Serializable {
         }
 
         return new GoogleAuthInfo(info, accountName, issuer);
+    }
+
+    /**
+     * Decodes the given base 32 secret, while being tolerant of whitespace and dashes.
+     */
+    public static byte[] parseSecret(String s) throws EncodingException {
+        s = s.trim().replace("-", "").replace(" ", "");
+        return Base32.decode(s);
     }
 
     public static Export parseExportUri(String s) throws GoogleAuthInfoException {

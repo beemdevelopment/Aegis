@@ -36,7 +36,6 @@
     <string name="pref_tap_to_reveal_summary">Απόκρυψη αναγνωριστικών από προεπιλογή. Πατήστε στα αναγνωριστικά για προβολή κωδικού.</string>
     <string name="pref_tap_to_reveal_time_title">Χρονικό όριο πατήματος προβολής</string>
     <string name="pref_auto_lock_title">Αυτόματο κλείδωμα</string>
-    <string name="pref_auto_lock_summary">Αυτόματο κλείδωμα στο κλείσιμο της εφαρμογής ή στο κλείδωμα της συσκευή σας.</string>
     <string name="pref_encryption_title">Κρυπτογράφηση</string>
     <string name="pref_encryption_summary">Κρυπτογράφηση λίστας και ξεκλείδωμα με κωδικό ή βιομετρική μέθοδο</string>
     <string name="pref_biometrics_title">Βιομετρικό ξεκλείδωμα</string>
@@ -54,12 +53,12 @@
     <string name="authentication_method_biometrics_description">Εκτός από έναν κωδικό, τα βιομετρικά στοιχεία που έχουν καταχωρηθεί σε αυτήν τη συσκευή, όπως ένα δακτυλικό αποτύπωμα ή το πρόσωπο σας, μπορούν να χρησιμοποιηθούν για να ξεκλειδώσετε τη λίστα σας.</string>
     <string name="authentication_method_set_password">Κωδικός</string>
     <string name="authentication_enter_password">Εισάγετε τον κωδικό σας</string>
+    <!-- The newline (\n) on the following line is just for aesthetic purposes !-->
     <string name="set_password">Παρακαλώ εισάγετε κωδικό</string>
     <string name="set_group">Παρακαλώ εισάγετε όνομα ομάδας</string>
     <string name="set_number">Παρακαλώ εισάγετε αριθμό</string>
     <string name="set_password_confirm">Παρακαλώ επιβεβαιώστε τον κωδικό</string>
     <string name="invalidated_biometrics">Έχει εντοπιστεί μια αλλαγή στις ρυθμίσεις ασφαλείας της συσκευής σας. Παρακαλώ πηγαίνετε στο \"Aegis -&gt; Ρυθμίσεις -&gt; Βιομετρική σύνδεση και ενεργοποιήστε ξανά το βιομετρικό ξεκλείδωμα.</string>
-    <string name="password_reminder">Έχει περάσει λίγος καιρός από τότε που εισάγατε τον κωδικό σας. Τον θυμάστε ακόμα;</string>
     <string name="unlock">Ξεκλείδωμα</string>
     <string name="biometrics">Βιομετρική σύνδεση</string>
     <string name="advanced">Σύνθετες</string>
@@ -89,7 +88,6 @@
     <string name="delete_entry">Διαγραφή καταχώρησης</string>
     <string name="delete_entry_description">Είστε βέβαιοι ότι θέλετε να διαγράψετε αυτή την καταχώρηση;</string>
     <string name="delete_entries">Διαγραφή καταχωρήσεων</string>
-    <string name="delete_entries_description">Είστε βέβαιοι ότι θέλετε να διαγράψετε %d καταχωρήσεις;</string>
     <string name="discard_changes">Απόρριψη αλλαγών;</string>
     <string name="discard_changes_description">Οι αλλαγές σας δεν έχουν αποθηκευτεί</string>
     <string name="folder">Φάκελος</string>
@@ -98,7 +96,6 @@
     <string name="welcome">Καλώς ήρθατε</string>
     <string name="app_description">Το Aegis είναι μια δωρεάν εφαρμογή 2FA, ασφαλής και ανοικτού κώδικα</string>
     <string name="setup_completed">Η εγκατάσταση ολοκληρώθηκε</string>
-    <string name="setup_completed_description">Το Aegis έχει ρυθμιστεί και είναι έτοιμο προς χρήση.</string>
     <string name="vault_not_found">Η λίστα δεν βρέθηκε, έναρξη ρύθμισης…</string>
     <string name="errors_copied">Σφάλμα αντιγραφής στο πρόχειρο</string>
     <string name="version_copied">Η έκδοση αντιγράφτηκε στο πρόχειρο</string>
@@ -120,12 +117,9 @@
     <string name="reading_file_error">Παρουσιάστηκε σφάλμα κατά την προσπάθεια ανάγνωσης του αρχείου</string>
     <string name="app_lookup_error">Σφάλμα: Η εφαρμογή δεν έχει εγκατασταθεί</string>
     <string name="root_error">Σφάλμα: δεν είναι δυνατή η απόκτηση πρόσβασης root</string>
-    <string name="imported_entries_count">Εισήχθησαν %d καταχωρήσεις</string>
-    <string name="read_entries_count">Αναγνώστηκαν %d καταχωρήσεις. %d σφάλματα.</string>
     <string name="import_error_title">Παρουσιάστηκαν ένα ή περισσότερα σφάλματα κατά την εισαγωγή</string>
     <string name="exporting_vault_error">Παρουσιάστηκε σφάλμα κατά την προσπάθεια εξαγωγής της λίστας</string>
     <string name="exported_vault">Η λίστα έχει εξαχθεί</string>
-    <string name="export_warning">Αυτή η ενέργεια θα εξάγει τη λίστα από την ιδιωτική αποθήκη του Aegis.</string>
     <string name="no_cameras_available">Δεν υπάρχουν διαθέσιμες κάμερες</string>
     <string name="read_qr_error">Παρουσιάστηκε σφάλμα κατά την προσπάθεια ανάγνωσης του κώδικα QR</string>
     <string name="authentication_method_raw">Ακατέργαστη</string>
@@ -167,7 +161,6 @@
     <string name="small_mode_title">Μικρή</string>
     <string name="unknown_issuer">Άγνωστος εκδότης</string>
     <string name="unknown_account_name">Άγνωστο όνομα λογαριασμού</string>
-    <string name="import_error_dialog">Το Aegis δεν μπόρεσε να εισαγάγει %d αναγνωριστικά. Αυτά θα παραληφθούν. Πατήστε \'Λεπτομέρειες\' για να δείτε περισσότερες πληροφορίες σχετικά με τα σφάλματα.</string>
     <string name="unable_to_read_qrcode">Αδυναμία ανάγνωσης και επεξεργασίας κώδικα QR</string>
     <string name="select_picture">Επιλέξτε εικόνα</string>
     <string name="toggle_checkboxes">Εναλλαγή πλαισίων ελέγχου</string>
@@ -175,7 +168,6 @@
     <string name="channel_name_lock_status">Κατάσταση κλειδώματος</string>
     <string name="channel_description_lock_status">To Aegis μπορεί να δημιουργήσει μια επίμονη ειδοποίηση για να σας ειδοποιήσει όταν η λίστα είναι κλειδωμένη</string>
     <string name="vault_unlocked_state">Λίστα ξεκλείδωτη. Πατήστε για κλείδωμα.</string>
-    <string name="title_activity_about">Σχετικά</string>
     <string name="version">Έκδοση</string>
     <string name="changelog">Αρχείο καταγραφής αλλαγών</string>
     <string name="whats_new">Τι νέο υπάρχει</string>
@@ -192,4 +184,5 @@
     <string name="email">Email</string>
     <string name="empty_list">Δεν υπάρχουν κωδικοί προς εμφάνιση. Προσθήκη καταχωρήσεων πατώντας στο σύμβολο συν στην κάτω δεξιά γωνία</string>
     <string name="empty_list_title">Δεν βρέθηκε καμία καταχώρηση</string>
+    <string name="title_activity_about">Σχετικά</string>
 </resources>

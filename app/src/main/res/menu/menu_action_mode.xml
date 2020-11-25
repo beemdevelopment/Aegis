@@ -12,7 +12,7 @@
         android:id="@+id/action_edit"
         android:orderInCategory="90"
         android:icon="@drawable/ic_mode_edit"
-        android:title="Edit"
+        android:title="@string/edit"
         app:showAsAction="always" />
 
     <item

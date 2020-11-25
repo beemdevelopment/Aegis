@@ -70,6 +70,12 @@
             android:title="@string/pref_highlight_entry_title"
             android:summary="@string/pref_highlight_entry_summary"
             app:iconSpaceReserved="false"/>
+        <androidx.preference.SwitchPreferenceCompat
+            android:defaultValue="false"
+            android:key="pref_panic_trigger"
+            android:title="@string/pref_panic_trigger_title"
+            android:summary="@string/pref_panic_trigger_summary"
+            app:iconSpaceReserved="false"/>
     </PreferenceCategory>
 
     <PreferenceCategory
@@ -131,9 +137,16 @@
             app:iconSpaceReserved="false"/>
 
         <androidx.preference.SwitchPreferenceCompat
-            android:defaultValue="true"
+            android:key="pref_pin_keyboard"
+            android:dependency="pref_encryption"
+            android:title="@string/pref_pin_keyboard_title"
+            android:summary="@string/pref_pin_keyboard_summary"
+            app:iconSpaceReserved="false"/>
+
+        <Preference
             android:key="pref_auto_lock"
             android:dependency="pref_encryption"
+            android:persistent="false"
             android:title="@string/pref_auto_lock_title"
             android:summary="@string/pref_auto_lock_summary"
             app:iconSpaceReserved="false"/>
@@ -167,7 +180,6 @@
         <Preference
             android:key="pref_backups_versions"
             android:title="@string/pref_backups_versions_title"
-            android:summary="@string/pref_backups_versions_summary"
             app:iconSpaceReserved="false"/>
     </PreferenceCategory>
 

@@ -7,20 +7,27 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.biometric.BiometricPrompt;
+import androidx.core.content.FileProvider;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
 import androidx.preference.SwitchPreferenceCompat;
 
 import com.beemdevelopment.aegis.AegisApplication;
 import com.beemdevelopment.aegis.BuildConfig;
-import com.beemdevelopment.aegis.CancelAction;
 import com.beemdevelopment.aegis.Preferences;
 import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.Theme;
@@ -29,6 +36,7 @@ import com.beemdevelopment.aegis.crypto.KeyStoreHandle;
 import com.beemdevelopment.aegis.crypto.KeyStoreHandleException;
 import com.beemdevelopment.aegis.helpers.BiometricSlotInitializer;
 import com.beemdevelopment.aegis.helpers.BiometricsHelper;
+import com.beemdevelopment.aegis.helpers.SpinnerHelper;
 import com.beemdevelopment.aegis.importers.AegisImporter;
 import com.beemdevelopment.aegis.importers.DatabaseImporter;
 import com.beemdevelopment.aegis.importers.DatabaseImporterEntryException;
@@ -36,6 +44,7 @@ import com.beemdevelopment.aegis.importers.DatabaseImporterException;
 import com.beemdevelopment.aegis.services.NotificationService;
 import com.beemdevelopment.aegis.ui.models.ImportEntry;
 import com.beemdevelopment.aegis.ui.preferences.SwitchPreference;
+import com.beemdevelopment.aegis.ui.tasks.PasswordSlotDecryptTask;
 import com.beemdevelopment.aegis.util.UUIDMap;
 import com.beemdevelopment.aegis.vault.VaultBackupManager;
 import com.beemdevelopment.aegis.vault.VaultEntry;
@@ -50,18 +59,19 @@ import com.beemdevelopment.aegis.vault.slots.SlotException;
 import com.beemdevelopment.aegis.vault.slots.SlotList;
 import com.topjohnwu.superuser.Shell;
 
+import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
-import java.util.Objects;
-import java.util.concurrent.atomic.AtomicReference;
 
 import javax.crypto.Cipher;
+
+import static android.text.TextUtils.isDigitsOnly;
 
 public class PreferencesFragment extends PreferenceFragmentCompat {
     // activity request codes
@@ -71,8 +81,9 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
     private static final int CODE_GROUPS = 3;
     private static final int CODE_SELECT_ENTRIES = 4;
     private static final int CODE_EXPORT = 5;
-    private static final int CODE_EXPORT_ENCRYPT = 6;
-    private static final int CODE_BACKUPS = 7;
+    private static final int CODE_EXPORT_PLAIN = 6;
+    private static final int CODE_EXPORT_GOOGLE_URI = 7;
+    private static final int CODE_BACKUPS = 8;
 
     private Intent _result;
     private Preferences _prefs;
@@ -90,6 +101,7 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
     private Preference _slotsPreference;
     private Preference _groupsPreference;
     private Preference _passwordReminderPreference;
+    private SwitchPreferenceCompat _pinKeyboardPreference;
     private SwitchPreferenceCompat _backupsPreference;
     private Preference _backupsLocationPreference;
     private Preference _backupsTriggerPreference;
@@ -172,7 +184,13 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
         importPreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
-                startImport();
+                Dialogs.showImportersDialog(getContext(), false, definition -> {
+                    _importerType = definition.getType();
+
+                    Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+                    intent.setType("*/*");
+                    startActivityForResult(intent, CODE_IMPORT);
+                });
                 return true;
             }
         });
@@ -181,7 +199,10 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
         importAppPreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
-                onImportApp();
+                Dialogs.showImportersDialog(getContext(), true, definition -> {
+                    DatabaseImporter importer = DatabaseImporter.create(getContext(), definition.getType());
+                    importApp(importer);
+                });
                 return true;
             }
         });
@@ -231,7 +252,7 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
             _result.putExtra("needsRefresh", true);
             return true;
         });
-        
+
         Preference entryHighlightPreference = findPreference("pref_highlight_entry");
         entryHighlightPreference.setOnPreferenceChangeListener((preference, newValue) -> {
             _result.putExtra("needsRefresh", true);
@@ -250,7 +271,7 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
             public boolean onPreferenceChange(Preference preference, Object newValue) {
                 _result.putExtra("needsRecreate", true);
                 Window window = getActivity().getWindow();
-                if ((boolean)newValue) {
+                if ((boolean) newValue) {
                     window.addFlags(WindowManager.LayoutParams.FLAG_SECURE);
                 } else {
                     window.clearFlags(WindowManager.LayoutParams.FLAG_SECURE);
@@ -370,6 +391,33 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
             }
         });
 
+        _pinKeyboardPreference = findPreference("pref_pin_keyboard");
+        _pinKeyboardPreference.setOnPreferenceChangeListener((preference, newValue) -> {
+            if (!(boolean) newValue) {
+                return true;
+            }
+
+            Dialogs.showPasswordInputDialog(getActivity(), R.string.set_password_confirm, R.string.pin_keyboard_description, password -> {
+                if (isDigitsOnly(new String(password))) {
+                    List<PasswordSlot> slots = _vault.getCredentials().getSlots().findAll(PasswordSlot.class);
+                    PasswordSlotDecryptTask.Params params = new PasswordSlotDecryptTask.Params(slots, password);
+                    PasswordSlotDecryptTask task = new PasswordSlotDecryptTask(getActivity(), new PasswordConfirmationListener());
+                    task.execute(getLifecycle(), params);
+                } else {
+                    setPinKeyboardPreference(false);
+                    Dialogs.showSecureDialog(new AlertDialog.Builder(getActivity())
+                            .setTitle(R.string.pin_keyboard_error)
+                            .setMessage(R.string.pin_keyboard_error_description)
+                            .setCancelable(false)
+                            .setPositiveButton(android.R.string.ok, null)
+                            .create());
+                }
+            }, dialog -> {
+                setPinKeyboardPreference(false);
+            });
+            return false;
+        });
+
         _groupsPreference = findPreference("pref_groups");
         _groupsPreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
@@ -408,6 +456,7 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
             if (_prefs.isBackupsEnabled()) {
                 try {
                     _vault.backup();
+                    Toast.makeText(getActivity(), R.string.backup_successful, Toast.LENGTH_LONG).show();
                 } catch (VaultManagerException e) {
                     e.printStackTrace();
                     Dialogs.showErrorDialog(getContext(), R.string.backup_error, e);
@@ -417,17 +466,46 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
         });
 
         _backupsVersionsPreference = findPreference("pref_backups_versions");
-        _backupsVersionsPreference.setSummary(String.format(getString(R.string.pref_backups_versions_summary), _prefs.getBackupsVersionCount()));
+        _backupsVersionsPreference.setSummary(getResources().getQuantityString(R.plurals.pref_backups_versions_summary, _prefs.getBackupsVersionCount(), _prefs.getBackupsVersionCount()));
         _backupsVersionsPreference.setOnPreferenceClickListener(preference -> {
             Dialogs.showBackupVersionsPickerDialog(getActivity(), number -> {
                 number = number * 5 + 5;
                 _prefs.setBackupsVersionCount(number);
-                _backupsVersionsPreference.setSummary(String.format(getString(R.string.pref_backups_versions_summary), number));
+                _backupsVersionsPreference.setSummary(getResources().getQuantityString(R.plurals.pref_backups_versions_summary, _prefs.getBackupsVersionCount(), _prefs.getBackupsVersionCount()));
             });
             return false;
         });
 
         _autoLockPreference = findPreference("pref_auto_lock");
+        _autoLockPreference.setSummary(getAutoLockSummary());
+        _autoLockPreference.setOnPreferenceClickListener((preference) -> {
+            final int[] items = Preferences.AUTO_LOCK_SETTINGS;
+            final String[] textItems = getResources().getStringArray(R.array.pref_auto_lock_types);
+            final boolean[] checkedItems = new boolean[items.length];
+            for (int i = 0; i < items.length; i++) {
+                checkedItems[i] = _prefs.isAutoLockTypeEnabled(items[i]);
+            }
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity())
+                    .setTitle(R.string.pref_auto_lock_prompt)
+                    .setMultiChoiceItems(textItems, checkedItems, (dialog, index, isChecked) -> checkedItems[index] = isChecked)
+                    .setPositiveButton(android.R.string.ok, (dialog, which) -> {
+                        int autoLock = Preferences.AUTO_LOCK_OFF;
+                        for (int i = 0; i < checkedItems.length; i++) {
+                            if (checkedItems[i]) {
+                                autoLock |= items[i];
+                            }
+                        }
+
+                        _prefs.setAutoLockMask(autoLock);
+                        _autoLockPreference.setSummary(getAutoLockSummary());
+                    })
+                    .setNegativeButton(android.R.string.cancel, null);
+            Dialogs.showSecureDialog(builder.create());
+
+            return false;
+        });
+
         _passwordReminderPreference = findPreference("pref_password_reminder");
     }
 
@@ -462,8 +540,10 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
                 break;
             case CODE_EXPORT:
                 // intentional fallthrough
-            case CODE_EXPORT_ENCRYPT:
-                onExportResult(resultCode, data, requestCode == CODE_EXPORT_ENCRYPT);
+            case CODE_EXPORT_PLAIN:
+                // intentional fallthrough
+            case CODE_EXPORT_GOOGLE_URI:
+                onExportResult(requestCode, resultCode, data);
                 break;
             case CODE_BACKUPS:
                 onSelectBackupsLocationResult(resultCode, data);
@@ -478,42 +558,6 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
     public void setResult(Intent result) {
         _result = result;
         getActivity().setResult(Activity.RESULT_OK, _result);
-    }
-
-    private void startImport() {
-        Map<String, Class<? extends DatabaseImporter>> importers = DatabaseImporter.getImporters();
-        String[] names = importers.keySet().toArray(new String[0]);
-
-        Dialogs.showSecureDialog(new AlertDialog.Builder(getActivity())
-                .setTitle(R.string.choose_application)
-                .setSingleChoiceItems(names, 0, null)
-                .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        int i = ((AlertDialog) dialog).getListView().getCheckedItemPosition();
-                        _importerType = importers.get(names[i]);
-
-                        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-                        intent.setType("*/*");
-                        startActivityForResult(intent, CODE_IMPORT);
-                    }
-                })
-                .create());
-    }
-
-    private void onImportApp() {
-        Map<String, Class<? extends DatabaseImporter>> importers = DatabaseImporter.getAppImporters();
-        String[] names = importers.keySet().toArray(new String[0]);
-
-        Dialogs.showSecureDialog(new AlertDialog.Builder(getActivity())
-                .setTitle(R.string.choose_application)
-                .setSingleChoiceItems(names, 0, null)
-                .setPositiveButton(android.R.string.ok, (dialog, which) -> {
-                    int i = ((AlertDialog) dialog).getListView().getCheckedItemPosition();
-                    Class<? extends DatabaseImporter> importerType = Objects.requireNonNull(importers.get(names[i]));
-                    DatabaseImporter importer = DatabaseImporter.create(getContext(), importerType);
-                    importApp(importer);
-                })
-                .create());
     }
 
     private void importApp(DatabaseImporter importer) {
@@ -545,7 +589,6 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
 
                     Intent intent = new Intent(getActivity(), AuthActivity.class);
                     intent.putExtra("slots", ((AegisImporter.EncryptedState) state).getSlots());
-                    intent.putExtra("cancelAction", CancelAction.CLOSE);
                     startActivityForResult(intent, CODE_IMPORT_DECRYPT);
                 } else {
                     state.decrypt(getActivity(), new DatabaseImporter.DecryptListener() {
@@ -627,39 +670,116 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
         Intent intent = new Intent(getActivity(), SelectEntriesActivity.class);
         intent.putExtra("entries", (ArrayList<ImportEntry>) entries);
         intent.putExtra("errors", (ArrayList<DatabaseImporterEntryException>) result.getErrors());
+        intent.putExtra("vaultContainsEntries", _vault.getEntries().size() > 0);
         startActivityForResult(intent, CODE_SELECT_ENTRIES);
     }
 
     private void startExport() {
-        // TODO: create a custom layout to show a message AND a checkbox
-        final AtomicReference<Boolean> checked = new AtomicReference<>(true);
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity())
+        View view = LayoutInflater.from(getContext()).inflate(R.layout.dialog_export, null);
+        TextView warningText = view.findViewById(R.id.text_export_warning);
+        CheckBox checkBoxEncrypt = view.findViewById(R.id.checkbox_export_encrypt);
+        CheckBox checkBoxAccept = view.findViewById(R.id.checkbox_accept);
+        Spinner spinner = view.findViewById(R.id.spinner_export_format);
+        SpinnerHelper.fillSpinner(getContext(), spinner, R.array.export_formats);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                checkBoxEncrypt.setChecked(position == 0);
+                checkBoxEncrypt.setEnabled(position == 0);
+                warningText.setVisibility(checkBoxEncrypt.isChecked() ? View.GONE : View.VISIBLE);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        AlertDialog dialog = new AlertDialog.Builder(getContext())
                 .setTitle(R.string.pref_export_summary)
-                .setPositiveButton(android.R.string.ok, (dialog, which) -> {
-                    String filename = checked.get() ? VaultManager.FILENAME_PREFIX_EXPORT : VaultManager.FILENAME_PREFIX_EXPORT_PLAIN;
-                    filename = new VaultBackupManager.FileInfo(filename).toString();
+                .setView(view)
+                .setNeutralButton(R.string.share, null)
+                .setPositiveButton(android.R.string.ok, null)
+                .setNegativeButton(android.R.string.cancel, null)
+                .create();
 
-                    Intent intent = new Intent(Intent.ACTION_CREATE_DOCUMENT)
-                            .addCategory(Intent.CATEGORY_OPENABLE)
-                            .setType("application/json")
-                            .putExtra(Intent.EXTRA_TITLE, filename);
+        dialog.setOnShowListener(d -> {
+            Button btnPos = dialog.getButton(AlertDialog.BUTTON_POSITIVE);
+            Button btnNeutral = dialog.getButton(AlertDialog.BUTTON_NEUTRAL);
 
-                    startActivityForResult(intent, checked.get() ? CODE_EXPORT_ENCRYPT : CODE_EXPORT);
-                })
-                .setNegativeButton(android.R.string.cancel, null);
-        if (_vault.isEncryptionEnabled()) {
-            final String[] items = {"Keep the vault encrypted"};
-            final boolean[] checkedItems = {true};
-            builder.setMultiChoiceItems(items, checkedItems, new DialogInterface.OnMultiChoiceClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int index, boolean isChecked) {
-                    checked.set(isChecked);
-                }
+            checkBoxEncrypt.setOnCheckedChangeListener((buttonView, isChecked) -> {
+                warningText.setVisibility(isChecked ? View.GONE : View.VISIBLE);
+                checkBoxAccept.setVisibility(isChecked ? View.GONE : View.VISIBLE);
+                checkBoxAccept.setChecked(false);
+                btnPos.setEnabled(isChecked);
+                btnNeutral.setEnabled(isChecked);
             });
-        } else {
-            builder.setMessage(R.string.export_warning);
-        }
-        Dialogs.showSecureDialog(builder.create());
+
+            checkBoxAccept.setOnCheckedChangeListener((buttonView, isChecked) -> {
+                btnPos.setEnabled(isChecked);
+                btnNeutral.setEnabled(isChecked);
+            });
+
+            btnPos.setOnClickListener(v -> {
+                dialog.dismiss();
+
+                if (!checkBoxEncrypt.isChecked() && !checkBoxAccept.isChecked()) {
+                    return;
+                }
+
+                int requestCode = getExportRequestCode(spinner.getSelectedItemPosition(), checkBoxEncrypt.isChecked());
+                VaultBackupManager.FileInfo fileInfo = getExportFileInfo(spinner.getSelectedItemPosition(), checkBoxEncrypt.isChecked());
+                Intent intent = new Intent(Intent.ACTION_CREATE_DOCUMENT)
+                        .addCategory(Intent.CATEGORY_OPENABLE)
+                        .setType(getExportMimeType(requestCode))
+                        .putExtra(Intent.EXTRA_TITLE, fileInfo.toString());
+
+                startActivityForResult(intent, requestCode);
+            });
+
+            btnNeutral.setOnClickListener(v -> {
+                dialog.dismiss();
+
+                if (!checkBoxEncrypt.isChecked() && !checkBoxAccept.isChecked()) {
+                    return;
+                }
+
+                File file;
+                try {
+                    VaultBackupManager.FileInfo fileInfo = getExportFileInfo(spinner.getSelectedItemPosition(), checkBoxEncrypt.isChecked());
+                    File dir = new File(getContext().getCacheDir(), "export");
+                    if (!dir.exists() && !dir.mkdir()) {
+                        throw new IOException(String.format("Unable to create directory %s", dir));
+                    }
+                    file = File.createTempFile(fileInfo.getFilename() + "-", "." + fileInfo.getExtension(), dir);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    Dialogs.showErrorDialog(getContext(), R.string.exporting_vault_error, e);
+                    return;
+                }
+
+                int requestCode = getExportRequestCode(spinner.getSelectedItemPosition(), checkBoxEncrypt.isChecked());
+                startExportVault(requestCode, cb -> {
+                    try (OutputStream stream = new FileOutputStream(file)) {
+                        cb.exportVault(stream);
+                    } catch (IOException | VaultManagerException e) {
+                        e.printStackTrace();
+                        Dialogs.showErrorDialog(getContext(), R.string.exporting_vault_error, e);
+                        return;
+                    }
+
+                    Uri uri = FileProvider.getUriForFile(getContext(), BuildConfig.FILE_PROVIDER_AUTHORITY, file);
+                    Intent intent = new Intent(Intent.ACTION_SEND)
+                            .setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+                            .setType(getExportMimeType(requestCode))
+                            .putExtra(Intent.EXTRA_STREAM, uri);
+                    Intent chooser = Intent.createChooser(intent, getString(R.string.pref_export_summary));
+                    startActivity(chooser);
+                });
+            });
+        });
+
+        Dialogs.showSecureDialog(dialog);
     }
 
     private void onSlotManagerResult(int resultCode, Intent data) {
@@ -685,11 +805,18 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
                 entry.setGroup(null);
             }
         }
+
+        saveVault();
     }
 
     private void onSelectEntriesResult(int resultCode, Intent data) {
         if (resultCode != Activity.RESULT_OK) {
             return;
+        }
+
+        boolean wipeEntries = data.getBooleanExtra("wipeEntries", false);
+        if (wipeEntries) {
+            _vault.wipeEntries();
         }
 
         List<ImportEntry> selectedEntries = (ArrayList<ImportEntry>) data.getSerializableExtra("entries");
@@ -709,27 +836,87 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
             return;
         }
 
-        String toastMessage = getResources().getString(R.string.imported_entries_count, selectedEntries.size());
+        String toastMessage = getResources().getQuantityString(R.plurals.imported_entries_count, selectedEntries.size(), selectedEntries.size());
         Toast.makeText(getContext(), toastMessage, Toast.LENGTH_SHORT).show();
 
         _result.putExtra("needsRecreate", true);
     }
 
-    private void onExportResult(int resultCode, Intent data, boolean encrypt) {
+    private static int getExportRequestCode(int spinnerPos, boolean encrypt) {
+        if (spinnerPos == 0) {
+            return encrypt ? CODE_EXPORT : CODE_EXPORT_PLAIN;
+        }
+
+        return CODE_EXPORT_GOOGLE_URI;
+    }
+
+    private static VaultBackupManager.FileInfo getExportFileInfo(int spinnerPos, boolean encrypt) {
+        if (spinnerPos == 0) {
+            String filename = encrypt ? VaultManager.FILENAME_PREFIX_EXPORT : VaultManager.FILENAME_PREFIX_EXPORT_PLAIN;
+            return new VaultBackupManager.FileInfo(filename);
+        }
+
+        return new VaultBackupManager.FileInfo(VaultManager.FILENAME_PREFIX_EXPORT_URI, "txt");
+    }
+
+    private static String getExportMimeType(int requestCode) {
+        return requestCode == CODE_EXPORT_GOOGLE_URI ? "text/plain" : "application/json";
+    }
+
+    private void startExportVault(int requestCode, StartExportCallback cb) {
+        switch (requestCode) {
+            case CODE_EXPORT:
+                if (_vault.isEncryptionEnabled()) {
+                    cb.exportVault(stream -> _vault.export(stream));
+                } else {
+                    Dialogs.showSetPasswordDialog(getActivity(), new Dialogs.SlotListener() {
+                        @Override
+                        public void onSlotResult(Slot slot, Cipher cipher) {
+                            VaultFileCredentials creds = new VaultFileCredentials();
+
+                            try {
+                                slot.setKey(creds.getKey(), cipher);
+                                creds.getSlots().add(slot);
+                            } catch (SlotException e) {
+                                onException(e);
+                                return;
+                            }
+
+                            cb.exportVault(stream -> _vault.export(stream, creds));
+                        }
+
+                        @Override
+                        public void onException(Exception e) {
+
+                        }
+                    });
+                }
+                break;
+            case CODE_EXPORT_PLAIN:
+                cb.exportVault((stream) -> _vault.export(stream, null));
+                break;
+            case CODE_EXPORT_GOOGLE_URI:
+                cb.exportVault((stream) -> _vault.exportGoogleUris(stream));
+                break;
+        }
+    }
+
+    private void onExportResult(int requestCode, int resultCode, Intent data) {
         Uri uri = data.getData();
         if (resultCode != Activity.RESULT_OK || uri == null) {
             return;
         }
 
-        try (OutputStream stream = getContext().getContentResolver().openOutputStream(uri, "w")) {
-            _vault.export(stream, encrypt);
-        } catch (IOException | VaultManagerException e) {
-            e.printStackTrace();
-            Dialogs.showErrorDialog(getContext(), R.string.exporting_vault_error, e);
-            return;
-        }
+        startExportVault(requestCode, cb -> {
+            try (OutputStream stream = getContext().getContentResolver().openOutputStream(uri, "w")) {
+                cb.exportVault(stream);
+            } catch (IOException | VaultManagerException e) {
+                e.printStackTrace();
+                Dialogs.showErrorDialog(getContext(), R.string.exporting_vault_error, e);
+            }
 
-        Toast.makeText(getActivity(), getString(R.string.exported_vault), Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), getString(R.string.exported_vault), Toast.LENGTH_SHORT).show();
+        });
     }
 
     private void onSelectBackupsLocationResult(int resultCode, Intent data) {
@@ -767,6 +954,7 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
         _biometricsPreference.setVisible(encrypted);
         _slotsPreference.setEnabled(encrypted);
         _autoLockPreference.setVisible(encrypted);
+        _pinKeyboardPreference.setVisible(encrypted);
 
         if (encrypted) {
             SlotList slots = _vault.getCredentials().getSlots();
@@ -810,6 +998,32 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
         startActivityForResult(intent, CODE_BACKUPS);
     }
 
+    private void setPinKeyboardPreference(boolean enable) {
+        _pinKeyboardPreference.setChecked(enable);
+    }
+
+    private String getAutoLockSummary() {
+        final int[] settings = Preferences.AUTO_LOCK_SETTINGS;
+        final String[] descriptions = getResources().getStringArray(R.array.pref_auto_lock_types);
+
+        StringBuilder builder = new StringBuilder();
+        for (int i = 0; i < settings.length; i++) {
+            if (_prefs.isAutoLockTypeEnabled(settings[i])) {
+                if (builder.length() != 0) {
+                    builder.append(", ");
+                }
+
+                builder.append(descriptions[i].toLowerCase());
+            }
+        }
+
+        if (builder.length() == 0) {
+            return getString(R.string.pref_auto_lock_summary_disabled);
+        }
+
+        return getString(R.string.pref_auto_lock_summary, builder.toString());
+    }
+
     private class SetPasswordListener implements Dialogs.SlotListener {
         @Override
         public void onSlotResult(Slot slot, Cipher cipher) {
@@ -835,6 +1049,11 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
 
             _vault.setCredentials(creds);
             saveVault();
+
+            if (_prefs.isPinKeyboardEnabled()) {
+                setPinKeyboardPreference(false);
+                Toast.makeText(getContext(), R.string.pin_keyboard_disabled, Toast.LENGTH_SHORT).show();
+            }
         }
 
         @Override
@@ -894,5 +1113,30 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
             e.printStackTrace();
             Dialogs.showErrorDialog(getContext(), R.string.encryption_set_password_error, e);
         }
+    }
+
+    private class PasswordConfirmationListener implements PasswordSlotDecryptTask.Callback {
+        @Override
+        public void onTaskFinished(PasswordSlotDecryptTask.Result result) {
+            if (result != null) {
+                setPinKeyboardPreference(true);
+            } else {
+                Dialogs.showSecureDialog(new AlertDialog.Builder(getActivity())
+                        .setTitle(R.string.pin_keyboard_error)
+                        .setMessage(R.string.invalid_password)
+                        .setCancelable(false)
+                        .setPositiveButton(android.R.string.ok, null)
+                        .create());
+                setPinKeyboardPreference(false);
+            }
+        }
+    }
+
+    private interface FinishExportCallback {
+        void exportVault(OutputStream stream) throws IOException, VaultManagerException;
+    }
+
+    private interface StartExportCallback {
+        void exportVault(FinishExportCallback exportCb);
     }
 }

@@ -2,202 +2,77 @@ package com.beemdevelopment.aegis;
 
 import android.view.View;
 
-import androidx.annotation.IdRes;
-import androidx.test.core.app.ApplicationProvider;
-import androidx.test.espresso.AmbiguousViewMatcherException;
 import androidx.test.espresso.UiController;
 import androidx.test.espresso.ViewAction;
-import androidx.test.espresso.ViewInteraction;
-import androidx.test.espresso.contrib.RecyclerViewActions;
-import androidx.test.ext.junit.runners.AndroidJUnit4;
-import androidx.test.filters.LargeTest;
-import androidx.test.rule.ActivityTestRule;
+import androidx.test.platform.app.InstrumentationRegistry;
 
 import com.beemdevelopment.aegis.crypto.CryptoUtils;
-import com.beemdevelopment.aegis.encoding.Base32;
-import com.beemdevelopment.aegis.otp.HotpInfo;
+import com.beemdevelopment.aegis.crypto.SCryptParameters;
 import com.beemdevelopment.aegis.otp.OtpInfo;
-import com.beemdevelopment.aegis.otp.SteamInfo;
-import com.beemdevelopment.aegis.otp.TotpInfo;
-import com.beemdevelopment.aegis.ui.MainActivity;
+import com.beemdevelopment.aegis.vault.Vault;
 import com.beemdevelopment.aegis.vault.VaultEntry;
+import com.beemdevelopment.aegis.vault.VaultFileCredentials;
 import com.beemdevelopment.aegis.vault.VaultManager;
+import com.beemdevelopment.aegis.vault.VaultManagerException;
 import com.beemdevelopment.aegis.vault.slots.PasswordSlot;
+import com.beemdevelopment.aegis.vault.slots.SlotException;
 
 import org.hamcrest.Matcher;
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.runner.RunWith;
 
 import java.lang.reflect.InvocationTargetException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.security.InvalidAlgorithmParameterException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 
-import static androidx.test.espresso.Espresso.onData;
-import static androidx.test.espresso.Espresso.onView;
-import static androidx.test.espresso.Espresso.openContextualActionModeOverflowMenu;
-import static androidx.test.espresso.action.ViewActions.clearText;
-import static androidx.test.espresso.action.ViewActions.click;
-import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
-import static androidx.test.espresso.action.ViewActions.longClick;
-import static androidx.test.espresso.action.ViewActions.pressBack;
-import static androidx.test.espresso.action.ViewActions.typeText;
-import static androidx.test.espresso.matcher.ViewMatchers.hasDescendant;
-import static androidx.test.espresso.matcher.ViewMatchers.isRoot;
-import static androidx.test.espresso.matcher.ViewMatchers.withId;
-import static androidx.test.espresso.matcher.ViewMatchers.withText;
-import static junit.framework.TestCase.assertFalse;
-import static junit.framework.TestCase.assertNull;
-import static junit.framework.TestCase.assertTrue;
-import static org.hamcrest.Matchers.anything;
+import javax.crypto.NoSuchPaddingException;
+import javax.crypto.SecretKey;
 
-@RunWith(AndroidJUnit4.class)
-@LargeTest
-public class AegisTest {
-    private static final String _password = "test";
-    private static final String _groupName = "Test";
+public abstract class AegisTest {
+    public static final String VAULT_PASSWORD = "test";
 
-    @Rule
-    public final ActivityTestRule<MainActivity> activityRule = new ActivityTestRule<>(MainActivity.class);
+    protected AegisApplication getApp() {
+        return (AegisApplication) InstrumentationRegistry.getInstrumentation().getTargetContext().getApplicationContext();
+    }
 
-    @Test
-    public void doOverallTest() {
-        ViewInteraction next = onView(withId(R.id.next));
-        next.perform(click());
-        onView(withId(R.id.rb_password)).perform(click());
-        next.perform(click());
-        onView(withId(R.id.text_password)).perform(typeText(_password), closeSoftKeyboard());
-        onView(withId(R.id.text_password_confirm)).perform(typeText(_password), closeSoftKeyboard());
-        next.perform(click());
-        onView(withId(R.id.done)).perform(click());
+    protected VaultManager getVault() {
+        return getApp().getVaultManager();
+    }
 
-        VaultManager vault = getVault();
-        assertTrue(vault.isEncryptionEnabled());
-        assertTrue(vault.getCredentials().getSlots().has(PasswordSlot.class));
-
-        List<VaultEntry> entries = Arrays.asList(
-                generateEntry(TotpInfo.class, "Frank", "Google"),
-                generateEntry(HotpInfo.class, "John", "GitHub"),
-                generateEntry(TotpInfo.class, "Alice", "Office 365"),
-                generateEntry(SteamInfo.class, "Gaben", "Steam")
+    protected VaultManager initVault() {
+        PasswordSlot slot = new PasswordSlot();
+        byte[] salt = CryptoUtils.generateSalt();
+        SCryptParameters scryptParams = new SCryptParameters(
+                CryptoUtils.CRYPTO_SCRYPT_N,
+                CryptoUtils.CRYPTO_SCRYPT_r,
+                CryptoUtils.CRYPTO_SCRYPT_p,
+                salt
         );
-        for (VaultEntry entry : entries) {
-            addEntry(entry);
+
+        VaultFileCredentials creds = new VaultFileCredentials();
+        try {
+            SecretKey key = slot.deriveKey(VAULT_PASSWORD.toCharArray(), scryptParams);
+            slot.setKey(creds.getKey(), CryptoUtils.createEncryptCipher(key));
+        } catch (NoSuchAlgorithmException
+                | InvalidKeyException
+                | InvalidAlgorithmParameterException
+                | NoSuchPaddingException
+                | SlotException e) {
+            throw new RuntimeException(e);
+        }
+        creds.getSlots().add(slot);
+
+        VaultManager vault = getApp().initVaultManager(new Vault(), creds);
+        try {
+            vault.save(false);
+        } catch (VaultManagerException e) {
+            throw new RuntimeException(e);
         }
 
-        List<VaultEntry> realEntries = new ArrayList<>(vault.getEntries());
-        for (int i = 0; i < realEntries.size(); i++) {
-            assertTrue(realEntries.get(i).equivalates(entries.get(i)));
-        }
-
-        for (int i = 0; i < 10; i++) {
-            onView(withId(R.id.rvKeyProfiles)).perform(RecyclerViewActions.actionOnItemAtPosition(1, clickChildViewWithId(R.id.buttonRefresh)));
-        }
-
-        onView(withId(R.id.rvKeyProfiles)).perform(RecyclerViewActions.actionOnItemAtPosition(0, longClick()));
-        onView(withId(R.id.action_copy)).perform(click());
-
-        onView(withId(R.id.rvKeyProfiles)).perform(RecyclerViewActions.actionOnItemAtPosition(1, longClick()));
-        onView(withId(R.id.action_edit)).perform(click());
-        onView(withId(R.id.text_name)).perform(clearText(), typeText("Bob"), closeSoftKeyboard());
-        onView(withId(R.id.spinner_group)).perform(click());
-        onData(anything()).atPosition(1).perform(click());
-        onView(withId(R.id.text_input)).perform(typeText(_groupName), closeSoftKeyboard());
-        onView(withId(android.R.id.button1)).perform(click());
-        onView(isRoot()).perform(pressBack());
-        onView(withId(android.R.id.button1)).perform(click());
-
-        changeSort(R.string.sort_alphabetically_name);
-        changeSort(R.string.sort_alphabetically_name_reverse);
-        changeSort(R.string.sort_alphabetically);
-        changeSort(R.string.sort_alphabetically_reverse);
-        changeSort(R.string.sort_custom);
-
-        changeFilter(_groupName);
-        changeFilter(R.string.filter_ungrouped);
-        changeFilter(R.string.all);
-
-        onView(withId(R.id.rvKeyProfiles)).perform(RecyclerViewActions.actionOnItemAtPosition(1, longClick()));
-        onView(withId(R.id.rvKeyProfiles)).perform(RecyclerViewActions.actionOnItemAtPosition(2, click()));
-        onView(withId(R.id.rvKeyProfiles)).perform(RecyclerViewActions.actionOnItemAtPosition(3, click()));
-        onView(withId(R.id.action_share_qr)).perform(click());
-        onView(withId(R.id.btnNext)).perform(click()).perform(click()).perform(click());
-
-        onView(withId(R.id.rvKeyProfiles)).perform(RecyclerViewActions.actionOnItemAtPosition(2, longClick()));
-        onView(withId(R.id.action_delete)).perform(click());
-        onView(withId(android.R.id.button1)).perform(click());
-
-        openContextualActionModeOverflowMenu();
-        onView(withText(R.string.lock)).perform(click());
-        onView(withId(R.id.text_password)).perform(typeText(_password), closeSoftKeyboard());
-        onView(withId(R.id.button_decrypt)).perform(click());
-        vault = getVault();
-
-        openContextualActionModeOverflowMenu();
-        onView(withText(R.string.action_settings)).perform(click());
-        onView(withId(androidx.preference.R.id.recycler_view)).perform(RecyclerViewActions.actionOnItem(hasDescendant(withText(R.string.pref_encryption_title)), click()));
-        onView(withId(android.R.id.button1)).perform(click());
-
-        assertFalse(vault.isEncryptionEnabled());
-        assertNull(vault.getCredentials());
-
-        onView(withId(androidx.preference.R.id.recycler_view)).perform(RecyclerViewActions.actionOnItem(hasDescendant(withText(R.string.pref_encryption_title)), click()));
-        onView(withId(R.id.text_password)).perform(typeText(_password), closeSoftKeyboard());
-        onView(withId(R.id.text_password_confirm)).perform(typeText(_password), closeSoftKeyboard());
-        onView(withId(android.R.id.button1)).perform(click());
-
-        assertTrue(vault.isEncryptionEnabled());
-        assertTrue(vault.getCredentials().getSlots().has(PasswordSlot.class));
+        getApp().getPreferences().setIntroDone(true);
+        return vault;
     }
 
-    private void changeSort(@IdRes int resId) {
-        onView(withId(R.id.action_sort)).perform(click());
-        onView(withText(resId)).perform(click());
-    }
-
-    private void changeFilter(String text) {
-        openContextualActionModeOverflowMenu();
-        onView(withText(R.string.filter)).perform(click());
-        onView(withText(text)).perform(click());
-    }
-
-    private void changeFilter(@IdRes int resId) {
-        changeFilter(ApplicationProvider.getApplicationContext().getString(resId));
-    }
-
-    private void addEntry(VaultEntry entry) {
-        onView(withId(R.id.fab_expand_menu_button)).perform(click());
-        onView(withId(R.id.fab_enter)).perform(click());
-
-        onView(withId(R.id.text_name)).perform(typeText(entry.getName()), closeSoftKeyboard());
-        onView(withId(R.id.text_issuer)).perform(typeText(entry.getIssuer()), closeSoftKeyboard());
-
-        if (entry.getInfo().getClass() != TotpInfo.class) {
-            int i = entry.getInfo() instanceof HotpInfo ? 1 : 2;
-            try {
-                onView(withId(R.id.spinner_type)).perform(click());
-                onData(anything()).atPosition(i).perform(click());
-            } catch (AmbiguousViewMatcherException e) {
-                // for some reason, clicking twice is sometimes necessary, otherwise the test fails on the next line
-                onView(withId(R.id.spinner_type)).perform(click());
-                onData(anything()).atPosition(i).perform(click());
-            }
-            if (entry.getInfo() instanceof HotpInfo) {
-                onView(withId(R.id.text_counter)).perform(typeText("0"), closeSoftKeyboard());
-            }
-            if (entry.getInfo() instanceof SteamInfo) {
-                onView(withId(R.id.text_digits)).perform(clearText(), typeText("5"), closeSoftKeyboard());
-            }
-        }
-
-        String secret = Base32.encode(entry.getInfo().getSecret());
-        onView(withId(R.id.text_secret)).perform(typeText(secret), closeSoftKeyboard());
-
-        onView(withId(R.id.action_save)).perform(click());
-    }
-
-    private <T extends OtpInfo> VaultEntry generateEntry(Class<T> type, String name, String issuer) {
+    protected static <T extends OtpInfo> VaultEntry generateEntry(Class<T> type, String name, String issuer) {
         byte[] secret = CryptoUtils.generateRandomBytes(20);
 
         OtpInfo info;
@@ -210,16 +85,8 @@ public class AegisTest {
         return new VaultEntry(info, name, issuer);
     }
 
-    private AegisApplication getApp() {
-        return (AegisApplication) activityRule.getActivity().getApplication();
-    }
-
-    private VaultManager getVault() {
-        return getApp().getVaultManager();
-    }
-
     // source: https://stackoverflow.com/a/30338665
-    private static ViewAction clickChildViewWithId(final int id) {
+    protected static ViewAction clickChildViewWithId(final int id) {
         return new ViewAction() {
             @Override
             public Matcher<View> getConstraints() {

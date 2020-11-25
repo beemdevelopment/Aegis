@@ -1,6 +1,5 @@
 package com.beemdevelopment.aegis.ui.slides;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,80 +7,87 @@ import android.view.ViewGroup;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import androidx.fragment.app.Fragment;
+import androidx.annotation.NonNull;
 
 import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.helpers.BiometricsHelper;
-import com.github.appintro.SlidePolicy;
-import com.google.android.material.snackbar.Snackbar;
+import com.beemdevelopment.aegis.ui.intro.SlideFragment;
 
-public class SecurityPickerSlide extends Fragment implements SlidePolicy, RadioGroup.OnCheckedChangeListener {
+public class SecurityPickerSlide extends SlideFragment {
     public static final int CRYPT_TYPE_INVALID = 0;
     public static final int CRYPT_TYPE_NONE = 1;
     public static final int CRYPT_TYPE_PASS = 2;
     public static final int CRYPT_TYPE_BIOMETRIC = 3;
 
     private RadioGroup _buttonGroup;
-    private int _bgColor;
+    private RadioButton _bioButton;
+    private TextView _bioText;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        final View view = inflater.inflate(R.layout.fragment_security_picker_slide, container, false);
+        View view = inflater.inflate(R.layout.fragment_security_picker_slide, container, false);
         _buttonGroup = view.findViewById(R.id.rg_authenticationMethod);
-        _buttonGroup.setOnCheckedChangeListener(this);
-        onCheckedChanged(_buttonGroup, _buttonGroup.getCheckedRadioButtonId());
-
-        // only enable the fingerprint option if the api version is new enough, permission is granted and a scanner is found
-        if (BiometricsHelper.isAvailable(getContext())) {
-            RadioButton button = view.findViewById(R.id.rb_biometrics);
-            TextView text = view.findViewById(R.id.text_rb_biometrics);
-            button.setEnabled(true);
-            text.setEnabled(true);
-            _buttonGroup.check(R.id.rb_biometrics);
-        }
-
-        view.findViewById(R.id.main).setBackgroundColor(_bgColor);
+        _bioButton = view.findViewById(R.id.rb_biometrics);
+        _bioText = view.findViewById(R.id.text_rb_biometrics);
+        updateBiometricsOption(true);
         return view;
     }
 
-    public void setBgColor(int color) {
-        _bgColor = color;
+    @Override
+    public void onResume() {
+        super.onResume();
+        updateBiometricsOption(false);
+    }
+
+    /**
+     * Updates the status of the biometrics option. Auto-selects the biometrics option
+     * if the API version is new enough, permission is granted and a scanner is found.
+     */
+    private void updateBiometricsOption(boolean autoSelect) {
+        boolean canUseBio = BiometricsHelper.isAvailable(getContext());
+        _bioButton.setEnabled(canUseBio);
+        _bioText.setEnabled(canUseBio);
+
+        if (!canUseBio && _buttonGroup.getCheckedRadioButtonId() == R.id.rb_biometrics) {
+            _buttonGroup.check(R.id.rb_password);
+        }
+
+        if (canUseBio && autoSelect) {
+            _buttonGroup.check(R.id.rb_biometrics);
+        }
     }
 
     @Override
-    public boolean isPolicyRespected() {
+    public boolean isFinished() {
         return _buttonGroup.getCheckedRadioButtonId() != -1;
     }
 
     @Override
-    public void onUserIllegallyRequestedNextPage() {
-        Snackbar snackbar = Snackbar.make(getView(), getString(R.string.snackbar_authentication_method), Snackbar.LENGTH_LONG);
-        snackbar.show();
+    public void onNotFinishedError() {
+         Toast.makeText(getContext(), R.string.snackbar_authentication_method, Toast.LENGTH_SHORT).show();
     }
 
     @Override
-    public void onCheckedChanged(RadioGroup radioGroup, int i) {
-        if (i == -1) {
-            return;
-        }
+    public void onSaveIntroState(@NonNull Bundle introState) {
+        int buttonId = _buttonGroup.getCheckedRadioButtonId();
 
-        int id;
-        switch (i) {
+        int type;
+        switch (buttonId) {
             case R.id.rb_none:
-                id = CRYPT_TYPE_NONE;
+                type = CRYPT_TYPE_NONE;
                 break;
             case R.id.rb_password:
-                id = CRYPT_TYPE_PASS;
+                type = CRYPT_TYPE_PASS;
                 break;
             case R.id.rb_biometrics:
-                id = CRYPT_TYPE_BIOMETRIC;
+                type = CRYPT_TYPE_BIOMETRIC;
                 break;
             default:
-                throw new RuntimeException(String.format("Unsupported security setting: %d", i));
+                throw new RuntimeException(String.format("Unsupported security type: %d", buttonId));
         }
 
-        Intent intent = getActivity().getIntent();
-        intent.putExtra("cryptType", id);
+        introState.putInt("cryptType", type);
     }
 }

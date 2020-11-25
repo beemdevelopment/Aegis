@@ -118,20 +118,39 @@
                 android:textStyle="normal|bold"/>
 
         </RelativeLayout>
-        <ImageView
-            android:id="@+id/buttonRefresh"
-            android:visibility="gone"
+
+        <LinearLayout
+            android:orientation="horizontal"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:padding="8dp"
-            android:clickable="true"
-            android:focusable="true"
-            android:src="@drawable/ic_refresh_black_24dp"
-            android:tint="?attr/iconColorPrimary"
-            android:background="?android:attr/selectableItemBackground" />
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/buttonRefresh"
+                android:visibility="gone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="4dp"
+                android:padding="8dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:src="@drawable/ic_refresh_black_24dp"
+                app:tint="?attr/iconColorPrimary"
+                android:background="?android:attr/selectableItemBackground" />
+
+            <ImageView
+                android:id="@+id/drag_handle"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginEnd="-12dp"
+                android:visibility="invisible"
+                android:scaleType="fitXY"
+                android:src="@drawable/ic_baseline_menu_black_32" />
+
+        </LinearLayout>
+
     </LinearLayout>
 
     <LinearLayout

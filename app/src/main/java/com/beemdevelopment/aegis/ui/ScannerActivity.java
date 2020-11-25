@@ -17,7 +17,6 @@ import androidx.camera.view.PreviewView;
 import androidx.core.content.ContextCompat;
 
 import com.beemdevelopment.aegis.R;
-import com.beemdevelopment.aegis.Theme;
 import com.beemdevelopment.aegis.helpers.QrCodeAnalyzer;
 import com.beemdevelopment.aegis.otp.GoogleAuthInfo;
 import com.beemdevelopment.aegis.otp.GoogleAuthInfoException;
@@ -77,7 +76,7 @@ public class ScannerActivity extends AegisActivity implements QrCodeAnalyzer.Lis
     }
 
     @Override
-    protected void setPreferredTheme(Theme theme) {
+    protected void onSetTheme() {
         setTheme(R.style.AppTheme_Fullscreen);
     }
 
@@ -132,7 +131,7 @@ public class ScannerActivity extends AegisActivity implements QrCodeAnalyzer.Lis
 
     private void bindPreview(@NonNull ProcessCameraProvider cameraProvider) {
         Preview preview = new Preview.Builder().build();
-        preview.setSurfaceProvider(_previewView.createSurfaceProvider());
+        preview.setSurfaceProvider(_previewView.getSurfaceProvider());
 
         CameraSelector selector = new CameraSelector.Builder()
                 .requireLensFacing(_currentLens)
@@ -190,7 +189,7 @@ public class ScannerActivity extends AegisActivity implements QrCodeAnalyzer.Lis
                 finish(_entries);
             }
 
-            Toast.makeText(this, getString(R.string.google_qr_export_scanned, _batchIndex + 1, export.getBatchSize()), Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getResources().getQuantityString(R.plurals.google_qr_export_scanned, export.getBatchSize(), _batchIndex + 1, export.getBatchSize()), Toast.LENGTH_SHORT).show();
         } else if (_batchIndex != batchIndex) {
             Toast.makeText(this, getString(R.string.google_qr_export_unexpected, _batchIndex + 1, batchIndex + 1), Toast.LENGTH_SHORT).show();
         }

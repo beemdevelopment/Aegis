@@ -1,25 +1,40 @@
 # Contributing
 
-There are a couple of ways to contribute to Aegis. This document contains some
-general guidelines for each type of contribution.
+Looking to contribute to Aegis? That's great! There are a couple of ways to help
+out. This document contains some general guidelines for each type of
+contribution.
+
+## Translations
+
+We use [Crowdin](https://crowdin.com/project/aegis-authenticator) to crowdsource
+translations of Aegis for lots of different languages. __Pull requests that
+add/update a translation are not longer accepted.__ Crowdin is our single source
+of truth for translations, to keep things easy to maintain.
+
+The top 30 languages are available for translation. It's possible that yours is
+not in that list. If that's the case, feel free to send us an email and we'll
+add it.
 
 ## Pull requests
 
 If you're planning on adding a new feature or making other large changes, please
-discuss it with us first through a proposal on GitHub. Discussing your idea with
-us first ensures that everyone is on the same page before you start working on
-your change. We don't like rejecting pull requests.
+discuss it with us first through [a
+proposal](https://github.com/beemdevelopment/Aegis/issues/new?labels=proposal&template=feature.md)
+on GitHub. Discussing your idea with us first ensures that everyone is on the
+same page before you start working on your change. We don't like rejecting pull
+requests.
 
 ## Bug reports
 
-We use GitHub's issue tracker to track bugs. Bug reports must follow [the
+We use GitHub's issue tracker to track bugs. To make bug reports easier to
+follow up on for us, they must follow [the
 template](.github/ISSUE_TEMPLATE/bug.md). If a bug report does not follow the
-template and does not contain enough information, it will be closed without a
-response. Duplicate bug reports receive the same treatment.
+template and does not contain enough information, it will be closed. Duplicate
+bug reports receive the same treatment.
 
-Please consider trying to find the root cause yourself first and perhaps even
-send us a patch that fixes the issue! We're happy to help you if you get stuck
-along the way.
+Please consider trying to find the root cause yourself first and include your
+analysis of the issue in your report. Perhaps even send us a patch that fixes
+it! We're happy to help you if you get stuck along the way.
 
 ### Capturing a log with ADB
 

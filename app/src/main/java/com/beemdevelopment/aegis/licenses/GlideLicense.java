@@ -1,4 +1,4 @@
-package com.beemdevelopment.aegis.ui.glide;
+package com.beemdevelopment.aegis.licenses;
 
 import android.content.Context;
 

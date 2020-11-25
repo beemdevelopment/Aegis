@@ -114,15 +114,25 @@ public class VaultBackupManager {
 
     public static class FileInfo {
         private String _filename;
+        private String _ext;
         private Date _date;
 
-        public FileInfo(String filename, Date date) {
+        public FileInfo(String filename, String extension, Date date) {
             _filename = filename;
+            _ext = extension;
             _date = date;
+        }
+
+        public FileInfo(String filename, Date date) {
+            this(filename, "json", date);
         }
 
         public FileInfo(String filename) {
             this(filename, Calendar.getInstance().getTime());
+        }
+
+        public FileInfo(String filename, String extension) {
+            this(filename, extension, Calendar.getInstance().getTime());
         }
 
         public static FileInfo parseFilename(String filename) throws ParseException {
@@ -163,6 +173,10 @@ public class VaultBackupManager {
             return _filename;
         }
 
+        public String getExtension() {
+            return _ext;
+        }
+
         public Date getDate() {
             return _date;
         }
@@ -170,7 +184,7 @@ public class VaultBackupManager {
         @NonNull
         @Override
         public String toString() {
-            return String.format("%s-%s.json", _filename, _dateFormat.format(_date));
+            return String.format("%s-%s.%s", _filename, _dateFormat.format(_date), _ext);
         }
     }
 

@@ -29,7 +29,7 @@
             android:label="@string/title_activity_about" />
         <activity
             android:name=".ui.SelectEntriesActivity"
-            android:label="Select entries" />
+            android:label="@string/title_activity_select_entries" />
         <activity
             android:name=".ui.MainActivity"
             android:label="${title}">
@@ -50,27 +50,51 @@
         <activity
             android:name=".ui.ScannerActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
-            android:label="Scan a QR code"
+            android:label="@string/title_activity_scan_qr"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.EditEntryActivity"
-            android:label="Edit entry" />
+            android:label="@string/title_activity_edit_entry" />
         <activity
             android:name=".ui.IntroActivity"
-            android:theme="@style/Theme.Intro" />
-        <activity android:name=".ui.AuthActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.AuthActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ui.PreferencesActivity"
             android:label="@string/title_activity_preferences" />
         <activity
             android:name=".ui.SlotManagerActivity"
-            android:label="Manage key slots" />
+            android:label="@string/title_activity_manage_slots" />
         <activity
             android:name=".ui.GroupManagerActivity"
-            android:label="Manage groups" />
+            android:label="@string/title_activity_manage_groups" />
+        <activity
+            android:name=".ui.PanicResponderActivity"
+            android:launchMode="singleInstance"
+            android:noHistory="true"
+            android:theme="@android:style/Theme.NoDisplay">
+            <intent-filter>
+                <action android:name="info.guardianproject.panic.action.TRIGGER" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".ui.ExitActivity" />
 
         <service android:name=".services.NotificationService" />
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${fileProviderAuthority}"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths">
+            </meta-data>
+        </provider>
     </application>
 
 </manifest>

@@ -42,6 +42,7 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
     private EntryAdapter _adapter;
     private Listener _listener;
     private SimpleItemTouchHelperCallback _touchCallback;
+    private ItemTouchHelper _touchHelper;
 
     private RecyclerView _recyclerView;
     private RecyclerView.ItemDecoration _dividerDecoration;
@@ -90,8 +91,8 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
         LinearLayoutManager layoutManager = new LinearLayoutManager(view.getContext());
         _recyclerView.setLayoutManager(layoutManager);
         _touchCallback = new SimpleItemTouchHelperCallback(_adapter);
-        ItemTouchHelper touchHelper = new ItemTouchHelper(_touchCallback);
-        touchHelper.attachToRecyclerView(_recyclerView);
+        _touchHelper = new ItemTouchHelper(_touchCallback);
+        _touchHelper.attachToRecyclerView(_recyclerView);
         _recyclerView.setAdapter(_adapter);
 
         int resId = R.anim.layout_animation_fall_down;
@@ -167,10 +168,18 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
         _touchCallback.setIsLongPressDragEnabled(_adapter.isDragAndDropAllowed());
     }
 
+    public void setSelectedEntry(VaultEntry entry) {
+        _touchCallback.setSelectedEntry(entry);
+    }
+
     public void setViewMode(ViewMode mode) {
         _viewMode = mode;
         updateDividerDecoration();
         _adapter.setViewMode(_viewMode);
+    }
+
+    public void startDrag(RecyclerView.ViewHolder viewHolder) {
+        _touchHelper.startDrag(viewHolder);
     }
 
     public void refresh(boolean hard) {
@@ -235,6 +244,9 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
             _refresher.stop();
         }
     }
+
+    @Override
+    public void onListChange() { _listener.onListChange(); }
 
     public void setCodeGroupSize(int codeGrouping) {
         _adapter.setCodeGroupSize(codeGrouping);
@@ -339,6 +351,7 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
         void onScroll(int dx, int dy);
         void onSelect(VaultEntry entry);
         void onDeselect(VaultEntry entry);
+        void onListChange();
     }
 
     private class VerticalSpaceItemDecoration extends RecyclerView.ItemDecoration {

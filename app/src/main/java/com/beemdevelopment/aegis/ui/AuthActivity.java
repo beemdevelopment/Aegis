@@ -2,9 +2,9 @@ package com.beemdevelopment.aegis.ui;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,10 +23,9 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.biometric.BiometricPrompt;
 
 import com.beemdevelopment.aegis.AegisApplication;
-import com.beemdevelopment.aegis.CancelAction;
 import com.beemdevelopment.aegis.Preferences;
 import com.beemdevelopment.aegis.R;
-import com.beemdevelopment.aegis.Theme;
+import com.beemdevelopment.aegis.ThemeMap;
 import com.beemdevelopment.aegis.crypto.KeyStoreHandle;
 import com.beemdevelopment.aegis.crypto.KeyStoreHandleException;
 import com.beemdevelopment.aegis.crypto.MasterKey;
@@ -52,15 +51,15 @@ import javax.crypto.SecretKey;
 public class AuthActivity extends AegisActivity {
     private EditText _textPassword;
 
-    private CancelAction _cancelAction;
     private SlotList _slots;
-
     private SecretKey _bioKey;
     private BiometricSlot _bioSlot;
     private BiometricPrompt _bioPrompt;
 
+    private int _failedUnlockAttempts;
+
     // the first time this activity is resumed after creation, it's possible to inhibit showing the
-    // biometric prompt by setting 'inhibitBioPrompt' to false through the intent
+    // biometric prompt by setting 'inhibitBioPrompt' to true through the intent
     private boolean _inhibitBioPrompt;
 
     private Preferences _prefs;
@@ -83,9 +82,16 @@ public class AuthActivity extends AegisActivity {
             return false;
         });
 
+        if (_prefs.isPinKeyboardEnabled()) {
+            _textPassword.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_VARIATION_PASSWORD);
+        }
+
         Intent intent = getIntent();
-        _inhibitBioPrompt = savedInstanceState == null ? !intent.getBooleanExtra("_inhibitBioPrompt", true) : savedInstanceState.getBoolean("_inhibitBioPrompt");
-        _cancelAction = (CancelAction) intent.getSerializableExtra("cancelAction");
+        if (savedInstanceState == null) {
+            _inhibitBioPrompt = intent.getBooleanExtra("inhibitBioPrompt", false);
+        } else {
+            _inhibitBioPrompt = savedInstanceState.getBoolean("inhibitBioPrompt", false);
+        }
         _slots = (SlotList) intent.getSerializableExtra("slots");
         _stateless = _slots != null;
         if (!_stateless) {
@@ -144,7 +150,8 @@ public class AuthActivity extends AegisActivity {
             char[] password = EditTextHelper.getEditTextChars(_textPassword);
             List<PasswordSlot> slots = _slots.findAll(PasswordSlot.class);
             PasswordSlotDecryptTask.Params params = new PasswordSlotDecryptTask.Params(slots, password);
-            new PasswordSlotDecryptTask(AuthActivity.this, new PasswordDerivationListener()).execute(params);
+            PasswordSlotDecryptTask task = new PasswordSlotDecryptTask(AuthActivity.this, new PasswordDerivationListener());
+            task.execute(getLifecycle(), params);
         });
 
         biometricsButton.setOnClickListener(v -> {
@@ -159,31 +166,8 @@ public class AuthActivity extends AegisActivity {
     }
 
     @Override
-    protected void setPreferredTheme(Theme theme) {
-        if (theme == Theme.SYSTEM || theme == Theme.SYSTEM_AMOLED) {
-            // set the theme based on the system theme
-            int currentNightMode = getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
-            switch (currentNightMode) {
-                case Configuration.UI_MODE_NIGHT_NO:
-                    theme = Theme.LIGHT;
-                    break;
-                case Configuration.UI_MODE_NIGHT_YES:
-                    theme = theme == Theme.SYSTEM_AMOLED ? Theme.AMOLED : Theme.DARK;
-                    break;
-            }
-        }
-
-        switch (theme) {
-            case LIGHT:
-                setTheme(R.style.AppTheme_Light_NoActionBar);
-                break;
-            case DARK:
-                setTheme(R.style.AppTheme_Dark_NoActionBar);
-                break;
-            case AMOLED:
-                setTheme(R.style.AppTheme_TrueBlack_NoActionBar);
-                break;
-        }
+    protected void onSetTheme() {
+        setTheme(ThemeMap.NO_ACTION_BAR);
     }
 
     private void selectPassword() {
@@ -195,11 +179,10 @@ public class AuthActivity extends AegisActivity {
 
     @Override
     public void onBackPressed() {
-        switch (_cancelAction) {
-            case KILL:
-                finishAffinity();
-            case CLOSE:
-                finish();
+        if (_stateless) {
+            super.onBackPressed();
+        } else {
+            finishAffinity();
         }
     }
 
@@ -207,11 +190,12 @@ public class AuthActivity extends AegisActivity {
     public void onResume() {
         super.onResume();
 
-        if (_bioKey == null || _prefs.isPasswordReminderNeeded()) {
+        boolean remindPassword = _prefs.isPasswordReminderNeeded();
+        if (_bioKey == null || remindPassword) {
             focusPasswordField();
         }
 
-        if (_bioKey != null && _bioPrompt == null && !_inhibitBioPrompt) {
+        if (_bioKey != null && _bioPrompt == null && !_inhibitBioPrompt && !remindPassword) {
             _bioPrompt = showBiometricPrompt();
         }
 
@@ -235,6 +219,11 @@ public class AuthActivity extends AegisActivity {
         }
     }
 
+    @Override
+    protected boolean isOrphan() {
+        return _stateless && super.isOrphan();
+    }
+
     private void focusPasswordField() {
         _textPassword.requestFocus();
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
@@ -253,6 +242,9 @@ public class AuthActivity extends AegisActivity {
     }
 
     public BiometricPrompt showBiometricPrompt() {
+        InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(_textPassword.getWindowToken(), 0);
+
         Cipher cipher;
         try {
             cipher = _bioSlot.createDecryptCipher(_bioKey);
@@ -301,6 +293,21 @@ public class AuthActivity extends AegisActivity {
         finish();
     }
 
+    private void onInvalidPassword() {
+        Dialogs.showSecureDialog(new AlertDialog.Builder(AuthActivity.this)
+                .setTitle(getString(R.string.unlock_vault_error))
+                .setMessage(getString(R.string.unlock_vault_error_description))
+                .setCancelable(false)
+                .setPositiveButton(android.R.string.ok, (dialog, which) -> selectPassword())
+                .create());
+
+        _failedUnlockAttempts ++;
+
+        if (_failedUnlockAttempts >= 3) {
+            _textPassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+        }
+    }
+
     private class PasswordDerivationListener implements PasswordSlotDecryptTask.Callback {
         @Override
         public void onTaskFinished(PasswordSlotDecryptTask.Result result) {
@@ -316,12 +323,7 @@ public class AuthActivity extends AegisActivity {
 
                 finish(result.getKey(), result.isSlotRepaired());
             } else {
-                Dialogs.showSecureDialog(new AlertDialog.Builder(AuthActivity.this)
-                        .setTitle(getString(R.string.unlock_vault_error))
-                        .setMessage(getString(R.string.unlock_vault_error_description))
-                        .setCancelable(false)
-                        .setPositiveButton(android.R.string.ok, (dialog, which) -> selectPassword())
-                        .create());
+                onInvalidPassword();
             }
         }
     }

@@ -3,6 +3,7 @@ package com.beemdevelopment.aegis.importers;
 import android.content.Context;
 
 import androidx.appcompat.app.AlertDialog;
+import androidx.lifecycle.Lifecycle;
 
 import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.crypto.CryptParameters;
@@ -10,6 +11,7 @@ import com.beemdevelopment.aegis.crypto.CryptResult;
 import com.beemdevelopment.aegis.crypto.CryptoUtils;
 import com.beemdevelopment.aegis.encoding.Base32;
 import com.beemdevelopment.aegis.encoding.EncodingException;
+import com.beemdevelopment.aegis.helpers.ContextHelper;
 import com.beemdevelopment.aegis.otp.HotpInfo;
 import com.beemdevelopment.aegis.otp.OtpInfo;
 import com.beemdevelopment.aegis.otp.OtpInfoException;
@@ -148,7 +150,8 @@ public class AndOtpImporter extends DatabaseImporter {
                         listener.onError(e);
                     }
                 });
-                task.execute(params);
+                Lifecycle lifecycle = ContextHelper.getLifecycle(context);
+                task.execute(lifecycle, params);
             }
         }
 

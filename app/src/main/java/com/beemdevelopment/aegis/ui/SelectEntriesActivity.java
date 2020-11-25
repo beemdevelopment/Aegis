@@ -1,11 +1,5 @@
 package com.beemdevelopment.aegis.ui;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AlertDialog;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
@@ -16,6 +10,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.helpers.FabScrollHelper;
 import com.beemdevelopment.aegis.importers.DatabaseImporterEntryException;
@@ -25,10 +25,12 @@ import com.getbase.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class SelectEntriesActivity extends AegisActivity {
     private ImportEntriesAdapter _adapter;
     private FabScrollHelper _fabScrollHelper;
+    private boolean _vaultContainsEntries;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +59,7 @@ public class SelectEntriesActivity extends AegisActivity {
         Intent intent = getIntent();
         List<ImportEntry> entries = (ArrayList<ImportEntry>) intent.getSerializableExtra("entries");
         List<DatabaseImporterEntryException> errors = (ArrayList<DatabaseImporterEntryException>) intent.getSerializableExtra("errors");
+        _vaultContainsEntries = intent.getBooleanExtra("vaultContainsEntries", false);
 
         for (ImportEntry entry : entries) {
             _adapter.addEntry(entry);
@@ -67,14 +70,20 @@ public class SelectEntriesActivity extends AegisActivity {
         }
 
         FloatingActionButton fabMenu = findViewById(R.id.fab);
-        fabMenu.setOnClickListener(v -> returnSelectedEntries());
+        fabMenu.setOnClickListener(v -> {
+            if (_vaultContainsEntries) {
+                showWipeEntriesDialog();
+            } else {
+                returnSelectedEntries(false);
+            }
+        });
         _fabScrollHelper = new FabScrollHelper(fabMenu);
     }
 
     private void showErrorDialog(List<DatabaseImporterEntryException> errors) {
         Dialogs.showSecureDialog(new AlertDialog.Builder(this)
                 .setTitle(R.string.import_error_title)
-                .setMessage(getString(R.string.import_error_dialog, errors.size()))
+                .setMessage(getResources().getQuantityString(R.plurals.import_error_dialog, errors.size(), errors.size()))
                 .setPositiveButton(android.R.string.ok, null)
                 .setNeutralButton(getString(R.string.details), (dialog, which) -> showDetailedErrorDialog(errors))
                 .create());
@@ -100,10 +109,19 @@ public class SelectEntriesActivity extends AegisActivity {
                 .create());
     }
 
-    private void returnSelectedEntries() {
-        List<ImportEntry> entries = _adapter.getCheckedEntries();
+    private void showWipeEntriesDialog() {
+        Dialogs.showCheckboxDialog(this, R.string.dialog_wipe_entries_title,
+                R.string.dialog_wipe_entries_message,
+                R.string.dialog_wipe_entries_checkbox,
+                this::returnSelectedEntries
+        );
+    }
+
+    private void returnSelectedEntries(boolean wipeEntries) {
         Intent intent = new Intent();
+        List<ImportEntry> entries = _adapter.getCheckedEntries();
         intent.putExtra("entries", (ArrayList<ImportEntry>) entries);
+        intent.putExtra("wipeEntries", wipeEntries);
         setResult(RESULT_OK, intent);
         finish();
     }

@@ -12,6 +12,17 @@ import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
 public class Preferences {
+    public static final int AUTO_LOCK_OFF = 1 << 0;
+    public static final int AUTO_LOCK_ON_BACK_BUTTON = 1 << 1;
+    public static final int AUTO_LOCK_ON_MINIMIZE = 1 << 2;
+    public static final int AUTO_LOCK_ON_DEVICE_LOCK = 1 << 3;
+
+    public static final int[] AUTO_LOCK_SETTINGS = {
+            AUTO_LOCK_ON_BACK_BUTTON,
+            AUTO_LOCK_ON_MINIMIZE,
+            AUTO_LOCK_ON_DEVICE_LOCK
+    };
+
     private SharedPreferences _prefs;
 
     public Preferences(Context context) {
@@ -32,6 +43,10 @@ public class Preferences {
 
     public boolean isEntryHighlightEnabled() {
         return _prefs.getBoolean("pref_highlight_entry", false);
+    }
+
+    public boolean isPanicTriggerEnabled() {
+        return _prefs.getBoolean("pref_panic_trigger", false);
     }
 
     public boolean isSecureScreenEnabled() {
@@ -73,8 +88,25 @@ public class Preferences {
         return _prefs.getBoolean("pref_intro", false);
     }
 
+    private int getAutoLockMask() {
+        final int def = AUTO_LOCK_ON_BACK_BUTTON | AUTO_LOCK_ON_DEVICE_LOCK;
+        if (!_prefs.contains("pref_auto_lock_mask")) {
+            return _prefs.getBoolean("pref_auto_lock", true) ? def : AUTO_LOCK_OFF;
+        }
+
+        return _prefs.getInt("pref_auto_lock_mask", def);
+    }
+
     public boolean isAutoLockEnabled() {
-        return _prefs.getBoolean("pref_auto_lock", true);
+        return getAutoLockMask() != AUTO_LOCK_OFF;
+    }
+
+    public boolean isAutoLockTypeEnabled(int autoLockType) {
+        return (getAutoLockMask() & autoLockType) == autoLockType;
+    }
+
+    public void setAutoLockMask(int autoLock) {
+        _prefs.edit().putInt("pref_auto_lock_mask", autoLock).apply();
     }
 
     public void setIntroDone(boolean done) {
@@ -128,7 +160,12 @@ public class Preferences {
             }
         }
 
-        return new Locale(lang);
+        String[] parts = lang.split("_");
+        if (parts.length == 1) {
+            return new Locale(parts[0]);
+        }
+
+        return new Locale(parts[0], parts[1]);
     }
 
     public boolean isBackupsEnabled() {
@@ -166,6 +203,10 @@ public class Preferences {
 
     public String getBackupsError() {
         return _prefs.getString("pref_backups_error", null);
+    }
+
+    public boolean isPinKeyboardEnabled() {
+        return _prefs.getBoolean("pref_pin_keyboard", false);
     }
 
     public boolean isTimeSyncWarningEnabled() {

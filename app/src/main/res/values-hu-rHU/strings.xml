@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="action_settings">Beállítások</string>
     <string name="action_about">Névjegy</string>
@@ -7,7 +8,6 @@
     <string name="discard">Elvetés</string>
     <string name="save">Mentés</string>
     <string name="issuer">Kibocsátó</string>
-
     <string name="settings">Beállítások</string>
     <string name="pref_appearance_group_title">Megjelenés</string>
     <string name="pref_general_group_title">Általános</string>
@@ -34,7 +34,6 @@
     <string name="pref_backups_trigger_title">Biztonsági mentés készítése</string>
     <string name="pref_backups_trigger_summary">Biztonsági mentés kézi indítása</string>
     <string name="pref_backups_versions_title">Megtartandó verziók száma</string>
-    <string name="pref_backups_versions_summary">Biztonsági mentés megtartása %1$d verzióról</string>
     <string name="pref_import_app_title">Importálás alkalmazásból</string>
     <string name="pref_import_app_summary">Tokenek importálása alkalmazásból (root hozzáférés szükséges)</string>
     <string name="pref_export_title">Exportálás</string>
@@ -47,14 +46,12 @@
     <string name="pref_tap_to_reveal_summary">A tokenek alapból rejtve lesznek. Koppintson a tokenekre, hogy megjelenjen a kód.</string>
     <string name="pref_tap_to_reveal_time_title">Értintésre történő megjelenítés időtúllépése</string>
     <string name="pref_auto_lock_title">Automatikus zárolás</string>
-    <string name="pref_auto_lock_summary">Automatikus zárolás, ha bezárja az alkalmazást vagy zárolja a képernyőt.</string>
     <string name="pref_encryption_title">Titkosítás</string>
     <string name="pref_encryption_summary">A széf titkosítása, és jelszavas vagy biometrikus feloldás beállítása</string>
     <string name="pref_biometrics_title">Biometrikus feloldás</string>
     <string name="pref_biometrics_summary">Biometrikus hitelesítés engedélyezése a széf feloldásához</string>
     <string name="pref_set_password_title">Jelszó módosítása</string>
     <string name="pref_set_password_summary">Új jelszó beállítása, mellyel feloldhatja a széfet</string>
-
     <string name="choose_authentication_method">Biztonság</string>
     <string name="authentication_method_explanation">Az Aegis egy biztonságközpontú 2FA alkalmazás. A tokenek egy széfben vannak tárolva, mely akár tetszőleges jelszóval titkosítható. Ha egy támadó megszerzi a titkosított széffájlt, a jelszó ismerete nélkül akkor sem fog tudni hozzáférni a tartalmához.\n\nElőre ezt a beállítást választottuk, mert úgy véljük ez lenne a legmegfelelőbb az eszköze számára.</string>
     <string name="authentication_method_none">Nincs</string>
@@ -67,14 +64,14 @@
     <string name="authentication_method_set_password">Jelszó</string>
     <string name="authentication_enter_password">Adja meg a jelszavát</string>
     <string name="authentication">A széf feloldása</string>
+    <!-- The newline (\n) on the following line is just for aesthetic purposes !-->
     <string name="set_password">Adja meg a jelszavát</string>
     <string name="set_group">Adja meg a csoport nevét</string>
     <string name="set_number">Adjon meg egy számot</string>
     <string name="set_password_confirm">Erősítse meg a jelszót</string>
-    <string name="invalidated_biometrics">A jelszava biztonsági beállításainak változása észlelve. Ugorjon az „Aegis -> Beállítások -> Biometrikus” részhez, és engedélyezze újra a biometrikus feloldást.</string>
+    <string name="invalidated_biometrics">A jelszava biztonsági beállításainak változása észlelve. Ugorjon az „Aegis -&gt; Beállítások -&gt; Biometrikus” részhez, és engedélyezze újra a biometrikus feloldást.</string>
     <string name="password_reminder">Egy ideje nem írta be a jelszavát. Emlékszik még rá?</string>
     <string name="enter_password_authy_message">Úgy néz ki, hogy az Authy tokenek titkosítottak. Zárja be az Aegist, nyissa meg az Authyt, és oldja fel a tokeneket a jelszavával. Vagy az Aegis is megpróbálhatja visszafejteni az Authy tokeneket, ha megadja a jelszót lent.</string>
-
     <string name="yes">Igen</string>
     <string name="no">Nem</string>
     <string name="unlock">Feloldás</string>
@@ -108,7 +105,6 @@
     <string name="delete_entry">A bejegyzés törlése</string>
     <string name="delete_entry_description">Biztos, hogy törli ezt a bejegyzést?</string>
     <string name="delete_entries">Bejegyzések törlése</string>
-    <string name="delete_entries_description">Biztos, hogy törli azt a(z) %d bejegyzést?</string>
     <string name="discard_changes">Elveti a változásokat?</string>
     <string name="discard_changes_description">A változásai nem lettek mentve</string>
     <string name="folder">Mappa</string>
@@ -141,12 +137,9 @@
     <string name="reading_file_error">Hiba történt a fájl olvasásakor</string>
     <string name="app_lookup_error">Hiba: Az alkalmazás nincs telepítve</string>
     <string name="root_error">Hiba: Nem szerezhető root jogosultság</string>
-    <string name="imported_entries_count">%d bejegyzés importálva</string>
-    <string name="read_entries_count">%d bejegyzés beolvasva. %d hiba.</string>
     <string name="import_error_title">Egy vagy több hiba történt az importálás során</string>
     <string name="exporting_vault_error">Hiba történt a széf exportálásakor</string>
     <string name="exported_vault">A széf exportálva</string>
-    <string name="export_warning">Ez a művelet exportálni fogja a széfet az Aegis saját tárterületéről.</string>
     <string name="encryption_set_password_error">Hiba történt a jelszó beállításakor: </string>
     <string name="encryption_enable_biometrics_error">Hiba történt a biometrikus feloldás engedélyezésekor</string>
     <string name="no_cameras_available">Nem érhető el kamera</string>
@@ -193,7 +186,6 @@
     <string name="small_mode_title">Apró</string>
     <string name="unknown_issuer">Ismeretlen kibocsátó</string>
     <string name="unknown_account_name">Ismeretlen fióknév</string>
-    <string name="import_error_dialog">Az Aegis nem tudott importálni %d tokent. Ezek a tokenek ki lesznek hagyva. Nyomjon a „részletekre” több információ megtekintéséhez a hibával kapcsolatosan.</string>
     <string name="unable_to_read_qrcode">A QR-kód nem olvasható be és dolgozható fel</string>
     <string name="select_picture">Válasszon képet</string>
     <string name="toggle_checkboxes">Jelölőmezők be/ki</string>
@@ -201,7 +193,6 @@
     <string name="channel_name_lock_status">Állapot zárolása</string>
     <string name="channel_description_lock_status">Az Aegis állandó értesítést tud megjeleníteni, ha a széf zárolva van</string>
     <string name="vault_unlocked_state">A széf feloldott. Koppintson a zároláshoz.</string>
-    <string name="title_activity_about">Névjegy</string>
     <string name="version">Verzió</string>
     <string name="changelog">Változásnapló</string>
     <string name="whats_new">Újdonságok</string>
@@ -216,7 +207,7 @@
     <string name="support_rate_description">Támogasson minket azzal, hogy értékelést ír a Google Play Áruházban</string>
     <string name="webview_error">Az eszköz nem támogtja a webes nézetet, ami szükséges a változásnapló megtekintéséhez. Ez egy hiányzó rendszerösszetevő.</string>
     <string name="email">E-mail</string>
-
     <string name="empty_list">Nincs megjeleníthető kód. Adjon hozzá bejegyzéseket a jobb alsó sarokban lévő plusz jelre koppintva.</string>
     <string name="empty_list_title">Nem található bejegyzés</string>
+    <string name="title_activity_about">Névjegy</string>
 </resources>

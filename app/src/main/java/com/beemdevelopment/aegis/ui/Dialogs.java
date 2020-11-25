@@ -6,10 +6,8 @@ import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
-import android.provider.Settings;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.TextWatcher;
@@ -17,14 +15,17 @@ import android.text.method.PasswordTransformationMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.NumberPicker;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import androidx.activity.ComponentActivity;
 import androidx.annotation.StringRes;
 import androidx.appcompat.app.AlertDialog;
 
@@ -32,6 +33,7 @@ import com.beemdevelopment.aegis.Preferences;
 import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.helpers.EditTextHelper;
 import com.beemdevelopment.aegis.helpers.PasswordStrengthHelper;
+import com.beemdevelopment.aegis.importers.DatabaseImporter;
 import com.beemdevelopment.aegis.ui.tasks.KeyDerivationTask;
 import com.beemdevelopment.aegis.vault.slots.PasswordSlot;
 import com.beemdevelopment.aegis.vault.slots.Slot;
@@ -40,6 +42,7 @@ import com.google.android.material.textfield.TextInputLayout;
 import com.nulabinc.zxcvbn.Strength;
 import com.nulabinc.zxcvbn.Zxcvbn;
 
+import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
 
 import javax.crypto.Cipher;
@@ -73,7 +76,7 @@ public class Dialogs {
         String title, message;
         if (totalEntries > 1) {
             title = activity.getString(R.string.delete_entries);
-            message = String.format(activity.getString(R.string.delete_entries_description), totalEntries);
+            message = activity.getResources().getQuantityString(R.plurals.delete_entries_description, totalEntries, totalEntries);
         } else {
             title = activity.getString(R.string.delete_entry);
             message = activity.getString(R.string.delete_entry_description);
@@ -96,7 +99,7 @@ public class Dialogs {
                 .create());
     }
 
-    public static void showSetPasswordDialog(Activity activity, Dialogs.SlotListener listener) {
+    public static void showSetPasswordDialog(ComponentActivity activity, Dialogs.SlotListener listener) {
         Zxcvbn zxcvbn = new Zxcvbn();
         View view = activity.getLayoutInflater().inflate(R.layout.dialog_password, null);
         EditText textPassword = view.findViewById(R.id.text_password);
@@ -124,6 +127,7 @@ public class Dialogs {
                 .setPositiveButton(android.R.string.ok, null)
                 .setNegativeButton(android.R.string.cancel, null)
                 .create();
+        dialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
 
         final AtomicReference<Button> buttonOK = new AtomicReference<>();
         dialog.setOnShowListener(d -> {
@@ -151,7 +155,8 @@ public class Dialogs {
                     listener.onSlotResult(slot, cipher);
                     dialog.dismiss();
                 });
-                task.execute(new KeyDerivationTask.Params(slot, password));
+                KeyDerivationTask.Params params = new KeyDerivationTask.Params(slot, password);
+                task.execute(activity.getLifecycle(), params);
             });
         });
 
@@ -183,7 +188,7 @@ public class Dialogs {
         showSecureDialog(dialog);
     }
 
-    private static void showTextInputDialog(Context context, @StringRes int titleId, @StringRes int messageId, @StringRes int hintId, TextInputListener listener, boolean isSecret) {
+    private static void showTextInputDialog(Context context, @StringRes int titleId, @StringRes int messageId, @StringRes int hintId, TextInputListener listener, DialogInterface.OnDismissListener dismissListener, boolean isSecret) {
         View view = LayoutInflater.from(context).inflate(R.layout.dialog_text_input, null);
         EditText input = view.findViewById(R.id.text_input);
         if (isSecret) {
@@ -198,16 +203,22 @@ public class Dialogs {
                     char[] text = EditTextHelper.getEditTextChars(input);
                     listener.onTextInputResult(text);
                 });
+
+        if (dismissListener != null) {
+            builder.setOnDismissListener(dismissListener);
+        }
+
         if (messageId != 0) {
             builder.setMessage(messageId);
         }
 
         AlertDialog dialog = builder.create();
+        dialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
         showSecureDialog(dialog);
     }
 
     private static void showTextInputDialog(Context context, @StringRes int titleId, @StringRes int hintId, TextInputListener listener, boolean isSecret) {
-        showTextInputDialog(context, titleId, 0, hintId, listener, isSecret);
+        showTextInputDialog(context, titleId, 0, hintId, listener, null, isSecret);
     }
 
     public static void showTextInputDialog(Context context, @StringRes int titleId, @StringRes int hintId, TextInputListener listener) {
@@ -219,13 +230,48 @@ public class Dialogs {
     }
 
     public static void showPasswordInputDialog(Context context, @StringRes int messageId, TextInputListener listener) {
-        showTextInputDialog(context, R.string.set_password, messageId, R.string.password, listener, true);
+        showTextInputDialog(context, R.string.set_password, messageId, R.string.password, listener, null, true);
+    }
+
+    public static void showPasswordInputDialog(Context context, @StringRes int setPasswordMessageId, @StringRes int messageId, TextInputListener listener, DialogInterface.OnDismissListener dismissListener) {
+        showTextInputDialog(context, setPasswordMessageId, messageId, R.string.password, listener, dismissListener, true);
+    }
+
+    public static void showCheckboxDialog(Context context, @StringRes int titleId, @StringRes int messageId, @StringRes int checkboxMessageId, CheckboxInputListener listener) {
+        View view = LayoutInflater.from(context).inflate(R.layout.dialog_checkbox, null);
+        CheckBox checkBox = view.findViewById(R.id.checkbox);
+        checkBox.setText(checkboxMessageId);
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(context)
+                .setTitle(titleId)
+                .setView(view)
+                .setNegativeButton(R.string.no, (dialog1, which) ->
+                        listener.onCheckboxInputResult(false))
+                .setPositiveButton(R.string.yes, (dialog1, which) ->
+                        listener.onCheckboxInputResult(checkBox.isChecked()));
+
+        if (messageId != 0) {
+            builder.setMessage(messageId);
+        }
+
+        AlertDialog dialog = builder.create();
+
+        final AtomicReference<Button> buttonOK = new AtomicReference<>();
+        dialog.setOnShowListener(d -> {
+            Button button = dialog.getButton(AlertDialog.BUTTON_POSITIVE);
+            button.setEnabled(false);
+            buttonOK.set(button);
+        });
+
+        checkBox.setOnCheckedChangeListener((buttonView, isChecked) -> buttonOK.get().setEnabled(isChecked));
+
+        showSecureDialog(dialog);
     }
 
     public static void showNumberPickerDialog(Activity activity, NumberInputListener listener) {
         View view = activity.getLayoutInflater().inflate(R.layout.dialog_number_picker, null);
         NumberPicker numberPicker = view.findViewById(R.id.numberPicker);
-        numberPicker.setMinValue(3);
+        numberPicker.setMinValue(1);
         numberPicker.setMaxValue(60);
         numberPicker.setValue(new Preferences(activity.getApplicationContext()).getTapToRevealTime());
         numberPicker.setWrapSelectorWheel(true);
@@ -341,6 +387,41 @@ public class Dialogs {
                 .create());
     }
 
+    public static void showImportersDialog(Context context, boolean isDirect, ImporterListener listener) {
+        List<DatabaseImporter.Definition> importers = DatabaseImporter.getImporters(isDirect);
+        String[] names = importers.stream().map(DatabaseImporter.Definition::getName).toArray(String[]::new);
+
+        View view = LayoutInflater.from(context).inflate(R.layout.dialog_importers, null);
+        TextView helpText = view.findViewById(R.id.text_importer_help);
+        setImporterHelpText(helpText, importers.get(0), isDirect);
+        ListView listView = view.findViewById(R.id.list_importers);
+        listView.setAdapter(new ArrayAdapter<>(context, R.layout.card_importer, names));
+        listView.setItemChecked(0, true);
+        listView.setOnItemClickListener((parent, view1, position, id) -> {
+            setImporterHelpText(helpText, importers.get(position), isDirect);
+        });
+
+        Dialogs.showSecureDialog(new AlertDialog.Builder(context)
+                .setTitle(R.string.choose_application)
+                .setView(view)
+                .setPositiveButton(android.R.string.ok, (dialog1, which) -> {
+                    listener.onImporterSelectionResult(importers.get(listView.getCheckedItemPosition()));
+                })
+                .create());
+    }
+
+    private static void setImporterHelpText(TextView view, DatabaseImporter.Definition definition, boolean isDirect) {
+        if (isDirect) {
+            view.setText(view.getResources().getString(R.string.importer_help_direct, definition.getName()));
+        } else {
+            view.setText(definition.getHelp());
+        }
+    }
+
+    public interface CheckboxInputListener {
+        void onCheckboxInputResult(boolean checkbox);
+    }
+
     public interface NumberInputListener {
         void onNumberInputResult(int number);
     }
@@ -352,5 +433,9 @@ public class Dialogs {
     public interface SlotListener {
         void onSlotResult(Slot slot, Cipher cipher);
         void onException(Exception e);
+    }
+
+    public interface ImporterListener {
+        void onImporterSelectionResult(DatabaseImporter.Definition definition);
     }
 }

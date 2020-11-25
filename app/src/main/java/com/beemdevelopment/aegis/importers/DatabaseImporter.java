@@ -3,6 +3,9 @@ package com.beemdevelopment.aegis.importers;
 import android.content.Context;
 import android.content.pm.PackageManager;
 
+import androidx.annotation.StringRes;
+
+import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.util.UUIDMap;
 import com.beemdevelopment.aegis.vault.VaultEntry;
 import com.topjohnwu.superuser.io.SuFile;
@@ -13,40 +16,29 @@ import java.io.InputStream;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
+import java.util.stream.Collectors;
 
 public abstract class DatabaseImporter {
     private Context _context;
 
-    private static Map<String, Class<? extends DatabaseImporter>> _importers;
-    private static Map<String, Class<? extends DatabaseImporter>> _appImporters;
+    private static List<Definition> _importers;
 
     static {
         // note: keep these lists sorted alphabetically
-        _importers = new LinkedHashMap<>();
-        _importers.put("Aegis", AegisImporter.class);
-        _importers.put("Authenticator Plus", AuthenticatorPlusImporter.class);
-        _importers.put("Authy", AuthyImporter.class);
-        _importers.put("andOTP", AndOtpImporter.class);
-        _importers.put("FreeOTP", FreeOtpImporter.class);
-        _importers.put("FreeOTP+", FreeOtpPlusImporter.class);
-        _importers.put("Google Authenticator", GoogleAuthImporter.class);
-        _importers.put("Microsoft Authenticator", MicrosoftAuthImporter.class);
-        _importers.put("Plain text", GoogleAuthUriImporter.class);
-        _importers.put("Steam", SteamImporter.class);
-        _importers.put("TOTP Authenticator", TotpAuthenticatorImporter.class);
-        _importers.put("WinAuth", WinAuthImporter.class);
-
-        _appImporters = new LinkedHashMap<>();
-        _appImporters.put("Authy", AuthyImporter.class);
-        _appImporters.put("FreeOTP", FreeOtpImporter.class);
-        _appImporters.put("FreeOTP+", FreeOtpPlusImporter.class);
-        _appImporters.put("Google Authenticator", GoogleAuthImporter.class);
-        _appImporters.put("Microsoft Authenticator", MicrosoftAuthImporter.class);
-        _appImporters.put("Steam", SteamImporter.class);
-        _appImporters.put("TOTP Authenticator", TotpAuthenticatorImporter.class);
+        _importers = new ArrayList<>();
+        _importers.add(new Definition("Aegis", AegisImporter.class, R.string.importer_help_aegis, false));
+        _importers.add(new Definition("Authenticator Plus", AuthenticatorPlusImporter.class, R.string.importer_help_authenticator_plus, false));
+        _importers.add(new Definition("Authy", AuthyImporter.class, R.string.importer_help_authy, true));
+        _importers.add(new Definition("andOTP", AndOtpImporter.class, R.string.importer_help_andotp, false));
+        _importers.add(new Definition("FreeOTP", FreeOtpImporter.class, R.string.importer_help_freeotp, true));
+        _importers.add(new Definition("FreeOTP+", FreeOtpPlusImporter.class, R.string.importer_help_freeotp_plus, true));
+        _importers.add(new Definition("Google Authenticator", GoogleAuthImporter.class, R.string.importer_help_google_authenticator, true));
+        _importers.add(new Definition("Microsoft Authenticator", MicrosoftAuthImporter.class, R.string.importer_help_microsoft_authenticator, true));
+        _importers.add(new Definition("Plain text", GoogleAuthUriImporter.class, R.string.importer_help_plain_text, false));
+        _importers.add(new Definition("Steam", SteamImporter.class, R.string.importer_help_steam, true));
+        _importers.add(new Definition("TOTP Authenticator", TotpAuthenticatorImporter.class, R.string.importer_help_totp_authenticator, true));
+        _importers.add(new Definition("WinAuth", WinAuthImporter.class, R.string.importer_help_winauth, false));
     }
 
     public DatabaseImporter(Context context) {
@@ -88,12 +80,42 @@ public abstract class DatabaseImporter {
         }
     }
 
-    public static Map<String, Class<? extends DatabaseImporter>> getImporters() {
-        return Collections.unmodifiableMap(_importers);
+    public static List<Definition> getImporters(boolean isDirect) {
+        if (isDirect) {
+            return Collections.unmodifiableList(_importers.stream().filter(Definition::supportsDirect).collect(Collectors.toList()));
+        }
+
+        return Collections.unmodifiableList(_importers);
     }
 
-    public static Map<String, Class<? extends DatabaseImporter>> getAppImporters() {
-        return Collections.unmodifiableMap(_appImporters);
+    public static class Definition {
+        private final String _name;
+        private final Class<? extends DatabaseImporter> _type;
+        private final @StringRes int _help;
+        private final boolean _supportsDirect;
+
+        public Definition(String name, Class<? extends DatabaseImporter> type, @StringRes int help, boolean supportsDirect) {
+            _name = name;
+            _type = type;
+            _help = help;
+            _supportsDirect = supportsDirect;
+        }
+
+        public String getName() {
+            return _name;
+        }
+
+        public Class<? extends DatabaseImporter> getType() {
+            return _type;
+        }
+
+        public @StringRes int getHelp() {
+            return _help;
+        }
+
+        public boolean supportsDirect() {
+            return _supportsDirect;
+        }
     }
 
     public static abstract class State {

@@ -2,6 +2,7 @@ package com.beemdevelopment.aegis.util;
 
 import java.io.ByteArrayOutputStream;
 import java.io.DataInputStream;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -32,6 +33,23 @@ public class IOUtils {
         byte[] buf = new byte[4096];
         while ((read = inStream.read(buf, 0, buf.length)) != -1) {
             outStream.write(buf, 0, read);
+        }
+    }
+
+    public static void clearDirectory(File dir, boolean deleteRoot) {
+        File[] files = dir.listFiles();
+        if (files != null) {
+            for (File file : files) {
+                if (file.isDirectory()) {
+                    clearDirectory(file, true);
+                } else {
+                    file.delete();
+                }
+            }
+        }
+
+        if (deleteRoot) {
+            dir.delete();
         }
     }
 }
