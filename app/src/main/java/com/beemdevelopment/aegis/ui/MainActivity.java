@@ -285,7 +285,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         if (_loaded) {
             UUID entryUUID = (UUID) data.getSerializableExtra("entryUUID");
             VaultEntry entry = _vault.getEntryByUUID(entryUUID);
-            _entryListView.addEntry(entry);
+            _entryListView.addEntry(entry, true);
         }
     }
 
