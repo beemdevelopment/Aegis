@@ -13,13 +13,15 @@ def getCmdOutput = { cmd ->
 def getGitHash = { -> return getCmdOutput(["git", "rev-parse", "--short", "HEAD"]) }
 def getGitBranch = { -> return getCmdOutput(["git", "rev-parse", "--abbrev-ref", "HEAD"]) }
 
-def fileProviderAuthority = "com.beemdevelopment.aegis.fileprovider"
+def packageName = "com.beemdevelopment.aegis"
+def fileProviderAuthority = "${packageName}.fileprovider"
+def fileProviderAuthorityDebug = "${packageName}.debug.fileprovider"
 
 android {
     compileSdkVersion 30
 
     defaultConfig {
-        applicationId "com.beemdevelopment.aegis"
+        applicationId "${packageName}"
         minSdkVersion 21
         targetSdkVersion 30
         versionCode 41
@@ -27,8 +29,6 @@ android {
         multiDexEnabled true
         buildConfigField "String", "GIT_HASH", "\"${getGitHash()}\""
         buildConfigField "String", "GIT_BRANCH", "\"${getGitBranch()}\""
-        buildConfigField("String", "FILE_PROVIDER_AUTHORITY", "\"${fileProviderAuthority}\"")
-        manifestPlaceholders = [fileProviderAuthority: "${fileProviderAuthority}"]
 
         testInstrumentationRunner "com.beemdevelopment.aegis.AegisTestRunner"
         testInstrumentationRunnerArguments clearPackageData: 'true'
@@ -55,7 +55,12 @@ android {
     buildTypes {
         debug {
             applicationIdSuffix ".debug"
-            manifestPlaceholders = [title: "AegisDev", iconName: "ic_launcher_debug"]
+            manifestPlaceholders = [
+                title: "AegisDev",
+                iconName: "ic_launcher_debug",
+                fileProviderAuthority: "${fileProviderAuthorityDebug}"
+            ]
+            buildConfigField("String", "FILE_PROVIDER_AUTHORITY", "\"${fileProviderAuthorityDebug}\"")
             resValue "bool", "pref_secure_screen_default", "false"
             postprocessing {
                 removeUnusedCode true
@@ -66,7 +71,12 @@ android {
             }
         }
         release {
-            manifestPlaceholders = [title: "Aegis", iconName: "ic_launcher"]
+            manifestPlaceholders = [
+                title: "Aegis",
+                iconName: "ic_launcher",
+                fileProviderAuthority: "${fileProviderAuthority}"
+            ]
+            buildConfigField("String", "FILE_PROVIDER_AUTHORITY", "\"${fileProviderAuthority}\"")
             resValue "bool", "pref_secure_screen_default", "true"
             postprocessing {
                 removeUnusedCode true
