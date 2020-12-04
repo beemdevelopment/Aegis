@@ -9,8 +9,10 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.documentfile.provider.DocumentFile;
 
+import com.beemdevelopment.aegis.Preferences;
 import com.beemdevelopment.aegis.util.IOUtils;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -25,6 +27,8 @@ import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class VaultBackupManager {
     private static final String TAG = VaultBackupManager.class.getSimpleName();
@@ -34,42 +38,67 @@ public class VaultBackupManager {
 
     public static final String FILENAME_PREFIX = "aegis-backup";
 
-    private Context _context;
+    private final Context _context;
+    private final Preferences _prefs;
+    private final ExecutorService _executor;
 
     public VaultBackupManager(Context context) {
         _context = context;
+        _prefs = new Preferences(context);
+        _executor = Executors.newSingleThreadExecutor();
     }
 
-    public void create(Uri dirUri, int versionsToKeep) throws VaultManagerException {
+    public void destroy() {
+        Log.i(TAG, "Shutting down backup manager thread");
+        _executor.shutdown();
+    }
+
+    public void scheduleBackup(File tempFile, Uri dirUri, int versionsToKeep) {
+        _executor.execute(() -> {
+            try {
+                createBackup(tempFile, dirUri, versionsToKeep);
+                _prefs.setBackupsError(null);
+            } catch (VaultManagerException e) {
+                e.printStackTrace();
+                _prefs.setBackupsError(e);
+            }
+        });
+    }
+
+    private void createBackup(File tempFile, Uri dirUri, int versionsToKeep) throws VaultManagerException {
         FileInfo fileInfo = new FileInfo(FILENAME_PREFIX);
         DocumentFile dir = DocumentFile.fromTreeUri(_context, dirUri);
 
-        Log.i(TAG, String.format("Creating backup at %s: %s", Uri.decode(dir.getUri().toString()), fileInfo.toString()));
+        try {
+            Log.i(TAG, String.format("Creating backup at %s: %s", Uri.decode(dir.getUri().toString()), fileInfo.toString()));
 
-        if (!hasPermissionsAt(dirUri)) {
-            Log.e(TAG, "Unable to create file for backup, no persisted URI permissions");
-            throw new VaultManagerException("No persisted URI permissions");
-        }
+            if (!hasPermissionsAt(dirUri)) {
+                throw new VaultManagerException("No persisted URI permissions");
+            }
 
-        // If we create a file with a name that already exists, SAF will append a number
-        // to the filename and write to that instead. We can't overwrite existing files, so
-        // just avoid that altogether by checking beforehand.
-        if (dir.findFile(fileInfo.toString()) != null) {
-            throw new VaultManagerException("Backup file already exists");
-        }
+            // If we create a file with a name that already exists, SAF will append a number
+            // to the filename and write to that instead. We can't overwrite existing files, so
+            // just avoid that altogether by checking beforehand.
+            if (dir.findFile(fileInfo.toString()) != null) {
+                throw new VaultManagerException("Backup file already exists");
+            }
 
-        DocumentFile file = dir.createFile("application/json", fileInfo.toString());
-        if (file == null) {
-            Log.e(TAG, "Unable to create file for backup, createFile returned null");
-            throw new VaultManagerException("createFile returned null");
-        }
+            DocumentFile file = dir.createFile("application/json", fileInfo.toString());
+            if (file == null) {
+                throw new VaultManagerException("createFile returned null");
+            }
 
-        try (FileInputStream inStream = _context.openFileInput(VaultManager.FILENAME);
-             OutputStream outStream = _context.getContentResolver().openOutputStream(file.getUri())) {
-            IOUtils.copy(inStream, outStream);
-        } catch (IOException e) {
-            Log.e(TAG, "Unable to create backup", e);
-            throw new VaultManagerException(e);
+            try (FileInputStream inStream = new FileInputStream(tempFile);
+                 OutputStream outStream = _context.getContentResolver().openOutputStream(file.getUri())) {
+                IOUtils.copy(inStream, outStream);
+            } catch (IOException e) {
+                throw new VaultManagerException(e);
+            }
+        } catch (VaultManagerException e) {
+            Log.e(TAG, String.format("Unable to create backup: %s", e.toString()));
+            throw e;
+        } finally {
+            tempFile.delete();
         }
 
         enforceVersioning(dir, versionsToKeep);
@@ -88,22 +117,20 @@ public class VaultBackupManager {
     private void enforceVersioning(DocumentFile dir, int versionsToKeep) {
         Log.i(TAG, String.format("Scanning directory %s for backup files", Uri.decode(dir.getUri().toString())));
 
-        List<File> files = new ArrayList<>();
+        List<BackupFile> files = new ArrayList<>();
         for (DocumentFile docFile : dir.listFiles()) {
             if (docFile.isFile() && !docFile.isVirtual()) {
                 try {
-                    files.add(new File(docFile));
+                    files.add(new BackupFile(docFile));
                 } catch (ParseException ignored) { }
             }
         }
 
-        Collections.sort(files, new FileComparator());
-        for (File file : files) {
-            Log.i(TAG, file.getFile().getName());
-        }
+        Log.i(TAG, String.format("Found %d backup files, keeping the %d most recent", files.size(), versionsToKeep));
 
+        Collections.sort(files, new FileComparator());
         if (files.size() > versionsToKeep) {
-            for (File file : files.subList(0, files.size() - versionsToKeep)) {
+            for (BackupFile file : files.subList(0, files.size() - versionsToKeep)) {
                 Log.i(TAG, String.format("Deleting %s", file.getFile().getName()));
                 if (!file.getFile().delete()) {
                     Log.e(TAG, String.format("Unable to delete %s", file.getFile().getName()));
@@ -188,11 +215,11 @@ public class VaultBackupManager {
         }
     }
 
-    private static class File {
+    private static class BackupFile {
         private DocumentFile _file;
         private FileInfo _info;
 
-        public File(DocumentFile file) throws ParseException {
+        public BackupFile(DocumentFile file) throws ParseException {
             _file = file;
             _info = FileInfo.parseFilename(file.getName());
         }
@@ -206,9 +233,9 @@ public class VaultBackupManager {
         }
     }
 
-    private static class FileComparator implements Comparator<File> {
+    private static class FileComparator implements Comparator<BackupFile> {
         @Override
-        public int compare(File o1, File o2) {
+        public int compare(BackupFile o1, BackupFile o2) {
             return o1.getInfo().getDate().compareTo(o2.getInfo().getDate());
         }
     }

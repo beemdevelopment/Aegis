@@ -6,12 +6,14 @@ import androidx.core.util.AtomicFile;
 
 import com.beemdevelopment.aegis.Preferences;
 import com.beemdevelopment.aegis.otp.GoogleAuthInfo;
+import com.beemdevelopment.aegis.util.IOUtils;
 
 import org.json.JSONObject;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintStream;
 import java.nio.charset.StandardCharsets;
@@ -45,19 +47,21 @@ public class VaultManager {
         this(context, vault, null);
     }
 
+    private static AtomicFile getAtomicFile(Context context) {
+        return new AtomicFile(new File(context.getFilesDir(), FILENAME));
+    }
+
     public static boolean fileExists(Context context) {
-        File file = new File(context.getFilesDir(), FILENAME);
+        File file = getAtomicFile(context).getBaseFile();
         return file.exists() && file.isFile();
     }
 
     public static void deleteFile(Context context) {
-        AtomicFile file = new AtomicFile(new File(context.getFilesDir(), FILENAME));
-
-        file.delete();
+        getAtomicFile(context).delete();
     }
 
     public static VaultFile readFile(Context context) throws VaultManagerException {
-        AtomicFile file = new AtomicFile(new File(context.getFilesDir(), FILENAME));
+        AtomicFile file = getAtomicFile(context);
 
         try {
             byte[] fileBytes = file.readFully();
@@ -91,7 +95,7 @@ public class VaultManager {
 
     public static void save(Context context, VaultFile vaultFile) throws VaultManagerException {
         byte[] bytes = vaultFile.toBytes();
-        AtomicFile file = new AtomicFile(new File(context.getFilesDir(), FILENAME));
+        AtomicFile file = getAtomicFile(context);
 
         FileOutputStream stream = null;
         try {
@@ -104,6 +108,10 @@ public class VaultManager {
             }
             throw new VaultManagerException(e);
         }
+    }
+
+    public void destroy() {
+        _backups.destroy();
     }
 
     public void save(boolean backup) throws VaultManagerException {
@@ -176,7 +184,22 @@ public class VaultManager {
     }
 
     public void backup() throws VaultManagerException {
-        _backups.create(_prefs.getBackupsLocation(), _prefs.getBackupsVersionCount());
+        try {
+            File dir = new File(_context.getCacheDir(), "backup");
+            if (!dir.exists() && !dir.mkdir()) {
+                throw new IOException(String.format("Unable to create directory %s", dir));
+            }
+
+            File tempFile = File.createTempFile(VaultBackupManager.FILENAME_PREFIX, ".json", dir);
+            try (InputStream inStream = getAtomicFile(_context).openRead();
+                OutputStream outStream = new FileOutputStream(tempFile)) {
+                IOUtils.copy(inStream, outStream);
+            }
+
+            _backups.scheduleBackup(tempFile, _prefs.getBackupsLocation(), _prefs.getBackupsVersionCount());
+        } catch (IOException e) {
+            throw new VaultManagerException(e);
+        }
     }
 
     public void addEntry(VaultEntry entry) {
