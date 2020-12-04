@@ -31,6 +31,34 @@
     </head>
     <body>
         <div></div>
+        <h3>Version 1.4</h3>
+        <h4>New</h4>
+        <ul>
+            <li>Optionally delete the vault if a panic trigger is received from Ripple</li>
+            <li>More customizable auto-lock</li>
+            <li>More flexible export options
+                <ul>
+                    <li>Share mechanism</li>
+                    <li>Offer to encrypt even if this feature is disabled in the app</li>
+                    <li>Export to a Google Authenticator URI file</li>
+                </ul>
+            </li>
+            <li>Perform exports/backups on a background thread (automatic backups now work with Nextcloud)</li>
+            <li>Color improvements to the dark theme (slightly darker)</li>
+            <li>Offer more locations to select an image/icon from</li>
+            <li>Display some helpful information when importing from a different app</li>
+            <li>Minimum tap to reveal timeout changed to 1 second</li>
+            <li>After an entry is added, scroll to it and highlight it</li>
+            <li>Updated translations, and new translations for: Basque, Chinese Traditional, Hindi, Indonesian, Japanese, Persian, Romanian, Slovak</li>
+        </ul>
+        <h4>Fixes</h4>
+        <ul>
+            <li>Scanning large images for QR codes would fail</li>
+            <li>The FAB would remain hidden under certain circumstances</li>
+            <li>The app would crash if an entry was added to the vault twice due to an IO error</li>
+            <li>The app would crash if the device was rotated while a progress dialog was shown</li>
+            <li>The PIN keyboard would show even if a new non-digit password was set</li>
+        </ul>
         <h3>Version 1.3</h3>
         <h4>New</h4>
         <ul>
