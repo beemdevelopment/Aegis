@@ -48,12 +48,19 @@
     <string name="pref_tap_to_reveal_summary">سيتم اخفاء الرموز افتراضيًا. انقر على الرموز لكشف الكود.</string>
     <string name="pref_tap_to_reveal_time_title">مهلة النقر للكشف</string>
     <string name="pref_auto_lock_title">القفل التلقائي</string>
+    <string name="pref_auto_lock_summary_disabled">معطَّل</string>
+    <string name="pref_auto_lock_prompt">قفل Aegis تلقائيًا عند</string>
+    <string name="pref_auto_lock_type_back_button">ضغط زر الرجوع</string>
+    <string name="pref_auto_lock_type_minimize">تصغير التطبيق</string>
+    <string name="pref_auto_lock_type_device_lock">قفل الجهاز</string>
     <string name="pref_encryption_title">التشفير</string>
     <string name="pref_encryption_summary">قم بتشفير المخزن وفك قفله بكملة مرور أو مصادقة بيومترية</string>
     <string name="pref_biometrics_title">فتح القفل البيومتري</string>
     <string name="pref_biometrics_summary">السماح بالمصادقة البيومترية لفتح قفل المخزن</string>
     <string name="pref_set_password_title">تغيير كلمة المرور</string>
     <string name="pref_set_password_summary">تعيين كلمة مرور جديدة، ستحتاجها لفتح قفل المخزن</string>
+    <string name="export_encrypted">تشفير المخزن</string>
+    <string name="export_help">هذا الإجراء سيصدر المخزن خارج ذاكرة تخزين Aegis الداخلية. حدد الصيغة التي ترغب بأن يكون التصدير عليها:</string>
     <string name="choose_authentication_method">الأمان</string>
     <string name="authentication_method_explanation">تطبيق Aegis هو تطبيق مصادقة يركز على الأمان. تخزّن الرموز في مخزن، يمكن تشفيره اختياريًا بكلمة مرور من اختيارك. إذا حصل مهاجم على ملف المخزن المشفر الخاص بك، فإنه لن يتمكن من الوصول إلى المحتوى بدون معرفة كلمة المرور.\n\nلقد حددنا مسبقًا الخيار الذي نعتقد أنه يناسب جهازك.</string>
     <string name="authentication_method_none">بلا</string>
@@ -69,10 +76,11 @@
     <!-- The newline (\n) on the following line is just for aesthetic purposes !-->
     <string name="authentication_multiline">افتح قفل\nالمخزن</string>
     <string name="auth_use_biometrics">أو انقر هنا لاستعمال <font fgcolor="#FF0D86C1">البيومترية</font></string>
-    <string name="set_password">الرجاءإدخال كلمة المرور</string>
+    <string name="set_password">الرجاء إدخال كلمة المرور</string>
     <string name="set_group">الرجاء إدخال اسم المجموعة</string>
     <string name="set_number">الرجاء إدخال رقم</string>
     <string name="set_password_confirm">الرجاء تأكيد كلمة المرور</string>
+    <string name="invalid_password">كلمة المرور غير صحيحة</string>
     <string name="invalidated_biometrics">تم كشف تغيير في إعدادات أمان جهازك. الرجاء الذهاب إلى \" Aegis -&gt; الإعدادات -&gt; البيومترية \" وأعد تفعيل الفتح البيومتري.</string>
     <string name="password_reminder">لقد مرت فترة طويلة منذ أن أدخلت كلمة مرورك. هل مازلت تتذكرها؟</string>
     <string name="enter_password_authy_message">يبدو أن رموز Authy الخاصة بك مشفرة. الرجاء إغلاق Aegis، وفتح Authy وفتح قفل الرموز بكلمة مرورك. بدلًا من ذلك، Aegis يمكنه أيضًا محاولة فك تشفير رموز Authy الخاصة بك، إذا قمت بإدخال كلمة مرورك أدناه.</string>
@@ -99,7 +107,7 @@
     <string name="password">كلمة المرور</string>
     <string name="confirm_password">تأكيد كلمة المرور</string>
     <string name="show_password">عرض كلمة المرور</string>
-    <string name="new_entry">إدخال جديد</string>
+    <string name="new_entry">مدخل جديد</string>
     <string name="add_new_entry">أضف مدخلات جديدة</string>
     <string name="unlock_vault_error">لم نتمكن من فتح قفل المخزن</string>
     <string name="unlock_vault_error_description">كلمة المرور خاطئة. تأكد من أنك لم تخطئ كتابة كلمة المرور</string>
@@ -159,6 +167,7 @@
     <string name="unlocking_vault">يتم فتح قفل المخزن</string>
     <string name="unlocking_vault_repair">يتم فتح قفل المخزن (يتم التصليح)</string>
     <string name="password_slot_error">يجب أن يكون لديك خانة كلمة مرور واحدة على الأقل</string>
+    <string name="slot_this_device">(هذه الأجهزة)</string>
     <string name="remove_slot">إزالة الخانة</string>
     <string name="remove_slot_description">هل ترغب حقًا في حذف هذه الخانة؟</string>
     <string name="remove_group">إزالة المجموعة</string>
@@ -188,6 +197,9 @@
     <string name="pref_highlight_entry_summary">يسهل تمييز الرموز عن بعضها بتسليط الضوء عليهم عندما يتم النقر عليهم</string>
     <string name="pref_copy_on_tap_title">انسخ الرموز عندما تنُقر</string>
     <string name="pref_copy_on_tap_summary">نسخ الرموز إلى الحافظ عندما يتم النقر عليهم</string>
+    <string name="pin_keyboard_description">أدخل كلمة المرور لتفعيل لوحة مفاتيح PIN. لاحظ أن هذا يعمل فقط إذا كانت كلمة المرور الخاصة بك تتكون فقط من أرقام</string>
+    <string name="pin_keyboard_error">خطأ في تفعيل لوحة مفاتيح PIN</string>
+    <string name="pin_keyboard_error_description">لا يمكن تعيين لوحة مفاتيح PIN. يجب أن تتكون كلمة المرور من أرقام فقط.</string>
     <string name="selected">محددة</string>
     <string name="dark_theme_title">نمط داكن</string>
     <string name="light_theme_title">نمط فاتح</string>
@@ -233,8 +245,8 @@
     <string name="done">تم</string>
     <string name="next">التالي</string>
     <string name="previous">السابق</string>
-    <string name="transfer_entry">نقل الإدخال</string>
-    <string name="transfer_entry_description">امسح كود QR هذا بتطبيق المصادقة الذي ترغب بنقل ذلك الإدخال إليه</string>
+    <string name="transfer_entry">نقل المدخل</string>
+    <string name="transfer_entry_description">امسح كود QR هذا بتطبيق المصادقة الذي ترغب بنقل ذلك المدخل إليه</string>
     <string name="password_strength_very_weak">ضعيف جدًا</string>
     <string name="password_strength_weak">ضعيف</string>
     <string name="password_strength_fair">مقبول</string>

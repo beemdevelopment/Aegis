@@ -35,7 +35,9 @@
     <string-array name="pref_lang_entries">
         <item>System default</item>
         <item>Arabic</item>
-        <item>Chinese Simplified</item>
+        <item>Basque</item>
+        <item>Chinese (Simplified Han, China)</item>
+        <item>Chinese (Traditional Han, Taiwan)</item>
         <item>Czech</item>
         <item>Dutch</item>
         <item>English</item>
@@ -43,13 +45,19 @@
         <item>French</item>
         <item>German</item>
         <item>Greek</item>
+        <item>Hindi</item>
         <item>Hungarian</item>
         <item>Italian</item>
+        <item>Indonesian</item>
+        <item>Japanese</item>
         <item>Kannada</item>
+        <item>Persian</item>
         <item>Polish</item>
         <item>Portuguese</item>
         <item>Portuguese (Brazilian)</item>
+        <item>Romanian</item>
         <item>Russian</item>
+        <item>Slovak</item>
         <item>Spanish</item>
         <item>Turkish</item>
     </string-array>
@@ -57,7 +65,9 @@
     <string-array name="pref_lang_values" translatable="false">
         <item>system</item>
         <item>ar</item>
-        <item>zh</item>
+        <item>eu</item>
+        <item>zh_CN</item>
+        <item>zh_TW</item>
         <item>cs</item>
         <item>nl</item>
         <item>en</item>
@@ -65,13 +75,19 @@
         <item>fr</item>
         <item>de</item>
         <item>el</item>
+        <item>hi</item>
         <item>hu</item>
         <item>it</item>
+        <item>in</item>
+        <item>ja</item>
         <item>kn</item>
+        <item>fa</item>
         <item>pl</item>
         <item>pt</item>
         <item>pt_BR</item>
+        <item>ro</item>
         <item>ru</item>
+        <item>sk</item>
         <item>es</item>
         <item>tr</item>
     </string-array>
