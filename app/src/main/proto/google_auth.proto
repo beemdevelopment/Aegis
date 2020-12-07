@@ -5,14 +5,23 @@ option java_outer_classname = "GoogleAuthProtos";
 
 message MigrationPayload {
   enum Algorithm {
-    ALGO_INVALID = 0;
-    ALGO_SHA1 = 1;
+    ALGORITHM_UNSPECIFIED = 0;
+    ALGORITHM_SHA1 = 1;
+    ALGORITHM_SHA256 = 2;
+    ALGORITHM_SHA512 = 3;
+    ALGORITHM_MD5 = 4;
+  }
+
+  enum DigitCount {
+    DIGIT_COUNT_UNSPECIFIED = 0;
+    DIGIT_COUNT_SIX = 1;
+    DIGIT_COUNT_EIGHT = 2;
   }
 
   enum OtpType {
-    OTP_INVALID = 0;
-    OTP_HOTP = 1;
-    OTP_TOTP = 2;
+    OTP_TYPE_UNSPECIFIED = 0;
+    OTP_TYPE_HOTP = 1;
+    OTP_TYPE_TOTP = 2;
   }
 
   message OtpParameters {
@@ -20,7 +29,7 @@ message MigrationPayload {
     string name = 2;
     string issuer = 3;
     Algorithm algorithm = 4;
-    int32 digits = 5;
+    DigitCount digits = 5;
     OtpType type = 6;
     int64 counter = 7;
   }
