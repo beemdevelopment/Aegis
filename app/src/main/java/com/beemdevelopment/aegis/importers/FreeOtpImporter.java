@@ -115,77 +115,11 @@ public class FreeOtpImporter extends DatabaseImporter {
         }
     }
 
-    private static List<JSONObject> parseXml(XmlPullParser parser)
-            throws IOException, XmlPullParserException, JSONException {
-        List<JSONObject> entries = new ArrayList<>();
-
-        parser.require(XmlPullParser.START_TAG, null, "map");
-        while (parser.next() != XmlPullParser.END_TAG) {
-            if (parser.getEventType() != XmlPullParser.START_TAG) {
-                continue;
-            }
-
-            if (!parser.getName().equals("string")) {
-                skip(parser);
-                continue;
-            }
-
-            JSONObject entry = parseXmlEntry(parser);
-            if (entry != null) {
-                entries.add(entry);
-            }
-        }
-
-        return entries;
-    }
-
     private static byte[] toBytes(JSONArray array) throws JSONException {
         byte[] bytes = new byte[array.length()];
         for (int i = 0; i < array.length(); i++) {
             bytes[i] = (byte)array.getInt(i);
         }
         return bytes;
-    }
-
-    private static JSONObject parseXmlEntry(XmlPullParser parser)
-            throws IOException, XmlPullParserException, JSONException {
-        parser.require(XmlPullParser.START_TAG, null, "string");
-        String name = parser.getAttributeValue(null, "name");
-        String value = parseXmlText(parser);
-        parser.require(XmlPullParser.END_TAG, null, "string");
-
-        if (name.equals("tokenOrder")) {
-            return null;
-        }
-
-        return new JSONObject(value);
-    }
-
-    private static String parseXmlText(XmlPullParser parser) throws IOException, XmlPullParserException {
-        String text = "";
-        if (parser.next() == XmlPullParser.TEXT) {
-            text = parser.getText();
-            parser.nextTag();
-        }
-        return text;
-    }
-
-    private static void skip(XmlPullParser parser) throws IOException, XmlPullParserException {
-        // source: https://developer.android.com/training/basics/network-ops/xml.html
-        if (parser.getEventType() != XmlPullParser.START_TAG) {
-            throw new IllegalStateException();
-        }
-
-        int depth = 1;
-        while (depth != 0) {
-            switch (parser.next()) {
-                case XmlPullParser.END_TAG:
-                    depth--;
-                    break;
-                case XmlPullParser.START_TAG:
-                    depth++;
-                    break;
-            }
-        }
     }
 }

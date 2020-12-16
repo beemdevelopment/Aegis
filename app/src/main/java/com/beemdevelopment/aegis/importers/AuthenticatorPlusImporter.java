@@ -37,31 +37,38 @@ public class AuthenticatorPlusImporter extends DatabaseImporter {
     }
 
     public static class EncryptedState extends DatabaseImporter.State {
-        private byte[] _data;
+        private final byte[] _data;
 
         private EncryptedState(byte[] data) {
             super(true);
             _data = data;
         }
 
+        protected State decrypt(char[] password) throws DatabaseImporterException {
+            try (ByteArrayInputStream inStream = new ByteArrayInputStream(_data);
+                 ZipInputStream zipStream = new ZipInputStream(inStream, password)) {
+                LocalFileHeader header;
+                while ((header = zipStream.getNextEntry()) != null) {
+                    File file = new File(header.getFileName());
+                    if (file.getName().equals(FILENAME)) {
+                        GoogleAuthUriImporter importer = new GoogleAuthUriImporter(null);
+                        return importer.read(zipStream);
+                    }
+                }
+
+                throw new FileNotFoundException(FILENAME);
+            } catch (IOException e) {
+                throw new DatabaseImporterException(e);
+            }
+        }
+
         @Override
         public void decrypt(Context context, DecryptListener listener) {
             Dialogs.showPasswordInputDialog(context, password -> {
-                try (ByteArrayInputStream inStream = new ByteArrayInputStream(_data);
-                     ZipInputStream zipStream = new ZipInputStream(inStream, password)) {
-                    LocalFileHeader header;
-                    while ((header = zipStream.getNextEntry()) != null) {
-                        File file = new File(header.getFileName());
-                        if (file.getName().equals(FILENAME)) {
-                            GoogleAuthUriImporter importer = new GoogleAuthUriImporter(context);
-                            DatabaseImporter.State state = importer.read(zipStream);
-                            listener.onStateDecrypted(state);
-                            return;
-                        }
-                    }
-
-                    throw new FileNotFoundException(FILENAME);
-                } catch (IOException | DatabaseImporterException e) {
+                try {
+                    DatabaseImporter.State state = decrypt(password);
+                    listener.onStateDecrypted(state);
+                } catch (DatabaseImporterException e) {
                     listener.onError(e);
                 }
             });

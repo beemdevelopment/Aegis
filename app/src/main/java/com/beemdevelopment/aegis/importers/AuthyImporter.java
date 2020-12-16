@@ -42,6 +42,7 @@ import javax.crypto.SecretKey;
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.PBEKeySpec;
+import javax.crypto.spec.SecretKeySpec;
 
 public class AuthyImporter extends DatabaseImporter {
     private static final String _subPath = "shared_prefs";
@@ -154,44 +155,53 @@ public class AuthyImporter extends DatabaseImporter {
             _array = array;
         }
 
+        protected DecryptedState decrypt(char[] password) throws DatabaseImporterException {
+            try {
+                for (int i = 0; i < _array.length(); i++) {
+                    JSONObject obj = _array.getJSONObject(i);
+                    String secretString = JsonUtils.optString(obj, "encryptedSecret");
+                    if (secretString == null) {
+                        continue;
+                    }
+
+                    byte[] encryptedSecret = Base64.decode(secretString);
+                    byte[] salt = obj.getString("salt").getBytes(StandardCharsets.UTF_8);
+                    SecretKeyFactory factory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA1");
+                    KeySpec spec = new PBEKeySpec(password, salt, ITERATIONS, KEY_SIZE);
+                    SecretKey key = factory.generateSecret(spec);
+                    key = new SecretKeySpec(key.getEncoded(), "AES");
+
+                    Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
+                    IvParameterSpec ivSpec = new IvParameterSpec(IV);
+                    cipher.init(Cipher.DECRYPT_MODE, key, ivSpec);
+
+                    byte[] secret = cipher.doFinal(encryptedSecret);
+                    obj.remove("encryptedSecret");
+                    obj.remove("salt");
+                    obj.put("decryptedSecret", new String(secret, StandardCharsets.UTF_8));
+                }
+
+                return new DecryptedState(_array);
+            } catch (JSONException
+                    | EncodingException
+                    | NoSuchAlgorithmException
+                    | InvalidKeySpecException
+                    | InvalidAlgorithmParameterException
+                    | InvalidKeyException
+                    | NoSuchPaddingException
+                    | BadPaddingException
+                    | IllegalBlockSizeException e) {
+                throw new DatabaseImporterException(e);
+            }
+        }
+
         @Override
         public void decrypt(Context context, DecryptListener listener) {
             Dialogs.showPasswordInputDialog(context, R.string.enter_password_authy_message, password -> {
                 try {
-                    for (int i = 0; i < _array.length(); i++) {
-                        JSONObject obj = _array.getJSONObject(i);
-                        String secretString = JsonUtils.optString(obj, "encryptedSecret");
-                        if (secretString == null) {
-                            continue;
-                        }
-
-                        byte[] encryptedSecret = Base64.decode(secretString);
-                        byte[] salt = obj.getString("salt").getBytes(StandardCharsets.UTF_8);
-                        SecretKeyFactory factory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA1");
-                        KeySpec spec = new PBEKeySpec(password, salt, ITERATIONS, KEY_SIZE);
-                        SecretKey key = factory.generateSecret(spec);
-
-                        Cipher cipher = Cipher.getInstance("AES/CBC/PKCS7Padding");
-                        IvParameterSpec ivSpec = new IvParameterSpec(IV);
-                        cipher.init(Cipher.DECRYPT_MODE, key, ivSpec);
-
-                        byte[] secret = cipher.doFinal(encryptedSecret);
-                        obj.remove("encryptedSecret");
-                        obj.remove("salt");
-                        obj.put("decryptedSecret", new String(secret, StandardCharsets.UTF_8));
-                    }
-
-                    DecryptedState state = new DecryptedState(_array);
+                    DecryptedState state = decrypt(password);
                     listener.onStateDecrypted(state);
-                } catch (JSONException
-                        | EncodingException
-                        | NoSuchAlgorithmException
-                        | InvalidKeySpecException
-                        | InvalidAlgorithmParameterException
-                        | InvalidKeyException
-                        | NoSuchPaddingException
-                        | BadPaddingException
-                        | IllegalBlockSizeException e) {
+                } catch (DatabaseImporterException e) {
                     listener.onError(e);
                 }
             });
@@ -273,6 +283,10 @@ public class AuthyImporter extends DatabaseImporter {
             } else {
                 info.Issuer = info.Name;
                 info.Name = "";
+            }
+
+            if (info.Name.startsWith(": ")) {
+                info.Name = info.Name.substring(2);
             }
         }
     }

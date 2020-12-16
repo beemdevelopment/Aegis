@@ -51,7 +51,7 @@ public abstract class Slot extends UUIDMap.Value {
     public MasterKey getKey(Cipher cipher) throws SlotException, SlotIntegrityException {
         try {
             CryptResult res = CryptoUtils.decrypt(_encryptedMasterKey, cipher, _encryptedMasterKeyParams);
-            SecretKey key = new SecretKeySpec(res.getData(), CryptoUtils.CRYPTO_AEAD);
+            SecretKey key = new SecretKeySpec(res.getData(), "AES");
             return new MasterKey(key);
         } catch (BadPaddingException e) {
             throw new SlotIntegrityException(e);
@@ -97,6 +97,10 @@ public abstract class Slot extends UUIDMap.Value {
         }
     }
 
+    protected byte[] getEncryptedMasterKey() {
+        return _encryptedMasterKey;
+    }
+
     public JSONObject toJson() {
         try {
             JSONObject obj = new JSONObject();
@@ -130,10 +134,10 @@ public abstract class Slot extends UUIDMap.Value {
                     break;
                 case Slot.TYPE_DERIVED:
                     SCryptParameters scryptParams = new SCryptParameters(
-                        obj.getInt("n"),
-                        obj.getInt("r"),
-                        obj.getInt("p"),
-                        Hex.decode(obj.getString("salt"))
+                            obj.getInt("n"),
+                            obj.getInt("r"),
+                            obj.getInt("p"),
+                            Hex.decode(obj.getString("salt"))
                     );
                     boolean repaired = obj.optBoolean("repaired", false);
                     slot = new PasswordSlot(uuid, key, keyParams, scryptParams, repaired);

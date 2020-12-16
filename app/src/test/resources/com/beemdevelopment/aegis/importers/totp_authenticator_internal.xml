@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='utf-8' standalone='yes' ?>
+<map>
+    <int name="RATE_US_COUNTER" value="13" />
+    <boolean name="SHOWCASE_FIREST_RUN" value="false" />
+    <boolean name="FIRST_ACCOUNT_ADDED_BACKUP" value="true" />
+    <boolean name="SHOULD_SHOW_RATE_US_DIALOG" value="false" />
+    <int name="BLACK_FRIDAY_MODAL" value="13" />
+    <string name="STATIC_TOTP_CODES_LIST">[{&quot;accountHeaderLabel&quot;:&quot;&quot;,&quot;allowNotifications&quot;:false,&quot;base&quot;:16,&quot;digits&quot;:&quot;6&quot;,&quot;fileName&quot;:&quot;&quot;,&quot;iconLabel&quot;:&quot;&quot;,&quot;iconPath&quot;:&quot;&quot;,&quot;isFavorite&quot;:false,&quot;isSelected&quot;:false,&quot;isWidgetActive&quot;:false,&quot;issuer&quot;:&quot;Deno&quot;,&quot;key&quot;:&quot;E49270F0D21F365C8408F8B475C5267C&quot;,&quot;name&quot;:&quot;mason&quot;,&quot;period&quot;:&quot;30&quot;,&quot;setIconFromDrawable&quot;:true,&quot;source&quot;:0,&quot;timeRemaining&quot;:0,&quot;totpCode&quot;:&quot;&quot;,&quot;widgetId&quot;:0},{&quot;accountHeaderLabel&quot;:&quot;&quot;,&quot;allowNotifications&quot;:false,&quot;base&quot;:16,&quot;digits&quot;:&quot;7&quot;,&quot;fileName&quot;:&quot;&quot;,&quot;iconLabel&quot;:&quot;&quot;,&quot;iconPath&quot;:&quot;&quot;,&quot;isFavorite&quot;:false,&quot;isSelected&quot;:false,&quot;isWidgetActive&quot;:false,&quot;issuer&quot;:&quot;SPDX&quot;,&quot;key&quot;:&quot;EB99CB39C67AE042FA866EC4F239CBB5&quot;,&quot;name&quot;:&quot;james&quot;,&quot;period&quot;:&quot;20&quot;,&quot;setIconFromDrawable&quot;:true,&quot;source&quot;:0,&quot;timeRemaining&quot;:0,&quot;totpCode&quot;:&quot;&quot;,&quot;widgetId&quot;:0},{&quot;accountHeaderLabel&quot;:&quot;&quot;,&quot;allowNotifications&quot;:false,&quot;base&quot;:16,&quot;digits&quot;:&quot;8&quot;,&quot;fileName&quot;:&quot;&quot;,&quot;iconLabel&quot;:&quot;&quot;,&quot;iconPath&quot;:&quot;&quot;,&quot;isFavorite&quot;:false,&quot;isSelected&quot;:false,&quot;isWidgetActive&quot;:false,&quot;issuer&quot;:&quot;Airbnb&quot;,&quot;key&quot;:&quot;F91664C8D768853AEDDE5A936C16BA88&quot;,&quot;name&quot;:&quot;elijah&quot;,&quot;period&quot;:&quot;50&quot;,&quot;setIconFromDrawable&quot;:true,&quot;source&quot;:0,&quot;timeRemaining&quot;:0,&quot;totpCode&quot;:&quot;&quot;,&quot;widgetId&quot;:0}]</string>
+    <boolean name="WIDGET_SERVICE_RELOAD_FLAG" value="false" />
+    <boolean name="SCREENSHOT_FLAG" value="true" />
+    <boolean name="ASK_FOR_VERIFICATION" value="true" />
+    <boolean name="FORCE_SYNC_FIRST_TIME_V3" value="false" />
+    <boolean name="NOTIFICATION_SERVICE_RELOAD_FLAG" value="true" />
+    <string name="SET_SCREENSHOT_FLAG">COMPLETED</string>
+    <boolean name="ADD_LABEL" value="true" />
+    <string name="SORT_ACCOUNT_BY">CUSTOM</string>
+    <string name="DEFAULT_ENCRYPTION_KEY">Testtest1</string>
+    <string name="FCM_CLOUD_ID">dU9OMKiERmSSHuXTbuYkkr:APA91bH7yW4Pw-z9QnWYpSWr2Cwrd8aV7OtY-JOTAj0jcar3V_ZvLvFlks37NUV7R2vyl9M47dGAD2iE7ud_IlVgaxo0VWZicY8qKGVT6w-DlrE0Vgre7IX-n69T0bNEykoJpTK_hsmz</string>
+    <int name="CHANGE_LOG_VERSION" value="55" />
+</map>

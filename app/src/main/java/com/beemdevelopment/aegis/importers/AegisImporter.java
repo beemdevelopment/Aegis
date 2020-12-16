@@ -4,11 +4,13 @@ import android.content.Context;
 
 import com.beemdevelopment.aegis.encoding.EncodingException;
 import com.beemdevelopment.aegis.otp.OtpInfoException;
+import com.beemdevelopment.aegis.ui.tasks.PasswordSlotDecryptTask;
 import com.beemdevelopment.aegis.util.IOUtils;
 import com.beemdevelopment.aegis.vault.VaultEntry;
 import com.beemdevelopment.aegis.vault.VaultFile;
 import com.beemdevelopment.aegis.vault.VaultFileCredentials;
 import com.beemdevelopment.aegis.vault.VaultFileException;
+import com.beemdevelopment.aegis.vault.slots.PasswordSlot;
 import com.beemdevelopment.aegis.vault.slots.SlotList;
 import com.topjohnwu.superuser.io.SuFile;
 
@@ -18,6 +20,7 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
 
 public class AegisImporter extends DatabaseImporter {
 
@@ -56,9 +59,22 @@ public class AegisImporter extends DatabaseImporter {
             return _file.getHeader().getSlots();
         }
 
-        public State decrypt(VaultFileCredentials creds) throws VaultFileException {
-            JSONObject obj = _file.getContent(creds);
+        public State decrypt(VaultFileCredentials creds) throws DatabaseImporterException {
+            JSONObject obj;
+            try {
+                obj = _file.getContent(creds);
+            } catch (VaultFileException e) {
+                throw new DatabaseImporterException(e);
+            }
+
             return new DecryptedState(obj);
+        }
+
+        public State decrypt(char[] password) throws DatabaseImporterException {
+            List<PasswordSlot> slots = getSlots().findAll(PasswordSlot.class);
+            PasswordSlotDecryptTask.Result result = PasswordSlotDecryptTask.decrypt(slots, password);
+            VaultFileCredentials creds = new VaultFileCredentials(result.getKey(), getSlots());
+            return decrypt(creds);
         }
 
         @Override

@@ -104,8 +104,8 @@ public class TotpAuthenticatorImporter extends DatabaseImporter {
 
         List<JSONObject> entries = new ArrayList<>();
         for (int i = 0; i < array.length(); ++i) {
-            String s = array.getString(i);
-            entries.add(new JSONObject(s));
+            JSONObject obj = array.getJSONObject(i);
+            entries.add(obj);
         }
 
         return entries;
@@ -119,7 +119,7 @@ public class TotpAuthenticatorImporter extends DatabaseImporter {
             _data = data;
         }
 
-        private DecryptedState decrypt(char[] password) throws DatabaseImporterException {
+        protected DecryptedState decrypt(char[] password) throws DatabaseImporterException {
             try {
                 // WARNING: DON'T DO THIS IN YOUR OWN CODE
                 // this is not a secure way to derive a key from a password
@@ -127,7 +127,7 @@ public class TotpAuthenticatorImporter extends DatabaseImporter {
                 byte[] keyBytes = hash.digest(CryptoUtils.toBytes(password));
                 SecretKey key = new SecretKeySpec(keyBytes, "AES");
 
-                Cipher cipher = Cipher.getInstance("AES/CBC/PKCS7Padding");
+                Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
                 IvParameterSpec spec = new IvParameterSpec(IV);
                 cipher.init(Cipher.DECRYPT_MODE, key, spec);
 

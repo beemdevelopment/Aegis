@@ -1,22 +1,25 @@
-package com.beemdevelopment.aegis;
+package com.beemdevelopment.aegis.util;
 
-import com.beemdevelopment.aegis.util.Cloner;
-import com.beemdevelopment.aegis.util.UUIDMap;
-
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.BeforeEach;
+import org.junit.Before;
+import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.assertSame;
+import static org.junit.Assert.assertThrows;
+import static org.junit.Assert.assertTrue;
 
 public class UUIDMapTest {
     private UUIDMap<Value> _map;
 
-    @BeforeEach
+    @Before
     public void init() {
         _map = new UUIDMap<>();
     }
@@ -87,7 +90,7 @@ public class UUIDMapTest {
         // swap the values and see if the lists are equal now
         _map.swap(value1, value4);
         _map.swap(value2, value3);
-        assertIterableEquals(values, ref);
+        assertArrayEquals(values.toArray(), ref.toArray());
     }
 
     private Value addNewValue() {

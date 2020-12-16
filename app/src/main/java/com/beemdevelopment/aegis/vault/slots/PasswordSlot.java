@@ -70,6 +70,10 @@ public class PasswordSlot extends RawSlot {
         return _repaired;
     }
 
+    public SCryptParameters getSCryptParameters() {
+        return _params;
+    }
+
     @Override
     public byte getType() {
         return TYPE_DERIVED;
