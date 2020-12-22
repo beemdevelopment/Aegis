@@ -353,4 +353,5 @@
     <string name="importer_help_winauth">Supply a WinAuth export file.</string>
 
     <string name="importer_help_direct">Import entries directly from %s. This requires the app to be installed on this device and for root access to be granted to Aegis.</string>
+    <string name="groups">Groups</string>
 </resources>

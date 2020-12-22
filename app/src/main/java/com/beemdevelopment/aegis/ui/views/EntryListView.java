@@ -2,6 +2,7 @@ package com.beemdevelopment.aegis.ui.views;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.res.ColorStateList;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
 import android.view.animation.LayoutAnimationController;
+import android.widget.Button;
 import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
@@ -28,6 +30,7 @@ import com.beemdevelopment.aegis.helpers.MetricsHelper;
 import com.beemdevelopment.aegis.helpers.SimpleItemTouchHelperCallback;
 import com.beemdevelopment.aegis.helpers.UiRefresher;
 import com.beemdevelopment.aegis.otp.TotpInfo;
+import com.beemdevelopment.aegis.ui.Dialogs;
 import com.beemdevelopment.aegis.vault.VaultEntry;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.ListPreloader;
@@ -35,11 +38,17 @@ import com.bumptech.glide.RequestBuilder;
 import com.bumptech.glide.integration.recyclerview.RecyclerViewPreloader;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.util.ViewPreloadSizeProvider;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
+import com.google.android.material.chip.Chip;
+import com.google.android.material.chip.ChipGroup;
 
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import java.util.Locale;
+import java.util.TreeSet;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 public class EntryListView extends Fragment implements EntryAdapter.Listener {
     private EntryAdapter _adapter;
@@ -53,7 +62,10 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
     private TotpProgressBar _progressBar;
     private boolean _showProgress;
     private ViewMode _viewMode;
+    private TreeSet<String> _groups;
     private LinearLayout _emptyStateView;
+    private Chip _groupChip;
+    private List<String> _groupFilter;
 
     private UiRefresher _refresher;
 
@@ -74,6 +86,7 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_entry_list_view, container, false);
         _progressBar = view.findViewById(R.id.progressBar);
+        _groupChip = view.findViewById(R.id.chip_group);
 
         // set up the recycler view
         _recyclerView = view.findViewById(R.id.rvKeyProfiles);
@@ -129,7 +142,7 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
         super.onDestroyView();
     }
 
-    public void setGroupFilter(String group, boolean apply) {
+    public void setGroupFilter(List<String> group, boolean apply) {
         _adapter.setGroupFilter(group, apply);
         _touchCallback.setIsLongPressDragEnabled(_adapter.isDragAndDropAllowed());
 
@@ -339,9 +352,65 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
         _recyclerView.scheduleLayoutAnimation();
     }
 
+    private void initializeGroupChip() {
+        if (_groups.isEmpty()) {
+            _groupChip.setVisibility(View.GONE);
+            return;
+        }
+
+        View view = getLayoutInflater().inflate(R.layout.dialog_select_groups, null);
+        BottomSheetDialog dialog = new BottomSheetDialog(getContext());
+        dialog.setContentView(view);
+
+        ColorStateList colorStateList = ContextCompat.getColorStateList(getContext(), R.color.bg_chip_text_color);
+
+        ChipGroup chipGroup = view.findViewById(R.id.groupChipGroup);
+        String groupChipText = _groupChip.getText().toString();
+        chipGroup.removeAllViews();
+        for (String group : _groups) {
+            Chip chip = new Chip(getContext());
+            chip.setText(group);
+            chip.setCheckable(true);
+            chip.setCheckedIconVisible(false);
+            chip.setChipBackgroundColorResource(R.color.bg_chip_color);
+            chip.setTextColor(colorStateList);
+            chip.setOnCheckedChangeListener((group1, checkedId) -> {
+                List<String> groupFilter = chipGroup.getCheckedChipIds().stream()
+                        .map(i -> ((Chip) view.findViewById(i)).getText().toString())
+                        .collect(Collectors.toList());
+                _groupFilter = groupFilter;
+                setGroupFilter(groupFilter, true);
+
+                if (_groupFilter.isEmpty()) {
+                    _groupChip.setText(groupChipText);
+                } else {
+                    _groupChip.setText(String.format("%s (%d)", getString(R.string.groups), _groupFilter.size()));
+                }
+            });
+
+            chipGroup.addView(chip);
+        }
+
+        Button clearButton = view.findViewById(R.id.btnClear);
+        clearButton.setOnClickListener(v -> {
+            chipGroup.clearCheck();
+            setGroupFilter(null, true);
+            dialog.dismiss();
+        });
+
+        _groupChip.setOnClickListener(v -> {
+            Dialogs.showSecureDialog(dialog);
+        });
+    }
+
     private void setShowProgress(boolean showProgress) {
         _showProgress = showProgress;
         updateDividerDecoration();
+    }
+
+    public void setGroups(TreeSet<String> groups) {
+        _groups = groups;
+        initializeGroupChip();
     }
 
     private void updateDividerDecoration() {
@@ -394,10 +463,6 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
 
         @Override
         public void getItemOffsets(@NonNull Rect outRect, @NonNull View view, @NonNull RecyclerView parent, @NonNull RecyclerView.State state) {
-            if (parent.getChildAdapterPosition(view) == 0) {
-                // the first item should also have a top margin
-                outRect.top = _height;
-            }
             outRect.bottom = _height;
         }
     }
