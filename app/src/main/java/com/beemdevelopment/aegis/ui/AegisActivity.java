@@ -56,6 +56,12 @@ public abstract class AegisActivity extends AppCompatActivity implements AegisAp
     }
 
     @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        _app.setBlockAutoLock(false);
+    }
+
+    @Override
     public void onLocked(boolean userInitiated) {
         setResult(RESULT_CANCELED, null);
         finishAndRemoveTask();
