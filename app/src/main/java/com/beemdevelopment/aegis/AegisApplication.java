@@ -29,6 +29,7 @@ import com.beemdevelopment.aegis.vault.VaultManager;
 import com.beemdevelopment.aegis.vault.VaultManagerException;
 import com.mikepenz.iconics.Iconics;
 import com.mikepenz.material_design_iconic_typeface_library.MaterialDesignIconic;
+import com.topjohnwu.superuser.Shell;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -42,6 +43,11 @@ public class AegisApplication extends Application {
 
     private static final String CODE_LOCK_STATUS_ID = "lock_status_channel";
     private static final String CODE_LOCK_VAULT_ACTION = "lock_vault";
+
+    static {
+        // to access other app's internal storage directory, run libsu commands inside the global mount namespace
+        Shell.Config.setFlags(Shell.FLAG_MOUNT_MASTER);
+    }
 
     @Override
     public void onCreate() {
