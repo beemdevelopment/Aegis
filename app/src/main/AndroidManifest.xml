@@ -97,4 +97,14 @@
         </provider>
     </application>
 
+    <queries>
+        <package android:name="com.authy.authy" />
+        <package android:name="org.fedorahosted.freeotp" />
+        <package android:name="org.liberty.android.freeotpplus" />
+        <package android:name="com.google.android.apps.authenticator2" />
+        <package android:name="com.azure.authenticator" />
+        <package android:name="com.valvesoftware.android.steam.community" />
+        <package android:name="com.authenticator.authservice2" />
+    </queries>
+
 </manifest>
