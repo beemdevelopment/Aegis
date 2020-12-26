@@ -31,6 +31,7 @@ import com.beemdevelopment.aegis.crypto.KeyStoreHandleException;
 import com.beemdevelopment.aegis.crypto.MasterKey;
 import com.beemdevelopment.aegis.helpers.BiometricsHelper;
 import com.beemdevelopment.aegis.helpers.EditTextHelper;
+import com.beemdevelopment.aegis.helpers.MetricsHelper;
 import com.beemdevelopment.aegis.helpers.UiThreadExecutor;
 import com.beemdevelopment.aegis.ui.tasks.PasswordSlotDecryptTask;
 import com.beemdevelopment.aegis.vault.VaultFile;
@@ -231,13 +232,22 @@ public class AuthActivity extends AegisActivity {
 
     private void showPasswordReminder() {
         View popupLayout = getLayoutInflater().inflate(R.layout.popup_password, null);
+        popupLayout.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
+
         PopupWindow popup = new PopupWindow(popupLayout, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         popup.setFocusable(false);
         popup.setOutsideTouchable(true);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
             popup.setElevation(5.0f);
         }
-        _textPassword.post(() -> popup.showAsDropDown(_textPassword));
+        _textPassword.post(() -> {
+            // calculating the actual height of the popup window does not seem possible
+            // adding 25dp seems to look good enough
+            int yoff = _textPassword.getHeight()
+                    + popupLayout.getMeasuredHeight()
+                    + MetricsHelper.convertDpToPixels(this, 25);
+            popup.showAsDropDown(_textPassword, 0, -yoff);
+        });
         _textPassword.postDelayed(popup::dismiss, 5000);
     }
 
