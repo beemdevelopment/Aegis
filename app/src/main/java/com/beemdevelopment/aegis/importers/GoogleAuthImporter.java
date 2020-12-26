@@ -4,8 +4,8 @@ import android.content.Context;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 
-import com.beemdevelopment.aegis.encoding.Base32;
 import com.beemdevelopment.aegis.encoding.EncodingException;
+import com.beemdevelopment.aegis.otp.GoogleAuthInfo;
 import com.beemdevelopment.aegis.otp.HotpInfo;
 import com.beemdevelopment.aegis.otp.OtpInfo;
 import com.beemdevelopment.aegis.otp.OtpInfoException;
@@ -73,7 +73,7 @@ public class GoogleAuthImporter extends DatabaseImporter {
 
         private static VaultEntry convertEntry(Entry entry) throws DatabaseImporterEntryException {
             try {
-                byte[] secret = Base32.decode(entry.getSecret());
+                byte[] secret = GoogleAuthInfo.parseSecret(entry.getSecret());
 
                 OtpInfo info;
                 switch (entry.getType()) {
