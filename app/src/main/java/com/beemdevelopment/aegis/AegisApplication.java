@@ -40,6 +40,7 @@ public class AegisApplication extends Application {
     private VaultManager _manager;
     private Preferences _prefs;
     private List<LockListener> _lockListeners;
+    private boolean _blockAutoLock;
 
     private static final String CODE_LOCK_STATUS_ID = "lock_status_channel";
     private static final String CODE_LOCK_VAULT_ACTION = "lock_vault";
@@ -142,6 +143,15 @@ public class AegisApplication extends Application {
     }
 
     /**
+     * Sets whether to block automatic lock on minimization. This should only be called
+     * by activities before invoking an intent that shows a DocumentsUI, because that
+     * action leads AppLifecycleObserver to believe that the app has been minimized.
+     */
+    public void setBlockAutoLock(boolean block) {
+        _blockAutoLock = block;
+    }
+
+    /**
      * Locks the vault and the app.
      * @param userInitiated whether or not the user initiated the lock in MainActivity.
      */
@@ -195,7 +205,9 @@ public class AegisApplication extends Application {
     private class AppLifecycleObserver implements LifecycleEventObserver {
         @Override
         public void onStateChanged(@NonNull LifecycleOwner source, @NonNull Lifecycle.Event event) {
-            if (event == Lifecycle.Event.ON_STOP && isAutoLockEnabled(Preferences.AUTO_LOCK_ON_MINIMIZE)) {
+            if (event == Lifecycle.Event.ON_STOP
+                    && isAutoLockEnabled(Preferences.AUTO_LOCK_ON_MINIMIZE)
+                    && !_blockAutoLock) {
                 lock(false);
             }
         }

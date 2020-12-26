@@ -87,6 +87,7 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
     private static final int CODE_BACKUPS = 8;
 
     private Intent _result;
+    private AegisApplication _app;
     private Preferences _prefs;
     private VaultManager _vault;
 
@@ -112,9 +113,9 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
         addPreferencesFromResource(R.xml.preferences);
 
-        AegisApplication app = (AegisApplication) getActivity().getApplication();
-        _prefs = app.getPreferences();
-        _vault = app.getVaultManager();
+        _app = (AegisApplication) getActivity().getApplication();
+        _prefs = _app.getPreferences();
+        _vault = _app.getVaultManager();
 
         // set the result intent in advance
         setResult(new Intent());
@@ -190,6 +191,8 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
 
                     Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
                     intent.setType("*/*");
+
+                    _app.setBlockAutoLock(true);
                     startActivityForResult(intent, CODE_IMPORT);
                 });
                 return true;
@@ -282,14 +285,14 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
         });
 
         Preference tapToRevealTimePreference = findPreference("pref_tap_to_reveal_time");
-        tapToRevealTimePreference.setSummary(app.getPreferences().getTapToRevealTime() + " seconds");
+        tapToRevealTimePreference.setSummary(_app.getPreferences().getTapToRevealTime() + " seconds");
         tapToRevealTimePreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
                 Dialogs.showNumberPickerDialog(getActivity(), new Dialogs.NumberInputListener() {
                     @Override
                     public void onNumberInputResult(int number) {
-                        app.getPreferences().setTapToRevealTime(number);
+                        _app.getPreferences().setTapToRevealTime(number);
                         tapToRevealTimePreference.setSummary(number + " seconds");
                         _result.putExtra("needsRefresh", true);
                     }
@@ -735,6 +738,7 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
                         .setType(getExportMimeType(requestCode))
                         .putExtra(Intent.EXTRA_TITLE, fileInfo.toString());
 
+                _app.setBlockAutoLock(true);
                 startActivityForResult(intent, requestCode);
             });
 
@@ -771,6 +775,8 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
                             .setType(getExportMimeType(requestCode))
                             .putExtra(Intent.EXTRA_STREAM, uri);
                     Intent chooser = Intent.createChooser(intent, getString(R.string.pref_export_summary));
+
+                    _app.setBlockAutoLock(true);
                     startActivity(chooser);
                 });
             });
@@ -1014,6 +1020,7 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
                 | Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION
                 | Intent.FLAG_GRANT_PREFIX_URI_PERMISSION);
 
+        _app.setBlockAutoLock(true);
         startActivityForResult(intent, CODE_BACKUPS);
     }
 
