@@ -61,6 +61,10 @@
     <string name="pref_set_password_summary">تعيين كلمة مرور جديدة، ستحتاجها لفتح قفل المخزن</string>
     <string name="export_encrypted">تشفير المخزن</string>
     <string name="export_help">هذا الإجراء سيصدر المخزن خارج ذاكرة تخزين Aegis الداخلية. حدد الصيغة التي ترغب بأن يكون التصدير عليها:</string>
+    <string name="export_warning_unencrypted">أنت على وشك تصدير نسخة غير مشفرة من مخزن Aegis. <b>لا يُنصح بهذا</b>.</string>
+    <string name="export_warning_accept">أنا أتفهم المخاطر</string>
+    <string name="export_format_aegis">Aegis (.JSON)</string>
+    <string name="export_format_google_auth_uri">ملف نصي (.TXT)</string>
     <string name="choose_authentication_method">الأمان</string>
     <string name="authentication_method_explanation">تطبيق Aegis هو تطبيق مصادقة يركز على الأمان. تخزّن الرموز في مخزن، يمكن تشفيره اختياريًا بكلمة مرور من اختيارك. إذا حصل مهاجم على ملف المخزن المشفر الخاص بك، فإنه لن يتمكن من الوصول إلى المحتوى بدون معرفة كلمة المرور.\n\nلقد حددنا مسبقًا الخيار الذي نعتقد أنه يناسب جهازك.</string>
     <string name="authentication_method_none">بلا</string>
@@ -84,6 +88,7 @@
     <string name="invalidated_biometrics">تم كشف تغيير في إعدادات أمان جهازك. الرجاء الذهاب إلى \" Aegis -&gt; الإعدادات -&gt; البيومترية \" وأعد تفعيل الفتح البيومتري.</string>
     <string name="password_reminder">لقد مرت فترة طويلة منذ أن أدخلت كلمة مرورك. هل مازلت تتذكرها؟</string>
     <string name="enter_password_authy_message">يبدو أن رموز Authy الخاصة بك مشفرة. الرجاء إغلاق Aegis، وفتح Authy وفتح قفل الرموز بكلمة مرورك. بدلًا من ذلك، Aegis يمكنه أيضًا محاولة فك تشفير رموز Authy الخاصة بك، إذا قمت بإدخال كلمة مرورك أدناه.</string>
+    <string name="share">شارك</string>
     <string name="yes">نعم</string>
     <string name="no">لا</string>
     <string name="unlock">فتح القفل</string>
@@ -114,6 +119,7 @@
     <string name="password_equality_error">كلمات المرور يجب أن تكون متطابقة وغير فارغة</string>
     <string name="snackbar_authentication_method">الرجاء تحديد طريقة مصادقة</string>
     <string name="encrypting_vault">يتم تشفير المخزن</string>
+    <string name="exporting_vault">يجري تصدير المخزن</string>
     <string name="delete_entry">حذف المدخلات</string>
     <string name="delete_entry_description">هل ترغب حقًا في حذف هذا المدخل؟</string>
     <string name="delete_entries">حذف المدخلات</string>
@@ -142,6 +148,7 @@
     <string name="disable_encryption_description">هل ترغب حقًا في تعطيل التشفير؟ هذا سيؤدي إلى تخزين المخزن كنص عادي.</string>
     <string name="enable_encryption_error">حدث خطأ أثناء تفعيل التشفير</string>
     <string name="disable_encryption_error">حدث خطأ أثناء تعطيل التشفير</string>
+    <string name="backup_successful">تم جدولة النسخ الاحتياطي بنجاح</string>
     <string name="backup_error">حدث خطأ أثناء محاولة عمل نسخة احتياطية</string>
     <string name="permission_denied">طلب الاذن مرفوض</string>
     <string name="andotp_new_format">الصيغة الجديدة (الإصدار v0.6.3 أو أحدث)</string>
@@ -200,6 +207,7 @@
     <string name="pin_keyboard_description">أدخل كلمة المرور لتفعيل لوحة مفاتيح PIN. لاحظ أن هذا يعمل فقط إذا كانت كلمة المرور الخاصة بك تتكون فقط من أرقام</string>
     <string name="pin_keyboard_error">خطأ في تفعيل لوحة مفاتيح PIN</string>
     <string name="pin_keyboard_error_description">لا يمكن تعيين لوحة مفاتيح PIN. يجب أن تتكون كلمة المرور من أرقام فقط.</string>
+    <string name="pin_keyboard_disabled">تغيرت كلمة المرور. لن تُعرض لوحة مفاتيح PIN.</string>
     <string name="selected">محددة</string>
     <string name="dark_theme_title">نمط داكن</string>
     <string name="light_theme_title">نمط فاتح</string>
@@ -240,6 +248,7 @@
     <string name="google_qr_export_unrelated">تم العثور على كود QR لا علاقة له. حاول إعادة تشغيل الماسح.</string>
     <string name="google_qr_export_unexpected">انتظرت كود QR #%d، ولكن مسحت #%d بدلًا منه</string>
     <string name="backup_error_bar_message"><b>النسخ الاحتياطي للمخزن فشل مؤخرًا</b></string>
+    <string name="switch_camera">تبديل الكاميرا</string>
     <string name="empty_list">لا توجد أكواد لعرضها. ابدأ بإضافة مدخلات بالنقر على علامة الزائد في أسفل الركن الأيسر</string>
     <string name="empty_list_title">لم يتم العثور على مدخلات</string>
     <string name="done">تم</string>

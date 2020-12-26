@@ -72,7 +72,7 @@
     <string name="export_format_google_auth_uri">Αρχείο κειμένου (*.TXT)</string>
     <string name="choose_authentication_method">Ασφάλεια</string>
     <string name="authentication_method_explanation">Το Aegis είναι μια εφαρμογή 2FA επικεντρωμένη στην ασφάλεια. Τα αναγνωριστικά αποθηκεύονται σε μία κρύπτη, η οποία μπορεί προαιρετικά να κρυπτογραφηθεί με έναν κωδικό της επιλογής σας. Αν κάποιος εισβολέας αποκτήσει το κρυπτογραφημένο αρχείο της κρύπτης σας, δεν θα έχει πρόσβαση στα περιεχόμενα χωρίς να γνωρίζει τον κωδικό.\n\nΈχουμε προεπιλέξει την επιλογή που νομίζουμε ότι θα ταιριάζει καλύτερα στη συσκευή σας.</string>
-    <string name="authentication_method_none">Κανένας</string>
+    <string name="authentication_method_none">Καμία</string>
     <string name="authentication_method_none_description">Δεν απαιτείται κωδικός πρόσβασης για να ξεκλειδώσετε την κρύπτη και δεν θα κρυπτογραφηθεί. <b> Αυτή η επιλογή δεν συνιστάται </b>.</string>
     <string name="authentication_method_password">Κωδικός πρόσβασης</string>
     <string name="authentication_method_password_description">Απαιτείται κωδικός πρόσβασης για να ξεκλειδώσετε την κρύπτη.</string>
@@ -84,7 +84,7 @@
     <string name="authentication">Ξεκλείδωμα της κρύπτης</string>
     <!-- The newline (\n) on the following line is just for aesthetic purposes !-->
     <string name="authentication_multiline">Ξεκλείδωμα\nτης κρύπτης</string>
-    <string name="auth_use_biometrics">Ή πατήστε εδώ για να χρησιμοποιήσετε <font fgcolor="#FF0D86C1">βιομετρική</font></string>
+    <string name="auth_use_biometrics">Ή πατήστε εδώ για να χρησιμοποιήσετε <font fgcolor="#FF0D86C1">βιομετρία</font></string>
     <string name="set_password">Παρακαλώ εισάγετε έναν κωδικό πρόσβασης</string>
     <string name="set_group">Παρακαλώ εισάγετε όνομα ομάδας</string>
     <string name="set_number">Παρακαλώ εισάγετε αριθμό</string>

@@ -124,6 +124,7 @@
     <string name="password_equality_error">As senhas devem ser idênticas e não vazias</string>
     <string name="snackbar_authentication_method">Por favor, selecione um método de autenticação</string>
     <string name="encrypting_vault">Criptografando o cofre</string>
+    <string name="exporting_vault">Exportando o cofre</string>
     <string name="delete_entry">Excluir entrada</string>
     <string name="delete_entry_description">Tem a certeza de que quer excluir esta entrada?</string>
     <string name="delete_entries">Excluir entradas</string>
@@ -156,6 +157,7 @@
     <string name="disable_encryption_description">Tem certeza que deseja desativar a criptografia? Isso fará com que o cofre seja armazenado em um arquivo inseguro.</string>
     <string name="enable_encryption_error">Ocorreu um erro ao ativar a criptografia</string>
     <string name="disable_encryption_error">Ocorreu um erro ao desativar a criptografia</string>
+    <string name="backup_successful">O backup foi agendado com sucesso</string>
     <string name="backup_error">Ocorreu um erro ao tentar criar um backup</string>
     <string name="permission_denied">Permissão negada</string>
     <string name="andotp_new_format">Novo formato (v0.6.3 ou mais recente) </string>
