@@ -216,13 +216,46 @@ public class GoogleAuthInfo implements Serializable {
         for (GoogleAuthProtos.MigrationPayload.OtpParameters params : payload.getOtpParametersList()) {
             OtpInfo otp;
             try {
+                int digits;
+                switch (params.getDigits()) {
+                    case DIGIT_COUNT_UNSPECIFIED:
+                        // intentional fallthrough
+                    case DIGIT_COUNT_SIX:
+                        digits = 6;
+                        break;
+                    case DIGIT_COUNT_EIGHT:
+                        digits = 8;
+                        break;
+                    default:
+                        throw new GoogleAuthInfoException(String.format("Unsupported digits: %d", params.getDigits().ordinal()));
+                }
+
+                String algo;
+                switch (params.getAlgorithm()) {
+                    case ALGORITHM_UNSPECIFIED:
+                        // intentional fallthrough
+                    case ALGORITHM_SHA1:
+                        algo = "SHA1";
+                        break;
+                    case ALGORITHM_SHA256:
+                        algo = "SHA256";
+                        break;
+                    case ALGORITHM_SHA512:
+                        algo = "SHA512";
+                        break;
+                    default:
+                        throw new GoogleAuthInfoException(String.format("Unsupported hash algorithm: %d", params.getAlgorithm().ordinal()));
+                }
+
                 byte[] secret = params.getSecret().toByteArray();
                 switch (params.getType()) {
-                    case OTP_HOTP:
-                        otp = new HotpInfo(secret, params.getCounter());
+                    case OTP_TYPE_UNSPECIFIED:
+                        // intentional fallthrough
+                    case OTP_TYPE_TOTP:
+                        otp = new TotpInfo(secret, algo, digits, 30);
                         break;
-                    case OTP_TOTP:
-                        otp = new TotpInfo(secret);
+                    case OTP_TYPE_HOTP:
+                        otp = new HotpInfo(secret, algo, digits, params.getCounter());
                         break;
                     default:
                         throw new GoogleAuthInfoException(String.format("Unsupported algorithm: %d", params.getType().ordinal()));
