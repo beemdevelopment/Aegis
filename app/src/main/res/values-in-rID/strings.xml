@@ -206,8 +206,6 @@
     <string name="group_name_hint">Nama kelompok</string>
     <string name="preference_manage_groups">Ubah kelompok</string>
     <string name="preference_manage_groups_summary">Kelola dan hapus kelompok Anda di sini</string>
-    <string name="pref_search_name_title">Cari berdasarkan nama akun</string>
-    <string name="pref_search_name_summary">Sertakan nama akun yang cocok di hasil pencarian</string>
     <string name="pref_highlight_entry_title">Sorot token saat disentuh</string>
     <string name="pref_highlight_entry_summary">Jadikan token untuk lebih mudah dibedakan satu sama lain dengan menyorotnya saat disentuh</string>
     <string name="pref_copy_on_tap_title">Salin token saat disentuh</string>

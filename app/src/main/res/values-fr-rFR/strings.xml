@@ -211,8 +211,6 @@
     <string name="group_name_hint">Nom de groupe</string>
     <string name="preference_manage_groups">Modifier les groupes</string>
     <string name="preference_manage_groups_summary">Gérez et supprimez vos groupes ici</string>
-    <string name="pref_search_name_title">Rechercher dans les noms de comptes</string>
-    <string name="pref_search_name_summary">Inclure les correspondances de noms de comptes dans les résultats de recherche</string>
     <string name="pref_highlight_entry_title">Surligner les jetons lorsqu\'ils sont appuyés</string>
     <string name="pref_highlight_entry_summary">Rendre les jetons plus faciles à distinguer les uns des autres en les surlignant temporairement lorsqu\'ils sont appuyés</string>
     <string name="pref_copy_on_tap_title">Copier les jetons quand ils sont appuyés</string>

@@ -208,8 +208,6 @@
     <string name="group_name_hint">群组名称</string>
     <string name="preference_manage_groups">编辑群组</string>
     <string name="preference_manage_groups_summary">管理和删除您的群组</string>
-    <string name="pref_search_name_title">在帐户名称中搜索</string>
-    <string name="pref_search_name_summary">在搜索结果中包含匹配的帐户名称</string>
     <string name="pref_highlight_entry_title">点击时高亮令牌</string>
     <string name="pref_highlight_entry_summary">使令牌在点击后暂时高亮显示以便区分</string>
     <string name="pref_copy_on_tap_title">点击时复制令牌</string>

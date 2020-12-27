@@ -199,8 +199,6 @@
     <string name="group_name_hint">群組名稱</string>
     <string name="preference_manage_groups">編輯群組</string>
     <string name="preference_manage_groups_summary">管理和移除您的群組</string>
-    <string name="pref_search_name_title">在帳戶名稱中搜索</string>
-    <string name="pref_search_name_summary">在搜索結果中包含匹配的帳戶名稱</string>
     <string name="pref_highlight_entry_title">點擊時高亮令牌</string>
     <string name="pref_highlight_entry_summary">使令牌在點擊後暫時高亮顯示以便區分</string>
     <string name="pref_copy_on_tap_title">點擊時復制令牌</string>

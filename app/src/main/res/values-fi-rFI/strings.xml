@@ -207,8 +207,6 @@
     <string name="group_name_hint">Ryhmän nimi</string>
     <string name="preference_manage_groups">Muokkaa ryhmiä</string>
     <string name="preference_manage_groups_summary">Hallitse ja poista ryhmiäsi täällä</string>
-    <string name="pref_search_name_title">Hae tilien nimistä</string>
-    <string name="pref_search_name_summary">Sisällytä vastaavat tilinimet hakutuloksiin</string>
     <string name="pref_highlight_entry_title">Korosta tokenit napauttamalla</string>
     <string name="pref_highlight_entry_summary">Tee tokeneista helpompi erottaa toisistaan korostamalla niitä väliaikaisesti napauttamalla</string>
     <string name="pref_copy_on_tap_title">Kopioi tokenit napauttamalla</string>

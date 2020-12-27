@@ -217,8 +217,6 @@
     <string name="group_name_hint">Название группы</string>
     <string name="preference_manage_groups">Редактировать группы</string>
     <string name="preference_manage_groups_summary">Редактирование и удаление ваших групп</string>
-    <string name="pref_search_name_title">Искать среди имён аккаунтов</string>
-    <string name="pref_search_name_summary">Включить совпадения имён учётных записей в результаты поиска</string>
     <string name="pref_highlight_entry_title">Выделять токены при нажатии</string>
     <string name="pref_highlight_entry_summary">Сделать токены более легко-различимыми, временно выделяя их при нажатии</string>
     <string name="pref_copy_on_tap_title">Копировать токены при нажатии</string>

@@ -192,8 +192,6 @@
     <string name="group_name_hint">Nombre del grupo</string>
     <string name="preference_manage_groups">Editar grupos</string>
     <string name="preference_manage_groups_summary">Gestione y elimine sus grupos aquí</string>
-    <string name="pref_search_name_title">Buscar en los nombres de cuenta</string>
-    <string name="pref_search_name_summary">Incluir coincidencias del nombre de la cuenta en los resultados de búsqueda</string>
     <string name="pref_highlight_entry_title">Resaltar tokens al pulsarlos</string>
     <string name="pref_highlight_entry_summary">Hace que los tokens sean más fáciles de distinguir entre ellos resaltándolos temporalmente tras ser pulsados</string>
     <string name="pref_copy_on_tap_title">Copiar tokens al pulsarlos</string>

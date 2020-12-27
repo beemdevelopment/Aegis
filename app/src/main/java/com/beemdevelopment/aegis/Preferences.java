@@ -37,10 +37,6 @@ public class Preferences {
         return _prefs.getBoolean("pref_tap_to_reveal", false);
     }
 
-    public boolean isSearchAccountNameEnabled() {
-        return _prefs.getBoolean("pref_search_names", false);
-    }
-
     public boolean isEntryHighlightEnabled() {
         return _prefs.getBoolean("pref_highlight_entry", false);
     }
