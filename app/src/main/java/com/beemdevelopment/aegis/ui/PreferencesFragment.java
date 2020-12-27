@@ -191,8 +191,6 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
 
                     Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
                     intent.setType("*/*");
-
-                    _app.setBlockAutoLock(true);
                     startActivityForResult(intent, CODE_IMPORT);
                 });
                 return true;
@@ -737,8 +735,6 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
                         .addCategory(Intent.CATEGORY_OPENABLE)
                         .setType(getExportMimeType(requestCode))
                         .putExtra(Intent.EXTRA_TITLE, fileInfo.toString());
-
-                _app.setBlockAutoLock(true);
                 startActivityForResult(intent, requestCode);
             });
 
@@ -775,8 +771,6 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
                             .setType(getExportMimeType(requestCode))
                             .putExtra(Intent.EXTRA_STREAM, uri);
                     Intent chooser = Intent.createChooser(intent, getString(R.string.pref_export_summary));
-
-                    _app.setBlockAutoLock(true);
                     startActivity(chooser);
                 });
             });
@@ -1019,8 +1013,6 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
                 | Intent.FLAG_GRANT_WRITE_URI_PERMISSION
                 | Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION
                 | Intent.FLAG_GRANT_PREFIX_URI_PERMISSION);
-
-        _app.setBlockAutoLock(true);
         startActivityForResult(intent, CODE_BACKUPS);
     }
 

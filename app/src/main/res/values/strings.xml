@@ -168,6 +168,7 @@
     <string name="disable_encryption_error">An error occurred while disabling encryption</string>
     <string name="backup_successful">The backup was scheduled successfully</string>
     <string name="backup_error">An error occurred while trying to create a backup</string>
+    <string name="documentsui_error">DocumentsUI appears to be missing from your device. This is an important system component necessary for the selection and creation of documents. If you used a tool to &quot;debloat&quot; your device, you may have accidentally deleted it and will have to reinstall it.</string>
     <string name="permission_denied">Permission denied</string>
     <string name="andotp_new_format">New format (v0.6.3 or newer) </string>
     <string name="andotp_old_format">Old format (v0.6.2 or older) </string>
