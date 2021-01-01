@@ -96,7 +96,7 @@ __On your PC__:
 
     ```
     adb logcat -c
-    adb logcat -f debug.log
+    adb logcat > debug.log
     ```
 
     The logcat command captures the full system log by default, which may expose
@@ -106,8 +106,9 @@ __On your PC__:
     one below:
 
     ```sh
-    adb logcat --pid=$(adb shell pidof -s com.beemdevelopment.aegis) -f debug.log
+    adb logcat --pid=$(adb shell pidof -s com.beemdevelopment.aegis) > debug.log
     ```
+
     _If you are using a debug APK, replace ``com.beemdevelopment.aegis`` with
    ``com.beemdevelopment.aegis.debug``._
 
