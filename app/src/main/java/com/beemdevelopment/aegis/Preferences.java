@@ -164,6 +164,14 @@ public class Preferences {
         return new Locale(parts[0], parts[1]);
     }
 
+    public boolean isAndroidBackupsEnabled() {
+        return _prefs.getBoolean("pref_android_backups", false);
+    }
+
+    public void setIsAndroidBackupsEnabled(boolean enabled) {
+        _prefs.edit().putBoolean("pref_android_backups", enabled).apply();
+    }
+
     public boolean isBackupsEnabled() {
         return _prefs.getBoolean("pref_backups", false);
     }

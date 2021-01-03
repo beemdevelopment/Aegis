@@ -1,5 +1,6 @@
 package com.beemdevelopment.aegis.vault;
 
+import android.app.backup.BackupManager;
 import android.content.Context;
 
 import androidx.core.util.AtomicFile;
@@ -10,6 +11,7 @@ import com.beemdevelopment.aegis.util.IOUtils;
 
 import org.json.JSONObject;
 
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -34,11 +36,13 @@ public class VaultManager {
     private Context _context;
     private Preferences _prefs;
     private VaultBackupManager _backups;
+    private BackupManager _androidBackups;
 
     public VaultManager(Context context, Vault vault, VaultFileCredentials creds) {
         _context = context;
         _prefs = new Preferences(context);
         _backups = new VaultBackupManager(context);
+        _androidBackups = new BackupManager(context);
         _vault = vault;
         _creds = creds;
     }
@@ -47,7 +51,7 @@ public class VaultManager {
         this(context, vault, null);
     }
 
-    private static AtomicFile getAtomicFile(Context context) {
+    public static AtomicFile getAtomicFile(Context context) {
         return new AtomicFile(new File(context.getFilesDir(), FILENAME));
     }
 
@@ -60,7 +64,7 @@ public class VaultManager {
         getAtomicFile(context).delete();
     }
 
-    public static VaultFile readFile(Context context) throws VaultManagerException {
+    public static VaultFile readVaultFile(Context context) throws VaultManagerException {
         AtomicFile file = getAtomicFile(context);
 
         try {
@@ -68,6 +72,22 @@ public class VaultManager {
             return VaultFile.fromBytes(fileBytes);
         } catch (IOException | VaultFileException e) {
             throw new VaultManagerException(e);
+        }
+    }
+
+    public static void writeToFile(Context context, InputStream inStream) throws IOException {
+        AtomicFile file = VaultManager.getAtomicFile(context);
+
+        FileOutputStream outStream = null;
+        try {
+            outStream = file.startWrite();
+            IOUtils.copy(inStream, outStream);
+            file.finishWrite(outStream);
+        } catch (IOException e) {
+            if (outStream != null) {
+                file.failWrite(outStream);
+            }
+            throw e;
         }
     }
 
@@ -94,18 +114,10 @@ public class VaultManager {
     }
 
     public static void save(Context context, VaultFile vaultFile) throws VaultManagerException {
-        byte[] bytes = vaultFile.toBytes();
-        AtomicFile file = getAtomicFile(context);
-
-        FileOutputStream stream = null;
         try {
-            stream = file.startWrite();
-            stream.write(bytes);
-            file.finishWrite(stream);
+            byte[] bytes = vaultFile.toBytes();
+            writeToFile(context, new ByteArrayInputStream(bytes));
         } catch (IOException e) {
-            if (stream != null) {
-                file.failWrite(stream);
-            }
             throw new VaultManagerException(e);
         }
     }
@@ -130,12 +142,18 @@ public class VaultManager {
             throw new VaultManagerException(e);
         }
 
-        if (backup && _prefs.isBackupsEnabled()) {
-            try {
-                backup();
-                _prefs.setBackupsError(null);
-            } catch (VaultManagerException e) {
-                _prefs.setBackupsError(e);
+        if (backup) {
+            if (_prefs.isBackupsEnabled()) {
+                try {
+                    backup();
+                    _prefs.setBackupsError(null);
+                } catch (VaultManagerException e) {
+                    _prefs.setBackupsError(e);
+                }
+            }
+
+            if (_prefs.isAndroidBackupsEnabled()) {
+                androidBackupDataChanged();
             }
         }
     }
@@ -200,6 +218,10 @@ public class VaultManager {
         } catch (IOException e) {
             throw new VaultManagerException(e);
         }
+    }
+
+    public void androidBackupDataChanged() {
+        _androidBackups.dataChanged();
     }
 
     public void addEntry(VaultEntry entry) {

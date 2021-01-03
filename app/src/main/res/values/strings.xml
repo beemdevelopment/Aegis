@@ -33,7 +33,9 @@
     <string name="pref_slots_summary">Manage the list of keys that can decrypt the vault</string>
     <string name="pref_import_file_title">Import from file</string>
     <string name="pref_import_file_summary">Import tokens from a file</string>
-    <string name="pref_backups_title">Backup the vault</string>
+    <string name="pref_android_backups_title">Participate in Android\'s backup system</string>
+    <string name="pref_android_backups_summary">Allow Android\'s backup system to include Aegis\' vault in its backups. This is only supported for encrypted vaults.</string>
+    <string name="pref_backups_title">Automatically back up the vault</string>
     <string name="pref_backups_summary">Automatically create backups of the vault on external storage when changes are made. This is only supported for encrypted vaults.</string>
     <string name="pref_backups_location_title">Directory for backup files</string>
     <string name="pref_backups_location_summary">Backups will be stored at</string>
@@ -163,7 +165,7 @@
     <string name="biometric_decrypt_error">An error occurred while trying to decrypt the vault with biometric authentication. This usually only happens if the security settings of your device were changed. Please unlock the vault with your password and reconfigure biometric authentication in the settings of Aegis.</string>
     <string name="biometric_init_error">An error occurred while trying to prepare biometric authentication. This usually only happens if the security settings of your device were changed. Please unlock the vault with your password and reconfigure biometric authentication in the settings of Aegis.</string>
     <string name="disable_encryption">Disable encryption</string>
-    <string name="disable_encryption_description">Are you sure you want to disable encryption? This will cause the vault to be stored in plain text.</string>
+    <string name="disable_encryption_description">Are you sure you want to disable encryption? This will cause the vault to be stored in plain text. <b>Automatic backups will also be disabled</b>.</string>
     <string name="enable_encryption_error">An error occurred while enabling encryption</string>
     <string name="disable_encryption_error">An error occurred while disabling encryption</string>
     <string name="backup_successful">The backup was scheduled successfully</string>
