@@ -156,7 +156,9 @@ public class ScannerActivity extends AegisActivity implements QrCodeAnalyzer.Lis
             }
         } catch (GoogleAuthInfoException e) {
             e.printStackTrace();
-            Dialogs.showErrorDialog(this, R.string.read_qr_error, e, ((dialog, which) -> bindPreview(_cameraProvider)));
+            Dialogs.showErrorDialog(this,
+                    e.isPhoneFactor() ? R.string.read_qr_error_phonefactor : R.string.read_qr_error,
+                    e, ((dialog, which) -> bindPreview(_cameraProvider)));
             _cameraProvider.unbindAll();
         }
     }
