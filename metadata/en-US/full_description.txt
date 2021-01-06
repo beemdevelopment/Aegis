@@ -16,26 +16,37 @@ To make sure you will never lose access to your online accounts, Aegis Authentic
 To make the switch easier, Aegis Authenticator can import the entries of lots of other authenticators, including: Authenticator Plus, Authy, andOTP, FreeOTP, FreeOTP+, Google Authenticator, Microsoft Authenticator, Steam, TOTP Authenticator and WinAuth (root access is required for the apps that don't have an option to export).
 
 <b>Feature overview</b>
-- Free and open source
-- Secure
-  - Encrypted, can be unlocked with a password or biometrics
-  - Screen capture prevention
-  - Tap to reveal
-- Compatible with Google Authenticator
-- Supports industry standard algorithms: HOTP and TOTP
-- Lots of ways to add new entries
-  - Scan a QR code or an image of one
-  - Enter details manually
-  - Import from other popular authenticator apps
-- Organization
-  - Alphabetic/custom sorting
-  - Custom or automatically generated icons
-  - Group entries together
-  - Advanced entry editing
-  - Search by name/issuer
-- Material design with multiple themes: Light, Dark, AMOLED
-- Export (plaintext or encrypted)
-- Automatic backups of the vault to a location of your choosing
+<ul>
+	<li>Free and open source</li>
+	<li>Secure
+		<ul>
+			<li>Encrypted, can be unlocked with a password or biometrics</li>
+			<li>Screen capture prevention</li>
+			<li>Tap to reveal</li>
+		</ul>
+	</li>
+	<li>Compatible with Google Authenticator</li>
+	<li>Supports industry standard algorithms: HOTP and TOTP</li>
+	<li>Lots of ways to add new entries
+    <ul>
+      <li>Scan a QR code or an image of one</li>
+      <li>Enter details manually</li>
+      <li>Import from other popular authenticator apps</li>
+    </ul>
+	</li>
+	<li>Organization
+    <ul>
+      <li>Alphabetic/custom sorting</li>
+      <li>Custom or automatically generated icons</li>
+      <li>Group entries together</li>
+      <li>Advanced entry editing</li>
+      <li>Search by name/issuer</li>
+    </ul>
+	</li>
+	<li>Material design with multiple themes: Light, Dark, AMOLED</li>
+	<li>Export (plaintext or encrypted)</li>
+	<li>Automatic backups of the vault to a location of your choosing</li>
+</ul>
 
 <b>Open source and license</b>
 Aegis Authenticator is open source (licensed under GPL v3) and the source code can be found here: http://github.com/beemdevelopment/Aegis
