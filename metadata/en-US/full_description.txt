@@ -1,36 +1,41 @@
-Aegis Authenticator is a free, secure and open source app to manage your
-2-step verification tokens for your online services.
-
-<b>Encryption</b>
-All of your one-time passwords are stored in a vault. If you choose
-to set a password, which is highly recommended, the vault will be encrypted
-using AES-256. If someone with malicious intent gets a hold of the vault file,
-it’s impossible for them to retrieve the contents without knowing the password.
-
-<b>Biometric unlock</b>
-Entering your password each time you need access to a
-one-time password can be cumbersome. Fortunately, you can also enable
-biometric unlock if your device has a biometrics sensor.
+Aegis Authenticator is a free, secure and open source app to manage your 2-step verification tokens for your online services.
 
 <b>Compatibility</b>
-Aegis supports the HOTP and TOTP algorithms. These two algorithms are
-industry-standard and widely supported, making Aegis compatible with
-thousands of services. Some examples are: Google, GitHub, Dropbox, Facebook
-and Instagram.
+Aegis supports the HOTP and TOTP algorithms. These two algorithms are industry-standard and widely supported, making Aegis compatible with thousands of services. Any web service that supports Google Authenticator will also work with Aegis Authenticator.
 
-It is also compatible with Google Authenticator. Any website that shows a QR
-code for Google Authenticator also works with Aegis.
+<b>Encryption and biometric unlock</b>
+All of your one-time passwords are stored in a vault. If you choose to set a password (highly recommended), the vault will be encrypted using strong cryptography. If someone with malicious intent gets a hold of the vault file, it’s impossible for them to retrieve the contents without knowing the password. Entering your password each time you need access to a one-time password can be cumbersome. Fortunately, you can also enable biometric unlock if your device has a biometrics sensor (i.e. fingerprint or face unlock).
 
-<b>Groups</b>
-Have a lot of one-time passwords? Add them to custom groups for easier
-access. Personal, Work and Social can each get their own group.
+<b>Organization</b>
+Over time, you'll likely accumulate tens of entries in your vault. Aegis Authenticator has lots of organization options to make finding the one you need at a particular moment easier. Set a custom icon for an entry to make it easier to find. Search by account name or service name. Have a lot of one-time passwords? Add them to custom groups for easier access. Personal, Work and Social can each get their own group.
 
 <b>Backups</b>
-To make sure you will never lose access to your online accounts Aegis
-Authenticator supports exporting your vault which you can import onto a new
-device. Aegis Authenticator also allows you to import AndOTP and FreeOTP
-databases so switching to Aegis is made easier for you.
+To make sure you will never lose access to your online accounts, Aegis Authenticator can create automatic backups of the vault to a location of your choosing. If your cloud provider supports the Storage Access Framework of Android (like Nextcloud does), it can even create automatic backups to the cloud. Creating manual exports of the vault is also supported.
+
+<b>Making the switch</b>
+To make the switch easier, Aegis Authenticator can import the entries of lots of other authenticators, including: Authenticator Plus, Authy, andOTP, FreeOTP, FreeOTP+, Google Authenticator, Microsoft Authenticator, Steam, TOTP Authenticator and WinAuth (root access is required for the apps that don't have an option to export).
+
+<b>Feature overview</b>
+- Free and open source
+- Secure
+  - Encrypted, can be unlocked with a password or biometrics
+  - Screen capture prevention
+  - Tap to reveal
+- Compatible with Google Authenticator
+- Supports industry standard algorithms: HOTP and TOTP
+- Lots of ways to add new entries
+  - Scan a QR code or an image of one
+  - Enter details manually
+  - Import from other popular authenticator apps
+- Organization
+  - Alphabetic/custom sorting
+  - Custom or automatically generated icons
+  - Group entries together
+  - Advanced entry editing
+  - Search by name/issuer
+- Material design with multiple themes: Light, Dark, AMOLED
+- Export (plaintext or encrypted)
+- Automatic backups of the vault to a location of your choosing
 
 <b>Open source and license</b>
-Aegis Authenticator is open source (licensed under GPL v3) and the source code
-can be found here: http://github.com/beemdevelopment/Aegis
+Aegis Authenticator is open source (licensed under GPL v3) and the source code can be found here: http://github.com/beemdevelopment/Aegis
