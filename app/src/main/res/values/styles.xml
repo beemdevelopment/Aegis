@@ -126,6 +126,30 @@
         <item name="android:windowFullscreen">true</item>
     </style>
 
+    <style name="AppTheme.Fullscreen.Dark" parent="AppTheme.Dark">
+        <!-- AppTheme.TransparentActionBar-->
+        <item name="android:actionBarStyle">@style/ThemeActionBar</item>
+        <item name="android:windowActionBarOverlay">true</item>
+        <item name="actionBarStyle">@style/ThemeActionBar</item>
+        <item name="windowActionBarOverlay">true</item>
+
+        <!-- AppTheme.Fullscreen-->
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
+    </style>
+
+    <style name="AppTheme.Fullscreen.TrueBlack" parent="AppTheme.TrueBlack">
+        <!-- AppTheme.TransparentActionBar-->
+        <item name="android:actionBarStyle">@style/ThemeActionBar</item>
+        <item name="android:windowActionBarOverlay">true</item>
+        <item name="actionBarStyle">@style/ThemeActionBar</item>
+        <item name="windowActionBarOverlay">true</item>
+
+        <!-- AppTheme.Fullscreen-->
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
+    </style>
+
     <style name="AppTheme.Dark" parent="Theme.AppCompat">
         <item name="primaryText">@color/primary_text_dark</item>
         <item name="secondaryText">@color/secondary_text_dark</item>
