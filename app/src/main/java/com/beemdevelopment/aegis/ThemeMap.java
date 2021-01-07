@@ -20,4 +20,10 @@ public class ThemeMap {
             Theme.DARK, R.style.AppTheme_Dark_NoActionBar,
             Theme.AMOLED, R.style.AppTheme_TrueBlack_NoActionBar
     );
+
+    public static final Map<Theme, Integer> FULLSCREEN = ImmutableMap.of(
+            Theme.LIGHT, R.style.AppTheme_Fullscreen,
+            Theme.DARK, R.style.AppTheme_Fullscreen_Dark,
+            Theme.AMOLED, R.style.AppTheme_Fullscreen_TrueBlack
+    );
 }

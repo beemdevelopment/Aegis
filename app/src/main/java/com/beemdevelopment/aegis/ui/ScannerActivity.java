@@ -17,6 +17,7 @@ import androidx.camera.view.PreviewView;
 import androidx.core.content.ContextCompat;
 
 import com.beemdevelopment.aegis.R;
+import com.beemdevelopment.aegis.ThemeMap;
 import com.beemdevelopment.aegis.helpers.QrCodeAnalyzer;
 import com.beemdevelopment.aegis.otp.GoogleAuthInfo;
 import com.beemdevelopment.aegis.otp.GoogleAuthInfoException;
@@ -77,7 +78,7 @@ public class ScannerActivity extends AegisActivity implements QrCodeAnalyzer.Lis
 
     @Override
     protected void onSetTheme() {
-        setTheme(R.style.AppTheme_Fullscreen);
+        setTheme(ThemeMap.FULLSCREEN);
     }
 
     @Override
