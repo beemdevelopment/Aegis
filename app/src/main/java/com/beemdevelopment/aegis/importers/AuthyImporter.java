@@ -235,7 +235,7 @@ public class AuthyImporter extends DatabaseImporter {
                 authyEntryInfo.AccountType = JsonUtils.optString(entry, "accountType");
                 authyEntryInfo.Name = entry.optString("name");
 
-                boolean isAuthy = !entry.optString("accountType", "authy").equals("authenticator");
+                boolean isAuthy = entry.has("secretSeed");
                 sanitizeEntryInfo(authyEntryInfo, isAuthy);
 
                 byte[] secret;
@@ -246,7 +246,7 @@ public class AuthyImporter extends DatabaseImporter {
                 }
 
                 int digits = entry.getInt("digits");
-                OtpInfo info = new TotpInfo(secret, "SHA1", digits, digits == 7 ? 10 : 30);
+                OtpInfo info = new TotpInfo(secret, "SHA1", digits, isAuthy ? 10 : 30);
                 return new VaultEntry(info, authyEntryInfo.Name, authyEntryInfo.Issuer);
             } catch (OtpInfoException | JSONException | EncodingException e) {
                 throw new DatabaseImporterEntryException(e, entry.toString());
