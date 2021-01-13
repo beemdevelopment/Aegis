@@ -1,11 +1,14 @@
 package com.beemdevelopment.aegis.ui;
 
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.WindowManager;
 import android.widget.Toast;
 
+import androidx.annotation.CallSuper;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.beemdevelopment.aegis.AegisApplication;
@@ -55,10 +58,30 @@ public abstract class AegisActivity extends AppCompatActivity implements AegisAp
         super.onDestroy();
     }
 
+    @CallSuper
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
+    protected void onResume() {
+        super.onResume();
         _app.setBlockAutoLock(false);
+    }
+
+    @Override
+    public void startActivityForResult(Intent intent, int requestCode, Bundle bundle) {
+        if (isAutoLockBypassedForAction(intent.getAction())) {
+            _app.setBlockAutoLock(true);
+        }
+
+        try {
+            super.startActivityForResult(intent, requestCode, bundle);
+        } catch (ActivityNotFoundException e) {
+            e.printStackTrace();
+
+            if (isDocsAction(intent.getAction())) {
+                Dialogs.showErrorDialog(this, R.string.documentsui_error, e);
+            } else {
+                throw e;
+            }
+        }
     }
 
     @Override
@@ -134,5 +157,18 @@ public abstract class AegisActivity extends AppCompatActivity implements AegisAp
      */
     protected boolean isOrphan() {
         return !(this instanceof MainActivity) && !(this instanceof AuthActivity) && !(this instanceof IntroActivity) && _app.isVaultLocked();
+    }
+
+    private static boolean isDocsAction(@Nullable String action) {
+        return action != null && (action.equals(Intent.ACTION_GET_CONTENT)
+                || action.equals(Intent.ACTION_CREATE_DOCUMENT)
+                || action.equals(Intent.ACTION_OPEN_DOCUMENT)
+                || action.equals(Intent.ACTION_OPEN_DOCUMENT_TREE));
+    }
+
+    private static boolean isAutoLockBypassedForAction(@Nullable String action) {
+        return isDocsAction(action) || (action != null && (action.equals(Intent.ACTION_PICK)
+                || action.equals(Intent.ACTION_SEND)
+                || action.equals(Intent.ACTION_CHOOSER)));
     }
 }
