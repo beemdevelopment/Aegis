@@ -193,6 +193,7 @@
     <string name="encryption_enable_biometrics_error">An error occurred while trying to enable biometric unlock. Some devices have poor implementations of biometric authentication and it is likely that yours is one of them. Consider switching to a password-only configuration instead.</string>
     <string name="no_cameras_available">No cameras available</string>
     <string name="read_qr_error">An error occurred while trying to read the QR code</string>
+    <string name="read_qr_error_phonefactor">Aegis is not compatible with Microsoft\'s proprietary 2FA algorithm. Please make sure to select \"Setup application without notifications\" when configuring 2FA in Office 365.</string>
     <string name="authentication_method_raw">Raw</string>
     <string name="unlocking_vault">Unlocking the vault</string>
     <string name="unlocking_vault_repair">Unlocking the vault (repairing)</string>

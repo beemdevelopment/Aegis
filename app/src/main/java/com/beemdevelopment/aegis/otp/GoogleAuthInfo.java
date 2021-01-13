@@ -65,7 +65,7 @@ public class GoogleAuthInfo implements Serializable {
     public static GoogleAuthInfo parseUri(String s) throws GoogleAuthInfoException {
         Uri uri = Uri.parse(s);
         if (uri == null) {
-            throw new GoogleAuthInfoException(String.format("Bad URI format: %s", s));
+            throw new GoogleAuthInfoException(uri, String.format("Bad URI format: %s", s));
         }
         return GoogleAuthInfo.parseUri(uri);
     }
@@ -73,27 +73,27 @@ public class GoogleAuthInfo implements Serializable {
     public static GoogleAuthInfo parseUri(Uri uri) throws GoogleAuthInfoException {
         String scheme = uri.getScheme();
         if (scheme == null || !scheme.equals(SCHEME)) {
-            throw new GoogleAuthInfoException("Unsupported protocol");
+            throw new GoogleAuthInfoException(uri, String.format("Unsupported protocol: %s", scheme));
         }
 
         // 'secret' is a required parameter
         String encodedSecret = uri.getQueryParameter("secret");
         if (encodedSecret == null) {
-            throw new GoogleAuthInfoException("Parameter 'secret' is not present");
+            throw new GoogleAuthInfoException(uri, "Parameter 'secret' is not present");
         }
 
         byte[] secret;
         try {
             secret = parseSecret(encodedSecret);
         } catch (EncodingException e) {
-            throw new GoogleAuthInfoException("Bad secret", e);
+            throw new GoogleAuthInfoException(uri, "Bad secret", e);
         }
 
         OtpInfo info;
         try {
             String type = uri.getHost();
             if (type == null) {
-                throw new GoogleAuthInfoException(String.format("Host not present in URI: %s", uri.toString()));
+                throw new GoogleAuthInfoException(uri, String.format("Host not present in URI: %s", uri.toString()));
             }
 
             switch (type) {
@@ -117,16 +117,16 @@ public class GoogleAuthInfo implements Serializable {
                     HotpInfo hotpInfo = new HotpInfo(secret);
                     String counter = uri.getQueryParameter("counter");
                     if (counter == null) {
-                        throw new GoogleAuthInfoException("Parameter 'counter' is not present");
+                        throw new GoogleAuthInfoException(uri, "Parameter 'counter' is not present");
                     }
                     hotpInfo.setCounter(Long.parseLong(counter));
                     info = hotpInfo;
                     break;
                 default:
-                    throw new GoogleAuthInfoException(String.format("Unsupported OTP type: %s", type));
+                    throw new GoogleAuthInfoException(uri, String.format("Unsupported OTP type: %s", type));
             }
         } catch (OtpInfoException | NumberFormatException e) {
-            throw new GoogleAuthInfoException(e);
+            throw new GoogleAuthInfoException(uri, e);
         }
 
         // provider info used to disambiguate accounts
@@ -166,7 +166,7 @@ public class GoogleAuthInfo implements Serializable {
                 info.setDigits(Integer.parseInt(digits));
             }
         } catch (OtpInfoException | NumberFormatException e) {
-            throw new GoogleAuthInfoException(e);
+            throw new GoogleAuthInfoException(uri, e);
         }
 
         return new GoogleAuthInfo(info, accountName, issuer);
@@ -183,7 +183,7 @@ public class GoogleAuthInfo implements Serializable {
     public static Export parseExportUri(String s) throws GoogleAuthInfoException {
         Uri uri = Uri.parse(s);
         if (uri == null) {
-            throw new GoogleAuthInfoException("Bad URI format");
+            throw new GoogleAuthInfoException(uri, "Bad URI format");
         }
         return GoogleAuthInfo.parseExportUri(uri);
     }
@@ -191,17 +191,17 @@ public class GoogleAuthInfo implements Serializable {
     public static Export parseExportUri(Uri uri) throws GoogleAuthInfoException {
         String scheme = uri.getScheme();
         if (scheme == null || !scheme.equals(SCHEME_EXPORT)) {
-            throw new GoogleAuthInfoException("Unsupported protocol");
+            throw new GoogleAuthInfoException(uri, "Unsupported protocol");
         }
 
         String host = uri.getHost();
         if (host == null || !host.equals("offline")) {
-            throw new GoogleAuthInfoException("Unsupported host");
+            throw new GoogleAuthInfoException(uri, "Unsupported host");
         }
 
         String data = uri.getQueryParameter("data");
         if (data == null) {
-            throw new GoogleAuthInfoException("Parameter 'data' is not set");
+            throw new GoogleAuthInfoException(uri, "Parameter 'data' is not set");
         }
 
         GoogleAuthProtos.MigrationPayload payload;
@@ -209,7 +209,7 @@ public class GoogleAuthInfo implements Serializable {
             byte[] bytes = Base64.decode(data);
             payload = GoogleAuthProtos.MigrationPayload.parseFrom(bytes);
         } catch (EncodingException | InvalidProtocolBufferException e) {
-            throw new GoogleAuthInfoException(e);
+            throw new GoogleAuthInfoException(uri, e);
         }
 
         List<GoogleAuthInfo> infos = new ArrayList<>();
@@ -227,7 +227,7 @@ public class GoogleAuthInfo implements Serializable {
                         digits = 8;
                         break;
                     default:
-                        throw new GoogleAuthInfoException(String.format("Unsupported digits: %d", params.getDigits().ordinal()));
+                        throw new GoogleAuthInfoException(uri, String.format("Unsupported digits: %d", params.getDigits().ordinal()));
                 }
 
                 String algo;
@@ -244,7 +244,7 @@ public class GoogleAuthInfo implements Serializable {
                         algo = "SHA512";
                         break;
                     default:
-                        throw new GoogleAuthInfoException(String.format("Unsupported hash algorithm: %d", params.getAlgorithm().ordinal()));
+                        throw new GoogleAuthInfoException(uri, String.format("Unsupported hash algorithm: %d", params.getAlgorithm().ordinal()));
                 }
 
                 byte[] secret = params.getSecret().toByteArray();
@@ -258,10 +258,10 @@ public class GoogleAuthInfo implements Serializable {
                         otp = new HotpInfo(secret, algo, digits, params.getCounter());
                         break;
                     default:
-                        throw new GoogleAuthInfoException(String.format("Unsupported algorithm: %d", params.getType().ordinal()));
+                        throw new GoogleAuthInfoException(uri, String.format("Unsupported algorithm: %d", params.getType().ordinal()));
                 }
             } catch (OtpInfoException e){
-                throw new GoogleAuthInfoException(e);
+                throw new GoogleAuthInfoException(uri, e);
             }
 
             String name = params.getName();
