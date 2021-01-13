@@ -173,7 +173,7 @@ public class VaultManager {
      * Google Authenticator URI's and writing it to the given OutputStream.
      */
     public void exportGoogleUris(OutputStream outStream) throws VaultManagerException {
-        try (PrintStream stream = new PrintStream(outStream, false, StandardCharsets.UTF_8.toString())) {
+        try (PrintStream stream = new PrintStream(outStream, false, StandardCharsets.UTF_8.name())) {
             for (VaultEntry entry : getEntries()) {
                 GoogleAuthInfo info = new GoogleAuthInfo(entry.getInfo(), entry.getName(), entry.getIssuer());
                 stream.println(info.getUri().toString());
