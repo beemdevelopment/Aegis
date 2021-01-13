@@ -10,7 +10,6 @@
     <string name="issuer">ನೀಡುವವರು</string>
     <string name="settings">ಸಿದ್ಢತೆಗಳು</string>
     <string name="pref_appearance_group_title">ನೋಟ</string>
-    <string name="pref_general_group_title">ಸಾಮಾನ್ಯ</string>
     <string name="pref_security_group_title">ಭದ್ರತೆ</string>
     <string name="pref_tools_group_title">ಉಪಕರಣಗಳು</string>
     <string name="pref_select_theme_title">ಥೀಮ್</string>

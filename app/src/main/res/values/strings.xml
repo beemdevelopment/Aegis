@@ -15,8 +15,8 @@
     <string name="issuer">Issuer</string>
 
     <string name="settings">Preferences</string>
+    <string name="pref_behavior_group_title">Behavior</string>
     <string name="pref_appearance_group_title">Appearance</string>
-    <string name="pref_general_group_title">General</string>
     <string name="pref_security_group_title">Security</string>
     <string name="pref_tools_group_title">Tools</string>
     <string name="pref_backups_group_title">Backups</string>

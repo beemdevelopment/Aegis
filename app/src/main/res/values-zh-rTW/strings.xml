@@ -12,7 +12,6 @@
     <string name="issuer">服務商</string>
     <string name="settings">偏好設定</string>
     <string name="pref_appearance_group_title">外觀</string>
-    <string name="pref_general_group_title">一般</string>
     <string name="pref_security_group_title">安全</string>
     <string name="pref_tools_group_title">工具</string>
     <string name="pref_backups_group_title">備份</string>

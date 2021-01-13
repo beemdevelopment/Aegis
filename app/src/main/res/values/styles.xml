@@ -22,6 +22,7 @@
         <item name="codePrimaryText">@color/code_primary_text</item>
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="preferenceTheme">@style/PreferenceTheme</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="background">@color/background</item>
         <item name="divider">@color/divider</item>
@@ -30,7 +31,7 @@
         <item name="iconColorInverted">@color/icon_primary_inverted</item>
 
         <item name="actionModeStyle">@style/ActionModeStyle</item>
-        <item name="actionBarTheme">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item>
+        <item name="actionBarTheme">@style/ActionBarTheme</item>
         <item name="alertDialogTheme">@style/DialogStyle</item>
 
         <item name="dot_color">@color/indicator_dot</item>
@@ -158,6 +159,7 @@
         <item name="codePrimaryText">@color/code_primary_text_dark</item>
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="preferenceTheme">@style/PreferenceTheme</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="background">@color/background_dark</item>
         <item name="divider">@color/divider_dark</item>
@@ -181,7 +183,7 @@
         <item name="background">@color/background_true_dark</item>
         <item name="cardBackgroundFocused">@color/card_background_focused_true_dark</item>
         <item name="colorPrimaryDark">@color/background_true_dark</item>
-        <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item>
+        <item name="preferenceTheme">@style/PreferenceTheme</item>
         <item name="actionModeStyle">@style/ActionModeStyle.TrueBlack</item>
         <item name="alertDialogTheme">@style/DialogStyle.TrueDark</item>
         <item name="divider">@color/divider_true_dark</item>
@@ -230,4 +232,11 @@
 
     <style name="AppTheme.NoActionBar.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <style name="PreferenceTheme" parent="@style/PreferenceThemeOverlay.v14.Material">
+        <item name="android:tint">?attr/iconColorPrimary</item>
+    </style>
+
+    <style name="ActionBarTheme" parent="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="android:tint">?attr/iconColorInverted</item>
+    </style>
 </resources>

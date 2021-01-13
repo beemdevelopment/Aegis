@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:title="@string/pref_tools_group_title">
+    <Preference
+        android:key="pref_import"
+        android:title="@string/pref_import_file_title"
+        android:summary="@string/pref_import_file_summary"
+        app:iconSpaceReserved="false"/>
+    <Preference
+        android:key="pref_import_app"
+        android:title="@string/pref_import_app_title"
+        android:summary="@string/pref_import_app_summary"
+        app:iconSpaceReserved="false"/>
+    <Preference
+        android:key="pref_export"
+        android:title="@string/pref_export_title"
+        android:summary="@string/pref_export_summary"
+        app:iconSpaceReserved="false"/>
+</PreferenceScreen>

@@ -12,7 +12,6 @@
     <string name="issuer">المصدِّر</string>
     <string name="settings">التفضيلات</string>
     <string name="pref_appearance_group_title">المظهر</string>
-    <string name="pref_general_group_title">العامة</string>
     <string name="pref_security_group_title">الأمان</string>
     <string name="pref_tools_group_title">الأدوات</string>
     <string name="pref_backups_group_title">النسخ الاحتياطي</string>

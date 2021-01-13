@@ -12,7 +12,6 @@
     <string name="issuer">Wydawca</string>
     <string name="settings">Ustawienia</string>
     <string name="pref_appearance_group_title">Wygląd</string>
-    <string name="pref_general_group_title">Ogólne</string>
     <string name="pref_security_group_title">Bezpieczeństwo</string>
     <string name="pref_tools_group_title">Narzędzia</string>
     <string name="pref_backups_group_title">Kopie zapasowe</string>

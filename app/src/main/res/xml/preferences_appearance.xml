@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:title="@string/pref_appearance_group_title">
+    <Preference
+        android:defaultValue="false"
+        android:key="pref_dark_mode"
+        android:title="@string/pref_select_theme_title"
+        app:iconSpaceReserved="false"/>
+
+    <Preference
+        android:defaultValue="false"
+        android:key="pref_view_mode"
+        android:title="@string/pref_view_mode_title"
+        app:iconSpaceReserved="false"/>
+
+    <ListPreference
+        android:key="pref_lang"
+        android:title="@string/pref_lang_title"
+        android:summary="%s"
+        android:entries="@array/pref_lang_entries"
+        android:entryValues="@array/pref_lang_values"
+        android:defaultValue="system"
+        app:iconSpaceReserved="false"/>
+
+    <androidx.preference.SwitchPreferenceCompat
+        android:defaultValue="false"
+        android:key="pref_code_group_size"
+        android:title="@string/pref_code_group_size_title"
+        android:summary="@string/pref_code_group_size_summary"
+        app:iconSpaceReserved="false"/>
+
+    <androidx.preference.SwitchPreferenceCompat
+        android:defaultValue="true"
+        android:key="pref_account_name"
+        android:title="@string/pref_account_name_title"
+        android:summary="@string/pref_account_name_summary"
+        app:iconSpaceReserved="false"/>
+
+    <Preference
+        android:key="pref_groups"
+        android:title="@string/preference_manage_groups"
+        android:summary="@string/preference_manage_groups_summary"
+        app:iconSpaceReserved="false"/>
+</PreferenceScreen>

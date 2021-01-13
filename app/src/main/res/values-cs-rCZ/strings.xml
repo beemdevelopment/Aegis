@@ -12,7 +12,6 @@
     <string name="issuer">Poskytovatel</string>
     <string name="settings">Předvolby</string>
     <string name="pref_appearance_group_title">Vzhled</string>
-    <string name="pref_general_group_title">Obecné</string>
     <string name="pref_security_group_title">Zabezpečení</string>
     <string name="pref_tools_group_title">Nástroje</string>
     <string name="pref_backups_group_title">Zálohy</string>

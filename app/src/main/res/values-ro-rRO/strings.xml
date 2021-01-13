@@ -12,7 +12,6 @@
     <string name="issuer">Emitent</string>
     <string name="settings">Preferințe</string>
     <string name="pref_appearance_group_title">Aspect</string>
-    <string name="pref_general_group_title">General</string>
     <string name="pref_security_group_title">Securitate</string>
     <string name="pref_tools_group_title">Unelte</string>
     <string name="pref_backups_group_title">Copii de rezervă</string>

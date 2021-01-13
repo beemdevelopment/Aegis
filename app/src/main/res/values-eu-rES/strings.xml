@@ -12,7 +12,6 @@
     <string name="issuer">Igorlea</string>
     <string name="settings">Hobespenak</string>
     <string name="pref_appearance_group_title">Itxura</string>
-    <string name="pref_general_group_title">Orokorra</string>
     <string name="pref_security_group_title">Segurtasuna</string>
     <string name="pref_tools_group_title">Tresnak</string>
     <string name="pref_backups_group_title">Segurtasun-kopiak</string>

@@ -10,7 +10,6 @@
     <string name="issuer">Kibocsátó</string>
     <string name="settings">Beállítások</string>
     <string name="pref_appearance_group_title">Megjelenés</string>
-    <string name="pref_general_group_title">Általános</string>
     <string name="pref_security_group_title">Biztonság</string>
     <string name="pref_tools_group_title">Eszközök</string>
     <string name="pref_backups_group_title">Biztonsági mentések</string>
