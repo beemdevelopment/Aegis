@@ -12,7 +12,6 @@
     <string name="issuer">Émetteur</string>
     <string name="settings">Préférences</string>
     <string name="pref_appearance_group_title">Apparence</string>
-    <string name="pref_general_group_title">Général</string>
     <string name="pref_security_group_title">Sécurité</string>
     <string name="pref_tools_group_title">Outils</string>
     <string name="pref_backups_group_title">Sauvegardes</string>

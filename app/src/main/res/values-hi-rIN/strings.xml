@@ -12,7 +12,6 @@
     <string name="issuer">ज़ारीकर्ता</string>
     <string name="settings">वरीयताएँ</string>
     <string name="pref_appearance_group_title">रंगरूप</string>
-    <string name="pref_general_group_title">सामान्य</string>
     <string name="pref_security_group_title">सुरक्षा</string>
     <string name="pref_tools_group_title">टूल्स</string>
     <string name="pref_backups_group_title">बैकअप्स</string>

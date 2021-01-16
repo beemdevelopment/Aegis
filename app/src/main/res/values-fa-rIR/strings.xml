@@ -12,7 +12,6 @@
     <string name="issuer">صادر کننده</string>
     <string name="settings">تنظیمات</string>
     <string name="pref_appearance_group_title">ظاهر</string>
-    <string name="pref_general_group_title">عمومی</string>
     <string name="pref_security_group_title">امنیت</string>
     <string name="pref_tools_group_title">ابزارها</string>
     <string name="pref_backups_group_title">پشتیبان گیری</string>

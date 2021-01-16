@@ -12,7 +12,6 @@
     <string name="issuer">Emittente</string>
     <string name="settings">Impostazioni</string>
     <string name="pref_appearance_group_title">Aspetto</string>
-    <string name="pref_general_group_title">Generale</string>
     <string name="pref_security_group_title">Sicurezza</string>
     <string name="pref_tools_group_title">Strumenti</string>
     <string name="pref_backups_group_title">Backup</string>

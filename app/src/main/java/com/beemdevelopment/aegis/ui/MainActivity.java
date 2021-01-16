@@ -32,6 +32,8 @@ import com.beemdevelopment.aegis.helpers.FabScrollHelper;
 import com.beemdevelopment.aegis.helpers.PermissionHelper;
 import com.beemdevelopment.aegis.otp.GoogleAuthInfo;
 import com.beemdevelopment.aegis.otp.GoogleAuthInfoException;
+import com.beemdevelopment.aegis.ui.fragments.BackupsPreferencesFragment;
+import com.beemdevelopment.aegis.ui.fragments.PreferencesFragment;
 import com.beemdevelopment.aegis.ui.views.EntryListView;
 import com.beemdevelopment.aegis.vault.VaultEntry;
 import com.beemdevelopment.aegis.vault.VaultFile;
@@ -141,7 +143,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
 
         _btnBackupError = findViewById(R.id.btn_backup_error);
         _btnBackupError.setOnClickListener(view -> {
-            startPreferencesActivity("pref_backups");
+            startPreferencesActivity(BackupsPreferencesFragment.class, "pref_backups");
         });
 
         _fabScrollHelper = new FabScrollHelper(fab);
@@ -402,8 +404,13 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         startActivityForResult(chooserIntent, CODE_SCAN_IMAGE);
     }
 
-    private void startPreferencesActivity(String preference) {
+    private void startPreferencesActivity() {
+        startPreferencesActivity(null, null);
+    }
+
+    private void startPreferencesActivity(Class<? extends PreferencesFragment> fragmentType, String preference) {
         Intent intent = new Intent(this, PreferencesActivity.class);
+        intent.putExtra("fragment", fragmentType);
         intent.putExtra("pref", preference);
         startActivityForResult(intent, CODE_PREFERENCES);
     }
@@ -577,7 +584,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_settings: {
-                startPreferencesActivity(null);
+                startPreferencesActivity();
                 return true;
             }
             case R.id.action_about: {

@@ -2,199 +2,31 @@
 <androidx.preference.PreferenceScreen
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:title="@string/settings">
+    android:title="@string/action_settings">
 
-    <PreferenceCategory
-        android:title="@string/pref_appearance_group_title"
-        app:iconSpaceReserved="false">
-        <Preference
-            android:defaultValue="false"
-            android:key="pref_dark_mode"
-            android:title="@string/pref_select_theme_title"
-            app:iconSpaceReserved="false"/>
+    <Preference
+        android:fragment="com.beemdevelopment.aegis.ui.fragments.BehaviorPreferencesFragment"
+        app:icon="@drawable/ic_gesture_tap_24dp"
+        app:title="@string/pref_behavior_group_title" />
 
-        <Preference
-            android:defaultValue="false"
-            android:key="pref_view_mode"
-            android:title="@string/pref_view_mode_title"
-            app:iconSpaceReserved="false"/>
+    <Preference
+        android:fragment="com.beemdevelopment.aegis.ui.fragments.AppearancePreferencesFragment"
+        app:icon="@drawable/ic_brush_black_24dp"
+        app:title="@string/pref_appearance_group_title" />
 
-        <ListPreference
-            android:key="pref_lang"
-            android:title="@string/pref_lang_title"
-            android:summary="%s"
-            android:entries="@array/pref_lang_entries"
-            android:entryValues="@array/pref_lang_values"
-            android:defaultValue="system"
-            app:iconSpaceReserved="false"/>
+    <Preference
+        android:fragment="com.beemdevelopment.aegis.ui.fragments.SecurityPreferencesFragment"
+        app:icon="@drawable/ic_vpn_key_black_24dp"
+        app:title="@string/pref_security_group_title" />
 
-        <androidx.preference.SwitchPreferenceCompat
-            android:defaultValue="false"
-            android:key="pref_code_group_size"
-            android:title="@string/pref_code_group_size_title"
-            android:summary="@string/pref_code_group_size_summary"
-            app:iconSpaceReserved="false"/>
+    <Preference
+        android:fragment="com.beemdevelopment.aegis.ui.fragments.BackupsPreferencesFragment"
+        app:icon="@drawable/ic_cloud_upload_outline_black_24dp"
+        app:title="@string/pref_backups_group_title" />
 
-        <androidx.preference.SwitchPreferenceCompat
-            android:defaultValue="true"
-            android:key="pref_account_name"
-            android:title="@string/pref_account_name_title"
-            android:summary="@string/pref_account_name_summary"
-            app:iconSpaceReserved="false"/>
-
-        <Preference
-            android:key="pref_groups"
-            android:title="@string/preference_manage_groups"
-            android:summary="@string/preference_manage_groups_summary"
-            app:iconSpaceReserved="false"/>
-    </PreferenceCategory>
-
-    <PreferenceCategory
-        android:title="@string/pref_general_group_title"
-        app:iconSpaceReserved="false">
-        <androidx.preference.SwitchPreferenceCompat
-            android:defaultValue="false"
-            android:key="pref_copy_on_tap"
-            android:title="@string/pref_copy_on_tap_title"
-            android:summary="@string/pref_copy_on_tap_summary"
-            app:iconSpaceReserved="false"/>
-        <androidx.preference.SwitchPreferenceCompat
-            android:defaultValue="false"
-            android:key="pref_highlight_entry"
-            android:title="@string/pref_highlight_entry_title"
-            android:summary="@string/pref_highlight_entry_summary"
-            app:iconSpaceReserved="false"/>
-        <androidx.preference.SwitchPreferenceCompat
-            android:defaultValue="false"
-            android:key="pref_panic_trigger"
-            android:title="@string/pref_panic_trigger_title"
-            android:summary="@string/pref_panic_trigger_summary"
-            app:iconSpaceReserved="false"/>
-    </PreferenceCategory>
-
-    <PreferenceCategory
-        android:title="@string/pref_security_group_title"
-        app:iconSpaceReserved="false">
-        <androidx.preference.SwitchPreferenceCompat
-            android:defaultValue="@bool/pref_secure_screen_default"
-            android:key="pref_secure_screen"
-            android:title="@string/pref_secure_screen_title"
-            android:summary="@string/pref_secure_screen_summary"
-            app:iconSpaceReserved="false"/>
-        <androidx.preference.SwitchPreferenceCompat
-            android:defaultValue="false"
-            android:key="pref_tap_to_reveal"
-            android:title="@string/pref_tap_to_reveal_title"
-            android:summary="@string/pref_tap_to_reveal_summary"
-            app:iconSpaceReserved="false"/>
-        <Preference
-            android:key="pref_tap_to_reveal_time"
-            android:title="@string/pref_tap_to_reveal_time_title"
-            android:dependency="pref_tap_to_reveal"
-            app:iconSpaceReserved="false"/>
-
-        <!--<EditTextPreference
-            android:key="pref_timeout"
-            android:title="@string/pref_timeout_title"
-            android:summary="@string/pref_timeout_summary"
-            android:inputType="number"
-            android:defaultValue="30"
-            android:dialogTitle="Set number of seconds of inactivity before Aegis locks the vault"
-            app:iconSpaceReserved="false"/>-->
-        <com.beemdevelopment.aegis.ui.preferences.SwitchPreference
-            android:key="pref_encryption"
-            android:title="@string/pref_encryption_title"
-            android:summary="@string/pref_encryption_summary"
-            android:persistent="false"
-            app:iconSpaceReserved="false"/>
-
-        <Preference
-            android:key="pref_password"
-            android:title="@string/pref_set_password_title"
-            android:summary="@string/pref_set_password_summary"
-            android:dependency="pref_encryption"
-            app:iconSpaceReserved="false"/>
-
-        <com.beemdevelopment.aegis.ui.preferences.SwitchPreference
-            android:key="pref_biometrics"
-            android:title="@string/pref_biometrics_title"
-            android:summary="@string/pref_biometrics_summary"
-            android:persistent="false"
-            app:iconSpaceReserved="false"/>
-
-        <androidx.preference.SwitchPreferenceCompat
-            android:defaultValue="true"
-            android:key="pref_password_reminder"
-            android:title="@string/pref_password_reminder_title"
-            android:summary="@string/pref_password_reminder_summary"
-            android:dependency="pref_biometrics"
-            app:iconSpaceReserved="false"/>
-
-        <androidx.preference.SwitchPreferenceCompat
-            android:key="pref_pin_keyboard"
-            android:dependency="pref_encryption"
-            android:title="@string/pref_pin_keyboard_title"
-            android:summary="@string/pref_pin_keyboard_summary"
-            app:iconSpaceReserved="false"/>
-
-        <Preference
-            android:key="pref_auto_lock"
-            android:dependency="pref_encryption"
-            android:persistent="false"
-            android:title="@string/pref_auto_lock_title"
-            android:summary="@string/pref_auto_lock_summary"
-            app:iconSpaceReserved="false"/>
-
-        <Preference
-            android:key="pref_slots"
-            android:title="@string/pref_slots_title"
-            android:summary="@string/pref_slots_summary"
-            app:iconSpaceReserved="false"/>
-    </PreferenceCategory>
-
-    <PreferenceCategory
-        android:title="@string/pref_backups_group_title"
-        app:iconSpaceReserved="false">
-        <androidx.preference.SwitchPreferenceCompat
-            android:defaultValue="false"
-            android:key="pref_backups"
-            android:title="@string/pref_backups_title"
-            android:summary="@string/pref_backups_summary"
-            app:iconSpaceReserved="false"/>
-        <Preference
-            android:key="pref_backups_location"
-            android:title="@string/pref_backups_location_title"
-            android:summary="@string/pref_backups_location_summary"
-            app:iconSpaceReserved="false"/>
-        <Preference
-            android:key="pref_backups_trigger"
-            android:title="@string/pref_backups_trigger_title"
-            android:summary="@string/pref_backups_trigger_summary"
-            app:iconSpaceReserved="false"/>
-        <Preference
-            android:key="pref_backups_versions"
-            android:title="@string/pref_backups_versions_title"
-            app:iconSpaceReserved="false"/>
-    </PreferenceCategory>
-
-    <PreferenceCategory
-        android:title="@string/pref_tools_group_title"
-        app:iconSpaceReserved="false">
-        <Preference
-            android:key="pref_import"
-            android:title="@string/pref_import_file_title"
-            android:summary="@string/pref_import_file_summary"
-            app:iconSpaceReserved="false"/>
-        <Preference
-            android:key="pref_import_app"
-            android:title="@string/pref_import_app_title"
-            android:summary="@string/pref_import_app_summary"
-            app:iconSpaceReserved="false"/>
-        <Preference
-            android:key="pref_export"
-            android:title="@string/pref_export_title"
-            android:summary="@string/pref_export_summary"
-            app:iconSpaceReserved="false"/>
-    </PreferenceCategory>
+    <Preference
+        android:fragment="com.beemdevelopment.aegis.ui.fragments.ToolsPreferencesFragment"
+        app:icon="@drawable/ic_tools_black_24dp"
+        app:title="@string/pref_tools_group_title" />
 
 </androidx.preference.PreferenceScreen>

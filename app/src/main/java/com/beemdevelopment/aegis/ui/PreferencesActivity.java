@@ -1,10 +1,18 @@
 package com.beemdevelopment.aegis.ui;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 
-public class PreferencesActivity extends AegisActivity {
+import androidx.annotation.NonNull;
+import androidx.preference.Preference;
+import androidx.preference.PreferenceFragmentCompat;
+
+import com.beemdevelopment.aegis.R;
+import com.beemdevelopment.aegis.ui.fragments.MainPreferencesFragment;
+import com.beemdevelopment.aegis.ui.fragments.PreferencesFragment;
+
+public class PreferencesActivity extends AegisActivity implements
+        PreferenceFragmentCompat.OnPreferenceStartFragmentCallback {
     private PreferencesFragment _fragment;
 
     @Override
@@ -17,28 +25,31 @@ public class PreferencesActivity extends AegisActivity {
         }
 
         if (savedInstanceState == null) {
-            _fragment = new PreferencesFragment();
+            _fragment = new MainPreferencesFragment();
             _fragment.setArguments(getIntent().getExtras());
-            getSupportFragmentManager().beginTransaction().replace(android.R.id.content, _fragment).commit();
+
+             getSupportFragmentManager().beginTransaction()
+                    .replace(android.R.id.content, _fragment)
+                    .commit();
+
+            PreferencesFragment requestedFragment = getRequestedFragment();
+            if (requestedFragment != null) {
+                _fragment = requestedFragment;
+                showFragment(_fragment);
+            }
         } else {
             _fragment = (PreferencesFragment) getSupportFragmentManager().findFragmentById(android.R.id.content);
         }
     }
 
     @Override
-    public void onResume() {
-        super.onResume();
-
-        Intent intent = getIntent();
-        String preference = intent.getStringExtra("pref");
-        if (preference != null) {
-            _fragment.scrollToPreference(preference);
-            intent.removeExtra("pref");
-        }
+    public void onBackPressed() {
+        super.onBackPressed();
+        setTitle(R.string.action_settings);
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         // pass permission request results to the fragment
         _fragment.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
@@ -62,14 +73,45 @@ public class PreferencesActivity extends AegisActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                onBackPressed();
-                break;
-            default:
-                return super.onOptionsItemSelected(item);
+        if (item.getItemId() == android.R.id.home) {
+            onBackPressed();
+        } else {
+            return super.onOptionsItemSelected(item);
         }
 
         return true;
+    }
+
+    @Override
+    public boolean onPreferenceStartFragment(PreferenceFragmentCompat caller, Preference pref) {
+        _fragment = (PreferencesFragment) getSupportFragmentManager().getFragmentFactory().instantiate(getClassLoader(), pref.getFragment());
+        _fragment.setArguments(pref.getExtras());
+        _fragment.setTargetFragment(caller, 0);
+        showFragment(_fragment);
+
+        setTitle(pref.getTitle());
+        return true;
+    }
+
+    private void showFragment(PreferencesFragment fragment) {
+        getSupportFragmentManager().beginTransaction()
+                .setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left, R.anim.slide_in_left, R.anim.slide_out_right)
+                .replace(android.R.id.content, fragment)
+                .addToBackStack(null)
+                .commit();
+    }
+
+    @SuppressWarnings("unchecked")
+    private PreferencesFragment getRequestedFragment() {
+        Class<? extends PreferencesFragment> fragmentType = (Class<? extends PreferencesFragment>) getIntent().getSerializableExtra("fragment");
+        if (fragmentType == null) {
+            return null;
+        }
+
+        try {
+            return fragmentType.newInstance();
+        } catch (IllegalAccessException | InstantiationException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

@@ -12,7 +12,6 @@
     <string name="issuer">発行者</string>
     <string name="settings">設定</string>
     <string name="pref_appearance_group_title">外観</string>
-    <string name="pref_general_group_title">全般</string>
     <string name="pref_security_group_title">セキュリティ</string>
     <string name="pref_tools_group_title">ツール</string>
     <string name="pref_backups_group_title">バックアップ</string>
