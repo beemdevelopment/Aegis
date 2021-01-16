@@ -21,11 +21,10 @@ import com.beemdevelopment.aegis.helpers.FabScrollHelper;
 import com.beemdevelopment.aegis.importers.DatabaseImporterEntryException;
 import com.beemdevelopment.aegis.ui.models.ImportEntry;
 import com.beemdevelopment.aegis.ui.views.ImportEntriesAdapter;
-import com.getbase.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicBoolean;
 
 public class SelectEntriesActivity extends AegisActivity {
     private ImportEntriesAdapter _adapter;
@@ -69,15 +68,15 @@ public class SelectEntriesActivity extends AegisActivity {
             showErrorDialog(errors);
         }
 
-        FloatingActionButton fabMenu = findViewById(R.id.fab);
-        fabMenu.setOnClickListener(v -> {
+        FloatingActionButton fab = findViewById(R.id.fab);
+        fab.setOnClickListener(v -> {
             if (_vaultContainsEntries) {
                 showWipeEntriesDialog();
             } else {
                 returnSelectedEntries(false);
             }
         });
-        _fabScrollHelper = new FabScrollHelper(fabMenu);
+        _fabScrollHelper = new FabScrollHelper(fab);
     }
 
     private void showErrorDialog(List<DatabaseImporterEntryException> errors) {

@@ -6,7 +6,6 @@ import android.view.View;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.DecelerateInterpolator;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
-import com.getbase.floatingactionbutton.FloatingActionsMenu;
 
 public class FabScrollHelper {
     private View _fabMenu;

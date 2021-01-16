@@ -7,14 +7,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Rect;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.SubMenu;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -39,7 +37,8 @@ import com.beemdevelopment.aegis.vault.VaultEntry;
 import com.beemdevelopment.aegis.vault.VaultFile;
 import com.beemdevelopment.aegis.vault.VaultManager;
 import com.beemdevelopment.aegis.vault.VaultManagerException;
-import com.getbase.floatingactionbutton.FloatingActionsMenu;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.zxing.BinaryBitmap;
 import com.google.zxing.ChecksumException;
 import com.google.zxing.FormatException;
@@ -86,7 +85,6 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
 
     private Menu _menu;
     private SearchView _searchView;
-    private FloatingActionsMenu _fabMenu;
     private EntryListView _entryListView;
     private LinearLayout _btnBackupError;
 
@@ -108,7 +106,6 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
             _isDoingIntro = savedInstanceState.getBoolean("isDoingIntro");
         }
 
-        // set up the entry view
         _entryListView = (EntryListView) getSupportFragmentManager().findFragmentById(R.id.key_profiles);
         _entryListView.setListener(this);
         _entryListView.setCodeGroupSize(getPreferences().getCodeGroupSize());
@@ -120,27 +117,34 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         _entryListView.setViewMode(getPreferences().getCurrentViewMode());
         _entryListView.setIsCopyOnTapEnabled(getPreferences().isCopyOnTapEnabled());
 
-        // set up the floating action button
-        _fabMenu = findViewById(R.id.fab);
-        findViewById(R.id.fab_enter).setOnClickListener(view -> {
-            _fabMenu.collapse();
-            startEditEntryActivity(CODE_ADD_ENTRY, null, true);
-        });
-        findViewById(R.id.fab_scan_image).setOnClickListener(view -> {
-            _fabMenu.collapse();
-            startScanImageActivity();
-        });
-        findViewById(R.id.fab_scan).setOnClickListener(view -> {
-            _fabMenu.collapse();
-            startScanActivity();
-        });
+         FloatingActionButton fab = findViewById(R.id.fab);
+         fab.setOnClickListener(v -> {
+             View view = getLayoutInflater().inflate(R.layout.dialog_add_entry, null);
+             BottomSheetDialog dialog = new BottomSheetDialog(this);
+             dialog.setContentView(view);
+
+             view.findViewById(R.id.fab_enter).setOnClickListener(v1 -> {
+                 dialog.dismiss();
+                 startEditEntryActivity(CODE_ADD_ENTRY, null, true);
+             });
+             view.findViewById(R.id.fab_scan_image).setOnClickListener(v2 -> {
+                 dialog.dismiss();
+                 startScanImageActivity();
+             });
+             view.findViewById(R.id.fab_scan).setOnClickListener(v3 -> {
+                 dialog.dismiss();
+                 startScanActivity();
+             });
+
+             Dialogs.showSecureDialog(dialog);
+         });
 
         _btnBackupError = findViewById(R.id.btn_backup_error);
         _btnBackupError.setOnClickListener(view -> {
             startPreferencesActivity("pref_backups");
         });
 
-        _fabScrollHelper = new FabScrollHelper(_fabMenu);
+        _fabScrollHelper = new FabScrollHelper(fab);
         _selectedEntries = new ArrayList<>();
     }
 
@@ -155,23 +159,6 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
     protected void onDestroy() {
         _entryListView.setListener(null);
         super.onDestroy();
-    }
-
-    @Override
-    public boolean dispatchTouchEvent(MotionEvent event) {
-        // collapse the fab menu on touch
-        if (event.getAction() == MotionEvent.ACTION_DOWN) {
-            if (_fabMenu.isExpanded()) {
-                Rect rect = new Rect();
-                _fabMenu.getGlobalVisibleRect(rect);
-
-                if (!rect.contains((int) event.getRawX(), (int) event.getRawY())) {
-                    _fabMenu.collapse();
-                }
-            }
-        }
-
-        return super.dispatchTouchEvent(event);
     }
 
     @Override

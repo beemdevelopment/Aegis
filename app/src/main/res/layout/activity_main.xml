@@ -46,50 +46,13 @@
             app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"/>
     </LinearLayout>
 
-    <!-- note: the fab should always be the last element to be sure it's displayed on top -->
-    <com.getbase.floatingactionbutton.FloatingActionsMenu
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
-        style="@style/FloatingActionButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
         android:src="@drawable/ic_add_black_24dp"
-        app:fab_addButtonColorNormal="@color/colorAccent"
-        app:fab_addButtonColorPressed="@color/colorAccent"
-        app:fab_labelStyle="@style/fab_label_style">
-
-        <com.getbase.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fab_scan"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:fab_title="@string/scan"
-            app:fab_size="mini"
-            app:fab_colorNormal="@color/background"
-            app:fab_colorPressed="@color/background"
-            app:fab_icon="@drawable/ic_qrcode_scan"/>
-
-        <com.getbase.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fab_scan_image"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:fab_title="@string/scan_image"
-            app:fab_size="mini"
-            app:fab_colorNormal="@color/background"
-            app:fab_colorPressed="@color/background"
-            app:fab_icon="@drawable/ic_add_photo_24px"/>
-
-
-        <com.getbase.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fab_enter"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:fab_title="@string/enter_manually"
-            app:fab_size="mini"
-            app:fab_colorNormal="@color/background"
-            app:fab_colorPressed="@color/background"
-            app:fab_icon="@drawable/ic_create_black_24dp"/>
-
-    </com.getbase.floatingactionbutton.FloatingActionsMenu>
+        android:tint="@color/icon_primary_dark" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

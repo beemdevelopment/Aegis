@@ -144,8 +144,8 @@ dependencies {
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
     implementation "androidx.viewpager2:viewpager2:1.0.0"
     implementation 'com.amulyakhare:com.amulyakhare.textdrawable:1.0.1'
-    implementation 'com.getbase:floatingactionbutton:1.10.1'
     implementation 'com.github.avito-tech:krop:0.51'
+
     implementation "com.github.bumptech.glide:annotations:${glideVersion}"
     implementation "com.github.bumptech.glide:glide:${glideVersion}"
     implementation("com.github.bumptech.glide:recyclerview-integration:${glideVersion}") {

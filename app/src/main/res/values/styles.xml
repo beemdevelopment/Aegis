@@ -230,8 +230,4 @@
 
     <style name="AppTheme.NoActionBar.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
-    <style name="FloatingActionButton">
-        <item name="fab_labelsPosition">left</item>
-    </style>
-
 </resources>
