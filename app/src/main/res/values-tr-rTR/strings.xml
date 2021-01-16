@@ -178,8 +178,6 @@
     <string name="group_name_hint">Grup adı</string>
     <string name="preference_manage_groups">Grupları düzenle</string>
     <string name="preference_manage_groups_summary">Gruplandırmalarınızı burada düzenleyebilir ve silebilirsiniz</string>
-    <string name="pref_search_name_title">Hesap adlarında ara</string>
-    <string name="pref_search_name_summary">Arama sonuçlarına hesap adı eşleşmelerini de ekle</string>
     <string name="pref_highlight_entry_title">Dokunulan kodları belirt</string>
     <string name="pref_highlight_entry_summary">Kodların birbirlerinden ayırt edilmelerini kolaylaştırmak için geçici olarak belirginleştir</string>
     <string name="selected">Seçilen</string>

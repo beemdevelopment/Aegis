@@ -259,10 +259,6 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
         _adapter.setShowAccountName(showAccountName);
     }
 
-    public void setSearchAccountName(boolean searchAccountName) {
-        _adapter.setSearchAccountName(searchAccountName);
-    }
-
     public void setHighlightEntry(boolean highlightEntry) {
         _adapter.setHighlightEntry(highlightEntry);
     }

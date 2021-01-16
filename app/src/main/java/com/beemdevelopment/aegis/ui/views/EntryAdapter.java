@@ -35,7 +35,6 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
     private VaultEntry _focusedEntry;
     private int _codeGroupSize;
     private boolean _showAccountName;
-    private boolean _searchAccountName;
     private boolean _highlightEntry;
     private boolean _tempHighlightEntry;
     private boolean _tapToReveal;
@@ -83,10 +82,6 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
 
     public void setTapToRevealTime(int number) {
         _tapToRevealTime = number;
-    }
-
-    public void setSearchAccountName(boolean searchAccountName) {
-        _searchAccountName = searchAccountName;
     }
 
     public void setHighlightEntry(boolean highlightEntry) {
@@ -226,7 +221,7 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
             return false;
         }
 
-        return !issuer.contains(_searchFilter) && !(_searchAccountName && name.contains(_searchFilter));
+        return !issuer.contains(_searchFilter) && !name.contains(_searchFilter);
     }
 
     public void refresh(boolean hard) {

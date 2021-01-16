@@ -113,7 +113,6 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         _entryListView.setListener(this);
         _entryListView.setCodeGroupSize(getPreferences().getCodeGroupSize());
         _entryListView.setShowAccountName(getPreferences().isAccountNameVisible());
-        _entryListView.setSearchAccountName(getPreferences().isSearchAccountNameEnabled());
         _entryListView.setHighlightEntry(getPreferences().isEntryHighlightEnabled());
         _entryListView.setTapToReveal(getPreferences().isTapToRevealEnabled());
         _entryListView.setTapToRevealTime(getPreferences().getTapToRevealTime());
@@ -235,7 +234,6 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
             } else if (data.getBooleanExtra("needsRefresh", false)) {
                 boolean showAccountName = getPreferences().isAccountNameVisible();
                 int codeGroupSize = getPreferences().getCodeGroupSize();
-                boolean searchAccountName = getPreferences().isSearchAccountNameEnabled();
                 boolean highlightEntry = getPreferences().isEntryHighlightEnabled();
                 boolean tapToReveal = getPreferences().isTapToRevealEnabled();
                 int tapToRevealTime = getPreferences().getTapToRevealTime();
@@ -243,7 +241,6 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
                 boolean copyOnTap = getPreferences().isCopyOnTapEnabled();
                 _entryListView.setShowAccountName(showAccountName);
                 _entryListView.setCodeGroupSize(codeGroupSize);
-                _entryListView.setSearchAccountName(searchAccountName);
                 _entryListView.setHighlightEntry(highlightEntry);
                 _entryListView.setTapToReveal(tapToReveal);
                 _entryListView.setTapToRevealTime(tapToRevealTime);
