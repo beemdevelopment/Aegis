@@ -95,6 +95,8 @@
                 android:resource="@xml/file_paths">
             </meta-data>
         </provider>
+
+        <meta-data android:name="android.webkit.WebView.MetricsOptOut" android:value="true" />
     </application>
 
     <queries>
