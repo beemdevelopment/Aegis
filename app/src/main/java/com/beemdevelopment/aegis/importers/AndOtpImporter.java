@@ -95,7 +95,7 @@ public class AndOtpImporter extends DatabaseImporter {
             _data = data;
         }
 
-        private DecryptedState decryptData(SecretKey key, int offset) throws DatabaseImporterException {
+        private DecryptedState decryptContent(SecretKey key, int offset) throws DatabaseImporterException {
             byte[] nonce = Arrays.copyOfRange(_data, offset, offset + NONCE_SIZE);
             byte[] tag = Arrays.copyOfRange(_data, _data.length - TAG_SIZE, _data.length);
             CryptParameters params = new CryptParameters(nonce, tag);
@@ -116,35 +116,52 @@ public class AndOtpImporter extends DatabaseImporter {
             }
         }
 
+        private KeyDerivationParams getKeyDerivationParams(char[] password) throws DatabaseImporterException {
+            byte[] iterBytes = Arrays.copyOfRange(_data, 0, INT_SIZE);
+            int iterations = ByteBuffer.wrap(iterBytes).getInt();
+            if (iterations < 1) {
+                throw new DatabaseImporterException(String.format("Invalid number of iterations for PBKDF: %d", iterations));
+            }
+
+            byte[] salt = Arrays.copyOfRange(_data, INT_SIZE, INT_SIZE + SALT_SIZE);
+            return new KeyDerivationParams(password, salt, iterations);
+        }
+
+        protected DecryptedState decryptOldFormat(char[] password) throws DatabaseImporterException {
+            // WARNING: DON'T DO THIS IN YOUR OWN CODE
+            // this exists solely to support the old andOTP backup format
+            // it is not a secure way to derive a key from a password
+            MessageDigest hash;
+            try {
+                hash = MessageDigest.getInstance("SHA-256");
+            } catch (NoSuchAlgorithmException e) {
+                throw new RuntimeException(e);
+            }
+            byte[] keyBytes = hash.digest(CryptoUtils.toBytes(password));
+            SecretKey key = new SecretKeySpec(keyBytes, "AES");
+            return decryptContent(key, 0);
+        }
+
+        protected DecryptedState decryptNewFormat(SecretKey key) throws DatabaseImporterException {
+            return decryptContent(key, INT_SIZE + SALT_SIZE);
+        }
+
+        protected DecryptedState decryptNewFormat(char[] password)
+            throws DatabaseImporterException {
+            KeyDerivationParams params = getKeyDerivationParams(password);
+            SecretKey key = AndOtpKeyDerivationTask.deriveKey(params);
+            return decryptNewFormat(key);
+        }
+
         private void decrypt(Context context, char[] password, boolean oldFormat, DecryptListener listener) throws DatabaseImporterException {
             if (oldFormat) {
-                // WARNING: DON'T DO THIS IN YOUR OWN CODE
-                // this exists solely to support the old andOTP backup format
-                // it is not a secure way to derive a key from a password
-                MessageDigest hash;
-                try {
-                    hash = MessageDigest.getInstance("SHA-256");
-                } catch (NoSuchAlgorithmException e) {
-                    throw new RuntimeException(e);
-                }
-                byte[] keyBytes = hash.digest(CryptoUtils.toBytes(password));
-                SecretKey key = new SecretKeySpec(keyBytes, "AES");
-                DecryptedState state = decryptData(key, 0);
+                DecryptedState state = decryptOldFormat(password);
                 listener.onStateDecrypted(state);
             } else {
-                int offset = INT_SIZE + SALT_SIZE;
-
-                byte[] iterBytes = Arrays.copyOfRange(_data, 0, INT_SIZE);
-                int iterations = ByteBuffer.wrap(iterBytes).getInt();
-                if (iterations < 1) {
-                    throw new DatabaseImporterException(String.format("Invalid number of iterations for PBKDF: %d", iterations));
-                }
-
-                byte[] salt = Arrays.copyOfRange(_data, INT_SIZE, offset);
-                AndOtpKeyDerivationTask.Params params = new AndOtpKeyDerivationTask.Params(password, salt, iterations);
-                AndOtpKeyDerivationTask task = new AndOtpKeyDerivationTask(context, key1 -> {
+                KeyDerivationParams params = getKeyDerivationParams(password);
+                AndOtpKeyDerivationTask task = new AndOtpKeyDerivationTask(context, key -> {
                     try {
-                        DecryptedState state = decryptData(key1, offset);
+                        DecryptedState state = decryptNewFormat(key);
                         listener.onStateDecrypted(state);
                     } catch (DatabaseImporterException e) {
                         listener.onError(e);
@@ -251,7 +268,7 @@ public class AndOtpImporter extends DatabaseImporter {
         }
     }
 
-    private static class AndOtpKeyDerivationTask extends ProgressDialogTask<AndOtpKeyDerivationTask.Params, SecretKey> {
+    protected static class AndOtpKeyDerivationTask extends ProgressDialogTask<AndOtpImporter.KeyDerivationParams, SecretKey> {
         private Callback _cb;
 
         public AndOtpKeyDerivationTask(Context context, Callback cb) {
@@ -260,20 +277,22 @@ public class AndOtpImporter extends DatabaseImporter {
         }
 
         @Override
-        protected SecretKey doInBackground(AndOtpKeyDerivationTask.Params... args) {
+        protected SecretKey doInBackground(AndOtpImporter.KeyDerivationParams... args) {
             setPriority();
 
-            AndOtpKeyDerivationTask.Params params = args[0];
-            SecretKey key;
+            AndOtpImporter.KeyDerivationParams params = args[0];
+            return deriveKey(params);
+        }
+
+        protected static SecretKey deriveKey(KeyDerivationParams params) {
             try {
                 SecretKeyFactory factory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA1");
                 KeySpec spec = new PBEKeySpec(params.getPassword(), params.getSalt(), params.getIterations(), KEY_SIZE);
-                key = factory.generateSecret(spec);
+                SecretKey key = factory.generateSecret(spec);
+                return new SecretKeySpec(key.getEncoded(), "AES");
             } catch (NoSuchAlgorithmException | InvalidKeySpecException e) {
                 throw new RuntimeException(e);
             }
-
-            return key;
         }
 
         @Override
@@ -282,32 +301,32 @@ public class AndOtpImporter extends DatabaseImporter {
             _cb.onTaskFinished(key);
         }
 
-        public static class Params {
-            private char[] _password;
-            private byte[] _salt;
-            private int _iterations;
-
-            public Params(char[] password, byte[] salt, int iterations) {
-                _iterations = iterations;
-                _password = password;
-                _salt = salt;
-            }
-
-            public char[] getPassword() {
-                return _password;
-            }
-
-            public int getIterations() {
-                return _iterations;
-            }
-
-            public byte[] getSalt() {
-                return _salt;
-            }
-        }
-
         public interface Callback {
             void onTaskFinished(SecretKey key);
+        }
+    }
+
+    protected static class KeyDerivationParams {
+        private final char[] _password;
+        private final byte[] _salt;
+        private final int _iterations;
+
+        public KeyDerivationParams(char[] password, byte[] salt, int iterations) {
+            _iterations = iterations;
+            _password = password;
+            _salt = salt;
+        }
+
+        public char[] getPassword() {
+            return _password;
+        }
+
+        public int getIterations() {
+            return _iterations;
+        }
+
+        public byte[] getSalt() {
+            return _salt;
         }
     }
 }

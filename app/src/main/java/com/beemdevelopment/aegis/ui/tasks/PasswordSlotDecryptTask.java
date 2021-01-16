@@ -28,9 +28,13 @@ public class PasswordSlotDecryptTask extends ProgressDialogTask<PasswordSlotDecr
         setPriority();
 
         Params params = args[0];
-        for (PasswordSlot slot : params.getSlots()) {
+        return decrypt(params.getSlots(), params.getPassword());
+    }
+
+    public static Result decrypt(List<PasswordSlot> slots, char[] password) {
+        for (PasswordSlot slot : slots) {
             try {
-                return decryptPasswordSlot(slot, params.getPassword());
+                return decryptPasswordSlot(slot, password);
             } catch (SlotException e) {
                 throw new RuntimeException(e);
             } catch (SlotIntegrityException ignored) {
@@ -41,7 +45,7 @@ public class PasswordSlotDecryptTask extends ProgressDialogTask<PasswordSlotDecr
         return null;
     }
 
-    private Result decryptPasswordSlot(PasswordSlot slot, char[] password)
+    public static Result decryptPasswordSlot(PasswordSlot slot, char[] password)
             throws SlotIntegrityException, SlotException {
         MasterKey masterKey;
         SecretKey key = slot.deriveKey(password);
@@ -55,8 +59,6 @@ public class PasswordSlotDecryptTask extends ProgressDialogTask<PasswordSlotDecr
             if (slot.isRepaired() || oldPasswordBytes.length <= 64) {
                 throw e;
             }
-
-            publishProgress(getDialog().getContext().getString(R.string.unlocking_vault_repair));
 
             // try to decrypt the password slot with the old key
             SecretKey oldKey = slot.deriveKey(oldPasswordBytes);
@@ -75,7 +77,7 @@ public class PasswordSlotDecryptTask extends ProgressDialogTask<PasswordSlotDecr
         return new Result(masterKey, slot, repaired);
     }
 
-    private MasterKey decryptPasswordSlot(PasswordSlot slot, SecretKey key)
+    public static MasterKey decryptPasswordSlot(PasswordSlot slot, SecretKey key)
             throws SlotException, SlotIntegrityException {
         Cipher cipher = slot.createDecryptCipher(key);
         return slot.getKey(cipher);

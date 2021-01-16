@@ -42,13 +42,22 @@ android {
     testOptions {
         execution 'ANDROIDX_TEST_ORCHESTRATOR'
 
-        unitTests.all {
-            useJUnitPlatform()
+        unitTests {
+            all {
+                maxHeapSize "3g"
 
-            ignoreFailures false
-            testLogging {
-                events "passed", "skipped", "failed", "standardOut", "standardError"
+                ignoreFailures false
+                testLogging {
+                    events "passed", "skipped", "failed", "standardOut", "standardError"
+
+                    showExceptions true
+                    exceptionFormat "full"
+                    showCauses true
+                    showStackTraces true
+                }
             }
+
+            includeAndroidResources true
         }
     }
 
@@ -111,10 +120,11 @@ protobuf {
 }
 
 dependencies {
+    def androidTestVersion = '1.3.0'
     def cameraxVersion = '1.0.0-rc01'
     def glideVersion = '4.11.0'
     def guavaVersion = '30.1'
-    def junitVersion = '5.7.0'
+    def junitVersion = '4.13.1'
     def libsuVersion = '3.0.2'
 
     annotationProcessor 'androidx.annotation:annotation:1.1.0'
@@ -157,19 +167,21 @@ dependencies {
     implementation 'info.guardianproject.trustedintents:trustedintents:0.2'
     implementation 'org.bouncycastle:bcprov-jdk15on:1.68'
 
-    androidTestImplementation 'androidx.test:core:1.3.0'
-    androidTestImplementation 'androidx.test:runner:1.3.0'
-    androidTestImplementation 'androidx.test:rules:1.3.0'
+    androidTestImplementation "androidx.test:core:${androidTestVersion}"
+    androidTestImplementation "androidx.test:runner:${androidTestVersion}"
+    androidTestImplementation "androidx.test:rules:${androidTestVersion}"
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
     androidTestImplementation 'androidx.test.espresso:espresso-contrib:3.3.0'
     androidTestImplementation 'androidx.test.espresso:espresso-intents:3.3.0'
-    androidTestImplementation 'junit:junit:4.13.1'
+    androidTestImplementation "junit:junit:${junitVersion}"
     androidTestUtil 'androidx.test:orchestrator:1.3.0'
 
+    testImplementation "androidx.test:core:${androidTestVersion}"
     testImplementation "com.google.guava:guava:${guavaVersion}-jre"
-    testImplementation "org.junit.jupiter:junit-jupiter-api:${junitVersion}"
-    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:${junitVersion}"
+    testImplementation "junit:junit:${junitVersion}"
+    testImplementation "org.json:json:20200518"
+    testImplementation 'org.robolectric:robolectric:4.4'
 
     coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.1.1'
 }

@@ -28,9 +28,9 @@ public abstract class DatabaseImporter {
         // note: keep these lists sorted alphabetically
         _importers = new ArrayList<>();
         _importers.add(new Definition("Aegis", AegisImporter.class, R.string.importer_help_aegis, false));
+        _importers.add(new Definition("andOTP", AndOtpImporter.class, R.string.importer_help_andotp, false));
         _importers.add(new Definition("Authenticator Plus", AuthenticatorPlusImporter.class, R.string.importer_help_authenticator_plus, false));
         _importers.add(new Definition("Authy", AuthyImporter.class, R.string.importer_help_authy, true));
-        _importers.add(new Definition("andOTP", AndOtpImporter.class, R.string.importer_help_andotp, false));
         _importers.add(new Definition("FreeOTP", FreeOtpImporter.class, R.string.importer_help_freeotp, true));
         _importers.add(new Definition("FreeOTP+", FreeOtpPlusImporter.class, R.string.importer_help_freeotp_plus, true));
         _importers.add(new Definition("Google Authenticator", GoogleAuthImporter.class, R.string.importer_help_google_authenticator, true));

@@ -34,6 +34,15 @@ public class TotpInfo extends OtpInfo {
         }
     }
 
+    public String getOtp(long time) {
+        try {
+            OTP otp = TOTP.generateOTP(getSecret(), getAlgorithm(true), getDigits(), getPeriod(), time);
+            return otp.toString();
+        } catch (InvalidKeyException | NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     @Override
     public String getType() {
         return ID;

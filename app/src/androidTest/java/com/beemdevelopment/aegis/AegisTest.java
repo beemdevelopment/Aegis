@@ -39,6 +39,19 @@ public abstract class AegisTest {
     }
 
     protected VaultManager initVault() {
+        VaultFileCredentials creds = generateCredentials();
+        VaultManager vault = getApp().initVaultManager(new Vault(), creds);
+        try {
+            vault.save(false);
+        } catch (VaultManagerException e) {
+            throw new RuntimeException(e);
+        }
+
+        getApp().getPreferences().setIntroDone(true);
+        return vault;
+    }
+
+    protected VaultFileCredentials generateCredentials() {
         PasswordSlot slot = new PasswordSlot();
         byte[] salt = CryptoUtils.generateSalt();
         SCryptParameters scryptParams = new SCryptParameters(
@@ -59,17 +72,9 @@ public abstract class AegisTest {
                 | SlotException e) {
             throw new RuntimeException(e);
         }
+
         creds.getSlots().add(slot);
-
-        VaultManager vault = getApp().initVaultManager(new Vault(), creds);
-        try {
-            vault.save(false);
-        } catch (VaultManagerException e) {
-            throw new RuntimeException(e);
-        }
-
-        getApp().getPreferences().setIntroDone(true);
-        return vault;
+        return creds;
     }
 
     protected static <T extends OtpInfo> VaultEntry generateEntry(Class<T> type, String name, String issuer) {

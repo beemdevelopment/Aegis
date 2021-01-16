@@ -1,18 +1,14 @@
-package com.beemdevelopment.aegis;
+package com.beemdevelopment.aegis.crypto.otp;
 
-import com.beemdevelopment.aegis.crypto.otp.OTP;
-import com.beemdevelopment.aegis.crypto.otp.TOTP;
-
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.fail;
+import static org.junit.Assert.assertEquals;
 
 public class TOTPTest {
-    private static class Vector {
+    public static class Vector {
         public long Time;
         public String OTP;
         public String Algo;
@@ -25,7 +21,7 @@ public class TOTPTest {
     }
 
     // https://tools.ietf.org/html/rfc6238#appendix-B
-    private final Vector[] _vectors = {
+    public static final Vector[] VECTORS = {
             new Vector(59, "94287082", "HmacSHA1"),
             new Vector(59, "46119246", "HmacSHA256"),
             new Vector(59, "90693936", "HmacSHA512"),
@@ -46,19 +42,19 @@ public class TOTPTest {
             new Vector(20000000000L, "47863826", "HmacSHA512")
     };
 
-    private final byte[] _seed = new byte[]{
+    private static final byte[] SEED = new byte[]{
             0x31, 0x32, 0x33, 0x34, 0x35, 0x36, 0x37, 0x38, 0x39, 0x30,
             0x31, 0x32, 0x33, 0x34, 0x35, 0x36, 0x37, 0x38, 0x39, 0x30
     };
 
-    private final byte[] _seed32 = new byte[]{
+    private static final byte[] SEED32 = new byte[]{
             0x31, 0x32, 0x33, 0x34, 0x35, 0x36, 0x37, 0x38,
             0x39, 0x30, 0x31, 0x32, 0x33, 0x34, 0x35, 0x36,
             0x37, 0x38, 0x39, 0x30, 0x31, 0x32, 0x33, 0x34,
             0x35, 0x36, 0x37, 0x38, 0x39, 0x30, 0x31, 0x32
     };
 
-    private final byte[] _seed64 = new byte[]{
+    private static final byte[] SEED64 = new byte[]{
             0x31, 0x32, 0x33, 0x34, 0x35, 0x36, 0x37, 0x38, 0x39, 0x30, 0x31, 0x32, 0x33, 0x34, 0x35, 0x36,
             0x37, 0x38, 0x39, 0x30, 0x31, 0x32, 0x33, 0x34, 0x35, 0x36, 0x37, 0x38, 0x39, 0x30, 0x31, 0x32,
             0x33, 0x34, 0x35, 0x36, 0x37, 0x38, 0x39, 0x30, 0x31, 0x32, 0x33, 0x34, 0x35, 0x36, 0x37, 0x38,
@@ -67,26 +63,23 @@ public class TOTPTest {
 
     @Test
     public void vectorsMatch() throws NoSuchAlgorithmException, InvalidKeyException {
-        for (Vector vector : _vectors) {
-            byte[] seed;
-
-            switch (vector.Algo) {
-                case "HmacSHA1":
-                    seed = _seed;
-                    break;
-                case "HmacSHA256":
-                    seed = _seed32;
-                    break;
-                case "HmacSHA512":
-                    seed = _seed64;
-                    break;
-                default:
-                    fail("unsupported mode");
-                    return;
-            }
-
+        for (Vector vector : VECTORS) {
+            byte[] seed = getSeed(vector.Algo);
             OTP otp = TOTP.generateOTP(seed, vector.Algo, 8, 30, vector.Time);
             assertEquals(vector.OTP, otp.toString());
+        }
+    }
+
+    public static byte[] getSeed(String algorithm) {
+        switch (algorithm) {
+            case "HmacSHA1":
+                return SEED;
+            case "HmacSHA256":
+                return SEED32;
+            case "HmacSHA512":
+                return SEED64;
+            default:
+                throw new RuntimeException(String.format("Unsupported algorithm: %s", algorithm));
         }
     }
 }

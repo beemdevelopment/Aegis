@@ -619,7 +619,7 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
         DatabaseImporter.State state;
         try {
             state = ((AegisImporter.EncryptedState) _importerState).decrypt(creds);
-        } catch (VaultFileException e) {
+        } catch (DatabaseImporterException e) {
             e.printStackTrace();
             Dialogs.showErrorDialog(getContext(), R.string.decryption_error, e);
             return;

@@ -1,15 +1,11 @@
-package com.beemdevelopment.aegis;
+package com.beemdevelopment.aegis.vault.slots;
 
 import com.beemdevelopment.aegis.crypto.CryptoUtils;
 import com.beemdevelopment.aegis.crypto.MasterKey;
 import com.beemdevelopment.aegis.crypto.SCryptParameters;
-import com.beemdevelopment.aegis.vault.slots.PasswordSlot;
-import com.beemdevelopment.aegis.vault.slots.RawSlot;
-import com.beemdevelopment.aegis.vault.slots.SlotException;
-import com.beemdevelopment.aegis.vault.slots.SlotIntegrityException;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.Before;
+import org.junit.Test;
 
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
@@ -20,13 +16,13 @@ import javax.crypto.NoSuchPaddingException;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
 
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertThrows;
 
 public class SlotTest {
     private MasterKey _masterKey;
 
-    @BeforeEach
+    @Before
     public void init() {
         _masterKey = MasterKey.generate();
     }
@@ -75,18 +71,26 @@ public class SlotTest {
     public void testSlotIntegrity() throws
             InvalidAlgorithmParameterException, NoSuchAlgorithmException,
             InvalidKeyException, NoSuchPaddingException,
-            SlotException {
+            SlotException, SlotIntegrityException {
         RawSlot slot = new RawSlot();
         SecretKey rawKey = CryptoUtils.generateKey();
         Cipher cipher = CryptoUtils.createEncryptCipher(rawKey);
         slot.setKey(_masterKey, cipher);
 
-        // garble the first byte of the key
-        byte[] rawKeyBytes = rawKey.getEncoded();
-        rawKeyBytes[0] = (byte) ~rawKeyBytes[0];
-        rawKey = new SecretKeySpec(rawKeyBytes, "AES");
+        // try to decrypt with good key/ciphertext first
+        final Cipher decryptCipher = slot.createDecryptCipher(rawKey);
+        slot.getKey(decryptCipher);
 
-        Cipher decryptCipher = slot.createDecryptCipher(rawKey);
+        // garble the first byte of the key and try to decrypt
+        byte[] garbledKeyBytes = rawKey.getEncoded();
+        garbledKeyBytes[0] = (byte) ~garbledKeyBytes[0];
+        SecretKey garbledKey = new SecretKeySpec(garbledKeyBytes, "AES");
+        final Cipher garbledDecryptCipher = slot.createDecryptCipher(garbledKey);
+        assertThrows(SlotIntegrityException.class, () -> slot.getKey(garbledDecryptCipher));
+
+        // garble the first byte of the ciphertext and try to decrypt
+        byte[] garbledCiphertext = slot.getEncryptedMasterKey();
+        garbledCiphertext[0] = (byte) ~garbledCiphertext[0];
         assertThrows(SlotIntegrityException.class, () -> slot.getKey(decryptCipher));
     }
 }
