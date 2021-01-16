@@ -15,7 +15,10 @@
 
     <application
         android:name=".AegisApplication"
-        android:allowBackup="false"
+        android:allowBackup="true"
+        android:fullBackupOnly="true"
+        android:fullBackupContent="@xml/backup_rules"
+        android:backupAgent=".AegisBackupAgent"
         android:icon="@mipmap/${iconName}"
         android:label="Aegis"
         android:supportsRtl="true"

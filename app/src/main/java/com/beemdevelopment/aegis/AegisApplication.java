@@ -96,7 +96,7 @@ public class AegisApplication extends Application {
         }
 
         if (_vaultFile == null) {
-            _vaultFile = VaultManager.readFile(this);
+            _vaultFile = VaultManager.readVaultFile(this);
         }
 
         return _vaultFile;

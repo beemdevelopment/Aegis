@@ -95,7 +95,7 @@ public class SecurityPreferencesFragment extends PreferencesFragment {
             } else {
                 Dialogs.showSecureDialog(new AlertDialog.Builder(getActivity())
                         .setTitle(R.string.disable_encryption)
-                        .setMessage(getString(R.string.disable_encryption_description))
+                        .setMessage(getText(R.string.disable_encryption_description))
                         .setPositiveButton(android.R.string.yes, (dialog, which) -> {
                             try {
                                 getVault().disableEncryption();

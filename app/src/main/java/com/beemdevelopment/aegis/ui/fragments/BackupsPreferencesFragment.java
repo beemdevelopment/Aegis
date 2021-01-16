@@ -15,6 +15,7 @@ import com.beemdevelopment.aegis.ui.Dialogs;
 import com.beemdevelopment.aegis.vault.VaultManagerException;
 
 public class BackupsPreferencesFragment extends PreferencesFragment {
+    private SwitchPreferenceCompat _androidBackupsPreference;
     private SwitchPreferenceCompat _backupsPreference;
     private Preference _backupsLocationPreference;
     private Preference _backupsTriggerPreference;
@@ -41,6 +42,14 @@ public class BackupsPreferencesFragment extends PreferencesFragment {
                 updateBackupPreference();
             }
 
+            return false;
+        });
+
+        _androidBackupsPreference = findPreference("pref_android_backups");
+        _androidBackupsPreference.setOnPreferenceChangeListener((preference, newValue) -> {
+            prefs.setIsAndroidBackupsEnabled((boolean) newValue);
+            updateBackupPreference();
+            getVault().androidBackupDataChanged();
             return false;
         });
 
@@ -106,7 +115,10 @@ public class BackupsPreferencesFragment extends PreferencesFragment {
 
     private void updateBackupPreference() {
         boolean encrypted = getVault().isEncryptionEnabled();
+        boolean androidBackupEnabled = getPreferences().isAndroidBackupsEnabled() && encrypted;
         boolean backupEnabled = getPreferences().isBackupsEnabled() && encrypted;
+        _androidBackupsPreference.setChecked(androidBackupEnabled);
+        _androidBackupsPreference.setEnabled(encrypted);
         _backupsPreference.setChecked(backupEnabled);
         _backupsPreference.setEnabled(encrypted);
         _backupsLocationPreference.setVisible(backupEnabled);
