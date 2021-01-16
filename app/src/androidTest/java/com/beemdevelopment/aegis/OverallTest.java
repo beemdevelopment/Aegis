@@ -159,7 +159,7 @@ public class OverallTest extends AegisTest {
     }
 
     private void addEntry(VaultEntry entry) {
-        onView(withId(R.id.fab_expand_menu_button)).perform(click());
+        onView(withId(R.id.fab)).perform(click());
         onView(withId(R.id.fab_enter)).perform(click());
 
         onView(withId(R.id.text_name)).perform(typeText(entry.getName()), closeSoftKeyboard());

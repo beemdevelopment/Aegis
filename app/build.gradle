@@ -145,7 +145,6 @@ dependencies {
     implementation "androidx.viewpager2:viewpager2:1.0.0"
     implementation 'com.amulyakhare:com.amulyakhare.textdrawable:1.0.1'
     implementation 'com.github.avito-tech:krop:0.51'
-
     implementation "com.github.bumptech.glide:annotations:${glideVersion}"
     implementation "com.github.bumptech.glide:glide:${glideVersion}"
     implementation("com.github.bumptech.glide:recyclerview-integration:${glideVersion}") {
@@ -180,7 +179,7 @@ dependencies {
     testImplementation "androidx.test:core:${androidTestVersion}"
     testImplementation "com.google.guava:guava:${guavaVersion}-jre"
     testImplementation "junit:junit:${junitVersion}"
-    testImplementation "org.json:json:20200518"
+    testImplementation "org.json:json:20201115"
     testImplementation 'org.robolectric:robolectric:4.4'
 
     coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.1.1'
