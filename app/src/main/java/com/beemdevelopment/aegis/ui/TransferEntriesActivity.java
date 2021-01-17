@@ -37,6 +37,7 @@ public class TransferEntriesActivity extends AegisActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_share_entry);
+        setSupportActionBar(findViewById(R.id.toolbar));
         _vault = getApp().getVaultManager();
 
         _qrImage = findViewById(R.id.ivQrCode);

@@ -12,13 +12,20 @@
         android:layout_marginStart="25dp"
         android:layout_marginEnd="25dp"
         android:text="@string/export_help" />
-    <androidx.appcompat.widget.AppCompatSpinner
-        android:id="@+id/spinner_export_format"
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginTop="5dp" />
+        android:layout_marginStart="25dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginTop="5dp"
+        android:hint="@string/export_format_hint"
+        style="?attr/dropdownStyle">
+        <AutoCompleteTextView
+            android:id="@+id/dropdown_export_format"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="none" />
+    </com.google.android.material.textfield.TextInputLayout>
     <CheckBox
         android:id="@+id/checkbox_export_encrypt"
         android:layout_width="match_parent"

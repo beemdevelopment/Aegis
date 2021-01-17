@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#0d47a1</color>
-    <color name="colorSecondary">#FF1565C0</color>
+    <color name="colorPrimarySelected">#FF1565C0</color>
+    <color name="colorSecondary">#FF5252</color>
     <color name="colorPrimaryDark">#002171</color>
     <color name="colorHeaderSuccess">#12b600</color>
     <color name="colorPrimaryLight">#5472d3</color>
@@ -11,7 +12,6 @@
     <color name="secondary_text">#A0A0A0</color>
     <color name="auth_text">#4c4c4c</color>
     <color name="auth_button">#0d86c1</color>
-    <color name="icon_about">#757575</color>
     <color name="extra_info_text">#8e8e8e</color>
     <color name="primary_text_inverted">#ffffff</color>
     <color name="secondary_text_inverted">#efefef</color>b

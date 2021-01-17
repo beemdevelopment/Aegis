@@ -100,7 +100,6 @@
     <string name="unlock">Разблокировать</string>
     <string name="biometrics">Биометрия</string>
     <string name="advanced">Расширенные</string>
-    <string name="seconds">секунд</string>
     <string name="counter">Счётчик</string>
     <string name="digits">Цифры</string>
     <string name="secret">Секрет</string>

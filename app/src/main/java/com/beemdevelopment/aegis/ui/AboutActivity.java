@@ -42,6 +42,7 @@ public class AboutActivity extends AegisActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about);
+        setSupportActionBar(findViewById(R.id.toolbar));
 
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);

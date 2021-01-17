@@ -40,7 +40,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <EditText
+                <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/text_password"
                     android:hint="@string/set_password"
                     android:inputType="textPassword"
@@ -54,7 +54,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp">
 
-                <EditText
+                <com.google.android.material.textfield.TextInputEditText
                     android:hint="@string/set_password_confirm"
                     android:id="@+id/text_password_confirm"
                     android:inputType="textPassword"

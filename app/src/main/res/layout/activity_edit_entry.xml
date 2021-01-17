@@ -1,323 +1,301 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="?attr/background"
     android:layout_height="match_parent"
+    android:background="?attr/background"
+    android:orientation="vertical"
     tools:context="com.beemdevelopment.aegis.ui.EditEntryActivity">
-
-    <LinearLayout
+    <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:descendantFocusability="beforeDescendants"
-        android:focusableInTouchMode="true">
-
-        <RelativeLayout
+        android:theme="@style/ThemeOverlay.Aegis.AppBar">
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:background="?attr/background"
-
-            android:layout_height="250dp">
-
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/profile_drawable"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true" />
-
-            <com.avito.android.krop.KropView
-                android:id="@+id/krop_view"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true"
-                android:visibility="invisible"
-                app:krop_aspectX="1"
-                app:krop_aspectY="1"
-                app:krop_offset="70dp"
-                app:krop_overlayColor="#aadddddd" >
-
-                <ImageView
-                    android:id="@+id/iv_saveImage"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="bottom|end"
-                    android:layout_margin="15dp"
-                    android:src="@drawable/ic_check_black_24dp"
-                    app:tint="?attr/iconColorPrimary" />
-            </com.avito.android.krop.KropView>
-
-        </RelativeLayout>
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/divider" />
-        <TableLayout
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorAppBar" />
+    </com.google.android.material.appbar.AppBarLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:stretchColumns="1"
-            android:layout_marginEnd="35dp">
+            android:descendantFocusability="beforeDescendants"
+            android:focusableInTouchMode="true">
 
-            <TableRow
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="5dp">
-                <ImageView android:layout_column="0"
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:background="?attr/background"
+                android:layout_height="250dp">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/profile_drawable"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true" />
+
+                <com.avito.android.krop.KropView
+                    android:id="@+id/krop_view"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_person_black_24dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:visibility="invisible"
+                    app:krop_aspectX="1"
+                    app:krop_aspectY="1"
+                    app:krop_offset="70dp"
+                    app:krop_overlayColor="#aadddddd" >
+
+                    <ImageView
+                        android:id="@+id/iv_saveImage"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom|end"
+                        android:layout_margin="15dp"
+                        android:src="@drawable/ic_check_black_24dp"
+                        app:tint="?attr/iconColorPrimary" />
+                </com.avito.android.krop.KropView>
+
+            </RelativeLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/divider" />
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:stretchColumns="1"
+                android:layout_marginEnd="15dp">
+
+                <TableRow
                     android:layout_marginTop="10dp"
-                    app:tint="?attr/iconColorPrimary"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginEnd="20dp"/>
+                    android:layout_marginBottom="5dp">
+                    <ImageView
+                        android:layout_column="0"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_person_black_24dp"
+                        app:tint="?attr/iconColorPrimary"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginEnd="15dp"
+                        android:layout_gravity="center_vertical"/>
 
-                <EditText android:layout_column="1"
-                    android:id="@+id/text_name"
-                    android:hint="@string/name"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="#949494"
-                    android:layout_weight="1"/>
-            </TableRow>
-
-            <TableRow
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp">
-                <LinearLayout android:layout_column="1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical">
-                    <EditText
-                        android:id="@+id/text_issuer"
-                        android:hint="@string/issuer"
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_column="1"
+                        android:hint="@string/name"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:backgroundTint="#949494"
-                        android:layout_weight="1"/>
-                    <androidx.appcompat.widget.AppCompatSpinner
-                        android:id="@+id/spinner_group"
+                        android:layout_weight="1">
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/text_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="text"/>
+                    </com.google.android.material.textfield.TextInputLayout>
+                </TableRow>
+
+                <TableRow
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp">
+                    <LinearLayout android:layout_column="1"
                         android:layout_width="0dp"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:backgroundTint="#949494"
-                        style="@style/Base.Widget.AppCompat.Spinner.Underlined"/>
-                </LinearLayout>
-            </TableRow>
-        </TableLayout>
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical">
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:hint="@string/issuer"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="5dp"
+                            android:layout_weight="1">
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/text_issuer"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:inputType="text"/>
+                        </com.google.android.material.textfield.TextInputLayout>
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:hint="@string/group"
+                            style="?attr/dropdownStyle">
+                            <AutoCompleteTextView
+                                android:id="@+id/dropdown_group"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:inputType="none"/>
+                        </com.google.android.material.textfield.TextInputLayout>
+                    </LinearLayout>
+                </TableRow>
+            </TableLayout>
 
-        <RelativeLayout
-            android:foreground="?android:attr/selectableItemBackground"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/accordian_header"
-            android:focusable="true"
-            android:clickable="true">
-
-            <ImageView
-                android:id="@+id/down_btn"
-                android:layout_width="wrap_content"
+            <RelativeLayout
+                android:foreground="?android:attr/selectableItemBackground"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_centerVertical="true"
-                android:layout_marginStart="14dp"
-                android:src="@drawable/ic_keyboard_arrow_down_black_24dp"
-                app:tint="?attr/iconColorPrimary"/>
+                android:id="@+id/accordian_header"
+                android:focusable="true"
+                android:clickable="true">
 
-            <TextView
-                android:id="@+id/accordian_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_marginStart="12dp"
-                android:layout_toEndOf="@+id/down_btn"
-                android:padding="16dp"
-                android:text="@string/advanced"
-                android:textStyle="bold" />
+                <ImageView
+                    android:id="@+id/down_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="14dp"
+                    android:src="@drawable/ic_keyboard_arrow_down_black_24dp"
+                    app:tint="?attr/iconColorPrimary"/>
 
-        </RelativeLayout>
+                <TextView
+                    android:id="@+id/accordian_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_toEndOf="@+id/down_btn"
+                    android:padding="16dp"
+                    android:text="@string/advanced"
+                    android:textStyle="bold" />
+
+            </RelativeLayout>
             <RelativeLayout
                 android:id="@+id/expandableLayout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:visibility="invisible">
-            <TableLayout
+                <TableLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:stretchColumns="1"
-                    android:layout_marginEnd="35dp">
-            <TableRow
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp">
-                <ImageView android:layout_column="0"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_info_outline_black_24dp"
-                    android:layout_marginTop="10dp"
-                    app:tint="?attr/iconColorPrimary"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginEnd="20dp"/>
-
-                <LinearLayout android:layout_column="1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical">
-
-                    <androidx.appcompat.widget.AppCompatSpinner
-                        android:id="@+id/spinner_type"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="4"
-                        android:paddingEnd="6dp"
-                        android:gravity="start"
-                        android:layout_gravity="start"
-                        android:backgroundTint="#949494"
-                        style="@style/Base.Widget.AppCompat.Spinner.Underlined"/>
-                    <androidx.appcompat.widget.AppCompatSpinner
-                        android:id="@+id/spinner_algo"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="4"
-                        android:paddingEnd="6dp"
-                        android:backgroundTint="#949494"
-                        style="@style/Base.Widget.AppCompat.Spinner.Underlined"/>
-                    <EditText
-                        android:id="@+id/text_digits"
-                        android:hint="@string/digits"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:paddingEnd="6dp"
-                        android:layout_weight="3"
-                        android:backgroundTint="#949494"/>
-                </LinearLayout>
-
-            </TableRow>
-
-            <TableRow
-                android:id="@+id/row_period"
-                android:visibility="gone"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp">
-                <ImageView android:layout_column="0"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_timelapse_black_24dp"
-                    android:layout_marginTop="10dp"
-                    app:tint="?attr/iconColorPrimary"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginEnd="20dp"/>
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="horizontal">
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
-                        <EditText
-                            android:id="@+id/text_period"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:backgroundTint="#949494"
-                            android:layout_alignParentStart="true"
-                            android:layout_gravity="center"
-                            android:inputType="numberDecimal"/>
-                        <TextView
-                            android:id="@+id/text_hint"
+                    android:layout_marginEnd="15dp">
+                    <TableRow
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp">
+                        <ImageView android:layout_column="0"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_alignParentEnd="true"
-                            android:backgroundTint="#949494"
-                            android:layout_centerVertical="true"
-                            android:text="@string/seconds"
-                            android:textSize="18sp"
-                            android:layout_marginEnd="10dp"
-                            android:textColor="#808080"/>
-                    </RelativeLayout>
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"/>
-                </LinearLayout>
-            </TableRow>
+                            android:src="@drawable/ic_info_outline_black_24dp"
+                            app:tint="?attr/iconColorPrimary"
+                            android:layout_marginStart="15dp"
+                            android:layout_marginEnd="15dp"
+                            android:layout_gravity="center_vertical"/>
 
-            <TableRow
-                android:id="@+id/row_counter"
-                android:visibility="gone"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp">
-                <ImageView android:layout_column="0"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_counter_black_24dp"
-                    android:layout_marginTop="10dp"
-                    app:tint="?attr/iconColorPrimary"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginEnd="20dp"/>
+                        <LinearLayout android:layout_column="1"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical">
 
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="horizontal">
-                    <EditText
-                        android:id="@+id/text_counter"
-                        android:hint="@string/counter"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:backgroundTint="#949494"
-                        android:layout_gravity="center"
-                        android:inputType="numberDecimal"/>
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"/>
-                </LinearLayout>
-            </TableRow>
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="4"
+                                android:layout_marginEnd="5dp"
+                                android:gravity="start"
+                                android:layout_gravity="start"
+                                android:hint="@string/type"
+                                style="?attr/dropdownStyle">
+                                <AutoCompleteTextView
+                                    android:id="@+id/dropdown_type"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:inputType="none"/>
+                            </com.google.android.material.textfield.TextInputLayout>
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="4"
+                                android:hint="@string/algorithm_hint"
+                                style="?attr/dropdownStyle">
+                                <AutoCompleteTextView
+                                    android:id="@+id/dropdown_algo"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:inputType="none" />
+                            </com.google.android.material.textfield.TextInputLayout>
+                        </LinearLayout>
+                    </TableRow>
 
-            <TableRow
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp">
-                <ImageView android:layout_column="0"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_vpn_key_black_24dp"
-                    android:layout_marginTop="10dp"
-                    app:tint="?attr/iconColorPrimary"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginEnd="20dp"/>
+                    <TableRow
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp">
+                        <LinearLayout android:layout_column="1"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical">
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/text_period_counter_layout"
+                                android:hint="@string/period_hint"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="4"
+                                android:layout_marginEnd="5dp"
+                                android:gravity="start"
+                                android:layout_gravity="start">
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/text_period_counter"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:inputType="text"/>
+                            </com.google.android.material.textfield.TextInputLayout>
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:hint="@string/digits"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="4">
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/text_digits"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:inputType="text"/>
+                            </com.google.android.material.textfield.TextInputLayout>
+                        </LinearLayout>
+                    </TableRow>
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    app:passwordToggleTint="#949494"
-                    android:backgroundTint="#949494"
-                    app:hintEnabled="false"
-                    app:passwordToggleEnabled="true">
+                    <TableRow
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp">
+                        <ImageView android:layout_column="0"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_vpn_key_black_24dp"
+                            app:tint="?attr/iconColorPrimary"
+                            android:layout_marginStart="15dp"
+                            android:layout_marginEnd="15dp"
+                            android:layout_gravity="center_vertical"/>
 
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/text_secret"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            app:passwordToggleTint="#949494"
+                            app:passwordToggleEnabled="true">
 
-                        android:backgroundTint="#949494"
-                        android:hint="@string/secret"
-                        android:inputType="textPassword"/>
-                </com.google.android.material.textfield.TextInputLayout>
-            </TableRow>
-            </TableLayout>
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/text_secret"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="@string/secret"
+                                android:inputType="textPassword"/>
+                        </com.google.android.material.textfield.TextInputLayout>
+                    </TableRow>
+                </TableLayout>
             </RelativeLayout>
 
-    </LinearLayout>
-</ScrollView>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

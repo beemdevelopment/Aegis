@@ -7,20 +7,20 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.AdapterView;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.ArrayRes;
 import androidx.appcompat.app.AlertDialog;
 import androidx.core.content.FileProvider;
 import androidx.preference.Preference;
 
 import com.beemdevelopment.aegis.BuildConfig;
 import com.beemdevelopment.aegis.R;
-import com.beemdevelopment.aegis.helpers.SpinnerHelper;
+import com.beemdevelopment.aegis.helpers.DropdownHelper;
 import com.beemdevelopment.aegis.importers.AegisImporter;
 import com.beemdevelopment.aegis.importers.DatabaseImporter;
 import com.beemdevelopment.aegis.importers.DatabaseImporterEntryException;
@@ -233,20 +233,13 @@ public class ToolsPreferencesFragment extends PreferencesFragment {
         TextView warningText = view.findViewById(R.id.text_export_warning);
         CheckBox checkBoxEncrypt = view.findViewById(R.id.checkbox_export_encrypt);
         CheckBox checkBoxAccept = view.findViewById(R.id.checkbox_accept);
-        Spinner spinner = view.findViewById(R.id.spinner_export_format);
-        SpinnerHelper.fillSpinner(getContext(), spinner, R.array.export_formats);
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                checkBoxEncrypt.setChecked(position == 0);
-                checkBoxEncrypt.setEnabled(position == 0);
-                warningText.setVisibility(checkBoxEncrypt.isChecked() ? View.GONE : View.VISIBLE);
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
+        AutoCompleteTextView dropdown = view.findViewById(R.id.dropdown_export_format);
+        DropdownHelper.fillDropdown(getContext(), dropdown, R.array.export_formats);
+        dropdown.setText(getString(R.string.export_format_aegis), false);
+        dropdown.setOnItemClickListener((parent, view1, position, id) -> {
+            checkBoxEncrypt.setChecked(position == 0);
+            checkBoxEncrypt.setEnabled(position == 0);
+            warningText.setVisibility(checkBoxEncrypt.isChecked() ? View.GONE : View.VISIBLE);
         });
 
         AlertDialog dialog = new AlertDialog.Builder(getContext())
@@ -281,8 +274,9 @@ public class ToolsPreferencesFragment extends PreferencesFragment {
                     return;
                 }
 
-                int requestCode = getExportRequestCode(spinner.getSelectedItemPosition(), checkBoxEncrypt.isChecked());
-                VaultBackupManager.FileInfo fileInfo = getExportFileInfo(spinner.getSelectedItemPosition(), checkBoxEncrypt.isChecked());
+                int pos = getStringResourceIndex(R.array.export_formats, dropdown.getText().toString());
+                int requestCode = getExportRequestCode(pos, checkBoxEncrypt.isChecked());
+                VaultBackupManager.FileInfo fileInfo = getExportFileInfo(pos, checkBoxEncrypt.isChecked());
                 Intent intent = new Intent(Intent.ACTION_CREATE_DOCUMENT)
                         .addCategory(Intent.CATEGORY_OPENABLE)
                         .setType(getExportMimeType(requestCode))
@@ -293,13 +287,14 @@ public class ToolsPreferencesFragment extends PreferencesFragment {
             btnNeutral.setOnClickListener(v -> {
                 dialog.dismiss();
 
+                int pos = getStringResourceIndex(R.array.export_formats, dropdown.getText().toString());
                 if (!checkBoxEncrypt.isChecked() && !checkBoxAccept.isChecked()) {
                     return;
                 }
 
                 File file;
                 try {
-                    VaultBackupManager.FileInfo fileInfo = getExportFileInfo(spinner.getSelectedItemPosition(), checkBoxEncrypt.isChecked());
+                    VaultBackupManager.FileInfo fileInfo = getExportFileInfo(pos, checkBoxEncrypt.isChecked());
                     file = File.createTempFile(fileInfo.getFilename() + "-", "." + fileInfo.getExtension(), getExportCacheDir());
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -307,7 +302,7 @@ public class ToolsPreferencesFragment extends PreferencesFragment {
                     return;
                 }
 
-                int requestCode = getExportRequestCode(spinner.getSelectedItemPosition(), checkBoxEncrypt.isChecked());
+                int requestCode = getExportRequestCode(pos, checkBoxEncrypt.isChecked());
                 startExportVault(requestCode, cb -> {
                     try (OutputStream stream = new FileOutputStream(file)) {
                         cb.exportVault(stream);
@@ -461,6 +456,16 @@ public class ToolsPreferencesFragment extends PreferencesFragment {
                 }
             }
         });
+    }
+
+    private int getStringResourceIndex(@ArrayRes int id, String string) {
+        String[] res = getResources().getStringArray(id);
+        for (int i = 0; i < res.length; i++) {
+            if (res[i].equalsIgnoreCase(string)) {
+                return i;
+            }
+        }
+        return -1;
     }
 
     private class ExportResultListener implements ExportTask.Callback {

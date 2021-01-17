@@ -101,6 +101,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        setSupportActionBar(findViewById(R.id.toolbar));
 
         _app = (AegisApplication) getApplication();
         _vault = _app.getVaultManager();

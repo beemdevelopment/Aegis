@@ -97,7 +97,6 @@
     <string name="unlock">解锁</string>
     <string name="biometrics">生物识别</string>
     <string name="advanced">高级设置</string>
-    <string name="seconds">秒</string>
     <string name="counter">计数器</string>
     <string name="digits">位数</string>
     <string name="secret">密钥</string>

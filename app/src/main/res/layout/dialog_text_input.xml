@@ -6,10 +6,14 @@
     android:paddingStart="20dp"
     android:paddingEnd="20dp"
     android:paddingTop="20dp">
-    <EditText
-        android:id="@+id/text_input"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/text_input_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <requestFocus/>
-    </EditText>
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/text_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"/>
+    </com.google.android.material.textfield.TextInputLayout>
 </LinearLayout>

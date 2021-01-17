@@ -22,8 +22,7 @@
         android:icon="@mipmap/${iconName}"
         android:label="Aegis"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme.NoActionBar"
-        tools:ignore="GoogleAppIndexingWarning"
+        android:theme="@style/Theme.Aegis.Launch"
         tools:replace="android:theme">
         <activity android:name=".ui.TransferEntriesActivity"
             android:label="@string/title_activity_transfer" />
@@ -60,11 +59,9 @@
             android:label="@string/title_activity_edit_entry" />
         <activity
             android:name=".ui.IntroActivity"
-            android:theme="@style/AppTheme.NoActionBar"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.AuthActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:name=".ui.AuthActivity" />
         <activity
             android:name=".ui.PreferencesActivity"
             android:label="@string/title_activity_preferences" />

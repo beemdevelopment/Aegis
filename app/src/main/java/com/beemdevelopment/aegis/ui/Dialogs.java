@@ -38,6 +38,7 @@ import com.beemdevelopment.aegis.ui.tasks.KeyDerivationTask;
 import com.beemdevelopment.aegis.vault.slots.PasswordSlot;
 import com.beemdevelopment.aegis.vault.slots.Slot;
 import com.beemdevelopment.aegis.vault.slots.SlotException;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.nulabinc.zxcvbn.Strength;
 import com.nulabinc.zxcvbn.Zxcvbn;
@@ -190,11 +191,12 @@ public class Dialogs {
 
     private static void showTextInputDialog(Context context, @StringRes int titleId, @StringRes int messageId, @StringRes int hintId, TextInputListener listener, DialogInterface.OnDismissListener dismissListener, boolean isSecret) {
         View view = LayoutInflater.from(context).inflate(R.layout.dialog_text_input, null);
-        EditText input = view.findViewById(R.id.text_input);
+        TextInputEditText input = view.findViewById(R.id.text_input);
+        TextInputLayout inputLayout = view.findViewById(R.id.text_input_layout);
         if (isSecret) {
             input.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
         }
-        input.setHint(hintId);
+        inputLayout.setHint(hintId);
 
         AlertDialog.Builder builder = new AlertDialog.Builder(context)
                 .setTitle(titleId)

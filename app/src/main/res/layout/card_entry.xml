@@ -38,7 +38,7 @@
                 android:layout_centerVertical="true"
                 android:src="@drawable/item_selected"
                 android:visibility="gone"
-                app:civ_circle_background_color="@color/colorSecondary" />
+                app:civ_circle_background_color="@color/colorPrimarySelected" />
         </RelativeLayout>
 
         <RelativeLayout

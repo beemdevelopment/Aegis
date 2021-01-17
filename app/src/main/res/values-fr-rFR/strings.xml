@@ -98,7 +98,6 @@
     <string name="unlock">Déverrouiller</string>
     <string name="biometrics">Biométrie</string>
     <string name="advanced">Avancé</string>
-    <string name="seconds">secondes</string>
     <string name="counter">Compteur</string>
     <string name="digits">Chiffres</string>
     <string name="secret">Code secret</string>

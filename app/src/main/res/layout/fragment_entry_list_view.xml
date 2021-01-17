@@ -22,7 +22,7 @@
         android:text="@string/groups"
         android:layout_gravity="end"
         android:layout_marginEnd="8dp"
-        android:textAppearance="@style/AppTheme.ActionChip"
+        android:textAppearance="@style/TextAppearance.Aegis.ActionChip"
         android:textColor="?attr/primaryText"
         app:chipBackgroundColor="?attr/cardBackground"
         app:chipEndPadding="6dp"

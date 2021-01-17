@@ -77,6 +77,7 @@
     <string name="export_warning_accept">I understand the risk</string>
     <string name="export_format_aegis">Aegis (.JSON)</string>
     <string name="export_format_google_auth_uri">Text file (.TXT)</string>
+    <string name="export_format_hint">Export format</string>
 
     <string name="choose_authentication_method">Security</string>
     <string name="authentication_method_explanation">Aegis is a security-focused 2FA app. Tokens are stored in a vault, that can optionally be encrypted with a password of your choosing. If an attacker obtains your encrypted vault file, they will not be able to access the contents without knowing the password.\n\nWe\'ve preselected the option that we think would fit best for your device.</string>
@@ -104,13 +105,15 @@
     <string name="password_reminder">Please enter your password. We occasionally ask you to do this so that don\'t forget it.</string>
     <string name="enter_password_authy_message">It looks like your Authy tokens are encrypted. Please close Aegis, open Authy and unlock the tokens with your password. Instead, Aegis can also attempt to decrypt your Authy tokens for you, if you enter your password below.</string>
 
+    <string name="period_hint">Period (seconds)</string>
+    <string name="algorithm_hint">Hash function</string>
+    <string name="type">Type</string>
     <string name="share">Share</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
     <string name="unlock">Unlock</string>
     <string name="biometrics">Biometrics</string>
     <string name="advanced">Advanced</string>
-    <string name="seconds">seconds</string>
     <string name="counter">Counter</string>
     <string name="digits">Digits</string>
     <string name="secret">Secret</string>
@@ -221,6 +224,7 @@
     <string name="sort_custom">Custom</string>
     <string name="new_group">New group…</string>
     <string name="enter_group_name">Enter a group name</string>
+    <string name="group">Group</string>
     <string name="group_name_hint">Group name</string>
     <string name="preference_manage_groups">Edit groups</string>
     <string name="preference_manage_groups_summary">Manage and delete your groups here</string>

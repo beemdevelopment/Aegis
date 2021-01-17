@@ -92,7 +92,7 @@ public class OverallTest extends AegisTest {
         onView(withId(R.id.rvKeyProfiles)).perform(RecyclerViewActions.actionOnItemAtPosition(1, longClick()));
         onView(withId(R.id.action_edit)).perform(click());
         onView(withId(R.id.text_name)).perform(clearText(), typeText("Bob"), closeSoftKeyboard());
-        onView(withId(R.id.spinner_group)).perform(click());
+        onView(withId(R.id.dropdown_group)).perform(click());
         onData(anything()).atPosition(1).perform(click());
         onView(withId(R.id.text_input)).perform(typeText(_groupName), closeSoftKeyboard());
         onView(withId(android.R.id.button1)).perform(click());
@@ -168,15 +168,15 @@ public class OverallTest extends AegisTest {
         if (entry.getInfo().getClass() != TotpInfo.class) {
             int i = entry.getInfo() instanceof HotpInfo ? 1 : 2;
             try {
-                onView(withId(R.id.spinner_type)).perform(click());
+                onView(withId(R.id.dropdown_type)).perform(click());
                 onData(anything()).atPosition(i).perform(click());
             } catch (AmbiguousViewMatcherException e) {
                 // for some reason, clicking twice is sometimes necessary, otherwise the test fails on the next line
-                onView(withId(R.id.spinner_type)).perform(click());
+                onView(withId(R.id.dropdown_type)).perform(click());
                 onData(anything()).atPosition(i).perform(click());
             }
             if (entry.getInfo() instanceof HotpInfo) {
-                onView(withId(R.id.text_counter)).perform(typeText("0"), closeSoftKeyboard());
+                onView(withId(R.id.text_period_counter)).perform(typeText("0"), closeSoftKeyboard());
             }
             if (entry.getInfo() instanceof SteamInfo) {
                 onView(withId(R.id.text_digits)).perform(clearText(), typeText("5"), closeSoftKeyboard());

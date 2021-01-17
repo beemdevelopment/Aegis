@@ -49,6 +49,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/btn_app_version"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="?attr/selectableItemBackground"
@@ -63,12 +64,11 @@
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:importantForAccessibility="no"
-                    app:ico_color="@color/icon_about"
+                    app:ico_color="?attr/iconColorPrimary"
                     app:ico_icon="gmi-info-outline"
                     app:ico_size="16dp" />
 
                 <LinearLayout
-                    android:id="@+id/btn_app_version"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="32dp"
@@ -109,7 +109,7 @@
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:importantForAccessibility="no"
-                    app:ico_color="@color/icon_about"
+                    app:ico_color="?attr/iconColorPrimary"
                     app:ico_icon="gmi-time-restore"
                     app:ico_size="16dp" />
 
@@ -151,7 +151,7 @@
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:importantForAccessibility="no"
-                    app:ico_color="@color/icon_about"
+                    app:ico_color="?attr/iconColorPrimary"
                     app:ico_icon="gmi-github"
                     app:ico_size="16dp" />
 
@@ -193,7 +193,7 @@
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:importantForAccessibility="no"
-                    app:ico_color="@color/icon_about"
+                    app:ico_color="?attr/iconColorPrimary"
                     app:ico_icon="gmi-file-text"
                     app:ico_size="16dp" />
 
@@ -268,7 +268,7 @@
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:importantForAccessibility="no"
-                    app:ico_color="@color/icon_about"
+                    app:ico_color="?attr/iconColorPrimary"
                     app:ico_icon="gmi-account"
                     app:ico_size="16dp" />
 
@@ -313,7 +313,7 @@
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:importantForAccessibility="no"
-                    app:ico_color="@color/icon_about"
+                    app:ico_color="?attr/iconColorPrimary"
                     app:ico_icon="gmi-account"
                     app:ico_size="16dp" />
 
@@ -358,7 +358,7 @@
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:importantForAccessibility="no"
-                    app:ico_color="@color/icon_about"
+                    app:ico_color="?attr/iconColorPrimary"
                     app:ico_icon="gmi-email"
                     app:ico_size="16dp" />
 
@@ -390,7 +390,7 @@
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:importantForAccessibility="no"
-                    app:ico_color="@color/icon_about"
+                    app:ico_color="?attr/iconColorPrimary"
                     app:ico_icon="gmi-globe"
                     app:ico_size="16dp" />
                 <TextView
@@ -451,7 +451,7 @@
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:importantForAccessibility="no"
-                    app:ico_color="@color/icon_about"
+                    app:ico_color="?attr/iconColorPrimary"
                     app:ico_icon="gmi-star"
                     app:ico_size="16dp" />
 

@@ -6,8 +6,7 @@
         android:id="@+id/mi_search"
         android:title="@string/search"
         app:showAsAction="always"
-        app:actionViewClass="androidx.appcompat.widget.SearchView"
-    />
+        app:actionViewClass="androidx.appcompat.widget.SearchView"/>
     <item
         android:id="@+id/action_lock"
         android:icon="@drawable/ic_lock"

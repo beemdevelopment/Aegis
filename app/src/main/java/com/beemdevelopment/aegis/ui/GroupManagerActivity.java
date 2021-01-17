@@ -5,16 +5,16 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 
+import androidx.appcompat.app.AlertDialog;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.ui.views.GroupAdapter;
 
 import java.text.Collator;
 import java.util.ArrayList;
 import java.util.TreeSet;
-
-import androidx.appcompat.app.AlertDialog;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 public class GroupManagerActivity extends AegisActivity implements GroupAdapter.Listener {
     private GroupAdapter _adapter;
@@ -26,6 +26,7 @@ public class GroupManagerActivity extends AegisActivity implements GroupAdapter.
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_groups);
+        setSupportActionBar(findViewById(R.id.toolbar));
 
         Intent intent = getIntent();
         _groups = new TreeSet<>(Collator.getInstance());

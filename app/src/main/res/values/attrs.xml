@@ -9,6 +9,8 @@
     <attr name="codePrimaryText" format="color" />
     <attr name="iconColorPrimary" format="color" />
     <attr name="iconColorInverted" format="color" />
+    <attr name="dropdownStyle" format="reference" />
+    <attr name="colorAppBar" format="color" />
 
     <declare-styleable name="SlideIndicator">
         <attr name="dot_radius" format="dimension" />

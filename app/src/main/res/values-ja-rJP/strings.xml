@@ -96,7 +96,6 @@
     <string name="unlock">ロック解除</string>
     <string name="biometrics">生体認証</string>
     <string name="advanced">高度な設定</string>
-    <string name="seconds">秒</string>
     <string name="counter">カウンター</string>
     <string name="digits">桁数</string>
     <string name="secret">秘密鍵</string>

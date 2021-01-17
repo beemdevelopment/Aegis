@@ -100,7 +100,6 @@
     <string name="unlock">Odblokuj</string>
     <string name="biometrics">Autoryzacja biometryczna</string>
     <string name="advanced">Zaawansowane</string>
-    <string name="seconds">sekund</string>
     <string name="counter">Licznik</string>
     <string name="digits">Cyfry</string>
     <string name="secret">Klucz</string>

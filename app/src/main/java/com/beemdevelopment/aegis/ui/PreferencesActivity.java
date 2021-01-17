@@ -18,6 +18,8 @@ public class PreferencesActivity extends AegisActivity implements
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_preferences);
+        setSupportActionBar(findViewById(R.id.toolbar));
 
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -29,7 +31,7 @@ public class PreferencesActivity extends AegisActivity implements
             _fragment.setArguments(getIntent().getExtras());
 
              getSupportFragmentManager().beginTransaction()
-                    .replace(android.R.id.content, _fragment)
+                    .replace(R.id.content, _fragment)
                     .commit();
 
             PreferencesFragment requestedFragment = getRequestedFragment();
@@ -38,7 +40,7 @@ public class PreferencesActivity extends AegisActivity implements
                 showFragment(_fragment);
             }
         } else {
-            _fragment = (PreferencesFragment) getSupportFragmentManager().findFragmentById(android.R.id.content);
+            _fragment = (PreferencesFragment) getSupportFragmentManager().findFragmentById(R.id.content);
         }
     }
 
@@ -96,7 +98,7 @@ public class PreferencesActivity extends AegisActivity implements
     private void showFragment(PreferencesFragment fragment) {
         getSupportFragmentManager().beginTransaction()
                 .setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left, R.anim.slide_in_left, R.anim.slide_out_right)
-                .replace(android.R.id.content, fragment)
+                .replace(R.id.content, fragment)
                 .addToBackStack(null)
                 .commit();
     }
