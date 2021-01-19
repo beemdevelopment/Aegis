@@ -53,6 +53,7 @@ public abstract class AegisActivity extends AppCompatActivity implements AegisAp
     }
 
     @Override
+    @CallSuper
     protected void onDestroy() {
         _app.unregisterLockListener(this);
         super.onDestroy();

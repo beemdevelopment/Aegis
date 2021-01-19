@@ -29,6 +29,7 @@ import com.beemdevelopment.aegis.ViewMode;
 import com.beemdevelopment.aegis.helpers.BitmapHelper;
 import com.beemdevelopment.aegis.helpers.FabScrollHelper;
 import com.beemdevelopment.aegis.helpers.PermissionHelper;
+import com.beemdevelopment.aegis.helpers.QrCodeAnalyzer;
 import com.beemdevelopment.aegis.otp.GoogleAuthInfo;
 import com.beemdevelopment.aegis.otp.GoogleAuthInfoException;
 import com.beemdevelopment.aegis.ui.fragments.BackupsPreferencesFragment;
@@ -297,7 +298,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
 
             try (InputStream inputStream = getContentResolver().openInputStream(inputFile)) {
                 bitmap = BitmapFactory.decodeStream(inputStream, null, bmOptions);
-                bitmap = BitmapHelper.resize(bitmap, 640, 480);
+                bitmap = BitmapHelper.resize(bitmap, QrCodeAnalyzer.RESOLUTION.getWidth(), QrCodeAnalyzer.RESOLUTION.getHeight());
             }
 
             int[] intArray = new int[bitmap.getWidth() * bitmap.getHeight()];

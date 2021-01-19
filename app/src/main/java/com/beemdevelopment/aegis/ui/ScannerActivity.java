@@ -28,6 +28,8 @@ import com.google.zxing.Result;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class ScannerActivity extends AegisActivity implements QrCodeAnalyzer.Listener {
     private ProcessCameraProvider _cameraProvider;
@@ -37,7 +39,9 @@ public class ScannerActivity extends AegisActivity implements QrCodeAnalyzer.Lis
     private int _currentLens;
 
     private Menu _menu;
+    private ImageAnalysis _analysis;
     private PreviewView _previewView;
+    private ExecutorService _executor;
 
     private int _batchId = 0;
     private int _batchIndex = -1;
@@ -51,6 +55,7 @@ public class ScannerActivity extends AegisActivity implements QrCodeAnalyzer.Lis
         _entries = new ArrayList<>();
         _lenses = new ArrayList<>();
         _previewView = findViewById(R.id.preview_view);
+        _executor = Executors.newSingleThreadExecutor();
 
         _cameraProviderFuture = ProcessCameraProvider.getInstance(this);
         _cameraProviderFuture.addListener(() -> {
@@ -77,6 +82,12 @@ public class ScannerActivity extends AegisActivity implements QrCodeAnalyzer.Lis
     }
 
     @Override
+    protected void onDestroy() {
+        _executor.shutdownNow();
+        super.onDestroy();
+    }
+
+    @Override
     protected void onSetTheme() {
         setTheme(ThemeMap.FULLSCREEN);
     }
@@ -91,7 +102,7 @@ public class ScannerActivity extends AegisActivity implements QrCodeAnalyzer.Lis
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.action_camera) {
-            _cameraProvider.unbindAll();
+            unbindPreview(_cameraProvider);
             _currentLens = _currentLens == CameraSelector.LENS_FACING_BACK ? CameraSelector.LENS_FACING_FRONT : CameraSelector.LENS_FACING_BACK;
             bindPreview(_cameraProvider);
             updateCameraIcon();
@@ -138,29 +149,38 @@ public class ScannerActivity extends AegisActivity implements QrCodeAnalyzer.Lis
                 .requireLensFacing(_currentLens)
                 .build();
 
-        ImageAnalysis analysis = new ImageAnalysis.Builder()
+        _analysis = new ImageAnalysis.Builder()
+                .setTargetResolution(QrCodeAnalyzer.RESOLUTION)
                 .setBackpressureStrategy(ImageAnalysis.STRATEGY_KEEP_ONLY_LATEST)
                 .build();
-        analysis.setAnalyzer(ContextCompat.getMainExecutor(this), new QrCodeAnalyzer(this));
+        _analysis.setAnalyzer(_executor, new QrCodeAnalyzer(this));
 
-        cameraProvider.bindToLifecycle(this, selector, preview, analysis);
+        cameraProvider.bindToLifecycle(this, selector, preview, _analysis);
+    }
+
+    private void unbindPreview(@NonNull ProcessCameraProvider cameraProvider) {
+        _analysis = null;
+        cameraProvider.unbindAll();
     }
 
     @Override
     public void onQrCodeDetected(Result result) {
-        try {
-            Uri uri = Uri.parse(result.getText().trim());
-            if (uri.getScheme() != null && uri.getScheme().equals(GoogleAuthInfo.SCHEME_EXPORT)) {
-                handleExportUri(uri);
-            } else {
-                handleUri(uri);
+        if (_analysis != null) {
+            try {
+                Uri uri = Uri.parse(result.getText().trim());
+                if (uri.getScheme() != null && uri.getScheme().equals(GoogleAuthInfo.SCHEME_EXPORT)) {
+                    handleExportUri(uri);
+                } else {
+                    handleUri(uri);
+                }
+            } catch (GoogleAuthInfoException e) {
+                e.printStackTrace();
+
+                unbindPreview(_cameraProvider);
+                Dialogs.showErrorDialog(this,
+                        e.isPhoneFactor() ? R.string.read_qr_error_phonefactor : R.string.read_qr_error,
+                        e, ((dialog, which) -> bindPreview(_cameraProvider)));
             }
-        } catch (GoogleAuthInfoException e) {
-            e.printStackTrace();
-            Dialogs.showErrorDialog(this,
-                    e.isPhoneFactor() ? R.string.read_qr_error_phonefactor : R.string.read_qr_error,
-                    e, ((dialog, which) -> bindPreview(_cameraProvider)));
-            _cameraProvider.unbindAll();
         }
     }
 

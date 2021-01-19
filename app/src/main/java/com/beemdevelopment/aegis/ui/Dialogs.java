@@ -342,6 +342,11 @@ public class Dialogs {
                 .setNeutralButton(R.string.details, (dialog1, which) -> {
                     textDetails.setVisibility(View.VISIBLE);
                 })
+                .setOnDismissListener(dialog12 -> {
+                    if (listener != null) {
+                        listener.onClick(dialog12, -1);
+                    }
+                })
                 .create();
 
         dialog.setOnShowListener(d -> {
