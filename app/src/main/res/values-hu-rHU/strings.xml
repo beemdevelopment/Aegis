@@ -11,7 +11,6 @@
     <string name="settings">Beállítások</string>
     <string name="pref_section_appearance_title">Megjelenés</string>
     <string name="pref_section_security_title">Biztonság</string>
-    <string name="pref_tools_group_title">Eszközök</string>
     <string name="pref_section_backups_title">Biztonsági mentések</string>
     <string name="pref_select_theme_title">Téma</string>
     <string name="pref_view_mode_title">Nézetmód</string>

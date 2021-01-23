@@ -13,7 +13,6 @@
     <string name="settings">Preferencias</string>
     <string name="pref_section_appearance_title">Apariencia</string>
     <string name="pref_section_security_title">Seguridad</string>
-    <string name="pref_tools_group_title">Herramientas</string>
     <string name="pref_section_backups_title">Copias de seguridad</string>
     <string name="pref_select_theme_title">Tema</string>
     <string name="pref_view_mode_title">Modo de visualización</string>

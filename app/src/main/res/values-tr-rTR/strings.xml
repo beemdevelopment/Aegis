@@ -11,7 +11,6 @@
     <string name="settings">Ayarlar</string>
     <string name="pref_section_appearance_title">Görünüm</string>
     <string name="pref_section_security_title">Güvenlik</string>
-    <string name="pref_tools_group_title">Araçlar</string>
     <string name="pref_section_backups_title">Yedekler</string>
     <string name="pref_select_theme_title">Tema</string>
     <string name="pref_view_mode_title">Görüntüleme biçimi</string>

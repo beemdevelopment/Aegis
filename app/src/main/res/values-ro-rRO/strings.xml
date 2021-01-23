@@ -13,7 +13,6 @@
     <string name="settings">Preferințe</string>
     <string name="pref_section_appearance_title">Aspect</string>
     <string name="pref_section_security_title">Securitate</string>
-    <string name="pref_tools_group_title">Unelte</string>
     <string name="pref_section_backups_title">Copii de rezervă</string>
     <string name="pref_select_theme_title">Temă</string>
     <string name="pref_view_mode_title">Mod de vizualizare</string>

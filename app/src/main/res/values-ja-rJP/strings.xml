@@ -13,7 +13,6 @@
     <string name="settings">設定</string>
     <string name="pref_section_appearance_title">外観</string>
     <string name="pref_section_security_title">セキュリティ</string>
-    <string name="pref_tools_group_title">ツール</string>
     <string name="pref_section_backups_title">バックアップ</string>
     <string name="pref_select_theme_title">テーマ</string>
     <string name="pref_view_mode_title">表示モード</string>

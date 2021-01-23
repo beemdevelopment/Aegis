@@ -13,7 +13,6 @@
     <string name="settings">Предпочтения</string>
     <string name="pref_section_appearance_title">Внешний вид</string>
     <string name="pref_section_security_title">Безопасность</string>
-    <string name="pref_tools_group_title">Инструменты</string>
     <string name="pref_section_backups_title">Резервные копии</string>
     <string name="pref_select_theme_title">Тема</string>
     <string name="pref_view_mode_title">Режим отображения</string>

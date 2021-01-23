@@ -13,7 +13,6 @@
     <string name="settings">वरीयताएँ</string>
     <string name="pref_section_appearance_title">रंगरूप</string>
     <string name="pref_section_security_title">सुरक्षा</string>
-    <string name="pref_tools_group_title">टूल्स</string>
     <string name="pref_section_backups_title">बैकअप्स</string>
     <string name="pref_select_theme_title">थीम</string>
     <string name="pref_view_mode_title">देखने का प्रकार</string>
