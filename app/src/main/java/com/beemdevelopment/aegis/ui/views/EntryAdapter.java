@@ -25,6 +25,7 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeSet;
 import java.util.UUID;
 
 public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements ItemTouchHelperAdapter {
@@ -40,7 +41,7 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
     private boolean _tapToReveal;
     private int _tapToRevealTime;
     private boolean _copyOnTap;
-    private String _groupFilter;
+    private List<String> _groupFilter;
     private SortCategory _sortCategory;
     private ViewMode _viewMode;
     private String _searchFilter;
@@ -56,6 +57,7 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
         _entries = new ArrayList<>();
         _shownEntries = new ArrayList<>();
         _selectedEntries = new ArrayList<>();
+        _groupFilter = new ArrayList<>();
         _holders = new ArrayList<>();
         _dimHandler = new Handler();
         _view = view;
@@ -207,12 +209,12 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
         String issuer = entry.getIssuer().toLowerCase();
         String name = entry.getName().toLowerCase();
 
-        if (_groupFilter != null) {
-            if (group == null && _groupFilter.equals(_view.getContext().getString(R.string.filter_ungrouped))) {
+        if (!_groupFilter.isEmpty()) {
+            if (group == null && _groupFilter.contains(_view.getContext().getString(R.string.filter_ungrouped))) {
                 return false;
             }
 
-            if (group == null || !group.equals(_groupFilter)) {
+            if (group == null || !_groupFilter.contains(group)) {
                 return true;
             }
         }
@@ -234,11 +236,16 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
         }
     }
 
-    public void setGroupFilter(String group, boolean apply) {
-        if (_groupFilter != null && _groupFilter.equals(group)) {
+    public void setGroupFilter(List<String> groups, boolean apply) {
+        if(groups == null) {
+            groups = new ArrayList<>();
+        }
+
+        if (_groupFilter.equals(groups)) {
             return;
         }
-        _groupFilter = group;
+
+        _groupFilter = groups;
         if (apply) {
             updateShownEntries();
             checkPeriodUniformity();
@@ -286,6 +293,10 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
         _viewMode = viewMode;
     }
 
+    public void setGroups(TreeSet<String> groups) {
+        _view.setGroups(groups);
+    }
+
     @Override
     public void onItemDismiss(int position) {
 
@@ -294,7 +305,7 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
     @Override
     public void onItemDrop(int position) {
         // moving entries is not allowed when a filter is applied
-        if (_groupFilter != null) {
+        if (!_groupFilter.isEmpty()) {
             return;
         }
 
@@ -304,7 +315,7 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
     @Override
     public void onItemMove(int firstPosition, int secondPosition) {
         // moving entries is not allowed when a filter is applied
-        if (_groupFilter != null) {
+        if (!_groupFilter.isEmpty()) {
             return;
         }
 
@@ -591,7 +602,7 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
     }
 
     public boolean isDragAndDropAllowed() {
-        return _sortCategory == SortCategory.CUSTOM && _groupFilter == null && _searchFilter == null;
+        return _sortCategory == SortCategory.CUSTOM && _groupFilter.isEmpty() && _searchFilter == null;
     }
 
     public boolean isPeriodUniform() {

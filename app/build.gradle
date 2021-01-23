@@ -153,7 +153,7 @@ dependencies {
     implementation "com.github.topjohnwu.libsu:core:${libsuVersion}"
     implementation "com.github.topjohnwu.libsu:io:${libsuVersion}"
     implementation "com.google.guava:guava:${guavaVersion}-android"
-    implementation 'com.google.android.material:material:1.0.0'
+    implementation 'com.google.android.material:material:1.2.1'
     implementation 'com.google.protobuf:protobuf-javalite:3.14.0'
     implementation 'com.google.zxing:core:3.4.1'
     implementation "com.mikepenz:iconics-core:3.2.5"

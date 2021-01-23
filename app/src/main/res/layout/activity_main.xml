@@ -38,6 +38,13 @@
                 android:layout_marginStart="5dp" />
         </LinearLayout>
 
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/groupChipGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        </com.google.android.material.chip.ChipGroup>
+
         <fragment
             android:name="com.beemdevelopment.aegis.ui.views.EntryListView"
             android:id="@+id/key_profiles"
