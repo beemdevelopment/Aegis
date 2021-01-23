@@ -11,10 +11,10 @@
     <string name="save">保存</string>
     <string name="issuer">服务商</string>
     <string name="settings">偏好设置</string>
-    <string name="pref_appearance_group_title">外观</string>
-    <string name="pref_security_group_title">安全</string>
+    <string name="pref_section_appearance_title">外观</string>
+    <string name="pref_section_security_title">安全</string>
     <string name="pref_tools_group_title">工具</string>
-    <string name="pref_backups_group_title">备份</string>
+    <string name="pref_section_backups_title">备份</string>
     <string name="pref_select_theme_title">主题</string>
     <string name="pref_view_mode_title">视图模式</string>
     <string name="pref_lang_title">语言</string>

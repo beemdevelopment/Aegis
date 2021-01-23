@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:title="@string/pref_tools_group_title">
+    android:title="@string/pref_section_import_export_title">
     <Preference
         android:key="pref_import"
         android:title="@string/pref_import_file_title"

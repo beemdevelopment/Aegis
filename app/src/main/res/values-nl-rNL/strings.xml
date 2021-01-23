@@ -11,10 +11,10 @@
     <string name="save">Opslaan</string>
     <string name="issuer">Uitgever</string>
     <string name="settings">Voorkeuren</string>
-    <string name="pref_appearance_group_title">Uiterlijk</string>
-    <string name="pref_security_group_title">Beveiliging</string>
+    <string name="pref_section_appearance_title">Uiterlijk</string>
+    <string name="pref_section_security_title">Beveiliging</string>
     <string name="pref_tools_group_title">Hulpmiddelen</string>
-    <string name="pref_backups_group_title">Back-ups</string>
+    <string name="pref_section_backups_title">Back-ups</string>
     <string name="pref_select_theme_title">Thema</string>
     <string name="pref_view_mode_title">Weergavemodus</string>
     <string name="pref_lang_title">Taal</string>

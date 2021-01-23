@@ -11,10 +11,10 @@
     <string name="save">Tallenna</string>
     <string name="issuer">Myöntäjä</string>
     <string name="settings">Asetukset</string>
-    <string name="pref_appearance_group_title">Ulkoasu</string>
-    <string name="pref_security_group_title">Turvallisuus</string>
+    <string name="pref_section_appearance_title">Ulkoasu</string>
+    <string name="pref_section_security_title">Turvallisuus</string>
     <string name="pref_tools_group_title">Työkalut</string>
-    <string name="pref_backups_group_title">Varmuuskopiot</string>
+    <string name="pref_section_backups_title">Varmuuskopiot</string>
     <string name="pref_select_theme_title">Teema</string>
     <string name="pref_view_mode_title">Näyttötila</string>
     <string name="pref_lang_title">Kieli</string>

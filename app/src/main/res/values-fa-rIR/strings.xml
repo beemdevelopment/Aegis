@@ -11,10 +11,10 @@
     <string name="save">ذخیره</string>
     <string name="issuer">صادر کننده</string>
     <string name="settings">تنظیمات</string>
-    <string name="pref_appearance_group_title">ظاهر</string>
-    <string name="pref_security_group_title">امنیت</string>
+    <string name="pref_section_appearance_title">ظاهر</string>
+    <string name="pref_section_security_title">امنیت</string>
     <string name="pref_tools_group_title">ابزارها</string>
-    <string name="pref_backups_group_title">پشتیبان گیری</string>
+    <string name="pref_section_backups_title">پشتیبان گیری</string>
     <string name="pref_select_theme_title">پوسته</string>
     <string name="pref_view_mode_title">حالت نمایش</string>
     <string name="pref_lang_title">زبان</string>

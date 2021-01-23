@@ -1,72 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:title="@string/pref_security_group_title">
-    <androidx.preference.SwitchPreferenceCompat
-        android:defaultValue="@bool/pref_secure_screen_default"
-        android:key="pref_secure_screen"
-        android:title="@string/pref_secure_screen_title"
-        android:summary="@string/pref_secure_screen_summary"
-        app:iconSpaceReserved="false"/>
-    <androidx.preference.SwitchPreferenceCompat
-        android:defaultValue="false"
-        android:key="pref_tap_to_reveal"
-        android:title="@string/pref_tap_to_reveal_title"
-        android:summary="@string/pref_tap_to_reveal_summary"
-        app:iconSpaceReserved="false"/>
-    <Preference
-        android:key="pref_tap_to_reveal_time"
-        android:title="@string/pref_tap_to_reveal_time_title"
-        android:dependency="pref_tap_to_reveal"
-        app:iconSpaceReserved="false"/>
-
-    <com.beemdevelopment.aegis.ui.preferences.SwitchPreference
-        android:key="pref_encryption"
+    android:title="@string/pref_section_security_title">
+    <PreferenceCategory
         android:title="@string/pref_encryption_title"
-        android:summary="@string/pref_encryption_summary"
-        android:persistent="false"
-        app:iconSpaceReserved="false"/>
+        app:iconSpaceReserved="false">
+        <com.beemdevelopment.aegis.ui.preferences.SwitchPreference
+            android:key="pref_encryption"
+            android:title="@string/pref_encryption_title"
+            android:summary="@string/pref_encryption_summary"
+            android:persistent="false"
+            app:iconSpaceReserved="false"/>
 
-    <Preference
-        android:key="pref_password"
-        android:title="@string/pref_set_password_title"
-        android:summary="@string/pref_set_password_summary"
-        android:dependency="pref_encryption"
-        app:iconSpaceReserved="false"/>
+        <Preference
+            android:key="pref_password"
+            android:title="@string/pref_set_password_title"
+            android:summary="@string/pref_set_password_summary"
+            android:dependency="pref_encryption"
+            app:iconSpaceReserved="false"/>
 
-    <com.beemdevelopment.aegis.ui.preferences.SwitchPreference
-        android:key="pref_biometrics"
-        android:title="@string/pref_biometrics_title"
-        android:summary="@string/pref_biometrics_summary"
-        android:persistent="false"
-        app:iconSpaceReserved="false"/>
+        <com.beemdevelopment.aegis.ui.preferences.SwitchPreference
+            android:key="pref_biometrics"
+            android:title="@string/pref_biometrics_title"
+            android:summary="@string/pref_biometrics_summary"
+            android:persistent="false"
+            app:iconSpaceReserved="false"/>
 
-    <androidx.preference.SwitchPreferenceCompat
-        android:defaultValue="true"
-        android:key="pref_password_reminder"
-        android:title="@string/pref_password_reminder_title"
-        android:summary="@string/pref_password_reminder_summary"
-        android:dependency="pref_biometrics"
-        app:iconSpaceReserved="false"/>
+        <androidx.preference.SwitchPreferenceCompat
+            android:defaultValue="true"
+            android:key="pref_password_reminder"
+            android:title="@string/pref_password_reminder_title"
+            android:summary="@string/pref_password_reminder_summary"
+            android:dependency="pref_biometrics"
+            app:iconSpaceReserved="false"/>
 
-    <androidx.preference.SwitchPreferenceCompat
-        android:key="pref_pin_keyboard"
-        android:dependency="pref_encryption"
-        android:title="@string/pref_pin_keyboard_title"
-        android:summary="@string/pref_pin_keyboard_summary"
-        app:iconSpaceReserved="false"/>
+        <Preference
+            android:key="pref_slots"
+            android:title="@string/pref_slots_title"
+            android:summary="@string/pref_slots_summary"
+            app:iconSpaceReserved="false"/>
+    </PreferenceCategory>
+    <PreferenceCategory
+        android:title="@string/pref_section_behavior_title"
+        app:iconSpaceReserved="false">
+        <androidx.preference.SwitchPreferenceCompat
+            android:defaultValue="@bool/pref_secure_screen_default"
+            android:key="pref_secure_screen"
+            android:title="@string/pref_secure_screen_title"
+            android:summary="@string/pref_secure_screen_summary"
+            app:iconSpaceReserved="false"/>
 
-    <Preference
-        android:key="pref_auto_lock"
-        android:dependency="pref_encryption"
-        android:persistent="false"
-        android:title="@string/pref_auto_lock_title"
-        android:summary="@string/pref_auto_lock_summary"
-        app:iconSpaceReserved="false"/>
+        <androidx.preference.SwitchPreferenceCompat
+            android:defaultValue="false"
+            android:key="pref_tap_to_reveal"
+            android:title="@string/pref_tap_to_reveal_title"
+            android:summary="@string/pref_tap_to_reveal_summary"
+            app:iconSpaceReserved="false"/>
 
-    <Preference
-        android:key="pref_slots"
-        android:title="@string/pref_slots_title"
-        android:summary="@string/pref_slots_summary"
-        app:iconSpaceReserved="false"/>
+        <Preference
+            android:key="pref_tap_to_reveal_time"
+            android:title="@string/pref_tap_to_reveal_time_title"
+            android:dependency="pref_tap_to_reveal"
+            app:iconSpaceReserved="false"/>
+
+        <Preference
+            android:key="pref_auto_lock"
+            android:dependency="pref_encryption"
+            android:persistent="false"
+            android:title="@string/pref_auto_lock_title"
+            android:summary="@string/pref_auto_lock_summary"
+            app:iconSpaceReserved="false"/>
+
+        <androidx.preference.SwitchPreferenceCompat
+            android:key="pref_pin_keyboard"
+            android:dependency="pref_encryption"
+            android:title="@string/pref_pin_keyboard_title"
+            android:summary="@string/pref_pin_keyboard_summary"
+            app:iconSpaceReserved="false"/>
+    </PreferenceCategory>
 </PreferenceScreen>

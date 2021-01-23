@@ -11,10 +11,10 @@
     <string name="save">Uložiť</string>
     <string name="issuer">Vydavateľ</string>
     <string name="settings">Predvoľby</string>
-    <string name="pref_appearance_group_title">Vzhľad</string>
-    <string name="pref_security_group_title">Zabezpečenie</string>
+    <string name="pref_section_appearance_title">Vzhľad</string>
+    <string name="pref_section_security_title">Zabezpečenie</string>
     <string name="pref_tools_group_title">Nástroje</string>
-    <string name="pref_backups_group_title">Zálohy</string>
+    <string name="pref_section_backups_title">Zálohy</string>
     <string name="pref_select_theme_title">Téma</string>
     <string name="pref_view_mode_title">Režim zobrazenia</string>
     <string name="pref_lang_title">Jazyk</string>

@@ -15,11 +15,20 @@
     <string name="issuer">Issuer</string>
 
     <string name="settings">Preferences</string>
-    <string name="pref_behavior_group_title">Behavior</string>
-    <string name="pref_appearance_group_title">Appearance</string>
-    <string name="pref_security_group_title">Security</string>
-    <string name="pref_tools_group_title">Tools</string>
-    <string name="pref_backups_group_title">Backups</string>
+    <string name="pref_cat_appearance_app">App</string>
+    <string name="pref_cat_appearance_entries">Entries</string>
+    <string name="pref_cat_backups_android">Android</string>
+    <string name="pref_cat_backups_auto">Automatic backups</string>
+    <string name="pref_section_behavior_title">Behavior</string>
+    <string name="pref_section_behavior_summary">Customize the behavior when interacting with the entry list.</string>
+    <string name="pref_section_appearance_title">Appearance</string>
+    <string name="pref_section_appearance_summary">Adjust the theme, language and other settings that affect the appearance of the app.</string>
+    <string name="pref_section_security_title">Security</string>
+    <string name="pref_section_security_summary">Configure encryption, biometric unlock, auto lock and other security settings.</string>
+    <string name="pref_section_import_export_title">Import &amp; Export</string>
+    <string name="pref_section_import_export_summary">Import backups of Aegis or other authenticator apps. Create manual exports of your Aegis vault.</string>
+    <string name="pref_section_backups_title">Backups</string>
+    <string name="pref_section_backups_summary">Set up automatic backups to a location of your choosing or enable participation in Android\'s backup system.</string>
     <string name="pref_select_theme_title">Theme</string>
     <string name="pref_view_mode_title">View mode</string>
     <string name="pref_lang_title">Language</string>

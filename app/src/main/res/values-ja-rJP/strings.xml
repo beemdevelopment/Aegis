@@ -11,10 +11,10 @@
     <string name="save">保存</string>
     <string name="issuer">発行者</string>
     <string name="settings">設定</string>
-    <string name="pref_appearance_group_title">外観</string>
-    <string name="pref_security_group_title">セキュリティ</string>
+    <string name="pref_section_appearance_title">外観</string>
+    <string name="pref_section_security_title">セキュリティ</string>
     <string name="pref_tools_group_title">ツール</string>
-    <string name="pref_backups_group_title">バックアップ</string>
+    <string name="pref_section_backups_title">バックアップ</string>
     <string name="pref_select_theme_title">テーマ</string>
     <string name="pref_view_mode_title">表示モード</string>
     <string name="pref_lang_title">言語</string>

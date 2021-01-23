@@ -11,10 +11,10 @@
     <string name="save">Guardar</string>
     <string name="issuer">Emisor</string>
     <string name="settings">Preferencias</string>
-    <string name="pref_appearance_group_title">Apariencia</string>
-    <string name="pref_security_group_title">Seguridad</string>
+    <string name="pref_section_appearance_title">Apariencia</string>
+    <string name="pref_section_security_title">Seguridad</string>
     <string name="pref_tools_group_title">Herramientas</string>
-    <string name="pref_backups_group_title">Copias de seguridad</string>
+    <string name="pref_section_backups_title">Copias de seguridad</string>
     <string name="pref_select_theme_title">Tema</string>
     <string name="pref_view_mode_title">Modo de visualización</string>
     <string name="pref_lang_title">Idioma</string>

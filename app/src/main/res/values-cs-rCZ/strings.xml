@@ -11,10 +11,10 @@
     <string name="save">Uložit</string>
     <string name="issuer">Poskytovatel</string>
     <string name="settings">Předvolby</string>
-    <string name="pref_appearance_group_title">Vzhled</string>
-    <string name="pref_security_group_title">Zabezpečení</string>
+    <string name="pref_section_appearance_title">Vzhled</string>
+    <string name="pref_section_security_title">Zabezpečení</string>
     <string name="pref_tools_group_title">Nástroje</string>
-    <string name="pref_backups_group_title">Zálohy</string>
+    <string name="pref_section_backups_title">Zálohy</string>
     <string name="pref_select_theme_title">Vzhled</string>
     <string name="pref_view_mode_title">Režim zobrazení</string>
     <string name="pref_lang_title">Jazyk</string>

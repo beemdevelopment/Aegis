@@ -51,7 +51,7 @@ import java.util.List;
 
 import javax.crypto.Cipher;
 
-public class ToolsPreferencesFragment extends PreferencesFragment {
+public class ImportExportPreferencesFragment extends PreferencesFragment {
     // keep a reference to the type of database converter the user selected
     private Class<? extends DatabaseImporter> _importerType;
     private AegisImporter.State _importerState;
@@ -60,7 +60,7 @@ public class ToolsPreferencesFragment extends PreferencesFragment {
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
         super.onCreatePreferences(savedInstanceState, rootKey);
-        addPreferencesFromResource(R.xml.preferences_tools);
+        addPreferencesFromResource(R.xml.preferences_import_export);
 
         Preference importPreference = findPreference("pref_import");
         importPreference.setOnPreferenceClickListener(preference -> {

@@ -11,10 +11,10 @@
     <string name="save">Speichern</string>
     <string name="issuer">Herausgeber</string>
     <string name="settings">Einstellungen</string>
-    <string name="pref_appearance_group_title">Erscheinungsbild</string>
-    <string name="pref_security_group_title">Sicherheit</string>
+    <string name="pref_section_appearance_title">Erscheinungsbild</string>
+    <string name="pref_section_security_title">Sicherheit</string>
     <string name="pref_tools_group_title">Werkzeuge</string>
-    <string name="pref_backups_group_title">Sicherungskopien</string>
+    <string name="pref_section_backups_title">Sicherungskopien</string>
     <string name="pref_select_theme_title">Design</string>
     <string name="pref_view_mode_title">Ansichtsmodus</string>
     <string name="pref_lang_title">Sprache</string>

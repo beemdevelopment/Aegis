@@ -11,10 +11,10 @@
     <string name="save">सहेजें</string>
     <string name="issuer">ज़ारीकर्ता</string>
     <string name="settings">वरीयताएँ</string>
-    <string name="pref_appearance_group_title">रंगरूप</string>
-    <string name="pref_security_group_title">सुरक्षा</string>
+    <string name="pref_section_appearance_title">रंगरूप</string>
+    <string name="pref_section_security_title">सुरक्षा</string>
     <string name="pref_tools_group_title">टूल्स</string>
-    <string name="pref_backups_group_title">बैकअप्स</string>
+    <string name="pref_section_backups_title">बैकअप्स</string>
     <string name="pref_select_theme_title">थीम</string>
     <string name="pref_view_mode_title">देखने का प्रकार</string>
     <string name="pref_lang_title">भाषा</string>

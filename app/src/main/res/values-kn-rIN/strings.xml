@@ -9,8 +9,8 @@
     <string name="save">ಉಳಿಸು</string>
     <string name="issuer">ನೀಡುವವರು</string>
     <string name="settings">ಸಿದ್ಢತೆಗಳು</string>
-    <string name="pref_appearance_group_title">ನೋಟ</string>
-    <string name="pref_security_group_title">ಭದ್ರತೆ</string>
+    <string name="pref_section_appearance_title">ನೋಟ</string>
+    <string name="pref_section_security_title">ಭದ್ರತೆ</string>
     <string name="pref_tools_group_title">ಉಪಕರಣಗಳು</string>
     <string name="pref_select_theme_title">ಥೀಮ್</string>
     <string name="pref_view_mode_title">ವೀಕ್ಷಣೆಯ ರೀತಿ</string>
