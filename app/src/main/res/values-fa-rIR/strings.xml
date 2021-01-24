@@ -288,7 +288,7 @@
     <string name="title_activity_edit_entry">ویرایش آیتم</string>
     <string name="title_activity_scan_qr">اسکن بارکد دوبعدی</string>
     <string name="title_activity_manage_slots">مدیریت کلید‌ها</string>
-    <string name="title_activity_select_entries">انتخاب آیتم‌ها</string>
+    <string name="title_activity_import_entries">انتخاب آیتم‌ها</string>
     <string name="dialog_wipe_entries_title">پاک کردن موارد</string>
     <string name="dialog_wipe_entries_message">مخزن شما در حال حاضر شامل آیتم می‌باشد. آیا مطمئن به حذف این آیتم‌ها قبل از وارد کردن می‌باشید؟\n\n<b>بعد از این کار شما به هیچ وجه دسترسی به آیتم های قبلی نخواهید داشت.</b></string>
     <string name="dialog_wipe_entries_checkbox">پاک کردن اطلاعات مخزن</string>

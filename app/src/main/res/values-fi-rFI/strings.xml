@@ -288,7 +288,7 @@
     <string name="title_activity_edit_entry">Muokkaa kohdetta</string>
     <string name="title_activity_scan_qr">Skannaa QR-koodi</string>
     <string name="title_activity_manage_slots">Hallitse avainpaikkoja</string>
-    <string name="title_activity_select_entries">Valitse kohteet</string>
+    <string name="title_activity_import_entries">Valitse kohteet</string>
     <string name="dialog_wipe_entries_title">Tyhjennä kohteet</string>
     <string name="dialog_wipe_entries_message">Holvisi sisältää jo kohteita. Haluatko poistaa nämä kohteet ennen tämän tiedoston tuontia?\n\n<b>Tehdessäsi näin menetät pysyvästi pääsyn holvin olemassa oleviin kohteisiin.</b></string>
     <string name="dialog_wipe_entries_checkbox">Tyhjennä holvin sisältö</string>

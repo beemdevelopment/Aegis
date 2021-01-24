@@ -4,14 +4,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.ui.models.ImportEntry;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
 
 public class ImportEntriesAdapter extends RecyclerView.Adapter<ImportEntryHolder> {
     private List<ImportEntry> _entries;
@@ -47,7 +47,7 @@ public class ImportEntriesAdapter extends RecyclerView.Adapter<ImportEntryHolder
 
     @Override
     public void onViewRecycled(@NonNull ImportEntryHolder holder) {
-        holder.getEntry().setOnCheckedChangedListener(null);
+        holder.getData().setOnCheckedChangedListener(null);
     }
 
     @Override

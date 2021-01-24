@@ -296,7 +296,7 @@
     <string name="title_activity_edit_entry">Editați intrarea</string>
     <string name="title_activity_scan_qr">Scanează cod QR</string>
     <string name="title_activity_manage_slots">Gestionare sloturi cheie</string>
-    <string name="title_activity_select_entries">Selectați intrările</string>
+    <string name="title_activity_import_entries">Selectați intrările</string>
     <string name="dialog_wipe_entries_title">Ştergeţi intrările</string>
     <string name="dialog_wipe_entries_message">Seiful dvs. conține deja intrări. Doriţi să ştergeţi aceste intrări înainte de a importa acest fişier?\n\n<b>Făcând acest lucru, vei pierde permanent accesul la intrările existente din seif.</b></string>
     <string name="dialog_wipe_entries_checkbox">Ştergeţi conţinutul seifului</string>

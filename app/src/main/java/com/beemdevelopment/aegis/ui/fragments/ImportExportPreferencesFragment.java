@@ -2,7 +2,6 @@ package com.beemdevelopment.aegis.ui.fragments;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.ArrayRes;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.core.content.FileProvider;
 import androidx.preference.Preference;
@@ -21,46 +21,36 @@ import androidx.preference.Preference;
 import com.beemdevelopment.aegis.BuildConfig;
 import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.helpers.DropdownHelper;
-import com.beemdevelopment.aegis.importers.AegisImporter;
 import com.beemdevelopment.aegis.importers.DatabaseImporter;
-import com.beemdevelopment.aegis.importers.DatabaseImporterEntryException;
-import com.beemdevelopment.aegis.importers.DatabaseImporterException;
-import com.beemdevelopment.aegis.ui.AuthActivity;
 import com.beemdevelopment.aegis.ui.Dialogs;
-import com.beemdevelopment.aegis.ui.SelectEntriesActivity;
-import com.beemdevelopment.aegis.ui.models.ImportEntry;
+import com.beemdevelopment.aegis.ui.ImportEntriesActivity;
 import com.beemdevelopment.aegis.ui.tasks.ExportTask;
-import com.beemdevelopment.aegis.util.UUIDMap;
 import com.beemdevelopment.aegis.vault.VaultBackupManager;
-import com.beemdevelopment.aegis.vault.VaultEntry;
 import com.beemdevelopment.aegis.vault.VaultFileCredentials;
 import com.beemdevelopment.aegis.vault.VaultManager;
 import com.beemdevelopment.aegis.vault.VaultManagerException;
 import com.beemdevelopment.aegis.vault.slots.Slot;
 import com.beemdevelopment.aegis.vault.slots.SlotException;
-import com.topjohnwu.superuser.Shell;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.OutputStream;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.crypto.Cipher;
 
 public class ImportExportPreferencesFragment extends PreferencesFragment {
-    // keep a reference to the type of database converter the user selected
+    // keep a reference to the type of database converter that was selected
     private Class<? extends DatabaseImporter> _importerType;
-    private AegisImporter.State _importerState;
-    private UUIDMap<VaultEntry> _importerEntries;
 
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
         super.onCreatePreferences(savedInstanceState, rootKey);
         addPreferencesFromResource(R.xml.preferences_import_export);
+
+        if (savedInstanceState != null) {
+            _importerType = (Class<? extends DatabaseImporter>) savedInstanceState.getSerializable("importerType");
+        }
 
         Preference importPreference = findPreference("pref_import");
         importPreference.setOnPreferenceClickListener(preference -> {
@@ -69,7 +59,7 @@ public class ImportExportPreferencesFragment extends PreferencesFragment {
 
                 Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
                 intent.setType("*/*");
-                startActivityForResult(intent, CODE_IMPORT);
+                startActivityForResult(intent, CODE_IMPORT_SELECT);
             });
             return true;
         });
@@ -77,8 +67,7 @@ public class ImportExportPreferencesFragment extends PreferencesFragment {
         Preference importAppPreference = findPreference("pref_import_app");
         importAppPreference.setOnPreferenceClickListener(preference -> {
             Dialogs.showImportersDialog(getContext(), true, definition -> {
-                DatabaseImporter importer = DatabaseImporter.create(getContext(), definition.getType());
-                importApp(importer);
+                startImportEntriesActivity(definition.getType(), null);
             });
             return true;
         });
@@ -91,17 +80,19 @@ public class ImportExportPreferencesFragment extends PreferencesFragment {
     }
 
     @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putSerializable("importerType", _importerType);
+    }
+
+    @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (data != null) {
+        if (requestCode == CODE_IMPORT) {
+            getResult().putExtra("needsRecreate", true);
+        } else if (data != null) {
             switch (requestCode) {
-                case CODE_IMPORT:
-                    onImportResult(resultCode, data);
-                    break;
-                case CODE_IMPORT_DECRYPT:
-                    onImportDecryptResult(resultCode, data);
-                    break;
-                case CODE_SELECT_ENTRIES:
-                    onSelectEntriesResult(resultCode, data);
+                case CODE_IMPORT_SELECT:
+                    onImportSelectResult(resultCode, data);
                     break;
                 case CODE_EXPORT:
                     // intentional fallthrough
@@ -114,118 +105,20 @@ public class ImportExportPreferencesFragment extends PreferencesFragment {
         }
     }
 
-    private void importApp(DatabaseImporter importer) {
-        // obtain the global root shell and close it immediately after we're done
-        // TODO: find a way to use SuFileInputStream with Shell.newInstance()
-        try (Shell shell = Shell.getShell()) {
-            if (!shell.isRoot()) {
-                Toast.makeText(getActivity(), R.string.root_error, Toast.LENGTH_SHORT).show();
-                return;
-            }
-
-            DatabaseImporter.State state = importer.readFromApp();
-            processImporterState(state);
-        } catch (PackageManager.NameNotFoundException e) {
-            e.printStackTrace();
-            Toast.makeText(getActivity(), R.string.app_lookup_error, Toast.LENGTH_SHORT).show();
-        } catch (IOException | DatabaseImporterException e) {
-            e.printStackTrace();
-            Toast.makeText(getActivity(), R.string.reading_file_error, Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    private void processImporterState(DatabaseImporter.State state) {
-        try {
-            if (state.isEncrypted()) {
-                // temporary special case for encrypted Aegis vaults
-                if (state instanceof AegisImporter.EncryptedState) {
-                    _importerState = state;
-
-                    Intent intent = new Intent(getActivity(), AuthActivity.class);
-                    intent.putExtra("slots", ((AegisImporter.EncryptedState) state).getSlots());
-                    startActivityForResult(intent, CODE_IMPORT_DECRYPT);
-                } else {
-                    state.decrypt(getActivity(), new DatabaseImporter.DecryptListener() {
-                        @Override
-                        public void onStateDecrypted(DatabaseImporter.State state) {
-                            importDatabase(state);
-                        }
-
-                        @Override
-                        public void onError(Exception e) {
-                            e.printStackTrace();
-                            Dialogs.showErrorDialog(getContext(), R.string.decryption_error, e);
-                        }
-                    });
-                }
-            } else {
-                importDatabase(state);
-            }
-        } catch (DatabaseImporterException e) {
-            e.printStackTrace();
-            Dialogs.showErrorDialog(getContext(), R.string.parsing_file_error, e);
-        }
-    }
-
-    private void onImportDecryptResult(int resultCode, Intent data) {
-        if (resultCode != Activity.RESULT_OK) {
-            _importerState = null;
-            return;
-        }
-
-        VaultFileCredentials creds = (VaultFileCredentials) data.getSerializableExtra("creds");
-        DatabaseImporter.State state;
-        try {
-            state = ((AegisImporter.EncryptedState) _importerState).decrypt(creds);
-        } catch (DatabaseImporterException e) {
-            e.printStackTrace();
-            Dialogs.showErrorDialog(getContext(), R.string.decryption_error, e);
-            return;
-        }
-
-        importDatabase(state);
-        _importerState = null;
-    }
-
-    private void onImportResult(int resultCode, Intent data) {
+    private void onImportSelectResult(int resultCode, Intent data) {
         Uri uri = data.getData();
         if (resultCode != Activity.RESULT_OK || uri == null) {
             return;
         }
 
-        try (InputStream stream = getContext().getContentResolver().openInputStream(uri)) {
-            DatabaseImporter importer = DatabaseImporter.create(getContext(), _importerType);
-            DatabaseImporter.State state = importer.read(stream);
-            processImporterState(state);
-        } catch (FileNotFoundException e) {
-            Toast.makeText(getActivity(), R.string.file_not_found, Toast.LENGTH_SHORT).show();
-        } catch (DatabaseImporterException | IOException e) {
-            e.printStackTrace();
-            Dialogs.showErrorDialog(getContext(), R.string.reading_file_error, e);
-        }
+        startImportEntriesActivity(_importerType, uri);
     }
 
-    private void importDatabase(DatabaseImporter.State state) {
-        DatabaseImporter.Result result;
-        try {
-            result = state.convert();
-        } catch (DatabaseImporterException e) {
-            e.printStackTrace();
-            Dialogs.showErrorDialog(getContext(), R.string.parsing_file_error, e);
-            return;
-        }
-
-        _importerEntries = result.getEntries();
-        List<ImportEntry> entries = new ArrayList<>();
-        for (VaultEntry entry : _importerEntries) {
-            entries.add(new ImportEntry(entry));
-        }
-
-        Intent intent = new Intent(getActivity(), SelectEntriesActivity.class);
-        intent.putExtra("entries", (ArrayList<ImportEntry>) entries);
-        intent.putExtra("errors", (ArrayList<DatabaseImporterEntryException>) result.getErrors());
-        intent.putExtra("vaultContainsEntries", getVault().getEntries().size() > 0);
-        startActivityForResult(intent, CODE_SELECT_ENTRIES);
+    private void startImportEntriesActivity(Class<? extends DatabaseImporter> importerType, Uri fileUri) {
+        Intent intent = new Intent(getActivity(), ImportEntriesActivity.class);
+        intent.putExtra("importerType", importerType);
+        intent.putExtra("fileUri", fileUri == null ? null : fileUri.toString());
+        startActivityForResult(intent, CODE_IMPORT);
     }
 
     private void startExport() {
@@ -326,39 +219,6 @@ public class ImportExportPreferencesFragment extends PreferencesFragment {
         Dialogs.showSecureDialog(dialog);
     }
 
-    private void onSelectEntriesResult(int resultCode, Intent data) {
-        if (resultCode != Activity.RESULT_OK) {
-            return;
-        }
-
-        boolean wipeEntries = data.getBooleanExtra("wipeEntries", false);
-        if (wipeEntries) {
-            getVault().wipeEntries();
-        }
-
-        List<ImportEntry> selectedEntries = (ArrayList<ImportEntry>) data.getSerializableExtra("entries");
-        for (ImportEntry selectedEntry : selectedEntries) {
-            VaultEntry savedEntry = _importerEntries.getByUUID(selectedEntry.getUUID());
-
-            // temporary: randomize the UUID of duplicate entries and add them anyway
-            if (getVault().isEntryDuplicate(savedEntry)) {
-                savedEntry.resetUUID();
-            }
-
-            getVault().addEntry(savedEntry);
-        }
-
-        _importerEntries = null;
-        if (!saveVault()) {
-            return;
-        }
-
-        String toastMessage = getResources().getQuantityString(R.plurals.imported_entries_count, selectedEntries.size(), selectedEntries.size());
-        Toast.makeText(getContext(), toastMessage, Toast.LENGTH_SHORT).show();
-
-        getResult().putExtra("needsRecreate", true);
-    }
-
     private static int getExportRequestCode(int spinnerPos, boolean encrypt) {
         if (spinnerPos == 0) {
             return encrypt ? CODE_EXPORT : CODE_EXPORT_PLAIN;
@@ -432,7 +292,6 @@ public class ImportExportPreferencesFragment extends PreferencesFragment {
         if (resultCode != Activity.RESULT_OK || uri == null) {
             return;
         }
-
 
         startExportVault(requestCode, cb -> {
             File file;

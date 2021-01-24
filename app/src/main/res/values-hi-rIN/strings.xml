@@ -283,7 +283,7 @@
     <string name="title_activity_edit_entry">प्रविष्टि संपादित करें</string>
     <string name="title_activity_scan_qr">क्यूआर कोड स्कैन करें</string>
     <string name="title_activity_manage_slots">कुंजी स्लॉट प्रबंधन करें</string>
-    <string name="title_activity_select_entries">प्रविष्टियाँ चयन करें</string>
+    <string name="title_activity_import_entries">प्रविष्टियाँ चयन करें</string>
     <string name="dialog_wipe_entries_title">प्रविष्टियों को साफ करें</string>
     <string name="dialog_wipe_entries_message">आपके वॉल्ट में पहले से ही प्रविष्टियाँ हैं। क्या आप इस फ़ाइल को आयात करने से पहले इन प्रविष्टियों को निकालना चाहते हैं?\n\n<b> ऐसा करने पर, आप स्थायी रूप से वॉल्ट में मौजूदा प्रविष्टियों तक पहुंच खो देंगे। </b></string>
     <string name="dialog_wipe_entries_checkbox">वॉल्ट सामग्री साफ करें</string>

@@ -292,7 +292,7 @@
     <string name="title_activity_edit_entry">Eintrag bearbeiten</string>
     <string name="title_activity_scan_qr">Scanne einen QR-Code</string>
     <string name="title_activity_manage_slots">Schlüsselplätze verwalten</string>
-    <string name="title_activity_select_entries">Einträge auswählen</string>
+    <string name="title_activity_import_entries">Einträge auswählen</string>
     <string name="dialog_wipe_entries_title">Einträge löschen</string>
     <string name="dialog_wipe_entries_message">Deine Datenbank enthält bereits Einträge. Möchtest du diese Einträge entfernen, bevor diese Datei importiert wird?\n\n<b>Wenn du dies tust, verlierst du dauerhaft den Zugriff auf die vorhandenen Einträge in der Datenbank.</b></string>
     <string name="dialog_wipe_entries_checkbox">Datenbankinhalt löschen</string>

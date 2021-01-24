@@ -292,7 +292,7 @@
     <string name="title_activity_edit_entry">Modifica voce</string>
     <string name="title_activity_scan_qr">Scansiona un codice QR</string>
     <string name="title_activity_manage_slots">Gestisci slot di chiavi</string>
-    <string name="title_activity_select_entries">Seleziona voci</string>
+    <string name="title_activity_import_entries">Seleziona voci</string>
     <string name="dialog_wipe_entries_title">Cancella voci</string>
     <string name="dialog_wipe_entries_message">La tua cassaforte contiene già delle voci. Rimuovere queste voci prima di importare questo file?\n\n<b>In questo modo, perderai definitivamente l\'accesso alle voci esistenti nella cassaforte.</b></string>
     <string name="dialog_wipe_entries_checkbox">Cancella contenuto della cassaforte</string>

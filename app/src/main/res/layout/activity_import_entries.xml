@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="?attr/background"
     android:id="@+id/importEntriesRootView"
-    tools:context="com.beemdevelopment.aegis.ui.SelectEntriesActivity">
+    tools:context="com.beemdevelopment.aegis.ui.ImportEntriesActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"

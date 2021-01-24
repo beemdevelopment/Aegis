@@ -188,7 +188,7 @@ public class Dialogs {
         showSecureDialog(dialog);
     }
 
-    private static void showTextInputDialog(Context context, @StringRes int titleId, @StringRes int messageId, @StringRes int hintId, TextInputListener listener, DialogInterface.OnDismissListener dismissListener, boolean isSecret) {
+    private static void showTextInputDialog(Context context, @StringRes int titleId, @StringRes int messageId, @StringRes int hintId, TextInputListener listener, DialogInterface.OnCancelListener cancelListener, boolean isSecret) {
         View view = LayoutInflater.from(context).inflate(R.layout.dialog_text_input, null);
         TextInputEditText input = view.findViewById(R.id.text_input);
         TextInputLayout inputLayout = view.findViewById(R.id.text_input_layout);
@@ -205,8 +205,8 @@ public class Dialogs {
                     listener.onTextInputResult(text);
                 });
 
-        if (dismissListener != null) {
-            builder.setOnDismissListener(dismissListener);
+        if (cancelListener != null) {
+            builder.setOnCancelListener(cancelListener);
         }
 
         if (messageId != 0) {
@@ -214,6 +214,7 @@ public class Dialogs {
         }
 
         AlertDialog dialog = builder.create();
+        dialog.setCanceledOnTouchOutside(true);
         dialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
         showSecureDialog(dialog);
     }
@@ -230,12 +231,20 @@ public class Dialogs {
         showTextInputDialog(context, R.string.set_password, R.string.password, listener, true);
     }
 
+    public static void showPasswordInputDialog(Context context, TextInputListener listener, DialogInterface.OnCancelListener cancelListener) {
+        showTextInputDialog(context, R.string.set_password, 0, R.string.password, listener, cancelListener, true);
+    }
+
     public static void showPasswordInputDialog(Context context, @StringRes int messageId, TextInputListener listener) {
         showTextInputDialog(context, R.string.set_password, messageId, R.string.password, listener, null, true);
     }
 
-    public static void showPasswordInputDialog(Context context, @StringRes int setPasswordMessageId, @StringRes int messageId, TextInputListener listener, DialogInterface.OnDismissListener dismissListener) {
-        showTextInputDialog(context, setPasswordMessageId, messageId, R.string.password, listener, dismissListener, true);
+    public static void showPasswordInputDialog(Context context, @StringRes int messageId, TextInputListener listener, DialogInterface.OnCancelListener cancelListener) {
+        showTextInputDialog(context, R.string.set_password, messageId, R.string.password, listener, cancelListener, true);
+    }
+
+    public static void showPasswordInputDialog(Context context, @StringRes int titleId, @StringRes int messageId, TextInputListener listener, DialogInterface.OnCancelListener cancelListener) {
+        showTextInputDialog(context, titleId, messageId, R.string.password, listener, cancelListener, true);
     }
 
     public static void showCheckboxDialog(Context context, @StringRes int titleId, @StringRes int messageId, @StringRes int checkboxMessageId, CheckboxInputListener listener) {
@@ -334,6 +343,7 @@ public class Dialogs {
         AlertDialog dialog = new AlertDialog.Builder(context)
                 .setTitle(R.string.error_occurred)
                 .setView(view)
+                .setCancelable(false)
                 .setPositiveButton(android.R.string.ok, (dialog1, which) -> {
                     if (listener != null) {
                         listener.onClick(dialog1, which);
@@ -341,11 +351,6 @@ public class Dialogs {
                 })
                 .setNeutralButton(R.string.details, (dialog1, which) -> {
                     textDetails.setVisibility(View.VISIBLE);
-                })
-                .setOnDismissListener(dialog12 -> {
-                    if (listener != null) {
-                        listener.onClick(dialog12, -1);
-                    }
                 })
                 .create();
 

@@ -292,7 +292,7 @@
     <string name="title_activity_edit_entry">Modifier l\'entrée</string>
     <string name="title_activity_scan_qr">Scanner un code QR</string>
     <string name="title_activity_manage_slots">Gérer les emplacements de clés</string>
-    <string name="title_activity_select_entries">Sélectionner les entrées</string>
+    <string name="title_activity_import_entries">Sélectionner les entrées</string>
     <string name="dialog_wipe_entries_title">Effacer les entrées</string>
     <string name="dialog_wipe_entries_message">Votre coffre-fort contient déjà des entrées. Voulez-vous supprimer ces entrées avant d\'importer ce fichier ?\n\n<b>En faisant cela, vous perdrez définitivement l\'accès aux entrées existantes dans le coffre-fort.</b></string>
     <string name="dialog_wipe_entries_checkbox">Effacer le contenu du coffre-fort</string>

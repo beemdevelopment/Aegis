@@ -286,7 +286,7 @@
     <string name="title_activity_edit_entry">Editatu sarrera</string>
     <string name="title_activity_scan_qr">Eskaneatu QR kodea</string>
     <string name="title_activity_manage_slots">Kudeatu arteka giltzarriak</string>
-    <string name="title_activity_select_entries">Aukeratu sarrerak</string>
+    <string name="title_activity_import_entries">Aukeratu sarrerak</string>
     <string name="dialog_wipe_entries_title">Garbitu sarrerak</string>
     <string name="dialog_wipe_entries_message">Zure biltegiak sarrerak ditu dagoeneko. Sarrera horiek ezabatu nahi dituzu fitxategi hau inportatu aurretik?\n\n<b>Hori egitean, biltegiko sarreretarako sarbidea galduko da betirako.</b></string>
     <string name="dialog_wipe_entries_checkbox">Garbitu biltegiaren sarrerak</string>

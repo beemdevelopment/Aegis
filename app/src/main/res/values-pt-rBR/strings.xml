@@ -292,7 +292,7 @@
     <string name="title_activity_edit_entry">Editar entrada</string>
     <string name="title_activity_scan_qr">Escanear QR code</string>
     <string name="title_activity_manage_slots">Gerenciar slots de chaves</string>
-    <string name="title_activity_select_entries">Selecionar entradas</string>
+    <string name="title_activity_import_entries">Selecionar entradas</string>
     <string name="dialog_wipe_entries_title">Limpar entradas</string>
     <string name="dialog_wipe_entries_message">O seu cofre já contém entradas. Você quer remover essas entradas antes de importar este arquivo?\n\n<b>Ao fazer isso, você perderá permanentemente o acesso às entradas existentes no cofre.</b></string>
     <string name="dialog_wipe_entries_checkbox">Limpar conteúdo do cofre</string>

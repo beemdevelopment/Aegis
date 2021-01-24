@@ -304,7 +304,7 @@
     <string name="title_activity_edit_entry">Редактировать запись</string>
     <string name="title_activity_scan_qr">Сканировать QR-код</string>
     <string name="title_activity_manage_slots">Управление ключевыми слотами</string>
-    <string name="title_activity_select_entries">Выбрать записи</string>
+    <string name="title_activity_import_entries">Выбрать записи</string>
     <string name="dialog_wipe_entries_title">Очистить записи</string>
     <string name="dialog_wipe_entries_message">В вашем хранилище уже есть записи. Вы хотите удалить эти записи перед импортом файла?\n\n<b>При этом вы навсегда потеряете доступ к существующим записям в хранилище.</b></string>
     <string name="dialog_wipe_entries_checkbox">Очистить содержимое хранилища</string>

@@ -71,7 +71,7 @@ public class AuthenticatorPlusImporter extends DatabaseImporter {
                 } catch (DatabaseImporterException e) {
                     listener.onError(e);
                 }
-            });
+            }, dialog1 -> listener.onCanceled());
         }
     }
 }

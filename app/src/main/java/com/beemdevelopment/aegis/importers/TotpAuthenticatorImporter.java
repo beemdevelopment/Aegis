@@ -159,7 +159,7 @@ public class TotpAuthenticatorImporter extends DatabaseImporter {
                     .setPositiveButton(R.string.yes, (dialog, which) -> {
                         Dialogs.showPasswordInputDialog(context, password -> {
                             decrypt(password, listener);
-                        });
+                        }, dialog1 -> listener.onCanceled());
                     })
                     .setNegativeButton(R.string.no, (dialog, which) -> {
                         decrypt(PASSWORD, listener);

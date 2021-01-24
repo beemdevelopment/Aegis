@@ -16,11 +16,10 @@ import com.beemdevelopment.aegis.vault.VaultManagerException;
 
 public abstract class PreferencesFragment extends PreferenceFragmentCompat {
     // activity request codes
-    public static final int CODE_IMPORT = 0;
-    public static final int CODE_IMPORT_DECRYPT = 1;
+    public static final int CODE_IMPORT_SELECT = 0;
     public static final int CODE_SLOTS = 2;
     public static final int CODE_GROUPS = 3;
-    public static final int CODE_SELECT_ENTRIES = 4;
+    public static final int CODE_IMPORT = 4;
     public static final int CODE_EXPORT = 5;
     public static final int CODE_EXPORT_PLAIN = 6;
     public static final int CODE_EXPORT_GOOGLE_URI = 7;

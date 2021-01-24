@@ -1,9 +1,14 @@
 package com.beemdevelopment.aegis.importers;
 
 import android.content.Context;
+import android.content.DialogInterface;
+
+import androidx.lifecycle.Lifecycle;
 
 import com.beemdevelopment.aegis.encoding.EncodingException;
+import com.beemdevelopment.aegis.helpers.ContextHelper;
 import com.beemdevelopment.aegis.otp.OtpInfoException;
+import com.beemdevelopment.aegis.ui.Dialogs;
 import com.beemdevelopment.aegis.ui.tasks.PasswordSlotDecryptTask;
 import com.beemdevelopment.aegis.util.IOUtils;
 import com.beemdevelopment.aegis.vault.VaultEntry;
@@ -79,7 +84,26 @@ public class AegisImporter extends DatabaseImporter {
 
         @Override
         public void decrypt(Context context, DecryptListener listener) {
+            Dialogs.showPasswordInputDialog(context, (Dialogs.TextInputListener) password -> {
+                List<PasswordSlot> slots = getSlots().findAll(PasswordSlot.class);
+                PasswordSlotDecryptTask.Params params = new PasswordSlotDecryptTask.Params(slots, password);
+                PasswordSlotDecryptTask task = new PasswordSlotDecryptTask(context, result -> {
+                    try {
+                        if (result == null) {
+                            throw new DatabaseImporterException("Password incorrect");
+                        }
 
+                        VaultFileCredentials creds = new VaultFileCredentials(result.getKey(), getSlots());
+                        State state = decrypt(creds);
+                        listener.onStateDecrypted(state);
+                    } catch (DatabaseImporterException e) {
+                        listener.onError(e);
+                    }
+                });
+
+                Lifecycle lifecycle = ContextHelper.getLifecycle(context);
+                task.execute(lifecycle, params);
+            }, (DialogInterface.OnCancelListener) dialog -> listener.onCanceled());
         }
     }
 

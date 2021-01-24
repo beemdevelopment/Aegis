@@ -292,7 +292,7 @@
     <string name="title_activity_edit_entry">Item bewerken</string>
     <string name="title_activity_scan_qr">Scan een QR-code</string>
     <string name="title_activity_manage_slots">Beheer sleutelslots</string>
-    <string name="title_activity_select_entries">Geselecteerde items</string>
+    <string name="title_activity_import_entries">Geselecteerde items</string>
     <string name="dialog_wipe_entries_title">Items verwijderen</string>
     <string name="dialog_wipe_entries_message">Je kluis bevat al items. Wilt u deze invoergegevens verwijderen voordat u dit bestand importeert?\n\n<b>Hierdoor verliest u permanent toegang tot de bestaande items in de kluis.</b></string>
     <string name="dialog_wipe_entries_checkbox">Kluis inhoud wissen</string>

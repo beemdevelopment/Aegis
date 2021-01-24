@@ -167,8 +167,9 @@ public abstract class DatabaseImporter {
         }
     }
 
-    public interface DecryptListener {
-        void onStateDecrypted(State state);
-        void onError(Exception e);
+    public static abstract class DecryptListener {
+        protected abstract void onStateDecrypted(State state);
+        protected abstract void onError(Exception e);
+        protected abstract void onCanceled();
     }
 }

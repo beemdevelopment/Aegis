@@ -286,7 +286,7 @@
     <string name="title_activity_edit_entry">编辑项目</string>
     <string name="title_activity_scan_qr">扫描二维码</string>
     <string name="title_activity_manage_slots">管理密钥槽位</string>
-    <string name="title_activity_select_entries">选择项目</string>
+    <string name="title_activity_import_entries">选择项目</string>
     <string name="dialog_wipe_entries_title">擦除条目</string>
     <string name="dialog_wipe_entries_message">您的密码库已经包含条目。 您想要在导入此文件之前删除这些条目吗？\n\n<b>这样做，您将永久失去对密码库中现有条目的访问权限。</b></string>
     <string name="dialog_wipe_entries_checkbox">擦除密码库内容</string>

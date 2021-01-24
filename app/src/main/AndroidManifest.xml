@@ -30,8 +30,8 @@
             android:name=".ui.AboutActivity"
             android:label="@string/title_activity_about" />
         <activity
-            android:name=".ui.SelectEntriesActivity"
-            android:label="@string/title_activity_select_entries" />
+            android:name=".ui.ImportEntriesActivity"
+            android:label="@string/title_activity_import_entries" />
         <activity
             android:name=".ui.MainActivity"
             android:label="${title}">

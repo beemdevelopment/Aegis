@@ -276,7 +276,7 @@
     <string name="title_activity_edit_entry">編輯條目</string>
     <string name="title_activity_scan_qr">掃描QR碼</string>
     <string name="title_activity_manage_slots">管理密鎖槽位</string>
-    <string name="title_activity_select_entries">選擇條目</string>
+    <string name="title_activity_import_entries">選擇條目</string>
     <string name="dialog_wipe_entries_title">清除條目</string>
     <string name="dialog_wipe_entries_message">您的數據庫已包含某些條目，您是否想在匯入這個檔案前，先移除這些重複的條目？\n\n<b>如果繼續，您將會失去之前擁有的重複條目。</b></string>
     <string name="dialog_wipe_entries_checkbox">清除條目的內容</string>

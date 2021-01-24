@@ -284,7 +284,7 @@
     <string name="title_activity_edit_entry">Sunting catatan</string>
     <string name="title_activity_scan_qr">Pindai kode QR</string>
     <string name="title_activity_manage_slots">Atur slot kunci</string>
-    <string name="title_activity_select_entries">Pilih catatan</string>
+    <string name="title_activity_import_entries">Pilih catatan</string>
     <string name="dialog_wipe_entries_title">Hapus catatan</string>
     <string name="dialog_wipe_entries_message">Brankas Anda sudah memiliki catatan. Apakah Anda ingin menghapus catatan ini tanpa mengimpor berkas ini?\n\n<b>Jika ini dilakukan, Anda akan kehilangan akses secara permanen ke catatan yang ada di brankas.</b></string>
     <string name="dialog_wipe_entries_checkbox">Hapus konten brankas</string>

@@ -284,7 +284,7 @@
     <string name="title_activity_edit_entry">エントリーを編集</string>
     <string name="title_activity_scan_qr">QRコードをスキャン</string>
     <string name="title_activity_manage_slots">キースロットの管理</string>
-    <string name="title_activity_select_entries">項目を選択</string>
+    <string name="title_activity_import_entries">項目を選択</string>
     <string name="dialog_wipe_entries_title">項目を消去</string>
     <string name="dialog_wipe_entries_checkbox">保管庫の内容を消去</string>
     <string name="panic_trigger_ignore_toast">イージスはパニックトリガーを受信しましたが、設定は無効になっています。</string>

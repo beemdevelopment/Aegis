@@ -15,7 +15,7 @@ public class ImportEntryHolder extends RecyclerView.ViewHolder implements Import
     private TextView _accountName;
     private CheckBox _checkbox;
 
-    private ImportEntry _entry;
+    private ImportEntry _data;
 
     public ImportEntryHolder(final View view) {
         super(view);
@@ -23,20 +23,20 @@ public class ImportEntryHolder extends RecyclerView.ViewHolder implements Import
         _issuer = view.findViewById(R.id.profile_issuer);
         _accountName = view.findViewById(R.id.profile_account_name);
         _checkbox = view.findViewById(R.id.checkbox_import_entry);
-        view.setOnClickListener(v -> _entry.setIsChecked(!_entry.isChecked()));
+        view.setOnClickListener(v -> _data.setIsChecked(!_data.isChecked()));
     }
 
-    public void setData(ImportEntry entry) {
-        _entry = entry;
+    public void setData(ImportEntry data) {
+        _data = data;
 
         Context context = itemView.getContext();
-        _issuer.setText(!entry.getIssuer().isEmpty() ? entry.getIssuer() : context.getString(R.string.unknown_issuer));
-        _accountName.setText(!entry.getName().isEmpty() ? entry.getName() : context.getString(R.string.unknown_account_name));
-        _checkbox.setChecked(entry.isChecked());
+        _issuer.setText(!_data.getEntry().getIssuer().isEmpty() ? _data.getEntry().getIssuer() : context.getString(R.string.unknown_issuer));
+        _accountName.setText(!_data.getEntry().getName().isEmpty() ? _data.getEntry().getName() : context.getString(R.string.unknown_account_name));
+        _checkbox.setChecked(_data.isChecked());
     }
 
-    public ImportEntry getEntry() {
-        return _entry;
+    public ImportEntry getData() {
+        return _data;
     }
 
     @Override

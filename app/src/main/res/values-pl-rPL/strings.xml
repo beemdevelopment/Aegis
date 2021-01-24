@@ -304,7 +304,7 @@
     <string name="title_activity_edit_entry">Edytuj wpis</string>
     <string name="title_activity_scan_qr">Skanuj kod QR</string>
     <string name="title_activity_manage_slots">Zarządzaj slotami klucza</string>
-    <string name="title_activity_select_entries">Zaznacz wpisy</string>
+    <string name="title_activity_import_entries">Zaznacz wpisy</string>
     <string name="dialog_wipe_entries_title">Wyczyść wpisy</string>
     <string name="dialog_wipe_entries_message">Twój sejf zawiera już wpisy. Czy chcesz usunąć te wpisy przed zaimportowaniem tego pliku?\n\n<b>W ten sposób trwale stracisz dostęp do obecnych wpisów w sejfie.</b></string>
     <string name="dialog_wipe_entries_checkbox">Wyczyść zawartość sejfu</string>

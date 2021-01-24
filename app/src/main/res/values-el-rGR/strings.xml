@@ -292,7 +292,7 @@
     <string name="title_activity_edit_entry">Επεξεργασία καταχώρησης</string>
     <string name="title_activity_scan_qr">Σάρωση κωδικού QR</string>
     <string name="title_activity_manage_slots">Διαχείριση κλειδιών υποδοχής</string>
-    <string name="title_activity_select_entries">Επιλέξτε καταχωρήσεις</string>
+    <string name="title_activity_import_entries">Επιλέξτε καταχωρήσεις</string>
     <string name="dialog_wipe_entries_title">Διαγραφή καταχωρήσεων</string>
     <string name="dialog_wipe_entries_message">Η κρύπτη σας περιέχει ήδη καταχωρήσεις. Θέλετε να καταργήσετε αυτές τις καταχωρήσεις πριν από την εισαγωγή αυτού του αρχείου;\n\n <b> Με αυτόν τον τρόπο, θα χάσετε μόνιμα την πρόσβαση στις υπάρχουσες καταχωρήσεις στην κρύπτη. </b></string>
     <string name="dialog_wipe_entries_checkbox">Διαγραφή περιεχομένων κρύπτης</string>
