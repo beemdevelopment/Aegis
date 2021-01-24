@@ -13,7 +13,6 @@ import android.provider.Settings;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.SubMenu;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.Toast;
@@ -41,8 +40,6 @@ import com.beemdevelopment.aegis.vault.VaultManager;
 import com.beemdevelopment.aegis.vault.VaultManagerException;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.chip.Chip;
-import com.google.android.material.chip.ChipGroup;
 import com.google.zxing.BinaryBitmap;
 import com.google.zxing.ChecksumException;
 import com.google.zxing.FormatException;
@@ -58,7 +55,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.TreeSet;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -777,7 +773,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
                         return true;
 
                     case R.id.action_delete:
-                        Dialogs.showDeleteEntriesDialog(MainActivity.this, (d, which) -> {
+                        Dialogs.showDeleteEntriesDialog(MainActivity.this, _selectedEntries.stream().map(VaultEntry::getIssuer).collect(Collectors.toList()), (d, which) -> {
                             deleteEntries(_selectedEntries);
 
                             for (VaultEntry entry : _selectedEntries) {
@@ -789,7 +785,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
                             }
 
                             mode.finish();
-                        }, _selectedEntries.size());
+                        });
                         return true;
                     default:
                         return false;

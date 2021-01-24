@@ -30,8 +30,8 @@ import com.avito.android.krop.KropView;
 import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.encoding.Base32;
 import com.beemdevelopment.aegis.encoding.EncodingException;
-import com.beemdevelopment.aegis.helpers.EditTextHelper;
 import com.beemdevelopment.aegis.helpers.DropdownHelper;
+import com.beemdevelopment.aegis.helpers.EditTextHelper;
 import com.beemdevelopment.aegis.helpers.TextDrawableHelper;
 import com.beemdevelopment.aegis.otp.GoogleAuthInfo;
 import com.beemdevelopment.aegis.otp.HotpInfo;
@@ -51,6 +51,7 @@ import com.google.android.material.textfield.TextInputLayout;
 
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.TreeSet;
 import java.util.UUID;
@@ -345,7 +346,7 @@ public class EditEntryActivity extends AegisActivity {
                 onSave();
                 break;
             case R.id.action_delete:
-                Dialogs.showDeleteEntryDialog(this, (dialog, which) -> {
+                Dialogs.showDeleteEntriesDialog(this, Collections.singletonList(_origEntry.getIssuer()), (dialog, which) -> {
                     deleteAndFinish(_origEntry);
                 });
                 break;

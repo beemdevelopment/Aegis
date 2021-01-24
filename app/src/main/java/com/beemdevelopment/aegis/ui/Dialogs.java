@@ -10,6 +10,7 @@ import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.text.Editable;
 import android.text.InputType;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.text.method.PasswordTransformationMethod;
 import android.view.LayoutInflater;
@@ -28,6 +29,7 @@ import android.widget.TextView;
 import androidx.activity.ComponentActivity;
 import androidx.annotation.StringRes;
 import androidx.appcompat.app.AlertDialog;
+import androidx.core.text.HtmlCompat;
 
 import com.beemdevelopment.aegis.Preferences;
 import com.beemdevelopment.aegis.R;
@@ -64,28 +66,25 @@ public class Dialogs {
         dialog.show();
     }
 
-    public static void showDeleteEntryDialog(Activity activity, DialogInterface.OnClickListener onDelete) {
-        showSecureDialog(new AlertDialog.Builder(activity)
-                .setTitle(activity.getString(R.string.delete_entry))
-                .setMessage(activity.getString(R.string.delete_entry_description))
-                .setPositiveButton(android.R.string.yes, onDelete)
-                .setNegativeButton(android.R.string.no, null)
-                .create());
-    }
+    public static void showDeleteEntriesDialog(Activity activity, List<String> services, DialogInterface.OnClickListener onDelete) {
+        View view = activity.getLayoutInflater().inflate(R.layout.dialog_delete_entry, null);
+        TextView textMessage = view.findViewById(R.id.text_message);
+        TextView textExplanation = view.findViewById(R.id.text_explanation);
+        textExplanation.setText(HtmlCompat.fromHtml(activity.getString(R.string.delete_entry_explanation, TextUtils.join(", ", services)), HtmlCompat.FROM_HTML_MODE_COMPACT));
 
-    public static void showDeleteEntriesDialog(Activity activity, DialogInterface.OnClickListener onDelete, int totalEntries) {
         String title, message;
-        if (totalEntries > 1) {
+        if (services.size() > 1) {
             title = activity.getString(R.string.delete_entries);
-            message = activity.getResources().getQuantityString(R.plurals.delete_entries_description, totalEntries, totalEntries);
+            message = activity.getResources().getQuantityString(R.plurals.delete_entries_description, services.size(), services.size());
         } else {
             title = activity.getString(R.string.delete_entry);
             message = activity.getString(R.string.delete_entry_description);
         }
+        textMessage.setText(message);
 
         showSecureDialog(new AlertDialog.Builder(activity)
                 .setTitle(title)
-                .setMessage(message)
+                .setView(view)
                 .setPositiveButton(android.R.string.yes, onDelete)
                 .setNegativeButton(android.R.string.no, null)
                 .create());
