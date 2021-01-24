@@ -220,7 +220,7 @@
 
     <style name="Widget.Aegis.DialogButton" parent="Widget.MaterialComponents.Button.TextButton.Dialog">
         <item name="rippleColor">@color/colorSecondary</item>
-        <item name="android:textColor">@color/colorSecondary</item>
+        <item name="android:textColor">@color/dialog_button_color</item>
     </style>
 
     <style name="Widget.Aegis.BottomSheet.Rounded" parent="Widget.MaterialComponents.BottomSheet">
