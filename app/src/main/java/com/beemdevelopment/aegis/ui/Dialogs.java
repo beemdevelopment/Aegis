@@ -29,7 +29,6 @@ import android.widget.TextView;
 import androidx.activity.ComponentActivity;
 import androidx.annotation.StringRes;
 import androidx.appcompat.app.AlertDialog;
-import androidx.core.text.HtmlCompat;
 
 import com.beemdevelopment.aegis.Preferences;
 import com.beemdevelopment.aegis.R;
@@ -70,7 +69,7 @@ public class Dialogs {
         View view = activity.getLayoutInflater().inflate(R.layout.dialog_delete_entry, null);
         TextView textMessage = view.findViewById(R.id.text_message);
         TextView textExplanation = view.findViewById(R.id.text_explanation);
-        textExplanation.setText(HtmlCompat.fromHtml(activity.getString(R.string.delete_entry_explanation, TextUtils.join(", ", services)), HtmlCompat.FROM_HTML_MODE_COMPACT));
+        textExplanation.setText(activity.getString(R.string.delete_entry_explanation, TextUtils.join(", ", services)));
 
         String title, message;
         if (services.size() > 1) {
