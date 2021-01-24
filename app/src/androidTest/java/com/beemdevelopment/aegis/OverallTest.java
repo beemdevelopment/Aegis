@@ -2,9 +2,9 @@ package com.beemdevelopment.aegis;
 
 import androidx.annotation.IdRes;
 import androidx.test.core.app.ApplicationProvider;
-import androidx.test.espresso.AmbiguousViewMatcherException;
 import androidx.test.espresso.ViewInteraction;
 import androidx.test.espresso.contrib.RecyclerViewActions;
+import androidx.test.espresso.matcher.RootMatchers;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.filters.LargeTest;
@@ -26,7 +26,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static androidx.test.espresso.Espresso.onData;
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.Espresso.openContextualActionModeOverflowMenu;
 import static androidx.test.espresso.action.ViewActions.clearText;
@@ -42,7 +41,6 @@ import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static junit.framework.TestCase.assertFalse;
 import static junit.framework.TestCase.assertNull;
 import static junit.framework.TestCase.assertTrue;
-import static org.hamcrest.Matchers.anything;
 
 @RunWith(AndroidJUnit4.class)
 @LargeTest
@@ -79,7 +77,8 @@ public class OverallTest extends AegisTest {
 
         List<VaultEntry> realEntries = new ArrayList<>(vault.getEntries());
         for (int i = 0; i < realEntries.size(); i++) {
-            assertTrue(realEntries.get(i).equivalates(entries.get(i)));
+            String message = String.format("%s != %s", realEntries.get(i).toJson().toString(), entries.get(i).toJson().toString());
+            assertTrue(message, realEntries.get(i).equivalates(entries.get(i)));
         }
 
         for (int i = 0; i < 10; i++) {
@@ -93,7 +92,7 @@ public class OverallTest extends AegisTest {
         onView(withId(R.id.action_edit)).perform(click());
         onView(withId(R.id.text_name)).perform(clearText(), typeText("Bob"), closeSoftKeyboard());
         onView(withId(R.id.dropdown_group)).perform(click());
-        onData(anything()).atPosition(1).perform(click());
+        onView(withText(R.string.new_group)).inRoot(RootMatchers.isPlatformPopup()).perform(click());
         onView(withId(R.id.text_input)).perform(typeText(_groupName), closeSoftKeyboard());
         onView(withId(android.R.id.button1)).perform(click());
         onView(isRoot()).perform(pressBack());
@@ -105,9 +104,9 @@ public class OverallTest extends AegisTest {
         changeSort(R.string.sort_alphabetically_reverse);
         changeSort(R.string.sort_custom);
 
-        changeFilter(_groupName);
+        /*changeFilter(_groupName);
         changeFilter(R.string.filter_ungrouped);
-        changeFilter(R.string.all);
+        changeFilter(R.string.all);*/
 
         onView(withId(R.id.rvKeyProfiles)).perform(RecyclerViewActions.actionOnItemAtPosition(1, longClick()));
         onView(withId(R.id.rvKeyProfiles)).perform(RecyclerViewActions.actionOnItemAtPosition(2, click()));
@@ -128,13 +127,13 @@ public class OverallTest extends AegisTest {
         openContextualActionModeOverflowMenu();
         onView(withText(R.string.action_settings)).perform(click());
         onView(withId(androidx.preference.R.id.recycler_view)).perform(RecyclerViewActions.actionOnItem(hasDescendant(withText(R.string.pref_section_security_title)), click()));
-        onView(withId(androidx.preference.R.id.recycler_view)).perform(RecyclerViewActions.actionOnItem(hasDescendant(withText(R.string.pref_encryption_title)), click()));
+        onView(withId(androidx.preference.R.id.recycler_view)).perform(RecyclerViewActions.actionOnItemAtPosition(1, click()));
         onView(withId(android.R.id.button1)).perform(click());
 
         assertFalse(vault.isEncryptionEnabled());
         assertNull(vault.getCredentials());
 
-        onView(withId(androidx.preference.R.id.recycler_view)).perform(RecyclerViewActions.actionOnItem(hasDescendant(withText(R.string.pref_encryption_title)), click()));
+        onView(withId(androidx.preference.R.id.recycler_view)).perform(RecyclerViewActions.actionOnItemAtPosition(1, click()));
         onView(withId(R.id.text_password)).perform(typeText(VAULT_PASSWORD), closeSoftKeyboard());
         onView(withId(R.id.text_password_confirm)).perform(typeText(VAULT_PASSWORD), closeSoftKeyboard());
         onView(withId(android.R.id.button1)).perform(click());
@@ -166,18 +165,20 @@ public class OverallTest extends AegisTest {
         onView(withId(R.id.text_issuer)).perform(typeText(entry.getIssuer()), closeSoftKeyboard());
 
         if (entry.getInfo().getClass() != TotpInfo.class) {
-            int i = entry.getInfo() instanceof HotpInfo ? 1 : 2;
-            try {
-                onView(withId(R.id.dropdown_type)).perform(click());
-                onData(anything()).atPosition(i).perform(click());
-            } catch (AmbiguousViewMatcherException e) {
-                // for some reason, clicking twice is sometimes necessary, otherwise the test fails on the next line
-                onView(withId(R.id.dropdown_type)).perform(click());
-                onData(anything()).atPosition(i).perform(click());
-            }
+            String otpType;
             if (entry.getInfo() instanceof HotpInfo) {
-                onView(withId(R.id.text_period_counter)).perform(typeText("0"), closeSoftKeyboard());
+                otpType = "HOTP";
+            } else if (entry.getInfo() instanceof SteamInfo) {
+                otpType = "Steam";
+            } else if (entry.getInfo() instanceof TotpInfo) {
+                otpType = "TOTP";
+            } else {
+                throw new RuntimeException(String.format("Unexpected entry type: %s", entry.getInfo().getClass().getSimpleName()));
             }
+
+            onView(withId(R.id.dropdown_type)).perform(click());
+            onView(withText(otpType)).inRoot(RootMatchers.isPlatformPopup()).perform(click());
+
             if (entry.getInfo() instanceof SteamInfo) {
                 onView(withId(R.id.text_digits)).perform(clearText(), typeText("5"), closeSoftKeyboard());
             }

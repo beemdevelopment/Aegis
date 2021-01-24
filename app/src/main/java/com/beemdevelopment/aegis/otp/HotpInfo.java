@@ -39,7 +39,7 @@ public class HotpInfo extends OtpInfo {
     }
 
     @Override
-    public String getType() {
+    public String getTypeId() {
         return ID;
     }
 

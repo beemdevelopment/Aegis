@@ -172,7 +172,7 @@ public class EditEntryActivity extends AegisActivity {
             _textSecret.setText(secretString);
         }
 
-        _dropdownType.setText(_origEntry.getInfo().getType().toUpperCase(), false);
+        _dropdownType.setText(_origEntry.getInfo().getTypeId().toUpperCase(), false);
         _dropdownAlgo.setText(_origEntry.getInfo().getAlgorithm(false), false);
 
         String group = _origEntry.getGroup();

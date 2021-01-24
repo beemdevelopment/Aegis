@@ -26,7 +26,11 @@ public abstract class OtpInfo implements Serializable {
 
     public abstract String getOtp();
 
-    public abstract String getType();
+    public abstract String getTypeId();
+
+    public String getType() {
+        return getType().toUpperCase();
+    }
 
     public JSONObject toJson() {
         JSONObject obj = new JSONObject();
@@ -127,7 +131,7 @@ public abstract class OtpInfo implements Serializable {
         }
 
         OtpInfo info = (OtpInfo) o;
-        return getType().equals(info.getType())
+        return getTypeId().equals(info.getTypeId())
                 && Arrays.equals(getSecret(), info.getSecret())
                 && getAlgorithm(false).equals(info.getAlgorithm(false))
                 && getDigits() == info.getDigits();

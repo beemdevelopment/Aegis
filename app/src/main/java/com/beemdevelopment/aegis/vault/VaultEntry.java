@@ -53,7 +53,7 @@ public class VaultEntry extends UUIDMap.Value {
         JSONObject obj = new JSONObject();
 
         try {
-            obj.put("type", _info.getType());
+            obj.put("type", _info.getTypeId());
             obj.put("uuid", getUUID().toString());
             obj.put("name", _name);
             obj.put("issuer", _issuer);

@@ -28,7 +28,13 @@ public class SteamInfo extends TotpInfo {
     }
 
     @Override
-    public String getType() {
+    public String getTypeId() {
         return ID;
+    }
+
+    @Override
+    public String getType() {
+        String id = getTypeId();
+        return id.substring(0, 1).toUpperCase() + id.substring(1);
     }
 }

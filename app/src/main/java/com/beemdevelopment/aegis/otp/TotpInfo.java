@@ -44,7 +44,7 @@ public class TotpInfo extends OtpInfo {
     }
 
     @Override
-    public String getType() {
+    public String getTypeId() {
         return ID;
     }
 
