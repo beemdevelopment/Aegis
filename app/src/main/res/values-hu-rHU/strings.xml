@@ -152,8 +152,6 @@
     <string name="adding_new_slot_error">Hiba történt az új zár hozzáadásakor:</string>
     <string name="progressbar_error">Az animátor hossza nem állítható vissza. A folyamatsávok nem fognak látszódni.</string>
     <string name="details">Részletek</string>
-    <string name="filter">Szűrő</string>
-    <string name="filter_ungrouped">Csoport nélküli</string>
     <string name="lock">Zárolás</string>
     <string name="name">Név</string>
     <string name="no_group">Nincs csoport</string>

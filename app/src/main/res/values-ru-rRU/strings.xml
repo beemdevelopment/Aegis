@@ -198,8 +198,6 @@
     <string name="adding_new_slot_error">Произошла ошибка при попытке добавить новый слот:</string>
     <string name="progressbar_error">Не удалось установить продолжительность анимации. Индикаторы прогресса не будут отображаться.</string>
     <string name="details">Подробнее</string>
-    <string name="filter">Фильтр</string>
-    <string name="filter_ungrouped">Без группировки</string>
     <string name="lock">Заблокировать</string>
     <string name="name">Имя</string>
     <string name="no_group">Нет группы</string>

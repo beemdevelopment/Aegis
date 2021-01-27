@@ -188,8 +188,6 @@
     <string name="adding_new_slot_error">Uuden paikan lisäämisessä tapahtui virhe:</string>
     <string name="progressbar_error">Animaattorin kestoasteikkoa ei voitu nollata. Edistymispalkit ovat näkymättömiä.</string>
     <string name="details">Tiedot</string>
-    <string name="filter">Suodata</string>
-    <string name="filter_ungrouped">Ryhmittelemättömät</string>
     <string name="lock">Lukitse</string>
     <string name="name">Nimi</string>
     <string name="no_group">Ei ryhmää</string>

@@ -192,8 +192,6 @@
     <string name="adding_new_slot_error">Errore nell\'aggiunta di un nuovo slot:</string>
     <string name="progressbar_error">Impossibile ripristinare la durata delle animazioni. Le barre di caricamento non saranno visibili.</string>
     <string name="details">Dettagli</string>
-    <string name="filter">Filtra</string>
-    <string name="filter_ungrouped">Non raggruppati</string>
     <string name="lock">Blocca</string>
     <string name="name">Nome</string>
     <string name="no_group">Nessun gruppo</string>

@@ -196,8 +196,6 @@
     <string name="adding_new_slot_error">Při pokusu o přidání nového slotu došlo k chybě:</string>
     <string name="progressbar_error">Měřítko trvání animace nelze resetovat. Ukazatele průběhu nebudou viditelné.</string>
     <string name="details">Podrobnosti</string>
-    <string name="filter">Filtr</string>
-    <string name="filter_ungrouped">Bez skupiny</string>
     <string name="lock">Uzamknout</string>
     <string name="name">Název</string>
     <string name="no_group">Žádná skupina</string>

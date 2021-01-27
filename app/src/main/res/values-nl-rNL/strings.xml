@@ -192,8 +192,6 @@
     <string name="adding_new_slot_error">Er is een fout opgetreden tijdens het toevoegen van een nieuwe vergrendelingssleutel:</string>
     <string name="progressbar_error">Niet in staat om de schaal van animatieduur te resetten. Voortgangsbalken zullen niet zichtbaar zijn.</string>
     <string name="details">Details</string>
-    <string name="filter">Filter</string>
-    <string name="filter_ungrouped">Geen groep</string>
     <string name="lock">Vergrendel</string>
     <string name="name">Naam</string>
     <string name="no_group">Geen groep</string>

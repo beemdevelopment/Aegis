@@ -100,7 +100,6 @@
     <string name="adding_new_slot_error">ಹೊಸ ಸ್ಲಾಟನ್ನು ಸೇರಿಸಲು ಪ್ರಯತ್ನಿಸುವಾಗ ಒಂದು ದೋಷ ಸಂಭವಿಸಿದೆ:</string>
     <string name="progressbar_error">ಆನಿಮೇಟರಿನ ಅವಧಿಯ ಅಳತೆಯನ್ನು ಮರುಹೊಂದಿಸಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ. ಪ್ರಗತಿ ಬಾರುಗಳು ಅಗೋಚರವಿರುತ್ತವೆ.</string>
     <string name="details">ವಿವರಗಳು</string>
-    <string name="filter">ಮಿತಿಗೊಳಿಸು</string>
     <string name="lock">ಬೀಗ ಹಾಕು</string>
     <string name="name">ಹೆಸರು</string>
     <string name="no_group">ಗುಂಪಿಲ್ಲ</string>

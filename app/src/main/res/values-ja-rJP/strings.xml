@@ -188,8 +188,6 @@
     <string name="adding_new_slot_error">新しいスロットの追加中にエラーが発生しました:</string>
     <string name="progressbar_error">アニメーションの継続時間をリセットすることはできません。プログレスバーは表示されません。</string>
     <string name="details">詳細</string>
-    <string name="filter">フィルター</string>
-    <string name="filter_ungrouped">グループ解除</string>
     <string name="lock">ロックする</string>
     <string name="name">名前</string>
     <string name="no_group">グループなし</string>

@@ -210,10 +210,6 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
         String name = entry.getName().toLowerCase();
 
         if (!_groupFilter.isEmpty()) {
-            if (group == null && _groupFilter.contains(_view.getContext().getString(R.string.filter_ungrouped))) {
-                return false;
-            }
-
             if (group == null || !_groupFilter.contains(group)) {
                 return true;
             }

@@ -188,8 +188,6 @@
     <string name="adding_new_slot_error">هنگام ایجاد اسلات خطایی رخ داد:</string>
     <string name="progressbar_error">عدم توانایی در تنظیم انیمیشن. نمایش درصد تکمیل مخفی می‌شود.</string>
     <string name="details">جزئیات</string>
-    <string name="filter">فیلتر</string>
-    <string name="filter_ungrouped">گروه‌بندی نشده</string>
     <string name="lock">قفل</string>
     <string name="name">نام</string>
     <string name="no_group">بدون گروه</string>

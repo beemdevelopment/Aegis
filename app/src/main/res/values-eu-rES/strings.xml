@@ -188,8 +188,6 @@
     <string name="adding_new_slot_error">Errorea gertatu da arteka berria gehitzen saiatzean:</string>
     <string name="progressbar_error">Ezin da animazioaren iraupenaren eskala berrezarri. Aurrerapen-barrak ikusezinak izango dira.</string>
     <string name="details">Xehetasunak</string>
-    <string name="filter">Iragazkia</string>
-    <string name="filter_ungrouped">Taldekatu gabekoak</string>
     <string name="lock">Blokeatu</string>
     <string name="name">Izena</string>
     <string name="no_group">Talderik ez</string>

@@ -82,8 +82,6 @@
     <string name="file_not_found">Chyba: Súbor nenájdený</string>
     <string name="reading_file_error">Pri pokuse o prečitanie súboru sa vyskytla chyba</string>
     <string name="details">Podrobnosti</string>
-    <string name="filter">Filtrovať</string>
-    <string name="filter_ungrouped">Nezoskupené</string>
     <string name="lock">Uzamknúť</string>
     <string name="name">Meno</string>
     <string name="no_group">Žiadna skupina</string>

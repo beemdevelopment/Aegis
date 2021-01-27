@@ -192,8 +192,6 @@
     <string name="adding_new_slot_error">Une erreur est survenue en essayant d\'ajouter un nouvel emplacement :</string>
     <string name="progressbar_error">Impossible de réinitialiser l\'échelle de durée d\'animation. Les barres de progression seront invisibles.</string>
     <string name="details">Détails</string>
-    <string name="filter">Filtre</string>
-    <string name="filter_ungrouped">Non groupés</string>
     <string name="lock">Verrouiller</string>
     <string name="name">Nom</string>
     <string name="no_group">Aucun groupe</string>

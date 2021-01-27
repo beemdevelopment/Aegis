@@ -179,8 +179,6 @@
     <string name="adding_new_slot_error">حدث خطأ أثناء محاولة إضافة خانة جديدة:</string>
     <string name="progressbar_error">تعذّر اعادة تعيين مقياس مدة الرسوم المتحركة. أشرطة التقدم ستكون مخفية.</string>
     <string name="details">التفاصيل</string>
-    <string name="filter">تصفية</string>
-    <string name="filter_ungrouped">تمت إزالتها من المجموعة</string>
     <string name="lock">قفل</string>
     <string name="name">الاسم</string>
     <string name="no_group">بلا مجموعة</string>

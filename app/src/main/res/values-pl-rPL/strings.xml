@@ -198,8 +198,6 @@
     <string name="adding_new_slot_error">Wystąpił błąd podczas próby dodania nowego slotu:</string>
     <string name="progressbar_error">Nie można zresetować skali długości animacji. Paski postępu będą niewidoczne.</string>
     <string name="details">Szczegóły</string>
-    <string name="filter">Filtruj</string>
-    <string name="filter_ungrouped">Bez grupy</string>
     <string name="lock">Zablokuj</string>
     <string name="name">Nazwa</string>
     <string name="no_group">Brak grupy</string>

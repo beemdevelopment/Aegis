@@ -183,8 +183,6 @@
     <string name="adding_new_slot_error">नया स्लॉट जोड़ने का प्रयास करते समय एक त्रुटि हुई:</string>
     <string name="progressbar_error">एनिमेटर अवधि पैमाने को रीसेट करने में असमर्थ। प्रगति पट्टी अदृश्य हो जाएगी।</string>
     <string name="details">विवरण</string>
-    <string name="filter">फ़िल्टर</string>
-    <string name="filter_ungrouped">असमूहीकृत</string>
     <string name="lock">लॉक करें</string>
     <string name="name">नाम</string>
     <string name="no_group">कोई समूह नहीं</string>

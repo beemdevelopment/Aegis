@@ -192,8 +192,6 @@
     <string name="adding_new_slot_error">Ocorreu um erro ao tentar adicionar um novo slot:</string>
     <string name="progressbar_error">Não foi possível redefinir a duração da animação. Barras de progresso ficarão invisíveis.</string>
     <string name="details">Detalhes</string>
-    <string name="filter">Filtrar</string>
-    <string name="filter_ungrouped">Não agrupado</string>
     <string name="lock">Bloquear</string>
     <string name="name">Nome</string>
     <string name="no_group">Sem grupo</string>

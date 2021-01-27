@@ -193,8 +193,6 @@
     <string name="adding_new_slot_error">A aparut o eroare în timp ce se încerca adăugarea unui nou slot:</string>
     <string name="progressbar_error">Imposibil de a reseta scala duratei animatorului. Barele de progres vor fi invizibile.</string>
     <string name="details">Detalii</string>
-    <string name="filter">Filtru</string>
-    <string name="filter_ungrouped">Negrupat</string>
     <string name="lock">Blocare</string>
     <string name="name">Nume</string>
     <string name="no_group">Niciun grup</string>

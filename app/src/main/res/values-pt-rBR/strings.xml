@@ -192,8 +192,6 @@
     <string name="adding_new_slot_error">Um erro ocorreu durante a tentativa de adicionar uma nova chave:</string>
     <string name="progressbar_error">Não foi possível resetar a escala de duração da animação. Barras de progresso ficarão invisíveis.</string>
     <string name="details">Detalhes</string>
-    <string name="filter">Filtrar</string>
-    <string name="filter_ungrouped">Não agrupar</string>
     <string name="lock">Bloquear</string>
     <string name="name">Conta</string>
     <string name="no_group">Sem grupo</string>

@@ -173,8 +173,6 @@
     <string name="adding_new_slot_error">Se ha producido un error tratando de añadir una nueva clave:</string>
     <string name="progressbar_error">No se puede restablecer la escala de duración de la animación. Las barras de progreso serán invisibles.</string>
     <string name="details">Detalles</string>
-    <string name="filter">Filtrar</string>
-    <string name="filter_ungrouped">Sin agrupar</string>
     <string name="lock">Bloquear</string>
     <string name="name">Cuenta</string>
     <string name="no_group">Sin grupo</string>

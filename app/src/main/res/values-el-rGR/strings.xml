@@ -192,8 +192,6 @@
     <string name="adding_new_slot_error">Παρουσιάστηκε σφάλμα κατά την προσπάθεια προσθήκης νέας υποδοχής:</string>
     <string name="progressbar_error">Δεν είναι δυνατή η επαναφορά της κλίμακας. Οι γραμμές προόδου θα είναι αόρατες.</string>
     <string name="details">Λεπτομέρειες</string>
-    <string name="filter">Φίλτρο</string>
-    <string name="filter_ungrouped">Χωρίς ομάδα</string>
     <string name="lock">Κλείδωμα</string>
     <string name="name">Όνομα</string>
     <string name="no_group">Χωρίς ομάδα</string>

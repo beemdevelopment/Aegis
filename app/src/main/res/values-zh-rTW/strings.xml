@@ -180,8 +180,6 @@
     <string name="adding_new_slot_error">試圖添加新槽時出錯：</string>
     <string name="progressbar_error">無法重置動畫持續時間。進度條將不可見。</string>
     <string name="details">詳細信息</string>
-    <string name="filter">篩選</string>
-    <string name="filter_ungrouped">未分組</string>
     <string name="lock">鎖定</string>
     <string name="name">名稱</string>
     <string name="no_group">無群組</string>

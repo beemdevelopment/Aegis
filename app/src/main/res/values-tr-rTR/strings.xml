@@ -159,8 +159,6 @@
     <string name="adding_new_slot_error">Yeni bir anahtarlık oluşturmaya çalışırken hata oluştu:</string>
     <string name="progressbar_error">Animatör süresi ölçeği sıfırlanamıyor. İlerleme çubukları görünmez olacak.</string>
     <string name="details">Detaylar</string>
-    <string name="filter">Filtrele</string>
-    <string name="filter_ungrouped">Gruplandırılmamış</string>
     <string name="lock">Kilitle</string>
     <string name="name">Ad</string>
     <string name="no_group">Grupsuz</string>

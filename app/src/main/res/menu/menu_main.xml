@@ -16,7 +16,7 @@
         android:id="@+id/action_sort"
         android:icon="@drawable/ic_action_sort"
         app:showAsAction="always"
-        android:title="@string/filter">
+        android:title="@string/sort">
         <menu>
             <group
                 android:id="@+id/action_sort_category"

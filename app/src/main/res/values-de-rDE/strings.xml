@@ -192,8 +192,6 @@
     <string name="adding_new_slot_error">Beim Versuch, einen neuen Slot hinzuzufügen, ist ein Fehler aufgetreten:</string>
     <string name="progressbar_error">Die Skala der Animationsdauer kann nicht zurückgesetzt werden. Fortschrittsbalken werden unsichtbar sein.</string>
     <string name="details">Details</string>
-    <string name="filter">Filter</string>
-    <string name="filter_ungrouped">Nicht gruppiert</string>
     <string name="lock">Sperren</string>
     <string name="name">Name</string>
     <string name="no_group">Keine Gruppe</string>
