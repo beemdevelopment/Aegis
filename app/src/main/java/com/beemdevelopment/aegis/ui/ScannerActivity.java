@@ -8,6 +8,7 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.Toolbar;
 import androidx.camera.core.CameraInfoUnavailableException;
 import androidx.camera.core.CameraSelector;
 import androidx.camera.core.ImageAnalysis;
@@ -51,6 +52,7 @@ public class ScannerActivity extends AegisActivity implements QrCodeAnalyzer.Lis
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scanner);
+        setSupportActionBar(findViewById(R.id.toolbar));
 
         _entries = new ArrayList<>();
         _lenses = new ArrayList<>();
