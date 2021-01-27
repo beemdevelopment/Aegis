@@ -296,8 +296,6 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
 
         LinearLayoutManager layoutManager = (LinearLayoutManager) _recyclerView.getLayoutManager();
         if (focusEntry && position >= 0) {
-            int last = layoutManager.findLastVisibleItemPosition();
-            int first = layoutManager.findFirstVisibleItemPosition();
             if ((_recyclerView.canScrollVertically(1) && position > layoutManager.findLastCompletelyVisibleItemPosition())
                     || (_recyclerView.canScrollVertically(-1) && position < layoutManager.findFirstCompletelyVisibleItemPosition())) {
                 RecyclerView.OnScrollListener scrollListener = new RecyclerView.OnScrollListener() {
