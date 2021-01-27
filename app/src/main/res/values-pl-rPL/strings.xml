@@ -252,8 +252,8 @@
     <string name="changelog">Lista zmian</string>
     <string name="whats_new">Co nowego</string>
     <string name="github_description">Kod źródłowy, problemy i informacje</string>
-    <string name="licenses">Licencje</string>
-    <string name="licenses_description">Licencje bibliotek, z których korzysta aplikacja Aegis</string>
+    <string name="third_party_licenses">Licencje</string>
+    <string name="third_party_licenses_description">Licencje bibliotek, z których korzysta aplikacja Aegis</string>
     <string name="country_netherlands">Holandia</string>
     <string name="email_us">Napisz wiadomość e-mail</string>
     <string name="visit_website">Odwiedź naszą stronę</string>

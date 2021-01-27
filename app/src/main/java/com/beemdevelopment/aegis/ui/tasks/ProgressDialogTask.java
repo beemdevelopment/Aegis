@@ -12,7 +12,7 @@ import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.LifecycleObserver;
 import androidx.lifecycle.OnLifecycleEvent;
 
-import com.beemdevelopment.aegis.ui.Dialogs;
+import com.beemdevelopment.aegis.ui.dialogs.Dialogs;
 
 public abstract class ProgressDialogTask<Params, Result> extends AsyncTask<Params, String, Result> {
     private ProgressDialog _dialog;

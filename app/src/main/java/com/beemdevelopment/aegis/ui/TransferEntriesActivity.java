@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.otp.GoogleAuthInfo;
+import com.beemdevelopment.aegis.ui.dialogs.Dialogs;
 import com.beemdevelopment.aegis.vault.VaultManager;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.WriterException;

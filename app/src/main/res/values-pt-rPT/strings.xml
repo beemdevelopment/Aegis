@@ -244,8 +244,8 @@
     <string name="changelog">Registo de alterações</string>
     <string name="whats_new">O que há de novo</string>
     <string name="github_description">Código fonte, problemas e informações</string>
-    <string name="licenses">Licenças</string>
-    <string name="licenses_description">Licenças das bibliotecas utilizadas pelo Aegis</string>
+    <string name="third_party_licenses">Licenças</string>
+    <string name="third_party_licenses_description">Licenças das bibliotecas utilizadas pelo Aegis</string>
     <string name="country_netherlands">Holanda</string>
     <string name="email_us">Escreva um e-mail</string>
     <string name="visit_website">Visite o nosso site</string>

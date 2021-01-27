@@ -8,7 +8,7 @@ import androidx.lifecycle.Lifecycle;
 import com.beemdevelopment.aegis.encoding.EncodingException;
 import com.beemdevelopment.aegis.helpers.ContextHelper;
 import com.beemdevelopment.aegis.otp.OtpInfoException;
-import com.beemdevelopment.aegis.ui.Dialogs;
+import com.beemdevelopment.aegis.ui.dialogs.Dialogs;
 import com.beemdevelopment.aegis.ui.tasks.PasswordSlotDecryptTask;
 import com.beemdevelopment.aegis.util.IOUtils;
 import com.beemdevelopment.aegis.vault.VaultEntry;

@@ -239,8 +239,8 @@
     <string name="changelog">更新履歴</string>
     <string name="whats_new">新着情報</string>
     <string name="github_description">ソースコード、問題および情報</string>
-    <string name="licenses">ライセンス</string>
-    <string name="licenses_description">Aegisが使用するライブラリーのライセンス</string>
+    <string name="third_party_licenses">ライセンス</string>
+    <string name="third_party_licenses_description">Aegisが使用するライブラリーのライセンス</string>
     <string name="country_netherlands">オランダ</string>
     <string name="email_us">メールを書く</string>
     <string name="visit_website">ウェブサイトを表示</string>

@@ -235,8 +235,8 @@
     <string name="changelog">परिवर्तन लॉग</string>
     <string name="whats_new">नया क्या है</string>
     <string name="github_description">सोर्स कोड, मुद्दे और जानकारी</string>
-    <string name="licenses">लाइसेंस</string>
-    <string name="licenses_description">लाइब्रेरीज के लाइसेंस जो Aegis उपयोग करता है</string>
+    <string name="third_party_licenses">लाइसेंस</string>
+    <string name="third_party_licenses_description">लाइब्रेरीज के लाइसेंस जो Aegis उपयोग करता है</string>
     <string name="country_netherlands">नीदरलैंड</string>
     <string name="email_us">ईमेल लिखें</string>
     <string name="visit_website">हमारी वेबसाइट पर जाएँ</string>

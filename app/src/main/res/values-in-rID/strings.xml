@@ -238,8 +238,8 @@
     <string name="changelog">Catatan perubahan</string>
     <string name="whats_new">Apa yang baru</string>
     <string name="github_description">Kode sumber, masalah dan informasi</string>
-    <string name="licenses">Lisensi</string>
-    <string name="licenses_description">Lisensi pustaka yang digunakan Aegis</string>
+    <string name="third_party_licenses">Lisensi</string>
+    <string name="third_party_licenses_description">Lisensi pustaka yang digunakan Aegis</string>
     <string name="country_netherlands">Belanda</string>
     <string name="email_us">Tuliskan email</string>
     <string name="visit_website">Kunjungi situs web kami</string>

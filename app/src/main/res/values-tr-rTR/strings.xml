@@ -198,8 +198,8 @@
     <string name="changelog">Değişiklik Günlüğü</string>
     <string name="whats_new">Yeni ne var?</string>
     <string name="github_description">Kaynak kod, sorunlar ve bilgiler</string>
-    <string name="licenses">Lisanslar</string>
-    <string name="licenses_description">Aegis\'in kullandığı kütüphanelerin lisansları</string>
+    <string name="third_party_licenses">Lisanslar</string>
+    <string name="third_party_licenses_description">Aegis\'in kullandığı kütüphanelerin lisansları</string>
     <string name="country_netherlands">Hollanda</string>
     <string name="email_us">Bir e-posta yazın</string>
     <string name="visit_website">Sitemizi ziyaret edin</string>

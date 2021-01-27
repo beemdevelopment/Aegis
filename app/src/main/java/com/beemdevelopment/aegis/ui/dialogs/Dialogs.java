@@ -1,4 +1,4 @@
-package com.beemdevelopment.aegis.ui;
+package com.beemdevelopment.aegis.ui.dialogs;
 
 import android.app.Activity;
 import android.app.Dialog;

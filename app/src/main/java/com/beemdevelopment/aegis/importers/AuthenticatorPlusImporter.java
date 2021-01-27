@@ -2,7 +2,7 @@ package com.beemdevelopment.aegis.importers;
 
 import android.content.Context;
 
-import com.beemdevelopment.aegis.ui.Dialogs;
+import com.beemdevelopment.aegis.ui.dialogs.Dialogs;
 import com.beemdevelopment.aegis.util.IOUtils;
 import com.topjohnwu.superuser.io.SuFile;
 

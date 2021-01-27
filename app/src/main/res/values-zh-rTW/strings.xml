@@ -230,8 +230,8 @@
     <string name="changelog">更新日誌</string>
     <string name="whats_new">有什麼新鮮事</string>
     <string name="github_description">源代碼、議題和訊息</string>
-    <string name="licenses">許可證</string>
-    <string name="licenses_description">Aegis 使用的許可證和庫</string>
+    <string name="third_party_licenses">許可證</string>
+    <string name="third_party_licenses_description">Aegis 使用的許可證和庫</string>
     <string name="country_netherlands">荷蘭</string>
     <string name="email_us">發送電子郵件</string>
     <string name="visit_website">訪問我們的網站</string>

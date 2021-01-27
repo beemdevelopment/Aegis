@@ -32,6 +32,7 @@ import com.beemdevelopment.aegis.helpers.PermissionHelper;
 import com.beemdevelopment.aegis.helpers.QrCodeAnalyzer;
 import com.beemdevelopment.aegis.otp.GoogleAuthInfo;
 import com.beemdevelopment.aegis.otp.GoogleAuthInfoException;
+import com.beemdevelopment.aegis.ui.dialogs.Dialogs;
 import com.beemdevelopment.aegis.ui.fragments.BackupsPreferencesFragment;
 import com.beemdevelopment.aegis.ui.fragments.PreferencesFragment;
 import com.beemdevelopment.aegis.ui.views.EntryListView;

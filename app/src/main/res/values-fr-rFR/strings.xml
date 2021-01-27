@@ -244,8 +244,8 @@
     <string name="changelog">Historique des modifications</string>
     <string name="whats_new">Les nouveautés</string>
     <string name="github_description">Code source, problèmes et informations</string>
-    <string name="licenses">Licences</string>
-    <string name="licenses_description">Licences des bibliothèques utilisées par Aegis</string>
+    <string name="third_party_licenses">Licences</string>
+    <string name="third_party_licenses_description">Licences des bibliothèques utilisées par Aegis</string>
     <string name="country_netherlands">Pays-Bas</string>
     <string name="email_us">Écrire un email</string>
     <string name="visit_website">Visiter notre site internet</string>

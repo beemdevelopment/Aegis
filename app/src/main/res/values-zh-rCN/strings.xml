@@ -240,8 +240,8 @@
     <string name="changelog">更新日志</string>
     <string name="whats_new">新增功能</string>
     <string name="github_description">源代码，问题和信息</string>
-    <string name="licenses">许可证</string>
-    <string name="licenses_description">Aegis 使用的许可证和库</string>
+    <string name="third_party_licenses">许可证</string>
+    <string name="third_party_licenses_description">Aegis 使用的许可证和库</string>
     <string name="country_netherlands">荷兰</string>
     <string name="email_us">发送电子邮件</string>
     <string name="visit_website">访问我们的网站</string>

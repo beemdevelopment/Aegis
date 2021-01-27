@@ -240,8 +240,8 @@
     <string name="changelog">گزارش تغییرات</string>
     <string name="whats_new">تغییرات جدید</string>
     <string name="github_description">دسترسی به کد برنامه</string>
-    <string name="licenses">لایسنس</string>
-    <string name="licenses_description">لایسنس های کتابخانه های مورد استفاده</string>
+    <string name="third_party_licenses">لایسنس</string>
+    <string name="third_party_licenses_description">لایسنس های کتابخانه های مورد استفاده</string>
     <string name="country_netherlands">هلند</string>
     <string name="email_us">ایمیل بنویسید</string>
     <string name="visit_website">از وب‌سایت ما دیدن کنید</string>

@@ -275,8 +275,10 @@
     <string name="whats_new">What\'s new</string>
     <string name="github" translatable="false">GitHub</string>
     <string name="github_description">Source code, issues and information</string>
-    <string name="licenses">Licenses</string>
-    <string name="licenses_description">Licenses of the libraries Aegis uses</string>
+    <string name="license">License</string>
+    <string name="license_description">Aegis Authenticator is licensed under GPLv3</string>
+    <string name="third_party_licenses">Third-party licenses</string>
+    <string name="third_party_licenses_description">Licenses of the third-party libraries Aegis uses</string>
     <string name="author_alex" translatable="false">Alexander Bakker</string>
     <string name="country_netherlands">Netherlands</string>
     <string name="author_michael" translatable="false">Michael Schättgen</string>
@@ -285,7 +287,7 @@
     <string name="about_support">Support</string>
     <string name="support_rate">Rate</string>
     <string name="support_rate_description">Support us by leaving a review in the Google Play Store</string>
-    <string name="webview_error">This device doesn\'t support web view, which is necessary to view the changelog. It is missing a system component.</string>
+    <string name="webview_error">This device doesn\'t support web view, which is necessary to view the changelog and the license. It is missing a system component.</string>
     <string name="email">Email</string>
     <string name="time_sync_warning_title">Automatic time synchronization</string>
     <string name="time_sync_warning_message">Aegis relies on the system time to be in sync to generate correct codes. A deviation of only a few seconds could result in incorrect codes. It looks like your device is not configured to automatically synchronize the time. Would you like to do so now?</string>

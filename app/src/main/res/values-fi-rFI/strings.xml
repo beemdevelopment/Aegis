@@ -240,8 +240,8 @@
     <string name="changelog">Muutosloki</string>
     <string name="whats_new">Mitä uutta</string>
     <string name="github_description">Lähdekoodi, ongelmat ja tietoa</string>
-    <string name="licenses">Käyttöoikeudet</string>
-    <string name="licenses_description">Aegisin käyttämien kirjastojen käyttöoikeudet</string>
+    <string name="third_party_licenses">Käyttöoikeudet</string>
+    <string name="third_party_licenses_description">Aegisin käyttämien kirjastojen käyttöoikeudet</string>
     <string name="country_netherlands">Alankomaat</string>
     <string name="email_us">Lähetä sähköpostia</string>
     <string name="visit_website">Käy verkkosivuillamme</string>

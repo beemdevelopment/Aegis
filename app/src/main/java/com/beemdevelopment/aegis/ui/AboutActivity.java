@@ -21,6 +21,8 @@ import com.beemdevelopment.aegis.Theme;
 import com.beemdevelopment.aegis.helpers.ThemeHelper;
 import com.beemdevelopment.aegis.licenses.GlideLicense;
 import com.beemdevelopment.aegis.licenses.ProtobufLicense;
+import com.beemdevelopment.aegis.ui.dialogs.ChangelogDialog;
+import com.beemdevelopment.aegis.ui.dialogs.LicenseDialog;
 import com.mikepenz.iconics.context.IconicsLayoutInflater2;
 
 import de.psdev.licensesdialog.LicenseResolver;
@@ -49,8 +51,15 @@ public class AboutActivity extends AegisActivity {
             getSupportActionBar().setDisplayShowHomeEnabled(true);
         }
 
-        View btnLicenses = findViewById(R.id.btn_licenses);
-        btnLicenses.setOnClickListener(v -> showLicenseDialog());
+        View btnLicense = findViewById(R.id.btn_license);
+        btnLicense.setOnClickListener(v -> {
+            LicenseDialog.create()
+                    .setTheme(getConfiguredTheme())
+                    .show(getSupportFragmentManager(), null);
+        });
+
+        View btnThirdPartyLicenses = findViewById(R.id.btn_third_party_licenses);
+        btnThirdPartyLicenses.setOnClickListener(v -> showThirdPartyLicenseDialog());
 
         TextView appVersion = findViewById(R.id.app_version);
         appVersion.setText(getCurrentAppVersion());
@@ -80,7 +89,9 @@ public class AboutActivity extends AegisActivity {
 
         View btnChangelog = findViewById(R.id.btn_changelog);
         btnChangelog.setOnClickListener(v -> {
-            ChangelogDialog.create().setTheme(getConfiguredTheme()).show(getSupportFragmentManager(), "CHANGELOG_DIALOG");
+            ChangelogDialog.create()
+                    .setTheme(getConfiguredTheme())
+                    .show(getSupportFragmentManager(), null);
         });
     }
 
@@ -116,7 +127,7 @@ public class AboutActivity extends AegisActivity {
         startActivity(Intent.createChooser(mailIntent, this.getString(R.string.email)));
     }
 
-    private void showLicenseDialog() {
+    private void showThirdPartyLicenseDialog() {
         String stylesheet = getString(R.string.custom_notices_format_style);
         int backgroundColorResource = getConfiguredTheme() == Theme.AMOLED ? R.attr.cardBackgroundFocused : R.attr.cardBackground;
         String backgroundColor = getThemeColorAsHex(backgroundColorResource);
@@ -131,7 +142,7 @@ public class AboutActivity extends AegisActivity {
 
         new LicensesDialog.Builder(this)
                 .setNotices(R.raw.notices)
-                .setTitle(R.string.licenses)
+                .setTitle(R.string.third_party_licenses)
                 .setNoticesCssStyle(stylesheet)
                 .setIncludeOwnLicense(true)
                 .build()

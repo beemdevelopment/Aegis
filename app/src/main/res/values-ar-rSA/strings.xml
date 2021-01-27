@@ -227,8 +227,8 @@
     <string name="changelog">سجل التغيير</string>
     <string name="whats_new">ما الجديد</string>
     <string name="github_description">الكود المصدري، والمشاكل، والمعلومات</string>
-    <string name="licenses">الرخصات</string>
-    <string name="licenses_description">الرخصات المكتبات التي يستعملها Aegis</string>
+    <string name="third_party_licenses">الرخصات</string>
+    <string name="third_party_licenses_description">الرخصات المكتبات التي يستعملها Aegis</string>
     <string name="country_netherlands">هولندا</string>
     <string name="email_us">اكتب بريد الكتروني</string>
     <string name="visit_website">قم بزيارة موقعنا</string>

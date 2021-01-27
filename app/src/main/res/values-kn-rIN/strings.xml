@@ -134,8 +134,8 @@
     <string name="changelog">ಬದಲಾವಣೆ ಲಾಗ್</string>
     <string name="whats_new">ಹೊಸತೇನಿದೆ</string>
     <string name="github_description">ಮೂಲ ಕೋಡ್, ಸಮಸ್ಯೆಗಳು ಹಾಗು ಮಾಹಿತಿ</string>
-    <string name="licenses">ಪರವಾನಗಿಗಳು</string>
-    <string name="licenses_description">Aegis ಉಪಯೋಗಿಸುವ ಲೈಬ್ರೆರಿಗಳ ಪರವಾನಗಿಗಳು</string>
+    <string name="third_party_licenses">ಪರವಾನಗಿಗಳು</string>
+    <string name="third_party_licenses_description">Aegis ಉಪಯೋಗಿಸುವ ಲೈಬ್ರೆರಿಗಳ ಪರವಾನಗಿಗಳು</string>
     <string name="country_netherlands">ನೆದರ್ಲೆಂಡ್ಸ್</string>
     <string name="email_us">ಈಮೇಲನ್ನು ಬರಿ</string>
     <string name="visit_website">ನಮ್ಮ ಅಂತರ್ಜಾಲದ ಪುಟವನ್ನು ಭೇಟಿ ಮಾಡು</string>

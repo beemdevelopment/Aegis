@@ -244,8 +244,8 @@
     <string name="changelog">Αρχείο καταγραφής αλλαγών</string>
     <string name="whats_new">Τι νέο υπάρχει</string>
     <string name="github_description">Πηγαίος κώδικας, προβλήματα και πληροφορίες</string>
-    <string name="licenses">Άδειες</string>
-    <string name="licenses_description">Άδειες βιβλιοθηκών που χρησιμοποιεί το Aegis</string>
+    <string name="third_party_licenses">Άδειες</string>
+    <string name="third_party_licenses_description">Άδειες βιβλιοθηκών που χρησιμοποιεί το Aegis</string>
     <string name="country_netherlands">Ολλανδία</string>
     <string name="email_us">Γράψτε ένα email</string>
     <string name="visit_website">Επισκεφτείτε την ιστοσελίδα μας</string>

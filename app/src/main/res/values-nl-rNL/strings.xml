@@ -244,8 +244,8 @@
     <string name="changelog">Wijzigingen</string>
     <string name="whats_new">Vernieuwingen</string>
     <string name="github_description">Broncode, problemen en informatie</string>
-    <string name="licenses">Licenties</string>
-    <string name="licenses_description">Licenties van gebruikte libraries</string>
+    <string name="third_party_licenses">Licenties</string>
+    <string name="third_party_licenses_description">Licenties van gebruikte libraries</string>
     <string name="country_netherlands">Nederland</string>
     <string name="email_us">Schrijf een email</string>
     <string name="visit_website">Bekijk de website</string>

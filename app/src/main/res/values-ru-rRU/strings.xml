@@ -252,8 +252,8 @@
     <string name="changelog">Список изменений</string>
     <string name="whats_new">Что нового</string>
     <string name="github_description">Исходный код, замечания и информация</string>
-    <string name="licenses">Лицензии</string>
-    <string name="licenses_description">Лицензии библиотек, используемых в Aegis</string>
+    <string name="third_party_licenses">Лицензии</string>
+    <string name="third_party_licenses_description">Лицензии библиотек, используемых в Aegis</string>
     <string name="country_netherlands">Нидерланды</string>
     <string name="email_us">Написать эл. письмо</string>
     <string name="visit_website">Посетить наш веб-сайт</string>

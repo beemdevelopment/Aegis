@@ -244,8 +244,8 @@
     <string name="changelog">Seznam změn</string>
     <string name="whats_new">Co je nového?</string>
     <string name="github_description">Zdrojový kód, problémy a informace</string>
-    <string name="licenses">Licence</string>
-    <string name="licenses_description">Licence knihoven použitých v Aegis</string>
+    <string name="third_party_licenses">Licence</string>
+    <string name="third_party_licenses_description">Licence knihoven použitých v Aegis</string>
     <string name="country_netherlands">Nizozemsko</string>
     <string name="email_us">Pošlete nám e-mail</string>
     <string name="visit_website">Navštivte náš web</string>

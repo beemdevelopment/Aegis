@@ -192,8 +192,8 @@
     <string name="changelog">Változásnapló</string>
     <string name="whats_new">Újdonságok</string>
     <string name="github_description">Forráskód, problémák és információk</string>
-    <string name="licenses">Licencek</string>
-    <string name="licenses_description">Az Aegis által használt programkönyvtárok licencei</string>
+    <string name="third_party_licenses">Licencek</string>
+    <string name="third_party_licenses_description">Az Aegis által használt programkönyvtárok licencei</string>
     <string name="country_netherlands">Hollandia</string>
     <string name="email_us">Írjon egy e-mailt</string>
     <string name="visit_website">Keresse fel weboldalunkat</string>

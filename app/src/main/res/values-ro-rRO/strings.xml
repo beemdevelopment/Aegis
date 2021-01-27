@@ -246,8 +246,8 @@
     <string name="changelog">Istoric modificări</string>
     <string name="whats_new">Ce este nou</string>
     <string name="github_description">Cod sursă, probleme și informații</string>
-    <string name="licenses">Licențe</string>
-    <string name="licenses_description">Licenţele bibliotecilor Aegis utilizeaza</string>
+    <string name="third_party_licenses">Licențe</string>
+    <string name="third_party_licenses_description">Licenţele bibliotecilor Aegis utilizeaza</string>
     <string name="country_netherlands">Olanda</string>
     <string name="email_us">Scrieţi un e-mail</string>
     <string name="visit_website">Vizitați site-ul nostru web</string>

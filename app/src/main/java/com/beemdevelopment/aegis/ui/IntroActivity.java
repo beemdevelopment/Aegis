@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.ThemeMap;
+import com.beemdevelopment.aegis.ui.dialogs.Dialogs;
 import com.beemdevelopment.aegis.ui.intro.IntroBaseActivity;
 import com.beemdevelopment.aegis.ui.intro.SlideFragment;
 import com.beemdevelopment.aegis.ui.slides.DoneSlide;

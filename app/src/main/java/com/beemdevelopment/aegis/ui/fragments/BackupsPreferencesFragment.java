@@ -11,7 +11,7 @@ import androidx.preference.SwitchPreferenceCompat;
 
 import com.beemdevelopment.aegis.Preferences;
 import com.beemdevelopment.aegis.R;
-import com.beemdevelopment.aegis.ui.Dialogs;
+import com.beemdevelopment.aegis.ui.dialogs.Dialogs;
 import com.beemdevelopment.aegis.vault.VaultManagerException;
 
 public class BackupsPreferencesFragment extends PreferencesFragment {
