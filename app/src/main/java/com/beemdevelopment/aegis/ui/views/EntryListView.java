@@ -287,7 +287,6 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
 
     public void addEntry(VaultEntry entry) {
         addEntry(entry, false);
-
     }
 
     @SuppressLint("ClickableViewAccessibility")
@@ -295,31 +294,44 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
         int position = _adapter.addEntry(entry);
         updateEmptyState();
 
+        LinearLayoutManager layoutManager = (LinearLayoutManager) _recyclerView.getLayoutManager();
         if (focusEntry && position >= 0) {
-            RecyclerView.OnScrollListener scrollListener = new RecyclerView.OnScrollListener() {
-                @Override
-                public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
-                    if (newState == RecyclerView.SCROLL_STATE_IDLE) {
-                        _recyclerView.removeOnScrollListener(this);
-                        _adapter.setTempHighlightEntry(true);
-
-                        final int secondsToFocus = 3;
-                        _adapter.focusEntry(entry, secondsToFocus);
+            int last = layoutManager.findLastVisibleItemPosition();
+            int first = layoutManager.findFirstVisibleItemPosition();
+            if ((_recyclerView.canScrollVertically(1) && position > layoutManager.findLastCompletelyVisibleItemPosition())
+                    || (_recyclerView.canScrollVertically(-1) && position < layoutManager.findFirstCompletelyVisibleItemPosition())) {
+                RecyclerView.OnScrollListener scrollListener = new RecyclerView.OnScrollListener() {
+                    @Override
+                    public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+                        if (newState == RecyclerView.SCROLL_STATE_IDLE) {
+                            _recyclerView.removeOnScrollListener(this);
+                            _recyclerView.setOnTouchListener(null);
+                            tempHighlightEntry(entry);
+                        }
                     }
-                }
-            };
-            _recyclerView.addOnScrollListener(scrollListener);
-            _recyclerView.setOnTouchListener((v, event) -> {
-                if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                    _recyclerView.removeOnScrollListener(scrollListener);
-                    _recyclerView.stopScroll();
-                    _recyclerView.setOnTouchListener(null);
-                }
+                };
+                _recyclerView.addOnScrollListener(scrollListener);
+                _recyclerView.setOnTouchListener((v, event) -> {
+                    if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                        _recyclerView.removeOnScrollListener(scrollListener);
+                        _recyclerView.stopScroll();
+                        _recyclerView.setOnTouchListener(null);
+                    }
 
-                return false;
-            });
-            _recyclerView.smoothScrollToPosition(position);
+                    return false;
+                });
+                _recyclerView.smoothScrollToPosition(position);
+            } else {
+                tempHighlightEntry(entry);
+            }
         }
+    }
+
+    public void tempHighlightEntry(VaultEntry entry) {
+        _adapter.setTempHighlightEntry(true);
+
+        final int secondsToFocus = 3;
+        _adapter.focusEntry(entry, secondsToFocus);
     }
 
     public void addEntries(Collection<VaultEntry> entries) {
