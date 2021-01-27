@@ -1,7 +1,6 @@
 package com.beemdevelopment.aegis;
 
 import androidx.annotation.IdRes;
-import androidx.test.core.app.ApplicationProvider;
 import androidx.test.espresso.ViewInteraction;
 import androidx.test.espresso.contrib.RecyclerViewActions;
 import androidx.test.espresso.matcher.RootMatchers;
@@ -147,7 +146,7 @@ public class OverallTest extends AegisTest {
         onView(withText(resId)).perform(click());
     }
 
-    private void changeFilter(String text) {
+    /*private void changeFilter(String text) {
         openContextualActionModeOverflowMenu();
         onView(withText(R.string.filter)).perform(click());
         onView(withText(text)).perform(click());
@@ -155,12 +154,13 @@ public class OverallTest extends AegisTest {
 
     private void changeFilter(@IdRes int resId) {
         changeFilter(ApplicationProvider.getApplicationContext().getString(resId));
-    }
+    }*/
 
     private void addEntry(VaultEntry entry) {
         onView(withId(R.id.fab)).perform(click());
         onView(withId(R.id.fab_enter)).perform(click());
 
+        onView(withId(R.id.accordian_header)).perform(click());
         onView(withId(R.id.text_name)).perform(typeText(entry.getName()), closeSoftKeyboard());
         onView(withId(R.id.text_issuer)).perform(typeText(entry.getIssuer()), closeSoftKeyboard());
 

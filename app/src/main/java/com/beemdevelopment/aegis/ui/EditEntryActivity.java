@@ -12,12 +12,14 @@ import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.widget.AdapterView;
 import android.widget.AutoCompleteTextView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import androidx.annotation.NonNull;
@@ -64,6 +66,7 @@ public class EditEntryActivity extends AegisActivity {
     private static final int PICK_IMAGE_REQUEST = 0;
 
     private boolean _isNew = false;
+    private boolean _isManual = false;
     private VaultEntry _origEntry;
     private TreeSet<String> _groups;
     private boolean _hasCustomIcon = false;
@@ -112,6 +115,7 @@ public class EditEntryActivity extends AegisActivity {
             _origEntry = _vault.getEntryByUUID(entryUUID);
         } else {
             _origEntry = (VaultEntry) intent.getSerializableExtra("newEntry");
+            _isManual = intent.getBooleanExtra("isManual", false);
             _isNew = true;
             setTitle(R.string.add_new_entry);
         }
@@ -134,7 +138,25 @@ public class EditEntryActivity extends AegisActivity {
         updateGroupDropdownList();
         DropdownHelper.fillDropdown(this, _dropdownGroup, _dropdownGroupList);
 
+        // if this is NOT a manually entered entry, move the "Secret" field from basic to advanced settings
+        if (!_isNew || (_isNew && !_isManual)) {
+            LinearLayout layoutSecret = findViewById(R.id.layout_secret);
+            LinearLayout layoutBasic = findViewById(R.id.layout_basic);
+            LinearLayout layoutAdvanced = findViewById(R.id.layout_advanced);
+            layoutBasic.removeView(layoutSecret);
+            layoutAdvanced.addView(layoutSecret, 0);
+            ((LinearLayout.LayoutParams) layoutSecret.getLayoutParams()).topMargin = 0;
+
+            if (_isNew && !_isManual) {
+                setViewEnabled(layoutAdvanced, false);
+            }
+        } else {
+            LinearLayout layoutTypeAlgo = findViewById(R.id.layout_type_algo);
+            ((LinearLayout.LayoutParams) layoutTypeAlgo.getLayoutParams()).topMargin = 0;
+        }
+
         _advancedSettingsHeader = findViewById(R.id.accordian_header);
+        _advancedSettingsHeader.setOnClickListener(v -> openAdvancedSettings());
         _advancedSettings = findViewById(R.id.expandableLayout);
 
         // fill the fields with values if possible
@@ -203,13 +225,6 @@ public class EditEntryActivity extends AegisActivity {
         _iconView.setOnClickListener(v -> {
             startIconSelectionActivity();
         });
-
-        _advancedSettingsHeader.setOnClickListener(v -> openAdvancedSettings());
-
-        // automatically open advanced settings since 'Secret' is required.
-        if (_isNew) {
-            openAdvancedSettings();
-        }
 
         _dropdownGroup.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             private int prevPosition = _dropdownGroupList.indexOf(_dropdownGroup.getText().toString());
@@ -577,6 +592,17 @@ public class EditEntryActivity extends AegisActivity {
 
         addAndFinish(entry);
         return true;
+    }
+
+    private static void setViewEnabled(View view, boolean enabled) {
+        view.setEnabled(enabled);
+
+        if (view instanceof ViewGroup) {
+            ViewGroup group = (ViewGroup) view;
+            for (int i = 0; i < group.getChildCount(); i++) {
+                setViewEnabled(group.getChildAt(i), enabled);
+            }
+        }
     }
 
     private TextWatcher _iconChangeListener = new TextWatcher() {

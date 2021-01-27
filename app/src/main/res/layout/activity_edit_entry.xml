@@ -69,6 +69,7 @@
                 android:layout_height="1dp"
                 android:background="@color/divider" />
             <LinearLayout
+                android:id="@+id/layout_basic"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
@@ -129,6 +130,36 @@
                             android:inputType="none"/>
                     </com.google.android.material.textfield.TextInputLayout>
                 </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/layout_secret"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_vpn_key_black_24dp"
+                        app:tint="?attr/iconColorPrimary"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginEnd="15dp"
+                        android:layout_gravity="center_vertical"/>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        app:passwordToggleTint="#949494"
+                        app:passwordToggleEnabled="true">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/text_secret"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/secret"
+                            android:inputType="textPassword"/>
+                    </com.google.android.material.textfield.TextInputLayout>
+                </LinearLayout>
             </LinearLayout>
 
             <RelativeLayout
@@ -166,13 +197,16 @@
                 android:layout_height="match_parent"
                 android:visibility="invisible">
                 <LinearLayout
+                    android:id="@+id/layout_advanced"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:layout_marginHorizontal="10dp">
                     <LinearLayout
+                        android:id="@+id/layout_type_algo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
                         android:orientation="horizontal">
                         <ImageView
                             android:layout_width="wrap_content"
@@ -247,35 +281,6 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:inputType="text"/>
-                        </com.google.android.material.textfield.TextInputLayout>
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:orientation="horizontal">
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:src="@drawable/ic_vpn_key_black_24dp"
-                            app:tint="?attr/iconColorPrimary"
-                            android:layout_marginStart="5dp"
-                            android:layout_marginEnd="15dp"
-                            android:layout_gravity="center_vertical"/>
-
-                        <com.google.android.material.textfield.TextInputLayout
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            app:passwordToggleTint="#949494"
-                            app:passwordToggleEnabled="true">
-
-                            <com.google.android.material.textfield.TextInputEditText
-                                android:id="@+id/text_secret"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:hint="@string/secret"
-                                android:inputType="textPassword"/>
                         </com.google.android.material.textfield.TextInputLayout>
                     </LinearLayout>
                 </LinearLayout>

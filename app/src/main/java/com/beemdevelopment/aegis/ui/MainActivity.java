@@ -129,7 +129,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
 
              view.findViewById(R.id.fab_enter).setOnClickListener(v1 -> {
                  dialog.dismiss();
-                 startEditEntryActivity(CODE_ADD_ENTRY, null, true);
+                 startEditEntryActivityForManual(CODE_ADD_ENTRY);
              });
              view.findViewById(R.id.fab_scan_image).setOnClickListener(v2 -> {
                  dialog.dismiss();
@@ -242,20 +242,30 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         }
     }
 
-    private void startEditEntryActivity(int requestCode, VaultEntry entry, boolean isNew) {
+    private void startEditEntryActivityForNew(int requestCode, VaultEntry entry) {
         Intent intent = new Intent(this, EditEntryActivity.class);
-        if (isNew) {
-            intent.putExtra("newEntry", entry != null ? entry : VaultEntry.getDefault());
-        } else {
-            intent.putExtra("entryUUID", entry.getUUID());
-        }
+        intent.putExtra("newEntry", entry);
+        intent.putExtra("isManual", false);
+        startActivityForResult(intent, requestCode);
+    }
+
+    private void startEditEntryActivityForManual(int requestCode) {
+        Intent intent = new Intent(this, EditEntryActivity.class);
+        intent.putExtra("newEntry", VaultEntry.getDefault());
+        intent.putExtra("isManual", true);
+        startActivityForResult(intent, requestCode);
+    }
+
+    private void startEditEntryActivity(int requestCode, VaultEntry entry) {
+        Intent intent = new Intent(this, EditEntryActivity.class);
+        intent.putExtra("entryUUID", entry.getUUID());
         startActivityForResult(intent, requestCode);
     }
 
     private void onScanResult(Intent data) {
         List<VaultEntry> entries = (ArrayList<VaultEntry>) data.getSerializableExtra("entries");
         if (entries.size() == 1) {
-            startEditEntryActivity(CODE_ADD_ENTRY, entries.get(0), true);
+            startEditEntryActivityForNew(CODE_ADD_ENTRY, entries.get(0));
         } else {
             for (VaultEntry entry : entries) {
                 _vault.addEntry(entry);
@@ -313,7 +323,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
             GoogleAuthInfo info = GoogleAuthInfo.parseUri(result.getText());
             VaultEntry entry = new VaultEntry(info);
 
-            startEditEntryActivity(CODE_ADD_ENTRY, entry, true);
+            startEditEntryActivityForNew(CODE_ADD_ENTRY, entry);
         } catch (NotFoundException | IOException | ChecksumException | FormatException | GoogleAuthInfoException e) {
             e.printStackTrace();
             Dialogs.showErrorDialog(this, R.string.unable_to_read_qrcode, e);
@@ -416,7 +426,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
 
             if (info != null) {
                 VaultEntry entry = new VaultEntry(info);
-                startEditEntryActivity(CODE_ADD_ENTRY, entry, true);
+                startEditEntryActivityForNew(CODE_ADD_ENTRY, entry);
             }
         }
     }
@@ -737,7 +747,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
                         return true;
 
                     case R.id.action_edit:
-                        startEditEntryActivity(CODE_EDIT_ENTRY, _selectedEntries.get(0), false);
+                        startEditEntryActivity(CODE_EDIT_ENTRY, _selectedEntries.get(0));
                         mode.finish();
                         return true;
 
