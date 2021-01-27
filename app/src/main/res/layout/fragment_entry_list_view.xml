@@ -24,6 +24,7 @@
         android:layout_marginEnd="8dp"
         android:textAppearance="@style/TextAppearance.Aegis.ActionChip"
         android:textColor="?attr/primaryText"
+        android:visibility="gone"
         app:chipBackgroundColor="?attr/cardBackground"
         app:chipEndPadding="6dp"
         app:chipIcon="@drawable/ic_baseline_filter_list_24dp"

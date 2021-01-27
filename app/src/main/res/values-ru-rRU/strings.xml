@@ -201,7 +201,6 @@
     <string name="filter">Фильтр</string>
     <string name="filter_ungrouped">Без группировки</string>
     <string name="lock">Заблокировать</string>
-    <string name="all">Все</string>
     <string name="name">Имя</string>
     <string name="no_group">Нет группы</string>
     <string name="sort_alphabetically">Эмитент (А→Я)</string>

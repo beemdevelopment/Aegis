@@ -249,7 +249,6 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         } else {
             intent.putExtra("entryUUID", entry.getUUID());
         }
-        intent.putExtra("selectedGroup", (ArrayList<String>) _selectedGroups);
         startActivityForResult(intent, requestCode);
     }
 
@@ -324,11 +323,6 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
     private void updateSortCategoryMenu() {
         SortCategory category = getPreferences().getCurrentSortCategory();
         _menu.findItem(category.getMenuItem()).setChecked(true);
-    }
-
-    private void setGroupFilter(List<String> group) {
-        _selectedGroups = group;
-        _entryListView.setGroupFilter(group, true);
     }
 
     private void onDoIntroResult() {
@@ -460,10 +454,8 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         if (_app.isVaultLocked()) {
             startAuthActivity(false);
         } else if (_loaded) {
-            // update the list of groups in the filter menu
-            if (_menu != null) {
-                _entryListView.setGroups(_vault.getGroups());
-            }
+            // update the list of groups in the entry list view so that the chip gets updated
+            _entryListView.setGroups(_vault.getGroups());
 
             // refresh all codes to prevent showing old ones
             _entryListView.refresh(false);
@@ -485,8 +477,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
             _entryListView.setSearchFilter(null);
 
             collapseSearchView();
-            setTitle("Aegis");
-            setGroupFilter(_selectedGroups);
+            setTitle(R.string.app_name);
             return;
         }
 
@@ -566,16 +557,6 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
                 _app.lock(true);
                 return true;
             default:
-                /*if (item.getGroupId() == R.id.action_filter_group) {
-                    item.setChecked(true);
-
-                    String group = null;
-                    if (item.getItemId() != R.id.menu_filter_all) {
-                        group = item.getTitle().toString();
-                    }
-                    setGroupFilter(group);
-                }*/
-
                 if (item.getGroupId() == R.id.action_sort_category) {
                     item.setChecked(true);
 

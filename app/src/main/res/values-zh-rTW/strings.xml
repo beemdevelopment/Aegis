@@ -183,7 +183,6 @@
     <string name="filter">篩選</string>
     <string name="filter_ungrouped">未分組</string>
     <string name="lock">鎖定</string>
-    <string name="all">所有</string>
     <string name="name">名稱</string>
     <string name="no_group">無群組</string>
     <string name="sort_alphabetically">服務商（A 到 Z）</string>

@@ -191,7 +191,6 @@
     <string name="filter">フィルター</string>
     <string name="filter_ungrouped">グループ解除</string>
     <string name="lock">ロックする</string>
-    <string name="all">すべて</string>
     <string name="name">名前</string>
     <string name="no_group">グループなし</string>
     <string name="sort_alphabetically">発行者 (A to Z)</string>

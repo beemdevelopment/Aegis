@@ -237,7 +237,7 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
     }
 
     public void setGroupFilter(List<String> groups, boolean apply) {
-        if(groups == null) {
+        if (groups == null) {
             groups = new ArrayList<>();
         }
 

@@ -116,8 +116,6 @@ public class EditEntryActivity extends AegisActivity {
             setTitle(R.string.add_new_entry);
         }
 
-        String selectedGroup = intent.getStringExtra("selectedGroup");
-
         // set up fields
         _iconView = findViewById(R.id.profile_drawable);
         _kropView = findViewById(R.id.krop_view);
@@ -211,7 +209,6 @@ public class EditEntryActivity extends AegisActivity {
         // automatically open advanced settings since 'Secret' is required.
         if (_isNew) {
             openAdvancedSettings();
-            setGroup(selectedGroup);
         }
 
         _dropdownGroup.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -221,13 +218,12 @@ public class EditEntryActivity extends AegisActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if (position == _dropdownGroupList.size() - 1) {
                     Dialogs.showTextInputDialog(EditEntryActivity.this, R.string.set_group, R.string.group_name_hint, text -> {
-                        String str = new String(text);
-                        if (str.isEmpty()) {
-                            return;
+                        String groupName = new String(text);
+                        if (!groupName.isEmpty()) {
+                            _groups.add(groupName);
+                            updateGroupDropdownList();
+                            _dropdownGroup.setText(groupName, false);
                         }
-                        _groups.add(str);
-                        updateGroupDropdownList();
-                        _dropdownGroup.setText(_dropdownGroupList.get(position), false);
                     });
                     _dropdownGroup.setText(_dropdownGroupList.get(prevPosition), false);
                 } else {

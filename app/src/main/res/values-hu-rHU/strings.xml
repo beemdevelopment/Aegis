@@ -155,7 +155,6 @@
     <string name="filter">Szűrő</string>
     <string name="filter_ungrouped">Csoport nélküli</string>
     <string name="lock">Zárolás</string>
-    <string name="all">Összes</string>
     <string name="name">Név</string>
     <string name="no_group">Nincs csoport</string>
     <string name="sort_alphabetically">Kibocsátó (A-tól Z-ig)</string>

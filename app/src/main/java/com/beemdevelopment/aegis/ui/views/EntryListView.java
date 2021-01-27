@@ -86,6 +86,7 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
         View view = inflater.inflate(R.layout.fragment_entry_list_view, container, false);
         _progressBar = view.findViewById(R.id.progressBar);
         _groupChip = view.findViewById(R.id.chip_group);
+        initializeGroupChip();
 
         // set up the recycler view
         _recyclerView = view.findViewById(R.id.rvKeyProfiles);
@@ -141,8 +142,9 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
         super.onDestroyView();
     }
 
-    public void setGroupFilter(List<String> group, boolean apply) {
-        _adapter.setGroupFilter(group, apply);
+    public void setGroupFilter(List<String> groups, boolean apply) {
+        _groupFilter = groups;
+        _adapter.setGroupFilter(groups, apply);
         _touchCallback.setIsLongPressDragEnabled(_adapter.isDragAndDropAllowed());
 
         if (apply) {
@@ -285,6 +287,7 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
 
     public void addEntry(VaultEntry entry) {
         addEntry(entry, false);
+
     }
 
     @SuppressLint("ClickableViewAccessibility")
@@ -352,44 +355,11 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
     }
 
     private void initializeGroupChip() {
-        if (_groups.isEmpty()) {
-            _groupChip.setVisibility(View.GONE);
-            return;
-        }
-
         View view = getLayoutInflater().inflate(R.layout.dialog_select_groups, null);
         BottomSheetDialog dialog = new BottomSheetDialog(getContext());
         dialog.setContentView(view);
 
-        ColorStateList colorStateList = ContextCompat.getColorStateList(getContext(), R.color.bg_chip_text_color);
-
         ChipGroup chipGroup = view.findViewById(R.id.groupChipGroup);
-        String groupChipText = _groupChip.getText().toString();
-        chipGroup.removeAllViews();
-        for (String group : _groups) {
-            Chip chip = new Chip(getContext());
-            chip.setText(group);
-            chip.setCheckable(true);
-            chip.setCheckedIconVisible(false);
-            chip.setChipBackgroundColorResource(R.color.bg_chip_color);
-            chip.setTextColor(colorStateList);
-            chip.setOnCheckedChangeListener((group1, checkedId) -> {
-                List<String> groupFilter = chipGroup.getCheckedChipIds().stream()
-                        .map(i -> ((Chip) view.findViewById(i)).getText().toString())
-                        .collect(Collectors.toList());
-                _groupFilter = groupFilter;
-                setGroupFilter(groupFilter, true);
-
-                if (_groupFilter.isEmpty()) {
-                    _groupChip.setText(groupChipText);
-                } else {
-                    _groupChip.setText(String.format("%s (%d)", getString(R.string.groups), _groupFilter.size()));
-                }
-            });
-
-            chipGroup.addView(chip);
-        }
-
         Button clearButton = view.findViewById(R.id.btnClear);
         clearButton.setOnClickListener(v -> {
             chipGroup.clearCheck();
@@ -398,6 +368,33 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
         });
 
         _groupChip.setOnClickListener(v -> {
+            ColorStateList colorStateList = ContextCompat.getColorStateList(getContext(), R.color.bg_chip_text_color);
+            chipGroup.removeAllViews();
+
+            for (String group : _groups) {
+                Chip chip = new Chip(getContext());
+                chip.setText(group);
+                chip.setCheckable(true);
+                chip.setChecked(_groupFilter != null && _groupFilter.contains(group));
+                chip.setCheckedIconVisible(false);
+                chip.setChipBackgroundColorResource(R.color.bg_chip_color);
+                chip.setTextColor(colorStateList);
+                chip.setOnCheckedChangeListener((group1, checkedId) -> {
+                    List<String> groupFilter = chipGroup.getCheckedChipIds().stream()
+                            .map(i -> ((Chip) view.findViewById(i)).getText().toString())
+                            .collect(Collectors.toList());
+                    setGroupFilter(groupFilter, true);
+
+                    if (groupFilter.isEmpty()) {
+                        _groupChip.setText(R.string.groups);
+                    } else {
+                        _groupChip.setText(String.format("%s (%d)", getString(R.string.groups), groupFilter.size()));
+                    }
+                });
+
+                chipGroup.addView(chip);
+            }
+
             Dialogs.showSecureDialog(dialog);
         });
     }
@@ -409,7 +406,7 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
 
     public void setGroups(TreeSet<String> groups) {
         _groups = groups;
-        initializeGroupChip();
+        _groupChip.setVisibility(_groups.isEmpty() ? View.GONE : View.VISIBLE);
     }
 
     private void updateDividerDecoration() {

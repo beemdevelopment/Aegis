@@ -224,7 +224,6 @@
     <string name="filter">Filter</string>
     <string name="filter_ungrouped">Ungrouped</string>
     <string name="lock">Lock</string>
-    <string name="all">All</string>
     <string name="name">Name</string>
     <string name="no_group">No group</string>
     <string name="sort_alphabetically">Issuer (A to Z)</string>
