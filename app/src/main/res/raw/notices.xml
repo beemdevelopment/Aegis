@@ -73,6 +73,11 @@
         <license>MIT License</license>
     </notice>
     <notice>
+        <name>Trusted Intents</name>
+        <url>https://github.com/guardianproject/TrustedIntents</url>
+        <license>GNU Lesser General Public License 2.1</license>
+    </notice>
+    <notice>
         <name>Zip4j</name>
         <url>https://github.com/srikanth-lingala/zip4j</url>
         <license>Apache Software License 2.0</license>
