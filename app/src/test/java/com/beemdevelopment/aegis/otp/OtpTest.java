@@ -11,7 +11,7 @@ public class OtpTest {
     @Test
     public void testHotpInfoOtp() throws OtpInfoException {
         for (int i = 0; i < HOTPTest.VECTORS.length; i++) {
-            HotpInfo info = new HotpInfo(HOTPTest.SECRET, "SHA1", 6, i);
+            HotpInfo info = new HotpInfo(HOTPTest.SECRET, OtpInfo.DEFAULT_ALGORITHM, OtpInfo.DEFAULT_DIGITS, i);
             assertEquals(HOTPTest.VECTORS[i], info.getOtp());
         }
     }
@@ -20,7 +20,7 @@ public class OtpTest {
     public void testTotpInfoOtp() throws OtpInfoException {
         for (TOTPTest.Vector vector : TOTPTest.VECTORS) {
             byte[] seed = TOTPTest.getSeed(vector.Algo);
-            TotpInfo info = new TotpInfo(seed, vector.Algo, 8, 30);
+            TotpInfo info = new TotpInfo(seed, vector.Algo, 8, TotpInfo.DEFAULT_PERIOD);
             assertEquals(vector.OTP, info.getOtp(vector.Time));
         }
     }

@@ -8,6 +8,7 @@ import androidx.test.core.app.ApplicationProvider;
 import com.beemdevelopment.aegis.encoding.Base32;
 import com.beemdevelopment.aegis.encoding.EncodingException;
 import com.beemdevelopment.aegis.otp.HotpInfo;
+import com.beemdevelopment.aegis.otp.OtpInfo;
 import com.beemdevelopment.aegis.otp.OtpInfoException;
 import com.beemdevelopment.aegis.otp.SteamInfo;
 import com.beemdevelopment.aegis.otp.TotpInfo;
@@ -178,11 +179,11 @@ public class DatabaseImporterTest {
         for (VaultEntry entry : entries) {
             // Google Authenticator doesn't support different hash algorithms, periods or digits, so fix those up here
             VaultEntry entryVector = getEntryVectorBySecret(entry.getInfo().getSecret());
-            entryVector.getInfo().setDigits(6);
+            entryVector.getInfo().setDigits(OtpInfo.DEFAULT_DIGITS);
             if (entryVector.getInfo() instanceof TotpInfo) {
-                ((TotpInfo) entryVector.getInfo()).setPeriod(30);
+                ((TotpInfo) entryVector.getInfo()).setPeriod(TotpInfo.DEFAULT_PERIOD);
             }
-            entryVector.getInfo().setAlgorithm("SHA1");
+            entryVector.getInfo().setAlgorithm(OtpInfo.DEFAULT_ALGORITHM);
             checkImportedEntry(entryVector, entry);
         }
     }
@@ -264,7 +265,7 @@ public class DatabaseImporterTest {
         for (VaultEntry entry : entries) {
             // Authy doesn't support different hash algorithms or periods, so fix those up here
             VaultEntry entryVector = getEntryVectorBySecret(entry.getInfo().getSecret());
-            entryVector.getInfo().setAlgorithm("SHA1");
+            entryVector.getInfo().setAlgorithm(OtpInfo.DEFAULT_ALGORITHM);
             ((TotpInfo) entry.getInfo()).setPeriod(((TotpInfo) entryVector.getInfo()).getPeriod());
             checkImportedEntry(entryVector, entry);
         }
@@ -274,9 +275,9 @@ public class DatabaseImporterTest {
         for (VaultEntry entry : entries) {
             // TOTP Authenticator doesn't support different hash algorithms, periods or digits, so fix those up here
             VaultEntry entryVector = getEntryVectorBySecret(entry.getInfo().getSecret());
-            entryVector.getInfo().setDigits(6);
-            ((TotpInfo) entryVector.getInfo()).setPeriod(30);
-            entryVector.getInfo().setAlgorithm("SHA1");
+            entryVector.getInfo().setDigits(OtpInfo.DEFAULT_DIGITS);
+            ((TotpInfo) entryVector.getInfo()).setPeriod(TotpInfo.DEFAULT_PERIOD);
+            entryVector.getInfo().setAlgorithm(OtpInfo.DEFAULT_ALGORITHM);
             entryVector.setName(entryVector.getName().toLowerCase());
             checkImportedEntry(entryVector, entry);
         }

@@ -178,10 +178,6 @@ public class OverallTest extends AegisTest {
 
             onView(withId(R.id.dropdown_type)).perform(click());
             onView(withText(otpType)).inRoot(RootMatchers.isPlatformPopup()).perform(click());
-
-            if (entry.getInfo() instanceof SteamInfo) {
-                onView(withId(R.id.text_digits)).perform(clearText(), typeText("5"), closeSoftKeyboard());
-            }
         }
 
         String secret = Base32.encode(entry.getInfo().getSecret());

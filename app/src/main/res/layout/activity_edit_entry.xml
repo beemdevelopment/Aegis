@@ -237,6 +237,7 @@
                                     android:inputType="none"/>
                             </com.google.android.material.textfield.TextInputLayout>
                             <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/dropdown_algo_layout"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="5dp"
@@ -271,6 +272,7 @@
                                 android:inputType="text"/>
                         </com.google.android.material.textfield.TextInputLayout>
                         <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/text_digits_layout"
                             android:hint="@string/digits"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"

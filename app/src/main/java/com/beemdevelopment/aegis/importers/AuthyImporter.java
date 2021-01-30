@@ -256,7 +256,7 @@ public class AuthyImporter extends DatabaseImporter {
                 }
 
                 int digits = entry.getInt("digits");
-                OtpInfo info = new TotpInfo(secret, "SHA1", digits, isAuthy ? 10 : 30);
+                OtpInfo info = new TotpInfo(secret, OtpInfo.DEFAULT_ALGORITHM, digits, isAuthy ? 10 : TotpInfo.DEFAULT_PERIOD);
                 return new VaultEntry(info, authyEntryInfo.Name, authyEntryInfo.Issuer);
             } catch (OtpInfoException | JSONException | EncodingException e) {
                 throw new DatabaseImporterEntryException(e, entry.toString());

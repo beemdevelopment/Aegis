@@ -11,12 +11,13 @@ import java.security.NoSuchAlgorithmException;
 
 public class TotpInfo extends OtpInfo {
     public static final String ID = "totp";
+    public static final int DEFAULT_PERIOD = 30;
 
     private int _period;
 
     public TotpInfo(byte[] secret) throws OtpInfoException {
         super(secret);
-        setPeriod(30);
+        setPeriod(DEFAULT_PERIOD);
     }
 
     public TotpInfo(byte[] secret, String algorithm, int digits, int period) throws OtpInfoException {

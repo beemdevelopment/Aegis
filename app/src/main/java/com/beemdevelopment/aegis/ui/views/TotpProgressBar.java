@@ -14,7 +14,7 @@ import androidx.annotation.RequiresApi;
 import com.beemdevelopment.aegis.otp.TotpInfo;
 
 public class TotpProgressBar extends ProgressBar {
-    private int _period = 30;
+    private int _period = TotpInfo.DEFAULT_PERIOD;
     private Handler _handler;
     private float _animDurationScale;
 

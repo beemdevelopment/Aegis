@@ -221,7 +221,7 @@ public class GoogleAuthInfo implements Serializable {
                     case DIGIT_COUNT_UNSPECIFIED:
                         // intentional fallthrough
                     case DIGIT_COUNT_SIX:
-                        digits = 6;
+                        digits = TotpInfo.DEFAULT_DIGITS;
                         break;
                     case DIGIT_COUNT_EIGHT:
                         digits = 8;
@@ -252,7 +252,7 @@ public class GoogleAuthInfo implements Serializable {
                     case OTP_TYPE_UNSPECIFIED:
                         // intentional fallthrough
                     case OTP_TYPE_TOTP:
-                        otp = new TotpInfo(secret, algo, digits, 30);
+                        otp = new TotpInfo(secret, algo, digits, TotpInfo.DEFAULT_PERIOD);
                         break;
                     case OTP_TYPE_HOTP:
                         otp = new HotpInfo(secret, algo, digits, params.getCounter());

@@ -221,7 +221,7 @@ public class TotpAuthenticatorImporter extends DatabaseImporter {
                         throw new DatabaseImporterEntryException(String.format("Unsupported secret encoding: base %d", base), obj.toString());
                 }
 
-                TotpInfo info = new TotpInfo(secret, "SHA1", 6, 30);
+                TotpInfo info = new TotpInfo(secret);
                 String name = obj.optString("name");
                 String issuer = obj.optString("issuer");
 

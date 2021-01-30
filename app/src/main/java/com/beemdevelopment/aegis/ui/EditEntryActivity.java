@@ -81,10 +81,12 @@ public class EditEntryActivity extends AegisActivity {
     private TextInputEditText _textPeriodCounter;
     private TextInputLayout _textPeriodCounterLayout;
     private TextInputEditText _textDigits;
+    private TextInputLayout _textDigitsLayout;
     private TextInputEditText _textSecret;
 
     private AutoCompleteTextView _dropdownType;
     private AutoCompleteTextView _dropdownAlgo;
+    private TextInputLayout _dropdownAlgoLayout;
     private AutoCompleteTextView _dropdownGroup;
     private List<String> _dropdownGroupList = new ArrayList<>();
 
@@ -129,9 +131,11 @@ public class EditEntryActivity extends AegisActivity {
         _textPeriodCounter = findViewById(R.id.text_period_counter);
         _textPeriodCounterLayout = findViewById(R.id.text_period_counter_layout);
         _textDigits = findViewById(R.id.text_digits);
+        _textDigitsLayout = findViewById(R.id.text_digits_layout);
         _textSecret = findViewById(R.id.text_secret);
         _dropdownType = findViewById(R.id.dropdown_type);
         DropdownHelper.fillDropdown(this, _dropdownType, R.array.otp_types_array);
+        _dropdownAlgoLayout = findViewById(R.id.dropdown_algo_layout);
         _dropdownAlgo = findViewById(R.id.dropdown_algo);
         DropdownHelper.fillDropdown(this, _dropdownAlgo, R.array.otp_algo_array);
         _dropdownGroup = findViewById(R.id.dropdown_group);
@@ -194,8 +198,9 @@ public class EditEntryActivity extends AegisActivity {
             _textSecret.setText(secretString);
         }
 
-        _dropdownType.setText(_origEntry.getInfo().getTypeId().toUpperCase(), false);
+        _dropdownType.setText(_origEntry.getInfo().getType(), false);
         _dropdownAlgo.setText(_origEntry.getInfo().getAlgorithm(false), false);
+        updateAdvancedFieldStatus(_origEntry.getInfo().getTypeId());
 
         String group = _origEntry.getGroup();
         setGroup(group);
@@ -208,18 +213,27 @@ public class EditEntryActivity extends AegisActivity {
         _dropdownType.setOnItemClickListener((parent, view, position, id) -> {
             String type = _dropdownType.getText().toString().toLowerCase();
             switch (type) {
-                case TotpInfo.ID:
                 case SteamInfo.ID:
+                    _dropdownAlgo.setText(OtpInfo.DEFAULT_ALGORITHM, false);
                     _textPeriodCounterLayout.setHint(R.string.period_hint);
-                    _textPeriodCounter.setText(String.format("%d", 30));
+                    _textPeriodCounter.setText(String.valueOf(TotpInfo.DEFAULT_PERIOD));
+                    _textDigits.setText(String.valueOf(SteamInfo.DIGITS));
+                    break;
+                case TotpInfo.ID:
+                    _textPeriodCounterLayout.setHint(R.string.period_hint);
+                    _textPeriodCounter.setText(String.valueOf(TotpInfo.DEFAULT_PERIOD));
+                    _textDigits.setText(String.valueOf(OtpInfo.DEFAULT_DIGITS));
                     break;
                 case HotpInfo.ID:
                     _textPeriodCounterLayout.setHint(R.string.counter);
-                    _textPeriodCounter.setText(String.format("%d", 0));
+                    _textPeriodCounter.setText(String.valueOf(HotpInfo.DEFAULT_COUNTER));
+                    _textDigits.setText(String.valueOf(OtpInfo.DEFAULT_DIGITS));
                     break;
                 default:
                     throw new RuntimeException(String.format("Unsupported OTP type: %s", type));
             }
+
+            updateAdvancedFieldStatus(type);
         });
 
         _iconView.setOnClickListener(v -> {
@@ -246,6 +260,13 @@ public class EditEntryActivity extends AegisActivity {
                 }
             }
         });
+    }
+
+    private void updateAdvancedFieldStatus(String otpType) {
+        boolean isSteam = otpType.equals(SteamInfo.ID);
+        _textDigitsLayout.setEnabled(!isSteam);
+        _textPeriodCounterLayout.setEnabled(!isSteam);
+        _dropdownAlgoLayout.setEnabled(!isSteam);
     }
 
     private void setGroup(String groupName) {

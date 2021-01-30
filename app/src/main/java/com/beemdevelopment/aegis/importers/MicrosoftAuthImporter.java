@@ -91,7 +91,7 @@ public class MicrosoftAuthImporter extends DatabaseImporter {
                         throw new DatabaseImporterEntryException(String.format("Unsupported OTP type: %d", entry.getType()), entry.toString());
                 }
 
-                OtpInfo info = new TotpInfo(secret, "SHA1", digits, 30);
+                OtpInfo info = new TotpInfo(secret, OtpInfo.DEFAULT_ALGORITHM, digits, TotpInfo.DEFAULT_PERIOD);
                 return new VaultEntry(info, entry.getUserName(), entry.getIssuer());
             } catch (EncodingException | OtpInfoException e) {
                 throw new DatabaseImporterEntryException(e, entry.toString());

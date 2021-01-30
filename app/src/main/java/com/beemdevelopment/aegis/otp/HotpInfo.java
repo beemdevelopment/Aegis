@@ -11,6 +11,7 @@ import java.security.NoSuchAlgorithmException;
 
 public class HotpInfo extends OtpInfo {
     public static final String ID = "hotp";
+    public static final int DEFAULT_COUNTER = 0;
 
     private long _counter;
 
@@ -20,7 +21,7 @@ public class HotpInfo extends OtpInfo {
     }
 
     public HotpInfo(byte[] secret) throws OtpInfoException {
-        this(secret, 0);
+        this(secret, DEFAULT_COUNTER);
     }
 
     public HotpInfo(byte[] secret, String algorithm, int digits, long counter) throws OtpInfoException {

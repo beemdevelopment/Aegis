@@ -239,7 +239,7 @@ public class AndOtpImporter extends DatabaseImporter {
                         info = new TotpInfo(secret, algo, digits, obj.getInt("period"));
                         break;
                     case "steam":
-                        info = new SteamInfo(secret, algo, digits, obj.optInt("period", 30));
+                        info = new SteamInfo(secret, algo, digits, obj.optInt("period", TotpInfo.DEFAULT_PERIOD));
                         break;
                     default:
                         throw new DatabaseImporterException("unsupported otp type: " + type);
