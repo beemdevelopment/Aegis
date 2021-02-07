@@ -22,9 +22,10 @@ import com.beemdevelopment.aegis.BuildConfig;
 import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.helpers.DropdownHelper;
 import com.beemdevelopment.aegis.importers.DatabaseImporter;
-import com.beemdevelopment.aegis.ui.dialogs.Dialogs;
 import com.beemdevelopment.aegis.ui.ImportEntriesActivity;
+import com.beemdevelopment.aegis.ui.dialogs.Dialogs;
 import com.beemdevelopment.aegis.ui.tasks.ExportTask;
+import com.beemdevelopment.aegis.ui.tasks.ImportFileTask;
 import com.beemdevelopment.aegis.vault.VaultBackupManager;
 import com.beemdevelopment.aegis.vault.VaultFileCredentials;
 import com.beemdevelopment.aegis.vault.VaultManager;
@@ -111,13 +112,20 @@ public class ImportExportPreferencesFragment extends PreferencesFragment {
             return;
         }
 
-        startImportEntriesActivity(_importerType, uri);
+        ImportFileTask task = new ImportFileTask(getContext(), result -> {
+            if (result.getException() == null) {
+                startImportEntriesActivity(_importerType, result.getFile());
+            } else {
+                Dialogs.showErrorDialog(getContext(), R.string.reading_file_error, result.getException());
+            }
+        });
+        task.execute(getLifecycle(), uri);
     }
 
-    private void startImportEntriesActivity(Class<? extends DatabaseImporter> importerType, Uri fileUri) {
+    private void startImportEntriesActivity(Class<? extends DatabaseImporter> importerType, File file) {
         Intent intent = new Intent(getActivity(), ImportEntriesActivity.class);
         intent.putExtra("importerType", importerType);
-        intent.putExtra("fileUri", fileUri == null ? null : fileUri.toString());
+        intent.putExtra("file", file);
         startActivityForResult(intent, CODE_IMPORT);
     }
 

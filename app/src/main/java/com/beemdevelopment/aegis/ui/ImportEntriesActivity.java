@@ -4,7 +4,6 @@ import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.pm.PackageManager;
-import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.Menu;
@@ -32,6 +31,8 @@ import com.beemdevelopment.aegis.vault.VaultManager;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.topjohnwu.superuser.Shell;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
@@ -78,19 +79,19 @@ public class ImportEntriesActivity extends AegisActivity {
         _fabScrollHelper = new FabScrollHelper(fab);
 
         Class<? extends DatabaseImporter> importerType = (Class<? extends DatabaseImporter>) getIntent().getSerializableExtra("importerType");
-        startImport(importerType, getIntent().getStringExtra("fileUri"));
+        startImport(importerType, (File) getIntent().getSerializableExtra("file"));
     }
 
-    private void startImport(@NonNull Class<? extends DatabaseImporter> importerType, @Nullable String fileUri) {
-        if (fileUri == null) {
+    private void startImport(@NonNull Class<? extends DatabaseImporter> importerType, @Nullable File file) {
+        if (file == null) {
             startImportApp(importerType);
         } else {
-            startImportFile(importerType, Uri.parse(fileUri));
+            startImportFile(importerType, file);
         }
     }
 
-    private void startImportFile(@NonNull Class<? extends DatabaseImporter> importerType, @NonNull Uri fileUri) {
-        try (InputStream stream = getContentResolver().openInputStream(fileUri)) {
+    private void startImportFile(@NonNull Class<? extends DatabaseImporter> importerType, @NonNull File file) {
+        try (InputStream stream = new FileInputStream(file)) {
             DatabaseImporter importer = DatabaseImporter.create(this, importerType);
             DatabaseImporter.State state = importer.read(stream);
             processImporterState(state);
