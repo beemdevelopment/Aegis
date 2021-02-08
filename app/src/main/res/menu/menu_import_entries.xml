@@ -5,4 +5,8 @@
         android:icon="@drawable/ic_done_all_black_24dp"
         android:title="@string/toggle_checkboxes"
         app:showAsAction="always" />
+    <item android:id="@+id/toggle_wipe_vault"
+        android:title="@string/dialog_wipe_entries_checkbox"
+        android:checkable="true"
+        app:showAsAction="never" />
 </menu>

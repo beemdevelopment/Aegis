@@ -40,6 +40,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ImportEntriesActivity extends AegisActivity {
+    private Menu _menu;
     private ImportEntriesAdapter _adapter;
     private FabScrollHelper _fabScrollHelper;
 
@@ -70,7 +71,8 @@ public class ImportEntriesActivity extends AegisActivity {
 
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(v -> {
-            if (getApp().getVaultManager().getEntries().size() > 0) {
+            if (getApp().getVaultManager().getEntries().size() > 0
+                    && _menu.findItem(R.id.toggle_wipe_vault).isChecked()) {
                 showWipeEntriesDialog();
             } else {
                 saveAndFinish(false);
@@ -243,7 +245,8 @@ public class ImportEntriesActivity extends AegisActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_import_entries, menu);
+        _menu = menu;
+        getMenuInflater().inflate(R.menu.menu_import_entries, _menu);
         return true;
     }
 
@@ -255,6 +258,9 @@ public class ImportEntriesActivity extends AegisActivity {
                 break;
             case R.id.toggle_checkboxes:
                 _adapter.toggleCheckboxes();
+                break;
+            case R.id.toggle_wipe_vault:
+                item.setChecked(!item.isChecked());
                 break;
             default:
                 return super.onOptionsItemSelected(item);
