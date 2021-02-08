@@ -50,7 +50,7 @@
     <string name="pref_backups_location_summary">Backups will be stored at</string>
     <string name="pref_backups_trigger_title">Trigger backup</string>
     <string name="pref_backups_trigger_summary">Manually trigger a backup</string>
-    <string name="pref_backups_versions_title">Amount of versions to keep</string>
+    <string name="pref_backups_versions_title">Number of versions to keep</string>
     <plurals name="pref_backups_versions_summary">
         <item quantity="one">Keep %1$d version of the backup</item>
         <item quantity="other">Keep %1$d versions of the backup</item>
@@ -110,7 +110,7 @@
     <string name="set_number">Please enter a number</string>
     <string name="set_password_confirm">Please confirm the password</string>
     <string name="invalid_password">The password is incorrect</string>
-    <string name="invalidated_biometrics">A change in your device\'s security settings has been detected. Please go to \"Aegis -> Settings -> Biometrics\" and re-enable biometric unlock.</string>
+    <string name="invalidated_biometrics">A change in your device\'s security settings has been detected. Please go to \"Aegis -> Settings -> Security -> Biometric unlock\" to disable and re-enable biometric unlock.</string>
     <string name="password_reminder">Please enter your password. We occasionally ask you to do this so that don\'t forget it.</string>
     <string name="enter_password_authy_message">It looks like your Authy tokens are encrypted. Please close Aegis, open Authy and unlock the tokens with your password. Instead, Aegis can also attempt to decrypt your Authy tokens for you, if you enter your password below.</string>
 
