@@ -65,7 +65,6 @@ public class AuthActivity extends AegisActivity {
     private boolean _inhibitBioPrompt;
 
     private Preferences _prefs;
-    private boolean _stateless;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,19 +93,14 @@ public class AuthActivity extends AegisActivity {
         } else {
             _inhibitBioPrompt = savedInstanceState.getBoolean("inhibitBioPrompt", false);
         }
-        _slots = (SlotList) intent.getSerializableExtra("slots");
-        _stateless = _slots != null;
-        if (!_stateless) {
-            VaultFile vaultFile;
-            try {
-                vaultFile = getApp().loadVaultFile();
-            } catch (VaultManagerException e) {
-                e.printStackTrace();
-                Dialogs.showErrorDialog(this, R.string.vault_load_error, e, (dialog, which) -> onBackPressed());
-                return;
-            }
 
+        try {
+            VaultFile vaultFile = getApp().loadVaultFile();
             _slots = vaultFile.getHeader().getSlots();
+        } catch (VaultManagerException e) {
+            e.printStackTrace();
+            Dialogs.showErrorDialog(this, R.string.vault_load_error, e, (dialog, which) -> onBackPressed());
+            return;
         }
 
         // only show the biometric prompt if the api version is new enough, permission is granted, a scanner is found and a biometric slot is found
@@ -181,11 +175,7 @@ public class AuthActivity extends AegisActivity {
 
     @Override
     public void onBackPressed() {
-        if (_stateless) {
-            super.onBackPressed();
-        } else {
-            finishAffinity();
-        }
+        finishAffinity();
     }
 
     @Override
@@ -219,11 +209,6 @@ public class AuthActivity extends AegisActivity {
         if (_bioKey != null && _prefs.isPasswordReminderNeeded()) {
             showPasswordReminder();
         }
-    }
-
-    @Override
-    protected boolean isOrphan() {
-        return _stateless && super.isOrphan();
     }
 
     private void focusPasswordField() {
@@ -280,27 +265,19 @@ public class AuthActivity extends AegisActivity {
     private void finish(MasterKey key, boolean isSlotRepaired) {
         VaultFileCredentials creds = new VaultFileCredentials(key, _slots);
 
-        if (_stateless) {
-            // send the master key back to the calling activity
-            Intent intent = new Intent();
-            intent.putExtra("creds", creds);
-            setResult(RESULT_OK, intent);
-        } else {
-            try {
-                AegisApplication app = getApp();
-                app.initVaultManager(app.loadVaultFile(), creds);
-                if (isSlotRepaired) {
-                    saveVault(true);
-                }
-            } catch (VaultManagerException e) {
-                e.printStackTrace();
-                Dialogs.showErrorDialog(this, R.string.decryption_corrupt_error, e);
-                return;
+        try {
+            AegisApplication app = getApp();
+            app.initVaultManager(app.loadVaultFile(), creds);
+            if (isSlotRepaired) {
+                saveVault(true);
             }
-
-            setResult(RESULT_OK);
+        } catch (VaultManagerException e) {
+            e.printStackTrace();
+            Dialogs.showErrorDialog(this, R.string.decryption_corrupt_error, e);
+            return;
         }
 
+        setResult(RESULT_OK);
         finish();
     }
 
