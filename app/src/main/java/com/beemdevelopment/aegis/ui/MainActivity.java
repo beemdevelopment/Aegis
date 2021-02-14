@@ -300,7 +300,10 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
     }
 
     private void onScanImageResult(Intent intent) {
-        Uri inputFile = (intent.getData());
+        decodeQrCodeImage(intent.getData());
+    }
+
+    private void decodeQrCodeImage(Uri inputFile) {
         Bitmap bitmap;
 
         try {
@@ -431,6 +434,23 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         }
     }
 
+    private void handleSharedImage() {
+        if (_app.isVaultLocked()) {
+            return;
+        }
+
+        Intent intent = getIntent();
+        String action = intent.getAction();
+        Uri uri = intent.getParcelableExtra(Intent.EXTRA_STREAM);
+
+        if (Intent.ACTION_SEND.equals(action) && uri != null) {
+            intent.setAction(null);
+            intent.removeExtra(Intent.EXTRA_STREAM);
+
+            decodeQrCodeImage(uri);
+        }
+    }
+
     @Override
     protected void onResume() {
         super.onResume();
@@ -475,6 +495,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         }
 
         handleDeeplink();
+        handleSharedImage();
         updateLockIcon();
         doShortcutActions();
         updateBackupErrorBar();
