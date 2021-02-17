@@ -263,10 +263,10 @@ public class EditEntryActivity extends AegisActivity {
     }
 
     private void updateAdvancedFieldStatus(String otpType) {
-        boolean isSteam = otpType.equals(SteamInfo.ID);
-        _textDigitsLayout.setEnabled(!isSteam);
-        _textPeriodCounterLayout.setEnabled(!isSteam);
-        _dropdownAlgoLayout.setEnabled(!isSteam);
+        boolean enabled = !otpType.equals(SteamInfo.ID) && (!_isNew || _isManual);
+        _textDigitsLayout.setEnabled(enabled);
+        _textPeriodCounterLayout.setEnabled(enabled);
+        _dropdownAlgoLayout.setEnabled(enabled);
     }
 
     private void setGroup(String groupName) {
