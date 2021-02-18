@@ -8,7 +8,7 @@ contribution.
 
 We use [Crowdin](https://crowdin.com/project/aegis-authenticator) to crowdsource
 translations of Aegis for lots of different languages. __Pull requests that
-add/update a translation are not longer accepted.__ Crowdin is our single source
+add/update a translation are no longer accepted.__ Crowdin is our single source
 of truth for translations, to keep things easy to maintain.
 
 The top 30 languages are available for translation. It's possible that yours is
