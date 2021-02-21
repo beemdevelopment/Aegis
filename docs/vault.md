@@ -70,8 +70,8 @@ __master key__.
 
 Aegis supports unlocking a vault with multiple different credentials. The main
 credential is a key derived from a user-provided password. In addition to that,
-users can also add a key backed by the Android KeyStore (authorized by biometrics)
-as a credential.
+users can also add a key backed by the Android KeyStore (authorized by
+biometrics) as a credential.
 
 #### Slots
 
@@ -116,9 +116,14 @@ wheter the vault is encrypted or not. If it is, the value is a string containing
 the Base64 encoded (with padding) ciphertext of the vault contents. Otherwise,
 the value is a JSON object.
 
-Full examples of a plain text vault and an encrypted vault are available in the
-[testdata](/testdata) folder. There's also a Python script that can decrypt an
-Aegis vault given the password: [scripts/decrypt.py](/scripts/decrypt.py).
+Full examples of a [plain text
+vault](/app/src/test/resources/com/beemdevelopment/aegis/importers/aegis_plain.json)
+and an [encrypted
+vault](/app/src/test/resources/com/beemdevelopment/aegis/importers/aegis_encrypted.json)
+are available in the [test
+data](/app/src/test/resources/com/beemdevelopment/aegis/importers) folder.
+There's also an example Python script that can decrypt an Aegis vault given the
+password: [decrypt.py](/docs/decrypt.py).
 
 ### Header
 

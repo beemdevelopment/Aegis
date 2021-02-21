@@ -3,7 +3,7 @@
 # this depends on the 'cryptography' package
 # pip install cryptography
 
-# example usage: ./scripts/decrypt.py --input ./testdata/aegis_export.json
+# example usage: ./scripts/decrypt.py --input ./app/src/test/resources/com/beemdevelopment/aegis/importers/aegis_encrypted.json
 # password: test
 
 import argparse
