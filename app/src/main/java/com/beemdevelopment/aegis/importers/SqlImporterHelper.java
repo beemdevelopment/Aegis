@@ -1,5 +1,6 @@
 package com.beemdevelopment.aegis.importers;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -117,10 +118,12 @@ public class SqlImporterHelper {
         }
     }
 
+    @SuppressLint("Range")
     public static String getString(Cursor cursor, String columnName) {
         return cursor.getString(cursor.getColumnIndex(columnName));
     }
 
+    @SuppressLint("Range")
     public static String getString(Cursor cursor, String columnName, String def) {
         String res = cursor.getString(cursor.getColumnIndex(columnName));
         if (res == null) {
@@ -129,10 +132,12 @@ public class SqlImporterHelper {
         return res;
     }
 
+    @SuppressLint("Range")
     public static int getInt(Cursor cursor, String columnName) {
         return cursor.getInt(cursor.getColumnIndex(columnName));
     }
 
+    @SuppressLint("Range")
     public static long getLong(Cursor cursor, String columnName) {
         return cursor.getLong(cursor.getColumnIndex(columnName));
     }
