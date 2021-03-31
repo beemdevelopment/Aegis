@@ -89,7 +89,7 @@ public abstract class AegisActivity extends AppCompatActivity implements AegisAp
     @Override
     public void onLocked(boolean userInitiated) {
         setResult(RESULT_CANCELED, null);
-        finishAndRemoveTask();
+        finish();
     }
 
     protected AegisApplication getApp() {
