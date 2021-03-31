@@ -11,9 +11,9 @@ guidelines](/CONTRIBUTING.md#bug-reports) before submitting an issue. -->
 
 * __Version__: 
 * __Source__: (Google Play/GitHub/F-Droid/?)
-* __Vault encrypted:__ Yes (with biometric unlock)/Yes/No
-* __Device:__
-* __Android version and ROM:__
+* __Vault encrypted__: Yes (with biometric unlock)/Yes/No
+* __Device__:
+* __Android version and ROM__:
 
 ###### Steps to reproduce
 
