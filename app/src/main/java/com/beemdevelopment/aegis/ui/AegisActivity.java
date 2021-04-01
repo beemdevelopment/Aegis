@@ -1,5 +1,6 @@
 package com.beemdevelopment.aegis.ui;
 
+import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -19,6 +20,8 @@ import com.beemdevelopment.aegis.ThemeMap;
 import com.beemdevelopment.aegis.ui.dialogs.Dialogs;
 import com.beemdevelopment.aegis.vault.VaultManagerException;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.Locale;
 import java.util.Map;
 
@@ -89,7 +92,14 @@ public abstract class AegisActivity extends AppCompatActivity implements AegisAp
     @Override
     public void onLocked(boolean userInitiated) {
         setResult(RESULT_CANCELED, null);
-        finish();
+        try {
+            Method method = Activity.class.getDeclaredMethod("finish", int.class);
+            method.setAccessible(true);
+            method.invoke(this, 2); // FINISH_TASK_WITH_ACTIVITY = 2
+        } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
+            e.printStackTrace();
+            finishAndRemoveTask();
+        }
     }
 
     protected AegisApplication getApp() {
