@@ -48,6 +48,6 @@ public class TextDrawableHelper {
                 .width(view.getLayoutParams().width)
                 .height(view.getLayoutParams().height)
                 .endConfig()
-                .buildRect(text.substring(0, 1).toUpperCase(), color);
+                .buildRound(text.substring(0, 1).toUpperCase(), color);
     }
 }

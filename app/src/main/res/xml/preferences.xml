@@ -17,6 +17,12 @@
         app:summary="@string/pref_section_behavior_summary" />
 
     <Preference
+        android:fragment="com.beemdevelopment.aegis.ui.fragments.IconPacksManagerFragment"
+        android:title="@string/pref_section_icon_packs"
+        android:summary="@string/pref_section_icon_packs_summary"
+        app:icon="@drawable/ic_package_variant_black_24dp"/>
+
+    <Preference
         android:fragment="com.beemdevelopment.aegis.ui.fragments.SecurityPreferencesFragment"
         app:icon="@drawable/ic_vpn_key_black_24dp"
         app:title="@string/pref_section_security_title"

@@ -19,6 +19,7 @@ import androidx.lifecycle.LifecycleEventObserver;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.ProcessLifecycleOwner;
 
+import com.beemdevelopment.aegis.icons.IconPackManager;
 import com.beemdevelopment.aegis.services.NotificationService;
 import com.beemdevelopment.aegis.ui.MainActivity;
 import com.beemdevelopment.aegis.util.IOUtils;
@@ -41,6 +42,7 @@ public class AegisApplication extends Application {
     private Preferences _prefs;
     private List<LockListener> _lockListeners;
     private boolean _blockAutoLock;
+    private IconPackManager _iconPackManager;
 
     private static final String CODE_LOCK_STATUS_ID = "lock_status_channel";
     private static final String CODE_LOCK_VAULT_ACTION = "lock_vault";
@@ -55,6 +57,7 @@ public class AegisApplication extends Application {
         super.onCreate();
         _prefs = new Preferences(this);
         _lockListeners = new ArrayList<>();
+        _iconPackManager = new IconPackManager(this);
 
         Iconics.init(this);
         Iconics.registerFont(new MaterialDesignIconic());
@@ -124,6 +127,10 @@ public class AegisApplication extends Application {
 
     public VaultManager getVaultManager() {
         return _manager;
+    }
+
+    public IconPackManager getIconPackManager() {
+        return _iconPackManager;
     }
 
     public Preferences getPreferences() {

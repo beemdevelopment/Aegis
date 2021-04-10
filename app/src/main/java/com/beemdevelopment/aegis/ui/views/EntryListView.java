@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.ColorStateList;
 import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -31,6 +32,7 @@ import com.beemdevelopment.aegis.helpers.SimpleItemTouchHelperCallback;
 import com.beemdevelopment.aegis.helpers.UiRefresher;
 import com.beemdevelopment.aegis.otp.TotpInfo;
 import com.beemdevelopment.aegis.ui.dialogs.Dialogs;
+import com.beemdevelopment.aegis.ui.glide.IconLoader;
 import com.beemdevelopment.aegis.vault.VaultEntry;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.ListPreloader;
@@ -486,10 +488,11 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
 
         @Nullable
         @Override
-        public RequestBuilder getPreloadRequestBuilder(@NonNull VaultEntry entry) {
+        public RequestBuilder<Drawable> getPreloadRequestBuilder(@NonNull VaultEntry entry) {
             return Glide.with(EntryListView.this)
                         .asDrawable()
                         .load(entry)
+                        .set(IconLoader.ICON_TYPE, entry.getIconType())
                         .diskCacheStrategy(DiskCacheStrategy.NONE)
                         .skipMemoryCache(false);
         }

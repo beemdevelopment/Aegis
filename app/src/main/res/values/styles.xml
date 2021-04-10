@@ -202,6 +202,7 @@
     </style>
 
     <style name="ThemeOverLay.Aegis.BottomSheetDialog.Rounded" parent="@style/ThemeOverlay.MaterialComponents.BottomSheetDialog">
+        <item name="android:windowIsFloating">false</item>
         <item name="bottomSheetStyle">@style/Widget.Aegis.BottomSheet.Rounded</item>
     </style>
 

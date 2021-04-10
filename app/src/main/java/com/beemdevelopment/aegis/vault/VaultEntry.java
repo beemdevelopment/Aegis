@@ -2,10 +2,12 @@ package com.beemdevelopment.aegis.vault;
 
 import com.beemdevelopment.aegis.encoding.Base64;
 import com.beemdevelopment.aegis.encoding.EncodingException;
+import com.beemdevelopment.aegis.icons.IconType;
 import com.beemdevelopment.aegis.otp.GoogleAuthInfo;
 import com.beemdevelopment.aegis.otp.OtpInfo;
 import com.beemdevelopment.aegis.otp.OtpInfoException;
 import com.beemdevelopment.aegis.otp.TotpInfo;
+import com.beemdevelopment.aegis.util.JsonUtils;
 import com.beemdevelopment.aegis.util.UUIDMap;
 
 import org.json.JSONException;
@@ -21,6 +23,7 @@ public class VaultEntry extends UUIDMap.Value {
     private String _group;
     private OtpInfo _info;
     private byte[] _icon;
+    private IconType _iconType = IconType.INVALID;
 
     private VaultEntry(UUID uuid, OtpInfo info) {
         super(uuid);
@@ -59,6 +62,7 @@ public class VaultEntry extends UUIDMap.Value {
             obj.put("issuer", _issuer);
             obj.put("group", _group);
             obj.put("icon", _icon == null ? JSONObject.NULL : Base64.encode(_icon));
+            obj.put("icon_mime", _icon == null ? null : _iconType.toMimeType());
             obj.put("info", _info.toJson());
         } catch (JSONException e) {
             throw new RuntimeException(e);
@@ -67,27 +71,39 @@ public class VaultEntry extends UUIDMap.Value {
         return obj;
     }
 
-    public static VaultEntry fromJson(JSONObject obj) throws JSONException, OtpInfoException, EncodingException {
-        // if there is no uuid, generate a new one
-        UUID uuid;
-        if (!obj.has("uuid")) {
-            uuid = UUID.randomUUID();
-        } else {
-            uuid = UUID.fromString(obj.getString("uuid"));
+    public static VaultEntry fromJson(JSONObject obj) throws VaultEntryException {
+        try {
+            // if there is no uuid, generate a new one
+            UUID uuid;
+            if (!obj.has("uuid")) {
+                uuid = UUID.randomUUID();
+            } else {
+                uuid = UUID.fromString(obj.getString("uuid"));
+            }
+
+            OtpInfo info = OtpInfo.fromJson(obj.getString("type"), obj.getJSONObject("info"));
+            VaultEntry entry = new VaultEntry(uuid, info);
+            entry.setName(obj.getString("name"));
+            entry.setIssuer(obj.getString("issuer"));
+            entry.setGroup(obj.optString("group", null));
+
+            Object icon = obj.get("icon");
+            if (icon != JSONObject.NULL) {
+                String mime = JsonUtils.optString(obj, "icon_mime");
+
+                IconType iconType = mime == null ? IconType.JPEG : IconType.fromMimeType(mime);
+                if (iconType == IconType.INVALID) {
+                    throw new VaultEntryException(String.format("Bad icon MIME type: %s", mime));
+                }
+
+                byte[] iconBytes = Base64.decode((String) icon);
+                entry.setIcon(iconBytes, iconType);
+            }
+
+            return entry;
+        } catch (OtpInfoException | JSONException | EncodingException e) {
+            throw new VaultEntryException(e);
         }
-
-        OtpInfo info = OtpInfo.fromJson(obj.getString("type"), obj.getJSONObject("info"));
-        VaultEntry entry = new VaultEntry(uuid, info);
-        entry.setName(obj.getString("name"));
-        entry.setIssuer(obj.getString("issuer"));
-        entry.setGroup(obj.optString("group", null));
-
-        Object icon = obj.get("icon");
-        if (icon != JSONObject.NULL) {
-            entry.setIcon(Base64.decode((String) icon));
-        }
-
-        return entry;
     }
 
     public String getName() {
@@ -104,6 +120,10 @@ public class VaultEntry extends UUIDMap.Value {
 
     public byte[] getIcon() {
         return _icon;
+    }
+
+    public IconType getIconType() {
+        return _iconType;
     }
 
     public OtpInfo getInfo() {
@@ -126,8 +146,9 @@ public class VaultEntry extends UUIDMap.Value {
         _info = info;
     }
 
-    public void setIcon(byte[] icon) {
+    public void setIcon(byte[] icon, IconType iconType) {
         _icon = icon;
+        _iconType = iconType;
     }
 
     public boolean hasIcon() {
@@ -154,7 +175,8 @@ public class VaultEntry extends UUIDMap.Value {
                 && getIssuer().equals(entry.getIssuer())
                 && Objects.equals(getGroup(), entry.getGroup())
                 && getInfo().equals(entry.getInfo())
-                && Arrays.equals(getIcon(), entry.getIcon());
+                && Arrays.equals(getIcon(), entry.getIcon())
+                && getIconType().equals(entry.getIconType());
     }
 
     /**

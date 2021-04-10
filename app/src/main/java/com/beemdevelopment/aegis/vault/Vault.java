@@ -1,7 +1,5 @@
 package com.beemdevelopment.aegis.vault;
 
-import com.beemdevelopment.aegis.encoding.EncodingException;
-import com.beemdevelopment.aegis.otp.OtpInfoException;
 import com.beemdevelopment.aegis.util.UUIDMap;
 
 import org.json.JSONArray;
@@ -9,7 +7,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class Vault {
-    private static final int VERSION = 1;
+    private static final int VERSION = 2;
     private UUIDMap<VaultEntry> _entries = new UUIDMap<>();
 
     public JSONObject toJson() {
@@ -34,7 +32,7 @@ public class Vault {
 
         try {
             int ver = obj.getInt("version");
-            if (ver != VERSION) {
+            if (ver > VERSION) {
                 throw new VaultException("Unsupported version");
             }
 
@@ -43,7 +41,7 @@ public class Vault {
                 VaultEntry entry = VaultEntry.fromJson(array.getJSONObject(i));
                 entries.add(entry);
             }
-        } catch (EncodingException | OtpInfoException | JSONException e) {
+        } catch (VaultEntryException | JSONException e) {
             throw new VaultException(e);
         }
 
