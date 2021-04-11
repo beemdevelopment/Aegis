@@ -41,7 +41,7 @@ public class PreferencesActivity extends AegisActivity implements
                 showFragment(_fragment);
             }
         } else {
-            _fragment = (PreferencesFragment) getSupportFragmentManager().findFragmentById(R.id.content);
+            _fragment = getSupportFragmentManager().findFragmentById(R.id.content);
         }
     }
 
