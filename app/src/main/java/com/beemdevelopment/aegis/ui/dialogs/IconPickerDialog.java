@@ -140,7 +140,12 @@ public class IconPickerDialog {
             popupMenu.setOnMenuItemClickListener(item -> {
                 IconPack pack = iconPacks.get(iconPackNames.indexOf(item.getTitle().toString()));
                 adapter.loadIcons(pack);
-                adapter.setQuery(iconSearch.getText().toString());
+
+                String query = iconSearch.getText().toString();
+                if (!query.isEmpty()) {
+                    adapter.setQuery(query);
+                }
+
                 textIconPack.setText(pack.getName());
                 return true;
             });
