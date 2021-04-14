@@ -32,8 +32,6 @@
         <item>@string/small_mode_title</item>
     </string-array>
 
-    app/src/main/res/values-uk-rUA/
-
     <string-array name="pref_lang_entries">
         <item>System default</item>
         <item>Arabic</item>
