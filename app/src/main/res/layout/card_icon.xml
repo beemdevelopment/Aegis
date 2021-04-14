@@ -7,7 +7,7 @@
     android:focusable="true"
     android:background="?android:attr/selectableItemBackground"
     android:orientation="vertical">
-    <de.hdodenhof.circleimageview.CircleImageView
+    <ImageView
         android:id="@+id/icon"
         android:layout_height="75dp"
         android:layout_width="match_parent"/>

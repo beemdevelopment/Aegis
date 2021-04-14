@@ -18,6 +18,7 @@ public class IconViewHelper {
     public static void setLayerType(ImageView view, IconType iconType) {
         if (iconType == IconType.SVG && Build.VERSION.SDK_INT <= Build.VERSION_CODES.O_MR1) {
             view.setLayerType(ImageView.LAYER_TYPE_SOFTWARE, null);
+            return;
         }
 
         view.setLayerType(ImageView.LAYER_TYPE_HARDWARE, null);
