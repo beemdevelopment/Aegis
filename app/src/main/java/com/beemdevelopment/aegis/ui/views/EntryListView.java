@@ -419,6 +419,7 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
     public void setGroups(TreeSet<String> groups) {
         _groups = groups;
         _groupChip.setVisibility(_groups.isEmpty() ? View.GONE : View.VISIBLE);
+        updateDividerDecoration();
     }
 
     private void updateDividerDecoration() {
@@ -471,6 +472,10 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
 
         @Override
         public void getItemOffsets(@NonNull Rect outRect, @NonNull View view, @NonNull RecyclerView parent, @NonNull RecyclerView.State state) {
+            if (parent.getChildAdapterPosition(view) == 0 && (_groups == null || _groups.isEmpty())) {
+                // the first item should also have a top margin
+                outRect.top = _height;
+            }
             outRect.bottom = _height;
         }
     }
