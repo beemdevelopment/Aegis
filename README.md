@@ -103,16 +103,27 @@ Certificate fingerprints:
    SHA256: C6:DB:80:A8:E1:4E:52:30:C1:DE:84:15:EF:82:0D:13:DC:90:1D:8F:E3:3C:F3:AC:B5:7B:68:62:D8:58:A8:23
 ```
 
-### Community
+### Icon packs
 
-- [aegis-icons](https://github.com/krisu5/aegis-icons)
+Aegis supports icon packs to make it easier to assign icons to the entries in
+your vault. There are no official icon packs, but the community maintains a
+number of third-party icon packs you may want to check out. To learn how to
+create your own Aegis-compatible icon pack, see [the
+documenation](docs/iconpacks.md).
 
-  While we're still [working on better icon
-  support](https://github.com/beemdevelopment/Aegis/issues/509) in Aegis, krisu5
-  has started a third-party repository for icons that you may want to check out.
+- [aegis-icons](https://github.com/aegis-icons/aegis-icons)
 
-  [<img width=500 alt="Aegis-icons preview"
-  src="https://raw.githubusercontent.com/krisu5/aegis-icons/master/showcase.png">](https://github.com/krisu5/aegis-icons)
+  Unofficial monochrome-styled 2FA icons.
+
+  [<img width=500 alt="aegis-icons preview"
+  src="https://raw.githubusercontent.com/aegis-icons/aegis-icons/master/showcase.png">](https://github.com/aegis-icons/aegis-icons)
+
+- [aegis-simple-icons](https://github.com/alexbakker/aegis-simple-icons)
+
+  This project periodically generates an icon pack for Aegis based on [Simple
+  Icons](https://simpleicons.org/). The icons are automatically generated, so
+  not all of them are as high quality as the ones you'll find in
+  [aegis-icons](https://github.com/aegis-icons/aegis-icons).
 
 ## Contributing
 

@@ -20,7 +20,7 @@ Encryption with Associated Data (AEAD) cipher and a Key Derivation Function
 #### AEAD
 
 __AES-256__ in __GCM__ mode is used as the AEAD cipher to ensure the
-confidentility, integrity and authenticity of the vault contents.
+confidentiality, integrity and authenticity of the vault contents.
 
 It requires a unique 96-bit nonce for each invocation with the same key.
 However, it is not possible to use a monotically increasing counter for this in
