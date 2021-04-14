@@ -11,9 +11,20 @@
     <string name="save">Opslaan</string>
     <string name="issuer">Uitgever</string>
     <string name="settings">Voorkeuren</string>
+    <string name="pref_cat_appearance_app">App</string>
+    <string name="pref_cat_appearance_entries">Items</string>
+    <string name="pref_cat_backups_android">Android</string>
+    <string name="pref_cat_backups_auto">Automatische back-ups</string>
+    <string name="pref_section_behavior_title">Gedrag</string>
+    <string name="pref_section_behavior_summary">Pas het gedrag aan bij de interactie met de itemlijst.</string>
     <string name="pref_section_appearance_title">Uiterlijk</string>
+    <string name="pref_section_appearance_summary">Pas het thema, de taal en andere instellingen aan die van invloed zijn op het uiterlijk van de app.</string>
     <string name="pref_section_security_title">Beveiliging</string>
+    <string name="pref_section_security_summary">Configureren van encryptie, biometrische ontgrendeling, automatische vergrendeling en andere beveiligingsinstellingen.</string>
+    <string name="pref_section_import_export_title">Importeren &amp; Exporteren</string>
+    <string name="pref_section_import_export_summary">Back-ups van Aegis of andere authenticator-apps importeren. Maak handmatige export van je Aegis-kluis aan.</string>
     <string name="pref_section_backups_title">Back-ups</string>
+    <string name="pref_section_backups_summary">Stel automatische back-ups in op een locatie waar u kiest of schakel deelname in in in het Android-back-upsysteem.</string>
     <string name="pref_select_theme_title">Thema</string>
     <string name="pref_view_mode_title">Weergavemodus</string>
     <string name="pref_lang_title">Taal</string>
@@ -27,7 +38,9 @@
     <string name="pref_slots_summary">Beheer de lijst van vergrendelingssleutels die de kluis kunnen decrypten</string>
     <string name="pref_import_file_title">Importeren vanuit een bestand</string>
     <string name="pref_import_file_summary">Importeer tokens vanuit een bestand</string>
-    <string name="pref_backups_title">Kluis back-uppen</string>
+    <string name="pref_android_backups_title">Neem deel aan het back-upsysteem van Android</string>
+    <string name="pref_android_backups_summary">Laat het Android-backup-systeem de kluis van Aegis in zijn backups opnemen. Dit wordt alleen ondersteund voor versleutelde kluizen.</string>
+    <string name="pref_backups_title">Automatisch een back-up van de kluis maken</string>
     <string name="pref_backups_summary">Automatisch back-ups maken van de kluis op externe opslag wanneer er wijzigingen worden aangebracht. Dit wordt alleen ondersteund voor versleutelde kluizen.</string>
     <string name="pref_backups_location_title">Map voor back-upbestanden</string>
     <string name="pref_backups_location_summary">Back-ups zullen worden opgeslagen in</string>
@@ -68,6 +81,7 @@
     <string name="export_warning_accept">Ik begrijp het risico</string>
     <string name="export_format_aegis">Aegis (.JSON)</string>
     <string name="export_format_google_auth_uri">Tekstbestand (.TXT)</string>
+    <string name="export_format_hint">Exporteerformaat</string>
     <string name="choose_authentication_method">Beveiliging</string>
     <string name="authentication_method_explanation">Aegis is een op veiligheid gerichte 2FA-applicatie. Tokens worden opgeslagen in een kluis, die optioneel kan worden versleuteld met een wachtwoord van uw keuze. Als een aanvaller je versleutelde kluisbestand verkrijgt, zullen ze geen toegang hebben tot de inhoud zonder het wachtwoord te kennen.\n\nWij hebben de optie gekozen die volgens ons het beste past op jouw apparaat.</string>
     <string name="authentication_method_none">Geen</string>
@@ -91,6 +105,9 @@
     <string name="invalidated_biometrics">Er is een verandering in de beveiligingsinstellingen van je toestel gedetecteerd. Ga naar \"Aegis -&gt; Instellingen -&gt; Vingerafdruk\" om opnieuw biometrische verificatie in te schakelen.</string>
     <string name="password_reminder">Voer je wachtwoord in. We vragen je af en toe om dit te doen, zodat je het niet vergeet.</string>
     <string name="enter_password_authy_message">Het lijkt erop dat je Authy tokens zijn versleuteld. Sluit Aegis, open Authy en ontgrendel de tokens met je wachtwoord. In plaats daarvan kan Aegis ook proberen om je Authy tokens te decoderen als je hieronder je wachtwoord invult.</string>
+    <string name="period_hint">Periode (seconden)</string>
+    <string name="algorithm_hint">Hash-functie</string>
+    <string name="type">Type</string>
     <string name="share">Delen</string>
     <string name="yes">Ja</string>
     <string name="no">Nee</string>
@@ -122,8 +139,10 @@
     <string name="snackbar_authentication_method">Kies een inlogmethode</string>
     <string name="encrypting_vault">De kluis wordt geëncrypt</string>
     <string name="exporting_vault">De kluis wordt geëxporteerd</string>
+    <string name="reading_file">Bestand lezen</string>
     <string name="delete_entry">Item verwijderen</string>
     <string name="delete_entry_description">Weet je zeker dat je dit item wilt verwijderen?</string>
+    <string name="delete_entry_explanation">Deze actie schakelt 2FA voor <b>%s</b>niet uit. Om te voorkomen dat u de toegang verliest, zorg ervoor dat u 2FA hebt uitgeschakeld of dat u een alternatieve manier hebt om codes voor deze dienst te genereren.</string>
     <string name="delete_entries">Items verwijderen</string>
     <plurals name="delete_entries_description">
         <item quantity="one">Weet je zeker dat je het item %d wilt verwijderen?</item>
@@ -151,11 +170,12 @@
     <string name="biometric_decrypt_error">Er is een fout opgetreden tijdens het ontgrendelen van de kluis met biometrische verificatie. Dit gebeurt meestal alleen als de beveiligingsinstellingen van uw apparaat zijn gewijzigd. Ontgrendel de kluis met uw wachtwoord en configureer biometrische authenticatie opnieuw in de instellingen van Aegis.</string>
     <string name="biometric_init_error">Er is een fout opgetreden tijdens het instellen van biometrische verificatie. Dit gebeurt meestal alleen als de beveiligingsinstellingen van uw apparaat zijn gewijzigd. Ontgrendel de kluis met uw wachtwoord en configureer biometrische authenticatie opnieuw in de instellingen van Aegis.</string>
     <string name="disable_encryption">Encryptie uitschakelen</string>
-    <string name="disable_encryption_description">Weet je zeker dat je encryptie wilt uitschakelen? Dit zorgt ervoor dat de kluis in leesbare tekst wordt opgeslagen.</string>
+    <string name="disable_encryption_description">Weet u zeker dat u de encryptie wilt uitschakelen? Dit zal ervoor zorgen dat de kluis in platte tekst wordt opgeslagen. <b>Automatische back-ups worden ook uitgeschakeld</b>.</string>
     <string name="enable_encryption_error">Er is een fout opgetreden tijdens het inschakelen van de encryptie</string>
     <string name="disable_encryption_error">Er is een fout opgetreden tijden het uitschakelen van de encryptie</string>
     <string name="backup_successful">De back-up is succesvol gepland</string>
     <string name="backup_error">Er is een fout opgetreden bij maken van een back-up</string>
+    <string name="documentsui_error">DocumentsUI lijkt te ontbreken op uw apparaat. Dit is een belangrijk systeemcomponent die nodig is voor het selecteren en maken van documenten. Als je een tool hebt gebruikt om uw apparaat te &quot;debloaten&quot; heb je deze waarschijnlijk per ongeluk verwijderd en zal je hem opnieuw moeten installeren.</string>
     <string name="permission_denied">Toestemming geweigerd</string>
     <string name="andotp_new_format">Nieuw formaat (v0.6.3 of nieuwer) </string>
     <string name="andotp_old_format">Oud formaat (v0.6.2 of ouder) </string>
@@ -180,6 +200,7 @@
     <string name="encryption_enable_biometrics_error">Er is een fout opgetreden bij het inschakelen van biometrische verificatie. Sommige apparaten hebben een gebrekkige implementatie van biometrische authenticatie en het is waarschijnlijk dat die van u er een van is. Overweeg om over te schakelen naar een \'Alleen wachtwoordconfiguratie\'.</string>
     <string name="no_cameras_available">Geen camera\'s beschikbaar</string>
     <string name="read_qr_error">Er is een fout opgetreden tijdens het lezen van de QR-code</string>
+    <string name="read_qr_error_phonefactor">Aegis is niet compatibel met het eigen 2FA-algoritme van Microsoft. Zorg ervoor dat u \"Setup applicatie zonder meldingen\" selecteert bij het configureren van 2FA in Office 365.</string>
     <string name="authentication_method_raw">Onbewerkt</string>
     <string name="unlocking_vault">Kluis wordt ontgrendeld</string>
     <string name="unlocking_vault_repair">Kluis wordt ontgrendeld (repareren)</string>
@@ -195,6 +216,7 @@
     <string name="lock">Vergrendel</string>
     <string name="name">Naam</string>
     <string name="no_group">Geen groep</string>
+    <string name="sort">Sorteren</string>
     <string name="sort_alphabetically">Uitgever (A t/m Z)</string>
     <string name="sort_alphabetically_reverse">Uitgever (Z t/m A)</string>
     <string name="sort_alphabetically_name">Account (A t/m Z)</string>
@@ -202,6 +224,7 @@
     <string name="sort_custom">Aangepast</string>
     <string name="new_group">Nieuwe groep…</string>
     <string name="enter_group_name">Vul een groepsnaam in</string>
+    <string name="group">Groep</string>
     <string name="group_name_hint">Groepsnaam</string>
     <string name="preference_manage_groups">Groepen bewerken</string>
     <string name="preference_manage_groups_summary">Beheer en verwijder hier je groepen</string>
@@ -241,8 +264,10 @@
     <string name="changelog">Wijzigingen</string>
     <string name="whats_new">Vernieuwingen</string>
     <string name="github_description">Broncode, problemen en informatie</string>
-    <string name="third_party_licenses">Licenties</string>
-    <string name="third_party_licenses_description">Licenties van gebruikte libraries</string>
+    <string name="license">Licentie</string>
+    <string name="license_description">Aegis Authenticator is gelicenseerd onder de GPLv3</string>
+    <string name="third_party_licenses">Licenties van derden</string>
+    <string name="third_party_licenses_description">Licenties van libraries van derden gebruikt door Aegis</string>
     <string name="country_netherlands">Nederland</string>
     <string name="email_us">Schrijf een email</string>
     <string name="visit_website">Bekijk de website</string>
@@ -289,7 +314,7 @@
     <string name="title_activity_edit_entry">Item bewerken</string>
     <string name="title_activity_scan_qr">Scan een QR-code</string>
     <string name="title_activity_manage_slots">Beheer sleutelslots</string>
-    <string name="title_activity_import_entries">Geselecteerde items</string>
+    <string name="title_activity_import_entries">Importeer entries</string>
     <string name="dialog_wipe_entries_title">Items verwijderen</string>
     <string name="dialog_wipe_entries_message">Je kluis bevat al items. Wilt u deze invoergegevens verwijderen voordat u dit bestand importeert?\n\n<b>Hierdoor verliest u permanent toegang tot de bestaande items in de kluis.</b></string>
     <string name="dialog_wipe_entries_checkbox">Kluis inhoud wissen</string>
@@ -309,4 +334,5 @@
     <string name="importer_help_totp_authenticator">Lever een TOTP Authenticator exportbestand aan.</string>
     <string name="importer_help_winauth">Lever een WinAuth exportbestand aan.</string>
     <string name="importer_help_direct">Importeer invoergegevens rechtstreeks van %s. Dit vereist dat de app op dit apparaat wordt geïnstalleerd en dat root-toegang aan Aegis wordt verleend.</string>
+    <string name="groups">Groepen</string>
 </resources>

@@ -11,9 +11,6 @@
     <string name="save">Simpan</string>
     <string name="issuer">Penerbit</string>
     <string name="settings">Pilihan</string>
-    <string name="pref_section_appearance_title">Tampilan</string>
-    <string name="pref_section_security_title">Keamanan</string>
-    <string name="pref_section_backups_title">Cadangan</string>
     <string name="pref_select_theme_title">Tema</string>
     <string name="pref_view_mode_title">Mode tampilan</string>
     <string name="pref_lang_title">Bahasa</string>
@@ -27,13 +24,11 @@
     <string name="pref_slots_summary">Kelola daftar kunci yang dapat mendekripsi brankas</string>
     <string name="pref_import_file_title">Impor berkas</string>
     <string name="pref_import_file_summary">Impor token dari berkas</string>
-    <string name="pref_backups_title">Cadangkan brankas</string>
     <string name="pref_backups_summary">Secara otomatis membuat cadangan vault di penyimpanan eksternal saat ada perubahan. Ini hanya didukung untuk brankas terenkripsi.</string>
     <string name="pref_backups_location_title">Direktori untuk cadangan berkas</string>
     <string name="pref_backups_location_summary">Cadangan akan disimpan di</string>
     <string name="pref_backups_trigger_title">Perintah pencadangan</string>
     <string name="pref_backups_trigger_summary">Perintah pencadangan secara manual</string>
-    <string name="pref_backups_versions_title">Jumlah versi yang akan disimpan</string>
     <plurals name="pref_backups_versions_summary">
         <item quantity="other">Simpan %1$d versi cadangan</item>
     </plurals>
@@ -87,7 +82,6 @@
     <string name="set_number">Masukkan nomor</string>
     <string name="set_password_confirm">Konfirmasi kata sandi</string>
     <string name="invalid_password">Kata sandi salah</string>
-    <string name="invalidated_biometrics">Pengaturan keamanan perangkat Anda telah terdeteksi adanya perubahan. Silakan buka \"Aegis -&gt; Pengaturan -&gt; biometrik\" dan aktifkan kembali buka kunci biometrik.</string>
     <string name="password_reminder">Masukkan kata sandi Anda. Kami sesekali meminta Anda melakukan ini agar tidak melupakannya.</string>
     <string name="enter_password_authy_message">Sepertinya token Authy Anda dienkripsi. Silakan tutup Aegis, buka Authy dan buka token dengan kata sandi Anda. Sebagai gantinya, Aegis juga dapat mencoba mendekripsi token Authy untuk Anda, jika Anda memasukkan kata sandi di bawah.</string>
     <string name="share">Bagikan</string>
@@ -148,7 +142,6 @@
     <string name="biometric_decrypt_error">Terjadi kesalahan saat mendekripsi brankas dengan autentikasi biometrik. Ini biasanya terjadi jika pengaturan keamanan perangkat Anda telah diubah. Harap buka brankas dengan kata sandi Anda dan atur ulang otentikasi biometrik di pengaturan Aegis.</string>
     <string name="biometric_init_error">Terjadi kesalahan saat menyiapkan autentikasi biometrik. Hal ini biasanya terjadi jika pengaturan keamanan perangkat Anda telah diubah. Harap buka brankas dengan kata sandi Anda dan atur ulang otentikasi biometrik di pengaturan Aegis.</string>
     <string name="disable_encryption">Nonaktifkan enkripsi</string>
-    <string name="disable_encryption_description">Anda yakin ingin menonaktifkan enkripsi? Hal ini akan menyebabkan brankas disimpan dalam teks biasa.</string>
     <string name="enable_encryption_error">Terjadi kesalahan saat mengaktifkan enkripsi</string>
     <string name="disable_encryption_error">Terjadi kesalahan saat menonaktifkan enkripsi</string>
     <string name="backup_error">Terjadi kesalahan saat membuat cadangan</string>
@@ -235,15 +228,12 @@
     <string name="changelog">Catatan perubahan</string>
     <string name="whats_new">Apa yang baru</string>
     <string name="github_description">Kode sumber, masalah dan informasi</string>
-    <string name="third_party_licenses">Lisensi</string>
-    <string name="third_party_licenses_description">Lisensi pustaka yang digunakan Aegis</string>
     <string name="country_netherlands">Belanda</string>
     <string name="email_us">Tuliskan email</string>
     <string name="visit_website">Kunjungi situs web kami</string>
     <string name="about_support">Dukung</string>
     <string name="support_rate">Beri penilaian</string>
     <string name="support_rate_description">Dukung kami dengan meninggalkan ulasan di Google Play Store</string>
-    <string name="webview_error">Perangkat ini tidak mendukung tampilan web, yang diperlukan untuk melihat catatan perubahan. Komponen sistem tidak ada.</string>
     <string name="email">Email</string>
     <string name="time_sync_warning_title">Sinkronisasi waktu otomatis</string>
     <string name="time_sync_warning_message">Aegis mengandalkan waktu sistem untuk disinkronkan menjadi kode yang benar. Selisih hanya beberapa detik dapat menyebabkan kode salah. Sepertinya perangkat Anda tidak dikonfigurasi untuk menyinkronkan waktu secara otomatis. Apakah Anda ingin melakukannya sekarang?</string>
@@ -281,7 +271,6 @@
     <string name="title_activity_edit_entry">Sunting catatan</string>
     <string name="title_activity_scan_qr">Pindai kode QR</string>
     <string name="title_activity_manage_slots">Atur slot kunci</string>
-    <string name="title_activity_import_entries">Pilih catatan</string>
     <string name="dialog_wipe_entries_title">Hapus catatan</string>
     <string name="dialog_wipe_entries_message">Brankas Anda sudah memiliki catatan. Apakah Anda ingin menghapus catatan ini tanpa mengimpor berkas ini?\n\n<b>Jika ini dilakukan, Anda akan kehilangan akses secara permanen ke catatan yang ada di brankas.</b></string>
     <string name="dialog_wipe_entries_checkbox">Hapus konten brankas</string>

@@ -11,9 +11,6 @@
     <string name="save">Uložit</string>
     <string name="issuer">Poskytovatel</string>
     <string name="settings">Předvolby</string>
-    <string name="pref_section_appearance_title">Vzhled</string>
-    <string name="pref_section_security_title">Zabezpečení</string>
-    <string name="pref_section_backups_title">Zálohy</string>
     <string name="pref_select_theme_title">Vzhled</string>
     <string name="pref_view_mode_title">Režim zobrazení</string>
     <string name="pref_lang_title">Jazyk</string>
@@ -27,13 +24,11 @@
     <string name="pref_slots_summary">Správa seznamu klíčů, které mohou dešifrovat trezor</string>
     <string name="pref_import_file_title">Importovat ze souboru</string>
     <string name="pref_import_file_summary">Importovat tokeny ze souboru</string>
-    <string name="pref_backups_title">Zálohovat trezor</string>
     <string name="pref_backups_summary">Automaticky zálohovat trezor na externí úložiště při provedení změn. Tato možnost je dostupná jen pro šifrované trezory.</string>
     <string name="pref_backups_location_title">Složka pro soubory záloh</string>
     <string name="pref_backups_location_summary">Zálohy budou uloženy v</string>
     <string name="pref_backups_trigger_title">Spustit zálohování</string>
     <string name="pref_backups_trigger_summary">Ručně spustit zálohování</string>
-    <string name="pref_backups_versions_title">Počet verzí k uchování</string>
     <plurals name="pref_backups_versions_summary">
         <item quantity="one">Uchovat %1$d verzi zálohy</item>
         <item quantity="few">Uchovat %1$d verze zálohy</item>
@@ -90,7 +85,6 @@
     <string name="set_number">Zadejte číslo</string>
     <string name="set_password_confirm">Potvrďte heslo</string>
     <string name="invalid_password">Heslo je nesprávné</string>
-    <string name="invalidated_biometrics">Zjištěna změna nastavení zabezpečení zařízení. Přejděte do „Aegis“ → „Nastavení“ → „Biometrie“ a povolte biometrické odemknutí znovu.</string>
     <string name="password_reminder">Zadejte své heslo. Občas se na něj ptáme, abyste ho nezapomněli.</string>
     <string name="enter_password_authy_message">Vypadá to, že vaše Authy tokeny jsou šifrovány. Prosím, zavřete Aegis, otevřete Authy a odemkněte tokeny pomocí vašeho hesla. Alternativně se může Aegis pokusit dešifrovat vaše Authy tokeny, pokud zadáte své heslo níže.</string>
     <string name="share">Sdílet</string>
@@ -154,7 +148,6 @@
     <string name="biometric_decrypt_error">Došlo k chybě při dešifrování trezorů s biometrickým ověřením. To se obvykle děje pouze v případě, že došlo ke změně nastavení zabezpečení vašeho zařízení. Odemkněte trezor pomocí vašeho hesla a znovu nastavte biometrické ověření v nastavení Aegis.</string>
     <string name="biometric_init_error">Došlo k chybě při přípravě biometrického ověření. To se obvykle děje pouze v případě, že došlo ke změně nastavení zabezpečení vašeho zařízení. Odemkněte trezor pomocí vašeho hesla a znovu nastavte biometrické ověření v nastavení Aegis.</string>
     <string name="disable_encryption">Vypnout šifrování</string>
-    <string name="disable_encryption_description">Opravdu chcete vypnout šifrování úložiště? Obsah trezoru pak bude uložen jako prostý text.</string>
     <string name="enable_encryption_error">Při zapínání šifrování došlo k chybě</string>
     <string name="disable_encryption_error">Při vypínání šifrování došlo k chybě</string>
     <string name="backup_error">Při pokusu o vytvoření zálohy došlo k chybě</string>
@@ -241,15 +234,12 @@
     <string name="changelog">Seznam změn</string>
     <string name="whats_new">Co je nového?</string>
     <string name="github_description">Zdrojový kód, problémy a informace</string>
-    <string name="third_party_licenses">Licence</string>
-    <string name="third_party_licenses_description">Licence knihoven použitých v Aegis</string>
     <string name="country_netherlands">Nizozemsko</string>
     <string name="email_us">Pošlete nám e-mail</string>
     <string name="visit_website">Navštivte náš web</string>
     <string name="about_support">Podpora</string>
     <string name="support_rate">Ohodnoťte aplikaci</string>
     <string name="support_rate_description">Podpořte nás napsáním recenze v obchodě Google Play</string>
-    <string name="webview_error">Vaše zařízení nepodporuje WebView, které je nutné pro zobrazení seznamu změn. Tato komponenta zřejmě chybí v systému.</string>
     <string name="email">E-mail</string>
     <string name="time_sync_warning_title">Automatická synchronizace času</string>
     <string name="time_sync_warning_message">Aegis při generování správných kódů spoléhá na synchronizaci systémového času. Odchylka pouze několika sekund může mít za následek nesprávné kódy. Zdá se, že vaše zařízení není nakonfigurováno pro automatickou synchronizaci času. Chcete nastavit automatickou synchronizaci času?</string>
@@ -293,7 +283,6 @@
     <string name="title_activity_edit_entry">Upravit položku</string>
     <string name="title_activity_scan_qr">Naskenovat QR kód</string>
     <string name="title_activity_manage_slots">Spravovat sloty klíčů</string>
-    <string name="title_activity_import_entries">Vybrat položky</string>
     <string name="dialog_wipe_entries_title">Vyčistit položky</string>
     <string name="dialog_wipe_entries_message">Váš trezor už obsahuje záznamy. Chcete tyto záznamy smazat před importem tohoto souboru?\n\n<b>Přístup ke všem stávajícím položkám v trezoru trvale ztratíte.</b></string>
     <string name="dialog_wipe_entries_checkbox">Vymazat obsah trezoru</string>

@@ -11,9 +11,6 @@
     <string name="save">सहेजें</string>
     <string name="issuer">ज़ारीकर्ता</string>
     <string name="settings">वरीयताएँ</string>
-    <string name="pref_section_appearance_title">रंगरूप</string>
-    <string name="pref_section_security_title">सुरक्षा</string>
-    <string name="pref_section_backups_title">बैकअप्स</string>
     <string name="pref_select_theme_title">थीम</string>
     <string name="pref_view_mode_title">देखने का प्रकार</string>
     <string name="pref_lang_title">भाषा</string>
@@ -27,13 +24,11 @@
     <string name="pref_slots_summary">कुंजीओं की सूची प्रबंधित करें जो वॉल्ट को डिक्रिप्ट कर सकती हैं</string>
     <string name="pref_import_file_title">फ़ाइल से आयात करें</string>
     <string name="pref_import_file_summary">टोकन को फ़ाइल से आयात करें</string>
-    <string name="pref_backups_title">वॉल्ट को बैकअप करें</string>
     <string name="pref_backups_summary">बदलाव होने पर एक्सटर्नल स्टोरेज में स्वतः ही वॉल्ट का बैकअप बनाएँ। यह सिर्फ एन्क्रिप्टेड वॉल्ट को सपोर्ट करता है।</string>
     <string name="pref_backups_location_title">बैकअप फाइल्स के लिए स्थान</string>
     <string name="pref_backups_location_summary">बैकअप को इसमें सहेजा जाएगा</string>
     <string name="pref_backups_trigger_title">ट्रिगर बैकअप</string>
     <string name="pref_backups_trigger_summary">हाथ से बैकअप ट्रिगर करें</string>
-    <string name="pref_backups_versions_title">रखने के लिए संस्करणों की मात्रा</string>
     <plurals name="pref_backups_versions_summary">
         <item quantity="one">बैकअप का %1$d संस्करण रखें</item>
         <item quantity="other">बैकअप के %1$d संस्करणों को रखें</item>
@@ -82,7 +77,6 @@
     <string name="set_number">कृप्या कोई संख्या दर्ज़ करें</string>
     <string name="set_password_confirm">कृपया पासवर्ड की पुष्टि करें</string>
     <string name="invalid_password">पासवर्ड ग़लत है</string>
-    <string name="invalidated_biometrics">आपके डिवाइस की सुरक्षा सेटिंग्स में बदलाव का पता चला है। कृप्या \"Aegis -&gt; सेटिंग्स -&gt; बॉयोमीट्रिक्स\" में जाकर बॉयोमेट्रिक अनलॉक पुनः सक्षम करें।</string>
     <string name="password_reminder">कृपया अपना पासवर्ड दर्ज करें। हम कभी-कभी आपसे ऐसा करने के लिए कहते हैं ताकि इसे न भूलें।</string>
     <string name="enter_password_authy_message">ऐसा लगता है कि आपके Authy टोकनों को एन्क्रिप्ट किया गया है। कृपया Aegis को बंद करें, Authy को खोलें और अपने पासवर्ड से टोकनों को अनलॉक करें। इसके बजाय, यदि आप अपना पासवर्ड नीचे दर्ज करते हैं, तो Aegis आपके लिए आपके Authy टोकनों को डिक्रिप्ट करने का भी प्रयास कर सकता है।</string>
     <string name="yes">हां</string>
@@ -143,7 +137,6 @@
     <string name="biometric_decrypt_error">बायोमेट्रिक प्रमाणीकरण के साथ वॉल्ट को डिक्रिप्ट करने की कोशिश करते समय एक त्रुटि हुई। यह आमतौर पर केवल तब होता है जब आपके डिवाइस की सुरक्षा सेटिंग्स बदल गई हो। कृपया अपने पासवर्ड के साथ वॉल्ट को अनलॉक करें और Aegis की सेटिंग में बायोमेट्रिक प्रमाणीकरण को फिर से कॉन्फ़िगर करें।</string>
     <string name="biometric_init_error">बायोमेट्रिक प्रमाणीकरण तैयार करने की कोशिश करते समय एक त्रुटि हुई। यह आमतौर पर केवल तब होता है जब आपके डिवाइस की सुरक्षा सेटिंग्स बदली गईं हों। कृपया अपने पासवर्ड के साथ वॉल्ट को अनलॉक करें और Aegis की सेटिंग में बायोमेट्रिक प्रमाणीकरण को फिर से कॉन्फ़िगर करें।</string>
     <string name="disable_encryption">एन्क्रिप्शन अक्षम करें</string>
-    <string name="disable_encryption_description">क्या आप वाकई एन्क्रिप्शन को अक्षम करना चाहते हैं? यह वॉल्ट को को सादा अक्षरों में संग्रहीत करने का कारण होगा।</string>
     <string name="enable_encryption_error">एन्क्रिप्शन सक्षम करते समय एक त्रुटि हुई</string>
     <string name="disable_encryption_error">एन्क्रिप्शन को अक्षम करते समय एक त्रुटि हुई</string>
     <string name="backup_error">बैकअप बनाने की कोशिश करते समय एक त्रुटि हुई</string>
@@ -232,15 +225,12 @@
     <string name="changelog">परिवर्तन लॉग</string>
     <string name="whats_new">नया क्या है</string>
     <string name="github_description">सोर्स कोड, मुद्दे और जानकारी</string>
-    <string name="third_party_licenses">लाइसेंस</string>
-    <string name="third_party_licenses_description">लाइब्रेरीज के लाइसेंस जो Aegis उपयोग करता है</string>
     <string name="country_netherlands">नीदरलैंड</string>
     <string name="email_us">ईमेल लिखें</string>
     <string name="visit_website">हमारी वेबसाइट पर जाएँ</string>
     <string name="about_support">सहायता</string>
     <string name="support_rate">रेट करें</string>
     <string name="support_rate_description">गूगल प्ले स्टोर में एक समीक्षा छोड़कर हमारा समर्थन करें</string>
-    <string name="webview_error">यह डिवाइस वेब व्यू का सर्मथन नहीं करता, जो परिवर्तन लॉग देखने के लिए जरूरी है। यह एक अनुपस्थित सिस्टम कंपोनेंट है।</string>
     <string name="email">ईमेल</string>
     <string name="time_sync_warning_title">स्वचालित समय सिंक</string>
     <string name="time_sync_warning_message">Aegis सही कोड उत्पन्न करने के लिए सिस्टम समय पर निर्भर करता है। केवल कुछ सेकंड के विचलन से गलत कोड हो सकते हैं। ऐसा लगता है कि आपका डिवाइस समय को स्वचालित रूप से सिंक्रनाइज़ करने के लिए कॉन्फ़िगर नहीं किया गया है। क्या आप अब ऐसा करना चाहेंगे?</string>
@@ -280,7 +270,6 @@
     <string name="title_activity_edit_entry">प्रविष्टि संपादित करें</string>
     <string name="title_activity_scan_qr">क्यूआर कोड स्कैन करें</string>
     <string name="title_activity_manage_slots">कुंजी स्लॉट प्रबंधन करें</string>
-    <string name="title_activity_import_entries">प्रविष्टियाँ चयन करें</string>
     <string name="dialog_wipe_entries_title">प्रविष्टियों को साफ करें</string>
     <string name="dialog_wipe_entries_message">आपके वॉल्ट में पहले से ही प्रविष्टियाँ हैं। क्या आप इस फ़ाइल को आयात करने से पहले इन प्रविष्टियों को निकालना चाहते हैं?\n\n<b> ऐसा करने पर, आप स्थायी रूप से वॉल्ट में मौजूदा प्रविष्टियों तक पहुंच खो देंगे। </b></string>
     <string name="dialog_wipe_entries_checkbox">वॉल्ट सामग्री साफ करें</string>

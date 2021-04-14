@@ -32,13 +32,17 @@
         <item>@string/small_mode_title</item>
     </string-array>
 
+    app/src/main/res/values-uk-rUA/
+
     <string-array name="pref_lang_entries">
         <item>System default</item>
         <item>Arabic</item>
         <item>Basque</item>
+        <item>Bulgarian</item>
         <item>Chinese (Simplified Han, China)</item>
         <item>Chinese (Traditional Han, Taiwan)</item>
         <item>Czech</item>
+        <item>Danish</item>
         <item>Dutch</item>
         <item>English</item>
         <item>Finnish</item>
@@ -51,6 +55,7 @@
         <item>Indonesian</item>
         <item>Japanese</item>
         <item>Kannada</item>
+        <item>Latvian</item>
         <item>Persian</item>
         <item>Polish</item>
         <item>Portuguese</item>
@@ -59,16 +64,20 @@
         <item>Russian</item>
         <item>Slovak</item>
         <item>Spanish</item>
+        <item>Swedish</item>
         <item>Turkish</item>
+        <item>Ukrainian</item>
     </string-array>
 
     <string-array name="pref_lang_values" translatable="false">
         <item>system</item>
         <item>ar</item>
         <item>eu</item>
+        <item>bg</item>
         <item>zh_CN</item>
         <item>zh_TW</item>
         <item>cs</item>
+        <item>da</item>
         <item>nl</item>
         <item>en</item>
         <item>fi</item>
@@ -81,6 +90,7 @@
         <item>in</item>
         <item>ja</item>
         <item>kn</item>
+        <item>lv</item>
         <item>fa</item>
         <item>pl</item>
         <item>pt</item>
@@ -89,7 +99,9 @@
         <item>ru</item>
         <item>sk</item>
         <item>es</item>
+        <item>sv</item>
         <item>tr</item>
+        <item>uk</item>
     </string-array>
 
     <string-array name="password_strength">

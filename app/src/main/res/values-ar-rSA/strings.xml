@@ -11,9 +11,6 @@
     <string name="save">حفظ</string>
     <string name="issuer">المصدِّر</string>
     <string name="settings">التفضيلات</string>
-    <string name="pref_section_appearance_title">المظهر</string>
-    <string name="pref_section_security_title">الأمان</string>
-    <string name="pref_section_backups_title">النسخ الاحتياطي</string>
     <string name="pref_select_theme_title">النمط</string>
     <string name="pref_view_mode_title">وضع العرض</string>
     <string name="pref_lang_title">اللغة</string>
@@ -27,13 +24,11 @@
     <string name="pref_slots_summary">إدارة لائحة المفاتيح التي يمكنها فك تشفير المخزن</string>
     <string name="pref_import_file_title">استيراد من ملف</string>
     <string name="pref_import_file_summary">استيراد الرموز من ملف</string>
-    <string name="pref_backups_title">النسخ الاحتياطي للمخزن</string>
     <string name="pref_backups_summary">قم تلقائيًا بعمل نسخ احتياطية للمخزن على الذاكرة الخارجية عند إجراء تغييرات هذا مدعوم للمخازن المشفرة فقط</string>
     <string name="pref_backups_location_title">مجلد ملفات النسخ الاحتياطية</string>
     <string name="pref_backups_location_summary">سيتم تخزين النسخ الاحتياطية في</string>
     <string name="pref_backups_trigger_title">اصنع نسخة احتياطية</string>
     <string name="pref_backups_trigger_summary">قم بعمل نسخة احتياطية يدويًّا</string>
-    <string name="pref_backups_versions_title">عدد النسخ التي يتم الاحتفاظ بها</string>
     <string name="pref_import_app_title">استيراد من تطبيق</string>
     <string name="pref_import_app_summary">استيراد الرموز من تطبيق (يتطلب الوصول إلى الجذر root)</string>
     <string name="pref_export_title">تصدير</string>
@@ -83,7 +78,6 @@
     <string name="set_number">الرجاء إدخال رقم</string>
     <string name="set_password_confirm">الرجاء تأكيد كلمة المرور</string>
     <string name="invalid_password">كلمة المرور غير صحيحة</string>
-    <string name="invalidated_biometrics">تم كشف تغيير في إعدادات أمان جهازك. الرجاء الذهاب إلى \" Aegis -&gt; الإعدادات -&gt; البيومترية \" وأعد تفعيل الفتح البيومتري.</string>
     <string name="password_reminder">لقد مرت فترة طويلة منذ أن أدخلت كلمة مرورك. هل مازلت تتذكرها؟</string>
     <string name="enter_password_authy_message">يبدو أن رموز Authy الخاصة بك مشفرة. الرجاء إغلاق Aegis، وفتح Authy وفتح قفل الرموز بكلمة مرورك. بدلًا من ذلك، Aegis يمكنه أيضًا محاولة فك تشفير رموز Authy الخاصة بك، إذا قمت بإدخال كلمة مرورك أدناه.</string>
     <string name="share">شارك</string>
@@ -142,7 +136,6 @@
     <string name="biometric_decrypt_error">حدث خطأ أثناء محاولة فك تشفير المخزن بالمصادقة البيومترية. هذا يحدث فقط عادة إن تم تغيير إعدادات أمان جهازك. الرجاء فك قفل المخزن بكلمة مرورك وإعادة تعيين المصادقة البيومترية داخل إعدادات Aegis.</string>
     <string name="biometric_init_error">حدث خطأ أثناء محاولة تحضير المصادقة البيومترية. هذا يحدث فقط عادة إن تم تغيير إعدادات أمان جهازك. الرجاء فك قفل المخزن بكلمة مرورك وإعادة تعيين المصادقة البيومترية داخل إعدادات Aegis.</string>
     <string name="disable_encryption">تعطيل التشفير</string>
-    <string name="disable_encryption_description">هل ترغب حقًا في تعطيل التشفير؟ هذا سيؤدي إلى تخزين المخزن كنص عادي.</string>
     <string name="enable_encryption_error">حدث خطأ أثناء تفعيل التشفير</string>
     <string name="disable_encryption_error">حدث خطأ أثناء تعطيل التشفير</string>
     <string name="backup_successful">تم جدولة النسخ الاحتياطي بنجاح</string>
@@ -224,15 +217,12 @@
     <string name="changelog">سجل التغيير</string>
     <string name="whats_new">ما الجديد</string>
     <string name="github_description">الكود المصدري، والمشاكل، والمعلومات</string>
-    <string name="third_party_licenses">الرخصات</string>
-    <string name="third_party_licenses_description">الرخصات المكتبات التي يستعملها Aegis</string>
     <string name="country_netherlands">هولندا</string>
     <string name="email_us">اكتب بريد الكتروني</string>
     <string name="visit_website">قم بزيارة موقعنا</string>
     <string name="about_support">الدعم</string>
     <string name="support_rate">التقييم</string>
     <string name="support_rate_description">ادعمنا بترك تقييم على متجر Google Play</string>
-    <string name="webview_error">هذا الجهاز لا يدعم عرض الويب، والذي هو ضروري لعرض سجل التغيير. إنه يفتقد مكون نظام.</string>
     <string name="email">البريد الإلكتروني</string>
     <string name="time_sync_warning_title">مزامنة الوقت تلقائيًا</string>
     <string name="time_sync_warning_message">يعتمد Aegis على وقت النظام لتوليد الأكواد الصحيحة. انحراف بمقادر بضعة ثواني يمكن أن يؤدي إلى أكواد خاطئة. يبدوا أن جهازك غير معيّن إلى مزامنة الوقت تلقائيًا. هل ترغب بفعل ذلك الآن؟</string>

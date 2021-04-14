@@ -11,9 +11,6 @@
     <string name="save">Guardar</string>
     <string name="issuer">Emisor</string>
     <string name="settings">Preferencias</string>
-    <string name="pref_section_appearance_title">Apariencia</string>
-    <string name="pref_section_security_title">Seguridad</string>
-    <string name="pref_section_backups_title">Copias de seguridad</string>
     <string name="pref_select_theme_title">Tema</string>
     <string name="pref_view_mode_title">Modo de visualización</string>
     <string name="pref_lang_title">Idioma</string>
@@ -27,13 +24,11 @@
     <string name="pref_slots_summary">Administrar la lista de claves que puede descifrar la caja fuerte</string>
     <string name="pref_import_file_title">Importar desde un archivo</string>
     <string name="pref_import_file_summary">Importar tokens desde un archivo</string>
-    <string name="pref_backups_title">Copia de seguridad de la caja fuerte</string>
     <string name="pref_backups_summary">Crear automáticamente una copia de seguridad de la caja fuerte en un almacenamiento externo cuando se produzcan cambios. Ésto solo está soportado para las cajas fuerte cifradas.</string>
     <string name="pref_backups_location_title">Directorio para los archivos de copia de seguridad</string>
     <string name="pref_backups_location_summary">Las copias de seguridad se guardarán en</string>
     <string name="pref_backups_trigger_title">Lanzar una copia de seguridad</string>
     <string name="pref_backups_trigger_summary">Lanzar una copia de seguridad manualmente</string>
-    <string name="pref_backups_versions_title">Número de versiones a conservar</string>
     <string name="pref_import_app_title">Importar desde una aplicación</string>
     <string name="pref_import_app_summary">Importar tokens desde una aplicación (requiere acceso root)</string>
     <string name="pref_export_title">Exportar</string>
@@ -79,7 +74,6 @@
     <string name="set_number">Por favor introduzca un número</string>
     <string name="set_password_confirm">Por favor confirme la contraseña</string>
     <string name="invalid_password">La contraseña es incorrecta</string>
-    <string name="invalidated_biometrics">Se ha detectado un cambio en la configuración de seguridad de su dispositivo. Por favor, vaya a \"Aegis -&gt; Configuración -&gt; Seguridad\" y vuelva a activar el desbloqueo biométrico.</string>
     <string name="password_reminder">Por favor introduzca su contraseña. Le pediremos que lo haga ocasionalmente para que no la olvide.</string>
     <string name="enter_password_authy_message">Parece que sus tokens de Authy están cifrados. Por favor, cierre Aegis, abra Authy y desbloquee los tokens con su contraseña. En su lugar, Aegis también puede intentar descifrar sus tokens de Authy por usted, si introduce su contraseña a continuación.</string>
     <string name="share">Compartir</string>
@@ -137,7 +131,6 @@
     <string name="biometric_decrypt_error">Se ha producido un error mientras se trataba de descifrar la caja fuerte con autenticación biométrica. Esto normalmente sólo ocurre si se cambiaron los ajustes de seguridad del dispositivo. Por favor, desbloquee la caja fuerte con su contraseña y reconfigure la autenticación biométrica en la configuración de Aegis.</string>
     <string name="biometric_init_error">Se ha producido un error mientras se trataba de preparar la autenticación biométrica. Esto normalmente sólo ocurre si se cambiaron los ajustes de seguridad del dispositivo. Por favor, desbloquee la caja fuerte con su contraseña y reconfigure la autenticación biométrica en la configuración de Aegis.</string>
     <string name="disable_encryption">Desactivar cifrado</string>
-    <string name="disable_encryption_description">¿Está seguro de que desea desactivar el cifrado? Esto provocará que la caja fuerte se almacene en texto plano.</string>
     <string name="enable_encryption_error">Se ha producido un error tratando de activar el cifrado</string>
     <string name="disable_encryption_error">Se ha producido un error tratando de desactivar el cifrado</string>
     <string name="backup_error">Se ha producido un error mientras se trataba de crear una copia de seguridad</string>
@@ -221,15 +214,12 @@
     <string name="changelog">Historial de cambios</string>
     <string name="whats_new">Novedades</string>
     <string name="github_description">Código fuente, problemas e información</string>
-    <string name="third_party_licenses">Licencias</string>
-    <string name="third_party_licenses_description">Licencias de las librerías usadas por Aegis</string>
     <string name="country_netherlands">Países Bajos</string>
     <string name="email_us">Escríbanos un correo electrónico</string>
     <string name="visit_website">Visite nuestra página web</string>
     <string name="about_support">Soporte</string>
     <string name="support_rate">Valorar</string>
     <string name="support_rate_description">Ayúdenos dejando una reseña en Google Play Store</string>
-    <string name="webview_error">Este dispositivo no soporta web view, lo cual es necesario para visualizar el registro de cambios. Falta un componente del sistema.</string>
     <string name="email">Correo electrónico</string>
     <string name="time_sync_warning_title">Sincronización automática de hora</string>
     <string name="time_sync_warning_message">Aegis depende de la sincronización de la hora del sistema para generar códigos correctos. Una desviación de solo unos segundos podría generar códigos incorrectos. Parece que su dispositivo no está configurado para sincronizar automáticamente la hora. ¿Le gustaría hacerlo ahora?</string>
@@ -260,7 +250,6 @@
     <string name="title_activity_about">Acerca de</string>
     <string name="title_activity_edit_entry">Editar entrada</string>
     <string name="title_activity_scan_qr">Escanear un código QR</string>
-    <string name="title_activity_import_entries">Seleccionar entradas</string>
     <string name="dialog_wipe_entries_title">Limpiar entradas</string>
     <string name="dialog_wipe_entries_message">Su caja fuerte ya contiene entradas. ¿Desea eliminarlas antes de importar este archivo?\n\n<b>Al hacerlo, perderá permanentemente el acceso a las entradas existentes en la caja fuerte.</b></string>
     <string name="dialog_wipe_entries_checkbox">Limpiar el contenido de la caja fuerte</string>

@@ -9,9 +9,6 @@
     <string name="save">Mentés</string>
     <string name="issuer">Kibocsátó</string>
     <string name="settings">Beállítások</string>
-    <string name="pref_section_appearance_title">Megjelenés</string>
-    <string name="pref_section_security_title">Biztonság</string>
-    <string name="pref_section_backups_title">Biztonsági mentések</string>
     <string name="pref_select_theme_title">Téma</string>
     <string name="pref_view_mode_title">Nézetmód</string>
     <string name="pref_lang_title">Nyelv</string>
@@ -25,13 +22,11 @@
     <string name="pref_slots_summary">Azon kulcsok kezelése, melyek feloldhatják a széfet</string>
     <string name="pref_import_file_title">Importálás fájlból</string>
     <string name="pref_import_file_summary">Tokenek importálása fájlból</string>
-    <string name="pref_backups_title">A széf biztonsági mentése</string>
     <string name="pref_backups_summary">Biztonsági mentést készít a széfről a külső tárolón. Ez csak titkosított széfek esetén támogatott.</string>
     <string name="pref_backups_location_title">A biztonsági mentések könyvtára</string>
     <string name="pref_backups_location_summary">A biztonsági mentések itt lesznek tárolva:</string>
     <string name="pref_backups_trigger_title">Biztonsági mentés készítése</string>
     <string name="pref_backups_trigger_summary">Biztonsági mentés kézi indítása</string>
-    <string name="pref_backups_versions_title">Megtartandó verziók száma</string>
     <string name="pref_import_app_title">Importálás alkalmazásból</string>
     <string name="pref_import_app_summary">Tokenek importálása alkalmazásból (root hozzáférés szükséges)</string>
     <string name="pref_export_title">Exportálás</string>
@@ -67,7 +62,6 @@
     <string name="set_group">Adja meg a csoport nevét</string>
     <string name="set_number">Adjon meg egy számot</string>
     <string name="set_password_confirm">Erősítse meg a jelszót</string>
-    <string name="invalidated_biometrics">A jelszava biztonsági beállításainak változása észlelve. Ugorjon az „Aegis -&gt; Beállítások -&gt; Biometrikus” részhez, és engedélyezze újra a biometrikus feloldást.</string>
     <string name="password_reminder">Egy ideje nem írta be a jelszavát. Emlékszik még rá?</string>
     <string name="enter_password_authy_message">Úgy néz ki, hogy az Authy tokenek titkosítottak. Zárja be az Aegist, nyissa meg az Authyt, és oldja fel a tokeneket a jelszavával. Vagy az Aegis is megpróbálhatja visszafejteni az Authy tokeneket, ha megadja a jelszót lent.</string>
     <string name="yes">Igen</string>
@@ -118,7 +112,6 @@
     <string name="decryption_error">Hiba történt a széf feloldásakor</string>
     <string name="saving_error">Hiba történt a széf mentésekor</string>
     <string name="disable_encryption">Titkosítás letiltása</string>
-    <string name="disable_encryption_description">Biztos, hogy letiltja a titkosítést? Ez azt fogja okozni, hogy a széf egyszerű szövegként lesz tárolva.</string>
     <string name="enable_encryption_error">Hiba történt a titkosítás engedélyezésekor</string>
     <string name="disable_encryption_error">Hiba történt a titkosítás letiltásakor</string>
     <string name="permission_denied">Engedély megtagadva</string>
@@ -189,15 +182,12 @@
     <string name="changelog">Változásnapló</string>
     <string name="whats_new">Újdonságok</string>
     <string name="github_description">Forráskód, problémák és információk</string>
-    <string name="third_party_licenses">Licencek</string>
-    <string name="third_party_licenses_description">Az Aegis által használt programkönyvtárok licencei</string>
     <string name="country_netherlands">Hollandia</string>
     <string name="email_us">Írjon egy e-mailt</string>
     <string name="visit_website">Keresse fel weboldalunkat</string>
     <string name="about_support">Támogatás</string>
     <string name="support_rate">Értékelés</string>
     <string name="support_rate_description">Támogasson minket azzal, hogy értékelést ír a Google Play Áruházban</string>
-    <string name="webview_error">Az eszköz nem támogtja a webes nézetet, ami szükséges a változásnapló megtekintéséhez. Ez egy hiányzó rendszerösszetevő.</string>
     <string name="email">E-mail</string>
     <string name="empty_list">Nincs megjeleníthető kód. Adjon hozzá bejegyzéseket a jobb alsó sarokban lévő plusz jelre koppintva.</string>
     <string name="empty_list_title">Nem található bejegyzés</string>

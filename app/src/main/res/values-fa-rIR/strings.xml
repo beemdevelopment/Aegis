@@ -1,19 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="action_settings">تنظیمات</string>
-    <string name="action_about">درباره‌ما</string>
+    <string name="action_about">درباره‌</string>
     <string name="action_import">وارد کردن</string>
     <string name="action_delete">حذف</string>
     <string name="action_transfer">انتقال</string>
-    <string name="action_edit_icon">آیکون ویرایش</string>
+    <string name="action_edit_icon">ویرایش ایکون</string>
     <string name="action_default_icon">بازگرداندن آیکون پیش فرض</string>
     <string name="discard">لغو</string>
     <string name="save">ذخیره</string>
     <string name="issuer">صادر کننده</string>
     <string name="settings">تنظیمات</string>
+    <string name="pref_cat_appearance_app">نرم افزار</string>
+    <string name="pref_cat_appearance_entries">مطالب</string>
+    <string name="pref_cat_backups_android">اندروید</string>
+    <string name="pref_cat_backups_auto">پشتیبان های خودکار</string>
+    <string name="pref_section_behavior_title">رفتار</string>
+    <string name="pref_section_behavior_summary">شخصی سازی رفتار هنگام تعامل با لیست مطالب.</string>
     <string name="pref_section_appearance_title">ظاهر</string>
+    <string name="pref_section_appearance_summary">انتخاب زمینه, زبان و تنظیمات دیگری که در ظاهر برنامه تاثیر دارند.</string>
     <string name="pref_section_security_title">امنیت</string>
-    <string name="pref_section_backups_title">پشتیبان گیری</string>
+    <string name="pref_section_security_summary">تنظیم رمزنگاری, بازکردن با اثر انگشت, قفل خودکار و تنظیمات امنیتی دیگر.</string>
+    <string name="pref_section_import_export_title">واردسازی &amp; خارج‌سازی</string>
+    <string name="pref_section_import_export_summary">وارد سازی فایل های پشتیبان آگیس یا دیگر برنامه های احراز هویت. ساخت فایل های صدور دستی از مخزن آگیس.</string>
+    <string name="pref_section_backups_title">نسخه های پشتیبان</string>
+    <string name="pref_section_backups_summary">مشخص کردن مکان مورد نظرتان برای فایل های پشتیبان خودکار یا فعال سازی مشارکت در سیستم پشتیبان گیری اندروید.</string>
     <string name="pref_select_theme_title">پوسته</string>
     <string name="pref_view_mode_title">حالت نمایش</string>
     <string name="pref_lang_title">زبان</string>
@@ -27,13 +38,14 @@
     <string name="pref_slots_summary">مدیریت کلیدهایی که میتوانند مخزن را رمزگشایی کنند</string>
     <string name="pref_import_file_title">وارد کردن از فایل</string>
     <string name="pref_import_file_summary">وارد کردن توکن ها از فایل</string>
-    <string name="pref_backups_title">پشتیبان گیری از مخزن</string>
+    <string name="pref_android_backups_title">شرکت کردن در سیستم پشتیبانگیری اندروید</string>
+    <string name="pref_android_backups_summary">به سیستم پشتیبان گیری اندروید اجازه دهید تا مخزن آگیس را در فایل های پشتیبان خود شامل کند این عملیات فقط برای مخزن های رمزنگاری شده مقدور می باشد.</string>
+    <string name="pref_backups_title">بصورت خودکار از مخزن پشتیبانگیری شود</string>
     <string name="pref_backups_summary">به صورت خودکار از مخزن ها در کارت حافظه پیشتیبان گیری شود. این ویژگی فقط مخصوص مخزن های رمزگذاری شده است.</string>
     <string name="pref_backups_location_title">مقصد ذخیره فایل‌های پشتیبان گیری</string>
     <string name="pref_backups_location_summary">فایل‌ها پشتیبان گیری در این آدرس ذخیره می‌شوند</string>
     <string name="pref_backups_trigger_title">پشتیبان‌گیری</string>
     <string name="pref_backups_trigger_summary">گرفتن پیشتیبان به صورت دستی</string>
-    <string name="pref_backups_versions_title">تعداد نسخه ها برای نگه‌داری</string>
     <plurals name="pref_backups_versions_summary">
         <item quantity="one">نگه داشتن %1$d نسخه از فایل پشتیبان‌گیری</item>
         <item quantity="other">نگه داشتن %1$d نسخه از فایل پشتیبان‌گیری</item>
@@ -63,9 +75,12 @@
     <string name="pref_set_password_title">تغییر کلمه عبور</string>
     <string name="pref_set_password_summary">یک کلمه عبور جدید برای بازگشایی مخزن وارد کنید</string>
     <string name="export_encrypted">رمزگذاری مخزن</string>
+    <string name="export_help">این عملیات مخرن را از حافظه داخلی آگیس صادر میکند. فرمت مورد نظر فایل خروجی را انتخاب کنید:</string>
+    <string name="export_warning_unencrypted">شما در حال صادر کردن یک کپی محافظت نشده از مخزن آگیس هستید. <b>این روش توصیه نمیشود</b>.</string>
     <string name="export_warning_accept">بله، این ریسک را می‌دانم</string>
     <string name="export_format_aegis">فایل جیسون (.json)</string>
     <string name="export_format_google_auth_uri">فایل متنی (.txt)</string>
+    <string name="export_format_hint">فرمت خروجی</string>
     <string name="choose_authentication_method">امنیت</string>
     <string name="authentication_method_explanation">Aegis یک برنامه ورود دو مرحله ای با تمرکز روی امنیت می‌باشد. توکن ها در یک مخزن می‌باشد که شما می‌توانید آن را با کلمه عبور رمزگذاری کنید. اگر هکر ها به فایل شما دسترسی پیدا کنند، بدون دانستن کلمه عبور نمی‌توانند از محتویات آن اطلاع یابند.\n\nما به صورت پیش فرض گزینه ای انتخاب کرده ایم که فکر می‌کنیم بهتری برای دستگاه شما می‌باشد.</string>
     <string name="authentication_method_none">هیچ کدام</string>
@@ -86,9 +101,11 @@
     <string name="set_number">لطفا یک شماره وارد کنید</string>
     <string name="set_password_confirm">لطفا کلمه عبور را تکرار کنید</string>
     <string name="invalid_password">کلمه عبور صحیح نیست</string>
-    <string name="invalidated_biometrics">یک تغییر امنیتی در دستگاه شما انجام شده است. لطفا برای فعال سازی مجدد احراز هویت بیومتریک به صفحه تنظیمات رفته و اقدام کنید.</string>
     <string name="password_reminder">لطفا کلمه عبور خود را وارد کنید. ما گهگاه از شما کلمه عبور را میپرسیم تا فراموش نکنید.</string>
     <string name="enter_password_authy_message">به نظر میرسد توکن های Authy توسط کلمه عبور رمزگذاری شده است. برانمه Aegis را ببندید و در برنامه Authy توکن ها را با پسورد رمزگشایی کنید. همچنین می‌توانید با وارد کردن کلمه عبور در قسمت زیر این کار را انجام دهید.</string>
+    <string name="period_hint">زمان (ثانیه)</string>
+    <string name="algorithm_hint">عملکرد Hash</string>
+    <string name="type">نوع</string>
     <string name="share">اشتراک گذاری</string>
     <string name="yes">بله</string>
     <string name="no">خیر</string>
@@ -119,6 +136,7 @@
     <string name="password_equality_error">کلمه عبور و تکرار آن باید یکسان و غیر خالی باشند</string>
     <string name="snackbar_authentication_method">لطفا یک روش احراز هویت انتخاب کنید</string>
     <string name="encrypting_vault">رمزگذاری مخزن</string>
+    <string name="exporting_vault">صادر کردن مخزن</string>
     <string name="delete_entry">حذف آیتم</string>
     <string name="delete_entry_description">آیا مطمئن به حذف این آیتم هستید؟</string>
     <string name="delete_entries">حذف موارد</string>
@@ -148,10 +166,12 @@
     <string name="biometric_decrypt_error">هنگاه رمزگشایی مخزن با احراز هویت بیومتریک خطایی رخ داد. این اتفاق هنگامی می‌افتد که تنظیمات احراز هویت بیومتریک دستگاه شما تغییر کرده باشد. لطفا مخزن را با کلمه عبور رمزگشایی کرده و تنظیمات بیومتریک را در تنظیمات برنامه مجدد تنظیم کنید.</string>
     <string name="biometric_init_error">هنگاه آمارده سازی احراز هویت بیومتریک خطایی رخ داد. این اتفاق هنگامی می‌افتد که تنظیمات احراز هویت بیومتریک دستگاه شما تغییر کرده باشد. لطفا مخزن را با کلمه عبور رمزگشایی کرده و تنظیمات بیومتریک را در تنظیمات برنامه مجدد تنظیم کنید.</string>
     <string name="disable_encryption">غیرفعال کردن رمزنگاری</string>
-    <string name="disable_encryption_description">آیا مطمئن به غیر فعال سازی رمزگذاری هستید؟ باعث می‌شود مخزن در فایل متنی ساده ذخیره شود.</string>
+    <string name="disable_encryption_description">آیا مطمئن هستید که میخواهید رمزنگاری را غیر فعال کنید این اقدام باعث میشود مخزن به صورت متن ساده ذخیره شود <b> پشتیبان گیری خودکار نیز غیر فعال خواهد شد</b>.</string>
     <string name="enable_encryption_error">هنگام فعال سازی رمزگذاری خطایی رخ داد</string>
     <string name="disable_encryption_error">هنگام غیر فعال سازی رمزگذاری خطایی رخ داد</string>
+    <string name="backup_successful">فایل پشتیبان‌گیری با موفقیت ساخته شد</string>
     <string name="backup_error">هنگام ساخت فایل پشتیبان‌گیری خطایی رخ داد</string>
+    <string name="documentsui_error">DocumentsUI به نظر میرسد در دستگاه شما وجود ندارد این یک جز ضروری برای انتخاب و طراحی اسناد می باشد. اگر شما از یک ابزار برای &quot;حذف نرم افزار های غیر ضروری&quot; از دستگاه خود استفاده کرده اید ممکن است بطور تصادفی حذف شده باشد و نیازمند نصب دوباره است.</string>
     <string name="permission_denied">حق دسترسی موجود نیست</string>
     <string name="andotp_new_format">فرمت جدید (نسخه ۰.۶.۳ و جدیدتر) </string>
     <string name="andotp_old_format">فرمت قدیم (نسخه ۰.۶.۲ و قدیم‌تر) </string>
@@ -176,6 +196,7 @@
     <string name="encryption_enable_biometrics_error">هنگاه فعال کردن احراز هویت بیومتریک خطایی رخ داد. بعضی از دستگاه ها در پیاده سازی این ویژگی مشکل دارند. می‌توانید از روش \"فقط کلمه عبور\" استفاده کنید.</string>
     <string name="no_cameras_available">هیچ دوربینی در دسترس نیست</string>
     <string name="read_qr_error">هنگام خواندن بارکد دوبعدی خطایی رخ داد</string>
+    <string name="read_qr_error_phonefactor">آگیس با الگوریتم اختصاصی 2FA مایکروسافت سازگاری ندارد. لطفا اطمینان حاصل فرمایید که گزینه \"تنظیم برنامه بدون اعلانات\" در تنظیمات 2FA آفیس 365 انتخاب شده باشد.</string>
     <string name="authentication_method_raw">خام</string>
     <string name="unlocking_vault">رمزگشایی مزخن</string>
     <string name="unlocking_vault_repair">رمزگشایی مخزن (در حال تعمیر)</string>
@@ -198,6 +219,7 @@
     <string name="sort_custom">سفارشی</string>
     <string name="new_group">گروه جدید…</string>
     <string name="enter_group_name">نام گروه را وارد کنید</string>
+    <string name="group">گروه</string>
     <string name="group_name_hint">نام گروه</string>
     <string name="preference_manage_groups">ویرایش گروه</string>
     <string name="preference_manage_groups_summary">اینجا می‌توانید گروه ها را مدیریت و یا حذف کنید</string>
@@ -237,15 +259,12 @@
     <string name="changelog">گزارش تغییرات</string>
     <string name="whats_new">تغییرات جدید</string>
     <string name="github_description">دسترسی به کد برنامه</string>
-    <string name="third_party_licenses">لایسنس</string>
-    <string name="third_party_licenses_description">لایسنس های کتابخانه های مورد استفاده</string>
     <string name="country_netherlands">هلند</string>
     <string name="email_us">ایمیل بنویسید</string>
     <string name="visit_website">از وب‌سایت ما دیدن کنید</string>
     <string name="about_support">پشتیبانی</string>
     <string name="support_rate">امتیاز</string>
     <string name="support_rate_description">ما را با نظر دادن در فروشگاه گوگل پشتیبانی کنید</string>
-    <string name="webview_error">این دستگاه قادر به نمایش صفحات وب در برنامه نمی‌باشد. برای نمایش تغییرات نسخه جدید این ویژگی نیاز است.</string>
     <string name="email">ایمیل</string>
     <string name="time_sync_warning_title">همگام سازی خودکار</string>
     <string name="time_sync_warning_message">این برنامه نیاز به زمان دقیق برای ساختن کد جدید دارد. تفاوت چند ثانیه‌ای ممکن است باعث ایجاد کد اشتباه شود. به نظر می‌رسد ساعت دستگاه شما به صورت خودکار تنظیم نشده است. آیا میخواهید این کار را انجام دهید؟</string>
@@ -285,8 +304,34 @@
     <string name="title_activity_edit_entry">ویرایش آیتم</string>
     <string name="title_activity_scan_qr">اسکن بارکد دوبعدی</string>
     <string name="title_activity_manage_slots">مدیریت کلید‌ها</string>
-    <string name="title_activity_import_entries">انتخاب آیتم‌ها</string>
     <string name="dialog_wipe_entries_title">پاک کردن موارد</string>
     <string name="dialog_wipe_entries_message">مخزن شما در حال حاضر شامل آیتم می‌باشد. آیا مطمئن به حذف این آیتم‌ها قبل از وارد کردن می‌باشید؟\n\n<b>بعد از این کار شما به هیچ وجه دسترسی به آیتم های قبلی نخواهید داشت.</b></string>
     <string name="dialog_wipe_entries_checkbox">پاک کردن اطلاعات مخزن</string>
+    <string name="panic_trigger_ignore_toast">آگیس ماشه وحشت را دریافت کرده ولی تنظیمات مربوطه غیر فعال میباشد, نادیده گرفتن</string>
+    <string name="pref_panic_trigger_title">حذف مخزن بر روی فرمان ماشه وحشت</string>
+    <string name="pref_panic_trigger_summary">حذف مخزن زمانی که یک ماشه وحشت از طرف Ripple دریافت شده</string>
+    <string name="importer_help_aegis">تهیه یک فایل بکاپ / صادر کردن از آگیس.</string>
+    <string name="importer_help_authenticator_plus">تهیه یک فایل خروجی از Authenticator Plus از طریق <b> تنظیمات -&gt; پشتیبان گیری &amp; بازیابی - &gt; صادر کردن به عنوان متن و HTML میباشد </b>.</string>
+    <string name="importer_help_authy">تهیه کپی از
+<b>/data/data/com.authy.authy/shared_prefs/com.authy.storage.tokens.authenticator.xml</b>,
+واقع شده در حافظه داخلی Authy.</string>
+    <string name="importer_help_andotp">تهیه فایل بکاپ / خروجی از andOTP.</string>
+    <string name="importer_help_freeotp">تهیه کپی از
+<b>/data/data/org.fedorahosted.freeotp/shared_prefs/tokens.xml</b>,
+واقع شده در حافظه داخلیFreeOTP.</string>
+    <string name="importer_help_freeotp_plus">تهیه فایل صدور برای FreeOTP+.</string>
+    <string name="importer_help_google_authenticator">تهیه کپی از
+<b>/data/data/com.google.android.apps.authenticator2/databases/databases</b>,
+واقع شده در حافظه داخلی Google Authenticator.</string>
+    <string name="importer_help_microsoft_authenticator">تهیه کپی از
+<b>/data/data/com.azure.authenticator/databases/PhoneFactor</b>,
+واقع شده در حافظه داخلی Microsoft Authenticator.</string>
+    <string name="importer_help_plain_text">تهیه یک فایل متنی ساده با Google Authenticator URI در هر خط.</string>
+    <string name="importer_help_steam">تهیه کپی از
+<b>/data/data/com.valvesoftware.android.steam.community/files/Steamguard-*.json</b>,
+واقع شده در حافظه داخلی Steam.</string>
+    <string name="importer_help_totp_authenticator">تهیه فایل صدور برای TOTP Authenticator.</string>
+    <string name="importer_help_winauth">تهیه فایل صدور برای WinAuth.</string>
+    <string name="importer_help_direct">وارد کردن محتویات مستقیما از %s. برای انجام این عملیات باید اپلیکشن بر روی دستگاه نصب شده باشد و دسترسی روت به آگیس اعطا شده باشد.</string>
+    <string name="groups">گروه‌ها</string>
 </resources>

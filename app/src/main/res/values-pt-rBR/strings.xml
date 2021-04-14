@@ -11,9 +11,6 @@
     <string name="save">Salvar</string>
     <string name="issuer">Nome do serviço</string>
     <string name="settings">Preferências</string>
-    <string name="pref_section_appearance_title">Aparência</string>
-    <string name="pref_section_security_title">Segurança</string>
-    <string name="pref_section_backups_title">Backups</string>
     <string name="pref_select_theme_title">Tema</string>
     <string name="pref_view_mode_title">Modo de exibição</string>
     <string name="pref_lang_title">Idioma</string>
@@ -27,13 +24,11 @@
     <string name="pref_slots_summary">Gerencia a lista de chaves que podem descriptografar o cofre</string>
     <string name="pref_import_file_title">Importar de arquivo</string>
     <string name="pref_import_file_summary">Importa tokens de um arquivo</string>
-    <string name="pref_backups_title">Fazer backup do cofre</string>
     <string name="pref_backups_summary">Cria automaticamente backups do cofre no armazenamento externo quando alterações forem feitas. Essa opção só é suportada em cofres criptografados.</string>
     <string name="pref_backups_location_title">Diretório para aquivos de backup</string>
     <string name="pref_backups_location_summary">Backups são armazenados em</string>
     <string name="pref_backups_trigger_title">Ativar backup</string>
     <string name="pref_backups_trigger_summary">Ativa manualmente um backup</string>
-    <string name="pref_backups_versions_title">Quantidade de versões a manter</string>
     <plurals name="pref_backups_versions_summary">
         <item quantity="one">Manter %1$d versão do backup</item>
         <item quantity="other">Manter %1$d versões do backup</item>
@@ -88,7 +83,6 @@
     <string name="set_number">Por favor, insira um número</string>
     <string name="set_password_confirm">Por favor, confirme a senha</string>
     <string name="invalid_password">A senha está incorreta</string>
-    <string name="invalidated_biometrics">Uma mudança nas configurações de segurança do seu dispositivo foi detectada. Por favor vá a \"Aegis -&gt; Configurações -&gt; Biometria\" e reative o desbloqueio biométrico.</string>
     <string name="password_reminder">Por favor, digite sua senha. Nós ocasionalmente pedimos que você faça isso para que não a esqueça.</string>
     <string name="enter_password_authy_message">Parece que seus Authy tokens estão criptografados. Por favor, feche o Aegis, abra o Authy e desbloqueie os tokens com sua senha. Alternativamente, Aegis também pode tentar descriptografar seus Authy tokens para você, se você inserir sua senha abaixo.</string>
     <string name="share">Compartilhar</string>
@@ -151,7 +145,6 @@
     <string name="biometric_decrypt_error">Um erro ocorreu durante a tentativa de decriptar o cofre com autenticação biométrica. Isso acontece usualmente  apenas se as configurações de segurança do seu dispositivo mudaram. Por favor desbloqueie o cofre com sua senha e reconfigure a autenticação biométrica nas configurações do Aegis.</string>
     <string name="biometric_init_error">Um erro ocorreu durante a tentativa de preparar a autenticação biométrica. Isso acontece usualmente  apenas se as configurações de segurança do seu dispositivo mudaram. Por favor desbloqueie o cofre com sua senha e reconfigure a autenticação biométrica nas configurações do Aegis.</string>
     <string name="disable_encryption">Desabilitar criptografia</string>
-    <string name="disable_encryption_description">Você tem certeza que deseja desabilitar a criptografia? Isso irá fazer com que o cofre será armazenado em texto.</string>
     <string name="enable_encryption_error">Um erro ocorreu durante a ativação da criptografia</string>
     <string name="disable_encryption_error">Um erro ocorreu durante a desativação da criptografia</string>
     <string name="backup_successful">O backup foi agendado com sucesso</string>
@@ -241,15 +234,12 @@
     <string name="changelog">Registro de Mudanças</string>
     <string name="whats_new">O que há de novo</string>
     <string name="github_description">Código fonte, problemas e informações</string>
-    <string name="third_party_licenses">Licenças</string>
-    <string name="third_party_licenses_description">Licenças das bibliotecas usadas pelo Aegis</string>
     <string name="country_netherlands">Países Baixos</string>
     <string name="email_us">Escreva-nos um email</string>
     <string name="visit_website">Visite nosso site</string>
     <string name="about_support">Apoie</string>
     <string name="support_rate">Avalie</string>
     <string name="support_rate_description">Nos apoie deixando uma crítica na Google Play Store</string>
-    <string name="webview_error">Esse dispositivo não suporta web view, a qual é necessária para ver o registro de mudanças. Está faltando um componente do sistema.</string>
     <string name="email">Email</string>
     <string name="time_sync_warning_title">Sincronização automática de hora</string>
     <string name="time_sync_warning_message">Aegis depende da hora do sistema para ficar em sincronia para gerar os códigos corretos. Uma diferença de apenas alguns segundos poderia resultar em códigos incorretos. Parece que seu dispositivo não está configurado para sincronizar automaticamente a hora. Gostaria de ativar essa opção agora?</string>
@@ -289,7 +279,6 @@
     <string name="title_activity_edit_entry">Editar entrada</string>
     <string name="title_activity_scan_qr">Escanear QR code</string>
     <string name="title_activity_manage_slots">Gerenciar slots de chaves</string>
-    <string name="title_activity_import_entries">Selecionar entradas</string>
     <string name="dialog_wipe_entries_title">Limpar entradas</string>
     <string name="dialog_wipe_entries_message">O seu cofre já contém entradas. Você quer remover essas entradas antes de importar este arquivo?\n\n<b>Ao fazer isso, você perderá permanentemente o acesso às entradas existentes no cofre.</b></string>
     <string name="dialog_wipe_entries_checkbox">Limpar conteúdo do cofre</string>

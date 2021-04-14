@@ -10,10 +10,24 @@
     <string name="discard">Verwerfen</string>
     <string name="save">Speichern</string>
     <string name="issuer">Herausgeber</string>
+    <string name="suggested">Vorgeschlagene</string>
     <string name="settings">Einstellungen</string>
+    <string name="pref_cat_appearance_app">App</string>
+    <string name="pref_cat_appearance_entries">Einträge</string>
+    <string name="pref_cat_backups_android">Android</string>
+    <string name="pref_cat_backups_auto">Automatische Sicherungskopien</string>
+    <string name="pref_section_behavior_title">Verhalten</string>
+    <string name="pref_section_behavior_summary">Passe das Verhalten bei der Interaktion mit der Eintragsliste an.</string>
     <string name="pref_section_appearance_title">Erscheinungsbild</string>
+    <string name="pref_section_appearance_summary">Passe das Design, die Sprache und andere Einstellungen an, die das Erscheinungsbild der App betreffen.</string>
     <string name="pref_section_security_title">Sicherheit</string>
-    <string name="pref_section_backups_title">Sicherungskopien</string>
+    <string name="pref_section_security_summary">Konfiguriere Verschlüsselung, biometrisches Entsperren, automatische Sperre und andere Sicherheitseinstellungen.</string>
+    <string name="pref_section_import_export_title">Importieren &amp; Exportieren</string>
+    <string name="pref_section_import_export_summary">Importiere Sicherungskopien von Aegis oder anderen Authentifizierungs-Apps. Erstelle manuelle Exporte der Aegis-Datenbank.</string>
+    <string name="pref_section_backups_title">Sicherungen</string>
+    <string name="pref_section_backups_summary">Richte automatische Sicherungen an einem Ort deiner Wahl ein oder aktiviere die Verwendung des Sicherungssystems von Android.</string>
+    <string name="pref_section_icon_packs">Symbolpakete</string>
+    <string name="pref_section_icon_packs_summary">Symbolpakete verwalten und importieren</string>
     <string name="pref_select_theme_title">Design</string>
     <string name="pref_view_mode_title">Ansichtsmodus</string>
     <string name="pref_lang_title">Sprache</string>
@@ -27,7 +41,9 @@
     <string name="pref_slots_summary">Verwalte die Liste der Schlüssel, die die Datenbank entschlüsseln können</string>
     <string name="pref_import_file_title">Aus Datei importieren</string>
     <string name="pref_import_file_summary">Token aus einer Datei importieren</string>
-    <string name="pref_backups_title">Sicherungskopie erstellen</string>
+    <string name="pref_android_backups_title">Einbindung in das Android-Sicherungssystem</string>
+    <string name="pref_android_backups_summary">Erlaube Androids Backup-System Aegis Datenbank in seine Backups einzubinden. Dies wird nur für verschlüsselte Datenbanken unterstützt.</string>
+    <string name="pref_backups_title">Datenbank automatisch sichern</string>
     <string name="pref_backups_summary">Sicherungskopie der Datenbank automatisch bei Änderungen auf externem Speicher erstellen. Nur für verschlüsselte Datenbanken unterstützt.</string>
     <string name="pref_backups_location_title">Ordner der Sicherungskopie</string>
     <string name="pref_backups_location_summary">Sicherungskopien werden gespeichert in</string>
@@ -68,6 +84,7 @@
     <string name="export_warning_accept">Mir ist das Risiko bewusst</string>
     <string name="export_format_aegis">Aegis (.JSON)</string>
     <string name="export_format_google_auth_uri">Textdatei (.TXT)</string>
+    <string name="export_format_hint">Exportformat</string>
     <string name="choose_authentication_method">Sicherheit</string>
     <string name="authentication_method_explanation">Aegis ist eine auf Sicherheit ausgerichtete 2FA-App. Die Token werden in einer Datenbank gespeichert, die optional mit einem Passwort deiner Wahl verschlüsselt werden kann. Wenn ein Angreifer an deine verschlüsselte Datenbankdatei gelangt, kann er ohne Kenntnis des Passworts nicht auf den Inhalt zugreifen.\n\nWir haben die Optionen voreingestellt, die unserer Meinung nach am besten zu deinem Gerät passen.</string>
     <string name="authentication_method_none">Keine</string>
@@ -82,15 +99,18 @@
     <string name="authentication">Datenbank entsperren</string>
     <!-- The newline (\n) on the following line is just for aesthetic purposes !-->
     <string name="authentication_multiline">Datenbank\nentsperren</string>
-    <string name="auth_use_biometrics">Oder tippe hier, um <font fgcolor="#FF0D86C1">biometrische Daten zu verwenden</font></string>
+    <string name="auth_use_biometrics">Stattdessen <font fgcolor="#FF0D86C1">biometrische Daten</font> verwenden</string>
     <string name="set_password">Bitte gib ein Passwort ein</string>
     <string name="set_group">Bitte gib einen Gruppennamen ein</string>
     <string name="set_number">Bitte gib eine Zahl ein</string>
     <string name="set_password_confirm">Bitte bestätige das Passwort</string>
     <string name="invalid_password">Das Passwort ist falsch</string>
-    <string name="invalidated_biometrics">Es wurde eine Änderung der Sicherheitseinstellungen auf deinem Gerät festgestellt. Bitte gehe zu \"Aegis -&gt; Einstellungen -&gt; Sicherheit\" und aktiviere erneut biometrisches Entsperren.</string>
+    <string name="invalidated_biometrics">Es wurde eine Änderung in den Sicherheitseinstellungen deines Geräts erkannt. Bitte gehe zu \"Aegis -&gt; Einstellungen -&gt; Sicherheit -&gt; Biometrisches Entsperren\", um biometrisches Entsperren zu deaktivieren und wieder zu aktivieren.</string>
     <string name="password_reminder">Bitte gib dein Passwort ein. Wir bitten dich gelegentlich, dies zu tun, damit du es nicht vergisst.</string>
     <string name="enter_password_authy_message">Es sieht so aus, als ob deine Authy-Token verschlüsselt sind. Bitte schließe Aegis, öffne Authy und entsperre die Token mit deinem Passwort. Ebenfalls kann Aegis versuchen, deine Authy-Token zu entschlüsseln, wenn du unten dein Passwort eingibst.</string>
+    <string name="period_hint">Zeitraum (Sekunden)</string>
+    <string name="algorithm_hint">Hashfunktion</string>
+    <string name="type">Art</string>
     <string name="share">Teilen</string>
     <string name="yes">Ja</string>
     <string name="no">Nein</string>
@@ -122,8 +142,11 @@
     <string name="snackbar_authentication_method">Bitte wähle eine Authentifizierungsmethode aus</string>
     <string name="encrypting_vault">Verschlüsselung der Datenbank</string>
     <string name="exporting_vault">Exportieren der Datenbank</string>
+    <string name="reading_file">Datei wird gelesen</string>
+    <string name="importing_icon_pack">Symbolpaket wird importiert</string>
     <string name="delete_entry">Eintrag löschen</string>
     <string name="delete_entry_description">Bist du sicher, dass du diesen Eintrag löschen möchtest?</string>
+    <string name="delete_entry_explanation">Diese Aktion deaktiviert nicht die 2FA für <b>%s</b>. Um zu verhindern, dass du den Zugriff verlierst, stelle sicher, dass du 2FA deaktiviert hast oder dass du eine alternative Möglichkeit verwendest, um Codes für diesen Dienst zu generieren.</string>
     <string name="delete_entries">Einträge löschen</string>
     <plurals name="delete_entries_description">
         <item quantity="one">Bist du sicher, dass du %d Eintrag löschen möchtest?</item>
@@ -151,16 +174,26 @@
     <string name="biometric_decrypt_error">Beim Versuch, die Datenbank mit biometrischer Authentifizierung zu entschlüsseln, ist ein Fehler aufgetreten. Dies geschieht in der Regel nur, wenn die Sicherheitseinstellungen deines Geräts geändert wurden. Bitte entsperre die Datenbank mit deinem Passwort und konfiguriere die biometrische Authentifizierung in den Einstellungen von Aegis neu.</string>
     <string name="biometric_init_error">Beim Versuch, die biometrische Authentifizierung vorzubereiten, ist ein Fehler aufgetreten. Dies geschieht in der Regel nur, wenn die Sicherheitseinstellungen deines Geräts geändert wurden. Bitte entsperre die Datenbank mit deinem Passwort und konfiguriere die biometrische Authentifizierung in den Einstellungen von Aegis neu.</string>
     <string name="disable_encryption">Verschlüsselung deaktivieren</string>
-    <string name="disable_encryption_description">Bist du sicher, dass du die Verschlüsselung deaktivieren willst? Dadurch wird die Datenbank im Klartext gespeichert.</string>
+    <string name="disable_encryption_description">Bist du sicher, dass du die Verschlüsselung deaktivieren möchtest? Dies führt dazu, dass die Datenbank im Klartext gespeichert wird. <b>Automatische Sicherungen werden ebenfalls deaktiviert</b>.</string>
     <string name="enable_encryption_error">Bei der Aktivierung der Verschlüsselung ist ein Fehler aufgetreten</string>
     <string name="disable_encryption_error">Bei der Deaktivierung der Verschlüsselung ist ein Fehler aufgetreten</string>
     <string name="backup_successful">Die Sicherung wurde erfolgreich durchgeführt</string>
     <string name="backup_error">Beim Erstellen der Sicherungskopie ist ein Fehler aufgetreten</string>
+    <string name="documentsui_error">DocumentsUI scheint auf deinem Gerät zu fehlen. Dies ist eine wichtige Systemkomponente, die für die Auswahl und Erstellung von Dokumenten erforderlich ist. Wenn du ein Programm zum &quot;Debloat&quot; deines Geräts verwendet hast, hast du es möglicherweise versehentlich entfernt und müsstest es neu installieren.</string>
+    <string name="icon_pack_import_error">Beim Versuch, ein Symbolpaket zu importieren, ist ein Fehler aufgetreten</string>
+    <string name="icon_pack_import_exists_error">Das Symbolpaket, das du zu importieren versuchst, existiert bereits. Möchtest du es überschreiben?</string>
+    <string name="icon_pack_delete_error">Beim Versuch, ein Symbolpaket zu löschen, ist ein Fehler aufgetreten</string>
+    <plurals name="icon_pack_info">
+        <item quantity="one">%d Symbol</item>
+        <item quantity="other">%d Symbole</item>
+    </plurals>
+    <string name="icon_pack">Symbolpaket</string>
+    <string name="icon_custom">Benutzerdefiniert</string>
     <string name="permission_denied">Zugriff verweigert</string>
     <string name="andotp_new_format">Neues Format (v0.6.3 oder neuer) </string>
     <string name="andotp_old_format">Altes Format (v0.6.2 oder älter) </string>
     <string name="choose_andotp_importer">Welches Format hat die andOTP-Sicherungsdatei?</string>
-    <string name="choose_totpauth_importer">Ist diese TOTP-Authentifizierungssicherung mit einem Passwort verschlüsselt?</string>
+    <string name="choose_totpauth_importer">Ist diese TOTP Authenticator-Sicherungskopie mit einem Passwort verschlüsselt?</string>
     <string name="choose_application">Wähle die App aus, aus der du importieren möchtest</string>
     <string name="choose_theme">Wähle das gewünschte Design aus</string>
     <string name="choose_view_mode">Wähle den gewünschten Ansichtsmodus aus</string>
@@ -180,6 +213,7 @@
     <string name="encryption_enable_biometrics_error">Beim Versuch, biometrisches Entsperren zu aktivieren, ist ein Fehler aufgetreten. Einige Geräte haben eine schlechte Implementierung der biometrischen Authentifizierung und es ist wahrscheinlich, dass dieses Gerät dazu gehört. Ziehe stattdessen in Betracht, zu einer Konfiguration zu wechseln, die auf ein Passwort basiert.</string>
     <string name="no_cameras_available">Keine Kameras verfügbar</string>
     <string name="read_qr_error">Beim Versuch, den QR-Code zu lesen, ist ein Fehler aufgetreten</string>
+    <string name="read_qr_error_phonefactor">Aegis ist nicht mit dem proprietären 2FA-Algorithmus von Microsoft kompatibel. Bitte stelle sicher, dass du bei der Konfiguration von 2FA in Office 365 \"Anwendung ohne Benachrichtigungen einrichten\" auswählst.</string>
     <string name="authentication_method_raw">Raw</string>
     <string name="unlocking_vault">Entsperren der Datenbank</string>
     <string name="unlocking_vault_repair">Entsperren der Datenbank (reparieren)</string>
@@ -189,12 +223,15 @@
     <string name="remove_slot_description">Bist du sicher, dass du diesen Slot entfernen willst?</string>
     <string name="remove_group">Gruppe entfernen</string>
     <string name="remove_group_description">Bist du sicher, dass du diese Gruppe entfernen möchtest? Einträge in dieser Gruppe wechseln automatisch zu \'Keine Gruppe\'.</string>
+    <string name="remove_icon_pack">Symbolpaket entfernen</string>
+    <string name="remove_icon_pack_description">Bist du sicher, dass du dieses Symbolpaket entfernen möchtest? Einträge, die Symbole aus diesem Paket verwenden, sind davon nicht betroffen.</string>
     <string name="adding_new_slot_error">Beim Versuch, einen neuen Slot hinzuzufügen, ist ein Fehler aufgetreten:</string>
     <string name="progressbar_error">Die Skala der Animationsdauer kann nicht zurückgesetzt werden. Fortschrittsbalken werden unsichtbar sein.</string>
     <string name="details">Details</string>
     <string name="lock">Sperren</string>
     <string name="name">Name</string>
     <string name="no_group">Keine Gruppe</string>
+    <string name="sort">Sortieren</string>
     <string name="sort_alphabetically">Herausgeber (A bis Z)</string>
     <string name="sort_alphabetically_reverse">Herausgeber (Z bis A)</string>
     <string name="sort_alphabetically_name">Konto (A bis Z)</string>
@@ -202,6 +239,7 @@
     <string name="sort_custom">Benutzerdefiniert</string>
     <string name="new_group">Neue Gruppe …</string>
     <string name="enter_group_name">Gib einen Gruppennamen ein</string>
+    <string name="group">Gruppe</string>
     <string name="group_name_hint">Gruppenname</string>
     <string name="preference_manage_groups">Gruppen bearbeiten</string>
     <string name="preference_manage_groups_summary">Verwalte und lösche deine Gruppen hier</string>
@@ -241,15 +279,17 @@
     <string name="changelog">Änderungsprotokoll</string>
     <string name="whats_new">Was ist neu</string>
     <string name="github_description">Quellcode, Probleme und Informationen</string>
-    <string name="third_party_licenses">Lizenzen</string>
-    <string name="third_party_licenses_description">Lizenzen der Bibliotheken, die Aegis verwendet</string>
+    <string name="license">Lizenz</string>
+    <string name="license_description">Aegis Authenticator ist lizenziert unter GPLv3</string>
+    <string name="third_party_licenses">Drittanbieter-Lizenzen</string>
+    <string name="third_party_licenses_description">Lizenzen der Drittanbieter-Bibliotheken, die Aegis verwendet</string>
     <string name="country_netherlands">Niederlande</string>
     <string name="email_us">Eine E-Mail schreiben</string>
     <string name="visit_website">Besuche unsere Website</string>
     <string name="about_support">Support</string>
     <string name="support_rate">Bewerten</string>
     <string name="support_rate_description">Unterstütze uns, indem du eine Bewertung im Google Play Store hinterlässt</string>
-    <string name="webview_error">Dieses Gerät unterstützt keine Web-Ansicht, die notwendig ist, um das Änderungsprotokoll anzuzeigen. Es fehlt eine Systemkomponente.</string>
+    <string name="webview_error">Dieses Gerät unterstützt kein WebView, das zum Anzeigen des Änderungsprotokolls und der Lizenz erforderlich ist. Es fehlt eine Systemkomponente.</string>
     <string name="email">E-Mail</string>
     <string name="time_sync_warning_title">Automatische Zeitsynchronisierung</string>
     <string name="time_sync_warning_message">Aegis ist auf die Synchronisierung der Systemzeit angewiesen, um korrekte Codes zu generieren. Eine Abweichung von nur wenigen Sekunden kann zu falschen Codes führen. Es sieht so aus, als ob dein Gerät nicht so konfiguriert ist, dass es die Zeit automatisch synchronisiert. Möchtest du dies jetzt tun?</string>
@@ -266,6 +306,10 @@
     <string name="empty_list_title">Keine Einträge gefunden</string>
     <string name="empty_group_list">Es gibt keine anzuzeigenden Gruppen. Füge Gruppen im Bearbeitungsbildschirm eines Eintrags hinzu</string>
     <string name="empty_group_list_title">Keine Gruppen gefunden</string>
+    <string name="no_icon_packs">Bisher wurden noch keine Symbolpakete importiert. Tippe auf das Plus-Zeichen, um eins zu importieren. Tipp: Probiere <a href="https://github.com/aegis-icons/aegis-icons/releases">Aegis-Icons</a>.</string>
+    <string name="no_icon_packs_title">Keine Symbolpakete</string>
+    <string name="pick_icon">Wähle ein Symbol aus</string>
+    <string name="uncategorized">Nicht kategorisiert</string>
     <string name="done">Fertig</string>
     <plurals name="entries_count">
         <item quantity="one">1 Eintrag</item>
@@ -289,7 +333,7 @@
     <string name="title_activity_edit_entry">Eintrag bearbeiten</string>
     <string name="title_activity_scan_qr">Scanne einen QR-Code</string>
     <string name="title_activity_manage_slots">Schlüsselplätze verwalten</string>
-    <string name="title_activity_import_entries">Einträge auswählen</string>
+    <string name="title_activity_import_entries">Einträge importieren</string>
     <string name="dialog_wipe_entries_title">Einträge löschen</string>
     <string name="dialog_wipe_entries_message">Deine Datenbank enthält bereits Einträge. Möchtest du diese Einträge entfernen, bevor diese Datei importiert wird?\n\n<b>Wenn du dies tust, verlierst du dauerhaft den Zugriff auf die vorhandenen Einträge in der Datenbank.</b></string>
     <string name="dialog_wipe_entries_checkbox">Datenbankinhalt löschen</string>
@@ -306,7 +350,8 @@
     <string name="importer_help_microsoft_authenticator">Gib eine Kopie von <b>/data/data/com.azure.authenticator/databases/PhoneFactor</b> an, die sich im internen Speicherverzeichnis von Microsoft Authenticator befindet.</string>
     <string name="importer_help_plain_text">Gib eine Klartextdatei an, die in jeder Zeile eine Google Authenticator-URI enthält.</string>
     <string name="importer_help_steam">Gib eine Kopie von <b>/data/data/com.valvesoftware.android.steam.community/files/Steamguard-*.json</b> an, die sich im internen Speicherverzeichnis von Steam befindet.</string>
-    <string name="importer_help_totp_authenticator">Gib eine TOTP Authenticator Exportdatei an.</string>
+    <string name="importer_help_totp_authenticator">Gib eine TOTP Authenticator-Exportdatei an.</string>
     <string name="importer_help_winauth">Gib eine WinAuth Exportdatei an.</string>
     <string name="importer_help_direct">Importiere Einträge direkt aus %s. Dazu muss die App auf diesem Gerät installiert sein und Aegis muss Root-Zugriff gewährt werden.</string>
+    <string name="groups">Gruppen</string>
 </resources>
