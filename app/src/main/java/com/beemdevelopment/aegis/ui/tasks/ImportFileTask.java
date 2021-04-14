@@ -15,7 +15,7 @@ import java.io.InputStream;
  * ImportFileTask reads an SAF file from a background thread and
  * writes it to a temporary file in the cache directory.
  */
-public class ImportFileTask extends ProgressDialogTask<Uri, ImportFileTask.Result> {
+public class ImportFileTask extends ProgressDialogTask<ImportFileTask.Params, ImportFileTask.Result> {
     private final Callback _cb;
 
     public ImportFileTask(Context context, Callback cb) {
@@ -24,11 +24,15 @@ public class ImportFileTask extends ProgressDialogTask<Uri, ImportFileTask.Resul
     }
 
     @Override
-    protected Result doInBackground(Uri... uris) {
+    protected Result doInBackground(Params... params) {
         Context context = getDialog().getContext();
 
-        try (InputStream inStream = context.getContentResolver().openInputStream(uris[0])) {
-            File tempFile = File.createTempFile("import-", "", context.getCacheDir());
+        Params p = params[0];
+        try (InputStream inStream = context.getContentResolver().openInputStream(p.getUri())) {
+            String prefix = p.getNamePrefix() != null ? p.getNamePrefix() + "-" : "";
+            String suffix = p.getNameSuffix() != null ? "-" + p.getNameSuffix() : "";
+
+            File tempFile = File.createTempFile(prefix, suffix, context.getCacheDir());
             try (FileOutputStream outStream = new FileOutputStream(tempFile)) {
                 IOUtils.copy(inStream, outStream);
             }
@@ -48,6 +52,30 @@ public class ImportFileTask extends ProgressDialogTask<Uri, ImportFileTask.Resul
 
     public interface Callback {
         void onTaskFinished(Result result);
+    }
+
+    public static class Params {
+        private final Uri _uri;
+        private final String _namePrefix;
+        private final String _nameSuffix;
+
+        public Params(Uri uri, String namePrefix, String nameSuffix) {
+            _uri = uri;
+            _namePrefix = namePrefix;
+            _nameSuffix = nameSuffix;
+        }
+
+        public Uri getUri() {
+            return _uri;
+        }
+
+        public String getNamePrefix() {
+            return _namePrefix;
+        }
+
+        public String getNameSuffix() {
+            return _nameSuffix;
+        }
     }
 
     public static class Result {

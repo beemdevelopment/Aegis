@@ -112,6 +112,7 @@ public class ImportExportPreferencesFragment extends PreferencesFragment {
             return;
         }
 
+        ImportFileTask.Params params = new ImportFileTask.Params(uri, "import", null);
         ImportFileTask task = new ImportFileTask(getContext(), result -> {
             if (result.getException() == null) {
                 startImportEntriesActivity(_importerType, result.getFile());
@@ -119,7 +120,7 @@ public class ImportExportPreferencesFragment extends PreferencesFragment {
                 Dialogs.showErrorDialog(getContext(), R.string.reading_file_error, result.getException());
             }
         });
-        task.execute(getLifecycle(), uri);
+        task.execute(getLifecycle(), params);
     }
 
     private void startImportEntriesActivity(Class<? extends DatabaseImporter> importerType, File file) {
