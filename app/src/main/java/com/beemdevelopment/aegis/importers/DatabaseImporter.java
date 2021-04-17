@@ -27,6 +27,7 @@ public abstract class DatabaseImporter {
     static {
         // note: keep these lists sorted alphabetically
         _importers = new ArrayList<>();
+        _importers.add(new Definition("2FAS Authenticator", TwoFASImporter.class, R.string.importer_help_2fas, false));
         _importers.add(new Definition("Aegis", AegisImporter.class, R.string.importer_help_aegis, false));
         _importers.add(new Definition("andOTP", AndOtpImporter.class, R.string.importer_help_andotp, false));
         _importers.add(new Definition("Authenticator Plus", AuthenticatorPlusImporter.class, R.string.importer_help_authenticator_plus, false));

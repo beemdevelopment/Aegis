@@ -28,10 +28,10 @@ The security design of the app and the vault format is described in detail in
 - Lots of ways to add new entries
   - Scan a QR code or an image of one
   - Enter details manually
-  - Import from other authenticator apps: Authenticator Plus, Authy, andOTP,
-    FreeOTP, FreeOTP+, Google Authenticator, Microsoft Authenticator, Plain
-    text, Steam, TOTP Authenticator and WinAuth (root access is required for
-    some of these)
+  - Import from other authenticator apps: 2FAS Authenticator, Authenticator
+    Plus, Authy, andOTP, FreeOTP, FreeOTP+, Google Authenticator, Microsoft
+    Authenticator, Plain text, Steam, TOTP Authenticator and WinAuth (root
+    access is required for some of these)
 - Organization
   - Alphabetic/custom sorting
   - Custom or automatically generated icons

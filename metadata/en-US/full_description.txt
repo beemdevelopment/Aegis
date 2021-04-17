@@ -13,7 +13,7 @@ Over time, you'll likely accumulate tens of entries in your vault. Aegis Authent
 To make sure you will never lose access to your online accounts, Aegis Authenticator can create automatic backups of the vault to a location of your choosing. If your cloud provider supports the Storage Access Framework of Android (like Nextcloud does), it can even create automatic backups to the cloud. Creating manual exports of the vault is also supported.
 
 <b>Making the switch</b>
-To make the switch easier, Aegis Authenticator can import the entries of lots of other authenticators, including: Authenticator Plus, Authy, andOTP, FreeOTP, FreeOTP+, Google Authenticator, Microsoft Authenticator, Steam, TOTP Authenticator and WinAuth (root access is required for the apps that don't have an option to export).
+To make the switch easier, Aegis Authenticator can import the entries of lots of other authenticators, including: 2FAS Authenticator, Authenticator Plus, Authy, andOTP, FreeOTP, FreeOTP+, Google Authenticator, Microsoft Authenticator, Steam, TOTP Authenticator and WinAuth (root access is required for the apps that don't have an option to export).
 
 <b>Feature overview</b>
 <ul>

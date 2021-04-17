@@ -46,6 +46,7 @@ import com.nulabinc.zxcvbn.Zxcvbn;
 
 import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
+import java.util.stream.Collectors;
 
 import javax.crypto.Cipher;
 
@@ -399,14 +400,15 @@ public class Dialogs {
 
     public static void showImportersDialog(Context context, boolean isDirect, ImporterListener listener) {
         List<DatabaseImporter.Definition> importers = DatabaseImporter.getImporters(isDirect);
-        String[] names = importers.stream().map(DatabaseImporter.Definition::getName).toArray(String[]::new);
+        List<String> names = importers.stream().map(DatabaseImporter.Definition::getName).collect(Collectors.toList());
 
+        int i = names.indexOf(context.getString(R.string.app_name));
         View view = LayoutInflater.from(context).inflate(R.layout.dialog_importers, null);
         TextView helpText = view.findViewById(R.id.text_importer_help);
-        setImporterHelpText(helpText, importers.get(0), isDirect);
+        setImporterHelpText(helpText, importers.get(i), isDirect);
         ListView listView = view.findViewById(R.id.list_importers);
         listView.setAdapter(new ArrayAdapter<>(context, R.layout.card_importer, names));
-        listView.setItemChecked(0, true);
+        listView.setItemChecked(i, true);
         listView.setOnItemClickListener((parent, view1, position, id) -> {
             setImporterHelpText(helpText, importers.get(position), isDirect);
         });

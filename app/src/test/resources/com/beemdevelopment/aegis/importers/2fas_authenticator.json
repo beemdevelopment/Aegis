@@ -1,0 +1,93 @@
+{
+  "appOrigin": "android",
+  "appVersionCode": 300101,
+  "appVersionName": "3.1.1",
+  "schemaVersion": 1,
+  "services": [
+    {
+      "name": "Deno",
+      "order": {
+        "position": 0
+      },
+      "otp": {
+        "account": "Mason",
+        "issuer": "Deno",
+        "label": "Deno:Mason"
+      },
+      "secret": "4SJHB4GSD43FZBAI7C2HLRJGPQ",
+      "type": "Unknown",
+      "updatedAt": 1618417205843
+    },
+    {
+      "name": "SPDX",
+      "order": {
+        "position": 1
+      },
+      "otp": {
+        "account": "James",
+        "issuer": "SPDX",
+        "label": "SPDX:James"
+      },
+      "secret": "5OM4WOOGPLQEF6UGN3CPEOOLWU",
+      "type": "Unknown",
+      "updatedAt": 1618417216085
+    },
+    {
+      "name": "Airbnb",
+      "order": {
+        "position": 2
+      },
+      "otp": {
+        "account": "Elijah",
+        "issuer": "Airbnb",
+        "label": "Airbnb:Elijah"
+      },
+      "secret": "7ELGJSGXNCCTV3O6LKJWYFV2RA",
+      "type": "Unknown",
+      "updatedAt": 1618417225267
+    },
+    {
+      "name": "Issuu",
+      "order": {
+        "position": 3
+      },
+      "otp": {
+        "account": "James",
+        "issuer": "Issuu",
+        "label": "Issuu:James"
+      },
+      "secret": "YOOMIXWS5GN6RTBPUFFWKTW5M4",
+      "type": "Unknown",
+      "updatedAt": 1618417234252
+    },
+    {
+      "name": "Air Canada",
+      "order": {
+        "position": 4
+      },
+      "otp": {
+        "account": "Benjamin",
+        "issuer": "Air Canada",
+        "label": "Air Canada:Benjamin"
+      },
+      "secret": "KUVJJOM753IHTNDSZVCNKL7GII",
+      "type": "Unknown",
+      "updatedAt": 1618417242537
+    },
+    {
+      "name": "WWE",
+      "order": {
+        "position": 5
+      },
+      "otp": {
+        "account": "Mason",
+        "issuer": "WWE",
+        "label": "WWE:Mason"
+      },
+      "secret": "5VAML3X35THCEBVRLV24CGBKOY",
+      "type": "Unknown",
+      "updatedAt": 1618417253862
+    }
+  ],
+  "updatedAt": 1618417377507
+}

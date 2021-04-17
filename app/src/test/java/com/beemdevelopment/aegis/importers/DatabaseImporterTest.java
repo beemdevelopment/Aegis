@@ -40,7 +40,7 @@ public class DatabaseImporterTest {
     /**
      * The procedure for adding new importer tests is as follows:
      * 1. Generate QR codes for each test vector:
-     *     -> while read line; do (qrencode "$line" -o - | feh -); done < ./app/src/test/resources/com/beemdevelopment/aegis/importers/plain
+     *     -> while read line; do (qrencode "$line" -o - | feh -); done < ./app/src/test/resources/com/beemdevelopment/aegis/importers/plain.txt
      * 2. Scan the QR codes with the app we want to test our import functionality of
      * 3. Create an export and add the file to the importers resource directory.
      * 4. Add a new test for it here.
@@ -217,6 +217,17 @@ public class DatabaseImporterTest {
         });
 
         checkImportedEntries(entries);
+    }
+
+    @Test
+    public void testImportTwoFASAuthenticator() throws DatabaseImporterException, IOException, OtpInfoException {
+        List<VaultEntry> entries = importPlain(TwoFASImporter.class, "2fas_authenticator.json");
+        for (VaultEntry entry : entries) {
+            // 2FAS Authenticator doesn't support HOTP, different hash algorithms, periods or digits, so fix those up here
+            VaultEntry entryVector = getEntryVectorBySecret(entry.getInfo().getSecret());
+            entryVector.setInfo(new TotpInfo(entryVector.getInfo().getSecret()));
+            checkImportedEntry(entryVector, entry);
+        }
     }
 
     private List<VaultEntry> importPlain(Class<? extends DatabaseImporter> type, String resName)
