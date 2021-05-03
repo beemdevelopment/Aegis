@@ -43,11 +43,7 @@ public class QrCodeAnalyzer implements ImageAnalysis.Analyzer {
             return;
         }
 
-        ByteBuffer buf = image.getPlanes()[0].getBuffer();
-        byte[] data = new byte[buf.remaining()];
-        buf.get(data);
-        buf.rewind();
-
+        byte[] data = getLuminancePlaneData(image);
         PlanarYUVLuminanceSource source = new PlanarYUVLuminanceSource(
                 data, image.getWidth(), image.getHeight(), 0, 0, image.getWidth(), image.getHeight(), false
         );
@@ -64,6 +60,33 @@ public class QrCodeAnalyzer implements ImageAnalysis.Analyzer {
         } finally {
             image.close();
         }
+    }
+
+    private static byte[] getLuminancePlaneData(ImageProxy image) {
+        ImageProxy.PlaneProxy plane = image.getPlanes()[0];
+        ByteBuffer buf = plane.getBuffer();
+        byte[] data = new byte[buf.remaining()];
+        buf.get(data);
+        buf.rewind();
+
+        int width = image.getWidth();
+        int height = image.getHeight();
+        int rowStride = plane.getRowStride();
+        int pixelStride = plane.getPixelStride();
+
+        if (width != rowStride || pixelStride != 1) {
+            // remove padding from the Y plane data
+            byte[] cleanData = new byte[width * height];
+            for (int y = 0; y < height; y++) {
+                for (int x = 0; x < width; x++) {
+                    cleanData[y * width + x] = data[y * rowStride + x * pixelStride];
+                }
+            }
+
+            return cleanData;
+        }
+
+        return data;
     }
 
     public interface Listener {
