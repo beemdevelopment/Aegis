@@ -77,7 +77,6 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
     private AegisApplication _app;
     private VaultManager _vault;
     private boolean _loaded;
-    private List<String> _selectedGroups;
     private boolean _searchSubmitted;
 
     private boolean _isAuthenticating;

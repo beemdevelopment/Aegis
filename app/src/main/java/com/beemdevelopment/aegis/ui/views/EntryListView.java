@@ -420,6 +420,16 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
         _groups = groups;
         _groupChip.setVisibility(_groups.isEmpty() ? View.GONE : View.VISIBLE);
         updateDividerDecoration();
+
+        if (_groupFilter != null) {
+            List<String> groupFilter = _groupFilter.stream()
+                    .filter(g -> _groups.contains(g))
+                    .collect(Collectors.toList());
+
+            if (!_groupFilter.equals(groupFilter)) {
+                setGroupFilter(groupFilter, true);
+            }
+        }
     }
 
     private void updateDividerDecoration() {
