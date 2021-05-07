@@ -1,6 +1,7 @@
 package com.beemdevelopment.aegis.ui;
 
 import android.os.Bundle;
+import android.view.inputmethod.InputMethodManager;
 
 import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.ThemeMap;
@@ -45,6 +46,10 @@ public class IntroActivity extends IntroBaseActivity {
 
     @Override
     protected boolean onBeforeSlideChanged(Class<? extends SlideFragment> oldSlide, Class<? extends SlideFragment> newSlide) {
+        // hide the keyboard before every slide change
+        InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(findViewById(android.R.id.content).getWindowToken(), 0);
+
         if (oldSlide == SecurityPickerSlide.class
                 && newSlide == SecuritySetupSlide.class
                 && getState().getInt("cryptType", CRYPT_TYPE_INVALID) == CRYPT_TYPE_NONE) {
