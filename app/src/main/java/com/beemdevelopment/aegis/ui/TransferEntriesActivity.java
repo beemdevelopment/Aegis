@@ -4,13 +4,17 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.TypedValue;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.ColorInt;
+
 import com.beemdevelopment.aegis.R;
+import com.beemdevelopment.aegis.Theme;
 import com.beemdevelopment.aegis.otp.GoogleAuthInfo;
 import com.beemdevelopment.aegis.ui.dialogs.Dialogs;
 import com.beemdevelopment.aegis.vault.VaultManager;
@@ -109,12 +113,19 @@ public class TransferEntriesActivity extends AegisActivity {
         _entriesCount.setText(getResources().getQuantityString(R.plurals.entries_count, _authInfos.size(), _currentEntryCount, _authInfos.size()));
 
         QRCodeWriter writer = new QRCodeWriter();
-        BitMatrix bitMatrix = null;
+        BitMatrix bitMatrix;
         try {
             bitMatrix = writer.encode(selectedEntry.getUri().toString(), BarcodeFormat.QR_CODE, 512, 512);
         } catch (WriterException e) {
             Dialogs.showErrorDialog(this, R.string.unable_to_generate_qrcode, e);
             return;
+        }
+
+        @ColorInt int backgroundColor = Color.WHITE;
+        if (getConfiguredTheme() == Theme.LIGHT) {
+            TypedValue typedValue = new TypedValue();
+            getTheme().resolveAttribute(R.attr.background, typedValue, true);
+            backgroundColor = typedValue.data;
         }
 
         int width = bitMatrix.getWidth();
@@ -123,7 +134,7 @@ public class TransferEntriesActivity extends AegisActivity {
         for (int y = 0; y < height; y++) {
             int offset = y * width;
             for (int x = 0; x < width; x++) {
-                pixels[offset + x] = bitMatrix.get(x, y) ? Color.BLACK : Color.WHITE;
+                pixels[offset + x] = bitMatrix.get(x, y) ? Color.BLACK : backgroundColor;
             }
         }
 
