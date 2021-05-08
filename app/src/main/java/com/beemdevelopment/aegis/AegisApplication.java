@@ -49,7 +49,7 @@ public class AegisApplication extends Application {
 
     static {
         // to access other app's internal storage directory, run libsu commands inside the global mount namespace
-        Shell.Config.setFlags(Shell.FLAG_MOUNT_MASTER);
+        Shell.setDefaultBuilder(Shell.Builder.create().setFlags(Shell.FLAG_MOUNT_MASTER));
     }
 
     @Override
