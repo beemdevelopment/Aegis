@@ -377,7 +377,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
 
         Intent chooserIntent = Intent.createChooser(galleryIntent, getString(R.string.select_picture));
         chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS, new Intent[] { fileIntent });
-        startActivityForResult(chooserIntent, CODE_SCAN_IMAGE);
+        AegisActivity.Helper.startExtActivityForResult(this, chooserIntent, CODE_SCAN_IMAGE);
     }
 
     private void startPreferencesActivity() {

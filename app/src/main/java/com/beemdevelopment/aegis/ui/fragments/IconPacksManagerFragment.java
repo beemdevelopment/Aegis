@@ -22,6 +22,7 @@ import com.beemdevelopment.aegis.icons.IconPack;
 import com.beemdevelopment.aegis.icons.IconPackException;
 import com.beemdevelopment.aegis.icons.IconPackExistsException;
 import com.beemdevelopment.aegis.icons.IconPackManager;
+import com.beemdevelopment.aegis.ui.AegisActivity;
 import com.beemdevelopment.aegis.ui.dialogs.Dialogs;
 import com.beemdevelopment.aegis.ui.tasks.ImportIconPackTask;
 import com.beemdevelopment.aegis.ui.views.IconPackAdapter;
@@ -144,7 +145,7 @@ public class IconPacksManagerFragment extends Fragment implements IconPackAdapte
     private void startImportIconPack() {
         Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
         intent.setType("application/zip");
-        startActivityForResult(intent, CODE_IMPORT);
+        AegisActivity.Helper.startExtActivityForResult(this, intent, CODE_IMPORT);
     }
 
     private void updateEmptyState() {

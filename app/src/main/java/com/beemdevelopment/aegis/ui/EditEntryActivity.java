@@ -427,7 +427,7 @@ public class EditEntryActivity extends AegisActivity {
 
         Intent chooserIntent = Intent.createChooser(galleryIntent, getString(R.string.select_icon));
         chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS, new Intent[] { fileIntent });
-        startActivityForResult(chooserIntent, PICK_IMAGE_REQUEST);
+        AegisActivity.Helper.startExtActivityForResult(this, chooserIntent, PICK_IMAGE_REQUEST);
     }
 
     private void startIconSelection() {
