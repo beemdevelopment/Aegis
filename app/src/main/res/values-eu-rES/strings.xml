@@ -340,6 +340,7 @@
     <string name="panic_trigger_ignore_toast">Aegisek arrisku mezua jaso du baina ezarpen hau desaktibatuta dago, ez da ezer egingo</string>
     <string name="pref_panic_trigger_title">Ezabatu biltegia arrisku mezua jasotzean</string>
     <string name="pref_panic_trigger_summary">Ezabatu biltegia Rippletik arrisku mezua jasotzean</string>
+    <string name="importer_help_2fas">Aukeratu 2FAS Authenticator segurtasun-kopia fitxategia.</string>
     <string name="importer_help_aegis">Aegisen esportazio/segurtasun-kopia fitxategia aukeratu.</string>
     <string name="importer_help_authenticator_plus">Authenticator Plus esportazio fitxategia aukeratu. Lortzeko modua: <b>Settings -&gt; Backup &amp; Restore -&gt; Export as Text and HTML</b>.</string>
     <string name="importer_help_authy"><b>/data/data/com.authy.authy/shared_prefs/com.authy.storage.tokens.authenticator.xml</b> fitxategia aukeratu.</string>

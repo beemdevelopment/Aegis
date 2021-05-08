@@ -312,6 +312,7 @@
     <string name="empty_list_title">Nav atrastu ierakstu</string>
     <string name="empty_group_list">Nav kopu, ko attēlot. Tās var pievienot ieraksta labošanas skatā</string>
     <string name="empty_group_list_title">Nav atrastu kopu</string>
+    <string name="no_icon_packs">Pagaidām nav ievietota neviena ikonu pakotne. Jāpiesit \"+\", lai pievienotu kādu. Padoms: var izmēģināt <a href="https://github.com/aegis-icons/aegis-icons/releases">aegis-icons</a>.</string>
     <string name="no_icon_packs_title">Nav ikonu pakotņu</string>
     <string name="pick_icon">Izvēlēties ikonu</string>
     <string name="uncategorized">Bez kopas</string>
@@ -346,6 +347,7 @@
     <string name="panic_trigger_ignore_toast">Aegis saņēma trauksmes izsaukumu, bet iestatījums ir atspējots, tādēļ tas netiek ņemts vērā</string>
     <string name="pref_panic_trigger_title">Izdzēst glabātavu pēc trauksmes izsaukuma</string>
     <string name="pref_panic_trigger_summary">Izdzēst glabātavu, kad trauksmes izsaukums ir saņemts no Ripple</string>
+    <string name="importer_help_2fas">Padot 2FAS Authenticator izdošanas datni.</string>
     <string name="importer_help_aegis">Padot Aegis izdošanas/rezerves kopijas datni.</string>
     <string name="importer_help_authenticator_plus">Padot Authenticator Plus izdošanas datni, kas ir iegūta ar <b>Iestatījumi -&gt; Dublēšana un atjaunošana -&gt; Izdot kā tekstu un HTML</b>.</string>
     <string name="importer_help_authy">Padot <b>/data/data/com.authy.authy/shared_prefs/com.authy.storage.tokens.authenticator.xml</b> kopiju, kas atrodas iekšējās krātuves Authy mapē.</string>

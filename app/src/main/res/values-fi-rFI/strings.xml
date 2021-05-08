@@ -299,6 +299,7 @@
     <string name="empty_group_list_title">Ei ryhmiä</string>
     <string name="no_icon_packs_title">Ei kuvakepaketteja</string>
     <string name="pick_icon">Valitse kuvake</string>
+    <string name="uncategorized">Luokittelematon</string>
     <string name="done">Valmis</string>
     <plurals name="entries_count">
         <item quantity="one">%d / %d kohde</item>

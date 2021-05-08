@@ -306,6 +306,7 @@
     <string name="empty_list_title">Δεν βρέθηκαν καταχωρήσεις</string>
     <string name="empty_group_list">Δεν υπάρχουν ομάδες προς εμφάνιση. Προσθέστε ομάδες στην οθόνη επεξεργασίας μιας καταχώρισης</string>
     <string name="empty_group_list_title">Δεν βρέθηκαν ομάδες</string>
+    <string name="no_icon_packs">Δεν έχουν εισαχθεί ακόμα πακέτα εικονιδίων. Πατήστε το σύμβολο συν για να εισαγάγετε ένα. Συμβουλή: δοκιμάστε <a href="https://github.com/aegis-icons/aegis-icons/releases">εικονίδια aegis-</a>.</string>
     <string name="no_icon_packs_title">Χωρίς πακέτα εικονιδίων</string>
     <string name="pick_icon">Επιλέξτε ένα εικονίδιο</string>
     <string name="uncategorized">Μη κατηγοριοποιημένο</string>
@@ -339,6 +340,7 @@
     <string name="panic_trigger_ignore_toast">Ο Aegis έλαβε έναυσμα πανικού αλλά η ρύθμιση είναι απενεργοποιημένη, αγνόηση</string>
     <string name="pref_panic_trigger_title">Διαγραφή κρύπτης στο έναυσμα πανικού</string>
     <string name="pref_panic_trigger_summary">Διαγραφή κρύπτης όταν λαμβάνεται ένα έναυσμα πανικού από το Ripple</string>
+    <string name="importer_help_2fas">Παρέχετε ένα αντίγραφο ασφαλείας 2FAS Authenticator.</string>
     <string name="importer_help_aegis">Παρέχει ένα αρχείο εξαγωγής/αντιγράφων ασφαλείας Aegis.</string>
     <string name="importer_help_authenticator_plus">Παρέχει ένα αρχείο εξαγωγής Authenticator Plus που αποκτήθηκε μέσω των <b> Ρυθμίσεων - &gt; Αντιγράφων ασφαλείας &amp; Επαναφορά - &gt; Εξαγωγή ως Κείμενο και HTML </b>.</string>
     <string name="importer_help_authy">Παρέχει ένα αντίγραφο του <b>/data/data/com.authy.authy/shared_prefs/com.authy.storage.tokens.authenticator.xml</b>, που βρίσκεται στον κατάλογο εσωτερικής αποθήκευσης του Authy.</string>

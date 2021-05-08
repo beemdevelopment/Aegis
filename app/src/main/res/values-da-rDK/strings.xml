@@ -76,7 +76,9 @@
     <string name="icon_custom">Tilpasset</string>
     <string name="remove_icon_pack">Fjern ikonpakke</string>
     <string name="remove_icon_pack_description">Sikker på, at du vil fjerne denne ikonpakke? Poster, som bruger ikoner fra denne pakke, påvirkes ikke.</string>
+    <string name="no_icon_packs">Ingen ikonpakker er endnu importeret. Tryk på plus-tegnet for at importere en. Tip: Prøv <a href="https://github.com/aegis-icons/aegis-icons/releases">aegis-ikoner</a>.</string>
     <string name="no_icon_packs_title">Ingen ikonpakker</string>
     <string name="pick_icon">Vælg et ikon</string>
     <string name="uncategorized">Ukategoriseret</string>
+    <string name="importer_help_2fas">Stil en 2FAS-godkendelse sikkerhedskopifil til rådighed.</string>
 </resources>

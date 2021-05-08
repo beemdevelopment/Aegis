@@ -41,8 +41,8 @@
     <string name="pref_slots_summary">Verwalte die Liste der Schlüssel, die die Datenbank entschlüsseln können</string>
     <string name="pref_import_file_title">Aus Datei importieren</string>
     <string name="pref_import_file_summary">Token aus einer Datei importieren</string>
-    <string name="pref_android_backups_title">Einbindung in das Android-Sicherungssystem</string>
-    <string name="pref_android_backups_summary">Erlaube Androids Backup-System Aegis Datenbank in seine Backups einzubinden. Dies wird nur für verschlüsselte Datenbanken unterstützt.</string>
+    <string name="pref_android_backups_title">Einbindung in das Sicherungssystem von Android</string>
+    <string name="pref_android_backups_summary">Erlaube das Sicherungssystem von Android, die Datenbank von Aegis in die Sicherungen aufzunehmen. Dies wird nur für verschlüsselte Datenbanken unterstützt.</string>
     <string name="pref_backups_title">Datenbank automatisch sichern</string>
     <string name="pref_backups_summary">Sicherungskopie der Datenbank automatisch bei Änderungen auf externem Speicher erstellen. Nur für verschlüsselte Datenbanken unterstützt.</string>
     <string name="pref_backups_location_title">Ordner der Sicherungskopie</string>
@@ -61,7 +61,7 @@
     <string name="pref_password_reminder_title">Passworterinnerung</string>
     <string name="pref_password_reminder_summary">Von Zeit zu Zeit nach dem Passwort fragen, damit du es nicht vergisst.</string>
     <string name="pref_secure_screen_title">Bildschirmsicherheit</string>
-    <string name="pref_secure_screen_summary">Blockiere Screenshots und andere Versuche, den Bildschirm innerhalb der App aufzunehmen</string>
+    <string name="pref_secure_screen_summary">Blockiere Bildschirmfotos und andere Versuche, den Bildschirm innerhalb der App aufzunehmen</string>
     <string name="pref_tap_to_reveal_title">Zum Aufdecken tippen</string>
     <string name="pref_tap_to_reveal_summary">Token werden standardmäßig ausgeblendet. Tippe auf die Token, um den Code anzuzeigen.</string>
     <string name="pref_tap_to_reveal_time_title">Zeitüberschreitung für die Anzeige durch Antippen</string>
@@ -161,7 +161,7 @@
     <string name="app_description">Aegis ist eine kostenlose, sichere und quelloffene 2FA-App</string>
     <string name="setup_completed">Einrichtung abgeschlossen</string>
     <string name="setup_completed_description">Aegis wurde eingerichtet und ist nun bereit.</string>
-    <string name="vault_not_found">Datenbank nicht gefunden, Starten der Einrichtung…</string>
+    <string name="vault_not_found">Datenbank nicht gefunden. Einrichtung wird gestartet…</string>
     <string name="copied">Kopiert</string>
     <string name="errors_copied">Fehlermeldungen in die Zwischenablage kopiert</string>
     <string name="version_copied">Version in die Zwischenablage kopiert</string>
@@ -340,6 +340,7 @@
     <string name="panic_trigger_ignore_toast">Aegis hat ein Paniksignal empfangen, aber die Einstellung ist deaktiviert - Paniksignal wird ignoriert</string>
     <string name="pref_panic_trigger_title">Datenbank bei Paniksignal löschen</string>
     <string name="pref_panic_trigger_summary">Datenbank löschen, wenn ein Paniksignal von Ripple empfangen wird</string>
+    <string name="importer_help_2fas">Gib eine 2FAS Authenticator-Sicherungsdatei an.</string>
     <string name="importer_help_aegis">Gib eine Aegis Export-/Sicherungsdatei an.</string>
     <string name="importer_help_authenticator_plus">Gib eine Authenticator Plus-Exportdatei an, die du über <b>Einstellungen -&gt; Sicherung &amp; Rücksicherung -&gt; Exportieren als Text und HTML Format</b> erhältst.</string>
     <string name="importer_help_authy">Gib eine Kopie von <b>/data/data/com.authy.authy/shared_prefs/com.authy.storage.tokens.authenticator.xml</b> an, die sich im internen Speicherverzeichnis von Authy befindet.</string>

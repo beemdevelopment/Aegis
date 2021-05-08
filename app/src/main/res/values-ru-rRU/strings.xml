@@ -57,7 +57,7 @@
         <item quantity="other">Хранить %1$d версий резервной копии</item>
     </plurals>
     <string name="pref_import_app_title">Импорт из приложения</string>
-    <string name="pref_import_app_summary">Импорт базы данных из другого приложения (требуются права суперпользователя)</string>
+    <string name="pref_import_app_summary">Импорт ключей из другого приложения (требуются права суперпользователя)</string>
     <string name="pref_export_title">Экспорт в файл</string>
     <string name="pref_export_summary">Экспорт хранилища</string>
     <string name="pref_password_reminder_title">Напоминание о пароле</string>
@@ -318,6 +318,7 @@
     <string name="empty_list_title">Не найдено записей</string>
     <string name="empty_group_list">Нет групп для отображения. Добавьте группы на экране редактирования записи.</string>
     <string name="empty_group_list_title">Группы не найдены</string>
+    <string name="no_icon_packs">Наборы значков ещё не импортированы. Нажмите кнопку \"+\" для импортирования. Совет: попробуйте <a href="https://github.com/aegis-icons/aegis-icons/releases">значки aegis</a>.</string>
     <string name="no_icon_packs_title">Нет наборов значков</string>
     <string name="pick_icon">Выбрать значок</string>
     <string name="uncategorized">Без категории</string>
@@ -353,6 +354,7 @@
     <string name="panic_trigger_ignore_toast">Получен сигнал паники, но настройка отключена — сигнал паники игнорируется</string>
     <string name="pref_panic_trigger_title">Удалять хранилище при панике</string>
     <string name="pref_panic_trigger_summary">Удалить хранилище при получении сигнала паники от Ripple</string>
+    <string name="importer_help_2fas">Предоставьте файл резервной копии 2FAS.</string>
     <string name="importer_help_aegis">Предоставьте файл экспорта/резервной копии Aegis.</string>
     <string name="importer_help_authenticator_plus">Предоставьте файл экспорта Authenticator Plus, полученный через <b>«Настройки» → «Рез. копия и восстановление» → «Экспорт текста и HTML»</b>.</string>
     <string name="importer_help_authy">Предоставьте копию файла <b>/data/data/com.authy.authy/shared_prefs/com.authy.storage.tokens.authenticator.xml</b>, расположенного в папке Authy во внутренней памяти.</string>

@@ -300,6 +300,7 @@
     <string name="empty_list_title">未找到条目</string>
     <string name="empty_group_list">没有要显示的组。 在条目的编辑屏幕中添加组</string>
     <string name="empty_group_list_title">未找到组</string>
+    <string name="no_icon_packs">尚未导入图标包。点击加号标记来导入一个。提示：尝试 <a href="https://github.com/aegis-icons/aegis-icons/releases">aegis-icons</a>。</string>
     <string name="no_icon_packs_title">没有图标包</string>
     <string name="pick_icon">选择一个图标</string>
     <string name="uncategorized">未分类</string>
@@ -332,6 +333,7 @@
     <string name="panic_trigger_ignore_toast">Aegis 收到紧急触发信号，但您未启用相关设置，忽略中</string>
     <string name="pref_panic_trigger_title">收到紧急触发信号时删除库</string>
     <string name="pref_panic_trigger_summary">从Ripple收到紧急触发信号时删除库</string>
+    <string name="importer_help_2fas">提供一个 2FAS 身份验证器备份文件。</string>
     <string name="importer_help_aegis">提供Aegis导出/备份文件。</string>
     <string name="importer_help_authenticator_plus">提供通过<b>设置-&gt; 备份&amp; 还原-&gt; 导出获取的Authenticator Plus导出文件，格式为纯文本和HTML</b>。</string>
     <string name="importer_help_authy">提供<b>/data/data/com.authy.authy/shared_prefs/com.authy.storage.tokens.authenticator.xml</b>的一份副本，位置在Authy的内部存储目录。</string>

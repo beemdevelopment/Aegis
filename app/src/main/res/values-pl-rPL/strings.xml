@@ -318,6 +318,7 @@
     <string name="empty_list_title">Nie znaleziono wpisów</string>
     <string name="empty_group_list">Nie znaleziono grup do wyświetlenia. Dodaj grupy na ekranie edycji wpisu</string>
     <string name="empty_group_list_title">Nie znaleziono grup</string>
+    <string name="no_icon_packs">Nie zaimportowałeś żadnych pakietów ikon. Importuj ikony, klikając na znak plusa. Wskazówka: wypróbuj pakiet <a href="https://github.com/aegis-icons/aegis-icons/releases">aegis-icons</a>.</string>
     <string name="no_icon_packs_title">Brak pakietów ikon</string>
     <string name="pick_icon">Wybierz ikonę</string>
     <string name="uncategorized">Bez kategorii</string>

@@ -10,6 +10,7 @@
     <string name="discard">Ongedaan maken</string>
     <string name="save">Opslaan</string>
     <string name="issuer">Uitgever</string>
+    <string name="suggested">Voorgesteld</string>
     <string name="settings">Voorkeuren</string>
     <string name="pref_cat_appearance_app">App</string>
     <string name="pref_cat_appearance_entries">Items</string>
@@ -25,6 +26,8 @@
     <string name="pref_section_import_export_summary">Back-ups van Aegis of andere authenticator-apps importeren. Maak handmatige export van je Aegis-kluis aan.</string>
     <string name="pref_section_backups_title">Back-ups</string>
     <string name="pref_section_backups_summary">Stel automatische back-ups in op een locatie waar u kiest of schakel deelname in in in het Android-back-upsysteem.</string>
+    <string name="pref_section_icon_packs">Pictogrampakketten</string>
+    <string name="pref_section_icon_packs_summary">Beheer en importeer pictogrampakketten</string>
     <string name="pref_select_theme_title">Thema</string>
     <string name="pref_view_mode_title">Weergavemodus</string>
     <string name="pref_lang_title">Taal</string>
@@ -140,6 +143,7 @@
     <string name="encrypting_vault">De kluis wordt geëncrypt</string>
     <string name="exporting_vault">De kluis wordt geëxporteerd</string>
     <string name="reading_file">Bestand lezen</string>
+    <string name="importing_icon_pack">Pictogrampakket importeren</string>
     <string name="delete_entry">Item verwijderen</string>
     <string name="delete_entry_description">Weet je zeker dat je dit item wilt verwijderen?</string>
     <string name="delete_entry_explanation">Deze actie schakelt 2FA voor <b>%s</b>niet uit. Om te voorkomen dat u de toegang verliest, zorg ervoor dat u 2FA hebt uitgeschakeld of dat u een alternatieve manier hebt om codes voor deze dienst te genereren.</string>
@@ -176,6 +180,15 @@
     <string name="backup_successful">De back-up is succesvol gepland</string>
     <string name="backup_error">Er is een fout opgetreden bij maken van een back-up</string>
     <string name="documentsui_error">DocumentsUI lijkt te ontbreken op uw apparaat. Dit is een belangrijk systeemcomponent die nodig is voor het selecteren en maken van documenten. Als je een tool hebt gebruikt om uw apparaat te &quot;debloaten&quot; heb je deze waarschijnlijk per ongeluk verwijderd en zal je hem opnieuw moeten installeren.</string>
+    <string name="icon_pack_import_error">Er is een fout opgetreden tijdens het importeren van een pictogrampakket</string>
+    <string name="icon_pack_import_exists_error">Het pictogrampakket dat u probeert te importeren bestaat al. Wilt u het overschrijven?</string>
+    <string name="icon_pack_delete_error">Er is een fout opgetreden tijdens het verwijderen van een pictogrampakket</string>
+    <plurals name="icon_pack_info">
+        <item quantity="one">%d pictogram</item>
+        <item quantity="other">%d pictogrammen</item>
+    </plurals>
+    <string name="icon_pack">Pictogrampakket</string>
+    <string name="icon_custom">Aangepast</string>
     <string name="permission_denied">Toestemming geweigerd</string>
     <string name="andotp_new_format">Nieuw formaat (v0.6.3 of nieuwer) </string>
     <string name="andotp_old_format">Oud formaat (v0.6.2 of ouder) </string>
@@ -210,6 +223,8 @@
     <string name="remove_slot_description">Weet je zeker dat je deze vergrendelingssleutel wilt verwijderen?</string>
     <string name="remove_group">Groep verwijderen</string>
     <string name="remove_group_description">Weet je zeker dat je deze groep wilt verwijderen? Alle items binnen deze groep worden automatisch verplaatst naar \'Geen groep\'.</string>
+    <string name="remove_icon_pack">Verwijder pictogrammenpakket</string>
+    <string name="remove_icon_pack_description">Weet je zeker dat je dit pictogrampakket wilt verwijderen? Entries die pictogrammen uit dit pakket gebruiken, worden niet beïnvloed.</string>
     <string name="adding_new_slot_error">Er is een fout opgetreden tijdens het toevoegen van een nieuwe vergrendelingssleutel:</string>
     <string name="progressbar_error">Niet in staat om de schaal van animatieduur te resetten. Voortgangsbalken zullen niet zichtbaar zijn.</string>
     <string name="details">Details</string>
@@ -291,6 +306,9 @@
     <string name="empty_list_title">Geen items gevonden</string>
     <string name="empty_group_list">Er zijn geen groepen om te tonen. Voeg groepen toe in het bewerkingsscherm van een item</string>
     <string name="empty_group_list_title">Geen groepen gevonden</string>
+    <string name="no_icon_packs_title">Geen pictogrampakketten</string>
+    <string name="pick_icon">Kies een icoon</string>
+    <string name="uncategorized">Ongecategoriseerd</string>
     <string name="done">Klaar</string>
     <plurals name="entries_count">
         <item quantity="one">%d / %d item</item>
@@ -321,6 +339,7 @@
     <string name="panic_trigger_ignore_toast">Aegis heeft een paniektrigger ontvangen, maar de instelling is uitgeschakeld. Trigger wordt genegeerd</string>
     <string name="pref_panic_trigger_title">Kluis verwijderen wanneer op paniektrigger wordt gedrukt</string>
     <string name="pref_panic_trigger_summary">Kluis verwijderen wanneer een paniektrigger wordt ontvangen van Ripple</string>
+    <string name="importer_help_2fas">Lever een 2FAS Authenticator back-upbestand aan.</string>
     <string name="importer_help_aegis">Lever een Aegis export/backup bestand aan.</string>
     <string name="importer_help_authenticator_plus">Lever een Authenticator Plus exportbestand aan verkregen via <b>Instellingen -&gt; Back-up &amp; Herstellen -&gt; Exporteren als Tekst en HTML</b>.</string>
     <string name="importer_help_authy">Lever een kopie aan van <b>/data/data/com.authy.authy/shared_prefs/com.authy.storage.tokens.authenticator.xml</b>, geplaatst in de interne opslagmap van Authy.</string>
