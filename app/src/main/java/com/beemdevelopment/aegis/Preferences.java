@@ -6,8 +6,12 @@ import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Build;
 import android.preference.PreferenceManager;
+import android.text.TextUtils;
 
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
@@ -223,5 +227,19 @@ public class Preferences {
 
     public boolean isCopyOnTapEnabled() {
         return _prefs.getBoolean("pref_copy_on_tap", false);
+    }
+
+    public void setGroupFilter(List<String> groupFilter) {
+        String filter = TextUtils.join(",", groupFilter);
+        _prefs.edit().putString("pref_group_filter", filter).apply();
+    }
+
+    public List<String> getGroupFilter() {
+        String filter = _prefs.getString("pref_group_filter", null);
+        if (filter == null || filter.isEmpty()) {
+            return Collections.emptyList();
+        }
+
+        return Arrays.asList(filter.split(","));
     }
 }

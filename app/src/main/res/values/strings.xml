@@ -252,6 +252,7 @@
     <string name="group_name_hint">Group name</string>
     <string name="preference_manage_groups">Edit groups</string>
     <string name="preference_manage_groups_summary">Manage and delete your groups here</string>
+    <string name="clear">Clear</string>
 
     <string name="pref_highlight_entry_title">Highlight tokens when tapped</string>
     <string name="pref_highlight_entry_summary">Make tokens easier to distinguish from each other by temporarily highlighting them when tapped</string>

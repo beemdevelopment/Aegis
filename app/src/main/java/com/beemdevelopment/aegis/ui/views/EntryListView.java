@@ -67,6 +67,7 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
     private LinearLayout _emptyStateView;
     private Chip _groupChip;
     private List<String> _groupFilter;
+    private List<String> _prefGroupFilter;
 
     private UiRefresher _refresher;
 
@@ -130,7 +131,6 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
         });
 
         _emptyStateView = view.findViewById(R.id.vEmptyList);
-
         return view;
     }
 
@@ -269,6 +269,10 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
     @Override
     public void onListChange() { _listener.onListChange(); }
 
+    public void setPrefGroupFilter(List<String> groupFilter) {
+        _prefGroupFilter = groupFilter;
+    }
+
     public void setCodeGroupSize(int codeGrouping) {
         _adapter.setCodeGroupSize(codeGrouping);
     }
@@ -375,9 +379,19 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
 
         ChipGroup chipGroup = view.findViewById(R.id.groupChipGroup);
         Button clearButton = view.findViewById(R.id.btnClear);
+        Button saveButton = view.findViewById(R.id.btnSave);
         clearButton.setOnClickListener(v -> {
             chipGroup.clearCheck();
-            setGroupFilter(Collections.emptyList(), true);
+            List<String> groupFilter = Collections.emptyList();
+            _listener.onSaveGroupFilter(groupFilter);
+            setGroupFilter(groupFilter, true);
+            dialog.dismiss();
+        });
+
+        saveButton.setOnClickListener(v -> {
+            List<String> groupFilter = getGroupFilter(chipGroup);
+            _listener.onSaveGroupFilter(groupFilter);
+            setGroupFilter(groupFilter, true);
             dialog.dismiss();
         });
 
@@ -394,9 +408,7 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
                 chip.setChipBackgroundColorResource(R.color.bg_chip_color);
                 chip.setTextColor(colorStateList);
                 chip.setOnCheckedChangeListener((group1, checkedId) -> {
-                    List<String> groupFilter = chipGroup.getCheckedChipIds().stream()
-                            .map(i -> ((Chip) view.findViewById(i)).getText().toString())
-                            .collect(Collectors.toList());
+                    List<String> groupFilter = getGroupFilter(chipGroup);
                     setGroupFilter(groupFilter, true);
                 });
 
@@ -405,6 +417,12 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
 
             Dialogs.showSecureDialog(dialog);
         });
+    }
+
+    private static List<String> getGroupFilter(ChipGroup chipGroup) {
+        return chipGroup.getCheckedChipIds().stream()
+                .map(i -> ((Chip) chipGroup.findViewById(i)).getText().toString())
+                .collect(Collectors.toList());
     }
 
     private void updateGroupChip() {
@@ -425,15 +443,24 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
         _groupChip.setVisibility(_groups.isEmpty() ? View.GONE : View.VISIBLE);
         updateDividerDecoration();
 
-        if (_groupFilter != null) {
-            List<String> groupFilter = _groupFilter.stream()
-                    .filter(g -> _groups.contains(g))
-                    .collect(Collectors.toList());
-
+        if (_prefGroupFilter != null) {
+            List<String> groupFilter = cleanGroupFilter(_prefGroupFilter);
+            _prefGroupFilter = null;
+            if (!groupFilter.isEmpty()) {
+                setGroupFilter(groupFilter, false);
+            }
+        } else if (_groupFilter != null) {
+            List<String> groupFilter = cleanGroupFilter(_groupFilter);
             if (!_groupFilter.equals(groupFilter)) {
                 setGroupFilter(groupFilter, true);
             }
         }
+    }
+
+    private List<String> cleanGroupFilter(List<String> groupFilter) {
+       return groupFilter.stream()
+                .filter(g -> _groups.contains(g))
+                .collect(Collectors.toList());
     }
 
     private void updateDividerDecoration() {
@@ -474,6 +501,7 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
         void onSelect(VaultEntry entry);
         void onDeselect(VaultEntry entry);
         void onListChange();
+        void onSaveGroupFilter(List<String> groupFilter);
     }
 
     private class VerticalSpaceItemDecoration extends RecyclerView.ItemDecoration {

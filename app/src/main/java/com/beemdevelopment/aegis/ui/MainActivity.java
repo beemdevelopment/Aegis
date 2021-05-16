@@ -119,6 +119,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         _entryListView.setSortCategory(getPreferences().getCurrentSortCategory(), false);
         _entryListView.setViewMode(getPreferences().getCurrentViewMode());
         _entryListView.setIsCopyOnTapEnabled(getPreferences().isCopyOnTapEnabled());
+        _entryListView.setPrefGroupFilter(getPreferences().getGroupFilter());
 
          FloatingActionButton fab = findViewById(R.id.fab);
          fab.setOnClickListener(v -> {
@@ -722,6 +723,11 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
 
     @Override
     public void onListChange() { _fabScrollHelper.setVisible(true); }
+
+    @Override
+    public void onSaveGroupFilter(List<String> groupFilter) {
+        getPreferences().setGroupFilter(groupFilter);
+    }
 
     @Override
     public void onLocked(boolean userInitiated) {

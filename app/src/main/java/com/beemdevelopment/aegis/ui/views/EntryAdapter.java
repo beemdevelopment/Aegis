@@ -283,10 +283,6 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
         _viewMode = viewMode;
     }
 
-    public void setGroups(TreeSet<String> groups) {
-        _view.setGroups(groups);
-    }
-
     @Override
     public void onItemDismiss(int position) {
 
