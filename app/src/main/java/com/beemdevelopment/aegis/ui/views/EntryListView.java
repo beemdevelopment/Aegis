@@ -144,12 +144,14 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
         super.onDestroyView();
     }
 
-    public void setGroupFilter(List<String> groups, boolean apply) {
+    public void setGroupFilter(List<String> groups, boolean animate) {
         _groupFilter = groups;
-        _adapter.setGroupFilter(groups, apply);
+        _adapter.setGroupFilter(groups);
         _touchCallback.setIsLongPressDragEnabled(_adapter.isDragAndDropAllowed());
+        updateEmptyState();
+        updateGroupChip();
 
-        if (apply) {
+        if (animate) {
             runEntriesAnimation();
         }
     }
@@ -375,7 +377,7 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
         Button clearButton = view.findViewById(R.id.btnClear);
         clearButton.setOnClickListener(v -> {
             chipGroup.clearCheck();
-            setGroupFilter(null, true);
+            setGroupFilter(Collections.emptyList(), true);
             dialog.dismiss();
         });
 
@@ -396,12 +398,6 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
                             .map(i -> ((Chip) view.findViewById(i)).getText().toString())
                             .collect(Collectors.toList());
                     setGroupFilter(groupFilter, true);
-
-                    if (groupFilter.isEmpty()) {
-                        _groupChip.setText(R.string.groups);
-                    } else {
-                        _groupChip.setText(String.format("%s (%d)", getString(R.string.groups), groupFilter.size()));
-                    }
                 });
 
                 chipGroup.addView(chip);
@@ -409,6 +405,14 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
 
             Dialogs.showSecureDialog(dialog);
         });
+    }
+
+    private void updateGroupChip() {
+        if (_groupFilter.isEmpty()) {
+            _groupChip.setText(R.string.groups);
+        } else {
+            _groupChip.setText(String.format("%s (%d)", getString(R.string.groups), _groupFilter.size()));
+        }
     }
 
     private void setShowProgress(boolean showProgress) {

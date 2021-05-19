@@ -6,9 +6,9 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.SortCategory;
 import com.beemdevelopment.aegis.ViewMode;
 import com.beemdevelopment.aegis.helpers.ItemTouchHelperAdapter;
@@ -232,20 +232,14 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
         }
     }
 
-    public void setGroupFilter(List<String> groups, boolean apply) {
-        if (groups == null) {
-            groups = new ArrayList<>();
-        }
-
+    public void setGroupFilter(@NonNull List<String> groups) {
         if (_groupFilter.equals(groups)) {
             return;
         }
 
         _groupFilter = groups;
-        if (apply) {
-            updateShownEntries();
-            checkPeriodUniformity();
-        }
+        updateShownEntries();
+        checkPeriodUniformity();
     }
 
     public void setSortCategory(SortCategory category, boolean apply) {

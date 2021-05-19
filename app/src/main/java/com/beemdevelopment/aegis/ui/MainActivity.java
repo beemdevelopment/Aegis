@@ -793,6 +793,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
                                 if (entry.getGroup() != null) {
                                     if (!_vault.getGroups().contains(entry.getGroup())) {
                                         _entryListView.setGroups(_vault.getGroups());
+                                        break;
                                     }
                                 }
                             }
