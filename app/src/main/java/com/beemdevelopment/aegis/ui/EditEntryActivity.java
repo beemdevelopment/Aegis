@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
+import android.webkit.MimeTypeMap;
 import android.widget.AdapterView;
 import android.widget.AutoCompleteTextView;
 import android.widget.ImageView;
@@ -553,8 +554,8 @@ public class EditEntryActivity extends AegisActivity {
     @Override
     protected void onActivityResult(int requestCode, final int resultCode, Intent data) {
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
-            DocumentFile file = DocumentFile.fromSingleUri(this, data.getData());
-            if (file.getType().equals(IconType.SVG.toMimeType())) {
+            String fileType = getMimeType(data.getData());
+            if (fileType != null && fileType.equals(IconType.SVG.toMimeType())) {
                 ImportFileTask.Params params = new ImportFileTask.Params(data.getData(), "icon", null);
                 ImportFileTask task = new ImportFileTask(this, result -> {
                     if (result.getException() == null) {
@@ -571,6 +572,23 @@ public class EditEntryActivity extends AegisActivity {
         }
 
         super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    private String getMimeType(Uri uri) {
+        DocumentFile file = DocumentFile.fromSingleUri(this, uri);
+        if (file != null) {
+            String fileType = file.getType();
+            if (fileType != null) {
+                return fileType;
+            }
+
+            String ext = MimeTypeMap.getFileExtensionFromUrl(uri.toString());
+            if (ext != null) {
+                return MimeTypeMap.getSingleton().getMimeTypeFromExtension(ext);
+            }
+        }
+
+        return null;
     }
 
     private int parsePeriod() throws ParseException {
