@@ -114,6 +114,8 @@ public class SecurityPreferencesFragment extends PreferencesFragment {
                             }
 
                             getActivity().stopService(new Intent(getActivity(), NotificationService.class));
+                            getPreferences().setIsBackupsEnabled(false);
+                            getPreferences().setIsAndroidBackupsEnabled(false);
                             updateEncryptionPreferences();
                         })
                         .setNegativeButton(android.R.string.no, null)
