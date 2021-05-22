@@ -103,9 +103,8 @@ public class OverallTest extends AegisTest {
         changeSort(R.string.sort_alphabetically_reverse);
         changeSort(R.string.sort_custom);
 
-        /*changeFilter(_groupName);
-        changeFilter(R.string.filter_ungrouped);
-        changeFilter(R.string.all);*/
+        changeGroupFilter(_groupName);
+        changeGroupFilter(null);
 
         onView(withId(R.id.rvKeyProfiles)).perform(RecyclerViewActions.actionOnItemAtPosition(1, longClick()));
         onView(withId(R.id.rvKeyProfiles)).perform(RecyclerViewActions.actionOnItemAtPosition(2, click()));
@@ -146,15 +145,15 @@ public class OverallTest extends AegisTest {
         onView(withText(resId)).perform(click());
     }
 
-    /*private void changeFilter(String text) {
-        openContextualActionModeOverflowMenu();
-        onView(withText(R.string.filter)).perform(click());
-        onView(withText(text)).perform(click());
+    private void changeGroupFilter(String text) {
+        onView(withId(R.id.chip_group)).perform(click());
+        if (text == null) {
+            onView(withId(R.id.btnClear)).perform(click());
+        } else {
+            onView(withText(text)).perform(click());
+            onView(isRoot()).perform(pressBack());
+        }
     }
-
-    private void changeFilter(@IdRes int resId) {
-        changeFilter(ApplicationProvider.getApplicationContext().getString(resId));
-    }*/
 
     private void addEntry(VaultEntry entry) {
         onView(withId(R.id.fab)).perform(click());
