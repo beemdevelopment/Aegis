@@ -25,7 +25,6 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.TreeSet;
 import java.util.UUID;
 
 public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements ItemTouchHelperAdapter {
@@ -254,7 +253,7 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
     }
 
     public void setSearchFilter(String search) {
-        _searchFilter = search != null ? search.toLowerCase() : null;
+        _searchFilter = (search != null && !search.isEmpty()) ? search.toLowerCase() : null;
         updateShownEntries();
     }
 
