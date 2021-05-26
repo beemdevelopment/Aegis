@@ -6,9 +6,11 @@ import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Build;
 import android.preference.PreferenceManager;
-import android.text.TextUtils;
 
-import java.util.Arrays;
+import org.json.JSONArray;
+import org.json.JSONException;
+
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
@@ -230,16 +232,25 @@ public class Preferences {
     }
 
     public void setGroupFilter(List<String> groupFilter) {
-        String filter = TextUtils.join(",", groupFilter);
-        _prefs.edit().putString("pref_group_filter", filter).apply();
+        JSONArray json = new JSONArray(groupFilter);
+        _prefs.edit().putString("pref_group_filter", json.toString()).apply();
     }
 
     public List<String> getGroupFilter() {
-        String filter = _prefs.getString("pref_group_filter", null);
-        if (filter == null || filter.isEmpty()) {
+        String raw = _prefs.getString("pref_group_filter", null);
+        if (raw == null || raw.isEmpty()) {
             return Collections.emptyList();
         }
 
-        return Arrays.asList(filter.split(","));
+        try {
+            JSONArray json = new JSONArray(raw);
+            List<String> filter = new ArrayList<>();
+            for (int i = 0; i < json.length(); i++) {
+                filter.add(json.getString(i));
+            }
+            return filter;
+        } catch (JSONException e) {
+            return Collections.emptyList();
+        }
     }
 }
