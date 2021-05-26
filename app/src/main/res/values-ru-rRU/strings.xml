@@ -318,7 +318,7 @@
     <string name="empty_list_title">Не найдено записей</string>
     <string name="empty_group_list">Нет групп для отображения. Добавьте группы на экране редактирования записи.</string>
     <string name="empty_group_list_title">Группы не найдены</string>
-    <string name="no_icon_packs">Наборы значков ещё не импортированы. Нажмите кнопку \"+\" для импортирования. Совет: попробуйте <a href="https://github.com/aegis-icons/aegis-icons/releases">значки aegis</a>.</string>
+    <string name="no_icon_packs">Наборы значков ещё не импортированы. Нажмите кнопку \"+\" для импортирования. Совет: попробуйте <a href="https://github.com/aegis-icons/aegis-icons/releases/latest">значки aegis</a>.</string>
     <string name="no_icon_packs_title">Нет наборов значков</string>
     <string name="pick_icon">Выбрать значок</string>
     <string name="uncategorized">Без категории</string>

@@ -306,7 +306,7 @@
     <string name="empty_list_title">Ez da sarrerarik aurkitu</string>
     <string name="empty_group_list">Ez dago erakutsi beharreko talderik. Gehitu taldeak sarrerak editatzeko pantailan</string>
     <string name="empty_group_list_title">Ez da talderik aurkitu</string>
-    <string name="no_icon_packs">Ez duzu ikono multzorik inportatu. Sakatu + ikurra bat inportatzeko. Saiatu adibidez <a href="https://github.com/aegis-icons/aegis-icons/releases">aegis-icons</a>.</string>
+    <string name="no_icon_packs">Ez duzu ikono multzorik inportatu. Sakatu + ikurra bat inportatzeko. Saiatu adibidez <a href="https://github.com/aegis-icons/aegis-icons/releases/latest">aegis-icons</a>.</string>
     <string name="no_icon_packs_title">Ez dago ikono multzorik</string>
     <string name="pick_icon">Aukeratu ikono bat</string>
     <string name="uncategorized">Kategoriarik gabe</string>

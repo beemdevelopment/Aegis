@@ -303,7 +303,7 @@
     <string name="empty_list_title">Nessun elemento trovato</string>
     <string name="empty_group_list">Non ci sono gruppi da mostrare. Aggiungi gruppi nella schermata di modifica di una voce</string>
     <string name="empty_group_list_title">Nessun gruppo trovato</string>
-    <string name="no_icon_packs">Non è stato ancora importato nessun pacchetto di icone. Tocca il tasto \'+\' per importarne uno. Suggerimento: prova il pacchetto <a href="https://github.com/aegis-icons/aegis-icons/releases">aegis-icons</a>.</string>
+    <string name="no_icon_packs">Non è stato ancora importato nessun pacchetto di icone. Tocca il tasto \'+\' per importarne uno. Suggerimento: prova il pacchetto <a href="https://github.com/aegis-icons/aegis-icons/releases/latest">aegis-icons</a>.</string>
     <string name="no_icon_packs_title">Nessun pacchetto di icone</string>
     <string name="pick_icon">Scegli un\'icona</string>
     <string name="uncategorized">Senza categoria</string>

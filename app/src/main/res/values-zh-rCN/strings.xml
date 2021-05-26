@@ -300,7 +300,7 @@
     <string name="empty_list_title">未找到条目</string>
     <string name="empty_group_list">没有要显示的组。 在条目的编辑屏幕中添加组</string>
     <string name="empty_group_list_title">未找到组</string>
-    <string name="no_icon_packs">尚未导入图标包。点击加号标记来导入一个。提示：尝试 <a href="https://github.com/aegis-icons/aegis-icons/releases">aegis-icons</a>。</string>
+    <string name="no_icon_packs">尚未导入图标包。点击加号标记来导入一个。提示：尝试 <a href="https://github.com/aegis-icons/aegis-icons/releases/latest">aegis-icons</a>。</string>
     <string name="no_icon_packs_title">没有图标包</string>
     <string name="pick_icon">选择一个图标</string>
     <string name="uncategorized">未分类</string>
