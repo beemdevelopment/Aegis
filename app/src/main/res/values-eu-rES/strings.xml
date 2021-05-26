@@ -243,6 +243,7 @@
     <string name="group_name_hint">Taldearen izena</string>
     <string name="preference_manage_groups">Editatu taldeak</string>
     <string name="preference_manage_groups_summary">Kudeatu eta ezabatu zure taldeak hemen</string>
+    <string name="clear">Garbitu</string>
     <string name="pref_highlight_entry_title">Nabarmendu tokenak ukitzean</string>
     <string name="pref_highlight_entry_summary">Egin elkarrengandik errazago bereizten diren tokenak, sakatzen dituzunean aldi baterako nabarmenduz</string>
     <string name="pref_copy_on_tap_title">Kopiatu tokenak ukitzean</string>

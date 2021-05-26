@@ -6,11 +6,14 @@
     <string name="action_delete">Hapus</string>
     <string name="action_transfer">Kirim</string>
     <string name="action_edit_icon">Mengedit ikon</string>
-    <string name="action_default_icon">Pulihkan ikon default</string>
+    <string name="action_default_icon">Pulihkan ikon baku</string>
     <string name="discard">Buang</string>
     <string name="save">Simpan</string>
     <string name="issuer">Penerbit</string>
-    <string name="settings">Pilihan</string>
+    <string name="settings">Preferensi</string>
+    <string name="pref_cat_appearance_app">Aplikasi</string>
+    <string name="pref_section_appearance_summary">Atur tema, bahasa, dan pengaturan lainnya yang memengaruhi penampilan aplikasi.</string>
+    <string name="pref_section_icon_packs">Paket Ikon</string>
     <string name="pref_select_theme_title">Tema</string>
     <string name="pref_view_mode_title">Mode tampilan</string>
     <string name="pref_lang_title">Bahasa</string>
@@ -145,6 +148,10 @@
     <string name="enable_encryption_error">Terjadi kesalahan saat mengaktifkan enkripsi</string>
     <string name="disable_encryption_error">Terjadi kesalahan saat menonaktifkan enkripsi</string>
     <string name="backup_error">Terjadi kesalahan saat membuat cadangan</string>
+    <plurals name="icon_pack_info">
+        <item quantity="other">%d ikon</item>
+    </plurals>
+    <string name="icon_pack">Paket Ikon</string>
     <string name="permission_denied">Izin ditolak</string>
     <string name="andotp_new_format">Format baru (v0.6.3 atau terbaru) </string>
     <string name="andotp_old_format">Format lama (v0.6.2 atau terlama) </string>
@@ -177,6 +184,7 @@
     <string name="remove_slot_description">Apakah Anda yakin ingin menghapus slot ini?</string>
     <string name="remove_group">Hapus kelompok</string>
     <string name="remove_group_description">Apakah Anda yakin ingin menghapus kelompok ini? Catatan dalam kelompok ini akan secara otomatis beralih ke \'Tidak ada kelompok\'.</string>
+    <string name="remove_icon_pack">Hapus Paket Ikon</string>
     <string name="adding_new_slot_error">Terjadi kesalahan saat menambahkan slot baru:</string>
     <string name="progressbar_error">Tidak dapat mengatur ulang skala durasi animasi. Progress bar tidak akan terlihat.</string>
     <string name="details">Rincian</string>
@@ -228,6 +236,10 @@
     <string name="changelog">Catatan perubahan</string>
     <string name="whats_new">Apa yang baru</string>
     <string name="github_description">Kode sumber, masalah dan informasi</string>
+    <string name="license">Lisensi</string>
+    <string name="license_description">Aegis Authenticator dilisensikan dengan GPLv3</string>
+    <string name="third_party_licenses">Lisensi pihak ketiga</string>
+    <string name="third_party_licenses_description">Lisensi pustaka pihak ketiga yang digunakan Aegis</string>
     <string name="country_netherlands">Belanda</string>
     <string name="email_us">Tuliskan email</string>
     <string name="visit_website">Kunjungi situs web kami</string>

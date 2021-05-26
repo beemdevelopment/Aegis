@@ -243,6 +243,7 @@
     <string name="group_name_hint">Nom de groupe</string>
     <string name="preference_manage_groups">Modifier les groupes</string>
     <string name="preference_manage_groups_summary">Gérez et supprimez vos groupes ici</string>
+    <string name="clear">Effacer</string>
     <string name="pref_highlight_entry_title">Surligner les jetons lorsqu\'ils sont appuyés</string>
     <string name="pref_highlight_entry_summary">Rendre les jetons plus faciles à distinguer les uns des autres en les surlignant temporairement lorsqu\'ils sont appuyés</string>
     <string name="pref_copy_on_tap_title">Copier les jetons quand ils sont appuyés</string>
@@ -306,7 +307,6 @@
     <string name="empty_list_title">Aucune entrée trouvée</string>
     <string name="empty_group_list">Il n\'y a aucun groupe à afficher. Ajouter des groupes dans l\'écran de modification d\'une entrée</string>
     <string name="empty_group_list_title">Aucun groupe trouvé</string>
-    <string name="no_icon_packs">Aucun pack d\'icônes n\'a encore été importé. Appuyez sur le signe plus pour en importer un. Astuce: essayez <a href="https://github.com/aegis-icons/aegis-icons/releases/latest">aegis-icons</a>.</string>
     <string name="no_icon_packs_title">Aucun pack d\'icônes</string>
     <string name="pick_icon">Choisissez une icône</string>
     <string name="uncategorized">Non catégorisé</string>
@@ -340,6 +340,7 @@
     <string name="panic_trigger_ignore_toast">Aegis a reçu le déclenchement d\'une alerte mais le paramètre est désactivé, il sera ignoré</string>
     <string name="pref_panic_trigger_title">Supprimer le coffre-fort lors du déclenchement de l\'alerte</string>
     <string name="pref_panic_trigger_summary">Supprimer le coffre-fort quand le déclenchement d\'une alerte est reçu de Ripple</string>
+    <string name="importer_help_2fas">Fournir une sauvegarde 2FAS Authenticator.</string>
     <string name="importer_help_aegis">Fournir un export/sauvegarde Aegis.</string>
     <string name="importer_help_authenticator_plus">Fournir un export Authenticator Plus obtenu via <b>Paramètres -&gt; Sauvegarde &amp; Restauration -&gt; Exporter en tant que texte et HTML</b>.</string>
     <string name="importer_help_authy">Fournir une copie de <b>/data/com.authy.authy/shared_prefs/com.authy.storage.tokens.authenticator.xml</b>, situé dans le répertoire de stockage interne d\'Authy.</string>

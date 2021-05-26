@@ -235,6 +235,7 @@
     <string name="group_name_hint">Ryhmän nimi</string>
     <string name="preference_manage_groups">Muokkaa ryhmiä</string>
     <string name="preference_manage_groups_summary">Hallitse ja poista ryhmiäsi täällä</string>
+    <string name="clear">Tyhjennä</string>
     <string name="pref_highlight_entry_title">Korosta tunnukset napauttamalla</string>
     <string name="pref_highlight_entry_summary">Tee tunnuksista helpompi erottaa toisistaan korostamalla niitä väliaikaisesti napauttamalla</string>
     <string name="pref_copy_on_tap_title">Kopioi tunnukset napauttamalla</string>

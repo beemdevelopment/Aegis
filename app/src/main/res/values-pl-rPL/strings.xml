@@ -251,6 +251,7 @@
     <string name="group_name_hint">Nazwa grupy</string>
     <string name="preference_manage_groups">Edytuj grupy</string>
     <string name="preference_manage_groups_summary">Zarządzaj i usuwaj grupy tutaj</string>
+    <string name="clear">Wyczyść</string>
     <string name="pref_highlight_entry_title">Podświetl tokeny podczas kliknięcia</string>
     <string name="pref_highlight_entry_summary">Wyróżnij tokeny od siebie poprzez tymczasowe podświetlenie po ich kliknięciu</string>
     <string name="pref_copy_on_tap_title">Kopiuj tokeny podczas kliknięcia</string>
@@ -318,7 +319,6 @@
     <string name="empty_list_title">Nie znaleziono wpisów</string>
     <string name="empty_group_list">Nie znaleziono grup do wyświetlenia. Dodaj grupy na ekranie edycji wpisu</string>
     <string name="empty_group_list_title">Nie znaleziono grup</string>
-    <string name="no_icon_packs">Nie zaimportowałeś żadnych pakietów ikon. Importuj ikony, klikając na znak plusa. Wskazówka: wypróbuj pakiet <a href="https://github.com/aegis-icons/aegis-icons/releases/latest">aegis-icons</a>.</string>
     <string name="no_icon_packs_title">Brak pakietów ikon</string>
     <string name="pick_icon">Wybierz ikonę</string>
     <string name="uncategorized">Bez kategorii</string>
@@ -354,6 +354,7 @@
     <string name="panic_trigger_ignore_toast">Aegis otrzymał wyzwalacz paniki, ale ustawienie jest wyłączone, ignorowanie</string>
     <string name="pref_panic_trigger_title">Usuń sejf przy wyzwalaczu paniki</string>
     <string name="pref_panic_trigger_summary">Usuń sejf po otrzymaniu wyzwalacza paniki z Ripple</string>
+    <string name="importer_help_2fas">Dostarcz plik zapasowy 2FAS Authenticator.</string>
     <string name="importer_help_aegis">Dostarcz plik zapasowy Aegis.</string>
     <string name="importer_help_authenticator_plus">Dostarcz plik eksportu Authenticator Plus uzyskany w <b>Ustawienia -&gt; Kopia zapasowa &amp; Przywróć -&gt; Eksportuj jako tekst i HTML</b>.</string>
     <string name="importer_help_authy">Dostarcz kopię <b>/data/data/com.authy.authy/shared_prefs/com.authy.storage.tokens.authenticator.xml</b>znajdującą się w wewnętrznym katalogu przechowywania danych Authy.</string>

@@ -251,6 +251,7 @@
     <string name="group_name_hint">Название группы</string>
     <string name="preference_manage_groups">Редактировать группы</string>
     <string name="preference_manage_groups_summary">Редактирование и удаление ваших групп</string>
+    <string name="clear">Очистить</string>
     <string name="pref_highlight_entry_title">Выделять ключи при нажатии</string>
     <string name="pref_highlight_entry_summary">Сделать ключи более различимыми, временно выделяя их при нажатии</string>
     <string name="pref_copy_on_tap_title">Копировать ключи при нажатии</string>
@@ -318,7 +319,6 @@
     <string name="empty_list_title">Не найдено записей</string>
     <string name="empty_group_list">Нет групп для отображения. Добавьте группы на экране редактирования записи.</string>
     <string name="empty_group_list_title">Группы не найдены</string>
-    <string name="no_icon_packs">Наборы значков ещё не импортированы. Нажмите кнопку \"+\" для импортирования. Совет: попробуйте <a href="https://github.com/aegis-icons/aegis-icons/releases/latest">значки aegis</a>.</string>
     <string name="no_icon_packs_title">Нет наборов значков</string>
     <string name="pick_icon">Выбрать значок</string>
     <string name="uncategorized">Без категории</string>

@@ -243,6 +243,7 @@
     <string name="group_name_hint">Όνομα ομάδας</string>
     <string name="preference_manage_groups">Επεξεργασία ομάδων</string>
     <string name="preference_manage_groups_summary">Διαχειριστείτε και διαγράψτε τις ομάδες σας εδώ</string>
+    <string name="clear">Εκκαθάριση</string>
     <string name="pref_highlight_entry_title">Επισήμανση αναγνωριστικών όταν πατηθεί</string>
     <string name="pref_highlight_entry_summary">Κάνετε τα αναγνωριστικά να ξεχωρίζουν ευκολότερα το ένα από το άλλο, επισημαίνοντας τα προσωρινά όταν τα πατήσετε</string>
     <string name="pref_copy_on_tap_title">Αντιγράψτε τα αναγνωριστικά όταν τα πατάτε</string>
@@ -306,7 +307,7 @@
     <string name="empty_list_title">Δεν βρέθηκαν καταχωρήσεις</string>
     <string name="empty_group_list">Δεν υπάρχουν ομάδες προς εμφάνιση. Προσθέστε ομάδες στην οθόνη επεξεργασίας μιας καταχώρισης</string>
     <string name="empty_group_list_title">Δεν βρέθηκαν ομάδες</string>
-    <string name="no_icon_packs">Δεν έχουν εισαχθεί ακόμα πακέτα εικονιδίων. Πατήστε το σύμβολο συν για να εισαγάγετε ένα. Συμβουλή: δοκιμάστε <a href="https://github.com/aegis-icons/aegis-icons/releases/latest">εικονίδια aegis-</a>.</string>
+    <string name="no_icon_packs">Δεν έχουν εισαχθεί ακόμα πακέτα εικονιδίων ακόμη. Πατήστε το σύμβολο συν για να εισαγάγετε ένα. Συμβουλή: δοκιμάστε <a href="https://github.com/aegis-icons/aegis-icons/releases/latest">aegis-icons</a>.</string>
     <string name="no_icon_packs_title">Χωρίς πακέτα εικονιδίων</string>
     <string name="pick_icon">Επιλέξτε ένα εικονίδιο</string>
     <string name="uncategorized">Μη κατηγοριοποιημένο</string>

@@ -306,7 +306,6 @@
     <string name="empty_list_title">Nenhuma entrada encontrada</string>
     <string name="empty_group_list">Não há grupos a serem mostrados. Adicione grupos na tela de edição de uma entrada</string>
     <string name="empty_group_list_title">Nenhum grupo encontrado</string>
-    <string name="no_icon_packs">Nenhum pacote de ícones foi importado ainda. Toque no sinal de mais para importar um. Dica: tente <a href="https://github.com/aegis-icons/aegis-icons/releases/latest">aegis-icons</a>.</string>
     <string name="no_icon_packs_title">Nenhum pacote de ícones</string>
     <string name="pick_icon">Escolha um ícone</string>
     <string name="uncategorized">Sem Categoria</string>
@@ -340,6 +339,7 @@
     <string name="panic_trigger_ignore_toast">Aegis recebeu um gatilho de pânico, mas essa configuração está desativada, portanto será ignorado</string>
     <string name="pref_panic_trigger_title">Excluir cofre após gatilho de pânico</string>
     <string name="pref_panic_trigger_summary">Excluir cofre quando um gatilho de pânico é recebido do Ripple</string>
+    <string name="importer_help_2fas">Forneça um arquivo de backup do 2FAS Authenticator.</string>
     <string name="importer_help_aegis">Fornecer um arquivo de exportação/backup do Aegis.</string>
     <string name="importer_help_authenticator_plus">Fornecer um arquivo de exportação do Autenticador Plus obtido através de <b>Configurações -&gt; Backup &amp; Restaurar -&gt; Exportar como Texto e HTML</b>.</string>
     <string name="importer_help_authy">Fornecer uma cópia de <b>/data/data/com.authy.authy/shared_prefs/com.authy.storage.tokens.authenticator.xml</b>, localizado no diretório de armazenamento interno do Authy.</string>
