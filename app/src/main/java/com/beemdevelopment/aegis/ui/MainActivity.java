@@ -734,6 +734,9 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         if (_actionMode != null) {
             _actionMode.finish();
         }
+        if (!_searchView.isIconified()) {
+            collapseSearchView();
+        }
 
         _entryListView.clearEntries();
         _loaded = false;
