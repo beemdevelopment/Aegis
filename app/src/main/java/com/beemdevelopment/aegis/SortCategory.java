@@ -1,5 +1,6 @@
 package com.beemdevelopment.aegis;
 
+import com.beemdevelopment.aegis.helpers.comparators.UsageCountComparator;
 import com.beemdevelopment.aegis.vault.VaultEntry;
 import com.beemdevelopment.aegis.helpers.comparators.AccountNameComparator;
 import com.beemdevelopment.aegis.helpers.comparators.IssuerNameComparator;
@@ -12,7 +13,8 @@ public enum SortCategory {
     ACCOUNT,
     ACCOUNT_REVERSED,
     ISSUER,
-    ISSUER_REVERSED;
+    ISSUER_REVERSED,
+    USAGE_COUNT;
 
     private static SortCategory[] _values;
 
@@ -40,6 +42,9 @@ public enum SortCategory {
             case ISSUER_REVERSED:
                 comparator = Collections.reverseOrder(new IssuerNameComparator());
                 break;
+            case USAGE_COUNT:
+                comparator = Collections.reverseOrder(new UsageCountComparator());
+                break;
         }
 
         return comparator;
@@ -57,6 +62,8 @@ public enum SortCategory {
                 return R.id.menu_sort_alphabetically;
             case ISSUER_REVERSED:
                 return R.id.menu_sort_alphabetically_reverse;
+            case USAGE_COUNT:
+                return R.id.menu_sort_usage_count;
             default:
                 return R.id.menu_sort_custom;
         }

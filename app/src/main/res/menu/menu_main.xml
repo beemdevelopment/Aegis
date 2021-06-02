@@ -37,6 +37,9 @@
                 <item
                     android:id="@+id/menu_sort_alphabetically_reverse"
                     android:title="@string/sort_alphabetically_reverse"/>
+                <item
+                    android:id="@+id/menu_sort_usage_count"
+                    android:title="@string/sort_usage_count"/>
             </group>
         </menu>
     </item>

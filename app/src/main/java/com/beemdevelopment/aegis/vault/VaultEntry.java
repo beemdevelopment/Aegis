@@ -17,6 +17,8 @@ import java.util.Arrays;
 import java.util.Objects;
 import java.util.UUID;
 
+import javax.annotation.Nonnull;
+
 public class VaultEntry extends UUIDMap.Value {
     private String _name = "";
     private String _issuer = "";
@@ -24,6 +26,7 @@ public class VaultEntry extends UUIDMap.Value {
     private OtpInfo _info;
     private byte[] _icon;
     private IconType _iconType = IconType.INVALID;
+    private int _usageCount;
 
     private VaultEntry(UUID uuid, OtpInfo info) {
         super(uuid);
@@ -130,6 +133,10 @@ public class VaultEntry extends UUIDMap.Value {
         return _info;
     }
 
+    public int getUsageCount() {
+        return _usageCount;
+    }
+
     public void setName(String name) {
         _name = name;
     }
@@ -154,6 +161,8 @@ public class VaultEntry extends UUIDMap.Value {
     public boolean hasIcon() {
         return _icon != null;
     }
+
+    public void setUsageCount(int usageCount) { _usageCount = usageCount; }
 
     @Override
     public boolean equals(Object o) {

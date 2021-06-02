@@ -12,6 +12,10 @@
         android:title="@string/action_edit_icon"
         app:showAsAction="never"/>
     <item
+        android:id="@+id/action_reset_usage_count"
+        android:title="@string/action_reset_usage_count"
+        app:showAsAction="never"/>
+    <item
         android:id="@+id/action_default_icon"
         android:title="@string/action_default_icon"
         app:showAsAction="never"/>

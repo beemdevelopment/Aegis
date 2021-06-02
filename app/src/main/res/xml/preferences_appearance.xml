@@ -49,5 +49,11 @@
             android:title="@string/preference_manage_groups"
             android:summary="@string/preference_manage_groups_summary"
             app:iconSpaceReserved="false"/>
+
+        <Preference
+            android:key="pref_reset_usage_count"
+            android:title="@string/preference_reset_usage_count"
+            android:summary="@string/preference_reset_usage_count_summary"
+            app:iconSpaceReserved="false"/>
     </PreferenceCategory>
 </PreferenceScreen>

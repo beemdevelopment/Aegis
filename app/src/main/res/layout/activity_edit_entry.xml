@@ -61,6 +61,7 @@
                         android:layout_margin="15dp"
                         android:src="@drawable/ic_check_black_24dp"
                         app:tint="?attr/iconColorPrimary" />
+
                 </com.avito.android.krop.KropView>
 
             </RelativeLayout>
@@ -284,6 +285,42 @@
                                 android:layout_height="wrap_content"
                                 android:inputType="text"/>
                         </com.google.android.material.textfield.TextInputLayout>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/layout_usage_count"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:weightSum="2"
+                        android:orientation="horizontal">
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_counter_black_24dp"
+                            app:tint="?attr/iconColorPrimary"
+                            android:layout_marginStart="5dp"
+                            android:layout_marginEnd="15dp"
+                            android:layout_gravity="center_vertical"/>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:hint="@string/usage_count"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="5dp">
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/text_usage_count"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:enabled="false"
+                                    android:inputType="number"/>
+                            </com.google.android.material.textfield.TextInputLayout>
+                        </LinearLayout>
                     </LinearLayout>
                 </LinearLayout>
             </RelativeLayout>
