@@ -795,7 +795,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
                         return true;
 
                     case R.id.action_delete:
-                        Dialogs.showDeleteEntriesDialog(MainActivity.this, _selectedEntries.stream().map(VaultEntry::getIssuer).collect(Collectors.toList()), (d, which) -> {
+                        Dialogs.showDeleteEntriesDialog(MainActivity.this, _selectedEntries, (d, which) -> {
                             deleteEntries(_selectedEntries);
 
                             for (VaultEntry entry : _selectedEntries) {

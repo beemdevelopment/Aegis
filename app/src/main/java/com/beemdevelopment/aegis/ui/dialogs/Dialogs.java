@@ -10,7 +10,6 @@ import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.text.Editable;
 import android.text.InputType;
-import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.text.method.PasswordTransformationMethod;
 import android.view.LayoutInflater;
@@ -36,6 +35,7 @@ import com.beemdevelopment.aegis.helpers.EditTextHelper;
 import com.beemdevelopment.aegis.helpers.PasswordStrengthHelper;
 import com.beemdevelopment.aegis.importers.DatabaseImporter;
 import com.beemdevelopment.aegis.ui.tasks.KeyDerivationTask;
+import com.beemdevelopment.aegis.vault.VaultEntry;
 import com.beemdevelopment.aegis.vault.slots.PasswordSlot;
 import com.beemdevelopment.aegis.vault.slots.Slot;
 import com.beemdevelopment.aegis.vault.slots.SlotException;
@@ -66,11 +66,17 @@ public class Dialogs {
         dialog.show();
     }
 
-    public static void showDeleteEntriesDialog(Activity activity, List<String> services, DialogInterface.OnClickListener onDelete) {
+    public static void showDeleteEntriesDialog(Activity activity, List<VaultEntry> services, DialogInterface.OnClickListener onDelete) {
         View view = activity.getLayoutInflater().inflate(R.layout.dialog_delete_entry, null);
         TextView textMessage = view.findViewById(R.id.text_message);
         TextView textExplanation = view.findViewById(R.id.text_explanation);
-        textExplanation.setText(activity.getString(R.string.delete_entry_explanation, TextUtils.join(", ", services)));
+        String entries = services.stream()
+                .map(entry -> !entry.getIssuer().isEmpty() ? entry.getIssuer()
+                        : !entry.getName().isEmpty() ? entry.getName()
+                        : activity.getString(R.string.unknown_issuer)
+                )
+                .collect(Collectors.joining(", "));
+        textExplanation.setText(activity.getString(R.string.delete_entry_explanation, entries));
 
         String title, message;
         if (services.size() > 1) {
