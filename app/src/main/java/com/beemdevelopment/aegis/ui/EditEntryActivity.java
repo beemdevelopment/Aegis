@@ -398,7 +398,7 @@ public class EditEntryActivity extends AegisActivity {
                 onSave();
                 break;
             case R.id.action_delete:
-                Dialogs.showDeleteEntriesDialog(this, Collections.singletonList(_origEntry.getIssuer()), (dialog, which) -> {
+                Dialogs.showDeleteEntriesDialog(this, Collections.singletonList(_origEntry), (dialog, which) -> {
                     deleteAndFinish(_origEntry);
                 });
                 break;
