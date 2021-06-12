@@ -75,7 +75,7 @@ public class AegisImporter extends DatabaseImporter {
         }
 
         public State decrypt(char[] password) throws DatabaseImporterException {
-            List<PasswordSlot> slots = getSlots().findAll(PasswordSlot.class);
+            PasswordSlot slots = getSlots().get(PasswordSlot.class);
             PasswordSlotDecryptTask.Result result = PasswordSlotDecryptTask.decrypt(slots, password);
             VaultFileCredentials creds = new VaultFileCredentials(result.getKey(), getSlots());
             return decrypt(creds);
@@ -84,7 +84,7 @@ public class AegisImporter extends DatabaseImporter {
         @Override
         public void decrypt(Context context, DecryptListener listener) {
             Dialogs.showPasswordInputDialog(context, (Dialogs.TextInputListener) password -> {
-                List<PasswordSlot> slots = getSlots().findAll(PasswordSlot.class);
+                PasswordSlot slots = getSlots().get(PasswordSlot.class);
                 PasswordSlotDecryptTask.Params params = new PasswordSlotDecryptTask.Params(slots, password);
                 PasswordSlotDecryptTask task = new PasswordSlotDecryptTask(context, result -> {
                     try {
