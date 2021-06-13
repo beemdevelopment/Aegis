@@ -391,4 +391,9 @@
 
     <string name="importer_help_direct">Import entries directly from %s. This requires the app to be installed on this device and for root access to be granted to Aegis.</string>
     <string name="groups">Groups</string>
+
+    <plurals name="open_groups">
+        <item quantity="one">Open group %1$s</item>
+        <item quantity="other">Open groups %1$s</item>
+    </plurals>
 </resources>

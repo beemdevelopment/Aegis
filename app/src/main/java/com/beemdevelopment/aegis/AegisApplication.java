@@ -35,6 +35,7 @@ import com.topjohnwu.superuser.Shell;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.UUID;
 
 public class AegisApplication extends Application {
     private VaultFile _vaultFile;
@@ -174,25 +175,61 @@ public class AegisApplication extends Application {
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N_MR1)
-    private void initAppShortcuts() {
+    public void initAppShortcuts() {
         ShortcutManager shortcutManager = getSystemService(ShortcutManager.class);
         if (shortcutManager == null) {
             return;
         }
 
-        Intent intent = new Intent(this, MainActivity.class);
-        intent.putExtra("action", "scan");
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        intent.setAction(Intent.ACTION_MAIN);
+        List<ShortcutInfo> shortcuts = new ArrayList<>();
+        Intent newIntent = new Intent(this, MainActivity.class);
+        newIntent.putExtra("action", "scan");
+        newIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        newIntent.setAction(Intent.ACTION_MAIN);
 
-        ShortcutInfo shortcut = new ShortcutInfo.Builder(this, "shortcut_new")
+        shortcuts.add(
+            new ShortcutInfo.Builder(this, "shortcut_new")
                 .setShortLabel(getString(R.string.new_entry))
                 .setLongLabel(getString(R.string.add_new_entry))
                 .setIcon(Icon.createWithResource(this, R.drawable.ic_qr_code))
-                .setIntent(intent)
-                .build();
+                .setIntent(newIntent)
+                .setRank(0)
+                .build()
+        );
 
-        shortcutManager.setDynamicShortcuts(Collections.singletonList(shortcut));
+
+        Intent groupFilterIntent = new Intent(this, MainActivity.class);
+        groupFilterIntent.putExtra("action", "set_group_filter");
+
+        List<String> groups = getPreferences().getGroupFilter();
+        if(!groups.isEmpty()){
+            StringBuilder builder = new StringBuilder();
+            for(int i = 0; i < groups.size(); i++) {
+                builder.append(groups.get(i));
+                if(i != groups.size() - 1)
+                    builder.append(", ");
+            }
+
+            String shortLabel = builder.toString();
+            if(shortLabel.length() > 10)
+                shortLabel = shortLabel.substring(0, 7) + "...";
+            String longLabel = getResources().getQuantityString(R.plurals.open_groups, groups.size(), builder.toString());
+
+            groupFilterIntent.putExtra("groups", groups.toArray(new String[0]));
+            groupFilterIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            groupFilterIntent.setAction(Intent.ACTION_MAIN);
+            shortcuts.add(
+                 new ShortcutInfo.Builder(this, UUID.randomUUID().toString())
+                    .setShortLabel(shortLabel)
+                    .setLongLabel(longLabel)
+                    .setIcon(Icon.createWithResource(this, R.drawable.app_icon))
+                    .setIntent(groupFilterIntent)
+                    .setRank(1)
+                    .build()
+            );
+
+        }
+        shortcutManager.setDynamicShortcuts(shortcuts);
     }
 
     private void initNotificationChannels() {

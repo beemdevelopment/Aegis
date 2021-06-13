@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.view.Menu;
@@ -56,6 +57,7 @@ import com.google.zxing.qrcode.QRCodeReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -403,6 +405,10 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
             case "scan":
                 startScanActivity();
                 break;
+            case "set_group_filter":
+                String[] groups = intent.getStringArrayExtra("groups");
+                _entryListView.setPrefGroupFilter(Arrays.asList(groups));
+                break;
         }
 
         intent.removeExtra("action");
@@ -727,6 +733,10 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
     @Override
     public void onSaveGroupFilter(List<String> groupFilter) {
         getPreferences().setGroupFilter(groupFilter);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {
+            _app.initAppShortcuts();
+        }
     }
 
     @Override
