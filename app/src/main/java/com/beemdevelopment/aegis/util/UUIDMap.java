@@ -141,6 +141,7 @@ public class UUIDMap <T extends UUIDMap.Value> implements Iterable<T>, Serializa
             this(UUID.randomUUID());
         }
 
+        @NonNull
         public final UUID getUUID() {
             return _uuid;
         }

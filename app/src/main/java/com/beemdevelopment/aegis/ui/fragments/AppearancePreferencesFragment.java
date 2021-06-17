@@ -21,6 +21,7 @@ import java.util.HashSet;
 
 public class AppearancePreferencesFragment extends PreferencesFragment {
     private Preference _groupsPreference;
+    private Preference _resetUsageCountPreference;
 
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
@@ -33,6 +34,17 @@ public class AppearancePreferencesFragment extends PreferencesFragment {
             Intent intent = new Intent(getActivity(), GroupManagerActivity.class);
             intent.putExtra("groups", new ArrayList<>(getVault().getGroups()));
             startActivityForResult(intent, CODE_GROUPS);
+            return true;
+        });
+
+        _resetUsageCountPreference = findPreference("pref_reset_usage_count");
+        _resetUsageCountPreference.setOnPreferenceClickListener(preference -> {
+            Dialogs.showSecureDialog(new AlertDialog.Builder(getActivity())
+                    .setTitle(R.string.preference_reset_usage_count)
+                    .setMessage(R.string.preference_reset_usage_count_dialog)
+                    .setPositiveButton(android.R.string.yes, (dialog, which) -> getPreferences().clearUsageCount())
+                    .setNegativeButton(android.R.string.no, null)
+                    .create());
             return true;
         });
 

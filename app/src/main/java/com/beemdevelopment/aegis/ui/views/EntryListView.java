@@ -47,6 +47,7 @@ import com.google.android.material.chip.ChipGroup;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 import java.util.TreeSet;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -182,6 +183,14 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
         if (apply) {
             runEntriesAnimation();
         }
+    }
+
+    public void setUsageCounts(Map<UUID, Integer> usageCounts) {
+        _adapter.setUsageCounts(usageCounts);
+    }
+
+    public Map<UUID, Integer> getUsageCounts() {
+        return _adapter.getUsageCounts();
     }
 
     public void setSearchFilter(String search) {

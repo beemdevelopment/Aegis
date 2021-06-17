@@ -9,11 +9,14 @@
     <string name="action_delete">Delete</string>
     <string name="action_transfer">Transfer</string>
     <string name="action_edit_icon">Edit icon</string>
+    <string name="action_reset_usage_count">Reset usage count</string>
+    <string name="action_reset_usage_count_dialog">Are you sure you want to set the usage count of this entry to 0?</string>
     <string name="action_default_icon">Restore default icon</string>
     <string name="discard">Discard</string>
     <string name="save">Save</string>
     <string name="issuer">Issuer</string>
     <string name="suggested">Suggested</string>
+    <string name="usage_count">Usage count</string>
 
     <string name="settings">Preferences</string>
     <string name="pref_cat_appearance_app">App</string>
@@ -245,6 +248,7 @@
     <string name="sort_alphabetically_reverse">Issuer (Z to A)</string>
     <string name="sort_alphabetically_name">Account (A to Z)</string>
     <string name="sort_alphabetically_name_reverse">Account (Z to A)</string>
+    <string name="sort_usage_count">Usage count</string>
     <string name="sort_custom">Custom</string>
     <string name="new_group">New group…</string>
     <string name="enter_group_name">Enter a group name</string>
@@ -252,6 +256,9 @@
     <string name="group_name_hint">Group name</string>
     <string name="preference_manage_groups">Edit groups</string>
     <string name="preference_manage_groups_summary">Manage and delete your groups here</string>
+    <string name="preference_reset_usage_count">Reset usage count</string>
+    <string name="preference_reset_usage_count_summary">Reset the usage count of every entry in your vault</string>
+    <string name="preference_reset_usage_count_dialog">Are you sure you want to set the usage count of every entry in your vault to 0?</string>
     <string name="clear">Clear</string>
 
     <string name="pref_highlight_entry_title">Highlight tokens when tapped</string>

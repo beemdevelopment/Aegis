@@ -22,6 +22,8 @@ import android.widget.AutoCompleteTextView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -100,6 +102,7 @@ public class EditEntryActivity extends AegisActivity {
     private TextInputEditText _textDigits;
     private TextInputLayout _textDigitsLayout;
     private TextInputEditText _textSecret;
+    private TextInputEditText _textUsageCount;
 
     private AutoCompleteTextView _dropdownType;
     private AutoCompleteTextView _dropdownAlgo;
@@ -150,6 +153,7 @@ public class EditEntryActivity extends AegisActivity {
         _textDigits = findViewById(R.id.text_digits);
         _textDigitsLayout = findViewById(R.id.text_digits_layout);
         _textSecret = findViewById(R.id.text_secret);
+        _textUsageCount = findViewById(R.id.text_usage_count);
         _dropdownType = findViewById(R.id.dropdown_type);
         DropdownHelper.fillDropdown(this, _dropdownType, R.array.otp_types_array);
         _dropdownAlgoLayout = findViewById(R.id.dropdown_algo_layout);
@@ -279,6 +283,8 @@ public class EditEntryActivity extends AegisActivity {
                 }
             }
         });
+
+        _textUsageCount.setText(getPreferences().getUsageCount(entryUUID).toString());
     }
 
     private void updateAdvancedFieldStatus(String otpType) {
@@ -405,6 +411,14 @@ public class EditEntryActivity extends AegisActivity {
             case R.id.action_edit_icon:
                 startIconSelection();
                 break;
+            case R.id.action_reset_usage_count:
+                Dialogs.showSecureDialog(new AlertDialog.Builder(this)
+                        .setTitle(R.string.action_reset_usage_count)
+                        .setMessage(R.string.action_reset_usage_count_dialog)
+                        .setPositiveButton(android.R.string.yes, (dialog, which) -> resetUsageCount())
+                        .setNegativeButton(android.R.string.no, null)
+                        .create());
+                break;
             case R.id.action_default_icon:
                 TextDrawable drawable = TextDrawableHelper.generate(_origEntry.getIssuer(), _origEntry.getName(), _iconView);
                 _iconView.setImageDrawable(drawable);
@@ -429,6 +443,11 @@ public class EditEntryActivity extends AegisActivity {
         Intent chooserIntent = Intent.createChooser(galleryIntent, getString(R.string.select_icon));
         chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS, new Intent[] { fileIntent });
         AegisActivity.Helper.startExtActivityForResult(this, chooserIntent, PICK_IMAGE_REQUEST);
+    }
+
+    private void resetUsageCount() {
+        getPreferences().resetUsageCount(_origEntry.getUUID());
+        _textUsageCount.setText("0");
     }
 
     private void startIconSelection() {

@@ -25,6 +25,7 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeSet;
 import java.util.UUID;
 
 public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements ItemTouchHelperAdapter {
@@ -32,6 +33,7 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
     private List<VaultEntry> _entries;
     private List<VaultEntry> _shownEntries;
     private List<VaultEntry> _selectedEntries;
+    private Map<UUID, Integer> _usageCounts;
     private VaultEntry _focusedEntry;
     private int _codeGroupSize;
     private boolean _showAccountName;
@@ -139,6 +141,10 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
     }
 
     public void addEntries(Collection<VaultEntry> entries) {
+        for (VaultEntry entry: entries) {
+            entry.setUsageCount(_usageCounts.containsKey(entry.getUUID()) ? _usageCounts.get(entry.getUUID()) : 0);
+        }
+
         _entries.addAll(entries);
         updateShownEntries();
         checkPeriodUniformity(true);
@@ -282,6 +288,14 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
         _viewMode = viewMode;
     }
 
+    public void setUsageCounts(Map<UUID, Integer> usageCounts) { _usageCounts = usageCounts; }
+
+    public Map<UUID, Integer> getUsageCounts() { return _usageCounts; }
+
+    public void setGroups(TreeSet<String> groups) {
+        _view.setGroups(groups);
+    }
+
     @Override
     public void onItemDismiss(int position) {
 
@@ -363,6 +377,8 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
                             focusEntry(entry, _tapToRevealTime);
                         }
                     }
+
+                    incrementUsageCount(entry);
                 } else {
                     if (_selectedEntries.contains(entry)) {
                         _view.onDeselect(entry);
@@ -584,6 +600,15 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
         _selectedEntries.clear();
 
         updateDraggableStatus();
+    }
+
+    private void incrementUsageCount(VaultEntry entry) {
+        if (!_usageCounts.containsKey(entry.getUUID())) {
+            _usageCounts.put(entry.getUUID(), 1);
+        } else {
+            int usageCount = _usageCounts.get(entry.getUUID());
+            _usageCounts.put(entry.getUUID(), ++usageCount);
+        }
     }
 
     public boolean isDragAndDropAllowed() {

@@ -57,6 +57,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -164,6 +165,17 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         _entryListView.setListener(null);
         super.onDestroy();
     }
+
+    @Override
+    protected void onPause() {
+        Map<UUID, Integer> usageMap = _entryListView.getUsageCounts();
+        if (usageMap != null) {
+            getPreferences().setUsageCount(usageMap);
+        }
+
+        super.onPause();
+    }
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -487,6 +499,9 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
             // update the list of groups in the entry list view so that the chip gets updated
             _entryListView.setGroups(_vault.getGroups());
 
+            // update the usage counts in case they are edited outside of the entrylistview
+            _entryListView.setUsageCounts(getPreferences().getUsageCounts());
+
             // refresh all codes to prevent showing old ones
             _entryListView.refresh(false);
         } else {
@@ -605,6 +620,9 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
                         case R.id.menu_sort_alphabetically_name_reverse:
                             sortCategory = SortCategory.ACCOUNT_REVERSED;
                             break;
+                        case R.id.menu_sort_usage_count:
+                            sortCategory = SortCategory.USAGE_COUNT;
+                            break;
                         case R.id.menu_sort_custom:
                         default:
                             sortCategory = SortCategory.CUSTOM;
@@ -625,6 +643,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
 
     private void loadEntries() {
         if (!_loaded) {
+            _entryListView.setUsageCounts(getPreferences().getUsageCounts());
             _entryListView.addEntries(_vault.getEntries());
             _entryListView.runEntriesAnimation();
             _loaded = true;
@@ -740,6 +759,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
 
         _entryListView.clearEntries();
         _loaded = false;
+
 
         if (userInitiated) {
             startAuthActivity(true);
