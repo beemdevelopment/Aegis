@@ -162,8 +162,10 @@ public class IconPack {
         }
 
         public boolean isSuggestedFor(String issuer) {
+            String lowerIssuer = issuer.toLowerCase();
             return getIssuers().stream()
-                    .anyMatch(is -> is.toLowerCase().contains(issuer.toLowerCase()));
+                    .map(String::toLowerCase)
+                    .anyMatch(is -> is.contains(lowerIssuer) || lowerIssuer.contains(is));
         }
 
         public static Icon fromJson(JSONObject obj) throws JSONException {
