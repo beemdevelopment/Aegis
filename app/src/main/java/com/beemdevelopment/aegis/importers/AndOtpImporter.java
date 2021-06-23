@@ -38,6 +38,7 @@ import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.KeySpec;
 import java.util.Arrays;
+import java.util.Locale;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
@@ -225,7 +226,7 @@ public class AndOtpImporter extends DatabaseImporter {
 
         private static VaultEntry convertEntry(JSONObject obj) throws DatabaseImporterEntryException {
             try {
-                String type = obj.getString("type").toLowerCase();
+                String type = obj.getString("type").toLowerCase(Locale.ROOT);
                 String algo = obj.getString("algorithm");
                 int digits = obj.getInt("digits");
                 byte[] secret = Base32.decode(obj.getString("secret"));

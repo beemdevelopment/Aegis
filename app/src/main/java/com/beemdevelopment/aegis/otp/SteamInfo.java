@@ -5,6 +5,7 @@ import com.beemdevelopment.aegis.crypto.otp.TOTP;
 
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
+import java.util.Locale;
 
 public class SteamInfo extends TotpInfo {
     public static final String ID = "steam";
@@ -36,6 +37,6 @@ public class SteamInfo extends TotpInfo {
     @Override
     public String getType() {
         String id = getTypeId();
-        return id.substring(0, 1).toUpperCase() + id.substring(1);
+        return id.substring(0, 1).toUpperCase(Locale.ROOT) + id.substring(1);
     }
 }

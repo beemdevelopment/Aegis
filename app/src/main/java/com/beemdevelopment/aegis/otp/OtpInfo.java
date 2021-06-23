@@ -8,6 +8,7 @@ import org.json.JSONObject;
 
 import java.io.Serializable;
 import java.util.Arrays;
+import java.util.Locale;
 
 public abstract class OtpInfo implements Serializable {
     public static final int DEFAULT_DIGITS = 6;
@@ -32,7 +33,7 @@ public abstract class OtpInfo implements Serializable {
     public abstract String getTypeId();
 
     public String getType() {
-        return getTypeId().toUpperCase();
+        return getTypeId().toUpperCase(Locale.ROOT);
     }
 
     public JSONObject toJson() {
@@ -76,7 +77,7 @@ public abstract class OtpInfo implements Serializable {
         if (algorithm.startsWith("Hmac")) {
             algorithm = algorithm.substring(4);
         }
-        algorithm = algorithm.toUpperCase();
+        algorithm = algorithm.toUpperCase(Locale.ROOT);
 
         if (!isAlgorithmValid(algorithm)) {
             throw new OtpInfoException(String.format("unsupported algorithm: %s", algorithm));

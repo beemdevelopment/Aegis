@@ -22,8 +22,6 @@ import android.widget.AutoCompleteTextView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -73,6 +71,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Locale;
 import java.util.TreeSet;
 import java.util.UUID;
 import java.util.concurrent.atomic.AtomicReference;
@@ -234,7 +233,7 @@ public class EditEntryActivity extends AegisActivity {
 
         // show/hide period and counter fields on type change
         _dropdownType.setOnItemClickListener((parent, view, position, id) -> {
-            String type = _dropdownType.getText().toString().toLowerCase();
+            String type = _dropdownType.getText().toString().toLowerCase(Locale.ROOT);
             switch (type) {
                 case SteamInfo.ID:
                     _dropdownAlgo.setText(OtpInfo.DEFAULT_ALGORITHM, false);
@@ -646,7 +645,7 @@ public class EditEntryActivity extends AegisActivity {
 
         OtpInfo info;
         try {
-            switch (type.toLowerCase()) {
+            switch (type.toLowerCase(Locale.ROOT)) {
                 case TotpInfo.ID:
                     info = new TotpInfo(secret, algo, digits, parsePeriod());
                     break;

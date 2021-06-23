@@ -23,6 +23,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class FreeOtpImporter extends DatabaseImporter {
     private static final String _subPath = "shared_prefs/tokens.xml";
@@ -83,7 +84,7 @@ public class FreeOtpImporter extends DatabaseImporter {
 
         private static VaultEntry convertEntry(JSONObject obj) throws DatabaseImporterEntryException {
             try {
-                String type = obj.getString("type").toLowerCase();
+                String type = obj.getString("type").toLowerCase(Locale.ROOT);
                 String algo = obj.getString("algo");
                 int digits = obj.getInt("digits");
                 byte[] secret = toBytes(obj.getJSONArray("secret"));

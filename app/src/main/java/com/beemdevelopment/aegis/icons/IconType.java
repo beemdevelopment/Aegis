@@ -2,6 +2,8 @@ package com.beemdevelopment.aegis.icons;
 
 import com.google.common.io.Files;
 
+import java.util.Locale;
+
 public enum IconType {
     INVALID,
     SVG,
@@ -23,7 +25,7 @@ public enum IconType {
 
     @SuppressWarnings("UnstableApiUsage")
     public static IconType fromFilename(String filename) {
-        switch (Files.getFileExtension(filename).toLowerCase()) {
+        switch (Files.getFileExtension(filename).toLowerCase(Locale.ROOT)) {
             case "svg":
                 return SVG;
             case "png":
