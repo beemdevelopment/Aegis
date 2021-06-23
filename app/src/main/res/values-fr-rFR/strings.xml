@@ -6,11 +6,14 @@
     <string name="action_delete">Supprimer</string>
     <string name="action_transfer">Transfert</string>
     <string name="action_edit_icon">Modifier l\'icône</string>
+    <string name="action_reset_usage_count">Réinitialiser le nombre d\'utilisations</string>
+    <string name="action_reset_usage_count_dialog">Êtes-vous sûr de vouloir définir le nombre d\'utilisations de cette entrée à 0 ?</string>
     <string name="action_default_icon">Restaurer l\'icône par défaut</string>
     <string name="discard">Annuler</string>
     <string name="save">Enregistrer</string>
     <string name="issuer">Émetteur</string>
     <string name="suggested">Suggéré</string>
+    <string name="usage_count">Nombre d\'utilisations</string>
     <string name="settings">Préférences</string>
     <string name="pref_cat_appearance_app">Application</string>
     <string name="pref_cat_appearance_entries">Entrées</string>
@@ -236,6 +239,7 @@
     <string name="sort_alphabetically_reverse">Émetteur (de Z à A)</string>
     <string name="sort_alphabetically_name">Compte (de A à Z)</string>
     <string name="sort_alphabetically_name_reverse">Compte (de Z à A)</string>
+    <string name="sort_usage_count">Nombre d\'utilisations</string>
     <string name="sort_custom">Personnalisé</string>
     <string name="new_group">Nouveau groupe…</string>
     <string name="enter_group_name">Saisissez un nom de groupe</string>
@@ -243,6 +247,9 @@
     <string name="group_name_hint">Nom de groupe</string>
     <string name="preference_manage_groups">Modifier les groupes</string>
     <string name="preference_manage_groups_summary">Gérez et supprimez vos groupes ici</string>
+    <string name="preference_reset_usage_count">Réinitialiser le nombre d\'utilisations</string>
+    <string name="preference_reset_usage_count_summary">Réinitialiser le nombre d\'utilisations de chaque entrée de votre coffre-fort</string>
+    <string name="preference_reset_usage_count_dialog">Êtes-vous sûr de vouloir définir le nombre d\'utilisations de chaque entrée de votre coffre-fort à 0 ?</string>
     <string name="clear">Effacer</string>
     <string name="pref_highlight_entry_title">Surligner les jetons lorsqu\'ils sont appuyés</string>
     <string name="pref_highlight_entry_summary">Rendre les jetons plus faciles à distinguer les uns des autres en les surlignant temporairement lorsqu\'ils sont appuyés</string>
@@ -307,6 +314,7 @@
     <string name="empty_list_title">Aucune entrée trouvée</string>
     <string name="empty_group_list">Il n\'y a aucun groupe à afficher. Ajouter des groupes dans l\'écran de modification d\'une entrée</string>
     <string name="empty_group_list_title">Aucun groupe trouvé</string>
+    <string name="no_icon_packs">Aucun pack d\'icônes n\'a encore été importé. Appuyez sur le signe plus pour en importer un. Astuce : essayez <a href="https://github.com/aegis-icons/aegis-icons/releases/latest">aegis-icons</a>.</string>
     <string name="no_icon_packs_title">Aucun pack d\'icônes</string>
     <string name="pick_icon">Choisissez une icône</string>
     <string name="uncategorized">Non catégorisé</string>

@@ -6,11 +6,14 @@
     <string name="action_delete">Ezabatu</string>
     <string name="action_transfer">Transferitu</string>
     <string name="action_edit_icon">Editatu abiarazlea</string>
+    <string name="action_reset_usage_count">Berrezarri erabilera kopurua</string>
+    <string name="action_reset_usage_count_dialog">Ziur zaude elementu honen erabilera kopurua 0ra berrezartzeaz?</string>
     <string name="action_default_icon">Berrezarri abiarazle lehentsia</string>
     <string name="discard">Baztertu</string>
     <string name="save">Gorde</string>
     <string name="issuer">Igorlea</string>
     <string name="suggested">Iradokitakoak</string>
+    <string name="usage_count">Erabilera kopurua</string>
     <string name="settings">Hobespenak</string>
     <string name="pref_cat_appearance_app">Aplikazioa</string>
     <string name="pref_cat_appearance_entries">Sarrerak</string>
@@ -236,6 +239,7 @@
     <string name="sort_alphabetically_reverse">Igorlea (Z-tik A-ra)</string>
     <string name="sort_alphabetically_name">Kontua (A-tik Z-ra)</string>
     <string name="sort_alphabetically_name_reverse">Kontua (Z-tik A-ra)</string>
+    <string name="sort_usage_count">Erabilera kopurua</string>
     <string name="sort_custom">Pertsonalizatua</string>
     <string name="new_group">Talde berria…</string>
     <string name="enter_group_name">Sartu talde izena</string>
@@ -243,6 +247,9 @@
     <string name="group_name_hint">Taldearen izena</string>
     <string name="preference_manage_groups">Editatu taldeak</string>
     <string name="preference_manage_groups_summary">Kudeatu eta ezabatu zure taldeak hemen</string>
+    <string name="preference_reset_usage_count">Berrezarri erabilera kopurua</string>
+    <string name="preference_reset_usage_count_summary">Berrezarri elementu guztien erabilera kopurua</string>
+    <string name="preference_reset_usage_count_dialog">Ziur zaude elementu guztien erabilera kopurua 0ra berrezartzeaz?</string>
     <string name="clear">Garbitu</string>
     <string name="pref_highlight_entry_title">Nabarmendu tokenak ukitzean</string>
     <string name="pref_highlight_entry_summary">Egin elkarrengandik errazago bereizten diren tokenak, sakatzen dituzunean aldi baterako nabarmenduz</string>

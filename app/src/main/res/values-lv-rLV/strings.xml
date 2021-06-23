@@ -313,6 +313,7 @@
     <string name="empty_list_title">Nav atrastu ierakstu</string>
     <string name="empty_group_list">Nav kopu, ko attēlot. Tās var pievienot ieraksta labošanas skatā</string>
     <string name="empty_group_list_title">Nav atrastu kopu</string>
+    <string name="no_icon_packs">Pagaidām nav ievietota neviena ikonu pakotne. Jāpiesit \"+\", lai pievienotu kādu. Padoms: var izmēģināt <a href="https://github.com/aegis-icons/aegis-icons/releases/latest">aegis-icons</a>.</string>
     <string name="no_icon_packs_title">Nav ikonu pakotņu</string>
     <string name="pick_icon">Izvēlēties ikonu</string>
     <string name="uncategorized">Bez kopas</string>

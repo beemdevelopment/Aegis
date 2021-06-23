@@ -6,11 +6,14 @@
     <string name="action_delete">Διαγραφή</string>
     <string name="action_transfer">Μεταφορά</string>
     <string name="action_edit_icon">Επεξεργασία εικονιδίου</string>
+    <string name="action_reset_usage_count">Επαναφορά αριθμού χρήσης</string>
+    <string name="action_reset_usage_count_dialog">Είστε βέβαιοι ότι θέλετε να ορίσετε το πλήθος χρήσης αυτής της καταχώρησης σε 0;</string>
     <string name="action_default_icon">Επαναφορά προεπιλεγμένου εικονιδίου</string>
     <string name="discard">Απόρριψη</string>
     <string name="save">Αποθήκευση</string>
     <string name="issuer">Εκδότης</string>
     <string name="suggested">Προτεινόμενο</string>
+    <string name="usage_count">Αριθμός χρήσεων</string>
     <string name="settings">Προτιμήσεις</string>
     <string name="pref_cat_appearance_app">Εφαρμογή</string>
     <string name="pref_cat_appearance_entries">Καταχωρήσεις</string>
@@ -236,6 +239,7 @@
     <string name="sort_alphabetically_reverse">Εκδότης (Ζ προς Α)</string>
     <string name="sort_alphabetically_name">Λογαριασμός (Α προς Ζ)</string>
     <string name="sort_alphabetically_name_reverse">Λογαριασμός (Z προς A)</string>
+    <string name="sort_usage_count">Αριθμός χρήσεων</string>
     <string name="sort_custom">Προσαρμογή</string>
     <string name="new_group">Νέα ομάδα…</string>
     <string name="enter_group_name">Εισαγωγή ονόματος ομάδας</string>
@@ -243,6 +247,9 @@
     <string name="group_name_hint">Όνομα ομάδας</string>
     <string name="preference_manage_groups">Επεξεργασία ομάδων</string>
     <string name="preference_manage_groups_summary">Διαχειριστείτε και διαγράψτε τις ομάδες σας εδώ</string>
+    <string name="preference_reset_usage_count">Επαναφορά αριθμού χρήσης</string>
+    <string name="preference_reset_usage_count_summary">Επαναφορά του αριθμού χρήσης κάθε καταχώρησης στην κρύπτη σας</string>
+    <string name="preference_reset_usage_count_dialog">Είστε βέβαιοι ότι θέλετε να ορίσετε τον αριθμό χρήσης κάθε εισόδου στην κρύπτη σας στο 0;</string>
     <string name="clear">Εκκαθάριση</string>
     <string name="pref_highlight_entry_title">Επισήμανση αναγνωριστικών όταν πατηθεί</string>
     <string name="pref_highlight_entry_summary">Κάνετε τα αναγνωριστικά να ξεχωρίζουν ευκολότερα το ένα από το άλλο, επισημαίνοντας τα προσωρινά όταν τα πατήσετε</string>

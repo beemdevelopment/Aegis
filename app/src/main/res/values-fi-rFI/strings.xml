@@ -41,7 +41,7 @@
     <string name="pref_import_file_title">Tuo tiedostosta</string>
     <string name="pref_import_file_summary">Tuo tunnukset tiedostosta</string>
     <string name="pref_android_backups_title">Käytä Androidin omaa varmuuskopiointijärjestelmää</string>
-    <string name="pref_android_backups_summary">Anna Androidin sisällyttää Aegisin holvi sen varmuuskopiointijärjestelmäss. Tämä tukee vain salattuja holveja.</string>
+    <string name="pref_android_backups_summary">Salli Androidin varmuuskopiointijärjestelmän sisällyttää Aegisin holvi varmuuskopioihinsa. Tätä tuetaan vain salatuissa holveissa.</string>
     <string name="pref_backups_title">Varmuuskopioi holvi automaattisesti</string>
     <string name="pref_backups_summary">Holvi varmuuskopioidaan ulkoiseen tallennustilaan automaattisesti, kun muutoksia tehdään. Vain salatut holvit tukevat tätä.</string>
     <string name="pref_backups_location_title">Varmuuskopiotiedostojen hakemisto</string>
@@ -85,7 +85,7 @@
     <string name="export_format_google_auth_uri">Tekstitiedosto (.TXT)</string>
     <string name="export_format_hint">Vientimuoto</string>
     <string name="choose_authentication_method">Turvallisuus</string>
-    <string name="authentication_method_explanation">Aegis on tietoturvaan keskittyvä kaksivaiheisen tunnistautumisen sovellus. Tunnukset tallennetaan holviin, joka voidaan salata valitsemallasi salasanalla. Vaikka hyökkääjä saisi salatun holvitiedostosi, hän ei pääse käsiksi sen sisältöön tietämättä salasanaasi.\n\nOlemme valinneet valmiiksi vaihtoehdon, joka mielestämme sopii parhaiten laitteeseesi.</string>
+    <string name="authentication_method_explanation">Aegis on tietoturvakeskeinen 2FA-sovellus. Tunnukset tallennetaan holviin, joka voidaan salata valitsemallasi salasanalla. Vaikka hyökkääjä saisi salatun holvitiedostosi, hän ei pääse käsiksi sen sisältöön tietämättä salasanaasi.\n\nOlemme valinneet vaihtoehdon, joka mielestämme sopii parhaiten laitteellesi.</string>
     <string name="authentication_method_none">Ei mitään</string>
     <string name="authentication_method_none_description">Holvia ei salata ja sen avaaminen ei vaadi salasanaa. <b>Tätä asetusta ei suositella</b>.</string>
     <string name="authentication_method_password">Salasana</string>
@@ -168,7 +168,7 @@
     <string name="saving_error">Holvin tallentamisessa tapahtui virhe</string>
     <string name="vault_init_error">Holvin käyttöönotossa tapahtui virhe</string>
     <string name="vault_load_error">Holvin lataamisessa tapahtui virhe</string>
-    <string name="biometric_decrypt_error">Yritettäessä purkaa holvin lukitus biometrisen todennuksen avulla tapahtui virhe. Tämä tapahtuu yleensä vain, jos laitteen suojausasetukset muuttuvat. Ole hyvä ja avaa holvi salasanallasi ja määritä biometrinen todennus uudelleen Aegisin asetuksissa.</string>
+    <string name="biometric_decrypt_error">Holvin lukituksen purkamisessa biometrisella todennuksella tapahtui virhe. Tämä tapahtuu yleensä vain, jos laitteen suojausasetukset muuttuvat. Ole hyvä ja avaa holvi salasanallasi ja määritä biometrinen todennus uudelleen Aegisin asetuksissa.</string>
     <string name="biometric_init_error">Biometrisen todennuksen valmistelussa tapahtui virhe. Tämä tapahtuu yleensä vain, jos laitteen suojausasetukset muuttuvat. Ole hyvä ja avaa holvi salasanallasi ja määritä biometrinen todennus uudelleen Aegisin asetuksissa.</string>
     <string name="disable_encryption">Ota salaus pois käytöstä</string>
     <string name="enable_encryption_error">Salauksen käyttöönotossa tapahtui virhe</string>
@@ -206,7 +206,7 @@
     <string name="encryption_enable_biometrics_error">Biometrisen todennuksen käyttöönotossa tapahtui virhe. Biometrinen todennus on toteutettu huonosti joissain laitteissa, ja on todennäköistä, että omasi on yksi niistä. Harkitse vaihtamista vain salasanan käyttämiseen.</string>
     <string name="no_cameras_available">Kameroita ei ole saatavilla</string>
     <string name="read_qr_error">QR-koodin lukemisessa tapahtui virhe</string>
-    <string name="read_qr_error_phonefactor">Aegis ei ole yhteensopiva Microsoftin oman 2FA-algoritmin kanssa. Varmista, että valitset \"Määritä sovellus ilman ilmoituksia\" asettaessasi Office 365:n kaksivaiheista tunnistautumista.</string>
+    <string name="read_qr_error_phonefactor">Aegis ei ole yhteensopiva Microsoftin oman 2FA-algoritmin kanssa. Varmista, että valitset \"Määritä sovellus ilman ilmoituksia\", kun määrität Office 365:n kaksivaiheista tunnistautumista.</string>
     <string name="authentication_method_raw">Raw</string>
     <string name="unlocking_vault">Holvia avataan</string>
     <string name="unlocking_vault_repair">Holvia avataan (korjataan)</string>
@@ -266,14 +266,14 @@
     <string name="toggle_checkboxes">Kytke valintaruudut</string>
     <string name="search">Haku</string>
     <string name="channel_name_lock_status">Lukituksen tila</string>
-    <string name="channel_description_lock_status">Aegis voi luoda pysyvän ilmoituksen, joka kertoo sinulle koska holvi on lukittu</string>
+    <string name="channel_description_lock_status">Aegis voi luoda pysyvän ilmoituksen, joka ilmoittaa sinulle, kun holvi on lukittu</string>
     <string name="vault_unlocked_state">Holvi on lukittu. Avaa napauttamalla.</string>
     <string name="version">Versio</string>
     <string name="changelog">Muutosloki</string>
     <string name="whats_new">Mitä uutta</string>
     <string name="github_description">Lähdekoodi, ongelmat ja tietoa</string>
     <string name="license">Lisenssi</string>
-    <string name="license_description">Aegis Authenticator on lisensoitu GPLv3:n nojalla</string>
+    <string name="license_description">Aegis Authenticatorilla on GPLv3-lisenssi</string>
     <string name="third_party_licenses">Kolmannen osapuolen lisenssit</string>
     <string name="third_party_licenses_description">Aegisin käyttämien kolmannen osapuolen kirjastojen lisenssit</string>
     <string name="country_netherlands">Alankomaat</string>
@@ -284,7 +284,7 @@
     <string name="support_rate_description">Tue meitä kirjoittamalla arvostelu Google Play Kauppaan</string>
     <string name="email">Sähköposti</string>
     <string name="time_sync_warning_title">Automaattinen ajan synkronointi</string>
-    <string name="time_sync_warning_message">Oikeiden koodien luomiseksi, Aegis vaatii, että järjestelmän aika on synkronoitu. Vain muutaman sekunnin poikkeama voi johtaa virheellisiin koodeihin. Näyttää siltä, että laitettasi ei ole määritetty synkronoimaan aika automaattisesti. Haluatko tehdä niin nyt?</string>
+    <string name="time_sync_warning_message">Aegis vaatii, että järjestelmän aika on synkronoitu oikeiden koodien luomiseksi. Vain muutaman sekunnin poikkeama voi johtaa virheellisiin koodeihin. Näyttää siltä, että laitettasi ei ole määritetty synkronoimaan aika automaattisesti. Haluatko tehdä niin nyt?</string>
     <string name="time_sync_warning_disable">Lopeta varoitus. Tiedän mitä teen.</string>
     <string name="google_qr_export_unrelated">Asiaankuulumaton QR-koodi löytyi. Yritä käynnistää skanneri uudelleen.</string>
     <plurals name="google_qr_export_scanned">

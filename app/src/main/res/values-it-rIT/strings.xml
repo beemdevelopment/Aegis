@@ -6,11 +6,14 @@
     <string name="action_delete">Elimina</string>
     <string name="action_transfer">Trasferisci</string>
     <string name="action_edit_icon">Modifica icona</string>
+    <string name="action_reset_usage_count">Azzera il conteggio degli usi</string>
+    <string name="action_reset_usage_count_dialog">Sei sicuro di voler impostare il conteggio degli usi di questa voce a 0?</string>
     <string name="action_default_icon">Ripristina icona predefinita</string>
     <string name="discard">Annulla</string>
     <string name="save">Salva</string>
     <string name="issuer">Emittente</string>
     <string name="suggested">Suggeriti</string>
+    <string name="usage_count">Conteggio degli usi</string>
     <string name="settings">Impostazioni</string>
     <string name="pref_cat_appearance_app">App</string>
     <string name="pref_cat_appearance_entries">Voci</string>
@@ -236,6 +239,7 @@
     <string name="sort_alphabetically_reverse">Emittente (Z-A)</string>
     <string name="sort_alphabetically_name">Account (A-Z)</string>
     <string name="sort_alphabetically_name_reverse">Account (Z-A)</string>
+    <string name="sort_usage_count">Conteggio degli usi</string>
     <string name="sort_custom">Personalizza</string>
     <string name="new_group">Nuovo gruppo…</string>
     <string name="enter_group_name">Inserisci un nome di gruppo</string>
@@ -243,6 +247,10 @@
     <string name="group_name_hint">Nome gruppo</string>
     <string name="preference_manage_groups">Modifica gruppi</string>
     <string name="preference_manage_groups_summary">Gestisci ed elimina i tuoi gruppi qui</string>
+    <string name="preference_reset_usage_count">Azzera il conteggio degli usi</string>
+    <string name="preference_reset_usage_count_summary">Azzera il conteggio degli usi di ogni voce nella tua cassaforte</string>
+    <string name="preference_reset_usage_count_dialog">Sei sicuro di voler impostare il conteggio degli usi di ogni voce nella tua cassaforte a 0?</string>
+    <string name="clear">Pulisci</string>
     <string name="pref_highlight_entry_title">Evidenzia i token al tocco</string>
     <string name="pref_highlight_entry_summary">Rendi i token più facili da distinguere, evidenziandoli temporaneamente quando vengono toccati</string>
     <string name="pref_copy_on_tap_title">Copia i token con un tocco</string>
@@ -306,6 +314,7 @@
     <string name="empty_list_title">Nessun elemento trovato</string>
     <string name="empty_group_list">Non ci sono gruppi da mostrare. Aggiungi gruppi nella schermata di modifica di una voce</string>
     <string name="empty_group_list_title">Nessun gruppo trovato</string>
+    <string name="no_icon_packs">Nessun pacchetto di icone è stato ancora importato. Tocca il tasto \"+\" per importane uno. Suggerimento: prova <a href="https://github.com/aegis-icons/aegis-icons/releases/latest">aegis-icons</a>.</string>
     <string name="no_icon_packs_title">Nessun pacchetto di icone</string>
     <string name="pick_icon">Scegli un\'icona</string>
     <string name="uncategorized">Senza categoria</string>

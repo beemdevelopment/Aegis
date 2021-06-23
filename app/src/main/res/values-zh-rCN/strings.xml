@@ -6,11 +6,14 @@
     <string name="action_delete">删除</string>
     <string name="action_transfer">转移</string>
     <string name="action_edit_icon">编辑图标</string>
+    <string name="action_reset_usage_count">重置使用计数</string>
+    <string name="action_reset_usage_count_dialog">您确定要将此条目的使用次数设置为 0？</string>
     <string name="action_default_icon">恢复默认图标</string>
     <string name="discard">放弃</string>
     <string name="save">保存</string>
     <string name="issuer">服务商</string>
     <string name="suggested">已建议</string>
+    <string name="usage_count">使用计数</string>
     <string name="settings">设置</string>
     <string name="pref_cat_appearance_app">应用程序</string>
     <string name="pref_cat_appearance_entries">条目</string>
@@ -20,7 +23,7 @@
     <string name="pref_section_behavior_summary">自定义与条目列表交互时的行为。</string>
     <string name="pref_section_appearance_title">外观</string>
     <string name="pref_section_appearance_summary">调整主题、语言及其他影响应用程序外观的设置。</string>
-    <string name="pref_section_security_title">安全性</string>
+    <string name="pref_section_security_title">安全</string>
     <string name="pref_section_security_summary">配置加密、生物识别解锁、自动锁定和其他安全设置。</string>
     <string name="pref_section_import_export_title">导入 &amp; 导出</string>
     <string name="pref_section_import_export_summary">导入 Aegis 或其他身份验证程序的备份。创建您的 Aegis 保险库的手动导出。</string>
@@ -232,6 +235,7 @@
     <string name="sort_alphabetically_reverse">服务商（Z 到 A）</string>
     <string name="sort_alphabetically_name">账户（A 到 Z）</string>
     <string name="sort_alphabetically_name_reverse">账户（Z 到 A）</string>
+    <string name="sort_usage_count">使用计数</string>
     <string name="sort_custom">自定义</string>
     <string name="new_group">新建群组…</string>
     <string name="enter_group_name">输入群组名</string>
@@ -239,6 +243,9 @@
     <string name="group_name_hint">群组名称</string>
     <string name="preference_manage_groups">编辑群组</string>
     <string name="preference_manage_groups_summary">管理和删除您的群组</string>
+    <string name="preference_reset_usage_count">重置使用计数</string>
+    <string name="preference_reset_usage_count_summary">重置库中每个条目的使用计数</string>
+    <string name="preference_reset_usage_count_dialog">您确定要将库中所有条目的使用计数设置为 0？</string>
     <string name="clear">清空</string>
     <string name="pref_highlight_entry_title">点击时高亮令牌</string>
     <string name="pref_highlight_entry_summary">使令牌在点击后暂时高亮显示以便区分</string>
@@ -301,6 +308,7 @@
     <string name="empty_list_title">未找到条目</string>
     <string name="empty_group_list">没有要显示的组。 在条目的编辑屏幕中添加组</string>
     <string name="empty_group_list_title">未找到组</string>
+    <string name="no_icon_packs">尚未导入图标包。点击加号标记来导入一个。提示：尝试 <a href="https://github.com/aegis-icons/aegis-icons/releases/latest">aegis-icons</a>。</string>
     <string name="no_icon_packs_title">没有图标包</string>
     <string name="pick_icon">选择一个图标</string>
     <string name="uncategorized">未分类</string>

@@ -243,6 +243,7 @@
     <string name="group_name_hint">Nome do grupo</string>
     <string name="preference_manage_groups">Editar grupos</string>
     <string name="preference_manage_groups_summary">Gerencie e delete seus grupos aqui</string>
+    <string name="clear">Limpar</string>
     <string name="pref_highlight_entry_title">Destacar tokens quando tocados</string>
     <string name="pref_highlight_entry_summary">Torna tokens mais fáceis de distinguir dos outros destacando eles temporariamente quando tocados</string>
     <string name="pref_copy_on_tap_title">Copiar tokens quando tocados</string>
@@ -306,6 +307,7 @@
     <string name="empty_list_title">Nenhuma entrada encontrada</string>
     <string name="empty_group_list">Não há grupos a serem mostrados. Adicione grupos na tela de edição de uma entrada</string>
     <string name="empty_group_list_title">Nenhum grupo encontrado</string>
+    <string name="no_icon_packs">Nenhum pacote de ícones foi importado ainda. Toque no sinal \'+\' para importar. Dica: tente <a href="https://github.com/aegis-icons/aegis-icons/releases/latest">aegis-icons</a>.</string>
     <string name="no_icon_packs_title">Nenhum pacote de ícones</string>
     <string name="pick_icon">Escolha um ícone</string>
     <string name="uncategorized">Sem Categoria</string>
