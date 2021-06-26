@@ -59,7 +59,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 public class MainActivity extends AegisActivity implements EntryListView.Listener {
     // activity request codes
@@ -753,7 +752,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         if (_actionMode != null) {
             _actionMode.finish();
         }
-        if (!_searchView.isIconified()) {
+        if (_searchView != null && !_searchView.isIconified()) {
             collapseSearchView();
         }
 
