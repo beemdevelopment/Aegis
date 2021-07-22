@@ -4,9 +4,9 @@ import android.content.Context;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 
-import com.beemdevelopment.aegis.encoding.Base32;
 import com.beemdevelopment.aegis.encoding.Base64;
 import com.beemdevelopment.aegis.encoding.EncodingException;
+import com.beemdevelopment.aegis.otp.GoogleAuthInfo;
 import com.beemdevelopment.aegis.otp.OtpInfo;
 import com.beemdevelopment.aegis.otp.OtpInfoException;
 import com.beemdevelopment.aegis.otp.TotpInfo;
@@ -81,7 +81,7 @@ public class MicrosoftAuthImporter extends DatabaseImporter {
 
                 switch (entry.getType()) {
                     case TYPE_TOTP:
-                        secret = Base32.decode(entry.getSecret());
+                        secret = GoogleAuthInfo.parseSecret(entry.getSecret());
                         break;
                     case TYPE_MICROSOFT:
                         digits = 8;
