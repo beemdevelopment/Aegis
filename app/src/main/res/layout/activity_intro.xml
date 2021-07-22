@@ -20,7 +20,7 @@
         android:layout_height="65dp"
         android:layout_margin="10dp"
         android:src="@drawable/circular_button_prev"
-        android:tint="?attr/iconColorPrimary"
+        app:tint="?attr/iconColorPrimary"
         android:background="?selectableItemBackgroundBorderless"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -39,7 +39,7 @@
         android:layout_height="65dp"
         android:layout_margin="10dp"
         android:src="@drawable/circular_button_next"
-        android:tint="?attr/iconColorPrimary"
+        app:tint="?attr/iconColorPrimary"
         android:background="?selectableItemBackgroundBorderless"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />

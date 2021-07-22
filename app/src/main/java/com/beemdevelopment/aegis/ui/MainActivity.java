@@ -226,6 +226,8 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
                 startScanImageActivity();
                 break;
         }
+
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 
     private void onPreferencesResult(Intent data) {

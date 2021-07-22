@@ -47,7 +47,7 @@
             android:scaleType="centerCrop"
             android:background="?selectableItemBackgroundBorderless"
             android:src="@drawable/ic_dots_vertical_black_24dp"
-            android:tint="?attr/iconColorPrimary"/>
+            app:tint="?attr/iconColorPrimary"/>
     </RelativeLayout>
     <View
         android:layout_width="match_parent"

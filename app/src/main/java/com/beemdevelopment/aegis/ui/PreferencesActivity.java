@@ -3,7 +3,6 @@ package com.beemdevelopment.aegis.ui;
 import android.os.Bundle;
 import android.view.MenuItem;
 
-import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
@@ -49,12 +48,6 @@ public class PreferencesActivity extends AegisActivity implements
     public void onBackPressed() {
         super.onBackPressed();
         setTitle(R.string.action_settings);
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        // pass permission request results to the fragment
-        _fragment.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 
     @Override
