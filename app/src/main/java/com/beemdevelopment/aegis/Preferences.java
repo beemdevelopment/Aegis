@@ -53,6 +53,12 @@ public class Preferences {
         return _prefs.getBoolean("pref_highlight_entry", false);
     }
 
+    public boolean isPauseFocusedEnabled() {
+        boolean dependenciesEnabled = isTapToRevealEnabled() || isEntryHighlightEnabled();
+        if (!dependenciesEnabled) return false;
+        return _prefs.getBoolean("pref_pause_entry", false);
+    }
+
     public boolean isPanicTriggerEnabled() {
         return _prefs.getBoolean("pref_panic_trigger", false);
     }
