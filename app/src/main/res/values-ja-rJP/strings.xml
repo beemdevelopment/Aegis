@@ -309,7 +309,7 @@
     <string name="empty_list_title">エントリーが見つかりません</string>
     <string name="empty_group_list">表示するグループがありません。エントリーの編集画面でグループを追加してください</string>
     <string name="empty_group_list_title">グループが見つかりません</string>
-    <string name="no_icon_packs">アイコンパックはまだインポートされていません。＋記号をタップしてインポートしてください。ヒント: <a href="https://github.com/aegis-icons/aegis-icons/releases/latest">aegis-icons</a> を試してください。</string>
+    <string name="no_icon_packs">アイコンパックはまだインポートされていません。＋記号をタップしてインポートしてください。ヒント: <a href="https://aegis-icons.github.io">aegis-icons</a> を試してください。</string>
     <string name="no_icon_packs_title">アイコンパックがありません</string>
     <string name="pick_icon">アイコンを選択</string>
     <string name="uncategorized">未分類</string>

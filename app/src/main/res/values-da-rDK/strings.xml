@@ -314,7 +314,7 @@
     <string name="empty_list_title">Ingen poster fundet</string>
     <string name="empty_group_list">Der er ingen grupper at vise. Tilføj grupper på redigeringsskærmen for en post</string>
     <string name="empty_group_list_title">Ingen grupper fundet</string>
-    <string name="no_icon_packs">Ingen ikonpakker er endnu importeret. Tryk på plus-tegnet for at importere en. Tip: Prøv <a href="https://github.com/aegis-icons/aegis-icons/releases/latest">aegis-ikonerne</a>.</string>
+    <string name="no_icon_packs">Ingen ikonpakker er endnu importeret. Tryk på plus-tegnet for at importere en. Tip: Prøv <a href="https://aegis-icons.github.io">aegis-ikonerne</a>.</string>
     <string name="no_icon_packs_title">Ingen ikonpakker</string>
     <string name="pick_icon">Vælg et ikon</string>
     <string name="uncategorized">Ukategoriseret</string>

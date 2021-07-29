@@ -307,7 +307,7 @@
     <string name="empty_list_title">Geen items gevonden</string>
     <string name="empty_group_list">Er zijn geen groepen om te tonen. Voeg groepen toe in het bewerkingsscherm van een item</string>
     <string name="empty_group_list_title">Geen groepen gevonden</string>
-    <string name="no_icon_packs">Er zijn nog geen pictogrampakketten geïmporteerd. Tik op het plusteken om er een te importeren. Tip: probeer <a href="https://github.com/aegis-icons/aegis-icons/releases/latest">aegis-icons</a>.</string>
+    <string name="no_icon_packs">Er zijn nog geen pictogrampakketten geïmporteerd. Tik op het plusteken om er een te importeren. Tip: probeer <a href="https://aegis-icons.github.io">aegis-icons</a>.</string>
     <string name="no_icon_packs_title">Geen pictogrampakketten</string>
     <string name="pick_icon">Kies een icoon</string>
     <string name="uncategorized">Ongecategoriseerd</string>

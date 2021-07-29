@@ -307,7 +307,7 @@
     <string name="empty_list_title">Nenhuma entrada encontrada</string>
     <string name="empty_group_list">Não há grupos a serem mostrados. Adicione grupos na tela de edição de uma entrada</string>
     <string name="empty_group_list_title">Nenhum grupo encontrado</string>
-    <string name="no_icon_packs">Nenhum pacote de ícones foi importado ainda. Toque no sinal \'+\' para importar. Dica: tente <a href="https://github.com/aegis-icons/aegis-icons/releases/latest">aegis-icons</a>.</string>
+    <string name="no_icon_packs">Nenhum pacote de ícones foi importado ainda. Toque no sinal \'+\' para importar. Dica: tente <a href="https://aegis-icons.github.io">aegis-icons</a>.</string>
     <string name="no_icon_packs_title">Nenhum pacote de ícones</string>
     <string name="pick_icon">Escolha um ícone</string>
     <string name="uncategorized">Sem Categoria</string>

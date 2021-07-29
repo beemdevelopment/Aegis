@@ -314,7 +314,7 @@
     <string name="empty_list_title">Aucune entrée trouvée</string>
     <string name="empty_group_list">Il n\'y a aucun groupe à afficher. Ajouter des groupes dans l\'écran de modification d\'une entrée</string>
     <string name="empty_group_list_title">Aucun groupe trouvé</string>
-    <string name="no_icon_packs">Aucun pack d\'icônes n\'a encore été importé. Appuyez sur le signe plus pour en importer un. Astuce : essayez <a href="https://github.com/aegis-icons/aegis-icons/releases/latest">aegis-icons</a>.</string>
+    <string name="no_icon_packs">Aucun pack d\'icônes n\'a encore été importé. Appuyez sur le signe plus pour en importer un. Astuce : essayez <a href="https://aegis-icons.github.io">aegis-icons</a>.</string>
     <string name="no_icon_packs_title">Aucun pack d\'icônes</string>
     <string name="pick_icon">Choisissez une icône</string>
     <string name="uncategorized">Non catégorisé</string>

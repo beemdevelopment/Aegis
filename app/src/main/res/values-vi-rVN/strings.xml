@@ -301,7 +301,7 @@
     <string name="empty_list_title">Không tìm thấy mục nào</string>
     <string name="empty_group_list">Không có nhóm nào để hiện. Hãy thêm các nhóm trong màn hình chỉnh sửa của một mục</string>
     <string name="empty_group_list_title">Không tìm thấy nhóm nào</string>
-    <string name="no_icon_packs">Chưa có gói biểu tượng nào được nhập. Hãy nhấn vào ký hiệu dấu cộng để nhập một gói. Mẹo: hãy thử <a href="https://github.com/aegis-icons/aegis-icons/releases/latest">aegis-icons</a>.</string>
+    <string name="no_icon_packs">Chưa có gói biểu tượng nào được nhập. Hãy nhấn vào ký hiệu dấu cộng để nhập một gói. Mẹo: hãy thử <a href="https://aegis-icons.github.io">aegis-icons</a>.</string>
     <string name="no_icon_packs_title">Không có gói biểu tượng</string>
     <string name="pick_icon">Chọn biểu tượng</string>
     <string name="uncategorized">Chưa được phân loại</string>

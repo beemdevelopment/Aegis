@@ -344,7 +344,7 @@
     <string name="empty_list_title">No entries found</string>
     <string name="empty_group_list">There are no groups to be shown. Add groups in the edit screen of an entry</string>
     <string name="empty_group_list_title">No groups found</string>
-    <string name="no_icon_packs">No icon packs have been imported yet. Tap the plus sign to import one. Tip: try <a href="https://github.com/aegis-icons/aegis-icons/releases/latest">aegis-icons</a>.</string>
+    <string name="no_icon_packs">No icon packs have been imported yet. Tap the plus sign to import one. Tip: try <a href="https://aegis-icons.github.io">aegis-icons</a>.</string>
     <string name="no_icon_packs_title">No icon packs</string>
     <string name="pick_icon">Pick an icon</string>
     <string name="uncategorized">Uncategorized</string>
