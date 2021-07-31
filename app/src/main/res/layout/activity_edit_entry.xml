@@ -108,18 +108,18 @@
                     <com.google.android.material.textfield.TextInputLayout
                         android:hint="@string/issuer"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_marginEnd="5dp"
                         android:layout_weight="1">
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/text_issuer"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="match_parent"
                             android:inputType="text"/>
                     </com.google.android.material.textfield.TextInputLayout>
                     <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="0dp"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:layout_marginStart="5dp"
                         android:layout_weight="1"
                         android:hint="@string/group"
