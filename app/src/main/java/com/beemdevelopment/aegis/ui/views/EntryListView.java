@@ -294,6 +294,10 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
         _adapter.setHighlightEntry(highlightEntry);
     }
 
+    public void setPauseFocused(boolean pauseFocused) {
+        _adapter.setPauseFocused(pauseFocused);
+    }
+
     public void setTapToReveal(boolean tapToReveal) {
         _adapter.setTapToReveal(tapToReveal);
     }

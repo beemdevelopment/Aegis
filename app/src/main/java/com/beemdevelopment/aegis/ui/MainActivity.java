@@ -114,6 +114,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         _entryListView.setCodeGroupSize(getPreferences().getCodeGroupSize());
         _entryListView.setShowAccountName(getPreferences().isAccountNameVisible());
         _entryListView.setHighlightEntry(getPreferences().isEntryHighlightEnabled());
+        _entryListView.setPauseFocused(getPreferences().isPauseFocusedEnabled());
         _entryListView.setTapToReveal(getPreferences().isTapToRevealEnabled());
         _entryListView.setTapToRevealTime(getPreferences().getTapToRevealTime());
         _entryListView.setSortCategory(getPreferences().getCurrentSortCategory(), false);
@@ -239,6 +240,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
                 boolean showAccountName = getPreferences().isAccountNameVisible();
                 int codeGroupSize = getPreferences().getCodeGroupSize();
                 boolean highlightEntry = getPreferences().isEntryHighlightEnabled();
+                boolean pauseFocused = getPreferences().isPauseFocusedEnabled();
                 boolean tapToReveal = getPreferences().isTapToRevealEnabled();
                 int tapToRevealTime = getPreferences().getTapToRevealTime();
                 ViewMode viewMode = getPreferences().getCurrentViewMode();
@@ -246,6 +248,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
                 _entryListView.setShowAccountName(showAccountName);
                 _entryListView.setCodeGroupSize(codeGroupSize);
                 _entryListView.setHighlightEntry(highlightEntry);
+                _entryListView.setPauseFocused(pauseFocused);
                 _entryListView.setTapToReveal(tapToReveal);
                 _entryListView.setTapToRevealTime(tapToRevealTime);
                 _entryListView.setViewMode(viewMode);
