@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:paddingTop="12dp"
     android:orientation="vertical">
 
@@ -36,32 +36,36 @@
 
         <com.google.android.material.chip.ChipGroup
             android:id="@+id/groupChipGroup"
-            android:paddingLeft="8dp"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
         </com.google.android.material.chip.ChipGroup>
     </LinearLayout>
 
     <LinearLayout
-        android:layout_gravity="end"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
         <Button
             android:id="@+id/btnSave"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:textColor="@color/colorSecondary"
             android:text="@string/save"
-            style="?android:attr/borderlessButtonStyle" />
+            android:layout_weight="0.5"
+            app:rippleColor="@color/button_secondary_ripple_color"
+            style="@style/Widget.MaterialComponents.Button.TextButton"/>
 
         <Button
             android:id="@+id/btnClear"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:textColor="@color/colorSecondary"
             android:text="@string/clear"
-            style="?android:attr/borderlessButtonStyle" />
+            android:layout_weight="0.5"
+            app:rippleColor="@color/button_secondary_ripple_color"
+            style="@style/Widget.MaterialComponents.Button.TextButton" />
     </LinearLayout>
 
 </LinearLayout>

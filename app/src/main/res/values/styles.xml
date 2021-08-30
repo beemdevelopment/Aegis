@@ -240,4 +240,11 @@
         <item name="cornerSizeBottomRight">0dp</item>
         <item name="cornerSizeBottomLeft">0dp</item>
     </style>
+
+    <style name="Widget.DesignSystem.Chip.OutlinedBox.Choice" parent="Widget.MaterialComponents.Chip.Choice">
+        <item name="chipBackgroundColor">@color/ds_chip_outlined_choice_background_color</item>
+        <item name="chipStrokeColor">@color/ds_chip_choice_stroke</item>
+        <item name="chipStrokeWidth">1dp</item>
+        <item name="closeIconTint">@color/ds_chip_close_icon</item>
+    </style>
 </resources>
