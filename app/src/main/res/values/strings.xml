@@ -259,6 +259,7 @@
     <string name="preference_reset_usage_count">Reset usage count</string>
     <string name="preference_reset_usage_count_summary">Reset the usage count of every entry in your vault</string>
     <string name="preference_reset_usage_count_dialog">Are you sure you want to set the usage count of every entry in your vault to 0?</string>
+    <string name="note">Note</string>
     <string name="clear">Clear</string>
 
     <string name="pref_highlight_entry_title">Highlight tokens when tapped</string>
