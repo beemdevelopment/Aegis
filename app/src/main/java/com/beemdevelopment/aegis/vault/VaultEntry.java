@@ -27,6 +27,7 @@ public class VaultEntry extends UUIDMap.Value {
     private byte[] _icon;
     private IconType _iconType = IconType.INVALID;
     private int _usageCount;
+    private String _note = "";
 
     private VaultEntry(UUID uuid, OtpInfo info) {
         super(uuid);
@@ -64,6 +65,7 @@ public class VaultEntry extends UUIDMap.Value {
             obj.put("name", _name);
             obj.put("issuer", _issuer);
             obj.put("group", _group);
+            obj.put("note", _note);
             obj.put("icon", _icon == null ? JSONObject.NULL : Base64.encode(_icon));
             obj.put("icon_mime", _icon == null ? null : _iconType.toMimeType());
             obj.put("info", _info.toJson());
@@ -89,6 +91,7 @@ public class VaultEntry extends UUIDMap.Value {
             entry.setName(obj.getString("name"));
             entry.setIssuer(obj.getString("issuer"));
             entry.setGroup(obj.optString("group", null));
+            entry.setNote(obj.optString("note", ""));
 
             Object icon = obj.get("icon");
             if (icon != JSONObject.NULL) {
@@ -137,6 +140,8 @@ public class VaultEntry extends UUIDMap.Value {
         return _usageCount;
     }
 
+    public String getNote() { return _note; }
+
     public void setName(String name) {
         _name = name;
     }
@@ -164,6 +169,8 @@ public class VaultEntry extends UUIDMap.Value {
 
     public void setUsageCount(int usageCount) { _usageCount = usageCount; }
 
+    public void setNote(String note) { _note = note; }
+
     @Override
     public boolean equals(Object o) {
         if (!(o instanceof VaultEntry)) {
@@ -185,7 +192,8 @@ public class VaultEntry extends UUIDMap.Value {
                 && Objects.equals(getGroup(), entry.getGroup())
                 && getInfo().equals(entry.getInfo())
                 && Arrays.equals(getIcon(), entry.getIcon())
-                && getIconType().equals(entry.getIconType());
+                && getIconType().equals(entry.getIconType())
+                && getNote().equals(entry.getNote());
     }
 
     /**
