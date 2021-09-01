@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingTop="12dp"
@@ -53,7 +54,8 @@
             android:layout_height="wrap_content"
             android:textColor="@color/colorSecondary"
             android:text="@string/save"
-            style="?android:attr/borderlessButtonStyle" />
+            app:rippleColor="@color/dialog_button_ripple_color"
+            style="@style/Widget.MaterialComponents.Button.TextButton" />
 
         <Button
             android:id="@+id/btnClear"
@@ -61,7 +63,8 @@
             android:layout_height="wrap_content"
             android:textColor="@color/colorSecondary"
             android:text="@string/clear"
-            style="?android:attr/borderlessButtonStyle" />
+            app:rippleColor="@color/dialog_button_ripple_color"
+            style="@style/Widget.MaterialComponents.Button.TextButton" />
     </LinearLayout>
 
 </LinearLayout>
