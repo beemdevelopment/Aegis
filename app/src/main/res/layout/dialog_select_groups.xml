@@ -36,20 +36,21 @@
 
         <com.google.android.material.chip.ChipGroup
             android:id="@+id/groupChipGroup"
-            android:paddingLeft="8dp"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
         </com.google.android.material.chip.ChipGroup>
     </LinearLayout>
 
     <LinearLayout
-        android:layout_gravity="end"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
         <Button
             android:id="@+id/btnSave"
-            android:layout_width="wrap_content"
+            android:layout_weight="0.5"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:textColor="@color/colorSecondary"
             android:text="@string/save"
@@ -57,7 +58,8 @@
 
         <Button
             android:id="@+id/btnClear"
-            android:layout_width="wrap_content"
+            android:layout_weight="0.5"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:textColor="@color/colorSecondary"
             android:text="@string/clear"
