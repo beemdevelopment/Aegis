@@ -12,6 +12,7 @@ import android.text.Editable;
 import android.text.InputType;
 import android.text.TextWatcher;
 import android.text.method.PasswordTransformationMethod;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
@@ -20,6 +21,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.NumberPicker;
 import android.widget.ProgressBar;
@@ -70,13 +72,23 @@ public class Dialogs {
         View view = activity.getLayoutInflater().inflate(R.layout.dialog_delete_entry, null);
         TextView textMessage = view.findViewById(R.id.text_message);
         TextView textExplanation = view.findViewById(R.id.text_explanation);
-        String entries = services.stream()
-                .map(entry -> !entry.getIssuer().isEmpty() ? entry.getIssuer()
-                        : !entry.getName().isEmpty() ? entry.getName()
-                        : activity.getString(R.string.unknown_issuer)
-                )
-                .collect(Collectors.joining(", "));
-        textExplanation.setText(activity.getString(R.string.delete_entry_explanation, entries));
+        LinearLayout linearLayout = view.findViewById(R.id.text_entries_layout);
+        for(int i=0;i< services.size();i++) {
+            TextView entry = new TextView(view.getContext());
+            entry.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16);
+            if(!services.get(i).getName().isEmpty() && !services.get(i).getIssuer().isEmpty())
+                entry.setText("\u2022 " + services.get(i).getIssuer() +" \u0028" + services.get(i).getName() + "\u0029");
+            else {
+                if(services.get(i).getName().isEmpty() && services.get(i).getIssuer().isEmpty())
+                    entry.setText(activity.getString(R.string.unknown_issuer));
+                else if(services.get(i).getIssuer().isEmpty())
+                    entry.setText("\u2022 " + services.get(i).getName());
+                else
+                    entry.setText("\u2022 " + services.get(i).getIssuer());
+            }
+            linearLayout.addView(entry);
+        }
+        textExplanation.setText(R.string.delete_entry_explanation);
 
         String title, message;
         if (services.size() > 1) {

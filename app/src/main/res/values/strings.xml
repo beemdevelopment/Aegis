@@ -158,7 +158,7 @@
     <string name="importing_icon_pack">Importing icon pack</string>
     <string name="delete_entry">Delete entry</string>
     <string name="delete_entry_description">Are you sure you want to delete this entry?</string>
-    <string name="delete_entry_explanation">This action does not disable 2FA for <b>%s</b>. To prevent losing access, make sure that you have disabled 2FA or that you have an alternative way to generate codes for this service.</string>
+    <string name="delete_entry_explanation">This action does not turn off 2FA. To prevent losing access, make sure that you have disabled 2FA or that you have an alternative way to generate codes for this service.</string>
     <string name="delete_entries">Delete entries</string>
     <plurals name="delete_entries_description">
         <item quantity="one">Are you sure you want to delete %d entry?</item>
