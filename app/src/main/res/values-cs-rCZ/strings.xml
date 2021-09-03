@@ -151,7 +151,7 @@
     <string name="importing_icon_pack">Importování balíčku ikon</string>
     <string name="delete_entry">Odstranit položku</string>
     <string name="delete_entry_description">Opravdu chcete odstranit tuto položku?</string>
-    <string name="delete_entry_explanation">Tato akce nezakáže 2FA pro službu <b>%s</b>. Abyste zabránili ztrátě přístupu, ujistěte se, že jste zakázali 2FA nebo že máte jiný způsob generování kódů pro tuto službu.</string>
+    <string name="delete_entry_explanation">Tato akce nezakáže 2FA pro službu /n<b>%s</b>./n Abyste zabránili ztrátě přístupu, ujistěte se, že jste zakázali 2FA nebo že máte jiný způsob generování kódů pro tuto službu.</string>
     <string name="delete_entries">Odstranit položky</string>
     <plurals name="delete_entries_description">
         <item quantity="one">Opravdu chcete smazat %d položku?</item>

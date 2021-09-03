@@ -34,6 +34,7 @@
             android:label="@string/title_activity_import_entries" />
         <activity
             android:name=".ui.MainActivity"
+            android:exported="true"
             android:label="${title}">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -80,6 +81,7 @@
             android:label="@string/title_activity_manage_groups" />
         <activity
             android:name=".ui.PanicResponderActivity"
+            android:exported="true"
             android:launchMode="singleInstance"
             android:noHistory="true"
             android:theme="@android:style/Theme.NoDisplay">

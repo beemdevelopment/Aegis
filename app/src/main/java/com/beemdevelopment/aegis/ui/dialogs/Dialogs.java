@@ -12,6 +12,7 @@ import android.text.Editable;
 import android.text.InputType;
 import android.text.TextWatcher;
 import android.text.method.PasswordTransformationMethod;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
@@ -20,6 +21,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.NumberPicker;
 import android.widget.ProgressBar;
@@ -71,11 +73,15 @@ public class Dialogs {
         TextView textMessage = view.findViewById(R.id.text_message);
         TextView textExplanation = view.findViewById(R.id.text_explanation);
         String entries = services.stream()
-                .map(entry -> !entry.getIssuer().isEmpty() ? entry.getIssuer()
-                        : !entry.getName().isEmpty() ? entry.getName()
-                        : activity.getString(R.string.unknown_issuer)
+                .map(entry -> !entry.getIssuer().isEmpty() && !entry.getName().isEmpty()
+                        ? "\u2022 " + entry.getIssuer() + " \u0028" + entry.getName() + "\u0029"
+                        : entry.getIssuer().isEmpty() && entry.getName().isEmpty()
+                        ? activity.getString(R.string.unknown_issuer)
+                        : entry.getIssuer().isEmpty()
+                        ? "\u2022 " + entry.getName()
+                        : "\u2022 " + entry.getIssuer()
                 )
-                .collect(Collectors.joining(", "));
+                .collect(Collectors.joining(", \n"));
         textExplanation.setText(activity.getString(R.string.delete_entry_explanation, entries));
 
         String title, message;
