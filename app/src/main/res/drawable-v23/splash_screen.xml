@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:gravity="center"
+        android:height="70dp"
+        android:width="70dp"
+        android:drawable="@drawable/ic_aegis_iconx"/>
+</layer-list>
