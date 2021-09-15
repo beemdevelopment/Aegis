@@ -6,11 +6,14 @@
     <string name="action_delete">Poista</string>
     <string name="action_transfer">Siirrä</string>
     <string name="action_edit_icon">Muokkaa kuvaketta</string>
+    <string name="action_reset_usage_count">Nollaa käyttömäärä</string>
+    <string name="action_reset_usage_count_dialog">Haluatko varmasti nollata tämän kohteen käyttömäärän?</string>
     <string name="action_default_icon">Palauta oletuskuvake</string>
     <string name="discard">Hylkää</string>
     <string name="save">Tallenna</string>
     <string name="issuer">Myöntäjä</string>
     <string name="suggested">Suositellut</string>
+    <string name="usage_count">Käyttömäärä</string>
     <string name="settings">Asetukset</string>
     <string name="pref_cat_appearance_app">Sovellus</string>
     <string name="pref_cat_appearance_entries">Kohteet</string>
@@ -228,6 +231,7 @@
     <string name="sort_alphabetically_reverse">Myöntäjä (Ö-A)</string>
     <string name="sort_alphabetically_name">Tilin nimi (A-Ö)</string>
     <string name="sort_alphabetically_name_reverse">Tilin nimi (Ö-A)</string>
+    <string name="sort_usage_count">Käyttömäärä</string>
     <string name="sort_custom">Mukautettu</string>
     <string name="new_group">Uusi ryhmä…</string>
     <string name="enter_group_name">Syötä ryhmän nimi</string>
@@ -235,6 +239,7 @@
     <string name="group_name_hint">Ryhmän nimi</string>
     <string name="preference_manage_groups">Muokkaa ryhmiä</string>
     <string name="preference_manage_groups_summary">Hallitse ja poista ryhmiäsi täällä</string>
+    <string name="preference_reset_usage_count">Nollaa käyttömäärä</string>
     <string name="clear">Tyhjennä</string>
     <string name="pref_highlight_entry_title">Korosta tunnukset napauttamalla</string>
     <string name="pref_highlight_entry_summary">Tee tunnuksista helpompi erottaa toisistaan korostamalla niitä väliaikaisesti napauttamalla</string>

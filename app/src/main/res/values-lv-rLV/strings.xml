@@ -6,11 +6,14 @@
     <string name="action_delete">Dzēst</string>
     <string name="action_transfer">Pārsūtīt</string>
     <string name="action_edit_icon">Labot ikonu</string>
+    <string name="action_reset_usage_count">Atiestatīt izmantošanas reižu skaitu</string>
+    <string name="action_reset_usage_count_dialog">Vai tiešām kā šī ieraksta izmantošanas reižu skaitu norādīt 0?</string>
     <string name="action_default_icon">Atjaunot noklusējuma ikonu</string>
     <string name="discard">Atmest</string>
     <string name="save">Saglabāt</string>
     <string name="issuer">Izsniedzējs</string>
     <string name="suggested">Ieteikts</string>
+    <string name="usage_count">Izmantošanas reižu skaits</string>
     <string name="settings">Uzstādījumi</string>
     <string name="pref_cat_appearance_app">Lietotne</string>
     <string name="pref_cat_appearance_entries">Ieraksti</string>
@@ -240,6 +243,7 @@
     <string name="sort_alphabetically_reverse">Izsniedzējs (no Z līdz A)</string>
     <string name="sort_alphabetically_name">Konts (no A līdz Z)</string>
     <string name="sort_alphabetically_name_reverse">Konts (no Z līdz A)</string>
+    <string name="sort_usage_count">Izmantošanas reižu skaits</string>
     <string name="sort_custom">Pielāgots</string>
     <string name="new_group">Jauna kopa…</string>
     <string name="enter_group_name">Ievadīt kopas nosaukumu</string>
@@ -247,11 +251,17 @@
     <string name="group_name_hint">Kopas nosaukums</string>
     <string name="preference_manage_groups">Labot kopas</string>
     <string name="preference_manage_groups_summary">Šeit var pārvaldīt un dzēst kopas</string>
+    <string name="preference_reset_usage_count">Atiestatīt izmantošanas reižu skaitu</string>
+    <string name="preference_reset_usage_count_summary">Atiestatīt izmantošanas reižu skaitu ikkatram glabātavas ierakstam</string>
+    <string name="preference_reset_usage_count_dialog">Vai tiešām kā visu glabātavas ierakstu izmantošanas reižu skaitu norādīt 0?</string>
+    <string name="note">Piezīme</string>
     <string name="clear">Notīrīt</string>
     <string name="pref_highlight_entry_title">Izcelt kodus, kad piesit</string>
     <string name="pref_highlight_entry_summary">Padarīt kodus vieglāk atšķiramus citu no cita, īslaicīgi izceļot tos, kad tiem piesit</string>
     <string name="pref_copy_on_tap_title">Ievietot kodus starpliktuvē, kad piesit</string>
     <string name="pref_copy_on_tap_summary">Ievietot kodus starpliktuvē, piesitot tiem</string>
+    <string name="pref_pause_entry_title">Iesaldēt kodus pēc piesišanas tiem</string>
+    <string name="pref_pause_entry_summary">Apturēt kodu atsvaidzināšanu, kad piesit. Kods netiks atjaunots, kamēr vien tas ir izcelts. Ir nepieciešams ieslēgt iestatījumu \"Izcelt kodus, kad piesit\" vai \"Piesist, lai atklātu\".</string>
     <string name="pin_keyboard_description">Jāievada parole, lai iespējotu PIN tastatūru. Jāņem vērā, ka tā darbojas tikai tad, ja parole sastāv tikai no cipariem</string>
     <string name="pin_keyboard_error">Kļūda iespējojot PIN tastatūru</string>
     <string name="pin_keyboard_error_description">Nav iespējams iestatīt PIN tastatūru. Parolei ir jāsastāv tikai no cipariem.</string>
@@ -313,7 +323,7 @@
     <string name="empty_list_title">Nav atrastu ierakstu</string>
     <string name="empty_group_list">Nav kopu, ko attēlot. Tās var pievienot ieraksta labošanas skatā</string>
     <string name="empty_group_list_title">Nav atrastu kopu</string>
-    <string name="no_icon_packs">Pagaidām nav ievietota neviena ikonu pakotne. Jāpiesit \"+\", lai pievienotu kādu. Padoms: var izmēģināt <a href="https://aegis-icons.github.io">aegis-icons</a>.</string>
+    <string name="no_icon_packs">Pagaidām nav ievietota neviena ikonu pakotne. Jāpiesit \"+\", lai kādu pievienotu. Padoms: var izmēģināt <a href="https://aegis-icons.github.io">aegis-icons</a>.</string>
     <string name="no_icon_packs_title">Nav ikonu pakotņu</string>
     <string name="pick_icon">Izvēlēties ikonu</string>
     <string name="uncategorized">Bez kopas</string>

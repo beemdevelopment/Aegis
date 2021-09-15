@@ -4,12 +4,16 @@
     <string name="action_about">Hakkında</string>
     <string name="action_import">İçe aktar</string>
     <string name="action_delete">Sil</string>
-    <string name="action_transfer">Havale</string>
+    <string name="action_transfer">Aktar</string>
     <string name="action_edit_icon">Simgeyi düzenle</string>
+    <string name="action_reset_usage_count">Kullanım sayısını sıfırla</string>
+    <string name="action_reset_usage_count_dialog">Bu girdinin kullanım sayısını sıfırlamak istediğinize emin misiniz?</string>
     <string name="action_default_icon">Varsayılan simgeyi geri yükle</string>
     <string name="discard">Göz ardı et</string>
     <string name="save">Kaydet</string>
     <string name="issuer">Sağlayıcı</string>
+    <string name="suggested">Önerilen</string>
+    <string name="usage_count">Kullanım sayısı</string>
     <string name="settings">Tercihler</string>
     <string name="pref_cat_appearance_app">Uygulama</string>
     <string name="pref_cat_appearance_entries">Kayıtlar</string>
@@ -25,6 +29,8 @@
     <string name="pref_section_import_export_summary">Aegis ya da diğer doğrulayıcı uygulamaların yedeklerini içe aktar. Aegis deponu elle dışa aktar.</string>
     <string name="pref_section_backups_title">Yedekler</string>
     <string name="pref_section_backups_summary">İstediğin noktaya otomatik yedekleme ayarla ya da Android yedekleme sistemine dahil olmayı aktifleştir.</string>
+    <string name="pref_section_icon_packs">İkon paketleri</string>
+    <string name="pref_section_icon_packs_summary">İkon paketlerini yönet ve içe aktar</string>
     <string name="pref_select_theme_title">Tema</string>
     <string name="pref_view_mode_title">Görüntüleme biçimi</string>
     <string name="pref_lang_title">Dil</string>
@@ -139,6 +145,7 @@
     <string name="encrypting_vault">Kasa Şifreleniyor</string>
     <string name="exporting_vault">Kasa dışarı aktarılıyor</string>
     <string name="reading_file">Dosya okunuyor</string>
+    <string name="importing_icon_pack">İkon paketi içe aktarılıyor</string>
     <string name="delete_entry">Girdiyi sil</string>
     <string name="delete_entry_description">Bu girdiyi silmek istediğinize emin misiniz?</string>
     <string name="delete_entry_explanation">Bu eylem <b>%s</b> için çift faktörlü doğrulamayı devre dışı bırakmaz. Erişiminizi kaybetmeyi önlemek için, çift faktörlü doğrulamayı devre dışı bıraktığınıza veya bu hizmet için başka bir kod oluşturma yöntemine sahip olduğunuza emin olun.</string>
@@ -175,6 +182,15 @@
     <string name="backup_successful">Yedekleme başarıyla planlandı</string>
     <string name="backup_error">Yedek oluşturmaya çalışırken bir hata meydana geldi</string>
     <string name="documentsui_error">DocumentsUI cihazınızda yok gibi görünüyor. Bu, belgelerin seçilmesi ve oluşturulması için önemli bir sistem bileşenidir. Cihazınızı &quot;debloat&quot; etmek için bir araç kullandıysanız, bunu yanlışlıkla silmiş olabilirsiniz, yeniden yüklemeniz gerekir.</string>
+    <string name="icon_pack_import_error">İkon paketi içe aktarılırken bir sorun meydana geldi</string>
+    <string name="icon_pack_import_exists_error">İçe aktarmaya çalıştığınız ikon paketi zaten mevcut. Üstüne yazmak ister misiniz?</string>
+    <string name="icon_pack_delete_error">İkon paketini silmeye çalışırken bir sorun meydana geldi</string>
+    <plurals name="icon_pack_info">
+        <item quantity="one">%d simgesi</item>
+        <item quantity="other">%d simgeleri</item>
+    </plurals>
+    <string name="icon_pack">İkon paketi</string>
+    <string name="icon_custom">Özel</string>
     <string name="permission_denied">İzin verilmesi reddedildi</string>
     <string name="andotp_new_format">Yeni biçim (v0.6.3 veya daha yeni) </string>
     <string name="andotp_old_format">Eski biçim (v0.6.2 veya daha eski) </string>
@@ -209,6 +225,8 @@
     <string name="remove_slot_description">Bu elemanı silmek istediğinize emin misiniz?</string>
     <string name="remove_group">Grubu sil</string>
     <string name="remove_group_description">Bu grubu silmek istediğinize emin misiniz? Bu gruptaki girdiler otomatik olarak \'Grupsuz\' grubuna geçecek.</string>
+    <string name="remove_icon_pack">İkon paketini sil</string>
+    <string name="remove_icon_pack_description">Bu ikon paketini silmek istediğinize emin misiniz? Bu pakete ait ikonları kullanan girdiler bundan etkilenmeyeceklerdir.</string>
     <string name="adding_new_slot_error">Yeni bir anahtarlık oluşturmaya çalışırken hata oluştu:</string>
     <string name="progressbar_error">Animatör süresi ölçeği sıfırlanamıyor. İlerleme çubukları görünmez olacak.</string>
     <string name="details">Detaylar</string>
@@ -220,6 +238,7 @@
     <string name="sort_alphabetically_reverse">Sağlayıcı (Z\'den A\'ya)</string>
     <string name="sort_alphabetically_name">Hesap (A\'dan  Z\'ye)</string>
     <string name="sort_alphabetically_name_reverse">Hesap (Z\'den A\'ya)</string>
+    <string name="sort_usage_count">Kullanım sayısı</string>
     <string name="sort_custom">İsteğe göre</string>
     <string name="new_group">Yeni grup…</string>
     <string name="enter_group_name">Yeni grup adı girin</string>
@@ -227,10 +246,16 @@
     <string name="group_name_hint">Grup adı</string>
     <string name="preference_manage_groups">Grupları düzenle</string>
     <string name="preference_manage_groups_summary">Gruplandırmalarınızı burada düzenleyebilir ve silebilirsiniz</string>
+    <string name="preference_reset_usage_count">Kullanım sayısını sıfırla</string>
+    <string name="preference_reset_usage_count_summary">Kasanızdaki bütün girdilerin kullanım sayısını sıfırlayın</string>
+    <string name="preference_reset_usage_count_dialog">Kasanızdaki bütün girdilerin kullanım sayısını sıfırlamak istediğinize emin misiniz?</string>
+    <string name="clear">Temizle</string>
     <string name="pref_highlight_entry_title">Dokunulan kodları belirt</string>
     <string name="pref_highlight_entry_summary">Kodların birbirlerinden ayırt edilmelerini kolaylaştırmak için geçici olarak belirginleştir</string>
     <string name="pref_copy_on_tap_title">Dokunulduğunda güvenlik belirteçlerini kopyala</string>
     <string name="pref_copy_on_tap_summary">Güvenlik belirteçlerine dokunarak panoya kopyala</string>
+    <string name="pref_pause_entry_title">Dokunulduğunda kodların yenilenmesini önle</string>
+    <string name="pref_pause_entry_summary">Kodlara dokunarak yenilenmelerini önleyin. Odakta oldukları sürece kodlar yenilenmeyecektir. \"Dokunulan kodları belirt\" veya \"Görmek için dokunun\" açık olmasını gerektirir.</string>
     <string name="pin_keyboard_description">PIN klavyesini etkinleştirmek için şifrenizi girin. Bu şifreniz yalnızca rakamlardan oluşuyorsa çalışır</string>
     <string name="pin_keyboard_error">PIN klavyesini aktifleştirmede hata</string>
     <string name="pin_keyboard_error_description">PIN klavyesi kurulması mümkün değil. Şifreniz yalnızca rakamlardan oluşmalıdır.</string>
@@ -246,6 +271,10 @@
     <string name="small_mode_title">Küçük</string>
     <string name="unknown_issuer">Bilinmeyen sağlayıcı</string>
     <string name="unknown_account_name">Bilinmeyen hesap adı</string>
+    <plurals name="import_error_dialog">
+        <item quantity="one">Aegis %d kodunu içe aktaramadı. Bu kodlar atlanacaktır. Hatalar hakkında daha detaylı bilgi için lütfen \'ayrıntılar\'a basınız.</item>
+        <item quantity="other">Aegis %d kodunu içe aktaramadı. Bu kodlar atlanacaktır. Hatalar hakkında daha detaylı bilgi için lütfen \'ayrıntılar\'a basınız.</item>
+    </plurals>
     <string name="unable_to_read_qrcode">QR kod okunamadı ve işlenemedi</string>
     <string name="unable_to_generate_qrcode">QR Kodu oluşturulamadı</string>
     <string name="select_picture">Resim seç</string>
@@ -275,6 +304,10 @@
     <string name="time_sync_warning_message">Aegis doğru kodları oluşturmak üzere sistem zamanın senkron olmasına ihtiyaç duyar. Birkaç saniyelik sapma hatalı kod oluşumuna neden olabilir. Görünüşe göre cihazınız zamanı otomatik senkronize etmeye ayarlanmamış. Şimdi ayarlamak ister misiniz?</string>
     <string name="time_sync_warning_disable">Beni uyarmayı bırak. Ne yaptığımı biliyorum.</string>
     <string name="google_qr_export_unrelated">Alakasız QR kod bulundu. Tarayıcıyı yeniden başlatmayı deneyin.</string>
+    <plurals name="google_qr_export_scanned">
+        <item quantity="one">%d/%d QR kodları tarandı</item>
+        <item quantity="other">%d/%d QR kodları tarandı</item>
+    </plurals>
     <string name="google_qr_export_unexpected">Beklenen QR kodu #%d idi, ancak bunun yerine #%d tarandı</string>
     <string name="backup_error_bar_message"><b>Kasa yedeklenmesi başarısız oldu</b></string>
     <string name="switch_camera">Kamerayı değiştir</string>
@@ -282,7 +315,15 @@
     <string name="empty_list_title">Hiçbir girdi bulunamadı.</string>
     <string name="empty_group_list">Gösterilecek grup bulunamadı. Bir girdinin düzenleme ekranından grup ekleyin</string>
     <string name="empty_group_list_title">Grup bulunamadı</string>
+    <string name="no_icon_packs">Henüz hiçbir ikon paketi içe aktarılmadı. Yeni bir tane eklemek için lütfen artı tuşuna basın. Tavsiye: <a href="https://aegis-icons.github.io">aegis-icons</a>\'u deneyin.</string>
+    <string name="no_icon_packs_title">Simge paketi yok</string>
+    <string name="pick_icon">Bir ikon seçin</string>
+    <string name="uncategorized">Kategorisiz</string>
     <string name="done">Tamamlandı</string>
+    <plurals name="entries_count">
+        <item quantity="one">%d / %d girişi</item>
+        <item quantity="other">%d / %d girişleri</item>
+    </plurals>
     <string name="next">Sonraki</string>
     <string name="previous">Önceki</string>
     <string name="transfer_entry">Girdiyi aktar</string>
@@ -300,6 +341,7 @@
     <string name="title_activity_about">Hakkında</string>
     <string name="title_activity_edit_entry">Girdiyi düzenle</string>
     <string name="title_activity_scan_qr">QR Kodu Tara</string>
+    <string name="title_activity_manage_slots">Anahtar sıralarını yönet</string>
     <string name="title_activity_import_entries">Girdileri içe aktar</string>
     <string name="dialog_wipe_entries_title">Girdileri sil</string>
     <string name="dialog_wipe_entries_message">Kasanızda zaten girdiler bulunmaktadır. İçe aktarmadan önce bu girdileri silmek istediğinize emin misiniz?\n\n<b>Deponun içinde bulunan girdilere erişiminizi sonsuza dek kaybedeceksiniz.</b></string>
@@ -307,6 +349,19 @@
     <string name="panic_trigger_ignore_toast">Aegis panik tetiği algıladı, ancak bu ayar devre dışı, göz ardı ediliyor</string>
     <string name="pref_panic_trigger_title">Panik tetiklendiğinde kasayı sil</string>
     <string name="pref_panic_trigger_summary">Ripple\'dan panik tetiklenmesi alınca kasayı sil</string>
+    <string name="importer_help_2fas">2FAS Authenticator dışa aktarım dosyasını sağlayın.</string>
     <string name="importer_help_aegis">Aegis dışarı aktarım/yedek dosyası sağlayın.</string>
+    <string name="importer_help_authenticator_plus"><b>Ayarlar -&gt; Yedekleme &amp; Geri Yükleme -&gt; Metin ya da HTML olarak dışa aktar</b> yolunu izleyerek bir Authenticator Plus dışa aktarım dosyası sağlayın.</string>
+    <string name="importer_help_authy"><b>/data/data/com.authy.authy/shared_prefs/com.authy.storage.tokens.authenticator.xml</b>dosyasını sağlayın, Authy\'nin dahili depolama konumunda bulunabilir.</string>
+    <string name="importer_help_andotp">andOTP dışa aktarım dosyasını sağlayın.</string>
+    <string name="importer_help_freeotp"><b>/data/data/org.fedorahosted.freeotp/shared_prefs/tokens.xml</b>dosyasını sağlayın, FreeOTP\'nin dahili depolama konumunda bulunabilir.</string>
+    <string name="importer_help_freeotp_plus">FreeOTP+ dışa aktarım dosyasını sağlayın.</string>
+    <string name="importer_help_google_authenticator"><b>/data/data/com.google.android.apps.authenticator2/databases/databases</b>dosyasını sağlayın, Google Authenticator\'ın dahili depolama konumunda bulunabilir.</string>
+    <string name="importer_help_microsoft_authenticator"><b>/data/data/com.azure.authenticator/databases/PhoneFactor</b>dosyasını sağlayın, Microsoft Authenticator\'ın dahili depolama konumunda bulunabilir.</string>
+    <string name="importer_help_plain_text">Her bir satırında Google Authenticator URL\'leri bulunan bir düz metin belgesi sağlayın.</string>
+    <string name="importer_help_steam"><b>/data/data/com.valvesoftware.android.steam.community/files/Steamguard-*.json</b> dosyasını sağlayın, Steam\'in dahili depolama konumunda bulunabilir.</string>
+    <string name="importer_help_totp_authenticator">TOTP Authenticator dışa aktarım dosyasını sağlayın.</string>
+    <string name="importer_help_winauth">WinAuth dışa aktarım dosyasını sağlayın.</string>
+    <string name="importer_help_direct">Girdileri doğrudan %s\'dan içeri aktar. Bunu yapabilmek için uygulamanın cihazınızda yüklü olması ve Aegis\'in kök erişim iznine sahip olması gerekir.</string>
     <string name="groups">Gruplar</string>
 </resources>

@@ -258,11 +258,14 @@
     <string name="preference_reset_usage_count">Сброс счётчика использований</string>
     <string name="preference_reset_usage_count_summary">Сброс количества использований каждой записи в хранилище</string>
     <string name="preference_reset_usage_count_dialog">Установить количество использований для каждой записи в хранилище на 0?</string>
+    <string name="note">Заметка</string>
     <string name="clear">Очистить</string>
     <string name="pref_highlight_entry_title">Выделять ключи при нажатии</string>
     <string name="pref_highlight_entry_summary">Сделать ключи более различимыми, временно выделяя их при нажатии</string>
     <string name="pref_copy_on_tap_title">Копировать ключи при нажатии</string>
     <string name="pref_copy_on_tap_summary">Копировать ключи в буфер обмена при нажатии на них</string>
+    <string name="pref_pause_entry_title">Замораживать ключи при нажатии</string>
+    <string name="pref_pause_entry_summary">Приостановить автоматическое обновление ключей принажатии на них. Ключи не будут обновляться до тех пор, пока отображаются. Для обновления потребуется «Выделять ключи при нажатии» или «Отображение по нажатию».</string>
     <string name="pin_keyboard_description">Введите свой пароль, чтобы включить PIN-клавиатуру. Обратите внимание, что это работает, только если ваш пароль состоит из цифр.</string>
     <string name="pin_keyboard_error">Ошибка включения PIN-клавиатуры</string>
     <string name="pin_keyboard_error_description">Невозможно установить PIN-клавиатуру. Ваш пароль должен состоять только из цифр.</string>
@@ -326,7 +329,7 @@
     <string name="empty_list_title">Не найдено записей</string>
     <string name="empty_group_list">Нет групп для отображения. Добавьте группы на экране редактирования записи.</string>
     <string name="empty_group_list_title">Группы не найдены</string>
-    <string name="no_icon_packs">Наборы значков ещё не импортированы. Нажмите кнопку \"+\" для импортирования. Совет: попробуйте <a href="https://aegis-icons.github.io">значки aegis</a>.</string>
+    <string name="no_icon_packs">Наборы значков ещё не импортированы. Нажмите кнопку \"+\" для импортирования. Совет: попробуйте набор <a href="https://aegis-icons.github.io">aegis-icons</a>.</string>
     <string name="no_icon_packs_title">Нет наборов значков</string>
     <string name="pick_icon">Выбрать значок</string>
     <string name="uncategorized">Без категории</string>

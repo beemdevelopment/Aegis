@@ -308,7 +308,6 @@
     <string name="empty_list_title">Tidak ada catatan yang ditemukan</string>
     <string name="empty_group_list">Tidak ada kelompok untuk ditampilkan. Tambahkan kelompok di layar penyuntingan sebuah entri</string>
     <string name="empty_group_list_title">Kelompok tidak ditemukan</string>
-    <string name="no_icon_packs">Belum ada paket ikon yang diimpor. Sentuh tanda plus untuk mulai mengimpor. Tip: coba <a href="https://aegis-icons.github.io">aegis-icons</a>.</string>
     <string name="no_icon_packs_title">Tidak ada paket ikon</string>
     <string name="pick_icon">Pilih sebuah ikon</string>
     <string name="uncategorized">Tidak Dikategorikan</string>

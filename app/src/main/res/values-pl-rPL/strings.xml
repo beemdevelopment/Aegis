@@ -251,6 +251,7 @@
     <string name="group_name_hint">Nazwa grupy</string>
     <string name="preference_manage_groups">Edytuj grupy</string>
     <string name="preference_manage_groups_summary">Zarządzaj i usuwaj grupy tutaj</string>
+    <string name="note">Notatki</string>
     <string name="clear">Wyczyść</string>
     <string name="pref_highlight_entry_title">Podświetl tokeny podczas kliknięcia</string>
     <string name="pref_highlight_entry_summary">Wyróżnij tokeny od siebie poprzez tymczasowe podświetlenie po ich kliknięciu</string>

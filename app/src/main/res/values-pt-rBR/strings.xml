@@ -6,11 +6,14 @@
     <string name="action_delete">Excluir</string>
     <string name="action_transfer">Transferir</string>
     <string name="action_edit_icon">Editar ícone</string>
+    <string name="action_reset_usage_count">Redefinir contagem de uso</string>
+    <string name="action_reset_usage_count_dialog">Tem certeza que deseja definir a contagem de uso desta entrada para 0?</string>
     <string name="action_default_icon">Restaurar ícone padrão</string>
     <string name="discard">Descartar</string>
     <string name="save">Salvar</string>
     <string name="issuer">Nome do serviço</string>
     <string name="suggested">Sugerido</string>
+    <string name="usage_count">Contagem de uso</string>
     <string name="settings">Preferências</string>
     <string name="pref_cat_appearance_app">Aplicativo</string>
     <string name="pref_cat_appearance_entries">Entradas</string>
@@ -236,6 +239,7 @@
     <string name="sort_alphabetically_reverse">Nome (Z to A)</string>
     <string name="sort_alphabetically_name">Conta (A to Z)</string>
     <string name="sort_alphabetically_name_reverse">Conta (Z to A)</string>
+    <string name="sort_usage_count">Contagem de uso</string>
     <string name="sort_custom">Personalizado</string>
     <string name="new_group">Novo grupo…</string>
     <string name="enter_group_name">Insira o nome de grupo</string>
@@ -243,11 +247,17 @@
     <string name="group_name_hint">Nome do grupo</string>
     <string name="preference_manage_groups">Editar grupos</string>
     <string name="preference_manage_groups_summary">Gerencie e delete seus grupos aqui</string>
+    <string name="preference_reset_usage_count">Redefinir contagem de uso</string>
+    <string name="preference_reset_usage_count_summary">Redefinir a contagem de uso de todas as entradas no seu cofre</string>
+    <string name="preference_reset_usage_count_dialog">Tem certeza que deseja definir a contagem de uso de todas as entradas no seu cofre para 0?</string>
+    <string name="note">Nota</string>
     <string name="clear">Limpar</string>
     <string name="pref_highlight_entry_title">Destacar tokens quando tocados</string>
     <string name="pref_highlight_entry_summary">Torna tokens mais fáceis de distinguir dos outros destacando eles temporariamente quando tocados</string>
     <string name="pref_copy_on_tap_title">Copiar tokens quando tocados</string>
     <string name="pref_copy_on_tap_summary">Copia tokens para área de transferência quando tocados</string>
+    <string name="pref_pause_entry_title">Congelar tokens quando tocados</string>
+    <string name="pref_pause_entry_summary">Pausa a atualização automática dos tokens ao tocá-los. Tokens não serão atualizados desde que o foco esteja neles. Requer \"Destacar tokens quando tocados\" ou \"Tocar para exibir\".</string>
     <string name="pin_keyboard_description">Digite sua senha para ativar o teclado PIN. Observe que isso só funciona se a sua senha for constituída apenas por números</string>
     <string name="pin_keyboard_error">Erro ao habilitar o teclado PIN</string>
     <string name="pin_keyboard_error_description">Não é possível configurar o teclado PIN. A sua senha deve ser composta apenas por números.</string>
@@ -307,7 +317,7 @@
     <string name="empty_list_title">Nenhuma entrada encontrada</string>
     <string name="empty_group_list">Não há grupos a serem mostrados. Adicione grupos na tela de edição de uma entrada</string>
     <string name="empty_group_list_title">Nenhum grupo encontrado</string>
-    <string name="no_icon_packs">Nenhum pacote de ícones foi importado ainda. Toque no sinal \'+\' para importar. Dica: tente <a href="https://aegis-icons.github.io">aegis-icons</a>.</string>
+    <string name="no_icon_packs">Nenhum pacote de ícones foi importado ainda. Toque no sinal de mais para importar um. Dica: tente <a href="https://aegis-icons.github.io">aegis-icons</a>.</string>
     <string name="no_icon_packs_title">Nenhum pacote de ícones</string>
     <string name="pick_icon">Escolha um ícone</string>
     <string name="uncategorized">Sem Categoria</string>

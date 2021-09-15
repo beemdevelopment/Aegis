@@ -250,11 +250,14 @@
     <string name="preference_reset_usage_count">Επαναφορά αριθμού χρήσης</string>
     <string name="preference_reset_usage_count_summary">Επαναφορά του αριθμού χρήσης κάθε καταχώρησης στην κρύπτη σας</string>
     <string name="preference_reset_usage_count_dialog">Είστε βέβαιοι ότι θέλετε να ορίσετε τον αριθμό χρήσης κάθε εισόδου στην κρύπτη σας στο 0;</string>
+    <string name="note">Σημείωση</string>
     <string name="clear">Εκκαθάριση</string>
     <string name="pref_highlight_entry_title">Επισήμανση αναγνωριστικών όταν πατηθεί</string>
     <string name="pref_highlight_entry_summary">Κάνετε τα αναγνωριστικά να ξεχωρίζουν ευκολότερα το ένα από το άλλο, επισημαίνοντας τα προσωρινά όταν τα πατήσετε</string>
     <string name="pref_copy_on_tap_title">Αντιγράψτε τα αναγνωριστικά όταν τα πατάτε</string>
     <string name="pref_copy_on_tap_summary">Αντιγράψτε τα αναγνωριστικά στο πρόχειρο πατώντας τα</string>
+    <string name="pref_pause_entry_title">Πάγωμα αναγνωριστικών όταν πατηθούν</string>
+    <string name="pref_pause_entry_summary">Παύση της αυτόματης ανανέωσης των αναγνωριστικών πατώντας τα. Τα αναγνωριστικά δεν θα ενημερώνονται όσο είναι συγκεντρωμένα. Απαιτεί \"Επισήμανση αναγνωριστικών όταν πατηθούν\" ή \"Πατήστε για αποκάλυψη\".</string>
     <string name="pin_keyboard_description">Εισαγάγετε τον κωδικό πρόσβασής σας για να ενεργοποιήσετε το πληκτρολόγιο PIN. Λάβετε υπόψη ότι αυτό λειτουργεί μόνο εάν ο κωδικός πρόσβασής σας αποτελείται μόνο από αριθμούς</string>
     <string name="pin_keyboard_error">Σφάλμα κατά την ενεργοποίηση του πληκτρολογίου PIN</string>
     <string name="pin_keyboard_error_description">Δεν είναι δυνατός ο ορισμός του πληκτρολογίου PIN. Ο κωδικός πρόσβασής σας πρέπει να αποτελείται μόνο από αριθμούς.</string>
@@ -314,7 +317,7 @@
     <string name="empty_list_title">Δεν βρέθηκαν καταχωρήσεις</string>
     <string name="empty_group_list">Δεν υπάρχουν ομάδες προς εμφάνιση. Προσθέστε ομάδες στην οθόνη επεξεργασίας μιας καταχώρισης</string>
     <string name="empty_group_list_title">Δεν βρέθηκαν ομάδες</string>
-    <string name="no_icon_packs">Δεν έχουν εισαχθεί ακόμα πακέτα εικονιδίων ακόμη. Πατήστε το σύμβολο συν για να εισαγάγετε ένα. Συμβουλή: δοκιμάστε <a href="https://aegis-icons.github.io">aegis-icons</a>.</string>
+    <string name="no_icon_packs">Δεν έχουν εισαχθεί ακόμα πακέτα εικονιδίων. Πατήστε το σύμβολο συν για να εισαγάγετε ένα. Συμβουλή: δοκιμάστε <a href="https://aegis-icons.github.io">εικονίδια-aegis-</a>.</string>
     <string name="no_icon_packs_title">Χωρίς πακέτα εικονιδίων</string>
     <string name="pick_icon">Επιλέξτε ένα εικονίδιο</string>
     <string name="uncategorized">Μη κατηγοριοποιημένο</string>

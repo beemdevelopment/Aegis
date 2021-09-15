@@ -250,11 +250,14 @@
     <string name="preference_reset_usage_count">Nulstil brugstæller</string>
     <string name="preference_reset_usage_count_summary">Nulstil alle brugstællingsposter i din Boks</string>
     <string name="preference_reset_usage_count_dialog">Sikker på, at alle brugstællingsposter i din Boks skal nulstilles?</string>
+    <string name="note">Notat</string>
     <string name="clear">Ryd</string>
     <string name="pref_highlight_entry_title">Fremhæv tokens ved tryk</string>
     <string name="pref_highlight_entry_summary">Gør tokens lettere at skelne fra hinanden ved midlertidigt at fremhæve dem, når der trykkes på dem</string>
     <string name="pref_copy_on_tap_title">Kopier tokens ved tryk</string>
     <string name="pref_copy_on_tap_summary">Kopier tokens til udklipsholderen ved at trykke på dem</string>
+    <string name="pref_pause_entry_title">Frys tokens ved tryk</string>
+    <string name="pref_pause_entry_summary">Pausér automatisk opdatering af tokens ved at trykke på dem. Tokens opdateres ikke, så længe de er fokuseret. Kræver \"Fremhæv tokens ved tryk\" eller \"Tryk for at afsløre\".</string>
     <string name="pin_keyboard_description">Indtast din adgangskode for at aktivere PIN-tastaturet. Bemærk at dette kun virker, hvis din adgangskode kun består af tal</string>
     <string name="pin_keyboard_error">Fejl under aktivering af PIN-tastatur</string>
     <string name="pin_keyboard_error_description">Det er ikke muligt at angive PIN-tastatur. Din adgangskode må kun bestå af tal.</string>
@@ -314,7 +317,7 @@
     <string name="empty_list_title">Ingen poster fundet</string>
     <string name="empty_group_list">Der er ingen grupper at vise. Tilføj grupper på redigeringsskærmen for en post</string>
     <string name="empty_group_list_title">Ingen grupper fundet</string>
-    <string name="no_icon_packs">Ingen ikonpakker er endnu importeret. Tryk på plus-tegnet for at importere en. Tip: Prøv <a href="https://aegis-icons.github.io">aegis-ikonerne</a>.</string>
+    <string name="no_icon_packs">Ingen ikonpakker importeret endnu. Tryk på plus-tegnet for at importere en. Tip: Prøv <a href="https://aegis-icons.github.io">aegis-ikoner</a>.</string>
     <string name="no_icon_packs_title">Ingen ikonpakker</string>
     <string name="pick_icon">Vælg et ikon</string>
     <string name="uncategorized">Ukategoriseret</string>

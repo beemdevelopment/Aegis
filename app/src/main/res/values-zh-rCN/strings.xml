@@ -246,11 +246,14 @@
     <string name="preference_reset_usage_count">重置使用计数</string>
     <string name="preference_reset_usage_count_summary">重置库中每个条目的使用计数</string>
     <string name="preference_reset_usage_count_dialog">您确定要将库中所有条目的使用计数设置为 0？</string>
+    <string name="note">备注</string>
     <string name="clear">清空</string>
     <string name="pref_highlight_entry_title">点击时高亮令牌</string>
     <string name="pref_highlight_entry_summary">使令牌在点击后暂时高亮显示以便区分</string>
     <string name="pref_copy_on_tap_title">点击时复制令牌</string>
     <string name="pref_copy_on_tap_summary">通过点击将令牌复制到剪贴板</string>
+    <string name="pref_pause_entry_title">轻按冻结令牌</string>
+    <string name="pref_pause_entry_summary">通过轻按令牌来暂停它们的自动刷新。 只要被聚焦，令牌就不会更新。 需要启用“轻按突出显示令牌”或“轻按显示”。</string>
     <string name="pin_keyboard_description">请输入您的密码以启用 PIN 键盘。请注意，只有当您的密码仅由数字构成时才能使用</string>
     <string name="pin_keyboard_error">启用 PIN 键盘时出错</string>
     <string name="pin_keyboard_error_description">无法设置 PIN 键盘。您的密码只能包含数字。</string>
