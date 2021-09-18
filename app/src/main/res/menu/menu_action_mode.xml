@@ -3,11 +3,17 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/action_copy"
-        android:orderInCategory="80"
+        android:orderInCategory="70"
         android:icon="@drawable/ic_content_copy_white_24dp"
         android:title="@string/copy"
         app:showAsAction="always" />
 
+    <item
+        android:id="@+id/action_share"
+        android:icon="@drawable/ic_share_white"
+        android:orderInCategory="80"
+        android:title="@string/share"
+        app:showAsAction="always" />
     <item
         android:id="@+id/action_edit"
         android:orderInCategory="90"

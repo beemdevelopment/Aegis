@@ -778,6 +778,16 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         clipboard.setPrimaryClip(clip);
     }
 
+    private void shareEntryCode(VaultEntry entry) {
+        Intent sendIntent = new Intent();
+        sendIntent.setAction(Intent.ACTION_SEND);
+        sendIntent.putExtra(Intent.EXTRA_TEXT, entry.getInfo().getOtp());
+        sendIntent.setType("text/plain");
+
+        Intent shareIntent = Intent.createChooser(sendIntent, null);
+        startActivity(shareIntent);
+    }
+
     private class ActionModeCallbacks implements ActionMode.Callback {
             @Override
             public boolean onCreateActionMode(ActionMode mode, Menu menu) {
@@ -796,6 +806,11 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
                 switch (item.getItemId()) {
                     case R.id.action_copy:
                         copyEntryCode(_selectedEntries.get(0));
+                        mode.finish();
+                        return true;
+
+                    case R.id.action_share:
+                        shareEntryCode(_selectedEntries.get(0));
                         mode.finish();
                         return true;
 
