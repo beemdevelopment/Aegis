@@ -707,6 +707,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         _entryListView.setIsLongPressDragEnabled(!multipleSelected);
         _actionMode.getMenu().findItem(R.id.action_edit).setVisible(!multipleSelected);
         _actionMode.getMenu().findItem(R.id.action_copy).setVisible(!multipleSelected);
+        _actionMode.getMenu().findItem(R.id.action_share).setVisible(!multipleSelected);
     }
 
     @Override
