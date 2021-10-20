@@ -413,7 +413,7 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
 
             for (String group : _groups) {
                 Chip chip = (Chip) this.getLayoutInflater().inflate(R.layout.chip_material, null, false);
-                chip.setText(group);
+                chip.setText(!group.equals("No group") ? group : getString(R.string.no_group));
                 chip.setCheckable(true);
                 chip.setChecked(_groupFilter != null && _groupFilter.contains(group));
                 chip.setCheckedIconVisible(false);
@@ -429,9 +429,10 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
         });
     }
 
-    private static List<String> getGroupFilter(ChipGroup chipGroup) {
+    private List<String> getGroupFilter(ChipGroup chipGroup) {
         return chipGroup.getCheckedChipIds().stream()
                 .map(i -> ((Chip) chipGroup.findViewById(i)).getText().toString())
+                .map(i -> !i.equals(getString(R.string.no_group)) ? i : "No group")
                 .collect(Collectors.toList());
     }
 
