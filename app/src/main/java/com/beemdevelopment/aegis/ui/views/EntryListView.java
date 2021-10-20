@@ -416,7 +416,7 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
                 chip.setText(group);
                 chip.setCheckable(true);
                 chip.setChecked(_groupFilter != null && _groupFilter.contains(group));
-                chip.setCheckedIconVisible(false);
+                chip.setCheckedIconVisible(true);
                 chip.setOnCheckedChangeListener((group1, checkedId) -> {
                     List<String> groupFilter = getGroupFilter(chipGroup);
                     setGroupFilter(groupFilter, true);
