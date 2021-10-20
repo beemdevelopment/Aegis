@@ -103,7 +103,7 @@ public class BackupsPreferencesFragment extends PreferencesFragment {
             return;
         }
 
-        int flags = data.getFlags() & (Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
+        int flags = Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION;
         getContext().getContentResolver().takePersistableUriPermission(data.getData(), flags);
 
         Preferences prefs = getPreferences();

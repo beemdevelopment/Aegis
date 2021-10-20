@@ -37,6 +37,7 @@ android {
     lintOptions {
         abortOnError true
         disable "MissingTranslation"
+        checkDependencies true
     }
 
     testOptions {
