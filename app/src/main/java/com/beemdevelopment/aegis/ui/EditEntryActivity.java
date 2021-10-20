@@ -298,7 +298,7 @@ public class EditEntryActivity extends AegisActivity {
 
     private void setGroup(String groupName) {
         int pos = 0;
-        if (groupName != null) {
+        if (groupName != "No group") {
             pos = _groups.contains(groupName) ? _groups.headSet(groupName).size() + 1 : 0;
         }
 

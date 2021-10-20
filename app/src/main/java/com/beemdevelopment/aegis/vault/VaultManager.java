@@ -259,10 +259,7 @@ public class VaultManager {
     public TreeSet<String> getGroups() {
         TreeSet<String> groups = new TreeSet<>(Collator.getInstance());
         for (VaultEntry entry : getEntries()) {
-            String group = entry.getGroup();
-            if (group != null) {
-                groups.add(group);
-            }
+            groups.add(entry.getGroup());
         }
         return groups;
     }

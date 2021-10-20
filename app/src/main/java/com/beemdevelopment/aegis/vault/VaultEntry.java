@@ -121,7 +121,7 @@ public class VaultEntry extends UUIDMap.Value {
     }
 
     public String getGroup() {
-        return _group;
+        return _group != null ? _group : "No group";
     }
 
     public byte[] getIcon() {
