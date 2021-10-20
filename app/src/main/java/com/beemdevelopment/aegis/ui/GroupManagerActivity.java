@@ -47,6 +47,7 @@ public class GroupManagerActivity extends AegisActivity implements GroupAdapter.
         _slotsView.setNestedScrollingEnabled(false);
 
         for (String group : _groups) {
+            if (group.equals("No group")) continue;
             _adapter.addGroup(group);
         }
 
