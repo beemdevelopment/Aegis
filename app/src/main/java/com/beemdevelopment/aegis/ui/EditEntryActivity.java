@@ -355,7 +355,10 @@ public class EditEntryActivity extends AegisActivity {
         Resources res = getResources();
         _dropdownGroupList.clear();
         _dropdownGroupList.add(res.getString(R.string.no_group));
-        _dropdownGroupList.addAll(_groups);
+        for (String group : _groups) {
+            if (group.equals("No group")) continue;
+            _dropdownGroupList.add(group);
+        }
         _dropdownGroupList.add(res.getString(R.string.new_group));
     }
 
