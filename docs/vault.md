@@ -151,8 +151,8 @@ The different slot types are identified with a numerical ID.
 | Type        | ID   |
 | :---------- | :--- |
 | Raw         | 0x00 |
-| Biometric   | 0x01 |
-| Password    | 0x02 |
+| Password    | 0x01 |
+| Biometric   | 0x02 |
 
 ##### Raw
 
