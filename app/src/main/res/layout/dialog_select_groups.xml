@@ -29,20 +29,27 @@
         android:layout_height="1dp"
         android:background="@color/divider2" />
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:minHeight="150dp"
-        android:orientation="vertical">
-
-        <com.google.android.material.chip.ChipGroup
-            android:id="@+id/groupChipGroup"
-            android:paddingStart="8dp"
-            android:paddingEnd="8dp"
+        android:layout_height="match_parent" >
+        
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-        </com.google.android.material.chip.ChipGroup>
+            android:layout_height="match_parent"
+            android:minHeight="150dp"
+            android:orientation="vertical">
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/groupChipGroup"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            </com.google.android.material.chip.ChipGroup>
     </LinearLayout>
+        
+    </ScrollView>
+    
 
     <LinearLayout
         android:layout_gravity="end"
