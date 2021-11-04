@@ -71,11 +71,8 @@ public class Dialogs {
         TextView textMessage = view.findViewById(R.id.text_message);
         TextView textExplanation = view.findViewById(R.id.text_explanation);
         String entries = services.stream()
-                .map(entry -> !entry.getIssuer().isEmpty() ? entry.getIssuer()
-                        : !entry.getName().isEmpty() ? entry.getName()
-                        : activity.getString(R.string.unknown_issuer)
-                )
-                .collect(Collectors.joining(", "));
+                .map(entry -> String.format("• %s", getVaultEntryName(activity, entry)))
+                .collect(Collectors.joining("\n"));
         textExplanation.setText(activity.getString(R.string.delete_entry_explanation, entries));
 
         String title, message;
@@ -94,6 +91,18 @@ public class Dialogs {
                 .setPositiveButton(android.R.string.yes, onDelete)
                 .setNegativeButton(android.R.string.no, null)
                 .create());
+    }
+
+    private static String getVaultEntryName(Context context, VaultEntry entry) {
+        if (!entry.getIssuer().isEmpty() && !entry.getName().isEmpty()) {
+            return String.format("%s (%s)", entry.getIssuer(), entry.getName());
+        } else if (entry.getIssuer().isEmpty() && entry.getName().isEmpty()) {
+            return context.getString(R.string.unknown_issuer);
+        } else if (entry.getIssuer().isEmpty()) {
+            return entry.getName();
+        } else {
+            return entry.getIssuer();
+        }
     }
 
     public static void showDiscardDialog(Activity activity, DialogInterface.OnClickListener onSave, DialogInterface.OnClickListener onDiscard) {

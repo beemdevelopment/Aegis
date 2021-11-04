@@ -150,7 +150,6 @@
     <string name="importing_icon_pack">Se importă pachetul de pictograme</string>
     <string name="delete_entry">Ștergere intrare</string>
     <string name="delete_entry_description">Ești sigur că dorești să ştergi această intrare?</string>
-    <string name="delete_entry_explanation">Această acțiune nu dezactivează 2FA pentru <b>%s</b>. Pentru a preveni pierderea accesului, asigurați-vă că ați dezactivat 2FA sau că aveți o modalitate alternativă de a genera coduri pentru acest serviciu.</string>
     <string name="delete_entries">Ştergere intrări</string>
     <plurals name="delete_entries_description">
         <item quantity="one">Sigur vrei să ștergi %d element?</item>

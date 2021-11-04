@@ -144,7 +144,6 @@
     <string name="reading_file">Читання файлу</string>
     <string name="delete_entry">Видалити запис</string>
     <string name="delete_entry_description">Ви впевнені, що хочете видалити цей запис?</string>
-    <string name="delete_entry_explanation">Ця дія не вимикає двофакторну автентифікацію (2FA) для <b>%s</b>. Щоб запобігти втраті доступу, переконайтеся, що ви вимкнули 2FA або ж у вас є альтернативний спосіб генерування кодів для цієї служби.</string>
     <string name="delete_entries">Видалити записи</string>
     <plurals name="delete_entries_description">
         <item quantity="one">Ви впевнені, що хочете видалити %d запис?</item>

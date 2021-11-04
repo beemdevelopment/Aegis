@@ -149,7 +149,6 @@
     <string name="importing_icon_pack">Importando pacchetto icone</string>
     <string name="delete_entry">Elimina elemento</string>
     <string name="delete_entry_description">Sei sicuro di voler eliminare questa voce?</string>
-    <string name="delete_entry_explanation">L\'autenticazione a due fattori di <b>%s</b> non verrà disabilitata. Per evitare di perdere l\'accesso al tuo account, assicurati di avere disabilitato l\'autenticazione a due fattori o di avere un altro modo per generare codici per questo servizio.</string>
     <string name="delete_entries">Elimina elemento</string>
     <plurals name="delete_entries_description">
         <item quantity="one">Sei sicuro di voler eliminare %d elemento?</item>

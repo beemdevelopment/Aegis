@@ -148,7 +148,6 @@
     <string name="importing_icon_pack">アイコンパックをインポート中</string>
     <string name="delete_entry">エントリーを削除</string>
     <string name="delete_entry_description">このエントリーを削除してもよろしいですか？</string>
-    <string name="delete_entry_explanation">この操作は、<b>%s</b>の2FAを無効にするものではありません。アクセスできなくなるのを防ぐために、2FAを無効にするか、このサービスのコードを生成する別の方法を用意してください。</string>
     <string name="delete_entries">エントリーを削除</string>
     <plurals name="delete_entries_description">
         <item quantity="other">%d 件のエントリーを削除してもよろしいですか？</item>

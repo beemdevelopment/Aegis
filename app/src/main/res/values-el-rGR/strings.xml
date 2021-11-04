@@ -149,7 +149,6 @@
     <string name="importing_icon_pack">Εισαγωγή πακέτου εικονιδίων</string>
     <string name="delete_entry">Διαγραφή καταχώρησης</string>
     <string name="delete_entry_description">Είστε βέβαιοι ότι θέλετε να διαγράψετε αυτή την καταχώρηση;</string>
-    <string name="delete_entry_explanation">Αυτή η ενέργεια δεν απενεργοποιεί το 2FA για <b>%s</b>. Για να αποτρέψετε την απώλεια πρόσβασης, βεβαιωθείτε ότι έχετε απενεργοποιήσει το 2FA ή ότι έχετε έναν εναλλακτικό τρόπο να δημιουργήσετε κωδικούς για αυτήν την υπηρεσία.</string>
     <string name="delete_entries">Διαγραφή καταχωρήσεων</string>
     <plurals name="delete_entries_description">
         <item quantity="one">Είστε βέβαιοι ότι θέλετε να διαγράψετε %d καταχώρηση;</item>

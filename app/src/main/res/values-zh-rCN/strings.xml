@@ -148,7 +148,6 @@
     <string name="importing_icon_pack">导入图标包</string>
     <string name="delete_entry">删除条目</string>
     <string name="delete_entry_description">您确定要删除此条目吗？</string>
-    <string name="delete_entry_explanation">此操作不会对 <b>%s</b> 禁用2FA。 为了防止失去访问权限，请确保您已禁用 2FA 或者您有其他方式为此服务生成代码。</string>
     <string name="delete_entries">删除条目</string>
     <plurals name="delete_entries_description">
         <item quantity="other">您确定要删除 %d 个项目吗？</item>
