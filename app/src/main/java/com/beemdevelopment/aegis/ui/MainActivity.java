@@ -81,6 +81,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
 
     private boolean _isAuthenticating;
     private boolean _isDoingIntro;
+    private boolean _isRecreated;
 
     private List<VaultEntry> _selectedEntries;
     private ActionMode _actionMode;
@@ -105,6 +106,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         _loaded = false;
 
         if (savedInstanceState != null) {
+            _isRecreated = true;
             _isAuthenticating = savedInstanceState.getBoolean("isAuthenticating");
             _isDoingIntro = savedInstanceState.getBoolean("isDoingIntro");
         }
@@ -561,8 +563,14 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         MenuItem searchViewMenuItem = menu.findItem(R.id.mi_search);
 
         _searchView = (SearchView) searchViewMenuItem.getActionView();
-        _searchView.setFocusable(false);
+
         _searchView.setQueryHint(getString(R.string.search));
+        if (getPreferences().getFocusSearchEnabled() && !_isRecreated) {
+            _searchView.setIconified(false);
+            _searchView.setFocusable(true);
+            _searchView.requestFocus();
+            _searchView.requestFocusFromTouch();
+        }
         _searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String s) {
@@ -768,7 +776,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         if (userInitiated) {
             startAuthActivity(true);
         } else {
-            super.onLocked(userInitiated);
+            super.onLocked(false);
         }
     }
 

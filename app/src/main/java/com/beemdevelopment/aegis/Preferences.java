@@ -257,6 +257,14 @@ public class Preferences {
         return null;
     }
 
+    public boolean getFocusSearchEnabled() {
+        return _prefs.getBoolean("pref_focus_search", false);
+    }
+
+    public void setFocusSearch(boolean enabled) {
+        _prefs.edit().putBoolean("pref_focus_search", enabled).apply();
+    }
+
     public void setBackupsLocation(Uri location) {
         _prefs.edit().putString("pref_backups_location", location == null ? null : location.toString()).apply();
     }
