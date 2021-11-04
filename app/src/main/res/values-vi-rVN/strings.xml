@@ -148,7 +148,7 @@
     <string name="importing_icon_pack">Đang nhập gói biểu tượng</string>
     <string name="delete_entry">Xóa mục</string>
     <string name="delete_entry_description">Bạn có chắc bạn muốn xóa mục này không?</string>
-    <string name="delete_entry_explanation">Hành động này không tắt Xác thực 2 yếu tố cho <b>%s</b>. Để tránh việc mất quyền truy cập, hãy chắc chắn rằng bạn đã tắt Xác thực 2 yếu tố hoặc bạn có một cách khác để tạo các mã cho dịch vụ này.</string>
+    <string name="delete_entry_explanation">Hành động này không tắt Xác thực 2 yếu tố cho /n<b>%s</b>./n Để tránh việc mất quyền truy cập, hãy chắc chắn rằng bạn đã tắt Xác thực 2 yếu tố hoặc bạn có một cách khác để tạo các mã cho dịch vụ này.</string>
     <string name="delete_entries">Xoá các mục</string>
     <plurals name="delete_entries_description">
         <item quantity="other">Bạn có chắc bạn muốn xoá %d mục không?</item>

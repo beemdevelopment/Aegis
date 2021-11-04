@@ -148,7 +148,7 @@
     <string name="importing_icon_pack">İkon paketi içe aktarılıyor</string>
     <string name="delete_entry">Girdiyi sil</string>
     <string name="delete_entry_description">Bu girdiyi silmek istediğinize emin misiniz?</string>
-    <string name="delete_entry_explanation">Bu eylem <b>%s</b> için çift faktörlü doğrulamayı devre dışı bırakmaz. Erişiminizi kaybetmeyi önlemek için, çift faktörlü doğrulamayı devre dışı bıraktığınıza veya bu hizmet için başka bir kod oluşturma yöntemine sahip olduğunuza emin olun.</string>
+    <string name="delete_entry_explanation">Bu eylem /n<b>%s</b>./n için çift faktörlü doğrulamayı devre dışı bırakmaz. Erişiminizi kaybetmeyi önlemek için, çift faktörlü doğrulamayı devre dışı bıraktığınıza veya bu hizmet için başka bir kod oluşturma yöntemine sahip olduğunuza emin olun.</string>
     <string name="delete_entries">Girdileri sil</string>
     <plurals name="delete_entries_description">
         <item quantity="one">%d girdisini silmek istediğinize emin misiniz?</item>

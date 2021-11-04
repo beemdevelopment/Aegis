@@ -72,23 +72,17 @@ public class Dialogs {
         View view = activity.getLayoutInflater().inflate(R.layout.dialog_delete_entry, null);
         TextView textMessage = view.findViewById(R.id.text_message);
         TextView textExplanation = view.findViewById(R.id.text_explanation);
-        LinearLayout linearLayout = view.findViewById(R.id.text_entries_layout);
-        for(int i=0;i< services.size();i++) {
-            TextView entry = new TextView(view.getContext());
-            entry.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16);
-            if(!services.get(i).getName().isEmpty() && !services.get(i).getIssuer().isEmpty())
-                entry.setText("\u2022 " + services.get(i).getIssuer() +" \u0028" + services.get(i).getName() + "\u0029");
-            else {
-                if(services.get(i).getName().isEmpty() && services.get(i).getIssuer().isEmpty())
-                    entry.setText(activity.getString(R.string.unknown_issuer));
-                else if(services.get(i).getIssuer().isEmpty())
-                    entry.setText("\u2022 " + services.get(i).getName());
-                else
-                    entry.setText("\u2022 " + services.get(i).getIssuer());
-            }
-            linearLayout.addView(entry);
-        }
-        textExplanation.setText(R.string.delete_entry_explanation);
+        String entries = services.stream()
+                .map(entry -> !entry.getIssuer().isEmpty() && !entry.getName().isEmpty()
+                        ? "\u2022 " + entry.getIssuer() + " \u0028" + entry.getName() + "\u0029"
+                        : entry.getIssuer().isEmpty() && entry.getName().isEmpty()
+                        ? activity.getString(R.string.unknown_issuer)
+                        : entry.getIssuer().isEmpty()
+                        ? "\u2022 " + entry.getName()
+                        : "\u2022 " + entry.getIssuer()
+                )
+                .collect(Collectors.joining(", \n"));
+        textExplanation.setText(activity.getString(R.string.delete_entry_explanation, entries));
 
         String title, message;
         if (services.size() > 1) {

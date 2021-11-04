@@ -149,7 +149,7 @@
     <string name="importing_icon_pack">Import du pack d\'icônes</string>
     <string name="delete_entry">Supprimer entrée</string>
     <string name="delete_entry_description">Êtes-vous sûr de vouloir supprimer cette entrée ?</string>
-    <string name="delete_entry_explanation">Cette action ne désactive pas l\'A2F pour <b>%s</b>. Pour éviter de perdre l\'accès, assurez-vous que vous avez désactivé l\'A2F ou que vous avez un autre moyen de générer des codes pour ce service.</string>
+    <string name="delete_entry_explanation">Cette action ne désactive pas l\'A2F pour /n<b>%s</b>./n Pour éviter de perdre l\'accès, assurez-vous que vous avez désactivé l\'A2F ou que vous avez un autre moyen de générer des codes pour ce service.</string>
     <string name="delete_entries">Supprimer les entrées</string>
     <plurals name="delete_entries_description">
         <item quantity="one">Êtes-vous sûr de vouloir supprimer %d entrée ?</item>

@@ -148,7 +148,7 @@
     <string name="importing_icon_pack">Importowanie pakietu ikon</string>
     <string name="delete_entry">Usuń wpis</string>
     <string name="delete_entry_description">Czy na pewno chcesz usunąć ten wpis?</string>
-    <string name="delete_entry_explanation">Ta akcja nie wyłącza uwierzytelniania dwustopniowego dla <b>%s</b>. Aby zapobiec utracie dostępu, upewnij się, że dla tej usługi wyłączyłeś uwierzytelnianie lub posiadasz alternatywny sposób generowania kodów.</string>
+    <string name="delete_entry_explanation">Ta akcja nie wyłącza uwierzytelniania dwustopniowego dla /n<b>%s</b>./n Aby zapobiec utracie dostępu, upewnij się, że dla tej usługi wyłączyłeś uwierzytelnianie lub posiadasz alternatywny sposób generowania kodów.</string>
     <string name="delete_entries">Usuń wpisy</string>
     <plurals name="delete_entries_description">
         <item quantity="one">Czy na pewno chcesz usunąć %d wpis?</item>

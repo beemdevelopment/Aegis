@@ -149,7 +149,7 @@
     <string name="importing_icon_pack">Importando paquete de iconos</string>
     <string name="delete_entry">Eliminar entrada</string>
     <string name="delete_entry_description">¿Está seguro de que desea eliminar esta entrada?</string>
-    <string name="delete_entry_explanation">Esta acción no desactiva 2FA para <b>%s</b>. Para evitar la pérdida de acceso, asegúrese de haber desactivado 2FA o de tener una forma alternativa de generar códigos para este servicio.</string>
+    <string name="delete_entry_explanation">Esta acción no desactiva 2FA para /n<b>%s</b>./n Para evitar la pérdida de acceso, asegúrese de haber desactivado 2FA o de tener una forma alternativa de generar códigos para este servicio.</string>
     <string name="delete_entries">Eliminar entradas</string>
     <plurals name="delete_entries_description">
         <item quantity="one">¿Está seguro de que desea eliminar %d entrada?</item>

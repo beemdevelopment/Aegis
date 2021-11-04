@@ -149,7 +149,7 @@
     <string name="importing_icon_pack">Symbolpaket wird importiert</string>
     <string name="delete_entry">Eintrag löschen</string>
     <string name="delete_entry_description">Bist du sicher, dass du diesen Eintrag löschen möchtest?</string>
-    <string name="delete_entry_explanation">Diese Aktion deaktiviert nicht die 2FA für <b>%s</b>. Um zu verhindern, dass du den Zugriff verlierst, stelle sicher, dass du 2FA deaktiviert hast oder dass du eine alternative Möglichkeit verwendest, um Codes für diesen Dienst zu generieren.</string>
+    <string name="delete_entry_explanation">Diese Aktion deaktiviert nicht die 2FA für /n<b>%s</b>./n Um zu verhindern, dass du den Zugriff verlierst, stelle sicher, dass du 2FA deaktiviert hast oder dass du eine alternative Möglichkeit verwendest, um Codes für diesen Dienst zu generieren.</string>
     <string name="delete_entries">Einträge löschen</string>
     <plurals name="delete_entries_description">
         <item quantity="one">Bist du sicher, dass du %d Eintrag löschen möchtest?</item>

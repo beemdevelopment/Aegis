@@ -151,7 +151,7 @@
     <string name="importing_icon_pack">Импорт набора значков</string>
     <string name="delete_entry">Удалить запись</string>
     <string name="delete_entry_description">Удалить эту запись?</string>
-    <string name="delete_entry_explanation">Это действие не отключает 2FA в <b>%s</b>. Чтобы не потерять доступ, убедитесь, что вы отключили 2FA или у вас есть альтернативный способ генерации кодов для данной сервиса.</string>
+    <string name="delete_entry_explanation">Это действие не отключает 2FA в /n<b>%s</b>./n Чтобы не потерять доступ, убедитесь, что вы отключили 2FA или у вас есть альтернативный способ генерации кодов для данной сервиса.</string>
     <string name="delete_entries">Удалить записи</string>
     <plurals name="delete_entries_description">
         <item quantity="one">Удалить %d запись?</item>

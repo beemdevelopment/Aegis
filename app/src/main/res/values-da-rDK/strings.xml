@@ -149,7 +149,7 @@
     <string name="importing_icon_pack">Importerer ikonpakke</string>
     <string name="delete_entry">Slet post</string>
     <string name="delete_entry_description">Er du sikker på, du vil slette denne post?</string>
-    <string name="delete_entry_explanation">Denne handling deaktiverer ikke 2FA for <b>%s</b>. For at undgå at miste adgang, skal du sørge for, at du har deaktiveret 2FA eller at du har en alternativ måde at generere koder til denne tjeneste.</string>
+    <string name="delete_entry_explanation">Denne handling deaktiverer ikke 2FA for /n<b>%s</b>./n For at undgå at miste adgang, skal du sørge for, at du har deaktiveret 2FA eller at du har en alternativ måde at generere koder til denne tjeneste.</string>
     <string name="delete_entries">Slet poster</string>
     <plurals name="delete_entries_description">
         <item quantity="one">Er du sikker på, du vil slette %d post?</item>
