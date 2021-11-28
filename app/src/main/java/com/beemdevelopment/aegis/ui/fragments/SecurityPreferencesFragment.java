@@ -121,6 +121,7 @@ public class SecurityPreferencesFragment extends PreferencesFragment {
                         .setNegativeButton(android.R.string.no, null)
                         .create());
             }
+
             return false;
         });
 
@@ -383,6 +384,7 @@ public class SecurityPreferencesFragment extends PreferencesFragment {
             }
 
             getActivity().startService(new Intent(getActivity(), NotificationService.class));
+            _pinKeyboardPreference.setChecked(false);
             updateEncryptionPreferences();
         }
 
