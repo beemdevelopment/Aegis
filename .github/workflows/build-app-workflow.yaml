@@ -7,6 +7,6 @@ jobs:
       - name: Checkout the code
         uses: actions/checkout@v2
       - name: Validate Gradle wrapper
-        uses: gradle/wrapper-validation-action@e2c57acffb2c9aa5a8dc6eda2bbae0b6e495bd4c
+        uses: gradle/wrapper-validation-action@e6e38bacfdf1a337459f332974bb2327a31aaf4b
       - name: Build the app
         run: ./gradlew build
