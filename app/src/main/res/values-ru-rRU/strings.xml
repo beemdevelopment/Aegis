@@ -370,6 +370,7 @@
     <string name="importer_help_authenticator_plus">Предоставьте файл экспорта Authenticator Plus, полученный через <b>«Настройки» → «Рез. копия и восстановление» → «Экспорт текста и HTML»</b>.</string>
     <string name="importer_help_authy">Предоставьте копию файла <b>/data/data/com.authy.authy/shared_prefs/com.authy.storage.tokens.authenticator.xml</b>, расположенного в папке Authy во внутренней памяти.</string>
     <string name="importer_help_andotp">Предоставьте файл экспорта/резервной копии andOTP.</string>
+    <string name="importer_help_duo">Предоставьте копию файла <b>/data/data/com.duosecurity.duomobile/files/duokit/accounts.json</b>, расположенного в папке DUO во внутренней памяти.</string>
     <string name="importer_help_freeotp">Предоставьте копию файла <b>/data/data/org.fedorahosted.freeotp/shared_prefs/tokens.xml</b>, расположенного в папке FreeOTP во внутренней памяти.</string>
     <string name="importer_help_freeotp_plus">Предоставьте файл экспорта FreeOTP+.</string>
     <string name="importer_help_google_authenticator">Предоставьте копию файла <b>/data/data/com.google.android.apps.authenticator2/databases/databases</b>, расположенного в папке Google Authenticator во внутренней памяти.</string>
