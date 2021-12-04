@@ -1,0 +1,25 @@
+[
+  {
+    "version": 1.0,
+    "accountType": "OtpAccount",
+    "name": "Mason",
+    "otpGenerator": {
+      "otpSecret": "4SJHB4GSD43FZBAI7C2HLRJGPQ"
+    },
+    "logoUri": "file:///data/user/0/com.duosecurity.duomobile/files/duokit/logos/9a011a29-0496-4c0b-b53a-b9125eea14a3.png",
+    "pkey": "9a011a29-0496-4c0b-b53a-b9125eea14a3",
+    "serviceTypeLabelIsCustom": true
+  },
+  {
+    "version": 1.0,
+    "accountType": "OtpAccount",
+    "name": "James",
+    "otpGenerator": {
+      "otpSecret": "YOOMIXWS5GN6RTBPUFFWKTW5M4",
+      "counter": 3
+    },
+    "logoUri": "file:///data/user/0/com.duosecurity.duomobile/files/duokit/logos/907d30f0-d322-4fa5-baff-4b7c603f5141.png",
+    "pkey": "907d30f0-d322-4fa5-baff-4b7c603f5141",
+    "serviceTypeLabelIsCustom": true
+  }
+]

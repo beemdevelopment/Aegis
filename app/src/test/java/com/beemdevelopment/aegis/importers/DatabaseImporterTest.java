@@ -82,6 +82,19 @@ public class DatabaseImporterTest {
     }
 
     @Test
+    public void testImportDuo() throws IOException, DatabaseImporterException, OtpInfoException {
+        List<VaultEntry> entries = importPlain(DuoImporter.class, "duo.json");
+        for (VaultEntry entry : entries) {
+            VaultEntry entryVector = getEntryVectorBySecret(entry.getInfo().getSecret());
+            entryVector.setIssuer("");
+            if (entryVector.getInfo() instanceof HotpInfo) {
+                ((HotpInfo) entry.getInfo()).setCounter(1);
+            }
+            checkImportedEntry(entryVector, entry);
+        }
+    }
+
+    @Test
     public void testImportWinAuth() throws IOException, DatabaseImporterException {
         List<VaultEntry> entries = importPlain(WinAuthImporter.class, "plain.txt");
         for (VaultEntry entry : entries) {

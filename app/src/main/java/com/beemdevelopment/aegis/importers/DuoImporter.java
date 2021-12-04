@@ -6,7 +6,6 @@ import android.content.Context;
 import android.content.pm.PackageManager.NameNotFoundException;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 
 import com.beemdevelopment.aegis.encoding.Base32;
 import com.beemdevelopment.aegis.encoding.EncodingException;
@@ -83,11 +82,8 @@ public class DuoImporter extends DatabaseImporter {
         ) throws DatabaseImporterEntryException {
             try {
                 String label = entry.optString("name");
-
                 JSONObject otpData = entry.getJSONObject("otpGenerator");
-
                 byte[] secret = Base32.decode(otpData.getString("otpSecret"));
-
                 Long counter = otpData.has("counter") ? otpData.getLong("counter") : null;
 
                 OtpInfo otp = counter == null
