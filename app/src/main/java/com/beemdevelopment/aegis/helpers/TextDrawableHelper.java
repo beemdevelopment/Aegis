@@ -5,6 +5,7 @@ import android.view.View;
 import com.amulyakhare.textdrawable.TextDrawable;
 import com.amulyakhare.textdrawable.util.ColorGenerator;
 
+import java.text.BreakIterator;
 import java.util.Arrays;
 
 public class TextDrawableHelper {
@@ -48,6 +49,18 @@ public class TextDrawableHelper {
                 .width(view.getLayoutParams().width)
                 .height(view.getLayoutParams().height)
                 .endConfig()
-                .buildRound(text.substring(0, 1).toUpperCase(), color);
+                .buildRound(getFirstGrapheme(text).toUpperCase(), color);
+    }
+
+    private static String getFirstGrapheme(String text) {
+        BreakIterator iter = BreakIterator.getCharacterInstance();
+        iter.setText(text);
+
+        int start = iter.first(), end = iter.next();
+        if (end == BreakIterator.DONE) {
+            return "";
+        }
+
+        return text.substring(start, end);
     }
 }
