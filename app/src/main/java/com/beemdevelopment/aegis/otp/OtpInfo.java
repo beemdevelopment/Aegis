@@ -115,6 +115,10 @@ public abstract class OtpInfo implements Serializable {
                 case HotpInfo.ID:
                     info = new HotpInfo(secret, algo, digits, obj.getLong("counter"));
                     break;
+                case YandexInfo.ID:
+                    byte[] pin = Base32.decode(obj.getString("pin"));
+                    info = new YandexInfo(secret, pin);
+                    break;
                 default:
                     throw new OtpInfoException("unsupported otp type: " + type);
             }

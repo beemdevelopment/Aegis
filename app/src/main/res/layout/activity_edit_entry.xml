@@ -45,13 +45,12 @@
                     android:id="@+id/krop_view"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:layout_centerVertical="true"
+                    android:layout_centerInParent="true"
                     android:visibility="invisible"
                     app:krop_aspectX="1"
                     app:krop_aspectY="1"
                     app:krop_offset="70dp"
-                    app:krop_overlayColor="#aadddddd" >
+                    app:krop_overlayColor="#aadddddd">
 
                     <ImageView
                         android:id="@+id/iv_saveImage"
@@ -184,6 +183,39 @@
                             android:layout_height="wrap_content"
                             android:hint="@string/secret"
                             android:inputType="textPassword"/>
+                    </com.google.android.material.textfield.TextInputLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/layout_yandex_pin"
+                    android:visibility="gone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal"
+                    tools:visibility="visible">
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_baseline_fiber_pin_24"
+                        app:tint="?attr/iconColorPrimary"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginEnd="15dp"
+                        android:layout_gravity="center_vertical"/>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/yandex_pin"
+                        android:layout_weight="1"
+                        app:passwordToggleTint="#949494"
+                        app:passwordToggleEnabled="true">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/text_yandex_pin"
+                            android:maxLength="16"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="numberPassword"/>
                     </com.google.android.material.textfield.TextInputLayout>
                 </LinearLayout>
             </LinearLayout>

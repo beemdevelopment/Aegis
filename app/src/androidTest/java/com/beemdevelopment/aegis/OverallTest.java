@@ -12,6 +12,7 @@ import com.beemdevelopment.aegis.encoding.Base32;
 import com.beemdevelopment.aegis.otp.HotpInfo;
 import com.beemdevelopment.aegis.otp.SteamInfo;
 import com.beemdevelopment.aegis.otp.TotpInfo;
+import com.beemdevelopment.aegis.otp.YandexInfo;
 import com.beemdevelopment.aegis.ui.MainActivity;
 import com.beemdevelopment.aegis.vault.VaultEntry;
 import com.beemdevelopment.aegis.vault.VaultManager;
@@ -68,7 +69,8 @@ public class OverallTest extends AegisTest {
                 generateEntry(TotpInfo.class, "Frank", "Google"),
                 generateEntry(HotpInfo.class, "John", "GitHub"),
                 generateEntry(TotpInfo.class, "Alice", "Office 365"),
-                generateEntry(SteamInfo.class, "Gaben", "Steam")
+                generateEntry(SteamInfo.class, "Gaben", "Steam"),
+                generateEntry(YandexInfo.class, "Ivan", "Yandex")
         );
         for (VaultEntry entry : entries) {
             addEntry(entry);
@@ -171,6 +173,8 @@ public class OverallTest extends AegisTest {
                 otpType = "Steam";
             } else if (entry.getInfo() instanceof TotpInfo) {
                 otpType = "TOTP";
+            } else if (entry.getInfo() instanceof YandexInfo) {
+                otpType = "Yandex";
             } else {
                 throw new RuntimeException(String.format("Unexpected entry type: %s", entry.getInfo().getClass().getSimpleName()));
             }
