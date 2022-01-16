@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 
 import androidx.lifecycle.Lifecycle;
 
+import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.helpers.ContextHelper;
 import com.beemdevelopment.aegis.ui.dialogs.Dialogs;
 import com.beemdevelopment.aegis.ui.tasks.PasswordSlotDecryptTask;
@@ -83,7 +84,7 @@ public class AegisImporter extends DatabaseImporter {
 
         @Override
         public void decrypt(Context context, DecryptListener listener) {
-            Dialogs.showPasswordInputDialog(context, (Dialogs.TextInputListener) password -> {
+            Dialogs.showPasswordInputDialog(context, R.string.enter_password_aegis_title, 0, (Dialogs.TextInputListener) password -> {
                 List<PasswordSlot> slots = getSlots().findAll(PasswordSlot.class);
                 PasswordSlotDecryptTask.Params params = new PasswordSlotDecryptTask.Params(slots, password);
                 PasswordSlotDecryptTask task = new PasswordSlotDecryptTask(context, result -> {
