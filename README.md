@@ -9,6 +9,8 @@ including some features missing in existing authenticator apps, like proper
 encryption and backups. Aegis supports HOTP and TOTP, making it compatible with
 thousands of services.
 
+For a list of frequently asked questions, please check out [the FAQ](FAQ.md).
+
 The security design of the app and the vault format is described in detail in
 [this document](docs/vault.md).
 

@@ -4,6 +4,9 @@ Looking to contribute to Aegis? That's great! There are a couple of ways to help
 out. This document contains some general guidelines for each type of
 contribution.
 
+Please review [the FAQ](FAQ.md) before reporting a bug, asking a question or
+requesting a feature.
+
 ## Translations
 
 We use [Crowdin](https://crowdin.com/project/aegis-authenticator) to crowdsource
