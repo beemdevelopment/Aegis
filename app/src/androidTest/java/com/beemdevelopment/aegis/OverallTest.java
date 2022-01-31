@@ -1,5 +1,21 @@
 package com.beemdevelopment.aegis;
 
+import static androidx.test.espresso.Espresso.onView;
+import static androidx.test.espresso.Espresso.openContextualActionModeOverflowMenu;
+import static androidx.test.espresso.action.ViewActions.clearText;
+import static androidx.test.espresso.action.ViewActions.click;
+import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
+import static androidx.test.espresso.action.ViewActions.longClick;
+import static androidx.test.espresso.action.ViewActions.pressBack;
+import static androidx.test.espresso.action.ViewActions.typeText;
+import static androidx.test.espresso.matcher.ViewMatchers.hasDescendant;
+import static androidx.test.espresso.matcher.ViewMatchers.isRoot;
+import static androidx.test.espresso.matcher.ViewMatchers.withId;
+import static androidx.test.espresso.matcher.ViewMatchers.withText;
+import static junit.framework.TestCase.assertFalse;
+import static junit.framework.TestCase.assertNull;
+import static junit.framework.TestCase.assertTrue;
+
 import androidx.annotation.IdRes;
 import androidx.test.espresso.ViewInteraction;
 import androidx.test.espresso.contrib.RecyclerViewActions;
@@ -25,22 +41,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static androidx.test.espresso.Espresso.onView;
-import static androidx.test.espresso.Espresso.openContextualActionModeOverflowMenu;
-import static androidx.test.espresso.action.ViewActions.clearText;
-import static androidx.test.espresso.action.ViewActions.click;
-import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
-import static androidx.test.espresso.action.ViewActions.longClick;
-import static androidx.test.espresso.action.ViewActions.pressBack;
-import static androidx.test.espresso.action.ViewActions.typeText;
-import static androidx.test.espresso.matcher.ViewMatchers.hasDescendant;
-import static androidx.test.espresso.matcher.ViewMatchers.isRoot;
-import static androidx.test.espresso.matcher.ViewMatchers.withId;
-import static androidx.test.espresso.matcher.ViewMatchers.withText;
-import static junit.framework.TestCase.assertFalse;
-import static junit.framework.TestCase.assertNull;
-import static junit.framework.TestCase.assertTrue;
-
 @RunWith(AndroidJUnit4.class)
 @LargeTest
 public class OverallTest extends AegisTest {
@@ -55,7 +55,7 @@ public class OverallTest extends AegisTest {
         next.perform(click());
         onView(withId(R.id.rb_password)).perform(click());
         next.perform(click());
-        onView(withId(R.id.text_password)).perform(typeText(VAULT_PASSWORD), closeSoftKeyboard());
+        onView(withId(R.id.text_password)).perform(click()).perform(typeText(VAULT_PASSWORD), closeSoftKeyboard());
         onView(withId(R.id.text_password_confirm)).perform(typeText(VAULT_PASSWORD), closeSoftKeyboard());
         next.perform(click());
         onView(withId(R.id.btnNext)).perform(click());
