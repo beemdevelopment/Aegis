@@ -26,42 +26,6 @@ public class GoogleAuthInfo implements Serializable {
         _issuer = issuer;
     }
 
-    public OtpInfo getOtpInfo() {
-        return _info;
-    }
-
-    public Uri getUri() {
-        Uri.Builder builder = new Uri.Builder();
-        builder.scheme(SCHEME);
-
-        if (_info instanceof TotpInfo) {
-            if (_info instanceof SteamInfo) {
-                builder.authority("steam");
-            } else {
-                builder.authority("totp");
-            }
-            builder.appendQueryParameter("period", Integer.toString(((TotpInfo)_info).getPeriod()));
-        } else if (_info instanceof HotpInfo) {
-            builder.authority("hotp");
-            builder.appendQueryParameter("counter", Long.toString(((HotpInfo)_info).getCounter()));
-        } else {
-            throw new RuntimeException(String.format("Unsupported OtpInfo type: %s", _info.getClass()));
-        }
-
-        builder.appendQueryParameter("digits", Integer.toString(_info.getDigits()));
-        builder.appendQueryParameter("algorithm", _info.getAlgorithm(false));
-        builder.appendQueryParameter("secret", Base32.encode(_info.getSecret()));
-
-        if (_issuer != null && !_issuer.equals("")) {
-            builder.path(String.format("%s:%s", _issuer, _accountName));
-            builder.appendQueryParameter("issuer", _issuer);
-        } else {
-            builder.path(_accountName);
-        }
-
-        return builder.build();
-    }
-
     public static GoogleAuthInfo parseUri(String s) throws GoogleAuthInfoException {
         Uri uri = Uri.parse(s);
         if (uri == null) {
@@ -84,12 +48,13 @@ public class GoogleAuthInfo implements Serializable {
 
         byte[] secret;
         try {
-            secret = parseSecret(encodedSecret);
+            secret = uri.getHost().equals(YandexInfo.OTP_SCHEMA_ID) ? parseYandexSecret(encodedSecret) : parseSecret(encodedSecret);
         } catch (EncodingException e) {
             throw new GoogleAuthInfoException(uri, "Bad secret", e);
         }
 
         OtpInfo info;
+        String issuer = "";
         try {
             String type = uri.getHost();
             if (type == null) {
@@ -122,10 +87,15 @@ public class GoogleAuthInfo implements Serializable {
                     hotpInfo.setCounter(Long.parseLong(counter));
                     info = hotpInfo;
                     break;
+                case YandexInfo.OTP_SCHEMA_ID:
+                    String pinValue = uri.getQueryParameter("pin");
+                    info = pinValue != null ? new YandexInfo(secret, parseSecret(pinValue)) : new YandexInfo(secret);
+                    issuer = info.getType();
+                    break;
                 default:
                     throw new GoogleAuthInfoException(uri, String.format("Unsupported OTP type: %s", type));
             }
-        } catch (OtpInfoException | NumberFormatException e) {
+        } catch (OtpInfoException | NumberFormatException | EncodingException e) {
             throw new GoogleAuthInfoException(uri, e);
         }
 
@@ -134,7 +104,6 @@ public class GoogleAuthInfo implements Serializable {
         String label = path != null && path.length() > 0 ? path.substring(1) : "";
 
         String accountName = "";
-        String issuer = "";
 
         if (label.contains(":")) {
             // a label can only contain one colon
@@ -151,7 +120,9 @@ public class GoogleAuthInfo implements Serializable {
             // label only contains the account name
             // grab the issuer's info from the 'issuer' parameter if it's present
             String issuerParam = uri.getQueryParameter("issuer");
-            issuer = issuerParam != null ? issuerParam : "";
+            if (issuer.isEmpty()) {
+                issuer = issuerParam != null ? issuerParam : "";
+            }
             accountName = label;
         }
 
@@ -178,6 +149,19 @@ public class GoogleAuthInfo implements Serializable {
     public static byte[] parseSecret(String s) throws EncodingException {
         s = s.trim().replace("-", "").replace(" ", "");
         return Base32.decode(s);
+    }
+
+    /**
+     * When arrives from Yandex site QR code - there will always be 26 symbols (secret only)
+     * If it arrives from Aegis Export - it can be 42 (if was manually created)
+     * Just to be sure, let's check secret length (until final RFC comes up)
+     */
+    public static byte[] parseYandexSecret(String s) throws EncodingException {
+        if (s.length() == YandexInfo.SECRET_LENGTH || s.length() == YandexInfo.SECRET_FULL_LENGTH) {
+            return parseSecret(s);
+        } else {
+            throw new EncodingException(new Throwable("Length differs from expected"));
+        }
     }
 
     public static Export parseExportUri(String s) throws GoogleAuthInfoException {
@@ -260,7 +244,7 @@ public class GoogleAuthInfo implements Serializable {
                     default:
                         throw new GoogleAuthInfoException(uri, String.format("Unsupported algorithm: %d", params.getType().ordinal()));
                 }
-            } catch (OtpInfoException e){
+            } catch (OtpInfoException e) {
                 throw new GoogleAuthInfoException(uri, e);
             }
 
@@ -277,6 +261,48 @@ public class GoogleAuthInfo implements Serializable {
         }
 
         return new Export(infos, payload.getBatchId(), payload.getBatchIndex(), payload.getBatchSize());
+    }
+
+    public OtpInfo getOtpInfo() {
+        return _info;
+    }
+
+    public Uri getUri() {
+        Uri.Builder builder = new Uri.Builder();
+        builder.scheme(SCHEME);
+
+        if (_info instanceof TotpInfo) {
+            if (_info instanceof SteamInfo) {
+                builder.authority("steam");
+            } else if (_info instanceof YandexInfo) {
+                builder.authority(YandexInfo.OTP_SCHEMA_ID);
+            } else {
+                builder.authority("totp");
+            }
+            builder.appendQueryParameter("period", Integer.toString(((TotpInfo) _info).getPeriod()));
+        } else if (_info instanceof HotpInfo) {
+            builder.authority("hotp");
+            builder.appendQueryParameter("counter", Long.toString(((HotpInfo) _info).getCounter()));
+        } else {
+            throw new RuntimeException(String.format("Unsupported OtpInfo type: %s", _info.getClass()));
+        }
+
+        builder.appendQueryParameter("digits", Integer.toString(_info.getDigits()));
+        builder.appendQueryParameter("algorithm", _info.getAlgorithm(false));
+        builder.appendQueryParameter("secret", Base32.encode(_info.getSecret()));
+
+        if (_info instanceof YandexInfo) {
+            builder.appendQueryParameter("pin", Base32.encode(((YandexInfo) _info).getPinBytes()));
+        }
+
+        if (_issuer != null && !_issuer.equals("")) {
+            builder.path(String.format("%s:%s", _issuer, _accountName));
+            builder.appendQueryParameter("issuer", _issuer);
+        } else {
+            builder.path(_accountName);
+        }
+
+        return builder.build();
     }
 
     public String getIssuer() {

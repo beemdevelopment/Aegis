@@ -22,6 +22,7 @@ import com.beemdevelopment.aegis.otp.HotpInfo;
 import com.beemdevelopment.aegis.otp.OtpInfo;
 import com.beemdevelopment.aegis.otp.SteamInfo;
 import com.beemdevelopment.aegis.otp.TotpInfo;
+import com.beemdevelopment.aegis.otp.YandexInfo;
 import com.beemdevelopment.aegis.ui.glide.IconLoader;
 import com.beemdevelopment.aegis.vault.VaultEntry;
 import com.bumptech.glide.Glide;
@@ -238,7 +239,7 @@ public class EntryHolder extends RecyclerView.ViewHolder {
         OtpInfo info = _entry.getInfo();
 
         String otp = info.getOtp();
-        if (!(info instanceof SteamInfo)) {
+        if (!(info instanceof SteamInfo || info instanceof YandexInfo)) {
             otp = formatCode(otp);
         }
 

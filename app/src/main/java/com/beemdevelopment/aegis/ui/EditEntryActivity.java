@@ -32,6 +32,7 @@ import androidx.documentfile.provider.DocumentFile;
 import com.amulyakhare.textdrawable.TextDrawable;
 import com.avito.android.krop.KropView;
 import com.beemdevelopment.aegis.R;
+import com.beemdevelopment.aegis.crypto.CryptoUtils;
 import com.beemdevelopment.aegis.encoding.Base32;
 import com.beemdevelopment.aegis.encoding.EncodingException;
 import com.beemdevelopment.aegis.helpers.DropdownHelper;
@@ -46,6 +47,7 @@ import com.beemdevelopment.aegis.otp.OtpInfo;
 import com.beemdevelopment.aegis.otp.OtpInfoException;
 import com.beemdevelopment.aegis.otp.SteamInfo;
 import com.beemdevelopment.aegis.otp.TotpInfo;
+import com.beemdevelopment.aegis.otp.YandexInfo;
 import com.beemdevelopment.aegis.ui.dialogs.Dialogs;
 import com.beemdevelopment.aegis.ui.dialogs.IconPickerDialog;
 import com.beemdevelopment.aegis.ui.glide.IconLoader;
@@ -53,6 +55,7 @@ import com.beemdevelopment.aegis.ui.tasks.ImportFileTask;
 import com.beemdevelopment.aegis.ui.views.IconAdapter;
 import com.beemdevelopment.aegis.util.Cloner;
 import com.beemdevelopment.aegis.util.IOUtils;
+import com.beemdevelopment.aegis.util.YandexUtils;
 import com.beemdevelopment.aegis.vault.VaultEntry;
 import com.beemdevelopment.aegis.vault.VaultManager;
 import com.bumptech.glide.Glide;
@@ -101,6 +104,8 @@ public class EditEntryActivity extends AegisActivity {
     private TextInputEditText _textDigits;
     private TextInputLayout _textDigitsLayout;
     private TextInputEditText _textSecret;
+    private TextInputEditText _textYandexPin;
+    private LinearLayout _textYandexPinLayout;
     private TextInputEditText _textUsageCount;
     private TextInputEditText _textNote;
 
@@ -153,6 +158,8 @@ public class EditEntryActivity extends AegisActivity {
         _textDigits = findViewById(R.id.text_digits);
         _textDigitsLayout = findViewById(R.id.text_digits_layout);
         _textSecret = findViewById(R.id.text_secret);
+        _textYandexPin = findViewById(R.id.text_yandex_pin);
+        _textYandexPinLayout = findViewById(R.id.layout_yandex_pin);
         _textUsageCount = findViewById(R.id.text_usage_count);
         _textNote = findViewById(R.id.text_note);
         _dropdownType = findViewById(R.id.dropdown_type);
@@ -166,12 +173,20 @@ public class EditEntryActivity extends AegisActivity {
 
         // if this is NOT a manually entered entry, move the "Secret" field from basic to advanced settings
         if (!_isNew || (_isNew && !_isManual)) {
+            int secretIndex = 0;
             LinearLayout layoutSecret = findViewById(R.id.layout_secret);
             LinearLayout layoutBasic = findViewById(R.id.layout_basic);
             LinearLayout layoutAdvanced = findViewById(R.id.layout_advanced);
             layoutBasic.removeView(layoutSecret);
-            layoutAdvanced.addView(layoutSecret, 0);
-            ((LinearLayout.LayoutParams) layoutSecret.getLayoutParams()).topMargin = 0;
+            if (!_isNew) {
+                secretIndex = 1;
+                layoutBasic.removeView(_textYandexPinLayout);
+                layoutAdvanced.addView(_textYandexPinLayout, 0);
+                ((LinearLayout.LayoutParams) _textYandexPinLayout.getLayoutParams()).topMargin = 0;
+            } else {
+                ((LinearLayout.LayoutParams) layoutSecret.getLayoutParams()).topMargin = 0;
+            }
+            layoutAdvanced.addView(layoutSecret, secretIndex);
 
             if (_isNew && !_isManual) {
                 setViewEnabled(layoutAdvanced, false);
@@ -206,6 +221,7 @@ public class EditEntryActivity extends AegisActivity {
         _textNote.setText(_origEntry.getNote());
 
         OtpInfo info = _origEntry.getInfo();
+
         if (info instanceof TotpInfo) {
             _textPeriodCounterLayout.setHint(R.string.period_hint);
             _textPeriodCounter.setText(Integer.toString(((TotpInfo) info).getPeriod()));
@@ -225,7 +241,13 @@ public class EditEntryActivity extends AegisActivity {
 
         _dropdownType.setText(_origEntry.getInfo().getType(), false);
         _dropdownAlgo.setText(_origEntry.getInfo().getAlgorithm(false), false);
+
+        if (info instanceof YandexInfo) {
+            _textYandexPin.setText(((YandexInfo) info).getPin());
+        }
+
         updateAdvancedFieldStatus(_origEntry.getInfo().getTypeId());
+        updatePinFieldVisibility(_origEntry.getInfo().getTypeId());
 
         String group = _origEntry.getGroup();
         setGroup(group);
@@ -254,11 +276,18 @@ public class EditEntryActivity extends AegisActivity {
                     _textPeriodCounter.setText(String.valueOf(HotpInfo.DEFAULT_COUNTER));
                     _textDigits.setText(String.valueOf(OtpInfo.DEFAULT_DIGITS));
                     break;
+                case YandexInfo.ID:
+                    _dropdownAlgo.setText(YandexInfo.DEFAULT_ALGORITHM, false);
+                    _textPeriodCounterLayout.setHint(R.string.period_hint);
+                    _textPeriodCounter.setText(String.valueOf(TotpInfo.DEFAULT_PERIOD));
+                    _textDigits.setText(String.valueOf(YandexInfo.DIGITS));
+                    break;
                 default:
                     throw new RuntimeException(String.format("Unsupported OTP type: %s", type));
             }
 
             updateAdvancedFieldStatus(type);
+            updatePinFieldVisibility(type);
         });
 
         _iconView.setOnClickListener(v -> {
@@ -290,10 +319,15 @@ public class EditEntryActivity extends AegisActivity {
     }
 
     private void updateAdvancedFieldStatus(String otpType) {
-        boolean enabled = !otpType.equals(SteamInfo.ID) && (!_isNew || _isManual);
+        boolean enabled = !otpType.equals(SteamInfo.ID) && !otpType.equals(YandexInfo.ID) && (!_isNew || _isManual);
         _textDigitsLayout.setEnabled(enabled);
         _textPeriodCounterLayout.setEnabled(enabled);
         _dropdownAlgoLayout.setEnabled(enabled);
+    }
+
+    private void updatePinFieldVisibility(String otpType) {
+        boolean visible = otpType.equals(YandexInfo.ID);
+        _textYandexPinLayout.setVisibility(visible ? View.VISIBLE : View.GONE);
     }
 
     private void setGroup(String groupName) {
@@ -627,6 +661,14 @@ public class EditEntryActivity extends AegisActivity {
 
         String type = _dropdownType.getText().toString();
         String algo = _dropdownAlgo.getText().toString();
+        String lowerCasedType = type.toLowerCase(Locale.ROOT);
+
+        if (lowerCasedType.equals(YandexInfo.ID)) {
+            int pinLength = _textYandexPin.length();
+            if (pinLength < 4) {
+                throw new ParseException("PIN is a required field. Min 4 digits.");
+            }
+        }
 
         int digits;
         try {
@@ -663,6 +705,12 @@ public class EditEntryActivity extends AegisActivity {
                         throw new ParseException("Counter is not an integer.");
                     }
                     info = new HotpInfo(secret, algo, digits, counter);
+                    break;
+                case YandexInfo.OTP_SCHEMA_ID:
+                case YandexInfo.ID:
+                    YandexUtils.validateSecret(secret);
+                    byte[] pin = CryptoUtils.toBytes(_textYandexPin.getText().toString().toCharArray());
+                    info = new YandexInfo(secret, pin);
                     break;
                 default:
                     throw new RuntimeException(String.format("Unsupported OTP type: %s", type));
