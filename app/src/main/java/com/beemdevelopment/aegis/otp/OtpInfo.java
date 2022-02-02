@@ -40,7 +40,7 @@ public abstract class OtpInfo implements Serializable {
         JSONObject obj = new JSONObject();
 
         try {
-            obj.put("secret", new String(Base32.encode(getSecret())));
+            obj.put("secret", Base32.encode(getSecret()));
             obj.put("algo", getAlgorithm(false));
             obj.put("digits", getDigits());
         } catch (JSONException e) {
@@ -116,8 +116,7 @@ public abstract class OtpInfo implements Serializable {
                     info = new HotpInfo(secret, algo, digits, obj.getLong("counter"));
                     break;
                 case YandexInfo.ID:
-                    byte[] pin = Base32.decode(obj.getString("pin"));
-                    info = new YandexInfo(secret, pin);
+                    info = new YandexInfo(secret, obj.getString("pin"));
                     break;
                 default:
                     throw new OtpInfoException("unsupported otp type: " + type);

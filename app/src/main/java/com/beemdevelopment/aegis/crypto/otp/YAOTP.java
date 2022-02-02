@@ -2,12 +2,11 @@ package com.beemdevelopment.aegis.crypto.otp;
 
 import androidx.annotation.NonNull;
 
-import com.beemdevelopment.aegis.util.YandexUtils;
-
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
+import java.nio.charset.StandardCharsets;
 import java.security.InvalidKeyException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -23,48 +22,37 @@ public class YAOTP {
         _digits = digits;
     }
 
-    public static YAOTP generateOTP(byte[] secret, byte[] pin, int digits, String otpAlgo, long period)
+    public static YAOTP generateOTP(byte[] secret, String pin, int digits, String otpAlgo, long period)
             throws NoSuchAlgorithmException, InvalidKeyException, IOException {
         long seconds = System.currentTimeMillis() / 1000;
         return generateOTP(secret, pin, digits, otpAlgo, seconds, period);
     }
 
-    public static YAOTP generateOTP(byte[] secret, byte[] pin, int digits, String otpAlgo, long seconds, long period)
+    public static YAOTP generateOTP(byte[] secret, String pin, int digits, String otpAlgo, long seconds, long period)
             throws NoSuchAlgorithmException, InvalidKeyException, IOException {
+        byte[] pinWithHash;
+        byte[] pinBytes = pin.getBytes(StandardCharsets.UTF_8);
+        try (ByteArrayOutputStream stream = new ByteArrayOutputStream(pinBytes.length + secret.length)) {
+            stream.write(pinBytes);
+            stream.write(secret);
+            pinWithHash = stream.toByteArray();
+        }
+
+        MessageDigest md = MessageDigest.getInstance("SHA-256");
+        byte[] keyHash = md.digest(pinWithHash);
+        if (keyHash[0] == 0) {
+            keyHash = Arrays.copyOfRange(keyHash, 1, keyHash.length);
+        }
 
         long counter = (long) Math.floor((double) seconds / period);
+        byte[] periodHash = HOTP.getHash(keyHash, otpAlgo, counter);
+        int offset = periodHash[periodHash.length - 1] & 0xf;
+        periodHash[offset] &= 0x7f;
+        long otp = ByteBuffer.wrap(periodHash)
+                .order(ByteOrder.BIG_ENDIAN)
+                .getLong(offset);
 
-        try (ByteArrayOutputStream pinWithHashStream =
-                     new ByteArrayOutputStream(pin.length + secret.length)) {
-
-            pinWithHashStream.write(pin);
-            pinWithHashStream.write(secret, 0, YandexUtils.APPROVED_SECRET_LENGTH);
-
-            MessageDigest md = MessageDigest.getInstance("SHA-256");
-            byte[] keyHash = md.digest(pinWithHashStream.toByteArray());
-
-            if (keyHash[0] == 0) {
-                keyHash = Arrays.copyOfRange(keyHash, 1, keyHash.length);
-            }
-
-            byte[] periodHash = HOTP.getHash(keyHash, otpAlgo, counter);
-            int offset = periodHash[periodHash.length - 1] & 0xf;
-
-            periodHash[offset] &= 0x7f;
-            long otp = ByteBuffer.wrap(periodHash)
-                    .order(ByteOrder.BIG_ENDIAN)
-                    .getLong(offset);
-
-            return new YAOTP(otp, digits);
-        }
-    }
-
-    public long getCode() {
-        return _code;
-    }
-
-    public int getDigits() {
-        return _digits;
+        return new YAOTP(otp, digits);
     }
 
     @NonNull

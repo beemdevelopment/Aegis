@@ -5,6 +5,7 @@ import static org.junit.Assert.assertThrows;
 import com.beemdevelopment.aegis.encoding.Base32;
 import com.beemdevelopment.aegis.encoding.EncodingException;
 import com.beemdevelopment.aegis.otp.OtpInfoException;
+import com.beemdevelopment.aegis.otp.YandexInfo;
 
 import org.junit.Test;
 
@@ -19,14 +20,14 @@ public class YandexUtilsTest {
 
     @Test(expected = Test.None.class)
     public void testValidationOk() throws EncodingException, OtpInfoException {
-        YandexUtils.validateSecret(getBase32Vector(0));
-        YandexUtils.validateSecret(getBase32Vector(1));
+        YandexInfo.validateSecret(getBase32Vector(0));
+        YandexInfo.validateSecret(getBase32Vector(1));
     }
 
     @Test
     public void testYandexSecretValidation() {
-        assertThrows(OtpInfoException.class, () -> YandexUtils.validateSecret(getBase32Vector(2)));
-        assertThrows(OtpInfoException.class, () -> YandexUtils.validateSecret(getBase32Vector(3)));
+        assertThrows(OtpInfoException.class, () -> YandexInfo.validateSecret(getBase32Vector(2)));
+        assertThrows(OtpInfoException.class, () -> YandexInfo.validateSecret(getBase32Vector(3)));
     }
 
     private byte[] getBase32Vector(int vectorIndex) throws EncodingException {

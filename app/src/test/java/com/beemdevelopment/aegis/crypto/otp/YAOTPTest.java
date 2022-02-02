@@ -2,9 +2,9 @@ package com.beemdevelopment.aegis.crypto.otp;
 
 import static org.junit.Assert.assertEquals;
 
-import com.beemdevelopment.aegis.crypto.CryptoUtils;
 import com.beemdevelopment.aegis.encoding.Base32;
-import com.beemdevelopment.aegis.encoding.EncodingException;
+import com.beemdevelopment.aegis.otp.OtpInfoException;
+import com.beemdevelopment.aegis.otp.YandexInfo;
 
 import org.junit.Test;
 
@@ -23,11 +23,13 @@ public class YAOTPTest {
     };
 
     @Test
-    public void validateYaOtp() throws InvalidKeyException, NoSuchAlgorithmException, IOException {
+    public void validateYaOtp()
+            throws InvalidKeyException, NoSuchAlgorithmException, IOException, OtpInfoException {
         for (Vector testCase : TEST_CASES) {
+            byte[] secret = YandexInfo.parseSecret(Base32.decode(testCase.secret));
             YAOTP otp = YAOTP.generateOTP(
-                    Base32.decode(testCase.secret.substring(0, 26)),
-                    CryptoUtils.toBytes(testCase.pin.toCharArray()),
+                    secret,
+                    testCase.pin,
                     8,
                     "HmacSHA256",
                     testCase.timestamp,

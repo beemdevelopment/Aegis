@@ -70,7 +70,7 @@ public class OverallTest extends AegisTest {
                 generateEntry(HotpInfo.class, "John", "GitHub"),
                 generateEntry(TotpInfo.class, "Alice", "Office 365"),
                 generateEntry(SteamInfo.class, "Gaben", "Steam"),
-                generateEntry(YandexInfo.class, "Ivan", "Yandex")
+                generateEntry(YandexInfo.class, "Ivan", "Yandex", 16)
         );
         for (VaultEntry entry : entries) {
             addEntry(entry);
@@ -108,9 +108,9 @@ public class OverallTest extends AegisTest {
         changeGroupFilter(_groupName);
         changeGroupFilter(null);
 
-        onView(withId(R.id.rvKeyProfiles)).perform(RecyclerViewActions.actionOnItemAtPosition(1, longClick()));
-        onView(withId(R.id.rvKeyProfiles)).perform(RecyclerViewActions.actionOnItemAtPosition(2, click()));
+        onView(withId(R.id.rvKeyProfiles)).perform(RecyclerViewActions.actionOnItemAtPosition(2, longClick()));
         onView(withId(R.id.rvKeyProfiles)).perform(RecyclerViewActions.actionOnItemAtPosition(3, click()));
+        onView(withId(R.id.rvKeyProfiles)).perform(RecyclerViewActions.actionOnItemAtPosition(4, click()));
         onView(withId(R.id.action_share_qr)).perform(click());
         onView(withId(R.id.btnNext)).perform(click()).perform(click()).perform(click());
 
@@ -171,10 +171,10 @@ public class OverallTest extends AegisTest {
                 otpType = "HOTP";
             } else if (entry.getInfo() instanceof SteamInfo) {
                 otpType = "Steam";
-            } else if (entry.getInfo() instanceof TotpInfo) {
-                otpType = "TOTP";
             } else if (entry.getInfo() instanceof YandexInfo) {
                 otpType = "Yandex";
+            } else if (entry.getInfo() instanceof TotpInfo) {
+                otpType = "TOTP";
             } else {
                 throw new RuntimeException(String.format("Unexpected entry type: %s", entry.getInfo().getClass().getSimpleName()));
             }
@@ -185,6 +185,12 @@ public class OverallTest extends AegisTest {
 
         String secret = Base32.encode(entry.getInfo().getSecret());
         onView(withId(R.id.text_secret)).perform(typeText(secret), closeSoftKeyboard());
+
+        if (entry.getInfo() instanceof YandexInfo) {
+            String pin = "123456";
+            ((YandexInfo) entry.getInfo()).setPin(pin);
+            onView(withId(R.id.text_yandex_pin)).perform(typeText(pin), closeSoftKeyboard());
+        }
 
         onView(withId(R.id.action_save)).perform(click());
     }

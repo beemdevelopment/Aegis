@@ -32,7 +32,6 @@ import androidx.documentfile.provider.DocumentFile;
 import com.amulyakhare.textdrawable.TextDrawable;
 import com.avito.android.krop.KropView;
 import com.beemdevelopment.aegis.R;
-import com.beemdevelopment.aegis.crypto.CryptoUtils;
 import com.beemdevelopment.aegis.encoding.Base32;
 import com.beemdevelopment.aegis.encoding.EncodingException;
 import com.beemdevelopment.aegis.helpers.DropdownHelper;
@@ -55,7 +54,6 @@ import com.beemdevelopment.aegis.ui.tasks.ImportFileTask;
 import com.beemdevelopment.aegis.ui.views.IconAdapter;
 import com.beemdevelopment.aegis.util.Cloner;
 import com.beemdevelopment.aegis.util.IOUtils;
-import com.beemdevelopment.aegis.util.YandexUtils;
 import com.beemdevelopment.aegis.vault.VaultEntry;
 import com.beemdevelopment.aegis.vault.VaultManager;
 import com.bumptech.glide.Glide;
@@ -666,7 +664,7 @@ public class EditEntryActivity extends AegisActivity {
         if (lowerCasedType.equals(YandexInfo.ID)) {
             int pinLength = _textYandexPin.length();
             if (pinLength < 4) {
-                throw new ParseException("PIN is a required field. Min 4 digits.");
+                throw new ParseException("PIN is a required field. Must have a minimum length of 4 digits.");
             }
         }
 
@@ -706,11 +704,8 @@ public class EditEntryActivity extends AegisActivity {
                     }
                     info = new HotpInfo(secret, algo, digits, counter);
                     break;
-                case YandexInfo.OTP_SCHEMA_ID:
                 case YandexInfo.ID:
-                    YandexUtils.validateSecret(secret);
-                    byte[] pin = CryptoUtils.toBytes(_textYandexPin.getText().toString().toCharArray());
-                    info = new YandexInfo(secret, pin);
+                    info = new YandexInfo(secret, _textYandexPin.getText().toString());
                     break;
                 default:
                     throw new RuntimeException(String.format("Unsupported OTP type: %s", type));

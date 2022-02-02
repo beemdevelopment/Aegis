@@ -78,7 +78,11 @@ public abstract class AegisTest {
     }
 
     protected static <T extends OtpInfo> VaultEntry generateEntry(Class<T> type, String name, String issuer) {
-        byte[] secret = CryptoUtils.generateRandomBytes(20);
+        return generateEntry(type, name, issuer, 20);
+    }
+
+    protected static <T extends OtpInfo> VaultEntry generateEntry(Class<T> type, String name, String issuer, int secretLength) {
+        byte[] secret = CryptoUtils.generateRandomBytes(secretLength);
 
         OtpInfo info;
         try {

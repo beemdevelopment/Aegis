@@ -5,8 +5,8 @@ import androidx.annotation.NonNull;
 public class OTP {
     private static final String STEAM_ALPHABET = "23456789BCDFGHJKMNPQRTVWXY";
 
-    private int _code;
-    private int _digits;
+    private final int _code;
+    private final int _digits;
 
     public OTP(int code, int digits) {
         _code = code;

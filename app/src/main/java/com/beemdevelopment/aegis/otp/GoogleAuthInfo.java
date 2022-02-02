@@ -9,6 +9,7 @@ import com.beemdevelopment.aegis.encoding.EncodingException;
 import com.google.protobuf.InvalidProtocolBufferException;
 
 import java.io.Serializable;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,7 +49,7 @@ public class GoogleAuthInfo implements Serializable {
 
         byte[] secret;
         try {
-            secret = uri.getHost().equals(YandexInfo.OTP_SCHEMA_ID) ? parseYandexSecret(encodedSecret) : parseSecret(encodedSecret);
+            secret = parseSecret(encodedSecret);
         } catch (EncodingException e) {
             throw new GoogleAuthInfoException(uri, "Bad secret", e);
         }
@@ -87,9 +88,13 @@ public class GoogleAuthInfo implements Serializable {
                     hotpInfo.setCounter(Long.parseLong(counter));
                     info = hotpInfo;
                     break;
-                case YandexInfo.OTP_SCHEMA_ID:
-                    String pinValue = uri.getQueryParameter("pin");
-                    info = pinValue != null ? new YandexInfo(secret, parseSecret(pinValue)) : new YandexInfo(secret);
+                case YandexInfo.HOST_ID:
+                    String pin = uri.getQueryParameter("pin");
+                    if (pin != null) {
+                        pin = new String(parseSecret(pin), StandardCharsets.UTF_8);
+                    }
+
+                    info = new YandexInfo(secret, pin);
                     issuer = info.getType();
                     break;
                 default:
@@ -149,19 +154,6 @@ public class GoogleAuthInfo implements Serializable {
     public static byte[] parseSecret(String s) throws EncodingException {
         s = s.trim().replace("-", "").replace(" ", "");
         return Base32.decode(s);
-    }
-
-    /**
-     * When arrives from Yandex site QR code - there will always be 26 symbols (secret only)
-     * If it arrives from Aegis Export - it can be 42 (if was manually created)
-     * Just to be sure, let's check secret length (until final RFC comes up)
-     */
-    public static byte[] parseYandexSecret(String s) throws EncodingException {
-        if (s.length() == YandexInfo.SECRET_LENGTH || s.length() == YandexInfo.SECRET_FULL_LENGTH) {
-            return parseSecret(s);
-        } else {
-            throw new EncodingException(new Throwable("Length differs from expected"));
-        }
     }
 
     public static Export parseExportUri(String s) throws GoogleAuthInfoException {
@@ -275,7 +267,7 @@ public class GoogleAuthInfo implements Serializable {
             if (_info instanceof SteamInfo) {
                 builder.authority("steam");
             } else if (_info instanceof YandexInfo) {
-                builder.authority(YandexInfo.OTP_SCHEMA_ID);
+                builder.authority(YandexInfo.HOST_ID);
             } else {
                 builder.authority("totp");
             }
@@ -292,7 +284,7 @@ public class GoogleAuthInfo implements Serializable {
         builder.appendQueryParameter("secret", Base32.encode(_info.getSecret()));
 
         if (_info instanceof YandexInfo) {
-            builder.appendQueryParameter("pin", Base32.encode(((YandexInfo) _info).getPinBytes()));
+            builder.appendQueryParameter("pin", Base32.encode(((YandexInfo) _info).getPin()));
         }
 
         if (_issuer != null && !_issuer.equals("")) {
