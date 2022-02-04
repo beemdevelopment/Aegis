@@ -1,8 +1,8 @@
 # Aegis Vault
 
-Aegis persists the user's tokens to a file. This file is referred to as the
-__vault__. Users can configure the app to store the vault in plain text or to
-encrypt it with a password.
+Aegis persists the user's token secrets and related information to a file. This
+file is referred to as the __vault__. Users can configure the app to store the
+vault in plain text or to encrypt it with a password.
 
 This document describes Aegis' security design and file format. It's split up
 into two parts. First, the cryptographic primitives and use of them for
@@ -22,22 +22,21 @@ Encryption with Associated Data (AEAD) cipher and a Key Derivation Function
 __AES-256__ in __GCM__ mode is used as the AEAD cipher to ensure the
 confidentiality, integrity and authenticity of the vault contents.
 
-It requires a unique 96-bit nonce for each invocation with the same key.
-However, it is not possible to use a monotically increasing counter for this in
-this case, because a future use case could involve using the vault on multiple
-devices simultaneously, which would almost certainly result in nonce reuse. This
-is suboptimal, because 96 bits is not large enough to comfortably generate an
-unlimited amount of random numbers without getting collisions at some point
-either. As a repeat of the nonce would have catastrophic consequences for the
-confidentiality and integrity of the ciphertext, NIST strongly recommends not
-exceeding 2<sup>32</sup> invocations when using random nonces with GCM. As such,
-the security of the Aegis vault also relies on the assumption that this limit is
-never exceeded. In the case of Aegis, this is a reasonable assumption to make,
-as it's highly unlikely that a user will ever come close to saving the vault
-2<sup>32</sup> times.
+This cipher requires a unique 96-bit nonce for each invocation with the same
+key. This is not ideal, because 96 bits is not large enough to comfortably
+generate an unlimited amount of random numbers without getting collisions at
+some point. It is not possible to use a monotonically increasing counter in this
+case, because a future use case could involve using the vault on multiple
+devices simultaneously, which would almost certainly result in nonce reuse. As a
+repeat of the nonce would have catastrophic consequences for the confidentiality
+of the ciphertext, NIST strongly recommends not exceeding 2<sup>32</sup>
+invocations when using random nonces with GCM. As such, the security of the
+Aegis vault also relies on the assumption that this limit is never exceeded.
+This is a reasonable assumption to make, because it's highly unlikely that an
+Aegis user will ever come close to saving the vault 2<sup>32</sup> times.
 
 _Switching to a nonce misuse-resistant cipher like AES-GCM-SIV or a cipher with
-a larger (192 bits) nonce like XChaCha-Poly1305 will be explored in the future._
+a larger (192 bits) nonce like XChaCha-Poly1305 will be considered in the future._
 
 #### KDF
 
@@ -52,15 +51,13 @@ with the following parameters:
 
 These are the same parameters as Android itself uses to derive a key for
 full-disk encryption. Because of the memory limitations Android apps have, it's
-not possible to increase them without running into OOM conditions on most
-devices.
+not possible to increase these parameters without running into OOM conditions on
+most devices.
 
-_Argon2 is a more modern KDF that provides an advantage over scrypt because it
+_Argon2 is a more modern KDF that's a bit more flexible than scrypt, because it
 allows tweaking the memory-hardness parameter and CPU-hardness parameter
-separately, whereas scrypt ties those together into one cost parameter (N). As
-many applications have started using Argon2 in production, it seems that it has
-withstood the test of time. It will be considered as an alternative option to
-switch to in the future._
+separately, whereas scrypt ties those together into one cost parameter (N). It
+will be considered as an alternative option to switch to in the future._
 
 ### Encryption
 
@@ -70,8 +67,8 @@ __master key__.
 
 Aegis supports unlocking a vault with multiple different credentials. The main
 credential is a key derived from a user-provided password. In addition to that,
-users can also add a key backed by the Android KeyStore (authorized by
-biometrics) as a credential.
+users can also add a key backed by the Android KeyStore as a credential, which
+is only usable after biometrics authentication.
 
 #### Slots
 
@@ -91,8 +88,6 @@ master keys in the slots are checked for integrity and authenticity. The rest of
 the file is not.
 
 ### Overview
-
-An attempt was made to create a clear overview of the encryption system.
 
 ![](diagram.svg)
 
@@ -231,24 +226,31 @@ padding. The ``info`` object holds information specific to the OTP type. The
 
 There are a number of supported types:
 
-| Type                | ID      |
-| :------------------ | :------ |
-| TOTP  | "totp"  |
-| HOTP  | "hotp"  |
-| Steam               | "steam" |
+| Type                | ID       | Spec      |
+| :------------------ | :------- | :-------- |
+| HOTP                | "hotp"   | [RFC 4226](https://datatracker.ietf.org/doc/html/rfc4226)
+| TOTP                | "totp"   | [RFC 6238](https://datatracker.ietf.org/doc/html/rfc6238)
+| Steam               | "steam"  | N/A
+| Yandex              | "yandex" | N/A
 
 There is no specification available for Steam's OTP algorithm. It's essentially
-the same as TOTP, but it uses a different final encoding step. Aegis's
+the same as TOTP, but it uses a different final encoding step. Aegis'
 implementation of it can be found in
 [crypto/otp/OTP.java](https://github.com/beemdevelopment/Aegis/blob/master/app/src/main/java/com/beemdevelopment/aegis/crypto/otp/OTP.java).
 
-The following algorithms are supported for all OTP types:
+There is also no specification available for Yandex's OTP algorithm. Aegis'
+implementation can be found in
+[crypto/otp/YAOTP.java](https://github.com/beemdevelopment/Aegis/blob/master/app/src/main/java/com/beemdevelopment/aegis/crypto/otp/YAOTP.java)
+
+The following algorithms are supported for HOTP and TOTP:
 
 | Algorithm | ID       |
 | :-------- | :------- |
 | SHA-1     | "SHA1"   |
 | SHA-256   | "SHA256" |
 | SHA-512   | "SHA512" |
+
+For Steam, only SHA-1 is supported. For Yandex, only SHA-256 is supported.
 
 Example of a TOTP entry:
 
