@@ -1,5 +1,6 @@
 package com.beemdevelopment.aegis.ui;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
@@ -71,6 +72,7 @@ public abstract class AegisActivity extends AppCompatActivity implements AegisAp
         _app.setBlockAutoLock(false);
     }
 
+    @SuppressLint("SoonBlockedPrivateApi")
     @Override
     public void onLocked(boolean userInitiated) {
         setResult(RESULT_CANCELED, null);
