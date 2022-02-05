@@ -1,4 +1,4 @@
-package com.beemdevelopment.aegis;
+package com.beemdevelopment.aegis; //J:因為是在com.beemdevelopment.aegis資料夾底下(所以package name是這樣)
 
 import android.app.Application;
 import android.app.NotificationChannel;
@@ -36,11 +36,13 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class AegisApplication extends Application {
-    private VaultFile _vaultFile;
-    private VaultManager _manager;
-    private Preferences _prefs;
-    private List<LockListener> _lockListeners;
+//J:https://developer.android.com/reference/android/app/Application  (Application lib)
+
+public class AegisApplication extends Application { //J:繼承android.app.Application的class Application
+    private VaultFile _vaultFile;   //J:vault金庫
+    private VaultManager _manager;  //J:金庫管理
+    private Preferences _prefs;     //J:偏好
+    private List<LockListener> _lockListeners;  //J:讀取動作的listner
     private boolean _blockAutoLock;
     private IconPackManager _iconPackManager;
 
@@ -52,9 +54,13 @@ public class AegisApplication extends Application {
         Shell.setDefaultBuilder(Shell.Builder.create().setFlags(Shell.FLAG_MOUNT_MASTER));
     }
 
+
+    //Called when the application is starting, before any activity, service,
+    // or receiver objects (excluding content providers) have been created.
+    // J:Application在start前呼叫的函數
     @Override
     public void onCreate() {
-        super.onCreate();
+        super.onCreate();   //J:super存取父類別的函數(因為前面override，如果沒有super，則都要重寫)
         _prefs = new Preferences(this);
         _lockListeners = new ArrayList<>();
         _iconPackManager = new IconPackManager(this);
@@ -63,6 +69,7 @@ public class AegisApplication extends Application {
         Iconics.registerFont(new MaterialDesignIconic());
 
         // listen for SCREEN_OFF events
+        // J:當螢幕關閉時的event
         ScreenOffReceiver receiver = new ScreenOffReceiver();
         IntentFilter intentFilter = new IntentFilter();
         intentFilter.addAction(Intent.ACTION_SCREEN_OFF);
@@ -70,9 +77,11 @@ public class AegisApplication extends Application {
         registerReceiver(receiver, intentFilter);
 
         // lock the app if the user moves the application to the background
+        // J:若使用者將app移動到背景執行，則lock住app
         ProcessLifecycleOwner.get().getLifecycle().addObserver(new AppLifecycleObserver());
 
         // clear the cache directory on startup, to make sure no temporary vault export files remain
+        // J:清理cache
         IOUtils.clearDirectory(getCacheDir(), false);
 
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {
@@ -83,7 +92,8 @@ public class AegisApplication extends Application {
             initNotificationChannels();
         }
     }
-
+    /* J:判斷金庫是否被Lock住，若 _manager為空，返回true
+    _manager不為空，返回false */
     public boolean isVaultLocked() {
         return _manager == null;
     }
@@ -93,7 +103,10 @@ public class AegisApplication extends Application {
      * reference to it for future use and returns it. This must only be called before
      * initVaultManager() or after lock().
      */
+    // J:這段應該是匯入vault檔案
+    // J:有一個class VaultFile，裡面應該是匯入檔案的一些設定
     public VaultFile loadVaultFile() throws VaultManagerException {
+        // _manager不為空(返回false，執行例外exception)
         if (!isVaultLocked()) {
             throw new AssertionError("loadVaultFile() may only be called before initVaultManager() or after lock()");
         }
@@ -172,7 +185,7 @@ public class AegisApplication extends Application {
 
         stopService(new Intent(AegisApplication.this, NotificationService.class));
     }
-
+    // J:@RequreApi加入僅只是讓編譯成功(但並沒有避免到低版本去運行高版本api的問題，也就是還要針對低版本使用不同的api)
     @RequiresApi(api = Build.VERSION_CODES.N_MR1)
     private void initAppShortcuts() {
         ShortcutManager shortcutManager = getSystemService(ShortcutManager.class);
@@ -208,7 +221,7 @@ public class AegisApplication extends Application {
             notificationManager.createNotificationChannel(channel);
         }
     }
-
+    // J:import androidx.lifecycle
     private class AppLifecycleObserver implements LifecycleEventObserver {
         @Override
         public void onStateChanged(@NonNull LifecycleOwner source, @NonNull Lifecycle.Event event) {
@@ -219,7 +232,7 @@ public class AegisApplication extends Application {
             }
         }
     }
-
+    // J:import android.content.BroadcastReceiver
     private class ScreenOffReceiver extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
