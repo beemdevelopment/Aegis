@@ -1,21 +1,12 @@
 package com.beemdevelopment.aegis.otp;
 
-import com.beemdevelopment.aegis.crypto.otp.HOTPTest;
+import static org.junit.Assert.assertEquals;
+
 import com.beemdevelopment.aegis.crypto.otp.TOTPTest;
 
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
-
-public class OtpTest {
-    @Test
-    public void testHotpInfoOtp() throws OtpInfoException {
-        for (int i = 0; i < HOTPTest.VECTORS.length; i++) {
-            HotpInfo info = new HotpInfo(HOTPTest.SECRET, OtpInfo.DEFAULT_ALGORITHM, OtpInfo.DEFAULT_DIGITS, i);
-            assertEquals(HOTPTest.VECTORS[i], info.getOtp());
-        }
-    }
-
+public class TotpInfoTest {
     @Test
     public void testTotpInfoOtp() throws OtpInfoException {
         for (TOTPTest.Vector vector : TOTPTest.VECTORS) {

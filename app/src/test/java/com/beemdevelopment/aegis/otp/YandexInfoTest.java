@@ -1,16 +1,13 @@
-package com.beemdevelopment.aegis.util;
+package com.beemdevelopment.aegis.otp;
 
 import static org.junit.Assert.assertThrows;
 
 import com.beemdevelopment.aegis.encoding.Base32;
 import com.beemdevelopment.aegis.encoding.EncodingException;
-import com.beemdevelopment.aegis.otp.OtpInfoException;
-import com.beemdevelopment.aegis.otp.YandexInfo;
 
 import org.junit.Test;
 
-public class YandexUtilsTest {
-
+public class YandexInfoTest {
     private static final String[] vectors = new String[]{
             "LA2V6KMCGYMWWVEW64RNP3JA3IAAAAAAHTSG4HRZPI", // correct
             "LA2V6KMCGYMWWVEW64RNP3JA3I",                 // secret from QR - no validation
@@ -19,7 +16,7 @@ public class YandexUtilsTest {
     };
 
     @Test(expected = Test.None.class)
-    public void testValidationOk() throws EncodingException, OtpInfoException {
+    public void testYandexSecretValidationOk() throws EncodingException, OtpInfoException {
         YandexInfo.validateSecret(getBase32Vector(0));
         YandexInfo.validateSecret(getBase32Vector(1));
     }
