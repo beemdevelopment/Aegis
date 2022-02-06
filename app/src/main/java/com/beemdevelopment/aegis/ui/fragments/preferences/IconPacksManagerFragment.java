@@ -1,4 +1,4 @@
-package com.beemdevelopment.aegis.ui.fragments;
+package com.beemdevelopment.aegis.ui.fragments.preferences;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -15,27 +15,35 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.beemdevelopment.aegis.AegisApplication;
 import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.helpers.FabScrollHelper;
 import com.beemdevelopment.aegis.icons.IconPack;
 import com.beemdevelopment.aegis.icons.IconPackException;
 import com.beemdevelopment.aegis.icons.IconPackExistsException;
 import com.beemdevelopment.aegis.icons.IconPackManager;
-import com.beemdevelopment.aegis.ui.AegisActivity;
 import com.beemdevelopment.aegis.ui.dialogs.Dialogs;
 import com.beemdevelopment.aegis.ui.tasks.ImportIconPackTask;
 import com.beemdevelopment.aegis.ui.views.IconPackAdapter;
+import com.beemdevelopment.aegis.vault.VaultManager;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import javax.inject.Inject;
+
+import dagger.hilt.android.AndroidEntryPoint;
+
+@AndroidEntryPoint
 public class IconPacksManagerFragment extends Fragment implements IconPackAdapter.Listener {
     private static final int CODE_IMPORT = 0;
 
-    private IconPackAdapter _adapter;
-    private IconPackManager _iconPackManager;
+    @Inject
+    IconPackManager _iconPackManager;
+
+    @Inject
+    VaultManager _vaultManager;
 
     private View _iconPacksView;
     private RecyclerView _iconPacksRecyclerView;
+    private IconPackAdapter _adapter;
     private LinearLayout _noIconPacksView;
     private FabScrollHelper _fabScrollHelper;
 
@@ -45,8 +53,6 @@ public class IconPacksManagerFragment extends Fragment implements IconPackAdapte
 
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
-        _iconPackManager = ((AegisApplication) getContext().getApplicationContext()).getIconPackManager();
-
         FloatingActionButton fab = view.findViewById(R.id.fab);
         fab.setOnClickListener(v -> startImportIconPack());
         _fabScrollHelper = new FabScrollHelper(fab);
@@ -145,7 +151,7 @@ public class IconPacksManagerFragment extends Fragment implements IconPackAdapte
     private void startImportIconPack() {
         Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
         intent.setType("application/zip");
-        AegisActivity.Helper.startExtActivityForResult(this, intent, CODE_IMPORT);
+        _vaultManager.startActivityForResult(this, intent, CODE_IMPORT);
     }
 
     private void updateEmptyState() {

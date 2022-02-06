@@ -55,7 +55,7 @@ import com.beemdevelopment.aegis.ui.views.IconAdapter;
 import com.beemdevelopment.aegis.util.Cloner;
 import com.beemdevelopment.aegis.util.IOUtils;
 import com.beemdevelopment.aegis.vault.VaultEntry;
-import com.beemdevelopment.aegis.vault.VaultManager;
+import com.beemdevelopment.aegis.vault.VaultRepository;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.target.CustomTarget;
@@ -118,16 +118,16 @@ public class EditEntryActivity extends AegisActivity {
     private RelativeLayout _advancedSettingsHeader;
     private RelativeLayout _advancedSettings;
 
-    private VaultManager _vault;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (abortIfOrphan(savedInstanceState)) {
+            return;
+        }
         setContentView(R.layout.activity_edit_entry);
         setSupportActionBar(findViewById(R.id.toolbar));
 
-        _vault = getApp().getVaultManager();
-        _groups = _vault.getGroups();
+        _groups = _vaultManager.getVault().getGroups();
 
         ActionBar bar = getSupportActionBar();
         bar.setHomeAsUpIndicator(R.drawable.ic_close);
@@ -137,7 +137,7 @@ public class EditEntryActivity extends AegisActivity {
         Intent intent = getIntent();
         UUID entryUUID = (UUID) intent.getSerializableExtra("entryUUID");
         if (entryUUID != null) {
-            _origEntry = _vault.getEntryByUUID(entryUUID);
+            _origEntry = _vaultManager.getVault().getEntryByUUID(entryUUID);
         } else {
             _origEntry = (VaultEntry) intent.getSerializableExtra("newEntry");
             _isManual = intent.getBooleanExtra("isManual", false);
@@ -170,7 +170,7 @@ public class EditEntryActivity extends AegisActivity {
         DropdownHelper.fillDropdown(this, _dropdownGroup, _dropdownGroupList);
 
         // if this is NOT a manually entered entry, move the "Secret" field from basic to advanced settings
-        if (!_isNew || (_isNew && !_isManual)) {
+        if (!_isNew || !_isManual) {
             int secretIndex = 0;
             LinearLayout layoutSecret = findViewById(R.id.layout_secret);
             LinearLayout layoutBasic = findViewById(R.id.layout_basic);
@@ -313,7 +313,7 @@ public class EditEntryActivity extends AegisActivity {
             }
         });
 
-        _textUsageCount.setText(getPreferences().getUsageCount(entryUUID).toString());
+        _textUsageCount.setText(_prefs.getUsageCount(entryUUID).toString());
     }
 
     private void updateAdvancedFieldStatus(String otpType) {
@@ -476,16 +476,16 @@ public class EditEntryActivity extends AegisActivity {
 
         Intent chooserIntent = Intent.createChooser(galleryIntent, getString(R.string.select_icon));
         chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS, new Intent[] { fileIntent });
-        AegisActivity.Helper.startExtActivityForResult(this, chooserIntent, PICK_IMAGE_REQUEST);
+        _vaultManager.startActivityForResult(this, chooserIntent, PICK_IMAGE_REQUEST);
     }
 
     private void resetUsageCount() {
-        getPreferences().resetUsageCount(_origEntry.getUUID());
+        _prefs.resetUsageCount(_origEntry.getUUID());
         _textUsageCount.setText("0");
     }
 
     private void startIconSelection() {
-        List<IconPack> iconPacks = getApp().getIconPackManager().getIconPacks().stream()
+        List<IconPack> iconPacks = _iconPackManager.getIconPacks().stream()
                 .sorted(Comparator.comparing(IconPack::getName))
                 .collect(Collectors.toList());
         if (iconPacks.size() == 0) {
@@ -579,17 +579,18 @@ public class EditEntryActivity extends AegisActivity {
         // vault to disk failed, causing the user to tap 'Save' again. Calling addEntry
         // again would cause a crash in that case, so the isEntryDuplicate check prevents
         // that.
-        if (_isNew && !_vault.isEntryDuplicate(entry)) {
-            _vault.addEntry(entry);
+        VaultRepository vault = _vaultManager.getVault();
+        if (_isNew && !vault.isEntryDuplicate(entry)) {
+            vault.addEntry(entry);
         } else {
-            _vault.replaceEntry(entry);
+            vault.replaceEntry(entry);
         }
 
         saveAndFinish(entry, false);
     }
 
     private void deleteAndFinish(VaultEntry entry) {
-        _vault.removeEntry(entry);
+        _vaultManager.getVault().removeEntry(entry);
         saveAndFinish(entry, true);
     }
 
@@ -598,7 +599,7 @@ public class EditEntryActivity extends AegisActivity {
         intent.putExtra("entryUUID", entry.getUUID());
         intent.putExtra("delete", delete);
 
-        if (saveVault(true)) {
+        if (saveAndBackupVault()) {
             setResult(RESULT_OK, intent);
             finish();
         }

@@ -31,7 +31,7 @@ import com.beemdevelopment.aegis.otp.TotpInfo;
 import com.beemdevelopment.aegis.otp.YandexInfo;
 import com.beemdevelopment.aegis.ui.MainActivity;
 import com.beemdevelopment.aegis.vault.VaultEntry;
-import com.beemdevelopment.aegis.vault.VaultManager;
+import com.beemdevelopment.aegis.vault.VaultRepository;
 import com.beemdevelopment.aegis.vault.slots.PasswordSlot;
 
 import org.junit.Rule;
@@ -42,7 +42,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import dagger.hilt.android.testing.HiltAndroidTest;
+
 @RunWith(AndroidJUnit4.class)
+@HiltAndroidTest
 @LargeTest
 public class OverallTest extends AegisTest {
     private static final String _groupName = "Test";
@@ -61,7 +64,7 @@ public class OverallTest extends AegisTest {
         next.perform(click());
         onView(withId(R.id.btnNext)).perform(click());
 
-        VaultManager vault = getVault();
+        VaultRepository vault = _vaultManager.getVault();
         assertTrue(vault.isEncryptionEnabled());
         assertTrue(vault.getCredentials().getSlots().has(PasswordSlot.class));
 
@@ -122,7 +125,7 @@ public class OverallTest extends AegisTest {
         onView(withText(R.string.lock)).perform(click());
         onView(withId(R.id.text_password)).perform(typeText(VAULT_PASSWORD), closeSoftKeyboard());
         onView(withId(R.id.button_decrypt)).perform(click());
-        vault = getVault();
+        vault = _vaultManager.getVault();
 
         openContextualActionModeOverflowMenu();
         onView(withText(R.string.action_settings)).perform(click());

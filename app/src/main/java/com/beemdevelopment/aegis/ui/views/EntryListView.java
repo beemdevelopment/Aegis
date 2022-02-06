@@ -2,7 +2,6 @@ package com.beemdevelopment.aegis.ui.views;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.res.ColorStateList;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -412,7 +411,7 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
             chipGroup.removeAllViews();
 
             for (String group : _groups) {
-                Chip chip = (Chip) this.getLayoutInflater().inflate(R.layout.chip_material, null, false);
+                Chip chip = (Chip) getLayoutInflater().inflate(R.layout.chip_material, null, false);
                 chip.setText(group);
                 chip.setCheckable(true);
                 chip.setChecked(_groupFilter != null && _groupFilter.contains(group));

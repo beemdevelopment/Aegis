@@ -1,25 +1,28 @@
 package com.beemdevelopment.aegis;
 
 import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertThrows;
 import static org.junit.Assert.assertTrue;
 
 import android.content.Intent;
 
 import androidx.test.ext.junit.runners.AndroidJUnit4;
-import androidx.test.filters.LargeTest;
+import androidx.test.filters.SmallTest;
 import androidx.test.rule.ActivityTestRule;
 
 import com.beemdevelopment.aegis.ui.PanicResponderActivity;
-import com.beemdevelopment.aegis.vault.VaultManager;
+import com.beemdevelopment.aegis.vault.VaultRepository;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import dagger.hilt.android.testing.HiltAndroidTest;
+
 @RunWith(AndroidJUnit4.class)
-@LargeTest
+@HiltAndroidTest
+@SmallTest
 public class PanicTriggerTest extends AegisTest {
     @Before
     public void before() {
@@ -28,21 +31,25 @@ public class PanicTriggerTest extends AegisTest {
 
     @Test
     public void testPanicTriggerDisabled() {
-        assertFalse(getApp().getPreferences().isPanicTriggerEnabled());
+        assertFalse(_prefs.isPanicTriggerEnabled());
         launchPanic();
-        assertFalse(getApp().isVaultLocked());
-        assertNotNull(getApp().getVaultManager());
-        assertTrue(VaultManager.fileExists(getApp()));
+        assertTrue(_vaultManager.isVaultLoaded());
+        _vaultManager.getVault();
+        assertFalse(_vaultManager.isVaultFileLoaded());
+        assertNull(_vaultManager.getVaultFileError());
+        assertTrue(VaultRepository.fileExists(getApp()));
     }
 
     @Test
     public void testPanicTriggerEnabled() {
-        getApp().getPreferences().setIsPanicTriggerEnabled(true);
-        assertTrue(getApp().getPreferences().isPanicTriggerEnabled());
+        _prefs.setIsPanicTriggerEnabled(true);
+        assertTrue(_prefs.isPanicTriggerEnabled());
         launchPanic();
-        assertTrue(getApp().isVaultLocked());
-        assertNull(getApp().getVaultManager());
-        assertFalse(VaultManager.fileExists(getApp()));
+        assertFalse(_vaultManager.isVaultLoaded());
+        assertThrows(IllegalStateException.class, () -> _vaultManager.getVault());
+        assertFalse(_vaultManager.isVaultFileLoaded());
+        assertNull(_vaultManager.getVaultFileError());
+        assertFalse(VaultRepository.fileExists(getApp()));
     }
 
     private void launchPanic() {

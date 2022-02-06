@@ -48,24 +48,19 @@ public class VaultBackupManager {
         _executor = Executors.newSingleThreadExecutor();
     }
 
-    public void destroy() {
-        Log.i(TAG, "Shutting down backup manager thread");
-        _executor.shutdown();
-    }
-
     public void scheduleBackup(File tempFile, Uri dirUri, int versionsToKeep) {
         _executor.execute(() -> {
             try {
                 createBackup(tempFile, dirUri, versionsToKeep);
                 _prefs.setBackupsError(null);
-            } catch (VaultManagerException e) {
+            } catch (VaultRepositoryException e) {
                 e.printStackTrace();
                 _prefs.setBackupsError(e);
             }
         });
     }
 
-    private void createBackup(File tempFile, Uri dirUri, int versionsToKeep) throws VaultManagerException {
+    private void createBackup(File tempFile, Uri dirUri, int versionsToKeep) throws VaultRepositoryException {
         FileInfo fileInfo = new FileInfo(FILENAME_PREFIX);
         DocumentFile dir = DocumentFile.fromTreeUri(_context, dirUri);
 
@@ -73,28 +68,28 @@ public class VaultBackupManager {
             Log.i(TAG, String.format("Creating backup at %s: %s", Uri.decode(dir.getUri().toString()), fileInfo.toString()));
 
             if (!hasPermissionsAt(dirUri)) {
-                throw new VaultManagerException("No persisted URI permissions");
+                throw new VaultRepositoryException("No persisted URI permissions");
             }
 
             // If we create a file with a name that already exists, SAF will append a number
             // to the filename and write to that instead. We can't overwrite existing files, so
             // just avoid that altogether by checking beforehand.
             if (dir.findFile(fileInfo.toString()) != null) {
-                throw new VaultManagerException("Backup file already exists");
+                throw new VaultRepositoryException("Backup file already exists");
             }
 
             DocumentFile file = dir.createFile("application/json", fileInfo.toString());
             if (file == null) {
-                throw new VaultManagerException("createFile returned null");
+                throw new VaultRepositoryException("createFile returned null");
             }
 
             try (FileInputStream inStream = new FileInputStream(tempFile);
                  OutputStream outStream = _context.getContentResolver().openOutputStream(file.getUri())) {
                 IOUtils.copy(inStream, outStream);
             } catch (IOException e) {
-                throw new VaultManagerException(e);
+                throw new VaultRepositoryException(e);
             }
-        } catch (VaultManagerException e) {
+        } catch (VaultRepositoryException e) {
             Log.e(TAG, String.format("Unable to create backup: %s", e.toString()));
             throw e;
         } finally {
@@ -252,7 +247,7 @@ public class VaultBackupManager {
             int posIndex = pos.getIndex();
             Date d = super.parse(text, pos);
             if (!isLenient() && d != null) {
-                String format = this.format(d);
+                String format = format(d);
                 if (posIndex + format.length() != text.length() ||
                         !text.endsWith(format)) {
                     d = null; // Not exact match

@@ -26,6 +26,9 @@ public class GroupManagerActivity extends AegisActivity implements GroupAdapter.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (abortIfOrphan(savedInstanceState)) {
+            return;
+        }
         setContentView(R.layout.activity_groups);
         setSupportActionBar(findViewById(R.id.toolbar));
 

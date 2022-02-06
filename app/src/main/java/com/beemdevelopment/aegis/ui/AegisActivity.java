@@ -2,7 +2,6 @@ package com.beemdevelopment.aegis.ui;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -10,58 +9,60 @@ import android.view.WindowManager;
 import android.widget.Toast;
 
 import androidx.annotation.CallSuper;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
 
-import com.beemdevelopment.aegis.AegisApplication;
 import com.beemdevelopment.aegis.Preferences;
 import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.Theme;
 import com.beemdevelopment.aegis.ThemeMap;
-import com.beemdevelopment.aegis.ui.dialogs.Dialogs;
-import com.beemdevelopment.aegis.vault.VaultManagerException;
+import com.beemdevelopment.aegis.icons.IconPackManager;
+import com.beemdevelopment.aegis.vault.VaultManager;
+import com.beemdevelopment.aegis.vault.VaultRepositoryException;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Locale;
 import java.util.Map;
 
-public abstract class AegisActivity extends AppCompatActivity implements AegisApplication.LockListener {
-    private AegisApplication _app;
+import javax.inject.Inject;
+
+import dagger.hilt.InstallIn;
+import dagger.hilt.android.AndroidEntryPoint;
+import dagger.hilt.android.EarlyEntryPoint;
+import dagger.hilt.android.EarlyEntryPoints;
+import dagger.hilt.components.SingletonComponent;
+
+@AndroidEntryPoint
+public abstract class AegisActivity extends AppCompatActivity implements VaultManager.LockListener {
+    protected Preferences _prefs;
+
+    @Inject
+    protected VaultManager _vaultManager;
+
+    @Inject
+    protected IconPackManager _iconPackManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        _app = (AegisApplication) getApplication();
-
         // set the theme and locale before creating the activity
-        Preferences prefs = getPreferences();
+        _prefs = EarlyEntryPoints.get(this, PrefEntryPoint.class).getPreferences();
         onSetTheme();
-        setLocale(prefs.getLocale());
+        setLocale(_prefs.getLocale());
         super.onCreate(savedInstanceState);
 
-        // if the app was killed, relaunch MainActivity and close everything else
-        if (savedInstanceState != null && isOrphan()) {
-            Intent intent = new Intent(this, MainActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            startActivity(intent);
-            finish();
-            return;
-        }
-
         // set FLAG_SECURE on the window of every AegisActivity
-        if (getPreferences().isSecureScreenEnabled()) {
+        if (_prefs.isSecureScreenEnabled()) {
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_SECURE);
         }
 
         // register a callback to listen for lock events
-        _app.registerLockListener(this);
+        _vaultManager.registerLockListener(this);
     }
 
     @Override
     @CallSuper
     protected void onDestroy() {
-        _app.unregisterLockListener(this);
+        _vaultManager.unregisterLockListener(this);
         super.onDestroy();
     }
 
@@ -69,7 +70,7 @@ public abstract class AegisActivity extends AppCompatActivity implements AegisAp
     @Override
     protected void onResume() {
         super.onResume();
-        _app.setBlockAutoLock(false);
+        _vaultManager.setBlockAutoLock(false);
     }
 
     @SuppressLint("SoonBlockedPrivateApi")
@@ -84,14 +85,6 @@ public abstract class AegisActivity extends AppCompatActivity implements AegisAp
             e.printStackTrace();
             finishAndRemoveTask();
         }
-    }
-
-    protected AegisApplication getApp() {
-        return _app;
-    }
-
-    protected Preferences getPreferences() {
-        return _app.getPreferences();
     }
 
     /**
@@ -111,7 +104,7 @@ public abstract class AegisActivity extends AppCompatActivity implements AegisAp
     }
 
     protected Theme getConfiguredTheme() {
-        Theme theme = getPreferences().getCurrentTheme();
+        Theme theme = _prefs.getCurrentTheme();
 
         if (theme == Theme.SYSTEM || theme == Theme.SYSTEM_AMOLED) {
             int currentNightMode = getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
@@ -131,87 +124,60 @@ public abstract class AegisActivity extends AppCompatActivity implements AegisAp
         Configuration config = new Configuration();
         config.locale = locale;
 
-        this.getResources().updateConfiguration(config, this.getResources().getDisplayMetrics());
+        getResources().updateConfiguration(config, getResources().getDisplayMetrics());
     }
 
-    protected boolean saveVault(boolean backup) {
+    protected boolean saveVault() {
         try {
-            getApp().getVaultManager().save(backup);
+            _vaultManager.save();
             return true;
-        } catch (VaultManagerException e) {
+        } catch (VaultRepositoryException e) {
+            Toast.makeText(this, getString(R.string.saving_error), Toast.LENGTH_LONG).show();
+            return false;
+        }
+    }
+
+    protected boolean saveAndBackupVault() {
+        try {
+            _vaultManager.saveAndBackup();
+            return true;
+        } catch (VaultRepositoryException e) {
             Toast.makeText(this, getString(R.string.saving_error), Toast.LENGTH_LONG).show();
             return false;
         }
     }
 
     /**
-     * Reports whether this Activity instance has become an orphan. This can happen if
-     * the vault was locked by an external trigger while the Activity was still open.
+     * Closes this activity if it has become an orphan (isOrphan() == true) and launches MainActivity.
+     * @param savedInstanceState the bundle passed to onCreate.
+     * @return whether to abort onCreate.
      */
-    protected boolean isOrphan() {
-        return !(this instanceof MainActivity) && !(this instanceof AuthActivity) && !(this instanceof IntroActivity) && _app.isVaultLocked();
+    protected boolean abortIfOrphan(Bundle savedInstanceState) {
+        if (savedInstanceState == null || !isOrphan()) {
+            return false;
+        }
+
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
+        finish();
+        return true;
     }
 
-    public static class Helper {
-        private Helper() {
+    /**
+     * Reports whether this Activity instance has become an orphan. This can happen if
+     * the vault was killed/locked by an external trigger while the Activity was still open.
+     */
+    private boolean isOrphan() {
+        return !(this instanceof MainActivity)
+                && !(this instanceof AuthActivity)
+                && !(this instanceof IntroActivity)
+                && !_vaultManager.isVaultLoaded();
+    }
 
-        }
-
-        /**
-         * Starts an external activity, temporarily blocks automatic lock of Aegis and
-         * shows an error dialog if the target activity is not found.
-         */
-        public static void startExtActivityForResult(Activity activity, Intent intent, int requestCode) {
-            AegisApplication app = (AegisApplication) activity.getApplication();
-            app.setBlockAutoLock(true);
-
-            try {
-                activity.startActivityForResult(intent, requestCode, null);
-            } catch (ActivityNotFoundException e) {
-                e.printStackTrace();
-
-                if (isDocsAction(intent.getAction())) {
-                    Dialogs.showErrorDialog(activity, R.string.documentsui_error, e);
-                } else {
-                    throw e;
-                }
-            }
-        }
-
-        /**
-         * Starts an external activity, temporarily blocks automatic lock of Aegis and
-         * shows an error dialog if the target activity is not found.
-         */
-        public static void startExtActivity(Fragment fragment, Intent intent) {
-            startExtActivityForResult(fragment, intent, -1);
-        }
-
-        /**
-         * Starts an external activity, temporarily blocks automatic lock of Aegis and
-         * shows an error dialog if the target activity is not found.
-         */
-        public static void startExtActivityForResult(Fragment fragment, Intent intent, int requestCode) {
-            AegisApplication app = (AegisApplication) fragment.getActivity().getApplication();
-            app.setBlockAutoLock(true);
-
-            try {
-                fragment.startActivityForResult(intent, requestCode, null);
-            } catch (ActivityNotFoundException e) {
-                e.printStackTrace();
-
-                if (isDocsAction(intent.getAction())) {
-                    Dialogs.showErrorDialog(fragment.getContext(), R.string.documentsui_error, e);
-                } else {
-                    throw e;
-                }
-            }
-        }
-
-        private static boolean isDocsAction(@Nullable String action) {
-            return action != null && (action.equals(Intent.ACTION_GET_CONTENT)
-                    || action.equals(Intent.ACTION_CREATE_DOCUMENT)
-                    || action.equals(Intent.ACTION_OPEN_DOCUMENT)
-                    || action.equals(Intent.ACTION_OPEN_DOCUMENT_TREE));
-        }
+    @EarlyEntryPoint
+    @InstallIn(SingletonComponent.class)
+    public interface PrefEntryPoint {
+        Preferences getPreferences();
     }
 }

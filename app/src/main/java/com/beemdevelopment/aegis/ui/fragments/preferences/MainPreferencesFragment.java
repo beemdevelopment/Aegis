@@ -1,4 +1,4 @@
-package com.beemdevelopment.aegis.ui.fragments;
+package com.beemdevelopment.aegis.ui.fragments.preferences;
 
 import android.os.Bundle;
 

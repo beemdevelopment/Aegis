@@ -39,6 +39,9 @@ public class SlotManagerActivity extends AegisActivity implements SlotAdapter.Li
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (abortIfOrphan(savedInstanceState)) {
+            return;
+        }
         setContentView(R.layout.activity_slots);
         setSupportActionBar(findViewById(R.id.toolbar));
         _edited = false;

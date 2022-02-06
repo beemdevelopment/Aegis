@@ -1,4 +1,4 @@
-package com.beemdevelopment.aegis.ui.fragments;
+package com.beemdevelopment.aegis.ui.fragments.preferences;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -8,12 +8,11 @@ import android.os.Bundle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.preference.Preference;
 
-import com.beemdevelopment.aegis.Preferences;
 import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.Theme;
 import com.beemdevelopment.aegis.ViewMode;
-import com.beemdevelopment.aegis.ui.dialogs.Dialogs;
 import com.beemdevelopment.aegis.ui.GroupManagerActivity;
+import com.beemdevelopment.aegis.ui.dialogs.Dialogs;
 import com.beemdevelopment.aegis.vault.VaultEntry;
 
 import java.util.ArrayList;
@@ -27,12 +26,11 @@ public class AppearancePreferencesFragment extends PreferencesFragment {
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
         super.onCreatePreferences(savedInstanceState, rootKey);
         addPreferencesFromResource(R.xml.preferences_appearance);
-        Preferences prefs = getPreferences();
 
         _groupsPreference = findPreference("pref_groups");
         _groupsPreference.setOnPreferenceClickListener(preference -> {
             Intent intent = new Intent(getActivity(), GroupManagerActivity.class);
-            intent.putExtra("groups", new ArrayList<>(getVault().getGroups()));
+            intent.putExtra("groups", new ArrayList<>(_vaultManager.getVault().getGroups()));
             startActivityForResult(intent, CODE_GROUPS);
             return true;
         });
@@ -42,23 +40,23 @@ public class AppearancePreferencesFragment extends PreferencesFragment {
             Dialogs.showSecureDialog(new AlertDialog.Builder(getActivity())
                     .setTitle(R.string.preference_reset_usage_count)
                     .setMessage(R.string.preference_reset_usage_count_dialog)
-                    .setPositiveButton(android.R.string.yes, (dialog, which) -> getPreferences().clearUsageCount())
+                    .setPositiveButton(android.R.string.yes, (dialog, which) -> _prefs.clearUsageCount())
                     .setNegativeButton(android.R.string.no, null)
                     .create());
             return true;
         });
 
-        int currentTheme = prefs.getCurrentTheme().ordinal();
+        int currentTheme = _prefs.getCurrentTheme().ordinal();
         Preference darkModePreference = findPreference("pref_dark_mode");
         darkModePreference.setSummary(String.format("%s: %s", getString(R.string.selected), getResources().getStringArray(R.array.theme_titles)[currentTheme]));
         darkModePreference.setOnPreferenceClickListener(preference -> {
-            int currentTheme1 = prefs.getCurrentTheme().ordinal();
+            int currentTheme1 = _prefs.getCurrentTheme().ordinal();
 
             Dialogs.showSecureDialog(new AlertDialog.Builder(getActivity())
                     .setTitle(R.string.choose_theme)
                     .setSingleChoiceItems(R.array.theme_titles, currentTheme1, (dialog, which) -> {
                         int i = ((AlertDialog) dialog).getListView().getCheckedItemPosition();
-                        prefs.setCurrentTheme(Theme.fromInteger(i));
+                        _prefs.setCurrentTheme(Theme.fromInteger(i));
 
                         dialog.dismiss();
 
@@ -83,17 +81,17 @@ public class AppearancePreferencesFragment extends PreferencesFragment {
             langPreference.setVisible(false);
         }
 
-        int currentViewMode = prefs.getCurrentViewMode().ordinal();
+        int currentViewMode = _prefs.getCurrentViewMode().ordinal();
         Preference viewModePreference = findPreference("pref_view_mode");
         viewModePreference.setSummary(String.format("%s: %s", getString(R.string.selected), getResources().getStringArray(R.array.view_mode_titles)[currentViewMode]));
         viewModePreference.setOnPreferenceClickListener(preference -> {
-            int currentViewMode1 = prefs.getCurrentViewMode().ordinal();
+            int currentViewMode1 = _prefs.getCurrentViewMode().ordinal();
 
             Dialogs.showSecureDialog(new AlertDialog.Builder(getActivity())
                     .setTitle(R.string.choose_view_mode)
                     .setSingleChoiceItems(R.array.view_mode_titles, currentViewMode1, (dialog, which) -> {
                         int i = ((AlertDialog) dialog).getListView().getCheckedItemPosition();
-                        prefs.setCurrentViewMode(ViewMode.fromInteger(i));
+                        _prefs.setCurrentViewMode(ViewMode.fromInteger(i));
                         viewModePreference.setSummary(String.format("%s: %s", getString(R.string.selected), getResources().getStringArray(R.array.view_mode_titles)[i]));
                         getResult().putExtra("needsRefresh", true);
                         dialog.dismiss();
@@ -133,12 +131,12 @@ public class AppearancePreferencesFragment extends PreferencesFragment {
 
         HashSet<String> groups = new HashSet<>(data.getStringArrayListExtra("groups"));
 
-        for (VaultEntry entry : getVault().getEntries()) {
+        for (VaultEntry entry : _vaultManager.getVault().getEntries()) {
             if (!groups.contains(entry.getGroup())) {
                 entry.setGroup(null);
             }
         }
 
-        saveVault();
+        saveAndBackupVault();
     }
 }

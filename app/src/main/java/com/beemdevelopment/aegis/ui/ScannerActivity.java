@@ -51,6 +51,9 @@ public class ScannerActivity extends AegisActivity implements QrCodeAnalyzer.Lis
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (abortIfOrphan(savedInstanceState)) {
+            return;
+        }
         setContentView(R.layout.activity_scanner);
         setSupportActionBar(findViewById(R.id.toolbar));
 

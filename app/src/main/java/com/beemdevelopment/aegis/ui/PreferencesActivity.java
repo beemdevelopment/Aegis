@@ -8,8 +8,8 @@ import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
 
 import com.beemdevelopment.aegis.R;
-import com.beemdevelopment.aegis.ui.fragments.MainPreferencesFragment;
-import com.beemdevelopment.aegis.ui.fragments.PreferencesFragment;
+import com.beemdevelopment.aegis.ui.fragments.preferences.MainPreferencesFragment;
+import com.beemdevelopment.aegis.ui.fragments.preferences.PreferencesFragment;
 
 public class PreferencesActivity extends AegisActivity implements
         PreferenceFragmentCompat.OnPreferenceStartFragmentCallback {
@@ -18,6 +18,9 @@ public class PreferencesActivity extends AegisActivity implements
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (abortIfOrphan(savedInstanceState)) {
+            return;
+        }
         setContentView(R.layout.activity_preferences);
         setSupportActionBar(findViewById(R.id.toolbar));
 

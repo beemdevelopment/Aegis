@@ -1,20 +1,5 @@
 package com.beemdevelopment.aegis;
 
-import androidx.test.espresso.ViewInteraction;
-import androidx.test.ext.junit.rules.ActivityScenarioRule;
-import androidx.test.ext.junit.runners.AndroidJUnit4;
-import androidx.test.filters.LargeTest;
-
-import com.beemdevelopment.aegis.ui.IntroActivity;
-import com.beemdevelopment.aegis.vault.VaultManager;
-import com.beemdevelopment.aegis.vault.slots.BiometricSlot;
-import com.beemdevelopment.aegis.vault.slots.PasswordSlot;
-import com.beemdevelopment.aegis.vault.slots.SlotList;
-
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
@@ -28,7 +13,25 @@ import static junit.framework.TestCase.assertNull;
 import static junit.framework.TestCase.assertTrue;
 import static org.hamcrest.Matchers.not;
 
+import androidx.test.espresso.ViewInteraction;
+import androidx.test.ext.junit.rules.ActivityScenarioRule;
+import androidx.test.ext.junit.runners.AndroidJUnit4;
+import androidx.test.filters.LargeTest;
+
+import com.beemdevelopment.aegis.ui.IntroActivity;
+import com.beemdevelopment.aegis.vault.VaultRepository;
+import com.beemdevelopment.aegis.vault.slots.BiometricSlot;
+import com.beemdevelopment.aegis.vault.slots.PasswordSlot;
+import com.beemdevelopment.aegis.vault.slots.SlotList;
+
+import org.junit.Rule;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+
+import dagger.hilt.android.testing.HiltAndroidTest;
+
 @RunWith(AndroidJUnit4.class)
+@HiltAndroidTest
 @LargeTest
 public class IntroTest extends AegisTest {
     @Rule
@@ -50,9 +53,9 @@ public class IntroTest extends AegisTest {
         next.perform(click());
         next.perform(click());
 
-        VaultManager vault = getVault();
+        VaultRepository vault = _vaultManager.getVault();
         assertFalse(vault.isEncryptionEnabled());
-        assertNull(getVault().getCredentials());
+        assertNull(vault.getCredentials());
     }
 
     @Test
@@ -79,8 +82,8 @@ public class IntroTest extends AegisTest {
         next.perform(click());
         next.perform(click());
 
-        VaultManager vault = getVault();
-        SlotList slots = getVault().getCredentials().getSlots();
+        VaultRepository vault = _vaultManager.getVault();
+        SlotList slots = vault.getCredentials().getSlots();
         assertTrue(vault.isEncryptionEnabled());
         assertTrue(slots.has(PasswordSlot.class));
         assertFalse(slots.has(BiometricSlot.class));

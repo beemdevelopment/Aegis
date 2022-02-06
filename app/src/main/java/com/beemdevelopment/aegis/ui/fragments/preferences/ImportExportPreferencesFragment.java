@@ -1,4 +1,4 @@
-package com.beemdevelopment.aegis.ui.fragments;
+package com.beemdevelopment.aegis.ui.fragments.preferences;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -22,15 +22,14 @@ import com.beemdevelopment.aegis.BuildConfig;
 import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.helpers.DropdownHelper;
 import com.beemdevelopment.aegis.importers.DatabaseImporter;
-import com.beemdevelopment.aegis.ui.AegisActivity;
 import com.beemdevelopment.aegis.ui.ImportEntriesActivity;
 import com.beemdevelopment.aegis.ui.dialogs.Dialogs;
 import com.beemdevelopment.aegis.ui.tasks.ExportTask;
 import com.beemdevelopment.aegis.ui.tasks.ImportFileTask;
 import com.beemdevelopment.aegis.vault.VaultBackupManager;
 import com.beemdevelopment.aegis.vault.VaultFileCredentials;
-import com.beemdevelopment.aegis.vault.VaultManager;
-import com.beemdevelopment.aegis.vault.VaultManagerException;
+import com.beemdevelopment.aegis.vault.VaultRepository;
+import com.beemdevelopment.aegis.vault.VaultRepositoryException;
 import com.beemdevelopment.aegis.vault.slots.Slot;
 import com.beemdevelopment.aegis.vault.slots.SlotException;
 
@@ -61,7 +60,7 @@ public class ImportExportPreferencesFragment extends PreferencesFragment {
 
                 Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
                 intent.setType("*/*");
-                AegisActivity.Helper.startExtActivityForResult(this, intent, CODE_IMPORT_SELECT);
+                _vaultManager.startActivityForResult(this, intent, CODE_IMPORT_SELECT);
             });
             return true;
         });
@@ -184,7 +183,7 @@ public class ImportExportPreferencesFragment extends PreferencesFragment {
                         .addCategory(Intent.CATEGORY_OPENABLE)
                         .setType(getExportMimeType(requestCode))
                         .putExtra(Intent.EXTRA_TITLE, fileInfo.toString());
-                AegisActivity.Helper.startExtActivityForResult(this, intent, requestCode);
+                _vaultManager.startActivityForResult(this, intent, requestCode);
             });
 
             btnNeutral.setOnClickListener(v -> {
@@ -209,7 +208,7 @@ public class ImportExportPreferencesFragment extends PreferencesFragment {
                 startExportVault(requestCode, cb -> {
                     try (OutputStream stream = new FileOutputStream(file)) {
                         cb.exportVault(stream);
-                    } catch (IOException | VaultManagerException e) {
+                    } catch (IOException | VaultRepositoryException e) {
                         e.printStackTrace();
                         Dialogs.showErrorDialog(getContext(), R.string.exporting_vault_error, e);
                         return;
@@ -221,7 +220,7 @@ public class ImportExportPreferencesFragment extends PreferencesFragment {
                             .setType(getExportMimeType(requestCode))
                             .putExtra(Intent.EXTRA_STREAM, uri);
                     Intent chooser = Intent.createChooser(intent, getString(R.string.pref_export_summary));
-                    AegisActivity.Helper.startExtActivity(this, chooser);
+                    _vaultManager.startActivity(this, chooser);
                 });
             });
         });
@@ -239,11 +238,11 @@ public class ImportExportPreferencesFragment extends PreferencesFragment {
 
     private static VaultBackupManager.FileInfo getExportFileInfo(int spinnerPos, boolean encrypt) {
         if (spinnerPos == 0) {
-            String filename = encrypt ? VaultManager.FILENAME_PREFIX_EXPORT : VaultManager.FILENAME_PREFIX_EXPORT_PLAIN;
+            String filename = encrypt ? VaultRepository.FILENAME_PREFIX_EXPORT : VaultRepository.FILENAME_PREFIX_EXPORT_PLAIN;
             return new VaultBackupManager.FileInfo(filename);
         }
 
-        return new VaultBackupManager.FileInfo(VaultManager.FILENAME_PREFIX_EXPORT_URI, "txt");
+        return new VaultBackupManager.FileInfo(VaultRepository.FILENAME_PREFIX_EXPORT_URI, "txt");
     }
 
     private static String getExportMimeType(int requestCode) {
@@ -262,8 +261,8 @@ public class ImportExportPreferencesFragment extends PreferencesFragment {
     private void startExportVault(int requestCode, StartExportCallback cb) {
         switch (requestCode) {
             case CODE_EXPORT:
-                if (getVault().isEncryptionEnabled()) {
-                    cb.exportVault(stream -> getVault().export(stream));
+                if (_vaultManager.getVault().isEncryptionEnabled()) {
+                    cb.exportVault(stream -> _vaultManager.getVault().export(stream));
                 } else {
                     Dialogs.showSetPasswordDialog(getActivity(), new Dialogs.SlotListener() {
                         @Override
@@ -278,7 +277,7 @@ public class ImportExportPreferencesFragment extends PreferencesFragment {
                                 return;
                             }
 
-                            cb.exportVault(stream -> getVault().export(stream, creds));
+                            cb.exportVault(stream -> _vaultManager.getVault().export(stream, creds));
                         }
 
                         @Override
@@ -289,10 +288,10 @@ public class ImportExportPreferencesFragment extends PreferencesFragment {
                 }
                 break;
             case CODE_EXPORT_PLAIN:
-                cb.exportVault((stream) -> getVault().export(stream, null));
+                cb.exportVault((stream) -> _vaultManager.getVault().export(stream, null));
                 break;
             case CODE_EXPORT_GOOGLE_URI:
-                cb.exportVault((stream) -> getVault().exportGoogleUris(stream));
+                cb.exportVault((stream) -> _vaultManager.getVault().exportGoogleUris(stream));
                 break;
         }
     }
@@ -307,12 +306,12 @@ public class ImportExportPreferencesFragment extends PreferencesFragment {
             File file;
             OutputStream outStream = null;
             try {
-                file = File.createTempFile(VaultManager.FILENAME_PREFIX_EXPORT + "-", ".json", getExportCacheDir());
+                file = File.createTempFile(VaultRepository.FILENAME_PREFIX_EXPORT + "-", ".json", getExportCacheDir());
                 outStream = new FileOutputStream(file);
                 cb.exportVault(outStream);
 
                 new ExportTask(getContext(), new ExportResultListener()).execute(getLifecycle(), new ExportTask.Params(file, uri));
-            } catch (VaultManagerException | IOException e) {
+            } catch (VaultRepositoryException | IOException e) {
                 e.printStackTrace();
                 Dialogs.showErrorDialog(getContext(), R.string.exporting_vault_error, e);
             } finally {
@@ -350,7 +349,7 @@ public class ImportExportPreferencesFragment extends PreferencesFragment {
     }
 
     private interface FinishExportCallback {
-        void exportVault(OutputStream stream) throws IOException, VaultManagerException;
+        void exportVault(OutputStream stream) throws IOException, VaultRepositoryException;
     }
 
     private interface StartExportCallback {

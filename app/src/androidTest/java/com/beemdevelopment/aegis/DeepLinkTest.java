@@ -21,7 +21,10 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import dagger.hilt.android.testing.HiltAndroidTest;
+
 @RunWith(AndroidJUnit4.class)
+@HiltAndroidTest
 @LargeTest
 public class DeepLinkTest extends AegisTest {
     @Before
@@ -37,7 +40,7 @@ public class DeepLinkTest extends AegisTest {
 
         onView(withId(R.id.action_save)).perform(click());
 
-        VaultEntry createdEntry = (VaultEntry) getVault().getEntries().toArray()[0];
+        VaultEntry createdEntry = (VaultEntry) _vaultManager.getVault().getEntries().toArray()[0];
         assertTrue(createdEntry.equivalates(entry));
     }
 

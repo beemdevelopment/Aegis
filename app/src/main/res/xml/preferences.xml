@@ -5,37 +5,37 @@
     android:title="@string/action_settings">
 
     <Preference
-        android:fragment="com.beemdevelopment.aegis.ui.fragments.AppearancePreferencesFragment"
+        android:fragment="com.beemdevelopment.aegis.ui.fragments.preferences.AppearancePreferencesFragment"
         app:icon="@drawable/ic_brush_black_24dp"
         app:title="@string/pref_section_appearance_title"
         app:summary="@string/pref_section_appearance_summary" />
 
     <Preference
-        android:fragment="com.beemdevelopment.aegis.ui.fragments.BehaviorPreferencesFragment"
+        android:fragment="com.beemdevelopment.aegis.ui.fragments.preferences.BehaviorPreferencesFragment"
         app:icon="@drawable/ic_gesture_tap_24dp"
         app:title="@string/pref_section_behavior_title"
         app:summary="@string/pref_section_behavior_summary" />
 
     <Preference
-        android:fragment="com.beemdevelopment.aegis.ui.fragments.IconPacksManagerFragment"
+        android:fragment="com.beemdevelopment.aegis.ui.fragments.preferences.IconPacksManagerFragment"
         android:title="@string/pref_section_icon_packs"
         android:summary="@string/pref_section_icon_packs_summary"
         app:icon="@drawable/ic_package_variant_black_24dp"/>
 
     <Preference
-        android:fragment="com.beemdevelopment.aegis.ui.fragments.SecurityPreferencesFragment"
+        android:fragment="com.beemdevelopment.aegis.ui.fragments.preferences.SecurityPreferencesFragment"
         app:icon="@drawable/ic_vpn_key_black_24dp"
         app:title="@string/pref_section_security_title"
         app:summary="@string/pref_section_security_summary" />
 
     <Preference
-        android:fragment="com.beemdevelopment.aegis.ui.fragments.BackupsPreferencesFragment"
+        android:fragment="com.beemdevelopment.aegis.ui.fragments.preferences.BackupsPreferencesFragment"
         app:icon="@drawable/ic_cloud_upload_outline_black_24dp"
         app:title="@string/pref_section_backups_title"
         app:summary="@string/pref_section_backups_summary" />
 
     <Preference
-        android:fragment="com.beemdevelopment.aegis.ui.fragments.ImportExportPreferencesFragment"
+        android:fragment="com.beemdevelopment.aegis.ui.fragments.preferences.ImportExportPreferencesFragment"
         app:icon="@drawable/ic_tools_black_24dp"
         app:title="@string/pref_section_import_export_title"
         app:summary="@string/pref_section_import_export_summary" />

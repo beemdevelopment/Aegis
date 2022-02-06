@@ -1,4 +1,4 @@
-package com.beemdevelopment.aegis.ui.fragments;
+package com.beemdevelopment.aegis.ui.fragments.preferences;
 
 import static android.text.TextUtils.isDigitsOnly;
 
@@ -23,13 +23,12 @@ import com.beemdevelopment.aegis.crypto.KeyStoreHandle;
 import com.beemdevelopment.aegis.crypto.KeyStoreHandleException;
 import com.beemdevelopment.aegis.helpers.BiometricSlotInitializer;
 import com.beemdevelopment.aegis.helpers.BiometricsHelper;
-import com.beemdevelopment.aegis.services.NotificationService;
 import com.beemdevelopment.aegis.ui.SlotManagerActivity;
 import com.beemdevelopment.aegis.ui.dialogs.Dialogs;
 import com.beemdevelopment.aegis.ui.preferences.SwitchPreference;
 import com.beemdevelopment.aegis.ui.tasks.PasswordSlotDecryptTask;
 import com.beemdevelopment.aegis.vault.VaultFileCredentials;
-import com.beemdevelopment.aegis.vault.VaultManagerException;
+import com.beemdevelopment.aegis.vault.VaultRepositoryException;
 import com.beemdevelopment.aegis.vault.slots.BiometricSlot;
 import com.beemdevelopment.aegis.vault.slots.PasswordSlot;
 import com.beemdevelopment.aegis.vault.slots.Slot;
@@ -80,10 +79,10 @@ public class SecurityPreferencesFragment extends PreferencesFragment {
         });
 
         Preference tapToRevealTimePreference = findPreference("pref_tap_to_reveal_time");
-        tapToRevealTimePreference.setSummary(getPreferences().getTapToRevealTime() + " seconds");
+        tapToRevealTimePreference.setSummary(_prefs.getTapToRevealTime() + " seconds");
         tapToRevealTimePreference.setOnPreferenceClickListener(preference -> {
             Dialogs.showNumberPickerDialog(getActivity(), number -> {
-                getPreferences().setTapToRevealTime(number);
+                _prefs.setTapToRevealTime(number);
                 tapToRevealTimePreference.setSummary(number + " seconds");
                 getResult().putExtra("needsRefresh", true);
             });
@@ -92,7 +91,7 @@ public class SecurityPreferencesFragment extends PreferencesFragment {
 
         _encryptionPreference = findPreference("pref_encryption");
         _encryptionPreference.setOnPreferenceChangeListener((preference, newValue) -> {
-            if (!getVault().isEncryptionEnabled()) {
+            if (!_vaultManager.getVault().isEncryptionEnabled()) {
                 Dialogs.showSetPasswordDialog(getActivity(), new EnableEncryptionListener());
             } else {
                 Dialogs.showSecureDialog(new AlertDialog.Builder(getActivity())
@@ -100,24 +99,15 @@ public class SecurityPreferencesFragment extends PreferencesFragment {
                         .setMessage(getText(R.string.disable_encryption_description))
                         .setPositiveButton(android.R.string.yes, (dialog, which) -> {
                             try {
-                                getVault().disableEncryption();
-                            } catch (VaultManagerException e) {
+                                _vaultManager.disableEncryption();
+                            } catch (VaultRepositoryException e) {
                                 e.printStackTrace();
                                 Dialogs.showErrorDialog(getContext(), R.string.disable_encryption_error, e);
                                 return;
                             }
 
-                            // clear the KeyStore
-                            try {
-                                KeyStoreHandle handle = new KeyStoreHandle();
-                                handle.clear();
-                            } catch (KeyStoreHandleException e) {
-                                e.printStackTrace();
-                            }
-
-                            getActivity().stopService(new Intent(getActivity(), NotificationService.class));
-                            getPreferences().setIsBackupsEnabled(false);
-                            getPreferences().setIsAndroidBackupsEnabled(false);
+                            _prefs.setIsBackupsEnabled(false);
+                            _prefs.setIsAndroidBackupsEnabled(false);
                             updateEncryptionPreferences();
                         })
                         .setNegativeButton(android.R.string.no, null)
@@ -129,7 +119,7 @@ public class SecurityPreferencesFragment extends PreferencesFragment {
 
         _biometricsPreference = findPreference("pref_biometrics");
         _biometricsPreference.setOnPreferenceChangeListener((preference, newValue) -> {
-            VaultFileCredentials creds = getVault().getCredentials();
+            VaultFileCredentials creds = _vaultManager.getVault().getCredentials();
             SlotList slots = creds.getSlots();
 
             if (!slots.has(BiometricSlot.class)) {
@@ -145,7 +135,7 @@ public class SecurityPreferencesFragment extends PreferencesFragment {
                 // remove the biometric slot
                 BiometricSlot slot = slots.find(BiometricSlot.class);
                 slots.remove(slot);
-                getVault().setCredentials(creds);
+                _vaultManager.getVault().setCredentials(creds);
 
                 // remove the KeyStore key
                 try {
@@ -155,7 +145,7 @@ public class SecurityPreferencesFragment extends PreferencesFragment {
                     e.printStackTrace();
                 }
 
-                saveVault();
+                saveAndBackupVault();
                 updateEncryptionPreferences();
             }
 
@@ -171,7 +161,7 @@ public class SecurityPreferencesFragment extends PreferencesFragment {
         _slotsPreference = findPreference("pref_slots");
         _slotsPreference.setOnPreferenceClickListener(preference -> {
             Intent intent = new Intent(getActivity(), SlotManagerActivity.class);
-            intent.putExtra("creds", getVault().getCredentials());
+            intent.putExtra("creds", _vaultManager.getVault().getCredentials());
             startActivityForResult(intent, CODE_SLOTS);
             return true;
         });
@@ -184,7 +174,7 @@ public class SecurityPreferencesFragment extends PreferencesFragment {
 
             Dialogs.showPasswordInputDialog(getActivity(), R.string.set_password_confirm, R.string.pin_keyboard_description, password -> {
                 if (isDigitsOnly(new String(password))) {
-                    List<PasswordSlot> slots = getVault().getCredentials().getSlots().findAll(PasswordSlot.class);
+                    List<PasswordSlot> slots = _vaultManager.getVault().getCredentials().getSlots().findAll(PasswordSlot.class);
                     PasswordSlotDecryptTask.Params params = new PasswordSlotDecryptTask.Params(slots, password);
                     PasswordSlotDecryptTask task = new PasswordSlotDecryptTask(getActivity(), new PasswordConfirmationListener());
                     task.execute(getLifecycle(), params);
@@ -210,7 +200,7 @@ public class SecurityPreferencesFragment extends PreferencesFragment {
             final String[] textItems = getResources().getStringArray(R.array.pref_auto_lock_types);
             final boolean[] checkedItems = new boolean[items.length];
             for (int i = 0; i < items.length; i++) {
-                checkedItems[i] = getPreferences().isAutoLockTypeEnabled(items[i]);
+                checkedItems[i] = _prefs.isAutoLockTypeEnabled(items[i]);
             }
 
             AlertDialog.Builder builder = new AlertDialog.Builder(getActivity())
@@ -224,7 +214,7 @@ public class SecurityPreferencesFragment extends PreferencesFragment {
                             }
                         }
 
-                        getPreferences().setAutoLockMask(autoLock);
+                        _prefs.setAutoLockMask(autoLock);
                         _autoLockPreference.setSummary(getAutoLockSummary());
                     })
                     .setNegativeButton(android.R.string.cancel, null);
@@ -236,7 +226,7 @@ public class SecurityPreferencesFragment extends PreferencesFragment {
         _passwordReminderPreference = findPreference("pref_password_reminder_freq");
         _passwordReminderPreference.setSummary(getPasswordReminderSummary());
         _passwordReminderPreference.setOnPreferenceClickListener((preference) -> {
-            final PassReminderFreq currFreq = getPreferences().getPasswordReminderFrequency();
+            final PassReminderFreq currFreq = _prefs.getPasswordReminderFrequency();
             final PassReminderFreq[] items = PassReminderFreq.values();
             final String[] textItems = Arrays.stream(items)
                     .map(f -> getString(f.getStringRes()))
@@ -247,7 +237,7 @@ public class SecurityPreferencesFragment extends PreferencesFragment {
                     .setSingleChoiceItems(textItems, currFreq.ordinal(), (dialog, which) -> {
                         int i = ((AlertDialog) dialog).getListView().getCheckedItemPosition();
                         PassReminderFreq freq = PassReminderFreq.fromInteger(i);
-                        getPreferences().setPasswordReminderFrequency(freq);
+                        _prefs.setPasswordReminderFrequency(freq);
                         _passwordReminderPreference.setSummary(getPasswordReminderSummary());
                         dialog.dismiss();
                     })
@@ -270,13 +260,13 @@ public class SecurityPreferencesFragment extends PreferencesFragment {
         }
 
         VaultFileCredentials creds = (VaultFileCredentials) data.getSerializableExtra("creds");
-        getVault().setCredentials(creds);
-        saveVault();
+        _vaultManager.getVault().setCredentials(creds);
+        saveAndBackupVault();
         updateEncryptionPreferences();
     }
 
     private void updateEncryptionPreferences() {
-        boolean encrypted = getVault().isEncryptionEnabled();
+        boolean encrypted = _vaultManager.getVault().isEncryptionEnabled();
         _encryptionPreference.setChecked(encrypted, true);
         _setPasswordPreference.setVisible(encrypted);
         _biometricsPreference.setVisible(encrypted);
@@ -285,7 +275,7 @@ public class SecurityPreferencesFragment extends PreferencesFragment {
         _pinKeyboardPreference.setVisible(encrypted);
 
         if (encrypted) {
-            SlotList slots = getVault().getCredentials().getSlots();
+            SlotList slots = _vaultManager.getVault().getCredentials().getSlots();
             boolean multiPassword = slots.findAll(PasswordSlot.class).size() > 1;
             boolean multiBio = slots.findAll(BiometricSlot.class).size() > 1;
             boolean showSlots = BuildConfig.DEBUG || multiPassword || multiBio;
@@ -305,7 +295,7 @@ public class SecurityPreferencesFragment extends PreferencesFragment {
     }
 
     private String getPasswordReminderSummary() {
-        PassReminderFreq freq = getPreferences().getPasswordReminderFrequency();
+        PassReminderFreq freq = _prefs.getPasswordReminderFrequency();
         if (freq == PassReminderFreq.NEVER) {
             return getString(R.string.pref_password_reminder_summary_disabled);
         }
@@ -320,7 +310,7 @@ public class SecurityPreferencesFragment extends PreferencesFragment {
 
         StringBuilder builder = new StringBuilder();
         for (int i = 0; i < settings.length; i++) {
-            if (getPreferences().isAutoLockTypeEnabled(settings[i])) {
+            if (_prefs.isAutoLockTypeEnabled(settings[i])) {
                 if (builder.length() != 0) {
                     builder.append(", ");
                 }
@@ -339,7 +329,7 @@ public class SecurityPreferencesFragment extends PreferencesFragment {
     private class SetPasswordListener implements Dialogs.SlotListener {
         @Override
         public void onSlotResult(Slot slot, Cipher cipher) {
-            VaultFileCredentials creds = getVault().getCredentials();
+            VaultFileCredentials creds = _vaultManager.getVault().getCredentials();
             SlotList slots = creds.getSlots();
 
             try {
@@ -359,10 +349,10 @@ public class SecurityPreferencesFragment extends PreferencesFragment {
                 return;
             }
 
-            getVault().setCredentials(creds);
-            saveVault();
+            _vaultManager.getVault().setCredentials(creds);
+            saveAndBackupVault();
 
-            if (getPreferences().isPinKeyboardEnabled()) {
+            if (_prefs.isPinKeyboardEnabled()) {
                 _pinKeyboardPreference.setChecked(false);
                 Toast.makeText(getContext(), R.string.pin_keyboard_disabled, Toast.LENGTH_SHORT).show();
             }
@@ -379,7 +369,7 @@ public class SecurityPreferencesFragment extends PreferencesFragment {
     private class RegisterBiometricsListener implements BiometricSlotInitializer.Listener {
         @Override
         public void onInitializeSlot(BiometricSlot slot, Cipher cipher) {
-            VaultFileCredentials creds = getVault().getCredentials();
+            VaultFileCredentials creds = _vaultManager.getVault().getCredentials();
             try {
                 slot.setKey(creds.getKey(), cipher);
             } catch (SlotException e) {
@@ -388,9 +378,9 @@ public class SecurityPreferencesFragment extends PreferencesFragment {
                 return;
             }
             creds.getSlots().add(slot);
-            getVault().setCredentials(creds);
+            _vaultManager.getVault().setCredentials(creds);
 
-            saveVault();
+            saveAndBackupVault();
             updateEncryptionPreferences();
         }
 
@@ -410,13 +400,12 @@ public class SecurityPreferencesFragment extends PreferencesFragment {
             try {
                 slot.setKey(creds.getKey(), cipher);
                 creds.getSlots().add(slot);
-                getVault().enableEncryption(creds);
-            } catch (VaultManagerException | SlotException e) {
+                _vaultManager.enableEncryption(creds);
+            } catch (VaultRepositoryException | SlotException e) {
                 onException(e);
                 return;
             }
 
-            getActivity().startService(new Intent(getActivity(), NotificationService.class));
             _pinKeyboardPreference.setChecked(false);
             updateEncryptionPreferences();
         }

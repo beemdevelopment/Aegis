@@ -41,8 +41,11 @@ public class AboutActivity extends AegisActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         LayoutInflaterCompat.setFactory2(getLayoutInflater(), new IconicsLayoutInflater2(getDelegate()));
-
         super.onCreate(savedInstanceState);
+        if (abortIfOrphan(savedInstanceState)) {
+            return;
+        }
+
         setContentView(R.layout.activity_about);
         setSupportActionBar(findViewById(R.id.toolbar));
 
@@ -124,7 +127,7 @@ public class AboutActivity extends AegisActivity {
         mailIntent.putExtra(Intent.EXTRA_EMAIL, mailaddress);
         mailIntent.putExtra(Intent.EXTRA_SUBJECT, R.string.app_name_full);
 
-        startActivity(Intent.createChooser(mailIntent, this.getString(R.string.email)));
+        startActivity(Intent.createChooser(mailIntent, getString(R.string.email)));
     }
 
     private void showThirdPartyLicenseDialog() {

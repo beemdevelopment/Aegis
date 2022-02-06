@@ -27,7 +27,7 @@ import com.beemdevelopment.aegis.ui.models.ImportEntry;
 import com.beemdevelopment.aegis.ui.views.ImportEntriesAdapter;
 import com.beemdevelopment.aegis.util.UUIDMap;
 import com.beemdevelopment.aegis.vault.VaultEntry;
-import com.beemdevelopment.aegis.vault.VaultManager;
+import com.beemdevelopment.aegis.vault.VaultRepository;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.topjohnwu.superuser.Shell;
 
@@ -47,6 +47,9 @@ public class ImportEntriesActivity extends AegisActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (abortIfOrphan(savedInstanceState)) {
+            return;
+        }
         setContentView(R.layout.activity_import_entries);
         setSupportActionBar(findViewById(R.id.toolbar));
 
@@ -71,7 +74,7 @@ public class ImportEntriesActivity extends AegisActivity {
 
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(v -> {
-            if (getApp().getVaultManager().getEntries().size() > 0
+            if (_vaultManager.getVault().getEntries().size() > 0
                     && _menu.findItem(R.id.toggle_wipe_vault).isChecked()) {
                 showWipeEntriesDialog();
             } else {
@@ -200,7 +203,7 @@ public class ImportEntriesActivity extends AegisActivity {
                 .setMessage(message)
                 .setPositiveButton(android.R.string.ok, null)
                 .setNeutralButton(android.R.string.copy, (dialog2, which2) -> {
-                    ClipboardManager clipboard = (ClipboardManager) this.getSystemService(Context.CLIPBOARD_SERVICE);
+                    ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
                     ClipData clip = ClipData.newPlainText("text/plain", message);
                     clipboard.setPrimaryClip(clip);
                     Toast.makeText(this, R.string.errors_copied, Toast.LENGTH_SHORT).show();
@@ -217,7 +220,7 @@ public class ImportEntriesActivity extends AegisActivity {
     }
 
     private void saveAndFinish(boolean wipeEntries) {
-        VaultManager vault = getApp().getVaultManager();
+        VaultRepository vault = _vaultManager.getVault();
         if (wipeEntries) {
             vault.wipeEntries();
         }
@@ -234,7 +237,7 @@ public class ImportEntriesActivity extends AegisActivity {
             vault.addEntry(entry);
         }
 
-        if (saveVault(true)) {
+        if (saveAndBackupVault()) {
             String toastMessage = getResources().getQuantityString(R.plurals.imported_entries_count, selectedEntries.size(), selectedEntries.size());
             Toast.makeText(this, toastMessage, Toast.LENGTH_SHORT).show();
 

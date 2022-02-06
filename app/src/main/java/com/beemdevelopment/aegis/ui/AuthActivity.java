@@ -22,8 +22,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.biometric.BiometricPrompt;
 
-import com.beemdevelopment.aegis.AegisApplication;
-import com.beemdevelopment.aegis.Preferences;
 import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.ThemeMap;
 import com.beemdevelopment.aegis.crypto.KeyStoreHandle;
@@ -37,7 +35,7 @@ import com.beemdevelopment.aegis.ui.dialogs.Dialogs;
 import com.beemdevelopment.aegis.ui.tasks.PasswordSlotDecryptTask;
 import com.beemdevelopment.aegis.vault.VaultFile;
 import com.beemdevelopment.aegis.vault.VaultFileCredentials;
-import com.beemdevelopment.aegis.vault.VaultManagerException;
+import com.beemdevelopment.aegis.vault.VaultRepositoryException;
 import com.beemdevelopment.aegis.vault.slots.BiometricSlot;
 import com.beemdevelopment.aegis.vault.slots.PasswordSlot;
 import com.beemdevelopment.aegis.vault.slots.Slot;
@@ -64,12 +62,9 @@ public class AuthActivity extends AegisActivity {
     // biometric prompt by setting 'inhibitBioPrompt' to true through the intent
     private boolean _inhibitBioPrompt;
 
-    private Preferences _prefs;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        _prefs = new Preferences(this);
         setContentView(R.layout.activity_auth);
         _textPassword = findViewById(R.id.text_password);
         LinearLayout boxBiometricInfo = findViewById(R.id.box_biometric_info);
@@ -94,14 +89,13 @@ public class AuthActivity extends AegisActivity {
             _inhibitBioPrompt = savedInstanceState.getBoolean("inhibitBioPrompt", false);
         }
 
-        try {
-            VaultFile vaultFile = getApp().loadVaultFile();
-            _slots = vaultFile.getHeader().getSlots();
-        } catch (VaultManagerException e) {
-            e.printStackTrace();
-            Dialogs.showErrorDialog(this, R.string.vault_load_error, e, (dialog, which) -> onBackPressed());
+        if (_vaultManager.getVaultFileError() != null) {
+            Dialogs.showErrorDialog(this, R.string.vault_load_error, _vaultManager.getVaultFileError(), (dialog, which) -> onBackPressed());
             return;
         }
+
+        VaultFile vaultFile = _vaultManager.getVaultFile();
+        _slots = vaultFile.getHeader().getSlots();
 
         // only show the biometric prompt if the api version is new enough, permission is granted, a scanner is found and a biometric slot is found
         if (_slots.has(BiometricSlot.class) && BiometricsHelper.isAvailable(this)) {
@@ -266,12 +260,11 @@ public class AuthActivity extends AegisActivity {
         VaultFileCredentials creds = new VaultFileCredentials(key, _slots);
 
         try {
-            AegisApplication app = getApp();
-            app.initVaultManager(app.loadVaultFile(), creds);
+            _vaultManager.unlock(creds);
             if (isSlotRepaired) {
-                saveVault(true);
+                saveAndBackupVault();
             }
-        } catch (VaultManagerException e) {
+        } catch (VaultRepositoryException e) {
             e.printStackTrace();
             Dialogs.showErrorDialog(this, R.string.decryption_corrupt_error, e);
             return;

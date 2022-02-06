@@ -1,4 +1,4 @@
-package com.beemdevelopment.aegis.ui.fragments;
+package com.beemdevelopment.aegis.ui.fragments.preferences;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -7,13 +7,17 @@ import android.os.Bundle;
 import androidx.annotation.CallSuper;
 import androidx.preference.PreferenceFragmentCompat;
 
-import com.beemdevelopment.aegis.AegisApplication;
 import com.beemdevelopment.aegis.Preferences;
 import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.ui.dialogs.Dialogs;
 import com.beemdevelopment.aegis.vault.VaultManager;
-import com.beemdevelopment.aegis.vault.VaultManagerException;
+import com.beemdevelopment.aegis.vault.VaultRepositoryException;
 
+import javax.inject.Inject;
+
+import dagger.hilt.android.AndroidEntryPoint;
+
+@AndroidEntryPoint
 public abstract class PreferencesFragment extends PreferenceFragmentCompat {
     // activity request codes
     public static final int CODE_IMPORT_SELECT = 0;
@@ -25,18 +29,17 @@ public abstract class PreferencesFragment extends PreferenceFragmentCompat {
     public static final int CODE_EXPORT_GOOGLE_URI = 7;
     public static final int CODE_BACKUPS = 8;
 
-    private AegisApplication _app;
     private Intent _result;
-    private Preferences _prefs;
-    private VaultManager _vault;
+
+    @Inject
+    Preferences _prefs;
+
+    @Inject
+    VaultManager _vaultManager;
 
     @Override
     @CallSuper
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
-        _app = (AegisApplication) getActivity().getApplication();
-        _prefs = _app.getPreferences();
-        _vault = _app.getVaultManager();
-
         setResult(new Intent());
     }
 
@@ -62,22 +65,10 @@ public abstract class PreferencesFragment extends PreferenceFragmentCompat {
         getActivity().setResult(Activity.RESULT_OK, _result);
     }
 
-    protected AegisApplication getApp() {
-        return _app;
-    }
-
-    protected Preferences getPreferences() {
-        return _prefs;
-    }
-
-    protected VaultManager getVault() {
-        return _vault;
-    }
-
-    protected boolean saveVault() {
+    protected boolean saveAndBackupVault() {
         try {
-            _vault.save(true);
-        } catch (VaultManagerException e) {
+            _vaultManager.saveAndBackup();
+        } catch (VaultRepositoryException e) {
             e.printStackTrace();
             Dialogs.showErrorDialog(getContext(), R.string.saving_error, e);
             return false;

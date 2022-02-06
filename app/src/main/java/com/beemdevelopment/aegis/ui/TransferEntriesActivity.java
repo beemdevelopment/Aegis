@@ -17,7 +17,6 @@ import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.Theme;
 import com.beemdevelopment.aegis.otp.GoogleAuthInfo;
 import com.beemdevelopment.aegis.ui.dialogs.Dialogs;
-import com.beemdevelopment.aegis.vault.VaultManager;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
@@ -34,16 +33,16 @@ public class TransferEntriesActivity extends AegisActivity {
     private TextView _entriesCount;
     private Button _nextButton;
     private Button _previousButton;
-
-    private VaultManager _vault;
     private int _currentEntryCount = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (abortIfOrphan(savedInstanceState)) {
+            return;
+        }
         setContentView(R.layout.activity_share_entry);
         setSupportActionBar(findViewById(R.id.toolbar));
-        _vault = getApp().getVaultManager();
 
         _qrImage = findViewById(R.id.ivQrCode);
         _issuer = findViewById(R.id.tvIssuer);

@@ -1,5 +1,10 @@
 package com.beemdevelopment.aegis.ui;
 
+import static com.beemdevelopment.aegis.ui.slides.SecurityPickerSlide.CRYPT_TYPE_BIOMETRIC;
+import static com.beemdevelopment.aegis.ui.slides.SecurityPickerSlide.CRYPT_TYPE_INVALID;
+import static com.beemdevelopment.aegis.ui.slides.SecurityPickerSlide.CRYPT_TYPE_NONE;
+import static com.beemdevelopment.aegis.ui.slides.SecurityPickerSlide.CRYPT_TYPE_PASS;
+
 import android.os.Bundle;
 import android.view.inputmethod.InputMethodManager;
 
@@ -12,21 +17,10 @@ import com.beemdevelopment.aegis.ui.slides.DoneSlide;
 import com.beemdevelopment.aegis.ui.slides.SecurityPickerSlide;
 import com.beemdevelopment.aegis.ui.slides.SecuritySetupSlide;
 import com.beemdevelopment.aegis.ui.slides.WelcomeSlide;
-import com.beemdevelopment.aegis.vault.Vault;
-import com.beemdevelopment.aegis.vault.VaultFile;
 import com.beemdevelopment.aegis.vault.VaultFileCredentials;
-import com.beemdevelopment.aegis.vault.VaultFileException;
-import com.beemdevelopment.aegis.vault.VaultManager;
-import com.beemdevelopment.aegis.vault.VaultManagerException;
+import com.beemdevelopment.aegis.vault.VaultRepositoryException;
 import com.beemdevelopment.aegis.vault.slots.BiometricSlot;
 import com.beemdevelopment.aegis.vault.slots.PasswordSlot;
-
-import org.json.JSONObject;
-
-import static com.beemdevelopment.aegis.ui.slides.SecurityPickerSlide.CRYPT_TYPE_BIOMETRIC;
-import static com.beemdevelopment.aegis.ui.slides.SecurityPickerSlide.CRYPT_TYPE_INVALID;
-import static com.beemdevelopment.aegis.ui.slides.SecurityPickerSlide.CRYPT_TYPE_NONE;
-import static com.beemdevelopment.aegis.ui.slides.SecurityPickerSlide.CRYPT_TYPE_PASS;
 
 public class IntroActivity extends IntroBaseActivity {
     @Override
@@ -73,31 +67,16 @@ public class IntroActivity extends IntroBaseActivity {
             throw new RuntimeException(String.format("State of SecuritySetupSlide not properly propagated, cryptType: %d, creds: %s", cryptType, creds));
         }
 
-        Vault vault = new Vault();
-        VaultFile vaultFile = new VaultFile();
         try {
-            JSONObject obj = vault.toJson();
-            if (cryptType == CRYPT_TYPE_NONE) {
-                vaultFile.setContent(obj);
-            } else {
-                vaultFile.setContent(obj, creds);
-            }
-
-            VaultManager.save(getApplicationContext(), vaultFile);
-        } catch (VaultManagerException | VaultFileException e) {
+            _vaultManager.init(creds);
+        } catch (VaultRepositoryException e) {
             e.printStackTrace();
             Dialogs.showErrorDialog(this, R.string.vault_init_error, e);
             return;
         }
 
-        if (cryptType == CRYPT_TYPE_NONE) {
-            getApp().initVaultManager(vault, null);
-        } else {
-            getApp().initVaultManager(vault, creds);
-        }
-
         // skip the intro from now on
-        getPreferences().setIntroDone(true);
+        _prefs.setIntroDone(true);
 
         setResult(RESULT_OK);
         finish();

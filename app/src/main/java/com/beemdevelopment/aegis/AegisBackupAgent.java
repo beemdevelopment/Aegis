@@ -10,22 +10,31 @@ import android.util.Log;
 
 import com.beemdevelopment.aegis.util.IOUtils;
 import com.beemdevelopment.aegis.vault.VaultManager;
+import com.beemdevelopment.aegis.vault.VaultRepository;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+
+import dagger.hilt.InstallIn;
+import dagger.hilt.android.EarlyEntryPoint;
+import dagger.hilt.android.EarlyEntryPoints;
+import dagger.hilt.components.SingletonComponent;
 
 public class AegisBackupAgent extends BackupAgent {
     private static final String TAG = AegisBackupAgent.class.getSimpleName();
 
+    private VaultManager _vaultManager;
     private Preferences _prefs;
 
     @Override
     public void onCreate() {
         super.onCreate();
-        _prefs = new Preferences(this);
+
+        EntryPoint entryPoint = EarlyEntryPoints.get(this, EntryPoint.class);
+        _vaultManager = entryPoint.getVaultManager();
+        _prefs = entryPoint.getPreferences();
     }
 
     @Override
@@ -47,9 +56,8 @@ public class AegisBackupAgent extends BackupAgent {
         // first copy the vault to the files/backup directory
         createBackupDir();
         File vaultBackupFile = getVaultBackupFile();
-        try (FileInputStream inStream = VaultManager.getAtomicFile(this).openRead();
-             FileOutputStream outStream = new FileOutputStream(vaultBackupFile)) {
-            IOUtils.copy(inStream, outStream);
+        try {
+            _vaultManager.getVault().backupTo(vaultBackupFile);
         } catch (IOException e) {
             Log.e(TAG, String.format("onFullBackup() failed: %s", e));
             deleteBackupDir();
@@ -77,7 +85,7 @@ public class AegisBackupAgent extends BackupAgent {
         File vaultBackupFile = getVaultBackupFile();
         if (destination.getCanonicalFile().equals(vaultBackupFile.getCanonicalFile())) {
             try (InputStream inStream = new FileInputStream(vaultBackupFile)) {
-                VaultManager.writeToFile(this, inStream);
+                VaultRepository.writeToFile(this, inStream);
             } catch (IOException e) {
                 Log.e(TAG, String.format("onRestoreFile() failed: dest=%s, error=%s", destination, e));
                 throw e;
@@ -118,6 +126,13 @@ public class AegisBackupAgent extends BackupAgent {
     }
 
     private File getVaultBackupFile() {
-        return new File(new File(getFilesDir(), "backup"), VaultManager.FILENAME);
+        return new File(new File(getFilesDir(), "backup"), VaultRepository.FILENAME);
+    }
+
+    @EarlyEntryPoint
+    @InstallIn(SingletonComponent.class)
+    interface EntryPoint {
+        Preferences getPreferences();
+        VaultManager getVaultManager();
     }
 }

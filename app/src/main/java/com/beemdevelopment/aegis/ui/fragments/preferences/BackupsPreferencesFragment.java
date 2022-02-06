@@ -1,4 +1,4 @@
-package com.beemdevelopment.aegis.ui.fragments;
+package com.beemdevelopment.aegis.ui.fragments.preferences;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -9,11 +9,9 @@ import android.widget.Toast;
 import androidx.preference.Preference;
 import androidx.preference.SwitchPreferenceCompat;
 
-import com.beemdevelopment.aegis.Preferences;
 import com.beemdevelopment.aegis.R;
-import com.beemdevelopment.aegis.ui.AegisActivity;
 import com.beemdevelopment.aegis.ui.dialogs.Dialogs;
-import com.beemdevelopment.aegis.vault.VaultManagerException;
+import com.beemdevelopment.aegis.vault.VaultRepositoryException;
 
 public class BackupsPreferencesFragment extends PreferencesFragment {
     private SwitchPreferenceCompat _androidBackupsPreference;
@@ -32,14 +30,13 @@ public class BackupsPreferencesFragment extends PreferencesFragment {
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
         super.onCreatePreferences(savedInstanceState, rootKey);
         addPreferencesFromResource(R.xml.preferences_backups);
-        Preferences prefs = getPreferences();
 
         _backupsPreference = findPreference("pref_backups");
         _backupsPreference.setOnPreferenceChangeListener((preference, newValue) -> {
             if ((boolean) newValue) {
                 selectBackupsLocation();
             } else {
-                prefs.setIsBackupsEnabled(false);
+                _prefs.setIsBackupsEnabled(false);
                 updateBackupPreference();
             }
 
@@ -48,13 +45,13 @@ public class BackupsPreferencesFragment extends PreferencesFragment {
 
         _androidBackupsPreference = findPreference("pref_android_backups");
         _androidBackupsPreference.setOnPreferenceChangeListener((preference, newValue) -> {
-            prefs.setIsAndroidBackupsEnabled((boolean) newValue);
+            _prefs.setIsAndroidBackupsEnabled((boolean) newValue);
             updateBackupPreference();
-            getVault().androidBackupDataChanged();
+            _vaultManager.scheduleAndroidBackup();
             return false;
         });
 
-        Uri backupLocation = prefs.getBackupsLocation();
+        Uri backupLocation = _prefs.getBackupsLocation();
         _backupsLocationPreference = findPreference("pref_backups_location");
         if (backupLocation != null) {
             _backupsLocationPreference.setSummary(String.format("%s: %s", getString(R.string.pref_backups_location_summary), Uri.decode(backupLocation.toString())));
@@ -66,11 +63,11 @@ public class BackupsPreferencesFragment extends PreferencesFragment {
 
         _backupsTriggerPreference = findPreference("pref_backups_trigger");
         _backupsTriggerPreference.setOnPreferenceClickListener(preference -> {
-            if (prefs.isBackupsEnabled()) {
+            if (_prefs.isBackupsEnabled()) {
                 try {
-                    getVault().backup();
+                    _vaultManager.scheduleBackup();
                     Toast.makeText(getActivity(), R.string.backup_successful, Toast.LENGTH_LONG).show();
-                } catch (VaultManagerException e) {
+                } catch (VaultRepositoryException e) {
                     e.printStackTrace();
                     Dialogs.showErrorDialog(getContext(), R.string.backup_error, e);
                 }
@@ -79,12 +76,12 @@ public class BackupsPreferencesFragment extends PreferencesFragment {
         });
 
         _backupsVersionsPreference = findPreference("pref_backups_versions");
-        _backupsVersionsPreference.setSummary(getResources().getQuantityString(R.plurals.pref_backups_versions_summary, prefs.getBackupsVersionCount(), prefs.getBackupsVersionCount()));
+        _backupsVersionsPreference.setSummary(getResources().getQuantityString(R.plurals.pref_backups_versions_summary, _prefs.getBackupsVersionCount(), _prefs.getBackupsVersionCount()));
         _backupsVersionsPreference.setOnPreferenceClickListener(preference -> {
             Dialogs.showBackupVersionsPickerDialog(getActivity(), number -> {
                 number = number * 5 + 5;
-                prefs.setBackupsVersionCount(number);
-                _backupsVersionsPreference.setSummary(getResources().getQuantityString(R.plurals.pref_backups_versions_summary, prefs.getBackupsVersionCount(), prefs.getBackupsVersionCount()));
+                _prefs.setBackupsVersionCount(number);
+                _backupsVersionsPreference.setSummary(getResources().getQuantityString(R.plurals.pref_backups_versions_summary, _prefs.getBackupsVersionCount(), _prefs.getBackupsVersionCount()));
             });
             return false;
         });
@@ -106,18 +103,17 @@ public class BackupsPreferencesFragment extends PreferencesFragment {
         int flags = Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION;
         getContext().getContentResolver().takePersistableUriPermission(data.getData(), flags);
 
-        Preferences prefs = getPreferences();
-        prefs.setBackupsLocation(uri);
-        prefs.setIsBackupsEnabled(true);
-        prefs.setBackupsError(null);
+        _prefs.setBackupsLocation(uri);
+        _prefs.setIsBackupsEnabled(true);
+        _prefs.setBackupsError(null);
         _backupsLocationPreference.setSummary(String.format("%s: %s", getString(R.string.pref_backups_location_summary), Uri.decode(uri.toString())));
         updateBackupPreference();
     }
 
     private void updateBackupPreference() {
-        boolean encrypted = getVault().isEncryptionEnabled();
-        boolean androidBackupEnabled = getPreferences().isAndroidBackupsEnabled() && encrypted;
-        boolean backupEnabled = getPreferences().isBackupsEnabled() && encrypted;
+        boolean encrypted = _vaultManager.getVault().isEncryptionEnabled();
+        boolean androidBackupEnabled = _prefs.isAndroidBackupsEnabled() && encrypted;
+        boolean backupEnabled = _prefs.isBackupsEnabled() && encrypted;
         _androidBackupsPreference.setChecked(androidBackupEnabled);
         _androidBackupsPreference.setEnabled(encrypted);
         _backupsPreference.setChecked(backupEnabled);
@@ -134,6 +130,6 @@ public class BackupsPreferencesFragment extends PreferencesFragment {
                 | Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION
                 | Intent.FLAG_GRANT_PREFIX_URI_PERMISSION);
 
-        AegisActivity.Helper.startExtActivityForResult(this, intent, CODE_BACKUPS);
+        _vaultManager.startActivityForResult(this, intent, CODE_BACKUPS);
     }
 }

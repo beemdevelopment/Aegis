@@ -9,15 +9,17 @@ import androidx.test.platform.app.InstrumentationRegistry;
 import com.beemdevelopment.aegis.crypto.CryptoUtils;
 import com.beemdevelopment.aegis.crypto.SCryptParameters;
 import com.beemdevelopment.aegis.otp.OtpInfo;
-import com.beemdevelopment.aegis.vault.Vault;
 import com.beemdevelopment.aegis.vault.VaultEntry;
 import com.beemdevelopment.aegis.vault.VaultFileCredentials;
 import com.beemdevelopment.aegis.vault.VaultManager;
-import com.beemdevelopment.aegis.vault.VaultManagerException;
+import com.beemdevelopment.aegis.vault.VaultRepository;
+import com.beemdevelopment.aegis.vault.VaultRepositoryException;
 import com.beemdevelopment.aegis.vault.slots.PasswordSlot;
 import com.beemdevelopment.aegis.vault.slots.SlotException;
 
 import org.hamcrest.Matcher;
+import org.junit.Before;
+import org.junit.Rule;
 
 import java.lang.reflect.InvocationTargetException;
 import java.security.InvalidAlgorithmParameterException;
@@ -26,28 +28,41 @@ import java.security.NoSuchAlgorithmException;
 
 import javax.crypto.NoSuchPaddingException;
 import javax.crypto.SecretKey;
+import javax.inject.Inject;
+
+import dagger.hilt.android.testing.HiltAndroidRule;
 
 public abstract class AegisTest {
     public static final String VAULT_PASSWORD = "test";
 
-    protected AegisApplication getApp() {
-        return (AegisApplication) InstrumentationRegistry.getInstrumentation().getTargetContext().getApplicationContext();
+    @Rule
+    public HiltAndroidRule hiltRule = new HiltAndroidRule(this);
+
+    @Inject
+    protected VaultManager _vaultManager;
+
+    @Inject
+    protected Preferences _prefs;
+
+    @Before
+    public void init() {
+        hiltRule.inject();
     }
 
-    protected VaultManager getVault() {
-        return getApp().getVaultManager();
+    protected AegisApplicationBase getApp() {
+        return (AegisApplicationBase) InstrumentationRegistry.getInstrumentation().getTargetContext().getApplicationContext();
     }
 
-    protected VaultManager initVault() {
+    protected VaultRepository initVault() {
         VaultFileCredentials creds = generateCredentials();
-        VaultManager vault = getApp().initVaultManager(new Vault(), creds);
+        VaultRepository vault;
         try {
-            vault.save(false);
-        } catch (VaultManagerException e) {
+            vault = _vaultManager.init(creds);
+        } catch (VaultRepositoryException e) {
             throw new RuntimeException(e);
         }
 
-        getApp().getPreferences().setIntroDone(true);
+        _prefs.setIntroDone(true);
         return vault;
     }
 
