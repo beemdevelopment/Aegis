@@ -54,8 +54,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Aegis.Launch"
         tools:replace="android:theme">
+        <!--
+        android:name=".ui.TransferEntriesActivity" (一樣是class name)
+        android:label="@string/title_activity_transfer"
+        (res/strings/values/底下的xml中的 title_activity_transfer 標籤(對應不同語系))
+        -->
         <activity android:name=".ui.TransferEntriesActivity"
             android:label="@string/title_activity_transfer" />
+        <!-- 同上 -->
         <activity
             android:name=".ui.AboutActivity"
             android:label="@string/title_activity_about" />
@@ -92,6 +98,7 @@
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:label="@string/title_activity_scan_qr"
             android:screenOrientation="portrait" />
+        <!-- portrait 是豎屏-->
         <activity
             android:name=".ui.EditEntryActivity"
             android:label="@string/title_activity_edit_entry" />
