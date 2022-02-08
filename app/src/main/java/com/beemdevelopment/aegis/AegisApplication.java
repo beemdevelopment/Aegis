@@ -46,7 +46,7 @@ public class AegisApplication extends Application { //J:繼承android.app.Applic
     private boolean _blockAutoLock;
     private IconPackManager _iconPackManager;
 
-    private static final String CODE_LOCK_STATUS_ID = "lock_status_channel";
+    private static final String CODE_LOCK_STATUS_ID = "lock_status_channel";//g:test
     private static final String CODE_LOCK_VAULT_ACTION = "lock_vault";
 
     static {
