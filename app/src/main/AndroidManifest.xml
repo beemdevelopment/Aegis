@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.beemdevelopment.aegis">
+    package="com.beemdevelopment.aegis"> <!-- J: 每一個應用程式都必須定義一個與目前整個「Google Play商店」中上架的APP不重複的package名稱-->
 
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.USE_BIOMETRIC" />
@@ -13,6 +13,21 @@
         android:name="android.hardware.camera.autofocus"
         android:required="false" />
 
+    <!-- J:
+    android.name : ".AegisApplication"
+    (類別名稱，AegisApplication class，本來應該寫成com.beemdevelopment.aegis.AegisApplication
+    但是只要在類別名稱前加上小數點，就會自動補齊這個專案的package名稱)
+    android:allowBackup="true" (允許應用備份)
+    android:fullBackupOnly="true" (是否在設備上自動備份)
+    android:fullBackupContent="@xml/backup_rules" (指向一個有完整備份規則的xml文件，這些規則決定備份那些文件)
+    android:backupAgent=".AegisBackupAgent" (實現應用備份代理的類別名稱，AegisBackAgent.java class)
+    android:icon="@mipmap/${iconName}" (icon設置)
+    android:label="MyOTP" (App名稱)
+    android:supportsRtl="true" (right-to-left設定，設定app由左到右)
+    android:theme="@style/Theme.Aegis.Launch" (主題)
+    tools:replace="android:theme" (當項目中的屬性和第三方資源互相衝突，或想修改第三方資源的某些屬性，就需要用tools:replace處理)
+    (這裡應該是用來修改主題屬性)
+    -->
     <application
         android:name=".AegisApplication"
         android:allowBackup="true"
@@ -20,7 +35,7 @@
         android:fullBackupContent="@xml/backup_rules"
         android:backupAgent=".AegisBackupAgent"
         android:icon="@mipmap/${iconName}"
-        android:label="Aegis"
+        android:label="MyOTP"
         android:supportsRtl="true"
         android:theme="@style/Theme.Aegis.Launch"
         tools:replace="android:theme">

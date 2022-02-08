@@ -61,7 +61,7 @@ public class AegisApplication extends Application { //J:繼承android.app.Applic
     @Override
     public void onCreate() {
         super.onCreate();   //J:super存取父類別的函數(因為前面override，如果沒有super，則都要重寫)
-        _prefs = new Preferences(this);
+        _prefs = new Preferences(this); // J:Constructure 建立 _prefs 物件
         _lockListeners = new ArrayList<>();
         _iconPackManager = new IconPackManager(this);
 
@@ -132,12 +132,14 @@ public class AegisApplication extends Application { //J:繼承android.app.Applic
      * Initializes the vault manager with the given vault and creds. This removes the
      * internal reference to the raw vault file.
      */
+    // J:初始化VaultManager 物件 _manager，並返回 _manager
     public VaultManager initVaultManager(Vault vault, VaultFileCredentials creds) {
         _vaultFile = null;
         _manager = new VaultManager(this, vault, creds);
         return _manager;
     }
 
+    // J:回傳 _manager(VaultManager物件)
     public VaultManager getVaultManager() {
         return _manager;
     }
