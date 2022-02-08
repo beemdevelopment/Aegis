@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.beemdevelopment.aegis"> <!-- J: 每一個應用程式都必須定義一個與目前整個「Google Play商店」中上架的APP不重複的package名稱-->
+    package="com.beemdevelopment.aegis">
+    <!-- J: 每一個應用程式都必須定義一個與目前整個「Google Play商店」中上架的APP不重複的package名稱-->
 
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.USE_BIOMETRIC" />
@@ -34,7 +35,6 @@
     >> 像是Pixel 2 API 30(1080 x 1920) : 3.0 xxhdpi
     @drawable(Aegis\app\src\main\res底下資料夾):
     放app中要使用的圖片
-
 
     android:label="MyOTP" (App名稱)
     android:supportsRtl="true" (right-to-left設定，設定app由左到右)
