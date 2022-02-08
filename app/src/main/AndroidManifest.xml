@@ -32,9 +32,10 @@
     mipmap-xxhdpi	144 * 144
     mipmap-xxxhdpi	192 * 192
     >> 需查手機dpi，每支手機的dpi不同(跟螢幕大小有關)，可以在AVD manager找
-    >> 像是Pixel 2 API 30(1080 x 1920) : 3.0 xxhdpi
+    >> 像是Pixel 2 API 30(1080 x 1920) : 2.6 xxhdpi
     @drawable(Aegis\app\src\main\res底下資料夾):
     放app中要使用的圖片
+    要改app icon要去drawable改(Aegis\app\src\main\res\drawable\app_icon.png)
 
     android:label="MyOTP" (App名稱)
     android:supportsRtl="true" (right-to-left設定，設定app由左到右)
