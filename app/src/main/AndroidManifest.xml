@@ -17,11 +17,25 @@
     android.name : ".AegisApplication"
     (類別名稱，AegisApplication class，本來應該寫成com.beemdevelopment.aegis.AegisApplication
     但是只要在類別名稱前加上小數點，就會自動補齊這個專案的package名稱)
+
     android:allowBackup="true" (允許應用備份)
     android:fullBackupOnly="true" (是否在設備上自動備份)
     android:fullBackupContent="@xml/backup_rules" (指向一個有完整備份規則的xml文件，這些規則決定備份那些文件)
     android:backupAgent=".AegisBackupAgent" (實現應用備份代理的類別名稱，AegisBackAgent.java class)
     android:icon="@mipmap/${iconName}" (icon設置)
+    @mipmap(Aegis\app\src\main\res底下資料夾):
+    lauch icon存放位置(mip處理不會有放大鋸齒狀問題)
+    mipmap-mdpi	48 * 48
+    mipmap-hdpi	72 * 72
+    mipmap-xhdpi	96 * 96
+    mipmap-xxhdpi	144 * 144
+    mipmap-xxxhdpi	192 * 192
+    >> 需查手機dpi，每支手機的dpi不同(跟螢幕大小有關)，可以在AVD manager找
+    >> 像是Pixel 2 API 30(1080 x 1920) : 3.0 xxhdpi
+    @drawable(Aegis\app\src\main\res底下資料夾):
+    放app中要使用的圖片
+
+
     android:label="MyOTP" (App名稱)
     android:supportsRtl="true" (right-to-left設定，設定app由左到右)
     android:theme="@style/Theme.Aegis.Launch" (主題)
