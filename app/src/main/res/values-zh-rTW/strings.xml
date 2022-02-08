@@ -19,7 +19,7 @@
     <string name="pref_section_appearance_title">外觀</string>
     <string name="pref_section_security_title">安全性</string>
     <string name="pref_section_import_export_title">匯入 &amp; 匯出</string>
-    <string name="pref_section_import_export_summary">匯入 Aegis 或其他驗證程式的備份檔。或手動匯出 Aegis 保險箱。</string>
+    <string name="pref_section_import_export_summary">匯入 MyOTP 或其他驗證程式的備份檔。或手動匯出 MyOTP 保險箱。</string>
     <string name="pref_section_backups_title">備份</string>
     <string name="pref_select_theme_title">主題</string>
     <string name="pref_view_mode_title">檢視模式</string>
@@ -35,7 +35,7 @@
     <string name="pref_import_file_title">從檔案匯入</string>
     <string name="pref_import_file_summary">從檔案匯入憑證</string>
     <string name="pref_android_backups_title">使用 Android 的備份系統</string>
-    <string name="pref_android_backups_summary">允許 Android 的備份系統主動納入 Aegis 的保險箱。僅適用於已加密的保險箱。</string>
+    <string name="pref_android_backups_summary">允許 Android 的備份系統主動納入 MyOTP 的保險箱。僅適用於已加密的保險箱。</string>
     <string name="pref_backups_title">自動備份保險箱</string>
     <string name="pref_backups_summary">自動於外部儲存裝置上建立保險箱的備份。僅支援已加密的保險箱。</string>
     <string name="pref_backups_location_title">備份檔案的目錄</string>
@@ -60,7 +60,7 @@
     <string name="pref_auto_lock_title">自動鎖定</string>
     <string name="pref_auto_lock_summary">當 %s</string>
     <string name="pref_auto_lock_summary_disabled">已禁用</string>
-    <string name="pref_auto_lock_prompt">自動鎖定 Aegis 的時機是</string>
+    <string name="pref_auto_lock_prompt">自動鎖定 MyOTP 的時機是</string>
     <string name="pref_auto_lock_type_back_button">返回按鈕已按下</string>
     <string name="pref_auto_lock_type_minimize">最小化應用程式</string>
     <string name="pref_auto_lock_type_device_lock">裝置已鎖定</string>
@@ -71,13 +71,13 @@
     <string name="pref_set_password_title">更改密碼</string>
     <string name="pref_set_password_summary">為保險箱設定新解鎖密碼</string>
     <string name="export_encrypted">加密保險箱</string>
-    <string name="export_help">將匯出保險箱至 Aegis 隱藏磁區外的位址，請選擇欲匯出的格式：</string>
-    <string name="export_warning_unencrypted">即將匯出未加密的 Aegis 保險箱。<b>不建議</b></string>
+    <string name="export_help">將匯出保險箱至 MyOTP 隱藏磁區外的位址，請選擇欲匯出的格式：</string>
+    <string name="export_warning_unencrypted">即將匯出未加密的 MyOTP 保險箱。<b>不建議</b></string>
     <string name="export_warning_accept">我瞭解相關風險</string>
-    <string name="export_format_aegis">Aegis (.JSON)</string>
+    <string name="export_format_aegis">Aegis (.JSON)</string> <!--  J: 需要對匯入檔案的程式碼進行研究 -->
     <string name="export_format_google_auth_uri">純文字檔案 (.TXT)</string>
     <string name="choose_authentication_method">安全</string>
-    <string name="authentication_method_explanation">Aegis 是一款安全第一的雙重認證（2FA）應用程式。憑證儲存於特殊的保險箱檔案中，此保險箱可依照使用者的設定以密碼金鑰加密。就算駭客取得了被加密的保險箱檔案，他們也無法在不知道密碼的情況下取得內含的憑證。 \n\n我們已預先為您的裝置選擇了我們認為最適合的選項。</string>
+    <string name="authentication_method_explanation">MyOTP 是一款安全第一的雙重認證（2FA）應用程式。憑證儲存於特殊的保險箱檔案中，此保險箱可依照使用者的設定以密碼金鑰加密。就算駭客取得了被加密的保險箱檔案，他們也無法在不知道密碼的情況下取得內含的憑證。 \n\n我們已預先為您的裝置選擇了我們認為最適合的選項。</string>
     <string name="authentication_method_none">沒有</string>
     <string name="authentication_method_none_description">保險箱並未上鎖也未加密。 <b>不建議使用此選項</b>。</string>
     <string name="authentication_method_password">密碼</string>
@@ -97,7 +97,7 @@
     <string name="set_password_confirm">請確認密碼</string>
     <string name="invalid_password">密碼錯誤</string>
     <string name="password_reminder">您已經有一段時間沒有輸入密碼了。您還記得您的密碼嗎？</string>
-    <string name="enter_password_authy_message">您的似乎已加密 Authy 驗證碼。請關閉 Aegis，打開 Authy，然後使用您的密碼解鎖憑證。另外，如果您在下方輸入 Authy 的解密密碼，Aegis 也可以嘗試為您解密 Authy 憑證。</string>
+    <string name="enter_password_authy_message">您的似乎已加密 Authy 驗證碼。請關閉 MyOTP，打開 Authy，然後使用您的密碼解鎖憑證。另外，如果您在下方輸入 Authy 的解密密碼，MyOTP 也可以嘗試為您解密 Authy 憑證。</string>
     <string name="period_hint">長度（秒）</string>
     <string name="algorithm_hint">雜湊函數</string>
     <string name="type">類型</string>
@@ -117,7 +117,7 @@
     <string name="add_biometric_slot">新增生物識別位</string>
     <string name="set_up_biometric">設置生物識別解鎖</string>
     <string name="add_password">新增密碼</string>
-    <string name="slots_warning">您的私密檔案僅透過保險箱上輕薄的一層驗證保護。是以為了維護您的隱私，當您更改了裝置上的生物識別驗證機制時，我們將停用 Aegis 上的此驗證方式，請手動重新啟用。</string>
+    <string name="slots_warning">您的私密檔案僅透過保險箱上輕薄的一層驗證保護。是以為了維護您的隱私，當您更改了裝置上的生物識別驗證機制時，我們將停用 MyOTP 上的此驗證方式，請手動重新啟用。</string>
     <string name="copy">複製</string>
     <string name="edit">編輯</string>
     <string name="delete">刪除</string>
@@ -145,9 +145,9 @@
     <string name="tap_to_select">輕觸以選擇</string>
     <string name="saving_profile_error">保存設定文件時發生錯誤</string>
     <string name="welcome">歡迎使用</string>
-    <string name="app_description">Aegis 是一款免費，安全和開源的雙重認證（2FA）應用程式</string>
+    <string name="app_description">MyOTP 是一款免費，安全和開源的雙重認證（2FA）應用程式</string>
     <string name="setup_completed">設置完成</string>
-    <string name="setup_completed_description">Aegis設置完成，可以開始使用了。</string>
+    <string name="setup_completed_description">MyOTP設置完成，可以開始使用了。</string>
     <string name="vault_not_found">保險箱不存在，開始設定…</string>
     <string name="copied">已複製</string>
     <string name="errors_copied">錯誤已複製到剪貼板</string>
@@ -158,8 +158,8 @@
     <string name="saving_error">儲存保險箱時發生錯誤</string>
     <string name="vault_init_error">初始化保險箱時發生錯誤</string>
     <string name="vault_load_error">從儲存空間讀取保險箱時發生錯誤</string>
-    <string name="biometric_decrypt_error">使用生物特徵驗證對保險箱進行解密時發生錯誤。通常發生在您更改設備的安全設定後。請使用您的密碼解鎖保險箱，然後在 Aegis 的設定中重新設定生物驗證選項。</string>
-    <string name="biometric_init_error">準備使用生物特徵驗證時發生錯誤。通常發生在您更改設備的安全設定後。請使用您的密碼解鎖保險箱，然後在 Aegis 的設定中重新設定生物驗證選項。</string>
+    <string name="biometric_decrypt_error">使用生物特徵驗證對保險箱進行解密時發生錯誤。通常發生在您更改設備的安全設定後。請使用您的密碼解鎖保險箱，然後在 MyOTP 的設定中重新設定生物驗證選項。</string>
+    <string name="biometric_init_error">準備使用生物特徵驗證時發生錯誤。通常發生在您更改設備的安全設定後。請使用您的密碼解鎖保險箱，然後在 MyOTP 的設定中重新設定生物驗證選項。</string>
     <string name="disable_encryption">禁用加密</string>
     <string name="disable_encryption_description">確定要停用加密嗎？此舉將使保險箱以明文儲存。<b>同時將停用自動備份</b>。</string>
     <string name="enable_encryption_error">啟用加密時出錯</string>
@@ -233,7 +233,7 @@
     <string name="unknown_issuer">未知的服務商</string>
     <string name="unknown_account_name">未知帳戶</string>
     <plurals name="import_error_dialog">
-        <item quantity="other">Aegis 已忽略無法匯入的 %d 個憑證。如欲了解更詳細的錯誤訊息，請按「詳細內容」。</item>
+        <item quantity="other">MyOTP 已忽略無法匯入的 %d 個憑證。如欲了解更詳細的錯誤訊息，請按「詳細內容」。</item>
     </plurals>
     <string name="unable_to_read_qrcode">無法讀取和處理QR碼</string>
     <string name="unable_to_generate_qrcode">無法生成QR碼</string>
@@ -242,16 +242,16 @@
     <string name="toggle_checkboxes">切換複選框</string>
     <string name="search">搜尋</string>
     <string name="channel_name_lock_status">鎖定狀態</string>
-    <string name="channel_description_lock_status">Aegis 可以常駐通知顯示保險箱鎖定中</string>
+    <string name="channel_description_lock_status">MyOTP 可以常駐通知顯示保險箱鎖定中</string>
     <string name="vault_unlocked_state">保險箱已解鎖，輕觸此處再次鎖定。</string>
     <string name="version">版本</string>
     <string name="changelog">更新日誌</string>
     <string name="whats_new">有什麼新鮮事</string>
     <string name="github_description">源代碼、議題和訊息</string>
     <string name="license">授權協議</string>
-    <string name="license_description">Aegis 驗證程式以 GPLv3 授權協議釋出。</string>
+    <string name="license_description">MyOTP 驗證程式以 GPLv3 授權協議釋出。</string>
     <string name="third_party_licenses">第三方授權條款</string>
-    <string name="third_party_licenses_description">Aegis 所使用的第三方函式庫及其授權協議</string>
+    <string name="third_party_licenses_description">MyOTP 所使用的第三方函式庫及其授權協議</string>
     <string name="country_netherlands">荷蘭</string>
     <string name="email_us">發送電子郵件</string>
     <string name="visit_website">訪問我們的網站</string>
@@ -304,6 +304,6 @@
     <string name="pref_panic_trigger_summary">從 Ripple 收到危急指令時刪除保險箱</string>
     <string name="importer_help_authy">提供 Authy 副本，位於內部儲存空間的 <b>/data/data/com.authy.authy/shared_prefs/com.authy.storage.tokens.authenticator.xml</b>。</string>
     <string name="importer_help_freeotp">提供 FreeOTP 副本，位於內部儲存空間的 <b>/data/data/org.fedorahosted.freeotp/shared_prefs/tokens.xml</b>。</string>
-    <string name="importer_help_direct">直接從 %s 匯入列表。需已安裝該應用程式且 Aegis 擁有系統管理員權限。</string>
+    <string name="importer_help_direct">直接從 %s 匯入列表。需已安裝該應用程式且 MyOTP 擁有系統管理員權限。</string>
     <string name="groups">群組</string>
 </resources>
