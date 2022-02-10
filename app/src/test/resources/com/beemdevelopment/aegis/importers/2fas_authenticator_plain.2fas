@@ -1,0 +1,76 @@
+{
+  "services": [
+    {
+      "name": "Deno",
+      "secret": "4SJHB4GSD43FZBAI7C2HLRJGPQ",
+      "updatedAt": 1644513743278,
+      "type": "Unknown",
+      "otp": {
+        "label": "Deno:Mason",
+        "account": "Mason",
+        "issuer": "Deno",
+        "digits": 6,
+        "period": 30,
+        "algorithm": "SHA1"
+      },
+      "order": {
+        "position": 0
+      }
+    },
+    {
+      "name": "Airbnb",
+      "secret": "7ELGJSGXNCCTV3O6LKJWYFV2RA",
+      "updatedAt": 1644513778354,
+      "type": "Unknown",
+      "otp": {
+        "label": "Airbnb:Elijah",
+        "account": "Elijah",
+        "issuer": "Airbnb",
+        "digits": 8,
+        "period": 50,
+        "algorithm": "SHA512"
+      },
+      "order": {
+        "position": 1
+      }
+    },
+    {
+      "name": "Issuu",
+      "secret": "YOOMIXWS5GN6RTBPUFFWKTW5M4",
+      "updatedAt": 1644513786834,
+      "type": "Unknown",
+      "otp": {
+        "label": "Issuu:James",
+        "account": "James",
+        "issuer": "Issuu",
+        "digits": 6,
+        "algorithm": "SHA1"
+      },
+      "order": {
+        "position": 2
+      }
+    },
+    {
+      "name": "WWE",
+      "secret": "5VAML3X35THCEBVRLV24CGBKOY",
+      "updatedAt": 1644513801596,
+      "type": "Unknown",
+      "otp": {
+        "label": "WWE:Mason",
+        "account": "Mason",
+        "issuer": "WWE",
+        "digits": 8,
+        "algorithm": "SHA512"
+      },
+      "order": {
+        "position": 3
+      }
+    }
+  ],
+  "updatedAt": 1644513857707,
+  "schemaVersion": 2,
+  "appVersionCode": 3080200,
+  "appVersionName": "3.8.2",
+  "appOrigin": "android",
+  "groups": []
+}
