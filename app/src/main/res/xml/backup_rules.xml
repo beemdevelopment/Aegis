@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<full-backup-content>
-    <include domain="sharedpref" path="."/>
-    <include domain="file" path="backup/aegis.json"/>
-</full-backup-content>
+<data-extraction-rules>
+    <cloud-backup>
+        <include domain="sharedpref" path="."/>
+        <include domain="file" path="backup/aegis.json"/>
+    </cloud-backup>
+    <device-transfer>
+        <include domain="sharedpref" path="."/>
+        <include domain="file" path="backup/aegis.json"/>
+    </device-transfer>
+</data-extraction-rules>
