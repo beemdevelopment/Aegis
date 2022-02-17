@@ -8,6 +8,7 @@ concurrency: "crowdin-upload-${{ github.ref }}"
 jobs:
   upload-sources:
     runs-on: ubuntu-latest
+    if: github.repository == 'beemdevelopment/Aegis'
     steps:
       - uses: actions/checkout@v2
       - name: Install crowdin-cli
