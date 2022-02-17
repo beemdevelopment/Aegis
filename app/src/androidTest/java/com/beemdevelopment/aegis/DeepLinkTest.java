@@ -1,5 +1,10 @@
 package com.beemdevelopment.aegis;
 
+import static androidx.test.espresso.Espresso.onView;
+import static androidx.test.espresso.action.ViewActions.click;
+import static androidx.test.espresso.matcher.ViewMatchers.withId;
+import static junit.framework.TestCase.assertTrue;
+
 import android.content.Intent;
 import android.net.Uri;
 
@@ -16,14 +21,9 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import static androidx.test.espresso.Espresso.onView;
-import static androidx.test.espresso.action.ViewActions.click;
-import static androidx.test.espresso.matcher.ViewMatchers.withId;
-import static junit.framework.TestCase.assertTrue;
-
 @RunWith(AndroidJUnit4.class)
 @LargeTest
-public class IntentTest extends AegisTest {
+public class DeepLinkTest extends AegisTest {
     @Before
     public void before() {
         initVault();

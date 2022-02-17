@@ -9,15 +9,13 @@ import android.preference.PreferenceManager;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Collections;
-
-import org.json.JSONObject;
-
 import java.util.Date;
-import java.util.List;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.UUID;
@@ -61,6 +59,10 @@ public class Preferences {
 
     public boolean isPanicTriggerEnabled() {
         return _prefs.getBoolean("pref_panic_trigger", false);
+    }
+
+    public void setIsPanicTriggerEnabled(boolean enabled) {
+        _prefs.edit().putBoolean("pref_panic_trigger", enabled).apply();
     }
 
     public boolean isSecureScreenEnabled() {
