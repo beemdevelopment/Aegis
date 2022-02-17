@@ -56,7 +56,6 @@
     <string name="pref_export_title">Експортиране</string>
     <string name="pref_export_summary">Експортирайте трезора</string>
     <string name="pref_password_reminder_title">Напомняне за парола</string>
-    <string name="pref_password_reminder_summary">Показвайте напомняне за въвеждане на паролата от време на време, за да не я забравите.</string>
     <string name="pref_secure_screen_title">Сигурност на екрана</string>
     <string name="pref_secure_screen_summary">Блокирайте екранни снимки и други опити за заснемане на екрана в приложението</string>
     <string name="pref_tap_to_reveal_title">Докоснете, за да разкриете</string>

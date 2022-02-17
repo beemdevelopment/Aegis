@@ -62,7 +62,6 @@
     <string name="pref_export_title">Εξαγωγή</string>
     <string name="pref_export_summary">Εξαγωγή κρύπτης</string>
     <string name="pref_password_reminder_title">Υπενθύμιση κωδικού</string>
-    <string name="pref_password_reminder_summary">Προβολή υπενθύμισης για εισαγωγή κωδικού περιστασιακά, έτσι ώστε να μην τον ξεχάσετε.</string>
     <string name="pref_secure_screen_title">Ασφάλεια οθόνης</string>
     <string name="pref_secure_screen_summary">Αποκλεισμός στιγμιότυπων οθόνης και άλλων προσπαθειών για καταγραφή της οθόνης μέσα στην εφαρμογή</string>
     <string name="pref_tap_to_reveal_title">Πατήστε για εμφάνιση</string>

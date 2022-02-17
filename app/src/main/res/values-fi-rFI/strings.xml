@@ -61,7 +61,6 @@
     <string name="pref_export_title">Vie</string>
     <string name="pref_export_summary">Vie holvi</string>
     <string name="pref_password_reminder_title">Salasanamuistutus</string>
-    <string name="pref_password_reminder_summary">Muistuttaa sinua silloin tällöin syöttämään salasanasi, jottet unohda sitä.</string>
     <string name="pref_secure_screen_title">Näyttöturvallisuus</string>
     <string name="pref_secure_screen_summary">Estä kuvakaappaukset ja muut yritykset tallentaa näyttöä sovelluksen ollessa käytössä</string>
     <string name="pref_tap_to_reveal_title">Paljasta napauttamalla</string>

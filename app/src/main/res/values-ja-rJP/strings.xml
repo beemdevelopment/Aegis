@@ -61,7 +61,6 @@
     <string name="pref_export_title">エクスポート</string>
     <string name="pref_export_summary">保管庫をエクスポート</string>
     <string name="pref_password_reminder_title">パスワードを忘れた場合</string>
-    <string name="pref_password_reminder_summary">パスワードを忘れないように、時々パスワードを入力するリマインダーを表示します。</string>
     <string name="pref_secure_screen_title">画面のセキュリティ</string>
     <string name="pref_secure_screen_summary">アプリ内でスクリーンショットやその他のキャプチャをブロックする</string>
     <string name="pref_tap_to_reveal_title">タップして表示</string>

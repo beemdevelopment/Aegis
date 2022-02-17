@@ -62,7 +62,6 @@
     <string name="pref_export_title">Export</string>
     <string name="pref_export_summary">Eksportér Boksen</string>
     <string name="pref_password_reminder_title">Adgangskodepåmindelse</string>
-    <string name="pref_password_reminder_summary">Vis en gang imellem en påmindelse om at angive adgangskoden, så den ikke glemmes.</string>
     <string name="pref_secure_screen_title">Skærmsikkerhed</string>
     <string name="pref_secure_screen_summary">Blokér skærmfotos og andre forsøg på at optage skærmen inde i appen</string>
     <string name="pref_tap_to_reveal_title">Tryk for at vise</string>

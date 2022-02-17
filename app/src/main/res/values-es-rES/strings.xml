@@ -62,7 +62,6 @@
     <string name="pref_export_title">Exportar</string>
     <string name="pref_export_summary">Exportar la bóveda</string>
     <string name="pref_password_reminder_title">Recordatorio de contraseña</string>
-    <string name="pref_password_reminder_summary">Muestra un recordatorio para introducir la contraseña de vez en cuando, para que no la olvide</string>
     <string name="pref_secure_screen_title">Seguridad en pantalla</string>
     <string name="pref_secure_screen_summary">Bloquea las capturas de pantalla y otros intentos de captura dentro de la aplicación</string>
     <string name="pref_tap_to_reveal_title">Pulsar para mostrar</string>

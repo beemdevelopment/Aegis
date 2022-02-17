@@ -1,5 +1,7 @@
 package com.beemdevelopment.aegis.ui.fragments;
 
+import static android.text.TextUtils.isDigitsOnly;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,6 +16,7 @@ import androidx.preference.Preference;
 import androidx.preference.SwitchPreferenceCompat;
 
 import com.beemdevelopment.aegis.BuildConfig;
+import com.beemdevelopment.aegis.PassReminderFreq;
 import com.beemdevelopment.aegis.Preferences;
 import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.crypto.KeyStoreHandle;
@@ -21,8 +24,8 @@ import com.beemdevelopment.aegis.crypto.KeyStoreHandleException;
 import com.beemdevelopment.aegis.helpers.BiometricSlotInitializer;
 import com.beemdevelopment.aegis.helpers.BiometricsHelper;
 import com.beemdevelopment.aegis.services.NotificationService;
-import com.beemdevelopment.aegis.ui.dialogs.Dialogs;
 import com.beemdevelopment.aegis.ui.SlotManagerActivity;
+import com.beemdevelopment.aegis.ui.dialogs.Dialogs;
 import com.beemdevelopment.aegis.ui.preferences.SwitchPreference;
 import com.beemdevelopment.aegis.ui.tasks.PasswordSlotDecryptTask;
 import com.beemdevelopment.aegis.vault.VaultFileCredentials;
@@ -33,11 +36,10 @@ import com.beemdevelopment.aegis.vault.slots.Slot;
 import com.beemdevelopment.aegis.vault.slots.SlotException;
 import com.beemdevelopment.aegis.vault.slots.SlotList;
 
+import java.util.Arrays;
 import java.util.List;
 
 import javax.crypto.Cipher;
-
-import static android.text.TextUtils.isDigitsOnly;
 
 public class SecurityPreferencesFragment extends PreferencesFragment {
     private SwitchPreference _encryptionPreference;
@@ -231,7 +233,28 @@ public class SecurityPreferencesFragment extends PreferencesFragment {
             return false;
         });
 
-        _passwordReminderPreference = findPreference("pref_password_reminder");
+        _passwordReminderPreference = findPreference("pref_password_reminder_freq");
+        _passwordReminderPreference.setSummary(getPasswordReminderSummary());
+        _passwordReminderPreference.setOnPreferenceClickListener((preference) -> {
+            final PassReminderFreq currFreq = getPreferences().getPasswordReminderFrequency();
+            final PassReminderFreq[] items = PassReminderFreq.values();
+            final String[] textItems = Arrays.stream(items)
+                    .map(f -> getString(f.getStringRes()))
+                    .toArray(String[]::new);
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity())
+                    .setTitle(R.string.pref_password_reminder_title)
+                    .setSingleChoiceItems(textItems, currFreq.ordinal(), (dialog, which) -> {
+                        int i = ((AlertDialog) dialog).getListView().getCheckedItemPosition();
+                        PassReminderFreq freq = PassReminderFreq.fromInteger(i);
+                        getPreferences().setPasswordReminderFrequency(freq);
+                        _passwordReminderPreference.setSummary(getPasswordReminderSummary());
+                        dialog.dismiss();
+                    })
+                    .setNegativeButton(android.R.string.cancel, null);
+            Dialogs.showSecureDialog(builder.create());
+            return false;
+        });
     }
 
     @Override
@@ -279,6 +302,16 @@ public class SecurityPreferencesFragment extends PreferencesFragment {
             _slotsPreference.setVisible(false);
             _passwordReminderPreference.setVisible(false);
         }
+    }
+
+    private String getPasswordReminderSummary() {
+        PassReminderFreq freq = getPreferences().getPasswordReminderFrequency();
+        if (freq == PassReminderFreq.NEVER) {
+            return getString(R.string.pref_password_reminder_summary_disabled);
+        }
+
+        String freqString = getString(freq.getStringRes()).toLowerCase();
+        return getString(R.string.pref_password_reminder_summary, freqString);
     }
 
     private String getAutoLockSummary() {

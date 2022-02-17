@@ -62,7 +62,6 @@
     <string name="pref_export_title">Dışarıya aktar</string>
     <string name="pref_export_summary">Kasayı dışarıya aktar</string>
     <string name="pref_password_reminder_title">Parola hatırlatma</string>
-    <string name="pref_password_reminder_summary">Parolayı periyodik olarak girmem için bir hatırlatma göster ki bu sayede unutmayayım</string>
     <string name="pref_secure_screen_title">Ekran güvenliği</string>
     <string name="pref_secure_screen_summary">Uygulama içindeyken ekran görüntüsü almayı ve diğer ekran yakalama girişimlerini engelle.</string>
     <string name="pref_tap_to_reveal_title">Görmek için dokunun</string>

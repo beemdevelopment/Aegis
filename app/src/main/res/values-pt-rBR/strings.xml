@@ -62,7 +62,6 @@
     <string name="pref_export_title">Exportar</string>
     <string name="pref_export_summary">Exporta o cofre</string>
     <string name="pref_password_reminder_title">Lembrete de senha</string>
-    <string name="pref_password_reminder_summary">Exibe um lembrete para inserir a senha de vez em quando, para que você não a esqueça.</string>
     <string name="pref_secure_screen_title">Segurança de tela</string>
     <string name="pref_secure_screen_summary">Bloqueia screenshots e outras tentativas de capturar a tela dentro do app</string>
     <string name="pref_tap_to_reveal_title">Tocar para exibir</string>

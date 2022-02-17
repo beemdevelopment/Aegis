@@ -63,7 +63,6 @@
     <string name="pref_export_title">Exportă</string>
     <string name="pref_export_summary">Exportă seiful</string>
     <string name="pref_password_reminder_title">Reamintire parolă</string>
-    <string name="pref_password_reminder_summary">Arată un memento pentru a introduce parola o dată la un interval de timp pentru nu o uita.</string>
     <string name="pref_secure_screen_title">Securitatea ecranului</string>
     <string name="pref_secure_screen_summary">Blochează capturile de ecran și alte încercări de a captura ecranul în cadrul aplicației</string>
     <string name="pref_tap_to_reveal_title">Atinge pentru a descoperi</string>

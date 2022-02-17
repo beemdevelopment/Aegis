@@ -64,7 +64,6 @@
     <string name="pref_export_title">Exportovat</string>
     <string name="pref_export_summary">Exportovat trezor</string>
     <string name="pref_password_reminder_title">Připomenutí hesla</string>
-    <string name="pref_password_reminder_summary">Jednou za čas zobrazit výzvu pro zadání hesla, abyste ho nezapomněli.</string>
     <string name="pref_secure_screen_title">Zabezpečení obrazovky</string>
     <string name="pref_secure_screen_summary">Blokovat snímky obrazovky a další pokusy o zachycení obrazovky v rámci aplikace</string>
     <string name="pref_tap_to_reveal_title">Zobrazit klepnutím</string>

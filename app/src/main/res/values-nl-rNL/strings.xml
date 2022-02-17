@@ -62,7 +62,6 @@
     <string name="pref_export_title">Exporteren</string>
     <string name="pref_export_summary">Exporteer de kluis</string>
     <string name="pref_password_reminder_title">Wachtwoordherinnering</string>
-    <string name="pref_password_reminder_summary">Toon een herinnering om het wachtwoord af en toe in te voeren, zodat je deze niet vergeet.</string>
     <string name="pref_secure_screen_title">Schermbeveiliging</string>
     <string name="pref_secure_screen_summary">Blokkeer screenshots en andere pogingen tot schermopnamen binnen deze app</string>
     <string name="pref_tap_to_reveal_title">Aantikken om te laten zien</string>

@@ -68,7 +68,8 @@
     <string name="pref_export_title">Export</string>
     <string name="pref_export_summary">Export the vault</string>
     <string name="pref_password_reminder_title">Password reminder</string>
-    <string name="pref_password_reminder_summary">Show a reminder to enter the password every once in a while, so that you don\'t forget it.</string>
+    <string name="pref_password_reminder_summary">Show a %s reminder to enter the password, so that you don\'t forget it.</string>
+    <string name="pref_password_reminder_summary_disabled">Disabled</string>
     <string name="pref_secure_screen_title">Screen security</string>
     <string name="pref_secure_screen_summary">Block screenshots and other attempts to capture the screen within the app</string>
     <string name="pref_tap_to_reveal_title">Tap to reveal</string>
@@ -120,6 +121,11 @@
     <string name="invalid_password">The password is incorrect</string>
     <string name="invalidated_biometrics">A change in your device\'s security settings has been detected. Please go to \"Aegis -> Settings -> Security -> Biometric unlock\" to disable and re-enable biometric unlock.</string>
     <string name="password_reminder">Please enter your password. We occasionally ask you to do this so that don\'t forget it.</string>
+    <string name="password_reminder_freq_never">Never</string>
+    <string name="password_reminder_freq_weekly">Weekly</string>
+    <string name="password_reminder_freq_biweekly">Biweekly</string>
+    <string name="password_reminder_freq_monthly">Monthly</string>
+    <string name="password_reminder_freq_quarterly">Quarterly</string>
     <string name="enter_password_2fas_message">It looks like this 2FAS backup is encrypted. Please enter the password below.</string>
     <string name="enter_password_authy_message">It looks like your Authy tokens are encrypted. Please close Aegis, open Authy and unlock the tokens with your password. Instead, Aegis can also attempt to decrypt your Authy tokens for you, if you enter your password below.</string>
     <string name="enter_password_aegis_title">Please enter the import password</string>

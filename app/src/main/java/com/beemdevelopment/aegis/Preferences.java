@@ -19,7 +19,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.UUID;
-import java.util.concurrent.TimeUnit;
 
 public class Preferences {
     public static final int AUTO_LOCK_OFF = 1 << 0;
@@ -70,22 +69,44 @@ public class Preferences {
         return _prefs.getBoolean("pref_secure_screen", !BuildConfig.DEBUG);
     }
 
-    public boolean isPasswordReminderEnabled() {
-        return _prefs.getBoolean("pref_password_reminder", true);
+    public PassReminderFreq getPasswordReminderFrequency() {
+        final String key = "pref_password_reminder_freq";
+        if (_prefs.contains(key) || _prefs.getBoolean("pref_password_reminder", true)) {
+            int i = _prefs.getInt(key, PassReminderFreq.BIWEEKLY.ordinal());
+            return PassReminderFreq.fromInteger(i);
+        }
+
+        return PassReminderFreq.NEVER;
+    }
+
+    public void setPasswordReminderFrequency(PassReminderFreq freq) {
+        _prefs.edit().putInt("pref_password_reminder_freq", freq.ordinal()).apply();
     }
 
     public boolean isPasswordReminderNeeded() {
-        long diff = new Date().getTime() - getPasswordReminderTimestamp().getTime();
-        long days = TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);
-        return isPasswordReminderEnabled() && days >= 30;
+        return isPasswordReminderNeeded(new Date().getTime());
+    }
+
+    boolean isPasswordReminderNeeded(long currTime) {
+        PassReminderFreq freq = getPasswordReminderFrequency();
+        if (freq == PassReminderFreq.NEVER) {
+            return false;
+        }
+
+        long duration = currTime - getPasswordReminderTimestamp().getTime();
+        return duration >= freq.getDurationMillis();
     }
 
     public Date getPasswordReminderTimestamp() {
         return new Date(_prefs.getLong("pref_password_reminder_counter", 0));
     }
 
+    void setPasswordReminderTimestamp(long timestamp) {
+        _prefs.edit().putLong("pref_password_reminder_counter", timestamp).apply();
+    }
+
     public void resetPasswordReminderTimestamp() {
-        _prefs.edit().putLong("pref_password_reminder_counter", new Date().getTime()).apply();
+        setPasswordReminderTimestamp(new Date().getTime());
     }
 
     public boolean isAccountNameVisible() {
@@ -325,4 +346,5 @@ public class Preferences {
             return Collections.emptyList();
         }
     }
+
 }

@@ -64,7 +64,6 @@
     <string name="pref_export_title">Экспорт в файл</string>
     <string name="pref_export_summary">Экспорт хранилища</string>
     <string name="pref_password_reminder_title">Напоминание о пароле</string>
-    <string name="pref_password_reminder_summary">Показывать иногда напоминание с просьбой ввести пароль, чтобы вы не забыли его</string>
     <string name="pref_secure_screen_title">Безопасность экрана</string>
     <string name="pref_secure_screen_summary">Блокировка снимков экрана и других попыток захвата экрана в приложении</string>
     <string name="pref_tap_to_reveal_title">Отображение по нажатию</string>

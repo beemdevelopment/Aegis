@@ -62,7 +62,6 @@
     <string name="pref_export_title">Esportatu</string>
     <string name="pref_export_summary">Esportatu biltegia</string>
     <string name="pref_password_reminder_title">Pasahitza gogoan izan</string>
-    <string name="pref_password_reminder_summary">Pasahitza tarteka sartzeko gogorarazlea erakusten du, ahaztu ez dezazun.</string>
     <string name="pref_secure_screen_title">Pantaila segurtasuna</string>
     <string name="pref_secure_screen_summary">Blokeatu pantaila-argazkiak eta beste saiakera batzuk aplikazioaren barruan pantaila kapturatzeko</string>
     <string name="pref_tap_to_reveal_title">Sakatu erakusteko</string>

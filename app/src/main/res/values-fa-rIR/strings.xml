@@ -55,7 +55,6 @@
     <string name="pref_export_title">صادر کردن</string>
     <string name="pref_export_summary">صادر کردن مخزن</string>
     <string name="pref_password_reminder_title">یادآوری کلمه عبور</string>
-    <string name="pref_password_reminder_summary">نمایش یادآور برای وارد کردن کلمه عبور. در این صورت کلمه عبور خود را فراموش نمی‌کنید.</string>
     <string name="pref_secure_screen_title">امنیت صفحه</string>
     <string name="pref_secure_screen_summary">عدم امکان گرفتن اسکرین شات در برنامه</string>
     <string name="pref_tap_to_reveal_title">نمایش هنگام لمس</string>

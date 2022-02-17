@@ -51,7 +51,6 @@
     <string name="pref_export_title">匯出</string>
     <string name="pref_export_summary">匯出保險箱</string>
     <string name="pref_password_reminder_title">密碼提醒</string>
-    <string name="pref_password_reminder_summary">每隔一段時間提醒您輸入一次密碼，以免忘記密碼</string>
     <string name="pref_secure_screen_title">螢幕安全性</string>
     <string name="pref_secure_screen_summary">禁止螢幕截圖，以及阻止其他擷取程式畫面的嘗試。</string>
     <string name="pref_tap_to_reveal_title">輕觸以顯示</string>

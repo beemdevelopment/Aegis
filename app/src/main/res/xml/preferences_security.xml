@@ -26,9 +26,8 @@
             android:persistent="false"
             app:iconSpaceReserved="false"/>
 
-        <androidx.preference.SwitchPreferenceCompat
-            android:defaultValue="true"
-            android:key="pref_password_reminder"
+        <Preference
+            android:key="pref_password_reminder_freq"
             android:title="@string/pref_password_reminder_title"
             android:summary="@string/pref_password_reminder_summary"
             android:dependency="pref_biometrics"

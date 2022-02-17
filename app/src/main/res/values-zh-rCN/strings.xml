@@ -61,7 +61,6 @@
     <string name="pref_export_title">导出</string>
     <string name="pref_export_summary">导出数据库</string>
     <string name="pref_password_reminder_title">密码提醒</string>
-    <string name="pref_password_reminder_summary">每隔一段时间提醒您输入一次密码，以免忘记密码。</string>
     <string name="pref_secure_screen_title">屏幕安全</string>
     <string name="pref_secure_screen_summary">阻止屏幕截图，以及其他试图在本应用中捕获屏幕的行为</string>
     <string name="pref_tap_to_reveal_title">点击显示</string>

@@ -49,7 +49,6 @@
     <string name="pref_export_title">تصدير</string>
     <string name="pref_export_summary">قم بتصدير المخزن</string>
     <string name="pref_password_reminder_title">تذكير كلمة المرور</string>
-    <string name="pref_password_reminder_summary">اظهار تذكير لإدخال كلمة المرور من حين لآخر حتى لا تنساها</string>
     <string name="pref_secure_screen_title">أمان الشاشة</string>
     <string name="pref_secure_screen_summary">حظر صور الشاشة والمحاولات الأخرى لالتقاط شاشة التطبيق</string>
     <string name="pref_tap_to_reveal_title">انقر للكشف</string>

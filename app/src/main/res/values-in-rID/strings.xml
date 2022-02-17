@@ -61,7 +61,6 @@
     <string name="pref_export_title">Ekspor</string>
     <string name="pref_export_summary">Ekspor ke brankas</string>
     <string name="pref_password_reminder_title">Pengingat kata sandi</string>
-    <string name="pref_password_reminder_summary">Tampilkan pengingat sesekali untuk memasukkan kata sandi, agar Anda tidak lupa.</string>
     <string name="pref_secure_screen_title">Keamanan layar</string>
     <string name="pref_secure_screen_summary">Blokir tangkapan layar dan upaya lain untuk menangkap layar di dalam aplikasi</string>
     <string name="pref_tap_to_reveal_title">Sentuh untuk melihat</string>

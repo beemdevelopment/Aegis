@@ -32,7 +32,6 @@
     <string name="pref_export_title">Exportálás</string>
     <string name="pref_export_summary">A széf exportálása</string>
     <string name="pref_password_reminder_title">Jelszóemlékeztető</string>
-    <string name="pref_password_reminder_summary">Időnként a jelszó beírásárá lesz kérve, hogy ne felejtse el azt.</string>
     <string name="pref_secure_screen_title">Képernyőbiztonság</string>
     <string name="pref_secure_screen_summary">A képernyőképek és a képernyő rögzítésére irányuló egyéb kísérletek blokkolása</string>
     <string name="pref_tap_to_reveal_title">Koppintás a megjelenítéshez</string>

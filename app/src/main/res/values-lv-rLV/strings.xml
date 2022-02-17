@@ -63,7 +63,6 @@
     <string name="pref_export_title">Izdot</string>
     <string name="pref_export_summary">Izdot glabātavas saturu</string>
     <string name="pref_password_reminder_title">Paroles atgādinājums</string>
-    <string name="pref_password_reminder_summary">Rādīt atgādinājumu, lai laiku pa laikam ievadītu paroli, lai to neaizmirstu.</string>
     <string name="pref_secure_screen_title">Ekrāna drošība</string>
     <string name="pref_secure_screen_summary">Lietotnē neļaut ekrānuzņēmumus un citus ekrāna tveršanas mēģinājumus</string>
     <string name="pref_tap_to_reveal_title">Piesist, lai atklātu</string>

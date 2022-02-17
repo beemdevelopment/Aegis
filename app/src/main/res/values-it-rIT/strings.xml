@@ -62,7 +62,6 @@
     <string name="pref_export_title">Esporta</string>
     <string name="pref_export_summary">Esporta la cassaforte</string>
     <string name="pref_password_reminder_title">Promemoria password</string>
-    <string name="pref_password_reminder_summary">Mostra un promemoria per inserire la password una volta ogni tanto, in modo da non dimenticarla.</string>
     <string name="pref_secure_screen_title">Sicurezza schermo</string>
     <string name="pref_secure_screen_summary">Blocca i tentativi di catturare lo schermo all\'interno dell\'app</string>
     <string name="pref_tap_to_reveal_title">Tocca per mostrare</string>

@@ -62,7 +62,6 @@
     <string name="pref_export_title">Exportera</string>
     <string name="pref_export_summary">Exportera valvet</string>
     <string name="pref_password_reminder_title">Lösenordspåminnelse</string>
-    <string name="pref_password_reminder_summary">Visa en påminnelse om att ange lösenordet då och då, så att du inte glömmer bort det.</string>
     <string name="pref_secure_screen_title">Skärmsäkerhet</string>
     <string name="pref_secure_screen_summary">Blockera skärmdumpar och andra försök att avbilda skärmen inne i appen</string>
     <string name="pref_tap_to_reveal_title">Tryck för att visa</string>

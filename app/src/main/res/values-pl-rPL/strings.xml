@@ -61,7 +61,6 @@
     <string name="pref_export_title">Eksportuj</string>
     <string name="pref_export_summary">Eksportuj sejf</string>
     <string name="pref_password_reminder_title">Przypomnienie hasła</string>
-    <string name="pref_password_reminder_summary">Co pewien czas pokazuj przypomnienie, aby wpisać hasło. Dzięki temu go nie zapomnisz.</string>
     <string name="pref_secure_screen_title">Zabezpieczenie ekranu</string>
     <string name="pref_secure_screen_summary">Zablokuj zrzuty ekranu i inne próby przechwycenia ekranu w aplikacji</string>
     <string name="pref_tap_to_reveal_title">Kliknij, aby odkryć</string>

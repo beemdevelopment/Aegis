@@ -38,7 +38,6 @@
     <string name="pref_export_title">निर्यात</string>
     <string name="pref_export_summary">वॉल्ट निर्यात करें</string>
     <string name="pref_password_reminder_title">पासवर्ड अनुस्मारक</string>
-    <string name="pref_password_reminder_summary">पासवर्ड को दर्ज करने के लिए कभी-कभी एक अनुस्मारक दिखाएं, ताकि आप इसे न भूलें।</string>
     <string name="pref_secure_screen_title">स्क्रीन सुरक्षा</string>
     <string name="pref_secure_screen_summary">एप्लीकेशन के भीतर स्क्रीनशॉट और स्क्रीन पर कब्जा करने के अन्य प्रयास ब्लॉक करें।</string>
     <string name="pref_tap_to_reveal_title">देखने के लिए टैप करें</string>

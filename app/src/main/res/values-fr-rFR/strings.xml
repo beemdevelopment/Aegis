@@ -62,7 +62,6 @@
     <string name="pref_export_title">Exporter</string>
     <string name="pref_export_summary">Exporter le coffre-fort</string>
     <string name="pref_password_reminder_title">Rappel du mot de passe</string>
-    <string name="pref_password_reminder_summary">Afficher un rappel pour entrer le mot de passe de temps en temps, afin que vous ne l\'oubliiez pas.</string>
     <string name="pref_secure_screen_title">Sécurité de l\'écran</string>
     <string name="pref_secure_screen_summary">Bloquer les captures d\'écran et autres tentatives de capture de l\'écran dans l\'application</string>
     <string name="pref_tap_to_reveal_title">Appuyer pour révéler</string>

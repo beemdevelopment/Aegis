@@ -62,7 +62,6 @@
     <string name="pref_export_title">Exportieren</string>
     <string name="pref_export_summary">Exportiere die Datenbank</string>
     <string name="pref_password_reminder_title">Passworterinnerung</string>
-    <string name="pref_password_reminder_summary">Von Zeit zu Zeit nach dem Passwort fragen, damit du es nicht vergisst.</string>
     <string name="pref_secure_screen_title">Bildschirmsicherheit</string>
     <string name="pref_secure_screen_summary">Blockiere Bildschirmfotos und andere Versuche, den Bildschirm innerhalb der App aufzunehmen</string>
     <string name="pref_tap_to_reveal_title">Zum Aufdecken tippen</string>

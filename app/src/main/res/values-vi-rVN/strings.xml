@@ -61,7 +61,6 @@
     <string name="pref_export_title">Xuất</string>
     <string name="pref_export_summary">Xuất kho</string>
     <string name="pref_password_reminder_title">Lời nhắc mật khẩu</string>
-    <string name="pref_password_reminder_summary">Thỉnh thoảng hiện một lời nhắc nhập mật khẩu, để cho bạn không quên nó.</string>
     <string name="pref_secure_screen_title">Bảo mật màn hình</string>
     <string name="pref_secure_screen_summary">Chặn ảnh chụp màn hình và các cố gắng khác để chụp lại màn hình trong ứng dụng</string>
     <string name="pref_tap_to_reveal_title">Nhấn để hiện ra</string>
