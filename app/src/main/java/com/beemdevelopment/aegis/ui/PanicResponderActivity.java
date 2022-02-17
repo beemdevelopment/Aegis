@@ -28,7 +28,7 @@ public class PanicResponderActivity extends AegisActivity {
         }
 
         Intent intent;
-        if (!BuildConfig.DEBUG) {
+        if (!BuildConfig.TEST.get()) {
             TrustedIntents trustedIntents = TrustedIntents.get(this);
             trustedIntents.addTrustedSigner(GuardianProjectRSA4096.class);
             trustedIntents.addTrustedSigner(GuardianProjectFDroidRSA2048.class);

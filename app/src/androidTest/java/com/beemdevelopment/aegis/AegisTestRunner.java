@@ -10,6 +10,10 @@ import androidx.test.runner.AndroidJUnitRunner;
 import com.beemdevelopment.aegis.util.IOUtils;
 
 public class AegisTestRunner extends AndroidJUnitRunner {
+    static {
+        BuildConfig.TEST.set(true);
+    }
+
     @Override
     public void callApplicationOnCreate(Application app) {
         Context context = app.getApplicationContext();
