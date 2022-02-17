@@ -33,7 +33,7 @@
     <string name="pref_section_import_export_title">Import &amp; Export</string>
     <string name="pref_section_import_export_summary">Import backups of Aegis or other authenticator apps. Create manual exports of your Aegis vault.</string>
     <string name="pref_section_backups_title">Backups</string>
-    <string name="pref_section_backups_summary">Set up automatic backups to a location of your choosing or enable participation in Android\'s backup system.</string>
+    <string name="pref_section_backups_summary">Set up automatic backups to a location of your choosing or enable participation in Android\'s cloud backup system.</string>
     <string name="pref_section_icon_packs">Icon packs</string>
     <string name="pref_section_icon_packs_summary">Manage and import icon packs</string>
     <string name="pref_select_theme_title">Theme</string>
@@ -49,8 +49,9 @@
     <string name="pref_slots_summary">Manage the list of keys that can decrypt the vault</string>
     <string name="pref_import_file_title">Import from file</string>
     <string name="pref_import_file_summary">Import tokens from a file</string>
-    <string name="pref_android_backups_title">Participate in Android\'s backup system</string>
-    <string name="pref_android_backups_summary">Allow Android\'s backup system to include Aegis\' vault in its backups. This is only supported for encrypted vaults.</string>
+    <string name="pref_android_backups_title">Android cloud backups</string>
+    <string name="pref_android_backups_summary">Allow Android\'s cloud backup system to include Aegis\' vault in its backups. This is only supported for encrypted vaults.</string>
+    <string name="pref_android_backups_hint"><i>Device-to-device (D2D) backups are always allowed, regardless of the setting above</i></string>
     <string name="pref_backups_title">Automatically back up the vault</string>
     <string name="pref_backups_summary">Automatically create backups of the vault on external storage when changes are made. This is only supported for encrypted vaults.</string>
     <string name="pref_backups_location_title">Directory for backup files</string>

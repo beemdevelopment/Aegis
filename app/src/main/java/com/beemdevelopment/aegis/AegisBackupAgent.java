@@ -18,7 +18,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 public class AegisBackupAgent extends BackupAgent {
-    private static final String TAG = BackupAgent.class.getSimpleName();
+    private static final String TAG = AegisBackupAgent.class.getSimpleName();
 
     private Preferences _prefs;
 
@@ -34,7 +34,12 @@ public class AegisBackupAgent extends BackupAgent {
                 Build.VERSION.SDK_INT >= Build.VERSION_CODES.P ? data.getTransportFlags() : -1,
                 Build.VERSION.SDK_INT >= Build.VERSION_CODES.O ? data.getQuota() : -1));
 
-        if (!_prefs.isAndroidBackupsEnabled()) {
+        boolean isD2D = Build.VERSION.SDK_INT >= Build.VERSION_CODES.P
+            && (data.getTransportFlags() & FLAG_DEVICE_TO_DEVICE_TRANSFER) == FLAG_DEVICE_TO_DEVICE_TRANSFER;
+
+        if (isD2D) {
+            Log.i(TAG, "onFullBackup(): allowing D2D transfer");
+        } else if (!_prefs.isAndroidBackupsEnabled()) {
             Log.i(TAG, "onFullBackup() skipped: Android backups disabled in preferences");
             return;
         }

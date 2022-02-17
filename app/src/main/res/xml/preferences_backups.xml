@@ -35,5 +35,9 @@
             android:title="@string/pref_android_backups_title"
             android:summary="@string/pref_android_backups_summary"
             app:iconSpaceReserved="false"/>
+        <Preference
+            android:selectable="false"
+            android:summary="@string/pref_android_backups_hint"
+            app:iconSpaceReserved="false"/>
     </PreferenceCategory>
 </PreferenceScreen>
