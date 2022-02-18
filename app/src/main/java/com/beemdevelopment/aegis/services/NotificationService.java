@@ -35,7 +35,7 @@ public class NotificationService extends Service {
         Intent intentAction = new Intent(CODE_LOCK_VAULT_ACTION);
         PendingIntent lockDatabaseIntent = PendingIntent.getBroadcast(this, 1, intentAction, flags);
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CODE_LOCK_STATUS_ID)
-                .setSmallIcon(R.drawable.ic_fingerprint_black_24dp)
+                .setSmallIcon(R.drawable.ic_aegis_notification)
                 .setContentTitle(getString(R.string.app_name_full))
                 .setContentText(getString(R.string.vault_unlocked_state))
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)
