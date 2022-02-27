@@ -1,21 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingStart="25dp"
-    android:paddingBottom="10dp"
-    android:paddingEnd="25dp"
-    android:paddingTop="10dp"
-    android:orientation="vertical">
-    <TextView
-        android:id="@+id/text_message"
-        android:layout_width="wrap_content"
+    android:layout_height="match_parent" >
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="16sp"/>
-    <TextView
-        android:id="@+id/text_explanation"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:textSize="16sp"/>
-</LinearLayout>
+        android:paddingStart="25dp"
+        android:paddingBottom="10dp"
+        android:paddingEnd="25dp"
+        android:paddingTop="10dp"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/text_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"/>
+        <TextView
+            android:id="@+id/text_explanation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:textSize="16sp"/>
+    </LinearLayout>
+</ScrollView>

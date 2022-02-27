@@ -147,7 +147,6 @@
     <string name="importing_icon_pack">Impor paket ikon</string>
     <string name="delete_entry">Hapus entri</string>
     <string name="delete_entry_description">Apakah Anda yakin ingin menghapus entri ini?</string>
-    <string name="delete_entry_explanation">Tindakan ini tidak mematikan 2FA untuk <b>%s</b>. Untuk menghidari kehilangan akses, pastikan bahwa Anda sudah mematikan 2FA atau Anda memiliki cara alternatif untuk menghasilkan kode untuk layanan ini.</string>
     <string name="delete_entries">Hapus catatan</string>
     <plurals name="delete_entries_description">
         <item quantity="other">Apakah Anda yakin ingin menghapus %d entri ini?</item>

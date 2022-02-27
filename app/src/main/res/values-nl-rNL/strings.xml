@@ -148,7 +148,6 @@
     <string name="importing_icon_pack">Pictogrampakket importeren</string>
     <string name="delete_entry">Item verwijderen</string>
     <string name="delete_entry_description">Weet je zeker dat je dit item wilt verwijderen?</string>
-    <string name="delete_entry_explanation">Deze actie schakelt 2FA voor <b>%s</b> niet uit. Om te voorkomen dat u de toegang verliest, zorg ervoor dat u 2FA hebt uitgeschakeld of dat u een alternatieve manier hebt om codes voor deze dienst te genereren.</string>
     <string name="delete_entries">Items verwijderen</string>
     <plurals name="delete_entries_description">
         <item quantity="one">Weet je zeker dat je het item %d wilt verwijderen?</item>

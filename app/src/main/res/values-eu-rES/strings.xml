@@ -148,7 +148,6 @@
     <string name="importing_icon_pack">Ikono multzoa inportatzen</string>
     <string name="delete_entry">Ezabatu sarrera</string>
     <string name="delete_entry_description">Ziur al zaude sarrera hau ezabatu nahi duzula?</string>
-    <string name="delete_entry_explanation">Akzio honek ez du <b>%s</b> zerbitzuaren 2FA desgaitzen. Sartzen jarraitzeko desaktibatu 2FA edo ziurtatu beste era batera sartu zaitezkeela.</string>
     <string name="delete_entries">Ezabatu sarrerak</string>
     <plurals name="delete_entries_description">
         <item quantity="one">Ziur al zaude %d sarrera ezabatu nahi duzula?</item>

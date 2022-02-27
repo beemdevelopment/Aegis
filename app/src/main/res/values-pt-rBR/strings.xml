@@ -148,7 +148,6 @@
     <string name="importing_icon_pack">Importando pacote de ícones</string>
     <string name="delete_entry">Deletar entrada</string>
     <string name="delete_entry_description">Você tem certeza que deseja deletar essa entrada?</string>
-    <string name="delete_entry_explanation">Esta ação não desativa a 2FA para <b>%s</b>. Para evitar a perda de acesso, certifique-se de ter desabilitado a 2FA ou de ter uma maneira alternativa de gerar códigos para este serviço.</string>
     <string name="delete_entries">Deletar entradas</string>
     <plurals name="delete_entries_description">
         <item quantity="one">Você tem certeza que deseja deletar %d entrada?</item>

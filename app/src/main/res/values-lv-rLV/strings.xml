@@ -149,7 +149,6 @@
     <string name="importing_icon_pack">Ievieto ikonu pakotni</string>
     <string name="delete_entry">Dzēst ierakstu</string>
     <string name="delete_entry_description">Vai tiešām izdzēst šo ierakstu?</string>
-    <string name="delete_entry_explanation">Šī darbība neatspējo <b>%s</b> 2FA. Lai novērstu piekļuves zaudēšanu, jāpārliecinās, ka ir atspējots 2FA vai ka ir cits veids, kā izveidot kodus šim pakalpojumam.</string>
     <string name="delete_entries">Dzēst ierakstus</string>
     <plurals name="delete_entries_description">
         <item quantity="zero">Vai tiešām izdēst %d ierakstu?</item>

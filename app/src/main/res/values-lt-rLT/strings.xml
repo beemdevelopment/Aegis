@@ -115,7 +115,6 @@
     <string name="encrypting_vault">Šifruojama slėptuvė</string>
     <string name="delete_entry">Ištrinti įrašą</string>
     <string name="delete_entry_description">Ar tikrai norite ištrinti šį įrašą?</string>
-    <string name="delete_entry_explanation">Šis veiksmas neišjungia dviejų faktorių tapatybės nustatymo (2FA), skirto <b>%s</b>. Norėdami neprarasti prieigos, įsitikinkite, kad esate išjungę 2FA arba, kad turite kitą būdą kaip galite sugeneruoti kodus šiai paslaugai.</string>
     <string name="delete_entries">Ištrinti įrašus</string>
     <plurals name="delete_entries_description">
         <item quantity="one">Ar tikrai norite ištrinti %d įrašą?</item>

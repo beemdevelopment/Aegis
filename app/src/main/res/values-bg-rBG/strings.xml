@@ -141,7 +141,6 @@
     <string name="reading_file">Четене на файла</string>
     <string name="delete_entry">Изтрий запис</string>
     <string name="delete_entry_description">Сигурни ли сте, че искате да изтриете този запис?</string>
-    <string name="delete_entry_explanation">Това действие не деактивира 2FA за <b>%s</b>. За да предотвратите загуба на достъп, уверете се, че сте деактивирали 2FA или че имате алтернативен начин за генериране на кодове за тази услуга.</string>
     <string name="delete_entries">Изтрий записите</string>
     <plurals name="delete_entries_description">
         <item quantity="one">Наистина ли искате да изтриете %d записа?</item>
