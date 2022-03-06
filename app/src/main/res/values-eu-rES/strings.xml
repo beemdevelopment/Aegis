@@ -2,7 +2,6 @@
 <resources>
     <string name="action_settings">Ezarpenak</string>
     <string name="action_about">Honi buruz</string>
-    <string name="action_import">Inportatu</string>
     <string name="action_delete">Ezabatu</string>
     <string name="action_transfer">Transferitu</string>
     <string name="action_edit_icon">Editatu abiarazlea</string>
@@ -14,7 +13,6 @@
     <string name="issuer">Igorlea</string>
     <string name="suggested">Iradokitakoak</string>
     <string name="usage_count">Erabilera kopurua</string>
-    <string name="settings">Hobespenak</string>
     <string name="pref_cat_appearance_app">Aplikazioa</string>
     <string name="pref_cat_appearance_entries">Sarrerak</string>
     <string name="pref_cat_backups_android">Android</string>
@@ -38,8 +36,6 @@
     <string name="pref_code_group_size_summary">Erakutsi kode-digituak binaka taldekatuta hirunaka taldekatuta erakutsi ordez</string>
     <string name="pref_account_name_title">Erakutsi kontuaren izena</string>
     <string name="pref_account_name_summary">Aktibatu hau kontu-izena igorlearen ondoan bistaratzeko</string>
-    <string name="pref_timeout_title">Denbora-muga</string>
-    <string name="pref_timeout_summary">Blokeatu automatikoki biltegia %1$s segundo jarduerarik gabe egon ondoren</string>
     <string name="pref_import_file_title">Inportatu fitxategi batetik</string>
     <string name="pref_import_file_summary">Inportatu marka-ikurrak fitxategi batetik</string>
     <string name="pref_android_backups_title">Androiden segurtasun kopien sisteman parte hartu</string>
@@ -94,8 +90,6 @@
     <string name="authentication_method_password_explanation">Adi: pasahitza ahazten baduzu, zure tokenen sarbidea galduko duzu betirako. Ezin dira berreskuratu pasahitzik gabe.</string>
     <string name="authentication_method_biometrics">Biometriak</string>
     <string name="authentication_method_biometrics_description">Pasahitzaz gain, gailu honetan erregistratutako biometriak, hala nola hatz-marka edo zure aurpegia, biltegia desblokeatzeko erabil daitezke.</string>
-    <string name="authentication_method_set_password">Pasahitza</string>
-    <string name="authentication_enter_password">Sartu zure pasahitza</string>
     <string name="authentication">Desblokeatu biltegia</string>
     <!-- The newline (\n) on the following line is just for aesthetic purposes !-->
     <string name="authentication_multiline">Desblokeatu\nbiltegia</string>
@@ -115,7 +109,6 @@
     <string name="yes">Bai</string>
     <string name="no">Ez</string>
     <string name="unlock">Desblokeatu</string>
-    <string name="biometrics">Biometriak</string>
     <string name="advanced">Aurreratua</string>
     <string name="counter">Kontagailua</string>
     <string name="digits">Digituak</string>
@@ -123,14 +116,9 @@
     <string name="scan">Eskaneatu QR kodea</string>
     <string name="scan_image">Eskaneatu irudia</string>
     <string name="enter_manually">Sartu eskuz</string>
-    <string name="add_biometric">Gehitu biometria</string>
-    <string name="add_biometric_slot">Gehitu arteka biometrikoa</string>
     <string name="set_up_biometric">Desblokeatze biometrikoa konfiguratu</string>
-    <string name="add_password">Gehitu pasahitza</string>
-    <string name="slots_warning">Biltegia bere sekreturik ahulena bezain segurua da. Zure gailuaren autentifikazio biometrikoaren konfigurazioa aldatzen baduzu, desblokeo biometrikoa berriro aktibatu beharko duzu Aegisen barruan.</string>
     <string name="copy">Kopiatu</string>
     <string name="edit">Editatu</string>
-    <string name="delete">Ezabatu</string>
     <string name="password">Pasahitza</string>
     <string name="confirm_password">Berretsi pasahitza</string>
     <string name="show_password">Erakutsi pasahitza</string>
@@ -153,8 +141,6 @@
     </plurals>
     <string name="discard_changes">Baztertu aldaketak?</string>
     <string name="discard_changes_description">Zure aldaketak ez dira gorde</string>
-    <string name="folder">Direktorioa</string>
-    <string name="tap_to_select">Ukitu aukeratzeko</string>
     <string name="saving_profile_error">Errorea profila gordetzerakoan</string>
     <string name="welcome">Ongi Etorri</string>
     <string name="app_description">Aegis doakoa, segurua eta software librea den 2FA aplikazioa da</string>
@@ -186,7 +172,6 @@
         <item quantity="one">Ikono %d</item>
         <item quantity="other">%d ikono</item>
     </plurals>
-    <string name="icon_pack">Ikono multzoa</string>
     <string name="icon_custom">Pertsonalizatua</string>
     <string name="permission_denied">Baimena ukatuta</string>
     <string name="andotp_new_format">Formatu berria (v0.6.3 edo berriagoa) </string>
@@ -215,17 +200,11 @@
     <string name="read_qr_error_phonefactor">Aegis ez da bateragarria Microsoften 2FA algoritmo jabedunarekin. Office 365en 2FA konfiguratzen duzunean aukeratu \"Aplikazioa jakinarazpen gabe konfiguratu\" aukeratu ezazu (ingelesez: \"Setup application without notifications\").</string>
     <string name="authentication_method_raw">Gordina</string>
     <string name="unlocking_vault">Biltegia desblokeatzen</string>
-    <string name="unlocking_vault_repair">Biltegia desblokeatzen (konpontzen)</string>
-    <string name="password_slot_error">Arteka-pasahitz bat behintzat izan behar duzu</string>
     <string name="slot_this_device">(gailu hau)</string>
-    <string name="remove_slot">Ezabatu arteka</string>
-    <string name="remove_slot_description">Ziur zaude arteka hau ezabatu nahi duzula?</string>
     <string name="remove_group">Ezabatu taldea</string>
     <string name="remove_group_description">Ziur zaude talde hau ezabatu nahi duzula? Talde honetako sarrerak automatikoki aldatuko dira \'Talderik ez\' aukerara.</string>
     <string name="remove_icon_pack">Ezabatu ikono multzoa</string>
     <string name="remove_icon_pack_description">Ziur zaude ikono multzo hau ezabatzeaz? Ikono multzo honetako ikonoak darabiltzaten sarreretan ez da aldaketarik egongo.</string>
-    <string name="adding_new_slot_error">Errorea gertatu da arteka berria gehitzen saiatzean:</string>
-    <string name="progressbar_error">Ezin da animazioaren iraupenaren eskala berrezarri. Aurrerapen-barrak ikusezinak izango dira.</string>
     <string name="details">Xehetasunak</string>
     <string name="lock">Blokeatu</string>
     <string name="name">Izena</string>
@@ -238,7 +217,6 @@
     <string name="sort_usage_count">Erabilera kopurua</string>
     <string name="sort_custom">Pertsonalizatua</string>
     <string name="new_group">Talde berria…</string>
-    <string name="enter_group_name">Sartu talde izena</string>
     <string name="group">Taldea</string>
     <string name="group_name_hint">Taldearen izena</string>
     <string name="preference_manage_groups">Editatu taldeak</string>

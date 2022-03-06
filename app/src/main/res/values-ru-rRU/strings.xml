@@ -2,7 +2,6 @@
 <resources>
     <string name="action_settings">Настройки</string>
     <string name="action_about">О программе</string>
-    <string name="action_import">Импорт</string>
     <string name="action_delete">Удалить</string>
     <string name="action_transfer">Передача</string>
     <string name="action_edit_icon">Изменить значок</string>
@@ -14,7 +13,6 @@
     <string name="issuer">Эмитент</string>
     <string name="suggested">Рекомендуется</string>
     <string name="usage_count">Счётчик использований</string>
-    <string name="settings">Предпочтения</string>
     <string name="pref_cat_appearance_app">Приложение</string>
     <string name="pref_cat_appearance_entries">Записи</string>
     <string name="pref_cat_backups_android">Android</string>
@@ -38,8 +36,6 @@
     <string name="pref_code_group_size_summary">Объединять код в двузначные блоки вместо трёхзначных</string>
     <string name="pref_account_name_title">Показывать учётную запись</string>
     <string name="pref_account_name_summary">Включите, чтобы показывать название учётной записи рядом с эмитентом</string>
-    <string name="pref_timeout_title">Задержка</string>
-    <string name="pref_timeout_summary">Автоматически блокировать хранилище после %1$s секунд бездействия</string>
     <string name="pref_import_file_title">Импорт из файла</string>
     <string name="pref_import_file_summary">Импорт ключей из файла</string>
     <string name="pref_android_backups_title">Система резервного копирования Android</string>
@@ -96,8 +92,6 @@
     <string name="authentication_method_password_explanation">Внимание: при утрате пароля вы навсегда потеряете доступ к своим ключам. Восстановить доступ к ним без пароля будет невозможно.</string>
     <string name="authentication_method_biometrics">Биометрия</string>
     <string name="authentication_method_biometrics_description">В дополнение к паролю, биометрические данные, зарегистрированные на этом устройстве, такие как отпечаток пальца или лицо, могут быть использованы для разблокировки хранилища.</string>
-    <string name="authentication_method_set_password">Пароль</string>
-    <string name="authentication_enter_password">Введите свой пароль</string>
     <string name="authentication">Разблокировать хранилище</string>
     <!-- The newline (\n) on the following line is just for aesthetic purposes !-->
     <string name="authentication_multiline">Открыть\nхранилище</string>
@@ -117,7 +111,6 @@
     <string name="yes">Да</string>
     <string name="no">Нет</string>
     <string name="unlock">Разблокировать</string>
-    <string name="biometrics">Биометрия</string>
     <string name="advanced">Расширенные</string>
     <string name="counter">Счётчик</string>
     <string name="digits">Цифры</string>
@@ -125,14 +118,9 @@
     <string name="scan">Сканировать QR-код</string>
     <string name="scan_image">Сканировать изображение</string>
     <string name="enter_manually">Ввести вручную</string>
-    <string name="add_biometric">Добавить биометрические данные</string>
-    <string name="add_biometric_slot">Добавить биометрический слот</string>
     <string name="set_up_biometric">Настройка биометрической разблокировки</string>
-    <string name="add_password">Добавить пароль</string>
-    <string name="slots_warning">Хранилище настолько же безопасно, насколько безопасен ваш самый слабый секрет. При изменении настроек биометрической аутентификации на устройстве биометрическую разблокировку в Aegis придётся включить заново.</string>
     <string name="copy">Копировать</string>
     <string name="edit">Изменить</string>
-    <string name="delete">Удалить</string>
     <string name="password">Пароль</string>
     <string name="confirm_password">Подтвердите пароль</string>
     <string name="show_password">Показать пароль</string>
@@ -157,8 +145,6 @@
     </plurals>
     <string name="discard_changes">Отменить изменения?</string>
     <string name="discard_changes_description">Ваши изменения не были сохранены</string>
-    <string name="folder">Папка</string>
-    <string name="tap_to_select">Нажмите, чтобы выбрать</string>
     <string name="saving_profile_error">Ошибка сохранения профиля</string>
     <string name="welcome">Добро пожаловать</string>
     <string name="app_description">Aegis — бесплатное, безопасное и открытое приложение 2FA.</string>
@@ -192,7 +178,6 @@
         <item quantity="many">%d значков</item>
         <item quantity="other">%d значков</item>
     </plurals>
-    <string name="icon_pack">Набор значков</string>
     <string name="icon_custom">Произвольный</string>
     <string name="permission_denied">Доступ запрещён</string>
     <string name="andotp_new_format">Новый формат (v0.6.3 или новее) </string>
@@ -223,17 +208,11 @@
     <string name="read_qr_error_phonefactor">Aegis не совместим с проприетарным алгоритмом 2FA Microsoft. Не забудьте выбрать «Установить приложение без уведомлений» при настройке 2FA в Office 365.</string>
     <string name="authentication_method_raw">Необработанный</string>
     <string name="unlocking_vault">Разблокировка хранилища</string>
-    <string name="unlocking_vault_repair">Разблокировка хранилища (восстановление)</string>
-    <string name="password_slot_error">У вас должен быть хотя бы один слот для пароля</string>
     <string name="slot_this_device">(это устройство)</string>
-    <string name="remove_slot">Удалить слот</string>
-    <string name="remove_slot_description">Удалить этот слот?</string>
     <string name="remove_group">Удалить группу</string>
     <string name="remove_group_description">Удалить эту группу? Записи в этой группе будут автоматически перемещены в «Нет группы».</string>
     <string name="remove_icon_pack">Удалить набор значков</string>
     <string name="remove_icon_pack_description">Удалить этот набор значков? Сами записи, использующие значки из данного набора, не будут затронуты.</string>
-    <string name="adding_new_slot_error">Произошла ошибка при попытке добавить новый слот:</string>
-    <string name="progressbar_error">Не удалось установить продолжительность анимации. Индикаторы прогресса не будут отображаться.</string>
     <string name="details">Подробнее</string>
     <string name="lock">Заблокировать</string>
     <string name="name">Имя</string>
@@ -246,7 +225,6 @@
     <string name="sort_usage_count">Количество использований</string>
     <string name="sort_custom">Произвольно</string>
     <string name="new_group">Новая группа…</string>
-    <string name="enter_group_name">Введите название группы</string>
     <string name="group">Группа</string>
     <string name="group_name_hint">Название группы</string>
     <string name="preference_manage_groups">Редактировать группы</string>

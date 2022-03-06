@@ -2,7 +2,6 @@
 <resources>
     <string name="action_settings">Asetukset</string>
     <string name="action_about">Tietoja</string>
-    <string name="action_import">Tuo</string>
     <string name="action_delete">Poista</string>
     <string name="action_transfer">Siirrä</string>
     <string name="action_edit_icon">Muokkaa kuvaketta</string>
@@ -14,7 +13,6 @@
     <string name="issuer">Myöntäjä</string>
     <string name="suggested">Suositellut</string>
     <string name="usage_count">Käyttömäärä</string>
-    <string name="settings">Asetukset</string>
     <string name="pref_cat_appearance_app">Sovellus</string>
     <string name="pref_cat_appearance_entries">Kohteet</string>
     <string name="pref_cat_backups_android">Android</string>
@@ -37,8 +35,6 @@
     <string name="pref_code_group_size_summary">Näytä koodi kahden numeron ryhmissä, kolminumeroisen ryhmittelyn sijasta</string>
     <string name="pref_account_name_title">Näytä tilin nimi</string>
     <string name="pref_account_name_summary">Ota käyttöön nähdäksesi tilin nimen sen myöntäjän rinnalla</string>
-    <string name="pref_timeout_title">Aikakatkaisu</string>
-    <string name="pref_timeout_summary">Lukitse holvi automaattisesti %1$s sekunnin käyttämättömyyden jälkeen</string>
     <string name="pref_import_file_title">Tuo tiedostosta</string>
     <string name="pref_import_file_summary">Tuo tunnukset tiedostosta</string>
     <string name="pref_android_backups_title">Käytä Androidin omaa varmuuskopiointijärjestelmää</string>
@@ -93,8 +89,6 @@
     <string name="authentication_method_password_explanation">Varoitus: Jos unohdat salasanasi, menetät pääsyn tunnuksiisi pysyvästi. Niitä ei voida palauttaa ilman salasanaa.</string>
     <string name="authentication_method_biometrics">Biometriikka</string>
     <string name="authentication_method_biometrics_description">Holvin voi avata sekä salasanalla että laitteeseen tallennettujen biometristen tietojen, kuten sormenjälkesi tai kasvojesi avulla.</string>
-    <string name="authentication_method_set_password">Salasana</string>
-    <string name="authentication_enter_password">Syötä salasanasi</string>
     <string name="authentication">Avaa holvi</string>
     <!-- The newline (\n) on the following line is just for aesthetic purposes !-->
     <string name="authentication_multiline">Avaa\nholvi</string>
@@ -113,7 +107,6 @@
     <string name="yes">Kyllä</string>
     <string name="no">Ei</string>
     <string name="unlock">Avaa lukitus</string>
-    <string name="biometrics">Biometriikka</string>
     <string name="advanced">Edistyneet</string>
     <string name="counter">Laskuri</string>
     <string name="digits">Numeroa</string>
@@ -121,14 +114,9 @@
     <string name="scan">Skannaa QR-koodi</string>
     <string name="scan_image">Skannaa kuva</string>
     <string name="enter_manually">Syötä manuaalisesti</string>
-    <string name="add_biometric">Lisää biometriikka</string>
-    <string name="add_biometric_slot">Lisää biometrinen paikka</string>
     <string name="set_up_biometric">Määritä biometrinen avaaminen</string>
-    <string name="add_password">Lisää salasana</string>
-    <string name="slots_warning">Holvi on vain yhtä turvallinen kuin heikoin salaisuutesi. Jos muutat laitteen biometrisen todennuksen asetuksia, sinun on aktivoitava biometrinen avaaminen uudelleen Aegisissa.</string>
     <string name="copy">Kopioi</string>
     <string name="edit">Muokkaa</string>
-    <string name="delete">Poista</string>
     <string name="password">Salasana</string>
     <string name="confirm_password">Vahvista salasana</string>
     <string name="show_password">Näytä salasana</string>
@@ -151,8 +139,6 @@
     </plurals>
     <string name="discard_changes">Hylätäänkö muutokset?</string>
     <string name="discard_changes_description">Muutoksiasi ei ole tallennettu</string>
-    <string name="folder">Kansio</string>
-    <string name="tap_to_select">Napauta valitaksesi</string>
     <string name="saving_profile_error">Virhe profiilin tallennuksessa</string>
     <string name="welcome">Tervetuloa</string>
     <string name="app_description">Aegis on ilmainen, turvallinen ja avoimen lähdekoodin 2FA-sovellus</string>
@@ -180,7 +166,6 @@
         <item quantity="one">%d kuvake</item>
         <item quantity="other">%d kuvaketta</item>
     </plurals>
-    <string name="icon_pack">Kuvakepaketti</string>
     <string name="icon_custom">Mukautettu</string>
     <string name="permission_denied">Lupa evätty</string>
     <string name="andotp_new_format">Uusi tallennusmuoto (v0.6.3 tai uudempi) </string>
@@ -209,16 +194,10 @@
     <string name="read_qr_error_phonefactor">Aegis ei ole yhteensopiva Microsoftin oman 2FA-algoritmin kanssa. Varmista, että valitset \"Määritä sovellus ilman ilmoituksia\", kun määrität Office 365:n kaksivaiheista tunnistautumista.</string>
     <string name="authentication_method_raw">Raw</string>
     <string name="unlocking_vault">Holvia avataan</string>
-    <string name="unlocking_vault_repair">Holvia avataan (korjataan)</string>
-    <string name="password_slot_error">Sinulla pitää olla ainakin yksi salasanapaikka</string>
     <string name="slot_this_device">(tämä laite)</string>
-    <string name="remove_slot">Poista paikka</string>
-    <string name="remove_slot_description">Haluatko varmasti poistaa tämän paikan?</string>
     <string name="remove_group">Poista ryhmä</string>
     <string name="remove_group_description">Haluatko varmasti poistaa tämän ryhmän? Tässä ryhmässä olevat kohteet merkitään automaattisesti ryhmättömiksi.</string>
     <string name="remove_icon_pack">Poista kuvakepaketti</string>
-    <string name="adding_new_slot_error">Uuden paikan lisäämisessä tapahtui virhe:</string>
-    <string name="progressbar_error">Animaattorin kestoasteikkoa ei voitu nollata. Edistymispalkit ovat näkymättömiä.</string>
     <string name="details">Tiedot</string>
     <string name="lock">Lukitse</string>
     <string name="name">Nimi</string>
@@ -231,7 +210,6 @@
     <string name="sort_usage_count">Käyttömäärä</string>
     <string name="sort_custom">Mukautettu</string>
     <string name="new_group">Uusi ryhmä…</string>
-    <string name="enter_group_name">Syötä ryhmän nimi</string>
     <string name="group">Ryhmä</string>
     <string name="group_name_hint">Ryhmän nimi</string>
     <string name="preference_manage_groups">Muokkaa ryhmiä</string>

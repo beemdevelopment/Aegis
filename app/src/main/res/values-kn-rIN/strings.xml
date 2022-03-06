@@ -2,19 +2,16 @@
 <resources>
     <string name="action_settings">ಸಿದ್ಢತೆಗಳು</string>
     <string name="action_about">ಅಪ್ಲಿಕೇಶನ್ ಬಗ್ಗೆ</string>
-    <string name="action_import">ಅಮದಿಸು</string>
     <string name="action_delete">ಅಳಿಸು</string>
     <string name="action_default_icon">ಮೂಲ ಐಕಾನನ್ನು ಪುನಃಸ್ಥಾಪಿಸಿ</string>
     <string name="discard">ತಿರಸ್ಕರಿಸು</string>
     <string name="save">ಉಳಿಸು</string>
     <string name="issuer">ನೀಡುವವರು</string>
-    <string name="settings">ಸಿದ್ಢತೆಗಳು</string>
     <string name="pref_select_theme_title">ಥೀಮ್</string>
     <string name="pref_view_mode_title">ವೀಕ್ಷಣೆಯ ರೀತಿ</string>
     <string name="pref_lang_title">ಭಾಷೆ</string>
     <string name="pref_account_name_title">ಖಾತೆಯ ಹೆಸರನ್ನು ತೋರಿಸು</string>
     <string name="pref_account_name_summary">ಖಾತೆಯ ಹೆಸರನ್ನು ನೀಡುವವರ ಪಕ್ಕ ತೋರಿಸುವುದಕ್ಕೆ ಇದನ್ನು ಸಕ್ರಿಯಗೊಳಿಸು</string>
-    <string name="pref_timeout_title">ಕಾಲಾವಧಿ</string>
     <string name="pref_import_file_title">ಫೈಲಿಂದ ಆಮದಿಸು</string>
     <string name="pref_import_app_title">ಅಪ್ಲಿಕೇಶನಿಂದ ಆಮದಿಸು</string>
     <string name="pref_export_title">ರಫ್ತು ಮಾಡು</string>
@@ -30,8 +27,6 @@
     <string name="choose_authentication_method">ಭದ್ರತೆ</string>
     <string name="authentication_method_none">ಯಾವುದೂ ಇಲ್ಲ</string>
     <string name="authentication_method_password">ಗುಪ್ತಪದ</string>
-    <string name="authentication_method_set_password">ಗುಪ್ತಪದ</string>
-    <string name="authentication_enter_password">ನಿಮ್ಮ ಗುಪ್ತಪದವನ್ನು ನಮೂದಿಸಿ</string>
     <!-- The newline (\n) on the following line is just for aesthetic purposes !-->
     <string name="set_password">ದಯವಿಟ್ಟು ಗುಪ್ತಪದವನ್ನು ನಮೂದಿಸಿ</string>
     <string name="set_group">ದಯವಿಟ್ಟು ಒಂದು ಗುಂಪಿನ ಹೆಸರವನ್ನು ನಮೂದಿಸಿ</string>
@@ -45,10 +40,8 @@
     <string name="scan">ಕ್ಯೂ ಆರ್ ಸಂಕೇತವನ್ನು ಸ್ಕ್ಯಾನ್ ಮಾಡು</string>
     <string name="scan_image">ಚಿತ್ರವನ್ನು ಸ್ಕ್ಯಾನ್ ಮಾಡು</string>
     <string name="enter_manually">ಕೈಯಾರೆ ನಮೂದಿಸಿ</string>
-    <string name="add_password">ಗುಪ್ತಪದವನ್ನು ಸೇರಿಸಿ</string>
     <string name="copy">ನಕಲಿಸು</string>
     <string name="edit">ಸಂಪಾದಿಸು</string>
-    <string name="delete">ಅಳಿಸು</string>
     <string name="password">ಗುಪ್ತಪದ</string>
     <string name="confirm_password">ಗುಪ್ತಪದವನ್ನು ಖಚಿತಗೊಳಿಸು</string>
     <string name="unlock_vault_error">ವೌಲ್ಟಿನ ಬೀಗವನ್ನು ತೆರೆಯಲು ಆಗಲಿಲ್ಲ</string>
@@ -60,8 +53,6 @@
     <string name="delete_entry_description">ನಿಜವಾಗಲು ಈ ಎಂಟ್ರಿಯನ್ನು ಅಳಿಸಲು ಬಯಸುವಿರಾ?</string>
     <string name="discard_changes">ಬದಲಾವಣೆಗಳನ್ನು ತಿರಸ್ಕರಿಸುವುದಾ?</string>
     <string name="discard_changes_description">ನಿಮ್ಮ ಬದಲಾವಣೆಗಳು ಉಳಿಸಲಾಗಿಲ್ಲ</string>
-    <string name="folder">ಫೋಲ್ಡರ್</string>
-    <string name="tap_to_select">ಆಯ್ಕೆಮಾಡಲು ಇಲ್ಲಿ ಒತ್ತು</string>
     <string name="saving_profile_error">ಪ್ರೊಫೈಲನ್ನು ಉಳಿಸಲು ದೋಷವಾಯಿತು</string>
     <string name="welcome">ಸ್ವಾಗತ</string>
     <string name="app_description">Aegis ಒಂದು ಉಚಿತ, ಸುರಕ್ಷಿತ, ಹಾಗು ಮುಕ್ತ ಸಂಪನ್ಮೂಲ 2FA ಅಪ್ಲಿಕೇಶನ್</string>
@@ -87,14 +78,8 @@
     <string name="read_qr_error">ಕ್ಯೂ ಆರ್ ಸಂಕೇತವನ್ನು ಓದಲು ಪ್ರಯತ್ನಿಸುವಾಗ ಒಂದು ದೋಷ ಸಂಭವಿಸಿದೆ</string>
     <string name="authentication_method_raw">ಕಚ್ಚಾ</string>
     <string name="unlocking_vault">ವೌಲ್ಟಿನ ಬೀಗವನ್ನು ತೆರೆಯಲಾಗುತ್ತಿದೆ</string>
-    <string name="unlocking_vault_repair">ವೌಲ್ಟಿನ ಬೀಗವನ್ನು ತೆರೆಯಲಾಗುತ್ತಿದೆ (ಸರಿಪಡಿಸುತ್ತಿದೆ)</string>
-    <string name="password_slot_error">ನೀನು ಕನಿಷ್ಠ ಒಂದು ಗುಪ್ತಪದದ ಸ್ಲಾಟನ್ನು ಹೊಂದಿರಬೇಕು</string>
-    <string name="remove_slot">ಸ್ಲಾಟನ್ನು ತೆಗೆದುಹಾಕು</string>
-    <string name="remove_slot_description">ಈ ಸ್ಲಾಟನ್ನು ತೆಗೆದುಹಾಕಲು ಖಚಿತವಾಗಿದ್ದೀಯಾ?</string>
     <string name="remove_group">ಗುಂಪನ್ನು ತೆಗೆದುಹಾಕು</string>
     <string name="remove_group_description">ನಿಜವಾಗಲು ಈ ಗುಂಪನ್ನು ತೆರೆಯಾಲು ಬಯಸುವಿರಾ? ಈ ಗುಂಪಿನಾಲ್ಲಿರುವ ಎಂಟ್ರಿಗಳು ಸ್ವಯಂಚಾಲಿತವಾಗಿ \'ಗುಂಪಿಲ್ಲ\'ಗೆ ಬದಲಾವಣೆ ಆಗುತ್ತವೆ.</string>
-    <string name="adding_new_slot_error">ಹೊಸ ಸ್ಲಾಟನ್ನು ಸೇರಿಸಲು ಪ್ರಯತ್ನಿಸುವಾಗ ಒಂದು ದೋಷ ಸಂಭವಿಸಿದೆ:</string>
-    <string name="progressbar_error">ಆನಿಮೇಟರಿನ ಅವಧಿಯ ಅಳತೆಯನ್ನು ಮರುಹೊಂದಿಸಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ. ಪ್ರಗತಿ ಬಾರುಗಳು ಅಗೋಚರವಿರುತ್ತವೆ.</string>
     <string name="details">ವಿವರಗಳು</string>
     <string name="lock">ಬೀಗ ಹಾಕು</string>
     <string name="name">ಹೆಸರು</string>
@@ -105,7 +90,6 @@
     <string name="sort_alphabetically_name_reverse">ಖಾತೆ (ವರ್ಣಮಾಲೆಯ ಹಿಮ್ಮುಖವಾಗಿಯಾಗಿ)</string>
     <string name="sort_custom">ನಿಮ್ಮ ಇಚ್ಛೆ</string>
     <string name="new_group">ಹೊಸ ಗುಂಪು…</string>
-    <string name="enter_group_name">ಗುಂಪಿನ ಹೆಸರನ್ನು ನಮೂದಿಸು</string>
     <string name="group_name_hint">ಗುಂಪಿನ ಹೆಸರು</string>
     <string name="preference_manage_groups">ಗುಂಪುಗಳನ್ನು ಸಂಪಾದಿಸು</string>
     <string name="preference_manage_groups_summary">ಇಲ್ಲಿ ನಿಮ್ಮ ಗುಂಪುಗಳನ್ನು ನಿರ್ವಹಿಸು ಮತ್ತು ಅಳಿಸು</string>

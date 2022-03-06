@@ -2,7 +2,6 @@
 <resources>
     <string name="action_settings">Configurações</string>
     <string name="action_about">Sobre</string>
-    <string name="action_import">Importar</string>
     <string name="action_delete">Excluir</string>
     <string name="action_transfer">Transferir</string>
     <string name="action_edit_icon">Editar ícone</string>
@@ -10,7 +9,6 @@
     <string name="discard">Descartar</string>
     <string name="save">Salvar</string>
     <string name="issuer">Emissor</string>
-    <string name="settings">Preferências</string>
     <string name="pref_select_theme_title">Tema</string>
     <string name="pref_view_mode_title">Modo de exibição</string>
     <string name="pref_lang_title">Idioma</string>
@@ -18,8 +16,6 @@
     <string name="pref_code_group_size_summary">Mostrar agrupamento de códigos de 2 dígitos em vez de agrupamento de 3 dígitos</string>
     <string name="pref_account_name_title">Exibir o nome da conta</string>
     <string name="pref_account_name_summary">Ative isto para mostrar o nome da conta ao lado do emissor</string>
-    <string name="pref_timeout_title">Tempo esgotado</string>
-    <string name="pref_timeout_summary">Bloquear automaticamente o cofre após %1$s segundos de inatividade</string>
     <string name="pref_import_file_title">Importar arquivo</string>
     <string name="pref_import_file_summary">Importar tokens de um arquivo</string>
     <string name="pref_backups_summary">Cria automaticamente backups do cofre no armazenamento externo quando alterações forem feitas. Isso só é suportado para cofres criptografados.</string>
@@ -69,8 +65,6 @@
     <string name="authentication_method_password_explanation">Aviso: Se você esquecer sua senha, você perderá permanentemente o acesso aos seus tokens. Não há como recuperá-los sem a senha.</string>
     <string name="authentication_method_biometrics">Biometria</string>
     <string name="authentication_method_biometrics_description">Além de uma senha, a biometria registrada neste dispositivo, como uma impressão digital ou seu rosto, pode ser usada para desbloquear o cofre.</string>
-    <string name="authentication_method_set_password">Senha</string>
-    <string name="authentication_enter_password">Digite sua senha</string>
     <string name="authentication">Desbloquear o cofre</string>
     <!-- The newline (\n) on the following line is just for aesthetic purposes !-->
     <string name="authentication_multiline">Desbloqueie\no cofre</string>
@@ -86,7 +80,6 @@
     <string name="yes">Sim</string>
     <string name="no">Não</string>
     <string name="unlock">Desbloquear</string>
-    <string name="biometrics">Biometria</string>
     <string name="advanced">Avançado</string>
     <string name="counter">Contador</string>
     <string name="digits">Dígitos</string>
@@ -94,14 +87,9 @@
     <string name="scan">Escanear código QR</string>
     <string name="scan_image">Escanear imagem</string>
     <string name="enter_manually">Inserir manualmente</string>
-    <string name="add_biometric">Adicionar biométrica</string>
-    <string name="add_biometric_slot">Adicionar slot biométrico</string>
     <string name="set_up_biometric">Configurar desbloqueio biométrico</string>
-    <string name="add_password">Adicionar senha</string>
-    <string name="slots_warning">O cofre é tão seguro quanto o seu segredo mais fraco. Se você alterar as configurações de autenticação biométrica do seu dispositivo, você precisará reativar o desbloqueio biométrico dentro do Aegis.</string>
     <string name="copy">Copiar</string>
     <string name="edit">Editar</string>
-    <string name="delete">Apagar</string>
     <string name="password">Senha</string>
     <string name="confirm_password">Confirme a Senha</string>
     <string name="show_password">Mostrar senha</string>
@@ -122,8 +110,6 @@
     </plurals>
     <string name="discard_changes">Descartar alterações?</string>
     <string name="discard_changes_description">Suas alterações não foram salvas</string>
-    <string name="folder">Pasta</string>
-    <string name="tap_to_select">Toque para selecionar</string>
     <string name="saving_profile_error">Erro ao salvar perfil</string>
     <string name="welcome">Bem-vindo</string>
     <string name="app_description">Aegis é um aplicativo 2FA gratuito, seguro e opensource</string>
@@ -172,15 +158,9 @@
     <string name="read_qr_error">Ocorreu um erro ao tentar ler o código QR</string>
     <string name="authentication_method_raw">Raw</string>
     <string name="unlocking_vault">Desbloqueando o cofre</string>
-    <string name="unlocking_vault_repair">Desbloqueando o cofre (reparando)</string>
-    <string name="password_slot_error">Você deve ter pelo menos um slot de senha</string>
     <string name="slot_this_device">(este dispositivo)</string>
-    <string name="remove_slot">Remover slot</string>
-    <string name="remove_slot_description">Tem certeza que deseja remover este slot?</string>
     <string name="remove_group">Remover grupo</string>
     <string name="remove_group_description">Tem certeza que deseja remover este grupo? As entradas neste grupo automaticamente alternarão para \'Sem grupo\'.</string>
-    <string name="adding_new_slot_error">Ocorreu um erro ao tentar adicionar um novo slot:</string>
-    <string name="progressbar_error">Não foi possível redefinir a duração da animação. Barras de progresso ficarão invisíveis.</string>
     <string name="details">Detalhes</string>
     <string name="lock">Bloquear</string>
     <string name="name">Nome</string>
@@ -191,7 +171,6 @@
     <string name="sort_alphabetically_name_reverse">Conta (Z a A)</string>
     <string name="sort_custom">Personalizado</string>
     <string name="new_group">Novo grupo…</string>
-    <string name="enter_group_name">Digite o nome do grupo</string>
     <string name="group_name_hint">Nome do grupo</string>
     <string name="preference_manage_groups">Editar grupos</string>
     <string name="preference_manage_groups_summary">Gerenciar e excluir seus grupos aqui</string>

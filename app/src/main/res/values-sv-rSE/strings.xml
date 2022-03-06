@@ -2,7 +2,6 @@
 <resources>
     <string name="action_settings">Inställningar</string>
     <string name="action_about">Om</string>
-    <string name="action_import">Importera</string>
     <string name="action_delete">Radera</string>
     <string name="action_transfer">Överför</string>
     <string name="action_edit_icon">Redigera ikon</string>
@@ -14,7 +13,6 @@
     <string name="issuer">Utfärdare</string>
     <string name="suggested">Förslag</string>
     <string name="usage_count">Användningsfrekvens</string>
-    <string name="settings">Inställningar</string>
     <string name="pref_cat_appearance_app">App</string>
     <string name="pref_cat_appearance_entries">Poster</string>
     <string name="pref_cat_backups_android">Android</string>
@@ -38,8 +36,6 @@
     <string name="pref_code_group_size_summary">Visa kod med 2-siffrig gruppering i stället för 3-siffrig gruppering</string>
     <string name="pref_account_name_title">Visa kontonamnet</string>
     <string name="pref_account_name_summary">Aktivera denna för att visa kontonamnet bredvid utfärdaren</string>
-    <string name="pref_timeout_title">Tidsgräns</string>
-    <string name="pref_timeout_summary">Lås valvet automatiskt efter %1$s sekunders inaktivitet</string>
     <string name="pref_import_file_title">Importera från fil</string>
     <string name="pref_import_file_summary">Importera polletter från en fil</string>
     <string name="pref_android_backups_title">Delta i Androids säkerhetskopiering</string>
@@ -93,8 +89,6 @@
     <string name="authentication_method_password_description">Ett lösenord behövs för att låsa upp valvet.</string>
     <string name="authentication_method_password_explanation">Varning: Om du glömmer ditt lösenord, förlorar du permanent åtkomst till dina polletter. Det finns inget sätt att återfå dem utan lösenordet.</string>
     <string name="authentication_method_biometrics">Biometri</string>
-    <string name="authentication_method_set_password">Lösenord</string>
-    <string name="authentication_enter_password">Ange ditt lösenord</string>
     <string name="authentication">Lås upp valvet</string>
     <!-- The newline (\n) on the following line is just for aesthetic purposes !-->
     <string name="authentication_multiline">Lås upp\nvalvet</string>
@@ -112,17 +106,14 @@
     <string name="yes">Ja</string>
     <string name="no">Nej</string>
     <string name="unlock">Lås upp</string>
-    <string name="biometrics">Biometri</string>
     <string name="advanced">Avancerat</string>
     <string name="digits">Siffror</string>
     <string name="secret">Hemlig nyckel</string>
     <string name="scan">Skanna QR-kod</string>
     <string name="scan_image">Skanna bild</string>
     <string name="enter_manually">Ange manuellt</string>
-    <string name="add_password">Lägg till lösenord</string>
     <string name="copy">Kopiera</string>
     <string name="edit">Redigera</string>
-    <string name="delete">Radera</string>
     <string name="password">Lösenord</string>
     <string name="confirm_password">Bekräfta lösenord</string>
     <string name="show_password">Visa lösenord</string>
@@ -132,7 +123,6 @@
     <string name="delete_entry">Radera post</string>
     <string name="discard_changes">Ignorera ändringar?</string>
     <string name="discard_changes_description">Dina ändringar har inte sparats</string>
-    <string name="folder">Mapp</string>
     <string name="welcome">Välkommen</string>
     <string name="copied">Kopierad</string>
     <string name="errors_copied">Fel kopierade till urklipp</string>
@@ -145,14 +135,12 @@
         <item quantity="one">%d ikon</item>
         <item quantity="other">%d ikoner</item>
     </plurals>
-    <string name="icon_pack">Ikonpaket</string>
     <string name="icon_custom">Anpassad</string>
     <string name="andotp_new_format">Nytt format (v0.6.3 eller nyare) </string>
     <string name="andotp_old_format">Gammalt format (v0.6.2 eller äldre) </string>
     <string name="choose_theme">Välj önskat tema</string>
     <string name="choose_view_mode">Välj önskat visningsläge</string>
     <string name="unlocking_vault">Låser upp valvet</string>
-    <string name="unlocking_vault_repair">Låser upp valvet (reparerar)</string>
     <string name="remove_group">Ta bort grupp</string>
     <string name="remove_icon_pack">Ta bort ikonpaket</string>
     <string name="remove_icon_pack_description">Är du säker på att du vill ta bort detta ikonpaket? Poster som använder ikoner från detta paket kommer inte att påverkas.</string>

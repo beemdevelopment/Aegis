@@ -2,7 +2,6 @@
 <resources>
     <string name="action_settings">Iestatījumi</string>
     <string name="action_about">Par</string>
-    <string name="action_import">Ievietot</string>
     <string name="action_delete">Dzēst</string>
     <string name="action_transfer">Pārsūtīt</string>
     <string name="action_edit_icon">Labot ikonu</string>
@@ -14,7 +13,6 @@
     <string name="issuer">Izsniedzējs</string>
     <string name="suggested">Ieteikts</string>
     <string name="usage_count">Izmantošanas reižu skaits</string>
-    <string name="settings">Uzstādījumi</string>
     <string name="pref_cat_appearance_app">Lietotne</string>
     <string name="pref_cat_appearance_entries">Ieraksti</string>
     <string name="pref_cat_backups_android">Android</string>
@@ -38,8 +36,6 @@
     <string name="pref_code_group_size_summary">Rādīt kodu ar divciparu kopām 3 ciparu kopu vietā</string>
     <string name="pref_account_name_title">Rādīt konta nosaukumu</string>
     <string name="pref_account_name_summary">Iespējot, lai rādītu konta nosaukumu blakus izsniedzējam</string>
-    <string name="pref_timeout_title">Noildze</string>
-    <string name="pref_timeout_summary">Aizslēgt glabātavu pēc %1$s sekundes(žu) bezdarbības</string>
     <string name="pref_import_file_title">Izgūt no datnes</string>
     <string name="pref_import_file_summary">Ievietot kodus no datnes</string>
     <string name="pref_android_backups_title">Ņemt dalību Android dublēšanas sistēmā</string>
@@ -95,8 +91,6 @@
     <string name="authentication_method_password_explanation">Brīdinājums: ja tiks aizmirsta parole, neatgriezeniski tiks zaudēta piekļuve kodiem. Bez paroles nav iespējams tos atgūt.</string>
     <string name="authentication_method_biometrics">Biometrija</string>
     <string name="authentication_method_biometrics_description">Papildus parolei glabātavas atslēgšanai var izmantot arī ierīcē pievinotos biometriskos datus, piemēram, pirkstu nospiedumu vai seju.</string>
-    <string name="authentication_method_set_password">Parole</string>
-    <string name="authentication_enter_password">Ievadīt paroli</string>
     <string name="authentication">Atslēgt glabātavu</string>
     <!-- The newline (\n) on the following line is just for aesthetic purposes !-->
     <string name="authentication_multiline">Atslēgt\nglabātavu</string>
@@ -116,7 +110,6 @@
     <string name="yes">Jā</string>
     <string name="no">Nē</string>
     <string name="unlock">Atslēgt</string>
-    <string name="biometrics">Biometrija</string>
     <string name="advanced">Papildus</string>
     <string name="counter">Skaitītājs</string>
     <string name="digits">Cipari</string>
@@ -124,14 +117,9 @@
     <string name="scan">Nolasīt kvadrātkodu</string>
     <string name="scan_image">Nolasīt attēlu</string>
     <string name="enter_manually">Ievadīt pašrocīgi</string>
-    <string name="add_biometric">Pievienot biometriju</string>
-    <string name="add_biometric_slot">Pievienot biometrijas vietu</string>
     <string name="set_up_biometric">Uzstādīt atslēgšanu ar biometriju</string>
-    <string name="add_password">Pievienot paroli</string>
-    <string name="slots_warning">Glabātava ir tikai tik droša, cik tās vājākais noslēpums. Ja tiks mainīti ierīces biometriskās pieteikšanās iestatījumi, būs nepieciešams atkārtoti iespējot atslēgšanu ar biometriju Aegis lietotnē.</string>
     <string name="copy">Ievietot starpliktuvē</string>
     <string name="edit">Labot</string>
-    <string name="delete">Dzēst</string>
     <string name="password">Parole</string>
     <string name="confirm_password">Apstiprināt paroli</string>
     <string name="show_password">Rādīt paroli</string>
@@ -155,8 +143,6 @@
     </plurals>
     <string name="discard_changes">Atmest izmaiņas?</string>
     <string name="discard_changes_description">Izmaiņas netika saglabātas</string>
-    <string name="folder">Mape</string>
-    <string name="tap_to_select">Piesist, lai atlasītu</string>
     <string name="saving_profile_error">Kļūda saglabājot profilu</string>
     <string name="welcome">Sveiciens!</string>
     <string name="app_description">Aegis ir bezmaksas, droša un atvērtā pirmkoda 2FA lietotne</string>
@@ -189,7 +175,6 @@
         <item quantity="one">%d ikona</item>
         <item quantity="other">%d ikonas</item>
     </plurals>
-    <string name="icon_pack">Ikonu pakotne</string>
     <string name="icon_custom">Pielāgots</string>
     <string name="permission_denied">Atļauja liegta</string>
     <string name="andotp_new_format">Jaunais veidols (v0.6.3 vai jaunāks) </string>
@@ -219,17 +204,11 @@
     <string name="read_qr_error_phonefactor">Aegis nav saderīgs ar Microsoft piederošo 2FA algoritmu. Lūgums pārliecināties, ka ir izvēlēts \"Uzstādīt lietotni bez paziņojumiem\", kad Office 365 tiek uzstādīts 2FA.</string>
     <string name="authentication_method_raw">Neapstrādāts</string>
     <string name="unlocking_vault">Atslēgšana ar biometriju</string>
-    <string name="unlocking_vault_repair">Notiek glabātavas atslēgšana (labojot)</string>
-    <string name="password_slot_error">Ir nepieciešama vismaz viena paroles vieta</string>
     <string name="slot_this_device">(šī ierīce)</string>
-    <string name="remove_slot">Noņemt vietu</string>
-    <string name="remove_slot_description">Vai tiešām izdzēst šo vietu?</string>
     <string name="remove_group">Noņemt kopu</string>
     <string name="remove_group_description">Vai tiešām noņemt šo kopu? Tās ieraksti tiks pārmainīti uz \"Nav kopas\".</string>
     <string name="remove_icon_pack">Noņemt ikonu pakotni</string>
     <string name="remove_icon_pack_description">Vai tiešām noņemt šo ikonu pakotni? Netiks ietekmēti ieraksti, kuros ir izmantotas pakotnē esošās ikonas.</string>
-    <string name="adding_new_slot_error">Atgadījusies kļūda jaunas vietas pievienošanā:</string>
-    <string name="progressbar_error">Nav iespējams atiestatīt animatora ilguma mērogu. Izpildes joslas būs neredzamas.</string>
     <string name="details">Izklāsts</string>
     <string name="lock">Aizslēgt</string>
     <string name="name">Nosaukums</string>
@@ -242,7 +221,6 @@
     <string name="sort_usage_count">Izmantošanas reižu skaits</string>
     <string name="sort_custom">Pielāgots</string>
     <string name="new_group">Jauna kopa…</string>
-    <string name="enter_group_name">Ievadīt kopas nosaukumu</string>
     <string name="group">Kopa</string>
     <string name="group_name_hint">Kopas nosaukums</string>
     <string name="preference_manage_groups">Labot kopas</string>

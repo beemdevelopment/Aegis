@@ -2,7 +2,6 @@
 <resources>
     <string name="action_settings">الإعدادات</string>
     <string name="action_about">عن</string>
-    <string name="action_import">استيراد</string>
     <string name="action_delete">حذف</string>
     <string name="action_transfer">نقل</string>
     <string name="action_edit_icon">تعديل الأيقونة</string>
@@ -11,7 +10,6 @@
     <string name="save">حفظ</string>
     <string name="issuer">المصدِّر</string>
     <string name="suggested">مقترح</string>
-    <string name="settings">التفضيلات</string>
     <string name="pref_cat_appearance_app">تطبيق</string>
     <string name="pref_cat_appearance_entries">عناصر</string>
     <string name="pref_cat_backups_android">أندرويد</string>
@@ -31,8 +29,6 @@
     <string name="pref_code_group_size_summary">عرض الكود في مجموعات من رقمين بدلًا من مجموعات من ثلاث أرقام</string>
     <string name="pref_account_name_title">اظهر اسم الحساب</string>
     <string name="pref_account_name_summary">قم بالتفعيل لإظهار اسم الحساب بجانب المصدِّر</string>
-    <string name="pref_timeout_title">المهلة</string>
-    <string name="pref_timeout_summary">قفل المخزن تلقائيًا بعد %1$s ثواني من عدم الاستعمال</string>
     <string name="pref_import_file_title">استيراد من ملف</string>
     <string name="pref_import_file_summary">استيراد الرموز من ملف</string>
     <string name="pref_backups_title">نسخ تلقائي للخزينة</string>
@@ -81,8 +77,6 @@
     <string name="authentication_method_password_explanation">تحذير: إذا نسيت كلمة المرور، فلن تستطيع الوصول للرموز نهائيًا. لا توجد طريقة لاستعادتهم بدون كلمة المرور.</string>
     <string name="authentication_method_biometrics">البيومترية</string>
     <string name="authentication_method_biometrics_description">بالإضافة إلى كلمة المرور، يمكن استعمال البيومترية المسجلة على هذا الجهاز، مثل البصمة أو وجهك، لفك قفل المخزن</string>
-    <string name="authentication_method_set_password">كلمة المرور</string>
-    <string name="authentication_enter_password">أدخل كلمة مرورك</string>
     <string name="authentication">افتح قفل لمخزن</string>
     <!-- The newline (\n) on the following line is just for aesthetic purposes !-->
     <string name="authentication_multiline">افتح قفل\nالمخزن</string>
@@ -100,7 +94,6 @@
     <string name="yes">نعم</string>
     <string name="no">لا</string>
     <string name="unlock">فتح القفل</string>
-    <string name="biometrics">البيومترية</string>
     <string name="advanced">متقدم</string>
     <string name="counter">العداد</string>
     <string name="digits">الأرقام</string>
@@ -108,14 +101,9 @@
     <string name="scan">امسح كود QR</string>
     <string name="scan_image">امسح الصورة</string>
     <string name="enter_manually">أدخل يدويًا</string>
-    <string name="add_biometric">أضف البيومترية</string>
-    <string name="add_biometric_slot">أضف خانة بيومترية</string>
     <string name="set_up_biometric">تعيين فتح القفل البيومتري</string>
-    <string name="add_password">أضف كلمة مرور</string>
-    <string name="slots_warning">المخزن آمن فقط كأمان أضعف أسرارك. إذا قمت بتغيير إعدادات المصادقة البيومترية على جهازك، ستحتاج إلى إعادة تفعيل فقح القفل البيومتري داخل Aegis.</string>
     <string name="copy">نسخ</string>
     <string name="edit">تعديل</string>
-    <string name="delete">حذف</string>
     <string name="password">كلمة المرور</string>
     <string name="confirm_password">تأكيد كلمة المرور</string>
     <string name="show_password">عرض كلمة المرور</string>
@@ -134,8 +122,6 @@
     <string name="delete_entries">حذف المدخلات</string>
     <string name="discard_changes">تجاهل التغييرات؟</string>
     <string name="discard_changes_description">لم يتم حفظ تغييراتك</string>
-    <string name="folder">مجلد</string>
-    <string name="tap_to_select">انقر للتحديد</string>
     <string name="saving_profile_error">حدث خطأ أثناء حفظ الملف الشخصي</string>
     <string name="welcome">مرحبًا</string>
     <string name="app_description">Aegis تطبيق مصادقة ثنائية مجاني، وآمن، ومفتوح المصدر</string>
@@ -180,15 +166,9 @@
     <string name="read_qr_error">حدث خطأ أثناء محاولة قراءة كود QR</string>
     <string name="authentication_method_raw">خام</string>
     <string name="unlocking_vault">يتم فتح قفل المخزن</string>
-    <string name="unlocking_vault_repair">يتم فتح قفل المخزن (يتم التصليح)</string>
-    <string name="password_slot_error">يجب أن يكون لديك خانة كلمة مرور واحدة على الأقل</string>
     <string name="slot_this_device">(هذه الأجهزة)</string>
-    <string name="remove_slot">إزالة الخانة</string>
-    <string name="remove_slot_description">هل ترغب حقًا في حذف هذه الخانة؟</string>
     <string name="remove_group">إزالة المجموعة</string>
     <string name="remove_group_description">هل ترغب حقًا في إزالة هذه المجموعة؟ ستتحول المدخلات في هذه المجموعة تلقائيًا إلى &quot;غير مجمّعة&quot;</string>
-    <string name="adding_new_slot_error">حدث خطأ أثناء محاولة إضافة خانة جديدة:</string>
-    <string name="progressbar_error">تعذّر اعادة تعيين مقياس مدة الرسوم المتحركة. أشرطة التقدم ستكون مخفية.</string>
     <string name="details">التفاصيل</string>
     <string name="lock">قفل</string>
     <string name="name">الاسم</string>
@@ -199,7 +179,6 @@
     <string name="sort_alphabetically_name_reverse">الحساب (ي إلى أ)</string>
     <string name="sort_custom">مخصص</string>
     <string name="new_group">مجموعة جديدة</string>
-    <string name="enter_group_name">أدخل اسم للمجموعة</string>
     <string name="group_name_hint">اسم المجموعة</string>
     <string name="preference_manage_groups">تعديل المجموعات</string>
     <string name="preference_manage_groups_summary">أدر واحذف مجموعاتك هنا</string>

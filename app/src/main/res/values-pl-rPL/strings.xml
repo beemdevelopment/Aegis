@@ -2,7 +2,6 @@
 <resources>
     <string name="action_settings">Ustawienia</string>
     <string name="action_about">O aplikacji</string>
-    <string name="action_import">Importuj</string>
     <string name="action_delete">Usuń</string>
     <string name="action_transfer">Przenieś</string>
     <string name="action_edit_icon">Edytuj ikonę</string>
@@ -11,7 +10,6 @@
     <string name="save">Zapisz</string>
     <string name="issuer">Wydawca</string>
     <string name="suggested">Polecane</string>
-    <string name="settings">Ustawienia</string>
     <string name="pref_cat_appearance_app">Aplikacja</string>
     <string name="pref_cat_appearance_entries">Wpisy</string>
     <string name="pref_cat_backups_android">Android</string>
@@ -35,8 +33,6 @@
     <string name="pref_code_group_size_summary">Pokaż kod w grupach 2-cyfrowych zamiast w 3-cyfrowych</string>
     <string name="pref_account_name_title">Pokaż nazwę konta</string>
     <string name="pref_account_name_summary">Włącz tę opcję, aby pokazywać nazwę konta obok wydawcy</string>
-    <string name="pref_timeout_title">Limit czasu</string>
-    <string name="pref_timeout_summary">Automatycznie zablokuj sejf po %1$s sekundach bezczynności</string>
     <string name="pref_import_file_title">Importuj z pliku</string>
     <string name="pref_import_file_summary">Importuj tokeny z aplikacji</string>
     <string name="pref_android_backups_title">Utwórz kopię zapasową w systemie Android</string>
@@ -93,8 +89,6 @@
     <string name="authentication_method_password_explanation">Ostrzeżenie: Jeśli zapomnisz hasła, utracisz dostęp do swoich tokenów. Bez użycia hasła, nie ma sposobu na ich odzyskanie.</string>
     <string name="authentication_method_biometrics">Autoryzacja biometryczna</string>
     <string name="authentication_method_biometrics_description">Oprócz hasła, do odblokowania sejfu możesz użyć danych biometrycznej przechowywanych na tym urządzeniu, takich jak odcisk palca lub twarz.</string>
-    <string name="authentication_method_set_password">Hasło</string>
-    <string name="authentication_enter_password">Wpisz hasło</string>
     <string name="authentication">Odblokuj sejf</string>
     <!-- The newline (\n) on the following line is just for aesthetic purposes !-->
     <string name="authentication_multiline">Odblokuj\nsejf</string>
@@ -114,7 +108,6 @@
     <string name="yes">Tak</string>
     <string name="no">Nie</string>
     <string name="unlock">Odblokuj</string>
-    <string name="biometrics">Autoryzacja biometryczna</string>
     <string name="advanced">Zaawansowane</string>
     <string name="counter">Licznik</string>
     <string name="digits">Cyfry</string>
@@ -122,14 +115,9 @@
     <string name="scan">Skanuj kod QR</string>
     <string name="scan_image">Skanuj zdjęcie</string>
     <string name="enter_manually">Wpisz ręcznie</string>
-    <string name="add_biometric">Dodaj autoryzację biometryczną</string>
-    <string name="add_biometric_slot">Dodaj slot biometryczny</string>
     <string name="set_up_biometric">Ustaw autoryzację biometryczną</string>
-    <string name="add_password">Dodaj hasło</string>
-    <string name="slots_warning">Sejf jest tak bezpieczny, jak Twoje hasło. Jeśli zmienisz ustawienia zabezpieczeń biometrycznych w swoim urządzeniu, będziesz musiał ponownie aktywować autoryzację biometryczną w aplikacji Aegis.</string>
     <string name="copy">Kopiuj</string>
     <string name="edit">Edytuj</string>
-    <string name="delete">Usuń</string>
     <string name="password">Hasło</string>
     <string name="confirm_password">Potwierdź hasło</string>
     <string name="show_password">Pokaż hasło</string>
@@ -154,8 +142,6 @@
     </plurals>
     <string name="discard_changes">Czy chcesz odrzucić zmiany?</string>
     <string name="discard_changes_description">Zmiany nie zostały zapisane</string>
-    <string name="folder">Folder</string>
-    <string name="tap_to_select">Kliknij, aby wybrać</string>
     <string name="saving_profile_error">Wystąpił błąd podczas zapisywania profilu</string>
     <string name="welcome">Witaj</string>
     <string name="app_description">Aegis jest darmową, bezpieczną i otwartoźródłową aplikacją uwierzytelniającą</string>
@@ -189,7 +175,6 @@
         <item quantity="many">%d ikony</item>
         <item quantity="other">%d ikon</item>
     </plurals>
-    <string name="icon_pack">Pakiet ikon</string>
     <string name="icon_custom">Niestandardowa</string>
     <string name="permission_denied">Odmowa uprawnienia</string>
     <string name="andotp_new_format">Nowy format (wersja 0.6.3 lub nowsza) </string>
@@ -220,17 +205,11 @@
     <string name="read_qr_error_phonefactor">Aplikacja Aegis nie jest kompatybilna z algorytmem uwierzytelniającym firmy Microsoft. Podczas konfigurowania uwierzytelniania w aplikacji Office 365 wybierz opcję \"Skonfiguruj aplikację bez powiadomień\".</string>
     <string name="authentication_method_raw">Dane surowe</string>
     <string name="unlocking_vault">Odblokowywanie sejfu</string>
-    <string name="unlocking_vault_repair">Odblokowywanie sejfu (naprawa)</string>
-    <string name="password_slot_error">Musisz posiadać co najmniej jeden slot hasła</string>
     <string name="slot_this_device">(to urządzenie)</string>
-    <string name="remove_slot">Usuń slot</string>
-    <string name="remove_slot_description">Czy na pewno chcesz usunąć ten slot?</string>
     <string name="remove_group">Usuń grupę</string>
     <string name="remove_group_description">Czy na pewno chcesz usunąć tę grupę? Wpisy z tej grupy zostaną automatycznie przeniesione do kategorii \'Brak grupy\'.</string>
     <string name="remove_icon_pack">Usuń pakiet ikon</string>
     <string name="remove_icon_pack_description">Czy na pewno chcesz usunąć ten pakiet ikon? Wpisy, które używają ikon z tego pakietu nie zostaną zmienione.</string>
-    <string name="adding_new_slot_error">Wystąpił błąd podczas próby dodania nowego slotu:</string>
-    <string name="progressbar_error">Nie można zresetować skali długości animacji. Paski postępu będą niewidoczne.</string>
     <string name="details">Szczegóły</string>
     <string name="lock">Zablokuj</string>
     <string name="name">Nazwa</string>
@@ -242,7 +221,6 @@
     <string name="sort_alphabetically_name_reverse">Konto (od Z do A)</string>
     <string name="sort_custom">Niestandardowe</string>
     <string name="new_group">Nowa grupa…</string>
-    <string name="enter_group_name">Wpisz nazwę grupy</string>
     <string name="group">Grupa</string>
     <string name="group_name_hint">Nazwa grupy</string>
     <string name="preference_manage_groups">Edytuj grupy</string>

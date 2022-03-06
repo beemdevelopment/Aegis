@@ -2,7 +2,6 @@
 <resources>
     <string name="action_settings">تنظیمات</string>
     <string name="action_about">درباره‌</string>
-    <string name="action_import">وارد کردن</string>
     <string name="action_delete">حذف</string>
     <string name="action_transfer">انتقال</string>
     <string name="action_edit_icon">ویرایش ایکون</string>
@@ -10,7 +9,6 @@
     <string name="discard">لغو</string>
     <string name="save">ذخیره</string>
     <string name="issuer">صادر کننده</string>
-    <string name="settings">تنظیمات</string>
     <string name="pref_cat_appearance_app">نرم افزار</string>
     <string name="pref_cat_appearance_entries">مطالب</string>
     <string name="pref_cat_backups_android">اندروید</string>
@@ -32,8 +30,6 @@
     <string name="pref_code_group_size_summary">جدا کردن رقم ها به صورت دو به دو، بجای جدا کردن به صورت سه به سه</string>
     <string name="pref_account_name_title">نمایش نام حساب کاربری</string>
     <string name="pref_account_name_summary">برای نمایش نام حساب کاربری کنار صادر کننده فعال کنید</string>
-    <string name="pref_timeout_title">اتمام مهلت</string>
-    <string name="pref_timeout_summary">بعد از %1$s ثانیه عدم فعالیت مخزن را قفل کن</string>
     <string name="pref_import_file_title">وارد کردن از فایل</string>
     <string name="pref_import_file_summary">وارد کردن توکن ها از فایل</string>
     <string name="pref_android_backups_title">شرکت کردن در سیستم پشتیبانگیری اندروید</string>
@@ -87,8 +83,6 @@
     <string name="authentication_method_password_explanation">هشدار: پس از فراموشی کلمه عبور هیچ راهی برای بازگرداندن توکن ها نیست.</string>
     <string name="authentication_method_biometrics">بیومتریک</string>
     <string name="authentication_method_biometrics_description">علاوه بر کلمه عبور، یک روش احراز هویت بیومتریک مانند اثر انگشت یا تشخیص چهره تعریف شده است که میتوان برای بازگشایی مخزن استفاده کرد.</string>
-    <string name="authentication_method_set_password">کلمه عبور</string>
-    <string name="authentication_enter_password">کلمه عبور خود را وارد کنید</string>
     <string name="authentication">بازکردن مخزن</string>
     <!-- The newline (\n) on the following line is just for aesthetic purposes !-->
     <string name="authentication_multiline">باز کردن\nمخزن</string>
@@ -107,7 +101,6 @@
     <string name="yes">بله</string>
     <string name="no">خیر</string>
     <string name="unlock">بازکردن</string>
-    <string name="biometrics">بیومتریک</string>
     <string name="advanced">پیشرفته</string>
     <string name="counter">شمارنده</string>
     <string name="digits">ارقام</string>
@@ -115,14 +108,9 @@
     <string name="scan">اسکن بارکد دوبعدی</string>
     <string name="scan_image">اسکن تصویر</string>
     <string name="enter_manually">وارد کردن دستی</string>
-    <string name="add_biometric">افزودن احراز هویت بیومتریک</string>
-    <string name="add_biometric_slot">افزودن احراز هویت بیومتریک</string>
     <string name="set_up_biometric">تعریف رمزگذاری بیومتریک</string>
-    <string name="add_password">افزودن کلمه عبور</string>
-    <string name="slots_warning">مخزن به اندازه ضعیف ترین رمز شما ایمن است. اگر تغییری در تنظیمات بیومتریک انجام داده اید، لطفا برای فعال سازی مجدد به تنظیمات برنامه مراجعه کنید.</string>
     <string name="copy">کپی</string>
     <string name="edit">ویرایش</string>
-    <string name="delete">حذف</string>
     <string name="password">کلمه عبور</string>
     <string name="confirm_password">تایید کلمه عبور</string>
     <string name="show_password">نمایش کلمه عبور</string>
@@ -143,8 +131,6 @@
     </plurals>
     <string name="discard_changes">لغو تغییرات؟</string>
     <string name="discard_changes_description">تغییرات اعمال شده ذخیره نشد</string>
-    <string name="folder">پوشه</string>
-    <string name="tap_to_select">برای انتخاب لمس کنید</string>
     <string name="saving_profile_error">خطا در ذخیره حساب کاربری</string>
     <string name="welcome">خوش آمدید</string>
     <string name="app_description">Aegis یک نرم افزار امن، رایگان و متن باز برای ورود دو مرحله ای می‌باشد</string>
@@ -196,15 +182,9 @@
     <string name="read_qr_error_phonefactor">آگیس با الگوریتم اختصاصی 2FA مایکروسافت سازگاری ندارد. لطفا اطمینان حاصل فرمایید که گزینه \"تنظیم برنامه بدون اعلانات\" در تنظیمات 2FA آفیس 365 انتخاب شده باشد.</string>
     <string name="authentication_method_raw">خام</string>
     <string name="unlocking_vault">رمزگشایی مزخن</string>
-    <string name="unlocking_vault_repair">رمزگشایی مخزن (در حال تعمیر)</string>
-    <string name="password_slot_error">شما حداقل باید یک محل کلمه عبور داشته باشید.</string>
     <string name="slot_this_device">(این دستگاه)</string>
-    <string name="remove_slot">حذف اسلات</string>
-    <string name="remove_slot_description">آیا از حذف این اسلات اطمینان دارید؟</string>
     <string name="remove_group">حذف گروه</string>
     <string name="remove_group_description">آیا مطمئن به حذف این گروه هستید؟ تمام آیتم های داخل این گروه تبدیل به \"بدون گروه\" می‌شوند.</string>
-    <string name="adding_new_slot_error">هنگام ایجاد اسلات خطایی رخ داد:</string>
-    <string name="progressbar_error">عدم توانایی در تنظیم انیمیشن. نمایش درصد تکمیل مخفی می‌شود.</string>
     <string name="details">جزئیات</string>
     <string name="lock">قفل</string>
     <string name="name">نام</string>
@@ -215,7 +195,6 @@
     <string name="sort_alphabetically_name_reverse">نام حساب (Z - A)</string>
     <string name="sort_custom">سفارشی</string>
     <string name="new_group">گروه جدید…</string>
-    <string name="enter_group_name">نام گروه را وارد کنید</string>
     <string name="group">گروه</string>
     <string name="group_name_hint">نام گروه</string>
     <string name="preference_manage_groups">ویرایش گروه</string>

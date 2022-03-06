@@ -2,13 +2,11 @@
 <resources>
     <string name="action_settings">Beállítások</string>
     <string name="action_about">Névjegy</string>
-    <string name="action_import">Importálás</string>
     <string name="action_delete">Törlés</string>
     <string name="action_default_icon">Alapértelmezett ikon visszaállítása</string>
     <string name="discard">Elvetés</string>
     <string name="save">Mentés</string>
     <string name="issuer">Kibocsátó</string>
-    <string name="settings">Beállítások</string>
     <string name="pref_select_theme_title">Téma</string>
     <string name="pref_view_mode_title">Nézetmód</string>
     <string name="pref_lang_title">Nyelv</string>
@@ -16,8 +14,6 @@
     <string name="pref_code_group_size_summary">Kódok megjelenítése két számjegyes csoportosításban a három számjegyes helyett</string>
     <string name="pref_account_name_title">A fióknév megjelenítése</string>
     <string name="pref_account_name_summary">Kapcsolja be a fiók nevének megjelenítéséhez a kibocsátó mellett</string>
-    <string name="pref_timeout_title">Időtúllépés</string>
-    <string name="pref_timeout_summary">A széf automatikus zárolása %1$s másodperc tétlenség után</string>
     <string name="pref_import_file_title">Importálás fájlból</string>
     <string name="pref_import_file_summary">Tokenek importálása fájlból</string>
     <string name="pref_backups_summary">Biztonsági mentést készít a széfről a külső tárolón. Ez csak titkosított széfek esetén támogatott.</string>
@@ -51,8 +47,6 @@
     <string name="authentication_method_password_explanation">Figyelmeztetés: Ha elfelejti a jelszavát, akkor végleg elveszti a hozzáférését a tokenekhez. Jelszó nélkül sehogy sem fogja tudni visszaállítani azokat.</string>
     <string name="authentication_method_biometrics">Biometrikus</string>
     <string name="authentication_method_biometrics_description">A jelszó mellett a biometrikus adatai is regisztrálva lesznek az eszközön, mint például az ujjlenyomata vagy az arca, melyet a széf feloldásához használhat.</string>
-    <string name="authentication_method_set_password">Jelszó</string>
-    <string name="authentication_enter_password">Adja meg a jelszavát</string>
     <string name="authentication">A széf feloldása</string>
     <!-- The newline (\n) on the following line is just for aesthetic purposes !-->
     <string name="set_password">Adja meg a jelszavát</string>
@@ -64,7 +58,6 @@
     <string name="yes">Igen</string>
     <string name="no">Nem</string>
     <string name="unlock">Feloldás</string>
-    <string name="biometrics">Biometrikus adatok</string>
     <string name="advanced">Speciális</string>
     <string name="counter">Számláló</string>
     <string name="digits">Számjegy</string>
@@ -72,14 +65,9 @@
     <string name="scan">QR-kód leolvasása</string>
     <string name="scan_image">Kép beolvasása</string>
     <string name="enter_manually">Kézi megadás</string>
-    <string name="add_biometric">Biometrikus adatok hozzáadása</string>
-    <string name="add_biometric_slot">Biometrikus zár hozzáadása</string>
     <string name="set_up_biometric">Feloldás beállítása biometrikus adatokkal</string>
-    <string name="add_password">Jelszó hozzáadása</string>
-    <string name="slots_warning">A zár olyan biztonságos, mint a leggyengébb titok. Ha módosítja az eszköze biometrikus hitelesítési beállításait, akkor újra kell aktiválnia a biometrikus feloldást az Aegisben.</string>
     <string name="copy">Másolás</string>
     <string name="edit">Szerkesztés</string>
-    <string name="delete">Törlés</string>
     <string name="password">Jelszó</string>
     <string name="confirm_password">Jelszó megerősítése</string>
     <string name="show_password">Jelszó megjelenítése</string>
@@ -95,8 +83,6 @@
     <string name="delete_entries">Bejegyzések törlése</string>
     <string name="discard_changes">Elveti a változásokat?</string>
     <string name="discard_changes_description">A változásai nem lettek mentve</string>
-    <string name="folder">Mappa</string>
-    <string name="tap_to_select">Koppintson a kiválasztáshoz</string>
     <string name="saving_profile_error">Hiba a profil mentésekor</string>
     <string name="welcome">Üdvözöljük</string>
     <string name="app_description">Az Aegis egy szabad, biztonságos és nyílt forráskódú két faktoros hitelesítő alkalmazás</string>
@@ -133,14 +119,8 @@
     <string name="read_qr_error">Hiba történt a QR-kód leolvasásakor</string>
     <string name="authentication_method_raw">Nyers</string>
     <string name="unlocking_vault">A széf feloldása</string>
-    <string name="unlocking_vault_repair">A széf feloldása (javítás)</string>
-    <string name="password_slot_error">Legalább egy jelszavas zárnak kell lennie</string>
-    <string name="remove_slot">Zár eltávolítása</string>
-    <string name="remove_slot_description">Biztos, hogy eltávolítja ezt a zárat?</string>
     <string name="remove_group">Csoport eltávolítása</string>
     <string name="remove_group_description">Biztos, hogy eltávolítja ezt a csoportot? A csoport bejegyzései automatikusan „Csoport nélküli” elemek lesznek.</string>
-    <string name="adding_new_slot_error">Hiba történt az új zár hozzáadásakor:</string>
-    <string name="progressbar_error">Az animátor hossza nem állítható vissza. A folyamatsávok nem fognak látszódni.</string>
     <string name="details">Részletek</string>
     <string name="lock">Zárolás</string>
     <string name="name">Név</string>
@@ -151,7 +131,6 @@
     <string name="sort_alphabetically_name_reverse">Fiók (Z-től A-ig)</string>
     <string name="sort_custom">Egyéni</string>
     <string name="new_group">Új csoport…</string>
-    <string name="enter_group_name">Adja meg a csoport nevét</string>
     <string name="group_name_hint">Csoportnév</string>
     <string name="preference_manage_groups">Csoportok szerkesztése</string>
     <string name="preference_manage_groups_summary">Itt kezelheti és törölheti a csoportokat</string>

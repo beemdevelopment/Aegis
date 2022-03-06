@@ -2,7 +2,6 @@
 <resources>
     <string name="action_settings">Настройки</string>
     <string name="action_about">Относно</string>
-    <string name="action_import">Импортиране</string>
     <string name="action_delete">Изтриване</string>
     <string name="action_transfer">Прехвърляне</string>
     <string name="action_edit_icon">Редактиране на икона</string>
@@ -10,7 +9,6 @@
     <string name="discard">Отхвърляне</string>
     <string name="save">Запазване</string>
     <string name="issuer">Издател</string>
-    <string name="settings">Предпочитания</string>
     <string name="pref_cat_appearance_app">Приложение</string>
     <string name="pref_cat_appearance_entries">Записи</string>
     <string name="pref_cat_backups_android">Андроид</string>
@@ -32,8 +30,6 @@
     <string name="pref_code_group_size_summary">Показване на кода в 2-цифрено групиране вместо в 3-цифрено групиране</string>
     <string name="pref_account_name_title">Показване на профилното име</string>
     <string name="pref_account_name_summary">Активирайте това, за да се показва името на акаунта до издателя</string>
-    <string name="pref_timeout_title">Изчакване</string>
-    <string name="pref_timeout_summary">Автоматично заключване на трезора след %1$s секунди бездействие</string>
     <string name="pref_import_file_title">Импорт от файл</string>
     <string name="pref_import_file_summary">Импортиране на токени от файл</string>
     <string name="pref_android_backups_title">Участвайте в системата за архивиране на Android</string>
@@ -88,8 +84,6 @@
     <string name="authentication_method_password_explanation">Предупреждение: Ако забравите паролата си, ще загубите трайно достъп до вашите токени. Няма начин да ги възстановите без паролата.</string>
     <string name="authentication_method_biometrics">Биометрични данни</string>
     <string name="authentication_method_biometrics_description">В допълнение към парола, биометрични данни, регистрирани на това устройство, като пръстов отпечатък или лицето Ви, могат да се използват за отключване на трезора.</string>
-    <string name="authentication_method_set_password">Парола</string>
-    <string name="authentication_enter_password">Въведете паролата си</string>
     <string name="authentication">Отключете трезора</string>
     <!-- The newline (\n) on the following line is just for aesthetic purposes !-->
     <string name="authentication_multiline">Отключете\nтрезора</string>
@@ -109,7 +103,6 @@
     <string name="yes">Да</string>
     <string name="no">Не</string>
     <string name="unlock">Отключи</string>
-    <string name="biometrics">Биометрични данни</string>
     <string name="advanced">Разширени</string>
     <string name="counter">Брояч</string>
     <string name="digits">Цифри</string>
@@ -117,14 +110,9 @@
     <string name="scan">Сканирайте QR кода</string>
     <string name="scan_image">Сканирайте изображение</string>
     <string name="enter_manually">Въведете ръчно</string>
-    <string name="add_biometric">Добавете биометрични данни</string>
-    <string name="add_biometric_slot">Добавете биометричен слот</string>
     <string name="set_up_biometric">Настройте биометрично отключване</string>
-    <string name="add_password">Добавете парола</string>
-    <string name="slots_warning">Трезорът е толкова сигурен, колкото най-слабата ви тайна. Ако промените настройките за биометрично удостоверяване на вашето устройство, ще трябва да активирате отново биометричното отключване в Aegis.</string>
     <string name="copy">Копирай</string>
     <string name="edit">Промени</string>
-    <string name="delete">Изтрий</string>
     <string name="password">Парола</string>
     <string name="confirm_password">Потвърди паролата</string>
     <string name="show_password">Покажи парола</string>
@@ -146,8 +134,6 @@
     </plurals>
     <string name="discard_changes">Отхвърляне на промените?</string>
     <string name="discard_changes_description">Промените Ви не са записани</string>
-    <string name="folder">Папка</string>
-    <string name="tap_to_select">Натиснете, за да изберете</string>
     <string name="saving_profile_error">Грешка при запазването на профила</string>
     <string name="welcome">Добре дошли</string>
     <string name="app_description">Aegis е безплатно, сигурно и с отворен код 2FA приложение</string>
@@ -199,15 +185,9 @@
     <string name="read_qr_error_phonefactor">Aegis не е съвместим с частния 2FA алгоритъм на Microsoft. Моля, не забравяйте да изберете „Надстройка на приложение без известия“, когато конфигурирате 2FA в Office 365.</string>
     <string name="authentication_method_raw">Необработен</string>
     <string name="unlocking_vault">Отключване на трезора</string>
-    <string name="unlocking_vault_repair">Отключване на трезора (ремонтиране)</string>
-    <string name="password_slot_error">Трябва да имате поне един слот за парола</string>
     <string name="slot_this_device">(това устройство)</string>
-    <string name="remove_slot">Отстранете слота</string>
-    <string name="remove_slot_description">Наистина ли искате да премахнете този слот?</string>
     <string name="remove_group">Премахни група</string>
     <string name="remove_group_description">Наистина ли искате да премахнете тази група? Записите в тази група автоматично ще преминат към „Без група“.</string>
-    <string name="adding_new_slot_error">Възникна грешка при опит за добавяне на нов слот:</string>
-    <string name="progressbar_error">Не може да се нулира скалата за продължителност на аниматора. Лентите за напредък ще бъдат невидими.</string>
     <string name="details">Подробности</string>
     <string name="lock">Заключи</string>
     <string name="name">Име</string>
@@ -219,7 +199,6 @@
     <string name="sort_alphabetically_name_reverse">Акаунт (Я до А)</string>
     <string name="sort_custom">По избор</string>
     <string name="new_group">Нова група…</string>
-    <string name="enter_group_name">Въведете име на групата</string>
     <string name="group">Група</string>
     <string name="group_name_hint">Име на групата</string>
     <string name="preference_manage_groups">Редактиране на групи</string>

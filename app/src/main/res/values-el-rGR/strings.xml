@@ -2,7 +2,6 @@
 <resources>
     <string name="action_settings">Ρυθμίσεις</string>
     <string name="action_about">Σχετικά</string>
-    <string name="action_import">Εισαγωγή</string>
     <string name="action_delete">Διαγραφή</string>
     <string name="action_transfer">Μεταφορά</string>
     <string name="action_edit_icon">Επεξεργασία εικονιδίου</string>
@@ -14,7 +13,6 @@
     <string name="issuer">Εκδότης</string>
     <string name="suggested">Προτεινόμενο</string>
     <string name="usage_count">Αριθμός χρήσεων</string>
-    <string name="settings">Προτιμήσεις</string>
     <string name="pref_cat_appearance_app">Εφαρμογή</string>
     <string name="pref_cat_appearance_entries">Καταχωρήσεις</string>
     <string name="pref_cat_backups_android">Android</string>
@@ -38,8 +36,6 @@
     <string name="pref_code_group_size_summary">Εμφάνιση κωδικού σε διψήφια ομαδοποίηση αντί για τριψήφια ομαδοποίηση</string>
     <string name="pref_account_name_title">Εμφάνιση του ονόματος λογαριασμού</string>
     <string name="pref_account_name_summary">Ενεργοποίηση προβολής ονόματος λογαριασμού δίπλα στον εκδότη</string>
-    <string name="pref_timeout_title">Χρονικό όριο</string>
-    <string name="pref_timeout_summary">Αυτόματο κλείδωμα κρύπτης μετά από %1$s δευτερόλεπτα αδράνειας</string>
     <string name="pref_import_file_title">Εισαγωγή από αρχείο</string>
     <string name="pref_import_file_summary">Εισαγωγή αναγνωριστικών από αρχείο</string>
     <string name="pref_android_backups_title">Συμμετοχή στο σύστημα αντιγράφων ασφαλείας του Android</string>
@@ -94,8 +90,6 @@
     <string name="authentication_method_password_explanation">Προειδοποίηση: Εάν ξεχάσετε τον κωδικό πρόσβασης σας, θα χάσετε μόνιμα πρόσβαση στα αναγνωριστικά σας. Δεν υπάρχει τρόπος να τα ανακτήσετε χωρίς τον κωδικό πρόσβασης.</string>
     <string name="authentication_method_biometrics">Βιομετρικά</string>
     <string name="authentication_method_biometrics_description">Εκτός από έναν κωδικό πρόσβασης, τα βιομετρικά στοιχεία που έχουν καταχωρηθεί σε αυτήν τη συσκευή, όπως ένα δακτυλικό αποτύπωμα ή το πρόσωπό σας, μπορούν να χρησιμοποιηθούν για να ξεκλειδώσετε την κρύπτη σας.</string>
-    <string name="authentication_method_set_password">Κωδικός πρόσβασης</string>
-    <string name="authentication_enter_password">Εισάγετε τον κωδικό σας</string>
     <string name="authentication">Ξεκλείδωμα της κρύπτης</string>
     <!-- The newline (\n) on the following line is just for aesthetic purposes !-->
     <string name="authentication_multiline">Ξεκλείδωμα\nτης κρύπτης</string>
@@ -115,7 +109,6 @@
     <string name="yes">Ναι</string>
     <string name="no">Όχι</string>
     <string name="unlock">Ξεκλείδωμα</string>
-    <string name="biometrics">Βιομετρική</string>
     <string name="advanced">Σύνθετες</string>
     <string name="counter">Μετρητής</string>
     <string name="digits">Ψηφία</string>
@@ -123,14 +116,9 @@
     <string name="scan">Σάρωση κωδικού QR</string>
     <string name="scan_image">Σάρωση εικόνας</string>
     <string name="enter_manually">Χειροκίνητη εισαγωγή</string>
-    <string name="add_biometric">Προσθήκη βιομετρίας</string>
-    <string name="add_biometric_slot">Προσθήκη βιομετρικής υποδοχής</string>
     <string name="set_up_biometric">Ρύθμιση βιομετρικού ξεκλειδώματος</string>
-    <string name="add_password">Προσθήκη κωδικού πρόσβασης</string>
-    <string name="slots_warning">Η κρύπτη σας είναι τόσο ασφαλής όσο με το πιο αδύναμο μυστικό σας. Εάν αλλάξετε τις ρυθμίσεις βιομετρικού ελέγχου ταυτότητας της συσκευής σας, θα χρειαστεί να ενεργοποιήσετε ξανά το βιομετρικό ξεκλείδωμα μέσα από το Aegis.</string>
     <string name="copy">Αντιγραφή</string>
     <string name="edit">Επεξεργασία</string>
-    <string name="delete">Διαγραφή</string>
     <string name="password">Κωδικός πρόσβασης</string>
     <string name="confirm_password">Επιβεβαίωση κωδικού</string>
     <string name="show_password">Προβολή κωδικού</string>
@@ -153,8 +141,6 @@
     </plurals>
     <string name="discard_changes">Απόρριψη αλλαγών;</string>
     <string name="discard_changes_description">Οι αλλαγές σας δεν έχουν αποθηκευτεί</string>
-    <string name="folder">Φάκελος</string>
-    <string name="tap_to_select">Πατήστε για να επιλέξετε</string>
     <string name="saving_profile_error">Σφάλμα κατά την αποθήκευση προφίλ</string>
     <string name="welcome">Καλώς ήρθατε</string>
     <string name="app_description">Το Aegis είναι μια δωρεάν, ασφαλής και ανοικτού κώδικα εφαρμογή 2FA</string>
@@ -186,7 +172,6 @@
         <item quantity="one">%d εικονίδιο</item>
         <item quantity="other">%d εικονίδια</item>
     </plurals>
-    <string name="icon_pack">Πακέτο εικονιδίων</string>
     <string name="icon_custom">Προσαρμοσμένο</string>
     <string name="permission_denied">Η άδεια απορρίφθηκε</string>
     <string name="andotp_new_format">Νέα μορφή (v0.6.3 ή νεότερη) </string>
@@ -215,17 +200,11 @@
     <string name="read_qr_error_phonefactor">Το Aegis δεν είναι συμβατό με τον ιδιόκτητο αλγόριθμο 2FA της Microsoft. Βεβαιωθείτε να επιλέξετε \"Ρύθμιση εφαρμογής χωρίς ειδοποιήσεις\" κατά τη διαμόρφωση του 2FA στο Office 365.</string>
     <string name="authentication_method_raw">Ακατέργαστη</string>
     <string name="unlocking_vault">Ξεκλείδωμα κρύπτης</string>
-    <string name="unlocking_vault_repair">Ξεκλείδωμα κρύπτης (επισκευή)</string>
-    <string name="password_slot_error">Πρέπει να έχετε τουλάχιστον μία υποδοχή κωδικού</string>
     <string name="slot_this_device">(αυτή η συσκευή)</string>
-    <string name="remove_slot">Κατάργηση υποδοχής</string>
-    <string name="remove_slot_description">Είστε βέβαιοι ότι θέλετε να καταργήσετε αυτή την υποδοχή;</string>
     <string name="remove_group">Κατάργηση ομάδας</string>
     <string name="remove_group_description">Είστε βέβαιοι ότι θέλετε να καταργήσετε αυτήν την ομάδα; Οι καταχωρίσεις σε αυτήν θα μεταβούν αυτόματα στο \"Χωρίς ομάδα\".</string>
     <string name="remove_icon_pack">Αφαίρεση πακέτου εικονιδίων</string>
     <string name="remove_icon_pack_description">Είστε βέβαιοι ότι θέλετε να καταργήσετε αυτό το πακέτο εικονιδίων? Καταχωρήσεις που χρησιμοποιούν εικονίδια από αυτό το πακέτο δεν θα επηρεαστούν.</string>
-    <string name="adding_new_slot_error">Παρουσιάστηκε σφάλμα κατά την προσπάθεια προσθήκης νέας υποδοχής:</string>
-    <string name="progressbar_error">Δεν είναι δυνατή η επαναφορά της κλίμακας. Οι γραμμές προόδου θα είναι αόρατες.</string>
     <string name="details">Λεπτομέρειες</string>
     <string name="lock">Κλείδωμα</string>
     <string name="name">Όνομα</string>
@@ -238,7 +217,6 @@
     <string name="sort_usage_count">Αριθμός χρήσεων</string>
     <string name="sort_custom">Προσαρμογή</string>
     <string name="new_group">Νέα ομάδα…</string>
-    <string name="enter_group_name">Εισαγωγή ονόματος ομάδας</string>
     <string name="group">Ομάδα</string>
     <string name="group_name_hint">Όνομα ομάδας</string>
     <string name="preference_manage_groups">Επεξεργασία ομάδων</string>

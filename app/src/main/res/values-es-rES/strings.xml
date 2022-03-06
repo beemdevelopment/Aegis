@@ -2,7 +2,6 @@
 <resources>
     <string name="action_settings">Configuración</string>
     <string name="action_about">Acerca de</string>
-    <string name="action_import">Importar</string>
     <string name="action_delete">Eliminar</string>
     <string name="action_transfer">Transferir</string>
     <string name="action_edit_icon">Editar icono</string>
@@ -14,7 +13,6 @@
     <string name="issuer">Emisor</string>
     <string name="suggested">Suguerido</string>
     <string name="usage_count">Contador de uso</string>
-    <string name="settings">Preferencias</string>
     <string name="pref_cat_appearance_app">App</string>
     <string name="pref_cat_appearance_entries">Entradas</string>
     <string name="pref_cat_backups_android">Android</string>
@@ -38,8 +36,6 @@
     <string name="pref_code_group_size_summary">Muestra los códigos en agrupaciones de 2 dígitos en lugar de 3 dígitos</string>
     <string name="pref_account_name_title">Mostrar el nombre de la cuenta</string>
     <string name="pref_account_name_summary">Active esto para mostrar el nombre de la cuenta junto al emisor</string>
-    <string name="pref_timeout_title">Tiempo de espera</string>
-    <string name="pref_timeout_summary">Bloquear automáticamente la bóveda después de %1$s segundos de inactividad</string>
     <string name="pref_import_file_title">Importar desde un archivo</string>
     <string name="pref_import_file_summary">Importar tokens desde un archivo</string>
     <string name="pref_android_backups_title">Participar en el sistema de copia de seguridad de Android</string>
@@ -94,8 +90,6 @@
     <string name="authentication_method_password_explanation">Advertencia: Si olvida su contraseña, perderá permanentemente el acceso a sus tokens. No hay forma de recuperarlos sin la contraseña.</string>
     <string name="authentication_method_biometrics">Biometría</string>
     <string name="authentication_method_biometrics_description">Además de una contraseña, la biometría registrada en este dispositivo, como una huella digital o su cara, pueden ser usados para desbloquear la bóveda.</string>
-    <string name="authentication_method_set_password">Contraseña</string>
-    <string name="authentication_enter_password">Introduzca su contraseña</string>
     <string name="authentication">Desbloquear la bóveda</string>
     <!-- The newline (\n) on the following line is just for aesthetic purposes !-->
     <string name="authentication_multiline">Desbloquear\nla bóveda</string>
@@ -115,7 +109,6 @@
     <string name="yes">Si</string>
     <string name="no">No</string>
     <string name="unlock">Desbloquear</string>
-    <string name="biometrics">Biometría</string>
     <string name="advanced">Avanzado</string>
     <string name="counter">Contador</string>
     <string name="digits">Dígitos</string>
@@ -123,14 +116,9 @@
     <string name="scan">Escanear código QR</string>
     <string name="scan_image">Escanear imagen</string>
     <string name="enter_manually">Introducir manualmente</string>
-    <string name="add_biometric">Añadir biometría</string>
-    <string name="add_biometric_slot">Añadir clave biométrica</string>
     <string name="set_up_biometric">Configurar desbloqueo biométrico</string>
-    <string name="add_password">Añadir contraseña</string>
-    <string name="slots_warning">La bóveda es tan segura como su código secreto más débil. Si cambia la configuración de autenticación biométrica de su dispositivo, tendrá que reactivar el desbloqueo biométrico dentro de Aegis.</string>
     <string name="copy">Copiar</string>
     <string name="edit">Editar</string>
-    <string name="delete">Eliminar</string>
     <string name="password">Contraseña</string>
     <string name="confirm_password">Confirmar contraseña</string>
     <string name="show_password">Mostrar contraseña</string>
@@ -153,8 +141,6 @@
     </plurals>
     <string name="discard_changes">¿Descartar cambios?</string>
     <string name="discard_changes_description">Sus cambios no se han guardado</string>
-    <string name="folder">Carpeta</string>
-    <string name="tap_to_select">Pulsar para seleccionar</string>
     <string name="saving_profile_error">Error al guardar el perfil</string>
     <string name="welcome">Bienvenido</string>
     <string name="app_description">Aegis es una aplicación 2FA gratuita, segura y de código abierto</string>
@@ -186,7 +172,6 @@
         <item quantity="one">%d icono</item>
         <item quantity="other">%d iconos</item>
     </plurals>
-    <string name="icon_pack">Paquete de iconos</string>
     <string name="icon_custom">Personalizado</string>
     <string name="permission_denied">Permiso denegado</string>
     <string name="andotp_new_format">Formato nuevo (v0.6.3 o superior) </string>
@@ -215,17 +200,11 @@
     <string name="read_qr_error_phonefactor">Aegis no es compatible con el algoritmo 2FA propietario de Microsoft. Por favor, asegúrese de seleccionar \"Configurar aplicación sin notificaciones\" al configurar 2FA en Office 365.</string>
     <string name="authentication_method_raw">Raw</string>
     <string name="unlocking_vault">Desbloqueando la bóveda</string>
-    <string name="unlocking_vault_repair">Desbloqueando la bóveda (reparando)</string>
-    <string name="password_slot_error">Debe tener al menos una contraseña</string>
     <string name="slot_this_device">(este dispositivo)</string>
-    <string name="remove_slot">Eliminar clave</string>
-    <string name="remove_slot_description">¿Está seguro de que desea eliminar esta clave?</string>
     <string name="remove_group">Eliminar grupo</string>
     <string name="remove_group_description">¿Está seguro de que desea eliminar este grupo? Las entradas se moverán automáticamente a \'Sin grupo\'.</string>
     <string name="remove_icon_pack">Eliminar paquete de iconos</string>
     <string name="remove_icon_pack_description">¿Está seguro de que desea eliminar este paquete de iconos? Las entradas que usen iconos de este paquete no se verán afectadas.</string>
-    <string name="adding_new_slot_error">Se ha producido un error tratando de añadir una nueva clave:</string>
-    <string name="progressbar_error">No se puede restablecer la escala de duración de la animación. Las barras de progreso serán invisibles.</string>
     <string name="details">Detalles</string>
     <string name="lock">Bloquear</string>
     <string name="name">Cuenta</string>
@@ -238,7 +217,6 @@
     <string name="sort_usage_count">Contador de uso</string>
     <string name="sort_custom">Personalizado</string>
     <string name="new_group">Nuevo grupo…</string>
-    <string name="enter_group_name">Introduzca un nombre de grupo</string>
     <string name="group">Grupo</string>
     <string name="group_name_hint">Nombre del grupo</string>
     <string name="preference_manage_groups">Editar grupos</string>

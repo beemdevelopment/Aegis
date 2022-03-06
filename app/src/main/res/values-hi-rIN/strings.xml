@@ -2,7 +2,6 @@
 <resources>
     <string name="action_settings">सेटिंग</string>
     <string name="action_about">हमारे बारे में</string>
-    <string name="action_import">आयात</string>
     <string name="action_delete">हटाएँ</string>
     <string name="action_transfer">स्थानांतरण</string>
     <string name="action_edit_icon">आइकन संपादित करें</string>
@@ -10,7 +9,6 @@
     <string name="discard">रद्द करें</string>
     <string name="save">सहेजें</string>
     <string name="issuer">ज़ारीकर्ता</string>
-    <string name="settings">वरीयताएँ</string>
     <string name="pref_select_theme_title">थीम</string>
     <string name="pref_view_mode_title">देखने का प्रकार</string>
     <string name="pref_lang_title">भाषा</string>
@@ -18,8 +16,6 @@
     <string name="pref_code_group_size_summary">कोड को 3-संख्या समूह की जगह 2-संख्या समूह में दिखाएँ</string>
     <string name="pref_account_name_title">खाते का नाम दिखाएँ</string>
     <string name="pref_account_name_summary">जारीकर्ता के बगल में खाता नाम दिखाने के लिए इसे सक्षम करें</string>
-    <string name="pref_timeout_title">समय सीमा समाप्ति</string>
-    <string name="pref_timeout_summary">निष्क्रियता के %1$s सेकंड के बाद वॉल्ट को स्वचालित रूप से लॉक करें</string>
     <string name="pref_import_file_title">फ़ाइल से आयात करें</string>
     <string name="pref_import_file_summary">टोकन को फ़ाइल से आयात करें</string>
     <string name="pref_backups_summary">बदलाव होने पर एक्सटर्नल स्टोरेज में स्वतः ही वॉल्ट का बैकअप बनाएँ। यह सिर्फ एन्क्रिप्टेड वॉल्ट को सपोर्ट करता है।</string>
@@ -63,8 +59,6 @@
     <string name="authentication_method_password_explanation">चेतावनी: यदि आप अपना पासवर्ड भूल जाते हैं, तो आप स्थायी रूप से अपने टोकनों तक पहुंच खो देंगे। पासवर्ड के बिना उन्हें पुनर्प्राप्त करने का कोई तरीका नहीं है।</string>
     <string name="authentication_method_biometrics">बॉयोमेट्रिक्स</string>
     <string name="authentication_method_biometrics_description">एक पासवर्ड के अलावा, इस डिवाइस पर पंजीकृत बायोमेट्रिक्स, एक फिंगरप्रिंट या आपके चेहरे को वॉल्ट को अनलॉक करने के लिए इस्तेमाल किया जा सकता है।</string>
-    <string name="authentication_method_set_password">पासवर्ड</string>
-    <string name="authentication_enter_password">आपका पासवर्ड डालें</string>
     <string name="authentication">वॉल्ट अनलॉक करें</string>
     <!-- The newline (\n) on the following line is just for aesthetic purposes !-->
     <string name="authentication_multiline">वॉल्ट\nअनलॉक करें</string>
@@ -79,7 +73,6 @@
     <string name="yes">हां</string>
     <string name="no">नहीं</string>
     <string name="unlock">अनलॉक</string>
-    <string name="biometrics">बॉयोमेट्रिक्स</string>
     <string name="advanced">उन्नत</string>
     <string name="counter">काउंटर</string>
     <string name="digits">अंक</string>
@@ -87,14 +80,9 @@
     <string name="scan">क्यूआर कोड स्कैन करें</string>
     <string name="scan_image">छवि स्कैन करें</string>
     <string name="enter_manually">हाथों से दर्ज़ करें</string>
-    <string name="add_biometric">बॉयोमेट्रिक जोड़ें</string>
-    <string name="add_biometric_slot">बॉयोमेट्रिक स्लॉट जोड़ें</string>
     <string name="set_up_biometric">बॉयोमेट्रिक अनलॉक सेट करें</string>
-    <string name="add_password">पासवर्ड जोड़ें</string>
-    <string name="slots_warning">वॉल्ट केवल आपके सबसे कमजोर रहस्य की तरह ही सुरक्षित है। यदि आप अपने डिवाइस की बायोमेट्रिक प्रमाणीकरण सेटिंग्स बदलते हैं, तो आपको Aegis के भीतर बायोमेट्रिक अनलॉक को फिर से सक्रिय करना होगा।</string>
     <string name="copy">कॉपी करें</string>
     <string name="edit">संपादित करें</string>
-    <string name="delete">हटाएँ</string>
     <string name="password">पासवर्ड</string>
     <string name="confirm_password">पासवर्ड की पुष्टि करें</string>
     <string name="show_password">पासवर्ड दिखाएँ</string>
@@ -114,8 +102,6 @@
     </plurals>
     <string name="discard_changes">परिवर्तन निरस्त करे?</string>
     <string name="discard_changes_description">आपके परिवर्तन सहेजे नहीं गए हैं</string>
-    <string name="folder">फोल्डर</string>
-    <string name="tap_to_select">चयन करने के लिए टैप करें</string>
     <string name="saving_profile_error">प्रोफाइल सहेजने में त्रुटि</string>
     <string name="welcome">स्वागत है</string>
     <string name="app_description">Aegis एक मुफ्त, सुरक्षित और ओपन सोर्स 2FA ऐप है</string>
@@ -163,15 +149,9 @@
     <string name="read_qr_error">क्यूआर कोड पढ़ने की कोशिश करते समय एक त्रुटि हुई</string>
     <string name="authentication_method_raw">रॉ</string>
     <string name="unlocking_vault">वॉल्ट अनलॉक हो रहा है</string>
-    <string name="unlocking_vault_repair">वॉल्ट अनलॉक हो रहा है (मरम्मत हो रही)</string>
-    <string name="password_slot_error">आपके पास कम से कम एक पासवर्ड स्लॉट होना चाहिए</string>
     <string name="slot_this_device">(यह डिवाइस)</string>
-    <string name="remove_slot">स्लॉट हटाये</string>
-    <string name="remove_slot_description">क्या आप वाकई इस स्लॉट को हटाना चाहते हैं?</string>
     <string name="remove_group">समूह हटाये</string>
     <string name="remove_group_description">क्या आप वाकई इस समूह को हटाना चाहते हैं? इस समूह में प्रविष्टियाँ स्वतः ही \'नो ग्रुप\' में बदल जाएँगी।</string>
-    <string name="adding_new_slot_error">नया स्लॉट जोड़ने का प्रयास करते समय एक त्रुटि हुई:</string>
-    <string name="progressbar_error">एनिमेटर अवधि पैमाने को रीसेट करने में असमर्थ। प्रगति पट्टी अदृश्य हो जाएगी।</string>
     <string name="details">विवरण</string>
     <string name="lock">लॉक करें</string>
     <string name="name">नाम</string>
@@ -182,7 +162,6 @@
     <string name="sort_alphabetically_name_reverse">खाता (Z से A)</string>
     <string name="sort_custom">कस्टम</string>
     <string name="new_group">नया समूह...</string>
-    <string name="enter_group_name">समूह का नाम दर्ज़ करें</string>
     <string name="group_name_hint">समूह का नाम</string>
     <string name="preference_manage_groups">समूहों को संपादित करें</string>
     <string name="preference_manage_groups_summary">यहां अपने समूहों को प्रबंधित करें और हटाएँ</string>

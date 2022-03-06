@@ -2,7 +2,6 @@
 <resources>
     <string name="action_settings">Paramètres</string>
     <string name="action_about">À propos</string>
-    <string name="action_import">Importer</string>
     <string name="action_delete">Supprimer</string>
     <string name="action_transfer">Transfert</string>
     <string name="action_edit_icon">Modifier l\'icône</string>
@@ -14,7 +13,6 @@
     <string name="issuer">Émetteur</string>
     <string name="suggested">Suggéré</string>
     <string name="usage_count">Nombre d\'utilisations</string>
-    <string name="settings">Préférences</string>
     <string name="pref_cat_appearance_app">Application</string>
     <string name="pref_cat_appearance_entries">Entrées</string>
     <string name="pref_cat_backups_android">Android</string>
@@ -38,8 +36,6 @@
     <string name="pref_code_group_size_summary">Afficher le code avec un groupement de 2 chiffres au lieu de 3</string>
     <string name="pref_account_name_title">Afficher le nom du compte</string>
     <string name="pref_account_name_summary">Activer pour afficher le nom de compte près de l\'émetteur</string>
-    <string name="pref_timeout_title">Délai</string>
-    <string name="pref_timeout_summary">Verrouiller automatiquement le coffre-fort après %1$s secondes d\'inactivité</string>
     <string name="pref_import_file_title">Importer depuis un fichier</string>
     <string name="pref_import_file_summary">Importer des jetons depuis un fichier</string>
     <string name="pref_android_backups_title">Participer au système de sauvegarde d\'Android</string>
@@ -94,8 +90,6 @@
     <string name="authentication_method_password_explanation">Attention : Si vous oubliez votre mot de passe, vous perdrez définitivement l\'accès à vos jetons. Il n\'y a aucun moyen de les récupérer sans le mot de passe.</string>
     <string name="authentication_method_biometrics">Biométrie</string>
     <string name="authentication_method_biometrics_description">En plus d\'un mot de passe, les données biométriques enregistrées sur cet appareil, comme une empreinte digitale ou votre visage, peuvent être utilisées pour déverrouiller le coffre-fort.</string>
-    <string name="authentication_method_set_password">Mot de passe</string>
-    <string name="authentication_enter_password">Saisissez votre mot de passe</string>
     <string name="authentication">Déverrouiller le coffre-fort</string>
     <!-- The newline (\n) on the following line is just for aesthetic purposes !-->
     <string name="authentication_multiline">Déverrouiller\nle coffre-fort</string>
@@ -115,7 +109,6 @@
     <string name="yes">Oui</string>
     <string name="no">Non</string>
     <string name="unlock">Déverrouiller</string>
-    <string name="biometrics">Biométrie</string>
     <string name="advanced">Avancé</string>
     <string name="counter">Compteur</string>
     <string name="digits">Chiffres</string>
@@ -123,14 +116,9 @@
     <string name="scan">Scanner code QR</string>
     <string name="scan_image">Scanner image</string>
     <string name="enter_manually">Saisir manuellement</string>
-    <string name="add_biometric">Ajouter données biométriques</string>
-    <string name="add_biometric_slot">Ajouter un emplacement de données biométriques</string>
     <string name="set_up_biometric">Configurer le déverrouillage biométrique</string>
-    <string name="add_password">Ajouter un mot de passe</string>
-    <string name="slots_warning">Le coffre-fort est aussi sécurisé que votre secret le plus faible. Si vous modifiez les paramètres d\'authentification biométrique de votre appareil, vous devrez réactiver le déverrouillage biométrique dans Aegis.</string>
     <string name="copy">Copier</string>
     <string name="edit">Modifier</string>
-    <string name="delete">Supprimer</string>
     <string name="password">Mot de passe</string>
     <string name="confirm_password">Confirmer mot de passe</string>
     <string name="show_password">Afficher le mot de passe</string>
@@ -153,8 +141,6 @@
     </plurals>
     <string name="discard_changes">Annuler les modifications ?</string>
     <string name="discard_changes_description">Vos modifications n\'ont pas été enregistrées</string>
-    <string name="folder">Dossier</string>
-    <string name="tap_to_select">Appuyer pour sélectionner</string>
     <string name="saving_profile_error">Erreur lors de l\'enregistrement du profil</string>
     <string name="welcome">Bienvenue</string>
     <string name="app_description">Aegis est une application d\'A2F gratuite, sécurisée et open source</string>
@@ -186,7 +172,6 @@
         <item quantity="one">%d icône</item>
         <item quantity="other">%d icônes</item>
     </plurals>
-    <string name="icon_pack">Pack d\'icônes</string>
     <string name="icon_custom">Personnalisé</string>
     <string name="permission_denied">Autorisation refusée</string>
     <string name="andotp_new_format">Nouveau format (v0.6.3 ou plus récent) </string>
@@ -215,17 +200,11 @@
     <string name="read_qr_error_phonefactor">Aegis n\'est pas compatible avec l\'algorithme A2F propriétaire de Microsoft. Veuillez vous assurer de sélectionner \"Configurer l\'application sans notification\" lors de la configuration de la 2FA dans Office 365.</string>
     <string name="authentication_method_raw">Brut</string>
     <string name="unlocking_vault">Déverrouillage du coffre-fort</string>
-    <string name="unlocking_vault_repair">Déverrouillage du coffre-fort (réparation)</string>
-    <string name="password_slot_error">Vous devez avoir au moins un emplacement de mot de passe</string>
     <string name="slot_this_device">(ces appareils)</string>
-    <string name="remove_slot">Supprimer emplacement</string>
-    <string name="remove_slot_description">Êtes-vous sûr de vouloir supprimer cet emplacement ?</string>
     <string name="remove_group">Supprimer groupe</string>
     <string name="remove_group_description">Êtes-vous sûr de vouloir supprimer ce groupe ? Les entrées dans ce groupe seront basculées automatiquement dans \"Aucun groupe\".</string>
     <string name="remove_icon_pack">Supprimer le pack d\'icônes</string>
     <string name="remove_icon_pack_description">Êtes-vous sûr de vouloir supprimer ce pack d\'icônes ? Les entrées qui utilisent les icônes de ce pack ne seront pas affectées.</string>
-    <string name="adding_new_slot_error">Une erreur est survenue en essayant d\'ajouter un nouvel emplacement :</string>
-    <string name="progressbar_error">Impossible de réinitialiser l\'échelle de durée d\'animation. Les barres de progression seront invisibles.</string>
     <string name="details">Détails</string>
     <string name="lock">Verrouiller</string>
     <string name="name">Nom</string>
@@ -238,7 +217,6 @@
     <string name="sort_usage_count">Nombre d\'utilisations</string>
     <string name="sort_custom">Personnalisé</string>
     <string name="new_group">Nouveau groupe…</string>
-    <string name="enter_group_name">Saisissez un nom de groupe</string>
     <string name="group">Groupe</string>
     <string name="group_name_hint">Nom de groupe</string>
     <string name="preference_manage_groups">Modifier les groupes</string>

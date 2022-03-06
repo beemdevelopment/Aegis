@@ -2,7 +2,6 @@
 <resources>
     <string name="action_settings">Einstellungen</string>
     <string name="action_about">Über</string>
-    <string name="action_import">Importieren</string>
     <string name="action_delete">Löschen</string>
     <string name="action_transfer">Übertragen</string>
     <string name="action_edit_icon">Symbol bearbeiten</string>
@@ -14,7 +13,6 @@
     <string name="issuer">Herausgeber</string>
     <string name="suggested">Empfohlen</string>
     <string name="usage_count">Verwendungszähler</string>
-    <string name="settings">Einstellungen</string>
     <string name="pref_cat_appearance_app">App</string>
     <string name="pref_cat_appearance_entries">Einträge</string>
     <string name="pref_cat_backups_android">Android</string>
@@ -38,8 +36,6 @@
     <string name="pref_code_group_size_summary">Code in Zweier- statt Dreiergruppen anzeigen</string>
     <string name="pref_account_name_title">Kontonamen anzeigen</string>
     <string name="pref_account_name_summary">Aktiviere dies, um den Kontonamen neben dem Herausgeber anzuzeigen</string>
-    <string name="pref_timeout_title">Zeitüberschreitung</string>
-    <string name="pref_timeout_summary">Sperrt die Datenbank automatisch nach %1$s Sekunden Inaktivität</string>
     <string name="pref_import_file_title">Aus Datei importieren</string>
     <string name="pref_import_file_summary">Token aus einer Datei importieren</string>
     <string name="pref_android_backups_title">Einbindung in das Sicherungssystem von Android</string>
@@ -94,8 +90,6 @@
     <string name="authentication_method_password_explanation">Warnung: Wenn du dein Passwort vergisst, verlierst du dauerhaft den Zugriff auf deine Token. Es gibt keine Möglichkeit, diese ohne das Passwort wiederherzustellen.</string>
     <string name="authentication_method_biometrics">Biometrie</string>
     <string name="authentication_method_biometrics_description">Zusätzlich zu einem Passwort können biometrische Daten, die auf diesem Gerät registriert sind, wie ein Fingerabdruck oder dein Gesicht, verwendet werden, um die Datenbank zu entsperren.</string>
-    <string name="authentication_method_set_password">Passwort</string>
-    <string name="authentication_enter_password">Gib dein Passwort ein</string>
     <string name="authentication">Datenbank entsperren</string>
     <!-- The newline (\n) on the following line is just for aesthetic purposes !-->
     <string name="authentication_multiline">Datenbank\nentsperren</string>
@@ -115,7 +109,6 @@
     <string name="yes">Ja</string>
     <string name="no">Nein</string>
     <string name="unlock">Entsperren</string>
-    <string name="biometrics">Biometrie</string>
     <string name="advanced">Fortgeschritten</string>
     <string name="counter">Zähler</string>
     <string name="digits">Ziffern</string>
@@ -123,14 +116,9 @@
     <string name="scan">QR-Code scannen</string>
     <string name="scan_image">Bild scannen</string>
     <string name="enter_manually">Manuell eingeben</string>
-    <string name="add_biometric">Biometrie hinzufügen</string>
-    <string name="add_biometric_slot">Biometrischen Slot hinzufügen</string>
     <string name="set_up_biometric">Biometrisches Entsperren einrichten</string>
-    <string name="add_password">Passwort hinzufügen</string>
-    <string name="slots_warning">Die Datenbank ist nur so sicher wie dein schwächstes Geheimnis. Wenn du die biometrischen Authentifizierungseinstellungen deines Geräts änderst, musst du biometrisches Entsperren in Aegis reaktivieren.</string>
     <string name="copy">Kopieren</string>
     <string name="edit">Bearbeiten</string>
-    <string name="delete">Löschen</string>
     <string name="password">Passwort</string>
     <string name="confirm_password">Passwort bestätigen</string>
     <string name="show_password">Passwort anzeigen</string>
@@ -153,8 +141,6 @@
     </plurals>
     <string name="discard_changes">Änderungen verwerfen?</string>
     <string name="discard_changes_description">Deine Änderungen wurden noch nicht gespeichert</string>
-    <string name="folder">Ordner</string>
-    <string name="tap_to_select">Zum Auswählen tippen</string>
     <string name="saving_profile_error">Fehler beim Speichern des Profils</string>
     <string name="welcome">Willkommen</string>
     <string name="app_description">Aegis ist eine kostenlose, sichere und quelloffene 2FA-App</string>
@@ -186,7 +172,6 @@
         <item quantity="one">%d Symbol</item>
         <item quantity="other">%d Symbole</item>
     </plurals>
-    <string name="icon_pack">Symbolpaket</string>
     <string name="icon_custom">Benutzerdefiniert</string>
     <string name="permission_denied">Zugriff verweigert</string>
     <string name="andotp_new_format">Neues Format (v0.6.3 oder neuer) </string>
@@ -215,17 +200,11 @@
     <string name="read_qr_error_phonefactor">Aegis ist nicht mit dem proprietären 2FA-Algorithmus von Microsoft kompatibel. Bitte stelle sicher, dass du bei der Konfiguration von 2FA in Office 365 \"Anwendung ohne Benachrichtigungen einrichten\" auswählst.</string>
     <string name="authentication_method_raw">Raw</string>
     <string name="unlocking_vault">Entsperren der Datenbank</string>
-    <string name="unlocking_vault_repair">Entsperren der Datenbank (reparieren)</string>
-    <string name="password_slot_error">Du musst mindestens einen Passwort-Slot haben</string>
     <string name="slot_this_device">(Dieses Gerät)</string>
-    <string name="remove_slot">Slot entfernen</string>
-    <string name="remove_slot_description">Bist du sicher, dass du diesen Slot entfernen willst?</string>
     <string name="remove_group">Gruppe entfernen</string>
     <string name="remove_group_description">Bist du sicher, dass du diese Gruppe entfernen möchtest? Einträge in dieser Gruppe wechseln automatisch zu \'Keine Gruppe\'.</string>
     <string name="remove_icon_pack">Symbolpaket entfernen</string>
     <string name="remove_icon_pack_description">Bist du sicher, dass du dieses Symbolpaket entfernen möchtest? Einträge, die Symbole aus diesem Paket verwenden, sind davon nicht betroffen.</string>
-    <string name="adding_new_slot_error">Beim Versuch, einen neuen Slot hinzuzufügen, ist ein Fehler aufgetreten:</string>
-    <string name="progressbar_error">Die Skala der Animationsdauer kann nicht zurückgesetzt werden. Fortschrittsbalken werden unsichtbar sein.</string>
     <string name="details">Details</string>
     <string name="lock">Sperren</string>
     <string name="name">Name</string>
@@ -238,7 +217,6 @@
     <string name="sort_usage_count">Verwendungszähler</string>
     <string name="sort_custom">Benutzerdefiniert</string>
     <string name="new_group">Neue Gruppe …</string>
-    <string name="enter_group_name">Gib einen Gruppennamen ein</string>
     <string name="group">Gruppe</string>
     <string name="group_name_hint">Gruppenname</string>
     <string name="preference_manage_groups">Gruppen bearbeiten</string>

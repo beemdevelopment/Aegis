@@ -2,7 +2,6 @@
 <resources>
     <string name="action_settings">Nustatymai</string>
     <string name="action_about">Apie</string>
-    <string name="action_import">Importuoti</string>
     <string name="action_delete">Ištrinti</string>
     <string name="action_transfer">Perkelti</string>
     <string name="action_edit_icon">Taisyti piktogramą</string>
@@ -11,7 +10,6 @@
     <string name="save">Įrašyti</string>
     <string name="issuer">Leidėjas</string>
     <string name="usage_count">Naudojimų skaičius</string>
-    <string name="settings">Nuostatos</string>
     <string name="pref_cat_appearance_app">Programėlė</string>
     <string name="pref_cat_appearance_entries">Įrašai</string>
     <string name="pref_cat_backups_android">„Android“</string>
@@ -75,8 +73,6 @@
     <string name="authentication_method_password_explanation">Įspėjimas: Jei pamiršite savo slaptažodį, jūs visam laikui prarasite prieigą prie prieigos raktų. Be slaptažodžio niekaip nebegalėsite jų atkurti.</string>
     <string name="authentication_method_biometrics">Biometrika</string>
     <string name="authentication_method_biometrics_description">Papildomai prie slaptažodžio, gali būti naudojama šiame įrenginyje registruota biometrika, tokia kaip piršto atspaudas ar jūsų veidas.</string>
-    <string name="authentication_method_set_password">Slaptažodis</string>
-    <string name="authentication_enter_password">Įveskite slaptažodį</string>
     <string name="authentication">Atrakinti slėptuvę</string>
     <!-- The newline (\n) on the following line is just for aesthetic purposes !-->
     <string name="authentication_multiline">Atrakinkite\nslėptuvę</string>
@@ -93,17 +89,13 @@
     <string name="yes">Taip</string>
     <string name="no">Ne</string>
     <string name="unlock">Atrakinti</string>
-    <string name="biometrics">Biometrika</string>
     <string name="digits">Skaitmenys</string>
     <string name="secret">Paslaptis</string>
     <string name="scan">Skenuoti QR kodą</string>
     <string name="scan_image">Skenuoti atvaizdą</string>
     <string name="enter_manually">Įvesti rankiniu būdu</string>
-    <string name="add_biometric">Pridėti biometriką</string>
-    <string name="add_password">Pridėti slaptažodį</string>
     <string name="copy">Kopijuoti</string>
     <string name="edit">Taisyti</string>
-    <string name="delete">Ištrinti</string>
     <string name="password">Slaptažodis</string>
     <string name="show_password">Rodyti slaptažodį</string>
     <string name="new_entry">Naujas įrašas</string>
@@ -124,7 +116,6 @@
     </plurals>
     <string name="discard_changes">Atmesti pakeitimus?</string>
     <string name="discard_changes_description">Jūsų pakeitimai neįrašyti</string>
-    <string name="folder">Aplankas</string>
     <string name="saving_profile_error">Klaida įrašant profilį</string>
     <string name="welcome">Sveiki</string>
     <string name="app_description">Aegis yra nemokama, saugi ir atvirojo kodo dviejų faktorių tapatybės nustatymo (2FA) programėlė</string>
@@ -145,7 +136,6 @@
         <item quantity="many">%d piktogramų</item>
         <item quantity="other">%d piktograma</item>
     </plurals>
-    <string name="icon_pack">Piktogramų paketas</string>
     <string name="permission_denied">Leidimas atmestas</string>
     <string name="choose_application">Pasirinkite programėlę, iš kurios norėtumėte importuoti</string>
     <string name="choose_theme">Pasirinkite pageidaujamą apipavidalinimą</string>
@@ -166,13 +156,9 @@
     <string name="encryption_set_password_error">Bandant nustatyti slaptažodį, įvyko klaida.</string>
     <string name="read_qr_error">Bandant perskaityti QR kodą, įvyko klaida</string>
     <string name="unlocking_vault">Atrakinama slėptuvė</string>
-    <string name="unlocking_vault_repair">Atrakinama slėptuvė (taisoma)</string>
-    <string name="remove_slot">Šalinti lizdą</string>
-    <string name="remove_slot_description">Ar tikrai norite pašalinti šį lizdą?</string>
     <string name="remove_group">Šalinti grupę</string>
     <string name="remove_icon_pack">Šalinti piktogramų paketą</string>
     <string name="remove_icon_pack_description">Ar tikrai norite pašalinti šį piktogramų paketą? Tai nepaveiks įrašų, kurie naudoja piktogramas iš šio paketo.</string>
-    <string name="adding_new_slot_error">Bandant pridėti naują lizdą, įvyko klaida:</string>
     <string name="name">Pavadinimas</string>
     <string name="no_group">Nėra grupės</string>
     <string name="sort_alphabetically">Leidėjas (A–Ž)</string>

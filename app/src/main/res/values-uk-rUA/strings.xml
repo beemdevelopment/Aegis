@@ -2,7 +2,6 @@
 <resources>
     <string name="action_settings">Налаштування</string>
     <string name="action_about">Про додаток</string>
-    <string name="action_import">Імпорт</string>
     <string name="action_delete">Видалити</string>
     <string name="action_transfer">Передати</string>
     <string name="action_edit_icon">Змінити іконку</string>
@@ -10,7 +9,6 @@
     <string name="discard">Відхилити</string>
     <string name="save">Зберегти</string>
     <string name="issuer">Емітент</string>
-    <string name="settings">Налаштування</string>
     <string name="pref_cat_appearance_app">Додаток</string>
     <string name="pref_cat_appearance_entries">Записи</string>
     <string name="pref_cat_backups_android">Android</string>
@@ -32,8 +30,6 @@
     <string name="pref_code_group_size_summary">Показувати код в двоцифровому групуванні замість трицифрового</string>
     <string name="pref_account_name_title">Показати обліковий запис</string>
     <string name="pref_account_name_summary">Увімкніть, щоб показувати обліковий запис поруч з емітентом</string>
-    <string name="pref_timeout_title">Тайм-аут</string>
-    <string name="pref_timeout_summary">Автоматично блокувати сховище через %1$s секунд неактивності</string>
     <string name="pref_import_file_title">Імпорт з файлу</string>
     <string name="pref_import_file_summary">Імпортувати токени з файлу</string>
     <string name="pref_android_backups_title">Брати участь у системі резервного копіювання Android</string>
@@ -90,8 +86,6 @@
     <string name="authentication_method_password_explanation">Увага: якщо ви забудете пароль, ви назавжди втратите доступ до своїх токенів. Їх неможливо відновити без пароля.</string>
     <string name="authentication_method_biometrics">Біометрика</string>
     <string name="authentication_method_biometrics_description">Окрім пароля, для розблокування сховища можна використовувати біометричні дані зареєстровані на цьому пристрої, такі як відбитки пальців або ваше обличчя.</string>
-    <string name="authentication_method_set_password">Пароль</string>
-    <string name="authentication_enter_password">Введіть пароль</string>
     <string name="authentication">Розблокування сховища</string>
     <!-- The newline (\n) on the following line is just for aesthetic purposes !-->
     <string name="authentication_multiline">Розблокування\nсховища</string>
@@ -111,7 +105,6 @@
     <string name="yes">Так</string>
     <string name="no">Ні</string>
     <string name="unlock">Розблокувати</string>
-    <string name="biometrics">Біометрика</string>
     <string name="advanced">Розширені</string>
     <string name="counter">Лічильник</string>
     <string name="digits">К-сть цифр</string>
@@ -119,14 +112,9 @@
     <string name="scan">Сканувати QR-код</string>
     <string name="scan_image">Сканувати зображення</string>
     <string name="enter_manually">Ввести вручну</string>
-    <string name="add_biometric">Додати біометрику</string>
-    <string name="add_biometric_slot">Додати біометричний слот</string>
     <string name="set_up_biometric">Налаштувати біометричне розблокування</string>
-    <string name="add_password">Додати пароль</string>
-    <string name="slots_warning">Сховище захищене лише настільки як ваш найслабший секрет. Якщо ви зміните налаштування біометричної автентифікації свого пристрою, вам потрібно буде знову активувати біометричне розблокування в Aegis.</string>
     <string name="copy">Копіювати</string>
     <string name="edit">Редагувати</string>
-    <string name="delete">Видалити</string>
     <string name="password">Пароль</string>
     <string name="confirm_password">Підтвердьте пароль</string>
     <string name="show_password">Показати пароль</string>
@@ -150,8 +138,6 @@
     </plurals>
     <string name="discard_changes">Відхилити зміни?</string>
     <string name="discard_changes_description">Ваші зміни не були збережені</string>
-    <string name="folder">Тека</string>
-    <string name="tap_to_select">Торкніться, щоб вибрати</string>
     <string name="saving_profile_error">Помилка під час збереження профілю</string>
     <string name="welcome">Ласкаво просимо</string>
     <string name="app_description">Aegis є безкоштовним, безпечним та відкритим додатком для 2FA</string>
@@ -205,15 +191,9 @@
     <string name="read_qr_error_phonefactor">Aegis не сумісний з пропрієтарним алгоритмом 2FA від Microsoft. Будь ласка, оберіть \"Налаштування програми без сповіщень\" при налаштуванні 2FA в Office 365.</string>
     <string name="authentication_method_raw">Raw</string>
     <string name="unlocking_vault">Розблокування сховища</string>
-    <string name="unlocking_vault_repair">Розблокування сховища (відновлення)</string>
-    <string name="password_slot_error">Ви повинні мати принаймні один слот для пароля</string>
     <string name="slot_this_device">(цей пристрій)</string>
-    <string name="remove_slot">Видалити слот</string>
-    <string name="remove_slot_description">Ви впевнені, що хочете видалити цей слот?</string>
     <string name="remove_group">Видалити групу</string>
     <string name="remove_group_description">Ви впевнені, що хочете видалити цю групу? Записи у цій групі автоматично перемістяться в \'Без групи\'.</string>
-    <string name="adding_new_slot_error">Сталася помилка під час спроби додати новий слот:</string>
-    <string name="progressbar_error">Не вдається налаштувати тривалість анімації. Індикатори прогресу будуть невидимими.</string>
     <string name="details">Деталі</string>
     <string name="lock">Заблокувати</string>
     <string name="name">Назва</string>
@@ -225,7 +205,6 @@
     <string name="sort_alphabetically_name_reverse">Обліковий запис (Я - А)</string>
     <string name="sort_custom">Довільно</string>
     <string name="new_group">Нова група…</string>
-    <string name="enter_group_name">Введіть назву групи</string>
     <string name="group">Група</string>
     <string name="group_name_hint">Назва групи</string>
     <string name="preference_manage_groups">Редагувати групи</string>

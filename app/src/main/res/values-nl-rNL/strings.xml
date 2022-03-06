@@ -2,7 +2,6 @@
 <resources>
     <string name="action_settings">Instellingen</string>
     <string name="action_about">Over</string>
-    <string name="action_import">Importeren</string>
     <string name="action_delete">Verwijderen</string>
     <string name="action_transfer">Overzetten</string>
     <string name="action_edit_icon">Icoon aanpassen</string>
@@ -14,7 +13,6 @@
     <string name="issuer">Uitgever</string>
     <string name="suggested">Voorgesteld</string>
     <string name="usage_count">Gebruikstelling</string>
-    <string name="settings">Voorkeuren</string>
     <string name="pref_cat_appearance_app">App</string>
     <string name="pref_cat_appearance_entries">Items</string>
     <string name="pref_cat_backups_android">Android</string>
@@ -38,8 +36,6 @@
     <string name="pref_code_group_size_summary">Toon code in 2-cijferige groepering in plaats van 3-cijferige groepering</string>
     <string name="pref_account_name_title">Toon de accountnaam</string>
     <string name="pref_account_name_summary">Schakel in om de accountnaam naast de uitgever te tonen</string>
-    <string name="pref_timeout_title">Time-out</string>
-    <string name="pref_timeout_summary">Automatisch kluis vergrendelen na %1$s seconden zonder activiteit</string>
     <string name="pref_import_file_title">Importeren vanuit een bestand</string>
     <string name="pref_import_file_summary">Importeer tokens vanuit een bestand</string>
     <string name="pref_android_backups_title">Neem deel aan het back-upsysteem van Android</string>
@@ -94,8 +90,6 @@
     <string name="authentication_method_password_explanation">Waarschuwing: Als je je wachtwoord vergeet, verlies je permanent toegang tot je tokens. Er is geen manier om deze te herstellen zonder het wachtwoord.</string>
     <string name="authentication_method_biometrics">Biometrie</string>
     <string name="authentication_method_biometrics_description">Naast een wachtwoord kunnen biometrische gegevens die geregistreerd zijn op dit apparaat, zoals een vingerafdruk of je gezicht, gebruikt worden om de kluis te ontgrendelen.</string>
-    <string name="authentication_method_set_password">Wachtwoord</string>
-    <string name="authentication_enter_password">Vul je wachtwoord in</string>
     <string name="authentication">Ontgrendel de kluis</string>
     <!-- The newline (\n) on the following line is just for aesthetic purposes !-->
     <string name="authentication_multiline">Ontgrendel\nde kluis</string>
@@ -115,7 +109,6 @@
     <string name="yes">Ja</string>
     <string name="no">Nee</string>
     <string name="unlock">Ontgrendel</string>
-    <string name="biometrics">Biometrie</string>
     <string name="advanced">Geavanceerd</string>
     <string name="counter">Teller</string>
     <string name="digits">Cijfers</string>
@@ -123,14 +116,9 @@
     <string name="scan">Scan QR-code</string>
     <string name="scan_image">Scan afbeelding</string>
     <string name="enter_manually">Handmatig invoeren</string>
-    <string name="add_biometric">Biometrie toevoegen</string>
-    <string name="add_biometric_slot">Biometrische vergrendelingssleutel toevoegen</string>
     <string name="set_up_biometric">Biometrische ontgrendeling instellen</string>
-    <string name="add_password">Wachtwoord toevoegen</string>
-    <string name="slots_warning">De kluis is zo veilig als je zwakste geheim. Als u de biometrische authenticatie-instellingen van uw apparaat wijzigt, moet u de biometrische verificatie binnen Aegis opnieuw activeren.</string>
     <string name="copy">Kopiëren</string>
     <string name="edit">Bewerken</string>
-    <string name="delete">Verwijderen</string>
     <string name="password">Wachtwoord</string>
     <string name="confirm_password">Bevestig wachtwoord</string>
     <string name="show_password">Wachtwoord tonen</string>
@@ -153,8 +141,6 @@
     </plurals>
     <string name="discard_changes">Wijzigingen ongedaan maken?</string>
     <string name="discard_changes_description">Je wijzigingen zijn niet opgeslagen</string>
-    <string name="folder">Map</string>
-    <string name="tap_to_select">Aantikken om te selecteren</string>
     <string name="saving_profile_error">Fout bij opslaan profiel</string>
     <string name="welcome">Welkom</string>
     <string name="app_description">Aegis is een gratis en veilige open-source 2FA-app.</string>
@@ -186,7 +172,6 @@
         <item quantity="one">%d pictogram</item>
         <item quantity="other">%d pictogrammen</item>
     </plurals>
-    <string name="icon_pack">Pictogrampakket</string>
     <string name="icon_custom">Aangepast</string>
     <string name="permission_denied">Toestemming geweigerd</string>
     <string name="andotp_new_format">Nieuw formaat (v0.6.3 of nieuwer) </string>
@@ -215,17 +200,11 @@
     <string name="read_qr_error_phonefactor">Aegis is niet compatibel met het eigen 2FA-algoritme van Microsoft. Zorg ervoor dat u \"Setup applicatie zonder meldingen\" selecteert bij het configureren van 2FA in Office 365.</string>
     <string name="authentication_method_raw">Onbewerkt</string>
     <string name="unlocking_vault">Kluis wordt ontgrendeld</string>
-    <string name="unlocking_vault_repair">Kluis wordt ontgrendeld (repareren)</string>
-    <string name="password_slot_error">Je moet minimaal één wachtwoordvergrendeling hebben</string>
     <string name="slot_this_device">(dit apparaat)</string>
-    <string name="remove_slot">Vergrendelingssleutel verwijderen</string>
-    <string name="remove_slot_description">Weet je zeker dat je deze vergrendelingssleutel wilt verwijderen?</string>
     <string name="remove_group">Groep verwijderen</string>
     <string name="remove_group_description">Weet je zeker dat je deze groep wilt verwijderen? Alle items binnen deze groep worden automatisch verplaatst naar \'Geen groep\'.</string>
     <string name="remove_icon_pack">Verwijder pictogrammenpakket</string>
     <string name="remove_icon_pack_description">Weet je zeker dat je dit pictogrampakket wilt verwijderen? Entries die pictogrammen uit dit pakket gebruiken, worden niet beïnvloed.</string>
-    <string name="adding_new_slot_error">Er is een fout opgetreden tijdens het toevoegen van een nieuwe vergrendelingssleutel:</string>
-    <string name="progressbar_error">Niet in staat om de schaal van animatieduur te resetten. Voortgangsbalken zullen niet zichtbaar zijn.</string>
     <string name="details">Details</string>
     <string name="lock">Vergrendel</string>
     <string name="name">Naam</string>
@@ -238,7 +217,6 @@
     <string name="sort_usage_count">Gebruikstelling</string>
     <string name="sort_custom">Aangepast</string>
     <string name="new_group">Nieuwe groep…</string>
-    <string name="enter_group_name">Vul een groepsnaam in</string>
     <string name="group">Groep</string>
     <string name="group_name_hint">Groepsnaam</string>
     <string name="preference_manage_groups">Groepen bewerken</string>

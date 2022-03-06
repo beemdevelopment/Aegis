@@ -1,11 +1,9 @@
 <resources>
     <string name="app_name" translatable="false">Aegis</string>
     <string name="app_name_full" translatable="false">Aegis Authenticator</string>
-    <string name="app_name_dev" translatable="false">AegisDev</string>
     <string name="org_name_full" translatable="false">Beem Development</string>
     <string name="action_settings">Settings</string>
     <string name="action_about">About</string>
-    <string name="action_import">Import</string>
     <string name="action_delete">Delete</string>
     <string name="action_transfer">Transfer</string>
     <string name="action_edit_icon">Edit icon</string>
@@ -19,7 +17,6 @@
     <string name="suggested">Suggested</string>
     <string name="usage_count">Usage count</string>
 
-    <string name="settings">Preferences</string>
     <string name="pref_cat_appearance_app">App</string>
     <string name="pref_cat_appearance_entries">Entries</string>
     <string name="pref_cat_backups_android">Android</string>
@@ -43,8 +40,6 @@
     <string name="pref_code_group_size_summary">Show code in 2-digit grouping instead of 3-digit grouping</string>
     <string name="pref_account_name_title">Show the account name</string>
     <string name="pref_account_name_summary">Enable this to show the account name next to the issuer</string>
-    <string name="pref_timeout_title">Timeout</string>
-    <string name="pref_timeout_summary">Automatically lock the vault after %1$s seconds of inactivity</string>
     <string name="pref_import_file_title">Import from file</string>
     <string name="pref_import_file_summary">Import tokens from a file</string>
     <string name="pref_android_backups_title">Android cloud backups</string>
@@ -104,8 +99,6 @@
     <string name="authentication_method_password_explanation">Warning: If you forget your password, you will permanently lose access to your tokens. There is no way to recover them without the password.</string>
     <string name="authentication_method_biometrics">Biometrics</string>
     <string name="authentication_method_biometrics_description">In addition to a password, biometrics registered on this device, like a fingerprint or your face, can be used to unlock the vault.</string>
-    <string name="authentication_method_set_password">Password</string>
-    <string name="authentication_enter_password">Enter your password</string>
     <string name="authentication">Unlock the vault</string>
 
     <!-- The newline (\n) on the following line is just for aesthetic purposes !-->
@@ -135,7 +128,6 @@
     <string name="yes">Yes</string>
     <string name="no">No</string>
     <string name="unlock">Unlock</string>
-    <string name="biometrics">Biometrics</string>
     <string name="advanced">Advanced</string>
     <string name="counter">Counter</string>
     <string name="digits">Digits</string>
@@ -143,14 +135,9 @@
     <string name="scan">Scan QR code</string>
     <string name="scan_image">Scan image</string>
     <string name="enter_manually">Enter manually</string>
-    <string name="add_biometric">Add biometric</string>
-    <string name="add_biometric_slot">Add biometric slot</string>
     <string name="set_up_biometric">Set up biometric unlock</string>
-    <string name="add_password">Add password</string>
-    <string name="slots_warning">The vault is only as secure as your weakest secret. If you change the biometric authentication settings of your device, you will need to reactivate biometric unlock within Aegis.</string>
     <string name="copy">Copy</string>
     <string name="edit">Edit</string>
-    <string name="delete">Delete</string>
     <string name="password">Password</string>
     <string name="confirm_password">Confirm password</string>
     <string name="show_password">Show password</string>
@@ -174,8 +161,6 @@
     </plurals>
     <string name="discard_changes">Discard changes?</string>
     <string name="discard_changes_description">Your changes have not been saved</string>
-    <string name="folder">Folder</string>
-    <string name="tap_to_select">Tap to select</string>
     <string name="saving_profile_error">Error saving profile</string>
     <string name="welcome">Welcome</string>
     <string name="app_description">Aegis is a free, secure and open source 2FA app</string>
@@ -207,7 +192,6 @@
         <item quantity="one">%d icon</item>
         <item quantity="other">%d icons</item>
     </plurals>
-    <string name="icon_pack">Icon pack</string>
     <string name="icon_custom">Custom</string>
     <string name="permission_denied">Permission denied</string>
     <string name="andotp_new_format">New format (v0.6.3 or newer) </string>
@@ -236,17 +220,11 @@
     <string name="read_qr_error_phonefactor">Aegis is not compatible with Microsoft\'s proprietary 2FA algorithm. Please make sure to select \"Setup application without notifications\" when configuring 2FA in Office 365.</string>
     <string name="authentication_method_raw">Raw</string>
     <string name="unlocking_vault">Unlocking the vault</string>
-    <string name="unlocking_vault_repair">Unlocking the vault (repairing)</string>
-    <string name="password_slot_error">You must have at least one password slot</string>
     <string name="slot_this_device">(this devices)</string>
-    <string name="remove_slot">Remove slot</string>
-    <string name="remove_slot_description">Are you sure you want to remove this slot?</string>
     <string name="remove_group">Remove group</string>
     <string name="remove_group_description">Are you sure you want to remove this group? Entries in this group will automatically switch to \'No group\'.</string>
     <string name="remove_icon_pack">Remove icon pack</string>
     <string name="remove_icon_pack_description">Are you sure you want to remove this icon pack? Entries that use icons from this pack will not be affected.</string>
-    <string name="adding_new_slot_error">An error occurred while trying to add a new slot:</string>
-    <string name="progressbar_error">Unable to reset animator duration scale. Progress bars will be invisible.</string>
     <string name="details">Details</string>
     <string name="lock">Lock</string>
     <string name="name">Name</string>
@@ -259,7 +237,6 @@
     <string name="sort_usage_count">Usage count</string>
     <string name="sort_custom">Custom</string>
     <string name="new_group">New group…</string>
-    <string name="enter_group_name">Enter a group name</string>
     <string name="group">Group</string>
     <string name="group_name_hint">Group name</string>
     <string name="preference_manage_groups">Edit groups</string>

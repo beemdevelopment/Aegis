@@ -2,7 +2,6 @@
 <resources>
     <string name="action_settings">設定</string>
     <string name="action_about">關於</string>
-    <string name="action_import">匯入</string>
     <string name="action_delete">刪除</string>
     <string name="action_transfer">轉移</string>
     <string name="action_edit_icon">編輯圖示</string>
@@ -10,7 +9,6 @@
     <string name="discard">放棄</string>
     <string name="save">儲存</string>
     <string name="issuer">服務商</string>
-    <string name="settings">偏好設定</string>
     <string name="pref_cat_appearance_app">應用程式</string>
     <string name="pref_cat_appearance_entries">條目</string>
     <string name="pref_cat_backups_android">Android</string>
@@ -28,8 +26,6 @@
     <string name="pref_code_group_size_summary">以 2 位分組而不是 3 位分組顯示驗證碼</string>
     <string name="pref_account_name_title">顯示帳戶名稱</string>
     <string name="pref_account_name_summary">在服務商名稱旁邊顯示帳戶名稱</string>
-    <string name="pref_timeout_title">越時</string>
-    <string name="pref_timeout_summary">在無操作 %1$s 秒後自動鎖定保險箱</string>
     <string name="pref_import_file_title">從檔案匯入</string>
     <string name="pref_import_file_summary">從檔案匯入憑證</string>
     <string name="pref_android_backups_title">使用 Android 的備份系統</string>
@@ -82,8 +78,6 @@
     <string name="authentication_method_password_explanation">警告：如果您忘記密碼，您將會無法還原憑證而不可逆的失去它們。</string>
     <string name="authentication_method_biometrics">生物識別</string>
     <string name="authentication_method_biometrics_description">除密碼外，在此裝置上註冊的生物識別驗證（例如指紋或人臉），也可用於解鎖保險箱。</string>
-    <string name="authentication_method_set_password">密碼</string>
-    <string name="authentication_enter_password">輸入您的密碼</string>
     <string name="authentication">解鎖保險箱</string>
     <!-- The newline (\n) on the following line is just for aesthetic purposes !-->
     <string name="authentication_multiline">解鎖\n保險箱</string>
@@ -102,7 +96,6 @@
     <string name="yes">確定</string>
     <string name="no">取消</string>
     <string name="unlock">解鎖</string>
-    <string name="biometrics">生物識別</string>
     <string name="advanced">高級設定</string>
     <string name="counter">計數器</string>
     <string name="digits">位數</string>
@@ -110,14 +103,9 @@
     <string name="scan">掃描QR碼</string>
     <string name="scan_image">掃描本地圖片</string>
     <string name="enter_manually">手動輸入</string>
-    <string name="add_biometric">新增生物識別</string>
-    <string name="add_biometric_slot">新增生物識別位</string>
     <string name="set_up_biometric">設置生物識別解鎖</string>
-    <string name="add_password">新增密碼</string>
-    <string name="slots_warning">您的私密檔案僅透過保險箱上輕薄的一層驗證保護。是以為了維護您的隱私，當您更改了裝置上的生物識別驗證機制時，我們將停用 Aegis 上的此驗證方式，請手動重新啟用。</string>
     <string name="copy">複製</string>
     <string name="edit">編輯</string>
-    <string name="delete">刪除</string>
     <string name="password">密碼</string>
     <string name="confirm_password">確認密碼</string>
     <string name="show_password">顯示密碼</string>
@@ -138,8 +126,6 @@
     </plurals>
     <string name="discard_changes">放棄更改？</string>
     <string name="discard_changes_description">您的更改尚未儲存</string>
-    <string name="folder">資料夾</string>
-    <string name="tap_to_select">輕觸以選擇</string>
     <string name="saving_profile_error">保存設定文件時發生錯誤</string>
     <string name="welcome">歡迎使用</string>
     <string name="app_description">Aegis 是一款免費，安全和開源的雙重認證（2FA）應用程式</string>
@@ -188,15 +174,9 @@
     <string name="read_qr_error">試圖讀取QR碼時出錯</string>
     <string name="authentication_method_raw">源文件</string>
     <string name="unlocking_vault">解鎖保險箱</string>
-    <string name="unlocking_vault_repair">解鎖保險箱（修復中）</string>
-    <string name="password_slot_error">您必須至少有一個密碼位</string>
     <string name="slot_this_device"> （此裝置）</string>
-    <string name="remove_slot">删除槽</string>
-    <string name="remove_slot_description">您確定要刪除這個槽嗎？</string>
     <string name="remove_group">刪除群組</string>
     <string name="remove_group_description">您確定要刪除這個群組嗎？此群組內的條目將自動移動到 “無群組”。</string>
-    <string name="adding_new_slot_error">新增驗證位時發生錯誤</string>
-    <string name="progressbar_error">無法重置動畫持續時間。進度條將不可見。</string>
     <string name="details">詳細信息</string>
     <string name="lock">鎖定</string>
     <string name="name">名稱</string>
@@ -207,7 +187,6 @@
     <string name="sort_alphabetically_name_reverse">帳戶（Z 到 A）</string>
     <string name="sort_custom">自定義</string>
     <string name="new_group">新增群組</string>
-    <string name="enter_group_name">輸入群組名稱</string>
     <string name="group_name_hint">群組名稱</string>
     <string name="preference_manage_groups">編輯群組</string>
     <string name="preference_manage_groups_summary">管理和移除您的群組</string>

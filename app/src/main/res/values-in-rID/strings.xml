@@ -2,7 +2,6 @@
 <resources>
     <string name="action_settings">Pengaturan</string>
     <string name="action_about">Tentang</string>
-    <string name="action_import">Impor</string>
     <string name="action_delete">Hapus</string>
     <string name="action_transfer">Kirim</string>
     <string name="action_edit_icon">Mengedit ikon</string>
@@ -14,7 +13,6 @@
     <string name="issuer">Penerbit</string>
     <string name="suggested">Disarankan</string>
     <string name="usage_count">Jumlah penggunaan</string>
-    <string name="settings">Preferensi</string>
     <string name="pref_cat_appearance_app">Aplikasi</string>
     <string name="pref_cat_appearance_entries">Entri</string>
     <string name="pref_cat_backups_android">Android</string>
@@ -38,8 +36,6 @@
     <string name="pref_code_group_size_summary">Tampilkan kode dalam pengelompokan 2 digit, bukan pengelompokan 3 digit</string>
     <string name="pref_account_name_title">Tampilkan nama akun</string>
     <string name="pref_account_name_summary">Aktifkan ini untuk menampilkan nama akun di samping penerbit</string>
-    <string name="pref_timeout_title">Waktu habis</string>
-    <string name="pref_timeout_summary">Kunci brankas secara otomatis setelah %1$s detik tidak aktif</string>
     <string name="pref_import_file_title">Impor berkas</string>
     <string name="pref_import_file_summary">Impor token dari berkas</string>
     <string name="pref_android_backups_title">Partisipasi di sistem pencadangan Android</string>
@@ -93,8 +89,6 @@
     <string name="authentication_method_password_explanation">Peringatan: Jika Anda lupa kata sandi, Anda akan kehilangan akses ke token Anda secara permanen. Tidak ada cara untuk memulihkan nya tanpa kata sandi.</string>
     <string name="authentication_method_biometrics">Biometrik</string>
     <string name="authentication_method_biometrics_description">Selain kata sandi, biometrik yang terdaftar di perangkat ini, seperti sidik jari atau wajah Anda, dapat digunakan untuk membuka brankas.</string>
-    <string name="authentication_method_set_password">Kata Sandi</string>
-    <string name="authentication_enter_password">Masukkan kata sandi Anda</string>
     <string name="authentication">Buka brankas</string>
     <!-- The newline (\n) on the following line is just for aesthetic purposes !-->
     <string name="authentication_multiline">Buka\nbrankas</string>
@@ -114,7 +108,6 @@
     <string name="yes">Ya</string>
     <string name="no">Tidak</string>
     <string name="unlock">Buka</string>
-    <string name="biometrics">Biometrik</string>
     <string name="advanced">Lanjutan</string>
     <string name="counter">Penghitung</string>
     <string name="digits">Digit</string>
@@ -122,14 +115,9 @@
     <string name="scan">Pindai kode QR</string>
     <string name="scan_image">Pindai gambar</string>
     <string name="enter_manually">Masukkan secara manual</string>
-    <string name="add_biometric">Tambahkan biometrik</string>
-    <string name="add_biometric_slot">Tambahkan slot biometrik</string>
     <string name="set_up_biometric">Atur buka kunci biometrik</string>
-    <string name="add_password">Tambahkan kata sandi</string>
-    <string name="slots_warning">Brankas ini hanya mengamankan sebagian rahasia Anda. Jika Anda mengubah pengaturan otentikasi biometrik perangkat Anda, Anda perlu mengaktifkan kembali buka kunci biometrik di dalam Aegis.</string>
     <string name="copy">Salin</string>
     <string name="edit">Ubah</string>
-    <string name="delete">Hapus</string>
     <string name="password">Kata Sandi</string>
     <string name="confirm_password">Konfirmasi Kata Sandi</string>
     <string name="show_password">Tampilkan Kata Sandi</string>
@@ -151,8 +139,6 @@
     </plurals>
     <string name="discard_changes">Batalkan perubahan?</string>
     <string name="discard_changes_description">Perubahan Anda belum disimpan</string>
-    <string name="folder">Direktori</string>
-    <string name="tap_to_select">Sentuh untuk memilih</string>
     <string name="saving_profile_error">Terjadi kesalahan saat menyimpan profil</string>
     <string name="welcome">Selamat Datang</string>
     <string name="app_description">Aegis adalah aplikasi 2FA gratis, aman, dan kode sumber terbuka</string>
@@ -183,7 +169,6 @@
     <plurals name="icon_pack_info">
         <item quantity="other">%d ikon</item>
     </plurals>
-    <string name="icon_pack">Paket Ikon</string>
     <string name="icon_custom">Kustom</string>
     <string name="permission_denied">Izin ditolak</string>
     <string name="andotp_new_format">Format baru (v0.6.3 atau terbaru) </string>
@@ -211,17 +196,11 @@
     <string name="read_qr_error_phonefactor">Aegis tidak sesuai dengan algoritma 2FA milik Microsoft. Tolong untuk memastikan telah memilih \"Atur aplikasi tanpa notifikasi\" ketika mengonfigurasi 2FA di Office 365.</string>
     <string name="authentication_method_raw">Raw</string>
     <string name="unlocking_vault">Buka brankas</string>
-    <string name="unlocking_vault_repair">Membuka brankas (memperbaiki)</string>
-    <string name="password_slot_error">Setidaknya Anda harus memiliki satu slot kata sandi</string>
     <string name="slot_this_device">(perangkat ini)</string>
-    <string name="remove_slot">Hapus slot</string>
-    <string name="remove_slot_description">Apakah Anda yakin ingin menghapus slot ini?</string>
     <string name="remove_group">Hapus kelompok</string>
     <string name="remove_group_description">Apakah Anda yakin ingin menghapus kelompok ini? Catatan dalam kelompok ini akan secara otomatis beralih ke \'Tidak ada kelompok\'.</string>
     <string name="remove_icon_pack">Hapus Paket Ikon</string>
     <string name="remove_icon_pack_description">Apakah Anda yakin ingin menghapus paket ikon ini? Entri yang menggunakan ikon dari paket ini tidak akan terpengaruh.</string>
-    <string name="adding_new_slot_error">Terjadi kesalahan saat menambahkan slot baru:</string>
-    <string name="progressbar_error">Tidak dapat mengatur ulang skala durasi animasi. Progress bar tidak akan terlihat.</string>
     <string name="details">Rincian</string>
     <string name="lock">Kunci</string>
     <string name="name">Nama</string>
@@ -234,7 +213,6 @@
     <string name="sort_usage_count">Jumlah penggunaan</string>
     <string name="sort_custom">Kustom</string>
     <string name="new_group">Kelompok baru…</string>
-    <string name="enter_group_name">Masukkan nama kelompok</string>
     <string name="group">Kelompok</string>
     <string name="group_name_hint">Nama kelompok</string>
     <string name="preference_manage_groups">Ubah kelompok</string>

@@ -2,7 +2,6 @@
 <resources>
     <string name="action_settings">Cài đặt</string>
     <string name="action_about">Giới thiệu</string>
-    <string name="action_import">Nhập</string>
     <string name="action_delete">Xóa</string>
     <string name="action_transfer">Truyền</string>
     <string name="action_edit_icon">Chỉnh sửa logo</string>
@@ -14,7 +13,6 @@
     <string name="issuer">Người cấp</string>
     <string name="suggested">Được đề xuất</string>
     <string name="usage_count">Số lần sử dụng</string>
-    <string name="settings">Cài đặt</string>
     <string name="pref_cat_appearance_app">Ứng dụng</string>
     <string name="pref_cat_appearance_entries">Mục</string>
     <string name="pref_cat_backups_android">Android</string>
@@ -38,8 +36,6 @@
     <string name="pref_code_group_size_summary">Hiện mã theo kiểu gộp nhóm 2 chữ số thay vì gộp nhóm 3 chữ số</string>
     <string name="pref_account_name_title">Hiện tên tài khoản</string>
     <string name="pref_account_name_summary">Bật tuỳ chọn này để hiện tên tài khoản bên cạnh người cấp</string>
-    <string name="pref_timeout_title">Thời gian chờ</string>
-    <string name="pref_timeout_summary">Tự động khoá kho sau %1$s giây không có hoạt động</string>
     <string name="pref_import_file_title">Nhập từ tệp</string>
     <string name="pref_import_file_summary">Nhập các token từ một tệp</string>
     <string name="pref_android_backups_title">Tham gia vào hệ thống sao lưu của Android</string>
@@ -93,8 +89,6 @@
     <string name="authentication_method_password_explanation">Cảnh báo: Nếu bạn quên mật khẩu, bạn sẽ mất quyền truy cập vào các token vĩnh viễn. Không có cách nào để phục hồi chúng mà không có mật khẩu.</string>
     <string name="authentication_method_biometrics">Sinh trắc học</string>
     <string name="authentication_method_biometrics_description">Bên cạnh mật khẩu, thì sinh trắc học đã được đăng ký trên thiết bị, như vân tay hoặc khuôn mặt, có thể được sử dụng để mở khoá kho.</string>
-    <string name="authentication_method_set_password">Mật khẩu</string>
-    <string name="authentication_enter_password">Nhập mật khẩu</string>
     <string name="authentication">Mở khoá kho</string>
     <!-- The newline (\n) on the following line is just for aesthetic purposes !-->
     <string name="authentication_multiline">Mở khoá\nkho</string>
@@ -114,7 +108,6 @@
     <string name="yes">Có</string>
     <string name="no">Không</string>
     <string name="unlock">Mở khoá</string>
-    <string name="biometrics">Sinh trắc học</string>
     <string name="advanced">Nâng cao</string>
     <string name="counter">Đếm</string>
     <string name="digits">Chữ số</string>
@@ -122,14 +115,9 @@
     <string name="scan">Quét mã QR</string>
     <string name="scan_image">Quét hình ảnh</string>
     <string name="enter_manually">Nhập thủ công</string>
-    <string name="add_biometric">Thêm sinh trắc học</string>
-    <string name="add_biometric_slot">Thêm ô sinh trắc học</string>
     <string name="set_up_biometric">Thiết lập mở khoá sinh trắc học</string>
-    <string name="add_password">Thêm mật khẩu</string>
-    <string name="slots_warning">Kho này chỉ có cùng độ bảo mật như bí mật yếu nhất của bạn. Nếu bạn thay đổi cài đặt xác thực sinh trắc học của thiết bị, thì bạn sẽ cần phải kích hoạt lại mở khoá sinh trắc học trong Aegis.</string>
     <string name="copy">Sao chép</string>
     <string name="edit">Chỉnh sửa</string>
-    <string name="delete">Xóa</string>
     <string name="password">Mật khẩu</string>
     <string name="confirm_password">Xác nhận mật khẩu</string>
     <string name="show_password">Hiện mật khẩu</string>
@@ -151,8 +139,6 @@
     </plurals>
     <string name="discard_changes">Bỏ các thay đổi?</string>
     <string name="discard_changes_description">Các thay đổi chưa được lưu</string>
-    <string name="folder">Thư mục</string>
-    <string name="tap_to_select">Nhấn để chọn</string>
     <string name="saving_profile_error">Lỗi khi lưu hồ sơ</string>
     <string name="welcome">Chào mừng</string>
     <string name="app_description">Aegis là một ứng dụng Xác thực 2 yếu tố tự do, bảo mật và mã nguồn mở</string>
@@ -183,7 +169,6 @@
     <plurals name="icon_pack_info">
         <item quantity="other">%d biểu tượng</item>
     </plurals>
-    <string name="icon_pack">Gói biểu tượng</string>
     <string name="icon_custom">Tùy chỉnh</string>
     <string name="permission_denied">Quyền bị từ chối</string>
     <string name="andotp_new_format">Định dạng mới (v0.6.3 hoặc mới hơn) </string>
@@ -211,17 +196,11 @@
     <string name="read_qr_error_phonefactor">Aegis không tương thích với thuật toán Xác thực 2 yếu tố độc quyền của Microsoft. Vui lòng chắc chắn là bạn chọn \"Thiết lập ứng dụng không có thông báo\" khi thiết lập Xác thực 2 yếu tố trong Office 365.</string>
     <string name="authentication_method_raw">Thô</string>
     <string name="unlocking_vault">Đang mở khoá kho</string>
-    <string name="unlocking_vault_repair">Đang mở khoá kho (đang sửa chữa)</string>
-    <string name="password_slot_error">Bạn phải có ít nhất một ô mật khẩu</string>
     <string name="slot_this_device">(thiết bị này)</string>
-    <string name="remove_slot">Xoá ô</string>
-    <string name="remove_slot_description">Bạn có chắc bạn muốn xoá ô này không?</string>
     <string name="remove_group">Xoá nhóm</string>
     <string name="remove_group_description">Bạn có chắc bạn muốn xoá nhóm này không? Các mục trong nhóm này sẽ tự động chuyển thành \"Không có nhóm\".</string>
     <string name="remove_icon_pack">Xoá gói biểu tượng</string>
     <string name="remove_icon_pack_description">Bạn có chắc bạn muốn xoá gói biểu tượng này không? Các mục sử dụng biểu tượng trong gói này sẽ không bị ảnh hưởng.</string>
-    <string name="adding_new_slot_error">Đã xảy ra lỗi trong khi cố gắng thêm một ô mới:</string>
-    <string name="progressbar_error">Không thể đặt lại khoảng thời gian hoạt ảnh. Các thanh tiến trình sẽ trở nên vô hình.</string>
     <string name="details">Chi tiết</string>
     <string name="lock">Khoá</string>
     <string name="name">Tên</string>
@@ -234,7 +213,6 @@
     <string name="sort_usage_count">Số lần sử dụng</string>
     <string name="sort_custom">Tùy chỉnh</string>
     <string name="new_group">Nhóm mới…</string>
-    <string name="enter_group_name">Nhập tên nhóm</string>
     <string name="group">Nhóm</string>
     <string name="group_name_hint">Tên nhóm</string>
     <string name="preference_manage_groups">Chỉnh sửa nhóm</string>

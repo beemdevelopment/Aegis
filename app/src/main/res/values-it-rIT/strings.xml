@@ -2,7 +2,6 @@
 <resources>
     <string name="action_settings">Impostazioni</string>
     <string name="action_about">Informazioni</string>
-    <string name="action_import">Importa</string>
     <string name="action_delete">Elimina</string>
     <string name="action_transfer">Trasferisci</string>
     <string name="action_edit_icon">Modifica icona</string>
@@ -14,7 +13,6 @@
     <string name="issuer">Emittente</string>
     <string name="suggested">Suggeriti</string>
     <string name="usage_count">Numero di utilizzi</string>
-    <string name="settings">Impostazioni</string>
     <string name="pref_cat_appearance_app">App</string>
     <string name="pref_cat_appearance_entries">Voci</string>
     <string name="pref_cat_backups_android">Android</string>
@@ -38,8 +36,6 @@
     <string name="pref_code_group_size_summary">Mostra il codice diviso ogni 2 cifre invece che ogni 3 cifre</string>
     <string name="pref_account_name_title">Mostra nome account</string>
     <string name="pref_account_name_summary">Abilita questa opzione per mostrare il nome dell\'account vicino all\'emittente</string>
-    <string name="pref_timeout_title">Timeout</string>
-    <string name="pref_timeout_summary">Blocca automaticamente la cassaforte dopo %1$s secondi di inattività</string>
     <string name="pref_import_file_title">Importa da file</string>
     <string name="pref_import_file_summary">Importa token da file</string>
     <string name="pref_android_backups_title">Partecipa al sistema di backup di Android</string>
@@ -94,8 +90,6 @@
     <string name="authentication_method_password_explanation">Attenzione: Se dimentichi la password perderai definitivamente l\'accesso ai token e non avrai modo di recuperarli.</string>
     <string name="authentication_method_biometrics">Biometrica</string>
     <string name="authentication_method_biometrics_description">Oltre a una password, i dati biometrici registrati su questo dispositivo, come un\'impronta digitale o il tuo volto, possono essere utilizzati per sbloccare la cassaforte.</string>
-    <string name="authentication_method_set_password">Password</string>
-    <string name="authentication_enter_password">Inserisci la tua password</string>
     <string name="authentication">Sblocca la cassaforte</string>
     <!-- The newline (\n) on the following line is just for aesthetic purposes !-->
     <string name="authentication_multiline">Sblocca\nla cassaforte</string>
@@ -115,7 +109,6 @@
     <string name="yes">Si</string>
     <string name="no">No</string>
     <string name="unlock">Sblocca</string>
-    <string name="biometrics">Biometrica</string>
     <string name="advanced">Avanzate</string>
     <string name="counter">Contatore</string>
     <string name="digits">Cifre</string>
@@ -123,14 +116,9 @@
     <string name="scan">Scansiona codice QR</string>
     <string name="scan_image">Scansiona immagine</string>
     <string name="enter_manually">Inserisci manualmente</string>
-    <string name="add_biometric">Aggiungi dati biometrici</string>
-    <string name="add_biometric_slot">Aggiungi dati biometrici</string>
     <string name="set_up_biometric">Imposta sblocco biometrico</string>
-    <string name="add_password">Aggiungi password</string>
-    <string name="slots_warning">La cassaforte è sicura quanto il tuo segreto più debole. Se cambi le impostazioni di autenticazione biometrica del tuo dispositivo, dovrai riattivare lo sblocco biometrico all\'interno di Aegis.</string>
     <string name="copy">Copia</string>
     <string name="edit">Modifica</string>
-    <string name="delete">Elimina</string>
     <string name="password">Password</string>
     <string name="confirm_password">Conferma password</string>
     <string name="show_password">Mostra password</string>
@@ -153,8 +141,6 @@
     </plurals>
     <string name="discard_changes">Annullare le modifiche?</string>
     <string name="discard_changes_description">Le modifiche non sono state salvate</string>
-    <string name="folder">Cartella</string>
-    <string name="tap_to_select">Tocca per selezionare</string>
     <string name="saving_profile_error">Errore nel salvataggio del profilo</string>
     <string name="welcome">Benvenuto</string>
     <string name="app_description">Aegis è un\'app per l\'autenticazione a due fattori gratuita, sicura e open source</string>
@@ -186,7 +172,6 @@
         <item quantity="one">%d icona</item>
         <item quantity="other">%d icone</item>
     </plurals>
-    <string name="icon_pack">Pacchetto di icone</string>
     <string name="icon_custom">Personalizzato</string>
     <string name="permission_denied">Autorizzazione negata</string>
     <string name="andotp_new_format">Nuovo formato (v0.6.3 o più recente) </string>
@@ -215,17 +200,11 @@
     <string name="read_qr_error_phonefactor">Aegis non è compatibile con l\'algoritmo di autenticazione a due fattori proprietario di Microsoft. Assicurati di selezionare \"Configura un\'applicazione senza notifiche\" quando configuri l\'autenticazione a due fattori in Office 365.</string>
     <string name="authentication_method_raw">Raw</string>
     <string name="unlocking_vault">Sblocco della cassaforte</string>
-    <string name="unlocking_vault_repair">Sblocco della cassaforte (riparazione)</string>
-    <string name="password_slot_error">Devi avere almeno uno slot password</string>
     <string name="slot_this_device">(questo dispositivo)</string>
-    <string name="remove_slot">Rimuovi slot</string>
-    <string name="remove_slot_description">Sei sicuro di voler rimuovere questo slot?</string>
     <string name="remove_group">Rimuovi gruppo</string>
     <string name="remove_group_description">Sei sicuro di voler rimuovere questo gruppo? Gli elementi in questo gruppo verranno automaticamente spostati in \'Nessun gruppo\'.</string>
     <string name="remove_icon_pack">Rimuovi pacchetto di icone</string>
     <string name="remove_icon_pack_description">Sei sicuro di voler rimuovere questo pacchetto di icone? Le voci che usano le icone di questo pacchetto non saranno modificate.</string>
-    <string name="adding_new_slot_error">Errore nell\'aggiunta di un nuovo slot:</string>
-    <string name="progressbar_error">Impossibile ripristinare la durata delle animazioni. Le barre di caricamento non saranno visibili.</string>
     <string name="details">Dettagli</string>
     <string name="lock">Blocca</string>
     <string name="name">Nome</string>
@@ -238,7 +217,6 @@
     <string name="sort_usage_count">Numero di utilizzi</string>
     <string name="sort_custom">Personalizza</string>
     <string name="new_group">Nuovo gruppo…</string>
-    <string name="enter_group_name">Inserisci un nome di gruppo</string>
     <string name="group">Gruppo</string>
     <string name="group_name_hint">Nome gruppo</string>
     <string name="preference_manage_groups">Modifica gruppi</string>

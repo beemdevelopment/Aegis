@@ -2,7 +2,6 @@
 <resources>
     <string name="action_settings">设置</string>
     <string name="action_about">关于</string>
-    <string name="action_import">导入</string>
     <string name="action_delete">删除</string>
     <string name="action_transfer">转移</string>
     <string name="action_edit_icon">编辑图标</string>
@@ -14,7 +13,6 @@
     <string name="issuer">服务商</string>
     <string name="suggested">已建议</string>
     <string name="usage_count">使用计数</string>
-    <string name="settings">设置</string>
     <string name="pref_cat_appearance_app">应用程序</string>
     <string name="pref_cat_appearance_entries">条目</string>
     <string name="pref_cat_backups_android">安卓</string>
@@ -38,8 +36,6 @@
     <string name="pref_code_group_size_summary">以 2 位分组而不是 3 位分组显示验证码</string>
     <string name="pref_account_name_title">显示帐户名称</string>
     <string name="pref_account_name_summary">在应用名称旁边显示账户名称</string>
-    <string name="pref_timeout_title">超时</string>
-    <string name="pref_timeout_summary">在无操作 %1$s 秒后自动锁定数据库</string>
     <string name="pref_import_file_title">从文件导入</string>
     <string name="pref_import_file_summary">从文件导入令牌</string>
     <string name="pref_android_backups_title">参与Android的备份系统</string>
@@ -93,8 +89,6 @@
     <string name="authentication_method_password_explanation">警告：如果忘记密码，将永久失去对令牌的访问权限。没有密码，则无法恢复它们。</string>
     <string name="authentication_method_biometrics">生物识别</string>
     <string name="authentication_method_biometrics_description">除密码外，在此设备上注册的生物识别信息（例如指纹或人脸），也可用于解锁数据库。</string>
-    <string name="authentication_method_set_password">密码</string>
-    <string name="authentication_enter_password">输入您的密码</string>
     <string name="authentication">解锁数据库</string>
     <!-- The newline (\n) on the following line is just for aesthetic purposes !-->
     <string name="authentication_multiline">解锁\n数据库</string>
@@ -114,7 +108,6 @@
     <string name="yes">确定</string>
     <string name="no">取消</string>
     <string name="unlock">解锁</string>
-    <string name="biometrics">生物识别</string>
     <string name="advanced">高级设置</string>
     <string name="counter">计数器</string>
     <string name="digits">位数</string>
@@ -122,14 +115,9 @@
     <string name="scan">扫描二维码</string>
     <string name="scan_image">扫描本地图片</string>
     <string name="enter_manually">手动输入</string>
-    <string name="add_biometric">添加生物识别</string>
-    <string name="add_biometric_slot">添加生物识别方式</string>
     <string name="set_up_biometric">设置生物识别解锁</string>
-    <string name="add_password">添加密码</string>
-    <string name="slots_warning">只有当应用的每个环节都保证安全时，数据库才能保证安全。如果您更改了设备上的生物识别验证设置，您将需要在 Aegis 中重新启用生物识别解锁。</string>
     <string name="copy">复制</string>
     <string name="edit">编辑</string>
-    <string name="delete">删除</string>
     <string name="password">密码</string>
     <string name="confirm_password">确认密码</string>
     <string name="show_password">显示密码</string>
@@ -151,8 +139,6 @@
     </plurals>
     <string name="discard_changes">放弃更改？</string>
     <string name="discard_changes_description">您的更改尚未保存</string>
-    <string name="folder">文件夹</string>
-    <string name="tap_to_select">点击选择</string>
     <string name="saving_profile_error">保存配置文件时出错</string>
     <string name="welcome">欢迎使用</string>
     <string name="app_description">Aegis 是一款免费，安全和开源的双重认证（2FA）应用</string>
@@ -183,7 +169,6 @@
     <plurals name="icon_pack_info">
         <item quantity="other">%d 个图标</item>
     </plurals>
-    <string name="icon_pack">图标包</string>
     <string name="icon_custom">自定义</string>
     <string name="permission_denied">获取权限失败</string>
     <string name="andotp_new_format">新格式（v0.6.3 及以上版本）</string>
@@ -211,17 +196,11 @@
     <string name="read_qr_error_phonefactor">Aegis 不兼容 Microsoft 专有的 2FA 算法。请确保在设置 Office 365 的 2FA 时选择“在无通知情况下安装应用程序”。</string>
     <string name="authentication_method_raw">源文件</string>
     <string name="unlocking_vault">解锁数据库</string>
-    <string name="unlocking_vault_repair">解锁数据库（修复）</string>
-    <string name="password_slot_error">您必须至少有一个密码槽</string>
     <string name="slot_this_device">（本设备）</string>
-    <string name="remove_slot">删除槽</string>
-    <string name="remove_slot_description">您确定要删除这个槽吗？</string>
     <string name="remove_group">删除群组</string>
     <string name="remove_group_description">您确定要删除这个群组吗？此群组内的条目将自动移动到“无群组”。</string>
     <string name="remove_icon_pack">删除图标包</string>
     <string name="remove_icon_pack_description">您确定要删除此图标包吗？使用此包图标的条目不会受到影响。</string>
-    <string name="adding_new_slot_error">试图添加新槽时出错：</string>
-    <string name="progressbar_error">无法重置动画持续时间。进度条将不可见。</string>
     <string name="details">详细信息</string>
     <string name="lock">锁定</string>
     <string name="name">名称</string>
@@ -234,7 +213,6 @@
     <string name="sort_usage_count">使用计数</string>
     <string name="sort_custom">自定义</string>
     <string name="new_group">新建群组…</string>
-    <string name="enter_group_name">输入群组名</string>
     <string name="group">群组</string>
     <string name="group_name_hint">群组名称</string>
     <string name="preference_manage_groups">编辑群组</string>

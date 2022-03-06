@@ -2,7 +2,6 @@
 <resources>
     <string name="action_settings">Ayarlar</string>
     <string name="action_about">Hakkında</string>
-    <string name="action_import">İçe aktar</string>
     <string name="action_delete">Sil</string>
     <string name="action_transfer">Aktar</string>
     <string name="action_edit_icon">Simgeyi düzenle</string>
@@ -14,7 +13,6 @@
     <string name="issuer">Sağlayıcı</string>
     <string name="suggested">Önerilen</string>
     <string name="usage_count">Kullanım sayısı</string>
-    <string name="settings">Tercihler</string>
     <string name="pref_cat_appearance_app">Uygulama</string>
     <string name="pref_cat_appearance_entries">Kayıtlar</string>
     <string name="pref_cat_backups_android">Android</string>
@@ -38,8 +36,6 @@
     <string name="pref_code_group_size_summary">Kodu 3 haneli gruplama yerine 2 haneli gruplamayla göster</string>
     <string name="pref_account_name_title">Hesap adını göster</string>
     <string name="pref_account_name_summary">Hesap adını sağlayıcının yanında göstermek için bunu etkinleştirin</string>
-    <string name="pref_timeout_title">Zaman aşımı</string>
-    <string name="pref_timeout_summary">Kasayı %1$s saniyelik hareketsizliğin ardından otomatik kilitle</string>
     <string name="pref_import_file_title">Dosyadan içeriye aktar</string>
     <string name="pref_import_file_summary">Veritabanını dosyadan içeriye aktar</string>
     <string name="pref_android_backups_title">Android yedekleme sistemine dahil ol</string>
@@ -93,8 +89,6 @@
     <string name="authentication_method_password_explanation">Uyarı: Eğer parolanızı unutursanız kodlarınıza erişimi kalıcı olarak kaybedebilirsiniz.</string>
     <string name="authentication_method_biometrics">Biyometrik</string>
     <string name="authentication_method_biometrics_description">Parolaya ek olarak bu cihazda kayıtlı olan parmak izi ve yüz tanıma gibi biyometrik doğrulama yöntemleri kasayı açmada kullanılabilir.</string>
-    <string name="authentication_method_set_password">Parola</string>
-    <string name="authentication_enter_password">Parolanızı girin</string>
     <string name="authentication">Kasa kilidini aç</string>
     <!-- The newline (\n) on the following line is just for aesthetic purposes !-->
     <string name="authentication_multiline">Kasa kilidini \naç</string>
@@ -114,7 +108,6 @@
     <string name="yes">Evet</string>
     <string name="no">Hayır</string>
     <string name="unlock">Kilidi aç</string>
-    <string name="biometrics">Biyometrik</string>
     <string name="advanced">Gelişmiş</string>
     <string name="counter">Sayaç</string>
     <string name="digits">Haneler</string>
@@ -122,14 +115,9 @@
     <string name="scan">QR kod tara</string>
     <string name="scan_image">Resim tara</string>
     <string name="enter_manually">El ile gir</string>
-    <string name="add_biometric">Biyometrik doğrulama ekle</string>
-    <string name="add_biometric_slot">Biyometrik doğrulama elemanı ekle</string>
     <string name="set_up_biometric">Biyometrik kilit açma kurulumu</string>
-    <string name="add_password">Parola ekle</string>
-    <string name="slots_warning">Kasanız en zayıf parolanız kadar güvende olacaktır. Eğer cihazınızda biyometrik doğrulama ayarlarını değiştirirseniz, biyometrik kilit açmayı Aegis içinde yeniden aktifleştirmeniz gerekir.</string>
     <string name="copy">Kopyala</string>
     <string name="edit">Düzenle</string>
-    <string name="delete">Sil</string>
     <string name="password">Parola</string>
     <string name="confirm_password">Parolayı doğrula</string>
     <string name="show_password">Parolayı göster</string>
@@ -152,8 +140,6 @@
     </plurals>
     <string name="discard_changes">Değişiklikler göz ardı edilsin mi?</string>
     <string name="discard_changes_description">Değişiklikleriniz kaydedilmedi</string>
-    <string name="folder">Klasör</string>
-    <string name="tap_to_select">Seçmek için dokunun</string>
     <string name="saving_profile_error">Profil kaydı sırasında hata</string>
     <string name="welcome">Hoşgeldiniz</string>
     <string name="app_description">Aegis özgür, güvenli ve açık kaynak 2FA uygulamasıdır</string>
@@ -185,7 +171,6 @@
         <item quantity="one">%d simgesi</item>
         <item quantity="other">%d simgeleri</item>
     </plurals>
-    <string name="icon_pack">İkon paketi</string>
     <string name="icon_custom">Özel</string>
     <string name="permission_denied">İzin verilmesi reddedildi</string>
     <string name="andotp_new_format">Yeni biçim (v0.6.3 veya daha yeni) </string>
@@ -214,17 +199,11 @@
     <string name="read_qr_error_phonefactor">Aegis Microsoft\'un özel çift faktörlü doğrulama algoritmasıyla uyumlu değildir. Office 365\' te çift faktörlü doğrulamayı yapılandırırken \"Uygulamayı bildirim olmadan kur\" u seçtiğinizden emin olun.</string>
     <string name="authentication_method_raw">İşlenmemiş</string>
     <string name="unlocking_vault">Kasa kilidi açılıyor</string>
-    <string name="unlocking_vault_repair">Kasa kilidi açılıyor (tamir ediliyor)</string>
-    <string name="password_slot_error">En az bir parola elemanınız olmalı</string>
     <string name="slot_this_device">(bu cihaz)</string>
-    <string name="remove_slot">Eleman sil</string>
-    <string name="remove_slot_description">Bu elemanı silmek istediğinize emin misiniz?</string>
     <string name="remove_group">Grubu sil</string>
     <string name="remove_group_description">Bu grubu silmek istediğinize emin misiniz? Bu gruptaki girdiler otomatik olarak \'Grupsuz\' grubuna geçecek.</string>
     <string name="remove_icon_pack">İkon paketini sil</string>
     <string name="remove_icon_pack_description">Bu ikon paketini silmek istediğinize emin misiniz? Bu pakete ait ikonları kullanan girdiler bundan etkilenmeyeceklerdir.</string>
-    <string name="adding_new_slot_error">Yeni bir anahtarlık oluşturmaya çalışırken hata oluştu:</string>
-    <string name="progressbar_error">Animatör süresi ölçeği sıfırlanamıyor. İlerleme çubukları görünmez olacak.</string>
     <string name="details">Detaylar</string>
     <string name="lock">Kilitle</string>
     <string name="name">Ad</string>
@@ -237,7 +216,6 @@
     <string name="sort_usage_count">Kullanım sayısı</string>
     <string name="sort_custom">İsteğe göre</string>
     <string name="new_group">Yeni grup…</string>
-    <string name="enter_group_name">Yeni grup adı girin</string>
     <string name="group">Grup</string>
     <string name="group_name_hint">Grup adı</string>
     <string name="preference_manage_groups">Grupları düzenle</string>

@@ -2,7 +2,6 @@
 <resources>
     <string name="action_settings">Nastavení</string>
     <string name="action_about">O aplikaci</string>
-    <string name="action_import">Importovat</string>
     <string name="action_delete">Odstranit</string>
     <string name="action_transfer">Přenést</string>
     <string name="action_edit_icon">Upravit ikonu</string>
@@ -14,7 +13,6 @@
     <string name="issuer">Poskytovatel</string>
     <string name="suggested">Navrhnuté</string>
     <string name="usage_count">Počet použití</string>
-    <string name="settings">Předvolby</string>
     <string name="pref_cat_appearance_app">Aplikace</string>
     <string name="pref_cat_appearance_entries">Položky</string>
     <string name="pref_cat_backups_android">Android</string>
@@ -38,8 +36,6 @@
     <string name="pref_code_group_size_summary">Seskupit číslice kódu po dvou číslicích namísto po třech číslicích</string>
     <string name="pref_account_name_title">Zobrazit název účtu</string>
     <string name="pref_account_name_summary">Zobrazit název účtu vedle poskytovatele</string>
-    <string name="pref_timeout_title">Časový limit</string>
-    <string name="pref_timeout_summary">Automaticky zamknout trezor po %1$s sekundách nečinnosti</string>
     <string name="pref_import_file_title">Importovat ze souboru</string>
     <string name="pref_import_file_summary">Importovat tokeny ze souboru</string>
     <string name="pref_android_backups_title">Účast v zálohovacím systému Androidu</string>
@@ -96,8 +92,6 @@
     <string name="authentication_method_password_explanation">Upozornění: Pokud zapomenete své heslo, trvale ztratíte přístup ke svým tokenům. Bez hesla neexistuje způsob, jak je obnovit.</string>
     <string name="authentication_method_biometrics">Biometrie</string>
     <string name="authentication_method_biometrics_description">Kromě hesla půjde k odemčení trezoru použít také biometrické prvky registrované v tomto zařízení jako je otisk prstu nebo tvář.</string>
-    <string name="authentication_method_set_password">Heslo</string>
-    <string name="authentication_enter_password">Zadejte své heslo</string>
     <string name="authentication">Odemknout trezor</string>
     <!-- The newline (\n) on the following line is just for aesthetic purposes !-->
     <string name="authentication_multiline">Odemknout\ntrezor</string>
@@ -117,7 +111,6 @@
     <string name="yes">Ano</string>
     <string name="no">Ne</string>
     <string name="unlock">Odemknout</string>
-    <string name="biometrics">Biometrie</string>
     <string name="advanced">Pokročilé</string>
     <string name="counter">Počítadlo</string>
     <string name="digits">Číslice</string>
@@ -125,14 +118,9 @@
     <string name="scan">Naskenovat QR kód</string>
     <string name="scan_image">Skenovat obrázek</string>
     <string name="enter_manually">Zadat ručně</string>
-    <string name="add_biometric">Přidat biometriku</string>
-    <string name="add_biometric_slot">Přidat biometrický slot</string>
     <string name="set_up_biometric">Nastavení biometrického odemčení</string>
-    <string name="add_password">Přidat heslo</string>
-    <string name="slots_warning">Trezor je stejně bezpečný jako jeho nejslabší místo. Změníte-li nastavení biometrického ověření ve vašem zařízení, budete muset v Aegis znovu aktivovat biometrické odemknutí.</string>
     <string name="copy">Kopírovat</string>
     <string name="edit">Upravit</string>
-    <string name="delete">Odstranit</string>
     <string name="password">Heslo</string>
     <string name="confirm_password">Potvrdit heslo</string>
     <string name="show_password">Zobrazit heslo</string>
@@ -157,8 +145,6 @@
     </plurals>
     <string name="discard_changes">Zahodit změny?</string>
     <string name="discard_changes_description">Změny nebyly uloženy</string>
-    <string name="folder">Složka</string>
-    <string name="tap_to_select">Vyberte klepnutím</string>
     <string name="saving_profile_error">Chyba při ukládání profilu</string>
     <string name="welcome">Vítejte</string>
     <string name="app_description">Aegis je bezpečná, bezplatná a open source 2FA aplikace</string>
@@ -210,15 +196,9 @@
     <string name="read_qr_error">Při pokusu o přečtení QR kódu došlo k chybě</string>
     <string name="authentication_method_raw">Prosté</string>
     <string name="unlocking_vault">Odemykání trezoru</string>
-    <string name="unlocking_vault_repair">Odemykání trezoru (opravuji)</string>
-    <string name="password_slot_error">Je potřeba alespoň jeden slot hesla</string>
     <string name="slot_this_device">(toto zařízení)</string>
-    <string name="remove_slot">Odstranit slot</string>
-    <string name="remove_slot_description">Opravdu chcete tento slot odstranit?</string>
     <string name="remove_group">Odstranit skupinu</string>
     <string name="remove_group_description">Opravdu chcete odstranit tuto skupinu? Záznamy z ní budou automaticky přemístěny do „Žádná skupina“.</string>
-    <string name="adding_new_slot_error">Při pokusu o přidání nového slotu došlo k chybě:</string>
-    <string name="progressbar_error">Měřítko trvání animace nelze resetovat. Ukazatele průběhu nebudou viditelné.</string>
     <string name="details">Podrobnosti</string>
     <string name="lock">Uzamknout</string>
     <string name="name">Název</string>
@@ -229,7 +209,6 @@
     <string name="sort_alphabetically_name_reverse">Účet (Z → A)</string>
     <string name="sort_custom">Vlastní</string>
     <string name="new_group">Nová skupina…</string>
-    <string name="enter_group_name">Zadejte název skupiny</string>
     <string name="group_name_hint">Název skupiny</string>
     <string name="preference_manage_groups">Upravit skupiny</string>
     <string name="preference_manage_groups_summary">Správa a odstranění skupin</string>

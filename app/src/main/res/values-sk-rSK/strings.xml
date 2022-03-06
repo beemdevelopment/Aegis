@@ -2,7 +2,6 @@
 <resources>
     <string name="action_settings">Nastavenia</string>
     <string name="action_about">O programe</string>
-    <string name="action_import">Importovať</string>
     <string name="action_delete">Odstrániť</string>
     <string name="action_transfer">Prenos</string>
     <string name="action_edit_icon">Upraviť ikonu</string>
@@ -10,7 +9,6 @@
     <string name="discard">Zahodiť</string>
     <string name="save">Uložiť</string>
     <string name="issuer">Vydavateľ</string>
-    <string name="settings">Predvoľby</string>
     <string name="pref_cat_appearance_app">Aplikácia</string>
     <string name="pref_cat_backups_android">Android</string>
     <string name="pref_cat_backups_auto">Automatické zálohy</string>
@@ -27,8 +25,6 @@
     <string name="pref_code_group_size_summary">Zobraziť kód v 2-miestnom zoskupení namiesto 3-miestneho zoskupenia</string>
     <string name="pref_account_name_title">Zobraziť názov účtu</string>
     <string name="pref_account_name_summary">Povolením tejto možnosti zobrazíte názov účtu vedľa vydavateľa</string>
-    <string name="pref_timeout_title">Časový limit</string>
-    <string name="pref_timeout_summary">Automaticky uzamknúť trezor po %1$s sekundách nečinnosti</string>
     <string name="pref_import_file_title">Importovať zo súboru</string>
     <string name="pref_import_file_summary">Importovať tokeny zo súboru</string>
     <string name="pref_backups_summary">Po vykonaní zmien automaticky vytvárať zálohy trezoru na externom úložisku. Toto je podporované iba pre šifrované trezory.</string>
@@ -69,8 +65,6 @@
     <string name="authentication_method_password_explanation">Upozornenie: Ak zabudnete heslo, natrvalo stratíte prístup k svojim tokenom. Neexistuje žiadny spôsob, ako ich obnoviť bez hesla.</string>
     <string name="authentication_method_biometrics">Biometrické údaje</string>
     <string name="authentication_method_biometrics_description">Na odomknutie trezoru možno okrem hesla použiť aj biometriu zaregistrovanú v tomto zariadení, napríklad odtlačok prsta alebo vašu tvár.</string>
-    <string name="authentication_method_set_password">Heslo</string>
-    <string name="authentication_enter_password">Zadajte svoje logovacie heslo</string>
     <string name="authentication">Odomknúť trezor</string>
     <!-- The newline (\n) on the following line is just for aesthetic purposes !-->
     <string name="authentication_multiline">Odomknúť \n trezor</string>
@@ -85,19 +79,15 @@
     <string name="yes">Áno</string>
     <string name="no">Nie</string>
     <string name="unlock">Odomknúť</string>
-    <string name="biometrics">Biometrické údaje</string>
     <string name="advanced">Pokročilé</string>
     <string name="counter">Počítadlo</string>
     <string name="digits">Číslice</string>
     <string name="scan">Skenovať QR kód</string>
     <string name="scan_image">Skenovať obrázok</string>
     <string name="enter_manually">Zadať ručne</string>
-    <string name="add_biometric">Pridať biometriku</string>
     <string name="set_up_biometric">Nastaviť biometrické odomknutie</string>
-    <string name="add_password">Pridať heslo</string>
     <string name="copy">Kopírovať</string>
     <string name="edit">Upraviť</string>
-    <string name="delete">Odstrániť</string>
     <string name="password">Heslo</string>
     <string name="confirm_password">Potvrďte heslo</string>
     <string name="show_password">Zobraziť heslo</string>
@@ -107,8 +97,6 @@
     <string name="delete_entries">Vymazať položky</string>
     <string name="discard_changes">Zrušiť zmeny?</string>
     <string name="discard_changes_description">Vaše zmeny neboli uložené</string>
-    <string name="folder">Priečinok</string>
-    <string name="tap_to_select">Klepnutím vyberte</string>
     <string name="saving_profile_error">Pri ukladaní profilu sa vyskytla chyba</string>
     <string name="welcome">Vitajte</string>
     <string name="setup_completed">Nastavenie je dokončené</string>
@@ -128,7 +116,6 @@
     <string name="sort_alphabetically_name_reverse">Účet (Z až A)</string>
     <string name="sort_custom">Vlastný</string>
     <string name="new_group">Nová skupina…</string>
-    <string name="enter_group_name">Zadajte názov skupiny</string>
     <string name="group">Skupina</string>
     <string name="group_name_hint">Názov skupiny</string>
     <string name="preference_manage_groups">Upraviť skupiny</string>
