@@ -75,9 +75,6 @@
             android:name=".ui.PreferencesActivity"
             android:label="@string/title_activity_preferences" />
         <activity
-            android:name=".ui.SlotManagerActivity"
-            android:label="@string/title_activity_manage_slots" />
-        <activity
             android:name=".ui.GroupManagerActivity"
             android:label="@string/title_activity_manage_groups" />
         <activity
