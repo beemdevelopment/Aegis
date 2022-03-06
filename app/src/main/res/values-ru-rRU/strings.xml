@@ -40,8 +40,6 @@
     <string name="pref_account_name_summary">Включите, чтобы показывать название учётной записи рядом с эмитентом</string>
     <string name="pref_timeout_title">Задержка</string>
     <string name="pref_timeout_summary">Автоматически блокировать хранилище после %1$s секунд бездействия</string>
-    <string name="pref_slots_title">Ключевые слоты</string>
-    <string name="pref_slots_summary">Управление списком ключей, которые могут расшифровать хранилище</string>
     <string name="pref_import_file_title">Импорт из файла</string>
     <string name="pref_import_file_summary">Импорт ключей из файла</string>
     <string name="pref_android_backups_title">Система резервного копирования Android</string>

@@ -40,8 +40,6 @@
     <string name="pref_account_name_summary">Habilite essa opção para exibir o nome da conta ao lado do nome do serviço</string>
     <string name="pref_timeout_title">Tempo de espera</string>
     <string name="pref_timeout_summary">Bloqueia automaticamente o cofre depois de %1$s segundos de inatividade</string>
-    <string name="pref_slots_title">Slots de chaves</string>
-    <string name="pref_slots_summary">Gerencia a lista de chaves que podem descriptografar o cofre</string>
     <string name="pref_import_file_title">Importar de arquivo</string>
     <string name="pref_import_file_summary">Importa tokens de um arquivo</string>
     <string name="pref_android_backups_title">Participar do sistema de backup do Android</string>

@@ -33,8 +33,6 @@
     <string name="pref_account_name_summary">قم بالتفعيل لإظهار اسم الحساب بجانب المصدِّر</string>
     <string name="pref_timeout_title">المهلة</string>
     <string name="pref_timeout_summary">قفل المخزن تلقائيًا بعد %1$s ثواني من عدم الاستعمال</string>
-    <string name="pref_slots_title">خانات المفاتيح</string>
-    <string name="pref_slots_summary">إدارة لائحة المفاتيح التي يمكنها فك تشفير المخزن</string>
     <string name="pref_import_file_title">استيراد من ملف</string>
     <string name="pref_import_file_summary">استيراد الرموز من ملف</string>
     <string name="pref_backups_title">نسخ تلقائي للخزينة</string>

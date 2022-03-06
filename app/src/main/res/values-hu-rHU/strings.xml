@@ -18,8 +18,6 @@
     <string name="pref_account_name_summary">Kapcsolja be a fiók nevének megjelenítéséhez a kibocsátó mellett</string>
     <string name="pref_timeout_title">Időtúllépés</string>
     <string name="pref_timeout_summary">A széf automatikus zárolása %1$s másodperc tétlenség után</string>
-    <string name="pref_slots_title">Feloldási kulcsok</string>
-    <string name="pref_slots_summary">Azon kulcsok kezelése, melyek feloldhatják a széfet</string>
     <string name="pref_import_file_title">Importálás fájlból</string>
     <string name="pref_import_file_summary">Tokenek importálása fájlból</string>
     <string name="pref_backups_summary">Biztonsági mentést készít a széfről a külső tárolón. Ez csak titkosított széfek esetén támogatott.</string>

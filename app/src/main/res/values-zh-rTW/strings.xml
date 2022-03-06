@@ -30,8 +30,6 @@
     <string name="pref_account_name_summary">在服務商名稱旁邊顯示帳戶名稱</string>
     <string name="pref_timeout_title">越時</string>
     <string name="pref_timeout_summary">在無操作 %1$s 秒後自動鎖定保險箱</string>
-    <string name="pref_slots_title">密匙槽</string>
-    <string name="pref_slots_summary">管理能夠解密保險箱的密鑰列表</string>
     <string name="pref_import_file_title">從檔案匯入</string>
     <string name="pref_import_file_summary">從檔案匯入憑證</string>
     <string name="pref_android_backups_title">使用 Android 的備份系統</string>

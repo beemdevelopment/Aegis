@@ -40,8 +40,6 @@
     <string name="pref_account_name_summary">Activează pentru a afișa numele contului lângă emitent</string>
     <string name="pref_timeout_title">Inactivitate</string>
     <string name="pref_timeout_summary">Blochează automat seiful după %1$s secunde de inactivitate</string>
-    <string name="pref_slots_title">Sloturi cheie</string>
-    <string name="pref_slots_summary">Gestionați lista de chei care pot decripta seiful</string>
     <string name="pref_import_file_title">Importă din fișier</string>
     <string name="pref_import_file_summary">Importă token-uri dintr-un fișier</string>
     <string name="pref_android_backups_title">Participă la copia de rezervă a sistemului Android</string>

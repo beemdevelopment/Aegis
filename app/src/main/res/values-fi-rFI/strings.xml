@@ -39,8 +39,6 @@
     <string name="pref_account_name_summary">Ota käyttöön nähdäksesi tilin nimen sen myöntäjän rinnalla</string>
     <string name="pref_timeout_title">Aikakatkaisu</string>
     <string name="pref_timeout_summary">Lukitse holvi automaattisesti %1$s sekunnin käyttämättömyyden jälkeen</string>
-    <string name="pref_slots_title">Avainpaikat</string>
-    <string name="pref_slots_summary">Hallitse listaa avaimista, jotka voivat purkaa holvin salauksen</string>
     <string name="pref_import_file_title">Tuo tiedostosta</string>
     <string name="pref_import_file_summary">Tuo tunnukset tiedostosta</string>
     <string name="pref_android_backups_title">Käytä Androidin omaa varmuuskopiointijärjestelmää</string>

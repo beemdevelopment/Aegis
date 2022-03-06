@@ -40,8 +40,6 @@
     <string name="pref_account_name_summary">Abilita questa opzione per mostrare il nome dell\'account vicino all\'emittente</string>
     <string name="pref_timeout_title">Timeout</string>
     <string name="pref_timeout_summary">Blocca automaticamente la cassaforte dopo %1$s secondi di inattività</string>
-    <string name="pref_slots_title">Slot chiavi</string>
-    <string name="pref_slots_summary">Gestisci la lista delle chiavi che possono decriptare il database</string>
     <string name="pref_import_file_title">Importa da file</string>
     <string name="pref_import_file_summary">Importa token da file</string>
     <string name="pref_android_backups_title">Partecipa al sistema di backup di Android</string>

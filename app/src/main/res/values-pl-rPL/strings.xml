@@ -37,8 +37,6 @@
     <string name="pref_account_name_summary">Włącz tę opcję, aby pokazywać nazwę konta obok wydawcy</string>
     <string name="pref_timeout_title">Limit czasu</string>
     <string name="pref_timeout_summary">Automatycznie zablokuj sejf po %1$s sekundach bezczynności</string>
-    <string name="pref_slots_title">Sloty klucza</string>
-    <string name="pref_slots_summary">Zarządzaj listą kluczy, które odszyfrowują sejf</string>
     <string name="pref_import_file_title">Importuj z pliku</string>
     <string name="pref_import_file_summary">Importuj tokeny z aplikacji</string>
     <string name="pref_android_backups_title">Utwórz kopię zapasową w systemie Android</string>

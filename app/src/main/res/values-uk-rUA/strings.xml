@@ -34,8 +34,6 @@
     <string name="pref_account_name_summary">Увімкніть, щоб показувати обліковий запис поруч з емітентом</string>
     <string name="pref_timeout_title">Тайм-аут</string>
     <string name="pref_timeout_summary">Автоматично блокувати сховище через %1$s секунд неактивності</string>
-    <string name="pref_slots_title">Ключові слоти</string>
-    <string name="pref_slots_summary">Керуйте списком ключів, які можуть розшифрувати сховище</string>
     <string name="pref_import_file_title">Імпорт з файлу</string>
     <string name="pref_import_file_summary">Імпортувати токени з файлу</string>
     <string name="pref_android_backups_title">Брати участь у системі резервного копіювання Android</string>

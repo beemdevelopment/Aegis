@@ -34,8 +34,6 @@
     <string name="pref_account_name_summary">Активирайте това, за да се показва името на акаунта до издателя</string>
     <string name="pref_timeout_title">Изчакване</string>
     <string name="pref_timeout_summary">Автоматично заключване на трезора след %1$s секунди бездействие</string>
-    <string name="pref_slots_title">Ключови слотове</string>
-    <string name="pref_slots_summary">Управление на списъка с ключове, които могат да дешифрират трезора</string>
     <string name="pref_import_file_title">Импорт от файл</string>
     <string name="pref_import_file_summary">Импортиране на токени от файл</string>
     <string name="pref_android_backups_title">Участвайте в системата за архивиране на Android</string>

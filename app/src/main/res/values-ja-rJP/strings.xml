@@ -40,8 +40,6 @@
     <string name="pref_account_name_summary">有効にすると発行者の隣にアカウント名を表示します</string>
     <string name="pref_timeout_title">タイムアウト</string>
     <string name="pref_timeout_summary">操作を%1$s秒間行わない場合、自動的にロックします</string>
-    <string name="pref_slots_title">キースロット</string>
-    <string name="pref_slots_summary">Vaultを復号できる鍵を管理します</string>
     <string name="pref_import_file_title">ファイルからインポート</string>
     <string name="pref_import_file_summary">ファイルからトークンをインポート</string>
     <string name="pref_android_backups_title">Androidのバックアップシステムに含める</string>

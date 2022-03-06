@@ -34,8 +34,6 @@
     <string name="pref_account_name_summary">برای نمایش نام حساب کاربری کنار صادر کننده فعال کنید</string>
     <string name="pref_timeout_title">اتمام مهلت</string>
     <string name="pref_timeout_summary">بعد از %1$s ثانیه عدم فعالیت مخزن را قفل کن</string>
-    <string name="pref_slots_title">محل کلید‌ها</string>
-    <string name="pref_slots_summary">مدیریت کلیدهایی که میتوانند مخزن را رمزگشایی کنند</string>
     <string name="pref_import_file_title">وارد کردن از فایل</string>
     <string name="pref_import_file_summary">وارد کردن توکن ها از فایل</string>
     <string name="pref_android_backups_title">شرکت کردن در سیستم پشتیبانگیری اندروید</string>

@@ -20,8 +20,6 @@
     <string name="pref_account_name_summary">Ative isto para mostrar o nome da conta ao lado do emissor</string>
     <string name="pref_timeout_title">Tempo esgotado</string>
     <string name="pref_timeout_summary">Bloquear automaticamente o cofre após %1$s segundos de inatividade</string>
-    <string name="pref_slots_title">Slots de chaves</string>
-    <string name="pref_slots_summary">Gerenciar a lista de chaves que podem descriptografar o cofre</string>
     <string name="pref_import_file_title">Importar arquivo</string>
     <string name="pref_import_file_summary">Importar tokens de um arquivo</string>
     <string name="pref_backups_summary">Cria automaticamente backups do cofre no armazenamento externo quando alterações forem feitas. Isso só é suportado para cofres criptografados.</string>

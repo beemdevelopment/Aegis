@@ -40,8 +40,6 @@
     <string name="pref_account_name_summary">Iespējot, lai rādītu konta nosaukumu blakus izsniedzējam</string>
     <string name="pref_timeout_title">Noildze</string>
     <string name="pref_timeout_summary">Aizslēgt glabātavu pēc %1$s sekundes(žu) bezdarbības</string>
-    <string name="pref_slots_title">Atslēgas vieta</string>
-    <string name="pref_slots_summary">Pārvaldīt atslēgu, ar kurām var atšifrēt glabātavu, sarakstu</string>
     <string name="pref_import_file_title">Izgūt no datnes</string>
     <string name="pref_import_file_summary">Ievietot kodus no datnes</string>
     <string name="pref_android_backups_title">Ņemt dalību Android dublēšanas sistēmā</string>

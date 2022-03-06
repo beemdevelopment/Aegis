@@ -40,8 +40,6 @@
     <string name="pref_account_name_summary">Aktivera denna för att visa kontonamnet bredvid utfärdaren</string>
     <string name="pref_timeout_title">Tidsgräns</string>
     <string name="pref_timeout_summary">Lås valvet automatiskt efter %1$s sekunders inaktivitet</string>
-    <string name="pref_slots_title">Nyckelplatser</string>
-    <string name="pref_slots_summary">Hantera listan över nycklar som kan dekryptera valvet</string>
     <string name="pref_import_file_title">Importera från fil</string>
     <string name="pref_import_file_summary">Importera polletter från en fil</string>
     <string name="pref_android_backups_title">Delta i Androids säkerhetskopiering</string>

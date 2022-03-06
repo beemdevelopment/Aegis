@@ -40,8 +40,6 @@
     <string name="pref_account_name_summary">Aktibatu hau kontu-izena igorlearen ondoan bistaratzeko</string>
     <string name="pref_timeout_title">Denbora-muga</string>
     <string name="pref_timeout_summary">Blokeatu automatikoki biltegia %1$s segundo jarduerarik gabe egon ondoren</string>
-    <string name="pref_slots_title">Arteka giltzarriak</string>
-    <string name="pref_slots_summary">Kudeatu biltegia deszifratu dezaketen gakoen zerrenda</string>
     <string name="pref_import_file_title">Inportatu fitxategi batetik</string>
     <string name="pref_import_file_summary">Inportatu marka-ikurrak fitxategi batetik</string>
     <string name="pref_android_backups_title">Androiden segurtasun kopien sisteman parte hartu</string>

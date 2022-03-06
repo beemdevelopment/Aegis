@@ -40,8 +40,6 @@
     <string name="pref_account_name_summary">Activer pour afficher le nom de compte près de l\'émetteur</string>
     <string name="pref_timeout_title">Délai</string>
     <string name="pref_timeout_summary">Verrouiller automatiquement le coffre-fort après %1$s secondes d\'inactivité</string>
-    <string name="pref_slots_title">Emplacements de clé</string>
-    <string name="pref_slots_summary">Gérer la liste des clés qui peuvent déchiffrer le coffre-fort</string>
     <string name="pref_import_file_title">Importer depuis un fichier</string>
     <string name="pref_import_file_summary">Importer des jetons depuis un fichier</string>
     <string name="pref_android_backups_title">Participer au système de sauvegarde d\'Android</string>

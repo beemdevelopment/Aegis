@@ -40,8 +40,6 @@
     <string name="pref_account_name_summary">Aktiviere dies, um den Kontonamen neben dem Herausgeber anzuzeigen</string>
     <string name="pref_timeout_title">Zeitüberschreitung</string>
     <string name="pref_timeout_summary">Sperrt die Datenbank automatisch nach %1$s Sekunden Inaktivität</string>
-    <string name="pref_slots_title">Schlüsselplätze</string>
-    <string name="pref_slots_summary">Verwalte die Liste der Schlüssel, die die Datenbank entschlüsseln können</string>
     <string name="pref_import_file_title">Aus Datei importieren</string>
     <string name="pref_import_file_summary">Token aus einer Datei importieren</string>
     <string name="pref_android_backups_title">Einbindung in das Sicherungssystem von Android</string>

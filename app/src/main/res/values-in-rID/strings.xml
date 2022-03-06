@@ -40,8 +40,6 @@
     <string name="pref_account_name_summary">Aktifkan ini untuk menampilkan nama akun di samping penerbit</string>
     <string name="pref_timeout_title">Waktu habis</string>
     <string name="pref_timeout_summary">Kunci brankas secara otomatis setelah %1$s detik tidak aktif</string>
-    <string name="pref_slots_title">Slot kunci</string>
-    <string name="pref_slots_summary">Kelola daftar kunci yang dapat mendekripsi brankas</string>
     <string name="pref_import_file_title">Impor berkas</string>
     <string name="pref_import_file_summary">Impor token dari berkas</string>
     <string name="pref_android_backups_title">Partisipasi di sistem pencadangan Android</string>

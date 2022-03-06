@@ -40,8 +40,6 @@
     <string name="pref_account_name_summary">在应用名称旁边显示账户名称</string>
     <string name="pref_timeout_title">超时</string>
     <string name="pref_timeout_summary">在无操作 %1$s 秒后自动锁定数据库</string>
-    <string name="pref_slots_title">键槽</string>
-    <string name="pref_slots_summary">管理能够解密数据库的密钥列表</string>
     <string name="pref_import_file_title">从文件导入</string>
     <string name="pref_import_file_summary">从文件导入令牌</string>
     <string name="pref_android_backups_title">参与Android的备份系统</string>

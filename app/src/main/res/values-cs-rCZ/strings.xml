@@ -40,8 +40,6 @@
     <string name="pref_account_name_summary">Zobrazit název účtu vedle poskytovatele</string>
     <string name="pref_timeout_title">Časový limit</string>
     <string name="pref_timeout_summary">Automaticky zamknout trezor po %1$s sekundách nečinnosti</string>
-    <string name="pref_slots_title">Sloty klíčů</string>
-    <string name="pref_slots_summary">Správa seznamu klíčů, které mohou dešifrovat trezor</string>
     <string name="pref_import_file_title">Importovat ze souboru</string>
     <string name="pref_import_file_summary">Importovat tokeny ze souboru</string>
     <string name="pref_android_backups_title">Účast v zálohovacím systému Androidu</string>

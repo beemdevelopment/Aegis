@@ -40,8 +40,6 @@
     <string name="pref_account_name_summary">Aktiver dette for at vise kontonavnet ved siden af udstederen</string>
     <string name="pref_timeout_title">Timeout</string>
     <string name="pref_timeout_summary">Lås automatisk Boksen efter %1$s sekunders inaktivitet</string>
-    <string name="pref_slots_title">Nøglepladser</string>
-    <string name="pref_slots_summary">Håndtér listen over nøgler, som kan dekryptere Boksen</string>
     <string name="pref_import_file_title">Import til fil</string>
     <string name="pref_import_file_summary">Importér tokens fra en fil</string>
     <string name="pref_android_backups_title">Deltag i Androids sikkerhedskopieringssystem</string>

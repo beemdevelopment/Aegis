@@ -2,8 +2,6 @@ package com.beemdevelopment.aegis.ui.fragments.preferences;
 
 import static android.text.TextUtils.isDigitsOnly;
 
-import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.Window;
 import android.view.WindowManager;
@@ -15,7 +13,6 @@ import androidx.biometric.BiometricPrompt;
 import androidx.preference.Preference;
 import androidx.preference.SwitchPreferenceCompat;
 
-import com.beemdevelopment.aegis.BuildConfig;
 import com.beemdevelopment.aegis.PassReminderFreq;
 import com.beemdevelopment.aegis.Preferences;
 import com.beemdevelopment.aegis.R;
@@ -23,7 +20,6 @@ import com.beemdevelopment.aegis.crypto.KeyStoreHandle;
 import com.beemdevelopment.aegis.crypto.KeyStoreHandleException;
 import com.beemdevelopment.aegis.helpers.BiometricSlotInitializer;
 import com.beemdevelopment.aegis.helpers.BiometricsHelper;
-import com.beemdevelopment.aegis.ui.SlotManagerActivity;
 import com.beemdevelopment.aegis.ui.dialogs.Dialogs;
 import com.beemdevelopment.aegis.ui.preferences.SwitchPreference;
 import com.beemdevelopment.aegis.ui.tasks.PasswordSlotDecryptTask;
@@ -45,7 +41,6 @@ public class SecurityPreferencesFragment extends PreferencesFragment {
     private SwitchPreference _biometricsPreference;
     private Preference _autoLockPreference;
     private Preference _setPasswordPreference;
-    private Preference _slotsPreference;
     private Preference _passwordReminderPreference;
     private SwitchPreferenceCompat _pinKeyboardPreference;
 
@@ -158,14 +153,6 @@ public class SecurityPreferencesFragment extends PreferencesFragment {
             return false;
         });
 
-        _slotsPreference = findPreference("pref_slots");
-        _slotsPreference.setOnPreferenceClickListener(preference -> {
-            Intent intent = new Intent(getActivity(), SlotManagerActivity.class);
-            intent.putExtra("creds", _vaultManager.getVault().getCredentials());
-            startActivityForResult(intent, CODE_SLOTS);
-            return true;
-        });
-
         _pinKeyboardPreference = findPreference("pref_pin_keyboard");
         _pinKeyboardPreference.setOnPreferenceChangeListener((preference, newValue) -> {
             if (!(boolean) newValue) {
@@ -247,30 +234,11 @@ public class SecurityPreferencesFragment extends PreferencesFragment {
         });
     }
 
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (data != null && requestCode == CODE_SLOTS) {
-            onSlotManagerResult(resultCode, data);
-        }
-    }
-
-    private void onSlotManagerResult(int resultCode, Intent data) {
-        if (resultCode != Activity.RESULT_OK) {
-            return;
-        }
-
-        VaultFileCredentials creds = (VaultFileCredentials) data.getSerializableExtra("creds");
-        _vaultManager.getVault().setCredentials(creds);
-        saveAndBackupVault();
-        updateEncryptionPreferences();
-    }
-
     private void updateEncryptionPreferences() {
         boolean encrypted = _vaultManager.getVault().isEncryptionEnabled();
         _encryptionPreference.setChecked(encrypted, true);
         _setPasswordPreference.setVisible(encrypted);
         _biometricsPreference.setVisible(encrypted);
-        _slotsPreference.setEnabled(encrypted);
         _autoLockPreference.setVisible(encrypted);
         _pinKeyboardPreference.setVisible(encrypted);
 
@@ -278,18 +246,15 @@ public class SecurityPreferencesFragment extends PreferencesFragment {
             SlotList slots = _vaultManager.getVault().getCredentials().getSlots();
             boolean multiPassword = slots.findAll(PasswordSlot.class).size() > 1;
             boolean multiBio = slots.findAll(BiometricSlot.class).size() > 1;
-            boolean showSlots = BuildConfig.DEBUG || multiPassword || multiBio;
             boolean canUseBio = BiometricsHelper.isAvailable(getContext());
             _setPasswordPreference.setEnabled(!multiPassword);
             _biometricsPreference.setEnabled(canUseBio && !multiBio);
             _biometricsPreference.setChecked(slots.has(BiometricSlot.class), true);
-            _slotsPreference.setVisible(showSlots);
             _passwordReminderPreference.setVisible(slots.has(BiometricSlot.class));
         } else {
             _setPasswordPreference.setEnabled(false);
             _biometricsPreference.setEnabled(false);
             _biometricsPreference.setChecked(false, true);
-            _slotsPreference.setVisible(false);
             _passwordReminderPreference.setVisible(false);
         }
     }

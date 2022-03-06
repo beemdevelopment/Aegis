@@ -29,7 +29,6 @@
     <string name="pref_account_name_summary">Povolením tejto možnosti zobrazíte názov účtu vedľa vydavateľa</string>
     <string name="pref_timeout_title">Časový limit</string>
     <string name="pref_timeout_summary">Automaticky uzamknúť trezor po %1$s sekundách nečinnosti</string>
-    <string name="pref_slots_summary">Spravujte zoznam kľúčov, pomocou ktorých je možné dešifrovať trezor</string>
     <string name="pref_import_file_title">Importovať zo súboru</string>
     <string name="pref_import_file_summary">Importovať tokeny zo súboru</string>
     <string name="pref_backups_summary">Po vykonaní zmien automaticky vytvárať zálohy trezoru na externom úložisku. Toto je podporované iba pre šifrované trezory.</string>

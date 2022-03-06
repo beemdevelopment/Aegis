@@ -45,8 +45,6 @@
     <string name="pref_account_name_summary">Enable this to show the account name next to the issuer</string>
     <string name="pref_timeout_title">Timeout</string>
     <string name="pref_timeout_summary">Automatically lock the vault after %1$s seconds of inactivity</string>
-    <string name="pref_slots_title">Key slots</string>
-    <string name="pref_slots_summary">Manage the list of keys that can decrypt the vault</string>
     <string name="pref_import_file_title">Import from file</string>
     <string name="pref_import_file_summary">Import tokens from a file</string>
     <string name="pref_android_backups_title">Android cloud backups</string>

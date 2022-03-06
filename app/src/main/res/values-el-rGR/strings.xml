@@ -40,8 +40,6 @@
     <string name="pref_account_name_summary">Ενεργοποίηση προβολής ονόματος λογαριασμού δίπλα στον εκδότη</string>
     <string name="pref_timeout_title">Χρονικό όριο</string>
     <string name="pref_timeout_summary">Αυτόματο κλείδωμα κρύπτης μετά από %1$s δευτερόλεπτα αδράνειας</string>
-    <string name="pref_slots_title">Υποδοχή κλειδιών</string>
-    <string name="pref_slots_summary">Διαχείριση λίστας κλειδιών που μπορούν να αποκρυπτογραφήσουν την κρύπτη</string>
     <string name="pref_import_file_title">Εισαγωγή από αρχείο</string>
     <string name="pref_import_file_summary">Εισαγωγή αναγνωριστικών από αρχείο</string>
     <string name="pref_android_backups_title">Συμμετοχή στο σύστημα αντιγράφων ασφαλείας του Android</string>

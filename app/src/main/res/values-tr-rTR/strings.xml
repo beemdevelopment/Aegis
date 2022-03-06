@@ -40,8 +40,6 @@
     <string name="pref_account_name_summary">Hesap adını sağlayıcının yanında göstermek için bunu etkinleştirin</string>
     <string name="pref_timeout_title">Zaman aşımı</string>
     <string name="pref_timeout_summary">Kasayı %1$s saniyelik hareketsizliğin ardından otomatik kilitle</string>
-    <string name="pref_slots_title">Anahtarlık</string>
-    <string name="pref_slots_summary">Kasayı açabilecek anahtarların listesini yönet</string>
     <string name="pref_import_file_title">Dosyadan içeriye aktar</string>
     <string name="pref_import_file_summary">Veritabanını dosyadan içeriye aktar</string>
     <string name="pref_android_backups_title">Android yedekleme sistemine dahil ol</string>

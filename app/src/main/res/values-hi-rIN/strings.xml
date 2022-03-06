@@ -20,8 +20,6 @@
     <string name="pref_account_name_summary">जारीकर्ता के बगल में खाता नाम दिखाने के लिए इसे सक्षम करें</string>
     <string name="pref_timeout_title">समय सीमा समाप्ति</string>
     <string name="pref_timeout_summary">निष्क्रियता के %1$s सेकंड के बाद वॉल्ट को स्वचालित रूप से लॉक करें</string>
-    <string name="pref_slots_title">कुंजी स्लॉट</string>
-    <string name="pref_slots_summary">कुंजीओं की सूची प्रबंधित करें जो वॉल्ट को डिक्रिप्ट कर सकती हैं</string>
     <string name="pref_import_file_title">फ़ाइल से आयात करें</string>
     <string name="pref_import_file_summary">टोकन को फ़ाइल से आयात करें</string>
     <string name="pref_backups_summary">बदलाव होने पर एक्सटर्नल स्टोरेज में स्वतः ही वॉल्ट का बैकअप बनाएँ। यह सिर्फ एन्क्रिप्टेड वॉल्ट को सपोर्ट करता है।</string>

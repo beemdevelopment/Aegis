@@ -32,12 +32,6 @@
             android:summary="@string/pref_password_reminder_summary"
             android:dependency="pref_biometrics"
             app:iconSpaceReserved="false"/>
-
-        <Preference
-            android:key="pref_slots"
-            android:title="@string/pref_slots_title"
-            android:summary="@string/pref_slots_summary"
-            app:iconSpaceReserved="false"/>
     </PreferenceCategory>
     <PreferenceCategory
         android:title="@string/pref_section_behavior_title"

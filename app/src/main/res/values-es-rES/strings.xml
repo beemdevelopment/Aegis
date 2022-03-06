@@ -40,8 +40,6 @@
     <string name="pref_account_name_summary">Active esto para mostrar el nombre de la cuenta junto al emisor</string>
     <string name="pref_timeout_title">Tiempo de espera</string>
     <string name="pref_timeout_summary">Bloquear automáticamente la bóveda después de %1$s segundos de inactividad</string>
-    <string name="pref_slots_title">Claves</string>
-    <string name="pref_slots_summary">Administrar la lista de claves que puede descifrar la bóveda</string>
     <string name="pref_import_file_title">Importar desde un archivo</string>
     <string name="pref_import_file_summary">Importar tokens desde un archivo</string>
     <string name="pref_android_backups_title">Participar en el sistema de copia de seguridad de Android</string>

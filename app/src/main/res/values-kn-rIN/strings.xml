@@ -15,7 +15,6 @@
     <string name="pref_account_name_title">ಖಾತೆಯ ಹೆಸರನ್ನು ತೋರಿಸು</string>
     <string name="pref_account_name_summary">ಖಾತೆಯ ಹೆಸರನ್ನು ನೀಡುವವರ ಪಕ್ಕ ತೋರಿಸುವುದಕ್ಕೆ ಇದನ್ನು ಸಕ್ರಿಯಗೊಳಿಸು</string>
     <string name="pref_timeout_title">ಕಾಲಾವಧಿ</string>
-    <string name="pref_slots_title">ಬೀಗದ ಕೈಯ್ಯಿನ ಸ್ಲಾಟುಗಳು</string>
     <string name="pref_import_file_title">ಫೈಲಿಂದ ಆಮದಿಸು</string>
     <string name="pref_import_app_title">ಅಪ್ಲಿಕೇಶನಿಂದ ಆಮದಿಸು</string>
     <string name="pref_export_title">ರಫ್ತು ಮಾಡು</string>
