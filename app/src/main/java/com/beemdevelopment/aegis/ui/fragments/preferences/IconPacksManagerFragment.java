@@ -150,7 +150,7 @@ public class IconPacksManagerFragment extends Fragment implements IconPackAdapte
 
     private void startImportIconPack() {
         Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-        intent.setType("application/zip");
+        intent.setType("*/*");
         _vaultManager.startActivityForResult(this, intent, CODE_IMPORT);
     }
 
