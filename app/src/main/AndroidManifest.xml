@@ -12,7 +12,9 @@
     <uses-feature
         android:name="android.hardware.camera.autofocus"
         android:required="false" />
-
+    <!--J:
+    android:label 用來指定應用程式將顯示在 Home 主畫面上的名稱、用來指定應用程式將顯示在 Activity 畫面上方的名稱
+    -->
     <application
         android:name=".AegisApplication"
         android:allowBackup="true"
@@ -21,7 +23,7 @@
         android:dataExtractionRules="@xml/backup_rules"
         android:backupAgent=".AegisBackupAgent"
         android:icon="@mipmap/${iconName}"
-        android:label="Aegis"
+        android:label="MyOTP"
         android:supportsRtl="true"
         android:theme="@style/Theme.Aegis.Launch"
         tools:replace="android:theme">
