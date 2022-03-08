@@ -1,6 +1,7 @@
+<!--J:translate=false代表沒有其他語系的翻譯了-->
 <resources>
     <string name="app_name" translatable="false">Aegis</string>
-    <string name="app_name_full" translatable="false">Aegis Authenticator</string>
+    <string name="app_name_full" translatable="false">MyOTP Authenticator</string>
     <string name="org_name_full" translatable="false">Beem Development</string>
     <string name="action_settings">Settings</string>
     <string name="action_about">About</string>
@@ -288,9 +289,9 @@
     <string name="github" translatable="false">GitHub</string>
     <string name="github_description">Source code, issues and information</string>
     <string name="license">License</string>
-    <string name="license_description">Aegis Authenticator is licensed under GPLv3</string>
+    <string name="license_description">MyOTP Authenticator is licensed under GPLv3</string>
     <string name="third_party_licenses">Third-party licenses</string>
-    <string name="third_party_licenses_description">Licenses of the third-party libraries Aegis uses</string>
+    <string name="third_party_licenses_description">Licenses of the third-party libraries MyOTP uses</string>
     <string name="author_alex" translatable="false">Alexander Bakker</string>
     <string name="country_netherlands">Netherlands</string>
     <string name="author_michael" translatable="false">Michael Schättgen</string>

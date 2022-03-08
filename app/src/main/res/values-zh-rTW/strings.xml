@@ -225,9 +225,9 @@
     <string name="whats_new">有什麼新鮮事</string>
     <string name="github_description">源代碼、議題和訊息</string>
     <string name="license">授權協議</string>
-    <string name="license_description">Aegis 驗證程式以 GPLv3 授權協議釋出。</string>
+    <string name="license_description">MyOTP 驗證程式以 GPLv3 授權協議釋出。</string>
     <string name="third_party_licenses">第三方授權條款</string>
-    <string name="third_party_licenses_description">Aegis 所使用的第三方函式庫及其授權協議</string>
+    <string name="third_party_licenses_description">MyOTP 所使用的第三方函式庫及其授權協議</string>
     <string name="country_netherlands">荷蘭</string>
     <string name="email_us">發送電子郵件</string>
     <string name="visit_website">訪問我們的網站</string>
