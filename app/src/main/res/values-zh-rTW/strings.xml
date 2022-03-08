@@ -70,7 +70,7 @@
     <string name="export_format_aegis">Aegis (.JSON)</string>
     <string name="export_format_google_auth_uri">純文字檔案 (.TXT)</string>
     <string name="choose_authentication_method">安全</string>
-    <string name="authentication_method_explanation">Aegis 是一款安全第一的雙重認證（2FA）應用程式。憑證儲存於特殊的保險箱檔案中，此保險箱可依照使用者的設定以密碼金鑰加密。就算駭客取得了被加密的保險箱檔案，他們也無法在不知道密碼的情況下取得內含的憑證。 \n\n我們已預先為您的裝置選擇了我們認為最適合的選項。</string>
+    <string name="authentication_method_explanation">MyOTP 是一款安全第一的雙重認證（2FA）應用程式。憑證儲存於特殊的保險箱檔案中，此保險箱可依照使用者的設定以密碼金鑰加密。就算駭客取得了被加密的保險箱檔案，他們也無法在不知道密碼的情況下取得內含的憑證。 \n\n我們已預先為您的裝置選擇了我們認為最適合的選項。</string>
     <string name="authentication_method_none">沒有</string>
     <string name="authentication_method_none_description">保險箱並未上鎖也未加密。 <b>不建議使用此選項</b>。</string>
     <string name="authentication_method_password">密碼</string>
@@ -130,7 +130,7 @@
     <string name="welcome">歡迎使用</string>
     <string name="app_description">MyOTP 是一款免費，安全和開源的雙重認證（2FA）應用程式</string>
     <string name="setup_completed">設置完成</string>
-    <string name="setup_completed_description">Aegis設置完成，可以開始使用了。</string>
+    <string name="setup_completed_description">MyOTP設置完成，可以開始使用了。</string>
     <string name="vault_not_found">保險箱不存在，開始設定…</string>
     <string name="copied">已複製</string>
     <string name="errors_copied">錯誤已複製到剪貼板</string>
