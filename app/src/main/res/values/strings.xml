@@ -163,7 +163,7 @@
     <string name="discard_changes_description">Your changes have not been saved</string>
     <string name="saving_profile_error">Error saving profile</string>
     <string name="welcome">Welcome</string>
-    <string name="app_description">Aegis is a free, secure and open source 2FA app</string>
+    <string name="app_description">MyOTP is a free, secure and open source 2FA app</string>
     <string name="setup_completed">Setup completed</string>
     <string name="setup_completed_description">Aegis has been set up and is ready to go.</string>
     <string name="vault_not_found">Vault not found, starting setup…</string>

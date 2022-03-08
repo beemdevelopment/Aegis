@@ -128,7 +128,7 @@
     <string name="discard_changes_description">您的更改尚未儲存</string>
     <string name="saving_profile_error">保存設定文件時發生錯誤</string>
     <string name="welcome">歡迎使用</string>
-    <string name="app_description">Aegis 是一款免費，安全和開源的雙重認證（2FA）應用程式</string>
+    <string name="app_description">MyOTP 是一款免費，安全和開源的雙重認證（2FA）應用程式</string>
     <string name="setup_completed">設置完成</string>
     <string name="setup_completed_description">Aegis設置完成，可以開始使用了。</string>
     <string name="vault_not_found">保險箱不存在，開始設定…</string>
