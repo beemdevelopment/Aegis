@@ -133,7 +133,6 @@
     <string name="counter">Counter</string>
     <string name="digits">Digits</string>
     <string name="secret">Secret</string>
-    <string name="url_check">Check URL</string>
     <string name="scan">Scan QR code</string>
     <string name="scan_image">Scan image</string>
     <string name="enter_manually">Enter manually</string>

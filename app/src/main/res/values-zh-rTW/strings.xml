@@ -100,7 +100,6 @@
     <string name="counter">計數器</string>
     <string name="digits">位數</string>
     <string name="secret">密鑰</string>
-    <string name="url_check">網址檢查</string>
     <string name="scan">掃描QR碼</string>
     <string name="scan_image">掃描本地圖片</string>
     <string name="enter_manually">手動輸入</string>
