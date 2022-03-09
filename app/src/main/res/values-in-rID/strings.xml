@@ -334,4 +334,5 @@
     <string name="importer_help_winauth">Siapkan berkas ekspor WinAuth.</string>
     <string name="importer_help_direct">Impor entri langsung dari %s. Ini membutuhkan aplikasi untuk diinstal pada perangkat ini dan untuk akses root diberikan ke Aegis.</string>
     <string name="groups">Kelompok-kelompok</string>
+    <string name="url_check">URL Check</string>
 </resources>

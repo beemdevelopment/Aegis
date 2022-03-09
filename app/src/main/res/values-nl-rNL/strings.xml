@@ -340,4 +340,5 @@
     <string name="importer_help_winauth">Lever een WinAuth exportbestand aan.</string>
     <string name="importer_help_direct">Importeer invoergegevens rechtstreeks van %s. Dit vereist dat de app op dit apparaat wordt geïnstalleerd en dat root-toegang aan Aegis wordt verleend.</string>
     <string name="groups">Groepen</string>
+    <string name="url_check">URL Check</string>
 </resources>

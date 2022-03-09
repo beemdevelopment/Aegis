@@ -333,4 +333,5 @@
     <string name="importer_help_winauth">提供 WinAuth 导出文件。</string>
     <string name="importer_help_direct">直接导入来自%s的条目。这要求将应用程序安装在此设备上，并授予Aegis根访问权限。</string>
     <string name="groups">群组</string>
+    <string name="url_check">网址检查</string>
 </resources>

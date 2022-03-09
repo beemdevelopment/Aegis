@@ -310,4 +310,5 @@
     <string name="importer_help_winauth">تهیه فایل صدور برای WinAuth.</string>
     <string name="importer_help_direct">وارد کردن محتویات مستقیما از %s. برای انجام این عملیات باید اپلیکشن بر روی دستگاه نصب شده باشد و دسترسی روت به آگیس اعطا شده باشد.</string>
     <string name="groups">گروه‌ها</string>
+    <string name="url_check">URL Check</string>
 </resources>

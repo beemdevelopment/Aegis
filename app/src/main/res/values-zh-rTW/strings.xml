@@ -282,4 +282,5 @@
     <string name="importer_help_freeotp">提供 FreeOTP 副本，位於內部儲存空間的 <b>/data/data/org.fedorahosted.freeotp/shared_prefs/tokens.xml</b>。</string>
     <string name="importer_help_direct">直接從 %s 匯入列表。需已安裝該應用程式且 Aegis 擁有系統管理員權限。</string>
     <string name="groups">群組</string>
+    <string name="url_check">網址檢查</string>
 </resources>

@@ -159,4 +159,5 @@
     <string name="title_activity_about">O programe</string>
     <string name="title_activity_scan_qr">Skenovať QR kód</string>
     <string name="groups">Skupiny</string>
+    <string name="url_check">URL Check</string>
 </resources>

@@ -274,4 +274,5 @@
     <string name="importer_help_totp_authenticator">Fornecer um arquivo de exportação de Autenticador TOTP.</string>
     <string name="importer_help_winauth">Fornecer um arquivo de exportação do WinAuth.</string>
     <string name="importer_help_direct">Importar entradas diretamente de %s. Isto requer que a aplicação seja instalada neste dispositivo e que acesso root seja concedido ao Aegis.</string>
+    <string name="url_check">URL Check</string>
 </resources>

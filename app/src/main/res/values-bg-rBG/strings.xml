@@ -310,4 +310,5 @@
     <string name="importer_help_winauth">Доставете файл за експортиране на WinAuth.</string>
     <string name="importer_help_direct">Импортиране на записи директно от %s. Това изисква приложението да бъде инсталирано на това устройство и да бъде предоставен root достъп на Aegis.</string>
     <string name="groups">Групи</string>
+    <string name="url_check">URL Check</string>
 </resources>

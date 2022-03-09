@@ -340,4 +340,5 @@
     <string name="importer_help_winauth">Seleziona un file di esportazione di WinAuth.</string>
     <string name="importer_help_direct">Importa le voci direttamente da %s. Questa funzionalità richiede che l\'app sia installata sul dispositivo e che Aegis possa ottenere i permessi di root.</string>
     <string name="groups">Gruppi</string>
+    <string name="url_check">URL Check</string>
 </resources>

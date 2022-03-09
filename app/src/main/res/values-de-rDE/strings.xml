@@ -340,4 +340,5 @@
     <string name="importer_help_winauth">Gib eine WinAuth Exportdatei an.</string>
     <string name="importer_help_direct">Importiere Einträge direkt aus %s. Dazu muss die App auf diesem Gerät installiert sein und Aegis muss Root-Zugriff gewährt werden.</string>
     <string name="groups">Gruppen</string>
+    <string name="url_check">URL Check</string>
 </resources>

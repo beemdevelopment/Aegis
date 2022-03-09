@@ -330,4 +330,5 @@
     <string name="importer_help_winauth">WinAuthのエクスポートファイルを提供します。</string>
     <string name="importer_help_direct">%sからエントリーを直接インポートします。これにはアプリをデバイスにインストールし、rootアクセスをAegisに許可する必要があります。</string>
     <string name="groups">グループ</string>
+    <string name="url_check">URLチェック</string>
 </resources>

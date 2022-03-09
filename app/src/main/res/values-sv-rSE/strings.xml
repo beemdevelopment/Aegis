@@ -227,4 +227,5 @@
     <string name="importer_help_microsoft_authenticator">Tillhandahåll en kopia av <b>/data/data/com.azure.authenticator/databases/PhoneFactor</b>, som finns i den interna lagringskatalogen för Microsoft Authenticator.</string>
     <string name="importer_help_steam">Tillhandahåll en kopia av <b>/data/data/com.valvesoftware.android.steam.community/files/Steamguard-*.json</b>, som finns i den interna lagringskatalogen för Steam.</string>
     <string name="groups">Grupper</string>
+    <string name="url_check">URL Check</string>
 </resources>

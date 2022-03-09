@@ -336,4 +336,5 @@
     <string name="importer_help_winauth">WinAuthen esportazio fitxategia aukeratu.</string>
     <string name="importer_help_direct">Sarrerak %s-etik inportatu. Honek funtzionatzeko aplikazioa gailu honetan instalatuta egon behar da eta Aegisi root baimena eman beharko diozu.</string>
     <string name="groups">Taldeak</string>
+    <string name="url_check">URL Check</string>
 </resources>

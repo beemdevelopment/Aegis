@@ -340,4 +340,5 @@
     <string name="importer_help_winauth">Fournir un export WinAuth.</string>
     <string name="importer_help_direct">Importer des entrées directement depuis %s. Cela nécessite que l\'application soit installée sur cet appareil et que l\'accès root soit accordé à Aegis.</string>
     <string name="groups">Groupes</string>
+    <string name="url_check">URL Check</string>
 </resources>

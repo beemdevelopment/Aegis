@@ -168,4 +168,5 @@
     <string name="empty_list">Nincs megjeleníthető kód. Adjon hozzá bejegyzéseket a jobb alsó sarokban lévő plusz jelre koppintva.</string>
     <string name="empty_list_title">Nem található bejegyzés</string>
     <string name="title_activity_about">Névjegy</string>
+    <string name="url_check">URL Check</string>
 </resources>

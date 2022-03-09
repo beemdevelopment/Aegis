@@ -319,4 +319,5 @@
     <string name="importer_help_totp_authenticator">Anna TOTP Authenticator -vientitiedosto.</string>
     <string name="importer_help_winauth">Anna WinAuth-vientitiedosto.</string>
     <string name="groups">Ryhmät</string>
+    <string name="url_check">URL Check</string>
 </resources>

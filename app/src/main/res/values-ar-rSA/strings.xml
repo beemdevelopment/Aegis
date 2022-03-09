@@ -243,4 +243,5 @@
     <string name="title_activity_preferences">الإعدادات</string>
     <string name="title_activity_transfer">نقل المدخلات</string>
     <string name="title_activity_about">عن</string>
+    <string name="url_check">URL Check</string>
 </resources>

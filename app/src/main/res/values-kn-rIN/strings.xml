@@ -122,4 +122,5 @@
     <string name="empty_list">ತೋರಿಸುವುದಕ್ಕೆ ಯಾವುದೇ ಸಂಕೇತವು ಇಲ್ಲ. ಎಂಟ್ರಿಗಳನ್ನು ಸೇರಿಸಲು ಕೆಳಗಿನ ಬಲ ಮೂಲೆಯಲ್ಲಿರುವ ಹೆಚ್ಚಿನ ಚಿಹ್ನೆಯನ್ನು ಒತ್ತು</string>
     <string name="empty_list_title">ಯಾವುದೇ ಎಂಟ್ರಿಗಳು ಕಂಡುಬಂದಿಲ್ಲ</string>
     <string name="title_activity_about">ಅಪ್ಲಿಕೇಶನ್ ಬಗ್ಗೆ</string>
+    <string name="url_check">URL Check</string>
 </resources>

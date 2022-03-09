@@ -333,4 +333,5 @@
     <string name="importer_help_winauth">Cung cấp một tệp xuất WinAuth.</string>
     <string name="importer_help_direct">Nhập các mục trực tiếp từ %s. Việc này yêu cầu ứng dụng được cài đặt trên thiết bị này và quyền truy cập root được cấp cho Aegis.</string>
     <string name="groups">Nhóm</string>
+    <string name="url_check">URL Check</string>
 </resources>

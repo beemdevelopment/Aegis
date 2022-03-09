@@ -340,4 +340,5 @@
     <string name="importer_help_winauth">Παρέχει ένα αρχείο εξαγωγής WinAuth.</string>
     <string name="importer_help_direct">Εισαγάγετε καταχωρήσεις απευθείας από το %s. Αυτό απαιτεί την εγκατάσταση της εφαρμογής σε αυτήν τη συσκευή και την πρόσβαση root στο Aegis.</string>
     <string name="groups">Ομάδες</string>
+    <string name="url_check">URL Check</string>
 </resources>

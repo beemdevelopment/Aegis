@@ -338,4 +338,5 @@
     <string name="importer_help_winauth">WinAuth dışa aktarım dosyasını sağlayın.</string>
     <string name="importer_help_direct">Girdileri doğrudan %s\'dan içeri aktar. Bunu yapabilmek için uygulamanın cihazınızda yüklü olması ve Aegis\'in kök erişim iznine sahip olması gerekir.</string>
     <string name="groups">Gruplar</string>
+    <string name="url_check">URL Check</string>
 </resources>

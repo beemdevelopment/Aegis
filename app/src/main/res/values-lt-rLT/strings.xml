@@ -231,4 +231,5 @@
     <string name="importer_help_totp_authenticator">Pateikite TOTP Authenticator eksportuotą failą.</string>
     <string name="importer_help_winauth">Pateikite WinAuth eksportuotą failą.</string>
     <string name="groups">Grupės</string>
+    <string name="url_check">URL Check</string>
 </resources>

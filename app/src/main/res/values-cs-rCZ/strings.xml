@@ -300,4 +300,5 @@
     <string name="pref_panic_trigger_title">Smazat trezor při signálu paniky</string>
     <string name="pref_panic_trigger_summary">Smazat trezor při obdržení signálu paniky z aplikace Ripple</string>
     <string name="importer_help_direct">Importovat záznamy přímo z %s. Aplikace musí být nainstalována a aplikaci Aegis musí být udělen root přístup.</string>
+    <string name="url_check">URL Check</string>
 </resources>

@@ -347,4 +347,5 @@
     <string name="importer_help_winauth">Padot WinAuth izdošanas datni.</string>
     <string name="importer_help_direct">Ievietot ierakstus uzreiz no %s. Tam ir nepieciešams, lai lietotne ir uzstādīta šajā ierīcē un lai Aegis ir nodrošināta saknes piekļuve.</string>
     <string name="groups">Kopas</string>
+    <string name="url_check">URL Check</string>
 </resources>

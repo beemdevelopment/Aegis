@@ -340,4 +340,5 @@
     <string name="importer_help_winauth">Levér en WinAuth eksportfil.</string>
     <string name="importer_help_direct">Importer poster direkte fra %s. Dette kræver at appen er installeret på denne enhed og at root-adgang gives til Aegis.</string>
     <string name="groups">Grupper</string>
+    <string name="url_check">URL Check</string>
 </resources>
