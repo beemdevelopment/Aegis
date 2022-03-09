@@ -236,7 +236,7 @@
                     android:layout_centerVertical="true"
                     android:layout_marginStart="14dp"
                     android:src="@drawable/ic_keyboard_arrow_down_black_24dp"
-                    app:tint="?attr/iconColorPrimary"/>
+                    app:tint="?attr/iconColorPrimary" />
 
                 <TextView
                     android:id="@+id/accordian_title"

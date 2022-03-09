@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
+
     <LinearLayout
         android:id="@+id/fab_scan"
         android:layout_width="match_parent"
@@ -41,8 +42,9 @@
         android:clickable="true"
         android:focusable="true"
         android:background="?android:attr/selectableItemBackground">
+
         <ImageView
-            android:layout_width="25dp"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:src="@drawable/ic_add_photo_24px"
             app:tint="?attr/iconColorPrimary" />
@@ -56,7 +58,7 @@
             android:layout_marginStart="20dp" />
     </LinearLayout>
     <LinearLayout
-        android:id="@+id/fab_enter"
+        android:id="@+id/fab_url_check"
         android:layout_width="match_parent"
         android:layout_height="65dp"
         android:paddingHorizontal="15dp"
@@ -80,4 +82,5 @@
             android:gravity="center_vertical"
             android:layout_marginStart="20dp" />
     </LinearLayout>
+
 </LinearLayout>

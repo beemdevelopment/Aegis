@@ -116,7 +116,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
              BottomSheetDialog dialog = new BottomSheetDialog(this);
              dialog.setContentView(view);
 
-             view.findViewById(R.id.fab_enter).setOnClickListener(v1 -> {
+             view.findViewById(R.id.fab_url_check).setOnClickListener(v1 -> {
                  dialog.dismiss();
                  startEditEntryActivityForManual(CODE_ADD_ENTRY);
              });

@@ -162,7 +162,7 @@ public class OverallTest extends AegisTest {
 
     private void addEntry(VaultEntry entry) {
         onView(withId(R.id.fab)).perform(click());
-        onView(withId(R.id.fab_enter)).perform(click());
+        onView(withId(R.id.fab_url_check)).perform(click());
 
         onView(withId(R.id.accordian_header)).perform(click());
         onView(withId(R.id.text_name)).perform(typeText(entry.getName()), closeSoftKeyboard());
