@@ -372,8 +372,8 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
 
     /* J:新增url_check function */
     private void startUrlCheckActivity(){
-//        Intent intent = new Intent(this, UrlCheckActivity.class);
-//        startActivityForResult(intent);
+        Intent intent = new Intent(this, UrlCheckActivity.class);
+//        startActivityForResult(intent, 0);
 
     }
 
