@@ -30,6 +30,7 @@ import com.beemdevelopment.aegis.helpers.PermissionHelper;
 import com.beemdevelopment.aegis.helpers.QrCodeAnalyzer;
 import com.beemdevelopment.aegis.otp.GoogleAuthInfo;
 import com.beemdevelopment.aegis.otp.GoogleAuthInfoException;
+import com.beemdevelopment.aegis.ui.UrlCheckActivity;
 import com.beemdevelopment.aegis.ui.dialogs.Dialogs;
 import com.beemdevelopment.aegis.ui.fragments.preferences.BackupsPreferencesFragment;
 import com.beemdevelopment.aegis.ui.fragments.preferences.PreferencesFragment;
@@ -111,22 +112,31 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         _entryListView.setPrefGroupFilter(_prefs.getGroupFilter());
 
          FloatingActionButton fab = findViewById(R.id.fab);
+        /* J:這裡連接dialog_add_entry面板，並setOnClickListener負責監聽 */
          fab.setOnClickListener(v -> {
              View view = getLayoutInflater().inflate(R.layout.dialog_add_entry, null);
              BottomSheetDialog dialog = new BottomSheetDialog(this);
              dialog.setContentView(view);
 
-             view.findViewById(R.id.fab_url_check).setOnClickListener(v1 -> {
-                 dialog.dismiss();
-                 startEditEntryActivityForManual(CODE_ADD_ENTRY);
+             /* add_entry的event */
+             view.findViewById(R.id.fab_entry).setOnClickListener(v1 -> {
+                 dialog.dismiss(); /* J:關閉dialog */
+                 startEditEntryActivityForManual(CODE_ADD_ENTRY); /* J:呼叫對應的函數 */
              });
+             /* scan_image的event */
              view.findViewById(R.id.fab_scan_image).setOnClickListener(v2 -> {
                  dialog.dismiss();
                  startScanImageActivity();
              });
+             /* scan_QRcode的event */
              view.findViewById(R.id.fab_scan).setOnClickListener(v3 -> {
                  dialog.dismiss();
                  startScanActivity();
+             });
+             /* url_check的event */
+             view.findViewById(R.id.fab_url_check).setOnClickListener( v4 -> {
+                dialog.dismiss();
+                startUrlCheckActivity();
              });
 
              Dialogs.showSecureDialog(dialog);
@@ -241,7 +251,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         intent.putExtra("isManual", false);
         startActivityForResult(intent, requestCode);
     }
-
+    /* J:Url_check 參考 */
     private void startEditEntryActivityForManual(int requestCode) {
         Intent intent = new Intent(this, EditEntryActivity.class);
         intent.putExtra("newEntry", VaultEntry.getDefault());
@@ -358,6 +368,13 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
 
         Intent scannerActivity = new Intent(getApplicationContext(), ScannerActivity.class);
         startActivityForResult(scannerActivity, CODE_SCAN);
+    }
+
+    /* J:新增url_check function */
+    private void startUrlCheckActivity(){
+//        Intent intent = new Intent(this, UrlCheckActivity.class);
+//        startActivityForResult(intent);
+
     }
 
     private void startScanImageActivity() {
