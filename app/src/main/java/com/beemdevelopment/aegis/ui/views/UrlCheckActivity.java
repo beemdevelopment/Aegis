@@ -20,9 +20,12 @@ import android.view.animation.Animation;
 import android.webkit.MimeTypeMap;
 import android.widget.AdapterView;
 import android.widget.AutoCompleteTextView;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+/* 使用EditText */
+import android.widget.EditText;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -81,16 +84,38 @@ import java.util.stream.Collectors;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
+
+
 public class UrlCheckActivity extends AegisActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        /* 孤兒進程導致系統重啟 */
         if (abortIfOrphan(savedInstanceState)) {
             return;
         }
+        /* 設定Content是 layout裡面的 activity_url_check檔案 */
         setContentView(R.layout.activity_url_check);
         setSupportActionBar(findViewById(R.id.toolbar));
+
+        /* 變數宣告 */
+        final EditText enter_url;
+        final Button send_button;
+
+
+        /* 設定變數 */
+        enter_url = findViewById(R.id.enter_url);
+        send_button = findViewById(R.id.send_button);
+
+        /* 監聽器設定 */
+        send_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                System.out.println(enter_url.getText().toString());
+            }
+        });
+
 
 
     }
