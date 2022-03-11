@@ -68,6 +68,10 @@
         <activity
             android:name=".ui.EditEntryActivity"
             android:label="@string/title_activity_edit_entry" />
+        <!-- J: 新增UrlCheckActivity -->
+        <activity
+            android:name=".ui.UrlCheckActivity"
+            android:label="@string/url_check" />
         <activity
             android:name=".ui.IntroActivity"
             android:screenOrientation="portrait" />

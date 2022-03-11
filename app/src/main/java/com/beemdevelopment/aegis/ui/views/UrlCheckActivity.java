@@ -1,3 +1,4 @@
+/* J: 用來檢查網址的Source code */
 package com.beemdevelopment.aegis.ui;
 
 import android.content.Intent;
@@ -82,4 +83,16 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class UrlCheckActivity extends AegisActivity {
 
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (abortIfOrphan(savedInstanceState)) {
+            return;
+        }
+        setContentView(R.layout.activity_url_check);
+        setSupportActionBar(findViewById(R.id.toolbar));
+
+
+    }
 }
+

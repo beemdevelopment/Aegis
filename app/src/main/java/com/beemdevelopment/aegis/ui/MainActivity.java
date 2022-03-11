@@ -66,6 +66,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
     private static final int CODE_DECRYPT = 4;
     private static final int CODE_PREFERENCES = 5;
     private static final int CODE_SCAN_IMAGE = 6;
+    private static final int CODE_URL_CHECK = 7;
 
     // permission request codes
     private static final int CODE_PERM_CAMERA = 0;
@@ -120,8 +121,8 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
 
              /* add_entry的event */
              view.findViewById(R.id.fab_entry).setOnClickListener(v1 -> {
-                 dialog.dismiss(); /* J:關閉dialog */
-                 startEditEntryActivityForManual(CODE_ADD_ENTRY); /* J:呼叫對應的函數 */
+                 dialog.dismiss(); /* 關閉dialog */
+                 startEditEntryActivityForManual(CODE_ADD_ENTRY); /* 呼叫對應的function */
              });
              /* scan_image的event */
              view.findViewById(R.id.fab_scan_image).setOnClickListener(v2 -> {
@@ -167,6 +168,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         super.onPause();
     }
 
+    /* J:onActivityResult 按返回鍵回到前一個畫面前執行的事 */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode != RESULT_OK) {
@@ -194,6 +196,13 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
                 break;
             case CODE_SCAN_IMAGE:
                 onScanImageResult(data);
+            /* J:增加 onACtivityResult CODE: CODE_URL_CHECK */
+            case CODE_URL_CHECK:
+                /* 還未寫function，暫定按下返回鍵時，結束UrlCheckActivity */
+                this.finish();
+                break;
+
+
         }
 
         super.onActivityResult(requestCode, resultCode, data);
@@ -254,8 +263,9 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
     /* J:Url_check 參考 */
     private void startEditEntryActivityForManual(int requestCode) {
         Intent intent = new Intent(this, EditEntryActivity.class);
+        /* intent.putExtra是用來activity之間傳遞參數的(傳遞過去的名稱(string),變數名稱or內容) */
         intent.putExtra("newEntry", VaultEntry.getDefault());
-        intent.putExtra("isManual", true);
+        intent.putExtra("isManual", true); /* 傳遞過去的訊息叫"isManual", 內容是true */
         startActivityForResult(intent, requestCode);
     }
 
@@ -372,8 +382,14 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
 
     /* J:新增url_check function */
     private void startUrlCheckActivity(){
+        /* 表示試圖在this這個地方開啟class UrlCheckActivity */
         Intent intent = new Intent(this, UrlCheckActivity.class);
-//        startActivityForResult(intent, 0);
+        /* 可以使用StartActivityForResult，並設定一個要求值，回傳時便同時回傳此值
+        發出意圖的activity便可以知道是由哪一個要求索回傳的資訊。(CODE_URL_CHECK = 7)
+        本來可以用startActivity()，但是若想要取得 url_check 頁面回傳的資料就要用startActivityResult()
+        這裡避免需要做備份網址的情況，所以選用startActivityForResult()
+        */
+        startActivityForResult(intent, CODE_URL_CHECK);
 
     }
 
