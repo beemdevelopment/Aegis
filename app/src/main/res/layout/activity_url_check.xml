@@ -39,8 +39,11 @@
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar4"
                 android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:background="@drawable/button_rounded_corners" />
+                android:layout_height="wrap_content"
+                android:background="#DCDBDB"
+                app:subtitleTextAppearance="@style/TextAppearance.AppCompat.Small"
+                app:title="已儲存的網站"
+                app:titleTextColor="#050202" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -62,12 +65,13 @@
                     android:layout_height="wrap_content">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/enter_url"
+                        android:id="@+id/url_input"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Enter URL"
                         android:inputType="textUri"
-                        android:text="URL" />
+                        android:text="URL"
+                        android:textColor="#171313" />
 
 
                     <Button
