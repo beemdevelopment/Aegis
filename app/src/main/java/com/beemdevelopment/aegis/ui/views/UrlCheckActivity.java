@@ -35,11 +35,13 @@ public class UrlCheckActivity extends AegisActivity {
         /* 變數宣告 */
         final EditText url_input;
         final Button send_button;
+        final Button clear_button;
 
 
         /* 設定變數 */
         url_input = findViewById(R.id.url_input);
         send_button = findViewById(R.id.send_button);
+
 
 
 
@@ -55,6 +57,13 @@ public class UrlCheckActivity extends AegisActivity {
 
             }
         });
+
+//        clear_button.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                url_input.setText("");
+//            }
+//        });
 
 
 

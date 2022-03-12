@@ -64,6 +64,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
+
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/url_input"
                         android:layout_width="match_parent"
@@ -71,8 +72,7 @@
                         android:hint="Enter URL"
                         android:inputType="textUri"
                         android:text="URL"
-                        android:textColor="#171313" />
-
+                        android:textColor="#040404" />
 
                     <Button
                         android:id="@+id/send_button"
