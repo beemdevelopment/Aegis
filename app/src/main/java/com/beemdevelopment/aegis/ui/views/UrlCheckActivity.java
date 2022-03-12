@@ -10,7 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 /* 控制鍵盤 */
 import android.view.inputmethod.InputMethodManager;
-
+import android.widget.ImageButton;
 
 
 import com.beemdevelopment.aegis.R;
@@ -35,13 +35,14 @@ public class UrlCheckActivity extends AegisActivity {
         /* 變數宣告 */
         final EditText url_input;
         final Button send_button;
-        final Button clear_button;
+        final ImageButton clear_button;
 
 
         /* 設定變數 */
         url_input = findViewById(R.id.url_input);
         send_button = findViewById(R.id.send_button);
-
+        /* 創造ImageButton需要也宣告成ImageButton */
+        clear_button = findViewById(R.id.clear_button);
 
 
 
@@ -58,12 +59,12 @@ public class UrlCheckActivity extends AegisActivity {
             }
         });
 
-//        clear_button.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                url_input.setText("");
-//            }
-//        });
+        clear_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                url_input.setText("");
+            }
+        });
 
 
 
