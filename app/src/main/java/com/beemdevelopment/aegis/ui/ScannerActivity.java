@@ -54,7 +54,9 @@ public class ScannerActivity extends AegisActivity implements QrCodeAnalyzer.Lis
         if (abortIfOrphan(savedInstanceState)) {
             return;
         }
+        /* set layout介面 */
         setContentView(R.layout.activity_scanner);
+        /* set tool bar */
         setSupportActionBar(findViewById(R.id.toolbar));
 
         _entries = new ArrayList<>();
@@ -71,9 +73,9 @@ public class ScannerActivity extends AegisActivity implements QrCodeAnalyzer.Lis
                 // https://developer.android.com/training/camerax/preview#check-provider
                 throw new RuntimeException(e);
             }
-
-            addCamera(CameraSelector.LENS_FACING_BACK);
-            addCamera(CameraSelector.LENS_FACING_FRONT);
+            /* 前鏡頭和後鏡頭 function，有支援前後鏡頭的 scan */
+            addCamera(CameraSelector.LENS_FACING_BACK); /* int LENS_FACING_BACK = 0 */
+            addCamera(CameraSelector.LENS_FACING_FRONT);/* int LENS_FACING_FRONT = 1 */
             if (_lenses.size() == 0) {
                 Toast.makeText(this, getString(R.string.no_cameras_available), Toast.LENGTH_LONG).show();
                 finish();
@@ -116,7 +118,7 @@ public class ScannerActivity extends AegisActivity implements QrCodeAnalyzer.Lis
 
         return super.onOptionsItemSelected(item);
     }
-
+    /* (要)增加相機鏡頭 function */
     private void addCamera(int lens) {
         try {
             CameraSelector camera = new CameraSelector.Builder().requireLensFacing(lens).build();

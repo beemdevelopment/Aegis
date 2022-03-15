@@ -134,7 +134,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
                  dialog.dismiss();
                  startScanActivity();
              });
-             /* url_check的event */
+             /* 新增 url_check的event */
              view.findViewById(R.id.fab_url_check).setOnClickListener( v4 -> {
                 dialog.dismiss();
                 startUrlCheckActivity();

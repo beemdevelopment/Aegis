@@ -101,6 +101,12 @@
                     android:layout_weight="1"
                     android:text="Send" />
 
+                <Button
+                    android:id="@+id/scan_qrcode_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Scan QR code" />
+
             </LinearLayout>
 
 
