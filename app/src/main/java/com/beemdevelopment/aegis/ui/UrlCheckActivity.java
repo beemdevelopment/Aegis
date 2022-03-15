@@ -1,10 +1,19 @@
 /* J: 用來檢查網址的Source code */
 package com.beemdevelopment.aegis.ui;
 
+
 import android.content.Context;
 import android.content.Intent;
+
 import android.os.Bundle;
+
 import android.view.View;
+
+import com.beemdevelopment.aegis.R;
+
+
+import java.io.IOException;
+
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 /* 使用EditText */
@@ -22,10 +31,10 @@ import java.net.URLConnection;
 /* 輸入流 */
 import java.io.InputStream;
 
-import com.beemdevelopment.aegis.R;
 
 
-public class UrlCheckActivity extends AegisActivity {
+
+public class UrlCheckActivity extends AegisActivity{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +55,9 @@ public class UrlCheckActivity extends AegisActivity {
         final Button send_button;
         final ImageButton clear_button;
         final Button scan_qrcode_button;
+
+        /* Code代碼 */
+        final int CODE_SCAN = 0;
 
 
         /* 設定變數 */
@@ -85,7 +97,8 @@ public class UrlCheckActivity extends AegisActivity {
         scan_qrcode_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+            Intent scan_qrcode_activity = new Intent(getApplicationContext(),UrlCheckActivity_ScanQrcodeActivity.class);
+            startActivity(scan_qrcode_activity);
 
             }
         });
@@ -93,7 +106,10 @@ public class UrlCheckActivity extends AegisActivity {
 
 
 
+
+
     }
+
     /* 檢查URL function */
     public void UrlCheck(String url_text){
 
