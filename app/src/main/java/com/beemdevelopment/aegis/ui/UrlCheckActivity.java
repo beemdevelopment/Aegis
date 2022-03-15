@@ -2,6 +2,7 @@
 package com.beemdevelopment.aegis.ui;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -84,6 +85,7 @@ public class UrlCheckActivity extends AegisActivity {
         scan_qrcode_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
 
             }
         });
