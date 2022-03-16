@@ -9,7 +9,6 @@ import android.os.ParcelFileDescriptor;
 import android.util.Log;
 
 import com.beemdevelopment.aegis.util.IOUtils;
-import com.beemdevelopment.aegis.vault.VaultManager;
 import com.beemdevelopment.aegis.vault.VaultRepository;
 
 import java.io.File;
@@ -17,24 +16,17 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
-import dagger.hilt.InstallIn;
-import dagger.hilt.android.EarlyEntryPoint;
-import dagger.hilt.android.EarlyEntryPoints;
-import dagger.hilt.components.SingletonComponent;
-
 public class AegisBackupAgent extends BackupAgent {
     private static final String TAG = AegisBackupAgent.class.getSimpleName();
 
-    private VaultManager _vaultManager;
     private Preferences _prefs;
 
     @Override
     public void onCreate() {
         super.onCreate();
 
-        EntryPoint entryPoint = EarlyEntryPoints.get(this, EntryPoint.class);
-        _vaultManager = entryPoint.getVaultManager();
-        _prefs = entryPoint.getPreferences();
+        // cannot use injection with Dagger Hilt here, because the app is launched in a restricted mode on restore
+        _prefs = new Preferences(this);
     }
 
     @Override
@@ -57,7 +49,7 @@ public class AegisBackupAgent extends BackupAgent {
         createBackupDir();
         File vaultBackupFile = getVaultBackupFile();
         try {
-            _vaultManager.getVault().backupTo(vaultBackupFile);
+            VaultRepository.copyFileTo(this, vaultBackupFile);
         } catch (IOException e) {
             Log.e(TAG, String.format("onFullBackup() failed: %s", e));
             deleteBackupDir();
@@ -127,12 +119,5 @@ public class AegisBackupAgent extends BackupAgent {
 
     private File getVaultBackupFile() {
         return new File(new File(getFilesDir(), "backup"), VaultRepository.FILENAME);
-    }
-
-    @EarlyEntryPoint
-    @InstallIn(SingletonComponent.class)
-    interface EntryPoint {
-        Preferences getPreferences();
-        VaultManager getVaultManager();
     }
 }

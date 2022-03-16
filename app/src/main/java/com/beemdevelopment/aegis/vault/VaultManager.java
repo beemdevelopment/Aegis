@@ -189,7 +189,7 @@ public class VaultManager {
             }
 
             File tempFile = File.createTempFile(VaultBackupManager.FILENAME_PREFIX, ".json", dir);
-            getVault().backupTo(tempFile);
+            VaultRepository.copyFileTo(_context, tempFile);
             _backups.scheduleBackup(tempFile, _prefs.getBackupsLocation(), _prefs.getBackupsVersionCount());
         } catch (IOException e) {
             throw new VaultRepositoryException(e);

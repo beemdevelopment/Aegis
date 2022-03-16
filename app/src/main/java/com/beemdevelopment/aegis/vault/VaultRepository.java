@@ -107,6 +107,13 @@ public class VaultRepository {
         return new VaultRepository(context, vault, creds);
     }
 
+    public static void copyFileTo(Context context, File destFile) throws IOException {
+        try (InputStream inStream = VaultRepository.getAtomicFile(context).openRead();
+             OutputStream outStream = new FileOutputStream(destFile)) {
+            IOUtils.copy(inStream, outStream);
+        }
+    }
+
     void save() throws VaultRepositoryException {
         try {
             JSONObject obj = _vault.toJson();
@@ -169,13 +176,6 @@ public class VaultRepository {
             }
         } catch (IOException e) {
             throw new VaultRepositoryException(e);
-        }
-    }
-
-    public void backupTo(File destFile) throws IOException {
-        try (InputStream inStream = getAtomicFile(_context).openRead();
-             OutputStream outStream = new FileOutputStream(destFile)) {
-            IOUtils.copy(inStream, outStream);
         }
     }
 
