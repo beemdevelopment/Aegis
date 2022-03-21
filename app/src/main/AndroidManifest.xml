@@ -74,7 +74,8 @@
         <!-- 如果新增activity，AndroidManifest.xml檔案也要新增 activity label -->
         <activity
             android:name=".ui.UrlCheckActivity_ScanQrcodeActivity"
-            android:label="@string/title_activity_scan_qr" />
+            android:label="@string/title_activity_scan_qr"
+            android:screenOrientation="portrait" />
 
         <!-- J: 新增UrlCheckActivity -->
         <activity
