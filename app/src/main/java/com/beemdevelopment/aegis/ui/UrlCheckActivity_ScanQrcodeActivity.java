@@ -33,13 +33,18 @@ public class UrlCheckActivity_ScanQrcodeActivity extends AegisActivity {
          * 原本要寫為 final View variablename = setContentView(R.layout.activityName);
          * 這裡應該是因為 extends Aegis，用this即可
          *  */
+        /* content含義: 它是用來訪問全局信息的接口。想訪問全局的信息必須得通過Content(透過我們寫的layout來訪問)。
+        * 所謂的全局信息是指：應用程序的資源，圖片資源，字符串資源等 */
         this.setContentView(R.layout.activity_url_check_scan_qrcode);
         this.setSupportActionBar(findViewById(R.id.toolbar));
 
         /* 變數宣告 */
         final SurfaceView scan_area;
         final TextView display_test;
+        /* 相機元件 */
         CameraSource cameraSource;
+        /* build.gradle裡面dependencies implementation 裡面已經改好有添加 Google的Vision套件
+        * 所以可以直接用 BarcodeDetector去分析條碼 */
         BarcodeDetector barcodeDetector;
 
 
@@ -49,6 +54,7 @@ public class UrlCheckActivity_ScanQrcodeActivity extends AegisActivity {
 
         barcodeDetector = new BarcodeDetector.Builder(this)
                 .setBarcodeFormats(Barcode.QR_CODE).build();
+
         cameraSource = new CameraSource.Builder(this,barcodeDetector).setAutoFocusEnabled(true).build();
 
 
