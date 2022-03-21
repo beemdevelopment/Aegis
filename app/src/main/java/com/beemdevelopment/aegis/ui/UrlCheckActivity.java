@@ -98,7 +98,7 @@ public class UrlCheckActivity extends AegisActivity{
             @Override
             public void onClick(View v) {
             Intent scan_qrcode_activity = new Intent(getApplicationContext(),UrlCheckActivity_ScanQrcodeActivity.class);
-//            startActivity(scan_qrcode_activity);
+            startActivity(scan_qrcode_activity);
 
             }
         });

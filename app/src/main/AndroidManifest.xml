@@ -3,9 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.beemdevelopment.aegis">
 
-    <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.USE_BIOMETRIC" />
+    <uses-permission android:name="android.permission.CAMERA" /> <!--允許使用相機-->
+    <uses-permission android:name="android.permission.USE_BIOMETRIC" /> <!--允許使用生物辨識-->
 
+    <!-- uses-feature 給google play過濾用，不會把這app推薦 在沒有相機的手機上-->
     <uses-feature
         android:name="android.hardware.camera"
         android:required="false" />
@@ -39,9 +40,10 @@
             android:name=".ui.MainActivity"
             android:exported="true"
             android:label="${title}">
-            <intent-filter>
+            <intent-filter> <!-- 系統註明我們的 Activity 可以接收哪些 Intent 的一種方式 -->
+                <!-- action 表明了一個應用啟動時首先啟動這個Activity的動作 -->
                 <action android:name="android.intent.action.MAIN" />
-
+                <!-- category 表示activity應該被列入系統的啟動器(launcher)(允許用戶啟動它)。 Launcher是安卓系統中的桌面啟動器，是桌面UI的統稱 -->
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
             <intent-filter>
@@ -68,6 +70,12 @@
         <activity
             android:name=".ui.EditEntryActivity"
             android:label="@string/title_activity_edit_entry" />
+
+        <!-- 如果新增activity，AndroidManifest.xml檔案也要新增 activity label -->
+        <activity
+            android:name=".ui.UrlCheckActivity_ScanQrcodeActivity"
+            android:label="@string/title_activity_scan_qr" />
+
         <!-- J: 新增UrlCheckActivity -->
         <activity
             android:name=".ui.UrlCheckActivity"
