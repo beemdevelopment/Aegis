@@ -2,6 +2,7 @@ package com.beemdevelopment.aegis.ui;
 
 import android.Manifest;
 import android.app.Activity;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.SparseArray;
@@ -21,6 +22,7 @@ import com.google.android.gms.vision.barcode.Barcode;
 import com.google.android.gms.vision.barcode.BarcodeDetector;
 
 import java.io.IOException;
+import java.util.ResourceBundle;
 
 public class UrlCheckActivity_ScanQrcodeActivity extends AegisActivity {
 
@@ -34,6 +36,7 @@ public class UrlCheckActivity_ScanQrcodeActivity extends AegisActivity {
      * 所以可以直接用 BarcodeDetector去分析條碼 */
     BarcodeDetector barcodeDetector;
     private static final int CAMERA_PERMISSION_CODE = 1;
+    private static final int Scan_QR_CODE = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -119,7 +122,13 @@ public class UrlCheckActivity_ScanQrcodeActivity extends AegisActivity {
                     display_test.post(new Runnable() {
                         @Override
                         public void run() {
+                            /* 偵測掃描網址內容有無變化 */
+                            String previous_text = display_test.getText().toString();
                             display_test.setText(qrCodes.valueAt(0).displayValue);
+                            /* 偵測到掃到網址就傳遞網址資料 */
+                            if(!display_test.getText().equals(previous_text)){
+                                pass_text();
+                            }
                         }
                     });
                 }
@@ -129,6 +138,12 @@ public class UrlCheckActivity_ScanQrcodeActivity extends AegisActivity {
 
 
 
+    }
+    private void pass_text(){
+        Intent intent = getIntent();
+        intent.putExtra("text", display_test.getText().toString());
+        setResult(Scan_QR_CODE, intent);
+        finish();
     }
 
 

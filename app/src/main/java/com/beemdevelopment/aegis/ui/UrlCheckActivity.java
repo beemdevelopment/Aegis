@@ -40,6 +40,9 @@ public class UrlCheckActivity extends AegisActivity{
     Button send_button;
     ImageButton clear_button;
     Button scan_qrcode_button;
+    private static final int Scan_QR_CODE = 2;
+    public static String text = null;
+    String URL_text = null;
 
     /* Code代碼 */
     final int CODE_SCAN = 0;
@@ -81,7 +84,7 @@ public class UrlCheckActivity extends AegisActivity{
                 /* 按下send_button就隱藏鍵盤 */
                 InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
                 imm.hideSoftInputFromWindow(send_button.getWindowToken(), 0);
-                UrlCheck(url_input.getText().toString());
+                URL_text = url_input.getText().toString();
 
 
             }
@@ -99,7 +102,7 @@ public class UrlCheckActivity extends AegisActivity{
             @Override
             public void onClick(View v) {
             Intent scan_qrcode_activity = new Intent(getApplicationContext(),UrlCheckActivity_ScanQrcodeActivity.class);
-            startActivity(scan_qrcode_activity);
+                startActivityForResult(scan_qrcode_activity, Scan_QR_CODE);
 
             }
         });
@@ -110,16 +113,30 @@ public class UrlCheckActivity extends AegisActivity{
 
 
     }
+    /* 接收activity傳送回來的資料 */
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        super.onActivityResult(requestCode, resultCode, data);
+
+        switch (requestCode) {
+            case Scan_QR_CODE:
+                URL_text = data.getStringExtra("text");
+//                System.out.println(retureData);
+                break;
+        }
+    }
+
 
     /* 檢查URL function */
-    public void UrlCheck(String url_text){
+    public void UrlCheck(){
 
         /* 變數宣告 */
         URL url_obj; /* URL class 提供了解析 URL 地址的基本方法 */
         URLConnection url_connection;
         try{
             /* 設定變數 */
-            url_obj = new URL(url_text);
+            url_obj = new URL(URL_text);
             url_connection = url_obj.openConnection();
 
 
@@ -146,7 +163,7 @@ public class UrlCheckActivity extends AegisActivity{
         }catch (IOException e){
             e.printStackTrace();
         }
-
+        URL_text = null;
     }
 
 }
