@@ -35,6 +35,14 @@ import java.io.InputStream;
 
 
 public class UrlCheckActivity extends AegisActivity{
+    /* 變數宣告 */
+    EditText url_input;
+    Button send_button;
+    ImageButton clear_button;
+    Button scan_qrcode_button;
+
+    /* Code代碼 */
+    final int CODE_SCAN = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,14 +58,7 @@ public class UrlCheckActivity extends AegisActivity{
         this.setContentView(R.layout.activity_url_check);
         this.setSupportActionBar(findViewById(R.id.toolbar));
 
-        /* 變數宣告 */
-        final EditText url_input;
-        final Button send_button;
-        final ImageButton clear_button;
-        final Button scan_qrcode_button;
 
-        /* Code代碼 */
-        final int CODE_SCAN = 0;
 
 
         /* 設定變數 */

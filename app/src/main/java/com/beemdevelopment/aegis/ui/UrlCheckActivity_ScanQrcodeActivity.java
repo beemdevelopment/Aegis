@@ -1,6 +1,7 @@
 package com.beemdevelopment.aegis.ui;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.SparseArray;
@@ -22,6 +23,18 @@ import com.google.android.gms.vision.barcode.BarcodeDetector;
 import java.io.IOException;
 
 public class UrlCheckActivity_ScanQrcodeActivity extends AegisActivity {
+
+    /* 變數宣告 */
+    Activity this_activity;
+    SurfaceView scan_area;
+    TextView display_test;
+    /* 相機元件 */
+    CameraSource cameraSource;
+    /* build.gradle裡面dependencies implementation 裡面已經改好有添加 Google的Vision套件
+     * 所以可以直接用 BarcodeDetector去分析條碼 */
+    BarcodeDetector barcodeDetector;
+    private static final int CAMERA_PERMISSION_CODE = 1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,47 +47,54 @@ public class UrlCheckActivity_ScanQrcodeActivity extends AegisActivity {
          * 這裡應該是因為 extends Aegis，用this即可
          *  */
         /* content含義: 它是用來訪問全局信息的接口。想訪問全局的信息必須得通過Content(透過我們寫的layout來訪問)。
-        * 所謂的全局信息是指：應用程序的資源，圖片資源，字符串資源等 */
+         * 所謂的全局信息是指：應用程序的資源，圖片資源，字符串資源等 */
         this.setContentView(R.layout.activity_url_check_scan_qrcode);
         this.setSupportActionBar(findViewById(R.id.toolbar));
 
-        /* 變數宣告 */
-        final SurfaceView scan_area;
-        final TextView display_test;
-        /* 相機元件 */
-        CameraSource cameraSource;
-        /* build.gradle裡面dependencies implementation 裡面已經改好有添加 Google的Vision套件
-        * 所以可以直接用 BarcodeDetector去分析條碼 */
-        BarcodeDetector barcodeDetector;
+
 
 
         /* 設定變數 */
-        scan_area = (SurfaceView)findViewById(R.id.scan_area);
-        display_test = (TextView)findViewById(R.id.display_test);
+        this_activity = this;
+        scan_area = (SurfaceView) findViewById(R.id.scan_area);
+        display_test = (TextView) findViewById(R.id.display_test);
 
         barcodeDetector = new BarcodeDetector.Builder(this)
                 .setBarcodeFormats(Barcode.QR_CODE).build();
 
-        cameraSource = new CameraSource.Builder(this,barcodeDetector).setAutoFocusEnabled(true).build();
+        cameraSource = new CameraSource.Builder(this, barcodeDetector).setAutoFocusEnabled(true).build();
 
 
 
         /* SurfaceView implements 實作 */
-        scan_area.getHolder().addCallback(new SurfaceHolder.Callback(){
+        /* SurfaceView介紹：它擁有獨立的繪圖表面
+         * 所以不會和父級ui共享同一個繪圖表面。(用surfaceView去呈現相機照的內容)  getHolder()得到 SurfaceHolder*/
+        scan_area.getHolder().addCallback(new SurfaceHolder.Callback() {
             @Override
             public void surfaceCreated(@NonNull SurfaceHolder holder) {
-                if(ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.CAMERA)
-                        != PackageManager.PERMISSION_GRANTED)
-                    return;
-                try{
-                    cameraSource.start(holder);
-                }catch (IOException e){
+                try {
+                    if (ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+                        ActivityCompat.requestPermissions(this_activity, new String[]{Manifest.permission.CAMERA}, CAMERA_PERMISSION_CODE);
+//                        return;
+                    }
+                    cameraSource.start(scan_area.getHolder()); /* 在surfaceHolder開啟相機 */
+                } catch (IOException e) {
                     e.printStackTrace();
                 }
-            }
 
+            }
             @Override
             public void surfaceChanged(@NonNull SurfaceHolder holder, int format, int width, int height) {
+                /* 判斷surfaceView有任何change就啟動cameraSource */
+                try {
+                    if (ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+                        ActivityCompat.requestPermissions(this_activity, new String[]{Manifest.permission.CAMERA}, CAMERA_PERMISSION_CODE);
+//                        return;
+                    }
+                    cameraSource.start(scan_area.getHolder()); /* 在surfaceHolder開啟相機 */
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
 
             }
 
@@ -109,5 +129,18 @@ public class UrlCheckActivity_ScanQrcodeActivity extends AegisActivity {
 
 
 
+    }
+
+
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        switch(requestCode){
+            case CAMERA_PERMISSION_CODE:
+                recreate(); /* 若get到 camera的 permission就 recreate整個 activity 以讓相機元件可以正常運作 */
+                break;
+        }
     }
 }
