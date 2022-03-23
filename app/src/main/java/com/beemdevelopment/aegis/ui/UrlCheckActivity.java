@@ -41,8 +41,8 @@ public class UrlCheckActivity extends AegisActivity{
     ImageButton clear_button;
     Button scan_qrcode_button;
     private static final int Scan_QR_CODE = 2;
-    private static final String pass_name = "URL_text";
-    String URL_text = null;
+    private static final String pass_name = "URL_text"; /* 傳遞資料的string名，新增變數避免寫死 */
+    String URL_text = null; /* url_input和qr_code_scan共用的變數，避免判斷時有衝突，判斷完畢後設為null */
 
     /* Code代碼 */
     final int CODE_SCAN = 0;
