@@ -41,7 +41,7 @@ public class UrlCheckActivity extends AegisActivity{
     ImageButton clear_button;
     Button scan_qrcode_button;
     private static final int Scan_QR_CODE = 2;
-    public static String text = null;
+    private static final String pass_name = "URL_text";
     String URL_text = null;
 
     /* Code代碼 */
@@ -121,7 +121,7 @@ public class UrlCheckActivity extends AegisActivity{
 
         switch (requestCode) {
             case Scan_QR_CODE:
-                URL_text = data.getStringExtra("text");
+                URL_text = data.getStringExtra(pass_name);
 //                System.out.println(retureData);
                 break;
         }

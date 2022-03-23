@@ -35,8 +35,10 @@ public class UrlCheckActivity_ScanQrcodeActivity extends AegisActivity {
     /* build.gradle裡面dependencies implementation 裡面已經改好有添加 Google的Vision套件
      * 所以可以直接用 BarcodeDetector去分析條碼 */
     BarcodeDetector barcodeDetector;
+    private static final String pass_name = "URL_text";
     private static final int CAMERA_PERMISSION_CODE = 1;
     private static final int Scan_QR_CODE = 2;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -141,7 +143,7 @@ public class UrlCheckActivity_ScanQrcodeActivity extends AegisActivity {
     }
     private void pass_text(){
         Intent intent = getIntent();
-        intent.putExtra("text", display_test.getText().toString());
+        intent.putExtra(pass_name, display_test.getText().toString());
         setResult(Scan_QR_CODE, intent);
         finish();
     }
