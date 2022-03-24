@@ -1,3 +1,4 @@
+/* 備份用的 class */
 package com.beemdevelopment.aegis;
 
 import android.app.backup.BackupAgent;
@@ -125,6 +126,7 @@ public class AegisBackupAgent extends BackupAgent {
         IOUtils.clearDirectory(dir, true);
     }
 
+    /* 取得BackUp File，FileName = "aegis.json" (這應該是BackUp功能)*/
     private File getVaultBackupFile() {
         return new File(new File(getFilesDir(), "backup"), VaultRepository.FILENAME);
     }

@@ -1,3 +1,4 @@
+/* 手動新增的 activity */
 package com.beemdevelopment.aegis.ui;
 
 import android.content.Intent;
@@ -127,6 +128,7 @@ public class EditEntryActivity extends AegisActivity {
         setContentView(R.layout.activity_edit_entry);
         setSupportActionBar(findViewById(R.id.toolbar));
 
+        /* TreeSet _groups 有點像是把元素加入集合(_groups)，方便檢索 */
         _groups = _vaultManager.getVault().getGroups();
 
         ActionBar bar = getSupportActionBar();
@@ -135,6 +137,8 @@ public class EditEntryActivity extends AegisActivity {
 
         // retrieve info from the calling activity
         Intent intent = getIntent();
+        /* 通用唯一辨識碼 具有唯一性(每隻手機都不同)
+        * 所以取得用戶的 Entry 是透過資料庫檢索 UUID取得 */
         UUID entryUUID = (UUID) intent.getSerializableExtra("entryUUID");
         if (entryUUID != null) {
             _origEntry = _vaultManager.getVault().getEntryByUUID(entryUUID);
