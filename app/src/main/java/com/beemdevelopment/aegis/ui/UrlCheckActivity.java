@@ -87,6 +87,7 @@ public class UrlCheckActivity extends AegisActivity{
                 URL_text = url_input.getText().toString();
 
 
+
             }
         });
         /* clear_button */
@@ -118,11 +119,16 @@ public class UrlCheckActivity extends AegisActivity{
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
         super.onActivityResult(requestCode, resultCode, data);
+        /* 加入resultCode(該activity回傳的回傳碼，RESULT_OK預設為-1) 在 Scan_QR_code甚麼都不做按返回鍵的話，resultCode = 0
+        * 所以要判斷resultCode = 0 的話返回原activity*/
+        if (resultCode != RESULT_OK) {
+            return;
+        }
 
         switch (requestCode) {
             case Scan_QR_CODE:
                 URL_text = data.getStringExtra(pass_name);
-//                System.out.println(retureData);
+                System.out.println("test");
                 break;
         }
     }

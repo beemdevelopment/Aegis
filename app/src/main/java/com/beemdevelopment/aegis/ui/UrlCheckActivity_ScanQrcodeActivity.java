@@ -160,4 +160,7 @@ public class UrlCheckActivity_ScanQrcodeActivity extends AegisActivity {
                 break;
         }
     }
+
+
+
 }
