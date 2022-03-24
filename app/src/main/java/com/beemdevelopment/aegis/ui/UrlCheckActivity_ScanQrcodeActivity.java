@@ -25,7 +25,7 @@ import java.io.IOException;
 import java.util.ResourceBundle;
 
 public class UrlCheckActivity_ScanQrcodeActivity extends AegisActivity {
-
+    //branch judy test
     /* 變數宣告 */
     Activity this_activity;
     SurfaceView scan_area;
