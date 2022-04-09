@@ -66,7 +66,7 @@ public abstract class DatabaseImporter {
 
     public State readFromApp() throws PackageManager.NameNotFoundException, DatabaseImporterException {
         SuFile file = getAppPath();
-        try (SuFileInputStream stream = new SuFileInputStream(file)) {
+        try (InputStream stream = SuFileInputStream.open(file)) {
             return read(stream, true);
         } catch (IOException e) {
             throw new DatabaseImporterException(e);

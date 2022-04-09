@@ -129,7 +129,7 @@ public class AuthyImporter extends DatabaseImporter {
     }
 
     private JSONArray readFile(SuFile file, String key) throws IOException, XmlPullParserException {
-        try (SuFileInputStream inStream = new SuFileInputStream(file)) {
+        try (InputStream inStream = SuFileInputStream.open(file)) {
             XmlPullParser parser = Xml.newPullParser();
             parser.setFeature(XmlPullParser.FEATURE_PROCESS_NAMESPACES, false);
             parser.setInput(inStream, null);

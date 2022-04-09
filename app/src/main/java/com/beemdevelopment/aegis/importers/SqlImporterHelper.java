@@ -1,5 +1,7 @@
 package com.beemdevelopment.aegis.importers;
 
+import static android.database.sqlite.SQLiteDatabase.OPEN_READONLY;
+
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.database.Cursor;
@@ -19,8 +21,6 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static android.database.sqlite.SQLiteDatabase.OPEN_READONLY;
-
 public class SqlImporterHelper {
     private Context _context;
 
@@ -36,7 +36,7 @@ public class SqlImporterHelper {
         for (SuFile file : SqlImporterHelper.findDatabaseFiles(path)) {
             // create temporary copies of the database files so that SQLiteDatabase can open them
             File fileCopy = null;
-            try (SuFileInputStream inStream = new SuFileInputStream(file)) {
+            try (InputStream inStream = SuFileInputStream.open(file)) {
                 fileCopy = new File(dir, file.getName());
                 try (FileOutputStream out = new FileOutputStream(fileCopy)) {
                     IOUtils.copy(inStream, out);
