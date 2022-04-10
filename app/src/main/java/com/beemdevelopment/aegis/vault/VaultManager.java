@@ -50,9 +50,9 @@ public class VaultManager {
         try {
             _vaultFile = VaultRepository.readVaultFile(_context);
         } catch (VaultRepositoryException e) {
-            e.printStackTrace();
             if (!(e.getCause() instanceof FileNotFoundException)) {
                 _vaultFileError = e;
+                e.printStackTrace();
             }
         }
 
