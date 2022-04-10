@@ -293,12 +293,12 @@ public class Dialogs {
         showSecureDialog(dialog);
     }
 
-    public static void showNumberPickerDialog(Activity activity, NumberInputListener listener) {
+    public static void showTapToRevealTimeoutPickerDialog(Activity activity, int currentValue, NumberInputListener listener) {
         View view = activity.getLayoutInflater().inflate(R.layout.dialog_number_picker, null);
         NumberPicker numberPicker = view.findViewById(R.id.numberPicker);
         numberPicker.setMinValue(1);
         numberPicker.setMaxValue(60);
-        numberPicker.setValue(new Preferences(activity.getApplicationContext()).getTapToRevealTime());
+        numberPicker.setValue(currentValue);
         numberPicker.setWrapSelectorWheel(true);
 
         AlertDialog dialog = new AlertDialog.Builder(activity)
@@ -311,7 +311,7 @@ public class Dialogs {
         showSecureDialog(dialog);
     }
 
-    public static void showBackupVersionsPickerDialog(Activity activity, NumberInputListener listener) {
+    public static void showBackupVersionsPickerDialog(Activity activity, int currentVersionCount, NumberInputListener listener) {
         final int max = 30;
         String[] numbers = new String[max / 5];
         for (int i = 0; i < numbers.length; i++) {
@@ -323,7 +323,7 @@ public class Dialogs {
         numberPicker.setDisplayedValues(numbers);
         numberPicker.setMaxValue(numbers.length - 1);
         numberPicker.setMinValue(0);
-        numberPicker.setValue(new Preferences(activity.getApplicationContext()).getBackupsVersionCount() / 5 - 1);
+        numberPicker.setValue(currentVersionCount / 5 - 1);
         numberPicker.setWrapSelectorWheel(false);
 
         AlertDialog dialog = new AlertDialog.Builder(activity)

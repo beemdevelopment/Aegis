@@ -76,7 +76,7 @@ public class SecurityPreferencesFragment extends PreferencesFragment {
         Preference tapToRevealTimePreference = findPreference("pref_tap_to_reveal_time");
         tapToRevealTimePreference.setSummary(_prefs.getTapToRevealTime() + " seconds");
         tapToRevealTimePreference.setOnPreferenceClickListener(preference -> {
-            Dialogs.showNumberPickerDialog(getActivity(), number -> {
+            Dialogs.showTapToRevealTimeoutPickerDialog(getActivity(), _prefs.getTapToRevealTime(), number -> {
                 _prefs.setTapToRevealTime(number);
                 tapToRevealTimePreference.setSummary(number + " seconds");
                 getResult().putExtra("needsRefresh", true);

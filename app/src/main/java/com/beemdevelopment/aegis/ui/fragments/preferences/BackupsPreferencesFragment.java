@@ -9,6 +9,7 @@ import android.widget.Toast;
 import androidx.preference.Preference;
 import androidx.preference.SwitchPreferenceCompat;
 
+import com.beemdevelopment.aegis.Preferences;
 import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.ui.dialogs.Dialogs;
 import com.beemdevelopment.aegis.vault.VaultRepositoryException;
@@ -72,7 +73,7 @@ public class BackupsPreferencesFragment extends PreferencesFragment {
         _backupsVersionsPreference = findPreference("pref_backups_versions");
         _backupsVersionsPreference.setSummary(getResources().getQuantityString(R.plurals.pref_backups_versions_summary, _prefs.getBackupsVersionCount(), _prefs.getBackupsVersionCount()));
         _backupsVersionsPreference.setOnPreferenceClickListener(preference -> {
-            Dialogs.showBackupVersionsPickerDialog(getActivity(), number -> {
+            Dialogs.showBackupVersionsPickerDialog(getActivity(), _prefs.getBackupsVersionCount(), number -> {
                 number = number * 5 + 5;
                 _prefs.setBackupsVersionCount(number);
                 _backupsVersionsPreference.setSummary(getResources().getQuantityString(R.plurals.pref_backups_versions_summary, _prefs.getBackupsVersionCount(), _prefs.getBackupsVersionCount()));
