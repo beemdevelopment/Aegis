@@ -165,8 +165,10 @@ public class VaultManager {
     public void saveAndBackup() throws VaultRepositoryException {
         save();
 
+        boolean backedUp = false;
         if (getVault().isEncryptionEnabled()) {
             if (_prefs.isBackupsEnabled()) {
+                backedUp = true;
                 try {
                     scheduleBackup();
                     _prefs.setBackupsError(null);
@@ -176,12 +178,19 @@ public class VaultManager {
             }
 
             if (_prefs.isAndroidBackupsEnabled()) {
+                backedUp = true;
                 scheduleAndroidBackup();
             }
+        }
+
+        if (!backedUp) {
+            _prefs.setIsBackupReminderNeeded(true);
         }
     }
 
     public void scheduleBackup() throws VaultRepositoryException {
+        _prefs.setIsBackupReminderNeeded(false);
+
         try {
             File dir = new File(_context.getCacheDir(), "backup");
             if (!dir.exists() && !dir.mkdir()) {
@@ -197,6 +206,7 @@ public class VaultManager {
     }
 
     public void scheduleAndroidBackup() {
+        _prefs.setIsBackupReminderNeeded(false);
         _androidBackups.dataChanged();
     }
 

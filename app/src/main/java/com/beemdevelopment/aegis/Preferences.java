@@ -308,6 +308,16 @@ public class Preferences {
         return _prefs.getString("pref_backups_error", null);
     }
 
+    public void setIsBackupReminderNeeded(boolean needed) {
+        if (isBackupsReminderNeeded() != needed) {
+            _prefs.edit().putBoolean("pref_backups_reminder_needed", needed).apply();
+        }
+    }
+
+    public boolean isBackupsReminderNeeded() {
+        return _prefs.getBoolean("pref_backups_reminder_needed", false);
+    }
+
     public boolean isPinKeyboardEnabled() {
         return _prefs.getBoolean("pref_pin_keyboard", false);
     }

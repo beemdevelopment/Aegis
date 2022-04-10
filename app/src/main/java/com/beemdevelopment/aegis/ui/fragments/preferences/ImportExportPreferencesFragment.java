@@ -214,6 +214,9 @@ public class ImportExportPreferencesFragment extends PreferencesFragment {
                         return;
                     }
 
+                    // if the user creates an export, hide the backup reminder
+                    _prefs.setIsBackupReminderNeeded(false);
+
                     Uri uri = FileProvider.getUriForFile(getContext(), BuildConfig.FILE_PROVIDER_AUTHORITY, file);
                     Intent intent = new Intent(Intent.ACTION_SEND)
                             .setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
@@ -343,6 +346,9 @@ public class ImportExportPreferencesFragment extends PreferencesFragment {
                 e.printStackTrace();
                 Dialogs.showErrorDialog(getContext(), R.string.exporting_vault_error, e);
             } else {
+                // if the user creates an export, hide the backup reminder
+                _prefs.setIsBackupReminderNeeded(false);
+
                 Toast.makeText(getContext(), getString(R.string.exported_vault), Toast.LENGTH_SHORT).show();
             }
         }

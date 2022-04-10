@@ -15,6 +15,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.view.ActionMode;
@@ -80,7 +81,8 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
     private Menu _menu;
     private SearchView _searchView;
     private EntryListView _entryListView;
-    private LinearLayout _btnBackupError;
+    private LinearLayout _btnErrorBar;
+    private TextView _textErrorBar;
 
     private FabScrollHelper _fabScrollHelper;
 
@@ -132,10 +134,8 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
              Dialogs.showSecureDialog(dialog);
          });
 
-        _btnBackupError = findViewById(R.id.btn_backup_error);
-        _btnBackupError.setOnClickListener(view -> {
-            startPreferencesActivity(BackupsPreferencesFragment.class, "pref_backups");
-        });
+        _btnErrorBar = findViewById(R.id.btn_error_bar);
+        _textErrorBar = findViewById(R.id.text_error_bar);
 
         _fabScrollHelper = new FabScrollHelper(fab);
         _selectedEntries = new ArrayList<>();
@@ -480,7 +480,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         handleSharedImage();
         updateLockIcon();
         doShortcutActions();
-        updateBackupErrorBar();
+        updateErrorBar();
     }
 
     @Override
@@ -637,13 +637,27 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         }
     }
 
-    private void updateBackupErrorBar() {
-        String error = null;
+    private void updateErrorBar() {
+        String backupError = null;
         if (_prefs.isBackupsEnabled()) {
-            error = _prefs.getBackupsError();
+            backupError = _prefs.getBackupsError();
         }
 
-        _btnBackupError.setVisibility(error == null ? View.GONE : View.VISIBLE);
+        if (backupError != null) {
+            _textErrorBar.setText(R.string.backup_error_bar_message);
+            _btnErrorBar.setOnClickListener(view -> {
+                startPreferencesActivity(BackupsPreferencesFragment.class, "pref_backups");
+            });
+            _btnErrorBar.setVisibility(View.VISIBLE);
+        } else if (_prefs.isBackupsReminderNeeded()) {
+            _textErrorBar.setText(R.string.backup_reminder_bar_message);
+            _btnErrorBar.setOnClickListener(view -> {
+                startPreferencesActivity();
+            });
+            _btnErrorBar.setVisibility(View.VISIBLE);
+        } else {
+            _btnErrorBar.setVisibility(View.GONE);
+        }
     }
 
     @Override

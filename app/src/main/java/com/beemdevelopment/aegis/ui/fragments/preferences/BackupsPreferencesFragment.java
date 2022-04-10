@@ -64,13 +64,7 @@ public class BackupsPreferencesFragment extends PreferencesFragment {
         _backupsTriggerPreference = findPreference("pref_backups_trigger");
         _backupsTriggerPreference.setOnPreferenceClickListener(preference -> {
             if (_prefs.isBackupsEnabled()) {
-                try {
-                    _vaultManager.scheduleBackup();
-                    Toast.makeText(getActivity(), R.string.backup_successful, Toast.LENGTH_LONG).show();
-                } catch (VaultRepositoryException e) {
-                    e.printStackTrace();
-                    Dialogs.showErrorDialog(getContext(), R.string.backup_error, e);
-                }
+                scheduleBackup();
             }
             return true;
         });
@@ -108,6 +102,7 @@ public class BackupsPreferencesFragment extends PreferencesFragment {
         _prefs.setBackupsError(null);
         _backupsLocationPreference.setSummary(String.format("%s: %s", getString(R.string.pref_backups_location_summary), Uri.decode(uri.toString())));
         updateBackupPreference();
+        scheduleBackup();
     }
 
     private void updateBackupPreference() {
@@ -131,5 +126,15 @@ public class BackupsPreferencesFragment extends PreferencesFragment {
                 | Intent.FLAG_GRANT_PREFIX_URI_PERMISSION);
 
         _vaultManager.startActivityForResult(this, intent, CODE_BACKUPS);
+    }
+
+    private void scheduleBackup() {
+        try {
+            _vaultManager.scheduleBackup();
+            Toast.makeText(getActivity(), R.string.backup_successful, Toast.LENGTH_LONG).show();
+        } catch (VaultRepositoryException e) {
+            e.printStackTrace();
+            Dialogs.showErrorDialog(getContext(), R.string.backup_error, e);
+        }
     }
 }
