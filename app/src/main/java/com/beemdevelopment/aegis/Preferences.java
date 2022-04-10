@@ -204,13 +204,11 @@ public class Preferences {
         String usageCount = _prefs.getString("pref_usage_count", "");
         try {
             JSONArray arr = new JSONArray(usageCount);
-            for(int i = 0; i < arr.length(); i++) {
+            for (int i = 0; i < arr.length(); i++) {
                 JSONObject json = arr.getJSONObject(i);
                 usageCounts.put(UUID.fromString(json.getString("uuid")), json.getInt("count"));
             }
-
-        } catch (JSONException e) {
-            e.printStackTrace();
+        } catch (JSONException ignored) {
         }
 
         return usageCounts;
