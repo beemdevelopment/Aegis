@@ -101,6 +101,11 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
             }
         });
 
+        _recyclerView.setOnTouchListener((v, event) -> {
+            _listener.onEntryListTouch();
+            return false;
+        });
+
         // set up icon preloading
         _preloadSizeProvider = new ViewPreloadSizeProvider<>();
         IconPreloadProvider modelProvider = new IconPreloadProvider();
@@ -511,6 +516,7 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
         void onDeselect(VaultEntry entry);
         void onListChange();
         void onSaveGroupFilter(List<String> groupFilter);
+        void onEntryListTouch();
     }
 
     private class VerticalSpaceItemDecoration extends RecyclerView.ItemDecoration {
