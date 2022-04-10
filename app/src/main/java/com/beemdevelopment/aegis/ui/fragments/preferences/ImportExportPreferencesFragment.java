@@ -53,9 +53,9 @@ public class ImportExportPreferencesFragment extends PreferencesFragment {
             _importerType = (Class<? extends DatabaseImporter>) savedInstanceState.getSerializable("importerType");
         }
 
-        Preference importPreference = findPreference("pref_import");
+        Preference importPreference = requirePreference("pref_import");
         importPreference.setOnPreferenceClickListener(preference -> {
-            Dialogs.showImportersDialog(getContext(), false, definition -> {
+            Dialogs.showImportersDialog(requireContext(), false, definition -> {
                 _importerType = definition.getType();
 
                 Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
@@ -65,15 +65,15 @@ public class ImportExportPreferencesFragment extends PreferencesFragment {
             return true;
         });
 
-        Preference importAppPreference = findPreference("pref_import_app");
+        Preference importAppPreference = requirePreference("pref_import_app");
         importAppPreference.setOnPreferenceClickListener(preference -> {
-            Dialogs.showImportersDialog(getContext(), true, definition -> {
+            Dialogs.showImportersDialog(requireContext(), true, definition -> {
                 startImportEntriesActivity(definition.getType(), null);
             });
             return true;
         });
 
-        Preference exportPreference = findPreference("pref_export");
+        Preference exportPreference = requirePreference("pref_export");
         exportPreference.setOnPreferenceClickListener(preference -> {
             startExport();
             return true;
@@ -113,30 +113,30 @@ public class ImportExportPreferencesFragment extends PreferencesFragment {
         }
 
         ImportFileTask.Params params = new ImportFileTask.Params(uri, "import", null);
-        ImportFileTask task = new ImportFileTask(getContext(), result -> {
+        ImportFileTask task = new ImportFileTask(requireContext(), result -> {
             if (result.getException() == null) {
                 startImportEntriesActivity(_importerType, result.getFile());
             } else {
-                Dialogs.showErrorDialog(getContext(), R.string.reading_file_error, result.getException());
+                Dialogs.showErrorDialog(requireContext(), R.string.reading_file_error, result.getException());
             }
         });
         task.execute(getLifecycle(), params);
     }
 
     private void startImportEntriesActivity(Class<? extends DatabaseImporter> importerType, File file) {
-        Intent intent = new Intent(getActivity(), ImportEntriesActivity.class);
+        Intent intent = new Intent(requireActivity(), ImportEntriesActivity.class);
         intent.putExtra("importerType", importerType);
         intent.putExtra("file", file);
         startActivityForResult(intent, CODE_IMPORT);
     }
 
     private void startExport() {
-        View view = LayoutInflater.from(getContext()).inflate(R.layout.dialog_export, null);
+        View view = LayoutInflater.from(requireContext()).inflate(R.layout.dialog_export, null);
         TextView warningText = view.findViewById(R.id.text_export_warning);
         CheckBox checkBoxEncrypt = view.findViewById(R.id.checkbox_export_encrypt);
         CheckBox checkBoxAccept = view.findViewById(R.id.checkbox_accept);
         AutoCompleteTextView dropdown = view.findViewById(R.id.dropdown_export_format);
-        DropdownHelper.fillDropdown(getContext(), dropdown, R.array.export_formats);
+        DropdownHelper.fillDropdown(requireContext(), dropdown, R.array.export_formats);
         dropdown.setText(getString(R.string.export_format_aegis), false);
         dropdown.setOnItemClickListener((parent, view1, position, id) -> {
             checkBoxEncrypt.setChecked(position == 0);
@@ -144,7 +144,7 @@ public class ImportExportPreferencesFragment extends PreferencesFragment {
             warningText.setVisibility(checkBoxEncrypt.isChecked() ? View.GONE : View.VISIBLE);
         });
 
-        AlertDialog dialog = new AlertDialog.Builder(getContext())
+        AlertDialog dialog = new AlertDialog.Builder(requireContext())
                 .setTitle(R.string.pref_export_summary)
                 .setView(view)
                 .setNeutralButton(R.string.share, null)
@@ -200,7 +200,7 @@ public class ImportExportPreferencesFragment extends PreferencesFragment {
                     file = File.createTempFile(fileInfo.getFilename() + "-", "." + fileInfo.getExtension(), getExportCacheDir());
                 } catch (IOException e) {
                     e.printStackTrace();
-                    Dialogs.showErrorDialog(getContext(), R.string.exporting_vault_error, e);
+                    Dialogs.showErrorDialog(requireContext(), R.string.exporting_vault_error, e);
                     return;
                 }
 
@@ -210,14 +210,14 @@ public class ImportExportPreferencesFragment extends PreferencesFragment {
                         cb.exportVault(stream);
                     } catch (IOException | VaultRepositoryException e) {
                         e.printStackTrace();
-                        Dialogs.showErrorDialog(getContext(), R.string.exporting_vault_error, e);
+                        Dialogs.showErrorDialog(requireContext(), R.string.exporting_vault_error, e);
                         return;
                     }
 
                     // if the user creates an export, hide the backup reminder
                     _prefs.setIsBackupReminderNeeded(false);
 
-                    Uri uri = FileProvider.getUriForFile(getContext(), BuildConfig.FILE_PROVIDER_AUTHORITY, file);
+                    Uri uri = FileProvider.getUriForFile(requireContext(), BuildConfig.FILE_PROVIDER_AUTHORITY, file);
                     Intent intent = new Intent(Intent.ACTION_SEND)
                             .setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
                             .setType(getExportMimeType(requestCode))
@@ -253,7 +253,7 @@ public class ImportExportPreferencesFragment extends PreferencesFragment {
     }
 
     private File getExportCacheDir() throws IOException {
-        File dir = new File(getContext().getCacheDir(), "export");
+        File dir = new File(requireContext().getCacheDir(), "export");
         if (!dir.exists() && !dir.mkdir()) {
             throw new IOException(String.format("Unable to create directory %s", dir));
         }
@@ -267,7 +267,7 @@ public class ImportExportPreferencesFragment extends PreferencesFragment {
                 if (_vaultManager.getVault().isEncryptionEnabled()) {
                     cb.exportVault(stream -> _vaultManager.getVault().export(stream));
                 } else {
-                    Dialogs.showSetPasswordDialog(getActivity(), new Dialogs.SlotListener() {
+                    Dialogs.showSetPasswordDialog(requireActivity(), new Dialogs.SlotListener() {
                         @Override
                         public void onSlotResult(Slot slot, Cipher cipher) {
                             VaultFileCredentials creds = new VaultFileCredentials();
@@ -313,10 +313,10 @@ public class ImportExportPreferencesFragment extends PreferencesFragment {
                 outStream = new FileOutputStream(file);
                 cb.exportVault(outStream);
 
-                new ExportTask(getContext(), new ExportResultListener()).execute(getLifecycle(), new ExportTask.Params(file, uri));
+                new ExportTask(requireContext(), new ExportResultListener()).execute(getLifecycle(), new ExportTask.Params(file, uri));
             } catch (VaultRepositoryException | IOException e) {
                 e.printStackTrace();
-                Dialogs.showErrorDialog(getContext(), R.string.exporting_vault_error, e);
+                Dialogs.showErrorDialog(requireContext(), R.string.exporting_vault_error, e);
             } finally {
                 try {
                     if (outStream != null) {
@@ -344,12 +344,12 @@ public class ImportExportPreferencesFragment extends PreferencesFragment {
         public void onTaskFinished(Exception e) {
             if (e != null) {
                 e.printStackTrace();
-                Dialogs.showErrorDialog(getContext(), R.string.exporting_vault_error, e);
+                Dialogs.showErrorDialog(requireContext(), R.string.exporting_vault_error, e);
             } else {
                 // if the user creates an export, hide the backup reminder
                 _prefs.setIsBackupReminderNeeded(false);
 
-                Toast.makeText(getContext(), getString(R.string.exported_vault), Toast.LENGTH_SHORT).show();
+                Toast.makeText(requireContext(), getString(R.string.exported_vault), Toast.LENGTH_SHORT).show();
             }
         }
     }

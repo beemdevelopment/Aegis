@@ -62,7 +62,7 @@ public class IconPacksManagerFragment extends Fragment implements IconPackAdapte
         _iconPacksView = view.findViewById(R.id.view_icon_packs);
         _adapter = new IconPackAdapter(this);
         _iconPacksRecyclerView = view.findViewById(R.id.list_icon_packs);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
+        LinearLayoutManager layoutManager = new LinearLayoutManager(requireContext());
         _iconPacksRecyclerView.setLayoutManager(layoutManager);
         _iconPacksRecyclerView.setAdapter(_adapter);
         _iconPacksRecyclerView.setNestedScrollingEnabled(false);
@@ -83,7 +83,7 @@ public class IconPacksManagerFragment extends Fragment implements IconPackAdapte
 
     @Override
     public void onRemoveIconPack(IconPack pack) {
-        Dialogs.showSecureDialog(new AlertDialog.Builder(getContext())
+        Dialogs.showSecureDialog(new AlertDialog.Builder(requireContext())
                 .setTitle(R.string.remove_icon_pack)
                 .setMessage(R.string.remove_icon_pack_description)
                 .setPositiveButton(android.R.string.yes, (dialog, whichButton) -> {
@@ -91,7 +91,7 @@ public class IconPacksManagerFragment extends Fragment implements IconPackAdapte
                         _iconPackManager.removeIconPack(pack);
                     } catch (IconPackException e) {
                         e.printStackTrace();
-                        Dialogs.showErrorDialog(getContext(), R.string.icon_pack_delete_error, e);
+                        Dialogs.showErrorDialog(requireContext(), R.string.icon_pack_delete_error, e);
                         return;
                     }
                     _adapter.removeIconPack(pack);
@@ -111,10 +111,10 @@ public class IconPacksManagerFragment extends Fragment implements IconPackAdapte
     }
 
     private void importIconPack(Uri uri) {
-        ImportIconPackTask task = new ImportIconPackTask(getContext(), result -> {
+        ImportIconPackTask task = new ImportIconPackTask(requireContext(), result -> {
             Exception e = result.getException();
             if (e instanceof IconPackExistsException) {
-                Dialogs.showSecureDialog(new AlertDialog.Builder(getContext())
+                Dialogs.showSecureDialog(new AlertDialog.Builder(requireContext())
                         .setTitle(R.string.error_occurred)
                         .setMessage(R.string.icon_pack_import_exists_error)
                         .setPositiveButton(R.string.yes, (dialog, which) -> {
@@ -125,7 +125,7 @@ public class IconPacksManagerFragment extends Fragment implements IconPackAdapte
                         .setNegativeButton(R.string.no, null)
                         .create());
             } else if (e != null) {
-                Dialogs.showErrorDialog(getContext(), R.string.icon_pack_import_error, e);
+                Dialogs.showErrorDialog(requireContext(), R.string.icon_pack_import_error, e);
             } else {
                 _adapter.addIconPack(result.getIconPack());
                 updateEmptyState();
@@ -139,7 +139,7 @@ public class IconPacksManagerFragment extends Fragment implements IconPackAdapte
             _iconPackManager.removeIconPack(pack);
         } catch (IconPackException e) {
             e.printStackTrace();
-            Dialogs.showErrorDialog(getContext(), R.string.icon_pack_delete_error, e);
+            Dialogs.showErrorDialog(requireContext(), R.string.icon_pack_delete_error, e);
             return false;
         }
 

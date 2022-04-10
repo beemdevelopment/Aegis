@@ -32,7 +32,7 @@ public class BackupsPreferencesFragment extends PreferencesFragment {
         super.onCreatePreferences(savedInstanceState, rootKey);
         addPreferencesFromResource(R.xml.preferences_backups);
 
-        _backupsPreference = findPreference("pref_backups");
+        _backupsPreference = requirePreference("pref_backups");
         _backupsPreference.setOnPreferenceChangeListener((preference, newValue) -> {
             if ((boolean) newValue) {
                 selectBackupsLocation();
@@ -44,7 +44,7 @@ public class BackupsPreferencesFragment extends PreferencesFragment {
             return false;
         });
 
-        _androidBackupsPreference = findPreference("pref_android_backups");
+        _androidBackupsPreference = requirePreference("pref_android_backups");
         _androidBackupsPreference.setOnPreferenceChangeListener((preference, newValue) -> {
             _prefs.setIsAndroidBackupsEnabled((boolean) newValue);
             updateBackupPreference();
@@ -53,7 +53,7 @@ public class BackupsPreferencesFragment extends PreferencesFragment {
         });
 
         Uri backupLocation = _prefs.getBackupsLocation();
-        _backupsLocationPreference = findPreference("pref_backups_location");
+        _backupsLocationPreference = requirePreference("pref_backups_location");
         if (backupLocation != null) {
             _backupsLocationPreference.setSummary(String.format("%s: %s", getString(R.string.pref_backups_location_summary), Uri.decode(backupLocation.toString())));
         }
@@ -62,7 +62,7 @@ public class BackupsPreferencesFragment extends PreferencesFragment {
             return false;
         });
 
-        _backupsTriggerPreference = findPreference("pref_backups_trigger");
+        _backupsTriggerPreference = requirePreference("pref_backups_trigger");
         _backupsTriggerPreference.setOnPreferenceClickListener(preference -> {
             if (_prefs.isBackupsEnabled()) {
                 scheduleBackup();
@@ -70,10 +70,10 @@ public class BackupsPreferencesFragment extends PreferencesFragment {
             return true;
         });
 
-        _backupsVersionsPreference = findPreference("pref_backups_versions");
+        _backupsVersionsPreference = requirePreference("pref_backups_versions");
         _backupsVersionsPreference.setSummary(getResources().getQuantityString(R.plurals.pref_backups_versions_summary, _prefs.getBackupsVersionCount(), _prefs.getBackupsVersionCount()));
         _backupsVersionsPreference.setOnPreferenceClickListener(preference -> {
-            Dialogs.showBackupVersionsPickerDialog(getActivity(), _prefs.getBackupsVersionCount(), number -> {
+            Dialogs.showBackupVersionsPickerDialog(requireActivity(), _prefs.getBackupsVersionCount(), number -> {
                 number = number * 5 + 5;
                 _prefs.setBackupsVersionCount(number);
                 _backupsVersionsPreference.setSummary(getResources().getQuantityString(R.plurals.pref_backups_versions_summary, _prefs.getBackupsVersionCount(), _prefs.getBackupsVersionCount()));
@@ -96,7 +96,7 @@ public class BackupsPreferencesFragment extends PreferencesFragment {
         }
 
         int flags = Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION;
-        getContext().getContentResolver().takePersistableUriPermission(data.getData(), flags);
+        requireContext().getContentResolver().takePersistableUriPermission(data.getData(), flags);
 
         _prefs.setBackupsLocation(uri);
         _prefs.setIsBackupsEnabled(true);
@@ -132,10 +132,10 @@ public class BackupsPreferencesFragment extends PreferencesFragment {
     private void scheduleBackup() {
         try {
             _vaultManager.scheduleBackup();
-            Toast.makeText(getActivity(), R.string.backup_successful, Toast.LENGTH_LONG).show();
+            Toast.makeText(requireActivity(), R.string.backup_successful, Toast.LENGTH_LONG).show();
         } catch (VaultRepositoryException e) {
             e.printStackTrace();
-            Dialogs.showErrorDialog(getContext(), R.string.backup_error, e);
+            Dialogs.showErrorDialog(requireContext(), R.string.backup_error, e);
         }
     }
 }

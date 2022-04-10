@@ -84,7 +84,7 @@ public class SecuritySetupSlide extends SlideFragment {
                 Strength strength = _zxcvbn.measure(_textPassword.getText());
                 _barPasswordStrength.setProgress(strength.getScore());
                 _barPasswordStrength.setProgressTintList(ColorStateList.valueOf(Color.parseColor(PasswordStrengthHelper.getColor(strength.getScore()))));
-                _textPasswordStrength.setText((_textPassword.getText().length() != 0) ? PasswordStrengthHelper.getString(strength.getScore(), getContext()) : "");
+                _textPasswordStrength.setText((_textPassword.getText().length() != 0) ? PasswordStrengthHelper.getString(strength.getScore(), requireContext()) : "");
                 _textPasswordWrapper.setError(strength.getFeedback().getWarning());
                 strength.wipe();
             }
@@ -125,7 +125,7 @@ public class SecuritySetupSlide extends SlideFragment {
     private void deriveKey() {
         PasswordSlot slot = new PasswordSlot();
         KeyDerivationTask.Params params = new KeyDerivationTask.Params(slot, EditTextHelper.getEditTextChars(_textPassword));
-        KeyDerivationTask task = new KeyDerivationTask(getContext(), new PasswordDerivationListener());
+        KeyDerivationTask task = new KeyDerivationTask(requireContext(), new PasswordDerivationListener());
         task.execute(getLifecycle(), params);
     }
 
@@ -153,7 +153,7 @@ public class SecuritySetupSlide extends SlideFragment {
     @Override
     public void onNotFinishedError() {
         if (!EditTextHelper.areEditTextsEqual(_textPassword, _textPasswordConfirm)) {
-            Toast.makeText(getContext(), R.string.password_equality_error, Toast.LENGTH_SHORT).show();
+            Toast.makeText(requireContext(), R.string.password_equality_error, Toast.LENGTH_SHORT).show();
         } else if (_cryptType != SecurityPickerSlide.CRYPT_TYPE_BIOMETRIC) {
             deriveKey();
         } else if (!_creds.getSlots().has(BiometricSlot.class)) {
@@ -175,7 +175,7 @@ public class SecuritySetupSlide extends SlideFragment {
                 _creds.getSlots().add(slot);
             } catch (SlotException e) {
                 e.printStackTrace();
-                Dialogs.showErrorDialog(getContext(), R.string.enable_encryption_error, e);
+                Dialogs.showErrorDialog(requireContext(), R.string.enable_encryption_error, e);
                 return;
             }
 
@@ -201,7 +201,7 @@ public class SecuritySetupSlide extends SlideFragment {
         @Override
         public void onSlotInitializationFailed(int errorCode, @NonNull CharSequence errString) {
             if (!BiometricsHelper.isCanceled(errorCode)) {
-                Dialogs.showErrorDialog(getContext(), R.string.encryption_enable_biometrics_error, errString);
+                Dialogs.showErrorDialog(requireContext(), R.string.encryption_enable_biometrics_error, errString);
             }
         }
     }

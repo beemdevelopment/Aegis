@@ -41,23 +41,23 @@ public abstract class SimpleWebViewDialog extends DialogFragment {
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         final View view;
         try {
-            view = LayoutInflater.from(getActivity()).inflate(R.layout.dialog_web_view, null);
+            view = LayoutInflater.from(requireActivity()).inflate(R.layout.dialog_web_view, null);
         } catch (InflateException e) {
             e.printStackTrace();
-            return new AlertDialog.Builder(getActivity())
+            return new AlertDialog.Builder(requireActivity())
                     .setTitle(android.R.string.dialog_alert_title)
                     .setMessage(getString(R.string.webview_error))
                     .setPositiveButton(android.R.string.ok, null)
                     .show();
         }
 
-        AlertDialog dialog = new AlertDialog.Builder(getActivity())
+        AlertDialog dialog = new AlertDialog.Builder(requireActivity())
                 .setTitle(_title)
                 .setView(view)
                 .setPositiveButton(android.R.string.ok, null)
                 .show();
 
-        String content = getContent(getContext());
+        String content = getContent(requireContext());
         final WebView webView = view.findViewById(R.id.web_view);
         webView.loadData(content, "text/html", "UTF-8");
         return dialog;
@@ -70,11 +70,11 @@ public abstract class SimpleWebViewDialog extends DialogFragment {
 
     protected String getBackgroundColor() {
         int backgroundColorResource = _theme == Theme.AMOLED ? R.attr.cardBackgroundFocused : R.attr.cardBackground;
-        return colorToCSS(ThemeHelper.getThemeColor(backgroundColorResource, getContext().getTheme()));
+        return colorToCSS(ThemeHelper.getThemeColor(backgroundColorResource, requireContext().getTheme()));
     }
 
     protected String getTextColor() {
-        return colorToCSS(0xFFFFFF & ThemeHelper.getThemeColor(R.attr.primaryText, getContext().getTheme()));
+        return colorToCSS(0xFFFFFF & ThemeHelper.getThemeColor(R.attr.primaryText, requireContext().getTheme()));
     }
 
     @SuppressLint("DefaultLocale")

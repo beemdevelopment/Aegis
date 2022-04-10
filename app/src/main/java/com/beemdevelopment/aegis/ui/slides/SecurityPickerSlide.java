@@ -46,7 +46,7 @@ public class SecurityPickerSlide extends SlideFragment {
      * if the API version is new enough, permission is granted and a scanner is found.
      */
     private void updateBiometricsOption(boolean autoSelect) {
-        boolean canUseBio = BiometricsHelper.isAvailable(getContext());
+        boolean canUseBio = BiometricsHelper.isAvailable(requireContext());
         _bioButton.setEnabled(canUseBio);
         _bioText.setEnabled(canUseBio);
 
@@ -66,7 +66,7 @@ public class SecurityPickerSlide extends SlideFragment {
 
     @Override
     public void onNotFinishedError() {
-         Toast.makeText(getContext(), R.string.snackbar_authentication_method, Toast.LENGTH_SHORT).show();
+         Toast.makeText(requireContext(), R.string.snackbar_authentication_method, Toast.LENGTH_SHORT).show();
     }
 
     @Override

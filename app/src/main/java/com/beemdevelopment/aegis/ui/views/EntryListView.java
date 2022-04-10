@@ -107,7 +107,7 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
         RecyclerViewPreloader<VaultEntry> preloader = new RecyclerViewPreloader<>(Glide.with(this), modelProvider, _preloadSizeProvider, 10);
         _recyclerView.addOnScrollListener(preloader);
 
-        LinearLayoutManager layoutManager = new LinearLayoutManager(view.getContext());
+        LinearLayoutManager layoutManager = new LinearLayoutManager(requireContext());
         _recyclerView.setLayoutManager(layoutManager);
         _touchCallback = new SimpleItemTouchHelperCallback(_adapter);
         _touchHelper = new ItemTouchHelper(_touchCallback);
@@ -115,7 +115,7 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
         _recyclerView.setAdapter(_adapter);
 
         int resId = R.anim.layout_animation_fall_down;
-        LayoutAnimationController animation = AnimationUtils.loadLayoutAnimation(getContext(), resId);
+        LayoutAnimationController animation = AnimationUtils.loadLayoutAnimation(requireContext(), resId);
         _recyclerView.setLayoutAnimation(animation);
 
         _refresher = new UiRefresher(new UiRefresher.Listener() {
@@ -376,9 +376,8 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
     }
 
     public void runEntriesAnimation() {
-        final Context context = _recyclerView.getContext();
         final LayoutAnimationController controller =
-                AnimationUtils.loadLayoutAnimation(context, R.anim.layout_animation_fall_down);
+                AnimationUtils.loadLayoutAnimation(requireContext(), R.anim.layout_animation_fall_down);
 
         _recyclerView.setLayoutAnimation(controller);
         _recyclerView.scheduleLayoutAnimation();
@@ -386,7 +385,7 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
 
     private void initializeGroupChip() {
         View view = getLayoutInflater().inflate(R.layout.dialog_select_groups, null);
-        BottomSheetDialog dialog = new BottomSheetDialog(getContext());
+        BottomSheetDialog dialog = new BottomSheetDialog(requireContext());
         dialog.setContentView(view);
 
         ChipGroup chipGroup = view.findViewById(R.id.groupChipGroup);
@@ -479,8 +478,8 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
 
         float height = _viewMode.getDividerHeight();
         if (_showProgress && height == 0) {
-            DividerItemDecoration divider = new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL);
-            divider.setDrawable(ContextCompat.getDrawable(getContext(), R.drawable.entry_divider));
+            DividerItemDecoration divider = new DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL);
+            divider.setDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.entry_divider));
             _dividerDecoration = divider;
         } else {
             _dividerDecoration = new VerticalSpaceItemDecoration(height);
@@ -518,7 +517,7 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
 
         private VerticalSpaceItemDecoration(float dp) {
             // convert dp to pixels
-            _height = MetricsHelper.convertDpToPixels(getContext(), dp);
+            _height = MetricsHelper.convertDpToPixels(requireContext(), dp);
         }
 
         @Override

@@ -27,17 +27,17 @@ public class AppearancePreferencesFragment extends PreferencesFragment {
         super.onCreatePreferences(savedInstanceState, rootKey);
         addPreferencesFromResource(R.xml.preferences_appearance);
 
-        _groupsPreference = findPreference("pref_groups");
+        _groupsPreference = requirePreference("pref_groups");
         _groupsPreference.setOnPreferenceClickListener(preference -> {
-            Intent intent = new Intent(getActivity(), GroupManagerActivity.class);
+            Intent intent = new Intent(requireActivity(), GroupManagerActivity.class);
             intent.putExtra("groups", new ArrayList<>(_vaultManager.getVault().getGroups()));
             startActivityForResult(intent, CODE_GROUPS);
             return true;
         });
 
-        _resetUsageCountPreference = findPreference("pref_reset_usage_count");
+        _resetUsageCountPreference = requirePreference("pref_reset_usage_count");
         _resetUsageCountPreference.setOnPreferenceClickListener(preference -> {
-            Dialogs.showSecureDialog(new AlertDialog.Builder(getActivity())
+            Dialogs.showSecureDialog(new AlertDialog.Builder(requireActivity())
                     .setTitle(R.string.preference_reset_usage_count)
                     .setMessage(R.string.preference_reset_usage_count_dialog)
                     .setPositiveButton(android.R.string.yes, (dialog, which) -> _prefs.clearUsageCount())
@@ -47,12 +47,12 @@ public class AppearancePreferencesFragment extends PreferencesFragment {
         });
 
         int currentTheme = _prefs.getCurrentTheme().ordinal();
-        Preference darkModePreference = findPreference("pref_dark_mode");
+        Preference darkModePreference = requirePreference("pref_dark_mode");
         darkModePreference.setSummary(String.format("%s: %s", getString(R.string.selected), getResources().getStringArray(R.array.theme_titles)[currentTheme]));
         darkModePreference.setOnPreferenceClickListener(preference -> {
             int currentTheme1 = _prefs.getCurrentTheme().ordinal();
 
-            Dialogs.showSecureDialog(new AlertDialog.Builder(getActivity())
+            Dialogs.showSecureDialog(new AlertDialog.Builder(requireActivity())
                     .setTitle(R.string.choose_theme)
                     .setSingleChoiceItems(R.array.theme_titles, currentTheme1, (dialog, which) -> {
                         int i = ((AlertDialog) dialog).getListView().getCheckedItemPosition();
@@ -61,7 +61,7 @@ public class AppearancePreferencesFragment extends PreferencesFragment {
                         dialog.dismiss();
 
                         getResult().putExtra("needsRecreate", true);
-                        getActivity().recreate();
+                        requireActivity().recreate();
                     })
                     .setNegativeButton(android.R.string.cancel, null)
                     .create());
@@ -69,11 +69,11 @@ public class AppearancePreferencesFragment extends PreferencesFragment {
             return true;
         });
 
-        Preference langPreference = findPreference("pref_lang");
+        Preference langPreference = requirePreference("pref_lang");
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             langPreference.setOnPreferenceChangeListener((preference, newValue) -> {
                 getResult().putExtra("needsRecreate", true);
-                getActivity().recreate();
+                requireActivity().recreate();
                 return true;
             });
         } else {
@@ -82,12 +82,12 @@ public class AppearancePreferencesFragment extends PreferencesFragment {
         }
 
         int currentViewMode = _prefs.getCurrentViewMode().ordinal();
-        Preference viewModePreference = findPreference("pref_view_mode");
+        Preference viewModePreference = requirePreference("pref_view_mode");
         viewModePreference.setSummary(String.format("%s: %s", getString(R.string.selected), getResources().getStringArray(R.array.view_mode_titles)[currentViewMode]));
         viewModePreference.setOnPreferenceClickListener(preference -> {
             int currentViewMode1 = _prefs.getCurrentViewMode().ordinal();
 
-            Dialogs.showSecureDialog(new AlertDialog.Builder(getActivity())
+            Dialogs.showSecureDialog(new AlertDialog.Builder(requireActivity())
                     .setTitle(R.string.choose_view_mode)
                     .setSingleChoiceItems(R.array.view_mode_titles, currentViewMode1, (dialog, which) -> {
                         int i = ((AlertDialog) dialog).getListView().getCheckedItemPosition();
@@ -102,13 +102,13 @@ public class AppearancePreferencesFragment extends PreferencesFragment {
             return true;
         });
 
-        Preference codeDigitGroupingPreference = findPreference("pref_code_group_size");
+        Preference codeDigitGroupingPreference = requirePreference("pref_code_group_size");
         codeDigitGroupingPreference.setOnPreferenceChangeListener((preference, newValue) -> {
             getResult().putExtra("needsRefresh", true);
             return true;
         });
 
-        Preference issuerPreference = findPreference("pref_account_name");
+        Preference issuerPreference = requirePreference("pref_account_name");
         issuerPreference.setOnPreferenceChangeListener((preference, newValue) -> {
             getResult().putExtra("needsRefresh", true);
             return true;

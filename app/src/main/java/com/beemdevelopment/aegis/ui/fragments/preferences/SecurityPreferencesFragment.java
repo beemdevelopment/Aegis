@@ -55,16 +55,16 @@ public class SecurityPreferencesFragment extends PreferencesFragment {
         super.onCreatePreferences(savedInstanceState, rootKey);
         addPreferencesFromResource(R.xml.preferences_security);
 
-        Preference tapToRevealPreference = findPreference("pref_tap_to_reveal");
+        Preference tapToRevealPreference = requirePreference("pref_tap_to_reveal");
         tapToRevealPreference.setOnPreferenceChangeListener((preference, newValue) -> {
             getResult().putExtra("needsRefresh", true);
             return true;
         });
 
-        Preference screenPreference = findPreference("pref_secure_screen");
+        Preference screenPreference = requirePreference("pref_secure_screen");
         screenPreference.setOnPreferenceChangeListener((preference, newValue) -> {
             getResult().putExtra("needsRecreate", true);
-            Window window = getActivity().getWindow();
+            Window window = requireActivity().getWindow();
             if ((boolean) newValue) {
                 window.addFlags(WindowManager.LayoutParams.FLAG_SECURE);
             } else {
@@ -73,10 +73,10 @@ public class SecurityPreferencesFragment extends PreferencesFragment {
             return true;
         });
 
-        Preference tapToRevealTimePreference = findPreference("pref_tap_to_reveal_time");
+        Preference tapToRevealTimePreference = requirePreference("pref_tap_to_reveal_time");
         tapToRevealTimePreference.setSummary(_prefs.getTapToRevealTime() + " seconds");
         tapToRevealTimePreference.setOnPreferenceClickListener(preference -> {
-            Dialogs.showTapToRevealTimeoutPickerDialog(getActivity(), _prefs.getTapToRevealTime(), number -> {
+            Dialogs.showTapToRevealTimeoutPickerDialog(requireActivity(), _prefs.getTapToRevealTime(), number -> {
                 _prefs.setTapToRevealTime(number);
                 tapToRevealTimePreference.setSummary(number + " seconds");
                 getResult().putExtra("needsRefresh", true);
@@ -84,12 +84,12 @@ public class SecurityPreferencesFragment extends PreferencesFragment {
             return false;
         });
 
-        _encryptionPreference = findPreference("pref_encryption");
+        _encryptionPreference = requirePreference("pref_encryption");
         _encryptionPreference.setOnPreferenceChangeListener((preference, newValue) -> {
             if (!_vaultManager.getVault().isEncryptionEnabled()) {
-                Dialogs.showSetPasswordDialog(getActivity(), new EnableEncryptionListener());
+                Dialogs.showSetPasswordDialog(requireActivity(), new EnableEncryptionListener());
             } else {
-                Dialogs.showSecureDialog(new AlertDialog.Builder(getActivity())
+                Dialogs.showSecureDialog(new AlertDialog.Builder(requireContext())
                         .setTitle(R.string.disable_encryption)
                         .setMessage(getText(R.string.disable_encryption_description))
                         .setPositiveButton(android.R.string.yes, (dialog, which) -> {
@@ -97,7 +97,7 @@ public class SecurityPreferencesFragment extends PreferencesFragment {
                                 _vaultManager.disableEncryption();
                             } catch (VaultRepositoryException e) {
                                 e.printStackTrace();
-                                Dialogs.showErrorDialog(getContext(), R.string.disable_encryption_error, e);
+                                Dialogs.showErrorDialog(requireContext(), R.string.disable_encryption_error, e);
                                 return;
                             }
 
@@ -112,13 +112,13 @@ public class SecurityPreferencesFragment extends PreferencesFragment {
             return false;
         });
 
-        _biometricsPreference = findPreference("pref_biometrics");
+        _biometricsPreference = requirePreference("pref_biometrics");
         _biometricsPreference.setOnPreferenceChangeListener((preference, newValue) -> {
             VaultFileCredentials creds = _vaultManager.getVault().getCredentials();
             SlotList slots = creds.getSlots();
 
             if (!slots.has(BiometricSlot.class)) {
-                if (BiometricsHelper.isAvailable(getContext())) {
+                if (BiometricsHelper.isAvailable(requireContext())) {
                     BiometricSlotInitializer initializer = new BiometricSlotInitializer(SecurityPreferencesFragment.this, new RegisterBiometricsListener());
                     BiometricPrompt.PromptInfo info = new BiometricPrompt.PromptInfo.Builder()
                             .setTitle(getString(R.string.set_up_biometric))
@@ -147,27 +147,27 @@ public class SecurityPreferencesFragment extends PreferencesFragment {
             return false;
         });
 
-        _setPasswordPreference = findPreference("pref_password");
+        _setPasswordPreference = requirePreference("pref_password");
         _setPasswordPreference.setOnPreferenceClickListener(preference -> {
-            Dialogs.showSetPasswordDialog(getActivity(), new SetPasswordListener());
+            Dialogs.showSetPasswordDialog(requireActivity(), new SetPasswordListener());
             return false;
         });
 
-        _pinKeyboardPreference = findPreference("pref_pin_keyboard");
+        _pinKeyboardPreference = requirePreference("pref_pin_keyboard");
         _pinKeyboardPreference.setOnPreferenceChangeListener((preference, newValue) -> {
             if (!(boolean) newValue) {
                 return true;
             }
 
-            Dialogs.showPasswordInputDialog(getActivity(), R.string.set_password_confirm, R.string.pin_keyboard_description, password -> {
+            Dialogs.showPasswordInputDialog(requireContext(), R.string.set_password_confirm, R.string.pin_keyboard_description, password -> {
                 if (isDigitsOnly(new String(password))) {
                     List<PasswordSlot> slots = _vaultManager.getVault().getCredentials().getSlots().findAll(PasswordSlot.class);
                     PasswordSlotDecryptTask.Params params = new PasswordSlotDecryptTask.Params(slots, password);
-                    PasswordSlotDecryptTask task = new PasswordSlotDecryptTask(getActivity(), new PasswordConfirmationListener());
+                    PasswordSlotDecryptTask task = new PasswordSlotDecryptTask(requireContext(), new PasswordConfirmationListener());
                     task.execute(getLifecycle(), params);
                 } else {
                     _pinKeyboardPreference.setChecked(false);
-                    Dialogs.showSecureDialog(new AlertDialog.Builder(getActivity())
+                    Dialogs.showSecureDialog(new AlertDialog.Builder(requireContext())
                             .setTitle(R.string.pin_keyboard_error)
                             .setMessage(R.string.pin_keyboard_error_description)
                             .setCancelable(false)
@@ -180,7 +180,7 @@ public class SecurityPreferencesFragment extends PreferencesFragment {
             return false;
         });
 
-        _autoLockPreference = findPreference("pref_auto_lock");
+        _autoLockPreference = requirePreference("pref_auto_lock");
         _autoLockPreference.setSummary(getAutoLockSummary());
         _autoLockPreference.setOnPreferenceClickListener((preference) -> {
             final int[] items = Preferences.AUTO_LOCK_SETTINGS;
@@ -190,7 +190,7 @@ public class SecurityPreferencesFragment extends PreferencesFragment {
                 checkedItems[i] = _prefs.isAutoLockTypeEnabled(items[i]);
             }
 
-            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity())
+            AlertDialog.Builder builder = new AlertDialog.Builder(requireContext())
                     .setTitle(R.string.pref_auto_lock_prompt)
                     .setMultiChoiceItems(textItems, checkedItems, (dialog, index, isChecked) -> checkedItems[index] = isChecked)
                     .setPositiveButton(android.R.string.ok, (dialog, which) -> {
@@ -210,7 +210,7 @@ public class SecurityPreferencesFragment extends PreferencesFragment {
             return false;
         });
 
-        _passwordReminderPreference = findPreference("pref_password_reminder_freq");
+        _passwordReminderPreference = requirePreference("pref_password_reminder_freq");
         _passwordReminderPreference.setSummary(getPasswordReminderSummary());
         _passwordReminderPreference.setOnPreferenceClickListener((preference) -> {
             final PassReminderFreq currFreq = _prefs.getPasswordReminderFrequency();
@@ -219,7 +219,7 @@ public class SecurityPreferencesFragment extends PreferencesFragment {
                     .map(f -> getString(f.getStringRes()))
                     .toArray(String[]::new);
 
-            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity())
+            AlertDialog.Builder builder = new AlertDialog.Builder(requireContext())
                     .setTitle(R.string.pref_password_reminder_title)
                     .setSingleChoiceItems(textItems, currFreq.ordinal(), (dialog, which) -> {
                         int i = ((AlertDialog) dialog).getListView().getCheckedItemPosition();
@@ -246,7 +246,7 @@ public class SecurityPreferencesFragment extends PreferencesFragment {
             SlotList slots = _vaultManager.getVault().getCredentials().getSlots();
             boolean multiPassword = slots.findAll(PasswordSlot.class).size() > 1;
             boolean multiBio = slots.findAll(BiometricSlot.class).size() > 1;
-            boolean canUseBio = BiometricsHelper.isAvailable(getContext());
+            boolean canUseBio = BiometricsHelper.isAvailable(requireContext());
             _setPasswordPreference.setEnabled(!multiPassword);
             _biometricsPreference.setEnabled(canUseBio && !multiBio);
             _biometricsPreference.setChecked(slots.has(BiometricSlot.class), true);
@@ -319,7 +319,7 @@ public class SecurityPreferencesFragment extends PreferencesFragment {
 
             if (_prefs.isPinKeyboardEnabled()) {
                 _pinKeyboardPreference.setChecked(false);
-                Toast.makeText(getContext(), R.string.pin_keyboard_disabled, Toast.LENGTH_SHORT).show();
+                Toast.makeText(requireContext(), R.string.pin_keyboard_disabled, Toast.LENGTH_SHORT).show();
             }
         }
 
@@ -327,7 +327,7 @@ public class SecurityPreferencesFragment extends PreferencesFragment {
         public void onException(Exception e) {
             e.printStackTrace();
             updateEncryptionPreferences();
-            Dialogs.showErrorDialog(getContext(), R.string.encryption_set_password_error, e);
+            Dialogs.showErrorDialog(requireContext(), R.string.encryption_set_password_error, e);
         }
     }
 
@@ -352,7 +352,7 @@ public class SecurityPreferencesFragment extends PreferencesFragment {
         @Override
         public void onSlotInitializationFailed(int errorCode, @NonNull CharSequence errString) {
             if (!BiometricsHelper.isCanceled(errorCode)) {
-                Dialogs.showErrorDialog(getContext(), R.string.encryption_enable_biometrics_error, errString);
+                Dialogs.showErrorDialog(requireContext(), R.string.encryption_enable_biometrics_error, errString);
             }
         }
     }
@@ -378,7 +378,7 @@ public class SecurityPreferencesFragment extends PreferencesFragment {
         @Override
         public void onException(Exception e) {
             e.printStackTrace();
-            Dialogs.showErrorDialog(getContext(), R.string.encryption_set_password_error, e);
+            Dialogs.showErrorDialog(requireContext(), R.string.encryption_set_password_error, e);
         }
     }
 
@@ -388,7 +388,7 @@ public class SecurityPreferencesFragment extends PreferencesFragment {
             if (result != null) {
                 _pinKeyboardPreference.setChecked(true);
             } else {
-                Dialogs.showSecureDialog(new AlertDialog.Builder(getActivity())
+                Dialogs.showSecureDialog(new AlertDialog.Builder(requireActivity())
                         .setTitle(R.string.pin_keyboard_error)
                         .setMessage(R.string.invalid_password)
                         .setCancelable(false)

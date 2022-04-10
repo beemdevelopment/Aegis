@@ -19,7 +19,7 @@ public class WinAuthImporter extends DatabaseImporter {
 
     @Override
     public WinAuthImporter.State read(InputStream stream, boolean isInternal) throws DatabaseImporterException {
-        GoogleAuthUriImporter importer = new GoogleAuthUriImporter(getContext());
+        GoogleAuthUriImporter importer = new GoogleAuthUriImporter(requireContext());
         DatabaseImporter.State state = importer.read(stream);
         return new State(state);
     }

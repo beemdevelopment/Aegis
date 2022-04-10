@@ -316,7 +316,7 @@ public class VaultManager {
             e.printStackTrace();
 
             if (isDocsAction(intent.getAction())) {
-                Dialogs.showErrorDialog(fragment.getContext(), R.string.documentsui_error, e);
+                Dialogs.showErrorDialog(fragment.requireContext(), R.string.documentsui_error, e);
             } else {
                 throw e;
             }

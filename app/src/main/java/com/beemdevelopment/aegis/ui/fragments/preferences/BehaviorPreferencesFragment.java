@@ -14,20 +14,20 @@ public class BehaviorPreferencesFragment extends PreferencesFragment {
         super.onCreatePreferences(savedInstanceState, rootKey);
         addPreferencesFromResource(R.xml.preferences_behavior);
 
-        Preference copyOnTapPreference = findPreference("pref_copy_on_tap");
+        Preference copyOnTapPreference = requirePreference("pref_copy_on_tap");
         copyOnTapPreference.setOnPreferenceChangeListener((preference, newValue) -> {
             getResult().putExtra("needsRefresh", true);
             return true;
         });
 
-        Preference entryHighlightPreference = findPreference("pref_highlight_entry");
+        Preference entryHighlightPreference = requirePreference("pref_highlight_entry");
         entryHighlightPreference.setOnPreferenceChangeListener((preference, newValue) -> {
             getResult().putExtra("needsRefresh", true);
             _entryPausePreference.setEnabled(_prefs.isTapToRevealEnabled() || (boolean) newValue);
             return true;
         });
 
-        _entryPausePreference = findPreference("pref_pause_entry");
+        _entryPausePreference = requirePreference("pref_pause_entry");
         _entryPausePreference.setOnPreferenceChangeListener((preference, newValue) -> {
             getResult().putExtra("needsRefresh", true);
             return true;

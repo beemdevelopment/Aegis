@@ -34,7 +34,7 @@ public class MicrosoftAuthImporter extends DatabaseImporter {
 
     @Override
     public State read(InputStream stream, boolean isInternal) throws DatabaseImporterException {
-        SqlImporterHelper helper = new SqlImporterHelper(getContext());
+        SqlImporterHelper helper = new SqlImporterHelper(requireContext());
         List<Entry> entries = helper.read(Entry.class, stream, "accounts");
         return new State(entries);
     }
@@ -42,7 +42,7 @@ public class MicrosoftAuthImporter extends DatabaseImporter {
     @Override
     public DatabaseImporter.State readFromApp() throws PackageManager.NameNotFoundException, DatabaseImporterException {
         SuFile path = getAppPath();
-        SqlImporterHelper helper = new SqlImporterHelper(getContext());
+        SqlImporterHelper helper = new SqlImporterHelper(requireContext());
         List<Entry> entries = helper.read(Entry.class, path, "accounts");
         return new State(entries);
     }

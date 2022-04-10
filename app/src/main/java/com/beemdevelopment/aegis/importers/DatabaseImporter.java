@@ -47,14 +47,14 @@ public abstract class DatabaseImporter {
         _context = context;
     }
 
-    protected Context getContext() {
+    protected Context requireContext() {
         return _context;
     }
 
     protected abstract SuFile getAppPath() throws DatabaseImporterException, PackageManager.NameNotFoundException;
 
     protected SuFile getAppPath(String pkgName, String subPath) throws PackageManager.NameNotFoundException {
-        PackageManager man = getContext().getPackageManager();
+        PackageManager man = requireContext().getPackageManager();
         return new SuFile(man.getApplicationInfo(pkgName, 0).dataDir, subPath);
     }
 
