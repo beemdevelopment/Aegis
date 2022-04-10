@@ -103,7 +103,7 @@ android {
     lint {
         abortOnError true
         checkDependencies true
-        disable 'MissingTranslation'
+        disable 'MissingQuantity', 'MissingTranslation'
     }
 }
 
