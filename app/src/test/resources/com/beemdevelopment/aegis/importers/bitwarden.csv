@@ -1,0 +1,5 @@
+folder,favorite,type,name,notes,fields,login_uri,login_username,login_password,login_totp
+,,login,Test 1,,,,,,otpauth://totp/Deno:Mason?secret=4SJHB4GSD43FZBAI7C2HLRJGPQ&issuer=Deno&algorithm=SHA1&digits=6&period=30
+,,login,Test 2,,,,,,otpauth://totp/SPDX:James?secret=5OM4WOOGPLQEF6UGN3CPEOOLWU&issuer=SPDX&algorithm=SHA256&digits=7&period=20
+,,login,Test 3,,,,,,otpauth://totp/Airbnb:Elijah?secret=7ELGJSGXNCCTV3O6LKJWYFV2RA&issuer=Airbnb&algorithm=SHA512&digits=8&period=50
+,,login,Test 4,,,,,,steam://JRZCL47CMXVOQMNPZR2F7J4RGI

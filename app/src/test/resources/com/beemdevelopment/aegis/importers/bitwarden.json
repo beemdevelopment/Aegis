@@ -1,0 +1,70 @@
+{
+  "encrypted": false,
+  "folders": [],
+  "items": [
+    {
+      "id": "ffdea2cc-923d-47a0-be99-ae7800fd51e4",
+      "organizationId": null,
+      "folderId": null,
+      "type": 1,
+      "name": "Test 1",
+      "notes": null,
+      "favorite": false,
+      "login": {
+        "uris": null,
+        "username": null,
+        "password": null,
+        "totp": "otpauth://totp/Deno:Mason?secret=4SJHB4GSD43FZBAI7C2HLRJGPQ&issuer=Deno&algorithm=SHA1&digits=6&period=30"
+      },
+      "collectionIds": null
+    },
+    {
+      "id": "0f954b25-dbe9-4b38-b8ff-ae7800fd784d",
+      "organizationId": null,
+      "folderId": null,
+      "type": 1,
+      "name": "Test 2",
+      "notes": null,
+      "favorite": false,
+      "login": {
+        "uris": null,
+        "username": null,
+        "password": null,
+        "totp": "otpauth://totp/SPDX:James?secret=5OM4WOOGPLQEF6UGN3CPEOOLWU&issuer=SPDX&algorithm=SHA256&digits=7&period=20"
+      },
+      "collectionIds": null
+    },
+    {
+      "id": "b0f3aae6-f4da-49bc-b981-ae7800fd9467",
+      "organizationId": null,
+      "folderId": null,
+      "type": 1,
+      "name": "Test 3",
+      "notes": null,
+      "favorite": false,
+      "login": {
+        "uris": null,
+        "username": null,
+        "password": null,
+        "totp": "otpauth://totp/Airbnb:Elijah?secret=7ELGJSGXNCCTV3O6LKJWYFV2RA&issuer=Airbnb&algorithm=SHA512&digits=8&period=50"
+      },
+      "collectionIds": null
+    },
+    {
+      "id": "eb10632a-3bfd-40cd-9e4c-8c01c020b944",
+      "organizationId": null,
+      "folderId": null,
+      "type": 1,
+      "name": "Test Steam",
+      "notes": null,
+      "favorite": false,
+      "login": {
+        "uris": null,
+        "username": null,
+        "password": null,
+        "totp": "steam://JRZCL47CMXVOQMNPZR2F7J4RGI"
+      },
+      "collectionIds": null
+    }
+  ]
+}
