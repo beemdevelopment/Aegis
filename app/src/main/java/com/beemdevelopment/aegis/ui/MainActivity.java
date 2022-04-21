@@ -10,9 +10,11 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -74,6 +76,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
     private boolean _loaded;
     private boolean _searchSubmitted;
     private boolean _isRecreated;
+    private boolean _isDPadPressed;
 
     private List<VaultEntry> _selectedEntries;
     private ActionMode _actionMode;
@@ -94,6 +97,8 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         setContentView(R.layout.activity_main);
         setSupportActionBar(findViewById(R.id.toolbar));
         _loaded = false;
+        _isDPadPressed = false;
+
 
         if (savedInstanceState != null) {
             _isRecreated = true;
@@ -206,6 +211,21 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         }
 
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        _isDPadPressed = isDPadKey(keyCode);
+        return super.onKeyDown(keyCode, event);
+    }
+
+    private static boolean isDPadKey(int keyCode) {
+        return keyCode == KeyEvent.KEYCODE_DPAD_DOWN || keyCode == KeyEvent.KEYCODE_DPAD_UP || keyCode == KeyEvent.KEYCODE_DPAD_RIGHT || keyCode == KeyEvent.KEYCODE_DPAD_LEFT;
+    }
+
+    @Override
+    public void onEntryListTouch() {
+        _isDPadPressed = false;
     }
 
     private void onPreferencesResult(Intent data) {
@@ -721,7 +741,9 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
 
     @Override
     public void onScroll(int dx, int dy) {
-        _fabScrollHelper.onScroll(dx, dy);
+        if (!_isDPadPressed) {
+            _fabScrollHelper.onScroll(dx, dy);
+        }
     }
 
     @Override
