@@ -192,15 +192,21 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
             } else {
                 _shownEntries.set(position, newEntry);
                 notifyItemChanged(position);
+                if (_sortCategory != null) {
+                    Comparator<VaultEntry> comparator = _sortCategory.getComparator();
+                    Collections.sort(_shownEntries, comparator);
+                    int newPosition = Collections.binarySearch(_shownEntries, newEntry, comparator);
+                    if (position != newPosition) {
+                        notifyItemMoved(position, newPosition);
+                    }
+                }
             }
         } else if (!isEntryFiltered(newEntry)) {
-            // TODO: preserve order
             _shownEntries.add(newEntry);
 
             int position = getItemCount() - 1;
             notifyItemInserted(position);
         }
-
         checkPeriodUniformity();
     }
 
