@@ -67,6 +67,12 @@
         <license>Protocol Buffers License</license>
     </notice>
     <notice>
+        <name>Simple Flat Mapper</name>
+        <url>https://github.com/arnaudroger/SimpleFlatMapper</url>
+        <copyright>Copyright (c) 2014 Arnaud Roger</copyright>
+        <license>MIT License</license>
+    </notice>
+    <notice>
         <name>TextDrawable</name>
         <url>https://github.com/amulyakhare/TextDrawable</url>
         <copyright>Copyright (C) 2014 Amulya Khare</copyright>

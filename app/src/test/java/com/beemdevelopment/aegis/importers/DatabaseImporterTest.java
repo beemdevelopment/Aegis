@@ -2,6 +2,7 @@ package com.beemdevelopment.aegis.importers;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
@@ -166,6 +167,18 @@ public class DatabaseImporterTest {
         });
 
         checkImportedAuthyEntries(entries);
+    }
+
+    @Test
+    public void testImportBitwardenJson() throws IOException, DatabaseImporterException {
+        List<VaultEntry> entries = importPlain(BitwardenImporter.class, "bitwarden.json");
+        checkImportedBitwardenEntries(entries);
+    }
+
+    @Test
+    public void testImportBitwardenCsv() throws IOException, DatabaseImporterException {
+        List<VaultEntry> entries = importPlain(BitwardenImporter.class, "bitwarden.csv");
+        checkImportedBitwardenEntries(entries);
     }
 
     @Test
@@ -344,6 +357,19 @@ public class DatabaseImporterTest {
                 ((HotpInfo) entryVector.getInfo()).setCounter(((HotpInfo) entryVector.getInfo()).getCounter() - 1);
             }
             checkImportedEntry(entryVector, entry);
+        }
+    }
+
+    private void checkImportedBitwardenEntries(List<VaultEntry> entries) {
+        byte[] secret, vectorSecret;
+        for (VaultEntry entry : entries) {
+            if(entry.getInfo().getTypeId().equals(SteamInfo.ID)) {
+                secret = entry.getInfo().getSecret();
+                vectorSecret = getEntryVectorBySecret(secret).getInfo().getSecret();
+                assertNotNull(String.format("Steam secret has not been found (%s)", vectorSecret));
+            } else {
+                checkImportedEntry(entry);
+            }
         }
     }
 

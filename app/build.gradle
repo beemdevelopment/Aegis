@@ -172,6 +172,7 @@ dependencies {
     implementation 'net.lingala.zip4j:zip4j:2.10.0'
     implementation 'info.guardianproject.trustedintents:trustedintents:0.2'
     implementation 'org.bouncycastle:bcprov-jdk15on:1.70'
+    implementation "org.simpleflatmapper:sfm-csv:8.2.3"
 
     androidTestAnnotationProcessor "com.google.dagger:hilt-android-compiler:$hiltVersion"
     androidTestImplementation "com.google.dagger:hilt-android-testing:$hiltVersion"
