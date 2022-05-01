@@ -163,7 +163,7 @@ dependencies {
     implementation "com.google.guava:guava:${guavaVersion}-android"
     implementation 'com.google.android.material:material:1.5.0'
     implementation 'com.google.protobuf:protobuf-javalite:3.19.4'
-    implementation 'com.google.zxing:core:3.4.1'
+    implementation 'com.google.zxing:core:3.5.0'
     implementation "com.mikepenz:iconics-core:3.2.5"
     implementation 'com.mikepenz:material-design-iconic-typeface:2.2.0.5@aar'
     implementation 'com.nulab-inc:zxcvbn:1.6.0'
