@@ -74,9 +74,12 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
     private static final int CODE_PERM_READ_STORAGE = 1;
 
     private boolean _loaded;
-    private boolean _searchSubmitted;
     private boolean _isRecreated;
     private boolean _isDPadPressed;
+
+    private String _submittedSearchSubtitle;
+    private String _searchQueryInputText;
+    private String _activeSearchFilter;
 
     private List<VaultEntry> _selectedEntries;
     private ActionMode _actionMode;
@@ -102,6 +105,9 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
 
         if (savedInstanceState != null) {
             _isRecreated = true;
+            _searchQueryInputText = savedInstanceState.getString("searchQueryInputText");
+            _activeSearchFilter = savedInstanceState.getString("activeSearchFilter");
+            _submittedSearchSubtitle = savedInstanceState.getString("submittedSearchSubtitle");
         }
 
         _entryListView = (EntryListView) getSupportFragmentManager().findFragmentById(R.id.key_profiles);
@@ -160,6 +166,14 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         }
 
         super.onPause();
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle instance) {
+        super.onSaveInstanceState(instance);
+        instance.putString("activeSearchFilter", _activeSearchFilter);
+        instance.putString("submittedSearchSubtitle", _submittedSearchSubtitle);
+        instance.putString("searchQueryInputText", _searchQueryInputText);
     }
 
     @Override
@@ -505,9 +519,10 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
 
     @Override
     public void onBackPressed() {
-        if (!_searchView.isIconified() || _searchSubmitted) {
-            _searchSubmitted = false;
+        if (!_searchView.isIconified() || _submittedSearchSubtitle != null) {
+            _submittedSearchSubtitle = null;
             _entryListView.setSearchFilter(null);
+            _activeSearchFilter = null;
 
             collapseSearchView();
             setTitle(R.string.app_name);
@@ -531,6 +546,8 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         saveAndBackupVault();
     }
 
+
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         _menu = menu;
@@ -552,31 +569,47 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
             _searchView.requestFocus();
             _searchView.requestFocusFromTouch();
         }
+
         _searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String s) {
                 setTitle(getString(R.string.search));
                 getSupportActionBar().setSubtitle(s);
-                _searchSubmitted = true;
+                _searchQueryInputText = null;
+                _submittedSearchSubtitle = s;
                 collapseSearchView();
                 return false;
             }
 
+
+
             @Override
             public boolean onQueryTextChange(String s) {
-                if (!_searchSubmitted) {
+                if (_submittedSearchSubtitle == null) {
                     _entryListView.setSearchFilter(s);
+                    _activeSearchFilter = s;
+                    _searchQueryInputText = s;
                 }
                 return false;
             }
         });
         _searchView.setOnSearchClickListener(v -> {
-            if (_searchSubmitted) {
-                _searchSubmitted = false;
+            if (_submittedSearchSubtitle != null) {
                 _entryListView.setSearchFilter(null);
+                _activeSearchFilter = null;
+                _submittedSearchSubtitle = null;
             }
         });
-
+        if(_submittedSearchSubtitle != null) {
+            getSupportActionBar().setSubtitle(_submittedSearchSubtitle);
+        }
+        if(_activeSearchFilter != null) {
+            _entryListView.setSearchFilter(_activeSearchFilter);
+        }
+        if(_searchQueryInputText != null) {
+            _searchView.setQuery(_searchQueryInputText, false);
+            _searchView.setIconified(false);
+        }
         return true;
     }
 
