@@ -10,3 +10,7 @@ jobs:
         uses: gradle/wrapper-validation-action@e6e38bacfdf1a337459f332974bb2327a31aaf4b
       - name: Build the app
         run: ./gradlew build
+      - uses: actions/upload-artifact@v3
+        with:
+          name: apk
+          path: app/build/outputs/apk/debug/app-debug.apk
