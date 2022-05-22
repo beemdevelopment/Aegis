@@ -14,7 +14,6 @@ import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -526,6 +525,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
 
             collapseSearchView();
             setTitle(R.string.app_name);
+            getSupportActionBar().setSubtitle(null);
             return;
         }
 
@@ -545,8 +545,6 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
 
         saveAndBackupVault();
     }
-
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -581,8 +579,6 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
                 return false;
             }
 
-
-
             @Override
             public boolean onQueryTextChange(String s) {
                 if (_submittedSearchSubtitle == null) {
@@ -593,6 +589,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
                 return false;
             }
         });
+
         _searchView.setOnSearchClickListener(v -> {
             if (_submittedSearchSubtitle != null) {
                 _entryListView.setSearchFilter(null);
@@ -600,16 +597,20 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
                 _submittedSearchSubtitle = null;
             }
         });
-        if(_submittedSearchSubtitle != null) {
+
+        if (_submittedSearchSubtitle != null) {
             getSupportActionBar().setSubtitle(_submittedSearchSubtitle);
         }
-        if(_activeSearchFilter != null) {
+
+        if (_activeSearchFilter != null) {
             _entryListView.setSearchFilter(_activeSearchFilter);
         }
-        if(_searchQueryInputText != null) {
+
+        if (_searchQueryInputText != null) {
             _searchView.setQuery(_searchQueryInputText, false);
             _searchView.setIconified(false);
         }
+
         return true;
     }
 
