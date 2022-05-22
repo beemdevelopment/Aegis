@@ -347,7 +347,7 @@ public class Preferences {
             JSONArray json = new JSONArray(raw);
             List<String> filter = new ArrayList<>();
             for (int i = 0; i < json.length(); i++) {
-                filter.add(json.getString(i));
+                filter.add(json.isNull(i) ? null : json.optString(i));
             }
             return filter;
         } catch (JSONException e) {

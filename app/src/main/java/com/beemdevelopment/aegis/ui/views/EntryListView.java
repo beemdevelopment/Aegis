@@ -1,7 +1,6 @@
 package com.beemdevelopment.aegis.ui.views;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -388,6 +387,20 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
         _recyclerView.scheduleLayoutAnimation();
     }
 
+    private void addChipTo(ChipGroup chipGroup, String group) {
+        Chip chip = (Chip) getLayoutInflater().inflate(R.layout.chip_material, null, false);
+        chip.setText(group == null ? getString(R.string.no_group) : group);
+        chip.setCheckable(true);
+        chip.setChecked(_groupFilter != null && _groupFilter.contains(group));
+        chip.setCheckedIconVisible(true);
+        chip.setOnCheckedChangeListener((group1, checkedId) -> {
+            List<String> groupFilter = getGroupFilter(chipGroup);
+            setGroupFilter(groupFilter, true);
+        });
+        chip.setTag(group == null ? new Object() : null);
+        chipGroup.addView(chip);
+    }
+
     private void initializeGroupChip() {
         View view = getLayoutInflater().inflate(R.layout.dialog_select_groups, null);
         BottomSheetDialog dialog = new BottomSheetDialog(requireContext());
@@ -415,18 +428,9 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
             chipGroup.removeAllViews();
 
             for (String group : _groups) {
-                Chip chip = (Chip) getLayoutInflater().inflate(R.layout.chip_material, null, false);
-                chip.setText(group);
-                chip.setCheckable(true);
-                chip.setChecked(_groupFilter != null && _groupFilter.contains(group));
-                chip.setCheckedIconVisible(true);
-                chip.setOnCheckedChangeListener((group1, checkedId) -> {
-                    List<String> groupFilter = getGroupFilter(chipGroup);
-                    setGroupFilter(groupFilter, true);
-                });
-
-                chipGroup.addView(chip);
+                addChipTo(chipGroup, group);
             }
+            addChipTo(chipGroup, null);
 
             Dialogs.showSecureDialog(dialog);
         });
@@ -434,7 +438,13 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
 
     private static List<String> getGroupFilter(ChipGroup chipGroup) {
         return chipGroup.getCheckedChipIds().stream()
-                .map(i -> ((Chip) chipGroup.findViewById(i)).getText().toString())
+                .map(i -> {
+                    Chip chip = chipGroup.findViewById(i);
+                    if (chip.getTag() != null) {
+                        return null;
+                    }
+                    return chip. getText().toString();
+                })
                 .collect(Collectors.toList());
     }
 
@@ -472,7 +482,7 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
 
     private List<String> cleanGroupFilter(List<String> groupFilter) {
        return groupFilter.stream()
-                .filter(g -> _groups.contains(g))
+                .filter(g -> g == null || _groups.contains(g))
                 .collect(Collectors.toList());
     }
 
