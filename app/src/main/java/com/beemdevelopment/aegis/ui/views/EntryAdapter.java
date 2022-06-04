@@ -194,10 +194,12 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
                 notifyItemChanged(position);
                 if (_sortCategory != null) {
                     Comparator<VaultEntry> comparator = _sortCategory.getComparator();
-                    Collections.sort(_shownEntries, comparator);
-                    int newPosition = Collections.binarySearch(_shownEntries, newEntry, comparator);
-                    if (position != newPosition) {
-                        notifyItemMoved(position, newPosition);
+                    if (comparator != null) {
+                        Collections.sort(_shownEntries, comparator);
+                        int newPosition = Collections.binarySearch(_shownEntries, newEntry, comparator);
+                        if (position != newPosition) {
+                            notifyItemMoved(position, newPosition);
+                        }
                     }
                 }
             }
