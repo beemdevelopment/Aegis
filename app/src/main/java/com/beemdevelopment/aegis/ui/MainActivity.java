@@ -828,6 +828,10 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
 
             @Override
             public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
+                if(_selectedEntries.size() == 0) {
+                    mode.finish();
+                    return true;
+                }
                 switch (item.getItemId()) {
                     case R.id.action_copy:
                         copyEntryCode(_selectedEntries.get(0));
