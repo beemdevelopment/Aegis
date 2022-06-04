@@ -14,3 +14,41 @@ jobs:
         with:
           name: apk
           path: app/build/outputs/apk/debug/app-debug.apk
+  test:
+    runs-on: macos-latest
+    # This is probably pretty expensive for GitHub, so restrict the repositories that job runs on
+    if: github.repository == 'beemdevelopment/Aegis' || github.repository == 'alexbakker/Aegis'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - uses: actions/setup-java@v2
+        with:
+          java-version: '11'
+          distribution: 'temurin'
+      - name: Tests
+        uses: reactivecircus/android-emulator-runner@e790971012b979513b4e2fe70d4079bc0ca8a1ae
+        with:
+          api-level: 31
+          arch: x86_64
+          profile: pixel_3a
+          heap-size: 512M
+          ram-size: 4096M
+          emulator-options: -memory 4096 -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
+          disable-animations: true
+          disk-size: 8G
+          script: |
+            mkdir -p artifacts/report
+            adb logcat -c
+            adb logcat -G 16M && adb logcat -g
+            ./gradlew connectedCheck || touch tests_failing
+            adb logcat -d > artifacts/logcat.txt
+            cp -r app/build/reports/androidTests/connected/* artifacts/report/
+            if adb shell '[ -e /sdcard/Pictures/screenshots ]'; then adb pull /sdcard/Pictures/screenshots artifacts/; fi
+            test ! -f tests_failing
+      - uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: instrumented-test-report
+          path: |
+            artifacts/*
+          if-no-files-found: ignore
