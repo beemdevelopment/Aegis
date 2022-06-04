@@ -388,6 +388,8 @@
     <string name="importer_help_totp_authenticator">Supply a TOTP Authenticator export file.</string>
     <string name="importer_help_winauth">Supply a WinAuth export file.</string>
 
+    <string name="importer_encrypted_exception_google_authenticator">"Encrypted entry was skipped: %s"</string>
+
     <string name="importer_help_direct">Import entries directly from %s. This requires the app to be installed on this device and for root access to be granted to Aegis.</string>
     <string name="groups">Groups</string>
     <string name="pref_focus_search">Focus search on app start</string>

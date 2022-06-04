@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 
+import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.encoding.EncodingException;
 import com.beemdevelopment.aegis.otp.GoogleAuthInfo;
 import com.beemdevelopment.aegis.otp.HotpInfo;
@@ -34,25 +35,29 @@ public class GoogleAuthImporter extends DatabaseImporter {
     
     @Override
     public State read(InputStream stream, boolean isInternal) throws DatabaseImporterException {
-        SqlImporterHelper helper = new SqlImporterHelper(requireContext());
+        final Context context = requireContext();
+        SqlImporterHelper helper = new SqlImporterHelper(context);
         List<Entry> entries = helper.read(Entry.class, stream, "accounts");
-        return new State(entries);
+        return new State(entries, context);
     }
 
     @Override
     public DatabaseImporter.State readFromApp() throws PackageManager.NameNotFoundException, DatabaseImporterException {
         SuFile path = getAppPath();
-        SqlImporterHelper helper = new SqlImporterHelper(requireContext());
+        final Context context = requireContext();
+        SqlImporterHelper helper = new SqlImporterHelper(context);
         List<Entry> entries = helper.read(Entry.class, path, "accounts");
-        return new State(entries);
+        return new State(entries, context);
     }
 
     public static class State extends DatabaseImporter.State {
         private List<Entry> _entries;
+        private Context _context;
 
-        private State(List<Entry> entries) {
+        private State(List<Entry> entries, Context context) {
             super(false);
             _entries = entries;
+            _context = context;
         }
 
         @Override
@@ -61,7 +66,7 @@ public class GoogleAuthImporter extends DatabaseImporter {
 
             for (Entry sqlEntry : _entries) {
                 try {
-                    VaultEntry entry = convertEntry(sqlEntry);
+                    VaultEntry entry = convertEntry(sqlEntry, _context);
                     result.addEntry(entry);
                 } catch (DatabaseImporterEntryException e) {
                     result.addError(e);
@@ -71,8 +76,11 @@ public class GoogleAuthImporter extends DatabaseImporter {
             return result;
         }
 
-        private static VaultEntry convertEntry(Entry entry) throws DatabaseImporterEntryException {
+        private static VaultEntry convertEntry(Entry entry, Context context) throws DatabaseImporterEntryException {
             try {
+                if (entry.isEncrypted()) {
+                    throw new DatabaseImporterException(context.getString(R.string.importer_encrypted_exception_google_authenticator, entry.getEmail()));
+                }
                 byte[] secret = GoogleAuthInfo.parseSecret(entry.getSecret());
 
                 OtpInfo info;
@@ -102,6 +110,7 @@ public class GoogleAuthImporter extends DatabaseImporter {
 
     private static class Entry extends SqlImporterHelper.Entry {
         private int _type;
+        private boolean _isEncrypted;
         private String _secret;
         private String _email;
         private String _issuer;
@@ -114,10 +123,16 @@ public class GoogleAuthImporter extends DatabaseImporter {
             _email = SqlImporterHelper.getString(cursor, "email", "");
             _issuer = SqlImporterHelper.getString(cursor, "issuer", "");
             _counter = SqlImporterHelper.getLong(cursor, "counter");
+            _isEncrypted = (cursor.getColumnIndex("isencrypted") != -1 && SqlImporterHelper.getInt(cursor, "isencrypted") > 0);
         }
+
 
         public int getType() {
             return _type;
+        }
+
+        public boolean isEncrypted() {
+            return _isEncrypted;
         }
 
         public String getSecret() {
