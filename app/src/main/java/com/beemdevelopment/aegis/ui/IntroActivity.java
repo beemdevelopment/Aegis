@@ -6,6 +6,7 @@ import static com.beemdevelopment.aegis.ui.slides.SecurityPickerSlide.CRYPT_TYPE
 import static com.beemdevelopment.aegis.ui.slides.SecurityPickerSlide.CRYPT_TYPE_PASS;
 
 import android.os.Bundle;
+import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 
 import com.beemdevelopment.aegis.R;
@@ -51,6 +52,18 @@ public class IntroActivity extends IntroBaseActivity {
             return true;
         }
 
+        if (oldSlide == WelcomeSlide.class
+                && newSlide == SecurityPickerSlide.class
+                && getState().getBoolean("imported")) {
+            skipToSlide(DoneSlide.class);
+            return true;
+        }
+
+        // on the welcome page, we don't want the keyboard to push any views up
+        getWindow().setSoftInputMode(newSlide == WelcomeSlide.class
+                ? WindowManager.LayoutParams.SOFT_INPUT_ADJUST_NOTHING
+                : WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
+
         return false;
     }
 
@@ -58,21 +71,31 @@ public class IntroActivity extends IntroBaseActivity {
     protected void onDonePressed() {
         Bundle state = getState();
 
-        int cryptType = state.getInt("cryptType", CRYPT_TYPE_INVALID);
         VaultFileCredentials creds = (VaultFileCredentials) state.getSerializable("creds");
-        if (cryptType == CRYPT_TYPE_INVALID
-                || (cryptType == CRYPT_TYPE_NONE && creds != null)
-                || (cryptType == CRYPT_TYPE_PASS && (creds == null || !creds.getSlots().has(PasswordSlot.class)))
-                || (cryptType == CRYPT_TYPE_BIOMETRIC && (creds == null || !creds.getSlots().has(PasswordSlot.class) || !creds.getSlots().has(BiometricSlot.class)))) {
-            throw new RuntimeException(String.format("State of SecuritySetupSlide not properly propagated, cryptType: %d, creds: %s", cryptType, creds));
-        }
+        if (!state.getBoolean("imported")) {
+            int cryptType = state.getInt("cryptType", CRYPT_TYPE_INVALID);
+            if (cryptType == CRYPT_TYPE_INVALID
+                    || (cryptType == CRYPT_TYPE_NONE && creds != null)
+                    || (cryptType == CRYPT_TYPE_PASS && (creds == null || !creds.getSlots().has(PasswordSlot.class)))
+                    || (cryptType == CRYPT_TYPE_BIOMETRIC && (creds == null || !creds.getSlots().has(PasswordSlot.class) || !creds.getSlots().has(BiometricSlot.class)))) {
+                throw new RuntimeException(String.format("State of SecuritySetupSlide not properly propagated, cryptType: %d, creds: %s", cryptType, creds));
+            }
 
-        try {
-            _vaultManager.init(creds);
-        } catch (VaultRepositoryException e) {
-            e.printStackTrace();
-            Dialogs.showErrorDialog(this, R.string.vault_init_error, e);
-            return;
+            try {
+                _vaultManager.initNew(creds);
+            } catch (VaultRepositoryException e) {
+                e.printStackTrace();
+                Dialogs.showErrorDialog(this, R.string.vault_init_error, e);
+                return;
+            }
+        } else {
+            try {
+                _vaultManager.load(creds);
+            } catch (VaultRepositoryException e) {
+                e.printStackTrace();
+                Dialogs.showErrorDialog(this, R.string.vault_load_error, e);
+                return;
+            }
         }
 
         // skip the intro from now on

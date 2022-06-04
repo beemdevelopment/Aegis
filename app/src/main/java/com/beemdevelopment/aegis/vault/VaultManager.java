@@ -60,7 +60,7 @@ public class VaultManager {
 
         if (_vaultFile != null && !_vaultFile.isEncrypted()) {
             try {
-                load(_vaultFile, null);
+                loadFrom(_vaultFile, null);
             } catch (VaultRepositoryException e) {
                 e.printStackTrace();
                 _vaultFile = null;
@@ -76,7 +76,7 @@ public class VaultManager {
      * Calling this method removes the manager's internal reference to the raw vault file (if it had one).
      */
     @NonNull
-    public VaultRepository init(@Nullable VaultFileCredentials creds) throws VaultRepositoryException {
+    public VaultRepository initNew(@Nullable VaultFileCredentials creds) throws VaultRepositoryException {
         if (isVaultLoaded()) {
             throw new IllegalStateException("Vault manager is already initialized");
         }
@@ -100,7 +100,7 @@ public class VaultManager {
      * Calling this method removes the manager's internal reference to the raw vault file (if it had one).
      */
     @NonNull
-    public VaultRepository load(@NonNull VaultFile vaultFile, @Nullable VaultFileCredentials creds) throws VaultRepositoryException {
+    public VaultRepository loadFrom(@NonNull VaultFile vaultFile, @Nullable VaultFileCredentials creds) throws VaultRepositoryException {
         if (isVaultLoaded()) {
             throw new IllegalStateException("Vault manager is already initialized");
         }
@@ -116,9 +116,30 @@ public class VaultManager {
         return getVault();
     }
 
+    /**
+     * Initializes the vault repository by loading and decrypting the vault file stored in
+     * internal storage, with the given creds. It can only be called if isVaultLoaded()
+     * returns false.
+     *
+     * Calling this method removes the manager's internal reference to the raw vault file (if it had one).
+     */
+    @NonNull
+    public VaultRepository load(@Nullable VaultFileCredentials creds) throws VaultRepositoryException {
+        if (isVaultLoaded()) {
+            throw new IllegalStateException("Vault manager is already initialized");
+        }
+
+        loadVaultFile();
+        if (isVaultLoaded()) {
+            return _repo;
+        }
+
+        return loadFrom(getVaultFile(), creds);
+    }
+
     @NonNull
     public VaultRepository unlock(@NonNull VaultFileCredentials creds) throws VaultRepositoryException {
-        VaultRepository repo = load(getVaultFile(), creds);
+        VaultRepository repo = loadFrom(getVaultFile(), creds);
         startNotificationService();
         return repo;
     }

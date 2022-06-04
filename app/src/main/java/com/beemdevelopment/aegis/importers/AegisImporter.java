@@ -3,6 +3,7 @@ package com.beemdevelopment.aegis.importers;
 import android.content.Context;
 import android.content.DialogInterface;
 
+import androidx.annotation.Nullable;
 import androidx.lifecycle.Lifecycle;
 
 import com.beemdevelopment.aegis.R;
@@ -72,7 +73,7 @@ public class AegisImporter extends DatabaseImporter {
                 throw new DatabaseImporterException(e);
             }
 
-            return new DecryptedState(obj);
+            return new DecryptedState(obj, creds);
         }
 
         public State decrypt(char[] password) throws DatabaseImporterException {
@@ -109,10 +110,21 @@ public class AegisImporter extends DatabaseImporter {
 
     public static class DecryptedState extends State {
         private JSONObject _obj;
+        private VaultFileCredentials _creds;
 
         private DecryptedState(JSONObject obj) {
+            this(obj, null);
+        }
+
+        private DecryptedState(JSONObject obj, VaultFileCredentials creds) {
             super(false);
             _obj = obj;
+            _creds = creds;
+        }
+
+        @Nullable
+        public VaultFileCredentials getCredentials() {
+            return _creds;
         }
 
         @Override

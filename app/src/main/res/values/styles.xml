@@ -31,6 +31,7 @@
         <item name="alertDialogTheme">@style/Theme.Aegis.Dialog.Light</item>
         <item name="preferenceTheme">@style/Theme.Aegis.Preference.Light</item>
         <item name="textInputStyle">@style/Widget.Aegis.TextInput.Light</item>
+        <item name="introButtonStyle">@style/Widget.Aegis.OutlinedButton.Light</item>
         <item name="dropdownStyle">@style/Widget.Aegis.Dropdown.Light</item>
         <item name="bottomSheetDialogTheme">@style/ThemeOverLay.Aegis.BottomSheetDialog.Rounded</item>
 
@@ -74,6 +75,7 @@
         <item name="alertDialogTheme">@style/Theme.Aegis.Dialog.Dark</item>
         <item name="preferenceTheme">@style/Theme.Aegis.Preference.Dark</item>
         <item name="textInputStyle">@style/Widget.Aegis.TextInput.Dark</item>
+        <item name="introButtonStyle">@style/Widget.Aegis.OutlinedButton.Dark</item>
         <item name="dropdownStyle">@style/Widget.Aegis.Dropdown.Dark</item>
         <item name="bottomSheetDialogTheme">@style/ThemeOverLay.Aegis.BottomSheetDialog.Rounded</item>
 
@@ -108,6 +110,7 @@
         <item name="alertDialogTheme">@style/Theme.Aegis.Dialog.TrueDark</item>
         <item name="preferenceTheme">@style/Theme.Aegis.Preference.Dark</item>
         <item name="textInputStyle">@style/Widget.Aegis.TextInput.Dark</item>
+        <item name="introButtonStyle">@style/Widget.Aegis.OutlinedButton.Dark</item>
         <item name="dropdownStyle">@style/Widget.Aegis.Dropdown.Dark</item>
         <item name="bottomSheetDialogTheme">@style/ThemeOverLay.Aegis.BottomSheetDialog.Rounded</item>
 
@@ -222,6 +225,12 @@
     <style name="Widget.Aegis.DialogButton" parent="Widget.MaterialComponents.Button.TextButton.Dialog">
         <item name="rippleColor">@color/colorSecondary</item>
         <item name="android:textColor">@color/dialog_button_color</item>
+    </style>
+
+    <style name="Widget.Aegis.OutlinedButton.Light" parent="Widget.MaterialComponents.Button.OutlinedButton"/>
+    <style name="Widget.Aegis.OutlinedButton.Dark" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="android:textColor">@color/secondary_text</item>
+        <item name="rippleColor">@color/secondary_text</item>
     </style>
 
     <style name="Widget.Aegis.BottomSheet.Rounded" parent="Widget.MaterialComponents.BottomSheet">
