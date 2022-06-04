@@ -83,21 +83,35 @@ public class ImportEntriesActivity extends AegisActivity {
         });
         _fabScrollHelper = new FabScrollHelper(fab);
 
-        Class<? extends DatabaseImporter> importerType = (Class<? extends DatabaseImporter>) getIntent().getSerializableExtra("importerType");
-        startImport(importerType, (File) getIntent().getSerializableExtra("file"));
+        DatabaseImporter.Definition importerDef = (DatabaseImporter.Definition) getIntent().getSerializableExtra("importerDef");
+        startImport(importerDef, (File) getIntent().getSerializableExtra("file"));
     }
 
-    private void startImport(@NonNull Class<? extends DatabaseImporter> importerType, @Nullable File file) {
+    private void startImport(DatabaseImporter.Definition importerDef, @Nullable File file) {
+        DatabaseImporter importer = DatabaseImporter.create(this, importerDef.getType());
         if (file == null) {
-            startImportApp(importerType);
+            if (importer.isInstalledAppVersionSupported()) {
+                startImportApp(importer);
+            } else {
+                Dialogs.showSecureDialog(new AlertDialog.Builder(this)
+                        .setTitle(R.string.warning)
+                        .setMessage(getString(R.string.app_version_error, importerDef.getName()))
+                        .setCancelable(false)
+                        .setPositiveButton(R.string.yes, (dialog1, which) -> {
+                            startImportApp(importer);
+                        })
+                        .setNegativeButton(R.string.no, (dialog1, which) -> {
+                            finish();
+                        })
+                        .create());
+            }
         } else {
-            startImportFile(importerType, file);
+            startImportFile(importer, file);
         }
     }
 
-    private void startImportFile(@NonNull Class<? extends DatabaseImporter> importerType, @NonNull File file) {
+    private void startImportFile(@NonNull DatabaseImporter importer, @NonNull File file) {
         try (InputStream stream = new FileInputStream(file)) {
-            DatabaseImporter importer = DatabaseImporter.create(this, importerType);
             DatabaseImporter.State state = importer.read(stream);
             processImporterState(state);
         } catch (FileNotFoundException e) {
@@ -108,9 +122,7 @@ public class ImportEntriesActivity extends AegisActivity {
         }
     }
 
-    private void startImportApp(@NonNull Class<? extends DatabaseImporter> importerType) {
-        DatabaseImporter importer = DatabaseImporter.create(this, importerType);
-
+    private void startImportApp(@NonNull DatabaseImporter importer) {
         // obtain the global root shell and close it immediately after we're done
         // TODO: find a way to use SuFileInputStream with Shell.newInstance()
         try (Shell shell = Shell.getShell()) {

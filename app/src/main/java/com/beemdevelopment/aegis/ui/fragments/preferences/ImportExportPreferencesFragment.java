@@ -42,7 +42,7 @@ import javax.crypto.Cipher;
 
 public class ImportExportPreferencesFragment extends PreferencesFragment {
     // keep a reference to the type of database converter that was selected
-    private Class<? extends DatabaseImporter> _importerType;
+    private DatabaseImporter.Definition _importerDef;
 
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
@@ -50,13 +50,13 @@ public class ImportExportPreferencesFragment extends PreferencesFragment {
         addPreferencesFromResource(R.xml.preferences_import_export);
 
         if (savedInstanceState != null) {
-            _importerType = (Class<? extends DatabaseImporter>) savedInstanceState.getSerializable("importerType");
+            _importerDef = (DatabaseImporter.Definition) savedInstanceState.getSerializable("importerDef");
         }
 
         Preference importPreference = requirePreference("pref_import");
         importPreference.setOnPreferenceClickListener(preference -> {
             Dialogs.showImportersDialog(requireContext(), false, definition -> {
-                _importerType = definition.getType();
+                _importerDef = definition;
 
                 Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
                 intent.setType("*/*");
@@ -68,7 +68,7 @@ public class ImportExportPreferencesFragment extends PreferencesFragment {
         Preference importAppPreference = requirePreference("pref_import_app");
         importAppPreference.setOnPreferenceClickListener(preference -> {
             Dialogs.showImportersDialog(requireContext(), true, definition -> {
-                startImportEntriesActivity(definition.getType(), null);
+                startImportEntriesActivity(definition, null);
             });
             return true;
         });
@@ -83,7 +83,7 @@ public class ImportExportPreferencesFragment extends PreferencesFragment {
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putSerializable("importerType", _importerType);
+        outState.putSerializable("importerDef", _importerDef);
     }
 
     @Override
@@ -115,7 +115,7 @@ public class ImportExportPreferencesFragment extends PreferencesFragment {
         ImportFileTask.Params params = new ImportFileTask.Params(uri, "import", null);
         ImportFileTask task = new ImportFileTask(requireContext(), result -> {
             if (result.getException() == null) {
-                startImportEntriesActivity(_importerType, result.getFile());
+                startImportEntriesActivity(_importerDef, result.getFile());
             } else {
                 Dialogs.showErrorDialog(requireContext(), R.string.reading_file_error, result.getException());
             }
@@ -123,9 +123,9 @@ public class ImportExportPreferencesFragment extends PreferencesFragment {
         task.execute(getLifecycle(), params);
     }
 
-    private void startImportEntriesActivity(Class<? extends DatabaseImporter> importerType, File file) {
+    private void startImportEntriesActivity(DatabaseImporter.Definition importerDef, File file) {
         Intent intent = new Intent(requireActivity(), ImportEntriesActivity.class);
-        intent.putExtra("importerType", importerType);
+        intent.putExtra("importerDef", importerDef);
         intent.putExtra("file", file);
         startActivityForResult(intent, CODE_IMPORT);
     }

@@ -1,6 +1,7 @@
 package com.beemdevelopment.aegis.importers;
 
 import android.content.Context;
+import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 
@@ -32,7 +33,19 @@ public class GoogleAuthImporter extends DatabaseImporter {
     protected SuFile getAppPath() throws PackageManager.NameNotFoundException {
         return getAppPath(_pkgName, _subPath);
     }
-    
+
+    @Override
+    public boolean isInstalledAppVersionSupported() {
+        PackageInfo info;
+        try {
+            info = requireContext().getPackageManager().getPackageInfo(_pkgName, 0);
+        } catch (PackageManager.NameNotFoundException e) {
+            return false;
+        }
+
+        return info.versionCode <= 5000100;
+    }
+
     @Override
     public State read(InputStream stream, boolean isInternal) throws DatabaseImporterException {
         final Context context = requireContext();

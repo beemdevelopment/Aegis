@@ -16,6 +16,7 @@
     <string name="yandex_pin">PIN (4–16 digits)</string>
     <string name="suggested">Suggested</string>
     <string name="usage_count">Usage count</string>
+    <string name="warning">Warning</string>
 
     <string name="pref_cat_appearance_app">App</string>
     <string name="pref_cat_appearance_entries">Entries</string>
@@ -205,6 +206,7 @@
     <string name="file_not_found">Error: File not found</string>
     <string name="reading_file_error">An error occurred while trying to read the file</string>
     <string name="app_lookup_error">Error: App is not installed</string>
+    <string name="app_version_error">The version of %s that\'s installed is not supported. Attempting to import may result in an error. Would you like to continue anyway?</string>
     <string name="root_error">Error: unable to obtain root access</string>
     <plurals name="imported_entries_count">
         <item quantity="one">Imported %d entry</item>
@@ -381,14 +383,14 @@
     <string name="importer_help_duo">Supply a copy of <b>/data/data/com.duosecurity.duomobile/files/duokit/accounts.json</b>, located in the internal storage directory of DUO.</string>
     <string name="importer_help_freeotp">Supply a copy of <b>/data/data/org.fedorahosted.freeotp/shared_prefs/tokens.xml</b>, located in the internal storage directory of FreeOTP.</string>
     <string name="importer_help_freeotp_plus">Supply a FreeOTP+ export file.</string>
-    <string name="importer_help_google_authenticator">Supply a copy of <b>/data/data/com.google.android.apps.authenticator2/databases/databases</b>, located in the internal storage directory of Google Authenticator.</string>
+    <string name="importer_help_google_authenticator"><b>Only database files from Google Authenticator v5.10 and prior are supported</b>.\n\nSupply a copy of <b>/data/data/com.google.android.apps.authenticator2/databases/databases</b>, located in the internal storage directory of Google Authenticator.</string>
     <string name="importer_help_microsoft_authenticator">Supply a copy of <b>/data/data/com.azure.authenticator/databases/PhoneFactor</b>, located in the internal storage directory of Microsoft Authenticator.</string>
     <string name="importer_help_plain_text">Supply a plain text file with a Google Authenticator URI on each line.</string>
     <string name="importer_help_steam">Supply a copy of <b>/data/data/com.valvesoftware.android.steam.community/files/Steamguard-*.json</b>, located in the internal storage directory of Steam.</string>
     <string name="importer_help_totp_authenticator">Supply a TOTP Authenticator export file.</string>
     <string name="importer_help_winauth">Supply a WinAuth export file.</string>
 
-    <string name="importer_encrypted_exception_google_authenticator">"Encrypted entry was skipped: %s"</string>
+    <string name="importer_encrypted_exception_google_authenticator">Encrypted entry was skipped: %s</string>
 
     <string name="importer_help_direct">Import entries directly from %s. This requires the app to be installed on this device and for root access to be granted to Aegis.</string>
     <string name="groups">Groups</string>

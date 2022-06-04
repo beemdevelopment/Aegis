@@ -13,6 +13,7 @@ import com.topjohnwu.superuser.io.SuFileInputStream;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.Serializable;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -59,6 +60,10 @@ public abstract class DatabaseImporter {
         return new SuFile(man.getApplicationInfo(pkgName, 0).dataDir, subPath);
     }
 
+    public boolean isInstalledAppVersionSupported() {
+        return true;
+    }
+
     protected abstract State read(InputStream stream, boolean isInternal) throws DatabaseImporterException;
 
     public State read(InputStream stream) throws DatabaseImporterException {
@@ -91,7 +96,7 @@ public abstract class DatabaseImporter {
         return Collections.unmodifiableList(_importers);
     }
 
-    public static class Definition {
+    public static class Definition implements Serializable {
         private final String _name;
         private final Class<? extends DatabaseImporter> _type;
         private final @StringRes int _help;
