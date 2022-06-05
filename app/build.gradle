@@ -36,7 +36,6 @@ android {
         testInstrumentationRunnerArguments clearPackageData: 'true'
     }
 
-
     testOptions {
         execution 'ANDROIDX_TEST_ORCHESTRATOR'
 

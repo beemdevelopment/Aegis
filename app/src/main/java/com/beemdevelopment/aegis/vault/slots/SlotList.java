@@ -8,6 +8,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class SlotList extends UUIDMap<Slot> {
     public JSONArray toJson() {
@@ -52,6 +53,20 @@ public class SlotList extends UUIDMap<Slot> {
             }
         }
         return list;
+    }
+
+    public List<PasswordSlot> findBackupPasswordSlots() {
+        return findAll(PasswordSlot.class)
+                .stream()
+                .filter(PasswordSlot::isBackup)
+                .collect(Collectors.toList());
+    }
+
+    public List<PasswordSlot> findRegularPasswordSlots() {
+        return findAll(PasswordSlot.class)
+                .stream()
+                .filter(s -> !s.isBackup())
+                .collect(Collectors.toList());
     }
 
     public <T extends Slot> boolean has(Class<T> type) {

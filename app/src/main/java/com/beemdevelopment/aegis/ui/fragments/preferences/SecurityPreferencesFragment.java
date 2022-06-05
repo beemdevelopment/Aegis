@@ -34,7 +34,6 @@ import com.beemdevelopment.aegis.vault.slots.SlotList;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import javax.crypto.Cipher;
 
@@ -165,7 +164,7 @@ public class SecurityPreferencesFragment extends PreferencesFragment {
 
             Dialogs.showPasswordInputDialog(requireContext(), R.string.set_password_confirm, R.string.pin_keyboard_description, password -> {
                 if (isDigitsOnly(new String(password))) {
-                    List<PasswordSlot> slots = getRegularPasswordSlots(_vaultManager.getVault().getCredentials().getSlots());
+                    List<PasswordSlot> slots = _vaultManager.getVault().getCredentials().getSlots().findRegularPasswordSlots();
                     PasswordSlotDecryptTask.Params params = new PasswordSlotDecryptTask.Params(slots, password);
                     PasswordSlotDecryptTask task = new PasswordSlotDecryptTask(requireContext(), new PasswordConfirmationListener());
                     task.execute(getLifecycle(), params);
@@ -243,7 +242,7 @@ public class SecurityPreferencesFragment extends PreferencesFragment {
                 Dialogs.showSetPasswordDialog(requireActivity(), new SetBackupPasswordListener());
             } else {
                 SlotList slots = _vaultManager.getVault().getCredentials().getSlots();
-                for (Slot slot : getBackupPasswordSlots(slots)) {
+                for (Slot slot : slots.findBackupPasswordSlots()) {
                     slots.remove(slot);
                 }
 
@@ -275,8 +274,8 @@ public class SecurityPreferencesFragment extends PreferencesFragment {
 
         if (encrypted) {
             SlotList slots = _vaultManager.getVault().getCredentials().getSlots();
-            boolean multiBackupPassword = getBackupPasswordSlots(slots).size() > 1;
-            boolean multiPassword = getRegularPasswordSlots(slots).size() > 1;
+            boolean multiBackupPassword = slots.findBackupPasswordSlots().size() > 1;
+            boolean multiPassword = slots.findRegularPasswordSlots().size() > 1;
             boolean multiBio = slots.findAll(BiometricSlot.class).size() > 1;
             boolean canUseBio = BiometricsHelper.isAvailable(requireContext());
             _setPasswordPreference.setEnabled(!multiPassword);
@@ -299,23 +298,7 @@ public class SecurityPreferencesFragment extends PreferencesFragment {
             return false;
         }
 
-        return getBackupPasswordSlots(vault.getCredentials().getSlots()).size() > 0;
-    }
-
-    private static List<PasswordSlot> getBackupPasswordSlots(SlotList slots) {
-        return getPasswordSlots(slots, true);
-    }
-
-    private static List<PasswordSlot> getRegularPasswordSlots(SlotList slots) {
-        return getPasswordSlots(slots, false);
-    }
-
-    private static List<PasswordSlot> getPasswordSlots(SlotList slots, boolean isBackup) {
-        return slots
-                .findAll(PasswordSlot.class)
-                .stream()
-                .filter(s -> s.isBackup() == isBackup)
-                .collect(Collectors.toList());
+        return vault.getCredentials().getSlots().findBackupPasswordSlots().size() > 0;
     }
 
     private String getPasswordReminderSummary() {
@@ -403,7 +386,7 @@ public class SecurityPreferencesFragment extends PreferencesFragment {
                 slot.setKey(creds.getKey(), cipher);
 
                 // remove the old backup password slot
-                for (Slot oldSlot : getBackupPasswordSlots(slots)) {
+                for (Slot oldSlot : slots.findBackupPasswordSlots()) {
                     slots.remove(oldSlot);
                 }
 
