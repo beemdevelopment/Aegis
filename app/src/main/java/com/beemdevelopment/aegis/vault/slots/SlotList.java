@@ -57,4 +57,31 @@ public class SlotList extends UUIDMap<Slot> {
     public <T extends Slot> boolean has(Class<T> type) {
         return find(type) != null;
     }
+
+    /**
+     * Returns a copy of this SlotList that is suitable for exporting.
+     * In case there's a backup password slot, any regular password slots are stripped.
+     */
+    public SlotList exportable() {
+        boolean hasBackupSlots = false;
+        for (Slot slot : this) {
+            if (slot instanceof PasswordSlot && ((PasswordSlot) slot).isBackup()) {
+                hasBackupSlots = true;
+                break;
+            }
+        }
+
+        if (!hasBackupSlots) {
+            return this;
+        }
+
+        SlotList slots = new SlotList();
+        for (Slot slot : this) {
+            if (!(slot instanceof PasswordSlot) || ((PasswordSlot) slot).isBackup()) {
+                slots.add(slot);
+            }
+        }
+
+        return slots;
+    }
 }

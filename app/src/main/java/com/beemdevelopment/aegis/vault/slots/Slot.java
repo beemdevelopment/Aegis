@@ -140,7 +140,8 @@ public abstract class Slot extends UUIDMap.Value {
                             Hex.decode(obj.getString("salt"))
                     );
                     boolean repaired = obj.optBoolean("repaired", false);
-                    slot = new PasswordSlot(uuid, key, keyParams, scryptParams, repaired);
+                    boolean isBackup = obj.optBoolean("is_backup", false);
+                    slot = new PasswordSlot(uuid, key, keyParams, scryptParams, repaired, isBackup);
                     break;
                 case Slot.TYPE_BIOMETRIC:
                     slot = new BiometricSlot(uuid, key, keyParams);

@@ -24,6 +24,7 @@ import com.beemdevelopment.aegis.ui.dialogs.Dialogs;
 import com.beemdevelopment.aegis.ui.preferences.SwitchPreference;
 import com.beemdevelopment.aegis.ui.tasks.PasswordSlotDecryptTask;
 import com.beemdevelopment.aegis.vault.VaultFileCredentials;
+import com.beemdevelopment.aegis.vault.VaultRepository;
 import com.beemdevelopment.aegis.vault.VaultRepositoryException;
 import com.beemdevelopment.aegis.vault.slots.BiometricSlot;
 import com.beemdevelopment.aegis.vault.slots.PasswordSlot;
@@ -33,6 +34,7 @@ import com.beemdevelopment.aegis.vault.slots.SlotList;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.crypto.Cipher;
 
@@ -43,6 +45,8 @@ public class SecurityPreferencesFragment extends PreferencesFragment {
     private Preference _setPasswordPreference;
     private Preference _passwordReminderPreference;
     private SwitchPreferenceCompat _pinKeyboardPreference;
+    private SwitchPreference _backupPasswordPreference;
+    private Preference _backupPasswordChangePreference;
 
     @Override
     public void onResume() {
@@ -161,7 +165,7 @@ public class SecurityPreferencesFragment extends PreferencesFragment {
 
             Dialogs.showPasswordInputDialog(requireContext(), R.string.set_password_confirm, R.string.pin_keyboard_description, password -> {
                 if (isDigitsOnly(new String(password))) {
-                    List<PasswordSlot> slots = _vaultManager.getVault().getCredentials().getSlots().findAll(PasswordSlot.class);
+                    List<PasswordSlot> slots = getRegularPasswordSlots(_vaultManager.getVault().getCredentials().getSlots());
                     PasswordSlotDecryptTask.Params params = new PasswordSlotDecryptTask.Params(slots, password);
                     PasswordSlotDecryptTask task = new PasswordSlotDecryptTask(requireContext(), new PasswordConfirmationListener());
                     task.execute(getLifecycle(), params);
@@ -232,31 +236,86 @@ public class SecurityPreferencesFragment extends PreferencesFragment {
             Dialogs.showSecureDialog(builder.create());
             return false;
         });
+
+        _backupPasswordPreference = requirePreference("pref_backup_password");
+        _backupPasswordPreference.setOnPreferenceChangeListener((preference, newValue) -> {
+            if (!isBackupPasswordSet()) {
+                Dialogs.showSetPasswordDialog(requireActivity(), new SetBackupPasswordListener());
+            } else {
+                SlotList slots = _vaultManager.getVault().getCredentials().getSlots();
+                for (Slot slot : getBackupPasswordSlots(slots)) {
+                    slots.remove(slot);
+                }
+
+                saveAndBackupVault();
+                updateEncryptionPreferences();
+            }
+
+            return false;
+        });
+
+        _backupPasswordChangePreference = requirePreference("pref_backup_password_change");
+        _backupPasswordChangePreference.setOnPreferenceClickListener(preference -> {
+            Dialogs.showSetPasswordDialog(requireActivity(), new SetBackupPasswordListener());
+            return false;
+        });
     }
 
     private void updateEncryptionPreferences() {
         boolean encrypted = _vaultManager.getVault().isEncryptionEnabled();
+        boolean backupPasswordSet = isBackupPasswordSet();
         _encryptionPreference.setChecked(encrypted, true);
         _setPasswordPreference.setVisible(encrypted);
         _biometricsPreference.setVisible(encrypted);
         _autoLockPreference.setVisible(encrypted);
         _pinKeyboardPreference.setVisible(encrypted);
+        _backupPasswordPreference.getParent().setVisible(encrypted);
+        _backupPasswordPreference.setChecked(backupPasswordSet, true);
+        _backupPasswordChangePreference.setVisible(backupPasswordSet);
 
         if (encrypted) {
             SlotList slots = _vaultManager.getVault().getCredentials().getSlots();
-            boolean multiPassword = slots.findAll(PasswordSlot.class).size() > 1;
+            boolean multiBackupPassword = getBackupPasswordSlots(slots).size() > 1;
+            boolean multiPassword = getRegularPasswordSlots(slots).size() > 1;
             boolean multiBio = slots.findAll(BiometricSlot.class).size() > 1;
             boolean canUseBio = BiometricsHelper.isAvailable(requireContext());
             _setPasswordPreference.setEnabled(!multiPassword);
             _biometricsPreference.setEnabled(canUseBio && !multiBio);
             _biometricsPreference.setChecked(slots.has(BiometricSlot.class), true);
             _passwordReminderPreference.setVisible(slots.has(BiometricSlot.class));
+            _backupPasswordChangePreference.setEnabled(!multiBackupPassword);
         } else {
             _setPasswordPreference.setEnabled(false);
             _biometricsPreference.setEnabled(false);
             _biometricsPreference.setChecked(false, true);
             _passwordReminderPreference.setVisible(false);
+            _backupPasswordChangePreference.setEnabled(false);
         }
+    }
+
+    private boolean isBackupPasswordSet() {
+        VaultRepository vault = _vaultManager.getVault();
+        if (!vault.isEncryptionEnabled()) {
+            return false;
+        }
+
+        return getBackupPasswordSlots(vault.getCredentials().getSlots()).size() > 0;
+    }
+
+    private static List<PasswordSlot> getBackupPasswordSlots(SlotList slots) {
+        return getPasswordSlots(slots, true);
+    }
+
+    private static List<PasswordSlot> getRegularPasswordSlots(SlotList slots) {
+        return getPasswordSlots(slots, false);
+    }
+
+    private static List<PasswordSlot> getPasswordSlots(SlotList slots, boolean isBackup) {
+        return slots
+                .findAll(PasswordSlot.class)
+                .stream()
+                .filter(s -> s.isBackup() == isBackup)
+                .collect(Collectors.toList());
     }
 
     private String getPasswordReminderSummary() {
@@ -291,9 +350,9 @@ public class SecurityPreferencesFragment extends PreferencesFragment {
         return getString(R.string.pref_auto_lock_summary, builder.toString());
     }
 
-    private class SetPasswordListener implements Dialogs.SlotListener {
+    private class SetPasswordListener implements Dialogs.PasswordSlotListener {
         @Override
-        public void onSlotResult(Slot slot, Cipher cipher) {
+        public void onSlotResult(PasswordSlot slot, Cipher cipher) {
             VaultFileCredentials creds = _vaultManager.getVault().getCredentials();
             SlotList slots = creds.getSlots();
 
@@ -331,6 +390,43 @@ public class SecurityPreferencesFragment extends PreferencesFragment {
         }
     }
 
+    private class SetBackupPasswordListener implements Dialogs.PasswordSlotListener {
+        @Override
+        public void onSlotResult(PasswordSlot slot, Cipher cipher) {
+            slot.setIsBackup(true);
+
+            VaultFileCredentials creds = _vaultManager.getVault().getCredentials();
+            SlotList slots = creds.getSlots();
+
+            try {
+                // encrypt the master key for this slot
+                slot.setKey(creds.getKey(), cipher);
+
+                // remove the old backup password slot
+                for (Slot oldSlot : getBackupPasswordSlots(slots)) {
+                    slots.remove(oldSlot);
+                }
+
+                // add the new backup password slot
+                slots.add(slot);
+            } catch (SlotException e) {
+                onException(e);
+                return;
+            }
+
+            _vaultManager.getVault().setCredentials(creds);
+            saveAndBackupVault();
+            updateEncryptionPreferences();
+        }
+
+        @Override
+        public void onException(Exception e) {
+            e.printStackTrace();
+            updateEncryptionPreferences();
+            Dialogs.showErrorDialog(requireContext(), R.string.encryption_set_password_error, e);
+        }
+    }
+
     private class RegisterBiometricsListener implements BiometricSlotInitializer.Listener {
         @Override
         public void onInitializeSlot(BiometricSlot slot, Cipher cipher) {
@@ -357,9 +453,9 @@ public class SecurityPreferencesFragment extends PreferencesFragment {
         }
     }
 
-    private class EnableEncryptionListener implements Dialogs.SlotListener {
+    private class EnableEncryptionListener implements Dialogs.PasswordSlotListener {
         @Override
-        public void onSlotResult(Slot slot, Cipher cipher) {
+        public void onSlotResult(PasswordSlot slot, Cipher cipher) {
             VaultFileCredentials creds = new VaultFileCredentials();
 
             try {

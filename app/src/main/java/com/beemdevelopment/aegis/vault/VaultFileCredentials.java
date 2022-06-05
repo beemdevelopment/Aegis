@@ -37,4 +37,12 @@ public class VaultFileCredentials implements Serializable {
     public SlotList getSlots() {
         return _slots;
     }
+
+    /**
+     * Returns a copy of these VaultFileCredentials that is suitable for exporting.
+     * In case there's a backup password slot, any regular password slots are stripped.
+     */
+    public VaultFileCredentials exportable() {
+        return new VaultFileCredentials(_key, _slots.exportable());
+    }
 }

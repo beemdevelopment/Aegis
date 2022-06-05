@@ -117,6 +117,21 @@ public class VaultFile {
         }
     }
 
+    /**
+     * Returns a copy of this VaultFile that's suitable for exporting.
+     * In case there's a backup password slot, any regular password slots are stripped.
+     */
+    public VaultFile exportable() {
+        if (!isEncrypted()) {
+            return this;
+        }
+
+        return new VaultFile(getContent(), new VaultFile.Header(
+                getHeader().getSlots().exportable(),
+                getHeader().getParams()
+        ));
+    }
+
     public static class Header {
         private SlotList _slots;
         private CryptParameters _params;

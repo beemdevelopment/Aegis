@@ -16,16 +16,19 @@ import javax.crypto.SecretKey;
 
 public class PasswordSlot extends RawSlot {
     private boolean _repaired;
+    private boolean _isBackup;
+
     private SCryptParameters _params;
 
     public PasswordSlot() {
         super();
     }
 
-    protected PasswordSlot(UUID uuid, byte[] key, CryptParameters keyParams, SCryptParameters scryptParams, boolean repaired) {
+    protected PasswordSlot(UUID uuid, byte[] key, CryptParameters keyParams, SCryptParameters scryptParams, boolean repaired, boolean isBackup) {
         super(uuid, key, keyParams);
         _params = scryptParams;
         _repaired = repaired;
+        _isBackup = isBackup;
     }
 
     @Override
@@ -37,6 +40,7 @@ public class PasswordSlot extends RawSlot {
             obj.put("p", _params.getP());
             obj.put("salt", Hex.encode(_params.getSalt()));
             obj.put("repaired", _repaired);
+            obj.put("is_backup", _isBackup);
             return obj;
         } catch (JSONException e) {
             throw new RuntimeException(e);
@@ -70,8 +74,15 @@ public class PasswordSlot extends RawSlot {
         return _repaired;
     }
 
-    public SCryptParameters getSCryptParameters() {
-        return _params;
+    /**
+     * Reports whether this slot is a backup password slot.
+     */
+    public boolean isBackup() {
+        return _isBackup;
+    }
+
+    public void setIsBackup(boolean isBackup) {
+        _isBackup = isBackup;
     }
 
     @Override

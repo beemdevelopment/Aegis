@@ -1,5 +1,9 @@
 package com.beemdevelopment.aegis.vault.slots;
 
+import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.assertThrows;
+
 import com.beemdevelopment.aegis.crypto.CryptoUtils;
 import com.beemdevelopment.aegis.crypto.MasterKey;
 import com.beemdevelopment.aegis.crypto.SCryptParameters;
@@ -15,9 +19,6 @@ import javax.crypto.Cipher;
 import javax.crypto.NoSuchPaddingException;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
-
-import static org.junit.Assert.assertArrayEquals;
-import static org.junit.Assert.assertThrows;
 
 public class SlotTest {
     private MasterKey _masterKey;
@@ -92,5 +93,25 @@ public class SlotTest {
         byte[] garbledCiphertext = slot.getEncryptedMasterKey();
         garbledCiphertext[0] = (byte) ~garbledCiphertext[0];
         assertThrows(SlotIntegrityException.class, () -> slot.getKey(decryptCipher));
+    }
+
+    @Test
+    public void testPasswordSlotExclusion() {
+        SlotList slots = new SlotList();
+        PasswordSlot passSlot = new PasswordSlot();
+        PasswordSlot passSlot2 = new PasswordSlot();
+        slots.add(passSlot);
+        slots.add(passSlot2);
+
+        assertArrayEquals(slots.getValues().toArray(), slots.exportable().getValues().toArray());
+
+        SlotList backupSlots = new SlotList();
+        PasswordSlot backupSlot = new PasswordSlot();
+        backupSlot.setIsBackup(true);
+        slots.add(backupSlot);
+        backupSlots.add(backupSlot);
+
+        assertArrayEquals(backupSlots.getValues().toArray(), slots.exportable().getValues().toArray());
+        assertNotEquals(slots.getValues().toArray(), slots.exportable().getValues().toArray());
     }
 }
