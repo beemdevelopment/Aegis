@@ -19,8 +19,9 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="210dp"
+        android:layout_height="210dp"
+        android:layout_marginTop="60dp"
         android:adjustViewBounds="true"
         android:src="@drawable/app_icon"
         app:layout_constraintStart_toStartOf="parent"
