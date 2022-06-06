@@ -11,8 +11,8 @@ import android.os.Build;
 
 import androidx.test.core.app.ApplicationProvider;
 
+import com.beemdevelopment.aegis.vectors.VaultEntries;
 import com.beemdevelopment.aegis.encoding.Base32;
-import com.beemdevelopment.aegis.encoding.EncodingException;
 import com.beemdevelopment.aegis.otp.HotpInfo;
 import com.beemdevelopment.aegis.otp.OtpInfo;
 import com.beemdevelopment.aegis.otp.OtpInfoException;
@@ -48,16 +48,8 @@ public class DatabaseImporterTest {
      */
 
     @Before
-    public void initVectors() throws EncodingException, OtpInfoException {
-        _vectors = Lists.newArrayList(
-                new VaultEntry(new TotpInfo(Base32.decode("4SJHB4GSD43FZBAI7C2HLRJGPQ")), "Mason", "Deno"),
-                new VaultEntry(new TotpInfo(Base32.decode("5OM4WOOGPLQEF6UGN3CPEOOLWU"), "SHA256", 7, 20), "James", "SPDX"),
-                new VaultEntry(new TotpInfo(Base32.decode("7ELGJSGXNCCTV3O6LKJWYFV2RA"), "SHA512", 8, 50), "Elijah", "Airbnb"),
-                new VaultEntry(new HotpInfo(Base32.decode("YOOMIXWS5GN6RTBPUFFWKTW5M4"), "SHA1", 6, 1), "James", "Issuu"),
-                new VaultEntry(new HotpInfo(Base32.decode("KUVJJOM753IHTNDSZVCNKL7GII"), "SHA256", 7, 50), "Benjamin", "Air Canada"),
-                new VaultEntry(new HotpInfo(Base32.decode("5VAML3X35THCEBVRLV24CGBKOY"), "SHA512", 8, 10300), "Mason", "WWE"),
-                new VaultEntry(new SteamInfo(Base32.decode("JRZCL47CMXVOQMNPZR2F7J4RGI"), "SHA1", 5, 30), "Sophia", "Boeing")
-        );
+    public void initVectors() {
+        _vectors = VaultEntries.get();
     }
 
     @Test

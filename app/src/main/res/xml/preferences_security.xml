@@ -34,6 +34,23 @@
             app:iconSpaceReserved="false"/>
     </PreferenceCategory>
     <PreferenceCategory
+        android:title="@string/pref_backup_password_category"
+        app:iconSpaceReserved="false">
+        <com.beemdevelopment.aegis.ui.preferences.SwitchPreference
+            android:key="pref_backup_password"
+            android:title="@string/pref_backup_password_title"
+            android:summary="@string/pref_backup_password_summary"
+            android:persistent="false"
+            app:iconSpaceReserved="false"/>
+
+        <Preference
+            android:key="pref_backup_password_change"
+            android:title="@string/pref_backup_password_change_title"
+            android:summary="@string/pref_backup_password_change_summary"
+            android:dependency="pref_encryption"
+            app:iconSpaceReserved="false"/>
+    </PreferenceCategory>
+    <PreferenceCategory
         android:title="@string/pref_section_behavior_title"
         app:iconSpaceReserved="false">
         <androidx.preference.SwitchPreferenceCompat

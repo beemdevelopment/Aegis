@@ -9,12 +9,16 @@ import android.os.ParcelFileDescriptor;
 import android.util.Log;
 
 import com.beemdevelopment.aegis.util.IOUtils;
+import com.beemdevelopment.aegis.vault.VaultFile;
 import com.beemdevelopment.aegis.vault.VaultRepository;
+import com.beemdevelopment.aegis.vault.VaultRepositoryException;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 
 public class AegisBackupAgent extends BackupAgent {
     private static final String TAG = AegisBackupAgent.class.getSimpleName();
@@ -46,14 +50,17 @@ public class AegisBackupAgent extends BackupAgent {
         }
 
         // first copy the vault to the files/backup directory
-        createBackupDir();
         File vaultBackupFile = getVaultBackupFile();
-        try {
-            VaultRepository.copyFileTo(this, vaultBackupFile);
-        } catch (IOException e) {
+        try (OutputStream outputStream = new FileOutputStream(vaultBackupFile)) {
+            createBackupDir();
+
+            VaultFile vaultFile = VaultRepository.readVaultFile(this);
+            byte[] bytes = vaultFile.exportable().toBytes();
+            outputStream.write(bytes);
+        } catch (VaultRepositoryException | IOException e) {
             Log.e(TAG, String.format("onFullBackup() failed: %s", e));
             deleteBackupDir();
-            throw e;
+            throw new IOException(e);
         }
 
         // then call the original implementation so that fullBackupContent specified in AndroidManifest is read

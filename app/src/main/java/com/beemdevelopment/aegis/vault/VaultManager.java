@@ -19,7 +19,9 @@ import com.beemdevelopment.aegis.ui.dialogs.Dialogs;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -198,7 +200,10 @@ public class VaultManager {
             }
 
             File tempFile = File.createTempFile(VaultBackupManager.FILENAME_PREFIX, ".json", dir);
-            VaultRepository.copyFileTo(_context, tempFile);
+            try (OutputStream outStream = new FileOutputStream(tempFile)) {
+                _repo.export(outStream);
+            }
+
             _backups.scheduleBackup(tempFile, _prefs.getBackupsLocation(), _prefs.getBackupsVersionCount());
         } catch (IOException e) {
             throw new VaultRepositoryException(e);

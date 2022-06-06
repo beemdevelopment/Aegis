@@ -107,13 +107,6 @@ public class VaultRepository {
         return new VaultRepository(context, vault, creds);
     }
 
-    public static void copyFileTo(Context context, File destFile) throws IOException {
-        try (InputStream inStream = VaultRepository.getAtomicFile(context).openRead();
-             OutputStream outStream = new FileOutputStream(destFile)) {
-            IOUtils.copy(inStream, outStream);
-        }
-    }
-
     void save() throws VaultRepositoryException {
         try {
             JSONObject obj = _vault.toJson();
@@ -137,7 +130,7 @@ public class VaultRepository {
     }
 
     /**
-     * Exports the vault bt serializing it and writing it to the given OutputStream. If encryption
+     * Exports the vault by serializing it and writing it to the given OutputStream. If encryption
      * is enabled, the vault will be encrypted automatically.
      */
     public void export(OutputStream stream) throws VaultRepositoryException {
@@ -149,6 +142,10 @@ public class VaultRepository {
      * not null, it will be used to encrypt the vault first.
      */
     public void export(OutputStream stream, VaultFileCredentials creds) throws VaultRepositoryException {
+        if (creds != null) {
+            creds = creds.exportable();
+        }
+
         try {
             VaultFile vaultFile = new VaultFile();
             if (creds != null) {

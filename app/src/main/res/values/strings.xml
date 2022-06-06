@@ -76,6 +76,11 @@
     <string name="pref_auto_lock_type_back_button">The back button is pressed</string>
     <string name="pref_auto_lock_type_minimize">The app is minimized</string>
     <string name="pref_auto_lock_type_device_lock">The device is locked</string>
+    <string name="pref_backup_password_category">Backup &amp; Export</string>
+    <string name="pref_backup_password_title">Separate password for backup &amp; export</string>
+    <string name="pref_backup_password_summary">If enabled, the password that is used to unlock the app can\'t be used to decrypt backups and exports anymore.</string>
+    <string name="pref_backup_password_change_title">Change password for backup &amp; export</string>
+    <string name="pref_backup_password_change_summary">Set a new password that\'ll be used to encrypt the vault during backup and export.</string>
     <string name="pref_encryption_title">Encryption</string>
     <string name="pref_encryption_summary">Encrypt the vault and unlock it with a password or biometrics</string>
     <string name="pref_biometrics_title">Biometric unlock</string>

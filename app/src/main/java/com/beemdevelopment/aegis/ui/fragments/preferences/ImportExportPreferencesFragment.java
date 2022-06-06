@@ -30,7 +30,7 @@ import com.beemdevelopment.aegis.vault.VaultBackupManager;
 import com.beemdevelopment.aegis.vault.VaultFileCredentials;
 import com.beemdevelopment.aegis.vault.VaultRepository;
 import com.beemdevelopment.aegis.vault.VaultRepositoryException;
-import com.beemdevelopment.aegis.vault.slots.Slot;
+import com.beemdevelopment.aegis.vault.slots.PasswordSlot;
 import com.beemdevelopment.aegis.vault.slots.SlotException;
 
 import java.io.File;
@@ -267,9 +267,9 @@ public class ImportExportPreferencesFragment extends PreferencesFragment {
                 if (_vaultManager.getVault().isEncryptionEnabled()) {
                     cb.exportVault(stream -> _vaultManager.getVault().export(stream));
                 } else {
-                    Dialogs.showSetPasswordDialog(requireActivity(), new Dialogs.SlotListener() {
+                    Dialogs.showSetPasswordDialog(requireActivity(), new Dialogs.PasswordSlotListener() {
                         @Override
-                        public void onSlotResult(Slot slot, Cipher cipher) {
+                        public void onSlotResult(PasswordSlot slot, Cipher cipher) {
                             VaultFileCredentials creds = new VaultFileCredentials();
 
                             try {

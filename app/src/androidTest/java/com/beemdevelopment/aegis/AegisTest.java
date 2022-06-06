@@ -2,6 +2,7 @@ package com.beemdevelopment.aegis;
 
 import android.view.View;
 
+import androidx.annotation.Nullable;
 import androidx.test.espresso.UiController;
 import androidx.test.espresso.ViewAction;
 import androidx.test.platform.app.InstrumentationRegistry;
@@ -16,6 +17,7 @@ import com.beemdevelopment.aegis.vault.VaultRepository;
 import com.beemdevelopment.aegis.vault.VaultRepositoryException;
 import com.beemdevelopment.aegis.vault.slots.PasswordSlot;
 import com.beemdevelopment.aegis.vault.slots.SlotException;
+import com.beemdevelopment.aegis.vectors.VaultEntries;
 
 import org.hamcrest.Matcher;
 import org.junit.Before;
@@ -25,6 +27,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
+import java.util.List;
 
 import javax.crypto.NoSuchPaddingException;
 import javax.crypto.SecretKey;
@@ -34,6 +37,7 @@ import dagger.hilt.android.testing.HiltAndroidRule;
 
 public abstract class AegisTest {
     public static final String VAULT_PASSWORD = "test";
+    public static final String VAULT_BACKUP_PASSWORD = "something";
 
     @Rule
     public HiltAndroidRule hiltRule = new HiltAndroidRule(this);
@@ -53,11 +57,36 @@ public abstract class AegisTest {
         return (AegisApplicationBase) InstrumentationRegistry.getInstrumentation().getTargetContext().getApplicationContext();
     }
 
-    protected VaultRepository initVault() {
+    protected VaultRepository initEncryptedVault() {
         VaultFileCredentials creds = generateCredentials();
+        return initVault(creds, VaultEntries.get());
+    }
+
+    protected VaultRepository initEmptyEncryptedVault() {
+        VaultFileCredentials creds = generateCredentials();
+        return initVault(creds, null);
+    }
+
+    protected VaultRepository initPlainVault() {
+        return initVault(null, VaultEntries.get());
+    }
+
+    private VaultRepository initVault(@Nullable VaultFileCredentials creds, @Nullable List<VaultEntry> entries) {
         VaultRepository vault;
         try {
             vault = _vaultManager.init(creds);
+        } catch (VaultRepositoryException e) {
+            throw new RuntimeException(e);
+        }
+
+        if (entries != null) {
+            for (VaultEntry entry : entries) {
+                _vaultManager.getVault().addEntry(entry);
+            }
+        }
+        
+        try {
+            _vaultManager.save();
         } catch (VaultRepositoryException e) {
             throw new RuntimeException(e);
         }

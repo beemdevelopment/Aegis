@@ -114,7 +114,7 @@ public class Dialogs {
                 .create());
     }
 
-    public static void showSetPasswordDialog(ComponentActivity activity, Dialogs.SlotListener listener) {
+    public static void showSetPasswordDialog(ComponentActivity activity, PasswordSlotListener listener) {
         Zxcvbn zxcvbn = new Zxcvbn();
         View view = activity.getLayoutInflater().inflate(R.layout.dialog_password, null);
         EditText textPassword = view.findViewById(R.id.text_password);
@@ -460,8 +460,8 @@ public class Dialogs {
         void onTextInputResult(char[] text);
     }
 
-    public interface SlotListener {
-        void onSlotResult(Slot slot, Cipher cipher);
+    public interface PasswordSlotListener {
+        void onSlotResult(PasswordSlot slot, Cipher cipher);
         void onException(Exception e);
     }
 

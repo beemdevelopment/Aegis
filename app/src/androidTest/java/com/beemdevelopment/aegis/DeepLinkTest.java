@@ -29,7 +29,7 @@ import dagger.hilt.android.testing.HiltAndroidTest;
 public class DeepLinkTest extends AegisTest {
     @Before
     public void before() {
-        initVault();
+        initEmptyEncryptedVault();
     }
 
     @Test

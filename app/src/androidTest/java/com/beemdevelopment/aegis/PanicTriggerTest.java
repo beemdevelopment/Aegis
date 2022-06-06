@@ -26,7 +26,7 @@ import dagger.hilt.android.testing.HiltAndroidTest;
 public class PanicTriggerTest extends AegisTest {
     @Before
     public void before() {
-        initVault();
+        initEncryptedVault();
     }
 
     @Test
