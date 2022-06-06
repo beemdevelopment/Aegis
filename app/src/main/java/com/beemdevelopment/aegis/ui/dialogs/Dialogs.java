@@ -56,13 +56,13 @@ public class Dialogs {
     }
 
     public static void secureDialog(Dialog dialog) {
-        dialog.getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);
+        if (new Preferences(dialog.getContext()).isSecureScreenEnabled()) {
+            dialog.getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);
+        }
     }
 
     public static void showSecureDialog(Dialog dialog) {
-        if (new Preferences(dialog.getContext()).isSecureScreenEnabled()) {
-            secureDialog(dialog);
-        }
+        secureDialog(dialog);
         dialog.show();
     }
 
