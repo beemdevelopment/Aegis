@@ -87,6 +87,6 @@ public class PasswordSlot extends RawSlot {
 
     @Override
     public byte getType() {
-        return TYPE_DERIVED;
+        return TYPE_PASSWORD;
     }
 }

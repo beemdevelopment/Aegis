@@ -298,7 +298,7 @@ public class AuthActivity extends AegisActivity {
                     _slots.replace(result.getSlot());
                 }
 
-                if (result.getSlot().getType() == Slot.TYPE_DERIVED) {
+                if (result.getSlot().getType() == Slot.TYPE_PASSWORD) {
                     _prefs.resetPasswordReminderTimestamp();
                 }
 
