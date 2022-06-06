@@ -37,6 +37,7 @@ import com.beemdevelopment.aegis.encoding.Hex;
 import com.beemdevelopment.aegis.importers.DatabaseImporter;
 import com.beemdevelopment.aegis.importers.DatabaseImporterException;
 import com.beemdevelopment.aegis.importers.GoogleAuthUriImporter;
+import com.beemdevelopment.aegis.rules.ScreenshotTestRule;
 import com.beemdevelopment.aegis.ui.PreferencesActivity;
 import com.beemdevelopment.aegis.util.IOUtils;
 import com.beemdevelopment.aegis.vault.VaultBackupManager;
@@ -56,6 +57,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.RuleChain;
+import org.junit.rules.TestRule;
 import org.junit.runner.RunWith;
 
 import java.io.File;
@@ -74,8 +77,10 @@ import dagger.hilt.android.testing.HiltAndroidTest;
 @HiltAndroidTest
 @SmallTest
 public class BackupExportTest extends AegisTest {
+    private final ActivityScenarioRule<PreferencesActivity> _activityRule = new ActivityScenarioRule<>(PreferencesActivity.class);
+
     @Rule
-    public final ActivityScenarioRule<PreferencesActivity> activityRule = new ActivityScenarioRule<>(PreferencesActivity.class);
+    public final TestRule testRule = RuleChain.outerRule(_activityRule).around(new ScreenshotTestRule());
 
     @Before
     public void setUp() {

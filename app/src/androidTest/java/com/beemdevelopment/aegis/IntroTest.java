@@ -18,6 +18,7 @@ import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.filters.LargeTest;
 
+import com.beemdevelopment.aegis.rules.ScreenshotTestRule;
 import com.beemdevelopment.aegis.ui.IntroActivity;
 import com.beemdevelopment.aegis.vault.VaultRepository;
 import com.beemdevelopment.aegis.vault.slots.BiometricSlot;
@@ -26,6 +27,8 @@ import com.beemdevelopment.aegis.vault.slots.SlotList;
 
 import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.RuleChain;
+import org.junit.rules.TestRule;
 import org.junit.runner.RunWith;
 
 import dagger.hilt.android.testing.HiltAndroidTest;
@@ -34,8 +37,10 @@ import dagger.hilt.android.testing.HiltAndroidTest;
 @HiltAndroidTest
 @LargeTest
 public class IntroTest extends AegisTest {
+    private final ActivityScenarioRule<IntroActivity> _activityRule = new ActivityScenarioRule<>(IntroActivity.class);
+
     @Rule
-    public final ActivityScenarioRule<IntroActivity> activityRule = new ActivityScenarioRule<>(IntroActivity.class);
+    public final TestRule testRule = RuleChain.outerRule(_activityRule).around(new ScreenshotTestRule());
 
     @Test
     public void doIntro_None() {

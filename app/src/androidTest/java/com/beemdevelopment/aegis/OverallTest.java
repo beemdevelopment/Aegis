@@ -29,6 +29,7 @@ import com.beemdevelopment.aegis.otp.HotpInfo;
 import com.beemdevelopment.aegis.otp.SteamInfo;
 import com.beemdevelopment.aegis.otp.TotpInfo;
 import com.beemdevelopment.aegis.otp.YandexInfo;
+import com.beemdevelopment.aegis.rules.ScreenshotTestRule;
 import com.beemdevelopment.aegis.ui.MainActivity;
 import com.beemdevelopment.aegis.vault.VaultEntry;
 import com.beemdevelopment.aegis.vault.VaultRepository;
@@ -36,6 +37,8 @@ import com.beemdevelopment.aegis.vault.slots.PasswordSlot;
 
 import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.RuleChain;
+import org.junit.rules.TestRule;
 import org.junit.runner.RunWith;
 
 import java.util.ArrayList;
@@ -50,8 +53,10 @@ import dagger.hilt.android.testing.HiltAndroidTest;
 public class OverallTest extends AegisTest {
     private static final String _groupName = "Test";
 
+    private final ActivityScenarioRule<MainActivity> _activityRule = new ActivityScenarioRule<>(MainActivity.class);
+
     @Rule
-    public final ActivityScenarioRule<MainActivity> activityRule = new ActivityScenarioRule<>(MainActivity.class);
+    public final TestRule testRule = RuleChain.outerRule(_activityRule).around(new ScreenshotTestRule());
 
     @Test
     public void doOverallTest() {

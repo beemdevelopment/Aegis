@@ -84,7 +84,7 @@ public abstract class AegisTest {
                 _vaultManager.getVault().addEntry(entry);
             }
         }
-        
+
         try {
             _vaultManager.save();
         } catch (VaultRepositoryException e) {
