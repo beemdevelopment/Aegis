@@ -6,6 +6,7 @@ import com.beemdevelopment.aegis.GoogleAuthProtos;
 import com.beemdevelopment.aegis.encoding.Base32;
 import com.beemdevelopment.aegis.encoding.Base64;
 import com.beemdevelopment.aegis.encoding.EncodingException;
+import com.beemdevelopment.aegis.encoding.Hex;
 import com.google.protobuf.InvalidProtocolBufferException;
 
 import java.io.Serializable;
@@ -37,7 +38,7 @@ public class GoogleAuthInfo implements Serializable {
 
     public static GoogleAuthInfo parseUri(Uri uri) throws GoogleAuthInfoException {
         String scheme = uri.getScheme();
-        if (scheme == null || !scheme.equals(SCHEME)) {
+        if (scheme == null || !(scheme.equals(SCHEME) || scheme.equals(MotpInfo.SCHEME))) {
             throw new GoogleAuthInfoException(uri, String.format("Unsupported protocol: %s", scheme));
         }
 
@@ -49,7 +50,7 @@ public class GoogleAuthInfo implements Serializable {
 
         byte[] secret;
         try {
-            secret = parseSecret(encodedSecret);
+            secret = (scheme.equals(MotpInfo.SCHEME)) ? Hex.decode(encodedSecret) : parseSecret(encodedSecret);
         } catch (EncodingException e) {
             throw new GoogleAuthInfoException(uri, "Bad secret", e);
         }
@@ -57,7 +58,7 @@ public class GoogleAuthInfo implements Serializable {
         OtpInfo info;
         String issuer = "";
         try {
-            String type = uri.getHost();
+            String type = (scheme.equals(MotpInfo.SCHEME)) ? MotpInfo.ID : uri.getHost();
             if (type == null) {
                 throw new GoogleAuthInfoException(uri, String.format("Host not present in URI: %s", uri.toString()));
             }
@@ -96,6 +97,9 @@ public class GoogleAuthInfo implements Serializable {
 
                     info = new YandexInfo(secret, pin);
                     issuer = info.getType();
+                    break;
+                case MotpInfo.ID:
+                    info = new MotpInfo(secret);
                     break;
                 default:
                     throw new GoogleAuthInfoException(uri, String.format("Unsupported OTP type: %s", type));
@@ -261,30 +265,36 @@ public class GoogleAuthInfo implements Serializable {
 
     public Uri getUri() {
         Uri.Builder builder = new Uri.Builder();
-        builder.scheme(SCHEME);
 
-        if (_info instanceof TotpInfo) {
-            if (_info instanceof SteamInfo) {
-                builder.authority("steam");
-            } else if (_info instanceof YandexInfo) {
-                builder.authority(YandexInfo.HOST_ID);
-            } else {
-                builder.authority("totp");
-            }
-            builder.appendQueryParameter("period", Integer.toString(((TotpInfo) _info).getPeriod()));
-        } else if (_info instanceof HotpInfo) {
-            builder.authority("hotp");
-            builder.appendQueryParameter("counter", Long.toString(((HotpInfo) _info).getCounter()));
+        if (_info instanceof MotpInfo) {
+            builder.scheme(MotpInfo.SCHEME);
+            builder.appendQueryParameter("secret", Hex.encode(_info.getSecret()));
         } else {
-            throw new RuntimeException(String.format("Unsupported OtpInfo type: %s", _info.getClass()));
-        }
+            builder.scheme(SCHEME);
 
-        builder.appendQueryParameter("digits", Integer.toString(_info.getDigits()));
-        builder.appendQueryParameter("algorithm", _info.getAlgorithm(false));
-        builder.appendQueryParameter("secret", Base32.encode(_info.getSecret()));
+            if (_info instanceof TotpInfo) {
+                if (_info instanceof SteamInfo) {
+                    builder.authority("steam");
+                } else if (_info instanceof YandexInfo) {
+                    builder.authority(YandexInfo.HOST_ID);
+                } else {
+                    builder.authority("totp");
+                }
+                builder.appendQueryParameter("period", Integer.toString(((TotpInfo) _info).getPeriod()));
+            } else if (_info instanceof HotpInfo) {
+                builder.authority("hotp");
+                builder.appendQueryParameter("counter", Long.toString(((HotpInfo) _info).getCounter()));
+            } else {
+                throw new RuntimeException(String.format("Unsupported OtpInfo type: %s", _info.getClass()));
+            }
 
-        if (_info instanceof YandexInfo) {
-            builder.appendQueryParameter("pin", Base32.encode(((YandexInfo) _info).getPin()));
+            builder.appendQueryParameter("digits", Integer.toString(_info.getDigits()));
+            builder.appendQueryParameter("algorithm", _info.getAlgorithm(false));
+            builder.appendQueryParameter("secret", Base32.encode(_info.getSecret()));
+
+            if (_info instanceof YandexInfo) {
+                builder.appendQueryParameter("pin", Base32.encode(((YandexInfo) _info).getPin()));
+            }
         }
 
         if (_issuer != null && !_issuer.equals("")) {

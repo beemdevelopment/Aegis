@@ -70,7 +70,8 @@ public abstract class OtpInfo implements Serializable {
     }
 
     public static boolean isAlgorithmValid(String algorithm) {
-        return algorithm.equals("SHA1") || algorithm.equals("SHA256") || algorithm.equals("SHA512");
+        return algorithm.equals("SHA1") || algorithm.equals("SHA256") ||
+                algorithm.equals("SHA512") || algorithm.equals("MD5");
     }
 
     public void setAlgorithm(String algorithm) throws OtpInfoException {
@@ -117,6 +118,9 @@ public abstract class OtpInfo implements Serializable {
                     break;
                 case YandexInfo.ID:
                     info = new YandexInfo(secret, obj.getString("pin"));
+                    break;
+                case MotpInfo.ID:
+                    info = new MotpInfo(secret, obj.getString("pin"));
                     break;
                 default:
                     throw new OtpInfoException("unsupported otp type: " + type);

@@ -11,6 +11,7 @@
         <item>HOTP</item>
         <item>Steam</item>
         <item>Yandex</item>
+        <item>MOTP</item>
     </string-array>
 
     <string-array name="otp_algo_array">

@@ -14,6 +14,7 @@
     <string name="save">Save</string>
     <string name="issuer">Issuer</string>
     <string name="yandex_pin">PIN (4–16 digits)</string>
+    <string name="motp_pin">PIN (4 digits)</string>
     <string name="suggested">Suggested</string>
     <string name="usage_count">Usage count</string>
     <string name="warning">Warning</string>

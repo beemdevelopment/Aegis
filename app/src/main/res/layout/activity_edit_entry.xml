@@ -186,7 +186,7 @@
                     </com.google.android.material.textfield.TextInputLayout>
                 </LinearLayout>
                 <LinearLayout
-                    android:id="@+id/layout_yandex_pin"
+                    android:id="@+id/layout_pin"
                     android:visibility="gone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -205,13 +205,12 @@
                     <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:hint="@string/yandex_pin"
                         android:layout_weight="1"
                         app:passwordToggleTint="#949494"
                         app:passwordToggleEnabled="true">
 
                         <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/text_yandex_pin"
+                            android:id="@+id/text_pin"
                             android:maxLength="16"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"

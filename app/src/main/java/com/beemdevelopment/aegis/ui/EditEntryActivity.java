@@ -34,6 +34,7 @@ import com.avito.android.krop.KropView;
 import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.encoding.Base32;
 import com.beemdevelopment.aegis.encoding.EncodingException;
+import com.beemdevelopment.aegis.encoding.Hex;
 import com.beemdevelopment.aegis.helpers.DropdownHelper;
 import com.beemdevelopment.aegis.helpers.EditTextHelper;
 import com.beemdevelopment.aegis.helpers.IconViewHelper;
@@ -42,6 +43,7 @@ import com.beemdevelopment.aegis.icons.IconPack;
 import com.beemdevelopment.aegis.icons.IconType;
 import com.beemdevelopment.aegis.otp.GoogleAuthInfo;
 import com.beemdevelopment.aegis.otp.HotpInfo;
+import com.beemdevelopment.aegis.otp.MotpInfo;
 import com.beemdevelopment.aegis.otp.OtpInfo;
 import com.beemdevelopment.aegis.otp.OtpInfoException;
 import com.beemdevelopment.aegis.otp.SteamInfo;
@@ -102,8 +104,8 @@ public class EditEntryActivity extends AegisActivity {
     private TextInputEditText _textDigits;
     private TextInputLayout _textDigitsLayout;
     private TextInputEditText _textSecret;
-    private TextInputEditText _textYandexPin;
-    private LinearLayout _textYandexPinLayout;
+    private TextInputEditText _textPin;
+    private LinearLayout _textPinLayout;
     private TextInputEditText _textUsageCount;
     private TextInputEditText _textNote;
 
@@ -156,8 +158,8 @@ public class EditEntryActivity extends AegisActivity {
         _textDigits = findViewById(R.id.text_digits);
         _textDigitsLayout = findViewById(R.id.text_digits_layout);
         _textSecret = findViewById(R.id.text_secret);
-        _textYandexPin = findViewById(R.id.text_yandex_pin);
-        _textYandexPinLayout = findViewById(R.id.layout_yandex_pin);
+        _textPin = findViewById(R.id.text_pin);
+        _textPinLayout = findViewById(R.id.layout_pin);
         _textUsageCount = findViewById(R.id.text_usage_count);
         _textNote = findViewById(R.id.text_note);
         _dropdownType = findViewById(R.id.dropdown_type);
@@ -178,9 +180,9 @@ public class EditEntryActivity extends AegisActivity {
             layoutBasic.removeView(layoutSecret);
             if (!_isNew) {
                 secretIndex = 1;
-                layoutBasic.removeView(_textYandexPinLayout);
-                layoutAdvanced.addView(_textYandexPinLayout, 0);
-                ((LinearLayout.LayoutParams) _textYandexPinLayout.getLayoutParams()).topMargin = 0;
+                layoutBasic.removeView(_textPinLayout);
+                layoutAdvanced.addView(_textPinLayout, 0);
+                ((LinearLayout.LayoutParams) _textPinLayout.getLayoutParams()).topMargin = 0;
             } else {
                 ((LinearLayout.LayoutParams) layoutSecret.getLayoutParams()).topMargin = 0;
             }
@@ -233,7 +235,7 @@ public class EditEntryActivity extends AegisActivity {
 
         byte[] secretBytes = _origEntry.getInfo().getSecret();
         if (secretBytes != null) {
-            String secretString = Base32.encode(secretBytes);
+            String secretString = (info instanceof MotpInfo) ? Hex.encode(secretBytes) : Base32.encode(secretBytes);
             _textSecret.setText(secretString);
         }
 
@@ -241,7 +243,9 @@ public class EditEntryActivity extends AegisActivity {
         _dropdownAlgo.setText(_origEntry.getInfo().getAlgorithm(false), false);
 
         if (info instanceof YandexInfo) {
-            _textYandexPin.setText(((YandexInfo) info).getPin());
+            _textPin.setText(((YandexInfo) info).getPin());
+        } else if (info instanceof MotpInfo) {
+            _textPin.setText(((MotpInfo) info).getPin());
         }
 
         updateAdvancedFieldStatus(_origEntry.getInfo().getTypeId());
@@ -280,6 +284,12 @@ public class EditEntryActivity extends AegisActivity {
                     _textPeriodCounter.setText(String.valueOf(TotpInfo.DEFAULT_PERIOD));
                     _textDigits.setText(String.valueOf(YandexInfo.DIGITS));
                     break;
+                case MotpInfo.ID:
+                    _dropdownAlgo.setText(MotpInfo.ALGORITHM, false);
+                    _textPeriodCounterLayout.setHint(R.string.period_hint);
+                    _textPeriodCounter.setText(String.valueOf(MotpInfo.PERIOD));
+                    _textDigits.setText(String.valueOf(MotpInfo.DIGITS));
+                    break;
                 default:
                     throw new RuntimeException(String.format("Unsupported OTP type: %s", type));
             }
@@ -317,15 +327,17 @@ public class EditEntryActivity extends AegisActivity {
     }
 
     private void updateAdvancedFieldStatus(String otpType) {
-        boolean enabled = !otpType.equals(SteamInfo.ID) && !otpType.equals(YandexInfo.ID) && (!_isNew || _isManual);
+        boolean enabled = !otpType.equals(SteamInfo.ID) && !otpType.equals(YandexInfo.ID)
+                && !otpType.equals(MotpInfo.ID) && (!_isNew || _isManual);
         _textDigitsLayout.setEnabled(enabled);
         _textPeriodCounterLayout.setEnabled(enabled);
         _dropdownAlgoLayout.setEnabled(enabled);
     }
 
     private void updatePinFieldVisibility(String otpType) {
-        boolean visible = otpType.equals(YandexInfo.ID);
-        _textYandexPinLayout.setVisibility(visible ? View.VISIBLE : View.GONE);
+        boolean visible = otpType.equals(YandexInfo.ID) || otpType.equals(MotpInfo.ID);
+        _textPinLayout.setVisibility(visible ? View.VISIBLE : View.GONE);
+        _textPin.setHint(otpType.equals(MotpInfo.ID) ? R.string.motp_pin : R.string.yandex_pin);
     }
 
     private void setGroup(String groupName) {
@@ -662,10 +674,13 @@ public class EditEntryActivity extends AegisActivity {
         String algo = _dropdownAlgo.getText().toString();
         String lowerCasedType = type.toLowerCase(Locale.ROOT);
 
-        if (lowerCasedType.equals(YandexInfo.ID)) {
-            int pinLength = _textYandexPin.length();
+        if (lowerCasedType.equals(YandexInfo.ID) || lowerCasedType.equals(MotpInfo.ID)) {
+            int pinLength = _textPin.length();
             if (pinLength < 4) {
                 throw new ParseException("PIN is a required field. Must have a minimum length of 4 digits.");
+            }
+            if (pinLength != 4 && lowerCasedType.equals(MotpInfo.ID)) {
+                throw new ParseException("PIN must have a length of 4 digits.");
             }
         }
 
@@ -679,12 +694,18 @@ public class EditEntryActivity extends AegisActivity {
         byte[] secret;
         try {
             String secretString = new String(EditTextHelper.getEditTextChars(_textSecret));
-            secret = GoogleAuthInfo.parseSecret(secretString);
+
+            secret = (lowerCasedType.equals(MotpInfo.ID)) ?
+                    Hex.decode(secretString) : GoogleAuthInfo.parseSecret(secretString);
+
             if (secret.length == 0) {
                 throw new ParseException("Secret cannot be empty");
             }
         } catch (EncodingException e) {
-            throw new ParseException("Secret is not valid base32.");
+            String exceptionMessage = (lowerCasedType.equals(MotpInfo.ID)) ?
+                    "Secret is not valid hexadecimal" : "Secret is not valid base32.";
+
+            throw new ParseException(exceptionMessage);
         }
 
         OtpInfo info;
@@ -706,7 +727,10 @@ public class EditEntryActivity extends AegisActivity {
                     info = new HotpInfo(secret, algo, digits, counter);
                     break;
                 case YandexInfo.ID:
-                    info = new YandexInfo(secret, _textYandexPin.getText().toString());
+                    info = new YandexInfo(secret, _textPin.getText().toString());
+                    break;
+                case MotpInfo.ID:
+                    info = new MotpInfo(secret, _textPin.getText().toString());
                     break;
                 default:
                     throw new RuntimeException(String.format("Unsupported OTP type: %s", type));
