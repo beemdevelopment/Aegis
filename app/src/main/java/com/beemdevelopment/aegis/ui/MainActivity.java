@@ -559,6 +559,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         MenuItem searchViewMenuItem = menu.findItem(R.id.mi_search);
 
         _searchView = (SearchView) searchViewMenuItem.getActionView();
+        _searchView.setMaxWidth(Integer.MAX_VALUE);
 
         _searchView.setQueryHint(getString(R.string.search));
         if (_prefs.getFocusSearchEnabled() && !_isRecreated) {
