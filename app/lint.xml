@@ -3,4 +3,5 @@
     <issue id="InvalidPackage">
         <ignore regexp="X509LDAPCertStoreSpi" />
     </issue>
+    <issue id="ResourceType" severity="Warning" />
 </lint>
