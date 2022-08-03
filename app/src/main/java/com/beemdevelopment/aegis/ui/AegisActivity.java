@@ -45,7 +45,7 @@ public abstract class AegisActivity extends AppCompatActivity implements VaultMa
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         // set the theme and locale before creating the activity
-        _prefs = EarlyEntryPoints.get(this, PrefEntryPoint.class).getPreferences();
+        _prefs = EarlyEntryPoints.get(getApplicationContext(), PrefEntryPoint.class).getPreferences();
         onSetTheme();
         setLocale(_prefs.getLocale());
         super.onCreate(savedInstanceState);
