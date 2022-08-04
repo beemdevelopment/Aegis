@@ -2,8 +2,6 @@ package com.beemdevelopment.aegis.helpers;
 
 import static android.graphics.ImageFormat.YUV_420_888;
 
-import android.os.Handler;
-import android.os.Looper;
 import android.util.Log;
 import android.util.Size;
 
@@ -70,7 +68,7 @@ public class QrCodeAnalyzer implements ImageAnalysis.Analyzer {
 
             Result result = reader.decode(bitmap, hints);
             if (_listener != null) {
-                new Handler(Looper.getMainLooper()).post(() -> _listener.onQrCodeDetected(result));
+                _listener.onQrCodeDetected(result);
             }
         } catch (NotFoundException ignored) {
 
