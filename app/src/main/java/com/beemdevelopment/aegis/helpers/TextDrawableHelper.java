@@ -39,12 +39,14 @@ public class TextDrawableHelper {
     public static TextDrawable generate(String text, String fallback, View view) {
         if (text == null || text.isEmpty()) {
             if (fallback == null || fallback.isEmpty()) {
-                return null;
+                text = "";
+            }else{
+                text = fallback;
             }
-            text = fallback;
         }
 
-        int color = _generator.getColor(text);
+        //When the text is empty, the generated TextDrawable uses a grey background (level 300).
+        int color = text.isEmpty()? 0xFFE0E0E0:_generator.getColor(text);
         return TextDrawable.builder().beginConfig()
                 .width(view.getLayoutParams().width)
                 .height(view.getLayoutParams().height)
