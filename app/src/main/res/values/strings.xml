@@ -156,6 +156,7 @@
     <string name="encrypting_vault">Encrypting the vault</string>
     <string name="exporting_vault">Exporting the vault</string>
     <string name="reading_file">Reading file</string>
+    <string name="analyzing_qr">Analyzing QR code</string>
     <string name="importing_icon_pack">Importing icon pack</string>
     <string name="delete_entry">Delete entry</string>
     <string name="delete_entry_description">Are you sure you want to delete this entry?</string>

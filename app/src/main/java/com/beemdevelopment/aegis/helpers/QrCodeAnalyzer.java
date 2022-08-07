@@ -9,19 +9,11 @@ import androidx.annotation.NonNull;
 import androidx.camera.core.ImageAnalysis;
 import androidx.camera.core.ImageProxy;
 
-import com.google.zxing.BarcodeFormat;
-import com.google.zxing.BinaryBitmap;
-import com.google.zxing.DecodeHintType;
-import com.google.zxing.MultiFormatReader;
 import com.google.zxing.NotFoundException;
 import com.google.zxing.PlanarYUVLuminanceSource;
 import com.google.zxing.Result;
-import com.google.zxing.common.HybridBinarizer;
 
 import java.nio.ByteBuffer;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
 
 public class QrCodeAnalyzer implements ImageAnalysis.Analyzer {
     private static final String TAG = QrCodeAnalyzer.class.getSimpleName();
@@ -59,14 +51,8 @@ public class QrCodeAnalyzer implements ImageAnalysis.Analyzer {
                 false
         );
 
-        MultiFormatReader reader = new MultiFormatReader();
-        BinaryBitmap bitmap = new BinaryBitmap(new HybridBinarizer(source));
         try {
-            Map<DecodeHintType, Object> hints = new HashMap<>();
-            hints.put(DecodeHintType.POSSIBLE_FORMATS, Collections.singletonList(BarcodeFormat.QR_CODE));
-            hints.put(DecodeHintType.ALSO_INVERTED, true);
-
-            Result result = reader.decode(bitmap, hints);
+            Result result = QrCodeHelper.decodeFromSource(source);
             if (_listener != null) {
                 _listener.onQrCodeDetected(result);
             }

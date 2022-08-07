@@ -5,8 +5,6 @@ import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.Settings;
@@ -26,32 +24,19 @@ import com.beemdevelopment.aegis.Preferences;
 import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.SortCategory;
 import com.beemdevelopment.aegis.ViewMode;
-import com.beemdevelopment.aegis.helpers.BitmapHelper;
 import com.beemdevelopment.aegis.helpers.FabScrollHelper;
 import com.beemdevelopment.aegis.helpers.PermissionHelper;
-import com.beemdevelopment.aegis.helpers.QrCodeAnalyzer;
 import com.beemdevelopment.aegis.otp.GoogleAuthInfo;
 import com.beemdevelopment.aegis.otp.GoogleAuthInfoException;
 import com.beemdevelopment.aegis.ui.dialogs.Dialogs;
 import com.beemdevelopment.aegis.ui.fragments.preferences.BackupsPreferencesFragment;
 import com.beemdevelopment.aegis.ui.fragments.preferences.PreferencesFragment;
+import com.beemdevelopment.aegis.ui.tasks.QrDecodeTask;
 import com.beemdevelopment.aegis.ui.views.EntryListView;
 import com.beemdevelopment.aegis.vault.VaultEntry;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.zxing.BinaryBitmap;
-import com.google.zxing.ChecksumException;
-import com.google.zxing.FormatException;
-import com.google.zxing.LuminanceSource;
-import com.google.zxing.NotFoundException;
-import com.google.zxing.RGBLuminanceSource;
-import com.google.zxing.Reader;
-import com.google.zxing.Result;
-import com.google.zxing.common.HybridBinarizer;
-import com.google.zxing.qrcode.QRCodeReader;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -326,37 +311,25 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
     }
 
     private void onScanImageResult(Intent intent) {
-        decodeQrCodeImage(intent.getData());
+        startDecodeQrCodeImage(intent.getData());
     }
 
-    private void decodeQrCodeImage(Uri inputFile) {
-        Bitmap bitmap;
-
-        try {
-            BitmapFactory.Options bmOptions = new BitmapFactory.Options();
-
-            try (InputStream inputStream = getContentResolver().openInputStream(inputFile)) {
-                bitmap = BitmapFactory.decodeStream(inputStream, null, bmOptions);
-                bitmap = BitmapHelper.resize(bitmap, QrCodeAnalyzer.RESOLUTION.getWidth(), QrCodeAnalyzer.RESOLUTION.getHeight());
+    private void startDecodeQrCodeImage(Uri uri) {
+        QrDecodeTask task = new QrDecodeTask(this, (result) -> {
+            if (result.getException() != null) {
+                Dialogs.showErrorDialog(this, R.string.unable_to_read_qrcode, result.getException());
+                return;
             }
 
-            int[] intArray = new int[bitmap.getWidth() * bitmap.getHeight()];
-            bitmap.getPixels(intArray, 0, bitmap.getWidth(), 0, 0, bitmap.getWidth(), bitmap.getHeight());
-
-            LuminanceSource source = new RGBLuminanceSource(bitmap.getWidth(), bitmap.getHeight(), intArray);
-            BinaryBitmap binaryBitmap = new BinaryBitmap(new HybridBinarizer(source));
-
-            Reader reader = new QRCodeReader();
-            Result result = reader.decode(binaryBitmap);
-
-            GoogleAuthInfo info = GoogleAuthInfo.parseUri(result.getText());
-            VaultEntry entry = new VaultEntry(info);
-
-            startEditEntryActivityForNew(CODE_ADD_ENTRY, entry);
-        } catch (NotFoundException | IOException | ChecksumException | FormatException | GoogleAuthInfoException e) {
-            e.printStackTrace();
-            Dialogs.showErrorDialog(this, R.string.unable_to_read_qrcode, e);
-        }
+            try {
+                GoogleAuthInfo info = GoogleAuthInfo.parseUri(result.getResult().getText());
+                VaultEntry entry = new VaultEntry(info);
+                startEditEntryActivityForNew(CODE_ADD_ENTRY, entry);
+            } catch (GoogleAuthInfoException e) {
+                Dialogs.showErrorDialog(this, R.string.unable_to_read_qrcode, e);
+            }
+        });
+        task.execute(getLifecycle(), uri);
     }
 
     private void updateSortCategoryMenu() {
@@ -471,7 +444,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
             intent.setAction(null);
             intent.removeExtra(Intent.EXTRA_STREAM);
 
-            decodeQrCodeImage(uri);
+            startDecodeQrCodeImage(uri);
         }
     }
 

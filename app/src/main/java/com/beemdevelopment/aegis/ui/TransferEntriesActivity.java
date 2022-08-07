@@ -15,12 +15,10 @@ import androidx.annotation.ColorInt;
 
 import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.Theme;
+import com.beemdevelopment.aegis.helpers.QrCodeHelper;
 import com.beemdevelopment.aegis.otp.GoogleAuthInfo;
 import com.beemdevelopment.aegis.ui.dialogs.Dialogs;
-import com.google.zxing.BarcodeFormat;
 import com.google.zxing.WriterException;
-import com.google.zxing.common.BitMatrix;
-import com.google.zxing.qrcode.QRCodeWriter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -104,21 +102,11 @@ public class TransferEntriesActivity extends AegisActivity {
         return true;
     }
 
-
     private void generateQR() {
         GoogleAuthInfo selectedEntry = _authInfos.get(_currentEntryCount - 1);
         _issuer.setText(selectedEntry.getIssuer());
         _accountName.setText(selectedEntry.getAccountName());
         _entriesCount.setText(getResources().getQuantityString(R.plurals.entries_count, _authInfos.size(), _currentEntryCount, _authInfos.size()));
-
-        QRCodeWriter writer = new QRCodeWriter();
-        BitMatrix bitMatrix;
-        try {
-            bitMatrix = writer.encode(selectedEntry.getUri().toString(), BarcodeFormat.QR_CODE, 512, 512);
-        } catch (WriterException e) {
-            Dialogs.showErrorDialog(this, R.string.unable_to_generate_qrcode, e);
-            return;
-        }
 
         @ColorInt int backgroundColor = Color.WHITE;
         if (getConfiguredTheme() == Theme.LIGHT) {
@@ -127,18 +115,14 @@ public class TransferEntriesActivity extends AegisActivity {
             backgroundColor = typedValue.data;
         }
 
-        int width = bitMatrix.getWidth();
-        int height = bitMatrix.getHeight();
-        int[] pixels = new int[width * height];
-        for (int y = 0; y < height; y++) {
-            int offset = y * width;
-            for (int x = 0; x < width; x++) {
-                pixels[offset + x] = bitMatrix.get(x, y) ? Color.BLACK : backgroundColor;
-            }
+        Bitmap bitmap;
+        try {
+            bitmap = QrCodeHelper.encodeToBitmap(selectedEntry.getUri().toString(), 512, 512, backgroundColor);
+        } catch (WriterException e) {
+            Dialogs.showErrorDialog(this, R.string.unable_to_generate_qrcode, e);
+            return;
         }
 
-        Bitmap bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
-        bitmap.setPixels(pixels, 0, width, 0, 0, width, height);
         _qrImage.setImageBitmap(bitmap);
     }
 }
