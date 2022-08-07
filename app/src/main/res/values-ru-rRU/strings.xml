@@ -261,7 +261,6 @@
         <item quantity="many">Aegis не удалось импортировать %d ключей. Эти ключи будут пропущены. Нажмите «Подробнее», чтобы увидеть дополнительную информацию об ошибках.</item>
         <item quantity="other">Aegis не удалось импортировать %d ключей. Эти ключи будут пропущены. Нажмите «Подробнее», чтобы увидеть дополнительную информацию об ошибках.</item>
     </plurals>
-    <string name="unable_to_read_qrcode">Не удалось прочитать и обработать QR-код</string>
     <string name="unable_to_generate_qrcode">Не удаётся сгенерировать QR-код</string>
     <string name="select_picture">Выберите изображение</string>
     <string name="select_icon">Выберите значок</string>

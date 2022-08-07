@@ -158,6 +158,11 @@
     <string name="exporting_vault">Exporting the vault</string>
     <string name="reading_file">Reading file</string>
     <string name="analyzing_qr">Analyzing QR code</string>
+    <string name="analyzing_qr_multiple">Analyzing QR code %d/%d (%s)</string>
+    <plurals name="added_new_entries">
+        <item quantity="one">Added %d new entry to the vault</item>
+        <item quantity="other">Added %d new entries to the vault</item>
+    </plurals>
     <string name="importing_icon_pack">Importing icon pack</string>
     <string name="delete_entry">Delete entry</string>
     <string name="delete_entry_description">Are you sure you want to delete this entry?</string>
@@ -282,7 +287,9 @@
         <item quantity="one">Aegis could not import %d token. These tokens will be skipped. Press \'details\' to see more information about the errors.</item>
         <item quantity="other">Aegis could not import %d tokens. These tokens will be skipped. Press \'details\' to see more information about the errors.</item>
     </plurals>
-    <string name="unable_to_read_qrcode">Unable to read and process QR code</string>
+    <string name="unable_to_process_deeplink">Unable to process deep link</string>
+    <string name="unable_to_read_qrcode_file">Unable to read and process QR code from file: %s.</string>
+    <string name="unable_to_read_qrcode_files">Unable to read and process some of the QR codes. Only %d/%d entries will be imported.</string>
     <string name="unable_to_generate_qrcode">Unable to generate QR code</string>
     <string name="select_picture">Select picture</string>
     <string name="select_icon">Select icon</string>

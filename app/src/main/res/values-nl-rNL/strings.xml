@@ -251,7 +251,6 @@
         <item quantity="one">Aegis kon %d token niet importeren. Dit token zal worden overgeslagen. Druk op \'details\' om meer informatie over de fouten te zien.</item>
         <item quantity="other">Aegis kon %d tokens niet importeren. Deze tokens zullen worden overgeslagen. Druk op \'details\' om meer informatie over de fouten te zien.</item>
     </plurals>
-    <string name="unable_to_read_qrcode">Kan QR-code niet lezen en verwerken</string>
     <string name="unable_to_generate_qrcode">Kan de QR-code niet genereren</string>
     <string name="select_picture">Foto selecteren</string>
     <string name="select_icon">Icoon selecteren</string>

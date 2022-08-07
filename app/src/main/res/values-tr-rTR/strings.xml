@@ -249,7 +249,6 @@
         <item quantity="one">Aegis %d kodunu içe aktaramadı. Bu kodlar atlanacaktır. Hatalar hakkında daha detaylı bilgi için lütfen \'ayrıntılar\'a basınız.</item>
         <item quantity="other">Aegis %d kodunu içe aktaramadı. Bu kodlar atlanacaktır. Hatalar hakkında daha detaylı bilgi için lütfen \'ayrıntılar\'a basınız.</item>
     </plurals>
-    <string name="unable_to_read_qrcode">QR kod okunamadı ve işlenemedi</string>
     <string name="unable_to_generate_qrcode">QR Kodu oluşturulamadı</string>
     <string name="select_picture">Resim seç</string>
     <string name="select_icon">Simge seç</string>

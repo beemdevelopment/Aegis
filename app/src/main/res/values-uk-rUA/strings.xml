@@ -234,7 +234,6 @@
         <item quantity="many">Aegis не вдалося імпортувати %d токенів. Ці токени буде пропущено. Натисніть \'деталі\', щоб побачити більше інформації про помилки.</item>
         <item quantity="other">Aegis не вдалося імпортувати %d токенів. Ці токени буде пропущено. Натисніть \'деталі\', щоб побачити більше інформації про помилки.</item>
     </plurals>
-    <string name="unable_to_read_qrcode">Не вдається прочитати і обробити QR-код</string>
     <string name="unable_to_generate_qrcode">Не вдається згенерувати QR-код</string>
     <string name="select_picture">Виберіть зображення</string>
     <string name="select_icon">Виберіть іконку</string>

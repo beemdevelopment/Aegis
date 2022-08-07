@@ -256,7 +256,6 @@
         <item quantity="one">Aegis nevarēja ievietot %d kodu. Tas tiks izlaists. Spiest uz \"Izklāsts\", lai redzētu vairāk informācijas par kļūdām.</item>
         <item quantity="other">Aegis nevarēja ievietot %d kodus. Tie tiks izlaisti. Spiest uz \"Izklāsts\", lai redzētu vairāk informācijas par kļūdām.</item>
     </plurals>
-    <string name="unable_to_read_qrcode">Nav iespējams nolasīt un apstrādāt kvadrātkodu</string>
     <string name="unable_to_generate_qrcode">Nav iespējams izveidot kvadrātkodu</string>
     <string name="select_picture">Atlasīt attēlu</string>
     <string name="select_icon">Atlasīt ikonu</string>

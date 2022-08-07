@@ -251,7 +251,6 @@
         <item quantity="one">Aegis non può importare %d token. Questi token verranno saltati. Premi \'dettagli\' per vedere ulteriori informazioni sugli errori.</item>
         <item quantity="other">Aegis non può importare %d token. Questi token verranno saltati. Premi \'dettagli\' per vedere ulteriori informazioni sugli errori.</item>
     </plurals>
-    <string name="unable_to_read_qrcode">Impossibile verificare il codice QR</string>
     <string name="unable_to_generate_qrcode">Impossibile generare il codice QR</string>
     <string name="select_picture">Seleziona immagine</string>
     <string name="select_icon">Seleziona icona</string>

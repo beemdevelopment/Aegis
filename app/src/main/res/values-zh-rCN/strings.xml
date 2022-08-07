@@ -246,7 +246,6 @@
     <plurals name="import_error_dialog">
         <item quantity="other">Aegis 无法导入 %d 个令牌。这些令牌将被忽略。点击“详细信息”查看更多关于错误的信息。</item>
     </plurals>
-    <string name="unable_to_read_qrcode">无法读取和处理二维码</string>
     <string name="unable_to_generate_qrcode">无法生成二维码</string>
     <string name="select_picture">选择图片</string>
     <string name="select_icon">选择图标</string>

@@ -197,7 +197,6 @@
         <item quantity="one">Aegis não pôde importar %d token. Esse token será ignorado. Pressione \'detalhes\' para ver mais informações sobre o erro.</item>
         <item quantity="other">Aegis não pôde importar %d tokens. Esses tokens serão pulados. Pressione \'detalhes\' para ver mais informações sobre os erros.</item>
     </plurals>
-    <string name="unable_to_read_qrcode">Incapaz de ler e processar o código QR</string>
     <string name="unable_to_generate_qrcode">Não foi possível gerar o código QR</string>
     <string name="select_picture">Selecionar imagem</string>
     <string name="select_icon">Selecionar ícone</string>

@@ -251,7 +251,6 @@
         <item quantity="one">Το Aegis δεν μπόρεσε να εισαγάγει %d αναγνωριστικό. Αυτά θα παραληφθούν. Πατήστε \'Λεπτομέρειες\' για να δείτε περισσότερες πληροφορίες σχετικά με τα σφάλματα.</item>
         <item quantity="other">Το Aegis δεν μπόρεσε να εισαγάγει %d αναγνωριστικά. Αυτά θα παραληφθούν. Πατήστε \'Λεπτομέρειες\' για να δείτε περισσότερες πληροφορίες σχετικά με τα σφάλματα.</item>
     </plurals>
-    <string name="unable_to_read_qrcode">Αδυναμία ανάγνωσης και επεξεργασίας κωδικού QR</string>
     <string name="unable_to_generate_qrcode">Δεν είναι δυνατή η δημιουργία κωδικού QR</string>
     <string name="select_picture">Επιλέξτε εικόνα</string>
     <string name="select_icon">Επιλέξτε εικονίδιο</string>

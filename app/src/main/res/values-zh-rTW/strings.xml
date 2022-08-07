@@ -211,7 +211,6 @@
     <plurals name="import_error_dialog">
         <item quantity="other">Aegis 已忽略無法匯入的 %d 個憑證。如欲了解更詳細的錯誤訊息，請按「詳細內容」。</item>
     </plurals>
-    <string name="unable_to_read_qrcode">無法讀取和處理QR碼</string>
     <string name="unable_to_generate_qrcode">無法生成QR碼</string>
     <string name="select_picture">選擇圖片</string>
     <string name="select_icon">選擇圖示</string>

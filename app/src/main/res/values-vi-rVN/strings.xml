@@ -246,7 +246,6 @@
     <plurals name="import_error_dialog">
         <item quantity="other">Aegis không thể nhập %d token. Các token đó sẽ bị bỏ qua. Hãy nhấn \'Chi tiết\' để xem thêm thông tin về các lỗi.</item>
     </plurals>
-    <string name="unable_to_read_qrcode">Không thể đọc và xử lý mã QR</string>
     <string name="unable_to_generate_qrcode">Không thể tạo mã QR</string>
     <string name="select_picture">Chọn ảnh</string>
     <string name="select_icon">Chọn biểu tượng</string>

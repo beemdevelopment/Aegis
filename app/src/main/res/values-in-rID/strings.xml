@@ -243,7 +243,6 @@
     <plurals name="import_error_dialog">
         <item quantity="other">Aegis tidak dapat mengimpor %d token. Token ini akan dilewati. Tekan \'detail\' untuk melihat informasi lebih lanjut tentang kesalahan tersebut.</item>
     </plurals>
-    <string name="unable_to_read_qrcode">Tidak dapat membaca dan memproses kode QR</string>
     <string name="unable_to_generate_qrcode">Tidak dapat membuat kode QR</string>
     <string name="select_picture">Pilih gambar</string>
     <string name="select_icon">Pilih ikon</string>

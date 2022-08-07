@@ -222,7 +222,6 @@
         <item quantity="one">%d توکن اضافه نشدند. برای اطلاعات بیشتر از دکمه جزییات استفاده نمایید.</item>
         <item quantity="other">%d توکن اضافه نشدند. برای اطلاعات بیشتر از دکمه جزییات استفاده نمایید.</item>
     </plurals>
-    <string name="unable_to_read_qrcode">عدم توانایی در خواندن و پردازش بارکد دوبعدی</string>
     <string name="unable_to_generate_qrcode">عدم توانایی در ساخت بارکد دوبعدی</string>
     <string name="select_picture">انتخاب تصویر</string>
     <string name="select_icon">انتخاب آیکون</string>

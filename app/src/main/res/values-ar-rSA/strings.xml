@@ -201,7 +201,6 @@
     <string name="small_mode_title">صغير</string>
     <string name="unknown_issuer">مصدِّر غير معروف</string>
     <string name="unknown_account_name">اسم الحساب غير معروف</string>
-    <string name="unable_to_read_qrcode">تعذّر قراءة ومعالجة كود QR</string>
     <string name="unable_to_generate_qrcode">تعذّر توليد كود QR</string>
     <string name="select_picture">اختر صورة</string>
     <string name="select_icon">اختر أيقونة</string>

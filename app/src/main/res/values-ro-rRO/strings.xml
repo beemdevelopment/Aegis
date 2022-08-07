@@ -256,7 +256,6 @@
         <item quantity="few">Aegis nu a putut importa %d token. Aceste token-uri vor fi sărite. Apăsați \'detalii\' pentru a vedea mai multe informații despre erori.</item>
         <item quantity="other">Aegis nu a putut importa %d token-rui. Aceste token-uri vor fi sărite. Apăsați \'detalii\' pentru a vedea mai multe informații despre erori.</item>
     </plurals>
-    <string name="unable_to_read_qrcode">Nu se poate citi și prelucra codul QR</string>
     <string name="unable_to_generate_qrcode">Nu se poate genera codul QR</string>
     <string name="select_picture">Selectare imagine</string>
     <string name="select_icon">Selectare pictogramă</string>

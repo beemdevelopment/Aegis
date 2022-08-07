@@ -248,7 +248,6 @@
         <item quantity="one">Aegisek ezin izan du %d token inportatu. Token hori kendu egingo da. Sakatu \'Xehetasunak\' akatsei buruzko informazio gehiago ikusteko.</item>
         <item quantity="other">Aegisek ezin izan du %d token inportatu. Token horiek kendu egingo dira. Sakatu \'Xehetasunak\' akatsei buruzko informazio gehiago ikusteko.</item>
     </plurals>
-    <string name="unable_to_read_qrcode">Ez da gai QR kodea irakurtzeko eta prozesatzeko</string>
     <string name="unable_to_generate_qrcode">Ezin da QR kodea sortu</string>
     <string name="select_picture">Aukeratu irudia</string>
     <string name="select_icon">Aukeratu ikonoa</string>

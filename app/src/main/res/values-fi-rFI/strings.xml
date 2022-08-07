@@ -239,7 +239,6 @@
         <item quantity="one">Aegis ei voinut tuoda %d tunnusta. Nämä tunnukset ohitetaan. Paina \'tiedot\' nähdäksesi lisätietoa virheistä.</item>
         <item quantity="other">Aegis ei voinut tuoda %d tunnusta. Nämä tunnukset ohitetaan. Paina \'tiedot\' nähdäksesi lisätietoa virheistä.</item>
     </plurals>
-    <string name="unable_to_read_qrcode">QR-koodia ei voi lukea ja käsitellä</string>
     <string name="unable_to_generate_qrcode">QR-koodia ei voitu luoda</string>
     <string name="select_picture">Valitse kuva</string>
     <string name="select_icon">Valitse kuvake</string>

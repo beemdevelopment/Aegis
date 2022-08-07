@@ -10,6 +10,7 @@ import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.text.Editable;
 import android.text.InputType;
+import android.text.SpannableStringBuilder;
 import android.text.TextWatcher;
 import android.text.method.PasswordTransformationMethod;
 import android.view.LayoutInflater;
@@ -24,6 +25,7 @@ import android.widget.ListView;
 import android.widget.NumberPicker;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.ComponentActivity;
 import androidx.annotation.StringRes;
@@ -44,6 +46,7 @@ import com.google.android.material.textfield.TextInputLayout;
 import com.nulabinc.zxcvbn.Strength;
 import com.nulabinc.zxcvbn.Zxcvbn;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Collectors;
@@ -340,6 +343,10 @@ public class Dialogs {
         showErrorDialog(context, message, e, null);
     }
 
+    public static void showErrorDialog(Context context, String message, Exception e) {
+        showErrorDialog(context, message, e, null);
+    }
+
     public static void showErrorDialog(Context context, @StringRes int message, CharSequence error) {
         showErrorDialog(context, message, error, null);
     }
@@ -348,7 +355,15 @@ public class Dialogs {
         showErrorDialog(context, message, e.toString(), listener);
     }
 
+    public static void showErrorDialog(Context context, String message, Exception e, DialogInterface.OnClickListener listener) {
+        showErrorDialog(context, message, e.toString(), listener);
+    }
+
     public static void showErrorDialog(Context context, @StringRes int message, CharSequence error, DialogInterface.OnClickListener listener) {
+        showErrorDialog(context, context.getString(message), error, listener);
+    }
+
+    public static void showErrorDialog(Context context, String message, CharSequence error, DialogInterface.OnClickListener listener) {
         View view = LayoutInflater.from(context).inflate(R.layout.dialog_error, null);
         TextView textDetails = view.findViewById(R.id.error_details);
         textDetails.setText(error);
@@ -388,6 +403,66 @@ public class Dialogs {
         Dialogs.showSecureDialog(dialog);
     }
 
+    public static void showMultiMessageDialog(
+            Context context, @StringRes int title, String message, List<CharSequence> messages, DialogInterface.OnClickListener listener) {
+        Dialogs.showSecureDialog(new AlertDialog.Builder(context)
+                .setTitle(title)
+                .setMessage(message)
+                .setCancelable(false)
+                .setPositiveButton(android.R.string.ok, (dialog, which) -> {
+                    if (listener != null) {
+                        listener.onClick(dialog, which);
+                    }
+                })
+                .setNeutralButton(context.getString(R.string.details), (dialog, which) -> {
+                    showDetailedMultiMessageDialog(context, title, messages, listener);
+                })
+                .create());
+    }
+
+    public static <T extends Throwable> void showMultiErrorDialog(
+            Context context, @StringRes int title, String message, List<T> errors, DialogInterface.OnClickListener listener) {
+        List<CharSequence> messages = new ArrayList<>();
+        for (Throwable e : errors) {
+            messages.add(e.toString());
+        }
+
+        showMultiMessageDialog(context, title, message, messages, listener);
+    }
+
+    private static void showDetailedMultiMessageDialog(
+            Context context, @StringRes int title, List<CharSequence> messages, DialogInterface.OnClickListener listener) {
+        SpannableStringBuilder builder = new SpannableStringBuilder();
+        for (CharSequence message : messages) {
+            builder.append(message);
+            builder.append("\n\n");
+        }
+
+        AlertDialog dialog = new AlertDialog.Builder(context)
+                .setTitle(title)
+                .setMessage(builder)
+                .setCancelable(false)
+                .setPositiveButton(android.R.string.ok, (dialog1, which) -> {
+                    if (listener != null) {
+                        listener.onClick(dialog1, which);
+                    }
+                })
+                .setNeutralButton(android.R.string.copy, null)
+                .create();
+
+        dialog.setOnShowListener(d -> {
+            Button button = dialog.getButton(AlertDialog.BUTTON_NEUTRAL);
+            button.setOnClickListener(v -> {
+                ClipboardManager clipboard = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
+                ClipData clip = ClipData.newPlainText("text/plain", builder.toString());
+                clipboard.setPrimaryClip(clip);
+                Toast.makeText(context, R.string.errors_copied, Toast.LENGTH_SHORT).show();
+            });
+        });
+
+        Dialogs.showSecureDialog(dialog);
+    }
+    
     public static void showTimeSyncWarningDialog(Context context, Dialog.OnClickListener listener) {
         Preferences prefs = new Preferences(context);
         View view = LayoutInflater.from(context).inflate(R.layout.dialog_time_sync, null);

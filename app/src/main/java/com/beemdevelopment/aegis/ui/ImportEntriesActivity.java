@@ -1,11 +1,7 @@
 package com.beemdevelopment.aegis.ui;
 
-import android.content.ClipData;
-import android.content.ClipboardManager;
-import android.content.Context;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
@@ -36,7 +32,6 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
 import java.util.List;
 
 public class ImportEntriesActivity extends AegisActivity {
@@ -190,37 +185,9 @@ public class ImportEntriesActivity extends AegisActivity {
 
         List<DatabaseImporterEntryException> errors = result.getErrors();
         if (errors.size() > 0) {
-            showErrorDialog(errors);
+            String message = getResources().getQuantityString(R.plurals.import_error_dialog, errors.size(), errors.size());
+            Dialogs.showMultiErrorDialog(this, R.string.import_error_title, message, errors, null);
         }
-    }
-
-    private void showErrorDialog(List<DatabaseImporterEntryException> errors) {
-        Dialogs.showSecureDialog(new AlertDialog.Builder(this)
-                .setTitle(R.string.import_error_title)
-                .setMessage(getResources().getQuantityString(R.plurals.import_error_dialog, errors.size(), errors.size()))
-                .setPositiveButton(android.R.string.ok, null)
-                .setNeutralButton(getString(R.string.details), (dialog, which) -> showDetailedErrorDialog(errors))
-                .create());
-    }
-
-    private void showDetailedErrorDialog(List<DatabaseImporterEntryException> errors) {
-        List<String> messages = new ArrayList<>();
-        for (DatabaseImporterEntryException e : errors) {
-            messages.add(e.getMessage());
-        }
-
-        String message = TextUtils.join("\n\n", messages);
-        Dialogs.showSecureDialog(new AlertDialog.Builder(this)
-                .setTitle(R.string.import_error_title)
-                .setMessage(message)
-                .setPositiveButton(android.R.string.ok, null)
-                .setNeutralButton(android.R.string.copy, (dialog2, which2) -> {
-                    ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
-                    ClipData clip = ClipData.newPlainText("text/plain", message);
-                    clipboard.setPrimaryClip(clip);
-                    Toast.makeText(this, R.string.errors_copied, Toast.LENGTH_SHORT).show();
-                })
-                .create());
     }
 
     private void showWipeEntriesDialog() {

@@ -4,10 +4,15 @@ import android.Manifest;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.text.Spannable;
+import android.text.SpannableStringBuilder;
+import android.text.style.StyleSpan;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -38,6 +43,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeSet;
@@ -275,17 +281,8 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
 
     private void onScanResult(Intent data) {
         List<VaultEntry> entries = (ArrayList<VaultEntry>) data.getSerializableExtra("entries");
-        if (entries.size() == 1) {
-            startEditEntryActivityForNew(CODE_ADD_ENTRY, entries.get(0));
-        } else {
-            for (VaultEntry entry : entries) {
-                _vaultManager.getVault().addEntry(entry);
-                if (_loaded) {
-                    _entryListView.addEntry(entry);
-                }
-            }
-
-            saveAndBackupVault();
+        if (entries != null) {
+            importScannedEntries(entries);
         }
     }
 
@@ -311,25 +308,78 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
     }
 
     private void onScanImageResult(Intent intent) {
-        startDecodeQrCodeImage(intent.getData());
+        if (intent.getData() != null) {
+            startDecodeQrCodeImages(Collections.singletonList(intent.getData()));
+            return;
+        }
+
+        if (intent.getClipData() != null) {
+            ClipData data = intent.getClipData();
+
+            List<Uri> uris = new ArrayList<>();
+            for (int i = 0; i < data.getItemCount(); i++) {
+                ClipData.Item item = data.getItemAt(i);
+                if (item.getUri() != null) {
+                    uris.add(item.getUri());
+                }
+            }
+
+            if (uris.size() > 0) {
+                startDecodeQrCodeImages(uris);
+            }
+        }
     }
 
-    private void startDecodeQrCodeImage(Uri uri) {
-        QrDecodeTask task = new QrDecodeTask(this, (result) -> {
-            if (result.getException() != null) {
-                Dialogs.showErrorDialog(this, R.string.unable_to_read_qrcode, result.getException());
-                return;
+    private static CharSequence buildImportError(String fileName, Throwable e) {
+        SpannableStringBuilder builder = new SpannableStringBuilder(String.format("%s:\n%s", fileName, e));
+        builder.setSpan(new StyleSpan(Typeface.BOLD), 0, fileName.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        return builder;
+    }
+
+    private void startDecodeQrCodeImages(List<Uri> uris) {
+        QrDecodeTask task = new QrDecodeTask(this, (results) -> {
+            List<CharSequence> errors = new ArrayList<>();
+            List<VaultEntry> entries = new ArrayList<>();
+            for (QrDecodeTask.Result res : results) {
+                if (res.getException() != null) {
+                    errors.add(buildImportError(res.getFileName(), res.getException()));
+                    continue;
+                }
+
+                try {
+                    GoogleAuthInfo info = GoogleAuthInfo.parseUri(res.getResult().getText());
+                    VaultEntry entry = new VaultEntry(info);
+                    entries.add(entry);
+                } catch (GoogleAuthInfoException e) {
+                    errors.add(buildImportError(res.getFileName(), e));
+                }
             }
 
-            try {
-                GoogleAuthInfo info = GoogleAuthInfo.parseUri(result.getResult().getText());
-                VaultEntry entry = new VaultEntry(info);
-                startEditEntryActivityForNew(CODE_ADD_ENTRY, entry);
-            } catch (GoogleAuthInfoException e) {
-                Dialogs.showErrorDialog(this, R.string.unable_to_read_qrcode, e);
+            final DialogInterface.OnClickListener dialogDismissHandler = (dialog, which) -> importScannedEntries(entries);
+            if ((errors.size() > 0 && results.size() > 1) || errors.size() > 1) {
+                Dialogs.showMultiMessageDialog(this, R.string.import_error_title, getString(R.string.unable_to_read_qrcode_files, uris.size() - errors.size(), uris.size()), errors, dialogDismissHandler);
+            } else if (errors.size() > 0) {
+                Dialogs.showErrorDialog(this, getString(R.string.unable_to_read_qrcode_file, results.get(0).getFileName()), errors.get(0), dialogDismissHandler);
+            } else {
+                importScannedEntries(entries);
             }
         });
-        task.execute(getLifecycle(), uri);
+        task.execute(getLifecycle(), uris);
+    }
+
+    private void importScannedEntries(List<VaultEntry> entries) {
+        if (entries.size() == 1) {
+            startEditEntryActivityForNew(CODE_ADD_ENTRY, entries.get(0));
+        } else if (entries.size() > 1) {
+            for (VaultEntry entry: entries) {
+                _vaultManager.getVault().addEntry(entry);
+                _entryListView.addEntry(entry);
+            }
+
+            if (saveAndBackupVault()) {
+                Toast.makeText(this, getResources().getQuantityString(R.plurals.added_new_entries, entries.size(), entries.size()), Toast.LENGTH_LONG).show();
+            }
+        }
     }
 
     private void updateSortCategoryMenu() {
@@ -368,9 +418,11 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
 
     private void startScanImageActivity() {
         Intent galleryIntent = new Intent(Intent.ACTION_PICK);
+        galleryIntent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
         galleryIntent.setDataAndType(android.provider.MediaStore.Images.Media.INTERNAL_CONTENT_URI, "image/*");
 
         Intent fileIntent = new Intent(Intent.ACTION_GET_CONTENT);
+        fileIntent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
         fileIntent.setType("image/*");
 
         Intent chooserIntent = Intent.createChooser(galleryIntent, getString(R.string.select_picture));
@@ -421,7 +473,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
                 info = GoogleAuthInfo.parseUri(uri);
             } catch (GoogleAuthInfoException e) {
                 e.printStackTrace();
-                Dialogs.showErrorDialog(this, R.string.unable_to_read_qrcode, e);
+                Dialogs.showErrorDialog(this, R.string.unable_to_process_deeplink, e);
             }
 
             if (info != null) {
@@ -444,7 +496,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
             intent.setAction(null);
             intent.removeExtra(Intent.EXTRA_STREAM);
 
-            startDecodeQrCodeImage(uri);
+            startDecodeQrCodeImages(Collections.singletonList(uri));
         }
     }
 

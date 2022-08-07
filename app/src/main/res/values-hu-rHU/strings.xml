@@ -147,7 +147,6 @@
     <string name="small_mode_title">Apró</string>
     <string name="unknown_issuer">Ismeretlen kibocsátó</string>
     <string name="unknown_account_name">Ismeretlen fióknév</string>
-    <string name="unable_to_read_qrcode">A QR-kód nem olvasható be és dolgozható fel</string>
     <string name="select_picture">Válasszon képet</string>
     <string name="toggle_checkboxes">Jelölőmezők be/ki</string>
     <string name="search">Keresés</string>

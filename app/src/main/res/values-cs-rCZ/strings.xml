@@ -231,7 +231,6 @@
     <string name="small_mode_title">Malý</string>
     <string name="unknown_issuer">Neznámý poskytovatel</string>
     <string name="unknown_account_name">Neznámý název účtu</string>
-    <string name="unable_to_read_qrcode">QR kód nelze přečíst a zpracovat</string>
     <string name="unable_to_generate_qrcode">QR kód nelze vygenerovat</string>
     <string name="select_picture">Vyberte obrázek</string>
     <string name="select_icon">Vybrat ikonu</string>

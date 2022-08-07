@@ -252,7 +252,6 @@
         <item quantity="many">Aplikacja Aegis nie może zaimportować %d tokenów. Te tokeny zostaną pominięte. Kliknij \'Szczegóły\', aby zobaczyć więcej informacji o błędach.</item>
         <item quantity="other">Aplikacja Aegis nie może zaimportować %d tokenów. Te tokeny zostaną pominięte. Kliknij \'Szczegóły\', aby zobaczyć więcej informacji o błędach.</item>
     </plurals>
-    <string name="unable_to_read_qrcode">Nie można odczytać i przetworzyć kodu QR</string>
     <string name="unable_to_generate_qrcode">Nie udało się wygenerować kodu QR</string>
     <string name="select_picture">Wybierz obraz</string>
     <string name="select_icon">Wybierz ikonę</string>

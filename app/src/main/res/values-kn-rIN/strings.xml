@@ -101,7 +101,6 @@
     <string name="small_mode_title">ಸಣ್ಣ</string>
     <string name="unknown_issuer">ಗೊತ್ತಿಲ್ಲದಿರುವ ನೀಡುವವರು</string>
     <string name="unknown_account_name">ಗೊತ್ತಿಲ್ಲದಿರುವ ಖಾತೆಯ ಹೆಸರು</string>
-    <string name="unable_to_read_qrcode">ಕ್ಯೂ ಆರ್ ಸಂಕೇತವನ್ನು ಓದವುದಕ್ಕೆ ಹಾಗು ಪ್ರಕ್ರಿಯಿಸುವುದಕ್ಕೆ ಸಾಧ್ಯವಾಗಲಿಲ್ಲ</string>
     <string name="select_picture">ಚಿತ್ರವನ್ನು ಆಯ್ಕೆ ಮಾಡು</string>
     <string name="toggle_checkboxes">ಚೆಕ್ಬಾಕ್ಸ್ಗಳನ್ನು ಟಾಗಲ್ ಮಾಡು</string>
     <string name="search">ಹುಡುಕು</string>

@@ -188,7 +188,6 @@
         <item quantity="one">Aegis %d टोकन आयात नहीं कर सका। इन टोकन को छोड़ दिया जाएगा। त्रुटियों के बारे में अधिक जानकारी देखने के लिए \'विवरण\' दबाएँ।</item>
         <item quantity="other">Aegis %d टोकनों को आयात नहीं कर सका। इन टोकनों को छोड़ दिया जाएगा। त्रुटियों के बारे में अधिक जानकारी देखने के लिए \'विवरण\' दबाएँ।</item>
     </plurals>
-    <string name="unable_to_read_qrcode">क्यूआर कोड को पढ़ने और प्रोसेस करने में असमर्थ</string>
     <string name="unable_to_generate_qrcode">क्यूआर कोड उत्पन्न करने में असमर्थ</string>
     <string name="select_picture">छवि चयन करें</string>
     <string name="select_icon">आइकन चयन करें</string>

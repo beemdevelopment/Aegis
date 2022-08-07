@@ -251,7 +251,6 @@
         <item quantity="one">Aegis n\'a pas pu importer %d jeton. Ce jeton sera ignoré. Appuyez sur « détails» pour voir plus d\'informations sur les erreurs.</item>
         <item quantity="other">Aegis n\'a pas pu importer %d jetons. Ces jetons seront ignorés. Appuyez sur \'details\' pour voir plus d\'informations sur les erreurs.</item>
     </plurals>
-    <string name="unable_to_read_qrcode">Impossible de lire et traiter le code QR</string>
     <string name="unable_to_generate_qrcode">Impossible de générer le code QR</string>
     <string name="select_picture">Sélectionner image</string>
     <string name="select_icon">Sélectionner une icône</string>

@@ -243,7 +243,6 @@
     <plurals name="import_error_dialog">
         <item quantity="other">Aegisは %d 個のトークンをインポートできませんでした。これらのトークンはスキップされます。エラーの詳細を見るには「詳細」を押してください。</item>
     </plurals>
-    <string name="unable_to_read_qrcode">QRコードを読み取りできません</string>
     <string name="unable_to_generate_qrcode">QRコードを生成できません</string>
     <string name="select_picture">画像を選択</string>
     <string name="select_icon">アイコンを選択</string>
