@@ -25,7 +25,9 @@ import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.filters.LargeTest;
 
 import com.beemdevelopment.aegis.encoding.Base32;
+import com.beemdevelopment.aegis.encoding.Hex;
 import com.beemdevelopment.aegis.otp.HotpInfo;
+import com.beemdevelopment.aegis.otp.MotpInfo;
 import com.beemdevelopment.aegis.otp.SteamInfo;
 import com.beemdevelopment.aegis.otp.TotpInfo;
 import com.beemdevelopment.aegis.otp.YandexInfo;
@@ -44,6 +46,7 @@ import org.junit.runner.RunWith;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 import dagger.hilt.android.testing.HiltAndroidTest;
 
@@ -78,7 +81,8 @@ public class OverallTest extends AegisTest {
                 generateEntry(HotpInfo.class, "John", "GitHub"),
                 generateEntry(TotpInfo.class, "Alice", "Office 365"),
                 generateEntry(SteamInfo.class, "Gaben", "Steam"),
-                generateEntry(YandexInfo.class, "Ivan", "Yandex", 16)
+                generateEntry(YandexInfo.class, "Ivan", "Yandex", 16),
+                generateEntry(MotpInfo.class, "Jimmy McGill", "PfSense", 16)
         );
         for (VaultEntry entry : entries) {
             addEntry(entry);
@@ -181,6 +185,8 @@ public class OverallTest extends AegisTest {
                 otpType = "Steam";
             } else if (entry.getInfo() instanceof YandexInfo) {
                 otpType = "Yandex";
+            } else if (entry.getInfo() instanceof MotpInfo) {
+                otpType = "MOTP";
             } else if (entry.getInfo() instanceof TotpInfo) {
                 otpType = "TOTP";
             } else {
@@ -191,13 +197,23 @@ public class OverallTest extends AegisTest {
             onView(withText(otpType)).inRoot(RootMatchers.isPlatformPopup()).perform(click());
         }
 
-        String secret = Base32.encode(entry.getInfo().getSecret());
+        String secret;
+        if (Objects.equals(entry.getInfo().getTypeId(), MotpInfo.ID)) {
+            secret = Hex.encode(entry.getInfo().getSecret());
+        } else {
+            secret = Base32.encode(entry.getInfo().getSecret());
+        }
+
         onView(withId(R.id.text_secret)).perform(typeText(secret), closeSoftKeyboard());
 
         if (entry.getInfo() instanceof YandexInfo) {
             String pin = "123456";
             ((YandexInfo) entry.getInfo()).setPin(pin);
-            onView(withId(R.id.text_yandex_pin)).perform(typeText(pin), closeSoftKeyboard());
+            onView(withId(R.id.text_pin)).perform(typeText(pin), closeSoftKeyboard());
+        } else if (entry.getInfo() instanceof MotpInfo) {
+            String pin = "1234";
+            ((MotpInfo) entry.getInfo()).setPin(pin);
+            onView(withId(R.id.text_pin)).perform(typeText(pin), closeSoftKeyboard());
         }
 
         onView(withId(R.id.action_save)).perform(click());
