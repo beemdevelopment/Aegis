@@ -321,6 +321,9 @@
     <string name="google_qr_export_unexpected">Expected QR code #%d, but scanned #%d instead</string>
     <string name="backup_error_bar_message"><b>Vault backup failed recently</b></string>
     <string name="backup_reminder_bar_message"><b>Recent vault changes are not backed up</b></string>
+    <string name="backup_plaintext_export_warning"><b>The vault was recently exported in plain text</b></string>
+    <string name="pref_show_plaintext_warning_hint">Don\'t show this warning again</string>
+    <string name="backup_plaintext_warning_explanation">This warning is shown because you recently exported an unencrypted copy of the vault. To maintain security of your tokens, we recommend deleting this file once it\'s no longer needed.</string>
     <string name="switch_camera">Switch camera</string>
 
     <string name="custom_notices_format_style" translatable="false" >
