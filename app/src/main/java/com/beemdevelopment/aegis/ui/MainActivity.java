@@ -457,46 +457,53 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         intent.removeExtra("action");
     }
 
-    private void handleDeeplink() {
+    private void handleIncomingIntent() {
         if (!_vaultManager.isVaultLoaded()) {
             return;
         }
 
         Intent intent = getIntent();
-        Uri uri = intent.getData();
-        if (Intent.ACTION_VIEW.equals(intent.getAction()) && uri != null) {
-            intent.setData(null);
-            intent.setAction(null);
-
-            GoogleAuthInfo info = null;
-            try {
-                info = GoogleAuthInfo.parseUri(uri);
-            } catch (GoogleAuthInfoException e) {
-                e.printStackTrace();
-                Dialogs.showErrorDialog(this, R.string.unable_to_process_deeplink, e);
-            }
-
-            if (info != null) {
-                VaultEntry entry = new VaultEntry(info);
-                startEditEntryActivityForNew(CODE_ADD_ENTRY, entry);
-            }
-        }
-    }
-
-    private void handleSharedImage() {
-        if (!_vaultManager.isVaultLoaded()) {
+        if (intent.getAction() == null) {
             return;
         }
 
-        Intent intent = getIntent();
-        String action = intent.getAction();
-        Uri uri = intent.getParcelableExtra(Intent.EXTRA_STREAM);
+        Uri uri;
+        switch (intent.getAction()) {
+            case Intent.ACTION_VIEW:
+                uri = intent.getData();
+                if (uri != null) {
+                    intent.setData(null);
+                    intent.setAction(null);
 
-        if (Intent.ACTION_SEND.equals(action) && uri != null) {
-            intent.setAction(null);
-            intent.removeExtra(Intent.EXTRA_STREAM);
+                    GoogleAuthInfo info;
+                    try {
+                        info = GoogleAuthInfo.parseUri(uri);
+                    } catch (GoogleAuthInfoException e) {
+                        e.printStackTrace();
+                        Dialogs.showErrorDialog(this, R.string.unable_to_process_deeplink, e);
+                        break;
+                    }
 
-            startDecodeQrCodeImages(Collections.singletonList(uri));
+                    VaultEntry entry = new VaultEntry(info);
+                    startEditEntryActivityForNew(CODE_ADD_ENTRY, entry);
+                }
+                break;
+            case Intent.ACTION_SEND:
+                uri = intent.getParcelableExtra(Intent.EXTRA_STREAM);
+                if (uri != null) {
+                    intent.setAction(null);
+                    intent.removeExtra(Intent.EXTRA_STREAM);
+                    startDecodeQrCodeImages(Collections.singletonList(uri));
+                }
+                break;
+            case Intent.ACTION_SEND_MULTIPLE:
+                List<Uri> uris = intent.getParcelableArrayListExtra(Intent.EXTRA_STREAM);
+                if (uris != null) {
+                    intent.setAction(null);
+                    intent.removeExtra(Intent.EXTRA_STREAM);
+                    startDecodeQrCodeImages(uris);
+                }
+                break;
         }
     }
 
@@ -534,8 +541,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
             checkTimeSyncSetting();
         }
 
-        handleDeeplink();
-        handleSharedImage();
+        handleIncomingIntent();
         updateLockIcon();
         doShortcutActions();
         updateErrorBar();
