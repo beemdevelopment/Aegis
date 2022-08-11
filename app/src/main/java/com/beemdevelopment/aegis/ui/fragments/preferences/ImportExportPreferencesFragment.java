@@ -292,9 +292,11 @@ public class ImportExportPreferencesFragment extends PreferencesFragment {
                 break;
             case CODE_EXPORT_PLAIN:
                 cb.exportVault((stream) -> _vaultManager.getVault().export(stream, null));
+                _prefs.setIsPlaintextBackupWarningNeeded(true);
                 break;
             case CODE_EXPORT_GOOGLE_URI:
                 cb.exportVault((stream) -> _vaultManager.getVault().exportGoogleUris(stream));
+                _prefs.setIsPlaintextBackupWarningNeeded(true);
                 break;
         }
     }

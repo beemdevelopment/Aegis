@@ -14,14 +14,18 @@ import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.style.StyleSpan;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.view.ActionMode;
 import androidx.appcompat.widget.SearchView;
 
@@ -741,9 +745,44 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
                 startPreferencesActivity();
             });
             _btnErrorBar.setVisibility(View.VISIBLE);
+        } else if (_prefs.isPlaintextBackupWarningNeeded()) {
+            _textErrorBar.setText(R.string.backup_plaintext_export_warning);
+            _btnErrorBar.setOnClickListener(view -> {
+                showPlaintextExportWarningOptions();
+            });
+            _btnErrorBar.setVisibility(View.VISIBLE);
         } else {
             _btnErrorBar.setVisibility(View.GONE);
         }
+    }
+
+    private void showPlaintextExportWarningOptions() {
+        View view = LayoutInflater.from(this).inflate(R.layout.dialog_plaintext_warning_options, null);
+
+        AlertDialog dialog = new AlertDialog.Builder(this)
+                .setTitle(R.string.backup_plaintext_export_warning)
+                .setView(view)
+                .setPositiveButton(android.R.string.ok, null)
+                .setNegativeButton(android.R.string.cancel, null)
+                .create();
+
+        CheckBox checkBox = view.findViewById(R.id.checkbox_dont_show_plaintext_warning_again);
+        checkBox.setChecked(false);
+
+        dialog.setOnShowListener(d -> {
+            Button btnPos = dialog.getButton(AlertDialog.BUTTON_POSITIVE);
+
+            btnPos.setOnClickListener(l -> {
+                dialog.dismiss();
+
+                _prefs.setCanShowPlaintextBackupWarning(!checkBox.isChecked());
+                _prefs.setIsPlaintextBackupWarningNeeded(false);
+
+                updateErrorBar();
+            });
+        });
+
+        Dialogs.showSecureDialog(dialog);
     }
 
     @Override

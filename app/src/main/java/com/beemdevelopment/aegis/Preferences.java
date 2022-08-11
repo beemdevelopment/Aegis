@@ -316,6 +316,29 @@ public class Preferences {
         return _prefs.getBoolean("pref_backups_reminder_needed", false);
     }
 
+    public void setIsPlaintextBackupWarningNeeded(boolean needed) {
+        if (isPlaintextBackupWarningNeeded() != needed) {
+            _prefs.edit().putBoolean("pref_plaintext_backup_warning_needed", needed).apply();
+        }
+    }
+
+    public boolean isPlaintextBackupWarningNeeded() {
+        if (canShowPlaintextBackupWarning()) {
+            return _prefs.getBoolean("pref_plaintext_backup_warning_needed", false);
+        }
+        return false;
+    }
+
+    public void setCanShowPlaintextBackupWarning(boolean canShow) {
+        if (canShowPlaintextBackupWarning() != canShow) {
+            _prefs.edit().putBoolean("pref_can_show_plaintext_backup_warning", canShow).apply();
+        }
+    }
+
+    public boolean canShowPlaintextBackupWarning() {
+        return _prefs.getBoolean("pref_can_show_plaintext_backup_warning", true);
+    }
+
     public boolean isPinKeyboardEnabled() {
         return _prefs.getBoolean("pref_pin_keyboard", false);
     }
