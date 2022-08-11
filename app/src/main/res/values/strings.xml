@@ -289,6 +289,7 @@
     </plurals>
     <string name="unable_to_process_deeplink">Unable to process deep link</string>
     <string name="unable_to_read_qrcode_file">Unable to read and process QR code from file: %s.</string>
+    <string name="unable_to_process_shared_text">Unable to process shared text as OTP</string>
     <string name="unable_to_read_qrcode_files">Unable to read and process some of the QR codes. Only %d/%d entries will be imported.</string>
     <string name="unable_to_generate_qrcode">Unable to generate QR code</string>
     <string name="select_picture">Select picture</string>

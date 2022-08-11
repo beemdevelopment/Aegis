@@ -493,11 +493,27 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
                 }
                 break;
             case Intent.ACTION_SEND:
-                uri = intent.getParcelableExtra(Intent.EXTRA_STREAM);
-                if (uri != null) {
+                if (intent.hasExtra(Intent.EXTRA_STREAM)) {
+                    uri = intent.getParcelableExtra(Intent.EXTRA_STREAM);
                     intent.setAction(null);
                     intent.removeExtra(Intent.EXTRA_STREAM);
                     startDecodeQrCodeImages(Collections.singletonList(uri));
+                }
+                if (intent.hasExtra(Intent.EXTRA_TEXT)) {
+                    String stringExtra = intent.getStringExtra(Intent.EXTRA_TEXT);
+                    intent.setAction(null);
+                    intent.removeExtra(Intent.EXTRA_TEXT);
+
+                    GoogleAuthInfo info;
+                    try {
+                        info = GoogleAuthInfo.parseUri(stringExtra);
+                    } catch (GoogleAuthInfoException e) {
+                        Dialogs.showErrorDialog(this, R.string.unable_to_process_shared_text, e);
+                        break;
+                    }
+
+                    VaultEntry entry = new VaultEntry(info);
+                    startEditEntryActivityForNew(CODE_ADD_ENTRY, entry);
                 }
                 break;
             case Intent.ACTION_SEND_MULTIPLE:
