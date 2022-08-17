@@ -1,16 +1,109 @@
 package com.beemdevelopment.aegis.ui.slides;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
+
 import com.beemdevelopment.aegis.R;
+import com.beemdevelopment.aegis.importers.AegisImporter;
+import com.beemdevelopment.aegis.importers.DatabaseImporter;
+import com.beemdevelopment.aegis.importers.DatabaseImporterException;
+import com.beemdevelopment.aegis.ui.dialogs.Dialogs;
 import com.beemdevelopment.aegis.ui.intro.SlideFragment;
+import com.beemdevelopment.aegis.ui.tasks.ImportFileTask;
+import com.beemdevelopment.aegis.vault.VaultFileCredentials;
+import com.beemdevelopment.aegis.vault.VaultRepository;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 
 public class WelcomeSlide extends SlideFragment {
+    public static final int CODE_IMPORT_VAULT = 0;
+
+    private boolean _imported;
+    private VaultFileCredentials _creds;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_welcome_slide, container, false);
+        View view = inflater.inflate(R.layout.fragment_welcome_slide, container, false);
+        view.findViewById(R.id.btnImport).setOnClickListener(v -> {
+            Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+            intent.setType("*/*");
+            startActivityForResult(intent, CODE_IMPORT_VAULT);
+        });
+        return view;
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == CODE_IMPORT_VAULT && data != null && data.getData() != null) {
+            startImportVault(data.getData());
+        }
+    }
+
+    @Override
+    public void onSaveIntroState(@NonNull Bundle introState) {
+        introState.putBoolean("imported", _imported);
+        introState.putSerializable("creds", _creds);
+    }
+
+    private void startImportVault(Uri uri) {
+        ImportFileTask.Params params = new ImportFileTask.Params(uri, "intro-import", null);
+        ImportFileTask task = new ImportFileTask(requireContext(), result -> {
+            if (result.getException() != null) {
+                Dialogs.showErrorDialog(requireContext(), R.string.reading_file_error, result.getException());
+                return;
+            }
+
+            try (FileInputStream inStream = new FileInputStream(result.getFile())) {
+                AegisImporter importer = new AegisImporter(requireContext());
+                DatabaseImporter.State state = importer.read(inStream, false);
+                if (state.isEncrypted()) {
+                    state.decrypt(requireContext(), new DatabaseImporter.DecryptListener() {
+                        @Override
+                        protected void onStateDecrypted(DatabaseImporter.State state) {
+                            _creds = ((AegisImporter.DecryptedState) state).getCredentials();
+                            importVault(result.getFile());
+                        }
+
+                        @Override
+                        protected void onError(Exception e) {
+                            e.printStackTrace();
+                            Dialogs.showErrorDialog(requireContext(), R.string.decryption_error, e);
+                        }
+
+                        @Override
+                        protected void onCanceled() {
+
+                        }
+                    });
+                } else {
+                    importVault(result.getFile());
+                }
+            } catch (DatabaseImporterException | IOException e) {
+                e.printStackTrace();
+                Dialogs.showErrorDialog(requireContext(), R.string.intro_import_error_title, e);
+            }
+        });
+        task.execute(getLifecycle(), params);
+    }
+
+    private void importVault(File file) {
+        try (FileInputStream inStream = new FileInputStream(file)) {
+            VaultRepository.writeToFile(requireContext(), inStream);
+        } catch (IOException e) {
+            e.printStackTrace();
+            Dialogs.showErrorDialog(requireContext(), R.string.intro_import_error_title, e);
+            return;
+        }
+
+        _imported = true;
+        goToNextSlide();
     }
 }

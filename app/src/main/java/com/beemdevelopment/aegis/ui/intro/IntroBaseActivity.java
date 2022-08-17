@@ -1,11 +1,11 @@
 package com.beemdevelopment.aegis.ui.intro;
 
-import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -13,7 +13,6 @@ import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.beemdevelopment.aegis.R;
-import com.beemdevelopment.aegis.Theme;
 import com.beemdevelopment.aegis.ui.AegisActivity;
 
 import java.lang.ref.WeakReference;
@@ -116,7 +115,7 @@ public abstract class IntroBaseActivity extends AegisActivity implements IntroAc
      * @param newSlide the next slide that will be shown.
      * @return whether to block the transition.
      */
-    protected boolean onBeforeSlideChanged(Class<? extends SlideFragment> oldSlide, Class<? extends SlideFragment> newSlide) {
+    protected boolean onBeforeSlideChanged(@Nullable Class<? extends SlideFragment> oldSlide, @NonNull Class<? extends SlideFragment> newSlide) {
         return false;
     }
 
@@ -125,7 +124,7 @@ public abstract class IntroBaseActivity extends AegisActivity implements IntroAc
      * @param oldSlide the slide that was previously shown.
      * @param newSlide the slide that is now shown.
      */
-    protected void onAfterSlideChanged(Class<? extends SlideFragment> oldSlide, Class<? extends SlideFragment> newSlide) {
+    protected void onAfterSlideChanged(@Nullable Class<? extends SlideFragment> oldSlide, @NonNull Class<? extends SlideFragment> newSlide) {
 
     }
 
@@ -178,6 +177,13 @@ public abstract class IntroBaseActivity extends AegisActivity implements IntroAc
 
         _slides.add(type);
         _slideIndicator.setSlideCount(_slides.size());
+
+        // send 'slide changed' events for the first slide
+        if (_slides.size() == 1) {
+            Class<? extends SlideFragment> slide = _slides.get(0);
+            onBeforeSlideChanged(null, slide);
+            onAfterSlideChanged(null, slide);
+        }
     }
 
     private class ScreenSlidePagerAdapter extends FragmentStateAdapter {

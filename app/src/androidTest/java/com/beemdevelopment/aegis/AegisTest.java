@@ -74,7 +74,7 @@ public abstract class AegisTest {
     private VaultRepository initVault(@Nullable VaultFileCredentials creds, @Nullable List<VaultEntry> entries) {
         VaultRepository vault;
         try {
-            vault = _vaultManager.init(creds);
+            vault = _vaultManager.initNew(creds);
         } catch (VaultRepositoryException e) {
             throw new RuntimeException(e);
         }
