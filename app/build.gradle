@@ -68,13 +68,6 @@ android {
             ]
             buildConfigField("String", "FILE_PROVIDER_AUTHORITY", "\"${fileProviderAuthorityDebug}\"")
             resValue "bool", "pref_secure_screen_default", "false"
-            postprocessing {
-                removeUnusedCode true
-                removeUnusedResources true
-                obfuscate false
-                optimizeCode false
-                proguardFiles getDefaultProguardFile('proguard-defaults.txt'), 'proguard-rules.pro'
-            }
         }
         release {
             manifestPlaceholders = [
