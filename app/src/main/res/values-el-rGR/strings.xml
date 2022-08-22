@@ -295,10 +295,6 @@
     <string name="pick_icon">Επιλέξτε ένα εικονίδιο</string>
     <string name="uncategorized">Μη κατηγοριοποιημένο</string>
     <string name="done">Ολοκληρώθηκε</string>
-    <plurals name="entries_count">
-        <item quantity="one">%d / %d καταχώρηση</item>
-        <item quantity="other">%d / %d καταχωρήσεις</item>
-    </plurals>
     <string name="next">Επόμενο</string>
     <string name="previous">Προηγούμενο</string>
     <string name="transfer_entry">Μεταφορά καταχώρησης</string>

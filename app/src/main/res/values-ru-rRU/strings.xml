@@ -307,12 +307,6 @@
     <string name="pick_icon">Выбрать значок</string>
     <string name="uncategorized">Без категории</string>
     <string name="done">Готово</string>
-    <plurals name="entries_count">
-        <item quantity="one">%d / %d запись</item>
-        <item quantity="few">%d / %d записи</item>
-        <item quantity="many">%d / %d записей</item>
-        <item quantity="other">%d / %d записей</item>
-    </plurals>
     <string name="next">Следующий</string>
     <string name="previous">Предыдущий</string>
     <string name="transfer_entry">Передача записи</string>

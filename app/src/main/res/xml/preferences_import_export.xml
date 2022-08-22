@@ -17,4 +17,9 @@
         android:title="@string/pref_export_title"
         android:summary="@string/pref_export_summary"
         app:iconSpaceReserved="false"/>
+    <Preference
+        android:key="pref_google_auth_style_export"
+        android:title="@string/pref_google_auth_export_title"
+        android:summary="@string/pref_google_auth_export_descriptor"
+        app:iconSpaceReserved="false"/>
 </PreferenceScreen>

@@ -285,9 +285,6 @@
     <string name="pick_icon">Pilih sebuah ikon</string>
     <string name="uncategorized">Tidak Dikategorikan</string>
     <string name="done">Selesai</string>
-    <plurals name="entries_count">
-        <item quantity="other">%d / %d entri</item>
-    </plurals>
     <string name="next">Berikutnya</string>
     <string name="previous">Sebelumnya</string>
     <string name="transfer_entry">Pindahkan entri</string>

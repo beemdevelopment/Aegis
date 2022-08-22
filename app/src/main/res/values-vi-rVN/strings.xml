@@ -289,9 +289,6 @@
     <string name="pick_icon">Chọn biểu tượng</string>
     <string name="uncategorized">Chưa được phân loại</string>
     <string name="done">Xong</string>
-    <plurals name="entries_count">
-        <item quantity="other">%d / %d mục</item>
-    </plurals>
     <string name="next">Tiếp</string>
     <string name="previous">Trước</string>
     <string name="transfer_entry">Truyền mục</string>

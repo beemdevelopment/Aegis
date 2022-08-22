@@ -9,6 +9,7 @@ import com.beemdevelopment.aegis.encoding.Base32;
 import com.beemdevelopment.aegis.encoding.Base64;
 import com.beemdevelopment.aegis.encoding.EncodingException;
 import com.beemdevelopment.aegis.encoding.Hex;
+import com.google.protobuf.ByteString;
 import com.google.protobuf.InvalidProtocolBufferException;
 
 import java.io.Serializable;
@@ -18,7 +19,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public class GoogleAuthInfo implements Serializable {
+public class GoogleAuthInfo implements Transferable, Serializable {
     public static final String SCHEME = "otpauth";
     public static final String SCHEME_EXPORT = "otpauth-migration";
 
@@ -267,6 +268,7 @@ public class GoogleAuthInfo implements Serializable {
         return _info;
     }
 
+    @Override
     public Uri getUri() {
         Uri.Builder builder = new Uri.Builder();
 
@@ -319,7 +321,7 @@ public class GoogleAuthInfo implements Serializable {
         return _accountName;
     }
 
-    public static class Export {
+    public static class Export implements Transferable, Serializable {
         private int _batchId;
         private int _batchIndex;
         private int _batchSize;
@@ -384,6 +386,73 @@ public class GoogleAuthInfo implements Serializable {
             }
 
             return true;
+        }
+
+        @Override
+        public Uri getUri() throws GoogleAuthInfoException {
+            GoogleAuthProtos.MigrationPayload.Builder builder = GoogleAuthProtos.MigrationPayload.newBuilder();
+            builder.setBatchId(_batchId)
+                    .setBatchIndex(_batchIndex)
+                    .setBatchSize(_batchSize)
+                    .setVersion(1);
+
+            for (GoogleAuthInfo info: _entries) {
+                GoogleAuthProtos.MigrationPayload.OtpParameters.Builder parameters = GoogleAuthProtos.MigrationPayload.OtpParameters.newBuilder()
+                        .setSecret(ByteString.copyFrom(info.getOtpInfo().getSecret()))
+                        .setName(info.getAccountName())
+                        .setIssuer(info.getIssuer());
+
+                switch (info.getOtpInfo().getAlgorithm(false)) {
+                    case "SHA1":
+                        parameters.setAlgorithm(GoogleAuthProtos.MigrationPayload.Algorithm.ALGORITHM_SHA1);
+                        break;
+                    case "SHA256":
+                        parameters.setAlgorithm(GoogleAuthProtos.MigrationPayload.Algorithm.ALGORITHM_SHA256);
+                        break;
+                    case "SHA512":
+                        parameters.setAlgorithm(GoogleAuthProtos.MigrationPayload.Algorithm.ALGORITHM_SHA512);
+                        break;
+                    case "MD5":
+                        parameters.setAlgorithm(GoogleAuthProtos.MigrationPayload.Algorithm.ALGORITHM_MD5);
+                        break;
+                    default:
+                        throw new GoogleAuthInfoException(info.getUri(), String.format("Unsupported Algorithm: %s", info.getOtpInfo().getAlgorithm(false)));
+                }
+
+                switch (info.getOtpInfo().getDigits()) {
+                    case 6:
+                        parameters.setDigits(GoogleAuthProtos.MigrationPayload.DigitCount.DIGIT_COUNT_SIX);
+                        break;
+                    case 8:
+                        parameters.setDigits(GoogleAuthProtos.MigrationPayload.DigitCount.DIGIT_COUNT_EIGHT);
+                        break;
+                    default:
+                        throw new GoogleAuthInfoException(info.getUri(), String.format("Unsupported number of digits: %s", info.getOtpInfo().getDigits()));
+                }
+
+                switch (info.getOtpInfo().getType().toLowerCase()) {
+                    case HotpInfo.ID:
+                        parameters.setType(GoogleAuthProtos.MigrationPayload.OtpType.OTP_TYPE_HOTP);
+                        parameters.setCounter(((HotpInfo) info.getOtpInfo()).getCounter());
+                        break;
+                    case TotpInfo.ID:
+                        parameters.setType(GoogleAuthProtos.MigrationPayload.OtpType.OTP_TYPE_TOTP);
+                        break;
+                    default:
+                        throw new GoogleAuthInfoException(info.getUri(), String.format("Type unsupported by GoogleAuthProtos: %s", info.getOtpInfo().getType()));
+                }
+
+                builder.addOtpParameters(parameters.build());
+            }
+
+            Uri.Builder exportUriBuilder = new Uri.Builder()
+                    .scheme(SCHEME_EXPORT)
+                    .authority("offline");
+
+            String data = Base64.encode(builder.build().toByteArray());
+            exportUriBuilder.appendQueryParameter("data", data);
+
+            return exportUriBuilder.build();
         }
     }
 }

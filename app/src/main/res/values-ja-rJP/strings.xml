@@ -286,9 +286,6 @@
     <string name="pick_icon">アイコンを選択</string>
     <string name="uncategorized">未分類</string>
     <string name="done">完了</string>
-    <plurals name="entries_count">
-        <item quantity="other">%d / %d エントリー</item>
-    </plurals>
     <string name="next">次へ</string>
     <string name="previous">前へ</string>
     <string name="transfer_entry">エントリーを転送</string>

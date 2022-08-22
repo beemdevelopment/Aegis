@@ -22,11 +22,17 @@ import com.beemdevelopment.aegis.BuildConfig;
 import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.helpers.DropdownHelper;
 import com.beemdevelopment.aegis.importers.DatabaseImporter;
+import com.beemdevelopment.aegis.otp.GoogleAuthInfo;
+import com.beemdevelopment.aegis.otp.HotpInfo;
+import com.beemdevelopment.aegis.otp.OtpInfo;
+import com.beemdevelopment.aegis.otp.TotpInfo;
 import com.beemdevelopment.aegis.ui.ImportEntriesActivity;
+import com.beemdevelopment.aegis.ui.TransferEntriesActivity;
 import com.beemdevelopment.aegis.ui.dialogs.Dialogs;
 import com.beemdevelopment.aegis.ui.tasks.ExportTask;
 import com.beemdevelopment.aegis.ui.tasks.ImportFileTask;
 import com.beemdevelopment.aegis.vault.VaultBackupManager;
+import com.beemdevelopment.aegis.vault.VaultEntry;
 import com.beemdevelopment.aegis.vault.VaultFileCredentials;
 import com.beemdevelopment.aegis.vault.VaultRepository;
 import com.beemdevelopment.aegis.vault.VaultRepositoryException;
@@ -37,6 +43,10 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+import java.util.Random;
 
 import javax.crypto.Cipher;
 
@@ -76,6 +86,12 @@ public class ImportExportPreferencesFragment extends PreferencesFragment {
         Preference exportPreference = requirePreference("pref_export");
         exportPreference.setOnPreferenceClickListener(preference -> {
             startExport();
+            return true;
+        });
+
+        Preference googleAuthStyleExportPreference = requirePreference("pref_google_auth_style_export");
+        googleAuthStyleExportPreference.setOnPreferenceClickListener(preference -> {
+            startGoogleAuthenticatorStyleExport();
             return true;
         });
     }
@@ -229,6 +245,52 @@ public class ImportExportPreferencesFragment extends PreferencesFragment {
         });
 
         Dialogs.showSecureDialog(dialog);
+    }
+
+    private void startGoogleAuthenticatorStyleExport() {
+        ArrayList<GoogleAuthInfo> toExport = new ArrayList<>();
+        for (VaultEntry entry : _vaultManager.getVault().getEntries()) {
+            String type = entry.getInfo().getType().toLowerCase();
+            String algo = entry.getInfo().getAlgorithm(false);
+            int digits = entry.getInfo().getDigits();
+
+            if ((Objects.equals(type, TotpInfo.ID) || Objects.equals(type, HotpInfo.ID))
+                    && digits == OtpInfo.DEFAULT_DIGITS
+                    && Objects.equals(algo, OtpInfo.DEFAULT_ALGORITHM)) {
+                GoogleAuthInfo info = new GoogleAuthInfo(entry.getInfo(), entry.getName(), entry.getIssuer());
+                toExport.add(info);
+            }
+        }
+
+        int entriesSkipped = _vaultManager.getVault().getEntries().size() - toExport.size();
+        if (entriesSkipped > 0) {
+            Toast a = new Toast(requireContext());
+            a.setText(requireContext().getResources().getQuantityString(R.plurals.pref_google_auth_export_incompatible_entries, entriesSkipped, entriesSkipped));
+            a.show();
+        }
+
+        int qrSize = 10;
+        int batchId = new Random().nextInt();
+        int batchSize = toExport.size() / qrSize + (toExport.size() % qrSize == 0 ? 0 : 1);
+        List<GoogleAuthInfo> infos = new ArrayList<>();
+        ArrayList<GoogleAuthInfo.Export> exports = new ArrayList<>();
+        for (int i = 0, batchIndex = 0; i < toExport.size(); i++) {
+            infos.add(toExport.get(i));
+            if (infos.size() == qrSize || toExport.size() == i + 1) {
+                exports.add(new GoogleAuthInfo.Export(infos, batchId, batchIndex++, batchSize));
+                infos = new ArrayList<>();
+            }
+        }
+
+        if (exports.size() == 0) {
+            Toast t = new Toast(requireContext());
+            t.setText(R.string.pref_google_auth_export_no_data);
+            t.show();
+        } else {
+            Intent intent = new Intent(requireContext(), TransferEntriesActivity.class);
+            intent.putExtra("authInfos", exports);
+            startActivity(intent);
+        }
     }
 
     private static int getExportRequestCode(int spinnerPos, boolean encrypt) {

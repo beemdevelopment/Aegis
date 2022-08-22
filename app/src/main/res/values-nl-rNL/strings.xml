@@ -295,10 +295,6 @@
     <string name="pick_icon">Kies een icoon</string>
     <string name="uncategorized">Ongecategoriseerd</string>
     <string name="done">Klaar</string>
-    <plurals name="entries_count">
-        <item quantity="one">%d / %d item</item>
-        <item quantity="other">%d / %d items</item>
-    </plurals>
     <string name="next">Volgende</string>
     <string name="previous">Vorige</string>
     <string name="transfer_entry">Item overzetten</string>

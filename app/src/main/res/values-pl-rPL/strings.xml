@@ -298,12 +298,6 @@
     <string name="pick_icon">Wybierz ikonę</string>
     <string name="uncategorized">Bez kategorii</string>
     <string name="done">Gotowe</string>
-    <plurals name="entries_count">
-        <item quantity="one">Wpis %d / %d</item>
-        <item quantity="few">Wpis %d / %d</item>
-        <item quantity="many">Wpis %d / %d</item>
-        <item quantity="other">Wpis %d / %d</item>
-    </plurals>
     <string name="next">Następny</string>
     <string name="previous">Poprzedni</string>
     <string name="transfer_entry">Przenieś wpis</string>

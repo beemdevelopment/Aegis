@@ -289,9 +289,6 @@
     <string name="pick_icon">选择一个图标</string>
     <string name="uncategorized">未分类</string>
     <string name="done">完成</string>
-    <plurals name="entries_count">
-        <item quantity="other">%d / %d 项条目</item>
-    </plurals>
     <string name="next">下一个</string>
     <string name="previous">上一个</string>
     <string name="transfer_entry">迁移条目</string>

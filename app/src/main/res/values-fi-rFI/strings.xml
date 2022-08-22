@@ -281,10 +281,6 @@
     <string name="pick_icon">Valitse kuvake</string>
     <string name="uncategorized">Luokittelematon</string>
     <string name="done">Valmis</string>
-    <plurals name="entries_count">
-        <item quantity="one">%d / %d kohde</item>
-        <item quantity="other">%d / %d kohdetta</item>
-    </plurals>
     <string name="next">Seuraava</string>
     <string name="previous">Edellinen</string>
     <string name="transfer_entry">Siirrä kohde</string>

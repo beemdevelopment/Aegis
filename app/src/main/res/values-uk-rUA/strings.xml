@@ -276,12 +276,6 @@
     <string name="empty_group_list">Немає груп для показу. Додайте групи на екрані редагування запису</string>
     <string name="empty_group_list_title">Групи не знайдено</string>
     <string name="done">Готово</string>
-    <plurals name="entries_count">
-        <item quantity="one">%d / %d запис</item>
-        <item quantity="few">%d / %d записів</item>
-        <item quantity="many">%d / %d записів</item>
-        <item quantity="other">%d / %d записів</item>
-    </plurals>
     <string name="next">Наступний</string>
     <string name="previous">Попередній</string>
     <string name="transfer_entry">Передати запис</string>
