@@ -367,31 +367,27 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
                         VaultEntry entry = new VaultEntry(info);
                         entries.add(entry);
                     }
-                } catch (GoogleAuthInfoException | IllegalArgumentException e) {
+                } catch (GoogleAuthInfoException e) {
                     errors.add(buildImportError(res.getFileName(), e));
                 }
             }
 
             final DialogInterface.OnClickListener dialogDismissHandler = (dialog, which) -> importScannedEntries(entries);
             if (!googleAuthExports.isEmpty()) {
-                try {
-                    if (!GoogleAuthInfo.Export.isSingleBatch(googleAuthExports) && errors.size() > 0) {
-                        errors.add(getString(R.string.unrelated_google_auth_batches_error));
-                        Dialogs.showMultiMessageDialog(this, R.string.import_error_title, getString(R.string.no_tokens_can_be_imported), errors, null);
-                        return;
-                    } else if (!GoogleAuthInfo.Export.isSingleBatch(googleAuthExports)) {
-                        Dialogs.showErrorDialog(this, R.string.import_google_auth_failure, getString(R.string.unrelated_google_auth_batches_error));
-                        return;
-                    } else {
-                        List<Integer> missingIndices = GoogleAuthInfo.Export.getMissingIndices(googleAuthExports);
-                        if (missingIndices.size() != 0) {
-                            Dialogs.showPartialGoogleAuthImportWarningDialog(this, missingIndices, entries.size(), errors, dialogDismissHandler);
-                            return;
-                        }
-                    }
-                } catch (IllegalArgumentException e) {
-                    Dialogs.showErrorDialog(this, getString(R.string.import_google_auth_failure), e);
+                boolean isSingleBatch = GoogleAuthInfo.Export.isSingleBatch(googleAuthExports);
+                if (!isSingleBatch && errors.size() > 0) {
+                    errors.add(getString(R.string.unrelated_google_auth_batches_error));
+                    Dialogs.showMultiMessageDialog(this, R.string.import_error_title, getString(R.string.no_tokens_can_be_imported), errors, null);
                     return;
+                } else if (!isSingleBatch) {
+                    Dialogs.showErrorDialog(this, R.string.import_google_auth_failure, getString(R.string.unrelated_google_auth_batches_error));
+                    return;
+                } else {
+                    List<Integer> missingIndices = GoogleAuthInfo.Export.getMissingIndices(googleAuthExports);
+                    if (missingIndices.size() != 0) {
+                        Dialogs.showPartialGoogleAuthImportWarningDialog(this, missingIndices, entries.size(), errors, dialogDismissHandler);
+                        return;
+                    }
                 }
             }
 
