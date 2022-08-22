@@ -2,6 +2,8 @@ package com.beemdevelopment.aegis.otp;
 
 import android.net.Uri;
 
+import androidx.annotation.NonNull;
+
 import com.beemdevelopment.aegis.GoogleAuthProtos;
 import com.beemdevelopment.aegis.encoding.Base32;
 import com.beemdevelopment.aegis.encoding.Base64;
@@ -13,6 +15,8 @@ import java.io.Serializable;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 public class GoogleAuthInfo implements Serializable {
     public static final String SCHEME = "otpauth";
@@ -342,6 +346,44 @@ public class GoogleAuthInfo implements Serializable {
 
         public int getBatchId() {
             return _batchId;
+        }
+
+        public static List<Integer> getMissingIndices(@NonNull List<Export> exports) throws IllegalArgumentException {
+            if (!isSingleBatch(exports)) {
+                throw new IllegalArgumentException("Export list contains entries from different batches");
+            }
+
+            List<Integer> indicesMissing = new ArrayList<>();
+            if (exports.isEmpty()) {
+                return indicesMissing;
+            }
+
+            Set<Integer> indicesPresent = exports.stream()
+                    .map(Export::getBatchIndex)
+                    .collect(Collectors.toSet());
+
+            for (int i = 0; i < exports.get(0).getBatchSize(); i++) {
+                if (!indicesPresent.contains(i)) {
+                    indicesMissing.add(i);
+                }
+            }
+
+            return indicesMissing;
+        }
+
+        public static boolean isSingleBatch(@NonNull List<Export> exports) {
+            if (exports.isEmpty()) {
+                return true;
+            }
+
+            int batchId = exports.get(0).getBatchId();
+            for (Export export : exports) {
+                if (export.getBatchId() != batchId) {
+                    return false;
+                }
+            }
+
+            return true;
         }
     }
 }

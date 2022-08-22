@@ -233,6 +233,13 @@
     <string name="no_cameras_available">No cameras available</string>
     <string name="read_qr_error">An error occurred while trying to read the QR code</string>
     <string name="read_qr_error_phonefactor">Aegis is not compatible with Microsoft\'s proprietary 2FA algorithm. Please make sure to select \"Setup application without notifications\" when configuring 2FA in Office 365.</string>
+    <string name="partial_google_auth_import">Incomplete Google Authenticator export detected</string>
+    <string name="partial_google_auth_import_warning">Some QR codes are missing from your import. The following codes were not found:\n\n<b>%s</b>\n\nYou may continue importing this partial export but we recommend retrying with all of the QR codes so you don\'t risk losing access to any tokens.</string>
+    <string name="missing_qr_code_descriptor">• QR code %d</string>
+    <string name="import_partial_export_anyway">Import %d tokens anyway</string>
+    <string name="import_google_auth_failure">Importing Google Authenticator export failed</string>
+    <string name="unrelated_google_auth_batches_error">Export contains information for an unrelated batch. Try importing 1 batch at a time.</string>
+    <string name="no_tokens_can_be_imported">No tokens can be imported as a result</string>
     <string name="authentication_method_raw">Raw</string>
     <string name="unlocking_vault">Unlocking the vault</string>
     <string name="slot_this_device">(this devices)</string>
@@ -241,6 +248,7 @@
     <string name="remove_icon_pack">Remove icon pack</string>
     <string name="remove_icon_pack_description">Are you sure you want to remove this icon pack? Entries that use icons from this pack will not be affected.</string>
     <string name="details">Details</string>
+    <string name="show_error_details">Show error details</string>
     <string name="lock">Lock</string>
     <string name="name">Name</string>
     <string name="no_group">No group</string>

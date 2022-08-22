@@ -515,6 +515,46 @@ public class Dialogs {
                 .create());
     }
 
+    public static void showPartialGoogleAuthImportWarningDialog(Context context, List<Integer> missingIndexes, int entries, List<CharSequence> scanningErrors, DialogInterface.OnClickListener dismissHandler) {
+        String missingIndexesAsString = missingIndexes.stream()
+                .map(index -> context.getString(R.string.missing_qr_code_descriptor, index + 1))
+                .collect(Collectors.joining("\n"));
+
+        View view = LayoutInflater.from(context).inflate(R.layout.dialog_error, null);
+        TextView errorDetails = view.findViewById(R.id.error_details);
+        for (CharSequence error: scanningErrors) {
+            errorDetails.append(error);
+            errorDetails.append("\n\n");
+        }
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(context)
+                .setTitle(R.string.partial_google_auth_import)
+                .setMessage(context.getString(R.string.partial_google_auth_import_warning, missingIndexesAsString))
+                .setView(view)
+                .setCancelable(false)
+                .setPositiveButton(context.getString(R.string.import_partial_export_anyway, entries), (dialog, which) -> {
+                    dismissHandler.onClick(dialog, which);
+                })
+                .setNegativeButton(android.R.string.cancel, null);
+
+        if (scanningErrors.size() > 0) {
+            builder.setNeutralButton(R.string.show_error_details, null);
+        }
+
+        AlertDialog dialog = builder.create();
+        dialog.setOnShowListener(d -> {
+            Button btnNeutral = dialog.getButton(DialogInterface.BUTTON_NEUTRAL);
+            if (btnNeutral != null) {
+                btnNeutral.setOnClickListener(b -> {
+                    errorDetails.setVisibility(View.VISIBLE);
+                    btnNeutral.setVisibility(View.GONE);
+                });
+            }
+        });
+
+        showSecureDialog(dialog);
+    }
+
     private static void setImporterHelpText(TextView view, DatabaseImporter.Definition definition, boolean isDirect) {
         if (isDirect) {
             view.setText(view.getResources().getString(R.string.importer_help_direct, definition.getName()));

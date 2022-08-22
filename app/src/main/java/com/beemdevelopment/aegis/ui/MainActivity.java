@@ -50,6 +50,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.TreeSet;
 import java.util.UUID;
 
@@ -344,6 +345,8 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         QrDecodeTask task = new QrDecodeTask(this, (results) -> {
             List<CharSequence> errors = new ArrayList<>();
             List<VaultEntry> entries = new ArrayList<>();
+            List<GoogleAuthInfo.Export> googleAuthExports = new ArrayList<>();
+
             for (QrDecodeTask.Result res : results) {
                 if (res.getException() != null) {
                     errors.add(buildImportError(res.getFileName(), res.getException()));
@@ -351,15 +354,47 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
                 }
 
                 try {
-                    GoogleAuthInfo info = GoogleAuthInfo.parseUri(res.getResult().getText());
-                    VaultEntry entry = new VaultEntry(info);
-                    entries.add(entry);
-                } catch (GoogleAuthInfoException e) {
+                    Uri scanned = Uri.parse(res.getResult().getText());
+                    if (Objects.equals(scanned.getScheme(), GoogleAuthInfo.SCHEME_EXPORT)) {
+                        GoogleAuthInfo.Export export = GoogleAuthInfo.parseExportUri(scanned);
+                        for (GoogleAuthInfo info: export.getEntries()) {
+                            VaultEntry entry = new VaultEntry(info);
+                            entries.add(entry);
+                        }
+                        googleAuthExports.add(export);
+                    } else {
+                        GoogleAuthInfo info = GoogleAuthInfo.parseUri(res.getResult().getText());
+                        VaultEntry entry = new VaultEntry(info);
+                        entries.add(entry);
+                    }
+                } catch (GoogleAuthInfoException | IllegalArgumentException e) {
                     errors.add(buildImportError(res.getFileName(), e));
                 }
             }
 
             final DialogInterface.OnClickListener dialogDismissHandler = (dialog, which) -> importScannedEntries(entries);
+            if (!googleAuthExports.isEmpty()) {
+                try {
+                    if (!GoogleAuthInfo.Export.isSingleBatch(googleAuthExports) && errors.size() > 0) {
+                        errors.add(getString(R.string.unrelated_google_auth_batches_error));
+                        Dialogs.showMultiMessageDialog(this, R.string.import_error_title, getString(R.string.no_tokens_can_be_imported), errors, null);
+                        return;
+                    } else if (!GoogleAuthInfo.Export.isSingleBatch(googleAuthExports)) {
+                        Dialogs.showErrorDialog(this, R.string.import_google_auth_failure, getString(R.string.unrelated_google_auth_batches_error));
+                        return;
+                    } else {
+                        List<Integer> missingIndices = GoogleAuthInfo.Export.getMissingIndices(googleAuthExports);
+                        if (missingIndices.size() != 0) {
+                            Dialogs.showPartialGoogleAuthImportWarningDialog(this, missingIndices, entries.size(), errors, dialogDismissHandler);
+                            return;
+                        }
+                    }
+                } catch (IllegalArgumentException e) {
+                    Dialogs.showErrorDialog(this, getString(R.string.import_google_auth_failure), e);
+                    return;
+                }
+            }
+
             if ((errors.size() > 0 && results.size() > 1) || errors.size() > 1) {
                 Dialogs.showMultiMessageDialog(this, R.string.import_error_title, getString(R.string.unable_to_read_qrcode_files, uris.size() - errors.size(), uris.size()), errors, dialogDismissHandler);
             } else if (errors.size() > 0) {
