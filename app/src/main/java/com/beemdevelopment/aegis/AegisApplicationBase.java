@@ -26,7 +26,8 @@ import com.mikepenz.iconics.Iconics;
 import com.mikepenz.material_design_iconic_typeface_library.MaterialDesignIconic;
 import com.topjohnwu.superuser.Shell;
 
-import java.util.Collections;
+import java.util.ArrayList;
+import java.util.Iterator;
 
 import dagger.hilt.InstallIn;
 import dagger.hilt.android.EarlyEntryPoint;
@@ -75,25 +76,61 @@ public abstract class AegisApplicationBase extends Application {
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N_MR1)
-    private void initAppShortcuts() {
+    public void initAppShortcuts() {
         ShortcutManager shortcutManager = getSystemService(ShortcutManager.class);
         if (shortcutManager == null) {
             return;
         }
+        try {
+            int maxShortcuts = shortcutManager.getMaxShortcutCountPerActivity();
+            if (maxShortcuts > 0) {
+                Intent intent = new Intent(this, MainActivity.class);
+                intent.putExtra("action", "scan");
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                intent.setAction(Intent.ACTION_MAIN);
+                ArrayList<ShortcutInfo> shortcuts = new ArrayList<>(maxShortcuts);
+                ShortcutInfo shortcut = new ShortcutInfo.Builder(this, "shortcut_new")
+                        .setShortLabel(getString(R.string.new_entry))
+                        .setLongLabel(getString(R.string.add_new_entry))
+                        .setIcon(Icon.createWithResource(this, R.drawable.ic_qr_code))
+                        .setIntent(intent)
+                        .setRank(0)
+                        .build();
+                shortcuts.add(shortcut);
 
-        Intent intent = new Intent(this, MainActivity.class);
-        intent.putExtra("action", "scan");
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        intent.setAction(Intent.ACTION_MAIN);
+                // TODO order by most recently used
+                final Iterator<String> groups = _vaultManager.getVault().getGroups().iterator();
+                while (shortcuts.size() < maxShortcuts && groups.hasNext()) {
+                    addShortcutForGroup(shortcuts, groups.next());
+                }
+                shortcutManager.setDynamicShortcuts(shortcuts);
+            }
+        } catch (Exception e) {
+            // ignore
+        }
+    }
 
-        ShortcutInfo shortcut = new ShortcutInfo.Builder(this, "shortcut_new")
-                .setShortLabel(getString(R.string.new_entry))
-                .setLongLabel(getString(R.string.add_new_entry))
-                .setIcon(Icon.createWithResource(this, R.drawable.ic_qr_code))
-                .setIntent(intent)
-                .build();
-
-        shortcutManager.setDynamicShortcuts(Collections.singletonList(shortcut));
+    @RequiresApi(api = Build.VERSION_CODES.N_MR1)
+    private void addShortcutForGroup(ArrayList<ShortcutInfo> shortcuts, String group) {
+        final Intent groupFilterIntent = new Intent(this, MainActivity.class);
+        groupFilterIntent.putExtra("action", "set_group_filter");
+        groupFilterIntent.putExtra("group", group);
+        groupFilterIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        groupFilterIntent.setAction(Intent.ACTION_MAIN);
+        String shortLabel = group;
+        if (shortLabel.length() > 10) {
+            shortLabel = shortLabel.substring(0, 9) + "…";
+        }
+        final String longLabel = group; // TODO maybe "Open group %1$s"?
+        shortcuts.add(
+                new ShortcutInfo.Builder(this, "shortcut_group_" + group)
+                        .setShortLabel(shortLabel)
+                        .setLongLabel(longLabel)
+                        .setIcon(Icon.createWithResource(this, R.mipmap.ic_launcher))
+                        .setIntent(groupFilterIntent)
+                        .setRank(1)
+                        .build()
+        );
     }
 
     private void initNotificationChannels() {

@@ -1,6 +1,7 @@
 package com.beemdevelopment.aegis.ui;
 
 import android.Manifest;
+import android.app.Application;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
@@ -8,6 +9,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.text.Spannable;
@@ -29,6 +31,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.view.ActionMode;
 import androidx.appcompat.widget.SearchView;
 
+import com.beemdevelopment.aegis.AegisApplicationBase;
 import com.beemdevelopment.aegis.Preferences;
 import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.SortCategory;
@@ -47,6 +50,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -296,6 +300,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
             UUID entryUUID = (UUID) data.getSerializableExtra("entryUUID");
             VaultEntry entry = _vaultManager.getVault().getEntryByUUID(entryUUID);
             _entryListView.addEntry(entry, true);
+            refreshAppShortcuts();
         }
     }
 
@@ -308,7 +313,20 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
             } else {
                 VaultEntry entry = _vaultManager.getVault().getEntryByUUID(entryUUID);
                 _entryListView.replaceEntry(entryUUID, entry);
+                refreshAppShortcuts();
             }
+        }
+    }
+
+    /**
+     * In case we've added a group, refresh shortcuts
+     */
+    private void refreshAppShortcuts() {
+        // TODO: we should make a more intentional mechanism that observes the group list, and refreshes shortcuts only when the group list changes
+        Application application = getApplication();
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1 && application instanceof AegisApplicationBase) {
+                // TODO maybe we should inject some service to handle app shortcuts
+                ((AegisApplicationBase) application).initAppShortcuts();
         }
     }
 
@@ -486,6 +504,10 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         switch (action) {
             case "scan":
                 startScanActivity();
+                break;
+            case "set_group_filter":
+                String group = intent.getStringExtra("group");
+                _entryListView.setPrefGroupFilter(Collections.singletonList(group));
                 break;
         }
 
