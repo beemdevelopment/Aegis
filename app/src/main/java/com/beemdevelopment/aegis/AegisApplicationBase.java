@@ -99,9 +99,11 @@ public abstract class AegisApplicationBase extends Application {
                 shortcuts.add(shortcut);
 
                 // TODO order by most recently used
-                final Iterator<String> groups = _vaultManager.getVault().getGroups().iterator();
-                while (shortcuts.size() < maxShortcuts && groups.hasNext()) {
-                    addShortcutForGroup(shortcuts, groups.next());
+                if(_vaultManager.isVaultLoaded()) {
+                    final Iterator<String> groups = _vaultManager.getVault().getGroups().iterator();
+                    while (shortcuts.size() < maxShortcuts && groups.hasNext()) {
+                        addShortcutForGroup(shortcuts, groups.next());
+                    }
                 }
                 shortcutManager.setDynamicShortcuts(shortcuts);
             }
