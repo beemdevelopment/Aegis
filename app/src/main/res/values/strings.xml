@@ -280,6 +280,8 @@
 
     <string name="pref_highlight_entry_title">Highlight tokens when tapped</string>
     <string name="pref_highlight_entry_summary">Make tokens easier to distinguish from each other by temporarily highlighting them when tapped</string>
+    <string name="pref_minimize_on_copy_title">Minimize on copy</string>
+    <string name="pref_minimize_on_copy_summary">Minimize the app after copying a token</string>
     <string name="pref_copy_on_tap_title">Copy tokens when tapped</string>
     <string name="pref_copy_on_tap_summary">Copy tokens to the clipboard by tapping them</string>
     <string name="pref_pause_entry_title">Freeze tokens when tapped</string>

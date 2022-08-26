@@ -948,6 +948,9 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
             clip.getDescription().setExtras(extras);
         }
         clipboard.setPrimaryClip(clip);
+        if (_prefs.isMinimizeOnCopyEnabled()) {
+            moveTaskToBack(true);
+        }
     }
 
     private class ActionModeCallbacks implements ActionMode.Callback {
