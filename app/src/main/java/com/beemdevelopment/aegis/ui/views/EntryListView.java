@@ -22,6 +22,7 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.beemdevelopment.aegis.Preferences;
 import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.SortCategory;
 import com.beemdevelopment.aegis.ViewMode;
@@ -285,7 +286,7 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
         _prefGroupFilter = groupFilter;
     }
 
-    public void setCodeGroupSize(int codeGrouping) {
+    public void setCodeGroupSize(Preferences.CodeGrouping codeGrouping) {
         _adapter.setCodeGroupSize(codeGrouping);
     }
 

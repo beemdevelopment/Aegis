@@ -15,6 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.beemdevelopment.aegis.R;
+import com.beemdevelopment.aegis.Preferences;
 import com.beemdevelopment.aegis.SortCategory;
 import com.beemdevelopment.aegis.ViewMode;
 import com.beemdevelopment.aegis.helpers.ItemTouchHelperAdapter;
@@ -41,7 +42,7 @@ public class EntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     private List<VaultEntry> _selectedEntries;
     private Map<UUID, Integer> _usageCounts;
     private VaultEntry _focusedEntry;
-    private int _codeGroupSize;
+    private Preferences.CodeGrouping _codeGroupSize;
     private boolean _showAccountName;
     private boolean _highlightEntry;
     private boolean _tempHighlightEntry;
@@ -78,8 +79,8 @@ public class EntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         _view = null;
     }
 
-    public void setCodeGroupSize(int codeGroupeSize) {
-        _codeGroupSize = codeGroupeSize;
+    public void setCodeGroupSize(Preferences.CodeGrouping codeGroupSize) {
+        _codeGroupSize = codeGroupSize;
     }
 
     public void setShowAccountName(boolean showAccountName) {

@@ -7,6 +7,8 @@ import android.net.Uri;
 import android.os.Build;
 import android.preference.PreferenceManager;
 
+import com.beemdevelopment.aegis.ui.views.EntryHolder;
+
 import androidx.annotation.Nullable;
 
 import com.beemdevelopment.aegis.util.JsonUtils;
@@ -118,12 +120,10 @@ public class Preferences {
         return _prefs.getBoolean("pref_account_name", true);
     }
 
-    public int getCodeGroupSize() {
-        if (_prefs.getBoolean("pref_code_group_size", false)) {
-            return 2;
-        } else {
-            return 3;
-        }
+    public CodeGrouping getCodeGroupSize() {
+        String value = _prefs.getString("pref_code_group_size_string", "GROUPING_THREES");
+
+        return CodeGrouping.valueOf(value);
     }
 
     public boolean isIntroDone() {
@@ -498,6 +498,23 @@ public class Preferences {
             long time = obj.getLong("time");
             String error = JsonUtils.optString(obj, "error");
             return new BackupResult(new Date(time), error);
+        }
+    }
+
+    public enum CodeGrouping {
+        HALVES(-1),
+        NO_GROUPING(-2),
+        GROUPING_TWOS(2),
+        GROUPING_THREES(3),
+        GROUPING_FOURS(4);
+
+        private final int _value;
+        CodeGrouping(int value) {
+            _value = value;
+        }
+
+        public int getValue() {
+            return _value;
         }
     }
 }

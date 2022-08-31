@@ -124,4 +124,20 @@
         <item>@string/export_format_aegis</item>
         <item>@string/export_format_google_auth_uri</item>
     </string-array>
+
+    <string-array name="pref_code_groupings">
+        <item>@string/pref_grouping_halves</item>
+        <item>@string/pref_grouping_none</item>
+        <item>@string/pref_grouping_size_two</item>
+        <item>@string/pref_grouping_size_three</item>
+        <item>@string/pref_grouping_size_four</item>
+    </string-array>
+
+    <string-array name="pref_code_groupings_values">
+        <item>HALVES</item>
+        <item>NO_GROUPING</item>
+        <item>GROUPING_TWOS</item>
+        <item>GROUPING_THREES</item>
+        <item>GROUPING_FOURS</item>
+    </string-array>
 </resources>

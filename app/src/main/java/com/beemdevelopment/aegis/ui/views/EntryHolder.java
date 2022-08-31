@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.amulyakhare.textdrawable.TextDrawable;
+import com.beemdevelopment.aegis.Preferences;
 import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.helpers.IconViewHelper;
 import com.beemdevelopment.aegis.helpers.TextDrawableHelper;
@@ -47,7 +48,7 @@ public class EntryHolder extends RecyclerView.ViewHolder {
     private final ImageView _selected;
     private final Handler _selectedHandler;
 
-    private int _codeGroupSize = 6;
+    private Preferences.CodeGrouping _codeGrouping = Preferences.CodeGrouping.NO_GROUPING;
 
     private boolean _hidden;
     private boolean _paused;
@@ -102,15 +103,11 @@ public class EntryHolder extends RecyclerView.ViewHolder {
         });
     }
 
-    public void setData(VaultEntry entry, int codeGroupSize, boolean showAccountName, boolean showProgress, boolean hidden, boolean paused, boolean dimmed) {
+    public void setData(VaultEntry entry, Preferences.CodeGrouping groupSize, boolean showAccountName, boolean showProgress, boolean hidden, boolean paused, boolean dimmed) {
         _entry = entry;
         _hidden = hidden;
         _paused = paused;
-
-        if (codeGroupSize <= 0)
-            throw new IllegalArgumentException("Code group size cannot be zero or negative");
-
-        _codeGroupSize = codeGroupSize;
+        _codeGrouping = groupSize;
 
         _selected.clearAnimation();
         _selected.setVisibility(View.GONE);
@@ -257,9 +254,25 @@ public class EntryHolder extends RecyclerView.ViewHolder {
     }
 
     private String formatCode(String code) {
+        int groupSize;
         StringBuilder sb = new StringBuilder();
+
+        switch (_codeGrouping) {
+            case NO_GROUPING:
+                groupSize = code.length();
+                break;
+            case HALVES:
+                groupSize = (code.length() / 2) + (code.length() % 2);
+                break;
+            default:
+                groupSize = _codeGrouping.getValue();
+                if (groupSize <= 0) {
+                    throw new IllegalArgumentException("Code group size cannot be zero or negative");
+                }
+        }
+
         for (int i = 0; i < code.length(); i++) {
-            if (i != 0 && i % _codeGroupSize == 0) {
+            if (i != 0 && i % groupSize == 0) {
                 sb.append(" ");
             }
             sb.append(code.charAt(i));
