@@ -19,12 +19,12 @@ def fileProviderAuthority = "${packageName}.fileprovider"
 def fileProviderAuthorityDebug = "${packageName}.debug.fileprovider"
 
 android {
-    compileSdkVersion 31
+    compileSdkVersion 33
 
     defaultConfig {
         applicationId "${packageName}"
         minSdkVersion 21
-        targetSdkVersion 31
+        targetSdkVersion 33
         versionCode 51
         versionName "2.0.3"
         multiDexEnabled true
@@ -186,7 +186,7 @@ dependencies {
     testImplementation "com.google.guava:guava:${guavaVersion}-jre"
     testImplementation "junit:junit:${junitVersion}"
     testImplementation "org.json:json:20220320"
-    testImplementation 'org.robolectric:robolectric:4.8'
+    testImplementation 'org.robolectric:robolectric:4.8.2'
 
     coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.1.5'
 }
