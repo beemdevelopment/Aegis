@@ -23,7 +23,6 @@ public enum IconType {
         }
     }
 
-    @SuppressWarnings("UnstableApiUsage")
     public static IconType fromFilename(String filename) {
         switch (Files.getFileExtension(filename).toLowerCase(Locale.ROOT)) {
             case "svg":

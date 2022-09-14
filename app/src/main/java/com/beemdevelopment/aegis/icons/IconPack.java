@@ -148,7 +148,6 @@ public class IconPack {
             return IconType.fromFilename(_relFilename);
         }
 
-        @SuppressWarnings("UnstableApiUsage")
         public String getName() {
             return Files.getNameWithoutExtension(new File(_relFilename).getName());
         }
