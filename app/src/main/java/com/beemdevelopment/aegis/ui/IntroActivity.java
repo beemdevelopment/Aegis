@@ -81,7 +81,7 @@ public class IntroActivity extends IntroBaseActivity {
         // If the user has enabled encryption, we need to request permission to show notifications
         // in order to be able to show the "Vault unlocked" notification.
         if (newSlide == DoneSlide.class && getState().getSerializable("creds") != null) {
-            if (Build.VERSION.SDK_INT >= 33) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
                 PermissionHelper.request(this, CODE_PERM_NOTIFICATIONS, Manifest.permission.POST_NOTIFICATIONS);
             }
         }

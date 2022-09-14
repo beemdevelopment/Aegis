@@ -1,6 +1,7 @@
 package com.beemdevelopment.aegis;
 
 import android.Manifest;
+import android.os.Build;
 import android.view.View;
 
 import androidx.annotation.Nullable;
@@ -29,6 +30,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.crypto.NoSuchPaddingException;
@@ -45,7 +47,7 @@ public abstract class AegisTest {
     public HiltAndroidRule hiltRule = new HiltAndroidRule(this);
 
     @Rule
-    public final GrantPermissionRule permRule = GrantPermissionRule.grant(Manifest.permission.POST_NOTIFICATIONS);
+    public final GrantPermissionRule permRule = getGrantPermissionRule();
 
     @Inject
     protected VaultManager _vaultManager;
@@ -56,6 +58,14 @@ public abstract class AegisTest {
     @Before
     public void init() {
         hiltRule.inject();
+    }
+
+    private static GrantPermissionRule getGrantPermissionRule() {
+        List<String> perms = new ArrayList<>();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            perms.add(Manifest.permission.POST_NOTIFICATIONS);
+        }
+        return GrantPermissionRule.grant(perms.toArray(new String[0]));
     }
 
     protected AegisApplicationBase getApp() {

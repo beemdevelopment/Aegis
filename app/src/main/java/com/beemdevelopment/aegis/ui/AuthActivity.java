@@ -94,7 +94,7 @@ public class AuthActivity extends AegisActivity {
             // A persistent notification is shown to let the user know that the vault is unlocked. Permission
             // to do so is required since API 33, so for existing users, we have to request permission here
             // in order to be able to show the notification after unlock.
-            if (Build.VERSION.SDK_INT >= 33) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
                 PermissionHelper.request(this, CODE_PERM_NOTIFICATIONS, Manifest.permission.POST_NOTIFICATIONS);
             }
         } else {
