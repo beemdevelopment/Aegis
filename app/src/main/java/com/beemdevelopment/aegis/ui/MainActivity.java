@@ -1,14 +1,18 @@
 package com.beemdevelopment.aegis.ui;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.ClipData;
+import android.content.ClipDescription;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.provider.Settings;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
@@ -925,9 +929,15 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         }
     }
 
+    @SuppressLint("InlinedApi")
     private void copyEntryCode(VaultEntry entry) {
         ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
         ClipData clip = ClipData.newPlainText("text/plain", entry.getInfo().getOtp());
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            PersistableBundle extras = new PersistableBundle();
+            extras.putBoolean(ClipDescription.EXTRA_IS_SENSITIVE, true);
+            clip.getDescription().setExtras(extras);
+        }
         clipboard.setPrimaryClip(clip);
     }
 
