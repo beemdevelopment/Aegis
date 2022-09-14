@@ -36,7 +36,7 @@
                 android:singleLine="false"
                 android:text="@string/authentication_multiline"
                 android:textStyle="bold"
-                android:textSize="46sp"
+                android:textSize="@dimen/auth_leader_text_size"
                 android:textColor="?attr/authText" />
 
             <LinearLayout
