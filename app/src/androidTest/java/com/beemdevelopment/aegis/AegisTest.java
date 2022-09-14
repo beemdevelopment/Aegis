@@ -1,11 +1,13 @@
 package com.beemdevelopment.aegis;
 
+import android.Manifest;
 import android.view.View;
 
 import androidx.annotation.Nullable;
 import androidx.test.espresso.UiController;
 import androidx.test.espresso.ViewAction;
 import androidx.test.platform.app.InstrumentationRegistry;
+import androidx.test.rule.GrantPermissionRule;
 
 import com.beemdevelopment.aegis.crypto.CryptoUtils;
 import com.beemdevelopment.aegis.crypto.SCryptParameters;
@@ -41,6 +43,9 @@ public abstract class AegisTest {
 
     @Rule
     public HiltAndroidRule hiltRule = new HiltAndroidRule(this);
+
+    @Rule
+    public final GrantPermissionRule permRule = GrantPermissionRule.grant(Manifest.permission.POST_NOTIFICATIONS);
 
     @Inject
     protected VaultManager _vaultManager;

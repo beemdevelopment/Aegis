@@ -82,6 +82,7 @@ public class IntroTest extends AegisTest {
 
     @Test
     public void doIntro_None() {
+        assertFalse(_prefs.isIntroDone());
         ViewInteraction next = onView(withId(R.id.btnNext));
         ViewInteraction prev = onView(withId(R.id.btnPrevious));
 
@@ -98,10 +99,12 @@ public class IntroTest extends AegisTest {
         VaultRepository vault = _vaultManager.getVault();
         assertFalse(vault.isEncryptionEnabled());
         assertNull(vault.getCredentials());
+        assertTrue(_prefs.isIntroDone());
     }
 
     @Test
     public void doIntro_Password() {
+        assertFalse(_prefs.isIntroDone());
         ViewInteraction next = onView(withId(R.id.btnNext));
         ViewInteraction prev = onView(withId(R.id.btnPrevious));
 
@@ -129,10 +132,12 @@ public class IntroTest extends AegisTest {
         assertTrue(vault.isEncryptionEnabled());
         assertTrue(slots.has(PasswordSlot.class));
         assertFalse(slots.has(BiometricSlot.class));
+        assertTrue(_prefs.isIntroDone());
     }
 
     @Test
     public void doIntro_Import_Plain() {
+        assertFalse(_prefs.isIntroDone());
         Uri uri = getResourceUri("aegis_plain.json");
         Intent resultData = new Intent();
         resultData.setData(uri);
@@ -147,10 +152,12 @@ public class IntroTest extends AegisTest {
         VaultRepository vault = _vaultManager.getVault();
         assertFalse(vault.isEncryptionEnabled());
         assertNull(vault.getCredentials());
+        assertTrue(_prefs.isIntroDone());
     }
 
     @Test
     public void doIntro_Import_Encrypted() {
+        assertFalse(_prefs.isIntroDone());
         Uri uri = getResourceUri("aegis_encrypted.json");
         Intent resultData = new Intent();
         resultData.setData(uri);
@@ -169,6 +176,7 @@ public class IntroTest extends AegisTest {
         assertTrue(vault.isEncryptionEnabled());
         assertTrue(slots.has(PasswordSlot.class));
         assertFalse(slots.has(BiometricSlot.class));
+        assertTrue(_prefs.isIntroDone());
     }
 
     private Uri getResourceUri(String resourceName) {

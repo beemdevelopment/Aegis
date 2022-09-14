@@ -1,5 +1,6 @@
 package com.beemdevelopment.aegis.ui;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
@@ -30,6 +31,7 @@ import com.beemdevelopment.aegis.crypto.MasterKey;
 import com.beemdevelopment.aegis.helpers.BiometricsHelper;
 import com.beemdevelopment.aegis.helpers.EditTextHelper;
 import com.beemdevelopment.aegis.helpers.MetricsHelper;
+import com.beemdevelopment.aegis.helpers.PermissionHelper;
 import com.beemdevelopment.aegis.helpers.UiThreadExecutor;
 import com.beemdevelopment.aegis.ui.dialogs.Dialogs;
 import com.beemdevelopment.aegis.ui.tasks.PasswordSlotDecryptTask;
@@ -49,6 +51,9 @@ import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
 
 public class AuthActivity extends AegisActivity {
+    // Permission request codes
+    private static final int CODE_PERM_NOTIFICATIONS = 0;
+
     private EditText _textPassword;
 
     private SlotList _slots;
@@ -85,6 +90,13 @@ public class AuthActivity extends AegisActivity {
         Intent intent = getIntent();
         if (savedInstanceState == null) {
             _inhibitBioPrompt = intent.getBooleanExtra("inhibitBioPrompt", false);
+
+            // A persistent notification is shown to let the user know that the vault is unlocked. Permission
+            // to do so is required since API 33, so for existing users, we have to request permission here
+            // in order to be able to show the notification after unlock.
+            if (Build.VERSION.SDK_INT >= 33) {
+                PermissionHelper.request(this, CODE_PERM_NOTIFICATIONS, Manifest.permission.POST_NOTIFICATIONS);
+            }
         } else {
             _inhibitBioPrompt = savedInstanceState.getBoolean("inhibitBioPrompt", false);
         }

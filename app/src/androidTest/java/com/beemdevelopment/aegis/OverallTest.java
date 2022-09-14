@@ -75,6 +75,7 @@ public class OverallTest extends AegisTest {
         VaultRepository vault = _vaultManager.getVault();
         assertTrue(vault.isEncryptionEnabled());
         assertTrue(vault.getCredentials().getSlots().has(PasswordSlot.class));
+        assertTrue(_prefs.isIntroDone());
 
         List<VaultEntry> entries = Arrays.asList(
                 generateEntry(TotpInfo.class, "Frank", "Google"),
