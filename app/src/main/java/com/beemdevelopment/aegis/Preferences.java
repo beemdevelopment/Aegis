@@ -355,6 +355,10 @@ public class Preferences {
         return _prefs.getBoolean("pref_copy_on_tap", false);
     }
 
+    public boolean isMinimizeOnCopyEnabled() {
+        return _prefs.getBoolean("pref_minimize_on_copy", false);
+    }
+
     public void setGroupFilter(List<String> groupFilter) {
         JSONArray json = new JSONArray(groupFilter);
         _prefs.edit().putString("pref_group_filter", json.toString()).apply();
