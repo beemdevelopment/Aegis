@@ -266,10 +266,6 @@
     <string name="empty_group_list">Няма групи за показване. Добавете групи в екрана за редактиране на запис</string>
     <string name="empty_group_list_title">Няма намерени групи</string>
     <string name="done">Готово</string>
-    <plurals name="entries_count">
-        <item quantity="one">%d / %d запис</item>
-        <item quantity="other">%d / %d записи</item>
-    </plurals>
     <string name="next">Следващ</string>
     <string name="previous">Предишен</string>
     <string name="transfer_entry">Прехвърляне на запис</string>

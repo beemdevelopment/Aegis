@@ -250,9 +250,6 @@
     <string name="empty_group_list">沒有可以顯示的群組，請先在編輯頁面增加一個群組</string>
     <string name="empty_group_list_title">找不到任何群組</string>
     <string name="done">完成</string>
-    <plurals name="entries_count">
-        <item quantity="other">%d / %d 條目</item>
-    </plurals>
     <string name="next">下一個</string>
     <string name="previous">上一個</string>
     <string name="transfer_entry">轉移條目</string>

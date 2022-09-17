@@ -63,6 +63,13 @@
     <string name="pref_export_title">Export</string>
     <string name="pref_export_summary">Export the vault</string>
     <string name="pref_password_reminder_title">Password reminder</string>
+    <string name="pref_google_auth_export_title">Export for Google Authenticator</string>
+    <string name="pref_google_auth_export_descriptor">Generates export QR codes compatible with Google Authenticator</string>
+    <string name="pref_google_auth_export_no_data">No data to export</string>
+    <plurals name="pref_google_auth_export_incompatible_entries">
+        <item quantity="one">Skipped %d incompatible entry</item>
+        <item quantity="other">Skipped %d incompatible entries</item>
+    </plurals>
     <string name="pref_password_reminder_summary">Show a %s reminder to enter the password, so that you don\'t forget it.</string>
     <string name="pref_password_reminder_summary_disabled">Disabled</string>
     <string name="pref_secure_screen_title">Screen security</string>
@@ -368,14 +375,15 @@
     <string name="pick_icon">Pick an icon</string>
     <string name="uncategorized">Uncategorized</string>
     <string name="done">Done</string>
-    <plurals name="entries_count">
-        <item quantity="one">%d / %d entry</item>
-        <item quantity="other">%d / %d entries</item>
+    <plurals name="qr_count">
+        <item quantity="one">%d / %d QR code</item>
+        <item quantity="other">%d / %d QR codes</item>
     </plurals>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
     <string name="transfer_entry">Transfer entry</string>
     <string name="transfer_entry_description">Scan this QR code with the authenticator app you would like to transfer this entry to</string>
+    <string name="google_auth_compatible_transfer_description">Scan these QR codes with Aegis or Google Authenticator.\n\nDue to limitations of the Google Authenticator app, only TOTP &amp; HOTP tokens that use SHA1 and produce 6-digit codes are included</string>
 
     <string name="password_strength_very_weak">Very weak</string>
     <string name="password_strength_weak">Weak</string>

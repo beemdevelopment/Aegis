@@ -257,10 +257,6 @@
     <string name="empty_group_list">هیچ گروهی پیدا نشد. شما می‌توانید در صفحه ویرایش هر آیتم، گروه اضافه کنید.</string>
     <string name="empty_group_list_title">گروهی پیدا نشد</string>
     <string name="done">انجام شد</string>
-    <plurals name="entries_count">
-        <item quantity="one">%d / %d آیتم</item>
-        <item quantity="other">%d / %d آیتم</item>
-    </plurals>
     <string name="next">بعدی</string>
     <string name="previous">قبلی</string>
     <string name="transfer_entry">انتقال آیتم‌ها</string>

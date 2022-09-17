@@ -17,6 +17,8 @@ import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.Theme;
 import com.beemdevelopment.aegis.helpers.QrCodeHelper;
 import com.beemdevelopment.aegis.otp.GoogleAuthInfo;
+import com.beemdevelopment.aegis.otp.GoogleAuthInfoException;
+import com.beemdevelopment.aegis.otp.Transferable;
 import com.beemdevelopment.aegis.ui.dialogs.Dialogs;
 import com.google.zxing.WriterException;
 
@@ -24,8 +26,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TransferEntriesActivity extends AegisActivity {
-    private List<GoogleAuthInfo> _authInfos;
+    private List<Transferable> _authInfos;
     private ImageView _qrImage;
+    private TextView _description;
     private TextView _issuer;
     private TextView _accountName;
     private TextView _entriesCount;
@@ -43,6 +46,7 @@ public class TransferEntriesActivity extends AegisActivity {
         setSupportActionBar(findViewById(R.id.toolbar));
 
         _qrImage = findViewById(R.id.ivQrCode);
+        _description = findViewById(R.id.tvDescription);
         _issuer = findViewById(R.id.tvIssuer);
         _accountName = findViewById(R.id.tvAccountName);
         _entriesCount = findViewById(R.id.tvEntriesCount);
@@ -55,7 +59,7 @@ public class TransferEntriesActivity extends AegisActivity {
         }
 
         Intent intent = getIntent();
-        _authInfos = (ArrayList<GoogleAuthInfo>) intent.getSerializableExtra("authInfos");
+        _authInfos = (ArrayList<Transferable>) intent.getSerializableExtra("authInfos");
 
         int controlVisibility = _authInfos.size() != 1 ? View.VISIBLE : View.INVISIBLE;
         _nextButton.setVisibility(controlVisibility);
@@ -103,10 +107,16 @@ public class TransferEntriesActivity extends AegisActivity {
     }
 
     private void generateQR() {
-        GoogleAuthInfo selectedEntry = _authInfos.get(_currentEntryCount - 1);
-        _issuer.setText(selectedEntry.getIssuer());
-        _accountName.setText(selectedEntry.getAccountName());
-        _entriesCount.setText(getResources().getQuantityString(R.plurals.entries_count, _authInfos.size(), _currentEntryCount, _authInfos.size()));
+        Transferable selectedEntry = _authInfos.get(_currentEntryCount - 1);
+        if (selectedEntry instanceof GoogleAuthInfo) {
+            GoogleAuthInfo entry = (GoogleAuthInfo) selectedEntry;
+            _issuer.setText(entry.getIssuer());
+            _accountName.setText(entry.getAccountName());
+        } else if (selectedEntry instanceof GoogleAuthInfo.Export) {
+            _description.setText(R.string.google_auth_compatible_transfer_description);
+        }
+
+        _entriesCount.setText(getResources().getQuantityString(R.plurals.qr_count, _authInfos.size(), _currentEntryCount, _authInfos.size()));
 
         @ColorInt int backgroundColor = Color.WHITE;
         if (getConfiguredTheme() == Theme.LIGHT) {
@@ -118,7 +128,7 @@ public class TransferEntriesActivity extends AegisActivity {
         Bitmap bitmap;
         try {
             bitmap = QrCodeHelper.encodeToBitmap(selectedEntry.getUri().toString(), 512, 512, backgroundColor);
-        } catch (WriterException e) {
+        } catch (WriterException | GoogleAuthInfoException e) {
             Dialogs.showErrorDialog(this, R.string.unable_to_generate_qrcode, e);
             return;
         }

@@ -291,10 +291,6 @@
     <string name="pick_icon">Aukeratu ikono bat</string>
     <string name="uncategorized">Kategoriarik gabe</string>
     <string name="done">Eginda</string>
-    <plurals name="entries_count">
-        <item quantity="one">%d / %d sarrera</item>
-        <item quantity="other">%d / %d sarrera</item>
-    </plurals>
     <string name="next">Hurrengoa</string>
     <string name="previous">Aurrekoa</string>
     <string name="transfer_entry">Transferitu sarrera</string>

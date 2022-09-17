@@ -223,10 +223,6 @@
     <string name="empty_group_list">दिखाए जाने के लिये कोई समूह नहीं हैं। एक प्रविष्टि के संपादन स्क्रीन में समूह जोड़ें</string>
     <string name="empty_group_list_title">कोई समूह नहीं मिले</string>
     <string name="done">हो गया</string>
-    <plurals name="entries_count">
-        <item quantity="one">%d / %d प्रविष्टि</item>
-        <item quantity="other">%d / %d प्रविष्टियाँ</item>
-    </plurals>
     <string name="next">अगला</string>
     <string name="previous">पिछला</string>
     <string name="transfer_entry">प्रविष्टि स्थानांतरित करें</string>

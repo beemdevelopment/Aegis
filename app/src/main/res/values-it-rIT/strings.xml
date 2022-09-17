@@ -295,10 +295,6 @@
     <string name="pick_icon">Scegli un\'icona</string>
     <string name="uncategorized">Senza categoria</string>
     <string name="done">Fine</string>
-    <plurals name="entries_count">
-        <item quantity="one">%d / %d voce</item>
-        <item quantity="other">%d / %d voci</item>
-    </plurals>
     <string name="next">Avanti</string>
     <string name="previous">Indietro</string>
     <string name="transfer_entry">Trasferisci voce</string>

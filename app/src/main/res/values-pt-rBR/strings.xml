@@ -295,10 +295,6 @@
     <string name="pick_icon">Escolha um ícone</string>
     <string name="uncategorized">Sem Categoria</string>
     <string name="done">Terminado</string>
-    <plurals name="entries_count">
-        <item quantity="one">%d / %d entrada</item>
-        <item quantity="other">%d / %d entradas</item>
-    </plurals>
     <string name="next">Próximo</string>
     <string name="previous">Anterior</string>
     <string name="transfer_entry">Transferir entrada</string>

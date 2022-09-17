@@ -301,11 +301,6 @@
     <string name="pick_icon">Alege o pictogramă</string>
     <string name="uncategorized">Necategorizat</string>
     <string name="done">Realizat</string>
-    <plurals name="entries_count">
-        <item quantity="one">%d / %d intrare</item>
-        <item quantity="few">%d / %d intrări</item>
-        <item quantity="other">%d / %d intrări</item>
-    </plurals>
     <string name="next">Următorul</string>
     <string name="previous">Anteriorul</string>
     <string name="transfer_entry">Transfer intrare</string>

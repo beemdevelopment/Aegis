@@ -301,11 +301,6 @@
     <string name="pick_icon">Izvēlēties ikonu</string>
     <string name="uncategorized">Bez kopas</string>
     <string name="done">Izpildīts</string>
-    <plurals name="entries_count">
-        <item quantity="zero">%d / %d ierakstiem</item>
-        <item quantity="one">%d / %d ierakstiem</item>
-        <item quantity="other">%d / %d ierakstiem</item>
-    </plurals>
     <string name="next">Nākamais</string>
     <string name="previous">Iepriekšējais</string>
     <string name="transfer_entry">Pārvietot ierakstu</string>

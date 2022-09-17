@@ -293,10 +293,6 @@
     <string name="pick_icon">Bir ikon seçin</string>
     <string name="uncategorized">Kategorisiz</string>
     <string name="done">Tamamlandı</string>
-    <plurals name="entries_count">
-        <item quantity="one">%d / %d girişi</item>
-        <item quantity="other">%d / %d girişleri</item>
-    </plurals>
     <string name="next">Sonraki</string>
     <string name="previous">Önceki</string>
     <string name="transfer_entry">Girdiyi aktar</string>

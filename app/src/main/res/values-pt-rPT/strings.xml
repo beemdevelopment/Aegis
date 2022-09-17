@@ -232,10 +232,6 @@
     <string name="empty_group_list">Não há grupos a serem mostrados. Adicione grupos na tela de edição de uma entrada</string>
     <string name="empty_group_list_title">Nenhum grupo encontrado</string>
     <string name="done">Concluído</string>
-    <plurals name="entries_count">
-        <item quantity="one">%d / %d entrada</item>
-        <item quantity="other">%d / %d entradas</item>
-    </plurals>
     <string name="next">Próximo</string>
     <string name="previous">Anterior</string>
     <string name="transfer_entry">Transferir entrada</string>

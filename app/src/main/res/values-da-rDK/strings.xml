@@ -295,10 +295,6 @@
     <string name="pick_icon">Vælg et ikon</string>
     <string name="uncategorized">Ukategoriseret</string>
     <string name="done">Færdig</string>
-    <plurals name="entries_count">
-        <item quantity="one">%d / %d post</item>
-        <item quantity="other">%d / %d poster</item>
-    </plurals>
     <string name="next">Næste</string>
     <string name="previous">Forrige</string>
     <string name="transfer_entry">Overfør post</string>
