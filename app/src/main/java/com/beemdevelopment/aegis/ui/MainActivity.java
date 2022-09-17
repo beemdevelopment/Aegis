@@ -41,6 +41,8 @@ import com.beemdevelopment.aegis.helpers.FabScrollHelper;
 import com.beemdevelopment.aegis.helpers.PermissionHelper;
 import com.beemdevelopment.aegis.otp.GoogleAuthInfo;
 import com.beemdevelopment.aegis.otp.GoogleAuthInfoException;
+import com.beemdevelopment.aegis.otp.OtpInfo;
+import com.beemdevelopment.aegis.otp.OtpInfoException;
 import com.beemdevelopment.aegis.ui.dialogs.Dialogs;
 import com.beemdevelopment.aegis.ui.fragments.preferences.BackupsPreferencesFragment;
 import com.beemdevelopment.aegis.ui.fragments.preferences.PreferencesFragment;
@@ -931,8 +933,15 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
 
     @SuppressLint("InlinedApi")
     private void copyEntryCode(VaultEntry entry) {
+        String otp;
+        try {
+            otp = entry.getInfo().getOtp();
+        } catch (OtpInfoException e) {
+            return;
+        }
+
         ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
-        ClipData clip = ClipData.newPlainText("text/plain", entry.getInfo().getOtp());
+        ClipData clip = ClipData.newPlainText("text/plain", otp);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             PersistableBundle extras = new PersistableBundle();
             extras.putBoolean(ClipDescription.EXTRA_IS_SENSITIVE, true);

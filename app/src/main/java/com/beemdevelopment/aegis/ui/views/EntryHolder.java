@@ -20,6 +20,7 @@ import com.beemdevelopment.aegis.helpers.ThemeHelper;
 import com.beemdevelopment.aegis.helpers.UiRefresher;
 import com.beemdevelopment.aegis.otp.HotpInfo;
 import com.beemdevelopment.aegis.otp.OtpInfo;
+import com.beemdevelopment.aegis.otp.OtpInfoException;
 import com.beemdevelopment.aegis.otp.SteamInfo;
 import com.beemdevelopment.aegis.otp.TotpInfo;
 import com.beemdevelopment.aegis.otp.YandexInfo;
@@ -238,9 +239,18 @@ public class EntryHolder extends RecyclerView.ViewHolder {
     private void updateCode() {
         OtpInfo info = _entry.getInfo();
 
-        String otp = info.getOtp();
-        if (!(info instanceof SteamInfo || info instanceof YandexInfo)) {
-            otp = formatCode(otp);
+        // In previous versions of Aegis, it was possible to import entries with an empty
+        // secret. Attempting to generate OTP's for such entries would result in a crash.
+        // In case we encounter an old entry that has this issue, we display "ERROR" as
+        // the OTP, instead of crashing.
+        String otp;
+        try {
+            otp = info.getOtp();
+            if (!(info instanceof SteamInfo || info instanceof YandexInfo)) {
+                otp = formatCode(otp);
+            }
+        } catch (OtpInfoException e) {
+            otp = _view.getResources().getString(R.string.error_all_caps);
         }
 
         _profileCode.setText(otp);

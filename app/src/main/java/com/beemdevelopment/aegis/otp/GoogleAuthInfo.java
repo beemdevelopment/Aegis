@@ -59,6 +59,9 @@ public class GoogleAuthInfo implements Transferable, Serializable {
         } catch (EncodingException e) {
             throw new GoogleAuthInfoException(uri, "Bad secret", e);
         }
+        if (secret.length == 0) {
+            throw new GoogleAuthInfoException(uri, "Secret is empty");
+        }
 
         OtpInfo info;
         String issuer = "";
@@ -233,6 +236,10 @@ public class GoogleAuthInfo implements Transferable, Serializable {
                 }
 
                 byte[] secret = params.getSecret().toByteArray();
+                if (secret.length == 0) {
+                    throw new GoogleAuthInfoException(uri, "Secret is empty");
+                }
+
                 switch (params.getType()) {
                     case OTP_TYPE_UNSPECIFIED:
                         // intentional fallthrough

@@ -30,7 +30,9 @@ public class HotpInfo extends OtpInfo {
     }
 
     @Override
-    public String getOtp() {
+    public String getOtp() throws OtpInfoException {
+        checkSecret();
+
         try {
             OTP otp = HOTP.generateOTP(getSecret(), getAlgorithm(true), getDigits(), getCounter());
             return otp.toString();

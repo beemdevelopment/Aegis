@@ -53,19 +53,19 @@ public class DatabaseImporterTest {
     }
 
     @Test
-    public void testImportPlainText() throws IOException, DatabaseImporterException {
+    public void testImportPlainText() throws IOException, DatabaseImporterException, OtpInfoException {
         List<VaultEntry> entries = importPlain(GoogleAuthUriImporter.class, "plain.txt");
         checkImportedEntries(entries);
     }
 
     @Test
-    public void testImportAegisPlain() throws IOException, DatabaseImporterException {
+    public void testImportAegisPlain() throws IOException, DatabaseImporterException, OtpInfoException {
         List<VaultEntry> entries = importPlain(AegisImporter.class, "aegis_plain.json");
         checkImportedEntries(entries);
     }
 
     @Test
-    public void testImportAegisEncrypted() throws IOException, DatabaseImporterException {
+    public void testImportAegisEncrypted() throws IOException, DatabaseImporterException, OtpInfoException {
         List<VaultEntry> entries = importEncrypted(AegisImporter.class, "aegis_encrypted.json", encryptedState -> {
             final char[] password = "test".toCharArray();
             return ((AegisImporter.EncryptedState) encryptedState).decrypt(password);
@@ -88,7 +88,7 @@ public class DatabaseImporterTest {
     }
 
     @Test
-    public void testImportWinAuth() throws IOException, DatabaseImporterException {
+    public void testImportWinAuth() throws IOException, DatabaseImporterException, OtpInfoException {
         List<VaultEntry> entries = importPlain(WinAuthImporter.class, "plain.txt");
         for (VaultEntry entry : entries) {
             VaultEntry entryVector = getEntryVectorBySecret(entry.getInfo().getSecret());
@@ -99,13 +99,13 @@ public class DatabaseImporterTest {
     }
 
     @Test
-    public void testImportAndOTP() throws IOException, DatabaseImporterException {
+    public void testImportAndOTP() throws IOException, DatabaseImporterException, OtpInfoException {
         List<VaultEntry> entries = importPlain(AndOtpImporter.class, "andotp_plain.json");
         checkImportedEntries(entries);
     }
 
     @Test
-    public void testImportAndOTPEncrypted() throws IOException, DatabaseImporterException {
+    public void testImportAndOTPEncrypted() throws IOException, DatabaseImporterException, OtpInfoException {
         List<VaultEntry> entries = importEncrypted(AndOtpImporter.class, "andotp_encrypted.bin", encryptedState -> {
             final char[] password = "test".toCharArray();
             return ((AndOtpImporter.EncryptedState) encryptedState).decryptNewFormat(password);
@@ -115,7 +115,7 @@ public class DatabaseImporterTest {
     }
 
     @Test
-    public void testImportAndOTPEncryptedOld() throws IOException, DatabaseImporterException {
+    public void testImportAndOTPEncryptedOld() throws IOException, DatabaseImporterException, OtpInfoException {
         List<VaultEntry> entries = importEncrypted(AndOtpImporter.class, "andotp_encrypted_old.bin", encryptedState -> {
             final char[] password = "test".toCharArray();
             return ((AndOtpImporter.EncryptedState) encryptedState).decryptOldFormat(password);
@@ -162,13 +162,13 @@ public class DatabaseImporterTest {
     }
 
     @Test
-    public void testImportBitwardenJson() throws IOException, DatabaseImporterException {
+    public void testImportBitwardenJson() throws IOException, DatabaseImporterException, OtpInfoException {
         List<VaultEntry> entries = importPlain(BitwardenImporter.class, "bitwarden.json");
         checkImportedBitwardenEntries(entries);
     }
 
     @Test
-    public void testImportBitwardenCsv() throws IOException, DatabaseImporterException {
+    public void testImportBitwardenCsv() throws IOException, DatabaseImporterException, OtpInfoException {
         List<VaultEntry> entries = importPlain(BitwardenImporter.class, "bitwarden.csv");
         checkImportedBitwardenEntries(entries);
     }
@@ -218,7 +218,7 @@ public class DatabaseImporterTest {
     }
 
     @Test
-    public void testImportSteam() throws IOException, DatabaseImporterException {
+    public void testImportSteam() throws IOException, DatabaseImporterException, OtpInfoException {
         List<VaultEntry> entries = importPlain(SteamImporter.class, "steam.json");
         for (VaultEntry entry : entries) {
             VaultEntry entryVector = getEntryVectorBySecret(entry.getInfo().getSecret());
@@ -352,7 +352,7 @@ public class DatabaseImporterTest {
         }
     }
 
-    private void checkImportedBitwardenEntries(List<VaultEntry> entries) {
+    private void checkImportedBitwardenEntries(List<VaultEntry> entries) throws OtpInfoException {
         byte[] secret, vectorSecret;
         for (VaultEntry entry : entries) {
             if(entry.getInfo().getTypeId().equals(SteamInfo.ID)) {
@@ -365,18 +365,18 @@ public class DatabaseImporterTest {
         }
     }
 
-    private void checkImportedEntries(List<VaultEntry> entries) {
+    private void checkImportedEntries(List<VaultEntry> entries) throws OtpInfoException {
         for (VaultEntry entry : entries) {
             checkImportedEntry(entry);
         }
     }
 
-    private void checkImportedEntry(VaultEntry entry) {
+    private void checkImportedEntry(VaultEntry entry) throws OtpInfoException {
         VaultEntry entryVector = getEntryVectorBySecret(entry.getInfo().getSecret());
         checkImportedEntry(entryVector, entry);
     }
 
-    private void checkImportedEntry(VaultEntry entryVector, VaultEntry entry) {
+    private void checkImportedEntry(VaultEntry entryVector, VaultEntry entry) throws OtpInfoException {
         String message = String.format("Entries are not equivalent: (%s) (%s)", entryVector.toJson().toString(), entry.toJson().toString());
         assertTrue(message, entryVector.equivalates(entry));
         assertEquals(message, entryVector.getInfo().getOtp(), entry.getInfo().getOtp());

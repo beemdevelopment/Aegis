@@ -20,7 +20,9 @@ public class SteamInfo extends TotpInfo {
     }
 
     @Override
-    public String getOtp() {
+    public String getOtp() throws OtpInfoException {
+        checkSecret();
+
         try {
             OTP otp = TOTP.generateOTP(getSecret(), getAlgorithm(true), getDigits(), getPeriod());
             return otp.toSteamString();

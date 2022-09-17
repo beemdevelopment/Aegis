@@ -30,7 +30,9 @@ public class GoogleAuthInfoException extends Exception {
     @Override
     public String getMessage() {
         Throwable cause = getCause();
-        if (cause == null) {
+        if (cause == null
+                || this == cause
+                || (super.getMessage() != null && super.getMessage().equals(cause.getMessage()))) {
             return super.getMessage();
         }
 

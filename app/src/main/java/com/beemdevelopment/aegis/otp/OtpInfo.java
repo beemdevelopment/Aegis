@@ -28,7 +28,13 @@ public abstract class OtpInfo implements Serializable {
         setDigits(digits);
     }
 
-    public abstract String getOtp();
+    public abstract String getOtp() throws OtpInfoException;
+
+    protected void checkSecret() throws OtpInfoException {
+        if (getSecret().length == 0) {
+            throw new OtpInfoException("Secret is empty");
+        }
+    }
 
     public abstract String getTypeId();
 

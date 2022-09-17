@@ -37,6 +37,7 @@ import com.beemdevelopment.aegis.encoding.Hex;
 import com.beemdevelopment.aegis.importers.DatabaseImporter;
 import com.beemdevelopment.aegis.importers.DatabaseImporterException;
 import com.beemdevelopment.aegis.importers.GoogleAuthUriImporter;
+import com.beemdevelopment.aegis.otp.OtpInfoException;
 import com.beemdevelopment.aegis.rules.ScreenshotTestRule;
 import com.beemdevelopment.aegis.ui.PreferencesActivity;
 import com.beemdevelopment.aegis.util.IOUtils;
@@ -300,7 +301,11 @@ public class BackupExportTest extends AegisTest {
             VaultEntry vector = vectors.get(i);
             String message = String.format("Entries are not equivalent: (%s) (%s)", vector.toJson().toString(), entry.toJson().toString());
             assertTrue(message, vector.equivalates(entry));
-            assertEquals(message, vector.getInfo().getOtp(), entry.getInfo().getOtp());
+            try {
+                assertEquals(message, vector.getInfo().getOtp(), entry.getInfo().getOtp());
+            } catch (OtpInfoException e) {
+                throw new RuntimeException("Unable to generate OTP", e);
+            }
             i++;
         }
     }

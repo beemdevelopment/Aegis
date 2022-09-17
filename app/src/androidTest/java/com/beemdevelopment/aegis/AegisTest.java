@@ -86,6 +86,10 @@ public abstract class AegisTest {
         return initVault(null, VaultEntries.get());
     }
 
+    protected VaultRepository initEmptyPlainVault() {
+        return initVault(null, null);
+    }
+
     private VaultRepository initVault(@Nullable VaultFileCredentials creds, @Nullable List<VaultEntry> entries) {
         VaultRepository vault;
         try {
