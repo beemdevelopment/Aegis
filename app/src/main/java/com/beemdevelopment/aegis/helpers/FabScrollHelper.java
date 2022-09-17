@@ -16,9 +16,9 @@ public class FabScrollHelper {
     }
 
     public void onScroll(int dx, int dy) {
-        if (dy > 0 && _fabMenu.getVisibility() == View.VISIBLE && !_isAnimating) {
+        if (dy > 2 && _fabMenu.getVisibility() == View.VISIBLE && !_isAnimating) {
             setVisible(false);
-        } else if (dy < 0 && _fabMenu.getVisibility() != View.VISIBLE && !_isAnimating) {
+        } else if (dy < -2 && _fabMenu.getVisibility() != View.VISIBLE && !_isAnimating) {
             setVisible(true);
         }
     }
