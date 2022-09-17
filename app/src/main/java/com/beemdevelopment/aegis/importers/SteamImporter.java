@@ -1,6 +1,7 @@
 package com.beemdevelopment.aegis.importers;
 
 import android.content.Context;
+import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 
 import com.beemdevelopment.aegis.encoding.Base64;
@@ -37,6 +38,18 @@ public class SteamImporter extends DatabaseImporter {
 
         // TODO: handle multiple files (can this even occur?)
         return files[0];
+    }
+
+    @Override
+    public boolean isInstalledAppVersionSupported() {
+        PackageInfo info;
+        try {
+            info = requireContext().getPackageManager().getPackageInfo(_pkgName, 0);
+        } catch (PackageManager.NameNotFoundException e) {
+            return false;
+        }
+
+        return info.versionCode < 7460894;
     }
 
     @Override

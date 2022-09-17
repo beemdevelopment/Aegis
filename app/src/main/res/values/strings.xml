@@ -425,7 +425,7 @@
     <string name="importer_help_google_authenticator"><b>Only database files from Google Authenticator v5.10 and prior are supported</b>.\n\nSupply a copy of <b>/data/data/com.google.android.apps.authenticator2/databases/databases</b>, located in the internal storage directory of Google Authenticator.</string>
     <string name="importer_help_microsoft_authenticator">Supply a copy of <b>/data/data/com.azure.authenticator/databases/PhoneFactor</b>, located in the internal storage directory of Microsoft Authenticator.</string>
     <string name="importer_help_plain_text">Supply a plain text file with a Google Authenticator URI on each line.</string>
-    <string name="importer_help_steam">Supply a copy of <b>/data/data/com.valvesoftware.android.steam.community/files/Steamguard-*.json</b>, located in the internal storage directory of Steam.</string>
+    <string name="importer_help_steam"><b>Steam v3.0 and newer are not supported</b>. Supply a copy of <b>/data/data/com.valvesoftware.android.steam.community/files/Steamguard-*.json</b>, located in the internal storage directory of Steam.</string>
     <string name="importer_help_totp_authenticator">Supply a TOTP Authenticator export file.</string>
     <string name="importer_help_winauth">Supply a WinAuth export file.</string>
 
