@@ -1,14 +1,20 @@
 package com.beemdevelopment.aegis.ui.views;
 
+import android.graphics.Typeface;
 import android.os.Handler;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.style.StyleSpan;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.SortCategory;
 import com.beemdevelopment.aegis.ViewMode;
 import com.beemdevelopment.aegis.helpers.ItemTouchHelperAdapter;
@@ -28,7 +34,7 @@ import java.util.Map;
 import java.util.TreeSet;
 import java.util.UUID;
 
-public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements ItemTouchHelperAdapter {
+public class EntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements ItemTouchHelperAdapter {
     private EntryListView _view;
     private List<VaultEntry> _entries;
     private List<VaultEntry> _shownEntries;
@@ -51,7 +57,7 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
     private Handler _dimHandler;
     private boolean _pauseFocused;
 
-    // keeps track of the viewholders that are currently bound
+    // keeps track of the EntryHolders that are currently bound
     private List<EntryHolder> _holders;
     private EntryHolder _dragHandleHolder; // holder with enabled drag handle
 
@@ -142,6 +148,7 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
 
         _view.onListChange();
         checkPeriodUniformity();
+        updateFooter();
         return position;
     }
 
@@ -162,6 +169,7 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
             int position = _shownEntries.indexOf(entry);
             _shownEntries.remove(position);
             notifyItemRemoved(position);
+            updateFooter();
         }
 
         _view.onListChange();
@@ -210,6 +218,7 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
             notifyItemInserted(position);
         }
         checkPeriodUniformity();
+        updateFooter();
     }
 
     private VaultEntry getEntryByUUID(UUID uuid) {
@@ -317,7 +326,8 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
     @Override
     public void onItemDrop(int position) {
         // moving entries is not allowed when a filter is applied
-        if (!_groupFilter.isEmpty()) {
+        // footer cant be moved, nor can items be moved below it
+        if (!_groupFilter.isEmpty() || isPositionFooter(position)) {
             return;
         }
 
@@ -327,7 +337,8 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
     @Override
     public void onItemMove(int firstPosition, int secondPosition) {
         // moving entries is not allowed when a filter is applied
-        if (!_groupFilter.isEmpty()) {
+        // footer cant be moved, nor can items be moved below it
+        if (!_groupFilter.isEmpty() || isPositionFooter(firstPosition) || isPositionFooter(secondPosition)) {
             return;
         }
 
@@ -342,127 +353,145 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
 
     @Override
     public int getItemViewType(int position) {
+        if (isPositionFooter(position)) {
+            return R.layout.card_footer;
+        }
+
         return _viewMode.getLayoutId();
     }
 
     @Override
-    public EntryHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        View view = inflater.inflate(_viewMode.getLayoutId(), parent, false);
-        EntryHolder holder = new EntryHolder(view);
-        _view.setPreloadView(holder.getIconView());
+
+        RecyclerView.ViewHolder holder;
+        View view = inflater.inflate(viewType, parent, false);
+        if (viewType == R.layout.card_footer) {
+            holder = new FooterView(view);
+        } else {
+            EntryHolder entryHolder = new EntryHolder(view);
+            _view.setPreloadView(entryHolder.getIconView());
+            holder = entryHolder;
+        }
         return holder;
     }
 
     @Override
-    public void onViewRecycled(EntryHolder holder) {
-        holder.stopRefreshLoop();
-        _holders.remove(holder);
+    public void onViewRecycled(RecyclerView.ViewHolder holder) {
+        if (holder instanceof EntryHolder) {
+            ((EntryHolder) holder).stopRefreshLoop();
+            _holders.remove(holder);
+        }
     }
 
     @Override
-    public void onBindViewHolder(final EntryHolder holder, int position) {
-        VaultEntry entry = _shownEntries.get(position);
+    public void onBindViewHolder(final RecyclerView.ViewHolder holder, int position) {
+        if (holder instanceof EntryHolder) {
+            EntryHolder entryHolder = (EntryHolder) holder;
+            VaultEntry entry = _shownEntries.get(position);
 
-        boolean hidden = _tapToReveal && entry != _focusedEntry;
-        boolean paused = _pauseFocused && entry == _focusedEntry;
-        boolean dimmed = (_highlightEntry || _tempHighlightEntry) && _focusedEntry != null && _focusedEntry != entry;
-        boolean showProgress = entry.getInfo() instanceof TotpInfo && ((TotpInfo) entry.getInfo()).getPeriod() != getMostFrequentPeriod();
-        holder.setData(entry, _codeGroupSize, _showAccountName, showProgress, hidden, paused, dimmed);
-        holder.setFocused(_selectedEntries.contains(entry));
-        holder.loadIcon(_view);
+            boolean hidden = _tapToReveal && entry != _focusedEntry;
+            boolean paused = _pauseFocused && entry == _focusedEntry;
+            boolean dimmed = (_highlightEntry || _tempHighlightEntry) && _focusedEntry != null && _focusedEntry != entry;
+            boolean showProgress = entry.getInfo() instanceof TotpInfo && ((TotpInfo) entry.getInfo()).getPeriod() != getMostFrequentPeriod();
+            entryHolder.setData(entry, _codeGroupSize, _showAccountName, showProgress, hidden, paused, dimmed);
+            entryHolder.setFocused(_selectedEntries.contains(entry));
+            entryHolder.loadIcon(_view);
 
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                boolean handled = false;
+            entryHolder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    boolean handled = false;
 
-                if (_selectedEntries.isEmpty()) {
-                    if (_copyOnTap) {
-                        _view.onEntryCopy(entry);
-                        holder.animateCopyText();
-                    }
+                    if (_selectedEntries.isEmpty()) {
+                        if (_copyOnTap) {
+                            _view.onEntryCopy(entry);
+                            entryHolder.animateCopyText();
+                        }
 
-                    if (_highlightEntry || _tempHighlightEntry || _tapToReveal) {
-                        if (_focusedEntry == entry) {
-                            resetFocus();
-                            handled = true;
+                        if (_highlightEntry || _tempHighlightEntry || _tapToReveal) {
+                            if (_focusedEntry == entry) {
+                                resetFocus();
+                                handled = true;
+                            } else {
+                                focusEntry(entry, _tapToRevealTime);
+                            }
+                        }
+
+                        incrementUsageCount(entry);
+                    } else {
+                        if (_selectedEntries.contains(entry)) {
+                            _view.onDeselect(entry);
+                            removeSelectedEntry(entry);
+                            entryHolder.setFocusedAndAnimate(false);
                         } else {
-                            focusEntry(entry, _tapToRevealTime);
+                            entryHolder.setFocusedAndAnimate(true);
+                            addSelectedEntry(entry);
+                            _view.onSelect(entry);
                         }
                     }
 
-                    incrementUsageCount(entry);
-                } else {
-                    if (_selectedEntries.contains(entry)) {
-                        _view.onDeselect(entry);
-                        removeSelectedEntry(entry);
-                        holder.setFocusedAndAnimate(false);
-                    } else {
-                        holder.setFocusedAndAnimate(true);
-                        addSelectedEntry(entry);
-                        _view.onSelect(entry);
+                    if (!handled) {
+                        _view.onEntryClick(entry);
                     }
                 }
+            });
+            entryHolder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    int position = holder.getAdapterPosition();
+                    if (_selectedEntries.isEmpty()) {
+                        entryHolder.setFocusedAndAnimate(true);
+                    }
 
-                if (!handled) {
-                    _view.onEntryClick(entry);
+                    boolean returnVal = _view.onLongEntryClick(_shownEntries.get(position));
+
+                    boolean dragEnabled = _selectedEntries.size() == 0
+                            || _selectedEntries.size() == 1 && _selectedEntries.get(0) == entryHolder.getEntry();
+                    if (dragEnabled && isDragAndDropAllowed()) {
+                        _view.startDrag(_dragHandleHolder);
+                    }
+
+                    return returnVal;
                 }
-            }
-        });
-        holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-                int position = holder.getAdapterPosition();
-                if (_selectedEntries.isEmpty()) {
-                    holder.setFocusedAndAnimate(true);
+            });
+            entryHolder.itemView.setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View v, MotionEvent event) {
+                    // Start drag if this is the only item selected
+                    if (event.getActionMasked() == MotionEvent.ACTION_MOVE
+                            && _selectedEntries.size() == 1
+                            && _selectedEntries.get(0) == entryHolder.getEntry()
+                            && isDragAndDropAllowed()) {
+                        _view.startDrag(_dragHandleHolder);
+                        return true;
+                    }
+                    return false;
                 }
+            });
+            entryHolder.setOnRefreshClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    // this will only be called if the entry is of type HotpInfo
+                    try {
+                        ((HotpInfo) entry.getInfo()).incrementCounter();
+                    } catch (OtpInfoException e) {
+                        throw new RuntimeException(e);
+                    }
 
-                boolean returnVal = _view.onLongEntryClick(_shownEntries.get(position));
+                    // notify the listener that the counter has been incremented
+                    // this gives it a chance to save the vault
+                    _view.onEntryChange(entry);
 
-                boolean dragEnabled = _selectedEntries.size() == 0
-                        || _selectedEntries.size() == 1 && _selectedEntries.get(0) == holder.getEntry();
-                if (dragEnabled && isDragAndDropAllowed()) {
-                    _view.startDrag(_dragHandleHolder);
+                    // finally, refresh the code in the UI
+                    entryHolder.refreshCode();
                 }
+            });
 
-                return returnVal;
-            }
-        });
-        holder.itemView.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                // Start drag if this is the only item selected
-                if (event.getActionMasked() == MotionEvent.ACTION_MOVE
-                        && _selectedEntries.size() == 1
-                        && _selectedEntries.get(0) == holder.getEntry()
-                        && isDragAndDropAllowed()) {
-                    _view.startDrag(_dragHandleHolder);
-                    return true;
-                }
-                return false;
-            }
-        });
-        holder.setOnRefreshClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // this will only be called if the entry is of type HotpInfo
-                try {
-                    ((HotpInfo) entry.getInfo()).incrementCounter();
-                } catch (OtpInfoException e) {
-                    throw new RuntimeException(e);
-                }
-
-                // notify the listener that the counter has been incremented
-                // this gives it a chance to save the vault
-                _view.onEntryChange(entry);
-
-                // finally, refresh the code in the UI
-                holder.refreshCode();
-            }
-        });
-
-        _holders.add(holder);
+            _holders.add(entryHolder);
+        } else if (holder instanceof FooterView) {
+            ((FooterView) holder).refresh();
+        }
     }
 
     private void checkPeriodUniformity() {
@@ -648,7 +677,41 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryHolder> implements I
 
     @Override
     public int getItemCount() {
+        return getEntriesCount() + 1;
+    }
+
+    public int getEntriesCount() {
         return _shownEntries.size();
+    }
+
+    public boolean isPositionFooter(int position) {
+        return position == getEntriesCount();
+    }
+
+    private void updateFooter() {
+        notifyItemChanged(getItemCount() - 1);
+    }
+
+    private class FooterView extends RecyclerView.ViewHolder {
+        View _footerView;
+
+        public FooterView(@NonNull View itemView) {
+            super(itemView);
+            _footerView = itemView;
+        }
+
+        public void refresh() {
+            int entriesShown = getEntriesCount();
+            SpannableString entriesShownSpannable = new SpannableString(_footerView.getResources().getQuantityString(R.plurals.entries_shown, entriesShown, entriesShown));
+
+            String entriesShownString = String.valueOf(entriesShown);
+            int spanStart = entriesShownSpannable.toString().indexOf(entriesShownString);
+            int spanEnd = spanStart + entriesShownString.length();
+            entriesShownSpannable.setSpan(new StyleSpan(Typeface.BOLD), spanStart, spanEnd, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+            TextView textView = _footerView.findViewById(R.id.entries_shown_count);
+            textView.setText(entriesShownSpannable);
+        }
     }
 
     public interface Listener {

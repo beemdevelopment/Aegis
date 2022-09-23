@@ -504,7 +504,7 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
     }
 
     private void updateEmptyState() {
-        if (_adapter.getItemCount() > 0) {
+        if (_adapter.getEntriesCount() > 0) {
             _recyclerView.setVisibility(View.VISIBLE);
             _emptyStateView.setVisibility(View.GONE);
         } else {
@@ -550,6 +550,10 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
         @NonNull
         @Override
         public List<VaultEntry> getPreloadItems(int position) {
+            if (_adapter.getItemViewType(position) == R.layout.card_footer) {
+                return Collections.emptyList();
+            }
+
             VaultEntry entry = _adapter.getEntryAt(position);
             if (!entry.hasIcon()) {
                 return Collections.emptyList();
