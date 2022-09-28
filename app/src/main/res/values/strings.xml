@@ -232,6 +232,10 @@
         <item quantity="one">Imported %d entry</item>
         <item quantity="other">Imported %d entries</item>
     </plurals>
+    <plurals name="entries_shown">
+        <item quantity="one">Showing %d entry</item>
+        <item quantity="other">Showing %d entries</item>
+    </plurals>
     <string name="intro_import_error_title">An error occurred while importing the vault</string>
     <string name="import_error_title">One or more errors occurred during the import</string>
     <string name="exporting_vault_error">An error occurred while trying to export the vault</string>
