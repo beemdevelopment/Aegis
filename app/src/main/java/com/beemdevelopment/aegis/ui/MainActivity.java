@@ -90,6 +90,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
     private EntryListView _entryListView;
     private LinearLayout _btnErrorBar;
     private TextView _textErrorBar;
+    private Context context;
 
     private FabScrollHelper _fabScrollHelper;
 
@@ -761,7 +762,14 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         if (!_loaded) {
             _entryListView.setUsageCounts(_prefs.getUsageCounts());
             _entryListView.addEntries(_vaultManager.getVault().getEntries());
-            _entryListView.runEntriesAnimation();
+            try {
+                if (!(Settings.Global.getFloat(getContentResolver(), Settings.Global.ANIMATOR_DURATION_SCALE) == 0f)) {
+                    _entryListView.runEntriesAnimation();
+                }
+            } catch (Exception e) {
+                _entryListView.runEntriesAnimation();
+            }
+
             _loaded = true;
         }
     }
