@@ -2,14 +2,10 @@ package com.beemdevelopment.aegis.otp;
 
 import static org.junit.Assert.assertThrows;
 
-import android.os.Build;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.RobolectricTestRunner;
-import org.robolectric.annotation.Config;
 
-@Config(sdk = { Build.VERSION_CODES.S_V2 })
 @RunWith(RobolectricTestRunner.class)
 public class GoogleAuthInfoTest {
     @Test

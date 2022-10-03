@@ -7,7 +7,6 @@ import static org.junit.Assert.assertTrue;
 
 import android.graphics.Rect;
 import android.media.Image;
-import android.os.Build;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -19,7 +18,6 @@ import com.beemdevelopment.aegis.util.IOUtils;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.RobolectricTestRunner;
-import org.robolectric.annotation.Config;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -27,7 +25,6 @@ import java.nio.ByteBuffer;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.zip.GZIPInputStream;
 
-@Config(sdk = { Build.VERSION_CODES.S_V2 })
 @RunWith(RobolectricTestRunner.class)
 public class QrCodeAnalyzerTest {
     private static final String _expectedUri = "otpauth://totp/neo4j:Charlotte?secret=B33WS2ALPT34K4BNY24AYROE4M&issuer=neo4j&algorithm=SHA1&digits=6&period=30";

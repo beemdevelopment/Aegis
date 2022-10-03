@@ -19,7 +19,6 @@ import org.robolectric.annotation.Config;
 
 import java.util.Date;
 
-@Config(sdk = { Build.VERSION_CODES.S_V2 })
 @RunWith(RobolectricTestRunner.class)
 public class PreferencesTest {
     @Test

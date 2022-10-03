@@ -7,7 +7,6 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import android.content.Context;
-import android.os.Build;
 
 import androidx.test.core.app.ApplicationProvider;
 
@@ -26,14 +25,12 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.RobolectricTestRunner;
-import org.robolectric.annotation.Config;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Arrays;
 import java.util.List;
 
-@Config(sdk = { Build.VERSION_CODES.S_V2 })
 @RunWith(RobolectricTestRunner.class)
 public class DatabaseImporterTest {
     private List<VaultEntry> _vectors;
