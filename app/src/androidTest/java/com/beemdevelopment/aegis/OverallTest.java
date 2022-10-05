@@ -62,7 +62,7 @@ public class OverallTest extends AegisTest {
     public final TestRule testRule = RuleChain.outerRule(_activityRule).around(new ScreenshotTestRule());
 
     @Test
-    public void doOverallTest() {
+    public void testOverall() {
         ViewInteraction next = onView(withId(R.id.btnNext));
         next.perform(click());
         onView(withId(R.id.rb_password)).perform(click());

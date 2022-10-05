@@ -81,7 +81,7 @@ public class IntroTest extends AegisTest {
     }
 
     @Test
-    public void doIntro_None() {
+    public void testIntro_None() {
         assertFalse(_prefs.isIntroDone());
         ViewInteraction next = onView(withId(R.id.btnNext));
         ViewInteraction prev = onView(withId(R.id.btnPrevious));
@@ -103,7 +103,7 @@ public class IntroTest extends AegisTest {
     }
 
     @Test
-    public void doIntro_Password() {
+    public void testIntro_Password() {
         assertFalse(_prefs.isIntroDone());
         ViewInteraction next = onView(withId(R.id.btnNext));
         ViewInteraction prev = onView(withId(R.id.btnPrevious));
@@ -136,7 +136,7 @@ public class IntroTest extends AegisTest {
     }
 
     @Test
-    public void doIntro_Import_Plain() {
+    public void testIntro_Import_Plain() {
         assertFalse(_prefs.isIntroDone());
         Uri uri = getResourceUri("aegis_plain.json");
         Intent resultData = new Intent();
@@ -156,7 +156,7 @@ public class IntroTest extends AegisTest {
     }
 
     @Test
-    public void doIntro_Import_Encrypted() {
+    public void testIntro_Import_Encrypted() {
         assertFalse(_prefs.isIntroDone());
         Uri uri = getResourceUri("aegis_encrypted.json");
         Intent resultData = new Intent();

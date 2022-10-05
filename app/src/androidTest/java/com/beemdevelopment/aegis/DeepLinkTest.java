@@ -33,7 +33,7 @@ public class DeepLinkTest extends AegisTest {
     }
 
     @Test
-    public void doDeepLinkIntent() {
+    public void testDeepLinkIntent() {
         VaultEntry entry = generateEntry(TotpInfo.class, "Bob", "Google");
         GoogleAuthInfo info = new GoogleAuthInfo(entry.getInfo(), entry.getName(), entry.getIssuer());
         launch(info.getUri());
@@ -45,12 +45,12 @@ public class DeepLinkTest extends AegisTest {
     }
 
     @Test
-    public void doDeepLinkIntent_Empty() {
+    public void testDeepLinkIntent_Empty() {
         launch(null);
     }
 
     @Test
-    public void doDeepLinkIntent_Bad() {
+    public void testDeepLinkIntent_Bad() {
         launch(Uri.parse("otpauth://bad"));
         onView(withId(android.R.id.button1)).perform(click());
     }
