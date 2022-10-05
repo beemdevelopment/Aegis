@@ -29,7 +29,7 @@ public class AegisBackupAgent extends BackupAgent {
     public void onCreate() {
         super.onCreate();
 
-        // cannot use injection with Dagger Hilt here, because the app is launched in a restricted mode on restore
+        // Cannot use injection with Dagger Hilt here, because the app is launched in a restricted mode on restore
         _prefs = new Preferences(this);
     }
 
@@ -40,7 +40,7 @@ public class AegisBackupAgent extends BackupAgent {
                 Build.VERSION.SDK_INT >= Build.VERSION_CODES.O ? data.getQuota() : -1));
 
         boolean isD2D = Build.VERSION.SDK_INT >= Build.VERSION_CODES.P
-            && (data.getTransportFlags() & FLAG_DEVICE_TO_DEVICE_TRANSFER) == FLAG_DEVICE_TO_DEVICE_TRANSFER;
+                && (data.getTransportFlags() & FLAG_DEVICE_TO_DEVICE_TRANSFER) == FLAG_DEVICE_TO_DEVICE_TRANSFER;
 
         if (isD2D) {
             Log.i(TAG, "onFullBackup(): allowing D2D transfer");
@@ -49,31 +49,39 @@ public class AegisBackupAgent extends BackupAgent {
             return;
         }
 
-        // first copy the vault to the files/backup directory
+        // We perform a catch of any Exception here to make sure we also
+        // report any runtime exceptions, in addition to the expected IOExceptions.
+        try {
+            fullBackup(data);
+            _prefs.setAndroidBackupResult(new Preferences.BackupResult(null));
+        } catch (Exception e) {
+            Log.e(TAG, String.format("onFullBackup() failed: %s", e));
+            _prefs.setAndroidBackupResult(new Preferences.BackupResult(e));
+            throw e;
+        }
+
+        Log.i(TAG, "onFullBackup() finished");
+    }
+
+    private void fullBackup(FullBackupDataOutput data) throws IOException {
+        // First copy the vault to the files/backup directory
+        createBackupDir();
         File vaultBackupFile = getVaultBackupFile();
         try (OutputStream outputStream = new FileOutputStream(vaultBackupFile)) {
-            createBackupDir();
-
             VaultFile vaultFile = VaultRepository.readVaultFile(this);
             byte[] bytes = vaultFile.exportable().toBytes();
             outputStream.write(bytes);
         } catch (VaultRepositoryException | IOException e) {
-            Log.e(TAG, String.format("onFullBackup() failed: %s", e));
             deleteBackupDir();
             throw new IOException(e);
         }
 
-        // then call the original implementation so that fullBackupContent specified in AndroidManifest is read
+        // Then call the original implementation so that fullBackupContent specified in AndroidManifest is read
         try {
             super.onFullBackup(data);
-        } catch (IOException e) {
-            Log.e(TAG, String.format("onFullBackup() failed: %s", e));
-            throw e;
         } finally {
             deleteBackupDir();
         }
-
-        Log.i(TAG, "onFullBackup() finished");
     }
 
     @Override
@@ -114,14 +122,16 @@ public class AegisBackupAgent extends BackupAgent {
 
     private void createBackupDir() throws IOException {
         File dir = getVaultBackupFile().getParentFile();
-        if (!dir.exists() && !dir.mkdir()) {
-            throw new IOException(String.format("Unable to create backup directory: %s", dir.toString()));
+        if (dir == null || (!dir.exists() && !dir.mkdir())) {
+            throw new IOException(String.format("Unable to create backup directory: %s", dir));
         }
     }
 
     private void deleteBackupDir() {
         File dir = getVaultBackupFile().getParentFile();
-        IOUtils.clearDirectory(dir, true);
+        if (dir != null) {
+            IOUtils.clearDirectory(dir, true);
+        }
     }
 
     private File getVaultBackupFile() {

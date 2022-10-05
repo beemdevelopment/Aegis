@@ -196,9 +196,8 @@ public class VaultManager {
                 backedUp = true;
                 try {
                     scheduleBackup();
-                    _prefs.setBackupsError(null);
                 } catch (VaultRepositoryException e) {
-                    _prefs.setBackupsError(e);
+                    _prefs.setBuiltInBackupResult(new Preferences.BackupResult(e));
                 }
             }
 

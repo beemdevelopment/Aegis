@@ -2,10 +2,16 @@ package com.beemdevelopment.aegis.ui.fragments.preferences;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.style.ForegroundColorSpan;
+import android.text.style.StyleSpan;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
 import androidx.preference.Preference;
 import androidx.preference.SwitchPreferenceCompat;
 
@@ -21,6 +27,9 @@ public class BackupsPreferencesFragment extends PreferencesFragment {
     private Preference _backupsTriggerPreference;
     private Preference _backupsVersionsPreference;
 
+    private Preference _builtinBackupStatusPreference;
+    private Preference _androidBackupStatusPreference;
+
     @Override
     public void onResume() {
         super.onResume();
@@ -31,6 +40,23 @@ public class BackupsPreferencesFragment extends PreferencesFragment {
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
         super.onCreatePreferences(savedInstanceState, rootKey);
         addPreferencesFromResource(R.xml.preferences_backups);
+
+        _builtinBackupStatusPreference = requirePreference("pref_status_backup_builtin");
+        _builtinBackupStatusPreference.setOnPreferenceClickListener(preference -> {
+            Preferences.BackupResult backupRes = _prefs.getBuiltInBackupResult();
+            if (backupRes != null && !backupRes.isSuccessful()) {
+                Dialogs.showBackupErrorDialog(requireContext(), backupRes, null);
+            }
+            return true;
+        });
+        _androidBackupStatusPreference = requirePreference("pref_status_backup_android");
+        _androidBackupStatusPreference.setOnPreferenceClickListener(preference -> {
+            Preferences.BackupResult backupRes = _prefs.getAndroidBackupResult();
+            if (backupRes != null && !backupRes.isSuccessful()) {
+                Dialogs.showBackupErrorDialog(requireContext(), backupRes, null);
+            }
+            return true;
+        });
 
         _backupsPreference = requirePreference("pref_backups");
         _backupsPreference.setOnPreferenceChangeListener((preference, newValue) -> {
@@ -48,7 +74,9 @@ public class BackupsPreferencesFragment extends PreferencesFragment {
         _androidBackupsPreference.setOnPreferenceChangeListener((preference, newValue) -> {
             _prefs.setIsAndroidBackupsEnabled((boolean) newValue);
             updateBackupPreference();
-            _vaultManager.scheduleAndroidBackup();
+            if ((boolean) newValue) {
+                _vaultManager.scheduleAndroidBackup();
+            }
             return false;
         });
 
@@ -66,6 +94,7 @@ public class BackupsPreferencesFragment extends PreferencesFragment {
         _backupsTriggerPreference.setOnPreferenceClickListener(preference -> {
             if (_prefs.isBackupsEnabled()) {
                 scheduleBackup();
+                _builtinBackupStatusPreference.setVisible(false);
             }
             return true;
         });
@@ -100,7 +129,6 @@ public class BackupsPreferencesFragment extends PreferencesFragment {
 
         _prefs.setBackupsLocation(uri);
         _prefs.setIsBackupsEnabled(true);
-        _prefs.setBackupsError(null);
         _backupsLocationPreference.setSummary(String.format("%s: %s", getString(R.string.pref_backups_location_summary), Uri.decode(uri.toString())));
         updateBackupPreference();
         scheduleBackup();
@@ -117,6 +145,38 @@ public class BackupsPreferencesFragment extends PreferencesFragment {
         _backupsLocationPreference.setVisible(backupEnabled);
         _backupsTriggerPreference.setVisible(backupEnabled);
         _backupsVersionsPreference.setVisible(backupEnabled);
+        if (backupEnabled) {
+            Preferences.BackupResult backupRes = _prefs.getBuiltInBackupResult();
+            _builtinBackupStatusPreference.setSummary(getBackupStatusMessage(backupRes));
+            _builtinBackupStatusPreference.setSelectable(backupRes != null && !backupRes.isSuccessful());
+        }
+        if (androidBackupEnabled) {
+            Preferences.BackupResult backupRes = _prefs.getAndroidBackupResult();
+            _androidBackupStatusPreference.setSummary(getBackupStatusMessage(backupRes));
+            _androidBackupStatusPreference.setSelectable(backupRes != null && !backupRes.isSuccessful());
+        }
+        _builtinBackupStatusPreference.setVisible(backupEnabled);
+        _androidBackupStatusPreference.setVisible(androidBackupEnabled);
+    }
+
+    private CharSequence getBackupStatusMessage(@Nullable Preferences.BackupResult res) {
+        String message;
+        int color = R.color.warning_color;
+        if (res == null) {
+            message = getString(R.string.backup_status_none);
+        } else if (res.isSuccessful()) {
+            color = R.color.success_color;
+            message = getString(R.string.backup_status_success, res.getHumanReadableTime());
+        } else {
+            message = getString(R.string.backup_status_failed, res.getHumanReadableTime());
+        }
+
+        Spannable spannable = new SpannableString(message);
+        spannable.setSpan(new ForegroundColorSpan(getResources().getColor(color)), 0, message.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        if (color == R.color.warning_color) {
+            spannable.setSpan(new StyleSpan(Typeface.BOLD), 0, message.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        }
+        return spannable;
     }
 
     private void selectBackupsLocation() {

@@ -36,6 +36,7 @@ import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.helpers.EditTextHelper;
 import com.beemdevelopment.aegis.helpers.PasswordStrengthHelper;
 import com.beemdevelopment.aegis.importers.DatabaseImporter;
+import com.beemdevelopment.aegis.ui.fragments.preferences.BackupsPreferencesFragment;
 import com.beemdevelopment.aegis.ui.tasks.KeyDerivationTask;
 import com.beemdevelopment.aegis.vault.VaultEntry;
 import com.beemdevelopment.aegis.vault.slots.PasswordSlot;
@@ -401,6 +402,12 @@ public class Dialogs {
         });
 
         Dialogs.showSecureDialog(dialog);
+    }
+
+    public static void showBackupErrorDialog(Context context, Preferences.BackupResult backupRes, DialogInterface.OnClickListener listener) {
+        String system = context.getString(backupRes.isBuiltIn() ? R.string.backup_system_builtin : R.string.backup_system_android);
+        String message = context.getString(R.string.backup_error_dialog_details, system, backupRes.getHumanReadableTime());
+        Dialogs.showErrorDialog(context, message, backupRes.getError(), listener);
     }
 
     public static void showMultiMessageDialog(

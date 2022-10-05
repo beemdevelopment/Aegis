@@ -52,10 +52,10 @@ public class VaultBackupManager {
         _executor.execute(() -> {
             try {
                 createBackup(tempFile, dirUri, versionsToKeep);
-                _prefs.setBackupsError(null);
+                _prefs.setBuiltInBackupResult(new Preferences.BackupResult(null));
             } catch (VaultRepositoryException e) {
                 e.printStackTrace();
-                _prefs.setBackupsError(e);
+                _prefs.setBuiltInBackupResult(new Preferences.BackupResult(e));
             }
         });
     }

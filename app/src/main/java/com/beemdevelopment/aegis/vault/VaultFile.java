@@ -126,7 +126,7 @@ public class VaultFile {
             return this;
         }
 
-        return new VaultFile(getContent(), new VaultFile.Header(
+        return new VaultFile(_content, new VaultFile.Header(
                 getHeader().getSlots().exportable(),
                 getHeader().getParams()
         ));

@@ -205,6 +205,9 @@
     <string name="disable_encryption_error">An error occurred while disabling encryption</string>
     <string name="backup_successful">The backup was scheduled successfully</string>
     <string name="backup_error">An error occurred while trying to create a backup</string>
+    <string name="backup_status_success">Most recent backup successful: %s</string>
+    <string name="backup_status_failed">Most recent backup failed: %s</string>
+    <string name="backup_status_none">No backups have been made yet</string>
     <string name="documentsui_error">DocumentsUI appears to be missing from your device. This is an important system component necessary for the selection and creation of documents. If you used a tool to &quot;debloat&quot; your device, you may have accidentally deleted it and will have to reinstall it.</string>
     <string name="icon_pack_import_error">An error occurred while trying to import an icon pack</string>
     <string name="icon_pack_import_exists_error">The icon pack you\'re trying to import already exists. Do you want to overwrite it?</string>
@@ -351,6 +354,9 @@
     </plurals>
     <string name="google_qr_export_unexpected">Expected QR code #%d, but scanned #%d instead</string>
     <string name="backup_error_bar_message"><b>Vault backup failed recently</b></string>
+    <string name="backup_error_dialog_details">A recent vault backup attempt using %s failed because an error occurred. The backup was attempted at: %s. Please check your backup settings to make sure backups can complete successfully.</string>
+    <string name="backup_system_builtin">Aegis\' built-in automatic backups</string>
+    <string name="backup_system_android">Android\'s cloud backup system</string>
     <string name="backup_reminder_bar_message"><b>Recent vault changes are not backed up</b></string>
     <string name="backup_plaintext_export_warning"><b>The vault was recently exported in plain text</b></string>
     <string name="pref_show_plaintext_warning_hint">Don\'t show this warning again</string>

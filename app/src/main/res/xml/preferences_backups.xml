@@ -25,6 +25,11 @@
             android:key="pref_backups_versions"
             android:title="@string/pref_backups_versions_title"
             app:iconSpaceReserved="false"/>
+        <Preference
+            android:key="pref_status_backup_builtin"
+            android:persistent="false"
+            android:selectable="false"
+            app:iconSpaceReserved="false"/>
     </PreferenceCategory>
     <PreferenceCategory
         android:title="@string/pref_cat_backups_android"
@@ -36,6 +41,12 @@
             android:summary="@string/pref_android_backups_summary"
             app:iconSpaceReserved="false"/>
         <Preference
+            android:key="pref_status_backup_android"
+            android:persistent="false"
+            android:selectable="false"
+            app:iconSpaceReserved="false"/>
+        <Preference
+            android:persistent="false"
             android:selectable="false"
             android:summary="@string/pref_android_backups_hint"
             app:iconSpaceReserved="false"/>

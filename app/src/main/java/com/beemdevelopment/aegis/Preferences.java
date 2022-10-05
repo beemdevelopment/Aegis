@@ -7,10 +7,15 @@ import android.net.Uri;
 import android.os.Build;
 import android.preference.PreferenceManager;
 
+import androidx.annotation.Nullable;
+
+import com.beemdevelopment.aegis.util.JsonUtils;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
@@ -259,6 +264,7 @@ public class Preferences {
 
     public void setIsAndroidBackupsEnabled(boolean enabled) {
         _prefs.edit().putBoolean("pref_android_backups", enabled).apply();
+        setAndroidBackupResult(null);
     }
 
     public boolean isBackupsEnabled() {
@@ -267,6 +273,7 @@ public class Preferences {
 
     public void setIsBackupsEnabled(boolean enabled) {
         _prefs.edit().putBoolean("pref_backups", enabled).apply();
+        setBuiltInBackupResult(null);
     }
 
     public Uri getBackupsLocation() {
@@ -298,12 +305,64 @@ public class Preferences {
         _prefs.edit().putInt("pref_backups_versions", versions).apply();
     }
 
-    public void setBackupsError(Exception e) {
-        _prefs.edit().putString("pref_backups_error", e == null ? null : e.toString()).apply();
+    public void setAndroidBackupResult(@Nullable BackupResult res) {
+        setBackupResult(false, res);
     }
 
-    public String getBackupsError() {
-        return _prefs.getString("pref_backups_error", null);
+    public void setBuiltInBackupResult(@Nullable BackupResult res) {
+        setBackupResult(true, res);
+    }
+
+    @Nullable
+    public BackupResult getAndroidBackupResult() {
+        return getBackupResult(false);
+    }
+
+    @Nullable
+    public BackupResult getBuiltInBackupResult() {
+        return getBackupResult(true);
+    }
+
+    @Nullable
+    public Preferences.BackupResult getErroredBackupResult() {
+        Preferences.BackupResult res = getBuiltInBackupResult();
+        if (res != null && !res.isSuccessful()) {
+            return res;
+        }
+        res = getAndroidBackupResult();
+        if (res != null && !res.isSuccessful()) {
+            return res;
+        }
+        return null;
+    }
+
+    private void setBackupResult(boolean isBuiltInBackup, @Nullable BackupResult res) {
+        String json = null;
+        if (res != null) {
+            res.setIsBuiltIn(isBuiltInBackup);
+            json = res.toJson();
+        }
+        _prefs.edit().putString(getBackupResultKey(isBuiltInBackup), json).apply();
+    }
+
+    @Nullable
+    private BackupResult getBackupResult(boolean isBuiltInBackup) {
+        String json = _prefs.getString(getBackupResultKey(isBuiltInBackup), null);
+        if (json == null) {
+            return null;
+        }
+
+        try {
+            BackupResult res = BackupResult.fromJson(json);
+            res.setIsBuiltIn(isBuiltInBackup);
+            return res;
+        } catch (JSONException e) {
+            return null;
+        }
+    }
+
+    private static String getBackupResultKey(boolean isBuiltInBackup) {
+        return isBuiltInBackup ? "pref_backups_result_builtin": "pref_backups_result_android";
     }
 
     public void setIsBackupReminderNeeded(boolean needed) {
@@ -382,4 +441,63 @@ public class Preferences {
         }
     }
 
+    public static class BackupResult {
+        private final Date _time;
+        private boolean _isBuiltIn;
+        private final String _error;
+
+        public BackupResult(@Nullable Exception e) {
+            this(new Date(), e == null ? null : e.toString());
+        }
+
+        private BackupResult(Date time, @Nullable String error) {
+            _time = time;
+            _error = error;
+        }
+
+        @Nullable
+        public String getError() {
+            return _error;
+        }
+
+        public boolean isSuccessful() {
+            return _error == null;
+        }
+
+        public Date getTime() {
+            return _time;
+        }
+
+        public String getHumanReadableTime() {
+            return DateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.SHORT).format(_time);
+        }
+
+        public boolean isBuiltIn() {
+            return _isBuiltIn;
+        }
+
+        private void setIsBuiltIn(boolean isBuiltIn) {
+            _isBuiltIn = isBuiltIn;
+        }
+
+        public String toJson() {
+            JSONObject obj = new JSONObject();
+
+            try {
+                obj.put("time", _time.getTime());
+                obj.put("error", _error == null ? JSONObject.NULL : _error);
+            } catch (JSONException e) {
+                throw new RuntimeException(e);
+            }
+
+            return obj.toString();
+        }
+
+        public static BackupResult fromJson(String json) throws JSONException {
+            JSONObject obj = new JSONObject(json);
+            long time = obj.getLong("time");
+            String error = JsonUtils.optString(obj, "error");
+            return new BackupResult(new Date(time), error);
+        }
+    }
 }

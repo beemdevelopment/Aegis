@@ -41,7 +41,6 @@ import com.beemdevelopment.aegis.helpers.FabScrollHelper;
 import com.beemdevelopment.aegis.helpers.PermissionHelper;
 import com.beemdevelopment.aegis.otp.GoogleAuthInfo;
 import com.beemdevelopment.aegis.otp.GoogleAuthInfoException;
-import com.beemdevelopment.aegis.otp.OtpInfo;
 import com.beemdevelopment.aegis.otp.OtpInfoException;
 import com.beemdevelopment.aegis.ui.dialogs.Dialogs;
 import com.beemdevelopment.aegis.ui.fragments.preferences.BackupsPreferencesFragment;
@@ -781,15 +780,13 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
     }
 
     private void updateErrorBar() {
-        String backupError = null;
-        if (_prefs.isBackupsEnabled()) {
-            backupError = _prefs.getBackupsError();
-        }
-
-        if (backupError != null) {
+        Preferences.BackupResult backupRes = _prefs.getErroredBackupResult();
+        if (backupRes != null) {
             _textErrorBar.setText(R.string.backup_error_bar_message);
             _btnErrorBar.setOnClickListener(view -> {
-                startPreferencesActivity(BackupsPreferencesFragment.class, "pref_backups");
+                Dialogs.showBackupErrorDialog(this, backupRes, (dialog, which) -> {
+                    startPreferencesActivity(BackupsPreferencesFragment.class, "pref_backups");
+                });
             });
             _btnErrorBar.setVisibility(View.VISIBLE);
         } else if (_prefs.isBackupsReminderNeeded()) {
