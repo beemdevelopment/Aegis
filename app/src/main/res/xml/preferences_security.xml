@@ -87,5 +87,12 @@
             android:title="@string/pref_pin_keyboard_title"
             android:summary="@string/pref_pin_keyboard_summary"
             app:iconSpaceReserved="false"/>
+
+        <androidx.preference.SwitchPreferenceCompat
+            android:defaultValue="false"
+            android:key="pref_panic_trigger"
+            android:title="@string/pref_panic_trigger_title"
+            android:summary="@string/pref_panic_trigger_summary"
+            app:iconSpaceReserved="false"/>
     </PreferenceCategory>
 </PreferenceScreen>
