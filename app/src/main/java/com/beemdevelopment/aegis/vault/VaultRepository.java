@@ -220,11 +220,11 @@ public class VaultRepository {
     }
 
     public VaultFileCredentials getCredentials() {
-        return _creds;
+        return _creds == null ? null : _creds.clone();
     }
 
     public void setCredentials(VaultFileCredentials creds) {
-        _creds = creds;
+        _creds = creds == null ? null : creds.clone();
     }
 
     public boolean isEncryptionEnabled() {

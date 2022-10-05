@@ -241,10 +241,12 @@ public class SecurityPreferencesFragment extends PreferencesFragment {
             if (!isBackupPasswordSet()) {
                 Dialogs.showSetPasswordDialog(requireActivity(), new SetBackupPasswordListener());
             } else {
-                SlotList slots = _vaultManager.getVault().getCredentials().getSlots();
+                VaultFileCredentials creds = _vaultManager.getVault().getCredentials();
+                SlotList slots = creds.getSlots();
                 for (Slot slot : slots.findBackupPasswordSlots()) {
                     slots.remove(slot);
                 }
+                _vaultManager.getVault().setCredentials(creds);
 
                 saveAndBackupVault();
                 updateEncryptionPreferences();
