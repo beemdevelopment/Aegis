@@ -762,13 +762,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         if (!_loaded) {
             _entryListView.setUsageCounts(_prefs.getUsageCounts());
             _entryListView.addEntries(_vaultManager.getVault().getEntries());
-            try {
-                if (!(Settings.Global.getFloat(getContentResolver(), Settings.Global.ANIMATOR_DURATION_SCALE) == 0f)) {
-                    _entryListView.runEntriesAnimation();
-                }
-            } catch (Exception e) {
-                _entryListView.runEntriesAnimation();
-            }
+            _entryListView.runEntriesAnimation();
 
             _loaded = true;
         }

@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -380,11 +381,13 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
     }
 
     public void runEntriesAnimation() {
-        final LayoutAnimationController controller =
-                AnimationUtils.loadLayoutAnimation(requireContext(), R.anim.layout_animation_fall_down);
+        if (Settings.Global.getFloat(requireContext().getContentResolver(), Settings.Global.ANIMATOR_DURATION_SCALE, 1f) != 0f) {
+            final LayoutAnimationController controller =
+                    AnimationUtils.loadLayoutAnimation(requireContext(), R.anim.layout_animation_fall_down);
 
-        _recyclerView.setLayoutAnimation(controller);
-        _recyclerView.scheduleLayoutAnimation();
+            _recyclerView.setLayoutAnimation(controller);
+            _recyclerView.scheduleLayoutAnimation();
+        }
     }
 
     private void addChipTo(ChipGroup chipGroup, String group) {
