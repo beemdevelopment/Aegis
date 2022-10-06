@@ -406,7 +406,7 @@ public class EntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                     if (_selectedEntries.isEmpty()) {
                         if (_copyOnTap) {
                             _view.onEntryCopy(entry);
-                            entryHolder.animateCopyText();
+                            entryHolder.animateCopyText(v.getContext());
                         }
 
                         if (_highlightEntry || _tempHighlightEntry || _tapToReveal) {
@@ -423,9 +423,9 @@ public class EntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                         if (_selectedEntries.contains(entry)) {
                             _view.onDeselect(entry);
                             removeSelectedEntry(entry);
-                            entryHolder.setFocusedAndAnimate(false);
+                            entryHolder.setFocusedAndAnimate(v.getContext(), false);
                         } else {
-                            entryHolder.setFocusedAndAnimate(true);
+                            entryHolder.setFocusedAndAnimate(v.getContext(),true);
                             addSelectedEntry(entry);
                             _view.onSelect(entry);
                         }
@@ -441,7 +441,7 @@ public class EntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                 public boolean onLongClick(View v) {
                     int position = holder.getAdapterPosition();
                     if (_selectedEntries.isEmpty()) {
-                        entryHolder.setFocusedAndAnimate(true);
+                        entryHolder.setFocusedAndAnimate(v.getContext(),true);
                     }
 
                     boolean returnVal = _view.onLongEntryClick(_shownEntries.get(position));
@@ -643,7 +643,7 @@ public class EntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         for (VaultEntry entry: _selectedEntries) {
             for (EntryHolder holder : _holders) {
                 if (holder.getEntry() == entry) {
-                    holder.setFocusedAndAnimate(false);
+                    holder.setFocusedAndAnimate(_view.getContext(), false);
                     break;
                 }
             }

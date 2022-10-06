@@ -1,7 +1,9 @@
 package com.beemdevelopment.aegis.ui.views;
 
+import android.content.Context;
 import android.graphics.PorterDuff;
 import android.os.Handler;
+import android.provider.Settings;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -200,13 +202,18 @@ public class EntryHolder extends RecyclerView.ViewHolder {
         _view.setSelected(focused);
     }
 
-    public void setFocusedAndAnimate(boolean focused) {
+    public void setFocusedAndAnimate(Context context, boolean focused) {
         setFocused(focused);
 
+
         if (focused) {
-            _selected.startAnimation(_scaleIn);
+            if (Settings.Global.getFloat(context.getContentResolver(), Settings.Global.ANIMATOR_DURATION_SCALE, 1f) != 0f) {
+                _selected.startAnimation(_scaleIn);
+            }
         } else {
-            _selected.startAnimation(_scaleOut);
+            if (Settings.Global.getFloat(context.getContentResolver(), Settings.Global.ANIMATOR_DURATION_SCALE, 1f) != 0f) {
+                _selected.startAnimation(_scaleOut);
+            }
             _selectedHandler.postDelayed(() -> _selected.setVisibility(View.GONE), 150);
         }
     }
@@ -297,7 +304,7 @@ public class EntryHolder extends RecyclerView.ViewHolder {
         animateAlphaTo(DEFAULT_ALPHA);
     }
 
-    public void animateCopyText() {
+    public void animateCopyText(Context context) {
         _animationHandler.removeCallbacksAndMessages(null);
 
         Animation slideDownFadeIn = AnimationUtils.loadAnimation(itemView.getContext(), R.anim.slide_down_fade_in);
@@ -305,13 +312,15 @@ public class EntryHolder extends RecyclerView.ViewHolder {
         Animation fadeOut = AnimationUtils.loadAnimation(itemView.getContext(), R.anim.fade_out);
         Animation fadeIn = AnimationUtils.loadAnimation(itemView.getContext(), R.anim.fade_in);
 
-        _profileCopied.startAnimation(slideDownFadeIn);
-        _description.startAnimation(slideDownFadeOut);
+        if (Settings.Global.getFloat(context.getContentResolver(), Settings.Global.ANIMATOR_DURATION_SCALE, 1f) != 0f) {
+            _profileCopied.startAnimation(slideDownFadeIn);
+            _description.startAnimation(slideDownFadeOut);
 
-        _animationHandler.postDelayed(() -> {
-            _profileCopied.startAnimation(fadeOut);
-            _description.startAnimation(fadeIn);
-        }, 3000);
+            _animationHandler.postDelayed(() -> {
+                _profileCopied.startAnimation(fadeOut);
+                _description.startAnimation(fadeIn);
+            }, 3000);
+        }
     }
 
     private void animateAlphaTo(float alpha) {
