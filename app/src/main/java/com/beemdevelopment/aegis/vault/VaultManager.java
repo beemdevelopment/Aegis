@@ -2,11 +2,13 @@ package com.beemdevelopment.aegis.vault;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.Instrumentation;
 import android.app.backup.BackupManager;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 
+import androidx.activity.result.ActivityResultLauncher;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -302,20 +304,20 @@ public class VaultManager {
         return _vaultFileError;
     }
 
+
     /**
-     * Starts an external activity, temporarily blocks automatic lock of Aegis and
-     * shows an error dialog if the target activity is not found.
+     * Starts an external activity with the new api. Same behavior only change the api to use recommended by Google
      */
-    public void startActivityForResult(Activity activity, Intent intent, int requestCode) {
+    public void startActivityForResult(ActivityResultLauncher<Intent> launcher, Intent intent) {
         setBlockAutoLock(true);
 
         try {
-            activity.startActivityForResult(intent, requestCode, null);
+            launcher.launch(intent);
         } catch (ActivityNotFoundException e) {
             e.printStackTrace();
 
             if (isDocsAction(intent.getAction())) {
-                Dialogs.showErrorDialog(activity, R.string.documentsui_error, e);
+                Dialogs.showErrorDialog(_context, R.string.documentsui_error, e);
             } else {
                 throw e;
             }

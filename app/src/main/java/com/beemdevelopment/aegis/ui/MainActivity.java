@@ -29,6 +29,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.view.ActionMode;
 import androidx.appcompat.widget.SearchView;
@@ -94,6 +96,34 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
 
     private ActionMode.Callback _actionModeCallbacks = new ActionModeCallbacks();
 
+    ActivityResultLauncher<Intent> scanLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
+            data -> onScanResult(data.getData()));
+
+
+    ActivityResultLauncher<Intent> addEntryLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
+            data -> onAddEntryResult(data.getData()));
+
+
+    ActivityResultLauncher<Intent> editEntryLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
+            data -> onEditEntryResult(data.getData()));
+
+    ActivityResultLauncher<Intent> doIntroLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
+            data -> onIntroResult());
+
+    ActivityResultLauncher<Intent> decryptLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
+            data -> onDecryptResult());
+
+
+    ActivityResultLauncher<Intent> preferencesLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
+            data -> onPreferencesResult(data.getData()));
+
+    ActivityResultLauncher<Intent> scanImageLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
+            data -> {
+                if (data.getData() != null)
+                    onScanImageResult(data.getData());
+            });
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -123,27 +153,27 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         _entryListView.setIsCopyOnTapEnabled(_prefs.isCopyOnTapEnabled());
         _entryListView.setPrefGroupFilter(_prefs.getGroupFilter());
 
-         FloatingActionButton fab = findViewById(R.id.fab);
-         fab.setOnClickListener(v -> {
-             View view = getLayoutInflater().inflate(R.layout.dialog_add_entry, null);
-             BottomSheetDialog dialog = new BottomSheetDialog(this);
-             dialog.setContentView(view);
+        FloatingActionButton fab = findViewById(R.id.fab);
+        fab.setOnClickListener(v -> {
+            View view = getLayoutInflater().inflate(R.layout.dialog_add_entry, null);
+            BottomSheetDialog dialog = new BottomSheetDialog(this);
+            dialog.setContentView(view);
 
-             view.findViewById(R.id.fab_enter).setOnClickListener(v1 -> {
-                 dialog.dismiss();
-                 startEditEntryActivityForManual(CODE_ADD_ENTRY);
-             });
-             view.findViewById(R.id.fab_scan_image).setOnClickListener(v2 -> {
-                 dialog.dismiss();
-                 startScanImageActivity();
-             });
-             view.findViewById(R.id.fab_scan).setOnClickListener(v3 -> {
-                 dialog.dismiss();
-                 startScanActivity();
-             });
+            view.findViewById(R.id.fab_enter).setOnClickListener(v1 -> {
+                dialog.dismiss();
+                startEditEntryActivityForManual();
+            });
+            view.findViewById(R.id.fab_scan_image).setOnClickListener(v2 -> {
+                dialog.dismiss();
+                startScanImageActivity();
+            });
+            view.findViewById(R.id.fab_scan).setOnClickListener(v3 -> {
+                dialog.dismiss();
+                startScanActivity();
+            });
 
-             Dialogs.showSecureDialog(dialog);
-         });
+            Dialogs.showSecureDialog(dialog);
+        });
 
         _btnErrorBar = findViewById(R.id.btn_error_bar);
         _textErrorBar = findViewById(R.id.text_error_bar);
@@ -174,38 +204,6 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         instance.putString("activeSearchFilter", _activeSearchFilter);
         instance.putString("submittedSearchSubtitle", _submittedSearchSubtitle);
         instance.putString("searchQueryInputText", _searchQueryInputText);
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (resultCode != RESULT_OK) {
-            return;
-        }
-
-        switch (requestCode) {
-            case CODE_SCAN:
-                onScanResult(data);
-                break;
-            case CODE_ADD_ENTRY:
-                onAddEntryResult(data);
-                break;
-            case CODE_EDIT_ENTRY:
-                onEditEntryResult(data);
-                break;
-            case CODE_DO_INTRO:
-                onIntroResult();
-                break;
-            case CODE_DECRYPT:
-                onDecryptResult();
-                break;
-            case CODE_PREFERENCES:
-                onPreferencesResult(data);
-                break;
-            case CODE_SCAN_IMAGE:
-                onScanImageResult(data);
-        }
-
-        super.onActivityResult(requestCode, resultCode, data);
     }
 
     @Override
@@ -269,24 +267,24 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         }
     }
 
-    private void startEditEntryActivityForNew(int requestCode, VaultEntry entry) {
+    private void startEditEntryActivityForNew(VaultEntry entry) {
         Intent intent = new Intent(this, EditEntryActivity.class);
         intent.putExtra("newEntry", entry);
         intent.putExtra("isManual", false);
-        startActivityForResult(intent, requestCode);
+        addEntryLauncher.launch(intent);
     }
 
-    private void startEditEntryActivityForManual(int requestCode) {
+    private void startEditEntryActivityForManual() {
         Intent intent = new Intent(this, EditEntryActivity.class);
         intent.putExtra("newEntry", VaultEntry.getDefault());
         intent.putExtra("isManual", true);
-        startActivityForResult(intent, requestCode);
+        editEntryLauncher.launch(intent);
     }
 
-    private void startEditEntryActivity(int requestCode, VaultEntry entry) {
+    private void startEditEntryActivity(VaultEntry entry) {
         Intent intent = new Intent(this, EditEntryActivity.class);
         intent.putExtra("entryUUID", entry.getUUID());
-        startActivityForResult(intent, requestCode);
+        editEntryLauncher.launch(intent);
     }
 
     private void onScanResult(Intent data) {
@@ -362,7 +360,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
                     Uri scanned = Uri.parse(res.getResult().getText());
                     if (Objects.equals(scanned.getScheme(), GoogleAuthInfo.SCHEME_EXPORT)) {
                         GoogleAuthInfo.Export export = GoogleAuthInfo.parseExportUri(scanned);
-                        for (GoogleAuthInfo info: export.getEntries()) {
+                        for (GoogleAuthInfo info : export.getEntries()) {
                             VaultEntry entry = new VaultEntry(info);
                             entries.add(entry);
                         }
@@ -409,9 +407,9 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
 
     private void importScannedEntries(List<VaultEntry> entries) {
         if (entries.size() == 1) {
-            startEditEntryActivityForNew(CODE_ADD_ENTRY, entries.get(0));
+            startEditEntryActivityForNew(entries.get(0));
         } else if (entries.size() > 1) {
-            for (VaultEntry entry: entries) {
+            for (VaultEntry entry : entries) {
                 _vaultManager.getVault().addEntry(entry);
                 _entryListView.addEntry(entry);
             }
@@ -453,7 +451,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         }
 
         Intent scannerActivity = new Intent(getApplicationContext(), ScannerActivity.class);
-        startActivityForResult(scannerActivity, CODE_SCAN);
+        scanLauncher.launch(scannerActivity);
     }
 
     private void startScanImageActivity() {
@@ -466,8 +464,8 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         fileIntent.setType("image/*");
 
         Intent chooserIntent = Intent.createChooser(galleryIntent, getString(R.string.select_picture));
-        chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS, new Intent[] { fileIntent });
-        _vaultManager.startActivityForResult(this, chooserIntent, CODE_SCAN_IMAGE);
+        chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS, new Intent[]{fileIntent});
+        _vaultManager.startActivityForResult(scanImageLauncher, chooserIntent);
     }
 
     private void startPreferencesActivity() {
@@ -478,7 +476,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         Intent intent = new Intent(this, PreferencesActivity.class);
         intent.putExtra("fragment", fragmentType);
         intent.putExtra("pref", preference);
-        startActivityForResult(intent, CODE_PREFERENCES);
+        preferencesLauncher.launch(intent);
     }
 
     private void doShortcutActions() {
@@ -525,7 +523,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
                     }
 
                     VaultEntry entry = new VaultEntry(info);
-                    startEditEntryActivityForNew(CODE_ADD_ENTRY, entry);
+                    startEditEntryActivityForNew(entry);
                 }
                 break;
             case Intent.ACTION_SEND:
@@ -549,7 +547,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
                     }
 
                     VaultEntry entry = new VaultEntry(info);
-                    startEditEntryActivityForNew(CODE_ADD_ENTRY, entry);
+                    startEditEntryActivityForNew(entry);
                 }
                 break;
             case Intent.ACTION_SEND_MULTIPLE:
@@ -572,7 +570,8 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
                 Toast.makeText(this, getString(R.string.vault_not_found), Toast.LENGTH_SHORT).show();
             }
             Intent intro = new Intent(this, IntroActivity.class);
-            startActivityForResult(intro, CODE_DO_INTRO);
+
+            doIntroLauncher.launch(intro);
             return;
         }
 
@@ -625,7 +624,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
     }
 
     private void deleteEntries(List<VaultEntry> entries) {
-        for (VaultEntry entry: entries) {
+        for (VaultEntry entry : entries) {
             VaultEntry oldEntry = _vaultManager.getVault().removeEntry(entry);
             _entryListView.removeEntry(oldEntry);
         }
@@ -768,7 +767,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
     private void startAuthActivity(boolean inhibitBioPrompt) {
         Intent intent = new Intent(this, AuthActivity.class);
         intent.putExtra("inhibitBioPrompt", inhibitBioPrompt);
-        startActivityForResult(intent, CODE_DECRYPT);
+        decryptLauncher.launch(intent);
     }
 
     private void updateLockIcon() {
@@ -902,7 +901,9 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
     }
 
     @Override
-    public void onListChange() { _fabScrollHelper.setVisible(true); }
+    public void onListChange() {
+        _fabScrollHelper.setVisible(true);
+    }
 
     @Override
     public void onSaveGroupFilter(List<String> groupFilter) {
@@ -951,76 +952,76 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
     }
 
     private class ActionModeCallbacks implements ActionMode.Callback {
-            @Override
-            public boolean onCreateActionMode(ActionMode mode, Menu menu) {
-                MenuInflater inflater = mode.getMenuInflater();
-                inflater.inflate(R.menu.menu_action_mode, menu);
+        @Override
+        public boolean onCreateActionMode(ActionMode mode, Menu menu) {
+            MenuInflater inflater = mode.getMenuInflater();
+            inflater.inflate(R.menu.menu_action_mode, menu);
+            return true;
+        }
+
+        @Override
+        public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
+            return false;
+        }
+
+        @Override
+        public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
+            if (_selectedEntries.size() == 0) {
+                mode.finish();
                 return true;
             }
-
-            @Override
-            public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
-                return false;
-            }
-
-            @Override
-            public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
-                if(_selectedEntries.size() == 0) {
+            switch (item.getItemId()) {
+                case R.id.action_copy:
+                    copyEntryCode(_selectedEntries.get(0));
                     mode.finish();
                     return true;
-                }
-                switch (item.getItemId()) {
-                    case R.id.action_copy:
-                        copyEntryCode(_selectedEntries.get(0));
-                        mode.finish();
-                        return true;
 
-                    case R.id.action_edit:
-                        startEditEntryActivity(CODE_EDIT_ENTRY, _selectedEntries.get(0));
-                        mode.finish();
-                        return true;
+                case R.id.action_edit:
+                    startEditEntryActivity(_selectedEntries.get(0));
+                    mode.finish();
+                    return true;
 
-                    case R.id.action_share_qr:
-                        Intent intent = new Intent(getBaseContext(), TransferEntriesActivity.class);
-                        ArrayList<GoogleAuthInfo> authInfos = new ArrayList<>();
+                case R.id.action_share_qr:
+                    Intent intent = new Intent(getBaseContext(), TransferEntriesActivity.class);
+                    ArrayList<GoogleAuthInfo> authInfos = new ArrayList<>();
+                    for (VaultEntry entry : _selectedEntries) {
+                        GoogleAuthInfo authInfo = new GoogleAuthInfo(entry.getInfo(), entry.getName(), entry.getIssuer());
+                        authInfos.add(authInfo);
+                    }
+
+                    intent.putExtra("authInfos", authInfos);
+                    startActivity(intent);
+
+                    mode.finish();
+                    return true;
+
+                case R.id.action_delete:
+                    Dialogs.showDeleteEntriesDialog(MainActivity.this, _selectedEntries, (d, which) -> {
+                        deleteEntries(_selectedEntries);
+
                         for (VaultEntry entry : _selectedEntries) {
-                            GoogleAuthInfo authInfo = new GoogleAuthInfo(entry.getInfo(), entry.getName(), entry.getIssuer());
-                            authInfos.add(authInfo);
-                        }
-
-                        intent.putExtra("authInfos", authInfos);
-                        startActivity(intent);
-
-                        mode.finish();
-                        return true;
-
-                    case R.id.action_delete:
-                        Dialogs.showDeleteEntriesDialog(MainActivity.this, _selectedEntries, (d, which) -> {
-                            deleteEntries(_selectedEntries);
-
-                            for (VaultEntry entry : _selectedEntries) {
-                                if (entry.getGroup() != null) {
-                                    TreeSet<String> groups = _vaultManager.getVault().getGroups();
-                                    if (!groups.contains(entry.getGroup())) {
-                                        _entryListView.setGroups(groups);
-                                        break;
-                                    }
+                            if (entry.getGroup() != null) {
+                                TreeSet<String> groups = _vaultManager.getVault().getGroups();
+                                if (!groups.contains(entry.getGroup())) {
+                                    _entryListView.setGroups(groups);
+                                    break;
                                 }
                             }
+                        }
 
-                            mode.finish();
-                        });
-                        return true;
-                    default:
-                        return false;
-                }
+                        mode.finish();
+                    });
+                    return true;
+                default:
+                    return false;
             }
+        }
 
-            @Override
-            public void onDestroyActionMode(ActionMode mode) {
-                _entryListView.setActionModeState(false, null);
-                _selectedEntries.clear();
-                _actionMode = null;
-            }
+        @Override
+        public void onDestroyActionMode(ActionMode mode) {
+            _entryListView.setActionModeState(false, null);
+            _selectedEntries.clear();
+            _actionMode = null;
+        }
     }
 }

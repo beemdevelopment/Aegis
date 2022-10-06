@@ -23,6 +23,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
@@ -83,7 +85,6 @@ import java.util.stream.Collectors;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class EditEntryActivity extends AegisActivity {
-    private static final int PICK_IMAGE_REQUEST = 0;
 
     private boolean _isNew = false;
     private boolean _isManual = false;
@@ -119,6 +120,30 @@ public class EditEntryActivity extends AegisActivity {
 
     private RelativeLayout _advancedSettingsHeader;
     private RelativeLayout _advancedSettings;
+
+
+    ActivityResultLauncher<Intent> galleryLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
+            resultActivity -> {
+                Integer resultCode = resultActivity.getResultCode();
+                Intent data = resultActivity.getData();
+                if (resultCode == RESULT_OK && data != null && data.getData() != null) {
+                    String fileType = getMimeType(data.getData());
+                    if (fileType != null && fileType.equals(IconType.SVG.toMimeType())) {
+                        ImportFileTask.Params params = new ImportFileTask.Params(data.getData(), "icon", null);
+                        ImportFileTask task = new ImportFileTask(this, result -> {
+                            if (result.getException() == null) {
+                                CustomSvgIcon icon = new CustomSvgIcon(result.getFile());
+                                selectIcon(icon);
+                            } else {
+                                Dialogs.showErrorDialog(this, R.string.reading_file_error, result.getException());
+                            }
+                        });
+                        task.execute(getLifecycle(), params);
+                    } else {
+                        startEditingIcon(data.getData());
+                    }
+                }
+    });
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -204,12 +229,12 @@ public class EditEntryActivity extends AegisActivity {
         if (_origEntry.hasIcon()) {
             IconViewHelper.setLayerType(_iconView, _origEntry.getIconType());
             Glide.with(this)
-                .asDrawable()
-                .load(_origEntry)
-                .set(IconLoader.ICON_TYPE, _origEntry.getIconType())
-                .diskCacheStrategy(DiskCacheStrategy.NONE)
-                .skipMemoryCache(false)
-                .into(_iconView);
+                    .asDrawable()
+                    .load(_origEntry)
+                    .set(IconLoader.ICON_TYPE, _origEntry.getIconType())
+                    .diskCacheStrategy(DiskCacheStrategy.NONE)
+                    .skipMemoryCache(false)
+                    .into(_iconView);
             _hasCustomIcon = true;
         } else {
             TextDrawable drawable = TextDrawableHelper.generate(_origEntry.getIssuer(), _origEntry.getName(), _iconView);
@@ -487,8 +512,8 @@ public class EditEntryActivity extends AegisActivity {
         fileIntent.setType("image/*");
 
         Intent chooserIntent = Intent.createChooser(galleryIntent, getString(R.string.select_icon));
-        chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS, new Intent[] { fileIntent });
-        _vaultManager.startActivityForResult(this, chooserIntent, PICK_IMAGE_REQUEST);
+        chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS, new Intent[]{fileIntent});
+        _vaultManager.startActivityForResult(galleryLauncher, chooserIntent);
     }
 
     private void resetUsageCount() {
@@ -617,28 +642,6 @@ public class EditEntryActivity extends AegisActivity {
         }
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, final int resultCode, Intent data) {
-        if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
-            String fileType = getMimeType(data.getData());
-            if (fileType != null && fileType.equals(IconType.SVG.toMimeType())) {
-                ImportFileTask.Params params = new ImportFileTask.Params(data.getData(), "icon", null);
-                ImportFileTask task = new ImportFileTask(this, result -> {
-                    if (result.getException() == null) {
-                        CustomSvgIcon icon = new CustomSvgIcon(result.getFile());
-                        selectIcon(icon);
-                    } else {
-                        Dialogs.showErrorDialog(this, R.string.reading_file_error, result.getException());
-                    }
-                });
-                task.execute(getLifecycle(), params);
-            } else {
-                startEditingIcon(data.getData());
-            }
-        }
-
-        super.onActivityResult(requestCode, resultCode, data);
-    }
 
     private String getMimeType(Uri uri) {
         DocumentFile file = DocumentFile.fromSingleUri(this, uri);
@@ -767,7 +770,7 @@ public class EditEntryActivity extends AegisActivity {
                     entry.setIcon(data, IconType.PNG);
                 } else {
                     byte[] iconBytes;
-                    try (FileInputStream inStream = new FileInputStream(_selectedIcon.getFile())){
+                    try (FileInputStream inStream = new FileInputStream(_selectedIcon.getFile())) {
                         iconBytes = IOUtils.readFile(inStream);
                     } catch (IOException e) {
                         throw new ParseException(e.getMessage());
