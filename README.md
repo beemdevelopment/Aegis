@@ -115,7 +115,7 @@ Aegis supports icon packs to make it easier to assign icons to the entries in
 your vault. There are no official icon packs, but the community maintains a
 number of third-party icon packs you may want to check out. To learn how to
 create your own Aegis-compatible icon pack, see [the
-documenation](docs/iconpacks.md).
+documentation](docs/iconpacks.md).
 
 - [aegis-icons](https://github.com/aegis-icons/aegis-icons)
 
