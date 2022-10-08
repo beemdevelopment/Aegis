@@ -31,7 +31,7 @@ is randomly generated once and stays the same across different versions.
 Every icon definition contains the filename of the icon file, relative to the
 root of the .ZIP archive. Icon definitions also have a list of strings that the
 Issuer field in Aegis is matched against for automatic selection of an icon for
-new entries. Matching is done in a case-insensitve manner. There's also a
+new entries. Matching is done in a case-insensitive manner. There's also a
 category field.
 
 The following image formats are supported, in order of preference:

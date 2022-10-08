@@ -107,7 +107,7 @@ shown below:
 It starts with a ``version`` number and a ``header``. If a backwards
 incompatible change is introduced to the content format, the version number will
 be incremented. The vault contents are stored under ``db``. Its value depends on
-wheter the vault is encrypted or not. If it is, the value is a string containing
+whether the vault is encrypted or not. If it is, the value is a string containing
 the Base64 encoded (with padding) ciphertext of the vault contents. Otherwise,
 the value is a JSON object.
 
@@ -219,7 +219,7 @@ be incremented.
 #### Entries
 
 Each entry has a unique randomly generated ``UUID`` (version 4), as well as a
-``name`` and ``issuer`` to idenfity the account name and service that the token
+``name`` and ``issuer`` to identify the account name and service that the token
 is for. Entries can also have an icon. These are JPEG's encoded in Base64 with
 padding. The ``info`` object holds information specific to the OTP type. The
 ``secret`` is encoded in Base32 without padding.
