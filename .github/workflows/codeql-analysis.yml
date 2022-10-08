@@ -1,0 +1,36 @@
+name: codeql
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+  schedule:
+    - cron: '25 16 * * 2'
+jobs:
+  analyze:
+    name: analyze
+    runs-on: ubuntu-latest
+    permissions:
+      actions: read
+      contents: read
+      security-events: write
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+    - name: Exclude paths
+      # The importers are excluded from analysis, because some of the apps Aegis
+      # can import from don't have such great crypto, which will cause false
+      # positive security alerts.
+      run: |
+        find app/src/main/java/com/beemdevelopment/aegis/importers ! \( -name AegisImporter.java -o -name "DatabaseImporter*" \) -type f -exec rm -f {} +
+        sed -i '/Importer.class/d' app/src/main/java/com/beemdevelopment/aegis/importers/DatabaseImporter.java
+    - name: Initialize CodeQL
+      uses: github/codeql-action/init@v2
+      with:
+        languages: java
+    - name: Build
+      run: ./gradlew assembleDebug
+    - name: Perform CodeQL Analysis
+      uses: github/codeql-action/analyze@v2
+      with:
+        category: "/language:${{matrix.language}}"
