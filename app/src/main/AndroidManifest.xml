@@ -93,6 +93,13 @@
 
         <service android:name=".services.NotificationService" />
 
+        <receiver android:name=".receivers.VaultLockReceiver" android:exported="false">
+            <intent-filter>
+                <action android:name="${applicationId}.LOCK_VAULT" />
+                <action android:name="android.intent.action.SCREEN_OFF" />
+            </intent-filter>
+        </receiver>
+
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="${fileProviderAuthority}"

@@ -11,13 +11,14 @@ import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
+import com.beemdevelopment.aegis.BuildConfig;
 import com.beemdevelopment.aegis.R;
+import com.beemdevelopment.aegis.receivers.VaultLockReceiver;
 
 public class NotificationService extends Service {
-    public static final int VAULT_UNLOCKED_ID = 1;
+    private static final int NOTIFICATION_VAULT_UNLOCKED = 1;
 
-    private static final String CODE_LOCK_STATUS_ID = "lock_status_channel";
-    private static final String CODE_LOCK_VAULT_ACTION = "lock_vault";
+    private static final String CHANNEL_ID = "lock_status_channel";
 
     @Override
     public int onStartCommand(Intent intent,int flags, int startId){
@@ -28,28 +29,32 @@ public class NotificationService extends Service {
 
     @SuppressLint("LaunchActivityFromNotification")
     public void serviceMethod() {
-        int flags = 0;
+        Intent intent = new Intent(this, VaultLockReceiver.class);
+        intent.setAction(VaultLockReceiver.ACTION_LOCK_VAULT);
+        intent.setPackage(BuildConfig.APPLICATION_ID);
+
+        int flags = PendingIntent.FLAG_ONE_SHOT;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             flags |= PendingIntent.FLAG_IMMUTABLE;
         }
-        Intent intentAction = new Intent(CODE_LOCK_VAULT_ACTION);
-        PendingIntent lockDatabaseIntent = PendingIntent.getBroadcast(this, 1, intentAction, flags);
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CODE_LOCK_STATUS_ID)
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 1, intent, flags);
+
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANNEL_ID)
                 .setSmallIcon(R.drawable.ic_aegis_notification)
                 .setContentTitle(getString(R.string.app_name_full))
                 .setContentText(getString(R.string.vault_unlocked_state))
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)
                 .setOngoing(true)
-                .setContentIntent(lockDatabaseIntent);
+                .setContentIntent(pendingIntent);
 
         NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
-        notificationManager.notify(VAULT_UNLOCKED_ID, builder.build());
+        notificationManager.notify(NOTIFICATION_VAULT_UNLOCKED, builder.build());
     }
 
     @Override
     public void onDestroy() {
         NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
-        notificationManager.cancel(VAULT_UNLOCKED_ID);
+        notificationManager.cancel(NOTIFICATION_VAULT_UNLOCKED);
         super.onDestroy();
     }
 

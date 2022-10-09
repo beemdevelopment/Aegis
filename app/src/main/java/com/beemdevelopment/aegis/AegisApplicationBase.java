@@ -3,10 +3,7 @@ package com.beemdevelopment.aegis;
 import android.app.Application;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
-import android.content.BroadcastReceiver;
-import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.content.pm.ShortcutInfo;
 import android.content.pm.ShortcutManager;
 import android.graphics.drawable.Icon;
@@ -35,7 +32,6 @@ import dagger.hilt.components.SingletonComponent;
 
 public abstract class AegisApplicationBase extends Application {
     private static final String CODE_LOCK_STATUS_ID = "lock_status_channel";
-    private static final String CODE_LOCK_VAULT_ACTION = "lock_vault";
 
     private VaultManager _vaultManager;
 
@@ -51,13 +47,6 @@ public abstract class AegisApplicationBase extends Application {
 
         Iconics.init(this);
         Iconics.registerFont(new MaterialDesignIconic());
-
-        // listen for SCREEN_OFF events
-        ScreenOffReceiver receiver = new ScreenOffReceiver();
-        IntentFilter intentFilter = new IntentFilter();
-        intentFilter.addAction(Intent.ACTION_SCREEN_OFF);
-        intentFilter.addAction(CODE_LOCK_VAULT_ACTION);
-        registerReceiver(receiver, intentFilter);
 
         // lock the app if the user moves the application to the background
         ProcessLifecycleOwner.get().getLifecycle().addObserver(new AppLifecycleObserver());
@@ -116,15 +105,6 @@ public abstract class AegisApplicationBase extends Application {
             if (event == Lifecycle.Event.ON_STOP
                     && _vaultManager.isAutoLockEnabled(Preferences.AUTO_LOCK_ON_MINIMIZE)
                     && !_vaultManager.isAutoLockBlocked()) {
-                _vaultManager.lock(false);
-            }
-        }
-    }
-
-    private class ScreenOffReceiver extends BroadcastReceiver {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            if (_vaultManager.isAutoLockEnabled(Preferences.AUTO_LOCK_ON_DEVICE_LOCK)) {
                 _vaultManager.lock(false);
             }
         }
