@@ -29,6 +29,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.view.ActionMode;
 import androidx.appcompat.widget.SearchView;
@@ -76,6 +77,8 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
     private boolean _loaded;
     private boolean _isRecreated;
     private boolean _isDPadPressed;
+    private boolean _isDoingIntro;
+    private boolean _isAuthenticating;
 
     private String _submittedSearchSubtitle;
     private String _searchQueryInputText;
@@ -101,13 +104,16 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         setSupportActionBar(findViewById(R.id.toolbar));
         _loaded = false;
         _isDPadPressed = false;
-
+        _isDoingIntro = false;
+        _isAuthenticating = false;
 
         if (savedInstanceState != null) {
             _isRecreated = true;
             _searchQueryInputText = savedInstanceState.getString("searchQueryInputText");
             _activeSearchFilter = savedInstanceState.getString("activeSearchFilter");
             _submittedSearchSubtitle = savedInstanceState.getString("submittedSearchSubtitle");
+            _isDoingIntro = savedInstanceState.getBoolean("isDoingIntro");
+            _isAuthenticating = savedInstanceState.getBoolean("isAuthenticating");
         }
 
         _entryListView = (EntryListView) getSupportFragmentManager().findFragmentById(R.id.key_profiles);
@@ -169,15 +175,23 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
     }
 
     @Override
-    protected void onSaveInstanceState(Bundle instance) {
+    protected void onSaveInstanceState(@NonNull Bundle instance) {
         super.onSaveInstanceState(instance);
         instance.putString("activeSearchFilter", _activeSearchFilter);
         instance.putString("submittedSearchSubtitle", _submittedSearchSubtitle);
         instance.putString("searchQueryInputText", _searchQueryInputText);
+        instance.putBoolean("isDoingIntro", _isDoingIntro);
+        instance.putBoolean("isAuthenticating", _isAuthenticating);
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == CODE_DECRYPT) {
+            _isAuthenticating = false;
+        }
+        if (requestCode == CODE_DO_INTRO) {
+            _isDoingIntro = false;
+        }
         if (resultCode != RESULT_OK) {
             return;
         }
@@ -287,6 +301,14 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         Intent intent = new Intent(this, EditEntryActivity.class);
         intent.putExtra("entryUUID", entry.getUUID());
         startActivityForResult(intent, requestCode);
+    }
+
+    private void startIntroActivity() {
+        if (!_isDoingIntro) {
+            Intent intro = new Intent(this, IntroActivity.class);
+            startActivityForResult(intro, CODE_DO_INTRO);
+            _isDoingIntro = true;
+        }
     }
 
     private void onScanResult(Intent data) {
@@ -571,8 +593,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
             if (_prefs.isIntroDone()) {
                 Toast.makeText(this, getString(R.string.vault_not_found), Toast.LENGTH_SHORT).show();
             }
-            Intent intro = new Intent(this, IntroActivity.class);
-            startActivityForResult(intro, CODE_DO_INTRO);
+            startIntroActivity();
             return;
         }
 
@@ -766,9 +787,12 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
     }
 
     private void startAuthActivity(boolean inhibitBioPrompt) {
-        Intent intent = new Intent(this, AuthActivity.class);
-        intent.putExtra("inhibitBioPrompt", inhibitBioPrompt);
-        startActivityForResult(intent, CODE_DECRYPT);
+        if (!_isAuthenticating) {
+            Intent intent = new Intent(this, AuthActivity.class);
+            intent.putExtra("inhibitBioPrompt", inhibitBioPrompt);
+            startActivityForResult(intent, CODE_DECRYPT);
+            _isAuthenticating = true;
+        }
     }
 
     private void updateLockIcon() {
