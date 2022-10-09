@@ -79,14 +79,16 @@ android {
             ]
             buildConfigField("String", "FILE_PROVIDER_AUTHORITY", "\"${fileProviderAuthority}\"")
             resValue "bool", "pref_secure_screen_default", "true"
-            postprocessing {
-                removeUnusedCode true
-                removeUnusedResources true
-                obfuscate false
-                optimizeCode true
-                proguardFiles getDefaultProguardFile('proguard-defaults.txt'), 'proguard-rules.pro'
-            }
+
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+    }
+
+    packagingOptions {
+        // R8 doesn't remove these resources, so exclude them manually. This reduces APK size by 4MB.
+        exclude '/org/bouncycastle/pqc/**/*.properties'
     }
 
     compileOptions {
@@ -168,7 +170,7 @@ dependencies {
     implementation 'de.psdev.licensesdialog:licensesdialog:2.2.0'
     implementation 'net.lingala.zip4j:zip4j:2.11.2'
     implementation 'info.guardianproject.trustedintents:trustedintents:0.2'
-    implementation 'org.bouncycastle:bcprov-jdk15to18:1.72'
+    implementation 'org.bouncycastle:bcprov-jdk18on:1.72'
     implementation "org.simpleflatmapper:sfm-csv:8.2.3"
 
     androidTestAnnotationProcessor "com.google.dagger:hilt-android-compiler:$hiltVersion"
