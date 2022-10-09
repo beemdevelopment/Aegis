@@ -1,5 +1,6 @@
 package com.beemdevelopment.aegis.ui.views;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
@@ -30,6 +31,7 @@ public class IconRecyclerView extends RecyclerView {
         init(context, attrs);
     }
 
+    @SuppressLint("ResourceType")
     private void init(Context context, AttributeSet attrs) {
         if (attrs != null) {
             int[] attrsArray = {

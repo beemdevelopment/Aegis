@@ -21,6 +21,8 @@ def fileProviderAuthorityDebug = "${packageName}.debug.fileprovider"
 android {
     compileSdkVersion 33
 
+    namespace packageName
+
     defaultConfig {
         applicationId "${packageName}"
         minSdkVersion 21
