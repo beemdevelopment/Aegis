@@ -102,7 +102,7 @@ public class AppearancePreferencesFragment extends PreferencesFragment {
             return true;
         });
 
-        Preference codeDigitGroupingPreference = requirePreference("pref_code_group_size");
+        Preference codeDigitGroupingPreference = requirePreference("pref_code_group_size_string");
         codeDigitGroupingPreference.setOnPreferenceChangeListener((preference, newValue) -> {
             getResult().putExtra("needsRefresh", true);
             return true;

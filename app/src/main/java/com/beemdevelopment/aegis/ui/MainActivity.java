@@ -47,6 +47,7 @@ import com.beemdevelopment.aegis.ui.dialogs.Dialogs;
 import com.beemdevelopment.aegis.ui.fragments.preferences.BackupsPreferencesFragment;
 import com.beemdevelopment.aegis.ui.fragments.preferences.PreferencesFragment;
 import com.beemdevelopment.aegis.ui.tasks.QrDecodeTask;
+import com.beemdevelopment.aegis.ui.views.EntryHolder;
 import com.beemdevelopment.aegis.ui.views.EntryListView;
 import com.beemdevelopment.aegis.vault.VaultEntry;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
@@ -263,7 +264,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
                 recreate();
             } else if (data.getBooleanExtra("needsRefresh", false)) {
                 boolean showAccountName = _prefs.isAccountNameVisible();
-                int codeGroupSize = _prefs.getCodeGroupSize();
+                Preferences.CodeGrouping codeGroupSize = _prefs.getCodeGroupSize();
                 boolean highlightEntry = _prefs.isEntryHighlightEnabled();
                 boolean pauseFocused = _prefs.isPauseFocusedEnabled();
                 boolean tapToReveal = _prefs.isTapToRevealEnabled();

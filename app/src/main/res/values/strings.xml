@@ -39,7 +39,7 @@
     <string name="pref_view_mode_title">View mode</string>
     <string name="pref_lang_title">Language</string>
     <string name="pref_code_group_size_title">Code digit grouping</string>
-    <string name="pref_code_group_size_summary">Show code in 2-digit grouping instead of 3-digit grouping</string>
+    <string name="pref_code_group_size_summary">Select number of digits to group codes by</string>
     <string name="pref_account_name_title">Show the account name</string>
     <string name="pref_account_name_summary">Enable this to show the account name next to the issuer</string>
     <string name="pref_import_file_title">Import from file</string>
@@ -445,4 +445,10 @@
     <string name="groups">Groups</string>
     <string name="pref_focus_search">Focus search on app start</string>
     <string name="pref_focus_search_summary">Focus the search immediately after opening the app.</string>
+
+    <string name="pref_grouping_halves">Halves</string>
+    <string name="pref_grouping_none">No grouping</string>
+    <string name="pref_grouping_size_two">Groups of 2</string>
+    <string name="pref_grouping_size_three">Groups of 3</string>
+    <string name="pref_grouping_size_four">Groups of 4</string>
 </resources>
