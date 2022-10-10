@@ -160,7 +160,7 @@ public class AboutActivity extends AegisActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                onBackPressed();
+                finish();
                 break;
             default:
                 return super.onOptionsItemSelected(item);

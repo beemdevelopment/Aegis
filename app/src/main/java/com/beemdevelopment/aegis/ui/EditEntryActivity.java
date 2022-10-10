@@ -7,7 +7,6 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
-import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -16,18 +15,17 @@ import android.view.ViewGroup;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
-import android.webkit.MimeTypeMap;
 import android.widget.AdapterView;
 import android.widget.AutoCompleteTextView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
-import androidx.documentfile.provider.DocumentFile;
 
 import com.amulyakhare.textdrawable.TextDrawable;
 import com.avito.android.krop.KropView;
@@ -38,6 +36,8 @@ import com.beemdevelopment.aegis.encoding.Hex;
 import com.beemdevelopment.aegis.helpers.DropdownHelper;
 import com.beemdevelopment.aegis.helpers.EditTextHelper;
 import com.beemdevelopment.aegis.helpers.IconViewHelper;
+import com.beemdevelopment.aegis.helpers.SafHelper;
+import com.beemdevelopment.aegis.helpers.SimpleTextWatcher;
 import com.beemdevelopment.aegis.helpers.TextDrawableHelper;
 import com.beemdevelopment.aegis.icons.IconPack;
 import com.beemdevelopment.aegis.icons.IconType;
@@ -93,7 +93,6 @@ public class EditEntryActivity extends AegisActivity {
     // keep track of icon changes separately as the generated jpeg's are not deterministic
     private boolean _hasChangedIcon = false;
     private IconPack.Icon _selectedIcon;
-    private boolean _isEditingIcon;
     private CircleImageView _iconView;
     private ImageView _saveImageButton;
 
@@ -120,6 +119,9 @@ public class EditEntryActivity extends AegisActivity {
     private RelativeLayout _advancedSettingsHeader;
     private RelativeLayout _advancedSettings;
 
+    private BackPressHandler _backPressHandler;
+    private IconBackPressHandler _iconBackPressHandler;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -132,8 +134,15 @@ public class EditEntryActivity extends AegisActivity {
         _groups = _vaultManager.getVault().getGroups();
 
         ActionBar bar = getSupportActionBar();
-        bar.setHomeAsUpIndicator(R.drawable.ic_close);
-        bar.setDisplayHomeAsUpEnabled(true);
+        if (bar != null) {
+            bar.setHomeAsUpIndicator(R.drawable.ic_close);
+            bar.setDisplayHomeAsUpEnabled(true);
+        }
+
+        _backPressHandler = new BackPressHandler();
+        getOnBackPressedDispatcher().addCallback(this, _backPressHandler);
+        _iconBackPressHandler = new IconBackPressHandler();
+        getOnBackPressedDispatcher().addCallback(this, _iconBackPressHandler);
 
         // retrieve info from the calling activity
         Intent intent = getIntent();
@@ -254,9 +263,21 @@ public class EditEntryActivity extends AegisActivity {
         String group = _origEntry.getGroup();
         setGroup(group);
 
-        // update the icon if the text changed
-        _textIssuer.addTextChangedListener(_iconChangeListener);
-        _textName.addTextChangedListener(_iconChangeListener);
+        // Update the icon if the issuer or name has changed
+        _textIssuer.addTextChangedListener(_nameChangeListener);
+        _textName.addTextChangedListener(_nameChangeListener);
+
+        // Register listeners to trigger validation
+        _textIssuer.addTextChangedListener(_validationListener);
+        _textName.addTextChangedListener(_validationListener);
+        _textNote.addTextChangedListener(_validationListener);
+        _textSecret.addTextChangedListener(_validationListener);
+        _dropdownType.addTextChangedListener(_validationListener);
+        _dropdownGroup.addTextChangedListener(_validationListener);
+        _dropdownAlgo.addTextChangedListener(_validationListener);
+        _textPeriodCounter.addTextChangedListener(_validationListener);
+        _textDigits.addTextChangedListener(_validationListener);
+        _textPin.addTextChangedListener(_validationListener);
 
         // show/hide period and counter fields on type change
         _dropdownType.setOnItemClickListener((parent, view, position, id) -> {
@@ -403,30 +424,26 @@ public class EditEntryActivity extends AegisActivity {
         _dropdownGroupList.add(res.getString(R.string.new_group));
     }
 
-    @Override
-    public void onBackPressed() {
-        if (_isEditingIcon) {
-            stopEditingIcon(false);
-            return;
-        }
+    private boolean hasUnsavedChanges(VaultEntry newEntry) {
+        return _hasChangedIcon || !_origEntry.equals(newEntry);
+    }
 
+    private void discardAndFinish() {
         AtomicReference<String> msg = new AtomicReference<>();
         AtomicReference<VaultEntry> entry = new AtomicReference<>();
-
         try {
             entry.set(parseEntry());
         } catch (ParseException e) {
             msg.set(e.getMessage());
         }
 
-        // close the activity if the entry has not been changed
-        if (!_hasChangedIcon && _origEntry.equals(entry.get())) {
-            super.onBackPressed();
+        if (!hasUnsavedChanges(entry.get())) {
+            finish();
             return;
         }
 
         // ask for confirmation if the entry has been changed
-        Dialogs.showDiscardDialog(this,
+        Dialogs.showDiscardDialog(EditEntryActivity.this,
                 (dialog, which) -> {
                     // if the entry couldn't be parsed, we show an error dialog
                     if (msg.get() != null) {
@@ -436,7 +453,7 @@ public class EditEntryActivity extends AegisActivity {
 
                     addAndFinish(entry.get());
                 },
-                (dialog, which) -> super.onBackPressed()
+                (dialog, which) -> finish()
         );
     }
 
@@ -444,7 +461,7 @@ public class EditEntryActivity extends AegisActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                onBackPressed();
+                discardAndFinish();
                 break;
             case R.id.action_save:
                 onSave();
@@ -558,7 +575,7 @@ public class EditEntryActivity extends AegisActivity {
             stopEditingIcon(true);
         });
 
-        _isEditingIcon = true;
+        _iconBackPressHandler.setEnabled(true);
     }
 
     private void stopEditingIcon(boolean save) {
@@ -570,7 +587,7 @@ public class EditEntryActivity extends AegisActivity {
 
         _hasCustomIcon = _hasCustomIcon || save;
         _hasChangedIcon = save;
-        _isEditingIcon = false;
+        _iconBackPressHandler.setEnabled(false);
     }
 
     @Override
@@ -620,7 +637,7 @@ public class EditEntryActivity extends AegisActivity {
     @Override
     protected void onActivityResult(int requestCode, final int resultCode, Intent data) {
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
-            String fileType = getMimeType(data.getData());
+            String fileType = SafHelper.getMimeType(this, data.getData());
             if (fileType != null && fileType.equals(IconType.SVG.toMimeType())) {
                 ImportFileTask.Params params = new ImportFileTask.Params(data.getData(), "icon", null);
                 ImportFileTask task = new ImportFileTask(this, result -> {
@@ -638,23 +655,6 @@ public class EditEntryActivity extends AegisActivity {
         }
 
         super.onActivityResult(requestCode, resultCode, data);
-    }
-
-    private String getMimeType(Uri uri) {
-        DocumentFile file = DocumentFile.fromSingleUri(this, uri);
-        if (file != null) {
-            String fileType = file.getType();
-            if (fileType != null) {
-                return fileType;
-            }
-
-            String ext = MimeTypeMap.getFileExtensionFromUrl(uri.toString());
-            if (ext != null) {
-                return MimeTypeMap.getSingleton().getMimeTypeFromExtension(ext);
-            }
-        }
-
-        return null;
     }
 
     private int parsePeriod() throws ParseException {
@@ -792,7 +792,7 @@ public class EditEntryActivity extends AegisActivity {
     }
 
     private boolean onSave() {
-        if (_isEditingIcon) {
+        if (_iconBackPressHandler.isEnabled()) {
             stopEditingIcon(true);
         }
 
@@ -819,23 +819,50 @@ public class EditEntryActivity extends AegisActivity {
         }
     }
 
-    private final TextWatcher _iconChangeListener = new TextWatcher() {
-        @Override
-        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+    private final TextWatcher _validationListener = new SimpleTextWatcher((s) -> {
+        updateBackPressHandlerState();
+    });
+
+    private final TextWatcher _nameChangeListener = new SimpleTextWatcher((s) -> {
+        if (!_hasCustomIcon) {
+            TextDrawable drawable = TextDrawableHelper.generate(_textIssuer.getText().toString(), _textName.getText().toString(), _iconView);
+            _iconView.setImageDrawable(drawable);
+        }
+    });
+
+    private void updateBackPressHandlerState() {
+        VaultEntry entry = null;
+        try {
+            entry = parseEntry();
+        } catch (ParseException ignored) {
+
+        }
+
+        boolean backEnabled = hasUnsavedChanges(entry);
+        _backPressHandler.setEnabled(backEnabled);
+    }
+
+    private class BackPressHandler extends OnBackPressedCallback {
+        public BackPressHandler() {
+            super(false);
         }
 
         @Override
-        public void onTextChanged(CharSequence s, int start, int before, int count) {
+        public void handleOnBackPressed() {
+            discardAndFinish();
+        }
+    }
+
+    private class IconBackPressHandler extends OnBackPressedCallback {
+        public IconBackPressHandler() {
+            super(false);
         }
 
         @Override
-        public void afterTextChanged(Editable s) {
-            if (!_hasCustomIcon) {
-                TextDrawable drawable = TextDrawableHelper.generate(_textIssuer.getText().toString(), _textName.getText().toString(), _iconView);
-                _iconView.setImageDrawable(drawable);
-            }
+        public void handleOnBackPressed() {
+            stopEditingIcon(false);
         }
-    };
+    }
 
     private static class ParseException extends Exception {
         public ParseException(String message) {

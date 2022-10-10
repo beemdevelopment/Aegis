@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -34,6 +35,7 @@ public abstract class IntroBaseActivity extends AegisActivity implements IntroAc
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_intro);
+        getOnBackPressedDispatcher().addCallback(this, new BackPressHandler());
 
         _slides = new ArrayList<>();
         _state = new Bundle();
@@ -163,11 +165,6 @@ public abstract class IntroBaseActivity extends AegisActivity implements IntroAc
         return _state;
     }
 
-    @Override
-    public void onBackPressed() {
-        goToPreviousSlide();
-    }
-
     protected abstract void onDonePressed();
 
     public void addSlide(Class<? extends SlideFragment> type) {
@@ -183,6 +180,17 @@ public abstract class IntroBaseActivity extends AegisActivity implements IntroAc
             Class<? extends SlideFragment> slide = _slides.get(0);
             onBeforeSlideChanged(null, slide);
             onAfterSlideChanged(null, slide);
+        }
+    }
+
+    private class BackPressHandler extends OnBackPressedCallback {
+        public BackPressHandler() {
+            super(true);
+        }
+
+        @Override
+        public void handleOnBackPressed() {
+            goToPreviousSlide();
         }
     }
 

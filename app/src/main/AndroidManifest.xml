@@ -20,12 +20,13 @@
         android:fullBackupContent="@xml/backup_rules_old"
         android:dataExtractionRules="@xml/backup_rules"
         android:backupAgent=".AegisBackupAgent"
+        android:enableOnBackInvokedCallback="true"
         android:icon="@mipmap/${iconName}"
         android:label="Aegis"
         android:supportsRtl="true"
         android:theme="@style/Theme.Aegis.Launch"
         tools:replace="android:theme"
-        tools:targetApi="s">
+        tools:targetApi="tiramisu">
         <activity android:name=".ui.TransferEntriesActivity"
             android:label="@string/title_activity_transfer" />
         <activity
