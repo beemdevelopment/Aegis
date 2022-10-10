@@ -146,17 +146,28 @@ public class BackupsPreferencesFragment extends PreferencesFragment {
         _backupsTriggerPreference.setVisible(backupEnabled);
         _backupsVersionsPreference.setVisible(backupEnabled);
         if (backupEnabled) {
-            Preferences.BackupResult backupRes = _prefs.getBuiltInBackupResult();
-            _builtinBackupStatusPreference.setSummary(getBackupStatusMessage(backupRes));
-            _builtinBackupStatusPreference.setSelectable(backupRes != null && !backupRes.isSuccessful());
+            updateBackupStatus(_builtinBackupStatusPreference, _prefs.getBuiltInBackupResult());
         }
         if (androidBackupEnabled) {
-            Preferences.BackupResult backupRes = _prefs.getAndroidBackupResult();
-            _androidBackupStatusPreference.setSummary(getBackupStatusMessage(backupRes));
-            _androidBackupStatusPreference.setSelectable(backupRes != null && !backupRes.isSuccessful());
+            updateBackupStatus(_androidBackupStatusPreference, _prefs.getAndroidBackupResult());
         }
         _builtinBackupStatusPreference.setVisible(backupEnabled);
         _androidBackupStatusPreference.setVisible(androidBackupEnabled);
+    }
+
+    private void updateBackupStatus(Preference pref, Preferences.BackupResult res) {
+        boolean backupFailed = res != null && !res.isSuccessful();
+        pref.setSummary(getBackupStatusMessage(res));
+        pref.setSelectable(backupFailed);
+
+        // TODO: Find out why setting the tint of the icon doesn't work
+        if (backupFailed) {
+            pref.setIcon(R.drawable.ic_info_outline_black_24dp);
+        } else if (res != null) {
+            pref.setIcon(R.drawable.ic_check_black_24dp);
+        } else {
+            pref.setIcon(null);
+        }
     }
 
     private CharSequence getBackupStatusMessage(@Nullable Preferences.BackupResult res) {
