@@ -19,6 +19,7 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.biometric.BiometricPrompt;
@@ -76,6 +77,8 @@ public class AuthActivity extends AegisActivity {
         Button decryptButton = findViewById(R.id.button_decrypt);
         TextView biometricsButton = findViewById(R.id.button_biometrics);
 
+        getOnBackPressedDispatcher().addCallback(this, new BackPressHandler());
+
         _textPassword.setOnEditorActionListener((v, actionId, event) -> {
             if ((event != null && (event.getKeyCode() == KeyEvent.KEYCODE_ENTER)) || (actionId == EditorInfo.IME_ACTION_DONE)) {
                 decryptButton.performClick();
@@ -102,7 +105,9 @@ public class AuthActivity extends AegisActivity {
         }
 
         if (_vaultManager.getVaultFileError() != null) {
-            Dialogs.showErrorDialog(this, R.string.vault_load_error, _vaultManager.getVaultFileError(), (dialog, which) -> onBackPressed());
+            Dialogs.showErrorDialog(this, R.string.vault_load_error, _vaultManager.getVaultFileError(), (dialog, which) -> {
+                getOnBackPressedDispatcher().onBackPressed();
+            });
             return;
         }
 
@@ -177,11 +182,6 @@ public class AuthActivity extends AegisActivity {
 
         InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
-    }
-
-    @Override
-    public void onBackPressed() {
-        finishAffinity();
     }
 
     @Override
@@ -298,6 +298,19 @@ public class AuthActivity extends AegisActivity {
 
         if (_failedUnlockAttempts >= 3) {
             _textPassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+        }
+    }
+
+    private class BackPressHandler extends OnBackPressedCallback {
+        public BackPressHandler() {
+            super(true);
+        }
+
+        @Override
+        public void handleOnBackPressed() {
+            // This breaks predictive back gestures, but it doesn't make sense
+            // to go back to MainActivity when cancelling auth
+            finishAffinity();
         }
     }
 

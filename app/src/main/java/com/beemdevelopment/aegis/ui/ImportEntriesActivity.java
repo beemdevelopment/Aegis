@@ -236,7 +236,7 @@ public class ImportEntriesActivity extends AegisActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                onBackPressed();
+                finish();
                 break;
             case R.id.toggle_checkboxes:
                 _adapter.toggleCheckboxes();

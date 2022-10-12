@@ -131,6 +131,7 @@ dependencies {
     annotationProcessor "com.github.bumptech.glide:compiler:${glideVersion}"
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'androidx.activity:activity:1.6.0'
     implementation 'androidx.appcompat:appcompat:1.5.1'
     implementation "androidx.biometric:biometric:1.1.0"
     implementation "androidx.camera:camera-camera2:$cameraxVersion"

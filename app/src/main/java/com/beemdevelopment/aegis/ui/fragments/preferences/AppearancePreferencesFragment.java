@@ -1,6 +1,5 @@
 package com.beemdevelopment.aegis.ui.fragments.preferences;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -13,10 +12,8 @@ import com.beemdevelopment.aegis.Theme;
 import com.beemdevelopment.aegis.ViewMode;
 import com.beemdevelopment.aegis.ui.GroupManagerActivity;
 import com.beemdevelopment.aegis.ui.dialogs.Dialogs;
-import com.beemdevelopment.aegis.vault.VaultEntry;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 
 public class AppearancePreferencesFragment extends PreferencesFragment {
     private Preference _groupsPreference;
@@ -30,8 +27,7 @@ public class AppearancePreferencesFragment extends PreferencesFragment {
         _groupsPreference = requirePreference("pref_groups");
         _groupsPreference.setOnPreferenceClickListener(preference -> {
             Intent intent = new Intent(requireActivity(), GroupManagerActivity.class);
-            intent.putExtra("groups", new ArrayList<>(_vaultManager.getVault().getGroups()));
-            startActivityForResult(intent, CODE_GROUPS);
+            startActivity(intent);
             return true;
         });
 
@@ -113,30 +109,5 @@ public class AppearancePreferencesFragment extends PreferencesFragment {
             getResult().putExtra("needsRefresh", true);
             return true;
         });
-    }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (data != null && requestCode == CODE_GROUPS) {
-            onGroupManagerResult(resultCode, data);
-        }
-    }
-
-    private void onGroupManagerResult(int resultCode, Intent data) {
-        if (resultCode != Activity.RESULT_OK) {
-            return;
-        }
-
-        HashSet<String> groups = new HashSet<>(data.getStringArrayListExtra("groups"));
-
-        for (VaultEntry entry : _vaultManager.getVault().getEntries()) {
-            if (!groups.contains(entry.getGroup())) {
-                entry.setGroup(null);
-            }
-        }
-
-        saveAndBackupVault();
     }
 }

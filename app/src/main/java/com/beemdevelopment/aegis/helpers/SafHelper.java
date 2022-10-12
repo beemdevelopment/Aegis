@@ -4,6 +4,9 @@ import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
 import android.provider.OpenableColumns;
+import android.webkit.MimeTypeMap;
+
+import androidx.documentfile.provider.DocumentFile;
 
 public class SafHelper {
     private SafHelper() {
@@ -23,5 +26,22 @@ public class SafHelper {
         }
 
         return uri.getLastPathSegment();
+    }
+
+    public static String getMimeType(Context context, Uri uri) {
+        DocumentFile file = DocumentFile.fromSingleUri(context, uri);
+        if (file != null) {
+            String fileType = file.getType();
+            if (fileType != null) {
+                return fileType;
+            }
+
+            String ext = MimeTypeMap.getFileExtensionFromUrl(uri.toString());
+            if (ext != null) {
+                return MimeTypeMap.getSingleton().getMimeTypeFromExtension(ext);
+            }
+        }
+
+        return null;
     }
 }

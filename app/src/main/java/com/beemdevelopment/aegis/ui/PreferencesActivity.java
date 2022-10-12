@@ -3,7 +3,9 @@ package com.beemdevelopment.aegis.ui;
 import android.os.Bundle;
 import android.view.MenuItem;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
 
@@ -23,6 +25,8 @@ public class PreferencesActivity extends AegisActivity implements
         }
         setContentView(R.layout.activity_preferences);
         setSupportActionBar(findViewById(R.id.toolbar));
+        getSupportFragmentManager()
+                .registerFragmentLifecycleCallbacks(new FragmentResumeListener(), true);
 
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -33,7 +37,7 @@ public class PreferencesActivity extends AegisActivity implements
             _fragment = new MainPreferencesFragment();
             _fragment.setArguments(getIntent().getExtras());
 
-             getSupportFragmentManager().beginTransaction()
+            getSupportFragmentManager().beginTransaction()
                     .replace(R.id.content, _fragment)
                     .commit();
 
@@ -48,13 +52,7 @@ public class PreferencesActivity extends AegisActivity implements
     }
 
     @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        setTitle(R.string.action_settings);
-    }
-
-    @Override
-    protected void onRestoreInstanceState(final Bundle inState) {
+    protected void onRestoreInstanceState(@NonNull final Bundle inState) {
         if (_fragment instanceof PreferencesFragment) {
             // pass the stored result intent back to the fragment
             if (inState.containsKey("result")) {
@@ -65,7 +63,7 @@ public class PreferencesActivity extends AegisActivity implements
     }
 
     @Override
-    protected void onSaveInstanceState(final Bundle outState) {
+    protected void onSaveInstanceState(@NonNull final Bundle outState) {
         if (_fragment instanceof PreferencesFragment) {
             // save the result intent of the fragment
             // this is done so we don't lose anything if the fragment calls recreate on this activity
@@ -77,7 +75,7 @@ public class PreferencesActivity extends AegisActivity implements
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
-            onBackPressed();
+            finish();
         } else {
             return super.onOptionsItemSelected(item);
         }
@@ -86,7 +84,7 @@ public class PreferencesActivity extends AegisActivity implements
     }
 
     @Override
-    public boolean onPreferenceStartFragment(PreferenceFragmentCompat caller, Preference pref) {
+    public boolean onPreferenceStartFragment(@NonNull PreferenceFragmentCompat caller, Preference pref) {
         _fragment = getSupportFragmentManager().getFragmentFactory().instantiate(getClassLoader(), pref.getFragment());
         _fragment.setArguments(pref.getExtras());
         _fragment.setTargetFragment(caller, 0);
@@ -115,6 +113,15 @@ public class PreferencesActivity extends AegisActivity implements
             return fragmentType.newInstance();
         } catch (IllegalAccessException | InstantiationException e) {
             throw new RuntimeException(e);
+        }
+    }
+
+    private class FragmentResumeListener extends FragmentManager.FragmentLifecycleCallbacks {
+        @Override
+        public void onFragmentStarted(@NonNull FragmentManager fm, @NonNull Fragment f) {
+            if (f instanceof MainPreferencesFragment) {
+                setTitle(R.string.action_settings);
+            }
         }
     }
 }
