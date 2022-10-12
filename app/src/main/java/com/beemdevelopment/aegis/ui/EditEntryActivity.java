@@ -24,6 +24,7 @@ import android.widget.RelativeLayout;
 import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.StringRes;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 
@@ -34,7 +35,6 @@ import com.beemdevelopment.aegis.encoding.Base32;
 import com.beemdevelopment.aegis.encoding.EncodingException;
 import com.beemdevelopment.aegis.encoding.Hex;
 import com.beemdevelopment.aegis.helpers.DropdownHelper;
-import com.beemdevelopment.aegis.helpers.EditTextHelper;
 import com.beemdevelopment.aegis.helpers.IconViewHelper;
 import com.beemdevelopment.aegis.helpers.SafHelper;
 import com.beemdevelopment.aegis.helpers.SimpleAnimationEndListener;
@@ -66,6 +66,7 @@ import com.bumptech.glide.request.transition.Transition;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.common.base.Objects;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -100,11 +101,13 @@ public class EditEntryActivity extends AegisActivity {
     private TextInputEditText _textName;
     private TextInputEditText _textIssuer;
     private TextInputEditText _textPeriodCounter;
-    private TextInputLayout _textPeriodCounterLayout;
+    private TextInputLayout _textLayoutPeriodCounter;
     private TextInputEditText _textDigits;
-    private TextInputLayout _textDigitsLayout;
+    private TextInputLayout _textLayoutDigits;
     private TextInputEditText _textSecret;
+    private TextInputLayout _textLayoutSecret;
     private TextInputEditText _textPin;
+    private TextInputLayout _textLayoutPin;
     private LinearLayout _textPinLayout;
     private TextInputEditText _textUsageCount;
     private TextInputEditText _textNote;
@@ -164,11 +167,13 @@ public class EditEntryActivity extends AegisActivity {
         _textName = findViewById(R.id.text_name);
         _textIssuer = findViewById(R.id.text_issuer);
         _textPeriodCounter = findViewById(R.id.text_period_counter);
-        _textPeriodCounterLayout = findViewById(R.id.text_period_counter_layout);
+        _textLayoutPeriodCounter = findViewById(R.id.text_layout_period_counter);
         _textDigits = findViewById(R.id.text_digits);
-        _textDigitsLayout = findViewById(R.id.text_digits_layout);
+        _textLayoutDigits = findViewById(R.id.text_layout_digits);
         _textSecret = findViewById(R.id.text_secret);
+        _textLayoutSecret = findViewById(R.id.text_layout_secret);
         _textPin = findViewById(R.id.text_pin);
+        _textLayoutPin = findViewById(R.id.text_layout_pin);
         _textPinLayout = findViewById(R.id.layout_pin);
         _textUsageCount = findViewById(R.id.text_usage_count);
         _textNote = findViewById(R.id.text_note);
@@ -233,10 +238,10 @@ public class EditEntryActivity extends AegisActivity {
         OtpInfo info = _origEntry.getInfo();
 
         if (info instanceof TotpInfo) {
-            _textPeriodCounterLayout.setHint(R.string.period_hint);
+            _textLayoutPeriodCounter.setHint(R.string.period_hint);
             _textPeriodCounter.setText(Integer.toString(((TotpInfo) info).getPeriod()));
         } else if (info instanceof HotpInfo) {
-            _textPeriodCounterLayout.setHint(R.string.counter);
+            _textLayoutPeriodCounter.setHint(R.string.counter);
             _textPeriodCounter.setText(Long.toString(((HotpInfo) info).getCounter()));
         } else {
             throw new RuntimeException(String.format("Unsupported OtpInfo type: %s", info.getClass()));
@@ -286,29 +291,29 @@ public class EditEntryActivity extends AegisActivity {
             switch (type) {
                 case SteamInfo.ID:
                     _dropdownAlgo.setText(OtpInfo.DEFAULT_ALGORITHM, false);
-                    _textPeriodCounterLayout.setHint(R.string.period_hint);
+                    _textLayoutPeriodCounter.setHint(R.string.period_hint);
                     _textPeriodCounter.setText(String.valueOf(TotpInfo.DEFAULT_PERIOD));
                     _textDigits.setText(String.valueOf(SteamInfo.DIGITS));
                     break;
                 case TotpInfo.ID:
-                    _textPeriodCounterLayout.setHint(R.string.period_hint);
+                    _textLayoutPeriodCounter.setHint(R.string.period_hint);
                     _textPeriodCounter.setText(String.valueOf(TotpInfo.DEFAULT_PERIOD));
                     _textDigits.setText(String.valueOf(OtpInfo.DEFAULT_DIGITS));
                     break;
                 case HotpInfo.ID:
-                    _textPeriodCounterLayout.setHint(R.string.counter);
+                    _textLayoutPeriodCounter.setHint(R.string.counter);
                     _textPeriodCounter.setText(String.valueOf(HotpInfo.DEFAULT_COUNTER));
                     _textDigits.setText(String.valueOf(OtpInfo.DEFAULT_DIGITS));
                     break;
                 case YandexInfo.ID:
                     _dropdownAlgo.setText(YandexInfo.DEFAULT_ALGORITHM, false);
-                    _textPeriodCounterLayout.setHint(R.string.period_hint);
+                    _textLayoutPeriodCounter.setHint(R.string.period_hint);
                     _textPeriodCounter.setText(String.valueOf(TotpInfo.DEFAULT_PERIOD));
                     _textDigits.setText(String.valueOf(YandexInfo.DIGITS));
                     break;
                 case MotpInfo.ID:
                     _dropdownAlgo.setText(MotpInfo.ALGORITHM, false);
-                    _textPeriodCounterLayout.setHint(R.string.period_hint);
+                    _textLayoutPeriodCounter.setHint(R.string.period_hint);
                     _textPeriodCounter.setText(String.valueOf(MotpInfo.PERIOD));
                     _textDigits.setText(String.valueOf(MotpInfo.DIGITS));
                     break;
@@ -351,8 +356,8 @@ public class EditEntryActivity extends AegisActivity {
     private void updateAdvancedFieldStatus(String otpType) {
         boolean enabled = !otpType.equals(SteamInfo.ID) && !otpType.equals(YandexInfo.ID)
                 && !otpType.equals(MotpInfo.ID) && (!_isNew || _isManual);
-        _textDigitsLayout.setEnabled(enabled);
-        _textPeriodCounterLayout.setEnabled(enabled);
+        _textLayoutDigits.setEnabled(enabled);
+        _textLayoutPeriodCounter.setEnabled(enabled);
         _dropdownAlgoLayout.setEnabled(enabled);
     }
 
@@ -634,53 +639,67 @@ public class EditEntryActivity extends AegisActivity {
 
     private int parsePeriod() throws ParseException {
         try {
-            return Integer.parseInt(_textPeriodCounter.getText().toString());
+            return Integer.parseUnsignedInt(_textPeriodCounter.getText().toString());
         } catch (NumberFormatException e) {
             throw new ParseException("Period is not an integer.");
         }
     }
 
     private VaultEntry parseEntry() throws ParseException {
-        if (_textSecret.length() == 0) {
-            throw new ParseException("Secret is a required field.");
-        }
-
+        boolean valid = true;
         String type = _dropdownType.getText().toString();
         String algo = _dropdownAlgo.getText().toString();
         String lowerCasedType = type.toLowerCase(Locale.ROOT);
 
-        if (lowerCasedType.equals(YandexInfo.ID) || lowerCasedType.equals(MotpInfo.ID)) {
-            int pinLength = _textPin.length();
-            if (pinLength < 4) {
-                throw new ParseException("PIN is a required field. Must have a minimum length of 4 digits.");
-            }
-            if (pinLength != 4 && lowerCasedType.equals(MotpInfo.ID)) {
-                throw new ParseException("PIN must have a length of 4 digits.");
+        byte[] secret = null;
+        if (_textSecret.length() == 0) {
+            setInputLayoutError(_textLayoutSecret, R.string.validation_error_empty_secret);
+            valid = false;
+        } else {
+            try {
+                String secretString = _textSecret.getText().toString();
+                if (lowerCasedType.equals(MotpInfo.ID)) {
+                    secret = Hex.decode(secretString);
+                } else {
+                    secret = GoogleAuthInfo.parseSecret(secretString);
+                }
+                setInputLayoutError(_textLayoutSecret, null);
+            } catch (EncodingException e) {
+                @StringRes int msg = lowerCasedType.equals(MotpInfo.ID)
+                        ? R.string.validation_error_secret_not_hex
+                        : R.string.validation_error_secret_not_base32;
+
+                setInputLayoutError(_textLayoutSecret, msg);
+                valid = false;
             }
         }
 
-        int digits;
+        boolean pinValid = true;
+        if (lowerCasedType.equals(YandexInfo.ID) && _textPin.length() < 4) {
+            setInputLayoutError(_textLayoutPin, R.string.validation_error_invalid_pin_yandex);
+            pinValid = false;
+        }
+        if (lowerCasedType.equals(MotpInfo.ID) && _textPin.length() != 4) {
+            setInputLayoutError(_textLayoutPin, R.string.validation_error_invalid_pin_motp);
+            pinValid = false;
+        }
+        if (pinValid) {
+            setInputLayoutError(_textLayoutPin, null);
+        } else {
+            valid = false;
+        }
+
+        int digits = -1;
         try {
-            digits = Integer.parseInt(_textDigits.getText().toString());
+            digits = Integer.parseUnsignedInt(_textDigits.getText().toString());
+            setInputLayoutError(_textLayoutDigits, null);
         } catch (NumberFormatException e) {
-            throw new ParseException("Digits is not an integer.");
+            setInputLayoutError(_textLayoutDigits, R.string.validation_error_digits_not_integer);
+            valid = false;
         }
 
-        byte[] secret;
-        try {
-            String secretString = new String(EditTextHelper.getEditTextChars(_textSecret));
-
-            secret = (lowerCasedType.equals(MotpInfo.ID)) ?
-                    Hex.decode(secretString) : GoogleAuthInfo.parseSecret(secretString);
-
-            if (secret.length == 0) {
-                throw new ParseException("Secret cannot be empty");
-            }
-        } catch (EncodingException e) {
-            String exceptionMessage = (lowerCasedType.equals(MotpInfo.ID)) ?
-                    "Secret is not valid hexadecimal" : "Secret is not valid base32.";
-
-            throw new ParseException(exceptionMessage);
+        if (!valid) {
+            throw new ParseException("Entry validation failed");
         }
 
         OtpInfo info;
@@ -794,6 +813,21 @@ public class EditEntryActivity extends AegisActivity {
         }
     }
 
+    private void setInputLayoutError(TextInputLayout layout, CharSequence error) {
+        if (!Objects.equal(layout.getError(), error)) {
+            if (error == null) {
+                layout.setError(null);
+                layout.setErrorEnabled(false);
+            } else {
+                layout.setError(error);
+            }
+        }
+    }
+
+    private void setInputLayoutError(TextInputLayout layout, @StringRes int msgId) {
+        setInputLayoutError(layout, layout.getContext().getString(msgId));
+    }
+
     private final TextWatcher _validationListener = new SimpleTextWatcher((s) -> {
         updateBackPressHandlerState();
     });
@@ -817,6 +851,12 @@ public class EditEntryActivity extends AegisActivity {
         _backPressHandler.setEnabled(backEnabled);
     }
 
+    private static class ParseException extends Exception {
+        public ParseException(String message) {
+            super(message);
+        }
+    }
+
     private class BackPressHandler extends OnBackPressedCallback {
         public BackPressHandler() {
             super(false);
@@ -836,12 +876,6 @@ public class EditEntryActivity extends AegisActivity {
         @Override
         public void handleOnBackPressed() {
             stopEditingIcon(false);
-        }
-    }
-
-    private static class ParseException extends Exception {
-        public ParseException(String message) {
-            super(message);
         }
     }
 

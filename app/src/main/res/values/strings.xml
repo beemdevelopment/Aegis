@@ -136,6 +136,13 @@
     <string name="enter_password_authy_message">It looks like your Authy tokens are encrypted. Please close Aegis, open Authy and unlock the tokens with your password. Instead, Aegis can also attempt to decrypt your Authy tokens for you, if you enter your password below.</string>
     <string name="enter_password_aegis_title">Please enter the import password</string>
 
+    <string name="validation_error_empty_secret">Secret must not be empty</string>
+    <string name="validation_error_secret_not_base32">Secret must be valid base32</string>
+    <string name="validation_error_secret_not_hex">Secret must be valid hexadecimal</string>
+    <string name="validation_error_invalid_pin_yandex">PIN is a required field that must have a minimum length of 4 digits</string>
+    <string name="validation_error_invalid_pin_motp">PIN is a required field that must have an exact length of 4 digits</string>
+    <string name="validation_error_digits_not_integer">Digits must be a positive integer</string>
+
     <string name="period_hint">Period (seconds)</string>
     <string name="algorithm_hint">Hash function</string>
     <string name="type">Type</string>

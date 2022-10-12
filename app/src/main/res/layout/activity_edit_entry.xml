@@ -27,7 +27,8 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:descendantFocusability="beforeDescendants"
-            android:focusableInTouchMode="true">
+            android:focusableInTouchMode="true"
+            android:paddingBottom="15dp">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -87,6 +88,7 @@
                         android:layout_marginEnd="15dp"
                         android:layout_gravity="center_vertical"/>
                     <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/text_layout_name"
                         android:hint="@string/name"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -105,6 +107,7 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginStart="44.5dp">
                     <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/text_layout_issuer"
                         android:hint="@string/issuer"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
@@ -144,6 +147,7 @@
                         android:layout_marginEnd="15dp"
                         android:layout_gravity="center_vertical"/>
                     <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/text_layout_note"
                         android:hint="@string/note"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -171,6 +175,7 @@
                         android:layout_gravity="center_vertical"/>
 
                     <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/text_layout_secret"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -203,6 +208,7 @@
                         android:layout_gravity="center_vertical"/>
 
                     <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/text_layout_pin"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -316,7 +322,7 @@
                         android:layout_marginTop="10dp"
                         android:layout_marginStart="44.5dp">
                         <com.google.android.material.textfield.TextInputLayout
-                            android:id="@+id/text_period_counter_layout"
+                            android:id="@+id/text_layout_period_counter"
                             android:hint="@string/period_hint"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -329,10 +335,10 @@
                                 android:inputType="text"/>
                         </com.google.android.material.textfield.TextInputLayout>
                         <com.google.android.material.textfield.TextInputLayout
-                            android:id="@+id/text_digits_layout"
+                            android:id="@+id/text_layout_digits"
                             android:hint="@string/digits"
                             android:layout_width="0dp"
-                            android:layout_height="match_parent"
+                            android:layout_height="wrap_content"
                             android:layout_marginStart="5dp"
                             android:layout_weight="1">
                             <com.google.android.material.textfield.TextInputEditText
@@ -365,6 +371,7 @@
                             android:orientation="horizontal">
 
                             <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/text_layout_usage_count"
                                 android:hint="@string/usage_count"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
