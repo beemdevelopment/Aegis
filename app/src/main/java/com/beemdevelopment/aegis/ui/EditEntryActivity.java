@@ -37,6 +37,7 @@ import com.beemdevelopment.aegis.helpers.DropdownHelper;
 import com.beemdevelopment.aegis.helpers.EditTextHelper;
 import com.beemdevelopment.aegis.helpers.IconViewHelper;
 import com.beemdevelopment.aegis.helpers.SafHelper;
+import com.beemdevelopment.aegis.helpers.SimpleAnimationEndListener;
 import com.beemdevelopment.aegis.helpers.SimpleTextWatcher;
 import com.beemdevelopment.aegis.helpers.TextDrawableHelper;
 import com.beemdevelopment.aegis.icons.IconPack;
@@ -380,40 +381,14 @@ public class EditEntryActivity extends AegisActivity {
         fadeIn.setInterpolator(new AccelerateInterpolator());
         fadeIn.setDuration(250);
 
-        fadeOut.setAnimationListener(new Animation.AnimationListener() {
-            @Override
-            public void onAnimationStart(Animation animation) {
+        fadeOut.setAnimationListener(new SimpleAnimationEndListener((a) -> {
+            _advancedSettingsHeader.setVisibility(View.GONE);
+            _advancedSettings.startAnimation(fadeIn);
+        }));
 
-            }
-
-            @Override
-            public void onAnimationEnd(Animation animation) {
-                _advancedSettingsHeader.setVisibility(View.GONE);
-                _advancedSettings.startAnimation(fadeIn);
-            }
-
-            @Override
-            public void onAnimationRepeat(Animation animation) {
-
-            }
-        });
-
-        fadeIn.setAnimationListener(new Animation.AnimationListener() {
-            @Override
-            public void onAnimationStart(Animation animation) {
-
-            }
-
-            @Override
-            public void onAnimationEnd(Animation animation) {
-                _advancedSettings.setVisibility(View.VISIBLE);
-            }
-
-            @Override
-            public void onAnimationRepeat(Animation animation) {
-
-            }
-        });
+        fadeIn.setAnimationListener(new SimpleAnimationEndListener((a) -> {
+            _advancedSettings.setVisibility(View.VISIBLE);
+        }));
     }
 
     private void updateGroupDropdownList() {
