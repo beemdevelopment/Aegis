@@ -72,9 +72,8 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
     private static final int CODE_PREFERENCES = 5;
     private static final int CODE_SCAN_IMAGE = 6;
 
-    // permission request codes
+    // Permission request codes
     private static final int CODE_PERM_CAMERA = 0;
-    private static final int CODE_PERM_READ_STORAGE = 1;
 
     private boolean _loaded;
     private boolean _isRecreated;
@@ -239,13 +238,8 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
             return;
         }
 
-        switch (requestCode) {
-            case CODE_PERM_CAMERA:
-                startScanActivity();
-                break;
-            case CODE_PERM_READ_STORAGE:
-                startScanImageActivity();
-                break;
+        if (requestCode == CODE_PERM_CAMERA) {
+            startScanActivity();
         }
 
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
