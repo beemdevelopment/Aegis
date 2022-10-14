@@ -14,7 +14,6 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts.StartActivityForResult;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -30,6 +29,7 @@ import com.beemdevelopment.aegis.ui.dialogs.Dialogs;
 import com.beemdevelopment.aegis.ui.tasks.ImportIconPackTask;
 import com.beemdevelopment.aegis.ui.views.IconPackAdapter;
 import com.beemdevelopment.aegis.vault.VaultManager;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import javax.inject.Inject;
@@ -102,9 +102,10 @@ public class IconPacksManagerFragment extends Fragment implements IconPackAdapte
 
     @Override
     public void onRemoveIconPack(IconPack pack) {
-        Dialogs.showSecureDialog(new AlertDialog.Builder(requireContext())
+        Dialogs.showSecureDialog(new MaterialAlertDialogBuilder(requireContext(), R.style.ThemeOverlay_Aegis_AlertDialog_Warning)
                 .setTitle(R.string.remove_icon_pack)
                 .setMessage(R.string.remove_icon_pack_description)
+                .setIconAttribute(android.R.attr.alertDialogIcon)
                 .setPositiveButton(android.R.string.yes, (dialog, whichButton) -> {
                     try {
                         _iconPackManager.removeIconPack(pack);
@@ -124,9 +125,10 @@ public class IconPacksManagerFragment extends Fragment implements IconPackAdapte
         ImportIconPackTask task = new ImportIconPackTask(requireContext(), result -> {
             Exception e = result.getException();
             if (e instanceof IconPackExistsException) {
-                Dialogs.showSecureDialog(new AlertDialog.Builder(requireContext())
+                Dialogs.showSecureDialog(new MaterialAlertDialogBuilder(requireContext(), R.style.ThemeOverlay_Aegis_AlertDialog_Error)
                         .setTitle(R.string.error_occurred)
                         .setMessage(R.string.icon_pack_import_exists_error)
+                        .setIconAttribute(android.R.attr.alertDialogIcon)
                         .setPositiveButton(R.string.yes, (dialog, which) -> {
                             if (removeIconPack(((IconPackExistsException) e).getIconPack())) {
                                 importIconPack(uri);

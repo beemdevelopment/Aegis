@@ -2,7 +2,6 @@ package com.beemdevelopment.aegis.ui;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.text.InputType;
 import android.view.KeyEvent;
@@ -20,11 +19,9 @@ import android.widget.Toast;
 
 import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 import androidx.biometric.BiometricPrompt;
 
 import com.beemdevelopment.aegis.R;
-import com.beemdevelopment.aegis.ThemeMap;
 import com.beemdevelopment.aegis.crypto.KeyStoreHandle;
 import com.beemdevelopment.aegis.crypto.KeyStoreHandleException;
 import com.beemdevelopment.aegis.crypto.MasterKey;
@@ -43,6 +40,7 @@ import com.beemdevelopment.aegis.vault.slots.Slot;
 import com.beemdevelopment.aegis.vault.slots.SlotException;
 import com.beemdevelopment.aegis.vault.slots.SlotIntegrityException;
 import com.beemdevelopment.aegis.vault.slots.SlotList;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import java.util.List;
 
@@ -163,10 +161,11 @@ public class AuthActivity extends AegisActivity {
 
         biometricsButton.setOnClickListener(v -> {
             if (_prefs.isPasswordReminderNeeded()) {
-                Dialogs.showSecureDialog(new AlertDialog.Builder(this)
+                Dialogs.showSecureDialog(new MaterialAlertDialogBuilder(this, R.style.ThemeOverlay_Aegis_AlertDialog_Warning)
                         .setTitle(getString(R.string.password_reminder_dialog_title))
                         .setMessage(getString(R.string.password_reminder_dialog_message))
                         .setCancelable(false)
+                        .setIconAttribute(android.R.attr.alertDialogIcon)
                         .setPositiveButton(android.R.string.ok, (dialog1, which) -> {
                             showBiometricPrompt();
                         })
@@ -181,11 +180,6 @@ public class AuthActivity extends AegisActivity {
     protected void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putBoolean("inhibitBioPrompt", _inhibitBioPrompt);
-    }
-
-    @Override
-    protected void onSetTheme() {
-        setTheme(ThemeMap.NO_ACTION_BAR);
     }
 
     private void selectPassword() {
@@ -240,9 +234,6 @@ public class AuthActivity extends AegisActivity {
         PopupWindow popup = new PopupWindow(popupLayout, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         popup.setFocusable(false);
         popup.setOutsideTouchable(true);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
-            popup.setElevation(5.0f);
-        }
         _textPassword.post(() -> {
             if (isFinishing()) {
                 return;
@@ -302,10 +293,11 @@ public class AuthActivity extends AegisActivity {
     }
 
     private void onInvalidPassword() {
-        Dialogs.showSecureDialog(new AlertDialog.Builder(AuthActivity.this)
+        Dialogs.showSecureDialog(new MaterialAlertDialogBuilder(AuthActivity.this, R.style.ThemeOverlay_Aegis_AlertDialog_Error)
                 .setTitle(getString(R.string.unlock_vault_error))
                 .setMessage(getString(R.string.unlock_vault_error_description))
                 .setCancelable(false)
+                .setIconAttribute(android.R.attr.alertDialogIcon)
                 .setPositiveButton(android.R.string.ok, (dialog, which) -> selectPassword())
                 .create());
 

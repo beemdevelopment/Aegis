@@ -9,7 +9,6 @@
         android:layout_height="wrap_content"
         android:padding="4dp"
         android:layout_centerInParent="true"
-        android:textColor="@color/extra_info_text"
         android:textSize="14sp" />
 
 </RelativeLayout>

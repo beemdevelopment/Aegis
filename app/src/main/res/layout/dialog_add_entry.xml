@@ -5,6 +5,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
+    <com.google.android.material.bottomsheet.BottomSheetDragHandleView
+        android:id="@+id/drag_handle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/add_new_entry"
+        android:textSize="20sp" />
     <LinearLayout
         android:id="@+id/fab_scan"
         android:layout_width="match_parent"
@@ -20,13 +30,12 @@
             android:layout_width="25dp"
             android:layout_height="match_parent"
             android:src="@drawable/ic_qrcode_scan"
-            app:tint="?attr/iconColorPrimary" />
+            app:tint="?attr/colorOnSurfaceVariant" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:text="@string/scan"
             android:textSize="17sp"
-            android:textColor="?attr/primaryText"
             android:gravity="center_vertical"
             android:layout_marginStart="20dp" />
     </LinearLayout>
@@ -44,14 +53,13 @@
         <ImageView
             android:layout_width="25dp"
             android:layout_height="match_parent"
-            android:src="@drawable/ic_add_photo_24px"
-            app:tint="?attr/iconColorPrimary" />
+            android:src="@drawable/ic_outline_add_photo_alternate_24"
+            app:tint="?attr/colorOnSurfaceVariant" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:text="@string/scan_image"
             android:textSize="17sp"
-            android:textColor="?attr/primaryText"
             android:gravity="center_vertical"
             android:layout_marginStart="20dp" />
     </LinearLayout>
@@ -69,14 +77,13 @@
         <ImageView
             android:layout_width="25dp"
             android:layout_height="match_parent"
-            android:src="@drawable/ic_create_black_24dp"
-            app:tint="?attr/iconColorPrimary" />
+            android:src="@drawable/ic_outline_edit_24"
+            app:tint="?attr/colorOnSurfaceVariant" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:text="@string/enter_manually"
             android:textSize="17sp"
-            android:textColor="?attr/primaryText"
             android:gravity="center_vertical"
             android:layout_marginStart="20dp" />
     </LinearLayout>

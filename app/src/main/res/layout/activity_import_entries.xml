@@ -4,26 +4,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?attr/background"
+    android:fitsSystemWindows="true"
     android:id="@+id/importEntriesRootView"
     tools:context="com.beemdevelopment.aegis.ui.ImportEntriesActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:theme="@style/ThemeOverlay.Aegis.AppBar">
-        <androidx.appcompat.widget.Toolbar
+        android:fitsSystemWindows="true">
+        <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorAppBar" />
+            android:layout_height="?attr/actionBarSize" />
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/list_entries"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:foreground="?android:attr/selectableItemBackground"
         android:paddingBottom="60dp"
         android:clipToPadding="false"
         android:scrollbars="vertical"
@@ -35,6 +33,5 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
-        android:src="@drawable/ic_check_black_24dp"
-        app:tint="@color/icon_primary_dark" />
+        android:src="@drawable/ic_outline_check_24" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

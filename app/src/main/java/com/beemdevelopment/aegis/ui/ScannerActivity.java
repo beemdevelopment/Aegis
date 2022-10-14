@@ -88,16 +88,16 @@ public class ScannerActivity extends AegisActivity implements QrCodeAnalyzer.Lis
     }
 
     @Override
+    protected void onSetTheme() {
+        setTheme(ThemeMap.FULLSCREEN);
+    }
+
+    @Override
     protected void onDestroy() {
         if (_executor != null) {
             _executor.shutdownNow();
         }
         super.onDestroy();
-    }
-
-    @Override
-    protected void onSetTheme() {
-        setTheme(ThemeMap.FULLSCREEN);
     }
 
     @Override
@@ -142,10 +142,10 @@ public class ScannerActivity extends AegisActivity implements QrCodeAnalyzer.Lis
             if (dual) {
                 switch (_currentLens) {
                     case CameraSelector.LENS_FACING_BACK:
-                        item.setIcon(R.drawable.ic_camera_front_24dp);
+                        item.setIcon(R.drawable.ic_outline_camera_front_24);
                         break;
                     case CameraSelector.LENS_FACING_FRONT:
-                        item.setIcon(R.drawable.ic_camera_rear_24dp);
+                        item.setIcon(R.drawable.ic_outline_camera_rear_24);
                         break;
                 }
             }

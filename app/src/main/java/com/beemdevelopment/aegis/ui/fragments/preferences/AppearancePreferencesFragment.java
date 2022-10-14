@@ -8,11 +8,17 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.preference.Preference;
 
 import com.beemdevelopment.aegis.AccountNamePosition;
+import com.beemdevelopment.aegis.Preferences;
 import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.Theme;
 import com.beemdevelopment.aegis.ViewMode;
 import com.beemdevelopment.aegis.ui.GroupManagerActivity;
 import com.beemdevelopment.aegis.ui.dialogs.Dialogs;
+import com.google.android.material.color.DynamicColors;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+
+import java.util.Arrays;
+import java.util.List;
 
 public class AppearancePreferencesFragment extends PreferencesFragment {
     private Preference _groupsPreference;
@@ -33,7 +39,7 @@ public class AppearancePreferencesFragment extends PreferencesFragment {
 
         _resetUsageCountPreference = requirePreference("pref_reset_usage_count");
         _resetUsageCountPreference.setOnPreferenceClickListener(preference -> {
-            Dialogs.showSecureDialog(new AlertDialog.Builder(requireContext())
+            Dialogs.showSecureDialog(new MaterialAlertDialogBuilder(requireContext())
                     .setTitle(R.string.preference_reset_usage_count)
                     .setMessage(R.string.preference_reset_usage_count_dialog)
                     .setPositiveButton(android.R.string.yes, (dialog, which) -> _prefs.clearUsageCount())
@@ -48,7 +54,7 @@ public class AppearancePreferencesFragment extends PreferencesFragment {
         darkModePreference.setOnPreferenceClickListener(preference -> {
             int currentTheme1 = _prefs.getCurrentTheme().ordinal();
 
-            Dialogs.showSecureDialog(new AlertDialog.Builder(requireContext())
+            Dialogs.showSecureDialog(new MaterialAlertDialogBuilder(requireContext())
                     .setTitle(R.string.choose_theme)
                     .setSingleChoiceItems(R.array.theme_titles, currentTheme1, (dialog, which) -> {
                         int i = ((AlertDialog) dialog).getListView().getCheckedItemPosition();
@@ -65,11 +71,36 @@ public class AppearancePreferencesFragment extends PreferencesFragment {
             return true;
         });
 
+        Preference dynamicColorsPreference = requirePreference("pref_dynamic_colors");
+        dynamicColorsPreference.setEnabled(DynamicColors.isDynamicColorAvailable());
+        dynamicColorsPreference.setOnPreferenceChangeListener((preference, newValue) -> {
+            getResult().putExtra("needsRecreate", true);
+            requireActivity().recreate();
+            return true;
+        });
+
         Preference langPreference = requirePreference("pref_lang");
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            langPreference.setOnPreferenceChangeListener((preference, newValue) -> {
-                getResult().putExtra("needsRecreate", true);
-                requireActivity().recreate();
+            String[] langs = getResources().getStringArray(R.array.pref_lang_values);
+            String[] langNames = getResources().getStringArray(R.array.pref_lang_entries);
+            List<String> langList = Arrays.asList(langs);
+            int curLangIndex = langList.contains(_prefs.getLanguage()) ? langList.indexOf(_prefs.getLanguage()) : 0;
+            langPreference.setSummary(langNames[curLangIndex]);
+            langPreference.setOnPreferenceClickListener(preference -> {
+                Dialogs.showSecureDialog(new MaterialAlertDialogBuilder(requireContext())
+                        .setTitle(R.string.pref_lang_title)
+                        .setSingleChoiceItems(langNames, curLangIndex, (dialog, which) -> {
+                            int newLangIndex = ((AlertDialog) dialog).getListView().getCheckedItemPosition();
+                            _prefs.setLanguage(langs[newLangIndex]);
+                            langPreference.setSummary(langNames[newLangIndex]);
+
+                            dialog.dismiss();
+
+                            getResult().putExtra("needsRecreate", true);
+                            requireActivity().recreate();
+                        })
+                        .setNegativeButton(android.R.string.cancel, null)
+                        .create());
                 return true;
             });
         } else {
@@ -83,7 +114,7 @@ public class AppearancePreferencesFragment extends PreferencesFragment {
         viewModePreference.setOnPreferenceClickListener(preference -> {
             int currentViewMode1 = _prefs.getCurrentViewMode().ordinal();
 
-            Dialogs.showSecureDialog(new AlertDialog.Builder(requireContext())
+            Dialogs.showSecureDialog(new MaterialAlertDialogBuilder(requireContext())
                     .setTitle(R.string.choose_view_mode)
                     .setSingleChoiceItems(R.array.view_mode_titles, currentViewMode1, (dialog, which) -> {
                         int i = ((AlertDialog) dialog).getListView().getCheckedItemPosition();
@@ -99,9 +130,22 @@ public class AppearancePreferencesFragment extends PreferencesFragment {
             return true;
         });
 
+        String[] codeGroupings = getResources().getStringArray(R.array.pref_code_groupings_values);
+        String[] codeGroupingNames = getResources().getStringArray(R.array.pref_code_groupings);
+        int currentCodeGroupingIndex = Arrays.asList(codeGroupings).indexOf(_prefs.getCodeGroupSize().name());
         Preference codeDigitGroupingPreference = requirePreference("pref_code_group_size_string");
-        codeDigitGroupingPreference.setOnPreferenceChangeListener((preference, newValue) -> {
-            getResult().putExtra("needsRefresh", true);
+        codeDigitGroupingPreference.setOnPreferenceClickListener(preference -> {
+            Dialogs.showSecureDialog(new MaterialAlertDialogBuilder(requireContext())
+                    .setTitle(R.string.pref_code_group_size_title)
+                    .setSingleChoiceItems(codeGroupingNames, currentCodeGroupingIndex, (dialog, which) -> {
+                        int newCodeGroupingIndex = ((AlertDialog) dialog).getListView().getCheckedItemPosition();
+                        _prefs.setCodeGroupSize(Preferences.CodeGrouping.valueOf(codeGroupings[newCodeGroupingIndex]));
+
+                        dialog.dismiss();
+                        getResult().putExtra("needsRefresh", true);
+                    })
+                    .setNegativeButton(android.R.string.cancel, null)
+                    .create());
             return true;
         });
 
@@ -117,7 +161,7 @@ public class AppearancePreferencesFragment extends PreferencesFragment {
         _currentAccountNamePositionPreference.setOnPreferenceClickListener(preference -> {
             int currentAccountNamePosition1 = _prefs.getAccountNamePosition().ordinal();
 
-            Dialogs.showSecureDialog(new AlertDialog.Builder(requireContext())
+            Dialogs.showSecureDialog(new MaterialAlertDialogBuilder(requireContext())
                     .setTitle(getString(R.string.choose_account_name_position))
                     .setSingleChoiceItems(R.array.account_name_position_titles, currentAccountNamePosition1, (dialog, which) -> {
                         int i = ((AlertDialog) dialog).getListView().getCheckedItemPosition();

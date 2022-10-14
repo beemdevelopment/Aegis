@@ -1,7 +1,6 @@
 package com.beemdevelopment.aegis;
 
 import static androidx.test.espresso.Espresso.onView;
-import static androidx.test.espresso.Espresso.openActionBarOverflowOrOptionsMenu;
 import static androidx.test.espresso.Espresso.openContextualActionModeOverflowMenu;
 import static androidx.test.espresso.action.ViewActions.clearText;
 import static androidx.test.espresso.action.ViewActions.click;
@@ -18,19 +17,17 @@ import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static junit.framework.TestCase.assertFalse;
 import static junit.framework.TestCase.assertNull;
 import static junit.framework.TestCase.assertTrue;
-
 import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.containsString;
 
 import androidx.annotation.IdRes;
-import androidx.test.core.app.ApplicationProvider;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.test.espresso.ViewInteraction;
 import androidx.test.espresso.contrib.RecyclerViewActions;
 import androidx.test.espresso.matcher.RootMatchers;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.filters.LargeTest;
-import androidx.test.platform.app.InstrumentationRegistry;
 
 import com.beemdevelopment.aegis.encoding.Base32;
 import com.beemdevelopment.aegis.encoding.Hex;
@@ -41,6 +38,7 @@ import com.beemdevelopment.aegis.otp.TotpInfo;
 import com.beemdevelopment.aegis.otp.YandexInfo;
 import com.beemdevelopment.aegis.rules.ScreenshotTestRule;
 import com.beemdevelopment.aegis.ui.MainActivity;
+import com.beemdevelopment.aegis.ui.views.EntryAdapter;
 import com.beemdevelopment.aegis.vault.VaultEntry;
 import com.beemdevelopment.aegis.vault.VaultRepository;
 import com.beemdevelopment.aegis.vault.slots.PasswordSlot;
@@ -55,6 +53,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 import dagger.hilt.android.testing.HiltAndroidTest;
 
@@ -104,13 +103,19 @@ public class OverallTest extends AegisTest {
         }
 
         for (int i = 0; i < 10; i++) {
-            onView(withId(R.id.rvKeyProfiles)).perform(RecyclerViewActions.actionOnItemAtPosition(1, clickChildViewWithId(R.id.buttonRefresh)));
+            onView(withId(R.id.rvKeyProfiles)).perform(RecyclerViewActions.actionOnHolderItem(withOtpType(HotpInfo.class), clickChildViewWithId(R.id.buttonRefresh)));
         }
 
-        onView(withId(R.id.rvKeyProfiles)).perform(RecyclerViewActions.actionOnItemAtPosition(0, longClick()));
+        AtomicBoolean isErrorCardShown = new AtomicBoolean(false);
+        _activityRule.getScenario().onActivity(activity -> {
+            isErrorCardShown.set(((EntryAdapter)((RecyclerView) activity.findViewById(R.id.rvKeyProfiles)).getAdapter()).isErrorCardShown());
+        });
+
+        int entryPosOffset = isErrorCardShown.get() ? 1 : 0;
+        onView(withId(R.id.rvKeyProfiles)).perform(RecyclerViewActions.actionOnItemAtPosition(entryPosOffset + 0, longClick()));
         onView(withId(R.id.action_copy)).perform(click());
 
-        onView(withId(R.id.rvKeyProfiles)).perform(RecyclerViewActions.actionOnItemAtPosition(1, longClick()));
+        onView(withId(R.id.rvKeyProfiles)).perform(RecyclerViewActions.actionOnItemAtPosition(entryPosOffset + 1, longClick()));
         onView(withId(R.id.action_edit)).perform(click());
         onView(withId(R.id.text_name)).perform(clearText(), typeText("Bob"), closeSoftKeyboard());
         onView(withId(R.id.dropdown_group)).perform(click());
@@ -129,13 +134,13 @@ public class OverallTest extends AegisTest {
         changeGroupFilter(_groupName);
         changeGroupFilter(null);
 
-        onView(withId(R.id.rvKeyProfiles)).perform(RecyclerViewActions.actionOnItemAtPosition(2, longClick()));
-        onView(withId(R.id.rvKeyProfiles)).perform(RecyclerViewActions.actionOnItemAtPosition(3, click()));
-        onView(withId(R.id.rvKeyProfiles)).perform(RecyclerViewActions.actionOnItemAtPosition(4, click()));
+        onView(withId(R.id.rvKeyProfiles)).perform(RecyclerViewActions.actionOnItemAtPosition(entryPosOffset + 2, longClick()));
+        onView(withId(R.id.rvKeyProfiles)).perform(RecyclerViewActions.actionOnItemAtPosition(entryPosOffset + 3, click()));
+        onView(withId(R.id.rvKeyProfiles)).perform(RecyclerViewActions.actionOnItemAtPosition(entryPosOffset + 4, click()));
         onView(withId(R.id.action_share_qr)).perform(click());
         onView(withId(R.id.btnNext)).perform(click()).perform(click()).perform(click());
 
-        onView(withId(R.id.rvKeyProfiles)).perform(RecyclerViewActions.actionOnItemAtPosition(0, longClick()));
+        onView(withId(R.id.rvKeyProfiles)).perform(RecyclerViewActions.actionOnItemAtPosition(entryPosOffset + 0, longClick()));
         onView(allOf(isDescendantOfA(withClassName(containsString("ActionBarContextView"))), withClassName(containsString("OverflowMenuButton")))).perform(click());
         onView(withText(R.string.action_delete)).perform(click());
         onView(withId(android.R.id.button1)).perform(click());

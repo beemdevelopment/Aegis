@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<androidx.coordinatorlayout.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?attr/background"
-    android:orientation="vertical"
+    android:fitsSystemWindows="true"
     tools:context="com.beemdevelopment.aegis.ui.EditEntryActivity">
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:theme="@style/ThemeOverlay.Aegis.AppBar">
-        <androidx.appcompat.widget.Toolbar
+        android:fitsSystemWindows="true">
+        <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorAppBar" />
+            android:layout_height="?attr/actionBarSize" />
     </com.google.android.material.appbar.AppBarLayout>
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1">
+        android:layout_height="wrap_content"
+        android:clipToPadding="false"
+        android:isScrollContainer="true"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -31,7 +31,6 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:background="?attr/background"
                 android:layout_height="250dp">
 
                 <de.hdodenhof.circleimageview.CircleImageView
@@ -58,16 +57,15 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="bottom|end"
                         android:layout_margin="15dp"
-                        android:src="@drawable/ic_check_black_24dp"
-                        app:tint="?attr/iconColorPrimary" />
+                        android:src="@drawable/ic_outline_check_24"
+                        app:tint="?attr/colorOnSurface" />
 
                 </com.avito.android.krop.KropView>
 
             </RelativeLayout>
-            <View
+            <com.google.android.material.divider.MaterialDivider
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/divider" />
+                android:layout_height="wrap_content" />
             <LinearLayout
                 android:id="@+id/layout_basic"
                 android:layout_width="match_parent"
@@ -81,8 +79,8 @@
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/ic_person_black_24dp"
-                        app:tint="?attr/iconColorPrimary"
+                        android:src="@drawable/ic_outline_person_24"
+                        app:tint="?attr/colorOnSurface"
                         android:layout_marginStart="5dp"
                         android:layout_marginEnd="15dp"
                         android:layout_gravity="center_vertical"/>
@@ -138,8 +136,8 @@
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/ic_baseline_notes_black_24"
-                        app:tint="?attr/iconColorPrimary"
+                        android:src="@drawable/ic_outline_notes_24"
+                        app:tint="?attr/colorOnSurface"
                         android:layout_marginStart="5dp"
                         android:layout_marginEnd="15dp"
                         android:layout_gravity="center_vertical"/>
@@ -164,8 +162,8 @@
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/ic_vpn_key_black_24dp"
-                        app:tint="?attr/iconColorPrimary"
+                        android:src="@drawable/ic_outline_key_24"
+                        app:tint="?attr/colorOnSurface"
                         android:layout_marginStart="5dp"
                         android:layout_marginEnd="15dp"
                         android:layout_gravity="center_vertical"/>
@@ -174,7 +172,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        app:passwordToggleTint="#949494"
+                        app:passwordToggleTint="?attr/colorOnSurface"
                         app:passwordToggleEnabled="true">
 
                         <com.google.android.material.textfield.TextInputEditText
@@ -196,8 +194,8 @@
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/ic_baseline_fiber_pin_24"
-                        app:tint="?attr/iconColorPrimary"
+                        android:src="@drawable/ic_outline_fiber_pin_24"
+                        app:tint="?attr/colorOnSurface"
                         android:layout_marginStart="5dp"
                         android:layout_marginEnd="15dp"
                         android:layout_gravity="center_vertical"/>
@@ -206,7 +204,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        app:passwordToggleTint="#949494"
+                        app:passwordToggleTint="?attr/colorOnSurface"
                         app:passwordToggleEnabled="true">
 
                         <com.google.android.material.textfield.TextInputEditText
@@ -234,8 +232,8 @@
                     android:layout_alignParentStart="true"
                     android:layout_centerVertical="true"
                     android:layout_marginStart="14dp"
-                    android:src="@drawable/ic_keyboard_arrow_down_black_24dp"
-                    app:tint="?attr/iconColorPrimary"/>
+                    android:src="@drawable/ic_outline_expand_more_24"
+                    app:tint="?attr/colorOnSurface" />
 
                 <TextView
                     android:id="@+id/accordian_title"
@@ -268,8 +266,8 @@
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:src="@drawable/ic_info_outline_black_24dp"
-                            app:tint="?attr/iconColorPrimary"
+                            android:src="@drawable/ic_outline_info_24"
+                            app:tint="?attr/colorOnSurface"
                             android:layout_marginStart="5dp"
                             android:layout_marginEnd="15dp"
                             android:layout_gravity="center_vertical"/>
@@ -352,8 +350,8 @@
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:src="@drawable/ic_counter_black_24dp"
-                            app:tint="?attr/iconColorPrimary"
+                            android:src="@drawable/ic_counter_black_24"
+                            app:tint="?attr/colorOnSurface"
                             android:layout_marginStart="5dp"
                             android:layout_marginEnd="15dp"
                             android:layout_gravity="center_vertical"/>
@@ -382,4 +380,4 @@
             </RelativeLayout>
         </LinearLayout>
     </ScrollView>
-</LinearLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

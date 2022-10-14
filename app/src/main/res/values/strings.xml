@@ -36,6 +36,8 @@
     <string name="pref_section_icon_packs">Icon packs</string>
     <string name="pref_section_icon_packs_summary">Manage and import icon packs</string>
     <string name="pref_select_theme_title">Theme</string>
+    <string name="pref_dynamic_colors_title">Dynamic colors</string>
+    <string name="pref_dynamic_colors_summary">Apply an overlay based on the colors of your Android theme</string>
     <string name="pref_view_mode_title">View mode</string>
     <string name="pref_lang_title">Language</string>
     <string name="pref_show_icons_title">Show icons</string>

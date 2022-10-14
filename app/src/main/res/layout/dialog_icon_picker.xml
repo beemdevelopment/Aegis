@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:paddingTop="10dp"
     app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
     <RelativeLayout
         android:layout_width="match_parent"
@@ -14,19 +13,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-            <View
-                android:layout_width="16dp"
-                android:layout_height="2dp"
-                android:layout_gravity="center"
-                android:background="@drawable/drag_handle" />
+            <com.google.android.material.bottomsheet.BottomSheetDragHandleView
+                android:id="@+id/drag_handle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
             <TextView
-                android:paddingTop="8dp"
-                android:textSize="17sp"
-                android:gravity="center"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="?attr/primaryText"
-                android:text="@string/pick_icon" />
+                android:gravity="center"
+                android:text="@string/pick_icon"
+                android:textSize="20sp" />
             <TextView
                 android:id="@+id/text_icon_pack"
                 android:paddingTop="2dp"
@@ -46,13 +42,9 @@
             android:layout_marginTop="12dp"
             android:scaleType="centerCrop"
             android:background="?selectableItemBackgroundBorderless"
-            android:src="@drawable/ic_dots_vertical_black_24dp"
-            app:tint="?attr/iconColorPrimary"/>
+            android:src="@drawable/ic_outline_more_vert_24"
+            app:tint="?attr/colorOnSurfaceVariant" />
     </RelativeLayout>
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/divider2" />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"

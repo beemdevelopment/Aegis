@@ -4,36 +4,26 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingTop="12dp"
     android:orientation="vertical">
 
-    <View
-        android:layout_width="16dp"
-        android:layout_height="2dp"
-        android:layout_gravity="center"
-        android:background="@drawable/drag_handle" />
+    <com.google.android.material.bottomsheet.BottomSheetDragHandleView
+        android:id="@+id/drag_handle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
     <TextView
-        android:paddingTop="8dp"
-        android:paddingBottom="16dp"
-        android:textSize="17sp"
-        android:gravity="center"
-        android:id="@+id/textView3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="?attr/primaryText"
-        android:text="@string/groups" />
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/divider2" />
+        android:gravity="center"
+        android:text="@string/groups"
+        android:textSize="20sp" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:minHeight="150dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_marginTop="15dp">
 
         <com.google.android.material.chip.ChipGroup
             android:id="@+id/groupChipGroup"
@@ -53,19 +43,17 @@
             android:id="@+id/btnSave"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/colorSecondary"
             android:text="@string/save"
             app:rippleColor="@color/dialog_button_ripple_color"
-            style="@style/Widget.MaterialComponents.Button.TextButton" />
+            style="@style/Widget.Material3.Button.TextButton" />
 
         <Button
             android:id="@+id/btnClear"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/colorSecondary"
             android:text="@string/clear"
             app:rippleColor="@color/dialog_button_ripple_color"
-            style="@style/Widget.MaterialComponents.Button.TextButton" />
+            style="@style/Widget.Material3.Button.TextButton" />
     </LinearLayout>
 
 </LinearLayout>

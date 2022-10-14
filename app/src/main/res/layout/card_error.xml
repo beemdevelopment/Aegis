@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/card_error"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:clickable="true"
+    android:focusable="true"
+    android:paddingHorizontal="10dp"
+    android:paddingVertical="10dp"
+    style="@style/Widget.Aegis.ErrorCardView">
+    <LinearLayout
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="16dp"
+        android:gravity="center_vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:tint="?attr/colorOnErrorContainer"
+        android:src="@drawable/ic_outline_error_24" />
+    <TextView
+        android:id="@+id/text_error_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="?attr/colorOnErrorContainer"
+        android:textStyle="bold"
+        android:layout_marginStart="5dp" />
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>

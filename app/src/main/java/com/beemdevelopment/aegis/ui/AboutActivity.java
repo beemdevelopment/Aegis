@@ -13,17 +13,14 @@ import android.widget.Toast;
 
 import androidx.annotation.AttrRes;
 import androidx.annotation.StringRes;
-import androidx.core.view.LayoutInflaterCompat;
 
 import com.beemdevelopment.aegis.BuildConfig;
 import com.beemdevelopment.aegis.R;
-import com.beemdevelopment.aegis.Theme;
 import com.beemdevelopment.aegis.helpers.ThemeHelper;
 import com.beemdevelopment.aegis.licenses.GlideLicense;
 import com.beemdevelopment.aegis.licenses.ProtobufLicense;
 import com.beemdevelopment.aegis.ui.dialogs.ChangelogDialog;
 import com.beemdevelopment.aegis.ui.dialogs.LicenseDialog;
-import com.mikepenz.iconics.context.IconicsLayoutInflater2;
 
 import de.psdev.licensesdialog.LicenseResolver;
 import de.psdev.licensesdialog.LicensesDialog;
@@ -40,7 +37,6 @@ public class AboutActivity extends AegisActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        LayoutInflaterCompat.setFactory2(getLayoutInflater(), new IconicsLayoutInflater2(getDelegate()));
         super.onCreate(savedInstanceState);
         if (abortIfOrphan(savedInstanceState)) {
             return;
@@ -132,11 +128,10 @@ public class AboutActivity extends AegisActivity {
 
     private void showThirdPartyLicenseDialog() {
         String stylesheet = getString(R.string.custom_notices_format_style);
-        int backgroundColorResource = getConfiguredTheme() == Theme.AMOLED ? R.attr.cardBackgroundFocused : R.attr.cardBackground;
-        String backgroundColor = getThemeColorAsHex(backgroundColorResource);
-        String textColor = getThemeColorAsHex(R.attr.primaryText);
-        String licenseColor = getThemeColorAsHex(R.attr.cardBackgroundFocused);
-        String linkColor = getThemeColorAsHex(androidx.appcompat.R.attr.colorAccent);
+        String backgroundColor = getThemeColorAsHex(com.google.android.material.R.attr.colorSurfaceContainerLow);
+        String textColor = getThemeColorAsHex(com.google.android.material.R.attr.colorOnSurface);
+        String licenseColor = getThemeColorAsHex(com.google.android.material.R.attr.colorSurfaceContainerLow);
+        String linkColor = getThemeColorAsHex(com.google.android.material.R.attr.colorAccent);
 
         stylesheet = String.format(stylesheet, backgroundColor, textColor, licenseColor, linkColor);
 

@@ -4,21 +4,31 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.os.Build;
 import android.os.Bundle;
+import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Toast;
 
 import androidx.annotation.CallSuper;
+import androidx.annotation.ColorInt;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.view.ActionMode;
+import androidx.core.view.ViewPropertyAnimatorCompat;
 
 import com.beemdevelopment.aegis.Preferences;
 import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.Theme;
 import com.beemdevelopment.aegis.ThemeMap;
+import com.beemdevelopment.aegis.helpers.ThemeHelper;
 import com.beemdevelopment.aegis.icons.IconPackManager;
 import com.beemdevelopment.aegis.vault.VaultManager;
 import com.beemdevelopment.aegis.vault.VaultRepositoryException;
+import com.google.android.material.color.DynamicColors;
 
+import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Locale;
@@ -42,6 +52,8 @@ public abstract class AegisActivity extends AppCompatActivity implements VaultMa
     @Inject
     protected IconPackManager _iconPackManager;
 
+    private ActionModeStatusGuardHack _statusGuardHack;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         // set the theme and locale before creating the activity
@@ -49,6 +61,8 @@ public abstract class AegisActivity extends AppCompatActivity implements VaultMa
         onSetTheme();
         setLocale(_prefs.getLocale());
         super.onCreate(savedInstanceState);
+
+        _statusGuardHack = new ActionModeStatusGuardHack();
 
         // set FLAG_SECURE on the window of every AegisActivity
         if (_prefs.isSecureScreenEnabled()) {
@@ -106,6 +120,10 @@ public abstract class AegisActivity extends AppCompatActivity implements VaultMa
     protected void setTheme(Map<Theme, Integer> themeMap) {
         int theme = themeMap.get(getConfiguredTheme());
         setTheme(theme);
+
+        if (_prefs.isDynamicColorsEnabled()) {
+            DynamicColors.applyToActivityIfAvailable(this);
+        }
     }
 
     protected Theme getConfiguredTheme() {
@@ -167,6 +185,77 @@ public abstract class AegisActivity extends AppCompatActivity implements VaultMa
         startActivity(intent);
         finish();
         return true;
+    }
+
+    @Override
+    public void onSupportActionModeStarted(@NonNull ActionMode mode) {
+        super.onSupportActionModeStarted(mode);
+        _statusGuardHack.apply(View.VISIBLE);
+    }
+
+    @Override
+    public void onSupportActionModeFinished(@NonNull ActionMode mode) {
+        super.onSupportActionModeFinished(mode);
+        _statusGuardHack.apply(View.GONE);
+    }
+
+    /**
+     * When starting/finishing an action mode, forcefully cancel the fade in/out animation and
+     * set the status bar color. This requires the abc_decor_view_status_guard colors to be set
+     * to transparent.
+     *
+     * This should fix any inconsistencies between the color of the action bar and the status bar
+     * when an action mode is active.
+     */
+    private class ActionModeStatusGuardHack {
+        private Field _fadeAnimField;
+        private Field _actionModeViewField;
+
+        @ColorInt
+        private final int _statusBarColor;
+
+        private ActionModeStatusGuardHack() {
+            _statusBarColor = getWindow().getStatusBarColor();
+
+            try {
+                _fadeAnimField = getDelegate().getClass().getDeclaredField("mFadeAnim");
+                _fadeAnimField.setAccessible(true);
+                _actionModeViewField = getDelegate().getClass().getDeclaredField("mActionModeView");
+                _actionModeViewField.setAccessible(true);
+            } catch (NoSuchFieldException ignored) {
+            }
+        }
+
+        private void apply(int visibility) {
+            if (_fadeAnimField == null || _actionModeViewField == null) {
+                return;
+            }
+
+            ViewPropertyAnimatorCompat fadeAnim;
+            ViewGroup actionModeView;
+            try {
+                fadeAnim = (ViewPropertyAnimatorCompat) _fadeAnimField.get(getDelegate());
+                actionModeView = (ViewGroup) _actionModeViewField.get(getDelegate());
+            } catch (IllegalAccessException e) {
+                return;
+            }
+
+            if (fadeAnim == null || actionModeView == null) {
+                return;
+            }
+
+            fadeAnim.cancel();
+
+            actionModeView.setVisibility(visibility);
+            actionModeView.setAlpha(visibility == View.VISIBLE ? 1f : 0f);
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                int statusBarColor = visibility == View.VISIBLE
+                        ? ThemeHelper.getThemeColor(com.google.android.material.R.attr.colorSurfaceContainer, getTheme())
+                        : _statusBarColor;
+                getWindow().setStatusBarColor(statusBarColor);
+            }
+        }
     }
 
     /**

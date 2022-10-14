@@ -2,7 +2,6 @@ package com.beemdevelopment.aegis.ui.intro;
 
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ImageButton;
 
 import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
@@ -16,6 +15,7 @@ import androidx.viewpager2.widget.ViewPager2;
 import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.helpers.AnimationsHelper;
 import com.beemdevelopment.aegis.ui.AegisActivity;
+import com.google.android.material.button.MaterialButton;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
@@ -28,8 +28,8 @@ public abstract class IntroBaseActivity extends AegisActivity implements IntroAc
     private List<Class<? extends SlideFragment>> _slides;
     private WeakReference<SlideFragment> _currentSlide;
 
-    private ImageButton _btnPrevious;
-    private ImageButton _btnNext;
+    private MaterialButton _btnPrevious;
+    private MaterialButton _btnNext;
     private SlideIndicator _slideIndicator;
 
     @Override
@@ -158,7 +158,7 @@ public abstract class IntroBaseActivity extends AegisActivity implements IntroAc
                         ? View.VISIBLE
                         : View.INVISIBLE);
         if (pos == _slides.size() - 1) {
-            _btnNext.setImageResource(R.drawable.circular_button_done);
+            _btnNext.setIconResource(R.drawable.ic_outline_check_24);
         }
         _slideIndicator.setSlideCount(_slides.size());
         _slideIndicator.setCurrentSlide(pos);

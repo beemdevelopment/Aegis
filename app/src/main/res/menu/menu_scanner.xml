@@ -6,7 +6,7 @@
     tools:context="com.beemdevelopment.aegis.ui.ScannerActivity">
     <item
         android:id="@+id/action_camera"
-        android:icon="@drawable/ic_camera_front_24dp"
+        android:icon="@drawable/ic_outline_camera_front_24"
         android:title="@string/switch_camera"
         app:showAsAction="always"/>
 

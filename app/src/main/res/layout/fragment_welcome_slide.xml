@@ -49,10 +49,10 @@
         android:text="@string/import_vault"
         android:textSize="11sp"
         android:layout_marginVertical="10dp"
-        style="?attr/outlineButtonStyle"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/txtImportHelp" />
+        app:layout_constraintBottom_toTopOf="@+id/txtImportHelp"
+        style="@style/Widget.Material3.Button.TonalButton" />
 
     <TextView
         android:id="@+id/txtImportHelp"

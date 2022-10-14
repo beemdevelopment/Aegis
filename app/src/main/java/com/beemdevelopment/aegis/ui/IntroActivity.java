@@ -13,7 +13,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.beemdevelopment.aegis.R;
-import com.beemdevelopment.aegis.ThemeMap;
 import com.beemdevelopment.aegis.ui.dialogs.Dialogs;
 import com.beemdevelopment.aegis.ui.intro.IntroBaseActivity;
 import com.beemdevelopment.aegis.ui.intro.SlideFragment;
@@ -38,11 +37,6 @@ public class IntroActivity extends IntroBaseActivity {
         addSlide(SecurityPickerSlide.class);
         addSlide(SecuritySetupSlide.class);
         addSlide(DoneSlide.class);
-    }
-
-    @Override
-    protected void onSetTheme() {
-        setTheme(ThemeMap.NO_ACTION_BAR);
     }
 
     @Override

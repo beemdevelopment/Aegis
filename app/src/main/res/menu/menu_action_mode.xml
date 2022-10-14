@@ -4,20 +4,20 @@
     <item
         android:id="@+id/action_toggle_favorite"
         android:orderInCategory="70"
-        android:icon="@drawable/ic_unset_favorite"
+        android:icon="@drawable/ic_outline_star_24"
         android:title="@string/favorite"
         app:showAsAction="always" />
     <item
         android:id="@+id/action_copy"
         android:orderInCategory="80"
-        android:icon="@drawable/ic_content_copy_white_24dp"
+        android:icon="@drawable/ic_outline_content_copy_24"
         android:title="@string/copy"
         app:showAsAction="always" />
 
     <item
         android:id="@+id/action_edit"
         android:orderInCategory="90"
-        android:icon="@drawable/ic_mode_edit"
+        android:icon="@drawable/ic_outline_edit_24"
         android:title="@string/edit"
         app:showAsAction="always" />
 
@@ -25,29 +25,25 @@
         android:id="@+id/action_select_all"
         android:title="@string/select_all"
         android:orderInCategory="95"
-        android:tint="?attr/iconColorPrimary"
         app:showAsAction="never"/>
 
     <item
         android:id="@+id/action_assign_icons"
         android:title="@string/assign_icons"
         android:orderInCategory="100"
-        android:tint="?attr/iconColorPrimary"
         app:showAsAction="never"/>
 
     <item
         android:id="@+id/action_share_qr"
         android:title="@string/action_transfer"
         android:orderInCategory="110"
-        android:icon="@drawable/ic_qr_code_full"
-        android:tint="?attr/iconColorPrimary"
+        android:icon="@drawable/ic_outline_qr_code_2_24"
         app:showAsAction="always"/>
 
     <item
         android:id="@+id/action_delete"
         android:title="@string/action_delete"
         android:orderInCategory="400"
-        android:icon="@drawable/ic_delete_white"
-        android:tint="?attr/iconColorPrimary"
+        android:icon="@drawable/ic_outline_delete_24"
         app:showAsAction="ifRoom"/>
 </menu>

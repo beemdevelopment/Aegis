@@ -11,7 +11,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -28,6 +27,7 @@ import com.beemdevelopment.aegis.util.UUIDMap;
 import com.beemdevelopment.aegis.vault.VaultEntry;
 import com.beemdevelopment.aegis.vault.VaultGroup;
 import com.beemdevelopment.aegis.vault.VaultRepository;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -62,7 +62,7 @@ public class ImportEntriesActivity extends AegisActivity {
         _view = findViewById(R.id.importEntriesRootView);
 
         ActionBar bar = getSupportActionBar();
-        bar.setHomeAsUpIndicator(R.drawable.ic_close);
+        bar.setHomeAsUpIndicator(R.drawable.ic_outline_close_24);
         bar.setDisplayHomeAsUpEnabled(true);
 
         _adapter = new ImportEntriesAdapter();
@@ -101,10 +101,11 @@ public class ImportEntriesActivity extends AegisActivity {
             if (importer.isInstalledAppVersionSupported()) {
                 startImportApp(importer);
             } else {
-                Dialogs.showSecureDialog(new AlertDialog.Builder(this)
+                Dialogs.showSecureDialog(new MaterialAlertDialogBuilder(this, R.style.ThemeOverlay_Aegis_AlertDialog_Warning)
                         .setTitle(R.string.warning)
                         .setMessage(getString(R.string.app_version_error, importerDef.getName()))
                         .setCancelable(false)
+                        .setIconAttribute(android.R.attr.alertDialogIcon)
                         .setPositiveButton(R.string.yes, (dialog1, which) -> {
                             startImportApp(importer);
                         })
@@ -215,7 +216,7 @@ public class ImportEntriesActivity extends AegisActivity {
         List<DatabaseImporterEntryException> errors = result.getErrors();
         if (errors.size() > 0) {
             String message = getResources().getQuantityString(R.plurals.import_error_dialog, errors.size(), errors.size());
-            Dialogs.showMultiErrorDialog(this, R.string.import_error_title, message, errors, null);
+            Dialogs.showMultiExceptionDialog(this, R.string.import_error_title, message, errors, null);
         }
 
         findDuplicates(importEntries);
@@ -296,7 +297,7 @@ public class ImportEntriesActivity extends AegisActivity {
 
                 assignIconIntent.putExtra("entries", assignIconEntriesIds);
 
-                Dialogs.showSecureDialog(new AlertDialog.Builder(this)
+                Dialogs.showSecureDialog(new MaterialAlertDialogBuilder(this)
                         .setTitle(R.string.import_assign_icons_dialog_title)
                         .setMessage(R.string.import_assign_icons_dialog_text)
                         .setPositiveButton(android.R.string.yes, (dialog, which) -> {

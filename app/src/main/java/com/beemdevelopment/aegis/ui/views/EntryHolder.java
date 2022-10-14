@@ -1,6 +1,5 @@
 package com.beemdevelopment.aegis.ui.views;
 
-import android.graphics.PorterDuff;
 import android.os.Handler;
 import android.view.View;
 import android.view.animation.Animation;
@@ -17,7 +16,6 @@ import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.ViewMode;
 import com.beemdevelopment.aegis.helpers.AnimationsHelper;
 import com.beemdevelopment.aegis.helpers.SimpleAnimationEndListener;
-import com.beemdevelopment.aegis.helpers.ThemeHelper;
 import com.beemdevelopment.aegis.helpers.UiRefresher;
 import com.beemdevelopment.aegis.otp.HotpInfo;
 import com.beemdevelopment.aegis.otp.OtpInfo;
@@ -28,6 +26,7 @@ import com.beemdevelopment.aegis.otp.YandexInfo;
 import com.beemdevelopment.aegis.ui.glide.GlideHelper;
 import com.beemdevelopment.aegis.vault.VaultEntry;
 import com.bumptech.glide.Glide;
+import com.google.android.material.card.MaterialCardView;
 
 public class EntryHolder extends RecyclerView.ViewHolder {
     private static final float DEFAULT_ALPHA = 1.0f;
@@ -56,7 +55,7 @@ public class EntryHolder extends RecyclerView.ViewHolder {
     private boolean _paused;
 
     private TotpProgressBar _progressBar;
-    private View _view;
+    private MaterialCardView _view;
 
     private UiRefresher _refresher;
     private Handler _animationHandler;
@@ -67,8 +66,7 @@ public class EntryHolder extends RecyclerView.ViewHolder {
     public EntryHolder(final View view) {
         super(view);
 
-        _view = view.findViewById(R.id.rlCardEntry);
-
+        _view = (MaterialCardView) view;
         _profileName = view.findViewById(R.id.profile_account_name);
         _profileCode = view.findViewById(R.id.profile_code);
         _profileIssuer = view.findViewById(R.id.profile_issuer);
@@ -84,9 +82,6 @@ public class EntryHolder extends RecyclerView.ViewHolder {
         _animationHandler = new Handler();
 
         _progressBar = view.findViewById(R.id.progressBar);
-        int primaryColorId = view.getContext().getResources().getColor(R.color.colorPrimary);
-        _progressBar.getProgressDrawable().setColorFilter(primaryColorId, PorterDuff.Mode.SRC_IN);
-        _view.setBackground(_view.getContext().getResources().getDrawable(R.color.card_background));
 
         _scaleIn = AnimationsHelper.loadScaledAnimation(view.getContext(), R.anim.item_scale_in);
         _scaleOut = AnimationsHelper.loadScaledAnimation(view.getContext(), R.anim.item_scale_out);
@@ -229,11 +224,8 @@ public class EntryHolder extends RecyclerView.ViewHolder {
     public void setFocused(boolean focused) {
         if (focused) {
             _selected.setVisibility(View.VISIBLE);
-            _view.setBackgroundColor(ThemeHelper.getThemeColor(R.attr.cardBackgroundFocused, _view.getContext().getTheme()));
-        } else {
-            _view.setBackgroundColor(ThemeHelper.getThemeColor(R.attr.cardBackground, _view.getContext().getTheme()));
         }
-        _view.setSelected(focused);
+        _view.setChecked(focused);
     }
 
     public void setFocusedAndAnimate(boolean focused) {

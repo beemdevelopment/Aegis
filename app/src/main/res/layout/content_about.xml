@@ -8,19 +8,17 @@
     android:padding="8dp"
     app:cardUseCompatPadding="true">
 
-    <androidx.cardview.widget.CardView
+    <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardUseCompatPadding="true"
-        android:background="?attr/cardBackground"
         android:layout_marginBottom="8dp"
-        tools:ignore="MissingPrefix">
+        app:cardUseCompatPadding="true"
+        style="?attr/materialCardViewOutlinedStyle">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingBottom="8dp"
-            android:background="?attr/cardBackground"
             android:orientation="vertical">
 
             <LinearLayout
@@ -61,17 +59,15 @@
                 android:focusable="true">
 
                 <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:importantForAccessibility="no"
-                    app:ico_color="?attr/iconColorPrimary"
-                    app:ico_icon="gmi-info-outline"
-                    app:ico_size="16dp" />
+                    android:src="@drawable/ic_outline_info_24" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="32dp"
+                    android:layout_marginStart="28dp"
                     android:orientation="vertical"
                     android:paddingTop="8dp"
                     android:paddingBottom="8dp">
@@ -106,17 +102,15 @@
                 android:focusable="true">
 
                 <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:importantForAccessibility="no"
-                    app:ico_color="?attr/iconColorPrimary"
-                    app:ico_icon="gmi-time-restore"
-                    app:ico_size="16dp" />
+                    android:src="@drawable/ic_outline_history_24" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="32dp"
+                    android:layout_marginStart="28dp"
                     android:orientation="vertical"
                     android:paddingTop="8dp"
                     android:paddingBottom="8dp">
@@ -148,17 +142,15 @@
                 android:focusable="true">
 
                 <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:importantForAccessibility="no"
-                    app:ico_color="?attr/iconColorPrimary"
-                    app:ico_icon="gmi-github"
-                    app:ico_size="16dp" />
+                    android:src="@drawable/ic_outline_code_24" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="32dp"
+                    android:layout_marginStart="28dp"
                     android:orientation="vertical"
                     android:paddingTop="8dp"
                     android:paddingBottom="8dp">
@@ -190,17 +182,15 @@
                 android:focusable="true">
 
                 <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:importantForAccessibility="no"
-                    app:ico_color="?attr/iconColorPrimary"
-                    app:ico_icon="gmi-file-text"
-                    app:ico_size="16dp" />
+                    android:src="@drawable/ic_outline_description_24" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="32dp"
+                    android:layout_marginStart="28dp"
                     android:orientation="vertical"
                     android:paddingTop="8dp"
                     android:paddingBottom="8dp">
@@ -233,17 +223,15 @@
                 android:focusable="true">
 
                 <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:importantForAccessibility="no"
-                    app:ico_color="?attr/iconColorPrimary"
-                    app:ico_icon="gmi-file-text"
-                    app:ico_size="16dp" />
+                    android:src="@drawable/ic_outline_description_24" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="32dp"
+                    android:layout_marginStart="28dp"
                     android:orientation="vertical"
                     android:paddingTop="8dp"
                     android:paddingBottom="8dp">
@@ -265,21 +253,19 @@
 
         </LinearLayout>
 
-    </androidx.cardview.widget.CardView>
+    </com.google.android.material.card.MaterialCardView>
 
-    <androidx.cardview.widget.CardView
+    <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardUseCompatPadding="true"
-        android:background="?attr/cardBackground"
         android:layout_marginBottom="8dp"
-        tools:ignore="MissingPrefix">
+        app:cardUseCompatPadding="true"
+        style="?attr/materialCardViewOutlinedStyle">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingBottom="8dp"
-            android:background="?attr/cardBackground"
             android:orientation="vertical">
 
             <TextView
@@ -308,17 +294,15 @@
                 android:focusable="true">
 
                 <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:importantForAccessibility="no"
-                    app:ico_color="?attr/iconColorPrimary"
-                    app:ico_icon="gmi-account"
-                    app:ico_size="16dp" />
+                    android:src="@drawable/ic_outline_person_24" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="32dp"
+                    android:layout_marginStart="28dp"
                     android:orientation="vertical"
                     android:paddingTop="8dp"
                     android:paddingBottom="8dp">
@@ -353,17 +337,15 @@
                 android:focusable="true">
 
                 <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:importantForAccessibility="no"
-                    app:ico_color="?attr/iconColorPrimary"
-                    app:ico_icon="gmi-account"
-                    app:ico_size="16dp" />
+                    android:src="@drawable/ic_outline_person_24" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="32dp"
+                    android:layout_marginStart="28dp"
                     android:orientation="vertical"
                     android:paddingTop="8dp"
                     android:paddingBottom="8dp">
@@ -398,17 +380,15 @@
                 android:focusable="true">
 
                 <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:importantForAccessibility="no"
-                    app:ico_color="?attr/iconColorPrimary"
-                    app:ico_icon="gmi-email"
-                    app:ico_size="16dp" />
+                    android:src="@drawable/ic_outline_mail_24" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="32dp"
+                    android:layout_marginStart="28dp"
                     android:paddingTop="8dp"
                     android:paddingBottom="8dp"
                     android:text="@string/email_us"
@@ -430,16 +410,15 @@
                 android:focusable="true">
 
                 <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:importantForAccessibility="no"
-                    app:ico_color="?attr/iconColorPrimary"
-                    app:ico_icon="gmi-globe"
-                    app:ico_size="16dp" />
+                    android:src="@drawable/ic_outline_public_24" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="32dp"
+                    android:layout_marginStart="28dp"
                     android:paddingTop="8dp"
                     android:paddingBottom="8dp"
                     android:text="@string/visit_website"
@@ -448,21 +427,19 @@
             </LinearLayout>
 
         </LinearLayout>
-    </androidx.cardview.widget.CardView>
+    </com.google.android.material.card.MaterialCardView>
 
-    <androidx.cardview.widget.CardView
+    <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardUseCompatPadding="true"
         android:layout_marginBottom="8dp"
-        android:background="?attr/cardBackground"
-        tools:ignore="MissingPrefix">
+        app:cardUseCompatPadding="true"
+        style="?attr/materialCardViewOutlinedStyle">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingBottom="8dp"
-            android:background="?attr/cardBackground"
             android:orientation="vertical">
 
             <TextView
@@ -491,17 +468,15 @@
                 android:focusable="true">
 
                 <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:importantForAccessibility="no"
-                    app:ico_color="?attr/iconColorPrimary"
-                    app:ico_icon="gmi-star"
-                    app:ico_size="16dp" />
+                    android:src="@drawable/ic_outline_star_24" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="32dp"
+                    android:layout_marginStart="28dp"
                     android:orientation="vertical"
                     android:paddingTop="8dp"
                     android:paddingBottom="8dp">
@@ -523,6 +498,6 @@
             </LinearLayout>
 
         </LinearLayout>
-    </androidx.cardview.widget.CardView>
+    </com.google.android.material.card.MaterialCardView>
 
 </LinearLayout>

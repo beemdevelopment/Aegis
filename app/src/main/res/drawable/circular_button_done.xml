@@ -1,9 +1,0 @@
-<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:drawable="@drawable/circular_button_background" />
-    <item
-        android:drawable="@drawable/ic_check_black_24dp"
-        android:bottom="16dp"
-        android:top="16dp"
-        android:left="16dp"
-        android:right="16dp" />
-</layer-list>

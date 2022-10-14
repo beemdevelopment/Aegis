@@ -3,7 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?attr/background"
     android:orientation="vertical">
 
     <com.beemdevelopment.aegis.ui.views.TotpProgressBar
@@ -22,22 +21,20 @@
         android:text="@string/groups"
         android:layout_gravity="end"
         android:layout_marginEnd="8dp"
-        android:textAppearance="@style/TextAppearance.Aegis.ActionChip"
-        android:textColor="?attr/primaryText"
         android:visibility="gone"
-        app:chipBackgroundColor="?attr/cardBackground"
         app:chipEndPadding="6dp"
-        app:chipIcon="@drawable/ic_baseline_filter_list_24dp"
+        app:chipIcon="@drawable/ic_outline_filter_list_24"
+        app:chipIconTint="?attr/colorOnSurface"
         app:chipIconSize="18dp"
-        app:chipIconTint="?attr/primaryText"
-        app:chipStrokeColor="@color/hint_text_dark"
         app:chipStrokeWidth="1dp"
         app:iconStartPadding="6dp" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:paddingHorizontal="8dp"
         android:scrollbars="vertical"
+        android:scrollbarStyle="outsideOverlay"
         android:id="@+id/rvKeyProfiles"
         android:layout_weight="1"/>
 
@@ -60,8 +57,7 @@
                 android:id="@+id/imageView"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:src="@drawable/ic_qrcode_scan"
-                app:tint="?attr/primaryText" />
+                android:src="@drawable/ic_qrcode_scan" />
 
             <TextView
                 android:id="@+id/textView"
@@ -69,7 +65,6 @@
                 android:layout_height="wrap_content"
                 android:text="@string/empty_list_title"
                 android:paddingTop="17dp"
-                android:textColor="?attr/primaryText"
                 android:textSize="18sp" />
 
             <TextView

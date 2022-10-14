@@ -7,7 +7,6 @@ import android.view.View;
 
 import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -15,6 +14,7 @@ import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.ui.dialogs.Dialogs;
 import com.beemdevelopment.aegis.ui.views.GroupAdapter;
 import com.beemdevelopment.aegis.vault.VaultGroup;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -84,9 +84,10 @@ public class GroupManagerActivity extends AegisActivity implements GroupAdapter.
 
     @Override
     public void onRemoveGroup(VaultGroup group) {
-        Dialogs.showSecureDialog(new AlertDialog.Builder(this)
+        Dialogs.showSecureDialog(new MaterialAlertDialogBuilder(this, R.style.ThemeOverlay_Aegis_AlertDialog_Warning)
                 .setTitle(R.string.remove_group)
                 .setMessage(R.string.remove_group_description)
+                .setIconAttribute(android.R.attr.alertDialogIcon)
                 .setPositiveButton(android.R.string.yes, (dialog, whichButton) -> {
                     _removedGroups.add(group.getUUID());
                     _adapter.removeGroup(group);
@@ -98,9 +99,10 @@ public class GroupManagerActivity extends AegisActivity implements GroupAdapter.
     }
 
     public void onRemoveUnusedGroups() {
-        Dialogs.showSecureDialog(new AlertDialog.Builder(this)
+        Dialogs.showSecureDialog(new MaterialAlertDialogBuilder(this, R.style.ThemeOverlay_Aegis_AlertDialog_Warning)
                 .setTitle(R.string.remove_unused_groups)
                 .setMessage(R.string.remove_unused_groups_description)
+                .setIconAttribute(android.R.attr.alertDialogIcon)
                 .setPositiveButton(android.R.string.yes, (dialog, whichButton) -> {
                     Set<VaultGroup> unusedGroups = new HashSet<>(_vaultManager.getVault().getGroups());
                     unusedGroups.removeAll(_vaultManager.getVault().getUsedGroups());

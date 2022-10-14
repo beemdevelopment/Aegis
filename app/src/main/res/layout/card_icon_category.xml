@@ -19,7 +19,7 @@
         android:id="@+id/icon_category_indicator"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_chevron_down_black_24dp"
-        app:tint="?attr/iconColorPrimary"
+        android:src="@drawable/ic_outline_expand_more_24"
+        app:tint="?attr/colorOnSurfaceVariant"
         android:layout_gravity="center_vertical" />
 </LinearLayout>

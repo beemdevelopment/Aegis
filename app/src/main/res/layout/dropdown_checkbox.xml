@@ -6,7 +6,6 @@
     <CheckBox
         android:id="@+id/checkbox_in_dropdown"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:buttonTint="@color/colorSecondary"/>
+        android:layout_height="wrap_content" />
 
 </androidx.appcompat.widget.LinearLayoutCompat>

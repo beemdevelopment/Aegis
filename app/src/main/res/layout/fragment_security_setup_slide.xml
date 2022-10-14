@@ -25,7 +25,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/authentication_method_password_explanation"
-            android:textColor="@color/warning_color"
+            android:textColor="?attr/colorError"
             android:textStyle="bold"
             android:layout_marginTop="24dp" />
 
@@ -64,6 +64,7 @@
 
             <ProgressBar
                 android:id="@+id/progressBar"
+                android:progressDrawable="@drawable/progress_horizontal"
                 style="?android:attr/progressBarStyleHorizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

@@ -5,17 +5,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
     tools:context="com.beemdevelopment.aegis.ui.MainActivity">
 
     <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/app_bar_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:theme="@style/ThemeOverlay.Aegis.AppBar">
-        <androidx.appcompat.widget.Toolbar
+        android:fitsSystemWindows="true"
+        app:liftOnScroll="true"
+        app:liftOnScrollTargetViewId="@+id/rvKeyProfiles">
+        <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorAppBar" />
+            android:layout_height="?attr/actionBarSize" />
     </com.google.android.material.appbar.AppBarLayout>
 
     <LinearLayout
@@ -23,32 +26,6 @@
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         android:orientation="vertical">
-        <LinearLayout
-            android:id="@+id/btn_error_bar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:visibility="gone"
-            android:clickable="true"
-            android:focusable="true"
-            android:paddingHorizontal="10dp"
-            android:paddingVertical="10dp"
-            android:background="@color/colorAccent"
-            android:foreground="?android:selectableItemBackground"
-            android:gravity="center">
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:tint="@color/icon_primary_inverted"
-                android:src="@drawable/ic_info_outline_black_24dp" />
-            <TextView
-                android:id="@+id/text_error_bar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/primary_text_inverted"
-                android:textStyle="bold"
-                android:layout_marginStart="5dp" />
-        </LinearLayout>
 
         <com.google.android.material.chip.ChipGroup
             android:id="@+id/groupChipGroup"
@@ -62,7 +39,7 @@
             android:id="@+id/key_profiles"
             android:layout_height="fill_parent"
             android:layout_width="match_parent"
-            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"/>
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
     </LinearLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -71,7 +48,6 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
-        android:src="@drawable/ic_add_black_24dp"
-        app:tint="@color/icon_primary_dark" />
+        android:src="@drawable/ic_outline_add_24"  />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

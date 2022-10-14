@@ -4,8 +4,6 @@ import android.content.Context;
 import android.content.pm.PackageManager;
 import android.util.Xml;
 
-import androidx.appcompat.app.AlertDialog;
-
 import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.crypto.CryptoUtils;
 import com.beemdevelopment.aegis.encoding.Base32;
@@ -18,6 +16,7 @@ import com.beemdevelopment.aegis.ui.dialogs.Dialogs;
 import com.beemdevelopment.aegis.util.IOUtils;
 import com.beemdevelopment.aegis.util.PreferenceParser;
 import com.beemdevelopment.aegis.vault.VaultEntry;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.topjohnwu.superuser.io.SuFile;
 
 import org.json.JSONArray;
@@ -154,7 +153,7 @@ public class TotpAuthenticatorImporter extends DatabaseImporter {
 
         @Override
         public void decrypt(Context context, DecryptListener listener) {
-            Dialogs.showSecureDialog(new AlertDialog.Builder(context)
+            Dialogs.showSecureDialog(new MaterialAlertDialogBuilder(context)
                     .setMessage(R.string.choose_totpauth_importer)
                     .setPositiveButton(R.string.yes, (dialog, which) -> {
                         Dialogs.showPasswordInputDialog(context, password -> {
