@@ -4,6 +4,7 @@ import android.app.Application;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.pm.ShortcutInfo;
 import android.content.pm.ShortcutManager;
 import android.graphics.drawable.Icon;
@@ -11,11 +12,13 @@ import android.os.Build;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
+import androidx.core.content.ContextCompat;
 import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.LifecycleEventObserver;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.ProcessLifecycleOwner;
 
+import com.beemdevelopment.aegis.receivers.VaultLockReceiver;
 import com.beemdevelopment.aegis.ui.MainActivity;
 import com.beemdevelopment.aegis.util.IOUtils;
 import com.beemdevelopment.aegis.vault.VaultManager;
@@ -47,6 +50,10 @@ public abstract class AegisApplicationBase extends Application {
 
         Iconics.init(this);
         Iconics.registerFont(new MaterialDesignIconic());
+
+        VaultLockReceiver lockReceiver = new VaultLockReceiver();
+        IntentFilter intentFilter = new IntentFilter(Intent.ACTION_SCREEN_OFF);
+        ContextCompat.registerReceiver(this, lockReceiver, intentFilter, ContextCompat.RECEIVER_NOT_EXPORTED);
 
         // lock the app if the user moves the application to the background
         ProcessLifecycleOwner.get().getLifecycle().addObserver(new AppLifecycleObserver());

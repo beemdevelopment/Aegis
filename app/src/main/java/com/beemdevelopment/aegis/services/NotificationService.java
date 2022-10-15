@@ -29,14 +29,14 @@ public class NotificationService extends Service {
 
     @SuppressLint("LaunchActivityFromNotification")
     public void serviceMethod() {
-        Intent intent = new Intent(this, VaultLockReceiver.class);
-        intent.setAction(VaultLockReceiver.ACTION_LOCK_VAULT);
-        intent.setPackage(BuildConfig.APPLICATION_ID);
-
         int flags = PendingIntent.FLAG_ONE_SHOT;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             flags |= PendingIntent.FLAG_IMMUTABLE;
         }
+
+        Intent intent = new Intent(this, VaultLockReceiver.class);
+        intent.setAction(VaultLockReceiver.ACTION_LOCK_VAULT);
+        intent.setPackage(BuildConfig.APPLICATION_ID);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 1, intent, flags);
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANNEL_ID)

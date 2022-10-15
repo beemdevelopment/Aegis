@@ -22,8 +22,9 @@ public class VaultLockReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        if (!intent.getAction().equals(ACTION_LOCK_VAULT)
-                && !intent.getAction().equals(Intent.ACTION_SCREEN_OFF)) {
+        if (intent.getAction() == null
+                || (!intent.getAction().equals(ACTION_LOCK_VAULT)
+                && !intent.getAction().equals(Intent.ACTION_SCREEN_OFF))) {
             return;
         }
 
