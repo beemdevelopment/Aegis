@@ -1,0 +1,454 @@
+<resources>
+    <string name="app_name" translatable="false">Aegis</string>
+    <string name="app_name_full" translatable="false">Aegis Authenticator</string>
+    <string name="org_name_full" translatable="false">Beem Development</string>
+    <string name="action_settings">Innstillinger</string>
+    <string name="action_about">Om</string>
+    <string name="action_delete">Slett</string>
+    <string name="action_transfer">Overfør</string>
+    <string name="action_edit_icon">Rediger ikon</string>
+    <string name="action_reset_usage_count">Tilbakestill brukstelling</string>
+    <string name="action_reset_usage_count_dialog">Sett brukstelleverket for denne oppføringen til «0»?</string>
+    <string name="action_default_icon">Gjenopprett forvalt ikon</string>
+    <string name="discard">Forkast</string>
+    <string name="save">Lagre</string>
+    <string name="issuer">Utsteder</string>
+    <string name="yandex_pin">PIN (4–16 siffer)</string>
+    <string name="motp_pin">PIN (4 siffer)</string>
+    <string name="suggested">Foreslått</string>
+    <string name="usage_count">Bruksantall</string>
+    <string name="warning">Advarsel</string>
+
+    <string name="pref_cat_appearance_app">Program</string>
+    <string name="pref_cat_appearance_entries">Oppføringer</string>
+    <string name="pref_cat_backups_android">Android</string>
+    <string name="pref_cat_backups_auto">Automatisk sikkerhetskopi</string>
+    <string name="pref_section_behavior_title">Behavior</string>
+    <string name="pref_section_behavior_summary">Bestem hva som skjer ved interaksjon med oppføringslisten.</string>
+    <string name="pref_section_appearance_title">Utseende</string>
+    <string name="pref_section_appearance_summary">Juster tid, språk, med mer.</string>
+    <string name="pref_section_security_title">Sikkerhet</string>
+    <string name="pref_section_security_summary">Sett opp kryptering, biometrisk opplåsing, auto-låsing, med mer.</string>
+    <string name="pref_section_import_export_title">Import og eksport</string>
+    <string name="pref_section_import_export_summary">Importer sikkerhetskopier fra andre 2FA-programmer. Opprett manuelle eksporter av ditt Aegis-hvelv.</string>
+    <string name="pref_section_backups_title">Sikkerhetskopier</string>
+    <string name="pref_section_backups_summary">Sett opp automatisk sikkerhetskopiering til valgfritt sted, eller skyen med Android sitt skylagringssystem.</string>
+    <string name="pref_section_icon_packs">Ikonpakker</string>
+    <string name="pref_section_icon_packs_summary">Håndter og importer ikonpakker</string>
+    <string name="pref_select_theme_title">Drakt</string>
+    <string name="pref_view_mode_title">Visningsmodus</string>
+    <string name="pref_lang_title">Språk</string>
+    <string name="pref_code_group_size_title">Kodegruppering</string>
+    <string name="pref_code_group_size_summary">Velg antall siffer som skal grupperes</string>
+    <string name="pref_account_name_title">Vis kontonavnet</string>
+    <string name="pref_account_name_summary">Viser kontonavn ved siden av utsteder</string>
+    <string name="pref_import_file_title">Importer fra fil</string>
+    <string name="pref_import_file_summary">Importer symboler fra en fil</string>
+    <string name="pref_android_backups_title">Android-skysikkerhetskopier</string>
+    <string name="pref_android_backups_summary">Tillat Android sitt skylagringssystem å ta med Aegis sitt hvelv i sikkerhetskopiene. Støttes kun for krypterte hvelv.</string>
+    <string name="pref_android_backups_hint"><i>Enhet-til-enhet (D2D) -sikkerhetskopier tillates uansett hva som velges.</i></string>
+    <string name="pref_backups_title">Sikkerhetskopier hvelvet automatisk</string>
+    <string name="pref_backups_summary">Opprett sikkerhetskopier av hvelvet på ekstrnlagring når endringer gjøres. Dette støttes kun for krypterte hvelv.</string>
+    <string name="pref_backups_location_title">Mappe for sikkerhetskopifiler</string>
+    <string name="pref_backups_location_summary">Sikkerhetskopier vil bli lagret i</string>
+    <string name="pref_backups_trigger_title">Ta sikkerhetskopi</string>
+    <string name="pref_backups_trigger_summary">Utløs en sikkerhetskopiering manuelt</string>
+    <string name="pref_backups_versions_title">Antall versjoner å beholde</string>
+    <plurals name="pref_backups_versions_summary">
+        <item quantity="one">Behold %1$d versjon av sikkerhetskopien</item>
+        <item quantity="other">Behold %1$d versjoner av sikkerhetskopien</item>
+    </plurals>
+    <string name="pref_import_app_title">Importer fra program</string>
+    <string name="pref_import_app_summary">Importer symboler fra programmet (krever rot-tilgang)</string>
+    <string name="pref_export_title">Eksporter</string>
+    <string name="pref_export_summary">Eksporter hvelvet</string>
+    <string name="pref_password_reminder_title">Passordspåminnelse</string>
+    <string name="pref_google_auth_export_title">Eksport for 2FA-programmer</string>
+    <string name="pref_google_auth_export_descriptor">Genererer QR-koder kompatible med 2FA-programmer</string>
+    <string name="pref_google_auth_export_no_data">Ingen data å eksportere</string>
+    <plurals name="pref_google_auth_export_incompatible_entries">
+        <item quantity="one">Hoppet over %d inkompatibel oppføring</item>
+        <item quantity="other">Hoppet over %d inkompatible oppføringer</item>
+    </plurals>
+    <string name="pref_password_reminder_summary">Vis en %s-påminnelse om å skrive inn passordet slik at du ikke glemmer det.</string>
+    <string name="pref_password_reminder_summary_disabled">Avslått</string>
+    <string name="pref_secure_screen_title">Skjermsikkerhet</string>
+    <string name="pref_secure_screen_summary">Blokkerer skjermavbildninger og andre forsøk på å fange skjermen i programmet</string>
+    <string name="pref_tap_to_reveal_title">Trykk for å avsløre</string>
+    <string name="pref_tap_to_reveal_summary">Symboler vil skjules som forvalg. Trykk på symboler for å avsløre koden.</string>
+    <string name="pref_tap_to_reveal_time_title">Tidsavbrudd for «Trykk for å avsløre»</string>
+    <string name="pref_auto_lock_title">Auto-lås</string>
+    <string name="pref_auto_lock_summary">Når %s</string>
+    <string name="pref_auto_lock_summary_disabled">Avskrudd</string>
+    <string name="pref_auto_lock_prompt">Auto-lås Aegis når</string>
+    <string name="pref_auto_lock_type_back_button">«Tilbake»-knappen trykkes button is pressed</string>
+    <string name="pref_auto_lock_type_minimize">Programmet minimeres</string>
+    <string name="pref_auto_lock_type_device_lock">Enheten er låst</string>
+    <string name="pref_backup_password_category">Sikkerhetskopi og eksport</string>
+    <string name="pref_backup_password_title">Egnet passord for sikkerhetskopi og eksport</string>
+    <string name="pref_backup_password_summary">Forhindrer at passordet for å låse opp programmer dekrypterer sikkerhetskopier og eksporter.</string>
+    <string name="pref_backup_password_change_title">Endre passord for sikkerhetskopiering og eksport</string>
+    <string name="pref_backup_password_change_summary">Sett et passord brukt til å kryptere hvelvet under sikkerhetskopiering og eksport.</string>
+    <string name="pref_encryption_title">Kryptering</string>
+    <string name="pref_encryption_summary">Krypter hvelvet og lås det opp med et passord eller biometri</string>
+    <string name="pref_biometrics_title">Biometrisk opplåsing</string>
+    <string name="pref_biometrics_summary">Tillat biometrisk identitetsbekreftelse for opplåsing av hvelvet</string>
+    <string name="pref_set_password_title">Endre passord</string>
+    <string name="pref_set_password_summary">Sett et nytt passord brukt til opplåsing av hvelvet ditt</string>
+
+    <string name="export_encrypted">Krypter hvelvet</string>
+    <string name="export_help">Dette eksporterer hvelvet ut av Aegis sin internlagring. Velg formatet for eksporten:</string>
+    <string name="export_warning_unencrypted">Du er i ferd med å eksportere en ukryptert kopi av Aegis-hvelvet. <b>Dette er ikke anbefalt</b>.</string>
+    <string name="export_warning_accept">Jeg forstår risikoen</string>
+    <string name="export_format_aegis">Aegis (.JSON)</string>
+    <string name="export_format_google_auth_uri">Tekstfil (.TXT)</string>
+    <string name="export_format_hint">Format</string>
+
+    <string name="choose_authentication_method">Sikkerhet</string>
+    <string name="authentication_method_explanation">Aegis er et 2FA-program med fokus på sikkerhet. Symboler lagres i et hvelv som alternatit kan krypteres med et passsord du velger. Hvis en angriper skaffer seg din krypterte hvelv-fil vil vedkommende ikke kunne låse den opp uten passordet.\n\nDet antatt beste valget er forvalgt.</string>
+    <string name="authentication_method_none">Ingen</string>
+    <string name="authentication_method_none_description">Passord kreves ikke for opplåsing og hvelvet vil ikke krypteres. <b>Dette anbefales ikke</b>.</string>
+    <string name="authentication_method_password">Passord</string>
+    <string name="authentication_method_password_description">Et passord kreves for å låse opp hvelvet.</string>
+    <string name="authentication_method_password_explanation">Advarsel: Hvis du glemmer passordet vil du miste tilgang til symbolene for godt. Du kan ikke gjenopprette dem uten.</string>
+    <string name="authentication_method_biometrics">Biometri</string>
+    <string name="authentication_method_biometrics_description">I tillegg til et passord registreres biometridata på enheten, som f.eks. fingeravtrykk eller fjes for å låse opp hvelvet.</string>
+    <string name="authentication">Lås opp hvelvet</string>
+
+    <!-- The newline (\n) on the following line is just for aesthetic purposes !-->
+    <string name="authentication_multiline">Lås opp\nhvelvet</string>
+
+    <string name="auth_use_biometrics">Eller trykk her for å bruke <font fgcolor='#FF0D86C1'>biometri</font></string>
+    <string name="set_password">Skriv inn et passord</string>
+    <string name="set_group">Skriv inn et gruppenavn</string>
+    <string name="set_number">Skriv inn et tall</string>
+    <string name="set_password_confirm">Bekreft passordet</string>
+    <string name="invalid_password">Passordet er feil</string>
+    <string name="invalidated_biometrics">En endring i enhetens sikkerhetsinnstillinger ble oppdaget. Gå til «Aegis → Innstillinger → Sikkerhet → Biometrisk opplåsing» for å skru av og på biometrisk opplåsing.</string>
+    <string name="password_reminder">Skriv inn passordet ditt. Du blir spurt om dette periodisk slik at du ikke glemmer det.</string>
+    <string name="password_reminder_freq_never">Aldri</string>
+    <string name="password_reminder_freq_weekly">Ukentlig</string>
+    <string name="password_reminder_freq_biweekly">Annenhver uke</string>
+    <string name="password_reminder_freq_monthly">Månedlig</string>
+    <string name="password_reminder_freq_quarterly">Kvartalvis</string>
+    <string name="enter_password_2fas_message">Skriv inn passordet for å låse opp denne 2FAS-sikkerhetskopien nedenfor.</string>
+    <string name="enter_password_authy_message">Dine Authy-symboler er krypterte. Lukk Aegis, åpne Authy og lås opp symbolene med passordet ditt. Istedenfor kan Aegis også prøve å dekryptere dine Authy-symbol for deg hvis du skriver inn passordet nedenfor.</string>
+    <string name="enter_password_aegis_title">Skriv inn importpassordet</string>
+
+    <string name="period_hint">Periode (sekunder)</string>
+    <string name="algorithm_hint">Sjekksumsfunksjon</string>
+    <string name="type">Type</string>
+    <string name="share">Del</string>
+    <string name="yes">Ja</string>
+    <string name="no">Nei</string>
+    <string name="unlock">Lås opp</string>
+    <string name="advanced">Avansert</string>
+    <string name="counter">Teller</string>
+    <string name="digits">Siffer</string>
+    <string name="secret">Hemmelighet</string>
+    <string name="scan">Skann QR-kode</string>
+    <string name="scan_image">Skann bilde</string>
+    <string name="enter_manually">Skriv inn manuelt</string>
+    <string name="set_up_biometric">Sett opp biometrisk opplåsing</string>
+    <string name="copy">Kopier</string>
+    <string name="edit">Rediger</string>
+    <string name="error_all_caps">Feil</string>
+    <string name="password">Passord</string>
+    <string name="confirm_password">Bekreft passord</string>
+    <string name="show_password">Vis passord</string>
+    <string name="new_entry">Ny oppføring</string>
+    <string name="add_new_entry">Legg til ny oppføring</string>
+    <string name="unlock_vault_error">Kunne ikke låse opp hvelvet</string>
+    <string name="unlock_vault_error_description">Feil passord. Sørg for at du har skrevet inn passordet riktig.</string>
+    <string name="password_equality_error">Passord må være identitiske og må fylles ut</string>
+    <string name="snackbar_authentication_method">Velg en identitetbekreftelsesmetode</string>
+    <string name="encrypting_vault">Krypterer hvelvet…</string>
+    <string name="exporting_vault">Eksporterer hvelvet…</string>
+    <string name="reading_file">Leser fil…</string>
+    <string name="analyzing_qr">Analyserer QR-kode…</string>
+    <string name="analyzing_qr_multiple">Analyserer QR-kode %d/%d (%s)…</string>
+    <plurals name="added_new_entries">
+        <item quantity="one">La til %d ny oppføring i hvelvet</item>
+        <item quantity="other">La til %d nye oppføringer i hvelvet</item>
+    </plurals>
+    <string name="importing_icon_pack">Importerer ikonpakke…</string>
+    <string name="delete_entry">Slett oppføring</string>
+    <string name="delete_entry_description">Slett denne oppføringen?</string>
+    <string name="delete_entry_explanation">Dette skrur ikke 2FA for:\n<b>%s</b>\n\nForhindre at du mister tilgang ved å skru av 2FA, eller ha en annen måte å generere koder for denne tjenesten.</string>
+    <string name="delete_entries">Slett oppføringer</string>
+    <plurals name="delete_entries_description">
+        <item quantity="one">Slett %d oppføring?</item>
+        <item quantity="other">Slett %d oppføringer?</item>
+    </plurals>
+    <string name="discard_changes">Forkast endringer?</string>
+    <string name="discard_changes_description">Endringene dine har ikke blitt lagret</string>
+    <string name="saving_profile_error">Kunne ikke lagre profil</string>
+    <string name="welcome">Velkommen</string>
+    <string name="app_description">Aegis er et fritt, sikkert og gratis 2FA-program</string>
+    <string name="setup_completed">Oppset fullført</string>
+    <string name="setup_completed_description">Aegis har blitt satt opp og er klart til bruk.</string>
+    <string name="vault_not_found">Fant ikke hvelv. Starter oppsett…</string>
+    <string name="copied">Kopiert</string>
+    <string name="errors_copied">Feil kopiert til utklippstavlen</string>
+    <string name="version_copied">Versjon kopiert til utklippstavlen</string>
+    <string name="error_occurred">En feil oppstod</string>
+    <string name="decryption_error">Kunne ikke låse opp hvelvet</string>
+    <string name="decryption_corrupt_error">Kunne ikke låse opp hvelvet. Hvelv-filen kan være skadet.</string>
+    <string name="saving_error">Kunne ikke lagre hvelvet</string>
+    <string name="vault_init_error">Kunne ikke igangsette hvelvet</string>
+    <string name="vault_load_error">Kunne ikke laste inn hvelvet fra lagring</string>
+    <string name="biometric_decrypt_error">Kunne ikke dekryptere hvelvet med biometrisk identitetsbekreftelse. Skjer vanligvis kun hvis sikkerhetsinnstillingene på enehten ble endret. Lås opp hvelvet med passordet ditt og sett opp igjen biometisk identitetsbekreftelse i Aegis-innstillingene.</string>
+    <string name="biometric_init_error">Kunne ikke forberede biometrisk identitetsbekreftelse. Skjer vanligvis kun hvis sikkerhetsinnstillingene på enheten ble endret. Lås opp hvelvet med passordet ditt og sett opp biometrisk identitetsbekreftelse igjen i Aegis-innstillingene.</string>
+    <string name="disable_encryption">Skru av kryptering</string>
+    <string name="disable_encryption_description">Skru av kryptering? Dette lagrer hvelvet i klartekst. <b>Auto-sikkerhetskopiering vil også skrus av</b>.</string>
+    <string name="enable_encryption_error">Kunne ikke skru av kryptering</string>
+    <string name="disable_encryption_error">Kunne ikke skru av kryptering</string>
+    <string name="backup_successful">Sikkerhetskopi planlagt</string>
+    <string name="backup_error">Kunne ikke opprette sikkerhetskopi</string>
+    <string name="backup_status_success">Nyligste sikkerhetskopi: %s</string>
+    <string name="backup_status_failed">Nyligst mislykkede sikkerhetskopi: %s</string>
+    <string name="backup_status_none">Ingen sikkerhetskopier enda</string>
+    <string name="documentsui_error">Installere den påkrevde DocumentsUI-systemkomponenten for å velge og opprette dokumenter mangler. Du kan ha fjernet det med et &quot;opprenskingsverktøy&quot;.</string>
+    <string name="icon_pack_import_error">Kunne ikke importere ikonpakke</string>
+    <string name="icon_pack_import_exists_error">Overskriv ikonpakken du prøver å importere som finnes allerede?</string>
+    <string name="icon_pack_delete_error">Kunne ikke slette ikonpakke</string>
+    <plurals name="icon_pack_info">
+        <item quantity="one">%d ikon</item>
+        <item quantity="other">%d ikoner</item>
+    </plurals>
+    <string name="icon_custom">Egendefinert</string>
+    <string name="permission_denied">Tilgnag nektet</string>
+    <string name="andotp_new_format">Nytt format (v0.6.3 eller nyere) </string>
+    <string name="andotp_old_format">Gammelt format (v0.6.2 eller eldre) </string>
+    <string name="choose_andotp_importer">Hvilket format har andOTP-sikkerhetskopifilen?</string>
+    <string name="choose_totpauth_importer">Er dette en TOTP Authenticator-sikkerhetskopi kryuptert med et passord?</string>
+    <string name="choose_application">Velg program å importere fra</string>
+    <string name="choose_theme">Velg drakt</string>
+    <string name="choose_view_mode">Velg visningsmodus</string>
+    <string name="parsing_file_error">Kunne ikke tolke filen</string>
+    <string name="file_not_found">Fant ikke filen</string>
+    <string name="reading_file_error">Kunne ikke lese filen</string>
+    <string name="app_lookup_error">Et program er ikke</string>
+    <string name="app_version_error">Fortsett import med ustøttet og foreldet versjon av %s, selv om det kan gå galt?</string>
+    <string name="root_error">Kunne ikke innhente rot-tilgang</string>
+    <plurals name="imported_entries_count">
+        <item quantity="one">Importerte %d oppføring</item>
+        <item quantity="other">Importerte %d oppføringer</item>
+    </plurals>
+    <plurals name="entries_shown">
+        <item quantity="one">Viser %d oppføring</item>
+        <item quantity="other">Viser %d oppføringer</item>
+    </plurals>
+    <string name="intro_import_error_title">Kunne ikke importere hvelvet</string>
+    <string name="import_error_title">Noe gikk galt under import</string>
+    <string name="exporting_vault_error">Kunne ikke eksportere hvelvet</string>
+    <string name="exported_vault">Hvelv eksportert</string>
+    <string name="encryption_set_password_error">Kunne ikke sette opp passordet.</string>
+    <string name="encryption_enable_biometrics_error">Kunne ikke skru på biometrisk opplåsing. Noen enheter har dårlig implementering av biometrisk identitetsbekreftelse. Overvei å kun bruke passord istedenfor.</string>
+    <string name="no_cameras_available">Ingen tilgjengelige kamera</string>
+    <string name="read_qr_error">Kunne ikke lese QR-koden</string>
+    <string name="read_qr_error_phonefactor">Aegis er ikke kompatibelt med Microsoft sin proprietære 2FA-algoritme. Sørg for å velge «Sett opp program uten merknader» hvis du setter opp 2FA i Office 365.</string>
+    <string name="partial_google_auth_import">Oppdaget ufullstendig Google Authenticator-eksport</string>
+    <string name="partial_google_auth_import_warning">Fant ikke følgende QR-koder i importen din:\n\n<b>%s</b>\n\nDu kan fortsette med delvis import, men bør prøve igjen med alle QR-kodene slik at du ikke mister tilgang til noen symboler.</string>
+    <string name="missing_qr_code_descriptor">• QR-kode %d</string>
+    <string name="import_partial_export_anyway">Importer %d symboler uansett</string>
+    <string name="import_google_auth_failure">Kunne ikke importere fra Google Authenticator-eksport</string>
+    <string name="unrelated_google_auth_batches_error">Eksporten inneholder info om urelatert forpakning. Prøv å importere én forpakning av gangen.</string>
+    <string name="no_tokens_can_be_imported">Som følge av dette kan ingen symboler importeres</string>
+    <string name="authentication_method_raw">Rå-data</string>
+    <string name="unlocking_vault">Opplåsing av hvelvet</string>
+    <string name="slot_this_device">(this devices)</string>
+    <string name="remove_group">Fjern gruppe</string>
+    <string name="remove_group_description">Fjern denne gruppen? Oppføringen i den vil bli byttet til «Ingen gruppe».</string>
+    <string name="remove_icon_pack">Fjern ikonpakke</string>
+    <string name="remove_icon_pack_description">Fjern denne ikonpakken? Oppføringer som bruker ikoner fra den vil ikke påvirkes.</string>
+    <string name="details">Detaljer</string>
+    <string name="show_error_details">Vis feildetaljer</string>
+    <string name="lock">Lås</string>
+    <string name="name">Navn</string>
+    <string name="no_group">No gruppe</string>
+    <string name="sort">Sortering</string>
+    <string name="sort_alphabetically">Utsteder (A-Å)</string>
+    <string name="sort_alphabetically_reverse">Utsteder (Å-A)</string>
+    <string name="sort_alphabetically_name">Konto (A-Å)</string>
+    <string name="sort_alphabetically_name_reverse">Konto (Å-A)</string>
+    <string name="sort_usage_count">Brukstelling</string>
+    <string name="sort_custom">Egendefinert</string>
+    <string name="new_group">NY gruppe…</string>
+    <string name="group">Gruppe</string>
+    <string name="group_name_hint">Gruppenavn</string>
+    <string name="preference_manage_groups">Rediger grupper</string>
+    <string name="preference_manage_groups_summary">Håndter og slett gruppene dine her</string>
+    <string name="preference_reset_usage_count">Tilbakestill brukstelleverk</string>
+    <string name="preference_reset_usage_count_summary">Tilbakestill brukstelleverk for hver oppføring i hvelvet ditt</string>
+    <string name="preference_reset_usage_count_dialog">Sett bruksantall for hver oppføring i hvelvet ditt til «0»?</string>
+    <string name="note">Notat</string>
+    <string name="clear">Tøm</string>
+
+    <string name="pref_highlight_entry_title">Framhev symboler som trykkes</string>
+    <string name="pref_highlight_entry_summary">Midlertidig framheving for å skille fra hverandre</string>
+    <string name="pref_minimize_on_copy_title">Minimer ved kopiering</string>
+    <string name="pref_minimize_on_copy_summary">Minimering av programmet etter å ha kopiert et symbol</string>
+    <string name="pref_copy_on_tap_title">Kopier symboler som trykkes</string>
+    <string name="pref_copy_on_tap_summary">Kopier til utklippstavlen</string>
+    <string name="pref_pause_entry_title">Frys symboler når de trykkes</string>
+    <string name="pref_pause_entry_summary">Ta pause i automatisk oppfrisking av symboler når de trykkes. Symboler vil ikke oppdateres så lenge de ikke er i fokus. Krever at «Framhev symboler som trykkes» eller «Trykk for å avsløre».</string>
+
+    <string name="pin_keyboard_description">Skriv inn passordet ditt for å skru på PIN-tastaturet. Fungerer kun hvis passordet ditt består av tall.</string>
+    <string name="pin_keyboard_error">Kunne ikke skru på PIN-tastatur</string>
+    <string name="pin_keyboard_error_description">Det er ikke mulig å sette PIN-tastatur. Fungerer kun hvis passordet ditt består av tall.</string>
+    <string name="pin_keyboard_disabled">Passord endret. PIN-tastaturet vil ikke lenger vises.</string>
+    <string name="selected">Valgt</string>
+    <string name="dark_theme_title">Mørk</string>
+    <string name="light_theme_title">Lys</string>
+    <string name="amoled_theme_title">Svart</string>
+    <string name="system_theme_title">Satt med batterisparing</string>
+    <string name="system_amoled_theme_title">Satt med batterilagring (svart)</string>
+    <string name="normal_viewmode_title">Normal</string>
+    <string name="compact_mode_title">Kompakt</string>
+    <string name="small_mode_title">Lite</string>
+    <string name="unknown_issuer">Ukjent utsteder</string>
+    <string name="unknown_account_name">Ukjent kontonavn</string>
+    <plurals name="import_error_dialog">
+        <item quantity="one">Kunne ikke importere %d symbol. Disse vil bli ignorert. Trykk «Detaljer» for mer info om feilene.</item>
+        <item quantity="other">Kunne ikke importere %d symbol. Disse vil bli ignorert. Trykk «Detaljer» for mer info om feilene.</item>
+    </plurals>
+    <string name="unable_to_process_deeplink">Kunne ikke håndtere dyp-lenke</string>
+    <string name="unable_to_read_qrcode_file">Kunne ikke lese og behandle QR-kode fra fil: %s.</string>
+    <string name="unable_to_process_shared_text">Kunne ikke behandle delt tekst som OTP</string>
+    <string name="unable_to_read_qrcode_files">Kunne ikke lese eller skrive noen av QR-kodene. Kun %d/%d oppføringer vil bli importert.</string>
+    <string name="unable_to_generate_qrcode">Kunne ikke generere QR-kode</string>
+    <string name="select_picture">Velg bilde</string>
+    <string name="select_icon">Velg ikon</string>
+    <string name="toggle_checkboxes">Veksle avkryssningsbokser</string>
+    <string name="search">Søk</string>
+    <string name="channel_name_lock_status">Låsestatus</string>
+    <string name="channel_description_lock_status">Vedvarende merknad som tilkjennegir når hvelvet er låst</string>
+    <string name="vault_unlocked_state">Hvelvet er låst opp. Trykk her for å låse opp.</string>
+    <string name="version">Versjon</string>
+    <string name="changelog">Endringslogg</string>
+    <string name="whats_new">Nyheter</string>
+    <string name="github" translatable="false">GitHub</string>
+    <string name="github_description">Kildekode, feilrapporter, og info</string>
+    <string name="license">Gemenfrihetslig lisens</string>
+    <string name="license_description">Aegis er lisensiert GPLv3+</string>
+    <string name="third_party_licenses">Frie tredjepartslisenser</string>
+    <string name="third_party_licenses_description">Bibliotek Aegis bruker</string>
+    <string name="author_alex" translatable="false">Alexander Bakker</string>
+    <string name="country_netherlands">Nederland</string>
+    <string name="author_michael" translatable="false">Michael Schättgen</string>
+    <string name="email_us">Skriv e-post</string>
+    <string name="visit_website">Besøk nettsiden</string>
+    <string name="about_support">Støtte</string>
+    <string name="support_rate">Vurdering</string>
+    <string name="support_rate_description">La flere oppdage programmet ved å vurdere det på Google Play-butikken</string>
+    <string name="webview_error">Kan ikke vise lisens og endringslogg uten støtte for vev-visning.</string>
+    <string name="email">Email</string>
+    <string name="time_sync_warning_title">Automatic time synchronization</string>
+    <string name="time_sync_warning_message">Oppdater systemtid slik at den er nøyaktig til innenfor noen sekunder slik at Aegis kan generere korrekte koder?</string>
+    <string name="time_sync_warning_disable">Ikke advar meg. Jeg vet hva jeg gjør.</string>
+    <string name="google_qr_export_unrelated">Fant urelatert QR-kode. Prøv å restarte skanneren.</string>
+    <plurals name="google_qr_export_scanned">
+        <item quantity="one">Skannet %d/%d QR-koder</item>
+        <item quantity="other">Skannet %d/%d QR-koder</item>
+    </plurals>
+    <string name="google_qr_export_unexpected">Forventet QR-kode #%d, men skannet #%d istedenfor</string>
+    <string name="backup_error_bar_message"><b>Hvelv-sikkerhetskopi mislyktes nylig</b></string>
+    <string name="backup_error_dialog_details">Kunne ikke utføre en nylig hvelv-sikkerhetskopi med %s. Forsøkt: %s. Sjekk at sikkerhetskopi-innstillingene fungerer.</string>
+    <string name="backup_system_builtin">Innebygde auto-sikkerhetskopier i Aegis</string>
+    <string name="backup_system_android">Android sitt skysikkerhetskopisystem</string>
+    <string name="backup_reminder_bar_message"><b>Nylige hvelv-endringer er ikke sikkerhetskopiert</b></string>
+    <string name="backup_plaintext_export_warning"><b>Hvelvet ble nylig sikkerhetskopiert i klartekst</b></string>
+    <string name="pref_show_plaintext_warning_hint">Ikke vis denne advarselen igjen</string>
+    <string name="backup_plaintext_warning_explanation">Denne advarselen vises fordi du nylig har eksporter en ukryptert kopi av hvelvet. Slett filen så fort du ikke har bruk for den.</string>
+    <string name="switch_camera">Bytt kamera</string>
+
+    <string name="custom_notices_format_style" translatable="false" >
+        body {
+            background-color: #%1$s;
+            color: #%2$s;
+            font-family: sans-serif;
+            overflow-wrap: break-word;
+        }
+        pre {
+            background-color: #%3$s;
+            padding: 1em;
+            white-space: pre-wrap;
+        }
+        a {
+            color: #%4$s;
+        }
+    </string>
+    <string name="empty_list">Ingen koder å vise. Bytt oppføringer ved å trykke på pluss-tegnet i nede i høyre hjørne.</string>
+    <string name="empty_list_title">Fant ingen oppføringer</string>
+    <string name="empty_group_list">Ingen grupper å vise. Legg til grupper i redigeringsskjermen for en oppføring.</string>
+    <string name="empty_group_list_title">Fant ingen grupper</string>
+    <string name="no_icon_packs">Ingen ikonpakker importert enda. Trykk på pluss-tegnet for å importere en. Tips: prøv <a href="https://aegis-icons.github.io">aegis-icons</a>.</string>
+    <string name="no_icon_packs_title">Ingen ikonpakker</string>
+    <string name="pick_icon">Velg et ikon</string>
+    <string name="uncategorized">Ukategorisert</string>
+    <string name="done">Ferdig</string>
+    <plurals name="qr_count">
+        <item quantity="one">%d/%d QR-kode</item>
+        <item quantity="other">%d/%d QR-koder</item>
+    </plurals>
+    <string name="next">Neste</string>
+    <string name="previous">Forrige</string>
+    <string name="transfer_entry">Overfør oppføring</string>
+    <string name="transfer_entry_description">Skann denne QR-koden med 2FA-programmet du vil overføre denne oppføringen til</string>
+    <string name="google_auth_compatible_transfer_description">Skann disse QR-kodene med Aegis eller Google Authenticator.\n\nGoogle Authenticator støtter kun TOTP og HOTP-symboler som bruker SHA-1 og produserer 6-sifferkoder.</string>
+
+    <string name="password_strength_very_weak">Veldig svak</string>
+    <string name="password_strength_weak">Svak</string>
+    <string name="password_strength_fair">Grei</string>
+    <string name="password_strength_good">God</string>
+    <string name="password_strength_strong">Sterk</string>
+    <string name="pref_pin_keyboard_title">Bruk PIN-tastatur på låseskjermen</string>
+    <string name="pref_pin_keyboard_summary">Skru på dette hvis du vil skru på PIN-tastatur på låseskjermen. Dette fungerer kun for tallbaserte passord.</string>
+
+    <string name="title_activity_preferences">Innstillinger</string>
+    <string name="title_activity_manage_groups">Håndter grupper</string>
+    <string name="title_activity_transfer">Overfør oppføringer</string>
+    <string name="title_activity_about">Om</string>
+    <string name="title_activity_edit_entry">Rediger oppføring</string>
+    <string name="title_activity_scan_qr">Skann en QR-kode</string>
+    <string name="title_activity_manage_slots">Håndter nøkkelplasser</string>
+    <string name="title_activity_import_entries">Importer oppføringer</string>
+    <string name="dialog_wipe_entries_title">Slett oppføringer</string>
+    <string name="dialog_wipe_entries_message">Fjern alle oppføringer i hvelvet før du importerer filen?\n\n<b>Du mister tilgangen til eksisterende oppføringer for godt.</b></string>
+    <string name="dialog_wipe_entries_checkbox">Slett hvelv-innhold</string>
+
+    <string name="panic_trigger_ignore_toast">Aegis mottok pakikk-utløser, men innstillingen er avskrudd. Ignorerer…</string>
+    <string name="pref_panic_trigger_title">Slett hvelv ved utløsing av panikk-knapp</string>
+    <string name="pref_panic_trigger_summary">Slett hvelv når panikk-utløsing mottas fra Ripple</string>
+
+    <string name="import_vault">Importer hvelv</string>
+    <string name="importer_help_2fas">Bruk en 2FAS Authenticator-sikkerhetskopifil.</string>
+    <string name="importer_help_aegis">Bruk en Aegis-sikkerhetskopifil</string>
+    <string name="importer_help_authenticator_plus">Bruk en Authenticator Plus-eksportfil du finner gjennom <b>Innstillinger → Sikkerhetskopi og gjenoppretting → Eksport som tekst og HTML</b>.</string>
+    <string name="importer_help_authy">Bruk en kopi av <b>/data/data/com.authy.authy/shared_prefs/com.authy.storage.tokens.authenticator.xml</b>,som finnes i internlagringsmappen til Authy.</string>
+    <string name="importer_help_andotp">Bruk en andOTP eksport/sikkerhetskopifil.</string>
+    <string name="importer_help_bitwarden">Bruk en Bitwarden eksport/sikkerhetskopifil. Krypterte filer støttes ikke.</string>
+    <string name="importer_help_duo">Bruk en kopi av <b>/data/data/com.duosecurity.duomobile/files/duokit/accounts.json</b>, som du finner i internlagringsmappen til DUO.</string>
+    <string name="importer_help_freeotp">Bruk en kopi av <b>/data/data/org.fedorahosted.freeotp/shared_prefs/tokens.xml</b>, som du finner i internlagringsmappen FreeOTP.</string>
+    <string name="importer_help_freeotp_plus">Bruk en eksportfil fra FreeOTP+.</string>
+    <string name="importer_help_google_authenticator"><b>Kun databasefiler fra Google Authenticator v5.10 og tidligere støttes</b>.\n\nBruk en kopi av <b>/data/data/com.google.android.apps.authenticator2/databases/databases</b>, som er å finnes i internlagringsmappen til Google Authenticator.</string>
+    <string name="importer_help_microsoft_authenticator">Bruk en kopi av <b>/data/data/com.azure.authenticator/databases/PhoneFactor</b>, som finnes i internlagringsmapen til Microsoft Authenticator.</string>
+    <string name="importer_help_plain_text">Bruk en klartekstfil med en Google Authenticator-URI på hver linje.</string>
+    <string name="importer_help_steam"><b>Steam v3.0 og nyere støttes ikke</b>. Bruk en kopi av <b>/data/data/com.valvesoftware.android.steam.community/files/Steamguard-*.json</b>, som finnes i internlagringsmappen til Steam.</string>
+    <string name="importer_help_totp_authenticator">Bruk en TOTP Authenticator-eksportfil.</string>
+    <string name="importer_help_winauth">Bruk en WinAuth-eksportfil.</string>
+
+    <string name="importer_encrypted_exception_google_authenticator">Hoppet over kryptert oppføring: %s</string>
+
+    <string name="importer_help_direct">Importer oppføringer direkte fra %s. Dette krever at programmet er installert på enheten og at Aegis er innvilget rot-tilgang.</string>
+    <string name="groups">Grupper</string>
+    <string name="pref_focus_search">Fokuser på søk når programmet startes</string>
+    <string name="pref_focus_search_summary">Fokuserer på søk umiddelbart når programmet åpnes.</string>
+
+    <string name="pref_grouping_halves">Hvalveringer</string>
+    <string name="pref_grouping_none">Ingen gruppering</string>
+    <string name="pref_grouping_size_two">Grupper på to</string>
+    <string name="pref_grouping_size_three">Grupper på tre</string>
+    <string name="pref_grouping_size_four">Grupper på fire</string>
+</resources>
