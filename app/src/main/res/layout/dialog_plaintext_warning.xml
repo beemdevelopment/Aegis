@@ -14,7 +14,7 @@
         android:text="@string/backup_plaintext_warning_explanation" />
 
     <CheckBox
-        android:id="@+id/checkbox_dont_show_plaintext_warning_again"
+        android:id="@+id/checkbox_plaintext_warning"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"

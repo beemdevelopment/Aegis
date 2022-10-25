@@ -825,7 +825,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
     }
 
     private void showPlaintextExportWarningOptions() {
-        View view = LayoutInflater.from(this).inflate(R.layout.dialog_plaintext_warning_options, null);
+        View view = LayoutInflater.from(this).inflate(R.layout.dialog_plaintext_warning, null);
 
         AlertDialog dialog = new AlertDialog.Builder(this)
                 .setTitle(R.string.backup_plaintext_export_warning)
@@ -834,7 +834,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
                 .setNegativeButton(android.R.string.cancel, null)
                 .create();
 
-        CheckBox checkBox = view.findViewById(R.id.checkbox_dont_show_plaintext_warning_again);
+        CheckBox checkBox = view.findViewById(R.id.checkbox_plaintext_warning);
         checkBox.setChecked(false);
 
         dialog.setOnShowListener(d -> {
@@ -843,7 +843,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
             btnPos.setOnClickListener(l -> {
                 dialog.dismiss();
 
-                _prefs.setCanShowPlaintextBackupWarning(!checkBox.isChecked());
+                _prefs.setIsPlaintextBackupWarningDisabled(checkBox.isChecked());
                 _prefs.setIsPlaintextBackupWarningNeeded(false);
 
                 updateErrorBar();

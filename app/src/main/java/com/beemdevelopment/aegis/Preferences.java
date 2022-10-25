@@ -7,8 +7,6 @@ import android.net.Uri;
 import android.os.Build;
 import android.preference.PreferenceManager;
 
-import com.beemdevelopment.aegis.ui.views.EntryHolder;
-
 import androidx.annotation.Nullable;
 
 import com.beemdevelopment.aegis.util.JsonUtils;
@@ -376,26 +374,20 @@ public class Preferences {
     }
 
     public void setIsPlaintextBackupWarningNeeded(boolean needed) {
-        if (isPlaintextBackupWarningNeeded() != needed) {
-            _prefs.edit().putBoolean("pref_plaintext_backup_warning_needed", needed).apply();
-        }
+        _prefs.edit().putBoolean("pref_plaintext_backup_warning_needed", needed).apply();
     }
 
     public boolean isPlaintextBackupWarningNeeded() {
-        if (canShowPlaintextBackupWarning()) {
-            return _prefs.getBoolean("pref_plaintext_backup_warning_needed", false);
-        }
-        return false;
+        return !isPlaintextBackupWarningDisabled()
+                && _prefs.getBoolean("pref_plaintext_backup_warning_needed", false);
     }
 
-    public void setCanShowPlaintextBackupWarning(boolean canShow) {
-        if (canShowPlaintextBackupWarning() != canShow) {
-            _prefs.edit().putBoolean("pref_can_show_plaintext_backup_warning", canShow).apply();
-        }
+    public void setIsPlaintextBackupWarningDisabled(boolean disabled) {
+        _prefs.edit().putBoolean("pref_plaintext_backup_warning_disabled", disabled).apply();
     }
 
-    public boolean canShowPlaintextBackupWarning() {
-        return _prefs.getBoolean("pref_can_show_plaintext_backup_warning", true);
+    public boolean isPlaintextBackupWarningDisabled() {
+        return _prefs.getBoolean("pref_plaintext_backup_warning_disabled", false);
     }
 
     public boolean isPinKeyboardEnabled() {
