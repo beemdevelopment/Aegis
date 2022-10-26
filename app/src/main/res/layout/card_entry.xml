@@ -18,6 +18,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <View
+            android:id="@+id/favorite_indicator"
+            android:layout_width="15dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="-11dp"
+            android:backgroundTint="@color/colorFavorite"
+            android:background="@drawable/button_rounded_corners" />
+
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent"

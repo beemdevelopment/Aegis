@@ -35,6 +35,7 @@ public class EntryHolder extends RecyclerView.ViewHolder {
     private static final float DIMMED_ALPHA = 0.2f;
     private static final char HIDDEN_CHAR = '●';
 
+    private View _favoriteIndicator;
     private TextView _profileName;
     private TextView _profileCode;
     private TextView _profileIssuer;
@@ -76,6 +77,7 @@ public class EntryHolder extends RecyclerView.ViewHolder {
         _buttonRefresh = view.findViewById(R.id.buttonRefresh);
         _selected = view.findViewById(R.id.ivSelected);
         _dragHandle = view.findViewById(R.id.drag_handle);
+        _favoriteIndicator = view.findViewById(R.id.favorite_indicator);
 
         _selectedHandler = new Handler();
         _animationHandler = new Handler();
@@ -113,6 +115,8 @@ public class EntryHolder extends RecyclerView.ViewHolder {
         _selected.setVisibility(View.GONE);
         _selectedHandler.removeCallbacksAndMessages(null);
         _animationHandler.removeCallbacksAndMessages(null);
+
+        _favoriteIndicator.setVisibility(_entry.getIsFavorited() ? View.VISIBLE : View.INVISIBLE);
 
         // only show the progress bar if there is no uniform period and the entry type is TotpInfo
         setShowProgress(showProgress);

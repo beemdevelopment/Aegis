@@ -1,6 +1,7 @@
 package com.beemdevelopment.aegis;
 
 import static androidx.test.espresso.Espresso.onView;
+import static androidx.test.espresso.Espresso.openActionBarOverflowOrOptionsMenu;
 import static androidx.test.espresso.Espresso.openContextualActionModeOverflowMenu;
 import static androidx.test.espresso.action.ViewActions.clearText;
 import static androidx.test.espresso.action.ViewActions.click;
@@ -9,20 +10,27 @@ import static androidx.test.espresso.action.ViewActions.longClick;
 import static androidx.test.espresso.action.ViewActions.pressBack;
 import static androidx.test.espresso.action.ViewActions.typeText;
 import static androidx.test.espresso.matcher.ViewMatchers.hasDescendant;
+import static androidx.test.espresso.matcher.ViewMatchers.isDescendantOfA;
 import static androidx.test.espresso.matcher.ViewMatchers.isRoot;
+import static androidx.test.espresso.matcher.ViewMatchers.withClassName;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static junit.framework.TestCase.assertFalse;
 import static junit.framework.TestCase.assertNull;
 import static junit.framework.TestCase.assertTrue;
 
+import static org.hamcrest.Matchers.allOf;
+import static org.hamcrest.Matchers.containsString;
+
 import androidx.annotation.IdRes;
+import androidx.test.core.app.ApplicationProvider;
 import androidx.test.espresso.ViewInteraction;
 import androidx.test.espresso.contrib.RecyclerViewActions;
 import androidx.test.espresso.matcher.RootMatchers;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.filters.LargeTest;
+import androidx.test.platform.app.InstrumentationRegistry;
 
 import com.beemdevelopment.aegis.encoding.Base32;
 import com.beemdevelopment.aegis.encoding.Hex;
@@ -127,8 +135,9 @@ public class OverallTest extends AegisTest {
         onView(withId(R.id.action_share_qr)).perform(click());
         onView(withId(R.id.btnNext)).perform(click()).perform(click()).perform(click());
 
-        onView(withId(R.id.rvKeyProfiles)).perform(RecyclerViewActions.actionOnItemAtPosition(2, longClick()));
-        onView(withId(R.id.action_delete)).perform(click());
+        onView(withId(R.id.rvKeyProfiles)).perform(RecyclerViewActions.actionOnItemAtPosition(0, longClick()));
+        onView(allOf(isDescendantOfA(withClassName(containsString("ActionBarContextView"))), withClassName(containsString("OverflowMenuButton")))).perform(click());
+        onView(withText(R.string.action_delete)).perform(click());
         onView(withId(android.R.id.button1)).perform(click());
 
         openContextualActionModeOverflowMenu();

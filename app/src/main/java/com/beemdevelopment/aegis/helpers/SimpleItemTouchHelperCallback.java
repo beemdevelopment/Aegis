@@ -10,11 +10,11 @@ public class SimpleItemTouchHelperCallback extends ItemTouchHelper.Callback {
 
     private VaultEntry _selectedEntry;
 
-    private final ItemTouchHelperAdapter _adapter;
+    private final EntryAdapter _adapter;
     private boolean _positionChanged = false;
     private boolean _isLongPressDragEnabled = true;
 
-    public SimpleItemTouchHelperCallback(ItemTouchHelperAdapter adapter) {
+    public SimpleItemTouchHelperCallback(EntryAdapter adapter) {
         _adapter = adapter;
     }
 
@@ -28,7 +28,14 @@ public class SimpleItemTouchHelperCallback extends ItemTouchHelper.Callback {
     }
 
     public void setSelectedEntry(VaultEntry entry) {
-        _selectedEntry = entry;
+        if (entry == null) {
+            _selectedEntry = null;
+            return;
+        }
+
+        if (!entry.getIsFavorited()) {
+            _selectedEntry = entry;
+        }
     }
 
     @Override
@@ -41,13 +48,15 @@ public class SimpleItemTouchHelperCallback extends ItemTouchHelper.Callback {
         int dragFlags = ItemTouchHelper.UP | ItemTouchHelper.DOWN;
         int swipeFlags = 0;
 
-        int position = viewHolder.getAdapterPosition();
-        EntryAdapter adapter = (EntryAdapter)recyclerView.getAdapter();
-        if (adapter.isPositionFooter(position)
+        if (viewHolder != null) {
+            int position = viewHolder.getAdapterPosition();
+            EntryAdapter adapter = (EntryAdapter)recyclerView.getAdapter();
+            if (adapter.isPositionFooter(position)
                 || adapter.getEntryAt(position) != _selectedEntry
                 || !isLongPressDragEnabled())
-        {
-            dragFlags = 0;
+            {
+                dragFlags = 0;
+            }
         }
 
         return makeMovementFlags(dragFlags, swipeFlags);
@@ -56,6 +65,9 @@ public class SimpleItemTouchHelperCallback extends ItemTouchHelper.Callback {
     @Override
     public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder,
                           RecyclerView.ViewHolder target) {
+        if(target.getAdapterPosition() < _adapter.getFavorites().size()){
+            return false;
+        }
         _adapter.onItemMove(viewHolder.getAdapterPosition(), target.getAdapterPosition());
         _positionChanged = true;
         return true;

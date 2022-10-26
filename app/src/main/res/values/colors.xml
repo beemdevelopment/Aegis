@@ -8,6 +8,7 @@
     <color name="colorPrimaryLight">#5472d3</color>
     <color name="colorAccent">#FF5252</color>
     <color name="colorAccentPressed">#FF5252</color>
+    <color name="colorFavorite">#F9A825</color>
     <color name="primary_text">#212121</color>
     <color name="secondary_text">#A0A0A0</color>
     <color name="auth_text">#4c4c4c</color>

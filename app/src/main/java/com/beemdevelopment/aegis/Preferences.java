@@ -20,9 +20,11 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Set;
 import java.util.UUID;
 
 public class Preferences {
@@ -231,6 +233,27 @@ public class Preferences {
         }
 
         _prefs.edit().putString("pref_usage_count", usageCountJson.toString()).apply();
+    }
+
+    public List<UUID> getFavorites() {
+        List<UUID> favorites = new ArrayList<>();
+        Set<String> favoritesStringSet = _prefs.getStringSet("pref_favorites", null);
+        if(favoritesStringSet != null) {
+            for (String favorite : favoritesStringSet) {
+                favorites.add(UUID.fromString(favorite));
+            }
+        }
+
+        return favorites;
+    }
+
+    public void setFavorites(List<UUID> favorites) {
+        Set<String> favoritesHashSet = new HashSet<String>();
+        for (UUID favorite : favorites) {
+            favoritesHashSet.add(favorite.toString());
+        }
+
+        _prefs.edit().putStringSet("pref_favorites", favoritesHashSet).apply();
     }
 
     public int getTimeout() {

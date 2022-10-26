@@ -2,6 +2,12 @@
 <menu xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
     <item
+        android:id="@+id/action_toggle_favorite"
+        android:orderInCategory="70"
+        android:icon="@drawable/ic_unset_favorite"
+        android:title="@string/favorite"
+        app:showAsAction="always" />
+    <item
         android:id="@+id/action_copy"
         android:orderInCategory="80"
         android:icon="@drawable/ic_content_copy_white_24dp"
@@ -21,7 +27,7 @@
         android:orderInCategory="100"
         android:icon="@drawable/ic_delete_white"
         android:tint="?attr/iconColorPrimary"
-        app:showAsAction="always"/>
+        app:showAsAction="ifRoom"/>
 
     <item
         android:id="@+id/action_share_qr"

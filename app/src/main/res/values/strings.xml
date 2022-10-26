@@ -152,6 +152,8 @@
     <string name="set_up_biometric">Set up biometric unlock</string>
     <string name="copy">Copy</string>
     <string name="edit">Edit</string>
+    <string name="favorite">Favorite</string>
+    <string name="unfavorite">Unfavorite</string>
     <string name="error_all_caps">ERROR</string>
     <string name="password">Password</string>
     <string name="confirm_password">Confirm password</string>
