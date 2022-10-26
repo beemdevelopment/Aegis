@@ -26,6 +26,7 @@ public class VaultEntry extends UUIDMap.Value {
     private OtpInfo _info;
     private byte[] _icon;
     private IconType _iconType = IconType.INVALID;
+    private boolean _isFavorited;
     private int _usageCount;
     private String _note = "";
 
@@ -142,6 +143,8 @@ public class VaultEntry extends UUIDMap.Value {
 
     public String getNote() { return _note; }
 
+    public boolean getIsFavorited() { return _isFavorited; };
+
     public void setName(String name) {
         _name = name;
     }
@@ -170,6 +173,8 @@ public class VaultEntry extends UUIDMap.Value {
     public void setUsageCount(int usageCount) { _usageCount = usageCount; }
 
     public void setNote(String note) { _note = note; }
+
+    public void setIsFavorited(boolean isFavorited) { _isFavorited = isFavorited; }
 
     @Override
     public boolean equals(Object o) {

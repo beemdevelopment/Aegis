@@ -110,7 +110,6 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         _isDPadPressed = false;
         _isDoingIntro = false;
         _isAuthenticating = false;
-
         if (savedInstanceState != null) {
             _isRecreated = true;
             _pendingSearchQuery = savedInstanceState.getString("pendingSearchQuery");
@@ -177,8 +176,13 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
     @Override
     protected void onPause() {
         Map<UUID, Integer> usageMap = _entryListView.getUsageCounts();
+        List<UUID> favoritesList = _entryListView.getFavorites();
         if (usageMap != null) {
             _prefs.setUsageCount(usageMap);
+        }
+
+        if (favoritesList != null) {
+            _prefs.setFavorites(favoritesList);
         }
 
         super.onPause();
@@ -645,6 +649,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
     public boolean onCreateOptionsMenu(Menu menu) {
         _menu = menu;
         getMenuInflater().inflate(R.menu.menu_main, menu);
+
         updateLockIcon();
         if (_loaded) {
             _entryListView.setGroups(_vaultManager.getVault().getGroups());
@@ -774,6 +779,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
     private void loadEntries() {
         if (!_loaded) {
             _entryListView.setUsageCounts(_prefs.getUsageCounts());
+            _entryListView.setFavorites(_prefs.getFavorites());
             _entryListView.addEntries(_vaultManager.getVault().getEntries());
             _entryListView.runEntriesAnimation();
             _loaded = true;
@@ -859,6 +865,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
             if (_selectedEntries.isEmpty()) {
                 _actionMode.finish();
             } else {
+                setFavoriteMenuItemVisiblity();
                 setIsMultipleSelected(_selectedEntries.size() > 1);
             }
 
@@ -882,6 +889,27 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         _actionMode.getMenu().findItem(R.id.action_copy).setVisible(!multipleSelected);
     }
 
+    private void setFavoriteMenuItemVisiblity() {
+        MenuItem toggleFavoriteMenuItem = _actionMode.getMenu().findItem(R.id.action_toggle_favorite);
+
+        if (_selectedEntries.size() == 1){
+            if (_selectedEntries.get(0).getIsFavorited()) {
+                toggleFavoriteMenuItem.setIcon(R.drawable.ic_set_favorite);
+                toggleFavoriteMenuItem.setTitle(R.string.unfavorite);
+            } else {
+                toggleFavoriteMenuItem.setIcon(R.drawable.ic_unset_favorite);
+                toggleFavoriteMenuItem.setTitle(R.string.favorite);
+            }
+        } else {
+            toggleFavoriteMenuItem.setIcon(R.drawable.ic_unset_favorite);
+            toggleFavoriteMenuItem.setTitle(String.format("%s / %s", getString(R.string.favorite), getString(R.string.unfavorite)));
+        }
+    }
+
+    private void toggleFavorite(VaultEntry entry) {
+        _entryListView.toggleFavoriteState(entry);
+    }
+
     @Override
     public void onLongEntryClick(VaultEntry entry) {
         if (!_selectedEntries.isEmpty()) {
@@ -896,6 +924,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
     private void startActionMode() {
         _actionMode = startSupportActionMode(_actionModeCallbacks);
         _actionModeBackPressHandler.setEnabled(true);
+        setFavoriteMenuItemVisiblity();
     }
 
     @Override
@@ -1021,7 +1050,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
     private class ActionModeCallbacks implements ActionMode.Callback {
             @Override
             public boolean onCreateActionMode(ActionMode mode, Menu menu) {
-                MenuInflater inflater = mode.getMenuInflater();
+                MenuInflater inflater = getMenuInflater();
                 inflater.inflate(R.menu.menu_action_mode, menu);
                 return true;
             }
@@ -1045,6 +1074,14 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
 
                     case R.id.action_edit:
                         startEditEntryActivity(CODE_EDIT_ENTRY, _selectedEntries.get(0));
+                        mode.finish();
+                        return true;
+
+                    case R.id.action_toggle_favorite:
+                            for (VaultEntry entry : _selectedEntries) {
+                                toggleFavorite(entry);
+                            }
+
                         mode.finish();
                         return true;
 
