@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -147,10 +148,13 @@ public class ImportExportPreferencesFragment extends PreferencesFragment {
     }
 
     private void startExport() {
+        boolean isBackupPasswordSet = _vaultManager.getVault().isBackupPasswordSet();
         View view = LayoutInflater.from(requireContext()).inflate(R.layout.dialog_export, null);
         TextView warningText = view.findViewById(R.id.text_export_warning);
         CheckBox checkBoxEncrypt = view.findViewById(R.id.checkbox_export_encrypt);
         CheckBox checkBoxAccept = view.findViewById(R.id.checkbox_accept);
+        TextView passwordInfoText = view.findViewById(R.id.text_separate_password);
+        passwordInfoText.setVisibility(checkBoxEncrypt.isChecked() && isBackupPasswordSet ? View.VISIBLE : View.GONE);
         AutoCompleteTextView dropdown = view.findViewById(R.id.dropdown_export_format);
         DropdownHelper.fillDropdown(requireContext(), dropdown, R.array.export_formats);
         dropdown.setText(getString(R.string.export_format_aegis), false);
@@ -158,6 +162,7 @@ public class ImportExportPreferencesFragment extends PreferencesFragment {
             checkBoxEncrypt.setChecked(position == 0);
             checkBoxEncrypt.setEnabled(position == 0);
             warningText.setVisibility(checkBoxEncrypt.isChecked() ? View.GONE : View.VISIBLE);
+            passwordInfoText.setVisibility(checkBoxEncrypt.isChecked() && isBackupPasswordSet ? View.VISIBLE : View.GONE);
         });
 
         AlertDialog dialog = new AlertDialog.Builder(requireContext())
@@ -174,6 +179,7 @@ public class ImportExportPreferencesFragment extends PreferencesFragment {
 
             checkBoxEncrypt.setOnCheckedChangeListener((buttonView, isChecked) -> {
                 warningText.setVisibility(isChecked ? View.GONE : View.VISIBLE);
+                passwordInfoText.setVisibility(isChecked && isBackupPasswordSet ? View.VISIBLE : View.GONE);
                 checkBoxAccept.setVisibility(isChecked ? View.GONE : View.VISIBLE);
                 checkBoxAccept.setChecked(false);
                 btnPos.setEnabled(isChecked);

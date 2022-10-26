@@ -100,6 +100,7 @@
     <string name="export_help">This action will export the vault out of Aegis\' internal storage. Select the format you\'d like your export to be in:</string>
     <string name="export_warning_unencrypted">You are about to export an unencrypted copy of your Aegis vault. <b>This is not recommended</b>.</string>
     <string name="export_warning_accept">I understand the risk</string>
+    <string name="export_warning_password">Exports are encrypted using a separate password configured in Security settings.</string>
     <string name="export_format_aegis">Aegis (.JSON)</string>
     <string name="export_format_google_auth_uri">Text file (.TXT)</string>
     <string name="export_format_hint">Export format</string>
@@ -210,6 +211,7 @@
     <string name="backup_status_success">Most recent backup successful: %s</string>
     <string name="backup_status_failed">Most recent backup failed: %s</string>
     <string name="backup_status_none">No backups have been made yet</string>
+    <string name="backup_warning_password">Backups are encrypted using a separate password configured in Security settings</string>
     <string name="documentsui_error">DocumentsUI appears to be missing from your device. This is an important system component necessary for the selection and creation of documents. If you used a tool to &quot;debloat&quot; your device, you may have accidentally deleted it and will have to reinstall it.</string>
     <string name="icon_pack_import_error">An error occurred while trying to import an icon pack</string>
     <string name="icon_pack_import_exists_error">The icon pack you\'re trying to import already exists. Do you want to overwrite it?</string>

@@ -2,53 +2,52 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:title="@string/pref_section_backups_title">
+    <Preference
+        android:key="pref_backups_warning_password"
+        android:persistent="false"
+        android:selectable="false"
+        android:summary="@string/backup_warning_password"
+        app:isPreferenceVisible="false"
+        app:icon="@drawable/ic_info_outline_black_24dp" />
     <PreferenceCategory
-        android:title="@string/pref_cat_backups_auto"
-        app:iconSpaceReserved="false">
+        android:title="@string/pref_cat_backups_auto">
         <androidx.preference.SwitchPreferenceCompat
             android:defaultValue="false"
             android:key="pref_backups"
             android:title="@string/pref_backups_title"
             android:summary="@string/pref_backups_summary"
-            app:iconSpaceReserved="false"/>
+            app:icon="@drawable/ic_cloud_upload_outline_black_24dp" />
         <Preference
             android:key="pref_backups_location"
             android:title="@string/pref_backups_location_title"
-            android:summary="@string/pref_backups_location_summary"
-            app:iconSpaceReserved="false"/>
+            android:summary="@string/pref_backups_location_summary" />
         <Preference
             android:key="pref_backups_trigger"
             android:title="@string/pref_backups_trigger_title"
-            android:summary="@string/pref_backups_trigger_summary"
-            app:iconSpaceReserved="false"/>
+            android:summary="@string/pref_backups_trigger_summary" />
         <Preference
             android:key="pref_backups_versions"
-            android:title="@string/pref_backups_versions_title"
-            app:iconSpaceReserved="false"/>
+            android:title="@string/pref_backups_versions_title" />
         <Preference
             android:key="pref_status_backup_builtin"
             android:persistent="false"
-            android:selectable="false"
-            app:iconSpaceReserved="false"/>
+            android:selectable="false" />
     </PreferenceCategory>
     <PreferenceCategory
-        android:title="@string/pref_cat_backups_android"
-        app:iconSpaceReserved="false">
+        android:title="@string/pref_cat_backups_android">
         <androidx.preference.SwitchPreferenceCompat
             android:defaultValue="false"
             android:key="pref_android_backups"
             android:title="@string/pref_android_backups_title"
             android:summary="@string/pref_android_backups_summary"
-            app:iconSpaceReserved="false"/>
+            app:icon="@drawable/ic_android" />
         <Preference
             android:key="pref_status_backup_android"
             android:persistent="false"
-            android:selectable="false"
-            app:iconSpaceReserved="false"/>
+            android:selectable="false" />
         <Preference
             android:persistent="false"
             android:selectable="false"
-            android:summary="@string/pref_android_backups_hint"
-            app:iconSpaceReserved="false"/>
+            android:summary="@string/pref_android_backups_hint" />
     </PreferenceCategory>
 </PreferenceScreen>

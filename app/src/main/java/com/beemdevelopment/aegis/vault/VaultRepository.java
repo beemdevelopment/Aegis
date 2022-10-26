@@ -230,4 +230,12 @@ public class VaultRepository {
     public boolean isEncryptionEnabled() {
         return _creds != null;
     }
+
+    public boolean isBackupPasswordSet() {
+        if (!isEncryptionEnabled()) {
+            return false;
+        }
+
+        return getCredentials().getSlots().findBackupPasswordSlots().size() > 0;
+    }
 }

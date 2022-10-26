@@ -238,7 +238,7 @@ public class SecurityPreferencesFragment extends PreferencesFragment {
 
         _backupPasswordPreference = requirePreference("pref_backup_password");
         _backupPasswordPreference.setOnPreferenceChangeListener((preference, newValue) -> {
-            if (!isBackupPasswordSet()) {
+            if (!_vaultManager.getVault().isBackupPasswordSet()) {
                 Dialogs.showSetPasswordDialog(requireActivity(), new SetBackupPasswordListener());
             } else {
                 VaultFileCredentials creds = _vaultManager.getVault().getCredentials();
@@ -264,7 +264,7 @@ public class SecurityPreferencesFragment extends PreferencesFragment {
 
     private void updateEncryptionPreferences() {
         boolean encrypted = _vaultManager.getVault().isEncryptionEnabled();
-        boolean backupPasswordSet = isBackupPasswordSet();
+        boolean backupPasswordSet = _vaultManager.getVault().isBackupPasswordSet();
         _encryptionPreference.setChecked(encrypted, true);
         _setPasswordPreference.setVisible(encrypted);
         _biometricsPreference.setVisible(encrypted);
@@ -292,15 +292,6 @@ public class SecurityPreferencesFragment extends PreferencesFragment {
             _passwordReminderPreference.setVisible(false);
             _backupPasswordChangePreference.setEnabled(false);
         }
-    }
-
-    private boolean isBackupPasswordSet() {
-        VaultRepository vault = _vaultManager.getVault();
-        if (!vault.isEncryptionEnabled()) {
-            return false;
-        }
-
-        return vault.getCredentials().getSlots().findBackupPasswordSlots().size() > 0;
     }
 
     private String getPasswordReminderSummary() {

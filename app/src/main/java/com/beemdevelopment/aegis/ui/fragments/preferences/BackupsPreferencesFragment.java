@@ -26,6 +26,7 @@ public class BackupsPreferencesFragment extends PreferencesFragment {
     private Preference _backupsLocationPreference;
     private Preference _backupsTriggerPreference;
     private Preference _backupsVersionsPreference;
+    private Preference _backupsPasswordWarningPreference;
 
     private Preference _builtinBackupStatusPreference;
     private Preference _androidBackupStatusPreference;
@@ -41,6 +42,7 @@ public class BackupsPreferencesFragment extends PreferencesFragment {
         super.onCreatePreferences(savedInstanceState, rootKey);
         addPreferencesFromResource(R.xml.preferences_backups);
 
+        _backupsPasswordWarningPreference = requirePreference("pref_backups_warning_password");
         _builtinBackupStatusPreference = requirePreference("pref_status_backup_builtin");
         _builtinBackupStatusPreference.setOnPreferenceClickListener(preference -> {
             Preferences.BackupResult backupRes = _prefs.getBuiltInBackupResult();
@@ -138,6 +140,7 @@ public class BackupsPreferencesFragment extends PreferencesFragment {
         boolean encrypted = _vaultManager.getVault().isEncryptionEnabled();
         boolean androidBackupEnabled = _prefs.isAndroidBackupsEnabled() && encrypted;
         boolean backupEnabled = _prefs.isBackupsEnabled() && encrypted;
+        _backupsPasswordWarningPreference.setVisible(_vaultManager.getVault().isBackupPasswordSet());
         _androidBackupsPreference.setChecked(androidBackupEnabled);
         _androidBackupsPreference.setEnabled(encrypted);
         _backupsPreference.setChecked(backupEnabled);
