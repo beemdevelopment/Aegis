@@ -88,7 +88,9 @@ android {
 
     packagingOptions {
         // R8 doesn't remove these resources, so exclude them manually. This reduces APK size by 4MB.
-        exclude '/org/bouncycastle/pqc/**/*.properties'
+        resources {
+            excludes += ['/org/bouncycastle/pqc/**/*.properties']
+        }
     }
 
     compileOptions {
@@ -131,7 +133,7 @@ dependencies {
     annotationProcessor "com.github.bumptech.glide:compiler:${glideVersion}"
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'androidx.activity:activity:1.6.0'
+    implementation 'androidx.activity:activity:1.6.1'
     implementation 'androidx.appcompat:appcompat:1.5.1'
     implementation "androidx.biometric:biometric:1.1.0"
     implementation "androidx.camera:camera-camera2:$cameraxVersion"
@@ -161,7 +163,7 @@ dependencies {
     implementation "com.github.topjohnwu.libsu:core:${libsuVersion}"
     implementation "com.github.topjohnwu.libsu:io:${libsuVersion}"
     implementation "com.google.guava:guava:${guavaVersion}-android"
-    implementation 'com.google.android.material:material:1.6.1'
+    implementation 'com.google.android.material:material:1.7.0'
     implementation 'com.google.protobuf:protobuf-javalite:3.21.4'
     implementation 'com.google.zxing:core:3.5.0'
     implementation "com.mikepenz:iconics-core:3.2.5"
@@ -176,17 +178,17 @@ dependencies {
 
     androidTestAnnotationProcessor "com.google.dagger:hilt-android-compiler:$hiltVersion"
     androidTestImplementation "com.google.dagger:hilt-android-testing:$hiltVersion"
-    androidTestImplementation 'androidx.test:core:1.5.0-beta01'
-    androidTestImplementation 'androidx.test:runner:1.5.0-beta01'
-    androidTestImplementation 'androidx.test:rules:1.4.1-beta01'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.4-beta01'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.0-beta01'
-    androidTestImplementation 'androidx.test.espresso:espresso-contrib:3.5.0-beta01'
-    androidTestImplementation 'androidx.test.espresso:espresso-intents:3.5.0-beta01'
+    androidTestImplementation 'androidx.test:core:1.5.0-rc01'
+    androidTestImplementation 'androidx.test:runner:1.5.0-rc01'
+    androidTestImplementation 'androidx.test:rules:1.5.0-rc01'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.4-rc01'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.0-rc01'
+    androidTestImplementation 'androidx.test.espresso:espresso-contrib:3.5.0-rc01'
+    androidTestImplementation 'androidx.test.espresso:espresso-intents:3.5.0-rc01'
     androidTestImplementation "junit:junit:${junitVersion}"
-    androidTestUtil 'androidx.test:orchestrator:1.4.2-beta01'
+    androidTestUtil 'androidx.test:orchestrator:1.4.2-rc01'
 
-    testImplementation 'androidx.test:core:1.5.0-beta01'
+    testImplementation 'androidx.test:core:1.5.0-rc01'
     testImplementation "com.google.guava:guava:${guavaVersion}-jre"
     testImplementation "junit:junit:${junitVersion}"
     testImplementation 'org.json:json:20220924'
