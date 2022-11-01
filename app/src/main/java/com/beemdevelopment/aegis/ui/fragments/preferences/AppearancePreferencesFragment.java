@@ -109,5 +109,11 @@ public class AppearancePreferencesFragment extends PreferencesFragment {
             getResult().putExtra("needsRefresh", true);
             return true;
         });
+
+        Preference showIconsPreference = requirePreference("pref_show_icons");
+        showIconsPreference.setOnPreferenceChangeListener((preference, newValue) -> {
+            getResult().putExtra("needsRefresh", true);
+            return true;
+        });
     }
 }

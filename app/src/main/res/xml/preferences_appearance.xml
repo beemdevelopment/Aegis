@@ -30,6 +30,13 @@
             android:title="@string/pref_view_mode_title"
             app:iconSpaceReserved="false"/>
 
+        <androidx.preference.SwitchPreferenceCompat
+            android:defaultValue="true"
+            android:key="pref_show_icons"
+            android:title="@string/pref_show_icons_title"
+            android:summary="@string/pref_show_icons_summary"
+            app:iconSpaceReserved="false"/>
+
         <ListPreference
             android:key="pref_code_group_size_string"
             android:title="@string/pref_code_group_size_title"

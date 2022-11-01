@@ -46,6 +46,7 @@ public class EntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     private VaultEntry _focusedEntry;
     private Preferences.CodeGrouping _codeGroupSize;
     private boolean _showAccountName;
+    private boolean _showIcon;
     private boolean _highlightEntry;
     private boolean _tempHighlightEntry;
     private boolean _tapToReveal;
@@ -87,6 +88,10 @@ public class EntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
     public void setShowAccountName(boolean showAccountName) {
         _showAccountName = showAccountName;
+    }
+
+    public void setShowIcon(boolean showIcon) {
+        _showIcon = showIcon;
     }
 
     public void setTapToReveal(boolean tapToReveal) {
@@ -274,6 +279,7 @@ public class EntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         } else {
             for (EntryHolder holder : _holders) {
                 holder.refresh();
+                holder.showIcon(_showIcon);
             }
         }
     }
@@ -403,13 +409,11 @@ public class EntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
         RecyclerView.ViewHolder holder;
         View view = inflater.inflate(viewType, parent, false);
-        if (viewType == R.layout.card_footer) {
-            holder = new FooterView(view);
-        } else {
-            EntryHolder entryHolder = new EntryHolder(view);
-            _view.setPreloadView(entryHolder.getIconView());
-            holder = entryHolder;
+        holder = viewType == R.layout.card_footer ? new FooterView(view) : new EntryHolder(view);
+        if (_showIcon && holder instanceof EntryHolder) {
+            _view.setPreloadView(((EntryHolder) holder).getIconView());
         }
+
         return holder;
     }
 
@@ -431,9 +435,12 @@ public class EntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             boolean paused = _pauseFocused && entry == _focusedEntry;
             boolean dimmed = (_highlightEntry || _tempHighlightEntry) && _focusedEntry != null && _focusedEntry != entry;
             boolean showProgress = entry.getInfo() instanceof TotpInfo && ((TotpInfo) entry.getInfo()).getPeriod() != getMostFrequentPeriod();
-            entryHolder.setData(entry, _codeGroupSize, _showAccountName, showProgress, hidden, paused, dimmed);
+            entryHolder.setData(entry, _codeGroupSize, _showAccountName, _showIcon, showProgress, hidden, paused, dimmed);
             entryHolder.setFocused(_selectedEntries.contains(entry));
-            entryHolder.loadIcon(_view);
+
+            if (_showIcon) {
+                entryHolder.loadIcon(_view);
+            }
 
             entryHolder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

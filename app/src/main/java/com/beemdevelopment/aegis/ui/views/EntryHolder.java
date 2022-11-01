@@ -105,7 +105,7 @@ public class EntryHolder extends RecyclerView.ViewHolder {
         });
     }
 
-    public void setData(VaultEntry entry, Preferences.CodeGrouping groupSize, boolean showAccountName, boolean showProgress, boolean hidden, boolean paused, boolean dimmed) {
+    public void setData(VaultEntry entry, Preferences.CodeGrouping groupSize, boolean showAccountName, boolean showIcon, boolean showProgress, boolean hidden, boolean paused, boolean dimmed) {
         _entry = entry;
         _hidden = hidden;
         _paused = paused;
@@ -137,6 +137,8 @@ public class EntryHolder extends RecyclerView.ViewHolder {
         } else if (!_paused) {
             refreshCode();
         }
+
+        showIcon(showIcon);
 
         itemView.setAlpha(dimmed ? DIMMED_ALPHA : DEFAULT_ALPHA);
     }
@@ -296,6 +298,14 @@ public class EntryHolder extends RecyclerView.ViewHolder {
         hiddenText = formatCode(hiddenText);
         _profileCode.setText(hiddenText);
         _hidden = true;
+    }
+
+    public void showIcon(boolean show) {
+        if (show) {
+            _profileDrawable.setVisibility(View.VISIBLE);
+        } else {
+            _profileDrawable.setVisibility(View.GONE);
+        }
     }
 
     public void setPaused(boolean paused) {
