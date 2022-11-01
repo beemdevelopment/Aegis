@@ -1,5 +1,7 @@
 package com.beemdevelopment.aegis.vault;
 
+import androidx.annotation.Nullable;
+
 import com.beemdevelopment.aegis.util.UUIDMap;
 
 import org.json.JSONArray;
@@ -11,10 +13,16 @@ public class Vault {
     private UUIDMap<VaultEntry> _entries = new UUIDMap<>();
 
     public JSONObject toJson() {
+        return toJson(null);
+    }
+
+    public JSONObject toJson(@Nullable EntryFilter filter) {
         try {
             JSONArray array = new JSONArray();
             for (VaultEntry e : _entries) {
-                array.put(e.toJson());
+                if (filter == null || filter.includeEntry(e)) {
+                    array.put(e.toJson());
+                }
             }
 
             JSONObject obj = new JSONObject();
@@ -50,5 +58,9 @@ public class Vault {
 
     public UUIDMap<VaultEntry> getEntries() {
         return _entries;
+    }
+
+    public interface EntryFilter {
+        boolean includeEntry(VaultEntry entry);
     }
 }

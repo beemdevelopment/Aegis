@@ -64,4 +64,42 @@
         android:text="@string/export_warning_accept"
         android:checked="false"
         android:visibility="gone" />
+
+    <CheckBox
+        android:id="@+id/export_selected_groups"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="5dp"
+        android:text="@string/export_all_groups"
+        android:checked="true"/>
+
+    <TextView
+        android:id="@+id/select_groups_hint"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="30dp"
+        android:text="@string/export_choose_groups"
+        android:visibility="gone"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="20dp">
+        <LinearLayout
+            android:id="@+id/select_groups"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="20dp"
+            android:visibility="gone">
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/no_group"
+                android:checked="false"/>
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>
