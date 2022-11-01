@@ -176,13 +176,8 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
     @Override
     protected void onPause() {
         Map<UUID, Integer> usageMap = _entryListView.getUsageCounts();
-        List<UUID> favoritesList = _entryListView.getFavorites();
         if (usageMap != null) {
             _prefs.setUsageCount(usageMap);
-        }
-
-        if (favoritesList != null) {
-            _prefs.setFavorites(favoritesList);
         }
 
         super.onPause();
@@ -779,7 +774,6 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
     private void loadEntries() {
         if (!_loaded) {
             _entryListView.setUsageCounts(_prefs.getUsageCounts());
-            _entryListView.setFavorites(_prefs.getFavorites());
             _entryListView.addEntries(_vaultManager.getVault().getEntries());
             _entryListView.runEntriesAnimation();
             _loaded = true;
@@ -893,7 +887,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         MenuItem toggleFavoriteMenuItem = _actionMode.getMenu().findItem(R.id.action_toggle_favorite);
 
         if (_selectedEntries.size() == 1){
-            if (_selectedEntries.get(0).getIsFavorited()) {
+            if (_selectedEntries.get(0).isFavorite()) {
                 toggleFavoriteMenuItem.setIcon(R.drawable.ic_set_favorite);
                 toggleFavoriteMenuItem.setTitle(R.string.unfavorite);
             } else {
@@ -904,10 +898,6 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
             toggleFavoriteMenuItem.setIcon(R.drawable.ic_unset_favorite);
             toggleFavoriteMenuItem.setTitle(String.format("%s / %s", getString(R.string.favorite), getString(R.string.unfavorite)));
         }
-    }
-
-    private void toggleFavorite(VaultEntry entry) {
-        _entryListView.toggleFavoriteState(entry);
     }
 
     @Override
@@ -1062,7 +1052,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
 
             @Override
             public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
-                if(_selectedEntries.size() == 0) {
+                if (_selectedEntries.size() == 0) {
                     mode.finish();
                     return true;
                 }
@@ -1078,10 +1068,13 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
                         return true;
 
                     case R.id.action_toggle_favorite:
-                            for (VaultEntry entry : _selectedEntries) {
-                                toggleFavorite(entry);
-                            }
+                        for (VaultEntry entry : _selectedEntries) {
+                            entry.setIsFavorite(!entry.isFavorite());
+                            _entryListView.replaceEntry(entry.getUUID(), entry);
+                        }
+                        _entryListView.refresh(true);
 
+                        saveAndBackupVault();
                         mode.finish();
                         return true;
 

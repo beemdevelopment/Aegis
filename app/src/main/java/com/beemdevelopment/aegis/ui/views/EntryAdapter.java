@@ -42,7 +42,6 @@ public class EntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     private List<VaultEntry> _shownEntries;
     private List<VaultEntry> _selectedEntries;
     private Map<UUID, Integer> _usageCounts;
-    private List<UUID> _favorites;
     private VaultEntry _focusedEntry;
     private Preferences.CodeGrouping _codeGroupSize;
     private boolean _showAccountName;
@@ -113,17 +112,6 @@ public class EntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         _pauseFocused = pauseFocused;
     }
 
-    public void toggleFavoriteState(VaultEntry entry) {
-        if (_favorites.contains(entry.getUUID())) {
-            _favorites.remove(entry.getUUID());
-        } else {
-            _favorites.add(entry.getUUID());
-        }
-
-        entry.setIsFavorited(_favorites.contains(entry.getUUID()));
-        updateShownEntries();
-    }
-
     public VaultEntry getEntryAt(int position) {
         return _shownEntries.get(position);
     }
@@ -139,7 +127,7 @@ public class EntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         if (comparator != null) {
             // insert the entry in the correct order
             // note: this assumes that _shownEntries has already been sorted
-            for (int i = _favorites.size(); i < _shownEntries.size(); i++) {
+            for (int i = getShownFavoritesCount(); i < _shownEntries.size(); i++) {
                 if (comparator.compare(_shownEntries.get(i), entry) > 0) {
                     _shownEntries.add(i, entry);
                     notifyItemInserted(i);
@@ -169,7 +157,6 @@ public class EntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     public void addEntries(Collection<VaultEntry> entries) {
         for (VaultEntry entry: entries) {
             entry.setUsageCount(_usageCounts.containsKey(entry.getUUID()) ? _usageCounts.get(entry.getUUID()) : 0);
-            entry.setIsFavorited(_favorites.contains(entry.getUUID()));
         }
 
         _entries.addAll(entries);
@@ -179,10 +166,6 @@ public class EntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
     public void removeEntry(VaultEntry entry) {
         _entries.remove(entry);
-
-        if (_favorites.contains(entry.getUUID())) {
-            removeFavorite(entry);
-        }
 
         if (_shownEntries.contains(entry)) {
             int position = _shownEntries.indexOf(entry);
@@ -270,7 +253,7 @@ public class EntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
     public void refresh(boolean hard) {
         if (hard) {
-            notifyDataSetChanged();
+            updateShownEntries();
         } else {
             for (EntryHolder holder : _holders) {
                 holder.refresh();
@@ -336,19 +319,8 @@ public class EntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
     public Map<UUID, Integer> getUsageCounts() { return _usageCounts; }
 
-    public void setFavorites(List<UUID> favorites) { _favorites = favorites; }
-
-    public List<UUID> getFavorites() { return _favorites; }
-
-    public void removeFavorite(VaultEntry entry) {
-        int position = -1;
-        for (int i = 0; i < _favorites.size(); i++) {
-            if (_favorites.get(i).equals(entry.getUUID())) {
-                position = i;
-            }
-        }
-
-        _favorites.remove(position);
+    public int getShownFavoritesCount() {
+        return (int) _shownEntries.stream().filter(VaultEntry::isFavorite).count();
     }
 
     public void setGroups(TreeSet<String> groups) {
@@ -485,7 +457,7 @@ public class EntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
                     boolean dragEnabled = _selectedEntries.size() == 0
                             || _selectedEntries.size() == 1 && _selectedEntries.get(0) == entryHolder.getEntry();
-                    if (dragEnabled && isDragAndDropAllowed() && !entryHolder.getEntry().getIsFavorited()) {
+                    if (dragEnabled && isDragAndDropAllowed() && !entryHolder.getEntry().isFavorite()) {
                         _view.startDrag(_dragHandleHolder);
                     }
 
@@ -500,7 +472,7 @@ public class EntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                             && _selectedEntries.size() == 1
                             && _selectedEntries.get(0) == entryHolder.getEntry()
                             && isDragAndDropAllowed()
-                            && !entryHolder.getEntry().getIsFavorited()) {
+                            && !entryHolder.getEntry().isFavorite()) {
                         _view.startDrag(_dragHandleHolder);
                         return true;
                     }
@@ -644,7 +616,7 @@ public class EntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             return;
         }
 
-        if (_selectedEntries.size() == 1 && _dragHandleHolder == null && !_selectedEntries.get(0).getIsFavorited()) {
+        if (_selectedEntries.size() == 1 && _dragHandleHolder == null && !_selectedEntries.get(0).isFavorite()) {
             // Find and enable dragging for the single selected EntryHolder
             // Not nice but this is the best method I could find
             for (int i = 0; i < _holders.size(); i++) {

@@ -1,5 +1,7 @@
 package com.beemdevelopment.aegis.ui.views;
 
+import static androidx.recyclerview.widget.RecyclerView.NO_POSITION;
+
 import android.annotation.SuppressLint;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
@@ -197,12 +199,6 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
         return _adapter.getUsageCounts();
     }
 
-    public void setFavorites(List<UUID> favorites) {
-        _adapter.setFavorites(favorites);
-    }
-
-    public List<UUID> getFavorites() { return _adapter.getFavorites(); }
-
     public void setSearchFilter(String search) {
         _adapter.setSearchFilter(search);
         _touchCallback.setIsLongPressDragEnabled(_adapter.isDragAndDropAllowed());
@@ -354,10 +350,6 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
                 tempHighlightEntry(entry);
             }
         }
-    }
-
-    public void toggleFavoriteState(VaultEntry entry) {
-        _adapter.toggleFavoriteState(entry);
     }
 
     public void tempHighlightEntry(VaultEntry entry) {
@@ -540,7 +532,7 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
     }
 
     private class VerticalSpaceItemDecoration extends RecyclerView.ItemDecoration {
-        private int _height;
+        private final int _height;
 
         private VerticalSpaceItemDecoration(float dp) {
             // convert dp to pixels
@@ -549,27 +541,49 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
 
         @Override
         public void getItemOffsets(@NonNull Rect outRect, @NonNull View view, @NonNull RecyclerView parent, @NonNull RecyclerView.State state) {
-            if (parent.getChildAdapterPosition(view) == 0 && (_groups == null || _groups.isEmpty())) {
-                // the first item should also have a top margin
+            int adapterPosition = parent.getChildAdapterPosition(view);
+            if (adapterPosition == NO_POSITION) {
+                return;
+            }
+
+            // The footer always has a top and bottom margin
+            final int defaultMargin = MetricsHelper.convertDpToPixels(requireContext(), 20);
+            if (_adapter.isPositionFooter(adapterPosition)) {
+                outRect.top = defaultMargin;
+                outRect.bottom = defaultMargin;
+                return;
+            }
+
+            // The first entry should have a top margin, but only if the group chip is not shown
+            if (adapterPosition == 0 && (_groups == null || _groups.isEmpty())) {
                 outRect.top = _height;
             }
 
-            int adapterPosition = parent.getChildAdapterPosition(view);
-            if (adapterPosition == -1) {
-                return;
+            // Only non-favorite entries have a bottom margin, except for the final favorite and non-favorite entry
+            int totalFavorites = _adapter.getShownFavoritesCount();
+            if (totalFavorites == 0
+                    || (adapterPosition < _adapter.getEntriesCount() && !_adapter.getEntryAt(adapterPosition).isFavorite())
+                    || totalFavorites == adapterPosition + 1) {
+                outRect.bottom = _height;
             }
 
-            if (adapterPosition < _adapter.getEntriesCount() && _adapter.getEntryAt(adapterPosition).getIsFavorited()) {
-                if (_adapter.getFavorites().size() == parent.getChildAdapterPosition(view) + 1) {
-                    outRect.bottom = MetricsHelper.convertDpToPixels(requireContext(), 20);
-                    return;
+            if (totalFavorites > 0) {
+                // If this entry is the last favorite entry in the list, it should always have
+                // a bottom margin, regardless of the view mode
+                if (adapterPosition == totalFavorites - 1) {
+                    outRect.bottom = defaultMargin;
                 }
 
-                outRect.bottom = 0;
-                return;
+                // If this is the first non-favorite entry, it should have a top margin
+                if (adapterPosition == totalFavorites) {
+                    outRect.top = _height;
+                }
             }
 
-            outRect.top = _height;
+            // The last entry should never have a bottom margin
+            if (_adapter.getEntriesCount() == adapterPosition + 1) {
+                outRect.bottom = 0;
+            }
         }
     }
 

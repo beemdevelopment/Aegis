@@ -33,7 +33,7 @@ public class SimpleItemTouchHelperCallback extends ItemTouchHelper.Callback {
             return;
         }
 
-        if (!entry.getIsFavorited()) {
+        if (!entry.isFavorite()) {
             _selectedEntry = entry;
         }
     }
@@ -65,7 +65,7 @@ public class SimpleItemTouchHelperCallback extends ItemTouchHelper.Callback {
     @Override
     public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder,
                           RecyclerView.ViewHolder target) {
-        if(target.getAdapterPosition() < _adapter.getFavorites().size()){
+        if (target.getAdapterPosition() < _adapter.getShownFavoritesCount()){
             return false;
         }
         _adapter.onItemMove(viewHolder.getAdapterPosition(), target.getAdapterPosition());
@@ -87,6 +87,4 @@ public class SimpleItemTouchHelperCallback extends ItemTouchHelper.Callback {
             _positionChanged = false;
         }
     }
-
-
 }

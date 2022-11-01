@@ -116,7 +116,7 @@ public class EntryHolder extends RecyclerView.ViewHolder {
         _selectedHandler.removeCallbacksAndMessages(null);
         _animationHandler.removeCallbacksAndMessages(null);
 
-        _favoriteIndicator.setVisibility(_entry.getIsFavorited() ? View.VISIBLE : View.INVISIBLE);
+        _favoriteIndicator.setVisibility(_entry.isFavorite() ? View.VISIBLE : View.INVISIBLE);
 
         // only show the progress bar if there is no uniform period and the entry type is TotpInfo
         setShowProgress(showProgress);

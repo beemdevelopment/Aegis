@@ -17,8 +17,6 @@ import java.util.Arrays;
 import java.util.Objects;
 import java.util.UUID;
 
-import javax.annotation.Nonnull;
-
 public class VaultEntry extends UUIDMap.Value {
     private String _name = "";
     private String _issuer = "";
@@ -26,7 +24,7 @@ public class VaultEntry extends UUIDMap.Value {
     private OtpInfo _info;
     private byte[] _icon;
     private IconType _iconType = IconType.INVALID;
-    private boolean _isFavorited;
+    private boolean _isFavorite;
     private int _usageCount;
     private String _note = "";
 
@@ -67,6 +65,7 @@ public class VaultEntry extends UUIDMap.Value {
             obj.put("issuer", _issuer);
             obj.put("group", _group);
             obj.put("note", _note);
+            obj.put("favorite", _isFavorite);
             obj.put("icon", _icon == null ? JSONObject.NULL : Base64.encode(_icon));
             obj.put("icon_mime", _icon == null ? null : _iconType.toMimeType());
             obj.put("info", _info.toJson());
@@ -93,6 +92,7 @@ public class VaultEntry extends UUIDMap.Value {
             entry.setIssuer(obj.getString("issuer"));
             entry.setGroup(obj.optString("group", null));
             entry.setNote(obj.optString("note", ""));
+            entry.setIsFavorite(obj.optBoolean("favorite", false));
 
             Object icon = obj.get("icon");
             if (icon != JSONObject.NULL) {
@@ -143,7 +143,7 @@ public class VaultEntry extends UUIDMap.Value {
 
     public String getNote() { return _note; }
 
-    public boolean getIsFavorited() { return _isFavorited; };
+    public boolean isFavorite() { return _isFavorite; };
 
     public void setName(String name) {
         _name = name;
@@ -174,7 +174,7 @@ public class VaultEntry extends UUIDMap.Value {
 
     public void setNote(String note) { _note = note; }
 
-    public void setIsFavorited(boolean isFavorited) { _isFavorited = isFavorited; }
+    public void setIsFavorite(boolean isFavorite) { _isFavorite = isFavorite; }
 
     @Override
     public boolean equals(Object o) {
@@ -198,7 +198,8 @@ public class VaultEntry extends UUIDMap.Value {
                 && getInfo().equals(entry.getInfo())
                 && Arrays.equals(getIcon(), entry.getIcon())
                 && getIconType().equals(entry.getIconType())
-                && getNote().equals(entry.getNote());
+                && getNote().equals(entry.getNote())
+                && isFavorite() == entry.isFavorite();
     }
 
     /**
