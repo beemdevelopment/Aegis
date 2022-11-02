@@ -16,7 +16,7 @@ jobs:
           path: app/build/outputs/apk/debug/app-debug.apk
   test:
     runs-on: macos-latest
-    # This is probably pretty expensive for GitHub, so restrict the repositories that job runs on
+    # This is probably pretty expensive for GitHub, so restrict the repositories that this job runs on
     if: github.repository == 'beemdevelopment/Aegis' || github.repository == 'alexbakker/Aegis'
     steps:
       - name: Checkout
@@ -26,6 +26,8 @@ jobs:
           java-version: '11'
           distribution: 'temurin'
           cache: 'gradle'
+      - name: Install HAXM
+        run: brew install --cask intel-haxm
       - name: Tests
         uses: reactivecircus/android-emulator-runner@e790971012b979513b4e2fe70d4079bc0ca8a1ae
         with:
