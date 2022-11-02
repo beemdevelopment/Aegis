@@ -17,7 +17,6 @@ import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.ItemTouchHelper;
@@ -30,6 +29,7 @@ import com.beemdevelopment.aegis.SortCategory;
 import com.beemdevelopment.aegis.ViewMode;
 import com.beemdevelopment.aegis.helpers.MetricsHelper;
 import com.beemdevelopment.aegis.helpers.SimpleItemTouchHelperCallback;
+import com.beemdevelopment.aegis.helpers.ThemeHelper;
 import com.beemdevelopment.aegis.helpers.UiRefresher;
 import com.beemdevelopment.aegis.otp.TotpInfo;
 import com.beemdevelopment.aegis.ui.dialogs.Dialogs;
@@ -44,6 +44,7 @@ import com.bumptech.glide.util.ViewPreloadSizeProvider;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
+import com.google.android.material.divider.MaterialDividerItemDecoration;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -496,9 +497,7 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
 
         float height = _viewMode.getDividerHeight();
         if (_showProgress && height == 0) {
-            DividerItemDecoration divider = new DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL);
-            divider.setDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.entry_divider));
-            _dividerDecoration = divider;
+            _dividerDecoration = new CompactDividerDecoration();
         } else {
             _dividerDecoration = new VerticalSpaceItemDecoration(height);
         }
@@ -531,6 +530,27 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
         void onEntryListTouch();
     }
 
+    private class CompactDividerDecoration extends MaterialDividerItemDecoration {
+        public CompactDividerDecoration() {
+            super(requireContext(), DividerItemDecoration.VERTICAL);
+            setDividerColor(ThemeHelper.getThemeColor(R.attr.divider, requireContext().getTheme()));
+            setLastItemDecorated(false);
+            setDividerThickness(MetricsHelper.convertDpToPixels(requireContext(), 0.5f));
+        }
+
+        @Override
+        public void getItemOffsets(@NonNull Rect outRect, @NonNull View view, @NonNull RecyclerView parent, @NonNull RecyclerView.State state) {
+            if (_adapter.isPositionFooter(parent.getChildAdapterPosition(view))) {
+                int pixels = MetricsHelper.convertDpToPixels(requireContext(), 20);
+                outRect.top = pixels;
+                outRect.bottom = pixels;
+                return;
+            }
+
+            super.getItemOffsets(outRect, view, parent, state);
+        }
+    }
+
     private class VerticalSpaceItemDecoration extends RecyclerView.ItemDecoration {
         private final int _height;
 
@@ -547,10 +567,9 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
             }
 
             // The footer always has a top and bottom margin
-            final int defaultMargin = MetricsHelper.convertDpToPixels(requireContext(), 20);
             if (_adapter.isPositionFooter(adapterPosition)) {
-                outRect.top = defaultMargin;
-                outRect.bottom = defaultMargin;
+                outRect.top = _height;
+                outRect.bottom = _height;
                 return;
             }
 
@@ -559,7 +578,7 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
                 outRect.top = _height;
             }
 
-            // Only non-favorite entries have a bottom margin, except for the final favorite and non-favorite entry
+            // Only non-favorite entries have a bottom margin, except for the final favorite entry
             int totalFavorites = _adapter.getShownFavoritesCount();
             if (totalFavorites == 0
                     || (adapterPosition < _adapter.getEntriesCount() && !_adapter.getEntryAt(adapterPosition).isFavorite())
@@ -571,7 +590,7 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
                 // If this entry is the last favorite entry in the list, it should always have
                 // a bottom margin, regardless of the view mode
                 if (adapterPosition == totalFavorites - 1) {
-                    outRect.bottom = defaultMargin;
+                    outRect.bottom = _height;
                 }
 
                 // If this is the first non-favorite entry, it should have a top margin
