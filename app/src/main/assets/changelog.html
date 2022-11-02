@@ -31,6 +31,52 @@
     </head>
     <body>
         <div></div>
+        <h3>Version 2.1</h3>
+        <h4>New</h4>
+        <ul>
+            <li>Support for mOTP</li>
+            <li>Support for Yandex OTP (Experimental)</li>
+            <li>An Adaptive Icon for Material You</li>
+            <li>Ability to favorite certain entries and pin them to the top of the entry list</li>
+            <li>Ability to filter by entries that are not in a group</li>
+            <li>Ability to set a separate password that is used for encrypting backups and exports</li>
+            <li>Support for predictive back gesture</li>
+            <li>Improved overview of backup status in preferences</li>
+            <li>Additional options for code digit grouping</li>
+            <li>Support for importing from Duo</li>
+            <li>Support for importing from Bitwarden</li>
+            <li>Support for importing multiple QR code images in one go</li>
+            <li>Support for scanning Google Authenticator export QR codes from image files</li>
+            <li>Display some extra information in the dialog displayed when deleting an entry</li>
+            <li>An option to export through Google Authenticator export QR code images</li>
+            <li>An option to import an existing vault file from the first page in the intro</li>
+            <li>An option to minimize the app after copying a token</li>
+            <li>A count of the total number of entries is displayed at the bottom of the entry list</li>
+            <li>A backup reminder is shown if changes were made to the vault, but no backup or export has been created yet since then</li>
+            <li>A warning is shown after a plaintext export has been made</li>
+            <li>An option to focus search immediately after the app starts</li>
+            <li>Allow customization of the frequency of the password reminder</li>
+            <li>Allow sharing text to Aegis in the format of a Google Authenticator URI to add as a new entry</li>
+            <li>Always allow D2D (device-to-device) Android backups regardless of backup settings</li>
+            <li>Mark clipboard data as sensitive when copying tokens so that Android will mask them in the UI</li>
+            <li>Updated translations for almost all languages</li>
+            <li>New languages: Asturian, Catalan, Galician</li>
+        </ul>
+        <h4>Fixes</h4>
+        <ul>
+            <li>Various reliability improvements for the QR code scanner</li>
+            <li>The floating action button was glitchy when making small entry list scroll movements</li>
+            <li>The vault unlocked notification was never shown and was still using the old app icon</li>
+            <li>The automatically generated entry icon was broken if the entry name/issuer is a multi-codepoint character (certain emoji's, for example)</li>
+            <li>The PIN keyboard was not disabled after enabling encryption</li>
+            <li>The password prompt message was unclear when importing from a file</li>
+            <li>The entry list was not sorted correctly if a change to an entry caused its location to change</li>
+            <li>Quickly double-tapping on the copy button would cause a crash</li>
+            <li>Importing an entry with an empty secret would cause a crash loop</li>
+            <li>On certain devices, it was not possible to import icon packs because the .ZIP files would be grayed out</li>
+            <li>An unclear error message was shown when trying to import from Steam and Google Authenticator</li>
+            <li>Various other minor UI and stability improvements</li>
+        </ul>
         <h3>Version 2.0.3</h3>
         <h4>New</h4>
         <ul>
