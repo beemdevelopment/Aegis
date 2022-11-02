@@ -11,6 +11,7 @@
     <string name="discard">破棄する</string>
     <string name="save">保存</string>
     <string name="issuer">発行者</string>
+    <string name="yandex_pin">PIN (4～16桁)</string>
     <string name="suggested">提案</string>
     <string name="usage_count">使用回数</string>
     <string name="pref_cat_appearance_app">アプリ</string>
@@ -26,20 +27,20 @@
     <string name="pref_section_import_export_title">インポートとエクスポート</string>
     <string name="pref_section_import_export_summary">Aegisまたは他の認証アプリのバックアップをインポートします。Aegis保管庫の手動エクスポートを作成します。</string>
     <string name="pref_section_backups_title">バックアップ</string>
-    <string name="pref_section_backups_summary">任意の場所への自動バックアップを設定したり、Androidのバックアップシステムへの参加を可能にします。</string>
+    <string name="pref_section_backups_summary">任意の場所に自動バックアップを設定したり、Androidのクラウドバックアップシステムへの参加を有効にします。</string>
     <string name="pref_section_icon_packs">アイコンパック</string>
     <string name="pref_section_icon_packs_summary">アイコンパックの管理とインポート</string>
     <string name="pref_select_theme_title">テーマ</string>
     <string name="pref_view_mode_title">表示モード</string>
     <string name="pref_lang_title">言語</string>
     <string name="pref_code_group_size_title">コードの桁数のグループ化</string>
-    <string name="pref_code_group_size_summary">コードを3桁ずつ表示する代わりに2桁ずつ表示</string>
     <string name="pref_account_name_title">アカウント名を表示</string>
     <string name="pref_account_name_summary">有効にすると発行者の隣にアカウント名を表示します</string>
     <string name="pref_import_file_title">ファイルからインポート</string>
     <string name="pref_import_file_summary">ファイルからトークンをインポート</string>
-    <string name="pref_android_backups_title">Androidのバックアップシステムに含める</string>
-    <string name="pref_android_backups_summary">AndroidのバックアップシステムにAegisの保管庫を含めることを許可します。これは暗号化された保管庫でのみサポートされています。</string>
+    <string name="pref_android_backups_title">Androidクラウドバックアップ</string>
+    <string name="pref_android_backups_summary">AndroidのクラウドバックアップシステムにAegisの保管庫を含めることを許可します。これは暗号化された保管庫でのみサポートされています。</string>
+    <string name="pref_android_backups_hint"><i>上記の設定に関係なく、デバイス間(D2D) バックアップは常に許可されます</i></string>
     <string name="pref_backups_title">保管庫を自動的にバックアップする</string>
     <string name="pref_backups_summary">変更が行われると、自動的に保管庫のバックアップを外部ストレージに作成します。これは暗号化された保管庫でのみサポートされています。</string>
     <string name="pref_backups_location_title">バックアップファイルのディレクトリ</string>
@@ -55,6 +56,8 @@
     <string name="pref_export_title">エクスポート</string>
     <string name="pref_export_summary">保管庫をエクスポート</string>
     <string name="pref_password_reminder_title">パスワードを忘れた場合</string>
+    <string name="pref_password_reminder_summary">パスワードを忘れないように、パスワードを入力する%sリマインダーを表示します。</string>
+    <string name="pref_password_reminder_summary_disabled">無効</string>
     <string name="pref_secure_screen_title">画面のセキュリティ</string>
     <string name="pref_secure_screen_summary">アプリ内でスクリーンショットやその他のキャプチャをブロックする</string>
     <string name="pref_tap_to_reveal_title">タップして表示</string>
@@ -100,7 +103,13 @@
     <string name="invalid_password">パスワードが違います</string>
     <string name="invalidated_biometrics">デバイスのセキュリティ設定の変更が検出されました。 「Aegis -&gt; 設定 -&gt; セキュリティ -&gt; 生体認証ロック解除」にアクセスして、生体認証ロックを無効にして再度有効にしてください。</string>
     <string name="password_reminder">パスワードを入力してください。あなたがパスワードを忘れないようにするために、時々確認します。</string>
+    <string name="password_reminder_freq_weekly">1週間ごと</string>
+    <string name="password_reminder_freq_biweekly">2週間ごと</string>
+    <string name="password_reminder_freq_monthly">1ヶ月ごと</string>
+    <string name="password_reminder_freq_quarterly">3ヶ月ごと</string>
+    <string name="enter_password_2fas_message">この2FASバックアップは暗号化されています。以下にパスワードを入力してください。</string>
     <string name="enter_password_authy_message">認証トークンが暗号化されているようです。Aegisを閉じて、Authyを開いてパスワードでトークンをロック解除してください。 または、パスワードを以下に入力して、AegisがAuthyトークンの復元を試みます。</string>
+    <string name="enter_password_aegis_title">インポートパスワードを入力してください</string>
     <string name="period_hint">期間 (秒)</string>
     <string name="algorithm_hint">ハッシュ関数</string>
     <string name="type">タイプ</string>
@@ -220,11 +229,14 @@
     <string name="preference_reset_usage_count">使用回数をリセット</string>
     <string name="preference_reset_usage_count_summary">保管庫のすべてのエントリーの使用回数をリセットする</string>
     <string name="preference_reset_usage_count_dialog">保管庫のすべてのエントリーの使用回数を0に設定してもよろしいですか？</string>
+    <string name="note">メモ</string>
     <string name="clear">クリア</string>
     <string name="pref_highlight_entry_title">タップ時にトークンを強調表示する</string>
     <string name="pref_highlight_entry_summary">タップ時に一時的に強調表示することで、トークンが互いに区別しやすくなります。</string>
     <string name="pref_copy_on_tap_title">タップ時にトークンをコピー</string>
     <string name="pref_copy_on_tap_summary">トークンをタップしてクリップボードにコピーする</string>
+    <string name="pref_pause_entry_title">タップ時にトークンの更新を停止</string>
+    <string name="pref_pause_entry_summary">トークンをタップすると、トークンの自動更新を一時停止します。フォーカスされている限り、トークンは更新されません。 「タップ時にトークンを強調表示する」または「タップして表示」の設定が必要です。</string>
     <string name="pin_keyboard_description">PINキーボードを有効にするにはパスワードを入力してください。これはパスワードが数字のみで構成されている場合にのみ機能します。</string>
     <string name="pin_keyboard_error">PINキーボードの有効化に失敗しました</string>
     <string name="pin_keyboard_error_description">PINキーボードを設定できません。パスワードは数字のみで構成されている必要があります。</string>
@@ -282,6 +294,7 @@
     <string name="empty_list_title">エントリーが見つかりません</string>
     <string name="empty_group_list">表示するグループがありません。エントリーの編集画面でグループを追加してください</string>
     <string name="empty_group_list_title">グループが見つかりません</string>
+    <string name="no_icon_packs">アイコンパックはまだインポートされていません。＋記号をタップしてインポートしてください。ヒント: <a href="https://aegis-icons.github.io">aegis-icons</a> を試してください。</string>
     <string name="no_icon_packs_title">アイコンパックがありません</string>
     <string name="pick_icon">アイコンを選択</string>
     <string name="uncategorized">未分類</string>
@@ -316,14 +329,15 @@
     <string name="importer_help_authenticator_plus">Authenticator Plusの<b>Settings -&gt; Backup &amp; Restore -&gt; Export as Text and HTML</b>で取得したエクスポートファイルを提供します。</string>
     <string name="importer_help_authy">Authyの内部ストレージディレクトリにある <b>/data/data/com.authy/shared_prefs/com.auth.storage.tokens.authenticator.xml</b>のコピーを提供します。</string>
     <string name="importer_help_andotp">andOTPのエクスポート/バックアップ ファイルを提供します。</string>
+    <string name="importer_help_duo">DUOの内部ストレージディレクトリにある <b>/data/data/com.duosecurity.duomobile/files/duokit/accounts.json</b>のコピーを提供します。</string>
     <string name="importer_help_freeotp">FreeOTPの内部ストレージディレクトリにある <b>/data/data/org.fedorahosted.freeotp/shared_prefs/tokens.xml</b>のコピーを提供します。</string>
     <string name="importer_help_freeotp_plus">FreeOTP+のエクスポートファイルを提供します。</string>
-    <string name="importer_help_google_authenticator">Google Authenticatorの内部ストレージディレクトリにある <b>/data/data/com.google.android.apps.authenticator2/databases/databases</b>のコピーを提供します。</string>
     <string name="importer_help_microsoft_authenticator">Microsoft Authenticatorの内部ストレージディレクトリにある <b>/data/data/com.azure.authenticator/databases/PhoneFactor</b>のコピーを提供します。</string>
     <string name="importer_help_plain_text">各行にGoogle Authenticator URIを持つプレーンテキストファイルを提供します。</string>
-    <string name="importer_help_steam">Steamの内部ストレージディレクトリにある <b>/data/data/com.valvesoftware.android.steam.community/files/Steamguard-*.json</b>のコピーを提供します。</string>
     <string name="importer_help_totp_authenticator">TOTP Authenticatorのエクスポートファイルを提供します。</string>
     <string name="importer_help_winauth">WinAuthのエクスポートファイルを提供します。</string>
     <string name="importer_help_direct">%sからエントリーを直接インポートします。これにはアプリをデバイスにインストールし、rootアクセスをAegisに許可する必要があります。</string>
     <string name="groups">グループ</string>
+    <string name="pref_focus_search">アプリ起動時に検索にフォーカス</string>
+    <string name="pref_focus_search_summary">アプリ起動直後、検索にフォーカスする。</string>
 </resources>

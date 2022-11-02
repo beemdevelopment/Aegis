@@ -11,8 +11,11 @@
     <string name="discard">Descartar</string>
     <string name="save">Salvar</string>
     <string name="issuer">Nome do serviço</string>
+    <string name="yandex_pin">PIN (4–16 dígitos)</string>
+    <string name="motp_pin">PIN (4 dígitos)</string>
     <string name="suggested">Sugerido</string>
     <string name="usage_count">Contagem de uso</string>
+    <string name="warning">Atenção</string>
     <string name="pref_cat_appearance_app">Aplicativo</string>
     <string name="pref_cat_appearance_entries">Entradas</string>
     <string name="pref_cat_backups_android">Android</string>
@@ -26,20 +29,21 @@
     <string name="pref_section_import_export_title">Importar &amp; Exportar</string>
     <string name="pref_section_import_export_summary">Importe backups do Aegis ou outros aplicativos de autenticação. Crie exportações manuais do seu cofre Aegis.</string>
     <string name="pref_section_backups_title">Backups</string>
-    <string name="pref_section_backups_summary">Configure backups automáticos em uma localização de sua escolha ou habilite a participação no sistema de backup do Android.</string>
+    <string name="pref_section_backups_summary">Configura backups automáticos em um local da sua escolha ou habilita a participação no sistema de backup em nuvem do Android.</string>
     <string name="pref_section_icon_packs">Pacote de ícones</string>
     <string name="pref_section_icon_packs_summary">Gerencie e importe pacotes de ícones</string>
     <string name="pref_select_theme_title">Tema</string>
     <string name="pref_view_mode_title">Modo de exibição</string>
     <string name="pref_lang_title">Idioma</string>
     <string name="pref_code_group_size_title">Agrupamento de dígitos</string>
-    <string name="pref_code_group_size_summary">Exibe códigos em grupos de 2 dígitos ao invés de grupos de 3 dígitos</string>
+    <string name="pref_code_group_size_summary">Selecione o número de dígitos para agrupar códigos</string>
     <string name="pref_account_name_title">Exibir o nome da conta</string>
     <string name="pref_account_name_summary">Habilite essa opção para exibir o nome da conta ao lado do nome do serviço</string>
     <string name="pref_import_file_title">Importar de arquivo</string>
     <string name="pref_import_file_summary">Importa tokens de um arquivo</string>
-    <string name="pref_android_backups_title">Participar do sistema de backup do Android</string>
-    <string name="pref_android_backups_summary">Permite que o sistema de backup do Android inclua o cofre Aegis em seus backups. Suporte apenas para cofres criptografados.</string>
+    <string name="pref_android_backups_title">Backups na nuvem do Android</string>
+    <string name="pref_android_backups_summary">Permite que o sistema de backup na nuvem do Android inclua o cofre Aegis em seus backups. Essa opção só é suportada para cofres criptografados.</string>
+    <string name="pref_android_backups_hint"><i>Os backups device-to-device (D2D) são sempre permitidos, independente da configuração acima</i></string>
     <string name="pref_backups_title">Fazer backup automático do cofre</string>
     <string name="pref_backups_summary">Cria automaticamente backups do cofre no armazenamento externo quando alterações forem feitas. Essa opção só é suportada em cofres criptografados.</string>
     <string name="pref_backups_location_title">Diretório para aquivos de backup</string>
@@ -56,9 +60,18 @@
     <string name="pref_export_title">Exportar</string>
     <string name="pref_export_summary">Exporta o cofre</string>
     <string name="pref_password_reminder_title">Lembrete de senha</string>
+    <string name="pref_google_auth_export_title">Exportar para o Google Authenticator</string>
+    <string name="pref_google_auth_export_descriptor">Gera QR codes compatíveis com o Google Authenticator</string>
+    <string name="pref_google_auth_export_no_data">Não há dados para exportar</string>
+    <plurals name="pref_google_auth_export_incompatible_entries">
+        <item quantity="one">Ignorada %d entrada incompatível</item>
+        <item quantity="other">Ignoradas %d entradas incompatíveis</item>
+    </plurals>
+    <string name="pref_password_reminder_summary">Exibe um lembrete %s para inserir a senha, para que você não a esqueça.</string>
+    <string name="pref_password_reminder_summary_disabled">Desabilitado</string>
     <string name="pref_secure_screen_title">Segurança de tela</string>
     <string name="pref_secure_screen_summary">Bloqueia screenshots e outras tentativas de capturar a tela dentro do app</string>
-    <string name="pref_tap_to_reveal_title">Tocar para exibir</string>
+    <string name="pref_tap_to_reveal_title">Toque para exibir</string>
     <string name="pref_tap_to_reveal_summary">Tokens ficarão ocultos por padrão. Toque nos tokens para exibir o código.</string>
     <string name="pref_tap_to_reveal_time_title">Tempo de espera para tocar para exibir</string>
     <string name="pref_auto_lock_title">Bloqueio Automático</string>
@@ -68,6 +81,11 @@
     <string name="pref_auto_lock_type_back_button">O botão voltar está pressionado</string>
     <string name="pref_auto_lock_type_minimize">O app está minimizado</string>
     <string name="pref_auto_lock_type_device_lock">O dispositivo está bloqueado</string>
+    <string name="pref_backup_password_category">Backup &amp; Exportação</string>
+    <string name="pref_backup_password_title">Senha separada para backup &amp; exportação</string>
+    <string name="pref_backup_password_summary">Se ativada, a senha usada para desbloquear o aplicativo não poderá ser mais utilizada para descriptografar backups e exportações.</string>
+    <string name="pref_backup_password_change_title">Alterar senha para backup &amp; exportação</string>
+    <string name="pref_backup_password_change_summary">Define uma nova senha que será usada para criptografar o cofre durante backup e exportação.</string>
     <string name="pref_encryption_title">Criptografia</string>
     <string name="pref_encryption_summary">Criptografa o cofre e o desbloqueia com uma senha ou biometria</string>
     <string name="pref_biometrics_title">Desbloqueio biométrico</string>
@@ -101,7 +119,14 @@
     <string name="invalid_password">A senha está incorreta</string>
     <string name="invalidated_biometrics">Foi detectada uma alteração nas configurações de segurança do seu dispositivo. Por favor, vá até \"Aegis -&gt; Configurações -&gt; Segurança -&gt; Desbloqueio biométrico\" para desativar e reativar o desbloqueio biométrico.</string>
     <string name="password_reminder">Por favor, digite sua senha. Nós ocasionalmente pedimos que você faça isso para que não a esqueça.</string>
+    <string name="password_reminder_freq_never">Nunca</string>
+    <string name="password_reminder_freq_weekly">Semanalmente</string>
+    <string name="password_reminder_freq_biweekly">Quinzenalmente</string>
+    <string name="password_reminder_freq_monthly">Mensalmente</string>
+    <string name="password_reminder_freq_quarterly">Trimestralmente</string>
+    <string name="enter_password_2fas_message">Parece que este backup 2FAS está criptografado. Por favor, digite a senha abaixo.</string>
     <string name="enter_password_authy_message">Parece que seus Authy tokens estão criptografados. Por favor, feche o Aegis, abra o Authy e desbloqueie os tokens com sua senha. Alternativamente, Aegis também pode tentar descriptografar seus Authy tokens para você, se você inserir sua senha abaixo.</string>
+    <string name="enter_password_aegis_title">Digite a senha de desbloqueio</string>
     <string name="period_hint">Período (segundos)</string>
     <string name="algorithm_hint">Função de hash</string>
     <string name="type">Tipo</string>
@@ -119,6 +144,7 @@
     <string name="set_up_biometric">Preparar desbloqueio biométrico</string>
     <string name="copy">Copiar</string>
     <string name="edit">Editar</string>
+    <string name="error_all_caps">ERRO</string>
     <string name="password">Senha</string>
     <string name="confirm_password">Confirmar senha</string>
     <string name="show_password">Mostrar senha</string>
@@ -131,9 +157,16 @@
     <string name="encrypting_vault">Criptografando o cofre</string>
     <string name="exporting_vault">Exportando o cofre</string>
     <string name="reading_file">Lendo arquivo</string>
+    <string name="analyzing_qr">Analisando QR code</string>
+    <string name="analyzing_qr_multiple">Analisando o QR code %d/%d (%s)</string>
+    <plurals name="added_new_entries">
+        <item quantity="one">Adicionada %d nova entrada ao cofre</item>
+        <item quantity="other">Adicionadas %d novas entradas ao cofre</item>
+    </plurals>
     <string name="importing_icon_pack">Importando pacote de ícones</string>
     <string name="delete_entry">Deletar entrada</string>
     <string name="delete_entry_description">Você tem certeza que deseja deletar essa entrada?</string>
+    <string name="delete_entry_explanation">Esta ação não desativa a 2FA para:\n<b>%s</b>\n\nPara evitar a perda de acesso, certifique-se de ter desabilitado a 2FA ou de ter uma maneira alternativa de gerar códigos para este serviço.</string>
     <string name="delete_entries">Deletar entradas</string>
     <plurals name="delete_entries_description">
         <item quantity="one">Você tem certeza que deseja deletar %d entrada?</item>
@@ -164,6 +197,9 @@
     <string name="disable_encryption_error">Um erro ocorreu durante a desativação da criptografia</string>
     <string name="backup_successful">O backup foi agendado com sucesso</string>
     <string name="backup_error">Um erro ocorreu durante a tentativa de criar um backup</string>
+    <string name="backup_status_success">Backup mais recente bem-sucedido: %s</string>
+    <string name="backup_status_failed">Falha no backup mais recente: %s</string>
+    <string name="backup_status_none">Nenhum backup foi feito ainda</string>
     <string name="documentsui_error">DocumentsUI parece estar faltando no seu dispositivo. Este é um componente importante do sistema necessário para a seleção e criação de documentos. Se você usou uma ferramenta para &quot;remover aplicativos do sistema&quot; do seu dispositivo, você pode ter excluído acidentalmente e terá que reinstalá-lo.</string>
     <string name="icon_pack_import_error">Ocorreu um erro ao tentar importar um pacote de ícones</string>
     <string name="icon_pack_import_exists_error">O pacote de ícones que você está tentando importar já existe. Deseja substituí-lo?</string>
@@ -185,11 +221,17 @@
     <string name="file_not_found">Erro: Arquivo não encontrado</string>
     <string name="reading_file_error">Um erro ocorreu durante a tentativa de ler o arquivo</string>
     <string name="app_lookup_error">Erro: App não está instalado</string>
+    <string name="app_version_error">A versão do %s instalada não é suportada. Tentar importar pode resultar em um erro. Gostaria de continuar mesmo assim?</string>
     <string name="root_error">Erro: Não foi possível obter acesso root</string>
     <plurals name="imported_entries_count">
         <item quantity="one">%d entrada importada</item>
         <item quantity="other">%d entradas importadas</item>
     </plurals>
+    <plurals name="entries_shown">
+        <item quantity="one">Mostrando %d entrada</item>
+        <item quantity="other">Mostrando %d entradas</item>
+    </plurals>
+    <string name="intro_import_error_title">Ocorreu um erro ao importar o cofre</string>
     <string name="import_error_title">Um ou mais erros ocorreram durante a importação</string>
     <string name="exporting_vault_error">Um erro ocorreu durante a tentativa de exportar o cofre</string>
     <string name="exported_vault">O cofre foi exportado</string>
@@ -198,6 +240,13 @@
     <string name="no_cameras_available">Nenhuma câmera disponível</string>
     <string name="read_qr_error">Um erro ocorreu durante a tentativa de ler o QR code</string>
     <string name="read_qr_error_phonefactor">Aegis não é compatível com o algoritmo 2FA proprietário da Microsoft. Certifique-se de selecionar \"Configurar aplicativo sem notificações\" ao configurar 2FA no Office 365.</string>
+    <string name="partial_google_auth_import">Exportação incompleta do Google Authenticator detectada</string>
+    <string name="partial_google_auth_import_warning">Alguns QR codes estão faltando em sua importação. Os seguintes códigos não foram encontrados:\n\n<b>%s</b>\n\nVocê pode continuar importando esta exportação parcial, mas recomendamos tentar novamente com todos os códigos QR para que não corra o risco de perder o acesso a quaisquer tokens.</string>
+    <string name="missing_qr_code_descriptor">• QR code %d</string>
+    <string name="import_partial_export_anyway">Importar %d tokens mesmo assim</string>
+    <string name="import_google_auth_failure">Falha ao importar exportação do Google Authenticator</string>
+    <string name="unrelated_google_auth_batches_error">A exportação contém informações para um lote não relacionado. Tente importar 1 lote de cada vez.</string>
+    <string name="no_tokens_can_be_imported">Como resultado, nenhum token pode ser importado</string>
     <string name="authentication_method_raw">Raw</string>
     <string name="unlocking_vault">Desbloqueando o cofre</string>
     <string name="slot_this_device">(esse dispositivo)</string>
@@ -206,6 +255,7 @@
     <string name="remove_icon_pack">Remover pacote de ícones</string>
     <string name="remove_icon_pack_description">Tem certeza que deseja remover este pacote de ícones? Entradas que usam ícones deste pacote não serão afetadas.</string>
     <string name="details">Detalhes</string>
+    <string name="show_error_details">Mostrar detalhes do erro</string>
     <string name="lock">Bloquear</string>
     <string name="name">Conta</string>
     <string name="no_group">Sem grupo</string>
@@ -228,6 +278,8 @@
     <string name="clear">Limpar</string>
     <string name="pref_highlight_entry_title">Destacar tokens quando tocados</string>
     <string name="pref_highlight_entry_summary">Torna tokens mais fáceis de distinguir dos outros destacando eles temporariamente quando tocados</string>
+    <string name="pref_minimize_on_copy_title">Minimizar ao copiar</string>
+    <string name="pref_minimize_on_copy_summary">Minimizar o aplicativo após copiar um token</string>
     <string name="pref_copy_on_tap_title">Copiar tokens quando tocados</string>
     <string name="pref_copy_on_tap_summary">Copia tokens para área de transferência quando tocados</string>
     <string name="pref_pause_entry_title">Congelar tokens quando tocados</string>
@@ -251,6 +303,10 @@
         <item quantity="one">Aegis não pôde importar %d token. Esse token será ignorado. Pressione \'detalhes\' para ver mais informações sobre o erro.</item>
         <item quantity="other">Aegis não pôde importar %d tokens. Esses tokens serão pulados. Pressione \'detalhes\' para ver mais informações sobre os erros.</item>
     </plurals>
+    <string name="unable_to_process_deeplink">Incapaz de processar a ligação profunda</string>
+    <string name="unable_to_read_qrcode_file">Incapaz de ler e processar o QR code do arquivo: %s.</string>
+    <string name="unable_to_process_shared_text">Incapaz de processar texto compartilhado como OTP</string>
+    <string name="unable_to_read_qrcode_files">Não foi possível ler e processar alguns dos QR codes. Apenas %d/%d serão importadas.</string>
     <string name="unable_to_generate_qrcode">Não foi possível gerar o QR code</string>
     <string name="select_picture">Selecionar imagem</string>
     <string name="select_icon">Selecionar ícone</string>
@@ -285,6 +341,13 @@
     </plurals>
     <string name="google_qr_export_unexpected">Esperados #%d QR code, mas escaneados #%d ao invés</string>
     <string name="backup_error_bar_message"><b>Backup do cofre falhou recentemente</b></string>
+    <string name="backup_error_dialog_details">Uma recente tentativa de backup no cofre usando %s falhou, pois ocorreu um erro. O backup foi tentado: %s. Por favor, verifique as configurações do seu backup para garantir que ele seja concluído com sucesso.</string>
+    <string name="backup_system_builtin">Backups automáticos do Aegis</string>
+    <string name="backup_system_android">Sistema de backup em nuvem do Android</string>
+    <string name="backup_reminder_bar_message"><b>As alterações recentes no cofre não foram salvas</b></string>
+    <string name="backup_plaintext_export_warning"><b>O cofre foi exportado recentemente em texto simples</b></string>
+    <string name="pref_show_plaintext_warning_hint">Não mostrar este aviso novamente</string>
+    <string name="backup_plaintext_warning_explanation">Este aviso é exibido porque você exportou recentemente uma cópia não criptografada do cofre. Para manter a segurança de seus tokens, recomendamos excluir este arquivo uma vez que ele não seja mais necessário.</string>
     <string name="switch_camera">Alternar câmera</string>
     <string name="empty_list">Não existem códigos a serem exibidos. Comece a adicionar entradas apertando o sinal de adição no canto inferior direito</string>
     <string name="empty_list_title">Nenhuma entrada encontrada</string>
@@ -295,10 +358,15 @@
     <string name="pick_icon">Escolha um ícone</string>
     <string name="uncategorized">Sem Categoria</string>
     <string name="done">Terminado</string>
+    <plurals name="qr_count">
+        <item quantity="one">%d / %d QR code</item>
+        <item quantity="other">%d / %d QR codes</item>
+    </plurals>
     <string name="next">Próximo</string>
     <string name="previous">Anterior</string>
     <string name="transfer_entry">Transferir entrada</string>
     <string name="transfer_entry_description">Escaneie esse QR code com o app autenticador para o qual você gostaria de transferir essa entrada</string>
+    <string name="google_auth_compatible_transfer_description">Escaneie esses QR codes com Aegis ou Google Authenticator.\n\nDevido a limitações do aplicativo Google Authenticator, apenas TOTP &amp; tokens HOTP que usam SHA1 e produzem códigos de 6 dígitos estão incluídos</string>
     <string name="password_strength_very_weak">Muito fraca</string>
     <string name="password_strength_weak">Fraca</string>
     <string name="password_strength_fair">Média</string>
@@ -320,19 +388,29 @@
     <string name="panic_trigger_ignore_toast">Aegis recebeu um gatilho de pânico, mas essa configuração está desativada, portanto será ignorado</string>
     <string name="pref_panic_trigger_title">Excluir cofre após gatilho de pânico</string>
     <string name="pref_panic_trigger_summary">Excluir cofre quando um gatilho de pânico é recebido do Ripple</string>
+    <string name="import_vault">Importar cofre</string>
     <string name="importer_help_2fas">Forneça um arquivo de backup do 2FAS Authenticator.</string>
     <string name="importer_help_aegis">Fornecer um arquivo de exportação/backup do Aegis.</string>
     <string name="importer_help_authenticator_plus">Fornecer um arquivo de exportação do Autenticador Plus obtido através de <b>Configurações -&gt; Backup &amp; Restaurar -&gt; Exportar como Texto e HTML</b>.</string>
     <string name="importer_help_authy">Fornecer uma cópia de <b>/data/data/com.authy.authy/shared_prefs/com.authy.storage.tokens.authenticator.xml</b>, localizado no diretório de armazenamento interno do Authy.</string>
     <string name="importer_help_andotp">Fornecer um arquivo de exportação/backup do andOTP.</string>
+    <string name="importer_help_bitwarden">Forneça um arquivo de exportação/backup do Bitwarden. Arquivos criptografados não são suportados.</string>
+    <string name="importer_help_duo">Forneça uma cópia de <b>/data/data/com.duosecurity.duomobile/files/duokit/accounts.json</b>, localizada no diretório de armazenamento interno do DUO.</string>
     <string name="importer_help_freeotp">Fornecer uma cópia de <b>/data/data/org.fedorahosted.freeotp/shared_prefs/tokens.xml</b>, localizado no diretório de armazenamento interno do FreeOTP.</string>
     <string name="importer_help_freeotp_plus">Fornecer um arquivo de exportação FreeOTP+.</string>
-    <string name="importer_help_google_authenticator">Fornecer uma cópia de <b>/data/data/com.google.android.apps.authenticator2/databases/databases</b>, localizado no diretório de armazenamento interno do Google Authenticator.</string>
+    <string name="importer_help_google_authenticator"><b>Apenas os arquivos de banco de dados do Google Authenticator v5.10 e anteriores são suportados</b>.\n\nForneça uma cópia de <b>/data/data/com.google.android.apps.authenticator2/databases/databases</b>, localizado no diretório de armazenamento interno do Google Authenticator.</string>
     <string name="importer_help_microsoft_authenticator">Fornecer uma cópia de <b>/data/data/com.azure.authenticator/databases/PhoneFactor</b>, localizado no diretório de armazenamento interno do Microsoft Authenticator.</string>
     <string name="importer_help_plain_text">Fornecer um arquivo de texto simples com um URI do Google Authenticator em cada linha.</string>
-    <string name="importer_help_steam">Fornecer uma cópia de <b>/data/data/com.valvesoftware.android.steam.community/files/Steamguard-*.json</b>, localizado no diretório de armazenamento interno do Steam.</string>
+    <string name="importer_help_steam"><b>Steam v3.0 e mais recentes não são suportados</b>. Forneça uma cópia de <b>/data/data/com.valvesoftware. ndroid.steam.community/files/Steamguard-*.json</b>, localizado no diretório de armazenamento interno do Steam.</string>
     <string name="importer_help_totp_authenticator">Fornecer um arquivo de exportação de Autenticador TOTP.</string>
     <string name="importer_help_winauth">Fornecer um arquivo de exportação do WinAuth.</string>
+    <string name="importer_encrypted_exception_google_authenticator">Entrada criptografada foi ignorada: %s</string>
     <string name="importer_help_direct">Importar entradas diretamente de %s. Isto requer que a aplicação seja instalada neste dispositivo e que acesso root seja concedido ao Aegis.</string>
     <string name="groups">Grupos</string>
+    <string name="pref_focus_search">Abra a pesquisa ao iniciar o aplicativo</string>
+    <string name="pref_focus_search_summary">Focar o campo de pesquisa logo após abrir o aplicativo.</string>
+    <string name="pref_grouping_none">Nenhum agrupamento</string>
+    <string name="pref_grouping_size_two">Grupos de 2</string>
+    <string name="pref_grouping_size_three">Grupos de 3</string>
+    <string name="pref_grouping_size_four">Grupos de 4</string>
 </resources>

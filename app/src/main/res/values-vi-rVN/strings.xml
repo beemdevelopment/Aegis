@@ -4,15 +4,18 @@
     <string name="action_about">Giới thiệu</string>
     <string name="action_delete">Xóa</string>
     <string name="action_transfer">Truyền</string>
-    <string name="action_edit_icon">Chỉnh sửa logo</string>
+    <string name="action_edit_icon">Chỉnh sửa biểu tượng</string>
     <string name="action_reset_usage_count">Đặt lại số lần sử dụng</string>
     <string name="action_reset_usage_count_dialog">Bạn có chắc bạn muốn đặt số lần sử dụng của mục này về 0 không?</string>
     <string name="action_default_icon">Quay về logo mặc định</string>
     <string name="discard">Huỷ thay đổi</string>
     <string name="save">Lưu</string>
     <string name="issuer">Người cấp</string>
+    <string name="yandex_pin">PIN (4–16 chữ số)</string>
+    <string name="motp_pin">PIN (4 chữ số)</string>
     <string name="suggested">Được đề xuất</string>
     <string name="usage_count">Số lần sử dụng</string>
+    <string name="warning">Cảnh báo</string>
     <string name="pref_cat_appearance_app">Ứng dụng</string>
     <string name="pref_cat_appearance_entries">Mục</string>
     <string name="pref_cat_backups_android">Android</string>
@@ -26,20 +29,20 @@
     <string name="pref_section_import_export_title">Nhập &amp; Xuất</string>
     <string name="pref_section_import_export_summary">Nhập các bản sao lưu của Aegis hoặc các ứng dụng xác thực khác. Tạo các bản xuất thủ công của kho Aegis của bạn.</string>
     <string name="pref_section_backups_title">Sao lưu</string>
-    <string name="pref_section_backups_summary">Thiết lập các bản sao lưu tự động vào một vị trí do bạn chọn hoặc bật việc tham gia vào hệ thống sao lưu của Android.</string>
+    <string name="pref_section_backups_summary">Thiết lập các bản sao lưu tự động vào một vị trí do bạn chọn hoặc bật hệ thống sao lưu đám mây của Android.</string>
     <string name="pref_section_icon_packs">Gói biểu tượng</string>
     <string name="pref_section_icon_packs_summary">Quản lý và nhập các gói biểu tượng</string>
     <string name="pref_select_theme_title">Chủ đề</string>
     <string name="pref_view_mode_title">Chế độ xem</string>
     <string name="pref_lang_title">Ngôn ngữ</string>
     <string name="pref_code_group_size_title">Gộp nhóm chữ số mã</string>
-    <string name="pref_code_group_size_summary">Hiện mã theo kiểu gộp nhóm 2 chữ số thay vì gộp nhóm 3 chữ số</string>
     <string name="pref_account_name_title">Hiện tên tài khoản</string>
     <string name="pref_account_name_summary">Bật tuỳ chọn này để hiện tên tài khoản bên cạnh người cấp</string>
     <string name="pref_import_file_title">Nhập từ tệp</string>
     <string name="pref_import_file_summary">Nhập các token từ một tệp</string>
-    <string name="pref_android_backups_title">Tham gia vào hệ thống sao lưu của Android</string>
-    <string name="pref_android_backups_summary">Cho phép hệ thống sao lưu của Android bao gồm kho của Aegis trong các bản sao lưu của nó. Việc này chỉ được hỗ trợ cho các kho được mã hoá.</string>
+    <string name="pref_android_backups_title">Bản sao lưu đám mây của Android</string>
+    <string name="pref_android_backups_summary">Cho phép hệ thống sao lưu đám mây của Android bao gồm kho của Aegis trong các bản sao lưu của nó. Việc này chỉ được hỗ trợ cho các kho được mã hoá.</string>
+    <string name="pref_android_backups_hint"><i>Các bản sao lưu thiết bị đến thiết bị (D2D) luôn được cho phép, không kể đến cài đặt trên</i></string>
     <string name="pref_backups_title">Tự động sao lưu kho</string>
     <string name="pref_backups_summary">Tự động tạo các bản sao lưu của kho trên bộ nhớ ngoài khi các thay đổi được tạo. Việc này chỉ được hỗ trợ cho các kho được mã hoá.</string>
     <string name="pref_backups_location_title">Thư mục cho các tệp sao lưu</string>
@@ -55,6 +58,14 @@
     <string name="pref_export_title">Xuất</string>
     <string name="pref_export_summary">Xuất kho</string>
     <string name="pref_password_reminder_title">Lời nhắc mật khẩu</string>
+    <string name="pref_google_auth_export_title">Xuất để sử dụng với Google Authenticator</string>
+    <string name="pref_google_auth_export_descriptor">Tạo mã QR xuất có tương thích với Google Authenticator</string>
+    <string name="pref_google_auth_export_no_data">Không có dữ liệu để xuất</string>
+    <plurals name="pref_google_auth_export_incompatible_entries">
+        <item quantity="other">Đã bỏ qua %d mục không tương thích</item>
+    </plurals>
+    <string name="pref_password_reminder_summary">Hiện lời nhắc %s để nhập mật khẩu, để bạn không quên nó.</string>
+    <string name="pref_password_reminder_summary_disabled">Tắt</string>
     <string name="pref_secure_screen_title">Bảo mật màn hình</string>
     <string name="pref_secure_screen_summary">Chặn ảnh chụp màn hình và các cố gắng khác để chụp lại màn hình trong ứng dụng</string>
     <string name="pref_tap_to_reveal_title">Nhấn để hiện ra</string>
@@ -67,6 +78,11 @@
     <string name="pref_auto_lock_type_back_button">Nút quay lại được nhấn</string>
     <string name="pref_auto_lock_type_minimize">Ứng dụng được thu nhỏ</string>
     <string name="pref_auto_lock_type_device_lock">Thiết bị bị khoá</string>
+    <string name="pref_backup_password_category">Sao lưu &amp; Xuất</string>
+    <string name="pref_backup_password_title">Mật khẩu riêng cho sao lưu &amp; xuất</string>
+    <string name="pref_backup_password_summary">Nếu bật, mật khẩu dùng để mở khóa ứng dụng không thể được dùng để giải mã các bản sao lưu và bản xuất được nữa.</string>
+    <string name="pref_backup_password_change_title">Đổi mật khẩu cho sao lưu &amp; xuất</string>
+    <string name="pref_backup_password_change_summary">Đặt mật khẩu mới để mã hóa kho khi sao lưu và xuất.</string>
     <string name="pref_encryption_title">Mã hóa</string>
     <string name="pref_encryption_summary">Mã hoá kho và mở khoá bằng mật khẩu hoặc sinh trắc học</string>
     <string name="pref_biometrics_title">Mở khoá sinh trắc học</string>
@@ -100,7 +116,14 @@
     <string name="invalid_password">Mật khẩu không chính xác</string>
     <string name="invalidated_biometrics">Đã phát hiện một thay đổi trong cài đặt bảo mật của thiết bị. Vui lòng đi đến \"Aegis &gt; Cài đặt &gt; Bảo mật &gt; Mở khoá sinh trắc học\" để tắt và bật lại mở khoá sinh trắc học.</string>
     <string name="password_reminder">Vui lòng nhập mật khẩu. Chúng tôi thỉnh thoảng bảo bạn làm việc này để cho bạn không quên mật khẩu.</string>
+    <string name="password_reminder_freq_never">Không bao giờ</string>
+    <string name="password_reminder_freq_weekly">Hàng tuần</string>
+    <string name="password_reminder_freq_biweekly">Hai tuần một lần</string>
+    <string name="password_reminder_freq_monthly">Hàng tháng</string>
+    <string name="password_reminder_freq_quarterly">Hàng quý</string>
+    <string name="enter_password_2fas_message">Có vẻ là bản sao lưu 2FAS này được mã hóa. Vui lòng nhập mật khẩu ở dưới.</string>
     <string name="enter_password_authy_message">Có vẻ như các token Authy của bạn đã được mã hoá. Vui lòng đóng Aegis, mở Authy và mở khoá các token bằng mật khẩu của bạn. Thay vào đó, Aegis cũng có thể thử giải mã các token Authy cho bạn, nếu bạn nhập mật khẩu ở dưới.</string>
+    <string name="enter_password_aegis_title">Vui lòng nhập mật khẩu nhập</string>
     <string name="period_hint">Khoảng thời gian (giây)</string>
     <string name="algorithm_hint">Chức năng hash</string>
     <string name="type">Loại</string>
@@ -118,6 +141,7 @@
     <string name="set_up_biometric">Thiết lập mở khoá sinh trắc học</string>
     <string name="copy">Sao chép</string>
     <string name="edit">Chỉnh sửa</string>
+    <string name="error_all_caps">LỖI</string>
     <string name="password">Mật khẩu</string>
     <string name="confirm_password">Xác nhận mật khẩu</string>
     <string name="show_password">Hiện mật khẩu</string>
@@ -130,9 +154,15 @@
     <string name="encrypting_vault">Đang mã hoá kho</string>
     <string name="exporting_vault">Đang xuất kho</string>
     <string name="reading_file">Đang đọc tệp</string>
+    <string name="analyzing_qr">Đang phân tích mã QR</string>
+    <string name="analyzing_qr_multiple">Đang phân tích mã QR %d/%d (%s)</string>
+    <plurals name="added_new_entries">
+        <item quantity="other">Đã thêm %d mục mới vào kho</item>
+    </plurals>
     <string name="importing_icon_pack">Đang nhập gói biểu tượng</string>
     <string name="delete_entry">Xóa mục</string>
     <string name="delete_entry_description">Bạn có chắc bạn muốn xóa mục này không?</string>
+    <string name="delete_entry_explanation">Hành động này không tắt Xác thực 2 yếu tố cho:\n<b>%s</b>\n\nĐể tránh mất quyền truy cập, hãy chắc chắn rằng bạn đã tắt Xác thực 2 yếu tố hoặc bạn có một cách khác để tạo mã cho dịch vụ này.</string>
     <string name="delete_entries">Xoá các mục</string>
     <plurals name="delete_entries_description">
         <item quantity="other">Bạn có chắc bạn muốn xoá %d mục không?</item>
@@ -182,10 +212,12 @@
     <string name="file_not_found">Lỗi: Không tìm thấy tệp</string>
     <string name="reading_file_error">Đã xảy ra lỗi trong khi cố gắng đọc tệp</string>
     <string name="app_lookup_error">Lỗi: Ứng dụng không được cài đặt</string>
+    <string name="app_version_error">Phiên bản %s đã cài đặt không được hỗ trợ. Việc thử nhập sẽ có thể gây ra lỗi. Bạn có muốn vẫn tiếp tục không?</string>
     <string name="root_error">Lỗi: không thể nhận quyền truy cập root</string>
     <plurals name="imported_entries_count">
         <item quantity="other">Đã nhập %d mục</item>
     </plurals>
+    <string name="intro_import_error_title">Đã xảy ra lỗi trong khi nhập kho</string>
     <string name="import_error_title">Đã xảy ra một hoặc nhiều lỗi trong khi nhập</string>
     <string name="exporting_vault_error">Đã xảy ra lỗi trong khi cố gắng xuất kho</string>
     <string name="exported_vault">Kho đã được xuất</string>
@@ -279,6 +311,7 @@
     </plurals>
     <string name="google_qr_export_unexpected">Đã mong đợi mã QR #%d, nhưng thay vào đó đã quét #%d</string>
     <string name="backup_error_bar_message"><b>Sao lưu kho thất bại vào gần đây</b></string>
+    <string name="backup_reminder_bar_message"><b>Các thay đổi kho gần đây không được sao lưu</b></string>
     <string name="switch_camera">Chuyển máy ảnh</string>
     <string name="empty_list">Không có mã nào để hiện. Hãy bắt đầu thêm các mục bằng cách nhấn vào ký hiệu dấu cộng ở góc dưới bên phải</string>
     <string name="empty_list_title">Không tìm thấy mục nào</string>
@@ -319,14 +352,18 @@
     <string name="importer_help_authenticator_plus">Cung cấp một tệp xuất Authenticator Plus được nhận qua <b>Cài đặt -&gt; Sao lưu &amp; Khôi phục -&gt; Xuất dưới dạng Văn bản và HTML</b>.</string>
     <string name="importer_help_authy">Cung cấp một bản sao của <b>/data/data/com.authy.authy/shared_prefs/com.authy.storage.tokens.authenticator.xml</b>, nằm trong thư mục bộ nhớ trong của Authy.</string>
     <string name="importer_help_andotp">Cung cấp một tệp xuất/sao lưu andOTP.</string>
+    <string name="importer_help_bitwarden">Hãy chọn tệp xuất/sao lưu của Bitwarden. Tệp mã hoá không được hỗ trợ.</string>
+    <string name="importer_help_duo">Cung cấp một bản sao của <b>/data/data/com.duosecurity.duomobile/files/duokit/accounts.json</b>, nằm trong thư mục bộ nhớ trong của DUO.</string>
     <string name="importer_help_freeotp">Cung cấp một bản sao của <b>/data/data/org.fedorahosted.freeotp/shared_prefs/tokens.xml</b>, nằm trong thư mục bộ nhớ trong của FreeOTP.</string>
     <string name="importer_help_freeotp_plus">Cung cấp một tệp xuất FreeOTP+.</string>
-    <string name="importer_help_google_authenticator">Cung cấp một bản sao của <b>/data/data/com.google.android.apps.authenticator2/databases/databases</b>, nằm trong thư mục bộ nhớ trong của Google Authenticator.</string>
+    <string name="importer_help_google_authenticator"><b>Chỉ có tệp cơ sở dữ liệu từ Google Authenticator v5.10 và cũ hơn mới được hỗ trợ</b>.\n\nHãy lấy bản sao của <b>/data/data/com.google.android.apps.authenticator2/databases/databases</b> ở trong thư mục bộ nhớ trong của Google Authenticator.</string>
     <string name="importer_help_microsoft_authenticator">Cung cấp một bản sao của <b>/data/data/com.azure.authenticator/databases/PhoneFactor</b>, nằm trong thư mục bộ nhớ trong của Microsoft Authenticator.</string>
     <string name="importer_help_plain_text">Cung cấp một tệp văn bản thuần có một URI Google Authenticator trên mỗi dòng.</string>
-    <string name="importer_help_steam">Cung cấp một bản sao của <b>/data/data/com.valvesoftware.android.steam.community/files/Steamguard-*.json</b>, nằm trong thư mục bộ nhớ trong của Steam.</string>
     <string name="importer_help_totp_authenticator">Cung cấp một tệp xuất TOTP Authenticator.</string>
     <string name="importer_help_winauth">Cung cấp một tệp xuất WinAuth.</string>
+    <string name="importer_encrypted_exception_google_authenticator">Đã bỏ qua mục mã hoá: %s</string>
     <string name="importer_help_direct">Nhập các mục trực tiếp từ %s. Việc này yêu cầu ứng dụng được cài đặt trên thiết bị này và quyền truy cập root được cấp cho Aegis.</string>
     <string name="groups">Nhóm</string>
+    <string name="pref_focus_search">Tập trung vào tìm kiếm khi khởi động</string>
+    <string name="pref_focus_search_summary">Tập trung vào tìm kiếm ngay lập tức sau khi mở ứng dụng.</string>
 </resources>

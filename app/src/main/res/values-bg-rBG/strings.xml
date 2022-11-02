@@ -5,6 +5,7 @@
     <string name="action_delete">Изтриване</string>
     <string name="action_transfer">Прехвърляне</string>
     <string name="action_edit_icon">Редактиране на икона</string>
+    <string name="action_reset_usage_count">Нулирай брой използвания</string>
     <string name="action_default_icon">Възстанови икона по подразбиране</string>
     <string name="discard">Отхвърляне</string>
     <string name="save">Запазване</string>
@@ -22,18 +23,14 @@
     <string name="pref_section_import_export_title">Импорт &amp; Експорт</string>
     <string name="pref_section_import_export_summary">Импортирайте резервни копия на Aegis или други приложения за удостоверяване. Създайте ръчно експортиране на своя Aegis трезор.</string>
     <string name="pref_section_backups_title">Резервни копия</string>
-    <string name="pref_section_backups_summary">Настройте автоматични резервни копия на избрано от вас място или разрешете участие в системните резервни копия на Android.</string>
     <string name="pref_select_theme_title">Тема</string>
     <string name="pref_view_mode_title">Режим на преглед</string>
     <string name="pref_lang_title">Език</string>
     <string name="pref_code_group_size_title">Групиране на кодови цифри</string>
-    <string name="pref_code_group_size_summary">Показване на кода в 2-цифрено групиране вместо в 3-цифрено групиране</string>
     <string name="pref_account_name_title">Показване на профилното име</string>
     <string name="pref_account_name_summary">Активирайте това, за да се показва името на акаунта до издателя</string>
     <string name="pref_import_file_title">Импорт от файл</string>
     <string name="pref_import_file_summary">Импортиране на токени от файл</string>
-    <string name="pref_android_backups_title">Участвайте в системата за архивиране на Android</string>
-    <string name="pref_android_backups_summary">Позволете на системата за архивиране на Android да включва трезора на Aegis в своите архиви. Това се поддържа само за криптирани трезори.</string>
     <string name="pref_backups_title">Автоматично архивирайте трезора</string>
     <string name="pref_backups_summary">Автоматично създавайте резервни копия на трезора във външно хранилище, когато се правят промени. Това се поддържа само за шифровани трезори.</string>
     <string name="pref_backups_location_title">Директория за архивни файлове</string>
@@ -297,10 +294,8 @@
     <string name="importer_help_andotp">Доставете andOTP файл за експортиране/архивиране.</string>
     <string name="importer_help_freeotp">Доставете копие на <b>/data/data/org.fedorahosted.freeotp/shared_prefs/tokens.xml</b>, намиращо се във вътрешната директория за съхранение на FreeOTP.</string>
     <string name="importer_help_freeotp_plus">Доставете FreeOTP+ файл за експортиране.</string>
-    <string name="importer_help_google_authenticator">Доставете копие на <b>/data/data/com.google.android.apps.authenticator2/databases/databases</b>, намиращо се във вътрешната директория за съхранение на Google Authenticator.</string>
     <string name="importer_help_microsoft_authenticator">Доставете копие на <b>/data/data/com.azure.authenticator/databases/PhoneFactor</b>, намиращо се във вътрешната директория за съхранение на Microsoft Authenticator.</string>
     <string name="importer_help_plain_text">Доставете обикновен текстов файл с Google Authenticator URI на всеки ред.</string>
-    <string name="importer_help_steam">Доставете копие на <b>/data/data/com.valvesoftware.android.steam.community/files/Steamguard-*.json</b>, намиращо се във вътрешната директория за съхранение на Steam.</string>
     <string name="importer_help_totp_authenticator">Доставете файл за експортиране на TOTP Authenticator.</string>
     <string name="importer_help_winauth">Доставете файл за експортиране на WinAuth.</string>
     <string name="importer_help_direct">Импортиране на записи директно от %s. Това изисква приложението да бъде инсталирано на това устройство и да бъде предоставен root достъп на Aegis.</string>

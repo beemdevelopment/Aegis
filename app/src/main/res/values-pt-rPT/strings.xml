@@ -13,7 +13,6 @@
     <string name="pref_view_mode_title">Modo de exibição</string>
     <string name="pref_lang_title">Idioma</string>
     <string name="pref_code_group_size_title">Agrupamento de dígitos</string>
-    <string name="pref_code_group_size_summary">Mostrar agrupamento de códigos de 2 dígitos em vez de agrupamento de 3 dígitos</string>
     <string name="pref_account_name_title">Exibir o nome da conta</string>
     <string name="pref_account_name_summary">Ative isto para mostrar o nome da conta ao lado do emissor</string>
     <string name="pref_import_file_title">Importar arquivo</string>
@@ -262,10 +261,8 @@
     <string name="importer_help_andotp">Fornecer um arquivo de exportação/backup do andOTP.</string>
     <string name="importer_help_freeotp">Fornecer uma cópia de <b>/data/data/org.fedorahosted.freeotp/shared_prefs/tokens.xml</b>, localizado no diretório de armazenamento interno do FreeOTP.</string>
     <string name="importer_help_freeotp_plus">Fornecer um arquivo de exportação FreeOTP+.</string>
-    <string name="importer_help_google_authenticator">Fornecer uma cópia de <b>/data/data/com.google.android.apps.authenticator2/databases/databases</b>, localizado no diretório de armazenamento interno do Google Authenticator.</string>
     <string name="importer_help_microsoft_authenticator">Fornecer uma cópia de <b>/data/data/com.azure.authenticator/databases/PhoneFactor</b>, localizado no diretório de armazenamento interno do Microsoft Authenticator.</string>
     <string name="importer_help_plain_text">Fornecer um arquivo de texto simples com um URI do Google Authenticator em cada linha.</string>
-    <string name="importer_help_steam">Fornecer uma cópia de <b>/data/data/com.valvesoftware.android.steam.community/files/Steamguard-*.json</b>, localizado no diretório de armazenamento interno do Steam.</string>
     <string name="importer_help_totp_authenticator">Fornecer um arquivo de exportação de Autenticador TOTP.</string>
     <string name="importer_help_winauth">Fornecer um arquivo de exportação do WinAuth.</string>
     <string name="importer_help_direct">Importar entradas diretamente de %s. Isto requer que a aplicação seja instalada neste dispositivo e que acesso root seja concedido ao Aegis.</string>

@@ -37,8 +37,10 @@
     <string-array name="pref_lang_entries">
         <item>System default</item>
         <item>Arabic</item>
+        <item>Asturian</item>
         <item>Basque</item>
         <item>Bulgarian</item>
+        <item>Catalan</item>
         <item>Chinese (Simplified Han, China)</item>
         <item>Chinese (Traditional Han, Taiwan)</item>
         <item>Czech</item>
@@ -47,6 +49,7 @@
         <item>English</item>
         <item>Finnish</item>
         <item>French</item>
+        <item>Galician</item>
         <item>German</item>
         <item>Greek</item>
         <item>Hindi</item>
@@ -73,8 +76,10 @@
     <string-array name="pref_lang_values" translatable="false">
         <item>system</item>
         <item>ar</item>
+        <item>ast</item>
         <item>eu</item>
         <item>bg</item>
+        <item>ca</item>
         <item>zh_CN</item>
         <item>zh_TW</item>
         <item>cs</item>
@@ -83,6 +88,7 @@
         <item>en</item>
         <item>fi</item>
         <item>fr</item>
+        <item>gl</item>
         <item>de</item>
         <item>el</item>
         <item>hi</item>

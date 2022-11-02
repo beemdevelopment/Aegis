@@ -11,35 +11,39 @@
     <string name="discard">Kassér</string>
     <string name="save">Gem</string>
     <string name="issuer">Udsteder</string>
+    <string name="yandex_pin">PIN-kode (4–16 cifre)</string>
+    <string name="motp_pin">PIN-kode (4 cifre)</string>
     <string name="suggested">Foreslået</string>
     <string name="usage_count">Brugstælling</string>
+    <string name="warning">Advarsel</string>
     <string name="pref_cat_appearance_app">App</string>
     <string name="pref_cat_appearance_entries">Poster</string>
     <string name="pref_cat_backups_android">Android</string>
     <string name="pref_cat_backups_auto">Automatisk sikkerhedskopiering</string>
     <string name="pref_section_behavior_title">Adfærd</string>
-    <string name="pref_section_behavior_summary">Tilpas adfærden under interageren med listen over poster.</string>
+    <string name="pref_section_behavior_summary">Tilpas funktionsmåden, når du interagerer med listen over poster.</string>
     <string name="pref_section_appearance_title">Udseende</string>
     <string name="pref_section_appearance_summary">Justér tema, sprog og andre indstillinger, som påvirker app-udseendet.</string>
     <string name="pref_section_security_title">Sikkerhed</string>
     <string name="pref_section_security_summary">Opsæt kryptering, biometrisk oplåsning, auto-låsning og andre sikkerhedsindstillinger.</string>
-    <string name="pref_section_import_export_title">Import og Eksport</string>
-    <string name="pref_section_import_export_summary">Importér sikkerhedskopier af Aegis eller andre godkendelses-apps. Opret manuelle eksporteringer af din Aegis Boks.</string>
+    <string name="pref_section_import_export_title">Import og eksport</string>
+    <string name="pref_section_import_export_summary">Importér sikkerhedskopier af Aegis eller andre godkendelses-apps. Opret manuelle eksporteringer af din Aegis-boks.</string>
     <string name="pref_section_backups_title">Sikkerhedskopier</string>
-    <string name="pref_section_backups_summary">Opsæt auto-sikkerhedskopiering til en placering efter eget valg eller aktivér deltagelse i Androids sikkerhedskopieringssystem.</string>
+    <string name="pref_section_backups_summary">Opsæt automatisk sikkerhedskopiering til en placering efter eget valg eller aktivér deltagelse i Androids cloud-sikkerhedskopieringssystem.</string>
     <string name="pref_section_icon_packs">Ikonpakker</string>
     <string name="pref_section_icon_packs_summary">Håndtere og importere ikonpakker</string>
     <string name="pref_select_theme_title">Tema</string>
     <string name="pref_view_mode_title">Visningstilstand</string>
     <string name="pref_lang_title">Sprog</string>
     <string name="pref_code_group_size_title">Kodeciffergruppering</string>
-    <string name="pref_code_group_size_summary">Vis kode i 2-cifret i stedet for 3-cifret gruppering</string>
+    <string name="pref_code_group_size_summary">Vælg antal cifre til kodegruppering</string>
     <string name="pref_account_name_title">Vis kontonavn</string>
     <string name="pref_account_name_summary">Aktiver dette for at vise kontonavnet ved siden af udstederen</string>
-    <string name="pref_import_file_title">Import til fil</string>
+    <string name="pref_import_file_title">Import fra fil</string>
     <string name="pref_import_file_summary">Importér tokens fra en fil</string>
-    <string name="pref_android_backups_title">Deltag i Androids sikkerhedskopieringssystem</string>
-    <string name="pref_android_backups_summary">Tillad Androids sikkerhedskopieringssystem at inkludere Aegis\' Boks i sine sikkerhedskopier. Dette understøttes kun for krypterede Bokse.</string>
+    <string name="pref_android_backups_title">Android cloud-sikkerhedskopier</string>
+    <string name="pref_android_backups_summary">Tillad Androids cloud-sikkerhedskopieringssystem at medtage Aegis\' boks i dets sikkerhedskopier (kun understøttet for krypterede bokse).</string>
+    <string name="pref_android_backups_hint"><i>Enhed-til-enhed (D2D) sikkerhedskopier er altid tilladt, uanset ovenstående indstilling</i></string>
     <string name="pref_backups_title">Sikkerhedskopiér automatisk Boksen</string>
     <string name="pref_backups_summary">Opret automatisk sikkerhedskopier af Boksen på ekstern lagerplads, når ændringer foretages. Dette understøttes kun for krypterede Bokse.</string>
     <string name="pref_backups_location_title">Mappe til sikkerhedskopifiler</string>
@@ -56,6 +60,15 @@
     <string name="pref_export_title">Export</string>
     <string name="pref_export_summary">Eksportér Boksen</string>
     <string name="pref_password_reminder_title">Adgangskodepåmindelse</string>
+    <string name="pref_google_auth_export_title">Eksportér til Google Authenticator</string>
+    <string name="pref_google_auth_export_descriptor">Genererer QR-koder kompatible med Google Authenticator til eksport</string>
+    <string name="pref_google_auth_export_no_data">Ingen data at eksportere</string>
+    <plurals name="pref_google_auth_export_incompatible_entries">
+        <item quantity="one">%d inkompatibel post oversprunget</item>
+        <item quantity="other">%d inkompatibel poster oversprunget</item>
+    </plurals>
+    <string name="pref_password_reminder_summary">Vis %s påmindelse om at angive adgangskoden, så den ikke glemmes.</string>
+    <string name="pref_password_reminder_summary_disabled">Deaktiveret</string>
     <string name="pref_secure_screen_title">Skærmsikkerhed</string>
     <string name="pref_secure_screen_summary">Blokér skærmfotos og andre forsøg på at optage skærmen inde i appen</string>
     <string name="pref_tap_to_reveal_title">Tryk for at vise</string>
@@ -68,6 +81,11 @@
     <string name="pref_auto_lock_type_back_button">Der trykkes på tilbage-knappen</string>
     <string name="pref_auto_lock_type_minimize">Appen minimeres</string>
     <string name="pref_auto_lock_type_device_lock">Når enheden låses</string>
+    <string name="pref_backup_password_category">Sikkerhedskopiering og Eksport</string>
+    <string name="pref_backup_password_title">Forskellig adgangskode for sikkerhedskopi og eksport</string>
+    <string name="pref_backup_password_summary">Hvis aktiveret, kan app-oplåsningskoden ikke længere bruges til sikkerhedskopidekryptering samt eksporter.</string>
+    <string name="pref_backup_password_change_title">Skift adgangskode for sikkerhedskopi og eksport</string>
+    <string name="pref_backup_password_change_summary">Angiv en ny adgangskode til brug for Boks-kryptering under sikkerhedskopiering og eksport.</string>
     <string name="pref_encryption_title">Kryptering</string>
     <string name="pref_encryption_summary">Krypter boksen og lås den op med en adgangskode eller biometri</string>
     <string name="pref_biometrics_title">Biometrisk oplåsning</string>
@@ -78,6 +96,7 @@
     <string name="export_help">Denne handling vil eksportere boksen ud af Aegis\' interne lager. Vælg det format, som du gerne vil eksportere i:</string>
     <string name="export_warning_unencrypted">Du er ved at eksportere en ukrypteret kopi af din Aegis-boks. <b>Dette er ikke anbefalet</b>.</string>
     <string name="export_warning_accept">Jeg forstår risikoen</string>
+    <string name="export_warning_password">Eksporter krypteres vha. en separat adgangskode opsat i Sikkerhedsindstillinger.</string>
     <string name="export_format_aegis">Aegis (.JSON)</string>
     <string name="export_format_google_auth_uri">Tekst fil (.TXT)</string>
     <string name="export_format_hint">Eksportformat</string>
@@ -101,7 +120,14 @@
     <string name="invalid_password">Adgangskoden er forkert</string>
     <string name="invalidated_biometrics">En ændring i din enheds sikkerhedsindstillinger er detekteret. Gå til \"Aegis -&gt; Indstillinger -&gt; Sikkerhed -&gt; Biometrisk oplåsning\" for at deaktivere og genaktivere biometrisk oplåsning.</string>
     <string name="password_reminder">Indtast venligst din adgangskode. Vi beder dig af og til om at gøre dette, så du ikke glemmer den.</string>
+    <string name="password_reminder_freq_never">Aldrig</string>
+    <string name="password_reminder_freq_weekly">Ugentlig</string>
+    <string name="password_reminder_freq_biweekly">14-dages</string>
+    <string name="password_reminder_freq_monthly">Månedligt</string>
+    <string name="password_reminder_freq_quarterly">Kvartalsvist</string>
+    <string name="enter_password_2fas_message">Det ser ud til at denne 2FAS-backup er krypteret. Indtast venligst adgangskoden nedenfor.</string>
     <string name="enter_password_authy_message">Det ser ud til at dine Authy-tokens er krypterede. Luk Aegis, åbn Authy og oplås tokens med din adgangskode. Alternativ kan Aegis forsøge at dekryptere din Authy-tokens for dig, hvis du indtaster din adgangskode nedenfor.</string>
+    <string name="enter_password_aegis_title">Angiv importadgangskoden</string>
     <string name="period_hint">Periode (sekunder)</string>
     <string name="algorithm_hint">Hash-funktion</string>
     <string name="type">Type</string>
@@ -119,6 +145,9 @@
     <string name="set_up_biometric">Konfigurer biometrisk oplåsning</string>
     <string name="copy">Kopier</string>
     <string name="edit">Rediger</string>
+    <string name="favorite" comment="Verb">Tilføj som favorit</string>
+    <string name="unfavorite" comment="Verb">Fjern som favorit</string>
+    <string name="error_all_caps">FEJL</string>
     <string name="password">Adgangskode</string>
     <string name="confirm_password">Bekræft adgangskode</string>
     <string name="show_password">Vis adgangskode</string>
@@ -131,9 +160,16 @@
     <string name="encrypting_vault">Krypterer boksen</string>
     <string name="exporting_vault">Eksporterer boksen</string>
     <string name="reading_file">Indlæser fil</string>
+    <string name="analyzing_qr">Analyserer QR-kode</string>
+    <string name="analyzing_qr_multiple">Analyserer QR-kode %d/%d (%s)</string>
+    <plurals name="added_new_entries">
+        <item quantity="one">Tilføjede %d ny post til boksen</item>
+        <item quantity="other">Tilføjede %d nye poster til boksen</item>
+    </plurals>
     <string name="importing_icon_pack">Importerer ikonpakke</string>
     <string name="delete_entry">Slet post</string>
     <string name="delete_entry_description">Er du sikker på, du vil slette denne post?</string>
+    <string name="delete_entry_explanation">Denne handling deaktiverer ikke 2FA for:\n<b>%s</b>\n\nFor at bevare adgang, så tjek, at 2FA er deaktiveret, eller at en alternativ kodegenereringsmetode til denne tjeneste findes.</string>
     <string name="delete_entries">Slet poster</string>
     <plurals name="delete_entries_description">
         <item quantity="one">Er du sikker på, du vil slette %d post?</item>
@@ -164,6 +200,10 @@
     <string name="disable_encryption_error">Der opstod en fejl under deaktivering af kryptering</string>
     <string name="backup_successful">Sikkerhedskopieringen blev planlagt med succes</string>
     <string name="backup_error">Der opstod en fejl under forsøget på at oprette en sikkerhedskopi</string>
+    <string name="backup_status_success">Senest gennemførte sikkerhedskopiering: %s</string>
+    <string name="backup_status_failed">Senest mislykket sikkerhedskopiering: %s</string>
+    <string name="backup_status_none">Ingen sikkerhedskopieringer foretaget endnu</string>
+    <string name="backup_warning_password">Sikkerhedskopier krypteres vha. en separat adgangskode opsat i Sikkerhedsindstillinger</string>
     <string name="documentsui_error">DokumenterUI synes at mangle fra din enhed. Dette er en vigtig systemkomponent, der er nødvendig for udvælgelse og oprettelse af dokumenter. Hvis du brugte et værktøj til &quot;rense&quot; din enhed, kan du ved et uheld have slettet den og bliver nødt til at geninstallere den.</string>
     <string name="icon_pack_import_error">En fejl opstod under forsøget på at importere en ikonpakke</string>
     <string name="icon_pack_import_exists_error">Ikonpakken, der forsøges importeret, findes allerede. Overskriv den?</string>
@@ -185,11 +225,17 @@
     <string name="file_not_found">Fejl: Fil ikke fundet</string>
     <string name="reading_file_error">Der opstod en fejl under forsøg på at læse filen</string>
     <string name="app_lookup_error">Fejl: App er ikke installeret</string>
+    <string name="app_version_error">Den installerede versionen af %s understøttes ikke. Forsøg på at importere kan resultere i fejl. Fortsæt alligevel?</string>
     <string name="root_error">Fejl: Kan ikke opnå root-adgang</string>
     <plurals name="imported_entries_count">
         <item quantity="one">Importerede %d post</item>
         <item quantity="other">Importerede %d poster</item>
     </plurals>
+    <plurals name="entries_shown">
+        <item quantity="one">Viser %d post</item>
+        <item quantity="other">Viser %d poster</item>
+    </plurals>
+    <string name="intro_import_error_title">En fejl opstod under import af Boksen</string>
     <string name="import_error_title">En eller flere fejl opstod under import</string>
     <string name="exporting_vault_error">Der opstod en fejl under forsøget på at eksportere boksen</string>
     <string name="exported_vault">Boksen blev eksporteret</string>
@@ -198,6 +244,13 @@
     <string name="no_cameras_available">Ingen kameraer tilgængelige</string>
     <string name="read_qr_error">Der opstod en fejl under forsøg på at læse QR-koden</string>
     <string name="read_qr_error_phonefactor">Aegis er ikke kompatibel med Microsofts proprietære 2FA-algoritme. Sørg for at vælge \"Opsæt applikation uden notifikationer\", når du konfigurerer 2FA i Office 365.</string>
+    <string name="partial_google_auth_import">Ufuldstændig Google Authenticator-eksport detekteret</string>
+    <string name="partial_google_auth_import_warning">Nogle QR-koder mangler i importen. Flg. koder er ikke fundet:\n\n<b>%s</b>\n\nMan kan fortsætte med import af denne delvise eksport, dog anbefales det at prøve igen med alle QR-koderne, så man ikke risikerer at miste adgang til nogle tokens.</string>
+    <string name="missing_qr_code_descriptor">• QR-kode %d</string>
+    <string name="import_partial_export_anyway">Importér %d tokens alligevel</string>
+    <string name="import_google_auth_failure">Import af Google Authenticator-eksport mislykkedes</string>
+    <string name="unrelated_google_auth_batches_error">Eksporten indeholder information om et urelateret sæt. Prøv at importere 1 sæt ad gangen.</string>
+    <string name="no_tokens_can_be_imported">Som konsekvens, kan ingen tokener importeres</string>
     <string name="authentication_method_raw">Raw</string>
     <string name="unlocking_vault">Låser boksen op</string>
     <string name="slot_this_device">(denne enhed)</string>
@@ -206,6 +259,7 @@
     <string name="remove_icon_pack">Fjern ikonpakke</string>
     <string name="remove_icon_pack_description">Sikker på, at du vil fjerne denne ikonpakke? Poster, som bruger ikoner fra denne pakke, påvirkes ikke.</string>
     <string name="details">Detaljer</string>
+    <string name="show_error_details">Vis fejloplysninger</string>
     <string name="lock">Lås</string>
     <string name="name">Navn</string>
     <string name="no_group">Ingen gruppe</string>
@@ -228,6 +282,8 @@
     <string name="clear">Ryd</string>
     <string name="pref_highlight_entry_title">Fremhæv tokens ved tryk</string>
     <string name="pref_highlight_entry_summary">Gør tokens lettere at skelne fra hinanden ved midlertidigt at fremhæve dem, når der trykkes på dem</string>
+    <string name="pref_minimize_on_copy_title">Minimér under kopiering</string>
+    <string name="pref_minimize_on_copy_summary">Minimér appen efter kopiering af et token</string>
     <string name="pref_copy_on_tap_title">Kopier tokens ved tryk</string>
     <string name="pref_copy_on_tap_summary">Kopier tokens til udklipsholderen ved at trykke på dem</string>
     <string name="pref_pause_entry_title">Frys tokens ved tryk</string>
@@ -251,6 +307,10 @@
         <item quantity="one">Aegis kunne ikke importere %d token. Disse tokens vil blive sprunget over. Tryk \'detaljer\' for at se mere information om fejlene.</item>
         <item quantity="other">Aegis kunne ikke importere %d tokens. Disse tokens vil blive sprunget over. Tryk \'detaljer\' for at se mere information om fejlene.</item>
     </plurals>
+    <string name="unable_to_process_deeplink">Kan ikke behandle dybt link</string>
+    <string name="unable_to_read_qrcode_file">Kan ikke læse og behandle QR-koden fra filen: %s.</string>
+    <string name="unable_to_process_shared_text">Kan ikke behandle delt tekst som OTP</string>
+    <string name="unable_to_read_qrcode_files">Kan ikke læse og behandle nogle af QR-koderne. Kun %d/%d poster importeres.</string>
     <string name="unable_to_generate_qrcode">Kan ikke generere QR-kode</string>
     <string name="select_picture">Vælg billede</string>
     <string name="select_icon">Vælg ikon</string>
@@ -285,6 +345,13 @@
     </plurals>
     <string name="google_qr_export_unexpected">Forventede QR kode #%d, men scannede #%d i stedet</string>
     <string name="backup_error_bar_message"><b>Boks-backup mislykkedes for nylig</b></string>
+    <string name="backup_error_dialog_details">Et nyligt forsøg på Boks-sikkerhedskopiering vha. %s mislykkedes, da en fejl opstod. Sikkerhedskopieringen forsøgt: %s. Tjek sikkerhedskopieringsindstillingerne for at sikre, at sikkerhedskopieringer kan fuldføres.</string>
+    <string name="backup_system_builtin">Aegis\' indbyggede automatiske sikkerhedskopieringer</string>
+    <string name="backup_system_android">Android cloud-sikkerhedskopieringssystem</string>
+    <string name="backup_reminder_bar_message"><b>Seneste Boksændringer er ikke sikkerhedskopieret</b></string>
+    <string name="backup_plaintext_export_warning"><b>Boksen blev for nylig eksporteret som simpel tekst</b></string>
+    <string name="pref_show_plaintext_warning_hint">Vis ikke denne advarsel igen</string>
+    <string name="backup_plaintext_warning_explanation">Denne advarsel vises, da en ukrypteret kopi af Boksen for nyligt er eksporteret. For at opretholde sikkerheden for tokens, anbefales det at slette denne fil, når den ikke længere behøves.</string>
     <string name="switch_camera">Skift kamera</string>
     <string name="empty_list">Der er ingen koder at vise. Begynd at tilføje poster ved at trykke på plus-tegnet i nederste højre hjørne</string>
     <string name="empty_list_title">Ingen poster fundet</string>
@@ -295,10 +362,15 @@
     <string name="pick_icon">Vælg et ikon</string>
     <string name="uncategorized">Ukategoriseret</string>
     <string name="done">Færdig</string>
+    <plurals name="qr_count">
+        <item quantity="one">%d/%d QR-kode</item>
+        <item quantity="other">%d/%d QR-koder</item>
+    </plurals>
     <string name="next">Næste</string>
     <string name="previous">Forrige</string>
     <string name="transfer_entry">Overfør post</string>
     <string name="transfer_entry_description">Scan denne QR-kode med den autentificerings-app, du gerne vil overføre denne post til</string>
+    <string name="google_auth_compatible_transfer_description">Skan disse QR-koder med Aegis eller Google Authenticator.\n\nGrundet begrænsninger i Google Authenticator-appen inkluderes kun TOTP- og HOTP-tokener, som bruger SHA1 og genererer 6-cifrede koder</string>
     <string name="password_strength_very_weak">Meget svag</string>
     <string name="password_strength_weak">Svag</string>
     <string name="password_strength_fair">Hæderlig</string>
@@ -320,19 +392,30 @@
     <string name="panic_trigger_ignore_toast">Aegis modtog panikudløser, men indstilling er deaktiveret, ignorerer</string>
     <string name="pref_panic_trigger_title">Slet boks ved panikudløser</string>
     <string name="pref_panic_trigger_summary">Slet boks, når en panikudløser modtages fra Ripple</string>
+    <string name="import_vault">Importér Boks</string>
     <string name="importer_help_2fas">Stil en 2FAS-godkendelse sikkerhedskopifil til rådighed.</string>
     <string name="importer_help_aegis">Levér en Aegis eksport/backup fil.</string>
     <string name="importer_help_authenticator_plus">Levér en Authenticator Plus-eksportfil opnået gennem <b>Indstillinger -&gt; Sikkerhedskopi &amp; Gendan -&gt; Eksport som tekst og HTML</b>.</string>
     <string name="importer_help_authy">Levér en kopi af <b>/data/data/com.authy.authy/shared_prefs/com.authy.storage.tokens.authenticator.xml</b>, der er placeret i den interne lagermappe i Authy.</string>
     <string name="importer_help_andotp">Levér en andOTP eksport/backup fil.</string>
+    <string name="importer_help_bitwarden">Vælg en Bitwarden-eksport-/sikkerhedskopifil. Krypterede filer understøttes ikke.</string>
+    <string name="importer_help_duo">Skaf en kopi af <b>/data/data/com.duosecurity.duomobile/files/duokit/accounts.json</b> fra DUOs interne lagermappe.</string>
     <string name="importer_help_freeotp">Levér en kopi af <b>/data/data/org.fedorahosted.freeotp/shared_prefs/tokens.xml</b>, der er placeret i den interne lagermappe i Authy.</string>
     <string name="importer_help_freeotp_plus">Levér en FreeOTP+ eksportfil.</string>
-    <string name="importer_help_google_authenticator">Levér en kopi af <b>/data/data/com.google.android.apps.authenticator2/databases/databases</b>, der er placeret i den interne lagermappe i Google Authenticator.</string>
+    <string name="importer_help_google_authenticator"><b>Kun databasefiler fra Google Authenticator v5.10 og tidligere understøttes</b>.\n\nLeverer en kopi af <b>/data/data/com. google.android.apps.authenticator2/databaser/databaser</b>, placeret i Google Authenticators interne lagermappe.</string>
     <string name="importer_help_microsoft_authenticator">Levér en kopi af <b>/data/data/com.azure.authenticator/databases/PhoneFactor</b>, der er placeret i den interne lagermappe i Microsoft Authenticator.</string>
     <string name="importer_help_plain_text">Levér en almindelig tekstfil med en Google Authenticator URI på hver linje.</string>
-    <string name="importer_help_steam">Levér en kopi af <b>/data/data/com.valvesoftware.android.steam.community/files/Steamguard-*.json</b>, der er placeret i den interne lagermappe i Steam.</string>
+    <string name="importer_help_steam"><b>Steam v3.0 og nyere understøttes ikke</b>. Levér en kopi af <b>/data/data/com.valvesoftware.android.steam.community/files/Steamguard-*.json</b> fra den interne lagermappe i Steam.</string>
     <string name="importer_help_totp_authenticator">Levér en TOTP Authenticator eksportfil.</string>
     <string name="importer_help_winauth">Levér en WinAuth eksportfil.</string>
+    <string name="importer_encrypted_exception_google_authenticator">Krypteret post blev oversprunget: %s</string>
     <string name="importer_help_direct">Importer poster direkte fra %s. Dette kræver at appen er installeret på denne enhed og at root-adgang gives til Aegis.</string>
     <string name="groups">Grupper</string>
+    <string name="pref_focus_search">Fokusér på søgning ved app-start</string>
+    <string name="pref_focus_search_summary">Bring søgningen i fokus straks efter åbning af appen.</string>
+    <string name="pref_grouping_halves">Halve</string>
+    <string name="pref_grouping_none">Ingen gruppering</string>
+    <string name="pref_grouping_size_two">Grupper af 2</string>
+    <string name="pref_grouping_size_three">Grupper af 3</string>
+    <string name="pref_grouping_size_four">Grupper af 4</string>
 </resources>

@@ -5,10 +5,15 @@
     <string name="action_delete">حذف</string>
     <string name="action_transfer">انتقال</string>
     <string name="action_edit_icon">ویرایش ایکون</string>
+    <string name="action_reset_usage_count">بازنشانی تعداد استفاده</string>
+    <string name="action_reset_usage_count_dialog">آیا مطمئن هستید که می خواهید تعداد استفادهٔ این ورودی را روی صفر قرار دهید؟</string>
     <string name="action_default_icon">بازگرداندن آیکون پیش فرض</string>
     <string name="discard">لغو</string>
     <string name="save">ذخیره</string>
     <string name="issuer">صادر کننده</string>
+    <string name="yandex_pin">پین (۴ تا ١۶ رقم)</string>
+    <string name="suggested">پیشنهادی</string>
+    <string name="usage_count">تعداد دفعات استفاده</string>
     <string name="pref_cat_appearance_app">نرم افزار</string>
     <string name="pref_cat_appearance_entries">مطالب</string>
     <string name="pref_cat_backups_android">اندروید</string>
@@ -22,24 +27,27 @@
     <string name="pref_section_import_export_title">واردسازی &amp; خارج‌سازی</string>
     <string name="pref_section_import_export_summary">وارد سازی فایل های پشتیبان آگیس یا دیگر برنامه های احراز هویت. ساخت فایل های صدور دستی از مخزن آگیس.</string>
     <string name="pref_section_backups_title">نسخه های پشتیبان</string>
-    <string name="pref_section_backups_summary">مشخص کردن مکان مورد نظرتان برای فایل های پشتیبان خودکار یا فعال سازی مشارکت در سیستم پشتیبان گیری اندروید.</string>
+    <string name="pref_section_backups_summary">پشتیبان‌گیری خودکار را در مکانی دلخواه تنظیم نمایید یا مشارکت در سیستم پشتیبان‌گیری ابری Android را راه‌اندازی نمایید.</string>
+    <string name="pref_section_icon_packs">بسته‌های آیکون</string>
+    <string name="pref_section_icon_packs_summary">بسته‌های آیکون را مدیریت و واردات کنید</string>
     <string name="pref_select_theme_title">پوسته</string>
     <string name="pref_view_mode_title">حالت نمایش</string>
     <string name="pref_lang_title">زبان</string>
     <string name="pref_code_group_size_title">حالت نمایش کد</string>
-    <string name="pref_code_group_size_summary">جدا کردن رقم ها به صورت دو به دو، بجای جدا کردن به صورت سه به سه</string>
     <string name="pref_account_name_title">نمایش نام حساب کاربری</string>
     <string name="pref_account_name_summary">برای نمایش نام حساب کاربری کنار صادر کننده فعال کنید</string>
     <string name="pref_import_file_title">وارد کردن از فایل</string>
     <string name="pref_import_file_summary">وارد کردن توکن ها از فایل</string>
-    <string name="pref_android_backups_title">شرکت کردن در سیستم پشتیبانگیری اندروید</string>
-    <string name="pref_android_backups_summary">به سیستم پشتیبان گیری اندروید اجازه دهید تا مخزن آگیس را در فایل های پشتیبان خود شامل کند این عملیات فقط برای مخزن های رمزنگاری شده مقدور می باشد.</string>
+    <string name="pref_android_backups_title">پشتیبان‌گیری ابری Android</string>
+    <string name="pref_android_backups_summary">به سیستم پشتیبان‌گیری ابری Android اجازه دهید تا خزانهٔ Aegis را در فایل‌های پشتیبان خود شامل کند. این کنش تنها برای خزانه‌های رمزنگاری شده پشتیبانی می‌شود.</string>
+    <string name="pref_android_backups_hint"><i>پشتیبان‌گیریِ دستگاه به دستگاه (D2D) بدون در نظر گرفتن تنظیمات بالا، همواره مجاز است</i></string>
     <string name="pref_backups_title">بصورت خودکار از مخزن پشتیبانگیری شود</string>
     <string name="pref_backups_summary">به صورت خودکار از مخزن ها در کارت حافظه پیشتیبان گیری شود. این ویژگی فقط مخصوص مخزن های رمزگذاری شده است.</string>
     <string name="pref_backups_location_title">مقصد ذخیره فایل‌های پشتیبان گیری</string>
     <string name="pref_backups_location_summary">فایل‌ها پشتیبان گیری در این آدرس ذخیره می‌شوند</string>
     <string name="pref_backups_trigger_title">پشتیبان‌گیری</string>
     <string name="pref_backups_trigger_summary">گرفتن پیشتیبان به صورت دستی</string>
+    <string name="pref_backups_versions_title">تعداد نسخه‌هایی که مایلید نگه‌دارید</string>
     <plurals name="pref_backups_versions_summary">
         <item quantity="one">نگه داشتن %1$d نسخه از فایل پشتیبان‌گیری</item>
         <item quantity="other">نگه داشتن %1$d نسخه از فایل پشتیبان‌گیری</item>
@@ -49,6 +57,8 @@
     <string name="pref_export_title">صادر کردن</string>
     <string name="pref_export_summary">صادر کردن مخزن</string>
     <string name="pref_password_reminder_title">یادآوری کلمه عبور</string>
+    <string name="pref_password_reminder_summary">یک یادآوری %s هنگام وارد کردن گذرواژه نمایش دهید، تا آن را فراموش نکنید.</string>
+    <string name="pref_password_reminder_summary_disabled">غیرفعال</string>
     <string name="pref_secure_screen_title">امنیت صفحه</string>
     <string name="pref_secure_screen_summary">عدم امکان گرفتن اسکرین شات در برنامه</string>
     <string name="pref_tap_to_reveal_title">نمایش هنگام لمس</string>
@@ -93,7 +103,14 @@
     <string name="set_password_confirm">لطفا کلمه عبور را تکرار کنید</string>
     <string name="invalid_password">کلمه عبور صحیح نیست</string>
     <string name="password_reminder">لطفا کلمه عبور خود را وارد کنید. ما گهگاه از شما کلمه عبور را میپرسیم تا فراموش نکنید.</string>
+    <string name="password_reminder_freq_never">هرگز</string>
+    <string name="password_reminder_freq_weekly">هفتگی</string>
+    <string name="password_reminder_freq_biweekly">دو هفته يکبار</string>
+    <string name="password_reminder_freq_monthly">ماهانه</string>
+    <string name="password_reminder_freq_quarterly">هر سه ماه یکبار</string>
+    <string name="enter_password_2fas_message">به‌نظر می‌رسد این نسخهٔ پشتیبان 2FAS رمزگذاری شده‌است. لطفاً گذرواژه خود را در زیر وارد نمایید.</string>
     <string name="enter_password_authy_message">به نظر میرسد توکن های Authy توسط کلمه عبور رمزگذاری شده است. برانمه Aegis را ببندید و در برنامه Authy توکن ها را با پسورد رمزگشایی کنید. همچنین می‌توانید با وارد کردن کلمه عبور در قسمت زیر این کار را انجام دهید.</string>
+    <string name="enter_password_aegis_title">لطفاً گذرواژهٔ واردات را یادداشت نمایید</string>
     <string name="period_hint">زمان (ثانیه)</string>
     <string name="algorithm_hint">عملکرد Hash</string>
     <string name="type">نوع</string>
@@ -122,6 +139,8 @@
     <string name="snackbar_authentication_method">لطفا یک روش احراز هویت انتخاب کنید</string>
     <string name="encrypting_vault">رمزگذاری مخزن</string>
     <string name="exporting_vault">صادر کردن مخزن</string>
+    <string name="reading_file">در حال خواندن فایل</string>
+    <string name="importing_icon_pack">در حال وارد کردن بستهٔ نماد</string>
     <string name="delete_entry">حذف آیتم</string>
     <string name="delete_entry_description">آیا مطمئن به حذف این آیتم هستید؟</string>
     <string name="delete_entries">حذف موارد</string>
@@ -291,18 +310,13 @@
 <b>/data/data/org.fedorahosted.freeotp/shared_prefs/tokens.xml</b>,
 واقع شده در حافظه داخلیFreeOTP.</string>
     <string name="importer_help_freeotp_plus">تهیه فایل صدور برای FreeOTP+.</string>
-    <string name="importer_help_google_authenticator">تهیه کپی از
-<b>/data/data/com.google.android.apps.authenticator2/databases/databases</b>,
-واقع شده در حافظه داخلی Google Authenticator.</string>
     <string name="importer_help_microsoft_authenticator">تهیه کپی از
 <b>/data/data/com.azure.authenticator/databases/PhoneFactor</b>,
 واقع شده در حافظه داخلی Microsoft Authenticator.</string>
     <string name="importer_help_plain_text">تهیه یک فایل متنی ساده با Google Authenticator URI در هر خط.</string>
-    <string name="importer_help_steam">تهیه کپی از
-<b>/data/data/com.valvesoftware.android.steam.community/files/Steamguard-*.json</b>,
-واقع شده در حافظه داخلی Steam.</string>
     <string name="importer_help_totp_authenticator">تهیه فایل صدور برای TOTP Authenticator.</string>
     <string name="importer_help_winauth">تهیه فایل صدور برای WinAuth.</string>
     <string name="importer_help_direct">وارد کردن محتویات مستقیما از %s. برای انجام این عملیات باید اپلیکشن بر روی دستگاه نصب شده باشد و دسترسی روت به آگیس اعطا شده باشد.</string>
     <string name="groups">گروه‌ها</string>
+    <string name="pref_focus_search_summary">پس از باز کردن برنامه، بی‌درنگ به بخش جستجو بروید.</string>
 </resources>

@@ -11,8 +11,11 @@
     <string name="discard">Baztertu</string>
     <string name="save">Gorde</string>
     <string name="issuer">Igorlea</string>
+    <string name="yandex_pin">PIN (4–16 zenbaki)</string>
+    <string name="motp_pin">PIN (4 zenbaki)</string>
     <string name="suggested">Iradokitakoak</string>
     <string name="usage_count">Erabilera kopurua</string>
+    <string name="warning">Oharra</string>
     <string name="pref_cat_appearance_app">Aplikazioa</string>
     <string name="pref_cat_appearance_entries">Sarrerak</string>
     <string name="pref_cat_backups_android">Android</string>
@@ -26,20 +29,21 @@
     <string name="pref_section_import_export_title">Inportatu eta esportatu</string>
     <string name="pref_section_import_export_summary">Aegis edo beste aplikazio batzuen segurtasun-kopiak inportatu. Zure Aegis biltegiaren eskuzko esportazioak sortu.</string>
     <string name="pref_section_backups_title">Segurtasun-kopiak</string>
-    <string name="pref_section_backups_summary">Konfiguratu segurtasun kopia automatikoak zuk nahi duzun karpetan gorde eta Androiden segurtasun kopien sisteman erabiltzeko.</string>
+    <string name="pref_section_backups_summary">Konfiguratu segurtasun kopia automatikoak zuk nahi duzun karpetan gorde edo aktibatu Androiden segurtasun kopien sistema.</string>
     <string name="pref_section_icon_packs">Ikono multzoak</string>
     <string name="pref_section_icon_packs_summary">Kudeatu eta inportatu ikono multzoak</string>
     <string name="pref_select_theme_title">Itxura</string>
     <string name="pref_view_mode_title">Ikuspegia</string>
     <string name="pref_lang_title">Hizkuntza</string>
     <string name="pref_code_group_size_title">Kode-digituen taldekatzea</string>
-    <string name="pref_code_group_size_summary">Erakutsi kode-digituak binaka taldekatuta hirunaka taldekatuta erakutsi ordez</string>
+    <string name="pref_code_group_size_summary">Aukeratu kodeak zenbat zenbakiko taldetan taldekatuko diren</string>
     <string name="pref_account_name_title">Erakutsi kontuaren izena</string>
     <string name="pref_account_name_summary">Aktibatu hau kontu-izena igorlearen ondoan bistaratzeko</string>
     <string name="pref_import_file_title">Inportatu fitxategi batetik</string>
     <string name="pref_import_file_summary">Inportatu marka-ikurrak fitxategi batetik</string>
-    <string name="pref_android_backups_title">Androiden segurtasun kopien sisteman parte hartu</string>
+    <string name="pref_android_backups_title">Androiden lainoko segurtasun kopiak</string>
     <string name="pref_android_backups_summary">Androiden segurtasun kopien sistemari Aegisen biltegiaren kopia egiten utzi. Hau zifratutako biltegiekin bakarrik erabili daiteke.</string>
+    <string name="pref_android_backups_hint"><i>Gailutik gailurako (D2D) segurtasun kopiak beti egin ditzakezu, berdin delarik goian egindako aukera</i></string>
     <string name="pref_backups_title">Biltegiaren segurtasun kopia automatikoki egin</string>
     <string name="pref_backups_summary">Aldaketak egiten direnean, sortu automatikoki biltegiaren segurtasun-kopiak kanpoko biltegiratze unitatean. Hori biltegi zifratuek bakarrik onartzen dute.</string>
     <string name="pref_backups_location_title">Segurtasun-kopiak egiteko direktorioa</string>
@@ -56,6 +60,15 @@
     <string name="pref_export_title">Esportatu</string>
     <string name="pref_export_summary">Esportatu biltegia</string>
     <string name="pref_password_reminder_title">Pasahitza gogoan izan</string>
+    <string name="pref_google_auth_export_title">Esportatu Google Authenticatorren erabiltzeko</string>
+    <string name="pref_google_auth_export_descriptor">Google Authenticatorrekin bateragarriak diren QR kodeak esportatzen ditu</string>
+    <string name="pref_google_auth_export_no_data">Ez dago esportatzeko daturik</string>
+    <plurals name="pref_google_auth_export_incompatible_entries">
+        <item quantity="one">Bateragarria ez den sarrera %d ez da esportatu</item>
+        <item quantity="other">Bateragarri ez diren %d sarrera ez dira esportatu</item>
+    </plurals>
+    <string name="pref_password_reminder_summary">Erakutsi %s pasahitza gogorarazlea, ahaztu ez dezazun.</string>
+    <string name="pref_password_reminder_summary_disabled">Desgaituta</string>
     <string name="pref_secure_screen_title">Pantaila segurtasuna</string>
     <string name="pref_secure_screen_summary">Blokeatu pantaila-argazkiak eta beste saiakera batzuk aplikazioaren barruan pantaila kapturatzeko</string>
     <string name="pref_tap_to_reveal_title">Sakatu erakusteko</string>
@@ -68,6 +81,11 @@
     <string name="pref_auto_lock_type_back_button">Atzera egiteko botoia sakatuta dago</string>
     <string name="pref_auto_lock_type_minimize">Aplikazioa minimizatuta dago</string>
     <string name="pref_auto_lock_type_device_lock">Gailua blokeatuta dago</string>
+    <string name="pref_backup_password_category">Segurtasun-kopiak eta esportazioa</string>
+    <string name="pref_backup_password_title">Aparteko pasahitza segurtasun-kopia eta esportazioarentzat</string>
+    <string name="pref_backup_password_summary">Aktibatuta badago, aplikazioa desblokeatzeko erabiltzen den pasahitza ezingo da erabili segurtasun kopia eta esportazioak deszifratzeko.</string>
+    <string name="pref_backup_password_change_title">Aldatu segurtasun-kopia eta esportazioan pasahitza</string>
+    <string name="pref_backup_password_change_summary">Ezarri segurtasun-kopia eta esportazioak egitean gordailua zifratzeko erabiliko den pasahitz berria.</string>
     <string name="pref_encryption_title">Zifratua</string>
     <string name="pref_encryption_summary">Zifratu biltegia eta desblokeatu pasahitzarekin edo biometriarekin</string>
     <string name="pref_biometrics_title">Desblokeatze biometrikoa</string>
@@ -78,6 +96,7 @@
     <string name="export_help">Akzio honek zure biltegia Aegisen barne-biltegiratzetik kanpo esportatuko du. Aukeratu zein formatutan esportatu nahi duzun:</string>
     <string name="export_warning_unencrypted">Zure Aegis biltegiaren zifratu gabeko kopia esportatzera zoaz. <b>Ez dizugu hau egitea gomendatzen</b>.</string>
     <string name="export_warning_accept">Arriskua ulertzen dut</string>
+    <string name="export_warning_password">Esportazioak Segurtasun ezarpenetan zehazten den bestelako pasahitz batekin zifratuta daude.</string>
     <string name="export_format_aegis">Aegis (.JSON)</string>
     <string name="export_format_google_auth_uri">Testu fitxategia (.TXT)</string>
     <string name="export_format_hint">Esportazio formatua</string>
@@ -101,7 +120,14 @@
     <string name="invalid_password">Pasahitza ez da zuzena</string>
     <string name="invalidated_biometrics">Aldaketa bat detektatu da zure gailuaren segurtasun ezarpenetan. Joan \"Aegis -&gt; Ezarpenak -&gt; Segurtasuna &gt; Biometriak\" aukerara eta aktibatu berriro desblokeatze-biometrikoa.</string>
     <string name="password_reminder">Sartu zure pasahitza mesedez. Noizean behin pasahitza sartzeko eskatzen dizugu ahaztu ez dezazun.</string>
+    <string name="password_reminder_freq_never">Inoiz ez</string>
+    <string name="password_reminder_freq_weekly">Astero</string>
+    <string name="password_reminder_freq_biweekly">Bi astero</string>
+    <string name="password_reminder_freq_monthly">Hilero</string>
+    <string name="password_reminder_freq_quarterly">Hiru hilabetero</string>
+    <string name="enter_password_2fas_message">2FAko segurtasun kopia hau zifratuta dagoela dirudi. Sartu pasahitza.</string>
     <string name="enter_password_authy_message">Badirudi Authy tokenak zifratuta daudela. Itxi Aegis, ireki Authy eta desblokeatu tokenak pasahitzarekin. Horren ordez, Aegis zure Authy fitxak deszifratzen ere saia daiteke, ondoren pasahitza sartzen baduzu.</string>
+    <string name="enter_password_aegis_title">Mesedez sartu inportatzeko pasahitza</string>
     <string name="period_hint">Tartea (segundoak)</string>
     <string name="algorithm_hint">Hash funtzioa</string>
     <string name="type">Mota</string>
@@ -119,6 +145,9 @@
     <string name="set_up_biometric">Desblokeatze biometrikoa konfiguratu</string>
     <string name="copy">Kopiatu</string>
     <string name="edit">Editatu</string>
+    <string name="favorite" comment="Verb">Gogokoa</string>
+    <string name="unfavorite" comment="Verb">Gogokoetatik kendu</string>
+    <string name="error_all_caps">Errorea</string>
     <string name="password">Pasahitza</string>
     <string name="confirm_password">Berretsi pasahitza</string>
     <string name="show_password">Erakutsi pasahitza</string>
@@ -131,9 +160,16 @@
     <string name="encrypting_vault">Biltegia zifratzen</string>
     <string name="exporting_vault">Biltegia esportatzen</string>
     <string name="reading_file">Fitxategia irakurtzen</string>
+    <string name="analyzing_qr">QR kodea aztertzen</string>
+    <string name="analyzing_qr_multiple">QR kodea aztertzen %d/%d (%s)</string>
+    <plurals name="added_new_entries">
+        <item quantity="one">Sarrera berri %d gehitu da</item>
+        <item quantity="other">%d sarrera berri gehitu dira</item>
+    </plurals>
     <string name="importing_icon_pack">Ikono multzoa inportatzen</string>
     <string name="delete_entry">Ezabatu sarrera</string>
     <string name="delete_entry_description">Ziur al zaude sarrera hau ezabatu nahi duzula?</string>
+    <string name="delete_entry_explanation">Akzio honek ez du <b>%s</b> zerbitzuaren 2FA desgaitzen. Sartzen jarraitzeko desaktibatu 2FA edo ziurtatu sartzeko kodeak beste era baten sor ditzakezula.</string>
     <string name="delete_entries">Ezabatu sarrerak</string>
     <plurals name="delete_entries_description">
         <item quantity="one">Ziur al zaude %d sarrera ezabatu nahi duzula?</item>
@@ -164,6 +200,10 @@
     <string name="disable_encryption_error">Errorea gertatu da zifratua desgaitzerakoan</string>
     <string name="backup_successful">Segurtasun-kopia egitea ondo gorde da</string>
     <string name="backup_error">Errorea gertatu da segurtasun-kopia sortzerakoan</string>
+    <string name="backup_status_success">Ondo egindako azken segurtasun kopia: %s</string>
+    <string name="backup_status_failed">Huts egindako azken segurtasun kopia: %s</string>
+    <string name="backup_status_none">Oraindik ez da segurtasun kopiarik egin</string>
+    <string name="backup_warning_password">Babeskopiak Segurtasun ezarpenetan zehazten den bestelako pasahitz batekin zifratuta daude</string>
     <string name="documentsui_error">DocumentsUI ez dago zure gailuan. Dokumentuak aukeratu eta sortzeko ezinbesteko sistemaren osagaia da hau. Zure gailuan lekuka egiteko aplikazioren bat erabili baduzu agian nahi gabe ezabatu egingo zenuen eta berriz instalatu beharko duzu.</string>
     <string name="icon_pack_import_error">Errorea gertatu da ikono multzo bat inportatzerakoan</string>
     <string name="icon_pack_import_exists_error">Inportatzen saiatzen ari zaren ikono multzoa jada badago. Gainidaztea nahi duzu?</string>
@@ -185,11 +225,17 @@
     <string name="file_not_found">Errorea: Ez da fitxategia aurkitu</string>
     <string name="reading_file_error">Errorea gertatu da fitxategia irakurtzen saiatzean</string>
     <string name="app_lookup_error">Errorea: Aplikazioa ez dago instalatuta</string>
+    <string name="app_version_error">Instalatuta dagon %s-ren bertsioa ez da zuzena. Inportatzeko saiakerak huts egin dezake. Jarraitu egin nahi duzu?</string>
     <string name="root_error">Errorea: Ezin izan da root sarbidea lortu</string>
     <plurals name="imported_entries_count">
         <item quantity="one">%d sarrera inportatuta</item>
         <item quantity="other">%d sarrera inportatuta</item>
     </plurals>
+    <plurals name="entries_shown">
+        <item quantity="one">Sarrera %d erakusten</item>
+        <item quantity="other">%d sarrera erakusten</item>
+    </plurals>
+    <string name="intro_import_error_title">Errore bat gertatu da biltegi bat inportatzerakoan</string>
     <string name="import_error_title">Inportazioa burutzerakoan errore bat edo gehiago gertatu dira</string>
     <string name="exporting_vault_error">Errorea gertatu da biltegia esportatzen saiatzean</string>
     <string name="exported_vault">Biltegia esportatu da</string>
@@ -198,6 +244,13 @@
     <string name="no_cameras_available">Kamera ez dago erabilgarri</string>
     <string name="read_qr_error">Errorea gertatu da QR kodea irakurtzen saiatzean</string>
     <string name="read_qr_error_phonefactor">Aegis ez da bateragarria Microsoften 2FA algoritmo jabedunarekin. Office 365en 2FA konfiguratzen duzunean aukeratu \"Aplikazioa jakinarazpen gabe konfiguratu\" aukeratu ezazu (ingelesez: \"Setup application without notifications\").</string>
+    <string name="partial_google_auth_import">Google Authenticatorren esportazioa ez da osoa</string>
+    <string name="partial_google_auth_import_warning">QR kode batzuk falta dira zure inportazioan. Kode hauek ez dira aurktu: \n\n<b>%s</b>\n\nZatikako inportazio honekin jarrai dezakezu baina berriz ere QR kode guztiekin saiatzea gomendatzen dizugu tokenetarako sarrera gal ez dezazun.</string>
+    <string name="missing_qr_code_descriptor">• QR kodea %d</string>
+    <string name="import_partial_export_anyway">Inportatu %d token edonola ere</string>
+    <string name="import_google_auth_failure">Google Authenticatorren esportazioa inportatzeak huts egin du</string>
+    <string name="unrelated_google_auth_batches_error">Esportazioak zerikusirik ez duen sorta baten informazioa du. Saiatu sorta bakoitza bere aldetik inportatzen.</string>
+    <string name="no_tokens_can_be_imported">Ez izan da tokenik inportatu</string>
     <string name="authentication_method_raw">Gordina</string>
     <string name="unlocking_vault">Biltegia desblokeatzen</string>
     <string name="slot_this_device">(gailu hau)</string>
@@ -206,6 +259,7 @@
     <string name="remove_icon_pack">Ezabatu ikono multzoa</string>
     <string name="remove_icon_pack_description">Ziur zaude ikono multzo hau ezabatzeaz? Ikono multzo honetako ikonoak darabiltzaten sarreretan ez da aldaketarik egongo.</string>
     <string name="details">Xehetasunak</string>
+    <string name="show_error_details">Erakutsi errorearen xehetasunak</string>
     <string name="lock">Blokeatu</string>
     <string name="name">Izena</string>
     <string name="no_group">Talderik ez</string>
@@ -224,11 +278,16 @@
     <string name="preference_reset_usage_count">Berrezarri erabilera kopurua</string>
     <string name="preference_reset_usage_count_summary">Berrezarri elementu guztien erabilera kopurua</string>
     <string name="preference_reset_usage_count_dialog">Ziur zaude elementu guztien erabilera kopurua 0ra berrezartzeaz?</string>
+    <string name="note">Oharra</string>
     <string name="clear">Garbitu</string>
     <string name="pref_highlight_entry_title">Nabarmendu tokenak ukitzean</string>
     <string name="pref_highlight_entry_summary">Egin elkarrengandik errazago bereizten diren tokenak, sakatzen dituzunean aldi baterako nabarmenduz</string>
+    <string name="pref_minimize_on_copy_title">Txikitu kopiatzean</string>
+    <string name="pref_minimize_on_copy_summary">Aplikazioa txikitu tokena kopiatutakoan</string>
     <string name="pref_copy_on_tap_title">Kopiatu tokenak ukitzean</string>
     <string name="pref_copy_on_tap_summary">Kopiatu tokenak arbelean beraiek ukituta</string>
+    <string name="pref_pause_entry_title">Izoztu tokenak ukitzean</string>
+    <string name="pref_pause_entry_summary">Gelditu tokenak automatikoki freskatzea beraietan sakatzean. Tokenak ez dira eguneratuko ukitzen ez badituzu. \"Nabarmendu tokenak ukitzean\" edo \"Sakatu erakusteko\" aukeratuta izatea eskatzen du.</string>
     <string name="pin_keyboard_description">Sartu pasahitza PIN teklatua gaitzeko. Kontuan izan honek zure pasahitzak zenbakiak soilik baditu funtzionatzen duela</string>
     <string name="pin_keyboard_error">Errorea PIN teklatua gaitzean</string>
     <string name="pin_keyboard_error_description">Ezin da PIN teklatua konfiguratu. Zure pasahitzak zenbakiak bakarrik izan behar ditu.</string>
@@ -248,6 +307,10 @@
         <item quantity="one">Aegisek ezin izan du %d token inportatu. Token hori kendu egingo da. Sakatu \'Xehetasunak\' akatsei buruzko informazio gehiago ikusteko.</item>
         <item quantity="other">Aegisek ezin izan du %d token inportatu. Token horiek kendu egingo dira. Sakatu \'Xehetasunak\' akatsei buruzko informazio gehiago ikusteko.</item>
     </plurals>
+    <string name="unable_to_process_deeplink">Ezin izan da esteka sakona prozesatu</string>
+    <string name="unable_to_read_qrcode_file">Ezin izan da fitxategian oinarritutako QR kodea prozesatu: %s.</string>
+    <string name="unable_to_process_shared_text">Ezin izan da partekatutako testua OTP bezala prozesatu</string>
+    <string name="unable_to_read_qrcode_files">Ezin izan dira QR kode batzuk irakurri eta prozesatu. %d/%d sarrera inportatuko dira bakarrik.</string>
     <string name="unable_to_generate_qrcode">Ezin da QR kodea sortu</string>
     <string name="select_picture">Aukeratu irudia</string>
     <string name="select_icon">Aukeratu ikonoa</string>
@@ -282,19 +345,32 @@
     </plurals>
     <string name="google_qr_export_unexpected">Itxarondako QR kodea #%d, baina haren ordez #%d eskaneatuta</string>
     <string name="backup_error_bar_message"><b>Biltegiaren segurtasun-kopiak akatsa eman du berriki</b></string>
+    <string name="backup_error_dialog_details">%s erabiliz egindako biltegiaren segurtasun kopiak huts egin du. Saiakera noiz egin den: %s. Ziurtatu segurtasun kopien ezarpenak ondo daudela hauek ondo egin daitezen.</string>
+    <string name="backup_system_builtin">Aegisek egindako segurtasun kopia automatikoak</string>
+    <string name="backup_system_android">Androidek lainoan egidako segurtasun kopiak</string>
+    <string name="backup_reminder_bar_message"><b>Ez dago biltegian egindako azken aldaketen segurtasun kopiarik</b></string>
+    <string name="backup_plaintext_export_warning"><b>Biltegia orain dela gutxi testu-huts gisa esportatu da</b></string>
+    <string name="pref_show_plaintext_warning_hint">Ez erakutsi ohar hau berriz</string>
+    <string name="backup_plaintext_warning_explanation">Ohar hau, orain dela gutxi zifratu gabeko biltegiaren kopia bat esportatu delako agertzen da. Zure gakoen segurtasuna mantentzeko, fitxategi hori berehala ezabatzeko aholkua ematen dizugu.</string>
     <string name="switch_camera">Aldatu kamera</string>
     <string name="empty_list">Ez dago erakutsi beharreko sarrerarik. Sarrerak gehitzen hasteko, ukitu beheko eskuineko izkinako plus ikurra</string>
     <string name="empty_list_title">Ez da sarrerarik aurkitu</string>
     <string name="empty_group_list">Ez dago erakutsi beharreko talderik. Gehitu taldeak sarrerak editatzeko pantailan</string>
     <string name="empty_group_list_title">Ez da talderik aurkitu</string>
+    <string name="no_icon_packs">Ez duzu ikono multzorik inportatu. Sakatu + ikurra bat inportatzeko. Aholkua: probatu <a href="https://aegis-icons.github.io">aegis-icons</a>.</string>
     <string name="no_icon_packs_title">Ez dago ikono multzorik</string>
     <string name="pick_icon">Aukeratu ikono bat</string>
     <string name="uncategorized">Kategoriarik gabe</string>
     <string name="done">Eginda</string>
+    <plurals name="qr_count">
+        <item quantity="one">%d / %d QR kode</item>
+        <item quantity="other">%d / %d QR kode</item>
+    </plurals>
     <string name="next">Hurrengoa</string>
     <string name="previous">Aurrekoa</string>
     <string name="transfer_entry">Transferitu sarrera</string>
     <string name="transfer_entry_description">Eskaneatu QR kode hau sarrera transferitu nahi diozun aitentifikazio-aplikazioarekin</string>
+    <string name="google_auth_compatible_transfer_description">Eskaneatu QR kode hauek Aegis edo Google Authenticator erabiliz.\n\nGoogle Authenticator aplikazioaren mugak direla eta, SHA1 darabilten eta 6 zenbakiko kodeak erabiltzen dituzten TOTP &amp; HOTP tokenak bakarrik sartzen dira</string>
     <string name="password_strength_very_weak">Oso ahula</string>
     <string name="password_strength_weak">Ahula</string>
     <string name="password_strength_fair">Ertaina</string>
@@ -316,19 +392,31 @@
     <string name="panic_trigger_ignore_toast">Aegisek arrisku mezua jaso du baina ezarpen hau desaktibatuta dago, ez da ezer egingo</string>
     <string name="pref_panic_trigger_title">Ezabatu biltegia arrisku mezua jasotzean</string>
     <string name="pref_panic_trigger_summary">Ezabatu biltegia Rippletik arrisku mezua jasotzean</string>
+    <string name="import_vault">Inportatu biltegia</string>
     <string name="importer_help_2fas">Aukeratu 2FAS Authenticator segurtasun-kopia fitxategia.</string>
     <string name="importer_help_aegis">Aegisen esportazio/segurtasun-kopia fitxategia aukeratu.</string>
     <string name="importer_help_authenticator_plus">Authenticator Plus esportazio fitxategia aukeratu. Lortzeko modua: <b>Settings -&gt; Backup &amp; Restore -&gt; Export as Text and HTML</b>.</string>
     <string name="importer_help_authy"><b>/data/data/com.authy.authy/shared_prefs/com.authy.storage.tokens.authenticator.xml</b> fitxategia aukeratu.</string>
     <string name="importer_help_andotp">andOTPren esportazio/segurtasun-kopia fitxategia aukeratu.</string>
+    <string name="importer_help_bitwarden">Kargatu Bitwardenen esportazio/segurtasun-kopia fitxategi bat. Ezin dituzu zifratutako fitxategiak kargatu.</string>
+    <string name="importer_help_duo">Aukeratu <b>/data/data/com.duosecurity.duomobile/files/duokit/accounts.json</b> fitxategia, DUOren karpeten barruan dagoena.</string>
     <string name="importer_help_freeotp">FreeTOPren <b>/data/data/org.fedorahosted.freeotp/shared_prefs/tokens.xml</b> fitxategia aukeratu.</string>
     <string name="importer_help_freeotp_plus">FreeOTP+en esportazio fitxategia aukeratu.</string>
-    <string name="importer_help_google_authenticator">Google Authenticatoren <b>/data/data/com.google.android.apps.authenticator2/databases/databases</b> fitxategia aukeratu.</string>
+    <string name="importer_help_google_authenticator">&lt;b&gt;Google Authenticator aplikazioaren v5.10 bertsioa edo lehenagokoak diren datu-baseak erabili daitezke. \n\n&lt;b&gt;data/data/com.google.android.apps.authenticator2/databases/databases&lt;/b&gt; fitxategiaren kopia bat eman, berau Google Authenticator aplikazioaren barne biltegiratzean dago.</string>
     <string name="importer_help_microsoft_authenticator">Microsoft Authenticatoren <b>/data/data/com.azure.authenticator/databases/PhoneFactor</b> fitxategia aukeratu.</string>
     <string name="importer_help_plain_text">Google Authenticator URIak dituen testu hutseko fitxategia aukeratu.</string>
-    <string name="importer_help_steam">Steamen <b>/data/data/com.valvesoftware.android.steam.community/files/Steamguard-*.json</b> fitxategia aukeratu.</string>
+    <string name="importer_help_steam"><b>Steam v3.0 eta berriagoak ezin dira erabili.</b>erabili
+<b>/data/data/com.valvesoftware.android.steam.community/files/Steamguard-*.json</b> fitxategiaren kopia, berau Steamen barne biltegiratzearen karpetan egongo da.</string>
     <string name="importer_help_totp_authenticator">TOTP Authenticatoren esportazio fitxategia aukeratu.</string>
     <string name="importer_help_winauth">WinAuthen esportazio fitxategia aukeratu.</string>
+    <string name="importer_encrypted_exception_google_authenticator">Zifratutako sarrera ez da kontuan hartu: %s</string>
     <string name="importer_help_direct">Sarrerak %s-etik inportatu. Honek funtzionatzeko aplikazioa gailu honetan instalatuta egon behar da eta Aegisi root baimena eman beharko diozu.</string>
     <string name="groups">Taldeak</string>
+    <string name="pref_focus_search">Bilaketara joan aplikazioa hastean</string>
+    <string name="pref_focus_search_summary">Aplikazioa irekitzean bilaketa leihora joan.</string>
+    <string name="pref_grouping_halves">Erdiak</string>
+    <string name="pref_grouping_none">Talderik ez</string>
+    <string name="pref_grouping_size_two">2ko taldeak</string>
+    <string name="pref_grouping_size_three">3ko taldeak</string>
+    <string name="pref_grouping_size_four">4ko taldeak</string>
 </resources>
