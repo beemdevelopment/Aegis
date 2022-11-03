@@ -714,7 +714,7 @@ public class EntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             int entriesShown = getEntriesCount();
             SpannableString entriesShownSpannable = new SpannableString(_footerView.getResources().getQuantityString(R.plurals.entries_shown, entriesShown, entriesShown));
 
-            String entriesShownString = String.valueOf(entriesShown);
+            String entriesShownString = String.format("%d", entriesShown);
             int spanStart = entriesShownSpannable.toString().indexOf(entriesShownString);
             int spanEnd = spanStart + entriesShownString.length();
             entriesShownSpannable.setSpan(new StyleSpan(Typeface.BOLD), spanStart, spanEnd, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
