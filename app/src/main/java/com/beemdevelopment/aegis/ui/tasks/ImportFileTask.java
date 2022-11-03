@@ -29,6 +29,10 @@ public class ImportFileTask extends ProgressDialogTask<ImportFileTask.Params, Im
 
         Params p = params[0];
         try (InputStream inStream = context.getContentResolver().openInputStream(p.getUri())) {
+            if (inStream == null) {
+                throw new IOException("openInputStream returned null");
+            }
+
             String prefix = p.getNamePrefix() != null ? p.getNamePrefix() + "-" : "";
             String suffix = p.getNameSuffix() != null ? "-" + p.getNameSuffix() : "";
 

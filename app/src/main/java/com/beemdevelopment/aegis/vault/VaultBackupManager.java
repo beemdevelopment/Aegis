@@ -85,6 +85,9 @@ public class VaultBackupManager {
 
             try (FileInputStream inStream = new FileInputStream(tempFile);
                  OutputStream outStream = _context.getContentResolver().openOutputStream(file.getUri())) {
+                if (outStream == null) {
+                    throw new IOException("openOutputStream returned null");
+                }
                 IOUtils.copy(inStream, outStream);
             } catch (IOException e) {
                 throw new VaultRepositoryException(e);

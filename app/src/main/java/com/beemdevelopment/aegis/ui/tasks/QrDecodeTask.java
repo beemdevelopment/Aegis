@@ -33,6 +33,9 @@ public class QrDecodeTask extends ProgressDialogTask<List<Uri>, List<QrDecodeTas
             }
 
             try (InputStream inStream = context.getContentResolver().openInputStream(uri)) {
+                if (inStream == null) {
+                    throw new IOException("openInputStream returned null");
+                }
                 com.google.zxing.Result result = QrCodeHelper.decodeFromStream(inStream);
                 res.add(new Result(uri, fileName, result, null));
             } catch (QrCodeHelper.DecodeError | IOException e) {

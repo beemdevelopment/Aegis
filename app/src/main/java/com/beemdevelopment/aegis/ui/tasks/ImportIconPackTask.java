@@ -32,6 +32,9 @@ public class ImportIconPackTask extends ProgressDialogTask<ImportIconPackTask.Pa
             tempFile = File.createTempFile("icon-pack-", "", context.getCacheDir());
             try (InputStream inStream = context.getContentResolver().openInputStream(param.getUri());
                  FileOutputStream outStream = new FileOutputStream(tempFile)) {
+                if (inStream == null) {
+                    throw new IOException("openInputStream returned null");
+                }
                 IOUtils.copy(inStream, outStream);
             }
 
