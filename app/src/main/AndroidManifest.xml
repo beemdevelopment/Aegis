@@ -94,6 +94,32 @@
 
         <service android:name=".services.NotificationService" />
 
+        <service
+            android:name=".services.LaunchAppTileService"
+            android:label="@string/tile_open_vault"
+            android:icon="@drawable/ic_aegis_quicksettings"
+            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.service.quicksettings.action.QS_TILE" />
+            </intent-filter>
+            <meta-data android:name="android.service.quicksettings.ACTIVE_TILE"
+                android:value="true" />
+        </service>
+
+        <service
+            android:name=".services.LaunchScannerTileService"
+            android:label="@string/tile_open_scanner"
+            android:icon="@drawable/ic_aegis_quicksettings"
+            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.service.quicksettings.action.QS_TILE" />
+            </intent-filter>
+            <meta-data android:name="android.service.quicksettings.ACTIVE_TILE"
+                android:value="true" />
+        </service>
+
         <receiver android:name=".receivers.VaultLockReceiver" android:exported="false">
             <intent-filter>
                 <action android:name="${applicationId}.LOCK_VAULT" />
