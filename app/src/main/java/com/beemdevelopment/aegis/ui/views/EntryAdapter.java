@@ -485,6 +485,7 @@ public class EntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                     // this will only be called if the entry is of type HotpInfo
                     try {
                         ((HotpInfo) entry.getInfo()).incrementCounter();
+                        focusEntry(entry, _tapToRevealTime);
                     } catch (OtpInfoException e) {
                         throw new RuntimeException(e);
                     }
