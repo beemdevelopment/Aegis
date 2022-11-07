@@ -324,8 +324,8 @@
     <string name="unable_to_generate_qrcode">Unable to generate QR code</string>
     <string name="select_picture">Select picture</string>
     <string name="select_icon">Select icon</string>
-    <string name="tile_open_vault">Open vault</string>
-    <string name="tile_open_scanner">Open scanner</string>
+    <string name="tile_open_vault" comment="label for a quick settings tile that opens the QR code scanner when tapped">Open vault</string>
+    <string name="tile_open_scanner" comment="label for a quick settings tile that opens the app when tapped">Open scanner</string>
 
     <string name="toggle_checkboxes">Toggle checkboxes</string>
     <string name="search">Search</string>
