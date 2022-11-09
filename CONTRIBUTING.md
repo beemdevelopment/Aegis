@@ -30,10 +30,9 @@ requests.
 ## Bug reports
 
 We use GitHub's issue tracker to track bugs. To make bug reports easier to
-follow up on for us, they must follow [the
-template](.github/ISSUE_TEMPLATE/bug.md). If a bug report does not follow the
-template and does not contain enough information, it will be closed. Duplicate
-bug reports receive the same treatment.
+follow up on for us, please fill out the form as accurately as possible. If a
+bug report does not contain enough information, it will be closed. Duplicate bug
+reports receive the same treatment.
 
 Please consider trying to find the root cause yourself first and include your
 analysis of the issue in your report. Perhaps even send us a patch that fixes

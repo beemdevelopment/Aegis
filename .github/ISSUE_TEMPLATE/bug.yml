@@ -1,0 +1,78 @@
+name: Bug Report
+description: Create a report to help us fix a bug
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Please read the [bug reports section of the contribution guidelines](https://github.com/beemdevelopment/Aegis/blob/master/CONTRIBUTING.md#bug-reports) before submitting an issue.
+  - type: input
+    id: version
+    attributes:
+      label: Version
+      description: Which version of Aegis are you using?
+      placeholder: "Example: v2.1"
+    validations:
+      required: true
+  - type: dropdown
+    id: source
+    attributes:
+      label: Source
+      description: Where did you get Aegis from?
+      options:
+        - Google Play
+        - F-Droid
+        - GitHub
+        - Other
+    validations:
+      required: true
+  - type: input
+    id: device
+    attributes:
+      label: Device
+      description: Which device are you using Aegis on?
+      placeholder: "Example: Pixel 5"
+    validations:
+      required: true
+  - type: input
+    id: android_version
+    attributes:
+      label: Android version
+      description: Which Android version is running on your device?
+      placeholder: "Example: Android 13"
+    validations:
+      required: true
+  - type: input
+    id: rom
+    attributes:
+      label: ROM
+      description: Are you using a custom ROM? If so, which one and which version? If you're using the stock OS that came with your device, you can leave this field empty.
+      placeholder: "Example: GrapheneOS"
+    validations:
+      required: false
+  - type: textarea
+    id: reproduction_steps
+    attributes:
+      label: Steps to reproduce
+      description: A detailed list of reproduction steps.
+    validations:
+      required: true
+  - type: textarea
+    id: expectations
+    attributes:
+      label: What do you expect to happen?
+    validations:
+      required: true
+  - type: textarea
+    id: reality
+    attributes:
+      label: What happens instead?
+    validations:
+      required: true
+  - type: textarea
+    id: log
+    attributes:
+      label: Log
+      description: If applicable, paste the debug log that you captured using ADB here.
+    validations:
+      required: false
