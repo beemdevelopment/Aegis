@@ -74,15 +74,20 @@ public abstract class AegisActivity extends AppCompatActivity implements VaultMa
     }
 
     @SuppressLint("SoonBlockedPrivateApi")
+    @SuppressWarnings("JavaReflectionMemberAccess")
     @Override
     public void onLocked(boolean userInitiated) {
         setResult(RESULT_CANCELED, null);
+
         try {
+            // Call a private overload of the finish() method to prevent the app
+            // from disappearing from the recent apps menu
             Method method = Activity.class.getDeclaredMethod("finish", int.class);
             method.setAccessible(true);
             method.invoke(this, 2); // FINISH_TASK_WITH_ACTIVITY = 2
         } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
-            e.printStackTrace();
+            // On recent Android versions, the overload  of the finish() method
+            // used above is no longer accessible
             finishAndRemoveTask();
         }
     }
