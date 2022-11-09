@@ -1,10 +1,13 @@
 package com.beemdevelopment.aegis.helpers;
 
+import static androidx.recyclerview.widget.RecyclerView.NO_POSITION;
+
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.beemdevelopment.aegis.vault.VaultEntry;
 import com.beemdevelopment.aegis.ui.views.EntryAdapter;
+import com.beemdevelopment.aegis.vault.VaultEntry;
 
 public class SimpleItemTouchHelperCallback extends ItemTouchHelper.Callback {
 
@@ -44,19 +47,23 @@ public class SimpleItemTouchHelperCallback extends ItemTouchHelper.Callback {
     }
 
     @Override
-    public int getMovementFlags(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder) {
-        int dragFlags = ItemTouchHelper.UP | ItemTouchHelper.DOWN;
-        int swipeFlags = 0;
+    public int getMovementFlags(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder) {
+        // It's not clear when this can happen, but sometimes the ViewHolder
+        // that's passed to this function has a position of -1, leading
+        // to a crash down the line.
+        int position = viewHolder.getAdapterPosition();
+        if (position == NO_POSITION) {
+            return 0;
+        }
 
-        if (viewHolder != null) {
-            int position = viewHolder.getAdapterPosition();
-            EntryAdapter adapter = (EntryAdapter)recyclerView.getAdapter();
-            if (adapter.isPositionFooter(position)
+        int swipeFlags = 0;
+        int dragFlags = ItemTouchHelper.UP | ItemTouchHelper.DOWN;
+
+        EntryAdapter adapter = (EntryAdapter) recyclerView.getAdapter();
+        if (adapter.isPositionFooter(position)
                 || adapter.getEntryAt(position) != _selectedEntry
-                || !isLongPressDragEnabled())
-            {
-                dragFlags = 0;
-            }
+                || !isLongPressDragEnabled()) {
+            dragFlags = 0;
         }
 
         return makeMovementFlags(dragFlags, swipeFlags);
