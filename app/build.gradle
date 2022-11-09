@@ -178,17 +178,17 @@ dependencies {
 
     androidTestAnnotationProcessor "com.google.dagger:hilt-android-compiler:$hiltVersion"
     androidTestImplementation "com.google.dagger:hilt-android-testing:$hiltVersion"
-    androidTestImplementation 'androidx.test:core:1.5.0-rc01'
-    androidTestImplementation 'androidx.test:runner:1.5.0-rc01'
-    androidTestImplementation 'androidx.test:rules:1.5.0-rc01'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.4-rc01'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.0-rc01'
-    androidTestImplementation 'androidx.test.espresso:espresso-contrib:3.5.0-rc01'
-    androidTestImplementation 'androidx.test.espresso:espresso-intents:3.5.0-rc01'
+    androidTestImplementation 'androidx.test:core:1.5.0'
+    androidTestImplementation 'androidx.test:runner:1.5.0'
+    androidTestImplementation 'androidx.test:rules:1.5.0'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.4'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-contrib:3.5.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-intents:3.5.0'
     androidTestImplementation "junit:junit:${junitVersion}"
-    androidTestUtil 'androidx.test:orchestrator:1.4.2-rc01'
+    androidTestUtil 'androidx.test:orchestrator:1.4.2'
 
-    testImplementation 'androidx.test:core:1.5.0-rc01'
+    testImplementation 'androidx.test:core:1.5.0'
     testImplementation "com.google.guava:guava:${guavaVersion}-jre"
     testImplementation "junit:junit:${junitVersion}"
     testImplementation 'org.json:json:20220924'
