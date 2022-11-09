@@ -26,6 +26,17 @@ body:
         - Other
     validations:
       required: true
+  - type: dropdown
+    id: encryption
+    attributes:
+      label: Vault encryption
+      description: Do you have encryption enabled for your Aegis vault?
+      options:
+        - "Yes (with biometric unlock)"
+        - "Yes"
+        - "No"
+    validations:
+      required: true
   - type: input
     id: device
     attributes:
