@@ -310,6 +310,7 @@ public class AuthActivity extends AegisActivity {
         public void handleOnBackPressed() {
             // This breaks predictive back gestures, but it doesn't make sense
             // to go back to MainActivity when cancelling auth
+            setResult(RESULT_CANCELED);
             finishAffinity();
         }
     }
