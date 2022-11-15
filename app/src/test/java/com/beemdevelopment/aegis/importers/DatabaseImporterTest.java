@@ -238,7 +238,7 @@ public class DatabaseImporterTest {
     public void testImportTwoFASAuthenticatorSchema1() throws DatabaseImporterException, IOException, OtpInfoException {
         List<VaultEntry> entries = importPlain(TwoFASImporter.class, "2fas_authenticator.json");
         for (VaultEntry entry : entries) {
-            // 2FAS Authenticator doesn't support HOTP, different hash algorithms, periods or digits, so fix those up here
+            // 2FAS Authenticator schema v1 doesn't support HOTP, different hash algorithms, periods or digits, so fix those up here
             VaultEntry entryVector = getEntryVectorBySecret(entry.getInfo().getSecret());
             entryVector.setInfo(new TotpInfo(entryVector.getInfo().getSecret()));
             checkImportedEntry(entryVector, entry);
@@ -248,7 +248,7 @@ public class DatabaseImporterTest {
     @Test
     public void testImportTwoFASAuthenticatorSchema2Plain() throws DatabaseImporterException, IOException, OtpInfoException {
         List<VaultEntry> entries = importPlain(TwoFASImporter.class, "2fas_authenticator_plain.2fas");
-        checkImportedTwoFASEntries(entries);
+        checkImportedTwoFASSchema2Entries(entries);
     }
 
     @Test
@@ -257,7 +257,22 @@ public class DatabaseImporterTest {
             final char[] password = "test".toCharArray();
             return ((TwoFASImporter.EncryptedState) encryptedState).decrypt(password);
         });
-        checkImportedTwoFASEntries(entries);
+        checkImportedTwoFASSchema2Entries(entries);
+    }
+
+    @Test
+    public void testImportTwoFASAuthenticatorSchema3Plain() throws DatabaseImporterException, IOException, OtpInfoException {
+        List<VaultEntry> entries = importPlain(TwoFASImporter.class, "2fas_authenticator_plain_v3.2fas");
+        checkImportedEntries(entries);
+    }
+
+    @Test
+    public void testImportTwoFASAuthenticatorSchema3Encrypted() throws DatabaseImporterException, IOException, OtpInfoException {
+        List<VaultEntry> entries = importEncrypted(TwoFASImporter.class, "2fas_authenticator_encrypted_v3.2fas", encryptedState -> {
+            final char[] password = "test".toCharArray();
+            return ((TwoFASImporter.EncryptedState) encryptedState).decrypt(password);
+        });
+        checkImportedEntries(entries);
     }
 
     private List<VaultEntry> importPlain(Class<? extends DatabaseImporter> type, String resName)
@@ -302,7 +317,7 @@ public class DatabaseImporterTest {
         return result.getEntries();
     }
 
-    private void checkImportedTwoFASEntries(List<VaultEntry> entries) throws OtpInfoException {
+    private void checkImportedTwoFASSchema2Entries(List<VaultEntry> entries) throws OtpInfoException {
         for (VaultEntry entry : entries) {
             // 2FAS Authenticator doesn't support certain features, so fix those entries up here
             VaultEntry entryVector = getEntryVectorBySecret(entry.getInfo().getSecret());
