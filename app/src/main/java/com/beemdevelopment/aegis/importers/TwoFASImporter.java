@@ -7,6 +7,7 @@ import com.beemdevelopment.aegis.crypto.CryptoUtils;
 import com.beemdevelopment.aegis.encoding.Base32;
 import com.beemdevelopment.aegis.encoding.Base64;
 import com.beemdevelopment.aegis.encoding.EncodingException;
+import com.beemdevelopment.aegis.otp.HotpInfo;
 import com.beemdevelopment.aegis.otp.OtpInfo;
 import com.beemdevelopment.aegis.otp.OtpInfoException;
 import com.beemdevelopment.aegis.otp.TotpInfo;
@@ -59,7 +60,7 @@ public class TwoFASImporter extends DatabaseImporter {
             String json = new String(IOUtils.readAll(stream), StandardCharsets.UTF_8);
             JSONObject obj = new JSONObject(json);
             int version = obj.getInt("schemaVersion");
-            if (version > 2) {
+            if (version > 3) {
                 throw new DatabaseImporterException(String.format("Unsupported schema version: %d", version));
             }
 
@@ -173,13 +174,23 @@ public class TwoFASImporter extends DatabaseImporter {
             try {
                 byte[] secret = Base32.decode(obj.getString("secret"));
                 JSONObject info = obj.getJSONObject("otp");
-                String issuer = info.getString("issuer");
+                String issuer = info.optString("issuer");
                 String name = info.optString("account");
                 int digits = info.optInt("digits", TotpInfo.DEFAULT_DIGITS);
-                int period = info.optInt("period", TotpInfo.DEFAULT_PERIOD);
                 String algorithm = info.optString("algorithm", TotpInfo.DEFAULT_ALGORITHM);
 
-                OtpInfo otp = new TotpInfo(secret, algorithm, digits, period);
+                OtpInfo otp;
+                String tokenType = JsonUtils.optString(info, "tokenType");
+                if (tokenType == null || tokenType.equals("TOTP")) {
+                    int period = info.optInt("period", TotpInfo.DEFAULT_PERIOD);
+                    otp = new TotpInfo(secret, algorithm, digits, period);
+                } else if (tokenType.equals("HOTP")) {
+                    long counter = info.optLong("counter", 0);
+                    otp = new HotpInfo(secret, algorithm, digits, counter);
+                } else {
+                    throw new DatabaseImporterEntryException(String.format("Unrecognized tokenType: %s", tokenType), obj.toString());
+                }
+
                 return new VaultEntry(otp, name, issuer);
             } catch (OtpInfoException | JSONException | EncodingException e) {
                 throw new DatabaseImporterEntryException(e, obj.toString());
