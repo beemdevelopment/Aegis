@@ -270,9 +270,8 @@ public class ImportExportPreferencesFragment extends PreferencesFragment {
 
         int entriesSkipped = _vaultManager.getVault().getEntries().size() - toExport.size();
         if (entriesSkipped > 0) {
-            Toast a = new Toast(requireContext());
-            a.setText(requireContext().getResources().getQuantityString(R.plurals.pref_google_auth_export_incompatible_entries, entriesSkipped, entriesSkipped));
-            a.show();
+            String text = requireContext().getResources().getQuantityString(R.plurals.pref_google_auth_export_incompatible_entries, entriesSkipped, entriesSkipped);
+            Toast.makeText(requireContext(), text, Toast.LENGTH_SHORT).show();
         }
 
         int qrSize = 10;
@@ -289,9 +288,7 @@ public class ImportExportPreferencesFragment extends PreferencesFragment {
         }
 
         if (exports.size() == 0) {
-            Toast t = new Toast(requireContext());
-            t.setText(R.string.pref_google_auth_export_no_data);
-            t.show();
+            Toast.makeText(requireContext(), R.string.pref_google_auth_export_no_data, Toast.LENGTH_SHORT).show();
         } else {
             Intent intent = new Intent(requireContext(), TransferEntriesActivity.class);
             intent.putExtra("authInfos", exports);
