@@ -1,17 +1,17 @@
 package com.beemdevelopment.aegis.crypto;
 
+import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertFalse;
+
+import com.beemdevelopment.aegis.crypto.bc.SCrypt;
 import com.beemdevelopment.aegis.encoding.EncodingException;
 import com.beemdevelopment.aegis.encoding.Hex;
 
-import org.bouncycastle.crypto.generators.SCrypt;
 import org.junit.Test;
 
 import java.util.Arrays;
 
 import javax.crypto.SecretKey;
-
-import static org.junit.Assert.assertArrayEquals;
-import static org.junit.Assert.assertFalse;
 
 public class SCryptTest {
     private static class Vector {
