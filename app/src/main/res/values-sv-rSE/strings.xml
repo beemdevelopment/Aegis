@@ -225,7 +225,7 @@
     <string name="file_not_found">Fel: Filen hittades inte</string>
     <string name="reading_file_error">Ett fel uppstod när filen skulle läsas</string>
     <string name="app_lookup_error">Fel: Appen är inte installerad</string>
-    <string name="app_version_error">Versionen av %s som är installerad stöds ej. Att försöka importera kan resultera i ett fel. Vill du fortsätta ändå?</string>
+    <string name="app_version_error">Versionen av %s som är installerad stöds ej. De senaste versionerna har börjat att kryptera några av filerna i den interna lagringskatalogen, vilket gör att Aegis inte kan komma åt den information som behövs för importen. Att försöka importera kommer sannolikt att resultera i ett fel. Vill du fortsätta ändå?</string>
     <string name="root_error">Fel: Kunde inte få rotåtkomst</string>
     <plurals name="imported_entries_count">
         <item quantity="one">Importerade %d post</item>
@@ -314,6 +314,8 @@
     <string name="unable_to_generate_qrcode">Kunde inte generera rutkod</string>
     <string name="select_picture">Välj bild</string>
     <string name="select_icon">Välj ikon</string>
+    <string name="tile_open_vault" comment="label for a quick settings tile that opens the app when tapped">Öppna valv</string>
+    <string name="tile_open_scanner" comment="label for a quick settings tile that opens the QR code scanner when tapped">Öppna skanner</string>
     <string name="toggle_checkboxes">Växla kryssrutor</string>
     <string name="search">Sök</string>
     <string name="channel_name_lock_status">Låsstatus</string>

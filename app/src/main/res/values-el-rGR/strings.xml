@@ -225,7 +225,7 @@
     <string name="file_not_found">Σφάλμα: Το αρχείο δεν βρέθηκε</string>
     <string name="reading_file_error">Παρουσιάστηκε σφάλμα κατά την προσπάθεια ανάγνωσης του αρχείου</string>
     <string name="app_lookup_error">Σφάλμα: Η εφαρμογή δεν έχει εγκατασταθεί</string>
-    <string name="app_version_error">Η έκδοση του %s που είναι εγκατεστημένη δεν υποστηρίζεται. Η προσπάθεια εισαγωγής μπορεί να οδηγήσει σε σφάλμα. Θα θέλατε να συνεχίσετε ούτως ή άλλως;</string>
+    <string name="app_version_error">Η έκδοση του %s που έχει εγκατασταθεί δεν υποστηρίζεται. Πρόσφατες εκδόσεις έχουν αρχίσει να κρυπτογραφούν μερικά από τα αρχεία στον εσωτερικό κατάλογο αποθήκευσης, καθιστώντας το Aegis ανίκανο να αποκτήσει πρόσβαση στις πληροφορίες που χρειάζεται για την εισαγωγή. Η προσπάθεια εισαγωγής είναι πιθανό να οδηγήσει σε σφάλμα. Θα θέλατε να συνεχίσετε ούτως ή άλλως;</string>
     <string name="root_error">Σφάλμα: Δεν είναι δυνατή η απόκτηση πρόσβασης root</string>
     <plurals name="imported_entries_count">
         <item quantity="one">Εισήχθησαν %d καταχώρηση</item>
@@ -314,6 +314,8 @@
     <string name="unable_to_generate_qrcode">Δεν είναι δυνατή η δημιουργία κωδικού QR</string>
     <string name="select_picture">Επιλέξτε εικόνα</string>
     <string name="select_icon">Επιλέξτε εικονίδιο</string>
+    <string name="tile_open_vault" comment="label for a quick settings tile that opens the app when tapped">Άνοιγμα κρύπτης</string>
+    <string name="tile_open_scanner" comment="label for a quick settings tile that opens the QR code scanner when tapped">Άνοιγμα σαρωτή</string>
     <string name="toggle_checkboxes">Εναλλαγή πλαισίων ελέγχου</string>
     <string name="search">Αναζήτηση</string>
     <string name="channel_name_lock_status">Κατάσταση κλειδώματος</string>

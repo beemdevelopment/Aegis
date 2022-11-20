@@ -189,7 +189,6 @@
     <string name="file_not_found">Hiba: A fájl nem található</string>
     <string name="reading_file_error">Hiba történt a fájl olvasásakor</string>
     <string name="app_lookup_error">Hiba: Az alkalmazás nincs telepítve</string>
-    <string name="app_version_error">A %s telepített verziója nem támogatott. Az importálás során hiba léphet fel. Szeretnéd folytatni?</string>
     <string name="root_error">Hiba: Nem szerezhető root jogosultság</string>
     <string name="import_error_title">Egy vagy több hiba történt az importálás során</string>
     <string name="exporting_vault_error">Hiba történt a széf exportálásakor</string>

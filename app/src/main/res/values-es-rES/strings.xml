@@ -36,6 +36,7 @@
     <string name="pref_view_mode_title">Modo de visualización</string>
     <string name="pref_lang_title">Idioma</string>
     <string name="pref_code_group_size_title">Agrupación de los dígitos del código</string>
+    <string name="pref_code_group_size_summary">Seleccione el número de dígitos por los que agrupar los códigos</string>
     <string name="pref_account_name_title">Mostrar el nombre de la cuenta</string>
     <string name="pref_account_name_summary">Active esto para mostrar el nombre de la cuenta junto al emisor</string>
     <string name="pref_import_file_title">Importar desde un archivo</string>
@@ -95,6 +96,7 @@
     <string name="export_help">Esta acción exportará la bóveda fuera del almacenamiento interno de Aegis. Seleccione el formato al que desea exportar:</string>
     <string name="export_warning_unencrypted">Está a punto de exportar una copia sin cifrar de su bóveda de Aegis. <b>Esto no es recomendable</b>.</string>
     <string name="export_warning_accept">Entiendo el riesgo</string>
+    <string name="export_warning_password">Las exportaciones se cifran usando una contraseña separada configurada en la configuración de seguridad.</string>
     <string name="export_format_aegis">Aegis (.JSON)</string>
     <string name="export_format_google_auth_uri">Archivo de texto (.TXT)</string>
     <string name="export_format_hint">Formato de exportación</string>
@@ -143,6 +145,8 @@
     <string name="set_up_biometric">Configurar desbloqueo biométrico</string>
     <string name="copy">Copiar</string>
     <string name="edit">Editar</string>
+    <string name="favorite" comment="Verb">Marcar favorito</string>
+    <string name="unfavorite" comment="Verb">Desmarcar favorito</string>
     <string name="error_all_caps">ERROR</string>
     <string name="password">Contraseña</string>
     <string name="confirm_password">Confirmar contraseña</string>
@@ -196,6 +200,10 @@
     <string name="disable_encryption_error">Se ha producido un error tratando de desactivar el cifrado</string>
     <string name="backup_successful">La copia de seguridad se programó correctamente</string>
     <string name="backup_error">Se ha producido un error mientras se trataba de crear una copia de seguridad</string>
+    <string name="backup_status_success">Última copia de seguridad exitosa: %s</string>
+    <string name="backup_status_failed">Última copia de seguridad fallida: %s</string>
+    <string name="backup_status_none">Aún no se han realizado copias de seguridad</string>
+    <string name="backup_warning_password">Las copias de seguridad se cifran usando una contraseña separada configurada en la configuración de seguridad</string>
     <string name="documentsui_error">DocumentsUI parece estar ausente en su dispositivo. Este es un componente importante del sistema necesario para la selección y creación de documentos. Si utilizaste una herramienta para &quot;desinstalar&quot; apps de fábrica de tu dispositivo, es posible que la hayas eliminado accidentalmente, y por ello, tendrás que volverla a instalarla.</string>
     <string name="icon_pack_import_error">Se ha producido un error tratando de importar un paquete de iconos</string>
     <string name="icon_pack_import_exists_error">El paquete de iconos que está intentando importar ya existe. ¿Desea sobreescribirlo?</string>
@@ -217,7 +225,7 @@
     <string name="file_not_found">Error: Archivo no encontrado</string>
     <string name="reading_file_error">Se ha producido un error tratando de leer el archivo</string>
     <string name="app_lookup_error">Error: La aplicación no está instalada</string>
-    <string name="app_version_error">La versión de %s que está instalada no es compatible. Intentar importar puede resultar en un error. ¿Desea continuar de todos modos?</string>
+    <string name="app_version_error">La versión de %s que está instalada no es compatible. Las versiones recientes han comenzado a cifrar algunos de los archivos en el directorio de almacenamiento interno, haciendo que Aegis no pueda acceder a la información que necesita para la importación. Intentar importar probablemente resultará en un error. ¿Deseas continuar de todos modos?</string>
     <string name="root_error">Error: No se puede obtener acceso root</string>
     <plurals name="imported_entries_count">
         <item quantity="one">Importada %d entrada</item>
@@ -306,6 +314,8 @@
     <string name="unable_to_generate_qrcode">No se puede generar el código QR</string>
     <string name="select_picture">Seleccionar imagen</string>
     <string name="select_icon">Seleccionar icono</string>
+    <string name="tile_open_vault" comment="label for a quick settings tile that opens the app when tapped">Abrir bóveda</string>
+    <string name="tile_open_scanner" comment="label for a quick settings tile that opens the QR code scanner when tapped">Abrir escáner</string>
     <string name="toggle_checkboxes">Activar casillas de verificación</string>
     <string name="search">Buscar</string>
     <string name="channel_name_lock_status">Estado de bloqueo</string>
@@ -337,6 +347,9 @@
     </plurals>
     <string name="google_qr_export_unexpected">Se esperaba un código QR #%d, pero en su lugar se escaneó #%d</string>
     <string name="backup_error_bar_message"><b>La copia de seguridad de la bóveda ha fallado recientemente</b></string>
+    <string name="backup_error_dialog_details">Un intento reciente de copia de seguridad de la bóveda usando %s falló debido a un error. La copia de seguridad se intentó en: %s. Por favor, compruebe su configuración de copia de seguridad para asegurarse de que las copias de seguridad puedan completarse con éxito.</string>
+    <string name="backup_system_builtin">Copias de seguridad automáticas de Aegis</string>
+    <string name="backup_system_android">Sistema de copias de seguridad en la nube de Android</string>
     <string name="backup_reminder_bar_message"><b>No existe una copia de seguridad de los últimos cambios realizados en la bóveda</b></string>
     <string name="backup_plaintext_export_warning"><b>La bóveda fue exportada recientemente en texto plano</b></string>
     <string name="pref_show_plaintext_warning_hint">No volver a mostrar esta advertencia</string>
@@ -402,4 +415,9 @@
     <string name="groups">Grupos</string>
     <string name="pref_focus_search">Enfocar búsqueda al iniciar la aplicación</string>
     <string name="pref_focus_search_summary">Enfoca la búsqueda inmediatamente después de abrir la aplicación.</string>
+    <string name="pref_grouping_halves">Mitades</string>
+    <string name="pref_grouping_none">Sin agrupación</string>
+    <string name="pref_grouping_size_two">Grupos de 2</string>
+    <string name="pref_grouping_size_three">Grupos de 3</string>
+    <string name="pref_grouping_size_four">Grupos de 4</string>
 </resources>

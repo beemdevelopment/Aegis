@@ -36,6 +36,7 @@
     <string name="pref_view_mode_title">Modo de visualización</string>
     <string name="pref_lang_title">Idioma</string>
     <string name="pref_code_group_size_title">Agrupación dos díxitos do código</string>
+    <string name="pref_code_group_size_summary">Escolle o número de díxitos polos que agrupar os códigos</string>
     <string name="pref_account_name_title">Mostrar o nome da conta</string>
     <string name="pref_account_name_summary">Activa isto para mostrar o nome da conta ao lado do provedor</string>
     <string name="pref_import_file_title">Importar desde un ficheiro</string>
@@ -95,6 +96,7 @@
     <string name="export_help">Esta acción exportará o almacén fóra do almacenamento interno de Aegis. Escolle o formato no que o queiras exportar:</string>
     <string name="export_warning_unencrypted">Estás a piques de exportar unha copia non cifrada do teu almacén de Aegis. <b>Isto non está recomendado</b>.</string>
     <string name="export_warning_accept">Entendo os riscos</string>
+    <string name="export_warning_password">As exportacións cífranse mediante un contrasinal distinto, definido nos axustes de seguridade.</string>
     <string name="export_format_aegis">Aegis (.JSON)</string>
     <string name="export_format_google_auth_uri">Ficheiro de texto (.TXT)</string>
     <string name="export_format_hint">Formato da exportación</string>
@@ -143,6 +145,8 @@
     <string name="set_up_biometric">Configurar desbloqueo biométrico</string>
     <string name="copy">Copiar</string>
     <string name="edit">Editar</string>
+    <string name="favorite" comment="Verb">Marcar como favorito</string>
+    <string name="unfavorite" comment="Verb">Desmarcar como favorito</string>
     <string name="error_all_caps">ERRO</string>
     <string name="password">Contrasinal</string>
     <string name="confirm_password">Confirmar contrasinal</string>
@@ -196,6 +200,10 @@
     <string name="disable_encryption_error">Ocorreu un erro ao desactivar o cifrado</string>
     <string name="backup_successful">A copia de seguridade programouse correctamente</string>
     <string name="backup_error">Ocorreu un erro ao intentar crear unha copia de seguridade</string>
+    <string name="backup_status_success">Última copia de seguridade correcta: %s</string>
+    <string name="backup_status_failed">Última copia de seguridade que fallou: %s</string>
+    <string name="backup_status_none">Aínda non se fixo ningunha copia de seguridade</string>
+    <string name="backup_warning_password">As copias de seguridade cífranse mediante un contrasinal distinto, definido nos axustes de seguridade</string>
     <string name="documentsui_error">Parece que non tes DocumentsUI no teu dispositivo. É un compoñente importante do sistema, necesario para poder escoller e crear documentos. Se utilizaches algunha ferramenta para desinstalar aplicacións do sistema, pode que o eliminaras sen querer, polo que terías que volvelo a instalar.</string>
     <string name="icon_pack_import_error">Ocorreu un erro ao intentar importar un paquete de iconas</string>
     <string name="icon_pack_import_exists_error">O paquete de iconas que estás intentando importar xa existe. Queres sobrescribilo?</string>
@@ -217,7 +225,7 @@
     <string name="file_not_found">Erro: Ficheiro non atopado</string>
     <string name="reading_file_error">Ocorreu un erro ao intentar ler o ficheiro</string>
     <string name="app_lookup_error">Erro: A aplicación non está instalada</string>
-    <string name="app_version_error">A versión instalada de %s non é compatible. Pode que o intento de importación resulte nalgún erro. Queres continuar de tódolos xeitos?</string>
+    <string name="app_version_error">A versión instalada de %s non é compatible. As versións recentes comezaron a cifrar algúns ficheiros no almacenamento interno, causando que Aegis sexa incapaz de acceder á información que necesita para a importación. Intentar importar vai resultar probablemente nun erro. Queres continuar de tódolos xeitos?</string>
     <string name="root_error">Erro: non se puido obter acceso root</string>
     <plurals name="imported_entries_count">
         <item quantity="one">Importouse %d entrada</item>
@@ -306,6 +314,8 @@
     <string name="unable_to_generate_qrcode">Non se puido xerar o código QR</string>
     <string name="select_picture">Seleccionar imaxe</string>
     <string name="select_icon">Seleccionar icona</string>
+    <string name="tile_open_vault" comment="label for a quick settings tile that opens the app when tapped">Abrir almacén</string>
+    <string name="tile_open_scanner" comment="label for a quick settings tile that opens the QR code scanner when tapped">Abrir escáner</string>
     <string name="toggle_checkboxes">Alternar caixas de verificación</string>
     <string name="search">Buscar</string>
     <string name="channel_name_lock_status">Estado do bloqueo</string>
@@ -337,6 +347,9 @@
     </plurals>
     <string name="google_qr_export_unexpected">Esperábase o código QR nº %d, pero escaneouse o nº %d</string>
     <string name="backup_error_bar_message"><b>A copia de seguridade do almacén fallou recentemente</b></string>
+    <string name="backup_error_dialog_details">Un intento de facer unha copia de seguridade do almacén usando %s fallou debido a algún erro. A copia de seguridade intentouse o: %s. Comproba os axustes da copia de seguridade para asegurarte de que poidan completar correctamente.</string>
+    <string name="backup_system_builtin">Copias de seguridade automáticas de Aegis</string>
+    <string name="backup_system_android">Copias de seguridade na nube de Android</string>
     <string name="backup_reminder_bar_message"><b>Hai cambios recentes no almacén dos que non se fixo copia de seguridade</b></string>
     <string name="backup_plaintext_export_warning"><b>O almacén exportouse recentemente como texto plano</b></string>
     <string name="pref_show_plaintext_warning_hint">Non volver a mostrar este aviso</string>
@@ -402,4 +415,9 @@
     <string name="groups">Grupos</string>
     <string name="pref_focus_search">Foco na busca ao abrir a app</string>
     <string name="pref_focus_search_summary">Poñer o foco na busca xusto tras abrir a aplicación.</string>
+    <string name="pref_grouping_halves">Metades</string>
+    <string name="pref_grouping_none">Sen agrupar</string>
+    <string name="pref_grouping_size_two">Grupos de 2</string>
+    <string name="pref_grouping_size_three">Grupos de 3</string>
+    <string name="pref_grouping_size_four">Grupos de 4</string>
 </resources>

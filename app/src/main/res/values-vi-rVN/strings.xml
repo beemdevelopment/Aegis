@@ -212,7 +212,6 @@
     <string name="file_not_found">Lỗi: Không tìm thấy tệp</string>
     <string name="reading_file_error">Đã xảy ra lỗi trong khi cố gắng đọc tệp</string>
     <string name="app_lookup_error">Lỗi: Ứng dụng không được cài đặt</string>
-    <string name="app_version_error">Phiên bản %s đã cài đặt không được hỗ trợ. Việc thử nhập sẽ có thể gây ra lỗi. Bạn có muốn vẫn tiếp tục không?</string>
     <string name="root_error">Lỗi: không thể nhận quyền truy cập root</string>
     <plurals name="imported_entries_count">
         <item quantity="other">Đã nhập %d mục</item>

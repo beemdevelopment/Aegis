@@ -235,7 +235,7 @@
     <string name="file_not_found">Błąd: Nie znaleziono pliku</string>
     <string name="reading_file_error">Wystąpił błąd podczas odczytywania pliku</string>
     <string name="app_lookup_error">Błąd: Aplikacja nie jest zainstalowana</string>
-    <string name="app_version_error">Zainstalowana wersja %s nie jest obsługiwana. Próba zaimportowania może spowodować błąd. Czy mimo to chcesz kontynuować?</string>
+    <string name="app_version_error">Zainstalowana wersja %s nie jest obsługiwana. Ostatnie wersje zaczęły szyfrować niektóre pliki w katalogu pamięci wewnętrznej, przez co Aegis nie może uzyskać dostępu do informacji potrzebnych do importu. Próba importu prawdopodobnie zakończy się błędem. Czy mimo to chcesz kontynuować?</string>
     <string name="root_error">Błąd: Nie można uzyskać dostępu do konta root</string>
     <plurals name="imported_entries_count">
         <item quantity="one">%d wpis został zaimportowany</item>
@@ -263,6 +263,7 @@
     <string name="missing_qr_code_descriptor">• Kod QR %d</string>
     <string name="import_partial_export_anyway">Zaimportuj tokeny %d mimo to</string>
     <string name="import_google_auth_failure">Importowanie danych z Google Authenticator nie powiodło się</string>
+    <string name="unrelated_google_auth_batches_error">Eksport zawiera informacje dla niepowiązanej partii. Spróbuj importować 1 partię jednocześnie.</string>
     <string name="no_tokens_can_be_imported">Nie można zaimportować żadnych tokenów</string>
     <string name="authentication_method_raw">Dane surowe</string>
     <string name="unlocking_vault">Odblokowywanie sejfu</string>
@@ -329,6 +330,8 @@
     <string name="unable_to_generate_qrcode">Nie udało się wygenerować kodu QR</string>
     <string name="select_picture">Wybierz obraz</string>
     <string name="select_icon">Wybierz ikonę</string>
+    <string name="tile_open_vault" comment="label for a quick settings tile that opens the app when tapped">Otwórz sejf</string>
+    <string name="tile_open_scanner" comment="label for a quick settings tile that opens the QR code scanner when tapped">Otwórz skaner</string>
     <string name="toggle_checkboxes">Przełącz pola wyboru</string>
     <string name="search">Szukaj</string>
     <string name="channel_name_lock_status">Status blokady</string>

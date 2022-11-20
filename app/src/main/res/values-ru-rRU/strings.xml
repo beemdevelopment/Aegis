@@ -235,7 +235,7 @@
     <string name="file_not_found">Ошибка: файл не найден</string>
     <string name="reading_file_error">Произошла ошибка при попытке прочитать файл</string>
     <string name="app_lookup_error">Ошибка: приложение не установлено</string>
-    <string name="app_version_error">Установленная версия %s не поддерживается. Попытка импорта может привести к ошибке. Продолжить?</string>
+    <string name="app_version_error">Установленная версия %s не поддерживается. Последние версии начали шифровать некоторые файлы во внутренней памяти хранилища, из-за чего Aegis не может получить доступ к информации, необходимой для импорта. Попытка импорта может привести к ошибке. Всё равно продолжить?</string>
     <string name="root_error">Ошибка: невозможно получить права суперпользователя</string>
     <plurals name="imported_entries_count">
         <item quantity="one">Импортирована %d запись</item>
@@ -330,6 +330,8 @@
     <string name="unable_to_generate_qrcode">Невозможно сгенерировать QR-код</string>
     <string name="select_picture">Выберите изображение</string>
     <string name="select_icon">Выберите значок</string>
+    <string name="tile_open_vault" comment="label for a quick settings tile that opens the app when tapped">Открыть хранилище</string>
+    <string name="tile_open_scanner" comment="label for a quick settings tile that opens the QR code scanner when tapped">Открыть сканер</string>
     <string name="toggle_checkboxes">Установите переключатели</string>
     <string name="search">Поиск</string>
     <string name="channel_name_lock_status">Статус блокировки</string>

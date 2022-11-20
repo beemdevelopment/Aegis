@@ -230,7 +230,7 @@
     <string name="file_not_found">Eroare: Fișierul nu a fost găsit</string>
     <string name="reading_file_error">A apărut o eroare în timpul citirii fișierului</string>
     <string name="app_lookup_error">Eroare: Aplicația nu este instalată</string>
-    <string name="app_version_error">Versiunea %s care este instalată nu este acceptată. Încercarea de a importa poate duce la o eroare. Doriți să continuați oricum?</string>
+    <string name="app_version_error">Versiunea %s care este instalată nu este suportată. Versiunile recente au început criptarea unora dintre fișierele din directorul de stocare internă, Aegis devenind incapabil de a accesa informațiile de care are nevoie pentru import. Este posibil ca încercarea de a importa să ducă la o eroare. Doriţi să continuaţi oricum?</string>
     <string name="root_error">Eroare: nu se poate obține acces root</string>
     <plurals name="imported_entries_count">
         <item quantity="one">Importată %d intrare</item>
@@ -322,6 +322,8 @@
     <string name="unable_to_generate_qrcode">Nu se poate genera codul QR</string>
     <string name="select_picture">Selectare imagine</string>
     <string name="select_icon">Selectare pictogramă</string>
+    <string name="tile_open_vault" comment="label for a quick settings tile that opens the app when tapped">Deschide seif</string>
+    <string name="tile_open_scanner" comment="label for a quick settings tile that opens the QR code scanner when tapped">Deschide scanerul</string>
     <string name="toggle_checkboxes">Comută casetele de selectare</string>
     <string name="search">Căutare</string>
     <string name="channel_name_lock_status">Stare blocare</string>

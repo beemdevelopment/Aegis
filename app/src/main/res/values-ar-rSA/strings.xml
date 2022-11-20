@@ -27,7 +27,7 @@
     <string name="pref_section_security_title">الحماية</string>
     <string name="pref_section_security_summary">ضبط التشفير، فتح بالبصمة، القفل التلقائي وإعدادات الأمان الأخرى.</string>
     <string name="pref_section_import_export_title">إستيراد &amp; تصدير</string>
-    <string name="pref_section_import_export_summary">استيراد النسخ الاحتياطي للدرع أو تطبيقات مصادقة أخرى. إنشاء تصدير يدوي من خزانة درعة.</string>
+    <string name="pref_section_import_export_summary">استيراد النسخ الاحتياطية من Aegis أو من تطبيقات مصادقة أخرى. إنشاء تصدير يدوي لمخزن Aegis.</string>
     <string name="pref_section_backups_title">النُّسَخ الإحتياطية</string>
     <string name="pref_section_backups_summary">إعداد نسخٍ احتياطي تلقائي إلى موقع من اختيارك، أو تفعيل المشاركة في نظام النسخ الاحتياطي السحابي للأندرويد.</string>
     <string name="pref_section_icon_packs">حزمة الأيقونات</string>
@@ -214,7 +214,7 @@
     <string name="file_not_found">خطأ: لم يتم العثور على الملف</string>
     <string name="reading_file_error">حدث خطأ أثناء محاولة قراءة الملف</string>
     <string name="app_lookup_error">ّخطأ: التطبيق غير مثبت</string>
-    <string name="app_version_error">إصدار %s المثبت غير مدعوم. محاولة الاستيراد قد تؤدي إلى خطأ. هل ترغب في المتابعة على أي حال؟</string>
+    <string name="app_version_error">نسخة %s التي تم تثبيتها غير مدعومة. أصبحت الإصدارات الحديثة تقوم بتشفير بعض الملفات في مجلد التخزين الداخلي، مما يجعل Aegis غير قادر على الوصول إلى المعلومات التي يحتاجها من أجل الاستيراد. محاولة الاستيراد من المرجح أن تؤدي إلى خطأ. هل ترغب في الاستمرار على أي حال؟</string>
     <string name="root_error">خطأ: تعذّر الوصول إلى الجذر root</string>
     <plurals name="entries_shown">
         <item quantity="zero">إظهار %d مدخل</item>
@@ -232,6 +232,7 @@
     <string name="encryption_enable_biometrics_error">حدث خطأ  أثناء محاولة تفعيل فتح القفل البيومتري. لبعض الأجهزة تنفيذ رديئ للمصادقة البيومترية، والأرجح أن جهازك أحدها. بدلًا من ذلك، فكّر بتحويل الإعدادات إلى كلمة مرور فقط.</string>
     <string name="no_cameras_available">لا توجد كاميرا متاحة</string>
     <string name="read_qr_error">حدث خطأ أثناء محاولة قراءة كود QR</string>
+    <string name="read_qr_error_phonefactor">Aegis غير متوافق مع خوارزمة 2FA الخاصة بمايكروسوفت. الرجاء التأكد من تحديد \"إعداد التطبيق دون إشعارات\" عند إعداد 2FA في Office 365.</string>
     <string name="import_partial_export_anyway">استيراد %d رموز على أي حال</string>
     <string name="authentication_method_raw">خام</string>
     <string name="unlocking_vault">يتم فتح قفل المخزن</string>
@@ -289,6 +290,8 @@
     <string name="unable_to_generate_qrcode">تعذّر توليد كود QR</string>
     <string name="select_picture">اختر صورة</string>
     <string name="select_icon">اختر أيقونة</string>
+    <string name="tile_open_vault" comment="label for a quick settings tile that opens the app when tapped">افتح المخزن</string>
+    <string name="tile_open_scanner" comment="label for a quick settings tile that opens the QR code scanner when tapped">افتح الماسح</string>
     <string name="toggle_checkboxes">تفعيل مربعات الاختيار</string>
     <string name="search">بحث</string>
     <string name="channel_name_lock_status">إشعار القفل</string>
@@ -308,26 +311,51 @@
     <string name="about_support">الدعم</string>
     <string name="support_rate">التقييم</string>
     <string name="support_rate_description">ادعمنا بترك تقييم على متجر Google Play</string>
+    <string name="webview_error">هذا الجهاز لا يدعم عرض الويب، والذي هو ضروري لعرض سجل التغيير و الرخصة. إنه مكوِّن نظام مفقود.</string>
     <string name="email">البريد الإلكتروني</string>
     <string name="time_sync_warning_title">مزامنة الوقت تلقائيًا</string>
     <string name="time_sync_warning_message">يعتمد Aegis على وقت النظام لتوليد الأكواد الصحيحة. انحراف بمقادر بضعة ثواني يمكن أن يؤدي إلى أكواد خاطئة. يبدوا أن جهازك غير معيّن إلى مزامنة الوقت تلقائيًا. هل ترغب بفعل ذلك الآن؟</string>
     <string name="time_sync_warning_disable">إيقاف تحذيري. أنا أعرف ما أفعله.</string>
     <string name="google_qr_export_unrelated">تم العثور على كود QR لا علاقة له. حاول إعادة تشغيل الماسح.</string>
+    <plurals name="google_qr_export_scanned">
+        <item quantity="zero">تم مسح %d/%d رمز QR</item>
+        <item quantity="one">تم مسح %d/%d رمز QR</item>
+        <item quantity="two">تم مسح %d/%d رموز QR</item>
+        <item quantity="few">تم مسح %d/%d رموز QR</item>
+        <item quantity="many">تم مسح %d/%d رمز QR</item>
+        <item quantity="other">تم مسح %d/%d رمز QR</item>
+    </plurals>
     <string name="google_qr_export_unexpected">انتظرت كود QR #%d، ولكن مسحت #%d بدلًا منه</string>
     <string name="backup_error_bar_message"><b>النسخ الاحتياطي للمخزن فشل مؤخرًا</b></string>
+    <string name="backup_system_builtin">النسخ الاحتياطية التلقائية المضنة في Aegis</string>
+    <string name="backup_system_android">نظام النسخ الاحتياطي السحابي للأندرويد</string>
+    <string name="backup_reminder_bar_message"><b>التغييرات الأخيرة في المخزن لم يتم نسخها احتياطياً</b></string>
+    <string name="backup_plaintext_export_warning"><b>تم تصدير المخزن مؤخرا ك نص مجرّد</b></string>
     <string name="pref_show_plaintext_warning_hint">لا تظهر هذا التحذير مجدداً</string>
+    <string name="backup_plaintext_warning_explanation">يظهر هذا التحذير لأنك قمت مؤخراً بتصدير نسخة غير مشفرة من المخزن. للحفاظ على أمان الرموز الخاصة بك، نوصي بحذف هذا الملف بمجرد أن لا تكون هناك حاجة إليه.</string>
     <string name="switch_camera">تبديل الكاميرا</string>
     <string name="empty_list">لا توجد أكواد لعرضها. ابدأ بإضافة مدخلات بالنقر على علامة الزائد في أسفل الركن الأيسر</string>
     <string name="empty_list_title">لم يتم العثور على مدخلات</string>
+    <string name="empty_group_list">لا توجد مجموعات لعرضها. أضف مجموعات من خلال شاشة التحرير لأحد المدخلات</string>
     <string name="empty_group_list_title">لم يتم العثور على أي مجموعات.</string>
+    <string name="no_icon_packs">لم يتم استيراد أي حزم أيقونات بعد. انقر فوق علامة الزائد لاستيراد حزمة. نصيحة: جرب <a href="https://aegis-icons.github.io">aegis-icons</a>.</string>
     <string name="no_icon_packs_title">لا توجد حزم أيقونات</string>
     <string name="pick_icon">اختر أيقونة</string>
     <string name="uncategorized">غير مصنفة</string>
     <string name="done">تم</string>
+    <plurals name="qr_count">
+        <item quantity="zero">%d / %d رمز QR</item>
+        <item quantity="one">%d / %d رمز QR</item>
+        <item quantity="two">%d / %d رموز QR</item>
+        <item quantity="few">%d / %d رموز QR</item>
+        <item quantity="many">%d / %d رمز QR</item>
+        <item quantity="other">%d / %d رمز QR</item>
+    </plurals>
     <string name="next">التالي</string>
     <string name="previous">السابق</string>
     <string name="transfer_entry">نقل المدخل</string>
     <string name="transfer_entry_description">امسح كود QR هذا بتطبيق المصادقة الذي ترغب بنقل ذلك المدخل إليه</string>
+    <string name="google_auth_compatible_transfer_description">امسح رموز ال QR هذه بواسطة Aegis أو Google Authenticator.\n\nبسبب القيود في تطبيق Google Authenticator، فقط رموز TOTP &amp; HOTP التي تستعمل SHA1 وتنتِج كود من 6 خانات هي من سيتم إدراجها</string>
     <string name="password_strength_very_weak">ضعيف جدًا</string>
     <string name="password_strength_weak">ضعيف</string>
     <string name="password_strength_fair">مقبول</string>
@@ -344,6 +372,7 @@
     <string name="title_activity_import_entries">استيراد المدخلات</string>
     <string name="dialog_wipe_entries_title">حذف المدخلات</string>
     <string name="dialog_wipe_entries_checkbox">حذف محتويات المخزن</string>
+    <string name="import_vault">استيراد مخزن</string>
     <string name="groups">المجموعات</string>
     <string name="pref_grouping_halves">نصفان</string>
     <string name="pref_grouping_none">بلا تجميع</string>

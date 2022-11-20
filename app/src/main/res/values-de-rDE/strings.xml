@@ -145,8 +145,8 @@
     <string name="set_up_biometric">Biometrisches Entsperren einrichten</string>
     <string name="copy">Kopieren</string>
     <string name="edit">Bearbeiten</string>
-    <string name="favorite" comment="Verb">Zu Favoriten hzfg.</string>
-    <string name="unfavorite" comment="Verb">Aus Favoriten entf.</string>
+    <string name="favorite" comment="Verb">Zu Favoriten hinzufügen</string>
+    <string name="unfavorite" comment="Verb">Aus Favoriten entfernen</string>
     <string name="error_all_caps">FEHLER</string>
     <string name="password">Passwort</string>
     <string name="confirm_password">Passwort bestätigen</string>
@@ -169,11 +169,11 @@
     <string name="importing_icon_pack">Symbolpaket wird importiert</string>
     <string name="delete_entry">Eintrag löschen</string>
     <string name="delete_entry_description">Bist du sicher, dass du diesen Eintrag löschen möchtest?</string>
-    <string name="delete_entry_explanation">Diese Aktion deaktiviert die 2FA nicht für:\n<b>%s</b>\n\nUm zu verhindern, dass du den Zugang verlierst, stelle sicher, dass du 2FA deaktiviert hast oder dass du eine alternative Möglichkeit verwendest, um Codes für diesen Dienst zu generieren.</string>
+    <string name="delete_entry_explanation">Diese Aktion deaktiviert die 2FA nicht für:\n<b>%s</b>\n\nUm zu verhindern, dass du den Zugang verlierst, vergewissere dich, dass du 2FA deaktiviert hast oder dass du eine alternative Möglichkeit verwendest, um Codes für diesen Dienst zu generieren.</string>
     <string name="delete_entries">Einträge löschen</string>
     <plurals name="delete_entries_description">
         <item quantity="one">Bist du sicher, dass du %d Eintrag löschen möchtest?</item>
-        <item quantity="other">Sind Sie sicher, dass du %d Einträge löschen möchtest?</item>
+        <item quantity="other">Bist du sicher, dass du %d Einträge löschen möchtest?</item>
     </plurals>
     <string name="discard_changes">Änderungen verwerfen?</string>
     <string name="discard_changes_description">Deine Änderungen wurden noch nicht gespeichert</string>
@@ -225,7 +225,7 @@
     <string name="file_not_found">Fehler: Datei nicht gefunden</string>
     <string name="reading_file_error">Beim Lesen der Datei ist ein Fehler aufgetreten</string>
     <string name="app_lookup_error">Fehler: App ist nicht installiert</string>
-    <string name="app_version_error">Die installierte Version von %s wird nicht unterstützt. Beim Importversuch tritt möglicherweise ein Fehler auf. Möchtest du trotzdem fortfahren?</string>
+    <string name="app_version_error">Die installierte Version von %s wird nicht unterstützt. Neuere Versionen verschlüsseln einige der Dateien im internen Speicherverzeichnis, sodass Aegis nicht mehr auf die Informationen zugreifen kann, die für das Importieren benötigt werden. Der Importversuch wird wahrscheinlich zu einem Fehler führen. Möchtest du trotzdem fortfahren?</string>
     <string name="root_error">Fehler: Root-Zugriff nicht möglich</string>
     <plurals name="imported_entries_count">
         <item quantity="one">%d Eintrag importiert</item>
@@ -243,13 +243,13 @@
     <string name="encryption_enable_biometrics_error">Beim Versuch, biometrisches Entsperren zu aktivieren, ist ein Fehler aufgetreten. Einige Geräte haben eine schlechte Implementierung der biometrischen Authentifizierung und es ist wahrscheinlich, dass dieses Gerät dazu gehört. Ziehe stattdessen in Betracht, zu einer Konfiguration zu wechseln, die auf ein Passwort basiert.</string>
     <string name="no_cameras_available">Keine Kameras verfügbar</string>
     <string name="read_qr_error">Beim Lesen des QR-Codes ist ein Fehler aufgetreten</string>
-    <string name="read_qr_error_phonefactor">Aegis ist nicht mit dem proprietären 2FA-Algorithmus von Microsoft kompatibel. Bitte stelle sicher, dass du bei der Konfiguration von 2FA in Office 365 »Anwendung ohne Benachrichtigungen einrichten« auswählst.</string>
+    <string name="read_qr_error_phonefactor">Aegis ist nicht mit dem proprietären 2FA-Algorithmus von Microsoft kompatibel. Bitte vergewissere dich, dass du bei der Konfiguration von 2FA in Office 365 »Anwendung ohne Benachrichtigungen einrichten« auswählst.</string>
     <string name="partial_google_auth_import">Unvollständiger Google Authenticator-Export erkannt</string>
     <string name="partial_google_auth_import_warning">Einige QR-Codes fehlen in deinem Importversuch. Die folgenden Codes wurden nicht gefunden:\n\n<b>%s</b>\n\nDu kannst mit dem Importieren dieses Teilexports fortfahren, aber wir empfehlen es mit allen QR-Codes erneut zu versuchen, damit du nicht riskierst, den Zugriff auf Token zu verlieren.</string>
     <string name="missing_qr_code_descriptor">• QR-Code %d</string>
     <string name="import_partial_export_anyway">%d Token trotzdem importieren</string>
     <string name="import_google_auth_failure">Importieren von Google Authenticator-Export fehlgeschlagen</string>
-    <string name="unrelated_google_auth_batches_error">Der Export enthält Informationen für eine nicht verwandte Batch. Versuchen Sie, jeweils 1 Batch zu importieren.</string>
+    <string name="unrelated_google_auth_batches_error">Der Export enthält Informationen über ein nicht zugehöriges Set. Versuche, jeweils 1 Set zu importieren.</string>
     <string name="no_tokens_can_be_imported">Daher können keine Token importiert werden</string>
     <string name="authentication_method_raw">Raw</string>
     <string name="unlocking_vault">Entsperren der Datenbank</string>
@@ -314,6 +314,8 @@
     <string name="unable_to_generate_qrcode">QR-Code konnte nicht generiert werden</string>
     <string name="select_picture">Bild auswählen</string>
     <string name="select_icon">Symbol auswählen</string>
+    <string name="tile_open_vault" comment="label for a quick settings tile that opens the app when tapped">Datenbank öffnen</string>
+    <string name="tile_open_scanner" comment="label for a quick settings tile that opens the QR code scanner when tapped">Scanner öffnen</string>
     <string name="toggle_checkboxes">Kontrollkästchen umschalten</string>
     <string name="search">Suchen</string>
     <string name="channel_name_lock_status">Sperrstatus</string>
@@ -338,7 +340,7 @@
     <string name="time_sync_warning_title">Automatische Zeitsynchronisierung</string>
     <string name="time_sync_warning_message">Aegis ist auf die Synchronisierung der Systemzeit angewiesen, um korrekte Codes zu generieren. Eine Abweichung von nur wenigen Sekunden kann zu falschen Codes führen. Es sieht so aus, als ob dein Gerät nicht so konfiguriert ist, dass es die Zeit automatisch synchronisiert. Möchtest du dies jetzt tun?</string>
     <string name="time_sync_warning_disable">Höre auf, mich zu warnen. Ich weiß, was ich tue.</string>
-    <string name="google_qr_export_unrelated">Nicht zugehöriger QR-Code gefunden. Versuche den Scanner neu zu starten.</string>
+    <string name="google_qr_export_unrelated">Nicht zugehöriger QR-Code gefunden. Versuche, den Scanner neu zu starten.</string>
     <plurals name="google_qr_export_scanned">
         <item quantity="one">1 QR-Code gescannt</item>
         <item quantity="other">%d/%d QR-Codes gescannt</item>

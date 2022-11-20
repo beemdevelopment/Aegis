@@ -36,6 +36,7 @@
     <string name="pref_view_mode_title">Görüntüleme biçimi</string>
     <string name="pref_lang_title">Dil</string>
     <string name="pref_code_group_size_title">Kod hanelerinin gruplanması</string>
+    <string name="pref_code_group_size_summary">Kodların kaç basamakla gruplanacağını seçin</string>
     <string name="pref_account_name_title">Hesap adını göster</string>
     <string name="pref_account_name_summary">Hesap adını sağlayıcının yanında göstermek için bunu etkinleştirin</string>
     <string name="pref_import_file_title">Dosyadan içeriye aktar</string>
@@ -144,6 +145,8 @@
     <string name="set_up_biometric">Biyometrik kilit açma kurulumu</string>
     <string name="copy">Kopyala</string>
     <string name="edit">Düzenle</string>
+    <string name="favorite" comment="Verb">Favorilere Ekle</string>
+    <string name="unfavorite" comment="Verb">Favorilerden Çıkar</string>
     <string name="error_all_caps">HATA</string>
     <string name="password">Parola</string>
     <string name="confirm_password">Parolayı doğrula</string>
@@ -222,7 +225,7 @@
     <string name="file_not_found">Hata: Dosya bulunamadı</string>
     <string name="reading_file_error">Dosyayı okumaya çalışırken bir hata meydana geldi</string>
     <string name="app_lookup_error">Hata: Uygulama yüklenmemiş</string>
-    <string name="app_version_error">Yüklenen %s versiyonu desteklenmiyor. İçe aktarmaya çalışmak başarısız olabilir. Yine de devam etmek istiyor musunuz?</string>
+    <string name="app_version_error">Yüklü %s sürümü desteklenmiyor. Son sürümlerde diskteki bazı dosyaların şifrelenmesinden ötürü Aegis içeri aktaracak bilgilere erişemiyor. İçe aktarmayı denemek hata ile sonuçlanabilir, yine de devam etmek ister misiniz?</string>
     <string name="root_error">Hata: Kök kullanıcı erişimi elde edilemedi</string>
     <plurals name="imported_entries_count">
         <item quantity="one">%d girdi içe aktarıldı</item>
@@ -311,6 +314,8 @@
     <string name="unable_to_generate_qrcode">QR Kodu oluşturulamadı</string>
     <string name="select_picture">Resim seç</string>
     <string name="select_icon">Simge seç</string>
+    <string name="tile_open_vault" comment="label for a quick settings tile that opens the app when tapped">Kasayı aç</string>
+    <string name="tile_open_scanner" comment="label for a quick settings tile that opens the QR code scanner when tapped">Okuyucuyu Aç</string>
     <string name="toggle_checkboxes">Kutucukları işaretleyin</string>
     <string name="search">Ara</string>
     <string name="channel_name_lock_status">Kilit durumu</string>
@@ -412,4 +417,7 @@
     <string name="pref_focus_search_summary">Uygulama açılır açılmaz arama menüsüne odaklan.</string>
     <string name="pref_grouping_halves">Yarımlar</string>
     <string name="pref_grouping_none">Gruplandırmasız</string>
+    <string name="pref_grouping_size_two">2\'li grup</string>
+    <string name="pref_grouping_size_three">3\'lü grup</string>
+    <string name="pref_grouping_size_four">4\'lü grup</string>
 </resources>

@@ -205,7 +205,6 @@
     <string name="file_not_found">Kesalahan: Berkas tidak ditemukan</string>
     <string name="reading_file_error">Terjadi kesalahan saat membaca berkas</string>
     <string name="app_lookup_error">Kesalahan: Aplikasi tidak terpasang</string>
-    <string name="app_version_error">Versi %s yang dipasang tidak didukung. Mencoba untuk mengimpor mungkin bisa menghasilkan galat. Tetap ingin melanjutkan?</string>
     <string name="root_error">Kesalahan: tidak bisa mendapatkan akses root</string>
     <plurals name="imported_entries_count">
         <item quantity="other">%d entri yang diimpor</item>

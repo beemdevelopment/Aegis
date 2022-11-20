@@ -12,8 +12,10 @@
     <string name="save">儲存</string>
     <string name="issuer">服務商</string>
     <string name="yandex_pin">PIN (4 到 16 碼)</string>
+    <string name="motp_pin">PIN (4 位數)</string>
     <string name="suggested">建議</string>
     <string name="usage_count">使用次數</string>
+    <string name="warning">警告</string>
     <string name="pref_cat_appearance_app">應用程式</string>
     <string name="pref_cat_appearance_entries">條目</string>
     <string name="pref_cat_backups_android">Android</string>
@@ -56,6 +58,8 @@
     <string name="pref_export_title">匯出</string>
     <string name="pref_export_summary">匯出保險箱</string>
     <string name="pref_password_reminder_title">密碼提醒</string>
+    <string name="pref_google_auth_export_title">匯出到 Google Authenticator</string>
+    <string name="pref_google_auth_export_no_data">沒有可以匯出的資料</string>
     <string name="pref_password_reminder_summary">%s 提醒您輸入密碼，避免您忘記密碼。</string>
     <string name="pref_password_reminder_summary_disabled">已停用</string>
     <string name="pref_secure_screen_title">螢幕安全性</string>
@@ -70,6 +74,11 @@
     <string name="pref_auto_lock_type_back_button">返回按鈕已按下</string>
     <string name="pref_auto_lock_type_minimize">最小化應用程式</string>
     <string name="pref_auto_lock_type_device_lock">裝置已鎖定</string>
+    <string name="pref_backup_password_category">備份與匯出</string>
+    <string name="pref_backup_password_title">為備份與匯出使用不同的密碼</string>
+    <string name="pref_backup_password_summary">如果啟用，解鎖應用程式的密碼將會不能用於解密備份與匯出的資料</string>
+    <string name="pref_backup_password_change_title">更改備份與匯出用的密碼</string>
+    <string name="pref_backup_password_change_summary">新增一組用於加密備份與匯出資料的密碼</string>
     <string name="pref_encryption_title">加密</string>
     <string name="pref_encryption_summary">加密保險箱，並以密碼或生物特徵辨識解鎖。</string>
     <string name="pref_biometrics_title">生物特徵辨識解鎖</string>
@@ -128,6 +137,7 @@
     <string name="set_up_biometric">設定生物特徵辨識解鎖</string>
     <string name="copy">複製</string>
     <string name="edit">編輯</string>
+    <string name="error_all_caps">錯誤</string>
     <string name="password">密碼</string>
     <string name="confirm_password">確認密碼</string>
     <string name="show_password">顯示密碼</string>
@@ -140,6 +150,7 @@
     <string name="encrypting_vault">正在加密保險箱</string>
     <string name="exporting_vault">正在匯出保險箱</string>
     <string name="reading_file">讀取檔案中</string>
+    <string name="analyzing_qr">分析 QR code 中</string>
     <string name="importing_icon_pack">正在匯入圖示合輯</string>
     <string name="delete_entry">刪除條目</string>
     <string name="delete_entry_description">您確定要刪除此條目嗎？</string>
@@ -172,6 +183,9 @@
     <string name="disable_encryption_error">停用加密時出錯</string>
     <string name="backup_successful">已成功排程備份</string>
     <string name="backup_error">嘗試建立備份時發生錯誤</string>
+    <string name="backup_status_success">最近備份成攻: %s</string>
+    <string name="backup_status_failed">最近備份失敗: %s</string>
+    <string name="backup_status_none">尚未建立任何備份</string>
     <string name="documentsui_error">似乎無法在您的裝置上找到 DocumentsUI。此為新增與建立文件的重要系統元件。若您曾使用&quot;debloat&quot; 軟體替您的裝置「瘦身」，極有可能您誤刪此程式，請將其重新安裝。</string>
     <string name="icon_pack_delete_error">試圖刪除圖示合輯時出錯</string>
     <plurals name="icon_pack_info">
@@ -194,6 +208,7 @@
     <plurals name="imported_entries_count">
         <item quantity="other">已匯入 %d 個條目</item>
     </plurals>
+    <string name="intro_import_error_title">匯入至保險箱時發生錯誤</string>
     <string name="import_error_title">匯入時發生了一些錯誤。</string>
     <string name="exporting_vault_error">匯出保險箱時發生錯誤</string>
     <string name="exported_vault">保險箱已匯出</string>
@@ -209,6 +224,7 @@
     <string name="remove_group_description">您確定要刪除這個群組嗎？此群組內的條目將自動移動到「無群組」。</string>
     <string name="remove_icon_pack">移除圖示合輯</string>
     <string name="details">詳細資訊</string>
+    <string name="show_error_details">顯示錯誤詳細內容</string>
     <string name="lock">鎖定</string>
     <string name="name">名稱</string>
     <string name="no_group">無群組</string>
@@ -252,6 +268,7 @@
     <plurals name="import_error_dialog">
         <item quantity="other">Aegis 已忽略無法匯入的 %d 個憑證。如欲了解更詳細的錯誤資訊，請按「詳細內容」。</item>
     </plurals>
+    <string name="unable_to_read_qrcode_file">無法從 %s 檔案讀取和處理QR碼</string>
     <string name="unable_to_generate_qrcode">無法產生QR碼</string>
     <string name="select_picture">選擇圖片</string>
     <string name="select_icon">選擇圖示</string>
@@ -285,6 +302,9 @@
     </plurals>
     <string name="google_qr_export_unexpected">預期QR碼 %d，已掃描 %d</string>
     <string name="backup_error_bar_message"><b>近期的保險箱備份失敗</b></string>
+    <string name="backup_system_builtin">Aegis 內建的自動備份</string>
+    <string name="backup_system_android">Android 雲端備份</string>
+    <string name="pref_show_plaintext_warning_hint">不再顯示這則警告</string>
     <string name="switch_camera">切換鏡頭</string>
     <string name="empty_list">尚無驗證碼。輕觸右下角的加號開始新增條目</string>
     <string name="empty_list_title">找不到條目</string>

@@ -96,6 +96,7 @@
     <string name="export_help">Això exportarà la volta fora d\'Aegis. Tria el format en el que s\'ha d\'exportar:</string>
     <string name="export_warning_unencrypted">Això exportarà una còpia sense xifrar de la volta d\'Aegis. <b>No recomanat</b>.</string>
     <string name="export_warning_accept">Entenc els riscos</string>
+    <string name="export_warning_password">Les exportacions es xifren fent servir una contrasenya diferent, configurada a la secció de seguretat.</string>
     <string name="export_format_aegis">Aegis (.JSON)</string>
     <string name="export_format_google_auth_uri">Fitxers de text (*.txt)</string>
     <string name="export_format_hint">Format d\'exportació</string>
@@ -202,6 +203,7 @@
     <string name="backup_status_success">Còpia de seguretat més recent: %s</string>
     <string name="backup_status_failed">Còpia de seguretat fallada: %s</string>
     <string name="backup_status_none">No s\'han fet còpies de seguretat encara</string>
+    <string name="backup_warning_password">Les còpies de seguretat es xifren fent servir una contrasenya diferent, configurada a la secció de seguretat</string>
     <string name="documentsui_error">Sembla que no tens instal·lat el DocumentsUI. Això es un component de sistema necessari per a la selecció i creació de documents. Si has fet servir una eina per a fer &quot;debloat&quot; al teu dispositiu, pot ser que l\'hagis eliminat accidentalment i cal reinstal·lar-lo.</string>
     <string name="icon_pack_import_error">S\'ha produït un error al importar el paquet d\'icones</string>
     <string name="icon_pack_import_exists_error">El paquet d\'icones que intentes importar ja existeix. Vols sobreescriure\'l?</string>
@@ -223,7 +225,7 @@
     <string name="file_not_found">Error: no s\'ha trobat el fitxer</string>
     <string name="reading_file_error">S\'ha produït un error mentre s\'intentava carregar el fitxer</string>
     <string name="app_lookup_error">Aquesta aplicació no està instal·lada</string>
-    <string name="app_version_error">La versió de %s que està instal·lada no és compatible. Si intenteu importar, es pot produir un error. Us agradaria continuar igualment?</string>
+    <string name="app_version_error">La versió instal·lada de %s no està suportada. Les versions recents han començat a xifrar els fitxers de l\'emmagatzematge intern, fent que Aegis no pugui accedir a la informació que necessita per a fer la importació. És molt possible que intentar importar finalitzi amb error. Vols intentar-ho igualment?</string>
     <string name="root_error">Error: no s\'ha pogut obtenir accés root</string>
     <plurals name="imported_entries_count">
         <item quantity="one">%d entrades importades</item>
@@ -312,6 +314,8 @@
     <string name="unable_to_generate_qrcode">La generació del codi QR ha fallat</string>
     <string name="select_picture">Tria imatge</string>
     <string name="select_icon">Tria icona</string>
+    <string name="tile_open_vault" comment="label for a quick settings tile that opens the app when tapped">Orbir Volta</string>
+    <string name="tile_open_scanner" comment="label for a quick settings tile that opens the QR code scanner when tapped">Obrir escàner</string>
     <string name="toggle_checkboxes">Alternar selecció</string>
     <string name="search">Cerca</string>
     <string name="channel_name_lock_status">Estat del bloqueig</string>

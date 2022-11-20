@@ -96,6 +96,7 @@
     <string name="export_help">Esta ação irá exportar o cofre para fora do armazenamento interno do Aegis. Selecione o formato em que você gostaria que sua exportação esteja:</string>
     <string name="export_warning_unencrypted">Você está prestes a exportar uma cópia não criptografada de seu cofre Aegis. <b>Isso não é recomendado</b>.</string>
     <string name="export_warning_accept">Eu compreendo o risco</string>
+    <string name="export_warning_password">As exportações são criptografadas usando uma senha separada, configurada nas configurações de segurança.</string>
     <string name="export_format_aegis">Aegis (.JSON)</string>
     <string name="export_format_google_auth_uri">Arquivo de texto (.TXT)</string>
     <string name="export_format_hint">Formato de exportação</string>
@@ -144,6 +145,8 @@
     <string name="set_up_biometric">Preparar desbloqueio biométrico</string>
     <string name="copy">Copiar</string>
     <string name="edit">Editar</string>
+    <string name="favorite" comment="Verb">Favorito</string>
+    <string name="unfavorite" comment="Verb">Remover dos favoritos</string>
     <string name="error_all_caps">ERRO</string>
     <string name="password">Senha</string>
     <string name="confirm_password">Confirmar senha</string>
@@ -200,6 +203,7 @@
     <string name="backup_status_success">Backup mais recente bem-sucedido: %s</string>
     <string name="backup_status_failed">Falha no backup mais recente: %s</string>
     <string name="backup_status_none">Nenhum backup foi feito ainda</string>
+    <string name="backup_warning_password">Os backups são criptografados usando uma senha separada, configurada nas configurações de segurança</string>
     <string name="documentsui_error">DocumentsUI parece estar faltando no seu dispositivo. Este é um componente importante do sistema necessário para a seleção e criação de documentos. Se você usou uma ferramenta para &quot;remover aplicativos do sistema&quot; do seu dispositivo, você pode ter excluído acidentalmente e terá que reinstalá-lo.</string>
     <string name="icon_pack_import_error">Ocorreu um erro ao tentar importar um pacote de ícones</string>
     <string name="icon_pack_import_exists_error">O pacote de ícones que você está tentando importar já existe. Deseja substituí-lo?</string>
@@ -221,7 +225,7 @@
     <string name="file_not_found">Erro: Arquivo não encontrado</string>
     <string name="reading_file_error">Um erro ocorreu durante a tentativa de ler o arquivo</string>
     <string name="app_lookup_error">Erro: App não está instalado</string>
-    <string name="app_version_error">A versão do %s instalada não é suportada. Tentar importar pode resultar em um erro. Gostaria de continuar mesmo assim?</string>
+    <string name="app_version_error">A versão do %s que está instalada não é suportada. Versões recentes começaram a criptografar alguns dos arquivos no diretório de armazenamento interno, tornando o Aegis incapaz de acessar as informações de que necessita para a importação. É provável que a tentativa de importar resulte em um erro. Gostaria de continuar mesmo assim?</string>
     <string name="root_error">Erro: Não foi possível obter acesso root</string>
     <plurals name="imported_entries_count">
         <item quantity="one">%d entrada importada</item>
@@ -310,6 +314,8 @@
     <string name="unable_to_generate_qrcode">Não foi possível gerar o QR code</string>
     <string name="select_picture">Selecionar imagem</string>
     <string name="select_icon">Selecionar ícone</string>
+    <string name="tile_open_vault" comment="label for a quick settings tile that opens the app when tapped">Abrir cofre</string>
+    <string name="tile_open_scanner" comment="label for a quick settings tile that opens the QR code scanner when tapped">Abrir digitalizador</string>
     <string name="toggle_checkboxes">Alternar checkboxes</string>
     <string name="search">Pesquisar</string>
     <string name="channel_name_lock_status">Estado de bloqueio</string>
@@ -409,6 +415,7 @@
     <string name="groups">Grupos</string>
     <string name="pref_focus_search">Abra a pesquisa ao iniciar o aplicativo</string>
     <string name="pref_focus_search_summary">Focar o campo de pesquisa logo após abrir o aplicativo.</string>
+    <string name="pref_grouping_halves">Metades</string>
     <string name="pref_grouping_none">Nenhum agrupamento</string>
     <string name="pref_grouping_size_two">Grupos de 2</string>
     <string name="pref_grouping_size_three">Grupos de 3</string>

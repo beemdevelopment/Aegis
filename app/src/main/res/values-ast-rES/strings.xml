@@ -23,10 +23,10 @@
     <string name="pref_section_behavior_title">Comportamientu</string>
     <string name="pref_section_behavior_summary">Personaliza\'l comportamientu al interactuar cola llista d\'entraes.</string>
     <string name="pref_section_appearance_title">Aspeutu</string>
-    <string name="pref_section_appearance_summary">Configura l\'estilu, la llingua y otros axustes qu\'afeuten al aspeutu de l\'aplicación.</string>
+    <string name="pref_section_appearance_summary">Configura l\'estilu, la llingua ya otros axustes qu\'afeuten al aspeutu de l\'aplicación.</string>
     <string name="pref_section_security_title">Seguranza</string>
-    <string name="pref_section_security_summary">Configura\'l cifráu, el bloquéu biométricu, el bloquéu automáticu y otros axustes de seguranza.</string>
-    <string name="pref_section_import_export_title">Importación y esportación</string>
+    <string name="pref_section_security_summary">Configura\'l cifráu, el bloquéu biométricu, el bloquéu automáticu ya otros axustes de seguranza.</string>
+    <string name="pref_section_import_export_title">Importación ya esportación</string>
     <string name="pref_section_import_export_summary">Importa les copies de seguranza d\'Aeguis o d\'otres aplicaciones del mesmu tipu. Crea ficheros d\'esportación manuales de l\'arca d\'Aeguis.</string>
     <string name="pref_section_backups_title">Copies de seguranza</string>
     <string name="pref_section_backups_summary">Configura\'l llugar onde s\'atroxen les copies de seguranza o activa la participación nel sistema de copies de seguranza na ñube d\'Android.</string>
@@ -67,7 +67,7 @@
         <item quantity="one">Saltóse %d entrada incompatible</item>
         <item quantity="other">Saltáronse %d entraes incompatibles</item>
     </plurals>
-    <string name="pref_password_reminder_summary">Amuesa un recordatoriu (%s) pa introducir la contraseña y nun la escaecer.</string>
+    <string name="pref_password_reminder_summary">Amuesa un recordatoriu (%s) pa introducir la contraseña ya nun la escaecer.</string>
     <string name="pref_password_reminder_summary_disabled">Desactivóse</string>
     <string name="pref_secure_screen_title">Seguranza de la pantalla</string>
     <string name="pref_secure_screen_summary">Bloquia tou tipu de captura y/o grabación de pantalla quier dientro, quier fuera de l\'aplicación</string>
@@ -81,13 +81,13 @@
     <string name="pref_auto_lock_type_back_button">Primir el botón «Atrás»</string>
     <string name="pref_auto_lock_type_minimize">Minimizar l\'aplicación</string>
     <string name="pref_auto_lock_type_device_lock">Bloquiar el preséu</string>
-    <string name="pref_backup_password_category">Copia de seguranza y esportación</string>
+    <string name="pref_backup_password_category">Copia de seguranza ya esportación</string>
     <string name="pref_backup_password_title">Usar una contraseña nueva</string>
-    <string name="pref_backup_password_summary">Si s\'activa la opción, la contraseña que s\'usa pa desbloquiar l\'aplicación yá nun se pue usar pa descifrar les copies de seguranza y les exportaciones.</string>
+    <string name="pref_backup_password_summary">Si s\'activa la opción, la contraseña que s\'usa pa desbloquiar l\'aplicación xá nun se pue usar pa descifrar les copies de seguranza ya les exportaciones.</string>
     <string name="pref_backup_password_change_title">Usar otra contraseña</string>
-    <string name="pref_backup_password_change_summary">Configura una contraseña nueva que ye la que va usase pa cifrar l\'arca demientres les copies de seguranza y les esportaciones.</string>
+    <string name="pref_backup_password_change_summary">Configura una contraseña nueva que ye la que va usase pa cifrar l\'arca demientres les copies de seguranza ya les esportaciones.</string>
     <string name="pref_encryption_title">Cifráu</string>
-    <string name="pref_encryption_summary">Cifra l\'arca y desblóquialu con una contraseña o cola biometría</string>
+    <string name="pref_encryption_summary">Cifra l\'arca ya desblóquiala con una contraseña o cola biometría</string>
     <string name="pref_biometrics_title">Desbloquéu biométricu</string>
     <string name="pref_biometrics_summary">Permite que l\'autenticación biométrica desbloquie l\'arca</string>
     <string name="pref_set_password_title">Camudar la contraseña</string>
@@ -118,7 +118,7 @@
     <string name="set_number">Introduz un númberu</string>
     <string name="set_password_confirm">Confirma la contraseña</string>
     <string name="invalid_password">La contraseña ye incorreuta</string>
-    <string name="invalidated_biometrics">Detectóse un cambéu nos axustes de seguranza del preséu. Vete a «Aegis -&gt; Axustes -&gt; Seguranza -&gt; Desbloquéu biométricu» pa desactivar y volver activar el desbloquéu biométricu.</string>
+    <string name="invalidated_biometrics">Detectóse un cambéu nos axustes de seguranza del preséu. Vete a «Aegis -&gt; Axustes -&gt; Seguranza -&gt; Desbloquéu biométricu» pa desactivar ya volver activar el desbloquéu biométricu.</string>
     <string name="password_reminder">Introduz la contraseña. Pidímosla de xemes en cuando pa que nun la escaezas.</string>
     <string name="password_reminder_freq_never">Enxamás</string>
     <string name="password_reminder_freq_weekly">Selmanalmente</string>
@@ -126,7 +126,7 @@
     <string name="password_reminder_freq_monthly">Mensualmente</string>
     <string name="password_reminder_freq_quarterly">Trimestralmente</string>
     <string name="enter_password_2fas_message">Paez qu\'esta copia de seguranza de 2FAS ta cifrada. Introduz la contraseña abaxo.</string>
-    <string name="enter_password_authy_message">Paez que los pases d\'Authy tán cifraos. Zarra Aeguis, abri Authy y desbloquia los pases cola contraseña. Sicasí, Aeguis pue tentar de descifrar los pases d\'Authy si introduces la contraseña abaxo.</string>
+    <string name="enter_password_authy_message">Paez que los pases d\'Authy tán cifraos. Zarra Aeguis, abri Authy ya desbloquia los pases cola contraseña. Sicasí, Aeguis pue tentar de descifrar los pases d\'Authy si introduces la contraseña abaxo.</string>
     <string name="enter_password_aegis_title">Introduz la contraseña de la importación</string>
     <string name="period_hint">Periodu (segundos)</string>
     <string name="algorithm_hint">Hash</string>
@@ -155,7 +155,7 @@
     <string name="add_new_entry">Amiestu d\'una entrada nueva</string>
     <string name="unlock_vault_error">Nun se pudo desbloquiar l\'arca</string>
     <string name="unlock_vault_error_description">La contraseña ye incorreuta. Asegúrate de que nun la teclexares mal.</string>
-    <string name="password_equality_error">Les contraseñes habríen ser idéntiques y nun tar baleres</string>
+    <string name="password_equality_error">Les contraseñes habríen ser idéntiques ya nun tar baleres</string>
     <string name="snackbar_authentication_method">Esbilla un métodu d\'autenticación</string>
     <string name="encrypting_vault">Cifrando l\'arca</string>
     <string name="exporting_vault">Esportando l\'arca</string>
@@ -179,9 +179,9 @@
     <string name="discard_changes_description">Nun se guardaron los cambeos</string>
     <string name="saving_profile_error">Hebo un error al guardar el perfil</string>
     <string name="welcome">Afáyate</string>
-    <string name="app_description">Aegis ye una aplicación gratuita, segura y de códigu abiertu p\'autenticase en dos pasos</string>
+    <string name="app_description">Aegis ye una aplicación gratuita, segura ya de códigu abiertu p\'autenticase en dos pasos</string>
     <string name="setup_completed">Completóse la configuración</string>
-    <string name="setup_completed_description">Aegis ta configuráu y yá se pue usar.</string>
+    <string name="setup_completed_description">Aegis ta configuráu ya xá se pue usar.</string>
     <string name="vault_not_found">Nun s\'atopó l\'arca. Aniciando la configuración…</string>
     <string name="copied">Copióse</string>
     <string name="errors_copied">Los errores copiáronse nel cartafueyu</string>
@@ -192,8 +192,8 @@
     <string name="saving_error">Prodúxose un error mentanto se guardaba nel arca</string>
     <string name="vault_init_error">Prodúxose un error mentanto s\'aniciaba l\'arca</string>
     <string name="vault_load_error">Prodúxose un error mentanto se cargaba l\'arca del almacenamientu</string>
-    <string name="biometric_decrypt_error">Prodúxose un error mentanto se descifraba l\'arca cola autenticación biométrica. Esto namás suel pasar si los axustes de seguranza del preséu camudaron. Desbloquia l\'arca cola contraseña y volvi configurar l\'autenticación biométrica nos axustes d\'Aegis.</string>
-    <string name="biometric_init_error">Prodúxose un error mentanto se tresnaba l\'autenticación biométrica. Esto namás suel pasar si los axustes de seguranza del preséu camudaron. Desbloquia l\'arca cola contraseña y volvi configurar l\'autenticación biométrica nos axustes d\'Aegis.</string>
+    <string name="biometric_decrypt_error">Prodúxose un error mentanto se descifraba l\'arca cola autenticación biométrica. Esto namás suel pasar si los axustes de seguranza del preséu camudaron. Desbloquia l\'arca cola contraseña ya volvi configurar l\'autenticación biométrica nos axustes d\'Aegis.</string>
+    <string name="biometric_init_error">Prodúxose un error mentanto se tresnaba l\'autenticación biométrica. Esto namás suel pasar si los axustes de seguranza del preséu camudaron. Desbloquia l\'arca cola contraseña ya volvi configurar l\'autenticación biométrica nos axustes d\'Aegis.</string>
     <string name="disable_encryption">Desactivación del cifráu</string>
     <string name="disable_encryption_description">¿De xuru que quies desactivar el cifráu? Esta aición fai que l\'arca s\'atroxe en testu planu. <b>Tamién se desactiven les copies de seguranza automátiques</b>.</string>
     <string name="enable_encryption_error">Prodúxose un error mentanto s\'activaba\'l cifráu</string>
@@ -204,7 +204,7 @@
     <string name="backup_status_failed">La última copia de seguranza que falló: %s</string>
     <string name="backup_status_none">Entá nun se fizo nenguna copia de seguranza</string>
     <string name="backup_warning_password">Les copies de seguranza cífrense con otra contraseña que se configura nos axustes de seguranza</string>
-    <string name="documentsui_error">Paez qu\'al sistema fálta-y el componente «DocumentsUI». Esti componente ye importante y necesariu pa la seleición y creación de documentos. Si usesti una ferramienta pa facer «debloat» nel preséu, ye posible que lu desaniciares accidentalmente, polo que tienes que lu volver instalar.</string>
+    <string name="documentsui_error">Paez qu\'al sistema fálta-y el componente «DocumentsUI». Esti componente ye importante ya necesariu pa la seleición ya creación de documentos. Si usesti una ferramienta pa facer «debloat» nel preséu, ye posible que lu desaniciares accidentalmente, polo que tienes que lu volver instalar.</string>
     <string name="icon_pack_import_error">Prodúxose un error mentanto s\'importaba un paquete d\'iconos</string>
     <string name="icon_pack_import_exists_error">Yá esiste\'l paquete d\'iconos que tentes d\'importar. ¿Quies sobrescribilu?</string>
     <string name="icon_pack_delete_error">Prodúxose un error mentanto se desaniciaba un paquete d\'iconos</string>
@@ -225,7 +225,7 @@
     <string name="file_not_found">Error: nun s\'atopó\'l ficheru</string>
     <string name="reading_file_error">Prodúxose un error mentanto se lleía\'l ficheru</string>
     <string name="app_lookup_error">Error: l\'aplicación nun ta instalada</string>
-    <string name="app_version_error">La versión instalada de «%s» nun ye compatible. Si tentes d\'importar dalguna entrada, ye posible que se produzan errores. ¿Quies siguir de toes toes?</string>
+    <string name="app_version_error">La versión instalada de «%s» nun ye compatible. Les versiones nueves comenzaron a cifrar dalgunos ficheros nel direutoriu del almacenamientu internu, lo que fai qu\'Aegis nun seya a acceder a la información que precisa pa la importación. Ye probable qu\'al tentar d\'importar se produza un error. ¿Quies siguir de toes toes?</string>
     <string name="root_error">Error: nun ye posible consiguir l\'accesu de root</string>
     <plurals name="imported_entries_count">
         <item quantity="one">Importóse %d entrada</item>
@@ -240,7 +240,7 @@
     <string name="exporting_vault_error">Prodúxose un error mentanto s\'esportaba l\'arca</string>
     <string name="exported_vault">Esportóse l\'arca</string>
     <string name="encryption_set_password_error">Prodúxose un error mentanto se configuraba la contraseña.</string>
-    <string name="encryption_enable_biometrics_error">Prodúxose un error mentanto s\'activaba\'l bloquéu biométricu. Dalgunos preseos tienen implementaciones de l\'autenticación biométrica deficientes y ye probable que\'l de to les tenga. Piensa en cambiar a la configuración qu\'usa namás la contraseña.</string>
+    <string name="encryption_enable_biometrics_error">Prodúxose un error mentanto s\'activaba\'l bloquéu biométricu. Dalgunos preseos tienen implementaciones de l\'autenticación biométrica deficientes ya ye probable que\'l de to les tenga. Piensa en cambiar a la configuración qu\'usa namás la contraseña.</string>
     <string name="no_cameras_available">Nun hai nenguna cámara disponible</string>
     <string name="read_qr_error">Prodúxose un error mentanto se lleía\'l códigu QR</string>
     <string name="read_qr_error_phonefactor">Aegis nun ye compatible col algoritmu privativu de Microsoft. Asegúrate de que seleiciones «Configurar l\'aplicación ensin avisos» al configurar l\'autenticación en dos pasos d\'Office 365.</string>
@@ -274,7 +274,7 @@
     <string name="group">Grupu</string>
     <string name="group_name_hint">Nome del grupu</string>
     <string name="preference_manage_groups">Editar los grupos</string>
-    <string name="preference_manage_groups_summary">Xestiona y desanicia los grupos equí</string>
+    <string name="preference_manage_groups_summary">Xestiona ya desanicia los grupos equí</string>
     <string name="preference_reset_usage_count">Reafitar el númberu d\'usos</string>
     <string name="preference_reset_usage_count_summary">Reafita\'l númberu d\'usos de toles entraes de l\'arca</string>
     <string name="preference_reset_usage_count_dialog">¿De xuru que quies reafitar el númberu d\'usos de toles entraes de l\'arca?</string>
@@ -291,7 +291,7 @@
     <string name="pin_keyboard_description">Activa la contraseña p\'activar el tecláu numbéricu. Decátate qu\'esta opción namás funciona si la contraseña ta formada namás por númberos</string>
     <string name="pin_keyboard_error">Hebo un error al activar el tecláu numbéricu</string>
     <string name="pin_keyboard_error_description">Nun ye posible configurar el PIN numbéricu. La contraseña ha tar formada namás por númberos.</string>
-    <string name="pin_keyboard_disabled">La contraseña camudó. El tecláu numbéricu yá nun va apaecer.</string>
+    <string name="pin_keyboard_disabled">La contraseña camudó. El tecláu numbéricu xá nun va apaecer.</string>
     <string name="selected">Na seleición</string>
     <string name="dark_theme_title">Estilu escuru</string>
     <string name="light_theme_title">Estilu claru</string>
@@ -308,21 +308,23 @@
         <item quantity="other">Aegis nun pudieron importar %d pases, polo que se saltaron. Primi «Detalles» pa ver más información tocante a los errores.</item>
     </plurals>
     <string name="unable_to_process_deeplink">Nun ye posible procesar l\'enllaz fondu</string>
-    <string name="unable_to_read_qrcode_file">Nun se posible lleer y procesar el códigu QR del ficheru: %s.</string>
+    <string name="unable_to_read_qrcode_file">Nun se posible lleer ya procesar el códigu QR del ficheru: %s.</string>
     <string name="unable_to_process_shared_text">Nun ye posible procesar el testu compartíu como cadena d\'OTP</string>
-    <string name="unable_to_read_qrcode_files">Nun ye posible lleer y procesar dalgunos códigos QR. Namás van esportase %d/%d entraes.</string>
+    <string name="unable_to_read_qrcode_files">Nun ye posible lleer ya procesar dalgunos códigos QR. Namás van esportase %d/%d entraes.</string>
     <string name="unable_to_generate_qrcode">Nun ye posible xenerar el códigu QR</string>
     <string name="select_picture">Seleición d\'una semeya</string>
     <string name="select_icon">Seleición d\'un iconu</string>
+    <string name="tile_open_vault" comment="label for a quick settings tile that opens the app when tapped">Abrir l\'arca</string>
+    <string name="tile_open_scanner" comment="label for a quick settings tile that opens the QR code scanner when tapped">Abrir l\'escaniador</string>
     <string name="toggle_checkboxes">Alternar los caxellos</string>
     <string name="search">Buscar</string>
     <string name="channel_name_lock_status">Estáu del bloquéu</string>
     <string name="channel_description_lock_status">Aegis pue crear un avisu permanente p\'avisate de cuándo se bloquia l\'arca</string>
-    <string name="vault_unlocked_state">L\'arca ta desbloquiáu. Toca equí pa bloquialu.</string>
+    <string name="vault_unlocked_state">L\'arca ta desbloquiada. Toca equí pa bloquiala.</string>
     <string name="version">Versión</string>
     <string name="changelog">Rexistru de cambeos</string>
     <string name="whats_new">Les novedaes</string>
-    <string name="github_description">El códigu fonte, los problemes y más información</string>
+    <string name="github_description">El códigu fonte, los problemes ya más información</string>
     <string name="license">Llicencia</string>
     <string name="license_description">Aegis Authenticator llicénciase baxo la GPLv3</string>
     <string name="third_party_licenses">Llicencies de terceros</string>
@@ -333,10 +335,10 @@
     <string name="about_support">Apoyu</string>
     <string name="support_rate">Valorar</string>
     <string name="support_rate_description">Apóyanos pente una reseña na Play Store de Google</string>
-    <string name="webview_error">Esti preséu nun ye compatible con WebView, que ye necesariu pa visualizar el rexistru de cambeos y la llicencia. Al sistema fálta-y un componente.</string>
+    <string name="webview_error">Esti preséu nun ye compatible con WebView, que ye necesariu pa visualizar el rexistru de cambeos ya la llicencia. Al sistema fálta-y un componente.</string>
     <string name="email">Corréu electrónicu</string>
     <string name="time_sync_warning_title">Sincronización automática de la hora</string>
-    <string name="time_sync_warning_message">Aegis encóntase na hora del sistema pa xenerar códigos correutos y la esviación d\'unos segundos na hora podría facer que se xeneren códigos incorreutos. Paez que\'l preséu nun ta configuráu pa sincronizar automáticamente la hora. ¿Quies facelo agora?</string>
+    <string name="time_sync_warning_message">Aegis encóntase na hora del sistema pa xenerar códigos correutos ya la esviación d\'unos segundos na hora podría facer que se xeneren códigos incorreutos. Paez que\'l preséu nun ta configuráu pa sincronizar automáticamente la hora. ¿Quies facelo agora?</string>
     <string name="time_sync_warning_disable">Dexar d\'alvertime, sé lo que faigo.</string>
     <string name="google_qr_export_unrelated">Atopóse un códigu QR que nun tien rellación. Prueba a reaniciar l\'escaniador.</string>
     <plurals name="google_qr_export_scanned">
@@ -370,7 +372,7 @@
     <string name="previous">Anterior</string>
     <string name="transfer_entry">Tresferencia d\'una entrada</string>
     <string name="transfer_entry_description">Escania esti códígu QR cola aplicación autenticadora a la que quies tresferir esta entrada</string>
-    <string name="google_auth_compatible_transfer_description">Escania estos códigos QR con Aegis o con Google Authenticator.\n\nPola mor de les llendes de l\'aplicación Google Authenticator, namás s\'inclúin pases TOTP y HOTP qu\'usen el hash SHA1 y produzan códigos de 6 díxitos</string>
+    <string name="google_auth_compatible_transfer_description">Escania estos códigos QR con Aegis o con Google Authenticator.\n\nPola mor de les llendes de l\'aplicación Google Authenticator, namás s\'inclúin pases TOTP ya HOTP qu\'usen el hash SHA1 ya produzan códigos de 6 díxitos</string>
     <string name="password_strength_very_weak">Perpoco segura</string>
     <string name="password_strength_weak">Poco segura</string>
     <string name="password_strength_fair">Segura</string>
@@ -387,7 +389,7 @@
     <string name="title_activity_manage_slots">Xestión de les claves</string>
     <string name="title_activity_import_entries">Importación d\'entraes</string>
     <string name="dialog_wipe_entries_title">Borráu d\'entraes</string>
-    <string name="dialog_wipe_entries_message">L\'arca yá contién entraes. ¿Quies quitales enantes d\'importar esti ficheru?\n\n<b>Al facelo, vas perder permanentemente l\'accesu a les entraes esistentes de l\'arca.</b></string>
+    <string name="dialog_wipe_entries_message">L\'arca xá contién entraes. ¿Quies quitales enantes d\'importar esti ficheru?\n\n<b>Al facelo, vas perder permanentemente l\'accesu a les entraes esistentes de l\'arca.</b></string>
     <string name="dialog_wipe_entries_checkbox">Borrar el conteníu de l\'arca</string>
     <string name="panic_trigger_ignore_toast">Aegis recibió un eventu de pánicu mas la opción ta desactivada</string>
     <string name="pref_panic_trigger_title">Desaniciar l\'arca n\'eventos de pánicu</string>
@@ -395,21 +397,21 @@
     <string name="import_vault">Importar l\'arca</string>
     <string name="importer_help_2fas">Forni una copia de seguranza de 2FAS Authenticator.</string>
     <string name="importer_help_aegis">Forni un ficheru d\'esportación/copia de seguranza d\'Aegis.</string>
-    <string name="importer_help_authenticator_plus">Forni un ficheru d\'esportación d\'Authenticator Plus que se consigue pente <b>Axustes -&gt; Copia de seguranza y restauración -&gt; Esportar como testu y HTML</b>.</string>
+    <string name="importer_help_authenticator_plus">Forni un ficheru d\'esportación d\'Authenticator Plus que se consigue pente <b>Axustes -&gt; Copia de seguranza ya restauración -&gt; Esportar como testu ya HTML</b>.</string>
     <string name="importer_help_authy">Forni una copia del ficheru <b>com.authy.storage.tokens.authenticator.xml</b> que s\'alluga na direición «/data/data/com.authy.authy/shared_prefs/», dientro del direutoriu del almacenamientu internu d\'Authy.</string>
     <string name="importer_help_andotp">Forni un ficheru d\'esportación/copia de seguranza d\'AndOTP.</string>
     <string name="importer_help_bitwarden">Forni un ficheru d\'esportación/copia de seguranza de Bitwarden. Los ficheros cifraos nun son compatibles.</string>
     <string name="importer_help_duo">Forni una copia del ficheru <b>accounts.json</b> que s\'alluga na direición «/data/data/com.duosecurity.duomobile/files/duokit/», dientro del direutoriu del almacenamientu internu de DUO.</string>
     <string name="importer_help_freeotp">Forni una copia del ficheru <b>tokens.xml</b> que s\'alluga na direición «/data/data/org.fedorahosted.freeotp/shared_prefs/», dientro del direutoriu del almacenamientu internu de FreeOTP.</string>
     <string name="importer_help_freeotp_plus">Forni un ficheru d\'esportación de FreeOTP+.</string>
-    <string name="importer_help_google_authenticator"><b>Namás les bases de datos de la versión 5.10 y les inferiores de Google Authenticator son compatibles.</b>\n\nForni una copia de <b>databases</b> que s\'alluga na direición «/data/data/com.google.android.apps.authenticator2/databases/», dientro del direutoriu del almacenamientu internu de Google Authenticator.</string>
+    <string name="importer_help_google_authenticator"><b>Namás les bases de datos de la versión 5.10 ya les inferiores de Google Authenticator son compatibles.</b>\n\nForni una copia de <b>databases</b> que s\'alluga na direición «/data/data/com.google.android.apps.authenticator2/databases/», dientro del direutoriu del almacenamientu internu de Google Authenticator.</string>
     <string name="importer_help_microsoft_authenticator">Forni una copia del ficheru <b>PhoneFactor</b> que s\'alluga na direición «/data/data/com.azure.authenticator/databases/», dientro del direutoriu del almacenamientu internu de Microsoft Authenticator.</string>
     <string name="importer_help_plain_text">Forni un ficheru en testu planu con una URI de Google Authenticator en cada llinia.</string>
-    <string name="importer_help_steam"><b>La versión 3.0 y les superiores de Steam nun son compatibles.</b> Forni una copia de <b>Steamguard-*.json</b> que s\'alluga na direición «data/data/com.valvesoftware.android.steam.community/files/», dientro del direutoriu del almacenamientu internu de Steam.</string>
+    <string name="importer_help_steam"><b>La versión 3.0 ya les superiores de Steam nun son compatibles.</b> Forni una copia de <b>Steamguard-*.json</b> que s\'alluga na direición «data/data/com.valvesoftware.android.steam.community/files/», dientro del direutoriu del almacenamientu internu de Steam.</string>
     <string name="importer_help_totp_authenticator">Forni un ficheru d\'esportación de TOTP Authenticator.</string>
     <string name="importer_help_winauth">Forni un ficheru d\'esportación de WinAuth.</string>
     <string name="importer_encrypted_exception_google_authenticator">Entrada cifrada que se saltó: %s</string>
-    <string name="importer_help_direct">Importa les entraes direutamente de: %s. Esta opción rique que l\'aplicación tea instalada nel preséu y qu\'Aegis tenga condedíu l\'accesu de root.</string>
+    <string name="importer_help_direct">Importa les entraes direutamente de: %s. Esta opción rique que l\'aplicación tea instalada nel preséu ya qu\'Aegis tenga condedíu l\'accesu de root.</string>
     <string name="groups">Grupos</string>
     <string name="pref_focus_search">Enfocar la busca al aniciar l\'aplicación</string>
     <string name="pref_focus_search_summary">Enfoca la busca namás abrir l\'aplicación.</string>

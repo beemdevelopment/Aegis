@@ -167,7 +167,6 @@
     <string name="file_not_found">Klaida: Failas nerastas</string>
     <string name="reading_file_error">Bandant perskaityti failą, įvyko klaida</string>
     <string name="app_lookup_error">Klaida: Programėlė neįdiegta</string>
-    <string name="app_version_error">Įdiegta %s versija yra nepalaikoma. Bandymas importuoti gali sukelti klaidą. Ar norėtumėte vis tiek tęsti?</string>
     <plurals name="imported_entries_count">
         <item quantity="one">Importuotas %d įrašas</item>
         <item quantity="few">Importuoti %d įrašai</item>

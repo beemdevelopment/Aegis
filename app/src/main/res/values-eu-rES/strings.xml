@@ -225,7 +225,6 @@
     <string name="file_not_found">Errorea: Ez da fitxategia aurkitu</string>
     <string name="reading_file_error">Errorea gertatu da fitxategia irakurtzen saiatzean</string>
     <string name="app_lookup_error">Errorea: Aplikazioa ez dago instalatuta</string>
-    <string name="app_version_error">Instalatuta dagon %s-ren bertsioa ez da zuzena. Inportatzeko saiakerak huts egin dezake. Jarraitu egin nahi duzu?</string>
     <string name="root_error">Errorea: Ezin izan da root sarbidea lortu</string>
     <plurals name="imported_entries_count">
         <item quantity="one">%d sarrera inportatuta</item>

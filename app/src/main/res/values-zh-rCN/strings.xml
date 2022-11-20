@@ -220,7 +220,7 @@
     <string name="file_not_found">错误：文件未找到</string>
     <string name="reading_file_error">试图读取文件时出错</string>
     <string name="app_lookup_error">错误：应用未安装</string>
-    <string name="app_version_error">已安装的 %s 版本不受支持。尝试导入可能导致错误。你仍要继续吗？</string>
+    <string name="app_version_error">不支持安装的 %s 版本。 最近的版本已经开始加密内部存储目录中的一些文件。 这使 Aegis 无法访问导入所需的信息。 尝试导入可能导致错误。您仍然想要继续吗？</string>
     <string name="root_error">错误：无法获得 root 权限</string>
     <plurals name="imported_entries_count">
         <item quantity="other">已导入 %d 个条目</item>
@@ -306,6 +306,8 @@
     <string name="unable_to_generate_qrcode">无法生成二维码</string>
     <string name="select_picture">选择图片</string>
     <string name="select_icon">选择图标</string>
+    <string name="tile_open_vault" comment="label for a quick settings tile that opens the app when tapped">打开数据库</string>
+    <string name="tile_open_scanner" comment="label for a quick settings tile that opens the QR code scanner when tapped">打开扫码器</string>
     <string name="toggle_checkboxes">切换复选框</string>
     <string name="search">搜索</string>
     <string name="channel_name_lock_status">锁定状态</string>

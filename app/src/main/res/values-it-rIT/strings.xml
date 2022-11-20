@@ -225,7 +225,7 @@
     <string name="file_not_found">Errore: File non trovato</string>
     <string name="reading_file_error">Si è verificato un errore nel tentativo di leggere il file</string>
     <string name="app_lookup_error">Errore: App non installata</string>
-    <string name="app_version_error">La versione di %s installata non è supportata. Il tentativo di importazione potrebbe causare un errore. Vuoi continuare comunque?</string>
+    <string name="app_version_error">La versione di %s installata non è supportata. Le versioni più recenti hanno iniziato a criptare alcuni dei file nella directory di archiviazione interna, rendendo Aegis incapace di accedere alle informazioni necessarie per l\'importazione. Il tentativo di importazione è probabile che dia luogo a un errore. Vuoi continuare comunque?</string>
     <string name="root_error">Errore: impossibile ottenere i permessi di root</string>
     <plurals name="imported_entries_count">
         <item quantity="one">Importato %d elemento</item>
@@ -314,6 +314,8 @@
     <string name="unable_to_generate_qrcode">Impossibile generare il codice QR</string>
     <string name="select_picture">Seleziona immagine</string>
     <string name="select_icon">Seleziona icona</string>
+    <string name="tile_open_vault" comment="label for a quick settings tile that opens the app when tapped">Apri cassaforte</string>
+    <string name="tile_open_scanner" comment="label for a quick settings tile that opens the QR code scanner when tapped">Apri scanner</string>
     <string name="toggle_checkboxes">Spunta</string>
     <string name="search">Cerca</string>
     <string name="channel_name_lock_status">Stato blocco</string>

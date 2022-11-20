@@ -230,7 +230,7 @@
     <string name="file_not_found">Kļūda: datne nav atrasta</string>
     <string name="reading_file_error">Atgadījusies kļūda datnes nolasīšanā</string>
     <string name="app_lookup_error">Kļūda: lietotne nav uzstādīta</string>
-    <string name="app_version_error">Uzstādītais laidiens %s netiek atbalstīts. Ievietošanas mēģinājums var beigties ar kļūdu. Vienalga turpināt?</string>
+    <string name="app_version_error">%s laidiens, kas ir uzstādīts, netiek atbalstīts. Neseās versijās ir uzsākta atsevišķu datņu šifrēšana iekšējā krātuves mapē, padarot nepieejamu nepieciešamo informāciju, kas Aegis ir nepieciešama ievietošanai. Ievietošanas mēģinājums, visticamāk, beigsies ar kļūdu. Vai vienalga turpināt?</string>
     <string name="root_error">Kļūda: neizdodas iegūt root pieeju</string>
     <plurals name="imported_entries_count">
         <item quantity="zero">Ievietoti %d ierakstu</item>
@@ -322,6 +322,8 @@
     <string name="unable_to_generate_qrcode">Nav iespējams izveidot kvadrātkodu</string>
     <string name="select_picture">Atlasīt attēlu</string>
     <string name="select_icon">Atlasīt ikonu</string>
+    <string name="tile_open_vault" comment="label for a quick settings tile that opens the app when tapped">Atvērt glabātavu</string>
+    <string name="tile_open_scanner" comment="label for a quick settings tile that opens the QR code scanner when tapped">Atvērt nolasītāju</string>
     <string name="toggle_checkboxes">Pārslēgt izvēles rūtiņas</string>
     <string name="search">Meklēt</string>
     <string name="channel_name_lock_status">Aizslēga stāvoklis</string>

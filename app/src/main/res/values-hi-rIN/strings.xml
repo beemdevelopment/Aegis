@@ -202,7 +202,6 @@
     <string name="file_not_found">त्रुटी: फ़ाइल नहीं मिली</string>
     <string name="reading_file_error">फ़ाइल पढ़ने की कोशिश करते समय एक त्रुटि हुई</string>
     <string name="app_lookup_error">त्रुटी: ऐप इंस्टॉल नहीं है</string>
-    <string name="app_version_error">%s का जो संस्करण संस्थापित है वह समर्थित नहीं है। आयात करने का प्रयास करने के परिणामस्वरूप त्रुटि हो सकती है। क्या तुम हर हाल में जारी रखना चाहोगे?</string>
     <string name="root_error">त्रुटी: रुट एक्सेस करने में असफल</string>
     <plurals name="imported_entries_count">
         <item quantity="one">%d प्रविष्टियाँ आयात कीं</item>

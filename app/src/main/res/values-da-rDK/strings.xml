@@ -126,7 +126,7 @@
     <string name="password_reminder_freq_monthly">Månedligt</string>
     <string name="password_reminder_freq_quarterly">Kvartalsvist</string>
     <string name="enter_password_2fas_message">Det ser ud til at denne 2FAS-backup er krypteret. Indtast venligst adgangskoden nedenfor.</string>
-    <string name="enter_password_authy_message">Det ser ud til at dine Authy-tokens er krypterede. Luk Aegis, åbn Authy og oplås tokens med din adgangskode. Alternativ kan Aegis forsøge at dekryptere din Authy-tokens for dig, hvis du indtaster din adgangskode nedenfor.</string>
+    <string name="enter_password_authy_message">Det ser ud til at Authy-tokenerne er krypterede. Luk Aegis, åbn Authy og oplås tokener med adgangskoden. Alternativ kan Aegis forsøge at dekryptere Authy-tokenerne, hvis adgangskode angives nedenfor.</string>
     <string name="enter_password_aegis_title">Angiv importadgangskoden</string>
     <string name="period_hint">Periode (sekunder)</string>
     <string name="algorithm_hint">Hash-funktion</string>
@@ -179,7 +179,7 @@
     <string name="discard_changes_description">Din ændringer er ikke blevet gemt</string>
     <string name="saving_profile_error">Fejl under lagring af profil</string>
     <string name="welcome">Velkommen</string>
-    <string name="app_description">Aegis er en gratis, sikker og open source 2FA app</string>
+    <string name="app_description">Aegis er en gratis, sikker og open-source 2FA-app</string>
     <string name="setup_completed">Opsætning fuldført</string>
     <string name="setup_completed_description">Aegis er blevet indstillet og er klar til brug.</string>
     <string name="vault_not_found">Boks ikke fundet, starter opsætning…</string>
@@ -225,7 +225,7 @@
     <string name="file_not_found">Fejl: Fil ikke fundet</string>
     <string name="reading_file_error">Der opstod en fejl under forsøg på at læse filen</string>
     <string name="app_lookup_error">Fejl: App er ikke installeret</string>
-    <string name="app_version_error">Den installerede versionen af %s understøttes ikke. Forsøg på at importere kan resultere i fejl. Fortsæt alligevel?</string>
+    <string name="app_version_error">Den installerede version af %s understøttes ikke. Nyere versioner er begyndt at kryptere visse filer i den interne lagermappe, hvilket gør Aegis ude af stand til at tilgå den information, den behøver til importen. Forsøg på import vil sandsynligvis resultere i en fejl. Fortsæt alligevel?</string>
     <string name="root_error">Fejl: Kan ikke opnå root-adgang</string>
     <plurals name="imported_entries_count">
         <item quantity="one">Importerede %d post</item>
@@ -314,6 +314,8 @@
     <string name="unable_to_generate_qrcode">Kan ikke generere QR-kode</string>
     <string name="select_picture">Vælg billede</string>
     <string name="select_icon">Vælg ikon</string>
+    <string name="tile_open_vault" comment="label for a quick settings tile that opens the app when tapped">Åbn boks</string>
+    <string name="tile_open_scanner" comment="label for a quick settings tile that opens the QR code scanner when tapped">Åbn skanner</string>
     <string name="toggle_checkboxes">Skift afkrydsningsfelter</string>
     <string name="search">Søg</string>
     <string name="channel_name_lock_status">Låsestatus</string>

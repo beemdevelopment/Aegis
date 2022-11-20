@@ -235,7 +235,7 @@
     <string name="file_not_found">Chyba: Soubor nenalezen</string>
     <string name="reading_file_error">Při pokusu o čtení souboru došlo k chybě</string>
     <string name="app_lookup_error">Chyba: Aplikace není nainstalována</string>
-    <string name="app_version_error">Nainstalovaná verze %s není podporována. Pokus o import může mít za následek chybu. Chcete i přesto pokračovat?</string>
+    <string name="app_version_error">Nainstalovaná verze aplikace %s není podporována. Nedávné verze začaly šifrovat některé soubory v interním adresáři úložiště, kvůli kterému Aegis nemůže získat přístup k informacím, které potřebuje pro import. Pokus o import pravděpodobně povede k chybě. Chcete i přesto pokračovat?</string>
     <string name="root_error">Chyba: Nelze získat root přístup</string>
     <plurals name="imported_entries_count">
         <item quantity="one">Importována %d položka</item>
@@ -330,6 +330,8 @@
     <string name="unable_to_generate_qrcode">QR kód nelze vygenerovat</string>
     <string name="select_picture">Vyberte obrázek</string>
     <string name="select_icon">Vybrat ikonu</string>
+    <string name="tile_open_vault" comment="label for a quick settings tile that opens the app when tapped">Otevřít trezor</string>
+    <string name="tile_open_scanner" comment="label for a quick settings tile that opens the QR code scanner when tapped">Otevřít skener</string>
     <string name="toggle_checkboxes">Přepnout zaškrtávací políčka</string>
     <string name="search">Hledat</string>
     <string name="channel_name_lock_status">Stav zámku</string>
