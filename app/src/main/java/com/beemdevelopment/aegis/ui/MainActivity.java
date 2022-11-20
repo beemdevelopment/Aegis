@@ -129,6 +129,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         _entryListView.setListener(this);
         _entryListView.setCodeGroupSize(_prefs.getCodeGroupSize());
         _entryListView.setShowAccountName(_prefs.isAccountNameVisible());
+        _entryListView.setShowIcon(_prefs.isIconVisible());
         _entryListView.setHighlightEntry(_prefs.isEntryHighlightEnabled());
         _entryListView.setPauseFocused(_prefs.isPauseFocusedEnabled());
         _entryListView.setTapToReveal(_prefs.isTapToRevealEnabled());
@@ -266,6 +267,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
                 recreate();
             } else if (data.getBooleanExtra("needsRefresh", false)) {
                 boolean showAccountName = _prefs.isAccountNameVisible();
+                boolean showIcons = _prefs.isIconVisible();
                 Preferences.CodeGrouping codeGroupSize = _prefs.getCodeGroupSize();
                 boolean highlightEntry = _prefs.isEntryHighlightEnabled();
                 boolean pauseFocused = _prefs.isPauseFocusedEnabled();
@@ -274,6 +276,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
                 ViewMode viewMode = _prefs.getCurrentViewMode();
                 boolean copyOnTap = _prefs.isCopyOnTapEnabled();
                 _entryListView.setShowAccountName(showAccountName);
+                _entryListView.setShowIcon(showIcons);
                 _entryListView.setCodeGroupSize(codeGroupSize);
                 _entryListView.setHighlightEntry(highlightEntry);
                 _entryListView.setPauseFocused(pauseFocused);

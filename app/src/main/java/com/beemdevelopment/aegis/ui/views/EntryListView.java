@@ -297,6 +297,10 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
         _adapter.setShowAccountName(showAccountName);
     }
 
+    public void setShowIcon(boolean showIcon) {
+        _adapter.setShowIcon(showIcon);
+    }
+
     public void setHighlightEntry(boolean highlightEntry) {
         _adapter.setHighlightEntry(highlightEntry);
     }

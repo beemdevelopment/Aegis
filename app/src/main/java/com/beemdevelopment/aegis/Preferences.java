@@ -120,6 +120,10 @@ public class Preferences {
         return _prefs.getBoolean("pref_account_name", true);
     }
 
+    public boolean isIconVisible() {
+        return _prefs.getBoolean("pref_show_icons", true);
+    }
+
     public CodeGrouping getCodeGroupSize() {
         String value = _prefs.getString("pref_code_group_size_string", "GROUPING_THREES");
 

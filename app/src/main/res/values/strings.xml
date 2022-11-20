@@ -38,6 +38,8 @@
     <string name="pref_select_theme_title">Theme</string>
     <string name="pref_view_mode_title">View mode</string>
     <string name="pref_lang_title">Language</string>
+    <string name="pref_show_icons_title">Show icons</string>
+    <string name="pref_show_icons_summary">Display icons next to each entry</string>
     <string name="pref_code_group_size_title">Code digit grouping</string>
     <string name="pref_code_group_size_summary">Select number of digits to group codes by</string>
     <string name="pref_account_name_title">Show the account name</string>
