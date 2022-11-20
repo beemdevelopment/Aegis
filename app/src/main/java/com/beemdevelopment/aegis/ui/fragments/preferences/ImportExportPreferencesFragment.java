@@ -52,6 +52,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Random;
 import java.util.Set;
+import java.util.TreeSet;
 
 import javax.crypto.Cipher;
 
@@ -173,11 +174,15 @@ public class ImportExportPreferencesFragment extends PreferencesFragment {
             passwordInfoText.setVisibility(checkBoxEncrypt.isChecked() && isBackupPasswordSet ? View.VISIBLE : View.GONE);
         });
 
-        for (String group: _vaultManager.getVault().getGroups()) {
-            CheckBox box = new CheckBox(requireContext());
-            box.setText(group);
-            box.setChecked(false);
-            groupsSelection.addView(box);
+        TreeSet<String> groups = _vaultManager.getVault().getGroups();
+        if (groups.size() > 0) {
+            checkBoxExportAllGroups.setVisibility(View.VISIBLE);
+            for (String group: groups) {
+                CheckBox box = new CheckBox(requireContext());
+                box.setText(group);
+                box.setChecked(false);
+                groupsSelection.addView(box);
+            }
         }
 
         AlertDialog dialog = new AlertDialog.Builder(requireContext())
