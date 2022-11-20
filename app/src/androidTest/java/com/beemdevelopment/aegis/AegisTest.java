@@ -41,7 +41,9 @@ import dagger.hilt.android.testing.HiltAndroidRule;
 
 public abstract class AegisTest {
     public static final String VAULT_PASSWORD = "test";
+    public static final String VAULT_PASSWORD_CHANGED = "test2";
     public static final String VAULT_BACKUP_PASSWORD = "something";
+    public static final String VAULT_BACKUP_PASSWORD_CHANGED = "something2";
 
     @Rule
     public HiltAndroidRule hiltRule = new HiltAndroidRule(this);

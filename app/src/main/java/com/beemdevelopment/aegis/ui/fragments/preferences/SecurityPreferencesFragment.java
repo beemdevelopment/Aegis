@@ -24,7 +24,6 @@ import com.beemdevelopment.aegis.ui.dialogs.Dialogs;
 import com.beemdevelopment.aegis.ui.preferences.SwitchPreference;
 import com.beemdevelopment.aegis.ui.tasks.PasswordSlotDecryptTask;
 import com.beemdevelopment.aegis.vault.VaultFileCredentials;
-import com.beemdevelopment.aegis.vault.VaultRepository;
 import com.beemdevelopment.aegis.vault.VaultRepositoryException;
 import com.beemdevelopment.aegis.vault.slots.BiometricSlot;
 import com.beemdevelopment.aegis.vault.slots.PasswordSlot;
@@ -337,9 +336,9 @@ public class SecurityPreferencesFragment extends PreferencesFragment {
                 slot.setKey(creds.getKey(), cipher);
 
                 // remove the old master password slot
-                PasswordSlot oldSlot = creds.getSlots().find(PasswordSlot.class);
-                if (oldSlot != null) {
-                    slots.remove(oldSlot);
+                List<PasswordSlot> passSlots = creds.getSlots().findRegularPasswordSlots();
+                if (passSlots.size() != 0) {
+                    slots.remove(passSlots.get(0));
                 }
 
                 // add the new master password slot

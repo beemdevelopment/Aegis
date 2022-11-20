@@ -184,6 +184,64 @@ public class BackupExportTest extends AegisTest {
         readVault(file, VAULT_BACKUP_PASSWORD);
     }
 
+    @Test
+    public void testChangeBackupPassword() throws SlotIntegrityException {
+        initEncryptedVault();
+        setSeparateBackupExportPassword();
+
+        onView(withId(androidx.preference.R.id.recycler_view)).perform(RecyclerViewActions.actionOnItem(hasDescendant(withText(R.string.pref_section_security_title)), click()));
+        onView(withId(androidx.preference.R.id.recycler_view)).perform(RecyclerViewActions.actionOnItem(hasDescendant(withText(R.string.pref_backup_password_change_title)), click()));
+        onView(withId(R.id.text_password)).perform(typeText(VAULT_BACKUP_PASSWORD_CHANGED), closeSoftKeyboard());
+        onView(withId(R.id.text_password_confirm)).perform(typeText(VAULT_BACKUP_PASSWORD_CHANGED), closeSoftKeyboard());
+        onView(withId(android.R.id.button1)).perform(click());
+        onView(isRoot()).perform(pressBack());
+
+        VaultFileCredentials creds = _vaultManager.getVault().getCredentials();
+        assertEquals(creds.getSlots().findRegularPasswordSlots().size(), 1);
+        assertEquals(creds.getSlots().findBackupPasswordSlots().size(), 1);
+
+        for (PasswordSlot slot : creds.getSlots().findBackupPasswordSlots()) {
+            verifyPasswordSlotChange(creds, slot, VAULT_BACKUP_PASSWORD, VAULT_BACKUP_PASSWORD_CHANGED);
+        }
+
+        for (PasswordSlot slot : creds.getSlots().findRegularPasswordSlots()) {
+            decryptPasswordSlot(slot, VAULT_PASSWORD);
+        }
+
+        openExportDialog();
+        File file = doExport();
+        readVault(file, VAULT_BACKUP_PASSWORD_CHANGED);
+    }
+
+    @Test
+    public void testChangePasswordHavingBackupPassword() throws SlotIntegrityException {
+        initEncryptedVault();
+        setSeparateBackupExportPassword();
+
+        onView(withId(androidx.preference.R.id.recycler_view)).perform(RecyclerViewActions.actionOnItem(hasDescendant(withText(R.string.pref_section_security_title)), click()));
+        onView(withId(androidx.preference.R.id.recycler_view)).perform(RecyclerViewActions.actionOnItem(hasDescendant(withText(R.string.pref_set_password_title)), click()));
+        onView(withId(R.id.text_password)).perform(typeText(VAULT_PASSWORD_CHANGED), closeSoftKeyboard());
+        onView(withId(R.id.text_password_confirm)).perform(typeText(VAULT_PASSWORD_CHANGED), closeSoftKeyboard());
+        onView(withId(android.R.id.button1)).perform(click());
+        onView(isRoot()).perform(pressBack());
+
+        VaultFileCredentials creds = _vaultManager.getVault().getCredentials();
+        assertEquals(creds.getSlots().findRegularPasswordSlots().size(), 1);
+        assertEquals(creds.getSlots().findBackupPasswordSlots().size(), 1);
+
+        for (PasswordSlot slot : creds.getSlots().findRegularPasswordSlots()) {
+            verifyPasswordSlotChange(creds, slot, VAULT_PASSWORD, VAULT_PASSWORD_CHANGED);
+        }
+
+        for (PasswordSlot slot : creds.getSlots().findBackupPasswordSlots()) {
+            decryptPasswordSlot(slot, VAULT_BACKUP_PASSWORD);
+        }
+
+        openExportDialog();
+        File file = doExport();
+        readVault(file, VAULT_BACKUP_PASSWORD);
+    }
+
     private void setSeparateBackupExportPassword() {
         VaultFileCredentials creds = _vaultManager.getVault().getCredentials();
         assertEquals(creds.getSlots().findRegularPasswordSlots().size(), 1);
@@ -200,16 +258,20 @@ public class BackupExportTest extends AegisTest {
         assertEquals(creds.getSlots().findRegularPasswordSlots().size(), 1);
         assertEquals(creds.getSlots().findBackupPasswordSlots().size(), 1);
         for (PasswordSlot slot : creds.getSlots().findBackupPasswordSlots()) {
-            assertThrows(SlotIntegrityException.class, () -> decryptPasswordSlot(slot, VAULT_PASSWORD));
-            MasterKey masterKey;
-            try {
-                masterKey = decryptPasswordSlot(slot, VAULT_BACKUP_PASSWORD);
-            } catch (SlotIntegrityException e) {
-                throw new RuntimeException("Unable to decrypt password slot", e);
-            }
-
-            assertArrayEquals(creds.getKey().getBytes(), masterKey.getBytes());
+            verifyPasswordSlotChange(creds, slot, VAULT_PASSWORD, VAULT_BACKUP_PASSWORD);
         }
+    }
+
+    private void verifyPasswordSlotChange(VaultFileCredentials creds, PasswordSlot slot, String oldPassword, String newPassword) {
+        assertThrows(SlotIntegrityException.class, () -> decryptPasswordSlot(slot, oldPassword));
+        MasterKey masterKey;
+        try {
+            masterKey = decryptPasswordSlot(slot, newPassword);
+        } catch (SlotIntegrityException e) {
+            throw new RuntimeException("Unable to decrypt password slot", e);
+        }
+
+        assertArrayEquals(creds.getKey().getBytes(), masterKey.getBytes());
     }
 
     private File doExport() {
