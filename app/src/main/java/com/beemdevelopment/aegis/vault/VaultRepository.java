@@ -141,17 +141,36 @@ public class VaultRepository {
      * Exports the vault by serializing it and writing it to the given OutputStream. If creds is
      * not null, it will be used to encrypt the vault first.
      */
-    public void export(OutputStream stream, VaultFileCredentials creds) throws VaultRepositoryException {
+    public void export(OutputStream stream, @Nullable VaultFileCredentials creds) throws VaultRepositoryException {
+        exportFiltered(stream, creds, null);
+    }
+
+    /**
+     * Exports the vault by serializing it and writing it to the given OutputStream. If encryption
+     * is enabled, the vault will be encrypted automatically. If filter is not null only specified
+     * entries will be exported
+     */
+    public void exportFiltered(OutputStream stream, @Nullable Vault.EntryFilter filter) throws VaultRepositoryException {
+        exportFiltered(stream, getCredentials(), filter);
+    }
+
+    /**
+     * Exports the vault by serializing it and writing it to the given OutputStream. If creds is
+     * not null, it will be used to encrypt the vault first. If filter is not null only specified
+     * entries will be exported
+     */
+    public void exportFiltered(OutputStream stream, @Nullable VaultFileCredentials creds, @Nullable Vault.EntryFilter filter) throws VaultRepositoryException {
         if (creds != null) {
             creds = creds.exportable();
         }
 
         try {
             VaultFile vaultFile = new VaultFile();
+
             if (creds != null) {
-                vaultFile.setContent(_vault.toJson(), creds);
+                vaultFile.setContent(_vault.toJson(filter), creds);
             } else {
-                vaultFile.setContent(_vault.toJson());
+                vaultFile.setContent(_vault.toJson(filter));
             }
 
             byte[] bytes = vaultFile.toBytes();
@@ -165,11 +184,13 @@ public class VaultRepository {
      * Exports the vault by serializing the list of entries to a newline-separated list of
      * Google Authenticator URI's and writing it to the given OutputStream.
      */
-    public void exportGoogleUris(OutputStream outStream) throws VaultRepositoryException {
+    public void exportGoogleUris(OutputStream outStream, @Nullable Vault.EntryFilter filter) throws VaultRepositoryException {
         try (PrintStream stream = new PrintStream(outStream, false, StandardCharsets.UTF_8.name())) {
             for (VaultEntry entry : getEntries()) {
-                GoogleAuthInfo info = new GoogleAuthInfo(entry.getInfo(), entry.getName(), entry.getIssuer());
-                stream.println(info.getUri().toString());
+                if (filter == null || filter.includeEntry(entry)) {
+                    GoogleAuthInfo info = new GoogleAuthInfo(entry.getInfo(), entry.getName(), entry.getIssuer());
+                    stream.println(info.getUri().toString());
+                }
             }
         } catch (IOException e) {
             throw new VaultRepositoryException(e);
