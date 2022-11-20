@@ -43,6 +43,7 @@ public class EntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     private List<VaultEntry> _selectedEntries;
     private Map<UUID, Integer> _usageCounts;
     private VaultEntry _focusedEntry;
+    private VaultEntry _copiedEntry;
     private Preferences.CodeGrouping _codeGroupSize;
     private boolean _showAccountName;
     private boolean _showIcon;
@@ -420,18 +421,26 @@ public class EntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                     boolean handled = false;
 
                     if (_selectedEntries.isEmpty()) {
-                        if (_copyOnTap) {
+                        boolean copiedThisClick = false;
+
+                        if (_copyOnTap && !entryHolder.isHidden() && !(entry == _copiedEntry)) {
                             _view.onEntryCopy(entry);
                             entryHolder.animateCopyText();
+                            _copiedEntry = entry;
+                            copiedThisClick = true;
+                            handled = true;
                         }
 
                         if (_highlightEntry || _tempHighlightEntry || _tapToReveal) {
-                            if (_focusedEntry == entry) {
+                            if (_focusedEntry == entry && !copiedThisClick) {
                                 resetFocus();
+                                _copiedEntry = null;
                                 handled = true;
                             } else {
                                 focusEntry(entry, _tapToRevealTime);
                             }
+                        } else {
+                            _copiedEntry = null;
                         }
 
                         incrementUsageCount(entry);

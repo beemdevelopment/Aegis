@@ -308,6 +308,10 @@ public class EntryHolder extends RecyclerView.ViewHolder {
         }
     }
 
+    public boolean isHidden() {
+        return _hidden;
+    }
+
     public void setPaused(boolean paused) {
         _paused = paused;
 
