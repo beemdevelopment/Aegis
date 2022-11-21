@@ -159,6 +159,15 @@ public class DatabaseImporterTest {
     }
 
     @Test
+    public void testImportBattleNetXml() throws DatabaseImporterException, IOException, OtpInfoException {
+        List<VaultEntry> entries = importPlain(BattleNetImporter.class, "battle_net_authenticator.xml");
+
+        for (VaultEntry entry : entries) {
+            checkImportedEntry(entry);
+        }
+    }
+
+    @Test
     public void testImportBitwardenJson() throws IOException, DatabaseImporterException, OtpInfoException {
         List<VaultEntry> entries = importPlain(BitwardenImporter.class, "bitwarden.json");
         checkImportedBitwardenEntries(entries);

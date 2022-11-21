@@ -441,6 +441,7 @@
     <string name="importer_help_authy">Supply a copy of <b>/data/data/com.authy.authy/shared_prefs/com.authy.storage.tokens.authenticator.xml</b>, located in the internal storage directory of Authy.</string>
     <string name="importer_help_andotp">Supply an andOTP export/backup file.</string>
     <string name="importer_help_bitwarden">Supply a Bitwarden export/backup file. Encrypted files are not supported.</string>
+    <string name="importer_help_battle_net_authenticator">Supply a copy of <b>/data/data/com.blizzard.bma/shared_prefs/com.blizzard.bma.AUTH_STORE.xml</b>, located in the internal storage directory of Battle.net Authenticator.</string>
     <string name="importer_help_duo">Supply a copy of <b>/data/data/com.duosecurity.duomobile/files/duokit/accounts.json</b>, located in the internal storage directory of DUO.</string>
     <string name="importer_help_freeotp">Supply a copy of <b>/data/data/org.fedorahosted.freeotp/shared_prefs/tokens.xml</b>, located in the internal storage directory of FreeOTP.</string>
     <string name="importer_help_freeotp_plus">Supply a FreeOTP+ export file.</string>
