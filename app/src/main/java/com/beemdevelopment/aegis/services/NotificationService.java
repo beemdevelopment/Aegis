@@ -47,8 +47,7 @@ public class NotificationService extends Service {
                 .setOngoing(true)
                 .setContentIntent(pendingIntent);
 
-        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
-        notificationManager.notify(NOTIFICATION_VAULT_UNLOCKED, builder.build());
+        startForeground(NOTIFICATION_VAULT_UNLOCKED, builder.build());
     }
 
     @Override
