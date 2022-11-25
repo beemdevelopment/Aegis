@@ -174,6 +174,32 @@ public class BackupExportTest extends AegisTest {
     }
 
     @Test
+    public void testPlainVaultExportHtml() {
+        initPlainVault();
+
+        openExportDialog();
+        onView(withId(R.id.checkbox_export_encrypt)).perform(click());
+        onView(withId(R.id.dropdown_export_format)).perform(click());
+        onView(withText(R.string.export_format_html)).inRoot(RootMatchers.isPlatformPopup()).perform(click());
+        onView(withId(android.R.id.button1)).perform(click());
+        onView(withId(R.id.checkbox_accept)).perform(click());
+        doExport();
+    }
+
+    @Test
+    public void testEncryptedVaultExportHtml() {
+        initEncryptedVault();
+
+        openExportDialog();
+        onView(withId(R.id.checkbox_export_encrypt)).perform(click());
+        onView(withId(R.id.dropdown_export_format)).perform(click());
+        onView(withText(R.string.export_format_html)).inRoot(RootMatchers.isPlatformPopup()).perform(click());
+        onView(withId(android.R.id.button1)).perform(click());
+        onView(withId(R.id.checkbox_accept)).perform(click());
+        doExport();
+    }
+
+    @Test
     public void testSeparateExportPassword() {
         initEncryptedVault();
         setSeparateBackupExportPassword();

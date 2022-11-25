@@ -1,17 +1,28 @@
 package com.beemdevelopment.aegis.vault;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.Color;
+import android.util.Base64;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.util.AtomicFile;
 
+import com.beemdevelopment.aegis.R;
+import com.beemdevelopment.aegis.encoding.Base32;
+import com.beemdevelopment.aegis.helpers.QrCodeHelper;
 import com.beemdevelopment.aegis.otp.GoogleAuthInfo;
+import com.beemdevelopment.aegis.otp.HotpInfo;
+import com.beemdevelopment.aegis.otp.OtpInfo;
 import com.beemdevelopment.aegis.util.IOUtils;
+import com.google.common.html.HtmlEscapers;
+import com.google.zxing.WriterException;
 
 import org.json.JSONObject;
 
 import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -21,6 +32,7 @@ import java.io.PrintStream;
 import java.nio.charset.StandardCharsets;
 import java.text.Collator;
 import java.util.Collection;
+import java.util.Objects;
 import java.util.TreeSet;
 import java.util.UUID;
 
@@ -29,6 +41,7 @@ public class VaultRepository {
     public static final String FILENAME_PREFIX_EXPORT = "aegis-export";
     public static final String FILENAME_PREFIX_EXPORT_PLAIN = "aegis-export-plain";
     public static final String FILENAME_PREFIX_EXPORT_URI = "aegis-export-uri";
+    public static final String FILENAME_PREFIX_EXPORT_HTML = "aegis-export-html";
 
     @NonNull
     private final Vault _vault;
@@ -193,6 +206,92 @@ public class VaultRepository {
                 }
             }
         } catch (IOException e) {
+            throw new VaultRepositoryException(e);
+        }
+    }
+
+    /**
+     * Exports the vault by serializing the list of entries to an HTML file containing the Issuer,
+     * Username and QR Code and writing it to the given OutputStream.
+     */
+    public void exportHtml(OutputStream outStream, @Nullable Vault.EntryFilter filter) throws VaultRepositoryException {
+        try {
+            PrintStream printStream = new PrintStream(outStream, false, StandardCharsets.UTF_8.name());
+            printStream.print("<html><head><title>");
+            printStream.print(_context.getString(R.string.export_html_title));
+            printStream.print("</title></head><body>");
+            printStream.print("<h1>");
+            printStream.print(_context.getString(R.string.export_html_title));
+            printStream.print("</h1>");
+            printStream.print("<table>");
+            printStream.print("<tr>");
+            printStream.print("<th>Issuer</th>");
+            printStream.print("<th>Username</th>");
+            printStream.print("<th>Type</th>");
+            printStream.print("<th>QR Code</th>");
+            printStream.print("<th>UUID</th>");
+            printStream.print("<th>Note</th>");
+            printStream.print("<th>Favorite</th>");
+            printStream.print("<th>Algo</th>");
+            printStream.print("<th>Digits</th>");
+            printStream.print("<th>Secret</th>");
+            printStream.print("<th>Counter</th>");
+            printStream.print("</tr>");
+            for (VaultEntry entry : getEntries()) {
+                if (filter == null || filter.includeEntry(entry)) {
+                    printStream.print("<tr>");
+                    GoogleAuthInfo info = new GoogleAuthInfo(entry.getInfo(), entry.getName(), entry.getIssuer());
+                    OtpInfo otpInfo = info.getOtpInfo();
+                    printStream.print("<td>");
+                    printStream.print(HtmlEscapers.htmlEscaper().escape(info.getIssuer()));
+                    printStream.print("</td>");
+                    printStream.print("<td>");
+                    printStream.print(HtmlEscapers.htmlEscaper().escape(entry.getName()));
+                    printStream.print("</td>");
+                    printStream.print("<td>");
+                    printStream.print(HtmlEscapers.htmlEscaper().escape(otpInfo.getType()));
+                    printStream.print("</td>");
+                    Bitmap bm = QrCodeHelper.encodeToBitmap(info.getUri().toString(),256, 256, Color.WHITE);
+                    ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                    bm.compress(Bitmap.CompressFormat.PNG, 100, baos);
+                    byte[] b = baos.toByteArray();
+                    String encodedImage = Base64.encodeToString(b, Base64.DEFAULT);
+                    printStream.print("<td class='qr'><img src=\"data:image/png;base64,");
+                    printStream.print(encodedImage);
+                    printStream.print("\"/></td>");
+                    printStream.print("<td>");
+                    printStream.print(HtmlEscapers.htmlEscaper().escape(entry.getUUID().toString()));
+                    printStream.print("</td>");
+                    printStream.print("<td>");
+                    printStream.print(HtmlEscapers.htmlEscaper().escape(entry.getNote()));
+                    printStream.print("</td>");
+                    printStream.print("<td>");
+                    printStream.print(HtmlEscapers.htmlEscaper().escape(entry.isFavorite() ? "true" : "false"));
+                    printStream.print("</td>");
+                    printStream.print("<td>");
+                    printStream.print(HtmlEscapers.htmlEscaper().escape(otpInfo.getAlgorithm(false)));
+                    printStream.print("</td>");
+                    printStream.print("<td>");
+                    printStream.print(HtmlEscapers.htmlEscaper().escape(Integer.toString(otpInfo.getDigits())));
+                    printStream.print("</td>");
+                    printStream.print("<td>");
+                    printStream.print(HtmlEscapers.htmlEscaper().escape(Base32.encode(otpInfo.getSecret())));
+                    printStream.print("</td>");
+                    printStream.print("<td>");
+                    if (Objects.equals(otpInfo.getTypeId(), HotpInfo.ID)) {
+                        printStream.print(HtmlEscapers.htmlEscaper().escape(Long.toString(((HotpInfo) otpInfo).getCounter())));
+                    } else {
+                        printStream.print("-");
+                    }
+                    printStream.print("</td>");
+                    printStream.print("</tr>");
+                }
+            };
+            printStream.print("</table></body>");
+            printStream.print("<style>table,td,th{border:1px solid #000;border-collapse:collapse;text-align:center}td:not(.qr),th{padding:1em}</style>");
+            printStream.print("</html>");
+            printStream.flush();
+        } catch (WriterException | IOException e) {
             throw new VaultRepositoryException(e);
         }
     }

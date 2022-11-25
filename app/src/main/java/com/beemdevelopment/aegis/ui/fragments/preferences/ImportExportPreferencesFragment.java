@@ -122,6 +122,8 @@ public class ImportExportPreferencesFragment extends PreferencesFragment {
                     // intentional fallthrough
                 case CODE_EXPORT_PLAIN:
                     // intentional fallthrough
+                case CODE_EXPORT_HTML:
+                    // intentional fallthrough
                 case CODE_EXPORT_GOOGLE_URI:
                     onExportResult(requestCode, resultCode, data);
                     break;
@@ -361,6 +363,8 @@ public class ImportExportPreferencesFragment extends PreferencesFragment {
     private static int getExportRequestCode(int spinnerPos, boolean encrypt) {
         if (spinnerPos == 0) {
             return encrypt ? CODE_EXPORT : CODE_EXPORT_PLAIN;
+        } else if (spinnerPos == 1) {
+            return CODE_EXPORT_HTML;
         }
 
         return CODE_EXPORT_GOOGLE_URI;
@@ -370,13 +374,20 @@ public class ImportExportPreferencesFragment extends PreferencesFragment {
         if (spinnerPos == 0) {
             String filename = encrypt ? VaultRepository.FILENAME_PREFIX_EXPORT : VaultRepository.FILENAME_PREFIX_EXPORT_PLAIN;
             return new VaultBackupManager.FileInfo(filename);
+        } else if (spinnerPos == 1) {
+            return new VaultBackupManager.FileInfo(VaultRepository.FILENAME_PREFIX_EXPORT_HTML, "html");
         }
 
         return new VaultBackupManager.FileInfo(VaultRepository.FILENAME_PREFIX_EXPORT_URI, "txt");
     }
 
     private static String getExportMimeType(int requestCode) {
-        return requestCode == CODE_EXPORT_GOOGLE_URI ? "text/plain" : "application/json";
+        if (requestCode == CODE_EXPORT_GOOGLE_URI) {
+            return "text/plain";
+        } else if (requestCode == CODE_EXPORT_HTML) {
+            return "text/html";
+        }
+        return "application/json";
     }
 
     private File getExportCacheDir() throws IOException {
@@ -442,6 +453,10 @@ public class ImportExportPreferencesFragment extends PreferencesFragment {
                 break;
             case CODE_EXPORT_GOOGLE_URI:
                 cb.exportVault((stream) -> _vaultManager.getVault().exportGoogleUris(stream, filter));
+                _prefs.setIsPlaintextBackupWarningNeeded(true);
+                break;
+            case CODE_EXPORT_HTML:
+                cb.exportVault((stream) -> _vaultManager.getVault().exportHtml(stream, filter));
                 _prefs.setIsPlaintextBackupWarningNeeded(true);
                 break;
         }

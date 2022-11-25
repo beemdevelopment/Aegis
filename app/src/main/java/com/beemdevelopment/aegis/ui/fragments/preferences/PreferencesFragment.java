@@ -28,7 +28,8 @@ public abstract class PreferencesFragment extends PreferenceFragmentCompat {
     public static final int CODE_EXPORT = 5;
     public static final int CODE_EXPORT_PLAIN = 6;
     public static final int CODE_EXPORT_GOOGLE_URI = 7;
-    public static final int CODE_BACKUPS = 8;
+    public static final int CODE_EXPORT_HTML = 8;
+    public static final int CODE_BACKUPS = 9;
 
     private Intent _result;
 
