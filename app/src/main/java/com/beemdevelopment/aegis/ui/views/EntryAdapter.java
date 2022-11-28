@@ -208,16 +208,12 @@ public class EntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             } else {
                 _shownEntries.set(position, newEntry);
                 notifyItemChanged(position);
-                if (_sortCategory != null) {
-                    Comparator<VaultEntry> comparator = _sortCategory.getComparator();
-                    if (comparator != null) {
-                        Collections.sort(_shownEntries, comparator);
-                        int newPosition = _shownEntries.indexOf(newEntry);
-                        if (position != newPosition) {
-                            notifyItemMoved(position, newPosition);
-                        }
-                    }
-                }
+            }
+
+            sortShownEntries();
+            int newPosition = _shownEntries.indexOf(newEntry);
+            if (position != newPosition) {
+                notifyItemMoved(position, newPosition);
             }
         } else if (!isEntryFiltered(newEntry)) {
             _shownEntries.add(newEntry);
@@ -305,17 +301,21 @@ public class EntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             }
         }
 
-        // sort the remaining list of entries
-        Comparator<VaultEntry> comparator = _sortCategory.getComparator();
-        if (comparator != null) {
-            Collections.sort(_shownEntries, comparator);
+        sortShownEntries();
+        _view.onListChange();
+        notifyDataSetChanged();
+    }
+
+    private void sortShownEntries() {
+        if (_sortCategory != null) {
+            Comparator<VaultEntry> comparator = _sortCategory.getComparator();
+            if (comparator != null) {
+                Collections.sort(_shownEntries, comparator);
+            }
         }
 
         Comparator<VaultEntry> favoriteComparator = new FavoriteComparator();
         Collections.sort(_shownEntries, favoriteComparator);
-
-        _view.onListChange();
-        notifyDataSetChanged();
     }
 
     public void setViewMode(ViewMode viewMode) {
