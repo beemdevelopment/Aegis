@@ -137,10 +137,10 @@ public class ImportExportPreferencesFragment extends PreferencesFragment {
 
         ImportFileTask.Params params = new ImportFileTask.Params(uri, "import", null);
         ImportFileTask task = new ImportFileTask(requireContext(), result -> {
-            if (result.getException() == null) {
+            if (result.getError() == null) {
                 startImportEntriesActivity(_importerDef, result.getFile());
             } else {
-                Dialogs.showErrorDialog(requireContext(), R.string.reading_file_error, result.getException());
+                Dialogs.showErrorDialog(requireContext(), R.string.reading_file_error, result.getError());
             }
         });
         task.execute(getLifecycle(), params);

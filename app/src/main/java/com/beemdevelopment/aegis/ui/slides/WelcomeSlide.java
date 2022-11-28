@@ -56,8 +56,8 @@ public class WelcomeSlide extends SlideFragment {
     private void startImportVault(Uri uri) {
         ImportFileTask.Params params = new ImportFileTask.Params(uri, "intro-import", null);
         ImportFileTask task = new ImportFileTask(requireContext(), result -> {
-            if (result.getException() != null) {
-                Dialogs.showErrorDialog(requireContext(), R.string.reading_file_error, result.getException());
+            if (result.getError() != null) {
+                Dialogs.showErrorDialog(requireContext(), R.string.reading_file_error, result.getError());
                 return;
             }
 

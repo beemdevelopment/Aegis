@@ -616,11 +616,11 @@ public class EditEntryActivity extends AegisActivity {
             if (fileType != null && fileType.equals(IconType.SVG.toMimeType())) {
                 ImportFileTask.Params params = new ImportFileTask.Params(data.getData(), "icon", null);
                 ImportFileTask task = new ImportFileTask(this, result -> {
-                    if (result.getException() == null) {
+                    if (result.getError() == null) {
                         CustomSvgIcon icon = new CustomSvgIcon(result.getFile());
                         selectIcon(icon);
                     } else {
-                        Dialogs.showErrorDialog(this, R.string.reading_file_error, result.getException());
+                        Dialogs.showErrorDialog(this, R.string.reading_file_error, result.getError());
                     }
                 });
                 task.execute(getLifecycle(), params);
