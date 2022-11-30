@@ -89,7 +89,9 @@ public class ScannerActivity extends AegisActivity implements QrCodeAnalyzer.Lis
 
     @Override
     protected void onDestroy() {
-        _executor.shutdownNow();
+        if (_executor != null) {
+            _executor.shutdownNow();
+        }
         super.onDestroy();
     }
 
