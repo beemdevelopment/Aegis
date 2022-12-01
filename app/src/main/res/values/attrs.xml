@@ -11,7 +11,7 @@
     <attr name="iconColorInverted" format="color" />
     <attr name="dropdownStyle" format="reference" />
     <attr name="colorAppBar" format="color" />
-    <attr name="introButtonStyle" format="reference" />
+    <attr name="outlineButtonStyle" format="reference" />
 
     <declare-styleable name="SlideIndicator">
         <attr name="dot_radius" format="dimension" />

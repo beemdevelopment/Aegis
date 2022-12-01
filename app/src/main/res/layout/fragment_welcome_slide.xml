@@ -35,7 +35,7 @@
         android:layout_marginBottom="32dp"
         android:text="@string/import_vault"
         android:textSize="11sp"
-        style="?attr/introButtonStyle"
+        style="?attr/outlineButtonStyle"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toTopOf="@+id/descriptionText" />
