@@ -109,6 +109,10 @@ public class ScannerActivity extends AegisActivity implements QrCodeAnalyzer.Lis
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        if (_cameraProvider == null) {
+            return false;
+        }
+
         if (item.getItemId() == R.id.action_camera) {
             unbindPreview(_cameraProvider);
             _currentLens = _currentLens == CameraSelector.LENS_FACING_BACK ? CameraSelector.LENS_FACING_FRONT : CameraSelector.LENS_FACING_BACK;
