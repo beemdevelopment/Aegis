@@ -65,9 +65,10 @@ public abstract class AegisApplicationBase extends Application {
             initAppShortcuts();
         }
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+        // NOTE: Disabled for now. See issue: #1047
+        /*if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             initNotificationChannels();
-        }
+        }*/
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N_MR1)

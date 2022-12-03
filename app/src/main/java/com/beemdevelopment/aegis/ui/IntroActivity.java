@@ -5,8 +5,6 @@ import static com.beemdevelopment.aegis.ui.slides.SecurityPickerSlide.CRYPT_TYPE
 import static com.beemdevelopment.aegis.ui.slides.SecurityPickerSlide.CRYPT_TYPE_NONE;
 import static com.beemdevelopment.aegis.ui.slides.SecurityPickerSlide.CRYPT_TYPE_PASS;
 
-import android.Manifest;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
@@ -16,7 +14,6 @@ import androidx.annotation.Nullable;
 
 import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.ThemeMap;
-import com.beemdevelopment.aegis.helpers.PermissionHelper;
 import com.beemdevelopment.aegis.ui.dialogs.Dialogs;
 import com.beemdevelopment.aegis.ui.intro.IntroBaseActivity;
 import com.beemdevelopment.aegis.ui.intro.SlideFragment;
@@ -80,11 +77,13 @@ public class IntroActivity extends IntroBaseActivity {
     protected void onAfterSlideChanged(@Nullable Class<? extends SlideFragment> oldSlide, @NonNull Class<? extends SlideFragment> newSlide) {
         // If the user has enabled encryption, we need to request permission to show notifications
         // in order to be able to show the "Vault unlocked" notification.
-        if (newSlide == DoneSlide.class && getState().getSerializable("creds") != null) {
+        //
+        // NOTE: Disabled for now. See issue: #1047
+        /*if (newSlide == DoneSlide.class && getState().getSerializable("creds") != null) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
                 PermissionHelper.request(this, CODE_PERM_NOTIFICATIONS, Manifest.permission.POST_NOTIFICATIONS);
             }
-        }
+        }*/
     }
 
     @Override

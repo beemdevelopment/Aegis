@@ -4,7 +4,10 @@
 
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.USE_BIOMETRIC" />
+
+    <!-- NOTE: Disabled for now. See issue: #1047
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    -->
 
     <uses-feature
         android:name="android.hardware.camera"
@@ -92,7 +95,9 @@
         </activity>
         <activity android:name=".ui.ExitActivity" />
 
+        <!-- NOTE: Disabled for now. See issue: #1047
         <service android:name=".services.NotificationService" />
+        -->
 
         <service
             android:name=".services.LaunchAppTileService"

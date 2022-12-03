@@ -1,7 +1,5 @@
 package com.beemdevelopment.aegis;
 
-import android.Manifest;
-import android.os.Build;
 import android.view.View;
 
 import androidx.annotation.Nullable;
@@ -64,9 +62,10 @@ public abstract class AegisTest {
 
     private static GrantPermissionRule getGrantPermissionRule() {
         List<String> perms = new ArrayList<>();
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+        // NOTE: Disabled for now. See issue: #1047
+        /*if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             perms.add(Manifest.permission.POST_NOTIFICATIONS);
-        }
+        }*/
         return GrantPermissionRule.grant(perms.toArray(new String[0]));
     }
 

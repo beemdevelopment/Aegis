@@ -1,6 +1,5 @@
 package com.beemdevelopment.aegis.vault;
 
-import android.Manifest;
 import android.app.Activity;
 import android.app.backup.BackupManager;
 import android.content.ActivityNotFoundException;
@@ -15,7 +14,6 @@ import com.beemdevelopment.aegis.Preferences;
 import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.crypto.KeyStoreHandle;
 import com.beemdevelopment.aegis.crypto.KeyStoreHandleException;
-import com.beemdevelopment.aegis.helpers.PermissionHelper;
 import com.beemdevelopment.aegis.services.NotificationService;
 import com.beemdevelopment.aegis.ui.dialogs.Dialogs;
 
@@ -351,13 +349,15 @@ public class VaultManager {
     }
 
     private void startNotificationService() {
-        if (PermissionHelper.granted(_context, Manifest.permission.POST_NOTIFICATIONS)) {
+        // NOTE: Disabled for now. See issue: #1047
+        /*if (PermissionHelper.granted(_context, Manifest.permission.POST_NOTIFICATIONS)) {
             _context.startService(getNotificationServiceIntent());
-        }
+        }*/
     }
 
     private void stopNotificationService() {
-        _context.stopService(getNotificationServiceIntent());
+        // NOTE: Disabled for now. See issue: #1047
+        //_context.stopService(getNotificationServiceIntent());
     }
 
     private Intent getNotificationServiceIntent() {
