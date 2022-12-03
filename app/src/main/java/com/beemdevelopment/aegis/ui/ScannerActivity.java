@@ -178,6 +178,10 @@ public class ScannerActivity extends AegisActivity implements QrCodeAnalyzer.Lis
     @Override
     public void onQrCodeDetected(Result result) {
         new Handler(getMainLooper()).post(() -> {
+            if (isFinishing()) {
+                return;
+            }
+
             if (_analysis != null) {
                 try {
                     Uri uri = Uri.parse(result.getText().trim());
@@ -190,6 +194,7 @@ public class ScannerActivity extends AegisActivity implements QrCodeAnalyzer.Lis
                     e.printStackTrace();
 
                     unbindPreview(_cameraProvider);
+
                     Dialogs.showErrorDialog(this,
                             e.isPhoneFactor() ? R.string.read_qr_error_phonefactor : R.string.read_qr_error,
                             e, ((dialog, which) -> bindPreview(_cameraProvider)));
