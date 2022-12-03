@@ -63,7 +63,6 @@ public class EntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
     // keeps track of the EntryHolders that are currently bound
     private List<EntryHolder> _holders;
-    private EntryHolder _dragHandleHolder; // holder with enabled drag handle
 
     public EntryAdapter(EntryListView view) {
         _entries = new ArrayList<>();
@@ -306,6 +305,14 @@ public class EntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         notifyDataSetChanged();
     }
 
+    private boolean isEntryDraggable(VaultEntry entry) {
+        return entry != null
+                && isDragAndDropAllowed()
+                && _selectedEntries.size() == 1
+                && !_selectedEntries.get(0).isFavorite()
+                && _selectedEntries.get(0) == entry;
+    }
+
     private void sortShownEntries() {
         if (_sortCategory != null) {
             Comparator<VaultEntry> comparator = _sortCategory.getComparator();
@@ -410,6 +417,7 @@ public class EntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             boolean showProgress = entry.getInfo() instanceof TotpInfo && ((TotpInfo) entry.getInfo()).getPeriod() != getMostFrequentPeriod();
             entryHolder.setData(entry, _codeGroupSize, _showAccountName, _showIcon, showProgress, hidden, paused, dimmed);
             entryHolder.setFocused(_selectedEntries.contains(entry));
+            entryHolder.setShowDragHandle(isEntryDraggable(entry));
 
             if (_showIcon) {
                 entryHolder.loadIcon(_view);
@@ -470,11 +478,8 @@ public class EntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                     }
 
                     boolean returnVal = _view.onLongEntryClick(_shownEntries.get(position));
-
-                    boolean dragEnabled = _selectedEntries.size() == 0
-                            || _selectedEntries.size() == 1 && _selectedEntries.get(0) == entryHolder.getEntry();
-                    if (dragEnabled && isDragAndDropAllowed() && !entryHolder.getEntry().isFavorite()) {
-                        _view.startDrag(_dragHandleHolder);
+                    if (_selectedEntries.size() == 0 || isEntryDraggable(entry)) {
+                        _view.startDrag(entryHolder);
                     }
 
                     return returnVal;
@@ -485,11 +490,8 @@ public class EntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                 public boolean onTouch(View v, MotionEvent event) {
                     // Start drag if this is the only item selected
                     if (event.getActionMasked() == MotionEvent.ACTION_MOVE
-                            && _selectedEntries.size() == 1
-                            && _selectedEntries.get(0) == entryHolder.getEntry()
-                            && isDragAndDropAllowed()
-                            && !entryHolder.getEntry().isFavorite()) {
-                        _view.startDrag(_dragHandleHolder);
+                            && isEntryDraggable(entryHolder.getEntry())) {
+                        _view.startDrag(entryHolder);
                         return true;
                     }
                     return false;
@@ -629,26 +631,15 @@ public class EntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     }
 
     private void updateDraggableStatus() {
-        if (!isDragAndDropAllowed()) {
-            return;
-        }
-
-        if (_selectedEntries.size() == 1 && _dragHandleHolder == null && !_selectedEntries.get(0).isFavorite()) {
-            // Find and enable dragging for the single selected EntryHolder
-            // Not nice but this is the best method I could find
-            for (int i = 0; i < _holders.size(); i++) {
-                if (_holders.get(i).getEntry() == _selectedEntries.get(0)) {
-                    _dragHandleHolder = _holders.get(i);
-                    _dragHandleHolder.setShowDragHandle(true);
-                    _view.setSelectedEntry(_selectedEntries.get(0));
-                    return;
-                }
+        for (EntryHolder holder : _holders) {
+            VaultEntry entry = holder.getEntry();
+            if (isEntryDraggable(entry)) {
+                holder.setShowDragHandle(true);
+                _view.setSelectedEntry(entry);
+                break;
             }
-        } else if (_dragHandleHolder != null) {
-            // Disable dragging if necessary when more/less than 1 selected entry
-            _dragHandleHolder.setShowDragHandle(false);
-            _dragHandleHolder = null;
-            _view.setSelectedEntry(null);
+
+            holder.setShowDragHandle(false);
         }
     }
 
