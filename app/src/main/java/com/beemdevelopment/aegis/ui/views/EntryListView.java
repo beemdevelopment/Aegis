@@ -100,12 +100,16 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
-                _listener.onScroll(dx, dy);
+                if (_listener != null) {
+                    _listener.onScroll(dx, dy);
+                }
             }
         });
 
         _recyclerView.setOnTouchListener((v, event) -> {
-            _listener.onEntryListTouch();
+            if (_listener != null) {
+                _listener.onEntryListTouch();
+            }
             return false;
         });
 
@@ -233,39 +237,59 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
 
     @Override
     public void onEntryClick(VaultEntry entry) {
-        _listener.onEntryClick(entry);
+        if (_listener != null) {
+            _listener.onEntryClick(entry);
+        }
     }
 
     public boolean onLongEntryClick(VaultEntry entry) {
-        _listener.onLongEntryClick(entry);
+        if (_listener != null) {
+            _listener.onLongEntryClick(entry);
+        }
         return true;
     }
 
     @Override
     public void onEntryMove(VaultEntry entry1, VaultEntry entry2) {
-        _listener.onEntryMove(entry1, entry2);
+        if (_listener != null) {
+            _listener.onEntryMove(entry1, entry2);
+        }
     }
 
     @Override
     public void onEntryDrop(VaultEntry entry) {
-        _listener.onEntryDrop(entry);
+        if (_listener != null) {
+            _listener.onEntryDrop(entry);
+        }
     }
 
     @Override
     public void onEntryChange(VaultEntry entry) {
-        _listener.onEntryChange(entry);
+        if (_listener != null) {
+            _listener.onEntryChange(entry);
+        }
     }
 
     @Override
     public void onEntryCopy(VaultEntry entry) {
-        _listener.onEntryCopy(entry);
+        if (_listener != null) {
+            _listener.onEntryCopy(entry);
+        }
     }
 
     @Override
-    public void onSelect(VaultEntry entry) { _listener.onSelect(entry); }
+    public void onSelect(VaultEntry entry) {
+        if (_listener != null) {
+            _listener.onSelect(entry);
+        }
+    }
 
     @Override
-    public void onDeselect(VaultEntry entry) { _listener.onDeselect(entry); }
+    public void onDeselect(VaultEntry entry) {
+        if (_listener != null) {
+            _listener.onDeselect(entry);
+        }
+    }
 
     @Override
     public void onPeriodUniformityChanged(boolean isUniform, int period) {
@@ -283,7 +307,11 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
     }
 
     @Override
-    public void onListChange() { _listener.onListChange(); }
+    public void onListChange() {
+        if (_listener != null) {
+            _listener.onListChange();
+        }
+    }
 
     public void setPrefGroupFilter(List<String> groupFilter) {
         _prefGroupFilter = groupFilter;
@@ -420,14 +448,18 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
         clearButton.setOnClickListener(v -> {
             chipGroup.clearCheck();
             List<String> groupFilter = Collections.emptyList();
-            _listener.onSaveGroupFilter(groupFilter);
+            if (_listener != null) {
+                _listener.onSaveGroupFilter(groupFilter);
+            }
             setGroupFilter(groupFilter, true);
             dialog.dismiss();
         });
 
         saveButton.setOnClickListener(v -> {
             List<String> groupFilter = getGroupFilter(chipGroup);
-            _listener.onSaveGroupFilter(groupFilter);
+            if (_listener != null) {
+                _listener.onSaveGroupFilter(groupFilter);
+            }
             setGroupFilter(groupFilter, true);
             dialog.dismiss();
         });
