@@ -117,6 +117,7 @@
                 android:layoutDirection="ltr"
                 android:layout_below="@id/description"
                 android:includeFontPadding="false"
+                android:fallbackLineSpacing="false"
                 android:textSize="26sp"
                 android:textColor="?attr/codePrimaryText"
                 android:layout_marginStart="6dp"
