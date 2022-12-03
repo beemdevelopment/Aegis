@@ -233,6 +233,10 @@ public class AuthActivity extends AegisActivity {
             popup.setElevation(5.0f);
         }
         _textPassword.post(() -> {
+            if (isFinishing()) {
+                return;
+            }
+
             // calculating the actual height of the popup window does not seem possible
             // adding 25dp seems to look good enough
             int yoff = _textPassword.getHeight()
