@@ -61,6 +61,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.TreeSet;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 public class MainActivity extends AegisActivity implements EntryListView.Listener {
     // activity request codes
@@ -561,31 +562,43 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
                     uri = intent.getParcelableExtra(Intent.EXTRA_STREAM);
                     intent.setAction(null);
                     intent.removeExtra(Intent.EXTRA_STREAM);
-                    startDecodeQrCodeImages(Collections.singletonList(uri));
+
+                    if (uri != null) {
+                        startDecodeQrCodeImages(Collections.singletonList(uri));
+                    }
                 }
                 if (intent.hasExtra(Intent.EXTRA_TEXT)) {
                     String stringExtra = intent.getStringExtra(Intent.EXTRA_TEXT);
                     intent.setAction(null);
                     intent.removeExtra(Intent.EXTRA_TEXT);
 
-                    GoogleAuthInfo info;
-                    try {
-                        info = GoogleAuthInfo.parseUri(stringExtra);
-                    } catch (GoogleAuthInfoException e) {
-                        Dialogs.showErrorDialog(this, R.string.unable_to_process_shared_text, e);
-                        break;
-                    }
+                    if (stringExtra != null) {
+                        GoogleAuthInfo info;
+                        try {
+                            info = GoogleAuthInfo.parseUri(stringExtra);
+                        } catch (GoogleAuthInfoException e) {
+                            Dialogs.showErrorDialog(this, R.string.unable_to_process_shared_text, e);
+                            break;
+                        }
 
-                    VaultEntry entry = new VaultEntry(info);
-                    startEditEntryActivityForNew(CODE_ADD_ENTRY, entry);
+                        VaultEntry entry = new VaultEntry(info);
+                        startEditEntryActivityForNew(CODE_ADD_ENTRY, entry);
+                    }
                 }
                 break;
             case Intent.ACTION_SEND_MULTIPLE:
-                List<Uri> uris = intent.getParcelableArrayListExtra(Intent.EXTRA_STREAM);
-                if (uris != null) {
+                if (intent.hasExtra(Intent.EXTRA_STREAM)) {
+                    List<Uri> uris = intent.getParcelableArrayListExtra(Intent.EXTRA_STREAM);
                     intent.setAction(null);
                     intent.removeExtra(Intent.EXTRA_STREAM);
-                    startDecodeQrCodeImages(uris);
+
+                    if (uris != null) {
+                        uris = uris.stream()
+                                .filter(Objects::nonNull)
+                                .collect(Collectors.toList());
+
+                        startDecodeQrCodeImages(uris);
+                    }
                 }
                 break;
         }
