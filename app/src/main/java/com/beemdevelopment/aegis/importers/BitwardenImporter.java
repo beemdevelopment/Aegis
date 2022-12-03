@@ -26,6 +26,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Objects;
 
 public class BitwardenImporter extends DatabaseImporter {
     public BitwardenImporter(Context context) {
@@ -110,8 +111,17 @@ public class BitwardenImporter extends DatabaseImporter {
         }
     }
 
-    private static GoogleAuthInfo parseUri(String obj) throws EncodingException, OtpInfoException, URISyntaxException, GoogleAuthInfoException {
-        Uri uri = Uri.parse(obj);
-        return uri.getScheme().equals("steam") ? new GoogleAuthInfo(new SteamInfo(Base32.decode(uri.getAuthority())), "Steam account", "Steam") : GoogleAuthInfo.parseUri(uri);
+    private static GoogleAuthInfo parseUri(String s) throws EncodingException, OtpInfoException, URISyntaxException, GoogleAuthInfoException {
+        Uri uri = Uri.parse(s);
+        if (Objects.equals(uri.getScheme(), "steam")) {
+            String secretString = uri.getAuthority();
+            if (secretString == null) {
+                throw new GoogleAuthInfoException(uri, "Empty secret (empty authority)");
+            }
+            byte[] secret = Base32.decode(secretString);
+            return new GoogleAuthInfo(new SteamInfo(secret), "Steam account", "Steam");
+        }
+
+        return GoogleAuthInfo.parseUri(uri);
     }
 }
