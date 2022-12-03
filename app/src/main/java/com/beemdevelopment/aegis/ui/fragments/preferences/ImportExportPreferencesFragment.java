@@ -147,7 +147,7 @@ public class ImportExportPreferencesFragment extends PreferencesFragment {
     }
 
     private void startImportEntriesActivity(DatabaseImporter.Definition importerDef, File file) {
-        Intent intent = new Intent(requireActivity(), ImportEntriesActivity.class);
+        Intent intent = new Intent(requireContext(), ImportEntriesActivity.class);
         intent.putExtra("importerDef", importerDef);
         intent.putExtra("file", file);
         startActivityForResult(intent, CODE_IMPORT);

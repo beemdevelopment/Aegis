@@ -104,7 +104,7 @@ public class BackupsPreferencesFragment extends PreferencesFragment {
         _backupsVersionsPreference = requirePreference("pref_backups_versions");
         _backupsVersionsPreference.setSummary(getResources().getQuantityString(R.plurals.pref_backups_versions_summary, _prefs.getBackupsVersionCount(), _prefs.getBackupsVersionCount()));
         _backupsVersionsPreference.setOnPreferenceClickListener(preference -> {
-            Dialogs.showBackupVersionsPickerDialog(requireActivity(), _prefs.getBackupsVersionCount(), number -> {
+            Dialogs.showBackupVersionsPickerDialog(requireContext(), _prefs.getBackupsVersionCount(), number -> {
                 number = number * 5 + 5;
                 _prefs.setBackupsVersionCount(number);
                 _backupsVersionsPreference.setSummary(getResources().getQuantityString(R.plurals.pref_backups_versions_summary, _prefs.getBackupsVersionCount(), _prefs.getBackupsVersionCount()));
@@ -206,7 +206,7 @@ public class BackupsPreferencesFragment extends PreferencesFragment {
     private void scheduleBackup() {
         try {
             _vaultManager.scheduleBackup();
-            Toast.makeText(requireActivity(), R.string.backup_successful, Toast.LENGTH_LONG).show();
+            Toast.makeText(requireContext(), R.string.backup_successful, Toast.LENGTH_LONG).show();
         } catch (VaultRepositoryException e) {
             e.printStackTrace();
             Dialogs.showErrorDialog(requireContext(), R.string.backup_error, e);

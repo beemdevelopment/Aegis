@@ -13,8 +13,6 @@ import com.beemdevelopment.aegis.ViewMode;
 import com.beemdevelopment.aegis.ui.GroupManagerActivity;
 import com.beemdevelopment.aegis.ui.dialogs.Dialogs;
 
-import java.util.ArrayList;
-
 public class AppearancePreferencesFragment extends PreferencesFragment {
     private Preference _groupsPreference;
     private Preference _resetUsageCountPreference;
@@ -26,14 +24,14 @@ public class AppearancePreferencesFragment extends PreferencesFragment {
 
         _groupsPreference = requirePreference("pref_groups");
         _groupsPreference.setOnPreferenceClickListener(preference -> {
-            Intent intent = new Intent(requireActivity(), GroupManagerActivity.class);
+            Intent intent = new Intent(requireContext(), GroupManagerActivity.class);
             startActivity(intent);
             return true;
         });
 
         _resetUsageCountPreference = requirePreference("pref_reset_usage_count");
         _resetUsageCountPreference.setOnPreferenceClickListener(preference -> {
-            Dialogs.showSecureDialog(new AlertDialog.Builder(requireActivity())
+            Dialogs.showSecureDialog(new AlertDialog.Builder(requireContext())
                     .setTitle(R.string.preference_reset_usage_count)
                     .setMessage(R.string.preference_reset_usage_count_dialog)
                     .setPositiveButton(android.R.string.yes, (dialog, which) -> _prefs.clearUsageCount())
@@ -48,7 +46,7 @@ public class AppearancePreferencesFragment extends PreferencesFragment {
         darkModePreference.setOnPreferenceClickListener(preference -> {
             int currentTheme1 = _prefs.getCurrentTheme().ordinal();
 
-            Dialogs.showSecureDialog(new AlertDialog.Builder(requireActivity())
+            Dialogs.showSecureDialog(new AlertDialog.Builder(requireContext())
                     .setTitle(R.string.choose_theme)
                     .setSingleChoiceItems(R.array.theme_titles, currentTheme1, (dialog, which) -> {
                         int i = ((AlertDialog) dialog).getListView().getCheckedItemPosition();
@@ -83,7 +81,7 @@ public class AppearancePreferencesFragment extends PreferencesFragment {
         viewModePreference.setOnPreferenceClickListener(preference -> {
             int currentViewMode1 = _prefs.getCurrentViewMode().ordinal();
 
-            Dialogs.showSecureDialog(new AlertDialog.Builder(requireActivity())
+            Dialogs.showSecureDialog(new AlertDialog.Builder(requireContext())
                     .setTitle(R.string.choose_view_mode)
                     .setSingleChoiceItems(R.array.view_mode_titles, currentViewMode1, (dialog, which) -> {
                         int i = ((AlertDialog) dialog).getListView().getCheckedItemPosition();

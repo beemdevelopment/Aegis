@@ -41,17 +41,17 @@ public abstract class SimpleWebViewDialog extends DialogFragment {
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         final View view;
         try {
-            view = LayoutInflater.from(requireActivity()).inflate(R.layout.dialog_web_view, null);
+            view = LayoutInflater.from(requireContext()).inflate(R.layout.dialog_web_view, null);
         } catch (InflateException e) {
             e.printStackTrace();
-            return new AlertDialog.Builder(requireActivity())
+            return new AlertDialog.Builder(requireContext())
                     .setTitle(android.R.string.dialog_alert_title)
                     .setMessage(getString(R.string.webview_error))
                     .setPositiveButton(android.R.string.ok, null)
                     .show();
         }
 
-        AlertDialog dialog = new AlertDialog.Builder(requireActivity())
+        AlertDialog dialog = new AlertDialog.Builder(requireContext())
                 .setTitle(_title)
                 .setView(view)
                 .setPositiveButton(android.R.string.ok, null)

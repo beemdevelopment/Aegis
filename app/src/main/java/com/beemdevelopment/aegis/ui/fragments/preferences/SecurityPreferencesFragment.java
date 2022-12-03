@@ -78,7 +78,7 @@ public class SecurityPreferencesFragment extends PreferencesFragment {
         Preference tapToRevealTimePreference = requirePreference("pref_tap_to_reveal_time");
         tapToRevealTimePreference.setSummary(_prefs.getTapToRevealTime() + " seconds");
         tapToRevealTimePreference.setOnPreferenceClickListener(preference -> {
-            Dialogs.showTapToRevealTimeoutPickerDialog(requireActivity(), _prefs.getTapToRevealTime(), number -> {
+            Dialogs.showTapToRevealTimeoutPickerDialog(requireContext(), _prefs.getTapToRevealTime(), number -> {
                 _prefs.setTapToRevealTime(number);
                 tapToRevealTimePreference.setSummary(number + " seconds");
                 getResult().putExtra("needsRefresh", true);
@@ -459,7 +459,7 @@ public class SecurityPreferencesFragment extends PreferencesFragment {
             if (result != null) {
                 _pinKeyboardPreference.setChecked(true);
             } else {
-                Dialogs.showSecureDialog(new AlertDialog.Builder(requireActivity())
+                Dialogs.showSecureDialog(new AlertDialog.Builder(requireContext())
                         .setTitle(R.string.pin_keyboard_error)
                         .setMessage(R.string.invalid_password)
                         .setCancelable(false)

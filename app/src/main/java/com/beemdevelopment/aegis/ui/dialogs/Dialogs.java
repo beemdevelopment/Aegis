@@ -1,6 +1,5 @@
 package com.beemdevelopment.aegis.ui.dialogs;
 
-import android.app.Activity;
 import android.app.Dialog;
 import android.content.ClipData;
 import android.content.ClipboardManager;
@@ -36,7 +35,6 @@ import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.helpers.EditTextHelper;
 import com.beemdevelopment.aegis.helpers.PasswordStrengthHelper;
 import com.beemdevelopment.aegis.importers.DatabaseImporter;
-import com.beemdevelopment.aegis.ui.fragments.preferences.BackupsPreferencesFragment;
 import com.beemdevelopment.aegis.ui.tasks.KeyDerivationTask;
 import com.beemdevelopment.aegis.vault.VaultEntry;
 import com.beemdevelopment.aegis.vault.slots.PasswordSlot;
@@ -70,26 +68,26 @@ public class Dialogs {
         dialog.show();
     }
 
-    public static void showDeleteEntriesDialog(Activity activity, List<VaultEntry> services, DialogInterface.OnClickListener onDelete) {
-        View view = activity.getLayoutInflater().inflate(R.layout.dialog_delete_entry, null);
+    public static void showDeleteEntriesDialog(Context context, List<VaultEntry> services, DialogInterface.OnClickListener onDelete) {
+        View view = LayoutInflater.from(context).inflate(R.layout.dialog_delete_entry, null);
         TextView textMessage = view.findViewById(R.id.text_message);
         TextView textExplanation = view.findViewById(R.id.text_explanation);
         String entries = services.stream()
-                .map(entry -> String.format("• %s", getVaultEntryName(activity, entry)))
+                .map(entry -> String.format("• %s", getVaultEntryName(context, entry)))
                 .collect(Collectors.joining("\n"));
-        textExplanation.setText(activity.getString(R.string.delete_entry_explanation, entries));
+        textExplanation.setText(context.getString(R.string.delete_entry_explanation, entries));
 
         String title, message;
         if (services.size() > 1) {
-            title = activity.getString(R.string.delete_entries);
-            message = activity.getResources().getQuantityString(R.plurals.delete_entries_description, services.size(), services.size());
+            title = context.getString(R.string.delete_entries);
+            message = context.getResources().getQuantityString(R.plurals.delete_entries_description, services.size(), services.size());
         } else {
-            title = activity.getString(R.string.delete_entry);
-            message = activity.getString(R.string.delete_entry_description);
+            title = context.getString(R.string.delete_entry);
+            message = context.getString(R.string.delete_entry_description);
         }
         textMessage.setText(message);
 
-        showSecureDialog(new AlertDialog.Builder(activity)
+        showSecureDialog(new AlertDialog.Builder(context)
                 .setTitle(title)
                 .setView(view)
                 .setPositiveButton(android.R.string.yes, onDelete)
@@ -109,10 +107,10 @@ public class Dialogs {
         }
     }
 
-    public static void showDiscardDialog(Activity activity, DialogInterface.OnClickListener onSave, DialogInterface.OnClickListener onDiscard) {
-        showSecureDialog(new AlertDialog.Builder(activity)
-                .setTitle(activity.getString(R.string.discard_changes))
-                .setMessage(activity.getString(R.string.discard_changes_description))
+    public static void showDiscardDialog(Context context, DialogInterface.OnClickListener onSave, DialogInterface.OnClickListener onDiscard) {
+        showSecureDialog(new AlertDialog.Builder(context)
+                .setTitle(context.getString(R.string.discard_changes))
+                .setMessage(context.getString(R.string.discard_changes_description))
                 .setPositiveButton(R.string.save, onSave)
                 .setNegativeButton(R.string.discard, onDiscard)
                 .create());
@@ -297,15 +295,15 @@ public class Dialogs {
         showSecureDialog(dialog);
     }
 
-    public static void showTapToRevealTimeoutPickerDialog(Activity activity, int currentValue, NumberInputListener listener) {
-        View view = activity.getLayoutInflater().inflate(R.layout.dialog_number_picker, null);
+    public static void showTapToRevealTimeoutPickerDialog(Context context, int currentValue, NumberInputListener listener) {
+        View view = LayoutInflater.from(context).inflate(R.layout.dialog_number_picker, null);
         NumberPicker numberPicker = view.findViewById(R.id.numberPicker);
         numberPicker.setMinValue(1);
         numberPicker.setMaxValue(60);
         numberPicker.setValue(currentValue);
         numberPicker.setWrapSelectorWheel(true);
 
-        AlertDialog dialog = new AlertDialog.Builder(activity)
+        AlertDialog dialog = new AlertDialog.Builder(context)
                 .setTitle(R.string.set_number)
                 .setView(view)
                 .setPositiveButton(android.R.string.ok, (dialog1, which) ->
@@ -315,14 +313,14 @@ public class Dialogs {
         showSecureDialog(dialog);
     }
 
-    public static void showBackupVersionsPickerDialog(Activity activity, int currentVersionCount, NumberInputListener listener) {
+    public static void showBackupVersionsPickerDialog(Context context, int currentVersionCount, NumberInputListener listener) {
         final int max = 30;
         String[] numbers = new String[max / 5];
         for (int i = 0; i < numbers.length; i++) {
             numbers[i] = Integer.toString(i * 5 + 5);
         }
 
-        View view = activity.getLayoutInflater().inflate(R.layout.dialog_number_picker, null);
+        View view = LayoutInflater.from(context).inflate(R.layout.dialog_number_picker, null);
         NumberPicker numberPicker = view.findViewById(R.id.numberPicker);
         numberPicker.setDisplayedValues(numbers);
         numberPicker.setMaxValue(numbers.length - 1);
@@ -330,7 +328,7 @@ public class Dialogs {
         numberPicker.setValue(currentVersionCount / 5 - 1);
         numberPicker.setWrapSelectorWheel(false);
 
-        AlertDialog dialog = new AlertDialog.Builder(activity)
+        AlertDialog dialog = new AlertDialog.Builder(context)
                 .setTitle(R.string.set_number)
                 .setView(view)
                 .setPositiveButton(android.R.string.ok, (dialog1, which) ->
