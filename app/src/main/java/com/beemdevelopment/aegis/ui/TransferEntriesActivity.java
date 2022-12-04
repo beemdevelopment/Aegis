@@ -1,15 +1,22 @@
 package com.beemdevelopment.aegis.ui;
 
+import android.content.ClipData;
+import android.content.ClipDescription;
+import android.content.ClipboardManager;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.util.TypedValue;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.ColorInt;
 
@@ -34,6 +41,7 @@ public class TransferEntriesActivity extends AegisActivity {
     private TextView _entriesCount;
     private Button _nextButton;
     private Button _previousButton;
+    private Button _copyButton;
     private int _currentEntryCount = 1;
 
     @Override
@@ -52,6 +60,7 @@ public class TransferEntriesActivity extends AegisActivity {
         _entriesCount = findViewById(R.id.tvEntriesCount);
         _nextButton = findViewById(R.id.btnNext);
         _previousButton = findViewById(R.id.btnPrevious);
+        _copyButton = findViewById(R.id.btnCopyClipboard);
 
         if (getSupportActionBar() != null){
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -87,6 +96,30 @@ public class TransferEntriesActivity extends AegisActivity {
                 if (_currentEntryCount == 1) {
                     _previousButton.setVisibility(View.INVISIBLE);
                 }
+            }
+        });
+
+        if (_authInfos.get(0) instanceof GoogleAuthInfo) {
+            _copyButton.setVisibility(View.VISIBLE);
+        }
+
+        _copyButton.setOnClickListener(v -> {
+            Transferable selectedEntry = _authInfos.get(_currentEntryCount - 1);
+            try {
+                ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+                ClipData clip = ClipData.newPlainText("text/plain", selectedEntry.getUri().toString());
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                    PersistableBundle extras = new PersistableBundle();
+                    extras.putBoolean(ClipDescription.EXTRA_IS_SENSITIVE, true);
+                    clip.getDescription().setExtras(extras);
+                }
+                if (clipboard != null) {
+                    clipboard.setPrimaryClip(clip);
+                }
+                Toast.makeText(this,R.string.uri_copied_to_clipboard, Toast.LENGTH_SHORT).show();
+
+            } catch (GoogleAuthInfoException e) {
+                Dialogs.showErrorDialog(this, R.string.unable_to_copy_uri_to_clipboard, e);
             }
         });
 

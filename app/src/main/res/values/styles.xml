@@ -31,7 +31,7 @@
         <item name="alertDialogTheme">@style/Theme.Aegis.Dialog.Light</item>
         <item name="preferenceTheme">@style/Theme.Aegis.Preference.Light</item>
         <item name="textInputStyle">@style/Widget.Aegis.TextInput.Light</item>
-        <item name="introButtonStyle">@style/Widget.Aegis.OutlinedButton.Light</item>
+        <item name="outlineButtonStyle">@style/Widget.Aegis.OutlinedButton.Light</item>
         <item name="dropdownStyle">@style/Widget.Aegis.Dropdown.Light</item>
         <item name="bottomSheetDialogTheme">@style/ThemeOverLay.Aegis.BottomSheetDialog.Rounded</item>
 
@@ -75,7 +75,7 @@
         <item name="alertDialogTheme">@style/Theme.Aegis.Dialog.Dark</item>
         <item name="preferenceTheme">@style/Theme.Aegis.Preference.Dark</item>
         <item name="textInputStyle">@style/Widget.Aegis.TextInput.Dark</item>
-        <item name="introButtonStyle">@style/Widget.Aegis.OutlinedButton.Dark</item>
+        <item name="outlineButtonStyle">@style/Widget.Aegis.OutlinedButton.Dark</item>
         <item name="dropdownStyle">@style/Widget.Aegis.Dropdown.Dark</item>
         <item name="bottomSheetDialogTheme">@style/ThemeOverLay.Aegis.BottomSheetDialog.Rounded</item>
 
@@ -110,7 +110,7 @@
         <item name="alertDialogTheme">@style/Theme.Aegis.Dialog.TrueDark</item>
         <item name="preferenceTheme">@style/Theme.Aegis.Preference.Dark</item>
         <item name="textInputStyle">@style/Widget.Aegis.TextInput.Dark</item>
-        <item name="introButtonStyle">@style/Widget.Aegis.OutlinedButton.Dark</item>
+        <item name="outlineButtonStyle">@style/Widget.Aegis.OutlinedButton.Dark</item>
         <item name="dropdownStyle">@style/Widget.Aegis.Dropdown.Dark</item>
         <item name="bottomSheetDialogTheme">@style/ThemeOverLay.Aegis.BottomSheetDialog.Rounded</item>
 

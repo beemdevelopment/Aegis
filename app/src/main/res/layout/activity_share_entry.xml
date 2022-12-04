@@ -79,6 +79,20 @@
         app:layout_constraintTop_toBottomOf="@+id/tvIssuer" />
 
     <Button
+        android:id="@+id/btnCopyClipboard"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="?attr/outlineButtonStyle"
+        android:text="@string/copy_uri"
+        android:textAllCaps="false"
+        android:visibility="invisible"
+        android:textColor="@color/code_primary_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvAccountName"
+        app:layout_constraintBottom_toTopOf="@id/tvEntriesCount" />
+
+    <Button
         android:id="@+id/btnNext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
