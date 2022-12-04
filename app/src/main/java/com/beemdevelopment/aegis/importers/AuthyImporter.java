@@ -16,6 +16,7 @@ import com.beemdevelopment.aegis.ui.dialogs.Dialogs;
 import com.beemdevelopment.aegis.util.JsonUtils;
 import com.beemdevelopment.aegis.util.PreferenceParser;
 import com.beemdevelopment.aegis.vault.VaultEntry;
+import com.topjohnwu.superuser.Shell;
 import com.topjohnwu.superuser.io.SuFile;
 import com.topjohnwu.superuser.io.SuFileInputStream;
 
@@ -67,8 +68,9 @@ public class AuthyImporter extends DatabaseImporter {
     }
 
     @Override
-    public State readFromApp() throws PackageManager.NameNotFoundException, DatabaseImporterException {
+    public State readFromApp(Shell shell) throws PackageManager.NameNotFoundException, DatabaseImporterException {
         SuFile path = getAppPath();
+        path.setShell(shell);
 
         JSONArray array;
         JSONArray authyArray;

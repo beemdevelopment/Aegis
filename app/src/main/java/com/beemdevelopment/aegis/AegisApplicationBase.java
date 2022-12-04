@@ -39,8 +39,8 @@ public abstract class AegisApplicationBase extends Application {
     private VaultManager _vaultManager;
 
     static {
-        // to access other app's internal storage directory, run libsu commands inside the global mount namespace
-        Shell.setDefaultBuilder(Shell.Builder.create().setFlags(Shell.FLAG_MOUNT_MASTER));
+        // Enable verbose libsu logging in debug builds
+        Shell.enableVerboseLogging = BuildConfig.DEBUG;
     }
 
     @Override

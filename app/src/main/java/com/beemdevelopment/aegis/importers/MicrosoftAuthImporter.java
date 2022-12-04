@@ -11,6 +11,7 @@ import com.beemdevelopment.aegis.otp.OtpInfo;
 import com.beemdevelopment.aegis.otp.OtpInfoException;
 import com.beemdevelopment.aegis.otp.TotpInfo;
 import com.beemdevelopment.aegis.vault.VaultEntry;
+import com.topjohnwu.superuser.Shell;
 import com.topjohnwu.superuser.io.SuFile;
 
 import java.io.InputStream;
@@ -40,8 +41,10 @@ public class MicrosoftAuthImporter extends DatabaseImporter {
     }
 
     @Override
-    public DatabaseImporter.State readFromApp() throws PackageManager.NameNotFoundException, DatabaseImporterException {
+    public DatabaseImporter.State readFromApp(Shell shell) throws PackageManager.NameNotFoundException, DatabaseImporterException {
         SuFile path = getAppPath();
+        path.setShell(shell);
+
         SqlImporterHelper helper = new SqlImporterHelper(requireContext());
         List<Entry> entries = helper.read(Entry.class, path, "accounts");
         return new State(entries);

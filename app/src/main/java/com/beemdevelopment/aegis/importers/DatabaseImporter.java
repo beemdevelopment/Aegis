@@ -8,6 +8,7 @@ import androidx.annotation.StringRes;
 import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.util.UUIDMap;
 import com.beemdevelopment.aegis.vault.VaultEntry;
+import com.topjohnwu.superuser.Shell;
 import com.topjohnwu.superuser.io.SuFile;
 import com.topjohnwu.superuser.io.SuFileInputStream;
 
@@ -70,8 +71,10 @@ public abstract class DatabaseImporter {
         return read(stream, false);
     }
 
-    public State readFromApp() throws PackageManager.NameNotFoundException, DatabaseImporterException {
+    public State readFromApp(Shell shell) throws PackageManager.NameNotFoundException, DatabaseImporterException {
         SuFile file = getAppPath();
+        file.setShell(shell);
+
         try (InputStream stream = SuFileInputStream.open(file)) {
             return read(stream, true);
         } catch (IOException e) {

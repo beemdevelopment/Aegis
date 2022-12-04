@@ -13,6 +13,7 @@ import com.beemdevelopment.aegis.otp.OtpInfo;
 import com.beemdevelopment.aegis.otp.OtpInfoException;
 import com.beemdevelopment.aegis.otp.TotpInfo;
 import com.beemdevelopment.aegis.vault.VaultEntry;
+import com.topjohnwu.superuser.Shell;
 import com.topjohnwu.superuser.io.SuFile;
 
 import java.io.InputStream;
@@ -31,7 +32,8 @@ public class GoogleAuthImporter extends DatabaseImporter {
 
     @Override
     protected SuFile getAppPath() throws PackageManager.NameNotFoundException {
-        return getAppPath(_pkgName, _subPath);
+        SuFile file = getAppPath(_pkgName, _subPath);
+        return file;
     }
 
     @Override
@@ -55,8 +57,10 @@ public class GoogleAuthImporter extends DatabaseImporter {
     }
 
     @Override
-    public DatabaseImporter.State readFromApp() throws PackageManager.NameNotFoundException, DatabaseImporterException {
+    public DatabaseImporter.State readFromApp(Shell shell) throws PackageManager.NameNotFoundException, DatabaseImporterException {
         SuFile path = getAppPath();
+        path.setShell(shell);
+
         final Context context = requireContext();
         SqlImporterHelper helper = new SqlImporterHelper(context);
         List<Entry> entries = helper.read(Entry.class, path, "accounts");

@@ -20,12 +20,12 @@ import com.beemdevelopment.aegis.importers.DatabaseImporterEntryException;
 import com.beemdevelopment.aegis.importers.DatabaseImporterException;
 import com.beemdevelopment.aegis.ui.dialogs.Dialogs;
 import com.beemdevelopment.aegis.ui.models.ImportEntry;
+import com.beemdevelopment.aegis.ui.tasks.RootShellTask;
 import com.beemdevelopment.aegis.ui.views.ImportEntriesAdapter;
 import com.beemdevelopment.aegis.util.UUIDMap;
 import com.beemdevelopment.aegis.vault.VaultEntry;
 import com.beemdevelopment.aegis.vault.VaultRepository;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.topjohnwu.superuser.Shell;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -118,25 +118,36 @@ public class ImportEntriesActivity extends AegisActivity {
     }
 
     private void startImportApp(@NonNull DatabaseImporter importer) {
-        // obtain the global root shell and close it immediately after we're done
-        // TODO: find a way to use SuFileInputStream with Shell.newInstance()
-        try (Shell shell = Shell.getShell()) {
-            if (!shell.isRoot()) {
+        RootShellTask task = new RootShellTask(this, shell -> {
+            if (isFinishing()) {
+                return;
+            }
+
+            if (shell == null || !shell.isRoot()) {
                 Toast.makeText(this, R.string.root_error, Toast.LENGTH_SHORT).show();
                 finish();
                 return;
             }
 
-            DatabaseImporter.State state = importer.readFromApp();
-            processImporterState(state);
-        } catch (PackageManager.NameNotFoundException e) {
-            e.printStackTrace();
-            Toast.makeText(this, R.string.app_lookup_error, Toast.LENGTH_SHORT).show();
-            finish();
-        } catch (IOException | DatabaseImporterException e) {
-            e.printStackTrace();
-            Dialogs.showErrorDialog(this, R.string.reading_file_error, e, (dialog, which) -> finish());
-        }
+            try {
+                DatabaseImporter.State state = importer.readFromApp(shell);
+                processImporterState(state);
+            } catch (PackageManager.NameNotFoundException e) {
+                e.printStackTrace();
+                Toast.makeText(this, R.string.app_lookup_error, Toast.LENGTH_SHORT).show();
+                finish();
+            } catch (DatabaseImporterException e) {
+                e.printStackTrace();
+                Dialogs.showErrorDialog(this, R.string.reading_file_error, e, (dialog, which) -> finish());
+            } finally {
+                try {
+                    shell.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        task.execute(this);
     }
 
     private void processImporterState(DatabaseImporter.State state) {

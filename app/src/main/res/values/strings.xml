@@ -171,6 +171,7 @@
     <string name="encrypting_vault">Encrypting the vault</string>
     <string name="exporting_vault">Exporting the vault</string>
     <string name="reading_file">Reading file</string>
+    <string name="requesting_root_access">Requesting root access</string>
     <string name="analyzing_qr">Analyzing QR code</string>
     <string name="analyzing_qr_multiple">Analyzing QR code %d/%d (%s)</string>
     <plurals name="added_new_entries">
@@ -237,7 +238,7 @@
     <string name="reading_file_error">An error occurred while trying to read the file</string>
     <string name="app_lookup_error">Error: App is not installed</string>
     <string name="app_version_error">The version of %s that\'s installed is not supported. Recent versions have started encrypting some of the files in the internal storage directory, making Aegis unable to access the information it needs for the import. Attempting to import is likely to result in an error. Would you like to continue anyway?</string>
-    <string name="root_error">Error: unable to obtain root access</string>
+    <string name="root_error">Error: Unable to obtain root access</string>
     <plurals name="imported_entries_count">
         <item quantity="one">Imported %d entry</item>
         <item quantity="other">Imported %d entries</item>
