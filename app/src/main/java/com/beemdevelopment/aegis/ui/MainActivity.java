@@ -49,6 +49,7 @@ import com.beemdevelopment.aegis.ui.fragments.preferences.BackupsPreferencesFrag
 import com.beemdevelopment.aegis.ui.fragments.preferences.PreferencesFragment;
 import com.beemdevelopment.aegis.ui.tasks.QrDecodeTask;
 import com.beemdevelopment.aegis.ui.views.EntryListView;
+import com.beemdevelopment.aegis.util.TimeUtils;
 import com.beemdevelopment.aegis.vault.VaultEntry;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -56,6 +57,7 @@ import com.google.common.base.Strings;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -824,16 +826,17 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
             });
             _btnErrorBar.setVisibility(View.VISIBLE);
         } else if (_prefs.isBackupsReminderNeeded()) {
-            _textErrorBar.setText(R.string.backup_reminder_bar_message);
-            _btnErrorBar.setOnClickListener(view -> {
-                startPreferencesActivity();
-            });
+            Date date = _prefs.getLatestBackupOrExportTime();
+            if (date != null) {
+                _textErrorBar.setText(getString(R.string.backup_reminder_bar_message_with_latest, TimeUtils.getElapsedSince(this, date)));
+            } else {
+                _textErrorBar.setText(R.string.backup_reminder_bar_message);
+            }
+            _btnErrorBar.setOnClickListener(view -> startPreferencesActivity());
             _btnErrorBar.setVisibility(View.VISIBLE);
         } else if (_prefs.isPlaintextBackupWarningNeeded()) {
             _textErrorBar.setText(R.string.backup_plaintext_export_warning);
-            _btnErrorBar.setOnClickListener(view -> {
-                showPlaintextExportWarningOptions();
-            });
+            _btnErrorBar.setOnClickListener(view -> showPlaintextExportWarningOptions());
             _btnErrorBar.setVisibility(View.VISIBLE);
         } else {
             _btnErrorBar.setVisibility(View.GONE);

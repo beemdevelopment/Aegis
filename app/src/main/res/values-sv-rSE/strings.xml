@@ -350,7 +350,6 @@
     <string name="backup_error_dialog_details">Ett nyligen påbörjat försök att säkerhetskopiera valvet till %s misslyckades eftersom ett fel uppstod. Säkerhetskopieringen påbörjades: %s. Vänligen kontrollera dina säkerhetskopieringsinställningar för att se till att säkerhetskopior kan skapas framgångsrikt.</string>
     <string name="backup_system_builtin">Aegis inbyggda automatiska säkerhetskopior</string>
     <string name="backup_system_android">Androids molnsäkerhetskopieringssystem</string>
-    <string name="backup_reminder_bar_message"><b>De senaste ändringarna i valvet är inte säkerhetskopierade</b></string>
     <string name="backup_plaintext_export_warning"><b>Valvet exporterades nyligen som klartext</b></string>
     <string name="pref_show_plaintext_warning_hint">Visa inte denna varning igen</string>
     <string name="backup_plaintext_warning_explanation">Denna varning visas eftersom du nyligen exporterade en okrypterad kopia av valvet. För att upprätthålla säkerheten för dina polletter rekommenderar vi att du raderar denna fil när den inte längre behövs.</string>

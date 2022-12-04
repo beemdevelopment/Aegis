@@ -350,7 +350,6 @@
     <string name="backup_error_dialog_details">Un recente tentativo di backup del vault utilizzando %s non è riuscito perché si è verificato un errore. Il backup è stato tentato il: %s. Controlla le impostazioni di backup per assicurarti che i backup possano essere completati correttamente.</string>
     <string name="backup_system_builtin">i backup automatici integrati di Aegis</string>
     <string name="backup_system_android">il sistema di backup su cloud di Android</string>
-    <string name="backup_reminder_bar_message"><b>Non sono stati effettuati backup per le modifiche recenti alla cassaforte </b></string>
     <string name="backup_plaintext_export_warning"><b>La cassaforte è stata recentemente esportata in testo normale</b></string>
     <string name="pref_show_plaintext_warning_hint">Non mostrare più questo avviso</string>
     <string name="backup_plaintext_warning_explanation">Questo avviso viene visualizzato perché di recente è stata esportata una copia non crittografata della cassaforte. Per mantenere la sicurezza dei tuoi token, ti consigliamo di eliminare questo file quando non è più necessario.</string>

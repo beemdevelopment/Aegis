@@ -359,7 +359,6 @@
     <string name="backup_error_dialog_details">O încercare recentă de backup a seifului folosind %s a eșuat deoarece a apărut o eroare. S-a încercat crearea unei copii de siguranță la: %s. Vă rugăm să verificați setările copiilor de rezervă pentru a vă asigura că acestea se pot termina cu succes.</string>
     <string name="backup_system_builtin">Copiile de siguranță încorporate în aplicație</string>
     <string name="backup_system_android">Sistemul de backup în cloud Android</string>
-    <string name="backup_reminder_bar_message"><b>Modificările recente ale seifului nu sunt salvate</b></string>
     <string name="backup_plaintext_export_warning"><b>Seiful a fost exportat recent în text simplu</b></string>
     <string name="pref_show_plaintext_warning_hint">Nu mai arăta acest avertisment</string>
     <string name="backup_plaintext_warning_explanation">Această avertizare este afișată deoarece ați exportat recent o copie necriptată a seifului. Pentru a menține securitatea token-urilor, vă recomandăm să ștergeți acest fișier o dată ce nu mai este necesar.</string>

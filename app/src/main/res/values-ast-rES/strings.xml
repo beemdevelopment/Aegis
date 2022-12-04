@@ -350,7 +350,6 @@
     <string name="backup_error_dialog_details">Falló un intentu recién de facer una copia de seguranza de l\'arca con «%s» porque se produxo un error (data de l\'aición: %s). Revisa los axustes pa que les copies de seguranza puedan facese correutamente.</string>
     <string name="backup_system_builtin">Copies de seguranza automátiques d\'Aegis</string>
     <string name="backup_system_android">Sistema de copies de segurazan na ñube d\'Android</string>
-    <string name="backup_reminder_bar_message"><b>Nun se fizo una copia de seguranza de los cambeos de recién de l\'arca</b></string>
     <string name="backup_plaintext_export_warning"><b>L\'arca esportóse apocayá a un ficheru de testu planu</b></string>
     <string name="pref_show_plaintext_warning_hint">Nun volver amosar esta alvertencia</string>
     <string name="backup_plaintext_warning_explanation">Esta alvertencia apaez porque esportesti apocayá una copia de l\'arca que nun taba cifrada. Pa caltener la seguranza de los pases, acoseyamos que desanicies esti ficheru namás que nun lu precises.</string>

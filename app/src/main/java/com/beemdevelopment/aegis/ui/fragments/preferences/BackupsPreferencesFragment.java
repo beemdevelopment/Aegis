@@ -180,9 +180,9 @@ public class BackupsPreferencesFragment extends PreferencesFragment {
             message = getString(R.string.backup_status_none);
         } else if (res.isSuccessful()) {
             color = R.color.success_color;
-            message = getString(R.string.backup_status_success, res.getHumanReadableTime());
+            message = getString(R.string.backup_status_success, res.getElapsedSince(requireContext()));
         } else {
-            message = getString(R.string.backup_status_failed, res.getHumanReadableTime());
+            message = getString(R.string.backup_status_failed, res.getElapsedSince(requireContext()));
         }
 
         Spannable spannable = new SpannableString(message);

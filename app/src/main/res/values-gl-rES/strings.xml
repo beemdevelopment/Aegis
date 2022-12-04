@@ -350,7 +350,6 @@
     <string name="backup_error_dialog_details">Un intento de facer unha copia de seguridade do almacén usando %s fallou debido a algún erro. A copia de seguridade intentouse o: %s. Comproba os axustes da copia de seguridade para asegurarte de que poidan completar correctamente.</string>
     <string name="backup_system_builtin">Copias de seguridade automáticas de Aegis</string>
     <string name="backup_system_android">Copias de seguridade na nube de Android</string>
-    <string name="backup_reminder_bar_message"><b>Hai cambios recentes no almacén dos que non se fixo copia de seguridade</b></string>
     <string name="backup_plaintext_export_warning"><b>O almacén exportouse recentemente como texto plano</b></string>
     <string name="pref_show_plaintext_warning_hint">Non volver a mostrar este aviso</string>
     <string name="backup_plaintext_warning_explanation">Móstrase este aviso porque exportaches recentemente unha copia non cifrada do almacén. Para manter a seguridade dos teus tokens, recomendámosche que elimines este ficheiro cando xa non che faga falta.</string>

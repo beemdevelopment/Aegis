@@ -10,21 +10,19 @@ import android.preference.PreferenceManager;
 import androidx.annotation.Nullable;
 
 import com.beemdevelopment.aegis.util.JsonUtils;
+import com.beemdevelopment.aegis.util.TimeUtils;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import java.util.Set;
 import java.util.UUID;
 
 public class Preferences {
@@ -297,6 +295,36 @@ public class Preferences {
         _prefs.edit().putBoolean("pref_focus_search", enabled).apply();
     }
 
+    public void setLatestExportTimeNow() {
+        _prefs.edit().putLong("pref_export_latest", new Date().getTime()).apply();
+        setIsBackupReminderNeeded(false);
+    }
+
+    public Date getLatestBackupOrExportTime() {
+        List<Date> dates = new ArrayList<>();
+
+        long l = _prefs.getLong("pref_export_latest", 0);
+        if (l > 0) {
+            dates.add(new Date(l));
+        }
+
+        BackupResult builtinRes = getBuiltInBackupResult();
+        if (builtinRes != null) {
+            dates.add(builtinRes.getTime());
+        }
+
+        BackupResult androidRes = getAndroidBackupResult();
+        if (androidRes != null) {
+            dates.add(androidRes.getTime());
+        }
+
+        if (dates.size() == 0) {
+            return null;
+        }
+
+        return Collections.max(dates, Date::compareTo);
+    }
+
     public void setBackupsLocation(Uri location) {
         _prefs.edit().putString("pref_backups_location", location == null ? null : location.toString()).apply();
     }
@@ -466,8 +494,8 @@ public class Preferences {
             return _time;
         }
 
-        public String getHumanReadableTime() {
-            return DateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.SHORT).format(_time);
+        public String getElapsedSince(Context context) {
+            return TimeUtils.getElapsedSince(context, _time);
         }
 
         public boolean isBuiltIn() {

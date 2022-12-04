@@ -329,7 +329,6 @@
     <string name="backup_error_bar_message"><b>النسخ الاحتياطي للمخزن فشل مؤخرًا</b></string>
     <string name="backup_system_builtin">النسخ الاحتياطية التلقائية المضنة في Aegis</string>
     <string name="backup_system_android">نظام النسخ الاحتياطي السحابي للأندرويد</string>
-    <string name="backup_reminder_bar_message"><b>التغييرات الأخيرة في المخزن لم يتم نسخها احتياطياً</b></string>
     <string name="backup_plaintext_export_warning"><b>تم تصدير المخزن مؤخرا ك نص مجرّد</b></string>
     <string name="pref_show_plaintext_warning_hint">لا تظهر هذا التحذير مجدداً</string>
     <string name="backup_plaintext_warning_explanation">يظهر هذا التحذير لأنك قمت مؤخراً بتصدير نسخة غير مشفرة من المخزن. للحفاظ على أمان الرموز الخاصة بك، نوصي بحذف هذا الملف بمجرد أن لا تكون هناك حاجة إليه.</string>

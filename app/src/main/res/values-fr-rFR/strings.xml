@@ -350,7 +350,6 @@
     <string name="backup_error_dialog_details">Une tentative récente de sauvegarde du coffre-fort en utilisant %s a échoué car une erreur est survenue. La sauvegarde a été tentée à : %s. Veuillez vérifier vos paramètres de sauvegarde pour vous assurer que les sauvegardes peuvent être terminées avec succès.</string>
     <string name="backup_system_builtin">Sauvegardes automatiques intégrées dans Aegis</string>
     <string name="backup_system_android">Système de sauvegarde cloud d\'Android</string>
-    <string name="backup_reminder_bar_message"><b>Les modifications récentes du coffre-fort ne sont pas sauvegardées</b></string>
     <string name="backup_plaintext_export_warning"><b>Le coffre-fort a récemment été exporté en texte brut</b></string>
     <string name="pref_show_plaintext_warning_hint">Ne plus afficher cet avertissement</string>
     <string name="backup_plaintext_warning_explanation">Cet avertissement s\'affiche parce que vous avez récemment exporté une copie non chiffrée du coffre-fort. Pour maintenir la sécurité de vos jetons, nous vous recommandons de supprimer ce fichier une fois que vous n\'en aurez plus besoin.</string>

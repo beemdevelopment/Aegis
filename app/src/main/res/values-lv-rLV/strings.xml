@@ -359,7 +359,6 @@
     <string name="backup_error_dialog_details">Nesens rezerves kopijas veidošanas mēģinājums, izmantojot %s, neizdevās, jo atgadījās kļūda. Rezerves kopiju tika mēģināts izveidot šeit: %s. Lūgums pārskatīt rezerves kopēšanas iestatījumus, lai pārliecinātos, ka var veiksmīgi veikt rezerves kopiju izveidošanu.</string>
     <string name="backup_system_builtin">Aegis iebūvētā automātisko rezerves kopiju veidošana</string>
     <string name="backup_system_android">Android mākoņa rezerves kopiju sistēma</string>
-    <string name="backup_reminder_bar_message"><b>Nesenas glabātavas izmaiņas netiek dublētas</b></string>
     <string name="backup_plaintext_export_warning"><b>Glabātava nesen tika izdota kā vienkāršs teksts</b></string>
     <string name="pref_show_plaintext_warning_hint">Vairs nerādīt šo brīdinājumu</string>
     <string name="backup_plaintext_warning_explanation">Šis brīdinājums tiek parādīts, jo nesen tika izdota nešifrēta glabātavas kopija. Lai nodrošinātu pilnvaru drošību, ir ieteicams izdzēst šo failu, tiklīdz tas vairs nav nepieciešams.</string>

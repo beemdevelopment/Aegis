@@ -368,7 +368,6 @@
     <string name="backup_error_dialog_details">Ostatnia próba wykonania kopii zapasowej sejfu z użyciem %s nie powiodła się, ponieważ wystąpił błąd. Kopia zapasowa została wykonana w: %s. Sprawdź ustawienia kopii zapasowej, aby upewnić się, że wykonywanie kopii zapasowych może się pomyślnie zakończyć.</string>
     <string name="backup_system_builtin">Wbudowane automatyczne kopie zapasowe Aegis</string>
     <string name="backup_system_android">System kopii zapasowej w chmurze Android</string>
-    <string name="backup_reminder_bar_message"><b>Ostatnie zmiany sejfu nie są w kopii zapasowej</b></string>
     <string name="backup_plaintext_export_warning"><b>Sejf został ostatnio wyeksportowany w jawnym tekście</b></string>
     <string name="pref_show_plaintext_warning_hint">Nie pokazuj tego ostrzeżenia ponownie</string>
     <string name="backup_plaintext_warning_explanation">To ostrzeżenie jest wyświetlane, ponieważ ostatnio wyeksportowano nieszyfrowaną kopię sejfu. Aby zachować bezpieczeństwo tokenów, zalecamy usunięcie tego pliku, gdy nie będzie już potrzebny.</string>

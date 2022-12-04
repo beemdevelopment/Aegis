@@ -284,7 +284,7 @@ public class ImportExportPreferencesFragment extends PreferencesFragment {
                     }
 
                     // if the user creates an export, hide the backup reminder
-                    _prefs.setIsBackupReminderNeeded(false);
+                    _prefs.setLatestExportTimeNow();
 
                     Uri uri = FileProvider.getUriForFile(requireContext(), BuildConfig.FILE_PROVIDER_AUTHORITY, file);
                     Intent intent = new Intent(Intent.ACTION_SEND)
@@ -496,7 +496,7 @@ public class ImportExportPreferencesFragment extends PreferencesFragment {
                 Dialogs.showErrorDialog(requireContext(), R.string.exporting_vault_error, e);
             } else {
                 // if the user creates an export, hide the backup reminder
-                _prefs.setIsBackupReminderNeeded(false);
+                _prefs.setLatestExportTimeNow();
 
                 Toast.makeText(requireContext(), getString(R.string.exported_vault), Toast.LENGTH_SHORT).show();
             }

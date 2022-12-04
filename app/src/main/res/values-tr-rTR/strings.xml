@@ -350,7 +350,6 @@
     <string name="backup_error_dialog_details">En son %s kullanılarak cüzdan yedeği girişimi bir hata oluştuğundan başarısız oldu. Yedek girişimi tarihi: %s. Lütfen yedeklerin başarılı bir şekilde tamamlanması için yedek ayarlarınızı kontrol edin.</string>
     <string name="backup_system_builtin">Aegis dahili otomatik yedekleri</string>
     <string name="backup_system_android">Android\'in bulut yedekleme sistemi</string>
-    <string name="backup_reminder_bar_message"><b>Az önce yapılan değişiklikler yedeklenmedi.</b></string>
     <string name="backup_plaintext_export_warning"><b>Kasa yakın zamanda düz metin olarak dışa aktarıldı</b></string>
     <string name="pref_show_plaintext_warning_hint">Bu uyarıyı bir daha gösterme</string>
     <string name="backup_plaintext_warning_explanation">Bu uyarı kısa süre önce kasanın şifrelenmemiş bir kopyasını dışa aktardığınız için gösterilir. Tokenlerinizin güvenliğini korumak için artık ihtiyaç duymadığınızda bu dosyayı silmenizi öneririz.</string>

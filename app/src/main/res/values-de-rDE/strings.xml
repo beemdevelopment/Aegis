@@ -350,7 +350,6 @@
     <string name="backup_error_dialog_details">Ein kürzlicher Sicherungsversuch der Datenbank mit %s ist fehlgeschlagen, da ein Fehler aufgetreten ist. Versuch, eine Sicherung zu erstellen: %s. Bitte überprüfe deine Sicherungseinstellungen, um sicherzustellen, dass Sicherungen erfolgreich abgeschlossen werden können.</string>
     <string name="backup_system_builtin">Automatische Sicherungen von Aegis</string>
     <string name="backup_system_android">Cloud-Back-ups durch Android</string>
-    <string name="backup_reminder_bar_message"><b>Neueste Datenbankänderungen wurden noch nicht gesichert</b></string>
     <string name="backup_plaintext_export_warning"><b>Die Datenbank wurde kürzlich im Klartext exportiert</b></string>
     <string name="pref_show_plaintext_warning_hint">Diese Warnung nicht erneut anzeigen</string>
     <string name="backup_plaintext_warning_explanation">Diese Warnung wird angezeigt, weil du kürzlich eine unverschlüsselte Kopie der Datenbank exportiert hast. Um die Sicherheit deiner Token zu gewährleisten, empfehlen wir, diese Datei zu löschen, sobald sie nicht mehr benötigt wird.</string>

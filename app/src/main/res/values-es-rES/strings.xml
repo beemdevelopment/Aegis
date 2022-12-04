@@ -350,7 +350,6 @@
     <string name="backup_error_dialog_details">Un intento reciente de copia de seguridad de la bóveda usando %s falló debido a un error. La copia de seguridad se intentó en: %s. Por favor, compruebe su configuración de copia de seguridad para asegurarse de que las copias de seguridad puedan completarse con éxito.</string>
     <string name="backup_system_builtin">Copias de seguridad automáticas de Aegis</string>
     <string name="backup_system_android">Sistema de copias de seguridad en la nube de Android</string>
-    <string name="backup_reminder_bar_message"><b>No existe una copia de seguridad de los últimos cambios realizados en la bóveda</b></string>
     <string name="backup_plaintext_export_warning"><b>La bóveda fue exportada recientemente en texto plano</b></string>
     <string name="pref_show_plaintext_warning_hint">No volver a mostrar esta advertencia</string>
     <string name="backup_plaintext_warning_explanation">Esta advertencia se muestra porque recientemente exportaste una copia no encriptada de la bóveda. Para mantener la seguridad de tus tokens, recomendamos eliminar este archivo cuando deje de ser necesario.</string>

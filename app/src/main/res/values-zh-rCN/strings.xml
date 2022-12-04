@@ -341,7 +341,6 @@
     <string name="backup_error_dialog_details">因发生错误，上次使用 %s 备份密码库的尝试失败。尝试于 %s。请检查您的备份设置以确保备份成功完成。</string>
     <string name="backup_system_builtin">Aegis 内置的自动备份</string>
     <string name="backup_system_android">Android 的云备份系统</string>
-    <string name="backup_reminder_bar_message"><b>最近对数据库的更改尚未备份</b></string>
     <string name="backup_plaintext_export_warning"><b>保险库最近导出为纯文本</b></string>
     <string name="pref_show_plaintext_warning_hint">不再显示此警告</string>
     <string name="backup_plaintext_warning_explanation">显示此警告是因为您最近导出了一个未加密的保险库副本。 为了保持令牌的安全性，我们建议一旦不再需要该文件，就将其删除。</string>

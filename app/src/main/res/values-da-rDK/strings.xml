@@ -350,7 +350,6 @@
     <string name="backup_error_dialog_details">Et nyligt forsøg på Boks-sikkerhedskopiering vha. %s mislykkedes, da en fejl opstod. Sikkerhedskopieringen forsøgt: %s. Tjek sikkerhedskopieringsindstillingerne for at sikre, at sikkerhedskopieringer kan fuldføres.</string>
     <string name="backup_system_builtin">Aegis\' indbyggede automatiske sikkerhedskopieringer</string>
     <string name="backup_system_android">Android cloud-sikkerhedskopieringssystem</string>
-    <string name="backup_reminder_bar_message"><b>Seneste Boksændringer er ikke sikkerhedskopieret</b></string>
     <string name="backup_plaintext_export_warning"><b>Boksen blev for nylig eksporteret som simpel tekst</b></string>
     <string name="pref_show_plaintext_warning_hint">Vis ikke denne advarsel igen</string>
     <string name="backup_plaintext_warning_explanation">Denne advarsel vises, da en ukrypteret kopi af Boksen for nyligt er eksporteret. For at opretholde sikkerheden for tokens, anbefales det at slette denne fil, når den ikke længere behøves.</string>

@@ -333,7 +333,6 @@
     </plurals>
     <string name="google_qr_export_unexpected">Odotettiin QR-koodia #%d, mutta skannattu #%d sen sijaan</string>
     <string name="backup_error_bar_message"><b>Holvin varmuuskopiointi epäonnistui äskettäin</b></string>
-    <string name="backup_reminder_bar_message"><b>Äskettäisiä holvimuutoksia ei ole varmuuskopioitu</b></string>
     <string name="backup_plaintext_export_warning"><b>Holvi vietiin äskettäin raakatekstinä</b></string>
     <string name="pref_show_plaintext_warning_hint">Älä näytä tätä varoitusta uudelleen</string>
     <string name="backup_plaintext_warning_explanation">Tämä varoitus näytetään, koska veit äskettäin salaamattoman kopion holvistasi. Varmistaaksemme todennuskoodiesi turvallisuuden, suosittelemme poistamaan tiedoston heti, kun sitä ei enää tarvita.</string>

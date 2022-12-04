@@ -368,7 +368,6 @@
     <string name="backup_error_dialog_details">Nedávný pokus o zálohu trezoru pomocí %s selhal, protože došlo k chybě. Pokus o zálohu byl uskutečněn: %s. Zkontrolujte prosím nastavení pro ujištění se, že zálohy mohou být úspěšně dokončeny.</string>
     <string name="backup_system_builtin">Zabudované zálohy aplikace Aegis</string>
     <string name="backup_system_android">Cloudový zálohovací systém systému Android</string>
-    <string name="backup_reminder_bar_message"><b>Nedávné změny v trezoru nebyly zálohovány</b></string>
     <string name="backup_plaintext_export_warning"><b>Trezor byl nedávno exportován v plaintextu</b></string>
     <string name="pref_show_plaintext_warning_hint">Toto varování již nezobrazovat</string>
     <string name="backup_plaintext_warning_explanation">Toto upozornění se zobrazuje, protože jste nedávno exportovali nešifrovanou kopii trezoru. Chcete-li zachovat bezpečnost svých tokenů, doporučujeme tento soubor odstranit, jakmile již nebude potřeba.</string>

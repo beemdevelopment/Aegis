@@ -347,7 +347,6 @@
     <string name="backup_error_dialog_details">%s erabiliz egindako biltegiaren segurtasun kopiak huts egin du. Saiakera noiz egin den: %s. Ziurtatu segurtasun kopien ezarpenak ondo daudela hauek ondo egin daitezen.</string>
     <string name="backup_system_builtin">Aegisek egindako segurtasun kopia automatikoak</string>
     <string name="backup_system_android">Androidek lainoan egidako segurtasun kopiak</string>
-    <string name="backup_reminder_bar_message"><b>Ez dago biltegian egindako azken aldaketen segurtasun kopiarik</b></string>
     <string name="backup_plaintext_export_warning"><b>Biltegia orain dela gutxi testu-huts gisa esportatu da</b></string>
     <string name="pref_show_plaintext_warning_hint">Ez erakutsi ohar hau berriz</string>
     <string name="backup_plaintext_warning_explanation">Ohar hau, orain dela gutxi zifratu gabeko biltegiaren kopia bat esportatu delako agertzen da. Zure gakoen segurtasuna mantentzeko, fitxategi hori berehala ezabatzeko aholkua ematen dizugu.</string>

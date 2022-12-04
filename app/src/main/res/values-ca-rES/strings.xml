@@ -350,7 +350,6 @@
     <string name="backup_error_dialog_details">Un intent de còpia de seguretat fent servir %s ha fallat perquè s\'ha produit un error. La còpia s\'ha intentat a: %s. Si us plau revisa la configuració de les còpies per a que es puguin fer correctament.</string>
     <string name="backup_system_builtin">Còpies de seguretat integrades a Aegis</string>
     <string name="backup_system_android">Còpia al núvol d\'Android</string>
-    <string name="backup_reminder_bar_message"><b>No s\'ha fet una còpia de seguretat dels canvis recents de la volta</b></string>
     <string name="backup_plaintext_export_warning"><b>La volta s\'ha exportat recentment en text sense format</b></string>
     <string name="pref_show_plaintext_warning_hint">No tornis a mostrar aquesta advertència</string>
     <string name="backup_plaintext_warning_explanation">Aquest avís es mostra perquè recentment heu exportat una còpia no xifrada de la volta. Per mantenir la seguretat dels vostres tokens, us recomanem que suprimiu aquest fitxer quan ja no sigui necessari.</string>

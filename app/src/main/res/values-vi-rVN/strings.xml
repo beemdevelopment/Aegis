@@ -310,7 +310,6 @@
     </plurals>
     <string name="google_qr_export_unexpected">Đã mong đợi mã QR #%d, nhưng thay vào đó đã quét #%d</string>
     <string name="backup_error_bar_message"><b>Sao lưu kho thất bại vào gần đây</b></string>
-    <string name="backup_reminder_bar_message"><b>Các thay đổi kho gần đây không được sao lưu</b></string>
     <string name="switch_camera">Chuyển máy ảnh</string>
     <string name="empty_list">Không có mã nào để hiện. Hãy bắt đầu thêm các mục bằng cách nhấn vào ký hiệu dấu cộng ở góc dưới bên phải</string>
     <string name="empty_list_title">Không tìm thấy mục nào</string>

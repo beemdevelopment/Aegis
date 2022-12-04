@@ -304,7 +304,6 @@
     </plurals>
     <string name="google_qr_export_unexpected">Kode QR yang ditemukan #%d, namun hanya #%d yang dipindai</string>
     <string name="backup_error_bar_message"><b>Pencadangan Brankas baru-baru ini gagal</b></string>
-    <string name="backup_reminder_bar_message"><b>Perubahan terbaru brankas belum dicadangkan</b></string>
     <string name="backup_plaintext_export_warning"><b>Brankas baru-baru ini diekspor dalam teks biasa</b></string>
     <string name="pref_show_plaintext_warning_hint">Jangan perlihatkan peringatan ini lagi</string>
     <string name="backup_plaintext_warning_explanation">Peringatan ini ditampilkan karena Anda baru-baru ini mengekspor salinan tidak terenkripsi dari brankas. Untuk menjaga keamanan token Anda, kami merekomendasikan untuk menghapus berkas ini ketika sudah tidak dibutuhkan.</string>

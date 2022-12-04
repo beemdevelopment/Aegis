@@ -350,7 +350,6 @@
     <string name="backup_error_dialog_details">Uma recente tentativa de backup no cofre usando %s falhou, pois ocorreu um erro. O backup foi tentado: %s. Por favor, verifique as configurações do seu backup para garantir que ele seja concluído com sucesso.</string>
     <string name="backup_system_builtin">Backups automáticos do Aegis</string>
     <string name="backup_system_android">Sistema de backup em nuvem do Android</string>
-    <string name="backup_reminder_bar_message"><b>As alterações recentes no cofre não foram salvas</b></string>
     <string name="backup_plaintext_export_warning"><b>O cofre foi exportado recentemente em texto simples</b></string>
     <string name="pref_show_plaintext_warning_hint">Não mostrar este aviso novamente</string>
     <string name="backup_plaintext_warning_explanation">Este aviso é exibido porque você exportou recentemente uma cópia não criptografada do cofre. Para manter a segurança de seus tokens, recomendamos excluir este arquivo uma vez que ele não seja mais necessário.</string>

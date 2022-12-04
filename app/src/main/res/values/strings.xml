@@ -366,10 +366,21 @@
     </plurals>
     <string name="google_qr_export_unexpected">Expected QR code #%d, but scanned #%d instead</string>
     <string name="backup_error_bar_message"><b>Vault backup failed recently</b></string>
-    <string name="backup_error_dialog_details">A recent vault backup attempt using %s failed because an error occurred. The backup was attempted at: %s. Please check your backup settings to make sure backups can complete successfully.</string>
+    <string
+        name="backup_error_dialog_details"
+        comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">
+        A recent vault backup attempt using %s failed because an error occurred. The backup was attempted %s. Please check your backup settings to make sure backups can complete successfully.
+    </string>
     <string name="backup_system_builtin">Aegis\' built-in automatic backups</string>
     <string name="backup_system_android">Android\'s cloud backup system</string>
-    <string name="backup_reminder_bar_message"><b>Recent vault changes are not backed up</b></string>
+    <string
+        name="backup_reminder_bar_message_with_latest"
+        comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">
+        Latest backup is outdated (%s)
+    </string>
+    <string name="backup_reminder_bar_message">
+        Changes are not backed up
+    </string>
     <string name="backup_plaintext_export_warning"><b>The vault was recently exported in plain text</b></string>
     <string name="pref_show_plaintext_warning_hint">Don\'t show this warning again</string>
     <string name="backup_plaintext_warning_explanation">This warning is shown because you recently exported an unencrypted copy of the vault. To maintain security of your tokens, we recommend deleting this file once it\'s no longer needed.</string>
@@ -463,4 +474,25 @@
     <string name="pref_grouping_size_two">Groups of 2</string>
     <string name="pref_grouping_size_three">Groups of 3</string>
     <string name="pref_grouping_size_four">Groups of 4</string>
+
+    <plurals name="time_elapsed_seconds">
+        <item quantity="one">%d second ago</item>
+        <item quantity="other">%d seconds ago</item>
+    </plurals>
+    <plurals name="time_elapsed_minutes">
+        <item quantity="one">%d minute ago</item>
+        <item quantity="other">%d minutes ago</item>
+    </plurals>
+    <plurals name="time_elapsed_hours">
+        <item quantity="one">%d hour ago</item>
+        <item quantity="other">%d hours ago</item>
+    </plurals>
+    <plurals name="time_elapsed_days">
+        <item quantity="one">%d day ago</item>
+        <item quantity="other">%d days ago</item>
+    </plurals>
+    <plurals name="time_elapsed_years">
+        <item quantity="one">%d year ago</item>
+        <item quantity="other">%d years ago</item>
+    </plurals>
 </resources>

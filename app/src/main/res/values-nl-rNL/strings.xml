@@ -350,7 +350,6 @@
     <string name="backup_error_dialog_details">Een recente back-up van de kluis met %s is mislukt omdat er iets misging. De back-up werd op %s geprobeerd. Controleer de back-upinstellingen zodat back-ups succesvol kunnen worden voltooid.</string>
     <string name="backup_system_builtin">het ingebouwde automatische back-ups van Aegis</string>
     <string name="backup_system_android">het cloud back-upsysteem van Android</string>
-    <string name="backup_reminder_bar_message"><b>Recente wijzigingen in de kluis zijn niet geback-upt</b></string>
     <string name="backup_plaintext_export_warning"><b>De kluis is recent geëxporteerd in platte tekst</b></string>
     <string name="pref_show_plaintext_warning_hint">Deze waarschuwing niet opnieuw weergeven</string>
     <string name="backup_plaintext_warning_explanation">Deze waarschuwing wordt weergegeven omdat je recent een onversleutelde kopie van de kluis hebt geëxporteerd. Om je tokens veilig te houden, raden we aan dit bestand te verwijderen als je het niet meer nodig hebt.</string>

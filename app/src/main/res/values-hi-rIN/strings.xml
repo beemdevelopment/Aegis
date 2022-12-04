@@ -302,7 +302,6 @@
     </plurals>
     <string name="google_qr_export_unexpected">अपेक्षित क्यूआर कोड #%d, लेकिन इसके बजाय #%d को स्कैन किया गया</string>
     <string name="backup_error_bar_message"><b>हाल ही में वॉल्ट बैकअप विफल रहा</b></string>
-    <string name="backup_reminder_bar_message"><b>हाल के वॉल्ट परिवर्तनों का बैक अप नहीं लिया गया है</b></string>
     <string name="switch_camera">कैमरा स्विच करें</string>
     <string name="empty_list">दिखाए जाने के लिए कोई कोड नहीं हैं। नीचे दाएं कोने में प्लस साइन टैप करके प्रविष्टियां जोड़ना प्रारंभ करें</string>
     <string name="empty_list_title">कोई प्रविष्टियाँ नहीं मिलीं</string>

@@ -368,7 +368,6 @@
     <string name="backup_error_dialog_details">Последнее резервное копирование хранилища с использованием %s не выполнено из-за ошибки, попытка производилась: %s. Убедитесь, что настройки резервного копирования правильные.</string>
     <string name="backup_system_builtin">Встроенное автоматическое резервирование Aegis</string>
     <string name="backup_system_android">Системное облачное резервирование Android</string>
-    <string name="backup_reminder_bar_message"><b>Последние изменения в хранилище не сохранены</b></string>
     <string name="backup_plaintext_export_warning"><b>Хранилище недавно было экспортировано в виде простого текста</b></string>
     <string name="pref_show_plaintext_warning_hint">Больше не показывать это предупреждение</string>
     <string name="backup_plaintext_warning_explanation">Это предупреждение отображается потому, что вы недавно экспортировали хранилище в незашифрованном виде. Для обеспечения безопасности ключей, мы рекомендуем удалить этот файл, как только он перестанет быть нужным.</string>
