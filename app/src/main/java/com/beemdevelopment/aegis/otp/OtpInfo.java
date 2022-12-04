@@ -112,6 +112,12 @@ public abstract class OtpInfo implements Serializable {
             String algo = obj.getString("algo");
             int digits = obj.getInt("digits");
 
+            // Special case to work around a bug where a user could accidentally
+            // set the hash algorithm of a non-mOTP entry to MD5
+            if (!type.equals(MotpInfo.ID) && algo.equals("MD5")) {
+                algo = DEFAULT_ALGORITHM;
+            }
+
             switch (type) {
                 case TotpInfo.ID:
                     info = new TotpInfo(secret, algo, digits, obj.getInt("period"));

@@ -291,11 +291,13 @@ public class EditEntryActivity extends AegisActivity {
                     _textDigits.setText(String.valueOf(SteamInfo.DIGITS));
                     break;
                 case TotpInfo.ID:
+                    _dropdownAlgo.setText(OtpInfo.DEFAULT_ALGORITHM, false);
                     _textPeriodCounterLayout.setHint(R.string.period_hint);
                     _textPeriodCounter.setText(String.valueOf(TotpInfo.DEFAULT_PERIOD));
                     _textDigits.setText(String.valueOf(OtpInfo.DEFAULT_DIGITS));
                     break;
                 case HotpInfo.ID:
+                    _dropdownAlgo.setText(OtpInfo.DEFAULT_ALGORITHM, false);
                     _textPeriodCounterLayout.setHint(R.string.counter);
                     _textPeriodCounter.setText(String.valueOf(HotpInfo.DEFAULT_COUNTER));
                     _textDigits.setText(String.valueOf(OtpInfo.DEFAULT_DIGITS));
