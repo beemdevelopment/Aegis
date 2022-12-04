@@ -123,6 +123,12 @@ public class AndOtpImporter extends DatabaseImporter {
             if (iterations < 1) {
                 throw new DatabaseImporterException(String.format("Invalid number of iterations for PBKDF: %d", iterations));
             }
+            // If number of iterations is this high, it's probably not an andOTP file, so
+            // abort early in order to prevent having to wait for an extremely long key derivation
+            // process, only to find out that the user picked the wrong file
+            if (iterations > 10_000_000L) {
+                throw new DatabaseImporterException(String.format("Unexpectedly high number of iterations: %d", iterations));
+            }
 
             byte[] salt = Arrays.copyOfRange(_data, INT_SIZE, INT_SIZE + SALT_SIZE);
             return new KeyDerivationParams(password, salt, iterations);
