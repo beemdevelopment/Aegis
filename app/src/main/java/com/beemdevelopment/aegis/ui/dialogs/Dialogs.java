@@ -7,7 +7,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
-import android.text.Editable;
 import android.text.InputType;
 import android.text.SpannableStringBuilder;
 import android.text.TextWatcher;
@@ -18,7 +17,6 @@ import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.NumberPicker;
@@ -34,6 +32,7 @@ import com.beemdevelopment.aegis.Preferences;
 import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.helpers.EditTextHelper;
 import com.beemdevelopment.aegis.helpers.PasswordStrengthHelper;
+import com.beemdevelopment.aegis.helpers.SimpleTextWatcher;
 import com.beemdevelopment.aegis.importers.DatabaseImporter;
 import com.beemdevelopment.aegis.ui.tasks.KeyDerivationTask;
 import com.beemdevelopment.aegis.vault.VaultEntry;
@@ -126,7 +125,7 @@ public class Dialogs {
         TextInputLayout textPasswordWrapper = view.findViewById(R.id.text_password_wrapper);
         CheckBox switchToggleVisibility = view.findViewById(R.id.check_toggle_visibility);
 
-        switchToggleVisibility.setOnCheckedChangeListener((CompoundButton.OnCheckedChangeListener) (buttonView, isChecked) -> {
+        switchToggleVisibility.setOnCheckedChangeListener((buttonView, isChecked) -> {
             if (isChecked) {
                 textPassword.setTransformationMethod(null);
                 textPasswordConfirm.setTransformationMethod(null);
@@ -177,28 +176,17 @@ public class Dialogs {
             });
         });
 
-        TextWatcher watcher = new TextWatcher() {
-            @Override
-            public void onTextChanged(CharSequence c, int start, int before, int count) {
-                boolean equal = EditTextHelper.areEditTextsEqual(textPassword, textPasswordConfirm);
-                buttonOK.get().setEnabled(equal);
+        TextWatcher watcher = new SimpleTextWatcher(text -> {
+            boolean equal = EditTextHelper.areEditTextsEqual(textPassword, textPasswordConfirm);
+            buttonOK.get().setEnabled(equal);
 
-                Strength strength = zxcvbn.measure(textPassword.getText());
-                barPasswordStrength.setProgress(strength.getScore());
-                barPasswordStrength.setProgressTintList(ColorStateList.valueOf(Color.parseColor(PasswordStrengthHelper.getColor(strength.getScore()))));
-                textPasswordStrength.setText((textPassword.getText().length() != 0) ? PasswordStrengthHelper.getString(strength.getScore(), activity) : "");
-                textPasswordWrapper.setError(strength.getFeedback().getWarning());
-                strength.wipe();
-            }
-
-            @Override
-            public void beforeTextChanged(CharSequence c, int start, int count, int after) {
-            }
-
-            @Override
-            public void afterTextChanged(Editable c) {
-            }
-        };
+            Strength strength = zxcvbn.measure(textPassword.getText());
+            barPasswordStrength.setProgress(strength.getScore());
+            barPasswordStrength.setProgressTintList(ColorStateList.valueOf(Color.parseColor(PasswordStrengthHelper.getColor(strength.getScore()))));
+            textPasswordStrength.setText((textPassword.getText().length() != 0) ? PasswordStrengthHelper.getString(strength.getScore(), activity) : "");
+            textPasswordWrapper.setError(strength.getFeedback().getWarning());
+            strength.wipe();
+        });
         textPassword.addTextChangedListener(watcher);
         textPasswordConfirm.addTextChangedListener(watcher);
 
@@ -206,8 +194,14 @@ public class Dialogs {
     }
 
     private static void showTextInputDialog(Context context, @StringRes int titleId, @StringRes int messageId, @StringRes int hintId, TextInputListener listener, DialogInterface.OnCancelListener cancelListener, boolean isSecret) {
+        final AtomicReference<Button> buttonOK = new AtomicReference<>();
         View view = LayoutInflater.from(context).inflate(R.layout.dialog_text_input, null);
         TextInputEditText input = view.findViewById(R.id.text_input);
+        input.addTextChangedListener(new SimpleTextWatcher(text -> {
+            if (buttonOK.get() != null) {
+                buttonOK.get().setEnabled(!text.toString().isEmpty());
+            }
+        }));
         TextInputLayout inputLayout = view.findViewById(R.id.text_input_layout);
         if (isSecret) {
             input.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
@@ -217,10 +211,7 @@ public class Dialogs {
         AlertDialog.Builder builder = new AlertDialog.Builder(context)
                 .setTitle(titleId)
                 .setView(view)
-                .setPositiveButton(android.R.string.ok, (dialog1, which) -> {
-                    char[] text = EditTextHelper.getEditTextChars(input);
-                    listener.onTextInputResult(text);
-                });
+                .setPositiveButton(android.R.string.ok, null);
 
         if (cancelListener != null) {
             builder.setOnCancelListener(cancelListener);
@@ -231,6 +222,17 @@ public class Dialogs {
         }
 
         AlertDialog dialog = builder.create();
+        dialog.setOnShowListener(d -> {
+            Button button = dialog.getButton(AlertDialog.BUTTON_POSITIVE);
+            button.setEnabled(false);
+            buttonOK.set(button);
+
+            button.setOnClickListener(v -> {
+                char[] text = EditTextHelper.getEditTextChars(input);
+                listener.onTextInputResult(text);
+                dialog.dismiss();
+            });
+        });
         dialog.setCanceledOnTouchOutside(true);
         dialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
         showSecureDialog(dialog);
