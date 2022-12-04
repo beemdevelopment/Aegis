@@ -120,9 +120,7 @@
     <string name="authentication_method_biometrics">Biometrics</string>
     <string name="authentication_method_biometrics_description">In addition to a password, biometrics registered on this device, like a fingerprint or your face, can be used to unlock the vault.</string>
     <string name="authentication">Unlock the vault</string>
-
-    <!-- The newline (\n) on the following line is just for aesthetic purposes !-->
-    <string name="authentication_multiline">Unlock\nthe vault</string>
+    <string name="authentication_multiline" comment="The newline in the middle is used for aesthetic purposes">Unlock\nthe vault</string>
 
     <string name="auth_use_biometrics">Or tap here to use <font fgcolor='#FF0D86C1'>biometrics</font></string>
     <string name="set_password">Please enter a password</string>
