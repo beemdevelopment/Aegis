@@ -31,6 +31,28 @@
     </head>
     <body>
         <div></div>
+        <h3>Version 2.1.1</h3>
+        <h4>New</h4>
+        <ul>
+            <li>An option to export the vault as an HTML file</li>
+            <li>Support for importing from Battle.net Authenticator (root required)</li>
+            <li>An option to hide entry icons</li>
+            <li>An option to only include certain groups in an export</li>
+            <li>Copying a token now takes a second tap if tap to reveal is enabled</li>
+            <li>The ability to copy the URI when transferring entries through QR codes</li>
+            <li>Updated translations</li>
+        </ul>
+        <h4>Fixes</h4>
+        <ul>
+            <li>The lock notification would remain after locking the vault in certain cases. For now, we've disabled the notification entirely.</li>
+            <li>Making changes to an entry while having one or more favorited entries in the vault could result in buggy ordering</li>
+            <li>Tapping to the reveal a token could increase the height of the entry in certain view modes on recent Android versions</li>
+            <li>The backup reminder was unclear about when the last successful backup took place</li>
+            <li>Users could accidentally select MD5 as the hash algorithm for non-mOTP entry types, causing crashes at seemingly random intervals. Any users who have gotten themselves into this situation will see these bad entries get reset to SHA1.</li>
+            <li>Importing from certain apps would cause a crash if an empty password was entered</li>
+            <li>The andOTP importer could hang indefinitely if the user accidentally selected a non-andOTP file.</li>
+            <li>Various other stability improvements</li>
+        </ul>
         <h3>Version 2.1</h3>
         <h4>New</h4>
         <ul>
