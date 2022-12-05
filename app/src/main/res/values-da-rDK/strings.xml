@@ -2,7 +2,7 @@
 <resources>
     <string name="action_settings">Indstillinger</string>
     <string name="action_about">Om</string>
-    <string name="action_delete">Slett</string>
+    <string name="action_delete">Slet</string>
     <string name="action_transfer">Overfør</string>
     <string name="action_edit_icon">Redigér ikon</string>
     <string name="action_reset_usage_count">Nulstil brugstæller</string>
@@ -35,6 +35,8 @@
     <string name="pref_select_theme_title">Tema</string>
     <string name="pref_view_mode_title">Visningstilstand</string>
     <string name="pref_lang_title">Sprog</string>
+    <string name="pref_show_icons_title">Vis ikoner</string>
+    <string name="pref_show_icons_summary">Vis ikoner ved siden af hver post</string>
     <string name="pref_code_group_size_title">Kodeciffergruppering</string>
     <string name="pref_code_group_size_summary">Vælg antal cifre til kodegruppering</string>
     <string name="pref_account_name_title">Vis kontonavn</string>
@@ -99,7 +101,12 @@
     <string name="export_warning_password">Eksporter krypteres vha. en separat adgangskode opsat i Sikkerhedsindstillinger.</string>
     <string name="export_format_aegis">Aegis (.JSON)</string>
     <string name="export_format_google_auth_uri">Tekst fil (.TXT)</string>
+    <string name="export_format_html">Webside (.HTML)</string>
     <string name="export_format_hint">Eksportformat</string>
+    <string name="export_all_groups">Eksportér alle grupper</string>
+    <string name="export_choose_groups">Vælg grupperne, som skal eksporteres:</string>
+    <string name="export_no_groups_selected">Ingen grupper valgt til eksport</string>
+    <string name="export_html_title">Aegis Authenticator Eksport</string>
     <string name="choose_authentication_method">Sikkerhed</string>
     <string name="authentication_method_explanation">Aegis er en sikkerhedsfokuseret 2FA-app. Tokens opbevares i en boks, som kan krypteres med en adgangskode efter dit eget valg. Hvis en angriber får adgang til din krypteret boks-fil, vil de ikke kunne få adgang til indholdet uden at kende adgangskoden.\n\nVi har på forhånd valgt den indstilling, som vi mener passer bedst til din enhed.</string>
     <string name="authentication_method_none">Ingen</string>
@@ -110,8 +117,7 @@
     <string name="authentication_method_biometrics">Biometri</string>
     <string name="authentication_method_biometrics_description">Ud over en adgangskode kan biometri, der er registreret på denne enhed såsom et fingeraftryk eller dit ansigt, bruges til at låse boksen op.</string>
     <string name="authentication">Lås op for boksen</string>
-    <!-- The newline (\n) on the following line is just for aesthetic purposes !-->
-    <string name="authentication_multiline">Lås\nboksen op</string>
+    <string name="authentication_multiline" comment="The newline in the middle is used for aesthetic purposes">Lås\nboksen op</string>
     <string name="auth_use_biometrics">Eller tryk her for at bruge <font fgcolor="#FF0D86C1">biometri</font></string>
     <string name="set_password">Indtast en adgangskode</string>
     <string name="set_group">Indtast et gruppenavn</string>
@@ -160,6 +166,7 @@
     <string name="encrypting_vault">Krypterer boksen</string>
     <string name="exporting_vault">Eksporterer boksen</string>
     <string name="reading_file">Indlæser fil</string>
+    <string name="requesting_root_access">Anmoder om root-adgang</string>
     <string name="analyzing_qr">Analyserer QR-kode</string>
     <string name="analyzing_qr_multiple">Analyserer QR-kode %d/%d (%s)</string>
     <plurals name="added_new_entries">
@@ -347,9 +354,14 @@
     </plurals>
     <string name="google_qr_export_unexpected">Forventede QR kode #%d, men scannede #%d i stedet</string>
     <string name="backup_error_bar_message"><b>Boks-backup mislykkedes for nylig</b></string>
-    <string name="backup_error_dialog_details">Et nyligt forsøg på Boks-sikkerhedskopiering vha. %s mislykkedes, da en fejl opstod. Sikkerhedskopieringen forsøgt: %s. Tjek sikkerhedskopieringsindstillingerne for at sikre, at sikkerhedskopieringer kan fuldføres.</string>
+    <string name="backup_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">        Et nyligt bokssikkerhedskopieringsforsøg vha. %s mislykkedes, da en fejl opstod. Sikkerhedskopieringen blev forsøgt: %s. Tjek sikkerhedskopieringsindstillingerne for at sikre, at sikkerhedskopieringer kan fuldføres.
+    </string>
     <string name="backup_system_builtin">Aegis\' indbyggede automatiske sikkerhedskopieringer</string>
     <string name="backup_system_android">Android cloud-sikkerhedskopieringssystem</string>
+    <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">        Seneste sikkerhedskopi er forældet (%s)
+    </string>
+    <string name="backup_reminder_bar_message">        Ændringer er ikke sikkerhedskopieret
+    </string>
     <string name="backup_plaintext_export_warning"><b>Boksen blev for nylig eksporteret som simpel tekst</b></string>
     <string name="pref_show_plaintext_warning_hint">Vis ikke denne advarsel igen</string>
     <string name="backup_plaintext_warning_explanation">Denne advarsel vises, da en ukrypteret kopi af Boksen for nyligt er eksporteret. For at opretholde sikkerheden for tokens, anbefales det at slette denne fil, når den ikke længere behøves.</string>
@@ -369,6 +381,9 @@
     </plurals>
     <string name="next">Næste</string>
     <string name="previous">Forrige</string>
+    <string name="copy_uri">Kopiér URI</string>
+    <string name="unable_to_copy_uri_to_clipboard">Kunne ikke kopiere URI til udklipsholder</string>
+    <string name="uri_copied_to_clipboard">URI kopieret til udklipsholder</string>
     <string name="transfer_entry">Overfør post</string>
     <string name="transfer_entry_description">Scan denne QR-kode med den autentificerings-app, du gerne vil overføre denne post til</string>
     <string name="google_auth_compatible_transfer_description">Skan disse QR-koder med Aegis eller Google Authenticator.\n\nGrundet begrænsninger i Google Authenticator-appen inkluderes kun TOTP- og HOTP-tokener, som bruger SHA1 og genererer 6-cifrede koder</string>
@@ -419,4 +434,24 @@
     <string name="pref_grouping_size_two">Grupper af 2</string>
     <string name="pref_grouping_size_three">Grupper af 3</string>
     <string name="pref_grouping_size_four">Grupper af 4</string>
+    <plurals name="time_elapsed_seconds">
+        <item quantity="one">%d sekund siden</item>
+        <item quantity="other">%d sekunder siden</item>
+    </plurals>
+    <plurals name="time_elapsed_minutes">
+        <item quantity="one">%d minut siden</item>
+        <item quantity="other">%d minutter siden</item>
+    </plurals>
+    <plurals name="time_elapsed_hours">
+        <item quantity="one">%d time siden</item>
+        <item quantity="other">%d timer siden</item>
+    </plurals>
+    <plurals name="time_elapsed_days">
+        <item quantity="one">%d dag siden</item>
+        <item quantity="other">%d dage siden</item>
+    </plurals>
+    <plurals name="time_elapsed_years">
+        <item quantity="one">%d år siden</item>
+        <item quantity="other">%d år siden</item>
+    </plurals>
 </resources>

@@ -35,6 +35,8 @@
     <string name="pref_select_theme_title">Estilu</string>
     <string name="pref_view_mode_title">Mou de la visualización</string>
     <string name="pref_lang_title">Llingua</string>
+    <string name="pref_show_icons_title">Amosar los iconos</string>
+    <string name="pref_show_icons_summary">Amuesa los iconos al llau de cada entrada</string>
     <string name="pref_code_group_size_title">Agrupamientu de díxitos</string>
     <string name="pref_code_group_size_summary">Seleiciona\'l númberu de díxitos pol que s\'agrupen los códigos</string>
     <string name="pref_account_name_title">Amosar el nome de les cuentes</string>
@@ -99,7 +101,9 @@
     <string name="export_warning_password">Les esportaciones cífrense con otra contraseña que se configura nos axustes de seguranza.</string>
     <string name="export_format_aegis">Aegis (.JSON)</string>
     <string name="export_format_google_auth_uri">Ficheru de testu (.TXT)</string>
+    <string name="export_format_html">Páxina web (.HTML)</string>
     <string name="export_format_hint">Formatu de la esportación</string>
+    <string name="export_html_title">Esportación d\'Aeguis Authenticator</string>
     <string name="choose_authentication_method">Seguranza</string>
     <string name="authentication_method_explanation">Aegis ye una aplicación enfocada na seguranza p\'autenticase en dos pasos. Los pases atróxense nuna arca que se pue cifrar cola contraseña qu\'escueyas, polo que si un atacante consigue\'l ficheru cifráu de l\'arca, nun va ser a acceder al so conteníu si nun sabe la contraseña.\n\nSeleicionemos por ti la opción que nos paez más afayadiza pal preséu.</string>
     <string name="authentication_method_none">Nada</string>
@@ -110,8 +114,7 @@
     <string name="authentication_method_biometrics">Biometría</string>
     <string name="authentication_method_biometrics_description">Amás de la contraseña, pues usar la biometría (les buelgues o la cara) rexistrada nel preséu pa desbloquiar l\'arca.</string>
     <string name="authentication">Desbloquéu de l\'arca</string>
-    <!-- The newline (\n) on the following line is just for aesthetic purposes !-->
-    <string name="authentication_multiline">Desbloquéu\nde l\'arca</string>
+    <string name="authentication_multiline" comment="The newline in the middle is used for aesthetic purposes">Desbloquéu\nde l\'arca</string>
     <string name="auth_use_biometrics">O toca equí pa usar la <font fgcolor="#FF0D86C1">biometría</font></string>
     <string name="set_password">Introduz una contraseña</string>
     <string name="set_group">Introduz un nome pal grupu</string>
@@ -226,7 +229,6 @@
     <string name="reading_file_error">Prodúxose un error mentanto se lleía\'l ficheru</string>
     <string name="app_lookup_error">Error: l\'aplicación nun ta instalada</string>
     <string name="app_version_error">La versión instalada de «%s» nun ye compatible. Les versiones nueves comenzaron a cifrar dalgunos ficheros nel direutoriu del almacenamientu internu, lo que fai qu\'Aegis nun seya a acceder a la información que precisa pa la importación. Ye probable qu\'al tentar d\'importar se produza un error. ¿Quies siguir de toes toes?</string>
-    <string name="root_error">Error: nun ye posible consiguir l\'accesu de root</string>
     <plurals name="imported_entries_count">
         <item quantity="one">Importóse %d entrada</item>
         <item quantity="other">Importáronse %d entraes</item>
@@ -347,7 +349,6 @@
     </plurals>
     <string name="google_qr_export_unexpected">Esperábase\'l códigu QR #%d, mas escanióse\'l #%d</string>
     <string name="backup_error_bar_message"><b>La copia de seguranza de l\'arca falló apocayá</b></string>
-    <string name="backup_error_dialog_details">Falló un intentu recién de facer una copia de seguranza de l\'arca con «%s» porque se produxo un error (data de l\'aición: %s). Revisa los axustes pa que les copies de seguranza puedan facese correutamente.</string>
     <string name="backup_system_builtin">Copies de seguranza automátiques d\'Aegis</string>
     <string name="backup_system_android">Sistema de copies de segurazan na ñube d\'Android</string>
     <string name="backup_plaintext_export_warning"><b>L\'arca esportóse apocayá a un ficheru de testu planu</b></string>

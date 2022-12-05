@@ -35,6 +35,8 @@
     <string name="pref_select_theme_title">Θέμα</string>
     <string name="pref_view_mode_title">Τρόπος προβολής</string>
     <string name="pref_lang_title">Γλώσσα</string>
+    <string name="pref_show_icons_title">Εμφάνιση εικονιδίων</string>
+    <string name="pref_show_icons_summary">Εμφάνιση εικονιδίων δίπλα σε κάθε καταχώρηση</string>
     <string name="pref_code_group_size_title">Ομαδοποίηση ψηφίων κωδικού</string>
     <string name="pref_code_group_size_summary">Επιλέξτε τον αριθμό των ψηφίων για να ομαδοποιήσετε τους κωδικούς κατά</string>
     <string name="pref_account_name_title">Εμφάνιση του ονόματος λογαριασμού</string>
@@ -99,7 +101,12 @@
     <string name="export_warning_password">Οι εξαγωγές κρυπτογραφούνται χρησιμοποιώντας ένα ξεχωριστό κωδικό πρόσβασης που έχει ρυθμιστεί στις ρυθμίσεις ασφαλείας.</string>
     <string name="export_format_aegis">Aegis (.JSON)</string>
     <string name="export_format_google_auth_uri">Αρχείο κειμένου (*.TXT)</string>
+    <string name="export_format_html">Ιστοσελίδα (.HTML)</string>
     <string name="export_format_hint">Μορφή εξαγωγής</string>
+    <string name="export_all_groups">Εξαγωγή όλων των ομάδων</string>
+    <string name="export_choose_groups">Επιλέξτε ποιες ομάδες θα εξαχθούν:</string>
+    <string name="export_no_groups_selected">Δεν επιλέχθηκαν ομάδες για εξαγωγή</string>
+    <string name="export_html_title">Εξαγωγή Aegis Authenticator</string>
     <string name="choose_authentication_method">Ασφάλεια</string>
     <string name="authentication_method_explanation">Το Aegis είναι μια εφαρμογή 2FA επικεντρωμένη στην ασφάλεια. Τα αναγνωριστικά αποθηκεύονται σε μία κρύπτη, η οποία μπορεί προαιρετικά να κρυπτογραφηθεί με έναν κωδικό της επιλογής σας. Αν κάποιος εισβολέας αποκτήσει το κρυπτογραφημένο αρχείο της κρύπτης σας, δεν θα έχει πρόσβαση στα περιεχόμενα χωρίς να γνωρίζει τον κωδικό.\n\nΈχουμε προεπιλέξει την επιλογή που νομίζουμε ότι θα ταιριάζει καλύτερα στη συσκευή σας.</string>
     <string name="authentication_method_none">Καμία</string>
@@ -110,8 +117,7 @@
     <string name="authentication_method_biometrics">Βιομετρικά</string>
     <string name="authentication_method_biometrics_description">Εκτός από έναν κωδικό πρόσβασης, τα βιομετρικά στοιχεία που έχουν καταχωρηθεί σε αυτήν τη συσκευή, όπως ένα δακτυλικό αποτύπωμα ή το πρόσωπό σας, μπορούν να χρησιμοποιηθούν για να ξεκλειδώσετε την κρύπτη σας.</string>
     <string name="authentication">Ξεκλείδωμα της κρύπτης</string>
-    <!-- The newline (\n) on the following line is just for aesthetic purposes !-->
-    <string name="authentication_multiline">Ξεκλείδωμα\nτης κρύπτης</string>
+    <string name="authentication_multiline" comment="The newline in the middle is used for aesthetic purposes">Ξεκλείδωμα\nτης κρύπτης</string>
     <string name="auth_use_biometrics">Ή πατήστε εδώ για να χρησιμοποιήσετε <font fgcolor="#FF0D86C1">βιομετρία</font></string>
     <string name="set_password">Παρακαλώ εισάγετε έναν κωδικό πρόσβασης</string>
     <string name="set_group">Παρακαλώ εισάγετε όνομα ομάδας</string>
@@ -160,6 +166,7 @@
     <string name="encrypting_vault">Κρυπτογράφηση κρύπτης</string>
     <string name="exporting_vault">Εξαγωγή της κρύπτης</string>
     <string name="reading_file">Ανάγνωση αρχείου</string>
+    <string name="requesting_root_access">Αίτηση πρόσβασης root</string>
     <string name="analyzing_qr">Ανάλυση κωδικού QR</string>
     <string name="analyzing_qr_multiple">Ανάλυση κωδικού QR %d/%d (%s)</string>
     <plurals name="added_new_entries">
@@ -226,7 +233,7 @@
     <string name="reading_file_error">Παρουσιάστηκε σφάλμα κατά την προσπάθεια ανάγνωσης του αρχείου</string>
     <string name="app_lookup_error">Σφάλμα: Η εφαρμογή δεν έχει εγκατασταθεί</string>
     <string name="app_version_error">Η έκδοση του %s που έχει εγκατασταθεί δεν υποστηρίζεται. Πρόσφατες εκδόσεις έχουν αρχίσει να κρυπτογραφούν μερικά από τα αρχεία στον εσωτερικό κατάλογο αποθήκευσης, καθιστώντας το Aegis ανίκανο να αποκτήσει πρόσβαση στις πληροφορίες που χρειάζεται για την εισαγωγή. Η προσπάθεια εισαγωγής είναι πιθανό να οδηγήσει σε σφάλμα. Θα θέλατε να συνεχίσετε ούτως ή άλλως;</string>
-    <string name="root_error">Σφάλμα: Δεν είναι δυνατή η απόκτηση πρόσβασης root</string>
+    <string name="root_error">Σφάλμα: Αδυναμία απόκτησης πρόσβασης root</string>
     <plurals name="imported_entries_count">
         <item quantity="one">Εισήχθησαν %d καταχώρηση</item>
         <item quantity="other">Εισήχθησαν %d καταχωρήσεις</item>
@@ -347,9 +354,14 @@
     </plurals>
     <string name="google_qr_export_unexpected">Αναμενόταν κωδικός QR #%d, αλλά σαρώθηκε #%d αντί αυτού</string>
     <string name="backup_error_bar_message"><b>Η δημιουργία αντιγράφων ασφαλείας κρύπτης απέτυχε πρόσφατα</b></string>
-    <string name="backup_error_dialog_details">Μια πρόσφατη προσπάθεια δημιουργίας αντιγράφων ασφαλείας κρύπτης με χρήση %s απέτυχε επειδή παρουσιάστηκε σφάλμα. Επιχειρήθηκε η δημιουργία αντιγράφων ασφαλείας στο: %s. Ελέγξτε τις ρυθμίσεις δημιουργίας αντιγράφων ασφαλείας για να βεβαιωθείτε ότι τα αντίγραφα ασφαλείας μπορούν να ολοκληρωθούν με επιτυχία.</string>
+    <string name="backup_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">        Μια πρόσφατη προσπάθεια δημιουργίας αντιγράφων ασφαλείας κρύπτης με χρήση %s απέτυχε επειδή παρουσιάστηκε σφάλμα. Έγινε προσπάθεια δημιουργίας αντιγράφων ασφαλείας %s. Παρακαλώ ελέγξτε τις ρυθμίσεις δημιουργίας αντιγράφων ασφαλείας για να βεβαιωθείτε ότι τα αντίγραφα ασφαλείας μπορούν να ολοκληρωθούν με επιτυχία.
+    </string>
     <string name="backup_system_builtin">Ενσωματωμένα αυτόματα αντίγραφα ασφαλείας του Aegis</string>
     <string name="backup_system_android">Σύστημα αντιγράφων ασφαλείας στο cloud του Android</string>
+    <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">        Το τελευταίο αντίγραφο ασφαλείας είναι ξεπερασμένο (%s)
+    </string>
+    <string name="backup_reminder_bar_message">        Οι αλλαγές δεν υποστηρίζονται
+    </string>
     <string name="backup_plaintext_export_warning"><b>Η κρύπτη εξήχθη πρόσφατα σε απλό κείμενο</b></string>
     <string name="pref_show_plaintext_warning_hint">Να μην εμφανιστεί ξανά αυτή η προειδοποίηση</string>
     <string name="backup_plaintext_warning_explanation">Αυτή η προειδοποίηση εμφανίζεται επειδή πρόσφατα εξάγατε ένα μη κρυπτογραφημένο αντίγραφο της κρύπτης. Για να διατηρήσετε την ασφάλεια των token σας, σας συνιστούμε να διαγράψετε αυτό το αρχείο μόλις δεν είναι πλέον απαραίτητο.</string>
@@ -369,6 +381,9 @@
     </plurals>
     <string name="next">Επόμενο</string>
     <string name="previous">Προηγούμενο</string>
+    <string name="copy_uri">Αντιγραφή URI</string>
+    <string name="unable_to_copy_uri_to_clipboard">Αδυναμία αντιγραφής του URI στο πρόχειρο</string>
+    <string name="uri_copied_to_clipboard">Το URI αντιγράφηκε στο πρόχειρο</string>
     <string name="transfer_entry">Μεταφορά καταχώρησης</string>
     <string name="transfer_entry_description">Σαρώστε αυτόν τον κωδικό QR με την εφαρμογή ελέγχου ταυτότητας στην οποία θέλετε να μεταφέρετε αυτήν την καταχώριση</string>
     <string name="google_auth_compatible_transfer_description">Σαρώστε αυτούς τους κωδικούς QR με το Aegis ή το Google Authenticator.\n\nΛόγω περιορισμών της εφαρμογής Google Authenticator, περιλαμβάνονται μόνο αναγνωριστικών TOTP &amp; HOTP που χρησιμοποιούν SHA1 και παράγουν 6ψήφιους κωδικούς</string>
@@ -419,4 +434,24 @@
     <string name="pref_grouping_size_two">Ομάδες των 2</string>
     <string name="pref_grouping_size_three">Ομάδες των 3</string>
     <string name="pref_grouping_size_four">Ομάδες των 4</string>
+    <plurals name="time_elapsed_seconds">
+        <item quantity="one">%d δευτερόλεπτο πριν</item>
+        <item quantity="other">%d δευτερόλεπτα πριν</item>
+    </plurals>
+    <plurals name="time_elapsed_minutes">
+        <item quantity="one">%d λεπτό πριν</item>
+        <item quantity="other">%d λεπτά πριν</item>
+    </plurals>
+    <plurals name="time_elapsed_hours">
+        <item quantity="one">%d ώρα πριν</item>
+        <item quantity="other">%d ώρες πριν</item>
+    </plurals>
+    <plurals name="time_elapsed_days">
+        <item quantity="one">%d ημέρα πριν</item>
+        <item quantity="other">%d ημέρες πριν</item>
+    </plurals>
+    <plurals name="time_elapsed_years">
+        <item quantity="one">%d χρόνο πριν</item>
+        <item quantity="other">%d χρόνια πριν</item>
+    </plurals>
 </resources>

@@ -35,6 +35,8 @@
     <string name="pref_select_theme_title">Tema</string>
     <string name="pref_view_mode_title">Modo de visualización</string>
     <string name="pref_lang_title">Idioma</string>
+    <string name="pref_show_icons_title">Mostrar iconos</string>
+    <string name="pref_show_icons_summary">Mostrar iconos al lado de cada entrada</string>
     <string name="pref_code_group_size_title">Agrupación de los dígitos del código</string>
     <string name="pref_code_group_size_summary">Seleccione el número de dígitos por los que agrupar los códigos</string>
     <string name="pref_account_name_title">Mostrar el nombre de la cuenta</string>
@@ -100,6 +102,9 @@
     <string name="export_format_aegis">Aegis (.JSON)</string>
     <string name="export_format_google_auth_uri">Archivo de texto (.TXT)</string>
     <string name="export_format_hint">Formato de exportación</string>
+    <string name="export_all_groups">Exportar todos los grupos</string>
+    <string name="export_choose_groups">Selecciona qué grupos exportar:</string>
+    <string name="export_no_groups_selected">No se han seleccionado grupos para exportar</string>
     <string name="choose_authentication_method">Seguridad</string>
     <string name="authentication_method_explanation">Aegis es una aplicación 2FA centrada en la seguridad. Los tokens se almacenan en una bóveda, que opcionalmente puede cifrarse con una contraseña de su elección. Si un atacante obtiene su archivo de bóveda cifrado, no podrá acceder al contenido sin conocer la contraseña.\n\nHemos preseleccionado la opción que creemos que encajaría mejor para su dispositivo.</string>
     <string name="authentication_method_none">Ninguno</string>
@@ -110,8 +115,7 @@
     <string name="authentication_method_biometrics">Biometría</string>
     <string name="authentication_method_biometrics_description">Además de una contraseña, la biometría registrada en este dispositivo, como una huella digital o su cara, pueden ser usados para desbloquear la bóveda.</string>
     <string name="authentication">Desbloquear la bóveda</string>
-    <!-- The newline (\n) on the following line is just for aesthetic purposes !-->
-    <string name="authentication_multiline">Desbloquear\nla bóveda</string>
+    <string name="authentication_multiline" comment="The newline in the middle is used for aesthetic purposes">Desbloquear\nla bóveda</string>
     <string name="auth_use_biometrics">O pulse aquí para utilizar la <font fgcolor="#FF0D86C1">biometría</font></string>
     <string name="set_password">Por favor introduzca una contraseña</string>
     <string name="set_group">Por favor introduzca un nombre de grupo</string>
@@ -226,7 +230,6 @@
     <string name="reading_file_error">Se ha producido un error tratando de leer el archivo</string>
     <string name="app_lookup_error">Error: La aplicación no está instalada</string>
     <string name="app_version_error">La versión de %s que está instalada no es compatible. Las versiones recientes han comenzado a cifrar algunos de los archivos en el directorio de almacenamiento interno, haciendo que Aegis no pueda acceder a la información que necesita para la importación. Intentar importar probablemente resultará en un error. ¿Deseas continuar de todos modos?</string>
-    <string name="root_error">Error: No se puede obtener acceso root</string>
     <plurals name="imported_entries_count">
         <item quantity="one">Importada %d entrada</item>
         <item quantity="other">Importadas %d entradas</item>
@@ -347,7 +350,6 @@
     </plurals>
     <string name="google_qr_export_unexpected">Se esperaba un código QR #%d, pero en su lugar se escaneó #%d</string>
     <string name="backup_error_bar_message"><b>La copia de seguridad de la bóveda ha fallado recientemente</b></string>
-    <string name="backup_error_dialog_details">Un intento reciente de copia de seguridad de la bóveda usando %s falló debido a un error. La copia de seguridad se intentó en: %s. Por favor, compruebe su configuración de copia de seguridad para asegurarse de que las copias de seguridad puedan completarse con éxito.</string>
     <string name="backup_system_builtin">Copias de seguridad automáticas de Aegis</string>
     <string name="backup_system_android">Sistema de copias de seguridad en la nube de Android</string>
     <string name="backup_plaintext_export_warning"><b>La bóveda fue exportada recientemente en texto plano</b></string>

@@ -35,6 +35,8 @@
     <string name="pref_select_theme_title">主题</string>
     <string name="pref_view_mode_title">视图模式</string>
     <string name="pref_lang_title">语言</string>
+    <string name="pref_show_icons_title">显示图标</string>
+    <string name="pref_show_icons_summary">在每个条目旁边显示图标</string>
     <string name="pref_code_group_size_title">分组显示验证码</string>
     <string name="pref_code_group_size_summary">选择按多少位数字进行代码分组</string>
     <string name="pref_account_name_title">显示帐户名称</string>
@@ -97,7 +99,12 @@
     <string name="export_warning_password">导出使用在安全设置中配置的单独密码进行加密。</string>
     <string name="export_format_aegis">Aegis (.JSON)</string>
     <string name="export_format_google_auth_uri">文本文件 (.TXT)</string>
+    <string name="export_format_html">网页 (.HTML)</string>
     <string name="export_format_hint">导出格式</string>
+    <string name="export_all_groups">导出所有组</string>
+    <string name="export_choose_groups">选择要导出的组：</string>
+    <string name="export_no_groups_selected">没有选择要导出的组</string>
+    <string name="export_html_title">Aegis 身份验证器导出</string>
     <string name="choose_authentication_method">安全</string>
     <string name="authentication_method_explanation">Aegis 是一款专注于安全性的双重认证（2FA）应用。令牌存储在数据库中，可以选择使用您选择的密码进行加密。如果攻击者获得了加密的数据库文件，他们将无法在不知道密码的情况下访问内容。\n\n我们已预先选择了我们认为最适合您的设备的选项。</string>
     <string name="authentication_method_none">无</string>
@@ -108,8 +115,7 @@
     <string name="authentication_method_biometrics">生物识别</string>
     <string name="authentication_method_biometrics_description">除密码外，在此设备上注册的生物识别信息（例如指纹或人脸），也可用于解锁数据库。</string>
     <string name="authentication">解锁数据库</string>
-    <!-- The newline (\n) on the following line is just for aesthetic purposes !-->
-    <string name="authentication_multiline">解锁\n数据库</string>
+    <string name="authentication_multiline" comment="The newline in the middle is used for aesthetic purposes">解锁\n数据库</string>
     <string name="auth_use_biometrics">或者点击此处以使用 <font fgcolor="#FF0D86C1">生物识别</font></string>
     <string name="set_password">请输入密码</string>
     <string name="set_group">请输入群组名称</string>
@@ -158,6 +164,7 @@
     <string name="encrypting_vault">正在加密数据库</string>
     <string name="exporting_vault">正在导出数据库</string>
     <string name="reading_file">正在读取文件</string>
+    <string name="requesting_root_access">正在请求 root 权限</string>
     <string name="analyzing_qr">正在分析二维码</string>
     <string name="analyzing_qr_multiple">正在分析二维码 %d/%d (%s)</string>
     <plurals name="added_new_entries">
@@ -221,7 +228,7 @@
     <string name="reading_file_error">试图读取文件时出错</string>
     <string name="app_lookup_error">错误：应用未安装</string>
     <string name="app_version_error">不支持安装的 %s 版本。 最近的版本已经开始加密内部存储目录中的一些文件。 这使 Aegis 无法访问导入所需的信息。 尝试导入可能导致错误。您仍然想要继续吗？</string>
-    <string name="root_error">错误：无法获得 root 权限</string>
+    <string name="root_error">错误：无法获取 root 权限</string>
     <plurals name="imported_entries_count">
         <item quantity="other">已导入 %d 个条目</item>
     </plurals>
@@ -338,9 +345,13 @@
     </plurals>
     <string name="google_qr_export_unexpected">预期二维码 #%d，已扫描 #%d</string>
     <string name="backup_error_bar_message"><b>数据库最近备份失败</b></string>
-    <string name="backup_error_dialog_details">因发生错误，上次使用 %s 备份密码库的尝试失败。尝试于 %s。请检查您的备份设置以确保备份成功完成。</string>
+    <string name="backup_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">因发生错误，上次使用 %s 备份密码库的尝试失败。尝试于 %s。请检查您的备份设置以确保备份成功完成。    </string>
     <string name="backup_system_builtin">Aegis 内置的自动备份</string>
     <string name="backup_system_android">Android 的云备份系统</string>
+    <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">        最新备份已过时 (%s)
+    </string>
+    <string name="backup_reminder_bar_message">        变更没有被备份
+    </string>
     <string name="backup_plaintext_export_warning"><b>保险库最近导出为纯文本</b></string>
     <string name="pref_show_plaintext_warning_hint">不再显示此警告</string>
     <string name="backup_plaintext_warning_explanation">显示此警告是因为您最近导出了一个未加密的保险库副本。 为了保持令牌的安全性，我们建议一旦不再需要该文件，就将其删除。</string>
@@ -359,6 +370,9 @@
     </plurals>
     <string name="next">下一个</string>
     <string name="previous">上一个</string>
+    <string name="copy_uri">复制 URI</string>
+    <string name="unable_to_copy_uri_to_clipboard">无法复制 URI 到剪贴板</string>
+    <string name="uri_copied_to_clipboard">URI 已复制到剪贴板</string>
     <string name="transfer_entry">迁移条目</string>
     <string name="transfer_entry_description">使用您想将此条目迁移到的其它身份验证器应用扫描此二维码</string>
     <string name="google_auth_compatible_transfer_description">使用 Aegis 或 Google 身份验证器扫描这些二维码。\n\n由于 Google 身份验证器应用的限制， 只包含使用 SHA1 并生成 6 位数字代码的 TOTP &amp; HOTP 令牌</string>
@@ -409,4 +423,19 @@
     <string name="pref_grouping_size_two">2 位数</string>
     <string name="pref_grouping_size_three">3 位数</string>
     <string name="pref_grouping_size_four">4 位数</string>
+    <plurals name="time_elapsed_seconds">
+        <item quantity="other">%d 秒前</item>
+    </plurals>
+    <plurals name="time_elapsed_minutes">
+        <item quantity="other">%d 分钟前</item>
+    </plurals>
+    <plurals name="time_elapsed_hours">
+        <item quantity="other">%d 小时前</item>
+    </plurals>
+    <plurals name="time_elapsed_days">
+        <item quantity="other">%d 天前</item>
+    </plurals>
+    <plurals name="time_elapsed_years">
+        <item quantity="other">%d 年前</item>
+    </plurals>
 </resources>

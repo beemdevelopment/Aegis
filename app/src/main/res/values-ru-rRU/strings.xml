@@ -35,6 +35,8 @@
     <string name="pref_select_theme_title">Тема</string>
     <string name="pref_view_mode_title">Режим отображения</string>
     <string name="pref_lang_title">Язык</string>
+    <string name="pref_show_icons_title">Показывать значки</string>
+    <string name="pref_show_icons_summary">Показывать значки рядом с каждой записью</string>
     <string name="pref_code_group_size_title">Перегруппировка цифр кода</string>
     <string name="pref_code_group_size_summary">Выберите количество цифр для группировки кодов</string>
     <string name="pref_account_name_title">Показывать учётную запись</string>
@@ -103,7 +105,12 @@
     <string name="export_warning_password">Экспортируемые данные шифруются с использованием отдельного пароля, указанного в разделе настроек «Безопасность».</string>
     <string name="export_format_aegis">Aegis (.JSON)</string>
     <string name="export_format_google_auth_uri">Текстовый файл (.TXT)</string>
+    <string name="export_format_html">Веб-страница (.HTML)</string>
     <string name="export_format_hint">Формат экспорта</string>
+    <string name="export_all_groups">Экспорт всех групп</string>
+    <string name="export_choose_groups">Выберите группы для экспорта:</string>
+    <string name="export_no_groups_selected">Не выбрано групп для экспорта</string>
+    <string name="export_html_title">Экспорт Aegis Authenticator</string>
     <string name="choose_authentication_method">Безопасность</string>
     <string name="authentication_method_explanation">Aegis — приложение двухфакторной аутентификации (2FA), ориентированное на безопасность. Ключи хранятся в хранилище, которое по желанию можно зашифровать с помощью пароля. Если злоумышленник получит зашифрованный файл хранилища, он не сможет получить доступ к содержимому без указания пароля.\n\nВыбран наиболее подходящий вариант для вашего устройства.</string>
     <string name="authentication_method_none">Нет</string>
@@ -114,8 +121,7 @@
     <string name="authentication_method_biometrics">Биометрия</string>
     <string name="authentication_method_biometrics_description">В дополнение к паролю, биометрические данные, зарегистрированные на этом устройстве, такие как отпечаток пальца или лицо, могут быть использованы для разблокировки хранилища.</string>
     <string name="authentication">Разблокировать хранилище</string>
-    <!-- The newline (\n) on the following line is just for aesthetic purposes !-->
-    <string name="authentication_multiline">Открыть\nхранилище</string>
+    <string name="authentication_multiline" comment="The newline in the middle is used for aesthetic purposes">Открыть\nхранилище</string>
     <string name="auth_use_biometrics">Или нажмите здесь, чтобы использовать <font fgcolor="#FF0D86C1">биометрию</font>.</string>
     <string name="set_password">Введите пароль</string>
     <string name="set_group">Введите название группы</string>
@@ -164,6 +170,7 @@
     <string name="encrypting_vault">Шифрование хранилища</string>
     <string name="exporting_vault">Экспортирование хранилища</string>
     <string name="reading_file">Чтение файла</string>
+    <string name="requesting_root_access">Запрос root-доступа</string>
     <string name="analyzing_qr">Анализ QR-кода</string>
     <string name="analyzing_qr_multiple">Анализ QR-кода %d/%d (%s)</string>
     <plurals name="added_new_entries">
@@ -236,7 +243,7 @@
     <string name="reading_file_error">Произошла ошибка при попытке прочитать файл</string>
     <string name="app_lookup_error">Ошибка: приложение не установлено</string>
     <string name="app_version_error">Установленная версия %s не поддерживается. Последние версии начали шифровать некоторые файлы во внутренней памяти хранилища, из-за чего Aegis не может получить доступ к информации, необходимой для импорта. Попытка импорта может привести к ошибке. Всё равно продолжить?</string>
-    <string name="root_error">Ошибка: невозможно получить права суперпользователя</string>
+    <string name="root_error">Ошибка: root-доступ не получен</string>
     <plurals name="imported_entries_count">
         <item quantity="one">Импортирована %d запись</item>
         <item quantity="few">Импортированы %d записи</item>
@@ -365,9 +372,14 @@
     </plurals>
     <string name="google_qr_export_unexpected">Ожидался QR-код #%d, но вместо этого отсканирован #%d</string>
     <string name="backup_error_bar_message"><b>Недавно произошла ошибка резервного копирования хранилища</b></string>
-    <string name="backup_error_dialog_details">Последнее резервное копирование хранилища с использованием %s не выполнено из-за ошибки, попытка производилась: %s. Убедитесь, что настройки резервного копирования правильные.</string>
+    <string name="backup_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">Последнее резервное копирование хранилища с использованием %s не выполнено из-за ошибки. Попытка производилась %s. Убедитесь, что настройки резервного копирования правильные.
+    </string>
     <string name="backup_system_builtin">Встроенное автоматическое резервирование Aegis</string>
     <string name="backup_system_android">Системное облачное резервирование Android</string>
+    <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">        Последняя резервная копия устарела (%s)
+    </string>
+    <string name="backup_reminder_bar_message">        Изменения не сохранены
+    </string>
     <string name="backup_plaintext_export_warning"><b>Хранилище недавно было экспортировано в виде простого текста</b></string>
     <string name="pref_show_plaintext_warning_hint">Больше не показывать это предупреждение</string>
     <string name="backup_plaintext_warning_explanation">Это предупреждение отображается потому, что вы недавно экспортировали хранилище в незашифрованном виде. Для обеспечения безопасности ключей, мы рекомендуем удалить этот файл, как только он перестанет быть нужным.</string>
@@ -389,6 +401,9 @@
     </plurals>
     <string name="next">Следующий</string>
     <string name="previous">Предыдущий</string>
+    <string name="copy_uri">Копировать URI</string>
+    <string name="unable_to_copy_uri_to_clipboard">Невозможно скопировать URI в буфер обмена</string>
+    <string name="uri_copied_to_clipboard">URI скопирован в буфер обмена</string>
     <string name="transfer_entry">Передача записи</string>
     <string name="transfer_entry_description">Отсканируйте QR-код с помощью приложения для аутентификации, в которое вы хотите передать эту запись.</string>
     <string name="google_auth_compatible_transfer_description">Сканируйте эти QR-коды в Aegis или Google Authenticator. Из-за ограничений приложения Google Authenticator, включены только ключи TOTP и HOTP, использующие SHA1 и создающие 6-значные коды.</string>
@@ -440,4 +455,34 @@
     <string name="pref_grouping_size_two">Группы по 2</string>
     <string name="pref_grouping_size_three">Группы по 3</string>
     <string name="pref_grouping_size_four">Группы по 4</string>
+    <plurals name="time_elapsed_seconds">
+        <item quantity="one">%d секунду назад</item>
+        <item quantity="few">%d секунды назад</item>
+        <item quantity="many">%d секунд назад</item>
+        <item quantity="other">%d секунд назад</item>
+    </plurals>
+    <plurals name="time_elapsed_minutes">
+        <item quantity="one">%d минуту назад</item>
+        <item quantity="few">%d минуты назад</item>
+        <item quantity="many">%d минут назад</item>
+        <item quantity="other">%d минут назад</item>
+    </plurals>
+    <plurals name="time_elapsed_hours">
+        <item quantity="one">%d час назад</item>
+        <item quantity="few">%d часа назад</item>
+        <item quantity="many">%d часов назад</item>
+        <item quantity="other">%d часов назад</item>
+    </plurals>
+    <plurals name="time_elapsed_days">
+        <item quantity="one">%d день назад</item>
+        <item quantity="few">%d дня назад</item>
+        <item quantity="many">%d дней назад</item>
+        <item quantity="other">%d дней назад</item>
+    </plurals>
+    <plurals name="time_elapsed_years">
+        <item quantity="one">%d год назад</item>
+        <item quantity="few">%d года назад</item>
+        <item quantity="many">%d лет назад</item>
+        <item quantity="other">%d лет назад</item>
+    </plurals>
 </resources>

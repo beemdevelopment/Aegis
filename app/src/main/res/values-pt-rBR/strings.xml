@@ -110,8 +110,7 @@
     <string name="authentication_method_biometrics">Biometria</string>
     <string name="authentication_method_biometrics_description">Em adição a uma senha, biometria registrada nesse dispositivo, como uma impressão digital ou sua face, pode ser usada para desbloquear o cofre.</string>
     <string name="authentication">Desbloquear o cofre</string>
-    <!-- The newline (\n) on the following line is just for aesthetic purposes !-->
-    <string name="authentication_multiline">Desbloqueie\no cofre</string>
+    <string name="authentication_multiline" comment="The newline in the middle is used for aesthetic purposes">Desbloqueie\no cofre</string>
     <string name="auth_use_biometrics">Ou toque aqui para usar <font fgcolor="#FF0D86C1">biometria</font></string>
     <string name="set_password">Por favor, insira uma senha</string>
     <string name="set_group">Por favor, insira um nome de grupo</string>
@@ -226,7 +225,6 @@
     <string name="reading_file_error">Um erro ocorreu durante a tentativa de ler o arquivo</string>
     <string name="app_lookup_error">Erro: App não está instalado</string>
     <string name="app_version_error">A versão do %s que está instalada não é suportada. Versões recentes começaram a criptografar alguns dos arquivos no diretório de armazenamento interno, tornando o Aegis incapaz de acessar as informações de que necessita para a importação. É provável que a tentativa de importar resulte em um erro. Gostaria de continuar mesmo assim?</string>
-    <string name="root_error">Erro: Não foi possível obter acesso root</string>
     <plurals name="imported_entries_count">
         <item quantity="one">%d entrada importada</item>
         <item quantity="other">%d entradas importadas</item>
@@ -347,7 +345,6 @@
     </plurals>
     <string name="google_qr_export_unexpected">Esperados #%d QR code, mas escaneados #%d ao invés</string>
     <string name="backup_error_bar_message"><b>Backup do cofre falhou recentemente</b></string>
-    <string name="backup_error_dialog_details">Uma recente tentativa de backup no cofre usando %s falhou, pois ocorreu um erro. O backup foi tentado: %s. Por favor, verifique as configurações do seu backup para garantir que ele seja concluído com sucesso.</string>
     <string name="backup_system_builtin">Backups automáticos do Aegis</string>
     <string name="backup_system_android">Sistema de backup em nuvem do Android</string>
     <string name="backup_plaintext_export_warning"><b>O cofre foi exportado recentemente em texto simples</b></string>

@@ -35,6 +35,8 @@
     <string name="pref_select_theme_title">Tema</string>
     <string name="pref_view_mode_title">Visualizzazione</string>
     <string name="pref_lang_title">Seleziona lingua</string>
+    <string name="pref_show_icons_title">Mostra icone</string>
+    <string name="pref_show_icons_summary">Mostra le icone accanto a ogni voce</string>
     <string name="pref_code_group_size_title">Divisione cifre codice</string>
     <string name="pref_code_group_size_summary">Seleziona il numero di cifre per cui raggruppare i codici</string>
     <string name="pref_account_name_title">Mostra nome account</string>
@@ -99,7 +101,12 @@
     <string name="export_warning_password">Le esportazioni vengono crittografate utilizzando una password separata configurata nelle impostazioni di sicurezza.</string>
     <string name="export_format_aegis">Aegis (.JSON)</string>
     <string name="export_format_google_auth_uri">File di testo (.TXT)</string>
+    <string name="export_format_html">Pagina web (.HTML)</string>
     <string name="export_format_hint">Formato di esportazione</string>
+    <string name="export_all_groups">Esporta tutti i gruppi</string>
+    <string name="export_choose_groups">Seleziona i gruppi da esportare:</string>
+    <string name="export_no_groups_selected">Non sono stati selezionati gruppi da esportare</string>
+    <string name="export_html_title">Esportazione di Aegis Authenticator</string>
     <string name="choose_authentication_method">Sicurezza</string>
     <string name="authentication_method_explanation">Aegis è un\'app per l\'autenticazione a due fattori incentrata sulla sicurezza. I token sono memorizzati in una cassaforte che può essere opzionalmente crittografata con una password. Se un utente malintenzionato ottiene il file criptato della cassaforte, non sarà in grado di accedere ai contenuti senza conoscere la password.\n\nAbbiamo già selezionato l\'opzione che riteniamo più adatta per il tuo dispositivo.</string>
     <string name="authentication_method_none">Nessuna</string>
@@ -110,8 +117,7 @@
     <string name="authentication_method_biometrics">Biometrica</string>
     <string name="authentication_method_biometrics_description">Oltre a una password, i dati biometrici registrati su questo dispositivo, come un\'impronta digitale o il tuo volto, possono essere utilizzati per sbloccare la cassaforte.</string>
     <string name="authentication">Sblocca la cassaforte</string>
-    <!-- The newline (\n) on the following line is just for aesthetic purposes !-->
-    <string name="authentication_multiline">Sblocca\nla cassaforte</string>
+    <string name="authentication_multiline" comment="The newline in the middle is used for aesthetic purposes">Sblocca\nla cassaforte</string>
     <string name="auth_use_biometrics">Oppure tocca qui per usare i <font fgcolor="#FF0D86C1">dati biometrici</font></string>
     <string name="set_password">Inserisci una password</string>
     <string name="set_group">Inserisci il nome di un gruppo</string>
@@ -160,6 +166,7 @@
     <string name="encrypting_vault">Cifratura della cassaforte in corso</string>
     <string name="exporting_vault">Esportazione della cassaforte in corso</string>
     <string name="reading_file">Lettura del file in corso</string>
+    <string name="requesting_root_access">Richiesta accesso root</string>
     <string name="analyzing_qr">Analisi del codice QR</string>
     <string name="analyzing_qr_multiple">Analisi del codice QR %d/%d (%s)</string>
     <plurals name="added_new_entries">
@@ -226,7 +233,7 @@
     <string name="reading_file_error">Si è verificato un errore nel tentativo di leggere il file</string>
     <string name="app_lookup_error">Errore: App non installata</string>
     <string name="app_version_error">La versione di %s installata non è supportata. Le versioni più recenti hanno iniziato a criptare alcuni dei file nella directory di archiviazione interna, rendendo Aegis incapace di accedere alle informazioni necessarie per l\'importazione. Il tentativo di importazione è probabile che dia luogo a un errore. Vuoi continuare comunque?</string>
-    <string name="root_error">Errore: impossibile ottenere i permessi di root</string>
+    <string name="root_error">Errore: Impossibile ottenere l\'accesso root</string>
     <plurals name="imported_entries_count">
         <item quantity="one">Importato %d elemento</item>
         <item quantity="other">Importati %d elementi</item>
@@ -347,9 +354,14 @@
     </plurals>
     <string name="google_qr_export_unexpected">Previsto codice QR #%d, ma scansionato #%d invece</string>
     <string name="backup_error_bar_message"><b>Backup della cassaforte fallito recentemente</b></string>
-    <string name="backup_error_dialog_details">Un recente tentativo di backup del vault utilizzando %s non è riuscito perché si è verificato un errore. Il backup è stato tentato il: %s. Controlla le impostazioni di backup per assicurarti che i backup possano essere completati correttamente.</string>
+    <string name="backup_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">        Un recente tentativo di backup della cassaforte utilizzando %s non è riuscito perché si è verificato un errore. Il backup è stato tentato %s. Controlla le impostazioni di backup per assicurarti che i backup possano essere completati correttamente.
+    </string>
     <string name="backup_system_builtin">i backup automatici integrati di Aegis</string>
     <string name="backup_system_android">il sistema di backup su cloud di Android</string>
+    <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">        L\'ultimo backup è vecchio (%s)
+    </string>
+    <string name="backup_reminder_bar_message">        Le modifiche non vengono sottoposte a backup
+    </string>
     <string name="backup_plaintext_export_warning"><b>La cassaforte è stata recentemente esportata in testo normale</b></string>
     <string name="pref_show_plaintext_warning_hint">Non mostrare più questo avviso</string>
     <string name="backup_plaintext_warning_explanation">Questo avviso viene visualizzato perché di recente è stata esportata una copia non crittografata della cassaforte. Per mantenere la sicurezza dei tuoi token, ti consigliamo di eliminare questo file quando non è più necessario.</string>
@@ -369,6 +381,9 @@
     </plurals>
     <string name="next">Avanti</string>
     <string name="previous">Indietro</string>
+    <string name="copy_uri">Copia URI</string>
+    <string name="unable_to_copy_uri_to_clipboard">Impossibile copiare l\'URI negli appunti</string>
+    <string name="uri_copied_to_clipboard">URI copiato negli appunti</string>
     <string name="transfer_entry">Trasferisci voce</string>
     <string name="transfer_entry_description">Scansiona questo codice QR con l\'app di autenticazione a cui vuoi trasferire questa voce</string>
     <string name="google_auth_compatible_transfer_description">Scansionare questi codici QR con Aegis o Google Authenticator.\n\nA causa delle limitazioni dell\'applicazione Google Authenticator, sono inclusi solo i token TOTP e HOTP che utilizzano SHA1 e producono codici a 6 cifre</string>
@@ -419,4 +434,24 @@
     <string name="pref_grouping_size_two">Gruppi di 2</string>
     <string name="pref_grouping_size_three">Gruppi di 3</string>
     <string name="pref_grouping_size_four">Gruppi di 4</string>
+    <plurals name="time_elapsed_seconds">
+        <item quantity="one">%d secondo fa</item>
+        <item quantity="other">%d secondi fa</item>
+    </plurals>
+    <plurals name="time_elapsed_minutes">
+        <item quantity="one">%d minuto fa</item>
+        <item quantity="other">%d minuti fa</item>
+    </plurals>
+    <plurals name="time_elapsed_hours">
+        <item quantity="one">%d ora fa</item>
+        <item quantity="other">%d ore fa</item>
+    </plurals>
+    <plurals name="time_elapsed_days">
+        <item quantity="one">%d giorno fa</item>
+        <item quantity="other">%d giorni fa</item>
+    </plurals>
+    <plurals name="time_elapsed_years">
+        <item quantity="one">%d anno fa</item>
+        <item quantity="other">%d anni fa</item>
+    </plurals>
 </resources>

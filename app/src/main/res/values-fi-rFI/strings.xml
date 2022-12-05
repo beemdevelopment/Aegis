@@ -103,8 +103,7 @@
     <string name="authentication_method_biometrics">Biometria</string>
     <string name="authentication_method_biometrics_description">Holvin voi avata sekä salasanalla että laitteeseen tallennettujen biometristen tietojen, kuten sormenjälkesi tai kasvojesi avulla.</string>
     <string name="authentication">Avaa holvi</string>
-    <!-- The newline (\n) on the following line is just for aesthetic purposes !-->
-    <string name="authentication_multiline">Avaa\nholvi</string>
+    <string name="authentication_multiline" comment="The newline in the middle is used for aesthetic purposes">Avaa\nholvi</string>
     <string name="auth_use_biometrics">Tai napauta tästä käyttääksesi <font fgcolor="#FF0D86C1">biometriaa</font></string>
     <string name="set_password">Anna salasana</string>
     <string name="set_group">Anna ryhmän nimi</string>
@@ -214,7 +213,6 @@
     <string name="file_not_found">Virhe: Tiedostoa ei löydy</string>
     <string name="reading_file_error">Tiedoston lukemisessa tapahtui virhe</string>
     <string name="app_lookup_error">Virhe: Sovellusta ei ole asennettu</string>
-    <string name="root_error">Virhe: root-oikeuksia ei voitu saada</string>
     <plurals name="imported_entries_count">
         <item quantity="one">%d kohde tuotu</item>
         <item quantity="other">%d kohdetta tuotu</item>
@@ -306,7 +304,7 @@
     <string name="search">Haku</string>
     <string name="channel_name_lock_status">Lukituksen tila</string>
     <string name="channel_description_lock_status">Aegis voi luoda pysyvän ilmoituksen, joka ilmoittaa sinulle, kun holvi on lukittu</string>
-    <string name="vault_unlocked_state">Holvi on lukittu. Avaa napauttamalla.</string>
+    <string name="vault_unlocked_state">Holvi on avattu. Lukitse napauttamalla.</string>
     <string name="version">Versio</string>
     <string name="changelog">Muutosloki</string>
     <string name="whats_new">Mitä uutta</string>

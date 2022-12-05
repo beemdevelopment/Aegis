@@ -35,6 +35,8 @@
     <string name="pref_select_theme_title">Thema</string>
     <string name="pref_view_mode_title">Weergavemodus</string>
     <string name="pref_lang_title">Taal</string>
+    <string name="pref_show_icons_title">Pictogrammen tonen</string>
+    <string name="pref_show_icons_summary">Pictogrammen weergeven naast elk item</string>
     <string name="pref_code_group_size_title">Codecijfergroepering</string>
     <string name="pref_code_group_size_summary">Selecteer aantal cijfers om de codes op te groeperen</string>
     <string name="pref_account_name_title">Toon de accountnaam</string>
@@ -100,6 +102,9 @@
     <string name="export_format_aegis">Aegis (.JSON)</string>
     <string name="export_format_google_auth_uri">Tekstbestand (.TXT)</string>
     <string name="export_format_hint">Bestandsformaat</string>
+    <string name="export_all_groups">Alle groepen exporteren</string>
+    <string name="export_choose_groups">Kies groepen om te exporteren:</string>
+    <string name="export_no_groups_selected">Geen groepen gekozen om te exporteren</string>
     <string name="choose_authentication_method">Beveiliging</string>
     <string name="authentication_method_explanation">Aegis is een op veiligheid gerichte 2FA-applicatie. Tokens worden opgeslagen in een kluis, die optioneel kan worden versleuteld met een wachtwoord naar keuze. Als een aanvaller je versleutelde kluisbestand in handen krijgt, zal deze geen toegang hebben tot de inhoud zonder het wachtwoord te kennen.\n\nWij hebben de optie gekozen die volgens ons het beste past bij jouw apparaat.</string>
     <string name="authentication_method_none">Geen</string>
@@ -110,8 +115,7 @@
     <string name="authentication_method_biometrics">Biometrie</string>
     <string name="authentication_method_biometrics_description">Naast een wachtwoord kunnen biometrische gegevens die geregistreerd zijn op dit apparaat, zoals een vingerafdruk of je gezicht, gebruikt worden om de kluis te ontgrendelen.</string>
     <string name="authentication">Ontgrendel de kluis</string>
-    <!-- The newline (\n) on the following line is just for aesthetic purposes !-->
-    <string name="authentication_multiline">Ontgrendel\nde kluis</string>
+    <string name="authentication_multiline" comment="The newline in the middle is used for aesthetic purposes">Ontgrendel\nde kluis</string>
     <string name="auth_use_biometrics">Of tik hier om <font fgcolor="#FF0D86C1">biometrie</font> te gebruiken</string>
     <string name="set_password">Vul een wachtwoord in</string>
     <string name="set_group">Vul een groepsnaam in</string>
@@ -226,7 +230,6 @@
     <string name="reading_file_error">Er is een fout opgetreden tijdens het lezen van het bestand</string>
     <string name="app_lookup_error">Fout: App is niet geïnstalleerd</string>
     <string name="app_version_error">De geïnstalleerde versie van %s wordt niet ondersteund. Recente versies zijn begonnen met het versleutelen van enkele bestanden in de interne opslagmap. Hierdoor heeft Aegis geen toegang tot de informatie die nodig is om te importeren. Importeren zal waarschijnlijk een fout opleveren. Wil je toch doorgaan?</string>
-    <string name="root_error">Fout: Er kon geen root-access verkregen worden</string>
     <plurals name="imported_entries_count">
         <item quantity="one">%d item geïmporteerd</item>
         <item quantity="other">%d items geïmporteerd</item>
@@ -347,7 +350,6 @@
     </plurals>
     <string name="google_qr_export_unexpected">QR-code #%d werd verwacht, maar in plaats daarvan #%d gescand</string>
     <string name="backup_error_bar_message"><b>Kluis back-up onlangs mislukt</b></string>
-    <string name="backup_error_dialog_details">Een recente back-up van de kluis met %s is mislukt omdat er iets misging. De back-up werd op %s geprobeerd. Controleer de back-upinstellingen zodat back-ups succesvol kunnen worden voltooid.</string>
     <string name="backup_system_builtin">het ingebouwde automatische back-ups van Aegis</string>
     <string name="backup_system_android">het cloud back-upsysteem van Android</string>
     <string name="backup_plaintext_export_warning"><b>De kluis is recent geëxporteerd in platte tekst</b></string>

@@ -94,8 +94,7 @@
     <string name="authentication_method_biometrics">بیومتریک</string>
     <string name="authentication_method_biometrics_description">علاوه بر کلمه عبور، یک روش احراز هویت بیومتریک مانند اثر انگشت یا تشخیص چهره تعریف شده است که میتوان برای بازگشایی مخزن استفاده کرد.</string>
     <string name="authentication">بازکردن مخزن</string>
-    <!-- The newline (\n) on the following line is just for aesthetic purposes !-->
-    <string name="authentication_multiline">باز کردن\nمخزن</string>
+    <string name="authentication_multiline" comment="The newline in the middle is used for aesthetic purposes">باز کردن\nمخزن</string>
     <string name="auth_use_biometrics">یا برای استفاده از &lt;font fgcolor=\'#FF0D86C1\'&gt;بیومتریک&lt;/font&gt; لمس کنید</string>
     <string name="set_password">لطفا کلمه عبور را وارد کنید</string>
     <string name="set_group">لطفا نام گروه را وارد کنید</string>
@@ -186,7 +185,6 @@
     <string name="file_not_found">خطا: فایل پیدا نشد!</string>
     <string name="reading_file_error">هنگام خواندن فایل خطایی رخ داد</string>
     <string name="app_lookup_error">خطا: برنامه نصب نشده است</string>
-    <string name="root_error">خطا: دسترسی روت اختصاص نیافت</string>
     <plurals name="imported_entries_count">
         <item quantity="one">%d آیتم وارد شد</item>
         <item quantity="other">%d آیتم وارد شد</item>

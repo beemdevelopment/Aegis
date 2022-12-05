@@ -86,8 +86,7 @@
     <string name="authentication_method_biometrics">Biometrické údaje</string>
     <string name="authentication_method_biometrics_description">Na odomknutie trezoru možno okrem hesla použiť aj biometriu zaregistrovanú v tomto zariadení, napríklad odtlačok prsta alebo vašu tvár.</string>
     <string name="authentication">Odomknúť trezor</string>
-    <!-- The newline (\n) on the following line is just for aesthetic purposes !-->
-    <string name="authentication_multiline">Odomknúť \n trezor</string>
+    <string name="authentication_multiline" comment="The newline in the middle is used for aesthetic purposes">Odomknúť \n trezor</string>
     <string name="auth_use_biometrics">Alebo kliknite sem pre použitie <font fgcolor="#FF0D86C1">biometrie</font></string>
     <string name="set_password">Prosím, zadajte heslo</string>
     <string name="set_group">Zadajte názov skupiny</string>

@@ -93,8 +93,7 @@
     <string name="authentication_method_biometrics">Biometrikus</string>
     <string name="authentication_method_biometrics_description">A jelszó mellett a biometrikus adatai is regisztrálva lesznek az eszközön, mint például az ujjlenyomata vagy az arca, melyet a széf feloldásához használhat.</string>
     <string name="authentication">A széf feloldása</string>
-    <!-- The newline (\n) on the following line is just for aesthetic purposes !-->
-    <string name="authentication_multiline">A széf \nfeloldása</string>
+    <string name="authentication_multiline" comment="The newline in the middle is used for aesthetic purposes">A széf \nfeloldása</string>
     <string name="auth_use_biometrics">Vagy nyomjon ide hogy használja a <font fgcolor="#FF0D86C1">biometrát</font></string>
     <string name="set_password">Adja meg a jelszavát</string>
     <string name="set_group">Adja meg a csoport nevét</string>
@@ -189,7 +188,6 @@
     <string name="file_not_found">Hiba: A fájl nem található</string>
     <string name="reading_file_error">Hiba történt a fájl olvasásakor</string>
     <string name="app_lookup_error">Hiba: Az alkalmazás nincs telepítve</string>
-    <string name="root_error">Hiba: Nem szerezhető root jogosultság</string>
     <string name="import_error_title">Egy vagy több hiba történt az importálás során</string>
     <string name="exporting_vault_error">Hiba történt a széf exportálásakor</string>
     <string name="exported_vault">A széf exportálva</string>

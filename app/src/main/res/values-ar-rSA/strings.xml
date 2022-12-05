@@ -35,6 +35,8 @@
     <string name="pref_select_theme_title">النمط</string>
     <string name="pref_view_mode_title">وضع العرض</string>
     <string name="pref_lang_title">اللغة</string>
+    <string name="pref_show_icons_title">إظهار الأيقونات</string>
+    <string name="pref_show_icons_summary">عرض الأيقونات بجانب كل مدخل</string>
     <string name="pref_code_group_size_title">تجميع أرقام الكود</string>
     <string name="pref_code_group_size_summary">اختر عدد الخانات المستخدمة في تجميع الرموز</string>
     <string name="pref_account_name_title">اظهر اسم الحساب</string>
@@ -106,8 +108,7 @@
     <string name="authentication_method_biometrics">البيومترية</string>
     <string name="authentication_method_biometrics_description">بالإضافة إلى كلمة المرور، يمكن استعمال البيومترية المسجلة على هذا الجهاز، مثل البصمة أو وجهك، لفك قفل المخزن</string>
     <string name="authentication">افتح قفل لمخزن</string>
-    <!-- The newline (\n) on the following line is just for aesthetic purposes !-->
-    <string name="authentication_multiline">افتح قفل\nالمخزن</string>
+    <string name="authentication_multiline" comment="The newline in the middle is used for aesthetic purposes">افتح قفل\nالمخزن</string>
     <string name="auth_use_biometrics">أو انقر هنا لاستعمال <font fgcolor="#FF0D86C1">البيومترية</font></string>
     <string name="set_password">الرجاء إدخال كلمة المرور</string>
     <string name="set_group">الرجاء إدخال اسم المجموعة</string>
@@ -215,7 +216,6 @@
     <string name="reading_file_error">حدث خطأ أثناء محاولة قراءة الملف</string>
     <string name="app_lookup_error">ّخطأ: التطبيق غير مثبت</string>
     <string name="app_version_error">نسخة %s التي تم تثبيتها غير مدعومة. أصبحت الإصدارات الحديثة تقوم بتشفير بعض الملفات في مجلد التخزين الداخلي، مما يجعل Aegis غير قادر على الوصول إلى المعلومات التي يحتاجها من أجل الاستيراد. محاولة الاستيراد من المرجح أن تؤدي إلى خطأ. هل ترغب في الاستمرار على أي حال؟</string>
-    <string name="root_error">خطأ: تعذّر الوصول إلى الجذر root</string>
     <plurals name="entries_shown">
         <item quantity="zero">إظهار %d مدخل</item>
         <item quantity="one">إظهار %d مدخل</item>
@@ -329,6 +329,8 @@
     <string name="backup_error_bar_message"><b>النسخ الاحتياطي للمخزن فشل مؤخرًا</b></string>
     <string name="backup_system_builtin">النسخ الاحتياطية التلقائية المضنة في Aegis</string>
     <string name="backup_system_android">نظام النسخ الاحتياطي السحابي للأندرويد</string>
+    <string name="backup_reminder_bar_message">        لم يتم النسخ الاحتياطي للتغييرات
+    </string>
     <string name="backup_plaintext_export_warning"><b>تم تصدير المخزن مؤخرا ك نص مجرّد</b></string>
     <string name="pref_show_plaintext_warning_hint">لا تظهر هذا التحذير مجدداً</string>
     <string name="backup_plaintext_warning_explanation">يظهر هذا التحذير لأنك قمت مؤخراً بتصدير نسخة غير مشفرة من المخزن. للحفاظ على أمان الرموز الخاصة بك، نوصي بحذف هذا الملف بمجرد أن لا تكون هناك حاجة إليه.</string>

@@ -110,8 +110,7 @@
     <string name="authentication_method_biometrics">Biometría</string>
     <string name="authentication_method_biometrics_description">A maiores do contrasinal, a biometría rexistrada neste dispositivo, como as pegadas dactilares ou a túa cara, pódense usar para desbloquear o almacén.</string>
     <string name="authentication">Desbloquea o almacén</string>
-    <!-- The newline (\n) on the following line is just for aesthetic purposes !-->
-    <string name="authentication_multiline">Desbloquea\no almacén</string>
+    <string name="authentication_multiline" comment="The newline in the middle is used for aesthetic purposes">Desbloquea\no almacén</string>
     <string name="auth_use_biometrics">Ou preme aquí para usar a <font fgcolor="#FF0D86C1">biometría</font></string>
     <string name="set_password">Introduce un contrasinal</string>
     <string name="set_group">Introduce un nome de grupo</string>
@@ -226,7 +225,6 @@
     <string name="reading_file_error">Ocorreu un erro ao intentar ler o ficheiro</string>
     <string name="app_lookup_error">Erro: A aplicación non está instalada</string>
     <string name="app_version_error">A versión instalada de %s non é compatible. As versións recentes comezaron a cifrar algúns ficheiros no almacenamento interno, causando que Aegis sexa incapaz de acceder á información que necesita para a importación. Intentar importar vai resultar probablemente nun erro. Queres continuar de tódolos xeitos?</string>
-    <string name="root_error">Erro: non se puido obter acceso root</string>
     <plurals name="imported_entries_count">
         <item quantity="one">Importouse %d entrada</item>
         <item quantity="other">Importáronse %d entradas</item>
@@ -347,7 +345,6 @@
     </plurals>
     <string name="google_qr_export_unexpected">Esperábase o código QR nº %d, pero escaneouse o nº %d</string>
     <string name="backup_error_bar_message"><b>A copia de seguridade do almacén fallou recentemente</b></string>
-    <string name="backup_error_dialog_details">Un intento de facer unha copia de seguridade do almacén usando %s fallou debido a algún erro. A copia de seguridade intentouse o: %s. Comproba os axustes da copia de seguridade para asegurarte de que poidan completar correctamente.</string>
     <string name="backup_system_builtin">Copias de seguridade automáticas de Aegis</string>
     <string name="backup_system_android">Copias de seguridade na nube de Android</string>
     <string name="backup_plaintext_export_warning"><b>O almacén exportouse recentemente como texto plano</b></string>

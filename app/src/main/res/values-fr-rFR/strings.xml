@@ -35,6 +35,8 @@
     <string name="pref_select_theme_title">Thème</string>
     <string name="pref_view_mode_title">Mode d\'affichage</string>
     <string name="pref_lang_title">Langue</string>
+    <string name="pref_show_icons_title">Afficher les icônes</string>
+    <string name="pref_show_icons_summary">Afficher les icônes à côté de chaque entrée</string>
     <string name="pref_code_group_size_title">Regroupement des chiffres du code</string>
     <string name="pref_code_group_size_summary">Sélectionner le nombre de chiffres par lequel regrouper les codes</string>
     <string name="pref_account_name_title">Afficher le nom du compte</string>
@@ -100,6 +102,9 @@
     <string name="export_format_aegis">Aegis (.JSON)</string>
     <string name="export_format_google_auth_uri">Fichier texte (.TXT)</string>
     <string name="export_format_hint">Format d\'export</string>
+    <string name="export_all_groups">Exporter tous les groupes</string>
+    <string name="export_choose_groups">Sélectionner les groupes à exporter :</string>
+    <string name="export_no_groups_selected">Aucun groupe sélectionné pour l\'export</string>
     <string name="choose_authentication_method">Sécurité</string>
     <string name="authentication_method_explanation">Aegis est une application d\'authentification à deux facteurs (2FA) axée sur la sécurité. Les jetons sont stockés dans un coffre-fort, qui peut être éventuellement chiffré avec un mot de passe de votre choix. Si un attaquant obtient votre fichier de coffre-fort chiffré, il ne pourra pas accéder au contenu sans connaître le mot de passe.\n\nNous avons présélectionné l\'option que nous pensons la plus adaptée à votre appareil.</string>
     <string name="authentication_method_none">Aucun</string>
@@ -110,8 +115,7 @@
     <string name="authentication_method_biometrics">Biométrie</string>
     <string name="authentication_method_biometrics_description">En plus d\'un mot de passe, les données biométriques enregistrées sur cet appareil, comme une empreinte digitale ou votre visage, peuvent être utilisées pour déverrouiller le coffre-fort.</string>
     <string name="authentication">Déverrouiller le coffre-fort</string>
-    <!-- The newline (\n) on the following line is just for aesthetic purposes !-->
-    <string name="authentication_multiline">Déverrouiller\nle coffre-fort</string>
+    <string name="authentication_multiline" comment="The newline in the middle is used for aesthetic purposes">Déverrouiller\nle coffre-fort</string>
     <string name="auth_use_biometrics">Ou appuyez ici pour utiliser la <font fgcolor="#FF0D86C1">biométrie</font></string>
     <string name="set_password">Veuillez saisir un mot de passe</string>
     <string name="set_group">Veuillez saisir un nom de groupe</string>
@@ -160,6 +164,7 @@
     <string name="encrypting_vault">Chiffrement du coffre-fort</string>
     <string name="exporting_vault">Export du coffre-fort</string>
     <string name="reading_file">Lecture du fichier</string>
+    <string name="requesting_root_access">Demande d\'accès root</string>
     <string name="analyzing_qr">Analyse du code QR</string>
     <string name="analyzing_qr_multiple">Analyse du code QR %d/%d (%s)</string>
     <plurals name="added_new_entries">
@@ -226,7 +231,7 @@
     <string name="reading_file_error">Une erreur est survenue en essayant de lire le fichier</string>
     <string name="app_lookup_error">Erreur: l\'application n\'est pas installée</string>
     <string name="app_version_error">La version de %s installée n\'est pas prise en charge. Les versions récentes ont commencé à chiffrer certains fichiers dans le répertoire de stockage interne, rendant Aegis incapable d\'accéder aux informations dont il a besoin pour l\'importation. Tenter d\'importer est susceptible de provoquer une erreur. Souhaitez-vous continuer quand même ?</string>
-    <string name="root_error">Erreur : impossible d\'obtenir l\'accès root</string>
+    <string name="root_error">Erreur : Impossible d\'obtenir l\'accès root</string>
     <plurals name="imported_entries_count">
         <item quantity="one">%d entrée importée</item>
         <item quantity="other">%d entrées importées</item>
@@ -285,7 +290,7 @@
     <string name="pref_minimize_on_copy_title">Minimiser lors de la copie</string>
     <string name="pref_minimize_on_copy_summary">Minimiser l\'application après avoir copié un jeton</string>
     <string name="pref_copy_on_tap_title">Copier les jetons quand ils sont appuyés</string>
-    <string name="pref_copy_on_tap_summary">Copier les jetons dans le presse-papiers en appuyant dessus</string>
+    <string name="pref_copy_on_tap_summary">Copier les jetons dans le presse-papier en appuyant dessus</string>
     <string name="pref_pause_entry_title">Geler les jetons lorsqu\'ils sont appuyés</string>
     <string name="pref_pause_entry_summary">Mettre en pause l\'actualisation automatique des jetons en appuyant dessus. Les jetons ne seront plus mis à jour tant qu\'ils seront ciblés. Nécessite « Surligner les jetons lorsqu\'ils sont appuyés » ou « Appuyer pour révéler ».</string>
     <string name="pin_keyboard_description">Saisissez votre mot de passe pour activer le clavier PIN. Notez que cela ne fonctionne que si votre mot de passe est composé uniquement de chiffres</string>
@@ -347,9 +352,13 @@
     </plurals>
     <string name="google_qr_export_unexpected">Code QR n°%d attendu, mais n°%d scanné à la place</string>
     <string name="backup_error_bar_message"><b>La sauvegarde du coffre-fort a échoué récemment</b></string>
-    <string name="backup_error_dialog_details">Une tentative récente de sauvegarde du coffre-fort en utilisant %s a échoué car une erreur est survenue. La sauvegarde a été tentée à : %s. Veuillez vérifier vos paramètres de sauvegarde pour vous assurer que les sauvegardes peuvent être terminées avec succès.</string>
+    <string name="backup_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">Une tentative récente de sauvegarde du coffre-fort en utilisant %s a échoué car une erreur est survenue. La sauvegarde a été tentée %s. Veuillez vérifier vos paramètres de sauvegarde pour vous assurer que les sauvegardes peuvent être terminées avec succès.    </string>
     <string name="backup_system_builtin">Sauvegardes automatiques intégrées dans Aegis</string>
     <string name="backup_system_android">Système de sauvegarde cloud d\'Android</string>
+    <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">        La dernière sauvegarde est obsolète (%s)
+    </string>
+    <string name="backup_reminder_bar_message">        Les modifications ne sont pas sauvegardées
+    </string>
     <string name="backup_plaintext_export_warning"><b>Le coffre-fort a récemment été exporté en texte brut</b></string>
     <string name="pref_show_plaintext_warning_hint">Ne plus afficher cet avertissement</string>
     <string name="backup_plaintext_warning_explanation">Cet avertissement s\'affiche parce que vous avez récemment exporté une copie non chiffrée du coffre-fort. Pour maintenir la sécurité de vos jetons, nous vous recommandons de supprimer ce fichier une fois que vous n\'en aurez plus besoin.</string>
@@ -369,6 +378,9 @@
     </plurals>
     <string name="next">Suivant</string>
     <string name="previous">Précédent</string>
+    <string name="copy_uri">Copier l\'URI</string>
+    <string name="unable_to_copy_uri_to_clipboard">Impossible de copier l\'URI dans le presse-papier</string>
+    <string name="uri_copied_to_clipboard">URI copiée dans le presse-papier</string>
     <string name="transfer_entry">Transférer une entrée</string>
     <string name="transfer_entry_description">Scannez ce code QR avec l\'application d\'authentification vers laquelle vous souhaitez transférer cette entrée</string>
     <string name="google_auth_compatible_transfer_description">Scannez ces codes QR avec Aegis ou Google Authenticator.\n\nEn raison des limitations de l\'application Google Authenticator, seuls les jetons TOTP &amp; HOTP qui utilisent SHA1 et produisent des codes à 6 chiffres sont inclus</string>
@@ -419,4 +431,24 @@
     <string name="pref_grouping_size_two">Groupes de 2</string>
     <string name="pref_grouping_size_three">Groupes de 3</string>
     <string name="pref_grouping_size_four">Groupes de 4</string>
+    <plurals name="time_elapsed_seconds">
+        <item quantity="one">Il y a %d seconde</item>
+        <item quantity="other">Il y a %d secondes</item>
+    </plurals>
+    <plurals name="time_elapsed_minutes">
+        <item quantity="one">Il y a %d minute</item>
+        <item quantity="other">Il y a %d minutes</item>
+    </plurals>
+    <plurals name="time_elapsed_hours">
+        <item quantity="one">Il y a %d heure</item>
+        <item quantity="other">Il y a %d heures</item>
+    </plurals>
+    <plurals name="time_elapsed_days">
+        <item quantity="one">il y a %d jour</item>
+        <item quantity="other">Il y a %d jours</item>
+    </plurals>
+    <plurals name="time_elapsed_years">
+        <item quantity="one">Il y a %d an</item>
+        <item quantity="other">Il y a %d ans</item>
+    </plurals>
 </resources>

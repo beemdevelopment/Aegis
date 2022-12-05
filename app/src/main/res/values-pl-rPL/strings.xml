@@ -114,8 +114,7 @@
     <string name="authentication_method_biometrics">Autoryzacja biometryczna</string>
     <string name="authentication_method_biometrics_description">Oprócz hasła, do odblokowania sejfu możesz użyć danych biometrycznej przechowywanych na tym urządzeniu, takich jak odcisk palca lub twarz.</string>
     <string name="authentication">Odblokuj sejf</string>
-    <!-- The newline (\n) on the following line is just for aesthetic purposes !-->
-    <string name="authentication_multiline">Odblokuj\nsejf</string>
+    <string name="authentication_multiline" comment="The newline in the middle is used for aesthetic purposes">Odblokuj\nsejf</string>
     <string name="auth_use_biometrics">Lub kliknij tutaj, aby użyć <font fgcolor="#FF0D86C1">danych biometrycznych</font></string>
     <string name="set_password">Wpisz hasło</string>
     <string name="set_group">Wpisz nazwę grupy</string>
@@ -236,7 +235,6 @@
     <string name="reading_file_error">Wystąpił błąd podczas odczytywania pliku</string>
     <string name="app_lookup_error">Błąd: Aplikacja nie jest zainstalowana</string>
     <string name="app_version_error">Zainstalowana wersja %s nie jest obsługiwana. Ostatnie wersje zaczęły szyfrować niektóre pliki w katalogu pamięci wewnętrznej, przez co Aegis nie może uzyskać dostępu do informacji potrzebnych do importu. Próba importu prawdopodobnie zakończy się błędem. Czy mimo to chcesz kontynuować?</string>
-    <string name="root_error">Błąd: Nie można uzyskać dostępu do konta root</string>
     <plurals name="imported_entries_count">
         <item quantity="one">%d wpis został zaimportowany</item>
         <item quantity="few">%d wpisy zostały zaimportowane</item>
@@ -365,7 +363,6 @@
     </plurals>
     <string name="google_qr_export_unexpected">Aplikacja oczekiwała kodu QR nr %d, lecz zeskanowano kod nr %d</string>
     <string name="backup_error_bar_message"><b>Ostatnia kopia zapasowa sejfu nie powiodła się</b></string>
-    <string name="backup_error_dialog_details">Ostatnia próba wykonania kopii zapasowej sejfu z użyciem %s nie powiodła się, ponieważ wystąpił błąd. Kopia zapasowa została wykonana w: %s. Sprawdź ustawienia kopii zapasowej, aby upewnić się, że wykonywanie kopii zapasowych może się pomyślnie zakończyć.</string>
     <string name="backup_system_builtin">Wbudowane automatyczne kopie zapasowe Aegis</string>
     <string name="backup_system_android">System kopii zapasowej w chmurze Android</string>
     <string name="backup_plaintext_export_warning"><b>Sejf został ostatnio wyeksportowany w jawnym tekście</b></string>

@@ -93,8 +93,7 @@
     <string name="authentication_method_biometrics">生体認証</string>
     <string name="authentication_method_biometrics_description">パスワードに加えて、指紋や顔など、このデバイスに登録された生体認証を保管庫のロックの解除に使用することができます。</string>
     <string name="authentication">保管庫のロックを解除</string>
-    <!-- The newline (\n) on the following line is just for aesthetic purposes !-->
-    <string name="authentication_multiline">ロックを\n解除</string>
+    <string name="authentication_multiline" comment="The newline in the middle is used for aesthetic purposes">ロックを\n解除</string>
     <string name="auth_use_biometrics"><font fgcolor="#FF0D86C1">生体認証</font> を使用するにはここをタップしてください</string>
     <string name="set_password">パスワードを入力してください</string>
     <string name="set_group">グループ名を入力してください</string>
@@ -191,7 +190,6 @@
     <string name="file_not_found">エラー: ファイルが見つかりません</string>
     <string name="reading_file_error">ファイルの読み取り中にエラーが発生しました</string>
     <string name="app_lookup_error">エラー: アプリがインストールされていません</string>
-    <string name="root_error">エラー: root権限を取得できません</string>
     <plurals name="imported_entries_count">
         <item quantity="other">%d 件をインポートしました</item>
     </plurals>

@@ -106,8 +106,7 @@
     <string name="authentication_method_biometrics">Sinh trắc học</string>
     <string name="authentication_method_biometrics_description">Bên cạnh mật khẩu, thì sinh trắc học đã được đăng ký trên thiết bị, như vân tay hoặc khuôn mặt, có thể được sử dụng để mở khoá kho.</string>
     <string name="authentication">Mở khoá kho</string>
-    <!-- The newline (\n) on the following line is just for aesthetic purposes !-->
-    <string name="authentication_multiline">Mở khoá\nkho</string>
+    <string name="authentication_multiline" comment="The newline in the middle is used for aesthetic purposes">Mở khoá\nkho</string>
     <string name="auth_use_biometrics">Hoặc nhấn vào đây để sử dụng <font fgcolor="#FF0D86C1">sinh trắc học</font></string>
     <string name="set_password">Vui lòng nhập mật khẩu</string>
     <string name="set_group">Vui lòng nhập tên nhóm</string>
@@ -212,7 +211,6 @@
     <string name="file_not_found">Lỗi: Không tìm thấy tệp</string>
     <string name="reading_file_error">Đã xảy ra lỗi trong khi cố gắng đọc tệp</string>
     <string name="app_lookup_error">Lỗi: Ứng dụng không được cài đặt</string>
-    <string name="root_error">Lỗi: không thể nhận quyền truy cập root</string>
     <plurals name="imported_entries_count">
         <item quantity="other">Đã nhập %d mục</item>
     </plurals>

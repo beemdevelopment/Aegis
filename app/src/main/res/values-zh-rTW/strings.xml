@@ -102,8 +102,7 @@
     <string name="authentication_method_biometrics">生物特徵辨識</string>
     <string name="authentication_method_biometrics_description">除密碼外，在此裝置上註冊的生物特徵辨識（例如指紋或臉部），也可用於解鎖保險箱。</string>
     <string name="authentication">解鎖保險箱</string>
-    <!-- The newline (\n) on the following line is just for aesthetic purposes !-->
-    <string name="authentication_multiline">解鎖\n保險箱</string>
+    <string name="authentication_multiline" comment="The newline in the middle is used for aesthetic purposes">解鎖\n保險箱</string>
     <string name="auth_use_biometrics">或者輕觸此處以使用 <font fgcolor="#FF0D86C1">生物特徵辨識</font></string>
     <string name="set_password">請輸入密碼</string>
     <string name="set_group">請輸入群組名稱</string>
@@ -204,7 +203,6 @@
     <string name="file_not_found">錯誤：找不到檔案</string>
     <string name="reading_file_error">試圖開啟檔案時發生錯誤</string>
     <string name="app_lookup_error">錯誤：應用程式未安裝</string>
-    <string name="root_error">錯誤：無法取得 root 權限</string>
     <plurals name="imported_entries_count">
         <item quantity="other">已匯入 %d 個條目</item>
     </plurals>

@@ -100,8 +100,7 @@
     <string name="authentication_method_biometrics">बॉयोमेट्रिक्स</string>
     <string name="authentication_method_biometrics_description">एक पासवर्ड के अलावा, इस डिवाइस पर पंजीकृत बायोमेट्रिक्स, एक फिंगरप्रिंट या आपके चेहरे को वॉल्ट को अनलॉक करने के लिए इस्तेमाल किया जा सकता है।</string>
     <string name="authentication">वॉल्ट अनलॉक करें</string>
-    <!-- The newline (\n) on the following line is just for aesthetic purposes !-->
-    <string name="authentication_multiline">वॉल्ट\nअनलॉक करें</string>
+    <string name="authentication_multiline" comment="The newline in the middle is used for aesthetic purposes">वॉल्ट\nअनलॉक करें</string>
     <string name="auth_use_biometrics"><font fgcolor="#FF0D86C1">बॉयोमेट्रिक्स</font> का उपयोग करने के लिए टैप करें</string>
     <string name="set_password">कृपया पासवर्ड दर्ज करें</string>
     <string name="set_group">कृपया समूह नाम दर्ज़ करें</string>
@@ -202,7 +201,6 @@
     <string name="file_not_found">त्रुटी: फ़ाइल नहीं मिली</string>
     <string name="reading_file_error">फ़ाइल पढ़ने की कोशिश करते समय एक त्रुटि हुई</string>
     <string name="app_lookup_error">त्रुटी: ऐप इंस्टॉल नहीं है</string>
-    <string name="root_error">त्रुटी: रुट एक्सेस करने में असफल</string>
     <plurals name="imported_entries_count">
         <item quantity="one">%d प्रविष्टियाँ आयात कीं</item>
         <item quantity="other">%d प्रविष्टियाँ आयात कीं</item>

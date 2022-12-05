@@ -27,7 +27,6 @@
     <string name="choose_authentication_method">ಭದ್ರತೆ</string>
     <string name="authentication_method_none">ಯಾವುದೂ ಇಲ್ಲ</string>
     <string name="authentication_method_password">ಗುಪ್ತಪದ</string>
-    <!-- The newline (\n) on the following line is just for aesthetic purposes !-->
     <string name="set_password">ದಯವಿಟ್ಟು ಗುಪ್ತಪದವನ್ನು ನಮೂದಿಸಿ</string>
     <string name="set_group">ದಯವಿಟ್ಟು ಒಂದು ಗುಂಪಿನ ಹೆಸರವನ್ನು ನಮೂದಿಸಿ</string>
     <string name="set_number">ದಯವಿಟ್ಟು ಒಂದು ಸಂಖ್ಯೆಯನ್ನು ನಮೂದಿಸಿ</string>
@@ -72,7 +71,6 @@
     <string name="file_not_found">ದೋಷ: ಫೈಲ್ ಕಂಡುಬಂದಿಲ್ಲ</string>
     <string name="reading_file_error">ಫೈಲನ್ನು ಓದಲು ಪ್ರಯತ್ನಿಸುವಾಗ ಒಂದು ದೋಷ ಸಂಭವಿಸಿದೆ</string>
     <string name="app_lookup_error">ದೋಷ: ಅಪ್ಲಿಕೇಶನ್ನು ಸ್ಥಾಪನೆಗೊಂಡಿಲ್ಲ</string>
-    <string name="root_error">ದೋಷ: ನಿರ್ವಾಹಕ ಪ್ರವೇಶವನ್ನು ಪಡೆಯಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ</string>
     <string name="import_error_title">ಅಮದಿಸುವಾಗ ಒಂದು ಅಥವಾ ಜಾಸ್ತಿ ದೋಷಗಳು ಸಂಭವಿಸಿದೆ</string>
     <string name="no_cameras_available">ಯಾವುದೇ ಕ್ಯಾಮರಾಗಳು ಲಭ್ಯವಿಲ್ಲ</string>
     <string name="read_qr_error">ಕ್ಯೂ ಆರ್ ಸಂಕೇತವನ್ನು ಓದಲು ಪ್ರಯತ್ನಿಸುವಾಗ ಒಂದು ದೋಷ ಸಂಭವಿಸಿದೆ</string>

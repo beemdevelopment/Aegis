@@ -82,8 +82,7 @@
     <string name="authentication_method_biometrics">Биометрични данни</string>
     <string name="authentication_method_biometrics_description">В допълнение към парола, биометрични данни, регистрирани на това устройство, като пръстов отпечатък или лицето Ви, могат да се използват за отключване на трезора.</string>
     <string name="authentication">Отключете трезора</string>
-    <!-- The newline (\n) on the following line is just for aesthetic purposes !-->
-    <string name="authentication_multiline">Отключете\nтрезора</string>
+    <string name="authentication_multiline" comment="The newline in the middle is used for aesthetic purposes">Отключете\nтрезора</string>
     <string name="auth_use_biometrics">Или докоснете тук, за да използвате <font fgcolor="#FF0D86C1">биометрични данни</font></string>
     <string name="set_password">Моля въведете парола</string>
     <string name="set_group">Моля, въведете име на групата</string>
@@ -167,7 +166,6 @@
     <string name="file_not_found">Грешка: Файлът не е намерен</string>
     <string name="reading_file_error">Възникна грешка при опит за четене на файла</string>
     <string name="app_lookup_error">Грешка: Приложението не е инсталирано</string>
-    <string name="root_error">Грешка: неуспешно получаване на root достъп</string>
     <plurals name="imported_entries_count">
         <item quantity="one">Импортиран %d запис</item>
         <item quantity="other">Импортирани %d записа</item>

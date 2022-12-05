@@ -100,8 +100,7 @@
     <string name="authentication_method_biometrics">Biometrik</string>
     <string name="authentication_method_biometrics_description">Selain kata sandi, biometrik yang terdaftar di perangkat ini, seperti sidik jari atau wajah Anda, dapat digunakan untuk membuka brankas.</string>
     <string name="authentication">Buka brankas</string>
-    <!-- The newline (\n) on the following line is just for aesthetic purposes !-->
-    <string name="authentication_multiline">Buka\nbrankas</string>
+    <string name="authentication_multiline" comment="The newline in the middle is used for aesthetic purposes">Buka\nbrankas</string>
     <string name="auth_use_biometrics">Atau sentuh di sini untuk menggunakan <font fgcolor="#FF0D86C1">biometrik</font></string>
     <string name="set_password">Masukkan kata sandi</string>
     <string name="set_group">Masukkan nama grup</string>
@@ -205,7 +204,6 @@
     <string name="file_not_found">Kesalahan: Berkas tidak ditemukan</string>
     <string name="reading_file_error">Terjadi kesalahan saat membaca berkas</string>
     <string name="app_lookup_error">Kesalahan: Aplikasi tidak terpasang</string>
-    <string name="root_error">Kesalahan: tidak bisa mendapatkan akses root</string>
     <plurals name="imported_entries_count">
         <item quantity="other">%d entri yang diimpor</item>
     </plurals>

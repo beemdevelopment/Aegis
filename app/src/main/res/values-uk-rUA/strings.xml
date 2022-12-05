@@ -11,8 +11,11 @@
     <string name="discard">Відхилити</string>
     <string name="save">Зберегти</string>
     <string name="issuer">Емітент</string>
+    <string name="yandex_pin">PIN-код (4–16 цифр)</string>
+    <string name="motp_pin">PIN-код (4 цифри)</string>
     <string name="suggested">Запропоновано</string>
     <string name="usage_count">Кількість використання</string>
+    <string name="warning">Застереження</string>
     <string name="pref_cat_appearance_app">Додаток</string>
     <string name="pref_cat_appearance_entries">Записи</string>
     <string name="pref_cat_backups_android">Android</string>
@@ -26,16 +29,23 @@
     <string name="pref_section_import_export_title">Імпорт &amp; Експорт</string>
     <string name="pref_section_import_export_summary">Імпортуйте резервні копії створені додатком Aegis або іншими додатками. Експортуйте ваше Aegis сховище.</string>
     <string name="pref_section_backups_title">Резервні копії</string>
+    <string name="pref_section_backups_summary">Налаштуйте автоматичне резервне копіювання до місця на ваш вибір, або увімкніть використання системи резервного копіювання Android.</string>
     <string name="pref_section_icon_packs">Пакети піктограм</string>
     <string name="pref_section_icon_packs_summary">Керування та імпорт пакетами піктограм</string>
     <string name="pref_select_theme_title">Тема</string>
     <string name="pref_view_mode_title">Режим перегляду</string>
     <string name="pref_lang_title">Мова</string>
-    <string name="pref_code_group_size_title">Групування цифр коду</string>
+    <string name="pref_show_icons_title">Показувати піктограми</string>
+    <string name="pref_show_icons_summary">Показувати піктограми біля кожного запису</string>
+    <string name="pref_code_group_size_title">Групування цифр</string>
+    <string name="pref_code_group_size_summary">Виберіть як групувати цифри у токенах</string>
     <string name="pref_account_name_title">Показати обліковий запис</string>
     <string name="pref_account_name_summary">Увімкніть, щоб показувати обліковий запис поруч з емітентом</string>
     <string name="pref_import_file_title">Імпорт з файлу</string>
     <string name="pref_import_file_summary">Імпортувати токени з файлу</string>
+    <string name="pref_android_backups_title">Резервні копії в хмарі Android</string>
+    <string name="pref_android_backups_summary">Дозволити системі резервного копіювання Android включати сховище додатка Aegis до своїх резервних копій. Підтримується лише для зашифрованих сховищ.</string>
+    <string name="pref_android_backups_hint"><i>Резервне копіювання між пристроями працюватиме завжди, незалежно від налаштування вище</i></string>
     <string name="pref_backups_title">Автоматично створювати резервні копії сховища</string>
     <string name="pref_backups_summary">Автоматично створювати резервні копії сховища на зовнішніх носіях при внесенні змін. Підтримується лише для зашифрованих сховищ.</string>
     <string name="pref_backups_location_title">Каталог для резервних копій</string>
@@ -50,13 +60,24 @@
         <item quantity="other">Зберігати %1$d версій резервної копії</item>
     </plurals>
     <string name="pref_import_app_title">Імпорт з додатка</string>
-    <string name="pref_import_app_summary">Імпортувати токени з додатку (необхідно мати root-доступ)</string>
+    <string name="pref_import_app_summary">Імпортувати токени з додатка (необхідно мати root-доступ)</string>
     <string name="pref_export_title">Експорт</string>
     <string name="pref_export_summary">Експортувати сховище</string>
     <string name="pref_password_reminder_title">Нагадування пароля</string>
+    <string name="pref_google_auth_export_title">Експорт для Google Authenticator</string>
+    <string name="pref_google_auth_export_descriptor">Генерує QR-коди, сумісні з Google Authenticator</string>
+    <string name="pref_google_auth_export_no_data">Немає даних для експорту</string>
+    <plurals name="pref_google_auth_export_incompatible_entries">
+        <item quantity="one">Пропущений %d несумісний елемент</item>
+        <item quantity="few">Пропущено %d несумісні елементи</item>
+        <item quantity="many">Пропущено %d несумісних елементів</item>
+        <item quantity="other">Пропущено %d несумісних елементів</item>
+    </plurals>
+    <string name="pref_password_reminder_summary">Показувати %s нагадування з проханням ввести пароль, щоб ви його не забули.</string>
+    <string name="pref_password_reminder_summary_disabled">Вимкнено</string>
     <string name="pref_secure_screen_title">Безпека екрану</string>
     <string name="pref_secure_screen_summary">Блокувати знімки екрану та інші спроби захоплення екрану в додатку</string>
-    <string name="pref_tap_to_reveal_title">Торкніться, щоб відобразити</string>
+    <string name="pref_tap_to_reveal_title">Показувати після дотику</string>
     <string name="pref_tap_to_reveal_summary">Токени будуть приховані за замовчуванням. Доторкніться до токена, щоб показати код.</string>
     <string name="pref_tap_to_reveal_time_title">Тривалість відображення коду після доторку</string>
     <string name="pref_auto_lock_title">Автоблокування</string>
@@ -66,6 +87,11 @@
     <string name="pref_auto_lock_type_back_button">Натиснута кнопка \"Назад\"</string>
     <string name="pref_auto_lock_type_minimize">Додаток згорнуто</string>
     <string name="pref_auto_lock_type_device_lock">Пристрій заблоковано</string>
+    <string name="pref_backup_password_category">Резервне копіювання &amp; Експорт</string>
+    <string name="pref_backup_password_title">Відокремити пароль для резервного копіювання та експорту</string>
+    <string name="pref_backup_password_summary">Якщо увімкнено, пароль, що використовується для розблокування програми, більше не може розшифрувати резервні копії та експортовані копії.</string>
+    <string name="pref_backup_password_change_title">Змінити пароль для резервних та експортованих копій</string>
+    <string name="pref_backup_password_change_summary">Встановити новий пароль, який буде використовуватися для шифрування сховища під час резервного копіювання та експорту.</string>
     <string name="pref_encryption_title">Шифрування</string>
     <string name="pref_encryption_summary">Шифрувати сховище і розблоковувати його за допомогою паролю або біометрики</string>
     <string name="pref_biometrics_title">Біометричне розблокування</string>
@@ -76,9 +102,13 @@
     <string name="export_help">Ця дія експортує внутрішнє сховище додатка Aegis. Виберіть формат:</string>
     <string name="export_warning_unencrypted">Ви збираєтеся експортувати незашифровану копію вашого сховища Aegis. <b>Це не рекомендується</b>.</string>
     <string name="export_warning_accept">Я знаю, на що йду</string>
+    <string name="export_warning_password">Експортовані копії зашифровано окремим паролем, що був заданий в налаштуваннях безпеки.</string>
     <string name="export_format_aegis">Aegis (.JSON)</string>
     <string name="export_format_google_auth_uri">Текстовий файл (.TXT)</string>
     <string name="export_format_hint">Формат експорту</string>
+    <string name="export_all_groups">Експортувати усі групи</string>
+    <string name="export_choose_groups">Оберіть групи для експорту:</string>
+    <string name="export_no_groups_selected">Не вибрано жодної групи для експорту</string>
     <string name="choose_authentication_method">Безпека</string>
     <string name="authentication_method_explanation">Aegis - це орієнтований на безпеку додаток для двофакторної автентифікації (2FA). Токени зберігаються в сховищі, яке за бажанням можна зашифрувати за допомогою вибраного вами пароля. Якщо зловмисник отримає ваш зашифрований файл сховища, то він не зможе отримати доступ до змісту, не знаючи пароля.\n\nМи обрали варіант, який, на нашу думку, найкраще підходить для вашого пристрою.</string>
     <string name="authentication_method_none">Немає</string>
@@ -89,8 +119,7 @@
     <string name="authentication_method_biometrics">Біометрика</string>
     <string name="authentication_method_biometrics_description">Окрім пароля, для розблокування сховища можна використовувати біометричні дані зареєстровані на цьому пристрої, такі як відбитки пальців або ваше обличчя.</string>
     <string name="authentication">Розблокування сховища</string>
-    <!-- The newline (\n) on the following line is just for aesthetic purposes !-->
-    <string name="authentication_multiline">Розблокування\nсховища</string>
+    <string name="authentication_multiline" comment="The newline in the middle is used for aesthetic purposes">Розблокування\nсховища</string>
     <string name="auth_use_biometrics">Або натисніть тут, щоб використати <font fgcolor="#FF0D86C1">біометрику</font></string>
     <string name="set_password">Будь ласка, введіть пароль</string>
     <string name="set_group">Будь ласка, введіть назву групи</string>
@@ -99,7 +128,14 @@
     <string name="invalid_password">Неправильний пароль</string>
     <string name="invalidated_biometrics">Виявлено зміни в налаштуваннях безпеки вашого пристрою. Будь ласка, перейдіть до \"Aegis -&gt; Налаштування -&gt; Безпека -&gt; Біометричне розблокування\", щоб вимкнути та повторно увімкнути біометричне розблокування.</string>
     <string name="password_reminder">Будь ласка, введіть пароль. Ми час від часу проситимемо вас зробити це, щоб ви його не забули.</string>
+    <string name="password_reminder_freq_never">Ніколи</string>
+    <string name="password_reminder_freq_weekly">Щотижня</string>
+    <string name="password_reminder_freq_biweekly">Двічі на тиждень</string>
+    <string name="password_reminder_freq_monthly">Щомісячно</string>
+    <string name="password_reminder_freq_quarterly">Щокварталу</string>
+    <string name="enter_password_2fas_message">Схоже, що ця резервна копія 2FAS зашифрована. Введіть пароль нижче.</string>
     <string name="enter_password_authy_message">Схоже, що ваші токени Authy зашифровані. Закрийте Aegis, відкрийте Authy та розблокуйте токени своїм паролем. Натомість Aegis також може спробувати розшифрувати ваші токени Authy, якщо ви введете свій пароль нижче.</string>
+    <string name="enter_password_aegis_title">Будь ласка, введіть пароль для імпорту</string>
     <string name="period_hint">Період (секунди)</string>
     <string name="algorithm_hint">Хеш-функція</string>
     <string name="type">Тип</string>
@@ -117,6 +153,9 @@
     <string name="set_up_biometric">Налаштувати біометричне розблокування</string>
     <string name="copy">Копіювати</string>
     <string name="edit">Редагувати</string>
+    <string name="favorite" comment="Verb">Додати до улюблених</string>
+    <string name="unfavorite" comment="Verb">Вилучити з улюбленого</string>
+    <string name="error_all_caps">ПОМИЛКА</string>
     <string name="password">Пароль</string>
     <string name="confirm_password">Підтвердьте пароль</string>
     <string name="show_password">Показати пароль</string>
@@ -129,9 +168,18 @@
     <string name="encrypting_vault">Шифрування сховища</string>
     <string name="exporting_vault">Експорт сховища</string>
     <string name="reading_file">Читання файлу</string>
+    <string name="analyzing_qr">Аналіз QR-коду</string>
+    <string name="analyzing_qr_multiple">Аналіз QR-коду %d/%d (%s)</string>
+    <plurals name="added_new_entries">
+        <item quantity="one">Додано %d новий запис у сховище</item>
+        <item quantity="few">Додано %d нові записи у сховище</item>
+        <item quantity="many">Додано %d нових записів у сховище</item>
+        <item quantity="other">Додано %d нових записів у сховище</item>
+    </plurals>
     <string name="importing_icon_pack">Імпортування пакету піктограм</string>
     <string name="delete_entry">Видалити запис</string>
     <string name="delete_entry_description">Ви впевнені, що хочете видалити цей запис?</string>
+    <string name="delete_entry_explanation">Ця дія не вимикає двофакторну аутентифікацію для:\n<b>%s</b>\n\nЩоб запобігти втраті доступу, переконайтеся, що ви вимкнули двофакторну аутентифікацію або ж у вас є альтернативний спосіб генерування кодів для цієї служби.</string>
     <string name="delete_entries">Видалити записи</string>
     <plurals name="delete_entries_description">
         <item quantity="one">Ви впевнені, що хочете видалити %d запис?</item>
@@ -164,6 +212,10 @@
     <string name="disable_encryption_error">Сталася помилка під час вимкнення шифрування</string>
     <string name="backup_successful">Резервне копіювання успішно заплановано</string>
     <string name="backup_error">Сталася помилка під час спроби створення резервної копії</string>
+    <string name="backup_status_success">Створення резервної копії завершилося успішно: %s</string>
+    <string name="backup_status_failed">Створення резервної копії завершилося невдало: %s</string>
+    <string name="backup_status_none">Ще не було зроблено жодної резервної копії</string>
+    <string name="backup_warning_password">Резервні копії зашифровані окремим паролем, що був заданий в налаштуваннях безпеки</string>
     <string name="documentsui_error">DocumentsUI відсутній на вашому пристрої. Це важливий системний компонент, необхідний для вибору та створення документів. Якщо ви використовували інструменти для очищення вашого пристрою від &quot;непотрібних&quot; додатків, ви могли випадково видалити його і вам доведеться його переінсталювати.</string>
     <string name="icon_pack_import_error">Сталася помилка при спробі імпорту пакету піктограм</string>
     <string name="icon_pack_import_exists_error">Пакет піктограм, який ви намагаєтеся імпортувати, вже існує. Ви хочете перезаписати його?</string>
@@ -187,13 +239,20 @@
     <string name="file_not_found">Помилка: Файл не знайдено</string>
     <string name="reading_file_error">Сталася помилка при спробі прочитати файл</string>
     <string name="app_lookup_error">Помилка: Додаток не встановлено</string>
-    <string name="root_error">Помилка: не вдалося отримати root-доступ</string>
+    <string name="app_version_error">Встановлена версія %s не підтримується. Останні версії почали шифрувати деякі файли у своїй внутрішній теці, тому Aegis не в змозі отримати доступ до потрібної інформації для імпорту. Спроба імпорту скоріш за все призведе до помилки. Чи бажаєте ви все одно продовжити?</string>
     <plurals name="imported_entries_count">
         <item quantity="one">Імпортовано %d запис</item>
         <item quantity="few">Імпортовано %d записи</item>
         <item quantity="many">Імпортовано %d записів</item>
         <item quantity="other">Імпортовано %d записів</item>
     </plurals>
+    <plurals name="entries_shown">
+        <item quantity="one">Показано %d елемент</item>
+        <item quantity="few">Показано %d елементи</item>
+        <item quantity="many">Показано %d елементів</item>
+        <item quantity="other">Показано %d елементів</item>
+    </plurals>
+    <string name="intro_import_error_title">Сталася помилка під час імпорту сховища</string>
     <string name="import_error_title">Під час імпорту сталася одна або кілька помилок</string>
     <string name="exporting_vault_error">Сталася помилка під час спроби експортувати сховище</string>
     <string name="exported_vault">Сховище експортовано</string>
@@ -202,6 +261,13 @@
     <string name="no_cameras_available">Немає доступних камер</string>
     <string name="read_qr_error">Сталася помилка при спробі прочитати QR-код</string>
     <string name="read_qr_error_phonefactor">Aegis не сумісний з пропрієтарним алгоритмом 2FA від Microsoft. Будь ласка, оберіть \"Налаштування програми без сповіщень\" при налаштуванні 2FA в Office 365.</string>
+    <string name="partial_google_auth_import">Виявлено неповний експорт з Google Authenticator</string>
+    <string name="partial_google_auth_import_warning">Деякі QR-коди відсутні у вашому імпорті. Наступні коди не були знайдені:\n\n<b>%s</b>\n\nВи можете продовжити імпорт цього часткового файлу експорту, але ми рекомендуємо спробувати ще раз з усіма QR-кодами, щоб уникнути ризику втрати доступу до токенів.</string>
+    <string name="missing_qr_code_descriptor">• QR-код %d</string>
+    <string name="import_partial_export_anyway">Однаково імпортувати %d токен/и/ів</string>
+    <string name="import_google_auth_failure">Не вдалося імпортувати дані з Google Authenticator</string>
+    <string name="unrelated_google_auth_batches_error">Експорт містить інформацію про непов\'язаний пакет. Спробуйте імпортувати пакети по одному.</string>
+    <string name="no_tokens_can_be_imported">В результаті жоден токен не може бути імпортований</string>
     <string name="authentication_method_raw">Raw</string>
     <string name="unlocking_vault">Розблокування сховища</string>
     <string name="slot_this_device">(цей пристрій)</string>
@@ -210,6 +276,7 @@
     <string name="remove_icon_pack">Видалити набір піктограм</string>
     <string name="remove_icon_pack_description">Ви впевнені, що хочете видалити цей пакет піктограм? Записи які використовують даний пакет, не будуть порушені.</string>
     <string name="details">Деталі</string>
+    <string name="show_error_details">Показати подробиці помилки</string>
     <string name="lock">Заблокувати</string>
     <string name="name">Назва</string>
     <string name="no_group">Без групи</string>
@@ -232,10 +299,12 @@
     <string name="clear">Очистити</string>
     <string name="pref_highlight_entry_title">Підсвічувати токени при натисканні</string>
     <string name="pref_highlight_entry_summary">Підсвічувати токени при натисканні для того, щоб їх було легше відрізнити один від одного</string>
+    <string name="pref_minimize_on_copy_title">Згортати при копіюванні</string>
+    <string name="pref_minimize_on_copy_summary">Згортати додаток після копіювання токена</string>
     <string name="pref_copy_on_tap_title">Копіювати токени при натисканні</string>
     <string name="pref_copy_on_tap_summary">Копіювати токени в буфер обміну при натиску на них</string>
     <string name="pref_pause_entry_title">Заморожувати токени при натисканні</string>
-    <string name="pref_pause_entry_summary">Призупиніть автоматичне оновлення маркерів, торкнувшись їх. Маркери не оновлюватимуться до тих пір, поки вони зосереджені. Вимагає \"Виділити маркери при натисканні\" або \"Натисніть, щоб розкрити\".</string>
+    <string name="pref_pause_entry_summary">Призупиніть автоматичне оновлення токенів, натиснувши на них. Токени не будуть оновлюватися, поки вони підсвічені. Потребує увімкненої опції \"Підсвічувати токени при натисканні\", або \"Безпека -> Показувати після дотику\".</string>
     <string name="pin_keyboard_description">Введіть свій пароль, щоб увімкнути PIN-клавіатуру. Зауважте, що це можливо лише, якщо ваш пароль складається виключно з цифр</string>
     <string name="pin_keyboard_error">Помилка при підключенні PIN-клавіатури</string>
     <string name="pin_keyboard_error_description">Неможливо увімкнути PIN-клавіатуру. Ваш пароль повинен складатися лише з цифр.</string>
@@ -257,9 +326,15 @@
         <item quantity="many">Aegis не вдалося імпортувати %d токенів. Ці токени буде пропущено. Натисніть \'деталі\', щоб побачити більше інформації про помилки.</item>
         <item quantity="other">Aegis не вдалося імпортувати %d токенів. Ці токени буде пропущено. Натисніть \'деталі\', щоб побачити більше інформації про помилки.</item>
     </plurals>
+    <string name="unable_to_process_deeplink">Не вдалося обробити глибоке посилання</string>
+    <string name="unable_to_read_qrcode_file">Не вдається прочитати і обробити QR-код із файлу: %s.</string>
+    <string name="unable_to_process_shared_text">Неможливо обробити вхідний текст як OTP</string>
+    <string name="unable_to_read_qrcode_files">Не вдалося прочитати та обробити деякі з QR-кодів. Буде імпортовано лише %d/%d запис/и/ів.</string>
     <string name="unable_to_generate_qrcode">Не вдається згенерувати QR-код</string>
     <string name="select_picture">Виберіть зображення</string>
     <string name="select_icon">Виберіть іконку</string>
+    <string name="tile_open_vault" comment="label for a quick settings tile that opens the app when tapped">Відкрити сховище</string>
+    <string name="tile_open_scanner" comment="label for a quick settings tile that opens the QR code scanner when tapped">Відкрити сканер</string>
     <string name="toggle_checkboxes">Перемкнути прапорці</string>
     <string name="search">Пошук</string>
     <string name="channel_name_lock_status">Статус блокування</string>
@@ -293,6 +368,17 @@
     </plurals>
     <string name="google_qr_export_unexpected">Очікувався QR-код #%d, але замість цього відскановано #%d</string>
     <string name="backup_error_bar_message"><b>Нещодавно не вдалося створити резервну копію сховища</b></string>
+    <string name="backup_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">        Недавня спроба резервного копіювання сховища з використанням %s зазнала невдачі. Спроба створити резервну копію була здійснена о %s. Будь ласка, перевірте налаштування резервного копіювання, щоб переконатися, що резервні копії будуть успішно виконані.
+    </string>
+    <string name="backup_system_builtin">Вбудоване автоматичне резервне копіювання Aegis</string>
+    <string name="backup_system_android">Система хмарного резервного копіювання Android</string>
+    <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">        Остання резервна копія застаріла (%s)
+    </string>
+    <string name="backup_reminder_bar_message">        Резервну копію змін не створено
+    </string>
+    <string name="backup_plaintext_export_warning"><b>Сховище нещодавно було експортовано у вигляді звичайного тексту</b></string>
+    <string name="pref_show_plaintext_warning_hint">Не показувати це попередження в майбутньому</string>
+    <string name="backup_plaintext_warning_explanation">Це попередження показується тому, що ви нещодавно експортували незашифровану копію сховища. Задля безпеки ваших токенів, ми рекомендуємо видалити цей файл, коли він стане непотрібним.</string>
     <string name="switch_camera">Змінити камеру</string>
     <string name="empty_list">Немає кодів для показу. Почніть додавати записи, натискаючи на знак плюса в нижньому правому куті</string>
     <string name="empty_list_title">Записів не знайдено</string>
@@ -303,10 +389,17 @@
     <string name="pick_icon">Обрати піктограму</string>
     <string name="uncategorized">Без категорії</string>
     <string name="done">Готово</string>
+    <plurals name="qr_count">
+        <item quantity="one">%d / %d</item>
+        <item quantity="few">%d / %d</item>
+        <item quantity="many">%d / %d</item>
+        <item quantity="other">%d / %d</item>
+    </plurals>
     <string name="next">Наступний</string>
     <string name="previous">Попередній</string>
     <string name="transfer_entry">Передати запис</string>
     <string name="transfer_entry_description">Відскануйте цей QR-код за допомогою додатка для авторизації, куди ви хочете перенести цей запис</string>
+    <string name="google_auth_compatible_transfer_description">Проскануйте ці QR-коди за допомогою Aegis або Google Authenticator.\n\nУ зв\'язку з обмеженнями програми Google Authenticator включаються лише TOTP &amp; HOTP токени з використанням SHA1 і генерацією 6-цифрових кодів</string>
     <string name="password_strength_very_weak">Дуже слабкий</string>
     <string name="password_strength_weak">Слабкий</string>
     <string name="password_strength_fair">Нормальний</string>
@@ -328,17 +421,60 @@
     <string name="panic_trigger_ignore_toast">Aegis отримав панічний тригер, але налаштування вимкнено, тому сигнал ігнорується</string>
     <string name="pref_panic_trigger_title">Видалити сховище при панічному тригері</string>
     <string name="pref_panic_trigger_summary">Видалити сховище після отримання панічного тригера Ripple</string>
+    <string name="import_vault">Імпорт сховища</string>
     <string name="importer_help_2fas">Надайте файл резервної копії 2FAS Authenticator.</string>
     <string name="importer_help_aegis">Надайте файл експорту/резервної копії Aegis.</string>
     <string name="importer_help_authenticator_plus">Надайте файл експорту Authenticator Plus, отриманий через <b>Settings -&gt; Backup &amp; Restore -&gt; Export as Text and HTML</b>.</string>
-    <string name="importer_help_authy">Надайте копію <b>/data/com.authy.authy/shared_prefs/com.authy.storage.tokens.authenticator.xml</b>, що знаходиться в каталозі Authy у внутрішній пам\'яті.</string>
+    <string name="importer_help_authy">Надайте копію <b>/data/data/com.authy.authy/shared_prefs/com.authy.storage.tokens.authenticator.xml</b>, що знаходиться в каталозі Authy у внутрішній пам\'яті.</string>
     <string name="importer_help_andotp">Надайте файл експорту/резервної копії andOTP.</string>
-    <string name="importer_help_freeotp">Надайте копію <b>/data/org.fedorahosted.freeotp/shared_prefs/tokens.xml</b>, що знаходиться в каталозі FreeOTP у внутрішній пам\'яті.</string>
+    <string name="importer_help_bitwarden">Надайте файл експорту/резервного копіювання Bitwarden. Зашифровані файли не підтримуються.</string>
+    <string name="importer_help_duo">Надайте копію <b>/data/data/com.duosecurity.duomobile/files/duokit/accounts.json</b>, що знаходиться у каталозі DUO у внутрішній пам\'яті.</string>
+    <string name="importer_help_freeotp">Надайте копію <b>/data/data/org.fedorahosted.freeotp/shared_prefs/tokens.xml</b>, що знаходиться в каталозі FreeOTP у внутрішній пам\'яті.</string>
     <string name="importer_help_freeotp_plus">Надайте файл експортований з FreeOTP+.</string>
-    <string name="importer_help_microsoft_authenticator">Надайте копію <b>/data/com.azure.authenticator/databases/PhoneFactor</b>, що знаходиться в каталозі Microsoft Authenticator у внутрішній пам\'яті.</string>
+    <string name="importer_help_google_authenticator"><b>Підтримуються лише файли бази даних Google Authenticator v5.10 та попередніх версій</b>.\n\nНадайте копію <b>/data/data/com.google.android.apps.authenticator2/databases/databases</b>, що знаходиться у каталозі Google Authenticator у внутрішній пам\'яті.</string>
+    <string name="importer_help_microsoft_authenticator">Надайте копію <b>/data/data/com.azure.authenticator/databases/PhoneFactor</b>, що знаходиться у каталозі Microsoft Authenticator у внутрішній пам\'яті.</string>
     <string name="importer_help_plain_text">Надайте звичайний текстовий файл з URI у форматі Google Authenticator у кожному рядку.</string>
+    <string name="importer_help_steam"><b>Steam v3.0 і новіші версії не підтримуються</b>. Надайте копію <b>/data/data/com.valvesoftware.android.steam.community/files/Steamguard-*.json</b>, що знаходиться у каталозі Steam у внутрішній пам\'яті.</string>
     <string name="importer_help_totp_authenticator">Надайте файл експортований з TOTP Authenticator.</string>
     <string name="importer_help_winauth">Надайте файл експортований з WinAuth.</string>
+    <string name="importer_encrypted_exception_google_authenticator">Пропущено зашифрований запис: %s</string>
     <string name="importer_help_direct">Імпортувати записи безпосередньо з %s. Для цього потрібно встановити додаток на цьому пристрої і надати root-доступ додатку Aegis.</string>
     <string name="groups">Групи</string>
+    <string name="pref_focus_search">Сфокусуватися на пошуку після запуску програми</string>
+    <string name="pref_focus_search_summary">Сфокусуватися на пошуку відразу після відкриття додатка.</string>
+    <string name="pref_grouping_halves">Половинки</string>
+    <string name="pref_grouping_none">Без групування</string>
+    <string name="pref_grouping_size_two">2 цифри у групі</string>
+    <string name="pref_grouping_size_three">3 цифри у групі</string>
+    <string name="pref_grouping_size_four">4 цифри у групі</string>
+    <plurals name="time_elapsed_seconds">
+        <item quantity="one">%d секунду тому</item>
+        <item quantity="few">%d секунди тому</item>
+        <item quantity="many">%d секунд тому</item>
+        <item quantity="other">%d секунд тому</item>
+    </plurals>
+    <plurals name="time_elapsed_minutes">
+        <item quantity="one">%d хвилину тому</item>
+        <item quantity="few">%d хвилини тому</item>
+        <item quantity="many">%d хвилин тому</item>
+        <item quantity="other">%d хвилин тому</item>
+    </plurals>
+    <plurals name="time_elapsed_hours">
+        <item quantity="one">%d годину тому</item>
+        <item quantity="few">%d години тому</item>
+        <item quantity="many">%d годин тому</item>
+        <item quantity="other">%d годин тому</item>
+    </plurals>
+    <plurals name="time_elapsed_days">
+        <item quantity="one">%d день тому</item>
+        <item quantity="few">%d дні тому</item>
+        <item quantity="many">%d днів тому</item>
+        <item quantity="other">%d днів тому</item>
+    </plurals>
+    <plurals name="time_elapsed_years">
+        <item quantity="one">%d рік тому</item>
+        <item quantity="few">%d роки тому</item>
+        <item quantity="many">%d років тому</item>
+        <item quantity="other">%d років тому</item>
+    </plurals>
 </resources>

@@ -35,6 +35,8 @@
     <string name="pref_select_theme_title">Vzhled</string>
     <string name="pref_view_mode_title">Režim zobrazení</string>
     <string name="pref_lang_title">Jazyk</string>
+    <string name="pref_show_icons_title">Zobrazit ikony</string>
+    <string name="pref_show_icons_summary">Zobrazit ikony vedle každého záznamu</string>
     <string name="pref_code_group_size_title">Seskupení číslic kódu</string>
     <string name="pref_code_group_size_summary">Vyberte počet číslic, po kterých se mají seskupovat kódy</string>
     <string name="pref_account_name_title">Zobrazit název účtu</string>
@@ -103,7 +105,12 @@
     <string name="export_warning_password">Exporty jsou šifrovány pomocí samostatného hesla nastaveného v nastavení zabezpečení.</string>
     <string name="export_format_aegis">Aegis (.JSON)</string>
     <string name="export_format_google_auth_uri">Textový soubor (.TXT)</string>
+    <string name="export_format_html">Webová stránka (.HTML)</string>
     <string name="export_format_hint">Formát exportu</string>
+    <string name="export_all_groups">Exportovat všechny skupiny</string>
+    <string name="export_choose_groups">Vyberte, které skupiny chcete exportovat:</string>
+    <string name="export_no_groups_selected">Nebyly vybrány žádné skupiny k exportu</string>
+    <string name="export_html_title">Export Aegis Authenticator</string>
     <string name="choose_authentication_method">Zabezpečení</string>
     <string name="authentication_method_explanation">Aegis je 2FA aplikace zaměřená na bezpečnost. Tokeny jsou uloženy v trezoru, který může být zašifrovaný vámi zvoleným heslem. Získá-li útočník váš zašifrovaný trezor, bez hesla se do něj nedostane.\n\nPředvybrali jsme možnost, která by podle nás měla nejvíce vyhovovat vašemu zařízení.</string>
     <string name="authentication_method_none">Žádné</string>
@@ -114,8 +121,7 @@
     <string name="authentication_method_biometrics">Biometrie</string>
     <string name="authentication_method_biometrics_description">Kromě hesla půjde k odemčení trezoru použít také biometrické prvky registrované v tomto zařízení jako je otisk prstu nebo tvář.</string>
     <string name="authentication">Odemknout trezor</string>
-    <!-- The newline (\n) on the following line is just for aesthetic purposes !-->
-    <string name="authentication_multiline">Odemknout\ntrezor</string>
+    <string name="authentication_multiline" comment="The newline in the middle is used for aesthetic purposes">Odemknout\ntrezor</string>
     <string name="auth_use_biometrics">Nebo klepněte sem pro použití <font fgcolor="#FF0D86C1">biometrie</font></string>
     <string name="set_password">Zadejte heslo</string>
     <string name="set_group">Zadejte název skupiny</string>
@@ -164,6 +170,7 @@
     <string name="encrypting_vault">Šifrování trezoru</string>
     <string name="exporting_vault">Exportování trezoru</string>
     <string name="reading_file">Čtení souboru</string>
+    <string name="requesting_root_access">Žádání o přístup root</string>
     <string name="analyzing_qr">Analyzování QR kódu</string>
     <string name="analyzing_qr_multiple">Analyzuji QR kód %d/%d (%s)</string>
     <plurals name="added_new_entries">
@@ -236,7 +243,7 @@
     <string name="reading_file_error">Při pokusu o čtení souboru došlo k chybě</string>
     <string name="app_lookup_error">Chyba: Aplikace není nainstalována</string>
     <string name="app_version_error">Nainstalovaná verze aplikace %s není podporována. Nedávné verze začaly šifrovat některé soubory v interním adresáři úložiště, kvůli kterému Aegis nemůže získat přístup k informacím, které potřebuje pro import. Pokus o import pravděpodobně povede k chybě. Chcete i přesto pokračovat?</string>
-    <string name="root_error">Chyba: Nelze získat root přístup</string>
+    <string name="root_error">Chyba: nepodařilo se získat přístup root</string>
     <plurals name="imported_entries_count">
         <item quantity="one">Importována %d položka</item>
         <item quantity="few">Importovány %d položky</item>
@@ -365,9 +372,14 @@
     </plurals>
     <string name="google_qr_export_unexpected">Očekáván QR kód #%d, avšak naskenován byl #%d</string>
     <string name="backup_error_bar_message"><b>Vytvoření zálohy trezoru se nedávno nezdařilo</b></string>
-    <string name="backup_error_dialog_details">Nedávný pokus o zálohu trezoru pomocí %s selhal, protože došlo k chybě. Pokus o zálohu byl uskutečněn: %s. Zkontrolujte prosím nastavení pro ujištění se, že zálohy mohou být úspěšně dokončeny.</string>
+    <string name="backup_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">        Pokus o nedávnou zálohu trezoru pomocí %s selhal, protože došlo k chybě. Pokus o zálohu byl uskutečněn %s. Zkontrolujte prosím svá nastavení pro ujištění se, že zálohy mohou být úspěšně dokončeny.
+    </string>
     <string name="backup_system_builtin">Zabudované zálohy aplikace Aegis</string>
     <string name="backup_system_android">Cloudový zálohovací systém systému Android</string>
+    <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">        Poslední záloha je zastaralá (%s)
+    </string>
+    <string name="backup_reminder_bar_message">        Změny nejsou zálohovány
+    </string>
     <string name="backup_plaintext_export_warning"><b>Trezor byl nedávno exportován v plaintextu</b></string>
     <string name="pref_show_plaintext_warning_hint">Toto varování již nezobrazovat</string>
     <string name="backup_plaintext_warning_explanation">Toto upozornění se zobrazuje, protože jste nedávno exportovali nešifrovanou kopii trezoru. Chcete-li zachovat bezpečnost svých tokenů, doporučujeme tento soubor odstranit, jakmile již nebude potřeba.</string>
@@ -389,6 +401,9 @@
     </plurals>
     <string name="next">Další</string>
     <string name="previous">Předchozí</string>
+    <string name="copy_uri">Kopírovat URI</string>
+    <string name="unable_to_copy_uri_to_clipboard">Nepodařilo se zkopírovat URI do schránky</string>
+    <string name="uri_copied_to_clipboard">URI zkopírována do schránky</string>
     <string name="transfer_entry">Přenést položku</string>
     <string name="transfer_entry_description">Naskenujte tento QR kód ověřovací aplikací, do které chcete položku přenést</string>
     <string name="google_auth_compatible_transfer_description">Naskenujte tyto QR kódy s aplikací Aegis nebo Google Authenticator.\n\nKvůli limitacím aplikace Google Authenticator jsou zahrnuty pouze 6-místné tokeny TOTP a HOTP využívající SHA1</string>
@@ -439,4 +454,34 @@
     <string name="pref_grouping_size_two">Skupiny 2</string>
     <string name="pref_grouping_size_three">Skupiny 3</string>
     <string name="pref_grouping_size_four">Skupiny 4</string>
+    <plurals name="time_elapsed_seconds">
+        <item quantity="one">před %d sekundou</item>
+        <item quantity="few">před %d sekundami</item>
+        <item quantity="many">před %d sekundami</item>
+        <item quantity="other">před %d sekundami</item>
+    </plurals>
+    <plurals name="time_elapsed_minutes">
+        <item quantity="one">před %d minutou</item>
+        <item quantity="few">před %d minutami</item>
+        <item quantity="many">před %d minutami</item>
+        <item quantity="other">před %d minutami</item>
+    </plurals>
+    <plurals name="time_elapsed_hours">
+        <item quantity="one">před %d hodinou</item>
+        <item quantity="few">před %d hodinami</item>
+        <item quantity="many">před %d hodinami</item>
+        <item quantity="other">před %d hodinami</item>
+    </plurals>
+    <plurals name="time_elapsed_days">
+        <item quantity="one">před %d dnem</item>
+        <item quantity="few">před %d dny</item>
+        <item quantity="many">před %d dny</item>
+        <item quantity="other">před %d dny</item>
+    </plurals>
+    <plurals name="time_elapsed_years">
+        <item quantity="one">před %d rokem</item>
+        <item quantity="few">před %d lety</item>
+        <item quantity="many">před %d lety</item>
+        <item quantity="other">před %d lety</item>
+    </plurals>
 </resources>

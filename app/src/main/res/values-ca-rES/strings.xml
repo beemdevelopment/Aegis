@@ -35,6 +35,8 @@
     <string name="pref_select_theme_title">Tema</string>
     <string name="pref_view_mode_title">Mode de visualització</string>
     <string name="pref_lang_title">Idioma</string>
+    <string name="pref_show_icons_title">Mostra icones</string>
+    <string name="pref_show_icons_summary">Mostra icones al costat de cada entrada</string>
     <string name="pref_code_group_size_title">Agrupació dels dígits</string>
     <string name="pref_code_group_size_summary">Triar nombre de digits per agrupar els codis</string>
     <string name="pref_account_name_title">Mostra el nom del compte</string>
@@ -100,6 +102,9 @@
     <string name="export_format_aegis">Aegis (.JSON)</string>
     <string name="export_format_google_auth_uri">Fitxers de text (*.txt)</string>
     <string name="export_format_hint">Format d\'exportació</string>
+    <string name="export_all_groups">Exportar tots els grups</string>
+    <string name="export_choose_groups">Tria quins grups exportar:</string>
+    <string name="export_no_groups_selected">No s\'han triat grups per a exportar</string>
     <string name="choose_authentication_method">Seguretat</string>
     <string name="authentication_method_explanation">Aegis es una app d\'A2F. Les fitxes es desen a una volta que opcionalment pot ser xifrada amb una contrasenya. Si un atacant obté el fitxer de la volta, no hi podrà accedir sense la contrasenya.\n\nHem preseleccionat la opció que creiem que anirà millor al teu dispositiu.</string>
     <string name="authentication_method_none">Cap</string>
@@ -110,8 +115,7 @@
     <string name="authentication_method_biometrics">Dades biomètriques</string>
     <string name="authentication_method_biometrics_description">A mśe de la contrasenya, les dades biomètriques enregistrades al dispositiu, com una emprempta digital o la cara, es poden fer servir per a desbloquejar la volta.</string>
     <string name="authentication">Desbloqueja la volta</string>
-    <!-- The newline (\n) on the following line is just for aesthetic purposes !-->
-    <string name="authentication_multiline">Desbloqueja\nla volta</string>
+    <string name="authentication_multiline" comment="The newline in the middle is used for aesthetic purposes">Desbloqueja\nla volta</string>
     <string name="auth_use_biometrics">O toca aqui per a fer servir el <font fgcolor="#FF0D86C1">desbloqueig biomètric</font></string>
     <string name="set_password">Si et plau, introdueix una contrasenya</string>
     <string name="set_group">Introdueix un nom de grup</string>
@@ -226,7 +230,6 @@
     <string name="reading_file_error">S\'ha produït un error mentre s\'intentava carregar el fitxer</string>
     <string name="app_lookup_error">Aquesta aplicació no està instal·lada</string>
     <string name="app_version_error">La versió instal·lada de %s no està suportada. Les versions recents han començat a xifrar els fitxers de l\'emmagatzematge intern, fent que Aegis no pugui accedir a la informació que necessita per a fer la importació. És molt possible que intentar importar finalitzi amb error. Vols intentar-ho igualment?</string>
-    <string name="root_error">Error: no s\'ha pogut obtenir accés root</string>
     <plurals name="imported_entries_count">
         <item quantity="one">%d entrades importades</item>
         <item quantity="other">%d entrades importades</item>
@@ -347,7 +350,6 @@
     </plurals>
     <string name="google_qr_export_unexpected">S\'esperava codi QR #%d, però s\'ha trobat #%d en el seu lloc</string>
     <string name="backup_error_bar_message"><b>Ha fallat la còpia de seguretat recentment</b></string>
-    <string name="backup_error_dialog_details">Un intent de còpia de seguretat fent servir %s ha fallat perquè s\'ha produit un error. La còpia s\'ha intentat a: %s. Si us plau revisa la configuració de les còpies per a que es puguin fer correctament.</string>
     <string name="backup_system_builtin">Còpies de seguretat integrades a Aegis</string>
     <string name="backup_system_android">Còpia al núvol d\'Android</string>
     <string name="backup_plaintext_export_warning"><b>La volta s\'ha exportat recentment en text sense format</b></string>

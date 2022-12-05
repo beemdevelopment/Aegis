@@ -35,6 +35,8 @@
     <string name="pref_select_theme_title">Itxura</string>
     <string name="pref_view_mode_title">Ikuspegia</string>
     <string name="pref_lang_title">Hizkuntza</string>
+    <string name="pref_show_icons_title">Erakutsi ikonoak</string>
+    <string name="pref_show_icons_summary">Ikonoak erakutsi sarrera bakoitzaren ondoan</string>
     <string name="pref_code_group_size_title">Kode-digituen taldekatzea</string>
     <string name="pref_code_group_size_summary">Aukeratu kodeak zenbat zenbakiko taldetan taldekatuko diren</string>
     <string name="pref_account_name_title">Erakutsi kontuaren izena</string>
@@ -99,7 +101,12 @@
     <string name="export_warning_password">Esportazioak Segurtasun ezarpenetan zehazten den bestelako pasahitz batekin zifratuta daude.</string>
     <string name="export_format_aegis">Aegis (.JSON)</string>
     <string name="export_format_google_auth_uri">Testu fitxategia (.TXT)</string>
+    <string name="export_format_html">Web orrialdea (.HTML)</string>
     <string name="export_format_hint">Esportazio formatua</string>
+    <string name="export_all_groups">Esportatu talde guztiak</string>
+    <string name="export_choose_groups">Aukeratu zein talde esportatu:</string>
+    <string name="export_no_groups_selected">Ez duzu talderik aukeratu esportatzeko</string>
+    <string name="export_html_title">Aegis Authenticator Esportazioa</string>
     <string name="choose_authentication_method">Segurtasuna</string>
     <string name="authentication_method_explanation">Aegis segurtasunean oinarritutako 2FA aplikazioa da. Tokenak biltegi batean gordetzen dira. Biltegi hori nahi izanez gero, aukeratu duzun pasahitzarekin zifratu daiteke. Erasotzaile batek biltegi enkriptatuko fitxategia lortzen badu, ezingo du edukira sartu pasahitza jakin gabe.\n\nZure gailuarentzat hobeto egokituko litzatekeela uste dugun aukera hautatu dugu.</string>
     <string name="authentication_method_none">Bat ere ez</string>
@@ -110,8 +117,7 @@
     <string name="authentication_method_biometrics">Biometriak</string>
     <string name="authentication_method_biometrics_description">Pasahitzaz gain, gailu honetan erregistratutako biometriak, hala nola hatz-marka edo zure aurpegia, biltegia desblokeatzeko erabil daitezke.</string>
     <string name="authentication">Desblokeatu biltegia</string>
-    <!-- The newline (\n) on the following line is just for aesthetic purposes !-->
-    <string name="authentication_multiline">Desblokeatu\nbiltegia</string>
+    <string name="authentication_multiline" comment="The newline in the middle is used for aesthetic purposes">Desblokeatu\nbiltegia</string>
     <string name="auth_use_biometrics">Edo sakatu hemen <font fgcolor="#FF0D86C1">biometria</font> erabiltzeko</string>
     <string name="set_password">Sartu pasahitz bat mesedez</string>
     <string name="set_group">Sartu talde izen bat mesedez</string>
@@ -160,6 +166,7 @@
     <string name="encrypting_vault">Biltegia zifratzen</string>
     <string name="exporting_vault">Biltegia esportatzen</string>
     <string name="reading_file">Fitxategia irakurtzen</string>
+    <string name="requesting_root_access">Root sarbidea eskatzen</string>
     <string name="analyzing_qr">QR kodea aztertzen</string>
     <string name="analyzing_qr_multiple">QR kodea aztertzen %d/%d (%s)</string>
     <plurals name="added_new_entries">
@@ -225,6 +232,7 @@
     <string name="file_not_found">Errorea: Ez da fitxategia aurkitu</string>
     <string name="reading_file_error">Errorea gertatu da fitxategia irakurtzen saiatzean</string>
     <string name="app_lookup_error">Errorea: Aplikazioa ez dago instalatuta</string>
+    <string name="app_version_error">Instalatuta dagoen %s bertsioa ez da bateragarria. Bertsio berriak fitxategietako batzuk barneko biltegiratze-direktorioan zifratzen hasi dira, ondorioz Aegisek ezin du inportaziorako behar duen informazioa eskuratu. Inportatzen saiatzeak errore bat emango du ziurrenik. Jarraitu nahi duzu?</string>
     <string name="root_error">Errorea: Ezin izan da root sarbidea lortu</string>
     <plurals name="imported_entries_count">
         <item quantity="one">%d sarrera inportatuta</item>
@@ -313,6 +321,8 @@
     <string name="unable_to_generate_qrcode">Ezin da QR kodea sortu</string>
     <string name="select_picture">Aukeratu irudia</string>
     <string name="select_icon">Aukeratu ikonoa</string>
+    <string name="tile_open_vault" comment="label for a quick settings tile that opens the app when tapped">Ireki biltegia</string>
+    <string name="tile_open_scanner" comment="label for a quick settings tile that opens the QR code scanner when tapped">Ireki eskanerra</string>
     <string name="toggle_checkboxes">Aukeraketa kutxak aldatu</string>
     <string name="search">Bilatu</string>
     <string name="channel_name_lock_status">Blokeo egoera</string>
@@ -344,9 +354,12 @@
     </plurals>
     <string name="google_qr_export_unexpected">Itxarondako QR kodea #%d, baina haren ordez #%d eskaneatuta</string>
     <string name="backup_error_bar_message"><b>Biltegiaren segurtasun-kopiak akatsa eman du berriki</b></string>
-    <string name="backup_error_dialog_details">%s erabiliz egindako biltegiaren segurtasun kopiak huts egin du. Saiakera noiz egin den: %s. Ziurtatu segurtasun kopien ezarpenak ondo daudela hauek ondo egin daitezen.</string>
+    <string name="backup_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">%s erabiliz egindako biltegiaren segurtasun kopiak huts egin du. Saiakera noiz egin den: %s. Ziurtatu segurtasun kopien ezarpenak ondo daudela hauek ondo egin daitezen.    </string>
     <string name="backup_system_builtin">Aegisek egindako segurtasun kopia automatikoak</string>
     <string name="backup_system_android">Androidek lainoan egidako segurtasun kopiak</string>
+    <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">Azken segurtasun kopia zaharregia da (%s)
+    </string>
+    <string name="backup_reminder_bar_message">Aldaketen segurtasun kopiak ez dira egiten    </string>
     <string name="backup_plaintext_export_warning"><b>Biltegia orain dela gutxi testu-huts gisa esportatu da</b></string>
     <string name="pref_show_plaintext_warning_hint">Ez erakutsi ohar hau berriz</string>
     <string name="backup_plaintext_warning_explanation">Ohar hau, orain dela gutxi zifratu gabeko biltegiaren kopia bat esportatu delako agertzen da. Zure gakoen segurtasuna mantentzeko, fitxategi hori berehala ezabatzeko aholkua ematen dizugu.</string>
@@ -366,6 +379,9 @@
     </plurals>
     <string name="next">Hurrengoa</string>
     <string name="previous">Aurrekoa</string>
+    <string name="copy_uri">Kopiatu URIa</string>
+    <string name="unable_to_copy_uri_to_clipboard">Ezin da URIa arbelean kopiatu</string>
+    <string name="uri_copied_to_clipboard">URIa arbelean kopiatu da</string>
     <string name="transfer_entry">Transferitu sarrera</string>
     <string name="transfer_entry_description">Eskaneatu QR kode hau sarrera transferitu nahi diozun aitentifikazio-aplikazioarekin</string>
     <string name="google_auth_compatible_transfer_description">Eskaneatu QR kode hauek Aegis edo Google Authenticator erabiliz.\n\nGoogle Authenticator aplikazioaren mugak direla eta, SHA1 darabilten eta 6 zenbakiko kodeak erabiltzen dituzten TOTP &amp; HOTP tokenak bakarrik sartzen dira</string>
@@ -417,4 +433,24 @@
     <string name="pref_grouping_size_two">2ko taldeak</string>
     <string name="pref_grouping_size_three">3ko taldeak</string>
     <string name="pref_grouping_size_four">4ko taldeak</string>
+    <plurals name="time_elapsed_seconds">
+        <item quantity="one">Duela segundo %d</item>
+        <item quantity="other">Duela %d segundo</item>
+    </plurals>
+    <plurals name="time_elapsed_minutes">
+        <item quantity="one">Duela minutu %d</item>
+        <item quantity="other">Duela %d minutu</item>
+    </plurals>
+    <plurals name="time_elapsed_hours">
+        <item quantity="one">Duela ordu %d</item>
+        <item quantity="other">Duela %d ordu</item>
+    </plurals>
+    <plurals name="time_elapsed_days">
+        <item quantity="one">Duela egun %d</item>
+        <item quantity="other">Duela %d egun</item>
+    </plurals>
+    <plurals name="time_elapsed_years">
+        <item quantity="one">Duela urte %d</item>
+        <item quantity="other">Duela %d urte</item>
+    </plurals>
 </resources>

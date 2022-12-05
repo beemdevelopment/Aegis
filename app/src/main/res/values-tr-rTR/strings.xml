@@ -35,6 +35,8 @@
     <string name="pref_select_theme_title">Tema</string>
     <string name="pref_view_mode_title">Görüntüleme biçimi</string>
     <string name="pref_lang_title">Dil</string>
+    <string name="pref_show_icons_title">Simgeleri göster</string>
+    <string name="pref_show_icons_summary">Her girdinin yanında simgeleri göster</string>
     <string name="pref_code_group_size_title">Kod hanelerinin gruplanması</string>
     <string name="pref_code_group_size_summary">Kodların kaç basamakla gruplanacağını seçin</string>
     <string name="pref_account_name_title">Hesap adını göster</string>
@@ -100,6 +102,9 @@
     <string name="export_format_aegis">Aegis (.JSON)</string>
     <string name="export_format_google_auth_uri">Metin belgesi (.TXT)</string>
     <string name="export_format_hint">Dışa Aktarma Biçimi</string>
+    <string name="export_all_groups">Tüm grupları dışa aktar</string>
+    <string name="export_choose_groups">Dışa aktarılacak grupları seçin:</string>
+    <string name="export_no_groups_selected">Dışa aktarılacak grup seçilmedi</string>
     <string name="choose_authentication_method">Güvenlik</string>
     <string name="authentication_method_explanation">Aegis güvenlik odaklı bir 2FA uygulamasıdır. Kodlar isteğiniz üzerine parolayla şifreleyebileceğiniz bir kasada saklanabilir. Eğer bir saldırgan şifrelenmiş kasa dosyanızı elde ederse parolayı bilmeden içeriğine erişemeyecektir.\n\nCihazınız için en iyi olduğunu düşündüğümüz seçeneği seçtik.</string>
     <string name="authentication_method_none">Hiçbiri</string>
@@ -110,8 +115,7 @@
     <string name="authentication_method_biometrics">Biyometrik</string>
     <string name="authentication_method_biometrics_description">Parolaya ek olarak bu cihazda kayıtlı olan parmak izi ve yüz tanıma gibi biyometrik doğrulama yöntemleri kasayı açmada kullanılabilir.</string>
     <string name="authentication">Kasa kilidini aç</string>
-    <!-- The newline (\n) on the following line is just for aesthetic purposes !-->
-    <string name="authentication_multiline">Kasa kilidini \naç</string>
+    <string name="authentication_multiline" comment="The newline in the middle is used for aesthetic purposes">Kasa kilidini \naç</string>
     <string name="auth_use_biometrics">Ya da <font fgcolor="#FF0D86C1">biyometrik</font> kullanmak için dokunun</string>
     <string name="set_password">Lütfen bir parola girin</string>
     <string name="set_group">Lütfen bir grup adı girin</string>
@@ -160,6 +164,7 @@
     <string name="encrypting_vault">Kasa Şifreleniyor</string>
     <string name="exporting_vault">Kasa dışarı aktarılıyor</string>
     <string name="reading_file">Dosya okunuyor</string>
+    <string name="requesting_root_access">Root erişimi denetleniyor</string>
     <string name="analyzing_qr">QR kodunu analiz ediliyor</string>
     <string name="analyzing_qr_multiple">QR kodu %d/%d (%s) analiz ediliyor</string>
     <plurals name="added_new_entries">
@@ -226,7 +231,7 @@
     <string name="reading_file_error">Dosyayı okumaya çalışırken bir hata meydana geldi</string>
     <string name="app_lookup_error">Hata: Uygulama yüklenmemiş</string>
     <string name="app_version_error">Yüklü %s sürümü desteklenmiyor. Son sürümlerde diskteki bazı dosyaların şifrelenmesinden ötürü Aegis içeri aktaracak bilgilere erişemiyor. İçe aktarmayı denemek hata ile sonuçlanabilir, yine de devam etmek ister misiniz?</string>
-    <string name="root_error">Hata: Kök kullanıcı erişimi elde edilemedi</string>
+    <string name="root_error">Hata: root erişimi elde edilemedi</string>
     <plurals name="imported_entries_count">
         <item quantity="one">%d girdi içe aktarıldı</item>
         <item quantity="other">%d girdi içe aktarıldı</item>
@@ -347,9 +352,14 @@
     </plurals>
     <string name="google_qr_export_unexpected">Beklenen QR kodu #%d idi, ancak bunun yerine #%d tarandı</string>
     <string name="backup_error_bar_message"><b>Kasa yedeklenmesi başarısız oldu</b></string>
-    <string name="backup_error_dialog_details">En son %s kullanılarak cüzdan yedeği girişimi bir hata oluştuğundan başarısız oldu. Yedek girişimi tarihi: %s. Lütfen yedeklerin başarılı bir şekilde tamamlanması için yedek ayarlarınızı kontrol edin.</string>
+    <string name="backup_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">        Bir hata nedeniyle %s ile son kasa yedeği alınamadı. Yedekleme denemesi %s. Yedeklemenin başarılı olması için lütfen yedekleme ayarlarınızı kontrol edin.
+    </string>
     <string name="backup_system_builtin">Aegis dahili otomatik yedekleri</string>
     <string name="backup_system_android">Android\'in bulut yedekleme sistemi</string>
+    <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">        Son yedek güncel değil (%s)
+    </string>
+    <string name="backup_reminder_bar_message">        Değişiklikler yedeklenmedi
+    </string>
     <string name="backup_plaintext_export_warning"><b>Kasa yakın zamanda düz metin olarak dışa aktarıldı</b></string>
     <string name="pref_show_plaintext_warning_hint">Bu uyarıyı bir daha gösterme</string>
     <string name="backup_plaintext_warning_explanation">Bu uyarı kısa süre önce kasanın şifrelenmemiş bir kopyasını dışa aktardığınız için gösterilir. Tokenlerinizin güvenliğini korumak için artık ihtiyaç duymadığınızda bu dosyayı silmenizi öneririz.</string>
@@ -369,6 +379,9 @@
     </plurals>
     <string name="next">Sonraki</string>
     <string name="previous">Önceki</string>
+    <string name="copy_uri">URI\'ı kopyala</string>
+    <string name="unable_to_copy_uri_to_clipboard">URI panoya kopyalanamıyor</string>
+    <string name="uri_copied_to_clipboard">URI panoya kopyalandı</string>
     <string name="transfer_entry">Girdiyi aktar</string>
     <string name="transfer_entry_description">Bu kare kodu aktarmak istediğiniz doğrulayıcı uygulamasıyla okutun</string>
     <string name="google_auth_compatible_transfer_description">Bu QR kodlarını Aegis veya Google Authenticator ile tarayın.\in\Google Authenticator uygulamasının sınırlamaları nedeniyle, yalnızca TOTP &amp; SHA1 kullanan ve 6 basamaklı kodlar üreten TOTP belirteçleri dahildir</string>

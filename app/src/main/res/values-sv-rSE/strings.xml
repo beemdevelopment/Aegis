@@ -110,8 +110,7 @@
     <string name="authentication_method_biometrics">Biometri</string>
     <string name="authentication_method_biometrics_description">Förutom ett lösenord kan biometri registrerad på den här enheten, som ett fingeravtryck eller ditt ansikte, användas för att låsa upp valvet.</string>
     <string name="authentication">Lås upp valvet</string>
-    <!-- The newline (\n) on the following line is just for aesthetic purposes !-->
-    <string name="authentication_multiline">Lås upp\nvalvet</string>
+    <string name="authentication_multiline" comment="The newline in the middle is used for aesthetic purposes">Lås upp\nvalvet</string>
     <string name="auth_use_biometrics">Eller tryck här för att använda <font fgcolor="#FF0D86C1">biometri</font></string>
     <string name="set_password">Vänligen ange ett lösenord</string>
     <string name="set_group">Vänligen ange ett gruppnamn</string>
@@ -226,7 +225,6 @@
     <string name="reading_file_error">Ett fel uppstod när filen skulle läsas</string>
     <string name="app_lookup_error">Fel: Appen är inte installerad</string>
     <string name="app_version_error">Versionen av %s som är installerad stöds ej. De senaste versionerna har börjat att kryptera några av filerna i den interna lagringskatalogen, vilket gör att Aegis inte kan komma åt den information som behövs för importen. Att försöka importera kommer sannolikt att resultera i ett fel. Vill du fortsätta ändå?</string>
-    <string name="root_error">Fel: Kunde inte få rotåtkomst</string>
     <plurals name="imported_entries_count">
         <item quantity="one">Importerade %d post</item>
         <item quantity="other">Importerade %d poster</item>
@@ -347,7 +345,6 @@
     </plurals>
     <string name="google_qr_export_unexpected">Förutsatte rutkod #%d men skannade #%d i stället</string>
     <string name="backup_error_bar_message"><b>Säkerhetskopiering av valvet misslyckades nyligen</b></string>
-    <string name="backup_error_dialog_details">Ett nyligen påbörjat försök att säkerhetskopiera valvet till %s misslyckades eftersom ett fel uppstod. Säkerhetskopieringen påbörjades: %s. Vänligen kontrollera dina säkerhetskopieringsinställningar för att se till att säkerhetskopior kan skapas framgångsrikt.</string>
     <string name="backup_system_builtin">Aegis inbyggda automatiska säkerhetskopior</string>
     <string name="backup_system_android">Androids molnsäkerhetskopieringssystem</string>
     <string name="backup_plaintext_export_warning"><b>Valvet exporterades nyligen som klartext</b></string>
