@@ -34,6 +34,7 @@ public abstract class DatabaseImporter {
         _importers.add(new Definition("andOTP", AndOtpImporter.class, R.string.importer_help_andotp, false));
         _importers.add(new Definition("Authenticator Plus", AuthenticatorPlusImporter.class, R.string.importer_help_authenticator_plus, false));
         _importers.add(new Definition("Authy", AuthyImporter.class, R.string.importer_help_authy, true));
+        _importers.add(new Definition("Battle.net Authenticator", BattleNetImporter.class, R.string.importer_help_battle_net_authenticator, true));
         _importers.add(new Definition("Bitwarden", BitwardenImporter.class, R.string.importer_help_bitwarden, false));
         _importers.add(new Definition("Duo", DuoImporter.class, R.string.importer_help_duo, true));
         _importers.add(new Definition("FreeOTP", FreeOtpImporter.class, R.string.importer_help_freeotp, true));
@@ -105,6 +106,13 @@ public abstract class DatabaseImporter {
         private final @StringRes int _help;
         private final boolean _supportsDirect;
 
+        /**
+         *
+         * @param name The name of the Authenticator the importer handles.
+         * @param type The class which does the importing.
+         * @param help The string that explains the type of file needed (and optionally where it can be obtained).
+         * @param supportsDirect Whether the importer can directly import the entries from the app's internal storage using root access.
+         */
         public Definition(String name, Class<? extends DatabaseImporter> type, @StringRes int help, boolean supportsDirect) {
             _name = name;
             _type = type;
