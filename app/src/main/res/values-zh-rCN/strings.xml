@@ -104,7 +104,7 @@
     <string name="export_all_groups">导出所有组</string>
     <string name="export_choose_groups">选择要导出的组：</string>
     <string name="export_no_groups_selected">没有选择要导出的组</string>
-    <string name="export_html_title">Aegis 身份验证器导出</string>
+    <string name="export_html_title" context="The title of an HTML export document">Aegis 身份验证器导出</string>
     <string name="choose_authentication_method">安全</string>
     <string name="authentication_method_explanation">Aegis 是一款专注于安全性的双重认证（2FA）应用。令牌存储在数据库中，可以选择使用您选择的密码进行加密。如果攻击者获得了加密的数据库文件，他们将无法在不知道密码的情况下访问内容。\n\n我们已预先选择了我们认为最适合您的设备的选项。</string>
     <string name="authentication_method_none">无</string>
@@ -404,6 +404,7 @@
     <string name="importer_help_authy">提供 <b>/data/data/com.authy.authy/shared_prefs/com.authy.storage.tokens.authenticator.xml</b> 的一个副本，位于 Authy 的内部存储目录。</string>
     <string name="importer_help_andotp">提供 andOTP 导出/备份文件。</string>
     <string name="importer_help_bitwarden">提供 Bitwarden 导出 / 备份文件。不支持加密的文件。</string>
+    <string name="importer_help_battle_net_authenticator">提供<b>/data/data/com.blizzard.bma/shared_prefs/com.blizzard.bma.AUTH_STORE.xml</b> 的拷贝, 位于Battle.net Authenticator内部存储目录。</string>
     <string name="importer_help_duo">提供 <b>/data/data/com.duosecurity.duomobile/files/duokit/accounts.json</b> 的一个副本，位于 DUO 的内部存储目录。</string>
     <string name="importer_help_freeotp">提供 <b>/data/data/org.fedorahosted.freeotp/shared_prefs/tokens.xml</b> 的一个副本，位于 FreeOTP 的内部存储目录。</string>
     <string name="importer_help_freeotp_plus">提供 FreeOTP+ 导出文件。</string>

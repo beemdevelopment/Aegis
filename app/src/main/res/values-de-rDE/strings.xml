@@ -106,7 +106,7 @@
     <string name="export_all_groups">Alle Gruppen exportieren</string>
     <string name="export_choose_groups">Gib an, welche Gruppen du exportieren möchtest:</string>
     <string name="export_no_groups_selected">Keine Gruppen zum Exportieren ausgewählt</string>
-    <string name="export_html_title">Exportieren von Aegis Authenticator</string>
+    <string name="export_html_title" context="The title of an HTML export document">Exportieren von Aegis Authenticator</string>
     <string name="choose_authentication_method">Sicherheit</string>
     <string name="authentication_method_explanation">Aegis ist eine auf Sicherheit ausgerichtete 2FA-App. Die Token werden in einer Datenbank gespeichert, die optional mit einem Passwort deiner Wahl verschlüsselt werden kann. Wenn ein Angreifer an deine verschlüsselte Datenbankdatei gelangt, kann er ohne Kenntnis des Passworts nicht auf den Inhalt zugreifen.\n\nWir haben die Optionen voreingestellt, die unserer Meinung nach am besten zu deinem Gerät passen.</string>
     <string name="authentication_method_none">Keine</string>

@@ -103,7 +103,7 @@
     <string name="export_format_google_auth_uri">Ficheru de testu (.TXT)</string>
     <string name="export_format_html">Páxina web (.HTML)</string>
     <string name="export_format_hint">Formatu de la esportación</string>
-    <string name="export_html_title">Esportación d\'Aeguis Authenticator</string>
+    <string name="export_html_title" context="The title of an HTML export document">Esportación d\'Aeguis Authenticator</string>
     <string name="choose_authentication_method">Seguranza</string>
     <string name="authentication_method_explanation">Aegis ye una aplicación enfocada na seguranza p\'autenticase en dos pasos. Los pases atróxense nuna arca que se pue cifrar cola contraseña qu\'escueyas, polo que si un atacante consigue\'l ficheru cifráu de l\'arca, nun va ser a acceder al so conteníu si nun sabe la contraseña.\n\nSeleicionemos por ti la opción que nos paez más afayadiza pal preséu.</string>
     <string name="authentication_method_none">Nada</string>
@@ -370,6 +370,8 @@
     </plurals>
     <string name="next">Siguiente</string>
     <string name="previous">Anterior</string>
+    <string name="unable_to_copy_uri_to_clipboard">Nun ye posible copiar la URI al cartafueyu</string>
+    <string name="uri_copied_to_clipboard">La URI copióse al cartafueyu</string>
     <string name="transfer_entry">Tresferencia d\'una entrada</string>
     <string name="transfer_entry_description">Escania esti códígu QR cola aplicación autenticadora a la que quies tresferir esta entrada</string>
     <string name="google_auth_compatible_transfer_description">Escania estos códigos QR con Aegis o con Google Authenticator.\n\nPola mor de les llendes de l\'aplicación Google Authenticator, namás s\'inclúin pases TOTP ya HOTP qu\'usen el hash SHA1 ya produzan códigos de 6 díxitos</string>
@@ -401,6 +403,7 @@
     <string name="importer_help_authy">Forni una copia del ficheru <b>com.authy.storage.tokens.authenticator.xml</b> que s\'alluga na direición «/data/data/com.authy.authy/shared_prefs/», dientro del direutoriu del almacenamientu internu d\'Authy.</string>
     <string name="importer_help_andotp">Forni un ficheru d\'esportación/copia de seguranza d\'AndOTP.</string>
     <string name="importer_help_bitwarden">Forni un ficheru d\'esportación/copia de seguranza de Bitwarden. Los ficheros cifraos nun son compatibles.</string>
+    <string name="importer_help_battle_net_authenticator">Forni una copia del ficheru <b>com.blizzard.bma.AUTH_STORE.xml</b> que s\'alluga na direición «/data/data/com.blizzard.bma/shared_prefs/», dientro del direutoriu del almacenamientu internu de Battle.net Authenticator.</string>
     <string name="importer_help_duo">Forni una copia del ficheru <b>accounts.json</b> que s\'alluga na direición «/data/data/com.duosecurity.duomobile/files/duokit/», dientro del direutoriu del almacenamientu internu de DUO.</string>
     <string name="importer_help_freeotp">Forni una copia del ficheru <b>tokens.xml</b> que s\'alluga na direición «/data/data/org.fedorahosted.freeotp/shared_prefs/», dientro del direutoriu del almacenamientu internu de FreeOTP.</string>
     <string name="importer_help_freeotp_plus">Forni un ficheru d\'esportación de FreeOTP+.</string>

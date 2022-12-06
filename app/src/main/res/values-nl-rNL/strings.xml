@@ -5,7 +5,7 @@
     <string name="action_delete">Verwijderen</string>
     <string name="action_transfer">Overzetten</string>
     <string name="action_edit_icon">Icoon aanpassen</string>
-    <string name="action_reset_usage_count">Gebruikstelling resetten</string>
+    <string name="action_reset_usage_count">Reset gebruikteller</string>
     <string name="action_reset_usage_count_dialog">Weet u zeker dat u de gebruikstelling van dit item op 0 wilt zetten?</string>
     <string name="action_default_icon">Standaard pictogram herstellen</string>
     <string name="discard">Ongedaan maken</string>
@@ -101,10 +101,12 @@
     <string name="export_warning_password">Exporten worden versleuteld met een apart wachtwoord ingesteld in de beveiligingsinstellingen.</string>
     <string name="export_format_aegis">Aegis (.JSON)</string>
     <string name="export_format_google_auth_uri">Tekstbestand (.TXT)</string>
+    <string name="export_format_html">Webpagina (.HTML)</string>
     <string name="export_format_hint">Bestandsformaat</string>
     <string name="export_all_groups">Alle groepen exporteren</string>
     <string name="export_choose_groups">Kies groepen om te exporteren:</string>
     <string name="export_no_groups_selected">Geen groepen gekozen om te exporteren</string>
+    <string name="export_html_title" context="The title of an HTML export document">Aegis Authenticator Export</string>
     <string name="choose_authentication_method">Beveiliging</string>
     <string name="authentication_method_explanation">Aegis is een op veiligheid gerichte 2FA-applicatie. Tokens worden opgeslagen in een kluis, die optioneel kan worden versleuteld met een wachtwoord naar keuze. Als een aanvaller je versleutelde kluisbestand in handen krijgt, zal deze geen toegang hebben tot de inhoud zonder het wachtwoord te kennen.\n\nWij hebben de optie gekozen die volgens ons het beste past bij jouw apparaat.</string>
     <string name="authentication_method_none">Geen</string>
@@ -164,6 +166,7 @@
     <string name="encrypting_vault">De kluis wordt versleuteld</string>
     <string name="exporting_vault">De kluis wordt geëxporteerd</string>
     <string name="reading_file">Bestand lezen</string>
+    <string name="requesting_root_access">Root-toegang wordt aangevraagd</string>
     <string name="analyzing_qr">QR-code analyseren</string>
     <string name="analyzing_qr_multiple">QR-code analyseren %d/%d (%s)</string>
     <plurals name="added_new_entries">
@@ -230,6 +233,7 @@
     <string name="reading_file_error">Er is een fout opgetreden tijdens het lezen van het bestand</string>
     <string name="app_lookup_error">Fout: App is niet geïnstalleerd</string>
     <string name="app_version_error">De geïnstalleerde versie van %s wordt niet ondersteund. Recente versies zijn begonnen met het versleutelen van enkele bestanden in de interne opslagmap. Hierdoor heeft Aegis geen toegang tot de informatie die nodig is om te importeren. Importeren zal waarschijnlijk een fout opleveren. Wil je toch doorgaan?</string>
+    <string name="root_error">Fout: Kan root toegang niet verkrijgen</string>
     <plurals name="imported_entries_count">
         <item quantity="one">%d item geïmporteerd</item>
         <item quantity="other">%d items geïmporteerd</item>
@@ -350,8 +354,12 @@
     </plurals>
     <string name="google_qr_export_unexpected">QR-code #%d werd verwacht, maar in plaats daarvan #%d gescand</string>
     <string name="backup_error_bar_message"><b>Kluis back-up onlangs mislukt</b></string>
+    <string name="backup_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">Een recente back-up van de kluis met %s mislukte omdat er een fout plaatsvond. De back-up werd op %s geprobeerd. Controleer uw back-upinstellingen om er zeker van te zijn dat back-ups succesvol kunnen worden voltooid.    </string>
     <string name="backup_system_builtin">het ingebouwde automatische back-ups van Aegis</string>
     <string name="backup_system_android">het cloud back-upsysteem van Android</string>
+    <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">        De meest recente back-up is verouderd (%s)
+    </string>
+    <string name="backup_reminder_bar_message">Geen backup gemaakt van wijzigingen    </string>
     <string name="backup_plaintext_export_warning"><b>De kluis is recent geëxporteerd in platte tekst</b></string>
     <string name="pref_show_plaintext_warning_hint">Deze waarschuwing niet opnieuw weergeven</string>
     <string name="backup_plaintext_warning_explanation">Deze waarschuwing wordt weergegeven omdat je recent een onversleutelde kopie van de kluis hebt geëxporteerd. Om je tokens veilig te houden, raden we aan dit bestand te verwijderen als je het niet meer nodig hebt.</string>
@@ -371,6 +379,9 @@
     </plurals>
     <string name="next">Volgende</string>
     <string name="previous">Vorige</string>
+    <string name="copy_uri">Kopieer URI</string>
+    <string name="unable_to_copy_uri_to_clipboard">Kan URI niet kopiëren naar klembord</string>
+    <string name="uri_copied_to_clipboard">URI naar klembord gekopieerd</string>
     <string name="transfer_entry">Item overzetten</string>
     <string name="transfer_entry_description">Scan deze QR-code met de authenticator-app waar je dit item naar wilt overzetten</string>
     <string name="google_auth_compatible_transfer_description">Scan deze QR-codes met Aegis of Google Authenticator.\n\nVanwege beperkingen van de Google Authenticator app, zijn alleen TOTP- &amp; HOTP-tokens die SHA1 gebruiken en 6-cijferige codes produceren opgenomen</string>
@@ -402,6 +413,7 @@
     <string name="importer_help_authy">Lever een kopie aan van <b>/data/data/com.authy.authy/shared_prefs/com.authy.storage.tokens.authenticator.xml</b>, geplaatst in de interne opslagmap van Authy.</string>
     <string name="importer_help_andotp">Lever een andOTP export/backup bestand aan.</string>
     <string name="importer_help_bitwarden">Lever een Bitwarden export/back-upbestand aan. Versleutelde bestanden worden niet ondersteund.</string>
+    <string name="importer_help_battle_net_authenticator">Lever een kopie aan van <b>/data/data/com.blizzard.bma/shared_prefs/com.blizzard.bma.AUTH_STORE.xml</b>, gelegen in de interne opslagmap van Battle.net Authenticator.</string>
     <string name="importer_help_duo">Lever een kopie aan van <b>/data/data/com.duosecurity.duomobile/files/duokit/accounts.json</b>, geplaatst in de interne opslagmap van DUO.</string>
     <string name="importer_help_freeotp">Lever een kopie aan van <b>/data/data/org.fedorahosted.freeotp/shared_prefs/tokens.xml</b>, geplaatst in de interne opslagmap van FreeOTP.</string>
     <string name="importer_help_freeotp_plus">Lever een FreeOTP+ exportbestand aan.</string>
@@ -421,4 +433,24 @@
     <string name="pref_grouping_size_two">Groepen van 2</string>
     <string name="pref_grouping_size_three">Groepen van 3</string>
     <string name="pref_grouping_size_four">Groepen van 4</string>
+    <plurals name="time_elapsed_seconds">
+        <item quantity="one">%d seconde geleden</item>
+        <item quantity="other">%d seconden geleden</item>
+    </plurals>
+    <plurals name="time_elapsed_minutes">
+        <item quantity="one">%d minuut geleden</item>
+        <item quantity="other">%d minuten geleden</item>
+    </plurals>
+    <plurals name="time_elapsed_hours">
+        <item quantity="one">%d uur geleden</item>
+        <item quantity="other">%d uren geleden</item>
+    </plurals>
+    <plurals name="time_elapsed_days">
+        <item quantity="one">%d dag geleden</item>
+        <item quantity="other">%d dagen geleden</item>
+    </plurals>
+    <plurals name="time_elapsed_years">
+        <item quantity="one">%d jaar geleden</item>
+        <item quantity="other">%d jaren geleden</item>
+    </plurals>
 </resources>

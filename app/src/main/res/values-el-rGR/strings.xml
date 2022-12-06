@@ -106,7 +106,7 @@
     <string name="export_all_groups">Εξαγωγή όλων των ομάδων</string>
     <string name="export_choose_groups">Επιλέξτε ποιες ομάδες θα εξαχθούν:</string>
     <string name="export_no_groups_selected">Δεν επιλέχθηκαν ομάδες για εξαγωγή</string>
-    <string name="export_html_title">Εξαγωγή Aegis Authenticator</string>
+    <string name="export_html_title" context="The title of an HTML export document">Εξαγωγή Aegis Authenticator</string>
     <string name="choose_authentication_method">Ασφάλεια</string>
     <string name="authentication_method_explanation">Το Aegis είναι μια εφαρμογή 2FA επικεντρωμένη στην ασφάλεια. Τα αναγνωριστικά αποθηκεύονται σε μία κρύπτη, η οποία μπορεί προαιρετικά να κρυπτογραφηθεί με έναν κωδικό της επιλογής σας. Αν κάποιος εισβολέας αποκτήσει το κρυπτογραφημένο αρχείο της κρύπτης σας, δεν θα έχει πρόσβαση στα περιεχόμενα χωρίς να γνωρίζει τον κωδικό.\n\nΈχουμε προεπιλέξει την επιλογή που νομίζουμε ότι θα ταιριάζει καλύτερα στη συσκευή σας.</string>
     <string name="authentication_method_none">Καμία</string>
@@ -415,6 +415,7 @@
     <string name="importer_help_authy">Παρέχει ένα αντίγραφο του <b>/data/data/com.authy.authy/shared_prefs/com.authy.storage.tokens.authenticator.xml</b>, που βρίσκεται στον κατάλογο εσωτερικής αποθήκευσης του Authy.</string>
     <string name="importer_help_andotp">Παρέχει ένα αρχείο εξαγωγής/αντιγράφου ασφαλείας andOTP.</string>
     <string name="importer_help_bitwarden">Παρέχετε ένα αρχείο εξαγωγής/αντιγράφων ασφαλείας Bitwarden. Τα κρυπτογραφημένα αρχεία δεν υποστηρίζονται.</string>
+    <string name="importer_help_battle_net_authenticator">Παρέχει ένα αντίγραφο του <b>/data/data/com.blizzard.bma/shared_prefs/com.blizzard.bma.Galax_STORE.xml</b>, που βρίσκεται στον εσωτερικό κατάλογο αποθήκευσης του Battle.net Authenticator.</string>
     <string name="importer_help_duo">Παρέχει ένα αντίγραφο του <b>/data/data/com.duosecurity.duomobile/files/duokit/accounts.json</b>, που βρίσκεται στον εσωτερικό κατάλογο αποθήκευσης του DUO.</string>
     <string name="importer_help_freeotp">Παρέχει ένα αντίγραφο του <b> /data/data/org.fedorahosted.freeotp/shared_prefs/tokens.xml </b>, που βρίσκεται στον κατάλογο εσωτερικής αποθήκευσης του FreeOTP.</string>
     <string name="importer_help_freeotp_plus">Παρέχει ένα αρχείο εξαγωγής FreeOTP +.</string>

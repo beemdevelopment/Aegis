@@ -106,7 +106,7 @@
     <string name="export_all_groups">Esportatu talde guztiak</string>
     <string name="export_choose_groups">Aukeratu zein talde esportatu:</string>
     <string name="export_no_groups_selected">Ez duzu talderik aukeratu esportatzeko</string>
-    <string name="export_html_title">Aegis Authenticator Esportazioa</string>
+    <string name="export_html_title" context="The title of an HTML export document">Aegis Authenticator Esportazioa</string>
     <string name="choose_authentication_method">Segurtasuna</string>
     <string name="authentication_method_explanation">Aegis segurtasunean oinarritutako 2FA aplikazioa da. Tokenak biltegi batean gordetzen dira. Biltegi hori nahi izanez gero, aukeratu duzun pasahitzarekin zifratu daiteke. Erasotzaile batek biltegi enkriptatuko fitxategia lortzen badu, ezingo du edukira sartu pasahitza jakin gabe.\n\nZure gailuarentzat hobeto egokituko litzatekeela uste dugun aukera hautatu dugu.</string>
     <string name="authentication_method_none">Bat ere ez</string>
@@ -413,6 +413,7 @@
     <string name="importer_help_authy"><b>/data/data/com.authy.authy/shared_prefs/com.authy.storage.tokens.authenticator.xml</b> fitxategia aukeratu.</string>
     <string name="importer_help_andotp">andOTPren esportazio/segurtasun-kopia fitxategia aukeratu.</string>
     <string name="importer_help_bitwarden">Kargatu Bitwardenen esportazio/segurtasun-kopia fitxategi bat. Ezin dituzu zifratutako fitxategiak kargatu.</string>
+    <string name="importer_help_battle_net_authenticator">Battle.net Authenticatoren <b>/data/data/com.blizzard.bma/shared_prefs/com.blizzard.bma.AUTH_STORE.xml</b> fitxategia aukeratu.</string>
     <string name="importer_help_duo">Aukeratu <b>/data/data/com.duosecurity.duomobile/files/duokit/accounts.json</b> fitxategia, DUOren karpeten barruan dagoena.</string>
     <string name="importer_help_freeotp">FreeTOPren <b>/data/data/org.fedorahosted.freeotp/shared_prefs/tokens.xml</b> fitxategia aukeratu.</string>
     <string name="importer_help_freeotp_plus">FreeOTP+en esportazio fitxategia aukeratu.</string>

@@ -110,7 +110,7 @@
     <string name="export_all_groups">Exportovat všechny skupiny</string>
     <string name="export_choose_groups">Vyberte, které skupiny chcete exportovat:</string>
     <string name="export_no_groups_selected">Nebyly vybrány žádné skupiny k exportu</string>
-    <string name="export_html_title">Export Aegis Authenticator</string>
+    <string name="export_html_title" context="The title of an HTML export document">Export Aegis Authenticator</string>
     <string name="choose_authentication_method">Zabezpečení</string>
     <string name="authentication_method_explanation">Aegis je 2FA aplikace zaměřená na bezpečnost. Tokeny jsou uloženy v trezoru, který může být zašifrovaný vámi zvoleným heslem. Získá-li útočník váš zašifrovaný trezor, bez hesla se do něj nedostane.\n\nPředvybrali jsme možnost, která by podle nás měla nejvíce vyhovovat vašemu zařízení.</string>
     <string name="authentication_method_none">Žádné</string>

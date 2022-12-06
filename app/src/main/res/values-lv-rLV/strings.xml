@@ -108,7 +108,7 @@
     <string name="export_all_groups">Izdot visas kopas</string>
     <string name="export_choose_groups">Atlasīt, kuras kopas izdot:</string>
     <string name="export_no_groups_selected">Nav atlasītu kopu izdošanai</string>
-    <string name="export_html_title">Aegis Authenticator izdošana</string>
+    <string name="export_html_title" context="The title of an HTML export document">Aegis Authenticator izdošana</string>
     <string name="choose_authentication_method">Drošība</string>
     <string name="authentication_method_explanation">Aegis ir uz drošību vērsta 2FA lietotne. Kodi tiek turēti glabātavā, ko ir iespējams šifrēt ar paša izvēlētu paroli. Ja uzbrucēji iegūst šifrēto glabātavas datni, tie nevarēs piekļūt tās saturam, nezinot paroli.\n\nTika atlasīta iespēja, kurai vajadzētu būt vispiemērotākajai šai ierīcei.</string>
     <string name="authentication_method_none">Nekas</string>
@@ -425,6 +425,7 @@
     <string name="importer_help_authy">Padot <b>/data/data/com.authy.authy/shared_prefs/com.authy.storage.tokens.authenticator.xml</b> kopiju, kas atrodas iekšējās krātuves Authy mapē.</string>
     <string name="importer_help_andotp">Padot andOTP izdošanas/rezerves kopijas datni.</string>
     <string name="importer_help_bitwarden">Padot Bitwarden izdošanas/rezerves kopijas datni. Šifrētas datnes netiek atbalstītas.</string>
+    <string name="importer_help_battle_net_authenticator">Padot <b>/data/data/com.blizzard.bma/shared_prefs/com.blizzard.bma.AUTH_STORE.xml</b> kopiju, kas atrodas iekšējās krātuves Battle.net Authenticator mapē.</string>
     <string name="importer_help_duo">Padot <b>/data/data/com.duosecurity.duomobile/files/duokit/accounts.json</b> kopiju, kas atrodas iekšējās krātuves DUO mapē.</string>
     <string name="importer_help_freeotp">Padot <b>/data/data/org.fedorahosted.freeotp/shared_prefs/tokens.xml</b> kopiju, kas atrodas iekšējās krātuves FreeOTP mapē.</string>
     <string name="importer_help_freeotp_plus">Padot FreeOTP+ izdošanas datni.</string>
