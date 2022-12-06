@@ -1,5 +1,7 @@
 package com.beemdevelopment.aegis.ui.views;
 
+import static androidx.recyclerview.widget.RecyclerView.NO_POSITION;
+
 import android.graphics.Typeface;
 import android.os.Handler;
 import android.text.SpannableString;
@@ -211,7 +213,7 @@ public class EntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
             sortShownEntries();
             int newPosition = _shownEntries.indexOf(newEntry);
-            if (position != newPosition) {
+            if (newPosition != NO_POSITION && position != newPosition) {
                 notifyItemMoved(position, newPosition);
             }
         } else if (!isEntryFiltered(newEntry)) {
