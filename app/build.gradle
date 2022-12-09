@@ -121,10 +121,10 @@ protobuf {
 }
 
 dependencies {
-    def cameraxVersion = '1.1.0'
+    def cameraxVersion = '1.2.0'
     def glideVersion = '4.14.2'
     def guavaVersion = '31.1'
-    def hiltVersion = '2.44'
+    def hiltVersion = '2.44.2'
     def junitVersion = '4.13.2'
     def libsuVersion = '5.0.3'
 
@@ -179,7 +179,7 @@ dependencies {
     androidTestAnnotationProcessor "com.google.dagger:hilt-android-compiler:$hiltVersion"
     androidTestImplementation "com.google.dagger:hilt-android-testing:$hiltVersion"
     androidTestImplementation 'androidx.test:core:1.5.0'
-    androidTestImplementation 'androidx.test:runner:1.5.0'
+    androidTestImplementation 'androidx.test:runner:1.5.1'
     androidTestImplementation 'androidx.test:rules:1.5.0'
     androidTestImplementation 'androidx.test.ext:junit:1.1.4'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.0'
