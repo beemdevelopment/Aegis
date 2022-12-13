@@ -19,4 +19,8 @@
         <attr name="dot_color" format="color" />
         <attr name="dot_color_selected" format="color" />
     </declare-styleable>
+
+    <declare-styleable name="DropdownCheckBoxes">
+        <attr name="allow_filtering" format="boolean" />
+    </declare-styleable>
 </resources>

@@ -500,4 +500,9 @@
         <item quantity="one">%d year ago</item>
         <item quantity="other">%d years ago</item>
     </plurals>
+
+    <plurals name="dropdown_checkboxes_default_count">
+        <item quantity="one">%d item selected</item>
+        <item quantity="other">%d items selected</item>
+    </plurals>
 </resources>
