@@ -571,7 +571,7 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
             super(requireContext(), DividerItemDecoration.VERTICAL);
             setDividerColor(ThemeHelper.getThemeColor(R.attr.divider, requireContext().getTheme()));
             setLastItemDecorated(false);
-            setDividerThickness(MetricsHelper.convertDpToPixels(requireContext(), 0.5f));
+            setDividerThickness(MetricsHelper.convertDpToPixels(requireContext(), 0));
         }
 
         @Override
