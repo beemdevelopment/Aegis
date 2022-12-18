@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:paddingBottom="10dp"
     android:paddingTop="10dp">
@@ -76,31 +76,21 @@
         android:checked="true"
         android:visibility="gone" />
 
-    <TextView
-        android:id="@+id/select_groups_hint"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/group_selection_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingHorizontal="30dp"
-        android:text="@string/export_choose_groups"
-        android:visibility="gone"/>
+        android:layout_marginStart="25dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginTop="15dp"
+        android:hint="@string/export_choose_groups"
+        android:visibility="gone"
+        style="?attr/dropdownStyle">
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingHorizontal="20dp">
-        <LinearLayout
-            android:id="@+id/select_groups"
+        <com.beemdevelopment.aegis.ui.components.DropdownCheckBoxes
+            android:id="@+id/group_selection_dropdown"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:paddingHorizontal="20dp"
-            android:visibility="gone">
-
-            <CheckBox
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/no_group"
-                android:checked="false"/>
-        </LinearLayout>
-    </ScrollView>
+            app:allow_filtering="false" />
+    </com.google.android.material.textfield.TextInputLayout>
 </LinearLayout>

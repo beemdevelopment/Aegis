@@ -108,7 +108,11 @@
     <string name="export_format_html">Web page (.HTML)</string>
     <string name="export_format_hint">Export format</string>
     <string name="export_all_groups">Export all groups</string>
-    <string name="export_choose_groups">Select which groups to export:</string>
+    <string name="export_choose_groups">Select which groups to export</string>
+    <plurals name="export_groups_selected_count">
+        <item quantity="one">%d group selected</item>
+        <item quantity="other">%d groups selected</item>
+    </plurals>
     <string name="export_no_groups_selected">No groups selected to export</string>
     <string name="export_html_title" context="The title of an HTML export document">Aegis Authenticator Export</string>
 
@@ -499,5 +503,10 @@
     <plurals name="time_elapsed_years">
         <item quantity="one">%d year ago</item>
         <item quantity="other">%d years ago</item>
+    </plurals>
+
+    <plurals name="dropdown_checkboxes_default_count">
+        <item quantity="one">%d item selected</item>
+        <item quantity="other">%d items selected</item>
     </plurals>
 </resources>

@@ -9,7 +9,6 @@ import android.view.View;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,6 +29,7 @@ import com.beemdevelopment.aegis.otp.OtpInfo;
 import com.beemdevelopment.aegis.otp.TotpInfo;
 import com.beemdevelopment.aegis.ui.ImportEntriesActivity;
 import com.beemdevelopment.aegis.ui.TransferEntriesActivity;
+import com.beemdevelopment.aegis.ui.components.DropdownCheckBoxes;
 import com.beemdevelopment.aegis.ui.dialogs.Dialogs;
 import com.beemdevelopment.aegis.ui.tasks.ExportTask;
 import com.beemdevelopment.aegis.ui.tasks.ImportFileTask;
@@ -41,6 +41,7 @@ import com.beemdevelopment.aegis.vault.VaultRepository;
 import com.beemdevelopment.aegis.vault.VaultRepositoryException;
 import com.beemdevelopment.aegis.vault.slots.PasswordSlot;
 import com.beemdevelopment.aegis.vault.slots.SlotException;
+import com.google.android.material.textfield.TextInputLayout;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -162,8 +163,8 @@ public class ImportExportPreferencesFragment extends PreferencesFragment {
         CheckBox checkBoxEncrypt = view.findViewById(R.id.checkbox_export_encrypt);
         CheckBox checkBoxAccept = view.findViewById(R.id.checkbox_accept);
         CheckBox checkBoxExportAllGroups = view.findViewById(R.id.export_selected_groups);
-        LinearLayout groupsSelection = view.findViewById(R.id.select_groups);
-        TextView groupsSelectionDescriptor = view.findViewById(R.id.select_groups_hint);
+        TextInputLayout groupsSelectionLayout = view.findViewById(R.id.group_selection_layout);
+        DropdownCheckBoxes groupsSelection = view.findViewById(R.id.group_selection_dropdown);
         TextView passwordInfoText = view.findViewById(R.id.text_separate_password);
         passwordInfoText.setVisibility(checkBoxEncrypt.isChecked() && isBackupPasswordSet ? View.VISIBLE : View.GONE);
         AutoCompleteTextView dropdown = view.findViewById(R.id.dropdown_export_format);
@@ -179,12 +180,13 @@ public class ImportExportPreferencesFragment extends PreferencesFragment {
         TreeSet<String> groups = _vaultManager.getVault().getGroups();
         if (groups.size() > 0) {
             checkBoxExportAllGroups.setVisibility(View.VISIBLE);
-            for (String group: groups) {
-                CheckBox box = new CheckBox(requireContext());
-                box.setText(group);
-                box.setChecked(false);
-                groupsSelection.addView(box);
-            }
+
+            ArrayList<String> groupsArray = new ArrayList<>();
+            groupsArray.add(getString(R.string.no_group));
+            groupsArray.addAll(groups);
+
+            groupsSelection.setCheckedItemsCountTextRes(R.plurals.export_groups_selected_count);
+            groupsSelection.addItems(groupsArray, false);
         }
 
         AlertDialog dialog = new AlertDialog.Builder(requireContext())
@@ -215,8 +217,7 @@ public class ImportExportPreferencesFragment extends PreferencesFragment {
 
             checkBoxExportAllGroups.setOnCheckedChangeListener((button, isChecked) -> {
                 int visibility = isChecked ? View.GONE : View.VISIBLE;
-                groupsSelection.setVisibility(visibility);
-                groupsSelectionDescriptor.setVisibility(visibility);
+                groupsSelectionLayout.setVisibility(visibility);
             });
 
             btnPos.setOnClickListener(v -> {
@@ -303,14 +304,13 @@ public class ImportExportPreferencesFragment extends PreferencesFragment {
         Dialogs.showSecureDialog(dialog);
     }
 
-    private Vault.EntryFilter getVaultEntryFilter(LinearLayout view) {
+    private Vault.EntryFilter getVaultEntryFilter(DropdownCheckBoxes dropdownCheckBoxes) {
         Set<String> groups = new HashSet<>();
-        for (int i=0; i<view.getChildCount(); i++) {
-            CheckBox group = (CheckBox) view.getChildAt(i);
-            if (group.isChecked() && group.getText().toString().equals(getString(R.string.no_group))) {
+        for (String group: dropdownCheckBoxes.getCheckedItems()) {
+            if (group.equals(getString(R.string.no_group))) {
                 groups.add(null);
-            } else if (group.isChecked()) {
-                groups.add(group.getText().toString());
+            } else  {
+                groups.add(group);
             }
         }
 
