@@ -230,9 +230,7 @@ public class ImportExportPreferencesFragment extends PreferencesFragment {
                 if (!checkBoxExportAllGroups.isChecked()) {
                     _exportFilter = getVaultEntryFilter(groupsSelection);
                     if (_exportFilter == null) {
-                        Toast noGroupsSelected = new Toast(requireContext());
-                        noGroupsSelected.setText(R.string.export_no_groups_selected);
-                        noGroupsSelected.show();
+                        Toast.makeText(requireContext(), R.string.export_no_groups_selected, Toast.LENGTH_SHORT).show();
                         return;
                     }
                 }
@@ -259,9 +257,7 @@ public class ImportExportPreferencesFragment extends PreferencesFragment {
                 if (!checkBoxExportAllGroups.isChecked()) {
                     _exportFilter = getVaultEntryFilter(groupsSelection);
                     if (_exportFilter == null) {
-                        Toast noGroupsSelected = new Toast(requireContext());
-                        noGroupsSelected.setText(R.string.export_no_groups_selected);
-                        noGroupsSelected.show();
+                        Toast.makeText(requireContext(), R.string.export_no_groups_selected, Toast.LENGTH_SHORT).show();
                         return;
                     }
                 }
