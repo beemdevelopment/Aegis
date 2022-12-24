@@ -201,24 +201,44 @@ public class ImportExportPreferencesFragment extends PreferencesFragment {
             Button btnPos = dialog.getButton(AlertDialog.BUTTON_POSITIVE);
             Button btnNeutral = dialog.getButton(AlertDialog.BUTTON_NEUTRAL);
 
+            DialogStateValidator stateValidator = () -> {
+                boolean noGroupsSelected = groupsSelection.getCheckedItems().isEmpty();
+                boolean validState = (checkBoxEncrypt.isChecked() || checkBoxAccept.isChecked()) &&
+                                     (checkBoxExportAllGroups.isChecked() || !noGroupsSelected);
+
+                if (noGroupsSelected && groupsSelectionLayout.getError() == null) {
+                    CharSequence errorMsg = getString(R.string.export_no_groups_selected);
+                    groupsSelectionLayout.setError(errorMsg);
+                } else if (!noGroupsSelected && groupsSelectionLayout.getError() != null) {
+                    groupsSelectionLayout.setError(null);
+                    groupsSelectionLayout.setErrorEnabled(false);
+                }
+
+                btnPos.setEnabled(validState);
+                btnNeutral.setEnabled(validState);
+            };
+
             checkBoxEncrypt.setOnCheckedChangeListener((buttonView, isChecked) -> {
                 warningText.setVisibility(isChecked ? View.GONE : View.VISIBLE);
                 passwordInfoText.setVisibility(isChecked && isBackupPasswordSet ? View.VISIBLE : View.GONE);
                 checkBoxAccept.setVisibility(isChecked ? View.GONE : View.VISIBLE);
                 checkBoxAccept.setChecked(false);
-                btnPos.setEnabled(isChecked);
-                btnNeutral.setEnabled(isChecked);
+
+                stateValidator.enableIfValid();
             });
 
             checkBoxAccept.setOnCheckedChangeListener((buttonView, isChecked) -> {
-                btnPos.setEnabled(isChecked);
-                btnNeutral.setEnabled(isChecked);
+                stateValidator.enableIfValid();
             });
 
             checkBoxExportAllGroups.setOnCheckedChangeListener((button, isChecked) -> {
                 int visibility = isChecked ? View.GONE : View.VISIBLE;
                 groupsSelectionLayout.setVisibility(visibility);
+
+                stateValidator.enableIfValid();
             });
+
+            groupsSelection.setOnDismissListener(stateValidator::enableIfValid);
 
             btnPos.setOnClickListener(v -> {
                 dialog.dismiss();
@@ -257,7 +277,6 @@ public class ImportExportPreferencesFragment extends PreferencesFragment {
                 if (!checkBoxExportAllGroups.isChecked()) {
                     _exportFilter = getVaultEntryFilter(groupsSelection);
                     if (_exportFilter == null) {
-                        Toast.makeText(requireContext(), R.string.export_no_groups_selected, Toast.LENGTH_SHORT).show();
                         return;
                     }
                 }
@@ -520,5 +539,9 @@ public class ImportExportPreferencesFragment extends PreferencesFragment {
 
     private interface StartExportCallback {
         void exportVault(FinishExportCallback exportCb);
+    }
+
+    private interface DialogStateValidator {
+        void enableIfValid();
     }
 }
