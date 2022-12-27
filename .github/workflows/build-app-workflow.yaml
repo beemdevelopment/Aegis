@@ -7,7 +7,7 @@ jobs:
       - name: Checkout the code
         uses: actions/checkout@v3
       - name: Validate Gradle wrapper
-        uses: gradle/wrapper-validation-action@e6e38bacfdf1a337459f332974bb2327a31aaf4b
+        uses: gradle/wrapper-validation-action@55e685c48d84285a5b0418cd094606e199cca3b6
       - name: Build the app
         run: ./gradlew build
       - uses: actions/upload-artifact@v3
@@ -29,7 +29,7 @@ jobs:
       - name: Install HAXM
         run: brew install --cask intel-haxm
       - name: Tests
-        uses: reactivecircus/android-emulator-runner@e790971012b979513b4e2fe70d4079bc0ca8a1ae
+        uses: reactivecircus/android-emulator-runner@50986b1464923454c95e261820bc626f38490ec0
         with:
           api-level: 31
           arch: x86_64
