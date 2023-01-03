@@ -44,7 +44,7 @@
     <string name="pref_import_file_title">Εισαγωγή από αρχείο</string>
     <string name="pref_import_file_summary">Εισαγωγή αναγνωριστικών από αρχείο</string>
     <string name="pref_android_backups_title">Αντίγραφα ασφαλείας cloud Android</string>
-    <string name="pref_android_backups_summary">Επιτρέψτε στο σύστημα δημιουργίας αντιγράφων ασφαλείας cloud του Android να συμπεριλάβει τη κρύπτη του Aegis στα αντίγραφα ασφαλείας του. Αυτό υποστηρίζεται μόνο για κρυπτογραφημένες κρύπτες.</string>
+    <string name="pref_android_backups_summary">Επιτρέψτε στο σύστημα δημιουργίας αντιγράφων ασφαλείας cloud του Android να συμπεριλάβει την κρύπτη του Aegis στα αντίγραφα ασφαλείας του. Αυτό υποστηρίζεται μόνο για κρυπτογραφημένες κρύπτες.</string>
     <string name="pref_android_backups_hint"><i>Τα αντίγραφα ασφαλείας από συσκευή σε συσκευή (D2D) επιτρέπονται πάντα, ανεξάρτητα από την παραπάνω ρύθμιση</i></string>
     <string name="pref_backups_title">Αυτόματη δημιουργία αντιγράφων ασφαλείας της κρύπτης</string>
     <string name="pref_backups_summary">Αυτόματη δημιουργία αντιγραφών ασφαλείας της κρύπτης σε εξωτερικό χώρο αποθήκευσης όταν γίνονται αλλαγές. Αυτό υποστηρίζεται μόνο για κρυπτογραφημένες κρύπτες.</string>
@@ -83,7 +83,7 @@
     <string name="pref_auto_lock_type_back_button">Πατάτε το κουμπί πίσω</string>
     <string name="pref_auto_lock_type_minimize">Η εφαρμογή ελαχιστοποιείται</string>
     <string name="pref_auto_lock_type_device_lock">Η συσκευή είναι κλειδωμένη</string>
-    <string name="pref_backup_password_category">Δημιουργία Αντιγράφων ασφαλείας &amp; Εξαγωγή</string>
+    <string name="pref_backup_password_category">Δημιουργία αντιγράφων ασφαλείας &amp; Εξαγωγή</string>
     <string name="pref_backup_password_title">Ξεχωριστός κωδικός πρόσβασης για δημιουργία αντιγράφων ασφαλείας &amp; εξαγωγή</string>
     <string name="pref_backup_password_summary">Εάν είναι ενεργοποιημένο, ο κωδικός πρόσβασης που χρησιμοποιείται για το ξεκλείδωμα της εφαρμογής δεν μπορεί πλέον να χρησιμοποιηθεί για την αποκρυπτογράφηση αντιγράφων ασφαλείας και εξαγωγές.</string>
     <string name="pref_backup_password_change_title">Αλλαγή κωδικού πρόσβασης για δημιουργία αντιγράφων ασφαλείας &amp; εξαγωγή</string>
@@ -202,7 +202,7 @@
     <string name="biometric_decrypt_error">Παρουσιάστηκε σφάλμα κατά την προσπάθεια αποκρυπτογράφησης της κρύπτης με βιομετρικό έλεγχο ταυτότητας. Αυτό συμβαίνει συνήθως μόνο εάν αλλάξουν οι ρυθμίσεις ασφαλείας της συσκευής σας. Ξεκλειδώστε την κρύπτη με τον κωδικό πρόσβασής σας και διαμορφώστε εκ νέου τον βιομετρικό έλεγχο ταυτότητας στις ρυθμίσεις του Aegis.</string>
     <string name="biometric_init_error">Παρουσιάστηκε σφάλμα κατά την προσπάθεια προετοιμασίας βιομετρικού ελέγχου ταυτότητας. Αυτό συμβαίνει συνήθως μόνο εάν αλλάξουν οι ρυθμίσεις ασφαλείας της συσκευής σας. Ξεκλειδώστε την κρύπτη με τον κωδικό πρόσβασής σας και αναδιαμορφώστε τον βιομετρικό έλεγχο ταυτότητας στις ρυθμίσεις του Aegis.</string>
     <string name="disable_encryption">Απενεργοποίηση κρυπτογράφησης</string>
-    <string name="disable_encryption_description">Είστε βέβαιοι ότι θέλετε να απενεργοποιήσετε την κρυπτογράφηση? Αυτό θα έχει ως αποτέλεσμα η κρύπτη να αποθηκευτεί σε απλό κείμενο. <b>Τα αυτόματα αντίγραφα ασφαλείας θα απενεργοποιηθούν επίσης</b>.</string>
+    <string name="disable_encryption_description">Είστε βέβαιοι ότι θέλετε να απενεργοποιήσετε την κρυπτογράφηση; Αυτό θα έχει ως αποτέλεσμα η κρύπτη να αποθηκευτεί σε απλό κείμενο. <b>Τα αυτόματα αντίγραφα ασφαλείας θα απενεργοποιηθούν επίσης</b>.</string>
     <string name="enable_encryption_error">Παρουσιάστηκε σφάλμα κατά την ενεργοποίηση της κρυπτογράφησης</string>
     <string name="disable_encryption_error">Παρουσιάστηκε σφάλμα κατά την απενεργοποίηση της κρυπτογράφησης</string>
     <string name="backup_successful">Το αντίγραφο ασφαλείας προγραμματίστηκε με επιτυχία</string>
@@ -264,7 +264,7 @@
     <string name="remove_group">Κατάργηση ομάδας</string>
     <string name="remove_group_description">Είστε βέβαιοι ότι θέλετε να καταργήσετε αυτήν την ομάδα; Οι καταχωρίσεις σε αυτήν θα μεταβούν αυτόματα στο \"Χωρίς ομάδα\".</string>
     <string name="remove_icon_pack">Αφαίρεση πακέτου εικονιδίων</string>
-    <string name="remove_icon_pack_description">Είστε βέβαιοι ότι θέλετε να καταργήσετε αυτό το πακέτο εικονιδίων? Καταχωρήσεις που χρησιμοποιούν εικονίδια από αυτό το πακέτο δεν θα επηρεαστούν.</string>
+    <string name="remove_icon_pack_description">Είστε βέβαιοι ότι θέλετε να καταργήσετε αυτό το πακέτο εικονιδίων; Καταχωρήσεις που χρησιμοποιούν εικονίδια από αυτό το πακέτο δεν θα επηρεαστούν.</string>
     <string name="details">Λεπτομέρειες</string>
     <string name="show_error_details">Εμφάνιση λεπτομερειών σφάλματος</string>
     <string name="lock">Κλείδωμα</string>
@@ -300,11 +300,11 @@
     <string name="pin_keyboard_error_description">Δεν είναι δυνατός ο ορισμός του πληκτρολογίου PIN. Ο κωδικός πρόσβασής σας πρέπει να αποτελείται μόνο από αριθμούς.</string>
     <string name="pin_keyboard_disabled">Ο κωδικός άλλαξε. Το πληκτρολόγιο PIN δεν θα εμφανίζεται πλέον.</string>
     <string name="selected">Επιλεγμένο</string>
-    <string name="dark_theme_title">Σκούρο θέμα</string>
-    <string name="light_theme_title">Φωτεινό θέμα</string>
-    <string name="amoled_theme_title">AMOLED θέμα</string>
-    <string name="system_theme_title">Ορισμός από το Battery Saver</string>
-    <string name="system_amoled_theme_title">Ορισμός από το Battery Saver (AMOLED)</string>
+    <string name="dark_theme_title">Σκούρο</string>
+    <string name="light_theme_title">Φωτεινό</string>
+    <string name="amoled_theme_title">AMOLED</string>
+    <string name="system_theme_title">Ορισμός από την Εξοικονόμηση μπαταρίας</string>
+    <string name="system_amoled_theme_title">Ορισμός την Εξοικονόμηση μπαταρίας (AMOLED)</string>
     <string name="normal_viewmode_title">Κανονική</string>
     <string name="compact_mode_title">Συμπαγής</string>
     <string name="small_mode_title">Μικρή</string>
@@ -327,7 +327,7 @@
     <string name="search">Αναζήτηση</string>
     <string name="channel_name_lock_status">Κατάσταση κλειδώματος</string>
     <string name="channel_description_lock_status">To Aegis μπορεί να δημιουργήσει μια επίμονη ειδοποίηση για να σας ειδοποιήσει όταν η λίστα είναι κλειδωμένη</string>
-    <string name="vault_unlocked_state">Η κρύπτη είναι ξεκλείδωτη. Πατήστε εδώ κλείδωμα.</string>
+    <string name="vault_unlocked_state">Η κρύπτη είναι ξεκλείδωτη. Πατήστε εδώ για κλείδωμα.</string>
     <string name="version">Έκδοση</string>
     <string name="changelog">Αρχείο καταγραφής αλλαγών</string>
     <string name="whats_new">Τι νέο υπάρχει</string>
@@ -358,19 +358,19 @@
     </string>
     <string name="backup_system_builtin">Ενσωματωμένα αυτόματα αντίγραφα ασφαλείας του Aegis</string>
     <string name="backup_system_android">Σύστημα αντιγράφων ασφαλείας στο cloud του Android</string>
-    <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">        Το τελευταίο αντίγραφο ασφαλείας είναι ξεπερασμένο (%s)
+    <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">        Το τελευταίο αντίγραφο ασφαλείας είναι παρωχημένο (%s)
     </string>
-    <string name="backup_reminder_bar_message">        Οι αλλαγές δεν υποστηρίζονται
+    <string name="backup_reminder_bar_message">        Δεν λαμβάνονται αντίγραφα ασφαλείας των αλλαγών
     </string>
     <string name="backup_plaintext_export_warning"><b>Η κρύπτη εξήχθη πρόσφατα σε απλό κείμενο</b></string>
     <string name="pref_show_plaintext_warning_hint">Να μην εμφανιστεί ξανά αυτή η προειδοποίηση</string>
-    <string name="backup_plaintext_warning_explanation">Αυτή η προειδοποίηση εμφανίζεται επειδή πρόσφατα εξάγατε ένα μη κρυπτογραφημένο αντίγραφο της κρύπτης. Για να διατηρήσετε την ασφάλεια των token σας, σας συνιστούμε να διαγράψετε αυτό το αρχείο μόλις δεν είναι πλέον απαραίτητο.</string>
+    <string name="backup_plaintext_warning_explanation">Αυτή η προειδοποίηση εμφανίζεται επειδή πρόσφατα εξάγατε ένα μη κρυπτογραφημένο αντίγραφο της κρύπτης. Για να διατηρήσετε την ασφάλεια των αναγνωριστικών σας, σας συνιστούμε να διαγράψετε αυτό το αρχείο μόλις δεν είναι πλέον απαραίτητο.</string>
     <string name="switch_camera">Εναλλαγή κάμερας</string>
     <string name="empty_list">Δεν υπάρχουν κωδικοί προς εμφάνιση. Ξεκινήστε να προσθέτετε καταχωρήσεις πατώντας το σύμβολο συν στην κάτω δεξιά γωνία</string>
     <string name="empty_list_title">Δεν βρέθηκαν καταχωρήσεις</string>
     <string name="empty_group_list">Δεν υπάρχουν ομάδες προς εμφάνιση. Προσθέστε ομάδες στην οθόνη επεξεργασίας μιας καταχώρισης</string>
     <string name="empty_group_list_title">Δεν βρέθηκαν ομάδες</string>
-    <string name="no_icon_packs">Δεν έχουν εισαχθεί ακόμα πακέτα εικονιδίων. Πατήστε το σύμβολο συν για να εισαγάγετε ένα. Συμβουλή: δοκιμάστε <a href="https://aegis-icons.github.io">εικονίδια-aegis-</a>.</string>
+    <string name="no_icon_packs">Δεν έχουν εισαχθεί ακόμα πακέτα εικονιδίων. Πατήστε το σύμβολο συν για να εισαγάγετε ένα. Συμβουλή: δοκιμάστε <a href="https://aegis-icons.github.io">εικονίδια-aegis</a>.</string>
     <string name="no_icon_packs_title">Χωρίς πακέτα εικονιδίων</string>
     <string name="pick_icon">Επιλέξτε ένα εικονίδιο</string>
     <string name="uncategorized">Μη κατηγοριοποιημένο</string>
@@ -386,7 +386,7 @@
     <string name="uri_copied_to_clipboard">Το URI αντιγράφηκε στο πρόχειρο</string>
     <string name="transfer_entry">Μεταφορά καταχώρησης</string>
     <string name="transfer_entry_description">Σαρώστε αυτόν τον κωδικό QR με την εφαρμογή ελέγχου ταυτότητας στην οποία θέλετε να μεταφέρετε αυτήν την καταχώριση</string>
-    <string name="google_auth_compatible_transfer_description">Σαρώστε αυτούς τους κωδικούς QR με το Aegis ή το Google Authenticator.\n\nΛόγω περιορισμών της εφαρμογής Google Authenticator, περιλαμβάνονται μόνο αναγνωριστικών TOTP &amp; HOTP που χρησιμοποιούν SHA1 και παράγουν 6ψήφιους κωδικούς</string>
+    <string name="google_auth_compatible_transfer_description">Σαρώστε αυτούς τους κωδικούς QR με το Aegis ή το Google Authenticator.\n\nΛόγω περιορισμών της εφαρμογής Google Authenticator, περιλαμβάνονται μόνο αναγνωριστικά TOTP &amp; HOTP που χρησιμοποιούν SHA1 και παράγουν 6ψήφιους κωδικούς</string>
     <string name="password_strength_very_weak">Πολύ αδύναμος</string>
     <string name="password_strength_weak">Αδύναμος</string>
     <string name="password_strength_fair">Μέτριος</string>
@@ -405,26 +405,26 @@
     <string name="dialog_wipe_entries_title">Διαγραφή καταχωρήσεων</string>
     <string name="dialog_wipe_entries_message">Η κρύπτη σας περιέχει ήδη καταχωρήσεις. Θέλετε να καταργήσετε αυτές τις καταχωρήσεις πριν από την εισαγωγή αυτού του αρχείου;\n\n <b> Με αυτόν τον τρόπο, θα χάσετε μόνιμα την πρόσβαση στις υπάρχουσες καταχωρήσεις στην κρύπτη. </b></string>
     <string name="dialog_wipe_entries_checkbox">Διαγραφή περιεχομένων κρύπτης</string>
-    <string name="panic_trigger_ignore_toast">Ο Aegis έλαβε έναυσμα πανικού αλλά η ρύθμιση είναι απενεργοποιημένη, αγνόηση</string>
+    <string name="panic_trigger_ignore_toast">Το Aegis έλαβε έναυσμα πανικού αλλά η ρύθμιση είναι απενεργοποιημένη, αγνόηση</string>
     <string name="pref_panic_trigger_title">Διαγραφή κρύπτης στο έναυσμα πανικού</string>
     <string name="pref_panic_trigger_summary">Διαγραφή κρύπτης όταν λαμβάνεται ένα έναυσμα πανικού από το Ripple</string>
     <string name="import_vault">Εισαγωγή κρύπτης</string>
     <string name="importer_help_2fas">Παρέχετε ένα αντίγραφο ασφαλείας 2FAS Authenticator.</string>
-    <string name="importer_help_aegis">Παρέχει ένα αρχείο εξαγωγής/αντιγράφων ασφαλείας Aegis.</string>
-    <string name="importer_help_authenticator_plus">Παρέχει ένα αρχείο εξαγωγής Authenticator Plus που αποκτήθηκε μέσω των <b> Ρυθμίσεων - &gt; Αντιγράφων ασφαλείας &amp; Επαναφορά - &gt; Εξαγωγή ως Κείμενο και HTML </b>.</string>
-    <string name="importer_help_authy">Παρέχει ένα αντίγραφο του <b>/data/data/com.authy.authy/shared_prefs/com.authy.storage.tokens.authenticator.xml</b>, που βρίσκεται στον κατάλογο εσωτερικής αποθήκευσης του Authy.</string>
-    <string name="importer_help_andotp">Παρέχει ένα αρχείο εξαγωγής/αντιγράφου ασφαλείας andOTP.</string>
+    <string name="importer_help_aegis">Παρέχετε ένα αρχείο εξαγωγής/αντιγράφων ασφαλείας Aegis.</string>
+    <string name="importer_help_authenticator_plus">Παρέχετε ένα αρχείο εξαγωγής Authenticator Plus που αποκτήθηκε μέσω των <b> Ρυθμίσεων - &gt; Αντιγράφων ασφαλείας &amp; Επαναφορά - &gt; Εξαγωγή ως Κείμενο και HTML </b>.</string>
+    <string name="importer_help_authy">Παρέχετε ένα αντίγραφο του <b>/data/data/com.authy.authy/shared_prefs/com.authy.storage.tokens.authenticator.xml</b>, που βρίσκεται στον κατάλογο εσωτερικής αποθήκευσης του Authy.</string>
+    <string name="importer_help_andotp">Παρέχετε ένα αρχείο εξαγωγής/αντιγράφου ασφαλείας andOTP.</string>
     <string name="importer_help_bitwarden">Παρέχετε ένα αρχείο εξαγωγής/αντιγράφων ασφαλείας Bitwarden. Τα κρυπτογραφημένα αρχεία δεν υποστηρίζονται.</string>
-    <string name="importer_help_battle_net_authenticator">Παρέχει ένα αντίγραφο του <b>/data/data/com.blizzard.bma/shared_prefs/com.blizzard.bma.Galax_STORE.xml</b>, που βρίσκεται στον εσωτερικό κατάλογο αποθήκευσης του Battle.net Authenticator.</string>
-    <string name="importer_help_duo">Παρέχει ένα αντίγραφο του <b>/data/data/com.duosecurity.duomobile/files/duokit/accounts.json</b>, που βρίσκεται στον εσωτερικό κατάλογο αποθήκευσης του DUO.</string>
-    <string name="importer_help_freeotp">Παρέχει ένα αντίγραφο του <b> /data/data/org.fedorahosted.freeotp/shared_prefs/tokens.xml </b>, που βρίσκεται στον κατάλογο εσωτερικής αποθήκευσης του FreeOTP.</string>
-    <string name="importer_help_freeotp_plus">Παρέχει ένα αρχείο εξαγωγής FreeOTP +.</string>
+    <string name="importer_help_battle_net_authenticator">Παρέχετε ένα αντίγραφο του <b>/data/data/com.blizzard.bma/shared_prefs/com.blizzard.bma.Galax_STORE.xml</b>, που βρίσκεται στον εσωτερικό κατάλογο αποθήκευσης του Battle.net Authenticator.</string>
+    <string name="importer_help_duo">Παρέχετε ένα αντίγραφο του <b>/data/data/com.duosecurity.duomobile/files/duokit/accounts.json</b>, που βρίσκεται στον εσωτερικό κατάλογο αποθήκευσης του DUO.</string>
+    <string name="importer_help_freeotp">Παρέχετε ένα αντίγραφο του <b> /data/data/org.fedorahosted.freeotp/shared_prefs/tokens.xml </b>, που βρίσκεται στον κατάλογο εσωτερικής αποθήκευσης του FreeOTP.</string>
+    <string name="importer_help_freeotp_plus">Παρέχετε ένα αρχείο εξαγωγής FreeOTP +.</string>
     <string name="importer_help_google_authenticator"><b>Υποστηρίζονται μόνο αρχεία βάσης δεδομένων από το Google Authenticator έκδοση 5.10 και παλαιότερα</b>.\n\nΠαρέχετε ένα αντίγραφο του <b>/data/data/com.google.android.apps.authenticator2/databases/databases</b>, που βρίσκεται στον εσωτερικό κατάλογο αποθήκευσης του Google Authenticator.</string>
-    <string name="importer_help_microsoft_authenticator">Παρέχεi ένα αντίγραφο του <b> /data/data/com.azure.authenticator/databases/PhoneFactor </b>, που βρίσκεται στον κατάλογο εσωτερικής αποθήκευσης του Microsoft Authenticator.</string>
-    <string name="importer_help_plain_text">Παρέχεi ένα αρχείο απλού κειμένου με ένα URI Επαληθευτή Google σε κάθε γραμμή.</string>
+    <string name="importer_help_microsoft_authenticator">Παρέχετε ένα αντίγραφο του <b> /data/data/com.azure.authenticator/databases/PhoneFactor </b>, που βρίσκεται στον κατάλογο εσωτερικής αποθήκευσης του Microsoft Authenticator.</string>
+    <string name="importer_help_plain_text">Παρέχετε ένα αρχείο απλού κειμένου με ένα URI Επαληθευτή Google σε κάθε γραμμή.</string>
     <string name="importer_help_steam"><b>Το Steam v3.0 και νεότερα δεν υποστηρίζονται</b>. Παρέχετε αντίγραφο του <b>/data/data/com.valvesoftware. ndroid.steam.community/files/Steamguard-*.json</b>, που βρίσκεται στον εσωτερικό κατάλογο αποθήκευσης του Steam.</string>
-    <string name="importer_help_totp_authenticator">Παρέι ένα αρχείο εξαγωγής TOTP Authenticator.</string>
-    <string name="importer_help_winauth">Παρέχει ένα αρχείο εξαγωγής WinAuth.</string>
+    <string name="importer_help_totp_authenticator">Παρέχετε ένα αρχείο εξαγωγής TOTP Authenticator.</string>
+    <string name="importer_help_winauth">Παρέχετε ένα αρχείο εξαγωγής WinAuth.</string>
     <string name="importer_encrypted_exception_google_authenticator">Η κρυπτογραφημένη καταχώρηση παραλείφθηκε: %s</string>
     <string name="importer_help_direct">Εισαγάγετε καταχωρήσεις απευθείας από το %s. Αυτό απαιτεί την εγκατάσταση της εφαρμογής σε αυτήν τη συσκευή και την πρόσβαση root στο Aegis.</string>
     <string name="groups">Ομάδες</string>
