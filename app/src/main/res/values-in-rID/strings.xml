@@ -86,7 +86,7 @@
     <string name="export_encrypted">Enkripsi brankas</string>
     <string name="export_help">Tindakan ini akan mengekspor brankas dari penyimpanan internal Aegis. Pilih format yang Anda inginkan untuk ekspor:</string>
     <string name="export_warning_unencrypted">Anda akan mengekspor salinan tidak terenkripsi dari brankas Aegis Anda. <b>Ini tidak disarankan</b>.</string>
-    <string name="export_warning_accept">Saya mengerti risikonya</string>
+    <string name="understand_risk_accept">Saya mengerti risikonya</string>
     <string name="export_format_aegis">Aegis (.JSON)</string>
     <string name="export_format_google_auth_uri">File teks (*.txt)</string>
     <string name="export_format_hint">Format ekspor</string>

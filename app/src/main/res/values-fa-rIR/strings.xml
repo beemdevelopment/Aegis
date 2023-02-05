@@ -80,7 +80,7 @@
     <string name="export_encrypted">رمزگذاری مخزن</string>
     <string name="export_help">این عملیات مخرن را از حافظه داخلی آگیس صادر میکند. فرمت مورد نظر فایل خروجی را انتخاب کنید:</string>
     <string name="export_warning_unencrypted">شما در حال صادر کردن یک کپی محافظت نشده از مخزن آگیس هستید. <b>این روش توصیه نمیشود</b>.</string>
-    <string name="export_warning_accept">بله، این ریسک را می‌دانم</string>
+    <string name="understand_risk_accept">بله، این ریسک را می‌دانم</string>
     <string name="export_format_aegis">فایل جیسون (.json)</string>
     <string name="export_format_google_auth_uri">فایل متنی (.txt)</string>
     <string name="export_format_hint">فرمت خروجی</string>

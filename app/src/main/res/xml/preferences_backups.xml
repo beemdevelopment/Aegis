@@ -17,6 +17,12 @@
             android:title="@string/pref_backups_title"
             android:summary="@string/pref_backups_summary"
             app:icon="@drawable/ic_cloud_upload_outline_black_24dp" />
+
+        <androidx.preference.SwitchPreferenceCompat
+            android:key="pref_backup_reminder"
+            android:title="@string/pref_backups_reminder_title"
+            android:summary="@string/pref_backups_reminder_summary" />
+
         <Preference
             android:key="pref_backups_location"
             android:title="@string/pref_backups_location_title"

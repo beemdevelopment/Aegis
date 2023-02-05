@@ -101,7 +101,7 @@
     <string name="export_encrypted">Зашифрувати сховище</string>
     <string name="export_help">Ця дія експортує внутрішнє сховище додатка Aegis. Виберіть формат:</string>
     <string name="export_warning_unencrypted">Ви збираєтеся експортувати незашифровану копію вашого сховища Aegis. <b>Це не рекомендується</b>.</string>
-    <string name="export_warning_accept">Я знаю, на що йду</string>
+    <string name="understand_risk_accept">Я знаю, на що йду</string>
     <string name="export_warning_password">Експортовані копії зашифровано окремим паролем, що був заданий в налаштуваннях безпеки.</string>
     <string name="export_format_aegis">Aegis (.JSON)</string>
     <string name="export_format_google_auth_uri">Текстовий файл (.TXT)</string>

@@ -99,7 +99,7 @@
     <string name="export_encrypted">Šifrēt glabātavu</string>
     <string name="export_help">Šī darbība izdos glabātavas saturu no Aegis iekšējās krātuves. Atlasīt veidolu, kādā izdot datus:</string>
     <string name="export_warning_unencrypted">Tiks izdots nešifrēts Aegis glabātavas atveidojums. <b>Tas nav ieteicams</b>.</string>
-    <string name="export_warning_accept">Es apzinos bīstamību</string>
+    <string name="understand_risk_accept">Es apzinos bīstamību</string>
     <string name="export_warning_password">Izdodamās datnes ir šifrētas ar paroli, kas ir norādīta drošības iestatījumos.</string>
     <string name="export_format_aegis">Aegis (.json)</string>
     <string name="export_format_google_auth_uri">Teksta datne (.txt)</string>

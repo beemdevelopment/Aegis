@@ -97,7 +97,7 @@
     <string name="export_encrypted">Zifratu biltegia</string>
     <string name="export_help">Akzio honek zure biltegia Aegisen barne-biltegiratzetik kanpo esportatuko du. Aukeratu zein formatutan esportatu nahi duzun:</string>
     <string name="export_warning_unencrypted">Zure Aegis biltegiaren zifratu gabeko kopia esportatzera zoaz. <b>Ez dizugu hau egitea gomendatzen</b>.</string>
-    <string name="export_warning_accept">Arriskua ulertzen dut</string>
+    <string name="understand_risk_accept">Arriskua ulertzen dut</string>
     <string name="export_warning_password">Esportazioak Segurtasun ezarpenetan zehazten den bestelako pasahitz batekin zifratuta daude.</string>
     <string name="export_format_aegis">Aegis (.JSON)</string>
     <string name="export_format_google_auth_uri">Testu fitxategia (.TXT)</string>

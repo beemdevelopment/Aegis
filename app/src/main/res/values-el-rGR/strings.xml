@@ -97,7 +97,7 @@
     <string name="export_encrypted">Κρυπτογράφηση κρύπτης</string>
     <string name="export_help">Αυτή η ενέργεια θα εξάγει την κρύπτη έξω από τον εσωτερικό χώρο αποθήκευσης του Aegis. Επιλέξτε τη μορφή στην οποία θέλετε να είναι η εξαγωγή σας:</string>
     <string name="export_warning_unencrypted">Πρόκειται να εξαγάγετε ένα μη κρυπτογραφημένο αντίγραφο της Aegis κρύπτης σας. <b> Αυτό δεν συνιστάται </b>.</string>
-    <string name="export_warning_accept">Κατανοώ τους κινδύνους</string>
+    <string name="understand_risk_accept">Κατανοώ τους κινδύνους</string>
     <string name="export_warning_password">Οι εξαγωγές κρυπτογραφούνται χρησιμοποιώντας ένα ξεχωριστό κωδικό πρόσβασης που έχει ρυθμιστεί στις ρυθμίσεις ασφαλείας.</string>
     <string name="export_format_aegis">Aegis (.JSON)</string>
     <string name="export_format_google_auth_uri">Αρχείο κειμένου (*.TXT)</string>

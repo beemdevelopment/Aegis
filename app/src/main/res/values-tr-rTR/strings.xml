@@ -97,7 +97,7 @@
     <string name="export_encrypted">Kasayı şifrele</string>
     <string name="export_help">Bu işlem kasayı Aegis\'in dahili deposundan dışarı aktaracaktır. Lütfen dışa aktarmak istediğiniz biçimi seçiniz:</string>
     <string name="export_warning_unencrypted">Aegis kasanızın şifrelenmemiş bir kopyasını dışa aktarmak üzeresiniz. <b>Bu işlem tavsiye edilmez</b>.</string>
-    <string name="export_warning_accept">Riskleri göze alıyorum</string>
+    <string name="understand_risk_accept">Riskleri göze alıyorum</string>
     <string name="export_warning_password">Dışa aktarmalar, Güvenlik ayarlarında yapılandırılan ayrı bir parola kullanılarak şifrelenir.</string>
     <string name="export_format_aegis">Aegis (.JSON)</string>
     <string name="export_format_google_auth_uri">Metin belgesi (.TXT)</string>

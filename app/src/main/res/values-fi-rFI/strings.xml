@@ -89,7 +89,7 @@
     <string name="export_encrypted">Salaa holvi</string>
     <string name="export_help">Tämä toiminto vie holvin ulos Aegisin sisäisestä tallennustilasta. Valitse viennin tiedostomuoto:</string>
     <string name="export_warning_unencrypted">Olet viemässä salaamattoman kopion Aegis-holvistasi. <b>Tätä ei suositella</b>.</string>
-    <string name="export_warning_accept">Ymmärrän riskin</string>
+    <string name="understand_risk_accept">Ymmärrän riskin</string>
     <string name="export_format_aegis">Aegis (.JSON)</string>
     <string name="export_format_google_auth_uri">Tekstitiedosto (.TXT)</string>
     <string name="export_format_hint">Vientimuoto</string>

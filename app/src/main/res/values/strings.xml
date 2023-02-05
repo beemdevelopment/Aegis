@@ -51,6 +51,10 @@
     <string name="pref_android_backups_hint"><i>Device-to-device (D2D) backups are always allowed, regardless of the setting above</i></string>
     <string name="pref_backups_title">Automatically back up the vault</string>
     <string name="pref_backups_summary">Automatically create backups of the vault on external storage when changes are made. This is only supported for encrypted vaults.</string>
+    <string name="pref_backups_reminder_title">Backup reminder</string>
+    <string name="pref_backups_reminder_summary">Show a reminder to backup your vault in case you haven\'t backed up your latest changes.</string>
+    <string name="pref_backups_reminder_dialog_title">Disable backup reminder</string>
+    <string name="pref_backups_reminder_dialog_summary">Disabling this reminder means Aegis won\'t tell you whether or not you have changes that are not backed up yet. This puts you at risk of losing access to your tokens. Are you sure you want to disable the reminder?</string>
     <string name="pref_backups_location_title">Directory for backup files</string>
     <string name="pref_backups_location_summary">Backups will be stored at</string>
     <string name="pref_backups_trigger_title">Trigger backup</string>
@@ -101,8 +105,8 @@
     <string name="export_encrypted">Encrypt the vault</string>
     <string name="export_help">This action will export the vault out of Aegis\' internal storage. Select the format you\'d like your export to be in:</string>
     <string name="export_warning_unencrypted">You are about to export an unencrypted copy of your Aegis vault. <b>This is not recommended</b>.</string>
-    <string name="export_warning_accept">I understand the risk</string>
     <string name="export_warning_password">Exports are encrypted using a separate password configured in Security settings.</string>
+    <string name="understand_risk_accept">I understand the risk</string>
     <string name="export_format_aegis">Aegis (.JSON)</string>
     <string name="export_format_google_auth_uri">Text file (.TXT)</string>
     <string name="export_format_html">Web page (.HTML)</string>
@@ -386,6 +390,11 @@
     <string name="backup_reminder_bar_message">
         Changes are not backed up
     </string>
+    <string name="backup_reminder_bar_dialog_title">Changes are not backed up</string>
+    <string name="backup_reminder_bar_dialog_summary">
+        Recent changes to the vault have not been backed up yet. It\'s important to take regular backups to prevent losing access to your accounts. Please consider setting up automatic backups in the settings menu.
+    </string>
+    <string name="backup_reminder_bar_dialog_accept">Set up backups</string>
     <string name="backup_plaintext_export_warning"><b>The vault was recently exported in plain text</b></string>
     <string name="pref_show_plaintext_warning_hint">Don\'t show this warning again</string>
     <string name="backup_plaintext_warning_explanation">This warning is shown because you recently exported an unencrypted copy of the vault. To maintain security of your tokens, we recommend deleting this file once it\'s no longer needed.</string>

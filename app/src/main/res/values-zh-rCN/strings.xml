@@ -95,7 +95,7 @@
     <string name="export_encrypted">加密数据库</string>
     <string name="export_help">此操作将从 Aegis 的内部存储中导出数据库。选择您想要的导出格式：</string>
     <string name="export_warning_unencrypted">您将导出一个未加密的 Aegis 数据库副本。<b>不建议这么做</b></string>
-    <string name="export_warning_accept">我了解风险</string>
+    <string name="understand_risk_accept">我了解风险</string>
     <string name="export_warning_password">导出使用在安全设置中配置的单独密码进行加密。</string>
     <string name="export_format_aegis">Aegis (.JSON)</string>
     <string name="export_format_google_auth_uri">文本文件 (.TXT)</string>

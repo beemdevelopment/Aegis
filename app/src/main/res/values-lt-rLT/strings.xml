@@ -70,7 +70,7 @@
     <string name="export_encrypted">Šifruoti slėptuvę</string>
     <string name="export_help">Šis veiksmas eksportuos slėptuvę iš Aegis vidinės saugyklos. Pasirinkite formatą, kuriuo norėtumėte eksportuoti:</string>
     <string name="export_warning_unencrypted">Jūs ketinate eksportuoti nešifruotą savo Aegis slėptuvės kopiją. <b>Tai nerekomenduojama</b>.</string>
-    <string name="export_warning_accept">Aš suprantu riziką</string>
+    <string name="understand_risk_accept">Aš suprantu riziką</string>
     <string name="export_format_aegis">Aegis (.JSON)</string>
     <string name="export_format_google_auth_uri">Tekstinis failas (.TXT)</string>
     <string name="export_format_hint">Eksportavimo formatas</string>

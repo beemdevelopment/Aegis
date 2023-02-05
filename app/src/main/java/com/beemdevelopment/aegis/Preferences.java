@@ -278,6 +278,14 @@ public class Preferences {
         setBuiltInBackupResult(null);
     }
 
+    public boolean isBackupReminderEnabled() {
+        return _prefs.getBoolean("pref_backup_reminder", true);
+    }
+
+    public void setIsBackupReminderEnabled(boolean enabled) {
+        _prefs.edit().putBoolean("pref_backup_reminder", enabled).apply();
+    }
+
     public Uri getBackupsLocation() {
         String str = _prefs.getString("pref_backups_location", null);
         if (str != null) {

@@ -97,7 +97,7 @@
     <string name="export_encrypted">Versleutel de kluis</string>
     <string name="export_help">Deze actie zal de kluis exporteren uit de interne opslag van Aegis. Selecteer het formaat waarin je de export wilt:</string>
     <string name="export_warning_unencrypted">Je staat op het punt een onversleutelde kopie van de Aegis-kluis te exporteren. <b>Dit wordt niet aanbevolen</b>.</string>
-    <string name="export_warning_accept">Ik begrijp het risico</string>
+    <string name="understand_risk_accept">Ik begrijp het risico</string>
     <string name="export_warning_password">Exporten worden versleuteld met een apart wachtwoord ingesteld in de beveiligingsinstellingen.</string>
     <string name="export_format_aegis">Aegis (.JSON)</string>
     <string name="export_format_google_auth_uri">Tekstbestand (.TXT)</string>

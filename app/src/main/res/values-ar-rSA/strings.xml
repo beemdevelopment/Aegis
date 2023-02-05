@@ -94,7 +94,7 @@
     <string name="export_encrypted">تشفير المخزن</string>
     <string name="export_help">هذا الإجراء سيصدر المخزن خارج ذاكرة تخزين Aegis الداخلية. حدد الصيغة التي ترغب بأن يكون التصدير عليها:</string>
     <string name="export_warning_unencrypted">أنت على وشك تصدير نسخة غير مشفرة من مخزن Aegis. <b>لا يُنصح بهذا</b>.</string>
-    <string name="export_warning_accept">أنا أتفهم المخاطر</string>
+    <string name="understand_risk_accept">أنا أتفهم المخاطر</string>
     <string name="export_format_aegis">Aegis (.JSON)</string>
     <string name="export_format_google_auth_uri">ملف نصي (.TXT)</string>
     <string name="export_format_hint">تصدير الصيغة</string>

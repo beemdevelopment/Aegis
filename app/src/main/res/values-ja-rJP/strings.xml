@@ -79,7 +79,7 @@
     <string name="export_encrypted">保管庫を暗号化</string>
     <string name="export_help">保管庫をAegisの内部ストレージからエクスポートします。エクスポートしたいフォーマットを選択してください:</string>
     <string name="export_warning_unencrypted">暗号化されていないAegis保管庫のコピーをエクスポートしようとしています。 <b>これは推奨されません</b>。</string>
-    <string name="export_warning_accept">リスクを理解しています</string>
+    <string name="understand_risk_accept">リスクを理解しています</string>
     <string name="export_format_aegis">Aegis (.JSON)</string>
     <string name="export_format_google_auth_uri">テキストファイル (.TXT)</string>
     <string name="export_format_hint">エクスポートフォーマット</string>
