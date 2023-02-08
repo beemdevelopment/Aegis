@@ -16,6 +16,7 @@ import com.amulyakhare.textdrawable.TextDrawable;
 import com.beemdevelopment.aegis.AccountNamePosition;
 import com.beemdevelopment.aegis.Preferences;
 import com.beemdevelopment.aegis.R;
+import com.beemdevelopment.aegis.ViewMode;
 import com.beemdevelopment.aegis.helpers.IconViewHelper;
 import com.beemdevelopment.aegis.helpers.TextDrawableHelper;
 import com.beemdevelopment.aegis.helpers.ThemeHelper;
@@ -46,6 +47,7 @@ public class EntryHolder extends RecyclerView.ViewHolder {
     private ImageView _buttonRefresh;
     private RelativeLayout _description;
     private ImageView _dragHandle;
+    private ViewMode _viewMode;
   
     private final ImageView _selected;
     private final Handler _selectedHandler;
@@ -107,11 +109,12 @@ public class EntryHolder extends RecyclerView.ViewHolder {
         });
     }
 
-    public void setData(VaultEntry entry, Preferences.CodeGrouping groupSize, AccountNamePosition accountNamePosition, boolean showIcon, boolean showProgress, boolean hidden, boolean paused, boolean dimmed) {
+    public void setData(VaultEntry entry, Preferences.CodeGrouping groupSize, ViewMode viewMode, AccountNamePosition accountNamePosition, boolean showIcon, boolean showProgress, boolean hidden, boolean paused, boolean dimmed) {
         _entry = entry;
         _hidden = hidden;
         _paused = paused;
         _codeGrouping = groupSize;
+        _viewMode = viewMode;
         _accountNamePosition = accountNamePosition;
 
         _selected.clearAnimation();
@@ -129,12 +132,12 @@ public class EntryHolder extends RecyclerView.ViewHolder {
 
         String profileIssuer = entry.getIssuer();
         String profileName = entry.getName();
-        if (!profileIssuer.isEmpty() && !profileName.isEmpty() && accountNamePosition == AccountNamePosition.END) {
-            profileName = String.format(" (%s)", profileName);
+        if (!profileIssuer.isEmpty() && !profileName.isEmpty() && _accountNamePosition == AccountNamePosition.END) {
+            profileName = _viewMode.getFormattedAccountName(profileName);
         }
         _profileIssuer.setText(profileIssuer);
         _profileName.setText(profileName);
-        setAccountNameLayout(accountNamePosition);
+        setAccountNameLayout(_accountNamePosition);
 
         if (_hidden) {
             hideCode();
@@ -148,6 +151,10 @@ public class EntryHolder extends RecyclerView.ViewHolder {
     }
 
     private void setAccountNameLayout(AccountNamePosition accountNamePosition) {
+        if (_viewMode == ViewMode.TILES) {
+            return;
+        }
+
         RelativeLayout.LayoutParams profileNameLayoutParams;
         RelativeLayout.LayoutParams copiedLayoutParams;
         switch (accountNamePosition) {
@@ -367,7 +374,7 @@ public class EntryHolder extends RecyclerView.ViewHolder {
         animateAlphaTo(DEFAULT_ALPHA);
     }
 
-    public void animateCopyText() {
+    public void animateCopyText(boolean includeSlideAnimation) {
         _animationHandler.removeCallbacksAndMessages(null);
 
         Animation slideDownFadeIn = AnimationUtils.loadAnimation(itemView.getContext(), R.anim.slide_down_fade_in);
@@ -375,16 +382,25 @@ public class EntryHolder extends RecyclerView.ViewHolder {
         Animation fadeOut = AnimationUtils.loadAnimation(itemView.getContext(), R.anim.fade_out);
         Animation fadeIn = AnimationUtils.loadAnimation(itemView.getContext(), R.anim.fade_in);
 
-        _profileCopied.startAnimation(slideDownFadeIn);
-
-        View fadeOutView = (_accountNamePosition == AccountNamePosition.BELOW) ? _profileName : _description;
+        if (includeSlideAnimation) {
+            _profileCopied.startAnimation(slideDownFadeIn);
+           View fadeOutView = (_accountNamePosition == AccountNamePosition.BELOW) ? _profileName : _description;
 
         fadeOutView.startAnimation(slideDownFadeOut);
 
-        _animationHandler.postDelayed(() -> {
-            _profileCopied.startAnimation(fadeOut);
-            fadeOutView.startAnimation(fadeIn);
-        }, 3000);
+            _animationHandler.postDelayed(() -> {
+                _profileCopied.startAnimation(fadeOut);
+                fadeOutView.startAnimation(fadeIn);
+            }, 3000);
+        } else {
+            _profileCopied.startAnimation(fadeIn);
+            _profileName.startAnimation(fadeOut);
+
+            _animationHandler.postDelayed(() -> {
+                _profileCopied.startAnimation(fadeOut);
+                _profileName.startAnimation(fadeIn);
+            }, 3000);
+        }
     }
 
     private void animateAlphaTo(float alpha) {

@@ -45,6 +45,7 @@
     <string name="pref_account_name_position_title">Show the account name</string>
     <string name="pref_shared_issuer_account_name_title">Only show account name when necessary</string>
     <string name="pref_shared_issuer_account_name_summary">Only show account names whenever they share the same issuer. Other account names will be hidden.</string>
+    <string name="pref_account_name_position_summary_override">This setting is overridden by the tiles view mode. Account name will always be shown below the issuer.</string>
     <string name="pref_import_file_title">Import from file</string>
     <string name="pref_import_file_summary">Import tokens from a file</string>
     <string name="pref_android_backups_title">Android cloud backups</string>
@@ -329,6 +330,7 @@
     <string name="normal_viewmode_title">Normal</string>
     <string name="compact_mode_title">Compact</string>
     <string name="small_mode_title">Small</string>
+    <string name="tiles_mode_title">Tiles</string>
     <string name="unknown_issuer">Unknown issuer</string>
     <string name="unknown_account_name">Unknown account name</string>
     <plurals name="import_error_dialog">

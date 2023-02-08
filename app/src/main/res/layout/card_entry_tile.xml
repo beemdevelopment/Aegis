@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:foreground="?android:attr/selectableItemBackground"
+    android:clickable="true"
+    android:focusable="true"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="6dp"
+    android:clipChildren="true">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:id="@+id/rlCardEntry"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <View
+            android:id="@+id/favorite_indicator"
+            android:layout_width="15dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="-11dp"
+            android:backgroundTint="@color/colorFavorite"
+            android:background="@drawable/button_rounded_corners" />
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="bottom"
+            android:id="@+id/relativeLayout"
+            android:paddingTop="12dp"
+            android:paddingBottom="8dp"
+            android:paddingEnd="8dp"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:paddingStart="8dp">
+
+            <RelativeLayout
+                android:id="@+id/layoutImage"
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/ivTextDrawable"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_marginEnd="6dp"
+                        android:layout_alignParentStart="true" />
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/ivSelected"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_marginEnd="6dp"
+                        android:layout_alignParentStart="true"
+                        android:src="@drawable/item_selected"
+                        android:visibility="gone"
+                        app:civ_circle_background_color="@color/colorPrimarySelected" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/description"
+                android:layout_toEndOf="@+id/layoutImage">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/profile_issuer"
+                    android:text="@string/issuer"
+                    android:textColor="?attr/primaryText"
+                    android:textStyle="bold"
+                    android:includeFontPadding="false"
+                    android:textSize="11sp"
+                    android:ellipsize="end"
+                    android:maxLines="1"/>
+
+
+                <TextView
+                    android:id="@+id/profile_copied"
+                    android:layout_width="wrap_content"
+                    android:layout_below="@id/profile_issuer"
+                    android:layout_height="wrap_content"
+                    android:maxLines="1"
+                    android:includeFontPadding="false"
+                    android:visibility="invisible"
+                    android:text="@string/copied"
+                    android:textColor="?attr/secondaryText"
+                    android:textSize="9sp" />
+
+                <TextView
+                    android:id="@+id/profile_account_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/profile_issuer"
+                    android:ellipsize="end"
+                    android:includeFontPadding="false"
+                    android:maxLines="1"
+                    android:textColor="@color/extra_info_text"
+                    android:textSize="9sp"
+                    tools:text=" - AccountName" />
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:fontFamily="sans-serif-light"
+                tools:text="012 345"
+                android:id="@+id/profile_code"
+                android:layoutDirection="ltr"
+                android:layout_below="@id/description"
+                android:includeFontPadding="false"
+                android:fallbackLineSpacing="false"
+                android:textSize="26sp"
+                android:textColor="?attr/codePrimaryText"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="10dp"
+                android:textStyle="normal|bold"/>
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/buttonRefresh"
+                android:visibility="gone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="0dp"
+                android:padding="8dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:src="@drawable/ic_refresh_black_24dp"
+                app:tint="?attr/iconColorPrimary"
+                android:background="?android:attr/selectableItemBackground" />
+
+            <ImageView
+                android:id="@+id/drag_handle"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginEnd="-12dp"
+                android:visibility="invisible"
+                android:scaleType="fitXY"
+                android:src="@drawable/ic_baseline_menu_black_32" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:padding="0dp"
+        android:layout_margin="0dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.beemdevelopment.aegis.ui.views.TotpProgressBar
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="0dp"
+            android:layout_height="3dp"
+            android:id="@+id/progressBar"
+            android:max="5000"
+            android:layout_weight="1"/>
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>
