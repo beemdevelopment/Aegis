@@ -45,6 +45,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
 import com.google.android.material.divider.MaterialDividerItemDecoration;
+import com.google.common.base.Strings;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -207,6 +208,8 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
     public void setSearchFilter(String search) {
         _adapter.setSearchFilter(search);
         _touchCallback.setIsLongPressDragEnabled(_adapter.isDragAndDropAllowed());
+
+        updateEmptyState();
     }
 
     public void setSelectedEntry(VaultEntry entry) {
@@ -546,8 +549,10 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
             _recyclerView.setVisibility(View.VISIBLE);
             _emptyStateView.setVisibility(View.GONE);
         } else {
-            _recyclerView.setVisibility(View.GONE);
-            _emptyStateView.setVisibility(View.VISIBLE);
+            if (Strings.isNullOrEmpty(_adapter.getSearchFilter())) {
+                _recyclerView.setVisibility(View.GONE);
+                _emptyStateView.setVisibility(View.VISIBLE);
+            }
         }
     }
 

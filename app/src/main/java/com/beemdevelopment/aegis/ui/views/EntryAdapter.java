@@ -286,6 +286,10 @@ public class EntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         }
     }
 
+    public String getSearchFilter() {
+        return _searchFilter;
+    }
+
     public void setSearchFilter(String search) {
         _searchFilter = (search != null && !search.isEmpty()) ? search.toLowerCase() : null;
         updateShownEntries();
