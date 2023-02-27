@@ -23,6 +23,7 @@ import com.beemdevelopment.aegis.vault.VaultRepositoryException;
 public class BackupsPreferencesFragment extends PreferencesFragment {
     private SwitchPreferenceCompat _androidBackupsPreference;
     private SwitchPreferenceCompat _backupsPreference;
+    private SwitchPreferenceCompat _backupReminderPreference;
     private Preference _backupsLocationPreference;
     private Preference _backupsTriggerPreference;
     private Preference _backupsVersionsPreference;
@@ -72,6 +73,22 @@ public class BackupsPreferencesFragment extends PreferencesFragment {
             return false;
         });
 
+        _backupReminderPreference = requirePreference("pref_backup_reminder");
+        _backupReminderPreference.setOnPreferenceChangeListener((preference, newValue) -> {
+            if (!(boolean)newValue) {
+                Dialogs.showCheckboxDialog(getContext(), R.string.pref_backups_reminder_dialog_title,
+                        R.string.pref_backups_reminder_dialog_summary,
+                        R.string.understand_risk_accept,
+                        this::saveAndDisableBackupReminder
+                );
+            } else {
+                _prefs.setIsBackupReminderEnabled(true);
+                return true;
+            }
+
+            return false;
+        });
+
         _androidBackupsPreference = requirePreference("pref_android_backups");
         _androidBackupsPreference.setOnPreferenceChangeListener((preference, newValue) -> {
             _prefs.setIsAndroidBackupsEnabled((boolean) newValue);
@@ -113,6 +130,13 @@ public class BackupsPreferencesFragment extends PreferencesFragment {
         });
     }
 
+    private void saveAndDisableBackupReminder(boolean understand) {
+        if (understand) {
+            _prefs.setIsBackupReminderEnabled(false);
+            updateBackupPreference();
+        }
+    }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (data != null && requestCode == CODE_BACKUPS) {
@@ -140,11 +164,13 @@ public class BackupsPreferencesFragment extends PreferencesFragment {
         boolean encrypted = _vaultManager.getVault().isEncryptionEnabled();
         boolean androidBackupEnabled = _prefs.isAndroidBackupsEnabled() && encrypted;
         boolean backupEnabled = _prefs.isBackupsEnabled() && encrypted;
+        boolean backupReminderEnabled = _prefs.isBackupReminderEnabled();
         _backupsPasswordWarningPreference.setVisible(_vaultManager.getVault().isBackupPasswordSet());
         _androidBackupsPreference.setChecked(androidBackupEnabled);
         _androidBackupsPreference.setEnabled(encrypted);
         _backupsPreference.setChecked(backupEnabled);
         _backupsPreference.setEnabled(encrypted);
+        _backupReminderPreference.setChecked(backupReminderEnabled);
         _backupsLocationPreference.setVisible(backupEnabled);
         _backupsTriggerPreference.setVisible(backupEnabled);
         _backupsVersionsPreference.setVisible(backupEnabled);

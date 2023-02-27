@@ -97,7 +97,7 @@
     <string name="export_encrypted">Xifra la volta</string>
     <string name="export_help">Això exportarà la volta fora d\'Aegis. Tria el format en el que s\'ha d\'exportar:</string>
     <string name="export_warning_unencrypted">Això exportarà una còpia sense xifrar de la volta d\'Aegis. <b>No recomanat</b>.</string>
-    <string name="export_warning_accept">Entenc els riscos</string>
+    <string name="understand_risk_accept">Entenc els riscos</string>
     <string name="export_warning_password">Les exportacions es xifren fent servir una contrasenya diferent, configurada a la secció de seguretat.</string>
     <string name="export_format_aegis">Aegis (.JSON)</string>
     <string name="export_format_google_auth_uri">Fitxers de text (*.txt)</string>

@@ -97,7 +97,7 @@
     <string name="export_encrypted">Cripta la cassaforte</string>
     <string name="export_help">Questa azione esporterà la cassaforte al di fuori dello spazio di archiviazione interno di Aegis. Seleziona il formato che vorresti utilizzare per l\'esportazione:</string>
     <string name="export_warning_unencrypted">Stai per esportare una copia decriptata della tua cassaforte Aegis. <b>Questo non è raccomandabile</b>.</string>
-    <string name="export_warning_accept">Sono consapevole del rischio</string>
+    <string name="understand_risk_accept">Sono consapevole del rischio</string>
     <string name="export_warning_password">Le esportazioni vengono crittografate utilizzando una password separata configurata nelle impostazioni di sicurezza.</string>
     <string name="export_format_aegis">Aegis (.JSON)</string>
     <string name="export_format_google_auth_uri">File di testo (.TXT)</string>

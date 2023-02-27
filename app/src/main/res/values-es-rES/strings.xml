@@ -97,7 +97,7 @@
     <string name="export_encrypted">Cifrar la bóveda</string>
     <string name="export_help">Esta acción exportará la bóveda fuera del almacenamiento interno de Aegis. Seleccione el formato al que desea exportar:</string>
     <string name="export_warning_unencrypted">Está a punto de exportar una copia sin cifrar de su bóveda de Aegis. <b>Esto no es recomendable</b>.</string>
-    <string name="export_warning_accept">Entiendo el riesgo</string>
+    <string name="understand_risk_accept">Entiendo el riesgo</string>
     <string name="export_warning_password">Las exportaciones se cifran usando una contraseña separada configurada en la configuración de seguridad.</string>
     <string name="export_format_aegis">Aegis (.JSON)</string>
     <string name="export_format_google_auth_uri">Archivo de texto (.TXT)</string>

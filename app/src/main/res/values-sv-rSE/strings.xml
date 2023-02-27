@@ -95,7 +95,7 @@
     <string name="export_encrypted">Kryptera valvet</string>
     <string name="export_help">Denna åtgärd kommer att exportera valvet från Aegis interna lagring. Välj det format som du vill att din export ska vara i:</string>
     <string name="export_warning_unencrypted">Du håller på att exportera en okrypterad kopia av ditt Aegis-valv. <b>Detta rekommenderas inte.</b></string>
-    <string name="export_warning_accept">Jag förstår riskerna</string>
+    <string name="understand_risk_accept">Jag förstår riskerna</string>
     <string name="export_warning_password">Exporter krypteras med ett separat lösenord som konfigureras i Säkerhet-inställningarna.</string>
     <string name="export_format_aegis">Aegis (.JSON)</string>
     <string name="export_format_google_auth_uri">Textfil (.TXT)</string>

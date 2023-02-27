@@ -101,7 +101,7 @@
     <string name="export_encrypted">Šifrovat trezor</string>
     <string name="export_help">Trezor bude exportován mimo vnitřní úložiště Aegis. Zvolte formát, ve kterém chcete trezor exportovat:</string>
     <string name="export_warning_unencrypted">Chystáte se exportovat nešifrovanou kopii vašeho Aegis trezoru. Toto <b>není doporučeno</b>.</string>
-    <string name="export_warning_accept">Chápu rizika</string>
+    <string name="understand_risk_accept">Chápu rizika</string>
     <string name="export_warning_password">Exporty jsou šifrovány pomocí samostatného hesla nastaveného v nastavení zabezpečení.</string>
     <string name="export_format_aegis">Aegis (.JSON)</string>
     <string name="export_format_google_auth_uri">Textový soubor (.TXT)</string>

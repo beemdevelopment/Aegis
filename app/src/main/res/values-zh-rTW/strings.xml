@@ -88,7 +88,7 @@
     <string name="export_encrypted">加密保險箱</string>
     <string name="export_help">此動作將保險箱從 Aegis 的內部儲存空間裡匯出，請選擇欲匯出的格式：</string>
     <string name="export_warning_unencrypted">即將匯出未加密的 Aegis 保險箱。<b>不建議</b>。</string>
-    <string name="export_warning_accept">我瞭解相關風險</string>
+    <string name="understand_risk_accept">我瞭解相關風險</string>
     <string name="export_format_aegis">Aegis (.JSON)</string>
     <string name="export_format_google_auth_uri">純文字檔案 (.TXT)</string>
     <string name="export_format_hint">匯出格式</string>

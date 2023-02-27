@@ -86,7 +86,7 @@
     <string name="export_encrypted">वॉल्ट एन्क्रिप्ट करें</string>
     <string name="export_help">यह क्रिया एजिस के आंतरिक संग्रहण से तिजोरी को निर्यात करेगी। उस प्रारूप का चयन करें जिसमें आप चाहते हैं कि आपका निर्यात हो:</string>
     <string name="export_warning_unencrypted">आप अपने एजिस वॉल्ट की एक अनएन्क्रिप्टेड कॉपी निर्यात करने वाले हैं। <b>यह अनुशंसित नहीं है</b>।</string>
-    <string name="export_warning_accept">मैं जोखिम को समझता हूं</string>
+    <string name="understand_risk_accept">मैं जोखिम को समझता हूं</string>
     <string name="export_format_aegis">एजिस (.JSON)</string>
     <string name="export_format_google_auth_uri">टेक्स्ट फ़ाइल (.TXT)</string>
     <string name="export_format_hint">निर्यात स्वरूप</string>

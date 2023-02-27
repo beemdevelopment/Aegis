@@ -97,7 +97,7 @@
     <string name="export_encrypted">Criptografar o cofre</string>
     <string name="export_help">Esta ação irá exportar o cofre para fora do armazenamento interno do Aegis. Selecione o formato em que você gostaria que sua exportação esteja:</string>
     <string name="export_warning_unencrypted">Você está prestes a exportar uma cópia não criptografada de seu cofre Aegis. <b>Isso não é recomendado</b>.</string>
-    <string name="export_warning_accept">Eu compreendo o risco</string>
+    <string name="understand_risk_accept">Eu compreendo o risco</string>
     <string name="export_warning_password">As exportações são criptografadas usando uma senha separada, configurada nas configurações de segurança.</string>
     <string name="export_format_aegis">Aegis (.JSON)</string>
     <string name="export_format_google_auth_uri">Arquivo de texto (.TXT)</string>

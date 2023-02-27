@@ -97,7 +97,7 @@
     <string name="export_encrypted">Chiffrer le coffre-fort</string>
     <string name="export_help">Cette action exportera le coffre-fort à partir du stockage interne d\'Aegis. Sélectionnez le format vers lequel vous souhaitez faire votre export :</string>
     <string name="export_warning_unencrypted">Vous êtes sur le point d\'exporter une copie non chiffrée de votre coffre-fort Aegis. <b>Ce n\'est pas recommandé</b>.</string>
-    <string name="export_warning_accept">Je comprends le risque</string>
+    <string name="understand_risk_accept">Je comprends le risque</string>
     <string name="export_warning_password">Les exports sont chiffrés à l\'aide d\'un mot de passe séparé configuré dans les paramètres de sécurité.</string>
     <string name="export_format_aegis">Aegis (.JSON)</string>
     <string name="export_format_google_auth_uri">Fichier texte (.TXT)</string>

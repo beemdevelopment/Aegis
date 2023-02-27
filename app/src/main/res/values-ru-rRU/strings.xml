@@ -101,7 +101,7 @@
     <string name="export_encrypted">Шифровать хранилище</string>
     <string name="export_help">Экспорт внутреннего хранилища Aegis. Выберите формат:</string>
     <string name="export_warning_unencrypted">Вы собираетесь экспортировать незашифрованную копию хранилища Aegis. <b>Не рекомендуется</b>.</string>
-    <string name="export_warning_accept">Я понимаю риск</string>
+    <string name="understand_risk_accept">Я понимаю риск</string>
     <string name="export_warning_password">Экспортируемые данные шифруются с использованием отдельного пароля, указанного в разделе настроек «Безопасность».</string>
     <string name="export_format_aegis">Aegis (.JSON)</string>
     <string name="export_format_google_auth_uri">Текстовый файл (.TXT)</string>

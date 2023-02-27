@@ -97,7 +97,7 @@
     <string name="export_encrypted">Kryptér boksen</string>
     <string name="export_help">Denne handling vil eksportere boksen ud af Aegis\' interne lager. Vælg det format, som du gerne vil eksportere i:</string>
     <string name="export_warning_unencrypted">Du er ved at eksportere en ukrypteret kopi af din Aegis-boks. <b>Dette er ikke anbefalet</b>.</string>
-    <string name="export_warning_accept">Jeg forstår risikoen</string>
+    <string name="understand_risk_accept">Jeg forstår risikoen</string>
     <string name="export_warning_password">Eksporter krypteres vha. en separat adgangskode opsat i Sikkerhedsindstillinger.</string>
     <string name="export_format_aegis">Aegis (.JSON)</string>
     <string name="export_format_google_auth_uri">Tekst fil (.TXT)</string>

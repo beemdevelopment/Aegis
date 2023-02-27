@@ -825,14 +825,23 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
                 });
             });
             _btnErrorBar.setVisibility(View.VISIBLE);
-        } else if (_prefs.isBackupsReminderNeeded()) {
+        } else if (_prefs.isBackupsReminderNeeded() && _prefs.isBackupReminderEnabled()) {
             Date date = _prefs.getLatestBackupOrExportTime();
             if (date != null) {
                 _textErrorBar.setText(getString(R.string.backup_reminder_bar_message_with_latest, TimeUtils.getElapsedSince(this, date)));
             } else {
                 _textErrorBar.setText(R.string.backup_reminder_bar_message);
             }
-            _btnErrorBar.setOnClickListener(view -> startPreferencesActivity());
+            _btnErrorBar.setOnClickListener(view -> {
+                Dialogs.showSecureDialog(new AlertDialog.Builder(this)
+                        .setTitle(R.string.backup_reminder_bar_dialog_title)
+                        .setMessage(R.string.backup_reminder_bar_dialog_summary)
+                        .setPositiveButton(R.string.backup_reminder_bar_dialog_accept, (dialog, whichButton) -> {
+                            startPreferencesActivity(BackupsPreferencesFragment.class, "pref_backups");
+                        })
+                        .setNegativeButton(android.R.string.cancel, null)
+                        .create());
+            });
             _btnErrorBar.setVisibility(View.VISIBLE);
         } else if (_prefs.isPlaintextBackupWarningNeeded()) {
             _textErrorBar.setText(R.string.backup_plaintext_export_warning);

@@ -95,7 +95,7 @@
     <string name="export_encrypted">Cifrar o almacén</string>
     <string name="export_help">Esta acción exportará o almacén fóra do almacenamento interno de Aegis. Escolle o formato no que o queiras exportar:</string>
     <string name="export_warning_unencrypted">Estás a piques de exportar unha copia non cifrada do teu almacén de Aegis. <b>Isto non está recomendado</b>.</string>
-    <string name="export_warning_accept">Entendo os riscos</string>
+    <string name="understand_risk_accept">Entendo os riscos</string>
     <string name="export_warning_password">As exportacións cífranse mediante un contrasinal distinto, definido nos axustes de seguridade.</string>
     <string name="export_format_aegis">Aegis (.JSON)</string>
     <string name="export_format_google_auth_uri">Ficheiro de texto (.TXT)</string>

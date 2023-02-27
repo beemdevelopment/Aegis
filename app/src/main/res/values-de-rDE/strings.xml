@@ -97,7 +97,7 @@
     <string name="export_encrypted">Datenbank verschlüsseln</string>
     <string name="export_help">Mit dieser Aktion wird die Datenbank aus dem internen Speicher von Aegis exportiert. Wähle das Format aus, in dem der Export erfolgen soll:</string>
     <string name="export_warning_unencrypted">Du bist dabei, eine unverschlüsselte Kopie deiner Aegis-Datenbank zu exportieren. <b>Dies wird nicht empfohlen</b>.</string>
-    <string name="export_warning_accept">Mir ist das Risiko bewusst</string>
+    <string name="understand_risk_accept">Mir ist das Risiko bewusst</string>
     <string name="export_warning_password">Exporte werden mit einem separaten Passwort verschlüsselt, das in den Sicherheitseinstellungen konfiguriert wurde.</string>
     <string name="export_format_aegis">Aegis (.JSON)</string>
     <string name="export_format_google_auth_uri">Textdatei (.TXT)</string>
