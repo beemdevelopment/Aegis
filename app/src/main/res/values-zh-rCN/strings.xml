@@ -95,14 +95,16 @@
     <string name="export_encrypted">加密数据库</string>
     <string name="export_help">此操作将从 Aegis 的内部存储中导出数据库。选择您想要的导出格式：</string>
     <string name="export_warning_unencrypted">您将导出一个未加密的 Aegis 数据库副本。<b>不建议这么做</b></string>
-    <string name="understand_risk_accept">我了解风险</string>
     <string name="export_warning_password">导出使用在安全设置中配置的单独密码进行加密。</string>
     <string name="export_format_aegis">Aegis (.JSON)</string>
     <string name="export_format_google_auth_uri">文本文件 (.TXT)</string>
     <string name="export_format_html">网页 (.HTML)</string>
     <string name="export_format_hint">导出格式</string>
     <string name="export_all_groups">导出所有组</string>
-    <string name="export_choose_groups">选择要导出的组：</string>
+    <string name="export_choose_groups">选择要导出的组</string>
+    <plurals name="export_groups_selected_count">
+        <item quantity="other">已选择 %d 个群组</item>
+    </plurals>
     <string name="export_no_groups_selected">没有选择要导出的组</string>
     <string name="export_html_title" context="The title of an HTML export document">Aegis 身份验证器导出</string>
     <string name="choose_authentication_method">安全</string>
@@ -227,7 +229,7 @@
     <string name="file_not_found">错误：文件未找到</string>
     <string name="reading_file_error">试图读取文件时出错</string>
     <string name="app_lookup_error">错误：应用未安装</string>
-    <string name="app_version_error">不支持安装的 %s 版本。 最近的版本已经开始加密内部存储目录中的一些文件。 这使 Aegis 无法访问导入所需的信息。 尝试导入可能导致错误。您仍然想要继续吗？</string>
+    <string name="app_version_error">不支持已安装的 %s 版本。最近的版本已开始加密内部存储目录中的部分文件，因此 Aegis 无法访问导入所需的信息。尝试导入可能会出错，仍要继续吗？</string>
     <string name="root_error">错误：无法获取 root 权限</string>
     <plurals name="imported_entries_count">
         <item quantity="other">已导入 %d 个条目</item>
@@ -350,7 +352,7 @@
     <string name="backup_system_android">Android 的云备份系统</string>
     <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">        最新备份已过时 (%s)
     </string>
-    <string name="backup_reminder_bar_message">        变更没有被备份
+    <string name="backup_reminder_bar_message">        未备份更改
     </string>
     <string name="backup_plaintext_export_warning"><b>保险库最近导出为纯文本</b></string>
     <string name="pref_show_plaintext_warning_hint">不再显示此警告</string>
@@ -438,5 +440,8 @@
     </plurals>
     <plurals name="time_elapsed_years">
         <item quantity="other">%d 年前</item>
+    </plurals>
+    <plurals name="dropdown_checkboxes_default_count">
+        <item quantity="other">已选择 %d 个项目</item>
     </plurals>
 </resources>

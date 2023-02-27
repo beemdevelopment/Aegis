@@ -35,6 +35,8 @@
     <string name="pref_select_theme_title">Tema</string>
     <string name="pref_view_mode_title">Modo de visualización</string>
     <string name="pref_lang_title">Idioma</string>
+    <string name="pref_show_icons_title">Amosar iconas</string>
+    <string name="pref_show_icons_summary">Amosar iconas ao lado de cada entrada</string>
     <string name="pref_code_group_size_title">Agrupación dos díxitos do código</string>
     <string name="pref_code_group_size_summary">Escolle o número de díxitos polos que agrupar os códigos</string>
     <string name="pref_account_name_title">Mostrar o nome da conta</string>
@@ -95,11 +97,14 @@
     <string name="export_encrypted">Cifrar o almacén</string>
     <string name="export_help">Esta acción exportará o almacén fóra do almacenamento interno de Aegis. Escolle o formato no que o queiras exportar:</string>
     <string name="export_warning_unencrypted">Estás a piques de exportar unha copia non cifrada do teu almacén de Aegis. <b>Isto non está recomendado</b>.</string>
-    <string name="understand_risk_accept">Entendo os riscos</string>
     <string name="export_warning_password">As exportacións cífranse mediante un contrasinal distinto, definido nos axustes de seguridade.</string>
     <string name="export_format_aegis">Aegis (.JSON)</string>
     <string name="export_format_google_auth_uri">Ficheiro de texto (.TXT)</string>
+    <string name="export_format_html">Páxina web (.HTML)</string>
     <string name="export_format_hint">Formato da exportación</string>
+    <string name="export_all_groups">Exportar tódolos grupos</string>
+    <string name="export_no_groups_selected">Non se seleccionou ningún grupo para exportar</string>
+    <string name="export_html_title" context="The title of an HTML export document">Exportación de Aegis Authenticator</string>
     <string name="choose_authentication_method">Seguridade</string>
     <string name="authentication_method_explanation">Aegis é unha aplicación 2FA centrada na seguridade. Os tokens gárdanse nun almacén, o cal se pode cifrar cun contrasinal da túa elección. Se un atacante obtén o ficheiro do teu almacén cifrado, non será capaz de acceder á información se non sabe o contrasinal.\n\nPreseleccionouse a opción que cremos que encaixa mellor co teu dispositivo.</string>
     <string name="authentication_method_none">Ningunha</string>
@@ -159,6 +164,7 @@
     <string name="encrypting_vault">Cifrando o almacén</string>
     <string name="exporting_vault">Exportando o almacén</string>
     <string name="reading_file">Lendo ficheiro</string>
+    <string name="requesting_root_access">Pedindo acceso root</string>
     <string name="analyzing_qr">Analizando código QR</string>
     <string name="analyzing_qr_multiple">Analizando código QR %d/%d (%s)</string>
     <plurals name="added_new_entries">
@@ -225,6 +231,7 @@
     <string name="reading_file_error">Ocorreu un erro ao intentar ler o ficheiro</string>
     <string name="app_lookup_error">Erro: A aplicación non está instalada</string>
     <string name="app_version_error">A versión instalada de %s non é compatible. As versións recentes comezaron a cifrar algúns ficheiros no almacenamento interno, causando que Aegis sexa incapaz de acceder á información que necesita para a importación. Intentar importar vai resultar probablemente nun erro. Queres continuar de tódolos xeitos?</string>
+    <string name="root_error">Erro: Non se puido obter acceso root</string>
     <plurals name="imported_entries_count">
         <item quantity="one">Importouse %d entrada</item>
         <item quantity="other">Importáronse %d entradas</item>
@@ -345,8 +352,14 @@
     </plurals>
     <string name="google_qr_export_unexpected">Esperábase o código QR nº %d, pero escaneouse o nº %d</string>
     <string name="backup_error_bar_message"><b>A copia de seguridade do almacén fallou recentemente</b></string>
+    <string name="backup_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">        Un intento de facer unha copia de seguridade do almacén usando %s fallou debido a algún erro. A copia de seguridade intentouse %s. Comproba os axustes da copia de seguridade para asegurarte de que poidan completar correctamente.
+    </string>
     <string name="backup_system_builtin">Copias de seguridade automáticas de Aegis</string>
     <string name="backup_system_android">Copias de seguridade na nube de Android</string>
+    <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">        A última copia de seguridade está desactualizada (%s)
+    </string>
+    <string name="backup_reminder_bar_message">        Os cambios non están gardados na copia de seguridade
+    </string>
     <string name="backup_plaintext_export_warning"><b>O almacén exportouse recentemente como texto plano</b></string>
     <string name="pref_show_plaintext_warning_hint">Non volver a mostrar este aviso</string>
     <string name="backup_plaintext_warning_explanation">Móstrase este aviso porque exportaches recentemente unha copia non cifrada do almacén. Para manter a seguridade dos teus tokens, recomendámosche que elimines este ficheiro cando xa non che faga falta.</string>
@@ -366,6 +379,9 @@
     </plurals>
     <string name="next">Seguinte</string>
     <string name="previous">Anterior</string>
+    <string name="copy_uri">Copiar URI</string>
+    <string name="unable_to_copy_uri_to_clipboard">Non se puido copiar a URI no portapapeis</string>
+    <string name="uri_copied_to_clipboard">URI copiada no portapapeis</string>
     <string name="transfer_entry">Transferir entrada</string>
     <string name="transfer_entry_description">Escanea este código QR coa aplicación de autenticación á que queiras transferirlle esta entrada</string>
     <string name="google_auth_compatible_transfer_description">Escanea estes códigos QR con Aegis ou con Google Authenticator.\n\nDebido ás limitacións de Google Authenticator, só se inclúen os tokens TOTP e HOTP que usen SHA1 e produzan códigos de 6 cifras</string>
@@ -397,6 +413,7 @@
     <string name="importer_help_authy">Proporciona unha copia de <b>/data/data/com.authy.authy/shared_prefs/com.authy.storage.tokens.authenticator.xml</b>, localizado no directorio do almacenamento interno de Authy.</string>
     <string name="importer_help_andotp">Proporciona un ficheiro de copia de seguridade ou de exportación de andOTP.</string>
     <string name="importer_help_bitwarden">Proporciona un ficheiro de copia de seguridade ou de exportación de Bitwarden. Non se admiten os ficheiros cifrados.</string>
+    <string name="importer_help_battle_net_authenticator">Proporciona unha copia de <b>/data/data/com.blizzard.bma/shared_prefs/com.blizzard.bma.AUTH_STORE.xml</b>, localizado no directorio do almacenamento interno de Battle.net Authenticator.</string>
     <string name="importer_help_duo">Proporciona unha copia de <b>/data/data/com.duosecurity.duomobile/files/duokit/accounts.json</b>, localizado no directorio do almacenamento interno de DUO.</string>
     <string name="importer_help_freeotp">Proporciona unha copia de <b>/data/data/org.fedorahosted.freeotp/shared_prefs/tokens.xml</b>, localizado no directorio do almacenamento interno de FreeOTP.</string>
     <string name="importer_help_freeotp_plus">Proporciona un ficheiro de exportación de FreeOTP+.</string>
@@ -416,4 +433,24 @@
     <string name="pref_grouping_size_two">Grupos de 2</string>
     <string name="pref_grouping_size_three">Grupos de 3</string>
     <string name="pref_grouping_size_four">Grupos de 4</string>
+    <plurals name="time_elapsed_seconds">
+        <item quantity="one">fai %d segundo</item>
+        <item quantity="other">fai %d segundos</item>
+    </plurals>
+    <plurals name="time_elapsed_minutes">
+        <item quantity="one">fai %d minuto</item>
+        <item quantity="other">fai %d minutos</item>
+    </plurals>
+    <plurals name="time_elapsed_hours">
+        <item quantity="one">fai %d hora</item>
+        <item quantity="other">fai %d horas</item>
+    </plurals>
+    <plurals name="time_elapsed_days">
+        <item quantity="one">fai %d día</item>
+        <item quantity="other">fai %d días</item>
+    </plurals>
+    <plurals name="time_elapsed_years">
+        <item quantity="one">fai %d ano</item>
+        <item quantity="other">fai %d anos</item>
+    </plurals>
 </resources>

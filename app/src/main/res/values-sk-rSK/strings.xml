@@ -6,6 +6,7 @@
     <string name="action_transfer">Prenos</string>
     <string name="action_edit_icon">Upraviť ikonu</string>
     <string name="action_reset_usage_count">Vynulovať počet použití</string>
+    <string name="action_reset_usage_count_dialog">Naozaj chcete nastaviť počet využitia tohto záznamu na 0?</string>
     <string name="action_default_icon">Obnoviť predvolenú ikonu</string>
     <string name="discard">Zahodiť</string>
     <string name="save">Uložiť</string>
@@ -20,6 +21,7 @@
     <string name="pref_cat_backups_android">Android</string>
     <string name="pref_cat_backups_auto">Automatické zálohy</string>
     <string name="pref_section_behavior_title">Správanie</string>
+    <string name="pref_section_behavior_summary">Prispôsobte správanie pri interakcii so zoznamom záznamov.</string>
     <string name="pref_section_appearance_title">Vzhľad</string>
     <string name="pref_section_appearance_summary">Upravte tému, jazyk a ďalšie nastavenia, ktoré ovplyvňujú vzhľad aplikácie.</string>
     <string name="pref_section_security_title">Zabezpečenie</string>
@@ -33,6 +35,8 @@
     <string name="pref_select_theme_title">Téma</string>
     <string name="pref_view_mode_title">Režim zobrazenia</string>
     <string name="pref_lang_title">Jazyk</string>
+    <string name="pref_show_icons_title">Zobraziť ikony</string>
+    <string name="pref_show_icons_summary">Zobrazte ikony vedľa každého záznamu</string>
     <string name="pref_code_group_size_title">Zoskupenie číselných znakov</string>
     <string name="pref_account_name_title">Zobraziť názov účtu</string>
     <string name="pref_account_name_summary">Povolením tejto možnosti zobrazíte názov účtu vedľa vydavateľa</string>
@@ -73,7 +77,6 @@
     <string name="export_encrypted">Šifrovať trezor</string>
     <string name="export_help">Touto akciou sa exportuje trezor z interného úložiska Aegis. Vyberte formát, v ktorom chcete mať export:</string>
     <string name="export_warning_unencrypted">Chystáte sa exportovať nezašifrovanú kópiu svojho trezoru Aegis. <b> Toto sa neodporúča </b>.</string>
-    <string name="understand_risk_accept">Áno, rozumiem rizikám</string>
     <string name="export_format_aegis">Aegis (.JSON)</string>
     <string name="export_format_google_auth_uri">Textové súbory (*.txt)</string>
     <string name="export_format_hint">Formát exportu</string>
@@ -114,6 +117,8 @@
     <string name="set_up_biometric">Nastaviť biometrické odomknutie</string>
     <string name="copy">Kopírovať</string>
     <string name="edit">Upraviť</string>
+    <string name="favorite" comment="Verb">Obľúbené</string>
+    <string name="unfavorite" comment="Verb">Odobrať z obľúbených</string>
     <string name="error_all_caps">CHYBA</string>
     <string name="password">Heslo</string>
     <string name="confirm_password">Potvrďte heslo</string>
@@ -172,6 +177,12 @@
     <string name="group">Skupina</string>
     <string name="group_name_hint">Názov skupiny</string>
     <string name="preference_manage_groups">Upraviť skupiny</string>
+    <string name="note">Poznámka</string>
+    <string name="clear">Vymazať</string>
+    <string name="pref_highlight_entry_title">Zvýrazniť tokeny po klepnutí</string>
+    <string name="pref_minimize_on_copy_title">Minimalizovať pri kopírovaní</string>
+    <string name="pref_minimize_on_copy_summary">Minimalizujte aplikáciu po skopírovaní tokenu</string>
+    <string name="pref_copy_on_tap_title">Po klepnutí skopírujte tokeny</string>
     <string name="selected">Zvolené</string>
     <string name="dark_theme_title">Tmavá téma</string>
     <string name="light_theme_title">Svetlá téma</string>
@@ -183,6 +194,8 @@
     <string name="small_mode_title">Malý</string>
     <string name="select_picture">Vybrať obrázok</string>
     <string name="select_icon">Vybrať ikonu</string>
+    <string name="tile_open_vault" comment="label for a quick settings tile that opens the app when tapped">Otvoriť trezor</string>
+    <string name="tile_open_scanner" comment="label for a quick settings tile that opens the QR code scanner when tapped">Otvoriť skener</string>
     <string name="search">Hľadať</string>
     <string name="channel_name_lock_status">Stav uzamknutia</string>
     <string name="vault_unlocked_state">Trezor je odomknutý. Ťukni sem pre zamknutie.</string>
@@ -214,4 +227,5 @@
     <string name="title_activity_scan_qr">Skenovať QR kód</string>
     <string name="importer_help_bitwarden">Nahrajte súbor s Bitwarden exportom/zálohou. Šifrované súbory nie sú podporované.</string>
     <string name="groups">Skupiny</string>
+    <string name="pref_grouping_none">Nezoskupovať</string>
 </resources>

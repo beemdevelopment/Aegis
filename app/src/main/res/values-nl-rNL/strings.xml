@@ -6,7 +6,7 @@
     <string name="action_transfer">Overzetten</string>
     <string name="action_edit_icon">Icoon aanpassen</string>
     <string name="action_reset_usage_count">Reset gebruikteller</string>
-    <string name="action_reset_usage_count_dialog">Weet u zeker dat u de gebruikstelling van dit item op 0 wilt zetten?</string>
+    <string name="action_reset_usage_count_dialog">Weet je zeker dat je de gebruikteller van dit item op 0 wilt zetten?</string>
     <string name="action_default_icon">Standaard pictogram herstellen</string>
     <string name="discard">Ongedaan maken</string>
     <string name="save">Opslaan</string>
@@ -14,7 +14,7 @@
     <string name="yandex_pin">PIN (4–16 cijfers)</string>
     <string name="motp_pin">PIN (4 cijfers)</string>
     <string name="suggested">Voorgesteld</string>
-    <string name="usage_count">Gebruikstelling</string>
+    <string name="usage_count">Gebruikteller</string>
     <string name="warning">Waarschuwing</string>
     <string name="pref_cat_appearance_app">App</string>
     <string name="pref_cat_appearance_entries">Items</string>
@@ -84,7 +84,7 @@
     <string name="pref_auto_lock_type_minimize">De app is geminimaliseerd</string>
     <string name="pref_auto_lock_type_device_lock">Het apparaat is vergrendeld</string>
     <string name="pref_backup_password_category">Back-up maken &amp; exporteren</string>
-    <string name="pref_backup_password_title">Apart wachtwoord voor back-up &amp; export</string>
+    <string name="pref_backup_password_title">Apart wachtwoord back-up &amp; export</string>
     <string name="pref_backup_password_summary">Indien ingeschakeld, kan het wachtwoord voor ontgrendelen van de app niet meer worden gebruikt om back-ups en exportbestanden te decoderen.</string>
     <string name="pref_backup_password_change_title">Wachtwoord wijzigen voor back-up maken &amp; exporteren</string>
     <string name="pref_backup_password_change_summary">Stel een nieuw wachtwoord in voor het versleutelen van de kluis tijdens back-ups maken en exporteren.</string>
@@ -97,14 +97,17 @@
     <string name="export_encrypted">Versleutel de kluis</string>
     <string name="export_help">Deze actie zal de kluis exporteren uit de interne opslag van Aegis. Selecteer het formaat waarin je de export wilt:</string>
     <string name="export_warning_unencrypted">Je staat op het punt een onversleutelde kopie van de Aegis-kluis te exporteren. <b>Dit wordt niet aanbevolen</b>.</string>
-    <string name="understand_risk_accept">Ik begrijp het risico</string>
     <string name="export_warning_password">Exporten worden versleuteld met een apart wachtwoord ingesteld in de beveiligingsinstellingen.</string>
     <string name="export_format_aegis">Aegis (.JSON)</string>
     <string name="export_format_google_auth_uri">Tekstbestand (.TXT)</string>
     <string name="export_format_html">Webpagina (.HTML)</string>
     <string name="export_format_hint">Bestandsformaat</string>
     <string name="export_all_groups">Alle groepen exporteren</string>
-    <string name="export_choose_groups">Kies groepen om te exporteren:</string>
+    <string name="export_choose_groups">Kies groepen om te exporteren</string>
+    <plurals name="export_groups_selected_count">
+        <item quantity="one">%d groep geselecteerd</item>
+        <item quantity="other">%d groepen geselecteerd</item>
+    </plurals>
     <string name="export_no_groups_selected">Geen groepen gekozen om te exporteren</string>
     <string name="export_html_title" context="The title of an HTML export document">Aegis Authenticator Export</string>
     <string name="choose_authentication_method">Beveiliging</string>
@@ -205,7 +208,7 @@
     <string name="disable_encryption_description">Weet je zeker dat je versleuteling wil uitschakelen? Hierdoor zal de kluis in platte tekst worden opgeslagen. <b>Automatische back-ups worden ook uitgeschakeld</b>.</string>
     <string name="enable_encryption_error">Er is een fout opgetreden bij het inschakelen van versleuteling</string>
     <string name="disable_encryption_error">Er is een fout opgetreden bij het uitschakelen van versleuteling</string>
-    <string name="backup_successful">De back-up is succesvol gepland</string>
+    <string name="backup_successful">Plannen van de back-up is geslaagd</string>
     <string name="backup_error">Er is een fout opgetreden bij maken van een back-up</string>
     <string name="backup_status_success">De meest recente geslaagde back-up: %s</string>
     <string name="backup_status_failed">De meest recente mislukte back-up: %s</string>
@@ -239,8 +242,8 @@
         <item quantity="other">%d items geïmporteerd</item>
     </plurals>
     <plurals name="entries_shown">
-        <item quantity="one">%d item tonen</item>
-        <item quantity="other">%d items tonen</item>
+        <item quantity="one">%d item</item>
+        <item quantity="other">%d items</item>
     </plurals>
     <string name="intro_import_error_title">Fout opgetreden tijdens het importeren van de kluis</string>
     <string name="import_error_title">Er zijn fouten opgetreden tijdens het importeren</string>
@@ -275,16 +278,16 @@
     <string name="sort_alphabetically_reverse">Uitgever (Z t/m A)</string>
     <string name="sort_alphabetically_name">Account (A t/m Z)</string>
     <string name="sort_alphabetically_name_reverse">Account (Z t/m A)</string>
-    <string name="sort_usage_count">Gebruikstelling</string>
+    <string name="sort_usage_count">Gebruikteller</string>
     <string name="sort_custom">Aangepast</string>
     <string name="new_group">Nieuwe groep…</string>
     <string name="group">Groep</string>
     <string name="group_name_hint">Groepsnaam</string>
     <string name="preference_manage_groups">Groepen bewerken</string>
     <string name="preference_manage_groups_summary">Beheer en verwijder hier je groepen</string>
-    <string name="preference_reset_usage_count">Gebruikstelling resetten</string>
-    <string name="preference_reset_usage_count_summary">Reset de gebruikstelling van elk item in je kluis</string>
-    <string name="preference_reset_usage_count_dialog">Weet je zeker dat je de gebruikstelling van alle items in de kluis op 0 wilt zetten?</string>
+    <string name="preference_reset_usage_count">Gebruikteller resetten</string>
+    <string name="preference_reset_usage_count_summary">Reset de gebruikteller van elk item in je kluis</string>
+    <string name="preference_reset_usage_count_dialog">Weet je zeker dat je de gebruikteller van alle items in de kluis op 0 wilt zetten?</string>
     <string name="note">Notitie</string>
     <string name="clear">Wissen</string>
     <string name="pref_highlight_entry_title">Codes markeren na aantikken</string>
@@ -354,12 +357,14 @@
     </plurals>
     <string name="google_qr_export_unexpected">QR-code #%d werd verwacht, maar in plaats daarvan #%d gescand</string>
     <string name="backup_error_bar_message"><b>Kluis back-up onlangs mislukt</b></string>
-    <string name="backup_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">Een recente back-up van de kluis met %s mislukte omdat er een fout plaatsvond. De back-up werd op %s geprobeerd. Controleer uw back-upinstellingen om er zeker van te zijn dat back-ups succesvol kunnen worden voltooid.    </string>
+    <string name="backup_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">        Een recente back-up van de kluis met %s mislukte omdat er iets misging. De back-uppoging was op %s. Controleer de back-upinstellingen om zeker te zijn dat back-ups met succes kunnen worden voltooid.
+    </string>
     <string name="backup_system_builtin">het ingebouwde automatische back-ups van Aegis</string>
     <string name="backup_system_android">het cloud back-upsysteem van Android</string>
     <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">        De meest recente back-up is verouderd (%s)
     </string>
-    <string name="backup_reminder_bar_message">Geen backup gemaakt van wijzigingen    </string>
+    <string name="backup_reminder_bar_message">        Geen back-up gemaakt van wijzigingen
+    </string>
     <string name="backup_plaintext_export_warning"><b>De kluis is recent geëxporteerd in platte tekst</b></string>
     <string name="pref_show_plaintext_warning_hint">Deze waarschuwing niet opnieuw weergeven</string>
     <string name="backup_plaintext_warning_explanation">Deze waarschuwing wordt weergegeven omdat je recent een onversleutelde kopie van de kluis hebt geëxporteerd. Om je tokens veilig te houden, raden we aan dit bestand te verwijderen als je het niet meer nodig hebt.</string>
@@ -390,7 +395,7 @@
     <string name="password_strength_fair">Redelijk</string>
     <string name="password_strength_good">Goed</string>
     <string name="password_strength_strong">Sterk</string>
-    <string name="pref_pin_keyboard_title">PIN-toetsenbord op vergrendelscherm</string>
+    <string name="pref_pin_keyboard_title">PIN-toetsen op vergrendelscherm</string>
     <string name="pref_pin_keyboard_summary">Schakel dit in als je het PIN-toetsenbord op het vergrendelscherm wilt gebruiken. Werkt alleen bij numerieke wachtwoorden</string>
     <string name="title_activity_preferences">Instellingen</string>
     <string name="title_activity_manage_groups">Groepen beheren</string>
@@ -400,7 +405,7 @@
     <string name="title_activity_scan_qr">Scan een QR-code</string>
     <string name="title_activity_manage_slots">Beheer sleutelslots</string>
     <string name="title_activity_import_entries">Importeer items</string>
-    <string name="dialog_wipe_entries_title">Items verwijderen</string>
+    <string name="dialog_wipe_entries_title">Items wissen</string>
     <string name="dialog_wipe_entries_message">Je kluis bevat al items. Wil je deze items verwijderen voordat je dit bestand importeert?\n\n<b>Hiermee verlies je permanent toegang tot de bestaande items in de kluis.</b></string>
     <string name="dialog_wipe_entries_checkbox">Inhoud van kluis wissen</string>
     <string name="panic_trigger_ignore_toast">Aegis heeft paniektrigger ontvangen maar instelling is uitgeschakeld, wordt genegeerd</string>
@@ -413,7 +418,7 @@
     <string name="importer_help_authy">Lever een kopie aan van <b>/data/data/com.authy.authy/shared_prefs/com.authy.storage.tokens.authenticator.xml</b>, geplaatst in de interne opslagmap van Authy.</string>
     <string name="importer_help_andotp">Lever een andOTP export/backup bestand aan.</string>
     <string name="importer_help_bitwarden">Lever een Bitwarden export/back-upbestand aan. Versleutelde bestanden worden niet ondersteund.</string>
-    <string name="importer_help_battle_net_authenticator">Lever een kopie aan van <b>/data/data/com.blizzard.bma/shared_prefs/com.blizzard.bma.AUTH_STORE.xml</b>, gelegen in de interne opslagmap van Battle.net Authenticator.</string>
+    <string name="importer_help_battle_net_authenticator">Lever een kopie aan van <b>/data/data/com.blizzard.bma/shared_prefs/com.blizzard.bma.AUTH_STORE.xml</b>, geplaatst in de interne opslagmap van Battle.net Authenticator.</string>
     <string name="importer_help_duo">Lever een kopie aan van <b>/data/data/com.duosecurity.duomobile/files/duokit/accounts.json</b>, geplaatst in de interne opslagmap van DUO.</string>
     <string name="importer_help_freeotp">Lever een kopie aan van <b>/data/data/org.fedorahosted.freeotp/shared_prefs/tokens.xml</b>, geplaatst in de interne opslagmap van FreeOTP.</string>
     <string name="importer_help_freeotp_plus">Lever een FreeOTP+ exportbestand aan.</string>
@@ -443,7 +448,7 @@
     </plurals>
     <plurals name="time_elapsed_hours">
         <item quantity="one">%d uur geleden</item>
-        <item quantity="other">%d uren geleden</item>
+        <item quantity="other">%d uur geleden</item>
     </plurals>
     <plurals name="time_elapsed_days">
         <item quantity="one">%d dag geleden</item>
@@ -451,6 +456,10 @@
     </plurals>
     <plurals name="time_elapsed_years">
         <item quantity="one">%d jaar geleden</item>
-        <item quantity="other">%d jaren geleden</item>
+        <item quantity="other">%d jaar geleden</item>
+    </plurals>
+    <plurals name="dropdown_checkboxes_default_count">
+        <item quantity="one">%d item geselecteerd</item>
+        <item quantity="other">%d items geselecteerd</item>
     </plurals>
 </resources>

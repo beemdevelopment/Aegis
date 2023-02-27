@@ -97,14 +97,17 @@
     <string name="export_encrypted">Criptografar o cofre</string>
     <string name="export_help">Esta ação irá exportar o cofre para fora do armazenamento interno do Aegis. Selecione o formato em que você gostaria que sua exportação esteja:</string>
     <string name="export_warning_unencrypted">Você está prestes a exportar uma cópia não criptografada de seu cofre Aegis. <b>Isso não é recomendado</b>.</string>
-    <string name="understand_risk_accept">Eu compreendo o risco</string>
     <string name="export_warning_password">As exportações são criptografadas usando uma senha separada, configurada nas configurações de segurança.</string>
     <string name="export_format_aegis">Aegis (.JSON)</string>
     <string name="export_format_google_auth_uri">Arquivo de texto (.TXT)</string>
     <string name="export_format_html">Página da Web (.HTML)</string>
     <string name="export_format_hint">Formato de exportação</string>
     <string name="export_all_groups">Exportar todos os grupos</string>
-    <string name="export_choose_groups">Selecione os grupos a serem exportados:</string>
+    <string name="export_choose_groups">Selecione os grupos a serem exportados</string>
+    <plurals name="export_groups_selected_count">
+        <item quantity="one">%d Grupo selecionado</item>
+        <item quantity="other">%d Grupos selecionados</item>
+    </plurals>
     <string name="export_no_groups_selected">Nenhum grupo selecionado para exportar</string>
     <string name="export_html_title" context="The title of an HTML export document">Exportação Aegis Authenticator</string>
     <string name="choose_authentication_method">Segurança</string>
@@ -453,5 +456,9 @@
     <plurals name="time_elapsed_years">
         <item quantity="one">%d ano atrás</item>
         <item quantity="other">%d anos atrás</item>
+    </plurals>
+    <plurals name="dropdown_checkboxes_default_count">
+        <item quantity="one">%d Item selecionado</item>
+        <item quantity="other">%d Itens selecionados</item>
     </plurals>
 </resources>

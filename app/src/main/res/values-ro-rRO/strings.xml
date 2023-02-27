@@ -99,13 +99,17 @@
     <string name="export_encrypted">Criptează seiful</string>
     <string name="export_help">Această acțiune va exporta seiful din spațiul de stocare al aplicaţiei. Selectează formatul în care dorești exportul:</string>
     <string name="export_warning_unencrypted">Ești pe cale să exportezi o copie necriptată a seifului Aegis. <b>Acest lucru nu este recomandat</b>.</string>
-    <string name="understand_risk_accept">Înţeleg riscurile</string>
     <string name="export_warning_password">Exporturile sunt criptate folosind o parolă separată configurată în setările de securitate.</string>
     <string name="export_format_aegis">Aegis (.JSON)</string>
     <string name="export_format_google_auth_uri">Fișier text (.TXT)</string>
     <string name="export_format_hint">Formatul în care se exportă</string>
     <string name="export_all_groups">Exportă toate grupurile</string>
-    <string name="export_choose_groups">Selectează ce grupuri să exporți:</string>
+    <string name="export_choose_groups">Selectează ce grupuri să exporți</string>
+    <plurals name="export_groups_selected_count">
+        <item quantity="one">%d grup selectat</item>
+        <item quantity="few">%d grupuri selectate</item>
+        <item quantity="other">%d de grupuri selectate</item>
+    </plurals>
     <string name="export_no_groups_selected">Nici un grup selectat pentru export</string>
     <string name="choose_authentication_method">Securitate</string>
     <string name="authentication_method_explanation">Aegis este o aplicație 2FA concentrată pe securitate. Token-urile sunt stocate într-un seif, care poate criptat cu o parolă aleasă. Dacă un atacator obține fișierul criptat al seifului, nu va putea accesa conținutul fără a cunoaște parola.\n\nAm selectat opțiunea pe care o credem cea mai potrivită pentru dispozitivul tău.</string>
@@ -417,6 +421,7 @@
     <string name="importer_help_authy">Furnizează o copie a <b>/data/data/com.authy.authy/shared_prefs/com.authy.storage.tokens.authenticator.xml</b>, localizată în directorul de stocare internă al Authy.</string>
     <string name="importer_help_andotp">Furnizați un fişier de export/copie de rezervă andOTP.</string>
     <string name="importer_help_bitwarden">Furnizează un fișier de backup din aplicația Bitwarden. Fișierele criptate nu sunt suportate.</string>
+    <string name="importer_help_battle_net_authenticator">Furnizează o copie a <b>/data/data/com.blizzard.bma/shared_prefs/com.blizzard.bma.AUTH_STORE.xml</b>, localizată în directorul de stocare internă al Battle.net Authenticator.</string>
     <string name="importer_help_duo">Furnizează o copie a <b>/data/data/com.duosecurity.duomobile/files/duokit/accounts.json</b>, localizată în dosarul din memoria internă al DUO.</string>
     <string name="importer_help_freeotp">Furnizează o copie de <b>/data/data/org.fedorahosted.freeotp/shared_prefs/tokens.xml</b>, localizată în directorul de stocare internă a FreeOTP.</string>
     <string name="importer_help_freeotp_plus">Furnizează un fișier de export FreeOTP+.</string>
@@ -460,5 +465,10 @@
         <item quantity="one">acum %d an</item>
         <item quantity="few">acum %d ani</item>
         <item quantity="other">acum %d de ani</item>
+    </plurals>
+    <plurals name="dropdown_checkboxes_default_count">
+        <item quantity="one">%d element selectat</item>
+        <item quantity="few">%d elemente selectate</item>
+        <item quantity="other">%d de elemente selectate</item>
     </plurals>
 </resources>

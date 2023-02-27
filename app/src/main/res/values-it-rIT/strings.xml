@@ -97,14 +97,17 @@
     <string name="export_encrypted">Cripta la cassaforte</string>
     <string name="export_help">Questa azione esporterà la cassaforte al di fuori dello spazio di archiviazione interno di Aegis. Seleziona il formato che vorresti utilizzare per l\'esportazione:</string>
     <string name="export_warning_unencrypted">Stai per esportare una copia decriptata della tua cassaforte Aegis. <b>Questo non è raccomandabile</b>.</string>
-    <string name="understand_risk_accept">Sono consapevole del rischio</string>
     <string name="export_warning_password">Le esportazioni vengono crittografate utilizzando una password separata configurata nelle impostazioni di sicurezza.</string>
     <string name="export_format_aegis">Aegis (.JSON)</string>
     <string name="export_format_google_auth_uri">File di testo (.TXT)</string>
     <string name="export_format_html">Pagina web (.HTML)</string>
     <string name="export_format_hint">Formato di esportazione</string>
     <string name="export_all_groups">Esporta tutti i gruppi</string>
-    <string name="export_choose_groups">Seleziona i gruppi da esportare:</string>
+    <string name="export_choose_groups">Seleziona i gruppi da esportare</string>
+    <plurals name="export_groups_selected_count">
+        <item quantity="one">%d gruppo selezionato</item>
+        <item quantity="other">%d gruppi selezionati</item>
+    </plurals>
     <string name="export_no_groups_selected">Non sono stati selezionati gruppi da esportare</string>
     <string name="export_html_title" context="The title of an HTML export document">Esportazione di Aegis Authenticator</string>
     <string name="choose_authentication_method">Sicurezza</string>
@@ -454,5 +457,9 @@
     <plurals name="time_elapsed_years">
         <item quantity="one">%d anno fa</item>
         <item quantity="other">%d anni fa</item>
+    </plurals>
+    <plurals name="dropdown_checkboxes_default_count">
+        <item quantity="one">%d elemento selezionato</item>
+        <item quantity="other">%d elementi selezionati</item>
     </plurals>
 </resources>

@@ -68,7 +68,6 @@
     <string name="export_encrypted">Шифровайте трезора</string>
     <string name="export_help">Това действие ще експортира трезора от вътрешното хранилище на Aegis. Изберете формата, който искате да бъде експорта ви:</string>
     <string name="export_warning_unencrypted">На път сте да експортирате нешифровано копие на своя Aegis трезор. <b>Това не се препоръчва</b>.</string>
-    <string name="understand_risk_accept">Разбирам риска</string>
     <string name="export_format_aegis">Aegis (.JSON)</string>
     <string name="export_format_google_auth_uri">Текстов файл (.TXT)</string>
     <string name="export_format_hint">Експорт формат</string>

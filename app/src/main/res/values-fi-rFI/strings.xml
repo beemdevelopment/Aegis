@@ -35,7 +35,10 @@
     <string name="pref_select_theme_title">Teema</string>
     <string name="pref_view_mode_title">Näyttötila</string>
     <string name="pref_lang_title">Kieli</string>
+    <string name="pref_show_icons_title">Näytä kuvakkeet</string>
+    <string name="pref_show_icons_summary">Näytä kuvakkeet jokaisen kohteen vieressä</string>
     <string name="pref_code_group_size_title">Numeroiden ryhmittely</string>
+    <string name="pref_code_group_size_summary">Valitse numeroiden määrä ryhmiteltäessä koodeja</string>
     <string name="pref_account_name_title">Näytä tilin nimi</string>
     <string name="pref_account_name_summary">Näytä tilin nimi todennuskoodin myöntäjän rinnalla</string>
     <string name="pref_import_file_title">Tuo tiedostosta</string>
@@ -60,7 +63,12 @@
     <string name="pref_export_summary">Vie holvi</string>
     <string name="pref_password_reminder_title">Salasanamuistutus</string>
     <string name="pref_google_auth_export_title">Vie Google Authenticatoriin</string>
+    <string name="pref_google_auth_export_descriptor">Luo QR-koodeja, jotka ovat yhteensopivia Google Authenticator -sovelluksen kanssa</string>
     <string name="pref_google_auth_export_no_data">Ei vietäviä tietoja</string>
+    <plurals name="pref_google_auth_export_incompatible_entries">
+        <item quantity="one">Ohitettu %d yhteensopimaton kohde</item>
+        <item quantity="other">Ohitettu %d yhteensopimatonta kohdetta</item>
+    </plurals>
     <string name="pref_password_reminder_summary">Näytä %s muistutus syöttääksesi salasanan, jotta et unohda sitä.</string>
     <string name="pref_password_reminder_summary_disabled">Pois käytöstä</string>
     <string name="pref_secure_screen_title">Näyttöturvallisuus</string>
@@ -89,10 +97,18 @@
     <string name="export_encrypted">Salaa holvi</string>
     <string name="export_help">Tämä toiminto vie holvin ulos Aegisin sisäisestä tallennustilasta. Valitse viennin tiedostomuoto:</string>
     <string name="export_warning_unencrypted">Olet viemässä salaamattoman kopion Aegis-holvistasi. <b>Tätä ei suositella</b>.</string>
-    <string name="understand_risk_accept">Ymmärrän riskin</string>
+    <string name="export_warning_password">Vienti on salattu käyttäen erillistä salasanaa, joka on määritetty suojausasetuksissa.</string>
     <string name="export_format_aegis">Aegis (.JSON)</string>
     <string name="export_format_google_auth_uri">Tekstitiedosto (.TXT)</string>
+    <string name="export_format_html">Verkkosivu (.HTML)</string>
     <string name="export_format_hint">Vientimuoto</string>
+    <string name="export_all_groups">Vie kaikki ryhmät</string>
+    <string name="export_choose_groups">Valitse vietävät ryhmät</string>
+    <plurals name="export_groups_selected_count">
+        <item quantity="one">%d ryhmä valittu</item>
+        <item quantity="other">%d ryhmää valittu</item>
+    </plurals>
+    <string name="export_no_groups_selected">Yhtään ryhmää ei ole valittu vietäväksi</string>
     <string name="choose_authentication_method">Turvallisuus</string>
     <string name="authentication_method_explanation">Aegis on turvallisuuteen keskittyvä 2FA-sovellus. Todennuskoodit talletetaan holviin, joka voidaan salata valitsemallasi salasanalla. Vaikka hyökkääjä kaappaisi salatun holvitiedostosi, hän ei pääse käsiksi sen sisältöön tietämättä salasanaasi.\n\nOlemme valinneet valmiiksi vaihtoehdon, joka sopii parhaiten laitteellesi.</string>
     <string name="authentication_method_none">Ei mitään</string>
@@ -152,6 +168,7 @@
     <string name="encrypting_vault">Holvia salataan</string>
     <string name="exporting_vault">Viedään holvia</string>
     <string name="reading_file">Luetaan tiedostoa</string>
+    <string name="requesting_root_access">Pyydetään root-oikeuksia</string>
     <string name="analyzing_qr">Analysoidaan QR-koodia</string>
     <string name="analyzing_qr_multiple">Luetaan QR-koodia %d/%d (%s)</string>
     <plurals name="added_new_entries">
@@ -192,6 +209,9 @@
     <string name="disable_encryption_error">Salauksen käytöstä poistamisessa tapahtui virhe</string>
     <string name="backup_successful">Varmuuskopion ajoitus onnistui</string>
     <string name="backup_error">Varmuuskopion luomisessa tapahtui virhe</string>
+    <string name="backup_status_success">Viimeisin varmuuskopiointi onnistui: %s</string>
+    <string name="backup_status_failed">Viimeisin varmuuskopiointi epäonnistui: %s</string>
+    <string name="backup_status_none">Varmuuskopioita ei ole vielä tehty</string>
     <string name="documentsui_error">DocumentsUI näyttää puuttuvan laitteestasi. Tämä on tärkeä järjestelmän osa, joka on tarpeen asiakirjojen valintaa ja luomista varten. Jos olet käyttänyt &quot;debloat&quot; -työkaluja laitteellesi, olet voinut vahingossa poistaa sen ja sinun täytyy asentaa se uudelleen.</string>
     <string name="icon_pack_import_error">Kuvakepaketin tuonnissa tapahtui virhe</string>
     <string name="icon_pack_import_exists_error">Kuvakepaketti, jota yrität tuoda, on jo olemassa. Haluatko korvata sen?</string>
@@ -213,6 +233,7 @@
     <string name="file_not_found">Virhe: Tiedostoa ei löydy</string>
     <string name="reading_file_error">Tiedoston lukemisessa tapahtui virhe</string>
     <string name="app_lookup_error">Virhe: Sovellusta ei ole asennettu</string>
+    <string name="root_error">Virhe: root-oikeuksia ei voitu saada</string>
     <plurals name="imported_entries_count">
         <item quantity="one">%d kohde tuotu</item>
         <item quantity="other">%d kohdetta tuotu</item>
@@ -268,6 +289,8 @@
     <string name="clear">Tyhjennä</string>
     <string name="pref_highlight_entry_title">Korosta todennuskoodit napauttamalla</string>
     <string name="pref_highlight_entry_summary">Tee todennuskoodeista helpompi erottaa toisistaan korostamalla niitä tilapäisesti napauttamalla</string>
+    <string name="pref_minimize_on_copy_title">Pienennä kopioidessa</string>
+    <string name="pref_minimize_on_copy_summary">Pienennä sovellus todennuskoodin kopioinnin jälkeen</string>
     <string name="pref_copy_on_tap_title">Kopioi todennuskoodeja napauttamalla</string>
     <string name="pref_copy_on_tap_summary">Kopioi todennuskoodit leikepöydälle napauttamalla niitä</string>
     <string name="pref_pause_entry_title">Jäädytä todennuskoodit napauttamalla</string>
@@ -331,6 +354,11 @@
     </plurals>
     <string name="google_qr_export_unexpected">Odotettiin QR-koodia #%d, mutta skannattu #%d sen sijaan</string>
     <string name="backup_error_bar_message"><b>Holvin varmuuskopiointi epäonnistui äskettäin</b></string>
+    <string name="backup_system_builtin">Aegisin sisäänrakennetut automaattiset varmuuskopiot</string>
+    <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">        Viimeisin varmuuskopiointi on vanhentunut (%s)
+    </string>
+    <string name="backup_reminder_bar_message">        Muutoksia ei ole varmuuskopioitu
+    </string>
     <string name="backup_plaintext_export_warning"><b>Holvi vietiin äskettäin raakatekstinä</b></string>
     <string name="pref_show_plaintext_warning_hint">Älä näytä tätä varoitusta uudelleen</string>
     <string name="backup_plaintext_warning_explanation">Tämä varoitus näytetään, koska veit äskettäin salaamattoman kopion holvistasi. Varmistaaksemme todennuskoodiesi turvallisuuden, suosittelemme poistamaan tiedoston heti, kun sitä ei enää tarvita.</string>
@@ -350,6 +378,9 @@
     </plurals>
     <string name="next">Seuraava</string>
     <string name="previous">Edellinen</string>
+    <string name="copy_uri">Kopioi URI</string>
+    <string name="unable_to_copy_uri_to_clipboard">URI:a ei voitu kopioida leikepöydälle</string>
+    <string name="uri_copied_to_clipboard">URI kopioitiin leikepöydälle</string>
     <string name="transfer_entry">Siirrä kohde</string>
     <string name="transfer_entry_description">Skannaa tämä QR-koodi todennussovelluksella, johon haluat siirtää tämän kohteen</string>
     <string name="password_strength_very_weak">Erittäin heikko</string>
@@ -395,4 +426,31 @@
     <string name="pref_focus_search_summary">Keskitä hakukenttä heti kun sovellus avataan.</string>
     <string name="pref_grouping_halves">Puolikkaat</string>
     <string name="pref_grouping_none">Ei ryhmittelyä</string>
+    <string name="pref_grouping_size_two">Kahden ryhmissä</string>
+    <string name="pref_grouping_size_three">Kolmen ryhmissä</string>
+    <string name="pref_grouping_size_four">Neljän ryhmissä</string>
+    <plurals name="time_elapsed_seconds">
+        <item quantity="one">%d sekunti sitten</item>
+        <item quantity="other">%d sekuntia sitten</item>
+    </plurals>
+    <plurals name="time_elapsed_minutes">
+        <item quantity="one">%d minuutti sitten</item>
+        <item quantity="other">%d minuuttia sitten</item>
+    </plurals>
+    <plurals name="time_elapsed_hours">
+        <item quantity="one">%d tunti sitten</item>
+        <item quantity="other">%d tuntia sitten</item>
+    </plurals>
+    <plurals name="time_elapsed_days">
+        <item quantity="one">%d päivä sitten</item>
+        <item quantity="other">%d päivää sitten</item>
+    </plurals>
+    <plurals name="time_elapsed_years">
+        <item quantity="one">%d vuosi sitten</item>
+        <item quantity="other">%d vuotta sitten</item>
+    </plurals>
+    <plurals name="dropdown_checkboxes_default_count">
+        <item quantity="one">%d kohde valittu</item>
+        <item quantity="other">%d kohdetta valittu</item>
+    </plurals>
 </resources>

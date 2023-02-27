@@ -12,8 +12,10 @@
     <string name="save">保存</string>
     <string name="issuer">発行者</string>
     <string name="yandex_pin">PIN (4～16桁)</string>
+    <string name="motp_pin">PIN (4桁)</string>
     <string name="suggested">提案</string>
     <string name="usage_count">使用回数</string>
+    <string name="warning">警告</string>
     <string name="pref_cat_appearance_app">アプリ</string>
     <string name="pref_cat_appearance_entries">エントリー</string>
     <string name="pref_cat_backups_android">Android</string>
@@ -33,7 +35,10 @@
     <string name="pref_select_theme_title">テーマ</string>
     <string name="pref_view_mode_title">表示モード</string>
     <string name="pref_lang_title">言語</string>
+    <string name="pref_show_icons_title">アイコンを表示</string>
+    <string name="pref_show_icons_summary">各エントリーの横にアイコンを表示する</string>
     <string name="pref_code_group_size_title">コードの桁数のグループ化</string>
+    <string name="pref_code_group_size_summary">グループ化する桁数を選択してください</string>
     <string name="pref_account_name_title">アカウント名を表示</string>
     <string name="pref_account_name_summary">有効にすると発行者の隣にアカウント名を表示します</string>
     <string name="pref_import_file_title">ファイルからインポート</string>
@@ -55,7 +60,13 @@
     <string name="pref_import_app_summary">アプリからトークンをインポート (root権限が必要)</string>
     <string name="pref_export_title">エクスポート</string>
     <string name="pref_export_summary">保管庫をエクスポート</string>
-    <string name="pref_password_reminder_title">パスワードを忘れた場合</string>
+    <string name="pref_password_reminder_title">パスワードのリマインダー</string>
+    <string name="pref_google_auth_export_title">Google Authenticator 向けにエクスポート</string>
+    <string name="pref_google_auth_export_descriptor">Google Authenticator と互換性のある QR コードを生成します</string>
+    <string name="pref_google_auth_export_no_data">エクスポートするデータがありません</string>
+    <plurals name="pref_google_auth_export_incompatible_entries">
+        <item quantity="other">互換性のない %d 個のエントリーをスキップしました</item>
+    </plurals>
     <string name="pref_password_reminder_summary">パスワードを忘れないように、パスワードを入力する%sリマインダーを表示します。</string>
     <string name="pref_password_reminder_summary_disabled">無効</string>
     <string name="pref_secure_screen_title">画面のセキュリティ</string>
@@ -70,6 +81,11 @@
     <string name="pref_auto_lock_type_back_button">戻るボタンが押されたとき</string>
     <string name="pref_auto_lock_type_minimize">アプリが最小化されたとき</string>
     <string name="pref_auto_lock_type_device_lock">端末がロックされたとき</string>
+    <string name="pref_backup_password_category">バックアップとエクスポート</string>
+    <string name="pref_backup_password_title">バックアップとエクスポート用のパスワードを分離する</string>
+    <string name="pref_backup_password_summary">有効にすると、アプリのロック解除に使用されるパスワードは、バックアップとエクスポートの復号化に使用できなくなります。</string>
+    <string name="pref_backup_password_change_title">バックアップとエクスポートのパスワードを変更する</string>
+    <string name="pref_backup_password_change_summary">バックアップとエクスポート時に保管庫を暗号化する新しいパスワードを設定します。</string>
     <string name="pref_encryption_title">暗号化</string>
     <string name="pref_encryption_summary">保管庫を暗号化し、パスワードまたは生体認証でロックを解除する</string>
     <string name="pref_biometrics_title">生体認証ロック解除</string>
@@ -79,10 +95,18 @@
     <string name="export_encrypted">保管庫を暗号化</string>
     <string name="export_help">保管庫をAegisの内部ストレージからエクスポートします。エクスポートしたいフォーマットを選択してください:</string>
     <string name="export_warning_unencrypted">暗号化されていないAegis保管庫のコピーをエクスポートしようとしています。 <b>これは推奨されません</b>。</string>
-    <string name="understand_risk_accept">リスクを理解しています</string>
+    <string name="export_warning_password">エクスポートは、セキュリティ設定で構成された個別のパスワードを使用して暗号化されます。</string>
     <string name="export_format_aegis">Aegis (.JSON)</string>
     <string name="export_format_google_auth_uri">テキストファイル (.TXT)</string>
+    <string name="export_format_html">ウェブページ (.HTML)</string>
     <string name="export_format_hint">エクスポートフォーマット</string>
+    <string name="export_all_groups">すべてのグループをエクスポート</string>
+    <string name="export_choose_groups">エクスポートするグループを選択</string>
+    <plurals name="export_groups_selected_count">
+        <item quantity="other">%d グループを選択しました</item>
+    </plurals>
+    <string name="export_no_groups_selected">エクスポートするグループが選択されていません</string>
+    <string name="export_html_title" context="The title of an HTML export document">Aegis Authenticator のエクスポート</string>
     <string name="choose_authentication_method">セキュリティ</string>
     <string name="authentication_method_explanation">Aegisはセキュリティに重点を置いた2FAアプリです。トークンは保管庫に保存され、必要に応じて選択したパスワードで暗号化できます。 攻撃者が暗号化された保管庫ファイルを取得した場合、パスワードを知らずにアクセスすることはできません。\n\nお使いのデバイスに最適なオプションを事前に選択しました。</string>
     <string name="authentication_method_none">なし</string>
@@ -102,6 +126,7 @@
     <string name="invalid_password">パスワードが違います</string>
     <string name="invalidated_biometrics">デバイスのセキュリティ設定の変更が検出されました。 「Aegis -&gt; 設定 -&gt; セキュリティ -&gt; 生体認証ロック解除」にアクセスして、生体認証ロックを無効にして再度有効にしてください。</string>
     <string name="password_reminder">パスワードを入力してください。あなたがパスワードを忘れないようにするために、時々確認します。</string>
+    <string name="password_reminder_freq_never">しない</string>
     <string name="password_reminder_freq_weekly">1週間ごと</string>
     <string name="password_reminder_freq_biweekly">2週間ごと</string>
     <string name="password_reminder_freq_monthly">1ヶ月ごと</string>
@@ -126,24 +151,34 @@
     <string name="set_up_biometric">生体認証ロック解除の設定</string>
     <string name="copy">コピー</string>
     <string name="edit">編集</string>
+    <string name="favorite" comment="Verb">お気に入りに追加</string>
+    <string name="unfavorite" comment="Verb">お気に入りを解除</string>
+    <string name="error_all_caps">エラー</string>
     <string name="password">パスワード</string>
     <string name="confirm_password">パスワードの確認</string>
     <string name="show_password">パスワードを表示</string>
     <string name="new_entry">新しいエントリー</string>
     <string name="add_new_entry">新しいエントリーを追加</string>
-    <string name="unlock_vault_error">Vaultのロックを解除できませんでした</string>
+    <string name="unlock_vault_error">保管庫のロックを解除できませんでした</string>
     <string name="unlock_vault_error_description">パスワードが正しくありません。パスワードを間違えていないか確認してください。</string>
     <string name="password_equality_error">パスワードが一致しません</string>
     <string name="snackbar_authentication_method">認証方法を選択してください</string>
     <string name="encrypting_vault">保管庫の暗号化</string>
     <string name="exporting_vault">保管庫のエクスポート</string>
     <string name="reading_file">ファイルを読み込み中</string>
+    <string name="requesting_root_access">root権限を要求中</string>
+    <string name="analyzing_qr">QRコードを解析中</string>
+    <string name="analyzing_qr_multiple">QRコードを解析中 %d/%d (%s)</string>
+    <plurals name="added_new_entries">
+        <item quantity="other">%d 個の新しいエントリーを保管庫に追加しました</item>
+    </plurals>
     <string name="importing_icon_pack">アイコンパックをインポート中</string>
     <string name="delete_entry">エントリーを削除</string>
     <string name="delete_entry_description">このエントリーを削除してもよろしいですか？</string>
+    <string name="delete_entry_explanation">この操作は以下の2FAを無効にするものではありません:\n<b>%s</b>\n\nアクセスできなくなるのを防ぐため、2FAを無効にするか、このサービスのコードを生成する別の方法があることを確認してください。</string>
     <string name="delete_entries">エントリーを削除</string>
     <plurals name="delete_entries_description">
-        <item quantity="other">%d 件のエントリーを削除してもよろしいですか？</item>
+        <item quantity="other">%d 個のエントリーを削除してもよろしいですか？</item>
     </plurals>
     <string name="discard_changes">変更を破棄しますか？</string>
     <string name="discard_changes_description">変更は保存されていません</string>
@@ -170,6 +205,10 @@
     <string name="disable_encryption_error">暗号化の無効化中にエラーが発生しました</string>
     <string name="backup_successful">バックアップが正常に作成されました</string>
     <string name="backup_error">バックアップの作成中にエラーが発生しました</string>
+    <string name="backup_status_success">最新のバックアップが完了しました: %s</string>
+    <string name="backup_status_failed">最新のバックアップに失敗しました: %s</string>
+    <string name="backup_status_none">まだバックアップは作成されていません</string>
+    <string name="backup_warning_password">バックアップは、セキュリティ設定で指定された個別のパスワードを使用して暗号化されます。</string>
     <string name="documentsui_error">お使いの端末から DocumentsUI がなくなっているようです。これは、ドキュメントの選択や作成に必要な重要なシステムコンポーネントです。ツールを使って端末を&quot;デブロート&quot;した際に誤って削除してしまった可能性がありますので、再インストールする必要があります。</string>
     <string name="icon_pack_import_error">アイコンパックのインポート中にエラーが発生しました</string>
     <string name="icon_pack_import_exists_error">インポートしようとしているアイコンパックは既に存在します。上書きしますか？</string>
@@ -190,9 +229,15 @@
     <string name="file_not_found">エラー: ファイルが見つかりません</string>
     <string name="reading_file_error">ファイルの読み取り中にエラーが発生しました</string>
     <string name="app_lookup_error">エラー: アプリがインストールされていません</string>
+    <string name="app_version_error">インストールされた %s のバージョンはサポートされていません。 最近のバージョンでは、内部ストレージディレクトリ内のファイルの一部を暗号化し始めています。 Aegisがインポートに必要な情報にアクセスできなくなります。 インポートしようとしてエラーが発生する可能性があります。続行しますか？</string>
+    <string name="root_error">エラー: root権限を取得できません</string>
     <plurals name="imported_entries_count">
-        <item quantity="other">%d 件をインポートしました</item>
+        <item quantity="other">%d 個のエントリーをインポートしました</item>
     </plurals>
+    <plurals name="entries_shown">
+        <item quantity="other">%d 個のエントリーを表示中</item>
+    </plurals>
+    <string name="intro_import_error_title">保管庫のインポート中にエラーが発生しました</string>
     <string name="import_error_title">インポート中にエラーが発生しました。</string>
     <string name="exporting_vault_error">保管庫のエクスポート中にエラーが発生しました</string>
     <string name="exported_vault">保管庫はエクスポートされました</string>
@@ -201,14 +246,22 @@
     <string name="no_cameras_available">利用可能なカメラがありません</string>
     <string name="read_qr_error">QRコードの読み取り中にエラーが発生しました</string>
     <string name="read_qr_error_phonefactor">AegisはMicrosoft独自の2FAアルゴリズムと互換性がありません。Office 365で2FAを設定する場合は、必ず「通知なしでアプリケーションを設定する」を選択してください。</string>
+    <string name="partial_google_auth_import">不完全な Google Authenticator のエクスポートが検出されました</string>
+    <string name="partial_google_auth_import_warning">インポート内の一部のQRコードが見つかりません。以下のコードが見つかりませんでした:\n\n<b>%s</b>\n\n正常な部分のみでインポートを継続することはできますが、トークンへのアクセス方法を失う危険性があるため、すべてのQRコードを再試行することをお勧めします。</string>
+    <string name="missing_qr_code_descriptor">• QRコード %d</string>
+    <string name="import_partial_export_anyway">とにかく %d 個のトークンをインポートする</string>
+    <string name="import_google_auth_failure">Google Authenticator エクスポートのインポートに失敗しました</string>
+    <string name="unrelated_google_auth_batches_error">エクスポートには関連のないバッチの情報が含まれています。一度にひとつのバッチをインポートしてください。</string>
+    <string name="no_tokens_can_be_imported">インポートできるトークンはありません</string>
     <string name="authentication_method_raw">Raw</string>
     <string name="unlocking_vault">保管庫のロックを解除しています</string>
     <string name="slot_this_device">(このデバイス)</string>
     <string name="remove_group">グループを削除</string>
-    <string name="remove_group_description">このグループを削除してもよろしいですか？このグループのエントリは自動的に「グループなし」に切り替わります。</string>
+    <string name="remove_group_description">このグループを削除してもよろしいですか？このグループのエントリーは自動的に「グループなし」に切り替わります。</string>
     <string name="remove_icon_pack">アイコンパックを削除</string>
     <string name="remove_icon_pack_description">このアイコンパックを削除してもよろしいですか？このパックからアイコンを使用するエントリーは影響を受けません。</string>
     <string name="details">詳細</string>
+    <string name="show_error_details">エラーの詳細を表示</string>
     <string name="lock">ロックする</string>
     <string name="name">名前</string>
     <string name="no_group">グループなし</string>
@@ -231,6 +284,8 @@
     <string name="clear">クリア</string>
     <string name="pref_highlight_entry_title">タップ時にトークンを強調表示する</string>
     <string name="pref_highlight_entry_summary">タップ時に一時的に強調表示することで、トークンが互いに区別しやすくなります。</string>
+    <string name="pref_minimize_on_copy_title">コピー時に最小化</string>
+    <string name="pref_minimize_on_copy_summary">トークンをコピーした後にアプリを最小化する</string>
     <string name="pref_copy_on_tap_title">タップ時にトークンをコピー</string>
     <string name="pref_copy_on_tap_summary">トークンをタップしてクリップボードにコピーする</string>
     <string name="pref_pause_entry_title">タップ時にトークンの更新を停止</string>
@@ -253,9 +308,15 @@
     <plurals name="import_error_dialog">
         <item quantity="other">Aegisは %d 個のトークンをインポートできませんでした。これらのトークンはスキップされます。エラーの詳細を見るには「詳細」を押してください。</item>
     </plurals>
+    <string name="unable_to_process_deeplink">ディープリンクを処理できません</string>
+    <string name="unable_to_read_qrcode_file">ファイル %s からQRコードを読み取り処理できません。</string>
+    <string name="unable_to_process_shared_text">OTPとして共有テキストを処理できません</string>
+    <string name="unable_to_read_qrcode_files">QRコードの一部を読み取り処理できません。 %d/%d 個のエントリーのみインポートされます。</string>
     <string name="unable_to_generate_qrcode">QRコードを生成できません</string>
     <string name="select_picture">画像を選択</string>
     <string name="select_icon">アイコンを選択</string>
+    <string name="tile_open_vault" comment="label for a quick settings tile that opens the app when tapped">保管庫を開く</string>
+    <string name="tile_open_scanner" comment="label for a quick settings tile that opens the QR code scanner when tapped">スキャナを開く</string>
     <string name="toggle_checkboxes">チェックボックスを切り替え</string>
     <string name="search">検索</string>
     <string name="channel_name_lock_status">ロック状態</string>
@@ -287,6 +348,15 @@
     </plurals>
     <string name="google_qr_export_unexpected">QRコード#%dを期待していましたが、代わりに#%dをスキャンしました</string>
     <string name="backup_error_bar_message"><b>保管庫のバックアップが失敗しました</b></string>
+    <string name="backup_system_builtin">Aegisの内蔵自動バックアップ</string>
+    <string name="backup_system_android">Androidのクラウドバックアップシステム</string>
+    <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">        最新のバックアップが古くなっています (%s)
+    </string>
+    <string name="backup_reminder_bar_message">        変更がバックアップされていません
+    </string>
+    <string name="backup_plaintext_export_warning"><b>保管庫は最近プレーンテキストでエクスポートされました</b></string>
+    <string name="pref_show_plaintext_warning_hint">今後この警告を表示しない</string>
+    <string name="backup_plaintext_warning_explanation">この警告は、最近暗号化されていない保管庫のコピーをエクスポートしたために表示されています。 トークンのセキュリティを維持するために、必要がなくなったらこのファイルを削除することをお勧めします。</string>
     <string name="switch_camera">カメラを切り替え</string>
     <string name="empty_list">表示するコードがありません。右下のプラス記号をタップしてエントリーを追加してください</string>
     <string name="empty_list_title">エントリーが見つかりません</string>
@@ -297,10 +367,17 @@
     <string name="pick_icon">アイコンを選択</string>
     <string name="uncategorized">未分類</string>
     <string name="done">完了</string>
+    <plurals name="qr_count">
+        <item quantity="other">%d / %d QRコード</item>
+    </plurals>
     <string name="next">次へ</string>
     <string name="previous">前へ</string>
+    <string name="copy_uri">URIをコピー</string>
+    <string name="unable_to_copy_uri_to_clipboard">URIをクリップボードにコピーできません</string>
+    <string name="uri_copied_to_clipboard">URI をクリップボードにコピーしました</string>
     <string name="transfer_entry">エントリーを転送</string>
     <string name="transfer_entry_description">このエントリーを別の認証アプリに転送するには、このQRコードをスキャンしてください</string>
+    <string name="google_auth_compatible_transfer_description">QRコードを Aegis または Google Authenticator でスキャンしてください。\n\nGoogle Authenticator アプリの制限のため、SHA1 を使用し6桁のコードを生成する TOTP と HOTP トークンのみが含まれます。</string>
     <string name="password_strength_very_weak">非常に弱い</string>
     <string name="password_strength_weak">弱い</string>
     <string name="password_strength_fair">普通</string>
@@ -310,32 +387,61 @@
     <string name="pref_pin_keyboard_summary">ロック画面でPINキーボードを有効にする場合、これを有効にします。これは数字のパスワードでのみ動作します。</string>
     <string name="title_activity_preferences">設定</string>
     <string name="title_activity_manage_groups">グループの管理</string>
-    <string name="title_activity_transfer">エントリを転送</string>
+    <string name="title_activity_transfer">エントリーを転送</string>
     <string name="title_activity_about">このプログラムについて</string>
     <string name="title_activity_edit_entry">エントリーを編集</string>
     <string name="title_activity_scan_qr">QRコードをスキャン</string>
     <string name="title_activity_manage_slots">キースロットの管理</string>
     <string name="title_activity_import_entries">エントリーをインポート</string>
-    <string name="dialog_wipe_entries_title">項目を消去</string>
-    <string name="dialog_wipe_entries_message">あなたの保管庫には既にエントリーが含まれています。このファイルをインポートする前に、これらのエントリを削除しますか？\n\n<b>その場合、保管庫内の既存のエントリーへのアクセスが永久に失われます。</b></string>
+    <string name="dialog_wipe_entries_title">エントリーを消去</string>
+    <string name="dialog_wipe_entries_message">あなたの保管庫には既にエントリーが含まれています。このファイルをインポートする前に、これらのエントリーを削除しますか？\n\n<b>その場合、保管庫内の既存のエントリーへのアクセスが永久に失われます。</b></string>
     <string name="dialog_wipe_entries_checkbox">保管庫の内容を消去</string>
     <string name="panic_trigger_ignore_toast">イージスはパニックトリガーを受信しましたが、設定は無効になっています。</string>
     <string name="pref_panic_trigger_title">パニックトリガー時に保管庫を削除</string>
     <string name="pref_panic_trigger_summary">Rippleからパニックトリガーを受信したときに保管庫を削除する</string>
+    <string name="import_vault">保管庫をインポート</string>
     <string name="importer_help_2fas">2FAS Authenticatorのバックアップファイルを提供します。</string>
     <string name="importer_help_aegis">Aegisのエクスポート/バックアップファイルを提供します。</string>
     <string name="importer_help_authenticator_plus">Authenticator Plusの<b>Settings -&gt; Backup &amp; Restore -&gt; Export as Text and HTML</b>で取得したエクスポートファイルを提供します。</string>
     <string name="importer_help_authy">Authyの内部ストレージディレクトリにある <b>/data/data/com.authy/shared_prefs/com.auth.storage.tokens.authenticator.xml</b>のコピーを提供します。</string>
     <string name="importer_help_andotp">andOTPのエクスポート/バックアップ ファイルを提供します。</string>
+    <string name="importer_help_bitwarden">Bitwarden のエクスポート/バックアップファイルを提供します。暗号化されたファイルはサポートされていません。</string>
+    <string name="importer_help_battle_net_authenticator">Battle.net Authenticator の内部ストレージディレクトリにある<b>/data/data/com.blizzard.bma/shared_prefs/com.blizzard.bma.AUTH_STORE.xml</b>, のコピーを提供します。</string>
     <string name="importer_help_duo">DUOの内部ストレージディレクトリにある <b>/data/data/com.duosecurity.duomobile/files/duokit/accounts.json</b>のコピーを提供します。</string>
     <string name="importer_help_freeotp">FreeOTPの内部ストレージディレクトリにある <b>/data/data/org.fedorahosted.freeotp/shared_prefs/tokens.xml</b>のコピーを提供します。</string>
     <string name="importer_help_freeotp_plus">FreeOTP+のエクスポートファイルを提供します。</string>
+    <string name="importer_help_google_authenticator"><b>Google Authenticator v5.10 およびそれ以前のデータベースファイルのみサポートされています。</b>.\n\nGoogle Authenticator の内部ストレージディレクトリにある<b>/data/data/com.google.android.apps.authenticator2/databases/databases</b> のコピーを提供します。</string>
     <string name="importer_help_microsoft_authenticator">Microsoft Authenticatorの内部ストレージディレクトリにある <b>/data/data/com.azure.authenticator/databases/PhoneFactor</b>のコピーを提供します。</string>
     <string name="importer_help_plain_text">各行にGoogle Authenticator URIを持つプレーンテキストファイルを提供します。</string>
+    <string name="importer_help_steam"><b>Steam v3.0 およびそれ以降のバージョンはサポートされていません。</b>. Steam の内部ストレージディレクトリにある <b>/data/data/com.valvesoftware.android.steam.community/files/Steamguard-*.json</b>のコピーを提供します。</string>
     <string name="importer_help_totp_authenticator">TOTP Authenticatorのエクスポートファイルを提供します。</string>
     <string name="importer_help_winauth">WinAuthのエクスポートファイルを提供します。</string>
-    <string name="importer_help_direct">%sからエントリーを直接インポートします。これにはアプリをデバイスにインストールし、rootアクセスをAegisに許可する必要があります。</string>
+    <string name="importer_encrypted_exception_google_authenticator">暗号化されたエントリーがスキップされました: %s</string>
+    <string name="importer_help_direct">%sからエントリーを直接インポートします。これにはアプリをデバイスにインストールし、root権限をAegisに許可する必要があります。</string>
     <string name="groups">グループ</string>
     <string name="pref_focus_search">アプリ起動時に検索にフォーカス</string>
     <string name="pref_focus_search_summary">アプリ起動直後、検索にフォーカスする。</string>
+    <string name="pref_grouping_halves">半分でグループ化</string>
+    <string name="pref_grouping_none">グループ化しない</string>
+    <string name="pref_grouping_size_two">2桁でグループ化</string>
+    <string name="pref_grouping_size_three">3桁でグループ化</string>
+    <string name="pref_grouping_size_four">4桁でグループ化</string>
+    <plurals name="time_elapsed_seconds">
+        <item quantity="other">%d 秒前</item>
+    </plurals>
+    <plurals name="time_elapsed_minutes">
+        <item quantity="other">%d 分前</item>
+    </plurals>
+    <plurals name="time_elapsed_hours">
+        <item quantity="other">%d 時間前</item>
+    </plurals>
+    <plurals name="time_elapsed_days">
+        <item quantity="other">%d 日前</item>
+    </plurals>
+    <plurals name="time_elapsed_years">
+        <item quantity="other">%d 年前</item>
+    </plurals>
+    <plurals name="dropdown_checkboxes_default_count">
+        <item quantity="other">%d 個のアイテムを選択</item>
+    </plurals>
 </resources>

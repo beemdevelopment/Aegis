@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="action_settings">Axustes</string>
+    <string name="action_settings">Configuración</string>
     <string name="action_about">Tocante a</string>
     <string name="action_delete">Desaniciar</string>
     <string name="action_transfer">Tresferir</string>
@@ -23,9 +23,9 @@
     <string name="pref_section_behavior_title">Comportamientu</string>
     <string name="pref_section_behavior_summary">Personaliza\'l comportamientu al interactuar cola llista d\'entraes.</string>
     <string name="pref_section_appearance_title">Aspeutu</string>
-    <string name="pref_section_appearance_summary">Configura l\'estilu, la llingua ya otros axustes qu\'afeuten al aspeutu de l\'aplicación.</string>
+    <string name="pref_section_appearance_summary">Configura l\'estilu, la llingua ya otros valores qu\'afeuten al aspeutu de l\'aplicación.</string>
     <string name="pref_section_security_title">Seguranza</string>
-    <string name="pref_section_security_summary">Configura\'l cifráu, el bloquéu biométricu, el bloquéu automáticu ya otros axustes de seguranza.</string>
+    <string name="pref_section_security_summary">Configura\'l cifráu, el bloquéu biométricu, el bloquéu automáticu ya otros valores de seguranza.</string>
     <string name="pref_section_import_export_title">Importación ya esportación</string>
     <string name="pref_section_import_export_summary">Importa les copies de seguranza d\'Aeguis o d\'otres aplicaciones del mesmu tipu. Crea ficheros d\'esportación manuales de l\'arca d\'Aeguis.</string>
     <string name="pref_section_backups_title">Copies de seguranza</string>
@@ -97,12 +97,15 @@
     <string name="export_encrypted">Cifrar l\'arca</string>
     <string name="export_help">Esta aición esporta l\'arca fuera del almacenamientu internu d\'Aegis. Seleiciona\'l formatu col que quies esportar:</string>
     <string name="export_warning_unencrypted">Tas a piques d\'esportar una copia ensin cifrar de l\'arca d\'Aegis. <b>Nun s\'aconseya</b>.</string>
-    <string name="understand_risk_accept">Entiendo\'l riesgu</string>
-    <string name="export_warning_password">Les esportaciones cífrense con otra contraseña que se configura nos axustes de seguranza.</string>
+    <string name="export_warning_password">Les esportaciones cífrense con otra contraseña que se configura na configuración de seguranza.</string>
     <string name="export_format_aegis">Aegis (.JSON)</string>
     <string name="export_format_google_auth_uri">Ficheru de testu (.TXT)</string>
     <string name="export_format_html">Páxina web (.HTML)</string>
     <string name="export_format_hint">Formatu de la esportación</string>
+    <plurals name="export_groups_selected_count">
+        <item quantity="one">Seleicionóse %d grupu</item>
+        <item quantity="other">Seleicionáronse %d grupos</item>
+    </plurals>
     <string name="export_html_title" context="The title of an HTML export document">Esportación d\'Aeguis Authenticator</string>
     <string name="choose_authentication_method">Seguranza</string>
     <string name="authentication_method_explanation">Aegis ye una aplicación enfocada na seguranza p\'autenticase en dos pasos. Los pases atróxense nuna arca que se pue cifrar cola contraseña qu\'escueyas, polo que si un atacante consigue\'l ficheru cifráu de l\'arca, nun va ser a acceder al so conteníu si nun sabe la contraseña.\n\nSeleicionemos por ti la opción que nos paez más afayadiza pal preséu.</string>
@@ -121,7 +124,7 @@
     <string name="set_number">Introduz un númberu</string>
     <string name="set_password_confirm">Confirma la contraseña</string>
     <string name="invalid_password">La contraseña ye incorreuta</string>
-    <string name="invalidated_biometrics">Detectóse un cambéu nos axustes de seguranza del preséu. Vete a «Aegis -&gt; Axustes -&gt; Seguranza -&gt; Desbloquéu biométricu» pa desactivar ya volver activar el desbloquéu biométricu.</string>
+    <string name="invalidated_biometrics">Detectóse un cambéu na configuración de seguranza del preséu. Vete a «Aegis -&gt; Configuración -&gt; Seguranza -&gt; Desbloquéu biométricu» pa desactivar ya volver activar el desbloquéu biométricu.</string>
     <string name="password_reminder">Introduz la contraseña. Pidímosla de xemes en cuando pa que nun la escaezas.</string>
     <string name="password_reminder_freq_never">Enxamás</string>
     <string name="password_reminder_freq_weekly">Selmanalmente</string>
@@ -195,8 +198,8 @@
     <string name="saving_error">Prodúxose un error mentanto se guardaba nel arca</string>
     <string name="vault_init_error">Prodúxose un error mentanto s\'aniciaba l\'arca</string>
     <string name="vault_load_error">Prodúxose un error mentanto se cargaba l\'arca del almacenamientu</string>
-    <string name="biometric_decrypt_error">Prodúxose un error mentanto se descifraba l\'arca cola autenticación biométrica. Esto namás suel pasar si los axustes de seguranza del preséu camudaron. Desbloquia l\'arca cola contraseña ya volvi configurar l\'autenticación biométrica nos axustes d\'Aegis.</string>
-    <string name="biometric_init_error">Prodúxose un error mentanto se tresnaba l\'autenticación biométrica. Esto namás suel pasar si los axustes de seguranza del preséu camudaron. Desbloquia l\'arca cola contraseña ya volvi configurar l\'autenticación biométrica nos axustes d\'Aegis.</string>
+    <string name="biometric_decrypt_error">Prodúxose un error mentanto se descifraba l\'arca cola autenticación biométrica. Esto namás suel pasar si la configuración de seguranza del preséu camudó. Desbloquia l\'arca cola contraseña ya volvi configurar l\'autenticación biométrica na configuración d\'Aegis.</string>
+    <string name="biometric_init_error">Prodúxose un error mentanto se tresnaba l\'autenticación biométrica. Esto namás suel pasar si la configuración de seguranza del preséu camudó. Desbloquia l\'arca cola contraseña ya volvi configurar l\'autenticación biométrica na configuración d\'Aegis.</string>
     <string name="disable_encryption">Desactivación del cifráu</string>
     <string name="disable_encryption_description">¿De xuru que quies desactivar el cifráu? Esta aición fai que l\'arca s\'atroxe en testu planu. <b>Tamién se desactiven les copies de seguranza automátiques</b>.</string>
     <string name="enable_encryption_error">Prodúxose un error mentanto s\'activaba\'l cifráu</string>
@@ -206,7 +209,7 @@
     <string name="backup_status_success">La última copia de seguranza correuta: %s</string>
     <string name="backup_status_failed">La última copia de seguranza que falló: %s</string>
     <string name="backup_status_none">Entá nun se fizo nenguna copia de seguranza</string>
-    <string name="backup_warning_password">Les copies de seguranza cífrense con otra contraseña que se configura nos axustes de seguranza</string>
+    <string name="backup_warning_password">Les copies de seguranza cífrense con otra contraseña que se configura na configuración de seguranza</string>
     <string name="documentsui_error">Paez qu\'al sistema fálta-y el componente «DocumentsUI». Esti componente ye importante ya necesariu pa la seleición ya creación de documentos. Si usesti una ferramienta pa facer «debloat» nel preséu, ye posible que lu desaniciares accidentalmente, polo que tienes que lu volver instalar.</string>
     <string name="icon_pack_import_error">Prodúxose un error mentanto s\'importaba un paquete d\'iconos</string>
     <string name="icon_pack_import_exists_error">Yá esiste\'l paquete d\'iconos que tentes d\'importar. ¿Quies sobrescribilu?</string>
@@ -382,7 +385,7 @@
     <string name="password_strength_strong">Permuncho segura</string>
     <string name="pref_pin_keyboard_title">Tecláu numbéricu na pantalla de bloquéu</string>
     <string name="pref_pin_keyboard_summary">Activa esta opción si quies tener el tecláu númbericu na pantalla de bloquéu. Esta opción namás funciona coles contraseñes numbériques</string>
-    <string name="title_activity_preferences">Axustes</string>
+    <string name="title_activity_preferences">Configuración</string>
     <string name="title_activity_manage_groups">Xestión de grupos</string>
     <string name="title_activity_transfer">Tresferencia d\'entraes</string>
     <string name="title_activity_about">Tocante a</string>
@@ -399,7 +402,7 @@
     <string name="import_vault">Importar l\'arca</string>
     <string name="importer_help_2fas">Forni una copia de seguranza de 2FAS Authenticator.</string>
     <string name="importer_help_aegis">Forni un ficheru d\'esportación/copia de seguranza d\'Aegis.</string>
-    <string name="importer_help_authenticator_plus">Forni un ficheru d\'esportación d\'Authenticator Plus que se consigue pente <b>Axustes -&gt; Copia de seguranza ya restauración -&gt; Esportar como testu ya HTML</b>.</string>
+    <string name="importer_help_authenticator_plus">Forni un ficheru d\'esportación d\'Authenticator Plus que se consigue pente <b>Configuración -&gt; Copia de seguranza ya restauración -&gt; Esportar como testu ya HTML</b>.</string>
     <string name="importer_help_authy">Forni una copia del ficheru <b>com.authy.storage.tokens.authenticator.xml</b> que s\'alluga na direición «/data/data/com.authy.authy/shared_prefs/», dientro del direutoriu del almacenamientu internu d\'Authy.</string>
     <string name="importer_help_andotp">Forni un ficheru d\'esportación/copia de seguranza d\'AndOTP.</string>
     <string name="importer_help_bitwarden">Forni un ficheru d\'esportación/copia de seguranza de Bitwarden. Los ficheros cifraos nun son compatibles.</string>
@@ -423,4 +426,8 @@
     <string name="pref_grouping_size_two">Grupos de 2</string>
     <string name="pref_grouping_size_three">Grupos de 3</string>
     <string name="pref_grouping_size_four">Grupos de 4</string>
+    <plurals name="dropdown_checkboxes_default_count">
+        <item quantity="one">Seleicionóse %d elementu</item>
+        <item quantity="other">Seleicionáronse %d elementos</item>
+    </plurals>
 </resources>

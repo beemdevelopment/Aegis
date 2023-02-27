@@ -99,14 +99,18 @@
     <string name="export_encrypted">Šifrēt glabātavu</string>
     <string name="export_help">Šī darbība izdos glabātavas saturu no Aegis iekšējās krātuves. Atlasīt veidolu, kādā izdot datus:</string>
     <string name="export_warning_unencrypted">Tiks izdots nešifrēts Aegis glabātavas atveidojums. <b>Tas nav ieteicams</b>.</string>
-    <string name="understand_risk_accept">Es apzinos bīstamību</string>
     <string name="export_warning_password">Izdodamās datnes ir šifrētas ar paroli, kas ir norādīta drošības iestatījumos.</string>
     <string name="export_format_aegis">Aegis (.json)</string>
     <string name="export_format_google_auth_uri">Teksta datne (.txt)</string>
     <string name="export_format_html">Tīmekļa vietne (.HTML)</string>
     <string name="export_format_hint">Izdošanas veidols</string>
     <string name="export_all_groups">Izdot visas kopas</string>
-    <string name="export_choose_groups">Atlasīt, kuras kopas izdot:</string>
+    <string name="export_choose_groups">Atlasīt, kuras kopas izdot</string>
+    <plurals name="export_groups_selected_count">
+        <item quantity="zero">Atlasītas %d kopu</item>
+        <item quantity="one">Atlasīta %d kopa</item>
+        <item quantity="other">Atlasītas %d kopas</item>
+    </plurals>
     <string name="export_no_groups_selected">Nav atlasītu kopu izdošanai</string>
     <string name="export_html_title" context="The title of an HTML export document">Aegis Authenticator izdošana</string>
     <string name="choose_authentication_method">Drošība</string>
@@ -469,5 +473,10 @@
         <item quantity="zero">Pirms %d gadiem</item>
         <item quantity="one">Pirms %d gada</item>
         <item quantity="other">Pirms %d gadiem</item>
+    </plurals>
+    <plurals name="dropdown_checkboxes_default_count">
+        <item quantity="zero">Atlasīti %d vienumu</item>
+        <item quantity="one">Atlasīts %d vienums</item>
+        <item quantity="other">Atlasīti %d vienumi</item>
     </plurals>
 </resources>

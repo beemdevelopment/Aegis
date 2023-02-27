@@ -97,14 +97,14 @@
     <string name="export_encrypted">Xifra la volta</string>
     <string name="export_help">Això exportarà la volta fora d\'Aegis. Tria el format en el que s\'ha d\'exportar:</string>
     <string name="export_warning_unencrypted">Això exportarà una còpia sense xifrar de la volta d\'Aegis. <b>No recomanat</b>.</string>
-    <string name="understand_risk_accept">Entenc els riscos</string>
     <string name="export_warning_password">Les exportacions es xifren fent servir una contrasenya diferent, configurada a la secció de seguretat.</string>
     <string name="export_format_aegis">Aegis (.JSON)</string>
     <string name="export_format_google_auth_uri">Fitxers de text (*.txt)</string>
+    <string name="export_format_html">Pàgina web (.HTML)</string>
     <string name="export_format_hint">Format d\'exportació</string>
     <string name="export_all_groups">Exportar tots els grups</string>
-    <string name="export_choose_groups">Tria quins grups exportar:</string>
     <string name="export_no_groups_selected">No s\'han triat grups per a exportar</string>
+    <string name="export_html_title" context="The title of an HTML export document">Exportat d\'Aegis Authenticator</string>
     <string name="choose_authentication_method">Seguretat</string>
     <string name="authentication_method_explanation">Aegis es una app d\'A2F. Les fitxes es desen a una volta que opcionalment pot ser xifrada amb una contrasenya. Si un atacant obté el fitxer de la volta, no hi podrà accedir sense la contrasenya.\n\nHem preseleccionat la opció que creiem que anirà millor al teu dispositiu.</string>
     <string name="authentication_method_none">Cap</string>
@@ -164,6 +164,7 @@
     <string name="encrypting_vault">Xifrant la volta</string>
     <string name="exporting_vault">Exporta la volta</string>
     <string name="reading_file">S\'està llegint el fitxer</string>
+    <string name="requesting_root_access">Demanant accés root</string>
     <string name="analyzing_qr">Anàlisi del codi QR</string>
     <string name="analyzing_qr_multiple">Anàlisi del codi QR %d/%d (%s)</string>
     <plurals name="added_new_entries">
@@ -230,6 +231,7 @@
     <string name="reading_file_error">S\'ha produït un error mentre s\'intentava carregar el fitxer</string>
     <string name="app_lookup_error">Aquesta aplicació no està instal·lada</string>
     <string name="app_version_error">La versió instal·lada de %s no està suportada. Les versions recents han començat a xifrar els fitxers de l\'emmagatzematge intern, fent que Aegis no pugui accedir a la informació que necessita per a fer la importació. És molt possible que intentar importar finalitzi amb error. Vols intentar-ho igualment?</string>
+    <string name="root_error">Error: no s\'ha pogut obtenir accés root</string>
     <plurals name="imported_entries_count">
         <item quantity="one">%d entrades importades</item>
         <item quantity="other">%d entrades importades</item>
@@ -350,8 +352,12 @@
     </plurals>
     <string name="google_qr_export_unexpected">S\'esperava codi QR #%d, però s\'ha trobat #%d en el seu lloc</string>
     <string name="backup_error_bar_message"><b>Ha fallat la còpia de seguretat recentment</b></string>
+    <string name="backup_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">Una còpia de seguretat de la volta utilitzant %s ha fallat. La còpia s\'ha intentat %s. Si us plau, comprova la configuració de la còpia per a assegurar-te de que les còpies es poden fer correctament.
+    </string>
     <string name="backup_system_builtin">Còpies de seguretat integrades a Aegis</string>
     <string name="backup_system_android">Còpia al núvol d\'Android</string>
+    <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">L\'última còpia de seguretat és molt antiga (%s)    </string>
+    <string name="backup_reminder_bar_message">No s\'han desat els canvis    </string>
     <string name="backup_plaintext_export_warning"><b>La volta s\'ha exportat recentment en text sense format</b></string>
     <string name="pref_show_plaintext_warning_hint">No tornis a mostrar aquesta advertència</string>
     <string name="backup_plaintext_warning_explanation">Aquest avís es mostra perquè recentment heu exportat una còpia no xifrada de la volta. Per mantenir la seguretat dels vostres tokens, us recomanem que suprimiu aquest fitxer quan ja no sigui necessari.</string>
@@ -371,6 +377,9 @@
     </plurals>
     <string name="next">Pròxim</string>
     <string name="previous">Anterior</string>
+    <string name="copy_uri">Copiar URI</string>
+    <string name="unable_to_copy_uri_to_clipboard">No s\'ha pogut copiar la URI</string>
+    <string name="uri_copied_to_clipboard">URI copiada al porta-retalls</string>
     <string name="transfer_entry">Transferir entrada</string>
     <string name="transfer_entry_description">Escaneja aquest codi QR amb l\'aplicació d\'autenticació a la que vols transferir aquesta entrada</string>
     <string name="google_auth_compatible_transfer_description">Escanegeu aquests codis QR amb Aegis o Google Authenticator.\n\n A causa de les limitacions de l\'aplicació Google Authenticator, només s\'inclouen tokens TOTP &amp; HOTP que utilitzen SHA1 i produeixen codis de 6 dígits</string>
@@ -402,6 +411,7 @@
     <string name="importer_help_authy">Subministra una còpia de <b>/data/data/com.authy.authy/shared_prefs/com.authy.storage.tokens.authenticator.xml</b>, que està a l\'emmagatzematge intern del teu dispositiu, al directori del Authy.</string>
     <string name="importer_help_andotp">Subministra un fitxer exportat del andOTP.</string>
     <string name="importer_help_bitwarden">Subministreu un fitxer d\'exportació/còpia de seguretat de Bitwarden. Els fitxers xifrats no són compatibles.</string>
+    <string name="importer_help_battle_net_authenticator">Proporciona una copia de <b>/data/data/com.blizzard.bma/shared_prefs/com.blizzard.bma.AUTH_STORE.xml</b>, trobat al directori del autenticador de Battle.net.</string>
     <string name="importer_help_duo">Subministra una còpia de <b>/data/data/com.duosecurity.duomobile/files/duokit/accounts.json</b>, que està a l\'emmagatzematge intern del teu dispositiu, al directori del DUO.</string>
     <string name="importer_help_freeotp">Subministra una còpia de <b>/data/data/org.fedorahosted.freeotp/shared_prefs/tokens.xml</b>, que està a l\'emmagatzematge intern del teu dispositiu, al directori del FreeOTP.</string>
     <string name="importer_help_freeotp_plus">Subministra un fitxer exportat del FreeOTP+.</string>
@@ -421,4 +431,24 @@
     <string name="pref_grouping_size_two">Grups de 2</string>
     <string name="pref_grouping_size_three">Grups de 3</string>
     <string name="pref_grouping_size_four">Grups de 4</string>
+    <plurals name="time_elapsed_seconds">
+        <item quantity="one">fa %d segon</item>
+        <item quantity="other">fa %d segons</item>
+    </plurals>
+    <plurals name="time_elapsed_minutes">
+        <item quantity="one">fa %d minut</item>
+        <item quantity="other">fa %d minuts</item>
+    </plurals>
+    <plurals name="time_elapsed_hours">
+        <item quantity="one">Fa %d hora</item>
+        <item quantity="other">fa %d hores</item>
+    </plurals>
+    <plurals name="time_elapsed_days">
+        <item quantity="one">fa %d dia</item>
+        <item quantity="other">fa %d dies</item>
+    </plurals>
+    <plurals name="time_elapsed_years">
+        <item quantity="one">fa %d any</item>
+        <item quantity="other">fa %d anys</item>
+    </plurals>
 </resources>

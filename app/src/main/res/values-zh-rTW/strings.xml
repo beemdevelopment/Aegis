@@ -35,6 +35,8 @@
     <string name="pref_select_theme_title">主題</string>
     <string name="pref_view_mode_title">檢視模式</string>
     <string name="pref_lang_title">語言</string>
+    <string name="pref_show_icons_title">顯示圖示</string>
+    <string name="pref_show_icons_summary">在每個條目旁顯示圖示</string>
     <string name="pref_code_group_size_title">分組顯示驗證碼</string>
     <string name="pref_account_name_title">顯示帳戶名稱</string>
     <string name="pref_account_name_summary">在服務商名稱旁邊顯示帳戶名稱</string>
@@ -60,6 +62,9 @@
     <string name="pref_password_reminder_title">密碼提醒</string>
     <string name="pref_google_auth_export_title">匯出到 Google Authenticator</string>
     <string name="pref_google_auth_export_no_data">沒有可以匯出的資料</string>
+    <plurals name="pref_google_auth_export_incompatible_entries">
+        <item quantity="other">略過 %d 個不相容的條目</item>
+    </plurals>
     <string name="pref_password_reminder_summary">%s 提醒您輸入密碼，避免您忘記密碼。</string>
     <string name="pref_password_reminder_summary_disabled">已停用</string>
     <string name="pref_secure_screen_title">螢幕安全性</string>
@@ -88,7 +93,6 @@
     <string name="export_encrypted">加密保險箱</string>
     <string name="export_help">此動作將保險箱從 Aegis 的內部儲存空間裡匯出，請選擇欲匯出的格式：</string>
     <string name="export_warning_unencrypted">即將匯出未加密的 Aegis 保險箱。<b>不建議</b>。</string>
-    <string name="understand_risk_accept">我瞭解相關風險</string>
     <string name="export_format_aegis">Aegis (.JSON)</string>
     <string name="export_format_google_auth_uri">純文字檔案 (.TXT)</string>
     <string name="export_format_hint">匯出格式</string>
@@ -140,7 +144,7 @@
     <string name="password">密碼</string>
     <string name="confirm_password">確認密碼</string>
     <string name="show_password">顯示密碼</string>
-    <string name="new_entry">新建條目</string>
+    <string name="new_entry">新條目</string>
     <string name="add_new_entry">新增條目</string>
     <string name="unlock_vault_error">無法解鎖保險箱</string>
     <string name="unlock_vault_error_description">密碼錯誤，請確保您沒有輸入錯誤。</string>
@@ -150,6 +154,9 @@
     <string name="exporting_vault">正在匯出保險箱</string>
     <string name="reading_file">讀取檔案中</string>
     <string name="analyzing_qr">分析 QR code 中</string>
+    <plurals name="added_new_entries">
+        <item quantity="other">增加 %d 個條目進保險箱</item>
+    </plurals>
     <string name="importing_icon_pack">正在匯入圖示合輯</string>
     <string name="delete_entry">刪除條目</string>
     <string name="delete_entry_description">您確定要刪除此條目嗎？</string>

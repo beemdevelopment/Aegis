@@ -29,6 +29,8 @@
     <string name="pref_select_theme_title">Apipavidalinimas</string>
     <string name="pref_view_mode_title">Rodinio veiksena</string>
     <string name="pref_lang_title">Kalba</string>
+    <string name="pref_show_icons_title">Rodyti piktogramas</string>
+    <string name="pref_show_icons_summary">Rodyti piktogramas prie kiekvieno įrašo</string>
     <string name="pref_code_group_size_title">Kodo skaitmenų grupavimas</string>
     <string name="pref_account_name_title">Rodyti paskyros pavadinimą</string>
     <string name="pref_import_file_title">Importuoti iš failo</string>
@@ -70,7 +72,6 @@
     <string name="export_encrypted">Šifruoti slėptuvę</string>
     <string name="export_help">Šis veiksmas eksportuos slėptuvę iš Aegis vidinės saugyklos. Pasirinkite formatą, kuriuo norėtumėte eksportuoti:</string>
     <string name="export_warning_unencrypted">Jūs ketinate eksportuoti nešifruotą savo Aegis slėptuvės kopiją. <b>Tai nerekomenduojama</b>.</string>
-    <string name="understand_risk_accept">Aš suprantu riziką</string>
     <string name="export_format_aegis">Aegis (.JSON)</string>
     <string name="export_format_google_auth_uri">Tekstinis failas (.TXT)</string>
     <string name="export_format_hint">Eksportavimo formatas</string>
@@ -99,6 +100,7 @@
     <string name="yes">Taip</string>
     <string name="no">Ne</string>
     <string name="unlock">Atrakinti</string>
+    <string name="advanced">Išplėstiniai</string>
     <string name="digits">Skaitmenys</string>
     <string name="secret">Paslaptis</string>
     <string name="scan">Skenuoti QR kodą</string>
@@ -106,6 +108,7 @@
     <string name="enter_manually">Įvesti rankiniu būdu</string>
     <string name="copy">Kopijuoti</string>
     <string name="edit">Taisyti</string>
+    <string name="error_all_caps">KLAIDA</string>
     <string name="password">Slaptažodis</string>
     <string name="show_password">Rodyti slaptažodį</string>
     <string name="new_entry">Naujas įrašas</string>
@@ -172,6 +175,12 @@
         <item quantity="many">Importuota %d įrašų</item>
         <item quantity="other">Importuotas %d įrašas</item>
     </plurals>
+    <plurals name="entries_shown">
+        <item quantity="one">Rodomas %d įrašas</item>
+        <item quantity="few">Rodomi %d įrašai</item>
+        <item quantity="many">Rodoma %d įrašų</item>
+        <item quantity="other">Rodomas %d įrašas</item>
+    </plurals>
     <string name="intro_import_error_title">Importuojant slėptuvę įvyko klaida</string>
     <string name="import_error_title">Importuojant įvyko viena ar daugiau klaidų</string>
     <string name="exporting_vault_error">Bandant eksportuoti slėptuvę, įvyko klaida</string>
@@ -197,6 +206,8 @@
     <string name="group">Grupė</string>
     <string name="group_name_hint">Grupės pavadinimas</string>
     <string name="preference_manage_groups">Taisyti grupes</string>
+    <string name="preference_manage_groups_summary">Čia tvarkykite ir ištrinkite savo grupes</string>
+    <string name="note">Pastaba</string>
     <string name="clear">Išvalyti</string>
     <string name="pref_highlight_entry_title">Bakstelėjus, paryškinti prieigos raktus</string>
     <string name="pref_highlight_entry_summary">Bakstelėjus ant prieigos raktų, laikinai juos paryškinti ir padaryti taip, kad juos būtų lengviau atskirti</string>
@@ -223,6 +234,7 @@
     </plurals>
     <string name="unable_to_read_qrcode_file">Nepavyko perskaityti ir apdoroti QR kodo iš failo: %s.</string>
     <string name="unable_to_generate_qrcode">Nepavyko sukurti QR kodo</string>
+    <string name="tile_open_vault" comment="label for a quick settings tile that opens the app when tapped">Atverti slėptuvę</string>
     <string name="vault_unlocked_state">Slėptuvė atrakinta. Bakstelėkite čia, norėdami užrakinti.</string>
     <string name="version">Versija</string>
     <string name="changelog">Keitinių žurnalas</string>
@@ -244,6 +256,8 @@
     <string name="time_sync_warning_disable">Daugiau manęs nebeįspėkite. Aš žinau, ką darau.</string>
     <string name="google_qr_export_unrelated">Rastas nesusijęs QR kodas. Pabandykite paleisti skenerį iš naujo.</string>
     <string name="google_qr_export_unexpected">Tikėtasi #%d QR kodo, bet vietoj to, nuskenuotas #%d</string>
+    <string name="backup_reminder_bar_message">        Pakeitimų atsarginė kopija nėra daroma
+    </string>
     <string name="pref_show_plaintext_warning_hint">Daugiau neberodyti šio įspėjimo</string>
     <string name="backup_plaintext_warning_explanation">Šis įspėjimas yra rodomas, nes neseniai eksportavote nešifruotą slėptuvės kopiją. Norint palaikyti prieigos raktų saugumą, rekomenduojame ištrinti šį failą iš karto, kai jo nebereikės.</string>
     <string name="switch_camera">Perjungti kamerą</string>
@@ -255,6 +269,9 @@
     <string name="done">Atlikta</string>
     <string name="next">Kitas</string>
     <string name="previous">Ankstesnis</string>
+    <string name="copy_uri">Kopijuoti URI</string>
+    <string name="unable_to_copy_uri_to_clipboard">Nepavyko nukopijuoti URI į iškarpinę</string>
+    <string name="uri_copied_to_clipboard">URI nukopijuotas į iškarpinę</string>
     <string name="transfer_entry">Perkelti įrašą</string>
     <string name="transfer_entry_description">Nuskenuokite šį QR kodą naudodami tapatybės nustatymo programėlę, į kurią norite perkelti šį įrašą</string>
     <string name="password_strength_very_weak">Labai silpnas</string>

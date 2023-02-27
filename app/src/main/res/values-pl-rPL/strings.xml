@@ -35,6 +35,8 @@
     <string name="pref_select_theme_title">Motyw</string>
     <string name="pref_view_mode_title">Tryb wyświetlania</string>
     <string name="pref_lang_title">Język</string>
+    <string name="pref_show_icons_title">Pokaż ikony</string>
+    <string name="pref_show_icons_summary">Wyświetlaj ikony obok każdego wpisu</string>
     <string name="pref_code_group_size_title">Grupowanie cyfr kodu</string>
     <string name="pref_code_group_size_summary">Wybierz liczbę cyfr do grupowania według</string>
     <string name="pref_account_name_title">Pokaż nazwę konta</string>
@@ -47,7 +49,7 @@
     <string name="pref_backups_title">Automatycznie utwórz kopię zapasową sejfu</string>
     <string name="pref_backups_summary">Automatycznie utwórz kopie zapasowe sejfu w pamięci zewnętrznej. Funkcja ta wspiera tylko zaszyfrowane sejfy.</string>
     <string name="pref_backups_location_title">Folder plików kopii zapasowej</string>
-    <string name="pref_backups_location_summary">Kopia zapasowa będzie przechowywana w</string>
+    <string name="pref_backups_location_summary">Kopie zapasowe będą przechowywane w</string>
     <string name="pref_backups_trigger_title">Uruchom kopie zapasowe</string>
     <string name="pref_backups_trigger_summary">Utwórz kopię zapasową ręcznie</string>
     <string name="pref_backups_versions_title">Liczba kopii do zachowania</string>
@@ -99,11 +101,21 @@
     <string name="export_encrypted">Zaszyfruj sejf</string>
     <string name="export_help">Ta czynność wyeksportuje sejf z wewnętrznej przestrzeni dyskowej aplikacji Aegis. Wybierz format eksportowanego pliku:</string>
     <string name="export_warning_unencrypted">Wyeksportujesz sejf aplikacji Aegis w niezaszyfrowanym formacie. <b>Ta opcja nie jest zalecana</b>.</string>
-    <string name="understand_risk_accept">Rozumiem ryzyko</string>
     <string name="export_warning_password">Eksport jest szyfrowany przy użyciu osobnego hasła skonfigurowanego w ustawieniach bezpieczeństwa.</string>
     <string name="export_format_aegis">Aegis (.JSON)</string>
     <string name="export_format_google_auth_uri">Plik tekstowy (.TXT)</string>
+    <string name="export_format_html">Strona internetowa (.HTML)</string>
     <string name="export_format_hint">Format eksportu</string>
+    <string name="export_all_groups">Eksportuj wszystkie grupy</string>
+    <string name="export_choose_groups">Wybierz grupy do wyeksportowania</string>
+    <plurals name="export_groups_selected_count">
+        <item quantity="one">%d zaznaczona grupa</item>
+        <item quantity="few">%d zaznaczone grupy</item>
+        <item quantity="many">%d zaznaczonych grup</item>
+        <item quantity="other">%d zaznaczonych grup</item>
+    </plurals>
+    <string name="export_no_groups_selected">Nie wybrano grup do eksportu</string>
+    <string name="export_html_title" context="The title of an HTML export document">Eksport Aegis Authenticator</string>
     <string name="choose_authentication_method">Bezpieczeństwo</string>
     <string name="authentication_method_explanation">Aegis to aplikacja uwierzytelniająca zorientowana na bezpieczeństwo. Tokeny są przechowywane w sejfie, który może zostać opcjonalnie zaszyfrowany przy użyciu wybranego przez Ciebie hasła. Jeśli atakujący uzyska zaszyfrowany plik sejfu, nie będzie mógł uzyskać dostępu do zawartości bez znajomości hasła.\n\nZaznaczyliśmy opcję, która najlepiej powinna pasować do Twojego urządzenia.</string>
     <string name="authentication_method_none">Brak</string>
@@ -163,6 +175,7 @@
     <string name="encrypting_vault">Szyfrowanie sejfu</string>
     <string name="exporting_vault">Eksportowanie sejfu</string>
     <string name="reading_file">Odczytywanie pliku</string>
+    <string name="requesting_root_access">Żądanie dostępu do roota</string>
     <string name="analyzing_qr">Analizowanie kodu QR</string>
     <string name="analyzing_qr_multiple">Analizowanie kodu QR %d/%d (%s)</string>
     <plurals name="added_new_entries">
@@ -235,6 +248,7 @@
     <string name="reading_file_error">Wystąpił błąd podczas odczytywania pliku</string>
     <string name="app_lookup_error">Błąd: Aplikacja nie jest zainstalowana</string>
     <string name="app_version_error">Zainstalowana wersja %s nie jest obsługiwana. Ostatnie wersje zaczęły szyfrować niektóre pliki w katalogu pamięci wewnętrznej, przez co Aegis nie może uzyskać dostępu do informacji potrzebnych do importu. Próba importu prawdopodobnie zakończy się błędem. Czy mimo to chcesz kontynuować?</string>
+    <string name="root_error">Błąd: Nie można uzyskać dostępu do konta root</string>
     <plurals name="imported_entries_count">
         <item quantity="one">%d wpis został zaimportowany</item>
         <item quantity="few">%d wpisy zostały zaimportowane</item>
@@ -363,8 +377,13 @@
     </plurals>
     <string name="google_qr_export_unexpected">Aplikacja oczekiwała kodu QR nr %d, lecz zeskanowano kod nr %d</string>
     <string name="backup_error_bar_message"><b>Ostatnia kopia zapasowa sejfu nie powiodła się</b></string>
+    <string name="backup_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">Ostatnia próba wykonania kopii zapasowej sejfu z użyciem %s nie powiodła się, ponieważ wystąpił błąd. Kopia zapasowa została wykonana w: %s. Sprawdź ustawienia kopii zapasowej, aby upewnić się, że wykonywanie kopii zapasowych może się pomyślnie zakończyć.    </string>
     <string name="backup_system_builtin">Wbudowane automatyczne kopie zapasowe Aegis</string>
     <string name="backup_system_android">System kopii zapasowej w chmurze Android</string>
+    <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">        Najnowsza kopia zapasowa jest nieaktualna (%s)
+    </string>
+    <string name="backup_reminder_bar_message">Zmiany nie są zapisane w kopii zapasowej
+    </string>
     <string name="backup_plaintext_export_warning"><b>Sejf został ostatnio wyeksportowany w jawnym tekście</b></string>
     <string name="pref_show_plaintext_warning_hint">Nie pokazuj tego ostrzeżenia ponownie</string>
     <string name="backup_plaintext_warning_explanation">To ostrzeżenie jest wyświetlane, ponieważ ostatnio wyeksportowano nieszyfrowaną kopię sejfu. Aby zachować bezpieczeństwo tokenów, zalecamy usunięcie tego pliku, gdy nie będzie już potrzebny.</string>
@@ -386,6 +405,9 @@
     </plurals>
     <string name="next">Następny</string>
     <string name="previous">Poprzedni</string>
+    <string name="copy_uri">Kopiuj URI</string>
+    <string name="unable_to_copy_uri_to_clipboard">Nie można skopiować URI do schowka</string>
+    <string name="uri_copied_to_clipboard">Skopiowano URI do schowka</string>
     <string name="transfer_entry">Przenieś wpis</string>
     <string name="transfer_entry_description">Zeskanuj kod QR za pomocą aplikacji uwierzytelniającej, do której chcesz przenieść ten wpis</string>
     <string name="google_auth_compatible_transfer_description">Zeskanuj te kody QR za pomocą Aegis lub Google Authenticator.\n\nZ powodu ograniczeń w aplikacji Google Authenticator, tylko tokeny TOTP &amp; HOTP, które używają SHA1 i generują 6 cyfrowe kody są uwzględniane</string>
@@ -414,14 +436,16 @@
     <string name="importer_help_2fas">Dostarcz plik zapasowy 2FAS Authenticator.</string>
     <string name="importer_help_aegis">Dostarcz plik zapasowy Aegis.</string>
     <string name="importer_help_authenticator_plus">Dostarcz plik eksportu Authenticator Plus uzyskany w <b>Ustawienia -&gt; Kopia zapasowa &amp; Przywróć -&gt; Eksportuj jako tekst i HTML</b>.</string>
-    <string name="importer_help_authy">Dostarcz kopię <b>/data/data/com.authy.authy/shared_prefs/com.authy.storage.tokens.authenticator.xml</b>znajdującą się w wewnętrznym katalogu przechowywania danych Authy.</string>
+    <string name="importer_help_authy">Dostarcz kopię <b>/data/data/com.authy.authy/shared_prefs/com.authy.storage.tokens.authenticator.xml</b>, znajdującą się w wewnętrznym katalogu przechowywania danych Authy.</string>
     <string name="importer_help_andotp">Dostarcz plik andOTP eksportu/kopii zapasowej.</string>
     <string name="importer_help_bitwarden">Dostarcz plik kopii zapasowej Bitwarden. Zaszyfrowane pliki nie są obsługiwane.</string>
+    <string name="importer_help_battle_net_authenticator">Dostarcz kopię
+<b>/data/data/com.blizzard.bma/shared_prefs/com.blizzard.bma.AUTH_STORE.xml</b>, znajdującą się w wewnętrznym katalogu przechowywania danych aplikacji Battle.net Authenticator.</string>
     <string name="importer_help_duo">Dostarcz kopię <b>/data/data/com.duosecurity.duomobile/files/duokit/accounts.json</b>, znajdującą się w wewnętrznym katalogu pamięci DUO.</string>
-    <string name="importer_help_freeotp">Dostarcz kopię <b>/data/data/org.fedorahosted.freeotp/shared_prefs/tokens.xml</b>znajdującą się w wewnętrznym katalogu przechowywania danych Authy.</string>
+    <string name="importer_help_freeotp">Dostarcz kopię <b>/data/data/org.fedorahosted.freeotp/shared_prefs/tokens.xml</b>, znajdującą się w wewnętrznym katalogu przechowywania danych Authy.</string>
     <string name="importer_help_freeotp_plus">Dostarcz plik eksportu FreeOTP+.</string>
     <string name="importer_help_google_authenticator"><b>Obsługiwane są tylko pliki bazy danych z Google Authenticator v5.10 i wcześniej</b>.\n\nDostarcz kopię <b>/data/com.google.android.apps.authenticator2/databases/databases</b>, zlokalizowane w wewnętrznym katalogu pamięci Google Authenticator.</string>
-    <string name="importer_help_microsoft_authenticator">Dostarcz kopię <b>/data/data/com.azure.authenticator/databases/PhoneFactor</b>znajdującą się w wewnętrznym katalogu przechowywania danych Authy.</string>
+    <string name="importer_help_microsoft_authenticator">Dostarcz kopię <b>/data/data/com.azure.authenticator/databases/PhoneFactor</b>, znajdującą się w wewnętrznym katalogu przechowywania danych Authy.</string>
     <string name="importer_help_plain_text">Dostarcz plik tekstowy z URI Google Authenticator w każdej linii.</string>
     <string name="importer_help_steam"><b>Steam v3.0 i nowsze nie są wspierane</b>. Dostarcz kopię 
 <b>/data/data/com.valvesoftware.android.steam.community/files/Steamguard-*.json</b>,
@@ -438,4 +462,40 @@ zlokalizowanego w wewnętrznym katalogu Steam.</string>
     <string name="pref_grouping_size_two">Grupy z 2 elementami</string>
     <string name="pref_grouping_size_three">Grupy z 3 elementami</string>
     <string name="pref_grouping_size_four">Grupy z 4 elementami</string>
+    <plurals name="time_elapsed_seconds">
+        <item quantity="one">%d sekundę temu</item>
+        <item quantity="few">%d sekundy temu</item>
+        <item quantity="many">%d sekund temu</item>
+        <item quantity="other">%d sekund temu</item>
+    </plurals>
+    <plurals name="time_elapsed_minutes">
+        <item quantity="one">%d minutę temu</item>
+        <item quantity="few">%d minuty temu</item>
+        <item quantity="many">%d minut temu</item>
+        <item quantity="other">%d minut temu</item>
+    </plurals>
+    <plurals name="time_elapsed_hours">
+        <item quantity="one">%d godzinę temu</item>
+        <item quantity="few">%d godziny temu</item>
+        <item quantity="many">%d godzin temu</item>
+        <item quantity="other">%d godzin temu</item>
+    </plurals>
+    <plurals name="time_elapsed_days">
+        <item quantity="one">%d dzień temu</item>
+        <item quantity="few">%d dni temu</item>
+        <item quantity="many">%d dni temu</item>
+        <item quantity="other">%d dni temu</item>
+    </plurals>
+    <plurals name="time_elapsed_years">
+        <item quantity="one">%d rok temu</item>
+        <item quantity="few">%d lata temu</item>
+        <item quantity="many">%d lat temu</item>
+        <item quantity="other">%d lat temu</item>
+    </plurals>
+    <plurals name="dropdown_checkboxes_default_count">
+        <item quantity="one">Wybrano %d element</item>
+        <item quantity="few">Wybrano %d elementy</item>
+        <item quantity="many">Wybrano %d elementów</item>
+        <item quantity="other">Wybrano %d elementów</item>
+    </plurals>
 </resources>

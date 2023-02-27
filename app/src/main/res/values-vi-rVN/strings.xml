@@ -92,7 +92,6 @@
     <string name="export_encrypted">Mã hoá kho</string>
     <string name="export_help">Hành động này sẽ xuất kho ra ngoài bộ nhớ trong của Aegis. Hãy chọn định dạng mà bạn muốn bản xuất của bạn có:</string>
     <string name="export_warning_unencrypted">Bạn sắp xuất một bản sao không được mã khoá của kho Aegis. <b>Việc này không được khuyên dùng</b>.</string>
-    <string name="understand_risk_accept">Tôi hiểu rủi ro này</string>
     <string name="export_format_aegis">Aegis (.JSON)</string>
     <string name="export_format_google_auth_uri">Tệp văn bản (.TXT)</string>
     <string name="export_format_hint">Định dạng xuất</string>

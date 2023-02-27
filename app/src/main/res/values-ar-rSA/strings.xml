@@ -94,10 +94,12 @@
     <string name="export_encrypted">تشفير المخزن</string>
     <string name="export_help">هذا الإجراء سيصدر المخزن خارج ذاكرة تخزين Aegis الداخلية. حدد الصيغة التي ترغب بأن يكون التصدير عليها:</string>
     <string name="export_warning_unencrypted">أنت على وشك تصدير نسخة غير مشفرة من مخزن Aegis. <b>لا يُنصح بهذا</b>.</string>
-    <string name="understand_risk_accept">أنا أتفهم المخاطر</string>
     <string name="export_format_aegis">Aegis (.JSON)</string>
     <string name="export_format_google_auth_uri">ملف نصي (.TXT)</string>
+    <string name="export_format_html">صفحة ويب (.HTML)</string>
     <string name="export_format_hint">تصدير الصيغة</string>
+    <string name="export_all_groups">تصدير جميع المجموعات</string>
+    <string name="export_choose_groups">حدد المجموعات التي سيتم تصديرها</string>
     <string name="choose_authentication_method">الأمان</string>
     <string name="authentication_method_explanation">تطبيق Aegis هو تطبيق مصادقة يركز على الأمان. تخزّن الرموز في مخزن، يمكن تشفيره اختياريًا بكلمة مرور من اختيارك. إذا حصل مهاجم على ملف المخزن المشفر الخاص بك، فإنه لن يتمكن من الوصول إلى المحتوى بدون معرفة كلمة المرور.\n\nلقد حددنا مسبقًا الخيار الذي نعتقد أنه يناسب جهازك.</string>
     <string name="authentication_method_none">بلا</string>
@@ -157,6 +159,7 @@
     <string name="encrypting_vault">يتم تشفير المخزن</string>
     <string name="exporting_vault">يجري تصدير المخزن</string>
     <string name="reading_file">قراءة الملف</string>
+    <string name="requesting_root_access">طلب صلاحية الروت</string>
     <string name="analyzing_qr">تحليل رمز QR</string>
     <plurals name="added_new_entries">
         <item quantity="zero">تم إضافة %d مدخل جديد إلى المخزن</item>
@@ -202,6 +205,14 @@
     <string name="icon_pack_import_error">حدث خطأ أثناء محاولة استيراد حزمة أيقونات</string>
     <string name="icon_pack_import_exists_error">حزمة الأيقونات التي تحاول استيرادها موجودة بالفعل. هل تريد الكتابة فوقها؟</string>
     <string name="icon_pack_delete_error">حدث خطأ أثناء محاولة قراءة كود QR</string>
+    <plurals name="icon_pack_info">
+        <item quantity="zero">لا أيقونات</item>
+        <item quantity="one">أيقونة واحدة</item>
+        <item quantity="two">أيقونتان</item>
+        <item quantity="few">%d أيقونات</item>
+        <item quantity="many">%d أيقونة</item>
+        <item quantity="other">%d أيقونة</item>
+    </plurals>
     <string name="icon_custom">مخصص</string>
     <string name="permission_denied">طلب الاذن مرفوض</string>
     <string name="andotp_new_format">الصيغة الجديدة (الإصدار v0.6.3 أو أحدث)</string>
@@ -216,6 +227,14 @@
     <string name="reading_file_error">حدث خطأ أثناء محاولة قراءة الملف</string>
     <string name="app_lookup_error">ّخطأ: التطبيق غير مثبت</string>
     <string name="app_version_error">نسخة %s التي تم تثبيتها غير مدعومة. أصبحت الإصدارات الحديثة تقوم بتشفير بعض الملفات في مجلد التخزين الداخلي، مما يجعل Aegis غير قادر على الوصول إلى المعلومات التي يحتاجها من أجل الاستيراد. محاولة الاستيراد من المرجح أن تؤدي إلى خطأ. هل ترغب في الاستمرار على أي حال؟</string>
+    <plurals name="imported_entries_count">
+        <item quantity="zero">تم استيراد %d مدخلات</item>
+        <item quantity="one">تم استيراد مدخل %d</item>
+        <item quantity="two">تم استيراد مدخلان</item>
+        <item quantity="few">تم استيراد %d مدخلات</item>
+        <item quantity="many">تم استيراد %d مدخلات</item>
+        <item quantity="other">تم استيراد %d مدخلات</item>
+    </plurals>
     <plurals name="entries_shown">
         <item quantity="zero">إظهار %d مدخل</item>
         <item quantity="one">إظهار %d مدخل</item>
@@ -374,10 +393,61 @@
     <string name="dialog_wipe_entries_title">حذف المدخلات</string>
     <string name="dialog_wipe_entries_checkbox">حذف محتويات المخزن</string>
     <string name="import_vault">استيراد مخزن</string>
+    <string name="importer_help_battle_net_authenticator">قم بتوفير نسخة من <b>/data/data/com.blizzard.bma/shared_prefs/com.blizzard.bma.AUTH_STORE.xml</b>، الموجود في مجلد المساحة الداخلية لمصادق Battle.net.</string>
     <string name="groups">المجموعات</string>
+    <string name="pref_focus_search">التركيز على البحث عند بدء التطبيق</string>
+    <string name="pref_focus_search_summary">التركيز على البحث مباشرةً بعد فتح التطبيق.</string>
     <string name="pref_grouping_halves">نصفان</string>
     <string name="pref_grouping_none">بلا تجميع</string>
     <string name="pref_grouping_size_two">مجموعات من 2</string>
     <string name="pref_grouping_size_three">مجموعات من 3</string>
     <string name="pref_grouping_size_four">مجموعات من 4</string>
+    <plurals name="time_elapsed_seconds">
+        <item quantity="zero">منذ %d ثواني</item>
+        <item quantity="one">منذ %d ثانية</item>
+        <item quantity="two">منذ %d ثواني</item>
+        <item quantity="few">منذ %d ثواني</item>
+        <item quantity="many">منذ %d ثانية</item>
+        <item quantity="other">منذ %d ثواني</item>
+    </plurals>
+    <plurals name="time_elapsed_minutes">
+        <item quantity="zero">منذ %d دقيقة</item>
+        <item quantity="one">منذ %d دقيقة</item>
+        <item quantity="two">منذ %d دقائق</item>
+        <item quantity="few">منذ %d دقائق</item>
+        <item quantity="many">منذ %d دقيقة</item>
+        <item quantity="other">منذ %d دقيقة</item>
+    </plurals>
+    <plurals name="time_elapsed_hours">
+        <item quantity="zero">منذ %d ساعة</item>
+        <item quantity="one">منذ %d ساعة</item>
+        <item quantity="two">منذ %d ساعات</item>
+        <item quantity="few">منذ %d ساعات</item>
+        <item quantity="many">منذ %d ساعة</item>
+        <item quantity="other">منذ %d ساعة</item>
+    </plurals>
+    <plurals name="time_elapsed_days">
+        <item quantity="zero">منذ %d يوم</item>
+        <item quantity="one">منذ %d يوم</item>
+        <item quantity="two">منذ %d أيام</item>
+        <item quantity="few">منذ %d أيام</item>
+        <item quantity="many">منذ %d يوم</item>
+        <item quantity="other">منذ %d يوم</item>
+    </plurals>
+    <plurals name="time_elapsed_years">
+        <item quantity="zero">منذ %d سنة</item>
+        <item quantity="one">منذ %d سنة</item>
+        <item quantity="two">منذ %d سنوات</item>
+        <item quantity="few">منذ %d سنوات</item>
+        <item quantity="many">منذ %d سنة</item>
+        <item quantity="other">منذ %d سنة</item>
+    </plurals>
+    <plurals name="dropdown_checkboxes_default_count">
+        <item quantity="zero">تم تحديد %d عناصر</item>
+        <item quantity="one">تم تحديد %d عنصر</item>
+        <item quantity="two">تم تحديد %d عناصر</item>
+        <item quantity="few">تم تحديد %d عناصر</item>
+        <item quantity="many">تم تحديد %d عنصر</item>
+        <item quantity="other">تم تحديد %d عنصر</item>
+    </plurals>
 </resources>

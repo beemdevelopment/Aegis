@@ -97,14 +97,17 @@
     <string name="export_encrypted">Kryptér boksen</string>
     <string name="export_help">Denne handling vil eksportere boksen ud af Aegis\' interne lager. Vælg det format, som du gerne vil eksportere i:</string>
     <string name="export_warning_unencrypted">Du er ved at eksportere en ukrypteret kopi af din Aegis-boks. <b>Dette er ikke anbefalet</b>.</string>
-    <string name="understand_risk_accept">Jeg forstår risikoen</string>
     <string name="export_warning_password">Eksporter krypteres vha. en separat adgangskode opsat i Sikkerhedsindstillinger.</string>
     <string name="export_format_aegis">Aegis (.JSON)</string>
     <string name="export_format_google_auth_uri">Tekst fil (.TXT)</string>
     <string name="export_format_html">Webside (.HTML)</string>
     <string name="export_format_hint">Eksportformat</string>
     <string name="export_all_groups">Eksportér alle grupper</string>
-    <string name="export_choose_groups">Vælg grupperne, som skal eksporteres:</string>
+    <string name="export_choose_groups">Vælg, hvilke grupper der skal eksporteres</string>
+    <plurals name="export_groups_selected_count">
+        <item quantity="one">%d gruppe valgt</item>
+        <item quantity="other">%d grupper valgt</item>
+    </plurals>
     <string name="export_no_groups_selected">Ingen grupper valgt til eksport</string>
     <string name="export_html_title" context="The title of an HTML export document">Aegis Authenticator Eksport</string>
     <string name="choose_authentication_method">Sikkerhed</string>
@@ -454,5 +457,9 @@
     <plurals name="time_elapsed_years">
         <item quantity="one">%d år siden</item>
         <item quantity="other">%d år siden</item>
+    </plurals>
+    <plurals name="dropdown_checkboxes_default_count">
+        <item quantity="one">%d element valgt</item>
+        <item quantity="other">%d elementer valgt</item>
     </plurals>
 </resources>

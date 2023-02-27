@@ -101,14 +101,14 @@
     <string name="export_encrypted">Зашифрувати сховище</string>
     <string name="export_help">Ця дія експортує внутрішнє сховище додатка Aegis. Виберіть формат:</string>
     <string name="export_warning_unencrypted">Ви збираєтеся експортувати незашифровану копію вашого сховища Aegis. <b>Це не рекомендується</b>.</string>
-    <string name="understand_risk_accept">Я знаю, на що йду</string>
     <string name="export_warning_password">Експортовані копії зашифровано окремим паролем, що був заданий в налаштуваннях безпеки.</string>
     <string name="export_format_aegis">Aegis (.JSON)</string>
     <string name="export_format_google_auth_uri">Текстовий файл (.TXT)</string>
+    <string name="export_format_html">Веб-сторінка (.HTML)</string>
     <string name="export_format_hint">Формат експорту</string>
     <string name="export_all_groups">Експортувати усі групи</string>
-    <string name="export_choose_groups">Оберіть групи для експорту:</string>
     <string name="export_no_groups_selected">Не вибрано жодної групи для експорту</string>
+    <string name="export_html_title" context="The title of an HTML export document">Експорт Aegis Authenticator</string>
     <string name="choose_authentication_method">Безпека</string>
     <string name="authentication_method_explanation">Aegis - це орієнтований на безпеку додаток для двофакторної автентифікації (2FA). Токени зберігаються в сховищі, яке за бажанням можна зашифрувати за допомогою вибраного вами пароля. Якщо зловмисник отримає ваш зашифрований файл сховища, то він не зможе отримати доступ до змісту, не знаючи пароля.\n\nМи обрали варіант, який, на нашу думку, найкраще підходить для вашого пристрою.</string>
     <string name="authentication_method_none">Немає</string>
@@ -168,6 +168,7 @@
     <string name="encrypting_vault">Шифрування сховища</string>
     <string name="exporting_vault">Експорт сховища</string>
     <string name="reading_file">Читання файлу</string>
+    <string name="requesting_root_access">Запит на root-доступ</string>
     <string name="analyzing_qr">Аналіз QR-коду</string>
     <string name="analyzing_qr_multiple">Аналіз QR-коду %d/%d (%s)</string>
     <plurals name="added_new_entries">
@@ -240,6 +241,7 @@
     <string name="reading_file_error">Сталася помилка при спробі прочитати файл</string>
     <string name="app_lookup_error">Помилка: Додаток не встановлено</string>
     <string name="app_version_error">Встановлена версія %s не підтримується. Останні версії почали шифрувати деякі файли у своїй внутрішній теці, тому Aegis не в змозі отримати доступ до потрібної інформації для імпорту. Спроба імпорту скоріш за все призведе до помилки. Чи бажаєте ви все одно продовжити?</string>
+    <string name="root_error">Помилка: неможливо отримати root-доступ</string>
     <plurals name="imported_entries_count">
         <item quantity="one">Імпортовано %d запис</item>
         <item quantity="few">Імпортовано %d записи</item>
@@ -397,6 +399,9 @@
     </plurals>
     <string name="next">Наступний</string>
     <string name="previous">Попередній</string>
+    <string name="copy_uri">Копіювати URI</string>
+    <string name="unable_to_copy_uri_to_clipboard">Не вдалося скопіювати URI в буфер обміну</string>
+    <string name="uri_copied_to_clipboard">URI скопійовано в буфер обміну</string>
     <string name="transfer_entry">Передати запис</string>
     <string name="transfer_entry_description">Відскануйте цей QR-код за допомогою додатка для авторизації, куди ви хочете перенести цей запис</string>
     <string name="google_auth_compatible_transfer_description">Проскануйте ці QR-коди за допомогою Aegis або Google Authenticator.\n\nУ зв\'язку з обмеженнями програми Google Authenticator включаються лише TOTP &amp; HOTP токени з використанням SHA1 і генерацією 6-цифрових кодів</string>
@@ -428,6 +433,7 @@
     <string name="importer_help_authy">Надайте копію <b>/data/data/com.authy.authy/shared_prefs/com.authy.storage.tokens.authenticator.xml</b>, що знаходиться в каталозі Authy у внутрішній пам\'яті.</string>
     <string name="importer_help_andotp">Надайте файл експорту/резервної копії andOTP.</string>
     <string name="importer_help_bitwarden">Надайте файл експорту/резервного копіювання Bitwarden. Зашифровані файли не підтримуються.</string>
+    <string name="importer_help_battle_net_authenticator">Необхідна копія файлу <b>/data/data/com.blizzard.bma/shared_prefs/com.blizzard.bma.AUTH_STORE.xml</b>, який знаходиться у внутрішньому каталозі пам’яті Battle.net Authenticator.</string>
     <string name="importer_help_duo">Надайте копію <b>/data/data/com.duosecurity.duomobile/files/duokit/accounts.json</b>, що знаходиться у каталозі DUO у внутрішній пам\'яті.</string>
     <string name="importer_help_freeotp">Надайте копію <b>/data/data/org.fedorahosted.freeotp/shared_prefs/tokens.xml</b>, що знаходиться в каталозі FreeOTP у внутрішній пам\'яті.</string>
     <string name="importer_help_freeotp_plus">Надайте файл експортований з FreeOTP+.</string>

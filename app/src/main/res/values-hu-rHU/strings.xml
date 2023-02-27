@@ -79,7 +79,6 @@
     <string name="export_encrypted">A széf titkosítása</string>
     <string name="export_help">Ezzel ki tudja exportálni az Aegis belső széf tárolóját. Válassza ki, milyen formátumú legyen az export:</string>
     <string name="export_warning_unencrypted">Arra készül, hogy egy titkosítatlan Aegis széfet exportáljon. <b>Ez nem ajánlott</b>.</string>
-    <string name="understand_risk_accept">Megértettem a kockázatot</string>
     <string name="export_format_aegis">Aegis (.JSON)</string>
     <string name="export_format_google_auth_uri">Szöveges fájl (.TXT)</string>
     <string name="export_format_hint">Export formátuma</string>

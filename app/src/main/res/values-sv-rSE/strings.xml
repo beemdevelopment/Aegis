@@ -35,6 +35,8 @@
     <string name="pref_select_theme_title">Tema</string>
     <string name="pref_view_mode_title">Visningsläge</string>
     <string name="pref_lang_title">Språk</string>
+    <string name="pref_show_icons_title">Visa ikoner</string>
+    <string name="pref_show_icons_summary">Visa ikoner bredvid varje post</string>
     <string name="pref_code_group_size_title">Gruppering av kodsiffror</string>
     <string name="pref_code_group_size_summary">Välj antal siffror att gruppera koder efter</string>
     <string name="pref_account_name_title">Visa kontonamnet</string>
@@ -95,11 +97,19 @@
     <string name="export_encrypted">Kryptera valvet</string>
     <string name="export_help">Denna åtgärd kommer att exportera valvet från Aegis interna lagring. Välj det format som du vill att din export ska vara i:</string>
     <string name="export_warning_unencrypted">Du håller på att exportera en okrypterad kopia av ditt Aegis-valv. <b>Detta rekommenderas inte.</b></string>
-    <string name="understand_risk_accept">Jag förstår riskerna</string>
     <string name="export_warning_password">Exporter krypteras med ett separat lösenord som konfigureras i Säkerhet-inställningarna.</string>
     <string name="export_format_aegis">Aegis (.JSON)</string>
     <string name="export_format_google_auth_uri">Textfil (.TXT)</string>
+    <string name="export_format_html">Webbsida (.HTML)</string>
     <string name="export_format_hint">Exportformat</string>
+    <string name="export_all_groups">Exportera alla grupper</string>
+    <string name="export_choose_groups">Välj vilka grupper som ska exporteras</string>
+    <plurals name="export_groups_selected_count">
+        <item quantity="one">%d grupp vald</item>
+        <item quantity="other">%d grupper valda</item>
+    </plurals>
+    <string name="export_no_groups_selected">Inga grupper valda för exportering</string>
+    <string name="export_html_title" context="The title of an HTML export document">Aegis Authenticator-export</string>
     <string name="choose_authentication_method">Säkerhet</string>
     <string name="authentication_method_explanation">Aegis är en säkerhetsfokuserad 2FA-app. Polletter lagras i ett valv som, om så önskas, kan krypteras med ett lösenord som du väljer. Om en angripare får tag i din krypterade valvfil, kommer hen inte att kunna komma åt innehållet utan att känna till lösenordet.\n\nVi har förvalt det alternativ som vi tror passar bäst för din enhet.</string>
     <string name="authentication_method_none">Ingen</string>
@@ -159,6 +169,7 @@
     <string name="encrypting_vault">Krypterar valvet</string>
     <string name="exporting_vault">Exporterar valvet</string>
     <string name="reading_file">Läser fil</string>
+    <string name="requesting_root_access">Begär rotåtkomst</string>
     <string name="analyzing_qr">Analyserar rutkod</string>
     <string name="analyzing_qr_multiple">Analyserar rutkod %d/%d (%s)</string>
     <plurals name="added_new_entries">
@@ -225,6 +236,7 @@
     <string name="reading_file_error">Ett fel uppstod när filen skulle läsas</string>
     <string name="app_lookup_error">Fel: Appen är inte installerad</string>
     <string name="app_version_error">Versionen av %s som är installerad stöds ej. De senaste versionerna har börjat att kryptera några av filerna i den interna lagringskatalogen, vilket gör att Aegis inte kan komma åt den information som behövs för importen. Att försöka importera kommer sannolikt att resultera i ett fel. Vill du fortsätta ändå?</string>
+    <string name="root_error">Fel: Kunde inte få rotåtkomst</string>
     <plurals name="imported_entries_count">
         <item quantity="one">Importerade %d post</item>
         <item quantity="other">Importerade %d poster</item>
@@ -345,8 +357,14 @@
     </plurals>
     <string name="google_qr_export_unexpected">Förutsatte rutkod #%d men skannade #%d i stället</string>
     <string name="backup_error_bar_message"><b>Säkerhetskopiering av valvet misslyckades nyligen</b></string>
+    <string name="backup_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">        Ett nyligt försök att säkerhetskopiera valvet via %s misslyckades eftersom ett fel uppstod. Försöket gjordes för %s. Vänligen kontrollera dina säkerhetskopieringsinställningar för att se till att säkerhetskopior kan skapas framgångsrikt.
+    </string>
     <string name="backup_system_builtin">Aegis inbyggda automatiska säkerhetskopior</string>
     <string name="backup_system_android">Androids molnsäkerhetskopieringssystem</string>
+    <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">        Senaste säkerhetskopian är föråldrad (%s)
+    </string>
+    <string name="backup_reminder_bar_message">        Ändringar är inte säkerhetskopierade
+    </string>
     <string name="backup_plaintext_export_warning"><b>Valvet exporterades nyligen som klartext</b></string>
     <string name="pref_show_plaintext_warning_hint">Visa inte denna varning igen</string>
     <string name="backup_plaintext_warning_explanation">Denna varning visas eftersom du nyligen exporterade en okrypterad kopia av valvet. För att upprätthålla säkerheten för dina polletter rekommenderar vi att du raderar denna fil när den inte längre behövs.</string>
@@ -366,6 +384,9 @@
     </plurals>
     <string name="next">Nästa</string>
     <string name="previous">Föregående</string>
+    <string name="copy_uri">Kopiera URI</string>
+    <string name="unable_to_copy_uri_to_clipboard">Kunde inte kopiera URI till urklipp</string>
+    <string name="uri_copied_to_clipboard">URI kopierad till urklipp</string>
     <string name="transfer_entry">Överför post</string>
     <string name="transfer_entry_description">Skanna denna rutkod med den autentiseringsapp som du vill överföra denna post till</string>
     <string name="google_auth_compatible_transfer_description">Skanna dessa rutkoder med Aegis eller Google Authenticator.\n\nPå grund av begränsningar i Google Authenticator-appen inkluderas endast TOTP- &amp; HOTP-polletter som använder SHA1 och producerar 6-siffriga koder.</string>
@@ -388,7 +409,7 @@
     <string name="dialog_wipe_entries_message">Ditt valv innehåller redan poster. Vill du ta bort dessa poster innan du importerar den här filen?\n\n<b>Genom att göra det så förlorar du åtkomst till de befintliga posterna i valvet för alltid.</b></string>
     <string name="dialog_wipe_entries_checkbox">Rensa valvets innehåll</string>
     <string name="panic_trigger_ignore_toast">Aegis tog emot en panikutlösare, men inställningen är inaktiverad - ignorerar</string>
-    <string name="pref_panic_trigger_title">Radera valvet i händelse av panikutlösare</string>
+    <string name="pref_panic_trigger_title">Radera valvet vid panikutlösare</string>
     <string name="pref_panic_trigger_summary">Radera valvet när en panikutlösare tas emot från Ripple</string>
     <string name="import_vault">Importera valv</string>
     <string name="importer_help_2fas">Tillhandahåll en säkerhetskopieringsfil från 2FAS Authenticator.</string>
@@ -397,6 +418,7 @@
     <string name="importer_help_authy">Tillhandahåll en kopia av <b>/data/data/com.authy.authy/shared_prefs/com.authy.storage.tokens.authenticator.xml</b>, som finns i den interna lagringskatalogen för Authy.</string>
     <string name="importer_help_andotp">Tillhandahåll en export-/säkerhetskopieringsfil från andOTP.</string>
     <string name="importer_help_bitwarden">Tillhandahåll en export-/säkerhetskopieringsfil från Bitwarden. Krypterade filer stöds ej.</string>
+    <string name="importer_help_battle_net_authenticator">Tillhandahåll en kopia av <b>/data/data/com.blizzard.bma/shared_prefs/com.blizzard.bma.AUTH_STORE.xml</b>, som finns i den interna lagringskatalogen för Battle.net Authenticator.</string>
     <string name="importer_help_duo">Tillhandahåll en kopia av <b>/data/data/com.duosecurity.duomobile/files/duokit/accounts.json</b>, som finns i den interna lagringskatalogen för DUO.</string>
     <string name="importer_help_freeotp">Tillhandahåll en kopia av <b>/data/data/org.fedorahosted.freeotp/shared_prefs/tokens.xml</b>, som finns i den interna lagringskatalogen för FreeOTP.</string>
     <string name="importer_help_freeotp_plus">Tillhandahåll en exportfil från FreeOTP+.</string>
@@ -416,4 +438,28 @@
     <string name="pref_grouping_size_two">Grupper av 2</string>
     <string name="pref_grouping_size_three">Grupper av 3</string>
     <string name="pref_grouping_size_four">Grupper av 4</string>
+    <plurals name="time_elapsed_seconds">
+        <item quantity="one">%d sekund sedan</item>
+        <item quantity="other">%d sekunder sedan</item>
+    </plurals>
+    <plurals name="time_elapsed_minutes">
+        <item quantity="one">%d minut sedan</item>
+        <item quantity="other">%d minuter sedan</item>
+    </plurals>
+    <plurals name="time_elapsed_hours">
+        <item quantity="one">%d timme sedan</item>
+        <item quantity="other">%d timmar sedan</item>
+    </plurals>
+    <plurals name="time_elapsed_days">
+        <item quantity="one">%d dag sedan</item>
+        <item quantity="other">%d dagar sedan</item>
+    </plurals>
+    <plurals name="time_elapsed_years">
+        <item quantity="one">%d år sedan</item>
+        <item quantity="other">%d år sedan</item>
+    </plurals>
+    <plurals name="dropdown_checkboxes_default_count">
+        <item quantity="one">%d objekt valt</item>
+        <item quantity="other">%d objekt valda</item>
+    </plurals>
 </resources>

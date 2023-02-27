@@ -39,7 +39,7 @@
     <string name="pref_show_icons_summary">Показывать значки рядом с каждой записью</string>
     <string name="pref_code_group_size_title">Перегруппировка цифр кода</string>
     <string name="pref_code_group_size_summary">Выберите количество цифр для группировки кодов</string>
-    <string name="pref_account_name_title">Показывать учётную запись</string>
+    <string name="pref_account_name_title">Показывать название учётной записи</string>
     <string name="pref_account_name_summary">Включите, чтобы показывать название учётной записи рядом с эмитентом</string>
     <string name="pref_import_file_title">Импорт из файла</string>
     <string name="pref_import_file_summary">Импорт ключей из файла</string>
@@ -48,7 +48,7 @@
     <string name="pref_android_backups_hint"><i>Резервное копирование с устройства на устройство (D2D) всегда разрешено, независимо от настройки выше</i></string>
     <string name="pref_backups_title">Автоматическое резервное копирование хранилища</string>
     <string name="pref_backups_summary">Автоматически создавать резервные копии хранилища на внешнем носителе при внесении изменений. Поддерживается только для зашифрованных хранилищ.</string>
-    <string name="pref_backups_location_title">Папка для резервных копий</string>
+    <string name="pref_backups_location_title">Каталог для резервных копий</string>
     <string name="pref_backups_location_summary">Резервные копии будут храниться в</string>
     <string name="pref_backups_trigger_title">Создать резервную копию</string>
     <string name="pref_backups_trigger_summary">Создание резервной копии вручную</string>
@@ -101,14 +101,19 @@
     <string name="export_encrypted">Шифровать хранилище</string>
     <string name="export_help">Экспорт внутреннего хранилища Aegis. Выберите формат:</string>
     <string name="export_warning_unencrypted">Вы собираетесь экспортировать незашифрованную копию хранилища Aegis. <b>Не рекомендуется</b>.</string>
-    <string name="understand_risk_accept">Я понимаю риск</string>
     <string name="export_warning_password">Экспортируемые данные шифруются с использованием отдельного пароля, указанного в разделе настроек «Безопасность».</string>
     <string name="export_format_aegis">Aegis (.JSON)</string>
     <string name="export_format_google_auth_uri">Текстовый файл (.TXT)</string>
     <string name="export_format_html">Веб-страница (.HTML)</string>
     <string name="export_format_hint">Формат экспорта</string>
     <string name="export_all_groups">Экспорт всех групп</string>
-    <string name="export_choose_groups">Выберите группы для экспорта:</string>
+    <string name="export_choose_groups">Выберите группы для экспорта</string>
+    <plurals name="export_groups_selected_count">
+        <item quantity="one">%d группа выбрана</item>
+        <item quantity="few">%d группы выбраны</item>
+        <item quantity="many">%d групп выбрано</item>
+        <item quantity="other">%d групп выбрано</item>
+    </plurals>
     <string name="export_no_groups_selected">Не выбрано групп для экспорта</string>
     <string name="export_html_title" context="The title of an HTML export document">Экспорт Aegis Authenticator</string>
     <string name="choose_authentication_method">Безопасность</string>
@@ -153,7 +158,7 @@
     <string name="scan_image">Сканировать изображение</string>
     <string name="enter_manually">Ввести вручную</string>
     <string name="set_up_biometric">Настройка биометрической разблокировки</string>
-    <string name="copy">Копировать</string>
+    <string name="copy">Скопировать</string>
     <string name="edit">Изменить</string>
     <string name="favorite" comment="Verb">В избранное</string>
     <string name="unfavorite" comment="Verb">Убрать из избранного</string>
@@ -166,7 +171,7 @@
     <string name="unlock_vault_error">Невозможно разблокировать хранилище</string>
     <string name="unlock_vault_error_description">Неправильный пароль. Убедитесь, что вы не допустили в нём опечатку.</string>
     <string name="password_equality_error">Пароли должны быть одинаковыми и непустыми</string>
-    <string name="snackbar_authentication_method">Выберите метод аутентификации</string>
+    <string name="snackbar_authentication_method">Пожалуйста, выберите метод аутентификации</string>
     <string name="encrypting_vault">Шифрование хранилища</string>
     <string name="exporting_vault">Экспортирование хранилища</string>
     <string name="reading_file">Чтение файла</string>
@@ -232,7 +237,7 @@
     <string name="icon_custom">Свой</string>
     <string name="permission_denied">Доступ запрещён</string>
     <string name="andotp_new_format">Новый формат (v0.6.3 или новее) </string>
-    <string name="andotp_old_format">Старый формат (v0.6.2 или старше) </string>
+    <string name="andotp_old_format">Старый формат (v0.6.2 или старее) </string>
     <string name="choose_andotp_importer">Какой формат имеет файл резервной копии andOTP?</string>
     <string name="choose_totpauth_importer">Эта резервная копия TOTP Authenticator зашифрована паролем?</string>
     <string name="choose_application">Выберите приложение, из которого хотите импортировать</string>
@@ -242,7 +247,7 @@
     <string name="file_not_found">Ошибка: файл не найден</string>
     <string name="reading_file_error">Произошла ошибка при попытке прочитать файл</string>
     <string name="app_lookup_error">Ошибка: приложение не установлено</string>
-    <string name="app_version_error">Установленная версия %s не поддерживается. Последние версии начали шифровать некоторые файлы во внутренней памяти хранилища, из-за чего Aegis не может получить доступ к информации, необходимой для импорта. Попытка импорта может привести к ошибке. Всё равно продолжить?</string>
+    <string name="app_version_error">Установленная версия %s не поддерживается. Последние версии начали шифровать некоторые файлы во внутренней каталоге хранилища, из-за чего Aegis не может получить доступ к информации, необходимой для импорта. Попытка импорта может привести к ошибке. Всё равно продолжить?</string>
     <string name="root_error">Ошибка: root-доступ не получен</string>
     <plurals name="imported_entries_count">
         <item quantity="one">Импортирована %d запись</item>
@@ -432,18 +437,18 @@
     <string name="importer_help_2fas">Необходим файл резервной копии 2FAS.</string>
     <string name="importer_help_aegis">Необходим файл экспорта/резервной копии Aegis.</string>
     <string name="importer_help_authenticator_plus">Необходим файл экспорта Authenticator Plus, полученный через <b>«Настройки» → «Рез. копия и восстановление» → «Экспорт текста и HTML»</b>.</string>
-    <string name="importer_help_authy">Необходима копия файла <b>/data/data/com.authy.authy/shared_prefs/com.authy.storage.tokens.authenticator.xml</b>, расположенного в папке «Authy» во внутренней памяти.</string>
+    <string name="importer_help_authy">Необходима копия <b>/data/data/com.authy.authy/shared_prefs/com.authy.storage.tokens.authenticator.xml</b>, расположенного в каталоге «Authy» во внутренней памяти.</string>
     <string name="importer_help_andotp">Необходим файл экспорта/резервной копии andOTP.</string>
     <string name="importer_help_bitwarden">Необходим файл экспорта/резервной копии Bitwarden. Зашифрованные файлы не поддерживаются.</string>
-    <string name="importer_help_battle_net_authenticator">Необходима копия файла <b>/data/data/com.blizzard.bma/shared_prefs/com.blizzard.bma.AUTH_STORE.xml</b>, расположенного в папке «Battle.net Authenticator» во внутренней памяти.</string>
-    <string name="importer_help_duo">Необходима копия файла <b>/data/data/com.duosecurity.duomobile/files/duokit/accounts.json</b>, расположенного в папке «DUO» во внутренней памяти.</string>
-    <string name="importer_help_freeotp">Необходима копия файла <b>/data/data/org.fedorahosted.freeotp/shared_prefs/tokens.xml</b>, расположенного в папке «FreeOTP» во внутренней памяти.</string>
+    <string name="importer_help_battle_net_authenticator">Необходима копия <b>/data/data/com.blizzard.bma/shared_prefs/com.blizzard.bma.AUTH_STORE.xml</b>, расположенного в каталоге «Battle.net Authenticator» во внутренней памяти.</string>
+    <string name="importer_help_duo">Необходима копия <b>/data/data/com.duosecurity.duomobile/files/duokit/accounts.json</b>, расположенного в каталоге «DUO» во внутренней памяти.</string>
+    <string name="importer_help_freeotp">Необходима копия <b>/data/data/org.fedorahosted.freeotp/shared_prefs/tokens.xml</b>, расположенного в каталоге «FreeOTP» во внутренней памяти.</string>
     <string name="importer_help_freeotp_plus">Необходим файл экспорта FreeOTP+.</string>
-    <string name="importer_help_google_authenticator"><b>Поддерживаются только файлы баз данных Google Authenticator версии 5.10 и более ранних</b>.\n\nНеобходима копия файла <b>/data/data/com.google.android.apps.authenticator2/databases/databases</b>, расположенного в папке «Google Authenticator» во внутренней памяти.</string>
-    <string name="importer_help_microsoft_authenticator">Необходима копия файла <b>/data/data/com.azure.authenticator/databases/PhoneFactor</b>, расположенного в папке «Microsoft Authenticator» во внутренней памяти.</string>
+    <string name="importer_help_google_authenticator"><b>Поддерживаются только файлы баз данных Google Authenticator версии 5.10 и более старых</b>.\n\nНеобходима копия <b>/data/data/com.google.android.apps.authenticator2/databases/databases</b>, расположенного в каталоге «Google Authenticator» во внутренней памяти.</string>
+    <string name="importer_help_microsoft_authenticator">Необходима копия <b>/data/data/com.azure.authenticator/databases/PhoneFactor</b>, расположенного в каталоге «Microsoft Authenticator» во внутренней памяти.</string>
     <string name="importer_help_plain_text">Необходим текстовый файл с URI Google Authenticator в каждой строке.</string>
-    <string name="importer_help_steam"><b>Steam v3.0 и новее не поддерживаются</b>. 
-Необходима копия файла <b>/data/data/com.valvesoftware.android.steam.community/files/Steamguard-*.json</b>, расположенного в папке «Steam» во внутренней памяти.</string>
+    <string name="importer_help_steam"><b>Steam v3.0 и новее не поддерживается</b>. 
+Необходима копия <b>/data/data/com.valvesoftware.android.steam.community/files/Steamguard-*.json</b>, расположенного в каталоге «Steam» во внутренней памяти.</string>
     <string name="importer_help_totp_authenticator">Необходим файл экспорта TOTP Authenticator.</string>
     <string name="importer_help_winauth">Необходим файл экспорта WinAuth.</string>
     <string name="importer_encrypted_exception_google_authenticator">Была пропущена зашифрованная запись: %s</string>
@@ -485,5 +490,11 @@
         <item quantity="few">%d года назад</item>
         <item quantity="many">%d лет назад</item>
         <item quantity="other">%d лет назад</item>
+    </plurals>
+    <plurals name="dropdown_checkboxes_default_count">
+        <item quantity="one">%d элемент выбран</item>
+        <item quantity="few">%d элемента выбраны</item>
+        <item quantity="many">%d элементов выбрано</item>
+        <item quantity="other">%d элементов выбрано</item>
     </plurals>
 </resources>

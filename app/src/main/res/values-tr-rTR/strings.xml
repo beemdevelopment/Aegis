@@ -97,14 +97,19 @@
     <string name="export_encrypted">Kasayı şifrele</string>
     <string name="export_help">Bu işlem kasayı Aegis\'in dahili deposundan dışarı aktaracaktır. Lütfen dışa aktarmak istediğiniz biçimi seçiniz:</string>
     <string name="export_warning_unencrypted">Aegis kasanızın şifrelenmemiş bir kopyasını dışa aktarmak üzeresiniz. <b>Bu işlem tavsiye edilmez</b>.</string>
-    <string name="understand_risk_accept">Riskleri göze alıyorum</string>
     <string name="export_warning_password">Dışa aktarmalar, Güvenlik ayarlarında yapılandırılan ayrı bir parola kullanılarak şifrelenir.</string>
     <string name="export_format_aegis">Aegis (.JSON)</string>
     <string name="export_format_google_auth_uri">Metin belgesi (.TXT)</string>
+    <string name="export_format_html">Web sayfası (.HTML)</string>
     <string name="export_format_hint">Dışa Aktarma Biçimi</string>
     <string name="export_all_groups">Tüm grupları dışa aktar</string>
-    <string name="export_choose_groups">Dışa aktarılacak grupları seçin:</string>
+    <string name="export_choose_groups">Dışa aktarılacak grupları seçin</string>
+    <plurals name="export_groups_selected_count">
+        <item quantity="one">%d grup seçildi</item>
+        <item quantity="other">%d grup seçildi</item>
+    </plurals>
     <string name="export_no_groups_selected">Dışa aktarılacak grup seçilmedi</string>
+    <string name="export_html_title" context="The title of an HTML export document">Aegis Authenticator Dışa Aktarma</string>
     <string name="choose_authentication_method">Güvenlik</string>
     <string name="authentication_method_explanation">Aegis güvenlik odaklı bir 2FA uygulamasıdır. Kodlar isteğiniz üzerine parolayla şifreleyebileceğiniz bir kasada saklanabilir. Eğer bir saldırgan şifrelenmiş kasa dosyanızı elde ederse parolayı bilmeden içeriğine erişemeyecektir.\n\nCihazınız için en iyi olduğunu düşündüğümüz seçeneği seçtik.</string>
     <string name="authentication_method_none">Hiçbiri</string>
@@ -237,8 +242,8 @@
         <item quantity="other">%d girdi içe aktarıldı</item>
     </plurals>
     <plurals name="entries_shown">
-        <item quantity="one">%d Giriş gösteriliyor</item>
-        <item quantity="other">%d Girişler gösteriliyor</item>
+        <item quantity="one">%d giriş gösteriliyor</item>
+        <item quantity="other">%d giriş gösteriliyor</item>
     </plurals>
     <string name="intro_import_error_title">Kasa içe aktarılırken bir hata oluştu</string>
     <string name="import_error_title">İçe aktarmaya çalışırken bir veya birden fazla hata meydana geldi</string>
@@ -413,6 +418,7 @@
     <string name="importer_help_authy"><b>/data/data/com.authy.authy/shared_prefs/com.authy.storage.tokens.authenticator.xml</b>dosyasını sağlayın, Authy\'nin dahili depolama konumunda bulunabilir.</string>
     <string name="importer_help_andotp">andOTP dışa aktarım dosyasını sağlayın.</string>
     <string name="importer_help_bitwarden">Bitwarden\'a ait bir yedekleme/aktarma dosyası sağlayın. Şifrelenmiş dosyalar desteklenmiyor.</string>
+    <string name="importer_help_battle_net_authenticator"><b>/data/data/com.blizzard.bma/shared_prefs/com.blizzard.bma.AUTH_STORE.xml</b>dosyasını sağlayın, Battle.net Authenticator\'ın dahili depolama konumunda bulunabilir.</string>
     <string name="importer_help_duo">DUO\'nun dahili depolama dizininde bulunan <b>/data/data/com.duosecurity.duomobile/files/duokit/accounts.json</b> dosyasının bir kopyasını sağlayın.</string>
     <string name="importer_help_freeotp"><b>/data/data/org.fedorahosted.freeotp/shared_prefs/tokens.xml</b>dosyasını sağlayın, FreeOTP\'nin dahili depolama konumunda bulunabilir.</string>
     <string name="importer_help_freeotp_plus">FreeOTP+ dışa aktarım dosyasını sağlayın.</string>
@@ -432,4 +438,28 @@
     <string name="pref_grouping_size_two">2\'li grup</string>
     <string name="pref_grouping_size_three">3\'lü grup</string>
     <string name="pref_grouping_size_four">4\'lü grup</string>
+    <plurals name="time_elapsed_seconds">
+        <item quantity="one">%d saniye önce</item>
+        <item quantity="other">%d saniye önce</item>
+    </plurals>
+    <plurals name="time_elapsed_minutes">
+        <item quantity="one">%d dakika önce</item>
+        <item quantity="other">%d dakika önce</item>
+    </plurals>
+    <plurals name="time_elapsed_hours">
+        <item quantity="one">%d saat önce</item>
+        <item quantity="other">%d saat önce</item>
+    </plurals>
+    <plurals name="time_elapsed_days">
+        <item quantity="one">%d gün önce</item>
+        <item quantity="other">%d gün önce</item>
+    </plurals>
+    <plurals name="time_elapsed_years">
+        <item quantity="one">%d yıl önce</item>
+        <item quantity="other">%d yıl önce</item>
+    </plurals>
+    <plurals name="dropdown_checkboxes_default_count">
+        <item quantity="one">%d öğe seçildi</item>
+        <item quantity="other">%d öğe seçildi</item>
+    </plurals>
 </resources>
