@@ -121,34 +121,30 @@ protobuf {
 }
 
 dependencies {
-    def cameraxVersion = '1.2.0'
-    def glideVersion = '4.14.2'
+    def cameraxVersion = '1.2.1'
+    def glideVersion = '4.15.0'
     def guavaVersion = '31.1'
-    def hiltVersion = '2.44.2'
+    def hiltVersion = '2.45'
     def junitVersion = '4.13.2'
-    def libsuVersion = '5.0.3'
+    def libsuVersion = '5.0.4'
 
-    annotationProcessor 'androidx.annotation:annotation:1.5.0'
+    annotationProcessor 'androidx.annotation:annotation:1.6.0'
     annotationProcessor "com.google.dagger:hilt-compiler:$hiltVersion"
     annotationProcessor "com.github.bumptech.glide:compiler:${glideVersion}"
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'androidx.activity:activity:1.6.1'
-    implementation 'androidx.appcompat:appcompat:1.5.1'
+    implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation "androidx.biometric:biometric:1.1.0"
     implementation "androidx.camera:camera-camera2:$cameraxVersion"
     implementation "androidx.camera:camera-lifecycle:$cameraxVersion"
-    implementation "androidx.camera:camera-view:1.1.0"
+    implementation 'androidx.camera:camera-view:1.2.1'
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation "androidx.core:core:1.9.0"
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation 'androidx.documentfile:documentfile:1.0.1'
     implementation "androidx.lifecycle:lifecycle-process:2.5.1"
-    implementation ('androidx.preference:preference:1.2.0') {
-        // See: https://issuetracker.google.com/issues/238425626
-        exclude group: 'androidx.lifecycle', module:'lifecycle-viewmodel'
-        exclude group: 'androidx.lifecycle', module:'lifecycle-viewmodel-ktx'
-    }
+    implementation "androidx.preference:preference:1.2.0"
     implementation 'androidx.recyclerview:recyclerview:1.2.1'
     implementation "androidx.viewpager2:viewpager2:1.0.0"
     implementation 'com.amulyakhare:com.amulyakhare.textdrawable:1.0.1'
@@ -163,15 +159,15 @@ dependencies {
     implementation "com.github.topjohnwu.libsu:core:${libsuVersion}"
     implementation "com.github.topjohnwu.libsu:io:${libsuVersion}"
     implementation "com.google.guava:guava:${guavaVersion}-android"
-    implementation 'com.google.android.material:material:1.7.0'
-    implementation 'com.google.protobuf:protobuf-javalite:3.21.4'
+    implementation 'com.google.android.material:material:1.8.0'
+    implementation 'com.google.protobuf:protobuf-javalite:3.22.0'
     implementation 'com.google.zxing:core:3.5.1'
     implementation "com.mikepenz:iconics-core:3.2.5"
     implementation 'com.mikepenz:material-design-iconic-typeface:2.2.0.5@aar'
     implementation 'com.nulab-inc:zxcvbn:1.7.0'
     implementation 'de.hdodenhof:circleimageview:3.1.0'
     implementation 'de.psdev.licensesdialog:licensesdialog:2.2.0'
-    implementation 'net.lingala.zip4j:zip4j:2.11.2'
+    implementation 'net.lingala.zip4j:zip4j:2.11.5'
     implementation 'info.guardianproject.trustedintents:trustedintents:0.2'
     implementation 'org.bouncycastle:bcprov-jdk18on:1.72'
     implementation "org.simpleflatmapper:sfm-csv:8.2.3"
@@ -179,20 +175,20 @@ dependencies {
     androidTestAnnotationProcessor "com.google.dagger:hilt-android-compiler:$hiltVersion"
     androidTestImplementation "com.google.dagger:hilt-android-testing:$hiltVersion"
     androidTestImplementation 'androidx.test:core:1.5.0'
-    androidTestImplementation 'androidx.test:runner:1.5.1'
+    androidTestImplementation 'androidx.test:runner:1.5.2'
     androidTestImplementation 'androidx.test:rules:1.5.0'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.4'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.0'
-    androidTestImplementation 'androidx.test.espresso:espresso-contrib:3.5.0'
-    androidTestImplementation 'androidx.test.espresso:espresso-intents:3.5.0'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-contrib:3.5.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-intents:3.5.1'
     androidTestImplementation "junit:junit:${junitVersion}"
     androidTestUtil 'androidx.test:orchestrator:1.4.2'
 
     testImplementation 'androidx.test:core:1.5.0'
     testImplementation "com.google.guava:guava:${guavaVersion}-jre"
     testImplementation "junit:junit:${junitVersion}"
-    testImplementation 'org.json:json:20220924'
-    testImplementation 'org.robolectric:robolectric:4.9'
+    testImplementation 'org.json:json:20230227'
+    testImplementation 'org.robolectric:robolectric:4.9.2'
 
-    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.1.5'
+    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:2.0.2'
 }
