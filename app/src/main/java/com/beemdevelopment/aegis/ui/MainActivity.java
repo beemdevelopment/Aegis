@@ -55,6 +55,9 @@ import com.beemdevelopment.aegis.ui.tasks.QrDecodeTask;
 import com.beemdevelopment.aegis.ui.views.EntryListView;
 import com.beemdevelopment.aegis.util.TimeUtils;
 import com.beemdevelopment.aegis.vault.VaultEntry;
+import com.beemdevelopment.aegis.vault.VaultFile;
+import com.beemdevelopment.aegis.vault.VaultRepository;
+import com.beemdevelopment.aegis.vault.VaultRepositoryException;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.common.base.Strings;
@@ -663,9 +666,30 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
             return;
         }
 
-        if (!_vaultManager.isVaultLoaded() && !_vaultManager.isVaultFileLoaded()) {
-            Dialogs.showErrorDialog(this, R.string.vault_load_error, _vaultManager.getVaultFileError(), (dialog1, which) -> finish());
-            return;
+        // If the vault is not loaded yet, try to load it now in case it's plain text
+        if (!_vaultManager.isVaultLoaded()) {
+            VaultFile vaultFile;
+            try {
+                vaultFile = VaultRepository.readVaultFile(this);
+            } catch (VaultRepositoryException e) {
+                e.printStackTrace();
+                Dialogs.showErrorDialog(this, R.string.vault_load_error, e, (dialog, which) -> {
+                    finish();
+                });
+                return;
+            }
+
+            if (!vaultFile.isEncrypted()) {
+                try {
+                    _vaultManager.loadFrom(vaultFile);
+                } catch (VaultRepositoryException e) {
+                    e.printStackTrace();
+                    Dialogs.showErrorDialog(this, R.string.vault_load_error, e, (dialog, which) -> {
+                        finish();
+                    });
+                    return;
+                }
+            }
         }
 
         if (!_vaultManager.isVaultLoaded()) {
