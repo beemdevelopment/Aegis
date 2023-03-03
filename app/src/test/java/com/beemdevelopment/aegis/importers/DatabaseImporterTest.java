@@ -10,7 +10,6 @@ import android.content.Context;
 
 import androidx.test.core.app.ApplicationProvider;
 
-import com.beemdevelopment.aegis.vectors.VaultEntries;
 import com.beemdevelopment.aegis.encoding.Base32;
 import com.beemdevelopment.aegis.otp.HotpInfo;
 import com.beemdevelopment.aegis.otp.OtpInfo;
@@ -19,22 +18,16 @@ import com.beemdevelopment.aegis.otp.SteamInfo;
 import com.beemdevelopment.aegis.otp.TotpInfo;
 import com.beemdevelopment.aegis.util.UUIDMap;
 import com.beemdevelopment.aegis.vault.VaultEntry;
+import com.beemdevelopment.aegis.vectors.VaultEntries;
 import com.google.common.collect.Lists;
 
-import org.json.JSONException;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.RobolectricTestRunner;
 
-import javax.crypto.BadPaddingException;
-import javax.crypto.IllegalBlockSizeException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.security.InvalidAlgorithmParameterException;
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
-import java.security.spec.InvalidKeySpecException;
 import java.util.Arrays;
 import java.util.List;
 
@@ -155,8 +148,7 @@ public class DatabaseImporterTest {
             char[] password = "test".toCharArray();
             try {
                 return ((AuthenticatorProImporter.EncryptedState) state).decrypt(password);
-            } catch (NoSuchAlgorithmException | InvalidKeySpecException | InvalidAlgorithmParameterException |
-                     InvalidKeyException | IllegalBlockSizeException | BadPaddingException | JSONException e) {
+            } catch (DatabaseImporterException e) {
                 throw new DatabaseImporterException(e);
             }
         });

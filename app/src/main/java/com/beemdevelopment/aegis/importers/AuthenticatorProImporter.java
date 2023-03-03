@@ -1,27 +1,31 @@
 package com.beemdevelopment.aegis.importers;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteException;
+
 import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.encoding.Base32;
 import com.beemdevelopment.aegis.encoding.EncodingException;
-import com.beemdevelopment.aegis.otp.*;
+import com.beemdevelopment.aegis.otp.HotpInfo;
+import com.beemdevelopment.aegis.otp.OtpInfo;
+import com.beemdevelopment.aegis.otp.OtpInfoException;
+import com.beemdevelopment.aegis.otp.SteamInfo;
+import com.beemdevelopment.aegis.otp.TotpInfo;
 import com.beemdevelopment.aegis.ui.dialogs.Dialogs;
 import com.beemdevelopment.aegis.util.IOUtils;
 import com.beemdevelopment.aegis.vault.VaultEntry;
 import com.topjohnwu.superuser.io.SuFile;
-import org.jetbrains.annotations.NotNull;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import javax.crypto.*;
-import javax.crypto.spec.IvParameterSpec;
-import javax.crypto.spec.PBEKeySpec;
-import java.io.*;
+import java.io.ByteArrayInputStream;
+import java.io.DataInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.UTFDataFormatException;
 import java.nio.charset.StandardCharsets;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
@@ -30,12 +34,21 @@ import java.security.spec.InvalidKeySpecException;
 import java.security.spec.KeySpec;
 import java.util.List;
 
+import javax.crypto.BadPaddingException;
+import javax.crypto.Cipher;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
+import javax.crypto.SecretKey;
+import javax.crypto.SecretKeyFactory;
+import javax.crypto.spec.IvParameterSpec;
+import javax.crypto.spec.PBEKeySpec;
+
 public class AuthenticatorProImporter extends DatabaseImporter {
-    private static final String _HEADER = "AuthenticatorPro";
-    private static final int _ITERATIONS = 64000;
-    private static final int _KEY_SIZE = 32 * Byte.SIZE;
-    private static final String _PKG_NAME = "me.jmh.authenticatorpro";
-    private static final String _PKG_DB_PATH = "files/proauth.db3";
+    private static final String HEADER = "AuthenticatorPro";
+    private static final int ITERATIONS = 64000;
+    private static final int KEY_SIZE = 32 * Byte.SIZE;
+    private static final String PKG_NAME = "me.jmh.authenticatorpro";
+    private static final String PKG_DB_PATH = "files/proauth.db3";
 
     private enum Algorithm {
         SHA1,
@@ -49,7 +62,7 @@ public class AuthenticatorProImporter extends DatabaseImporter {
 
     @Override
     protected SuFile getAppPath() throws DatabaseImporterException, PackageManager.NameNotFoundException {
-        return getAppPath(_PKG_NAME, _PKG_DB_PATH);
+        return getAppPath(PKG_NAME, PKG_DB_PATH);
     }
 
     @Override
@@ -62,7 +75,7 @@ public class AuthenticatorProImporter extends DatabaseImporter {
         return new SqlState(entries);
     }
 
-    private State readExternal(InputStream stream) throws DatabaseImporterException {
+    private static State readExternal(InputStream stream) throws DatabaseImporterException {
         byte[] data;
         try {
             data = IOUtils.readAll(stream);
@@ -77,70 +90,43 @@ public class AuthenticatorProImporter extends DatabaseImporter {
         }
     }
 
-    private EncryptedState readEncrypted(DataInputStream stream) throws DatabaseImporterException {
+    private static EncryptedState readEncrypted(DataInputStream stream) throws DatabaseImporterException {
         try {
-            byte[] headerBytes = new byte[_HEADER.getBytes(StandardCharsets.UTF_8).length];
+            byte[] headerBytes = new byte[HEADER.getBytes(StandardCharsets.UTF_8).length];
             stream.readFully(headerBytes);
             String header = new String(headerBytes, StandardCharsets.UTF_8);
-            if (!header.equals(_HEADER)) {
-                throw new DatabaseImporterException("Invalid encryption header: " + header);
+            if (!header.equals(HEADER)) {
+                throw new DatabaseImporterException("Invalid file header");
             }
+
             int saltSize = 20;
             byte[] salt = new byte[saltSize];
             stream.readFully(salt);
+
             Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
             int ivSize = cipher.getBlockSize();
             byte[] iv = new byte[ivSize];
             stream.readFully(iv);
             return new EncryptedState(cipher, salt, iv, IOUtils.readAll(stream));
         } catch (UTFDataFormatException e) {
-            throw new DatabaseImporterException("Encryption header does not exist");
+            throw new DatabaseImporterException("Invalid file header");
         } catch (IOException | NoSuchPaddingException | NoSuchAlgorithmException e) {
             throw new DatabaseImporterException(e);
         }
     }
 
-    private static VaultEntry fromAny(
-            int type,
-            String issuer,
-            String username,
-            byte[] secret,
-            Algorithm algo,
-            int digits,
-            int period,
-            int counter,
-            Object obj
-    ) throws OtpInfoException, DatabaseImporterEntryException {
-        OtpInfo info;
+    private static OtpInfo parseOtpInfo(int type, byte[] secret, Algorithm algo, int digits, int period, int counter)
+            throws OtpInfoException, DatabaseImporterEntryException {
         switch (type) {
             case 1:
-                info = new HotpInfo(secret, algo.name(), digits, counter);
-                break;
+                return new HotpInfo(secret, algo.name(), digits, counter);
             case 2:
-                info = new TotpInfo(secret, algo.name(), digits, period);
-                break;
+                return new TotpInfo(secret, algo.name(), digits, period);
             case 4:
-                info = new SteamInfo(secret, algo.name(), digits, period);
-                break;
+                return new SteamInfo(secret, algo.name(), digits, period);
             default:
-                throw new DatabaseImporterEntryException("Unsupported otp type: " + type, obj.toString());
+                throw new DatabaseImporterEntryException(String.format("Unsupported otp type: %d", type), null);
         }
-
-        return new VaultEntry(info, username, issuer);
-    }
-
-    private static VaultEntry convertEntry(JSONObject authenticator) throws JSONException, EncodingException, OtpInfoException, DatabaseImporterEntryException {
-        int type = authenticator.getInt("Type");
-        String issuer = authenticator.getString("Issuer");
-        Object nullableUsername = authenticator.get("Username");
-        String username = nullableUsername == JSONObject.NULL ? "" : nullableUsername.toString();
-        byte[] secret = Base32.decode(authenticator.getString("Secret"));
-        Algorithm algo = Algorithm.values()[authenticator.getInt("Algorithm")];
-        int digits = authenticator.getInt("Digits");
-        int period = authenticator.getInt("Period");
-        int counter = authenticator.getInt("Counter");
-
-        return fromAny(type, issuer, username, secret, algo, digits, period, counter, authenticator);
     }
 
     static class EncryptedState extends State {
@@ -157,29 +143,27 @@ public class AuthenticatorProImporter extends DatabaseImporter {
             _data = data;
         }
 
-        public JsonState decrypt(char[] password) throws NoSuchAlgorithmException,
-            InvalidKeySpecException,
-            InvalidAlgorithmParameterException,
-            InvalidKeyException,
-            IllegalBlockSizeException,
-            BadPaddingException,
-            JSONException {
-            KeySpec spec = new PBEKeySpec(password, _salt, _ITERATIONS, _KEY_SIZE);
-            SecretKeyFactory keyFactory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA1");
-            SecretKey key = keyFactory.generateSecret(spec);
-            _cipher.init(Cipher.DECRYPT_MODE, key, new IvParameterSpec(_iv));
-            byte[] decrypted = _cipher.doFinal(_data);
-            return new JsonState(new JSONObject(new String(decrypted, StandardCharsets.UTF_8)));
+        public JsonState decrypt(char[] password) throws DatabaseImporterException {
+            try {
+                KeySpec spec = new PBEKeySpec(password, _salt, ITERATIONS, KEY_SIZE);
+                SecretKeyFactory keyFactory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA1");
+                SecretKey key = keyFactory.generateSecret(spec);
+                _cipher.init(Cipher.DECRYPT_MODE, key, new IvParameterSpec(_iv));
+                byte[] decrypted = _cipher.doFinal(_data);
+                return new JsonState(new JSONObject(new String(decrypted, StandardCharsets.UTF_8)));
+            } catch (InvalidAlgorithmParameterException | IllegalBlockSizeException
+                     | JSONException | InvalidKeyException | BadPaddingException
+                     | InvalidKeySpecException | NoSuchAlgorithmException e) {
+                throw new DatabaseImporterException(e);
+            }
         }
 
         @Override
         public void decrypt(Context context, DecryptListener listener) throws DatabaseImporterException {
-            Dialogs.showPasswordInputDialog(context, R.string.enter_password_aegis_title, password -> {
+            Dialogs.showPasswordInputDialog(context, R.string.enter_password_aegis_title, 0, (Dialogs.TextInputListener) password -> {
                 try {
                     listener.onStateDecrypted(decrypt(password));
-                } catch (InvalidAlgorithmParameterException | IllegalBlockSizeException | JSONException |
-                         InvalidKeyException | BadPaddingException | InvalidKeySpecException |
-                         NoSuchAlgorithmException e) {
+                } catch (DatabaseImporterException e) {
                     listener.onError(e);
                 }
             }, dialog -> listener.onCanceled());
@@ -196,26 +180,42 @@ public class AuthenticatorProImporter extends DatabaseImporter {
 
         @Override
         public Result convert() throws DatabaseImporterException {
+            Result res = new Result();
+
             try {
-                return convertThrowing();
-            } catch (OtpInfoException | EncodingException | JSONException e) {
+                JSONArray array = _obj.getJSONArray("Authenticators");
+                for (int i = 0; i < array.length(); i++) {
+                    JSONObject obj = array.getJSONObject(i);
+                    try {
+                        res.addEntry(convertEntry(obj));
+                    } catch (DatabaseImporterEntryException e) {
+                        res.addError(e);
+                    }
+                }
+            } catch (JSONException e) {
                 throw new DatabaseImporterException(e);
             }
+
+            return res;
         }
 
-        private Result convertThrowing() throws JSONException, OtpInfoException, EncodingException {
-            Result ret = new Result();
-            JSONArray authenticators = _obj.getJSONArray("Authenticators");
-            for (int i = 0; i < authenticators.length(); i++) {
-                JSONObject authenticator = authenticators.getJSONObject(i);
-                try {
-                    ret.addEntry(convertEntry(authenticator));
-                } catch (DatabaseImporterEntryException e) {
-                    ret.addError(e);
-                }
-            }
+        private static VaultEntry convertEntry(JSONObject obj) throws DatabaseImporterEntryException {
+            try {
+                int type = obj.getInt("Type");
+                String issuer = obj.getString("Issuer");
+                Object nullableUsername = obj.get("Username");
+                String username = nullableUsername == JSONObject.NULL ? "" : nullableUsername.toString();
+                byte[] secret = Base32.decode(obj.getString("Secret"));
+                Algorithm algo = Algorithm.values()[obj.getInt("Algorithm")];
+                int digits = obj.getInt("Digits");
+                int period = obj.getInt("Period");
+                int counter = obj.getInt("Counter");
 
-            return ret;
+                OtpInfo info = parseOtpInfo(type, secret, algo, digits, period, counter);
+                return new VaultEntry(info, username, issuer);
+            } catch (OtpInfoException | EncodingException | JSONException e) {
+                throw new DatabaseImporterEntryException(e, null);
+            }
         }
     }
 
@@ -229,18 +229,17 @@ public class AuthenticatorProImporter extends DatabaseImporter {
 
         @Override
         public Result convert() throws DatabaseImporterException {
-            Result ret = new Result();
+            Result res = new Result();
+
             for (SqlEntry entry : _entries) {
                 try {
-                    ret.addEntry(entry.convert());
+                    res.addEntry(entry.convert());
                 } catch (DatabaseImporterEntryException e) {
-                    ret.addError(e);
-                } catch (OtpInfoException e) {
-                    throw new DatabaseImporterException(e);
+                    res.addError(e);
                 }
             }
 
-            return ret;
+            return res;
         }
     }
 
@@ -248,48 +247,32 @@ public class AuthenticatorProImporter extends DatabaseImporter {
         private final int _type;
         private final String _issuer;
         private final String _username;
-        private final byte[] _secret;
+        private final String _secret;
         private final Algorithm _algo;
         private final int _digits;
         private final int _period;
         private final int _counter;
+
         public SqlEntry(Cursor cursor) {
             super(cursor);
             _type = SqlImporterHelper.getInt(cursor, "type");
             _issuer = SqlImporterHelper.getString(cursor, "issuer");
             _username = SqlImporterHelper.getString(cursor, "username");
-            String secret = SqlImporterHelper.getString(cursor, "secret");
-            try {
-                _secret = Base32.decode(secret);
-            } catch (EncodingException e) {
-                throw new SQLiteException(secret); // Rethrown upstream as DatabaseImporterException
-            }
+            _secret = SqlImporterHelper.getString(cursor, "secret");
             _algo = Algorithm.values()[SqlImporterHelper.getInt(cursor, "algorithm")];
             _digits = SqlImporterHelper.getInt(cursor, "digits");
             _period = SqlImporterHelper.getInt(cursor, "period");
             _counter = SqlImporterHelper.getInt(cursor, "counter");
         }
 
-        // Used when logging unsupported otp types
-        @SuppressLint("DefaultLocale")
-        @NotNull
-        @Override
-        public String toString() {
-            return String.format(
-                    "Type: %d, Issuer: %s, Username: %s, Secret: %s, Algo: %s, Digits: %d, Period: %d, Counter: %d",
-                    _type,
-                    _issuer,
-                    _username,
-                    Base32.encode(_secret),
-                    _algo.name(),
-                    _digits,
-                    _period,
-                    _counter
-            );
-        }
-
-        public VaultEntry convert() throws DatabaseImporterEntryException, OtpInfoException {
-            return fromAny(_type, _issuer, _username, _secret, _algo, _digits, _period, _counter, this);
+        public VaultEntry convert() throws DatabaseImporterEntryException {
+            try {
+                byte[] secret = Base32.decode(_secret);
+                OtpInfo info = parseOtpInfo(_type, secret, _algo, _digits, _period, _counter);
+                return new VaultEntry(info, _username, _issuer);
+            } catch (EncodingException | OtpInfoException e) {
+                throw new DatabaseImporterEntryException(e, null);
+            }
         }
     }
 }
