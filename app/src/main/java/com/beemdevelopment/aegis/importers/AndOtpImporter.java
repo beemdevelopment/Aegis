@@ -18,7 +18,7 @@ import com.beemdevelopment.aegis.otp.OtpInfoException;
 import com.beemdevelopment.aegis.otp.SteamInfo;
 import com.beemdevelopment.aegis.otp.TotpInfo;
 import com.beemdevelopment.aegis.ui.dialogs.Dialogs;
-import com.beemdevelopment.aegis.ui.tasks.ProgressDialogTask;
+import com.beemdevelopment.aegis.ui.tasks.PBKDFTask;
 import com.beemdevelopment.aegis.util.IOUtils;
 import com.beemdevelopment.aegis.vault.VaultEntry;
 import com.topjohnwu.superuser.io.SuFile;
@@ -35,8 +35,6 @@ import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.security.spec.InvalidKeySpecException;
-import java.security.spec.KeySpec;
 import java.util.Arrays;
 import java.util.Locale;
 
@@ -45,8 +43,6 @@ import javax.crypto.Cipher;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 import javax.crypto.SecretKey;
-import javax.crypto.SecretKeyFactory;
-import javax.crypto.spec.PBEKeySpec;
 import javax.crypto.spec.SecretKeySpec;
 
 public class AndOtpImporter extends DatabaseImporter {
@@ -117,7 +113,7 @@ public class AndOtpImporter extends DatabaseImporter {
             }
         }
 
-        private KeyDerivationParams getKeyDerivationParams(char[] password) throws DatabaseImporterException {
+        private PBKDFTask.Params getKeyDerivationParams(char[] password) throws DatabaseImporterException {
             byte[] iterBytes = Arrays.copyOfRange(_data, 0, INT_SIZE);
             int iterations = ByteBuffer.wrap(iterBytes).getInt();
             if (iterations < 1) {
@@ -131,7 +127,7 @@ public class AndOtpImporter extends DatabaseImporter {
             }
 
             byte[] salt = Arrays.copyOfRange(_data, INT_SIZE, INT_SIZE + SALT_SIZE);
-            return new KeyDerivationParams(password, salt, iterations);
+            return new PBKDFTask.Params("PBKDF2WithHmacSHA1", KEY_SIZE, password, salt, iterations);
         }
 
         protected DecryptedState decryptOldFormat(char[] password) throws DatabaseImporterException {
@@ -155,8 +151,8 @@ public class AndOtpImporter extends DatabaseImporter {
 
         protected DecryptedState decryptNewFormat(char[] password)
             throws DatabaseImporterException {
-            KeyDerivationParams params = getKeyDerivationParams(password);
-            SecretKey key = AndOtpKeyDerivationTask.deriveKey(params);
+            PBKDFTask.Params params = getKeyDerivationParams(password);
+            SecretKey key = PBKDFTask.deriveKey(params);
             return decryptNewFormat(key);
         }
 
@@ -165,8 +161,8 @@ public class AndOtpImporter extends DatabaseImporter {
                 DecryptedState state = decryptOldFormat(password);
                 listener.onStateDecrypted(state);
             } else {
-                KeyDerivationParams params = getKeyDerivationParams(password);
-                AndOtpKeyDerivationTask task = new AndOtpKeyDerivationTask(context, key -> {
+                PBKDFTask.Params params = getKeyDerivationParams(password);
+                PBKDFTask task = new PBKDFTask(context, key -> {
                     try {
                         DecryptedState state = decryptNewFormat(key);
                         listener.onStateDecrypted(state);
@@ -269,71 +265,10 @@ public class AndOtpImporter extends DatabaseImporter {
                 }
 
                 return new VaultEntry(info, name, issuer);
-            } catch (DatabaseImporterException | EncodingException | OtpInfoException | JSONException e) {
+            } catch (DatabaseImporterException | EncodingException | OtpInfoException |
+                     JSONException e) {
                 throw new DatabaseImporterEntryException(e, obj.toString());
             }
-        }
-    }
-
-    protected static class AndOtpKeyDerivationTask extends ProgressDialogTask<AndOtpImporter.KeyDerivationParams, SecretKey> {
-        private Callback _cb;
-
-        public AndOtpKeyDerivationTask(Context context, Callback cb) {
-            super(context, context.getString(R.string.unlocking_vault));
-            _cb = cb;
-        }
-
-        @Override
-        protected SecretKey doInBackground(AndOtpImporter.KeyDerivationParams... args) {
-            setPriority();
-
-            AndOtpImporter.KeyDerivationParams params = args[0];
-            return deriveKey(params);
-        }
-
-        protected static SecretKey deriveKey(KeyDerivationParams params) {
-            try {
-                SecretKeyFactory factory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA1");
-                KeySpec spec = new PBEKeySpec(params.getPassword(), params.getSalt(), params.getIterations(), KEY_SIZE);
-                SecretKey key = factory.generateSecret(spec);
-                return new SecretKeySpec(key.getEncoded(), "AES");
-            } catch (NoSuchAlgorithmException | InvalidKeySpecException e) {
-                throw new RuntimeException(e);
-            }
-        }
-
-        @Override
-        protected void onPostExecute(SecretKey key) {
-            super.onPostExecute(key);
-            _cb.onTaskFinished(key);
-        }
-
-        public interface Callback {
-            void onTaskFinished(SecretKey key);
-        }
-    }
-
-    protected static class KeyDerivationParams {
-        private final char[] _password;
-        private final byte[] _salt;
-        private final int _iterations;
-
-        public KeyDerivationParams(char[] password, byte[] salt, int iterations) {
-            _iterations = iterations;
-            _password = password;
-            _salt = salt;
-        }
-
-        public char[] getPassword() {
-            return _password;
-        }
-
-        public int getIterations() {
-            return _iterations;
-        }
-
-        public byte[] getSalt() {
-            return _salt;
         }
     }
 }

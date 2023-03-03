@@ -4,15 +4,19 @@ import android.content.Context;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 
+import androidx.lifecycle.Lifecycle;
+
 import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.encoding.Base32;
 import com.beemdevelopment.aegis.encoding.EncodingException;
+import com.beemdevelopment.aegis.helpers.ContextHelper;
 import com.beemdevelopment.aegis.otp.HotpInfo;
 import com.beemdevelopment.aegis.otp.OtpInfo;
 import com.beemdevelopment.aegis.otp.OtpInfoException;
 import com.beemdevelopment.aegis.otp.SteamInfo;
 import com.beemdevelopment.aegis.otp.TotpInfo;
 import com.beemdevelopment.aegis.ui.dialogs.Dialogs;
+import com.beemdevelopment.aegis.ui.tasks.PBKDFTask;
 import com.beemdevelopment.aegis.util.IOUtils;
 import com.beemdevelopment.aegis.vault.VaultEntry;
 import com.topjohnwu.superuser.io.SuFile;
@@ -30,8 +34,6 @@ import java.nio.charset.StandardCharsets;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
-import java.security.spec.InvalidKeySpecException;
-import java.security.spec.KeySpec;
 import java.util.List;
 
 import javax.crypto.BadPaddingException;
@@ -39,9 +41,7 @@ import javax.crypto.Cipher;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 import javax.crypto.SecretKey;
-import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.IvParameterSpec;
-import javax.crypto.spec.PBEKeySpec;
 
 public class AuthenticatorProImporter extends DatabaseImporter {
     private static final String HEADER = "AuthenticatorPro";
@@ -144,16 +144,18 @@ public class AuthenticatorProImporter extends DatabaseImporter {
         }
 
         public JsonState decrypt(char[] password) throws DatabaseImporterException {
+            PBKDFTask.Params params = getKeyDerivationParams(password);
+            SecretKey key = PBKDFTask.deriveKey(params);
+            return decrypt(key);
+        }
+
+        public JsonState decrypt(SecretKey key) throws DatabaseImporterException {
             try {
-                KeySpec spec = new PBEKeySpec(password, _salt, ITERATIONS, KEY_SIZE);
-                SecretKeyFactory keyFactory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA1");
-                SecretKey key = keyFactory.generateSecret(spec);
                 _cipher.init(Cipher.DECRYPT_MODE, key, new IvParameterSpec(_iv));
                 byte[] decrypted = _cipher.doFinal(_data);
                 return new JsonState(new JSONObject(new String(decrypted, StandardCharsets.UTF_8)));
             } catch (InvalidAlgorithmParameterException | IllegalBlockSizeException
-                     | JSONException | InvalidKeyException | BadPaddingException
-                     | InvalidKeySpecException | NoSuchAlgorithmException e) {
+                     | JSONException | InvalidKeyException | BadPaddingException e) {
                 throw new DatabaseImporterException(e);
             }
         }
@@ -161,12 +163,22 @@ public class AuthenticatorProImporter extends DatabaseImporter {
         @Override
         public void decrypt(Context context, DecryptListener listener) throws DatabaseImporterException {
             Dialogs.showPasswordInputDialog(context, R.string.enter_password_aegis_title, 0, (Dialogs.TextInputListener) password -> {
-                try {
-                    listener.onStateDecrypted(decrypt(password));
-                } catch (DatabaseImporterException e) {
-                    listener.onError(e);
-                }
+                PBKDFTask.Params params = getKeyDerivationParams(password);
+                PBKDFTask task = new PBKDFTask(context, key -> {
+                    try {
+                        AuthenticatorProImporter.JsonState state = decrypt(key);
+                        listener.onStateDecrypted(state);
+                    } catch (DatabaseImporterException e) {
+                        listener.onError(e);
+                    }
+                });
+                Lifecycle lifecycle = ContextHelper.getLifecycle(context);
+                task.execute(lifecycle, params);
             }, dialog -> listener.onCanceled());
+        }
+
+        private PBKDFTask.Params getKeyDerivationParams(char[] password) {
+            return new PBKDFTask.Params("PBKDF2WithHmacSHA1", KEY_SIZE, password, _salt, ITERATIONS);
         }
     }
 
