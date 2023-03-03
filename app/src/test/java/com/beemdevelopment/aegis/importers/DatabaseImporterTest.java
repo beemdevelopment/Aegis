@@ -21,13 +21,20 @@ import com.beemdevelopment.aegis.util.UUIDMap;
 import com.beemdevelopment.aegis.vault.VaultEntry;
 import com.google.common.collect.Lists;
 
+import org.json.JSONException;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.RobolectricTestRunner;
 
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.security.InvalidAlgorithmParameterException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
 import java.util.Arrays;
 import java.util.List;
 
@@ -140,6 +147,32 @@ public class DatabaseImporterTest {
     public void testImportTotpAuthenticatorInternal() throws IOException, DatabaseImporterException, OtpInfoException {
         List<VaultEntry> entries = importPlain(TotpAuthenticatorImporter.class, "totp_authenticator_internal.xml", true);
         checkImportedTotpAuthenticatorEntries(entries);
+    }
+
+    @Test
+    public void testImportAuthProEncrypted() throws DatabaseImporterException, IOException, OtpInfoException {
+        List<VaultEntry> entries = importEncrypted(AuthenticatorProImporter.class, "authpro_encrypted.bin", state -> {
+            char[] password = "test".toCharArray();
+            try {
+                return ((AuthenticatorProImporter.EncryptedState) state).decrypt(password);
+            } catch (NoSuchAlgorithmException | InvalidKeySpecException | InvalidAlgorithmParameterException |
+                     InvalidKeyException | IllegalBlockSizeException | BadPaddingException | JSONException e) {
+                throw new DatabaseImporterException(e);
+            }
+        });
+        checkImportedEntries(entries);
+    }
+
+    @Test
+    public void testImportAuthProInternal() throws DatabaseImporterException, IOException, OtpInfoException {
+        List<VaultEntry> entries = importPlain(AuthenticatorProImporter.class, "authpro_internal.db", true);
+        checkImportedEntries(entries);
+    }
+
+    @Test
+    public void testImportAuthProPlain() throws DatabaseImporterException, IOException, OtpInfoException {
+        List<VaultEntry> entries = importPlain(AuthenticatorProImporter.class, "authpro_plain.json");
+        checkImportedEntries(entries);
     }
 
     @Test

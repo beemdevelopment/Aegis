@@ -33,6 +33,7 @@ public abstract class DatabaseImporter {
         _importers.add(new Definition("Aegis", AegisImporter.class, R.string.importer_help_aegis, false));
         _importers.add(new Definition("andOTP", AndOtpImporter.class, R.string.importer_help_andotp, false));
         _importers.add(new Definition("Authenticator Plus", AuthenticatorPlusImporter.class, R.string.importer_help_authenticator_plus, false));
+        _importers.add(new Definition("Authenticator Pro", AuthenticatorProImporter.class, R.string.importer_help_authenticator_pro, true));
         _importers.add(new Definition("Authy", AuthyImporter.class, R.string.importer_help_authy, true));
         _importers.add(new Definition("Battle.net Authenticator", BattleNetImporter.class, R.string.importer_help_battle_net_authenticator, true));
         _importers.add(new Definition("Bitwarden", BitwardenImporter.class, R.string.importer_help_bitwarden, false));
