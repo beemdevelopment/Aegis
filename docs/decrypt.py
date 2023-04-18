@@ -17,24 +17,20 @@ from cryptography.hazmat.primitives.ciphers.aead import AESGCM
 from cryptography.hazmat.primitives.kdf.scrypt import Scrypt
 from cryptography.hazmat.backends import default_backend
 import cryptography
+
 backend = default_backend()
+
 
 def die(msg, code=1):
     print(msg, file=sys.stderr)
     exit(code)
 
-def main():
-    parser = argparse.ArgumentParser(description="Decrypt an Aegis vault")
-    parser.add_argument("--input", dest="input", required=True, help="encrypted Aegis vault file")
-    parser.add_argument("--output", dest="output", default="-", help="output file ('-' for stdout)")
-    args = parser.parse_args()
 
-    # parse the Aegis vault file
-    with io.open(args.input, "r") as f:
+# parse and decrypt the Aegis vault file
+def decrypt_db(file, password):
+
+    with io.open(file, "r") as f:
         data = json.load(f)
-
-    # ask the user for a password
-    password = getpass.getpass().encode("utf-8")
 
     # extract all password slots from the header
     header = data["header"]
@@ -82,12 +78,27 @@ def main():
         associated_data=None
     )
 
-    db = db.decode("utf-8")
+    return db.decode("utf-8")
+
+
+def main():
+    parser = argparse.ArgumentParser(description="Decrypt an Aegis vault")
+    parser.add_argument("--input", dest="input", required=True, help="encrypted Aegis vault file")
+    parser.add_argument("--output", dest="output", default="-", help="output file ('-' for stdout)")
+    args = parser.parse_args()
+
+    # ask the user for a password
+    password = getpass.getpass().encode("utf-8")
+
+    # parse and decrypt the Aegis vault file
+    db = decrypt_db(args.input, password)
+
     if args.output != "-":
         with io.open(args.output, "w") as f:
             f.write(db)
     else:
         print(db)
+
 
 if __name__ == "__main__":
     main()
