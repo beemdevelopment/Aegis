@@ -283,6 +283,8 @@
     <string name="unlocking_vault">Unlocking the vault</string>
     <string name="remove_group">Remove group</string>
     <string name="remove_group_description">Are you sure you want to remove this group? Entries in this group will automatically switch to \'No group\'.</string>
+    <string name="remove_unused_groups">Delete unused groups</string>
+    <string name="remove_unused_groups_description">Are you sure you want to delete all groups that are not assigned to an entry?</string>
     <string name="remove_icon_pack">Remove icon pack</string>
     <string name="remove_icon_pack_description">Are you sure you want to remove this icon pack? Entries that use icons from this pack will not be affected.</string>
     <string name="details">Details</string>

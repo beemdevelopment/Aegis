@@ -7,6 +7,7 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.beemdevelopment.aegis.R;
+import com.beemdevelopment.aegis.vault.VaultGroup;
 
 public class GroupHolder extends RecyclerView.ViewHolder {
     private TextView _slotName;
@@ -18,8 +19,8 @@ public class GroupHolder extends RecyclerView.ViewHolder {
         _buttonDelete = view.findViewById(R.id.button_delete);
     }
 
-    public void setData(String groupName) {
-        _slotName.setText(groupName);
+    public void setData(VaultGroup group) {
+        _slotName.setText(group.getName());
     }
 
     public void setOnDeleteClickListener(View.OnClickListener listener) {

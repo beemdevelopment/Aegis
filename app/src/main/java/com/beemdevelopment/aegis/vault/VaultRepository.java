@@ -20,9 +20,9 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintStream;
 import java.nio.charset.StandardCharsets;
-import java.text.Collator;
 import java.util.Collection;
-import java.util.TreeSet;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -220,6 +220,8 @@ public class VaultRepository {
     }
 
     public void addEntry(VaultEntry entry) {
+        // Entries added by importing a file may contain an old group that needs to be migrated
+        _vault.migrateOldGroup(entry);
         _vault.getEntries().add(entry);
     }
 
@@ -231,8 +233,12 @@ public class VaultRepository {
         return _vault.getEntries().remove(entry);
     }
 
-    public void wipeEntries() {
+    /**
+     * Wipes all entries and groups from the vault.
+     */
+    public void wipeContents() {
         _vault.getEntries().wipe();
+        _vault.getGroups().wipe();
     }
 
     public VaultEntry replaceEntry(VaultEntry entry) {
@@ -240,8 +246,8 @@ public class VaultRepository {
     }
 
     /**
-      * Moves entry1 to the position of entry2.
-      */
+     * Moves entry1 to the position of entry2.
+     */
     public void moveEntry(VaultEntry entry1, VaultEntry entry2) {
         _vault.getEntries().move(entry1, entry2);
     }
@@ -254,15 +260,54 @@ public class VaultRepository {
         return _vault.getEntries().getValues();
     }
 
-    public TreeSet<String> getGroups() {
-        TreeSet<String> groups = new TreeSet<>(Collator.getInstance());
+    public void addGroup(VaultGroup group) {
+        _vault.getGroups().add(group);
+    }
+
+    public VaultGroup getGroupByUUID(UUID uuid) {
+        return _vault.getGroups().getByUUID(uuid);
+    }
+
+    @Nullable
+    public VaultGroup findGroupByUUID(UUID uuid) {
+        return _vault.getGroups().has(uuid) ? _vault.getGroups().getByUUID(uuid) : null;
+    }
+
+    @Nullable
+    public VaultGroup findGroupByName(String name) {
+        return _vault.getGroups().getValues()
+                .stream()
+                .filter(g -> g.getName().equals(name))
+                .findFirst()
+                .orElse(null);
+    }
+
+    public void removeGroup(UUID groupUuid) {
+        VaultGroup group = _vault.getGroups().getByUUID(groupUuid);
+        removeGroup(group);
+    }
+
+    public void removeGroup(VaultGroup group) {
         for (VaultEntry entry : getEntries()) {
-            String group = entry.getGroup();
-            if (group != null) {
-                groups.add(group);
-            }
+            entry.removeGroup(group.getUUID());
         }
-        return groups;
+
+        _vault.getGroups().remove(group);
+    }
+
+    public Collection<VaultGroup> getGroups() {
+        return _vault.getGroups().getValues();
+    }
+
+    public Collection<VaultGroup> getUsedGroups() {
+        Set<UUID> usedGroups = new HashSet<>();
+        for (VaultEntry entry : getEntries()) {
+            usedGroups.addAll(entry.getGroups());
+        }
+
+        return getGroups().stream()
+                .filter(vg -> usedGroups.contains(vg.getUUID()))
+                .collect(Collectors.toList());
     }
 
     public VaultFileCredentials getCredentials() {

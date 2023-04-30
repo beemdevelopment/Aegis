@@ -14,16 +14,17 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.ui.dialogs.Dialogs;
 import com.beemdevelopment.aegis.ui.views.GroupAdapter;
-import com.beemdevelopment.aegis.vault.VaultEntry;
+import com.beemdevelopment.aegis.vault.VaultGroup;
 
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Objects;
+import java.util.Set;
+import java.util.UUID;
 
 public class GroupManagerActivity extends AegisActivity implements GroupAdapter.Listener {
     private GroupAdapter _adapter;
-    private HashSet<String> _removedGroups;
+    private HashSet<UUID> _removedGroups;
     private RecyclerView _groupsView;
     private View _emptyStateView;
     private BackPressHandler _backPressHandler;
@@ -43,11 +44,14 @@ public class GroupManagerActivity extends AegisActivity implements GroupAdapter.
         _backPressHandler = new BackPressHandler();
         getOnBackPressedDispatcher().addCallback(this, _backPressHandler);
 
+        _removedGroups = new HashSet<>();
         if (savedInstanceState != null) {
             List<String> groups = savedInstanceState.getStringArrayList("removedGroups");
-            _removedGroups = new HashSet<>(Objects.requireNonNull(groups));
-        } else {
-            _removedGroups = new HashSet<>();
+            if (groups != null) {
+                for (String uuid : groups) {
+                    _removedGroups.add(UUID.fromString(uuid));
+                }
+            }
         }
 
         _adapter = new GroupAdapter(this);
@@ -57,8 +61,10 @@ public class GroupManagerActivity extends AegisActivity implements GroupAdapter.
         _groupsView.setAdapter(_adapter);
         _groupsView.setNestedScrollingEnabled(false);
 
-        for (String group : _vaultManager.getVault().getGroups()) {
-            _adapter.addGroup(group);
+        for (VaultGroup group : _vaultManager.getVault().getGroups()) {
+            if (!_removedGroups.contains(group.getUUID())) {
+                _adapter.addGroup(group);
+            }
         }
 
         _emptyStateView = findViewById(R.id.vEmptyList);
@@ -68,17 +74,41 @@ public class GroupManagerActivity extends AegisActivity implements GroupAdapter.
     @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putStringArrayList("removedGroups", new ArrayList<>(_removedGroups));
+        ArrayList<String> removed = new ArrayList<>();
+        for (UUID uuid : _removedGroups) {
+            removed.add(uuid.toString());
+        }
+
+        outState.putStringArrayList("removedGroups", removed);
     }
 
     @Override
-    public void onRemoveGroup(String group) {
+    public void onRemoveGroup(VaultGroup group) {
         Dialogs.showSecureDialog(new AlertDialog.Builder(this)
                 .setTitle(R.string.remove_group)
                 .setMessage(R.string.remove_group_description)
                 .setPositiveButton(android.R.string.yes, (dialog, whichButton) -> {
-                    _removedGroups.add(group);
+                    _removedGroups.add(group.getUUID());
                     _adapter.removeGroup(group);
+                    _backPressHandler.setEnabled(true);
+                    updateEmptyState();
+                })
+                .setNegativeButton(android.R.string.no, null)
+                .create());
+    }
+
+    public void onRemoveUnusedGroups() {
+        Dialogs.showSecureDialog(new AlertDialog.Builder(this)
+                .setTitle(R.string.remove_unused_groups)
+                .setMessage(R.string.remove_unused_groups_description)
+                .setPositiveButton(android.R.string.yes, (dialog, whichButton) -> {
+                    Set<VaultGroup> unusedGroups = new HashSet<>(_vaultManager.getVault().getGroups());
+                    unusedGroups.removeAll(_vaultManager.getVault().getUsedGroups());
+
+                    for (VaultGroup group : unusedGroups) {
+                        _removedGroups.add(group.getUUID());
+                        _adapter.removeGroup(group);
+                    }
                     _backPressHandler.setEnabled(true);
                     updateEmptyState();
                 })
@@ -88,10 +118,8 @@ public class GroupManagerActivity extends AegisActivity implements GroupAdapter.
 
     private void saveAndFinish() {
         if (!_removedGroups.isEmpty()) {
-            for (VaultEntry entry : _vaultManager.getVault().getEntries()) {
-                if (_removedGroups.contains(entry.getGroup())) {
-                    entry.setGroup(null);
-                }
+            for (UUID uuid : _removedGroups) {
+                _vaultManager.getVault().removeGroup(uuid);
             }
 
             saveAndBackupVault();
@@ -125,6 +153,9 @@ public class GroupManagerActivity extends AegisActivity implements GroupAdapter.
                 break;
             case R.id.action_save:
                 saveAndFinish();
+                break;
+            case R.id.action_delete_unused_groups:
+                onRemoveUnusedGroups();
                 break;
             default:
                 return super.onOptionsItemSelected(item);

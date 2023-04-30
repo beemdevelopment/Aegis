@@ -1,7 +1,7 @@
 package com.beemdevelopment.aegis.ui;
 
+import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
@@ -15,7 +15,6 @@ import android.view.ViewGroup;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
-import android.widget.AdapterView;
 import android.widget.AutoCompleteTextView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -54,11 +53,13 @@ import com.beemdevelopment.aegis.otp.YandexInfo;
 import com.beemdevelopment.aegis.ui.dialogs.Dialogs;
 import com.beemdevelopment.aegis.ui.dialogs.IconPickerDialog;
 import com.beemdevelopment.aegis.ui.glide.IconLoader;
+import com.beemdevelopment.aegis.ui.models.VaultGroupModel;
 import com.beemdevelopment.aegis.ui.tasks.ImportFileTask;
 import com.beemdevelopment.aegis.ui.views.IconAdapter;
 import com.beemdevelopment.aegis.util.Cloner;
 import com.beemdevelopment.aegis.util.IOUtils;
 import com.beemdevelopment.aegis.vault.VaultEntry;
+import com.beemdevelopment.aegis.vault.VaultGroup;
 import com.beemdevelopment.aegis.vault.VaultRepository;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -73,11 +74,14 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
-import java.util.TreeSet;
+import java.util.Objects;
+import java.util.Set;
 import java.util.UUID;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Collectors;
@@ -90,7 +94,7 @@ public class EditEntryActivity extends AegisActivity {
     private boolean _isNew = false;
     private boolean _isManual = false;
     private VaultEntry _origEntry;
-    private TreeSet<String> _groups;
+    private Collection<VaultGroup> _groups;
     private boolean _hasCustomIcon = false;
     // keep track of icon changes separately as the generated jpeg's are not deterministic
     private boolean _hasChangedIcon = false;
@@ -114,7 +118,7 @@ public class EditEntryActivity extends AegisActivity {
     private AutoCompleteTextView _dropdownAlgo;
     private TextInputLayout _dropdownAlgoLayout;
     private AutoCompleteTextView _dropdownGroup;
-    private List<String> _dropdownGroupList = new ArrayList<>();
+    private List<VaultGroupModel> _dropdownGroupList = new ArrayList<>();
 
     private KropView _kropView;
 
@@ -262,8 +266,13 @@ public class EditEntryActivity extends AegisActivity {
         updateAdvancedFieldStatus(_origEntry.getInfo().getTypeId());
         updatePinFieldVisibility(_origEntry.getInfo().getTypeId());
 
-        String group = _origEntry.getGroup();
-        setGroup(group);
+        Set<UUID> groups = _origEntry.getGroups();
+        if (groups.isEmpty()) {
+            setGroup(new VaultGroupModel(getString(R.string.no_group)));
+        } else {
+            VaultGroup group = _vaultManager.getVault().getGroupByUUID(groups.iterator().next());
+            setGroup(new VaultGroupModel(group));
+        }
 
         // Update the icon if the issuer or name has changed
         _textIssuer.addTextChangedListener(_nameChangeListener);
@@ -327,24 +336,31 @@ public class EditEntryActivity extends AegisActivity {
             startIconSelection();
         });
 
-        _dropdownGroup.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            private int prevPosition = _dropdownGroupList.indexOf(_dropdownGroup.getText().toString());
-
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                if (position == _dropdownGroupList.size() - 1) {
-                    Dialogs.showTextInputDialog(EditEntryActivity.this, R.string.set_group, R.string.group_name_hint, text -> {
-                        String groupName = new String(text);
-                        if (!groupName.isEmpty()) {
-                            _groups.add(groupName);
-                            updateGroupDropdownList();
-                            _dropdownGroup.setText(groupName, false);
+        _dropdownGroup.setOnItemClickListener((parent, view, position, id) -> {
+            VaultGroupModel selectedGroup = _dropdownGroupList.get(position);
+            if (selectedGroup.isPlaceholder() && Objects.equals(selectedGroup.getName(), getString(R.string.new_group))) {
+                Dialogs.TextInputListener onAddGroup = text -> {
+                    String groupName = new String(text).trim();
+                    if (!groupName.isEmpty()) {
+                        VaultGroup group = _vaultManager.getVault().findGroupByName(groupName);
+                        if (group == null) {
+                            group = new VaultGroup(groupName);
+                            _vaultManager.getVault().addGroup(group);
                         }
-                    });
-                    _dropdownGroup.setText(_dropdownGroupList.get(prevPosition), false);
-                } else {
-                    prevPosition = position;
-                }
+
+                        updateGroupDropdownList();
+                        setGroup(new VaultGroupModel(group));
+                    }
+                };
+
+                DialogInterface.OnCancelListener onCancel = dialogInterface -> {
+                    VaultGroupModel previous = (VaultGroupModel) _dropdownGroup.getTag();
+                    _dropdownGroup.setText(previous.getName(), false);
+                };
+
+                Dialogs.showTextInputDialog(EditEntryActivity.this, R.string.set_group, R.string.group_name_hint, onAddGroup, onCancel);
+            } else {
+                setGroup(_dropdownGroupList.get(position));
             }
         });
 
@@ -365,13 +381,9 @@ public class EditEntryActivity extends AegisActivity {
         _textPin.setHint(otpType.equals(MotpInfo.ID) ? R.string.motp_pin : R.string.yandex_pin);
     }
 
-    private void setGroup(String groupName) {
-        int pos = 0;
-        if (groupName != null) {
-            pos = _groups.contains(groupName) ? _groups.headSet(groupName).size() + 1 : 0;
-        }
-
-        _dropdownGroup.setText(_dropdownGroupList.get(pos), false);
+    private void setGroup(VaultGroupModel group) {
+        _dropdownGroup.setText(group.getName(), false);
+        _dropdownGroup.setTag(group);
     }
 
     private void openAdvancedSettings() {
@@ -395,11 +407,10 @@ public class EditEntryActivity extends AegisActivity {
     }
 
     private void updateGroupDropdownList() {
-        Resources res = getResources();
         _dropdownGroupList.clear();
-        _dropdownGroupList.add(res.getString(R.string.no_group));
-        _dropdownGroupList.addAll(_groups);
-        _dropdownGroupList.add(res.getString(R.string.new_group));
+        _dropdownGroupList.add(new VaultGroupModel(getString(R.string.new_group)));
+        _dropdownGroupList.addAll(_groups.stream().map(VaultGroupModel::new).collect(Collectors.toList()));
+        _dropdownGroupList.add(new VaultGroupModel(getString(R.string.no_group)));
     }
 
     private boolean hasUnsavedChanges(VaultEntry newEntry) {
@@ -726,12 +737,13 @@ public class EditEntryActivity extends AegisActivity {
         entry.setName(_textName.getText().toString());
         entry.setNote(_textNote.getText().toString());
 
-        int groupPos = _dropdownGroupList.indexOf(_dropdownGroup.getText().toString());
-        if (groupPos != 0) {
-            String group = _dropdownGroupList.get(groupPos);
-            entry.setGroup(group);
+        VaultGroupModel group = (VaultGroupModel) _dropdownGroup.getTag();
+        if (group.isPlaceholder()) {
+            entry.setGroups(new HashSet<>());
         } else {
-            entry.setGroup(null);
+            Set<UUID> groups = new HashSet<>();
+            groups.add(group.getUUID());
+            entry.setGroups(groups);
         }
 
         if (_hasChangedIcon) {

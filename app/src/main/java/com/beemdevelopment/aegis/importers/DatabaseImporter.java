@@ -8,6 +8,7 @@ import androidx.annotation.StringRes;
 import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.util.UUIDMap;
 import com.beemdevelopment.aegis.vault.VaultEntry;
+import com.beemdevelopment.aegis.vault.VaultGroup;
 import com.topjohnwu.superuser.Shell;
 import com.topjohnwu.superuser.io.SuFile;
 import com.topjohnwu.superuser.io.SuFileInputStream;
@@ -168,10 +169,15 @@ public abstract class DatabaseImporter {
 
     public static class Result {
         private UUIDMap<VaultEntry> _entries = new UUIDMap<>();
+        private UUIDMap<VaultGroup> _groups = new UUIDMap<>();
         private List<DatabaseImporterEntryException> _errors = new ArrayList<>();
 
         public void addEntry(VaultEntry entry) {
             _entries.add(entry);
+        }
+
+        public void addGroup(VaultGroup group) {
+            _groups.add(group);
         }
 
         public void addError(DatabaseImporterEntryException error) {
@@ -180,6 +186,10 @@ public abstract class DatabaseImporter {
 
         public UUIDMap<VaultEntry> getEntries() {
             return _entries;
+        }
+
+        public UUIDMap<VaultGroup> getGroups() {
+            return _groups;
         }
 
         public List<DatabaseImporterEntryException> getErrors() {

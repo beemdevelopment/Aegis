@@ -1,0 +1,117 @@
+{
+    "version": 1,
+    "header": {
+        "slots": null,
+        "params": null
+    },
+    "db": {
+        "version": 2,
+        "entries": [
+            {
+                "type": "totp",
+                "uuid": "3ae6f1ad-2e65-4ed2-a953-1ec0dff2386d",
+                "name": "Mason",
+                "issuer": "Deno",
+                "icon": null,
+                "icon_mime": null,
+                "group": "group1",
+                "info": {
+                    "secret": "4SJHB4GSD43FZBAI7C2HLRJGPQ",
+                    "algo": "SHA1",
+                    "digits": 6,
+                    "period": 30
+                }
+            },
+            {
+                "type": "totp",
+                "uuid": "84b55971-a3d2-4173-a5bb-0aea113dbc17",
+                "name": "James",
+                "issuer": "SPDX",
+                "icon": null,
+                "icon_mime": null,
+                "group": null,
+                "info": {
+                    "secret": "5OM4WOOGPLQEF6UGN3CPEOOLWU",
+                    "algo": "SHA256",
+                    "digits": 7,
+                    "period": 20
+                }
+            },
+            {
+                "type": "totp",
+                "uuid": "3deaff2e-f181-4837-80e1-fdf0c54e9363",
+                "name": "Elijah",
+                "issuer": "Airbnb",
+                "icon": null,
+                "icon_mime": null,
+                "group": "group1",
+                "info": {
+                    "secret": "7ELGJSGXNCCTV3O6LKJWYFV2RA",
+                    "algo": "SHA512",
+                    "digits": 8,
+                    "period": 50
+                }
+            },
+            {
+                "type": "hotp",
+                "uuid": "0a8c0571-ff6f-4b02-aa4b-50553b4fb4fe",
+                "name": "James",
+                "issuer": "Issuu",
+                "icon": null,
+                "icon_mime": null,
+                "group": "group2",
+                "info": {
+                    "secret": "YOOMIXWS5GN6RTBPUFFWKTW5M4",
+                    "algo": "SHA1",
+                    "digits": 6,
+                    "counter": 1
+                }
+            },
+            {
+                "type": "hotp",
+                "uuid": "03e572f2-8ebd-44b0-a57e-e958af74815d",
+                "name": "Benjamin",
+                "issuer": "Air Canada",
+                "icon": null,
+                "icon_mime": null,
+                "group": null,
+                "info": {
+                    "secret": "KUVJJOM753IHTNDSZVCNKL7GII",
+                    "algo": "SHA256",
+                    "digits": 7,
+                    "counter": 50
+                }
+            },
+            {
+                "type": "hotp",
+                "uuid": "b25f8815-007f-40f7-a700-ce058ac05435",
+                "name": "Mason",
+                "issuer": "WWE",
+                "icon": null,
+                "icon_mime": null,
+                "group": null,
+                "info": {
+                    "secret": "5VAML3X35THCEBVRLV24CGBKOY",
+                    "algo": "SHA512",
+                    "digits": 8,
+                    "counter": 10300
+                }
+            },
+            {
+                "type": "steam",
+                "uuid": "5b11ae3b-6fc3-4d46-8ca7-cf0aea7de920",
+                "name": "Sophia",
+                "issuer": "Boeing",
+                "icon": null,
+                "icon_mime": null,
+                "group": null,
+                "info": {
+                    "secret": "JRZCL47CMXVOQMNPZR2F7J4RGI",
+                    "algo": "SHA1",
+                    "digits": 5,
+                    "period": 30
+                }
+            }
+        ]
+    }
+}

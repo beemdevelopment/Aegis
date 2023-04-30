@@ -7,19 +7,20 @@ import android.view.ViewGroup;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.beemdevelopment.aegis.R;
+import com.beemdevelopment.aegis.vault.VaultGroup;
 
 import java.util.ArrayList;
 
 public class GroupAdapter extends RecyclerView.Adapter<GroupHolder> {
     private GroupAdapter.Listener _listener;
-    private ArrayList<String> _groups;
+    private ArrayList<VaultGroup> _groups;
 
     public GroupAdapter(GroupAdapter.Listener listener) {
         _listener = listener;
         _groups = new ArrayList<>();
     }
 
-    public void addGroup(String group) {
+    public void addGroup(VaultGroup group) {
         _groups.add(group);
 
         int position = getItemCount() - 1;
@@ -30,7 +31,7 @@ public class GroupAdapter extends RecyclerView.Adapter<GroupHolder> {
         }
     }
 
-    public void removeGroup(String group) {
+    public void removeGroup(VaultGroup group) {
         int position = _groups.indexOf(group);
         _groups.remove(position);
         notifyItemRemoved(position);
@@ -57,6 +58,6 @@ public class GroupAdapter extends RecyclerView.Adapter<GroupHolder> {
     }
 
     public interface Listener {
-        void onRemoveGroup(String group);
+        void onRemoveGroup(VaultGroup group);
     }
 }
