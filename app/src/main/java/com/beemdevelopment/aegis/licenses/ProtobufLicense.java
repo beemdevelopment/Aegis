@@ -13,12 +13,12 @@ public class ProtobufLicense extends License {
 
     @Override
     public String readSummaryTextFromResources(Context context) {
-        return getContent(context, R.raw.protobuf_license);
+        return getContentRawLicense(context);
     }
 
     @Override
     public String readFullTextFromResources(Context context) {
-        return getContent(context, R.raw.protobuf_license);
+        return getContentRawLicense(context);
     }
 
     @Override
@@ -29,5 +29,9 @@ public class ProtobufLicense extends License {
     @Override
     public String getUrl() {
         return "https://raw.githubusercontent.com/protocolbuffers/protobuf/master/LICENSE";
+    }
+
+    private String getContentRawLicense(Context context) {
+        return getContent(context, R.raw.protobuf_license);
     }
 }

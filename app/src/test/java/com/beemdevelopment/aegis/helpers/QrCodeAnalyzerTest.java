@@ -108,7 +108,7 @@ public class QrCodeAnalyzerTest {
         @NonNull
         @Override
         public Rect getCropRect() {
-            return null;
+            return getValue();
         }
 
         @Override
@@ -139,12 +139,16 @@ public class QrCodeAnalyzerTest {
         @NonNull
         @Override
         public ImageInfo getImageInfo() {
-            return null;
+            return getValue();
         }
 
         @Nullable
         @Override
         public Image getImage() {
+            return getValue();
+        }
+
+        private Rect getValue() {
             return null;
         }
     }

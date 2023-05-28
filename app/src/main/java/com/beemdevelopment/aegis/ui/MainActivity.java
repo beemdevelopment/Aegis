@@ -454,8 +454,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
     }
 
     private void onIntroResult() {
-        loadEntries();
-        checkTimeSyncSetting();
+        loadAndCheckTimeSync();
     }
 
     private void checkTimeSyncSetting() {
@@ -469,8 +468,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
     }
 
     private void onDecryptResult() {
-        loadEntries();
-        checkTimeSyncSetting();
+        loadAndCheckTimeSync();
     }
 
     private void startScanActivity() {
@@ -1084,5 +1082,10 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
             _selectedEntries.clear();
             _actionMode = null;
         }
+    }
+
+    private void loadAndCheckTimeSync() {
+        loadEntries();
+        checkTimeSyncSetting();
     }
 }

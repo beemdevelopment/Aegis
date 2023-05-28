@@ -13,12 +13,12 @@ public class GlideLicense extends License {
 
     @Override
     public String readSummaryTextFromResources(Context context) {
-        return getContent(context, R.raw.glide_license);
+        return getContentWithLicenseRaw(context);
     }
 
     @Override
     public String readFullTextFromResources(Context context) {
-        return getContent(context, R.raw.glide_license);
+        return getContentWithLicenseRaw(context);
     }
 
     @Override
@@ -29,5 +29,9 @@ public class GlideLicense extends License {
     @Override
     public String getUrl() {
         return "https://github.com/bumptech/glide/blob/master/LICENSE";
+    }
+
+    private String getContentWithLicenseRaw(Context context) {
+        return getContent(context, R.raw.glide_license);
     }
 }
