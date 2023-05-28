@@ -248,10 +248,8 @@ public class EntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         String group = entry.getGroup();
         String issuer = entry.getIssuer().toLowerCase();
         String name = entry.getName().toLowerCase();
-        if (!_groupFilter.isEmpty()) {
-            if (!_groupFilter.contains(group)) {
-                return true;
-            }
+        if (!_groupFilter.isEmpty() && !_groupFilter.contains(group)) {
+            return true;
         }
         if (_searchFilter == null) {
             return false;

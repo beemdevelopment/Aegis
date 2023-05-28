@@ -44,11 +44,8 @@ public class PreferencesActivity extends AegisActivity implements PreferenceFrag
 
     @Override
     protected void onRestoreInstanceState(@NonNull final Bundle inState) {
-        if (_fragment instanceof PreferencesFragment) {
-            // pass the stored result intent back to the fragment
-            if (inState.containsKey("result")) {
-                ((PreferencesFragment) _fragment).setResult(inState.getParcelable("result"));
-            }
+        if (_fragment instanceof PreferencesFragment && inState.containsKey("result")) {
+            ((PreferencesFragment) _fragment).setResult(inState.getParcelable("result"));
         }
         super.onRestoreInstanceState(inState);
     }
