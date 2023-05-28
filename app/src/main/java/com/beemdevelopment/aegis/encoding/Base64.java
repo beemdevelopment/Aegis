@@ -1,12 +1,11 @@
 package com.beemdevelopment.aegis.encoding;
 
 import com.google.common.io.BaseEncoding;
-
 import java.nio.charset.StandardCharsets;
 
 public class Base64 {
-    private Base64() {
 
+    private Base64() {
     }
 
     public static byte[] decode(String s) throws EncodingException {

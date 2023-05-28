@@ -5,17 +5,16 @@ import com.beemdevelopment.aegis.crypto.CryptoUtils;
 import com.beemdevelopment.aegis.crypto.MasterKey;
 import com.beemdevelopment.aegis.crypto.SCryptParameters;
 import com.beemdevelopment.aegis.encoding.Hex;
-
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.util.UUID;
-
 import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
 
 public class PasswordSlot extends RawSlot {
+
     private boolean _repaired;
+
     private boolean _isBackup;
 
     private SCryptParameters _params;

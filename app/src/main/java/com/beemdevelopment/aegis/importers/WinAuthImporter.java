@@ -1,13 +1,12 @@
 package com.beemdevelopment.aegis.importers;
 
 import android.content.Context;
-
 import com.beemdevelopment.aegis.vault.VaultEntry;
 import com.topjohnwu.superuser.io.SuFile;
-
 import java.io.InputStream;
 
 public class WinAuthImporter extends DatabaseImporter {
+
     public WinAuthImporter(Context context) {
         super(context);
     }
@@ -25,6 +24,7 @@ public class WinAuthImporter extends DatabaseImporter {
     }
 
     public static class State extends DatabaseImporter.State {
+
         private DatabaseImporter.State _state;
 
         private State(DatabaseImporter.State state) {
@@ -35,12 +35,10 @@ public class WinAuthImporter extends DatabaseImporter {
         @Override
         public Result convert() throws DatabaseImporterException {
             Result result = _state.convert();
-
             for (VaultEntry entry : result.getEntries()) {
                 entry.setIssuer(entry.getName());
                 entry.setName("WinAuth");
             }
-
             return result;
         }
     }

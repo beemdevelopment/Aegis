@@ -14,10 +14,8 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.biometric.BiometricPrompt;
-
 import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.helpers.BiometricSlotInitializer;
 import com.beemdevelopment.aegis.helpers.BiometricsHelper;
@@ -34,24 +32,29 @@ import com.beemdevelopment.aegis.vault.slots.SlotException;
 import com.google.android.material.textfield.TextInputLayout;
 import com.nulabinc.zxcvbn.Strength;
 import com.nulabinc.zxcvbn.Zxcvbn;
-
 import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
-
 import static com.beemdevelopment.aegis.ui.slides.SecurityPickerSlide.CRYPT_TYPE_BIOMETRIC;
 import static com.beemdevelopment.aegis.ui.slides.SecurityPickerSlide.CRYPT_TYPE_INVALID;
 import static com.beemdevelopment.aegis.ui.slides.SecurityPickerSlide.CRYPT_TYPE_NONE;
 import static com.beemdevelopment.aegis.ui.slides.SecurityPickerSlide.CRYPT_TYPE_PASS;
 
 public class SecuritySetupSlide extends SlideFragment {
+
     private EditText _textPassword;
+
     private EditText _textPasswordConfirm;
+
     private CheckBox _checkPasswordVisibility;
+
     private ProgressBar _barPasswordStrength;
+
     private TextView _textPasswordStrength;
+
     private TextInputLayout _textPasswordWrapper;
 
     private int _cryptType;
+
     private VaultFileCredentials _creds;
 
     @Override
@@ -63,7 +66,6 @@ public class SecuritySetupSlide extends SlideFragment {
         _barPasswordStrength = view.findViewById(R.id.progressBar);
         _textPasswordStrength = view.findViewById(R.id.text_password_strength);
         _textPasswordWrapper = view.findViewById(R.id.text_password_wrapper);
-
         _checkPasswordVisibility.setOnCheckedChangeListener((buttonView, isChecked) -> {
             if (isChecked) {
                 _textPassword.setTransformationMethod(null);
@@ -75,8 +77,8 @@ public class SecuritySetupSlide extends SlideFragment {
                 _textPasswordConfirm.setTransformationMethod(new PasswordTransformationMethod());
             }
         });
-
         _textPassword.addTextChangedListener(new TextWatcher() {
+
             private Zxcvbn _zxcvbn = new Zxcvbn();
 
             @Override
@@ -97,28 +99,22 @@ public class SecuritySetupSlide extends SlideFragment {
             public void afterTextChanged(Editable s) {
             }
         });
-
         return view;
     }
 
     @Override
     public void onResume() {
         super.onResume();
-
         _cryptType = getState().getInt("cryptType", CRYPT_TYPE_INVALID);
         if (_cryptType == CRYPT_TYPE_INVALID || _cryptType == CRYPT_TYPE_NONE) {
             throw new RuntimeException(String.format("State of SecuritySetupSlide not properly propagated, cryptType: %d", _cryptType));
         }
-
         _creds = new VaultFileCredentials();
     }
 
     private void showBiometricPrompt() {
         BiometricSlotInitializer initializer = new BiometricSlotInitializer(this, new BiometricsListener());
-        BiometricPrompt.PromptInfo info = new BiometricPrompt.PromptInfo.Builder()
-                .setTitle(getString(R.string.set_up_biometric))
-                .setNegativeButtonText(getString(android.R.string.cancel))
-                .build();
+        BiometricPrompt.PromptInfo info = new BiometricPrompt.PromptInfo.Builder().setTitle(getString(R.string.set_up_biometric)).setNegativeButtonText(getString(android.R.string.cancel)).build();
         initializer.authenticate(info);
     }
 
@@ -131,19 +127,18 @@ public class SecuritySetupSlide extends SlideFragment {
 
     @Override
     public boolean isFinished() {
-        switch (_cryptType) {
+        switch(_cryptType) {
             case CRYPT_TYPE_NONE:
                 return true;
             case CRYPT_TYPE_BIOMETRIC:
                 if (!_creds.getSlots().has(BiometricSlot.class)) {
                     return false;
                 }
-                // intentional fallthrough
+            // intentional fallthrough
             case CRYPT_TYPE_PASS:
                 if (EditTextHelper.areEditTextsEqual(_textPassword, _textPasswordConfirm)) {
                     return _creds.getSlots().has(PasswordSlot.class);
                 }
-
                 return false;
             default:
                 return false;
@@ -167,6 +162,7 @@ public class SecuritySetupSlide extends SlideFragment {
     }
 
     private class PasswordDerivationListener implements KeyDerivationTask.Callback {
+
         @Override
         public void onTaskFinished(PasswordSlot slot, SecretKey key) {
             try {
@@ -178,12 +174,12 @@ public class SecuritySetupSlide extends SlideFragment {
                 Dialogs.showErrorDialog(requireContext(), R.string.enable_encryption_error, e);
                 return;
             }
-
             goToNextSlide();
         }
     }
 
     private class BiometricsListener implements BiometricSlotInitializer.Listener {
+
         @Override
         public void onInitializeSlot(BiometricSlot slot, Cipher cipher) {
             try {
@@ -194,7 +190,6 @@ public class SecuritySetupSlide extends SlideFragment {
                 onSlotInitializationFailed(0, e.toString());
                 return;
             }
-
             deriveKey();
         }
 

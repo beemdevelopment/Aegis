@@ -1,11 +1,9 @@
 package com.beemdevelopment.aegis.helpers;
 
 import static androidx.recyclerview.widget.RecyclerView.NO_POSITION;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.beemdevelopment.aegis.ui.views.EntryAdapter;
 import com.beemdevelopment.aegis.vault.VaultEntry;
 
@@ -14,7 +12,9 @@ public class SimpleItemTouchHelperCallback extends ItemTouchHelper.Callback {
     private VaultEntry _selectedEntry;
 
     private final EntryAdapter _adapter;
+
     private boolean _positionChanged = false;
+
     private boolean _isLongPressDragEnabled = true;
 
     public SimpleItemTouchHelperCallback(EntryAdapter adapter) {
@@ -35,7 +35,6 @@ public class SimpleItemTouchHelperCallback extends ItemTouchHelper.Callback {
             _selectedEntry = null;
             return;
         }
-
         if (!entry.isFavorite()) {
             _selectedEntry = entry;
         }
@@ -55,24 +54,18 @@ public class SimpleItemTouchHelperCallback extends ItemTouchHelper.Callback {
         if (position == NO_POSITION) {
             return 0;
         }
-
         int swipeFlags = 0;
         int dragFlags = ItemTouchHelper.UP | ItemTouchHelper.DOWN;
-
         EntryAdapter adapter = (EntryAdapter) recyclerView.getAdapter();
-        if (adapter.isPositionFooter(position)
-                || adapter.getEntryAt(position) != _selectedEntry
-                || !isLongPressDragEnabled()) {
+        if (adapter.isPositionFooter(position) || adapter.getEntryAt(position) != _selectedEntry || !isLongPressDragEnabled()) {
             dragFlags = 0;
         }
-
         return makeMovementFlags(dragFlags, swipeFlags);
     }
 
     @Override
-    public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder,
-                          RecyclerView.ViewHolder target) {
-        if (target.getAdapterPosition() < _adapter.getShownFavoritesCount()){
+    public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
+        if (target.getAdapterPosition() < _adapter.getShownFavoritesCount()) {
             return false;
         }
         _adapter.onItemMove(viewHolder.getAdapterPosition(), target.getAdapterPosition());
@@ -88,7 +81,6 @@ public class SimpleItemTouchHelperCallback extends ItemTouchHelper.Callback {
     @Override
     public void clearView(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder) {
         super.clearView(recyclerView, viewHolder);
-
         if (_positionChanged) {
             _adapter.onItemDrop(viewHolder.getAdapterPosition());
             _positionChanged = false;

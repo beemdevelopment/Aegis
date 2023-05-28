@@ -2,10 +2,8 @@ package com.beemdevelopment.aegis.ui.tasks;
 
 import android.content.Context;
 import android.net.Uri;
-
 import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.util.IOUtils;
-
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -16,6 +14,7 @@ import java.io.InputStream;
  * writes it to a temporary file in the cache directory.
  */
 public class ImportFileTask extends ProgressDialogTask<ImportFileTask.Params, ImportFileTask.Result> {
+
     private final Callback _cb;
 
     public ImportFileTask(Context context, Callback cb) {
@@ -26,22 +25,18 @@ public class ImportFileTask extends ProgressDialogTask<ImportFileTask.Params, Im
     @Override
     protected Result doInBackground(Params... params) {
         Context context = getDialog().getContext();
-
         Params p = params[0];
         Uri uri = p.getUri();
         try (InputStream inStream = context.getContentResolver().openInputStream(uri)) {
             if (inStream == null) {
                 throw new IOException("openInputStream returned null");
             }
-
             String prefix = p.getNamePrefix() != null ? p.getNamePrefix() + "-" : "";
             String suffix = p.getNameSuffix() != null ? "-" + p.getNameSuffix() : "";
-
             File tempFile = File.createTempFile(prefix, suffix, context.getCacheDir());
             try (FileOutputStream outStream = new FileOutputStream(tempFile)) {
                 IOUtils.copy(inStream, outStream);
             }
-
             return new Result(uri, tempFile);
         } catch (IOException e) {
             e.printStackTrace();
@@ -56,12 +51,16 @@ public class ImportFileTask extends ProgressDialogTask<ImportFileTask.Params, Im
     }
 
     public interface Callback {
+
         void onTaskFinished(Result result);
     }
 
     public static class Params {
+
         private final Uri _uri;
+
         private final String _namePrefix;
+
         private final String _nameSuffix;
 
         public Params(Uri uri, String namePrefix, String nameSuffix) {
@@ -84,8 +83,11 @@ public class ImportFileTask extends ProgressDialogTask<ImportFileTask.Params, Im
     }
 
     public static class Result {
+
         private final Uri _uri;
+
         private File _file;
+
         private Exception _e;
 
         public Result(Uri uri, File file) {
@@ -110,7 +112,6 @@ public class ImportFileTask extends ProgressDialogTask<ImportFileTask.Params, Im
             if (_e == null) {
                 return null;
             }
-
             return String.format("ImportFileTask(uri=\"%s\"): %s", _uri, _e);
         }
     }

@@ -3,9 +3,13 @@ package com.beemdevelopment.aegis.crypto;
 import java.io.Serializable;
 
 public class SCryptParameters implements Serializable {
+
     private int _n;
+
     private int _r;
+
     private int _p;
+
     private byte[] _salt;
 
     public SCryptParameters(int n, int r, int p, byte[] salt) {

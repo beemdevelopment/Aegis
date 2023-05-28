@@ -3,8 +3,11 @@ package com.beemdevelopment.aegis.helpers;
 import android.os.Handler;
 
 public class UiRefresher {
+
     private boolean _running;
+
     private Listener _listener;
+
     private Handler _handler;
 
     public UiRefresher(Listener listener) {
@@ -22,9 +25,9 @@ public class UiRefresher {
             return;
         }
         _running = true;
-
         _listener.onRefresh();
         _handler.postDelayed(new Runnable() {
+
             @Override
             public void run() {
                 _listener.onRefresh();
@@ -39,7 +42,9 @@ public class UiRefresher {
     }
 
     public interface Listener {
+
         void onRefresh();
+
         long getMillisTillNextRefresh();
     }
 }

@@ -3,6 +3,7 @@ package com.beemdevelopment.aegis.helpers;
 import android.view.animation.Animation;
 
 public class SimpleAnimationEndListener implements Animation.AnimationListener {
+
     private final Listener _listener;
 
     public SimpleAnimationEndListener(Listener listener) {
@@ -11,7 +12,6 @@ public class SimpleAnimationEndListener implements Animation.AnimationListener {
 
     @Override
     public void onAnimationStart(Animation animation) {
-
     }
 
     @Override
@@ -23,10 +23,10 @@ public class SimpleAnimationEndListener implements Animation.AnimationListener {
 
     @Override
     public void onAnimationRepeat(Animation animation) {
-
     }
 
     public interface Listener {
+
         void onAnimationEnd(Animation animation);
     }
 }

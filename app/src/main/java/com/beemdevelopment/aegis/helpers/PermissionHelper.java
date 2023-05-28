@@ -3,16 +3,14 @@ package com.beemdevelopment.aegis.helpers;
 import android.app.Activity;
 import android.content.Context;
 import android.content.pm.PackageManager;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 public class PermissionHelper {
-    private PermissionHelper() {
 
+    private PermissionHelper() {
     }
 
     public static boolean granted(Context context, String permission) {
@@ -26,7 +24,6 @@ public class PermissionHelper {
                 deniedPerms.add(permission);
             }
         }
-
         int size = deniedPerms.size();
         if (size > 0) {
             String[] array = new String[size];

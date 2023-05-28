@@ -1,15 +1,15 @@
 package com.beemdevelopment.aegis.vault;
 
 import androidx.annotation.Nullable;
-
 import com.beemdevelopment.aegis.util.UUIDMap;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 public class Vault {
+
     private static final int VERSION = 2;
+
     private UUIDMap<VaultEntry> _entries = new UUIDMap<>();
 
     public JSONObject toJson() {
@@ -24,7 +24,6 @@ public class Vault {
                     array.put(e.toJson());
                 }
             }
-
             JSONObject obj = new JSONObject();
             obj.put("version", VERSION);
             obj.put("entries", array);
@@ -37,13 +36,11 @@ public class Vault {
     public static Vault fromJson(JSONObject obj) throws VaultException {
         Vault vault = new Vault();
         UUIDMap<VaultEntry> entries = vault.getEntries();
-
         try {
             int ver = obj.getInt("version");
             if (ver > VERSION) {
                 throw new VaultException("Unsupported version");
             }
-
             JSONArray array = obj.getJSONArray("entries");
             for (int i = 0; i < array.length(); i++) {
                 VaultEntry entry = VaultEntry.fromJson(array.getJSONObject(i));
@@ -52,7 +49,6 @@ public class Vault {
         } catch (VaultEntryException | JSONException e) {
             throw new VaultException(e);
         }
-
         return vault;
     }
 
@@ -61,6 +57,7 @@ public class Vault {
     }
 
     public interface EntryFilter {
+
         boolean includeEntry(VaultEntry entry);
     }
 }

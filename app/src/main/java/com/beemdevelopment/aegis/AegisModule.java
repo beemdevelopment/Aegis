@@ -1,12 +1,9 @@
 package com.beemdevelopment.aegis;
 
 import android.content.Context;
-
 import com.beemdevelopment.aegis.icons.IconPackManager;
 import com.beemdevelopment.aegis.vault.VaultManager;
-
 import javax.inject.Singleton;
-
 import dagger.Module;
 import dagger.Provides;
 import dagger.hilt.InstallIn;
@@ -16,6 +13,7 @@ import dagger.hilt.components.SingletonComponent;
 @Module
 @InstallIn(SingletonComponent.class)
 public class AegisModule {
+
     @Provides
     @Singleton
     public static IconPackManager provideIconPackManager(@ApplicationContext Context context) {

@@ -10,12 +10,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.PopupMenu;
 import androidx.recyclerview.widget.GridLayoutManager;
-
 import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.icons.IconPack;
 import com.beemdevelopment.aegis.ui.glide.IconLoader;
@@ -30,28 +28,25 @@ import com.bumptech.glide.util.ViewPreloadSizeProvider;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.textfield.TextInputEditText;
-
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class IconPickerDialog {
-    private IconPickerDialog() {
 
+    private IconPickerDialog() {
     }
 
     public static BottomSheetDialog create(Activity activity, List<IconPack> iconPacks, String issuer, IconAdapter.Listener listener) {
         View view = LayoutInflater.from(activity).inflate(R.layout.dialog_icon_picker, null);
         TextView textIconPack = view.findViewById(R.id.text_icon_pack);
-
         BottomSheetDialog dialog = new BottomSheetDialog(activity);
         dialog.setContentView(view);
         dialog.create();
-
         FrameLayout rootView = dialog.findViewById(com.google.android.material.R.id.design_bottom_sheet);
         rootView.getLayoutParams().height = ViewGroup.LayoutParams.MATCH_PARENT;
-
         IconAdapter adapter = new IconAdapter(dialog.getContext(), issuer, new IconAdapter.Listener() {
+
             @Override
             public void onIconSelected(IconPack.Icon icon) {
                 dialog.dismiss();
@@ -64,8 +59,8 @@ public class IconPickerDialog {
                 listener.onCustomSelected();
             }
         });
-
         class IconPreloadProvider implements ListPreloader.PreloadModelProvider<IconPack.Icon> {
+
             @NonNull
             @Override
             public List<IconPack.Icon> getPreloadItems(int position) {
@@ -76,15 +71,9 @@ public class IconPickerDialog {
             @Nullable
             @Override
             public RequestBuilder<Drawable> getPreloadRequestBuilder(@NonNull IconPack.Icon icon) {
-                return Glide.with(dialog.getContext())
-                        .asDrawable()
-                        .load(icon.getFile())
-                        .set(IconLoader.ICON_TYPE, icon.getIconType())
-                        .diskCacheStrategy(DiskCacheStrategy.NONE)
-                        .skipMemoryCache(false);
+                return Glide.with(dialog.getContext()).asDrawable().load(icon.getFile()).set(IconLoader.ICON_TYPE, icon.getIconType()).diskCacheStrategy(DiskCacheStrategy.NONE).skipMemoryCache(false);
             }
         }
-
         TextInputEditText iconSearch = view.findViewById(R.id.text_search_icon);
         iconSearch.setOnFocusChangeListener((v, hasFocus) -> {
             if (hasFocus) {
@@ -93,9 +82,9 @@ public class IconPickerDialog {
             }
         });
         iconSearch.addTextChangedListener(new TextWatcher() {
+
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
             }
 
             @Override
@@ -106,22 +95,20 @@ public class IconPickerDialog {
 
             @Override
             public void afterTextChanged(Editable s) {
-
             }
         });
-
         ViewPreloadSizeProvider<IconPack.Icon> preloadSizeProvider = new ViewPreloadSizeProvider<>();
         IconPreloadProvider modelProvider = new IconPreloadProvider();
         RecyclerViewPreloader<IconPack.Icon> preloader = new RecyclerViewPreloader<>(activity, modelProvider, preloadSizeProvider, 10);
         IconRecyclerView recyclerView = view.findViewById(R.id.list_icons);
         GridLayoutManager layoutManager = recyclerView.getGridLayoutManager();
         layoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
+
             @Override
             public int getSpanSize(int position) {
                 if (adapter.getItemViewType(position) == R.layout.card_icon) {
                     return 1;
                 }
-
                 return recyclerView.getSpanCount();
             }
         });
@@ -130,22 +117,16 @@ public class IconPickerDialog {
         recyclerView.addOnScrollListener(preloader);
         adapter.loadIcons(iconPacks.get(0));
         textIconPack.setText(iconPacks.get(0).getName());
-
         view.findViewById(R.id.btn_icon_pack).setOnClickListener(v -> {
-            List<String> iconPackNames = iconPacks.stream()
-                    .map(IconPack::getName)
-                    .collect(Collectors.toList());
-
+            List<String> iconPackNames = iconPacks.stream().map(IconPack::getName).collect(Collectors.toList());
             PopupMenu popupMenu = new PopupMenu(activity, v);
             popupMenu.setOnMenuItemClickListener(item -> {
                 IconPack pack = iconPacks.get(iconPackNames.indexOf(item.getTitle().toString()));
                 adapter.loadIcons(pack);
-
                 String query = iconSearch.getText().toString();
                 if (!query.isEmpty()) {
                     adapter.setQuery(query);
                 }
-
                 textIconPack.setText(pack.getName());
                 return true;
             });
@@ -153,10 +134,8 @@ public class IconPickerDialog {
             for (String name : iconPackNames) {
                 menu.add(name);
             }
-
             popupMenu.show();
         });
-
         return dialog;
     }
 }

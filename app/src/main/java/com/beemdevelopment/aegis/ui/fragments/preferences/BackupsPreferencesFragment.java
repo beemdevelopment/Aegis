@@ -10,26 +10,32 @@ import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
 import android.text.style.StyleSpan;
 import android.widget.Toast;
-
 import androidx.annotation.Nullable;
 import androidx.preference.Preference;
 import androidx.preference.SwitchPreferenceCompat;
-
 import com.beemdevelopment.aegis.Preferences;
 import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.ui.dialogs.Dialogs;
 import com.beemdevelopment.aegis.vault.VaultRepositoryException;
 
 public class BackupsPreferencesFragment extends PreferencesFragment {
+
     private SwitchPreferenceCompat _androidBackupsPreference;
+
     private SwitchPreferenceCompat _backupsPreference;
+
     private SwitchPreferenceCompat _backupReminderPreference;
+
     private Preference _backupsLocationPreference;
+
     private Preference _backupsTriggerPreference;
+
     private Preference _backupsVersionsPreference;
+
     private Preference _backupsPasswordWarningPreference;
 
     private Preference _builtinBackupStatusPreference;
+
     private Preference _androidBackupStatusPreference;
 
     @Override
@@ -42,7 +48,6 @@ public class BackupsPreferencesFragment extends PreferencesFragment {
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
         super.onCreatePreferences(savedInstanceState, rootKey);
         addPreferencesFromResource(R.xml.preferences_backups);
-
         _backupsPasswordWarningPreference = requirePreference("pref_backups_warning_password");
         _builtinBackupStatusPreference = requirePreference("pref_status_backup_builtin");
         _builtinBackupStatusPreference.setOnPreferenceClickListener(preference -> {
@@ -60,7 +65,6 @@ public class BackupsPreferencesFragment extends PreferencesFragment {
             }
             return true;
         });
-
         _backupsPreference = requirePreference("pref_backups");
         _backupsPreference.setOnPreferenceChangeListener((preference, newValue) -> {
             if ((boolean) newValue) {
@@ -69,26 +73,18 @@ public class BackupsPreferencesFragment extends PreferencesFragment {
                 _prefs.setIsBackupsEnabled(false);
                 updateBackupPreference();
             }
-
             return false;
         });
-
         _backupReminderPreference = requirePreference("pref_backup_reminder");
         _backupReminderPreference.setOnPreferenceChangeListener((preference, newValue) -> {
-            if (!(boolean)newValue) {
-                Dialogs.showCheckboxDialog(getContext(), R.string.pref_backups_reminder_dialog_title,
-                        R.string.pref_backups_reminder_dialog_summary,
-                        R.string.understand_risk_accept,
-                        this::saveAndDisableBackupReminder
-                );
+            if (!(boolean) newValue) {
+                Dialogs.showCheckboxDialog(getContext(), R.string.pref_backups_reminder_dialog_title, R.string.pref_backups_reminder_dialog_summary, R.string.understand_risk_accept, this::saveAndDisableBackupReminder);
             } else {
                 _prefs.setIsBackupReminderEnabled(true);
                 return true;
             }
-
             return false;
         });
-
         _androidBackupsPreference = requirePreference("pref_android_backups");
         _androidBackupsPreference.setOnPreferenceChangeListener((preference, newValue) -> {
             _prefs.setIsAndroidBackupsEnabled((boolean) newValue);
@@ -98,7 +94,6 @@ public class BackupsPreferencesFragment extends PreferencesFragment {
             }
             return false;
         });
-
         Uri backupLocation = _prefs.getBackupsLocation();
         _backupsLocationPreference = requirePreference("pref_backups_location");
         if (backupLocation != null) {
@@ -108,7 +103,6 @@ public class BackupsPreferencesFragment extends PreferencesFragment {
             selectBackupsLocation();
             return false;
         });
-
         _backupsTriggerPreference = requirePreference("pref_backups_trigger");
         _backupsTriggerPreference.setOnPreferenceClickListener(preference -> {
             if (_prefs.isBackupsEnabled()) {
@@ -117,7 +111,6 @@ public class BackupsPreferencesFragment extends PreferencesFragment {
             }
             return true;
         });
-
         _backupsVersionsPreference = requirePreference("pref_backups_versions");
         _backupsVersionsPreference.setSummary(getResources().getQuantityString(R.plurals.pref_backups_versions_summary, _prefs.getBackupsVersionCount(), _prefs.getBackupsVersionCount()));
         _backupsVersionsPreference.setOnPreferenceClickListener(preference -> {
@@ -149,10 +142,8 @@ public class BackupsPreferencesFragment extends PreferencesFragment {
         if (resultCode != Activity.RESULT_OK || uri == null) {
             return;
         }
-
         int flags = Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION;
         requireContext().getContentResolver().takePersistableUriPermission(data.getData(), flags);
-
         _prefs.setBackupsLocation(uri);
         _prefs.setIsBackupsEnabled(true);
         _backupsLocationPreference.setSummary(String.format("%s: %s", getString(R.string.pref_backups_location_summary), Uri.decode(uri.toString())));
@@ -188,7 +179,6 @@ public class BackupsPreferencesFragment extends PreferencesFragment {
         boolean backupFailed = res != null && !res.isSuccessful();
         pref.setSummary(getBackupStatusMessage(res));
         pref.setSelectable(backupFailed);
-
         // TODO: Find out why setting the tint of the icon doesn't work
         if (backupFailed) {
             pref.setIcon(R.drawable.ic_info_outline_black_24dp);
@@ -210,7 +200,6 @@ public class BackupsPreferencesFragment extends PreferencesFragment {
         } else {
             message = getString(R.string.backup_status_failed, res.getElapsedSince(requireContext()));
         }
-
         Spannable spannable = new SpannableString(message);
         spannable.setSpan(new ForegroundColorSpan(getResources().getColor(color)), 0, message.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         if (color == R.color.warning_color) {
@@ -221,11 +210,7 @@ public class BackupsPreferencesFragment extends PreferencesFragment {
 
     private void selectBackupsLocation() {
         Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT_TREE);
-        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION
-                | Intent.FLAG_GRANT_WRITE_URI_PERMISSION
-                | Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION
-                | Intent.FLAG_GRANT_PREFIX_URI_PERMISSION);
-
+        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION | Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION | Intent.FLAG_GRANT_PREFIX_URI_PERMISSION);
         _vaultManager.startActivityForResult(this, intent, CODE_BACKUPS);
     }
 

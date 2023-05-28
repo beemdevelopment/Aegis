@@ -8,21 +8,25 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
-
 import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.helpers.BiometricsHelper;
 import com.beemdevelopment.aegis.ui.intro.SlideFragment;
 
 public class SecurityPickerSlide extends SlideFragment {
+
     public static final int CRYPT_TYPE_INVALID = 0;
+
     public static final int CRYPT_TYPE_NONE = 1;
+
     public static final int CRYPT_TYPE_PASS = 2;
+
     public static final int CRYPT_TYPE_BIOMETRIC = 3;
 
     private RadioGroup _buttonGroup;
+
     private RadioButton _bioButton;
+
     private TextView _bioText;
 
     @Override
@@ -49,11 +53,9 @@ public class SecurityPickerSlide extends SlideFragment {
         boolean canUseBio = BiometricsHelper.isAvailable(requireContext());
         _bioButton.setEnabled(canUseBio);
         _bioText.setEnabled(canUseBio);
-
         if (!canUseBio && _buttonGroup.getCheckedRadioButtonId() == R.id.rb_biometrics) {
             _buttonGroup.check(R.id.rb_password);
         }
-
         if (canUseBio && autoSelect) {
             _buttonGroup.check(R.id.rb_biometrics);
         }
@@ -66,15 +68,14 @@ public class SecurityPickerSlide extends SlideFragment {
 
     @Override
     public void onNotFinishedError() {
-         Toast.makeText(requireContext(), R.string.snackbar_authentication_method, Toast.LENGTH_SHORT).show();
+        Toast.makeText(requireContext(), R.string.snackbar_authentication_method, Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onSaveIntroState(@NonNull Bundle introState) {
         int buttonId = _buttonGroup.getCheckedRadioButtonId();
-
         int type;
-        switch (buttonId) {
+        switch(buttonId) {
             case R.id.rb_none:
                 type = CRYPT_TYPE_NONE;
                 break;
@@ -87,7 +88,6 @@ public class SecurityPickerSlide extends SlideFragment {
             default:
                 throw new RuntimeException(String.format("Unsupported security type: %d", buttonId));
         }
-
         introState.putInt("cryptType", type);
     }
 }

@@ -1,17 +1,12 @@
 package com.beemdevelopment.aegis.icons;
 
 import android.content.Context;
-
 import androidx.annotation.Nullable;
-
 import com.beemdevelopment.aegis.util.IOUtils;
-
 import net.lingala.zip4j.ZipFile;
 import net.lingala.zip4j.io.inputstream.ZipInputStream;
 import net.lingala.zip4j.model.FileHeader;
-
 import org.json.JSONException;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -22,9 +17,11 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 public class IconPackManager {
+
     private static final String _packDefFilename = "pack.json";
 
     private File _iconsBaseDir;
+
     private List<IconPack> _iconPacks;
 
     public IconPackManager(Context context) {
@@ -38,7 +35,6 @@ public class IconPackManager {
         if (packs.size() == 0) {
             return null;
         }
-
         return packs.get(0);
     }
 
@@ -53,7 +49,6 @@ public class IconPackManager {
         } catch (IOException e) {
             throw new IconPackException(e);
         }
-
         _iconPacks.remove(pack);
     }
 
@@ -71,7 +66,6 @@ public class IconPackManager {
                 defBytes = IOUtils.readAll(inStream);
                 pack = IconPack.fromBytes(defBytes);
             }
-
             // create a new directory to store the icon pack, based on the UUID and version
             File packDir = getIconPackDir(pack);
             if (!packDir.getCanonicalPath().startsWith(_iconsBaseDir.getCanonicalPath() + File.separator)) {
@@ -87,7 +81,6 @@ public class IconPackManager {
             if (!packDir.exists() && !packDir.mkdirs()) {
                 throw new IOException(String.format("Unable to create directories: %s", packDir.toString()));
             }
-
             // extract each of the defined icons to the icon pack directory
             for (IconPack.Icon icon : pack.getIcons()) {
                 File destFile = new File(packDir, icon.getRelativeFilename());
@@ -95,27 +88,22 @@ public class IconPackManager {
                 if (iconHeader == null) {
                     throw new IOException(String.format("Unable to find %s relative to the root of the ZIP file", icon.getRelativeFilename()));
                 }
-
                 // create new directories for this file if needed
                 File parent = destFile.getParentFile();
                 if (parent != null && !parent.exists() && !parent.mkdirs()) {
                     throw new IOException(String.format("Unable to create directories: %s", packDir.toString()));
                 }
-
                 try (ZipInputStream inStream = zipFile.getInputStream(iconHeader);
-                     FileOutputStream outStream = new FileOutputStream(destFile)) {
+                    FileOutputStream outStream = new FileOutputStream(destFile)) {
                     IOUtils.copy(inStream, outStream);
                 }
-
                 // after successful copy of the icon, store the new filename
                 icon.setFile(destFile);
             }
-
             // write the icon pack definition file to the newly created directory
             try (FileOutputStream outStream = new FileOutputStream(new File(packDir, _packDefFilename))) {
                 outStream.write(defBytes);
             }
-
             // after successful extraction of the icon pack, store the new directory
             pack.setDirectory(packDir);
             _iconPacks.add(pack);
@@ -127,17 +115,14 @@ public class IconPackManager {
 
     private void rescanIconPacks() {
         _iconPacks.clear();
-
         File[] dirs = _iconsBaseDir.listFiles();
         if (dirs == null) {
             return;
         }
-
         for (File dir : dirs) {
             if (!dir.isDirectory()) {
-                 continue;
+                continue;
             }
-
             UUID uuid;
             try {
                 uuid = UUID.fromString(dir.getName());
@@ -145,7 +130,6 @@ public class IconPackManager {
                 e.printStackTrace();
                 continue;
             }
-
             File versionDir = getLatestVersionDir(dir);
             if (versionDir != null) {
                 IconPack pack;
@@ -157,11 +141,9 @@ public class IconPackManager {
                     e.printStackTrace();
                     continue;
                 }
-
                 for (IconPack.Icon icon : pack.getIcons()) {
                     icon.setFile(new File(versionDir, icon.getRelativeFilename()));
                 }
-
                 // do a sanity check on the UUID and version
                 if (pack.getUUID().equals(uuid) && pack.getVersion() == Integer.parseInt(versionDir.getName())) {
                     _iconPacks.add(pack);
@@ -180,7 +162,6 @@ public class IconPackManager {
         if (dirs == null) {
             return null;
         }
-
         int latestVersion = -1;
         for (File versionDir : dirs) {
             int version;
@@ -189,16 +170,13 @@ public class IconPackManager {
             } catch (NumberFormatException ignored) {
                 continue;
             }
-
             if (latestVersion == -1 || version > latestVersion) {
                 latestVersion = version;
             }
         }
-
         if (latestVersion == -1) {
             return null;
         }
-
         return new File(packDir, Integer.toString(latestVersion));
     }
 
@@ -211,7 +189,6 @@ public class IconPackManager {
                 }
             }
         }
-
         if (!dir.delete()) {
             throw new IOException(String.format("Unable to delete directory: %s", dir));
         }

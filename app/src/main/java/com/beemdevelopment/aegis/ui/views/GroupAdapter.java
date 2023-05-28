@@ -3,15 +3,14 @@ package com.beemdevelopment.aegis.ui.views;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.beemdevelopment.aegis.R;
-
 import java.util.ArrayList;
 
 public class GroupAdapter extends RecyclerView.Adapter<GroupHolder> {
+
     private GroupAdapter.Listener _listener;
+
     private ArrayList<String> _groups;
 
     public GroupAdapter(GroupAdapter.Listener listener) {
@@ -21,7 +20,6 @@ public class GroupAdapter extends RecyclerView.Adapter<GroupHolder> {
 
     public void addGroup(String group) {
         _groups.add(group);
-
         int position = getItemCount() - 1;
         if (position == 0) {
             notifyDataSetChanged();
@@ -57,6 +55,7 @@ public class GroupAdapter extends RecyclerView.Adapter<GroupHolder> {
     }
 
     public interface Listener {
+
         void onRemoveGroup(String group);
     }
 }

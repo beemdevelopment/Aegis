@@ -8,13 +8,11 @@ import android.text.method.LinkMovementMethod;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.helpers.FabScrollHelper;
 import com.beemdevelopment.aegis.icons.IconPack;
@@ -26,13 +24,12 @@ import com.beemdevelopment.aegis.ui.tasks.ImportIconPackTask;
 import com.beemdevelopment.aegis.ui.views.IconPackAdapter;
 import com.beemdevelopment.aegis.vault.VaultManager;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
 import javax.inject.Inject;
-
 import dagger.hilt.android.AndroidEntryPoint;
 
 @AndroidEntryPoint
 public class IconPacksManagerFragment extends Fragment implements IconPackAdapter.Listener {
+
     private static final int CODE_IMPORT = 0;
 
     @Inject
@@ -42,9 +39,13 @@ public class IconPacksManagerFragment extends Fragment implements IconPackAdapte
     VaultManager _vaultManager;
 
     private View _iconPacksView;
+
     private RecyclerView _iconPacksRecyclerView;
+
     private IconPackAdapter _adapter;
+
     private LinearLayout _noIconPacksView;
+
     private FabScrollHelper _fabScrollHelper;
 
     public IconPacksManagerFragment() {
@@ -56,7 +57,6 @@ public class IconPacksManagerFragment extends Fragment implements IconPackAdapte
         FloatingActionButton fab = view.findViewById(R.id.fab);
         fab.setOnClickListener(v -> startImportIconPack());
         _fabScrollHelper = new FabScrollHelper(fab);
-
         _noIconPacksView = view.findViewById(R.id.vEmptyList);
         ((TextView) view.findViewById(R.id.txt_no_icon_packs)).setMovementMethod(LinkMovementMethod.getInstance());
         _iconPacksView = view.findViewById(R.id.view_icon_packs);
@@ -67,44 +67,37 @@ public class IconPacksManagerFragment extends Fragment implements IconPackAdapte
         _iconPacksRecyclerView.setAdapter(_adapter);
         _iconPacksRecyclerView.setNestedScrollingEnabled(false);
         _iconPacksRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+
             @Override
             public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
                 _fabScrollHelper.onScroll(dx, dy);
             }
         });
-
         for (IconPack pack : _iconPackManager.getIconPacks()) {
             _adapter.addIconPack(pack);
         }
-
         updateEmptyState();
     }
 
     @Override
     public void onRemoveIconPack(IconPack pack) {
-        Dialogs.showSecureDialog(new AlertDialog.Builder(requireContext())
-                .setTitle(R.string.remove_icon_pack)
-                .setMessage(R.string.remove_icon_pack_description)
-                .setPositiveButton(android.R.string.yes, (dialog, whichButton) -> {
-                    try {
-                        _iconPackManager.removeIconPack(pack);
-                    } catch (IconPackException e) {
-                        e.printStackTrace();
-                        Dialogs.showErrorDialog(requireContext(), R.string.icon_pack_delete_error, e);
-                        return;
-                    }
-                    _adapter.removeIconPack(pack);
-                    updateEmptyState();
-                })
-                .setNegativeButton(android.R.string.no, null)
-                .create());
+        Dialogs.showSecureDialog(new AlertDialog.Builder(requireContext()).setTitle(R.string.remove_icon_pack).setMessage(R.string.remove_icon_pack_description).setPositiveButton(android.R.string.yes, (dialog, whichButton) -> {
+            try {
+                _iconPackManager.removeIconPack(pack);
+            } catch (IconPackException e) {
+                e.printStackTrace();
+                Dialogs.showErrorDialog(requireContext(), R.string.icon_pack_delete_error, e);
+                return;
+            }
+            _adapter.removeIconPack(pack);
+            updateEmptyState();
+        }).setNegativeButton(android.R.string.no, null).create());
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
         if (requestCode == CODE_IMPORT && resultCode == Activity.RESULT_OK && data != null && data.getData() != null) {
             importIconPack(data.getData());
         }
@@ -114,16 +107,11 @@ public class IconPacksManagerFragment extends Fragment implements IconPackAdapte
         ImportIconPackTask task = new ImportIconPackTask(requireContext(), result -> {
             Exception e = result.getException();
             if (e instanceof IconPackExistsException) {
-                Dialogs.showSecureDialog(new AlertDialog.Builder(requireContext())
-                        .setTitle(R.string.error_occurred)
-                        .setMessage(R.string.icon_pack_import_exists_error)
-                        .setPositiveButton(R.string.yes, (dialog, which) -> {
-                            if (removeIconPack(((IconPackExistsException) e).getIconPack())) {
-                                importIconPack(uri);
-                            }
-                        })
-                        .setNegativeButton(R.string.no, null)
-                        .create());
+                Dialogs.showSecureDialog(new AlertDialog.Builder(requireContext()).setTitle(R.string.error_occurred).setMessage(R.string.icon_pack_import_exists_error).setPositiveButton(R.string.yes, (dialog, which) -> {
+                    if (removeIconPack(((IconPackExistsException) e).getIconPack())) {
+                        importIconPack(uri);
+                    }
+                }).setNegativeButton(R.string.no, null).create());
             } else if (e != null) {
                 Dialogs.showErrorDialog(requireContext(), R.string.icon_pack_import_error, e);
             } else {
@@ -142,7 +130,6 @@ public class IconPacksManagerFragment extends Fragment implements IconPackAdapte
             Dialogs.showErrorDialog(requireContext(), R.string.icon_pack_delete_error, e);
             return false;
         }
-
         _adapter.removeIconPack(pack);
         updateEmptyState();
         return true;

@@ -5,13 +5,10 @@ import android.content.UriPermission;
 import android.net.Uri;
 import android.text.TextUtils;
 import android.util.Log;
-
 import androidx.annotation.NonNull;
 import androidx.documentfile.provider.DocumentFile;
-
 import com.beemdevelopment.aegis.Preferences;
 import com.beemdevelopment.aegis.util.IOUtils;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -31,15 +28,17 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class VaultBackupManager {
+
     private static final String TAG = VaultBackupManager.class.getSimpleName();
 
-    private static final StrictDateFormat _dateFormat =
-            new StrictDateFormat("yyyyMMdd-HHmmss", Locale.ENGLISH);
+    private static final StrictDateFormat _dateFormat = new StrictDateFormat("yyyyMMdd-HHmmss", Locale.ENGLISH);
 
     public static final String FILENAME_PREFIX = "aegis-backup";
 
     private final Context _context;
+
     private final Preferences _prefs;
+
     private final ExecutorService _executor;
 
     public VaultBackupManager(Context context) {
@@ -63,28 +62,23 @@ public class VaultBackupManager {
     private void createBackup(File tempFile, Uri dirUri, int versionsToKeep) throws VaultRepositoryException {
         FileInfo fileInfo = new FileInfo(FILENAME_PREFIX);
         DocumentFile dir = DocumentFile.fromTreeUri(_context, dirUri);
-
         try {
             Log.i(TAG, String.format("Creating backup at %s: %s", Uri.decode(dir.getUri().toString()), fileInfo.toString()));
-
             if (!hasPermissionsAt(dirUri)) {
                 throw new VaultRepositoryException("No persisted URI permissions");
             }
-
             // If we create a file with a name that already exists, SAF will append a number
             // to the filename and write to that instead. We can't overwrite existing files, so
             // just avoid that altogether by checking beforehand.
             if (dir.findFile(fileInfo.toString()) != null) {
                 throw new VaultRepositoryException("Backup file already exists");
             }
-
             DocumentFile file = dir.createFile("application/json", fileInfo.toString());
             if (file == null) {
                 throw new VaultRepositoryException("createFile returned null");
             }
-
             try (FileInputStream inStream = new FileInputStream(tempFile);
-                 OutputStream outStream = _context.getContentResolver().openOutputStream(file.getUri())) {
+                OutputStream outStream = _context.getContentResolver().openOutputStream(file.getUri())) {
                 if (outStream == null) {
                     throw new IOException("openOutputStream returned null");
                 }
@@ -98,7 +92,6 @@ public class VaultBackupManager {
         } finally {
             tempFile.delete();
         }
-
         enforceVersioning(dir, versionsToKeep);
     }
 
@@ -108,24 +101,21 @@ public class VaultBackupManager {
                 return perm.isReadPermission() && perm.isWritePermission();
             }
         }
-
         return false;
     }
 
     private void enforceVersioning(DocumentFile dir, int versionsToKeep) {
         Log.i(TAG, String.format("Scanning directory %s for backup files", Uri.decode(dir.getUri().toString())));
-
         List<BackupFile> files = new ArrayList<>();
         for (DocumentFile docFile : dir.listFiles()) {
             if (docFile.isFile() && !docFile.isVirtual()) {
                 try {
                     files.add(new BackupFile(docFile));
-                } catch (ParseException ignored) { }
+                } catch (ParseException ignored) {
+                }
             }
         }
-
         Log.i(TAG, String.format("Found %d backup files, keeping the %d most recent", files.size(), versionsToKeep));
-
         Collections.sort(files, new FileComparator());
         if (files.size() > versionsToKeep) {
             for (BackupFile file : files.subList(0, files.size() - versionsToKeep)) {
@@ -138,8 +128,11 @@ public class VaultBackupManager {
     }
 
     public static class FileInfo {
+
         private String _filename;
+
         private String _ext;
+
         private Date _date;
 
         public FileInfo(String filename, String extension, Date date) {
@@ -164,29 +157,24 @@ public class VaultBackupManager {
             if (filename == null) {
                 throw new ParseException("The filename must not be null", 0);
             }
-
             final String ext = ".json";
             if (!filename.endsWith(ext)) {
                 throwBadFormat(filename);
             }
             filename = filename.substring(0, filename.length() - ext.length());
-
             final String delim = "-";
             String[] parts = filename.split(delim);
             if (parts.length < 3) {
                 throwBadFormat(filename);
             }
-
             filename = TextUtils.join(delim, Arrays.copyOf(parts, parts.length - 2));
             if (!filename.equals(FILENAME_PREFIX)) {
                 throwBadFormat(filename);
             }
-
             Date date = _dateFormat.parse(parts[parts.length - 2] + delim + parts[parts.length - 1]);
             if (date == null) {
                 throwBadFormat(filename);
             }
-
             return new FileInfo(filename, date);
         }
 
@@ -214,7 +202,9 @@ public class VaultBackupManager {
     }
 
     private static class BackupFile {
+
         private DocumentFile _file;
+
         private FileInfo _info;
 
         public BackupFile(DocumentFile file) throws ParseException {
@@ -232,6 +222,7 @@ public class VaultBackupManager {
     }
 
     private static class FileComparator implements Comparator<BackupFile> {
+
         @Override
         public int compare(BackupFile o1, BackupFile o2) {
             return o1.getInfo().getDate().compareTo(o2.getInfo().getDate());
@@ -240,6 +231,7 @@ public class VaultBackupManager {
 
     // https://stackoverflow.com/a/19503019
     private static class StrictDateFormat extends SimpleDateFormat {
+
         public StrictDateFormat(String pattern, Locale locale) {
             super(pattern, locale);
             setLenient(false);
@@ -251,9 +243,9 @@ public class VaultBackupManager {
             Date d = super.parse(text, pos);
             if (!isLenient() && d != null) {
                 String format = format(d);
-                if (posIndex + format.length() != text.length() ||
-                        !text.endsWith(format)) {
-                    d = null; // Not exact match
+                if (posIndex + format.length() != text.length() || !text.endsWith(format)) {
+                    // Not exact match
+                    d = null;
                 }
             }
             return d;

@@ -1,7 +1,6 @@
 package com.beemdevelopment.aegis.importers;
 
 import android.content.Context;
-
 import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.crypto.CryptoUtils;
 import com.beemdevelopment.aegis.encoding.Base32;
@@ -16,11 +15,9 @@ import com.beemdevelopment.aegis.util.IOUtils;
 import com.beemdevelopment.aegis.util.JsonUtils;
 import com.beemdevelopment.aegis.vault.VaultEntry;
 import com.topjohnwu.superuser.io.SuFile;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
@@ -31,7 +28,6 @@ import java.security.spec.InvalidKeySpecException;
 import java.security.spec.KeySpec;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
 import javax.crypto.IllegalBlockSizeException;
@@ -42,8 +38,11 @@ import javax.crypto.spec.PBEKeySpec;
 import javax.crypto.spec.SecretKeySpec;
 
 public class TwoFASImporter extends DatabaseImporter {
+
     private static final int ITERATION_COUNT = 10_000;
-    private static final int KEY_SIZE = 256; // bits
+
+    // bits
+    private static final int KEY_SIZE = 256;
 
     public TwoFASImporter(Context context) {
         super(context);
@@ -63,19 +62,16 @@ public class TwoFASImporter extends DatabaseImporter {
             if (version > 3) {
                 throw new DatabaseImporterException(String.format("Unsupported schema version: %d", version));
             }
-
             String encryptedString = JsonUtils.optString(obj, "servicesEncrypted");
             if (encryptedString == null) {
                 JSONArray array = obj.getJSONArray("services");
                 List<JSONObject> entries = arrayToList(array);
                 return new DecryptedState(entries);
             }
-
             String[] parts = encryptedString.split(":");
             if (parts.length < 3) {
                 throw new DatabaseImporterException(String.format("Unexpected format of encrypted data (parts: %d)", parts.length));
             }
-
             byte[] data = Base64.decode(parts[0]);
             byte[] salt = Base64.decode(parts[1]);
             byte[] iv = Base64.decode(parts[2]);
@@ -90,13 +86,15 @@ public class TwoFASImporter extends DatabaseImporter {
         for (int i = 0; i < array.length(); i++) {
             list.add(array.getJSONObject(i));
         }
-
         return list;
     }
 
     public static class EncryptedState extends State {
+
         private final byte[] _data;
+
         private final byte[] _salt;
+
         private final byte[] _iv;
 
         private EncryptedState(byte[] data, byte[] salt, byte[] iv) {
@@ -106,8 +104,7 @@ public class TwoFASImporter extends DatabaseImporter {
             _iv = iv;
         }
 
-        private SecretKey deriveKey(char[] password)
-                throws NoSuchAlgorithmException, InvalidKeySpecException {
+        private SecretKey deriveKey(char[] password) throws NoSuchAlgorithmException, InvalidKeySpecException {
             SecretKeyFactory factory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA256");
             KeySpec spec = new PBEKeySpec(password, _salt, ITERATION_COUNT, KEY_SIZE);
             SecretKey key = factory.generateSecret(spec);
@@ -123,12 +120,7 @@ public class TwoFASImporter extends DatabaseImporter {
                 return new DecryptedState(arrayToList(new JSONArray(json)));
             } catch (BadPaddingException | JSONException e) {
                 throw new DatabaseImporterException(e);
-            } catch (NoSuchAlgorithmException
-                    | InvalidKeySpecException
-                    | InvalidAlgorithmParameterException
-                    | NoSuchPaddingException
-                    | InvalidKeyException
-                    | IllegalBlockSizeException e) {
+            } catch (NoSuchAlgorithmException | InvalidKeySpecException | InvalidAlgorithmParameterException | NoSuchPaddingException | InvalidKeyException | IllegalBlockSizeException e) {
                 throw new RuntimeException(e);
             }
         }
@@ -147,6 +139,7 @@ public class TwoFASImporter extends DatabaseImporter {
     }
 
     public static class DecryptedState extends DatabaseImporter.State {
+
         private final List<JSONObject> _entries;
 
         public DecryptedState(List<JSONObject> entries) {
@@ -157,7 +150,6 @@ public class TwoFASImporter extends DatabaseImporter {
         @Override
         public Result convert() {
             Result result = new Result();
-
             for (JSONObject obj : _entries) {
                 try {
                     VaultEntry entry = convertEntry(obj);
@@ -166,7 +158,6 @@ public class TwoFASImporter extends DatabaseImporter {
                     result.addError(e);
                 }
             }
-
             return result;
         }
 
@@ -178,7 +169,6 @@ public class TwoFASImporter extends DatabaseImporter {
                 String name = info.optString("account");
                 int digits = info.optInt("digits", TotpInfo.DEFAULT_DIGITS);
                 String algorithm = info.optString("algorithm", TotpInfo.DEFAULT_ALGORITHM);
-
                 OtpInfo otp;
                 String tokenType = JsonUtils.optString(info, "tokenType");
                 if (tokenType == null || tokenType.equals("TOTP")) {
@@ -190,7 +180,6 @@ public class TwoFASImporter extends DatabaseImporter {
                 } else {
                     throw new DatabaseImporterEntryException(String.format("Unrecognized tokenType: %s", tokenType), obj.toString());
                 }
-
                 return new VaultEntry(otp, name, issuer);
             } catch (OtpInfoException | JSONException | EncodingException e) {
                 throw new DatabaseImporterEntryException(e, obj.toString());

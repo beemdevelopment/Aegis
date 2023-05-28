@@ -6,16 +6,12 @@ import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Build;
 import android.preference.PreferenceManager;
-
 import androidx.annotation.Nullable;
-
 import com.beemdevelopment.aegis.util.JsonUtils;
 import com.beemdevelopment.aegis.util.TimeUtils;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
@@ -26,22 +22,21 @@ import java.util.Map;
 import java.util.UUID;
 
 public class Preferences {
+
     public static final int AUTO_LOCK_OFF = 1 << 0;
+
     public static final int AUTO_LOCK_ON_BACK_BUTTON = 1 << 1;
+
     public static final int AUTO_LOCK_ON_MINIMIZE = 1 << 2;
+
     public static final int AUTO_LOCK_ON_DEVICE_LOCK = 1 << 3;
 
-    public static final int[] AUTO_LOCK_SETTINGS = {
-            AUTO_LOCK_ON_BACK_BUTTON,
-            AUTO_LOCK_ON_MINIMIZE,
-            AUTO_LOCK_ON_DEVICE_LOCK
-    };
+    public static final int[] AUTO_LOCK_SETTINGS = { AUTO_LOCK_ON_BACK_BUTTON, AUTO_LOCK_ON_MINIMIZE, AUTO_LOCK_ON_DEVICE_LOCK };
 
     private SharedPreferences _prefs;
 
     public Preferences(Context context) {
         _prefs = PreferenceManager.getDefaultSharedPreferences(context);
-
         if (getPasswordReminderTimestamp().getTime() == 0) {
             resetPasswordReminderTimestamp();
         }
@@ -57,7 +52,8 @@ public class Preferences {
 
     public boolean isPauseFocusedEnabled() {
         boolean dependenciesEnabled = isTapToRevealEnabled() || isEntryHighlightEnabled();
-        if (!dependenciesEnabled) return false;
+        if (!dependenciesEnabled)
+            return false;
         return _prefs.getBoolean("pref_pause_entry", false);
     }
 
@@ -80,7 +76,6 @@ public class Preferences {
             int i = _prefs.getInt(key, PassReminderFreq.BIWEEKLY.ordinal());
             return PassReminderFreq.fromInteger(i);
         }
-
         return PassReminderFreq.NEVER;
     }
 
@@ -97,7 +92,6 @@ public class Preferences {
         if (freq == PassReminderFreq.NEVER) {
             return false;
         }
-
         long duration = currTime - getPasswordReminderTimestamp().getTime();
         return duration >= freq.getDurationMillis();
     }
@@ -124,7 +118,6 @@ public class Preferences {
 
     public CodeGrouping getCodeGroupSize() {
         String value = _prefs.getString("pref_code_group_size_string", "GROUPING_THREES");
-
         return CodeGrouping.valueOf(value);
     }
 
@@ -137,7 +130,6 @@ public class Preferences {
         if (!_prefs.contains("pref_auto_lock_mask")) {
             return _prefs.getBoolean("pref_auto_lock", true) ? def : AUTO_LOCK_OFF;
         }
-
         return _prefs.getInt("pref_auto_lock_mask", def);
     }
 
@@ -191,14 +183,12 @@ public class Preferences {
 
     public Integer getUsageCount(UUID uuid) {
         Integer usageCount = getUsageCounts().get(uuid);
-
         return usageCount != null ? usageCount : 0;
     }
 
     public void resetUsageCount(UUID uuid) {
         Map<UUID, Integer> usageCounts = getUsageCounts();
         usageCounts.put(uuid, 0);
-
         setUsageCount(usageCounts);
     }
 
@@ -217,7 +207,6 @@ public class Preferences {
             }
         } catch (JSONException ignored) {
         }
-
         return usageCounts;
     }
 
@@ -233,7 +222,6 @@ public class Preferences {
                 e.printStackTrace();
             }
         }
-
         _prefs.edit().putString("pref_usage_count", usageCountJson.toString()).apply();
     }
 
@@ -243,7 +231,6 @@ public class Preferences {
 
     public Locale getLocale() {
         String lang = _prefs.getString("pref_lang", "system");
-
         if (lang.equals("system")) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                 return Resources.getSystem().getConfiguration().getLocales().get(0);
@@ -251,12 +238,10 @@ public class Preferences {
                 return Resources.getSystem().getConfiguration().locale;
             }
         }
-
         String[] parts = lang.split("_");
         if (parts.length == 1) {
             return new Locale(parts[0]);
         }
-
         return new Locale(parts[0], parts[1]);
     }
 
@@ -291,7 +276,6 @@ public class Preferences {
         if (str != null) {
             return Uri.parse(str);
         }
-
         return null;
     }
 
@@ -310,26 +294,21 @@ public class Preferences {
 
     public Date getLatestBackupOrExportTime() {
         List<Date> dates = new ArrayList<>();
-
         long l = _prefs.getLong("pref_export_latest", 0);
         if (l > 0) {
             dates.add(new Date(l));
         }
-
         BackupResult builtinRes = getBuiltInBackupResult();
         if (builtinRes != null) {
             dates.add(builtinRes.getTime());
         }
-
         BackupResult androidRes = getAndroidBackupResult();
         if (androidRes != null) {
             dates.add(androidRes.getTime());
         }
-
         if (dates.size() == 0) {
             return null;
         }
-
         return Collections.max(dates, Date::compareTo);
     }
 
@@ -391,7 +370,6 @@ public class Preferences {
         if (json == null) {
             return null;
         }
-
         try {
             BackupResult res = BackupResult.fromJson(json);
             res.setIsBuiltIn(isBuiltInBackup);
@@ -402,7 +380,7 @@ public class Preferences {
     }
 
     private static String getBackupResultKey(boolean isBuiltInBackup) {
-        return isBuiltInBackup ? "pref_backups_result_builtin": "pref_backups_result_android";
+        return isBuiltInBackup ? "pref_backups_result_builtin" : "pref_backups_result_android";
     }
 
     public void setIsBackupReminderNeeded(boolean needed) {
@@ -420,8 +398,7 @@ public class Preferences {
     }
 
     public boolean isPlaintextBackupWarningNeeded() {
-        return !isPlaintextBackupWarningDisabled()
-                && _prefs.getBoolean("pref_plaintext_backup_warning_needed", false);
+        return !isPlaintextBackupWarningDisabled() && _prefs.getBoolean("pref_plaintext_backup_warning_needed", false);
     }
 
     public void setIsPlaintextBackupWarningDisabled(boolean disabled) {
@@ -462,7 +439,6 @@ public class Preferences {
         if (raw == null || raw.isEmpty()) {
             return Collections.emptyList();
         }
-
         try {
             JSONArray json = new JSONArray(raw);
             List<String> filter = new ArrayList<>();
@@ -476,8 +452,11 @@ public class Preferences {
     }
 
     public static class BackupResult {
+
         private final Date _time;
+
         private boolean _isBuiltIn;
+
         private final String _error;
 
         public BackupResult(@Nullable Exception e) {
@@ -516,14 +495,12 @@ public class Preferences {
 
         public String toJson() {
             JSONObject obj = new JSONObject();
-
             try {
                 obj.put("time", _time.getTime());
                 obj.put("error", _error == null ? JSONObject.NULL : _error);
             } catch (JSONException e) {
                 throw new RuntimeException(e);
             }
-
             return obj.toString();
         }
 
@@ -536,13 +513,11 @@ public class Preferences {
     }
 
     public enum CodeGrouping {
-        HALVES(-1),
-        NO_GROUPING(-2),
-        GROUPING_TWOS(2),
-        GROUPING_THREES(3),
-        GROUPING_FOURS(4);
+
+        HALVES(-1), NO_GROUPING(-2), GROUPING_TWOS(2), GROUPING_THREES(3), GROUPING_FOURS(4);
 
         private final int _value;
+
         CodeGrouping(int value) {
             _value = value;
         }

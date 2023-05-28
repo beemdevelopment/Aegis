@@ -1,12 +1,11 @@
 package com.beemdevelopment.aegis.encoding;
 
 import com.google.common.io.BaseEncoding;
-
 import java.util.Locale;
 
 public class Hex {
-    private Hex() {
 
+    private Hex() {
     }
 
     public static byte[] decode(String s) throws EncodingException {

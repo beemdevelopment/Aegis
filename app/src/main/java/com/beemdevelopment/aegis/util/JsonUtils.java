@@ -1,12 +1,11 @@
 package com.beemdevelopment.aegis.util;
 
 import org.json.JSONObject;
-
 import javax.annotation.Nullable;
 
 public class JsonUtils {
-    private JsonUtils() {
 
+    private JsonUtils() {
     }
 
     @Nullable

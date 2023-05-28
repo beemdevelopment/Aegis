@@ -1,12 +1,11 @@
 package com.beemdevelopment.aegis.otp;
 
 import static org.junit.Assert.assertEquals;
-
 import com.beemdevelopment.aegis.crypto.otp.TOTPTest;
-
 import org.junit.Test;
 
 public class TotpInfoTest {
+
     @Test
     public void testTotpInfoOtp() throws OtpInfoException {
         for (TOTPTest.Vector vector : TOTPTest.VECTORS) {

@@ -3,9 +3,7 @@ package com.beemdevelopment.aegis.importers;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
-
 import androidx.lifecycle.Lifecycle;
-
 import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.encoding.Base32;
 import com.beemdevelopment.aegis.encoding.EncodingException;
@@ -20,11 +18,9 @@ import com.beemdevelopment.aegis.ui.tasks.PBKDFTask;
 import com.beemdevelopment.aegis.util.IOUtils;
 import com.beemdevelopment.aegis.vault.VaultEntry;
 import com.topjohnwu.superuser.io.SuFile;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
 import java.io.IOException;
@@ -35,7 +31,6 @@ import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
-
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
 import javax.crypto.IllegalBlockSizeException;
@@ -44,16 +39,20 @@ import javax.crypto.SecretKey;
 import javax.crypto.spec.IvParameterSpec;
 
 public class AuthenticatorProImporter extends DatabaseImporter {
+
     private static final String HEADER = "AuthenticatorPro";
+
     private static final int ITERATIONS = 64000;
+
     private static final int KEY_SIZE = 32 * Byte.SIZE;
+
     private static final String PKG_NAME = "me.jmh.authenticatorpro";
+
     private static final String PKG_DB_PATH = "files/proauth.db3";
 
     private enum Algorithm {
-        SHA1,
-        SHA256,
-        SHA512
+
+        SHA1, SHA256, SHA512
     }
 
     public AuthenticatorProImporter(Context context) {
@@ -82,7 +81,6 @@ public class AuthenticatorProImporter extends DatabaseImporter {
         } catch (IOException e) {
             throw new DatabaseImporterException(e);
         }
-
         try {
             return new JsonState(new JSONObject(new String(data, StandardCharsets.UTF_8)));
         } catch (JSONException e) {
@@ -98,11 +96,9 @@ public class AuthenticatorProImporter extends DatabaseImporter {
             if (!header.equals(HEADER)) {
                 throw new DatabaseImporterException("Invalid file header");
             }
-
             int saltSize = 20;
             byte[] salt = new byte[saltSize];
             stream.readFully(salt);
-
             Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
             int ivSize = cipher.getBlockSize();
             byte[] iv = new byte[ivSize];
@@ -115,9 +111,8 @@ public class AuthenticatorProImporter extends DatabaseImporter {
         }
     }
 
-    private static OtpInfo parseOtpInfo(int type, byte[] secret, Algorithm algo, int digits, int period, int counter)
-            throws OtpInfoException, DatabaseImporterEntryException {
-        switch (type) {
+    private static OtpInfo parseOtpInfo(int type, byte[] secret, Algorithm algo, int digits, int period, int counter) throws OtpInfoException, DatabaseImporterEntryException {
+        switch(type) {
             case 1:
                 return new HotpInfo(secret, algo.name(), digits, counter);
             case 2:
@@ -130,9 +125,13 @@ public class AuthenticatorProImporter extends DatabaseImporter {
     }
 
     static class EncryptedState extends State {
+
         private final Cipher _cipher;
+
         private final byte[] _salt;
+
         private final byte[] _iv;
+
         private final byte[] _data;
 
         public EncryptedState(Cipher cipher, byte[] salt, byte[] iv, byte[] data) {
@@ -154,8 +153,7 @@ public class AuthenticatorProImporter extends DatabaseImporter {
                 _cipher.init(Cipher.DECRYPT_MODE, key, new IvParameterSpec(_iv));
                 byte[] decrypted = _cipher.doFinal(_data);
                 return new JsonState(new JSONObject(new String(decrypted, StandardCharsets.UTF_8)));
-            } catch (InvalidAlgorithmParameterException | IllegalBlockSizeException
-                     | JSONException | InvalidKeyException | BadPaddingException e) {
+            } catch (InvalidAlgorithmParameterException | IllegalBlockSizeException | JSONException | InvalidKeyException | BadPaddingException e) {
                 throw new DatabaseImporterException(e);
             }
         }
@@ -183,6 +181,7 @@ public class AuthenticatorProImporter extends DatabaseImporter {
     }
 
     private static class JsonState extends State {
+
         private final JSONObject _obj;
 
         public JsonState(JSONObject obj) {
@@ -193,7 +192,6 @@ public class AuthenticatorProImporter extends DatabaseImporter {
         @Override
         public Result convert() throws DatabaseImporterException {
             Result res = new Result();
-
             try {
                 JSONArray array = _obj.getJSONArray("Authenticators");
                 for (int i = 0; i < array.length(); i++) {
@@ -207,7 +205,6 @@ public class AuthenticatorProImporter extends DatabaseImporter {
             } catch (JSONException e) {
                 throw new DatabaseImporterException(e);
             }
-
             return res;
         }
 
@@ -222,7 +219,6 @@ public class AuthenticatorProImporter extends DatabaseImporter {
                 int digits = obj.getInt("Digits");
                 int period = obj.getInt("Period");
                 int counter = obj.getInt("Counter");
-
                 OtpInfo info = parseOtpInfo(type, secret, algo, digits, period, counter);
                 return new VaultEntry(info, username, issuer);
             } catch (OtpInfoException | EncodingException | JSONException e) {
@@ -232,6 +228,7 @@ public class AuthenticatorProImporter extends DatabaseImporter {
     }
 
     private static class SqlState extends State {
+
         private final List<SqlEntry> _entries;
 
         public SqlState(List<SqlEntry> entries) {
@@ -242,7 +239,6 @@ public class AuthenticatorProImporter extends DatabaseImporter {
         @Override
         public Result convert() throws DatabaseImporterException {
             Result res = new Result();
-
             for (SqlEntry entry : _entries) {
                 try {
                     res.addEntry(entry.convert());
@@ -250,19 +246,26 @@ public class AuthenticatorProImporter extends DatabaseImporter {
                     res.addError(e);
                 }
             }
-
             return res;
         }
     }
 
     private static class SqlEntry extends SqlImporterHelper.Entry {
+
         private final int _type;
+
         private final String _issuer;
+
         private final String _username;
+
         private final String _secret;
+
         private final Algorithm _algo;
+
         private final int _digits;
+
         private final int _period;
+
         private final int _counter;
 
         public SqlEntry(Cursor cursor) {

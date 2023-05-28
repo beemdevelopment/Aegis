@@ -1,10 +1,10 @@
 package com.beemdevelopment.aegis.ui.intro;
 
 import android.os.Bundle;
-
 import androidx.annotation.NonNull;
 
 public interface IntroActivityInterface {
+
     /**
      * Navigate to the next slide.
      */

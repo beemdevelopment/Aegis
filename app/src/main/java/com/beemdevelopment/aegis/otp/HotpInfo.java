@@ -2,15 +2,15 @@ package com.beemdevelopment.aegis.otp;
 
 import com.beemdevelopment.aegis.crypto.otp.HOTP;
 import com.beemdevelopment.aegis.crypto.otp.OTP;
-
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 
 public class HotpInfo extends OtpInfo {
+
     public static final String ID = "hotp";
+
     public static final int DEFAULT_COUNTER = 0;
 
     private long _counter;
@@ -32,7 +32,6 @@ public class HotpInfo extends OtpInfo {
     @Override
     public String getOtp() throws OtpInfoException {
         checkSecret();
-
         try {
             OTP otp = HOTP.generateOTP(getSecret(), getAlgorithm(true), getDigits(), getCounter());
             return otp.toString();
@@ -81,7 +80,6 @@ public class HotpInfo extends OtpInfo {
         if (!(o instanceof HotpInfo)) {
             return false;
         }
-
         HotpInfo info = (HotpInfo) o;
         return super.equals(o) && getCounter() == info.getCounter();
     }

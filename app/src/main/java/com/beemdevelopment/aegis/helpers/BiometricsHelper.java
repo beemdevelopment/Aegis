@@ -1,13 +1,12 @@
 package com.beemdevelopment.aegis.helpers;
 
 import android.content.Context;
-
 import androidx.biometric.BiometricManager;
 import androidx.biometric.BiometricPrompt;
 
 public class BiometricsHelper {
-    private BiometricsHelper() {
 
+    private BiometricsHelper() {
     }
 
     public static BiometricManager getManager(Context context) {
@@ -19,9 +18,7 @@ public class BiometricsHelper {
     }
 
     public static boolean isCanceled(int errorCode) {
-        return errorCode == BiometricPrompt.ERROR_CANCELED
-                || errorCode == BiometricPrompt.ERROR_USER_CANCELED
-                || errorCode == BiometricPrompt.ERROR_NEGATIVE_BUTTON;
+        return errorCode == BiometricPrompt.ERROR_CANCELED || errorCode == BiometricPrompt.ERROR_USER_CANCELED || errorCode == BiometricPrompt.ERROR_NEGATIVE_BUTTON;
     }
 
     public static boolean isAvailable(Context context) {

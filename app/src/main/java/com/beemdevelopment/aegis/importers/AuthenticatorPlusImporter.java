@@ -1,14 +1,11 @@
 package com.beemdevelopment.aegis.importers;
 
 import android.content.Context;
-
 import com.beemdevelopment.aegis.ui.dialogs.Dialogs;
 import com.beemdevelopment.aegis.util.IOUtils;
 import com.topjohnwu.superuser.io.SuFile;
-
 import net.lingala.zip4j.io.inputstream.ZipInputStream;
 import net.lingala.zip4j.model.LocalFileHeader;
-
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -16,6 +13,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 public class AuthenticatorPlusImporter extends DatabaseImporter {
+
     private static final String FILENAME = "Accounts.txt";
 
     public AuthenticatorPlusImporter(Context context) {
@@ -37,6 +35,7 @@ public class AuthenticatorPlusImporter extends DatabaseImporter {
     }
 
     public static class EncryptedState extends DatabaseImporter.State {
+
         private final byte[] _data;
 
         private EncryptedState(byte[] data) {
@@ -46,7 +45,7 @@ public class AuthenticatorPlusImporter extends DatabaseImporter {
 
         protected State decrypt(char[] password) throws DatabaseImporterException {
             try (ByteArrayInputStream inStream = new ByteArrayInputStream(_data);
-                 ZipInputStream zipStream = new ZipInputStream(inStream, password)) {
+                ZipInputStream zipStream = new ZipInputStream(inStream, password)) {
                 LocalFileHeader header;
                 while ((header = zipStream.getNextEntry()) != null) {
                     File file = new File(header.getFileName());
@@ -55,7 +54,6 @@ public class AuthenticatorPlusImporter extends DatabaseImporter {
                         return importer.read(zipStream);
                     }
                 }
-
                 throw new FileNotFoundException(FILENAME);
             } catch (IOException e) {
                 throw new DatabaseImporterException(e);

@@ -4,15 +4,12 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.icons.IconPack;
 import com.beemdevelopment.aegis.icons.IconType;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -21,12 +18,19 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class IconAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+
     private final Context _context;
+
     private final String _issuer;
+
     private final Listener _listener;
+
     private IconPack _pack;
+
     private List<IconPack.Icon> _icons;
+
     private final List<CategoryHeader> _categories;
+
     private String _query;
 
     public IconAdapter(@NonNull Context context, String issuer, @NonNull Listener listener) {
@@ -45,20 +49,13 @@ public class IconAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         _query = null;
         _icons = new ArrayList<>(_pack.getIcons());
         _categories.clear();
-
         Comparator<IconPack.Icon> iconCategoryComparator = (i1, i2) -> {
             String c1 = getCategoryString(i1.getCategory());
             String c2 = getCategoryString(i2.getCategory());
             return c1.compareTo(c2);
         };
         Collections.sort(_icons, iconCategoryComparator.thenComparing(IconPack.Icon::getName));
-
-        long categoryCount = _icons.stream()
-                .map(IconPack.Icon::getCategory)
-                .filter(Objects::nonNull)
-                .distinct()
-                .count();
-
+        long categoryCount = _icons.stream().map(IconPack.Icon::getCategory).filter(Objects::nonNull).distinct().count();
         List<IconPack.Icon> suggested = pack.getSuggestedIcons(_issuer);
         suggested.add(0, new DummyIcon(_context.getString(R.string.icon_custom)));
         if (suggested.size() > 0) {
@@ -67,7 +64,6 @@ public class IconAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             category.getIcons().addAll(suggested);
             _categories.add(category);
         }
-
         CategoryHeader category = null;
         for (IconPack.Icon icon : _icons) {
             String iconCategory = getCategoryString(icon.getCategory());
@@ -77,10 +73,8 @@ public class IconAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                 category.setIsCollapsed(collapsed);
                 _categories.add(category);
             }
-
             category.getIcons().add(icon);
         }
-
         _icons.addAll(0, suggested);
         updateCategoryPositions();
         notifyDataSetChanged();
@@ -88,14 +82,10 @@ public class IconAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     public void setQuery(@Nullable String query) {
         _query = query;
-
         if (_query == null) {
             loadIcons(_pack);
         } else {
-            _icons = _pack.getIcons().stream()
-                    .filter(i -> i.isSuggestedFor(query))
-                    .collect(Collectors.toList());
-
+            _icons = _pack.getIcons().stream().filter(i -> i.isSuggestedFor(query)).collect(Collectors.toList());
             Collections.sort(_icons, Comparator.comparing(IconPack.Icon::getName));
             notifyDataSetChanged();
         }
@@ -105,16 +95,12 @@ public class IconAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         if (isQueryActive()) {
             return _icons.get(position);
         }
-
         position = translateIconPosition(position);
         return _icons.get(position);
     }
 
     public CategoryHeader getCategoryAt(int position) {
-        return _categories.stream()
-                .filter(c -> c.getPosition() == position)
-                .findFirst()
-                .orElse(null);
+        return _categories.stream().filter(c -> c.getPosition() == position).findFirst().orElse(null);
     }
 
     private String getCategoryString(String category) {
@@ -125,7 +111,6 @@ public class IconAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         if (isQueryActive()) {
             return false;
         }
-
         return getCategoryAt(position) != null;
     }
 
@@ -139,7 +124,6 @@ public class IconAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                 }
             }
         }
-
         return position - offset;
     }
 
@@ -147,12 +131,10 @@ public class IconAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         int i = 0;
         for (CategoryHeader category : _categories) {
             category.setPosition(i);
-
             int icons = 0;
             if (!category.isCollapsed()) {
                 icons = category.getIcons().size();
             }
-
             i += 1 + icons;
         }
     }
@@ -186,14 +168,12 @@ public class IconAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                 boolean collapsed = !category.isCollapsed();
                 categoryHolder.setIsCollapsed(collapsed);
                 category.setIsCollapsed(collapsed);
-
                 int startPosition = category.getPosition() + 1;
                 if (category.isCollapsed()) {
                     notifyItemRangeRemoved(startPosition, category.getIcons().size());
                 } else {
                     notifyItemRangeInserted(startPosition, category.getIcons().size());
                 }
-
                 updateCategoryPositions();
             });
         }
@@ -204,12 +184,7 @@ public class IconAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         if (isQueryActive()) {
             return _icons.size();
         }
-
-        int items = _categories.stream()
-                .filter(c -> !c.isCollapsed())
-                .mapToInt(c -> c.getIcons().size())
-                .sum();
-
+        int items = _categories.stream().filter(c -> !c.isCollapsed()).mapToInt(c -> c.getIcons().size()).sum();
         return items + _categories.size();
     }
 
@@ -218,7 +193,6 @@ public class IconAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         if (isCategoryPosition(position)) {
             return R.layout.card_icon_category;
         }
-
         return R.layout.card_icon;
     }
 
@@ -227,11 +201,14 @@ public class IconAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     }
 
     public interface Listener {
+
         void onIconSelected(IconPack.Icon icon);
+
         void onCustomSelected();
     }
 
     public static class DummyIcon extends IconPack.Icon {
+
         private final String _name;
 
         protected DummyIcon(String name) {
@@ -251,9 +228,13 @@ public class IconAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     }
 
     public static class CategoryHeader {
+
         private final String _category;
+
         private int _position = -1;
+
         private final List<IconPack.Icon> _icons;
+
         private boolean _collapsed = true;
 
         public CategoryHeader(String category) {

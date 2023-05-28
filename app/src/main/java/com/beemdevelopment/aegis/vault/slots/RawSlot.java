@@ -1,10 +1,10 @@
 package com.beemdevelopment.aegis.vault.slots;
 
 import com.beemdevelopment.aegis.crypto.CryptParameters;
-
 import java.util.UUID;
 
 public class RawSlot extends Slot {
+
     public RawSlot() {
         super();
     }

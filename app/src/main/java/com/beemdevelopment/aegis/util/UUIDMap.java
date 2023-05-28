@@ -1,7 +1,6 @@
 package com.beemdevelopment.aegis.util;
 
 import androidx.annotation.NonNull;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -18,7 +17,8 @@ import java.util.UUID;
  * the order).
  * @param <T> The type of values in this map
  */
-public class UUIDMap <T extends UUIDMap.Value> implements Iterable<T>, Serializable {
+public class UUIDMap<T extends UUIDMap.Value> implements Iterable<T>, Serializable {
+
     private LinkedHashMap<UUID, T> _map = new LinkedHashMap<>();
 
     /**
@@ -72,7 +72,6 @@ public class UUIDMap <T extends UUIDMap.Value> implements Iterable<T>, Serializa
         boolean found1 = false;
         boolean found2 = false;
         List<T> values = new ArrayList<>();
-
         for (T value : _map.values()) {
             if (value.getUUID().equals(value1.getUUID())) {
                 values.add(value2);
@@ -84,14 +83,12 @@ public class UUIDMap <T extends UUIDMap.Value> implements Iterable<T>, Serializa
                 values.add(value);
             }
         }
-
         if (!found1) {
             throw new AssertionError(String.format("No value found for value1 with UUID: %s", value1.getUUID()));
         }
         if (!found2) {
             throw new AssertionError(String.format("No value found for value2 with UUID: %s", value2.getUUID()));
         }
-
         _map.clear();
         for (T value : values) {
             _map.put(value.getUUID(), value);
@@ -131,6 +128,7 @@ public class UUIDMap <T extends UUIDMap.Value> implements Iterable<T>, Serializa
     }
 
     public static abstract class Value implements Serializable {
+
         private UUID _uuid;
 
         protected Value(UUID uuid) {
@@ -159,11 +157,9 @@ public class UUIDMap <T extends UUIDMap.Value> implements Iterable<T>, Serializa
             if (this == o) {
                 return true;
             }
-
             if (!(o instanceof Value)) {
                 return false;
             }
-
             return getUUID().equals(((Value) o).getUUID());
         }
     }

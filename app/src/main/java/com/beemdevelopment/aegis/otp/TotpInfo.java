@@ -2,15 +2,15 @@ package com.beemdevelopment.aegis.otp;
 
 import com.beemdevelopment.aegis.crypto.otp.OTP;
 import com.beemdevelopment.aegis.crypto.otp.TOTP;
-
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 
 public class TotpInfo extends OtpInfo {
+
     public static final String ID = "totp";
+
     public static final int DEFAULT_PERIOD = 30;
 
     private int _period;
@@ -28,7 +28,6 @@ public class TotpInfo extends OtpInfo {
     @Override
     public String getOtp() throws OtpInfoException {
         checkSecret();
-
         try {
             OTP otp = TOTP.generateOTP(getSecret(), getAlgorithm(true), getDigits(), getPeriod());
             return otp.toString();
@@ -70,7 +69,6 @@ public class TotpInfo extends OtpInfo {
         if (period <= 0) {
             return false;
         }
-
         // check for the possibility of an overflow when converting to milliseconds
         return period <= Integer.MAX_VALUE / 1000;
     }
@@ -96,7 +94,6 @@ public class TotpInfo extends OtpInfo {
         if (!(o instanceof TotpInfo)) {
             return false;
         }
-
         TotpInfo info = (TotpInfo) o;
         return super.equals(o) && getPeriod() == info.getPeriod();
     }

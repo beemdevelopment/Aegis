@@ -3,18 +3,17 @@ package com.beemdevelopment.aegis.ui.views;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.icons.IconPack;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class IconPackAdapter extends RecyclerView.Adapter<IconPackHolder> {
+
     private IconPackAdapter.Listener _listener;
+
     private List<IconPack> _iconPacks;
 
     public IconPackAdapter(IconPackAdapter.Listener listener) {
@@ -24,7 +23,6 @@ public class IconPackAdapter extends RecyclerView.Adapter<IconPackHolder> {
 
     public void addIconPack(IconPack pack) {
         _iconPacks.add(pack);
-
         int position = getItemCount() - 1;
         if (position == 0) {
             notifyDataSetChanged();
@@ -61,6 +59,7 @@ public class IconPackAdapter extends RecyclerView.Adapter<IconPackHolder> {
     }
 
     public interface Listener {
+
         void onRemoveIconPack(IconPack pack);
     }
 }

@@ -6,9 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import androidx.annotation.NonNull;
-
 import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.importers.AegisImporter;
 import com.beemdevelopment.aegis.importers.DatabaseImporter;
@@ -18,15 +16,16 @@ import com.beemdevelopment.aegis.ui.intro.SlideFragment;
 import com.beemdevelopment.aegis.ui.tasks.ImportFileTask;
 import com.beemdevelopment.aegis.vault.VaultFileCredentials;
 import com.beemdevelopment.aegis.vault.VaultRepository;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 
 public class WelcomeSlide extends SlideFragment {
+
     public static final int CODE_IMPORT_VAULT = 0;
 
     private boolean _imported;
+
     private VaultFileCredentials _creds;
 
     @Override
@@ -60,12 +59,12 @@ public class WelcomeSlide extends SlideFragment {
                 Dialogs.showErrorDialog(requireContext(), R.string.reading_file_error, result.getError());
                 return;
             }
-
             try (FileInputStream inStream = new FileInputStream(result.getFile())) {
                 AegisImporter importer = new AegisImporter(requireContext());
                 DatabaseImporter.State state = importer.read(inStream, false);
                 if (state.isEncrypted()) {
                     state.decrypt(requireContext(), new DatabaseImporter.DecryptListener() {
+
                         @Override
                         protected void onStateDecrypted(DatabaseImporter.State state) {
                             _creds = ((AegisImporter.DecryptedState) state).getCredentials();
@@ -80,7 +79,6 @@ public class WelcomeSlide extends SlideFragment {
 
                         @Override
                         protected void onCanceled() {
-
                         }
                     });
                 } else {
@@ -102,7 +100,6 @@ public class WelcomeSlide extends SlideFragment {
             Dialogs.showErrorDialog(requireContext(), R.string.intro_import_error_title, e);
             return;
         }
-
         _imported = true;
         goToNextSlide();
     }

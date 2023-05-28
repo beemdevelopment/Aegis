@@ -4,7 +4,6 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.util.Base64;
-
 import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.encoding.Base32;
 import com.beemdevelopment.aegis.encoding.Hex;
@@ -16,15 +15,14 @@ import com.beemdevelopment.aegis.otp.OtpInfo;
 import com.beemdevelopment.aegis.otp.YandexInfo;
 import com.google.common.html.HtmlEscapers;
 import com.google.zxing.WriterException;
-
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.util.Collection;
 
 public class VaultHtmlExporter {
-    private VaultHtmlExporter() {
 
+    private VaultHtmlExporter() {
     }
 
     public static void export(Context context, PrintStream ps, Collection<VaultEntry> entries) throws WriterException, IOException {

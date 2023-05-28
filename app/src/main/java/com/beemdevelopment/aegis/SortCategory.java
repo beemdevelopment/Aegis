@@ -4,11 +4,11 @@ import com.beemdevelopment.aegis.helpers.comparators.UsageCountComparator;
 import com.beemdevelopment.aegis.vault.VaultEntry;
 import com.beemdevelopment.aegis.helpers.comparators.AccountNameComparator;
 import com.beemdevelopment.aegis.helpers.comparators.IssuerNameComparator;
-
 import java.util.Collections;
 import java.util.Comparator;
 
 public enum SortCategory {
+
     CUSTOM,
     ACCOUNT,
     ACCOUNT_REVERSED,
@@ -28,8 +28,7 @@ public enum SortCategory {
 
     public Comparator<VaultEntry> getComparator() {
         Comparator<VaultEntry> comparator = null;
-
-        switch (this) {
+        switch(this) {
             case ACCOUNT:
                 comparator = new AccountNameComparator();
                 break;
@@ -46,12 +45,11 @@ public enum SortCategory {
                 comparator = Collections.reverseOrder(new UsageCountComparator());
                 break;
         }
-
         return comparator;
     }
 
     public int getMenuItem() {
-        switch (this) {
+        switch(this) {
             case CUSTOM:
                 return R.id.menu_sort_custom;
             case ACCOUNT:

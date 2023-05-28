@@ -1,17 +1,16 @@
 package com.beemdevelopment.aegis.ui.glide;
 
 import androidx.annotation.NonNull;
-
 import com.bumptech.glide.load.Options;
 import com.bumptech.glide.load.ResourceDecoder;
 import com.bumptech.glide.load.engine.Resource;
 import com.caverock.androidsvg.SVG;
-
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 
 public class SvgBytesDecoder implements ResourceDecoder<ByteBuffer, SVG> {
+
     private SvgDecoder _decoder = new SvgDecoder();
 
     @Override

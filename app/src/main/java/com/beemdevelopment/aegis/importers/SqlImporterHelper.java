@@ -1,18 +1,15 @@
 package com.beemdevelopment.aegis.importers;
 
 import static android.database.sqlite.SQLiteDatabase.OPEN_READONLY;
-
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
-
 import com.beemdevelopment.aegis.util.IOUtils;
 import com.google.common.io.Files;
 import com.topjohnwu.superuser.io.SuFile;
 import com.topjohnwu.superuser.io.SuFileInputStream;
-
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -22,6 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SqlImporterHelper {
+
     private Context _context;
 
     public SqlImporterHelper(Context context) {
@@ -31,7 +29,6 @@ public class SqlImporterHelper {
     public <T extends Entry> List<T> read(Class<T> type, SuFile path, String table) throws DatabaseImporterException {
         File dir = Files.createTempDir();
         File mainFile = new File(dir, path.getName());
-
         List<File> fileCopies = new ArrayList<>();
         for (SuFile file : SqlImporterHelper.findDatabaseFiles(path)) {
             // create temporary copies of the database files so that SQLiteDatabase can open them
@@ -46,15 +43,12 @@ public class SqlImporterHelper {
                 if (fileCopy != null) {
                     fileCopy.delete();
                 }
-
                 for (File fileCopy2 : fileCopies) {
                     fileCopy2.delete();
                 }
-
                 throw new DatabaseImporterException(e);
             }
         }
-
         try {
             return read(type, mainFile, table);
         } finally {
@@ -69,7 +63,6 @@ public class SqlImporterHelper {
         if (files == null || files.length == 0) {
             throw new DatabaseImporterException(String.format("File does not exist: %s", path.getAbsolutePath()));
         }
-
         return files;
     }
 
@@ -87,7 +80,6 @@ public class SqlImporterHelper {
             }
             throw new DatabaseImporterException(e);
         }
-
         try {
             return read(type, file, table);
         } finally {
@@ -100,17 +92,14 @@ public class SqlImporterHelper {
         try (SQLiteDatabase db = SQLiteDatabase.openDatabase(file.getAbsolutePath(), null, OPEN_READONLY)) {
             try (Cursor cursor = db.rawQuery(String.format("SELECT * FROM %s", table), null)) {
                 List<T> entries = new ArrayList<>();
-
                 if (cursor.moveToFirst()) {
                     do {
                         T entry = type.getDeclaredConstructor(Cursor.class).newInstance(cursor);
                         entries.add(entry);
                     } while (cursor.moveToNext());
                 }
-
                 return entries;
-            } catch (InstantiationException | IllegalAccessException
-                    | NoSuchMethodException | InvocationTargetException e) {
+            } catch (InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException e) {
                 throw new RuntimeException(e);
             }
         } catch (SQLiteException e) {
@@ -143,8 +132,8 @@ public class SqlImporterHelper {
     }
 
     public static abstract class Entry {
-        public Entry(Cursor cursor) {
 
+        public Entry(Cursor cursor) {
         }
     }
 }

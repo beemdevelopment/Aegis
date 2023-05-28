@@ -1,7 +1,6 @@
 package com.beemdevelopment.aegis.ui.glide;
 
 import androidx.annotation.NonNull;
-
 import com.beemdevelopment.aegis.icons.IconType;
 import com.beemdevelopment.aegis.vault.VaultEntry;
 import com.bumptech.glide.Priority;
@@ -12,10 +11,10 @@ import com.bumptech.glide.load.data.DataFetcher;
 import com.bumptech.glide.load.model.ModelLoader;
 import com.bumptech.glide.load.model.ModelLoaderFactory;
 import com.bumptech.glide.load.model.MultiModelLoaderFactory;
-
 import java.nio.ByteBuffer;
 
 public class IconLoader implements ModelLoader<VaultEntry, ByteBuffer> {
+
     public static final Option<IconType> ICON_TYPE = Option.memory("ICON_TYPE", IconType.INVALID);
 
     @Override
@@ -29,6 +28,7 @@ public class IconLoader implements ModelLoader<VaultEntry, ByteBuffer> {
     }
 
     public static class Fetcher implements DataFetcher<ByteBuffer> {
+
         private final VaultEntry _model;
 
         private Fetcher(VaultEntry model) {
@@ -44,12 +44,10 @@ public class IconLoader implements ModelLoader<VaultEntry, ByteBuffer> {
 
         @Override
         public void cleanup() {
-
         }
 
         @Override
         public void cancel() {
-
         }
 
         @NonNull
@@ -66,6 +64,7 @@ public class IconLoader implements ModelLoader<VaultEntry, ByteBuffer> {
     }
 
     public static class Factory implements ModelLoaderFactory<VaultEntry, ByteBuffer> {
+
         @NonNull
         @Override
         public ModelLoader<VaultEntry, ByteBuffer> build(@NonNull MultiModelLoaderFactory unused) {
@@ -74,7 +73,6 @@ public class IconLoader implements ModelLoader<VaultEntry, ByteBuffer> {
 
         @Override
         public void teardown() {
-
         }
     }
 }

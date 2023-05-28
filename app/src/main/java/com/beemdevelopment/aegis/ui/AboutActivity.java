@@ -10,11 +10,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.annotation.AttrRes;
 import androidx.annotation.StringRes;
 import androidx.core.view.LayoutInflaterCompat;
-
 import com.beemdevelopment.aegis.BuildConfig;
 import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.Theme;
@@ -24,18 +22,21 @@ import com.beemdevelopment.aegis.licenses.ProtobufLicense;
 import com.beemdevelopment.aegis.ui.dialogs.ChangelogDialog;
 import com.beemdevelopment.aegis.ui.dialogs.LicenseDialog;
 import com.mikepenz.iconics.context.IconicsLayoutInflater2;
-
 import de.psdev.licensesdialog.LicenseResolver;
 import de.psdev.licensesdialog.LicensesDialog;
 
 public class AboutActivity extends AegisActivity {
 
     private static String GITHUB = "https://github.com/beemdevelopment/Aegis";
+
     private static String WEBSITE_ALEXANDER = "https://alexbakker.me";
+
     private static String GITHUB_MICHAEL = "https://github.com/michaelschattgen";
 
     private static String MAIL_BEEMDEVELOPMENT = "beemdevelopment@gmail.com";
+
     private static String WEBSITE_BEEMDEVELOPMENT = "https://beem.dev/";
+
     private static String PLAYSTORE_BEEMDEVELOPMENT = "https://play.google.com/store/apps/details?id=com.beemdevelopment.aegis";
 
     @Override
@@ -45,56 +46,39 @@ public class AboutActivity extends AegisActivity {
         if (abortIfOrphan(savedInstanceState)) {
             return;
         }
-
         setContentView(R.layout.activity_about);
         setSupportActionBar(findViewById(R.id.toolbar));
-
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setDisplayShowHomeEnabled(true);
         }
-
         View btnLicense = findViewById(R.id.btn_license);
         btnLicense.setOnClickListener(v -> {
-            LicenseDialog.create()
-                    .setTheme(getConfiguredTheme())
-                    .show(getSupportFragmentManager(), null);
+            LicenseDialog.create().setTheme(getConfiguredTheme()).show(getSupportFragmentManager(), null);
         });
-
         View btnThirdPartyLicenses = findViewById(R.id.btn_third_party_licenses);
         btnThirdPartyLicenses.setOnClickListener(v -> showThirdPartyLicenseDialog());
-
         TextView appVersion = findViewById(R.id.app_version);
         appVersion.setText(getCurrentAppVersion());
-
         View btnAppVersion = findViewById(R.id.btn_app_version);
         btnAppVersion.setOnClickListener(v -> {
             copyToClipboard(getCurrentAppVersion(), R.string.version_copied);
         });
-
         View btnGithub = findViewById(R.id.btn_github);
         btnGithub.setOnClickListener(v -> openUrl(GITHUB));
-
         View btnAlexander = findViewById(R.id.btn_alexander);
         btnAlexander.setOnClickListener(v -> openUrl(WEBSITE_ALEXANDER));
-
         View btnMichael = findViewById(R.id.btn_michael);
         btnMichael.setOnClickListener(v -> openUrl(GITHUB_MICHAEL));
-
         View btnMail = findViewById(R.id.btn_email);
         btnMail.setOnClickListener(v -> openMail(MAIL_BEEMDEVELOPMENT));
-
         View btnWebsite = findViewById(R.id.btn_website);
         btnWebsite.setOnClickListener(v -> openUrl(WEBSITE_BEEMDEVELOPMENT));
-
         View btnRate = findViewById(R.id.btn_rate);
-        btnRate.setOnClickListener(v -> openUrl(PLAYSTORE_BEEMDEVELOPMENT ));
-
+        btnRate.setOnClickListener(v -> openUrl(PLAYSTORE_BEEMDEVELOPMENT));
         View btnChangelog = findViewById(R.id.btn_changelog);
         btnChangelog.setOnClickListener(v -> {
-            ChangelogDialog.create()
-                    .setTheme(getConfiguredTheme())
-                    .show(getSupportFragmentManager(), null);
+            ChangelogDialog.create().setTheme(getConfiguredTheme()).show(getSupportFragmentManager(), null);
         });
     }
 
@@ -102,7 +86,6 @@ public class AboutActivity extends AegisActivity {
         if (BuildConfig.DEBUG) {
             return String.format("%s-%s (%s)", BuildConfig.VERSION_NAME, BuildConfig.GIT_HASH, BuildConfig.GIT_BRANCH);
         }
-
         return BuildConfig.VERSION_NAME;
     }
 
@@ -110,7 +93,6 @@ public class AboutActivity extends AegisActivity {
         Intent browserIntent = new Intent(Intent.ACTION_VIEW);
         browserIntent.setData(Uri.parse(url));
         browserIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-
         startActivity(browserIntent);
     }
 
@@ -126,7 +108,6 @@ public class AboutActivity extends AegisActivity {
         mailIntent.setData(Uri.parse("mailto:" + mailaddress));
         mailIntent.putExtra(Intent.EXTRA_EMAIL, mailaddress);
         mailIntent.putExtra(Intent.EXTRA_SUBJECT, R.string.app_name_full);
-
         startActivity(Intent.createChooser(mailIntent, getString(R.string.email)));
     }
 
@@ -137,19 +118,10 @@ public class AboutActivity extends AegisActivity {
         String textColor = getThemeColorAsHex(R.attr.primaryText);
         String licenseColor = getThemeColorAsHex(R.attr.cardBackgroundFocused);
         String linkColor = getThemeColorAsHex(R.attr.colorAccent);
-
         stylesheet = String.format(stylesheet, backgroundColor, textColor, licenseColor, linkColor);
-
         LicenseResolver.registerLicense(new GlideLicense());
         LicenseResolver.registerLicense(new ProtobufLicense());
-
-        new LicensesDialog.Builder(this)
-                .setNotices(R.raw.notices)
-                .setTitle(R.string.third_party_licenses)
-                .setNoticesCssStyle(stylesheet)
-                .setIncludeOwnLicense(true)
-                .build()
-                .show();
+        new LicensesDialog.Builder(this).setNotices(R.raw.notices).setTitle(R.string.third_party_licenses).setNoticesCssStyle(stylesheet).setIncludeOwnLicense(true).build().show();
     }
 
     private String getThemeColorAsHex(@AttrRes int attributeId) {
@@ -158,14 +130,13 @@ public class AboutActivity extends AegisActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
+        switch(item.getItemId()) {
             case android.R.id.home:
                 finish();
                 break;
             default:
                 return super.onOptionsItemSelected(item);
         }
-
         return true;
     }
 }

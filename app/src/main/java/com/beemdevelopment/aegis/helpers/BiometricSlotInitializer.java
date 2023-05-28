@@ -4,15 +4,12 @@ import androidx.annotation.NonNull;
 import androidx.biometric.BiometricPrompt;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
-
 import com.beemdevelopment.aegis.crypto.KeyStoreHandle;
 import com.beemdevelopment.aegis.crypto.KeyStoreHandleException;
 import com.beemdevelopment.aegis.vault.slots.BiometricSlot;
 import com.beemdevelopment.aegis.vault.slots.Slot;
 import com.beemdevelopment.aegis.vault.slots.SlotException;
-
 import java.util.Objects;
-
 import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
 
@@ -22,8 +19,11 @@ import javax.crypto.SecretKey;
  * BiometricPrompt.
  */
 public class BiometricSlotInitializer extends BiometricPrompt.AuthenticationCallback {
+
     private BiometricSlot _slot;
+
     private Listener _listener;
+
     private BiometricPrompt _prompt;
 
     public BiometricSlotInitializer(Fragment fragment, Listener listener) {
@@ -46,7 +46,6 @@ public class BiometricSlotInitializer extends BiometricPrompt.AuthenticationCall
         if (_slot != null) {
             throw new IllegalStateException("Biometric authentication already in progress");
         }
-
         KeyStoreHandle keyStore;
         try {
             keyStore = new KeyStoreHandle();
@@ -54,7 +53,6 @@ public class BiometricSlotInitializer extends BiometricPrompt.AuthenticationCall
             fail(e);
             return;
         }
-
         // generate a new Android KeyStore key
         // and assign it the UUID of the new slot as an alias
         Cipher cipher;
@@ -66,7 +64,6 @@ public class BiometricSlotInitializer extends BiometricPrompt.AuthenticationCall
             fail(e);
             return;
         }
-
         _slot = slot;
         _prompt.authenticate(info, new BiometricPrompt.CryptoObject(cipher));
     }
@@ -79,7 +76,6 @@ public class BiometricSlotInitializer extends BiometricPrompt.AuthenticationCall
         if (_slot == null) {
             throw new IllegalStateException("Biometric authentication not in progress");
         }
-
         reset();
         _prompt.cancelAuthentication();
     }
@@ -97,7 +93,6 @@ public class BiometricSlotInitializer extends BiometricPrompt.AuthenticationCall
             } catch (KeyStoreHandleException e) {
                 e.printStackTrace();
             }
-
             _slot = null;
         }
     }
@@ -130,7 +125,9 @@ public class BiometricSlotInitializer extends BiometricPrompt.AuthenticationCall
     }
 
     public interface Listener {
+
         void onInitializeSlot(BiometricSlot slot, Cipher cipher);
+
         void onSlotInitializationFailed(int errorCode, @NonNull CharSequence errString);
     }
 }

@@ -1,28 +1,25 @@
 package com.beemdevelopment.aegis.vault.slots;
 
 import com.beemdevelopment.aegis.util.UUIDMap;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class SlotList extends UUIDMap<Slot> {
+
     public JSONArray toJson() {
         JSONArray array = new JSONArray();
         for (Slot slot : this) {
             array.put(slot.toJson());
         }
-
         return array;
     }
 
     public static SlotList fromJson(JSONArray array) throws SlotListException {
         SlotList slots = new SlotList();
-
         try {
             for (int i = 0; i < array.length(); i++) {
                 JSONObject obj = array.getJSONObject(i);
@@ -32,7 +29,6 @@ public class SlotList extends UUIDMap<Slot> {
         } catch (SlotException | JSONException e) {
             throw new SlotListException(e);
         }
-
         return slots;
     }
 
@@ -56,17 +52,11 @@ public class SlotList extends UUIDMap<Slot> {
     }
 
     public List<PasswordSlot> findBackupPasswordSlots() {
-        return findAll(PasswordSlot.class)
-                .stream()
-                .filter(PasswordSlot::isBackup)
-                .collect(Collectors.toList());
+        return findAll(PasswordSlot.class).stream().filter(PasswordSlot::isBackup).collect(Collectors.toList());
     }
 
     public List<PasswordSlot> findRegularPasswordSlots() {
-        return findAll(PasswordSlot.class)
-                .stream()
-                .filter(s -> !s.isBackup())
-                .collect(Collectors.toList());
+        return findAll(PasswordSlot.class).stream().filter(s -> !s.isBackup()).collect(Collectors.toList());
     }
 
     public <T extends Slot> boolean has(Class<T> type) {
@@ -85,18 +75,15 @@ public class SlotList extends UUIDMap<Slot> {
                 break;
             }
         }
-
         if (!hasBackupSlots) {
             return this;
         }
-
         SlotList slots = new SlotList();
         for (Slot slot : this) {
             if (!(slot instanceof PasswordSlot) || ((PasswordSlot) slot).isBackup()) {
                 slots.add(slot);
             }
         }
-
         return slots;
     }
 }

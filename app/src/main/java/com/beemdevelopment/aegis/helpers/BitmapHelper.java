@@ -3,8 +3,8 @@ package com.beemdevelopment.aegis.helpers;
 import android.graphics.Bitmap;
 
 public class BitmapHelper {
-    private BitmapHelper() {
 
+    private BitmapHelper() {
     }
 
     /**
@@ -14,10 +14,8 @@ public class BitmapHelper {
         if (maxHeight <= 0 || maxWidth <= 0) {
             return bitmap;
         }
-
         float maxRatio = (float) maxWidth / maxHeight;
         float ratio = (float) bitmap.getWidth() / bitmap.getHeight();
-
         int width = maxWidth;
         int height = maxHeight;
         if (maxRatio > 1) {
@@ -25,7 +23,6 @@ public class BitmapHelper {
         } else {
             height = (int) ((float) maxWidth / ratio);
         }
-
         return Bitmap.createScaledBitmap(bitmap, width, height, true);
     }
 }

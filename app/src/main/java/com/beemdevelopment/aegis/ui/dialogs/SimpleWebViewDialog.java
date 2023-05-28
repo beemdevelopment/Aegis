@@ -9,25 +9,25 @@ import android.view.InflateException;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.webkit.WebView;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.StringRes;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.DialogFragment;
-
 import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.Theme;
 import com.beemdevelopment.aegis.helpers.ThemeHelper;
 import com.google.common.io.CharStreams;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 
 public abstract class SimpleWebViewDialog extends DialogFragment {
+
     private Theme _theme;
-    private final @StringRes int _title;
+
+    @StringRes
+    private final int _title;
 
     protected SimpleWebViewDialog(@StringRes int title) {
         _title = title;
@@ -44,19 +44,9 @@ public abstract class SimpleWebViewDialog extends DialogFragment {
             view = LayoutInflater.from(requireContext()).inflate(R.layout.dialog_web_view, null);
         } catch (InflateException e) {
             e.printStackTrace();
-            return new AlertDialog.Builder(requireContext())
-                    .setTitle(android.R.string.dialog_alert_title)
-                    .setMessage(getString(R.string.webview_error))
-                    .setPositiveButton(android.R.string.ok, null)
-                    .show();
+            return new AlertDialog.Builder(requireContext()).setTitle(android.R.string.dialog_alert_title).setMessage(getString(R.string.webview_error)).setPositiveButton(android.R.string.ok, null).show();
         }
-
-        AlertDialog dialog = new AlertDialog.Builder(requireContext())
-                .setTitle(_title)
-                .setView(view)
-                .setPositiveButton(android.R.string.ok, null)
-                .show();
-
+        AlertDialog dialog = new AlertDialog.Builder(requireContext()).setTitle(_title).setView(view).setPositiveButton(android.R.string.ok, null).show();
         String content = getContent(requireContext());
         final WebView webView = view.findViewById(R.id.web_view);
         webView.loadData(content, "text/html", "UTF-8");
@@ -84,7 +74,7 @@ public abstract class SimpleWebViewDialog extends DialogFragment {
 
     protected static String readAssetAsString(Context context, String name) {
         try (InputStream inStream = context.getAssets().open(name);
-             InputStreamReader reader = new InputStreamReader(inStream, StandardCharsets.UTF_8)) {
+            InputStreamReader reader = new InputStreamReader(inStream, StandardCharsets.UTF_8)) {
             return CharStreams.toString(reader);
         } catch (IOException e) {
             throw new RuntimeException(e);

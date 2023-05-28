@@ -7,10 +7,8 @@ import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.WindowManager;
 import android.widget.Toast;
-
 import androidx.annotation.CallSuper;
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.beemdevelopment.aegis.Preferences;
 import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.Theme;
@@ -18,14 +16,11 @@ import com.beemdevelopment.aegis.ThemeMap;
 import com.beemdevelopment.aegis.icons.IconPackManager;
 import com.beemdevelopment.aegis.vault.VaultManager;
 import com.beemdevelopment.aegis.vault.VaultRepositoryException;
-
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Locale;
 import java.util.Map;
-
 import javax.inject.Inject;
-
 import dagger.hilt.InstallIn;
 import dagger.hilt.android.AndroidEntryPoint;
 import dagger.hilt.android.EarlyEntryPoint;
@@ -34,6 +29,7 @@ import dagger.hilt.components.SingletonComponent;
 
 @AndroidEntryPoint
 public abstract class AegisActivity extends AppCompatActivity implements VaultManager.LockListener {
+
     protected Preferences _prefs;
 
     @Inject
@@ -49,12 +45,10 @@ public abstract class AegisActivity extends AppCompatActivity implements VaultMa
         onSetTheme();
         setLocale(_prefs.getLocale());
         super.onCreate(savedInstanceState);
-
         // set FLAG_SECURE on the window of every AegisActivity
         if (_prefs.isSecureScreenEnabled()) {
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_SECURE);
         }
-
         // register a callback to listen for lock events
         _vaultManager.registerLockListener(this);
     }
@@ -78,13 +72,13 @@ public abstract class AegisActivity extends AppCompatActivity implements VaultMa
     @Override
     public void onLocked(boolean userInitiated) {
         setResult(RESULT_CANCELED, null);
-
         try {
             // Call a private overload of the finish() method to prevent the app
             // from disappearing from the recent apps menu
             Method method = Activity.class.getDeclaredMethod("finish", int.class);
             method.setAccessible(true);
-            method.invoke(this, 2); // FINISH_TASK_WITH_ACTIVITY = 2
+            // FINISH_TASK_WITH_ACTIVITY = 2
+            method.invoke(this, 2);
         } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
             // On recent Android versions, the overload  of the finish() method
             // used above is no longer accessible
@@ -110,7 +104,6 @@ public abstract class AegisActivity extends AppCompatActivity implements VaultMa
 
     protected Theme getConfiguredTheme() {
         Theme theme = _prefs.getCurrentTheme();
-
         if (theme == Theme.SYSTEM || theme == Theme.SYSTEM_AMOLED) {
             int currentNightMode = getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
             if (currentNightMode == Configuration.UI_MODE_NIGHT_YES) {
@@ -119,16 +112,13 @@ public abstract class AegisActivity extends AppCompatActivity implements VaultMa
                 theme = Theme.LIGHT;
             }
         }
-
         return theme;
     }
 
     protected void setLocale(Locale locale) {
         Locale.setDefault(locale);
-
         Configuration config = new Configuration();
         config.locale = locale;
-
         getResources().updateConfiguration(config, getResources().getDisplayMetrics());
     }
 
@@ -161,7 +151,6 @@ public abstract class AegisActivity extends AppCompatActivity implements VaultMa
         if (savedInstanceState == null || !isOrphan()) {
             return false;
         }
-
         Intent intent = new Intent(this, MainActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
@@ -174,15 +163,13 @@ public abstract class AegisActivity extends AppCompatActivity implements VaultMa
      * the vault was killed/locked by an external trigger while the Activity was still open.
      */
     private boolean isOrphan() {
-        return !(this instanceof MainActivity)
-                && !(this instanceof AuthActivity)
-                && !(this instanceof IntroActivity)
-                && !_vaultManager.isVaultLoaded();
+        return !(this instanceof MainActivity) && !(this instanceof AuthActivity) && !(this instanceof IntroActivity) && !_vaultManager.isVaultLoaded();
     }
 
     @EarlyEntryPoint
     @InstallIn(SingletonComponent.class)
     public interface PrefEntryPoint {
+
         Preferences getPreferences();
     }
 }

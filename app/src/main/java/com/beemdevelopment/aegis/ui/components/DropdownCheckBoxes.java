@@ -11,12 +11,9 @@ import android.widget.BaseAdapter;
 import android.widget.CheckBox;
 import android.widget.Filter;
 import android.widget.Filterable;
-
 import androidx.annotation.PluralsRes;
 import androidx.appcompat.widget.AppCompatAutoCompleteTextView;
-
 import com.beemdevelopment.aegis.R;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -24,12 +21,16 @@ import java.util.TreeSet;
 import java.util.stream.Collectors;
 
 public class DropdownCheckBoxes extends AppCompatAutoCompleteTextView {
-    private @PluralsRes int _selectedCountPlural = R.plurals.dropdown_checkboxes_default_count;
+
+    @PluralsRes
+    private int _selectedCountPlural = R.plurals.dropdown_checkboxes_default_count;
 
     private boolean _allowFiltering = false;
 
     private final List<String> _items = new ArrayList<>();
+
     private List<String> _visibleItems = new ArrayList<>();
+
     private final Set<String> _checkedItems = new TreeSet<>();
 
     private CheckboxAdapter _adapter;
@@ -52,17 +53,11 @@ public class DropdownCheckBoxes extends AppCompatAutoCompleteTextView {
     private void initialise(Context context, AttributeSet attrs) {
         _adapter = new CheckboxAdapter();
         setAdapter(_adapter);
-
         if (attrs != null) {
-            TypedArray a = context.obtainStyledAttributes(
-                    attrs,
-                    R.styleable.DropdownCheckBoxes,
-                    0, 0);
-
+            TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.DropdownCheckBoxes, 0, 0);
             _allowFiltering = a.getBoolean(R.styleable.DropdownCheckBoxes_allow_filtering, false);
             a.recycle();
         }
-
         if (!_allowFiltering) {
             setInputType(0);
         } else {
@@ -73,11 +68,9 @@ public class DropdownCheckBoxes extends AppCompatAutoCompleteTextView {
     public void addItems(List<String> items, boolean startChecked) {
         _items.addAll(items);
         _visibleItems.addAll(items);
-
         if (startChecked) {
             _checkedItems.addAll(items);
         }
-
         updateCheckedItemsCountText();
         _adapter.notifyDataSetChanged();
     }
@@ -86,10 +79,8 @@ public class DropdownCheckBoxes extends AppCompatAutoCompleteTextView {
         if (_allowFiltering) {
             return;
         }
-
         int count = _checkedItems.size();
         String countString = getResources().getQuantityString(_selectedCountPlural, count, count);
-
         setText(countString, false);
     }
 
@@ -123,44 +114,34 @@ public class DropdownCheckBoxes extends AppCompatAutoCompleteTextView {
             if (convertView == null) {
                 convertView = LayoutInflater.from(getContext()).inflate(R.layout.dropdown_checkbox, viewGroup, false);
             }
-
             String item = _visibleItems.get(i);
-
             CheckBox checkBox = convertView.findViewById(R.id.checkbox_in_dropdown);
             checkBox.setText(item);
             checkBox.setChecked(_checkedItems.contains(item));
-
             checkBox.setOnCheckedChangeListener((buttonView, isChecked) -> {
                 String label = buttonView.getText().toString();
-
                 if (isChecked) {
                     _checkedItems.add(label);
                 } else {
                     _checkedItems.remove(label);
                 }
-
                 updateCheckedItemsCountText();
             });
-
             return convertView;
         }
 
         @Override
         public Filter getFilter() {
             return new Filter() {
+
                 @Override
                 protected FilterResults performFiltering(CharSequence query) {
                     FilterResults results = new FilterResults();
-                    results.values = (query == null || query.toString().isEmpty())
-                                   ? _items
-                                   : _items.stream().filter(str -> {
-                                                        String q = query.toString().toLowerCase();
-                                                        String strLower = str.toLowerCase();
-
-                                                        return strLower.contains(q);
-                                                    })
-                                                    .collect(Collectors.toList());
-
+                    results.values = (query == null || query.toString().isEmpty()) ? _items : _items.stream().filter(str -> {
+                        String q = query.toString().toLowerCase();
+                        String strLower = str.toLowerCase();
+                        return strLower.contains(q);
+                    }).collect(Collectors.toList());
                     return results;
                 }
 

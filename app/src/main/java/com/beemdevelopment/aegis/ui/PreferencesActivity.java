@@ -2,19 +2,17 @@ package com.beemdevelopment.aegis.ui;
 
 import android.os.Bundle;
 import android.view.MenuItem;
-
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
-
 import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.ui.fragments.preferences.MainPreferencesFragment;
 import com.beemdevelopment.aegis.ui.fragments.preferences.PreferencesFragment;
 
-public class PreferencesActivity extends AegisActivity implements
-        PreferenceFragmentCompat.OnPreferenceStartFragmentCallback {
+public class PreferencesActivity extends AegisActivity implements PreferenceFragmentCompat.OnPreferenceStartFragmentCallback {
+
     private Fragment _fragment;
 
     @Override
@@ -25,22 +23,15 @@ public class PreferencesActivity extends AegisActivity implements
         }
         setContentView(R.layout.activity_preferences);
         setSupportActionBar(findViewById(R.id.toolbar));
-        getSupportFragmentManager()
-                .registerFragmentLifecycleCallbacks(new FragmentResumeListener(), true);
-
+        getSupportFragmentManager().registerFragmentLifecycleCallbacks(new FragmentResumeListener(), true);
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setDisplayShowHomeEnabled(true);
         }
-
         if (savedInstanceState == null) {
             _fragment = new MainPreferencesFragment();
             _fragment.setArguments(getIntent().getExtras());
-
-            getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.content, _fragment)
-                    .commit();
-
+            getSupportFragmentManager().beginTransaction().replace(R.id.content, _fragment).commit();
             PreferencesFragment requestedFragment = getRequestedFragment();
             if (requestedFragment != null) {
                 _fragment = requestedFragment;
@@ -79,7 +70,6 @@ public class PreferencesActivity extends AegisActivity implements
         } else {
             return super.onOptionsItemSelected(item);
         }
-
         return true;
     }
 
@@ -89,17 +79,12 @@ public class PreferencesActivity extends AegisActivity implements
         _fragment.setArguments(pref.getExtras());
         _fragment.setTargetFragment(caller, 0);
         showFragment(_fragment);
-
         setTitle(pref.getTitle());
         return true;
     }
 
     private void showFragment(Fragment fragment) {
-        getSupportFragmentManager().beginTransaction()
-                .setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left, R.anim.slide_in_left, R.anim.slide_out_right)
-                .replace(R.id.content, fragment)
-                .addToBackStack(null)
-                .commit();
+        getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left, R.anim.slide_in_left, R.anim.slide_out_right).replace(R.id.content, fragment).addToBackStack(null).commit();
     }
 
     @SuppressWarnings("unchecked")
@@ -108,7 +93,6 @@ public class PreferencesActivity extends AegisActivity implements
         if (fragmentType == null) {
             return null;
         }
-
         try {
             return fragmentType.newInstance();
         } catch (IllegalAccessException | InstantiationException e) {
@@ -117,6 +101,7 @@ public class PreferencesActivity extends AegisActivity implements
     }
 
     private class FragmentResumeListener extends FragmentManager.FragmentLifecycleCallbacks {
+
         @Override
         public void onFragmentStarted(@NonNull FragmentManager fm, @NonNull Fragment f) {
             if (f instanceof MainPreferencesFragment) {

@@ -1,11 +1,11 @@
 package com.beemdevelopment.aegis.ui.tasks;
 
 import android.content.Context;
-
 import com.beemdevelopment.aegis.R;
 import com.topjohnwu.superuser.Shell;
 
 public class RootShellTask extends ProgressDialogTask<Object, Shell> {
+
     private final Callback _cb;
 
     public RootShellTask(Context context, Callback cb) {
@@ -26,6 +26,7 @@ public class RootShellTask extends ProgressDialogTask<Object, Shell> {
     }
 
     public interface Callback {
+
         void onTaskFinished(Shell shell);
     }
 }
