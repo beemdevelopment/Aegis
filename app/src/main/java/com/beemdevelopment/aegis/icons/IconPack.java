@@ -2,14 +2,11 @@ package com.beemdevelopment.aegis.icons;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-
 import com.google.common.base.Objects;
 import com.google.common.io.Files;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.io.File;
 import java.io.Serializable;
 import java.nio.charset.StandardCharsets;
@@ -20,9 +17,13 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 public class IconPack {
+
     private UUID _uuid;
+
     private String _name;
+
     private int _version;
+
     private List<Icon> _icons;
 
     private File _dir;
@@ -57,10 +58,7 @@ public class IconPack {
         if (issuer == null || issuer.isEmpty()) {
             return new ArrayList<>();
         }
-
-        return _icons.stream()
-                .filter(i -> i.isSuggestedFor(issuer))
-                .collect(Collectors.toList());
+        return _icons.stream().filter(i -> i.isSuggestedFor(issuer)).collect(Collectors.toList());
     }
 
     @Nullable
@@ -82,7 +80,6 @@ public class IconPack {
         if (!(o instanceof IconPack)) {
             return false;
         }
-
         IconPack pack = (IconPack) o;
         return super.equals(pack) || (getUUID().equals(pack.getUUID()) && getVersion() == pack.getVersion());
     }
@@ -103,13 +100,11 @@ public class IconPack {
         String name = obj.getString("name");
         int version = obj.getInt("version");
         JSONArray array = obj.getJSONArray("icons");
-
         List<Icon> icons = new ArrayList<>();
         for (int i = 0; i < array.length(); i++) {
             Icon icon = Icon.fromJson(array.getJSONObject(i));
             icons.add(icon);
         }
-
         return new IconPack(uuid, name, version, icons);
     }
 
@@ -119,8 +114,11 @@ public class IconPack {
     }
 
     public static class Icon implements Serializable {
+
         private final String _relFilename;
+
         private final String _category;
+
         private final List<String> _issuers;
 
         private File _file;
@@ -162,22 +160,18 @@ public class IconPack {
 
         public boolean isSuggestedFor(String issuer) {
             String lowerIssuer = issuer.toLowerCase();
-            return getIssuers().stream()
-                    .map(String::toLowerCase)
-                    .anyMatch(is -> is.contains(lowerIssuer) || lowerIssuer.contains(is));
+            return getIssuers().stream().map(String::toLowerCase).anyMatch(is -> is.contains(lowerIssuer) || lowerIssuer.contains(is));
         }
 
         public static Icon fromJson(JSONObject obj) throws JSONException {
             String filename = obj.getString("filename");
             String category = obj.isNull("category") ? null : obj.getString("category");
             JSONArray array = obj.getJSONArray("issuer");
-
             List<String> issuers = new ArrayList<>();
             for (int i = 0; i < array.length(); i++) {
                 String issuer = array.getString(i);
                 issuers.add(issuer);
             }
-
             return new Icon(filename, category, issuers);
         }
     }

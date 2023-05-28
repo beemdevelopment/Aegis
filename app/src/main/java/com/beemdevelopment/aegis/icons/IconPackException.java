@@ -1,6 +1,7 @@
 package com.beemdevelopment.aegis.icons;
 
 public class IconPackException extends Exception {
+
     public IconPackException(Throwable cause) {
         super(cause);
     }

@@ -1,18 +1,18 @@
 package com.beemdevelopment.aegis.vault;
 
 import androidx.annotation.NonNull;
-
 import com.beemdevelopment.aegis.crypto.CryptParameters;
 import com.beemdevelopment.aegis.crypto.CryptResult;
 import com.beemdevelopment.aegis.crypto.MasterKey;
 import com.beemdevelopment.aegis.crypto.MasterKeyException;
 import com.beemdevelopment.aegis.util.Cloner;
 import com.beemdevelopment.aegis.vault.slots.SlotList;
-
 import java.io.Serializable;
 
 public class VaultFileCredentials implements Serializable {
+
     private MasterKey _key;
+
     private SlotList _slots;
 
     public VaultFileCredentials() {

@@ -2,25 +2,22 @@ package com.beemdevelopment.aegis.ui.intro;
 
 import android.content.Context;
 import android.os.Bundle;
-
 import androidx.annotation.CallSuper;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-
 import java.lang.ref.WeakReference;
 
 public abstract class SlideFragment extends Fragment implements IntroActivityInterface {
+
     private WeakReference<IntroBaseActivity> _parent;
 
     @CallSuper
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
-
         if (!(context instanceof IntroBaseActivity)) {
             throw new ClassCastException("Parent context is expected to be of type IntroBaseActivity");
         }
-
         _parent = new WeakReference<>((IntroBaseActivity) context);
     }
 
@@ -43,7 +40,6 @@ public abstract class SlideFragment extends Fragment implements IntroActivityInt
      * Called if the user tried to move to the next slide, but isFinished returned false.
      */
     protected void onNotFinishedError() {
-
     }
 
     /**
@@ -52,7 +48,6 @@ public abstract class SlideFragment extends Fragment implements IntroActivityInt
      * when a previous slide is next to be shown.
      */
     protected void onSaveIntroState(@NonNull Bundle introState) {
-
     }
 
     @Override
@@ -81,7 +76,6 @@ public abstract class SlideFragment extends Fragment implements IntroActivityInt
         if (_parent == null || _parent.get() == null) {
             throw new IllegalStateException("This method must not be called before onAttach()");
         }
-
         return _parent.get();
     }
 }

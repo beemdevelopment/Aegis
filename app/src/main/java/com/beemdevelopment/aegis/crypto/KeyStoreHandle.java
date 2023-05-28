@@ -3,9 +3,7 @@ package com.beemdevelopment.aegis.crypto;
 import android.os.Build;
 import android.security.keystore.KeyGenParameterSpec;
 import android.security.keystore.KeyProperties;
-
 import androidx.annotation.RequiresApi;
-
 import java.io.IOException;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
@@ -17,14 +15,15 @@ import java.security.ProviderException;
 import java.security.UnrecoverableKeyException;
 import java.security.cert.CertificateException;
 import java.util.Collections;
-
 import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;
 import javax.crypto.NoSuchPaddingException;
 import javax.crypto.SecretKey;
 
 public class KeyStoreHandle {
+
     private final KeyStore _keyStore;
+
     private static final String STORE_NAME = "AndroidKeyStore";
 
     public KeyStoreHandle() throws KeyStoreHandleException {
@@ -48,18 +47,9 @@ public class KeyStoreHandle {
         if (!isSupported()) {
             throw new KeyStoreHandleException("Symmetric KeyStore keys are not supported in this version of Android");
         }
-
         try {
             KeyGenerator generator = KeyGenerator.getInstance(KeyProperties.KEY_ALGORITHM_AES, STORE_NAME);
-            generator.init(new KeyGenParameterSpec.Builder(id,
-                    KeyProperties.PURPOSE_ENCRYPT | KeyProperties.PURPOSE_DECRYPT)
-                    .setBlockModes(KeyProperties.BLOCK_MODE_GCM)
-                    .setEncryptionPaddings(KeyProperties.ENCRYPTION_PADDING_NONE)
-                    .setUserAuthenticationRequired(true)
-                    .setRandomizedEncryptionRequired(true)
-                    .setKeySize(CryptoUtils.CRYPTO_AEAD_KEY_SIZE * 8)
-                    .build());
-
+            generator.init(new KeyGenParameterSpec.Builder(id, KeyProperties.PURPOSE_ENCRYPT | KeyProperties.PURPOSE_DECRYPT).setBlockModes(KeyProperties.BLOCK_MODE_GCM).setEncryptionPaddings(KeyProperties.ENCRYPTION_PADDING_NONE).setUserAuthenticationRequired(true).setRandomizedEncryptionRequired(true).setKeySize(CryptoUtils.CRYPTO_AEAD_KEY_SIZE * 8).build());
             return generator.generateKey();
         } catch (ProviderException e) {
             // a ProviderException can occur at runtime with buggy Keymaster HAL implementations
@@ -76,7 +66,6 @@ public class KeyStoreHandle {
 
     public SecretKey getKey(String id) throws KeyStoreHandleException {
         SecretKey key;
-
         try {
             key = (SecretKey) _keyStore.getKey(id, null);
         } catch (UnrecoverableKeyException e) {
@@ -86,11 +75,9 @@ public class KeyStoreHandle {
         } catch (KeyStoreException e) {
             throw new KeyStoreHandleException(e);
         }
-
         if (isSupported() && isKeyPermanentlyInvalidated(key)) {
             return null;
         }
-
         return key;
     }
 
@@ -106,7 +93,6 @@ public class KeyStoreHandle {
         } catch (NoSuchAlgorithmException | NoSuchPaddingException e) {
             throw new RuntimeException(e);
         }
-
         return false;
     }
 

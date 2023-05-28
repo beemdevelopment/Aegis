@@ -4,28 +4,30 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-
 import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.ui.dialogs.Dialogs;
 import com.beemdevelopment.aegis.ui.views.GroupAdapter;
 import com.beemdevelopment.aegis.vault.VaultEntry;
-
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 
 public class GroupManagerActivity extends AegisActivity implements GroupAdapter.Listener {
+
     private GroupAdapter _adapter;
+
     private HashSet<String> _removedGroups;
+
     private RecyclerView _slotsView;
+
     private View _emptyStateView;
+
     private BackPressHandler _backPressHandler;
 
     @Override
@@ -42,25 +44,21 @@ public class GroupManagerActivity extends AegisActivity implements GroupAdapter.
         }
         _backPressHandler = new BackPressHandler();
         getOnBackPressedDispatcher().addCallback(this, _backPressHandler);
-
         if (savedInstanceState != null) {
             List<String> groups = savedInstanceState.getStringArrayList("removedGroups");
             _removedGroups = new HashSet<>(Objects.requireNonNull(groups));
         } else {
             _removedGroups = new HashSet<>();
         }
-
         _adapter = new GroupAdapter(this);
-        _slotsView= findViewById(R.id.list_slots);
+        _slotsView = findViewById(R.id.list_slots);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         _slotsView.setLayoutManager(layoutManager);
         _slotsView.setAdapter(_adapter);
         _slotsView.setNestedScrollingEnabled(false);
-
         for (String group : _vaultManager.getVault().getGroups()) {
             _adapter.addGroup(group);
         }
-
         _emptyStateView = findViewById(R.id.vEmptyList);
         updateEmptyState();
     }
@@ -73,17 +71,12 @@ public class GroupManagerActivity extends AegisActivity implements GroupAdapter.
 
     @Override
     public void onRemoveGroup(String group) {
-        Dialogs.showSecureDialog(new AlertDialog.Builder(this)
-                .setTitle(R.string.remove_group)
-                .setMessage(R.string.remove_group_description)
-                .setPositiveButton(android.R.string.yes, (dialog, whichButton) -> {
-                    _removedGroups.add(group);
-                    _adapter.removeGroup(group);
-                    _backPressHandler.setEnabled(true);
-                    updateEmptyState();
-                })
-                .setNegativeButton(android.R.string.no, null)
-                .create());
+        Dialogs.showSecureDialog(new AlertDialog.Builder(this).setTitle(R.string.remove_group).setMessage(R.string.remove_group_description).setPositiveButton(android.R.string.yes, (dialog, whichButton) -> {
+            _removedGroups.add(group);
+            _adapter.removeGroup(group);
+            _backPressHandler.setEnabled(true);
+            updateEmptyState();
+        }).setNegativeButton(android.R.string.no, null).create());
     }
 
     private void saveAndFinish() {
@@ -93,10 +86,8 @@ public class GroupManagerActivity extends AegisActivity implements GroupAdapter.
                     entry.setGroup(null);
                 }
             }
-
             saveAndBackupVault();
         }
-
         finish();
     }
 
@@ -105,10 +96,7 @@ public class GroupManagerActivity extends AegisActivity implements GroupAdapter.
             finish();
             return;
         }
-
-        Dialogs.showDiscardDialog(this,
-                (dialog, which) -> saveAndFinish(),
-                (dialog, which) -> finish());
+        Dialogs.showDiscardDialog(this, (dialog, which) -> saveAndFinish(), (dialog, which) -> finish());
     }
 
     @Override
@@ -119,7 +107,7 @@ public class GroupManagerActivity extends AegisActivity implements GroupAdapter.
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
+        switch(item.getItemId()) {
             case android.R.id.home:
                 discardAndFinish();
                 break;
@@ -129,7 +117,6 @@ public class GroupManagerActivity extends AegisActivity implements GroupAdapter.
             default:
                 return super.onOptionsItemSelected(item);
         }
-
         return true;
     }
 
@@ -144,6 +131,7 @@ public class GroupManagerActivity extends AegisActivity implements GroupAdapter.
     }
 
     private class BackPressHandler extends OnBackPressedCallback {
+
         public BackPressHandler() {
             super(false);
         }

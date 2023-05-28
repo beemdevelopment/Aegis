@@ -3,7 +3,6 @@ package com.beemdevelopment.aegis.importers;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
-
 import com.beemdevelopment.aegis.encoding.Base64;
 import com.beemdevelopment.aegis.encoding.EncodingException;
 import com.beemdevelopment.aegis.otp.GoogleAuthInfo;
@@ -13,15 +12,17 @@ import com.beemdevelopment.aegis.otp.TotpInfo;
 import com.beemdevelopment.aegis.vault.VaultEntry;
 import com.topjohnwu.superuser.Shell;
 import com.topjohnwu.superuser.io.SuFile;
-
 import java.io.InputStream;
 import java.util.List;
 
 public class MicrosoftAuthImporter extends DatabaseImporter {
+
     private static final String _subPath = "databases/PhoneFactor";
+
     private static final String _pkgName = "com.azure.authenticator";
 
     private static final int TYPE_TOTP = 0;
+
     private static final int TYPE_MICROSOFT = 1;
 
     public MicrosoftAuthImporter(Context context) {
@@ -44,13 +45,13 @@ public class MicrosoftAuthImporter extends DatabaseImporter {
     public DatabaseImporter.State readFromApp(Shell shell) throws PackageManager.NameNotFoundException, DatabaseImporterException {
         SuFile path = getAppPath();
         path.setShell(shell);
-
         SqlImporterHelper helper = new SqlImporterHelper(requireContext());
         List<Entry> entries = helper.read(Entry.class, path, "accounts");
         return new State(entries);
     }
 
     public static class State extends DatabaseImporter.State {
+
         private List<Entry> _entries;
 
         private State(List<Entry> entries) {
@@ -61,7 +62,6 @@ public class MicrosoftAuthImporter extends DatabaseImporter {
         @Override
         public Result convert() {
             Result result = new Result();
-
             for (Entry sqlEntry : _entries) {
                 try {
                     int type = sqlEntry.getType();
@@ -73,7 +73,6 @@ public class MicrosoftAuthImporter extends DatabaseImporter {
                     result.addError(e);
                 }
             }
-
             return result;
         }
 
@@ -81,8 +80,7 @@ public class MicrosoftAuthImporter extends DatabaseImporter {
             try {
                 byte[] secret;
                 int digits = 6;
-
-                switch (entry.getType()) {
+                switch(entry.getType()) {
                     case TYPE_TOTP:
                         secret = GoogleAuthInfo.parseSecret(entry.getSecret());
                         break;
@@ -93,7 +91,6 @@ public class MicrosoftAuthImporter extends DatabaseImporter {
                     default:
                         throw new DatabaseImporterEntryException(String.format("Unsupported OTP type: %d", entry.getType()), entry.toString());
                 }
-
                 OtpInfo info = new TotpInfo(secret, OtpInfo.DEFAULT_ALGORITHM, digits, TotpInfo.DEFAULT_PERIOD);
                 return new VaultEntry(info, entry.getUserName(), entry.getIssuer());
             } catch (EncodingException | OtpInfoException e) {
@@ -103,9 +100,13 @@ public class MicrosoftAuthImporter extends DatabaseImporter {
     }
 
     private static class Entry extends SqlImporterHelper.Entry {
+
         private int _type;
+
         private String _secret;
+
         private String _issuer;
+
         private String _userName;
 
         public Entry(Cursor cursor) {

@@ -11,14 +11,12 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.annotation.ArrayRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.core.content.FileProvider;
 import androidx.preference.Preference;
-
 import com.beemdevelopment.aegis.BuildConfig;
 import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.helpers.DropdownHelper;
@@ -42,7 +40,6 @@ import com.beemdevelopment.aegis.vault.VaultRepositoryException;
 import com.beemdevelopment.aegis.vault.slots.PasswordSlot;
 import com.beemdevelopment.aegis.vault.slots.SlotException;
 import com.google.android.material.textfield.TextInputLayout;
-
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -54,35 +51,32 @@ import java.util.Objects;
 import java.util.Random;
 import java.util.Set;
 import java.util.TreeSet;
-
 import javax.crypto.Cipher;
 
 public class ImportExportPreferencesFragment extends PreferencesFragment {
+
     // keep a reference to the type of database converter that was selected
     private DatabaseImporter.Definition _importerDef;
+
     private Vault.EntryFilter _exportFilter;
 
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
         super.onCreatePreferences(savedInstanceState, rootKey);
         addPreferencesFromResource(R.xml.preferences_import_export);
-
         if (savedInstanceState != null) {
             _importerDef = (DatabaseImporter.Definition) savedInstanceState.getSerializable("importerDef");
         }
-
         Preference importPreference = requirePreference("pref_import");
         importPreference.setOnPreferenceClickListener(preference -> {
             Dialogs.showImportersDialog(requireContext(), false, definition -> {
                 _importerDef = definition;
-
                 Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
                 intent.setType("*/*");
                 _vaultManager.startActivityForResult(this, intent, CODE_IMPORT_SELECT);
             });
             return true;
         });
-
         Preference importAppPreference = requirePreference("pref_import_app");
         importAppPreference.setOnPreferenceClickListener(preference -> {
             Dialogs.showImportersDialog(requireContext(), true, definition -> {
@@ -90,13 +84,11 @@ public class ImportExportPreferencesFragment extends PreferencesFragment {
             });
             return true;
         });
-
         Preference exportPreference = requirePreference("pref_export");
         exportPreference.setOnPreferenceClickListener(preference -> {
             startExport();
             return true;
         });
-
         Preference googleAuthStyleExportPreference = requirePreference("pref_google_auth_style_export");
         googleAuthStyleExportPreference.setOnPreferenceClickListener(preference -> {
             startGoogleAuthenticatorStyleExport();
@@ -115,16 +107,16 @@ public class ImportExportPreferencesFragment extends PreferencesFragment {
         if (requestCode == CODE_IMPORT) {
             getResult().putExtra("needsRecreate", true);
         } else if (data != null) {
-            switch (requestCode) {
+            switch(requestCode) {
                 case CODE_IMPORT_SELECT:
                     onImportSelectResult(resultCode, data);
                     break;
                 case CODE_EXPORT:
-                    // intentional fallthrough
+                // intentional fallthrough
                 case CODE_EXPORT_PLAIN:
-                    // intentional fallthrough
+                // intentional fallthrough
                 case CODE_EXPORT_HTML:
-                    // intentional fallthrough
+                // intentional fallthrough
                 case CODE_EXPORT_GOOGLE_URI:
                     onExportResult(requestCode, resultCode, data);
                     break;
@@ -137,7 +129,6 @@ public class ImportExportPreferencesFragment extends PreferencesFragment {
         if (resultCode != Activity.RESULT_OK || uri == null) {
             return;
         }
-
         ImportFileTask.Params params = new ImportFileTask.Params(uri, "import", null);
         ImportFileTask task = new ImportFileTask(requireContext(), result -> {
             if (result.getError() == null) {
@@ -176,36 +167,22 @@ public class ImportExportPreferencesFragment extends PreferencesFragment {
             warningText.setVisibility(checkBoxEncrypt.isChecked() ? View.GONE : View.VISIBLE);
             passwordInfoText.setVisibility(checkBoxEncrypt.isChecked() && isBackupPasswordSet ? View.VISIBLE : View.GONE);
         });
-
         TreeSet<String> groups = _vaultManager.getVault().getGroups();
         if (groups.size() > 0) {
             checkBoxExportAllGroups.setVisibility(View.VISIBLE);
-
             ArrayList<String> groupsArray = new ArrayList<>();
             groupsArray.add(getString(R.string.no_group));
             groupsArray.addAll(groups);
-
             groupsSelection.setCheckedItemsCountTextRes(R.plurals.export_groups_selected_count);
             groupsSelection.addItems(groupsArray, false);
         }
-
-        AlertDialog dialog = new AlertDialog.Builder(requireContext())
-                .setTitle(R.string.pref_export_summary)
-                .setView(view)
-                .setNeutralButton(R.string.share, null)
-                .setPositiveButton(android.R.string.ok, null)
-                .setNegativeButton(android.R.string.cancel, null)
-                .create();
-
+        AlertDialog dialog = new AlertDialog.Builder(requireContext()).setTitle(R.string.pref_export_summary).setView(view).setNeutralButton(R.string.share, null).setPositiveButton(android.R.string.ok, null).setNegativeButton(android.R.string.cancel, null).create();
         dialog.setOnShowListener(d -> {
             Button btnPos = dialog.getButton(AlertDialog.BUTTON_POSITIVE);
             Button btnNeutral = dialog.getButton(AlertDialog.BUTTON_NEUTRAL);
-
             DialogStateValidator stateValidator = () -> {
                 boolean noGroupsSelected = groupsSelection.getCheckedItems().isEmpty();
-                boolean validState = (checkBoxEncrypt.isChecked() || checkBoxAccept.isChecked()) &&
-                                     (checkBoxExportAllGroups.isChecked() || !noGroupsSelected);
-
+                boolean validState = (checkBoxEncrypt.isChecked() || checkBoxAccept.isChecked()) && (checkBoxExportAllGroups.isChecked() || !noGroupsSelected);
                 if (noGroupsSelected && groupsSelectionLayout.getError() == null) {
                     CharSequence errorMsg = getString(R.string.export_no_groups_selected);
                     groupsSelectionLayout.setError(errorMsg);
@@ -213,40 +190,30 @@ public class ImportExportPreferencesFragment extends PreferencesFragment {
                     groupsSelectionLayout.setError(null);
                     groupsSelectionLayout.setErrorEnabled(false);
                 }
-
                 btnPos.setEnabled(validState);
                 btnNeutral.setEnabled(validState);
             };
-
             checkBoxEncrypt.setOnCheckedChangeListener((buttonView, isChecked) -> {
                 warningText.setVisibility(isChecked ? View.GONE : View.VISIBLE);
                 passwordInfoText.setVisibility(isChecked && isBackupPasswordSet ? View.VISIBLE : View.GONE);
                 checkBoxAccept.setVisibility(isChecked ? View.GONE : View.VISIBLE);
                 checkBoxAccept.setChecked(false);
-
                 stateValidator.enableIfValid();
             });
-
             checkBoxAccept.setOnCheckedChangeListener((buttonView, isChecked) -> {
                 stateValidator.enableIfValid();
             });
-
             checkBoxExportAllGroups.setOnCheckedChangeListener((button, isChecked) -> {
                 int visibility = isChecked ? View.GONE : View.VISIBLE;
                 groupsSelectionLayout.setVisibility(visibility);
-
                 stateValidator.enableIfValid();
             });
-
             groupsSelection.setOnDismissListener(stateValidator::enableIfValid);
-
             btnPos.setOnClickListener(v -> {
                 dialog.dismiss();
-
                 if (!checkBoxEncrypt.isChecked() && !checkBoxAccept.isChecked()) {
                     return;
                 }
-
                 if (!checkBoxExportAllGroups.isChecked()) {
                     _exportFilter = getVaultEntryFilter(groupsSelection);
                     if (_exportFilter == null) {
@@ -254,33 +221,24 @@ public class ImportExportPreferencesFragment extends PreferencesFragment {
                         return;
                     }
                 }
-
                 int pos = getStringResourceIndex(R.array.export_formats, dropdown.getText().toString());
                 int requestCode = getExportRequestCode(pos, checkBoxEncrypt.isChecked());
                 VaultBackupManager.FileInfo fileInfo = getExportFileInfo(pos, checkBoxEncrypt.isChecked());
-                Intent intent = new Intent(Intent.ACTION_CREATE_DOCUMENT)
-                        .addCategory(Intent.CATEGORY_OPENABLE)
-                        .setType(getExportMimeType(requestCode))
-                        .putExtra(Intent.EXTRA_TITLE, fileInfo.toString());
-
+                Intent intent = new Intent(Intent.ACTION_CREATE_DOCUMENT).addCategory(Intent.CATEGORY_OPENABLE).setType(getExportMimeType(requestCode)).putExtra(Intent.EXTRA_TITLE, fileInfo.toString());
                 _vaultManager.startActivityForResult(this, intent, requestCode);
             });
-
             btnNeutral.setOnClickListener(v -> {
                 dialog.dismiss();
-
                 int pos = getStringResourceIndex(R.array.export_formats, dropdown.getText().toString());
                 if (!checkBoxEncrypt.isChecked() && !checkBoxAccept.isChecked()) {
                     return;
                 }
-
                 if (!checkBoxExportAllGroups.isChecked()) {
                     _exportFilter = getVaultEntryFilter(groupsSelection);
                     if (_exportFilter == null) {
                         return;
                     }
                 }
-
                 File file;
                 try {
                     VaultBackupManager.FileInfo fileInfo = getExportFileInfo(pos, checkBoxEncrypt.isChecked());
@@ -290,7 +248,6 @@ public class ImportExportPreferencesFragment extends PreferencesFragment {
                     Dialogs.showErrorDialog(requireContext(), R.string.exporting_vault_error, e);
                     return;
                 }
-
                 int requestCode = getExportRequestCode(pos, checkBoxEncrypt.isChecked());
                 startExportVault(requestCode, cb -> {
                     try (OutputStream stream = new FileOutputStream(file)) {
@@ -300,35 +257,28 @@ public class ImportExportPreferencesFragment extends PreferencesFragment {
                         Dialogs.showErrorDialog(requireContext(), R.string.exporting_vault_error, e);
                         return;
                     }
-
                     // if the user creates an export, hide the backup reminder
                     _prefs.setLatestExportTimeNow();
-
                     Uri uri = FileProvider.getUriForFile(requireContext(), BuildConfig.FILE_PROVIDER_AUTHORITY, file);
-                    Intent intent = new Intent(Intent.ACTION_SEND)
-                            .setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
-                            .setType(getExportMimeType(requestCode))
-                            .putExtra(Intent.EXTRA_STREAM, uri);
+                    Intent intent = new Intent(Intent.ACTION_SEND).setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION).setType(getExportMimeType(requestCode)).putExtra(Intent.EXTRA_STREAM, uri);
                     Intent chooser = Intent.createChooser(intent, getString(R.string.pref_export_summary));
                     _vaultManager.startActivity(this, chooser);
                 }, _exportFilter);
                 _exportFilter = null;
             });
         });
-
         Dialogs.showSecureDialog(dialog);
     }
 
     private Vault.EntryFilter getVaultEntryFilter(DropdownCheckBoxes dropdownCheckBoxes) {
         Set<String> groups = new HashSet<>();
-        for (String group: dropdownCheckBoxes.getCheckedItems()) {
+        for (String group : dropdownCheckBoxes.getCheckedItems()) {
             if (group.equals(getString(R.string.no_group))) {
                 groups.add(null);
-            } else  {
+            } else {
                 groups.add(group);
             }
         }
-
         return groups.isEmpty() ? null : entry -> groups.contains(entry.getGroup());
     }
 
@@ -338,21 +288,16 @@ public class ImportExportPreferencesFragment extends PreferencesFragment {
             String type = entry.getInfo().getType().toLowerCase();
             String algo = entry.getInfo().getAlgorithm(false);
             int digits = entry.getInfo().getDigits();
-
-            if ((Objects.equals(type, TotpInfo.ID) || Objects.equals(type, HotpInfo.ID))
-                    && digits == OtpInfo.DEFAULT_DIGITS
-                    && Objects.equals(algo, OtpInfo.DEFAULT_ALGORITHM)) {
+            if ((Objects.equals(type, TotpInfo.ID) || Objects.equals(type, HotpInfo.ID)) && digits == OtpInfo.DEFAULT_DIGITS && Objects.equals(algo, OtpInfo.DEFAULT_ALGORITHM)) {
                 GoogleAuthInfo info = new GoogleAuthInfo(entry.getInfo(), entry.getName(), entry.getIssuer());
                 toExport.add(info);
             }
         }
-
         int entriesSkipped = _vaultManager.getVault().getEntries().size() - toExport.size();
         if (entriesSkipped > 0) {
             String text = requireContext().getResources().getQuantityString(R.plurals.pref_google_auth_export_incompatible_entries, entriesSkipped, entriesSkipped);
             Toast.makeText(requireContext(), text, Toast.LENGTH_SHORT).show();
         }
-
         int qrSize = 10;
         int batchId = new Random().nextInt();
         int batchSize = toExport.size() / qrSize + (toExport.size() % qrSize == 0 ? 0 : 1);
@@ -365,7 +310,6 @@ public class ImportExportPreferencesFragment extends PreferencesFragment {
                 infos = new ArrayList<>();
             }
         }
-
         if (exports.size() == 0) {
             Toast.makeText(requireContext(), R.string.pref_google_auth_export_no_data, Toast.LENGTH_SHORT).show();
         } else {
@@ -381,7 +325,6 @@ public class ImportExportPreferencesFragment extends PreferencesFragment {
         } else if (spinnerPos == 1) {
             return CODE_EXPORT_HTML;
         }
-
         return CODE_EXPORT_GOOGLE_URI;
     }
 
@@ -392,7 +335,6 @@ public class ImportExportPreferencesFragment extends PreferencesFragment {
         } else if (spinnerPos == 1) {
             return new VaultBackupManager.FileInfo(VaultRepository.FILENAME_PREFIX_EXPORT_HTML, "html");
         }
-
         return new VaultBackupManager.FileInfo(VaultRepository.FILENAME_PREFIX_EXPORT_URI, "txt");
     }
 
@@ -410,12 +352,11 @@ public class ImportExportPreferencesFragment extends PreferencesFragment {
         if (!dir.exists() && !dir.mkdir()) {
             throw new IOException(String.format("Unable to create directory %s", dir));
         }
-
         return dir;
     }
 
     private void startExportVault(int requestCode, StartExportCallback cb, @Nullable Vault.EntryFilter filter) {
-        switch (requestCode) {
+        switch(requestCode) {
             case CODE_EXPORT:
                 if (_vaultManager.getVault().isEncryptionEnabled()) {
                     cb.exportVault(stream -> {
@@ -427,10 +368,10 @@ public class ImportExportPreferencesFragment extends PreferencesFragment {
                     });
                 } else {
                     Dialogs.showSetPasswordDialog(requireActivity(), new Dialogs.PasswordSlotListener() {
+
                         @Override
                         public void onSlotResult(PasswordSlot slot, Cipher cipher) {
                             VaultFileCredentials creds = new VaultFileCredentials();
-
                             try {
                                 slot.setKey(creds.getKey(), cipher);
                                 creds.getSlots().add(slot);
@@ -438,7 +379,6 @@ public class ImportExportPreferencesFragment extends PreferencesFragment {
                                 onException(e);
                                 return;
                             }
-
                             cb.exportVault(stream -> {
                                 if (filter != null) {
                                     _vaultManager.getVault().exportFiltered(stream, creds, filter);
@@ -450,7 +390,6 @@ public class ImportExportPreferencesFragment extends PreferencesFragment {
 
                         @Override
                         public void onException(Exception e) {
-
                         }
                     });
                 }
@@ -463,7 +402,6 @@ public class ImportExportPreferencesFragment extends PreferencesFragment {
                         _vaultManager.getVault().export(stream, null);
                     }
                 });
-
                 _prefs.setIsPlaintextBackupWarningNeeded(true);
                 break;
             case CODE_EXPORT_GOOGLE_URI:
@@ -482,7 +420,6 @@ public class ImportExportPreferencesFragment extends PreferencesFragment {
         if (resultCode != Activity.RESULT_OK || uri == null) {
             return;
         }
-
         startExportVault(requestCode, cb -> {
             File file;
             OutputStream outStream = null;
@@ -490,7 +427,6 @@ public class ImportExportPreferencesFragment extends PreferencesFragment {
                 file = File.createTempFile(VaultRepository.FILENAME_PREFIX_EXPORT + "-", ".json", getExportCacheDir());
                 outStream = new FileOutputStream(file);
                 cb.exportVault(outStream);
-
                 new ExportTask(requireContext(), new ExportResultListener()).execute(getLifecycle(), new ExportTask.Params(file, uri));
             } catch (VaultRepositoryException | IOException e) {
                 e.printStackTrace();
@@ -519,6 +455,7 @@ public class ImportExportPreferencesFragment extends PreferencesFragment {
     }
 
     private class ExportResultListener implements ExportTask.Callback {
+
         @Override
         public void onTaskFinished(Exception e) {
             if (e != null) {
@@ -527,21 +464,23 @@ public class ImportExportPreferencesFragment extends PreferencesFragment {
             } else {
                 // if the user creates an export, hide the backup reminder
                 _prefs.setLatestExportTimeNow();
-
                 Toast.makeText(requireContext(), getString(R.string.exported_vault), Toast.LENGTH_SHORT).show();
             }
         }
     }
 
     private interface FinishExportCallback {
+
         void exportVault(OutputStream stream) throws IOException, VaultRepositoryException;
     }
 
     private interface StartExportCallback {
+
         void exportVault(FinishExportCallback exportCb);
     }
 
     private interface DialogStateValidator {
+
         void enableIfValid();
     }
 }

@@ -1,6 +1,7 @@
 package com.beemdevelopment.aegis.vault.slots;
 
 public class SlotException extends Exception {
+
     public SlotException(Throwable cause) {
         super(cause);
     }

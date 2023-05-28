@@ -2,7 +2,6 @@ package com.beemdevelopment.aegis.importers;
 
 import android.content.Context;
 import android.net.Uri;
-
 import com.beemdevelopment.aegis.encoding.Base32;
 import com.beemdevelopment.aegis.encoding.EncodingException;
 import com.beemdevelopment.aegis.otp.GoogleAuthInfo;
@@ -12,13 +11,11 @@ import com.beemdevelopment.aegis.otp.SteamInfo;
 import com.beemdevelopment.aegis.util.IOUtils;
 import com.beemdevelopment.aegis.vault.VaultEntry;
 import com.topjohnwu.superuser.io.SuFile;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.simpleflatmapper.csv.CsvParser;
 import org.simpleflatmapper.lightningcsv.Row;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URISyntaxException;
@@ -29,6 +26,7 @@ import java.util.List;
 import java.util.Objects;
 
 public class BitwardenImporter extends DatabaseImporter {
+
     public BitwardenImporter(Context context) {
         super(context);
     }
@@ -49,7 +47,6 @@ public class BitwardenImporter extends DatabaseImporter {
         try {
             JSONObject obj = new JSONObject(fileString);
             JSONArray array = obj.getJSONArray("items");
-
             List<String> entries = new ArrayList<>();
             String entry;
             for (int i = 0; i < array.length(); i++) {
@@ -58,7 +55,6 @@ public class BitwardenImporter extends DatabaseImporter {
                     entries.add(entry);
                 }
             }
-
             return new BitwardenImporter.State(entries);
         } catch (JSONException e) {
             try {
@@ -78,6 +74,7 @@ public class BitwardenImporter extends DatabaseImporter {
     }
 
     public static class State extends DatabaseImporter.State {
+
         private final List<String> _entries;
 
         public State(List<String> entries) {
@@ -88,7 +85,6 @@ public class BitwardenImporter extends DatabaseImporter {
         @Override
         public Result convert() {
             Result result = new Result();
-
             for (String obj : _entries) {
                 try {
                     VaultEntry entry = convertEntry(obj);
@@ -97,7 +93,6 @@ public class BitwardenImporter extends DatabaseImporter {
                     result.addError(e);
                 }
             }
-
             return result;
         }
 
@@ -121,7 +116,6 @@ public class BitwardenImporter extends DatabaseImporter {
             byte[] secret = Base32.decode(secretString);
             return new GoogleAuthInfo(new SteamInfo(secret), "Steam account", "Steam");
         }
-
         return GoogleAuthInfo.parseUri(uri);
     }
 }

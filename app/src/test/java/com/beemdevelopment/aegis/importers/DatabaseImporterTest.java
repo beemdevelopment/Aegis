@@ -5,11 +5,8 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
-
 import android.content.Context;
-
 import androidx.test.core.app.ApplicationProvider;
-
 import com.beemdevelopment.aegis.encoding.Base32;
 import com.beemdevelopment.aegis.otp.HotpInfo;
 import com.beemdevelopment.aegis.otp.OtpInfo;
@@ -20,12 +17,10 @@ import com.beemdevelopment.aegis.util.UUIDMap;
 import com.beemdevelopment.aegis.vault.VaultEntry;
 import com.beemdevelopment.aegis.vectors.VaultEntries;
 import com.google.common.collect.Lists;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.RobolectricTestRunner;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Arrays;
@@ -33,6 +28,7 @@ import java.util.List;
 
 @RunWith(RobolectricTestRunner.class)
 public class DatabaseImporterTest {
+
     private List<VaultEntry> _vectors;
 
     /**
@@ -43,7 +39,6 @@ public class DatabaseImporterTest {
      * 3. Create an export and add the file to the importers resource directory.
      * 4. Add a new test for it here.
      */
-
     @Before
     public void initVectors() {
         _vectors = VaultEntries.get();
@@ -67,7 +62,6 @@ public class DatabaseImporterTest {
             final char[] password = "test".toCharArray();
             return ((AegisImporter.EncryptedState) encryptedState).decrypt(password);
         });
-
         checkImportedEntries(entries);
     }
 
@@ -107,7 +101,6 @@ public class DatabaseImporterTest {
             final char[] password = "test".toCharArray();
             return ((AndOtpImporter.EncryptedState) encryptedState).decryptNewFormat(password);
         });
-
         checkImportedEntries(entries);
     }
 
@@ -117,7 +110,6 @@ public class DatabaseImporterTest {
             final char[] password = "test".toCharArray();
             return ((AndOtpImporter.EncryptedState) encryptedState).decryptOldFormat(password);
         });
-
         for (VaultEntry entry : entries) {
             // old versions of andOTP have a bug where the issuer/name is not parsed correctly, so account for that here
             VaultEntry entryVector = getEntryVectorBySecret(entry.getInfo().getSecret());
@@ -132,7 +124,6 @@ public class DatabaseImporterTest {
             final char[] password = "Testtest1".toCharArray();
             return ((TotpAuthenticatorImporter.EncryptedState) encryptedState).decrypt(password);
         });
-
         checkImportedTotpAuthenticatorEntries(entries);
     }
 
@@ -179,14 +170,12 @@ public class DatabaseImporterTest {
             final char[] password = "testtest".toCharArray();
             return ((AuthyImporter.EncryptedState) encryptedState).decrypt(password);
         });
-
         checkImportedAuthyEntries(entries);
     }
 
     @Test
     public void testImportBattleNetXml() throws DatabaseImporterException, IOException, OtpInfoException {
         List<VaultEntry> entries = importPlain(BattleNetImporter.class, "battle_net_authenticator.xml");
-
         for (VaultEntry entry : entries) {
             checkImportedEntry(entry);
         }
@@ -264,7 +253,6 @@ public class DatabaseImporterTest {
             final char[] password = "testtesttest".toCharArray();
             return ((AuthenticatorPlusImporter.EncryptedState) encryptedState).decrypt(password);
         });
-
         checkImportedEntries(entries);
     }
 
@@ -309,13 +297,11 @@ public class DatabaseImporterTest {
         checkImportedEntries(entries);
     }
 
-    private List<VaultEntry> importPlain(Class<? extends DatabaseImporter> type, String resName)
-            throws IOException, DatabaseImporterException {
+    private List<VaultEntry> importPlain(Class<? extends DatabaseImporter> type, String resName) throws IOException, DatabaseImporterException {
         return importPlain(type, resName, false);
     }
 
-    private List<VaultEntry> importPlain(Class<? extends DatabaseImporter> type, String resName, boolean isInternal)
-            throws IOException, DatabaseImporterException {
+    private List<VaultEntry> importPlain(Class<? extends DatabaseImporter> type, String resName, boolean isInternal) throws IOException, DatabaseImporterException {
         Context context = ApplicationProvider.getApplicationContext();
         DatabaseImporter importer = DatabaseImporter.create(context, type);
         try (InputStream stream = openResource(resName)) {
@@ -326,13 +312,11 @@ public class DatabaseImporterTest {
         }
     }
 
-    private List<VaultEntry> importEncrypted(Class<? extends DatabaseImporter> type, String resName, Decryptor decryptor)
-            throws IOException, DatabaseImporterException {
+    private List<VaultEntry> importEncrypted(Class<? extends DatabaseImporter> type, String resName, Decryptor decryptor) throws IOException, DatabaseImporterException {
         return importEncrypted(type, resName, false, decryptor);
     }
 
-    private List<VaultEntry> importEncrypted(Class<? extends DatabaseImporter> type, String resName, boolean isInternal, Decryptor decryptor)
-            throws IOException, DatabaseImporterException {
+    private List<VaultEntry> importEncrypted(Class<? extends DatabaseImporter> type, String resName, boolean isInternal, Decryptor decryptor) throws IOException, DatabaseImporterException {
         Context context = ApplicationProvider.getApplicationContext();
         DatabaseImporter importer = DatabaseImporter.create(context, type);
         try (InputStream stream = openResource(resName)) {
@@ -347,7 +331,6 @@ public class DatabaseImporterTest {
         for (DatabaseImporterEntryException e : result.getErrors()) {
             fail(e.toString());
         }
-
         return result.getEntries();
     }
 
@@ -401,7 +384,7 @@ public class DatabaseImporterTest {
     private void checkImportedBitwardenEntries(List<VaultEntry> entries) throws OtpInfoException {
         byte[] secret, vectorSecret;
         for (VaultEntry entry : entries) {
-            if(entry.getInfo().getTypeId().equals(SteamInfo.ID)) {
+            if (entry.getInfo().getTypeId().equals(SteamInfo.ID)) {
                 secret = entry.getInfo().getSecret();
                 vectorSecret = getEntryVectorBySecret(secret).getInfo().getSecret();
                 assertNotNull(String.format("Steam secret has not been found (%s)", vectorSecret));
@@ -434,7 +417,6 @@ public class DatabaseImporterTest {
                 return entry;
             }
         }
-
         fail(String.format("No entry found for secret: %s", Base32.encode(secret)));
         return null;
     }
@@ -444,6 +426,7 @@ public class DatabaseImporterTest {
     }
 
     private interface Decryptor {
+
         DatabaseImporter.State decrypt(DatabaseImporter.State encryptedState) throws DatabaseImporterException;
     }
 }

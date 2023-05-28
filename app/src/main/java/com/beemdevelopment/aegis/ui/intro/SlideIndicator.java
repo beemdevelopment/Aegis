@@ -7,19 +7,23 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.view.View;
-
 import androidx.annotation.Nullable;
-
 import com.beemdevelopment.aegis.R;
 
 public class SlideIndicator extends View {
+
     private Paint _paint;
+
     private int _slideCount;
+
     private int _slideIndex;
 
     private float _dotRadius;
+
     private float _dotSeparator;
+
     private int _dotColor;
+
     private int _dotColorSelected;
 
     public SlideIndicator(Context context, @Nullable AttributeSet attrs) {
@@ -27,7 +31,6 @@ public class SlideIndicator extends View {
         _paint = new Paint();
         _paint.setAntiAlias(true);
         _paint.setStyle(Paint.Style.FILL);
-
         TypedArray array = null;
         try {
             array = context.obtainStyledAttributes(attrs, R.styleable.SlideIndicator);
@@ -46,7 +49,6 @@ public class SlideIndicator extends View {
         if (slideCount < 0) {
             throw new IllegalArgumentException("Slide count cannot be negative");
         }
-
         _slideCount = slideCount;
         invalidate();
     }
@@ -55,11 +57,9 @@ public class SlideIndicator extends View {
         if (index < 0) {
             throw new IllegalArgumentException("Slide index cannot be negative");
         }
-
         if (index + 1 > _slideCount) {
             throw new IllegalStateException(String.format("Slide index out of range, slides: %d, index: %d", _slideCount, index));
         }
-
         _slideIndex = index;
         invalidate();
     }
@@ -69,11 +69,9 @@ public class SlideIndicator extends View {
         if (_slideCount <= 0) {
             return;
         }
-
         float density = getResources().getDisplayMetrics().density;
         float dotDp = density * _dotRadius * 2;
         float spaceDp = density * _dotSeparator;
-
         float offset;
         if (_slideCount % 2 == 0) {
             offset = (spaceDp / 2) + (dotDp / 2) + dotDp * (_slideCount / 2f - 1) + spaceDp * (_slideCount / 2f - 1);
@@ -81,14 +79,12 @@ public class SlideIndicator extends View {
             int spaces = _slideCount > 1 ? _slideCount - 2 : 0;
             offset = (_slideCount - 1) * (dotDp / 2) + spaces * spaceDp;
         }
-
-        canvas.translate((getWidth() / 2f) - offset,getHeight() / 2f);
-
+        canvas.translate((getWidth() / 2f) - offset, getHeight() / 2f);
         for (int i = 0; i < _slideCount; i++) {
             int slideIndex = isRtl() ? (_slideCount - 1) - _slideIndex : _slideIndex;
             _paint.setColor(i == slideIndex ? _dotColorSelected : _dotColor);
-            canvas.drawCircle(0,0, dotDp / 2, _paint);
-            canvas.translate(dotDp + spaceDp,0);
+            canvas.drawCircle(0, 0, dotDp / 2, _paint);
+            canvas.translate(dotDp + spaceDp, 0);
         }
     }
 

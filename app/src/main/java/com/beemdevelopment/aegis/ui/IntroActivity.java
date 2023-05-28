@@ -4,14 +4,11 @@ import static com.beemdevelopment.aegis.ui.slides.SecurityPickerSlide.CRYPT_TYPE
 import static com.beemdevelopment.aegis.ui.slides.SecurityPickerSlide.CRYPT_TYPE_INVALID;
 import static com.beemdevelopment.aegis.ui.slides.SecurityPickerSlide.CRYPT_TYPE_NONE;
 import static com.beemdevelopment.aegis.ui.slides.SecurityPickerSlide.CRYPT_TYPE_PASS;
-
 import android.os.Bundle;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-
 import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.ThemeMap;
 import com.beemdevelopment.aegis.ui.dialogs.Dialogs;
@@ -27,13 +24,13 @@ import com.beemdevelopment.aegis.vault.slots.BiometricSlot;
 import com.beemdevelopment.aegis.vault.slots.PasswordSlot;
 
 public class IntroActivity extends IntroBaseActivity {
+
     // Permission request codes
     private static final int CODE_PERM_NOTIFICATIONS = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         addSlide(WelcomeSlide.class);
         addSlide(SecurityPickerSlide.class);
         addSlide(SecuritySetupSlide.class);
@@ -50,26 +47,16 @@ public class IntroActivity extends IntroBaseActivity {
         // hide the keyboard before every slide change
         InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(findViewById(android.R.id.content).getWindowToken(), 0);
-
-        if (oldSlide == SecurityPickerSlide.class
-                && newSlide == SecuritySetupSlide.class
-                && getState().getInt("cryptType", CRYPT_TYPE_INVALID) == CRYPT_TYPE_NONE) {
+        if (oldSlide == SecurityPickerSlide.class && newSlide == SecuritySetupSlide.class && getState().getInt("cryptType", CRYPT_TYPE_INVALID) == CRYPT_TYPE_NONE) {
             skipToSlide(DoneSlide.class);
             return true;
         }
-
-        if (oldSlide == WelcomeSlide.class
-                && newSlide == SecurityPickerSlide.class
-                && getState().getBoolean("imported")) {
+        if (oldSlide == WelcomeSlide.class && newSlide == SecurityPickerSlide.class && getState().getBoolean("imported")) {
             skipToSlide(DoneSlide.class);
             return true;
         }
-
         // on the welcome page, we don't want the keyboard to push any views up
-        getWindow().setSoftInputMode(newSlide == WelcomeSlide.class
-                ? WindowManager.LayoutParams.SOFT_INPUT_ADJUST_NOTHING
-                : WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
-
+        getWindow().setSoftInputMode(newSlide == WelcomeSlide.class ? WindowManager.LayoutParams.SOFT_INPUT_ADJUST_NOTHING : WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
         return false;
     }
 
@@ -89,17 +76,12 @@ public class IntroActivity extends IntroBaseActivity {
     @Override
     protected void onDonePressed() {
         Bundle state = getState();
-
         VaultFileCredentials creds = (VaultFileCredentials) state.getSerializable("creds");
         if (!state.getBoolean("imported")) {
             int cryptType = state.getInt("cryptType", CRYPT_TYPE_INVALID);
-            if (cryptType == CRYPT_TYPE_INVALID
-                    || (cryptType == CRYPT_TYPE_NONE && creds != null)
-                    || (cryptType == CRYPT_TYPE_PASS && (creds == null || !creds.getSlots().has(PasswordSlot.class)))
-                    || (cryptType == CRYPT_TYPE_BIOMETRIC && (creds == null || !creds.getSlots().has(PasswordSlot.class) || !creds.getSlots().has(BiometricSlot.class)))) {
+            if (cryptType == CRYPT_TYPE_INVALID || (cryptType == CRYPT_TYPE_NONE && creds != null) || (cryptType == CRYPT_TYPE_PASS && (creds == null || !creds.getSlots().has(PasswordSlot.class))) || (cryptType == CRYPT_TYPE_BIOMETRIC && (creds == null || !creds.getSlots().has(PasswordSlot.class) || !creds.getSlots().has(BiometricSlot.class)))) {
                 throw new RuntimeException(String.format("State of SecuritySetupSlide not properly propagated, cryptType: %d, creds: %s", cryptType, creds));
             }
-
             try {
                 _vaultManager.initNew(creds);
             } catch (VaultRepositoryException e) {
@@ -116,10 +98,8 @@ public class IntroActivity extends IntroBaseActivity {
                 return;
             }
         }
-
         // skip the intro from now on
         _prefs.setIntroDone(true);
-
         setResult(RESULT_OK);
         finish();
     }

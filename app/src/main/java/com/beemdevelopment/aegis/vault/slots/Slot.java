@@ -8,16 +8,13 @@ import com.beemdevelopment.aegis.crypto.SCryptParameters;
 import com.beemdevelopment.aegis.encoding.EncodingException;
 import com.beemdevelopment.aegis.encoding.Hex;
 import com.beemdevelopment.aegis.util.UUIDMap;
-
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.io.IOException;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.util.UUID;
-
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
 import javax.crypto.IllegalBlockSizeException;
@@ -26,11 +23,15 @@ import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
 
 public abstract class Slot extends UUIDMap.Value {
+
     public final static byte TYPE_RAW = 0x00;
+
     public final static byte TYPE_PASSWORD = 0x01;
+
     public final static byte TYPE_BIOMETRIC = 0x02;
 
     private byte[] _encryptedMasterKey;
+
     private CryptParameters _encryptedMasterKeyParams;
 
     protected Slot() {
@@ -78,10 +79,7 @@ public abstract class Slot extends UUIDMap.Value {
     public static Cipher createEncryptCipher(SecretKey key) throws SlotException {
         try {
             return CryptoUtils.createEncryptCipher(key);
-        } catch (InvalidAlgorithmParameterException
-                | NoSuchPaddingException
-                | NoSuchAlgorithmException
-                | InvalidKeyException e) {
+        } catch (InvalidAlgorithmParameterException | NoSuchPaddingException | NoSuchAlgorithmException | InvalidKeyException e) {
             throw new SlotException(e);
         }
     }
@@ -89,10 +87,7 @@ public abstract class Slot extends UUIDMap.Value {
     public Cipher createDecryptCipher(SecretKey key) throws SlotException {
         try {
             return CryptoUtils.createDecryptCipher(key, _encryptedMasterKeyParams.getNonce());
-        } catch (InvalidAlgorithmParameterException
-                | NoSuchAlgorithmException
-                | InvalidKeyException
-                | NoSuchPaddingException e) {
+        } catch (InvalidAlgorithmParameterException | NoSuchAlgorithmException | InvalidKeyException | NoSuchPaddingException e) {
             throw new SlotException(e);
         }
     }
@@ -116,7 +111,6 @@ public abstract class Slot extends UUIDMap.Value {
 
     public static Slot fromJson(JSONObject obj) throws SlotException {
         Slot slot;
-
         try {
             UUID uuid;
             if (!obj.has("uuid")) {
@@ -124,21 +118,14 @@ public abstract class Slot extends UUIDMap.Value {
             } else {
                 uuid = UUID.fromString(obj.getString("uuid"));
             }
-
             byte[] key = Hex.decode(obj.getString("key"));
             CryptParameters keyParams = CryptParameters.fromJson(obj.getJSONObject("key_params"));
-
-            switch (obj.getInt("type")) {
+            switch(obj.getInt("type")) {
                 case Slot.TYPE_RAW:
                     slot = new RawSlot(uuid, key, keyParams);
                     break;
                 case Slot.TYPE_PASSWORD:
-                    SCryptParameters scryptParams = new SCryptParameters(
-                            obj.getInt("n"),
-                            obj.getInt("r"),
-                            obj.getInt("p"),
-                            Hex.decode(obj.getString("salt"))
-                    );
+                    SCryptParameters scryptParams = new SCryptParameters(obj.getInt("n"), obj.getInt("r"), obj.getInt("p"), Hex.decode(obj.getString("salt")));
                     boolean repaired = obj.optBoolean("repaired", false);
                     boolean isBackup = obj.optBoolean("is_backup", false);
                     slot = new PasswordSlot(uuid, key, keyParams, scryptParams, repaired, isBackup);
@@ -152,7 +139,6 @@ public abstract class Slot extends UUIDMap.Value {
         } catch (JSONException | EncodingException e) {
             throw new SlotException(e);
         }
-
         return slot;
     }
 

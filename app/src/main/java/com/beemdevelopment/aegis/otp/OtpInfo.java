@@ -2,20 +2,22 @@ package com.beemdevelopment.aegis.otp;
 
 import com.beemdevelopment.aegis.encoding.Base32;
 import com.beemdevelopment.aegis.encoding.EncodingException;
-
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Locale;
 
 public abstract class OtpInfo implements Serializable {
+
     public static final int DEFAULT_DIGITS = 6;
+
     public static final String DEFAULT_ALGORITHM = "SHA1";
 
     private byte[] _secret;
+
     private String _algorithm;
+
     private int _digits;
 
     public OtpInfo(byte[] secret) throws OtpInfoException {
@@ -44,7 +46,6 @@ public abstract class OtpInfo implements Serializable {
 
     public JSONObject toJson() {
         JSONObject obj = new JSONObject();
-
         try {
             obj.put("secret", Base32.encode(getSecret()));
             obj.put("algo", getAlgorithm(false));
@@ -52,7 +53,6 @@ public abstract class OtpInfo implements Serializable {
         } catch (JSONException e) {
             throw new RuntimeException(e);
         }
-
         return obj;
     }
 
@@ -76,8 +76,7 @@ public abstract class OtpInfo implements Serializable {
     }
 
     public static boolean isAlgorithmValid(String algorithm) {
-        return algorithm.equals("SHA1") || algorithm.equals("SHA256") ||
-                algorithm.equals("SHA512") || algorithm.equals("MD5");
+        return algorithm.equals("SHA1") || algorithm.equals("SHA256") || algorithm.equals("SHA512") || algorithm.equals("MD5");
     }
 
     public void setAlgorithm(String algorithm) throws OtpInfoException {
@@ -85,7 +84,6 @@ public abstract class OtpInfo implements Serializable {
             algorithm = algorithm.substring(4);
         }
         algorithm = algorithm.toUpperCase(Locale.ROOT);
-
         if (!isAlgorithmValid(algorithm)) {
             throw new OtpInfoException(String.format("unsupported algorithm: %s", algorithm));
         }
@@ -106,19 +104,16 @@ public abstract class OtpInfo implements Serializable {
 
     public static OtpInfo fromJson(String type, JSONObject obj) throws OtpInfoException {
         OtpInfo info;
-
         try {
             byte[] secret = Base32.decode(obj.getString("secret"));
             String algo = obj.getString("algo");
             int digits = obj.getInt("digits");
-
             // Special case to work around a bug where a user could accidentally
             // set the hash algorithm of a non-mOTP entry to MD5
             if (!type.equals(MotpInfo.ID) && algo.equals("MD5")) {
                 algo = DEFAULT_ALGORITHM;
             }
-
-            switch (type) {
+            switch(type) {
                 case TotpInfo.ID:
                     info = new TotpInfo(secret, algo, digits, obj.getInt("period"));
                     break;
@@ -140,7 +135,6 @@ public abstract class OtpInfo implements Serializable {
         } catch (EncodingException | JSONException e) {
             throw new OtpInfoException(e);
         }
-
         return info;
     }
 
@@ -152,11 +146,7 @@ public abstract class OtpInfo implements Serializable {
         if (!(o instanceof OtpInfo)) {
             return false;
         }
-
         OtpInfo info = (OtpInfo) o;
-        return getTypeId().equals(info.getTypeId())
-                && Arrays.equals(getSecret(), info.getSecret())
-                && getAlgorithm(false).equals(info.getAlgorithm(false))
-                && getDigits() == info.getDigits();
+        return getTypeId().equals(info.getTypeId()) && Arrays.equals(getSecret(), info.getSecret()) && getAlgorithm(false).equals(info.getAlgorithm(false)) && getDigits() == info.getDigits();
     }
 }

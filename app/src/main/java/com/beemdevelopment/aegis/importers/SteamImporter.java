@@ -3,7 +3,6 @@ package com.beemdevelopment.aegis.importers;
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
-
 import com.beemdevelopment.aegis.encoding.Base64;
 import com.beemdevelopment.aegis.encoding.EncodingException;
 import com.beemdevelopment.aegis.otp.OtpInfoException;
@@ -11,16 +10,16 @@ import com.beemdevelopment.aegis.otp.SteamInfo;
 import com.beemdevelopment.aegis.util.IOUtils;
 import com.beemdevelopment.aegis.vault.VaultEntry;
 import com.topjohnwu.superuser.io.SuFile;
-
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 
 public class SteamImporter extends DatabaseImporter {
+
     private static final String _subDir = "files";
+
     private static final String _pkgName = "com.valvesoftware.android.steam.community";
 
     public SteamImporter(Context context) {
@@ -35,7 +34,6 @@ public class SteamImporter extends DatabaseImporter {
         if (files == null || files.length == 0) {
             throw new DatabaseImporterException(String.format("Empty directory: %s", path.getAbsolutePath()));
         }
-
         // TODO: handle multiple files (can this even occur?)
         return files[0];
     }
@@ -48,7 +46,6 @@ public class SteamImporter extends DatabaseImporter {
         } catch (PackageManager.NameNotFoundException e) {
             return false;
         }
-
         return info.versionCode < 7460894;
     }
 
@@ -64,6 +61,7 @@ public class SteamImporter extends DatabaseImporter {
     }
 
     public static class State extends DatabaseImporter.State {
+
         private JSONObject _obj;
 
         private State(JSONObject obj) {
@@ -74,14 +72,12 @@ public class SteamImporter extends DatabaseImporter {
         @Override
         public Result convert() {
             Result result = new Result();
-
             try {
                 VaultEntry entry = convertEntry(_obj);
                 result.addEntry(entry);
             } catch (DatabaseImporterEntryException e) {
                 result.addError(e);
             }
-
             return result;
         }
 
@@ -89,7 +85,6 @@ public class SteamImporter extends DatabaseImporter {
             try {
                 byte[] secret = Base64.decode(obj.getString("shared_secret"));
                 SteamInfo info = new SteamInfo(secret);
-
                 String account = obj.getString("account_name");
                 return new VaultEntry(info, account, "Steam");
             } catch (JSONException | EncodingException | OtpInfoException e) {

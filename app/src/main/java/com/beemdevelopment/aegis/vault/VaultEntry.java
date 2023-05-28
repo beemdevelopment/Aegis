@@ -9,23 +9,30 @@ import com.beemdevelopment.aegis.otp.OtpInfoException;
 import com.beemdevelopment.aegis.otp.TotpInfo;
 import com.beemdevelopment.aegis.util.JsonUtils;
 import com.beemdevelopment.aegis.util.UUIDMap;
-
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.util.Arrays;
 import java.util.Objects;
 import java.util.UUID;
 
 public class VaultEntry extends UUIDMap.Value {
+
     private String _name = "";
+
     private String _issuer = "";
+
     private String _group;
+
     private OtpInfo _info;
+
     private byte[] _icon;
+
     private IconType _iconType = IconType.INVALID;
+
     private boolean _isFavorite;
+
     private int _usageCount;
+
     private String _note = "";
 
     private VaultEntry(UUID uuid, OtpInfo info) {
@@ -57,7 +64,6 @@ public class VaultEntry extends UUIDMap.Value {
 
     public JSONObject toJson() {
         JSONObject obj = new JSONObject();
-
         try {
             obj.put("type", _info.getTypeId());
             obj.put("uuid", getUUID().toString());
@@ -72,7 +78,6 @@ public class VaultEntry extends UUIDMap.Value {
         } catch (JSONException e) {
             throw new RuntimeException(e);
         }
-
         return obj;
     }
 
@@ -85,7 +90,6 @@ public class VaultEntry extends UUIDMap.Value {
             } else {
                 uuid = UUID.fromString(obj.getString("uuid"));
             }
-
             OtpInfo info = OtpInfo.fromJson(obj.getString("type"), obj.getJSONObject("info"));
             VaultEntry entry = new VaultEntry(uuid, info);
             entry.setName(obj.getString("name"));
@@ -93,20 +97,16 @@ public class VaultEntry extends UUIDMap.Value {
             entry.setGroup(obj.optString("group", null));
             entry.setNote(obj.optString("note", ""));
             entry.setIsFavorite(obj.optBoolean("favorite", false));
-
             Object icon = obj.get("icon");
             if (icon != JSONObject.NULL) {
                 String mime = JsonUtils.optString(obj, "icon_mime");
-
                 IconType iconType = mime == null ? IconType.JPEG : IconType.fromMimeType(mime);
                 if (iconType == IconType.INVALID) {
                     throw new VaultEntryException(String.format("Bad icon MIME type: %s", mime));
                 }
-
                 byte[] iconBytes = Base64.decode((String) icon);
                 entry.setIcon(iconBytes, iconType);
             }
-
             return entry;
         } catch (OtpInfoException | JSONException | EncodingException e) {
             throw new VaultEntryException(e);
@@ -141,9 +141,13 @@ public class VaultEntry extends UUIDMap.Value {
         return _usageCount;
     }
 
-    public String getNote() { return _note; }
+    public String getNote() {
+        return _note;
+    }
 
-    public boolean isFavorite() { return _isFavorite; };
+    public boolean isFavorite() {
+        return _isFavorite;
+    }
 
     public void setName(String name) {
         _name = name;
@@ -170,18 +174,23 @@ public class VaultEntry extends UUIDMap.Value {
         return _icon != null;
     }
 
-    public void setUsageCount(int usageCount) { _usageCount = usageCount; }
+    public void setUsageCount(int usageCount) {
+        _usageCount = usageCount;
+    }
 
-    public void setNote(String note) { _note = note; }
+    public void setNote(String note) {
+        _note = note;
+    }
 
-    public void setIsFavorite(boolean isFavorite) { _isFavorite = isFavorite; }
+    public void setIsFavorite(boolean isFavorite) {
+        _isFavorite = isFavorite;
+    }
 
     @Override
     public boolean equals(Object o) {
         if (!(o instanceof VaultEntry)) {
             return false;
         }
-
         VaultEntry entry = (VaultEntry) o;
         return super.equals(entry) && equivalates(entry);
     }
@@ -192,14 +201,7 @@ public class VaultEntry extends UUIDMap.Value {
      * instance.
      */
     public boolean equivalates(VaultEntry entry) {
-        return getName().equals(entry.getName())
-                && getIssuer().equals(entry.getIssuer())
-                && Objects.equals(getGroup(), entry.getGroup())
-                && getInfo().equals(entry.getInfo())
-                && Arrays.equals(getIcon(), entry.getIcon())
-                && getIconType().equals(entry.getIconType())
-                && getNote().equals(entry.getNote())
-                && isFavorite() == entry.isFavorite();
+        return getName().equals(entry.getName()) && getIssuer().equals(entry.getIssuer()) && Objects.equals(getGroup(), entry.getGroup()) && getInfo().equals(entry.getInfo()) && Arrays.equals(getIcon(), entry.getIcon()) && getIconType().equals(entry.getIconType()) && getNote().equals(entry.getNote()) && isFavorite() == entry.isFavorite();
     }
 
     /**

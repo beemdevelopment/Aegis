@@ -23,11 +23,9 @@ import android.widget.NumberPicker;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.activity.ComponentActivity;
 import androidx.annotation.StringRes;
 import androidx.appcompat.app.AlertDialog;
-
 import com.beemdevelopment.aegis.Preferences;
 import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.helpers.EditTextHelper;
@@ -43,17 +41,15 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.nulabinc.zxcvbn.Strength;
 import com.nulabinc.zxcvbn.Zxcvbn;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Collectors;
-
 import javax.crypto.Cipher;
 
 public class Dialogs {
-    private Dialogs() {
 
+    private Dialogs() {
     }
 
     public static void secureDialog(Dialog dialog) {
@@ -71,11 +67,8 @@ public class Dialogs {
         View view = LayoutInflater.from(context).inflate(R.layout.dialog_delete_entry, null);
         TextView textMessage = view.findViewById(R.id.text_message);
         TextView textExplanation = view.findViewById(R.id.text_explanation);
-        String entries = services.stream()
-                .map(entry -> String.format("• %s", getVaultEntryName(context, entry)))
-                .collect(Collectors.joining("\n"));
+        String entries = services.stream().map(entry -> String.format("• %s", getVaultEntryName(context, entry))).collect(Collectors.joining("\n"));
         textExplanation.setText(context.getString(R.string.delete_entry_explanation, entries));
-
         String title, message;
         if (services.size() > 1) {
             title = context.getString(R.string.delete_entries);
@@ -85,13 +78,7 @@ public class Dialogs {
             message = context.getString(R.string.delete_entry_description);
         }
         textMessage.setText(message);
-
-        showSecureDialog(new AlertDialog.Builder(context)
-                .setTitle(title)
-                .setView(view)
-                .setPositiveButton(android.R.string.yes, onDelete)
-                .setNegativeButton(android.R.string.no, null)
-                .create());
+        showSecureDialog(new AlertDialog.Builder(context).setTitle(title).setView(view).setPositiveButton(android.R.string.yes, onDelete).setNegativeButton(android.R.string.no, null).create());
     }
 
     private static String getVaultEntryName(Context context, VaultEntry entry) {
@@ -107,12 +94,7 @@ public class Dialogs {
     }
 
     public static void showDiscardDialog(Context context, DialogInterface.OnClickListener onSave, DialogInterface.OnClickListener onDiscard) {
-        showSecureDialog(new AlertDialog.Builder(context)
-                .setTitle(context.getString(R.string.discard_changes))
-                .setMessage(context.getString(R.string.discard_changes_description))
-                .setPositiveButton(R.string.save, onSave)
-                .setNegativeButton(R.string.discard, onDiscard)
-                .create());
+        showSecureDialog(new AlertDialog.Builder(context).setTitle(context.getString(R.string.discard_changes)).setMessage(context.getString(R.string.discard_changes_description)).setPositiveButton(R.string.save, onSave).setNegativeButton(R.string.discard, onDiscard).create());
     }
 
     public static void showSetPasswordDialog(ComponentActivity activity, PasswordSlotListener listener) {
@@ -124,7 +106,6 @@ public class Dialogs {
         TextView textPasswordStrength = view.findViewById(R.id.text_password_strength);
         TextInputLayout textPasswordWrapper = view.findViewById(R.id.text_password_wrapper);
         CheckBox switchToggleVisibility = view.findViewById(R.id.check_toggle_visibility);
-
         switchToggleVisibility.setOnCheckedChangeListener((buttonView, isChecked) -> {
             if (isChecked) {
                 textPassword.setTransformationMethod(null);
@@ -136,27 +117,18 @@ public class Dialogs {
                 textPasswordConfirm.setTransformationMethod(new PasswordTransformationMethod());
             }
         });
-
-        AlertDialog dialog = new AlertDialog.Builder(activity)
-                .setTitle(R.string.set_password)
-                .setView(view)
-                .setPositiveButton(android.R.string.ok, null)
-                .setNegativeButton(android.R.string.cancel, null)
-                .create();
+        AlertDialog dialog = new AlertDialog.Builder(activity).setTitle(R.string.set_password).setView(view).setPositiveButton(android.R.string.ok, null).setNegativeButton(android.R.string.cancel, null).create();
         dialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
-
         final AtomicReference<Button> buttonOK = new AtomicReference<>();
         dialog.setOnShowListener(d -> {
             Button button = dialog.getButton(AlertDialog.BUTTON_POSITIVE);
             button.setEnabled(false);
             buttonOK.set(button);
-
             // replace the default listener
             button.setOnClickListener(v -> {
                 if (!EditTextHelper.areEditTextsEqual(textPassword, textPasswordConfirm)) {
                     return;
                 }
-
                 char[] password = EditTextHelper.getEditTextChars(textPassword);
                 PasswordSlot slot = new PasswordSlot();
                 KeyDerivationTask task = new KeyDerivationTask(activity, (passSlot, key) -> {
@@ -175,11 +147,9 @@ public class Dialogs {
                 task.execute(activity.getLifecycle(), params);
             });
         });
-
         TextWatcher watcher = new SimpleTextWatcher(text -> {
             boolean equal = EditTextHelper.areEditTextsEqual(textPassword, textPasswordConfirm);
             buttonOK.get().setEnabled(equal);
-
             Strength strength = zxcvbn.measure(textPassword.getText());
             barPasswordStrength.setProgress(strength.getScore());
             barPasswordStrength.setProgressTintList(ColorStateList.valueOf(Color.parseColor(PasswordStrengthHelper.getColor(strength.getScore()))));
@@ -189,7 +159,6 @@ public class Dialogs {
         });
         textPassword.addTextChangedListener(watcher);
         textPasswordConfirm.addTextChangedListener(watcher);
-
         showSecureDialog(dialog);
     }
 
@@ -207,26 +176,18 @@ public class Dialogs {
             input.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
         }
         inputLayout.setHint(hintId);
-
-        AlertDialog.Builder builder = new AlertDialog.Builder(context)
-                .setTitle(titleId)
-                .setView(view)
-                .setPositiveButton(android.R.string.ok, null);
-
+        AlertDialog.Builder builder = new AlertDialog.Builder(context).setTitle(titleId).setView(view).setPositiveButton(android.R.string.ok, null);
         if (cancelListener != null) {
             builder.setOnCancelListener(cancelListener);
         }
-
         if (messageId != 0) {
             builder.setMessage(messageId);
         }
-
         AlertDialog dialog = builder.create();
         dialog.setOnShowListener(d -> {
             Button button = dialog.getButton(AlertDialog.BUTTON_POSITIVE);
             button.setEnabled(false);
             buttonOK.set(button);
-
             button.setOnClickListener(v -> {
                 char[] text = EditTextHelper.getEditTextChars(input);
                 listener.onTextInputResult(text);
@@ -270,30 +231,18 @@ public class Dialogs {
         View view = LayoutInflater.from(context).inflate(R.layout.dialog_checkbox, null);
         CheckBox checkBox = view.findViewById(R.id.checkbox);
         checkBox.setText(checkboxMessageId);
-
-        AlertDialog.Builder builder = new AlertDialog.Builder(context)
-                .setTitle(titleId)
-                .setView(view)
-                .setNegativeButton(R.string.no, (dialog1, which) ->
-                        listener.onCheckboxInputResult(false))
-                .setPositiveButton(R.string.yes, (dialog1, which) ->
-                        listener.onCheckboxInputResult(checkBox.isChecked()));
-
+        AlertDialog.Builder builder = new AlertDialog.Builder(context).setTitle(titleId).setView(view).setNegativeButton(R.string.no, (dialog1, which) -> listener.onCheckboxInputResult(false)).setPositiveButton(R.string.yes, (dialog1, which) -> listener.onCheckboxInputResult(checkBox.isChecked()));
         if (messageId != 0) {
             builder.setMessage(messageId);
         }
-
         AlertDialog dialog = builder.create();
-
         final AtomicReference<Button> buttonOK = new AtomicReference<>();
         dialog.setOnShowListener(d -> {
             Button button = dialog.getButton(AlertDialog.BUTTON_POSITIVE);
             button.setEnabled(false);
             buttonOK.set(button);
         });
-
         checkBox.setOnCheckedChangeListener((buttonView, isChecked) -> buttonOK.get().setEnabled(isChecked));
-
         showSecureDialog(dialog);
     }
 
@@ -304,14 +253,7 @@ public class Dialogs {
         numberPicker.setMaxValue(60);
         numberPicker.setValue(currentValue);
         numberPicker.setWrapSelectorWheel(true);
-
-        AlertDialog dialog = new AlertDialog.Builder(context)
-                .setTitle(R.string.set_number)
-                .setView(view)
-                .setPositiveButton(android.R.string.ok, (dialog1, which) ->
-                        listener.onNumberInputResult(numberPicker.getValue()))
-                .create();
-
+        AlertDialog dialog = new AlertDialog.Builder(context).setTitle(R.string.set_number).setView(view).setPositiveButton(android.R.string.ok, (dialog1, which) -> listener.onNumberInputResult(numberPicker.getValue())).create();
         showSecureDialog(dialog);
     }
 
@@ -321,7 +263,6 @@ public class Dialogs {
         for (int i = 0; i < numbers.length; i++) {
             numbers[i] = Integer.toString(i * 5 + 5);
         }
-
         View view = LayoutInflater.from(context).inflate(R.layout.dialog_number_picker, null);
         NumberPicker numberPicker = view.findViewById(R.id.numberPicker);
         numberPicker.setDisplayedValues(numbers);
@@ -329,14 +270,7 @@ public class Dialogs {
         numberPicker.setMinValue(0);
         numberPicker.setValue(currentVersionCount / 5 - 1);
         numberPicker.setWrapSelectorWheel(false);
-
-        AlertDialog dialog = new AlertDialog.Builder(context)
-                .setTitle(R.string.set_number)
-                .setView(view)
-                .setPositiveButton(android.R.string.ok, (dialog1, which) ->
-                        listener.onNumberInputResult(numberPicker.getValue()))
-                .create();
-
+        AlertDialog dialog = new AlertDialog.Builder(context).setTitle(R.string.set_number).setView(view).setPositiveButton(android.R.string.ok, (dialog1, which) -> listener.onNumberInputResult(numberPicker.getValue())).create();
         showSecureDialog(dialog);
     }
 
@@ -370,21 +304,13 @@ public class Dialogs {
         textDetails.setText(error);
         TextView textMessage = view.findViewById(R.id.error_message);
         textMessage.setText(message);
-
-        AlertDialog dialog = new AlertDialog.Builder(context)
-                .setTitle(R.string.error_occurred)
-                .setView(view)
-                .setCancelable(false)
-                .setPositiveButton(android.R.string.ok, (dialog1, which) -> {
-                    if (listener != null) {
-                        listener.onClick(dialog1, which);
-                    }
-                })
-                .setNeutralButton(R.string.details, (dialog1, which) -> {
-                    textDetails.setVisibility(View.VISIBLE);
-                })
-                .create();
-
+        AlertDialog dialog = new AlertDialog.Builder(context).setTitle(R.string.error_occurred).setView(view).setCancelable(false).setPositiveButton(android.R.string.ok, (dialog1, which) -> {
+            if (listener != null) {
+                listener.onClick(dialog1, which);
+            }
+        }).setNeutralButton(R.string.details, (dialog1, which) -> {
+            textDetails.setVisibility(View.VISIBLE);
+        }).create();
         dialog.setOnShowListener(d -> {
             Button button = dialog.getButton(AlertDialog.BUTTON_NEUTRAL);
             button.setOnClickListener(v -> {
@@ -400,7 +326,6 @@ public class Dialogs {
                 }
             });
         });
-
         Dialogs.showSecureDialog(dialog);
     }
 
@@ -410,53 +335,35 @@ public class Dialogs {
         Dialogs.showErrorDialog(context, message, backupRes.getError(), listener);
     }
 
-    public static void showMultiMessageDialog(
-            Context context, @StringRes int title, String message, List<CharSequence> messages, DialogInterface.OnClickListener listener) {
-        Dialogs.showSecureDialog(new AlertDialog.Builder(context)
-                .setTitle(title)
-                .setMessage(message)
-                .setCancelable(false)
-                .setPositiveButton(android.R.string.ok, (dialog, which) -> {
-                    if (listener != null) {
-                        listener.onClick(dialog, which);
-                    }
-                })
-                .setNeutralButton(context.getString(R.string.details), (dialog, which) -> {
-                    showDetailedMultiMessageDialog(context, title, messages, listener);
-                })
-                .create());
+    public static void showMultiMessageDialog(Context context, @StringRes int title, String message, List<CharSequence> messages, DialogInterface.OnClickListener listener) {
+        Dialogs.showSecureDialog(new AlertDialog.Builder(context).setTitle(title).setMessage(message).setCancelable(false).setPositiveButton(android.R.string.ok, (dialog, which) -> {
+            if (listener != null) {
+                listener.onClick(dialog, which);
+            }
+        }).setNeutralButton(context.getString(R.string.details), (dialog, which) -> {
+            showDetailedMultiMessageDialog(context, title, messages, listener);
+        }).create());
     }
 
-    public static <T extends Throwable> void showMultiErrorDialog(
-            Context context, @StringRes int title, String message, List<T> errors, DialogInterface.OnClickListener listener) {
+    public static <T extends Throwable> void showMultiErrorDialog(Context context, @StringRes int title, String message, List<T> errors, DialogInterface.OnClickListener listener) {
         List<CharSequence> messages = new ArrayList<>();
         for (Throwable e : errors) {
             messages.add(e.toString());
         }
-
         showMultiMessageDialog(context, title, message, messages, listener);
     }
 
-    private static void showDetailedMultiMessageDialog(
-            Context context, @StringRes int title, List<CharSequence> messages, DialogInterface.OnClickListener listener) {
+    private static void showDetailedMultiMessageDialog(Context context, @StringRes int title, List<CharSequence> messages, DialogInterface.OnClickListener listener) {
         SpannableStringBuilder builder = new SpannableStringBuilder();
         for (CharSequence message : messages) {
             builder.append(message);
             builder.append("\n\n");
         }
-
-        AlertDialog dialog = new AlertDialog.Builder(context)
-                .setTitle(title)
-                .setMessage(builder)
-                .setCancelable(false)
-                .setPositiveButton(android.R.string.ok, (dialog1, which) -> {
-                    if (listener != null) {
-                        listener.onClick(dialog1, which);
-                    }
-                })
-                .setNeutralButton(android.R.string.copy, null)
-                .create();
-
+        AlertDialog dialog = new AlertDialog.Builder(context).setTitle(title).setMessage(builder).setCancelable(false).setPositiveButton(android.R.string.ok, (dialog1, which) -> {
+            if (listener != null) {
+                listener.onClick(dialog1, which);
+            }
+        }).setNeutralButton(android.R.string.copy, null).create();
         dialog.setOnShowListener(d -> {
             Button button = dialog.getButton(AlertDialog.BUTTON_NEUTRAL);
             button.setOnClickListener(v -> {
@@ -466,39 +373,30 @@ public class Dialogs {
                 Toast.makeText(context, R.string.errors_copied, Toast.LENGTH_SHORT).show();
             });
         });
-
         Dialogs.showSecureDialog(dialog);
     }
-    
+
     public static void showTimeSyncWarningDialog(Context context, Dialog.OnClickListener listener) {
         Preferences prefs = new Preferences(context);
         View view = LayoutInflater.from(context).inflate(R.layout.dialog_time_sync, null);
         CheckBox checkBox = view.findViewById(R.id.check_warning_disable);
-
-        showSecureDialog(new AlertDialog.Builder(context)
-                .setTitle(R.string.time_sync_warning_title)
-                .setView(view)
-                .setCancelable(false)
-                .setPositiveButton(R.string.yes, (dialog, which) -> {
-                    if (checkBox.isChecked()) {
-                        prefs.setIsTimeSyncWarningEnabled(false);
-                    }
-                    if (listener != null) {
-                        listener.onClick(dialog, which);
-                    }
-                })
-                .setNegativeButton(R.string.no, (dialog, which) -> {
-                    if (checkBox.isChecked()) {
-                        prefs.setIsTimeSyncWarningEnabled(false);
-                    }
-                })
-                .create());
+        showSecureDialog(new AlertDialog.Builder(context).setTitle(R.string.time_sync_warning_title).setView(view).setCancelable(false).setPositiveButton(R.string.yes, (dialog, which) -> {
+            if (checkBox.isChecked()) {
+                prefs.setIsTimeSyncWarningEnabled(false);
+            }
+            if (listener != null) {
+                listener.onClick(dialog, which);
+            }
+        }).setNegativeButton(R.string.no, (dialog, which) -> {
+            if (checkBox.isChecked()) {
+                prefs.setIsTimeSyncWarningEnabled(false);
+            }
+        }).create());
     }
 
     public static void showImportersDialog(Context context, boolean isDirect, ImporterListener listener) {
         List<DatabaseImporter.Definition> importers = DatabaseImporter.getImporters(isDirect);
         List<String> names = importers.stream().map(DatabaseImporter.Definition::getName).collect(Collectors.toList());
-
         int i = 0;
         if (!isDirect) {
             i = names.indexOf(context.getString(R.string.app_name));
@@ -512,42 +410,25 @@ public class Dialogs {
         listView.setOnItemClickListener((parent, view1, position, id) -> {
             setImporterHelpText(helpText, importers.get(position), isDirect);
         });
-
-        Dialogs.showSecureDialog(new AlertDialog.Builder(context)
-                .setTitle(R.string.choose_application)
-                .setView(view)
-                .setPositiveButton(android.R.string.ok, (dialog1, which) -> {
-                    listener.onImporterSelectionResult(importers.get(listView.getCheckedItemPosition()));
-                })
-                .create());
+        Dialogs.showSecureDialog(new AlertDialog.Builder(context).setTitle(R.string.choose_application).setView(view).setPositiveButton(android.R.string.ok, (dialog1, which) -> {
+            listener.onImporterSelectionResult(importers.get(listView.getCheckedItemPosition()));
+        }).create());
     }
 
     public static void showPartialGoogleAuthImportWarningDialog(Context context, List<Integer> missingIndexes, int entries, List<CharSequence> scanningErrors, DialogInterface.OnClickListener dismissHandler) {
-        String missingIndexesAsString = missingIndexes.stream()
-                .map(index -> context.getString(R.string.missing_qr_code_descriptor, index + 1))
-                .collect(Collectors.joining("\n"));
-
+        String missingIndexesAsString = missingIndexes.stream().map(index -> context.getString(R.string.missing_qr_code_descriptor, index + 1)).collect(Collectors.joining("\n"));
         View view = LayoutInflater.from(context).inflate(R.layout.dialog_error, null);
         TextView errorDetails = view.findViewById(R.id.error_details);
-        for (CharSequence error: scanningErrors) {
+        for (CharSequence error : scanningErrors) {
             errorDetails.append(error);
             errorDetails.append("\n\n");
         }
-
-        AlertDialog.Builder builder = new AlertDialog.Builder(context)
-                .setTitle(R.string.partial_google_auth_import)
-                .setMessage(context.getString(R.string.partial_google_auth_import_warning, missingIndexesAsString))
-                .setView(view)
-                .setCancelable(false)
-                .setPositiveButton(context.getString(R.string.import_partial_export_anyway, entries), (dialog, which) -> {
-                    dismissHandler.onClick(dialog, which);
-                })
-                .setNegativeButton(android.R.string.cancel, null);
-
+        AlertDialog.Builder builder = new AlertDialog.Builder(context).setTitle(R.string.partial_google_auth_import).setMessage(context.getString(R.string.partial_google_auth_import_warning, missingIndexesAsString)).setView(view).setCancelable(false).setPositiveButton(context.getString(R.string.import_partial_export_anyway, entries), (dialog, which) -> {
+            dismissHandler.onClick(dialog, which);
+        }).setNegativeButton(android.R.string.cancel, null);
         if (scanningErrors.size() > 0) {
             builder.setNeutralButton(R.string.show_error_details, null);
         }
-
         AlertDialog dialog = builder.create();
         dialog.setOnShowListener(d -> {
             Button btnNeutral = dialog.getButton(DialogInterface.BUTTON_NEUTRAL);
@@ -558,7 +439,6 @@ public class Dialogs {
                 });
             }
         });
-
         showSecureDialog(dialog);
     }
 
@@ -571,23 +451,29 @@ public class Dialogs {
     }
 
     public interface CheckboxInputListener {
+
         void onCheckboxInputResult(boolean checkbox);
     }
 
     public interface NumberInputListener {
+
         void onNumberInputResult(int number);
     }
 
     public interface TextInputListener {
+
         void onTextInputResult(char[] text);
     }
 
     public interface PasswordSlotListener {
+
         void onSlotResult(PasswordSlot slot, Cipher cipher);
+
         void onException(Exception e);
     }
 
     public interface ImporterListener {
+
         void onImporterSelectionResult(DatabaseImporter.Definition definition);
     }
 }

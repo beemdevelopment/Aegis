@@ -1,6 +1,7 @@
 package com.beemdevelopment.aegis.icons;
 
 public class IconPackExistsException extends IconPackException {
+
     private IconPack _pack;
 
     public IconPackExistsException(IconPack pack) {

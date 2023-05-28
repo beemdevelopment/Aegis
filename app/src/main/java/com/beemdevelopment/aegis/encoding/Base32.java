@@ -1,13 +1,12 @@
 package com.beemdevelopment.aegis.encoding;
 
 import com.google.common.io.BaseEncoding;
-
 import java.nio.charset.StandardCharsets;
 import java.util.Locale;
 
 public class Base32 {
-    private Base32() {
 
+    private Base32() {
     }
 
     public static byte[] decode(String s) throws EncodingException {

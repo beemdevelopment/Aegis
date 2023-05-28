@@ -1,17 +1,14 @@
 package com.beemdevelopment.aegis.icons;
 
 import com.google.common.io.Files;
-
 import java.util.Locale;
 
 public enum IconType {
-    INVALID,
-    SVG,
-    PNG,
-    JPEG;
+
+    INVALID, SVG, PNG, JPEG;
 
     public static IconType fromMimeType(String mimeType) {
-        switch (mimeType) {
+        switch(mimeType) {
             case "image/svg+xml":
                 return SVG;
             case "image/png":
@@ -24,13 +21,13 @@ public enum IconType {
     }
 
     public static IconType fromFilename(String filename) {
-        switch (Files.getFileExtension(filename).toLowerCase(Locale.ROOT)) {
+        switch(Files.getFileExtension(filename).toLowerCase(Locale.ROOT)) {
             case "svg":
                 return SVG;
             case "png":
                 return PNG;
             case "jpg":
-                // intentional fallthrough
+            // intentional fallthrough
             case "jpeg":
                 return JPEG;
             default:
@@ -39,7 +36,7 @@ public enum IconType {
     }
 
     public String toMimeType() {
-        switch (this) {
+        switch(this) {
             case SVG:
                 return "image/svg+xml";
             case PNG:

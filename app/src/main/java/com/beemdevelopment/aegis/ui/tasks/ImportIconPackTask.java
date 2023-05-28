@@ -2,19 +2,18 @@ package com.beemdevelopment.aegis.ui.tasks;
 
 import android.content.Context;
 import android.net.Uri;
-
 import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.icons.IconPack;
 import com.beemdevelopment.aegis.icons.IconPackException;
 import com.beemdevelopment.aegis.icons.IconPackManager;
 import com.beemdevelopment.aegis.util.IOUtils;
-
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
 public class ImportIconPackTask extends ProgressDialogTask<ImportIconPackTask.Params, ImportIconPackTask.Result> {
+
     private final ImportIconPackTask.Callback _cb;
 
     public ImportIconPackTask(Context context, ImportIconPackTask.Callback cb) {
@@ -26,18 +25,16 @@ public class ImportIconPackTask extends ProgressDialogTask<ImportIconPackTask.Pa
     protected ImportIconPackTask.Result doInBackground(ImportIconPackTask.Params... params) {
         Context context = getDialog().getContext();
         ImportIconPackTask.Params param = params[0];
-
         File tempFile = null;
         try {
             tempFile = File.createTempFile("icon-pack-", "", context.getCacheDir());
             try (InputStream inStream = context.getContentResolver().openInputStream(param.getUri());
-                 FileOutputStream outStream = new FileOutputStream(tempFile)) {
+                FileOutputStream outStream = new FileOutputStream(tempFile)) {
                 if (inStream == null) {
                     throw new IOException("openInputStream returned null");
                 }
                 IOUtils.copy(inStream, outStream);
             }
-
             IconPack pack = param.getManager().importPack(tempFile);
             return new Result(pack, null);
         } catch (IOException | IconPackException e) {
@@ -57,11 +54,14 @@ public class ImportIconPackTask extends ProgressDialogTask<ImportIconPackTask.Pa
     }
 
     public interface Callback {
+
         void onTaskFinished(ImportIconPackTask.Result result);
     }
 
     public static class Params {
+
         private final IconPackManager _manager;
+
         private final Uri _uri;
 
         public Params(IconPackManager manager, Uri uri) {
@@ -79,7 +79,9 @@ public class ImportIconPackTask extends ProgressDialogTask<ImportIconPackTask.Pa
     }
 
     public static class Result {
+
         private final IconPack _pack;
+
         private final Exception _e;
 
         public Result(IconPack pack, Exception e) {

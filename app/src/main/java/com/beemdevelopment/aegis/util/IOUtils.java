@@ -9,8 +9,8 @@ import java.io.InputStream;
 import java.io.OutputStream;
 
 public class IOUtils {
-    private IOUtils() {
 
+    private IOUtils() {
     }
 
     public static byte[] readFile(FileInputStream inStream) throws IOException {
@@ -47,7 +47,6 @@ public class IOUtils {
                 }
             }
         }
-
         if (deleteRoot) {
             dir.delete();
         }

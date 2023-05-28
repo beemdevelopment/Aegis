@@ -5,7 +5,6 @@ import java.io.Serializable;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
-
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
 import javax.crypto.IllegalBlockSizeException;
@@ -13,9 +12,10 @@ import javax.crypto.NoSuchPaddingException;
 import javax.crypto.SecretKey;
 
 public class MasterKey implements Serializable {
+
     private SecretKey _key;
 
-    public MasterKey(SecretKey key)  {
+    public MasterKey(SecretKey key) {
         if (key == null) {
             throw new IllegalArgumentException("Key cannot be null");
         }
@@ -30,12 +30,7 @@ public class MasterKey implements Serializable {
         try {
             Cipher cipher = CryptoUtils.createEncryptCipher(_key);
             return CryptoUtils.encrypt(bytes, cipher);
-        } catch (NoSuchPaddingException
-                | NoSuchAlgorithmException
-                | InvalidAlgorithmParameterException
-                | InvalidKeyException
-                | BadPaddingException
-                | IllegalBlockSizeException e) {
+        } catch (NoSuchPaddingException | NoSuchAlgorithmException | InvalidAlgorithmParameterException | InvalidKeyException | BadPaddingException | IllegalBlockSizeException e) {
             throw new MasterKeyException(e);
         }
     }
@@ -44,13 +39,7 @@ public class MasterKey implements Serializable {
         try {
             Cipher cipher = CryptoUtils.createDecryptCipher(_key, params.getNonce());
             return CryptoUtils.decrypt(bytes, cipher, params);
-        } catch (NoSuchPaddingException
-                | NoSuchAlgorithmException
-                | InvalidAlgorithmParameterException
-                | InvalidKeyException
-                | BadPaddingException
-                | IOException
-                | IllegalBlockSizeException e) {
+        } catch (NoSuchPaddingException | NoSuchAlgorithmException | InvalidAlgorithmParameterException | InvalidKeyException | BadPaddingException | IOException | IllegalBlockSizeException e) {
             throw new MasterKeyException(e);
         }
     }

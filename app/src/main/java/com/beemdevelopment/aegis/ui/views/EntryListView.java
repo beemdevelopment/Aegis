@@ -1,7 +1,6 @@
 package com.beemdevelopment.aegis.ui.views;
 
 import static androidx.recyclerview.widget.RecyclerView.NO_POSITION;
-
 import android.annotation.SuppressLint;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
@@ -14,7 +13,6 @@ import android.view.animation.AnimationUtils;
 import android.view.animation.LayoutAnimationController;
 import android.widget.Button;
 import android.widget.LinearLayout;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -22,7 +20,6 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.beemdevelopment.aegis.Preferences;
 import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.SortCategory;
@@ -46,7 +43,6 @@ import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
 import com.google.android.material.divider.MaterialDividerItemDecoration;
 import com.google.common.base.Strings;
-
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
@@ -56,21 +52,35 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 public class EntryListView extends Fragment implements EntryAdapter.Listener {
+
     private EntryAdapter _adapter;
+
     private Listener _listener;
+
     private SimpleItemTouchHelperCallback _touchCallback;
+
     private ItemTouchHelper _touchHelper;
 
     private RecyclerView _recyclerView;
+
     private RecyclerView.ItemDecoration _dividerDecoration;
+
     private ViewPreloadSizeProvider<VaultEntry> _preloadSizeProvider;
+
     private TotpProgressBar _progressBar;
+
     private boolean _showProgress;
+
     private ViewMode _viewMode;
+
     private TreeSet<String> _groups;
+
     private LinearLayout _emptyStateView;
+
     private Chip _groupChip;
+
     private List<String> _groupFilter;
+
     private List<String> _prefGroupFilter;
 
     private UiRefresher _refresher;
@@ -94,10 +104,10 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
         _progressBar = view.findViewById(R.id.progressBar);
         _groupChip = view.findViewById(R.id.chip_group);
         initializeGroupChip();
-
         // set up the recycler view
         _recyclerView = view.findViewById(R.id.rvKeyProfiles);
         _recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
@@ -106,32 +116,28 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
                 }
             }
         });
-
         _recyclerView.setOnTouchListener((v, event) -> {
             if (_listener != null) {
                 _listener.onEntryListTouch();
             }
             return false;
         });
-
         // set up icon preloading
         _preloadSizeProvider = new ViewPreloadSizeProvider<>();
         IconPreloadProvider modelProvider = new IconPreloadProvider();
         RecyclerViewPreloader<VaultEntry> preloader = new RecyclerViewPreloader<>(Glide.with(this), modelProvider, _preloadSizeProvider, 10);
         _recyclerView.addOnScrollListener(preloader);
-
         LinearLayoutManager layoutManager = new LinearLayoutManager(requireContext());
         _recyclerView.setLayoutManager(layoutManager);
         _touchCallback = new SimpleItemTouchHelperCallback(_adapter);
         _touchHelper = new ItemTouchHelper(_touchCallback);
         _touchHelper.attachToRecyclerView(_recyclerView);
         _recyclerView.setAdapter(_adapter);
-
         int resId = R.anim.layout_animation_fall_down;
         LayoutAnimationController animation = AnimationUtils.loadLayoutAnimation(requireContext(), resId);
         _recyclerView.setLayoutAnimation(animation);
-
         _refresher = new UiRefresher(new UiRefresher.Listener() {
+
             @Override
             public void onRefresh() {
                 refresh(false);
@@ -142,7 +148,6 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
                 return TotpInfo.getMillisTillNextRotation(_adapter.getMostFrequentPeriod());
             }
         });
-
         _emptyStateView = view.findViewById(R.id.vEmptyList);
         return view;
     }
@@ -163,7 +168,6 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
         _touchCallback.setIsLongPressDragEnabled(_adapter.isDragAndDropAllowed());
         updateEmptyState();
         updateGroupChip();
-
         if (animate) {
             runEntriesAnimation();
         }
@@ -174,13 +178,12 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
     }
 
     public void setIsCopyOnTapEnabled(boolean enabled) {
-       _adapter.setIsCopyOnTapEnabled(enabled);
+        _adapter.setIsCopyOnTapEnabled(enabled);
     }
 
     public void setActionModeState(boolean enabled, VaultEntry entry) {
         _touchCallback.setSelectedEntry(entry);
         _touchCallback.setIsLongPressDragEnabled(enabled && _adapter.isDragAndDropAllowed());
-
         if (enabled) {
             _adapter.addSelectedEntry(entry);
         } else {
@@ -191,7 +194,6 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
     public void setSortCategory(SortCategory sortCategory, boolean apply) {
         _adapter.setSortCategory(sortCategory, apply);
         _touchCallback.setIsLongPressDragEnabled(_adapter.isDragAndDropAllowed());
-
         if (apply) {
             runEntriesAnimation();
         }
@@ -208,7 +210,6 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
     public void setSearchFilter(String search) {
         _adapter.setSearchFilter(search);
         _touchCallback.setIsLongPressDragEnabled(_adapter.isDragAndDropAllowed());
-
         updateEmptyState();
     }
 
@@ -230,7 +231,6 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
         if (_showProgress) {
             _progressBar.restart();
         }
-
         _adapter.refresh(hard);
     }
 
@@ -356,12 +356,11 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
     public void addEntry(VaultEntry entry, boolean focusEntry) {
         int position = _adapter.addEntry(entry);
         updateEmptyState();
-
         LinearLayoutManager layoutManager = (LinearLayoutManager) _recyclerView.getLayoutManager();
         if (focusEntry && position >= 0) {
-            if ((_recyclerView.canScrollVertically(1) && position > layoutManager.findLastCompletelyVisibleItemPosition())
-                    || (_recyclerView.canScrollVertically(-1) && position < layoutManager.findFirstCompletelyVisibleItemPosition())) {
+            if ((_recyclerView.canScrollVertically(1) && position > layoutManager.findLastCompletelyVisibleItemPosition()) || (_recyclerView.canScrollVertically(-1) && position < layoutManager.findFirstCompletelyVisibleItemPosition())) {
                 RecyclerView.OnScrollListener scrollListener = new RecyclerView.OnScrollListener() {
+
                     @Override
                     public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
                         if (newState == RecyclerView.SCROLL_STATE_IDLE) {
@@ -378,7 +377,6 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
                         _recyclerView.stopScroll();
                         _recyclerView.setOnTouchListener(null);
                     }
-
                     return false;
                 });
                 _recyclerView.smoothScrollToPosition(position);
@@ -390,7 +388,6 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
 
     public void tempHighlightEntry(VaultEntry entry) {
         _adapter.setTempHighlightEntry(true);
-
         final int secondsToFocus = 3;
         _adapter.focusEntry(entry, secondsToFocus);
     }
@@ -419,9 +416,7 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
     }
 
     public void runEntriesAnimation() {
-        final LayoutAnimationController controller =
-                AnimationUtils.loadLayoutAnimation(requireContext(), R.anim.layout_animation_fall_down);
-
+        final LayoutAnimationController controller = AnimationUtils.loadLayoutAnimation(requireContext(), R.anim.layout_animation_fall_down);
         _recyclerView.setLayoutAnimation(controller);
         _recyclerView.scheduleLayoutAnimation();
     }
@@ -444,7 +439,6 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
         View view = getLayoutInflater().inflate(R.layout.dialog_select_groups, null);
         BottomSheetDialog dialog = new BottomSheetDialog(requireContext());
         dialog.setContentView(view);
-
         ChipGroup chipGroup = view.findViewById(R.id.groupChipGroup);
         Button clearButton = view.findViewById(R.id.btnClear);
         Button saveButton = view.findViewById(R.id.btnSave);
@@ -457,7 +451,6 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
             setGroupFilter(groupFilter, true);
             dialog.dismiss();
         });
-
         saveButton.setOnClickListener(v -> {
             List<String> groupFilter = getGroupFilter(chipGroup);
             if (_listener != null) {
@@ -466,29 +459,24 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
             setGroupFilter(groupFilter, true);
             dialog.dismiss();
         });
-
         _groupChip.setOnClickListener(v -> {
             chipGroup.removeAllViews();
-
             for (String group : _groups) {
                 addChipTo(chipGroup, group);
             }
             addChipTo(chipGroup, null);
-
             Dialogs.showSecureDialog(dialog);
         });
     }
 
     private static List<String> getGroupFilter(ChipGroup chipGroup) {
-        return chipGroup.getCheckedChipIds().stream()
-                .map(i -> {
-                    Chip chip = chipGroup.findViewById(i);
-                    if (chip.getTag() != null) {
-                        return null;
-                    }
-                    return chip. getText().toString();
-                })
-                .collect(Collectors.toList());
+        return chipGroup.getCheckedChipIds().stream().map(i -> {
+            Chip chip = chipGroup.findViewById(i);
+            if (chip.getTag() != null) {
+                return null;
+            }
+            return chip.getText().toString();
+        }).collect(Collectors.toList());
     }
 
     private void updateGroupChip() {
@@ -508,7 +496,6 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
         _groups = groups;
         _groupChip.setVisibility(_groups.isEmpty() ? View.GONE : View.VISIBLE);
         updateDividerDecoration();
-
         if (_prefGroupFilter != null) {
             List<String> groupFilter = cleanGroupFilter(_prefGroupFilter);
             _prefGroupFilter = null;
@@ -524,23 +511,19 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
     }
 
     private List<String> cleanGroupFilter(List<String> groupFilter) {
-       return groupFilter.stream()
-                .filter(g -> g == null || _groups.contains(g))
-                .collect(Collectors.toList());
+        return groupFilter.stream().filter(g -> g == null || _groups.contains(g)).collect(Collectors.toList());
     }
 
     private void updateDividerDecoration() {
         if (_dividerDecoration != null) {
             _recyclerView.removeItemDecoration(_dividerDecoration);
         }
-
         float height = _viewMode.getDividerHeight();
         if (_showProgress && height == 0) {
             _dividerDecoration = new CompactDividerDecoration();
         } else {
             _dividerDecoration = new VerticalSpaceItemDecoration(height);
         }
-
         _recyclerView.addItemDecoration(_dividerDecoration);
     }
 
@@ -557,21 +540,34 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
     }
 
     public interface Listener {
+
         void onEntryClick(VaultEntry entry);
+
         void onEntryMove(VaultEntry entry1, VaultEntry entry2);
+
         void onEntryDrop(VaultEntry entry);
+
         void onEntryChange(VaultEntry entry);
+
         void onEntryCopy(VaultEntry entry);
+
         void onLongEntryClick(VaultEntry entry);
+
         void onScroll(int dx, int dy);
+
         void onSelect(VaultEntry entry);
+
         void onDeselect(VaultEntry entry);
+
         void onListChange();
+
         void onSaveGroupFilter(List<String> groupFilter);
+
         void onEntryListTouch();
     }
 
     private class CompactDividerDecoration extends MaterialDividerItemDecoration {
+
         public CompactDividerDecoration() {
             super(requireContext(), DividerItemDecoration.VERTICAL);
             setDividerColor(ThemeHelper.getThemeColor(R.attr.divider, requireContext().getTheme()));
@@ -587,12 +583,12 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
                 outRect.bottom = pixels;
                 return;
             }
-
             super.getItemOffsets(outRect, view, parent, state);
         }
     }
 
     private class VerticalSpaceItemDecoration extends RecyclerView.ItemDecoration {
+
         private final int _height;
 
         private VerticalSpaceItemDecoration(float dp) {
@@ -606,40 +602,32 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
             if (adapterPosition == NO_POSITION) {
                 return;
             }
-
             // The footer always has a top and bottom margin
             if (_adapter.isPositionFooter(adapterPosition)) {
                 outRect.top = _height;
                 outRect.bottom = _height;
                 return;
             }
-
             // The first entry should have a top margin, but only if the group chip is not shown
             if (adapterPosition == 0 && (_groups == null || _groups.isEmpty())) {
                 outRect.top = _height;
             }
-
             // Only non-favorite entries have a bottom margin, except for the final favorite entry
             int totalFavorites = _adapter.getShownFavoritesCount();
-            if (totalFavorites == 0
-                    || (adapterPosition < _adapter.getEntriesCount() && !_adapter.getEntryAt(adapterPosition).isFavorite())
-                    || totalFavorites == adapterPosition + 1) {
+            if (totalFavorites == 0 || (adapterPosition < _adapter.getEntriesCount() && !_adapter.getEntryAt(adapterPosition).isFavorite()) || totalFavorites == adapterPosition + 1) {
                 outRect.bottom = _height;
             }
-
             if (totalFavorites > 0) {
                 // If this entry is the last favorite entry in the list, it should always have
                 // a bottom margin, regardless of the view mode
                 if (adapterPosition == totalFavorites - 1) {
                     outRect.bottom = _height;
                 }
-
                 // If this is the first non-favorite entry, it should have a top margin
                 if (adapterPosition == totalFavorites) {
                     outRect.top = _height;
                 }
             }
-
             // The last entry should never have a bottom margin
             if (_adapter.getEntriesCount() == adapterPosition + 1) {
                 outRect.bottom = 0;
@@ -648,13 +636,13 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
     }
 
     private class IconPreloadProvider implements ListPreloader.PreloadModelProvider<VaultEntry> {
+
         @NonNull
         @Override
         public List<VaultEntry> getPreloadItems(int position) {
             if (_adapter.getItemViewType(position) == R.layout.card_footer) {
                 return Collections.emptyList();
             }
-
             VaultEntry entry = _adapter.getEntryAt(position);
             if (!entry.hasIcon()) {
                 return Collections.emptyList();
@@ -665,12 +653,7 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
         @Nullable
         @Override
         public RequestBuilder<Drawable> getPreloadRequestBuilder(@NonNull VaultEntry entry) {
-            return Glide.with(EntryListView.this)
-                        .asDrawable()
-                        .load(entry)
-                        .set(IconLoader.ICON_TYPE, entry.getIconType())
-                        .diskCacheStrategy(DiskCacheStrategy.NONE)
-                        .skipMemoryCache(false);
+            return Glide.with(EntryListView.this).asDrawable().load(entry).set(IconLoader.ICON_TYPE, entry.getIconType()).diskCacheStrategy(DiskCacheStrategy.NONE).skipMemoryCache(false);
         }
     }
 }

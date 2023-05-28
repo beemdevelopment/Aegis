@@ -3,6 +3,7 @@ package com.beemdevelopment.aegis.otp;
 import android.net.Uri;
 
 public class GoogleAuthInfoException extends Exception {
+
     private final Uri _uri;
 
     public GoogleAuthInfoException(Uri uri, Throwable cause) {
@@ -30,12 +31,9 @@ public class GoogleAuthInfoException extends Exception {
     @Override
     public String getMessage() {
         Throwable cause = getCause();
-        if (cause == null
-                || this == cause
-                || (super.getMessage() != null && super.getMessage().equals(cause.getMessage()))) {
+        if (cause == null || this == cause || (super.getMessage() != null && super.getMessage().equals(cause.getMessage()))) {
             return super.getMessage();
         }
-
         return String.format("%s (%s)", super.getMessage(), cause.getMessage());
     }
 }

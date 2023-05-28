@@ -2,33 +2,28 @@ package com.beemdevelopment.aegis.util;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class PreferenceParser {
+
     private PreferenceParser() {
-        
     }
 
     public static List<XmlEntry> parse(XmlPullParser parser) throws IOException, XmlPullParserException {
         List<XmlEntry> entries = new ArrayList<>();
-
         parser.require(XmlPullParser.START_TAG, null, "map");
         while (parser.next() != XmlPullParser.END_TAG) {
             if (parser.getEventType() != XmlPullParser.START_TAG) {
                 continue;
             }
-
             if (!parser.getName().equals("string")) {
                 skip(parser);
                 continue;
             }
-
             entries.add(parseEntry(parser));
         }
-
         return entries;
     }
 
@@ -37,7 +32,6 @@ public class PreferenceParser {
         String name = parser.getAttributeValue(null, "name");
         String value = parseText(parser);
         parser.require(XmlPullParser.END_TAG, null, "string");
-
         XmlEntry entry = new XmlEntry();
         entry.Name = name;
         entry.Value = value;
@@ -58,10 +52,9 @@ public class PreferenceParser {
         if (parser.getEventType() != XmlPullParser.START_TAG) {
             throw new IllegalStateException();
         }
-
         int depth = 1;
         while (depth != 0) {
-            switch (parser.next()) {
+            switch(parser.next()) {
                 case XmlPullParser.END_TAG:
                     depth--;
                     break;
@@ -73,7 +66,9 @@ public class PreferenceParser {
     }
 
     public static class XmlEntry {
+
         public String Name;
+
         public String Value;
     }
 }

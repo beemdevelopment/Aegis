@@ -2,10 +2,8 @@ package com.beemdevelopment.aegis.importers;
 
 import android.content.Context;
 import android.content.DialogInterface;
-
 import androidx.annotation.Nullable;
 import androidx.lifecycle.Lifecycle;
-
 import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.helpers.ContextHelper;
 import com.beemdevelopment.aegis.ui.dialogs.Dialogs;
@@ -19,11 +17,9 @@ import com.beemdevelopment.aegis.vault.VaultFileException;
 import com.beemdevelopment.aegis.vault.slots.PasswordSlot;
 import com.beemdevelopment.aegis.vault.slots.SlotList;
 import com.topjohnwu.superuser.io.SuFile;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
@@ -54,6 +50,7 @@ public class AegisImporter extends DatabaseImporter {
     }
 
     public static class EncryptedState extends State {
+
         private VaultFile _file;
 
         private EncryptedState(VaultFile file) {
@@ -72,7 +69,6 @@ public class AegisImporter extends DatabaseImporter {
             } catch (VaultFileException e) {
                 throw new DatabaseImporterException(e);
             }
-
             return new DecryptedState(obj, creds);
         }
 
@@ -93,7 +89,6 @@ public class AegisImporter extends DatabaseImporter {
                         if (result == null) {
                             throw new DatabaseImporterException("Password incorrect");
                         }
-
                         VaultFileCredentials creds = new VaultFileCredentials(result.getKey(), getSlots());
                         State state = decrypt(creds);
                         listener.onStateDecrypted(state);
@@ -101,7 +96,6 @@ public class AegisImporter extends DatabaseImporter {
                         listener.onError(e);
                     }
                 });
-
                 Lifecycle lifecycle = ContextHelper.getLifecycle(context);
                 task.execute(lifecycle, params);
             }, (DialogInterface.OnCancelListener) dialog -> listener.onCanceled());
@@ -109,7 +103,9 @@ public class AegisImporter extends DatabaseImporter {
     }
 
     public static class DecryptedState extends State {
+
         private JSONObject _obj;
+
         private VaultFileCredentials _creds;
 
         private DecryptedState(JSONObject obj) {
@@ -130,7 +126,6 @@ public class AegisImporter extends DatabaseImporter {
         @Override
         public Result convert() throws DatabaseImporterException {
             Result result = new Result();
-
             try {
                 JSONArray array = _obj.getJSONArray("entries");
                 for (int i = 0; i < array.length(); i++) {
@@ -145,7 +140,6 @@ public class AegisImporter extends DatabaseImporter {
             } catch (JSONException e) {
                 throw new DatabaseImporterException(e);
             }
-
             return result;
         }
 

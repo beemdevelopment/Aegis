@@ -3,9 +3,8 @@ package com.beemdevelopment.aegis;
 import androidx.annotation.LayoutRes;
 
 public enum ViewMode {
-    NORMAL,
-    COMPACT,
-    SMALL;
+
+    NORMAL, COMPACT, SMALL;
 
     private static ViewMode[] _values;
 
@@ -19,7 +18,7 @@ public enum ViewMode {
 
     @LayoutRes
     public int getLayoutId() {
-        switch (this) {
+        switch(this) {
             case NORMAL:
                 return R.layout.card_entry;
             case COMPACT:
@@ -38,7 +37,6 @@ public enum ViewMode {
         if (this == ViewMode.COMPACT) {
             return 0;
         }
-
         return 20;
     }
 }

@@ -2,16 +2,13 @@ package com.beemdevelopment.aegis.importers;
 
 import android.content.Context;
 import android.content.pm.PackageManager;
-
 import androidx.annotation.StringRes;
-
 import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.util.UUIDMap;
 import com.beemdevelopment.aegis.vault.VaultEntry;
 import com.topjohnwu.superuser.Shell;
 import com.topjohnwu.superuser.io.SuFile;
 import com.topjohnwu.superuser.io.SuFileInputStream;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.Serializable;
@@ -22,6 +19,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public abstract class DatabaseImporter {
+
     private Context _context;
 
     private static List<Definition> _importers;
@@ -76,7 +74,6 @@ public abstract class DatabaseImporter {
     public State readFromApp(Shell shell) throws PackageManager.NameNotFoundException, DatabaseImporterException {
         SuFile file = getAppPath();
         file.setShell(shell);
-
         try (InputStream stream = SuFileInputStream.open(file)) {
             return read(stream, true);
         } catch (IOException e) {
@@ -87,8 +84,7 @@ public abstract class DatabaseImporter {
     public static DatabaseImporter create(Context context, Class<? extends DatabaseImporter> type) {
         try {
             return type.getConstructor(Context.class).newInstance(context);
-        } catch (IllegalAccessException | InstantiationException
-                | NoSuchMethodException | InvocationTargetException e) {
+        } catch (IllegalAccessException | InstantiationException | NoSuchMethodException | InvocationTargetException e) {
             throw new RuntimeException(e);
         }
     }
@@ -97,18 +93,21 @@ public abstract class DatabaseImporter {
         if (isDirect) {
             return Collections.unmodifiableList(_importers.stream().filter(Definition::supportsDirect).collect(Collectors.toList()));
         }
-
         return Collections.unmodifiableList(_importers);
     }
 
     public static class Definition implements Serializable {
+
         private final String _name;
+
         private final Class<? extends DatabaseImporter> _type;
-        private final @StringRes int _help;
+
+        @StringRes
+        private final int _help;
+
         private final boolean _supportsDirect;
 
         /**
-         *
          * @param name The name of the Authenticator the importer handles.
          * @param type The class which does the importing.
          * @param help The string that explains the type of file needed (and optionally where it can be obtained).
@@ -129,7 +128,8 @@ public abstract class DatabaseImporter {
             return _type;
         }
 
-        public @StringRes int getHelp() {
+        @StringRes
+        public int getHelp() {
             return _help;
         }
 
@@ -139,6 +139,7 @@ public abstract class DatabaseImporter {
     }
 
     public static abstract class State {
+
         private boolean _encrypted;
 
         public State(boolean encrypted) {
@@ -153,7 +154,6 @@ public abstract class DatabaseImporter {
             if (!_encrypted) {
                 throw new RuntimeException("Attempted to decrypt a plain text database");
             }
-
             throw new UnsupportedOperationException();
         }
 
@@ -161,13 +161,14 @@ public abstract class DatabaseImporter {
             if (_encrypted) {
                 throw new RuntimeException("Attempted to convert database before decrypting it");
             }
-
             throw new UnsupportedOperationException();
         }
     }
 
     public static class Result {
+
         private UUIDMap<VaultEntry> _entries = new UUIDMap<>();
+
         private List<DatabaseImporterEntryException> _errors = new ArrayList<>();
 
         public void addEntry(VaultEntry entry) {
@@ -188,8 +189,11 @@ public abstract class DatabaseImporter {
     }
 
     public static abstract class DecryptListener {
+
         protected abstract void onStateDecrypted(State state);
+
         protected abstract void onError(Exception e);
+
         protected abstract void onCanceled();
     }
 }

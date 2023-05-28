@@ -1,7 +1,9 @@
 package com.beemdevelopment.aegis.crypto;
 
 public class CryptResult {
+
     private byte[] _data;
+
     private CryptParameters _params;
 
     public CryptResult(byte[] data, CryptParameters params) {

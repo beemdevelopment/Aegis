@@ -4,9 +4,7 @@ import android.content.Context;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.helpers.IconViewHelper;
 import com.beemdevelopment.aegis.helpers.ThemeHelper;
@@ -15,15 +13,18 @@ import com.beemdevelopment.aegis.icons.IconType;
 import com.beemdevelopment.aegis.ui.glide.IconLoader;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
-
 import java.io.File;
 
 public class IconHolder extends RecyclerView.ViewHolder {
+
     private File _iconFile;
+
     private IconType _iconType;
+
     private boolean _isCustom;
 
     private final ImageView _imageView;
+
     private final TextView _textView;
 
     public IconHolder(final View view) {
@@ -47,13 +48,7 @@ public class IconHolder extends RecyclerView.ViewHolder {
         } else {
             _imageView.setImageTintList(null);
             IconViewHelper.setLayerType(_imageView, _iconType);
-            Glide.with(context)
-                    .asDrawable()
-                    .load(_iconFile)
-                    .set(IconLoader.ICON_TYPE, _iconType)
-                    .diskCacheStrategy(DiskCacheStrategy.NONE)
-                    .skipMemoryCache(false)
-                    .into(_imageView);
+            Glide.with(context).asDrawable().load(_iconFile).set(IconLoader.ICON_TYPE, _iconType).diskCacheStrategy(DiskCacheStrategy.NONE).skipMemoryCache(false).into(_imageView);
         }
     }
 }

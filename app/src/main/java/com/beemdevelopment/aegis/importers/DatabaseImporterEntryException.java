@@ -1,6 +1,7 @@
 package com.beemdevelopment.aegis.importers;
 
 public class DatabaseImporterEntryException extends Exception {
+
     private String _text;
 
     public DatabaseImporterEntryException(String message, String text) {

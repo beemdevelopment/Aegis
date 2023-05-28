@@ -2,12 +2,11 @@ package com.beemdevelopment.aegis.helpers;
 
 import android.os.Build;
 import android.widget.ImageView;
-
 import com.beemdevelopment.aegis.icons.IconType;
 
 public class IconViewHelper {
-    private IconViewHelper() {
 
+    private IconViewHelper() {
     }
 
     /**
@@ -20,7 +19,6 @@ public class IconViewHelper {
             view.setLayerType(ImageView.LAYER_TYPE_SOFTWARE, null);
             return;
         }
-
         view.setLayerType(ImageView.LAYER_TYPE_HARDWARE, null);
     }
 }

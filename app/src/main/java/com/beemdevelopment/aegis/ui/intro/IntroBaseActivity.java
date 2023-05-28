@@ -3,7 +3,6 @@ package com.beemdevelopment.aegis.ui.intro;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
-
 import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -12,23 +11,28 @@ import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
-
 import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.ui.AegisActivity;
-
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
 
 public abstract class IntroBaseActivity extends AegisActivity implements IntroActivityInterface {
+
     private Bundle _state;
+
     private ViewPager2 _pager;
+
     private ScreenSlidePagerAdapter _adapter;
+
     private List<Class<? extends SlideFragment>> _slides;
+
     private WeakReference<SlideFragment> _currentSlide;
 
     private ImageButton _btnPrevious;
+
     private ImageButton _btnNext;
+
     private SlideIndicator _slideIndicator;
 
     @Override
@@ -36,22 +40,18 @@ public abstract class IntroBaseActivity extends AegisActivity implements IntroAc
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_intro);
         getOnBackPressedDispatcher().addCallback(this, new BackPressHandler());
-
         _slides = new ArrayList<>();
         _state = new Bundle();
-
         _btnPrevious = findViewById(R.id.btnPrevious);
         _btnPrevious.setOnClickListener(v -> goToPreviousSlide());
         _btnNext = findViewById(R.id.btnNext);
         _btnNext.setOnClickListener(v -> goToNextSlide());
         _slideIndicator = findViewById(R.id.slideIndicator);
-
         _adapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
         _pager = findViewById(R.id.pager);
         _pager.setAdapter(_adapter);
         _pager.setUserInputEnabled(false);
         _pager.registerOnPageChangeCallback(new SlideSkipBlocker());
-
         View pagerChild = _pager.getChildAt(0);
         if (pagerChild instanceof RecyclerView) {
             pagerChild.setOverScrollMode(View.OVER_SCROLL_NEVER);
@@ -105,7 +105,6 @@ public abstract class IntroBaseActivity extends AegisActivity implements IntroAc
         if (i == -1) {
             throw new IllegalStateException(String.format("Cannot skip to slide of type %s because it is not in the slide list", type.getName()));
         }
-
         setPagerPosition(i);
     }
 
@@ -127,18 +126,15 @@ public abstract class IntroBaseActivity extends AegisActivity implements IntroAc
      * @param newSlide the slide that is now shown.
      */
     protected void onAfterSlideChanged(@Nullable Class<? extends SlideFragment> oldSlide, @NonNull Class<? extends SlideFragment> newSlide) {
-
     }
 
     private void setPagerPosition(int pos) {
         Class<? extends SlideFragment> oldSlide = _currentSlide.get().getClass();
         Class<? extends SlideFragment> newSlide = _slides.get(pos);
-
         if (!onBeforeSlideChanged(oldSlide, newSlide)) {
             _pager.setCurrentItem(pos);
         }
         onAfterSlideChanged(oldSlide, newSlide);
-
         updatePagerControls();
     }
 
@@ -149,10 +145,7 @@ public abstract class IntroBaseActivity extends AegisActivity implements IntroAc
 
     private void updatePagerControls() {
         int pos = _pager.getCurrentItem();
-        _btnPrevious.setVisibility(
-                pos != 0 && pos != _slides.size() - 1
-                        ? View.VISIBLE
-                        : View.INVISIBLE);
+        _btnPrevious.setVisibility(pos != 0 && pos != _slides.size() - 1 ? View.VISIBLE : View.INVISIBLE);
         if (pos == _slides.size() - 1) {
             _btnNext.setImageResource(R.drawable.circular_button_done);
         }
@@ -171,10 +164,8 @@ public abstract class IntroBaseActivity extends AegisActivity implements IntroAc
         if (_slides.contains(type)) {
             throw new IllegalStateException(String.format("Only one slide of type %s may be added to the intro", type.getName()));
         }
-
         _slides.add(type);
         _slideIndicator.setSlideCount(_slides.size());
-
         // send 'slide changed' events for the first slide
         if (_slides.size() == 1) {
             Class<? extends SlideFragment> slide = _slides.get(0);
@@ -184,6 +175,7 @@ public abstract class IntroBaseActivity extends AegisActivity implements IntroAc
     }
 
     private class BackPressHandler extends OnBackPressedCallback {
+
         public BackPressHandler() {
             super(true);
         }
@@ -195,6 +187,7 @@ public abstract class IntroBaseActivity extends AegisActivity implements IntroAc
     }
 
     private class ScreenSlidePagerAdapter extends FragmentStateAdapter {
+
         public ScreenSlidePagerAdapter(FragmentManager fm) {
             super(fm, getLifecycle());
         }
@@ -203,7 +196,6 @@ public abstract class IntroBaseActivity extends AegisActivity implements IntroAc
         @Override
         public Fragment createFragment(int position) {
             Class<? extends SlideFragment> type = _slides.get(position);
-
             try {
                 return type.newInstance();
             } catch (IllegalAccessException | InstantiationException e) {
@@ -218,6 +210,7 @@ public abstract class IntroBaseActivity extends AegisActivity implements IntroAc
     }
 
     private class SlideSkipBlocker extends ViewPager2.OnPageChangeCallback {
+
         @Override
         public void onPageScrollStateChanged(@ViewPager2.ScrollState int state) {
             // disable the buttons while scrolling to prevent disallowed skipping of slides

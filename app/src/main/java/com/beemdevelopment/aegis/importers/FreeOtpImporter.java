@@ -3,7 +3,6 @@ package com.beemdevelopment.aegis.importers;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.util.Xml;
-
 import com.beemdevelopment.aegis.otp.HotpInfo;
 import com.beemdevelopment.aegis.otp.OtpInfo;
 import com.beemdevelopment.aegis.otp.OtpInfoException;
@@ -12,13 +11,11 @@ import com.beemdevelopment.aegis.otp.TotpInfo;
 import com.beemdevelopment.aegis.util.PreferenceParser;
 import com.beemdevelopment.aegis.vault.VaultEntry;
 import com.topjohnwu.superuser.io.SuFile;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -26,7 +23,9 @@ import java.util.List;
 import java.util.Locale;
 
 public class FreeOtpImporter extends DatabaseImporter {
+
     private static final String _subPath = "shared_prefs/tokens.xml";
+
     private static final String _pkgName = "org.fedorahosted.freeotp";
 
     public FreeOtpImporter(Context context) {
@@ -45,7 +44,6 @@ public class FreeOtpImporter extends DatabaseImporter {
             parser.setFeature(XmlPullParser.FEATURE_PROCESS_NAMESPACES, false);
             parser.setInput(stream, null);
             parser.nextTag();
-
             List<JSONObject> entries = new ArrayList<>();
             for (PreferenceParser.XmlEntry entry : PreferenceParser.parse(parser)) {
                 if (!entry.Name.equals("tokenOrder")) {
@@ -59,6 +57,7 @@ public class FreeOtpImporter extends DatabaseImporter {
     }
 
     public static class State extends DatabaseImporter.State {
+
         private List<JSONObject> _entries;
 
         public State(List<JSONObject> entries) {
@@ -69,7 +68,6 @@ public class FreeOtpImporter extends DatabaseImporter {
         @Override
         public Result convert() {
             Result result = new Result();
-
             for (JSONObject obj : _entries) {
                 try {
                     VaultEntry entry = convertEntry(obj);
@@ -78,7 +76,6 @@ public class FreeOtpImporter extends DatabaseImporter {
                     result.addError(e);
                 }
             }
-
             return result;
         }
 
@@ -88,12 +85,10 @@ public class FreeOtpImporter extends DatabaseImporter {
                 String algo = obj.getString("algo");
                 int digits = obj.getInt("digits");
                 byte[] secret = toBytes(obj.getJSONArray("secret"));
-
                 String issuer = obj.getString("issuerExt");
                 String name = obj.optString("label");
-
                 OtpInfo info;
-                switch (type) {
+                switch(type) {
                     case "totp":
                         int period = obj.getInt("period");
                         if (issuer.equals("Steam")) {
@@ -108,7 +103,6 @@ public class FreeOtpImporter extends DatabaseImporter {
                     default:
                         throw new DatabaseImporterException("unsupported otp type: " + type);
                 }
-
                 return new VaultEntry(info, name, issuer);
             } catch (DatabaseImporterException | OtpInfoException | JSONException e) {
                 throw new DatabaseImporterEntryException(e, obj.toString());
@@ -119,7 +113,7 @@ public class FreeOtpImporter extends DatabaseImporter {
     private static byte[] toBytes(JSONArray array) throws JSONException {
         byte[] bytes = new byte[array.length()];
         for (int i = 0; i < array.length(); i++) {
-            bytes[i] = (byte)array.getInt(i);
+            bytes[i] = (byte) array.getInt(i);
         }
         return bytes;
     }

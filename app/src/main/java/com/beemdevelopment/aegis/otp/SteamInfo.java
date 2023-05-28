@@ -2,13 +2,14 @@ package com.beemdevelopment.aegis.otp;
 
 import com.beemdevelopment.aegis.crypto.otp.OTP;
 import com.beemdevelopment.aegis.crypto.otp.TOTP;
-
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.util.Locale;
 
 public class SteamInfo extends TotpInfo {
+
     public static final String ID = "steam";
+
     public static final int DIGITS = 5;
 
     public SteamInfo(byte[] secret) throws OtpInfoException {
@@ -22,7 +23,6 @@ public class SteamInfo extends TotpInfo {
     @Override
     public String getOtp() throws OtpInfoException {
         checkSecret();
-
         try {
             OTP otp = TOTP.generateOTP(getSecret(), getAlgorithm(true), getDigits(), getPeriod());
             return otp.toSteamString();

@@ -8,10 +8,8 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.amulyakhare.textdrawable.TextDrawable;
 import com.beemdevelopment.aegis.Preferences;
 import com.beemdevelopment.aegis.R;
@@ -31,43 +29,58 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 public class EntryHolder extends RecyclerView.ViewHolder {
+
     private static final float DEFAULT_ALPHA = 1.0f;
+
     private static final float DIMMED_ALPHA = 0.2f;
+
     private static final char HIDDEN_CHAR = '●';
 
     private View _favoriteIndicator;
+
     private TextView _profileName;
+
     private TextView _profileCode;
+
     private TextView _profileIssuer;
+
     private TextView _profileCopied;
+
     private ImageView _profileDrawable;
+
     private VaultEntry _entry;
+
     private ImageView _buttonRefresh;
+
     private RelativeLayout _description;
+
     private ImageView _dragHandle;
-  
+
     private final ImageView _selected;
+
     private final Handler _selectedHandler;
 
     private Preferences.CodeGrouping _codeGrouping = Preferences.CodeGrouping.NO_GROUPING;
 
     private boolean _hidden;
+
     private boolean _paused;
 
     private TotpProgressBar _progressBar;
+
     private View _view;
 
     private UiRefresher _refresher;
+
     private Handler _animationHandler;
 
     private Animation _scaleIn;
+
     private Animation _scaleOut;
 
     public EntryHolder(final View view) {
         super(view);
-
         _view = view.findViewById(R.id.rlCardEntry);
-
         _profileName = view.findViewById(R.id.profile_account_name);
         _profileCode = view.findViewById(R.id.profile_code);
         _profileIssuer = view.findViewById(R.id.profile_issuer);
@@ -78,19 +91,16 @@ public class EntryHolder extends RecyclerView.ViewHolder {
         _selected = view.findViewById(R.id.ivSelected);
         _dragHandle = view.findViewById(R.id.drag_handle);
         _favoriteIndicator = view.findViewById(R.id.favorite_indicator);
-
         _selectedHandler = new Handler();
         _animationHandler = new Handler();
-
         _progressBar = view.findViewById(R.id.progressBar);
         int primaryColorId = view.getContext().getResources().getColor(R.color.colorPrimary);
         _progressBar.getProgressDrawable().setColorFilter(primaryColorId, PorterDuff.Mode.SRC_IN);
         _view.setBackground(_view.getContext().getResources().getDrawable(R.color.card_background));
-
         _scaleIn = AnimationUtils.loadAnimation(view.getContext(), R.anim.item_scale_in);
         _scaleOut = AnimationUtils.loadAnimation(view.getContext(), R.anim.item_scale_out);
-
         _refresher = new UiRefresher(new UiRefresher.Listener() {
+
             @Override
             public void onRefresh() {
                 if (!_hidden && !_paused) {
@@ -110,20 +120,15 @@ public class EntryHolder extends RecyclerView.ViewHolder {
         _hidden = hidden;
         _paused = paused;
         _codeGrouping = groupSize;
-
         _selected.clearAnimation();
         _selected.setVisibility(View.GONE);
         _selectedHandler.removeCallbacksAndMessages(null);
         _animationHandler.removeCallbacksAndMessages(null);
-
         _favoriteIndicator.setVisibility(_entry.isFavorite() ? View.VISIBLE : View.INVISIBLE);
-
         // only show the progress bar if there is no uniform period and the entry type is TotpInfo
         setShowProgress(showProgress);
-
         // only show the button if this entry is of type HotpInfo
         _buttonRefresh.setVisibility(entry.getInfo() instanceof HotpInfo ? View.VISIBLE : View.GONE);
-
         String profileIssuer = entry.getIssuer();
         String profileName = showAccountName ? entry.getName() : "";
         if (!profileIssuer.isEmpty() && !profileName.isEmpty()) {
@@ -131,15 +136,12 @@ public class EntryHolder extends RecyclerView.ViewHolder {
         }
         _profileIssuer.setText(profileIssuer);
         _profileName.setText(profileName);
-
         if (_hidden) {
             hideCode();
         } else if (!_paused) {
             refreshCode();
         }
-
         showIcon(showIcon);
-
         itemView.setAlpha(dimmed ? DIMMED_ALPHA : DEFAULT_ALPHA);
     }
 
@@ -150,13 +152,7 @@ public class EntryHolder extends RecyclerView.ViewHolder {
     public void loadIcon(Fragment fragment) {
         if (_entry.hasIcon()) {
             IconViewHelper.setLayerType(_profileDrawable, _entry.getIconType());
-            Glide.with(fragment)
-                .asDrawable()
-                .load(_entry)
-                .set(IconLoader.ICON_TYPE, _entry.getIconType())
-                .diskCacheStrategy(DiskCacheStrategy.NONE)
-                .skipMemoryCache(false)
-                .into(_profileDrawable);
+            Glide.with(fragment).asDrawable().load(_entry).set(IconLoader.ICON_TYPE, _entry.getIconType()).diskCacheStrategy(DiskCacheStrategy.NONE).skipMemoryCache(false).into(_profileDrawable);
         } else {
             TextDrawable drawable = TextDrawableHelper.generate(_entry.getIssuer(), _entry.getName(), _profileDrawable);
             _profileDrawable.setImageDrawable(drawable);
@@ -183,7 +179,6 @@ public class EntryHolder extends RecyclerView.ViewHolder {
         if (_entry.getInfo() instanceof HotpInfo) {
             showProgress = false;
         }
-
         _progressBar.setVisibility(showProgress ? View.VISIBLE : View.GONE);
         if (showProgress) {
             _progressBar.setPeriod(((TotpInfo) _entry.getInfo()).getPeriod());
@@ -205,7 +200,6 @@ public class EntryHolder extends RecyclerView.ViewHolder {
 
     public void setFocusedAndAnimate(boolean focused) {
         setFocused(focused);
-
         if (focused) {
             _selected.startAnimation(_scaleIn);
         } else {
@@ -241,7 +235,6 @@ public class EntryHolder extends RecyclerView.ViewHolder {
 
     private void updateCode() {
         OtpInfo info = _entry.getInfo();
-
         // In previous versions of Aegis, it was possible to import entries with an empty
         // secret. Attempting to generate OTP's for such entries would result in a crash.
         // In case we encounter an old entry that has this issue, we display "ERROR" as
@@ -255,15 +248,13 @@ public class EntryHolder extends RecyclerView.ViewHolder {
         } catch (OtpInfoException e) {
             otp = _view.getResources().getString(R.string.error_all_caps);
         }
-
         _profileCode.setText(otp);
     }
 
     private String formatCode(String code) {
         int groupSize;
         StringBuilder sb = new StringBuilder();
-
-        switch (_codeGrouping) {
+        switch(_codeGrouping) {
             case NO_GROUPING:
                 groupSize = code.length();
                 break;
@@ -276,7 +267,6 @@ public class EntryHolder extends RecyclerView.ViewHolder {
                     throw new IllegalArgumentException("Code group size cannot be zero or negative");
                 }
         }
-
         for (int i = 0; i < code.length(); i++) {
             if (i != 0 && i % groupSize == 0) {
                 sb.append(" ");
@@ -284,7 +274,6 @@ public class EntryHolder extends RecyclerView.ViewHolder {
             sb.append(code.charAt(i));
         }
         code = sb.toString();
-
         return code;
     }
 
@@ -314,7 +303,6 @@ public class EntryHolder extends RecyclerView.ViewHolder {
 
     public void setPaused(boolean paused) {
         _paused = paused;
-
         if (!_hidden && !_paused) {
             updateCode();
         }
@@ -330,15 +318,12 @@ public class EntryHolder extends RecyclerView.ViewHolder {
 
     public void animateCopyText() {
         _animationHandler.removeCallbacksAndMessages(null);
-
         Animation slideDownFadeIn = AnimationUtils.loadAnimation(itemView.getContext(), R.anim.slide_down_fade_in);
         Animation slideDownFadeOut = AnimationUtils.loadAnimation(itemView.getContext(), R.anim.slide_down_fade_out);
         Animation fadeOut = AnimationUtils.loadAnimation(itemView.getContext(), R.anim.fade_out);
         Animation fadeIn = AnimationUtils.loadAnimation(itemView.getContext(), R.anim.fade_in);
-
         _profileCopied.startAnimation(slideDownFadeIn);
         _description.startAnimation(slideDownFadeOut);
-
         _animationHandler.postDelayed(() -> {
             _profileCopied.startAnimation(fadeOut);
             _description.startAnimation(fadeIn);

@@ -7,20 +7,19 @@ import com.beemdevelopment.aegis.encoding.Base64;
 import com.beemdevelopment.aegis.encoding.EncodingException;
 import com.beemdevelopment.aegis.vault.slots.SlotList;
 import com.beemdevelopment.aegis.vault.slots.SlotListException;
-
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.nio.charset.StandardCharsets;
 
 public class VaultFile {
+
     public static final byte VERSION = 1;
 
     private Object _content;
+
     private Header _header;
 
     public VaultFile() {
-
     }
 
     private VaultFile(Object content, Header header) {
@@ -50,7 +49,6 @@ public class VaultFile {
 
     public byte[] toBytes() {
         JSONObject obj = toJson();
-
         try {
             String string = obj.toString(4);
             return string.getBytes(StandardCharsets.UTF_8);
@@ -64,12 +62,10 @@ public class VaultFile {
             if (obj.getInt("version") > VERSION) {
                 throw new VaultFileException("unsupported version");
             }
-
             Header header = Header.fromJson(obj.getJSONObject("header"));
             if (!header.isEmpty()) {
                 return new VaultFile(obj.getString("db"), header);
             }
-
             return new VaultFile(obj.getJSONObject("db"), header);
         } catch (JSONException e) {
             throw new VaultFileException(e);
@@ -108,7 +104,6 @@ public class VaultFile {
         try {
             String string = obj.toString(4);
             byte[] vaultBytes = string.getBytes(StandardCharsets.UTF_8);
-
             CryptResult result = creds.encrypt(vaultBytes);
             _content = Base64.encode(result.getData());
             _header = new Header(creds.getSlots(), result.getParams());
@@ -125,15 +120,13 @@ public class VaultFile {
         if (!isEncrypted()) {
             return this;
         }
-
-        return new VaultFile(_content, new VaultFile.Header(
-                getHeader().getSlots().exportable(),
-                getHeader().getParams()
-        ));
+        return new VaultFile(_content, new VaultFile.Header(getHeader().getSlots().exportable(), getHeader().getParams()));
     }
 
     public static class Header {
+
         private SlotList _slots;
+
         private CryptParameters _params;
 
         public Header(SlotList slots, CryptParameters params) {
@@ -145,7 +138,6 @@ public class VaultFile {
             if (obj.isNull("slots") && obj.isNull("params")) {
                 return new Header(null, null);
             }
-
             try {
                 SlotList slots = SlotList.fromJson(obj.getJSONArray("slots"));
                 CryptParameters params = CryptParameters.fromJson(obj.getJSONObject("params"));

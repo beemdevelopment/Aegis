@@ -1,17 +1,13 @@
 package com.beemdevelopment.aegis.vault;
 
 import android.content.Context;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.util.AtomicFile;
-
 import com.beemdevelopment.aegis.otp.GoogleAuthInfo;
 import com.beemdevelopment.aegis.util.IOUtils;
 import com.google.zxing.WriterException;
-
 import org.json.JSONObject;
-
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -27,10 +23,15 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 public class VaultRepository {
+
     public static final String FILENAME = "aegis.json";
+
     public static final String FILENAME_PREFIX_EXPORT = "aegis-export";
+
     public static final String FILENAME_PREFIX_EXPORT_PLAIN = "aegis-export-plain";
+
     public static final String FILENAME_PREFIX_EXPORT_URI = "aegis-export-uri";
+
     public static final String FILENAME_PREFIX_EXPORT_HTML = "aegis-export-html";
 
     @NonNull
@@ -63,7 +64,6 @@ public class VaultRepository {
 
     public static VaultFile readVaultFile(Context context) throws VaultRepositoryException {
         AtomicFile file = getAtomicFile(context);
-
         try {
             byte[] fileBytes = file.readFully();
             return VaultFile.fromBytes(fileBytes);
@@ -74,7 +74,6 @@ public class VaultRepository {
 
     public static void writeToFile(Context context, InputStream inStream) throws IOException {
         AtomicFile file = VaultRepository.getAtomicFile(context);
-
         FileOutputStream outStream = null;
         try {
             outStream = file.startWrite();
@@ -92,7 +91,6 @@ public class VaultRepository {
         if (file.isEncrypted() && creds == null) {
             throw new IllegalArgumentException("The VaultFile is encrypted but the given VaultFileCredentials is null");
         }
-
         Vault vault;
         try {
             JSONObject obj;
@@ -101,26 +99,22 @@ public class VaultRepository {
             } else {
                 obj = file.getContent(creds);
             }
-
             vault = Vault.fromJson(obj);
         } catch (VaultException | VaultFileException e) {
             throw new VaultRepositoryException(e);
         }
-
         return new VaultRepository(context, vault, creds);
     }
 
     void save() throws VaultRepositoryException {
         try {
             JSONObject obj = _vault.toJson();
-
             VaultFile file = new VaultFile();
             if (isEncryptionEnabled()) {
                 file.setContent(obj, _creds);
             } else {
                 file.setContent(obj);
             }
-
             try {
                 byte[] bytes = file.toBytes();
                 writeToFile(_context, new ByteArrayInputStream(bytes));
@@ -166,16 +160,13 @@ public class VaultRepository {
         if (creds != null) {
             creds = creds.exportable();
         }
-
         try {
             VaultFile vaultFile = new VaultFile();
-
             if (creds != null) {
                 vaultFile.setContent(_vault.toJson(filter), creds);
             } else {
                 vaultFile.setContent(_vault.toJson(filter));
             }
-
             byte[] bytes = vaultFile.toBytes();
             stream.write(bytes);
         } catch (IOException | VaultFileException e) {
@@ -207,11 +198,8 @@ public class VaultRepository {
     public void exportHtml(OutputStream outStream, @Nullable Vault.EntryFilter filter) throws VaultRepositoryException {
         Collection<VaultEntry> entries = getEntries();
         if (filter != null) {
-            entries = entries.stream()
-                    .filter(filter::includeEntry)
-                    .collect(Collectors.toList());
+            entries = entries.stream().filter(filter::includeEntry).collect(Collectors.toList());
         }
-
         try (PrintStream ps = new PrintStream(outStream, false, StandardCharsets.UTF_8.name())) {
             VaultHtmlExporter.export(_context, ps, entries);
         } catch (WriterException | IOException e) {
@@ -278,7 +266,6 @@ public class VaultRepository {
         if (!isEncryptionEnabled()) {
             return false;
         }
-
         return getCredentials().getSlots().findBackupPasswordSlots().size() > 0;
     }
 }
