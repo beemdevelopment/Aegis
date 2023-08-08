@@ -73,7 +73,7 @@ apps probably perform a weaker form of biometric authentication.
 
 ### How can I back up my Aegis vault to the cloud automatically?
 
-Aegis can only automatically back up to the cloud of the app of your cloud
+Aegis can only automatically back up to the cloud if the app of your cloud
 provider is installed on your device and fully participates in the Android
 Storage Access Framework. Aegis doesn't have access to the internet and we don't
 have plans to change this, so adding support for specific cloud providers in the
