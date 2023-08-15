@@ -245,6 +245,7 @@
     <string name="choose_theme">Select your desired theme</string>
     <string name="choose_account_name_position">Select your desired account name position</string>
     <string name="choose_view_mode">Select your desired view mode</string>
+    <string name="choose_copy_behavior">Select your desired copy behavior</string>
     <string name="parsing_file_error">An error occurred while trying to parse the file</string>
     <string name="file_not_found">Error: File not found</string>
     <string name="reading_file_error">An error occurred while trying to read the file</string>
@@ -309,8 +310,7 @@
     <string name="pref_highlight_entry_summary">Make tokens easier to distinguish from each other by temporarily highlighting them when tapped</string>
     <string name="pref_minimize_on_copy_title">Minimize on copy</string>
     <string name="pref_minimize_on_copy_summary">Minimize the app after copying a token</string>
-    <string name="pref_copy_on_tap_title">Copy tokens when tapped</string>
-    <string name="pref_copy_on_tap_summary">Copy tokens to the clipboard by tapping them</string>
+    <string name="pref_copy_behavior_title">Copy tokens to the clipboard</string>
     <string name="pref_pause_entry_title">Freeze tokens when tapped</string>
     <string name="pref_pause_entry_summary">Pause automatic refresh of tokens by tapping them. Tokens will not update as long as they are focused. Requires \"Highlight tokens when tapped\" or \"Tap to reveal\".</string>
 
@@ -495,6 +495,10 @@
     <string name="pref_grouping_size_two">Groups of 2</string>
     <string name="pref_grouping_size_three">Groups of 3</string>
     <string name="pref_grouping_size_four">Groups of 4</string>
+
+    <string name="pref_copy_behavior_never">Never</string>
+    <string name="pref_copy_behavior_single_tap">Single tap</string>
+    <string name="pref_copy_behavior_double_tap">Double tap</string>
 
     <string name="pref_account_name_position_hidden">Hidden</string>
     <string name="pref_account_name_position_end">Next to the issuer</string>

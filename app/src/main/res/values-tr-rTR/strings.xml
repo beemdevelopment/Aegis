@@ -292,8 +292,6 @@
     <string name="pref_highlight_entry_summary">Kodların birbirlerinden ayırt edilmelerini kolaylaştırmak için geçici olarak belirginleştir</string>
     <string name="pref_minimize_on_copy_title">Kopyalarken simge durumuna küçült</string>
     <string name="pref_minimize_on_copy_summary">Bir anahtarı kopyaladıktan sonra uygulamayı simge durumuna küçültün</string>
-    <string name="pref_copy_on_tap_title">Dokunulduğunda güvenlik belirteçlerini kopyala</string>
-    <string name="pref_copy_on_tap_summary">Güvenlik belirteçlerine dokunarak panoya kopyala</string>
     <string name="pref_pause_entry_title">Dokunulduğunda kodların yenilenmesini önle</string>
     <string name="pref_pause_entry_summary">Kodlara dokunarak yenilenmelerini önleyin. Odakta oldukları sürece kodlar yenilenmeyecektir. \"Dokunulan kodları belirt\" veya \"Görmek için dokunun\" açık olmasını gerektirir.</string>
     <string name="pin_keyboard_description">PIN klavyesini etkinleştirmek için şifrenizi girin. Bu şifreniz yalnızca rakamlardan oluşuyorsa çalışır</string>

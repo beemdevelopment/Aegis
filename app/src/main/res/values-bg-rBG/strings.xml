@@ -197,8 +197,6 @@
     <string name="preference_manage_groups_summary">Управлявайте и изтривайте групите си тук</string>
     <string name="pref_highlight_entry_title">Акцентирайте токените при докосване</string>
     <string name="pref_highlight_entry_summary">Направете токените по-лесни за различаване един от друг, като ги маркирате временно, когато ги докоснете</string>
-    <string name="pref_copy_on_tap_title">Копирайте жетоните при докосване</string>
-    <string name="pref_copy_on_tap_summary">Копирайте токени в клипборда, като ги докоснете</string>
     <string name="pin_keyboard_description">Въведете паролата си, за да активирате PIN клавиатурата. Имайте предвид, че това работи само ако вашата парола се състои само от цифри</string>
     <string name="pin_keyboard_error">Грешка при активиране на PIN клавиатурата</string>
     <string name="pin_keyboard_error_description">Не е възможно да зададете PIN клавиатура. Паролата ви трябва да се състои само от цифри.</string>

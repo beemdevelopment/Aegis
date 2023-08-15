@@ -223,8 +223,6 @@
     <string name="clear">Törlés</string>
     <string name="pref_highlight_entry_title">Tokenek kiemelése koppintáskor</string>
     <string name="pref_highlight_entry_summary">A tokenek könnyebb megkülönböztethetősége érdekében ideiglenesen ki lesznek emeve koppintáskor</string>
-    <string name="pref_copy_on_tap_title">Tokenek másolása érintéskor</string>
-    <string name="pref_copy_on_tap_summary">Tokenek másolása a vágólapra érintéskor</string>
     <string name="pref_pause_entry_title">Tokenek megállítása érintéskor</string>
     <string name="pref_pause_entry_summary">Tokenek automata frissítéséhez érintse meg őket. Tokenek nem frissülnek addig míg fókuszban vannak. Szükséges a \"Tokenek kiemelése érintéskor\" vagy \"Érintéskor felfedés\" opció.</string>
     <string name="pin_keyboard_description">Írja be jelszavát a PIN billentyű bekapcsolásához. Ez csak akkor működik, ha jelszava csak számokból áll</string>

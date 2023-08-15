@@ -240,8 +240,6 @@
     <string name="clear">खाली करें</string>
     <string name="pref_highlight_entry_title">टैप करने पर टोकन हाइलाइट करें</string>
     <string name="pref_highlight_entry_summary">टैप करने पर टोकनों को एक दूसरे से अलग उजागर करने के लिए उन्हें अस्थायी रूप से हाईलाइट करें</string>
-    <string name="pref_copy_on_tap_title">टैप करने पर टोकनों को कॉपी करें</string>
-    <string name="pref_copy_on_tap_summary">टोकानों पर टैप करके क्लिपबोर्ड में कॉपी करें</string>
     <string name="pref_pause_entry_title">टैप किए जाने पर टोकन फ़्रीज़ करें</string>
     <string name="pref_pause_entry_summary">टोकन को टैप करके उनके स्वचालित रीफ़्रेश को रोकें। जब तक वे केंद्रित हैं तब तक टोकन अपडेट नहीं होंगे। \"टैप किए जाने पर टोकन हाइलाइट करें\" या \"प्रकट करने के लिए टैप करें\" की आवश्यकता है।</string>
     <string name="pin_keyboard_description">पिन कीबोर्ड को सक्षम करने के लिए अपना पासवर्ड दर्ज करें। ध्यान दें कि यह केवल तभी काम करता है जब आपके पासवर्ड में केवल संख्याएँ हों</string>

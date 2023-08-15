@@ -242,8 +242,6 @@
     <string name="clear">Bersihkan</string>
     <string name="pref_highlight_entry_title">Sorot token saat disentuh</string>
     <string name="pref_highlight_entry_summary">Jadikan token untuk lebih mudah dibedakan satu sama lain dengan menyorotnya saat disentuh</string>
-    <string name="pref_copy_on_tap_title">Salin token saat disentuh</string>
-    <string name="pref_copy_on_tap_summary">Salin token ke clipboard dengan mengetuknya</string>
     <string name="pref_pause_entry_title">Bekukan token ketika disentuh</string>
     <string name="pref_pause_entry_summary">Hentikan penyegaran otomatis token dengan menyentuh mereka. Token tidak akan diperbarui selama mereka difokuskan. Membutuhkan \"Sorot token saat disentuh\" atau \"Sentuh untuk melihat.\"</string>
     <string name="pin_keyboard_description">Masukkan kata sandi Anda untuk mengaktifkan keyboard PIN. Perhatikan bahwa ini hanya berfungsi jika kata sandi Anda hanya terdiri dari angka</string>

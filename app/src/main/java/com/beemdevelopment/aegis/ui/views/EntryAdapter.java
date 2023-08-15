@@ -10,12 +10,14 @@ import android.text.style.StyleSpan;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewConfiguration;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.beemdevelopment.aegis.CopyBehavior;
 import com.beemdevelopment.aegis.AccountNamePosition;
 import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.Preferences;
@@ -46,7 +48,7 @@ public class EntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     private List<VaultEntry> _selectedEntries;
     private Map<UUID, Integer> _usageCounts;
     private VaultEntry _focusedEntry;
-    private VaultEntry _copiedEntry;
+    private VaultEntry _clickedEntry;
     private Preferences.CodeGrouping _codeGroupSize;
     private AccountNamePosition _accountNamePosition;
     private boolean _showIcon;
@@ -54,7 +56,7 @@ public class EntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     private boolean _tempHighlightEntry;
     private boolean _tapToReveal;
     private int _tapToRevealTime;
-    private boolean _copyOnTap;
+    private CopyBehavior _copyBehavior;
     private List<String> _groupFilter;
     private SortCategory _sortCategory;
     private ViewMode _viewMode;
@@ -62,6 +64,7 @@ public class EntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     private boolean _isPeriodUniform = true;
     private int _uniformPeriod = -1;
     private Handler _dimHandler;
+    private Handler _doubleTapHandler;
     private boolean _pauseFocused;
 
     // keeps track of the EntryHolders that are currently bound
@@ -74,6 +77,7 @@ public class EntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         _groupFilter = new ArrayList<>();
         _holders = new ArrayList<>();
         _dimHandler = new Handler();
+        _doubleTapHandler = new Handler();
         _view = view;
     }
 
@@ -112,9 +116,7 @@ public class EntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         _tempHighlightEntry = highlightEntry;
     }
 
-    public void setIsCopyOnTapEnabled(boolean enabled) {
-        _copyOnTap = enabled;
-    }
+    public void setCopyBehavior(CopyBehavior copyBehavior) { _copyBehavior = copyBehavior; }
 
     public void setPauseFocused(boolean pauseFocused) {
         _pauseFocused = pauseFocused;
@@ -436,26 +438,36 @@ public class EntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                     boolean handled = false;
 
                     if (_selectedEntries.isEmpty()) {
-                        boolean copiedThisClick = false;
-
-                        if (_copyOnTap && !entryHolder.isHidden() && !(entry == _copiedEntry)) {
-                            _view.onEntryCopy(entry);
-                            entryHolder.animateCopyText();
-                            _copiedEntry = entry;
-                            copiedThisClick = true;
-                            handled = true;
-                        }
-
                         if (_highlightEntry || _tempHighlightEntry || _tapToReveal) {
-                            if (_focusedEntry == entry && !copiedThisClick) {
+                            if (_focusedEntry == entry) {
                                 resetFocus();
-                                _copiedEntry = null;
-                                handled = true;
+
+                                // Prevent copying when singletap is set and focus is reset
+                                handled = _copyBehavior == CopyBehavior.SINGLETAP;
                             } else {
                                 focusEntry(entry, _tapToRevealTime);
                             }
-                        } else {
-                            _copiedEntry = null;
+                        }
+
+                        switch (_copyBehavior) {
+                            case SINGLETAP:
+                                if (!handled) {
+                                    _view.onEntryCopy(entry);
+                                    entryHolder.animateCopyText();
+                                    _clickedEntry = null;
+                                }
+                                break;
+                            case DOUBLETAP:
+                                _doubleTapHandler.postDelayed(() -> _clickedEntry = null, ViewConfiguration.getDoubleTapTimeout());
+
+                                if(entry == _clickedEntry) {
+                                    _view.onEntryCopy(entry);
+                                    entryHolder.animateCopyText();
+                                    _clickedEntry = null;
+                                } else {
+                                    _clickedEntry = entry;
+                                }
+                                break;
                         }
 
                         incrementUsageCount(entry);

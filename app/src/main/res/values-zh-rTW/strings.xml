@@ -250,8 +250,6 @@
     <string name="clear">清除</string>
     <string name="pref_highlight_entry_title">強調選取的憑證</string>
     <string name="pref_highlight_entry_summary">輕觸後暫時凸顯該驗證碼以與它者區分</string>
-    <string name="pref_copy_on_tap_title">輕觸以複製驗證碼</string>
-    <string name="pref_copy_on_tap_summary">輕觸以將驗證碼複製至剪貼簿</string>
     <string name="pref_pause_entry_title">被觸碰時凍結驗證碼</string>
     <string name="pref_pause_entry_summary">輕觸以暫停驗證碼的自動更新機制：只要驗證碼還在焦點上，它們就不會被自動更新。需要啟用「輕觸以顯示」或「強調選取的憑證」功能。</string>
     <string name="pin_keyboard_description">請輸入您的密碼以啟用 PIN 鍵盤。請注意，只有當您的密碼僅由數字構成時才能使用</string>

@@ -308,8 +308,6 @@
     <string name="pref_highlight_entry_summary">Wyróżnij tokeny od siebie poprzez tymczasowe podświetlenie po ich kliknięciu</string>
     <string name="pref_minimize_on_copy_title">Zminimalizuj przy skopiowaniu</string>
     <string name="pref_minimize_on_copy_summary">Zminimalizuj aplikację po skopiowaniu tokenu</string>
-    <string name="pref_copy_on_tap_title">Kopiuj tokeny podczas kliknięcia</string>
-    <string name="pref_copy_on_tap_summary">Kopiuj tokeny do schowka podczas kliknięcia</string>
     <string name="pref_pause_entry_title">Zamroź tokeny po naciśnięciu</string>
     <string name="pref_pause_entry_summary">Wstrzymaj automatyczne odświeżanie tokenów poprzez dotknięcie ich. Tokeny nie będą aktualizowane tak długo, jak długo są podświetlone. Wymaga \"Podświetl tokeny podczas kliknięcia\" lub \"Kliknij, aby odkryć\".</string>
     <string name="pin_keyboard_description">Wpisz hasło, aby włączyć klawiaturę numeryczną. Pamiętaj, że ta klawiatura działa tylko dla hasła numerycznego</string>

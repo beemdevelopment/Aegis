@@ -215,8 +215,6 @@
     <string name="preference_manage_groups_summary">اینجا می‌توانید گروه ها را مدیریت و یا حذف کنید</string>
     <string name="pref_highlight_entry_title">توکن ها پس از لمس هایلایت شوند</string>
     <string name="pref_highlight_entry_summary">برای تمیز دادن توکن مورد نظر از بقیه می‌توانید آنها را به صورت موقت با لمس کردن هایلایت کنید</string>
-    <string name="pref_copy_on_tap_title">کپی توکن هنگام لمس آنها</string>
-    <string name="pref_copy_on_tap_summary">کپی کردن توکن ها در کلیپ‌بورد با لمس آنها</string>
     <string name="pin_keyboard_description">کلمه عبور خود را برای فعال کردن صفحه کلید شماره‌ای وارد کنید. این ویژگی فقط برای کلمه عبور های شامل فقط عدد کاربرد دارد</string>
     <string name="pin_keyboard_error">خطا در فعال کردن صفحه کلید شماره‌ای</string>
     <string name="pin_keyboard_error_description">امکان فعال صفحه کلید شماره‌ای نیست. کلمه عبور شما باید فقط شامل عدد باشد.</string>

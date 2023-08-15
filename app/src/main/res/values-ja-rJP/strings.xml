@@ -284,8 +284,6 @@
     <string name="pref_highlight_entry_summary">タップ時に一時的に強調表示することで、トークンが互いに区別しやすくなります。</string>
     <string name="pref_minimize_on_copy_title">コピー時に最小化</string>
     <string name="pref_minimize_on_copy_summary">トークンをコピーした後にアプリを最小化する</string>
-    <string name="pref_copy_on_tap_title">タップ時にトークンをコピー</string>
-    <string name="pref_copy_on_tap_summary">トークンをタップしてクリップボードにコピーする</string>
     <string name="pref_pause_entry_title">タップ時にトークンの更新を停止</string>
     <string name="pref_pause_entry_summary">トークンをタップすると、トークンの自動更新を一時停止します。フォーカスされている限り、トークンは更新されません。 「タップ時にトークンを強調表示する」または「タップして表示」の設定が必要です。</string>
     <string name="pin_keyboard_description">PINキーボードを有効にするにはパスワードを入力してください。これはパスワードが数字のみで構成されている場合にのみ機能します。</string>

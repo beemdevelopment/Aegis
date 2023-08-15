@@ -289,8 +289,6 @@
     <string name="pref_highlight_entry_summary">Tee todennuskoodeista helpompi erottaa toisistaan korostamalla niitä tilapäisesti napauttamalla</string>
     <string name="pref_minimize_on_copy_title">Pienennä kopioidessa</string>
     <string name="pref_minimize_on_copy_summary">Pienennä sovellus todennuskoodin kopioinnin jälkeen</string>
-    <string name="pref_copy_on_tap_title">Kopioi todennuskoodeja napauttamalla</string>
-    <string name="pref_copy_on_tap_summary">Kopioi todennuskoodit leikepöydälle napauttamalla niitä</string>
     <string name="pref_pause_entry_title">Jäädytä todennuskoodit napauttamalla</string>
     <string name="pref_pause_entry_summary">Keskeytä todennuskoodien automaattinen päivitys napauttamalla niitä. Todennuskoodit eivät päivity automaattisesti, niin kauan kun ne ovat valittuina. Vaatii \"Korosta todennuskoodit napauttamalla\" tai \"Paljasta napauttamalla\" -asetusten käyttöönottoa.</string>
     <string name="pin_keyboard_description">Ota PIN-näppäimistö käyttöön antamalla salasanasi. Tämä toimii vain, jos salasanasi koostuu pelkästään numeroista</string>

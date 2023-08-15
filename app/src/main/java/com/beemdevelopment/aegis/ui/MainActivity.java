@@ -35,6 +35,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.view.ActionMode;
 import androidx.appcompat.widget.SearchView;
 
+import com.beemdevelopment.aegis.CopyBehavior;
 import com.beemdevelopment.aegis.AccountNamePosition;
 import com.beemdevelopment.aegis.Preferences;
 import com.beemdevelopment.aegis.R;
@@ -140,7 +141,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         _entryListView.setTapToRevealTime(_prefs.getTapToRevealTime());
         _entryListView.setSortCategory(_prefs.getCurrentSortCategory(), false);
         _entryListView.setViewMode(_prefs.getCurrentViewMode());
-        _entryListView.setIsCopyOnTapEnabled(_prefs.isCopyOnTapEnabled());
+        _entryListView.setCopyBehavior(_prefs.getCopyBehavior());
         _entryListView.setPrefGroupFilter(_prefs.getGroupFilter());
 
          FloatingActionButton fab = findViewById(R.id.fab);
@@ -278,7 +279,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
                 boolean tapToReveal = _prefs.isTapToRevealEnabled();
                 int tapToRevealTime = _prefs.getTapToRevealTime();
                 ViewMode viewMode = _prefs.getCurrentViewMode();
-                boolean copyOnTap = _prefs.isCopyOnTapEnabled();
+                CopyBehavior copyBehavior = _prefs.getCopyBehavior();
                 _entryListView.setAccountNamePosition(accountNamePosition);
                 _entryListView.setShowIcon(showIcons);
                 _entryListView.setCodeGroupSize(codeGroupSize);
@@ -287,7 +288,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
                 _entryListView.setTapToReveal(tapToReveal);
                 _entryListView.setTapToRevealTime(tapToRevealTime);
                 _entryListView.setViewMode(viewMode);
-                _entryListView.setIsCopyOnTapEnabled(copyOnTap);
+                _entryListView.setCopyBehavior(copyBehavior);
                 _entryListView.refresh(true);
             }
         }

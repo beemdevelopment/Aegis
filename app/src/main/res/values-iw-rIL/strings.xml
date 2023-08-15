@@ -285,8 +285,6 @@
     <string name="pref_highlight_entry_summary">הפוך אסימונים לקלים יותר להבחנה זה מזה על-ידי הדגשתם באופן זמני בעת הקשה עליהם</string>
     <string name="pref_minimize_on_copy_title">מזעור בהעתקה</string>
     <string name="pref_minimize_on_copy_summary">מזעור האפליקציה לאחר העתקת אסימון</string>
-    <string name="pref_copy_on_tap_title">העתקת אסימונים בעת הקשה</string>
-    <string name="pref_copy_on_tap_summary">העתקת אסימונים ללוח על-ידי הקשה עליהם</string>
     <string name="pref_pause_entry_title">הקפאת טוקנים בעת הקשה</string>
     <string name="pref_pause_entry_summary">השהה רענון אוטומטי של אסימונים על-ידי הקשה עליהם. אסימונים לא יתעדכנו כל עוד הם ממוקדים. דורש \"סמן אסימונים בעת הקשה\" או \"הקש כדי לחשוף\".</string>
     <string name="pin_keyboard_description">הזן את הסיסמה שלך כדי להפעיל את מקלדת ה- PIN. שים לב שזה עובד רק אם הסיסמה שלך מורכבת ממספרים בלבד</string>

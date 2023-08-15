@@ -287,8 +287,6 @@
     <string name="pref_highlight_entry_summary">Fes les fitxes més fàcils de distingir de la resta il·luminant-les temporalment quan les toquis</string>
     <string name="pref_minimize_on_copy_title">Minimitzar al copiar</string>
     <string name="pref_minimize_on_copy_summary">Minimitzar l\'aplicació després de copiar un token</string>
-    <string name="pref_copy_on_tap_title">Copia la fitxa al tocar</string>
-    <string name="pref_copy_on_tap_summary">Copia les fitxes al porta-retalls al tocar-les</string>
     <string name="pref_pause_entry_title">Congela la fitxa al tocar</string>
     <string name="pref_pause_entry_summary">Pausa l\'actualització automàtica de la fitxa al tocar-la. No s\'actualitzará mentre estigui marcada. Cal tenir \"Il·lumina les fitxes al tocar\" o \"Toca per a mostrar\".</string>
     <string name="pin_keyboard_description">Introdueix la teva contrasenya per a activar el teclat PIN. Això només funcionarà si la contrasenya només té dígits</string>

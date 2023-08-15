@@ -292,8 +292,6 @@
     <string name="pref_highlight_entry_summary">Rendi i token più facili da distinguere, evidenziandoli temporaneamente quando vengono toccati</string>
     <string name="pref_minimize_on_copy_title">Minimizza alla copia</string>
     <string name="pref_minimize_on_copy_summary">Minimizza l\'app dopo aver copiato un token</string>
-    <string name="pref_copy_on_tap_title">Copia i token con un tocco</string>
-    <string name="pref_copy_on_tap_summary">Copia i token negli appunti toccandoli</string>
     <string name="pref_pause_entry_title">Blocca i token con un tocco</string>
     <string name="pref_pause_entry_summary">Metti in pausa l\'aggiornamento automatico dei token toccandoli. I token non si aggiorneranno finché sono evidenziati. Richiede \"Evidenzia i token al tocco\" o \"Tocca per mostrare\".</string>
     <string name="pin_keyboard_description">Inserisci la password per abilitare la tastiera PIN. Funziona solo se la password è composta di soli numeri</string>

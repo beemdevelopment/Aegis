@@ -292,8 +292,6 @@
     <string name="pref_highlight_entry_summary">Token beim Antippen hervorheben, um sie leichter voneinander unterscheiden zu können</string>
     <string name="pref_minimize_on_copy_title">Beim Kopieren minimieren</string>
     <string name="pref_minimize_on_copy_summary">App nach dem Kopieren eines Tokens minimieren</string>
-    <string name="pref_copy_on_tap_title">Token beim Tippen kopieren</string>
-    <string name="pref_copy_on_tap_summary">Token beim Antippen in die Zwischenablage kopieren</string>
     <string name="pref_pause_entry_title">Token beim Tippen einfrieren</string>
     <string name="pref_pause_entry_summary">Automatische Aktualisierung von Token durch Antippen stoppen. Die Token werden nicht aktualisiert, solange sie hervorgehoben sind. Erfordert »Token beim Tippen hervorheben« oder »Zum Aufdecken tippen«.</string>
     <string name="pin_keyboard_description">Gib dein Passwort ein, um die PIN-Tastatur zu aktivieren. Beachte, dass dies nur funktioniert, wenn dein Passwort nur aus Zahlen besteht</string>

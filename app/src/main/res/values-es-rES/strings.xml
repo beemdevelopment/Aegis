@@ -292,8 +292,6 @@
     <string name="pref_highlight_entry_summary">Hace que los tokens sean más fáciles de distinguir entre ellos resaltándolos temporalmente tras ser pulsados</string>
     <string name="pref_minimize_on_copy_title">Minimizar al copiar</string>
     <string name="pref_minimize_on_copy_summary">Minimiza la app después de copiar un token</string>
-    <string name="pref_copy_on_tap_title">Copiar tokens al pulsarlos</string>
-    <string name="pref_copy_on_tap_summary">Copia los tokens al portapapeles al pulsarlos</string>
     <string name="pref_pause_entry_title">Congelar tokens al tocarlos</string>
     <string name="pref_pause_entry_summary">Pausa la recarga automática de los tokens tocándolos. Las tokens no se actualizarán mientras estén enfocadas. Requiere \"Resaltar tokens al pulsarlos\" o \"Pulsar para mostrar\".</string>
     <string name="pin_keyboard_description">Introduzca su contraseña para activar el teclado PIN. Tenga en cuenta que esto solo funciona si su contraseña contiene únicamente números</string>
