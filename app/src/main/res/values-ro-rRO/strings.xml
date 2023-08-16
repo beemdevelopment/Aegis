@@ -39,8 +39,6 @@
     <string name="pref_show_icons_summary">Afişare pictograme lângă fiecare intrare</string>
     <string name="pref_code_group_size_title">Grupare cifre cod</string>
     <string name="pref_code_group_size_summary">Selectează numărul de cifre pentru a grupa codurile</string>
-    <string name="pref_account_name_title">Arată numele contului</string>
-    <string name="pref_account_name_summary">Activează pentru a afișa numele contului lângă emitent</string>
     <string name="pref_import_file_title">Importă din fișier</string>
     <string name="pref_import_file_summary">Importă token-uri dintr-un fișier</string>
     <string name="pref_android_backups_title">Backup-uri Android în cloud</string>

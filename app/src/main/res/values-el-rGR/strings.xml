@@ -39,8 +39,6 @@
     <string name="pref_show_icons_summary">Εμφάνιση εικονιδίων δίπλα σε κάθε καταχώρηση</string>
     <string name="pref_code_group_size_title">Ομαδοποίηση ψηφίων κωδικού</string>
     <string name="pref_code_group_size_summary">Επιλέξτε τον αριθμό των ψηφίων για να ομαδοποιήσετε τους κωδικούς κατά</string>
-    <string name="pref_account_name_title">Εμφάνιση του ονόματος λογαριασμού</string>
-    <string name="pref_account_name_summary">Ενεργοποίηση προβολής ονόματος λογαριασμού δίπλα στον εκδότη</string>
     <string name="pref_import_file_title">Εισαγωγή από αρχείο</string>
     <string name="pref_import_file_summary">Εισαγωγή αναγνωριστικών από αρχείο</string>
     <string name="pref_android_backups_title">Αντίγραφα ασφαλείας cloud Android</string>

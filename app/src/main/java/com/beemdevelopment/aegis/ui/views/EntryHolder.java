@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.amulyakhare.textdrawable.TextDrawable;
+import com.beemdevelopment.aegis.AccountNamePosition;
 import com.beemdevelopment.aegis.Preferences;
 import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.helpers.IconViewHelper;
@@ -50,6 +51,7 @@ public class EntryHolder extends RecyclerView.ViewHolder {
     private final Handler _selectedHandler;
 
     private Preferences.CodeGrouping _codeGrouping = Preferences.CodeGrouping.NO_GROUPING;
+    private AccountNamePosition _accountNamePosition = AccountNamePosition.HIDDEN;
 
     private boolean _hidden;
     private boolean _paused;
@@ -105,11 +107,12 @@ public class EntryHolder extends RecyclerView.ViewHolder {
         });
     }
 
-    public void setData(VaultEntry entry, Preferences.CodeGrouping groupSize, boolean showAccountName, boolean showIcon, boolean showProgress, boolean hidden, boolean paused, boolean dimmed) {
+    public void setData(VaultEntry entry, Preferences.CodeGrouping groupSize, AccountNamePosition accountNamePosition, boolean showIcon, boolean showProgress, boolean hidden, boolean paused, boolean dimmed) {
         _entry = entry;
         _hidden = hidden;
         _paused = paused;
         _codeGrouping = groupSize;
+        _accountNamePosition = accountNamePosition;
 
         _selected.clearAnimation();
         _selected.setVisibility(View.GONE);
@@ -125,12 +128,13 @@ public class EntryHolder extends RecyclerView.ViewHolder {
         _buttonRefresh.setVisibility(entry.getInfo() instanceof HotpInfo ? View.VISIBLE : View.GONE);
 
         String profileIssuer = entry.getIssuer();
-        String profileName = showAccountName ? entry.getName() : "";
-        if (!profileIssuer.isEmpty() && !profileName.isEmpty()) {
+        String profileName = entry.getName();
+        if (!profileIssuer.isEmpty() && !profileName.isEmpty() && accountNamePosition == AccountNamePosition.END) {
             profileName = String.format(" (%s)", profileName);
         }
         _profileIssuer.setText(profileIssuer);
         _profileName.setText(profileName);
+        setAccountNameLayout(accountNamePosition);
 
         if (_hidden) {
             hideCode();
@@ -141,6 +145,41 @@ public class EntryHolder extends RecyclerView.ViewHolder {
         showIcon(showIcon);
 
         itemView.setAlpha(dimmed ? DIMMED_ALPHA : DEFAULT_ALPHA);
+    }
+
+    private void setAccountNameLayout(AccountNamePosition accountNamePosition) {
+        RelativeLayout.LayoutParams profileNameLayoutParams;
+        RelativeLayout.LayoutParams copiedLayoutParams;
+        switch (accountNamePosition) {
+            case HIDDEN:
+                _profileName.setVisibility(View.GONE);
+                break;
+
+            case BELOW:
+                profileNameLayoutParams = (RelativeLayout.LayoutParams) _profileName.getLayoutParams();
+                profileNameLayoutParams.removeRule(RelativeLayout.END_OF);
+                profileNameLayoutParams.addRule(RelativeLayout.BELOW, R.id.profile_issuer);
+                _profileName.setLayoutParams(profileNameLayoutParams);
+                _profileName.setVisibility(View.VISIBLE);
+
+                copiedLayoutParams = (RelativeLayout.LayoutParams) _profileCopied.getLayoutParams();
+                copiedLayoutParams.addRule(RelativeLayout.ABOVE, R.id.profile_account_name);
+                _profileCopied.setLayoutParams(copiedLayoutParams);
+                break;
+
+            case END:
+            default:
+                profileNameLayoutParams = (RelativeLayout.LayoutParams) _profileName.getLayoutParams();
+                profileNameLayoutParams.addRule(RelativeLayout.END_OF, R.id.profile_issuer);
+                profileNameLayoutParams.removeRule(RelativeLayout.BELOW);
+                _profileName.setLayoutParams(profileNameLayoutParams);
+                _profileName.setVisibility(View.VISIBLE);
+
+                copiedLayoutParams = (RelativeLayout.LayoutParams) _profileCopied.getLayoutParams();
+                copiedLayoutParams.addRule(RelativeLayout.ABOVE, R.id.description);
+                _profileCopied.setLayoutParams(copiedLayoutParams);
+                break;
+        }
     }
 
     public VaultEntry getEntry() {
@@ -337,11 +376,14 @@ public class EntryHolder extends RecyclerView.ViewHolder {
         Animation fadeIn = AnimationUtils.loadAnimation(itemView.getContext(), R.anim.fade_in);
 
         _profileCopied.startAnimation(slideDownFadeIn);
-        _description.startAnimation(slideDownFadeOut);
+
+        View fadeOutView = (_accountNamePosition == AccountNamePosition.BELOW) ? _profileName : _description;
+
+        fadeOutView.startAnimation(slideDownFadeOut);
 
         _animationHandler.postDelayed(() -> {
             _profileCopied.startAnimation(fadeOut);
-            _description.startAnimation(fadeIn);
+            fadeOutView.startAnimation(fadeIn);
         }, 3000);
     }
 

@@ -39,8 +39,6 @@
     <string name="pref_show_icons_summary">Показывать значки рядом с каждой записью</string>
     <string name="pref_code_group_size_title">Перегруппировка цифр кода</string>
     <string name="pref_code_group_size_summary">Выберите количество цифр для группировки кодов</string>
-    <string name="pref_account_name_title">Показывать название учётной записи</string>
-    <string name="pref_account_name_summary">Включите, чтобы показывать название учётной записи рядом с эмитентом</string>
     <string name="pref_import_file_title">Импорт из файла</string>
     <string name="pref_import_file_summary">Импорт ключей из файла</string>
     <string name="pref_android_backups_title">Облачное резервное копирование Android</string>

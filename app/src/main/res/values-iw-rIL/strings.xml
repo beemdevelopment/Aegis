@@ -40,8 +40,6 @@
     <string name="pref_show_icons_summary">הצגת סמלים לצד כל ערך</string>
     <string name="pref_code_group_size_title">קיבוץ ספרות קוד</string>
     <string name="pref_code_group_size_summary">בחר את מספר הספרות לקיבוץ קודים לפיהן</string>
-    <string name="pref_account_name_title">הצג את שם החשבון</string>
-    <string name="pref_account_name_summary">הפעל את זה כדי להציג את שם החשבון לצד המנפיק</string>
     <string name="pref_import_file_title">ייבוא מקובץ</string>
     <string name="pref_import_file_summary">ייבוא טוקנים מקובץ</string>
     <string name="pref_android_backups_title">גיבויי ענן אנדרואיד</string>

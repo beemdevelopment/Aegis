@@ -114,10 +114,6 @@ public class Preferences {
         setPasswordReminderTimestamp(new Date().getTime());
     }
 
-    public boolean isAccountNameVisible() {
-        return _prefs.getBoolean("pref_account_name", true);
-    }
-
     public boolean isIconVisible() {
         return _prefs.getBoolean("pref_show_icons", true);
     }
@@ -187,6 +183,14 @@ public class Preferences {
 
     public void setCurrentViewMode(ViewMode viewMode) {
         _prefs.edit().putInt("pref_current_view_mode", viewMode.ordinal()).apply();
+    }
+
+    public AccountNamePosition getAccountNamePosition() {
+        return AccountNamePosition.fromInteger(_prefs.getInt("pref_account_name_position", AccountNamePosition.END.ordinal()));
+    }
+
+    public void setAccountNamePosition(AccountNamePosition accountNamePosition) {
+        _prefs.edit().putInt("pref_account_name_position", accountNamePosition.ordinal()).apply();
     }
 
     public Integer getUsageCount(UUID uuid) {

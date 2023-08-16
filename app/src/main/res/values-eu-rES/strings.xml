@@ -39,8 +39,6 @@
     <string name="pref_show_icons_summary">Ikonoak erakutsi sarrera bakoitzaren ondoan</string>
     <string name="pref_code_group_size_title">Kode-digituen taldekatzea</string>
     <string name="pref_code_group_size_summary">Aukeratu kodeak zenbat zenbakiko taldetan taldekatuko diren</string>
-    <string name="pref_account_name_title">Erakutsi kontuaren izena</string>
-    <string name="pref_account_name_summary">Aktibatu hau kontu-izena igorlearen ondoan bistaratzeko</string>
     <string name="pref_import_file_title">Inportatu fitxategi batetik</string>
     <string name="pref_import_file_summary">Inportatu marka-ikurrak fitxategi batetik</string>
     <string name="pref_android_backups_title">Androiden lainoko segurtasun kopiak</string>

@@ -39,8 +39,6 @@
     <string name="pref_show_icons_summary">Her girdinin yanında simgeleri göster</string>
     <string name="pref_code_group_size_title">Kod hanelerinin gruplanması</string>
     <string name="pref_code_group_size_summary">Kodların kaç basamakla gruplanacağını seçin</string>
-    <string name="pref_account_name_title">Hesap adını göster</string>
-    <string name="pref_account_name_summary">Hesap adını sağlayıcının yanında göstermek için bunu etkinleştirin</string>
     <string name="pref_import_file_title">Dosyadan içeriye aktar</string>
     <string name="pref_import_file_summary">Veritabanını dosyadan içeriye aktar</string>
     <string name="pref_android_backups_title">Android bulut yedekleme</string>

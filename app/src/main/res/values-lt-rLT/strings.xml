@@ -32,7 +32,6 @@
     <string name="pref_show_icons_title">Rodyti piktogramas</string>
     <string name="pref_show_icons_summary">Rodyti piktogramas prie kiekvieno įrašo</string>
     <string name="pref_code_group_size_title">Kodo skaitmenų grupavimas</string>
-    <string name="pref_account_name_title">Rodyti paskyros pavadinimą</string>
     <string name="pref_import_file_title">Importuoti iš failo</string>
     <string name="pref_import_file_summary">Importuoti prieigos raktus iš failo</string>
     <string name="pref_android_backups_title">„Android“ debesijos atsarginės kopijos</string>

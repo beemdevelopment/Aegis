@@ -149,4 +149,10 @@
         <item>GROUPING_THREES</item>
         <item>GROUPING_FOURS</item>
     </string-array>
+
+    <string-array name="account_name_position_titles">
+        <item>@string/pref_account_name_position_hidden</item>
+        <item>@string/pref_account_name_position_end</item>
+        <item>@string/pref_account_name_position_below</item>
+    </string-array>
 </resources>

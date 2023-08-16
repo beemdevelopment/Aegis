@@ -39,8 +39,6 @@
     <string name="pref_show_icons_summary">Mostrar iconos al lado de cada entrada</string>
     <string name="pref_code_group_size_title">Agrupación de los dígitos del código</string>
     <string name="pref_code_group_size_summary">Seleccione el número de dígitos por los que agrupar los códigos</string>
-    <string name="pref_account_name_title">Mostrar el nombre de la cuenta</string>
-    <string name="pref_account_name_summary">Active esto para mostrar el nombre de la cuenta junto al emisor</string>
     <string name="pref_import_file_title">Importar desde un archivo</string>
     <string name="pref_import_file_summary">Importar tokens desde un archivo</string>
     <string name="pref_android_backups_title">Copias de seguridad en la nube de Android</string>

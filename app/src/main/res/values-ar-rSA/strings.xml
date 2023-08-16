@@ -39,8 +39,6 @@
     <string name="pref_show_icons_summary">عرض الأيقونات بجانب كل مدخل</string>
     <string name="pref_code_group_size_title">تجميع أرقام الكود</string>
     <string name="pref_code_group_size_summary">اختر عدد الخانات المستخدمة في تجميع الرموز</string>
-    <string name="pref_account_name_title">اظهر اسم الحساب</string>
-    <string name="pref_account_name_summary">قم بالتفعيل لإظهار اسم الحساب بجانب المصدِّر</string>
     <string name="pref_import_file_title">استيراد من ملف</string>
     <string name="pref_import_file_summary">استيراد الرموز من ملف</string>
     <string name="pref_android_backups_title">النسخ الاحتياطية السحابية للأندرويد</string>

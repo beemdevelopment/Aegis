@@ -39,8 +39,6 @@
     <string name="pref_show_icons_summary">Mostra icones al costat de cada entrada</string>
     <string name="pref_code_group_size_title">Agrupació dels dígits</string>
     <string name="pref_code_group_size_summary">Triar nombre de digits per agrupar els codis</string>
-    <string name="pref_account_name_title">Mostra el nom del compte</string>
-    <string name="pref_account_name_summary">Activa això per a mostrar en nom del compte al costat de l\'emissor</string>
     <string name="pref_import_file_title">Importa des d\'un fitxer</string>
     <string name="pref_import_file_summary">Importar fitxes des d\'un fitxer</string>
     <string name="pref_android_backups_title">Copies al núvol d\'Android</string>

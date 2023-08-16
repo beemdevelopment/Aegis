@@ -7,6 +7,7 @@ import android.os.Bundle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.preference.Preference;
 
+import com.beemdevelopment.aegis.AccountNamePosition;
 import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.Theme;
 import com.beemdevelopment.aegis.ViewMode;
@@ -102,9 +103,24 @@ public class AppearancePreferencesFragment extends PreferencesFragment {
             return true;
         });
 
-        Preference issuerPreference = requirePreference("pref_account_name");
-        issuerPreference.setOnPreferenceChangeListener((preference, newValue) -> {
-            getResult().putExtra("needsRefresh", true);
+        int currentAccountNamePosition = _prefs.getAccountNamePosition().ordinal();
+        Preference currentAccountNamePositionPreference = requirePreference("pref_account_name_position");
+        currentAccountNamePositionPreference.setSummary(String.format("%s: %s", getString(R.string.selected), getResources().getStringArray(R.array.account_name_position_titles)[currentAccountNamePosition]));
+        currentAccountNamePositionPreference.setOnPreferenceClickListener(preference -> {
+            int currentAccountNamePosition1 = _prefs.getAccountNamePosition().ordinal();
+
+            Dialogs.showSecureDialog(new AlertDialog.Builder(requireContext())
+                    .setTitle(getString(R.string.choose_account_name_position))
+                    .setSingleChoiceItems(R.array.account_name_position_titles, currentAccountNamePosition1, (dialog, which) -> {
+                        int i = ((AlertDialog) dialog).getListView().getCheckedItemPosition();
+                        _prefs.setAccountNamePosition(AccountNamePosition.fromInteger(i));
+                        currentAccountNamePositionPreference.setSummary(String.format("%s: %s", getString(R.string.selected), getResources().getStringArray(R.array.account_name_position_titles)[i]));
+                        getResult().putExtra("needsRefresh", true);
+                        dialog.dismiss();
+                    })
+                    .setNegativeButton(android.R.string.cancel, null)
+                    .create());
+
             return true;
         });
 

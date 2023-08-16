@@ -38,8 +38,6 @@
     <string name="pref_show_icons_title">顯示圖示</string>
     <string name="pref_show_icons_summary">在每個條目旁顯示圖示</string>
     <string name="pref_code_group_size_title">分組顯示驗證碼</string>
-    <string name="pref_account_name_title">顯示帳戶名稱</string>
-    <string name="pref_account_name_summary">在服務商名稱旁邊顯示帳戶名稱</string>
     <string name="pref_import_file_title">從檔案匯入</string>
     <string name="pref_import_file_summary">從檔案匯入憑證</string>
     <string name="pref_android_backups_title">Android 雲端備份</string>

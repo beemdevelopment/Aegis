@@ -36,8 +36,6 @@
     <string name="pref_view_mode_title">Mode tampilan</string>
     <string name="pref_lang_title">Bahasa</string>
     <string name="pref_code_group_size_title">Pengelompokan digit kode</string>
-    <string name="pref_account_name_title">Tampilkan nama akun</string>
-    <string name="pref_account_name_summary">Aktifkan ini untuk menampilkan nama akun di samping penerbit</string>
     <string name="pref_import_file_title">Impor berkas</string>
     <string name="pref_import_file_summary">Impor token dari berkas</string>
     <string name="pref_android_backups_title">Pencadangan awan Android</string>

@@ -42,8 +42,7 @@
     <string name="pref_show_icons_summary">Display icons next to each entry</string>
     <string name="pref_code_group_size_title">Code digit grouping</string>
     <string name="pref_code_group_size_summary">Select number of digits to group codes by</string>
-    <string name="pref_account_name_title">Show the account name</string>
-    <string name="pref_account_name_summary">Enable this to show the account name next to the issuer</string>
+    <string name="pref_account_name_position_title">Show the account name</string>
     <string name="pref_import_file_title">Import from file</string>
     <string name="pref_import_file_summary">Import tokens from a file</string>
     <string name="pref_android_backups_title">Android cloud backups</string>
@@ -242,6 +241,7 @@
     <string name="choose_totpauth_importer">Is this TOTP Authenticator backup encrypted with a password?</string>
     <string name="choose_application">Select the application you\'d like to import from</string>
     <string name="choose_theme">Select your desired theme</string>
+    <string name="choose_account_name_position">Select your desired account name position</string>
     <string name="choose_view_mode">Select your desired view mode</string>
     <string name="parsing_file_error">An error occurred while trying to parse the file</string>
     <string name="file_not_found">Error: File not found</string>
@@ -493,6 +493,10 @@
     <string name="pref_grouping_size_two">Groups of 2</string>
     <string name="pref_grouping_size_three">Groups of 3</string>
     <string name="pref_grouping_size_four">Groups of 4</string>
+
+    <string name="pref_account_name_position_hidden">Hidden</string>
+    <string name="pref_account_name_position_end">Next to the issuer</string>
+    <string name="pref_account_name_position_below">Below the issuer</string>
 
     <plurals name="time_elapsed_seconds">
         <item quantity="one">%d second ago</item>

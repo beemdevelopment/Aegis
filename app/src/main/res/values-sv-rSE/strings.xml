@@ -39,8 +39,6 @@
     <string name="pref_show_icons_summary">Visa ikoner bredvid varje post</string>
     <string name="pref_code_group_size_title">Gruppering av kodsiffror</string>
     <string name="pref_code_group_size_summary">Välj antal siffror att gruppera koder efter</string>
-    <string name="pref_account_name_title">Visa kontonamnet</string>
-    <string name="pref_account_name_summary">Aktivera denna för att visa kontonamnet bredvid utfärdaren</string>
     <string name="pref_import_file_title">Importera från fil</string>
     <string name="pref_import_file_summary">Importera polletter från en fil</string>
     <string name="pref_android_backups_title">Android-molnsäkerhetskopior</string>

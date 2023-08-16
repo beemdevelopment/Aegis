@@ -39,8 +39,6 @@
     <string name="pref_show_icons_summary">Показувати піктограми біля кожного запису</string>
     <string name="pref_code_group_size_title">Групування цифр</string>
     <string name="pref_code_group_size_summary">Виберіть як групувати цифри у токенах</string>
-    <string name="pref_account_name_title">Показати обліковий запис</string>
-    <string name="pref_account_name_summary">Увімкніть, щоб показувати обліковий запис поруч з емітентом</string>
     <string name="pref_import_file_title">Імпорт з файлу</string>
     <string name="pref_import_file_summary">Імпортувати токени з файлу</string>
     <string name="pref_android_backups_title">Резервні копії в хмарі Android</string>

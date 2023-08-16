@@ -38,8 +38,6 @@
     <string name="pref_show_icons_title">Zobraziť ikony</string>
     <string name="pref_show_icons_summary">Zobrazte ikony vedľa každého záznamu</string>
     <string name="pref_code_group_size_title">Zoskupenie číselných znakov</string>
-    <string name="pref_account_name_title">Zobraziť názov účtu</string>
-    <string name="pref_account_name_summary">Povolením tejto možnosti zobrazíte názov účtu vedľa vydavateľa</string>
     <string name="pref_import_file_title">Importovať zo súboru</string>
     <string name="pref_import_file_summary">Importovať tokeny zo súboru</string>
     <string name="pref_android_backups_title">Zálohy na Android cloude</string>

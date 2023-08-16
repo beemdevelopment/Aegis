@@ -39,8 +39,6 @@
     <string name="pref_show_icons_summary">Rādīt ikonu pie katra ieraksta</string>
     <string name="pref_code_group_size_title">Koda ciparu kopošana</string>
     <string name="pref_code_group_size_summary">Atlasīt koda ciparu kopu lielumu</string>
-    <string name="pref_account_name_title">Rādīt konta nosaukumu</string>
-    <string name="pref_account_name_summary">Iespējot, lai rādītu konta nosaukumu blakus izsniedzējam</string>
     <string name="pref_import_file_title">Ievietot no datnes</string>
     <string name="pref_import_file_summary">Ievietot kodus no datnes</string>
     <string name="pref_android_backups_title">Android mākoņa rezerves kopijas</string>
