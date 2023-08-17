@@ -39,8 +39,6 @@
     <string name="pref_show_icons_summary">Mostrar ícones ao lado de cada entrada</string>
     <string name="pref_code_group_size_title">Agrupamento de dígitos</string>
     <string name="pref_code_group_size_summary">Selecione o número de dígitos para agrupar códigos</string>
-    <string name="pref_account_name_title">Exibir o nome da conta</string>
-    <string name="pref_account_name_summary">Habilite essa opção para exibir o nome da conta ao lado do nome do serviço</string>
     <string name="pref_import_file_title">Importar de arquivo</string>
     <string name="pref_import_file_summary">Importa tokens de um arquivo</string>
     <string name="pref_android_backups_title">Backups na nuvem do Android</string>

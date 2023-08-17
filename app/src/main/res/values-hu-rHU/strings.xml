@@ -36,8 +36,6 @@
     <string name="pref_view_mode_title">Nézetmód</string>
     <string name="pref_lang_title">Nyelv</string>
     <string name="pref_code_group_size_title">Kód számjegyeinek csoportosítása</string>
-    <string name="pref_account_name_title">A fióknév megjelenítése</string>
-    <string name="pref_account_name_summary">Kapcsolja be a fiók nevének megjelenítéséhez a kibocsátó mellett</string>
     <string name="pref_import_file_title">Importálás fájlból</string>
     <string name="pref_import_file_summary">Tokenek importálása fájlból</string>
     <string name="pref_android_backups_title">Android felhő mentések</string>

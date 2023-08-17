@@ -23,6 +23,7 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.beemdevelopment.aegis.AccountNamePosition;
 import com.beemdevelopment.aegis.Preferences;
 import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.SortCategory;
@@ -324,8 +325,8 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
         _adapter.setCodeGroupSize(codeGrouping);
     }
 
-    public void setShowAccountName(boolean showAccountName) {
-        _adapter.setShowAccountName(showAccountName);
+    public void setAccountNamePosition(AccountNamePosition accountNamePosition) {
+        _adapter.setAccountNamePosition(accountNamePosition);
     }
 
     public void setShowIcon(boolean showIcon) {

@@ -35,8 +35,6 @@
     <string name="pref_view_mode_title">देखने का प्रकार</string>
     <string name="pref_lang_title">भाषा</string>
     <string name="pref_code_group_size_title">कोड संख्या समूह</string>
-    <string name="pref_account_name_title">खाते का नाम दिखाएँ</string>
-    <string name="pref_account_name_summary">जारीकर्ता के बगल में खाता नाम दिखाने के लिए इसे सक्षम करें</string>
     <string name="pref_import_file_title">फ़ाइल से आयात करें</string>
     <string name="pref_import_file_summary">टोकन को फ़ाइल से आयात करें</string>
     <string name="pref_android_backups_title">एंड्रॉयड क्लाउड बैकअप</string>

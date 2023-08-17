@@ -39,8 +39,6 @@
     <string name="pref_show_icons_summary">Afficher les icônes à côté de chaque entrée</string>
     <string name="pref_code_group_size_title">Regroupement des chiffres du code</string>
     <string name="pref_code_group_size_summary">Sélectionner le nombre de chiffres par lequel regrouper les codes</string>
-    <string name="pref_account_name_title">Afficher le nom du compte</string>
-    <string name="pref_account_name_summary">Activer pour afficher le nom de compte près de l\'émetteur</string>
     <string name="pref_import_file_title">Importer depuis un fichier</string>
     <string name="pref_import_file_summary">Importer des jetons depuis un fichier</string>
     <string name="pref_android_backups_title">Sauvegardes cloud d\'Android</string>

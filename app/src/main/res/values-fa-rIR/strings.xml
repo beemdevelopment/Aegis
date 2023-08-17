@@ -34,8 +34,6 @@
     <string name="pref_view_mode_title">حالت نمایش</string>
     <string name="pref_lang_title">زبان</string>
     <string name="pref_code_group_size_title">حالت نمایش کد</string>
-    <string name="pref_account_name_title">نمایش نام حساب کاربری</string>
-    <string name="pref_account_name_summary">برای نمایش نام حساب کاربری کنار صادر کننده فعال کنید</string>
     <string name="pref_import_file_title">وارد کردن از فایل</string>
     <string name="pref_import_file_summary">وارد کردن توکن ها از فایل</string>
     <string name="pref_android_backups_title">پشتیبان‌گیری ابری Android</string>

@@ -16,6 +16,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.beemdevelopment.aegis.AccountNamePosition;
 import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.Preferences;
 import com.beemdevelopment.aegis.SortCategory;
@@ -47,7 +48,7 @@ public class EntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     private VaultEntry _focusedEntry;
     private VaultEntry _copiedEntry;
     private Preferences.CodeGrouping _codeGroupSize;
-    private boolean _showAccountName;
+    private AccountNamePosition _accountNamePosition;
     private boolean _showIcon;
     private boolean _highlightEntry;
     private boolean _tempHighlightEntry;
@@ -87,8 +88,8 @@ public class EntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         _codeGroupSize = codeGroupSize;
     }
 
-    public void setShowAccountName(boolean showAccountName) {
-        _showAccountName = showAccountName;
+    public void setAccountNamePosition(AccountNamePosition accountNamePosition) {
+        _accountNamePosition = accountNamePosition;
     }
 
     public void setShowIcon(boolean showIcon) {
@@ -421,7 +422,7 @@ public class EntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             boolean paused = _pauseFocused && entry == _focusedEntry;
             boolean dimmed = (_highlightEntry || _tempHighlightEntry) && _focusedEntry != null && _focusedEntry != entry;
             boolean showProgress = entry.getInfo() instanceof TotpInfo && ((TotpInfo) entry.getInfo()).getPeriod() != getMostFrequentPeriod();
-            entryHolder.setData(entry, _codeGroupSize, _showAccountName, _showIcon, showProgress, hidden, paused, dimmed);
+            entryHolder.setData(entry, _codeGroupSize, _accountNamePosition, _showIcon, showProgress, hidden, paused, dimmed);
             entryHolder.setFocused(_selectedEntries.contains(entry));
             entryHolder.setShowDragHandle(isEntryDraggable(entry));
 

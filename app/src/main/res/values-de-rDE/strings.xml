@@ -39,8 +39,6 @@
     <string name="pref_show_icons_summary">Symbole neben jedem Eintrag anzeigen</string>
     <string name="pref_code_group_size_title">Zifferngruppierung</string>
     <string name="pref_code_group_size_summary">Wähle die Anzahl der Ziffern, nach denen die Codes gruppiert werden sollen</string>
-    <string name="pref_account_name_title">Kontonamen anzeigen</string>
-    <string name="pref_account_name_summary">Aktiviere dies, um den Kontonamen neben dem Herausgeber anzuzeigen</string>
     <string name="pref_import_file_title">Aus Datei importieren</string>
     <string name="pref_import_file_summary">Token aus einer Datei importieren</string>
     <string name="pref_android_backups_title">Cloud-Back-ups durch Android</string>

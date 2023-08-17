@@ -46,11 +46,9 @@
             android:defaultValue="GROUPING_THREES"
             app:iconSpaceReserved="false"/>
 
-        <androidx.preference.SwitchPreferenceCompat
-            android:defaultValue="true"
-            android:key="pref_account_name"
-            android:title="@string/pref_account_name_title"
-            android:summary="@string/pref_account_name_summary"
+        <Preference
+            android:key="pref_account_name_position"
+            android:title="@string/pref_account_name_position_title"
             app:iconSpaceReserved="false"/>
 
         <Preference

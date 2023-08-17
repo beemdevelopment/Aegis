@@ -39,8 +39,6 @@
     <string name="pref_show_icons_summary">Vis ikoner ved siden af hver post</string>
     <string name="pref_code_group_size_title">Kodeciffergruppering</string>
     <string name="pref_code_group_size_summary">Vælg antal cifre til kodegruppering</string>
-    <string name="pref_account_name_title">Vis kontonavn</string>
-    <string name="pref_account_name_summary">Aktiver dette for at vise kontonavnet ved siden af udstederen</string>
     <string name="pref_import_file_title">Import fra fil</string>
     <string name="pref_import_file_summary">Importér tokens fra en fil</string>
     <string name="pref_android_backups_title">Android cloud-sikkerhedskopier</string>

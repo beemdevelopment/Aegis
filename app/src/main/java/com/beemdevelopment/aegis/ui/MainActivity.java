@@ -35,6 +35,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.view.ActionMode;
 import androidx.appcompat.widget.SearchView;
 
+import com.beemdevelopment.aegis.AccountNamePosition;
 import com.beemdevelopment.aegis.Preferences;
 import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.SortCategory;
@@ -131,7 +132,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         _entryListView = (EntryListView) getSupportFragmentManager().findFragmentById(R.id.key_profiles);
         _entryListView.setListener(this);
         _entryListView.setCodeGroupSize(_prefs.getCodeGroupSize());
-        _entryListView.setShowAccountName(_prefs.isAccountNameVisible());
+        _entryListView.setAccountNamePosition(_prefs.getAccountNamePosition());
         _entryListView.setShowIcon(_prefs.isIconVisible());
         _entryListView.setHighlightEntry(_prefs.isEntryHighlightEnabled());
         _entryListView.setPauseFocused(_prefs.isPauseFocusedEnabled());
@@ -269,7 +270,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
             if (data.getBooleanExtra("needsRecreate", false)) {
                 recreate();
             } else if (data.getBooleanExtra("needsRefresh", false)) {
-                boolean showAccountName = _prefs.isAccountNameVisible();
+                AccountNamePosition accountNamePosition = _prefs.getAccountNamePosition();
                 boolean showIcons = _prefs.isIconVisible();
                 Preferences.CodeGrouping codeGroupSize = _prefs.getCodeGroupSize();
                 boolean highlightEntry = _prefs.isEntryHighlightEnabled();
@@ -278,7 +279,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
                 int tapToRevealTime = _prefs.getTapToRevealTime();
                 ViewMode viewMode = _prefs.getCurrentViewMode();
                 boolean copyOnTap = _prefs.isCopyOnTapEnabled();
-                _entryListView.setShowAccountName(showAccountName);
+                _entryListView.setAccountNamePosition(accountNamePosition);
                 _entryListView.setShowIcon(showIcons);
                 _entryListView.setCodeGroupSize(codeGroupSize);
                 _entryListView.setHighlightEntry(highlightEntry);

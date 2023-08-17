@@ -39,8 +39,6 @@
     <string name="pref_show_icons_summary">Pictogrammen weergeven naast elk item</string>
     <string name="pref_code_group_size_title">Codecijfergroepering</string>
     <string name="pref_code_group_size_summary">Selecteer aantal cijfers om de codes op te groeperen</string>
-    <string name="pref_account_name_title">Toon de accountnaam</string>
-    <string name="pref_account_name_summary">Schakel in om de accountnaam naast de uitgever te tonen</string>
     <string name="pref_import_file_title">Importeren vanuit een bestand</string>
     <string name="pref_import_file_summary">Importeer tokens vanuit een bestand</string>
     <string name="pref_android_backups_title">Android cloud-back-ups</string>

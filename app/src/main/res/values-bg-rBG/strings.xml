@@ -27,8 +27,6 @@
     <string name="pref_view_mode_title">Режим на преглед</string>
     <string name="pref_lang_title">Език</string>
     <string name="pref_code_group_size_title">Групиране на кодови цифри</string>
-    <string name="pref_account_name_title">Показване на профилното име</string>
-    <string name="pref_account_name_summary">Активирайте това, за да се показва името на акаунта до издателя</string>
     <string name="pref_import_file_title">Импорт от файл</string>
     <string name="pref_import_file_summary">Импортиране на токени от файл</string>
     <string name="pref_backups_title">Автоматично архивирайте трезора</string>

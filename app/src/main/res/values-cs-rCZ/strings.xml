@@ -39,8 +39,6 @@
     <string name="pref_show_icons_summary">Zobrazit ikony vedle každého záznamu</string>
     <string name="pref_code_group_size_title">Seskupení číslic kódu</string>
     <string name="pref_code_group_size_summary">Vyberte počet číslic, po kterých se mají seskupovat kódy</string>
-    <string name="pref_account_name_title">Zobrazit název účtu</string>
-    <string name="pref_account_name_summary">Zobrazit název účtu vedle poskytovatele</string>
     <string name="pref_import_file_title">Importovat ze souboru</string>
     <string name="pref_import_file_summary">Importovat tokeny ze souboru</string>
     <string name="pref_android_backups_title">Cloudové zálohování systému Android</string>

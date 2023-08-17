@@ -39,8 +39,6 @@
     <string name="pref_show_icons_summary">在每个条目旁边显示图标</string>
     <string name="pref_code_group_size_title">分组显示验证码</string>
     <string name="pref_code_group_size_summary">选择按多少位数字进行代码分组</string>
-    <string name="pref_account_name_title">显示帐户名称</string>
-    <string name="pref_account_name_summary">在服务商名称旁边显示账户名称</string>
     <string name="pref_import_file_title">从文件导入</string>
     <string name="pref_import_file_summary">从文件导入令牌</string>
     <string name="pref_android_backups_title">Android 云备份</string>

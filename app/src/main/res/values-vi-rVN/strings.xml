@@ -36,8 +36,6 @@
     <string name="pref_view_mode_title">Chế độ xem</string>
     <string name="pref_lang_title">Ngôn ngữ</string>
     <string name="pref_code_group_size_title">Gộp nhóm chữ số mã</string>
-    <string name="pref_account_name_title">Hiện tên tài khoản</string>
-    <string name="pref_account_name_summary">Bật tuỳ chọn này để hiện tên tài khoản bên cạnh người cấp</string>
     <string name="pref_import_file_title">Nhập từ tệp</string>
     <string name="pref_import_file_summary">Nhập các token từ một tệp</string>
     <string name="pref_android_backups_title">Bản sao lưu đám mây của Android</string>

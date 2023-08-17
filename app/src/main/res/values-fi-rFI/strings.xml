@@ -39,8 +39,6 @@
     <string name="pref_show_icons_summary">Näytä kuvakkeet jokaisen kohteen vieressä</string>
     <string name="pref_code_group_size_title">Numeroiden ryhmittely</string>
     <string name="pref_code_group_size_summary">Valitse numeroiden määrä ryhmiteltäessä koodeja</string>
-    <string name="pref_account_name_title">Näytä tilin nimi</string>
-    <string name="pref_account_name_summary">Näytä tilin nimi todennuskoodin myöntäjän rinnalla</string>
     <string name="pref_import_file_title">Tuo tiedostosta</string>
     <string name="pref_import_file_summary">Tuo todennuskoodit tiedostosta</string>
     <string name="pref_android_backups_title">Androidin pilvivarmuuskopiot</string>

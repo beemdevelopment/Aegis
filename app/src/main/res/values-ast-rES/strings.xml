@@ -39,8 +39,6 @@
     <string name="pref_show_icons_summary">Amuesa los iconos al llau de cada entrada</string>
     <string name="pref_code_group_size_title">Agrupamientu de díxitos</string>
     <string name="pref_code_group_size_summary">Seleiciona\'l númberu de díxitos pol que s\'agrupen los códigos</string>
-    <string name="pref_account_name_title">Amosar el nome de les cuentes</string>
-    <string name="pref_account_name_summary">Activa esta opción p\'amosar el nome de les cuentes xunto al del emisor</string>
     <string name="pref_import_file_title">Importar d\'un ficheru</string>
     <string name="pref_import_file_summary">Importa los pases d\'un ficheru</string>
     <string name="pref_android_backups_title">Copies de seguranza na ñube</string>

@@ -39,8 +39,6 @@
     <string name="pref_show_icons_summary">Mostra le icone accanto a ogni voce</string>
     <string name="pref_code_group_size_title">Divisione cifre codice</string>
     <string name="pref_code_group_size_summary">Seleziona il numero di cifre per cui raggruppare i codici</string>
-    <string name="pref_account_name_title">Mostra nome account</string>
-    <string name="pref_account_name_summary">Abilita questa opzione per mostrare il nome dell\'account vicino all\'emittente</string>
     <string name="pref_import_file_title">Importa da file</string>
     <string name="pref_import_file_summary">Importa token da file</string>
     <string name="pref_android_backups_title">Backup cloud Android</string>

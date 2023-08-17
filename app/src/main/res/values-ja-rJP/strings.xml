@@ -39,8 +39,6 @@
     <string name="pref_show_icons_summary">各エントリーの横にアイコンを表示する</string>
     <string name="pref_code_group_size_title">コードの桁数のグループ化</string>
     <string name="pref_code_group_size_summary">グループ化する桁数を選択してください</string>
-    <string name="pref_account_name_title">アカウント名を表示</string>
-    <string name="pref_account_name_summary">有効にすると発行者の隣にアカウント名を表示します</string>
     <string name="pref_import_file_title">ファイルからインポート</string>
     <string name="pref_import_file_summary">ファイルからトークンをインポート</string>
     <string name="pref_android_backups_title">Androidクラウドバックアップ</string>

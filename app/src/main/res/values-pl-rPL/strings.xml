@@ -39,8 +39,6 @@
     <string name="pref_show_icons_summary">Wyświetlaj ikony obok każdego wpisu</string>
     <string name="pref_code_group_size_title">Grupowanie cyfr kodu</string>
     <string name="pref_code_group_size_summary">Wybierz liczbę cyfr do grupowania według</string>
-    <string name="pref_account_name_title">Pokaż nazwę konta</string>
-    <string name="pref_account_name_summary">Włącz tę opcję, aby pokazywać nazwę konta obok wydawcy</string>
     <string name="pref_import_file_title">Importuj z pliku</string>
     <string name="pref_import_file_summary">Importuj tokeny z aplikacji</string>
     <string name="pref_android_backups_title">Kopia zapasowa Android w chmurze</string>

@@ -10,8 +10,6 @@
     <string name="pref_select_theme_title">ಥೀಮ್</string>
     <string name="pref_view_mode_title">ವೀಕ್ಷಣೆಯ ರೀತಿ</string>
     <string name="pref_lang_title">ಭಾಷೆ</string>
-    <string name="pref_account_name_title">ಖಾತೆಯ ಹೆಸರನ್ನು ತೋರಿಸು</string>
-    <string name="pref_account_name_summary">ಖಾತೆಯ ಹೆಸರನ್ನು ನೀಡುವವರ ಪಕ್ಕ ತೋರಿಸುವುದಕ್ಕೆ ಇದನ್ನು ಸಕ್ರಿಯಗೊಳಿಸು</string>
     <string name="pref_import_file_title">ಫೈಲಿಂದ ಆಮದಿಸು</string>
     <string name="pref_import_app_title">ಅಪ್ಲಿಕೇಶನಿಂದ ಆಮದಿಸು</string>
     <string name="pref_export_title">ರಫ್ತು ಮಾಡು</string>
