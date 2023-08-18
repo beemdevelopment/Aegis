@@ -138,7 +138,9 @@
     <string name="set_password_confirm">Please confirm the password</string>
     <string name="invalid_password">The password is incorrect</string>
     <string name="invalidated_biometrics">A change in your device\'s security settings has been detected. Please go to \"Aegis -> Settings -> Security -> Biometric unlock\" to disable and re-enable biometric unlock.</string>
-    <string name="password_reminder">Please enter your password. We occasionally ask you to do this so that don\'t forget it.</string>
+    <string name="password_reminder">Please enter your password. We occasionally ask you to do this so that you don\'t forget it.</string>
+    <string name="password_reminder_dialog_title">Biometric unlock by default</string>
+    <string name="password_reminder_dialog_message">We occasionally prompt you to enter your password instead to ensure you haven\'t forgotten it and won\'t get locked out of your vault. After entering your password once, Aegis will default back to biometric unlock until it\'s time for another password reminder.</string>
     <string name="password_reminder_freq_never">Never</string>
     <string name="password_reminder_freq_weekly">Weekly</string>
     <string name="password_reminder_freq_biweekly">Biweekly</string>
