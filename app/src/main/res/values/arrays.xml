@@ -155,4 +155,10 @@
         <item>@string/pref_account_name_position_end</item>
         <item>@string/pref_account_name_position_below</item>
     </string-array>
+
+    <string-array name="copy_behavior_titles">
+        <item>@string/pref_copy_behavior_never</item>
+        <item>@string/pref_copy_behavior_single_tap</item>
+        <item>@string/pref_copy_behavior_double_tap</item>
+    </string-array>
 </resources>

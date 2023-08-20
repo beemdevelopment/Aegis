@@ -301,8 +301,6 @@
     <string name="pref_highlight_entry_summary">Підсвічувати токени при натисканні для того, щоб їх було легше відрізнити один від одного</string>
     <string name="pref_minimize_on_copy_title">Згортати при копіюванні</string>
     <string name="pref_minimize_on_copy_summary">Згортати додаток після копіювання токена</string>
-    <string name="pref_copy_on_tap_title">Копіювати токени при натисканні</string>
-    <string name="pref_copy_on_tap_summary">Копіювати токени в буфер обміну при натиску на них</string>
     <string name="pref_pause_entry_title">Заморожувати токени при натисканні</string>
     <string name="pref_pause_entry_summary">Призупиніть автоматичне оновлення токенів, натиснувши на них. Токени не будуть оновлюватися, поки вони підсвічені. Потребує увімкненої опції \"Підсвічувати токени при натисканні\", або \"Безпека -> Показувати після дотику\".</string>
     <string name="pin_keyboard_description">Введіть свій пароль, щоб увімкнути PIN-клавіатуру. Зауважте, що це можливо лише, якщо ваш пароль складається виключно з цифр</string>

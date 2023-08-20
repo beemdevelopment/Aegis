@@ -292,8 +292,6 @@
     <string name="pref_highlight_entry_summary">Rendre les jetons plus faciles à distinguer les uns des autres en les surlignant temporairement lorsqu\'ils sont appuyés</string>
     <string name="pref_minimize_on_copy_title">Minimiser lors de la copie</string>
     <string name="pref_minimize_on_copy_summary">Minimiser l\'application après avoir copié un jeton</string>
-    <string name="pref_copy_on_tap_title">Copier les jetons quand ils sont appuyés</string>
-    <string name="pref_copy_on_tap_summary">Copier les jetons dans le presse-papier en appuyant dessus</string>
     <string name="pref_pause_entry_title">Geler les jetons lorsqu\'ils sont appuyés</string>
     <string name="pref_pause_entry_summary">Mettre en pause l\'actualisation automatique des jetons en appuyant dessus. Les jetons ne seront plus mis à jour tant qu\'ils seront ciblés. Nécessite « Surligner les jetons lorsqu\'ils sont appuyés » ou « Appuyer pour révéler ».</string>
     <string name="pin_keyboard_description">Saisissez votre mot de passe pour activer le clavier PIN. Notez que cela ne fonctionne que si votre mot de passe est composé uniquement de chiffres</string>

@@ -308,8 +308,6 @@
     <string name="pref_highlight_entry_summary">Сделать ключи более различимыми, временно выделяя их при нажатии</string>
     <string name="pref_minimize_on_copy_title">Сворачивать при копировании</string>
     <string name="pref_minimize_on_copy_summary">Сворачивать приложение после копирования ключа</string>
-    <string name="pref_copy_on_tap_title">Копировать ключи при нажатии</string>
-    <string name="pref_copy_on_tap_summary">Копировать ключи в буфер обмена при нажатии на них</string>
     <string name="pref_pause_entry_title">Замораживать ключи при нажатии</string>
     <string name="pref_pause_entry_summary">Приостановить автоматическое обновление ключей принажатии на них. Ключи не будут обновляться до тех пор, пока отображаются. Для обновления потребуется «Выделять ключи при нажатии» или «Отображение по нажатию».</string>
     <string name="pin_keyboard_description">Введите свой пароль, чтобы включить PIN-клавиатуру. Обратите внимание, что это работает, только если ваш пароль состоит из цифр.</string>

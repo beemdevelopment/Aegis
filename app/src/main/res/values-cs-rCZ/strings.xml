@@ -308,8 +308,6 @@
     <string name="pref_highlight_entry_summary">Usnadnit vzájemné rozlišení tokenů dočasným zvýrazněním po kleputí</string>
     <string name="pref_minimize_on_copy_title">Minimalizovat při kopírování</string>
     <string name="pref_minimize_on_copy_summary">Minimalizovat aplikaci po zkopírování tokenu</string>
-    <string name="pref_copy_on_tap_title">Zkopírovat tokeny po klepnutí</string>
-    <string name="pref_copy_on_tap_summary">Zkopírovat tokeny do schránky po klepnutí na ně</string>
     <string name="pref_pause_entry_title">Zmrazit tokeny po klepnutí</string>
     <string name="pref_pause_entry_summary">Pozastavit automatické obnovování tokenů klepnutím na ně. Tokeny nebudou aktualizovány, dokud jsou zaměřeny. Vyžaduje \"Zvýraznit tokeny po klepnutí\" nebo \"Klepnutím zobrazit\".</string>
     <string name="pin_keyboard_description">Zadejte své heslo pro povolení PIN klávesnice. Toto funguje jen pokud používáte číselné heslo.</string>

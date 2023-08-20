@@ -283,8 +283,6 @@
     <string name="pref_highlight_entry_summary">يسهل تمييز الرموز عن بعضها بتسليط الضوء عليهم عندما يتم النقر عليهم</string>
     <string name="pref_minimize_on_copy_title">تصغير عند النسخ</string>
     <string name="pref_minimize_on_copy_summary">تصغير التطبيق بعد نسخ رمز</string>
-    <string name="pref_copy_on_tap_title">انسخ الرموز عندما تنُقر</string>
-    <string name="pref_copy_on_tap_summary">نسخ الرموز إلى الحافظ عندما يتم النقر عليهم</string>
     <string name="pref_pause_entry_title">تجميد الرموز عند النقر عليها</string>
     <string name="pin_keyboard_description">أدخل كلمة المرور لتفعيل لوحة مفاتيح PIN. لاحظ أن هذا يعمل فقط إذا كانت كلمة المرور الخاصة بك تتكون فقط من أرقام</string>
     <string name="pin_keyboard_error">خطأ في تفعيل لوحة مفاتيح PIN</string>

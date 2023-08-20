@@ -287,8 +287,6 @@
     <string name="pref_highlight_entry_summary">Egin elkarrengandik errazago bereizten diren tokenak, sakatzen dituzunean aldi baterako nabarmenduz</string>
     <string name="pref_minimize_on_copy_title">Txikitu kopiatzean</string>
     <string name="pref_minimize_on_copy_summary">Aplikazioa txikitu tokena kopiatutakoan</string>
-    <string name="pref_copy_on_tap_title">Kopiatu tokenak ukitzean</string>
-    <string name="pref_copy_on_tap_summary">Kopiatu tokenak arbelean beraiek ukituta</string>
     <string name="pref_pause_entry_title">Izoztu tokenak ukitzean</string>
     <string name="pref_pause_entry_summary">Gelditu tokenak automatikoki freskatzea beraietan sakatzean. Tokenak ez dira eguneratuko ukitzen ez badituzu. \"Nabarmendu tokenak ukitzean\" edo \"Sakatu erakusteko\" aukeratuta izatea eskatzen du.</string>
     <string name="pin_keyboard_description">Sartu pasahitza PIN teklatua gaitzeko. Kontuan izan honek zure pasahitzak zenbakiak soilik baditu funtzionatzen duela</string>

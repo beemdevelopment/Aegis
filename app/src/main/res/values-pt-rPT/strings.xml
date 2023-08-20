@@ -170,8 +170,6 @@
     <string name="preference_manage_groups_summary">Gerenciar e excluir seus grupos aqui</string>
     <string name="pref_highlight_entry_title">Destacar tokens quando tocados</string>
     <string name="pref_highlight_entry_summary">Faça com que os tokens sejam mais fáceis de distinguir um do outro destacando-os temporariamente ao tocá-los</string>
-    <string name="pref_copy_on_tap_title">Copiar tokens quando tocados</string>
-    <string name="pref_copy_on_tap_summary">Copia tokens para área de transferência quando tocados</string>
     <string name="pin_keyboard_description">Digite sua senha para ativar o teclado PIN. Observe que isso só funciona se a sua senha for constituída apenas por números</string>
     <string name="pin_keyboard_error">Erro ao habilitar o teclado PIN</string>
     <string name="pin_keyboard_error_description">Não é possível configurar o teclado PIN. A sua senha deve ser composta apenas por números.</string>

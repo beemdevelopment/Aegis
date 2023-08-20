@@ -287,8 +287,6 @@
     <string name="pref_highlight_entry_summary">Fai que los pases s\'estremen meyor al rescamplalos temporalmente cuando toques nellos</string>
     <string name="pref_minimize_on_copy_title">Minimizar al copiar</string>
     <string name="pref_minimize_on_copy_summary">Minimiza l\'aplicación dempués de copiar un pase</string>
-    <string name="pref_copy_on_tap_title">Copiar los pases al tocalos</string>
-    <string name="pref_copy_on_tap_summary">Copia los pases nel cartafueyu cuando toques nellos</string>
     <string name="pref_pause_entry_title">Paralizar los pases al tocalos</string>
     <string name="pref_pause_entry_summary">Posa l\'anovamientu automáticu de los pases al tocar nellos y, polo tanto, nun s\'anueven mentanto tengan el focu. Esta opción rique l\'activación de les opciones «Rescamplar los pases al tocalos» o «Tocar pa desvelar».</string>
     <string name="pin_keyboard_description">Activa la contraseña p\'activar el tecláu numbéricu. Decátate qu\'esta opción namás funciona si la contraseña ta formada namás por númberos</string>

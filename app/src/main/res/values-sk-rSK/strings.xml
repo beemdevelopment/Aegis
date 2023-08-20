@@ -180,7 +180,6 @@
     <string name="pref_highlight_entry_title">Zvýrazniť tokeny po klepnutí</string>
     <string name="pref_minimize_on_copy_title">Minimalizovať pri kopírovaní</string>
     <string name="pref_minimize_on_copy_summary">Minimalizujte aplikáciu po skopírovaní tokenu</string>
-    <string name="pref_copy_on_tap_title">Po klepnutí skopírujte tokeny</string>
     <string name="selected">Zvolené</string>
     <string name="dark_theme_title">Tmavá téma</string>
     <string name="light_theme_title">Svetlá téma</string>

@@ -292,8 +292,6 @@
     <string name="pref_highlight_entry_summary">Gör polletterna lättare att särskilja från varandra genom att tillfälligt markera dem vid tryck</string>
     <string name="pref_minimize_on_copy_title">Minimera vid kopiering</string>
     <string name="pref_minimize_on_copy_summary">Minimerar appen efter att en pollett har kopierats</string>
-    <string name="pref_copy_on_tap_title">Kopiera polletter vid tryck</string>
-    <string name="pref_copy_on_tap_summary">Kopiera polletterna till urklipp genom att trycka på dem</string>
     <string name="pref_pause_entry_title">Frys polletter vid tryck</string>
     <string name="pref_pause_entry_summary">Pausa automatisk uppdatering av polletterna genom att trycka på dem. Polletterna kommer inte att uppdateras så länge som de är i fokus. Kräver \"Markera polletter vid tryck\" eller \"Tryck för att visa\".</string>
     <string name="pin_keyboard_description">Ange ditt lösenord för att aktivera pinkodstangentbordet. Observera att detta bara fungerar om ditt lösenord endast består av siffror.</string>

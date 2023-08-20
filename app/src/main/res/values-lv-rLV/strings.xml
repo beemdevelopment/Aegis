@@ -300,8 +300,6 @@
     <string name="pref_highlight_entry_summary">Padarīt kodus vieglāk atšķiramus citu no cita, īslaicīgi izceļot tos, kad tiem piesit</string>
     <string name="pref_minimize_on_copy_title">Samazināt pēc ievietošanas starpliktuvē</string>
     <string name="pref_minimize_on_copy_summary">Samazināt lietotni pēc koda ievietošanas starpliktuvē</string>
-    <string name="pref_copy_on_tap_title">Ievietot kodus starpliktuvē, kad piesit</string>
-    <string name="pref_copy_on_tap_summary">Ievietot kodus starpliktuvē, piesitot tiem</string>
     <string name="pref_pause_entry_title">Iesaldēt kodus pēc piesišanas tiem</string>
     <string name="pref_pause_entry_summary">Apturēt kodu atsvaidzināšanu, kad piesit. Kods netiks atjaunots, kamēr vien tas ir izcelts. Ir nepieciešams ieslēgt iestatījumu \"Izcelt kodus, kad piesit\" vai \"Piesist, lai atklātu\".</string>
     <string name="pin_keyboard_description">Jāievada parole, lai iespējotu PIN tastatūru. Jāņem vērā, ka tā darbojas tikai tad, ja parole sastāv tikai no cipariem</string>

@@ -287,8 +287,6 @@
     <string name="pref_highlight_entry_summary">Resalta temporalmente os tokens cando se preman para podelos distinguir máis facilmente</string>
     <string name="pref_minimize_on_copy_title">Minimizar ao copiar</string>
     <string name="pref_minimize_on_copy_summary">Minimiza a aplicación despois de copiar un token</string>
-    <string name="pref_copy_on_tap_title">Copiar tokens ao premelos</string>
-    <string name="pref_copy_on_tap_summary">Copia os tokens no portapapeis cando se prema neles</string>
     <string name="pref_pause_entry_title">Conxelar tokens ao premelos</string>
     <string name="pref_pause_entry_summary">Pausa a actualización automática dos tokens ao premer neles. Os tokens non se actualizarán mentres teñan o foco. Require \"Resaltar tokens ao premelos\" ou \"Tocar para mostrar\".</string>
     <string name="pin_keyboard_description">Introduce o teu contrasinal para activar o teclado do PIN. Ten en conta que isto só funciona se o teu contrasinal consiste só de números</string>

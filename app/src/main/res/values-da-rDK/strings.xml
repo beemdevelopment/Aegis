@@ -292,8 +292,6 @@
     <string name="pref_highlight_entry_summary">Gør tokens lettere at skelne fra hinanden ved midlertidigt at fremhæve dem, når der trykkes på dem</string>
     <string name="pref_minimize_on_copy_title">Minimér under kopiering</string>
     <string name="pref_minimize_on_copy_summary">Minimér appen efter kopiering af et token</string>
-    <string name="pref_copy_on_tap_title">Kopier tokens ved tryk</string>
-    <string name="pref_copy_on_tap_summary">Kopier tokens til udklipsholderen ved at trykke på dem</string>
     <string name="pref_pause_entry_title">Frys tokens ved tryk</string>
     <string name="pref_pause_entry_summary">Pausér automatisk opdatering af tokens ved at trykke på dem. Tokens opdateres ikke, så længe de er fokuseret. Kræver \"Fremhæv tokens ved tryk\" eller \"Tryk for at afsløre\".</string>
     <string name="pin_keyboard_description">Indtast din adgangskode for at aktivere PIN-tastaturet. Bemærk at dette kun virker, hvis din adgangskode kun består af tal</string>

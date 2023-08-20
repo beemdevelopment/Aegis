@@ -210,8 +210,6 @@
     <string name="clear">Išvalyti</string>
     <string name="pref_highlight_entry_title">Bakstelėjus, paryškinti prieigos raktus</string>
     <string name="pref_highlight_entry_summary">Bakstelėjus ant prieigos raktų, laikinai juos paryškinti ir padaryti taip, kad juos būtų lengviau atskirti</string>
-    <string name="pref_copy_on_tap_title">Bakstelėjus, kopijuoti prieigos raktus</string>
-    <string name="pref_copy_on_tap_summary">Bakstelėjus ant prieigos raktų, kopijuoti juos į iškarpinę</string>
     <string name="pin_keyboard_description">Norėdami įjungti PIN kodo klaviatūrą, įveskite slaptažodį. Turėkite omenyje, jog tai veikia tik tuo atveju, jei jūsų slaptažodis yra sudarytas tik iš skaitmenų</string>
     <string name="pin_keyboard_error">Klaida įjungiant PIN kodo klaviatūrą</string>
     <string name="pin_keyboard_error_description">Neįmanoma nustatyti PIN kodo klaviatūros. Jūsų slaptažodis privalo būti sudarytas tik iš skaitmenų.</string>

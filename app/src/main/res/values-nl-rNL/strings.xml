@@ -292,8 +292,6 @@
     <string name="pref_highlight_entry_summary">Maak codes makkelijker te onderscheiden van elkaar door ze tijdelijk te markeren na het aantikken</string>
     <string name="pref_minimize_on_copy_title">Minimaliseren na kopiëren</string>
     <string name="pref_minimize_on_copy_summary">Na kopiëren van een code de app minimaliseren</string>
-    <string name="pref_copy_on_tap_title">Codes kopiëren bij aantikken</string>
-    <string name="pref_copy_on_tap_summary">Codes naar het klembord kopiëren door ze te aan te tikken</string>
     <string name="pref_pause_entry_title">Codes bevriezen na aantikken</string>
     <string name="pref_pause_entry_summary">Pauzeer automatisch verversen van codes door erop te tikken. Codes zullen niet worden bijgewerkt zolang ze gefocust zijn. Vereist \"Codes markeren na aantikken\" of \"Aantikken om te laten zien\".</string>
     <string name="pin_keyboard_description">Voer je wachtwoord in om het PIN-toetsenbord in te schakelen. Let op: dit werkt alleen als je wachtwoord uit cijfers bestaat</string>

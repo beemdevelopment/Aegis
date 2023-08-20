@@ -23,6 +23,7 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.beemdevelopment.aegis.CopyBehavior;
 import com.beemdevelopment.aegis.AccountNamePosition;
 import com.beemdevelopment.aegis.Preferences;
 import com.beemdevelopment.aegis.R;
@@ -174,8 +175,8 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
         _touchCallback.setIsLongPressDragEnabled(enabled && _adapter.isDragAndDropAllowed());
     }
 
-    public void setIsCopyOnTapEnabled(boolean enabled) {
-       _adapter.setIsCopyOnTapEnabled(enabled);
+    public void setCopyBehavior(CopyBehavior copyBehavior) {
+        _adapter.setCopyBehavior(copyBehavior);
     }
 
     public void setActionModeState(boolean enabled, VaultEntry entry) {

@@ -296,8 +296,6 @@
     <string name="pref_highlight_entry_summary">Fă token-urile mai ușor să se distingă între ele prin evidențierea lor temporară atunci când sunt apăsate</string>
     <string name="pref_minimize_on_copy_title">Minimizează după copiere</string>
     <string name="pref_minimize_on_copy_summary">Minimizează aplicația după copierea unui token</string>
-    <string name="pref_copy_on_tap_title">Copiază token-urile când apeși</string>
-    <string name="pref_copy_on_tap_summary">Copiază token-urile în clipboard apăsându-le</string>
     <string name="pref_pause_entry_title">Îngheață jetoanele când sunt apăsate</string>
     <string name="pref_pause_entry_summary">Oprește reîmprospătarea automată a jetoanelor prin apăsarea lor. Token-urile nu se vor actualiza atâta timp cât sunt evidențiate. Necesită \"Evidențierea tokenurilor atunci când sunt apasate\" sau \"Atinge pentru a arăta\".</string>
     <string name="pin_keyboard_description">Introdu parola pentru a activa tastatura PIN. Reține că aceasta funcționează doar dacă parola constă doar din numere</string>

@@ -45,6 +45,22 @@ public class Preferences {
         if (getPasswordReminderTimestamp().getTime() == 0) {
             resetPasswordReminderTimestamp();
         }
+
+        migratePreferences();
+    }
+
+    public void migratePreferences() {
+        // Change copy on tap to copy behavior to new preference and delete the old key
+        String prefCopyOnTapKey = "pref_copy_on_tap";
+        if (_prefs.contains(prefCopyOnTapKey)) {
+
+            boolean isCopyOnTapEnabled = _prefs.getBoolean(prefCopyOnTapKey, false);
+            if (isCopyOnTapEnabled) {
+                setCopyBehavior(CopyBehavior.SINGLETAP);
+            }
+
+            _prefs.edit().remove(prefCopyOnTapKey).apply();
+        }
     }
 
     public boolean isTapToRevealEnabled() {
@@ -448,8 +464,12 @@ public class Preferences {
         _prefs.edit().putBoolean("pref_warn_time_sync", enabled).apply();
     }
 
-    public boolean isCopyOnTapEnabled() {
-        return _prefs.getBoolean("pref_copy_on_tap", false);
+    public CopyBehavior getCopyBehavior() {
+        return CopyBehavior.fromInteger(_prefs.getInt("pref_current_copy_behavior", 0));
+    }
+
+    public void setCopyBehavior(CopyBehavior copyBehavior) {
+        _prefs.edit().putInt("pref_current_copy_behavior", copyBehavior.ordinal()).apply();
     }
 
     public boolean isMinimizeOnCopyEnabled() {
