@@ -130,6 +130,8 @@ public class Preferences {
         setPasswordReminderTimestamp(new Date().getTime());
     }
 
+    public boolean onlyShowNecessaryAccountNames() { return _prefs.getBoolean("pref_shared_issuer_account_name", false); }
+
     public boolean isIconVisible() {
         return _prefs.getBoolean("pref_show_icons", true);
     }

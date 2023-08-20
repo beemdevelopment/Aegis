@@ -103,6 +103,12 @@ public class AppearancePreferencesFragment extends PreferencesFragment {
             return true;
         });
 
+        Preference onlyShowNecessaryAccountNames = requirePreference("pref_shared_issuer_account_name");
+        onlyShowNecessaryAccountNames.setOnPreferenceChangeListener((preference, newValue) -> {
+            getResult().putExtra("needsRefresh", true);
+            return true;
+        });
+
         int currentAccountNamePosition = _prefs.getAccountNamePosition().ordinal();
         Preference currentAccountNamePositionPreference = requirePreference("pref_account_name_position");
         currentAccountNamePositionPreference.setSummary(String.format("%s: %s", getString(R.string.selected), getResources().getStringArray(R.array.account_name_position_titles)[currentAccountNamePosition]));

@@ -51,6 +51,13 @@
             android:title="@string/pref_account_name_position_title"
             app:iconSpaceReserved="false"/>
 
+        <androidx.preference.SwitchPreferenceCompat
+            android:defaultValue="false"
+            android:key="pref_shared_issuer_account_name"
+            android:title="@string/pref_shared_issuer_account_name_title"
+            android:summary="@string/pref_shared_issuer_account_name_summary"
+            app:iconSpaceReserved="false"/>
+
         <Preference
             android:key="pref_groups"
             android:title="@string/preference_manage_groups"

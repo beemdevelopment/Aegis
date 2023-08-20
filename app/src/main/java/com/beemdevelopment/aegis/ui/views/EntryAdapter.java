@@ -52,6 +52,7 @@ public class EntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     private Preferences.CodeGrouping _codeGroupSize;
     private AccountNamePosition _accountNamePosition;
     private boolean _showIcon;
+    private boolean _onlyShowNecessaryAccountNames;
     private boolean _highlightEntry;
     private boolean _tempHighlightEntry;
     private boolean _tapToReveal;
@@ -94,6 +95,10 @@ public class EntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
     public void setAccountNamePosition(AccountNamePosition accountNamePosition) {
         _accountNamePosition = accountNamePosition;
+    }
+
+    public void setOnlyShowNecessaryAccountNames(boolean onlyShowNecessaryAccountNames) {
+        _onlyShowNecessaryAccountNames = onlyShowNecessaryAccountNames;
     }
 
     public void setShowIcon(boolean showIcon) {
@@ -424,7 +429,16 @@ public class EntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             boolean paused = _pauseFocused && entry == _focusedEntry;
             boolean dimmed = (_highlightEntry || _tempHighlightEntry) && _focusedEntry != null && _focusedEntry != entry;
             boolean showProgress = entry.getInfo() instanceof TotpInfo && ((TotpInfo) entry.getInfo()).getPeriod() != getMostFrequentPeriod();
-            entryHolder.setData(entry, _codeGroupSize, _accountNamePosition, _showIcon, showProgress, hidden, paused, dimmed);
+            boolean showAccountName = true;
+            if (_onlyShowNecessaryAccountNames) {
+                // Only show account name when there's multiple entries found with the same issuer.
+                showAccountName = _entries.stream()
+                        .filter(x -> x.getIssuer().equals(entry.getIssuer()))
+                        .count() > 1;
+            }
+
+            AccountNamePosition accountNamePosition = showAccountName ? _accountNamePosition : AccountNamePosition.HIDDEN;
+            entryHolder.setData(entry, _codeGroupSize, accountNamePosition, _showIcon, showProgress, hidden, paused, dimmed);
             entryHolder.setFocused(_selectedEntries.contains(entry));
             entryHolder.setShowDragHandle(isEntryDraggable(entry));
 
