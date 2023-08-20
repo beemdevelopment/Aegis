@@ -162,7 +162,16 @@ public class AuthActivity extends AegisActivity {
         });
 
         biometricsButton.setOnClickListener(v -> {
-            showBiometricPrompt();
+            if (_prefs.isPasswordReminderNeeded()) {
+                Dialogs.showSecureDialog(new AlertDialog.Builder(this)
+                        .setTitle(getString(R.string.password_reminder_dialog_title))
+                        .setMessage(getString(R.string.password_reminder_dialog_message))
+                        .setCancelable(false)
+                        .setPositiveButton(android.R.string.ok, (dialog1, which) -> {
+                            showBiometricPrompt();
+                        })
+                        .create());
+            }
         });
     }
 
