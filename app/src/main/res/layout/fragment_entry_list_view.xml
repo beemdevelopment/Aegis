@@ -39,7 +39,6 @@
         android:layout_height="0dp"
         android:scrollbars="vertical"
         android:id="@+id/rvKeyProfiles"
-        android:layoutAnimation="@anim/layout_animation_fall_down"
         android:layout_weight="1"/>
 
     <LinearLayout

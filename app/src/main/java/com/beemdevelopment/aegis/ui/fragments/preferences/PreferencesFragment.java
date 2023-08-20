@@ -3,14 +3,17 @@ package com.beemdevelopment.aegis.ui.fragments.preferences;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.animation.Animation;
 
 import androidx.annotation.CallSuper;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
 
 import com.beemdevelopment.aegis.Preferences;
 import com.beemdevelopment.aegis.R;
+import com.beemdevelopment.aegis.helpers.AnimationsHelper;
 import com.beemdevelopment.aegis.ui.dialogs.Dialogs;
 import com.beemdevelopment.aegis.vault.VaultManager;
 import com.beemdevelopment.aegis.vault.VaultRepositoryException;
@@ -60,6 +63,16 @@ public abstract class PreferencesFragment extends PreferenceFragmentCompat {
 
     public Intent getResult() {
         return _result;
+    }
+
+    @Override
+    @Nullable
+    public Animation onCreateAnimation(int transit, boolean enter, int nextAnim) {
+        if (nextAnim != 0) {
+            return AnimationsHelper.loadScaledAnimation(requireContext(), nextAnim, AnimationsHelper.Scale.TRANSITION);
+        }
+
+        return super.onCreateAnimation(transit, enter, nextAnim);
     }
 
     public void setResult(Intent result) {
