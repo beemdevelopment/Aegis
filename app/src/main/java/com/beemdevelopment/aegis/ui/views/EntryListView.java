@@ -330,6 +330,10 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
         _adapter.setAccountNamePosition(accountNamePosition);
     }
 
+    public void setOnlyShowNecessaryAccountNames(boolean onlyShowNecessaryAccountNames) {
+        _adapter.setOnlyShowNecessaryAccountNames(onlyShowNecessaryAccountNames);
+    }
+
     public void setShowIcon(boolean showIcon) {
         _adapter.setShowIcon(showIcon);
     }

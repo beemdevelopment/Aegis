@@ -135,6 +135,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         _entryListView.setCodeGroupSize(_prefs.getCodeGroupSize());
         _entryListView.setAccountNamePosition(_prefs.getAccountNamePosition());
         _entryListView.setShowIcon(_prefs.isIconVisible());
+        _entryListView.setOnlyShowNecessaryAccountNames(_prefs.onlyShowNecessaryAccountNames());
         _entryListView.setHighlightEntry(_prefs.isEntryHighlightEnabled());
         _entryListView.setPauseFocused(_prefs.isPauseFocusedEnabled());
         _entryListView.setTapToReveal(_prefs.isTapToRevealEnabled());
@@ -273,6 +274,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
             } else if (data.getBooleanExtra("needsRefresh", false)) {
                 AccountNamePosition accountNamePosition = _prefs.getAccountNamePosition();
                 boolean showIcons = _prefs.isIconVisible();
+                boolean onlyShowNecessaryAccountNames = _prefs.onlyShowNecessaryAccountNames();
                 Preferences.CodeGrouping codeGroupSize = _prefs.getCodeGroupSize();
                 boolean highlightEntry = _prefs.isEntryHighlightEnabled();
                 boolean pauseFocused = _prefs.isPauseFocusedEnabled();
@@ -281,6 +283,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
                 ViewMode viewMode = _prefs.getCurrentViewMode();
                 CopyBehavior copyBehavior = _prefs.getCopyBehavior();
                 _entryListView.setAccountNamePosition(accountNamePosition);
+                _entryListView.setOnlyShowNecessaryAccountNames(onlyShowNecessaryAccountNames);
                 _entryListView.setShowIcon(showIcons);
                 _entryListView.setCodeGroupSize(codeGroupSize);
                 _entryListView.setHighlightEntry(highlightEntry);
