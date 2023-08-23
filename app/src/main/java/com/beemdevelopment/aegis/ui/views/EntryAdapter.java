@@ -29,6 +29,7 @@ import com.beemdevelopment.aegis.otp.HotpInfo;
 import com.beemdevelopment.aegis.otp.OtpInfo;
 import com.beemdevelopment.aegis.otp.OtpInfoException;
 import com.beemdevelopment.aegis.otp.TotpInfo;
+import com.beemdevelopment.aegis.util.CollectionUtils;
 import com.beemdevelopment.aegis.vault.VaultEntry;
 
 import java.util.ArrayList;
@@ -382,9 +383,10 @@ public class EntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         // notify the vault first
         _view.onEntryMove(_entries.get(firstPosition), _entries.get(secondPosition));
 
-        // update our side of things
-        Collections.swap(_entries, firstPosition, secondPosition);
-        Collections.swap(_shownEntries, firstPosition, secondPosition);
+        // then update our end
+        CollectionUtils.move(_entries, firstPosition, secondPosition);
+        CollectionUtils.move(_shownEntries, firstPosition, secondPosition);
+
         notifyItemMoved(firstPosition, secondPosition);
     }
 
@@ -438,7 +440,7 @@ public class EntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             }
 
             AccountNamePosition accountNamePosition = showAccountName ? _accountNamePosition : AccountNamePosition.HIDDEN;
-            entryHolder.setData(entry, _codeGroupSize, accountNamePosition, _showIcon, showProgress, hidden, paused, dimmed);
+            entryHolder.setData(entry, _codeGroupSize, _viewMode, accountNamePosition, _showIcon, showProgress, hidden, paused, dimmed);
             entryHolder.setFocused(_selectedEntries.contains(entry));
             entryHolder.setShowDragHandle(isEntryDraggable(entry));
 
@@ -467,7 +469,7 @@ public class EntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                             case SINGLETAP:
                                 if (!handled) {
                                     _view.onEntryCopy(entry);
-                                    entryHolder.animateCopyText();
+                                    entryHolder.animateCopyText(_viewMode != ViewMode.TILES);
                                     _clickedEntry = null;
                                 }
                                 break;
@@ -476,7 +478,7 @@ public class EntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
                                 if(entry == _clickedEntry) {
                                     _view.onEntryCopy(entry);
-                                    entryHolder.animateCopyText();
+                                    entryHolder.animateCopyText(_viewMode != ViewMode.TILES);
                                     _clickedEntry = null;
                                 } else {
                                     _clickedEntry = entry;

@@ -32,6 +32,7 @@
         <item>@string/normal_viewmode_title</item>
         <item>@string/compact_mode_title</item>
         <item>@string/small_mode_title</item>
+        <item>@string/tiles_mode_title</item>
     </string-array>
 
     <string-array name="pref_lang_entries">

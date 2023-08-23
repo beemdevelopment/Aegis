@@ -16,6 +16,7 @@ public class SimpleItemTouchHelperCallback extends ItemTouchHelper.Callback {
     private final EntryAdapter _adapter;
     private boolean _positionChanged = false;
     private boolean _isLongPressDragEnabled = true;
+    private int _dragFlags = ItemTouchHelper.UP | ItemTouchHelper.DOWN;
 
     public SimpleItemTouchHelperCallback(EntryAdapter adapter) {
         _adapter = adapter;
@@ -46,6 +47,10 @@ public class SimpleItemTouchHelperCallback extends ItemTouchHelper.Callback {
         return false;
     }
 
+    public void setDragFlags(int dragFlags) {
+        _dragFlags = dragFlags;
+    }
+
     @Override
     public int getMovementFlags(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder) {
         // It's not clear when this can happen, but sometimes the ViewHolder
@@ -57,16 +62,15 @@ public class SimpleItemTouchHelperCallback extends ItemTouchHelper.Callback {
         }
 
         int swipeFlags = 0;
-        int dragFlags = ItemTouchHelper.UP | ItemTouchHelper.DOWN;
 
         EntryAdapter adapter = (EntryAdapter) recyclerView.getAdapter();
         if (adapter.isPositionFooter(position)
                 || adapter.getEntryAt(position) != _selectedEntry
                 || !isLongPressDragEnabled()) {
-            dragFlags = 0;
+            return makeMovementFlags(0, swipeFlags);
         }
 
-        return makeMovementFlags(dragFlags, swipeFlags);
+        return makeMovementFlags(_dragFlags, swipeFlags);
     }
 
     @Override
@@ -75,7 +79,11 @@ public class SimpleItemTouchHelperCallback extends ItemTouchHelper.Callback {
         if (target.getAdapterPosition() < _adapter.getShownFavoritesCount()){
             return false;
         }
-        _adapter.onItemMove(viewHolder.getAdapterPosition(), target.getAdapterPosition());
+
+        int firstPosition = viewHolder.getLayoutPosition();
+        int secondPosition = target.getAdapterPosition();
+
+        _adapter.onItemMove(firstPosition, secondPosition);
         _positionChanged = true;
         return true;
     }
@@ -92,6 +100,7 @@ public class SimpleItemTouchHelperCallback extends ItemTouchHelper.Callback {
         if (_positionChanged) {
             _adapter.onItemDrop(viewHolder.getAdapterPosition());
             _positionChanged = false;
+            _adapter.refresh(false);
         }
     }
 }

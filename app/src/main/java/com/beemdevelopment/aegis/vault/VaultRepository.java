@@ -239,8 +239,11 @@ public class VaultRepository {
         return _vault.getEntries().replace(entry);
     }
 
-    public void swapEntries(VaultEntry entry1, VaultEntry entry2) {
-        _vault.getEntries().swap(entry1, entry2);
+    /**
+      * Moves entry1 to the position of entry2.
+      */
+    public void moveEntry(VaultEntry entry1, VaultEntry entry2) {
+        _vault.getEntries().move(entry1, entry2);
     }
 
     public boolean isEntryDuplicate(VaultEntry entry) {

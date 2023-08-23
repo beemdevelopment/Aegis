@@ -19,6 +19,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -64,7 +65,8 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
     private ItemTouchHelper _touchHelper;
 
     private RecyclerView _recyclerView;
-    private RecyclerView.ItemDecoration _dividerDecoration;
+    private RecyclerView.ItemDecoration _verticalDividerDecoration;
+    private RecyclerView.ItemDecoration _horizontalDividerDecoration;
     private ViewPreloadSizeProvider<VaultEntry> _preloadSizeProvider;
     private TotpProgressBar _progressBar;
     private boolean _showProgress;
@@ -122,7 +124,17 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
         RecyclerViewPreloader<VaultEntry> preloader = new RecyclerViewPreloader<>(Glide.with(this), modelProvider, _preloadSizeProvider, 10);
         _recyclerView.addOnScrollListener(preloader);
 
-        LinearLayoutManager layoutManager = new LinearLayoutManager(requireContext());
+        GridLayoutManager layoutManager = new GridLayoutManager(requireContext(), 1);
+        layoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
+            @Override
+            public int getSpanSize(int position) {
+                if (_viewMode == ViewMode.TILES && position == _adapter.getEntriesCount()) {
+                    return 2;
+                }
+
+                return 1;
+            }
+        });
         _recyclerView.setLayoutManager(layoutManager);
         _touchCallback = new SimpleItemTouchHelperCallback(_adapter);
         _touchHelper = new ItemTouchHelper(_touchCallback);
@@ -222,6 +234,13 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
         _viewMode = mode;
         updateDividerDecoration();
         _adapter.setViewMode(_viewMode);
+        if (_viewMode == ViewMode.TILES) {
+            _touchCallback.setDragFlags(ItemTouchHelper.UP | ItemTouchHelper.DOWN | ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT);
+        } else {
+            _touchCallback.setDragFlags(ItemTouchHelper.UP | ItemTouchHelper.DOWN);
+        }
+
+        ((GridLayoutManager)_recyclerView.getLayoutManager()).setSpanCount(mode.getColumnSpan());
     }
 
     public void startDrag(RecyclerView.ViewHolder viewHolder) {
@@ -536,18 +555,28 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
     }
 
     private void updateDividerDecoration() {
-        if (_dividerDecoration != null) {
-            _recyclerView.removeItemDecoration(_dividerDecoration);
+        if (_verticalDividerDecoration != null) {
+            _recyclerView.removeItemDecoration(_verticalDividerDecoration);
+        }
+
+        if(_horizontalDividerDecoration != null) {
+            _recyclerView.removeItemDecoration(_horizontalDividerDecoration);
         }
 
         float height = _viewMode.getDividerHeight();
+        float width = _viewMode.getDividerWidth();
         if (_showProgress && height == 0) {
-            _dividerDecoration = new CompactDividerDecoration();
+            _verticalDividerDecoration = new CompactDividerDecoration();
         } else {
-            _dividerDecoration = new VerticalSpaceItemDecoration(height);
+            _verticalDividerDecoration = new VerticalSpaceItemDecoration(height);
         }
 
-        _recyclerView.addItemDecoration(_dividerDecoration);
+        if (width != 0) {
+            _horizontalDividerDecoration = new TileSpaceItemDecoration(width, height);
+            _recyclerView.addItemDecoration(_horizontalDividerDecoration);
+        } else {
+            _recyclerView.addItemDecoration(_verticalDividerDecoration);
+        }
     }
 
     private void updateEmptyState() {
@@ -650,6 +679,30 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
             if (_adapter.getEntriesCount() == adapterPosition + 1) {
                 outRect.bottom = 0;
             }
+        }
+    }
+
+    private class TileSpaceItemDecoration extends RecyclerView.ItemDecoration {
+        private final int _width;
+        private final int _height;
+
+        private TileSpaceItemDecoration(float width, float height) {
+            // convert dp to pixels
+            _width = MetricsHelper.convertDpToPixels(requireContext(), width);
+            _height = MetricsHelper.convertDpToPixels(requireContext(), height);
+        }
+
+        @Override
+        public void getItemOffsets(@NonNull Rect outRect, @NonNull View view, @NonNull RecyclerView parent, @NonNull RecyclerView.State state) {
+            int adapterPosition = parent.getChildAdapterPosition(view);
+            if (adapterPosition == NO_POSITION) {
+                return;
+            }
+
+            outRect.left = _width;
+            outRect.right = _width;
+            outRect.top = _height;
+            outRect.bottom = _height;
         }
     }
 
