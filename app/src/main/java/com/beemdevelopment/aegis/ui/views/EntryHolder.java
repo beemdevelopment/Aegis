@@ -166,6 +166,7 @@ public class EntryHolder extends RecyclerView.ViewHolder {
                 profileNameLayoutParams = (RelativeLayout.LayoutParams) _profileName.getLayoutParams();
                 profileNameLayoutParams.removeRule(RelativeLayout.END_OF);
                 profileNameLayoutParams.addRule(RelativeLayout.BELOW, R.id.profile_issuer);
+                profileNameLayoutParams.setMarginStart(0);
                 _profileName.setLayoutParams(profileNameLayoutParams);
                 _profileName.setVisibility(View.VISIBLE);
 
@@ -178,6 +179,7 @@ public class EntryHolder extends RecyclerView.ViewHolder {
             default:
                 profileNameLayoutParams = (RelativeLayout.LayoutParams) _profileName.getLayoutParams();
                 profileNameLayoutParams.addRule(RelativeLayout.END_OF, R.id.profile_issuer);
+                profileNameLayoutParams.setMarginStart(24);
                 profileNameLayoutParams.removeRule(RelativeLayout.BELOW);
                 _profileName.setLayoutParams(profileNameLayoutParams);
                 _profileName.setVisibility(View.VISIBLE);
