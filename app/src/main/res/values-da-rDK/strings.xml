@@ -39,6 +39,10 @@
     <string name="pref_show_icons_summary">Vis ikoner ved siden af hver post</string>
     <string name="pref_code_group_size_title">Kodeciffergruppering</string>
     <string name="pref_code_group_size_summary">Vælg antal cifre til kodegruppering</string>
+    <string name="pref_account_name_position_title">Vis kontonavnet</string>
+    <string name="pref_shared_issuer_account_name_title">Vis kun kontonavn, når nødvendigt</string>
+    <string name="pref_shared_issuer_account_name_summary">Vis kun kontonavne, som deler samme udsteder. Øvrige kontonavne vises ikke.</string>
+    <string name="pref_account_name_position_summary_override">Denne indstilling tilsidesættes i flisevisningstilstanden. Kontonavn vises altid under udstederen.</string>
     <string name="pref_import_file_title">Import fra fil</string>
     <string name="pref_import_file_summary">Importér tokens fra en fil</string>
     <string name="pref_android_backups_title">Android cloud-sikkerhedskopier</string>
@@ -46,6 +50,10 @@
     <string name="pref_android_backups_hint"><i>Enhed-til-enhed (D2D) sikkerhedskopier er altid tilladt, uanset ovenstående indstilling</i></string>
     <string name="pref_backups_title">Sikkerhedskopiér automatisk Boksen</string>
     <string name="pref_backups_summary">Opret automatisk sikkerhedskopier af Boksen på ekstern lagerplads, når ændringer foretages. Dette understøttes kun for krypterede Bokse.</string>
+    <string name="pref_backups_reminder_title">Sikkerhedskopieringspåmindelse</string>
+    <string name="pref_backups_reminder_summary">Vis en påmindelse om at sikkerhedskopiere boksen, såfremt de seneste ændringer ikke er sikkerhedskopieret.</string>
+    <string name="pref_backups_reminder_dialog_title">Deaktivér sikkerhedskopieringspåmindelse</string>
+    <string name="pref_backups_reminder_dialog_summary">Deaktivering af denne påmindelse betyder, at Aegis ikke adviserer om endnu ikke er sikkerhedskopieret ændringer. Dette indebærer en risiko for at miste adgang til tokener. Sikker på, at påmindelsen skal deaktiveres?</string>
     <string name="pref_backups_location_title">Mappe til sikkerhedskopifiler</string>
     <string name="pref_backups_location_summary">Sikkerhedskopier vil blive gemt til</string>
     <string name="pref_backups_trigger_title">Udløs sikkerhedskopiering</string>
@@ -96,6 +104,7 @@
     <string name="export_help">Denne handling vil eksportere boksen ud af Aegis\' interne lager. Vælg det format, som du gerne vil eksportere i:</string>
     <string name="export_warning_unencrypted">Du er ved at eksportere en ukrypteret kopi af din Aegis-boks. <b>Dette er ikke anbefalet</b>.</string>
     <string name="export_warning_password">Eksporter krypteres vha. en separat adgangskode opsat i Sikkerhedsindstillinger.</string>
+    <string name="understand_risk_accept">Risikoen er forstået</string>
     <string name="export_format_aegis">Aegis (.JSON)</string>
     <string name="export_format_google_auth_uri">Tekst fil (.TXT)</string>
     <string name="export_format_html">Webside (.HTML)</string>
@@ -126,7 +135,9 @@
     <string name="set_password_confirm">Bekræft venligst adgangskoden</string>
     <string name="invalid_password">Adgangskoden er forkert</string>
     <string name="invalidated_biometrics">En ændring i din enheds sikkerhedsindstillinger er detekteret. Gå til \"Aegis -&gt; Indstillinger -&gt; Sikkerhed -&gt; Biometrisk oplåsning\" for at deaktivere og genaktivere biometrisk oplåsning.</string>
-    <string name="password_reminder">Indtast venligst din adgangskode. Vi beder dig af og til om at gøre dette, så du ikke glemmer den.</string>
+    <string name="password_reminder">Angiv din adgangskode. Vi beder dig lejlighedsvis gøre dette, så du ikke glemmer den.</string>
+    <string name="password_reminder_dialog_title">Biometrisk oplåsning som standard</string>
+    <string name="password_reminder_dialog_message">For at hindre, at du bliver låst ude af din boks, beder vi lejlighedsvis om din adgangskode, så du ikke glemme den. Efter du har angivet adgangskoden, fortsætter Aegis med biometrisk oplåsning som standard indtil den næste påmindelse.</string>
     <string name="password_reminder_freq_never">Aldrig</string>
     <string name="password_reminder_freq_weekly">Ugentlig</string>
     <string name="password_reminder_freq_biweekly">14-dages</string>
@@ -228,7 +239,9 @@
     <string name="choose_totpauth_importer">Er denne TOTP Authenticator backup krypteret med en adgangskode?</string>
     <string name="choose_application">Vælg den applikation, du vil importere fra</string>
     <string name="choose_theme">Vælg dit ønskede tema</string>
+    <string name="choose_account_name_position">Vælg den ønskede position for kontonavnet</string>
     <string name="choose_view_mode">Vælg din ønskede visningstilstand</string>
+    <string name="choose_copy_behavior">Vælg den ønskede kopieringsadfærd</string>
     <string name="parsing_file_error">Der opstod en fejl under forsøget på at tolke filen</string>
     <string name="file_not_found">Fejl: Fil ikke fundet</string>
     <string name="reading_file_error">Der opstod en fejl under forsøg på at læse filen</string>
@@ -292,6 +305,7 @@
     <string name="pref_highlight_entry_summary">Gør tokens lettere at skelne fra hinanden ved midlertidigt at fremhæve dem, når der trykkes på dem</string>
     <string name="pref_minimize_on_copy_title">Minimér under kopiering</string>
     <string name="pref_minimize_on_copy_summary">Minimér appen efter kopiering af et token</string>
+    <string name="pref_copy_behavior_title">Kopiér tokens til udklipsholderen</string>
     <string name="pref_pause_entry_title">Frys tokens ved tryk</string>
     <string name="pref_pause_entry_summary">Pausér automatisk opdatering af tokens ved at trykke på dem. Tokens opdateres ikke, så længe de er fokuseret. Kræver \"Fremhæv tokens ved tryk\" eller \"Tryk for at afsløre\".</string>
     <string name="pin_keyboard_description">Indtast din adgangskode for at aktivere PIN-tastaturet. Bemærk at dette kun virker, hvis din adgangskode kun består af tal</string>
@@ -307,6 +321,7 @@
     <string name="normal_viewmode_title">Normal</string>
     <string name="compact_mode_title">Kompakt</string>
     <string name="small_mode_title">Lille</string>
+    <string name="tiles_mode_title">Fliser</string>
     <string name="unknown_issuer">Ukendt udsteder</string>
     <string name="unknown_account_name">Ukendt kontonavn</string>
     <plurals name="import_error_dialog">
@@ -361,6 +376,10 @@
     </string>
     <string name="backup_reminder_bar_message">        Ændringer er ikke sikkerhedskopieret
     </string>
+    <string name="backup_reminder_bar_dialog_title">Ændringer er ikke sikkerhedskopieret</string>
+    <string name="backup_reminder_bar_dialog_summary">        Nylige ændringer i boksen er endnu ikke sikkerhedskopieret. Regelmæssig sikkerhedskopiering er vigtig for at undgå at miste adgang til konti. Overvej opsætning af automatisk sikkerhedskopiering i indstillingsmenuen.
+    </string>
+    <string name="backup_reminder_bar_dialog_accept">Opsæt sikkerhedskopiering</string>
     <string name="backup_plaintext_export_warning"><b>Boksen blev for nylig eksporteret som simpel tekst</b></string>
     <string name="pref_show_plaintext_warning_hint">Vis ikke denne advarsel igen</string>
     <string name="backup_plaintext_warning_explanation">Denne advarsel vises, da en ukrypteret kopi af Boksen for nyligt er eksporteret. For at opretholde sikkerheden for tokens, anbefales det at slette denne fil, når den ikke længere behøves.</string>
@@ -411,6 +430,7 @@
     <string name="importer_help_2fas">Stil en 2FAS-godkendelse sikkerhedskopifil til rådighed.</string>
     <string name="importer_help_aegis">Levér en Aegis eksport/backup fil.</string>
     <string name="importer_help_authenticator_plus">Levér en Authenticator Plus-eksportfil opnået gennem <b>Indstillinger -&gt; Sikkerhedskopi &amp; Gendan -&gt; Eksport som tekst og HTML</b>.</string>
+    <string name="importer_help_authenticator_pro">Benyt en Authenticator Pro-eksportfil genereret via <b>Indstillinger -&gt; Sikkerhedskopiering -&gt; Sikkerhedskopiering til krypteret fil (anbefalet)</b>.</string>
     <string name="importer_help_authy">Levér en kopi af <b>/data/data/com.authy.authy/shared_prefs/com.authy.storage.tokens.authenticator.xml</b>, der er placeret i den interne lagermappe i Authy.</string>
     <string name="importer_help_andotp">Levér en andOTP eksport/backup fil.</string>
     <string name="importer_help_bitwarden">Vælg en Bitwarden-eksport-/sikkerhedskopifil. Krypterede filer understøttes ikke.</string>
@@ -434,6 +454,12 @@
     <string name="pref_grouping_size_two">Grupper af 2</string>
     <string name="pref_grouping_size_three">Grupper af 3</string>
     <string name="pref_grouping_size_four">Grupper af 4</string>
+    <string name="pref_copy_behavior_never">Aldrig</string>
+    <string name="pref_copy_behavior_single_tap">Enkelt tryk</string>
+    <string name="pref_copy_behavior_double_tap">Dobbelttryk</string>
+    <string name="pref_account_name_position_hidden">Skjult</string>
+    <string name="pref_account_name_position_end">Ved siden af udstederen</string>
+    <string name="pref_account_name_position_below">Under udstederen</string>
     <plurals name="time_elapsed_seconds">
         <item quantity="one">%d sekund siden</item>
         <item quantity="other">%d sekunder siden</item>

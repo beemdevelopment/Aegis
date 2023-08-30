@@ -121,7 +121,6 @@
     <string name="set_password_confirm">Berretsi pasahitza mesedez</string>
     <string name="invalid_password">Pasahitza ez da zuzena</string>
     <string name="invalidated_biometrics">Aldaketa bat detektatu da zure gailuaren segurtasun ezarpenetan. Joan \"Aegis -&gt; Ezarpenak -&gt; Segurtasuna &gt; Biometriak\" aukerara eta aktibatu berriro desblokeatze-biometrikoa.</string>
-    <string name="password_reminder">Sartu zure pasahitza mesedez. Noizean behin pasahitza sartzeko eskatzen dizugu ahaztu ez dezazun.</string>
     <string name="password_reminder_freq_never">Inoiz ez</string>
     <string name="password_reminder_freq_weekly">Astero</string>
     <string name="password_reminder_freq_biweekly">Bi astero</string>

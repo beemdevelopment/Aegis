@@ -46,6 +46,10 @@
     <string name="pref_android_backups_hint"><i>As copias de seguridade de dispositivo a dispositivo (D2D) sempre están permitidas, independentemente da configuración anterior</i></string>
     <string name="pref_backups_title">Facer copia do almacén automaticamente</string>
     <string name="pref_backups_summary">Crear copias de seguridade de xeito automático no almacenamento externo cada vez que se fai algún cambio. Isto só se admite nos almacéns cifrados.</string>
+    <string name="pref_backups_reminder_title">Recordatorio da copia de seguridade</string>
+    <string name="pref_backups_reminder_summary">Mostra un recordatorio para facer a copia de seguridade do almacén, no caso de que non fixeras ningunha copia dos teus últimos cambios.</string>
+    <string name="pref_backups_reminder_dialog_title">Desactivar recordatorio da copia de seguridade</string>
+    <string name="pref_backups_reminder_dialog_summary">Se desactivas este recordatorio, Aegis non che dirá se hai cambios sen gardar ou non nas copias de seguridade, polo que estarás no risco de perder o acceso aos teus tokens. Tes a certeza de que queres desactivar o recordatorio?</string>
     <string name="pref_backups_location_title">Directorio para os ficheiros das copias de seguridade</string>
     <string name="pref_backups_location_summary">As copias de seguridade gardaranse en</string>
     <string name="pref_backups_trigger_title">Executar copia de seguridade</string>
@@ -96,11 +100,17 @@
     <string name="export_help">Esta acción exportará o almacén fóra do almacenamento interno de Aegis. Escolle o formato no que o queiras exportar:</string>
     <string name="export_warning_unencrypted">Estás a piques de exportar unha copia non cifrada do teu almacén de Aegis. <b>Isto non está recomendado</b>.</string>
     <string name="export_warning_password">As exportacións cífranse mediante un contrasinal distinto, definido nos axustes de seguridade.</string>
+    <string name="understand_risk_accept">Comprendo o risco</string>
     <string name="export_format_aegis">Aegis (.JSON)</string>
     <string name="export_format_google_auth_uri">Ficheiro de texto (.TXT)</string>
     <string name="export_format_html">Páxina web (.HTML)</string>
     <string name="export_format_hint">Formato da exportación</string>
     <string name="export_all_groups">Exportar tódolos grupos</string>
+    <string name="export_choose_groups">Escolle os grupos a exportar</string>
+    <plurals name="export_groups_selected_count">
+        <item quantity="one">%d grupo seleccionado</item>
+        <item quantity="other">%d grupos seleccionados</item>
+    </plurals>
     <string name="export_no_groups_selected">Non se seleccionou ningún grupo para exportar</string>
     <string name="export_html_title" context="The title of an HTML export document">Exportación de Aegis Authenticator</string>
     <string name="choose_authentication_method">Seguridade</string>
@@ -121,7 +131,6 @@
     <string name="set_password_confirm">Confirma o contrasinal</string>
     <string name="invalid_password">O contrasinal é incorrecto</string>
     <string name="invalidated_biometrics">Detectouse un cambio nos axustes de seguridade do teu dispositivo. Vai a \"Aegis -&gt; Axustes -&gt; Seguridade -&gt; Desbloqueo biométrico\" para desactivar e volver a activar o desbloqueo biométrico.</string>
-    <string name="password_reminder">Introduce o teu contrasinal. Preguntámosche de vez en cando por el para que non o esquezas.</string>
     <string name="password_reminder_freq_never">Nunca</string>
     <string name="password_reminder_freq_weekly">Semanalmente</string>
     <string name="password_reminder_freq_biweekly">Cada dúas semanas</string>
@@ -356,6 +365,10 @@
     </string>
     <string name="backup_reminder_bar_message">        Os cambios non están gardados na copia de seguridade
     </string>
+    <string name="backup_reminder_bar_dialog_title">Os cambios non están gardados na copia de seguridade</string>
+    <string name="backup_reminder_bar_dialog_summary">        Aínda non se fixo copia de seguridade dos últimos cambios feitos no almacén. É importante facer copias regularmente para non perderes o acceso ás túas contas. Considera configurar as copias de seguridade automáticas no menú de axustes.
+    </string>
+    <string name="backup_reminder_bar_dialog_accept">Configurar copias</string>
     <string name="backup_plaintext_export_warning"><b>O almacén exportouse recentemente como texto plano</b></string>
     <string name="pref_show_plaintext_warning_hint">Non volver a mostrar este aviso</string>
     <string name="backup_plaintext_warning_explanation">Móstrase este aviso porque exportaches recentemente unha copia non cifrada do almacén. Para manter a seguridade dos teus tokens, recomendámosche que elimines este ficheiro cando xa non che faga falta.</string>
@@ -406,6 +419,7 @@
     <string name="importer_help_2fas">Proporciona un ficheiro de copia de seguridade de 2FAS Authenticator.</string>
     <string name="importer_help_aegis">Proporciona un ficheiro de copia de seguridade ou de exportación de Aegis.</string>
     <string name="importer_help_authenticator_plus">Proporciona un ficheiro de exportación de Authenticator Plus obtido mediante <b>Axustes -&gt; Copia de seguridade e restauración -&gt; Exportar como texto e HTML</b>.</string>
+    <string name="importer_help_authenticator_pro">Proporciona un ficheiro de exportación de Authenticator Pro, obtido desde <b>Axustes -&gt; Copia de seguridade -&gt; Facer copia de seguridade nun ficheiro cifrado (recomendado)</b>.</string>
     <string name="importer_help_authy">Proporciona unha copia de <b>/data/data/com.authy.authy/shared_prefs/com.authy.storage.tokens.authenticator.xml</b>, localizado no directorio do almacenamento interno de Authy.</string>
     <string name="importer_help_andotp">Proporciona un ficheiro de copia de seguridade ou de exportación de andOTP.</string>
     <string name="importer_help_bitwarden">Proporciona un ficheiro de copia de seguridade ou de exportación de Bitwarden. Non se admiten os ficheiros cifrados.</string>
@@ -448,5 +462,9 @@
     <plurals name="time_elapsed_years">
         <item quantity="one">fai %d ano</item>
         <item quantity="other">fai %d anos</item>
+    </plurals>
+    <plurals name="dropdown_checkboxes_default_count">
+        <item quantity="one">%d elemento seleccionado</item>
+        <item quantity="other">%d elementos seleccionados</item>
     </plurals>
 </resources>

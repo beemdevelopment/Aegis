@@ -105,7 +105,6 @@
     <string name="set_password_confirm">Konfirmasi kata sandi</string>
     <string name="invalid_password">Kata sandi salah</string>
     <string name="invalidated_biometrics">Perubahan di pengaturan keamanan perangkat Anda terdeteksi. Silakan pergi ke \"Aegis-&gt; Pengaturan -&gt; Keamanan -&gt; Kunci Biometrik\" untuk menonaktifkan dan mengaktifkan kembali kunci biometrik.</string>
-    <string name="password_reminder">Masukkan kata sandi Anda. Kami sesekali meminta Anda melakukan ini agar tidak melupakannya.</string>
     <string name="password_reminder_freq_never">Tak Pernah</string>
     <string name="password_reminder_freq_weekly">Setiap Pekan</string>
     <string name="password_reminder_freq_biweekly">Setiap Dua Pekan</string>

@@ -46,6 +46,10 @@
     <string name="pref_android_backups_hint"><i>Os backups device-to-device (D2D) são sempre permitidos, independente da configuração acima</i></string>
     <string name="pref_backups_title">Fazer backup automático do cofre</string>
     <string name="pref_backups_summary">Cria automaticamente backups do cofre no armazenamento externo quando alterações forem feitas. Essa opção só é suportada em cofres criptografados.</string>
+    <string name="pref_backups_reminder_title">Lembrete de backup</string>
+    <string name="pref_backups_reminder_summary">Mostrar um lembrete para fazer backup do seu cofre caso você não o tenha feito de suas alterações mais recentes.</string>
+    <string name="pref_backups_reminder_dialog_title">Desabilitar lembrete de backup</string>
+    <string name="pref_backups_reminder_dialog_summary">Desativar este lembrete significa que o Aegis não vai te dizer se você tem ou não alterações que ainda não foram salvas. Isso te coloca em risco de perder acesso aos seus tokens. Tem certeza de que deseja desativar o lembrete?</string>
     <string name="pref_backups_location_title">Diretório para aquivos de backup</string>
     <string name="pref_backups_location_summary">Backups são armazenados em</string>
     <string name="pref_backups_trigger_title">Ativar backup</string>
@@ -96,6 +100,7 @@
     <string name="export_help">Esta ação irá exportar o cofre para fora do armazenamento interno do Aegis. Selecione o formato em que você gostaria que sua exportação esteja:</string>
     <string name="export_warning_unencrypted">Você está prestes a exportar uma cópia não criptografada de seu cofre Aegis. <b>Isso não é recomendado</b>.</string>
     <string name="export_warning_password">As exportações são criptografadas usando uma senha separada, configurada nas configurações de segurança.</string>
+    <string name="understand_risk_accept">Eu compreendo o risco</string>
     <string name="export_format_aegis">Aegis (.JSON)</string>
     <string name="export_format_google_auth_uri">Arquivo de texto (.TXT)</string>
     <string name="export_format_html">Página da Web (.HTML)</string>
@@ -126,7 +131,6 @@
     <string name="set_password_confirm">Por favor, confirme a senha</string>
     <string name="invalid_password">A senha está incorreta</string>
     <string name="invalidated_biometrics">Foi detectada uma alteração nas configurações de segurança do seu dispositivo. Por favor, vá até \"Aegis -&gt; Configurações -&gt; Segurança -&gt; Desbloqueio biométrico\" para desativar e reativar o desbloqueio biométrico.</string>
-    <string name="password_reminder">Por favor, digite sua senha. Nós ocasionalmente pedimos que você faça isso para que não a esqueça.</string>
     <string name="password_reminder_freq_never">Nunca</string>
     <string name="password_reminder_freq_weekly">Semanalmente</string>
     <string name="password_reminder_freq_biweekly">Quinzenalmente</string>
@@ -360,6 +364,10 @@
     </string>
     <string name="backup_reminder_bar_message">        As alterações não foram salvas no backup
     </string>
+    <string name="backup_reminder_bar_dialog_title">As alterações não foram salvas no backup</string>
+    <string name="backup_reminder_bar_dialog_summary">        As alterações recentes no cofre ainda não foram salvas no backup. É importante ter backups regulares para evitar perder o acesso às suas contas. Por favor, considere a criação de backups automáticos no menu de configurações.
+    </string>
+    <string name="backup_reminder_bar_dialog_accept">Configurar backups</string>
     <string name="backup_plaintext_export_warning"><b>O cofre foi exportado recentemente em texto simples</b></string>
     <string name="pref_show_plaintext_warning_hint">Não mostrar este aviso novamente</string>
     <string name="backup_plaintext_warning_explanation">Este aviso é exibido porque você exportou recentemente uma cópia não criptografada do cofre. Para manter a segurança de seus tokens, recomendamos excluir este arquivo uma vez que ele não seja mais necessário.</string>
@@ -410,6 +418,7 @@
     <string name="importer_help_2fas">Forneça um arquivo de backup do 2FAS Authenticator.</string>
     <string name="importer_help_aegis">Fornecer um arquivo de exportação/backup do Aegis.</string>
     <string name="importer_help_authenticator_plus">Fornecer um arquivo de exportação do Autenticador Plus obtido através de <b>Configurações -&gt; Backup &amp; Restaurar -&gt; Exportar como Texto e HTML</b>.</string>
+    <string name="importer_help_authenticator_pro">Forneça um arquivo de exportação do Autenticador Pro obtido através de <b>Configurações -&gt; Fazer backup -&gt; Fazer backup para arquivo criptografado (recomendado)</b>.</string>
     <string name="importer_help_authy">Fornecer uma cópia de <b>/data/data/com.authy.authy/shared_prefs/com.authy.storage.tokens.authenticator.xml</b>, localizado no diretório de armazenamento interno do Authy.</string>
     <string name="importer_help_andotp">Fornecer um arquivo de exportação/backup do andOTP.</string>
     <string name="importer_help_bitwarden">Forneça um arquivo de exportação/backup do Bitwarden. Arquivos criptografados não são suportados.</string>

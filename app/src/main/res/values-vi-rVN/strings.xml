@@ -111,7 +111,6 @@
     <string name="set_password_confirm">Vui lòng xác nhận mật khẩu</string>
     <string name="invalid_password">Mật khẩu không chính xác</string>
     <string name="invalidated_biometrics">Đã phát hiện một thay đổi trong cài đặt bảo mật của thiết bị. Vui lòng đi đến \"Aegis &gt; Cài đặt &gt; Bảo mật &gt; Mở khoá sinh trắc học\" để tắt và bật lại mở khoá sinh trắc học.</string>
-    <string name="password_reminder">Vui lòng nhập mật khẩu. Chúng tôi thỉnh thoảng bảo bạn làm việc này để cho bạn không quên mật khẩu.</string>
     <string name="password_reminder_freq_never">Không bao giờ</string>
     <string name="password_reminder_freq_weekly">Hàng tuần</string>
     <string name="password_reminder_freq_biweekly">Hai tuần một lần</string>

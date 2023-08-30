@@ -90,7 +90,6 @@
     <string name="set_group">Įveskite grupės pavadinimą</string>
     <string name="set_password_confirm">Pakartokite slaptažodį</string>
     <string name="invalid_password">Slaptažodis yra neteisingas</string>
-    <string name="password_reminder">Įveskite savo slaptažodį. Retkarčiais prašysime jūsų tai atlikti, kad jo nepamirštumėte.</string>
     <string name="password_reminder_freq_never">Niekada</string>
     <string name="period_hint">Laikotarpis (sek.)</string>
     <string name="algorithm_hint">Maišos funkcija</string>

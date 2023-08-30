@@ -39,6 +39,10 @@
     <string name="pref_show_icons_summary">Afficher les icônes à côté de chaque entrée</string>
     <string name="pref_code_group_size_title">Regroupement des chiffres du code</string>
     <string name="pref_code_group_size_summary">Sélectionner le nombre de chiffres par lequel regrouper les codes</string>
+    <string name="pref_account_name_position_title">Afficher le nom de compte</string>
+    <string name="pref_shared_issuer_account_name_title">Afficher le nom de compte seulement si nécessaire</string>
+    <string name="pref_shared_issuer_account_name_summary">Afficher les noms de compte seulement lorsqu\'ils partagent le même émetteur. Les autres noms de compte seront masqués.</string>
+    <string name="pref_account_name_position_summary_override">Ce paramètre est remplacé par le mode d\'affichage des tuiles. Le nom de compte sera toujours affiché sous l\'émetteur.</string>
     <string name="pref_import_file_title">Importer depuis un fichier</string>
     <string name="pref_import_file_summary">Importer des jetons depuis un fichier</string>
     <string name="pref_android_backups_title">Sauvegardes cloud d\'Android</string>
@@ -46,6 +50,10 @@
     <string name="pref_android_backups_hint"><i>Les sauvegardes device-to-device (D2D) sont toujours autorisées, indépendamment du paramétrage ci-dessus</i></string>
     <string name="pref_backups_title">Sauvegarder automatiquement le coffre-fort</string>
     <string name="pref_backups_summary">Créer automatiquement des sauvegardes du coffre-fort sur le stockage externe lorsque des modifications sont apportées. Ceci n\'est pris en charge que pour les coffres-forts chiffrés.</string>
+    <string name="pref_backups_reminder_title">Rappel de sauvegarde</string>
+    <string name="pref_backups_reminder_summary">Afficher un rappel pour sauvegarder votre coffre-fort si vous n\'avez pas sauvegardé vos dernières modifications.</string>
+    <string name="pref_backups_reminder_dialog_title">Désactiver le rappel de sauvegarde</string>
+    <string name="pref_backups_reminder_dialog_summary">Désactiver ce rappel signifie qu\'Aegis ne vous dira pas si vous avez ou non des modifications qui ne sont pas encore sauvegardées. Cela vous expose au risque de perdre l\'accès à vos jetons. Êtes-vous sûr de vouloir désactiver le rappel ?</string>
     <string name="pref_backups_location_title">Répertoire des fichiers de sauvegarde</string>
     <string name="pref_backups_location_summary">Les sauvegardes seront enregistrées dans</string>
     <string name="pref_backups_trigger_title">Déclencher la sauvegarde</string>
@@ -67,7 +75,7 @@
         <item quantity="one">%d entrée incompatible a été ignorée</item>
         <item quantity="other">%d entrées incompatibles ont été ignorées</item>
     </plurals>
-    <string name="pref_password_reminder_summary">Afficher un rappel %s pour saisir le mot de passe, afin que vous ne l\'oubliez pas.</string>
+    <string name="pref_password_reminder_summary">Afficher un rappel %s pour saisir le mot de passe, afin que vous ne l\'oubliiez pas.</string>
     <string name="pref_password_reminder_summary_disabled">Désactivé</string>
     <string name="pref_secure_screen_title">Sécurité de l\'écran</string>
     <string name="pref_secure_screen_summary">Bloquer les captures d\'écran et autres tentatives de capture de l\'écran dans l\'application</string>
@@ -96,6 +104,7 @@
     <string name="export_help">Cette action exportera le coffre-fort à partir du stockage interne d\'Aegis. Sélectionnez le format vers lequel vous souhaitez faire votre export :</string>
     <string name="export_warning_unencrypted">Vous êtes sur le point d\'exporter une copie non chiffrée de votre coffre-fort Aegis. <b>Ce n\'est pas recommandé</b>.</string>
     <string name="export_warning_password">Les exports sont chiffrés à l\'aide d\'un mot de passe séparé configuré dans les paramètres de sécurité.</string>
+    <string name="understand_risk_accept">Je comprends le risque</string>
     <string name="export_format_aegis">Aegis (.JSON)</string>
     <string name="export_format_google_auth_uri">Fichier texte (.TXT)</string>
     <string name="export_format_html">Page Web (.HTML)</string>
@@ -126,7 +135,9 @@
     <string name="set_password_confirm">Veuillez confirmer le mot de passe</string>
     <string name="invalid_password">Le mot de passe est incorrect</string>
     <string name="invalidated_biometrics">Un changement dans les paramètres de sécurité de votre appareil a été détecté. Veuillez aller dans \"Aegis -&gt; Paramètres -&gt; Sécurité -&gt; Déverrouillage biométrique\" pour désactiver et réactiver le déverrouillage biométrique.</string>
-    <string name="password_reminder">Veuillez saisir votre mot de passe. Nous vous demandons de le faire de temps en temps afin que vous ne l\'oubliez pas.</string>
+    <string name="password_reminder">Veuillez saisir votre mot de passe. Nous vous demandons de le faire de temps en temps afin que vous ne l\'oubliiez pas.</string>
+    <string name="password_reminder_dialog_title">Déverrouillage biométrique par défaut</string>
+    <string name="password_reminder_dialog_message">Nous vous demandons de temps en temps de saisir votre mot de passe à la place afin de nous assurer que vous ne ne l\'avez pas oublié et que l\'accès à votre coffre-fort ne soit pas bloqué. Après avoir saisi votre mot de passe une fois, Aegis utilisera de nouveau le déverrouillage biométrique par défaut jusqu\'à ce qu\'il soit temps pour un autre rappel de mot de passe.</string>
     <string name="password_reminder_freq_never">Jamais</string>
     <string name="password_reminder_freq_weekly">Toutes les semaines</string>
     <string name="password_reminder_freq_biweekly">Toutes les deux semaines</string>
@@ -177,7 +188,7 @@
     <string name="importing_icon_pack">Import du pack d\'icônes</string>
     <string name="delete_entry">Supprimer entrée</string>
     <string name="delete_entry_description">Êtes-vous sûr de vouloir supprimer cette entrée ?</string>
-    <string name="delete_entry_explanation">Cette action ne désactive pas l\'autenthification à deux facteurs (2FA) pour :\n<b>%s</b>\n\nPour éviter de perdre l\'accès, assurez-vous que vous avez désactivé la 2FA ou que vous avez un autre moyen de générer des codes pour ce service.</string>
+    <string name="delete_entry_explanation">Cette action ne désactive pas l\'authentification à deux facteurs (2FA) pour :\n<b>%s</b>\n\nPour éviter de perdre l\'accès, assurez-vous que vous avez désactivé la 2FA ou que vous avez un autre moyen de générer des codes pour ce service.</string>
     <string name="delete_entries">Supprimer les entrées</string>
     <plurals name="delete_entries_description">
         <item quantity="one">Êtes-vous sûr de vouloir supprimer %d entrée ?</item>
@@ -187,7 +198,7 @@
     <string name="discard_changes_description">Vos modifications n\'ont pas été enregistrées</string>
     <string name="saving_profile_error">Erreur lors de l\'enregistrement du profil</string>
     <string name="welcome">Bienvenue</string>
-    <string name="app_description">Aegis est une application d\'autenthification à deux facteurs (2FA) gratuite, sécurisée et open source</string>
+    <string name="app_description">Aegis est une application d\'authentification à deux facteurs (2FA) gratuite, sécurisée et open source</string>
     <string name="setup_completed">Configuration terminée</string>
     <string name="setup_completed_description">Aegis a été configuré et est prêt à être utilisé.</string>
     <string name="vault_not_found">Coffre-fort introuvable, lancement de la configuration…</string>
@@ -228,7 +239,9 @@
     <string name="choose_totpauth_importer">Cette sauvegarde TOTP Authenticator est-elle chiffrée avec un mot de passe ?</string>
     <string name="choose_application">Sélectionnez l\'application depuis laquelle vous souhaitez importer</string>
     <string name="choose_theme">Sélectionner le thème que vous désirez</string>
+    <string name="choose_account_name_position">Sélectionner la position que vous désirez pour le nom de compte</string>
     <string name="choose_view_mode">Sélectionner le mode d\'affichage que vous désirez</string>
+    <string name="choose_copy_behavior">Sélectionner le comportement de copie que vous désirez</string>
     <string name="parsing_file_error">Une erreur est survenue en essayant d\'analyser le fichier</string>
     <string name="file_not_found">Erreur : Fichier introuvable</string>
     <string name="reading_file_error">Une erreur est survenue en essayant de lire le fichier</string>
@@ -251,7 +264,7 @@
     <string name="encryption_enable_biometrics_error">Une erreur est survenue lors de l\'activation du déverrouillage biométrique. Certains appareils ont de mauvaises implémentations de l\'authentification biométrique et il est probable que le vôtre soit l\'un d\'entre eux. Envisagez plutôt de passer à une configuration avec mot de passe uniquement.</string>
     <string name="no_cameras_available">Aucun appareil photo disponible</string>
     <string name="read_qr_error">Une erreur est survenue en essayant de lire le code QR</string>
-    <string name="read_qr_error_phonefactor">Aegis n\'est pas compatible avec l\'algorithme d\'autenthification à deux facteurs (2FA) propriétaire de Microsoft. Veuillez vous assurer de sélectionner \"Configurer l\'application sans notification\" lors de la configuration de la 2FA dans Office 365.</string>
+    <string name="read_qr_error_phonefactor">Aegis n\'est pas compatible avec l\'algorithme d\'authentification à deux facteurs (2FA) propriétaire de Microsoft. Veuillez vous assurer de sélectionner \"Configurer l\'application sans notification\" lors de la configuration de la 2FA dans Office 365.</string>
     <string name="partial_google_auth_import">Export Google Authenticator incomplet détecté</string>
     <string name="partial_google_auth_import_warning">Certains codes QR sont manquants dans votre export. Les codes suivants n\'ont pas été trouvés :\n\n<b>%s</b>\n\nVous pouvez continuer à importer cet export partiel, mais nous vous recommandons de réessayer avec tous les codes QR afin de ne risquer de perdre l\'accès à aucun jeton.</string>
     <string name="missing_qr_code_descriptor">• code QR %d</string>
@@ -292,8 +305,9 @@
     <string name="pref_highlight_entry_summary">Rendre les jetons plus faciles à distinguer les uns des autres en les surlignant temporairement lorsqu\'ils sont appuyés</string>
     <string name="pref_minimize_on_copy_title">Minimiser lors de la copie</string>
     <string name="pref_minimize_on_copy_summary">Minimiser l\'application après avoir copié un jeton</string>
+    <string name="pref_copy_behavior_title">Copier les jetons dans le presse-papier</string>
     <string name="pref_pause_entry_title">Geler les jetons lorsqu\'ils sont appuyés</string>
-    <string name="pref_pause_entry_summary">Mettre en pause l\'actualisation automatique des jetons en appuyant dessus. Les jetons ne seront plus mis à jour tant qu\'ils seront ciblés. Nécessite « Surligner les jetons lorsqu\'ils sont appuyés » ou « Appuyer pour révéler ».</string>
+    <string name="pref_pause_entry_summary">Mettre en pause l\'actualisation automatique des jetons en appuyant dessus. Les jetons ne seront plus mis à jour tant qu\'ils seront ciblés. Nécessite « Surligner les jetons lorsqu\'ils sont appuyés » ou « Appuyer pour révéler ».</string>
     <string name="pin_keyboard_description">Saisissez votre mot de passe pour activer le clavier PIN. Notez que cela ne fonctionne que si votre mot de passe est composé uniquement de chiffres</string>
     <string name="pin_keyboard_error">Erreur lors de l\'activation du clavier PIN</string>
     <string name="pin_keyboard_error_description">Il n\'est pas possible de définir un clavier PIN. Votre mot de passe ne doit se composer que de chiffres.</string>
@@ -307,11 +321,12 @@
     <string name="normal_viewmode_title">Normal</string>
     <string name="compact_mode_title">Compact</string>
     <string name="small_mode_title">Petit</string>
+    <string name="tiles_mode_title">Tuiles</string>
     <string name="unknown_issuer">Émetteur inconnu</string>
     <string name="unknown_account_name">Nom de compte inconnu</string>
     <plurals name="import_error_dialog">
-        <item quantity="one">Aegis n\'a pas pu importer %d jeton. Ce jeton sera ignoré. Appuyez sur « détails» pour voir plus d\'informations sur les erreurs.</item>
-        <item quantity="other">Aegis n\'a pas pu importer %d jetons. Ces jetons seront ignorés. Appuyez sur \'details\' pour voir plus d\'informations sur les erreurs.</item>
+        <item quantity="one">Aegis n\'a pas pu importer %d jeton. Ce jeton sera ignoré. Appuyez sur « détails » pour voir plus d\'informations sur les erreurs.</item>
+        <item quantity="other">Aegis n\'a pas pu importer %d jetons. Ces jetons seront ignorés. Appuyez sur « détails » pour voir plus d\'informations sur les erreurs.</item>
     </plurals>
     <string name="unable_to_process_deeplink">Impossible de traiter le lien profond</string>
     <string name="unable_to_read_qrcode_file">Impossible de lire et de traiter le code QR depuis le fichier : %s.</string>
@@ -360,6 +375,10 @@
     </string>
     <string name="backup_reminder_bar_message">        Les modifications ne sont pas sauvegardées
     </string>
+    <string name="backup_reminder_bar_dialog_title">Les modifications ne sont pas sauvegardées</string>
+    <string name="backup_reminder_bar_dialog_summary">        Les changements récents dans le coffre-for n\'ont pas encore été sauvegardés. Il est important de réaliser des sauvegardes régulières pour éviter de perdre l\'accès à vos comptes. Veuillez envisager de configurer des sauvegardes automatiques dans le menu Paramètres.
+    </string>
+    <string name="backup_reminder_bar_dialog_accept">Configurer les sauvegardes</string>
     <string name="backup_plaintext_export_warning"><b>Le coffre-fort a récemment été exporté en texte brut</b></string>
     <string name="pref_show_plaintext_warning_hint">Ne plus afficher cet avertissement</string>
     <string name="backup_plaintext_warning_explanation">Cet avertissement s\'affiche parce que vous avez récemment exporté une copie non chiffrée du coffre-fort. Pour maintenir la sécurité de vos jetons, nous vous recommandons de supprimer ce fichier une fois que vous n\'en aurez plus besoin.</string>
@@ -410,6 +429,7 @@
     <string name="importer_help_2fas">Fournir une sauvegarde 2FAS Authenticator.</string>
     <string name="importer_help_aegis">Fournir un export/sauvegarde Aegis.</string>
     <string name="importer_help_authenticator_plus">Fournir un export Authenticator Plus obtenu via <b>Paramètres -&gt; Sauvegarde &amp; Restauration -&gt; Exporter en tant que texte et HTML</b>.</string>
+    <string name="importer_help_authenticator_pro">Fournir un export Authenticator Pro obtenu via <b>Paramètres -&gt; Sauvegarde -&gt; Sauvegarder en tant que fichier chiffré (recommandé)</b>.</string>
     <string name="importer_help_authy">Fournir une copie de <b>/data/com.authy.authy/shared_prefs/com.authy.storage.tokens.authenticator.xml</b>, situé dans le répertoire de stockage interne d\'Authy.</string>
     <string name="importer_help_andotp">Fournir un export/sauvegarde andOTP.</string>
     <string name="importer_help_bitwarden">Fournir un export/sauvegarde Bitwarden. Les fichiers chiffrés ne sont pas pris en charge.</string>
@@ -433,6 +453,12 @@
     <string name="pref_grouping_size_two">Groupes de 2</string>
     <string name="pref_grouping_size_three">Groupes de 3</string>
     <string name="pref_grouping_size_four">Groupes de 4</string>
+    <string name="pref_copy_behavior_never">Jamais</string>
+    <string name="pref_copy_behavior_single_tap">Appui simple</string>
+    <string name="pref_copy_behavior_double_tap">Appui double</string>
+    <string name="pref_account_name_position_hidden">Masqué</string>
+    <string name="pref_account_name_position_end">À côté de l\'émetteur</string>
+    <string name="pref_account_name_position_below">En dessous de l\'émetteur</string>
     <plurals name="time_elapsed_seconds">
         <item quantity="one">Il y a %d seconde</item>
         <item quantity="other">Il y a %d secondes</item>

@@ -39,6 +39,10 @@
     <string name="pref_show_icons_summary">Her girdinin yanında simgeleri göster</string>
     <string name="pref_code_group_size_title">Kod hanelerinin gruplanması</string>
     <string name="pref_code_group_size_summary">Kodların kaç basamakla gruplanacağını seçin</string>
+    <string name="pref_account_name_position_title">Hesap adını göster</string>
+    <string name="pref_shared_issuer_account_name_title">Hesap adını yalnızca gerektiğinde göster</string>
+    <string name="pref_shared_issuer_account_name_summary">Hesap adlarını yalnızca aynı sağlayıcıyı paylaştıklarında göster. Diğer hesap adları gizlenecektir.</string>
+    <string name="pref_account_name_position_summary_override">Bu ayar, döşeme görüntüleme modu tarafından geçersiz kılınır. Hesap adı her zaman kartı veren kuruluşun altında gösterilecektir.</string>
     <string name="pref_import_file_title">Dosyadan içeriye aktar</string>
     <string name="pref_import_file_summary">Veritabanını dosyadan içeriye aktar</string>
     <string name="pref_android_backups_title">Android bulut yedekleme</string>
@@ -46,6 +50,10 @@
     <string name="pref_android_backups_hint"><i>Yukarıdaki ayardan bağımsız olarak, cihazdan cihaza (D2D) yedeklemelere her zaman izin verilir.</i></string>
     <string name="pref_backups_title">Otomatik olarak kasayı yedekle</string>
     <string name="pref_backups_summary">Kasanın yedeğini harici depolamaya kaydet. Sadece şifrelenmiş kasalarda desteklenir.</string>
+    <string name="pref_backups_reminder_title">Yedekleme hatırlatıcı</string>
+    <string name="pref_backups_reminder_summary">En son değişikliklerinizi yedeklemediyseniz kasanızı yedeklemeniz için bir hatırlatıcı gösterir.</string>
+    <string name="pref_backups_reminder_dialog_title">Yedekleme hatırlatıcıyı devre dışı bırak</string>
+    <string name="pref_backups_reminder_dialog_summary">Bu hatırlatıcıyı devre dışı bırakmak, Aegis\'in henüz yedeklenmemiş değişiklikleriniz olup olmadığını size söylemeyeceği anlamına gelir. Bu sizi belirteçlerinize erişimi kaybetme riskiyle karşı karşıya bırakır. Hatırlatıcıyı devre dışı bırakmak istediğinizden emin misiniz?</string>
     <string name="pref_backups_location_title">Yedek dosyaların kaydedileceği klasör</string>
     <string name="pref_backups_location_summary">Yedekler şurada depolanacak</string>
     <string name="pref_backups_trigger_title">Yedeklemeyi tetikle</string>
@@ -96,6 +104,7 @@
     <string name="export_help">Bu işlem kasayı Aegis\'in dahili deposundan dışarı aktaracaktır. Lütfen dışa aktarmak istediğiniz biçimi seçiniz:</string>
     <string name="export_warning_unencrypted">Aegis kasanızın şifrelenmemiş bir kopyasını dışa aktarmak üzeresiniz. <b>Bu işlem tavsiye edilmez</b>.</string>
     <string name="export_warning_password">Dışa aktarmalar, Güvenlik ayarlarında yapılandırılan ayrı bir parola kullanılarak şifrelenir.</string>
+    <string name="understand_risk_accept">Riski göze alıyorum</string>
     <string name="export_format_aegis">Aegis (.JSON)</string>
     <string name="export_format_google_auth_uri">Metin belgesi (.TXT)</string>
     <string name="export_format_html">Web sayfası (.HTML)</string>
@@ -126,7 +135,9 @@
     <string name="set_password_confirm">Lütfen parolayı doğrulayın</string>
     <string name="invalid_password">Parola hatalı</string>
     <string name="invalidated_biometrics">Cihazınızın güvenlik ayarlarında bir değişim tespit edildi. Lütfen \"Aegis -&gt; Ayarlar -&gt; Güvenlik &gt; Biyometrik kilit açma\" menüsüne gidip biyometrik kilit açmayı devre dışı bırakın ve tekrardan aktifleştirin.</string>
-    <string name="password_reminder">Parolanızı en son gireli bayağı zaman geçti. Halen hatırlıyor musunuz?</string>
+    <string name="password_reminder">Lütfen şifrenizi giriniz. Unutmamanız için ara sıra sizden bunu yapmanızı istiyoruz.</string>
+    <string name="password_reminder_dialog_title">Varsayılan olarak biyometrik kilit açma</string>
+    <string name="password_reminder_dialog_message">Unutmadığınızdan ve kasanızın dışında kalmadığınızdan emin olmak için ara sıra şifrenizi girmenizi isteriz. Şifrenizi bir kez girdikten sonra Aegis, başka bir şifre hatırlatma zamanı gelene kadar varsayılan olarak biyometrik kilit açma moduna geri dönecektir.</string>
     <string name="password_reminder_freq_never">Asla</string>
     <string name="password_reminder_freq_weekly">Haftada bir</string>
     <string name="password_reminder_freq_biweekly">İki haftada bir</string>
@@ -228,7 +239,9 @@
     <string name="choose_totpauth_importer">Bu TOTP Authenticator yedeği bir parola ile şifrelenmiş miydi?</string>
     <string name="choose_application">Verileri içeriye aktarmak istediğiniz uygulamayı seçin</string>
     <string name="choose_theme">İstediğiniz temayı seçin</string>
+    <string name="choose_account_name_position">İstediğiniz hesap adı pozisyonunu seçin</string>
     <string name="choose_view_mode">İstediğiniz görünüm biçimini seçin</string>
+    <string name="choose_copy_behavior">İstediğiniz kopyalama davranışını seçin</string>
     <string name="parsing_file_error">Dosyayı anlamlandırmaya çalışırken hata meydana geldi</string>
     <string name="file_not_found">Hata: Dosya bulunamadı</string>
     <string name="reading_file_error">Dosyayı okumaya çalışırken bir hata meydana geldi</string>
@@ -292,6 +305,7 @@
     <string name="pref_highlight_entry_summary">Kodların birbirlerinden ayırt edilmelerini kolaylaştırmak için geçici olarak belirginleştir</string>
     <string name="pref_minimize_on_copy_title">Kopyalarken simge durumuna küçült</string>
     <string name="pref_minimize_on_copy_summary">Bir anahtarı kopyaladıktan sonra uygulamayı simge durumuna küçültün</string>
+    <string name="pref_copy_behavior_title">Erişim anahtarlarını panoya kopyala</string>
     <string name="pref_pause_entry_title">Dokunulduğunda kodların yenilenmesini önle</string>
     <string name="pref_pause_entry_summary">Kodlara dokunarak yenilenmelerini önleyin. Odakta oldukları sürece kodlar yenilenmeyecektir. \"Dokunulan kodları belirt\" veya \"Görmek için dokunun\" açık olmasını gerektirir.</string>
     <string name="pin_keyboard_description">PIN klavyesini etkinleştirmek için şifrenizi girin. Bu şifreniz yalnızca rakamlardan oluşuyorsa çalışır</string>
@@ -307,6 +321,7 @@
     <string name="normal_viewmode_title">Normal</string>
     <string name="compact_mode_title">Sıkı</string>
     <string name="small_mode_title">Küçük</string>
+    <string name="tiles_mode_title">Kutucuklar</string>
     <string name="unknown_issuer">Bilinmeyen sağlayıcı</string>
     <string name="unknown_account_name">Bilinmeyen hesap adı</string>
     <plurals name="import_error_dialog">
@@ -361,6 +376,10 @@
     </string>
     <string name="backup_reminder_bar_message">        Değişiklikler yedeklenmedi
     </string>
+    <string name="backup_reminder_bar_dialog_title">Değişiklikler yedeklenmedi</string>
+    <string name="backup_reminder_bar_dialog_summary">        Kasadaki son değişiklikler henüz yedeklenmedi. Hesaplarınıza erişimi kaybetmemek için düzenli olarak yedek almanız önemlidir. Lütfen ayarlar menüsünde otomatik yedeklemeleri ayarlamayı dikkate alın.
+    </string>
+    <string name="backup_reminder_bar_dialog_accept">Yedeklemeleri ayarla</string>
     <string name="backup_plaintext_export_warning"><b>Kasa yakın zamanda düz metin olarak dışa aktarıldı</b></string>
     <string name="pref_show_plaintext_warning_hint">Bu uyarıyı bir daha gösterme</string>
     <string name="backup_plaintext_warning_explanation">Bu uyarı kısa süre önce kasanın şifrelenmemiş bir kopyasını dışa aktardığınız için gösterilir. Tokenlerinizin güvenliğini korumak için artık ihtiyaç duymadığınızda bu dosyayı silmenizi öneririz.</string>
@@ -411,6 +430,7 @@
     <string name="importer_help_2fas">2FAS Authenticator dışa aktarım dosyasını sağlayın.</string>
     <string name="importer_help_aegis">Aegis dışarı aktarım/yedek dosyası sağlayın.</string>
     <string name="importer_help_authenticator_plus"><b>Ayarlar -&gt; Yedekleme &amp; Geri Yükleme -&gt; Metin ya da HTML olarak dışa aktar</b> yolunu izleyerek bir Authenticator Plus dışa aktarım dosyası sağlayın.</string>
+    <string name="importer_help_authenticator_pro"><b>Ayarlar -&gt;; Yedekle -&gt;; Şifreli dosyaya yedekle (önerilir)</b> aracılığıyla elde edilen bir Authenticator Pro dışa aktarma dosyası sağlar.</string>
     <string name="importer_help_authy"><b>/data/data/com.authy.authy/shared_prefs/com.authy.storage.tokens.authenticator.xml</b>dosyasını sağlayın, Authy\'nin dahili depolama konumunda bulunabilir.</string>
     <string name="importer_help_andotp">andOTP dışa aktarım dosyasını sağlayın.</string>
     <string name="importer_help_bitwarden">Bitwarden\'a ait bir yedekleme/aktarma dosyası sağlayın. Şifrelenmiş dosyalar desteklenmiyor.</string>
@@ -434,6 +454,12 @@
     <string name="pref_grouping_size_two">2\'li grup</string>
     <string name="pref_grouping_size_three">3\'lü grup</string>
     <string name="pref_grouping_size_four">4\'lü grup</string>
+    <string name="pref_copy_behavior_never">Asla</string>
+    <string name="pref_copy_behavior_single_tap">Tek dokunuş</string>
+    <string name="pref_copy_behavior_double_tap">Çift dokunuş</string>
+    <string name="pref_account_name_position_hidden">Gizli</string>
+    <string name="pref_account_name_position_end">Yayınlayanın yanında</string>
+    <string name="pref_account_name_position_below">Yayınlayanın altında</string>
     <plurals name="time_elapsed_seconds">
         <item quantity="one">%d saniye önce</item>
         <item quantity="other">%d saniye önce</item>

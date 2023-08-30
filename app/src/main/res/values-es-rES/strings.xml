@@ -39,6 +39,7 @@
     <string name="pref_show_icons_summary">Mostrar iconos al lado de cada entrada</string>
     <string name="pref_code_group_size_title">Agrupación de los dígitos del código</string>
     <string name="pref_code_group_size_summary">Seleccione el número de dígitos por los que agrupar los códigos</string>
+    <string name="pref_account_name_position_title">Mostrar el nombre de la cuenta</string>
     <string name="pref_import_file_title">Importar desde un archivo</string>
     <string name="pref_import_file_summary">Importar tokens desde un archivo</string>
     <string name="pref_android_backups_title">Copias de seguridad en la nube de Android</string>
@@ -46,6 +47,10 @@
     <string name="pref_android_backups_hint"><i>Las copias de seguridad de dispositivo a dispositivo (D2D) siempre están permitidas, independientemente de la configuración anterior</i></string>
     <string name="pref_backups_title">Respaldar automáticamente la bóveda</string>
     <string name="pref_backups_summary">Crear automáticamente una copia de seguridad de la bóveda en un almacenamiento externo cuando se produzcan cambios. Esto solo está soportado para las bóvedas cifradas.</string>
+    <string name="pref_backups_reminder_title">Recordatorio de copia de seguridad</string>
+    <string name="pref_backups_reminder_summary">Mostrar un recordatorio para hacer una copia de seguridad de tu bóveda en caso de que no hayas hecho una copia de tus últimos cambios.</string>
+    <string name="pref_backups_reminder_dialog_title">Desactivar recordatorio de copia de seguridad</string>
+    <string name="pref_backups_reminder_dialog_summary">Deshabilitar este recordatorio significa que Aegis no te dirá si tienes o no cambios que aún no están respaldados. Esto te pone en riesgo de perder el acceso a tus tokens. ¿Estás seguro de que quieres desactivar el recordatorio?</string>
     <string name="pref_backups_location_title">Directorio para los archivos de copia de seguridad</string>
     <string name="pref_backups_location_summary">Las copias de seguridad se guardarán en</string>
     <string name="pref_backups_trigger_title">Lanzar una copia de seguridad</string>
@@ -96,6 +101,7 @@
     <string name="export_help">Esta acción exportará la bóveda fuera del almacenamiento interno de Aegis. Seleccione el formato al que desea exportar:</string>
     <string name="export_warning_unencrypted">Está a punto de exportar una copia sin cifrar de su bóveda de Aegis. <b>Esto no es recomendable</b>.</string>
     <string name="export_warning_password">Las exportaciones se cifran usando una contraseña separada configurada en la configuración de seguridad.</string>
+    <string name="understand_risk_accept">Entiendo el riesgo</string>
     <string name="export_format_aegis">Aegis (.JSON)</string>
     <string name="export_format_google_auth_uri">Archivo de texto (.TXT)</string>
     <string name="export_format_html">Página web (.HTML)</string>
@@ -126,7 +132,9 @@
     <string name="set_password_confirm">Por favor confirme la contraseña</string>
     <string name="invalid_password">La contraseña es incorrecta</string>
     <string name="invalidated_biometrics">Se ha detectado un cambio en la configuración de seguridad de su dispositivo. Por favor, vaya a \"Aegis -&gt; Configuración -&gt; Seguridad -&gt; Desbloqueo biométrico\" para desactivar y reactivar el desbloqueo biométrico.</string>
-    <string name="password_reminder">Por favor introduzca su contraseña. Le pediremos que lo haga ocasionalmente para que no la olvide.</string>
+    <string name="password_reminder">Por favor, introduzca su contraseña. Le pediremos que lo haga ocasionalmente para que no la olvide.</string>
+    <string name="password_reminder_dialog_title">Desbloqueo biométrico por defecto</string>
+    <string name="password_reminder_dialog_message">De vez en cuando, le pedimos que introduzca su contraseña para asegurarse de que no la ha olvidado y no se quede sin acceso a su bóveda. Después de introducir su contraseña una vez, Aegis volverá al desbloqueo biométrico hasta que sea hora de otro recordatorio de contraseña.</string>
     <string name="password_reminder_freq_never">Nunca</string>
     <string name="password_reminder_freq_weekly">Cada semana</string>
     <string name="password_reminder_freq_biweekly">Cada dos semanas</string>
@@ -228,7 +236,9 @@
     <string name="choose_totpauth_importer">¿Está cifrada con una contraseña esta copia de seguridad de TOTP Authenticator?</string>
     <string name="choose_application">Seleccione la aplicación desde la que desea importar</string>
     <string name="choose_theme">Seleccione su tema deseado</string>
+    <string name="choose_account_name_position">Seleccione la posición del nombre de la cuenta deseada</string>
     <string name="choose_view_mode">Seleccione su modo de visualización deseado</string>
+    <string name="choose_copy_behavior">Seleccione el comportamiento de copia deseado</string>
     <string name="parsing_file_error">Se ha producido un error procesando el archivo</string>
     <string name="file_not_found">Error: Archivo no encontrado</string>
     <string name="reading_file_error">Se ha producido un error tratando de leer el archivo</string>
@@ -292,6 +302,7 @@
     <string name="pref_highlight_entry_summary">Hace que los tokens sean más fáciles de distinguir entre ellos resaltándolos temporalmente tras ser pulsados</string>
     <string name="pref_minimize_on_copy_title">Minimizar al copiar</string>
     <string name="pref_minimize_on_copy_summary">Minimiza la app después de copiar un token</string>
+    <string name="pref_copy_behavior_title">Copiar tokens al portapapeles</string>
     <string name="pref_pause_entry_title">Congelar tokens al tocarlos</string>
     <string name="pref_pause_entry_summary">Pausa la recarga automática de los tokens tocándolos. Las tokens no se actualizarán mientras estén enfocadas. Requiere \"Resaltar tokens al pulsarlos\" o \"Pulsar para mostrar\".</string>
     <string name="pin_keyboard_description">Introduzca su contraseña para activar el teclado PIN. Tenga en cuenta que esto solo funciona si su contraseña contiene únicamente números</string>
@@ -361,6 +372,10 @@
     </string>
     <string name="backup_reminder_bar_message">        Los cambios no están respaldados
     </string>
+    <string name="backup_reminder_bar_dialog_title">Los cambios no están respaldados</string>
+    <string name="backup_reminder_bar_dialog_summary">        Los cambios recientes en la bóveda no han sido respaldados aún. Es importante hacer copias de seguridad regularmente para evitar perder el acceso a tus cuentas. Por favor, considera configurar copias de seguridad automáticas en el menú de ajustes.
+    </string>
+    <string name="backup_reminder_bar_dialog_accept">Configurar copias de seguridad</string>
     <string name="backup_plaintext_export_warning"><b>La bóveda fue exportada recientemente en texto plano</b></string>
     <string name="pref_show_plaintext_warning_hint">No volver a mostrar esta advertencia</string>
     <string name="backup_plaintext_warning_explanation">Esta advertencia se muestra porque recientemente exportaste una copia no encriptada de la bóveda. Para mantener la seguridad de tus tokens, recomendamos eliminar este archivo cuando deje de ser necesario.</string>
@@ -411,6 +426,7 @@
     <string name="importer_help_2fas">Suministre un archivo exportado de 2FAS Authenticator.</string>
     <string name="importer_help_aegis">Suministre un archivo exportado/copia de seguridad de Aegis.</string>
     <string name="importer_help_authenticator_plus">Suministre un archivo exportado de Authenticator Plus obtenido a través de <b>Ajustes -&gt; Copias de seguridad -&gt; Exportar como texto y HTML</b>.</string>
+    <string name="importer_help_authenticator_pro">Suministra un archivo de exportación de Authenticator Pro obtenido a través de <b>Configuración -&gt; Copias de seguridad -&gt; Copia de seguridad en archivo cifrado (recomendado)</b>.</string>
     <string name="importer_help_authy">Suministre una copia de <b>/data/data/com.authy.authy/shared_prefs/com.authy.storage.tokens.authenticator.xml</b>, localizado en el directorio de almacenamiento interno de Authy.</string>
     <string name="importer_help_andotp">Suministre un archivo exportado/copia de seguridad de andOTP.</string>
     <string name="importer_help_bitwarden">Suministra un archivo de exportación/copia de seguridad de Bitwarden. Los archivos encriptados no están soportados.</string>
@@ -434,6 +450,12 @@
     <string name="pref_grouping_size_two">Grupos de 2</string>
     <string name="pref_grouping_size_three">Grupos de 3</string>
     <string name="pref_grouping_size_four">Grupos de 4</string>
+    <string name="pref_copy_behavior_never">Nunca</string>
+    <string name="pref_copy_behavior_single_tap">Un toque</string>
+    <string name="pref_copy_behavior_double_tap">Dos toques</string>
+    <string name="pref_account_name_position_hidden">Oculto</string>
+    <string name="pref_account_name_position_end">Junto al emisor</string>
+    <string name="pref_account_name_position_below">Debajo del emisor</string>
     <plurals name="time_elapsed_seconds">
         <item quantity="one">Hace %d segundo</item>
         <item quantity="other">Hace %d segundos</item>

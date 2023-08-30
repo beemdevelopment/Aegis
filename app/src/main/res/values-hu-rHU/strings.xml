@@ -35,7 +35,10 @@
     <string name="pref_select_theme_title">Téma</string>
     <string name="pref_view_mode_title">Nézetmód</string>
     <string name="pref_lang_title">Nyelv</string>
+    <string name="pref_show_icons_title">Ikonok megjelenítése</string>
+    <string name="pref_show_icons_summary">Ikonok megjelenítése minden elem mellett</string>
     <string name="pref_code_group_size_title">Kód számjegyeinek csoportosítása</string>
+    <string name="pref_code_group_size_summary">Válasszon csoportosítási számot</string>
     <string name="pref_import_file_title">Importálás fájlból</string>
     <string name="pref_import_file_summary">Tokenek importálása fájlból</string>
     <string name="pref_android_backups_title">Android felhő mentések</string>
@@ -43,6 +46,10 @@
     <string name="pref_android_backups_hint"><i>Eszközről-eszközre (D2) mentések mindig engedélyezettek, a fenti beállítástól függetlenül</i></string>
     <string name="pref_backups_title">A széf automatikus mentése</string>
     <string name="pref_backups_summary">Biztonsági mentést készít a széfről a külső tárolón. Ez csak titkosított széfek esetén támogatott.</string>
+    <string name="pref_backups_reminder_title">Biztonsági mentés emlékeztető</string>
+    <string name="pref_backups_reminder_summary">Emlékeztető mutatása, ha az utolsó változtatásokról nem készült biztonsági mentés.</string>
+    <string name="pref_backups_reminder_dialog_title">Biztonsági mentés emlékeztetés kikapcsolása</string>
+    <string name="pref_backups_reminder_dialog_summary">Emlékeztető kikapcsolása után Aegis nem fogja jelezni hogy a változásokról készült-e biztonsági mentés, ezzel kockáztatva az adatvesztést. Biztos hogy ki legyen kapcsolva az emlékeztetés?</string>
     <string name="pref_backups_location_title">A biztonsági mentések könyvtára</string>
     <string name="pref_backups_location_summary">A biztonsági mentések itt lesznek tárolva:</string>
     <string name="pref_backups_trigger_title">Biztonsági mentés készítése</string>
@@ -53,6 +60,13 @@
     <string name="pref_export_title">Exportálás</string>
     <string name="pref_export_summary">A széf exportálása</string>
     <string name="pref_password_reminder_title">Jelszóemlékeztető</string>
+    <string name="pref_google_auth_export_title">Exportálás Google Authenticator-ba</string>
+    <string name="pref_google_auth_export_descriptor">Google Authenticator kompatibilis export QR kód generálása</string>
+    <string name="pref_google_auth_export_no_data">Nincs exportálható adat</string>
+    <plurals name="pref_google_auth_export_incompatible_entries">
+        <item quantity="one">%d inkompatibilis elem átugrása</item>
+        <item quantity="other">%d inkompatibilis elemek kihagyva</item>
+    </plurals>
     <string name="pref_password_reminder_summary">Mutasson %s időközönként emlékeztetőt a jelszó újra megadásáról, így nem felejti el.</string>
     <string name="pref_password_reminder_summary_disabled">Kikapcsolva</string>
     <string name="pref_secure_screen_title">Képernyőbiztonság</string>
@@ -68,6 +82,10 @@
     <string name="pref_auto_lock_type_minimize">Az app minimalizálása</string>
     <string name="pref_auto_lock_type_device_lock">Az eszköz zárolásra kerül</string>
     <string name="pref_backup_password_category">Biztonsági mentés &amp; exportálás</string>
+    <string name="pref_backup_password_title">Biztonsági mentés és export jelszavának leválasztása</string>
+    <string name="pref_backup_password_summary">Ha aktív, az alkalmazás feloldásához használt jelszó már nem használható a biztonsági mentések és exportok visszafejtésére.</string>
+    <string name="pref_backup_password_change_title">Biztonsági mentés és export jelszavának módosítása</string>
+    <string name="pref_backup_password_change_summary">Új jelszó megadása a széf titkosításához a biztonsági mentés és export során.</string>
     <string name="pref_encryption_title">Titkosítás</string>
     <string name="pref_encryption_summary">A széf titkosítása, és jelszavas vagy biometrikus feloldás beállítása</string>
     <string name="pref_biometrics_title">Biometrikus feloldás</string>
@@ -77,9 +95,20 @@
     <string name="export_encrypted">A széf titkosítása</string>
     <string name="export_help">Ezzel ki tudja exportálni az Aegis belső széf tárolóját. Válassza ki, milyen formátumú legyen az export:</string>
     <string name="export_warning_unencrypted">Arra készül, hogy egy titkosítatlan Aegis széfet exportáljon. <b>Ez nem ajánlott</b>.</string>
+    <string name="export_warning_password">Exportok titkosítása egy külön jelszóval történik, ami a Biztonsági beállítások allatt megadható.</string>
+    <string name="understand_risk_accept">Megértettem a kockázatot</string>
     <string name="export_format_aegis">Aegis (.JSON)</string>
     <string name="export_format_google_auth_uri">Szöveges fájl (.TXT)</string>
+    <string name="export_format_html">Weboldal (.HTML)</string>
     <string name="export_format_hint">Export formátuma</string>
+    <string name="export_all_groups">Összes csoport exportálása</string>
+    <string name="export_choose_groups">Exportálandó csoportok kiválasztása</string>
+    <plurals name="export_groups_selected_count">
+        <item quantity="one">%d csoport kiválasztva</item>
+        <item quantity="other">%d csoport kiválasztva</item>
+    </plurals>
+    <string name="export_no_groups_selected">Nincs exportálandó csoport kiválasztva</string>
+    <string name="export_html_title" context="The title of an HTML export document">Aegis Authenticator Export</string>
     <string name="choose_authentication_method">Biztonság</string>
     <string name="authentication_method_explanation">Az Aegis egy biztonságközpontú 2FA alkalmazás. A tokenek egy széfben vannak tárolva, mely akár tetszőleges jelszóval titkosítható. Ha egy támadó megszerzi a titkosított széffájlt, a jelszó ismerete nélkül akkor sem fog tudni hozzáférni a tartalmához.\n\nElőre ezt a beállítást választottuk, mert úgy véljük ez lenne a legmegfelelőbb az eszköze számára.</string>
     <string name="authentication_method_none">Nincs</string>
@@ -98,7 +127,9 @@
     <string name="set_password_confirm">Erősítse meg a jelszót</string>
     <string name="invalid_password">Helytelen jelszó</string>
     <string name="invalidated_biometrics">Változás történt a készüléke biztonsági beállításaiban. Menjen az \"Aegis -&gt; Beállítások -&gt; Biztonság -&gt; Biometrikus feloldás\" részbe, hogy kikapcsolja majd újra bekapcsolja a biometriát.</string>
-    <string name="password_reminder">Egy ideje nem írta be a jelszavát. Emlékszik még rá?</string>
+    <string name="password_reminder">Kérem írja be a jelszavát. Időnként megkérjük erre, hogy biztos emlékezzen rá.</string>
+    <string name="password_reminder_dialog_title">Biometrikus feloldás alapértelmezetten</string>
+    <string name="password_reminder_dialog_message">Időnként bekérjük a jelszavát, hogy ne felejtse el és ne zárja ki magát. Miután sikeres az ellenőrzés az Aegis visszaáll az alapértelmezett biometrikus feloldásra a következő ellenőrzésig.</string>
     <string name="password_reminder_freq_never">Soha</string>
     <string name="password_reminder_freq_weekly">Hetente</string>
     <string name="password_reminder_freq_biweekly">Kéthetente</string>
@@ -124,6 +155,9 @@
     <string name="set_up_biometric">Feloldás beállítása biometrikus adatokkal</string>
     <string name="copy">Másolás</string>
     <string name="edit">Szerkesztés</string>
+    <string name="favorite" comment="Verb">Kedvencek</string>
+    <string name="unfavorite" comment="Verb">Nem kedveltek</string>
+    <string name="error_all_caps">HIBA</string>
     <string name="password">Jelszó</string>
     <string name="confirm_password">Jelszó megerősítése</string>
     <string name="show_password">Jelszó megjelenítése</string>
@@ -136,6 +170,7 @@
     <string name="encrypting_vault">A széf titkosítása</string>
     <string name="exporting_vault">A széf exportálása</string>
     <string name="reading_file">Fájl olvasása</string>
+    <string name="requesting_root_access">Root hozzáférés igénylése</string>
     <string name="analyzing_qr">QR kód elemzése</string>
     <string name="analyzing_qr_multiple">QR kód elemzése %d/%d (%s)</string>
     <string name="importing_icon_pack">Ikon pakk importálása</string>
@@ -168,6 +203,10 @@
     <string name="disable_encryption_error">Hiba történt a titkosítás letiltásakor</string>
     <string name="backup_successful">A biztonsági mentés ütemezésre került</string>
     <string name="backup_error">Hiba lépett fel a biztonsági mentés létrehozásánál</string>
+    <string name="backup_status_success">Legutolsó mentés sikeres: %s</string>
+    <string name="backup_status_failed">Legutolsó mentés sikertelen: %s</string>
+    <string name="backup_status_none">Nem készült még biztonsági mentés</string>
+    <string name="backup_warning_password">Bizt. mentések titkosítása egy külön jelszóval történik, ami a Biztonsági beállítások allatt megadható</string>
     <string name="documentsui_error">A DocumentsUI hiányzik a készülékéről. Ez egy elengedhetetlen rendszer összetevő a dokumentumok kiválasztásához és létrehozásához. Ha &quot;szemét-mentesítette&quot; eszközét, valószínűleg véletlenül letörölhette, így újra kell installálnia.</string>
     <string name="icon_pack_import_error">Hiba lépett fel az ikon csomag importálásakor</string>
     <string name="icon_pack_import_exists_error">Már létező ikon csomagot próbál importálni. Felül kívánja írni?</string>
@@ -185,6 +224,13 @@
     <string name="file_not_found">Hiba: A fájl nem található</string>
     <string name="reading_file_error">Hiba történt a fájl olvasásakor</string>
     <string name="app_lookup_error">Hiba: Az alkalmazás nincs telepítve</string>
+    <string name="app_version_error">A telepített %s verziója nem támogatott. Az újabb verziók elkezdték titkosítani a belső tároló egyes fájljait, így Aegis nem tud hozzáférni az importáláshoz szükséges információkhoz. Az importálás megkísérlése valószínűleg hibát fog eredményezni. Szeretné mégis folytatni?</string>
+    <string name="root_error">Hiba: root hozzáférés nem elérhető</string>
+    <plurals name="entries_shown">
+        <item quantity="one">%d elem mutatása</item>
+        <item quantity="other">%d elem mutatása</item>
+    </plurals>
+    <string name="intro_import_error_title">Hiba történt a széf importálása közben</string>
     <string name="import_error_title">Egy vagy több hiba történt az importálás során</string>
     <string name="exporting_vault_error">Hiba történt a széf exportálásakor</string>
     <string name="exported_vault">A széf exportálva</string>
@@ -193,6 +239,11 @@
     <string name="no_cameras_available">Nem érhető el kamera</string>
     <string name="read_qr_error">Hiba történt a QR-kód leolvasásakor</string>
     <string name="read_qr_error_phonefactor">Az Aegis nem kompatiblis a Microsoft saját fejlesztésű 2FA algoritmusával. Bizonyosodjon meg arról, hogy az \"Értesítés nélküli app telepítése\" opciót választja amikor az Office 365 2FA-t konfigurálja.</string>
+    <string name="partial_google_auth_import">Hiányos Google Authenticator export észlelve</string>
+    <string name="partial_google_auth_import_warning">Néhány QR kód hiányzik az importból. Ezek a kódok nem találhatók:\n\n<b>%s</b>\n\nFolytathatja a részleges export importálást, de javasoljuk, hogy az összes QR-kóddal próbálja meg újra, hogy ne kockáztassa egyetlen tokenhez sem a hozzáférés elvesztését.</string>
+    <string name="missing_qr_code_descriptor">• QR kód %d</string>
+    <string name="import_partial_export_anyway">%d tokenek importálása mindenképp</string>
+    <string name="import_google_auth_failure">Google Authenticator export importálása sikertelen</string>
     <string name="authentication_method_raw">Nyers</string>
     <string name="unlocking_vault">A széf feloldása</string>
     <string name="slot_this_device">(ez az eszköz)</string>
@@ -201,6 +252,7 @@
     <string name="remove_icon_pack">Ikon csomag törlése</string>
     <string name="remove_icon_pack_description">Biztos abban, hogy le akarja törölni az ikon csomagot? Azok a belépések amelyek ezt használják nem affektáltak.</string>
     <string name="details">Részletek</string>
+    <string name="show_error_details">Hiba részletek mutatása</string>
     <string name="lock">Zárolás</string>
     <string name="name">Név</string>
     <string name="no_group">Nincs csoport</string>
@@ -223,6 +275,8 @@
     <string name="clear">Törlés</string>
     <string name="pref_highlight_entry_title">Tokenek kiemelése koppintáskor</string>
     <string name="pref_highlight_entry_summary">A tokenek könnyebb megkülönböztethetősége érdekében ideiglenesen ki lesznek emeve koppintáskor</string>
+    <string name="pref_minimize_on_copy_title">Minimalizálás másoláskor</string>
+    <string name="pref_minimize_on_copy_summary">App minimalizálása a token másolása után</string>
     <string name="pref_pause_entry_title">Tokenek megállítása érintéskor</string>
     <string name="pref_pause_entry_summary">Tokenek automata frissítéséhez érintse meg őket. Tokenek nem frissülnek addig míg fókuszban vannak. Szükséges a \"Tokenek kiemelése érintéskor\" vagy \"Érintéskor felfedés\" opció.</string>
     <string name="pin_keyboard_description">Írja be jelszavát a PIN billentyű bekapcsolásához. Ez csak akkor működik, ha jelszava csak számokból áll</string>
@@ -240,10 +294,14 @@
     <string name="small_mode_title">Apró</string>
     <string name="unknown_issuer">Ismeretlen kibocsátó</string>
     <string name="unknown_account_name">Ismeretlen fióknév</string>
+    <string name="unable_to_process_deeplink">Deep link nem feldolgozható</string>
     <string name="unable_to_read_qrcode_file">A QR kód nem olvasható be és dolgozható fel a fájlból: %s.</string>
+    <string name="unable_to_process_shared_text">Megosztott OTP szöveg nem feldolgozható</string>
     <string name="unable_to_generate_qrcode">Sikertelen QR kód generálás</string>
     <string name="select_picture">Válasszon képet</string>
     <string name="select_icon">Ikon kiválasztása</string>
+    <string name="tile_open_vault" comment="label for a quick settings tile that opens the app when tapped">Széf megnyitása</string>
+    <string name="tile_open_scanner" comment="label for a quick settings tile that opens the QR code scanner when tapped">Szkenner megnyitása</string>
     <string name="toggle_checkboxes">Jelölőmezők be/ki</string>
     <string name="search">Keresés</string>
     <string name="channel_name_lock_status">Állapot zárolása</string>

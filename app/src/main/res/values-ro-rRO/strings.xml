@@ -39,6 +39,9 @@
     <string name="pref_show_icons_summary">Afişare pictograme lângă fiecare intrare</string>
     <string name="pref_code_group_size_title">Grupare cifre cod</string>
     <string name="pref_code_group_size_summary">Selectează numărul de cifre pentru a grupa codurile</string>
+    <string name="pref_account_name_position_title">Arată numele contului</string>
+    <string name="pref_shared_issuer_account_name_title">Arată numele contului doar atunci când este necesar</string>
+    <string name="pref_shared_issuer_account_name_summary">Arată numai numele de cont ce au același emitent. Alte nume de cont vor fi ascunse.</string>
     <string name="pref_import_file_title">Importă din fișier</string>
     <string name="pref_import_file_summary">Importă token-uri dintr-un fișier</string>
     <string name="pref_android_backups_title">Backup-uri Android în cloud</string>
@@ -46,6 +49,10 @@
     <string name="pref_android_backups_hint"><i>Backup-urile de la un dispozitiv la altul (D2D) sunt întotdeauna permise, indiferent de setarea de mai sus</i></string>
     <string name="pref_backups_title">Salvează automat seiful</string>
     <string name="pref_backups_summary">Creează automat copii de rezervă ale seifului pe stocarea externă atunci când se fac modificări. Acest lucru este disponibil doar pentru seifurile criptate.</string>
+    <string name="pref_backups_reminder_title">Alertă backup</string>
+    <string name="pref_backups_reminder_summary">Arată un mesaj pentru a salva seiful în cazul în care nu ai făcut backup la ultimele modificări.</string>
+    <string name="pref_backups_reminder_dialog_title">Dezactivează alerta de backup</string>
+    <string name="pref_backups_reminder_dialog_summary">Dezactivarea acestei alerte înseamnă că Addis nu îți va spune dacă ai sau nu schimbări care nu sunt încă salvate. Acest lucru te pune în pericol de a pierde accesul la Cohen-urile tale. Ești sigur că vrei să dezactivezi alerta?</string>
     <string name="pref_backups_location_title">Director pentru copiile de rezervă</string>
     <string name="pref_backups_location_summary">Copiile de rezervă vor fi stocate la</string>
     <string name="pref_backups_trigger_title">Declanșare copie de rezervă</string>
@@ -98,8 +105,10 @@
     <string name="export_help">Această acțiune va exporta seiful din spațiul de stocare al aplicaţiei. Selectează formatul în care dorești exportul:</string>
     <string name="export_warning_unencrypted">Ești pe cale să exportezi o copie necriptată a seifului Aegis. <b>Acest lucru nu este recomandat</b>.</string>
     <string name="export_warning_password">Exporturile sunt criptate folosind o parolă separată configurată în setările de securitate.</string>
+    <string name="understand_risk_accept">Înțeleg riscul</string>
     <string name="export_format_aegis">Aegis (.JSON)</string>
     <string name="export_format_google_auth_uri">Fișier text (.TXT)</string>
+    <string name="export_format_html">Pagină web (.HTML)</string>
     <string name="export_format_hint">Formatul în care se exportă</string>
     <string name="export_all_groups">Exportă toate grupurile</string>
     <string name="export_choose_groups">Selectează ce grupuri să exporți</string>
@@ -109,6 +118,7 @@
         <item quantity="other">%d de grupuri selectate</item>
     </plurals>
     <string name="export_no_groups_selected">Nici un grup selectat pentru export</string>
+    <string name="export_html_title" context="The title of an HTML export document">Exportul aplicației Aegis Authenticator</string>
     <string name="choose_authentication_method">Securitate</string>
     <string name="authentication_method_explanation">Aegis este o aplicație 2FA concentrată pe securitate. Token-urile sunt stocate într-un seif, care poate criptat cu o parolă aleasă. Dacă un atacator obține fișierul criptat al seifului, nu va putea accesa conținutul fără a cunoaște parola.\n\nAm selectat opțiunea pe care o credem cea mai potrivită pentru dispozitivul tău.</string>
     <string name="authentication_method_none">Fără</string>
@@ -127,7 +137,6 @@
     <string name="set_password_confirm">Te rugăm să confirmi parola</string>
     <string name="invalid_password">Parola este incorectă</string>
     <string name="invalidated_biometrics">A fost detectată o modificare a setărilor de securitate ale dispozitivului. Vă rugăm să mergeţi la \"Aegis -&gt; Setări -&gt; Securitate -&gt; Deblocare biometrică\" pentru a dezactiva şi reactiva deblocarea biometrică.</string>
-    <string name="password_reminder">Te rugăm să introduci parola. Uneori îți cerem să faci asta pentru a nu o uita.</string>
     <string name="password_reminder_freq_never">Niciodată</string>
     <string name="password_reminder_freq_weekly">Săptămânal</string>
     <string name="password_reminder_freq_biweekly">La doua săptămâni</string>
@@ -168,6 +177,7 @@
     <string name="encrypting_vault">Criptează seiful</string>
     <string name="exporting_vault">Exportă seiful</string>
     <string name="reading_file">Citire fişier</string>
+    <string name="requesting_root_access">Solicită acces root</string>
     <string name="analyzing_qr">Se analizează codul QR</string>
     <string name="analyzing_qr_multiple">Se analizează codul QR %d%d (%s)</string>
     <plurals name="added_new_entries">
@@ -231,12 +241,15 @@
     <string name="choose_totpauth_importer">Este această copie de rezervă a autentificatorului TOTP criptată cu o parolă?</string>
     <string name="choose_application">Selectează aplicația din care dorești să imporți</string>
     <string name="choose_theme">Selectează tema dorită</string>
+    <string name="choose_account_name_position">Selectați poziția dorită a numelui de cont</string>
     <string name="choose_view_mode">Selectează modul de vizualizare dorit</string>
+    <string name="choose_copy_behavior">Selectați comportamentul dorit la copiere</string>
     <string name="parsing_file_error">A apărut o eroare în timpul analizării fișierului</string>
     <string name="file_not_found">Eroare: Fișierul nu a fost găsit</string>
     <string name="reading_file_error">A apărut o eroare în timpul citirii fișierului</string>
     <string name="app_lookup_error">Eroare: Aplicația nu este instalată</string>
     <string name="app_version_error">Versiunea %s care este instalată nu este suportată. Versiunile recente au început criptarea unora dintre fișierele din directorul de stocare internă, Aegis devenind incapabil de a accesa informațiile de care are nevoie pentru import. Este posibil ca încercarea de a importa să ducă la o eroare. Doriţi să continuaţi oricum?</string>
+    <string name="root_error">Eroare: nu se poate obține acces root</string>
     <plurals name="imported_entries_count">
         <item quantity="one">Importată %d intrare</item>
         <item quantity="few">Importate %d intrare</item>
@@ -296,6 +309,7 @@
     <string name="pref_highlight_entry_summary">Fă token-urile mai ușor să se distingă între ele prin evidențierea lor temporară atunci când sunt apăsate</string>
     <string name="pref_minimize_on_copy_title">Minimizează după copiere</string>
     <string name="pref_minimize_on_copy_summary">Minimizează aplicația după copierea unui token</string>
+    <string name="pref_copy_behavior_title">Copiați tokenul în clipboard</string>
     <string name="pref_pause_entry_title">Îngheață jetoanele când sunt apăsate</string>
     <string name="pref_pause_entry_summary">Oprește reîmprospătarea automată a jetoanelor prin apăsarea lor. Token-urile nu se vor actualiza atâta timp cât sunt evidențiate. Necesită \"Evidențierea tokenurilor atunci când sunt apasate\" sau \"Atinge pentru a arăta\".</string>
     <string name="pin_keyboard_description">Introdu parola pentru a activa tastatura PIN. Reține că aceasta funcționează doar dacă parola constă doar din numere</string>
@@ -366,6 +380,10 @@
     </string>
     <string name="backup_reminder_bar_message">        Modificările nu sunt salvate
     </string>
+    <string name="backup_reminder_bar_dialog_title">Modificările nu sunt salvate</string>
+    <string name="backup_reminder_bar_dialog_summary">        Modificările recente în seif nu au fost încă salvate. Este important să faci copii de rezervă regulate pentru a preveni pierderea accesului la conturile tale. Te rugăm să luați în considerare configurarea copiilor de rezervă automate în meniul de setări.
+    </string>
+    <string name="backup_reminder_bar_dialog_accept">Configurare backup-uri</string>
     <string name="backup_plaintext_export_warning"><b>Seiful a fost exportat recent în text simplu</b></string>
     <string name="pref_show_plaintext_warning_hint">Nu mai arăta acest avertisment</string>
     <string name="backup_plaintext_warning_explanation">Această avertizare este afișată deoarece ați exportat recent o copie necriptată a seifului. Pentru a menține securitatea token-urilor, vă recomandăm să ștergeți acest fișier o dată ce nu mai este necesar.</string>
@@ -386,6 +404,9 @@
     </plurals>
     <string name="next">Următorul</string>
     <string name="previous">Anteriorul</string>
+    <string name="copy_uri">Copiere URL</string>
+    <string name="unable_to_copy_uri_to_clipboard">Nu se poate copia în clipboard</string>
+    <string name="uri_copied_to_clipboard">URI copiat în clipboard</string>
     <string name="transfer_entry">Transfer intrare</string>
     <string name="transfer_entry_description">Scanează acest cod QR cu aplicația de autentificare pe care dorești să o transferi</string>
     <string name="google_auth_compatible_transfer_description">Scanați aceste coduri QR cu Aegis sau Google Authenticator.\n\nDatorită limitărilor aplicației Google Authenticator, numai token-urile TOTP &amp; HOTP care folosesc SHA1 și produc coduri de 6 cifre sunt incluse</string>
@@ -414,6 +435,7 @@
     <string name="importer_help_2fas">Furnizează un fișier de backup 2FAS autentificator.</string>
     <string name="importer_help_aegis">Furnizează un fișier export/copie de rezervă Aegis.</string>
     <string name="importer_help_authenticator_plus">Furnizează un fişier de export de Autentificator Plus obţinut prin <b>Setări -&gt; Copie de rezervă &amp; Restore -&gt; Export ca Text şi HTML</b>.</string>
+    <string name="importer_help_authenticator_pro">Furnizează fișierul cu parole provenit de la Authenticator Pro, fișier ce poate fi obținut prin <b>Setări -&gt; Backup -&gt; Backup criptat (recomandat)</b>.</string>
     <string name="importer_help_authy">Furnizează o copie a <b>/data/data/com.authy.authy/shared_prefs/com.authy.storage.tokens.authenticator.xml</b>, localizată în directorul de stocare internă al Authy.</string>
     <string name="importer_help_andotp">Furnizați un fişier de export/copie de rezervă andOTP.</string>
     <string name="importer_help_bitwarden">Furnizează un fișier de backup din aplicația Bitwarden. Fișierele criptate nu sunt suportate.</string>
@@ -437,6 +459,12 @@
     <string name="pref_grouping_size_two">Grupuri a câte 2</string>
     <string name="pref_grouping_size_three">Grupuri a câte 3</string>
     <string name="pref_grouping_size_four">Grupuri a câte 4</string>
+    <string name="pref_copy_behavior_never">Niciodată</string>
+    <string name="pref_copy_behavior_single_tap">O singură atingere</string>
+    <string name="pref_copy_behavior_double_tap">Atingere dublă</string>
+    <string name="pref_account_name_position_hidden">Ascuns</string>
+    <string name="pref_account_name_position_end">Alături de emitent</string>
+    <string name="pref_account_name_position_below">Sub emitent</string>
     <plurals name="time_elapsed_seconds">
         <item quantity="one">%d secundă în urmă</item>
         <item quantity="few">%d secunde în urmă</item>

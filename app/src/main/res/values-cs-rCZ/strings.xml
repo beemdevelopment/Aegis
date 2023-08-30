@@ -39,6 +39,10 @@
     <string name="pref_show_icons_summary">Zobrazit ikony vedle každého záznamu</string>
     <string name="pref_code_group_size_title">Seskupení číslic kódu</string>
     <string name="pref_code_group_size_summary">Vyberte počet číslic, po kterých se mají seskupovat kódy</string>
+    <string name="pref_account_name_position_title">Zobrazit název účtu</string>
+    <string name="pref_shared_issuer_account_name_title">Název účtu zobrazit pouze v případě potřeby</string>
+    <string name="pref_shared_issuer_account_name_summary">Názvy účtů zobrazit pouze, pokud mají stejného poskytovatele. Ostatní názvy účtů budou skryty.</string>
+    <string name="pref_account_name_position_summary_override">Toto nastavení je přepsáno režimem zobrazení názvů. Název účtu bude vždy zobrazen pod poskytovatelem.</string>
     <string name="pref_import_file_title">Importovat ze souboru</string>
     <string name="pref_import_file_summary">Importovat tokeny ze souboru</string>
     <string name="pref_android_backups_title">Cloudové zálohování systému Android</string>
@@ -46,6 +50,10 @@
     <string name="pref_android_backups_hint"><i>Zálohy \"zařízení na zařízení\" (D2D) jsou povoleny vždy, nezávisle na nastavení výše</i></string>
     <string name="pref_backups_title">Automaticky zálohovat trezor</string>
     <string name="pref_backups_summary">Automaticky zálohovat trezor na externí úložiště při provedení změn. Tato možnost je dostupná jen pro šifrované trezory.</string>
+    <string name="pref_backups_reminder_title">Připomenutí zálohy</string>
+    <string name="pref_backups_reminder_summary">Zobrazit připomenutí k zálohování vašeho trezoru, pokud jste nezálohovali své poslední změny.</string>
+    <string name="pref_backups_reminder_dialog_title">Zakázat připomenutí zálohy</string>
+    <string name="pref_backups_reminder_dialog_summary">Vypnutí tohoto připomenutí znamená, že vám Aegis neřekne, zda máte změny, které ještě nejsou zálohovány. Tím se vystavíte riziku ztráty přístupu k vašim tokenům. Opravdu chcete zakázat připomenutí?</string>
     <string name="pref_backups_location_title">Složka pro soubory záloh</string>
     <string name="pref_backups_location_summary">Zálohy budou uloženy v</string>
     <string name="pref_backups_trigger_title">Spustit zálohování</string>
@@ -100,6 +108,7 @@
     <string name="export_help">Trezor bude exportován mimo vnitřní úložiště Aegis. Zvolte formát, ve kterém chcete trezor exportovat:</string>
     <string name="export_warning_unencrypted">Chystáte se exportovat nešifrovanou kopii vašeho Aegis trezoru. Toto <b>není doporučeno</b>.</string>
     <string name="export_warning_password">Exporty jsou šifrovány pomocí samostatného hesla nastaveného v nastavení zabezpečení.</string>
+    <string name="understand_risk_accept">Chápu rizika</string>
     <string name="export_format_aegis">Aegis (.JSON)</string>
     <string name="export_format_google_auth_uri">Textový soubor (.TXT)</string>
     <string name="export_format_html">Webová stránka (.HTML)</string>
@@ -133,6 +142,8 @@
     <string name="invalid_password">Heslo je nesprávné</string>
     <string name="invalidated_biometrics">Zjištěna změna nastavení zabezpečení zařízení. Přejděte do „Aegis -&gt; Nastavení -&gt; Zabezpečení -&gt; Odemčení pomocí biometrie“ a zakažte a znovu povolte odemykání pomocí biometrie.</string>
     <string name="password_reminder">Zadejte své heslo. Občas se na něj ptáme, abyste ho nezapomněli.</string>
+    <string name="password_reminder_dialog_title">Biometrické odemknutí ve výchozím nastavení</string>
+    <string name="password_reminder_dialog_message">Občas vás požádáme o zadání vašeho hesla, abyste ho nezapomněli a neztratili tak přístup k trezoru. Po jednom zadání hesla se Aegis vrátí zpět k biometrickému ověřování, dokud nebude znovu čas na připomenutí hesla.</string>
     <string name="password_reminder_freq_never">Nikdy</string>
     <string name="password_reminder_freq_weekly">Týdně</string>
     <string name="password_reminder_freq_biweekly">Každý druhý týden</string>
@@ -240,7 +251,9 @@
     <string name="choose_totpauth_importer">Je tato záloha TOTP autentifikátoru šifrována heslem?</string>
     <string name="choose_application">Zvolte aplikaci, ze které chcete importovat údaje</string>
     <string name="choose_theme">Vyberte si vzhled rozhraní</string>
+    <string name="choose_account_name_position">Vyberte požadovanou pozici názvu účtu</string>
     <string name="choose_view_mode">Vyberte si režim zobrazení</string>
+    <string name="choose_copy_behavior">Vyberte požadované chování kopírování</string>
     <string name="parsing_file_error">Při zpracování souboru došlo k chybě</string>
     <string name="file_not_found">Chyba: Soubor nenalezen</string>
     <string name="reading_file_error">Při pokusu o čtení souboru došlo k chybě</string>
@@ -308,6 +321,7 @@
     <string name="pref_highlight_entry_summary">Usnadnit vzájemné rozlišení tokenů dočasným zvýrazněním po kleputí</string>
     <string name="pref_minimize_on_copy_title">Minimalizovat při kopírování</string>
     <string name="pref_minimize_on_copy_summary">Minimalizovat aplikaci po zkopírování tokenu</string>
+    <string name="pref_copy_behavior_title">Zkopírovat tokeny do schránky</string>
     <string name="pref_pause_entry_title">Zmrazit tokeny po klepnutí</string>
     <string name="pref_pause_entry_summary">Pozastavit automatické obnovování tokenů klepnutím na ně. Tokeny nebudou aktualizovány, dokud jsou zaměřeny. Vyžaduje \"Zvýraznit tokeny po klepnutí\" nebo \"Klepnutím zobrazit\".</string>
     <string name="pin_keyboard_description">Zadejte své heslo pro povolení PIN klávesnice. Toto funguje jen pokud používáte číselné heslo.</string>
@@ -323,6 +337,7 @@
     <string name="normal_viewmode_title">Normální</string>
     <string name="compact_mode_title">Kompaktní</string>
     <string name="small_mode_title">Malý</string>
+    <string name="tiles_mode_title">Názvy</string>
     <string name="unknown_issuer">Neznámý poskytovatel</string>
     <string name="unknown_account_name">Neznámý název účtu</string>
     <plurals name="import_error_dialog">
@@ -381,6 +396,10 @@
     </string>
     <string name="backup_reminder_bar_message">        Změny nejsou zálohovány
     </string>
+    <string name="backup_reminder_bar_dialog_title">Změny nejsou zálohovány</string>
+    <string name="backup_reminder_bar_dialog_summary">        Nedávné změny v trezoru ještě nebyly zálohovány. Je důležité provádět pravidelné zálohování, aby nedošlo ke ztrátě přístupu k účtům. Zvažte prosím nastavení automatického zálohování v nabídce nastavení.
+    </string>
+    <string name="backup_reminder_bar_dialog_accept">Nastavit zálohování</string>
     <string name="backup_plaintext_export_warning"><b>Trezor byl nedávno exportován v plaintextu</b></string>
     <string name="pref_show_plaintext_warning_hint">Toto varování již nezobrazovat</string>
     <string name="backup_plaintext_warning_explanation">Toto upozornění se zobrazuje, protože jste nedávno exportovali nešifrovanou kopii trezoru. Chcete-li zachovat bezpečnost svých tokenů, doporučujeme tento soubor odstranit, jakmile již nebude potřeba.</string>
@@ -433,6 +452,7 @@
     <string name="importer_help_2fas">Dodejte záložní soubor 2FAS Authenticator.</string>
     <string name="importer_help_aegis">Dodejte soubor exportu/zálohy Aegis.</string>
     <string name="importer_help_authenticator_plus">Dodejte exportovaný soubor Authenticator Plus získaný přes <b>Nastavení -&gt; Záloha a obnovení -&gt; Exportovat jako text a HTML</b>.</string>
+    <string name="importer_help_authenticator_pro">Dodejte exportovaný soubor Authenticator Pro získaný přes <b>Nastavení -&gt; Záloha -&gt; Exportovat do šifrovaného souboru (doporučeno)</b>.</string>
     <string name="importer_help_authy">Dodejte kopii <b>/data/data/com.authy.authy/shared_prefs/com.authy.storage.tokens.authenticator.xml</b>, která se nachází v interním úložišti Authy.</string>
     <string name="importer_help_andotp">Dodejte soubor exportu/zálohy andOTP.</string>
     <string name="importer_help_bitwarden">Vyberte soubor exportu/zálohy Bitwardenu. Šifrované soubory nejsou podporovány.</string>
@@ -456,6 +476,12 @@
     <string name="pref_grouping_size_two">Skupiny 2</string>
     <string name="pref_grouping_size_three">Skupiny 3</string>
     <string name="pref_grouping_size_four">Skupiny 4</string>
+    <string name="pref_copy_behavior_never">Nikdy</string>
+    <string name="pref_copy_behavior_single_tap">Jedno klepnutí</string>
+    <string name="pref_copy_behavior_double_tap">Dvojité klepnutí</string>
+    <string name="pref_account_name_position_hidden">Skryté</string>
+    <string name="pref_account_name_position_end">Vedle poskytovatele</string>
+    <string name="pref_account_name_position_below">Pod poskytovatelem</string>
     <plurals name="time_elapsed_seconds">
         <item quantity="one">před %d sekundou</item>
         <item quantity="few">před %d sekundami</item>

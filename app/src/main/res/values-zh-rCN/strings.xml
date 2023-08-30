@@ -39,6 +39,10 @@
     <string name="pref_show_icons_summary">在每个条目旁边显示图标</string>
     <string name="pref_code_group_size_title">分组显示验证码</string>
     <string name="pref_code_group_size_summary">选择按多少位数字进行代码分组</string>
+    <string name="pref_account_name_position_title">显示账户名称</string>
+    <string name="pref_shared_issuer_account_name_title">仅在必要时显示账户名</string>
+    <string name="pref_shared_issuer_account_name_summary">仅在多项具有相同颁发者时显示账户名。隐藏其他账户名。</string>
+    <string name="pref_account_name_position_summary_override">此设置被瓷贴视图模式覆盖。账户名将始终显示在发行者下方。</string>
     <string name="pref_import_file_title">从文件导入</string>
     <string name="pref_import_file_summary">从文件导入令牌</string>
     <string name="pref_android_backups_title">Android 云备份</string>
@@ -46,6 +50,10 @@
     <string name="pref_android_backups_hint"><i>无论上面如何设置，将始终允许设备到设备的备份</i></string>
     <string name="pref_backups_title">自动备份数据库</string>
     <string name="pref_backups_summary">在外部存储上创建数据库的备份。仅加密的数据库支持此功能。</string>
+    <string name="pref_backups_reminder_title">提醒备份</string>
+    <string name="pref_backups_reminder_summary">如果没有备份最新的变更，提醒您备份自己的数据库。</string>
+    <string name="pref_backups_reminder_dialog_title">禁用提醒备份</string>
+    <string name="pref_backups_reminder_dialog_summary">禁用后 Aegis 不会再提醒您备份变更。这有可能促使您遗失令牌。确定禁用吗？</string>
     <string name="pref_backups_location_title">备份文件目录</string>
     <string name="pref_backups_location_summary">备份将存储在</string>
     <string name="pref_backups_trigger_title">触发备份</string>
@@ -94,6 +102,7 @@
     <string name="export_help">此操作将从 Aegis 的内部存储中导出数据库。选择您想要的导出格式：</string>
     <string name="export_warning_unencrypted">您将导出一个未加密的 Aegis 数据库副本。<b>不建议这么做</b></string>
     <string name="export_warning_password">导出使用在安全设置中配置的单独密码进行加密。</string>
+    <string name="understand_risk_accept">我了解风险</string>
     <string name="export_format_aegis">Aegis (.JSON)</string>
     <string name="export_format_google_auth_uri">文本文件 (.TXT)</string>
     <string name="export_format_html">网页 (.HTML)</string>
@@ -123,7 +132,9 @@
     <string name="set_password_confirm">请确认密码</string>
     <string name="invalid_password">密码错误</string>
     <string name="invalidated_biometrics">检测到你设备安全设置的一处更改。请转到 “Aegis -&gt; 设置 -&gt; 安全性 -&gt; 生物解锁” 来禁用并重新启用生物解锁。</string>
-    <string name="password_reminder">您已经有一段时间没有输入密码了。您还记得您的密码吗？</string>
+    <string name="password_reminder">您已有一段时间没有输入密码了，还记得它吗？</string>
+    <string name="password_reminder_dialog_title">默认使用生物识别解锁</string>
+    <string name="password_reminder_dialog_message">我们会偶尔提示您输入密码，以免您忘记它而被锁在密码库之外。输入一次密码后，Aegis 将回到默认使用生物识别解锁，直到下次提醒周期。</string>
     <string name="password_reminder_freq_never">从不</string>
     <string name="password_reminder_freq_weekly">每周</string>
     <string name="password_reminder_freq_biweekly">每两周</string>
@@ -222,7 +233,9 @@
     <string name="choose_totpauth_importer">此 TOTP 验证器备份是否已使用密码加密？</string>
     <string name="choose_application">选择您想要从中导入数据库的应用</string>
     <string name="choose_theme">选择您想要的主题</string>
+    <string name="choose_account_name_position">选择您期望的账户名称位置</string>
     <string name="choose_view_mode">选择您想要的视图模式</string>
+    <string name="choose_copy_behavior">选择如何复制</string>
     <string name="parsing_file_error">试图解析文件时出错</string>
     <string name="file_not_found">错误：文件未找到</string>
     <string name="reading_file_error">试图读取文件时出错</string>
@@ -284,6 +297,7 @@
     <string name="pref_highlight_entry_summary">使令牌在点击后暂时高亮显示以便区分</string>
     <string name="pref_minimize_on_copy_title">复制时最小化</string>
     <string name="pref_minimize_on_copy_summary">复制令牌后最小化应用</string>
+    <string name="pref_copy_behavior_title">复制令牌到剪贴板</string>
     <string name="pref_pause_entry_title">轻按冻结令牌</string>
     <string name="pref_pause_entry_summary">通过轻按令牌来暂停它们的自动刷新。 只要被聚焦，令牌就不会更新。 需要启用“轻按突出显示令牌”或“轻按显示”。</string>
     <string name="pin_keyboard_description">请输入您的密码以启用 PIN 键盘。请注意，只有当您的密码仅由数字构成时才能使用</string>
@@ -299,6 +313,7 @@
     <string name="normal_viewmode_title">标准</string>
     <string name="compact_mode_title">紧凑</string>
     <string name="small_mode_title">小巧</string>
+    <string name="tiles_mode_title">瓷贴</string>
     <string name="unknown_issuer">未知的服务商</string>
     <string name="unknown_account_name">未知的帐户名称</string>
     <plurals name="import_error_dialog">
@@ -350,6 +365,9 @@
     </string>
     <string name="backup_reminder_bar_message">        未备份更改
     </string>
+    <string name="backup_reminder_bar_dialog_title">变更尚未备份</string>
+    <string name="backup_reminder_bar_dialog_summary">最近对数据库的变更尚未备份。应定期备份以防丢失访问权限。建议您到设置菜单中设置自动备份。    </string>
+    <string name="backup_reminder_bar_dialog_accept">设置备份</string>
     <string name="backup_plaintext_export_warning"><b>保险库最近导出为纯文本</b></string>
     <string name="pref_show_plaintext_warning_hint">不再显示此警告</string>
     <string name="backup_plaintext_warning_explanation">显示此警告是因为您最近导出了一个未加密的保险库副本。 为了保持令牌的安全性，我们建议一旦不再需要该文件，就将其删除。</string>
@@ -399,6 +417,7 @@
     <string name="importer_help_2fas">提供一个 2FAS 身份验证器备份文件。</string>
     <string name="importer_help_aegis">提供一个 Aegis 导出/备份文件。</string>
     <string name="importer_help_authenticator_plus">提供一个通过 <b>设置 -&gt; 备份 &amp; 还原 -&gt; 导出为纯文本和 HTML</b> 获得的 Authenticator Plus 导出文件。</string>
+    <string name="importer_help_authenticator_pro">提供一个用如下方式获取的 Authenticator Pro 导出文件：<b>设置 -&gt; 备份 -&gt; 备份到加密文件（推荐）</b>。</string>
     <string name="importer_help_authy">提供 <b>/data/data/com.authy.authy/shared_prefs/com.authy.storage.tokens.authenticator.xml</b> 的一个副本，位于 Authy 的内部存储目录。</string>
     <string name="importer_help_andotp">提供 andOTP 导出/备份文件。</string>
     <string name="importer_help_bitwarden">提供 Bitwarden 导出 / 备份文件。不支持加密的文件。</string>
@@ -422,6 +441,12 @@
     <string name="pref_grouping_size_two">2 位数</string>
     <string name="pref_grouping_size_three">3 位数</string>
     <string name="pref_grouping_size_four">4 位数</string>
+    <string name="pref_copy_behavior_never">从不</string>
+    <string name="pref_copy_behavior_single_tap">单击</string>
+    <string name="pref_copy_behavior_double_tap">双击</string>
+    <string name="pref_account_name_position_hidden">隐藏</string>
+    <string name="pref_account_name_position_end">发行者旁边</string>
+    <string name="pref_account_name_position_below">发行者下方</string>
     <plurals name="time_elapsed_seconds">
         <item quantity="other">%d 秒前</item>
     </plurals>

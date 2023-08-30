@@ -47,6 +47,10 @@
     <string name="pref_android_backups_hint"><i>גיבויי התקן להתקן (D2D) מותרים תמיד, ללא קשר להגדרה לעיל</i></string>
     <string name="pref_backups_title">גיבוי אוטומטי של הכספת</string>
     <string name="pref_backups_summary">צור באופן אוטומטי גיבויים של הכספת באחסון חיצוני כאשר מתבצעים שינויים. אפשרות זו נתמכת רק עבור כספות מוצפנות.</string>
+    <string name="pref_backups_reminder_title">תזכורת לגיבוי</string>
+    <string name="pref_backups_reminder_summary">הצג תזכורת לגיבוי הכספת שלך למקרה שלא גיבית את השינויים האחרונים שלך.</string>
+    <string name="pref_backups_reminder_dialog_title">השבת תזכורת גיבוי</string>
+    <string name="pref_backups_reminder_dialog_summary">השבתת תזכורת זו פירושה ש-Aegis לא יגיד לך אם יש לך שינויים שעדיין לא מגובים. זה מעמיד אותך בסיכון לאבד גישה לאסימונים שלך. האם אתה בטוח שברצונך להשבית את התזכורת?</string>
     <string name="pref_backups_location_title">ספריה עבור קבצי גיבוי</string>
     <string name="pref_backups_location_summary">הגיבויים יאוחסנו ב</string>
     <string name="pref_backups_trigger_title">הפעלת גיבוי</string>
@@ -101,6 +105,7 @@
     <string name="export_help">פעולה זו תייצא את הכספת מהאחסון הפנימי של Aegis. בחר את הפורמט שבו תרצה שהייצוא שלך יהיה:</string>
     <string name="export_warning_unencrypted">אתה עומד לייצא עותק לא מוצפן של כספת Aegis שלך. <b>זה לא מומלץ</b>.</string>
     <string name="export_warning_password">פעולות הייצוא מוצפנות באמצעות סיסמה נפרדת שהוגדרה בהגדרות האבטחה.</string>
+    <string name="understand_risk_accept">אני מבין את הסיכון</string>
     <string name="export_format_aegis">Aegis (.JSON)</string>
     <string name="export_format_google_auth_uri">קובץ טקסט (.TXT)</string>
     <string name="export_format_html">דף אינטרנט (.HTML)</string>
@@ -133,7 +138,6 @@
     <string name="set_password_confirm">אנא אשר את הסיסמה</string>
     <string name="invalid_password">הסיסמה שגויה</string>
     <string name="invalidated_biometrics">זוהה שינוי בהגדרות האבטחה של המכשיר. עבור אל \"\"הגדרות- &gt; -אבטחה&gt;- &gt; נעילה ביומטרית\"\" כדי להשבית ולהפעיל מחדש את הנעילה הביומטרית.</string>
-    <string name="password_reminder">הזן את הסיסמה שלך. מדי פעם אנו מבקשים ממך לעשות זאת כדי שלא תשכח זאת.</string>
     <string name="password_reminder_freq_never">אף פעם</string>
     <string name="password_reminder_freq_weekly">שבועי</string>
     <string name="password_reminder_freq_biweekly">דו שבועי</string>
@@ -346,6 +350,10 @@
     </string>
     <string name="backup_reminder_bar_message">        השינויים לא מגובים
     </string>
+    <string name="backup_reminder_bar_dialog_title">שינויים אינם מגובים</string>
+    <string name="backup_reminder_bar_dialog_summary">        שינויים אחרונים בכספת לא גובו עדיין. חשוב לקחת גיבויים קבועים כדי למנוע איבוד גישה לחשבונות שלך. אנא שקול להגדיר גיבויים אוטומטיים בתפריט ההגדרות.
+    </string>
+    <string name="backup_reminder_bar_dialog_accept">הגדר גיבויים</string>
     <string name="backup_plaintext_export_warning"><b>הכספת יצאה לאחרונה בטקסט רגיל</b></string>
     <string name="pref_show_plaintext_warning_hint">אל תראה אזהרה זו שוב</string>
     <string name="backup_plaintext_warning_explanation">אזהרה זו מוצגת מכיוון שייצאת לאחרונה עותק לא מוצפן של הכספת. כדי לשמור על אבטחת האסימונים שלך, אנו ממליצים למחוק קובץ זה ברגע שאין בו עוד צורך.</string>
@@ -392,6 +400,7 @@
     <string name="importer_help_2fas">ספק קובץ גיבוי של 2FAS Authenticator.</string>
     <string name="importer_help_aegis">ספק קובץ ייצוא/גיבוי של Aegis.</string>
     <string name="importer_help_authenticator_plus">ספק קובץ ייצוא של Authenticator Plus שהושג דרך <b>הגדרות -&gt; גיבוי &amp; שחזור -&gt; ייצוא כטקסט ו-HTML</b>.</string>
+    <string name="importer_help_authenticator_pro">ספק קובץ ייצוא של Authenticator Pro שהושג דרך <b>הגדרות -&gt; גיבוי -&gt; גבה לקובץ מוצפן (מומלץ)</b>.</string>
     <string name="importer_help_authy">ספק עותק של <b>/data/data/com.authy.authy/shared_prefs/com.authy.storage.tokens.authenticator.xml</b>, הממוקם בספריית האחסון הפנימית של Authy.</string>
     <string name="importer_help_andotp">ספק קובץ יצוא/גיבוי andOTP.</string>
     <string name="importer_help_bitwarden">ספק קובץ יצוא/גיבוי של Bitwarden. קבצים מוצפנים אינם נתמכים.</string>

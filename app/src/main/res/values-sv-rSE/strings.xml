@@ -39,6 +39,7 @@
     <string name="pref_show_icons_summary">Visa ikoner bredvid varje post</string>
     <string name="pref_code_group_size_title">Gruppering av kodsiffror</string>
     <string name="pref_code_group_size_summary">Välj antal siffror att gruppera koder efter</string>
+    <string name="pref_account_name_position_title">Visa kontonamn</string>
     <string name="pref_import_file_title">Importera från fil</string>
     <string name="pref_import_file_summary">Importera polletter från en fil</string>
     <string name="pref_android_backups_title">Android-molnsäkerhetskopior</string>
@@ -46,6 +47,10 @@
     <string name="pref_android_backups_hint"><i>Säkerhetskopior mellan enheter (D2D) är alltid tillåtna, oavsett inställningen ovan</i></string>
     <string name="pref_backups_title">Säkerhetskopiera valvet automatiskt</string>
     <string name="pref_backups_summary">Skapa automatiskt säkerhetskopior av valvet i externt lagringsutrymme när ändringar görs. Detta stöds endast för krypterade valv.</string>
+    <string name="pref_backups_reminder_title">Påminnelse om säkerhetskopiering</string>
+    <string name="pref_backups_reminder_summary">Visa en påminnelse om att säkerhetskopiera ditt valv ifall du inte har säkerhetskopierat dina senaste ändringar.</string>
+    <string name="pref_backups_reminder_dialog_title">Inaktivera påminnelse om säkerhetskopiering</string>
+    <string name="pref_backups_reminder_dialog_summary">Inaktivering av denna påminnelse innebär att Aegis inte kommer att meddela dig om du har ändringar som ännu inte har säkerhetskopierats. Detta utsätter dig för risken att förlora åtkomst till dina polletter. Är du säker på att du vill inaktivera påminnelsen?</string>
     <string name="pref_backups_location_title">Katalog för säkerhetskopior</string>
     <string name="pref_backups_location_summary">Säkerhetskopior kommer att lagras i</string>
     <string name="pref_backups_trigger_title">Skapa säkerhetskopia</string>
@@ -96,6 +101,7 @@
     <string name="export_help">Denna åtgärd kommer att exportera valvet från Aegis interna lagring. Välj det format som du vill att din export ska vara i:</string>
     <string name="export_warning_unencrypted">Du håller på att exportera en okrypterad kopia av ditt Aegis-valv. <b>Detta rekommenderas inte.</b></string>
     <string name="export_warning_password">Exporter krypteras med ett separat lösenord som konfigureras i Säkerhet-inställningarna.</string>
+    <string name="understand_risk_accept">Jag förstår risken</string>
     <string name="export_format_aegis">Aegis (.JSON)</string>
     <string name="export_format_google_auth_uri">Textfil (.TXT)</string>
     <string name="export_format_html">Webbsida (.HTML)</string>
@@ -126,7 +132,9 @@
     <string name="set_password_confirm">Vänligen bekräfta lösenordet</string>
     <string name="invalid_password">Lösenordet är felaktigt</string>
     <string name="invalidated_biometrics">En förändring av din enhets säkerhetsinställningar har upptäckts. Vänligen gå till \"Aegis -&gt; Inställningar -&gt; Säkerhet -&gt; Biometrisk upplåsning\" för att inaktivera och återaktivera biometrisk upplåsning.</string>
-    <string name="password_reminder">Vänligen ange ditt lösenord. Vi ber dig att göra detta då och då så att du inte glömmer det.</string>
+    <string name="password_reminder">Vänligen ange ditt lösenord. Ibland ber vi dig att göra detta så att du inte glömmer det.</string>
+    <string name="password_reminder_dialog_title">Biometrisk upplåsning förvald</string>
+    <string name="password_reminder_dialog_message">Ibland uppmanar vi dig att ange ditt lösenord i stället för att säkerställa att du inte har glömt det och inte kommer att bli utelåst från ditt valv. Efter att du har angett ditt lösenord en gång kommer Aegis att återgå till biometrisk upplåsning tills det är dags för en ny lösenordspåminnelse.</string>
     <string name="password_reminder_freq_never">Aldrig</string>
     <string name="password_reminder_freq_weekly">Varje vecka</string>
     <string name="password_reminder_freq_biweekly">Varannan vecka</string>
@@ -228,7 +236,9 @@
     <string name="choose_totpauth_importer">Är denna säkerhetskopia från TOTP Authenticator krypterad med ett lösenord?</string>
     <string name="choose_application">Välj den applikation som du vill importera från</string>
     <string name="choose_theme">Välj önskat tema</string>
+    <string name="choose_account_name_position">Välj önskad kontonamnsplacering</string>
     <string name="choose_view_mode">Välj önskat visningsläge</string>
+    <string name="choose_copy_behavior">Välj önskat kopieringsbeteende</string>
     <string name="parsing_file_error">Ett fel uppstod när filen skulle analyseras</string>
     <string name="file_not_found">Fel: Filen hittades inte</string>
     <string name="reading_file_error">Ett fel uppstod när filen skulle läsas</string>
@@ -292,6 +302,7 @@
     <string name="pref_highlight_entry_summary">Gör polletterna lättare att särskilja från varandra genom att tillfälligt markera dem vid tryck</string>
     <string name="pref_minimize_on_copy_title">Minimera vid kopiering</string>
     <string name="pref_minimize_on_copy_summary">Minimerar appen efter att en pollett har kopierats</string>
+    <string name="pref_copy_behavior_title">Kopiera polletter till urklipp</string>
     <string name="pref_pause_entry_title">Frys polletter vid tryck</string>
     <string name="pref_pause_entry_summary">Pausa automatisk uppdatering av polletterna genom att trycka på dem. Polletterna kommer inte att uppdateras så länge som de är i fokus. Kräver \"Markera polletter vid tryck\" eller \"Tryck för att visa\".</string>
     <string name="pin_keyboard_description">Ange ditt lösenord för att aktivera pinkodstangentbordet. Observera att detta bara fungerar om ditt lösenord endast består av siffror.</string>
@@ -361,6 +372,10 @@
     </string>
     <string name="backup_reminder_bar_message">        Ändringar är inte säkerhetskopierade
     </string>
+    <string name="backup_reminder_bar_dialog_title">Ändringarna är inte säkerhetskopierade</string>
+    <string name="backup_reminder_bar_dialog_summary">        De senaste ändringarna i valvet har ännu inte säkerhetskopierats. Det är viktigt att regelbundet skapa säkerhetskopior för att förhindra att du förlorar åtkomst till dina konton. Vänligen överväg att konfigurera automatiska säkerhetskopior i inställningsmenyn.
+    </string>
+    <string name="backup_reminder_bar_dialog_accept">Konfigurera säkerhetskopior</string>
     <string name="backup_plaintext_export_warning"><b>Valvet exporterades nyligen som klartext</b></string>
     <string name="pref_show_plaintext_warning_hint">Visa inte denna varning igen</string>
     <string name="backup_plaintext_warning_explanation">Denna varning visas eftersom du nyligen exporterade en okrypterad kopia av valvet. För att upprätthålla säkerheten för dina polletter rekommenderar vi att du raderar denna fil när den inte längre behövs.</string>
@@ -411,6 +426,7 @@
     <string name="importer_help_2fas">Tillhandahåll en säkerhetskopieringsfil från 2FAS Authenticator.</string>
     <string name="importer_help_aegis">Tillhandahåll en export-/säkerhetskopieringsfil från Aegis.</string>
     <string name="importer_help_authenticator_plus">Tillhandahåll en exportfil från Authenticator Plus som har erhållits genom <b>Settings -&gt; Backup &amp; Restore -&gt; Export as Text and HTML</b>.</string>
+    <string name="importer_help_authenticator_pro">Tillhandahåll en exportfil från Authenticator Pro som har erhållits genom <b>Inställningar -&gt; Säkerhetskopiera -&gt; Säkerhetskopiera till krypterad fil (rekommenderas)</b>.</string>
     <string name="importer_help_authy">Tillhandahåll en kopia av <b>/data/data/com.authy.authy/shared_prefs/com.authy.storage.tokens.authenticator.xml</b>, som finns i den interna lagringskatalogen för Authy.</string>
     <string name="importer_help_andotp">Tillhandahåll en export-/säkerhetskopieringsfil från andOTP.</string>
     <string name="importer_help_bitwarden">Tillhandahåll en export-/säkerhetskopieringsfil från Bitwarden. Krypterade filer stöds ej.</string>
@@ -434,6 +450,12 @@
     <string name="pref_grouping_size_two">Grupper av 2</string>
     <string name="pref_grouping_size_three">Grupper av 3</string>
     <string name="pref_grouping_size_four">Grupper av 4</string>
+    <string name="pref_copy_behavior_never">Aldrig</string>
+    <string name="pref_copy_behavior_single_tap">Enkeltryck</string>
+    <string name="pref_copy_behavior_double_tap">Dubbeltryck</string>
+    <string name="pref_account_name_position_hidden">Dolt</string>
+    <string name="pref_account_name_position_end">Bredvid utfärdaren</string>
+    <string name="pref_account_name_position_below">Nedanför utfärdaren</string>
     <plurals name="time_elapsed_seconds">
         <item quantity="one">%d sekund sedan</item>
         <item quantity="other">%d sekunder sedan</item>

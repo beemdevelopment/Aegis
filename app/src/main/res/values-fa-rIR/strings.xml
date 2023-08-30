@@ -98,7 +98,6 @@
     <string name="set_number">لطفا یک شماره وارد کنید</string>
     <string name="set_password_confirm">لطفا کلمه عبور را تکرار کنید</string>
     <string name="invalid_password">کلمه عبور صحیح نیست</string>
-    <string name="password_reminder">لطفا کلمه عبور خود را وارد کنید. ما گهگاه از شما کلمه عبور را میپرسیم تا فراموش نکنید.</string>
     <string name="password_reminder_freq_never">هرگز</string>
     <string name="password_reminder_freq_weekly">هفتگی</string>
     <string name="password_reminder_freq_biweekly">دو هفته يکبار</string>

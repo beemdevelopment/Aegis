@@ -39,6 +39,8 @@
     <string name="pref_show_icons_summary">Wyświetlaj ikony obok każdego wpisu</string>
     <string name="pref_code_group_size_title">Grupowanie cyfr kodu</string>
     <string name="pref_code_group_size_summary">Wybierz liczbę cyfr do grupowania według</string>
+    <string name="pref_account_name_position_title">Pokaż nazwę konta</string>
+    <string name="pref_shared_issuer_account_name_title">Pokaż nazwę konta tylko w razie potrzeby</string>
     <string name="pref_import_file_title">Importuj z pliku</string>
     <string name="pref_import_file_summary">Importuj tokeny z aplikacji</string>
     <string name="pref_android_backups_title">Kopia zapasowa Android w chmurze</string>
@@ -46,6 +48,10 @@
     <string name="pref_android_backups_hint"><i>Kopie zapasowe urządzenia-do-urządzenia (D2D) są zawsze dozwolone, niezależnie od powyższych ustawień</i></string>
     <string name="pref_backups_title">Automatycznie utwórz kopię zapasową sejfu</string>
     <string name="pref_backups_summary">Automatycznie utwórz kopie zapasowe sejfu w pamięci zewnętrznej. Funkcja ta wspiera tylko zaszyfrowane sejfy.</string>
+    <string name="pref_backups_reminder_title">Przypomnienia o kopii zapasowej</string>
+    <string name="pref_backups_reminder_summary">Pokaż przypomnienie o kopii zapasowej twojego sejfu na wypadek, gdybyś nie zrobił kopii zapasowej najnowszych zmian.</string>
+    <string name="pref_backups_reminder_dialog_title">Wyłącz przypomnienia o kopii zapasowej</string>
+    <string name="pref_backups_reminder_dialog_summary">Wyłączenie tych powiadomień, oznacza że Aegis nie powie, czy masz zmiany, które nie są jeszcze zapisane w kopii zapasowej. To naraża cię na ryzyko utraty dostępu do twoich tokenów. Czy na pewno chcesz wyłączyć te powiadomienia?</string>
     <string name="pref_backups_location_title">Folder plików kopii zapasowej</string>
     <string name="pref_backups_location_summary">Kopie zapasowe będą przechowywane w</string>
     <string name="pref_backups_trigger_title">Uruchom kopie zapasowe</string>
@@ -100,6 +106,7 @@
     <string name="export_help">Ta czynność wyeksportuje sejf z wewnętrznej przestrzeni dyskowej aplikacji Aegis. Wybierz format eksportowanego pliku:</string>
     <string name="export_warning_unencrypted">Wyeksportujesz sejf aplikacji Aegis w niezaszyfrowanym formacie. <b>Ta opcja nie jest zalecana</b>.</string>
     <string name="export_warning_password">Eksport jest szyfrowany przy użyciu osobnego hasła skonfigurowanego w ustawieniach bezpieczeństwa.</string>
+    <string name="understand_risk_accept">Rozumiem ryzyko</string>
     <string name="export_format_aegis">Aegis (.JSON)</string>
     <string name="export_format_google_auth_uri">Plik tekstowy (.TXT)</string>
     <string name="export_format_html">Strona internetowa (.HTML)</string>
@@ -133,6 +140,8 @@
     <string name="invalid_password">Hasło jest nieprawidłowe</string>
     <string name="invalidated_biometrics">Ustawienia zabezpieczeń urządzenia zostały zmienione. Przejdź do \"Aegis -&gt; Ustawienia -&gt; Bezpieczeństwo -&gt; Autoryzacja biometryczna\" i włącz ponownie tę funkcję.</string>
     <string name="password_reminder">Wpisz hasło. Co pewien czas zostaniesz o nie zapytany, aby nie zapomnieć hasła.</string>
+    <string name="password_reminder_dialog_title">Domyślne odblokowanie biometryczne</string>
+    <string name="password_reminder_dialog_message">Czasami prosimy, abyś wprowadził swoje hasło, aby upewnić się, że nie zapomniałeś o nim i nie zostaniesz zablokowany z Twojego sejfu. Po wprowadzeniu hasła Aegis powróci do odblokowania biometrycznego, dopóki nie nadszedł czas na przypomnienie hasła.</string>
     <string name="password_reminder_freq_never">Nigdy</string>
     <string name="password_reminder_freq_weekly">Co tydzień</string>
     <string name="password_reminder_freq_biweekly">Co dwa tygodnie</string>
@@ -240,7 +249,9 @@
     <string name="choose_totpauth_importer">Czy kopia zapasowa aplikacji TOTP Authenticator jest zaszyfrowana za pomocą hasła?</string>
     <string name="choose_application">Wybierz aplikację z której chcesz zaimportować dane</string>
     <string name="choose_theme">Wybierz motyw jaki chcesz</string>
+    <string name="choose_account_name_position">Wybierz miejsce nazwy konta</string>
     <string name="choose_view_mode">Wybierz widok jaki chcesz</string>
+    <string name="choose_copy_behavior">Wybierz pożądane zachowanie kopii</string>
     <string name="parsing_file_error">Wystąpił błąd podczas przetwarzania pliku</string>
     <string name="file_not_found">Błąd: Nie znaleziono pliku</string>
     <string name="reading_file_error">Wystąpił błąd podczas odczytywania pliku</string>
@@ -308,6 +319,7 @@
     <string name="pref_highlight_entry_summary">Wyróżnij tokeny od siebie poprzez tymczasowe podświetlenie po ich kliknięciu</string>
     <string name="pref_minimize_on_copy_title">Zminimalizuj przy skopiowaniu</string>
     <string name="pref_minimize_on_copy_summary">Zminimalizuj aplikację po skopiowaniu tokenu</string>
+    <string name="pref_copy_behavior_title">Skopiuj tokeny do schowka</string>
     <string name="pref_pause_entry_title">Zamroź tokeny po naciśnięciu</string>
     <string name="pref_pause_entry_summary">Wstrzymaj automatyczne odświeżanie tokenów poprzez dotknięcie ich. Tokeny nie będą aktualizowane tak długo, jak długo są podświetlone. Wymaga \"Podświetl tokeny podczas kliknięcia\" lub \"Kliknij, aby odkryć\".</string>
     <string name="pin_keyboard_description">Wpisz hasło, aby włączyć klawiaturę numeryczną. Pamiętaj, że ta klawiatura działa tylko dla hasła numerycznego</string>
@@ -380,6 +392,10 @@
     </string>
     <string name="backup_reminder_bar_message">Zmiany nie są zapisane w kopii zapasowej
     </string>
+    <string name="backup_reminder_bar_dialog_title">Zmiany nie zostały zapisane w kopii zapasowej</string>
+    <string name="backup_reminder_bar_dialog_summary">        Zmiany w sejfie nie zostały jeszcze zapisane w kopii zapasowej. Ważne jest wykonywanie regularnych kopii zapasowych, aby zapobiec utracie dostępu do twoich kont. Rozważ włączenie automatycznych kopii zapasowych w menu ustawień.
+    </string>
+    <string name="backup_reminder_bar_dialog_accept">Skonfiguruj tworzenie kopii zapasowych</string>
     <string name="backup_plaintext_export_warning"><b>Sejf został ostatnio wyeksportowany w jawnym tekście</b></string>
     <string name="pref_show_plaintext_warning_hint">Nie pokazuj tego ostrzeżenia ponownie</string>
     <string name="backup_plaintext_warning_explanation">To ostrzeżenie jest wyświetlane, ponieważ ostatnio wyeksportowano nieszyfrowaną kopię sejfu. Aby zachować bezpieczeństwo tokenów, zalecamy usunięcie tego pliku, gdy nie będzie już potrzebny.</string>
@@ -432,6 +448,7 @@
     <string name="importer_help_2fas">Dostarcz plik zapasowy 2FAS Authenticator.</string>
     <string name="importer_help_aegis">Dostarcz plik zapasowy Aegis.</string>
     <string name="importer_help_authenticator_plus">Dostarcz plik eksportu Authenticator Plus uzyskany w <b>Ustawienia -&gt; Kopia zapasowa &amp; Przywróć -&gt; Eksportuj jako tekst i HTML</b>.</string>
+    <string name="importer_help_authenticator_pro">Dostarcz plik eksportu Authenticator Pro uzyskany przez <b>Ustawienia -&gt; Kopia zapasowa -&gt; Kopia zapasowa do zaszyfrowanego pliku (zalecana)</b>.</string>
     <string name="importer_help_authy">Dostarcz kopię <b>/data/data/com.authy.authy/shared_prefs/com.authy.storage.tokens.authenticator.xml</b>, znajdującą się w wewnętrznym katalogu przechowywania danych Authy.</string>
     <string name="importer_help_andotp">Dostarcz plik andOTP eksportu/kopii zapasowej.</string>
     <string name="importer_help_bitwarden">Dostarcz plik kopii zapasowej Bitwarden. Zaszyfrowane pliki nie są obsługiwane.</string>
@@ -458,6 +475,12 @@ zlokalizowanego w wewnętrznym katalogu Steam.</string>
     <string name="pref_grouping_size_two">Grupy z 2 elementami</string>
     <string name="pref_grouping_size_three">Grupy z 3 elementami</string>
     <string name="pref_grouping_size_four">Grupy z 4 elementami</string>
+    <string name="pref_copy_behavior_never">Nigdy</string>
+    <string name="pref_copy_behavior_single_tap">Pojedyncze dotknięcie</string>
+    <string name="pref_copy_behavior_double_tap">Podwójne dotknięcie</string>
+    <string name="pref_account_name_position_hidden">Ukryta</string>
+    <string name="pref_account_name_position_end">Obok wydawcy</string>
+    <string name="pref_account_name_position_below">Pod wydawcą</string>
     <plurals name="time_elapsed_seconds">
         <item quantity="one">%d sekundę temu</item>
         <item quantity="few">%d sekundy temu</item>

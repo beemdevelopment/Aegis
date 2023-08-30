@@ -39,13 +39,21 @@
     <string name="pref_show_icons_summary">Εμφάνιση εικονιδίων δίπλα σε κάθε καταχώρηση</string>
     <string name="pref_code_group_size_title">Ομαδοποίηση ψηφίων κωδικού</string>
     <string name="pref_code_group_size_summary">Επιλέξτε τον αριθμό των ψηφίων για να ομαδοποιήσετε τους κωδικούς κατά</string>
+    <string name="pref_account_name_position_title">Εμφάνιση του ονόματος λογαριασμού</string>
+    <string name="pref_shared_issuer_account_name_title">Εμφάνιση ονόματος λογαριασμού μόνο όταν είναι απαραίτητο</string>
+    <string name="pref_shared_issuer_account_name_summary">Εμφάνιση μόνο ονομάτων λογαριασμών κάθε φορά που μοιράζονται τον ίδιο εκδότη. Άλλα ονόματα λογαριασμών θα αποκρύπτονται.</string>
+    <string name="pref_account_name_position_summary_override">Αυτή η ρύθμιση αντικαθίσταται από τη λειτουργία προβολής πλακιδίων. Το όνομα λογαριασμού θα εμφανίζεται πάντα κάτω από τον εκδότη.</string>
     <string name="pref_import_file_title">Εισαγωγή από αρχείο</string>
     <string name="pref_import_file_summary">Εισαγωγή αναγνωριστικών από αρχείο</string>
     <string name="pref_android_backups_title">Αντίγραφα ασφαλείας cloud Android</string>
-    <string name="pref_android_backups_summary">Επιτρέψτε στο σύστημα δημιουργίας αντιγράφων ασφαλείας cloud του Android να συμπεριλάβει την κρύπτη του Aegis στα αντίγραφα ασφαλείας του. Αυτό υποστηρίζεται μόνο για κρυπτογραφημένες κρύπτες.</string>
+    <string name="pref_android_backups_summary">Επιτρέψτε στο σύστημα δημιουργίας αντιγράφων ασφαλείας cloud του Android να συμπεριλάβει την κρύπτη του Aegis στα αντίγραφα ασφαλείας του. Υποστηρίζεται μόνο για κρυπτογραφημένες κρύπτες.</string>
     <string name="pref_android_backups_hint"><i>Τα αντίγραφα ασφαλείας από συσκευή σε συσκευή (D2D) επιτρέπονται πάντα, ανεξάρτητα από την παραπάνω ρύθμιση</i></string>
     <string name="pref_backups_title">Αυτόματη δημιουργία αντιγράφων ασφαλείας της κρύπτης</string>
-    <string name="pref_backups_summary">Αυτόματη δημιουργία αντιγραφών ασφαλείας της κρύπτης σε εξωτερικό χώρο αποθήκευσης όταν γίνονται αλλαγές. Αυτό υποστηρίζεται μόνο για κρυπτογραφημένες κρύπτες.</string>
+    <string name="pref_backups_summary">Αυτόματη δημιουργία αντιγραφών ασφαλείας της κρύπτης σε εξωτερικό χώρο αποθήκευσης όταν γίνονται αλλαγές. Υποστηρίζεται μόνο για κρυπτογραφημένες κρύπτες.</string>
+    <string name="pref_backups_reminder_title">Υπενθύμιση για δημιουργία αντιγράφων ασφαλείας</string>
+    <string name="pref_backups_reminder_summary">Εμφάνιση υπενθύμισης για δημιουργία αντιγράφων ασφαλείας σε περίπτωση που δεν έχετε δημιουργήσει αντίγραφα ασφαλείας των τελευταίων σας αλλαγών.</string>
+    <string name="pref_backups_reminder_dialog_title">Απενεργοποίηση υπενθύμισης αντιγράφων ασφαλείας</string>
+    <string name="pref_backups_reminder_dialog_summary">Η απενεργοποίηση αυτής της υπενθύμισης σημαίνει ότι το Aegis δεν θα σας ενημερώσει εάν έχετε ή όχι αλλαγές για τις οποίες δεν έχουν δημιουργηθεί ακόμα αντίγραφα ασφαλείας. Αυτό σας θέτει σε κίνδυνο να χάσετε την πρόσβαση στα διακριτικά σας. Είστε βέβαιοι ότι θέλετε να απενεργοποιήσετε την υπενθύμιση;</string>
     <string name="pref_backups_location_title">Κατάλογος για τα αντίγραφα ασφαλείας αρχείων</string>
     <string name="pref_backups_location_summary">Τα αντίγραφα ασφαλείας θα αποθηκευτούν στo</string>
     <string name="pref_backups_trigger_title">\'Εναυσμα αντιγράφου ασφαλείας</string>
@@ -96,6 +104,7 @@
     <string name="export_help">Αυτή η ενέργεια θα εξάγει την κρύπτη έξω από τον εσωτερικό χώρο αποθήκευσης του Aegis. Επιλέξτε τη μορφή στην οποία θέλετε να είναι η εξαγωγή σας:</string>
     <string name="export_warning_unencrypted">Πρόκειται να εξαγάγετε ένα μη κρυπτογραφημένο αντίγραφο της Aegis κρύπτης σας. <b> Αυτό δεν συνιστάται </b>.</string>
     <string name="export_warning_password">Οι εξαγωγές κρυπτογραφούνται χρησιμοποιώντας ένα ξεχωριστό κωδικό πρόσβασης που έχει ρυθμιστεί στις ρυθμίσεις ασφαλείας.</string>
+    <string name="understand_risk_accept">Κατανοώ τους κινδύνους</string>
     <string name="export_format_aegis">Aegis (.JSON)</string>
     <string name="export_format_google_auth_uri">Αρχείο κειμένου (*.TXT)</string>
     <string name="export_format_html">Ιστοσελίδα (.HTML)</string>
@@ -126,7 +135,9 @@
     <string name="set_password_confirm">Παρακαλώ επιβεβαιώστε τον κωδικό</string>
     <string name="invalid_password">Ο κωδικός πρόσβασης είναι λάθος</string>
     <string name="invalidated_biometrics">Έχει εντοπιστεί μια αλλαγή στις ρυθμίσεις ασφαλείας της συσκευής σας. Παρακαλώ μεταβείτε στο \"Aegis -&gt; Ρυθμίσεις -&gt; Ασφάλεια -&gt; Βιομετρικό ξεκλείδωμα\" για να απενεργοποιήσετε και να ξανά ενεργοποιήσετε το βιομετρικό ξεκλείδωμα.</string>
-    <string name="password_reminder">Παρακαλώ εισάγετε τον κωδικό σας. Σας ζητάμε περιστασιακά να το κάνετε αυτό, ώστε να μην το ξεχάσετε.</string>
+    <string name="password_reminder">Παρακαλούμε εισάγετε τον κωδικό σας. Σας ζητάμε περιστασιακά να το κάνετε αυτό ώστε να μην τον ξεχάσετε.</string>
+    <string name="password_reminder_dialog_title">Βιομετρικό ξεκλείδωμα από προεπιλογή</string>
+    <string name="password_reminder_dialog_message">Σας προτρέπουμε περιστασιακά να εισάγετε τον κωδικό πρόσβασής σας για να διασφαλίσετε ότι δεν τον έχετε ξεχάσει και δεν μείνετε εκτός της κρύπτης σας. Μετά την εισαγωγή του κωδικού πρόσβασής σας μία φορά, το Aegis θα επανέλθει στο βιομετρικό ξεκλείδωμα μέχρι να έρθει η ώρα για μια άλλη υπενθύμιση κωδικού πρόσβασης.</string>
     <string name="password_reminder_freq_never">Ποτέ</string>
     <string name="password_reminder_freq_weekly">Εβδομαδιαία</string>
     <string name="password_reminder_freq_biweekly">Ανά δύο εβδομάδες</string>
@@ -201,7 +212,7 @@
     <string name="vault_init_error">Παρουσιάστηκε σφάλμα κατά την προσπάθεια προετοιμασίας της κρύπτης</string>
     <string name="vault_load_error">Παρουσιάστηκε σφάλμα κατά την προσπάθεια φόρτωσης της κρύπτης από τον χώρο αποθήκευσης</string>
     <string name="biometric_decrypt_error">Παρουσιάστηκε σφάλμα κατά την προσπάθεια αποκρυπτογράφησης της κρύπτης με βιομετρικό έλεγχο ταυτότητας. Αυτό συμβαίνει συνήθως μόνο εάν αλλάξουν οι ρυθμίσεις ασφαλείας της συσκευής σας. Ξεκλειδώστε την κρύπτη με τον κωδικό πρόσβασής σας και διαμορφώστε εκ νέου τον βιομετρικό έλεγχο ταυτότητας στις ρυθμίσεις του Aegis.</string>
-    <string name="biometric_init_error">Παρουσιάστηκε σφάλμα κατά την προσπάθεια προετοιμασίας βιομετρικού ελέγχου ταυτότητας. Αυτό συμβαίνει συνήθως μόνο εάν αλλάξουν οι ρυθμίσεις ασφαλείας της συσκευής σας. Ξεκλειδώστε την κρύπτη με τον κωδικό πρόσβασής σας και αναδιαμορφώστε τον βιομετρικό έλεγχο ταυτότητας στις ρυθμίσεις του Aegis.</string>
+    <string name="biometric_init_error">Παρουσιάστηκε σφάλμα κατά την προσπάθεια προετοιμασίας βιομετρικού ελέγχου ταυτότητας. Αυτό συμβαίνει συνήθως μόνο εάν αλλάξουν οι ρυθμίσεις ασφαλείας της συσκευής σας. Ξεκλειδώστε την κρύπτη με τον κωδικό πρόσβασης σας και αναδιαμορφώστε τον βιομετρικό έλεγχο ταυτότητας στις ρυθμίσεις του Aegis.</string>
     <string name="disable_encryption">Απενεργοποίηση κρυπτογράφησης</string>
     <string name="disable_encryption_description">Είστε βέβαιοι ότι θέλετε να απενεργοποιήσετε την κρυπτογράφηση; Αυτό θα έχει ως αποτέλεσμα η κρύπτη να αποθηκευτεί σε απλό κείμενο. <b>Τα αυτόματα αντίγραφα ασφαλείας θα απενεργοποιηθούν επίσης</b>.</string>
     <string name="enable_encryption_error">Παρουσιάστηκε σφάλμα κατά την ενεργοποίηση της κρυπτογράφησης</string>
@@ -228,7 +239,9 @@
     <string name="choose_totpauth_importer">Είναι αυτό το αντίγραφο ασφαλείας TOTP Authenticator κρυπτογραφημένο με κωδικό πρόσβασης;</string>
     <string name="choose_application">Επιλέξτε την εφαρμογή από την οποία θέλετε να εισαγάγετε</string>
     <string name="choose_theme">Επιλέξτε το θέμα που θέλετε</string>
+    <string name="choose_account_name_position">Επιλέξτε την επιθυμητή θέση ονόματος λογαριασμού</string>
     <string name="choose_view_mode">Επιλέξτε τη λειτουργία προβολής που θέλετε</string>
+    <string name="choose_copy_behavior">Επιλέξτε την επιθυμητή συμπεριφορά αντιγραφής</string>
     <string name="parsing_file_error">Παρουσιάστηκε σφάλμα κατά την προσπάθεια ανάλυσης του αρχείου</string>
     <string name="file_not_found">Σφάλμα: Το αρχείο δεν βρέθηκε</string>
     <string name="reading_file_error">Παρουσιάστηκε σφάλμα κατά την προσπάθεια ανάγνωσης του αρχείου</string>
@@ -292,6 +305,7 @@
     <string name="pref_highlight_entry_summary">Κάνετε τα αναγνωριστικά να ξεχωρίζουν ευκολότερα το ένα από το άλλο, επισημαίνοντας τα προσωρινά όταν τα πατήσετε</string>
     <string name="pref_minimize_on_copy_title">Ελαχιστοποίηση κατά την αντιγραφή</string>
     <string name="pref_minimize_on_copy_summary">Ελαχιστοποίηση της εφαρμογής μετά την αντιγραφή ενός αναγνωριστικού</string>
+    <string name="pref_copy_behavior_title">Αντιγραφή αναγνωριστικών στο πρόχειρο</string>
     <string name="pref_pause_entry_title">Πάγωμα αναγνωριστικών όταν πατηθούν</string>
     <string name="pref_pause_entry_summary">Παύση της αυτόματης ανανέωσης των αναγνωριστικών πατώντας τα. Τα αναγνωριστικά δεν θα ενημερώνονται όσο είναι συγκεντρωμένα. Απαιτεί \"Επισήμανση αναγνωριστικών όταν πατηθούν\" ή \"Πατήστε για αποκάλυψη\".</string>
     <string name="pin_keyboard_description">Εισαγάγετε τον κωδικό πρόσβασής σας για να ενεργοποιήσετε το πληκτρολόγιο PIN. Λάβετε υπόψη ότι αυτό λειτουργεί μόνο εάν ο κωδικός πρόσβασής σας αποτελείται μόνο από αριθμούς</string>
@@ -301,12 +315,13 @@
     <string name="selected">Επιλεγμένο</string>
     <string name="dark_theme_title">Σκούρο</string>
     <string name="light_theme_title">Φωτεινό</string>
-    <string name="amoled_theme_title">AMOLED θέμα</string>
+    <string name="amoled_theme_title">AMOLED</string>
     <string name="system_theme_title">Ορισμός από την Εξοικονόμηση Μπαταρίας</string>
     <string name="system_amoled_theme_title">Ορισμός από την Εξοικονόμηση Μπαταρίας (AMOLED)</string>
     <string name="normal_viewmode_title">Κανονική</string>
     <string name="compact_mode_title">Συμπαγής</string>
     <string name="small_mode_title">Μικρή</string>
+    <string name="tiles_mode_title">Πλακίδια</string>
     <string name="unknown_issuer">Άγνωστος εκδότης</string>
     <string name="unknown_account_name">Άγνωστο όνομα λογαριασμού</string>
     <plurals name="import_error_dialog">
@@ -360,6 +375,10 @@
     <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">        Το τελευταίο αντίγραφο ασφαλείας είναι παρωχημένο (%s)
     </string>
     <string name="backup_reminder_bar_message">        Δε λαμβάνονται αντίγραφα ασφαλείας των αλλαγών    </string>
+    <string name="backup_reminder_bar_dialog_title">Δε δημιουργούνται αντίγραφα ασφαλείας των αλλαγών σας</string>
+    <string name="backup_reminder_bar_dialog_summary">        Οι πρόσφατες αλλαγές στην κρύπτη δεν έχουν δημιουργηθεί ακόμα αντίγραφα ασφαλείας.  Είναι σημαντικό να λαμβάνετε τακτικά αντίγραφα ασφαλείας για να αποτρέψετε την απώλεια πρόσβασης στους λογαριασμούς σας. Εξετάστε το ενδεχόμενο να δημιουργήσετε αυτόματα αντίγραφα ασφαλείας στο μενού ρυθμίσεων.
+    </string>
+    <string name="backup_reminder_bar_dialog_accept">Ρύθμιση αντιγράφων ασφαλείας</string>
     <string name="backup_plaintext_export_warning"><b>Η κρύπτη εξήχθη πρόσφατα σε απλό κείμενο</b></string>
     <string name="pref_show_plaintext_warning_hint">Να μην εμφανιστεί ξανά αυτή η προειδοποίηση</string>
     <string name="backup_plaintext_warning_explanation">Αυτή η προειδοποίηση εμφανίζεται επειδή πρόσφατα εξάγατε ένα μη κρυπτογραφημένο αντίγραφο της κρύπτης. Για να διατηρήσετε την ασφάλεια των αναγνωριστικών σας, σας συνιστούμε να διαγράψετε αυτό το αρχείο μόλις δεν είναι πλέον απαραίτητο.</string>
@@ -368,7 +387,7 @@
     <string name="empty_list_title">Δεν βρέθηκαν καταχωρήσεις</string>
     <string name="empty_group_list">Δεν υπάρχουν ομάδες προς εμφάνιση. Προσθέστε ομάδες στην οθόνη επεξεργασίας μιας καταχώρισης</string>
     <string name="empty_group_list_title">Δεν βρέθηκαν ομάδες</string>
-    <string name="no_icon_packs">Δεν έχουν εισαχθεί ακόμα πακέτα εικονιδίων. Πατήστε το σύμβολο συν για να εισαγάγετε ένα. Συμβουλή: δοκιμάστε <a href="https://aegis-icons.github.io">εικονίδια-aegis</a>.</string>
+    <string name="no_icon_packs">Δεν έχουν εισαχθεί ακόμα πακέτα εικονιδίων. Πατήστε το σύμβολο + για να εισάγετε ένα. Συμβουλή: δοκιμάστε τα <a href="https://aegis-icons.github.io">εικονίδια-aegis</a>.</string>
     <string name="no_icon_packs_title">Χωρίς πακέτα εικονιδίων</string>
     <string name="pick_icon">Επιλέξτε ένα εικονίδιο</string>
     <string name="uncategorized">Μη κατηγοριοποιημένο</string>
@@ -410,6 +429,7 @@
     <string name="importer_help_2fas">Παρέχετε ένα αντίγραφο ασφαλείας 2FAS Authenticator.</string>
     <string name="importer_help_aegis">Παρέχετε ένα αρχείο εξαγωγής/αντιγράφων ασφαλείας Aegis.</string>
     <string name="importer_help_authenticator_plus">Παρέχετε ένα αρχείο εξαγωγής Authenticator Plus που αποκτήθηκε μέσω των <b> Ρυθμίσεων - &gt; Αντιγράφων ασφαλείας &amp; Επαναφορά - &gt; Εξαγωγή ως Κείμενο και HTML </b>.</string>
+    <string name="importer_help_authenticator_pro">Παρέχεται ένα αρχείο εξαγωγής Authenticator Pro που λαμβάνεται μέσω <b>Ρυθμίσεις -&gt; Δημιουργία αντιγράφων ασφαλείας -&gt; Δημιουργία σε κρυπτογραφημένο αρχείο (συνιστάται)</b>.</string>
     <string name="importer_help_authy">Παρέχετε ένα αντίγραφο του <b>/data/data/com.authy.authy/shared_prefs/com.authy.storage.tokens.authenticator.xml</b>, που βρίσκεται στον κατάλογο εσωτερικής αποθήκευσης του Authy.</string>
     <string name="importer_help_andotp">Παρέχετε ένα αρχείο εξαγωγής/αντιγράφου ασφαλείας andOTP.</string>
     <string name="importer_help_bitwarden">Παρέχετε ένα αρχείο εξαγωγής/αντιγράφων ασφαλείας Bitwarden. Τα κρυπτογραφημένα αρχεία δεν υποστηρίζονται.</string>
@@ -433,6 +453,12 @@
     <string name="pref_grouping_size_two">Ομάδες των 2</string>
     <string name="pref_grouping_size_three">Ομάδες των 3</string>
     <string name="pref_grouping_size_four">Ομάδες των 4</string>
+    <string name="pref_copy_behavior_never">Ποτέ</string>
+    <string name="pref_copy_behavior_single_tap">Μονό άγγιγμα</string>
+    <string name="pref_copy_behavior_double_tap">Διπλό άγγιγμα</string>
+    <string name="pref_account_name_position_hidden">Κρυφό</string>
+    <string name="pref_account_name_position_end">Δίπλα στον εκδότη</string>
+    <string name="pref_account_name_position_below">Κάτω από τον εκδότη</string>
     <plurals name="time_elapsed_seconds">
         <item quantity="one">%d δευτερόλεπτο πριν</item>
         <item quantity="other">%d δευτερόλεπτα πριν</item>

@@ -6,7 +6,7 @@
     <string name="action_transfer">Übertragen</string>
     <string name="action_edit_icon">Symbol bearbeiten</string>
     <string name="action_reset_usage_count">Verwendungszähler zurücksetzen</string>
-    <string name="action_reset_usage_count_dialog">Bist du sicher, dass du die Anzahl der Verwendungen dieses Eintrags auf 0 setzen möchtest?</string>
+    <string name="action_reset_usage_count_dialog">Möchtest du die Anzahl der Verwendungen dieses Eintrags auf 0 setzen?</string>
     <string name="action_default_icon">Standardsymbol wiederherstellen</string>
     <string name="discard">Verwerfen</string>
     <string name="save">Speichern</string>
@@ -19,17 +19,17 @@
     <string name="pref_cat_appearance_app">App</string>
     <string name="pref_cat_appearance_entries">Einträge</string>
     <string name="pref_cat_backups_android">Android</string>
-    <string name="pref_cat_backups_auto">Automatische Sicherungen</string>
+    <string name="pref_cat_backups_auto">Automatisierte Sicherungen</string>
     <string name="pref_section_behavior_title">Verhalten</string>
-    <string name="pref_section_behavior_summary">Passe das Verhalten bei der Interaktion mit der Eintragsliste an.</string>
+    <string name="pref_section_behavior_summary">Das Verhalten bei der Interaktion mit der Eintragsliste anpassen.</string>
     <string name="pref_section_appearance_title">Erscheinungsbild</string>
-    <string name="pref_section_appearance_summary">Passe das Design, die Sprache und andere Einstellungen an, die das Erscheinungsbild der App betreffen.</string>
+    <string name="pref_section_appearance_summary">Das Design, die Sprache und andere Einstellungen anpassen, die das Erscheinungsbild der App betreffen.</string>
     <string name="pref_section_security_title">Sicherheit</string>
-    <string name="pref_section_security_summary">Konfiguriere Verschlüsselung, biometrisches Entsperren, automatische Sperre und andere Sicherheitseinstellungen.</string>
+    <string name="pref_section_security_summary">Verschlüsselung, biometrisches Entsperren, automatisches Sperren und andere Sicherheitseinstellungen konfigurieren.</string>
     <string name="pref_section_import_export_title">Importieren &amp; Exportieren</string>
     <string name="pref_section_import_export_summary">Importiere Sicherungskopien von Aegis oder anderen Authentisierungs-Apps. Erstelle manuelle Exporte der Aegis-Datenbank.</string>
     <string name="pref_section_backups_title">Sicherungen</string>
-    <string name="pref_section_backups_summary">Richte automatische Sicherungen an einem Speicherort deiner Wahl ein oder aktiviere die Verwendung von Cloud-Back-ups durch Android.</string>
+    <string name="pref_section_backups_summary">Automatisierte Sicherungen an einem Speicherort deiner Wahl einrichten oder das Verwenden von Cloud-Back-ups durch Android einrichten.</string>
     <string name="pref_section_icon_packs">Symbolpakete</string>
     <string name="pref_section_icon_packs_summary">Symbolpakete verwalten und importieren.</string>
     <string name="pref_select_theme_title">Design</string>
@@ -39,13 +39,21 @@
     <string name="pref_show_icons_summary">Symbole neben jedem Eintrag anzeigen</string>
     <string name="pref_code_group_size_title">Zifferngruppierung</string>
     <string name="pref_code_group_size_summary">Wähle die Anzahl der Ziffern, nach denen die Codes gruppiert werden sollen</string>
+    <string name="pref_account_name_position_title">Kontonamen anzeigen</string>
+    <string name="pref_shared_issuer_account_name_title">Kontonamen nur anzeigen, wenn notwendig</string>
+    <string name="pref_shared_issuer_account_name_summary">Kontonamen nur anzeigen, wenn sie denselben Herausgeber haben. Andere Kontonamen werden ausgeblendet.</string>
+    <string name="pref_account_name_position_summary_override">Diese Einstellung wird durch die Kachelansicht überschrieben. Kontonamen werden immer unterhalb des Herausgebers angezeigt.</string>
     <string name="pref_import_file_title">Aus Datei importieren</string>
     <string name="pref_import_file_summary">Token aus einer Datei importieren</string>
     <string name="pref_android_backups_title">Cloud-Back-ups durch Android</string>
     <string name="pref_android_backups_summary">Erlaube das Cloud-Back-up durch Android, die Datenbank von Aegis in die Sicherungen aufzunehmen. Dies wird nur für verschlüsselte Datenbanken unterstützt.</string>
-    <string name="pref_android_backups_hint"><i>Gerät-zu-Gerät-Sicherungen (D2D) sind immer erlaubt - unabhängig von der obigen Einstellung</i></string>
+    <string name="pref_android_backups_hint"><i>Gerät-zu-Gerät-Sicherungen (D2D) sind immer erlaubt – unabhängig von der obigen Einstellung</i></string>
     <string name="pref_backups_title">Datenbank automatisch sichern</string>
     <string name="pref_backups_summary">Sicherungskopie der Datenbank automatisch bei Änderungen auf externem Speicher erstellen. Nur für verschlüsselte Datenbanken unterstützt.</string>
+    <string name="pref_backups_reminder_title">Erinnerung für Sicherungen</string>
+    <string name="pref_backups_reminder_summary">Erinnerung zur Sicherung der Datenbank anzeigen, falls die letzten Änderungen nicht gesichert wurden.</string>
+    <string name="pref_backups_reminder_dialog_title">Erinnerung für Sicherungen deaktivieren</string>
+    <string name="pref_backups_reminder_dialog_summary">Das Deaktivieren dieser Erinnerung bedeutet, dass Aegis nicht mitteilt, ob Änderungen vorgenommen wurden, die noch nicht gesichert sind. Dadurch besteht die Gefahr, dass der Zugriff auf deine Token verloren geht. Möchtest du die Erinnerung wirklich deaktivieren?</string>
     <string name="pref_backups_location_title">Ordner für Sicherungsdateien</string>
     <string name="pref_backups_location_summary">Sicherungskopien werden gespeichert in</string>
     <string name="pref_backups_trigger_title">Sicherungskopie auslösen</string>
@@ -71,7 +79,7 @@
     <string name="pref_password_reminder_summary_disabled">Deaktiviert</string>
     <string name="pref_secure_screen_title">Bildschirmsicherheit</string>
     <string name="pref_secure_screen_summary">Blockiere Bildschirmfotos und andere Versuche, den Bildschirm innerhalb der App aufzunehmen</string>
-    <string name="pref_tap_to_reveal_title">Zum Aufdecken tippen</string>
+    <string name="pref_tap_to_reveal_title">Zum Aufdecken antippen</string>
     <string name="pref_tap_to_reveal_summary">Token werden standardmäßig ausgeblendet. Tippe auf die Token, um den Code anzuzeigen.</string>
     <string name="pref_tap_to_reveal_time_title">Zeitüberschreitung für die Anzeige durch Antippen</string>
     <string name="pref_auto_lock_title">Automatische Sperre</string>
@@ -96,6 +104,7 @@
     <string name="export_help">Mit dieser Aktion wird die Datenbank aus dem internen Speicher von Aegis exportiert. Wähle das Format aus, in dem der Export erfolgen soll:</string>
     <string name="export_warning_unencrypted">Du bist dabei, eine unverschlüsselte Kopie deiner Aegis-Datenbank zu exportieren. <b>Dies wird nicht empfohlen</b>.</string>
     <string name="export_warning_password">Exporte werden mit einem separaten Passwort verschlüsselt, das in den Sicherheitseinstellungen konfiguriert wurde.</string>
+    <string name="understand_risk_accept">Ich bin mir des Risikos bewusst</string>
     <string name="export_format_aegis">Aegis (.JSON)</string>
     <string name="export_format_google_auth_uri">Textdatei (.TXT)</string>
     <string name="export_format_html">Webseite (.HTML)</string>
@@ -126,8 +135,10 @@
     <string name="set_password_confirm">Bitte bestätige das Passwort</string>
     <string name="invalid_password">Das Passwort ist falsch</string>
     <string name="invalidated_biometrics">Es wurde eine Änderung in den Sicherheitseinstellungen deines Geräts erkannt. Bitte navigiere zu »Aegis -&gt; Einstellungen -&gt; Sicherheit -&gt; Biometrisches Entsperren«, um biometrisches Entsperren zu deaktivieren und wieder zu aktivieren.</string>
-    <string name="password_reminder">Bitte gib dein Passwort ein. Wir bitten dich gelegentlich, dies zu tun, damit du es nicht vergisst.</string>
-    <string name="password_reminder_freq_never">niemals</string>
+    <string name="password_reminder">Bitte gib dein Passwort ein. Wir fordern dich gelegentlich dazu auf, damit du es nicht vergisst.</string>
+    <string name="password_reminder_dialog_title">Biometrisches Entsperren als Standard</string>
+    <string name="password_reminder_dialog_message">Wir fordern dich gelegentlich auf, dein Passwort einzugeben, um sicherzustellen, dass du es nicht vergessen hast und du nicht den Zugang zu deiner Datenbank verlierst. Nachdem du dein Passwort einmal eingegeben hast, verwendet Aegis wieder das biometrische Entsperren, bis es Zeit für eine weitere Passworterinnerung ist.</string>
+    <string name="password_reminder_freq_never">Niemals</string>
     <string name="password_reminder_freq_weekly">wöchentlich</string>
     <string name="password_reminder_freq_biweekly">alle 2 Wochen</string>
     <string name="password_reminder_freq_monthly">monatlich</string>
@@ -176,12 +187,12 @@
     </plurals>
     <string name="importing_icon_pack">Symbolpaket wird importiert</string>
     <string name="delete_entry">Eintrag löschen</string>
-    <string name="delete_entry_description">Bist du sicher, dass du diesen Eintrag löschen möchtest?</string>
+    <string name="delete_entry_description">Möchtest du diesen Eintrag wirklich löschen?</string>
     <string name="delete_entry_explanation">Diese Aktion deaktiviert die 2FA nicht für:\n<b>%s</b>\n\nUm zu verhindern, dass du den Zugang verlierst, vergewissere dich, dass du 2FA deaktiviert hast oder dass du eine alternative Möglichkeit verwendest, um Codes für diesen Dienst zu generieren.</string>
     <string name="delete_entries">Einträge löschen</string>
     <plurals name="delete_entries_description">
-        <item quantity="one">Bist du sicher, dass du %d Eintrag löschen möchtest?</item>
-        <item quantity="other">Bist du sicher, dass du %d Einträge löschen möchtest?</item>
+        <item quantity="one">Möchtest du %d Eintrag wirklich löschen?</item>
+        <item quantity="other">Möchtest du %d Einträge wirklich löschen?</item>
     </plurals>
     <string name="discard_changes">Änderungen verwerfen?</string>
     <string name="discard_changes_description">Deine Änderungen wurden noch nicht gespeichert</string>
@@ -203,7 +214,7 @@
     <string name="biometric_decrypt_error">Beim Versuch, die Datenbank mit biometrischer Authentisierung zu entschlüsseln, ist ein Fehler aufgetreten. Dies geschieht in der Regel nur, wenn die Sicherheitseinstellungen deines Geräts geändert wurden. Bitte entsperre die Datenbank mit deinem Passwort und konfiguriere die biometrische Authentisierung in den Einstellungen von Aegis neu.</string>
     <string name="biometric_init_error">Beim Versuch, die biometrische Authentisierung vorzubereiten, ist ein Fehler aufgetreten. Dies geschieht in der Regel nur, wenn die Sicherheitseinstellungen deines Geräts geändert wurden. Bitte entsperre die Datenbank mit deinem Passwort und konfiguriere die biometrische Authentisierung in den Einstellungen von Aegis neu.</string>
     <string name="disable_encryption">Verschlüsselung deaktivieren</string>
-    <string name="disable_encryption_description">Bist du sicher, dass du die Verschlüsselung deaktivieren möchtest? Dies führt dazu, dass die Datenbank im Klartext gespeichert wird. <b>Automatische Sicherungen werden ebenfalls deaktiviert</b>.</string>
+    <string name="disable_encryption_description">Möchtest du die Verschlüsselung wirklich deaktivieren? Dadurch wird die Datenbank im Klartext gespeichert. <b>Automatisierte Sicherungen werden ebenfalls deaktiviert</b>.</string>
     <string name="enable_encryption_error">Bei der Aktivierung der Verschlüsselung ist ein Fehler aufgetreten</string>
     <string name="disable_encryption_error">Bei der Deaktivierung der Verschlüsselung ist ein Fehler aufgetreten</string>
     <string name="backup_successful">Die Sicherung wurde erfolgreich durchgeführt</string>
@@ -228,7 +239,9 @@
     <string name="choose_totpauth_importer">Ist diese TOTP Authenticator-Sicherungskopie mit einem Passwort verschlüsselt?</string>
     <string name="choose_application">Wähle die App aus, aus der du importieren möchtest</string>
     <string name="choose_theme">Wähle das gewünschte Design aus</string>
+    <string name="choose_account_name_position">Wähle die gewünschte Position des Kontonamens</string>
     <string name="choose_view_mode">Wähle den gewünschten Darstellungsstil aus</string>
+    <string name="choose_copy_behavior">Wähle dein gewünschtes Verhalten fürs Kopieren</string>
     <string name="parsing_file_error">Beim Analysieren der Datei ist ein Fehler aufgetreten</string>
     <string name="file_not_found">Fehler: Datei nicht gefunden</string>
     <string name="reading_file_error">Beim Lesen der Datei ist ein Fehler aufgetreten</string>
@@ -263,9 +276,9 @@
     <string name="unlocking_vault">Entsperren der Datenbank</string>
     <string name="slot_this_device">(Dieses Gerät)</string>
     <string name="remove_group">Gruppe entfernen</string>
-    <string name="remove_group_description">Bist du sicher, dass du diese Gruppe entfernen möchtest? Einträge in dieser Gruppe wechseln automatisch zu \'Keine Gruppe\'.</string>
+    <string name="remove_group_description">Möchtest du diese Gruppe wirklich entfernen? Einträge in dieser Gruppe wechseln automatisch zu »Keine Gruppe«.</string>
     <string name="remove_icon_pack">Symbolpaket entfernen</string>
-    <string name="remove_icon_pack_description">Bist du sicher, dass du dieses Symbolpaket entfernen möchtest? Einträge, die Symbole aus diesem Paket verwenden, sind davon nicht betroffen.</string>
+    <string name="remove_icon_pack_description">Möchtest du dieses Symbolpaket wirklich entfernen? Einträge, die Symbole aus diesem Paket verwenden, sind davon nicht betroffen.</string>
     <string name="details">Details</string>
     <string name="show_error_details">Fehlerdetails anzeigen</string>
     <string name="lock">Sperren</string>
@@ -285,15 +298,16 @@
     <string name="preference_manage_groups_summary">Verwalte und lösche deine Gruppen hier</string>
     <string name="preference_reset_usage_count">Verwendungszähler zurücksetzen</string>
     <string name="preference_reset_usage_count_summary">Anzahl der Verwendungen für jeden Eintrag in der Datenbank zurücksetzen</string>
-    <string name="preference_reset_usage_count_dialog">Bist du sicher, dass du die Anzahl der Verwendungen aller Einträge in deiner Datenbank auf 0 setzen möchtest?</string>
+    <string name="preference_reset_usage_count_dialog">Möchtest du die Anzahl der Verwendungen aller Einträge in deiner Datenbank auf 0 setzen?</string>
     <string name="note">Notiz</string>
     <string name="clear">Löschen</string>
-    <string name="pref_highlight_entry_title">Token beim Tippen hervorheben</string>
+    <string name="pref_highlight_entry_title">Token beim Antippen hervorheben</string>
     <string name="pref_highlight_entry_summary">Token beim Antippen hervorheben, um sie leichter voneinander unterscheiden zu können</string>
     <string name="pref_minimize_on_copy_title">Beim Kopieren minimieren</string>
     <string name="pref_minimize_on_copy_summary">App nach dem Kopieren eines Tokens minimieren</string>
-    <string name="pref_pause_entry_title">Token beim Tippen einfrieren</string>
-    <string name="pref_pause_entry_summary">Automatische Aktualisierung von Token durch Antippen stoppen. Die Token werden nicht aktualisiert, solange sie hervorgehoben sind. Erfordert »Token beim Tippen hervorheben« oder »Zum Aufdecken tippen«.</string>
+    <string name="pref_copy_behavior_title">Token in die Zwischenablage kopieren</string>
+    <string name="pref_pause_entry_title">Token beim Antippen einfrieren</string>
+    <string name="pref_pause_entry_summary">Automatisches Aktualisieren der Token durch Antippen anhalten. Die Token werden nicht aktualisiert, solange sie hervorgehoben sind. Erfordert »Token beim Antippen hervorheben« oder »Zum Aufdecken antippen«.</string>
     <string name="pin_keyboard_description">Gib dein Passwort ein, um die PIN-Tastatur zu aktivieren. Beachte, dass dies nur funktioniert, wenn dein Passwort nur aus Zahlen besteht</string>
     <string name="pin_keyboard_error">Fehler beim Aktivieren der PIN-Tastatur</string>
     <string name="pin_keyboard_error_description">Es ist nicht möglich, die PIN-Tastatur zu aktivieren. Dein Passwort darf nur aus Zahlen bestehen.</string>
@@ -307,6 +321,7 @@
     <string name="normal_viewmode_title">Normal</string>
     <string name="compact_mode_title">Kompakt</string>
     <string name="small_mode_title">Klein</string>
+    <string name="tiles_mode_title">Kacheln</string>
     <string name="unknown_issuer">Unbekannter Herausgeber</string>
     <string name="unknown_account_name">Unbekannter Kontoname</string>
     <plurals name="import_error_dialog">
@@ -326,7 +341,7 @@
     <string name="search">Suchen</string>
     <string name="channel_name_lock_status">Sperrstatus</string>
     <string name="channel_description_lock_status">Aegis kann eine dauerhafte Benachrichtigung erstellen, um dich zu benachrichtigen, wenn die Datenbank gesperrt ist</string>
-    <string name="vault_unlocked_state">Die Datenbank ist entsperrt. Hier tippen, um sie zu sperren.</string>
+    <string name="vault_unlocked_state">Die Datenbank ist entsperrt. Hier antippen, um sie zu sperren.</string>
     <string name="version">Version</string>
     <string name="changelog">Änderungsprotokoll</string>
     <string name="whats_new">Was ist neu</string>
@@ -344,7 +359,7 @@
     <string name="webview_error">Dieses Gerät unterstützt kein WebView, das zum Anzeigen des Änderungsprotokolls und der Lizenz erforderlich ist. Es fehlt eine Systemkomponente.</string>
     <string name="email">E-Mail</string>
     <string name="time_sync_warning_title">Automatische Zeitsynchronisierung</string>
-    <string name="time_sync_warning_message">Aegis ist auf die Synchronisierung der Systemzeit angewiesen, um korrekte Codes zu generieren. Eine Abweichung von nur wenigen Sekunden kann zu falschen Codes führen. Es sieht so aus, als ob dein Gerät nicht so konfiguriert ist, dass es die Zeit automatisch synchronisiert. Möchtest du dies jetzt tun?</string>
+    <string name="time_sync_warning_message">Aegis ist auf die Synchronisierung der Systemzeit angewiesen, um korrekte Codes zu generieren. Eine Abweichung von nur wenigen Sekunden kann zu falschen Codes führen. Es sieht so aus, als ob dein Gerät nicht so konfiguriert ist, dass es die Zeit automatisch synchronisiert. Möchtest du das jetzt tun?</string>
     <string name="time_sync_warning_disable">Höre auf, mich zu warnen. Ich weiß, was ich tue.</string>
     <string name="google_qr_export_unrelated">Nicht zugehöriger QR-Code gefunden. Versuche, den Scanner neu zu starten.</string>
     <plurals name="google_qr_export_scanned">
@@ -355,12 +370,16 @@
     <string name="backup_error_bar_message"><b>Sicherungskopie ist kürzlich fehlgeschlagen</b></string>
     <string name="backup_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">        Ein kürzlicher Sicherungsversuch der Datenbank mit %s ist fehlgeschlagen, da ein Fehler aufgetreten ist. Die Sicherung wurde am %s versucht. Bitte überprüfe deine Sicherungseinstellungen, um sicherzustellen, dass Sicherungen erfolgreich abgeschlossen werden können.
     </string>
-    <string name="backup_system_builtin">Automatische Sicherungen von Aegis</string>
+    <string name="backup_system_builtin">Automatisierte Sicherungen von Aegis</string>
     <string name="backup_system_android">Cloud-Back-ups durch Android</string>
     <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">        Die letzte Sicherung ist veraltet (%s)
     </string>
     <string name="backup_reminder_bar_message">        Änderungen wurden noch nicht gesichert
     </string>
+    <string name="backup_reminder_bar_dialog_title">Änderungen wurden noch nicht gesichert</string>
+    <string name="backup_reminder_bar_dialog_summary">        Kürzliche Änderungen an der Datenbank wurden noch nicht gesichert. Es ist wichtig, regelmäßig Sicherungen zu erstellen, damit du den Zugriff auf deine Konten nicht verlierst. Bitte denke daran, automatisierte Sicherungen im Einstellungsmenü einzurichten.
+    </string>
+    <string name="backup_reminder_bar_dialog_accept">Sicherung einrichten</string>
     <string name="backup_plaintext_export_warning"><b>Die Datenbank wurde kürzlich im Klartext exportiert</b></string>
     <string name="pref_show_plaintext_warning_hint">Diese Warnung nicht erneut anzeigen</string>
     <string name="backup_plaintext_warning_explanation">Diese Warnung wird angezeigt, weil du kürzlich eine unverschlüsselte Kopie der Datenbank exportiert hast. Um die Sicherheit deiner Token zu gewährleisten, empfehlen wir, diese Datei zu löschen, sobald sie nicht mehr benötigt wird.</string>
@@ -392,7 +411,7 @@
     <string name="password_strength_good">Gut</string>
     <string name="password_strength_strong">Sicher</string>
     <string name="pref_pin_keyboard_title">PIN-Tastatur auf Sperrbildschirm verwenden</string>
-    <string name="pref_pin_keyboard_summary">Aktiviere dies, um die PIN-Tastatur auf dem Sperrbildschirm zu aktivieren. Dies funktioniert nur bei numerischen Passwörtern</string>
+    <string name="pref_pin_keyboard_summary">Aktivieren, um die PIN-Tastatur auf dem Sperrbildschirm zu aktivieren. Das funktioniert nur bei numerischen Passwörtern</string>
     <string name="title_activity_preferences">Einstellungen</string>
     <string name="title_activity_manage_groups">Gruppen verwalten</string>
     <string name="title_activity_transfer">Einträge übertragen</string>
@@ -404,13 +423,14 @@
     <string name="dialog_wipe_entries_title">Einträge löschen</string>
     <string name="dialog_wipe_entries_message">Deine Datenbank enthält bereits Einträge. Möchtest du diese Einträge entfernen, bevor diese Datei importiert wird?\n\n<b>Wenn du dies tust, verlierst du dauerhaft den Zugriff auf die vorhandenen Einträge in der Datenbank.</b></string>
     <string name="dialog_wipe_entries_checkbox">Datenbankinhalt löschen</string>
-    <string name="panic_trigger_ignore_toast">Aegis hat ein Paniksignal empfangen, aber die Einstellung ist deaktiviert - Paniksignal wird ignoriert</string>
+    <string name="panic_trigger_ignore_toast">Aegis hat ein Paniksignal empfangen, aber die Einstellung ist deaktiviert – Paniksignal wird ignoriert</string>
     <string name="pref_panic_trigger_title">Datenbank bei Paniksignal löschen</string>
     <string name="pref_panic_trigger_summary">Datenbank löschen, wenn ein Paniksignal von Ripple empfangen wird</string>
     <string name="import_vault">Datenbank importieren</string>
     <string name="importer_help_2fas">Gib eine 2FAS Authenticator-Sicherungsdatei an.</string>
     <string name="importer_help_aegis">Gib eine Aegis-Export-/Sicherungsdatei an.</string>
     <string name="importer_help_authenticator_plus">Gib eine Authenticator Plus-Exportdatei an, die du über <b>Einstellungen -&gt; Sicherung &amp; Rücksicherung -&gt; Exportieren als Text und HTML Format</b> erhältst.</string>
+    <string name="importer_help_authenticator_pro">Gib eine Authenticator Pro-Exportdatei an, die du über <b>Einstellungen -&gt; Sicherung -&gt; Als verschlüsselte Datei sichern (empfohlen)</b> erhältst.</string>
     <string name="importer_help_authy">Gib eine Kopie von <b>/data/data/com.authy.authy/shared_prefs/com.authy.storage.tokens.authenticator.xml</b> an, die sich im internen Speicherverzeichnis von Authy befindet.</string>
     <string name="importer_help_andotp">Gib eine andOTP-Export-/Sicherungsdatei an.</string>
     <string name="importer_help_bitwarden">Gib eine Bitwarden-Export-/Sicherungsdatei an. Verschlüsselte Dateien werden nicht unterstützt.</string>
@@ -434,6 +454,12 @@
     <string name="pref_grouping_size_two">2er-Gruppen</string>
     <string name="pref_grouping_size_three">3er-Gruppen</string>
     <string name="pref_grouping_size_four">4er-Gruppen</string>
+    <string name="pref_copy_behavior_never">Niemals</string>
+    <string name="pref_copy_behavior_single_tap">Einmal antippen</string>
+    <string name="pref_copy_behavior_double_tap">Zweimal antippen</string>
+    <string name="pref_account_name_position_hidden">Ausgeblendet</string>
+    <string name="pref_account_name_position_end">Neben dem Herausgeber</string>
+    <string name="pref_account_name_position_below">Unterhalb des Herausgebers</string>
     <plurals name="time_elapsed_seconds">
         <item quantity="one">vor %d Sekunde</item>
         <item quantity="other">vor %d Sekunden</item>

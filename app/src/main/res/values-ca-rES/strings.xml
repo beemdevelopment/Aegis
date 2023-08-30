@@ -46,6 +46,10 @@
     <string name="pref_android_backups_hint"><i>Les còpies dispositiu-a-dispositiu (D2D) sempre estan permeses, sense tenir en compte la configuració de dalt</i></string>
     <string name="pref_backups_title">Copia la volta automàticament</string>
     <string name="pref_backups_summary">Crear còpies de seguretat de la volta a l\'emmagatzematge extern quan es facin canvis. Això només funciona per a voltes xifrades.</string>
+    <string name="pref_backups_reminder_title">Recordatori de còpia</string>
+    <string name="pref_backups_reminder_summary">Mostra un recordatori per a fer còpia de seguretat de la volta si no has desat els teus últims canvis.</string>
+    <string name="pref_backups_reminder_dialog_title">Desactivar recordatori de còpia</string>
+    <string name="pref_backups_reminder_dialog_summary">Desactivant aquest recordatori, Aegis no et dira si tens canvis dels que no hagis fet una copia de seguretat. Això posa en risc l\'accés als teus tokens. Segur que vols desactivar el recordatori?</string>
     <string name="pref_backups_location_title">Directori per a les còpies</string>
     <string name="pref_backups_location_summary">Les còpies es desaran a</string>
     <string name="pref_backups_trigger_title">Disparador de còpia</string>
@@ -96,11 +100,17 @@
     <string name="export_help">Això exportarà la volta fora d\'Aegis. Tria el format en el que s\'ha d\'exportar:</string>
     <string name="export_warning_unencrypted">Això exportarà una còpia sense xifrar de la volta d\'Aegis. <b>No recomanat</b>.</string>
     <string name="export_warning_password">Les exportacions es xifren fent servir una contrasenya diferent, configurada a la secció de seguretat.</string>
+    <string name="understand_risk_accept">Entenc el risc</string>
     <string name="export_format_aegis">Aegis (.JSON)</string>
     <string name="export_format_google_auth_uri">Fitxers de text (*.txt)</string>
     <string name="export_format_html">Pàgina web (.HTML)</string>
     <string name="export_format_hint">Format d\'exportació</string>
     <string name="export_all_groups">Exportar tots els grups</string>
+    <string name="export_choose_groups">Tria els grups a exportar</string>
+    <plurals name="export_groups_selected_count">
+        <item quantity="one">%d grup seleccionat</item>
+        <item quantity="other">%d grups seleccionats</item>
+    </plurals>
     <string name="export_no_groups_selected">No s\'han triat grups per a exportar</string>
     <string name="export_html_title" context="The title of an HTML export document">Exportat d\'Aegis Authenticator</string>
     <string name="choose_authentication_method">Seguretat</string>
@@ -121,7 +131,6 @@
     <string name="set_password_confirm">Confirma la contrasenya</string>
     <string name="invalid_password">La contrasenya no és correcta</string>
     <string name="invalidated_biometrics">S\'ha detectat un canvi en la configuració de seguretat del dispositiu. Si us plau, ves a \"Aegis -&gt; Configuració -&gt; Seguretat -&gt; Desbloqueig biomètric\" per a desactivar i reactivar-lo.</string>
-    <string name="password_reminder">Introdueix la contrasenya. T\'ho demanarem ocasionalment per tal que no te\'n oblidis.</string>
     <string name="password_reminder_freq_never">Mai</string>
     <string name="password_reminder_freq_weekly">Setmanalment</string>
     <string name="password_reminder_freq_biweekly">Cada dues setmanes</string>
@@ -354,6 +363,10 @@
     <string name="backup_system_android">Còpia al núvol d\'Android</string>
     <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">L\'última còpia de seguretat és molt antiga (%s)    </string>
     <string name="backup_reminder_bar_message">No s\'han desat els canvis    </string>
+    <string name="backup_reminder_bar_dialog_title">No s\'ha fet còpia dels canvis</string>
+    <string name="backup_reminder_bar_dialog_summary">        No s\'ha fet una còpia de seguretat dels últims canvis. Es important fer còpies regularment per a evitar perdre l\'accés als teus comptes. Si us plau, considera activar les còpies automàtiques al menú de configuració.
+    </string>
+    <string name="backup_reminder_bar_dialog_accept">Configurar còpies de seguretat</string>
     <string name="backup_plaintext_export_warning"><b>La volta s\'ha exportat recentment en text sense format</b></string>
     <string name="pref_show_plaintext_warning_hint">No tornis a mostrar aquesta advertència</string>
     <string name="backup_plaintext_warning_explanation">Aquest avís es mostra perquè recentment heu exportat una còpia no xifrada de la volta. Per mantenir la seguretat dels vostres tokens, us recomanem que suprimiu aquest fitxer quan ja no sigui necessari.</string>
@@ -404,6 +417,7 @@
     <string name="importer_help_2fas">Subministra un fitxer exportat del 2FAS Authenticator.</string>
     <string name="importer_help_aegis">Subministra un fitxer exportat del Aegis.</string>
     <string name="importer_help_authenticator_plus">Subministra un fitxer exportat del Authenticator Plus, obtingut amb <b>Settings -&gt; Backup &amp; Restore -&gt; Export as Text and HTML</b>.</string>
+    <string name="importer_help_authenticator_pro">Proveeix un fitxer exportat d\'Authenticat Pro, aconseguit a <b>Settings &gt; Back up &gt; Back up to encrypted file (recommended)</b>.</string>
     <string name="importer_help_authy">Subministra una còpia de <b>/data/data/com.authy.authy/shared_prefs/com.authy.storage.tokens.authenticator.xml</b>, que està a l\'emmagatzematge intern del teu dispositiu, al directori del Authy.</string>
     <string name="importer_help_andotp">Subministra un fitxer exportat del andOTP.</string>
     <string name="importer_help_bitwarden">Subministreu un fitxer d\'exportació/còpia de seguretat de Bitwarden. Els fitxers xifrats no són compatibles.</string>
@@ -446,5 +460,9 @@
     <plurals name="time_elapsed_years">
         <item quantity="one">fa %d any</item>
         <item quantity="other">fa %d anys</item>
+    </plurals>
+    <plurals name="dropdown_checkboxes_default_count">
+        <item quantity="one">%d entrada seleccionada</item>
+        <item quantity="other">%d entrades seleccionades</item>
     </plurals>
 </resources>

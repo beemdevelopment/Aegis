@@ -38,6 +38,7 @@
     <string name="pref_show_icons_title">顯示圖示</string>
     <string name="pref_show_icons_summary">在每個條目旁顯示圖示</string>
     <string name="pref_code_group_size_title">分組顯示驗證碼</string>
+    <string name="pref_code_group_size_summary">選擇群組編號</string>
     <string name="pref_import_file_title">從檔案匯入</string>
     <string name="pref_import_file_summary">從檔案匯入憑證</string>
     <string name="pref_android_backups_title">Android 雲端備份</string>
@@ -45,6 +46,9 @@
     <string name="pref_android_backups_hint"><i>與上述設定無關的是：裝置對裝置 (D2D) 備份傳輸是常時允許的。</i></string>
     <string name="pref_backups_title">自動備份保險箱</string>
     <string name="pref_backups_summary">自動於外部儲存裝置上建立保險箱的備份。僅支援已加密的保險箱。</string>
+    <string name="pref_backups_reminder_title">備份提醒</string>
+    <string name="pref_backups_reminder_summary">提示您備份保險箱以避免最後的變更狀態未被加入備份。</string>
+    <string name="pref_backups_reminder_dialog_title">關閉備份提醒</string>
     <string name="pref_backups_location_title">備份檔案的目錄</string>
     <string name="pref_backups_location_summary">備份將儲存在</string>
     <string name="pref_backups_trigger_title">觸發備份</string>
@@ -91,9 +95,17 @@
     <string name="export_encrypted">加密保險箱</string>
     <string name="export_help">此動作將保險箱從 Aegis 的內部儲存空間裡匯出，請選擇欲匯出的格式：</string>
     <string name="export_warning_unencrypted">即將匯出未加密的 Aegis 保險箱。<b>不建議</b>。</string>
+    <string name="understand_risk_accept">我瞭解相關風險</string>
     <string name="export_format_aegis">Aegis (.JSON)</string>
     <string name="export_format_google_auth_uri">純文字檔案 (.TXT)</string>
+    <string name="export_format_html">網頁 (.html)</string>
     <string name="export_format_hint">匯出格式</string>
+    <string name="export_all_groups">匯出所有群組</string>
+    <string name="export_choose_groups">匯出選定的群組（們）</string>
+    <plurals name="export_groups_selected_count">
+        <item quantity="other">選取了 %d 個群組</item>
+    </plurals>
+    <string name="export_no_groups_selected">尚未選擇要匯出的群組</string>
     <string name="choose_authentication_method">安全性</string>
     <string name="authentication_method_explanation">Aegis 是一款安全第一的雙因素驗證（2FA）應用程式。憑證儲存於特殊的保險箱檔案中，此保險箱可依照使用者的設定以密碼金鑰加密。就算駭客取得了被加密的保險箱檔案，他們也無法在不知道密碼的情況下取得內含的憑證。 \n\n我們已預先為您的裝置選擇了我們認為最適合的選項。</string>
     <string name="authentication_method_none">沒有</string>
@@ -112,7 +124,6 @@
     <string name="set_password_confirm">請確認密碼</string>
     <string name="invalid_password">密碼錯誤</string>
     <string name="invalidated_biometrics">偵測到您的裝置更新了安全性設定。請前往「Aegis -&gt; 設定 -&gt; 安全性 -&gt; 生物特徵辨識解鎖」停用並重新啟用生物特徵辨識解鎖。</string>
-    <string name="password_reminder">您已經有一段時間沒有輸入密碼了。您還記得您的密碼嗎？</string>
     <string name="password_reminder_freq_never">從不</string>
     <string name="password_reminder_freq_weekly">每週一次</string>
     <string name="password_reminder_freq_biweekly">隔週一次</string>
@@ -273,6 +284,8 @@
     <string name="unable_to_generate_qrcode">無法產生QR碼</string>
     <string name="select_picture">選擇圖片</string>
     <string name="select_icon">選擇圖示</string>
+    <string name="tile_open_vault" comment="label for a quick settings tile that opens the app when tapped">打開保險箱</string>
+    <string name="tile_open_scanner" comment="label for a quick settings tile that opens the QR code scanner when tapped">開啟掃描器</string>
     <string name="toggle_checkboxes">切換核取方塊</string>
     <string name="search">搜尋</string>
     <string name="channel_name_lock_status">鎖定狀態</string>
@@ -303,20 +316,30 @@
     </plurals>
     <string name="google_qr_export_unexpected">預期QR碼 %d，已掃描 %d</string>
     <string name="backup_error_bar_message"><b>近期的保險箱備份失敗</b></string>
+    <string name="backup_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">        因為錯誤發生，最近一次嘗試使用 %s 的備份行為失敗。本次備份使用 %s。請檢查您的備份設定以確保備份能順利完成。
+    </string>
     <string name="backup_system_builtin">Aegis 內建的自動備份</string>
     <string name="backup_system_android">Android 雲端備份</string>
+    <string name="backup_reminder_bar_dialog_summary">        尚未備份最近針對保險箱的操作。週期性的備份是避免遺失登入方法的最佳良方。請考慮在設定選單內啟用自動備份。
+    </string>
+    <string name="backup_plaintext_export_warning"><b>最近保險箱曾匯出為純文字</b></string>
     <string name="pref_show_plaintext_warning_hint">不再顯示這則警告</string>
+    <string name="backup_plaintext_warning_explanation">本警示會跳出來因為您最近匯出了未加密的保險箱複本。為保護憑證的安全性，我們建議您在不需要使用後刪除此檔案。</string>
     <string name="switch_camera">切換鏡頭</string>
     <string name="empty_list">尚無驗證碼。輕觸右下角的加號開始新增條目</string>
     <string name="empty_list_title">找不到條目</string>
     <string name="empty_group_list">沒有可以顯示的群組，請先在條目編輯頁面增加一個群組</string>
     <string name="empty_group_list_title">找不到任何群組</string>
+    <string name="no_icon_packs">尚未匯入任何圖示主題集。點選「+」號以匯入。提示：試試看<a href="https://aegis-icons.github.io">aegis-icons</a>。</string>
     <string name="no_icon_packs_title">沒有圖示合輯</string>
     <string name="pick_icon">選取圖示</string>
     <string name="uncategorized">未分類</string>
     <string name="done">完成</string>
     <string name="next">下一個</string>
     <string name="previous">上一個</string>
+    <string name="copy_uri">複製 URI</string>
+    <string name="unable_to_copy_uri_to_clipboard">無法複製 URI 到剪貼簿</string>
+    <string name="uri_copied_to_clipboard">URI 已複製到剪貼簿</string>
     <string name="transfer_entry">轉移條目</string>
     <string name="transfer_entry_description">使用您想轉移至其他驗證器應用程式，請掃描此QR碼</string>
     <string name="password_strength_very_weak">很弱</string>
@@ -339,6 +362,7 @@
     <string name="dialog_wipe_entries_checkbox">清除保險箱中的所有內容</string>
     <string name="pref_panic_trigger_title">危急時刪除保險箱</string>
     <string name="pref_panic_trigger_summary">從 Ripple 收到危急指令時刪除保險箱</string>
+    <string name="import_vault">匯入保險箱</string>
     <string name="importer_help_authy">提供 <b>/data/data/com.authy.authy/shared_prefs/com.authy.storage.tokens.authenticator.xml</b> 的複本，其位於 Authy 的內部儲存空間。</string>
     <string name="importer_help_andotp">提供 andOTP 的匯出/備份檔。</string>
     <string name="importer_help_freeotp">提供 <b>/data/data/org.fedorahosted.freeotp/shared_prefs/tokens.xml</b> 的複本，其位於 FreeOTP 的內部儲存空間。</string>
@@ -349,4 +373,27 @@
     <string name="importer_help_winauth">提供 WinAuth 的匯出檔。</string>
     <string name="importer_help_direct">直接從 %s 匯入條目。這個裝置需已安裝此應用程式且 Aegis 擁有 root 權限。</string>
     <string name="groups">群組</string>
+    <string name="pref_grouping_halves">對分</string>
+    <string name="pref_grouping_none">未分組</string>
+    <string name="pref_grouping_size_two">分成兩群</string>
+    <string name="pref_grouping_size_three">分成三群</string>
+    <string name="pref_grouping_size_four">分成四群</string>
+    <plurals name="time_elapsed_seconds">
+        <item quantity="other">%d 秒前</item>
+    </plurals>
+    <plurals name="time_elapsed_minutes">
+        <item quantity="other">%d 分前</item>
+    </plurals>
+    <plurals name="time_elapsed_hours">
+        <item quantity="other">%d 小時前</item>
+    </plurals>
+    <plurals name="time_elapsed_days">
+        <item quantity="other">%d 天前</item>
+    </plurals>
+    <plurals name="time_elapsed_years">
+        <item quantity="other">%d 年前</item>
+    </plurals>
+    <plurals name="dropdown_checkboxes_default_count">
+        <item quantity="other">已選擇 %d 個項目</item>
+    </plurals>
 </resources>

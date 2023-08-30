@@ -39,6 +39,10 @@
     <string name="pref_show_icons_summary">各エントリーの横にアイコンを表示する</string>
     <string name="pref_code_group_size_title">コードの桁数のグループ化</string>
     <string name="pref_code_group_size_summary">グループ化する桁数を選択してください</string>
+    <string name="pref_account_name_position_title">アカウント名を表示</string>
+    <string name="pref_shared_issuer_account_name_title">必要に応じてアカウント名のみ表示</string>
+    <string name="pref_shared_issuer_account_name_summary">同じ発行者を共有するたびにアカウント名のみを表示します。他のアカウント名は非表示になります。</string>
+    <string name="pref_account_name_position_summary_override">この設定はタイル表示モードで上書きされています。アカウント名は常に発行者の下に表示されます。</string>
     <string name="pref_import_file_title">ファイルからインポート</string>
     <string name="pref_import_file_summary">ファイルからトークンをインポート</string>
     <string name="pref_android_backups_title">Androidクラウドバックアップ</string>
@@ -46,6 +50,10 @@
     <string name="pref_android_backups_hint"><i>上記の設定に関係なく、デバイス間(D2D) バックアップは常に許可されます</i></string>
     <string name="pref_backups_title">保管庫を自動的にバックアップする</string>
     <string name="pref_backups_summary">変更が行われると、自動的に保管庫のバックアップを外部ストレージに作成します。これは暗号化された保管庫でのみサポートされています。</string>
+    <string name="pref_backups_reminder_title">バックアップのリマインダー</string>
+    <string name="pref_backups_reminder_summary">最近の変更をバックアップしていない場合に、保管庫をバックアップするよう通知を表示します。</string>
+    <string name="pref_backups_reminder_dialog_title">バックアップリマインダーを無効化</string>
+    <string name="pref_backups_reminder_dialog_summary">このリマインダーを無効にすると、Aegisはバックアップしていない変更があるかどうかを知らせません。これにより、トークンにアクセスできなくなる危険性があります。本当にリマインダーを無効にしてもよろしいですか？</string>
     <string name="pref_backups_location_title">バックアップファイルのディレクトリ</string>
     <string name="pref_backups_location_summary">バックアップの保存場所</string>
     <string name="pref_backups_trigger_title">バックアップのトリガー</string>
@@ -65,7 +73,7 @@
     <plurals name="pref_google_auth_export_incompatible_entries">
         <item quantity="other">互換性のない %d 個のエントリーをスキップしました</item>
     </plurals>
-    <string name="pref_password_reminder_summary">パスワードを忘れないように、パスワードを入力する%sリマインダーを表示します。</string>
+    <string name="pref_password_reminder_summary">パスワードを忘れないように、パスワードを入力する%sにリマインダーを表示します。</string>
     <string name="pref_password_reminder_summary_disabled">無効</string>
     <string name="pref_secure_screen_title">画面のセキュリティ</string>
     <string name="pref_secure_screen_summary">アプリ内でスクリーンショットやその他のキャプチャをブロックする</string>
@@ -94,6 +102,7 @@
     <string name="export_help">保管庫をAegisの内部ストレージからエクスポートします。エクスポートしたいフォーマットを選択してください:</string>
     <string name="export_warning_unencrypted">暗号化されていないAegis保管庫のコピーをエクスポートしようとしています。 <b>これは推奨されません</b>。</string>
     <string name="export_warning_password">エクスポートは、セキュリティ設定で構成された個別のパスワードを使用して暗号化されます。</string>
+    <string name="understand_risk_accept">危険性を承知しました</string>
     <string name="export_format_aegis">Aegis (.JSON)</string>
     <string name="export_format_google_auth_uri">テキストファイル (.TXT)</string>
     <string name="export_format_html">ウェブページ (.HTML)</string>
@@ -123,7 +132,9 @@
     <string name="set_password_confirm">パスワードを確認してください</string>
     <string name="invalid_password">パスワードが違います</string>
     <string name="invalidated_biometrics">デバイスのセキュリティ設定の変更が検出されました。 「Aegis -&gt; 設定 -&gt; セキュリティ -&gt; 生体認証ロック解除」にアクセスして、生体認証ロックを無効にして再度有効にしてください。</string>
-    <string name="password_reminder">パスワードを入力してください。あなたがパスワードを忘れないようにするために、時々確認します。</string>
+    <string name="password_reminder">パスワードを入力してください。パスワードを忘れないようにするために、時々確認します。</string>
+    <string name="password_reminder_dialog_title">生体認証によるロック解除</string>
+    <string name="password_reminder_dialog_message">パスワードを忘れて保管庫からロックされないようにするため、時々パスワードの入力を求めます。 パスワードを確認できたら、次の確認時まではデフォルト動作を生体認証でのロック解除に戻します。</string>
     <string name="password_reminder_freq_never">しない</string>
     <string name="password_reminder_freq_weekly">1週間ごと</string>
     <string name="password_reminder_freq_biweekly">2週間ごと</string>
@@ -222,7 +233,9 @@
     <string name="choose_totpauth_importer">このTOTP Authenticatorバックアップはパスワードで暗号化されていますか?</string>
     <string name="choose_application">インポートしたいアプリケーションを選択してください</string>
     <string name="choose_theme">テーマを選択してください</string>
+    <string name="choose_account_name_position">アカウント名の位置を選択</string>
     <string name="choose_view_mode">表示モードを選択してください</string>
+    <string name="choose_copy_behavior">コピー時の動作を選択</string>
     <string name="parsing_file_error">ファイルの解析中にエラーが発生しました</string>
     <string name="file_not_found">エラー: ファイルが見つかりません</string>
     <string name="reading_file_error">ファイルの読み取り中にエラーが発生しました</string>
@@ -284,6 +297,7 @@
     <string name="pref_highlight_entry_summary">タップ時に一時的に強調表示することで、トークンが互いに区別しやすくなります。</string>
     <string name="pref_minimize_on_copy_title">コピー時に最小化</string>
     <string name="pref_minimize_on_copy_summary">トークンをコピーした後にアプリを最小化する</string>
+    <string name="pref_copy_behavior_title">トークンをクリップボードにコピー</string>
     <string name="pref_pause_entry_title">タップ時にトークンの更新を停止</string>
     <string name="pref_pause_entry_summary">トークンをタップすると、トークンの自動更新を一時停止します。フォーカスされている限り、トークンは更新されません。 「タップ時にトークンを強調表示する」または「タップして表示」の設定が必要です。</string>
     <string name="pin_keyboard_description">PINキーボードを有効にするにはパスワードを入力してください。これはパスワードが数字のみで構成されている場合にのみ機能します。</string>
@@ -299,6 +313,7 @@
     <string name="normal_viewmode_title">標準</string>
     <string name="compact_mode_title">コンパクト</string>
     <string name="small_mode_title">スモール</string>
+    <string name="tiles_mode_title">タイル</string>
     <string name="unknown_issuer">不明な発行者</string>
     <string name="unknown_account_name">不明なアカウント名</string>
     <plurals name="import_error_dialog">
@@ -344,12 +359,18 @@
     </plurals>
     <string name="google_qr_export_unexpected">QRコード#%dを期待していましたが、代わりに#%dをスキャンしました</string>
     <string name="backup_error_bar_message"><b>保管庫のバックアップが失敗しました</b></string>
+    <string name="backup_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">        %s を使用した保管庫のバックアップはエラーのため失敗しました。処理が正常終了するよう、バックアップ設定を確認してください。
+    </string>
     <string name="backup_system_builtin">Aegisの内蔵自動バックアップ</string>
     <string name="backup_system_android">Androidのクラウドバックアップシステム</string>
     <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">        最新のバックアップが古くなっています (%s)
     </string>
     <string name="backup_reminder_bar_message">        変更がバックアップされていません
     </string>
+    <string name="backup_reminder_bar_dialog_title">変更がバックアップされていません</string>
+    <string name="backup_reminder_bar_dialog_summary">最近行われた保管庫への変更がバックアップされていません。アカウントへのアクセス権を失わないためには、定期的なバックアップが重要です。設定メニューから自動バックアップを設定することを検討してください。
+    </string>
+    <string name="backup_reminder_bar_dialog_accept">バックアップを設定する</string>
     <string name="backup_plaintext_export_warning"><b>保管庫は最近プレーンテキストでエクスポートされました</b></string>
     <string name="pref_show_plaintext_warning_hint">今後この警告を表示しない</string>
     <string name="backup_plaintext_warning_explanation">この警告は、最近暗号化されていない保管庫のコピーをエクスポートしたために表示されています。 トークンのセキュリティを維持するために、必要がなくなったらこのファイルを削除することをお勧めします。</string>
@@ -399,6 +420,7 @@
     <string name="importer_help_2fas">2FAS Authenticatorのバックアップファイルを提供します。</string>
     <string name="importer_help_aegis">Aegisのエクスポート/バックアップファイルを提供します。</string>
     <string name="importer_help_authenticator_plus">Authenticator Plusの<b>Settings -&gt; Backup &amp; Restore -&gt; Export as Text and HTML</b>で取得したエクスポートファイルを提供します。</string>
+    <string name="importer_help_authenticator_pro">Authenticator Pro でファイルをエクスポートするには、<b>設定 -&gt; バックアップ -&gt; 暗号化されたファイルへバックアップ (推奨) </b> と進みます。</string>
     <string name="importer_help_authy">Authyの内部ストレージディレクトリにある <b>/data/data/com.authy/shared_prefs/com.auth.storage.tokens.authenticator.xml</b>のコピーを提供します。</string>
     <string name="importer_help_andotp">andOTPのエクスポート/バックアップ ファイルを提供します。</string>
     <string name="importer_help_bitwarden">Bitwarden のエクスポート/バックアップファイルを提供します。暗号化されたファイルはサポートされていません。</string>
@@ -422,6 +444,12 @@
     <string name="pref_grouping_size_two">2桁でグループ化</string>
     <string name="pref_grouping_size_three">3桁でグループ化</string>
     <string name="pref_grouping_size_four">4桁でグループ化</string>
+    <string name="pref_copy_behavior_never">何もしない</string>
+    <string name="pref_copy_behavior_single_tap">シングルタップ</string>
+    <string name="pref_copy_behavior_double_tap">ダブルタップ</string>
+    <string name="pref_account_name_position_hidden">非表示</string>
+    <string name="pref_account_name_position_end">次の発行者</string>
+    <string name="pref_account_name_position_below">前の発行者</string>
     <plurals name="time_elapsed_seconds">
         <item quantity="other">%d 秒前</item>
     </plurals>

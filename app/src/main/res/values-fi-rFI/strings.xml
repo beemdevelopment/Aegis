@@ -39,6 +39,9 @@
     <string name="pref_show_icons_summary">Näytä kuvakkeet jokaisen kohteen vieressä</string>
     <string name="pref_code_group_size_title">Numeroiden ryhmittely</string>
     <string name="pref_code_group_size_summary">Valitse numeroiden määrä ryhmiteltäessä koodeja</string>
+    <string name="pref_account_name_position_title">Näytä tilin nimi</string>
+    <string name="pref_shared_issuer_account_name_title">Näytä tilin nimi vain tarvittaessa</string>
+    <string name="pref_shared_issuer_account_name_summary">Näytä tilien nimet vain silloin, kun niillä on sama myöntäjä. Muiden tilien nimet piilotetaan.</string>
     <string name="pref_import_file_title">Tuo tiedostosta</string>
     <string name="pref_import_file_summary">Tuo todennuskoodit tiedostosta</string>
     <string name="pref_android_backups_title">Androidin pilvivarmuuskopiot</string>
@@ -46,6 +49,10 @@
     <string name="pref_android_backups_hint"><i>Device-to-device (D2D) -varmuuskopiot sallitaan aina, riippumatta yllä olevasta asetuksesta</i></string>
     <string name="pref_backups_title">Varmuuskopioi holvi automaattisesti</string>
     <string name="pref_backups_summary">Holvi varmuuskopioidaan ulkoiseen tallennustilaan automaattisesti, muutoksia tehdessä. Vain salatut holvit tukevat tätä.</string>
+    <string name="pref_backups_reminder_title">Varmuuskopiomuistutus</string>
+    <string name="pref_backups_reminder_summary">Muistuta holvisi varmuuskopioimisesta, jos viimeisimpiä muutoksiasi ei ole varmuuskopioitu.</string>
+    <string name="pref_backups_reminder_dialog_title">Poista varmuuskopiomuistutus käytöstä</string>
+    <string name="pref_backups_reminder_dialog_summary">Tämän muistutuksen poistaminen käytöstä tarkoittaa, että Aegis ei kerro sinulle, onko sinulla varmuuskopioimattomia muutoksia. Tämän vaarantaa pääsysi todennuskoodeihisi. Haluatko varmasti poistaa muistutuksen käytöstä?</string>
     <string name="pref_backups_location_title">Varmuuskopiotiedostojen hakemisto</string>
     <string name="pref_backups_location_summary">Varmuuskopiot tallennetaan sijaintiin</string>
     <string name="pref_backups_trigger_title">Varmuuskopion käynnistys</string>
@@ -96,6 +103,7 @@
     <string name="export_help">Tämä toiminto vie holvin ulos Aegisin sisäisestä tallennustilasta. Valitse viennin tiedostomuoto:</string>
     <string name="export_warning_unencrypted">Olet viemässä salaamattoman kopion Aegis-holvistasi. <b>Tätä ei suositella</b>.</string>
     <string name="export_warning_password">Vienti on salattu käyttäen erillistä salasanaa, joka on määritetty suojausasetuksissa.</string>
+    <string name="understand_risk_accept">Ymmärrän riskin</string>
     <string name="export_format_aegis">Aegis (.JSON)</string>
     <string name="export_format_google_auth_uri">Tekstitiedosto (.TXT)</string>
     <string name="export_format_html">Verkkosivu (.HTML)</string>
@@ -107,6 +115,7 @@
         <item quantity="other">%d ryhmää valittu</item>
     </plurals>
     <string name="export_no_groups_selected">Yhtään ryhmää ei ole valittu vietäväksi</string>
+    <string name="export_html_title" context="The title of an HTML export document">Aegis Todennustiedoston Vienti</string>
     <string name="choose_authentication_method">Turvallisuus</string>
     <string name="authentication_method_explanation">Aegis on turvallisuuteen keskittyvä 2FA-sovellus. Todennuskoodit talletetaan holviin, joka voidaan salata valitsemallasi salasanalla. Vaikka hyökkääjä kaappaisi salatun holvitiedostosi, hän ei pääse käsiksi sen sisältöön tietämättä salasanaasi.\n\nOlemme valinneet valmiiksi vaihtoehdon, joka sopii parhaiten laitteellesi.</string>
     <string name="authentication_method_none">Ei mitään</string>
@@ -126,6 +135,8 @@
     <string name="invalid_password">Salasana on virheellinen</string>
     <string name="invalidated_biometrics">Laitteesi suojausasetuksia on muutettu. Siirry kohtaan \"Aegis -&gt; Asetukset -&gt; Turvallisuus -&gt; Biometrinen lukituksen avaus\" poistaaksesi biometrisen lukituksen käytöstä ja ottaaksesi sen uudelleen käyttöön.</string>
     <string name="password_reminder">Syötä salasanasi. Pyydämme sinua tekemään tämän silloin tällöin, jottet unohda sitä.</string>
+    <string name="password_reminder_dialog_title">Biometrinen lukituksen avaus oletuksena</string>
+    <string name="password_reminder_dialog_message">Pyydämme sinua toisinaan syöttämään salasanasi varmistaaksemme, ettet ole unohtanut sitä etkä jää ulos holvistasi. Kun olet syöttänyt salasanasi kerran, Aegis palaa oletusarvoisesti takaisin käyttämään biometrista lukituksen avaamista, kunnes on aika antaa uusi salasanamuistutus.</string>
     <string name="password_reminder_freq_never">Ei koskaan</string>
     <string name="password_reminder_freq_weekly">Viikoittain</string>
     <string name="password_reminder_freq_biweekly">Joka toinen viikko</string>
@@ -210,6 +221,7 @@
     <string name="backup_status_success">Viimeisin varmuuskopiointi onnistui: %s</string>
     <string name="backup_status_failed">Viimeisin varmuuskopiointi epäonnistui: %s</string>
     <string name="backup_status_none">Varmuuskopioita ei ole vielä tehty</string>
+    <string name="backup_warning_password">Varmuuskopiot salataan erillisellä suojausasetuksissa määritetyllä salasanalla</string>
     <string name="documentsui_error">DocumentsUI näyttää puuttuvan laitteestasi. Tämä on tärkeä järjestelmän osa, joka on tarpeen asiakirjojen valintaa ja luomista varten. Jos olet käyttänyt &quot;debloat&quot; -työkaluja laitteellesi, olet voinut vahingossa poistaa sen ja sinun täytyy asentaa se uudelleen.</string>
     <string name="icon_pack_import_error">Kuvakepaketin tuonnissa tapahtui virhe</string>
     <string name="icon_pack_import_exists_error">Kuvakepaketti, jota yrität tuoda, on jo olemassa. Haluatko korvata sen?</string>
@@ -226,11 +238,14 @@
     <string name="choose_totpauth_importer">Onko tämä TOTP-todennussovelluksen varmuuskopio lukittu salasanalla?</string>
     <string name="choose_application">Valitse sovellus, josta haluat tuoda tietoja</string>
     <string name="choose_theme">Valitse haluamasi teema</string>
+    <string name="choose_account_name_position">Valitse haluamasi tilin nimen sijainti</string>
     <string name="choose_view_mode">Valitse haluamasi näyttötila</string>
+    <string name="choose_copy_behavior">Valitse haluttu kopiointikäyttäytyminen</string>
     <string name="parsing_file_error">Tiedoston jäsentämisessä tapahtui virhe</string>
     <string name="file_not_found">Virhe: Tiedostoa ei löydy</string>
     <string name="reading_file_error">Tiedoston lukemisessa tapahtui virhe</string>
     <string name="app_lookup_error">Virhe: Sovellusta ei ole asennettu</string>
+    <string name="app_version_error">Sovelluksen %s asennettua versiota ei tueta. Viimeaikaiset versiot ovat alkaneet salata joitakin sisäisen tallennushakemiston tiedostoja, jonka vuoksi Aegis ei pääse käsiksi tuontiin tarvittaviin tietoihin. Tuontiyritys johtaa todennäköisesti virheeseen. Haluatko silti jatkaa?</string>
     <string name="root_error">Virhe: root-oikeuksia ei voitu saada</string>
     <plurals name="imported_entries_count">
         <item quantity="one">%d kohde tuotu</item>
@@ -289,6 +304,7 @@
     <string name="pref_highlight_entry_summary">Tee todennuskoodeista helpompi erottaa toisistaan korostamalla niitä tilapäisesti napauttamalla</string>
     <string name="pref_minimize_on_copy_title">Pienennä kopioidessa</string>
     <string name="pref_minimize_on_copy_summary">Pienennä sovellus todennuskoodin kopioinnin jälkeen</string>
+    <string name="pref_copy_behavior_title">Kopioi todennuskoodit leikepöydälle</string>
     <string name="pref_pause_entry_title">Jäädytä todennuskoodit napauttamalla</string>
     <string name="pref_pause_entry_summary">Keskeytä todennuskoodien automaattinen päivitys napauttamalla niitä. Todennuskoodit eivät päivity automaattisesti, niin kauan kun ne ovat valittuina. Vaatii \"Korosta todennuskoodit napauttamalla\" tai \"Paljasta napauttamalla\" -asetusten käyttöönottoa.</string>
     <string name="pin_keyboard_description">Ota PIN-näppäimistö käyttöön antamalla salasanasi. Tämä toimii vain, jos salasanasi koostuu pelkästään numeroista</string>
@@ -350,11 +366,18 @@
     </plurals>
     <string name="google_qr_export_unexpected">Odotettiin QR-koodia #%d, mutta skannattu #%d sen sijaan</string>
     <string name="backup_error_bar_message"><b>Holvin varmuuskopiointi epäonnistui äskettäin</b></string>
+    <string name="backup_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">        Äskettäinen holvin varmuuskopiointiyritys %s käyttämällä epäonnistui, koska tapahtui virhe. Varmuuskopiointia yritettiin %s. Tarkista varmuuskopiointiasetukset varmistaaksesi, että varmuuskopiointi onnistuu.
+    </string>
     <string name="backup_system_builtin">Aegisin sisäänrakennetut automaattiset varmuuskopiot</string>
+    <string name="backup_system_android">Androidin pilvivarmuuskopiointijärjestelmä</string>
     <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">        Viimeisin varmuuskopiointi on vanhentunut (%s)
     </string>
     <string name="backup_reminder_bar_message">        Muutoksia ei ole varmuuskopioitu
     </string>
+    <string name="backup_reminder_bar_dialog_title">Muutoksia ei ole varmuuskopioitu</string>
+    <string name="backup_reminder_bar_dialog_summary">        Viimeaikaisia holvin muutoksia ei ole vielä varmuuskopioitu. On tärkeää varmuuskopioida säännöllisesti, jotta et menetä pääsyä tileihisi. Harkitse automaattisten varmuuskopiointien määrittämistä asetuksissa.
+    </string>
+    <string name="backup_reminder_bar_dialog_accept">Määritä varmuuskopiot</string>
     <string name="backup_plaintext_export_warning"><b>Holvi vietiin äskettäin raakatekstinä</b></string>
     <string name="pref_show_plaintext_warning_hint">Älä näytä tätä varoitusta uudelleen</string>
     <string name="backup_plaintext_warning_explanation">Tämä varoitus näytetään, koska veit äskettäin salaamattoman kopion holvistasi. Varmistaaksemme todennuskoodiesi turvallisuuden, suosittelemme poistamaan tiedoston heti, kun sitä ei enää tarvita.</string>
@@ -379,6 +402,7 @@
     <string name="uri_copied_to_clipboard">URI kopioitiin leikepöydälle</string>
     <string name="transfer_entry">Siirrä kohde</string>
     <string name="transfer_entry_description">Skannaa tämä QR-koodi todennussovelluksella, johon haluat siirtää tämän kohteen</string>
+    <string name="google_auth_compatible_transfer_description">Skannaa nämä QR-koodit Aegisilla tai Google Authenticatorilla.\n\nGoogle Authenticator -sovelluksen rajoitusten vuoksi, vain SHA1-suojausta ja 6-numeroisia koodeja tuottavat TOTP- ja HOTP-todennuskoodit sisällytetään</string>
     <string name="password_strength_very_weak">Erittäin heikko</string>
     <string name="password_strength_weak">Heikko</string>
     <string name="password_strength_fair">Kohtalainen</string>
@@ -404,15 +428,18 @@
     <string name="importer_help_2fas">Anna 2FAS Authenticatorin varmuuskopiotiedosto.</string>
     <string name="importer_help_aegis">Anna Aegisisin vienti-/varmuuskopiotiedosto.</string>
     <string name="importer_help_authenticator_plus">Anna Authenticator Plus -varmuuskopiotiedosto, jonka saat menemällä <b>Asetukset -&gt;Varmuuskopiointi ja palautus -&gt; Vie teksti- tai HTML-tiedostona</b>.</string>
+    <string name="importer_help_authenticator_pro">Toimita Authenticator Pro -vientitiedosto, jonka löydät menemällä <b>Asetukset -&gt; Varmuuskopioi -&gt; Varmuuskopioi salattuun tiedostoon (suositus)</b>.</string>
     <string name="importer_help_authy">Anna kopio tiedostosta <b>/data/data/com.authy.authy/shared_prefs/com.authy.storage.tokens.authenticator.xml</b>, joka sijaitsee Authyn sisäisessä tallennushakemistossa.</string>
     <string name="importer_help_andotp">Anna andOTP:n vienti-/varmuuskopiotiedosto.</string>
     <string name="importer_help_bitwarden">Anna Bitwardenin vienti-/varmuuskopiotiedosto. Salattuja tiedostoja ei tueta.</string>
+    <string name="importer_help_battle_net_authenticator">Anna kopio tiedostosta <b>/data/data/com.blizzard.bma/shared_prefs/com.blizzard.bma.AUTH_STORE.xml</b>, joka sijaitsee Battle.net Authenticatorin sisäisessä tallennushakemistossa.</string>
     <string name="importer_help_duo">Anna kopio tiedostosta <b>/data/data/com.duosecurity.duomobile/files/duokit/accounts.json</b>, joka sijaitsee DUO:n sisäisessä tallennushakemistossa.</string>
     <string name="importer_help_freeotp">Anna kopio tiedostosta <b>/data/data/org.fedorahosted.freeotp/shared_prefs/tokens.xml</b>, joka sijaitsee FreeOTP:n sisäisessä tallennushakemistossa.</string>
     <string name="importer_help_freeotp_plus">Anna FreeOTP+:n vientitiedosto.</string>
     <string name="importer_help_google_authenticator"><b>Vain Google Authenticator v5.10 tai vanhemman tietokantatiedostoja tuetaan</b>.\n\nAnna kopio kohteesta <b>/data/data/com.google.android.apps.authenticator2/databases/databases</b>, joka sijaitsee Google Authenticatorin sisäisessä tallennushakemistossa.</string>
     <string name="importer_help_microsoft_authenticator">Anna kopio tiedostosta <b>/data/data/com.azure.authenticator/databases/PhoneFactor</b>, joka sijaitsee Microsoft Authenticatorin sisäisessä tallennushakemistossa.</string>
     <string name="importer_help_plain_text">Anna raakatekstitiedosto, joka sisältää Google Authenticatorin URIn jokaisella rivillä.</string>
+    <string name="importer_help_steam"><b>Steamin versiota 3.0 ja uudempia ei tueta</b>. Toimita kopio tiedostosta <b>/data/data/com.valvesoftware.android.steam.community/files/Steamguard-*.json</b>, joka sijaitsee Steamin sisäisen tallennustilan hakemistossa.</string>
     <string name="importer_help_totp_authenticator">Anna TOTP Authenticatorin vientitiedosto.</string>
     <string name="importer_help_winauth">Anna WinAuthin vientitiedosto.</string>
     <string name="importer_encrypted_exception_google_authenticator">Salattu kohde ohitettiin: %s</string>
@@ -425,6 +452,12 @@
     <string name="pref_grouping_size_two">Kahden ryhmissä</string>
     <string name="pref_grouping_size_three">Kolmen ryhmissä</string>
     <string name="pref_grouping_size_four">Neljän ryhmissä</string>
+    <string name="pref_copy_behavior_never">Ei koskaan</string>
+    <string name="pref_copy_behavior_single_tap">Yksi napautus</string>
+    <string name="pref_copy_behavior_double_tap">Kaksoisnapautus</string>
+    <string name="pref_account_name_position_hidden">Piilotettu</string>
+    <string name="pref_account_name_position_end">Myöntäjän vieressä</string>
+    <string name="pref_account_name_position_below">Myöntäjän alla</string>
     <plurals name="time_elapsed_seconds">
         <item quantity="one">%d sekunti sitten</item>
         <item quantity="other">%d sekuntia sitten</item>

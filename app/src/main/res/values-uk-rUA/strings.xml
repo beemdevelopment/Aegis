@@ -125,7 +125,6 @@
     <string name="set_password_confirm">Будь ласка, підтвердьте пароль</string>
     <string name="invalid_password">Неправильний пароль</string>
     <string name="invalidated_biometrics">Виявлено зміни в налаштуваннях безпеки вашого пристрою. Будь ласка, перейдіть до \"Aegis -&gt; Налаштування -&gt; Безпека -&gt; Біометричне розблокування\", щоб вимкнути та повторно увімкнути біометричне розблокування.</string>
-    <string name="password_reminder">Будь ласка, введіть пароль. Ми час від часу проситимемо вас зробити це, щоб ви його не забули.</string>
     <string name="password_reminder_freq_never">Ніколи</string>
     <string name="password_reminder_freq_weekly">Щотижня</string>
     <string name="password_reminder_freq_biweekly">Двічі на тиждень</string>

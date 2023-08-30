@@ -12,6 +12,7 @@
     <string name="save">सहेजें</string>
     <string name="issuer">ज़ारीकर्ता</string>
     <string name="yandex_pin">पिन (4-16 अंक)</string>
+    <string name="motp_pin">पिन (4- अंक)</string>
     <string name="suggested">सुझाव दिया</string>
     <string name="usage_count">उपयोग गिनती</string>
     <string name="warning">चेतावनी</string>
@@ -34,7 +35,10 @@
     <string name="pref_select_theme_title">थीम</string>
     <string name="pref_view_mode_title">देखने का प्रकार</string>
     <string name="pref_lang_title">भाषा</string>
+    <string name="pref_show_icons_title">आइकन दिखाएं</string>
+    <string name="pref_show_icons_summary">प्रत्येक एंट्री के आगे आइकन दिखाएं</string>
     <string name="pref_code_group_size_title">कोड संख्या समूह</string>
+    <string name="pref_code_group_size_summary">कोड को समूहित करने के लिए अंकों की संख्या चुनें</string>
     <string name="pref_import_file_title">फ़ाइल से आयात करें</string>
     <string name="pref_import_file_summary">टोकन को फ़ाइल से आयात करें</string>
     <string name="pref_android_backups_title">एंड्रॉयड क्लाउड बैकअप</string>
@@ -42,6 +46,10 @@
     <string name="pref_android_backups_hint"><i>डिवाइस-टू-डिवाइस (D2D) बैकअप की हमेशा अनुमति होती है, चाहे ऊपर की सेटिंग कुछ भी हो</i></string>
     <string name="pref_backups_title">तिजोरी का अपने आप बैकअप लें</string>
     <string name="pref_backups_summary">बदलाव होने पर एक्सटर्नल स्टोरेज में स्वतः ही वॉल्ट का बैकअप बनाएँ। यह सिर्फ एन्क्रिप्टेड वॉल्ट को सपोर्ट करता है।</string>
+    <string name="pref_backups_reminder_title">बैकअप रिमाइंडर </string>
+    <string name="pref_backups_reminder_summary">यदि आपने अपने नवीनतम परिवर्तनों का बैकअप नहीं लिया है तो अपनी वॉल्ट का बैकअप लेने के लिए एक रिमाइंडर दिखाएँ।</string>
+    <string name="pref_backups_reminder_dialog_title">बैकअप रिमाइंडर बंद करें</string>
+    <string name="pref_backups_reminder_dialog_summary">इस रिमाइंडर को बंद करने का मतलब है कि एजिस आपको यह नहीं बताएगा कि आपके पास ऐसे परिवर्तन हैं या नहीं जिनका अभी तक बैकअप नहीं लिया गया है। इससे आपको अपने टोकन तक पहुंच खोने का खतरा रहता है। क्या आप वाकई रिमाइंडर बंद करना चाहते हैं?</string>
     <string name="pref_backups_location_title">बैकअप फाइल्स के लिए स्थान</string>
     <string name="pref_backups_location_summary">बैकअप को इसमें सहेजा जाएगा</string>
     <string name="pref_backups_trigger_title">ट्रिगर बैकअप</string>
@@ -56,6 +64,13 @@
     <string name="pref_export_title">निर्यात</string>
     <string name="pref_export_summary">वॉल्ट निर्यात करें</string>
     <string name="pref_password_reminder_title">पासवर्ड अनुस्मारक</string>
+    <string name="pref_google_auth_export_title">गूगल ऑथेंटिकेटर के लिए एक्सपोर्ट करें</string>
+    <string name="pref_google_auth_export_descriptor">गूगल ऑथेंटिकेटर के साथ कंपेटिबल एक्सपोर्ट क्यूआर कोड्स जेनरेट करें</string>
+    <string name="pref_google_auth_export_no_data">एक्सपोर्ट करने के लिए कोई डाटा नही </string>
+    <plurals name="pref_google_auth_export_incompatible_entries">
+        <item quantity="one">%d अयोग्य एंट्री को छोड़ दिया</item>
+        <item quantity="other">%d अयोग्य एंट्रीज को छोड़ दिया गया</item>
+    </plurals>
     <string name="pref_password_reminder_summary">पासवर्ड दर्ज करने के लिए %s रिमाइंडर दिखाएं, ताकि आप इसे न भूलें।</string>
     <string name="pref_password_reminder_summary_disabled">निष्क्रिय</string>
     <string name="pref_secure_screen_title">स्क्रीन सुरक्षा</string>
@@ -84,9 +99,20 @@
     <string name="export_encrypted">वॉल्ट एन्क्रिप्ट करें</string>
     <string name="export_help">यह क्रिया एजिस के आंतरिक संग्रहण से तिजोरी को निर्यात करेगी। उस प्रारूप का चयन करें जिसमें आप चाहते हैं कि आपका निर्यात हो:</string>
     <string name="export_warning_unencrypted">आप अपने एजिस वॉल्ट की एक अनएन्क्रिप्टेड कॉपी निर्यात करने वाले हैं। <b>यह अनुशंसित नहीं है</b>।</string>
+    <string name="export_warning_password">एक्सपोर्ट्स को सुरक्षा सेटिंग्स में कॉन्फ़िगर किए गए एक अलग पासवर्ड का उपयोग करके एन्क्रिप्ट किया जाता है।</string>
+    <string name="understand_risk_accept">मैं जोखिम को समझता हूं</string>
     <string name="export_format_aegis">एजिस (.JSON)</string>
     <string name="export_format_google_auth_uri">टेक्स्ट फ़ाइल (.TXT)</string>
+    <string name="export_format_html">वेब पेज (.html)</string>
     <string name="export_format_hint">निर्यात स्वरूप</string>
+    <string name="export_all_groups">सभी समूहों को एक्सपोर्ट करें</string>
+    <string name="export_choose_groups">चुनें कि कौन से समूह एक्सपोर्ट करने हैं</string>
+    <plurals name="export_groups_selected_count">
+        <item quantity="one">%d समूह चयनित</item>
+        <item quantity="other">%d समूह चयनित</item>
+    </plurals>
+    <string name="export_no_groups_selected">एक्सपोर्ट करने के लिए किसी भी ग्रुप का चयन नही किया गया</string>
+    <string name="export_html_title" context="The title of an HTML export document">एजिस ऑथेंटिकेटर एक्सपोर्ट</string>
     <string name="choose_authentication_method">सुरक्षा</string>
     <string name="authentication_method_explanation">Aegis एक सुरक्षा-केंद्रित 2FA ऐप है। टोकनों को एक वॉल्ट में संग्रहीत किया जाता है, जिसे वैकल्पिक रूप से आपके चुने पासवर्ड के साथ एन्क्रिप्ट किया जा सकता है। यदि कोई हमलावर आपकी एन्क्रिप्टेड वॉल्ट फ़ाइल प्राप्त करता है, तो वे पासवर्ड को जाने बिना सामग्री तक नहीं पहुँच पाएंगे। \n\nहमने उन विकल्पों पहले से सेट कर रखा है जो हमें लगता है कि आपके डिवाइस के लिए सबसे उपयुक्त होगा।</string>
     <string name="authentication_method_none">कोई नहीं</string>
@@ -105,7 +131,6 @@
     <string name="set_password_confirm">कृपया पासवर्ड की पुष्टि करें</string>
     <string name="invalid_password">पासवर्ड ग़लत है</string>
     <string name="invalidated_biometrics">आपके डिवाइस की सुरक्षा सेटिंग में बदलाव का पता चला है। बायोमेट्रिक अनलॉक को अक्षम और पुन: सक्षम करने के लिए कृपया \"एजिस -&gt; सेटिंग्स -&gt; सुरक्षा -&gt; बायोमेट्रिक अनलॉक\" पर जाएं।</string>
-    <string name="password_reminder">कृपया अपना पासवर्ड दर्ज करें। हम कभी-कभी आपसे ऐसा करने के लिए कहते हैं ताकि इसे न भूलें।</string>
     <string name="password_reminder_freq_never">कभी नहीं</string>
     <string name="password_reminder_freq_weekly">साप्ताहिक</string>
     <string name="password_reminder_freq_biweekly">पाक्षिक</string>
@@ -131,6 +156,9 @@
     <string name="set_up_biometric">बॉयोमेट्रिक अनलॉक सेट करें</string>
     <string name="copy">कॉपी करें</string>
     <string name="edit">संपादित करें</string>
+    <string name="favorite" comment="Verb">फेवरेट</string>
+    <string name="unfavorite" comment="Verb">पसंदीदा नहीं है</string>
+    <string name="error_all_caps">एरर </string>
     <string name="password">पासवर्ड</string>
     <string name="confirm_password">पासवर्ड की पुष्टि करें</string>
     <string name="show_password">पासवर्ड दिखाएँ</string>
@@ -143,6 +171,13 @@
     <string name="encrypting_vault">वॉल्ट एन्क्रिप्ट कर रहे हैं</string>
     <string name="exporting_vault">वॉल्ट निर्यात कर रहे हैं</string>
     <string name="reading_file">फ़ाइल डेटा पढ़ना</string>
+    <string name="requesting_root_access">रूट एक्सेस रिक्वेस्ट कर रहा</string>
+    <string name="analyzing_qr">क्यूआर कोड एनालाइज कर रहा है</string>
+    <string name="analyzing_qr_multiple">एनालाइजिंग क्यूआर कोड %d/%d (%s)</string>
+    <plurals name="added_new_entries">
+        <item quantity="one">वॉल्ट में %d नयी एंट्री जोड़ी गई</item>
+        <item quantity="other">वॉल्ट में %d नयी एंट्रीज जोड़ी गईं </item>
+    </plurals>
     <string name="importing_icon_pack">आइकन पैक निर्यात कर रहा है…</string>
     <string name="delete_entry">प्रविष्टि हटाएँ</string>
     <string name="delete_entry_description">क्या आप सुनिश्चित हैं कि आप इस प्रविष्टि को हटाना चाहते हैं?</string>
@@ -177,6 +212,10 @@
     <string name="disable_encryption_error">एन्क्रिप्शन को अक्षम करते समय एक त्रुटि हुई</string>
     <string name="backup_successful">बैकअप सफलतापूर्वक बनाया गया</string>
     <string name="backup_error">बैकअप बनाने की कोशिश करते समय एक त्रुटि हुई</string>
+    <string name="backup_status_success">सबसे हालिया बैकअप सफल: %s </string>
+    <string name="backup_status_failed">सबसे हालिया बैकअप असफल: %s </string>
+    <string name="backup_status_none">अभी तक कोई बैकअप नहीं बनाया गया है</string>
+    <string name="backup_warning_password">एक्सपोर्ट्स को सुरक्षा सेटिंग्स में कॉन्फ़िगर किए गए एक अलग पासवर्ड का उपयोग करके एन्क्रिप्ट किया जाता है।</string>
     <string name="documentsui_error">ऐसा लगता है कि आपके डिवाइस से DocumentsUI गायब है। यह दस्तावेजों के चयन और निर्माण के लिए आवश्यक एक महत्वपूर्ण प्रणाली घटक है। यदि आपने &quot;डिब्लोट&quot; आपका उपकरण, आपने गलती से इसे हटा दिया होगा और इसे पुनः स्थापित करना होगा।</string>
     <string name="icon_pack_import_error">एक आइकन पैक आयात करने का प्रयास करते समय एक त्रुटि हुई</string>
     <string name="icon_pack_import_exists_error">आप जिस आइकन पैक को आयात करने का प्रयास कर रहे हैं वह पहले से मौजूद है। क्या आप इसे अधिलेखित करना चाहते हैं?</string>
@@ -198,10 +237,17 @@
     <string name="file_not_found">त्रुटी: फ़ाइल नहीं मिली</string>
     <string name="reading_file_error">फ़ाइल पढ़ने की कोशिश करते समय एक त्रुटि हुई</string>
     <string name="app_lookup_error">त्रुटी: ऐप इंस्टॉल नहीं है</string>
+    <string name="app_version_error">%s का जो संस्करण इंस्टॉल है वह समर्थित नहीं है. हाल के संस्करणों ने इंटरनल स्टोरेज फोल्डर्स में कुछ फ़ाइलों को एन्क्रिप्ट करना शुरू कर दिया है, जिससे एजिस को इंपोर्ट के लिए आवश्यक जानकारी तक पहुंचने में असमर्थ बना दिया गया है। इंपोर्ट करने का प्रयास करने पर त्रुटि होने की संभावना है। क्या आप हर हाल में जारी रखना चाहेंगे?</string>
+    <string name="root_error">एरर: रूट एक्सेस प्राप्त करने में असफल</string>
     <plurals name="imported_entries_count">
         <item quantity="one">%d प्रविष्टियाँ आयात कीं</item>
         <item quantity="other">%d प्रविष्टियाँ आयात कीं</item>
     </plurals>
+    <plurals name="entries_shown">
+        <item quantity="one">%d एंट्री दिखा रहा</item>
+        <item quantity="other">%d एंट्रीज दिखा रहा</item>
+    </plurals>
+    <string name="intro_import_error_title">इंपोर्ट करने के दौरान एक त्रुटि उत्पन्न हुई</string>
     <string name="import_error_title">आयात के दौरान एक या अधिक त्रुटियां हुईं</string>
     <string name="exporting_vault_error">वॉल्ट को निर्यात करने की कोशिश करते समय एक त्रुटि हुई</string>
     <string name="exported_vault">वॉल्ट सफलतापूर्वक निर्यात किया गया</string>
@@ -210,6 +256,13 @@
     <string name="no_cameras_available">कोई कैमरा उपलब्ध नहीं</string>
     <string name="read_qr_error">क्यूआर कोड पढ़ने की कोशिश करते समय एक त्रुटि हुई</string>
     <string name="read_qr_error_phonefactor">एजिस माइक्रोसॉफ्ट के मालिकाना 2FA एल्गोरिथम के साथ संगत नहीं है। Office 365 में 2FA को कॉन्फ़िगर करते समय कृपया \"सूचनाओं के बिना सेटअप एप्लिकेशन\" का चयन करना सुनिश्चित करें।</string>
+    <string name="partial_google_auth_import">अपूर्ण गूगल ऑथेंटिकेटर एक्सपोर्ट का पता चला</string>
+    <string name="partial_google_auth_import_warning">आपके इंपोर्ट से कुछ क्यूआर कोड गायब हैं। निम्नलिखित कोड नहीं मिले:\n\n<b>%s</b>\n\nआप इस आंशिक एक्सपोर्ट को इंपोर्ट करना जारी रख सकते हैं लेकिन हम सभी क्यूआर कोड के साथ पुनः प्रयास करने की सलाह देते हैं ताकि आप किसी भी टोकन तक पहुंच खोने का जोखिम न उठाएं|</string>
+    <string name="missing_qr_code_descriptor">• क्यूआर कोड %d </string>
+    <string name="import_partial_export_anyway">फिर भी %d टोकंस इंपोर्ट करें</string>
+    <string name="import_google_auth_failure">गूगल ऑथेंटिकेटर एक्सपोर्ट को इंपोर्ट करना असफल हुआ</string>
+    <string name="unrelated_google_auth_batches_error">एक्सपोर्ट में किसी असंबंधित बैच की जानकारी शामिल है. एक समय में 1 बैच इंपोर्ट करने का प्रयास करें।</string>
+    <string name="no_tokens_can_be_imported">परिणामस्वरूप कोई टोकन आयात नहीं किया जा सकता</string>
     <string name="authentication_method_raw">रॉ</string>
     <string name="unlocking_vault">वॉल्ट अनलॉक हो रहा है</string>
     <string name="slot_this_device">(यह डिवाइस)</string>
@@ -218,6 +271,7 @@
     <string name="remove_icon_pack">आइकन पैक हटाएं</string>
     <string name="remove_icon_pack_description">क्या आप वाकई इस आइकन पैक को हटाना चाहते हैं? इस पैक से आइकॉन का उपयोग करने वाली प्रविष्टियां प्रभावित नहीं होंगी।</string>
     <string name="details">विवरण</string>
+    <string name="show_error_details">एरर की जानकारी दिखाएं </string>
     <string name="lock">लॉक करें</string>
     <string name="name">नाम</string>
     <string name="no_group">कोई समूह नहीं</string>
@@ -240,6 +294,8 @@
     <string name="clear">खाली करें</string>
     <string name="pref_highlight_entry_title">टैप करने पर टोकन हाइलाइट करें</string>
     <string name="pref_highlight_entry_summary">टैप करने पर टोकनों को एक दूसरे से अलग उजागर करने के लिए उन्हें अस्थायी रूप से हाईलाइट करें</string>
+    <string name="pref_minimize_on_copy_title">कॉपी करने पर मिनिमाइज करें</string>
+    <string name="pref_minimize_on_copy_summary">ओटीपी कॉपी करने के बाद ऐप को मिनिमाइज करें</string>
     <string name="pref_pause_entry_title">टैप किए जाने पर टोकन फ़्रीज़ करें</string>
     <string name="pref_pause_entry_summary">टोकन को टैप करके उनके स्वचालित रीफ़्रेश को रोकें। जब तक वे केंद्रित हैं तब तक टोकन अपडेट नहीं होंगे। \"टैप किए जाने पर टोकन हाइलाइट करें\" या \"प्रकट करने के लिए टैप करें\" की आवश्यकता है।</string>
     <string name="pin_keyboard_description">पिन कीबोर्ड को सक्षम करने के लिए अपना पासवर्ड दर्ज करें। ध्यान दें कि यह केवल तभी काम करता है जब आपके पासवर्ड में केवल संख्याएँ हों</string>
@@ -261,9 +317,15 @@
         <item quantity="one">Aegis %d टोकन आयात नहीं कर सका। इन टोकन को छोड़ दिया जाएगा। त्रुटियों के बारे में अधिक जानकारी देखने के लिए \'विवरण\' दबाएँ।</item>
         <item quantity="other">Aegis %d टोकनों को आयात नहीं कर सका। इन टोकनों को छोड़ दिया जाएगा। त्रुटियों के बारे में अधिक जानकारी देखने के लिए \'विवरण\' दबाएँ।</item>
     </plurals>
+    <string name="unable_to_process_deeplink">डीप लिंक प्रक्रिया करने में असमर्थ</string>
+    <string name="unable_to_read_qrcode_file">क्यूआर कोड को फाइल:%s से पढ़ने और प्रोसेस करने में असमर्थ.</string>
+    <string name="unable_to_process_shared_text">शेयर्ड टेक्स्ट को ओटीपी के रूप में प्रोसेस करने में असफल</string>
+    <string name="unable_to_read_qrcode_files">कुछ क्यूआर कोड को पढ़ने और प्रोसेस करने में असमर्थ। केवल %d/%d प्रविष्टियाँ इंपोर्ट की जाएंगी।</string>
     <string name="unable_to_generate_qrcode">क्यूआर कोड उत्पन्न करने में असमर्थ</string>
     <string name="select_picture">छवि चयन करें</string>
     <string name="select_icon">आइकन चयन करें</string>
+    <string name="tile_open_vault" comment="label for a quick settings tile that opens the app when tapped">वॉल्ट खोलें </string>
+    <string name="tile_open_scanner" comment="label for a quick settings tile that opens the QR code scanner when tapped">स्कैनर खोलें </string>
     <string name="toggle_checkboxes">चेकबॉक्स टॉगल करें</string>
     <string name="search">खोजें</string>
     <string name="channel_name_lock_status">लॉक स्तिथि</string>
@@ -295,6 +357,19 @@
     </plurals>
     <string name="google_qr_export_unexpected">अपेक्षित क्यूआर कोड #%d, लेकिन इसके बजाय #%d को स्कैन किया गया</string>
     <string name="backup_error_bar_message"><b>हाल ही में वॉल्ट बैकअप विफल रहा</b></string>
+    <string name="backup_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">        %s का उपयोग करके हाल ही में वॉल्ट बैकअप का प्रयास विफल हो गया क्योंकि कोई त्रुटि उत्पन्न हुई। बैकअप का प्रयास %s किया गया था. यह सुनिश्चित करने के लिए कि बैकअप सफलतापूर्वक पूरा हो सकता है, कृपया अपनी बैकअप सेटिंग्स जांचें।</string>
+    <string name="backup_system_builtin">एजिस के बिल्ट-इन स्वचालित बैकअप्स </string>
+    <string name="backup_system_android">एंड्रॉयड क्लाउड बैकअप सिस्टम </string>
+    <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">        लेटेस्ट बैकअप आउटडेटेड है (%s)
+    </string>
+    <string name="backup_reminder_bar_message">         परिवर्तनों का बैकअप नहीं लिया गया है</string>
+    <string name="backup_reminder_bar_dialog_title">परिवर्तनों का बैकअप नहीं लिया गया है</string>
+    <string name="backup_reminder_bar_dialog_summary">         वॉल्ट में हाल के बदलावों का अभी तक बैकअप नहीं लिया गया है। अपने खातों तक पहुंच खोने से रोकने के लिए नियमित बैकअप लेना महत्वपूर्ण है। कृपया सेटिंग मेनू में स्वचालित बैकअप सेट करने पर विचार करें।
+    </string>
+    <string name="backup_reminder_bar_dialog_accept">बैकअप्स  सेट करें</string>
+    <string name="backup_plaintext_export_warning"><b>वॉल्ट को हाल ही में साधारण टेक्स्ट में एक्सपोर्ट किया गया था</b></string>
+    <string name="pref_show_plaintext_warning_hint">यह चेतावनी दुबारा न दिखाएँ</string>
+    <string name="backup_plaintext_warning_explanation">यह चेतावनी इसलिए दिखाई गई है क्योंकि आपने हाल ही में वॉल्ट की एक अनएन्क्रिप्टेड प्रति निर्यात की है। आपके टोकन की सुरक्षा बनाए रखने के लिए, हम अनुशंसा करते हैं कि जब इसकी आवश्यकता न रह जाए तो इस फ़ाइल को हटा दें।</string>
     <string name="switch_camera">कैमरा स्विच करें</string>
     <string name="empty_list">दिखाए जाने के लिए कोई कोड नहीं हैं। नीचे दाएं कोने में प्लस साइन टैप करके प्रविष्टियां जोड़ना प्रारंभ करें</string>
     <string name="empty_list_title">कोई प्रविष्टियाँ नहीं मिलीं</string>
@@ -305,10 +380,18 @@
     <string name="pick_icon">चिह्न चुनें</string>
     <string name="uncategorized">अवर्गीकृत</string>
     <string name="done">हो गया</string>
+    <plurals name="qr_count">
+        <item quantity="one">%d / %d क्यूआर कोड </item>
+        <item quantity="other">%d / %d क्यूआर कोड्स </item>
+    </plurals>
     <string name="next">अगला</string>
     <string name="previous">पिछला</string>
+    <string name="copy_uri">URI को कॉपी करें</string>
+    <string name="unable_to_copy_uri_to_clipboard">क्लिपबोर्ड पर कॉपी करने में असमर्थ</string>
+    <string name="uri_copied_to_clipboard">क्लिपबोर्ड में कॉपी हो गया</string>
     <string name="transfer_entry">प्रविष्टि स्थानांतरित करें</string>
     <string name="transfer_entry_description">इस क्यूआर कोड को उस ऑथेंटिकेटर ऐप के साथ स्कैन करें जिसमें आप इस प्रविष्टि को स्थानांतरित करना चाहते हैं</string>
+    <string name="google_auth_compatible_transfer_description">इन क्यूआर कोड को एजिस या गूगल ऑथेंटिकेटर से स्कैन करें।\n\n गूगल ऑथेंटिकेटर ऐप की सीमाओं के कारण, केवल TOTP &amp; HOTP टोकन जो SHA1 का उपयोग करते हैं और 6-अंकीय कोड उत्पन्न करते हैं, शामिल हैं</string>
     <string name="password_strength_very_weak">बहुत कमज़ोर</string>
     <string name="password_strength_weak">कमजोर</string>
     <string name="password_strength_fair">बढ़िया</string>
@@ -330,19 +413,23 @@
     <string name="panic_trigger_ignore_toast">एजिस को पैनिक ट्रिगर मिला लेकिन सेटिंग अक्षम है, अनदेखा कर रहा है</string>
     <string name="pref_panic_trigger_title">पैनिक ट्रिगर पर तिजोरी हटाएं</string>
     <string name="pref_panic_trigger_summary">रिपल से पैनिक ट्रिगर मिलने पर वॉल्ट को डिलीट करें</string>
+    <string name="import_vault">वॉल्ट इंपोर्ट</string>
     <string name="importer_help_2fas">2FAS प्रमाणक बैकअप फ़ाइल प्रदान करें।</string>
     <string name="importer_help_aegis">एजिस निर्यात/बैकअप फ़ाइल की आपूर्ति करें।</string>
     <string name="importer_help_authenticator_plus">एक प्रमाणक प्लस निर्यात फ़ाइल की आपूर्ति करें
 <b>सेटिंग्स -&gt; बैकअप &amp; पुनर्स्थापना -&gt; पाठ और HTML के रूप में निर्यात करें</b>।</string>
+    <string name="importer_help_authenticator_pro"><b>सेटिंग्स -&gt; बैक अप -&gt; के माध्यम से प्राप्त ऑथेंटिकेटर प्रो एक्सपोर्ट फ़ाइल की आपूर्ति करें।  एन्क्रिप्टेड फ़ाइल का बैकअप लें (अनुशंसित)</b>।</string>
     <string name="importer_help_authy">Authy की आंतरिक संग्रहण निर्देशिका में स्थित <b>/data/data/com.authy.authy/shared_prefs/com.authy.storage.tokens.authenticator.xml</b> की एक प्रति प्रदान करें।</string>
     <string name="importer_help_andotp">एक andOTP निर्यात/बैकअप फ़ाइल की आपूर्ति करें।</string>
     <string name="importer_help_bitwarden">एक बिटवर्डन निर्यात/बैकअप फ़ाइल की आपूर्ति करें। एन्क्रिप्टेड फ़ाइलें समर्थित नहीं हैं।</string>
+    <string name="importer_help_battle_net_authenticator">इंटरनल स्टोरेज की Battle.net ऑथेंटिकेटर डायरेक्ट्री में स्थित <b>/data/data/com.blizzard.bma/shared_prefs/com.blizzard.bma.AUTH_STORE.xml</b> की एक प्रति प्रदान करें।</string>
     <string name="importer_help_duo">DUO की आंतरिक संग्रहण निर्देशिका में स्थित <b>/data/data/com.duosecurity.duomobile/files/duokit/accounts.json</b> की एक प्रति प्रदान करें।</string>
     <string name="importer_help_freeotp">फ्रीओटीपी की आंतरिक संग्रहण निर्देशिका में स्थित <b>/data/data/org.fedorahosted.freeotp/shared_prefs/tokens.xml</b> की एक प्रति प्रदान करें।</string>
     <string name="importer_help_freeotp_plus">एक फ्रीओटीपी+ निर्यात फ़ाइल की आपूर्ति करें।</string>
     <string name="importer_help_google_authenticator"><b>केवल गूगल प्रमाणक v5.10 और पूर्व की डेटाबेस फ़ाइलें समर्थित हैं</b>।\n\n<b>/data/data/com.google.android.apps.authenticator2/databases/databases</b> की एक प्रति प्रदान करें, गूगल प्रमाणक की आंतरिक संग्रहण निर्देशिका में स्थित है।</string>
     <string name="importer_help_microsoft_authenticator">माइक्रोसॉफ्ट प्रमाणक। की आंतरिक संग्रहण निर्देशिका में स्थित <b>/data/data/com.azure.authenticator/databases/PhoneFactor</b> की एक प्रति प्रदान करें।</string>
     <string name="importer_help_plain_text">प्रत्येक पंक्ति पर एक गूगल प्रमाणक URI के साथ एक सादा पाठ फ़ाइल प्रदान करें।</string>
+    <string name="importer_help_steam"><b>स्टीम ३.० और नए वर्जन असमर्थित हैं</b>। इंटरनल स्टोरेज की स्टीम डायरेक्टरी में स्थित<b>/data/data/com.valvesoftware.android.steam.community/files/Steamguard-*.json</b> की एक प्रति प्रदान करें।</string>
     <string name="importer_help_totp_authenticator">एक TOTP प्रमाणक निर्यात फ़ाइल की आपूर्ति करें।</string>
     <string name="importer_help_winauth">WinAuth निर्यात फ़ाइल प्रदान करें।</string>
     <string name="importer_encrypted_exception_google_authenticator">एन्क्रिप्टेड प्रविष्टि को छोड़ दिया गया था: %s</string>
@@ -350,4 +437,33 @@
     <string name="groups">समूह</string>
     <string name="pref_focus_search">ऐप स्टार्ट पर खोज फोकस फोकस करें</string>
     <string name="pref_focus_search_summary">ऐप खोलने के तुरंत बाद सर्च पर फोकस करें।</string>
+    <string name="pref_grouping_halves">आधा</string>
+    <string name="pref_grouping_none">ग्रुपिंग नहीं</string>
+    <string name="pref_grouping_size_two">२ का समूह</string>
+    <string name="pref_grouping_size_three">३ का समूह</string>
+    <string name="pref_grouping_size_four">४ का समूह</string>
+    <plurals name="time_elapsed_seconds">
+        <item quantity="one">%d सेकंड पहले</item>
+        <item quantity="other">%d सेकंड्स पहले</item>
+    </plurals>
+    <plurals name="time_elapsed_minutes">
+        <item quantity="one">%d मिनट पहले</item>
+        <item quantity="other">%d मिनट्स पहले</item>
+    </plurals>
+    <plurals name="time_elapsed_hours">
+        <item quantity="one">%d घंटा पहले</item>
+        <item quantity="other">%d घंटे पहले</item>
+    </plurals>
+    <plurals name="time_elapsed_days">
+        <item quantity="one">%d दिन पहले</item>
+        <item quantity="other">%d दिनों पहले</item>
+    </plurals>
+    <plurals name="time_elapsed_years">
+        <item quantity="one">%d वर्ष पहले</item>
+        <item quantity="other">%d वर्षों पहले</item>
+    </plurals>
+    <plurals name="dropdown_checkboxes_default_count">
+        <item quantity="one">%d आइटम चयनित</item>
+        <item quantity="other">%d आइटम्स चयनित</item>
+    </plurals>
 </resources>

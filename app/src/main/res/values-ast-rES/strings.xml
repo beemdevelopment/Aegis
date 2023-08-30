@@ -96,6 +96,7 @@
     <string name="export_help">Esta aición esporta l\'arca fuera del almacenamientu internu d\'Aegis. Seleiciona\'l formatu col que quies esportar:</string>
     <string name="export_warning_unencrypted">Tas a piques d\'esportar una copia ensin cifrar de l\'arca d\'Aegis. <b>Nun s\'aconseya</b>.</string>
     <string name="export_warning_password">Les esportaciones cífrense con otra contraseña que se configura na configuración de seguranza.</string>
+    <string name="understand_risk_accept">Entiendo\'l riesgu</string>
     <string name="export_format_aegis">Aegis (.JSON)</string>
     <string name="export_format_google_auth_uri">Ficheru de testu (.TXT)</string>
     <string name="export_format_html">Páxina web (.HTML)</string>
@@ -123,7 +124,6 @@
     <string name="set_password_confirm">Confirma la contraseña</string>
     <string name="invalid_password">La contraseña ye incorreuta</string>
     <string name="invalidated_biometrics">Detectóse un cambéu na configuración de seguranza del preséu. Vete a «Aegis -&gt; Configuración -&gt; Seguranza -&gt; Desbloquéu biométricu» pa desactivar ya volver activar el desbloquéu biométricu.</string>
-    <string name="password_reminder">Introduz la contraseña. Pidímosla de xemes en cuando pa que nun la escaezas.</string>
     <string name="password_reminder_freq_never">Enxamás</string>
     <string name="password_reminder_freq_weekly">Selmanalmente</string>
     <string name="password_reminder_freq_biweekly">Cada dos selmanes</string>
