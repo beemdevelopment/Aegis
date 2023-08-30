@@ -359,8 +359,6 @@
     </plurals>
     <string name="google_qr_export_unexpected">QRコード#%dを期待していましたが、代わりに#%dをスキャンしました</string>
     <string name="backup_error_bar_message"><b>保管庫のバックアップが失敗しました</b></string>
-    <string name="backup_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">        %s を使用した保管庫のバックアップはエラーのため失敗しました。処理が正常終了するよう、バックアップ設定を確認してください。
-    </string>
     <string name="backup_system_builtin">Aegisの内蔵自動バックアップ</string>
     <string name="backup_system_android">Androidのクラウドバックアップシステム</string>
     <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">        最新のバックアップが古くなっています (%s)
