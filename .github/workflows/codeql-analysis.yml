@@ -24,6 +24,11 @@ jobs:
       run: |
         find app/src/main/java/com/beemdevelopment/aegis/importers ! \( -name AegisImporter.java -o -name "DatabaseImporter*" \) -type f -exec rm -f {} +
         sed -i '/Importer.class/d' app/src/main/java/com/beemdevelopment/aegis/importers/DatabaseImporter.java
+    - uses: actions/setup-java@v3
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+        cache: 'gradle'
     - name: Initialize CodeQL
       uses: github/codeql-action/init@v2
       with:

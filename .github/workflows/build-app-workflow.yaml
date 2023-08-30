@@ -8,6 +8,11 @@ jobs:
         uses: actions/checkout@v3
       - name: Validate Gradle wrapper
         uses: gradle/wrapper-validation-action@55e685c48d84285a5b0418cd094606e199cca3b6
+      - uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          cache: 'gradle'
       - name: Build the app
         run: ./gradlew build
       - uses: actions/upload-artifact@v3
@@ -23,7 +28,7 @@ jobs:
         uses: actions/checkout@v3
       - uses: actions/setup-java@v3
         with:
-          java-version: '11'
+          java-version: '17'
           distribution: 'temurin'
           cache: 'gradle'
       - name: Install HAXM
