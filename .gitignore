@@ -40,3 +40,4 @@ captures/
 # Keystore files
 *.jks
 crowdin.properties
+.crowdin/config.yml
