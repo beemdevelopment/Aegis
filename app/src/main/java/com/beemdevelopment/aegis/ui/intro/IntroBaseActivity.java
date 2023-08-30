@@ -14,6 +14,7 @@ import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.beemdevelopment.aegis.R;
+import com.beemdevelopment.aegis.helpers.AnimationsHelper;
 import com.beemdevelopment.aegis.ui.AegisActivity;
 
 import java.lang.ref.WeakReference;
@@ -135,7 +136,10 @@ public abstract class IntroBaseActivity extends AegisActivity implements IntroAc
         Class<? extends SlideFragment> newSlide = _slides.get(pos);
 
         if (!onBeforeSlideChanged(oldSlide, newSlide)) {
-            _pager.setCurrentItem(pos);
+            // We can't easily control the speed of the smooth scroll animation, but we
+            // can at least disable it if animations are disabled
+            boolean smoothScroll = !AnimationsHelper.Scale.TRANSITION.isZero(this);
+            _pager.setCurrentItem(pos, smoothScroll);
         }
         onAfterSlideChanged(oldSlide, newSlide);
 
