@@ -133,7 +133,7 @@ dependencies {
     annotationProcessor "com.github.bumptech.glide:compiler:${glideVersion}"
 
     // Ridiculous fix for a bunch of "Duplicate class" build errors:
-    implementation (platform("org.jetbrains.kotlin:kotlin-bom:1.9.10"))
+    implementation (platform("org.jetbrains.kotlin:kotlin-bom:1.8.0"))
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'androidx.activity:activity:1.7.2'
