@@ -1,5 +1,6 @@
 package com.beemdevelopment.aegis.ui;
 
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.Menu;
@@ -14,12 +15,14 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.beemdevelopment.aegis.AssignIconsActivity;
 import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.helpers.FabScrollHelper;
 import com.beemdevelopment.aegis.importers.DatabaseImporter;
 import com.beemdevelopment.aegis.importers.DatabaseImporterEntryException;
 import com.beemdevelopment.aegis.importers.DatabaseImporterException;
 import com.beemdevelopment.aegis.ui.dialogs.Dialogs;
+import com.beemdevelopment.aegis.ui.models.AssignIconEntry;
 import com.beemdevelopment.aegis.ui.models.ImportEntry;
 import com.beemdevelopment.aegis.ui.tasks.RootShellTask;
 import com.beemdevelopment.aegis.ui.views.ImportEntriesAdapter;
@@ -244,8 +247,30 @@ public class ImportEntriesActivity extends AegisActivity {
             String toastMessage = getResources().getQuantityString(R.plurals.imported_entries_count, selectedEntries.size(), selectedEntries.size());
             Toast.makeText(this, toastMessage, Toast.LENGTH_SHORT).show();
 
+
             setResult(RESULT_OK, null);
-            finish();
+
+            if (_iconPackManager.hasIconPack()) {
+                ArrayList<UUID> assignIconEntriesIds = new ArrayList<>();
+                Intent assignIconIntent = new Intent(getBaseContext(), AssignIconsActivity.class);
+                for (ImportEntry entry : selectedEntries) {
+                    assignIconEntriesIds.add(entry.getEntry().getUUID());
+                }
+
+                assignIconIntent.putExtra("entries", assignIconEntriesIds);
+
+                Dialogs.showSecureDialog(new AlertDialog.Builder(this)
+                        .setTitle(R.string.import_assign_icons_dialog_title)
+                        .setMessage(R.string.import_assign_icons_dialog_text)
+                        .setPositiveButton(android.R.string.yes, (dialog, which) -> {
+                            startActivity(assignIconIntent);
+                            finish();
+                        })
+                        .setNegativeButton(android.R.string.no, ((dialogInterface, i) -> finish()))
+                        .create());
+            } else {
+                finish();
+            }
         }
     }
 

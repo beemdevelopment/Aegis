@@ -82,6 +82,8 @@
         <activity
             android:name=".ui.GroupManagerActivity"
             android:label="@string/title_activity_manage_groups" />
+        <activity android:name=".AssignIconsActivity"
+            android:label="@string/title_activity_assign_icons"/>
         <activity
             android:name=".ui.PanicResponderActivity"
             android:exported="true"

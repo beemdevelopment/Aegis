@@ -171,6 +171,7 @@
     <string name="set_up_biometric">Set up biometric unlock</string>
     <string name="copy">Copy</string>
     <string name="edit">Edit</string>
+    <string name="assign_icons">Assign icons</string>
     <string name="favorite" comment="Verb">Favorite</string>
     <string name="unfavorite" comment="Verb">Unfavorite</string>
     <string name="error_all_caps">ERROR</string>
@@ -205,6 +206,7 @@
     <string name="discard_changes">Discard changes?</string>
     <string name="discard_changes_description">Your changes have not been saved</string>
     <string name="saving_profile_error">Error saving profile</string>
+    <string name="saving_assign_icons_error">Error assigning icons</string>
     <string name="welcome">Welcome</string>
     <string name="app_description">Aegis is a free, secure and open source 2FA app</string>
     <string name="setup_completed">Setup completed</string>
@@ -461,6 +463,7 @@
     <string name="title_activity_scan_qr">Scan a QR code</string>
     <string name="title_activity_manage_slots">Manage key slots</string>
     <string name="title_activity_import_entries">Import entries</string>
+    <string name="title_activity_assign_icons">Assign icons</string>
     <string name="dialog_wipe_entries_title">Wipe entries</string>
     <string name="dialog_wipe_entries_message">Your vault already contains entries. Do you want to remove these entries before importing this file?\n\n<b>In doing so, you will permanently lose access to the existing entries in the vault.</b></string>
     <string name="dialog_wipe_entries_checkbox">Wipe vault contents</string>
@@ -491,6 +494,8 @@
     <string name="importer_help_steam"><b>Steam v3.0 and newer are not supported</b>. Supply a copy of <b>/data/data/com.valvesoftware.android.steam.community/files/Steamguard-*.json</b>, located in the internal storage directory of Steam.</string>
     <string name="importer_help_totp_authenticator">Supply a TOTP Authenticator export file.</string>
     <string name="importer_help_winauth">Supply a WinAuth export file.</string>
+    <string name="import_assign_icons_dialog_title">Assign icons</string>
+    <string name="import_assign_icons_dialog_text">Do you want to assign icons to the imported entries?</string>
 
     <string name="importer_encrypted_exception_google_authenticator">Encrypted entry was skipped: %s</string>
 

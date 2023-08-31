@@ -40,7 +40,7 @@ public class IconAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     /**
      * Loads all icons from the given icon pack into this adapter. Any icons added before this call will be overwritten.
      */
-    public void loadIcons(IconPack pack) {
+    public void loadIcons(IconPack pack, boolean showAddCustom) {
         _pack = pack;
         _query = null;
         _icons = new ArrayList<>(_pack.getIcons());
@@ -60,7 +60,11 @@ public class IconAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                 .count();
 
         List<IconPack.Icon> suggested = pack.getSuggestedIcons(_issuer);
-        suggested.add(0, new DummyIcon(_context.getString(R.string.icon_custom)));
+
+        if (showAddCustom) {
+            suggested.add(0, new DummyIcon(_context.getString(R.string.icon_custom)));
+        }
+
         if (suggested.size() > 0) {
             CategoryHeader category = new CategoryHeader(_context.getString(R.string.suggested));
             category.setIsCollapsed(false);
@@ -90,7 +94,7 @@ public class IconAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         _query = query;
 
         if (_query == null) {
-            loadIcons(_pack);
+            loadIcons(_pack, false);
         } else {
             _icons = _pack.getIcons().stream()
                     .filter(i -> i.isSuggestedFor(query))

@@ -42,6 +42,10 @@ public class IconPackManager {
         return packs.get(0);
     }
 
+    public boolean hasIconPack() {
+        return _iconPacks.size() > 0;
+    }
+
     public List<IconPack> getIconPacks() {
         return new ArrayList<>(_iconPacks);
     }
