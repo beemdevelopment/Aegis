@@ -12,6 +12,7 @@ import com.beemdevelopment.aegis.ui.models.ImportEntry;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class ImportEntriesAdapter extends RecyclerView.Adapter<ImportEntryHolder> {
     private List<ImportEntry> _entries;
@@ -65,6 +66,14 @@ public class ImportEntriesAdapter extends RecyclerView.Adapter<ImportEntryHolder
         }
 
         return entries;
+    }
+
+    public void setCheckboxStates(List<UUID> uuids, boolean state) {
+        for (ImportEntry entry : _entries) {
+            if(uuids.contains(entry.getEntry().getUUID())) {
+                entry.setIsChecked(state);
+            }
+        }
     }
 
     public void toggleCheckboxes() {

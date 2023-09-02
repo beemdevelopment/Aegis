@@ -159,6 +159,7 @@
     <string name="share">Share</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
+    <string name="undo">Undo</string>
     <string name="unlock">Unlock</string>
     <string name="advanced">Advanced</string>
     <string name="counter">Counter</string>
@@ -469,6 +470,10 @@
     <string name="pref_panic_trigger_summary">Delete vault when a panic trigger is received from Ripple</string>
 
     <string name="import_vault">Import vault</string>
+    <plurals name="import_duplicate_toast">
+        <item quantity="one">Unchecked %d potential duplicate. Please review the list of entries.</item>
+        <item quantity="other">Unchecked %d potential duplicates. Please review the list of entries.</item>
+    </plurals>
     <string name="importer_help_2fas">Supply a 2FAS Authenticator backup file.</string>
     <string name="importer_help_aegis">Supply an Aegis export/backup file.</string>
     <string name="importer_help_authenticator_plus">Supply an Authenticator Plus export file obtained through <b>Settings -> Backup &amp; Restore -> Export as Text and HTML</b>.</string>
