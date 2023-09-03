@@ -125,10 +125,16 @@ documentation](docs/iconpacks.md).
   [<img width=500 alt="aegis-icons preview"
   src="https://raw.githubusercontent.com/aegis-icons/aegis-icons/master/showcase.png">](https://github.com/aegis-icons/aegis-icons)
 
-- [aegis-simple-icons](https://github.com/alexbakker/aegis-simple-icons)
+- [aegis-simple-icons](https://github.com/alexbakker/aegis-simple-icons) *
 
   This project periodically generates an icon pack for Aegis based on [Simple
-  Icons](https://simpleicons.org/). The icons are automatically generated, so
+  Icons](https://simpleicons.org/).
+
+- [aegis-simple-icons-outlined](https://github.com/michaelschattgen/aegis-simple-icons-outlined) *
+
+  This is a variant on the aegis-simple-icons pack where the icons contain no solid background and just the outlines are being used.
+ 
+\* The icons are automatically generated, so
   not all of them are as high quality as the ones you'll find in
   [aegis-icons](https://github.com/aegis-icons/aegis-icons).
 
