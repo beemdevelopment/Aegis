@@ -39,6 +39,10 @@
     <string name="pref_show_icons_summary">Ikonoak erakutsi sarrera bakoitzaren ondoan</string>
     <string name="pref_code_group_size_title">Kode-digituen taldekatzea</string>
     <string name="pref_code_group_size_summary">Aukeratu kodeak zenbat zenbakiko taldetan taldekatuko diren</string>
+    <string name="pref_account_name_position_title">Erakutsi kontuaren izena</string>
+    <string name="pref_shared_issuer_account_name_title">Kontuaren izena beharrezkoa denean bakarrik erakutsi</string>
+    <string name="pref_shared_issuer_account_name_summary">Kontuen izenak jaulkitzaile bera dutenean bakarrik erakutsi. Beste kontu izenak ezkutuan egongo dira.</string>
+    <string name="pref_account_name_position_summary_override">Ezarpen hau lauzen bistak gainidazten du. Kontuaren izena jaulkitzailearen azpian erakutsiko da beti.</string>
     <string name="pref_import_file_title">Inportatu fitxategi batetik</string>
     <string name="pref_import_file_summary">Inportatu marka-ikurrak fitxategi batetik</string>
     <string name="pref_android_backups_title">Androiden lainoko segurtasun kopiak</string>
@@ -46,6 +50,10 @@
     <string name="pref_android_backups_hint"><i>Gailutik gailurako (D2D) segurtasun kopiak beti egin ditzakezu, berdin delarik goian egindako aukera</i></string>
     <string name="pref_backups_title">Biltegiaren segurtasun kopia automatikoki egin</string>
     <string name="pref_backups_summary">Aldaketak egiten direnean, sortu automatikoki biltegiaren segurtasun-kopiak kanpoko biltegiratze unitatean. Hori biltegi zifratuek bakarrik onartzen dute.</string>
+    <string name="pref_backups_reminder_title">Segurtasun kopiaren gogorarazpena</string>
+    <string name="pref_backups_reminder_summary">Erakutsi segurtasun kopia egiteko gogorarazpena zure azken aldaketen kopiarik ez bada egin.</string>
+    <string name="pref_backups_reminder_dialog_title">Desaktibatu segurtasun kopiaren gogorarazpena</string>
+    <string name="pref_backups_reminder_dialog_summary">Gogorarazpena desaktibatzean Aegisek ez dizu kopien inguruko abisurik emango. Honek zure gakoak galtzea ekar dezake. Gogorarazpena desaktibatu egin nahi duzu?</string>
     <string name="pref_backups_location_title">Segurtasun-kopiak egiteko direktorioa</string>
     <string name="pref_backups_location_summary">Segurtasun-kopiak hemen gordeko dira</string>
     <string name="pref_backups_trigger_title">Segurtasun-kopien abiarazlea</string>
@@ -96,11 +104,17 @@
     <string name="export_help">Akzio honek zure biltegia Aegisen barne-biltegiratzetik kanpo esportatuko du. Aukeratu zein formatutan esportatu nahi duzun:</string>
     <string name="export_warning_unencrypted">Zure Aegis biltegiaren zifratu gabeko kopia esportatzera zoaz. <b>Ez dizugu hau egitea gomendatzen</b>.</string>
     <string name="export_warning_password">Esportazioak Segurtasun ezarpenetan zehazten den bestelako pasahitz batekin zifratuta daude.</string>
+    <string name="understand_risk_accept">Arriskua ulertzen dut</string>
     <string name="export_format_aegis">Aegis (.JSON)</string>
     <string name="export_format_google_auth_uri">Testu fitxategia (.TXT)</string>
     <string name="export_format_html">Web orrialdea (.HTML)</string>
     <string name="export_format_hint">Esportazio formatua</string>
     <string name="export_all_groups">Esportatu talde guztiak</string>
+    <string name="export_choose_groups">Aukeratu zein talde esportatu</string>
+    <plurals name="export_groups_selected_count">
+        <item quantity="one">Talde %d aukeratuta</item>
+        <item quantity="other">%d talde aukeratuta</item>
+    </plurals>
     <string name="export_no_groups_selected">Ez duzu talderik aukeratu esportatzeko</string>
     <string name="export_html_title" context="The title of an HTML export document">Aegis Authenticator Esportazioa</string>
     <string name="choose_authentication_method">Segurtasuna</string>
@@ -121,6 +135,9 @@
     <string name="set_password_confirm">Berretsi pasahitza mesedez</string>
     <string name="invalid_password">Pasahitza ez da zuzena</string>
     <string name="invalidated_biometrics">Aldaketa bat detektatu da zure gailuaren segurtasun ezarpenetan. Joan \"Aegis -&gt; Ezarpenak -&gt; Segurtasuna &gt; Biometriak\" aukerara eta aktibatu berriro desblokeatze-biometrikoa.</string>
+    <string name="password_reminder">Sartu zure pasahitza mesedez. Noizean behin pasahitza sartzeko eskatzen dizugu ahaztu ez dezazun.</string>
+    <string name="password_reminder_dialog_title">Defektuz biometria bidezko desblokeatzea erabili</string>
+    <string name="password_reminder_dialog_message">Noizean behin pasahitza sartzeko eskatzen dizugu ahaztu ez duzula frogatzeko eta zure biltegirako sarrera ez galtzeko. Zure pasahitza behin sartzen duzunean, biometria bidezko desblokeatzea erabiliko du defektuz Aegisek beste pasahitz gogorarazpen bat sortu arte.</string>
     <string name="password_reminder_freq_never">Inoiz ez</string>
     <string name="password_reminder_freq_weekly">Astero</string>
     <string name="password_reminder_freq_biweekly">Bi astero</string>
@@ -222,7 +239,9 @@
     <string name="choose_totpauth_importer">TOTP Authenticator segurtasun-kopia hori zifratuta dago pasahitz batekin?</string>
     <string name="choose_application">Hautatu inportatzeko aplikazioa</string>
     <string name="choose_theme">Hautatu zure itxura</string>
+    <string name="choose_account_name_position">Aukeratu zure kontuaren izenaren posizioa</string>
     <string name="choose_view_mode">Aukeratu nahi duzun ikuspegia</string>
+    <string name="choose_copy_behavior">Aukeratu kopia egiteko nahi duzun portaera</string>
     <string name="parsing_file_error">Errorea gertatu da fitxategia analizatzen saiatzean</string>
     <string name="file_not_found">Errorea: Ez da fitxategia aurkitu</string>
     <string name="reading_file_error">Errorea gertatu da fitxategia irakurtzen saiatzean</string>
@@ -286,6 +305,7 @@
     <string name="pref_highlight_entry_summary">Egin elkarrengandik errazago bereizten diren tokenak, sakatzen dituzunean aldi baterako nabarmenduz</string>
     <string name="pref_minimize_on_copy_title">Txikitu kopiatzean</string>
     <string name="pref_minimize_on_copy_summary">Aplikazioa txikitu tokena kopiatutakoan</string>
+    <string name="pref_copy_behavior_title">Kopiatu tokenak arbelera</string>
     <string name="pref_pause_entry_title">Izoztu tokenak ukitzean</string>
     <string name="pref_pause_entry_summary">Gelditu tokenak automatikoki freskatzea beraietan sakatzean. Tokenak ez dira eguneratuko ukitzen ez badituzu. \"Nabarmendu tokenak ukitzean\" edo \"Sakatu erakusteko\" aukeratuta izatea eskatzen du.</string>
     <string name="pin_keyboard_description">Sartu pasahitza PIN teklatua gaitzeko. Kontuan izan honek zure pasahitzak zenbakiak soilik baditu funtzionatzen duela</string>
@@ -301,6 +321,7 @@
     <string name="normal_viewmode_title">Arrunta</string>
     <string name="compact_mode_title">Trinkoa</string>
     <string name="small_mode_title">Txikia</string>
+    <string name="tiles_mode_title">Lauzak</string>
     <string name="unknown_issuer">Igorle ezezaguna</string>
     <string name="unknown_account_name">Kontu-izen ezezaguna</string>
     <plurals name="import_error_dialog">
@@ -353,6 +374,10 @@
     <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">Azken segurtasun kopia zaharregia da (%s)
     </string>
     <string name="backup_reminder_bar_message">Aldaketen segurtasun kopiak ez dira egiten    </string>
+    <string name="backup_reminder_bar_dialog_title">Aldaketen segurtasun kopia ez da egin</string>
+    <string name="backup_reminder_bar_dialog_summary">Biltegian egindako azken aldaketen segurtasun kopiarik ez dago. Garrantzitsua da noizean behin kopia horiek egitea zure kontuetarako sarbidea ez galtzeko. Aztertu segurtasun kopia automatikoak konfiguratzea.
+    </string>
+    <string name="backup_reminder_bar_dialog_accept">Konfiguratu segurtasun kopiak</string>
     <string name="backup_plaintext_export_warning"><b>Biltegia orain dela gutxi testu-huts gisa esportatu da</b></string>
     <string name="pref_show_plaintext_warning_hint">Ez erakutsi ohar hau berriz</string>
     <string name="backup_plaintext_warning_explanation">Ohar hau, orain dela gutxi zifratu gabeko biltegiaren kopia bat esportatu delako agertzen da. Zure gakoen segurtasuna mantentzeko, fitxategi hori berehala ezabatzeko aholkua ematen dizugu.</string>
@@ -403,6 +428,7 @@
     <string name="importer_help_2fas">Aukeratu 2FAS Authenticator segurtasun-kopia fitxategia.</string>
     <string name="importer_help_aegis">Aegisen esportazio/segurtasun-kopia fitxategia aukeratu.</string>
     <string name="importer_help_authenticator_plus">Authenticator Plus esportazio fitxategia aukeratu. Lortzeko modua: <b>Settings -&gt; Backup &amp; Restore -&gt; Export as Text and HTML</b>.</string>
+    <string name="importer_help_authenticator_pro">Aukeratu Authenticator Proren esportazio fitxategia <b>Settings -&gt; Back up -&gt; Back up to encrypted file (recommended)</b> aukeratik lortu bezala.</string>
     <string name="importer_help_authy"><b>/data/data/com.authy.authy/shared_prefs/com.authy.storage.tokens.authenticator.xml</b> fitxategia aukeratu.</string>
     <string name="importer_help_andotp">andOTPren esportazio/segurtasun-kopia fitxategia aukeratu.</string>
     <string name="importer_help_bitwarden">Kargatu Bitwardenen esportazio/segurtasun-kopia fitxategi bat. Ezin dituzu zifratutako fitxategiak kargatu.</string>
@@ -427,6 +453,12 @@
     <string name="pref_grouping_size_two">2ko taldeak</string>
     <string name="pref_grouping_size_three">3ko taldeak</string>
     <string name="pref_grouping_size_four">4ko taldeak</string>
+    <string name="pref_copy_behavior_never">Inoiz ez</string>
+    <string name="pref_copy_behavior_single_tap">Ukitu bat</string>
+    <string name="pref_copy_behavior_double_tap">Bi ikutu</string>
+    <string name="pref_account_name_position_hidden">Ezkutua</string>
+    <string name="pref_account_name_position_end">Jaulkitzailearen ostean</string>
+    <string name="pref_account_name_position_below">Jaulkitzailearen azpian</string>
     <plurals name="time_elapsed_seconds">
         <item quantity="one">Duela segundo %d</item>
         <item quantity="other">Duela %d segundo</item>
@@ -446,5 +478,9 @@
     <plurals name="time_elapsed_years">
         <item quantity="one">Duela urte %d</item>
         <item quantity="other">Duela %d urte</item>
+    </plurals>
+    <plurals name="dropdown_checkboxes_default_count">
+        <item quantity="one">Elementu %d aukeratuta</item>
+        <item quantity="other">%d elementu aukeratuta</item>
     </plurals>
 </resources>

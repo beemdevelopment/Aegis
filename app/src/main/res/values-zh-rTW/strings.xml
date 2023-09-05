@@ -39,6 +39,10 @@
     <string name="pref_show_icons_summary">在每個條目旁顯示圖示</string>
     <string name="pref_code_group_size_title">分組顯示驗證碼</string>
     <string name="pref_code_group_size_summary">選擇群組編號</string>
+    <string name="pref_account_name_position_title">顯示帳戶名稱</string>
+    <string name="pref_shared_issuer_account_name_title">只在必要時顯示帳戶名稱</string>
+    <string name="pref_shared_issuer_account_name_summary">只顯示擁有共同發行者的帳戶名稱（並隱藏其他帳戶名稱）</string>
+    <string name="pref_account_name_position_summary_override">本項設定將被「條列式顯示模式」覆蓋，帳戶名稱將總是在發行者之下顯示。</string>
     <string name="pref_import_file_title">從檔案匯入</string>
     <string name="pref_import_file_summary">從檔案匯入憑證</string>
     <string name="pref_android_backups_title">Android 雲端備份</string>
@@ -63,6 +67,7 @@
     <string name="pref_export_summary">匯出保險箱</string>
     <string name="pref_password_reminder_title">密碼提醒</string>
     <string name="pref_google_auth_export_title">匯出到 Google Authenticator</string>
+    <string name="pref_google_auth_export_descriptor">產生並匯出多個與 Google Authenticator 相容的 QR Code</string>
     <string name="pref_google_auth_export_no_data">沒有可以匯出的資料</string>
     <plurals name="pref_google_auth_export_incompatible_entries">
         <item quantity="other">略過 %d 個不相容的條目</item>
@@ -95,6 +100,7 @@
     <string name="export_encrypted">加密保險箱</string>
     <string name="export_help">此動作將保險箱從 Aegis 的內部儲存空間裡匯出，請選擇欲匯出的格式：</string>
     <string name="export_warning_unencrypted">即將匯出未加密的 Aegis 保險箱。<b>不建議</b>。</string>
+    <string name="export_warning_password">匯出的壓縮檔將使用安全設定中設定的獨立密碼。</string>
     <string name="understand_risk_accept">我瞭解相關風險</string>
     <string name="export_format_aegis">Aegis (.JSON)</string>
     <string name="export_format_google_auth_uri">純文字檔案 (.TXT)</string>
@@ -106,6 +112,7 @@
         <item quantity="other">選取了 %d 個群組</item>
     </plurals>
     <string name="export_no_groups_selected">尚未選擇要匯出的群組</string>
+    <string name="export_html_title" context="The title of an HTML export document">Aegis 驗證器匯出</string>
     <string name="choose_authentication_method">安全性</string>
     <string name="authentication_method_explanation">Aegis 是一款安全第一的雙因素驗證（2FA）應用程式。憑證儲存於特殊的保險箱檔案中，此保險箱可依照使用者的設定以密碼金鑰加密。就算駭客取得了被加密的保險箱檔案，他們也無法在不知道密碼的情況下取得內含的憑證。 \n\n我們已預先為您的裝置選擇了我們認為最適合的選項。</string>
     <string name="authentication_method_none">沒有</string>
@@ -124,6 +131,8 @@
     <string name="set_password_confirm">請確認密碼</string>
     <string name="invalid_password">密碼錯誤</string>
     <string name="invalidated_biometrics">偵測到您的裝置更新了安全性設定。請前往「Aegis -&gt; 設定 -&gt; 安全性 -&gt; 生物特徵辨識解鎖」停用並重新啟用生物特徵辨識解鎖。</string>
+    <string name="password_reminder_dialog_title">預設使用生物特徵辨識解鎖</string>
+    <string name="password_reminder_dialog_message">我們會不定期的要求您使用密碼解鎖，以確保您尚未忘記設定的密碼而被拒於門外。當你成功使用密碼解鎖後，Aegis 將會回到原本的生物特徵解鎖模式，直到下一次的密碼提醒。</string>
     <string name="password_reminder_freq_never">從不</string>
     <string name="password_reminder_freq_weekly">每週一次</string>
     <string name="password_reminder_freq_biweekly">隔週一次</string>
@@ -149,6 +158,8 @@
     <string name="set_up_biometric">設定生物特徵辨識解鎖</string>
     <string name="copy">複製</string>
     <string name="edit">編輯</string>
+    <string name="favorite" comment="Verb">加入最愛</string>
+    <string name="unfavorite" comment="Verb">移出最愛</string>
     <string name="error_all_caps">錯誤</string>
     <string name="password">密碼</string>
     <string name="confirm_password">確認密碼</string>
@@ -162,6 +173,7 @@
     <string name="encrypting_vault">正在加密保險箱</string>
     <string name="exporting_vault">正在匯出保險箱</string>
     <string name="reading_file">讀取檔案中</string>
+    <string name="requesting_root_access">需要使用 root</string>
     <string name="analyzing_qr">分析 QR code 中</string>
     <plurals name="added_new_entries">
         <item quantity="other">增加 %d 個條目進保險箱</item>
@@ -231,6 +243,8 @@
     <string name="no_cameras_available">鏡頭不可用</string>
     <string name="read_qr_error">試圖讀取QR碼時出錯</string>
     <string name="read_qr_error_phonefactor">Aegis 不相容於微軟私有的雙因素驗證演算法。請確保在 Microsoft 365 設定雙因素驗證時選擇「設定無通知的應用程式」。</string>
+    <string name="partial_google_auth_import">偵測到不完整的 Google Authenticator 匯出</string>
+    <string name="import_google_auth_failure">匯入 Google Authenticator 失敗</string>
     <string name="authentication_method_raw">原始檔案</string>
     <string name="unlocking_vault">解鎖保險箱</string>
     <string name="slot_this_device"> （此裝置）</string>
@@ -275,6 +289,7 @@
     <string name="normal_viewmode_title">標準</string>
     <string name="compact_mode_title">緊湊</string>
     <string name="small_mode_title">小巧</string>
+    <string name="tiles_mode_title">平鋪</string>
     <string name="unknown_issuer">未知的服務商</string>
     <string name="unknown_account_name">未知帳戶</string>
     <plurals name="import_error_dialog">
@@ -342,6 +357,7 @@
     <string name="uri_copied_to_clipboard">URI 已複製到剪貼簿</string>
     <string name="transfer_entry">轉移條目</string>
     <string name="transfer_entry_description">使用您想轉移至其他驗證器應用程式，請掃描此QR碼</string>
+    <string name="google_auth_compatible_transfer_description">請使用 Aegis 或 Google Authenticator 掃描以下 QR Code。\n\n由於 Google Authenticator 程式的限制，將僅包含使用 SHA1 並產生六位數密碼的 TOTP &amp; HOTP 憑證</string>
     <string name="password_strength_very_weak">很弱</string>
     <string name="password_strength_weak">弱</string>
     <string name="password_strength_fair">中等</string>
@@ -378,6 +394,12 @@
     <string name="pref_grouping_size_two">分成兩群</string>
     <string name="pref_grouping_size_three">分成三群</string>
     <string name="pref_grouping_size_four">分成四群</string>
+    <string name="pref_copy_behavior_never">從不</string>
+    <string name="pref_copy_behavior_single_tap">輕觸一下</string>
+    <string name="pref_copy_behavior_double_tap">輕觸兩下</string>
+    <string name="pref_account_name_position_hidden">隱藏</string>
+    <string name="pref_account_name_position_end">在發行者旁</string>
+    <string name="pref_account_name_position_below">在發行者下</string>
     <plurals name="time_elapsed_seconds">
         <item quantity="other">%d 秒前</item>
     </plurals>

@@ -40,6 +40,9 @@
     <string name="pref_code_group_size_title">Agrupación de los dígitos del código</string>
     <string name="pref_code_group_size_summary">Seleccione el número de dígitos por los que agrupar los códigos</string>
     <string name="pref_account_name_position_title">Mostrar el nombre de la cuenta</string>
+    <string name="pref_shared_issuer_account_name_title">Mostrar el nombre de la cuenta solo cuando sea necesario</string>
+    <string name="pref_shared_issuer_account_name_summary">Mostrar nombres de cuenta solo cuando compartan el mismo emisor. Se ocultarán otros nombres de cuenta.</string>
+    <string name="pref_account_name_position_summary_override">Este ajuste es anulado por el modo de vista de baldosas. El nombre de la cuenta siempre se mostrará debajo del emisor.</string>
     <string name="pref_import_file_title">Importar desde un archivo</string>
     <string name="pref_import_file_summary">Importar tokens desde un archivo</string>
     <string name="pref_android_backups_title">Copias de seguridad en la nube de Android</string>
@@ -318,6 +321,7 @@
     <string name="normal_viewmode_title">Normal</string>
     <string name="compact_mode_title">Compacto</string>
     <string name="small_mode_title">Pequeño</string>
+    <string name="tiles_mode_title">Baldosas</string>
     <string name="unknown_issuer">Emisor desconocido</string>
     <string name="unknown_account_name">Nombre de cuenta desconocido</string>
     <plurals name="import_error_dialog">

@@ -40,6 +40,9 @@
     <string name="pref_code_group_size_title">Gruppering av kodsiffror</string>
     <string name="pref_code_group_size_summary">Välj antal siffror att gruppera koder efter</string>
     <string name="pref_account_name_position_title">Visa kontonamn</string>
+    <string name="pref_shared_issuer_account_name_title">Visa kontonamn endast vid behov</string>
+    <string name="pref_shared_issuer_account_name_summary">Visa kontonamn endast när de har samma utfärdare. Andra kontonamn kommer att döljas.</string>
+    <string name="pref_account_name_position_summary_override">Denna inställning åsidosätts av visningsläget paneler. Kontonamn kommer alltid att visas nedanför utfärdaren.</string>
     <string name="pref_import_file_title">Importera från fil</string>
     <string name="pref_import_file_summary">Importera polletter från en fil</string>
     <string name="pref_android_backups_title">Android-molnsäkerhetskopior</string>
@@ -318,6 +321,7 @@
     <string name="normal_viewmode_title">Normalt</string>
     <string name="compact_mode_title">Kompakt</string>
     <string name="small_mode_title">Litet</string>
+    <string name="tiles_mode_title">Paneler</string>
     <string name="unknown_issuer">Okänd utfärdare</string>
     <string name="unknown_account_name">Okänt kontonamn</string>
     <plurals name="import_error_dialog">
