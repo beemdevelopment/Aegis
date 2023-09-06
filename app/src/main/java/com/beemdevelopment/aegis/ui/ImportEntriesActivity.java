@@ -4,6 +4,7 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -26,15 +27,20 @@ import com.beemdevelopment.aegis.util.UUIDMap;
 import com.beemdevelopment.aegis.vault.VaultEntry;
 import com.beemdevelopment.aegis.vault.VaultRepository;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.UUID;
 
 public class ImportEntriesActivity extends AegisActivity {
+    private View _view;
     private Menu _menu;
     private ImportEntriesAdapter _adapter;
     private FabScrollHelper _fabScrollHelper;
@@ -47,6 +53,8 @@ public class ImportEntriesActivity extends AegisActivity {
         }
         setContentView(R.layout.activity_import_entries);
         setSupportActionBar(findViewById(R.id.toolbar));
+
+        _view = findViewById(R.id.importEntriesRootView);
 
         ActionBar bar = getSupportActionBar();
         bar.setHomeAsUpIndicator(R.drawable.ic_close);
@@ -180,6 +188,7 @@ public class ImportEntriesActivity extends AegisActivity {
     }
 
     private void importDatabase(DatabaseImporter.State state) {
+        List<ImportEntry> importEntries = new ArrayList<>();
         DatabaseImporter.Result result;
         try {
             result = state.convert();
@@ -191,7 +200,9 @@ public class ImportEntriesActivity extends AegisActivity {
 
         UUIDMap<VaultEntry> entries = result.getEntries();
         for (VaultEntry entry : entries.getValues()) {
-            _adapter.addEntry(new ImportEntry(entry));
+            ImportEntry importEntry = new ImportEntry(entry);
+            _adapter.addEntry(importEntry);
+            importEntries.add(importEntry);
         }
 
         List<DatabaseImporterEntryException> errors = result.getErrors();
@@ -199,6 +210,8 @@ public class ImportEntriesActivity extends AegisActivity {
             String message = getResources().getQuantityString(R.plurals.import_error_dialog, errors.size(), errors.size());
             Dialogs.showMultiErrorDialog(this, R.string.import_error_title, message, errors, null);
         }
+
+        findDuplicates(importEntries);
     }
 
     private void showWipeEntriesDialog() {
@@ -234,6 +247,33 @@ public class ImportEntriesActivity extends AegisActivity {
             setResult(RESULT_OK, null);
             finish();
         }
+    }
+
+    private void findDuplicates(List<ImportEntry> importEntries) {
+        List<UUID> duplicateEntries = new ArrayList<>();
+        for (ImportEntry importEntry: importEntries) {
+            boolean exists = _vaultManager.getVault().getEntries().stream().anyMatch(item ->
+                    item.getIssuer().equals(importEntry.getEntry().getIssuer()) &&
+                    Arrays.equals(item.getInfo().getSecret(), importEntry.getEntry().getInfo().getSecret()));
+
+            if (exists) {
+                duplicateEntries.add(importEntry.getEntry().getUUID());
+            }
+        }
+
+        if (duplicateEntries.size() == 0) {
+            return;
+        }
+
+        _adapter.setCheckboxStates(duplicateEntries, false);
+        Snackbar snackbar = Snackbar.make(_view, getResources().getQuantityString(R.plurals.import_duplicate_toast, duplicateEntries.size(), duplicateEntries.size()), Snackbar.LENGTH_INDEFINITE);
+        snackbar.setAction(R.string.undo, new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                _adapter.setCheckboxStates(duplicateEntries, true);
+            }
+        });
+        snackbar.show();
     }
 
     @Override
