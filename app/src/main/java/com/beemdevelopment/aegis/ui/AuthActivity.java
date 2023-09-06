@@ -171,6 +171,8 @@ public class AuthActivity extends AegisActivity {
                             showBiometricPrompt();
                         })
                         .create());
+            } else {
+                showBiometricPrompt();
             }
         });
     }
