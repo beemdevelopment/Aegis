@@ -15,11 +15,13 @@ is randomly generated once and stays the same across different versions.
     "version": 1,
     "icons": [
         {
+            "name": "Google",
             "filename": "services/Google.png",
             "category": "Services",
             "issuer": [ "google" ]
         },
         {
+            "name": "Blizzard",
             "filename": "services/Blizzard.png",
             "category": "Gaming",
             "issuer": [ "blizzard", "battle.net" ]
@@ -32,7 +34,7 @@ Every icon definition contains the filename of the icon file, relative to the
 root of the .ZIP archive. Icon definitions also have a list of strings that the
 Issuer field in Aegis is matched against for automatic selection of an icon for
 new entries. Matching is done in a case-insensitive manner. There's also a
-category field.
+category field. Optionally, icons can also have a name.
 
 The following image formats are supported, in order of preference:
 

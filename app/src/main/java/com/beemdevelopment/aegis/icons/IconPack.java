@@ -3,6 +3,7 @@ package com.beemdevelopment.aegis.icons;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.beemdevelopment.aegis.util.JsonUtils;
 import com.google.common.base.Objects;
 import com.google.common.io.Files;
 
@@ -120,13 +121,15 @@ public class IconPack {
 
     public static class Icon implements Serializable {
         private final String _relFilename;
+        private final String _name;
         private final String _category;
         private final List<String> _issuers;
 
         private File _file;
 
-        protected Icon(String filename, String category, List<String> issuers) {
+        protected Icon(String filename, String name, String category, List<String> issuers) {
             _relFilename = filename;
+            _name = name;
             _category = category;
             _issuers = issuers;
         }
@@ -149,6 +152,9 @@ public class IconPack {
         }
 
         public String getName() {
+            if (_name != null) {
+                return _name;
+            }
             return Files.getNameWithoutExtension(new File(_relFilename).getName());
         }
 
@@ -169,6 +175,7 @@ public class IconPack {
 
         public static Icon fromJson(JSONObject obj) throws JSONException {
             String filename = obj.getString("filename");
+            String name = JsonUtils.optString(obj, "name");
             String category = obj.isNull("category") ? null : obj.getString("category");
             JSONArray array = obj.getJSONArray("issuer");
 
@@ -178,7 +185,7 @@ public class IconPack {
                 issuers.add(issuer);
             }
 
-            return new Icon(filename, category, issuers);
+            return new Icon(filename, name, category, issuers);
         }
     }
 }

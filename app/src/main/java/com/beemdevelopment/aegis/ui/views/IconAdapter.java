@@ -232,16 +232,8 @@ public class IconAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     }
 
     public static class DummyIcon extends IconPack.Icon {
-        private final String _name;
-
         protected DummyIcon(String name) {
-            super(null, null, null);
-            _name = name;
-        }
-
-        @Override
-        public String getName() {
-            return _name;
+            super(name, null, null, null);
         }
 
         @Override

@@ -852,11 +852,12 @@ public class EditEntryActivity extends AegisActivity {
         private final File _file;
 
         protected CustomSvgIcon(File file) {
-            super(file.getAbsolutePath(), null, null);
+            super(file.getAbsolutePath(), null, null, null);
             _file = file;
         }
 
         @Nullable
+        @Override
         public File getFile() {
             return _file;
         }
