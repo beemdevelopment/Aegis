@@ -146,11 +146,16 @@ public class DatabaseImporterTest {
     public void testImportAuthProEncrypted() throws DatabaseImporterException, IOException, OtpInfoException {
         List<VaultEntry> entries = importEncrypted(AuthenticatorProImporter.class, "authpro_encrypted.bin", state -> {
             char[] password = "test".toCharArray();
-            try {
-                return ((AuthenticatorProImporter.EncryptedState) state).decrypt(password);
-            } catch (DatabaseImporterException e) {
-                throw new DatabaseImporterException(e);
-            }
+            return ((AuthenticatorProImporter.EncryptedState) state).decrypt(password);
+        });
+        checkImportedEntries(entries);
+    }
+
+    @Test
+    public void testImportAuthProEncryptedLegacy() throws DatabaseImporterException, IOException, OtpInfoException {
+        List<VaultEntry> entries = importEncrypted(AuthenticatorProImporter.class, "authpro_encrypted_legacy.bin", state -> {
+            char[] password = "test".toCharArray();
+            return ((AuthenticatorProImporter.LegacyEncryptedState) state).decrypt(password);
         });
         checkImportedEntries(entries);
     }
