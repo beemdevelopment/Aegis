@@ -16,11 +16,13 @@ import com.beemdevelopment.aegis.otp.OtpInfoException;
 import com.beemdevelopment.aegis.otp.SteamInfo;
 import com.beemdevelopment.aegis.otp.TotpInfo;
 import com.beemdevelopment.aegis.ui.dialogs.Dialogs;
+import com.beemdevelopment.aegis.ui.tasks.Argon2Task;
 import com.beemdevelopment.aegis.ui.tasks.PBKDFTask;
 import com.beemdevelopment.aegis.util.IOUtils;
 import com.beemdevelopment.aegis.vault.VaultEntry;
 import com.topjohnwu.superuser.io.SuFile;
 
+import org.bouncycastle.crypto.params.Argon2Parameters;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -44,9 +46,8 @@ import javax.crypto.SecretKey;
 import javax.crypto.spec.IvParameterSpec;
 
 public class AuthenticatorProImporter extends DatabaseImporter {
-    private static final String HEADER = "AuthenticatorPro";
-    private static final int ITERATIONS = 64000;
-    private static final int KEY_SIZE = 32 * Byte.SIZE;
+    private static final String HEADER = "AUTHENTICATORPRO";
+    private static final String HEADER_LEGACY = "AuthenticatorPro";
     private static final String PKG_NAME = "me.jmh.authenticatorpro";
     private static final String PKG_DB_PATH = "files/proauth.db3";
 
@@ -90,24 +91,19 @@ public class AuthenticatorProImporter extends DatabaseImporter {
         }
     }
 
-    private static EncryptedState readEncrypted(DataInputStream stream) throws DatabaseImporterException {
+    private static State readEncrypted(DataInputStream stream) throws DatabaseImporterException {
         try {
             byte[] headerBytes = new byte[HEADER.getBytes(StandardCharsets.UTF_8).length];
             stream.readFully(headerBytes);
             String header = new String(headerBytes, StandardCharsets.UTF_8);
-            if (!header.equals(HEADER)) {
-                throw new DatabaseImporterException("Invalid file header");
+            switch (header) {
+                case HEADER:
+                    return EncryptedState.parseHeader(stream);
+                case HEADER_LEGACY:
+                    return LegacyEncryptedState.parseHeader(stream);
+                default:
+                    throw new DatabaseImporterException("Invalid file header");
             }
-
-            int saltSize = 20;
-            byte[] salt = new byte[saltSize];
-            stream.readFully(salt);
-
-            Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
-            int ivSize = cipher.getBlockSize();
-            byte[] iv = new byte[ivSize];
-            stream.readFully(iv);
-            return new EncryptedState(cipher, salt, iv, IOUtils.readAll(stream));
         } catch (UTFDataFormatException e) {
             throw new DatabaseImporterException("Invalid file header");
         } catch (IOException | NoSuchPaddingException | NoSuchAlgorithmException e) {
@@ -130,12 +126,94 @@ public class AuthenticatorProImporter extends DatabaseImporter {
     }
 
     static class EncryptedState extends State {
+        private static final int KEY_SIZE = 32;
+        private static final int MEMORY_COST = 16; // 2^16 KiB = 64 MiB
+        private static final int PARALLELISM = 4;
+        private static final int ITERATIONS = 3;
+        private static final int SALT_SIZE = 16;
+        private static final int IV_SIZE = 12;
+
         private final Cipher _cipher;
         private final byte[] _salt;
         private final byte[] _iv;
         private final byte[] _data;
 
         public EncryptedState(Cipher cipher, byte[] salt, byte[] iv, byte[] data) {
+            super(true);
+            _cipher = cipher;
+            _salt = salt;
+            _iv = iv;
+            _data = data;
+        }
+
+        public JsonState decrypt(char[] password) throws DatabaseImporterException {
+            Argon2Task.Params params = getKeyDerivationParams(password);
+            SecretKey key = Argon2Task.deriveKey(params);
+            return decrypt(key);
+        }
+
+        public JsonState decrypt(SecretKey key) throws DatabaseImporterException {
+            try {
+                _cipher.init(Cipher.DECRYPT_MODE, key, new IvParameterSpec(_iv));
+                byte[] decrypted = _cipher.doFinal(_data);
+                return new JsonState(new JSONObject(new String(decrypted, StandardCharsets.UTF_8)));
+            } catch (InvalidAlgorithmParameterException | IllegalBlockSizeException
+                     | JSONException | InvalidKeyException | BadPaddingException e) {
+                throw new DatabaseImporterException(e);
+            }
+        }
+
+        @Override
+        public void decrypt(Context context, DecryptListener listener) throws DatabaseImporterException {
+            Dialogs.showPasswordInputDialog(context, R.string.enter_password_aegis_title, 0, (Dialogs.TextInputListener) password -> {
+                Argon2Task.Params params = getKeyDerivationParams(password);
+                Argon2Task task = new Argon2Task(context, key -> {
+                    try {
+                        AuthenticatorProImporter.JsonState state = decrypt(key);
+                        listener.onStateDecrypted(state);
+                    } catch (DatabaseImporterException e) {
+                        listener.onError(e);
+                    }
+                });
+                Lifecycle lifecycle = ContextHelper.getLifecycle(context);
+                task.execute(lifecycle, params);
+            }, dialog -> listener.onCanceled());
+        }
+
+        private Argon2Task.Params getKeyDerivationParams(char[] password) {
+            Argon2Parameters argon2Params = new Argon2Parameters.Builder(Argon2Parameters.ARGON2_id)
+                    .withIterations(ITERATIONS)
+                    .withParallelism(PARALLELISM)
+                    .withMemoryPowOfTwo(MEMORY_COST)
+                    .withSalt(_salt)
+                    .build();
+            return new Argon2Task.Params(password, argon2Params, KEY_SIZE);
+        }
+
+        private static EncryptedState parseHeader(DataInputStream stream)
+            throws IOException, NoSuchPaddingException, NoSuchAlgorithmException {
+            byte[] salt = new byte[SALT_SIZE];
+            stream.readFully(salt);
+
+            byte[] iv = new byte[IV_SIZE];
+            stream.readFully(iv);
+
+            Cipher cipher = Cipher.getInstance("AES/GCM/NoPadding");
+            return new EncryptedState(cipher, salt, iv, IOUtils.readAll(stream));
+        }
+    }
+
+    static class LegacyEncryptedState extends State {
+        private static final int ITERATIONS = 64000;
+        private static final int KEY_SIZE = 32 * Byte.SIZE;
+        private static final int SALT_SIZE = 20;
+
+        private final Cipher _cipher;
+        private final byte[] _salt;
+        private final byte[] _iv;
+        private final byte[] _data;
+
+        public LegacyEncryptedState(Cipher cipher, byte[] salt, byte[] iv, byte[] data) {
             super(true);
             _cipher = cipher;
             _salt = salt;
@@ -179,6 +257,18 @@ public class AuthenticatorProImporter extends DatabaseImporter {
 
         private PBKDFTask.Params getKeyDerivationParams(char[] password) {
             return new PBKDFTask.Params("PBKDF2WithHmacSHA1", KEY_SIZE, password, _salt, ITERATIONS);
+        }
+
+        private static LegacyEncryptedState parseHeader(DataInputStream stream)
+            throws IOException, NoSuchPaddingException, NoSuchAlgorithmException {
+            byte[] salt = new byte[SALT_SIZE];
+            stream.readFully(salt);
+
+            Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
+            int ivSize = cipher.getBlockSize();
+            byte[] iv = new byte[ivSize];
+            stream.readFully(iv);
+            return new LegacyEncryptedState(cipher, salt, iv, IOUtils.readAll(stream));
         }
     }
 
