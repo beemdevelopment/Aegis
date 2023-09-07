@@ -16,8 +16,10 @@ public class LaunchScannerTileService extends TileService {
     public void onStartListening() {
         super.onStartListening();
         Tile tile = getQsTile();
-        tile.setState(Tile.STATE_INACTIVE);
-        tile.updateTile();
+        if (tile != null) {
+            tile.setState(Tile.STATE_INACTIVE);
+            tile.updateTile();
+        }
     }
 
     @Override
