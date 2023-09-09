@@ -469,7 +469,8 @@
     <string name="pref_panic_trigger_title">Delete vault on panic trigger</string>
     <string name="pref_panic_trigger_summary">Delete vault when a panic trigger is received from Ripple</string>
 
-    <string name="import_vault">Import vault</string>
+    <string name="import_vault">Import Aegis vault</string>
+    <string name="import_vault_hint">Want to import from a different 2FA app? Complete the setup first and then head over to the settings menu.</string>
     <plurals name="import_duplicate_toast">
         <item quantity="one">Unchecked %d potential duplicate. Please review the list of entries.</item>
         <item quantity="other">Unchecked %d potential duplicates. Please review the list of entries.</item>
