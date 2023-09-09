@@ -13,26 +13,27 @@
     <string name="issuer">Издател</string>
     <string name="yandex_pin">PIN (4–16 цифри)</string>
     <string name="motp_pin">PIN (4 цифри)</string>
+    <string name="suggested">Препоръчително</string>
     <string name="usage_count">Брой използвания</string>
     <string name="warning">Внимание</string>
     <string name="pref_cat_appearance_app">Приложение</string>
     <string name="pref_cat_appearance_entries">Записи</string>
     <string name="pref_cat_backups_android">Андроид</string>
     <string name="pref_cat_backups_auto">Автоматични резервни копия</string>
-    <string name="pref_section_behavior_title">Режим на работа</string>
-    <string name="pref_section_behavior_summary">Персонализирайте режима на работа при взаимодействие със списъка с записи.</string>
+    <string name="pref_section_behavior_title">Поведение</string>
+    <string name="pref_section_behavior_summary">Настройки на поведението при взаимодействие със списъка със записи.</string>
     <string name="pref_section_appearance_title">Външен вид</string>
     <string name="pref_section_appearance_summary">Изберете темата, езика и други настройки, които влияят на външния вид на приложението.</string>
     <string name="pref_section_security_title">Сигурност</string>
-    <string name="pref_section_security_summary">Настройка на шифроване, отключване с биометрични данни, автоматично заключване и други настройки за сигурност.</string>
-    <string name="pref_section_import_export_title">Импорт &amp; Експорт</string>
-    <string name="pref_section_import_export_summary">Импортирайте резервни копия на Aegis или други приложения за удостоверяване. Създайте ръчно експортиране на своя Aegis трезор.</string>
+    <string name="pref_section_security_summary">Настройки на шифроване, отключване с биометрични данни, автоматично заключване и други настройки за сигурност.</string>
+    <string name="pref_section_import_export_title">Внасяне и изнасяне</string>
+    <string name="pref_section_import_export_summary">Внасяне на резервни копия от Aegis или други приложения за удостоверяване. Ръчно изнасяне на трезора на Aegis.</string>
     <string name="pref_section_backups_title">Резервни копия</string>
     <string name="pref_section_backups_summary">Настройте автоматични резервни копия на избрано от вас място или се възползвайте от облачната услуга за резервни копия на Андроид.</string>
     <string name="pref_section_icon_packs">Пакети с икони</string>
     <string name="pref_section_icon_packs_summary">Управление и внасяне на пакети с икони</string>
     <string name="pref_select_theme_title">Тема</string>
-    <string name="pref_view_mode_title">Режим на преглед</string>
+    <string name="pref_view_mode_title">Изглед на списъка</string>
     <string name="pref_lang_title">Език</string>
     <string name="pref_show_icons_title">Показване на икони</string>
     <string name="pref_show_icons_summary">До всеки запис да се показва икона</string>
@@ -48,6 +49,7 @@
     <string name="pref_backups_summary">Автоматично създавайте резервни копия на трезора във външно хранилище, когато се правят промени. Това се поддържа само за шифровани трезори.</string>
     <string name="pref_backups_reminder_title">Напомняне за резервни копия</string>
     <string name="pref_backups_reminder_summary">Покзва напомняне да направите резервно копие, в случай че нямате копие на последните промени.</string>
+    <string name="pref_backups_reminder_dialog_title">Изключване на напомняне за резервно копие</string>
     <string name="pref_backups_location_title">Директория за архивни файлове</string>
     <string name="pref_backups_location_summary">Архивите ще се съхраняват в</string>
     <string name="pref_backups_trigger_title">Задействайте архивиране</string>
@@ -59,9 +61,16 @@
     </plurals>
     <string name="pref_import_app_title">Импортиране от приложение</string>
     <string name="pref_import_app_summary">Импортиране на токени от приложение (изисква root достъп)</string>
-    <string name="pref_export_title">Експортиране</string>
-    <string name="pref_export_summary">Експортирайте трезора</string>
+    <string name="pref_export_title">Изнасяне</string>
+    <string name="pref_export_summary">Изнасяне на трезора</string>
     <string name="pref_password_reminder_title">Напомняне за парола</string>
+    <string name="pref_google_auth_export_title">Изнасяне за Google Authenticator</string>
+    <string name="pref_google_auth_export_descriptor">Създава кодове за QR, съвместими с Google Authenticator</string>
+    <string name="pref_google_auth_export_no_data">Няма данни, които дабъдат изнесени</string>
+    <plurals name="pref_google_auth_export_incompatible_entries">
+        <item quantity="one">Пропуснат е %d несъвместим елемент</item>
+        <item quantity="other">Пропуснати са %d несъвместими елемента</item>
+    </plurals>
     <string name="pref_secure_screen_title">Сигурност на екрана</string>
     <string name="pref_secure_screen_summary">Блокирайте екранни снимки и други опити за заснемане на екрана в приложението</string>
     <string name="pref_tap_to_reveal_title">Докоснете, за да разкриете</string>
@@ -74,6 +83,11 @@
     <string name="pref_auto_lock_type_back_button">Бутонът за връщане назад е натиснат</string>
     <string name="pref_auto_lock_type_minimize">Приложението е минимизирано</string>
     <string name="pref_auto_lock_type_device_lock">Устройството е заключено</string>
+    <string name="pref_backup_password_category">Резервни копия и изнасяне</string>
+    <string name="pref_backup_password_title">Отделни пароли за резервни копия и изнасяне</string>
+    <string name="pref_backup_password_summary">Ако е включено, паролата, отключваща приложението не може да бъде използвана за резервни копия и изнасяне.</string>
+    <string name="pref_backup_password_change_title">Промяна на паролата за резервни копия и изнасяне</string>
+    <string name="pref_backup_password_change_summary">Задава нова парола за шифроване на трезора при резервни копия и изнасяне.</string>
     <string name="pref_encryption_title">Шифроване</string>
     <string name="pref_encryption_summary">Шифроване на хранилището, отключване с парола или биометрични нанни</string>
     <string name="pref_biometrics_title">Отключване с биометрични данни</string>
@@ -81,11 +95,21 @@
     <string name="pref_set_password_title">Смяна на паролата</string>
     <string name="pref_set_password_summary">Задайте нова парола, която ще ви трябва, за да отключите трезора си</string>
     <string name="export_encrypted">Шифровайте трезора</string>
-    <string name="export_help">Това действие ще експортира трезора от вътрешното хранилище на Aegis. Изберете формата, който искате да бъде експорта ви:</string>
-    <string name="export_warning_unencrypted">На път сте да експортирате нешифровано копие на своя Aegis трезор. <b>Това не се препоръчва</b>.</string>
+    <string name="export_help">По този начин ще бъде изнесен трезора на Aegis от вътрешното хранилище. Изберете формата на данните, в който искате да бъдат изнесени:</string>
+    <string name="export_warning_unencrypted">На път сте да изнесете нешифровано копие на трезора на Aegis. <b>Това е силно непрепоръчително</b>.</string>
+    <string name="export_warning_password">Изнасяните данни се шифроват с отделна парола, която се задава в раздел Сигурност.</string>
     <string name="export_format_aegis">Aegis (.JSON)</string>
     <string name="export_format_google_auth_uri">Текстов файл (.TXT)</string>
-    <string name="export_format_hint">Експорт формат</string>
+    <string name="export_format_html">Интернет страница (.HTML)</string>
+    <string name="export_format_hint">Изнасяне като</string>
+    <string name="export_all_groups">Изнасяне на всички групи</string>
+    <string name="export_choose_groups">Изберете кои групи да бъдат изнесени</string>
+    <plurals name="export_groups_selected_count">
+        <item quantity="one">%d избрана група</item>
+        <item quantity="other">%d избрани групи</item>
+    </plurals>
+    <string name="export_no_groups_selected">Не са избрани групи, които да бъдат изнесени</string>
+    <string name="export_html_title" context="The title of an HTML export document">Изнесени данни от Aegis Authenticator</string>
     <string name="choose_authentication_method">Сигурност</string>
     <string name="authentication_method_explanation">Aegis е 2FA приложение, фокусирано върху сигурността. Токените се съхраняват в трезор, който по желание може да бъде шифрован с избрана от вас парола. Ако нападател получи вашия шифрован файл на трезора, той няма да може да осъществи достъп до съдържанието, без да знае паролата. \n\nПодбрахме опцията, която според нас най-добре пасва на вашето устройство.</string>
     <string name="authentication_method_none">Нищо</string>
@@ -114,7 +138,8 @@
     <string name="share">Сподели</string>
     <string name="yes">Да</string>
     <string name="no">Не</string>
-    <string name="unlock">Отключи</string>
+    <string name="undo">Отменяне</string>
+    <string name="unlock">Отключване</string>
     <string name="advanced">Разширени</string>
     <string name="counter">Брояч</string>
     <string name="digits">Цифри</string>
@@ -135,7 +160,7 @@
     <string name="password_equality_error">Паролите трябва да са еднакви и да не са празни</string>
     <string name="snackbar_authentication_method">Моля, изберете метод за удостоверяване</string>
     <string name="encrypting_vault">Шифроване на трезора</string>
-    <string name="exporting_vault">Експортиране на трезора</string>
+    <string name="exporting_vault">Изнасяне на трезора</string>
     <string name="reading_file">Четене на файла</string>
     <string name="delete_entry">Изтрий запис</string>
     <string name="delete_entry_description">Сигурни ли сте, че искате да изтриете този запис?</string>
@@ -178,8 +203,8 @@
     <string name="choose_application">Изберете приложението, от което искате да импортирате</string>
     <string name="choose_theme">Изберете желаната тема</string>
     <string name="choose_account_name_position">Изберете къде да бъде показано името на профила</string>
-    <string name="choose_view_mode">Изберете желания режим на преглед</string>
-    <string name="choose_copy_behavior">Изберете поведение при копиране</string>
+    <string name="choose_view_mode">Изберете желания изглед на списъка</string>
+    <string name="choose_copy_behavior">Изберете действие, което да копира</string>
     <string name="parsing_file_error">Възникна грешка при опит за анализиране на файла</string>
     <string name="file_not_found">Грешка: Файлът не е намерен</string>
     <string name="reading_file_error">Възникна грешка при опит за четене на файла</string>
@@ -189,13 +214,16 @@
         <item quantity="other">Импортирани %d записа</item>
     </plurals>
     <string name="import_error_title">По време на импортирането възникна една или повече грешки</string>
-    <string name="exporting_vault_error">Възникна грешка при опит за експортиране на трезора</string>
-    <string name="exported_vault">Трезорът е експортиран</string>
+    <string name="exporting_vault_error">Възникна грешка при изнасяне на трезора</string>
+    <string name="exported_vault">Трезорът е изнесен</string>
     <string name="encryption_set_password_error">Възникна грешка при опит за задаване на паролата.</string>
     <string name="encryption_enable_biometrics_error">Възникна грешка при опит за активиране на биометрично отключване. Някои устройства имат лоши имплементации на биометрично удостоверяване и е вероятно вашето да е едно от тях. Помислете вместо това да преминете към конфигурация само с парола.</string>
     <string name="no_cameras_available">Няма налични камери</string>
     <string name="read_qr_error">Възникна грешка при опит за четене на QR кода</string>
     <string name="read_qr_error_phonefactor">Aegis не е съвместим с частния 2FA алгоритъм на Microsoft. Моля, не забравяйте да изберете „Надстройка на приложение без известия“, когато конфигурирате 2FA в Office 365.</string>
+    <string name="partial_google_auth_import">Установени са частично изнасени данни за Google Authenticator</string>
+    <string name="partial_google_auth_import_warning">Няколко QR кода не са внесени. Следните кодове липсват:\n\n<b>%s</b>\n\nМожете да продължите с частично внасяне на данни, но е препоръчително да направите нов опит с всички QR кодове без риск от загуба на маркери за достъп.</string>
+    <string name="import_google_auth_failure">Грешка при внасяне към Google Authenticator</string>
     <string name="authentication_method_raw">Необработен</string>
     <string name="unlocking_vault">Отключване на трезора</string>
     <string name="slot_this_device">(това устройство)</string>
@@ -273,6 +301,7 @@
     </plurals>
     <string name="google_qr_export_unexpected">Очакван QR код #%d, но вместо това е сканиран #%d</string>
     <string name="backup_error_bar_message"><b>Скорошно архивиране на трезора бе неуспешно</b></string>
+    <string name="backup_plaintext_export_warning"><b>Трезорът скоро е изнесен в чист текст</b></string>
     <string name="switch_camera">Смяна на камера</string>
     <string name="empty_list">Няма кодове за показване. Започнете да добавяте записи, като докоснете знака плюс в долния десен ъгъл</string>
     <string name="empty_list_title">Няма открити записи</string>
@@ -304,7 +333,11 @@
     <string name="panic_trigger_ignore_toast">Aegis получи спусък за паника, но настройката е деактивирана, игнорирайки</string>
     <string name="pref_panic_trigger_title">Изтрийте трезора при спусъка за паника</string>
     <string name="pref_panic_trigger_summary">Изтрийте трезора, когато от Ripple е получен спусък за паника</string>
-    <string name="importer_help_aegis">Доставете файл за експортиране/архивиране на Aegis.</string>
+    <plurals name="import_duplicate_toast">
+        <item quantity="one">Махната е отметката на %d вероятно дублиран запис. Прегледайте списъка.</item>
+        <item quantity="other">Махната е отметката на %d вероятно дублирани записа. Прегледайте списъка.</item>
+    </plurals>
+    <string name="importer_help_aegis">Доставете изнесен файл или резервно копие на Aegis.</string>
     <string name="importer_help_authenticator_plus">Доставете файл за експортиране на Authenticator Plus, получен чрез <b>Настройки -&gt; Архивиране &amp; Възстановяване -&gt; Експортирайте като текст и HTML</b>.</string>
     <string name="importer_help_authy">Доставете копие на <b>/data/data/com.authy.authy/shared_prefs/com.authy.storage.tokens.authenticator.xml</b>, намиращо се във вътрешната директория за съхранение на Authy.</string>
     <string name="importer_help_andotp">Доставете andOTP файл за експортиране/архивиране.</string>
@@ -322,4 +355,8 @@
     <string name="pref_account_name_position_hidden">Скрито</string>
     <string name="pref_account_name_position_end">До издателя</string>
     <string name="pref_account_name_position_below">Под издателя</string>
+    <plurals name="dropdown_checkboxes_default_count">
+        <item quantity="one">%d избран елемент</item>
+        <item quantity="other">%d избрани елемента</item>
+    </plurals>
 </resources>

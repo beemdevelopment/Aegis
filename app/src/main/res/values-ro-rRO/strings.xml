@@ -151,6 +151,7 @@
     <string name="share">Distribuie</string>
     <string name="yes">Da</string>
     <string name="no">Nu</string>
+    <string name="undo">Anulare</string>
     <string name="unlock">Deblocare</string>
     <string name="advanced">Avansat</string>
     <string name="counter">Contor</string>
@@ -432,6 +433,11 @@
     <string name="pref_panic_trigger_title">Șterge seiful la declanșatorul de panică</string>
     <string name="pref_panic_trigger_summary">Șterge seiful atunci când un declanșator de panică este primit de la Ripple</string>
     <string name="import_vault">Importă seiful</string>
+    <plurals name="import_duplicate_toast">
+        <item quantity="one">Am detectat %d potențial duplicat ce a rămas nebifat. Te rugăm să revizuiești lista intrărilor.</item>
+        <item quantity="few">Am detectat %d potențiale duplicate ce au rămas nebifate. Te rugăm să revizuiești lista intrărilor.</item>
+        <item quantity="other">Am detectat %d de potențiale duplicate ce au rămas nebifate. Te rugăm să revizuiești lista intrărilor.</item>
+    </plurals>
     <string name="importer_help_2fas">Furnizează un fișier de backup 2FAS autentificator.</string>
     <string name="importer_help_aegis">Furnizează un fișier export/copie de rezervă Aegis.</string>
     <string name="importer_help_authenticator_plus">Furnizează un fişier de export de Autentificator Plus obţinut prin <b>Setări -&gt; Copie de rezervă &amp; Restore -&gt; Export ca Text şi HTML</b>.</string>

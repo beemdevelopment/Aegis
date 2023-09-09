@@ -149,6 +149,7 @@
     <string name="share">分享</string>
     <string name="yes">确定</string>
     <string name="no">取消</string>
+    <string name="undo">撤销</string>
     <string name="unlock">解锁</string>
     <string name="advanced">高级设置</string>
     <string name="counter">计数器</string>
@@ -414,6 +415,9 @@
     <string name="pref_panic_trigger_title">收到紧急触发信号时删除数据库</string>
     <string name="pref_panic_trigger_summary">从 Ripple 收到紧急触发信号时删除数据库</string>
     <string name="import_vault">导入数据库</string>
+    <plurals name="import_duplicate_toast">
+        <item quantity="other">未选中 %d 个潜在重复项。请检视条目列表。</item>
+    </plurals>
     <string name="importer_help_2fas">提供一个 2FAS 身份验证器备份文件。</string>
     <string name="importer_help_aegis">提供一个 Aegis 导出/备份文件。</string>
     <string name="importer_help_authenticator_plus">提供一个通过 <b>设置 -&gt; 备份 &amp; 还原 -&gt; 导出为纯文本和 HTML</b> 获得的 Authenticator Plus 导出文件。</string>

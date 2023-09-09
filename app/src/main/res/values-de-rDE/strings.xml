@@ -152,6 +152,7 @@
     <string name="share">Teilen</string>
     <string name="yes">Ja</string>
     <string name="no">Nein</string>
+    <string name="undo">Rückgängig machen</string>
     <string name="unlock">Entsperren</string>
     <string name="advanced">Fortgeschritten</string>
     <string name="counter">Zähler</string>
@@ -427,6 +428,10 @@
     <string name="pref_panic_trigger_title">Datenbank bei Paniksignal löschen</string>
     <string name="pref_panic_trigger_summary">Datenbank löschen, wenn ein Paniksignal von Ripple empfangen wird</string>
     <string name="import_vault">Datenbank importieren</string>
+    <plurals name="import_duplicate_toast">
+        <item quantity="one">Auswahl für %d potenzielles Duplikat aufgehoben. Bitte überprüfe die Einträge.</item>
+        <item quantity="other">Auswahl für %d potenzielle Duplikate aufgehoben. Bitte überprüfe die Einträge.</item>
+    </plurals>
     <string name="importer_help_2fas">Gib eine 2FAS Authenticator-Sicherungsdatei an.</string>
     <string name="importer_help_aegis">Gib eine Aegis-Export-/Sicherungsdatei an.</string>
     <string name="importer_help_authenticator_plus">Gib eine Authenticator Plus-Exportdatei an, die du über <b>Einstellungen -&gt; Sicherung &amp; Rücksicherung -&gt; Exportieren als Text und HTML Format</b> erhältst.</string>

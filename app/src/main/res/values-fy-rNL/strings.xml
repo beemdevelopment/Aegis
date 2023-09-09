@@ -152,6 +152,7 @@
     <string name="share">Diele</string>
     <string name="yes">Ja</string>
     <string name="no">Nee</string>
+    <string name="undo">Ungedien meitsje</string>
     <string name="unlock">Untskoattelje</string>
     <string name="advanced">Avansearre</string>
     <string name="counter">Teller</string>
@@ -427,6 +428,10 @@
     <string name="pref_panic_trigger_title">Klûs fuortsmite by panyktrigger</string>
     <string name="pref_panic_trigger_summary">Klûs fuortsmite by ûntfangen fan Ripple-panyktrigger</string>
     <string name="import_vault">Klûs ymportearje</string>
+    <plurals name="import_duplicate_toast">
+        <item quantity="one">%d potinsjele dûbeling net oanfinkt. Kontrolearje de list mei items.</item>
+        <item quantity="other">%d potinsjele dûbelingen net oanfinkt. Kontrolearje de list mei items.</item>
+    </plurals>
     <string name="importer_help_2fas">Leverje in 2FAS-autentikator-eksportbestân oan.</string>
     <string name="importer_help_aegis">Leverje in Aegis-eksport-/reservekopybestân oan.</string>
     <string name="importer_help_authenticator_plus">Leverje in Authenticator Plus-eksportbestân oan krigen fia <b>Ynstellingen -&gt; Reservekopy &amp; Werstelle -&gt; Eksportearje as Tekst en HTML</b>.</string>

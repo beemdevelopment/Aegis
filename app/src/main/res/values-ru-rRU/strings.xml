@@ -158,6 +158,7 @@
     <string name="share">Поделиться</string>
     <string name="yes">Да</string>
     <string name="no">Нет</string>
+    <string name="undo">Отмена</string>
     <string name="unlock">Разблокировать</string>
     <string name="advanced">Расширенные</string>
     <string name="counter">Счётчик</string>
@@ -449,6 +450,12 @@
     <string name="pref_panic_trigger_title">Удалять хранилище при панике</string>
     <string name="pref_panic_trigger_summary">Удалить хранилище при получении сигнала паники от Ripple</string>
     <string name="import_vault">Импорт хранилища</string>
+    <plurals name="import_duplicate_toast">
+        <item quantity="one">Не выбран %d потенциальный дубликат. Проверьте список записей.</item>
+        <item quantity="few">Не выбраны %d потенциальных дубликата. Проверьте список записей.</item>
+        <item quantity="many">Не выбрано %d потенциальных дубликатов. Проверьте список записей.</item>
+        <item quantity="other">Не выбрано %d потенциальных дубликатов. Проверьте список записей.</item>
+    </plurals>
     <string name="importer_help_2fas">Необходим файл резервной копии 2FAS.</string>
     <string name="importer_help_aegis">Необходим файл экспорта/резервной копии Aegis.</string>
     <string name="importer_help_authenticator_plus">Необходим файл экспорта Authenticator Plus, полученный через <b>«Настройки» → «Рез. копия и восстановление» → «Экспорт текста и HTML»</b>.</string>

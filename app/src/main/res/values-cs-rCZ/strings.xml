@@ -158,6 +158,7 @@
     <string name="share">Sdílet</string>
     <string name="yes">Ano</string>
     <string name="no">Ne</string>
+    <string name="undo">Zpět</string>
     <string name="unlock">Odemknout</string>
     <string name="advanced">Pokročilé</string>
     <string name="counter">Počítadlo</string>
@@ -449,6 +450,12 @@
     <string name="pref_panic_trigger_title">Smazat trezor při signálu paniky</string>
     <string name="pref_panic_trigger_summary">Smazat trezor při obdržení signálu paniky z aplikace Ripple</string>
     <string name="import_vault">Importovat trezor</string>
+    <plurals name="import_duplicate_toast">
+        <item quantity="one">Zrušeno označení %d možné duplicity. Zkontrolujte prosím seznam položek.</item>
+        <item quantity="few">Zrušeno označení %d možných duplicit. Zkontrolujte prosím seznam položek.</item>
+        <item quantity="many">Zrušeno označení %d možných duplicit. Zkontrolujte prosím seznam položek.</item>
+        <item quantity="other">Zrušeno označení %d možných duplicit. Zkontrolujte prosím seznam položek.</item>
+    </plurals>
     <string name="importer_help_2fas">Dodejte záložní soubor 2FAS Authenticator.</string>
     <string name="importer_help_aegis">Dodejte soubor exportu/zálohy Aegis.</string>
     <string name="importer_help_authenticator_plus">Dodejte exportovaný soubor Authenticator Plus získaný přes <b>Nastavení -&gt; Záloha a obnovení -&gt; Exportovat jako text a HTML</b>.</string>

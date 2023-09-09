@@ -152,6 +152,7 @@
     <string name="share">Delen</string>
     <string name="yes">Ja</string>
     <string name="no">Nee</string>
+    <string name="undo">Ongedaan maken</string>
     <string name="unlock">Ontgrendel</string>
     <string name="advanced">Geavanceerd</string>
     <string name="counter">Teller</string>
@@ -427,6 +428,10 @@
     <string name="pref_panic_trigger_title">Kluis bij paniektrigger verwijderen</string>
     <string name="pref_panic_trigger_summary">Kluis bij ontvangen van Ripple-paniektrigger verwijderen</string>
     <string name="import_vault">Kluis importeren</string>
+    <plurals name="import_duplicate_toast">
+        <item quantity="one">%d potentiële dubbeling niet aangevinkt. Controleer de lijst met items.</item>
+        <item quantity="other">%d potentiële dubbelingen niet aangevinkt. Controleer de lijst met items.</item>
+    </plurals>
     <string name="importer_help_2fas">Lever een 2FAS Authenticator-back-upbestand aan.</string>
     <string name="importer_help_aegis">Lever een Aegis-export/-back-upbestand aan.</string>
     <string name="importer_help_authenticator_plus">Lever een Authenticator Plus-exportbestand aan verkregen via <b>Instellingen -&gt; Back-up &amp; Herstellen -&gt; Exporteren als Tekst en HTML</b>.</string>

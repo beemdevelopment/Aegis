@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="action_settings">الإعدادات</string>
-    <string name="action_about">عن</string>
+    <string name="action_about">عنّا</string>
     <string name="action_delete">حذف</string>
     <string name="action_transfer">نقل</string>
     <string name="action_edit_icon">تعديل الأيقونة</string>
@@ -60,12 +60,12 @@
     <string name="pref_backups_trigger_summary">قم بعمل نسخة احتياطية يدويًّا</string>
     <string name="pref_backups_versions_title">عدد الإصدارات المراد الاحتفاظ بها</string>
     <plurals name="pref_backups_versions_summary">
-        <item quantity="zero">احتفظت 0 من بإصدار النسخ الاحتياطية</item>
-        <item quantity="one">احتفظ بإصدار %1$d من النسخة الاحتياطية</item>
-        <item quantity="two">أحتفاظ بإصدارين من النسخ الاحتياطية</item>
-        <item quantity="few">احتفظ بإصدار %1$d من النسخ الاحتياطية</item>
-        <item quantity="many">احتفظ بإصدار %1$d من النسخ الاحتياطية</item>
-        <item quantity="other">احتفظ بـ %1$d إصدارات من النسخ الاحتياطية</item>
+        <item quantity="zero">احتفظ ب%1$d إصدارات من النسخ الاحتياطية</item>
+        <item quantity="one">احتفظ بإصدار واحد من النسخ الاحتياطية</item>
+        <item quantity="two">احتفظ بإصدارين من النسخ الاحتياطية</item>
+        <item quantity="few">احتفظ ب%1$d إصدارات من النسخ الاحتياطية</item>
+        <item quantity="many">احتفظ ب%1$d إصدارات من النسخ الاحتياطية</item>
+        <item quantity="other">احتفظ ب%1$d إصدارات من النسخ الاحتياطية</item>
     </plurals>
     <string name="pref_import_app_title">استيراد من تطبيق</string>
     <string name="pref_import_app_summary">استيراد الرموز من تطبيق (يتطلب الوصول إلى الجذر root)</string>
@@ -164,6 +164,7 @@
     <string name="share">شارك</string>
     <string name="yes">نعم</string>
     <string name="no">لا</string>
+    <string name="undo">تراجع</string>
     <string name="unlock">فتح القفل</string>
     <string name="advanced">متقدم</string>
     <string name="counter">العداد</string>
@@ -373,7 +374,7 @@
     <string name="select_icon">اختر أيقونة</string>
     <string name="tile_open_vault" comment="label for a quick settings tile that opens the app when tapped">افتح المخزن</string>
     <string name="tile_open_scanner" comment="label for a quick settings tile that opens the QR code scanner when tapped">افتح الماسح</string>
-    <string name="toggle_checkboxes">تفعيل مربعات الاختيار</string>
+    <string name="toggle_checkboxes">تبديل خانات التأشير</string>
     <string name="search">بحث</string>
     <string name="channel_name_lock_status">إشعار القفل</string>
     <string name="channel_description_lock_status">يمكن لـ Aegis عرض إشعار مستمر لتنبيهك عند قفل المخزن</string>
@@ -471,6 +472,14 @@
     <string name="pref_panic_trigger_title">حذف المخزن على الزناد الذعر</string>
     <string name="pref_panic_trigger_summary">احذف المخزن عند تلقي مصدر ذعر من Ripple</string>
     <string name="import_vault">استيراد مخزن</string>
+    <plurals name="import_duplicate_toast">
+        <item quantity="zero">لم يُؤشَّر %d من التكرار المحتمل. الرجاء مراجعة قائمة الإدخالات.</item>
+        <item quantity="one">لم يُؤشَّر %d من التكرار المحتمل. الرجاء مراجعة قائمة الإدخالات.</item>
+        <item quantity="two">لم يُؤشَّر %d من التكرار المحتمل. الرجاء مراجعة قائمة الإدخالات.</item>
+        <item quantity="few">لم يُؤشَّر %d من التكرارات المحتملة. الرجاء مراجعة قائمة الإدخالات.</item>
+        <item quantity="many">لم يُؤشَّر %d من التكرارات المحتملة. الرجاء مراجعة قائمة الإدخالات.</item>
+        <item quantity="other">لم يُؤشَّر %d من التكرارات المحتملة. الرجاء مراجعة قائمة الإدخالات.</item>
+    </plurals>
     <string name="importer_help_2fas">توفير مِلَفّ النسخ الاحتياطي 2FAS Authenticator.</string>
     <string name="importer_help_aegis">توفير مِلَفّ Aegis للتصدير / النسخ الاحتياطي.</string>
     <string name="importer_help_authenticator_plus">توفير مِلَفّ تصدير Authenticator Plus الذي تم الحصول عليه من خلال <b>الإعدادات -&gt; النسخ الاحتياطي &amp; استعادة -&gt; تصدير كنص و HTML</b>.</string>

@@ -152,6 +152,7 @@
     <string name="share">Condividi</string>
     <string name="yes">Si</string>
     <string name="no">No</string>
+    <string name="undo">Annulla</string>
     <string name="unlock">Sblocca</string>
     <string name="advanced">Avanzate</string>
     <string name="counter">Contatore</string>
@@ -426,6 +427,10 @@
     <string name="pref_panic_trigger_title">Elimina cassaforte al segnale di emergenza</string>
     <string name="pref_panic_trigger_summary">Elimina la cassaforte quando Ripple invia un segnale di emergenza</string>
     <string name="import_vault">Importa cassaforte</string>
+    <plurals name="import_duplicate_toast">
+        <item quantity="one">Deselezionato %d potenziale duplicato. Si prega di rivedere l\'elenco delle voci.</item>
+        <item quantity="other">Deselezionati %d potenziali duplicati. Si prega di rivedere l\'elenco delle voci.</item>
+    </plurals>
     <string name="importer_help_2fas">Seleziona un backup di 2FAS Authenticator.</string>
     <string name="importer_help_aegis">Seleziona un file di backup di Aegis.</string>
     <string name="importer_help_authenticator_plus">Seleziona un file di esportazione di Authenticator Plus ottenuto tramite <b>Impostazioni -&gt; Backup &amp; Ripristino -&gt; Esporta come testo e HTML</b>.</string>

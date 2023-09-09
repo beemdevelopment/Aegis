@@ -152,6 +152,7 @@
     <string name="share">Κοινοποίηση</string>
     <string name="yes">Ναι</string>
     <string name="no">Όχι</string>
+    <string name="undo">Αναίρεση</string>
     <string name="unlock">Ξεκλείδωμα</string>
     <string name="advanced">Σύνθετες</string>
     <string name="counter">Μετρητής</string>
@@ -426,6 +427,10 @@
     <string name="pref_panic_trigger_title">Διαγραφή κρύπτης στο έναυσμα πανικού</string>
     <string name="pref_panic_trigger_summary">Διαγραφή κρύπτης όταν λαμβάνεται ένα έναυσμα πανικού από το Ripple</string>
     <string name="import_vault">Εισαγωγή κρύπτης</string>
+    <plurals name="import_duplicate_toast">
+        <item quantity="one">Μη επιλεγμένο %d πιθανό διπλότυπο. Παρακαλούμε εξετάστε τη λίστα καταχωρήσεων.</item>
+        <item quantity="other">Μη επιλεγμένα %d πιθανά διπλότυπα. Παρακαλούμε εξετάστε τη λίστα καταχωρήσεων.</item>
+    </plurals>
     <string name="importer_help_2fas">Παρέχετε ένα αντίγραφο ασφαλείας 2FAS Authenticator.</string>
     <string name="importer_help_aegis">Παρέχετε ένα αρχείο εξαγωγής/αντιγράφων ασφαλείας Aegis.</string>
     <string name="importer_help_authenticator_plus">Παρέχετε ένα αρχείο εξαγωγής Authenticator Plus που αποκτήθηκε μέσω των <b> Ρυθμίσεων - &gt; Αντιγράφων ασφαλείας &amp; Επαναφορά - &gt; Εξαγωγή ως Κείμενο και HTML </b>.</string>

@@ -152,6 +152,7 @@
     <string name="share">Partekatu</string>
     <string name="yes">Bai</string>
     <string name="no">Ez</string>
+    <string name="undo">Desegin</string>
     <string name="unlock">Desblokeatu</string>
     <string name="advanced">Aurreratua</string>
     <string name="counter">Kontagailua</string>
@@ -425,6 +426,10 @@
     <string name="pref_panic_trigger_title">Ezabatu biltegia arrisku mezua jasotzean</string>
     <string name="pref_panic_trigger_summary">Ezabatu biltegia Rippletik arrisku mezua jasotzean</string>
     <string name="import_vault">Inportatu biltegia</string>
+    <plurals name="import_duplicate_toast">
+        <item quantity="one">Bikoiztutako sarrera posible %d. Errebisatu zerrenda mesedez.</item>
+        <item quantity="other">Bikoiztutako %d sarrera posible. Errebisatu zerrenda mesedez.</item>
+    </plurals>
     <string name="importer_help_2fas">Aukeratu 2FAS Authenticator segurtasun-kopia fitxategia.</string>
     <string name="importer_help_aegis">Aegisen esportazio/segurtasun-kopia fitxategia aukeratu.</string>
     <string name="importer_help_authenticator_plus">Authenticator Plus esportazio fitxategia aukeratu. Lortzeko modua: <b>Settings -&gt; Backup &amp; Restore -&gt; Export as Text and HTML</b>.</string>

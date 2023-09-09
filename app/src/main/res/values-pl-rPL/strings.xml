@@ -41,6 +41,8 @@
     <string name="pref_code_group_size_summary">Wybierz liczbę cyfr do grupowania według</string>
     <string name="pref_account_name_position_title">Pokaż nazwę konta</string>
     <string name="pref_shared_issuer_account_name_title">Pokaż nazwę konta tylko w razie potrzeby</string>
+    <string name="pref_shared_issuer_account_name_summary">Pokazuj nazwy kont tylko, gdy są z tego samego wydawcy. Inne nazwy kont zostaną ukryte.</string>
+    <string name="pref_account_name_position_summary_override">To ustawienie jest nadpisane przez tryb wyświetlania pól. Nazwa konta będzie zawsze wyświetlana pod wydawcą.</string>
     <string name="pref_import_file_title">Importuj z pliku</string>
     <string name="pref_import_file_summary">Importuj tokeny z aplikacji</string>
     <string name="pref_android_backups_title">Kopia zapasowa Android w chmurze</string>
@@ -156,6 +158,7 @@
     <string name="share">Udostępnij</string>
     <string name="yes">Tak</string>
     <string name="no">Nie</string>
+    <string name="undo">Cofnij</string>
     <string name="unlock">Odblokuj</string>
     <string name="advanced">Zaawansowane</string>
     <string name="counter">Licznik</string>
@@ -335,6 +338,7 @@
     <string name="normal_viewmode_title">Normalny</string>
     <string name="compact_mode_title">Kompaktowy</string>
     <string name="small_mode_title">Mały</string>
+    <string name="tiles_mode_title">Pola</string>
     <string name="unknown_issuer">Nieznany wydawca</string>
     <string name="unknown_account_name">Nieznana nazwa konta</string>
     <plurals name="import_error_dialog">
@@ -445,6 +449,12 @@
     <string name="pref_panic_trigger_title">Usuń sejf przy wyzwalaczu paniki</string>
     <string name="pref_panic_trigger_summary">Usuń sejf po otrzymaniu wyzwalacza paniki z Ripple</string>
     <string name="import_vault">Import sejfu</string>
+    <plurals name="import_duplicate_toast">
+        <item quantity="one">Odznaczono %d potencjalny duplikat. Sprawdź listę.</item>
+        <item quantity="few">Odznaczono %d potencjalne duplikaty. Sprawdź listę.</item>
+        <item quantity="many">Odznaczono %d potencjalnych duplikatów. Sprawdź listę.</item>
+        <item quantity="other">Odznaczono %d potencjalnych duplikatów. Sprawdź listę.</item>
+    </plurals>
     <string name="importer_help_2fas">Dostarcz plik zapasowy 2FAS Authenticator.</string>
     <string name="importer_help_aegis">Dostarcz plik zapasowy Aegis.</string>
     <string name="importer_help_authenticator_plus">Dostarcz plik eksportu Authenticator Plus uzyskany w <b>Ustawienia -&gt; Kopia zapasowa &amp; Przywróć -&gt; Eksportuj jako tekst i HTML</b>.</string>
