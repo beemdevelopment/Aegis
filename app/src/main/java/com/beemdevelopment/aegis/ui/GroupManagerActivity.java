@@ -24,7 +24,7 @@ import java.util.Objects;
 public class GroupManagerActivity extends AegisActivity implements GroupAdapter.Listener {
     private GroupAdapter _adapter;
     private HashSet<String> _removedGroups;
-    private RecyclerView _slotsView;
+    private RecyclerView _groupsView;
     private View _emptyStateView;
     private BackPressHandler _backPressHandler;
 
@@ -51,11 +51,11 @@ public class GroupManagerActivity extends AegisActivity implements GroupAdapter.
         }
 
         _adapter = new GroupAdapter(this);
-        _slotsView= findViewById(R.id.list_slots);
+        _groupsView = findViewById(R.id.list_groups);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        _slotsView.setLayoutManager(layoutManager);
-        _slotsView.setAdapter(_adapter);
-        _slotsView.setNestedScrollingEnabled(false);
+        _groupsView.setLayoutManager(layoutManager);
+        _groupsView.setAdapter(_adapter);
+        _groupsView.setNestedScrollingEnabled(false);
 
         for (String group : _vaultManager.getVault().getGroups()) {
             _adapter.addGroup(group);
@@ -135,10 +135,10 @@ public class GroupManagerActivity extends AegisActivity implements GroupAdapter.
 
     private void updateEmptyState() {
         if (_adapter.getItemCount() > 0) {
-            _slotsView.setVisibility(View.VISIBLE);
+            _groupsView.setVisibility(View.VISIBLE);
             _emptyStateView.setVisibility(View.GONE);
         } else {
-            _slotsView.setVisibility(View.GONE);
+            _groupsView.setVisibility(View.GONE);
             _emptyStateView.setVisibility(View.VISIBLE);
         }
     }
