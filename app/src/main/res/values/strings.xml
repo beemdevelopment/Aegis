@@ -120,7 +120,7 @@
         <item quantity="other">%d groups selected</item>
     </plurals>
     <string name="export_no_groups_selected">No groups selected to export</string>
-    <string name="export_html_title" context="The title of an HTML export document">Aegis Authenticator Export</string>
+    <string name="export_html_title" comment="The title of an HTML export document">Aegis Authenticator Export</string>
 
     <string name="choose_authentication_method">Security</string>
     <string name="authentication_method_explanation">Aegis is a security-focused 2FA app. Tokens are stored in a vault, that can optionally be encrypted with a password of your choosing. If an attacker obtains your encrypted vault file, they will not be able to access the contents without knowing the password.\n\nWe\'ve preselected the option that we think would fit best for your device.</string>
@@ -290,7 +290,7 @@
     <string name="lock">Lock</string>
     <string name="name">Name</string>
     <string name="no_group">No group</string>
-    <string name="sort" context="Title of the Sort button in the top action bar of the main view">Sort</string>
+    <string name="sort" comment="Title of the Sort button in the top action bar of the main view">Sort</string>
     <string name="sort_alphabetically">Issuer (A to Z)</string>
     <string name="sort_alphabetically_reverse">Issuer (Z to A)</string>
     <string name="sort_alphabetically_name">Account (A to Z)</string>
@@ -305,7 +305,7 @@
     <string name="preference_reset_usage_count">Reset usage count</string>
     <string name="preference_reset_usage_count_summary">Reset the usage count of every entry in your vault</string>
     <string name="preference_reset_usage_count_dialog">Are you sure you want to set the usage count of every entry in your vault to 0?</string>
-    <string name="note" context="Users can add a note to an entry">Note</string>
+    <string name="note" comment="Users can add a note to an entry">Note</string>
     <string name="clear">Clear</string>
 
     <string name="pref_highlight_entry_title">Highlight tokens when tapped</string>
