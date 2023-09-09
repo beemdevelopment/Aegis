@@ -18,28 +18,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:layout_width="210dp"
-        android:layout_height="210dp"
-        android:layout_marginTop="60dp"
-        android:adjustViewBounds="true"
-        android:src="@drawable/app_icon"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/titleText"/>
-
-    <Button
-        android:id="@+id/btnImport"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="32dp"
-        android:text="@string/import_vault"
-        android:textSize="11sp"
-        style="?attr/outlineButtonStyle"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/descriptionText" />
-
     <TextView
         android:id="@+id/descriptionText"
         android:layout_width="match_parent"
@@ -47,8 +25,45 @@
         android:text="@string/app_description"
         android:textAlignment="center"
         android:textSize="16sp"
+        android:layout_marginTop="10dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/titleText" />
+
+    <ImageView
+        android:id="@+id/imgLogo"
+        android:layout_width="210dp"
+        android:layout_height="210dp"
+        android:layout_marginTop="60dp"
+        android:adjustViewBounds="true"
+        android:src="@drawable/app_icon"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/descriptionText"/>
+
+    <Button
+        android:id="@+id/btnImport"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:text="@string/import_vault"
+        android:textSize="11sp"
+        android:layout_marginVertical="10dp"
+        style="?attr/outlineButtonStyle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/txtImportHelp" />
+
+    <TextView
+        android:id="@+id/txtImportHelp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/import_vault_hint"
+        android:textSize="11sp"
+        android:textAlignment="center"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintWidth_percent="0.9" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
