@@ -256,9 +256,7 @@
     <string name="import_google_auth_failure">ייבוא ייצוא מאמת Google נכשל</string>
     <string name="unrelated_google_auth_batches_error">ייצוא מכיל מידע עבור אצווה לא קשורה. נסה לייבא אצווה אחת בכל פעם.</string>
     <string name="no_tokens_can_be_imported">לא ניתן לייבא אסימונים כתוצאה מכך</string>
-    <string name="authentication_method_raw">גולמי</string>
     <string name="unlocking_vault">פתיחת הכספת</string>
-    <string name="slot_this_device">(המכשיר הזה)</string>
     <string name="remove_group">הסר קבוצה</string>
     <string name="remove_group_description">האם אתה בטוח שברצונך להסיר קבוצה זו? ערכים בקבוצה זו יעברו באופן אוטומטי ל\'אין קבוצה\'.</string>
     <string name="remove_icon_pack">הסרת חבילת סמלים</string>
@@ -388,7 +386,6 @@
     <string name="title_activity_about">אודות</string>
     <string name="title_activity_edit_entry">ערוך רשומה</string>
     <string name="title_activity_scan_qr">סרוק ברקוד</string>
-    <string name="title_activity_manage_slots">ניהול חריצי מקשים</string>
     <string name="title_activity_import_entries">ייבוא רשומה</string>
     <string name="dialog_wipe_entries_title">מחיקת רשומה</string>
     <string name="dialog_wipe_entries_message">הכספת שלך כבר מכילה ערכים. האם ברצונך להסיר את הערכים הללו לפני ייבוא הקובץ הזה?\n\n<b>בכך, תאבד לצמיתות את הגישה לערכים הקיימים בכספת.</b></string>

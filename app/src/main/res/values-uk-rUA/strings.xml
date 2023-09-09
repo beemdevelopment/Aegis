@@ -267,9 +267,7 @@
     <string name="import_google_auth_failure">Не вдалося імпортувати дані з Google Authenticator</string>
     <string name="unrelated_google_auth_batches_error">Експорт містить інформацію про непов\'язаний пакет. Спробуйте імпортувати пакети по одному.</string>
     <string name="no_tokens_can_be_imported">В результаті жоден токен не може бути імпортований</string>
-    <string name="authentication_method_raw">Raw</string>
     <string name="unlocking_vault">Розблокування сховища</string>
-    <string name="slot_this_device">(цей пристрій)</string>
     <string name="remove_group">Видалити групу</string>
     <string name="remove_group_description">Ви впевнені, що хочете видалити цю групу? Записи у цій групі автоматично перемістяться в \'Без групи\'.</string>
     <string name="remove_icon_pack">Видалити набір піктограм</string>
@@ -413,7 +411,6 @@
     <string name="title_activity_about">Про додаток</string>
     <string name="title_activity_edit_entry">Редагування запису</string>
     <string name="title_activity_scan_qr">Сканування QR-коду</string>
-    <string name="title_activity_manage_slots">Керувати ключовими слотами</string>
     <string name="title_activity_import_entries">Імпортування записів</string>
     <string name="dialog_wipe_entries_title">Очистити записи</string>
     <string name="dialog_wipe_entries_message">Ваше сховище вже містить записи. Видалити ці записи перед імпортом цього файлу?\n\n<b>При цьому ви назавжди втратите доступ до наявних записів у сховищі.</b></string>

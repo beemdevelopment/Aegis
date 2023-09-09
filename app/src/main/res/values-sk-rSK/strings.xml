@@ -200,7 +200,6 @@
     <string name="read_qr_error">Pri pokuse o načítanie kódu QR sa vyskytla chyba</string>
     <string name="read_qr_error_phonefactor">Aegis nie je kompatibilný s proprietárnym algoritmom 2FA spoločnosti Microsoft. Pri konfigurácii 2FA v Office 365 nezabudnite vybrať možnosť „Nastaviť aplikáciu bez upozornení“.</string>
     <string name="unlocking_vault">Odomykanie trezoru</string>
-    <string name="slot_this_device">(toto zariadenie)</string>
     <string name="remove_group">Odstránenie skupiny</string>
     <string name="remove_group_description">Ste si istí, že chcete odstrániť túto skupinu? Záznamy v tejto skupine budú automaticky prehodené na \'Žiadna skupina\'.</string>
     <string name="remove_icon_pack">Odstrániť balíček ikon</string>

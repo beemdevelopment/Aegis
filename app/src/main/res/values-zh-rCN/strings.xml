@@ -265,9 +265,7 @@
     <string name="import_google_auth_failure">导入 Google 身份验证器的导出文件失败</string>
     <string name="unrelated_google_auth_batches_error">导出文件包含多个批次的内容。请一次只导入一个批次。</string>
     <string name="no_tokens_can_be_imported">没有可导入的令牌</string>
-    <string name="authentication_method_raw">源文件</string>
     <string name="unlocking_vault">解锁数据库</string>
-    <string name="slot_this_device">（本设备）</string>
     <string name="remove_group">删除群组</string>
     <string name="remove_group_description">您确定要删除这个群组吗？此群组内的条目将自动移动到“无群组”。</string>
     <string name="remove_icon_pack">删除图标包</string>
@@ -406,7 +404,6 @@
     <string name="title_activity_about">关于</string>
     <string name="title_activity_edit_entry">编辑条目</string>
     <string name="title_activity_scan_qr">扫描二维码</string>
-    <string name="title_activity_manage_slots">管理密钥槽位</string>
     <string name="title_activity_import_entries">导入条目</string>
     <string name="dialog_wipe_entries_title">擦除条目</string>
     <string name="dialog_wipe_entries_message">您的数据库已经包含条目。 您想要在导入此文件之前删除这些条目吗？\n\n<b>这样做，您将永久失去对数据库中现有条目的访问权限。</b></string>

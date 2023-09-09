@@ -219,9 +219,7 @@
     <string name="no_cameras_available">Không có máy ảnh nào có sẵn</string>
     <string name="read_qr_error">Đã xảy ra lỗi trong khi cố gắng đọc mã QR</string>
     <string name="read_qr_error_phonefactor">Aegis không tương thích với thuật toán Xác thực 2 yếu tố độc quyền của Microsoft. Vui lòng chắc chắn là bạn chọn \"Thiết lập ứng dụng không có thông báo\" khi thiết lập Xác thực 2 yếu tố trong Office 365.</string>
-    <string name="authentication_method_raw">Thô</string>
     <string name="unlocking_vault">Đang mở khoá kho</string>
-    <string name="slot_this_device">(thiết bị này)</string>
     <string name="remove_group">Xoá nhóm</string>
     <string name="remove_group_description">Bạn có chắc bạn muốn xoá nhóm này không? Các mục trong nhóm này sẽ tự động chuyển thành \"Không có nhóm\".</string>
     <string name="remove_icon_pack">Xoá gói biểu tượng</string>
@@ -329,7 +327,6 @@
     <string name="title_activity_about">Giới thiệu</string>
     <string name="title_activity_edit_entry">Chỉnh sửa mục</string>
     <string name="title_activity_scan_qr">Quét mã QR</string>
-    <string name="title_activity_manage_slots">Quản lý ô mã khoá</string>
     <string name="title_activity_import_entries">Nhập các mục</string>
     <string name="dialog_wipe_entries_title">Quét sạch các mục</string>
     <string name="dialog_wipe_entries_message">Kho của bạn đã chứa các mục rồi. Bạn có muốn xoá các mục đó trước khi nhập tệp này không?\n\n<b>Khi làm vậy, bạn sẽ vĩnh viễn mất quyền truy cập vào các mục hiện có trong kho.</b></string>

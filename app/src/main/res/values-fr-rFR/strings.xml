@@ -273,9 +273,7 @@
     <string name="import_google_auth_failure">L\'import de l\'export Google Authenticator a échoué</string>
     <string name="unrelated_google_auth_batches_error">L\'export contient des informations pour un lot non lié. Essayez d\'importer 1 lot à la fois.</string>
     <string name="no_tokens_can_be_imported">Aucun jeton ne peut être importé en conséquence</string>
-    <string name="authentication_method_raw">Brut</string>
     <string name="unlocking_vault">Déverrouillage du coffre-fort</string>
-    <string name="slot_this_device">(ces appareils)</string>
     <string name="remove_group">Supprimer groupe</string>
     <string name="remove_group_description">Êtes-vous sûr de vouloir supprimer ce groupe ? Les entrées dans ce groupe seront basculées automatiquement dans \"Aucun groupe\".</string>
     <string name="remove_icon_pack">Supprimer le pack d\'icônes</string>
@@ -418,7 +416,6 @@
     <string name="title_activity_about">À propos</string>
     <string name="title_activity_edit_entry">Modifier l\'entrée</string>
     <string name="title_activity_scan_qr">Scanner un code QR</string>
-    <string name="title_activity_manage_slots">Gérer les emplacements de clés</string>
     <string name="title_activity_import_entries">Importer des entrées</string>
     <string name="dialog_wipe_entries_title">Effacer les entrées</string>
     <string name="dialog_wipe_entries_message">Votre coffre-fort contient déjà des entrées. Voulez-vous supprimer ces entrées avant d\'importer ce fichier ?\n\n<b>En faisant cela, vous perdrez définitivement l\'accès aux entrées existantes dans le coffre-fort.</b></string>

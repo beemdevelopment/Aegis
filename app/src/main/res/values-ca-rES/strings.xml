@@ -263,9 +263,7 @@
     <string name="import_google_auth_failure">No s\'ha pogut importar l\'exportació de Google Authenticator</string>
     <string name="unrelated_google_auth_batches_error">L\'exportació conté informació d\'un lot no relacionat. Proveu d\'importar 1 lot alhora.</string>
     <string name="no_tokens_can_be_imported">Com a resultat, no es poden importar tokens</string>
-    <string name="authentication_method_raw">En cru</string>
     <string name="unlocking_vault">Desbloquejant la volta</string>
-    <string name="slot_this_device">(aquest dispositiu)</string>
     <string name="remove_group">Elimina el grup</string>
     <string name="remove_group_description">Segur que vols eliminar aquest grup? Les entrades canviaran automàticament a \"Sense grup\".</string>
     <string name="remove_icon_pack">Esborra el paquet d\'icones</string>
@@ -405,7 +403,6 @@
     <string name="title_activity_about">Quant a</string>
     <string name="title_activity_edit_entry">Editar entrada</string>
     <string name="title_activity_scan_qr">Escaneja un codi QR</string>
-    <string name="title_activity_manage_slots">Gestiona les entrades</string>
     <string name="title_activity_import_entries">Importa entrades</string>
     <string name="dialog_wipe_entries_title">Elimina entrades</string>
     <string name="dialog_wipe_entries_message">La teva volta ja té entrades. Vols eliminar les entrades abans d\'importar aquest fitxer?\n\n<b>Si ho fas, perdràs l\'accés a les entrades que tens actualment.</b></string>

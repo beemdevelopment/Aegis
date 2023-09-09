@@ -273,9 +273,7 @@
     <string name="import_google_auth_failure">Google Authenticatorren esportazioa inportatzeak huts egin du</string>
     <string name="unrelated_google_auth_batches_error">Esportazioak zerikusirik ez duen sorta baten informazioa du. Saiatu sorta bakoitza bere aldetik inportatzen.</string>
     <string name="no_tokens_can_be_imported">Ez izan da tokenik inportatu</string>
-    <string name="authentication_method_raw">Gordina</string>
     <string name="unlocking_vault">Biltegia desblokeatzen</string>
-    <string name="slot_this_device">(gailu hau)</string>
     <string name="remove_group">Ezabatu taldea</string>
     <string name="remove_group_description">Ziur zaude talde hau ezabatu nahi duzula? Talde honetako sarrerak automatikoki aldatuko dira \'Talderik ez\' aukerara.</string>
     <string name="remove_icon_pack">Ezabatu ikono multzoa</string>
@@ -417,7 +415,6 @@
     <string name="title_activity_about">Honi buruz</string>
     <string name="title_activity_edit_entry">Editatu sarrera</string>
     <string name="title_activity_scan_qr">Eskaneatu QR kodea</string>
-    <string name="title_activity_manage_slots">Kudeatu arteka giltzarriak</string>
     <string name="title_activity_import_entries">Inportatu sarrerak</string>
     <string name="dialog_wipe_entries_title">Garbitu sarrerak</string>
     <string name="dialog_wipe_entries_message">Zure biltegiak sarrerak ditu dagoeneko. Sarrera horiek ezabatu nahi dituzu fitxategi hau inportatu aurretik?\n\n<b>Hori egitean, biltegiko sarreretarako sarbidea galduko da betirako.</b></string>

@@ -273,9 +273,7 @@
     <string name="import_google_auth_failure">Importieren von Google Authenticator-Export fehlgeschlagen</string>
     <string name="unrelated_google_auth_batches_error">Der Export enthält Informationen über ein nicht zugehöriges Set. Versuche, jeweils 1 Set zu importieren.</string>
     <string name="no_tokens_can_be_imported">Daher können keine Token importiert werden</string>
-    <string name="authentication_method_raw">Raw</string>
     <string name="unlocking_vault">Entsperren der Datenbank</string>
-    <string name="slot_this_device">(Dieses Gerät)</string>
     <string name="remove_group">Gruppe entfernen</string>
     <string name="remove_group_description">Möchtest du diese Gruppe wirklich entfernen? Einträge in dieser Gruppe wechseln automatisch zu »Keine Gruppe«.</string>
     <string name="remove_icon_pack">Symbolpaket entfernen</string>
@@ -419,7 +417,6 @@
     <string name="title_activity_about">Über</string>
     <string name="title_activity_edit_entry">Eintrag bearbeiten</string>
     <string name="title_activity_scan_qr">Scanne einen QR-Code</string>
-    <string name="title_activity_manage_slots">Schlüsselplätze verwalten</string>
     <string name="title_activity_import_entries">Einträge importieren</string>
     <string name="dialog_wipe_entries_title">Einträge löschen</string>
     <string name="dialog_wipe_entries_message">Deine Datenbank enthält bereits Einträge. Möchtest du diese Einträge entfernen, bevor diese Datei importiert wird?\n\n<b>Wenn du dies tust, verlierst du dauerhaft den Zugriff auf die vorhandenen Einträge in der Datenbank.</b></string>

@@ -277,9 +277,7 @@
     <string name="import_google_auth_failure">Importarea din Google Authenticator a eșuat</string>
     <string name="unrelated_google_auth_batches_error">Exportul conține informații pentru un calup neasociat. Încercați să importați câte un calup pe rând.</string>
     <string name="no_tokens_can_be_imported">Nu se pot importa token-uri drept rezultat</string>
-    <string name="authentication_method_raw">Brut</string>
     <string name="unlocking_vault">Deblocarea seifului</string>
-    <string name="slot_this_device">(aceste dispozitive)</string>
     <string name="remove_group">Elimină grupul</string>
     <string name="remove_group_description">Ești sigur că dorești să ștergi acest grup? Intrările din acest grup vor comuta automat la \'Niciun grup\'.</string>
     <string name="remove_icon_pack">Ștergeți pachetul de pictograme</string>
@@ -424,7 +422,6 @@
     <string name="title_activity_about">Despre</string>
     <string name="title_activity_edit_entry">Editați intrarea</string>
     <string name="title_activity_scan_qr">Scanează cod QR</string>
-    <string name="title_activity_manage_slots">Gestionare sloturi cheie</string>
     <string name="title_activity_import_entries">Importă intrări</string>
     <string name="dialog_wipe_entries_title">Șterge intrările</string>
     <string name="dialog_wipe_entries_message">Seiful tău conține deja intrări. Dorești să ştergi aceste intrări înainte de a importa acest fişier?\n\n<b>Făcând acest lucru, vei pierde permanent accesul la intrările existente din seif.</b></string>

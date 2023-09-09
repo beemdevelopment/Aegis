@@ -289,9 +289,7 @@
     <string name="import_google_auth_failure">Importowanie danych z Google Authenticator nie powiodło się</string>
     <string name="unrelated_google_auth_batches_error">Eksport zawiera informacje dla niepowiązanej partii. Spróbuj importować 1 partię jednocześnie.</string>
     <string name="no_tokens_can_be_imported">Nie można zaimportować żadnych tokenów</string>
-    <string name="authentication_method_raw">Dane surowe</string>
     <string name="unlocking_vault">Odblokowywanie sejfu</string>
-    <string name="slot_this_device">(to urządzenie)</string>
     <string name="remove_group">Usuń grupę</string>
     <string name="remove_group_description">Czy na pewno chcesz usunąć tę grupę? Wpisy z tej grupy zostaną automatycznie przeniesione do kategorii \'Brak grupy\'.</string>
     <string name="remove_icon_pack">Usuń pakiet ikon</string>
@@ -440,7 +438,6 @@
     <string name="title_activity_about">O aplikacji</string>
     <string name="title_activity_edit_entry">Edytuj wpis</string>
     <string name="title_activity_scan_qr">Skanuj kod QR</string>
-    <string name="title_activity_manage_slots">Zarządzaj slotami klucza</string>
     <string name="title_activity_import_entries">Importuj wpisy</string>
     <string name="dialog_wipe_entries_title">Wyczyść wpisy</string>
     <string name="dialog_wipe_entries_message">Twój sejf zawiera już wpisy. Czy chcesz usunąć te wpisy przed zaimportowaniem tego pliku?\n\n<b>W ten sposób trwale stracisz dostęp do obecnych wpisów w sejfie.</b></string>

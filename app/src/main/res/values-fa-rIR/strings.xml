@@ -193,9 +193,7 @@
     <string name="no_cameras_available">هیچ دوربینی در دسترس نیست</string>
     <string name="read_qr_error">هنگام خواندن بارکد دوبعدی خطایی رخ داد</string>
     <string name="read_qr_error_phonefactor">آگیس با الگوریتم اختصاصی 2FA مایکروسافت سازگاری ندارد. لطفا اطمینان حاصل فرمایید که گزینه \"تنظیم برنامه بدون اعلانات\" در تنظیمات 2FA آفیس 365 انتخاب شده باشد.</string>
-    <string name="authentication_method_raw">خام</string>
     <string name="unlocking_vault">رمزگشایی مزخن</string>
-    <string name="slot_this_device">(این دستگاه)</string>
     <string name="remove_group">حذف گروه</string>
     <string name="remove_group_description">آیا مطمئن به حذف این گروه هستید؟ تمام آیتم های داخل این گروه تبدیل به \"بدون گروه\" می‌شوند.</string>
     <string name="details">جزئیات</string>
@@ -285,7 +283,6 @@
     <string name="title_activity_about">درباره‌ما</string>
     <string name="title_activity_edit_entry">ویرایش آیتم</string>
     <string name="title_activity_scan_qr">اسکن بارکد دوبعدی</string>
-    <string name="title_activity_manage_slots">مدیریت کلید‌ها</string>
     <string name="dialog_wipe_entries_title">پاک کردن موارد</string>
     <string name="dialog_wipe_entries_message">مخزن شما در حال حاضر شامل آیتم می‌باشد. آیا مطمئن به حذف این آیتم‌ها قبل از وارد کردن می‌باشید؟\n\n<b>بعد از این کار شما به هیچ وجه دسترسی به آیتم های قبلی نخواهید داشت.</b></string>
     <string name="dialog_wipe_entries_checkbox">پاک کردن اطلاعات مخزن</string>

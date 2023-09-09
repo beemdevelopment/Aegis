@@ -272,9 +272,7 @@
     <string name="import_google_auth_failure">Dışa aktarılmış Google Authenticator dosyasını içe aktarma işlemi başarısız oldu</string>
     <string name="unrelated_google_auth_batches_error">Dışa aktarma, ilgisiz bir toplu iş için bilgi içerir. Bir seferde 1 partiyi içe aktarmayı deneyin.</string>
     <string name="no_tokens_can_be_imported">Sonuç olarak hiçbir token içe aktarılamaz</string>
-    <string name="authentication_method_raw">İşlenmemiş</string>
     <string name="unlocking_vault">Kasa kilidi açılıyor</string>
-    <string name="slot_this_device">(bu cihaz)</string>
     <string name="remove_group">Grubu sil</string>
     <string name="remove_group_description">Bu grubu silmek istediğinize emin misiniz? Bu gruptaki girdiler otomatik olarak \'Grupsuz\' grubuna geçecek.</string>
     <string name="remove_icon_pack">İkon paketini sil</string>
@@ -418,7 +416,6 @@
     <string name="title_activity_about">Hakkında</string>
     <string name="title_activity_edit_entry">Girdiyi düzenle</string>
     <string name="title_activity_scan_qr">QR Kodu Tara</string>
-    <string name="title_activity_manage_slots">Anahtar sıralarını yönet</string>
     <string name="title_activity_import_entries">Girdileri içe aktar</string>
     <string name="dialog_wipe_entries_title">Girdileri sil</string>
     <string name="dialog_wipe_entries_message">Kasanızda zaten girdiler bulunmaktadır. İçe aktarmadan önce bu girdileri silmek istediğinize emin misiniz?\n\n<b>Deponun içinde bulunan girdilere erişiminizi sonsuza dek kaybedeceksiniz.</b></string>

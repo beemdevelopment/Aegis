@@ -211,9 +211,7 @@
     <string name="no_cameras_available">Kamera tidak tersedia</string>
     <string name="read_qr_error">Terjadi kesalahan saat membaca kode QR</string>
     <string name="read_qr_error_phonefactor">Aegis tidak sesuai dengan algoritma 2FA milik Microsoft. Tolong untuk memastikan telah memilih \"Atur aplikasi tanpa notifikasi\" ketika mengonfigurasi 2FA di Office 365.</string>
-    <string name="authentication_method_raw">Raw</string>
     <string name="unlocking_vault">Buka brankas</string>
-    <string name="slot_this_device">(perangkat ini)</string>
     <string name="remove_group">Hapus kelompok</string>
     <string name="remove_group_description">Apakah Anda yakin ingin menghapus kelompok ini? Catatan dalam kelompok ini akan secara otomatis beralih ke \'Tidak ada kelompok\'.</string>
     <string name="remove_icon_pack">Hapus Paket Ikon</string>
@@ -326,7 +324,6 @@
     <string name="title_activity_about">Tentang</string>
     <string name="title_activity_edit_entry">Sunting entri</string>
     <string name="title_activity_scan_qr">Pindai kode QR</string>
-    <string name="title_activity_manage_slots">Atur slot kunci</string>
     <string name="title_activity_import_entries">Impor entri</string>
     <string name="dialog_wipe_entries_title">Hapus catatan</string>
     <string name="dialog_wipe_entries_message">Brankas Anda sudah memiliki catatan. Apakah Anda ingin menghapus catatan ini tanpa mengimpor berkas ini?\n\n<b>Jika ini dilakukan, Anda akan kehilangan akses secara permanen ke catatan yang ada di brankas.</b></string>

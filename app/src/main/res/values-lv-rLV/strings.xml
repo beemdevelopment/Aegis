@@ -281,9 +281,7 @@
     <string name="import_google_auth_failure">Neizdevās ievietošana no Google Authenticator izdošanas datnes</string>
     <string name="unrelated_google_auth_batches_error">Izdošanas datne satur informāciju par nesaistītu paketi. Var mēģināt ievietot pa vienai paketei vienlaicīgi.</string>
     <string name="no_tokens_can_be_imported">Iznākumā nevar ievietot nevienu kodu</string>
-    <string name="authentication_method_raw">Neapstrādāts</string>
     <string name="unlocking_vault">Atslēgšana ar biometriju</string>
-    <string name="slot_this_device">(šī ierīce)</string>
     <string name="remove_group">Noņemt kopu</string>
     <string name="remove_group_description">Vai tiešām noņemt šo kopu? Tās ieraksti tiks pārmainīti uz \"Nav kopas\".</string>
     <string name="remove_icon_pack">Noņemt ikonu pakotni</string>
@@ -430,7 +428,6 @@
     <string name="title_activity_about">Par</string>
     <string name="title_activity_edit_entry">Labot ierakstu</string>
     <string name="title_activity_scan_qr">Nolasīt kvadrātkodu</string>
-    <string name="title_activity_manage_slots">Pārvaldīt atslēgu vietas</string>
     <string name="title_activity_import_entries">Ievietot ierakstus</string>
     <string name="dialog_wipe_entries_title">Notīrīt ierakstus</string>
     <string name="dialog_wipe_entries_message">Glabātava jau satur ierakstus. Vai tos noņemt, pirms tiek ievietota šī datne?\n\n<b>Šādi rīkojoties, tiks zaudēta piekļuve pašreizējiem glabātavas ierakstiem.</b></string>

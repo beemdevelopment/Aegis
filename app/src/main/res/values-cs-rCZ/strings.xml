@@ -289,9 +289,7 @@
     <string name="import_google_auth_failure">Importování exportu z Google Authenticator selhalo</string>
     <string name="unrelated_google_auth_batches_error">Export obsahuje informace o nesouvisejícím balíku. Zkuste importovat 1 balík najednou.</string>
     <string name="no_tokens_can_be_imported">Nebyly importovány žádné tokeny</string>
-    <string name="authentication_method_raw">Prosté</string>
     <string name="unlocking_vault">Odemykání trezoru</string>
-    <string name="slot_this_device">(toto zařízení)</string>
     <string name="remove_group">Odstranit skupinu</string>
     <string name="remove_group_description">Opravdu chcete odstranit tuto skupinu? Záznamy z ní budou automaticky přemístěny do „Žádná skupina“.</string>
     <string name="remove_icon_pack">Odstranit balíček ikon</string>
@@ -441,7 +439,6 @@
     <string name="title_activity_about">O aplikaci</string>
     <string name="title_activity_edit_entry">Upravit položku</string>
     <string name="title_activity_scan_qr">Naskenovat QR kód</string>
-    <string name="title_activity_manage_slots">Spravovat sloty klíčů</string>
     <string name="title_activity_import_entries">Importovat položky</string>
     <string name="dialog_wipe_entries_title">Vyčistit položky</string>
     <string name="dialog_wipe_entries_message">Váš trezor už obsahuje záznamy. Chcete tyto záznamy smazat před importem tohoto souboru?\n\n<b>Přístup ke všem stávajícím položkám v trezoru trvale ztratíte.</b></string>

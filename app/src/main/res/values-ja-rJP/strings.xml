@@ -264,9 +264,7 @@
     <string name="import_google_auth_failure">Google Authenticator エクスポートのインポートに失敗しました</string>
     <string name="unrelated_google_auth_batches_error">エクスポートには関連のないバッチの情報が含まれています。一度にひとつのバッチをインポートしてください。</string>
     <string name="no_tokens_can_be_imported">インポートできるトークンはありません</string>
-    <string name="authentication_method_raw">Raw</string>
     <string name="unlocking_vault">保管庫のロックを解除しています</string>
-    <string name="slot_this_device">(このデバイス)</string>
     <string name="remove_group">グループを削除</string>
     <string name="remove_group_description">このグループを削除してもよろしいですか？このグループのエントリーは自動的に「グループなし」に切り替わります。</string>
     <string name="remove_icon_pack">アイコンパックを削除</string>
@@ -406,7 +404,6 @@
     <string name="title_activity_about">このプログラムについて</string>
     <string name="title_activity_edit_entry">エントリーを編集</string>
     <string name="title_activity_scan_qr">QRコードをスキャン</string>
-    <string name="title_activity_manage_slots">キースロットの管理</string>
     <string name="title_activity_import_entries">エントリーをインポート</string>
     <string name="dialog_wipe_entries_title">エントリーを消去</string>
     <string name="dialog_wipe_entries_message">あなたの保管庫には既にエントリーが含まれています。このファイルをインポートする前に、これらのエントリーを削除しますか？\n\n<b>その場合、保管庫内の既存のエントリーへのアクセスが永久に失われます。</b></string>

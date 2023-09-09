@@ -122,7 +122,6 @@
     <string name="import_error_title">ಅಮದಿಸುವಾಗ ಒಂದು ಅಥವಾ ಜಾಸ್ತಿ ದೋಷಗಳು ಸಂಭವಿಸಿದೆ</string>
     <string name="no_cameras_available">ಯಾವುದೇ ಕ್ಯಾಮರಾಗಳು ಲಭ್ಯವಿಲ್ಲ</string>
     <string name="read_qr_error">ಕ್ಯೂ ಆರ್ ಸಂಕೇತವನ್ನು ಓದಲು ಪ್ರಯತ್ನಿಸುವಾಗ ಒಂದು ದೋಷ ಸಂಭವಿಸಿದೆ</string>
-    <string name="authentication_method_raw">ಕಚ್ಚಾ</string>
     <string name="unlocking_vault">ವೌಲ್ಟಿನ ಬೀಗವನ್ನು ತೆರೆಯಲಾಗುತ್ತಿದೆ</string>
     <string name="remove_group">ಗುಂಪನ್ನು ತೆಗೆದುಹಾಕು</string>
     <string name="remove_group_description">ನಿಜವಾಗಲು ಈ ಗುಂಪನ್ನು ತೆರೆಯಾಲು ಬಯಸುವಿರಾ? ಈ ಗುಂಪಿನಾಲ್ಲಿರುವ ಎಂಟ್ರಿಗಳು ಸ್ವಯಂಚಾಲಿತವಾಗಿ \'ಗುಂಪಿಲ್ಲ\'ಗೆ ಬದಲಾವಣೆ ಆಗುತ್ತವೆ.</string>

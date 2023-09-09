@@ -244,9 +244,7 @@
     <string name="missing_qr_code_descriptor">• QR kód %d</string>
     <string name="import_partial_export_anyway">%d tokenek importálása mindenképp</string>
     <string name="import_google_auth_failure">Google Authenticator export importálása sikertelen</string>
-    <string name="authentication_method_raw">Nyers</string>
     <string name="unlocking_vault">A széf feloldása</string>
-    <string name="slot_this_device">(ez az eszköz)</string>
     <string name="remove_group">Csoport eltávolítása</string>
     <string name="remove_group_description">Biztos, hogy eltávolítja ezt a csoportot? A csoport bejegyzései automatikusan „Csoport nélküli” elemek lesznek.</string>
     <string name="remove_icon_pack">Ikon csomag törlése</string>
@@ -357,7 +355,6 @@
     <string name="title_activity_about">Névjegy</string>
     <string name="title_activity_edit_entry">Elem szerkesztése</string>
     <string name="title_activity_scan_qr">QR kód beolvasása</string>
-    <string name="title_activity_manage_slots">Kulcs helyek kezelése</string>
     <string name="title_activity_import_entries">Elemek importálása</string>
     <string name="dialog_wipe_entries_title">Elemek letörlése</string>
     <string name="dialog_wipe_entries_message">A széfe már tartalmaz elemeket. Le akarja törölni ezeket, mielőtt importálja az újakat?\n\n<b>Ha így dönt, örökre elveszíti a már meglevő adatokat.</b></string>

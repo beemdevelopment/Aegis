@@ -280,9 +280,7 @@
     <string name="import_google_auth_failure">Importing Google Authenticator export failed</string>
     <string name="unrelated_google_auth_batches_error">Export contains information for an unrelated batch. Try importing 1 batch at a time.</string>
     <string name="no_tokens_can_be_imported">No tokens can be imported as a result</string>
-    <string name="authentication_method_raw">Raw</string>
     <string name="unlocking_vault">Unlocking the vault</string>
-    <string name="slot_this_device">(this devices)</string>
     <string name="remove_group">Remove group</string>
     <string name="remove_group_description">Are you sure you want to remove this group? Entries in this group will automatically switch to \'No group\'.</string>
     <string name="remove_icon_pack">Remove icon pack</string>
@@ -292,7 +290,7 @@
     <string name="lock">Lock</string>
     <string name="name">Name</string>
     <string name="no_group">No group</string>
-    <string name="sort">Sort</string>
+    <string name="sort" context="Title of the Sort button in the top action bar of the main view">Sort</string>
     <string name="sort_alphabetically">Issuer (A to Z)</string>
     <string name="sort_alphabetically_reverse">Issuer (Z to A)</string>
     <string name="sort_alphabetically_name">Account (A to Z)</string>
@@ -307,7 +305,7 @@
     <string name="preference_reset_usage_count">Reset usage count</string>
     <string name="preference_reset_usage_count_summary">Reset the usage count of every entry in your vault</string>
     <string name="preference_reset_usage_count_dialog">Are you sure you want to set the usage count of every entry in your vault to 0?</string>
-    <string name="note">Note</string>
+    <string name="note" context="Users can add a note to an entry">Note</string>
     <string name="clear">Clear</string>
 
     <string name="pref_highlight_entry_title">Highlight tokens when tapped</string>
@@ -459,7 +457,6 @@
     <string name="title_activity_about">About</string>
     <string name="title_activity_edit_entry">Edit entry</string>
     <string name="title_activity_scan_qr">Scan a QR code</string>
-    <string name="title_activity_manage_slots">Manage key slots</string>
     <string name="title_activity_import_entries">Import entries</string>
     <string name="dialog_wipe_entries_title">Wipe entries</string>
     <string name="dialog_wipe_entries_message">Your vault already contains entries. Do you want to remove these entries before importing this file?\n\n<b>In doing so, you will permanently lose access to the existing entries in the vault.</b></string>

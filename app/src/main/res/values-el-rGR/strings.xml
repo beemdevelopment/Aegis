@@ -273,9 +273,7 @@
     <string name="import_google_auth_failure">Η εισαγωγή της εξαγωγής του Επαληθευτή Google απέτυχε</string>
     <string name="unrelated_google_auth_batches_error">Η εξαγωγή περιέχει πληροφορίες για μια άσχετη παρτίδα. Δοκιμάστε να εισαγάγετε 1 παρτίδα τη φορά.</string>
     <string name="no_tokens_can_be_imported">Ως αποτέλεσμα, δεν μπορούν να εισαχθούν αναγνωστικά</string>
-    <string name="authentication_method_raw">Ακατέργαστη</string>
     <string name="unlocking_vault">Ξεκλείδωμα κρύπτης</string>
-    <string name="slot_this_device">(αυτή η συσκευή)</string>
     <string name="remove_group">Κατάργηση ομάδας</string>
     <string name="remove_group_description">Είστε βέβαιοι ότι θέλετε να καταργήσετε αυτήν την ομάδα; Οι καταχωρίσεις σε αυτήν θα μεταβούν αυτόματα στο \"Χωρίς ομάδα\".</string>
     <string name="remove_icon_pack">Αφαίρεση πακέτου εικονιδίων</string>
@@ -418,7 +416,6 @@
     <string name="title_activity_about">Σχετικά</string>
     <string name="title_activity_edit_entry">Επεξεργασία καταχώρησης</string>
     <string name="title_activity_scan_qr">Σάρωση κωδικού QR</string>
-    <string name="title_activity_manage_slots">Διαχείριση κλειδιών υποδοχής</string>
     <string name="title_activity_import_entries">Εισαγωγή καταχωρήσεων</string>
     <string name="dialog_wipe_entries_title">Διαγραφή καταχωρήσεων</string>
     <string name="dialog_wipe_entries_message">Η κρύπτη σας περιέχει ήδη καταχωρήσεις. Θέλετε να καταργήσετε αυτές τις καταχωρήσεις πριν από την εισαγωγή αυτού του αρχείου;\n\n <b> Με αυτόν τον τρόπο, θα χάσετε μόνιμα την πρόσβαση στις υπάρχουσες καταχωρήσεις στην κρύπτη. </b></string>

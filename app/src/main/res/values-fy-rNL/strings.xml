@@ -273,9 +273,7 @@
     <string name="import_google_auth_failure">Ymportearjen fan Google Authenticator-eksport mislearre</string>
     <string name="unrelated_google_auth_batches_error">Eksport befettet ynformaasje foar in net relatearre batch. Probearje 1 batch tagelyk te ymportearjen.</string>
     <string name="no_tokens_can_be_imported">Hjirtroch kinne gjin tokens ymportearre wurde</string>
-    <string name="authentication_method_raw">Rûch</string>
     <string name="unlocking_vault">Klûs wurdt ûntskoattele</string>
-    <string name="slot_this_device">(dit apparaat)</string>
     <string name="remove_group">Groep fuortsmite</string>
     <string name="remove_group_description">Bisto wis datsto dizze groep fuortsmite wolst? Alle items binnen dizze groep wurde automatysk ferpleatst nei ‘Gjin groep’.</string>
     <string name="remove_icon_pack">Piktogrammepakket fuortsmite</string>
@@ -419,7 +417,6 @@
     <string name="title_activity_about">Oer</string>
     <string name="title_activity_edit_entry">Item bewurkje</string>
     <string name="title_activity_scan_qr">Scan in QR-koade</string>
-    <string name="title_activity_manage_slots">Kaaislots beheare</string>
     <string name="title_activity_import_entries">Items ymportearje</string>
     <string name="dialog_wipe_entries_title">Items wiskje</string>
     <string name="dialog_wipe_entries_message">Dyn klûs befettet al items. Wolsto dizze items fuortsmite eardatsto dit bestân ymportearrest?\n\n<b>Hjirmei ferliesto permanint tagong ta de besteande items yn de klûs.</b></string>

@@ -272,9 +272,7 @@
     <string name="import_google_auth_failure">Ha fallado la importación de lo exportado de Google Authenticator</string>
     <string name="unrelated_google_auth_batches_error">La exportación contiene información para un lote no relacionado. Intente importar 1 lote a la vez.</string>
     <string name="no_tokens_can_be_imported">Como resultado no se puede importar ningún token</string>
-    <string name="authentication_method_raw">Raw</string>
     <string name="unlocking_vault">Desbloqueando la bóveda</string>
-    <string name="slot_this_device">(este dispositivo)</string>
     <string name="remove_group">Eliminar grupo</string>
     <string name="remove_group_description">¿Está seguro de que desea eliminar este grupo? Las entradas se moverán automáticamente a \'Sin grupo\'.</string>
     <string name="remove_icon_pack">Eliminar paquete de iconos</string>
@@ -418,7 +416,6 @@
     <string name="title_activity_about">Acerca de</string>
     <string name="title_activity_edit_entry">Editar entrada</string>
     <string name="title_activity_scan_qr">Escanear un código QR</string>
-    <string name="title_activity_manage_slots">Administrar claves</string>
     <string name="title_activity_import_entries">Importar entradas</string>
     <string name="dialog_wipe_entries_title">Limpiar entradas</string>
     <string name="dialog_wipe_entries_message">Su bóveda ya contiene entradas. ¿Desea eliminarlas antes de importar este archivo?\n\n<b>Al hacerlo, perderá permanentemente el acceso a las entradas existentes en la bóveda.</b></string>

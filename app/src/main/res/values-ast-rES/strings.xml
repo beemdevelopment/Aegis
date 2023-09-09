@@ -254,9 +254,7 @@
     <string name="import_google_auth_failure">La importación de la esportación de Google Authenticator falló</string>
     <string name="unrelated_google_auth_batches_error">La esportación contién información d\'un llote que nun tien rellación. Prueba a importar llotes d\'unu nunu.</string>
     <string name="no_tokens_can_be_imported">Como resultáu, nun se pue importar nengún pase</string>
-    <string name="authentication_method_raw">En bruto</string>
     <string name="unlocking_vault">Desbloquiando l\'arca</string>
-    <string name="slot_this_device">(esti preséu)</string>
     <string name="remove_group">Desaniciu d\'un grupu</string>
     <string name="remove_group_description">¿De xuru que quies quitar esti grupu? Les entraes d\'esti grupu cambien automáticamente al grupu «Ensin grupu».</string>
     <string name="remove_icon_pack">Desaniciu d\'un paquete d\'iconos</string>
@@ -387,7 +385,6 @@
     <string name="title_activity_about">Tocante a</string>
     <string name="title_activity_edit_entry">Edición d\'una entrada</string>
     <string name="title_activity_scan_qr">Escanéu d\'un códigu QR</string>
-    <string name="title_activity_manage_slots">Xestión de les claves</string>
     <string name="title_activity_import_entries">Importación d\'entraes</string>
     <string name="dialog_wipe_entries_title">Borráu d\'entraes</string>
     <string name="dialog_wipe_entries_message">L\'arca xá contién entraes. ¿Quies quitales enantes d\'importar esti ficheru?\n\n<b>Al facelo, vas perder permanentemente l\'accesu a les entraes esistentes de l\'arca.</b></string>

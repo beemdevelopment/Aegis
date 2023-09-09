@@ -263,9 +263,7 @@
     <string name="import_google_auth_failure">Falha ao importar exportação do Google Authenticator</string>
     <string name="unrelated_google_auth_batches_error">A exportação contém informações para um lote não relacionado. Tente importar 1 lote de cada vez.</string>
     <string name="no_tokens_can_be_imported">Como resultado, nenhum token pode ser importado</string>
-    <string name="authentication_method_raw">Raw</string>
     <string name="unlocking_vault">Desbloqueando o cofre</string>
-    <string name="slot_this_device">(esse dispositivo)</string>
     <string name="remove_group">Remover grupo</string>
     <string name="remove_group_description">Você tem certeza que deseja remover esse grupo? Entradas nesse grupo serão automaticamente para \'Sem grupo\'.</string>
     <string name="remove_icon_pack">Remover pacote de ícones</string>
@@ -406,7 +404,6 @@
     <string name="title_activity_about">Sobre</string>
     <string name="title_activity_edit_entry">Editar entrada</string>
     <string name="title_activity_scan_qr">Escanear QR code</string>
-    <string name="title_activity_manage_slots">Gerenciar slots de chaves</string>
     <string name="title_activity_import_entries">Importar entradas</string>
     <string name="dialog_wipe_entries_title">Limpar entradas</string>
     <string name="dialog_wipe_entries_message">O seu cofre já contém entradas. Você quer remover essas entradas antes de importar este arquivo?\n\n<b>Ao fazer isso, você perderá permanentemente o acesso às entradas existentes no cofre.</b></string>

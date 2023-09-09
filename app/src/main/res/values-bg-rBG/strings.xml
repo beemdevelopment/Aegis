@@ -224,9 +224,7 @@
     <string name="partial_google_auth_import">Установени са частично изнасени данни за Google Authenticator</string>
     <string name="partial_google_auth_import_warning">Няколко QR кода не са внесени. Следните кодове липсват:\n\n<b>%s</b>\n\nМожете да продължите с частично внасяне на данни, но е препоръчително да направите нов опит с всички QR кодове без риск от загуба на маркери за достъп.</string>
     <string name="import_google_auth_failure">Грешка при внасяне към Google Authenticator</string>
-    <string name="authentication_method_raw">Необработен</string>
     <string name="unlocking_vault">Отключване на трезора</string>
-    <string name="slot_this_device">(това устройство)</string>
     <string name="remove_group">Премахни група</string>
     <string name="remove_group_description">Наистина ли искате да премахнете тази група? Записите в тази група автоматично ще преминат към „Без група“.</string>
     <string name="details">Подробности</string>
@@ -325,7 +323,6 @@
     <string name="title_activity_about">Относно</string>
     <string name="title_activity_edit_entry">Редактиране на запис</string>
     <string name="title_activity_scan_qr">Скенирай QR код</string>
-    <string name="title_activity_manage_slots">Управление на слотове за ключове</string>
     <string name="title_activity_import_entries">Импортиране на записи</string>
     <string name="dialog_wipe_entries_title">Изтрий записи</string>
     <string name="dialog_wipe_entries_message">Трезорът ви вече съдържа записи. Искате ли да премахнете тези записи, преди да импортирате този файл?\n\n<b> По този начин ще загубите за постоянно достъп до съществуващите записи в трезора.</b></string>

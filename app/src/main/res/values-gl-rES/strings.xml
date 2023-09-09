@@ -263,9 +263,7 @@
     <string name="import_google_auth_failure">Fallou a importación do exportado con Google Authenticator</string>
     <string name="unrelated_google_auth_batches_error">A exportación contén información sobre un lote non relacionado. Intenta importar 1 lote de cada vez.</string>
     <string name="no_tokens_can_be_imported">Polo tanto, non se pode importar ningún token</string>
-    <string name="authentication_method_raw">Raw</string>
     <string name="unlocking_vault">Desbloqueando o almacén</string>
-    <string name="slot_this_device">(este dispositivo)</string>
     <string name="remove_group">Quitar grupo</string>
     <string name="remove_group_description">Tes a certeza de que queres quitar este grupo? As entradas deste grupo pasarán automaticamente a \"Sen grupo\".</string>
     <string name="remove_icon_pack">Quitar paquete de iconas</string>
@@ -407,7 +405,6 @@
     <string name="title_activity_about">Información</string>
     <string name="title_activity_edit_entry">Editar entrada</string>
     <string name="title_activity_scan_qr">Escanear un código QR</string>
-    <string name="title_activity_manage_slots">Xestionar espazos de claves</string>
     <string name="title_activity_import_entries">Importar entradas</string>
     <string name="dialog_wipe_entries_title">Limpar entradas</string>
     <string name="dialog_wipe_entries_message">O teu almacén xa contén entradas. Queres eliminalas antes de importar o ficheiro?\n\n<b>Se o fas, perderás o acceso ás entradas existentes no almacén para sempre.</b></string>

@@ -263,9 +263,7 @@
     <string name="import_google_auth_failure">गूगल ऑथेंटिकेटर एक्सपोर्ट को इंपोर्ट करना असफल हुआ</string>
     <string name="unrelated_google_auth_batches_error">एक्सपोर्ट में किसी असंबंधित बैच की जानकारी शामिल है. एक समय में 1 बैच इंपोर्ट करने का प्रयास करें।</string>
     <string name="no_tokens_can_be_imported">परिणामस्वरूप कोई टोकन आयात नहीं किया जा सकता</string>
-    <string name="authentication_method_raw">रॉ</string>
     <string name="unlocking_vault">वॉल्ट अनलॉक हो रहा है</string>
-    <string name="slot_this_device">(यह डिवाइस)</string>
     <string name="remove_group">समूह हटाये</string>
     <string name="remove_group_description">क्या आप वाकई इस समूह को हटाना चाहते हैं? इस समूह में प्रविष्टियाँ स्वतः ही \'नो ग्रुप\' में बदल जाएँगी।</string>
     <string name="remove_icon_pack">आइकन पैक हटाएं</string>
@@ -405,7 +403,6 @@
     <string name="title_activity_about">ऐप के बारे में</string>
     <string name="title_activity_edit_entry">प्रविष्टि संपादित करें</string>
     <string name="title_activity_scan_qr">क्यूआर कोड स्कैन करें</string>
-    <string name="title_activity_manage_slots">कुंजी स्लॉट प्रबंधन करें</string>
     <string name="title_activity_import_entries">प्रविष्टियाँ आयात करें</string>
     <string name="dialog_wipe_entries_title">प्रविष्टियों को साफ करें</string>
     <string name="dialog_wipe_entries_message">आपके वॉल्ट में पहले से ही प्रविष्टियाँ हैं। क्या आप इस फ़ाइल को आयात करने से पहले इन प्रविष्टियों को निकालना चाहते हैं?\n\n<b> ऐसा करने पर, आप स्थायी रूप से वॉल्ट में मौजूदा प्रविष्टियों तक पहुंच खो देंगे। </b></string>

@@ -245,9 +245,7 @@
     <string name="read_qr_error_phonefactor">Aegis 不相容於微軟私有的雙因素驗證演算法。請確保在 Microsoft 365 設定雙因素驗證時選擇「設定無通知的應用程式」。</string>
     <string name="partial_google_auth_import">偵測到不完整的 Google Authenticator 匯出</string>
     <string name="import_google_auth_failure">匯入 Google Authenticator 失敗</string>
-    <string name="authentication_method_raw">原始檔案</string>
     <string name="unlocking_vault">解鎖保險箱</string>
-    <string name="slot_this_device"> （此裝置）</string>
     <string name="remove_group">移除群組</string>
     <string name="remove_group_description">您確定要刪除這個群組嗎？此群組內的條目將自動移動到「無群組」。</string>
     <string name="remove_icon_pack">移除圖示合輯</string>
@@ -371,7 +369,6 @@
     <string name="title_activity_about">關於</string>
     <string name="title_activity_edit_entry">編輯條目</string>
     <string name="title_activity_scan_qr">掃描QR碼</string>
-    <string name="title_activity_manage_slots">管理密鎖槽位</string>
     <string name="title_activity_import_entries">匯入條目</string>
     <string name="dialog_wipe_entries_title">清除條目</string>
     <string name="dialog_wipe_entries_message">您的保險箱中已包含某些條目，您是否想在匯入這個檔案前，先移除這些重複的條目？\n\n<b>如此將永久刪除保險箱中原本存在的重複條目。</b></string>

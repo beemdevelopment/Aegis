@@ -289,9 +289,7 @@
     <string name="import_google_auth_failure">Невожможно импортировать экспорт из Google Authenticator</string>
     <string name="unrelated_google_auth_batches_error">Экспорт содержит информацию для несвязанного пакета. Попробуйте импортировать по 1 пакету за раз.</string>
     <string name="no_tokens_can_be_imported">В результате никакие ключи не могут быть импортированы</string>
-    <string name="authentication_method_raw">Необработанный</string>
     <string name="unlocking_vault">Разблокировка хранилища</string>
-    <string name="slot_this_device">(это устройство)</string>
     <string name="remove_group">Удалить группу</string>
     <string name="remove_group_description">Удалить группу? Записи из этой группы будут автоматически перемещены в «Нет группы».</string>
     <string name="remove_icon_pack">Удалить набор значков</string>
@@ -441,7 +439,6 @@
     <string name="title_activity_about">О программе</string>
     <string name="title_activity_edit_entry">Редактировать запись</string>
     <string name="title_activity_scan_qr">Сканировать QR-код</string>
-    <string name="title_activity_manage_slots">Управление ключевыми слотами</string>
     <string name="title_activity_import_entries">Импорт записей</string>
     <string name="dialog_wipe_entries_title">Очистить записи</string>
     <string name="dialog_wipe_entries_message">В хранилище уже есть записи. Хотите удалить их перед импортом файла?\n\n<b>Если вы удалите существующие записи, то навсегда потеряете к ним доступ.</b></string>

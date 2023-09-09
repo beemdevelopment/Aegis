@@ -273,9 +273,7 @@
     <string name="import_google_auth_failure">Importazione dell\'esportazione di Google Authenticator non riuscita</string>
     <string name="unrelated_google_auth_batches_error">L\'esportazione contiene informazioni per un lotto non correlato. Provare a importare un lotto alla volta.</string>
     <string name="no_tokens_can_be_imported">Di conseguenza non è possibile importare token</string>
-    <string name="authentication_method_raw">Raw</string>
     <string name="unlocking_vault">Sblocco della cassaforte</string>
-    <string name="slot_this_device">(questo dispositivo)</string>
     <string name="remove_group">Rimuovi gruppo</string>
     <string name="remove_group_description">Sei sicuro di voler rimuovere questo gruppo? Gli elementi in questo gruppo verranno automaticamente spostati in \'Nessun gruppo\'.</string>
     <string name="remove_icon_pack">Rimuovi pacchetto di icone</string>
@@ -418,7 +416,6 @@
     <string name="title_activity_about">Informazioni su</string>
     <string name="title_activity_edit_entry">Modifica voce</string>
     <string name="title_activity_scan_qr">Scansiona un codice QR</string>
-    <string name="title_activity_manage_slots">Gestisci slot di chiavi</string>
     <string name="title_activity_import_entries">Importa voci</string>
     <string name="dialog_wipe_entries_title">Cancella voci</string>
     <string name="dialog_wipe_entries_message">La tua cassaforte contiene già delle voci. Rimuovere queste voci prima di importare questo file?\n\n<b>In questo modo, perderai definitivamente l\'accesso alle voci esistenti nella cassaforte.</b></string>

@@ -305,9 +305,7 @@
     <string name="import_google_auth_failure">فشل استيراد تصدير Google Authenticator</string>
     <string name="unrelated_google_auth_batches_error">يحتوي التصدير على معلومات عن دُفعة غير ذات صلة. حاول استيراد دفعة واحدة في كل مرة.</string>
     <string name="no_tokens_can_be_imported">نتيجة لذلك، لا يمكن استيراد أي رموز</string>
-    <string name="authentication_method_raw">خام</string>
     <string name="unlocking_vault">يتم فتح قفل المخزن</string>
-    <string name="slot_this_device">(هذه الأجهزة)</string>
     <string name="remove_group">إزالة المجموعة</string>
     <string name="remove_group_description">هل ترغب حقًا في إزالة هذه المجموعة؟ ستتحول المدخلات في هذه المجموعة تلقائيًا إلى &quot;غير مجمّعة&quot;</string>
     <string name="remove_icon_pack">حذف حزمة الأيقونات</string>
@@ -463,7 +461,6 @@
     <string name="title_activity_about">عن</string>
     <string name="title_activity_edit_entry">تعديل الإدخال</string>
     <string name="title_activity_scan_qr">قم بمسح رمز QR</string>
-    <string name="title_activity_manage_slots">إدارة فتحات المفاتيح</string>
     <string name="title_activity_import_entries">استيراد المدخلات</string>
     <string name="dialog_wipe_entries_title">حذف المدخلات</string>
     <string name="dialog_wipe_entries_message">يحتوي مخزنك بالفعل على إدخالات. هل تريد إزالة هذه الإدخالات قبل استيراد هذا المِلَفّ؟\n\n<b>عند القيام بذلك، ستفقد الوصول بشكل دائم إلى الإدخالات الموجودة في الخزنة.</b></string>

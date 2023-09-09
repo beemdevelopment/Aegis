@@ -272,9 +272,7 @@
     <string name="import_google_auth_failure">Import av Google Authenticator-export misslyckades</string>
     <string name="unrelated_google_auth_batches_error">Exporten innehåller information gällande en orelaterad omgång. Försök att importera 1 omgång i taget.</string>
     <string name="no_tokens_can_be_imported">Inga polletter kan importeras till följd av detta</string>
-    <string name="authentication_method_raw">Rådata</string>
     <string name="unlocking_vault">Låser upp valvet</string>
-    <string name="slot_this_device">(denna enhet)</string>
     <string name="remove_group">Ta bort grupp</string>
     <string name="remove_group_description">Är du säker på att du vill ta bort denna grupp? Poster i denna grupp kommer automatiskt att flyttas till \'Grupplös\'.</string>
     <string name="remove_icon_pack">Ta bort ikonpaket</string>
@@ -418,7 +416,6 @@
     <string name="title_activity_about">Om</string>
     <string name="title_activity_edit_entry">Redigera post</string>
     <string name="title_activity_scan_qr">Skanna en rutkod</string>
-    <string name="title_activity_manage_slots">Hantera nyckelplatser</string>
     <string name="title_activity_import_entries">Importera poster</string>
     <string name="dialog_wipe_entries_title">Rensa poster</string>
     <string name="dialog_wipe_entries_message">Ditt valv innehåller redan poster. Vill du ta bort dessa poster innan du importerar den här filen?\n\n<b>Genom att göra det så förlorar du åtkomst till de befintliga posterna i valvet för alltid.</b></string>

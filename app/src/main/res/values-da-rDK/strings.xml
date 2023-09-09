@@ -273,9 +273,7 @@
     <string name="import_google_auth_failure">Import af Google Authenticator-eksport mislykkedes</string>
     <string name="unrelated_google_auth_batches_error">Eksporten indeholder information om et urelateret sæt. Prøv at importere 1 sæt ad gangen.</string>
     <string name="no_tokens_can_be_imported">Som konsekvens, kan ingen tokener importeres</string>
-    <string name="authentication_method_raw">Raw</string>
     <string name="unlocking_vault">Oplåser Boksen</string>
-    <string name="slot_this_device">(denne enhed)</string>
     <string name="remove_group">Fjern gruppe</string>
     <string name="remove_group_description">Sikker på, at denne gruppe skal fjernes? Poster heri vil automatisk skifte til \'Ingen gruppe\'.</string>
     <string name="remove_icon_pack">Fjern ikonpakke</string>
@@ -419,7 +417,6 @@
     <string name="title_activity_about">Om</string>
     <string name="title_activity_edit_entry">Redigér post</string>
     <string name="title_activity_scan_qr">Scan en QR-kode</string>
-    <string name="title_activity_manage_slots">Administrér nøglepladser</string>
     <string name="title_activity_import_entries">Importer poster</string>
     <string name="dialog_wipe_entries_title">Ryd poster</string>
     <string name="dialog_wipe_entries_message">Din boks indeholder allerede poster. Vil du fjerne disse poster før import af denne fil?\n\n<b>Ved at gøre dette, vil du permanent miste adgang til de eksisterende poster i boksen.</b></string>

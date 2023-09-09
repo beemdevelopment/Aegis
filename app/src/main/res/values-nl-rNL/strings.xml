@@ -273,9 +273,7 @@
     <string name="import_google_auth_failure">Importeren van Google Authenticator-export mislukt</string>
     <string name="unrelated_google_auth_batches_error">Export bevat informatie voor een niet gerelateerde batch. Probeer 1 batch tegelijk te importeren.</string>
     <string name="no_tokens_can_be_imported">Hierdoor kunnen geen tokens worden geïmporteerd</string>
-    <string name="authentication_method_raw">Onbewerkt</string>
     <string name="unlocking_vault">Kluis wordt ontgrendeld</string>
-    <string name="slot_this_device">(dit apparaat)</string>
     <string name="remove_group">Groep verwijderen</string>
     <string name="remove_group_description">Weet je zeker dat je deze groep wilt verwijderen? Alle items binnen deze groep worden automatisch verplaatst naar ‘Geen groep’.</string>
     <string name="remove_icon_pack">Pictogrammenpakket verwijderen</string>
@@ -419,7 +417,6 @@
     <string name="title_activity_about">Over</string>
     <string name="title_activity_edit_entry">Item bewerken</string>
     <string name="title_activity_scan_qr">QR-code scannen</string>
-    <string name="title_activity_manage_slots">Sleutelslots beheren</string>
     <string name="title_activity_import_entries">Items importeren</string>
     <string name="dialog_wipe_entries_title">Items wissen</string>
     <string name="dialog_wipe_entries_message">Je kluis bevat al items. Wil je deze items verwijderen voordat je dit bestand importeert?\n\n<b>Hiermee verlies je permanent toegang tot de bestaande items in de kluis.</b></string>

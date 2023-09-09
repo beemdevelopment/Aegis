@@ -271,9 +271,7 @@
     <string name="import_google_auth_failure">Google Authenticatorin varmuuskopion tuonti epäonnistui</string>
     <string name="unrelated_google_auth_batches_error">Vienti sisältää tietoa liittymättömästä erästä. Yritä tuoda 1 erä kerrallaan.</string>
     <string name="no_tokens_can_be_imported">Tämän seurauksena yhtäkään todennuskoodia ei voitu tuoda</string>
-    <string name="authentication_method_raw">Raw</string>
     <string name="unlocking_vault">Holvia avataan</string>
-    <string name="slot_this_device">(tämä laite)</string>
     <string name="remove_group">Poista ryhmä</string>
     <string name="remove_group_description">Poistetaanko tämä ryhmä? Ryhmässä olevat kohteet merkitään automaattisesti ryhmättömiksi.</string>
     <string name="remove_icon_pack">Poista kuvakepaketti</string>
@@ -416,7 +414,6 @@
     <string name="title_activity_about">Tietoja</string>
     <string name="title_activity_edit_entry">Muokkaa kohdetta</string>
     <string name="title_activity_scan_qr">Skannaa QR-koodi</string>
-    <string name="title_activity_manage_slots">Hallitse avainpaikkoja</string>
     <string name="title_activity_import_entries">Tuo kohteet</string>
     <string name="dialog_wipe_entries_title">Tyhjennä kohteet</string>
     <string name="dialog_wipe_entries_message">Holvisi sisältää jo kohteita. Haluatko poistaa nämä kohteet ennen tämän tiedoston tuontia?\n\n<b>Tehdessäsi näin menetät pysyvästi pääsyn holvin olemassa oleviin kohteisiin.</b></string>

@@ -202,9 +202,7 @@
     <string name="encryption_enable_biometrics_error">Ocorreu um erro ao tentar ativar o desbloqueio biométrico. Alguns dispositivos têm implementações deficientes da autenticação biométrica e é provável que o seu seja um deles. Considere alternar para uma configuração somente senha.</string>
     <string name="no_cameras_available">Nenhuma câmera disponível</string>
     <string name="read_qr_error">Ocorreu um erro ao tentar ler o código QR</string>
-    <string name="authentication_method_raw">Raw</string>
     <string name="unlocking_vault">Desbloqueando o cofre</string>
-    <string name="slot_this_device">(este dispositivo)</string>
     <string name="remove_group">Remover grupo</string>
     <string name="remove_group_description">Tem certeza que deseja remover este grupo? As entradas neste grupo automaticamente alternarão para \'Sem grupo\'.</string>
     <string name="details">Detalhes</string>
@@ -293,7 +291,6 @@
     <string name="title_activity_about">Sobre</string>
     <string name="title_activity_edit_entry">Editar entrada</string>
     <string name="title_activity_scan_qr">Escanear um código QR</string>
-    <string name="title_activity_manage_slots">Gerenciar slots de chaves</string>
     <string name="dialog_wipe_entries_title">Limpar entradas</string>
     <string name="dialog_wipe_entries_message">O seu cofre já contém entradas. Você quer remover essas entradas antes de importar este arquivo?\n\n<b>Ao fazer isso, você perderá permanentemente o acesso às entradas existentes no cofre.</b></string>
     <string name="dialog_wipe_entries_checkbox">Limpar conteúdo do cofre</string>
