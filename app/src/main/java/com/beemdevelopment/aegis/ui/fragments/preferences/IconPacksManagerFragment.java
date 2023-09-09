@@ -44,7 +44,6 @@ public class IconPacksManagerFragment extends Fragment implements IconPackAdapte
     @Inject
     VaultManager _vaultManager;
 
-    private View _iconPacksView;
     private RecyclerView _iconPacksRecyclerView;
     private IconPackAdapter _adapter;
     private LinearLayout _noIconPacksView;
@@ -62,7 +61,6 @@ public class IconPacksManagerFragment extends Fragment implements IconPackAdapte
 
         _noIconPacksView = view.findViewById(R.id.vEmptyList);
         ((TextView) view.findViewById(R.id.txt_no_icon_packs)).setMovementMethod(LinkMovementMethod.getInstance());
-        _iconPacksView = view.findViewById(R.id.view_icon_packs);
         _adapter = new IconPackAdapter(this);
         _iconPacksRecyclerView = view.findViewById(R.id.list_icon_packs);
         LinearLayoutManager layoutManager = new LinearLayoutManager(requireContext());
@@ -169,10 +167,10 @@ public class IconPacksManagerFragment extends Fragment implements IconPackAdapte
 
     private void updateEmptyState() {
         if (_adapter.getItemCount() > 0) {
-            _iconPacksView.setVisibility(View.VISIBLE);
+            _iconPacksRecyclerView.setVisibility(View.VISIBLE);
             _noIconPacksView.setVisibility(View.GONE);
         } else {
-            _iconPacksView.setVisibility(View.GONE);
+            _iconPacksRecyclerView.setVisibility(View.GONE);
             _noIconPacksView.setVisibility(View.VISIBLE);
         }
     }
