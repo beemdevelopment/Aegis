@@ -18,19 +18,19 @@ import androidx.appcompat.widget.AppCompatAutoCompleteTextView;
 import com.beemdevelopment.aegis.R;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.TreeSet;
 import java.util.stream.Collectors;
 
-public class DropdownCheckBoxes extends AppCompatAutoCompleteTextView {
+public class DropdownCheckBoxes<T> extends AppCompatAutoCompleteTextView {
     private @PluralsRes int _selectedCountPlural = R.plurals.dropdown_checkboxes_default_count;
 
     private boolean _allowFiltering = false;
 
-    private final List<String> _items = new ArrayList<>();
-    private List<String> _visibleItems = new ArrayList<>();
-    private final Set<String> _checkedItems = new TreeSet<>();
+    private final List<T> _items = new ArrayList<>();
+    private List<T> _visibleItems = new ArrayList<>();
+    private final Set<T> _checkedItems = new HashSet<>();
 
     private CheckboxAdapter _adapter;
 
@@ -70,7 +70,15 @@ public class DropdownCheckBoxes extends AppCompatAutoCompleteTextView {
         }
     }
 
-    public void addItems(List<String> items, boolean startChecked) {
+    /**
+     * Add parameterized items to be displayed as a checkbox in the dropdown view
+     * the label for the checkbox is determined by the toString() method of the items
+     * you add.
+     *
+     * @param items a list of the items you want to show in the dropdown
+     * @param startChecked whether the checkbox should be checked initially
+     */
+    public void addItems(List<T> items, boolean startChecked) {
         _items.addAll(items);
         _visibleItems.addAll(items);
 
@@ -97,7 +105,7 @@ public class DropdownCheckBoxes extends AppCompatAutoCompleteTextView {
         _selectedCountPlural = resId;
     }
 
-    public Set<String> getCheckedItems() {
+    public Set<T> getCheckedItems() {
         return _checkedItems;
     }
 
@@ -109,7 +117,7 @@ public class DropdownCheckBoxes extends AppCompatAutoCompleteTextView {
         }
 
         @Override
-        public String getItem(int i) {
+        public T getItem(int i) {
             return _visibleItems.get(i);
         }
 
@@ -124,19 +132,18 @@ public class DropdownCheckBoxes extends AppCompatAutoCompleteTextView {
                 convertView = LayoutInflater.from(getContext()).inflate(R.layout.dropdown_checkbox, viewGroup, false);
             }
 
-            String item = _visibleItems.get(i);
+            T item = _visibleItems.get(i);
 
             CheckBox checkBox = convertView.findViewById(R.id.checkbox_in_dropdown);
-            checkBox.setText(item);
+            checkBox.setText(item.toString());
+            checkBox.setTag(item);
             checkBox.setChecked(_checkedItems.contains(item));
 
             checkBox.setOnCheckedChangeListener((buttonView, isChecked) -> {
-                String label = buttonView.getText().toString();
-
                 if (isChecked) {
-                    _checkedItems.add(label);
+                    _checkedItems.add((T) buttonView.getTag());
                 } else {
-                    _checkedItems.remove(label);
+                    _checkedItems.remove((T) buttonView.getTag());
                 }
 
                 updateCheckedItemsCountText();
@@ -153,9 +160,9 @@ public class DropdownCheckBoxes extends AppCompatAutoCompleteTextView {
                     FilterResults results = new FilterResults();
                     results.values = (query == null || query.toString().isEmpty())
                                    ? _items
-                                   : _items.stream().filter(str -> {
+                                   : _items.stream().filter(item -> {
                                                         String q = query.toString().toLowerCase();
-                                                        String strLower = str.toLowerCase();
+                                                        String strLower = item.toString().toLowerCase();
 
                                                         return strLower.contains(q);
                                                     })
@@ -166,7 +173,7 @@ public class DropdownCheckBoxes extends AppCompatAutoCompleteTextView {
 
                 @Override
                 protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
-                    _visibleItems = (List<String>) filterResults.values;
+                    _visibleItems = (List<T>) filterResults.values;
                     notifyDataSetChanged();
                 }
             };

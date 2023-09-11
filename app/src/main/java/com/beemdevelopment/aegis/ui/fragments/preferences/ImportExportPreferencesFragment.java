@@ -31,12 +31,14 @@ import com.beemdevelopment.aegis.ui.ImportEntriesActivity;
 import com.beemdevelopment.aegis.ui.TransferEntriesActivity;
 import com.beemdevelopment.aegis.ui.components.DropdownCheckBoxes;
 import com.beemdevelopment.aegis.ui.dialogs.Dialogs;
+import com.beemdevelopment.aegis.ui.models.VaultGroupModel;
 import com.beemdevelopment.aegis.ui.tasks.ExportTask;
 import com.beemdevelopment.aegis.ui.tasks.ImportFileTask;
 import com.beemdevelopment.aegis.vault.Vault;
 import com.beemdevelopment.aegis.vault.VaultBackupManager;
 import com.beemdevelopment.aegis.vault.VaultEntry;
 import com.beemdevelopment.aegis.vault.VaultFileCredentials;
+import com.beemdevelopment.aegis.vault.VaultGroup;
 import com.beemdevelopment.aegis.vault.VaultRepository;
 import com.beemdevelopment.aegis.vault.VaultRepositoryException;
 import com.beemdevelopment.aegis.vault.slots.PasswordSlot;
@@ -48,12 +50,14 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.Random;
 import java.util.Set;
-import java.util.TreeSet;
+import java.util.UUID;
+import java.util.stream.Collectors;
 
 import javax.crypto.Cipher;
 
@@ -164,7 +168,7 @@ public class ImportExportPreferencesFragment extends PreferencesFragment {
         CheckBox checkBoxAccept = view.findViewById(R.id.checkbox_accept);
         CheckBox checkBoxExportAllGroups = view.findViewById(R.id.export_selected_groups);
         TextInputLayout groupsSelectionLayout = view.findViewById(R.id.group_selection_layout);
-        DropdownCheckBoxes groupsSelection = view.findViewById(R.id.group_selection_dropdown);
+        DropdownCheckBoxes<VaultGroupModel> groupsSelection = view.findViewById(R.id.group_selection_dropdown);
         TextView passwordInfoText = view.findViewById(R.id.text_separate_password);
         passwordInfoText.setVisibility(checkBoxEncrypt.isChecked() && isBackupPasswordSet ? View.VISIBLE : View.GONE);
         AutoCompleteTextView dropdown = view.findViewById(R.id.dropdown_export_format);
@@ -177,13 +181,13 @@ public class ImportExportPreferencesFragment extends PreferencesFragment {
             passwordInfoText.setVisibility(checkBoxEncrypt.isChecked() && isBackupPasswordSet ? View.VISIBLE : View.GONE);
         });
 
-        TreeSet<String> groups = _vaultManager.getVault().getGroups();
+        Collection<VaultGroup> groups = _vaultManager.getVault().getUsedGroups();
         if (groups.size() > 0) {
             checkBoxExportAllGroups.setVisibility(View.VISIBLE);
 
-            ArrayList<String> groupsArray = new ArrayList<>();
-            groupsArray.add(getString(R.string.no_group));
-            groupsArray.addAll(groups);
+            ArrayList<VaultGroupModel> groupsArray = new ArrayList<>();
+            groupsArray.add(new VaultGroupModel(getString(R.string.no_group)));
+            groupsArray.addAll(groups.stream().map(VaultGroupModel::new).collect(Collectors.toList()));
 
             groupsSelection.setCheckedItemsCountTextRes(R.plurals.export_groups_selected_count);
             groupsSelection.addItems(groupsArray, false);
@@ -319,17 +323,19 @@ public class ImportExportPreferencesFragment extends PreferencesFragment {
         Dialogs.showSecureDialog(dialog);
     }
 
-    private Vault.EntryFilter getVaultEntryFilter(DropdownCheckBoxes dropdownCheckBoxes) {
-        Set<String> groups = new HashSet<>();
-        for (String group: dropdownCheckBoxes.getCheckedItems()) {
-            if (group.equals(getString(R.string.no_group))) {
-                groups.add(null);
-            } else  {
-                groups.add(group);
-            }
+    private Vault.EntryFilter getVaultEntryFilter(DropdownCheckBoxes<VaultGroupModel> dropdownCheckBoxes) {
+        Set<UUID> groups = new HashSet<>();
+        for (VaultGroupModel group : dropdownCheckBoxes.getCheckedItems()) {
+            groups.add(group.getUUID());
         }
 
-        return groups.isEmpty() ? null : entry -> groups.contains(entry.getGroup());
+        return groups.isEmpty() ? null : entry -> {
+            if (entry.getGroups().isEmpty()) {
+                return groups.contains(null);
+            } else {
+                return entry.getGroups().stream().anyMatch(groups::contains);
+            }
+        };
     }
 
     private void startGoogleAuthenticatorStyleExport() {

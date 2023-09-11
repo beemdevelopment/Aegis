@@ -64,7 +64,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.TreeSet;
+import java.util.Set;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -661,7 +661,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
             startAuthActivity(false);
         } else if (_loaded) {
             // update the list of groups in the entry list view so that the chip gets updated
-            _entryListView.setGroups(_vaultManager.getVault().getGroups());
+            _entryListView.setGroups(_vaultManager.getVault().getUsedGroups());
 
             // update the usage counts in case they are edited outside of the EntryListView
             _entryListView.setUsageCounts(_prefs.getUsageCounts());
@@ -699,7 +699,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
 
         updateLockIcon();
         if (_loaded) {
-            _entryListView.setGroups(_vaultManager.getVault().getGroups());
+            _entryListView.setGroups(_vaultManager.getVault().getUsedGroups());
             updateSortCategoryMenu();
         }
 
@@ -1015,7 +1015,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
     public void onListChange() { _fabScrollHelper.setVisible(true); }
 
     @Override
-    public void onSaveGroupFilter(List<String> groupFilter) {
+    public void onSaveGroupFilter(Set<UUID> groupFilter) {
         _prefs.setGroupFilter(groupFilter);
     }
 
@@ -1163,17 +1163,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
                     case R.id.action_delete:
                         Dialogs.showDeleteEntriesDialog(MainActivity.this, _selectedEntries, (d, which) -> {
                             deleteEntries(_selectedEntries);
-
-                            for (VaultEntry entry : _selectedEntries) {
-                                if (entry.getGroup() != null) {
-                                    TreeSet<String> groups = _vaultManager.getVault().getGroups();
-                                    if (!groups.contains(entry.getGroup())) {
-                                        _entryListView.setGroups(groups);
-                                        break;
-                                    }
-                                }
-                            }
-
+                            _entryListView.setGroups(_vaultManager.getVault().getUsedGroups());
                             mode.finish();
                         });
                         return true;

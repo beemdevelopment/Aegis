@@ -28,6 +28,7 @@ import com.beemdevelopment.aegis.ui.tasks.RootShellTask;
 import com.beemdevelopment.aegis.ui.views.ImportEntriesAdapter;
 import com.beemdevelopment.aegis.util.UUIDMap;
 import com.beemdevelopment.aegis.vault.VaultEntry;
+import com.beemdevelopment.aegis.vault.VaultGroup;
 import com.beemdevelopment.aegis.vault.VaultRepository;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
@@ -40,6 +41,7 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 public class ImportEntriesActivity extends AegisActivity {
@@ -47,6 +49,8 @@ public class ImportEntriesActivity extends AegisActivity {
     private Menu _menu;
     private ImportEntriesAdapter _adapter;
     private FabScrollHelper _fabScrollHelper;
+
+    private UUIDMap<VaultGroup> _importedGroups;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -208,6 +212,8 @@ public class ImportEntriesActivity extends AegisActivity {
             importEntries.add(importEntry);
         }
 
+        _importedGroups = result.getGroups();
+
         List<DatabaseImporterEntryException> errors = result.getErrors();
         if (errors.size() > 0) {
             String message = getResources().getQuantityString(R.plurals.import_error_dialog, errors.size(), errors.size());
@@ -228,10 +234,43 @@ public class ImportEntriesActivity extends AegisActivity {
     private void saveAndFinish(boolean wipeEntries) {
         VaultRepository vault = _vaultManager.getVault();
         if (wipeEntries) {
-            vault.wipeEntries();
+            vault.wipeContents();
         }
 
+        // Given the list of selected entries, collect the UUID's of all groups
+        // that we're actually going to import
         List<ImportEntry> selectedEntries = _adapter.getCheckedEntries();
+        List<UUID> selectedGroupUuids = new ArrayList<>();
+        for (ImportEntry entry : selectedEntries) {
+            selectedGroupUuids.addAll(entry.getEntry().getGroups());
+        }
+
+        // Add all of the new groups to the vault. If a group with the same name already
+        // exists in the vault, rewrite all entries in that group to reference the existing group.
+        for (VaultGroup importedGroup : _importedGroups) {
+            if (!selectedGroupUuids.contains(importedGroup.getUUID())) {
+                continue;
+            }
+
+            VaultGroup existingGroup = vault.findGroupByUUID(importedGroup.getUUID());
+            if (existingGroup != null) {
+                continue;
+            }
+
+            existingGroup = vault.findGroupByName(importedGroup.getName());
+            if (existingGroup == null) {
+                vault.addGroup(importedGroup);
+            } else {
+                for (ImportEntry entry : selectedEntries) {
+                    Set<UUID> entryGroups = entry.getEntry().getGroups();
+                    if (entryGroups.contains(importedGroup.getUUID())) {
+                        entryGroups.remove(importedGroup.getUUID());
+                        entryGroups.add(existingGroup.getUUID());
+                    }
+                }
+            }
+        }
+
         for (ImportEntry selectedEntry : selectedEntries) {
             VaultEntry entry = selectedEntry.getEntry();
 

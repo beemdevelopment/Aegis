@@ -25,6 +25,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.ComponentActivity;
+import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import androidx.appcompat.app.AlertDialog;
 
@@ -242,8 +243,8 @@ public class Dialogs {
         showTextInputDialog(context, titleId, 0, hintId, listener, null, isSecret);
     }
 
-    public static void showTextInputDialog(Context context, @StringRes int titleId, @StringRes int hintId, TextInputListener listener) {
-        showTextInputDialog(context, titleId, hintId, listener, false);
+    public static void showTextInputDialog(Context context, @StringRes int titleId, @StringRes int hintId, TextInputListener listener, @Nullable DialogInterface.OnCancelListener onCancel) {
+        showTextInputDialog(context, titleId, 0, hintId, listener, onCancel, false);
     }
 
     public static void showPasswordInputDialog(Context context, TextInputListener listener) {

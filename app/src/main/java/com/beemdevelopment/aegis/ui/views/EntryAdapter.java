@@ -39,6 +39,8 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
+import java.util.Set;
 import java.util.TreeSet;
 import java.util.UUID;
 
@@ -59,7 +61,7 @@ public class EntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     private boolean _tapToReveal;
     private int _tapToRevealTime;
     private CopyBehavior _copyBehavior;
-    private List<String> _groupFilter;
+    private Set<UUID> _groupFilter;
     private SortCategory _sortCategory;
     private ViewMode _viewMode;
     private String _searchFilter;
@@ -76,7 +78,7 @@ public class EntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         _entries = new ArrayList<>();
         _shownEntries = new ArrayList<>();
         _selectedEntries = new ArrayList<>();
-        _groupFilter = new ArrayList<>();
+        _groupFilter = new TreeSet<>();
         _holders = new ArrayList<>();
         _dimHandler = new Handler();
         _doubleTapHandler = new Handler();
@@ -246,12 +248,15 @@ public class EntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     }
 
     private boolean isEntryFiltered(VaultEntry entry) {
-        String group = entry.getGroup();
+        Set<UUID> groups = entry.getGroups();
         String issuer = entry.getIssuer().toLowerCase();
         String name = entry.getName().toLowerCase();
 
         if (!_groupFilter.isEmpty()) {
-            if (!_groupFilter.contains(group)) {
+            if (groups.isEmpty() && !_groupFilter.contains(null)) {
+                return true;
+            }
+            if (!groups.isEmpty() && _groupFilter.stream().filter(Objects::nonNull).noneMatch(groups::contains)) {
                 return true;
             }
         }
@@ -274,7 +279,7 @@ public class EntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         }
     }
 
-    public void setGroupFilter(@NonNull List<String> groups) {
+    public void setGroupFilter(@NonNull Set<UUID> groups) {
         if (_groupFilter.equals(groups)) {
             return;
         }
@@ -350,10 +355,6 @@ public class EntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
     public int getShownFavoritesCount() {
         return (int) _shownEntries.stream().filter(VaultEntry::isFavorite).count();
-    }
-
-    public void setGroups(TreeSet<String> groups) {
-        _view.setGroups(groups);
     }
 
     @Override

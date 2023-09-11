@@ -4,6 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.beemdevelopment.aegis.ui.GroupManagerActivity">
     <item
+        android:id="@+id/action_delete_unused_groups"
+        app:showAsAction="collapseActionView"
+        android:title="@string/remove_unused_groups"/>
+    <item
         android:id="@+id/action_save"
         app:showAsAction="ifRoom"
         android:title="@string/save"/>

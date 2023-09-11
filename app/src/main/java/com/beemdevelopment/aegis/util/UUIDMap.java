@@ -9,6 +9,7 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Objects;
 import java.util.UUID;
 
 /**
@@ -99,7 +100,14 @@ public class UUIDMap <T extends UUIDMap.Value> implements Iterable<T>, Serializa
      * Reports whether the internal map contains a value with the UUID of the given value.
      */
     public boolean has(T value) {
-        return _map.containsKey(value.getUUID());
+        return has(value.getUUID());
+    }
+
+    /**
+     * Reports whether the internal map contains a value with the given UUID.
+     */
+    public boolean has(UUID uuid) {
+        return _map.containsKey(uuid);
     }
 
     /**
@@ -161,7 +169,7 @@ public class UUIDMap <T extends UUIDMap.Value> implements Iterable<T>, Serializa
                 return false;
             }
 
-            return getUUID().equals(((Value) o).getUUID());
+            return Objects.equals(getUUID(), ((Value) o).getUUID());
         }
     }
 }

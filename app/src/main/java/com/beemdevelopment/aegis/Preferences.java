@@ -20,9 +20,11 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Set;
 import java.util.UUID;
 
 public class Preferences {
@@ -478,26 +480,26 @@ public class Preferences {
         return _prefs.getBoolean("pref_minimize_on_copy", false);
     }
 
-    public void setGroupFilter(List<String> groupFilter) {
+    public void setGroupFilter(Set<UUID> groupFilter) {
         JSONArray json = new JSONArray(groupFilter);
-        _prefs.edit().putString("pref_group_filter", json.toString()).apply();
+        _prefs.edit().putString("pref_group_filter_uuids", json.toString()).apply();
     }
 
-    public List<String> getGroupFilter() {
-        String raw = _prefs.getString("pref_group_filter", null);
+    public Set<UUID> getGroupFilter() {
+        String raw = _prefs.getString("pref_group_filter_uuids", null);
         if (raw == null || raw.isEmpty()) {
-            return Collections.emptyList();
+            return Collections.emptySet();
         }
 
         try {
             JSONArray json = new JSONArray(raw);
-            List<String> filter = new ArrayList<>();
+            Set<UUID> filter = new HashSet<>();
             for (int i = 0; i < json.length(); i++) {
-                filter.add(json.isNull(i) ? null : json.optString(i));
+                filter.add(json.isNull(i) ? null : UUID.fromString(json.getString(i)));
             }
             return filter;
         } catch (JSONException e) {
-            return Collections.emptyList();
+            return Collections.emptySet();
         }
     }
 

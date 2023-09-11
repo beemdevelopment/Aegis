@@ -8,9 +8,13 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.Optional;
+import java.util.UUID;
+
 public class Vault {
-    private static final int VERSION = 2;
-    private UUIDMap<VaultEntry> _entries = new UUIDMap<>();
+    private static final int VERSION = 3;
+    private final UUIDMap<VaultEntry> _entries = new UUIDMap<>();
+    private final UUIDMap<VaultGroup> _groups = new UUIDMap<>();
 
     public JSONObject toJson() {
         return toJson(null);
@@ -18,16 +22,24 @@ public class Vault {
 
     public JSONObject toJson(@Nullable EntryFilter filter) {
         try {
-            JSONArray array = new JSONArray();
+            JSONArray entriesArray = new JSONArray();
             for (VaultEntry e : _entries) {
                 if (filter == null || filter.includeEntry(e)) {
-                    array.put(e.toJson());
+                    entriesArray.put(e.toJson());
                 }
+            }
+
+            // Always include all groups, even if they're not assigned to any entry (before or after the entry filter)
+            JSONArray groupsArray = new JSONArray();
+            for (VaultGroup group : _groups) {
+                groupsArray.put(group.toJson());
             }
 
             JSONObject obj = new JSONObject();
             obj.put("version", VERSION);
-            obj.put("entries", array);
+            obj.put("entries", entriesArray);
+            obj.put("groups", groupsArray);
+
             return obj;
         } catch (JSONException e) {
             throw new RuntimeException(e);
@@ -37,6 +49,7 @@ public class Vault {
     public static Vault fromJson(JSONObject obj) throws VaultException {
         Vault vault = new Vault();
         UUIDMap<VaultEntry> entries = vault.getEntries();
+        UUIDMap<VaultGroup> groups = vault.getGroups();
 
         try {
             int ver = obj.getInt("version");
@@ -44,9 +57,28 @@ public class Vault {
                 throw new VaultException("Unsupported version");
             }
 
+            if (obj.has("groups")) {
+                JSONArray groupsArray = obj.getJSONArray("groups");
+                for (int i = 0; i < groupsArray.length(); i++) {
+                    VaultGroup group = VaultGroup.fromJson(groupsArray.getJSONObject(i));
+                    if (!groups.has(group)) {
+                        groups.add(group);
+                    }
+                }
+            }
+
             JSONArray array = obj.getJSONArray("entries");
             for (int i = 0; i < array.length(); i++) {
                 VaultEntry entry = VaultEntry.fromJson(array.getJSONObject(i));
+                vault.migrateOldGroup(entry);
+
+                // check the vault has a group corresponding to each one the entry claims to be in
+                for (UUID groupUuid: entry.getGroups()) {
+                    if (!groups.has(groupUuid)) {
+                        entry.removeGroup(groupUuid);
+                    }
+                }
+
                 entries.add(entry);
             }
         } catch (VaultEntryException | JSONException e) {
@@ -56,8 +88,31 @@ public class Vault {
         return vault;
     }
 
+    public void migrateOldGroup(VaultEntry entry) {
+        if (entry.getOldGroup() != null) {
+            Optional<VaultGroup> optGroup = getGroups().getValues()
+                                                 .stream()
+                                                 .filter(g -> g.getName().equals(entry.getOldGroup()))
+                                                 .findFirst();
+
+            if (optGroup.isPresent()) {
+                entry.addGroup(optGroup.get().getUUID());
+            } else {
+                VaultGroup group = new VaultGroup(entry.getOldGroup());
+                getGroups().add(group);
+                entry.addGroup(group.getUUID());
+            }
+
+            entry.setOldGroup(null);
+        }
+    }
+
     public UUIDMap<VaultEntry> getEntries() {
         return _entries;
+    }
+
+    public UUIDMap<VaultGroup> getGroups() {
+        return _groups;
     }
 
     public interface EntryFilter {
