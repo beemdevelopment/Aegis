@@ -18,6 +18,7 @@ import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.ViewMode;
 import com.beemdevelopment.aegis.helpers.AnimationsHelper;
 import com.beemdevelopment.aegis.helpers.IconViewHelper;
+import com.beemdevelopment.aegis.helpers.SimpleAnimationEndListener;
 import com.beemdevelopment.aegis.helpers.TextDrawableHelper;
 import com.beemdevelopment.aegis.helpers.ThemeHelper;
 import com.beemdevelopment.aegis.helpers.UiRefresher;
@@ -258,7 +259,9 @@ public class EntryHolder extends RecyclerView.ViewHolder {
             _selected.startAnimation(_scaleIn);
         } else {
             _selected.startAnimation(_scaleOut);
-            _selectedHandler.postDelayed(() -> _selected.setVisibility(View.GONE), 150);
+            _scaleOut.setAnimationListener(new SimpleAnimationEndListener(animation -> {
+                _selected.setVisibility(View.GONE);
+            }));
         }
     }
 
