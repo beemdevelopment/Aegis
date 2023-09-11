@@ -40,7 +40,7 @@ public class IconPickerDialog {
 
     }
 
-    public static BottomSheetDialog create(Activity activity, List<IconPack> iconPacks, String issuer, IconAdapter.Listener listener) {
+    public static BottomSheetDialog create(Activity activity, List<IconPack> iconPacks, String issuer, boolean showAddCustom, IconAdapter.Listener listener) {
         View view = LayoutInflater.from(activity).inflate(R.layout.dialog_icon_picker, null);
         TextView textIconPack = view.findViewById(R.id.text_icon_pack);
 
@@ -128,7 +128,7 @@ public class IconPickerDialog {
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
         recyclerView.addOnScrollListener(preloader);
-        adapter.loadIcons(iconPacks.get(0));
+        adapter.loadIcons(iconPacks.get(0), showAddCustom);
         textIconPack.setText(iconPacks.get(0).getName());
 
         view.findViewById(R.id.btn_icon_pack).setOnClickListener(v -> {
@@ -139,7 +139,7 @@ public class IconPickerDialog {
             PopupMenu popupMenu = new PopupMenu(activity, v);
             popupMenu.setOnMenuItemClickListener(item -> {
                 IconPack pack = iconPacks.get(iconPackNames.indexOf(item.getTitle().toString()));
-                adapter.loadIcons(pack);
+                adapter.loadIcons(pack, showAddCustom);
 
                 String query = iconSearch.getText().toString();
                 if (!query.isEmpty()) {

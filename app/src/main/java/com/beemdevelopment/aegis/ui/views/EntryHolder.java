@@ -200,7 +200,7 @@ public class EntryHolder extends RecyclerView.ViewHolder {
             IconViewHelper.setLayerType(_profileDrawable, _entry.getIconType());
             Glide.with(fragment)
                 .asDrawable()
-                .load(_entry)
+                .load(_entry.getIcon())
                 .set(IconLoader.ICON_TYPE, _entry.getIconType())
                 .diskCacheStrategy(DiskCacheStrategy.NONE)
                 .skipMemoryCache(false)

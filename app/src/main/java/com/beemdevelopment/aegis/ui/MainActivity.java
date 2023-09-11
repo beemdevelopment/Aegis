@@ -35,6 +35,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.view.ActionMode;
 import androidx.appcompat.widget.SearchView;
 
+import com.beemdevelopment.aegis.AssignIconsActivity;
 import com.beemdevelopment.aegis.CopyBehavior;
 import com.beemdevelopment.aegis.AccountNamePosition;
 import com.beemdevelopment.aegis.Preferences;
@@ -76,6 +77,8 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
     private static final int CODE_DECRYPT = 4;
     private static final int CODE_PREFERENCES = 5;
     private static final int CODE_SCAN_IMAGE = 6;
+    private static final int CODE_ASSIGN_ICONS = 7;
+
 
     // Permission request codes
     private static final int CODE_PERM_CAMERA = 0;
@@ -232,6 +235,10 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
                 break;
             case CODE_SCAN_IMAGE:
                 onScanImageResult(data);
+                break;
+            case CODE_ASSIGN_ICONS:
+                onAssignEntriesResult(data);
+                break;
         }
 
         super.onActivityResult(requestCode, resultCode, data);
@@ -317,6 +324,17 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         startActivityForResult(intent, requestCode);
     }
 
+    private void startAssignIconsActivity(int requestCode, List<VaultEntry> entries) {
+        ArrayList<UUID> assignIconEntriesIds = new ArrayList<>();
+        Intent assignIconIntent = new Intent(getBaseContext(), AssignIconsActivity.class);
+        for (VaultEntry entry : entries) {
+            assignIconEntriesIds.add(entry.getUUID());
+        }
+
+        assignIconIntent.putExtra("entries", assignIconEntriesIds);
+        startActivityForResult(assignIconIntent, requestCode);
+    }
+
     private void startIntroActivity() {
         if (!_isDoingIntro) {
             Intent intro = new Intent(this, IntroActivity.class);
@@ -347,6 +365,17 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
             if (data.getBooleanExtra("delete", false)) {
                 _entryListView.removeEntry(entryUUID);
             } else {
+                VaultEntry entry = _vaultManager.getVault().getEntryByUUID(entryUUID);
+                _entryListView.replaceEntry(entryUUID, entry);
+            }
+        }
+    }
+
+    private void onAssignEntriesResult(Intent data) {
+        if (_loaded) {
+            ArrayList<UUID> entryUUIDs = (ArrayList<UUID>) data.getSerializableExtra("entryUUIDs");
+
+            for (UUID entryUUID: entryUUIDs) {
                 VaultEntry entry = _vaultManager.getVault().getEntryByUUID(entryUUID);
                 _entryListView.replaceEntry(entryUUID, entry);
             }
@@ -916,6 +945,11 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         _actionMode.getMenu().findItem(R.id.action_copy).setVisible(!multipleSelected);
     }
 
+    private void setAssignIconsMenuItemVisibility() {
+        MenuItem assignIconsMenuItem = _actionMode.getMenu().findItem(R.id.action_assign_icons);
+        assignIconsMenuItem.setVisible(_iconPackManager.hasIconPack());
+    }
+
     private void setFavoriteMenuItemVisiblity() {
         MenuItem toggleFavoriteMenuItem = _actionMode.getMenu().findItem(R.id.action_toggle_favorite);
 
@@ -948,6 +982,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         _actionMode = startSupportActionMode(_actionModeCallbacks);
         _actionModeBackPressHandler.setEnabled(true);
         setFavoriteMenuItemVisiblity();
+        setAssignIconsMenuItemVisibility();
     }
 
     @Override
@@ -1142,6 +1177,12 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
                             mode.finish();
                         });
                         return true;
+
+                    case R.id.action_assign_icons:
+                        startAssignIconsActivity(CODE_ASSIGN_ICONS, _selectedEntries);
+                        mode.finish();
+                        return true;
+
                     default:
                         return false;
                 }

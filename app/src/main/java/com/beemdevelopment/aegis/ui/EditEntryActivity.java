@@ -216,7 +216,7 @@ public class EditEntryActivity extends AegisActivity {
             IconViewHelper.setLayerType(_iconView, _origEntry.getIconType());
             Glide.with(this)
                 .asDrawable()
-                .load(_origEntry)
+                .load(_origEntry.getIcon())
                 .set(IconLoader.ICON_TYPE, _origEntry.getIconType())
                 .diskCacheStrategy(DiskCacheStrategy.NONE)
                 .skipMemoryCache(false)
@@ -500,7 +500,7 @@ public class EditEntryActivity extends AegisActivity {
             return;
         }
 
-        BottomSheetDialog dialog = IconPickerDialog.create(this, iconPacks, _textIssuer.getText().toString(), new IconAdapter.Listener() {
+        BottomSheetDialog dialog = IconPickerDialog.create(this, iconPacks, _textIssuer.getText().toString(), true, new IconAdapter.Listener() {
             @Override
             public void onIconSelected(IconPack.Icon icon) {
                 selectIcon(icon);
