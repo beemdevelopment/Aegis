@@ -35,7 +35,6 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.view.ActionMode;
 import androidx.appcompat.widget.SearchView;
 
-import com.beemdevelopment.aegis.AssignIconsActivity;
 import com.beemdevelopment.aegis.CopyBehavior;
 import com.beemdevelopment.aegis.AccountNamePosition;
 import com.beemdevelopment.aegis.Preferences;
