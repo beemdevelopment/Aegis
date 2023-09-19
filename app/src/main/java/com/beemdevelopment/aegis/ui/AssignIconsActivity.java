@@ -1,4 +1,4 @@
-package com.beemdevelopment.aegis;
+package com.beemdevelopment.aegis.ui;
 
 import android.content.Intent;
 import android.graphics.Rect;
@@ -13,9 +13,10 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.helpers.MetricsHelper;
 import com.beemdevelopment.aegis.icons.IconPack;
-import com.beemdevelopment.aegis.ui.AegisActivity;
 import com.beemdevelopment.aegis.ui.dialogs.Dialogs;
 import com.beemdevelopment.aegis.ui.dialogs.IconPickerDialog;
 import com.beemdevelopment.aegis.ui.glide.IconLoader;
@@ -156,7 +157,7 @@ public class AssignIconsActivity extends AegisActivity implements AssignIconAdap
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_groups, menu);
+        getMenuInflater().inflate(R.menu.menu_assign_icons, menu);
         return true;
     }
 
