@@ -18,14 +18,13 @@ import androidx.recyclerview.widget.GridLayoutManager;
 
 import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.icons.IconPack;
-import com.beemdevelopment.aegis.ui.glide.IconLoader;
+import com.beemdevelopment.aegis.ui.glide.GlideHelper;
 import com.beemdevelopment.aegis.ui.views.IconAdapter;
 import com.beemdevelopment.aegis.ui.views.IconRecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.ListPreloader;
 import com.bumptech.glide.RequestBuilder;
 import com.bumptech.glide.integration.recyclerview.RecyclerViewPreloader;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.util.ViewPreloadSizeProvider;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
@@ -76,12 +75,9 @@ public class IconPickerDialog {
             @Nullable
             @Override
             public RequestBuilder<Drawable> getPreloadRequestBuilder(@NonNull IconPack.Icon icon) {
-                return Glide.with(dialog.getContext())
-                        .asDrawable()
-                        .load(icon.getFile())
-                        .set(IconLoader.ICON_TYPE, icon.getIconType())
-                        .diskCacheStrategy(DiskCacheStrategy.NONE)
-                        .skipMemoryCache(false);
+                RequestBuilder<Drawable> rb = Glide.with(dialog.getContext())
+                        .load(icon.getFile());
+                return GlideHelper.setCommonOptions(rb, icon.getIconType());
             }
         }
 

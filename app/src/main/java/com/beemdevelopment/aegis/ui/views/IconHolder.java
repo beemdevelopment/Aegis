@@ -8,13 +8,11 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.beemdevelopment.aegis.R;
-import com.beemdevelopment.aegis.helpers.IconViewHelper;
 import com.beemdevelopment.aegis.helpers.ThemeHelper;
 import com.beemdevelopment.aegis.icons.IconPack;
 import com.beemdevelopment.aegis.icons.IconType;
-import com.beemdevelopment.aegis.ui.glide.IconLoader;
+import com.beemdevelopment.aegis.ui.glide.GlideHelper;
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import java.io.File;
 
@@ -42,18 +40,9 @@ public class IconHolder extends RecyclerView.ViewHolder {
     public void loadIcon(Context context) {
         if (_isCustom) {
             int tint = ThemeHelper.getThemeColor(R.attr.iconColorPrimary, context.getTheme());
-            _imageView.setColorFilter(tint);
-            _imageView.setImageResource(R.drawable.ic_plus_black_24dp);
+            GlideHelper.loadResource(Glide.with(context), R.drawable.ic_plus_black_24dp, tint, _imageView);
         } else {
-            _imageView.setImageTintList(null);
-            IconViewHelper.setLayerType(_imageView, _iconType);
-            Glide.with(context)
-                    .asDrawable()
-                    .load(_iconFile)
-                    .set(IconLoader.ICON_TYPE, _iconType)
-                    .diskCacheStrategy(DiskCacheStrategy.NONE)
-                    .skipMemoryCache(false)
-                    .into(_imageView);
+            GlideHelper.loadIconFile(Glide.with(context), _iconFile, _iconType, _imageView);
         }
     }
 }

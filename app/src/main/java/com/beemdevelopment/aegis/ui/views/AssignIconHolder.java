@@ -6,15 +6,10 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.amulyakhare.textdrawable.TextDrawable;
 import com.beemdevelopment.aegis.R;
-import com.beemdevelopment.aegis.helpers.TextDrawableHelper;
-import com.beemdevelopment.aegis.icons.IconType;
-import com.beemdevelopment.aegis.ui.glide.IconLoader;
+import com.beemdevelopment.aegis.ui.glide.GlideHelper;
 import com.beemdevelopment.aegis.ui.models.AssignIconEntry;
-
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 public class AssignIconHolder extends RecyclerView.ViewHolder implements AssignIconEntry.Listener {
     private View _view;
@@ -44,37 +39,15 @@ public class AssignIconHolder extends RecyclerView.ViewHolder implements AssignI
         _issuer.setText(entry.getEntry().getIssuer());
         _accountName.setText(entry.getEntry().getName());
 
-        if(!entry.getEntry().hasIcon()) {
-            TextDrawable drawable = TextDrawableHelper.generate(entry.getEntry().getIssuer(), entry.getEntry().getName(), _oldIcon);
-            _oldIcon.setImageDrawable(drawable);
-        } else {
-            Glide.with(_view.getContext())
-                    .asDrawable()
-                    .load(entry.getEntry())
-                    .set(IconLoader.ICON_TYPE, entry.getEntry().getIconType())
-                    .diskCacheStrategy(DiskCacheStrategy.NONE)
-                    .into(_oldIcon);
-        }
-
+        GlideHelper.loadEntryIcon(Glide.with(_view.getContext()), _entry.getEntry(), _oldIcon);
         setNewIcon();
     }
 
     private void setNewIcon() {
         if (_entry.getNewIcon() != null) {
-            Glide.with(_view.getContext())
-                    .asDrawable()
-                    .load(_entry.getNewIcon().getFile())
-                    .set(IconLoader.ICON_TYPE, _entry.getNewIcon().getIconType())
-                    .diskCacheStrategy(DiskCacheStrategy.NONE)
-                    .skipMemoryCache(false)
-                    .into(_newIcon);
+            GlideHelper.loadIcon(Glide.with(_view.getContext()), _entry.getNewIcon(), _newIcon);
         } else {
-            Glide.with(_view.getContext())
-                    .asDrawable()
-                    .load(R.drawable.ic_icon_unselected)
-                    .diskCacheStrategy(DiskCacheStrategy.NONE)
-                    .skipMemoryCache(false)
-                    .into(_newIcon);
+            GlideHelper.loadResource(Glide.with(_view.getContext()), R.drawable.ic_icon_unselected, _newIcon);
         }
 
         _btnReset.setVisibility(_entry.getNewIcon() != null ? View.VISIBLE : View.INVISIBLE);

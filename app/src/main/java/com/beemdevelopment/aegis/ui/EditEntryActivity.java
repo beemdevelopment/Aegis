@@ -37,7 +37,6 @@ import com.beemdevelopment.aegis.encoding.Hex;
 import com.beemdevelopment.aegis.helpers.AnimationsHelper;
 import com.beemdevelopment.aegis.helpers.DropdownHelper;
 import com.beemdevelopment.aegis.helpers.EditTextHelper;
-import com.beemdevelopment.aegis.helpers.IconViewHelper;
 import com.beemdevelopment.aegis.helpers.SafHelper;
 import com.beemdevelopment.aegis.helpers.SimpleAnimationEndListener;
 import com.beemdevelopment.aegis.helpers.SimpleTextWatcher;
@@ -54,13 +53,14 @@ import com.beemdevelopment.aegis.otp.TotpInfo;
 import com.beemdevelopment.aegis.otp.YandexInfo;
 import com.beemdevelopment.aegis.ui.dialogs.Dialogs;
 import com.beemdevelopment.aegis.ui.dialogs.IconPickerDialog;
-import com.beemdevelopment.aegis.ui.glide.IconLoader;
+import com.beemdevelopment.aegis.ui.glide.GlideHelper;
 import com.beemdevelopment.aegis.ui.models.VaultGroupModel;
 import com.beemdevelopment.aegis.ui.tasks.ImportFileTask;
 import com.beemdevelopment.aegis.ui.views.IconAdapter;
 import com.beemdevelopment.aegis.util.Cloner;
 import com.beemdevelopment.aegis.util.IOUtils;
 import com.beemdevelopment.aegis.vault.VaultEntry;
+import com.beemdevelopment.aegis.vault.VaultEntryIcon;
 import com.beemdevelopment.aegis.vault.VaultGroup;
 import com.beemdevelopment.aegis.vault.VaultRepository;
 import com.bumptech.glide.Glide;
@@ -239,19 +239,9 @@ public class EditEntryActivity extends AegisActivity {
         _advancedSettings = findViewById(R.id.expandableLayout);
 
         // fill the fields with values if possible
+        GlideHelper.loadEntryIcon(Glide.with(this), _origEntry, _iconView);
         if (_origEntry.hasIcon()) {
-            IconViewHelper.setLayerType(_iconView, _origEntry.getIconType());
-            Glide.with(this)
-                .asDrawable()
-                .load(_origEntry.getIcon())
-                .set(IconLoader.ICON_TYPE, _origEntry.getIconType())
-                .diskCacheStrategy(DiskCacheStrategy.NONE)
-                .skipMemoryCache(false)
-                .into(_iconView);
             _hasCustomIcon = true;
-        } else {
-            TextDrawable drawable = TextDrawableHelper.generate(_origEntry.getIssuer(), _origEntry.getName(), _iconView);
-            _iconView.setImageDrawable(drawable);
         }
 
         _textName.setText(_origEntry.getName());
@@ -548,14 +538,7 @@ public class EditEntryActivity extends AegisActivity {
         _hasCustomIcon = true;
         _hasChangedIcon = true;
 
-        IconViewHelper.setLayerType(_iconView, icon.getIconType());
-        Glide.with(EditEntryActivity.this)
-                .asDrawable()
-                .load(icon.getFile())
-                .set(IconLoader.ICON_TYPE, icon.getIconType())
-                .diskCacheStrategy(DiskCacheStrategy.NONE)
-                .skipMemoryCache(false)
-                .into(_iconView);
+        GlideHelper.loadIcon(Glide.with(EditEntryActivity.this), icon, _iconView);
     }
 
     private void startEditingIcon(Uri data) {
@@ -743,13 +726,14 @@ public class EditEntryActivity extends AegisActivity {
 
         if (_hasChangedIcon) {
             if (_hasCustomIcon) {
+                VaultEntryIcon icon;
                 if (_selectedIcon == null) {
                     Bitmap bitmap = ((BitmapDrawable) _iconView.getDrawable()).getBitmap();
                     ByteArrayOutputStream stream = new ByteArrayOutputStream();
                     // the quality parameter is ignored for PNG
                     bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
                     byte[] data = stream.toByteArray();
-                    entry.setIcon(data, IconType.PNG);
+                    icon = new VaultEntryIcon(data, IconType.PNG);
                 } else {
                     byte[] iconBytes;
                     try (FileInputStream inStream = new FileInputStream(_selectedIcon.getFile())){
@@ -757,11 +741,12 @@ public class EditEntryActivity extends AegisActivity {
                     } catch (IOException e) {
                         throw new ParseException(e.getMessage());
                     }
-
-                    entry.setIcon(iconBytes, _selectedIcon.getIconType());
+                    icon = new VaultEntryIcon(iconBytes, _selectedIcon.getIconType());
                 }
+
+                entry.setIcon(icon);
             } else {
-                entry.setIcon(null, IconType.INVALID);
+                entry.setIcon(null);
             }
         }
 

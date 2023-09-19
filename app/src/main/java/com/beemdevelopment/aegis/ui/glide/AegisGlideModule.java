@@ -6,6 +6,7 @@ import android.graphics.drawable.PictureDrawable;
 import androidx.annotation.NonNull;
 
 import com.beemdevelopment.aegis.vault.VaultEntry;
+import com.beemdevelopment.aegis.vault.VaultEntryIcon;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.Registry;
 import com.bumptech.glide.annotation.GlideModule;
@@ -19,7 +20,7 @@ import java.nio.ByteBuffer;
 public class AegisGlideModule extends AppGlideModule {
     @Override
     public void registerComponents(@NonNull Context context, @NonNull Glide glide, @NonNull Registry registry) {
-        registry.prepend(VaultEntry.class, ByteBuffer.class, new IconLoader.Factory());
+        registry.prepend(VaultEntryIcon.class, ByteBuffer.class, new VaultEntryIconLoader.Factory());
         registry.register(SVG.class, PictureDrawable.class, new SvgDrawableTranscoder())
                 .append(InputStream.class, SVG.class, new SvgDecoder())
                 .append(ByteBuffer.class, SVG.class, new SvgBytesDecoder());

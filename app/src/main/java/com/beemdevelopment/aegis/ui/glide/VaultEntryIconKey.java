@@ -2,30 +2,30 @@ package com.beemdevelopment.aegis.ui.glide;
 
 import androidx.annotation.NonNull;
 
+import com.beemdevelopment.aegis.vault.VaultEntryIcon;
 import com.bumptech.glide.load.Key;
 
 import java.security.MessageDigest;
-import java.util.UUID;
 
-public class UUIDKey implements Key {
-    private UUID _uuid;
+public class VaultEntryIconKey implements Key {
+    private final VaultEntryIcon _icon;
 
-    public UUIDKey(UUID uuid) {
-        _uuid = uuid;
+    public VaultEntryIconKey(VaultEntryIcon icon) {
+        _icon = icon;
     }
 
     @Override
     public void updateDiskCacheKey(@NonNull MessageDigest messageDigest) {
-        messageDigest.update(_uuid.toString().getBytes(CHARSET));
+        messageDigest.update(_icon.getHash());
     }
 
     @Override
     public boolean equals(Object o) {
-        return _uuid.equals(o);
+        return _icon.equals(o);
     }
 
     @Override
     public int hashCode() {
-        return _uuid.hashCode();
+        return _icon.hashCode();
     }
 }

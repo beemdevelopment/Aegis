@@ -3,7 +3,7 @@ package com.beemdevelopment.aegis.ui.glide;
 import androidx.annotation.NonNull;
 
 import com.beemdevelopment.aegis.icons.IconType;
-import com.beemdevelopment.aegis.vault.VaultEntry;
+import com.beemdevelopment.aegis.vault.VaultEntryIcon;
 import com.bumptech.glide.Priority;
 import com.bumptech.glide.load.DataSource;
 import com.bumptech.glide.load.Option;
@@ -15,29 +15,29 @@ import com.bumptech.glide.load.model.MultiModelLoaderFactory;
 
 import java.nio.ByteBuffer;
 
-public class IconLoader implements ModelLoader<VaultEntry, ByteBuffer> {
+public class VaultEntryIconLoader implements ModelLoader<VaultEntryIcon, ByteBuffer> {
     public static final Option<IconType> ICON_TYPE = Option.memory("ICON_TYPE", IconType.INVALID);
 
     @Override
-    public LoadData<ByteBuffer> buildLoadData(@NonNull VaultEntry model, int width, int height, @NonNull Options options) {
-        return new LoadData<>(new UUIDKey(model.getUUID()), new Fetcher(model));
+    public LoadData<ByteBuffer> buildLoadData(@NonNull VaultEntryIcon icon, int width, int height, @NonNull Options options) {
+        return new LoadData<>(new VaultEntryIconKey(icon), new Fetcher(icon));
     }
 
     @Override
-    public boolean handles(@NonNull VaultEntry model) {
+    public boolean handles(@NonNull VaultEntryIcon icon) {
         return true;
     }
 
     public static class Fetcher implements DataFetcher<ByteBuffer> {
-        private final VaultEntry _model;
+        private final VaultEntryIcon _icon;
 
-        private Fetcher(VaultEntry model) {
-            _model = model;
+        private Fetcher(VaultEntryIcon icon) {
+            _icon = icon;
         }
 
         @Override
         public void loadData(@NonNull Priority priority, @NonNull DataCallback<? super ByteBuffer> callback) {
-            byte[] bytes = _model.getIcon();
+            byte[] bytes = _icon.getBytes();
             ByteBuffer buf = ByteBuffer.wrap(bytes);
             callback.onDataReady(buf);
         }
@@ -65,11 +65,11 @@ public class IconLoader implements ModelLoader<VaultEntry, ByteBuffer> {
         }
     }
 
-    public static class Factory implements ModelLoaderFactory<VaultEntry, ByteBuffer> {
+    public static class Factory implements ModelLoaderFactory<VaultEntryIcon, ByteBuffer> {
         @NonNull
         @Override
-        public ModelLoader<VaultEntry, ByteBuffer> build(@NonNull MultiModelLoaderFactory unused) {
-            return new IconLoader();
+        public ModelLoader<VaultEntryIcon, ByteBuffer> build(@NonNull MultiModelLoaderFactory unused) {
+            return new VaultEntryIconLoader();
         }
 
         @Override

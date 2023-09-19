@@ -22,7 +22,7 @@ public class SvgDecoder implements ResourceDecoder<InputStream, SVG> {
 
     @Override
     public boolean handles(@NonNull InputStream source, @NonNull Options options) {
-        return options.get(IconLoader.ICON_TYPE) == IconType.SVG;
+        return options.get(VaultEntryIconLoader.ICON_TYPE) == IconType.SVG;
     }
 
     public Resource<SVG> decode(
