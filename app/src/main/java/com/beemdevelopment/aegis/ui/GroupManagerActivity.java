@@ -147,18 +147,15 @@ public class GroupManagerActivity extends AegisActivity implements GroupAdapter.
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                discardAndFinish();
-                break;
-            case R.id.action_save:
-                saveAndFinish();
-                break;
-            case R.id.action_delete_unused_groups:
-                onRemoveUnusedGroups();
-                break;
-            default:
-                return super.onOptionsItemSelected(item);
+        int itemId = item.getItemId();
+        if (itemId == android.R.id.home) {
+            discardAndFinish();
+        } else if (itemId == R.id.action_save) {
+            saveAndFinish();
+        } else if (itemId == R.id.action_delete_unused_groups) {
+            onRemoveUnusedGroups();
+        } else {
+            return super.onOptionsItemSelected(item);
         }
 
         return true;

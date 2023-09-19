@@ -136,7 +136,7 @@ public class AboutActivity extends AegisActivity {
         String backgroundColor = getThemeColorAsHex(backgroundColorResource);
         String textColor = getThemeColorAsHex(R.attr.primaryText);
         String licenseColor = getThemeColorAsHex(R.attr.cardBackgroundFocused);
-        String linkColor = getThemeColorAsHex(R.attr.colorAccent);
+        String linkColor = getThemeColorAsHex(androidx.appcompat.R.attr.colorAccent);
 
         stylesheet = String.format(stylesheet, backgroundColor, textColor, licenseColor, linkColor);
 

@@ -770,51 +770,42 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.action_settings: {
-                startPreferencesActivity();
-                return true;
-            }
-            case R.id.action_about: {
-                Intent intent = new Intent(this, AboutActivity.class);
-                startActivity(intent);
-                return true;
-            }
-            case R.id.action_lock:
-                _vaultManager.lock(true);
-                return true;
-            default:
-                if (item.getGroupId() == R.id.action_sort_category) {
-                    item.setChecked(true);
+        int itemId = item.getItemId();
+        if (itemId == R.id.action_settings) {
+            startPreferencesActivity();
+        } else if (itemId == R.id.action_about) {
+            Intent intent = new Intent(this, AboutActivity.class);
+            startActivity(intent);
+        } else if (itemId == R.id.action_lock) {
+            _vaultManager.lock(true);
+        } else {
+            if (item.getGroupId() == R.id.action_sort_category) {
+                item.setChecked(true);
 
-                    SortCategory sortCategory;
-                    switch (item.getItemId()) {
-                        case R.id.menu_sort_alphabetically:
-                            sortCategory = SortCategory.ISSUER;
-                            break;
-                        case R.id.menu_sort_alphabetically_reverse:
-                            sortCategory = SortCategory.ISSUER_REVERSED;
-                            break;
-                        case R.id.menu_sort_alphabetically_name:
-                            sortCategory = SortCategory.ACCOUNT;
-                            break;
-                        case R.id.menu_sort_alphabetically_name_reverse:
-                            sortCategory = SortCategory.ACCOUNT_REVERSED;
-                            break;
-                        case R.id.menu_sort_usage_count:
-                            sortCategory = SortCategory.USAGE_COUNT;
-                            break;
-                        case R.id.menu_sort_custom:
-                        default:
-                            sortCategory = SortCategory.CUSTOM;
-                            break;
-                    }
-
-                    _entryListView.setSortCategory(sortCategory, true);
-                    _prefs.setCurrentSortCategory(sortCategory);
+                SortCategory sortCategory;
+                int subItemId = item.getItemId();
+                if (subItemId == R.id.menu_sort_alphabetically) {
+                    sortCategory = SortCategory.ISSUER;
+                } else if (subItemId == R.id.menu_sort_alphabetically_reverse) {
+                    sortCategory = SortCategory.ISSUER_REVERSED;
+                } else if (subItemId == R.id.menu_sort_alphabetically_name) {
+                    sortCategory = SortCategory.ACCOUNT;
+                } else if (subItemId == R.id.menu_sort_alphabetically_name_reverse) {
+                    sortCategory = SortCategory.ACCOUNT_REVERSED;
+                } else if (subItemId == R.id.menu_sort_usage_count) {
+                    sortCategory = SortCategory.USAGE_COUNT;
+                } else {
+                    sortCategory = SortCategory.CUSTOM;
                 }
-                return super.onOptionsItemSelected(item);
+
+                _entryListView.setSortCategory(sortCategory, true);
+                _prefs.setCurrentSortCategory(sortCategory);
+            }
+
+            return super.onOptionsItemSelected(item);
         }
+
+        return true;
     }
 
     private void collapseSearchView() {
@@ -1105,84 +1096,75 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
     }
 
     private class ActionModeCallbacks implements ActionMode.Callback {
-            @Override
-            public boolean onCreateActionMode(ActionMode mode, Menu menu) {
-                MenuInflater inflater = getMenuInflater();
-                inflater.inflate(R.menu.menu_action_mode, menu);
+        @Override
+        public boolean onCreateActionMode(ActionMode mode, Menu menu) {
+            MenuInflater inflater = getMenuInflater();
+            inflater.inflate(R.menu.menu_action_mode, menu);
+            return true;
+        }
+
+        @Override
+        public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
+            return false;
+        }
+
+        @Override
+        public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
+            if (_selectedEntries.size() == 0) {
+                mode.finish();
                 return true;
             }
 
-            @Override
-            public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
+            int itemId = item.getItemId();
+            if (itemId == R.id.action_copy) {
+                copyEntryCode(_selectedEntries.get(0));
+                mode.finish();
+            } else if (itemId == R.id.action_edit) {
+                startEditEntryActivity(CODE_EDIT_ENTRY, _selectedEntries.get(0));
+                mode.finish();
+            } else if (itemId == R.id.action_toggle_favorite) {
+                for (VaultEntry entry : _selectedEntries) {
+                    entry.setIsFavorite(!entry.isFavorite());
+                    _entryListView.replaceEntry(entry.getUUID(), entry);
+                }
+                _entryListView.refresh(true);
+
+                saveAndBackupVault();
+                mode.finish();
+            } else if (itemId == R.id.action_share_qr) {
+                Intent intent = new Intent(getBaseContext(), TransferEntriesActivity.class);
+                ArrayList<GoogleAuthInfo> authInfos = new ArrayList<>();
+                for (VaultEntry entry : _selectedEntries) {
+                    GoogleAuthInfo authInfo = new GoogleAuthInfo(entry.getInfo(), entry.getName(), entry.getIssuer());
+                    authInfos.add(authInfo);
+                }
+
+                intent.putExtra("authInfos", authInfos);
+                startActivity(intent);
+
+                mode.finish();
+            } else if (itemId == R.id.action_delete) {
+                Dialogs.showDeleteEntriesDialog(MainActivity.this, _selectedEntries, (d, which) -> {
+                    deleteEntries(_selectedEntries);
+                    _entryListView.setGroups(_vaultManager.getVault().getUsedGroups());
+                    mode.finish();
+                });
+            } else if (itemId == R.id.action_assign_icons) {
+                startAssignIconsActivity(CODE_ASSIGN_ICONS, _selectedEntries);
+                mode.finish();
+            } else {
                 return false;
             }
 
-            @Override
-            public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
-                if (_selectedEntries.size() == 0) {
-                    mode.finish();
-                    return true;
-                }
-                switch (item.getItemId()) {
-                    case R.id.action_copy:
-                        copyEntryCode(_selectedEntries.get(0));
-                        mode.finish();
-                        return true;
+            return true;
+        }
 
-                    case R.id.action_edit:
-                        startEditEntryActivity(CODE_EDIT_ENTRY, _selectedEntries.get(0));
-                        mode.finish();
-                        return true;
-
-                    case R.id.action_toggle_favorite:
-                        for (VaultEntry entry : _selectedEntries) {
-                            entry.setIsFavorite(!entry.isFavorite());
-                            _entryListView.replaceEntry(entry.getUUID(), entry);
-                        }
-                        _entryListView.refresh(true);
-
-                        saveAndBackupVault();
-                        mode.finish();
-                        return true;
-
-                    case R.id.action_share_qr:
-                        Intent intent = new Intent(getBaseContext(), TransferEntriesActivity.class);
-                        ArrayList<GoogleAuthInfo> authInfos = new ArrayList<>();
-                        for (VaultEntry entry : _selectedEntries) {
-                            GoogleAuthInfo authInfo = new GoogleAuthInfo(entry.getInfo(), entry.getName(), entry.getIssuer());
-                            authInfos.add(authInfo);
-                        }
-
-                        intent.putExtra("authInfos", authInfos);
-                        startActivity(intent);
-
-                        mode.finish();
-                        return true;
-
-                    case R.id.action_delete:
-                        Dialogs.showDeleteEntriesDialog(MainActivity.this, _selectedEntries, (d, which) -> {
-                            deleteEntries(_selectedEntries);
-                            _entryListView.setGroups(_vaultManager.getVault().getUsedGroups());
-                            mode.finish();
-                        });
-                        return true;
-
-                    case R.id.action_assign_icons:
-                        startAssignIconsActivity(CODE_ASSIGN_ICONS, _selectedEntries);
-                        mode.finish();
-                        return true;
-
-                    default:
-                        return false;
-                }
-            }
-
-            @Override
-            public void onDestroyActionMode(ActionMode mode) {
-                _entryListView.setActionModeState(false, null);
-                _actionModeBackPressHandler.setEnabled(false);
-                _selectedEntries.clear();
-                _actionMode = null;
-            }
+        @Override
+        public void onDestroyActionMode(ActionMode mode) {
+            _entryListView.setActionModeState(false, null);
+            _actionModeBackPressHandler.setEnabled(false);
+            _selectedEntries.clear();
+            _actionMode = null;
+        }
     }
 }

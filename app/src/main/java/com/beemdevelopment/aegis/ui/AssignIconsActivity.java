@@ -163,19 +163,17 @@ public class AssignIconsActivity extends AegisActivity implements AssignIconAdap
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                discardAndFinish();
-                break;
-            case R.id.action_save:
-                try {
-                    saveAndFinish();
-                } catch (IOException e) {
-                    Toast.makeText(this, R.string.saving_assign_icons_error, Toast.LENGTH_SHORT).show();
-                }
-                break;
-            default:
-                return super.onOptionsItemSelected(item);
+        int itemId = item.getItemId();
+        if (itemId == android.R.id.home) {
+            discardAndFinish();
+        } else if (itemId == R.id.action_save) {
+            try {
+                saveAndFinish();
+            } catch (IOException e) {
+                Toast.makeText(this, R.string.saving_assign_icons_error, Toast.LENGTH_SHORT).show();
+            }
+        } else {
+            return super.onOptionsItemSelected(item);
         }
 
         return true;
