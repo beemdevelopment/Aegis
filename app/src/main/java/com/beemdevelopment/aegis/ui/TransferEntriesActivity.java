@@ -154,7 +154,7 @@ public class TransferEntriesActivity extends AegisActivity {
         @ColorInt int backgroundColor = Color.WHITE;
         if (getConfiguredTheme() == Theme.LIGHT) {
             TypedValue typedValue = new TypedValue();
-            getTheme().resolveAttribute(R.attr.background, typedValue, true);
+            getTheme().resolveAttribute(androidx.appcompat.R.attr.background, typedValue, true);
             backgroundColor = typedValue.data;
         }
 

@@ -347,18 +347,15 @@ public class ImportEntriesActivity extends AegisActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                finish();
-                break;
-            case R.id.toggle_checkboxes:
-                _adapter.toggleCheckboxes();
-                break;
-            case R.id.toggle_wipe_vault:
-                item.setChecked(!item.isChecked());
-                break;
-            default:
-                return super.onOptionsItemSelected(item);
+        int itemId = item.getItemId();
+        if (itemId == android.R.id.home) {
+            finish();
+        } else if (itemId == R.id.toggle_checkboxes) {
+            _adapter.toggleCheckboxes();
+        } else if (itemId == R.id.toggle_wipe_vault) {
+            item.setChecked(!item.isChecked());
+        } else {
+            return super.onOptionsItemSelected(item);
         }
 
         return true;

@@ -448,38 +448,33 @@ public class EditEntryActivity extends AegisActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                discardAndFinish();
-                break;
-            case R.id.action_save:
-                onSave();
-                break;
-            case R.id.action_delete:
-                Dialogs.showDeleteEntriesDialog(this, Collections.singletonList(_origEntry), (dialog, which) -> {
-                    deleteAndFinish(_origEntry);
-                });
-                break;
-            case R.id.action_edit_icon:
-                startIconSelection();
-                break;
-            case R.id.action_reset_usage_count:
-                Dialogs.showSecureDialog(new AlertDialog.Builder(this)
-                        .setTitle(R.string.action_reset_usage_count)
-                        .setMessage(R.string.action_reset_usage_count_dialog)
-                        .setPositiveButton(android.R.string.yes, (dialog, which) -> resetUsageCount())
-                        .setNegativeButton(android.R.string.no, null)
-                        .create());
-                break;
-            case R.id.action_default_icon:
-                TextDrawable drawable = TextDrawableHelper.generate(_origEntry.getIssuer(), _origEntry.getName(), _iconView);
-                _iconView.setImageDrawable(drawable);
+        int itemId = item.getItemId();
+        if (itemId == android.R.id.home) {
+            discardAndFinish();
+        } else if (itemId == R.id.action_save) {
+            onSave();
+        } else if (itemId == R.id.action_delete) {
+            Dialogs.showDeleteEntriesDialog(this, Collections.singletonList(_origEntry), (dialog, which) -> {
+                deleteAndFinish(_origEntry);
+            });
+        } else if (itemId == R.id.action_edit_icon) {
+            startIconSelection();
+        } else if (itemId == R.id.action_reset_usage_count) {
+            Dialogs.showSecureDialog(new AlertDialog.Builder(this)
+                    .setTitle(R.string.action_reset_usage_count)
+                    .setMessage(R.string.action_reset_usage_count_dialog)
+                    .setPositiveButton(android.R.string.yes, (dialog, which) -> resetUsageCount())
+                    .setNegativeButton(android.R.string.no, null)
+                    .create());
+        } else if (itemId == R.id.action_default_icon) {
+            TextDrawable drawable = TextDrawableHelper.generate(_origEntry.getIssuer(), _origEntry.getName(), _iconView);
+            _iconView.setImageDrawable(drawable);
 
-                _selectedIcon = null;
-                _hasCustomIcon = false;
-                _hasChangedIcon = true;
-            default:
-                return super.onOptionsItemSelected(item);
+            _selectedIcon = null;
+            _hasCustomIcon = false;
+            _hasChangedIcon = true;
+        } else {
+            return super.onOptionsItemSelected(item);
         }
 
         return true;

@@ -626,7 +626,7 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
     private class CompactDividerDecoration extends MaterialDividerItemDecoration {
         public CompactDividerDecoration() {
             super(requireContext(), DividerItemDecoration.VERTICAL);
-            setDividerColor(ThemeHelper.getThemeColor(R.attr.divider, requireContext().getTheme()));
+            setDividerColor(ThemeHelper.getThemeColor(androidx.appcompat.R.attr.divider, requireContext().getTheme()));
             setLastItemDecorated(false);
             setDividerThickness(MetricsHelper.convertDpToPixels(requireContext(), 0.5f));
         }

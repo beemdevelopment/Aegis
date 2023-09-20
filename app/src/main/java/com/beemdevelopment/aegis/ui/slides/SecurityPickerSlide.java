@@ -74,18 +74,14 @@ public class SecurityPickerSlide extends SlideFragment {
         int buttonId = _buttonGroup.getCheckedRadioButtonId();
 
         int type;
-        switch (buttonId) {
-            case R.id.rb_none:
-                type = CRYPT_TYPE_NONE;
-                break;
-            case R.id.rb_password:
-                type = CRYPT_TYPE_PASS;
-                break;
-            case R.id.rb_biometrics:
-                type = CRYPT_TYPE_BIOMETRIC;
-                break;
-            default:
-                throw new RuntimeException(String.format("Unsupported security type: %d", buttonId));
+        if (buttonId == R.id.rb_none) {
+            type = CRYPT_TYPE_NONE;
+        } else if (buttonId == R.id.rb_password) {
+            type = CRYPT_TYPE_PASS;
+        } else if (buttonId == R.id.rb_biometrics) {
+            type = CRYPT_TYPE_BIOMETRIC;
+        } else {
+            throw new RuntimeException(String.format("Unsupported security type: %d", buttonId));
         }
 
         introState.putInt("cryptType", type);
