@@ -171,6 +171,7 @@
     <string name="set_up_biometric">Set up biometric unlock</string>
     <string name="copy">Copy</string>
     <string name="edit">Edit</string>
+    <string name="select_all">Select all</string>
     <string name="assign_icons">Assign icons</string>
     <string name="favorite" comment="Verb">Favorite</string>
     <string name="unfavorite" comment="Verb">Unfavorite</string>

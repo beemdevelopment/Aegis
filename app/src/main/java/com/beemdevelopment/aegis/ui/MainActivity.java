@@ -1149,6 +1149,10 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
                     _entryListView.setGroups(_vaultManager.getVault().getUsedGroups());
                     mode.finish();
                 });
+            } else if (itemId == R.id.action_select_all) {
+                _selectedEntries = _entryListView.selectAllEntries();
+                setFavoriteMenuItemVisiblity();
+                setIsMultipleSelected(_selectedEntries.size() > 1);
             } else if (itemId == R.id.action_assign_icons) {
                 startAssignIconsActivity(CODE_ASSIGN_ICONS, _selectedEntries);
                 mode.finish();

@@ -191,6 +191,10 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
         _adapter.setCopyBehavior(copyBehavior);
     }
 
+    public List<VaultEntry> selectAllEntries() {
+        return _adapter.selectAllEntries();
+    }
+
     public void setActionModeState(boolean enabled, VaultEntry entry) {
         _touchCallback.setSelectedEntry(entry);
         _touchCallback.setIsLongPressDragEnabled(enabled && _adapter.isDragAndDropAllowed());
