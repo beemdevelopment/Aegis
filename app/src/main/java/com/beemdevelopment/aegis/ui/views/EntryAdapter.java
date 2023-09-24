@@ -693,6 +693,23 @@ public class EntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         updateDraggableStatus();
     }
 
+    public List<VaultEntry> selectAllEntries() {
+        _selectedEntries.clear();
+
+        for (VaultEntry entry: _shownEntries) {
+            for (EntryHolder holder: _holders) {
+                if (holder.getEntry() == entry) {
+                    holder.setFocused(true);
+                }
+            }
+
+            _selectedEntries.add(entry);
+            updateDraggableStatus();
+        }
+
+        return new ArrayList<>(_selectedEntries);
+    }
+
     public void deselectAllEntries() {
         for (VaultEntry entry: _selectedEntries) {
             for (EntryHolder holder : _holders) {
