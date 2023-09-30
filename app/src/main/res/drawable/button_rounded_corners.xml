@@ -5,7 +5,7 @@
             <solid android:color="@color/auth_button"/>
             <stroke android:color="@color/auth_button" android:width="1dp" />
             <!--corners allow us to make the rounded corners button-->
-            <corners android:radius="4dp" />
+            <corners android:radius="20dp" />
         </shape>
     </item>
 </selector>
