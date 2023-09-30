@@ -35,7 +35,7 @@
         <item name="dropdownStyle">@style/Widget.Aegis.Dropdown.Light</item>
         <item name="bottomSheetDialogTheme">@style/ThemeOverLay.Aegis.BottomSheetDialog.Rounded</item>
         <item name="switchPreferenceCompatStyle">@style/AppTheme.SwitchPreference</item>
-        
+
         <item name="windowActionModeOverlay">true</item>
         <item name="android:statusBarColor">?attr/colorAppBar</item>
         <item name="android:indeterminateTint">@color/colorSecondary</item>
@@ -80,7 +80,7 @@
         <item name="dropdownStyle">@style/Widget.Aegis.Dropdown.Dark</item>
         <item name="bottomSheetDialogTheme">@style/ThemeOverLay.Aegis.BottomSheetDialog.Rounded</item>
         <item name="switchPreferenceCompatStyle">@style/AppTheme.SwitchPreference</item>
-        
+
         <item name="windowActionModeOverlay">true</item>
         <item name="android:statusBarColor">?attr/colorAppBar</item>
         <item name="android:indeterminateTint">@color/colorSecondary</item>
@@ -115,6 +115,7 @@
         <item name="outlineButtonStyle">@style/Widget.Aegis.OutlinedButton.Dark</item>
         <item name="dropdownStyle">@style/Widget.Aegis.Dropdown.Dark</item>
         <item name="bottomSheetDialogTheme">@style/ThemeOverLay.Aegis.BottomSheetDialog.Rounded</item>
+        <item name="switchPreferenceCompatStyle">@style/AppTheme.SwitchPreference</item>
 
         <item name="windowActionModeOverlay">true</item>
         <item name="android:statusBarColor">@color/background_true_dark</item>
@@ -170,17 +171,22 @@
     </style>
 
     <style name="Theme.Aegis.Dialog.Light" parent="Theme.Material3.Light.Dialog.Alert">
-        <item name="android:background">@color/card_background</item>
+        <item name="android:windowBackground">@drawable/dialog_corner</item>
         <item name="colorSecondary">@color/colorSecondary</item>
         <item name="textColorAlertDialogListItem">@color/primary_text</item>
 
         <item name="buttonBarPositiveButtonStyle">@style/Widget.Aegis.DialogButton</item>
         <item name="buttonBarNegativeButtonStyle">@style/Widget.Aegis.DialogButton</item>
         <item name="buttonBarNeutralButtonStyle">@style/Widget.Aegis.DialogButton</item>
+		
+        <!--The following lines are needed because the light version of alert with rounded corners sets the
+        min width to 100%. Looks bad.-->
+        <item name="android:windowMinWidthMajor">97%</item>
+        <item name="android:windowMinWidthMinor">97%</item>
     </style>
 
     <style name="Theme.Aegis.Dialog.Dark" parent="Theme.Material3.Dark.Dialog.Alert">
-        <item name="android:background">@color/card_background_dark</item>
+        <item name="android:windowBackground">@drawable/dialog_corner_dark</item>
         <item name="colorSecondary">@color/colorSecondary</item>
         <item name="textColorAlertDialogListItem">@color/primary_text_dark</item>
 
@@ -195,7 +201,7 @@
     </style>
 
     <style name="Theme.Aegis.Dialog.TrueDark" parent="Theme.Aegis.Dialog.Dark">
-        <item name="android:background">@color/card_background_focused_true_dark</item>
+        <item name="android:windowBackground">@drawable/dialog_corner_dark</item>
     </style>
 
     <style name="ThemeOverlay.Aegis.AppBar" parent="ThemeOverlay.Material3.Dark.ActionBar">
@@ -246,12 +252,12 @@
 
     <style name="ShapeAppearanceOverlay.Aegis.BottomSheetDialog.Rounded" parent="">
         <item name="cornerFamily">rounded</item>
-        <item name="cornerSizeTopRight">10dp</item>
-        <item name="cornerSizeTopLeft">10dp</item>
+        <item name="cornerSizeTopRight">12dp</item>
+        <item name="cornerSizeTopLeft">12dp</item>
         <item name="cornerSizeBottomRight">0dp</item>
         <item name="cornerSizeBottomLeft">0dp</item>
     </style>
-    
+
     <style name="AppTheme.PreferenceThemeOverlay" parent="@style/PreferenceThemeOverlay">
         <item name="switchPreferenceCompatStyle">@style/AppTheme.SwitchPreference</item>
     </style>
