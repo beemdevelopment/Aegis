@@ -35,6 +35,7 @@
             android:key="pref_show_icons"
             android:title="@string/pref_show_icons_title"
             android:summary="@string/pref_show_icons_summary"
+            android:widgetLayout="@layout/view_preference_switch"
             app:iconSpaceReserved="false"/>
 
         <ListPreference
@@ -56,6 +57,7 @@
             android:key="pref_shared_issuer_account_name"
             android:title="@string/pref_shared_issuer_account_name_title"
             android:summary="@string/pref_shared_issuer_account_name_summary"
+            android:widgetLayout="@layout/view_preference_switch"
             app:iconSpaceReserved="false"/>
 
         <Preference
