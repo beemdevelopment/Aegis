@@ -16,12 +16,14 @@
             android:key="pref_backups"
             android:title="@string/pref_backups_title"
             android:summary="@string/pref_backups_summary"
+            android:widgetLayout="@layout/view_preference_switch"
             app:icon="@drawable/ic_cloud_upload_outline_black_24dp" />
 
         <androidx.preference.SwitchPreferenceCompat
             android:key="pref_backup_reminder"
             android:title="@string/pref_backups_reminder_title"
-            android:summary="@string/pref_backups_reminder_summary" />
+            android:summary="@string/pref_backups_reminder_summary"
+            android:widgetLayout="@layout/view_preference_switch"/>
 
         <Preference
             android:key="pref_backups_location"
@@ -46,6 +48,7 @@
             android:key="pref_android_backups"
             android:title="@string/pref_android_backups_title"
             android:summary="@string/pref_android_backups_summary"
+            android:widgetLayout="@layout/view_preference_switch"
             app:icon="@drawable/ic_android" />
         <Preference
             android:key="pref_status_backup_android"
