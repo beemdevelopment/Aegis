@@ -7,12 +7,14 @@
         android:key="pref_focus_search"
         android:title="@string/pref_focus_search"
         android:summary="@string/pref_focus_search_summary"
+        android:widgetLayout="@layout/view_preference_switch"
         app:iconSpaceReserved="false"/>
     <androidx.preference.SwitchPreferenceCompat
         android:defaultValue="false"
         android:key="pref_minimize_on_copy"
         android:title="@string/pref_minimize_on_copy_title"
         android:summary="@string/pref_minimize_on_copy_summary"
+        android:widgetLayout="@layout/view_preference_switch"
         app:iconSpaceReserved="false"/>
 
     <Preference
@@ -26,11 +28,13 @@
         android:key="pref_highlight_entry"
         android:title="@string/pref_highlight_entry_title"
         android:summary="@string/pref_highlight_entry_summary"
+        android:widgetLayout="@layout/view_preference_switch"
         app:iconSpaceReserved="false"/>
     <androidx.preference.SwitchPreferenceCompat
         android:defaultValue="false"
         android:key="pref_pause_entry"
         android:title="@string/pref_pause_entry_title"
         android:summary="@string/pref_pause_entry_summary"
+        android:widgetLayout="@layout/view_preference_switch"
         app:iconSpaceReserved="false"/>
 </PreferenceScreen>
