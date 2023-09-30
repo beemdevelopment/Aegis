@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="Theme.Aegis.Launch" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <style name="Theme.Aegis.Launch" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- colorPrimary in the root theme sets the task description color (seen in task switcher) -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
         <item name="android:statusBarColor">@android:color/transparent</item>
     </style>
 
-    <style name="Theme.Aegis.Light" parent="Theme.MaterialComponents.Light.NoActionBar">
+    <style name="Theme.Aegis.Light" parent="Theme.Material3.Light.NoActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorSecondary">@color/colorSecondary</item>
         <item name="colorAppBar">@color/colorPrimary</item>
@@ -34,7 +34,8 @@
         <item name="outlineButtonStyle">@style/Widget.Aegis.OutlinedButton.Light</item>
         <item name="dropdownStyle">@style/Widget.Aegis.Dropdown.Light</item>
         <item name="bottomSheetDialogTheme">@style/ThemeOverLay.Aegis.BottomSheetDialog.Rounded</item>
-
+        <item name="switchPreferenceCompatStyle">@style/AppTheme.SwitchPreference</item>
+        
         <item name="windowActionModeOverlay">true</item>
         <item name="android:statusBarColor">?attr/colorAppBar</item>
         <item name="android:indeterminateTint">@color/colorSecondary</item>
@@ -51,7 +52,7 @@
         <item name="android:windowFullscreen">true</item>
     </style>
 
-    <style name="Theme.Aegis.Dark" parent="Theme.MaterialComponents.NoActionBar">
+    <style name="Theme.Aegis.Dark" parent="Theme.Material3.Dark.NoActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorSecondary">@color/colorSecondary</item>
         <item name="colorAppBar">@color/colorPrimary</item>
@@ -70,7 +71,7 @@
         <item name="dot_color">@color/indicator_dot_dark</item>
         <item name="dot_color_selected">@color/indicator_dot_selected_dark</item>
 
-        <item name="popupTheme">@style/ThemeOverlay.MaterialComponents.Dark</item>
+        <item name="popupTheme">@style/ThemeOverlay.Material3.Dark</item>
         <item name="actionModeStyle">@style/Theme.Aegis.ActionMode.Dark</item>
         <item name="alertDialogTheme">@style/Theme.Aegis.Dialog.Dark</item>
         <item name="preferenceTheme">@style/Theme.Aegis.Preference.Dark</item>
@@ -78,7 +79,8 @@
         <item name="outlineButtonStyle">@style/Widget.Aegis.OutlinedButton.Dark</item>
         <item name="dropdownStyle">@style/Widget.Aegis.Dropdown.Dark</item>
         <item name="bottomSheetDialogTheme">@style/ThemeOverLay.Aegis.BottomSheetDialog.Rounded</item>
-
+        <item name="switchPreferenceCompatStyle">@style/AppTheme.SwitchPreference</item>
+        
         <item name="windowActionModeOverlay">true</item>
         <item name="android:statusBarColor">?attr/colorAppBar</item>
         <item name="android:indeterminateTint">@color/colorSecondary</item>
@@ -105,7 +107,7 @@
         <item name="cardBackgroundFocused">@color/card_background_focused_true_dark</item>
         <item name="divider">@color/divider_true_dark</item>
 
-        <item name="popupTheme">@style/ThemeOverlay.MaterialComponents.Dark</item>
+        <item name="popupTheme">@style/ThemeOverlay.Material3.Dark</item>
         <item name="actionModeStyle">@style/Theme.Aegis.ActionMode.TrueDark</item>
         <item name="alertDialogTheme">@style/Theme.Aegis.Dialog.TrueDark</item>
         <item name="preferenceTheme">@style/Theme.Aegis.Preference.Dark</item>
@@ -167,7 +169,7 @@
         <item name="android:textColor">@android:color/white</item>
     </style>
 
-    <style name="Theme.Aegis.Dialog.Light" parent="Theme.MaterialComponents.Light.Dialog.Alert">
+    <style name="Theme.Aegis.Dialog.Light" parent="Theme.Material3.Light.Dialog.Alert">
         <item name="android:background">@color/card_background</item>
         <item name="colorSecondary">@color/colorSecondary</item>
         <item name="textColorAlertDialogListItem">@color/primary_text</item>
@@ -177,7 +179,7 @@
         <item name="buttonBarNeutralButtonStyle">@style/Widget.Aegis.DialogButton</item>
     </style>
 
-    <style name="Theme.Aegis.Dialog.Dark" parent="Theme.MaterialComponents.Dialog.Alert">
+    <style name="Theme.Aegis.Dialog.Dark" parent="Theme.Material3.Dark.Dialog.Alert">
         <item name="android:background">@color/card_background_dark</item>
         <item name="colorSecondary">@color/colorSecondary</item>
         <item name="textColorAlertDialogListItem">@color/primary_text_dark</item>
@@ -196,44 +198,44 @@
         <item name="android:background">@color/card_background_focused_true_dark</item>
     </style>
 
-    <style name="ThemeOverlay.Aegis.AppBar" parent="ThemeOverlay.MaterialComponents.Dark.ActionBar">
+    <style name="ThemeOverlay.Aegis.AppBar" parent="ThemeOverlay.Material3.Dark.ActionBar">
         <item name="android:tint">@color/icon_primary_inverted</item>
     </style>
 
-    <style name="ThemeOverlay.Aegis.Popup.Light" parent="ThemeOverlay.MaterialComponents.Light">
+    <style name="ThemeOverlay.Aegis.Popup.Light" parent="ThemeOverlay.Material3.Light">
         <item name="android:tint">@color/icon_primary</item>
     </style>
 
-    <style name="ThemeOverLay.Aegis.BottomSheetDialog.Rounded" parent="@style/ThemeOverlay.MaterialComponents.BottomSheetDialog">
+    <style name="ThemeOverLay.Aegis.BottomSheetDialog.Rounded" parent="@style/ThemeOverlay.Material3.BottomSheetDialog">
         <item name="android:windowIsFloating">false</item>
         <item name="bottomSheetStyle">@style/Widget.Aegis.BottomSheet.Rounded</item>
     </style>
 
-    <style name="Widget.Aegis.Dropdown.Light" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"/>
-    <style name="Widget.Aegis.Dropdown.Dark" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu">
+    <style name="Widget.Aegis.Dropdown.Light" parent="Widget.Material3.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"/>
+    <style name="Widget.Aegis.Dropdown.Dark" parent="Widget.Material3.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu">
         <item name="boxStrokeColor">@color/text_input_box_stroke_dark</item>
         <item name="hintTextColor">@color/text_input_box_stroke_dark</item>
         <item name="endIconTint">@color/text_input_box_icon_dark</item>
     </style>
 
-    <style name="Widget.Aegis.TextInput.Light" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"/>
-    <style name="Widget.Aegis.TextInput.Dark" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+    <style name="Widget.Aegis.TextInput.Light" parent="Widget.Material3.TextInputLayout.OutlinedBox.Dense"/>
+    <style name="Widget.Aegis.TextInput.Dark" parent="Widget.Material3.TextInputLayout.OutlinedBox.Dense">
         <item name="boxStrokeColor">@color/text_input_box_stroke_dark</item>
         <item name="hintTextColor">@color/text_input_box_stroke_dark</item>
     </style>
 
-    <style name="Widget.Aegis.DialogButton" parent="Widget.MaterialComponents.Button.TextButton.Dialog">
+    <style name="Widget.Aegis.DialogButton" parent="Widget.Material3.Button.TextButton.Dialog">
         <item name="rippleColor">@color/colorSecondary</item>
         <item name="android:textColor">@color/dialog_button_color</item>
     </style>
 
-    <style name="Widget.Aegis.OutlinedButton.Light" parent="Widget.MaterialComponents.Button.OutlinedButton"/>
-    <style name="Widget.Aegis.OutlinedButton.Dark" parent="Widget.MaterialComponents.Button.OutlinedButton">
+    <style name="Widget.Aegis.OutlinedButton.Light" parent="Widget.Material3.Button.OutlinedButton"/>
+    <style name="Widget.Aegis.OutlinedButton.Dark" parent="Widget.Material3.Button.OutlinedButton">
         <item name="android:textColor">@color/secondary_text</item>
         <item name="rippleColor">@color/secondary_text</item>
     </style>
 
-    <style name="Widget.Aegis.BottomSheet.Rounded" parent="Widget.MaterialComponents.BottomSheet">
+    <style name="Widget.Aegis.BottomSheet.Rounded" parent="Widget.Material3.BottomSheet">
         <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay.Aegis.BottomSheetDialog.Rounded</item>
         <item name="android:background">@android:color/transparent</item>
     </style>
@@ -248,5 +250,13 @@
         <item name="cornerSizeTopLeft">10dp</item>
         <item name="cornerSizeBottomRight">0dp</item>
         <item name="cornerSizeBottomLeft">0dp</item>
+    </style>
+    
+    <style name="AppTheme.PreferenceThemeOverlay" parent="@style/PreferenceThemeOverlay">
+        <item name="switchPreferenceCompatStyle">@style/AppTheme.SwitchPreference</item>
+    </style>
+
+    <style name="AppTheme.SwitchPreference" parent="@style/Preference.SwitchPreferenceCompat.Material">
+        <item name="widgetLayout">@layout/view_preference_switch</item>
     </style>
 </resources>
