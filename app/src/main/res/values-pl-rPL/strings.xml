@@ -16,6 +16,7 @@
     <string name="suggested">Polecane</string>
     <string name="usage_count">Licznik użycia</string>
     <string name="warning">Ostrzeżenie</string>
+    
     <string name="pref_cat_appearance_app">Aplikacja</string>
     <string name="pref_cat_appearance_entries">Wpisy</string>
     <string name="pref_cat_backups_android">Android</string>
@@ -104,6 +105,7 @@
     <string name="pref_biometrics_summary">Zezwalaj na odblokowywanie aplikacji za pomocą autoryzacji biometrycznej</string>
     <string name="pref_set_password_title">Zmień hasło</string>
     <string name="pref_set_password_summary">Ustaw nowe hasło do odblokowywania sejfu</string>
+  
     <string name="export_encrypted">Zaszyfruj sejf</string>
     <string name="export_help">Ta czynność wyeksportuje sejf z wewnętrznej przestrzeni dyskowej aplikacji Aegis. Wybierz format eksportowanego pliku:</string>
     <string name="export_warning_unencrypted">Wyeksportujesz sejf aplikacji Aegis w niezaszyfrowanym formacie. <b>Ta opcja nie jest zalecana</b>.</string>
@@ -123,6 +125,7 @@
     </plurals>
     <string name="export_no_groups_selected">Nie wybrano grup do eksportu</string>
     <string name="export_html_title" context="The title of an HTML export document">Eksport Aegis Authenticator</string>
+   
     <string name="choose_authentication_method">Bezpieczeństwo</string>
     <string name="authentication_method_explanation">Aegis to aplikacja uwierzytelniająca zorientowana na bezpieczeństwo. Tokeny są przechowywane w sejfie, który może zostać opcjonalnie zaszyfrowany przy użyciu wybranego przez Ciebie hasła. Jeśli atakujący uzyska zaszyfrowany plik sejfu, nie będzie mógł uzyskać dostępu do zawartości bez znajomości hasła.\n\nZaznaczyliśmy opcję, która najlepiej powinna pasować do Twojego urządzenia.</string>
     <string name="authentication_method_none">Brak</string>
@@ -134,6 +137,7 @@
     <string name="authentication_method_biometrics_description">Oprócz hasła, do odblokowania sejfu możesz użyć danych biometrycznej przechowywanych na tym urządzeniu, takich jak odcisk palca lub twarz.</string>
     <string name="authentication">Odblokuj sejf</string>
     <string name="authentication_multiline" comment="The newline in the middle is used for aesthetic purposes">Odblokuj\nsejf</string>
+    
     <string name="auth_use_biometrics">Lub kliknij tutaj, aby użyć <font fgcolor="#FF0D86C1">danych biometrycznych</font></string>
     <string name="set_password">Wpisz hasło</string>
     <string name="set_group">Wpisz nazwę grupy</string>
@@ -152,6 +156,7 @@
     <string name="enter_password_2fas_message">Wygląda na to, że ta kopia zapasowa 2FA jest zaszyfrowana. Wprowadź hasło poniżej.</string>
     <string name="enter_password_authy_message">Wygląda na to, że Twoje tokeny Authy są zaszyfrowane. Zamknij aplikację Aegis, otwórz Authy i odblokuj tokeny za pomocą hasła. Możesz również wpisać poniżej te hasło i aplikacja Aegis spróbuje odszyfrować tokeny Authy.</string>
     <string name="enter_password_aegis_title">Wprowadź hasło importu</string>
+    
     <string name="period_hint">Okres (w sekundach)</string>
     <string name="algorithm_hint">Funkcja skrótu kryptograficznego</string>
     <string name="type">Typ</string>
@@ -170,6 +175,7 @@
     <string name="set_up_biometric">Ustaw autoryzację biometryczną</string>
     <string name="copy">Kopiuj</string>
     <string name="edit">Edytuj</string>
+    <string name="select_all">Zaznacz wszystkie</string>
     <string name="favorite" comment="Verb">Dodaj do ulubionych</string>
     <string name="unfavorite" comment="Verb">Usuń z ulubionych</string>
     <string name="error_all_caps">BŁĄD</string>
@@ -208,6 +214,7 @@
     <string name="discard_changes">Czy chcesz odrzucić zmiany?</string>
     <string name="discard_changes_description">Zmiany nie zostały zapisane</string>
     <string name="saving_profile_error">Wystąpił błąd podczas zapisywania profilu</string>
+    <string name="saving_assign_icons_error">Wystapił błąd podczas przypisywania ikon</string>
     <string name="welcome">Witaj</string>
     <string name="app_description">Aegis jest darmową, bezpieczną i otwartoźródłową aplikacją uwierzytelniającą</string>
     <string name="setup_completed">Konfiguracja została zakończona</string>
@@ -292,6 +299,8 @@
     <string name="unlocking_vault">Odblokowywanie sejfu</string>
     <string name="remove_group">Usuń grupę</string>
     <string name="remove_group_description">Czy na pewno chcesz usunąć tę grupę? Wpisy z tej grupy zostaną automatycznie przeniesione do kategorii \'Brak grupy\'.</string>
+    <string name="remove_unused_groups">Usuń nieużywane grupy</string>
+    <string name="remove_unused_groups_description">Czy na pewno chcesz usunąć wszystkie grupy, które nie są przypisane do wpisu?</string>
     <string name="remove_icon_pack">Usuń pakiet ikon</string>
     <string name="remove_icon_pack_description">Czy na pewno chcesz usunąć ten pakiet ikon? Wpisy, które używają ikon z tego pakietu nie zostaną zmienione.</string>
     <string name="details">Szczegóły</string>
@@ -331,8 +340,8 @@
     <string name="dark_theme_title">Motyw ciemny</string>
     <string name="light_theme_title">Motyw jasny</string>
     <string name="amoled_theme_title">Motyw AMOLED</string>
-    <string name="system_theme_title">Ustawiony przy funkcję oszczędzania energii</string>
-    <string name="system_amoled_theme_title">Ustawiony przy funkcję oszczędzania energii (AMOLED)</string>
+    <string name="system_theme_title">Ustawiony przez system</string>
+    <string name="system_amoled_theme_title">Ustawiony przez system (AMOLED)</string>
     <string name="normal_viewmode_title">Normalny</string>
     <string name="compact_mode_title">Kompaktowy</string>
     <string name="small_mode_title">Mały</string>
@@ -340,7 +349,7 @@
     <string name="unknown_issuer">Nieznany wydawca</string>
     <string name="unknown_account_name">Nieznana nazwa konta</string>
     <plurals name="import_error_dialog">
-        <item quantity="one">Aplikacja Aegis nie może zaimportować %d tokenu. Te tokeny zostaną pominięte. Kliknij \'Szczegóły\', aby zobaczyć więcej informacji o błędach.</item>
+        <item quantity="one">Aplikacja Aegis nie może zaimportować %d tokenu. Ten token zostanie pominięty. Kliknij \'Szczegóły\', aby zobaczyć więcej informacji o błędach.</item>
         <item quantity="few">Aplikacja Aegis nie może zaimportować %d tokenów. Te tokeny zostaną pominięte. Kliknij \'Szczegóły\', aby zobaczyć więcej informacji o błędach.</item>
         <item quantity="many">Aplikacja Aegis nie może zaimportować %d tokenów. Te tokeny zostaną pominięte. Kliknij \'Szczegóły\', aby zobaczyć więcej informacji o błędach.</item>
         <item quantity="other">Aplikacja Aegis nie może zaimportować %d tokenów. Te tokeny zostaną pominięte. Kliknij \'Szczegóły\', aby zobaczyć więcej informacji o błędach.</item>
@@ -390,12 +399,12 @@
     <string name="backup_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">Ostatnia próba wykonania kopii zapasowej sejfu z użyciem %s nie powiodła się, ponieważ wystąpił błąd. Kopia zapasowa została wykonana w: %s. Sprawdź ustawienia kopii zapasowej, aby upewnić się, że wykonywanie kopii zapasowych może się pomyślnie zakończyć.    </string>
     <string name="backup_system_builtin">Wbudowane automatyczne kopie zapasowe Aegis</string>
     <string name="backup_system_android">System kopii zapasowej w chmurze Android</string>
-    <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">        Najnowsza kopia zapasowa jest nieaktualna (%s)
+    <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'"> Najnowsza kopia zapasowa jest nieaktualna (%s)
     </string>
     <string name="backup_reminder_bar_message">Zmiany nie są zapisane w kopii zapasowej
     </string>
     <string name="backup_reminder_bar_dialog_title">Zmiany nie zostały zapisane w kopii zapasowej</string>
-    <string name="backup_reminder_bar_dialog_summary">        Zmiany w sejfie nie zostały jeszcze zapisane w kopii zapasowej. Ważne jest wykonywanie regularnych kopii zapasowych, aby zapobiec utracie dostępu do twoich kont. Rozważ włączenie automatycznych kopii zapasowych w menu ustawień.
+    <string name="backup_reminder_bar_dialog_summary"> Zmiany w sejfie nie zostały jeszcze zapisane w kopii zapasowej. Ważne jest wykonywanie regularnych kopii zapasowych, aby zapobiec utracie dostępu do twoich kont. Rozważ włączenie automatycznych kopii zapasowych w menu ustawień.
     </string>
     <string name="backup_reminder_bar_dialog_accept">Skonfiguruj tworzenie kopii zapasowych</string>
     <string name="backup_plaintext_export_warning"><b>Sejf został ostatnio wyeksportowany w jawnym tekście</b></string>
@@ -439,13 +448,17 @@
     <string name="title_activity_edit_entry">Edytuj wpis</string>
     <string name="title_activity_scan_qr">Skanuj kod QR</string>
     <string name="title_activity_import_entries">Importuj wpisy</string>
+    <string name="title_activity_assign_icons">Przypisz ikony</string>
     <string name="dialog_wipe_entries_title">Wyczyść wpisy</string>
     <string name="dialog_wipe_entries_message">Twój sejf zawiera już wpisy. Czy chcesz usunąć te wpisy przed zaimportowaniem tego pliku?\n\n<b>W ten sposób trwale stracisz dostęp do obecnych wpisów w sejfie.</b></string>
     <string name="dialog_wipe_entries_checkbox">Wyczyść zawartość sejfu</string>
+    
     <string name="panic_trigger_ignore_toast">Aegis otrzymał wyzwalacz paniki, ale ustawienie jest wyłączone, ignorowanie</string>
     <string name="pref_panic_trigger_title">Usuń sejf przy wyzwalaczu paniki</string>
     <string name="pref_panic_trigger_summary">Usuń sejf po otrzymaniu wyzwalacza paniki z Ripple</string>
-    <string name="import_vault">Import sejfu</string>
+    
+    <string name="import_vault">Import sejfu Aegis</string>
+    <string name="import_vault_hint">Chcesz zaimportować dane z innej aplikacji 2FA? Najpierw ukończ konfigurację, a następnie przejdź do ustawień.</string>
     <plurals name="import_duplicate_toast">
         <item quantity="one">Odznaczono %d potencjalny duplikat. Sprawdź listę.</item>
         <item quantity="few">Odznaczono %d potencjalne duplikaty. Sprawdź listę.</item>
@@ -472,22 +485,30 @@
 zlokalizowanego w wewnętrznym katalogu Steam.</string>
     <string name="importer_help_totp_authenticator">Dostarcz plik eksportowy TOTP Authenticator.</string>
     <string name="importer_help_winauth">Dostarcz plik eksportowy WinAuth.</string>
+    <string name="import_assign_icons_dialog_title">Przypisz ikony</string>
+    <string name="import_assign_icons_dialog_text">Czy chcesz przypisać ikony do importowanych wpisów?</string>
+    
     <string name="importer_encrypted_exception_google_authenticator">Zaszyfrowany wpis został pominięty: %s</string>
+    
     <string name="importer_help_direct">Importuj wpisy bezpośrednio z %s. Wymaga to zainstalowania aplikacji na tym urządzeniu i dostępu roota dla Aegis.</string>
     <string name="groups">Grupy</string>
     <string name="pref_focus_search">Podświetl wyszukiwanie na starcie aplikacji</string>
     <string name="pref_focus_search_summary">Przejdź do wyszukiwania natychmiast po otwarciu aplikacji.</string>
+    
     <string name="pref_grouping_halves">Połówki</string>
     <string name="pref_grouping_none">Brak grupowania</string>
     <string name="pref_grouping_size_two">Grupy z 2 elementami</string>
     <string name="pref_grouping_size_three">Grupy z 3 elementami</string>
     <string name="pref_grouping_size_four">Grupy z 4 elementami</string>
+    
     <string name="pref_copy_behavior_never">Nigdy</string>
     <string name="pref_copy_behavior_single_tap">Pojedyncze dotknięcie</string>
     <string name="pref_copy_behavior_double_tap">Podwójne dotknięcie</string>
+    
     <string name="pref_account_name_position_hidden">Ukryta</string>
     <string name="pref_account_name_position_end">Obok wydawcy</string>
     <string name="pref_account_name_position_below">Pod wydawcą</string>
+   
     <plurals name="time_elapsed_seconds">
         <item quantity="one">%d sekundę temu</item>
         <item quantity="few">%d sekundy temu</item>
