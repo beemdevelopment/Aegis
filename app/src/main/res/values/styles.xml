@@ -167,7 +167,7 @@
         <item name="android:textColor">@android:color/white</item>
     </style>
 
-    <style name="Theme.Aegis.Dialog.Light" parent="Theme.MaterialC3.Light.Dialog.Alert">
+    <style name="Theme.Aegis.Dialog.Light" parent="Theme.Material3.Light.Dialog.Alert">
         <item name="android:background">@color/card_background</item>
         <item name="colorSecondary">@color/colorSecondary</item>
         <item name="textColorAlertDialogListItem">@color/primary_text</item>
