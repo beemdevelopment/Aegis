@@ -51,7 +51,7 @@
         <item name="android:windowFullscreen">true</item>
     </style>
 
-    <style name="Theme.Aegis.Dark" parent="Theme.Material3.NoActionBar">
+    <style name="Theme.Aegis.Dark" parent="Theme.Material3.DynamicColors.DayNight.NoActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorSecondary">@color/colorSecondary</item>
         <item name="colorAppBar">@color/colorPrimary</item>
@@ -167,7 +167,7 @@
         <item name="android:textColor">@android:color/white</item>
     </style>
 
-    <style name="Theme.Aegis.Dialog.Light" parent="Theme.Material3.Light.Dialog.Alert">
+    <style name="Theme.Aegis.Dialog.Light" parent="Theme.MaterialComponents.Light.Dialog.Alert">
         <item name="android:background">@color/card_background</item>
         <item name="colorSecondary">@color/colorSecondary</item>
         <item name="textColorAlertDialogListItem">@color/primary_text</item>
@@ -177,7 +177,7 @@
         <item name="buttonBarNeutralButtonStyle">@style/Widget.Aegis.DialogButton</item>
     </style>
 
-    <style name="Theme.Aegis.Dialog.Dark" parent="Theme.Material3.Dialog.Alert">
+    <style name="Theme.Aegis.Dialog.Dark" parent="Theme.MaterialComponents.Dialog.Alert">
         <item name="android:background">@color/card_background_dark</item>
         <item name="colorSecondary">@color/colorSecondary</item>
         <item name="textColorAlertDialogListItem">@color/primary_text_dark</item>
