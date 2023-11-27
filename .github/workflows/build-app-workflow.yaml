@@ -22,7 +22,7 @@ jobs:
   test:
     runs-on: macos-latest
     # This is probably pretty expensive for GitHub, so restrict the repositories that this job runs on
-    if: github.repository == 'beemdevelopment/Aegis' || github.repository == 'alexbakker/Aegis'
+    if: github.repository == 'user0-tb/Aegis' || github.repository == 'alexbakker/Aegis'
     steps:
       - name: Checkout
         uses: actions/checkout@v3
