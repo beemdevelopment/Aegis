@@ -5,7 +5,7 @@ import android.content.Context;
 import com.beemdevelopment.aegis.R;
 
 public class ChangelogDialog extends SimpleWebViewDialog {
-    private ChangelogDialog() {
+    public ChangelogDialog() {
         super(R.string.changelog);
     }
 

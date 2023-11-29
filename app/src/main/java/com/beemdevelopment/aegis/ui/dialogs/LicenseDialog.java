@@ -5,7 +5,7 @@ import android.content.Context;
 import com.beemdevelopment.aegis.R;
 
 public class LicenseDialog extends SimpleWebViewDialog {
-    private LicenseDialog() {
+    public LicenseDialog() {
         super(R.string.license);
     }
 
