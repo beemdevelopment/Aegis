@@ -11,6 +11,7 @@ import androidx.annotation.Nullable;
 
 import com.beemdevelopment.aegis.util.JsonUtils;
 import com.beemdevelopment.aegis.util.TimeUtils;
+import com.beemdevelopment.aegis.vault.VaultBackupPermissionException;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -507,14 +508,16 @@ public class Preferences {
         private final Date _time;
         private boolean _isBuiltIn;
         private final String _error;
+        private final boolean _isPermissionError;
 
         public BackupResult(@Nullable Exception e) {
-            this(new Date(), e == null ? null : e.toString());
+            this(new Date(), e == null ? null : e.toString(), e instanceof VaultBackupPermissionException);
         }
 
-        private BackupResult(Date time, @Nullable String error) {
+        private BackupResult(Date time, @Nullable String error, boolean isPermissionError) {
             _time = time;
             _error = error;
+            _isPermissionError = isPermissionError;
         }
 
         @Nullable
@@ -542,12 +545,17 @@ public class Preferences {
             _isBuiltIn = isBuiltIn;
         }
 
+        public boolean isPermissionError() {
+            return _isPermissionError;
+        }
+
         public String toJson() {
             JSONObject obj = new JSONObject();
 
             try {
                 obj.put("time", _time.getTime());
                 obj.put("error", _error == null ? JSONObject.NULL : _error);
+                obj.put("isPermissionError", _isPermissionError);
             } catch (JSONException e) {
                 throw new RuntimeException(e);
             }
@@ -559,7 +567,8 @@ public class Preferences {
             JSONObject obj = new JSONObject(json);
             long time = obj.getLong("time");
             String error = JsonUtils.optString(obj, "error");
-            return new BackupResult(new Date(time), error);
+            boolean isPermissionError = obj.optBoolean("isPermissionError");
+            return new BackupResult(new Date(time), error, isPermissionError);
         }
     }
 
