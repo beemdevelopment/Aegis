@@ -53,14 +53,15 @@ public class VaultBackupManager {
             try {
                 createBackup(tempFile, dirUri, versionsToKeep);
                 _prefs.setBuiltInBackupResult(new Preferences.BackupResult(null));
-            } catch (VaultRepositoryException e) {
+            } catch (VaultRepositoryException | VaultBackupPermissionException e) {
                 e.printStackTrace();
                 _prefs.setBuiltInBackupResult(new Preferences.BackupResult(e));
             }
         });
     }
 
-    private void createBackup(File tempFile, Uri dirUri, int versionsToKeep) throws VaultRepositoryException {
+    private void createBackup(File tempFile, Uri dirUri, int versionsToKeep)
+            throws VaultRepositoryException, VaultBackupPermissionException {
         FileInfo fileInfo = new FileInfo(FILENAME_PREFIX);
         DocumentFile dir = DocumentFile.fromTreeUri(_context, dirUri);
 
@@ -68,7 +69,7 @@ public class VaultBackupManager {
             Log.i(TAG, String.format("Creating backup at %s: %s", Uri.decode(dir.getUri().toString()), fileInfo.toString()));
 
             if (!hasPermissionsAt(dirUri)) {
-                throw new VaultRepositoryException("No persisted URI permissions");
+                throw new VaultBackupPermissionException("No persisted URI permissions");
             }
 
             // If we create a file with a name that already exists, SAF will append a number
@@ -92,7 +93,7 @@ public class VaultBackupManager {
             } catch (IOException e) {
                 throw new VaultRepositoryException(e);
             }
-        } catch (VaultRepositoryException e) {
+        } catch (VaultRepositoryException | VaultBackupPermissionException e) {
             Log.e(TAG, String.format("Unable to create backup: %s", e.toString()));
             throw e;
         } finally {

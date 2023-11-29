@@ -390,6 +390,11 @@
         comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">
         A recent vault backup attempt using %s failed because an error occurred. The backup was attempted %s. Please check your backup settings to make sure backups can complete successfully.
     </string>
+    <string
+        name="backup_permission_error_dialog_details"
+        comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">
+        A recent vault backup attempt using %s failed because Aegis did not have permission to write to the backup destination. The backup was attempted %s. This error can occur if you moved/renamed the backup destination or if you recently restored Aegis from a backup. Please reconfigure the backup destination.
+    </string>
     <string name="backup_system_builtin">Aegis\' built-in automatic backups</string>
     <string name="backup_system_android">Android\'s cloud backup system</string>
     <string

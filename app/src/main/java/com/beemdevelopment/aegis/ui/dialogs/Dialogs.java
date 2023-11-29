@@ -407,7 +407,8 @@ public class Dialogs {
 
     public static void showBackupErrorDialog(Context context, Preferences.BackupResult backupRes, DialogInterface.OnClickListener listener) {
         String system = context.getString(backupRes.isBuiltIn() ? R.string.backup_system_builtin : R.string.backup_system_android);
-        String message = context.getString(R.string.backup_error_dialog_details, system, backupRes.getElapsedSince(context));
+        @StringRes int details = backupRes.isPermissionError() ? R.string.backup_permission_error_dialog_details : R.string.backup_error_dialog_details;
+        String message = context.getString(details, system, backupRes.getElapsedSince(context));
         Dialogs.showErrorDialog(context, message, backupRes.getError(), listener);
     }
 
