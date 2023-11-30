@@ -264,6 +264,16 @@ public class DatabaseImporterTest {
     }
 
     @Test
+    public void testImportSteamOld() throws IOException, DatabaseImporterException, OtpInfoException {
+        List<VaultEntry> entries = importPlain(SteamImporter.class, "steam_old.json");
+        for (VaultEntry entry : entries) {
+            VaultEntry entryVector = getEntryVectorBySecret(entry.getInfo().getSecret());
+            entryVector.setIssuer("Steam");
+            checkImportedEntry(entryVector, entry);
+        }
+    }
+
+    @Test
     public void testImportAuthenticatorPlus() throws IOException, DatabaseImporterException, OtpInfoException {
         List<VaultEntry> entries = importEncrypted(AuthenticatorPlusImporter.class, "authenticator_plus.zip", encryptedState -> {
             final char[] password = "testtesttest".toCharArray();
