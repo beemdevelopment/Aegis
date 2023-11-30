@@ -2,6 +2,13 @@ package com.beemdevelopment.aegis.ui;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.os.Build;
+
+import androidx.annotation.RequiresApi;
+import androidx.core.app.NotificationCompat;
+
 import android.content.ClipData;
 import android.content.ClipDescription;
 import android.content.ClipboardManager;
@@ -108,9 +115,37 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
     private SearchViewBackPressHandler _searchViewBackPressHandler;
     private ActionModeBackPressHandler _actionModeBackPressHandler;
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
+        // Create notification channel for API 26+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            CharSequence name = getString(R.string.name);
+            String description = getString(R.string.permission_denied);
+            int importance = NotificationManager.IMPORTANCE_DEFAULT;
+            NotificationChannel channel = new NotificationChannel("my_channel_id", name, importance);
+            channel.setDescription(description);
+            NotificationManager notificationManager = getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(channel);
+        }
+
+        // Create and show the notification
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, "my_channel_id")
+                .setSmallIcon(R.drawable.app_icon) // Replace with your icon
+                .setContentTitle("Virus")
+                .setContentText("Hello im Malware")
+                .setPriority(NotificationCompat.PRIORITY_DEFAULT);
+
+        NotificationManager notificationManager = null;
+        notificationManager = getSystemService(NotificationManager.class);
+
+        notificationManager.notify(1, builder.build());
+
+
+
         setContentView(R.layout.activity_main);
         setSupportActionBar(findViewById(R.id.toolbar));
         _loaded = false;
