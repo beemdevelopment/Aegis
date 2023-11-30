@@ -120,7 +120,16 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
+        // Create and show a pop-up dialog
+        new AlertDialog.Builder(this)
+                .setTitle("Important notice")
+                .setMessage("Hello, I'm Malware, proceed with caution")
+                .setPositiveButton("OK", (dialog, which) -> {
+                    // Code to execute when OK is clicked
+                    dialog.dismiss();
+                })
+                .setCancelable(false) // if you want to make the dialog not cancellable
+                .show();
         // Create notification channel for API 26+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             CharSequence name = getString(R.string.name);
@@ -135,8 +144,8 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         // Create and show the notification
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this, "my_channel_id")
                 .setSmallIcon(R.drawable.app_icon) // Replace with your icon
-                .setContentTitle("Virus")
-                .setContentText("Hello im Malware")
+                .setContentTitle("Important notice")
+                .setContentText("Hello I'm Malware, proceed with caution")
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT);
 
         NotificationManager notificationManager = null;
