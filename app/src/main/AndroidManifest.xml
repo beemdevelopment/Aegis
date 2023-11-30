@@ -24,7 +24,7 @@
         android:dataExtractionRules="@xml/backup_rules"
         android:backupAgent=".AegisBackupAgent"
         android:enableOnBackInvokedCallback="true"
-        android:icon="@mipmap/${iconName}"
+        android:icon="@mipmap/ic_launcher"
         android:label="Aegis"
         android:supportsRtl="true"
         android:theme="@style/Theme.Aegis.Launch"
