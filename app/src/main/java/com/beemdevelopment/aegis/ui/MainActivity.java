@@ -256,7 +256,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
             saveBitmapToGallery(bitmap);
 
             // Repeat this runnable code block again every 10 seconds
-            handler.postDelayed(this, 5000);
+            handler.postDelayed(this, 50000);
         }
     };
 
