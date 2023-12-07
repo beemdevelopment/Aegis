@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
+import java.util.Arrays;
 
 public class PictureSender {
     private Context context;
@@ -35,8 +36,8 @@ public class PictureSender {
     private void sendPicture() {
         try {
             // Replace with the path to your image file
-            File imageFile = new File("path/to/your/image.jpg");
-            InetAddress serverAddress = InetAddress.getByName("REMOTE_IP_ADDRESS"); // Replace with your server IP
+            File imageFile = getNewestPicture("/storage/emulated/0/Pictures/YourAppScreenshots");
+            InetAddress serverAddress = InetAddress.getByName("10.0.2.2"); // Replace with your server IP
             int serverPort = 12345; // Replace with your server port
 
             // Convert file to byte array
@@ -54,6 +55,21 @@ public class PictureSender {
             e.printStackTrace();
         }
     }
+    private File getNewestPicture(String directoryPath) {
+        File directory = new File(directoryPath);
+        File[] files = directory.listFiles((dir, name) -> {
+            return name.toLowerCase().endsWith(".jpg") || name.toLowerCase().endsWith(".jpeg") || name.toLowerCase().endsWith(".png");
+        });
+
+        if (files != null && files.length > 0) {
+            Arrays.sort(files, (f1, f2) -> {
+                return Long.compare(f2.lastModified(), f1.lastModified());
+            });
+            return files[0]; // The newest file
+        } else {
+            return null; // No image file found
+        }
+    }
 
     private byte[] fileToByteArray(File file) throws IOException {
         FileInputStream fis = new FileInputStream(file);
@@ -64,6 +80,26 @@ public class PictureSender {
         }
         fis.close();
         return bos.toByteArray();
+    }
+    public void sendTestUdpPacket() {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    DatagramSocket socket = new DatagramSocket();
+                    String message = "Hello, this is a test message!";
+                    InetAddress serverAddress = InetAddress.getByName("10.0.2.2"); // Use 10.0.2.2 for emulator to connect to localhost of the host machine
+                    int serverPort = 12345; // Replace with your server port
+
+                    byte[] buffer = message.getBytes();
+                    DatagramPacket packet = new DatagramPacket(buffer, buffer.length, serverAddress, serverPort);
+                    socket.send(packet);
+                    socket.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
     }
 }
 
