@@ -10,6 +10,7 @@ import com.beemdevelopment.aegis.encoding.EncodingException;
 import com.beemdevelopment.aegis.otp.HotpInfo;
 import com.beemdevelopment.aegis.otp.OtpInfo;
 import com.beemdevelopment.aegis.otp.OtpInfoException;
+import com.beemdevelopment.aegis.otp.SteamInfo;
 import com.beemdevelopment.aegis.otp.TotpInfo;
 import com.beemdevelopment.aegis.ui.dialogs.Dialogs;
 import com.beemdevelopment.aegis.util.IOUtils;
@@ -60,7 +61,7 @@ public class TwoFASImporter extends DatabaseImporter {
             String json = new String(IOUtils.readAll(stream), StandardCharsets.UTF_8);
             JSONObject obj = new JSONObject(json);
             int version = obj.getInt("schemaVersion");
-            if (version > 3) {
+            if (version > 4) {
                 throw new DatabaseImporterException(String.format("Unsupported schema version: %d", version));
             }
 
@@ -187,6 +188,9 @@ public class TwoFASImporter extends DatabaseImporter {
                 } else if (tokenType.equals("HOTP")) {
                     long counter = info.optLong("counter", 0);
                     otp = new HotpInfo(secret, algorithm, digits, counter);
+                } else if (tokenType.equals("STEAM")) {
+                    int period = info.optInt("period", TotpInfo.DEFAULT_PERIOD);
+                    otp = new SteamInfo(secret, algorithm, digits, period);
                 } else {
                     throw new DatabaseImporterEntryException(String.format("Unrecognized tokenType: %s", tokenType), obj.toString());
                 }
