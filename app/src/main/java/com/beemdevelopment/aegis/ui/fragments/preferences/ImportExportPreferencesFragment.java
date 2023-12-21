@@ -12,6 +12,8 @@ import android.widget.CheckBox;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts.StartActivityForResult;
 import androidx.annotation.ArrayRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -66,6 +68,35 @@ public class ImportExportPreferencesFragment extends PreferencesFragment {
     private DatabaseImporter.Definition _importerDef;
     private Vault.EntryFilter _exportFilter;
 
+    private final ActivityResultLauncher<Intent> importResultLauncher =
+            registerForActivityResult(new StartActivityForResult(), activityResult -> {
+                getResult().putExtra("needsRecreate", true);
+            });
+
+    private final ActivityResultLauncher<Intent> importSelectResultLauncher =
+            registerForActivityResult(new StartActivityForResult(), activityResult -> {
+                Intent data = activityResult.getData();
+                if (data != null) {
+                    onImportSelectResult(activityResult.getResultCode(), data);
+                }
+            });
+
+    private final ActivityResultLauncher<Intent> exportResultLauncher =
+            registerForActivityResult(new StartActivityForResult(), activityResult ->
+                    onExportResult(CODE_EXPORT, activityResult.getResultCode(), activityResult.getData()));
+
+    private final ActivityResultLauncher<Intent> exportPlainResultLauncher =
+            registerForActivityResult(new StartActivityForResult(), activityResult ->
+                    onExportResult(CODE_EXPORT_PLAIN, activityResult.getResultCode(), activityResult.getData()));
+
+    private final ActivityResultLauncher<Intent> exportHtmlResultLauncher =
+            registerForActivityResult(new StartActivityForResult(), activityResult ->
+                    onExportResult(CODE_EXPORT_HTML, activityResult.getResultCode(), activityResult.getData()));
+
+    private final ActivityResultLauncher<Intent> exportGoogleUriResultLauncher =
+            registerForActivityResult(new StartActivityForResult(), activityResult ->
+                    onExportResult(CODE_EXPORT_GOOGLE_URI, activityResult.getResultCode(), activityResult.getData()));
+
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
         super.onCreatePreferences(savedInstanceState, rootKey);
@@ -82,7 +113,7 @@ public class ImportExportPreferencesFragment extends PreferencesFragment {
 
                 Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
                 intent.setType("*/*");
-                _vaultManager.startActivityForResult(this, intent, CODE_IMPORT_SELECT);
+                _vaultManager.fireIntentLauncher(this, intent, importSelectResultLauncher);
             });
             return true;
         });
@@ -114,28 +145,6 @@ public class ImportExportPreferencesFragment extends PreferencesFragment {
         outState.putSerializable("importerDef", _importerDef);
     }
 
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == CODE_IMPORT) {
-            getResult().putExtra("needsRecreate", true);
-        } else if (data != null) {
-            switch (requestCode) {
-                case CODE_IMPORT_SELECT:
-                    onImportSelectResult(resultCode, data);
-                    break;
-                case CODE_EXPORT:
-                    // intentional fallthrough
-                case CODE_EXPORT_PLAIN:
-                    // intentional fallthrough
-                case CODE_EXPORT_HTML:
-                    // intentional fallthrough
-                case CODE_EXPORT_GOOGLE_URI:
-                    onExportResult(requestCode, resultCode, data);
-                    break;
-            }
-        }
-    }
-
     private void onImportSelectResult(int resultCode, Intent data) {
         Uri uri = data.getData();
         if (resultCode != Activity.RESULT_OK || uri == null) {
@@ -157,7 +166,7 @@ public class ImportExportPreferencesFragment extends PreferencesFragment {
         Intent intent = new Intent(requireContext(), ImportEntriesActivity.class);
         intent.putExtra("importerDef", importerDef);
         intent.putExtra("file", file);
-        startActivityForResult(intent, CODE_IMPORT);
+        importResultLauncher.launch(intent);
     }
 
     private void startExport() {
@@ -260,14 +269,15 @@ public class ImportExportPreferencesFragment extends PreferencesFragment {
                 }
 
                 int pos = getStringResourceIndex(R.array.export_formats, dropdown.getText().toString());
-                int requestCode = getExportRequestCode(pos, checkBoxEncrypt.isChecked());
-                VaultBackupManager.FileInfo fileInfo = getExportFileInfo(pos, checkBoxEncrypt.isChecked());
+                boolean encrypt = checkBoxEncrypt.isChecked();
+                VaultBackupManager.FileInfo fileInfo = getExportFileInfo(pos, encrypt);
                 Intent intent = new Intent(Intent.ACTION_CREATE_DOCUMENT)
                         .addCategory(Intent.CATEGORY_OPENABLE)
-                        .setType(getExportMimeType(requestCode))
+                        .setType(getExportMimeType(getExportRequestCode(pos, encrypt)))
                         .putExtra(Intent.EXTRA_TITLE, fileInfo.toString());
 
-                _vaultManager.startActivityForResult(this, intent, requestCode);
+                ActivityResultLauncher<Intent> resultLauncher = getExportRequestLauncher(pos, encrypt);
+                _vaultManager.fireIntentLauncher(this, intent, resultLauncher);
             });
 
             btnNeutral.setOnClickListener(v -> {
@@ -286,8 +296,9 @@ public class ImportExportPreferencesFragment extends PreferencesFragment {
                 }
 
                 File file;
+                boolean encrypt = checkBoxEncrypt.isChecked();
                 try {
-                    VaultBackupManager.FileInfo fileInfo = getExportFileInfo(pos, checkBoxEncrypt.isChecked());
+                    VaultBackupManager.FileInfo fileInfo = getExportFileInfo(pos, encrypt);
                     file = File.createTempFile(fileInfo.getFilename() + "-", "." + fileInfo.getExtension(), getExportCacheDir());
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -295,7 +306,8 @@ public class ImportExportPreferencesFragment extends PreferencesFragment {
                     return;
                 }
 
-                int requestCode = getExportRequestCode(pos, checkBoxEncrypt.isChecked());
+                int requestCode = getExportRequestCode(pos, encrypt);
+                ActivityResultLauncher<Intent> resultLauncher = getExportRequestLauncher(pos, encrypt);
                 startExportVault(requestCode, cb -> {
                     try (OutputStream stream = new FileOutputStream(file)) {
                         cb.exportVault(stream);
@@ -314,7 +326,7 @@ public class ImportExportPreferencesFragment extends PreferencesFragment {
                             .setType(getExportMimeType(requestCode))
                             .putExtra(Intent.EXTRA_STREAM, uri);
                     Intent chooser = Intent.createChooser(intent, getString(R.string.pref_export_summary));
-                    _vaultManager.startActivity(this, chooser);
+                    _vaultManager.fireIntentLauncher(this, chooser, resultLauncher);
                 }, _exportFilter);
                 _exportFilter = null;
             });
@@ -389,6 +401,16 @@ public class ImportExportPreferencesFragment extends PreferencesFragment {
         }
 
         return CODE_EXPORT_GOOGLE_URI;
+    }
+
+    private ActivityResultLauncher<Intent> getExportRequestLauncher(int spinnerPos, boolean encrypt) {
+        if (spinnerPos == 0) {
+            return encrypt ? exportResultLauncher : exportPlainResultLauncher;
+        } else if (spinnerPos == 1) {
+            return exportHtmlResultLauncher;
+        }
+
+        return exportGoogleUriResultLauncher;
     }
 
     private static VaultBackupManager.FileInfo getExportFileInfo(int spinnerPos, boolean encrypt) {
@@ -483,7 +505,10 @@ public class ImportExportPreferencesFragment extends PreferencesFragment {
         }
     }
 
-    private void onExportResult(int requestCode, int resultCode, Intent data) {
+    private void onExportResult(int requestCode, int resultCode, @Nullable Intent data) {
+        if (data == null) {
+            return;
+        }
         Uri uri = data.getData();
         if (resultCode != Activity.RESULT_OK || uri == null) {
             return;

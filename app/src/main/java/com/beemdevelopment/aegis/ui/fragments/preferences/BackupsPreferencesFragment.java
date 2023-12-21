@@ -11,6 +11,8 @@ import android.text.style.ForegroundColorSpan;
 import android.text.style.StyleSpan;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts.StartActivityForResult;
 import androidx.annotation.Nullable;
 import androidx.preference.Preference;
 import androidx.preference.SwitchPreferenceCompat;
@@ -31,6 +33,15 @@ public class BackupsPreferencesFragment extends PreferencesFragment {
 
     private Preference _builtinBackupStatusPreference;
     private Preference _androidBackupStatusPreference;
+
+    private final ActivityResultLauncher<Intent> backupsResultLauncher =
+            registerForActivityResult(new StartActivityForResult(), activityResult -> {
+                Intent data = activityResult.getData();
+                int resultCode = activityResult.getResultCode();
+                if (data != null) {
+                    onSelectBackupsLocationResult(resultCode, data);
+                }
+            });
 
     @Override
     public void onResume() {
@@ -137,13 +148,6 @@ public class BackupsPreferencesFragment extends PreferencesFragment {
         }
     }
 
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (data != null && requestCode == CODE_BACKUPS) {
-            onSelectBackupsLocationResult(resultCode, data);
-        }
-    }
-
     private void onSelectBackupsLocationResult(int resultCode, Intent data) {
         Uri uri = data.getData();
         if (resultCode != Activity.RESULT_OK || uri == null) {
@@ -226,7 +230,7 @@ public class BackupsPreferencesFragment extends PreferencesFragment {
                 | Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION
                 | Intent.FLAG_GRANT_PREFIX_URI_PERMISSION);
 
-        _vaultManager.startActivityForResult(this, intent, CODE_BACKUPS);
+        _vaultManager.fireIntentLauncher(this, intent, backupsResultLauncher);
     }
 
     private void scheduleBackup() {

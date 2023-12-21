@@ -10,6 +10,8 @@ import android.view.animation.Animation;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts.StartActivityForResult;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
@@ -36,8 +38,6 @@ import dagger.hilt.android.AndroidEntryPoint;
 
 @AndroidEntryPoint
 public class IconPacksManagerFragment extends Fragment implements IconPackAdapter.Listener {
-    private static final int CODE_IMPORT = 0;
-
     @Inject
     IconPackManager _iconPackManager;
 
@@ -48,6 +48,14 @@ public class IconPacksManagerFragment extends Fragment implements IconPackAdapte
     private IconPackAdapter _adapter;
     private LinearLayout _noIconPacksView;
     private FabScrollHelper _fabScrollHelper;
+
+    private final ActivityResultLauncher<Intent> importResultLauncher =
+            registerForActivityResult(new StartActivityForResult(), activityResult -> {
+                Intent data = activityResult.getData();
+                if (activityResult.getResultCode() == Activity.RESULT_OK && data != null && data.getData() != null) {
+                    importIconPack(data.getData());
+                }
+            });
 
     public IconPacksManagerFragment() {
         super(R.layout.fragment_icon_packs);
@@ -112,15 +120,6 @@ public class IconPacksManagerFragment extends Fragment implements IconPackAdapte
                 .create());
     }
 
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (requestCode == CODE_IMPORT && resultCode == Activity.RESULT_OK && data != null && data.getData() != null) {
-            importIconPack(data.getData());
-        }
-    }
-
     private void importIconPack(Uri uri) {
         ImportIconPackTask task = new ImportIconPackTask(requireContext(), result -> {
             Exception e = result.getException();
@@ -162,7 +161,7 @@ public class IconPacksManagerFragment extends Fragment implements IconPackAdapte
     private void startImportIconPack() {
         Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
         intent.setType("*/*");
-        _vaultManager.startActivityForResult(this, intent, CODE_IMPORT);
+        _vaultManager.fireIntentLauncher(this, intent, importResultLauncher);
     }
 
     private void updateEmptyState() {

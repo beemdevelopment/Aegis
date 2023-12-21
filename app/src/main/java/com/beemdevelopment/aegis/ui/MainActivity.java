@@ -30,6 +30,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.OnBackPressedCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts.StartActivityForResult;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.view.ActionMode;
@@ -68,17 +70,6 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 public class MainActivity extends AegisActivity implements EntryListView.Listener {
-    // activity request codes
-    private static final int CODE_SCAN = 0;
-    private static final int CODE_ADD_ENTRY = 1;
-    private static final int CODE_EDIT_ENTRY = 2;
-    private static final int CODE_DO_INTRO = 3;
-    private static final int CODE_DECRYPT = 4;
-    private static final int CODE_PREFERENCES = 5;
-    private static final int CODE_SCAN_IMAGE = 6;
-    private static final int CODE_ASSIGN_ICONS = 7;
-
-
     // Permission request codes
     private static final int CODE_PERM_CAMERA = 0;
 
@@ -107,6 +98,69 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
     private LockBackPressHandler _lockBackPressHandler;
     private SearchViewBackPressHandler _searchViewBackPressHandler;
     private ActionModeBackPressHandler _actionModeBackPressHandler;
+
+    private final ActivityResultLauncher<Intent> authResultLauncher =
+            registerForActivityResult(new StartActivityForResult(), activityResult -> {
+                _isAuthenticating = false;
+                if (activityResult.getResultCode() == RESULT_OK) {
+                    onDecryptResult();
+                }
+            });
+
+    private final ActivityResultLauncher<Intent> introResultLauncher =
+            registerForActivityResult(new StartActivityForResult(), activityResult -> {
+                _isDoingIntro = false;
+                if (activityResult.getResultCode() == RESULT_OK) {
+                    onIntroResult();
+                }
+            });
+
+    private final ActivityResultLauncher<Intent> scanResultLauncher =
+            registerForActivityResult(new StartActivityForResult(), activityResult -> {
+                if (activityResult.getResultCode() != RESULT_OK || activityResult.getData() == null) {
+                    return;
+                }
+                onScanResult(activityResult.getData());
+            });
+
+    private final ActivityResultLauncher<Intent> assignIconsResultLauncher =
+            registerForActivityResult(new StartActivityForResult(), activityResult -> {
+                if (activityResult.getResultCode() != RESULT_OK || activityResult.getData() == null) {
+                    return;
+                }
+                onAssignEntriesResult(activityResult.getData());
+            });
+
+    private final ActivityResultLauncher<Intent> preferenceResultLauncher =
+            registerForActivityResult(new StartActivityForResult(), activityResult -> {
+                if (activityResult.getResultCode() != RESULT_OK || activityResult.getData() == null) {
+                    return;
+                }
+                onPreferencesResult(activityResult.getData());
+            });
+
+    private final ActivityResultLauncher<Intent> editEntryResultLauncher =
+            registerForActivityResult(new StartActivityForResult(), activityResult -> {
+                if (activityResult.getResultCode() != RESULT_OK || activityResult.getData() == null) {
+                    return;
+                }
+                onEditEntryResult(activityResult.getData());
+            });
+
+    private final ActivityResultLauncher<Intent> addEntryResultLauncher =
+            registerForActivityResult(new StartActivityForResult(), activityResult -> {
+                if (activityResult.getResultCode() != RESULT_OK || activityResult.getData() == null) {
+                    return;
+                }
+                onAddEntryResult(activityResult.getData());
+            });
+
+    private final ActivityResultLauncher<Intent> codeScanResultLauncher =
+            registerForActivityResult(new StartActivityForResult(), activityResult -> {
+                if (activityResult.getResultCode() == RESULT_OK && activityResult.getData() != null) {
+                    onScanImageResult(activityResult.getData());
+                }
+            });
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -155,7 +209,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
 
              view.findViewById(R.id.fab_enter).setOnClickListener(v1 -> {
                  dialog.dismiss();
-                 startEditEntryActivityForManual(CODE_ADD_ENTRY);
+                 startEditEntryActivityForManual();
              });
              view.findViewById(R.id.fab_scan_image).setOnClickListener(v2 -> {
                  dialog.dismiss();
@@ -199,48 +253,6 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         instance.putString("submittedSearchQuery", _submittedSearchQuery);
         instance.putBoolean("isDoingIntro", _isDoingIntro);
         instance.putBoolean("isAuthenticating", _isAuthenticating);
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == CODE_DECRYPT) {
-            _isAuthenticating = false;
-        }
-        if (requestCode == CODE_DO_INTRO) {
-            _isDoingIntro = false;
-        }
-        if (resultCode != RESULT_OK) {
-            return;
-        }
-
-        switch (requestCode) {
-            case CODE_SCAN:
-                onScanResult(data);
-                break;
-            case CODE_ADD_ENTRY:
-                onAddEntryResult(data);
-                break;
-            case CODE_EDIT_ENTRY:
-                onEditEntryResult(data);
-                break;
-            case CODE_DO_INTRO:
-                onIntroResult();
-                break;
-            case CODE_DECRYPT:
-                onDecryptResult();
-                break;
-            case CODE_PREFERENCES:
-                onPreferencesResult(data);
-                break;
-            case CODE_SCAN_IMAGE:
-                onScanImageResult(data);
-                break;
-            case CODE_ASSIGN_ICONS:
-                onAssignEntriesResult(data);
-                break;
-        }
-
-        super.onActivityResult(requestCode, resultCode, data);
     }
 
     @Override
@@ -303,27 +315,27 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         }
     }
 
-    private void startEditEntryActivityForNew(int requestCode, VaultEntry entry) {
+    private void startEditEntryActivityForNew(VaultEntry entry) {
         Intent intent = new Intent(this, EditEntryActivity.class);
         intent.putExtra("newEntry", entry);
         intent.putExtra("isManual", false);
-        startActivityForResult(intent, requestCode);
+        addEntryResultLauncher.launch(intent);
     }
 
-    private void startEditEntryActivityForManual(int requestCode) {
+    private void startEditEntryActivityForManual() {
         Intent intent = new Intent(this, EditEntryActivity.class);
         intent.putExtra("newEntry", VaultEntry.getDefault());
         intent.putExtra("isManual", true);
-        startActivityForResult(intent, requestCode);
+        addEntryResultLauncher.launch(intent);
     }
 
-    private void startEditEntryActivity(int requestCode, VaultEntry entry) {
+    private void startEditEntryActivity(VaultEntry entry) {
         Intent intent = new Intent(this, EditEntryActivity.class);
         intent.putExtra("entryUUID", entry.getUUID());
-        startActivityForResult(intent, requestCode);
+        editEntryResultLauncher.launch(intent);
     }
 
-    private void startAssignIconsActivity(int requestCode, List<VaultEntry> entries) {
+    private void startAssignIconsActivity(List<VaultEntry> entries) {
         ArrayList<UUID> assignIconEntriesIds = new ArrayList<>();
         Intent assignIconIntent = new Intent(getBaseContext(), AssignIconsActivity.class);
         for (VaultEntry entry : entries) {
@@ -331,13 +343,13 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         }
 
         assignIconIntent.putExtra("entries", assignIconEntriesIds);
-        startActivityForResult(assignIconIntent, requestCode);
+        assignIconsResultLauncher.launch(assignIconIntent);
     }
 
     private void startIntroActivity() {
         if (!_isDoingIntro) {
             Intent intro = new Intent(this, IntroActivity.class);
-            startActivityForResult(intro, CODE_DO_INTRO);
+            introResultLauncher.launch(intro);
             _isDoingIntro = true;
         }
     }
@@ -473,7 +485,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
 
     private void importScannedEntries(List<VaultEntry> entries) {
         if (entries.size() == 1) {
-            startEditEntryActivityForNew(CODE_ADD_ENTRY, entries.get(0));
+            startEditEntryActivityForNew(entries.get(0));
         } else if (entries.size() > 1) {
             for (VaultEntry entry: entries) {
                 _vaultManager.getVault().addEntry(entry);
@@ -517,7 +529,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         }
 
         Intent scannerActivity = new Intent(getApplicationContext(), ScannerActivity.class);
-        startActivityForResult(scannerActivity, CODE_SCAN);
+        scanResultLauncher.launch(scannerActivity);
     }
 
     private void startScanImageActivity() {
@@ -531,7 +543,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
 
         Intent chooserIntent = Intent.createChooser(galleryIntent, getString(R.string.select_picture));
         chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS, new Intent[] { fileIntent });
-        _vaultManager.startActivityForResult(this, chooserIntent, CODE_SCAN_IMAGE);
+        _vaultManager.fireIntentLauncher(this, chooserIntent, codeScanResultLauncher);
     }
 
     private void startPreferencesActivity() {
@@ -542,7 +554,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         Intent intent = new Intent(this, PreferencesActivity.class);
         intent.putExtra("fragment", fragmentType);
         intent.putExtra("pref", preference);
-        startActivityForResult(intent, CODE_PREFERENCES);
+        preferenceResultLauncher.launch(intent);
     }
 
     private void doShortcutActions() {
@@ -589,7 +601,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
                     }
 
                     VaultEntry entry = new VaultEntry(info);
-                    startEditEntryActivityForNew(CODE_ADD_ENTRY, entry);
+                    startEditEntryActivityForNew(entry);
                 }
                 break;
             case Intent.ACTION_SEND:
@@ -617,7 +629,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
                         }
 
                         VaultEntry entry = new VaultEntry(info);
-                        startEditEntryActivityForNew(CODE_ADD_ENTRY, entry);
+                        startEditEntryActivityForNew(entry);
                     }
                 }
                 break;
@@ -826,7 +838,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         if (!_isAuthenticating) {
             Intent intent = new Intent(this, AuthActivity.class);
             intent.putExtra("inhibitBioPrompt", inhibitBioPrompt);
-            startActivityForResult(intent, CODE_DECRYPT);
+            authResultLauncher.launch(intent);
             _isAuthenticating = true;
         }
     }
@@ -1120,7 +1132,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
                 copyEntryCode(_selectedEntries.get(0));
                 mode.finish();
             } else if (itemId == R.id.action_edit) {
-                startEditEntryActivity(CODE_EDIT_ENTRY, _selectedEntries.get(0));
+                startEditEntryActivity(_selectedEntries.get(0));
                 mode.finish();
             } else if (itemId == R.id.action_toggle_favorite) {
                 for (VaultEntry entry : _selectedEntries) {
@@ -1154,7 +1166,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
                 setFavoriteMenuItemVisiblity();
                 setIsMultipleSelected(_selectedEntries.size() > 1);
             } else if (itemId == R.id.action_assign_icons) {
-                startAssignIconsActivity(CODE_ASSIGN_ICONS, _selectedEntries);
+                startAssignIconsActivity(_selectedEntries);
                 mode.finish();
             } else {
                 return false;

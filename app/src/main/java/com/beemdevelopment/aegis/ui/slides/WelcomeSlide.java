@@ -7,6 +7,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts.StartActivityForResult;
 import androidx.annotation.NonNull;
 
 import com.beemdevelopment.aegis.R;
@@ -24,10 +26,16 @@ import java.io.FileInputStream;
 import java.io.IOException;
 
 public class WelcomeSlide extends SlideFragment {
-    public static final int CODE_IMPORT_VAULT = 0;
-
     private boolean _imported;
     private VaultFileCredentials _creds;
+
+    private final ActivityResultLauncher<Intent> vaultImportResultLauncher =
+            registerForActivityResult(new StartActivityForResult(), activityResult -> {
+                Intent data = activityResult.getData();
+                if (data != null && data.getData() != null) {
+                    startImportVault(data.getData());
+                }
+            });
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -35,16 +43,9 @@ public class WelcomeSlide extends SlideFragment {
         view.findViewById(R.id.btnImport).setOnClickListener(v -> {
             Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
             intent.setType("*/*");
-            startActivityForResult(intent, CODE_IMPORT_VAULT);
+            vaultImportResultLauncher.launch(intent);
         });
         return view;
-    }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == CODE_IMPORT_VAULT && data != null && data.getData() != null) {
-            startImportVault(data.getData());
-        }
     }
 
     @Override
