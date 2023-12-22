@@ -6,6 +6,7 @@ import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 
+import androidx.activity.result.ActivityResultLauncher;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -304,11 +305,11 @@ public class VaultManager {
      * Starts an external activity, temporarily blocks automatic lock of Aegis and
      * shows an error dialog if the target activity is not found.
      */
-    public void startActivityForResult(Activity activity, Intent intent, int requestCode) {
+    public void fireIntentLauncher(Activity activity, Intent intent, ActivityResultLauncher<Intent> resultLauncher) {
         setBlockAutoLock(true);
 
         try {
-            activity.startActivityForResult(intent, requestCode, null);
+            resultLauncher.launch(intent);
         } catch (ActivityNotFoundException e) {
             e.printStackTrace();
 
@@ -324,19 +325,11 @@ public class VaultManager {
      * Starts an external activity, temporarily blocks automatic lock of Aegis and
      * shows an error dialog if the target activity is not found.
      */
-    public void startActivity(Fragment fragment, Intent intent) {
-        startActivityForResult(fragment, intent, -1);
-    }
-
-    /**
-     * Starts an external activity, temporarily blocks automatic lock of Aegis and
-     * shows an error dialog if the target activity is not found.
-     */
-    public void startActivityForResult(Fragment fragment, Intent intent, int requestCode) {
+    public void fireIntentLauncher(Fragment fragment, Intent intent, ActivityResultLauncher<Intent> resultLauncher) {
         setBlockAutoLock(true);
 
         try {
-            fragment.startActivityForResult(intent, requestCode, null);
+            resultLauncher.launch(intent);
         } catch (ActivityNotFoundException e) {
             e.printStackTrace();
 

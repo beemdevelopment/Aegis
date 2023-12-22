@@ -21,6 +21,8 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import androidx.activity.OnBackPressedCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts.StartActivityForResult;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
@@ -89,8 +91,6 @@ import java.util.stream.Collectors;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class EditEntryActivity extends AegisActivity {
-    private static final int PICK_IMAGE_REQUEST = 0;
-
     private boolean _isNew = false;
     private boolean _isManual = false;
     private VaultEntry _origEntry;
@@ -127,6 +127,29 @@ public class EditEntryActivity extends AegisActivity {
 
     private BackPressHandler _backPressHandler;
     private IconBackPressHandler _iconBackPressHandler;
+
+    private final ActivityResultLauncher<Intent> pickImageResultLauncher =
+            registerForActivityResult(new StartActivityForResult(), activityResult -> {
+                Intent data = activityResult.getData();
+                if (activityResult.getResultCode() != RESULT_OK || data == null || data.getData() == null) {
+                    return;
+                }
+                String fileType = SafHelper.getMimeType(this, data.getData());
+                if (fileType != null && fileType.equals(IconType.SVG.toMimeType())) {
+                    ImportFileTask.Params params = new ImportFileTask.Params(data.getData(), "icon", null);
+                    ImportFileTask task = new ImportFileTask(this, result -> {
+                        if (result.getError() == null) {
+                            CustomSvgIcon icon = new CustomSvgIcon(result.getFile());
+                            selectIcon(icon);
+                        } else {
+                            Dialogs.showErrorDialog(this, R.string.reading_file_error, result.getError());
+                        }
+                    });
+                    task.execute(getLifecycle(), params);
+                } else {
+                    startEditingIcon(data.getData());
+                }
+            });
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -489,7 +512,7 @@ public class EditEntryActivity extends AegisActivity {
 
         Intent chooserIntent = Intent.createChooser(galleryIntent, getString(R.string.select_icon));
         chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS, new Intent[] { fileIntent });
-        _vaultManager.startActivityForResult(this, chooserIntent, PICK_IMAGE_REQUEST);
+        _vaultManager.fireIntentLauncher(this, chooserIntent, pickImageResultLauncher);
     }
 
     private void resetUsageCount() {
@@ -616,29 +639,6 @@ public class EditEntryActivity extends AegisActivity {
             setResult(RESULT_OK, intent);
             finish();
         }
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, final int resultCode, Intent data) {
-        if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
-            String fileType = SafHelper.getMimeType(this, data.getData());
-            if (fileType != null && fileType.equals(IconType.SVG.toMimeType())) {
-                ImportFileTask.Params params = new ImportFileTask.Params(data.getData(), "icon", null);
-                ImportFileTask task = new ImportFileTask(this, result -> {
-                    if (result.getError() == null) {
-                        CustomSvgIcon icon = new CustomSvgIcon(result.getFile());
-                        selectIcon(icon);
-                    } else {
-                        Dialogs.showErrorDialog(this, R.string.reading_file_error, result.getError());
-                    }
-                });
-                task.execute(getLifecycle(), params);
-            } else {
-                startEditingIcon(data.getData());
-            }
-        }
-
-        super.onActivityResult(requestCode, resultCode, data);
     }
 
     private int parsePeriod() throws ParseException {
