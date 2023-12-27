@@ -1,5 +1,7 @@
 package com.beemdevelopment.aegis.services;
 
+import android.annotation.SuppressLint;
+import android.app.PendingIntent;
 import android.content.Intent;
 import android.os.Build;
 import android.service.quicksettings.Tile;
@@ -22,6 +24,7 @@ public class LaunchScannerTileService extends TileService {
         }
     }
 
+    @SuppressLint("StartActivityAndCollapseDeprecated")
     @Override
     public void onClick() {
         super.onClick();
@@ -31,6 +34,12 @@ public class LaunchScannerTileService extends TileService {
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         intent.setAction(Intent.ACTION_MAIN);
 
-        startActivityAndCollapse(intent);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
+            int flags = PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE;
+            PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, flags);
+            startActivityAndCollapse(pendingIntent);
+        } else {
+            startActivityAndCollapse(intent);
+        }
     }
 }

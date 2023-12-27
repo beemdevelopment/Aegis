@@ -47,7 +47,8 @@ public class NotificationService extends Service {
                 .setOngoing(true)
                 .setContentIntent(pendingIntent);
 
-        startForeground(NOTIFICATION_VAULT_UNLOCKED, builder.build());
+        // NOTE: Disabled for now. See issue: #1047
+        //startForeground(NOTIFICATION_VAULT_UNLOCKED, builder.build());
     }
 
     @Override
