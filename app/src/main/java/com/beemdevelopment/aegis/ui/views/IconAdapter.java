@@ -18,7 +18,6 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
 
 public class IconAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private final Context _context;
@@ -96,11 +95,7 @@ public class IconAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         if (_query == null) {
             loadIcons(_pack, false);
         } else {
-            _icons = _pack.getIcons().stream()
-                    .filter(i -> i.isSuggestedFor(query))
-                    .collect(Collectors.toList());
-
-            Collections.sort(_icons, Comparator.comparing(IconPack.Icon::getName));
+            _icons = _pack.getSuggestedIcons(query);
             notifyDataSetChanged();
         }
     }
