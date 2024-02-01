@@ -324,6 +324,21 @@ public class DatabaseImporterTest {
         checkImportedEntries(entries);
     }
 
+    @Test
+    public void testImportTwoFASAuthenticatorSchema4Plain() throws DatabaseImporterException, IOException, OtpInfoException {
+        List<VaultEntry> entries = importPlain(TwoFASImporter.class, "2fas_authenticator_plain_v4.2fas");
+        checkImportedEntries(entries);
+    }
+
+    @Test
+    public void testImportTwoFASAuthenticatorSchema4Encrypted() throws DatabaseImporterException, IOException, OtpInfoException {
+        List<VaultEntry> entries = importEncrypted(TwoFASImporter.class, "2fas_authenticator_encrypted_v4.2fas", encryptedState -> {
+            final char[] password = "test".toCharArray();
+            return ((TwoFASImporter.EncryptedState) encryptedState).decrypt(password);
+        });
+        checkImportedEntries(entries);
+    }
+
     private List<VaultEntry> importPlain(Class<? extends DatabaseImporter> type, String resName)
             throws IOException, DatabaseImporterException {
         return importPlain(type, resName, false);
