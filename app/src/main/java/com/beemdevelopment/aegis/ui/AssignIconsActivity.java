@@ -8,6 +8,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
+
 import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -19,19 +20,20 @@ import com.beemdevelopment.aegis.helpers.MetricsHelper;
 import com.beemdevelopment.aegis.icons.IconPack;
 import com.beemdevelopment.aegis.ui.dialogs.Dialogs;
 import com.beemdevelopment.aegis.ui.dialogs.IconPickerDialog;
-import com.beemdevelopment.aegis.ui.glide.IconLoader;
+import com.beemdevelopment.aegis.ui.glide.GlideHelper;
 import com.beemdevelopment.aegis.ui.models.AssignIconEntry;
 import com.beemdevelopment.aegis.ui.views.AssignIconAdapter;
 import com.beemdevelopment.aegis.ui.views.IconAdapter;
 import com.beemdevelopment.aegis.util.IOUtils;
 import com.beemdevelopment.aegis.vault.VaultEntry;
+import com.beemdevelopment.aegis.vault.VaultEntryIcon;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.ListPreloader;
 import com.bumptech.glide.RequestBuilder;
 import com.bumptech.glide.integration.recyclerview.RecyclerViewPreloader;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.util.ViewPreloadSizeProvider;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
+
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -121,13 +123,14 @@ public class AssignIconsActivity extends AegisActivity implements AssignIconAdap
         ArrayList<UUID> uuids = new ArrayList<>();
         for (AssignIconEntry selectedEntry : _entries) {
             VaultEntry entry = selectedEntry.getEntry();
-            if(selectedEntry.getNewIcon() != null) {
+            if (selectedEntry.getNewIcon() != null) {
                 byte[] iconBytes;
                 try (FileInputStream inStream = new FileInputStream(selectedEntry.getNewIcon().getFile())){
                     iconBytes = IOUtils.readFile(inStream);
                 }
 
-                entry.setIcon(iconBytes, selectedEntry.getNewIcon().getIconType());
+                VaultEntryIcon icon = new VaultEntryIcon(iconBytes, selectedEntry.getNewIcon().getIconType());
+                entry.setIcon(icon);
                 uuids.add(entry.getUUID());
 
                 _vaultManager.getVault().replaceEntry(entry);
@@ -223,12 +226,9 @@ public class AssignIconsActivity extends AegisActivity implements AssignIconAdap
         @Nullable
         @Override
         public RequestBuilder<Drawable> getPreloadRequestBuilder(@NonNull VaultEntry entry) {
-            return Glide.with(AssignIconsActivity.this)
-                    .asDrawable()
-                    .load(entry)
-                    .set(IconLoader.ICON_TYPE, entry.getIconType())
-                    .diskCacheStrategy(DiskCacheStrategy.NONE)
-                    .skipMemoryCache(false);
+            RequestBuilder<Drawable> rb = Glide.with(AssignIconsActivity.this)
+                    .load(entry.getIcon());
+            return GlideHelper.setCommonOptions(rb, entry.getIcon().getType());
         }
     }
 
@@ -246,12 +246,9 @@ public class AssignIconsActivity extends AegisActivity implements AssignIconAdap
         @Nullable
         @Override
         public RequestBuilder<Drawable> getPreloadRequestBuilder(@NonNull IconPack.Icon icon) {
-            return Glide.with(AssignIconsActivity.this)
-                    .asDrawable()
-                    .load(icon.getFile())
-                    .set(IconLoader.ICON_TYPE, icon.getIconType())
-                    .diskCacheStrategy(DiskCacheStrategy.NONE)
-                    .skipMemoryCache(false);
+            RequestBuilder<Drawable> rb = Glide.with(AssignIconsActivity.this)
+                    .load(icon.getFile());
+            return GlideHelper.setCommonOptions(rb, icon.getIconType());
         }
     }
 

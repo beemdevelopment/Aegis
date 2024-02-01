@@ -23,8 +23,8 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.beemdevelopment.aegis.CopyBehavior;
 import com.beemdevelopment.aegis.AccountNamePosition;
+import com.beemdevelopment.aegis.CopyBehavior;
 import com.beemdevelopment.aegis.Preferences;
 import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.SortCategory;
@@ -36,7 +36,7 @@ import com.beemdevelopment.aegis.helpers.ThemeHelper;
 import com.beemdevelopment.aegis.helpers.UiRefresher;
 import com.beemdevelopment.aegis.otp.TotpInfo;
 import com.beemdevelopment.aegis.ui.dialogs.Dialogs;
-import com.beemdevelopment.aegis.ui.glide.IconLoader;
+import com.beemdevelopment.aegis.ui.glide.GlideHelper;
 import com.beemdevelopment.aegis.ui.models.VaultGroupModel;
 import com.beemdevelopment.aegis.util.UUIDMap;
 import com.beemdevelopment.aegis.vault.VaultEntry;
@@ -45,7 +45,6 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.ListPreloader;
 import com.bumptech.glide.RequestBuilder;
 import com.bumptech.glide.integration.recyclerview.RecyclerViewPreloader;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.util.ViewPreloadSizeProvider;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.chip.Chip;
@@ -739,18 +738,16 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
             if (!entry.hasIcon()) {
                 return Collections.emptyList();
             }
+
             return Collections.singletonList(entry);
         }
 
         @Nullable
         @Override
         public RequestBuilder<Drawable> getPreloadRequestBuilder(@NonNull VaultEntry entry) {
-            return Glide.with(EntryListView.this)
-                        .asDrawable()
-                        .load(entry)
-                        .set(IconLoader.ICON_TYPE, entry.getIconType())
-                        .diskCacheStrategy(DiskCacheStrategy.NONE)
-                        .skipMemoryCache(false);
+            RequestBuilder<Drawable> rb = Glide.with(EntryListView.this)
+                    .load(entry.getIcon());
+            return GlideHelper.setCommonOptions(rb, entry.getIcon().getType());
         }
     }
 }

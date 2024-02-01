@@ -1,8 +1,5 @@
 package com.beemdevelopment.aegis.vault;
 
-import com.beemdevelopment.aegis.encoding.Base64;
-import com.beemdevelopment.aegis.encoding.EncodingException;
-import com.beemdevelopment.aegis.icons.IconType;
 import com.beemdevelopment.aegis.otp.GoogleAuthInfo;
 import com.beemdevelopment.aegis.otp.OtpInfo;
 import com.beemdevelopment.aegis.otp.OtpInfoException;
@@ -14,7 +11,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.Arrays;
+import java.util.Objects;
 import java.util.Set;
 import java.util.TreeSet;
 import java.util.UUID;
@@ -23,8 +20,7 @@ public class VaultEntry extends UUIDMap.Value {
     private String _name = "";
     private String _issuer = "";
     private OtpInfo _info;
-    private byte[] _icon;
-    private IconType _iconType = IconType.INVALID;
+    private VaultEntryIcon _icon;
     private boolean _isFavorite;
     private int _usageCount;
     private String _note = "";
@@ -61,8 +57,7 @@ public class VaultEntry extends UUIDMap.Value {
             obj.put("issuer", _issuer);
             obj.put("note", _note);
             obj.put("favorite", _isFavorite);
-            obj.put("icon", _icon == null ? JSONObject.NULL : Base64.encode(_icon));
-            obj.put("icon_mime", _icon == null ? null : _iconType.toMimeType());
+            VaultEntryIcon.toJson(_icon, obj);
             obj.put("info", _info.toJson());
 
             JSONArray groupUuids = new JSONArray();
@@ -107,21 +102,11 @@ public class VaultEntry extends UUIDMap.Value {
                 entry.setOldGroup(JsonUtils.optString(obj, "group"));
             }
 
-            Object icon = obj.get("icon");
-            if (icon != JSONObject.NULL) {
-                String mime = JsonUtils.optString(obj, "icon_mime");
-
-                IconType iconType = mime == null ? IconType.JPEG : IconType.fromMimeType(mime);
-                if (iconType == IconType.INVALID) {
-                    throw new VaultEntryException(String.format("Bad icon MIME type: %s", mime));
-                }
-
-                byte[] iconBytes = Base64.decode((String) icon);
-                entry.setIcon(iconBytes, iconType);
-            }
+            VaultEntryIcon icon = VaultEntryIcon.fromJson(obj);
+            entry.setIcon(icon);
 
             return entry;
-        } catch (OtpInfoException | JSONException | EncodingException e) {
+        } catch (OtpInfoException | JSONException e) {
             throw new VaultEntryException(e);
         }
     }
@@ -138,12 +123,8 @@ public class VaultEntry extends UUIDMap.Value {
         return _groups;
     }
 
-    public byte[] getIcon() {
+    public VaultEntryIcon getIcon() {
         return _icon;
-    }
-
-    public IconType getIconType() {
-        return _iconType;
     }
 
     public OtpInfo getInfo() {
@@ -154,9 +135,15 @@ public class VaultEntry extends UUIDMap.Value {
         return _usageCount;
     }
 
-    public String getNote() { return _note; }
+    public String getNote() {
+        return _note;
+    }
 
-    public boolean isFavorite() { return _isFavorite; };
+    public boolean isFavorite() {
+        return _isFavorite;
+    }
+
+    ;
 
     public void setName(String name) {
         _name = name;
@@ -188,20 +175,25 @@ public class VaultEntry extends UUIDMap.Value {
         _info = info;
     }
 
-    public void setIcon(byte[] icon, IconType iconType) {
+    public void setIcon(VaultEntryIcon icon) {
         _icon = icon;
-        _iconType = iconType;
     }
 
     public boolean hasIcon() {
         return _icon != null;
     }
 
-    public void setUsageCount(int usageCount) { _usageCount = usageCount; }
+    public void setUsageCount(int usageCount) {
+        _usageCount = usageCount;
+    }
 
-    public void setNote(String note) { _note = note; }
+    public void setNote(String note) {
+        _note = note;
+    }
 
-    public void setIsFavorite(boolean isFavorite) { _isFavorite = isFavorite; }
+    public void setIsFavorite(boolean isFavorite) {
+        _isFavorite = isFavorite;
+    }
 
     void setOldGroup(String oldGroup) {
         _oldGroup = oldGroup;
@@ -230,8 +222,7 @@ public class VaultEntry extends UUIDMap.Value {
         return getName().equals(entry.getName())
                 && getIssuer().equals(entry.getIssuer())
                 && getInfo().equals(entry.getInfo())
-                && Arrays.equals(getIcon(), entry.getIcon())
-                && getIconType().equals(entry.getIconType())
+                && Objects.equals(getIcon(), entry.getIcon())
                 && getNote().equals(entry.getNote())
                 && isFavorite() == entry.isFavorite()
                 && getGroups().equals(entry.getGroups());
