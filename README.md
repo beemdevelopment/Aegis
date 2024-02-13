@@ -70,7 +70,7 @@ src="metadata/en-US/images/phoneScreenshots/screenshot8.png?raw=true">](metadata
 
 ## Downloads
 
-Aegis is available on the Google Play Store and on F-Droid.
+Aegis is available on Google Play Store, on F-Droid and on Github.
 
 [<img height=80 alt="Get it on Google Play"
 src="https://play.google.com/intl/en_us/badges/images/generic/en-play-badge.png"
@@ -78,6 +78,9 @@ src="https://play.google.com/intl/en_us/badges/images/generic/en-play-badge.png"
 [<img height="80" alt="Get it on F-Droid"
 src="https://fdroid.gitlab.io/artwork/badge/get-it-on.png"
 />](https://f-droid.org/app/com.beemdevelopment.aegis)
+[<img height="80" alt="Get it on Github"
+src="https://i.ibb.co/q0mdc4Z/get-it-on-github.png"
+/>]("https://github.com/beemdevelopment/Aegis/releases/latest)
 
 ### Verification
 
