@@ -80,7 +80,7 @@ src="https://fdroid.gitlab.io/artwork/badge/get-it-on.png"
 />](https://f-droid.org/app/com.beemdevelopment.aegis)
 [<img height="80" alt="Get it on Github"
 src="https://i.ibb.co/q0mdc4Z/get-it-on-github.png"
-/>]("https://github.com/beemdevelopment/Aegis/releases/latest)
+/>](https://github.com/beemdevelopment/Aegis/releases/latest)
 
 ### Verification
 
