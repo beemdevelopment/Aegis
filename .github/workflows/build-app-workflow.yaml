@@ -20,9 +20,7 @@ jobs:
           name: apk
           path: app/build/outputs/apk/debug/app-debug.apk
   test:
-    runs-on: macos-latest
-    # This is probably pretty expensive for GitHub, so restrict the repositories that this job runs on
-    if: github.repository == 'beemdevelopment/Aegis' || github.repository == 'alexbakker/Aegis'
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -31,10 +29,13 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
           cache: 'gradle'
-      - name: Install HAXM
-        run: brew install --cask intel-haxm
+      - name: Enable KVM group perms
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
       - name: Tests
-        uses: reactivecircus/android-emulator-runner@50986b1464923454c95e261820bc626f38490ec0
+        uses: reactivecircus/android-emulator-runner@6b0df4b0efb23bb0ec63d881db79aefbc976e4b2
         with:
           api-level: 31
           arch: x86_64
@@ -52,7 +53,7 @@ jobs:
             adb logcat -d > artifacts/logcat.txt
             cp -r app/build/reports/androidTests/connected/* artifacts/report/
             if adb shell '[ -e /sdcard/Pictures/screenshots ]'; then adb pull /sdcard/Pictures/screenshots artifacts/; fi
-          # test ! -f tests_failing
+            test ! -f tests_failing
       - uses: actions/upload-artifact@v3
         if: always()
         with:
