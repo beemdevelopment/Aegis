@@ -103,7 +103,6 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
 
         // set up the recycler view
         _recyclerView = view.findViewById(R.id.rvKeyProfiles);
-        _recyclerView.setItemAnimator(null);
         _recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
