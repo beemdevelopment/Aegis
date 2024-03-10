@@ -17,10 +17,10 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.beemdevelopment.aegis.CopyBehavior;
 import com.beemdevelopment.aegis.AccountNamePosition;
-import com.beemdevelopment.aegis.R;
+import com.beemdevelopment.aegis.CopyBehavior;
 import com.beemdevelopment.aegis.Preferences;
+import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.SortCategory;
 import com.beemdevelopment.aegis.ViewMode;
 import com.beemdevelopment.aegis.helpers.ItemTouchHelperAdapter;
@@ -777,8 +777,10 @@ public class EntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
             String entriesShownString = String.format("%d", entriesShown);
             int spanStart = entriesShownSpannable.toString().indexOf(entriesShownString);
-            int spanEnd = spanStart + entriesShownString.length();
-            entriesShownSpannable.setSpan(new StyleSpan(Typeface.BOLD), spanStart, spanEnd, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+            if (spanStart >= 0) {
+                int spanEnd = spanStart + entriesShownString.length();
+                entriesShownSpannable.setSpan(new StyleSpan(Typeface.BOLD), spanStart, spanEnd, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+            }
 
             TextView textView = _footerView.findViewById(R.id.entries_shown_count);
             textView.setText(entriesShownSpannable);
