@@ -59,6 +59,7 @@ public class AuthActivity extends AegisActivity {
     private SecretKey _bioKey;
     private BiometricSlot _bioSlot;
     private BiometricPrompt _bioPrompt;
+    private Button _decryptButton;
 
     private int _failedUnlockAttempts;
 
@@ -72,14 +73,14 @@ public class AuthActivity extends AegisActivity {
         setContentView(R.layout.activity_auth);
         _textPassword = findViewById(R.id.text_password);
         LinearLayout boxBiometricInfo = findViewById(R.id.box_biometric_info);
-        Button decryptButton = findViewById(R.id.button_decrypt);
+        _decryptButton = findViewById(R.id.button_decrypt);
         TextView biometricsButton = findViewById(R.id.button_biometrics);
 
         getOnBackPressedDispatcher().addCallback(this, new BackPressHandler());
 
         _textPassword.setOnEditorActionListener((v, actionId, event) -> {
             if ((event != null && (event.getKeyCode() == KeyEvent.KEYCODE_ENTER)) || (actionId == EditorInfo.IME_ACTION_DONE)) {
-                decryptButton.performClick();
+                _decryptButton.performClick();
             }
             return false;
         });
@@ -150,7 +151,7 @@ public class AuthActivity extends AegisActivity {
             }
         }
 
-        decryptButton.setOnClickListener(v -> {
+        _decryptButton.setOnClickListener(v -> {
             InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
             imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
 
@@ -159,6 +160,8 @@ public class AuthActivity extends AegisActivity {
             PasswordSlotDecryptTask.Params params = new PasswordSlotDecryptTask.Params(slots, password);
             PasswordSlotDecryptTask task = new PasswordSlotDecryptTask(AuthActivity.this, new PasswordDerivationListener());
             task.execute(getLifecycle(), params);
+
+            _decryptButton.setEnabled(false);
         });
 
         biometricsButton.setOnClickListener(v -> {
@@ -345,6 +348,7 @@ public class AuthActivity extends AegisActivity {
 
                 finish(result.getKey(), result.isSlotRepaired());
             } else {
+                _decryptButton.setEnabled(true);
                 onInvalidPassword();
             }
         }
