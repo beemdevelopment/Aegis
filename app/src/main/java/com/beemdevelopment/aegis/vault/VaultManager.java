@@ -55,8 +55,9 @@ public class VaultManager {
             throw new IllegalStateException("Vault manager is already initialized");
         }
 
-        _repo = new VaultRepository(_context, new Vault(), creds);
-        save();
+        VaultRepository repo = new VaultRepository(_context, new Vault(), creds);
+        repo.save();
+        _repo = repo;
 
         if (getVault().isEncryptionEnabled()) {
             startNotificationService();
