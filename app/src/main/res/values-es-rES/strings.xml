@@ -1,37 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="action_settings">Configuración</string>
+    <string name="action_settings">Ajustes</string>
     <string name="action_about">Acerca de</string>
     <string name="action_delete">Eliminar</string>
     <string name="action_transfer">Transferir</string>
     <string name="action_edit_icon">Editar icono</string>
     <string name="action_reset_usage_count">Reiniciar contador de uso</string>
-    <string name="action_reset_usage_count_dialog">¿Está seguro que desea establecer el contador de uso de esta entrada a 0?</string>
+    <string name="action_reset_usage_count_dialog">¿Seguro que quieres restablecer el contador de uso de este elemento a 0?</string>
     <string name="action_default_icon">Restaurar icono predeterminado</string>
     <string name="discard">Descartar</string>
     <string name="save">Guardar</string>
     <string name="issuer">Emisor</string>
     <string name="yandex_pin">PIN (4-16 dígitos)</string>
     <string name="motp_pin">PIN (4 dígitos)</string>
-    <string name="suggested">Suguerido</string>
+    <string name="suggested">Sugerido</string>
     <string name="usage_count">Contador de uso</string>
     <string name="warning">Advertencia</string>
-    <string name="pref_cat_appearance_app">App</string>
+    <string name="pref_cat_appearance_app">Aplicación</string>
     <string name="pref_cat_appearance_entries">Entradas</string>
     <string name="pref_cat_backups_android">Android</string>
     <string name="pref_cat_backups_auto">Copias de seguridad automáticas</string>
     <string name="pref_section_behavior_title">Comportamiento</string>
-    <string name="pref_section_behavior_summary">Personalice el comportamiento al interactuar con la lista de entradas.</string>
+    <string name="pref_section_behavior_summary">Personaliza la funcionalidad y cómo se interactua con la lista de claves.</string>
     <string name="pref_section_appearance_title">Apariencia</string>
-    <string name="pref_section_appearance_summary">Ajuste el tema, idioma y otros parámetros que afectan a la apariencia de la app.</string>
+    <string name="pref_section_appearance_summary">Ajusta el esquema de colores, idioma y otros parámetros relacionados con el aspecto de la aplicación.</string>
     <string name="pref_section_security_title">Seguridad</string>
-    <string name="pref_section_security_summary">Configure el cifrado, desbloqueo biométrico, bloqueo automático y otros ajustes de seguridad.</string>
-    <string name="pref_section_import_export_title">Importar &amp; Exportar</string>
-    <string name="pref_section_import_export_summary">Importe copias de seguridad de Aegis u otras aplicaciones de autenticación. Exporte manualmente la bóveda de Aegis.</string>
+    <string name="pref_section_security_summary">Configura el cifrado, desbloqueo biométrico, bloqueo automático y otros ajustes de seguridad.</string>
+    <string name="pref_section_import_export_title">Importar y exportar</string>
+    <string name="pref_section_import_export_summary">Importa copias de seguridad de Aegis u otras aplicaciones de autenticación y exporta de forma manual la bóveda de Aegis.</string>
     <string name="pref_section_backups_title">Copias de seguridad</string>
-    <string name="pref_section_backups_summary">Configure copias de seguridad automáticas en una ubicación de su elección o habilite la participación en el sistema de copia de seguridad en la nube de Android.</string>
+    <string name="pref_section_backups_summary">Configura copias de seguridad automáticas en una carpeta local o activa el sistema de copia de seguridad en la nube de Android.</string>
     <string name="pref_section_icon_packs">Paquetes de iconos</string>
-    <string name="pref_section_icon_packs_summary">Gestione e importe paquetes de iconos.</string>
+    <string name="pref_section_icon_packs_summary">Administrar e importar paquetes de iconos</string>
     <string name="pref_select_theme_title">Tema</string>
     <string name="pref_view_mode_title">Modo de visualización</string>
     <string name="pref_lang_title">Idioma</string>
@@ -68,18 +68,18 @@
     <string name="pref_export_title">Exportar</string>
     <string name="pref_export_summary">Exportar la bóveda</string>
     <string name="pref_password_reminder_title">Recordatorio de contraseña</string>
-    <string name="pref_google_auth_export_title">Exportar para Google Authenticator</string>
+    <string name="pref_google_auth_export_title">Exportar a Google Authenticator</string>
     <string name="pref_google_auth_export_descriptor">Genera códigos QR de exportación compatibles con Google Authenticator</string>
-    <string name="pref_google_auth_export_no_data">No hay datos para exportar</string>
+    <string name="pref_google_auth_export_no_data">No hay datos que exportar</string>
     <plurals name="pref_google_auth_export_incompatible_entries">
         <item quantity="one">Omitida %d entrada incompatible</item>
-        <item quantity="other">Omitidas %d entradas incompatibles</item>
+        <item quantity="other">Se han omitido %d elementos incompatibles</item>
     </plurals>
     <string name="pref_password_reminder_summary">Para evitar olvidarla, solicitarme la contraseña con esta frecuencia: %s.</string>
     <string name="pref_password_reminder_summary_disabled">Desactivado</string>
     <string name="pref_secure_screen_title">Seguridad en pantalla</string>
     <string name="pref_secure_screen_summary">Bloquea las capturas de pantalla y otros intentos de captura dentro de la aplicación</string>
-    <string name="pref_tap_to_reveal_title">Pulsar para mostrar</string>
+    <string name="pref_tap_to_reveal_title">Pulsa para mostrar</string>
     <string name="pref_tap_to_reveal_summary">Los tokens se ocultarán por defecto. Pulse sobre ellos para revelar el código.</string>
     <string name="pref_tap_to_reveal_time_title">Tiempo de espera de pulsar para mostrar</string>
     <string name="pref_auto_lock_title">Bloqueo automático</string>
@@ -116,19 +116,19 @@
         <item quantity="other">%d grupos seleccionados</item>
     </plurals>
     <string name="export_no_groups_selected">No se han seleccionado grupos para exportar</string>
-    <string name="export_html_title" context="The title of an HTML export document">Exportación de Aegis Authenticator</string>
+    <string name="export_html_title" comment="The title of an HTML export document">Exportación de Aegis Authenticator</string>
     <string name="choose_authentication_method">Seguridad</string>
     <string name="authentication_method_explanation">Aegis es una aplicación 2FA centrada en la seguridad. Los tokens se almacenan en una bóveda, que opcionalmente puede cifrarse con una contraseña de su elección. Si un atacante obtiene su archivo de bóveda cifrado, no podrá acceder al contenido sin conocer la contraseña.\n\nHemos preseleccionado la opción que creemos que encajaría mejor para su dispositivo.</string>
     <string name="authentication_method_none">Ninguno</string>
     <string name="authentication_method_none_description">No necesitará una contraseña para desbloquear la bóveda y no se cifrará. <b>No se recomienda esta opción</b>.</string>
     <string name="authentication_method_password">Contraseña</string>
     <string name="authentication_method_password_description">Se necesita una contraseña para desbloquear la bóveda.</string>
-    <string name="authentication_method_password_explanation">Advertencia: Si olvida su contraseña, perderá permanentemente el acceso a sus tokens. No hay forma de recuperarlos sin la contraseña.</string>
+    <string name="authentication_method_password_explanation">Advertencia: Si olvidas tu contraseña no podrás ver tus claves de acceso. Sin la contraseña no hay recuperación posible.</string>
     <string name="authentication_method_biometrics">Biometría</string>
     <string name="authentication_method_biometrics_description">Además de una contraseña, la biometría registrada en este dispositivo, como una huella digital o su cara, pueden ser usados para desbloquear la bóveda.</string>
     <string name="authentication">Desbloquear la bóveda</string>
     <string name="authentication_multiline" comment="The newline in the middle is used for aesthetic purposes">Desbloquear\nla bóveda</string>
-    <string name="auth_use_biometrics">O pulse aquí para utilizar la <font fgcolor="#FF0D86C1">biometría</font></string>
+    <string name="auth_use_biometrics">O pulsa aquí para utilizar la <font fgcolor="#FF0D86C1">biometría</font></string>
     <string name="set_password">Por favor introduzca una contraseña</string>
     <string name="set_group">Por favor introduzca un nombre de grupo</string>
     <string name="set_number">Por favor introduzca un número</string>
@@ -152,6 +152,7 @@
     <string name="share">Compartir</string>
     <string name="yes">Si</string>
     <string name="no">No</string>
+    <string name="undo">Deshacer</string>
     <string name="unlock">Desbloquear</string>
     <string name="advanced">Avanzado</string>
     <string name="counter">Contador</string>
@@ -163,6 +164,8 @@
     <string name="set_up_biometric">Configurar desbloqueo biométrico</string>
     <string name="copy">Copiar</string>
     <string name="edit">Editar</string>
+    <string name="select_all">Seleccionar todo</string>
+    <string name="assign_icons">Asignar iconos</string>
     <string name="favorite" comment="Verb">Marcar favorito</string>
     <string name="unfavorite" comment="Verb">Desmarcar favorito</string>
     <string name="error_all_caps">ERROR</string>
@@ -172,9 +175,9 @@
     <string name="new_entry">Nueva entrada</string>
     <string name="add_new_entry">Añadir nueva entrada</string>
     <string name="unlock_vault_error">No se pudo desbloquear la bóveda</string>
-    <string name="unlock_vault_error_description">Contraseña incorrecta. Asegúrese de no haberla introducido erróneamente.</string>
+    <string name="unlock_vault_error_description">Contraseña incorrecta. Asegúrate de que no tenga errores de escritura.</string>
     <string name="password_equality_error">Las contraseñas deben ser idénticas y no estar en blanco</string>
-    <string name="snackbar_authentication_method">Por favor seleccione un método de autentificación</string>
+    <string name="snackbar_authentication_method">Elige una forma de autenticarte</string>
     <string name="encrypting_vault">Cifrando la bóveda</string>
     <string name="exporting_vault">Exportando la bóveda</string>
     <string name="reading_file">Leyendo archivo</string>
@@ -197,6 +200,7 @@
     <string name="discard_changes">¿Descartar cambios?</string>
     <string name="discard_changes_description">Sus cambios no se han guardado</string>
     <string name="saving_profile_error">Error al guardar el perfil</string>
+    <string name="saving_assign_icons_error">Error al asignar iconos</string>
     <string name="welcome">Bienvenido</string>
     <string name="app_description">Aegis es una aplicación 2FA gratuita, segura y de código abierto</string>
     <string name="setup_completed">Configuración completada</string>
@@ -275,6 +279,8 @@
     <string name="unlocking_vault">Desbloqueando la bóveda</string>
     <string name="remove_group">Eliminar grupo</string>
     <string name="remove_group_description">¿Está seguro de que desea eliminar este grupo? Las entradas se moverán automáticamente a \'Sin grupo\'.</string>
+    <string name="remove_unused_groups">Eliminar grupos no utilizados</string>
+    <string name="remove_unused_groups_description">¿Estás seguro de que deseas eliminar todos los grupos que no están asignados a una entrada?</string>
     <string name="remove_icon_pack">Eliminar paquete de iconos</string>
     <string name="remove_icon_pack_description">¿Está seguro de que desea eliminar este paquete de iconos? Las entradas que usen iconos de este paquete no se verán afectadas.</string>
     <string name="details">Detalles</string>
@@ -282,7 +288,7 @@
     <string name="lock">Bloquear</string>
     <string name="name">Cuenta</string>
     <string name="no_group">Sin grupo</string>
-    <string name="sort">Ordenar</string>
+    <string name="sort" comment="Title of the Sort button in the top action bar of the main view">Ordenar</string>
     <string name="sort_alphabetically">Emisor (A a Z)</string>
     <string name="sort_alphabetically_reverse">Emisor (Z a A)</string>
     <string name="sort_alphabetically_name">Cuenta (A a Z)</string>
@@ -297,7 +303,7 @@
     <string name="preference_reset_usage_count">Reiniciar contador de uso</string>
     <string name="preference_reset_usage_count_summary">Restablece el contador de uso de cada entrada de su bóveda</string>
     <string name="preference_reset_usage_count_dialog">¿Está seguro de que desea establecer el recuento de uso de cada entrada de su bóveda a 0?</string>
-    <string name="note">Nota</string>
+    <string name="note" comment="Users can add a note to an entry">Nota</string>
     <string name="clear">Restablecer</string>
     <string name="pref_highlight_entry_title">Resaltar tokens al pulsarlos</string>
     <string name="pref_highlight_entry_summary">Hace que los tokens sean más fáciles de distinguir entre ellos resaltándolos temporalmente tras ser pulsados</string>
@@ -323,7 +329,7 @@
     <string name="unknown_issuer">Emisor desconocido</string>
     <string name="unknown_account_name">Nombre de cuenta desconocido</string>
     <plurals name="import_error_dialog">
-        <item quantity="one">Aegis no pudo importar %d tokens. Estos tokens se omitirán. Pulse \'detalles\' para ver más información sobre los errores.</item>
+        <item quantity="one">Aegis no pudo importar %d token. Este tokens se omitirá. Pulsa \'detalles\' para ver más información sobre el error.</item>
         <item quantity="other">Aegis no pudo importar %d tokens. Estos tokens se omitirán. Pulse \'detalles\' para ver más información sobre los errores.</item>
     </plurals>
     <string name="unable_to_process_deeplink">No se puede procesar el enlace profundo</string>
@@ -349,16 +355,16 @@
     <string name="third_party_licenses">Licencias de terceros</string>
     <string name="third_party_licenses_description">Licencias de las bibliotecas de terceros usadas por Aegis</string>
     <string name="country_netherlands">Países Bajos</string>
-    <string name="email_us">Escríbanos un correo electrónico</string>
-    <string name="visit_website">Visite nuestra página web</string>
+    <string name="email_us">Escribir un correo</string>
+    <string name="visit_website">Visita nuestra web</string>
     <string name="about_support">Soporte</string>
     <string name="support_rate">Valorar</string>
-    <string name="support_rate_description">Ayúdenos dejando una reseña en Google Play Store</string>
+    <string name="support_rate_description">Colabora dejando tu reseña en Google Play Store</string>
     <string name="webview_error">Este dispositivo no soporta web view, lo cual es necesario para visualizar el registro de cambios y la licencia. Falta un componente del sistema.</string>
     <string name="email">Correo electrónico</string>
     <string name="time_sync_warning_title">Sincronización automática de hora</string>
-    <string name="time_sync_warning_message">Aegis depende de la sincronización de la hora del sistema para generar códigos correctos. Una desviación de solo unos segundos podría generar códigos incorrectos. Parece que su dispositivo no está configurado para sincronizar automáticamente la hora. ¿Le gustaría hacerlo ahora?</string>
-    <string name="time_sync_warning_disable">Deja de advertirme. Sé lo que estoy haciendo.</string>
+    <string name="time_sync_warning_message">Aegis depende que la hora de tu dispositivo esté bien para generar códigos válidos en cada momento. Una pequeña diferencia de unos segundos podría hacer que los códigos no se acepten. Parece que tu dispositivo no está configurado para sincronizar automáticamente la hora. ¿Quieres hacerlo ahora?</string>
+    <string name="time_sync_warning_disable">No molestar, sé muy bien lo que hago.</string>
     <string name="google_qr_export_unrelated">Encontrado código QR no relacionado. Intente reiniciar el escáner.</string>
     <plurals name="google_qr_export_scanned">
         <item quantity="one">Escaneado %d/%d código QR</item>
@@ -367,6 +373,8 @@
     <string name="google_qr_export_unexpected">Se esperaba un código QR #%d, pero en su lugar se escaneó #%d</string>
     <string name="backup_error_bar_message"><b>La copia de seguridad de la bóveda ha fallado recientemente</b></string>
     <string name="backup_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">        Un intento reciente de copia de seguridad de la bóveda usando %s falló debido a un error. La copia de seguridad se intentó en: %s. Por favor, comprueba tu configuración de copia de seguridad para asegurarte de que las copias de seguridad pueden completarse correctamente.
+    </string>
+    <string name="backup_permission_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">        Un intento reciente de copia de seguridad de la bóveda %s falló porque Aegis no tenía permiso para escribir en el destino de la copia de seguridad. La copia de seguridad se intentó %s. Este error puede producirse si se ha movido o cambiado el nombre del destino de la copia de seguridad o si se ha restaurado Aegis recientemente a partir de una copia de seguridad. Por favor, vuelve a configurar el destino de la copia de seguridad.
     </string>
     <string name="backup_system_builtin">Copias de seguridad automáticas de Aegis</string>
     <string name="backup_system_android">Sistema de copias de seguridad en la nube de Android</string>
@@ -382,7 +390,7 @@
     <string name="pref_show_plaintext_warning_hint">No volver a mostrar esta advertencia</string>
     <string name="backup_plaintext_warning_explanation">Esta advertencia se muestra porque recientemente exportaste una copia no encriptada de la bóveda. Para mantener la seguridad de tus tokens, recomendamos eliminar este archivo cuando deje de ser necesario.</string>
     <string name="switch_camera">Cambiar cámara</string>
-    <string name="empty_list">No hay códigos que mostrar. Comience añadiendo entradas pulsando el signo + en la esquina inferior derecha</string>
+    <string name="empty_list">Todavía no tienes ningún código; añade alguno pulsando en el botón «+» de la esquina inferior derecha</string>
     <string name="empty_list_title">No hay entradas</string>
     <string name="empty_group_list">No hay grupos que mostrar. Añada grupos en la pantalla de edición de una entrada</string>
     <string name="empty_group_list_title">No se encontraron grupos</string>
@@ -417,13 +425,19 @@
     <string name="title_activity_edit_entry">Editar entrada</string>
     <string name="title_activity_scan_qr">Escanear un código QR</string>
     <string name="title_activity_import_entries">Importar entradas</string>
+    <string name="title_activity_assign_icons">Asignar iconos</string>
     <string name="dialog_wipe_entries_title">Limpiar entradas</string>
     <string name="dialog_wipe_entries_message">Su bóveda ya contiene entradas. ¿Desea eliminarlas antes de importar este archivo?\n\n<b>Al hacerlo, perderá permanentemente el acceso a las entradas existentes en la bóveda.</b></string>
     <string name="dialog_wipe_entries_checkbox">Limpiar el contenido de la bóveda</string>
     <string name="panic_trigger_ignore_toast">Aegis ha recibido el activador de pánico pero la configuración está deshabilitada, ignorando</string>
     <string name="pref_panic_trigger_title">Eliminar la bóveda al activar el pánico</string>
     <string name="pref_panic_trigger_summary">Eliminar la bóveda cuando se recibe una activación de pánico desde Ripple</string>
-    <string name="import_vault">Importar bóveda</string>
+    <string name="import_vault">Importar bóveda de Aegis</string>
+    <string name="import_vault_hint">¿Quieres importar desde una aplicación 2FA diferente? Completa la configuración primero y luego ve al menú de configuración.</string>
+    <plurals name="import_duplicate_toast">
+        <item quantity="one">%d duplicado potencial sin marcar. Por favor revisa la lista de entradas.</item>
+        <item quantity="other">%d duplicados potenciales sin marcar. Por favor revisa la lista de entradas.</item>
+    </plurals>
     <string name="importer_help_2fas">Suministre un archivo exportado de 2FAS Authenticator.</string>
     <string name="importer_help_aegis">Suministre un archivo exportado/copia de seguridad de Aegis.</string>
     <string name="importer_help_authenticator_plus">Suministre un archivo exportado de Authenticator Plus obtenido a través de <b>Ajustes -&gt; Copias de seguridad -&gt; Exportar como texto y HTML</b>.</string>
@@ -433,7 +447,7 @@
     <string name="importer_help_bitwarden">Suministra un archivo de exportación/copia de seguridad de Bitwarden. Los archivos encriptados no están soportados.</string>
     <string name="importer_help_battle_net_authenticator">Suministre una copia de <b>/data/data/com.blizzard.bma/shared_prefs/com.blizzard.bma.AUTH_STORE.xml</b>, ubicado en el directorio de almacenamiento interno de Battle.net Authenticator.</string>
     <string name="importer_help_duo">Suministre una copia de <b>/data/data/com.duosecurity.duomobile/files/duokit/accounts.json</b>, localizado en el directorio de almacenamiento interno de DUO.</string>
-    <string name="importer_help_freeotp">Suministre una copia de <b>/data/data/org.fedorahosted.freeotp/shared_prefs/tokens.xml</b>, localizado en el directorio de almacenamiento interno de FreeOTP.</string>
+    <string name="importer_help_freeotp">Suministre una copia de <b>/data/data/org.fedorahosted.freeotp/shared_prefs/tokens.xml</b>, localizado en el directorio de almacenamiento interno de FreeOTP (1.x).</string>
     <string name="importer_help_freeotp_plus">Suministre un archivo exportado de FreeOTP+.</string>
     <string name="importer_help_google_authenticator"><b>Solo los archivos de base de datos de Google Authenticator v5.10 y anteriores son soportados</b>.\n\nSuministra una copia de <b>/data/data/com.google.android.apps.authenticator2/databasases/databasases</b>, ubicado en el directorio de almacenamiento interno de Google Authenticator.</string>
     <string name="importer_help_microsoft_authenticator">Suministre una copia de <b>/data/data/com.azure.authenticator/databases/PhoneFactor</b>, localizado en el directorio de almacenamiento interno de Microsoft Authenticator.</string>
@@ -441,6 +455,8 @@
     <string name="importer_help_steam"><b>Steam v3.0 y posteriores no son compatibles</b>. Proporcione una copia de <b>/data/data/com.valvesoftware.android.steam.community/files/Steamguard-*.json</b>, ubicado en el directorio de almacenamiento interno de Steam.</string>
     <string name="importer_help_totp_authenticator">Suministre un archivo exportado de TOTP Authenticator.</string>
     <string name="importer_help_winauth">Suministre un archivo exportado de WinAuth.</string>
+    <string name="import_assign_icons_dialog_title">Asignar iconos</string>
+    <string name="import_assign_icons_dialog_text">¿Deseas asignar iconos a las entradas importadas?</string>
     <string name="importer_encrypted_exception_google_authenticator">Se omitió esta entrada cifrada: %s</string>
     <string name="importer_help_direct">Importa entradas directamente de %s. Esto requiere que la aplicación esté instalada en este dispositivo y que se conceda acceso root a Aegis.</string>
     <string name="groups">Grupos</string>

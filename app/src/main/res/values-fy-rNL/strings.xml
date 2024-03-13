@@ -51,7 +51,7 @@
     <string name="pref_backups_title">Automatysk klûsreservekopy meitsje</string>
     <string name="pref_backups_summary">Automatysk reservekopyen meitsje fan de klûs op eksterne ûnthâld wannear’t der wizigingen binne. Allinnich stipe foar fersifere klûzen.</string>
     <string name="pref_backups_reminder_title">Reservekopyen oantinken</string>
-    <string name="pref_backups_reminder_summary">Toan in oantinken om in reservekopyen fan dyn klûs te meitsjen, asto noch gjin reservekopyen hast fan de lêste wizigingen.</string>
+    <string name="pref_backups_reminder_summary">Toan in oantinken om in reservekopy fan dyn klûs te meitsjen, asto noch gjin reservekopy hast fan de lêste wizigingen.</string>
     <string name="pref_backups_reminder_dialog_title">Reservekopy-oantinken útskeakelje</string>
     <string name="pref_backups_reminder_dialog_summary">Utskeakeljen fan dit oantinken betsjut dat Aegis dy net fertelle sil oftsto wizigingen hast dêr’t noch net in reservekopy fan makke is. Hjirmei rinsto it risiko om de tagong ta tokens te ferliezen. Bisto wis datsto dit oantinken útskeakelje wolst?</string>
     <string name="pref_backups_location_title">Map foar reservekopybestannen</string>
@@ -78,7 +78,7 @@
     <string name="pref_password_reminder_summary">Toan in oantinken %s om it wachtwurd yn te fieren, sadatsto dizze net ferjitst.</string>
     <string name="pref_password_reminder_summary_disabled">Utskeakele</string>
     <string name="pref_secure_screen_title">Skermbeskoatteling</string>
-    <string name="pref_secure_screen_summary">Blokkearje skermôfdrukken en oare besykjen ta skermopnamen binnen dizze app</string>
+    <string name="pref_secure_screen_summary">Blokkearje skermôfdrukken en oare besykjen ta skermopnamen binnen dizze app.</string>
     <string name="pref_tap_to_reveal_title">Tikke om te toanen</string>
     <string name="pref_tap_to_reveal_summary">Koaden standert ferstopje. Tik items oan om de koade te toanen.</string>
     <string name="pref_tap_to_reveal_time_title">Time-out foar oantikken om te toanen</string>
@@ -95,7 +95,7 @@
     <string name="pref_backup_password_change_title">Wachtwurd foar reservekopy meitsje &amp; eksportearjen wizigje</string>
     <string name="pref_backup_password_change_summary">Stel in nij wachtwurd yn foar it fersiferjen fan de klûs wylst reservekopyen meitsjen en eksportearjen.</string>
     <string name="pref_encryption_title">Fersifering</string>
-    <string name="pref_encryption_summary">Fersiferje de klûs en ûntskoattelje dizze mei in wachtwurd of biometry</string>
+    <string name="pref_encryption_summary">Fersiferje de klûs en ûntskoattelje dizze mei in wachtwurd of biometry.</string>
     <string name="pref_biometrics_title">Biometrysk ûntskoattelje</string>
     <string name="pref_biometrics_summary">Biometryske autentikaasje tastean om de klûs te ûntskoatteljen</string>
     <string name="pref_set_password_title">Wachtwurd wizigje</string>
@@ -116,7 +116,7 @@
         <item quantity="other">%d groepen selektearre</item>
     </plurals>
     <string name="export_no_groups_selected">Gjin groepen keazen om te eksportearjen</string>
-    <string name="export_html_title" context="The title of an HTML export document">Aegis Authenticator Export</string>
+    <string name="export_html_title" comment="The title of an HTML export document">Aegis Authenticator Export</string>
     <string name="choose_authentication_method">Befeiliging</string>
     <string name="authentication_method_explanation">Aegis is in op feilichheid rjochte 2FA-applikaasje. Tokens wurde bewarre yn in klûs, dy’t opsjoneel fersifere wurde kin mei in wachtwurd nei eigen idee. As in oanfaller dyn fersifere klûsbestân yn hannen kriget, sil dizze gjin tagong hawwe ta de ynhâld sûnder it wachtwurd te kennen.\n\nWy hawwe de opsje keazen dy’t neffens ús it beste past by dyn apparaat.</string>
     <string name="authentication_method_none">Gjin</string>
@@ -158,12 +158,14 @@
     <string name="counter">Teller</string>
     <string name="digits">Sifers</string>
     <string name="secret">Kaai</string>
-    <string name="scan">Scan QR-koade</string>
-    <string name="scan_image">Scan ôfbylding</string>
+    <string name="scan">QR-koade scanne</string>
+    <string name="scan_image">Ofbylding scanne</string>
     <string name="enter_manually">Hânmjittich ynfiere</string>
     <string name="set_up_biometric">Biometryske ûntskoatteling ynstelle</string>
     <string name="copy">Kopiearje</string>
     <string name="edit">Bewurkje</string>
+    <string name="select_all">Alles selektearje</string>
+    <string name="assign_icons">Piktogrammen tawize</string>
     <string name="favorite" comment="Verb">Oan favoriten tafoegje</string>
     <string name="unfavorite" comment="Verb">Ut favoriten fuortsmite</string>
     <string name="error_all_caps">FLATER</string>
@@ -198,6 +200,7 @@
     <string name="discard_changes">Wizigingen annulearje?</string>
     <string name="discard_changes_description">Dyn wizigingen binne net bewarre</string>
     <string name="saving_profile_error">Flater by bewarjen profyl</string>
+    <string name="saving_assign_icons_error">Flater by tawizen piktogrammen</string>
     <string name="welcome">Wolkom</string>
     <string name="app_description">Aegis is in fergees en feilige iepen-boarne 2FA-app.</string>
     <string name="setup_completed">Konfiguraasje foltôge</string>
@@ -276,6 +279,8 @@
     <string name="unlocking_vault">Klûs wurdt ûntskoattele</string>
     <string name="remove_group">Groep fuortsmite</string>
     <string name="remove_group_description">Bisto wis datsto dizze groep fuortsmite wolst? Alle items binnen dizze groep wurde automatysk ferpleatst nei ‘Gjin groep’.</string>
+    <string name="remove_unused_groups">Net brûkte groepen fuortsmite</string>
+    <string name="remove_unused_groups_description">Bisto wis datsto alle groepen, dy’t net tawizen binne ta in item, fuortsmite wolle?</string>
     <string name="remove_icon_pack">Piktogrammepakket fuortsmite</string>
     <string name="remove_icon_pack_description">Bisto wis datsto dit piktogrammepakket fuortsmite wolst? Items dy’t piktogrammen út dit pakket brûke, wurde net beynfloede.</string>
     <string name="details">Details</string>
@@ -283,7 +288,7 @@
     <string name="lock">Beskoattelje</string>
     <string name="name">Namme</string>
     <string name="no_group">Gjin groep</string>
-    <string name="sort">Sortearje</string>
+    <string name="sort" comment="Title of the Sort button in the top action bar of the main view">Sortearje</string>
     <string name="sort_alphabetically">Utjouwer (A t/m Z)</string>
     <string name="sort_alphabetically_reverse">Utjouwer (Z t/m A)</string>
     <string name="sort_alphabetically_name">Account (A t/m Z)</string>
@@ -298,7 +303,7 @@
     <string name="preference_reset_usage_count">Gebrûksteller op 0 ynstelle</string>
     <string name="preference_reset_usage_count_summary">De gebrûksteller fan elk item yn dyn klûs opnij ynstelle</string>
     <string name="preference_reset_usage_count_dialog">Bisto wis datsto de gebrûksteller fan alle items yn de klûs op 0 sette wolst?</string>
-    <string name="note">Notysje</string>
+    <string name="note" comment="Users can add a note to an entry">Notysje</string>
     <string name="clear">Wiskje</string>
     <string name="pref_highlight_entry_title">Koaden markearje nei oantikken</string>
     <string name="pref_highlight_entry_summary">Meitsje koaden makliker te ûnderskieden fan inoar troch se tydlik te markearjen nei it oantikken</string>
@@ -346,11 +351,11 @@
     <string name="whats_new">Wat is der nij</string>
     <string name="github_description">Boarnekoade, problemen en ynformaasje</string>
     <string name="license">Lisinsje</string>
-    <string name="license_description">Aegis Authenticator is lisinsiearre ûnder de GPLv3</string>
+    <string name="license_description">Aegis Authenticator is lisinsearre ûnder de GPLv3</string>
     <string name="third_party_licenses">Lisinsjes fan tredden</string>
     <string name="third_party_licenses_description">Lisinsjes fan biblioteken fan tredden brûkt troch Aegis</string>
     <string name="country_netherlands">Nederlân</string>
-    <string name="email_us">Skriuw in e-mailberjocht</string>
+    <string name="email_us">Stjoer in e-mailberjocht</string>
     <string name="visit_website">Besykje ús website</string>
     <string name="about_support">Stipe</string>
     <string name="support_rate">Beoardielje</string>
@@ -369,6 +374,8 @@
     <string name="backup_error_bar_message"><b>Klûsreservekopy koartlyn mislearre</b></string>
     <string name="backup_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">        In resinte reservekopy fan de klûs mei %s mislearre, omdat der wat misgien is. De reservekopybesykjen wie op %s. Kontrolearje de resevekopy-ynstellingen om wis te wêzen dat reservekopyen mei sukses foltôge wurde kinne.
     </string>
+    <string name="backup_permission_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">        In resint besykjen in reservekopy fan de klûs te meitsjen mei %s is mislearre. Aegis hat gjin tastimming om te skriuwen nei de reservekopylokaasje. De reservekopy is %s probearre. Dizze flater kin barre as jo de reservekopylokaasje ferpleatst/omneamd hawwe of as jo koartlyn in Aegis-reservekopy wersteld hawwe. Konfigurearje de reservekopylokaasje opnij.
+    </string>
     <string name="backup_system_builtin">it ynboude automatyske reservekopyen fan Aegis</string>
     <string name="backup_system_android">it cloudreservekopysysteem fan Android</string>
     <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">        De meast resinte reservekopy is ferâldere (%s)
@@ -383,9 +390,9 @@
     <string name="pref_show_plaintext_warning_hint">Dizze warskôging net opnij toane</string>
     <string name="backup_plaintext_warning_explanation">Dizze warskôging wurdt toand, omdatsto resint in net-fersifere kopy fan de klûs eksportearre hast. Om dyn tokens feilich te hâlden, riede wy oan dit bestân fuort te smiten asto it net mear nedich hast.</string>
     <string name="switch_camera">Kamera wikselje</string>
-    <string name="empty_list">Der binne gjin koaden om te toanen. Begjin mei it tafoegjen fan items troch op it plusteken yn de rjochterûnderhoek te tikken</string>
+    <string name="empty_list">Der binne gjin koaden om te toanen. Begjin mei it tafoegjen fan items troch op it plusteken yn de rjochterûnderhoek te tikken.</string>
     <string name="empty_list_title">Gjin items fûn</string>
-    <string name="empty_group_list">Der binne gjin groepen om te toanen. Foegje groepen ta yn it bewurkingsskerm fan in item</string>
+    <string name="empty_group_list">Der binne gjin groepen om te toanen. Foegje groepen ta yn it bewurkingsskerm fan in item.</string>
     <string name="empty_group_list_title">Gjin groepen fûn</string>
     <string name="no_icon_packs">Der binne noch gjin piktogrampakketten ymportearre. Tik op it plusteken om der ien te ymportearjen. Tip: probearje <a href="https://aegis-icons.github.io">Aegis-piktogrammen</a>.</string>
     <string name="no_icon_packs_title">Gjin piktogrampakketten</string>
@@ -418,13 +425,15 @@
     <string name="title_activity_edit_entry">Item bewurkje</string>
     <string name="title_activity_scan_qr">Scan in QR-koade</string>
     <string name="title_activity_import_entries">Items ymportearje</string>
+    <string name="title_activity_assign_icons">Piktogrammen tawize</string>
     <string name="dialog_wipe_entries_title">Items wiskje</string>
     <string name="dialog_wipe_entries_message">Dyn klûs befettet al items. Wolsto dizze items fuortsmite eardatsto dit bestân ymportearrest?\n\n<b>Hjirmei ferliesto permanint tagong ta de besteande items yn de klûs.</b></string>
     <string name="dialog_wipe_entries_checkbox">Klûsynhâld wiskje</string>
     <string name="panic_trigger_ignore_toast">Aegis hat panyktrigger ûntfongen, mar ynstelling is útskeakele, wurdt negearre</string>
     <string name="pref_panic_trigger_title">Klûs fuortsmite by panyktrigger</string>
     <string name="pref_panic_trigger_summary">Klûs fuortsmite by ûntfangen fan Ripple-panyktrigger</string>
-    <string name="import_vault">Klûs ymportearje</string>
+    <string name="import_vault">Aegis-klûs ymportearje</string>
+    <string name="import_vault_hint">Wolsto út in oare 2FA-app ymportearje? Foltôgje earst de konfiguraasje en gean dan nei it ynstellingenmenu.</string>
     <plurals name="import_duplicate_toast">
         <item quantity="one">%d potinsjele dûbeling net oanfinkt. Kontrolearje de list mei items.</item>
         <item quantity="other">%d potinsjele dûbelingen net oanfinkt. Kontrolearje de list mei items.</item>
@@ -438,7 +447,7 @@
     <string name="importer_help_bitwarden">Leverje in Bitwarden-eksport-/reservekopybestân oan. Fersifere bestannen wurde net stipe.</string>
     <string name="importer_help_battle_net_authenticator">Leverje in kopy oan fan <b>/data/data/com.blizzard.bma/shared_prefs/com.blizzard.bma.AUTH_STORE.xml</b>, pleatst yn de ynterne ûnthâldmap fan Battle.net Authenticator.</string>
     <string name="importer_help_duo">Leverje in kopy oan fan <b>/data/data/com.duosecurity.duomobile/files/duokit/accounts.json</b>, pleatst yn de ynterne ûnthâldmap fan DUO.</string>
-    <string name="importer_help_freeotp">Leverje in kopy oan fan <b>/data/data/org.fedorahosted.freeotp/shared_prefs/tokens.xml</b>, pleatst yn de ynterne ûnthâldmap fan FreeOTP.</string>
+    <string name="importer_help_freeotp">Leverje in kopy oan fan <b>/data/data/org.fedorahosted.freeotp/shared_prefs/tokens.xml</b>, pleatst yn de ynterne ûnthâldmap fan FreeOTP (1.x).</string>
     <string name="importer_help_freeotp_plus">Leverje in FreeOTP-eksportbestân oan.</string>
     <string name="importer_help_google_authenticator"><b>Allinnich databasebestannen fan Google Authenticator v5.10 en earder wurde stipe</b>.\n\nLeverje in kopy oan fan <b>/data/data/com.google.android.apps.authenticator2/databases/databases</b>, pleatst yn de ynterne ûnthâldmap fan Google Authenticator.</string>
     <string name="importer_help_microsoft_authenticator">Leverje in kopy oan fan <b>/data/data/com.azure.authenticator/databases/PhoneFactor</b>, pleatst yn de ynterne ûnthâldmap fan Microsoft Authenticator.</string>
@@ -446,8 +455,10 @@
     <string name="importer_help_steam"><b>Steam v3.0 en nijer wurde net stipe</b>. Soargje foar in kopy fan <b>/data/data/com.valvesoftware.android.steam.community/files/Steamguard-*.json</b>, te finen yn de ynterne ûnthâldmap fan Steam.</string>
     <string name="importer_help_totp_authenticator">Leverje in TOTP-autentikator-eksportbestân oan.</string>
     <string name="importer_help_winauth">Leverje in WinAuth-eksportbestân oan.</string>
+    <string name="import_assign_icons_dialog_title">Piktogrammen tawize</string>
+    <string name="import_assign_icons_dialog_text">Wolsto piktogrammen tawize oan de ymportearre items?</string>
     <string name="importer_encrypted_exception_google_authenticator">Fersifere item is oerslaggen: %s</string>
-    <string name="importer_help_direct">Ymportearje items streekrjocht fan %s. Dit fereasket dat de app op dit apparaat stiet en dat root-tagong oan Aegis ferliend wurdt.</string>
+    <string name="importer_help_direct">Ymportearje items streekrjocht fan %s út. Dit fereasket dat de app op dit apparaat stiet en dat root-tagong oan Aegis ferliend wurdt.</string>
     <string name="groups">Groepen</string>
     <string name="pref_focus_search">Fokus sykfjild nei starten app</string>
     <string name="pref_focus_search_summary">Fokus it sykfjild daliks nei it iepenjen fan de app.</string>

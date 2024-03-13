@@ -116,7 +116,7 @@
         <item quantity="other">%d talde aukeratuta</item>
     </plurals>
     <string name="export_no_groups_selected">Ez duzu talderik aukeratu esportatzeko</string>
-    <string name="export_html_title" context="The title of an HTML export document">Aegis Authenticator Esportazioa</string>
+    <string name="export_html_title" comment="The title of an HTML export document">Aegis Authenticator Esportazioa</string>
     <string name="choose_authentication_method">Segurtasuna</string>
     <string name="authentication_method_explanation">Aegis segurtasunean oinarritutako 2FA aplikazioa da. Tokenak biltegi batean gordetzen dira. Biltegi hori nahi izanez gero, aukeratu duzun pasahitzarekin zifratu daiteke. Erasotzaile batek biltegi enkriptatuko fitxategia lortzen badu, ezingo du edukira sartu pasahitza jakin gabe.\n\nZure gailuarentzat hobeto egokituko litzatekeela uste dugun aukera hautatu dugu.</string>
     <string name="authentication_method_none">Bat ere ez</string>
@@ -164,6 +164,8 @@
     <string name="set_up_biometric">Desblokeatze biometrikoa konfiguratu</string>
     <string name="copy">Kopiatu</string>
     <string name="edit">Editatu</string>
+    <string name="select_all">Aukeratu guztiak</string>
+    <string name="assign_icons">Esleitu ikonoak</string>
     <string name="favorite" comment="Verb">Gogokoa</string>
     <string name="unfavorite" comment="Verb">Gogokoetatik kendu</string>
     <string name="error_all_caps">Errorea</string>
@@ -198,6 +200,7 @@
     <string name="discard_changes">Baztertu aldaketak?</string>
     <string name="discard_changes_description">Zure aldaketak ez dira gorde</string>
     <string name="saving_profile_error">Errorea profila gordetzerakoan</string>
+    <string name="saving_assign_icons_error">Errorea ikonoak esleitzean</string>
     <string name="welcome">Ongi Etorri</string>
     <string name="app_description">Aegis doakoa, segurua eta software librea den 2FA aplikazioa da</string>
     <string name="setup_completed">Konfigurazioa osatuta</string>
@@ -276,6 +279,8 @@
     <string name="unlocking_vault">Biltegia desblokeatzen</string>
     <string name="remove_group">Ezabatu taldea</string>
     <string name="remove_group_description">Ziur zaude talde hau ezabatu nahi duzula? Talde honetako sarrerak automatikoki aldatuko dira \'Talderik ez\' aukerara.</string>
+    <string name="remove_unused_groups">Ezabatu erabili gabeko taldeak</string>
+    <string name="remove_unused_groups_description">Ziur zaude sarrera bati ere esleitu gabeko talde guztiak ezabatu nahi dituzula?</string>
     <string name="remove_icon_pack">Ezabatu ikono multzoa</string>
     <string name="remove_icon_pack_description">Ziur zaude ikono multzo hau ezabatzeaz? Ikono multzo honetako ikonoak darabiltzaten sarreretan ez da aldaketarik egongo.</string>
     <string name="details">Xehetasunak</string>
@@ -283,7 +288,7 @@
     <string name="lock">Blokeatu</string>
     <string name="name">Izena</string>
     <string name="no_group">Talderik ez</string>
-    <string name="sort">Ordenatu</string>
+    <string name="sort" comment="Title of the Sort button in the top action bar of the main view">Ordenatu</string>
     <string name="sort_alphabetically">Igorlea (A-tik Z-ra)</string>
     <string name="sort_alphabetically_reverse">Igorlea (Z-tik A-ra)</string>
     <string name="sort_alphabetically_name">Kontua (A-tik Z-ra)</string>
@@ -298,7 +303,7 @@
     <string name="preference_reset_usage_count">Berrezarri erabilera kopurua</string>
     <string name="preference_reset_usage_count_summary">Berrezarri elementu guztien erabilera kopurua</string>
     <string name="preference_reset_usage_count_dialog">Ziur zaude elementu guztien erabilera kopurua 0ra berrezartzeaz?</string>
-    <string name="note">Oharra</string>
+    <string name="note" comment="Users can add a note to an entry">Oharra</string>
     <string name="clear">Garbitu</string>
     <string name="pref_highlight_entry_title">Nabarmendu tokenak ukitzean</string>
     <string name="pref_highlight_entry_summary">Egin elkarrengandik errazago bereizten diren tokenak, sakatzen dituzunean aldi baterako nabarmenduz</string>
@@ -324,8 +329,8 @@
     <string name="unknown_issuer">Igorle ezezaguna</string>
     <string name="unknown_account_name">Kontu-izen ezezaguna</string>
     <plurals name="import_error_dialog">
-        <item quantity="one">Aegisek ezin izan du %d token inportatu. Token hori kendu egingo da. Sakatu \'Xehetasunak\' akatsei buruzko informazio gehiago ikusteko.</item>
-        <item quantity="other">Aegisek ezin izan du %d token inportatu. Token horiek kendu egingo dira. Sakatu \'Xehetasunak\' akatsei buruzko informazio gehiago ikusteko.</item>
+        <item quantity="one">Aegisek ezin izan du token %d inportatu. Token hau ez dugu inportatuko. Egin klik xehetasunetan erroreari buruzko informazio gehiago lortzeko.</item>
+        <item quantity="other">Aegisek ezin izan ditu %d token inportatu. Token hauek ez ditugu inportatuko. Egin klik xehetasunetan erroreari buruzko informazio gehiago lortzeko.</item>
     </plurals>
     <string name="unable_to_process_deeplink">Ezin izan da esteka sakona prozesatu</string>
     <string name="unable_to_read_qrcode_file">Ezin izan da fitxategian oinarritutako QR kodea prozesatu: %s.</string>
@@ -368,6 +373,7 @@
     <string name="google_qr_export_unexpected">Itxarondako QR kodea #%d, baina haren ordez #%d eskaneatuta</string>
     <string name="backup_error_bar_message"><b>Biltegiaren segurtasun-kopiak akatsa eman du berriki</b></string>
     <string name="backup_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">%s erabiliz egindako biltegiaren segurtasun kopiak huts egin du. Saiakera noiz egin den: %s. Ziurtatu segurtasun kopien ezarpenak ondo daudela hauek ondo egin daitezen.    </string>
+    <string name="backup_permission_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">%s erabiliz egin den segurtasun-kopia baten saiakerak huts egin du Aegisek ez baitu baimenik helburuan ezer idazteko. Segurtasun kopiaren saiakera %s izan da. Errore hau kopia mugitu/berrizendatu egin duzulako izan daiteke edo Aegis segurtasun-kopia batetik berrezarri duzulako. Konfiguratu berriz zure kopien helburu karpeta.    </string>
     <string name="backup_system_builtin">Aegisek egindako segurtasun kopia automatikoak</string>
     <string name="backup_system_android">Androidek lainoan egidako segurtasun kopiak</string>
     <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">Azken segurtasun kopia zaharregia da (%s)
@@ -416,13 +422,15 @@
     <string name="title_activity_edit_entry">Editatu sarrera</string>
     <string name="title_activity_scan_qr">Eskaneatu QR kodea</string>
     <string name="title_activity_import_entries">Inportatu sarrerak</string>
+    <string name="title_activity_assign_icons">Esleitu ikonoak</string>
     <string name="dialog_wipe_entries_title">Garbitu sarrerak</string>
     <string name="dialog_wipe_entries_message">Zure biltegiak sarrerak ditu dagoeneko. Sarrera horiek ezabatu nahi dituzu fitxategi hau inportatu aurretik?\n\n<b>Hori egitean, biltegiko sarreretarako sarbidea galduko da betirako.</b></string>
     <string name="dialog_wipe_entries_checkbox">Garbitu biltegiaren sarrerak</string>
     <string name="panic_trigger_ignore_toast">Aegisek arrisku mezua jaso du baina ezarpen hau desaktibatuta dago, ez da ezer egingo</string>
     <string name="pref_panic_trigger_title">Ezabatu biltegia arrisku mezua jasotzean</string>
     <string name="pref_panic_trigger_summary">Ezabatu biltegia Rippletik arrisku mezua jasotzean</string>
-    <string name="import_vault">Inportatu biltegia</string>
+    <string name="import_vault">Inportatu Aegis biltegia</string>
+    <string name="import_vault_hint">Beste 2FA aplikazio batetik inportatu nahi duzu? Amaitu konfigurazioa lehenengo eta joan ondoren ezarpenetara.</string>
     <plurals name="import_duplicate_toast">
         <item quantity="one">Bikoiztutako sarrera posible %d. Errebisatu zerrenda mesedez.</item>
         <item quantity="other">Bikoiztutako %d sarrera posible. Errebisatu zerrenda mesedez.</item>
@@ -436,7 +444,7 @@
     <string name="importer_help_bitwarden">Kargatu Bitwardenen esportazio/segurtasun-kopia fitxategi bat. Ezin dituzu zifratutako fitxategiak kargatu.</string>
     <string name="importer_help_battle_net_authenticator">Battle.net Authenticatoren <b>/data/data/com.blizzard.bma/shared_prefs/com.blizzard.bma.AUTH_STORE.xml</b> fitxategia aukeratu.</string>
     <string name="importer_help_duo">Aukeratu <b>/data/data/com.duosecurity.duomobile/files/duokit/accounts.json</b> fitxategia, DUOren karpeten barruan dagoena.</string>
-    <string name="importer_help_freeotp">FreeTOPren <b>/data/data/org.fedorahosted.freeotp/shared_prefs/tokens.xml</b> fitxategia aukeratu.</string>
+    <string name="importer_help_freeotp">FreeTOPren (1.x bersioa) barne karpetan dagoen <b>/data/data/org.fedorahosted.freeotp/shared_prefs/tokens.xml</b> fitxategia aukeratu.</string>
     <string name="importer_help_freeotp_plus">FreeOTP+en esportazio fitxategia aukeratu.</string>
     <string name="importer_help_google_authenticator">&lt;b&gt;Google Authenticator aplikazioaren v5.10 bertsioa edo lehenagokoak diren datu-baseak erabili daitezke. \n\n&lt;b&gt;data/data/com.google.android.apps.authenticator2/databases/databases&lt;/b&gt; fitxategiaren kopia bat eman, berau Google Authenticator aplikazioaren barne biltegiratzean dago.</string>
     <string name="importer_help_microsoft_authenticator">Microsoft Authenticatoren <b>/data/data/com.azure.authenticator/databases/PhoneFactor</b> fitxategia aukeratu.</string>
@@ -445,6 +453,8 @@
 <b>/data/data/com.valvesoftware.android.steam.community/files/Steamguard-*.json</b> fitxategiaren kopia, berau Steamen barne biltegiratzearen karpetan egongo da.</string>
     <string name="importer_help_totp_authenticator">TOTP Authenticatoren esportazio fitxategia aukeratu.</string>
     <string name="importer_help_winauth">WinAuthen esportazio fitxategia aukeratu.</string>
+    <string name="import_assign_icons_dialog_title">Esleitu ikonoak</string>
+    <string name="import_assign_icons_dialog_text">Inportatutako sarrerei ikonoak esleitu nahi dizkiezu?</string>
     <string name="importer_encrypted_exception_google_authenticator">Zifratutako sarrera ez da kontuan hartu: %s</string>
     <string name="importer_help_direct">Sarrerak %s-etik inportatu. Honek funtzionatzeko aplikazioa gailu honetan instalatuta egon behar da eta Aegisi root baimena eman beharko diozu.</string>
     <string name="groups">Taldeak</string>

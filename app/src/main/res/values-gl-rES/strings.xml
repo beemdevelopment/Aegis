@@ -112,7 +112,7 @@
         <item quantity="other">%d grupos seleccionados</item>
     </plurals>
     <string name="export_no_groups_selected">Non se seleccionou ningún grupo para exportar</string>
-    <string name="export_html_title" context="The title of an HTML export document">Exportación de Aegis Authenticator</string>
+    <string name="export_html_title" comment="The title of an HTML export document">Exportación de Aegis Authenticator</string>
     <string name="choose_authentication_method">Seguridade</string>
     <string name="authentication_method_explanation">Aegis é unha aplicación 2FA centrada na seguridade. Os tokens gárdanse nun almacén, o cal se pode cifrar cun contrasinal da túa elección. Se un atacante obtén o ficheiro do teu almacén cifrado, non será capaz de acceder á información se non sabe o contrasinal.\n\nPreseleccionouse a opción que cremos que encaixa mellor co teu dispositivo.</string>
     <string name="authentication_method_none">Ningunha</string>
@@ -273,7 +273,7 @@
     <string name="lock">Bloquear</string>
     <string name="name">Nome</string>
     <string name="no_group">Sen grupo</string>
-    <string name="sort">Ordenar</string>
+    <string name="sort" comment="Title of the Sort button in the top action bar of the main view">Ordenar</string>
     <string name="sort_alphabetically">Emisor (A a Z)</string>
     <string name="sort_alphabetically_reverse">Emisor (Z a A)</string>
     <string name="sort_alphabetically_name">Conta (A a Z)</string>
@@ -288,7 +288,7 @@
     <string name="preference_reset_usage_count">Reiniciar contador de usos</string>
     <string name="preference_reset_usage_count_summary">Reinicia o contador de usos de cada entrada do almacén</string>
     <string name="preference_reset_usage_count_dialog">Tes a certeza de que queres poñer o contador de usos de tódalas entradas do teu almacén a cero?</string>
-    <string name="note">Nota</string>
+    <string name="note" comment="Users can add a note to an entry">Nota</string>
     <string name="clear">Restablecer</string>
     <string name="pref_highlight_entry_title">Resaltar tokens ao premelos</string>
     <string name="pref_highlight_entry_summary">Resalta temporalmente os tokens cando se preman para podelos distinguir máis facilmente</string>
@@ -311,10 +311,6 @@
     <string name="small_mode_title">Pequeno</string>
     <string name="unknown_issuer">Emisor descoñecido</string>
     <string name="unknown_account_name">Nome de conta descoñecido</string>
-    <plurals name="import_error_dialog">
-        <item quantity="one">Aegis non puido importar %d token. Este token omitirase. Preme en \"detalles\" para ver máis información sobre os erros.</item>
-        <item quantity="other">Aegis non puido importar %d tokens. Estes tokens omitiranse. Preme en \"detalles\" para ver máis información sobre os erros.</item>
-    </plurals>
     <string name="unable_to_process_deeplink">Non se puido procesar o enlace profundo</string>
     <string name="unable_to_read_qrcode_file">Non se puido ler e procesar o código QR do ficheiro: %s.</string>
     <string name="unable_to_process_shared_text">Non se puido procesar o texto compartido como OTP</string>
@@ -412,7 +408,6 @@
     <string name="panic_trigger_ignore_toast">Aegis recibiu unha alarma de pánico pero ignorarase porque o axuste está desactivado</string>
     <string name="pref_panic_trigger_title">Eliminar o almacén cunha alarma de pánico</string>
     <string name="pref_panic_trigger_summary">Elimina o almacén cando se reciba unha alarma de pánico desde Ripple</string>
-    <string name="import_vault">Importar almacén</string>
     <string name="importer_help_2fas">Proporciona un ficheiro de copia de seguridade de 2FAS Authenticator.</string>
     <string name="importer_help_aegis">Proporciona un ficheiro de copia de seguridade ou de exportación de Aegis.</string>
     <string name="importer_help_authenticator_plus">Proporciona un ficheiro de exportación de Authenticator Plus obtido mediante <b>Axustes -&gt; Copia de seguridade e restauración -&gt; Exportar como texto e HTML</b>.</string>
@@ -422,7 +417,6 @@
     <string name="importer_help_bitwarden">Proporciona un ficheiro de copia de seguridade ou de exportación de Bitwarden. Non se admiten os ficheiros cifrados.</string>
     <string name="importer_help_battle_net_authenticator">Proporciona unha copia de <b>/data/data/com.blizzard.bma/shared_prefs/com.blizzard.bma.AUTH_STORE.xml</b>, localizado no directorio do almacenamento interno de Battle.net Authenticator.</string>
     <string name="importer_help_duo">Proporciona unha copia de <b>/data/data/com.duosecurity.duomobile/files/duokit/accounts.json</b>, localizado no directorio do almacenamento interno de DUO.</string>
-    <string name="importer_help_freeotp">Proporciona unha copia de <b>/data/data/org.fedorahosted.freeotp/shared_prefs/tokens.xml</b>, localizado no directorio do almacenamento interno de FreeOTP.</string>
     <string name="importer_help_freeotp_plus">Proporciona un ficheiro de exportación de FreeOTP+.</string>
     <string name="importer_help_google_authenticator"><b>Só se admiten ficheiros de base de datos de Google Authenticator v5.10 e anteriores</b>.\n\nProporciona unha copia de <b>/data/data/com.google.android.apps.authenticator2/databases/databases</b>, localizado no directorio do almacenamento interno de Google Authenticator.</string>
     <string name="importer_help_microsoft_authenticator">Proporciona unha copia de <b>/data/data/com.azure.authenticator/databases/PhoneFactor</b>, localizado no directorio do almacenamento interno de Microsoft Authenticator.</string>

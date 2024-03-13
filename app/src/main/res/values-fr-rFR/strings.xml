@@ -116,7 +116,7 @@
         <item quantity="other">%d groupes sélectionnés</item>
     </plurals>
     <string name="export_no_groups_selected">Aucun groupe sélectionné pour l\'export</string>
-    <string name="export_html_title" context="The title of an HTML export document">Export Aegis Authenticator</string>
+    <string name="export_html_title" comment="The title of an HTML export document">Export Aegis Authenticator</string>
     <string name="choose_authentication_method">Sécurité</string>
     <string name="authentication_method_explanation">Aegis est une application d\'authentification à deux facteurs (2FA) axée sur la sécurité. Les jetons sont stockés dans un coffre-fort, qui peut être éventuellement chiffré avec un mot de passe de votre choix. Si un attaquant obtient votre fichier de coffre-fort chiffré, il ne pourra pas accéder au contenu sans connaître le mot de passe.\n\nNous avons présélectionné l\'option que nous pensons la plus adaptée à votre appareil.</string>
     <string name="authentication_method_none">Aucun</string>
@@ -164,6 +164,8 @@
     <string name="set_up_biometric">Configurer le déverrouillage biométrique</string>
     <string name="copy">Copier</string>
     <string name="edit">Modifier</string>
+    <string name="select_all">Tout sélectionner</string>
+    <string name="assign_icons">Association des icônes</string>
     <string name="favorite" comment="Verb">Ajouter aux favoris</string>
     <string name="unfavorite" comment="Verb">Retirer des favoris</string>
     <string name="error_all_caps">ERREUR</string>
@@ -198,6 +200,7 @@
     <string name="discard_changes">Annuler les modifications ?</string>
     <string name="discard_changes_description">Vos modifications n\'ont pas été enregistrées</string>
     <string name="saving_profile_error">Erreur lors de l\'enregistrement du profil</string>
+    <string name="saving_assign_icons_error">Erreur lors de l\'association des icônes</string>
     <string name="welcome">Bienvenue</string>
     <string name="app_description">Aegis est une application d\'authentification à deux facteurs (2FA) gratuite, sécurisée et open source</string>
     <string name="setup_completed">Configuration terminée</string>
@@ -276,6 +279,8 @@
     <string name="unlocking_vault">Déverrouillage du coffre-fort</string>
     <string name="remove_group">Supprimer groupe</string>
     <string name="remove_group_description">Êtes-vous sûr de vouloir supprimer ce groupe ? Les entrées dans ce groupe seront basculées automatiquement dans \"Aucun groupe\".</string>
+    <string name="remove_unused_groups">Supprimer les groupes inutilisés</string>
+    <string name="remove_unused_groups_description">Êtes-vous sûr de vouloir supprimer tous les groupes qui ne sont pas associés à une entrée ?</string>
     <string name="remove_icon_pack">Supprimer le pack d\'icônes</string>
     <string name="remove_icon_pack_description">Êtes-vous sûr de vouloir supprimer ce pack d\'icônes ? Les entrées qui utilisent les icônes de ce pack ne seront pas affectées.</string>
     <string name="details">Détails</string>
@@ -283,7 +288,7 @@
     <string name="lock">Verrouiller</string>
     <string name="name">Nom</string>
     <string name="no_group">Aucun groupe</string>
-    <string name="sort">Trier</string>
+    <string name="sort" comment="Title of the Sort button in the top action bar of the main view">Trier</string>
     <string name="sort_alphabetically">Émetteur (de A à Z)</string>
     <string name="sort_alphabetically_reverse">Émetteur (de Z à A)</string>
     <string name="sort_alphabetically_name">Compte (de A à Z)</string>
@@ -298,7 +303,7 @@
     <string name="preference_reset_usage_count">Réinitialiser le nombre d\'utilisations</string>
     <string name="preference_reset_usage_count_summary">Réinitialiser le nombre d\'utilisations de chaque entrée de votre coffre-fort</string>
     <string name="preference_reset_usage_count_dialog">Êtes-vous sûr de vouloir définir le nombre d\'utilisations de chaque entrée de votre coffre-fort à 0 ?</string>
-    <string name="note">Note</string>
+    <string name="note" comment="Users can add a note to an entry">Note</string>
     <string name="clear">Effacer</string>
     <string name="pref_highlight_entry_title">Surligner les jetons lorsqu\'ils sont appuyés</string>
     <string name="pref_highlight_entry_summary">Rendre les jetons plus faciles à distinguer les uns des autres en les surlignant temporairement lorsqu\'ils sont appuyés</string>
@@ -324,8 +329,8 @@
     <string name="unknown_issuer">Émetteur inconnu</string>
     <string name="unknown_account_name">Nom de compte inconnu</string>
     <plurals name="import_error_dialog">
-        <item quantity="one">Aegis n\'a pas pu importer %d jeton. Ce jeton sera ignoré. Appuyez sur « détails » pour voir plus d\'informations sur les erreurs.</item>
-        <item quantity="other">Aegis n\'a pas pu importer %d jetons. Ces jetons seront ignorés. Appuyez sur « détails » pour voir plus d\'informations sur les erreurs.</item>
+        <item quantity="one">Aegis n\'a pas pu importer %d jeton. Ce jeton sera ignoré. Appuyez sur « détails » pour voir plus d\'informations sur l\'erreur.</item>
+        <item quantity="other">Aegis n\'a pas pu importer %d jetons. Ces jetons seront ignorés. Appuyez sur « détails » pour voir plus d\'informations sur l\'erreur.</item>
     </plurals>
     <string name="unable_to_process_deeplink">Impossible de traiter le lien profond</string>
     <string name="unable_to_read_qrcode_file">Impossible de lire et de traiter le code QR depuis le fichier : %s.</string>
@@ -368,6 +373,8 @@
     <string name="google_qr_export_unexpected">Code QR n°%d attendu, mais n°%d scanné à la place</string>
     <string name="backup_error_bar_message"><b>La sauvegarde du coffre-fort a échoué récemment</b></string>
     <string name="backup_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">Une tentative récente de sauvegarde du coffre-fort en utilisant %s a échoué car une erreur est survenue. La sauvegarde a été tentée %s. Veuillez vérifier vos paramètres de sauvegarde pour vous assurer que les sauvegardes peuvent être terminées avec succès.    </string>
+    <string name="backup_permission_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">        Une récente tentative de sauvegarde du coffre-fort en utilisant %s a échoué car Aegis n\'avait pas la permission d\'écrire dans la destination de la sauvegarde. La sauvegarde a été tentée %s. Cette erreur peut se produire si vous avez déplacé/renommé la destination de la sauvegarde ou si vous avez récemment restauré Aegis depuis une sauvegarde. Veuillez reconfigurer la destination de la sauvegarde.
+    </string>
     <string name="backup_system_builtin">Sauvegardes automatiques intégrées dans Aegis</string>
     <string name="backup_system_android">Système de sauvegarde cloud d\'Android</string>
     <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">        La dernière sauvegarde est obsolète (%s)
@@ -375,7 +382,7 @@
     <string name="backup_reminder_bar_message">        Les modifications ne sont pas sauvegardées
     </string>
     <string name="backup_reminder_bar_dialog_title">Les modifications ne sont pas sauvegardées</string>
-    <string name="backup_reminder_bar_dialog_summary">        Les changements récents dans le coffre-for n\'ont pas encore été sauvegardés. Il est important de réaliser des sauvegardes régulières pour éviter de perdre l\'accès à vos comptes. Veuillez envisager de configurer des sauvegardes automatiques dans le menu Paramètres.
+    <string name="backup_reminder_bar_dialog_summary">        Les changements récents dans le coffre-fort n\'ont pas encore été sauvegardés. Il est important de réaliser des sauvegardes régulières pour éviter de perdre l\'accès à vos comptes. Veuillez envisager de configurer des sauvegardes automatiques dans le menu Paramètres.
     </string>
     <string name="backup_reminder_bar_dialog_accept">Configurer les sauvegardes</string>
     <string name="backup_plaintext_export_warning"><b>Le coffre-fort a récemment été exporté en texte brut</b></string>
@@ -417,13 +424,15 @@
     <string name="title_activity_edit_entry">Modifier l\'entrée</string>
     <string name="title_activity_scan_qr">Scanner un code QR</string>
     <string name="title_activity_import_entries">Importer des entrées</string>
+    <string name="title_activity_assign_icons">Association des icônes</string>
     <string name="dialog_wipe_entries_title">Effacer les entrées</string>
     <string name="dialog_wipe_entries_message">Votre coffre-fort contient déjà des entrées. Voulez-vous supprimer ces entrées avant d\'importer ce fichier ?\n\n<b>En faisant cela, vous perdrez définitivement l\'accès aux entrées existantes dans le coffre-fort.</b></string>
     <string name="dialog_wipe_entries_checkbox">Effacer le contenu du coffre-fort</string>
     <string name="panic_trigger_ignore_toast">Aegis a reçu le déclenchement d\'une alerte mais le paramètre est désactivé, il sera ignoré</string>
     <string name="pref_panic_trigger_title">Supprimer le coffre-fort lors du déclenchement de l\'alerte</string>
     <string name="pref_panic_trigger_summary">Supprimer le coffre-fort quand le déclenchement d\'une alerte est reçu de Ripple</string>
-    <string name="import_vault">Importer le coffre-fort</string>
+    <string name="import_vault">Importer un coffre-fort Aegis</string>
+    <string name="import_vault_hint">Vous voulez importer depuis une autre application 2FA ? Complétez d\'abord l\'installation, puis rendez-vous dans le menu des paramètres.</string>
     <plurals name="import_duplicate_toast">
         <item quantity="one">%d potentiel doublon décoché. Veuillez vérifier la liste des entrées.</item>
         <item quantity="other">%d potentiels doublons décochés. Veuillez vérifier la liste des entrées.</item>
@@ -435,9 +444,9 @@
     <string name="importer_help_authy">Fournir une copie de <b>/data/com.authy.authy/shared_prefs/com.authy.storage.tokens.authenticator.xml</b>, situé dans le répertoire de stockage interne d\'Authy.</string>
     <string name="importer_help_andotp">Fournir un export/sauvegarde andOTP.</string>
     <string name="importer_help_bitwarden">Fournir un export/sauvegarde Bitwarden. Les fichiers chiffrés ne sont pas pris en charge.</string>
-    <string name="importer_help_battle_net_authenticator">Fournir une copie de <b>/data/data/com.blizzard.bma/shared_prefs/com.blizzard.bma.AUTH_STORE.xml</b>,situé dans le répertoire de stockage interne de Battle.net Authenticator.</string>
-    <string name="importer_help_duo">Fournissez une copie de <b>/data/data/com.duosecurity.duomobile/files/duokit/accounts.json</b>, situé dans le répertoire de stockage interne de DUO.</string>
-    <string name="importer_help_freeotp">Fournir une copie de <b>/data/data/org.fedorahosted.freeotp/shared_prefs/tokens.xml</b>, situé dans le répertoire de stockage interne de FreeOTP.</string>
+    <string name="importer_help_battle_net_authenticator">Fournir une copie de <b>/data/data/com.blizzard.bma/shared_prefs/com.blizzard.bma.AUTH_STORE.xml</b>, situé dans le répertoire de stockage interne de Battle.net Authenticator.</string>
+    <string name="importer_help_duo">Fournir une copie de <b>/data/data/com.duosecurity.duomobile/files/duokit/accounts.json</b>, situé dans le répertoire de stockage interne de DUO.</string>
+    <string name="importer_help_freeotp">Fournir une copie de <b>/data/data/org.fedorahosted.freeotp/shared_prefs/tokens.xml</b>, situé dans le répertoire de stockage interne de FreeOTP (1.x).</string>
     <string name="importer_help_freeotp_plus">Fournir un export FreeOTP+.</string>
     <string name="importer_help_google_authenticator"><b>Seuls les fichiers de base de données de Google Authenticator v5.10 et antérieures sont pris en charge</b>.\n\nFournir une copie de <b>/data/data/com.google.android.apps.authenticator2/databases/databases</b>, situé dans le répertoire de stockage interne de Google Authenticator.</string>
     <string name="importer_help_microsoft_authenticator">Fournir une copie de <b>/data/data/com.azure.authenticator/databases/PhoneFactor</b>, situé dans le répertoire de stockage interne de Microsoft Authenticator.</string>
@@ -445,6 +454,8 @@
     <string name="importer_help_steam"><b>Steam 3.0 et plus récents ne sont pas pris en charge</b>. Fournissez une copie de <b>/data/data/com.valvesoftware. ndroid.steam.community/files/Steamguard-*.json</b>, situé dans le répertoire de stockage interne de Steam.</string>
     <string name="importer_help_totp_authenticator">Fournir un export TOTP Authenticator.</string>
     <string name="importer_help_winauth">Fournir un export WinAuth.</string>
+    <string name="import_assign_icons_dialog_title">Association des icônes</string>
+    <string name="import_assign_icons_dialog_text">Voulez-vous associer des icônes aux entrées importées ?</string>
     <string name="importer_encrypted_exception_google_authenticator">L\'entrée chiffrée a été ignorée : %s</string>
     <string name="importer_help_direct">Importer des entrées directement depuis %s. Cela nécessite que l\'application soit installée sur cet appareil et que l\'accès root soit accordé à Aegis.</string>
     <string name="groups">Groupes</string>

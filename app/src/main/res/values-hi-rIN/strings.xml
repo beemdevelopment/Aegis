@@ -112,7 +112,7 @@
         <item quantity="other">%d समूह चयनित</item>
     </plurals>
     <string name="export_no_groups_selected">एक्सपोर्ट करने के लिए किसी भी ग्रुप का चयन नही किया गया</string>
-    <string name="export_html_title" context="The title of an HTML export document">एजिस ऑथेंटिकेटर एक्सपोर्ट</string>
+    <string name="export_html_title" comment="The title of an HTML export document">एजिस ऑथेंटिकेटर एक्सपोर्ट</string>
     <string name="choose_authentication_method">सुरक्षा</string>
     <string name="authentication_method_explanation">Aegis एक सुरक्षा-केंद्रित 2FA ऐप है। टोकनों को एक वॉल्ट में संग्रहीत किया जाता है, जिसे वैकल्पिक रूप से आपके चुने पासवर्ड के साथ एन्क्रिप्ट किया जा सकता है। यदि कोई हमलावर आपकी एन्क्रिप्टेड वॉल्ट फ़ाइल प्राप्त करता है, तो वे पासवर्ड को जाने बिना सामग्री तक नहीं पहुँच पाएंगे। \n\nहमने उन विकल्पों पहले से सेट कर रखा है जो हमें लगता है कि आपके डिवाइस के लिए सबसे उपयुक्त होगा।</string>
     <string name="authentication_method_none">कोई नहीं</string>
@@ -273,7 +273,7 @@
     <string name="lock">लॉक करें</string>
     <string name="name">नाम</string>
     <string name="no_group">कोई समूह नहीं</string>
-    <string name="sort">क्रमबद्ध</string>
+    <string name="sort" comment="Title of the Sort button in the top action bar of the main view">क्रमबद्ध</string>
     <string name="sort_alphabetically">जारीकर्ता (A से Z)</string>
     <string name="sort_alphabetically_reverse">जारीकर्ता (Z से A)</string>
     <string name="sort_alphabetically_name">खाता (A से Z)</string>
@@ -288,7 +288,7 @@
     <string name="preference_reset_usage_count">उपयोग गणना रीसेट करें</string>
     <string name="preference_reset_usage_count_summary">अपनी तिजोरी में प्रत्येक प्रविष्टि की उपयोग संख्या को रीसेट करें</string>
     <string name="preference_reset_usage_count_dialog">क्या आप वाकई अपनी तिजोरी में प्रत्येक प्रविष्टि की उपयोग संख्या को 0 पर सेट करना चाहते हैं?</string>
-    <string name="note">नोट</string>
+    <string name="note" comment="Users can add a note to an entry">नोट</string>
     <string name="clear">खाली करें</string>
     <string name="pref_highlight_entry_title">टैप करने पर टोकन हाइलाइट करें</string>
     <string name="pref_highlight_entry_summary">टैप करने पर टोकनों को एक दूसरे से अलग उजागर करने के लिए उन्हें अस्थायी रूप से हाईलाइट करें</string>
@@ -311,10 +311,6 @@
     <string name="small_mode_title">छोटा</string>
     <string name="unknown_issuer">अज्ञात जारीकर्ता</string>
     <string name="unknown_account_name">अज्ञात खाता नाम</string>
-    <plurals name="import_error_dialog">
-        <item quantity="one">Aegis %d टोकन आयात नहीं कर सका। इन टोकन को छोड़ दिया जाएगा। त्रुटियों के बारे में अधिक जानकारी देखने के लिए \'विवरण\' दबाएँ।</item>
-        <item quantity="other">Aegis %d टोकनों को आयात नहीं कर सका। इन टोकनों को छोड़ दिया जाएगा। त्रुटियों के बारे में अधिक जानकारी देखने के लिए \'विवरण\' दबाएँ।</item>
-    </plurals>
     <string name="unable_to_process_deeplink">डीप लिंक प्रक्रिया करने में असमर्थ</string>
     <string name="unable_to_read_qrcode_file">क्यूआर कोड को फाइल:%s से पढ़ने और प्रोसेस करने में असमर्थ.</string>
     <string name="unable_to_process_shared_text">शेयर्ड टेक्स्ट को ओटीपी के रूप में प्रोसेस करने में असफल</string>
@@ -410,7 +406,6 @@
     <string name="panic_trigger_ignore_toast">एजिस को पैनिक ट्रिगर मिला लेकिन सेटिंग अक्षम है, अनदेखा कर रहा है</string>
     <string name="pref_panic_trigger_title">पैनिक ट्रिगर पर तिजोरी हटाएं</string>
     <string name="pref_panic_trigger_summary">रिपल से पैनिक ट्रिगर मिलने पर वॉल्ट को डिलीट करें</string>
-    <string name="import_vault">वॉल्ट इंपोर्ट</string>
     <string name="importer_help_2fas">2FAS प्रमाणक बैकअप फ़ाइल प्रदान करें।</string>
     <string name="importer_help_aegis">एजिस निर्यात/बैकअप फ़ाइल की आपूर्ति करें।</string>
     <string name="importer_help_authenticator_plus">एक प्रमाणक प्लस निर्यात फ़ाइल की आपूर्ति करें
@@ -421,7 +416,6 @@
     <string name="importer_help_bitwarden">एक बिटवर्डन निर्यात/बैकअप फ़ाइल की आपूर्ति करें। एन्क्रिप्टेड फ़ाइलें समर्थित नहीं हैं।</string>
     <string name="importer_help_battle_net_authenticator">इंटरनल स्टोरेज की Battle.net ऑथेंटिकेटर डायरेक्ट्री में स्थित <b>/data/data/com.blizzard.bma/shared_prefs/com.blizzard.bma.AUTH_STORE.xml</b> की एक प्रति प्रदान करें।</string>
     <string name="importer_help_duo">DUO की आंतरिक संग्रहण निर्देशिका में स्थित <b>/data/data/com.duosecurity.duomobile/files/duokit/accounts.json</b> की एक प्रति प्रदान करें।</string>
-    <string name="importer_help_freeotp">फ्रीओटीपी की आंतरिक संग्रहण निर्देशिका में स्थित <b>/data/data/org.fedorahosted.freeotp/shared_prefs/tokens.xml</b> की एक प्रति प्रदान करें।</string>
     <string name="importer_help_freeotp_plus">एक फ्रीओटीपी+ निर्यात फ़ाइल की आपूर्ति करें।</string>
     <string name="importer_help_google_authenticator"><b>केवल गूगल प्रमाणक v5.10 और पूर्व की डेटाबेस फ़ाइलें समर्थित हैं</b>।\n\n<b>/data/data/com.google.android.apps.authenticator2/databases/databases</b> की एक प्रति प्रदान करें, गूगल प्रमाणक की आंतरिक संग्रहण निर्देशिका में स्थित है।</string>
     <string name="importer_help_microsoft_authenticator">माइक्रोसॉफ्ट प्रमाणक। की आंतरिक संग्रहण निर्देशिका में स्थित <b>/data/data/com.azure.authenticator/databases/PhoneFactor</b> की एक प्रति प्रदान करें।</string>

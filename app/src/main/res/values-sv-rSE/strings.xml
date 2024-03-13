@@ -116,7 +116,7 @@
         <item quantity="other">%d grupper valda</item>
     </plurals>
     <string name="export_no_groups_selected">Inga grupper valda för exportering</string>
-    <string name="export_html_title" context="The title of an HTML export document">Aegis Authenticator-export</string>
+    <string name="export_html_title" comment="The title of an HTML export document">Aegis Authenticator-export</string>
     <string name="choose_authentication_method">Säkerhet</string>
     <string name="authentication_method_explanation">Aegis är en säkerhetsfokuserad 2FA-app. Polletter lagras i ett valv som, om så önskas, kan krypteras med ett lösenord som du väljer. Om en angripare får tag i din krypterade valvfil, kommer hen inte att kunna komma åt innehållet utan att känna till lösenordet.\n\nVi har förvalt det alternativ som vi tror passar bäst för din enhet.</string>
     <string name="authentication_method_none">Ingen</string>
@@ -152,6 +152,7 @@
     <string name="share">Dela</string>
     <string name="yes">Ja</string>
     <string name="no">Nej</string>
+    <string name="undo">Ångra</string>
     <string name="unlock">Lås upp</string>
     <string name="advanced">Avancerat</string>
     <string name="counter">Räknare</string>
@@ -163,6 +164,8 @@
     <string name="set_up_biometric">Konfigurera biometrisk upplåsning</string>
     <string name="copy">Kopiera</string>
     <string name="edit">Redigera</string>
+    <string name="select_all">Markera alla</string>
+    <string name="assign_icons">Tilldela ikoner</string>
     <string name="favorite" comment="Verb">Favoritmarkera</string>
     <string name="unfavorite" comment="Verb">Ta bort som favorit</string>
     <string name="error_all_caps">FEL</string>
@@ -197,6 +200,7 @@
     <string name="discard_changes">Ignorera ändringar?</string>
     <string name="discard_changes_description">Dina ändringar har inte sparats</string>
     <string name="saving_profile_error">Fel när profil skulle sparas</string>
+    <string name="saving_assign_icons_error">Fel vid tilldelning av ikoner</string>
     <string name="welcome">Välkommen</string>
     <string name="app_description">Aegis är en gratis, säker och öppenkällkodad 2FA-app</string>
     <string name="setup_completed">Konfigurationen slutförd</string>
@@ -275,6 +279,8 @@
     <string name="unlocking_vault">Låser upp valvet</string>
     <string name="remove_group">Ta bort grupp</string>
     <string name="remove_group_description">Är du säker på att du vill ta bort denna grupp? Poster i denna grupp kommer automatiskt att flyttas till \'Grupplös\'.</string>
+    <string name="remove_unused_groups">Radera oanvända grupper</string>
+    <string name="remove_unused_groups_description">Är du säker på att du vill radera alla grupper som inte är tilldelade någon post?</string>
     <string name="remove_icon_pack">Ta bort ikonpaket</string>
     <string name="remove_icon_pack_description">Är du säker på att du vill ta bort detta ikonpaket? Poster som använder ikoner från detta paket kommer inte att påverkas.</string>
     <string name="details">Detaljer</string>
@@ -282,7 +288,7 @@
     <string name="lock">Lås</string>
     <string name="name">Namn</string>
     <string name="no_group">Grupplös</string>
-    <string name="sort">Sortera</string>
+    <string name="sort" comment="Title of the Sort button in the top action bar of the main view">Sortera</string>
     <string name="sort_alphabetically">Utfärdare (A till Ö)</string>
     <string name="sort_alphabetically_reverse">Utfärdare (Ö till A)</string>
     <string name="sort_alphabetically_name">Konto (A till Ö)</string>
@@ -297,7 +303,7 @@
     <string name="preference_reset_usage_count">Nollställ användningar</string>
     <string name="preference_reset_usage_count_summary">Nollställ antalet användningar av alla poster i ditt valv</string>
     <string name="preference_reset_usage_count_dialog">Är du säker på att du vill ändra antalet användningar av alla poster i ditt valv till 0?</string>
-    <string name="note">Anteckning</string>
+    <string name="note" comment="Users can add a note to an entry">Anteckning</string>
     <string name="clear">Rensa</string>
     <string name="pref_highlight_entry_title">Markera polletter vid tryck</string>
     <string name="pref_highlight_entry_summary">Gör polletterna lättare att särskilja från varandra genom att tillfälligt markera dem vid tryck</string>
@@ -368,6 +374,8 @@
     <string name="backup_error_bar_message"><b>Säkerhetskopiering av valvet misslyckades nyligen</b></string>
     <string name="backup_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">        Ett nyligt försök att säkerhetskopiera valvet via %s misslyckades eftersom ett fel uppstod. Försöket gjordes för %s. Vänligen kontrollera dina säkerhetskopieringsinställningar för att se till att säkerhetskopior kan skapas framgångsrikt.
     </string>
+    <string name="backup_permission_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">        Ett nyligt försök att säkerhetskopiera valvet via %s misslyckades eftersom Aegis inte hade behörighet att skriva till lagringsplatsen för säkerhetskopior. Försöket gjordes för %s. Detta fel kan uppstå om du har flyttat/bytt namn på lagringsplatsen för säkerhetskopior eller om du nyligen har återställt Aegis från en säkerhetskopia. Vänligen konfigurera om lagringsplatsen för säkerhetskopior.
+    </string>
     <string name="backup_system_builtin">Aegis inbyggda automatiska säkerhetskopior</string>
     <string name="backup_system_android">Androids molnsäkerhetskopieringssystem</string>
     <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">        Senaste säkerhetskopian är föråldrad (%s)
@@ -417,13 +425,19 @@
     <string name="title_activity_edit_entry">Redigera post</string>
     <string name="title_activity_scan_qr">Skanna en rutkod</string>
     <string name="title_activity_import_entries">Importera poster</string>
+    <string name="title_activity_assign_icons">Tilldela ikoner</string>
     <string name="dialog_wipe_entries_title">Rensa poster</string>
     <string name="dialog_wipe_entries_message">Ditt valv innehåller redan poster. Vill du ta bort dessa poster innan du importerar den här filen?\n\n<b>Genom att göra det så förlorar du åtkomst till de befintliga posterna i valvet för alltid.</b></string>
     <string name="dialog_wipe_entries_checkbox">Rensa valvets innehåll</string>
     <string name="panic_trigger_ignore_toast">Aegis tog emot en panikutlösare, men inställningen är inaktiverad - ignorerar</string>
     <string name="pref_panic_trigger_title">Radera valvet vid panikutlösare</string>
     <string name="pref_panic_trigger_summary">Radera valvet när en panikutlösare tas emot från Ripple</string>
-    <string name="import_vault">Importera valv</string>
+    <string name="import_vault">Importera Aegis-valv</string>
+    <string name="import_vault_hint">Vill du importera från en annan 2FA-app? Slutför installationen först och gå sedan till inställningsmenyn.</string>
+    <plurals name="import_duplicate_toast">
+        <item quantity="one">Avmarkerade %d möjlig dubblett. Vänligen granska listan över poster.</item>
+        <item quantity="other">Avmarkerade %d möjliga dubbletter. Vänligen granska listan över poster.</item>
+    </plurals>
     <string name="importer_help_2fas">Tillhandahåll en säkerhetskopieringsfil från 2FAS Authenticator.</string>
     <string name="importer_help_aegis">Tillhandahåll en export-/säkerhetskopieringsfil från Aegis.</string>
     <string name="importer_help_authenticator_plus">Tillhandahåll en exportfil från Authenticator Plus som har erhållits genom <b>Settings -&gt; Backup &amp; Restore -&gt; Export as Text and HTML</b>.</string>
@@ -433,7 +447,7 @@
     <string name="importer_help_bitwarden">Tillhandahåll en export-/säkerhetskopieringsfil från Bitwarden. Krypterade filer stöds ej.</string>
     <string name="importer_help_battle_net_authenticator">Tillhandahåll en kopia av <b>/data/data/com.blizzard.bma/shared_prefs/com.blizzard.bma.AUTH_STORE.xml</b>, som finns i den interna lagringskatalogen för Battle.net Authenticator.</string>
     <string name="importer_help_duo">Tillhandahåll en kopia av <b>/data/data/com.duosecurity.duomobile/files/duokit/accounts.json</b>, som finns i den interna lagringskatalogen för DUO.</string>
-    <string name="importer_help_freeotp">Tillhandahåll en kopia av <b>/data/data/org.fedorahosted.freeotp/shared_prefs/tokens.xml</b>, som finns i den interna lagringskatalogen för FreeOTP.</string>
+    <string name="importer_help_freeotp">Tillhandahåll en kopia av <b>/data/data/org.fedorahosted.freeotp/shared_prefs/tokens.xml</b>, som finns i den interna lagringskatalogen för FreeOTP (1.x).</string>
     <string name="importer_help_freeotp_plus">Tillhandahåll en exportfil från FreeOTP+.</string>
     <string name="importer_help_google_authenticator"><b>Endast databasfiler från Google Authenticator v5.10 och tidigare stöds.</b>\n\nTillhandahåll en kopia av <b>/data/data/com.google.android.apps.authenticator2/databases/databases</b>, som finns i den interna lagringskatalogen för Google Authenticator.</string>
     <string name="importer_help_microsoft_authenticator">Tillhandahåll en kopia av <b>/data/data/com.azure.authenticator/databases/PhoneFactor</b>, som finns i den interna lagringskatalogen för Microsoft Authenticator.</string>
@@ -441,6 +455,8 @@
     <string name="importer_help_steam"><b>Steam v3.0 och senare stöds inte.</b> Tillhandahåll en kopia av <b>/data/data/com.valvesoftware.android.steam.community/files/Steamguard-*.json</b>, som finns i den interna lagringskatalogen för Steam.</string>
     <string name="importer_help_totp_authenticator">Tillhandahåll en exportfil från TOTP Authenticator.</string>
     <string name="importer_help_winauth">Tillhandahåll en exportfil från WinAuth.</string>
+    <string name="import_assign_icons_dialog_title">Tilldela ikoner</string>
+    <string name="import_assign_icons_dialog_text">Vill du tilldela ikoner till de importerade posterna?</string>
     <string name="importer_encrypted_exception_google_authenticator">Krypterad post hoppades över: %s</string>
     <string name="importer_help_direct">Importera poster direkt från %s. Detta kräver att appen är installerad på den här enheten och att rotåtkomst ges till Aegis.</string>
     <string name="groups">Grupper</string>

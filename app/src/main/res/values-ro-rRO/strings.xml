@@ -118,7 +118,7 @@
         <item quantity="other">%d de grupuri selectate</item>
     </plurals>
     <string name="export_no_groups_selected">Nici un grup selectat pentru export</string>
-    <string name="export_html_title" context="The title of an HTML export document">Exportul aplicației Aegis Authenticator</string>
+    <string name="export_html_title" comment="The title of an HTML export document">Exportul aplicației Aegis Authenticator</string>
     <string name="choose_authentication_method">Securitate</string>
     <string name="authentication_method_explanation">Aegis este o aplicație 2FA concentrată pe securitate. Token-urile sunt stocate într-un seif, care poate criptat cu o parolă aleasă. Dacă un atacator obține fișierul criptat al seifului, nu va putea accesa conținutul fără a cunoaște parola.\n\nAm selectat opțiunea pe care o credem cea mai potrivită pentru dispozitivul tău.</string>
     <string name="authentication_method_none">Fără</string>
@@ -163,6 +163,8 @@
     <string name="set_up_biometric">Configurează deblocarea biometrică</string>
     <string name="copy">Copiere</string>
     <string name="edit">Editare</string>
+    <string name="select_all">Selectează tot</string>
+    <string name="assign_icons">Atribuie pictograme</string>
     <string name="favorite" comment="Verb">Favorit</string>
     <string name="unfavorite" comment="Verb">Elimină din favorite</string>
     <string name="error_all_caps">EROARE</string>
@@ -199,6 +201,7 @@
     <string name="discard_changes">Renunți la modificări?</string>
     <string name="discard_changes_description">Modificările nu au fost salvate</string>
     <string name="saving_profile_error">Eroare la salvarea profilului</string>
+    <string name="saving_assign_icons_error">Eroare la atribuirea pictogramelor</string>
     <string name="welcome">Bun venit</string>
     <string name="app_description">Aegis este o aplicație 2FA gratuită, sigură și cu sursă deschisă</string>
     <string name="setup_completed">Configurare finalizată</string>
@@ -287,7 +290,7 @@
     <string name="lock">Blocare</string>
     <string name="name">Nume</string>
     <string name="no_group">Niciun grup</string>
-    <string name="sort">Sortează</string>
+    <string name="sort" comment="Title of the Sort button in the top action bar of the main view">Sortează</string>
     <string name="sort_alphabetically">Emitent (A - Z)</string>
     <string name="sort_alphabetically_reverse">Emitent (Z - A)</string>
     <string name="sort_alphabetically_name">Cont (A - Z)</string>
@@ -302,7 +305,7 @@
     <string name="preference_reset_usage_count">Resetează numărul de utilizări</string>
     <string name="preference_reset_usage_count_summary">Resetează numărul de utilizări al fiecărei intrări din seiful tău</string>
     <string name="preference_reset_usage_count_dialog">Sunteţi sigur că doriţi să setaţi numărul de utilizări pentru fiecare intrare din seif la 0?</string>
-    <string name="note">Notă</string>
+    <string name="note" comment="Users can add a note to an entry">Notă</string>
     <string name="clear">Șterge</string>
     <string name="pref_highlight_entry_title">Evidențiază simbolurile când apăsați</string>
     <string name="pref_highlight_entry_summary">Fă token-urile mai ușor să se distingă între ele prin evidențierea lor temporară atunci când sunt apăsate</string>
@@ -326,11 +329,6 @@
     <string name="small_mode_title">Mic</string>
     <string name="unknown_issuer">Emitent necunoscut</string>
     <string name="unknown_account_name">Nume de cont necunoscut</string>
-    <plurals name="import_error_dialog">
-        <item quantity="one">Aegis nu a putut importa %d token. Aceste token-uri vor fi sărite. Apasă pe \'detalii\' pentru a vedea mai multe informații despre erori.</item>
-        <item quantity="few">Aegis nu a putut importa %d token. Aceste token-uri vor fi sărite. Apăsați \'detalii\' pentru a vedea mai multe informații despre erori.</item>
-        <item quantity="other">Aegis nu a putut importa %d token-rui. Aceste token-uri vor fi sărite. Apăsați \'detalii\' pentru a vedea mai multe informații despre erori.</item>
-    </plurals>
     <string name="unable_to_process_deeplink">Nu se poate procesa link-ul</string>
     <string name="unable_to_read_qrcode_file">Nu se poate citi și procesa codul QR din fișierul: %s.</string>
     <string name="unable_to_process_shared_text">Imposibil de procesat textul partajat ca un cod OTP</string>
@@ -373,6 +371,8 @@
     <string name="google_qr_export_unexpected">Se aștepta codul QR #%d, dar scanat #%d în schimb</string>
     <string name="backup_error_bar_message"><b>Copia de rezervă a seifului a eșuat recent</b></string>
     <string name="backup_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">O încercare recentă de backup a seifului folosind %s a eșuat deoarece a apărut o eroare. S-a încercat crearea unei copii de siguranță la: %s. Vă rugăm să verificați setările copiilor de rezervă pentru a vă asigura că acestea pot fii create cu succes.    </string>
+    <string name="backup_permission_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">        O încercare recentă de backup a seifului folosind %s a eșuat deoarece Aegis nu a avut permisiunea de a scrie în dosarul destinație. Sa încercat creearea unui backup la %s. Această eroare poate apărea dacă ați mutat/redenumit destinația copiei de rezervă sau dacă ați restaurat recent Aegis dintr-o copie de rezervă. Vă rugăm să reconfiguraţi destinaţia copiei de rezervă.
+    </string>
     <string name="backup_system_builtin">Copiile de siguranță încorporate în aplicație</string>
     <string name="backup_system_android">Sistemul de backup în cloud Android</string>
     <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">        Ultima copie de rezervă este învechită (%s)
@@ -423,13 +423,15 @@
     <string name="title_activity_edit_entry">Editați intrarea</string>
     <string name="title_activity_scan_qr">Scanează cod QR</string>
     <string name="title_activity_import_entries">Importă intrări</string>
+    <string name="title_activity_assign_icons">Atribuie pictograme</string>
     <string name="dialog_wipe_entries_title">Șterge intrările</string>
     <string name="dialog_wipe_entries_message">Seiful tău conține deja intrări. Dorești să ştergi aceste intrări înainte de a importa acest fişier?\n\n<b>Făcând acest lucru, vei pierde permanent accesul la intrările existente din seif.</b></string>
     <string name="dialog_wipe_entries_checkbox">Şterge conţinutul seifului</string>
     <string name="panic_trigger_ignore_toast">Aegis a primit un declanșator de panică, dar setarea este dezactivată, se ignoră</string>
     <string name="pref_panic_trigger_title">Șterge seiful la declanșatorul de panică</string>
     <string name="pref_panic_trigger_summary">Șterge seiful atunci când un declanșator de panică este primit de la Ripple</string>
-    <string name="import_vault">Importă seiful</string>
+    <string name="import_vault">Importă seiful Aegis</string>
+    <string name="import_vault_hint">Doriți să importați dintr-o altă aplicație 2FA? Finalizați configurarea mai întâi și apoi mergeți la meniul de setări.</string>
     <plurals name="import_duplicate_toast">
         <item quantity="one">Am detectat %d potențial duplicat ce a rămas nebifat. Te rugăm să revizuiești lista intrărilor.</item>
         <item quantity="few">Am detectat %d potențiale duplicate ce au rămas nebifate. Te rugăm să revizuiești lista intrărilor.</item>
@@ -444,7 +446,7 @@
     <string name="importer_help_bitwarden">Furnizează un fișier de backup din aplicația Bitwarden. Fișierele criptate nu sunt suportate.</string>
     <string name="importer_help_battle_net_authenticator">Furnizează o copie a <b>/data/data/com.blizzard.bma/shared_prefs/com.blizzard.bma.AUTH_STORE.xml</b>, localizată în directorul de stocare internă al Battle.net Authenticator.</string>
     <string name="importer_help_duo">Furnizează o copie a <b>/data/data/com.duosecurity.duomobile/files/duokit/accounts.json</b>, localizată în dosarul din memoria internă al DUO.</string>
-    <string name="importer_help_freeotp">Furnizează o copie de <b>/data/data/org.fedorahosted.freeotp/shared_prefs/tokens.xml</b>, localizată în directorul de stocare internă a FreeOTP.</string>
+    <string name="importer_help_freeotp">Furnizează o copie a <b>/data/data/org.fedorahosted.freeotp/shared_prefs/tokens.xml</b>, localizată în dosarul din stocarea internă a FreeOTP (1.x).</string>
     <string name="importer_help_freeotp_plus">Furnizează un fișier de export FreeOTP+.</string>
     <string name="importer_help_google_authenticator"><b>Doar fișierele de la Google Authenticator v5.10 și înainte sunt acceptate</b>.\n\nFurnizează o copie a <b>/data/data/com. oogle.android.apps.authenticator2/databases/databases</b>, situat în directorul de stocare internă al Google Authenticator.</string>
     <string name="importer_help_microsoft_authenticator">Furnizează o copie a <b>/data/data/com.azure.authenticator/databases/PhoneFactor</b>, localizată în directorul de stocare internă al Microsoft Authenticator.</string>
@@ -452,6 +454,8 @@
     <string name="importer_help_steam"><b>Versiunile Steam v3.0 sau mai mari nu sunt suportate</b>. Furnizează o copie a <b>data/data/com.valvesoftware.android.steam.community/files/Steamguard-*.json</b>, localizat în dosarul intern Steam.</string>
     <string name="importer_help_totp_authenticator">Furnizează un fișier de export Autentificator TOTP.</string>
     <string name="importer_help_winauth">Furnizează un fișier de export WinAuth.</string>
+    <string name="import_assign_icons_dialog_title">Atribuie pictograme</string>
+    <string name="import_assign_icons_dialog_text">Dorești să atribui pictograme intrărilor importate?</string>
     <string name="importer_encrypted_exception_google_authenticator">Informațiile criptate au fost omise: %s</string>
     <string name="importer_help_direct">Importă intrările direct din %s. Aceasta necesită ca aplicația să fie instalată pe acest dispozitiv și ca accesul root să fie acordat Aegis.</string>
     <string name="groups">Grupuri</string>

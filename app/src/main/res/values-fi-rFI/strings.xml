@@ -6,12 +6,12 @@
     <string name="action_transfer">Siirrä</string>
     <string name="action_edit_icon">Muokkaa kuvaketta</string>
     <string name="action_reset_usage_count">Nollaa käyttömäärä</string>
-    <string name="action_reset_usage_count_dialog">Nollataanko tämän kohteen käyttömäärä?</string>
+    <string name="action_reset_usage_count_dialog">Haluatko varmasti nollata tämän kohteen käyttömäärän?</string>
     <string name="action_default_icon">Palauta oletuskuvake</string>
     <string name="discard">Hylkää</string>
     <string name="save">Tallenna</string>
-    <string name="issuer">Myöntäjä</string>
-    <string name="yandex_pin">PIN (4–16 numeroa)</string>
+    <string name="issuer">Palveluntarjoaja</string>
+    <string name="yandex_pin">PIN (4 - 16 numeroa)</string>
     <string name="motp_pin">PIN (4 numeroa)</string>
     <string name="suggested">Ehdotettu</string>
     <string name="usage_count">Käyttömäärä</string>
@@ -25,7 +25,7 @@
     <string name="pref_section_appearance_title">Ulkonäkö</string>
     <string name="pref_section_appearance_summary">Vaihda teemaa, kieltä ja muita sovelluksen ulkonäköön vaikuttavia asetuksia.</string>
     <string name="pref_section_security_title">Turvallisuus</string>
-    <string name="pref_section_security_summary">Määritä salaus, biometrinen avaus, automaattinen lukitus ja muita suojausasetuksia.</string>
+    <string name="pref_section_security_summary">Määritä salaus, biometrinen avaus, automaattilukitus ja muita suojausasetuksia.</string>
     <string name="pref_section_import_export_title">Tuonti ja vienti</string>
     <string name="pref_section_import_export_summary">Tuo varmuuskopioita Aegisista tai muista todennussovelluksista. Luo Aegis-holvisi varmuuskopioita manuaalisesti.</string>
     <string name="pref_section_backups_title">Varmuuskopiot</string>
@@ -33,20 +33,21 @@
     <string name="pref_section_icon_packs">Kuvakepaketit</string>
     <string name="pref_section_icon_packs_summary">Hallitse ja tuo kuvakepaketteja</string>
     <string name="pref_select_theme_title">Teema</string>
-    <string name="pref_view_mode_title">Näyttötila</string>
+    <string name="pref_view_mode_title">Näkymätila</string>
     <string name="pref_lang_title">Kieli</string>
     <string name="pref_show_icons_title">Näytä kuvakkeet</string>
     <string name="pref_show_icons_summary">Näytä kuvakkeet jokaisen kohteen vieressä</string>
     <string name="pref_code_group_size_title">Numeroiden ryhmittely</string>
-    <string name="pref_code_group_size_summary">Valitse numeroiden määrä ryhmiteltäessä koodeja</string>
+    <string name="pref_code_group_size_summary">Valitse koodien ryhmittelyyn käytettävien numeroiden määrä</string>
     <string name="pref_account_name_position_title">Näytä tilin nimi</string>
     <string name="pref_shared_issuer_account_name_title">Näytä tilin nimi vain tarvittaessa</string>
-    <string name="pref_shared_issuer_account_name_summary">Näytä tilien nimet vain silloin, kun niillä on sama myöntäjä. Muiden tilien nimet piilotetaan.</string>
+    <string name="pref_shared_issuer_account_name_summary">Näytä tilien nimet vain silloin, kun niillä on sama palveluntarjoaja. Muiden tilien nimet piilotetaan.</string>
+    <string name="pref_account_name_position_summary_override">Tämä asetus ohitetaan laatat-näkymätilassa. Tilin nimi näkyy aina palveluntarjoajan alapuolella.</string>
     <string name="pref_import_file_title">Tuo tiedostosta</string>
     <string name="pref_import_file_summary">Tuo todennuskoodit tiedostosta</string>
     <string name="pref_android_backups_title">Androidin pilvivarmuuskopiot</string>
     <string name="pref_android_backups_summary">Käytä Androidin pilvivarmuuskopiointijärjestelmää Aegisin holvin varmuuskopiointiin. Tämä tukee vain salattuja holveja.</string>
-    <string name="pref_android_backups_hint"><i>Device-to-device (D2D) -varmuuskopiot sallitaan aina, riippumatta yllä olevasta asetuksesta</i></string>
+    <string name="pref_android_backups_hint"><i>Laitteesta - laitteeseen (D2D) -varmuuskopiot sallitaan aina, riippumatta yllä olevasta asetuksesta</i></string>
     <string name="pref_backups_title">Varmuuskopioi holvi automaattisesti</string>
     <string name="pref_backups_summary">Holvi varmuuskopioidaan ulkoiseen tallennustilaan automaattisesti, muutoksia tehdessä. Vain salatut holvit tukevat tätä.</string>
     <string name="pref_backups_reminder_title">Varmuuskopiomuistutus</string>
@@ -81,7 +82,7 @@
     <string name="pref_tap_to_reveal_title">Paljasta napauttamalla</string>
     <string name="pref_tap_to_reveal_summary">Todennuskoodit piilotetaan oletuksena. Napauta kohdetta paljastaaksesi koodin.</string>
     <string name="pref_tap_to_reveal_time_title">Napauttamalla paljastuksen aikakatkaisu</string>
-    <string name="pref_auto_lock_title">Automaattinen lukitus</string>
+    <string name="pref_auto_lock_title">Automaattilukitus</string>
     <string name="pref_auto_lock_summary">Kun %s</string>
     <string name="pref_auto_lock_summary_disabled">Pois käytöstä</string>
     <string name="pref_auto_lock_prompt">Lukitse Aegis automaattisesti kun</string>
@@ -115,7 +116,7 @@
         <item quantity="other">%d ryhmää valittu</item>
     </plurals>
     <string name="export_no_groups_selected">Yhtään ryhmää ei ole valittu vietäväksi</string>
-    <string name="export_html_title" context="The title of an HTML export document">Aegis Todennustiedoston Vienti</string>
+    <string name="export_html_title" comment="The title of an HTML export document">Aegis Todennustiedoston Vienti</string>
     <string name="choose_authentication_method">Turvallisuus</string>
     <string name="authentication_method_explanation">Aegis on turvallisuuteen keskittyvä 2FA-sovellus. Todennuskoodit talletetaan holviin, joka voidaan salata valitsemallasi salasanalla. Vaikka hyökkääjä kaappaisi salatun holvitiedostosi, hän ei pääse käsiksi sen sisältöön tietämättä salasanaasi.\n\nOlemme valinneet valmiiksi vaihtoehdon, joka sopii parhaiten laitteellesi.</string>
     <string name="authentication_method_none">Ei mitään</string>
@@ -151,6 +152,7 @@
     <string name="share">Jaa</string>
     <string name="yes">Kyllä</string>
     <string name="no">Ei</string>
+    <string name="undo">Kumoa</string>
     <string name="unlock">Avaa lukitus</string>
     <string name="advanced">Edistyneet</string>
     <string name="counter">Laskuri</string>
@@ -162,6 +164,8 @@
     <string name="set_up_biometric">Määritä biometrinen avaus</string>
     <string name="copy">Kopioi</string>
     <string name="edit">Muokkaa</string>
+    <string name="select_all">Valitse kaikki</string>
+    <string name="assign_icons">Määritä kuvakkeet</string>
     <string name="favorite" comment="Verb">Lisää suosikiksi</string>
     <string name="unfavorite" comment="Verb">Poista suosikeista</string>
     <string name="error_all_caps">VIRHE</string>
@@ -196,6 +200,7 @@
     <string name="discard_changes">Hylätäänkö muutokset?</string>
     <string name="discard_changes_description">Muutoksiasi ei ole tallennettu</string>
     <string name="saving_profile_error">Virhe profiilin tallennuksessa</string>
+    <string name="saving_assign_icons_error">Virhe kuvakkeita määritettäessä</string>
     <string name="welcome">Tervetuloa</string>
     <string name="app_description">Aegis on ilmainen, turvallinen ja avoimen lähdekoodin 2FA-sovellus</string>
     <string name="setup_completed">Määritys on valmis</string>
@@ -239,7 +244,7 @@
     <string name="choose_application">Valitse sovellus, josta haluat tuoda tietoja</string>
     <string name="choose_theme">Valitse haluamasi teema</string>
     <string name="choose_account_name_position">Valitse haluamasi tilin nimen sijainti</string>
-    <string name="choose_view_mode">Valitse haluamasi näyttötila</string>
+    <string name="choose_view_mode">Valitse haluamasi näkymätila</string>
     <string name="choose_copy_behavior">Valitse haluttu kopiointikäyttäytyminen</string>
     <string name="parsing_file_error">Tiedoston jäsentämisessä tapahtui virhe</string>
     <string name="file_not_found">Virhe: Tiedostoa ei löydy</string>
@@ -274,6 +279,8 @@
     <string name="unlocking_vault">Holvia avataan</string>
     <string name="remove_group">Poista ryhmä</string>
     <string name="remove_group_description">Poistetaanko tämä ryhmä? Ryhmässä olevat kohteet merkitään automaattisesti ryhmättömiksi.</string>
+    <string name="remove_unused_groups">Poista käyttämättömät ryhmät</string>
+    <string name="remove_unused_groups_description">Haluatko varmasti poistaa kaikki ryhmät, joille ei ole määritetty kohteita?</string>
     <string name="remove_icon_pack">Poista kuvakepaketti</string>
     <string name="remove_icon_pack_description">Haluatko varmasti poistaa tämän kuvakepaketin? Tämä ei vaikuta kohteisiin, jotka käyttävät kuvakkeita tästä paketista.</string>
     <string name="details">Tiedot</string>
@@ -281,9 +288,9 @@
     <string name="lock">Lukitse</string>
     <string name="name">Nimi</string>
     <string name="no_group">Ei ryhmää</string>
-    <string name="sort">Järjestä</string>
-    <string name="sort_alphabetically">Myöntäjä (A-Ö)</string>
-    <string name="sort_alphabetically_reverse">Myöntäjä (Ö-A)</string>
+    <string name="sort" comment="Title of the Sort button in the top action bar of the main view">Järjestä</string>
+    <string name="sort_alphabetically">Palveluntarjoaja (A - Ö)</string>
+    <string name="sort_alphabetically_reverse">Palveluntarjoaja (Ö - A)</string>
     <string name="sort_alphabetically_name">Tilin nimi (A-Ö)</string>
     <string name="sort_alphabetically_name_reverse">Tilin nimi (Ö-A)</string>
     <string name="sort_usage_count">Käyttömäärä</string>
@@ -294,9 +301,9 @@
     <string name="preference_manage_groups">Muokkaa ryhmiä</string>
     <string name="preference_manage_groups_summary">Hallitse ja poista ryhmiäsi täällä</string>
     <string name="preference_reset_usage_count">Nollaa käyttömäärä</string>
-    <string name="preference_reset_usage_count_summary">Nollaa holvisi kohteiden käyttömäärä</string>
-    <string name="preference_reset_usage_count_dialog">Haluatko varmasti asettaa kaikkien holvisi kohteiden käyttämäärän nollaan?</string>
-    <string name="note">Muistiinpano</string>
+    <string name="preference_reset_usage_count_summary">Nollaa kaikkien holvisi kohteiden käyttömäärä</string>
+    <string name="preference_reset_usage_count_dialog">Haluatko varmasti nollata kaikkien holvisi kohteiden käyttömäärän?</string>
+    <string name="note" comment="Users can add a note to an entry">Muistiinpano</string>
     <string name="clear">Tyhjennä</string>
     <string name="pref_highlight_entry_title">Korosta todennuskoodit napauttamalla</string>
     <string name="pref_highlight_entry_summary">Tee todennuskoodeista helpompi erottaa toisistaan korostamalla niitä tilapäisesti napauttamalla</string>
@@ -318,10 +325,11 @@
     <string name="normal_viewmode_title">Normaali</string>
     <string name="compact_mode_title">Tiivis</string>
     <string name="small_mode_title">Pieni</string>
-    <string name="unknown_issuer">Tuntematon myöntäjä</string>
+    <string name="tiles_mode_title">Laatat</string>
+    <string name="unknown_issuer">Tuntematon palveluntarjoaja</string>
     <string name="unknown_account_name">Tuntematon tilinimi</string>
     <plurals name="import_error_dialog">
-        <item quantity="one">Aegis ei voinut tuoda %d todennuskoodia. Nämä todennuskoodit ohitetaan. Paina \'tiedot\' nähdäksesi lisätietoa virheistä.</item>
+        <item quantity="one">Aegis ei voinut tuoda %d todennuskoodia. Nämä todennuskoodi ohitetaan. Paina \'tiedot\' nähdäksesi lisätietoa virheestä.</item>
         <item quantity="other">Aegis ei voinut tuoda %d todennuskoodia. Nämä todennuskoodit ohitetaan. Paina \'tiedot\' nähdäksesi lisätietoa virheistä.</item>
     </plurals>
     <string name="unable_to_process_deeplink">Syvää linkkiä ei voitu käsitellä</string>
@@ -365,6 +373,8 @@
     <string name="google_qr_export_unexpected">Odotettiin QR-koodia #%d, mutta skannattu #%d sen sijaan</string>
     <string name="backup_error_bar_message"><b>Holvin varmuuskopiointi epäonnistui äskettäin</b></string>
     <string name="backup_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">        Äskettäinen holvin varmuuskopiointiyritys %s käyttämällä epäonnistui, koska tapahtui virhe. Varmuuskopiointia yritettiin %s. Tarkista varmuuskopiointiasetukset varmistaaksesi, että varmuuskopiointi onnistuu.
+    </string>
+    <string name="backup_permission_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">        Äskettäinen holvin varmuuskopiointiyritys %s käyttäen epäonnistui, koska Aegisilla ei ollut kirjoitusoikeutta varmuuskopiointikohteeseen. Varmuuskopiointia yritettiin %s. Tämä virhe voi ilmetä, jos olet siirtänyt tai nimennyt varmuuskopiointikohteen uudelleen tai jos olet hiljattain palauttanut Aegiksen varmuuskopiosta. Määritä varmuuskopiointikohde uudelleen.
     </string>
     <string name="backup_system_builtin">Aegisin sisäänrakennetut automaattiset varmuuskopiot</string>
     <string name="backup_system_android">Androidin pilvivarmuuskopiointijärjestelmä</string>
@@ -415,13 +425,19 @@
     <string name="title_activity_edit_entry">Muokkaa kohdetta</string>
     <string name="title_activity_scan_qr">Skannaa QR-koodi</string>
     <string name="title_activity_import_entries">Tuo kohteet</string>
+    <string name="title_activity_assign_icons">Määritä kuvakkeet</string>
     <string name="dialog_wipe_entries_title">Tyhjennä kohteet</string>
     <string name="dialog_wipe_entries_message">Holvisi sisältää jo kohteita. Haluatko poistaa nämä kohteet ennen tämän tiedoston tuontia?\n\n<b>Tehdessäsi näin menetät pysyvästi pääsyn holvin olemassa oleviin kohteisiin.</b></string>
     <string name="dialog_wipe_entries_checkbox">Tyhjennä holvin sisältö</string>
     <string name="panic_trigger_ignore_toast">Aegis vastaanotti paniikkilaukaisimen, mutta asetus on poistettu käytöstä, ohitetaan</string>
     <string name="pref_panic_trigger_title">Poista holvi paniikkilaukaisimella</string>
     <string name="pref_panic_trigger_summary">Poista holvi kun paniikkilaukaisin saadaan Ripplestä</string>
-    <string name="import_vault">Tuo holvi</string>
+    <string name="import_vault">Tuo Aegis-holvi</string>
+    <string name="import_vault_hint">Haluatko tuoda toisesta 2FA-sovelluksesta? Suorita määritys ensin loppuun ja siirry sitten asetusvalikkoon.</string>
+    <plurals name="import_duplicate_toast">
+        <item quantity="one">%d mahdollisen kaksoiskappaleen valinta poistettiin. Tarkista kohdelista.</item>
+        <item quantity="other">%d mahdollisen kaksoiskappaleen valinta poistettiin. Tarkista kohdelista.</item>
+    </plurals>
     <string name="importer_help_2fas">Anna 2FAS Authenticatorin varmuuskopiotiedosto.</string>
     <string name="importer_help_aegis">Anna Aegisisin vienti-/varmuuskopiotiedosto.</string>
     <string name="importer_help_authenticator_plus">Anna Authenticator Plus -varmuuskopiotiedosto, jonka saat menemällä <b>Asetukset -&gt;Varmuuskopiointi ja palautus -&gt; Vie teksti- tai HTML-tiedostona</b>.</string>
@@ -431,7 +447,7 @@
     <string name="importer_help_bitwarden">Anna Bitwardenin vienti-/varmuuskopiotiedosto. Salattuja tiedostoja ei tueta.</string>
     <string name="importer_help_battle_net_authenticator">Anna kopio tiedostosta <b>/data/data/com.blizzard.bma/shared_prefs/com.blizzard.bma.AUTH_STORE.xml</b>, joka sijaitsee Battle.net Authenticatorin sisäisessä tallennushakemistossa.</string>
     <string name="importer_help_duo">Anna kopio tiedostosta <b>/data/data/com.duosecurity.duomobile/files/duokit/accounts.json</b>, joka sijaitsee DUO:n sisäisessä tallennushakemistossa.</string>
-    <string name="importer_help_freeotp">Anna kopio tiedostosta <b>/data/data/org.fedorahosted.freeotp/shared_prefs/tokens.xml</b>, joka sijaitsee FreeOTP:n sisäisessä tallennushakemistossa.</string>
+    <string name="importer_help_freeotp">Anna kopio tiedostosta <b>/data/data/org.fedorahosted.freeotp/shared_prefs/tokens.xml</b>, joka sijaitsee FreeOTP:n (1.x) sisäisessä tallennushakemistossa.</string>
     <string name="importer_help_freeotp_plus">Anna FreeOTP+:n vientitiedosto.</string>
     <string name="importer_help_google_authenticator"><b>Vain Google Authenticator v5.10 tai vanhemman tietokantatiedostoja tuetaan</b>.\n\nAnna kopio kohteesta <b>/data/data/com.google.android.apps.authenticator2/databases/databases</b>, joka sijaitsee Google Authenticatorin sisäisessä tallennushakemistossa.</string>
     <string name="importer_help_microsoft_authenticator">Anna kopio tiedostosta <b>/data/data/com.azure.authenticator/databases/PhoneFactor</b>, joka sijaitsee Microsoft Authenticatorin sisäisessä tallennushakemistossa.</string>
@@ -439,6 +455,8 @@
     <string name="importer_help_steam"><b>Steamin versiota 3.0 ja uudempia ei tueta</b>. Toimita kopio tiedostosta <b>/data/data/com.valvesoftware.android.steam.community/files/Steamguard-*.json</b>, joka sijaitsee Steamin sisäisen tallennustilan hakemistossa.</string>
     <string name="importer_help_totp_authenticator">Anna TOTP Authenticatorin vientitiedosto.</string>
     <string name="importer_help_winauth">Anna WinAuthin vientitiedosto.</string>
+    <string name="import_assign_icons_dialog_title">Määritä kuvakkeet</string>
+    <string name="import_assign_icons_dialog_text">Haluatko määrittää kuvakkeet tuoduille kohteille?</string>
     <string name="importer_encrypted_exception_google_authenticator">Salattu kohde ohitettiin: %s</string>
     <string name="importer_help_direct">Tuo %s -kohteet. Tämä edellyttää, että sovellus on asennettu laitteeseen, ja pääkäyttäjän oikeuksien myöntämistä Aegisille.</string>
     <string name="groups">Ryhmät</string>
@@ -453,8 +471,8 @@
     <string name="pref_copy_behavior_single_tap">Yksi napautus</string>
     <string name="pref_copy_behavior_double_tap">Kaksoisnapautus</string>
     <string name="pref_account_name_position_hidden">Piilotettu</string>
-    <string name="pref_account_name_position_end">Myöntäjän vieressä</string>
-    <string name="pref_account_name_position_below">Myöntäjän alla</string>
+    <string name="pref_account_name_position_end">Palveluntarjoajan vierellä</string>
+    <string name="pref_account_name_position_below">Palveluntarjoajan alla</string>
     <plurals name="time_elapsed_seconds">
         <item quantity="one">%d sekunti sitten</item>
         <item quantity="other">%d sekuntia sitten</item>

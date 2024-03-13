@@ -39,6 +39,8 @@
     <string name="pref_show_icons_summary">Показувати піктограми біля кожного запису</string>
     <string name="pref_code_group_size_title">Групування цифр</string>
     <string name="pref_code_group_size_summary">Виберіть як групувати цифри у токенах</string>
+    <string name="pref_account_name_position_title">Показати ім\'я облікового запису</string>
+    <string name="pref_shared_issuer_account_name_title">Показувати ім\'я облікового запису лише за необхідності</string>
     <string name="pref_import_file_title">Імпорт з файлу</string>
     <string name="pref_import_file_summary">Імпортувати токени з файлу</string>
     <string name="pref_android_backups_title">Резервні копії в хмарі Android</string>
@@ -105,8 +107,9 @@
     <string name="export_format_html">Веб-сторінка (.HTML)</string>
     <string name="export_format_hint">Формат експорту</string>
     <string name="export_all_groups">Експортувати усі групи</string>
+    <string name="export_choose_groups">Оберіть групи для експорту</string>
     <string name="export_no_groups_selected">Не вибрано жодної групи для експорту</string>
-    <string name="export_html_title" context="The title of an HTML export document">Експорт Aegis Authenticator</string>
+    <string name="export_html_title" comment="The title of an HTML export document">Експорт Aegis Authenticator</string>
     <string name="choose_authentication_method">Безпека</string>
     <string name="authentication_method_explanation">Aegis - це орієнтований на безпеку додаток для двофакторної автентифікації (2FA). Токени зберігаються в сховищі, яке за бажанням можна зашифрувати за допомогою вибраного вами пароля. Якщо зловмисник отримає ваш зашифрований файл сховища, то він не зможе отримати доступ до змісту, не знаючи пароля.\n\nМи обрали варіант, який, на нашу думку, найкраще підходить для вашого пристрою.</string>
     <string name="authentication_method_none">Немає</string>
@@ -125,6 +128,7 @@
     <string name="set_password_confirm">Будь ласка, підтвердьте пароль</string>
     <string name="invalid_password">Неправильний пароль</string>
     <string name="invalidated_biometrics">Виявлено зміни в налаштуваннях безпеки вашого пристрою. Будь ласка, перейдіть до \"Aegis -&gt; Налаштування -&gt; Безпека -&gt; Біометричне розблокування\", щоб вимкнути та повторно увімкнути біометричне розблокування.</string>
+    <string name="password_reminder_dialog_title">Біометричне розблокування за замовчуванням</string>
     <string name="password_reminder_freq_never">Ніколи</string>
     <string name="password_reminder_freq_weekly">Щотижня</string>
     <string name="password_reminder_freq_biweekly">Двічі на тиждень</string>
@@ -150,6 +154,7 @@
     <string name="set_up_biometric">Налаштувати біометричне розблокування</string>
     <string name="copy">Копіювати</string>
     <string name="edit">Редагувати</string>
+    <string name="select_all">Вибрати все</string>
     <string name="favorite" comment="Verb">Додати до улюблених</string>
     <string name="unfavorite" comment="Verb">Вилучити з улюбленого</string>
     <string name="error_all_caps">ПОМИЛКА</string>
@@ -277,7 +282,7 @@
     <string name="lock">Заблокувати</string>
     <string name="name">Назва</string>
     <string name="no_group">Без групи</string>
-    <string name="sort">Сортувати</string>
+    <string name="sort" comment="Title of the Sort button in the top action bar of the main view">Сортувати</string>
     <string name="sort_alphabetically">Емітент (А - Я)</string>
     <string name="sort_alphabetically_reverse">Емітент (Я - А)</string>
     <string name="sort_alphabetically_name">Обліковий запис (A - Я)</string>
@@ -292,12 +297,13 @@
     <string name="preference_reset_usage_count">Скинути лічильник використання</string>
     <string name="preference_reset_usage_count_summary">Скинути кількість використань кожного запису у вашому сховищі</string>
     <string name="preference_reset_usage_count_dialog">Ви впевнені, що хочете встановити кількість використань для кожного запису у вашому сховищі на 0?</string>
-    <string name="note">Нотатка</string>
+    <string name="note" comment="Users can add a note to an entry">Нотатка</string>
     <string name="clear">Очистити</string>
     <string name="pref_highlight_entry_title">Підсвічувати токени при натисканні</string>
     <string name="pref_highlight_entry_summary">Підсвічувати токени при натисканні для того, щоб їх було легше відрізнити один від одного</string>
     <string name="pref_minimize_on_copy_title">Згортати при копіюванні</string>
     <string name="pref_minimize_on_copy_summary">Згортати додаток після копіювання токена</string>
+    <string name="pref_copy_behavior_title">Скопіювати токени в буфер обміну</string>
     <string name="pref_pause_entry_title">Заморожувати токени при натисканні</string>
     <string name="pref_pause_entry_summary">Призупиніть автоматичне оновлення токенів, натиснувши на них. Токени не будуть оновлюватися, поки вони підсвічені. Потребує увімкненої опції \"Підсвічувати токени при натисканні\", або \"Безпека -> Показувати після дотику\".</string>
     <string name="pin_keyboard_description">Введіть свій пароль, щоб увімкнути PIN-клавіатуру. Зауважте, що це можливо лише, якщо ваш пароль складається виключно з цифр</string>
@@ -315,12 +321,6 @@
     <string name="small_mode_title">Зменшений</string>
     <string name="unknown_issuer">Невідомий емітент</string>
     <string name="unknown_account_name">Невідома назва облікового запису</string>
-    <plurals name="import_error_dialog">
-        <item quantity="one">Aegis не вдалося імпортувати %d токен. Цей токен буде пропущено. Натисніть \'деталі\', щоб побачити більше інформації про помилки.</item>
-        <item quantity="few">Aegis не вдалося імпортувати %d токени. Ці токени буде пропущено. Натисніть \'деталі\', щоб побачити більше інформації про помилки.</item>
-        <item quantity="many">Aegis не вдалося імпортувати %d токенів. Ці токени буде пропущено. Натисніть \'деталі\', щоб побачити більше інформації про помилки.</item>
-        <item quantity="other">Aegis не вдалося імпортувати %d токенів. Ці токени буде пропущено. Натисніть \'деталі\', щоб побачити більше інформації про помилки.</item>
-    </plurals>
     <string name="unable_to_process_deeplink">Не вдалося обробити глибоке посилання</string>
     <string name="unable_to_read_qrcode_file">Не вдається прочитати і обробити QR-код із файлу: %s.</string>
     <string name="unable_to_process_shared_text">Неможливо обробити вхідний текст як OTP</string>
@@ -371,6 +371,7 @@
     </string>
     <string name="backup_reminder_bar_message">        Резервну копію змін не створено
     </string>
+    <string name="backup_reminder_bar_dialog_accept">Налаштування резервних копій</string>
     <string name="backup_plaintext_export_warning"><b>Сховище нещодавно було експортовано у вигляді звичайного тексту</b></string>
     <string name="pref_show_plaintext_warning_hint">Не показувати це попередження в майбутньому</string>
     <string name="backup_plaintext_warning_explanation">Це попередження показується тому, що ви нещодавно експортували незашифровану копію сховища. Задля безпеки ваших токенів, ми рекомендуємо видалити цей файл, коли він стане непотрібним.</string>
@@ -418,7 +419,7 @@
     <string name="panic_trigger_ignore_toast">Aegis отримав панічний тригер, але налаштування вимкнено, тому сигнал ігнорується</string>
     <string name="pref_panic_trigger_title">Видалити сховище при панічному тригері</string>
     <string name="pref_panic_trigger_summary">Видалити сховище після отримання панічного тригера Ripple</string>
-    <string name="import_vault">Імпорт сховища</string>
+    <string name="import_vault">Імпорт сховища Aegis</string>
     <string name="importer_help_2fas">Надайте файл резервної копії 2FAS Authenticator.</string>
     <string name="importer_help_aegis">Надайте файл експорту/резервної копії Aegis.</string>
     <string name="importer_help_authenticator_plus">Надайте файл експорту Authenticator Plus, отриманий через <b>Settings -&gt; Backup &amp; Restore -&gt; Export as Text and HTML</b>.</string>
@@ -427,7 +428,6 @@
     <string name="importer_help_bitwarden">Надайте файл експорту/резервного копіювання Bitwarden. Зашифровані файли не підтримуються.</string>
     <string name="importer_help_battle_net_authenticator">Необхідна копія файлу <b>/data/data/com.blizzard.bma/shared_prefs/com.blizzard.bma.AUTH_STORE.xml</b>, який знаходиться у внутрішньому каталозі пам’яті Battle.net Authenticator.</string>
     <string name="importer_help_duo">Надайте копію <b>/data/data/com.duosecurity.duomobile/files/duokit/accounts.json</b>, що знаходиться у каталозі DUO у внутрішній пам\'яті.</string>
-    <string name="importer_help_freeotp">Надайте копію <b>/data/data/org.fedorahosted.freeotp/shared_prefs/tokens.xml</b>, що знаходиться в каталозі FreeOTP у внутрішній пам\'яті.</string>
     <string name="importer_help_freeotp_plus">Надайте файл експортований з FreeOTP+.</string>
     <string name="importer_help_google_authenticator"><b>Підтримуються лише файли бази даних Google Authenticator v5.10 та попередніх версій</b>.\n\nНадайте копію <b>/data/data/com.google.android.apps.authenticator2/databases/databases</b>, що знаходиться у каталозі Google Authenticator у внутрішній пам\'яті.</string>
     <string name="importer_help_microsoft_authenticator">Надайте копію <b>/data/data/com.azure.authenticator/databases/PhoneFactor</b>, що знаходиться у каталозі Microsoft Authenticator у внутрішній пам\'яті.</string>
@@ -435,6 +435,7 @@
     <string name="importer_help_steam"><b>Steam v3.0 і новіші версії не підтримуються</b>. Надайте копію <b>/data/data/com.valvesoftware.android.steam.community/files/Steamguard-*.json</b>, що знаходиться у каталозі Steam у внутрішній пам\'яті.</string>
     <string name="importer_help_totp_authenticator">Надайте файл експортований з TOTP Authenticator.</string>
     <string name="importer_help_winauth">Надайте файл експортований з WinAuth.</string>
+    <string name="import_assign_icons_dialog_text">Ви хочете призначити значки для імпортованих записів?</string>
     <string name="importer_encrypted_exception_google_authenticator">Пропущено зашифрований запис: %s</string>
     <string name="importer_help_direct">Імпортувати записи безпосередньо з %s. Для цього потрібно встановити додаток на цьому пристрої і надати root-доступ додатку Aegis.</string>
     <string name="groups">Групи</string>
@@ -445,6 +446,8 @@
     <string name="pref_grouping_size_two">2 цифри у групі</string>
     <string name="pref_grouping_size_three">3 цифри у групі</string>
     <string name="pref_grouping_size_four">4 цифри у групі</string>
+    <string name="pref_copy_behavior_never">Ніколи</string>
+    <string name="pref_account_name_position_hidden">Приховано</string>
     <plurals name="time_elapsed_seconds">
         <item quantity="one">%d секунду тому</item>
         <item quantity="few">%d секунди тому</item>

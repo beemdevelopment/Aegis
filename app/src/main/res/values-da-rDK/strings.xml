@@ -116,7 +116,7 @@
         <item quantity="other">%d grupper valgt</item>
     </plurals>
     <string name="export_no_groups_selected">Ingen grupper valgt til eksport</string>
-    <string name="export_html_title" context="The title of an HTML export document">Aegis Authenticator Eksport</string>
+    <string name="export_html_title" comment="The title of an HTML export document">Aegis Authenticator Eksport</string>
     <string name="choose_authentication_method">Sikkerhed</string>
     <string name="authentication_method_explanation">Aegis er en sikkerhedsfokuseret 2FA-app. Tokener opbevares i en Boks, der kan krypteres med en valgfri adgangskode. Opnår en angriber adgang til den krypteret Boks-fil, vil vedkommende ikke kunne tilgå indholdet uden brug af adgangskoden.\n\nVi har på forhånd valgt den indstilling, som vi mener passer bedst til enheden.</string>
     <string name="authentication_method_none">Ingen</string>
@@ -126,8 +126,8 @@
     <string name="authentication_method_password_explanation">Advarsel: Glemmes adgangskoden, bliver dine tokens permanent utilgængelige. De vil ikke kunne gendannes uden brug af adgangskoden.</string>
     <string name="authentication_method_biometrics">Biometri</string>
     <string name="authentication_method_biometrics_description">Ud over en adgangskode kan denne enheds registrerede biometri, såsom fingeraftryk eller ansigt, bruges til oplåsning af Boksen.</string>
-    <string name="authentication">Oplås Boksen</string>
-    <string name="authentication_multiline" comment="The newline in the middle is used for aesthetic purposes">Oplås\nBoksen</string>
+    <string name="authentication">Lås boksen op</string>
+    <string name="authentication_multiline" comment="The newline in the middle is used for aesthetic purposes">Lås\nboksen op</string>
     <string name="auth_use_biometrics">Eller tryk her for at bruge <font fgcolor="#FF0D86C1">biometri</font></string>
     <string name="set_password">Angiv adgangskode</string>
     <string name="set_group">Angiv et gruppenavn</string>
@@ -153,7 +153,7 @@
     <string name="yes">Ja</string>
     <string name="no">Nej</string>
     <string name="undo">Fortryd</string>
-    <string name="unlock">Oplås</string>
+    <string name="unlock">Lås op</string>
     <string name="advanced">Avanceret</string>
     <string name="counter">Tæller</string>
     <string name="digits">Cifre</string>
@@ -164,6 +164,8 @@
     <string name="set_up_biometric">Konfigurer biometrisk oplåsning</string>
     <string name="copy">Kopier</string>
     <string name="edit">Rediger</string>
+    <string name="select_all">Vælg alle</string>
+    <string name="assign_icons">Tildel ikoner</string>
     <string name="favorite" comment="Verb">Tilføj som favorit</string>
     <string name="unfavorite" comment="Verb">Fjern som favorit</string>
     <string name="error_all_caps">FEJL</string>
@@ -198,6 +200,7 @@
     <string name="discard_changes">Kassér ændringer?</string>
     <string name="discard_changes_description">Ændringer blev ikke gemt</string>
     <string name="saving_profile_error">Fejl under lagring af profil</string>
+    <string name="saving_assign_icons_error">Fejl ved tildeling af ikoner</string>
     <string name="welcome">Velkommen</string>
     <string name="app_description">Aegis er en gratis, sikker og open-source 2FA-app</string>
     <string name="setup_completed">Opsætning fuldført</string>
@@ -240,7 +243,7 @@
     <string name="choose_totpauth_importer">Er denne TOTP Authenticator-sikkerhedskopi krypteret med en adgangskode?</string>
     <string name="choose_application">Vælg den applikation, der skal importeres fra</string>
     <string name="choose_theme">Vælg ønskede tema</string>
-    <string name="choose_account_name_position">Vælg den ønskede position for kontonavnet</string>
+    <string name="choose_account_name_position">Vælg ønskede placering af kontonavn</string>
     <string name="choose_view_mode">Vælg ønskede visningstilstand</string>
     <string name="choose_copy_behavior">Vælg ønskede kopieringsadfærd</string>
     <string name="parsing_file_error">En fejl opstod under forsøget på at fortolke filen</string>
@@ -273,9 +276,11 @@
     <string name="import_google_auth_failure">Import af Google Authenticator-eksport mislykkedes</string>
     <string name="unrelated_google_auth_batches_error">Eksporten indeholder information om et urelateret sæt. Prøv at importere 1 sæt ad gangen.</string>
     <string name="no_tokens_can_be_imported">Som konsekvens, kan ingen tokener importeres</string>
-    <string name="unlocking_vault">Oplåser Boksen</string>
+    <string name="unlocking_vault">Låser boksen op</string>
     <string name="remove_group">Fjern gruppe</string>
     <string name="remove_group_description">Sikker på, at denne gruppe skal fjernes? Poster heri vil automatisk skifte til \'Ingen gruppe\'.</string>
+    <string name="remove_unused_groups">Slet ubrugte grupper</string>
+    <string name="remove_unused_groups_description">Sikker på, at alle grupper uden en posttilknytning skal slettes?</string>
     <string name="remove_icon_pack">Fjern ikonpakke</string>
     <string name="remove_icon_pack_description">Sikker på, at du vil fjerne denne ikonpakke? Poster, som bruger ikoner fra denne pakke, påvirkes ikke.</string>
     <string name="details">Detaljer</string>
@@ -283,7 +288,7 @@
     <string name="lock">Lås</string>
     <string name="name">Navn</string>
     <string name="no_group">Ingen gruppe</string>
-    <string name="sort">Sortering</string>
+    <string name="sort" comment="Title of the Sort button in the top action bar of the main view">Sortér</string>
     <string name="sort_alphabetically">Udsteder (A til Z)</string>
     <string name="sort_alphabetically_reverse">Udsteder (Z til A)</string>
     <string name="sort_alphabetically_name">Konto (A til Z)</string>
@@ -298,13 +303,13 @@
     <string name="preference_reset_usage_count">Nulstil brugstæller</string>
     <string name="preference_reset_usage_count_summary">Nulstil alle brugstællingsposter i din Boks</string>
     <string name="preference_reset_usage_count_dialog">Sikker på, at alle brugstællingsposter i din Boks skal nulstilles?</string>
-    <string name="note">Notat</string>
+    <string name="note" comment="Users can add a note to an entry">Notat</string>
     <string name="clear">Ryd</string>
     <string name="pref_highlight_entry_title">Fremhæv tokener ved tryk</string>
     <string name="pref_highlight_entry_summary">Gør tokener lettere at skelne fra hinanden ved midlertidigt at fremhæve dem, når der trykkes på dem</string>
     <string name="pref_minimize_on_copy_title">Minimér under kopiering</string>
     <string name="pref_minimize_on_copy_summary">Minimér appen efter kopiering af et token</string>
-    <string name="pref_copy_behavior_title">Kopiér tokens til udklipsholderen</string>
+    <string name="pref_copy_behavior_title">Kopiér tokener til udklipsholder</string>
     <string name="pref_pause_entry_title">Frys tokener ved tryk</string>
     <string name="pref_pause_entry_summary">Pausér automatisk opdatering af tokener ved at trykke på dem. Tokener opdateres ikke, så længe de er fokuseret. Kræver \"Fremhæv tokener ved tryk\" eller \"Tryk for at vise\".</string>
     <string name="pin_keyboard_description">Angiv adgangskoden for at aktivere PIN-tastaturet. Bemærk, at dette kun virker, såfremt adgangskoden alene består af cifre</string>
@@ -324,8 +329,8 @@
     <string name="unknown_issuer">Ukendt udsteder</string>
     <string name="unknown_account_name">Ukendt kontonavn</string>
     <plurals name="import_error_dialog">
-        <item quantity="one">Aegis kunne ikke importere %d token. Dette token overspringes. Tryk på \'detaljer\' for yderligere information om fejlen.</item>
-        <item quantity="other">Aegis kunne ikke importere %d tokener. Disse tokener overspringes. Tryk på \'detaljer\' for yderligere information om fejlene.</item>
+        <item quantity="one">Aegis kunne ikke importere %d token. Denne token vil blive sprunget over. Tryk på \'detaljer\' for at se flere oplysninger om fejlen.</item>
+        <item quantity="other">Aegis kunne ikke importere %d tokens. Disse tokens vil blive sprunget over. Tryk på \'detaljer\' for at se flere oplysninger om fejlen.</item>
     </plurals>
     <string name="unable_to_process_deeplink">Dybt link kan ikke behandles</string>
     <string name="unable_to_read_qrcode_file">Kan ikke læse og behandle QR-koden fra filen: %s.</string>
@@ -340,7 +345,7 @@
     <string name="search">Søg</string>
     <string name="channel_name_lock_status">Låsestatus</string>
     <string name="channel_description_lock_status">Aegis kan oprette en vedvarende notifikation for at give dig besked, når boksen er låst</string>
-    <string name="vault_unlocked_state">Boksen er oplåst. Tryk hér for at låse.</string>
+    <string name="vault_unlocked_state">Boksen er låst op. Tryk her for at låse.</string>
     <string name="version">Version</string>
     <string name="changelog">Ændringslog</string>
     <string name="whats_new">Nyheder</string>
@@ -368,6 +373,8 @@
     <string name="google_qr_export_unexpected">Forventede QR kode #%d, men skannede #%d i stedet</string>
     <string name="backup_error_bar_message"><b>Bokssikkerhedskopiering mislykkedes for nylig</b></string>
     <string name="backup_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">        Et nyligt Bokssikkerhedskopieringsforsøg vha. %s mislykkedes, da en fejl opstod. Sikkerhedskopieringen blev forsøgt: %s. Tjek sikkerhedskopieringsindstillingerne for at sikre, at sikkerhedskopieringer kan fuldføres.
+    </string>
+    <string name="backup_permission_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">        Et nyligt Bokssikkerhedskopieringsforsøg vha. %s fejlede grundet Aegis\' manglende skriverettighed på sikkerhedskopidestinationen. Sikkerhedskopieringen forsøgt %s. Fejlen kan opstå, hvis sikkerhedskopidestinationen er blevet flyttet/omdøbt, eller Aegis for nylig er gendannet fra en sikkerhedskopi. Genopsæt sikkerhedskopidestination.
     </string>
     <string name="backup_system_builtin">Aegis\' indbyggede automatiske sikkerhedskopieringer</string>
     <string name="backup_system_android">Android cloud-sikkerhedskopieringssystem</string>
@@ -418,13 +425,15 @@
     <string name="title_activity_edit_entry">Redigér post</string>
     <string name="title_activity_scan_qr">Scan en QR-kode</string>
     <string name="title_activity_import_entries">Importer poster</string>
+    <string name="title_activity_assign_icons">Tildel ikoner</string>
     <string name="dialog_wipe_entries_title">Ryd poster</string>
     <string name="dialog_wipe_entries_message">Din boks indeholder allerede poster. Vil du fjerne disse poster før import af denne fil?\n\n<b>Ved at gøre dette, vil du permanent miste adgang til de eksisterende poster i boksen.</b></string>
     <string name="dialog_wipe_entries_checkbox">Ryd boksens indhold</string>
     <string name="panic_trigger_ignore_toast">Aegis modtog panikudløser, men indstilling er deaktiveret, ignorerer</string>
     <string name="pref_panic_trigger_title">Slet boks ved panikudløser</string>
     <string name="pref_panic_trigger_summary">Slet boks, når en panikudløser modtages fra Ripple</string>
-    <string name="import_vault">Importér Boks</string>
+    <string name="import_vault">Importér Aegis-boks</string>
+    <string name="import_vault_hint">Ønsker du at importere fra en anden 2FA-app? Færdiggør opsætningen først, og gå derefter til indstillingsmenuen.</string>
     <plurals name="import_duplicate_toast">
         <item quantity="one">Afmarkerede %d potentiel dublet. Revidér listen over poster.</item>
         <item quantity="other">Afmarkererede %d potentielle dubletter. Revidér listen over poster.</item>
@@ -438,7 +447,7 @@
     <string name="importer_help_bitwarden">Vælg en Bitwarden-eksport-/sikkerhedskopifil. Krypterede filer understøttes ikke.</string>
     <string name="importer_help_battle_net_authenticator">Levér en kopi af <b>/data/data/com.blizzard.bma/shared_prefs/com.blizzard.bma.AUTH_STORE.xml</b>, der er placeret i den interne lagermappe i Battle.net Authenticator.</string>
     <string name="importer_help_duo">Skaf en kopi af <b>/data/data/com.duosecurity.duomobile/files/duokit/accounts.json</b> fra DUOs interne lagermappe.</string>
-    <string name="importer_help_freeotp">Levér en kopi af <b>/data/data/org.fedorahosted.freeotp/shared_prefs/tokens.xml</b>, der er placeret i den interne lagermappe i Authy.</string>
+    <string name="importer_help_freeotp">Levér en kopi af <b>/data/data/org.fedorahosted.freeotp/shared_prefs/tokens.xml</b> fra i den interne lagermappe i FreeOTP (1.x).</string>
     <string name="importer_help_freeotp_plus">Levér en FreeOTP+ eksportfil.</string>
     <string name="importer_help_google_authenticator"><b>Kun databasefiler fra Google Authenticator v5.10 og tidligere understøttes</b>.\n\nLeverer en kopi af <b>/data/data/com. google.android.apps.authenticator2/databaser/databaser</b>, placeret i Google Authenticators interne lagermappe.</string>
     <string name="importer_help_microsoft_authenticator">Levér en kopi af <b>/data/data/com.azure.authenticator/databases/PhoneFactor</b>, der er placeret i den interne lagermappe i Microsoft Authenticator.</string>
@@ -446,6 +455,8 @@
     <string name="importer_help_steam"><b>Steam v3.0 og nyere understøttes ikke</b>. Levér en kopi af <b>/data/data/com.valvesoftware.android.steam.community/files/Steamguard-*.json</b> fra den interne lagermappe i Steam.</string>
     <string name="importer_help_totp_authenticator">Levér en TOTP Authenticator eksportfil.</string>
     <string name="importer_help_winauth">Levér en WinAuth eksportfil.</string>
+    <string name="import_assign_icons_dialog_title">Tildel ikoner</string>
+    <string name="import_assign_icons_dialog_text">Tildel ikoner til importerede poster?</string>
     <string name="importer_encrypted_exception_google_authenticator">Krypteret post blev oversprunget: %s</string>
     <string name="importer_help_direct">Importer poster direkte fra %s. Dette kræver at appen er installeret på denne enhed og at root-adgang gives til Aegis.</string>
     <string name="groups">Grupper</string>

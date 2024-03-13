@@ -112,7 +112,7 @@
         <item quantity="other">選取了 %d 個群組</item>
     </plurals>
     <string name="export_no_groups_selected">尚未選擇要匯出的群組</string>
-    <string name="export_html_title" context="The title of an HTML export document">Aegis 驗證器匯出</string>
+    <string name="export_html_title" comment="The title of an HTML export document">Aegis 驗證器匯出</string>
     <string name="choose_authentication_method">安全性</string>
     <string name="authentication_method_explanation">Aegis 是一款安全第一的雙因素驗證（2FA）應用程式。憑證儲存於特殊的保險箱檔案中，此保險箱可依照使用者的設定以密碼金鑰加密。就算駭客取得了被加密的保險箱檔案，他們也無法在不知道密碼的情況下取得內含的憑證。 \n\n我們已預先為您的裝置選擇了我們認為最適合的選項。</string>
     <string name="authentication_method_none">沒有</string>
@@ -210,7 +210,7 @@
     <string name="disable_encryption_error">停用加密時出錯</string>
     <string name="backup_successful">已成功排程備份</string>
     <string name="backup_error">嘗試建立備份時發生錯誤</string>
-    <string name="backup_status_success">最近備份成攻: %s</string>
+    <string name="backup_status_success">最近備份成功: %s</string>
     <string name="backup_status_failed">最近備份失敗: %s</string>
     <string name="backup_status_none">尚未建立任何備份</string>
     <string name="documentsui_error">似乎無法在您的裝置上找到 DocumentsUI。此為新增與建立文件的重要系統元件。若您曾使用&quot;debloat&quot; 軟體替您的裝置「瘦身」，極有可能您誤刪此程式，請將其重新安裝。</string>
@@ -254,7 +254,7 @@
     <string name="lock">鎖定</string>
     <string name="name">名稱</string>
     <string name="no_group">無群組</string>
-    <string name="sort">排序</string>
+    <string name="sort" comment="Title of the Sort button in the top action bar of the main view">排序</string>
     <string name="sort_alphabetically">服務商（A 到 Z）</string>
     <string name="sort_alphabetically_reverse">服務商（Z 到 A）</string>
     <string name="sort_alphabetically_name">帳戶（A 到 Z）</string>
@@ -269,7 +269,7 @@
     <string name="preference_reset_usage_count">重設使用次數</string>
     <string name="preference_reset_usage_count_summary">重設保險箱內所有條目的使用次數</string>
     <string name="preference_reset_usage_count_dialog">確定要將保險箱內所有條目的使用次數重設為零嗎？</string>
-    <string name="note">備註</string>
+    <string name="note" comment="Users can add a note to an entry">備註</string>
     <string name="clear">清除</string>
     <string name="pref_highlight_entry_title">強調選取的憑證</string>
     <string name="pref_highlight_entry_summary">輕觸後暫時凸顯該驗證碼以與它者區分</string>
@@ -290,9 +290,6 @@
     <string name="tiles_mode_title">平鋪</string>
     <string name="unknown_issuer">未知的服務商</string>
     <string name="unknown_account_name">未知帳戶</string>
-    <plurals name="import_error_dialog">
-        <item quantity="other">Aegis 已忽略無法匯入的 %d 個憑證。如欲了解更詳細的錯誤資訊，請按「詳細內容」。</item>
-    </plurals>
     <string name="unable_to_read_qrcode_file">無法從 %s 檔案讀取和處理QR碼</string>
     <string name="unable_to_generate_qrcode">無法產生QR碼</string>
     <string name="select_picture">選擇圖片</string>
@@ -375,10 +372,8 @@
     <string name="dialog_wipe_entries_checkbox">清除保險箱中的所有內容</string>
     <string name="pref_panic_trigger_title">危急時刪除保險箱</string>
     <string name="pref_panic_trigger_summary">從 Ripple 收到危急指令時刪除保險箱</string>
-    <string name="import_vault">匯入保險箱</string>
     <string name="importer_help_authy">提供 <b>/data/data/com.authy.authy/shared_prefs/com.authy.storage.tokens.authenticator.xml</b> 的複本，其位於 Authy 的內部儲存空間。</string>
     <string name="importer_help_andotp">提供 andOTP 的匯出/備份檔。</string>
-    <string name="importer_help_freeotp">提供 <b>/data/data/org.fedorahosted.freeotp/shared_prefs/tokens.xml</b> 的複本，其位於 FreeOTP 的內部儲存空間。</string>
     <string name="importer_help_freeotp_plus">提供 FreeOTP+ 的匯出檔。</string>
     <string name="importer_help_microsoft_authenticator">提供 <b>/data/data/com.azure.authenticator/databases/PhoneFactor</b> 的複本，其位於 Microsoft Authenticator 的內部儲存空間。</string>
     <string name="importer_help_plain_text">提供純文字檔，其中每行都是完整的 Google Authenticator URI</string>

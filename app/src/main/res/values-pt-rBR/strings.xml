@@ -39,6 +39,10 @@
     <string name="pref_show_icons_summary">Mostrar ícones ao lado de cada entrada</string>
     <string name="pref_code_group_size_title">Agrupamento de dígitos</string>
     <string name="pref_code_group_size_summary">Selecione o número de dígitos para agrupar códigos</string>
+    <string name="pref_account_name_position_title">Mostrar nome da conta</string>
+    <string name="pref_shared_issuer_account_name_title">Exibir o nome da conta apenas quando necessário</string>
+    <string name="pref_shared_issuer_account_name_summary">Mostra os nomes de conta apenas quando eles compartilham o mesmo emissor. Outros nomes de conta serão ocultados.</string>
+    <string name="pref_account_name_position_summary_override">Esta configuração é substituída pelo modo de visualização de blocos (tiles view). O nome da conta será sempre mostrado abaixo do emissor.</string>
     <string name="pref_import_file_title">Importar de arquivo</string>
     <string name="pref_import_file_summary">Importa tokens de um arquivo</string>
     <string name="pref_android_backups_title">Backups na nuvem do Android</string>
@@ -112,7 +116,7 @@
         <item quantity="other">%d Grupos selecionados</item>
     </plurals>
     <string name="export_no_groups_selected">Nenhum grupo selecionado para exportar</string>
-    <string name="export_html_title" context="The title of an HTML export document">Exportação Aegis Authenticator</string>
+    <string name="export_html_title" comment="The title of an HTML export document">Exportação Aegis Authenticator</string>
     <string name="choose_authentication_method">Segurança</string>
     <string name="authentication_method_explanation">Aegis é uma app 2FA focado em segurança. Tokens serão armazenados em um cofre, que pode opcionalmente ser criptografado com uma senha da sua escolha. Caso um invasor obtenha seu arquivo do cofre criptografado, ele não será capaz de acessar os conteúdos sem saber sua senha.\n\nNós pré-selecionamos a opção que nós pensamos que melhor se adapta ao seu aparelho.</string>
     <string name="authentication_method_none">Nenhuma</string>
@@ -131,6 +135,9 @@
     <string name="set_password_confirm">Por favor, confirme a senha</string>
     <string name="invalid_password">A senha está incorreta</string>
     <string name="invalidated_biometrics">Foi detectada uma alteração nas configurações de segurança do seu dispositivo. Por favor, vá até \"Aegis -&gt; Configurações -&gt; Segurança -&gt; Desbloqueio biométrico\" para desativar e reativar o desbloqueio biométrico.</string>
+    <string name="password_reminder">Por favor, digite sua senha. Nós ocasionalmente pedimos que você faça isso para que não a esqueça.</string>
+    <string name="password_reminder_dialog_title">Desbloqueio biométrico por padrão</string>
+    <string name="password_reminder_dialog_message">Ocasionalmente pedimos que você digite sua senha em vez disso para garantir que você não se esqueça dela e não fique bloqueado para o seu cofre. Depois de digitar sua senha uma vez, o Aegis retornará ao desbloqueio biométrico por padrão até que seja hora de outro lembrete de senha.</string>
     <string name="password_reminder_freq_never">Nunca</string>
     <string name="password_reminder_freq_weekly">Semanalmente</string>
     <string name="password_reminder_freq_biweekly">Quinzenalmente</string>
@@ -145,6 +152,7 @@
     <string name="share">Compartilhar</string>
     <string name="yes">Sim</string>
     <string name="no">Não</string>
+    <string name="undo">Desfazer</string>
     <string name="unlock">Desbloquear</string>
     <string name="advanced">Avançado</string>
     <string name="counter">Contador</string>
@@ -156,6 +164,8 @@
     <string name="set_up_biometric">Preparar desbloqueio biométrico</string>
     <string name="copy">Copiar</string>
     <string name="edit">Editar</string>
+    <string name="select_all">Selecionar tudo</string>
+    <string name="assign_icons">Atribuir ícones</string>
     <string name="favorite" comment="Verb">Favorito</string>
     <string name="unfavorite" comment="Verb">Remover dos favoritos</string>
     <string name="error_all_caps">ERRO</string>
@@ -190,6 +200,7 @@
     <string name="discard_changes">Descartar mudanças?</string>
     <string name="discard_changes_description">Suas mudanças não foram salvas</string>
     <string name="saving_profile_error">Erro ao salvar o perfil</string>
+    <string name="saving_assign_icons_error">Erro ao atribuir ícones</string>
     <string name="welcome">Bem-vindo</string>
     <string name="app_description">Aegis é um app 2FA grátis, seguro e de código aberto</string>
     <string name="setup_completed">Configuração concluída</string>
@@ -232,7 +243,9 @@
     <string name="choose_totpauth_importer">Esse backup do TOTP Authenticator é encriptado com uma senha?</string>
     <string name="choose_application">Selecione o aplicativo do qual você gostaria de importar</string>
     <string name="choose_theme">Selecione o tema desejado</string>
+    <string name="choose_account_name_position">Selecione a posição do nome da conta desejada</string>
     <string name="choose_view_mode">Selecione o modo de visualização desejado</string>
+    <string name="choose_copy_behavior">Selecione o comportamento de copiar desejado</string>
     <string name="parsing_file_error">Um erro ocorreu durante a tentativa de analisar o arquivo</string>
     <string name="file_not_found">Erro: Arquivo não encontrado</string>
     <string name="reading_file_error">Um erro ocorreu durante a tentativa de ler o arquivo</string>
@@ -266,6 +279,8 @@
     <string name="unlocking_vault">Desbloqueando o cofre</string>
     <string name="remove_group">Remover grupo</string>
     <string name="remove_group_description">Você tem certeza que deseja remover esse grupo? Entradas nesse grupo serão automaticamente para \'Sem grupo\'.</string>
+    <string name="remove_unused_groups">Excluir grupos não utilizados</string>
+    <string name="remove_unused_groups_description">Tem certeza que deseja excluir todos os grupos que não são atribuídos a uma entrada?</string>
     <string name="remove_icon_pack">Remover pacote de ícones</string>
     <string name="remove_icon_pack_description">Tem certeza que deseja remover este pacote de ícones? Entradas que usam ícones deste pacote não serão afetadas.</string>
     <string name="details">Detalhes</string>
@@ -273,7 +288,7 @@
     <string name="lock">Bloquear</string>
     <string name="name">Conta</string>
     <string name="no_group">Sem grupo</string>
-    <string name="sort">Ordenar</string>
+    <string name="sort" comment="Title of the Sort button in the top action bar of the main view">Ordenar</string>
     <string name="sort_alphabetically">Nome (A to Z)</string>
     <string name="sort_alphabetically_reverse">Nome (Z to A)</string>
     <string name="sort_alphabetically_name">Conta (A to Z)</string>
@@ -288,12 +303,13 @@
     <string name="preference_reset_usage_count">Redefinir contagem de uso</string>
     <string name="preference_reset_usage_count_summary">Redefinir a contagem de uso de todas as entradas no seu cofre</string>
     <string name="preference_reset_usage_count_dialog">Tem certeza que deseja definir a contagem de uso de todas as entradas no seu cofre para 0?</string>
-    <string name="note">Nota</string>
+    <string name="note" comment="Users can add a note to an entry">Nota</string>
     <string name="clear">Limpar</string>
     <string name="pref_highlight_entry_title">Destacar tokens quando tocados</string>
     <string name="pref_highlight_entry_summary">Torna tokens mais fáceis de distinguir dos outros destacando eles temporariamente quando tocados</string>
     <string name="pref_minimize_on_copy_title">Minimizar ao copiar</string>
     <string name="pref_minimize_on_copy_summary">Minimizar o aplicativo após copiar um token</string>
+    <string name="pref_copy_behavior_title">Copiar tokens para a área de transferência</string>
     <string name="pref_pause_entry_title">Congelar tokens quando tocados</string>
     <string name="pref_pause_entry_summary">Pausa a atualização automática dos tokens ao tocá-los. Tokens não serão atualizados desde que o foco esteja neles. Requer \"Destacar tokens quando tocados\" ou \"Tocar para exibir\".</string>
     <string name="pin_keyboard_description">Digite sua senha para ativar o teclado PIN. Observe que isso só funciona se a sua senha for constituída apenas por números</string>
@@ -309,11 +325,12 @@
     <string name="normal_viewmode_title">Normal</string>
     <string name="compact_mode_title">Compacto</string>
     <string name="small_mode_title">Pequeno</string>
+    <string name="tiles_mode_title">Tiles</string>
     <string name="unknown_issuer">Nome do serviço desconhecido</string>
     <string name="unknown_account_name">Nome da conta desconhecido</string>
     <plurals name="import_error_dialog">
         <item quantity="one">Aegis não pôde importar %d token. Esse token será ignorado. Pressione \'detalhes\' para ver mais informações sobre o erro.</item>
-        <item quantity="other">Aegis não pôde importar %d tokens. Esses tokens serão pulados. Pressione \'detalhes\' para ver mais informações sobre os erros.</item>
+        <item quantity="other">Aegis não pôde importar %d tokens. Esses tokens serão ignorados. Pressione \'detalhes\' para ver mais informações sobre os erros.</item>
     </plurals>
     <string name="unable_to_process_deeplink">Incapaz de processar a ligação profunda</string>
     <string name="unable_to_read_qrcode_file">Incapaz de ler e processar o QR code do arquivo: %s.</string>
@@ -356,6 +373,8 @@
     <string name="google_qr_export_unexpected">Esperados #%d QR code, mas escaneados #%d ao invés</string>
     <string name="backup_error_bar_message"><b>Backup do cofre falhou recentemente</b></string>
     <string name="backup_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">        Uma tentativa recente de backup do cofre utilizando o %s falhou, pois ocorreu um erro. O backup foi tentado %s. Por favor, verifique as configurações de backup para garantir que ele possa ser concluído com sucesso.    </string>
+    <string name="backup_permission_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">        Uma recente tentativa de backup de segurança do cofre usando %s falhou porque o Aegis não tem permissão para escrever no destino da cópia de segurança. O backup foi tentado %s. Este erro pode ocorrer se você mover/renomeou o destino do backup ou se você restaurou recentemente Aegis de um backup. Por favor, reconfigure o destino do backup.
+    </string>
     <string name="backup_system_builtin">Backups automáticos do Aegis</string>
     <string name="backup_system_android">Sistema de backup em nuvem do Android</string>
     <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">        O backup mais recente está desatualizado (%s)
@@ -405,13 +424,19 @@
     <string name="title_activity_edit_entry">Editar entrada</string>
     <string name="title_activity_scan_qr">Escanear QR code</string>
     <string name="title_activity_import_entries">Importar entradas</string>
+    <string name="title_activity_assign_icons">Atribuir ícones</string>
     <string name="dialog_wipe_entries_title">Limpar entradas</string>
     <string name="dialog_wipe_entries_message">O seu cofre já contém entradas. Você quer remover essas entradas antes de importar este arquivo?\n\n<b>Ao fazer isso, você perderá permanentemente o acesso às entradas existentes no cofre.</b></string>
     <string name="dialog_wipe_entries_checkbox">Limpar conteúdo do cofre</string>
     <string name="panic_trigger_ignore_toast">Aegis recebeu um gatilho de pânico, mas essa configuração está desativada, portanto será ignorado</string>
     <string name="pref_panic_trigger_title">Excluir cofre após gatilho de pânico</string>
     <string name="pref_panic_trigger_summary">Excluir cofre quando um gatilho de pânico é recebido do Ripple</string>
-    <string name="import_vault">Importar cofre</string>
+    <string name="import_vault">Importar cofre Aegis</string>
+    <string name="import_vault_hint">Quer importar de um aplicativo 2FA diferente? Complete a configuração primeiro e depois vá para o menu de configurações.</string>
+    <plurals name="import_duplicate_toast">
+        <item quantity="one">Encontrado %d possíveis duplicatas. Por favor, reveja a lista de entradas.</item>
+        <item quantity="other">Desmarcadas %d possíveis duplicatas. Por favor, reveja a lista de entradas.</item>
+    </plurals>
     <string name="importer_help_2fas">Forneça um arquivo de backup do 2FAS Authenticator.</string>
     <string name="importer_help_aegis">Fornecer um arquivo de exportação/backup do Aegis.</string>
     <string name="importer_help_authenticator_plus">Fornecer um arquivo de exportação do Autenticador Plus obtido através de <b>Configurações -&gt; Backup &amp; Restaurar -&gt; Exportar como Texto e HTML</b>.</string>
@@ -429,6 +454,8 @@
     <string name="importer_help_steam"><b>Steam v3.0 e mais recentes não são suportados</b>. Forneça uma cópia de <b>/data/data/com.valvesoftware. ndroid.steam.community/files/Steamguard-*.json</b>, localizado no diretório de armazenamento interno do Steam.</string>
     <string name="importer_help_totp_authenticator">Fornecer um arquivo de exportação de Autenticador TOTP.</string>
     <string name="importer_help_winauth">Fornecer um arquivo de exportação do WinAuth.</string>
+    <string name="import_assign_icons_dialog_title">Atribuir ícones</string>
+    <string name="import_assign_icons_dialog_text">Você quer atribuir ícones para as entradas importadas?</string>
     <string name="importer_encrypted_exception_google_authenticator">Entrada criptografada foi ignorada: %s</string>
     <string name="importer_help_direct">Importar entradas diretamente de %s. Isto requer que a aplicação seja instalada neste dispositivo e que acesso root seja concedido ao Aegis.</string>
     <string name="groups">Grupos</string>
@@ -439,6 +466,12 @@
     <string name="pref_grouping_size_two">Grupos de 2</string>
     <string name="pref_grouping_size_three">Grupos de 3</string>
     <string name="pref_grouping_size_four">Grupos de 4</string>
+    <string name="pref_copy_behavior_never">Nunca</string>
+    <string name="pref_copy_behavior_single_tap">Toque único</string>
+    <string name="pref_copy_behavior_double_tap">Toque duplo</string>
+    <string name="pref_account_name_position_hidden">Oculto</string>
+    <string name="pref_account_name_position_end">Ao lado do emissor</string>
+    <string name="pref_account_name_position_below">Abaixo do emissor</string>
     <plurals name="time_elapsed_seconds">
         <item quantity="one">%d segundo atrás</item>
         <item quantity="other">%d segundos atrás</item>

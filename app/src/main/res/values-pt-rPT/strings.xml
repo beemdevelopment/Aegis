@@ -41,6 +41,8 @@
     <string name="pref_code_group_size_summary">Selecione o número de dígitos para agrupar os códigos</string>
     <string name="pref_account_name_position_title">Mostrar nome da conta</string>
     <string name="pref_shared_issuer_account_name_title">Exibir o nome da conta apenas quando necessário</string>
+    <string name="pref_shared_issuer_account_name_summary">Mostrar apenas os nomes das contas sempre que estas partilhem o mesmo titular. Os outros nomes de contas serão ocultados.</string>
+    <string name="pref_account_name_position_summary_override">Esta definição é anulada pelo modo de visualização em mosaico. O nome da conta será sempre apresentado por baixo do emissor.</string>
     <string name="pref_import_file_title">Importar de um ficheiro</string>
     <string name="pref_import_file_summary">Importar \'tokens\' de um ficheiro</string>
     <string name="pref_android_backups_title">Backups na nuvem Android</string>
@@ -73,6 +75,7 @@
         <item quantity="one">Ignorada %d entrada incompatível</item>
         <item quantity="other">Ignoradas %d entradas incompatíveis</item>
     </plurals>
+    <string name="pref_password_reminder_summary">Mostra um lembrete %s para introduzir a palavra-passe, para que não se esqueça dela.</string>
     <string name="pref_password_reminder_summary_disabled">Desativado</string>
     <string name="pref_secure_screen_title">Segurança do ecrã</string>
     <string name="pref_secure_screen_summary">Bloquear capturas de ecrã e outras tentativas de capturar o ecrã na aplicação</string>
@@ -105,6 +108,11 @@
     <string name="export_format_aegis">Aegis (.JSON)</string>
     <string name="export_format_google_auth_uri">Ficheiro de texto (.TXT)</string>
     <string name="export_format_html">Página Web (.HTML)</string>
+    <string name="export_format_hint">Formato de exportação</string>
+    <string name="export_all_groups">Exportar todos os grupos</string>
+    <string name="export_choose_groups">Selecionar os grupos a exportar</string>
+    <string name="export_no_groups_selected">Nenhum grupo selecionado para exportar</string>
+    <string name="export_html_title" comment="The title of an HTML export document">Exportação do Aegis Authenticator</string>
     <string name="choose_authentication_method">Segurança</string>
     <string name="authentication_method_explanation">Aegis é um aplicativo 2FA focado na segurança. Tokens são armazenados em um cofre, que pode opcionalmente ser criptografado com uma senha de sua escolha. Se um invasor obtiver o seu arquivo criptografado do cofre, eles não serão capazes de acessar o conteúdo sem saber a senha.\n\nNós pré-selecionamos a opção que achamos que seria melhor para o seu dispositivo.</string>
     <string name="authentication_method_none">Nenhum</string>
@@ -122,10 +130,25 @@
     <string name="set_number">Por favor, insira um número</string>
     <string name="set_password_confirm">Por favor, confirme a senha</string>
     <string name="invalid_password">A senha está incorreta</string>
+    <string name="invalidated_biometrics">Foi detetada uma alteração nas definições de segurança do dispositivo. Aceda a \"Aegis -&gt; Definições -&gt; Segurança -&gt; Desbloqueio biométrico\" para desativar e reativar o desbloqueio biométrico.</string>
+    <string name="password_reminder">Por favor, introduza a palavra-passe. Ocasionalmente, pedimos-lhe que o faça para que não se esqueça dela.</string>
+    <string name="password_reminder_dialog_title">Desbloqueio biométrico por predefinição</string>
+    <string name="password_reminder_dialog_message">Ocasionalmente, pedimos-lhe que introduza a sua palavra-passe para garantir que não se esquece dela e que não ficará bloqueado fora do cofre. Após introduzir a palavra-passe, o Aegis voltará a utilizar o desbloqueio biométrico por predefinição até ser altura de voltar a relembrar a palavra-passe.</string>
+    <string name="password_reminder_freq_never">Nunca</string>
+    <string name="password_reminder_freq_weekly">Semanal</string>
+    <string name="password_reminder_freq_biweekly">Quinzenal</string>
+    <string name="password_reminder_freq_monthly">Mensal</string>
+    <string name="password_reminder_freq_quarterly">Trimestral</string>
+    <string name="enter_password_2fas_message">Parece que esta cópia de segurança 2FAS está encriptada. Introduza abaixo a palavra-passe.</string>
     <string name="enter_password_authy_message">Parece que seus tokens Authy são criptografados. Por favor, feche o Aegis, abra o Authy e desbloqueie os tokens com sua senha. Em vez disso, Aegis também pode tentar descriptografar seus tokens Authy para você, se você inserir sua senha abaixo.</string>
+    <string name="enter_password_aegis_title">Por favor, introduza a palavra-passe de importação</string>
+    <string name="period_hint">Período (segundos)</string>
+    <string name="algorithm_hint">Função hash</string>
+    <string name="type">Tipo</string>
     <string name="share">Compartilhar</string>
     <string name="yes">Sim</string>
     <string name="no">Não</string>
+    <string name="undo">Desfazer</string>
     <string name="unlock">Desbloquear</string>
     <string name="advanced">Avançado</string>
     <string name="counter">Contador</string>
@@ -137,6 +160,11 @@
     <string name="set_up_biometric">Configurar desbloqueio biométrico</string>
     <string name="copy">Copiar</string>
     <string name="edit">Editar</string>
+    <string name="select_all">Selecionar tudo</string>
+    <string name="assign_icons">Atribuir ícones</string>
+    <string name="favorite" comment="Verb">Favorito</string>
+    <string name="unfavorite" comment="Verb">Remover dos favoritos</string>
+    <string name="error_all_caps">ERRO</string>
     <string name="password">Senha</string>
     <string name="confirm_password">Confirme a Senha</string>
     <string name="show_password">Mostrar senha</string>
@@ -148,6 +176,11 @@
     <string name="snackbar_authentication_method">Por favor, selecione um método de autenticação</string>
     <string name="encrypting_vault">Criptografando o cofre</string>
     <string name="exporting_vault">Exportando o cofre</string>
+    <string name="reading_file">A ler o ficheiro</string>
+    <string name="requesting_root_access">Pedir acesso root</string>
+    <string name="analyzing_qr">A analisar o código QR</string>
+    <string name="analyzing_qr_multiple">A analisar o código QR %d/%d (%s)</string>
+    <string name="importing_icon_pack">A importar o pacote de ícones</string>
     <string name="delete_entry">Excluir entrada</string>
     <string name="delete_entry_description">Tem a certeza de que quer excluir esta entrada?</string>
     <string name="delete_entries">Excluir entradas</string>
@@ -158,6 +191,7 @@
     <string name="discard_changes">Descartar alterações?</string>
     <string name="discard_changes_description">Suas alterações não foram salvas</string>
     <string name="saving_profile_error">Erro ao salvar perfil</string>
+    <string name="saving_assign_icons_error">Erro ao atribuir ícones</string>
     <string name="welcome">Bem-vindo</string>
     <string name="app_description">Aegis é um aplicativo 2FA gratuito, seguro e opensource</string>
     <string name="setup_completed">Configuração concluída</string>
@@ -179,6 +213,12 @@
     <string name="disable_encryption_error">Ocorreu um erro ao desativar a criptografia</string>
     <string name="backup_successful">O backup foi agendado com sucesso</string>
     <string name="backup_error">Ocorreu um erro ao tentar criar um backup</string>
+    <string name="backup_status_success">Backup mais recente realizado com sucesso: %s</string>
+    <string name="backup_status_failed">A realização de um backup recente falhou: %s</string>
+    <string name="backup_status_none">Ainda não houve nenhum backup realizado</string>
+    <string name="icon_pack_import_error">Ocorreu um erro durante o processo de importação do pacote de ícones</string>
+    <string name="icon_pack_delete_error">Ocorreu um erro durante o processo de exclusão de um pacote de ícones</string>
+    <string name="icon_custom">Personalizar</string>
     <string name="permission_denied">Permissão negada</string>
     <string name="andotp_new_format">Novo formato (v0.6.3 ou mais recente) </string>
     <string name="andotp_old_format">Formato antigo (v0.6.2 ou antigo) </string>
@@ -187,6 +227,7 @@
     <string name="choose_application">Selecione o aplicativo do qual você gostaria de importar</string>
     <string name="choose_theme">Selecione o tema</string>
     <string name="choose_view_mode">Selecione o modo de visualização</string>
+    <string name="choose_copy_behavior">Selecione o estilo de cópia que deseja efetuar </string>
     <string name="parsing_file_error">Ocorreu um erro ao tentar analisar o arquivo</string>
     <string name="file_not_found">Erro: Arquivo não encontrado</string>
     <string name="reading_file_error">Ocorreu um erro ao tentar ler o arquivo</string>
@@ -202,24 +243,38 @@
     <string name="encryption_enable_biometrics_error">Ocorreu um erro ao tentar ativar o desbloqueio biométrico. Alguns dispositivos têm implementações deficientes da autenticação biométrica e é provável que o seu seja um deles. Considere alternar para uma configuração somente senha.</string>
     <string name="no_cameras_available">Nenhuma câmera disponível</string>
     <string name="read_qr_error">Ocorreu um erro ao tentar ler o código QR</string>
+    <string name="read_qr_error_phonefactor">Aegis é incompatível com o algoritmo 2FA das propriedades da Microsoft. Por favor, selecione \"Configurar aplicação sem notificações\" quando configurar 2FA no Office 365. </string>
+    <string name="partial_google_auth_import">Foi detetada uma exportação incompleta do Google Authenticator </string>
+    <string name="missing_qr_code_descriptor">• QR code %d</string>
+    <string name="import_partial_export_anyway">Importar %d tokens mesmo assim </string>
     <string name="unlocking_vault">Desbloqueando o cofre</string>
     <string name="remove_group">Remover grupo</string>
     <string name="remove_group_description">Tem certeza que deseja remover este grupo? As entradas neste grupo automaticamente alternarão para \'Sem grupo\'.</string>
+    <string name="remove_unused_groups">Apagar grupos não utilizados</string>
+    <string name="remove_icon_pack">Remover pacote de ícones</string>
     <string name="details">Detalhes</string>
+    <string name="show_error_details">Mostrar detalhes do erro</string>
     <string name="lock">Bloquear</string>
     <string name="name">Nome</string>
     <string name="no_group">Sem grupo</string>
+    <string name="sort" comment="Title of the Sort button in the top action bar of the main view">Ordenar</string>
     <string name="sort_alphabetically">Emissor (A a Z)</string>
     <string name="sort_alphabetically_reverse">Emissor (Z a A)</string>
     <string name="sort_alphabetically_name">Conta (A a Z)</string>
     <string name="sort_alphabetically_name_reverse">Conta (Z a A)</string>
     <string name="sort_custom">Personalizado</string>
     <string name="new_group">Novo grupo…</string>
+    <string name="group">Grupo</string>
     <string name="group_name_hint">Nome do grupo</string>
     <string name="preference_manage_groups">Editar grupos</string>
     <string name="preference_manage_groups_summary">Gerenciar e excluir seus grupos aqui</string>
+    <string name="note" comment="Users can add a note to an entry">Nota</string>
+    <string name="clear">Limpar</string>
     <string name="pref_highlight_entry_title">Destacar tokens quando tocados</string>
     <string name="pref_highlight_entry_summary">Faça com que os tokens sejam mais fáceis de distinguir um do outro destacando-os temporariamente ao tocá-los</string>
+    <string name="pref_minimize_on_copy_title">Minimizar ao copiar</string>
+    <string name="pref_minimize_on_copy_summary">Após copiar um token, minimizar a aplicação </string>
+    <string name="pref_copy_behavior_title">Copiar tokens para a área de transferência</string>
     <string name="pin_keyboard_description">Digite sua senha para ativar o teclado PIN. Observe que isso só funciona se a sua senha for constituída apenas por números</string>
     <string name="pin_keyboard_error">Erro ao habilitar o teclado PIN</string>
     <string name="pin_keyboard_error_description">Não é possível configurar o teclado PIN. A sua senha deve ser composta apenas por números.</string>
@@ -235,13 +290,11 @@
     <string name="small_mode_title">Pequena</string>
     <string name="unknown_issuer">Emissor desconhecido</string>
     <string name="unknown_account_name">Nome de conta desconhecido</string>
-    <plurals name="import_error_dialog">
-        <item quantity="one">Aegis não pôde importar %d token. Esse token será ignorado. Pressione \'detalhes\' para ver mais informações sobre o erro.</item>
-        <item quantity="other">Aegis não pôde importar %d tokens. Esses tokens serão pulados. Pressione \'detalhes\' para ver mais informações sobre os erros.</item>
-    </plurals>
     <string name="unable_to_generate_qrcode">Não foi possível gerar o código QR</string>
     <string name="select_picture">Selecionar imagem</string>
     <string name="select_icon">Selecionar ícone</string>
+    <string name="tile_open_vault" comment="label for a quick settings tile that opens the app when tapped">Abrir cofre</string>
+    <string name="tile_open_scanner" comment="label for a quick settings tile that opens the QR code scanner when tapped">Abrir scanner</string>
     <string name="toggle_checkboxes">Alternar caixas de seleção</string>
     <string name="search">Pesquisar</string>
     <string name="channel_name_lock_status">Status de bloqueio</string>
@@ -251,6 +304,10 @@
     <string name="changelog">Registo de alterações</string>
     <string name="whats_new">O que há de novo</string>
     <string name="github_description">Código fonte, problemas e informações</string>
+    <string name="license">Licença</string>
+    <string name="license_description">Aegis Authenticator está licenciado sob GPLv3</string>
+    <string name="third_party_licenses">Licenças de terceiros</string>
+    <string name="third_party_licenses_description">Licenças das bibliotecas de terceiros utilizadas pelo Aegis</string>
     <string name="country_netherlands">Holanda</string>
     <string name="email_us">Escreva um e-mail</string>
     <string name="visit_website">Visite o nosso site</string>
@@ -268,14 +325,23 @@
     </plurals>
     <string name="google_qr_export_unexpected">#%d códigos QR eram esperados, mas #%d foram escaneados em vez disso</string>
     <string name="backup_error_bar_message"><b>O backup do cofre falhou recentemente</b></string>
+    <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">O último backup está desatualizado (%s)</string>
+    <string name="backup_reminder_bar_message">As mudanças não foram gravadas</string>
+    <string name="backup_reminder_bar_dialog_title">As mudanças não foram gravadas</string>
+    <string name="backup_reminder_bar_dialog_accept">Configurar backups</string>
+    <string name="pref_show_plaintext_warning_hint">Não mostrar este aviso novamente</string>
     <string name="switch_camera">Trocar câmara</string>
     <string name="empty_list">Não há códigos a serem mostrados. Comece a adicionar entradas tocando no sinal de mais no canto inferior direito</string>
     <string name="empty_list_title">Nenhuma entrada encontrada</string>
     <string name="empty_group_list">Não há grupos a serem mostrados. Adicione grupos na tela de edição de uma entrada</string>
     <string name="empty_group_list_title">Nenhum grupo encontrado</string>
+    <string name="no_icon_packs_title">Sem pacotes de ícones</string>
+    <string name="pick_icon">Selecionar ícone</string>
+    <string name="uncategorized">Sem categoria</string>
     <string name="done">Concluído</string>
     <string name="next">Próximo</string>
     <string name="previous">Anterior</string>
+    <string name="copy_uri">Copiar URI</string>
     <string name="transfer_entry">Transferir entrada</string>
     <string name="transfer_entry_description">Escaneie este código QR com o aplicativo de autenticação para o qual você gostaria de transferir esta entrada</string>
     <string name="password_strength_very_weak">Muito Fraca</string>
@@ -291,21 +357,32 @@
     <string name="title_activity_about">Sobre</string>
     <string name="title_activity_edit_entry">Editar entrada</string>
     <string name="title_activity_scan_qr">Escanear um código QR</string>
+    <string name="title_activity_assign_icons">Atribuir ícones</string>
     <string name="dialog_wipe_entries_title">Limpar entradas</string>
     <string name="dialog_wipe_entries_message">O seu cofre já contém entradas. Você quer remover essas entradas antes de importar este arquivo?\n\n<b>Ao fazer isso, você perderá permanentemente o acesso às entradas existentes no cofre.</b></string>
     <string name="dialog_wipe_entries_checkbox">Limpar conteúdo do cofre</string>
     <string name="panic_trigger_ignore_toast">Aegis recebeu um gatilho de pânico, mas essa configuração está desativada, portanto será ignorado</string>
     <string name="pref_panic_trigger_title">Excluir cofre após gatilho de pânico</string>
     <string name="pref_panic_trigger_summary">Excluir cofre quando um gatilho de pânico é recebido do Ripple</string>
+    <string name="importer_help_2fas">Fornecer um arquivo de backup de 2FAS Authenticator.</string>
     <string name="importer_help_aegis">Fornecer um arquivo de exportação/backup do Aegis.</string>
     <string name="importer_help_authenticator_plus">Fornecer um arquivo de exportação do Autenticador Plus obtido através de <b>Configurações -&gt; Backup &amp; Restaurar -&gt; Exportar como Texto e HTML</b>.</string>
     <string name="importer_help_authy">Fornecer uma cópia de <b>/data/data/com.authy.authy/shared_prefs/com.authy.storage.tokens.authenticator.xml</b>, localizado no diretório de armazenamento interno do Authy.</string>
     <string name="importer_help_andotp">Fornecer um arquivo de exportação/backup do andOTP.</string>
-    <string name="importer_help_freeotp">Fornecer uma cópia de <b>/data/data/org.fedorahosted.freeotp/shared_prefs/tokens.xml</b>, localizado no diretório de armazenamento interno do FreeOTP.</string>
     <string name="importer_help_freeotp_plus">Fornecer um arquivo de exportação FreeOTP+.</string>
     <string name="importer_help_microsoft_authenticator">Fornecer uma cópia de <b>/data/data/com.azure.authenticator/databases/PhoneFactor</b>, localizado no diretório de armazenamento interno do Microsoft Authenticator.</string>
     <string name="importer_help_plain_text">Fornecer um arquivo de texto simples com um URI do Google Authenticator em cada linha.</string>
     <string name="importer_help_totp_authenticator">Fornecer um arquivo de exportação de Autenticador TOTP.</string>
     <string name="importer_help_winauth">Fornecer um arquivo de exportação do WinAuth.</string>
+    <string name="import_assign_icons_dialog_title">Atribuir ícones</string>
     <string name="importer_help_direct">Importar entradas diretamente de %s. Isto requer que a aplicação seja instalada neste dispositivo e que acesso root seja concedido ao Aegis.</string>
+    <string name="groups">grupos</string>
+    <string name="pref_grouping_none">Sem grupo</string>
+    <string name="pref_grouping_size_two">Grupos de 2</string>
+    <string name="pref_grouping_size_three">Grupos de 3</string>
+    <string name="pref_grouping_size_four">Grupos de 4</string>
+    <string name="pref_copy_behavior_never">Nunca</string>
+    <string name="pref_copy_behavior_single_tap">Apenas um toque</string>
+    <string name="pref_copy_behavior_double_tap">Duplo toque</string>
+    <string name="pref_account_name_position_hidden">Ocultar / Ocultos</string>
 </resources>

@@ -50,7 +50,7 @@
     <string name="pref_android_backups_hint"><i>Резервное копирование между устройствами (D2D) всегда разрешено независимо от настройки выше</i></string>
     <string name="pref_backups_title">Автоматическое резервирование хранилища</string>
     <string name="pref_backups_summary">Автоматически создавать резервные копии хранилища на внешнем носителе при внесении изменений. Поддерживается только для зашифрованных хранилищ.</string>
-    <string name="pref_backups_reminder_title">Напоминания о резервном копировании</string>
+    <string name="pref_backups_reminder_title">Напоминание о резервном копировании</string>
     <string name="pref_backups_reminder_summary">Показывать напоминание о необходимости создания резервной копии хранилища, если резервирование последних изменений ещё не выполнялось.</string>
     <string name="pref_backups_reminder_dialog_title">Отключить напоминание о резервном копировании</string>
     <string name="pref_backups_reminder_dialog_summary">Отключение этого напоминания означает, что Aegis не будет сообщать вам о наличии изменений, резервная копия которых ещё не создана. В результате вы рискуете потерять доступ к своим ключам. Вы уверены, что хотите отключить напоминание?</string>
@@ -90,7 +90,7 @@
     <string name="pref_auto_lock_summary">Когда %s</string>
     <string name="pref_auto_lock_summary_disabled">Отключено</string>
     <string name="pref_auto_lock_prompt">Автоматически блокировать Aegis, когда</string>
-    <string name="pref_auto_lock_type_back_button">Кнопка \"Назад\" нажата</string>
+    <string name="pref_auto_lock_type_back_button">Нажата кнопка \"Назад\"</string>
     <string name="pref_auto_lock_type_minimize">Приложение свёрнуто</string>
     <string name="pref_auto_lock_type_device_lock">Устройство заблокировано</string>
     <string name="pref_backup_password_category">Резервирование и экспорт</string>
@@ -122,7 +122,7 @@
         <item quantity="other">%d групп выбрано</item>
     </plurals>
     <string name="export_no_groups_selected">Не выбрано групп для экспорта</string>
-    <string name="export_html_title" context="The title of an HTML export document">Экспорт Aegis Authenticator</string>
+    <string name="export_html_title" comment="The title of an HTML export document">Экспорт Aegis Authenticator</string>
     <string name="choose_authentication_method">Безопасность</string>
     <string name="authentication_method_explanation">Aegis — приложение двухфакторной аутентификации (2FA), ориентированное на безопасность. Ключи хранятся в хранилище, которое по желанию можно зашифровать с помощью пароля. Если злоумышленник получит зашифрованный файл хранилища, он не сможет получить доступ к содержимому без указания пароля.\n\nВыбран наиболее подходящий вариант для вашего устройства.</string>
     <string name="authentication_method_none">Нет</string>
@@ -170,6 +170,8 @@
     <string name="set_up_biometric">Настройка биометрической разблокировки</string>
     <string name="copy">Скопировать</string>
     <string name="edit">Изменить</string>
+    <string name="select_all">Выбрать все</string>
+    <string name="assign_icons">Назначить значки</string>
     <string name="favorite" comment="Verb">В избранное</string>
     <string name="unfavorite" comment="Verb">Убрать из избранного</string>
     <string name="error_all_caps">ОШИБКА</string>
@@ -181,7 +183,7 @@
     <string name="unlock_vault_error">Невозможно разблокировать хранилище</string>
     <string name="unlock_vault_error_description">Неправильный пароль. Убедитесь, что вы не допустили в нём опечатку.</string>
     <string name="password_equality_error">Пароли должны быть одинаковыми и непустыми</string>
-    <string name="snackbar_authentication_method">Пожалуйста, выберите метод аутентификации</string>
+    <string name="snackbar_authentication_method">Выберите метод аутентификации</string>
     <string name="encrypting_vault">Шифрование хранилища</string>
     <string name="exporting_vault">Экспортирование хранилища</string>
     <string name="reading_file">Чтение файла</string>
@@ -208,6 +210,7 @@
     <string name="discard_changes">Отменить изменения?</string>
     <string name="discard_changes_description">Ваши изменения не были сохранены</string>
     <string name="saving_profile_error">Ошибка сохранения профиля</string>
+    <string name="saving_assign_icons_error">Невозможно назначить значки</string>
     <string name="welcome">Добро пожаловать</string>
     <string name="app_description">Aegis — бесплатное, безопасное и открытое приложение 2FA.</string>
     <string name="setup_completed">Настройка завершена</string>
@@ -288,10 +291,12 @@
     <string name="import_partial_export_anyway">Принудительно импортировать %d ключей</string>
     <string name="import_google_auth_failure">Невожможно импортировать экспорт из Google Authenticator</string>
     <string name="unrelated_google_auth_batches_error">Экспорт содержит информацию для несвязанного пакета. Попробуйте импортировать по 1 пакету за раз.</string>
-    <string name="no_tokens_can_be_imported">В результате никакие ключи не могут быть импортированы</string>
+    <string name="no_tokens_can_be_imported">В результате ни один ключ не может быть импортирован</string>
     <string name="unlocking_vault">Разблокировка хранилища</string>
     <string name="remove_group">Удалить группу</string>
     <string name="remove_group_description">Удалить группу? Записи из этой группы будут автоматически перемещены в «Нет группы».</string>
+    <string name="remove_unused_groups">Удалить неиспользуемые группы</string>
+    <string name="remove_unused_groups_description">Удалить все группы, к которым не привязаны записи?</string>
     <string name="remove_icon_pack">Удалить набор значков</string>
     <string name="remove_icon_pack_description">Удалить этот набор значков? Сами записи, использующие значки из данного набора, не будут затронуты.</string>
     <string name="details">Подробнее</string>
@@ -299,7 +304,7 @@
     <string name="lock">Заблокировать</string>
     <string name="name">Имя</string>
     <string name="no_group">Нет группы</string>
-    <string name="sort">Сортировка</string>
+    <string name="sort" comment="Title of the Sort button in the top action bar of the main view">Сортировка</string>
     <string name="sort_alphabetically">Эмитент (А→Я)</string>
     <string name="sort_alphabetically_reverse">Эмитент (Я→А)</string>
     <string name="sort_alphabetically_name">Учётная запись (А→Я)</string>
@@ -314,7 +319,7 @@
     <string name="preference_reset_usage_count">Сброс счётчика использований</string>
     <string name="preference_reset_usage_count_summary">Сброс количества использований каждой записи в хранилище</string>
     <string name="preference_reset_usage_count_dialog">Установить количество использований для каждой записи в хранилище на 0?</string>
-    <string name="note">Заметка</string>
+    <string name="note" comment="Users can add a note to an entry">Заметка</string>
     <string name="clear">Очистить</string>
     <string name="pref_highlight_entry_title">Выделять ключи при нажатии</string>
     <string name="pref_highlight_entry_summary">Сделать ключи более различимыми, временно выделяя их при нажатии</string>
@@ -340,10 +345,10 @@
     <string name="unknown_issuer">Неизвестный эмитент</string>
     <string name="unknown_account_name">Неизвестное название учётной записи</string>
     <plurals name="import_error_dialog">
-        <item quantity="one">Aegis не удалось импортировать %d ключ. Эти ключи будут пропущены. Нажмите «Подробнее», чтобы увидеть дополнительную информацию об ошибках.</item>
-        <item quantity="few">Aegis не удалось импортировать %d ключа. Эти ключи будут пропущены. Нажмите «Подробнее», чтобы увидеть дополнительную информацию об ошибках.</item>
-        <item quantity="many">Aegis не удалось импортировать %d ключей. Эти ключи будут пропущены. Нажмите «Подробнее», чтобы увидеть дополнительную информацию об ошибках.</item>
-        <item quantity="other">Aegis не удалось импортировать %d ключей. Эти ключи будут пропущены. Нажмите «Подробнее», чтобы увидеть дополнительную информацию об ошибках.</item>
+        <item quantity="one">Aegis не может импортировать %d ключ. Этот ключ будет пропущен. Нажмите «Подробнее», чтобы просмотреть дополнительную информацию об ошибке.</item>
+        <item quantity="few">Aegis не может импортировать %d ключа. Эти ключи будут пропущены. Нажмите «Подробнее», чтобы просмотреть дополнительную информацию об ошибке.</item>
+        <item quantity="many">Aegis не может импортировать %d ключей. Эти ключи будут пропущены. Нажмите «Подробнее», чтобы просмотреть дополнительную информацию об ошибке.</item>
+        <item quantity="other">Aegis не может импортировать %d ключей. Эти ключи будут пропущены. Нажмите «Подробнее», чтобы просмотреть дополнительную информацию об ошибке.</item>
     </plurals>
     <string name="unable_to_process_deeplink">Невозможно обработать глубокую ссылку</string>
     <string name="unable_to_read_qrcode_file">Невозможно считать и обработать QR-код из файла: %s.</string>
@@ -389,16 +394,18 @@
     <string name="backup_error_bar_message"><b>Недавно произошла ошибка резервного копирования хранилища</b></string>
     <string name="backup_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">Последнее резервное копирование хранилища с использованием %s не выполнено из-за ошибки. Попытка производилась %s. Убедитесь, что настройки резервного копирования правильные.
     </string>
+    <string name="backup_permission_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">        Недавняя попытка резервного копирования хранилища с использованием %s не выполнена, поскольку у Aegis нет разрешения на запись в место назначения резервной копии. Попытка создания резервной копии была %s. Эта ошибка может возникать, если вы переместили/переименовали место назначения резервной копии или если недавно восстановили параметры Aegis из резервной копии. Пожалуйста, перенастройте место назначения резервной копии.
+    </string>
     <string name="backup_system_builtin">Встроенное автоматическое резервирование Aegis</string>
     <string name="backup_system_android">Системное облачное резервирование Android</string>
-    <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">        Последняя резервная копия устарела (%s)
+    <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">        Резервная копия устарела (%s)
     </string>
     <string name="backup_reminder_bar_message">        Изменения не сохранены
     </string>
     <string name="backup_reminder_bar_dialog_title">Изменения не сохранены</string>
     <string name="backup_reminder_bar_dialog_summary">        Резервное копирование последних изменений в хранилище ещё не выполнялось. Важно регулярно делать резервные копии, чтобы не потерять доступ к своим учётным записям. По возможности настройте автоматическое резервное копирование в меню настроек.
     </string>
-    <string name="backup_reminder_bar_dialog_accept">Настройка резервного копирования</string>
+    <string name="backup_reminder_bar_dialog_accept">Настройка резервирования</string>
     <string name="backup_plaintext_export_warning"><b>Хранилище недавно было экспортировано в виде простого текста</b></string>
     <string name="pref_show_plaintext_warning_hint">Больше не показывать это предупреждение</string>
     <string name="backup_plaintext_warning_explanation">Это предупреждение отображается потому, что вы недавно экспортировали хранилище в незашифрованном виде. Для обеспечения безопасности ключей, мы рекомендуем удалить этот файл, как только он перестанет быть нужным.</string>
@@ -440,13 +447,15 @@
     <string name="title_activity_edit_entry">Редактировать запись</string>
     <string name="title_activity_scan_qr">Сканировать QR-код</string>
     <string name="title_activity_import_entries">Импорт записей</string>
+    <string name="title_activity_assign_icons">Назначить значки</string>
     <string name="dialog_wipe_entries_title">Очистить записи</string>
     <string name="dialog_wipe_entries_message">В хранилище уже есть записи. Хотите удалить их перед импортом файла?\n\n<b>Если вы удалите существующие записи, то навсегда потеряете к ним доступ.</b></string>
     <string name="dialog_wipe_entries_checkbox">Очистить содержимое хранилища</string>
     <string name="panic_trigger_ignore_toast">Получен сигнал паники, но настройка отключена — сигнал паники игнорируется</string>
     <string name="pref_panic_trigger_title">Удалять хранилище при панике</string>
     <string name="pref_panic_trigger_summary">Удалить хранилище при получении сигнала паники от Ripple</string>
-    <string name="import_vault">Импорт хранилища</string>
+    <string name="import_vault">Импорт хранилища Aegis</string>
+    <string name="import_vault_hint">Хотите импортировать данные из другого приложения 2FA? Завершите настройку приложения, затем перейдите в меню настроек.</string>
     <plurals name="import_duplicate_toast">
         <item quantity="one">Не выбран %d потенциальный дубликат. Проверьте список записей.</item>
         <item quantity="few">Не выбраны %d потенциальных дубликата. Проверьте список записей.</item>
@@ -462,7 +471,7 @@
     <string name="importer_help_bitwarden">Необходим файл экспорта/резервной копии Bitwarden. Зашифрованные файлы не поддерживаются.</string>
     <string name="importer_help_battle_net_authenticator">Необходима копия файла <b>/data/data/com.blizzard.bma/shared_prefs/com.blizzard.bma.AUTH_STORE.xml</b>, расположенного в папке «Battle.net Authenticator» во внутренней памяти.</string>
     <string name="importer_help_duo">Необходима копия файла <b>/data/data/com.duosecurity.duomobile/files/duokit/accounts.json</b>, расположенного в папке «DUO» во внутренней памяти.</string>
-    <string name="importer_help_freeotp">Необходима копия файла <b>/data/data/org.fedorahosted.freeotp/shared_prefs/tokens.xml</b>, расположенного в папке «FreeOTP» во внутренней памяти.</string>
+    <string name="importer_help_freeotp">Необходима копия файла <b>/data/data/org.fedorahosted.freeotp/shared_prefs/tokens.xml</b>, расположенного в папке «FreeOTP (1.x)» во внутренней памяти.</string>
     <string name="importer_help_freeotp_plus">Необходим файл экспорта FreeOTP+.</string>
     <string name="importer_help_google_authenticator"><b>Поддерживаются только файлы баз данных Google Authenticator версии 5.10 и более ранних</b>.\n\nНеобходима копия файла <b>/data/data/com.google.android.apps.authenticator2/databases/databases</b>, расположенного в папке «Google Authenticator» во внутренней памяти.</string>
     <string name="importer_help_microsoft_authenticator">Необходима копия файла <b>/data/data/com.azure.authenticator/databases/PhoneFactor</b>, расположенного в папке «Microsoft Authenticator» во внутренней памяти.</string>
@@ -471,6 +480,8 @@
 Необходима копия файла <b>/data/data/com.valvesoftware.android.steam.community/files/Steamguard-*.json</b>, расположенного в папке «Steam» во внутренней памяти.</string>
     <string name="importer_help_totp_authenticator">Необходим файл экспорта TOTP Authenticator.</string>
     <string name="importer_help_winauth">Необходим файл экспорта WinAuth.</string>
+    <string name="import_assign_icons_dialog_title">Назначить значки</string>
+    <string name="import_assign_icons_dialog_text">Назначить значки для импортированных записей?</string>
     <string name="importer_encrypted_exception_google_authenticator">Была пропущена зашифрованная запись: %s</string>
     <string name="importer_help_direct">Импорт записей напрямую из %s. Для этого необходимо, чтобы приложение было установлено на этом устройстве и чтобы Aegis были предоставлены права суперпользователя.</string>
     <string name="groups">Группы</string>

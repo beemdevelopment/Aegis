@@ -205,7 +205,7 @@
     <string name="group_name_hint">Grupės pavadinimas</string>
     <string name="preference_manage_groups">Taisyti grupes</string>
     <string name="preference_manage_groups_summary">Čia tvarkykite ir ištrinkite savo grupes</string>
-    <string name="note">Pastaba</string>
+    <string name="note" comment="Users can add a note to an entry">Pastaba</string>
     <string name="clear">Išvalyti</string>
     <string name="pref_highlight_entry_title">Bakstelėjus, paryškinti prieigos raktus</string>
     <string name="pref_highlight_entry_summary">Bakstelėjus ant prieigos raktų, laikinai juos paryškinti ir padaryti taip, kad juos būtų lengviau atskirti</string>
@@ -222,12 +222,6 @@
     <string name="small_mode_title">Maža</string>
     <string name="unknown_issuer">Nežinomas leidėjas</string>
     <string name="unknown_account_name">Nežinomas paskyros pavadinimas</string>
-    <plurals name="import_error_dialog">
-        <item quantity="one">Aegis nepavyko importuoti %d prieigos rakto. Šis prieigos raktas bus praleistas. Norėdami pamatyti informaciją apie klaidas, paspauskite „Išsamiau“.</item>
-        <item quantity="few">Aegis nepavyko importuoti %d prieigos raktų. Šie prieigos raktai bus praleisti. Norėdami pamatyti informaciją apie klaidas, paspauskite „Išsamiau“.</item>
-        <item quantity="many">Aegis nepavyko importuoti %d prieigos raktų. Šie prieigos raktai bus praleisti. Norėdami pamatyti informaciją apie klaidas, paspauskite „Išsamiau“.</item>
-        <item quantity="other">Aegis nepavyko importuoti %d prieigos rakto. Šie prieigos raktai bus praleisti. Norėdami pamatyti informaciją apie klaidas, paspauskite „Išsamiau“.</item>
-    </plurals>
     <string name="unable_to_read_qrcode_file">Nepavyko perskaityti ir apdoroti QR kodo iš failo: %s.</string>
     <string name="unable_to_generate_qrcode">Nepavyko sukurti QR kodo</string>
     <string name="tile_open_vault" comment="label for a quick settings tile that opens the app when tapped">Atverti slėptuvę</string>
@@ -287,14 +281,12 @@
     <string name="dialog_wipe_entries_title">Išvalyti įrašus</string>
     <string name="dialog_wipe_entries_message">Jūsų slėptuvėje jau yra įrašai. Ar prieš importuodami šį failą, norite pašalinti šiuos įrašus?\n\n<b>Tai atlikę, visam laikui prarasite prieigą prie šiuo metu slėptuvėje esančių įrašų.</b></string>
     <string name="dialog_wipe_entries_checkbox">Išvalyti slėptuvės turinį</string>
-    <string name="import_vault">Importuoti slėptuvę</string>
     <string name="importer_help_2fas">Pateikite 2FAS Authenticator atsarginės kopijos failą.</string>
     <string name="importer_help_aegis">Pateikite Aegis eksportuotą/atsarginės kopijos failą.</string>
     <string name="importer_help_authenticator_plus">Pateikite Authenticator Plus eksportuotą failą, gautą per <b>Nustatymai (angl. Settings) -&gt; Atsarginė kopija ir atkūrimas (angl. Backup &amp; Restore) -&gt; Eksportuoti kaip tekstą ir HTML (angl. Export as Text and HTML)</b>.</string>
     <string name="importer_help_authy">Pateikite <b>/data/data/com.authy.authy/shared_prefs/com.authy.storage.tokens.authenticator.xml</b> kopiją, esančią Authy vidinės saugyklos kataloge.</string>
     <string name="importer_help_andotp">Pateikite andOTP eksportuotą/atsarginės kopijos failą.</string>
     <string name="importer_help_bitwarden">Pateikite Bitwarden eksportuotą/atsarginės kopijos failą. Šifruoti failai yra nepalaikomi.</string>
-    <string name="importer_help_freeotp">Pateikite <b>/data/data/org.fedorahosted.freeotp/shared_prefs/tokens.xml</b> kopiją, esančią FreeOTP vidinės saugyklos kataloge.</string>
     <string name="importer_help_freeotp_plus">Pateikite FreeOTP+ eksportuotą failą.</string>
     <string name="importer_help_microsoft_authenticator">Pateikite <b>/data/data/com.azure.authenticator/databases/PhoneFactor</b> kopiją, esančią Microsoft Authenticator vidinės saugyklos kataloge.</string>
     <string name="importer_help_plain_text">Pateikite grynojo teksto failą, kurio kiekvienoje eilutėje būtų Google Authenticator URI.</string>

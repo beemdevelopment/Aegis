@@ -113,7 +113,7 @@
         <item quantity="other">已选择 %d 个群组</item>
     </plurals>
     <string name="export_no_groups_selected">没有选择要导出的组</string>
-    <string name="export_html_title" context="The title of an HTML export document">Aegis 身份验证器导出</string>
+    <string name="export_html_title" comment="The title of an HTML export document">Aegis 身份验证器导出</string>
     <string name="choose_authentication_method">安全</string>
     <string name="authentication_method_explanation">Aegis 是一款专注于安全性的双重认证（2FA）应用。令牌存储在数据库中，可以选择使用您选择的密码进行加密。如果攻击者获得了加密的数据库文件，他们将无法在不知道密码的情况下访问内容。\n\n我们已预先选择了我们认为最适合您的设备的选项。</string>
     <string name="authentication_method_none">无</string>
@@ -127,7 +127,7 @@
     <string name="authentication_multiline" comment="The newline in the middle is used for aesthetic purposes">解锁\n数据库</string>
     <string name="auth_use_biometrics">或者点击此处以使用 <font fgcolor="#FF0D86C1">生物识别</font></string>
     <string name="set_password">请输入密码</string>
-    <string name="set_group">请输入群组名称</string>
+    <string name="set_group">请输入分组名称</string>
     <string name="set_number">请选择时长</string>
     <string name="set_password_confirm">请确认密码</string>
     <string name="invalid_password">密码错误</string>
@@ -161,6 +161,8 @@
     <string name="set_up_biometric">设置生物识别解锁</string>
     <string name="copy">复制</string>
     <string name="edit">编辑</string>
+    <string name="select_all">全选</string>
+    <string name="assign_icons">分配图标</string>
     <string name="favorite" comment="Verb">加入收藏</string>
     <string name="unfavorite" comment="Verb">取消收藏</string>
     <string name="error_all_caps">错误</string>
@@ -193,6 +195,7 @@
     <string name="discard_changes">放弃更改？</string>
     <string name="discard_changes_description">您的更改尚未保存</string>
     <string name="saving_profile_error">保存配置文件时出错</string>
+    <string name="saving_assign_icons_error">分配图标时出错</string>
     <string name="welcome">欢迎使用</string>
     <string name="app_description">Aegis 是一款免费，安全和开源的双重认证（2FA）应用</string>
     <string name="setup_completed">设置完成</string>
@@ -266,31 +269,33 @@
     <string name="unrelated_google_auth_batches_error">导出文件包含多个批次的内容。请一次只导入一个批次。</string>
     <string name="no_tokens_can_be_imported">没有可导入的令牌</string>
     <string name="unlocking_vault">解锁数据库</string>
-    <string name="remove_group">删除群组</string>
-    <string name="remove_group_description">您确定要删除这个群组吗？此群组内的条目将自动移动到“无群组”。</string>
+    <string name="remove_group">删除分组</string>
+    <string name="remove_group_description">您确定要删除这个分组吗？此分组内的条目将自动移动到“无分组”。</string>
+    <string name="remove_unused_groups">删除未使用的组</string>
+    <string name="remove_unused_groups_description">您确定要删除所有未分配条目的组吗？</string>
     <string name="remove_icon_pack">删除图标包</string>
     <string name="remove_icon_pack_description">您确定要删除此图标包吗？使用此包图标的条目不会受到影响。</string>
     <string name="details">详细信息</string>
     <string name="show_error_details">显示错误详情</string>
     <string name="lock">锁定</string>
     <string name="name">名称</string>
-    <string name="no_group">无群组</string>
-    <string name="sort">排序</string>
+    <string name="no_group">无分组</string>
+    <string name="sort" comment="Title of the Sort button in the top action bar of the main view">排序</string>
     <string name="sort_alphabetically">服务商（从 A 到 Z）</string>
     <string name="sort_alphabetically_reverse">服务商（从 Z 到 A）</string>
     <string name="sort_alphabetically_name">账户（从 A 到 Z）</string>
     <string name="sort_alphabetically_name_reverse">账户（从 Z 到 A）</string>
     <string name="sort_usage_count">使用计数</string>
     <string name="sort_custom">自定义</string>
-    <string name="new_group">新建群组…</string>
-    <string name="group">群组</string>
-    <string name="group_name_hint">群组名称</string>
-    <string name="preference_manage_groups">编辑群组</string>
-    <string name="preference_manage_groups_summary">管理和删除您的群组</string>
+    <string name="new_group">新建分组…</string>
+    <string name="group">分组</string>
+    <string name="group_name_hint">分组名称</string>
+    <string name="preference_manage_groups">编辑分组</string>
+    <string name="preference_manage_groups_summary">管理和删除您的分组</string>
     <string name="preference_reset_usage_count">重置使用计数</string>
     <string name="preference_reset_usage_count_summary">重置数据库中每个条目的使用计数</string>
     <string name="preference_reset_usage_count_dialog">您确定要将数据库中所有条目的使用计数设置为 0？</string>
-    <string name="note">备注</string>
+    <string name="note" comment="Users can add a note to an entry">备注</string>
     <string name="clear">清空</string>
     <string name="pref_highlight_entry_title">点击时高亮令牌</string>
     <string name="pref_highlight_entry_summary">使令牌在点击后暂时高亮显示以便区分</string>
@@ -316,7 +321,7 @@
     <string name="unknown_issuer">未知的服务商</string>
     <string name="unknown_account_name">未知的帐户名称</string>
     <plurals name="import_error_dialog">
-        <item quantity="other">Aegis 无法导入 %d 个令牌。这些令牌将被忽略。点击“详细信息”查看更多关于错误的信息。</item>
+        <item quantity="other">Aegis 无法导入 %d 个令牌。此类令牌将被忽略。点击 “详细信息” 查看关于错误的更多信息。</item>
     </plurals>
     <string name="unable_to_process_deeplink">无法处理深层链接</string>
     <string name="unable_to_read_qrcode_file">无法从文件读取和处理二维码: %s。</string>
@@ -358,6 +363,8 @@
     <string name="google_qr_export_unexpected">预期二维码 #%d，已扫描 #%d</string>
     <string name="backup_error_bar_message"><b>数据库最近备份失败</b></string>
     <string name="backup_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">因发生错误，上次使用 %s 备份密码库的尝试失败。尝试于 %s。请检查您的备份设置以确保备份成功完成。    </string>
+    <string name="backup_permission_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">        上次使用 %s 备份密码库失败，Aegis 缺少写入备份目标的权限。尝试于 %s。错误可能因为您最近移动或重命名了备份目标，或者您最近从一个备份中还原了 Aegis ，请重新配置备份目标。
+    </string>
     <string name="backup_system_builtin">Aegis 内置的自动备份</string>
     <string name="backup_system_android">Android 的云备份系统</string>
     <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">        最新备份已过时 (%s)
@@ -373,8 +380,8 @@
     <string name="switch_camera">切换摄像头</string>
     <string name="empty_list">没有可显示的验证码。点击右下角的加号，开始添加条目</string>
     <string name="empty_list_title">未找到条目</string>
-    <string name="empty_group_list">没有要显示的群组。在条目编辑页面中添加群组</string>
-    <string name="empty_group_list_title">未找到群组</string>
+    <string name="empty_group_list">没有要显示的分组。在条目编辑页面中添加分组</string>
+    <string name="empty_group_list_title">未找到分组</string>
     <string name="no_icon_packs">尚未导入图标包。点击加号标记来导入一个。提示：尝试 <a href="https://aegis-icons.github.io">aegis-icons</a>。</string>
     <string name="no_icon_packs_title">没有图标包</string>
     <string name="pick_icon">选择一个图标</string>
@@ -399,19 +406,21 @@
     <string name="pref_pin_keyboard_title">在锁屏界面上使用 PIN 键盘</string>
     <string name="pref_pin_keyboard_summary">如果您想要在锁屏界面启用 PIN 键盘，请启用此选项。这只适用于数字密码</string>
     <string name="title_activity_preferences">设置</string>
-    <string name="title_activity_manage_groups">管理群组</string>
+    <string name="title_activity_manage_groups">管理分组</string>
     <string name="title_activity_transfer">转移条目</string>
     <string name="title_activity_about">关于</string>
     <string name="title_activity_edit_entry">编辑条目</string>
     <string name="title_activity_scan_qr">扫描二维码</string>
     <string name="title_activity_import_entries">导入条目</string>
+    <string name="title_activity_assign_icons">分配图标</string>
     <string name="dialog_wipe_entries_title">擦除条目</string>
     <string name="dialog_wipe_entries_message">您的数据库已经包含条目。 您想要在导入此文件之前删除这些条目吗？\n\n<b>这样做，您将永久失去对数据库中现有条目的访问权限。</b></string>
     <string name="dialog_wipe_entries_checkbox">擦除数据库内容</string>
     <string name="panic_trigger_ignore_toast">Aegis 收到紧急触发信号，但您未启用相关设置，忽略中</string>
     <string name="pref_panic_trigger_title">收到紧急触发信号时删除数据库</string>
     <string name="pref_panic_trigger_summary">从 Ripple 收到紧急触发信号时删除数据库</string>
-    <string name="import_vault">导入数据库</string>
+    <string name="import_vault">导入 Aegis 数据库</string>
+    <string name="import_vault_hint">想要从其他 2FA 应用程序导入吗？请先完成设置，然后转到设置菜单。</string>
     <plurals name="import_duplicate_toast">
         <item quantity="other">未选中 %d 个潜在重复项。请检视条目列表。</item>
     </plurals>
@@ -424,7 +433,7 @@
     <string name="importer_help_bitwarden">提供 Bitwarden 导出 / 备份文件。不支持加密的文件。</string>
     <string name="importer_help_battle_net_authenticator">提供<b>/data/data/com.blizzard.bma/shared_prefs/com.blizzard.bma.AUTH_STORE.xml</b> 的拷贝, 位于Battle.net Authenticator内部存储目录。</string>
     <string name="importer_help_duo">提供 <b>/data/data/com.duosecurity.duomobile/files/duokit/accounts.json</b> 的一个副本，位于 DUO 的内部存储目录。</string>
-    <string name="importer_help_freeotp">提供 <b>/data/data/org.fedorahosted.freeotp/shared_prefs/tokens.xml</b> 的一个副本，位于 FreeOTP 的内部存储目录。</string>
+    <string name="importer_help_freeotp">提供 <b>/data/data/org.fedorahosted.freeotp/shared_prefs/tokens.xml</b> 的一个副本，位于 FreeOTP (1.x) 内部存储目录。</string>
     <string name="importer_help_freeotp_plus">提供 FreeOTP+ 导出文件。</string>
     <string name="importer_help_google_authenticator"><b>仅支持来自 Google Authenticator v5.10 及先前版本的数据库</b>。\n\n提供 <b>/data/data/com.google.android.apps.authenticator2/databases/databases</b> 的副本，文件位于 Google Authenticator 的内部存储目录。</string>
     <string name="importer_help_microsoft_authenticator">提供 <b>/data/data/com.azure.authenticator/databases/PhoneFactor</b> 的一个副本，位于 Microsoft Authenticator 的内部存储目录。</string>
@@ -432,9 +441,11 @@
     <string name="importer_help_steam"><b>不支持 Steam v3.0 和更新版本</b>。提供 <b>/data/data/com.valvesoftware.android.steam.community/files/Steamguard-*.json</b>的副本, 位于Steam 内部存储目录。</string>
     <string name="importer_help_totp_authenticator">提供一个 TOTP 身份验证器导出文件。</string>
     <string name="importer_help_winauth">提供 WinAuth 导出文件。</string>
+    <string name="import_assign_icons_dialog_title">分配图标</string>
+    <string name="import_assign_icons_dialog_text">您想给导入的条目分配图标吗？</string>
     <string name="importer_encrypted_exception_google_authenticator">加密条目已跳过：%s</string>
     <string name="importer_help_direct">直接导入来自 %s 的条目。这要求将应用程序安装在此设备上，并授予 Aegis root 权限。</string>
-    <string name="groups">群组</string>
+    <string name="groups">分组</string>
     <string name="pref_focus_search">应用启动后聚焦搜索</string>
     <string name="pref_focus_search_summary">打开应用程序后立即聚焦搜索</string>
     <string name="pref_grouping_halves">均分</string>

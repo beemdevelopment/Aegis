@@ -2,14 +2,14 @@
 <resources>
     <string name="action_settings">الإعدادات</string>
     <string name="action_about">عنّا</string>
-    <string name="action_delete">حذف</string>
-    <string name="action_transfer">نقل</string>
-    <string name="action_edit_icon">تعديل الأيقونة</string>
-    <string name="action_reset_usage_count">تصفير عداد التصويت</string>
-    <string name="action_reset_usage_count_dialog">هل أنت متأكد من أنك تريد تعيين عدد الاستخدام لهذا الإدخال إلى 0؟</string>
-    <string name="action_default_icon">استعادة الأيقونة الافتراضية</string>
+    <string name="action_delete">احذف</string>
+    <string name="action_transfer">انقل</string>
+    <string name="action_edit_icon">حرّر الأيقونة</string>
+    <string name="action_reset_usage_count">صفّر عداد الاستخدام</string>
+    <string name="action_reset_usage_count_dialog">هل أنت متأكد من رغبتك في تعيين عدد الاستخدام لهذا الإدخال إلى 0؟</string>
+    <string name="action_default_icon">استعد الأيقونة الافتراضية</string>
     <string name="discard">تجاهل</string>
-    <string name="save">حفظ</string>
+    <string name="save">احفظ</string>
     <string name="issuer">المصدِّر</string>
     <string name="yandex_pin">رمز PIN (يتكون من 4-16 رقمًا)</string>
     <string name="motp_pin">رمز PIN (4 أرقام)</string>
@@ -21,27 +21,27 @@
     <string name="pref_cat_backups_android">أندرويد</string>
     <string name="pref_cat_backups_auto">نسخ أحتياطي تلقائي</string>
     <string name="pref_section_behavior_title">السلوك</string>
-    <string name="pref_section_behavior_summary">تخصيص السلوك عند التفاعل مع قائمة الإدخالات.</string>
+    <string name="pref_section_behavior_summary">خصِص السلوك عند التفاعل مع قائمة الإدخالات.</string>
     <string name="pref_section_appearance_title">المظهر</string>
-    <string name="pref_section_appearance_summary">ضبط السمة واللغة والإعدادات الأخرى التي تؤثر على مظهر التطبيق.</string>
+    <string name="pref_section_appearance_summary">اضبط السِمة واللغة والإعدادات الأخرى التي تؤثر على مظهر التطبيق.</string>
     <string name="pref_section_security_title">الحماية</string>
-    <string name="pref_section_security_summary">ضبط التشفير، الفتح البيومتري، القفل التلقائي وإعدادات الأمان الأخرى.</string>
-    <string name="pref_section_import_export_title">إستيراد &amp; تصدير</string>
+    <string name="pref_section_security_summary">اضبط التشفير، وفك القفل البيومتري، والقفل التلقائي وإعدادات الأمان الأخرى.</string>
+    <string name="pref_section_import_export_title">استيراد &amp; تصدير</string>
     <string name="pref_section_import_export_summary">استيراد النسخ الاحتياطية من Aegis أو من تطبيقات مصادقة أخرى. إنشاء تصدير يدوي لمخزن Aegis.</string>
-    <string name="pref_section_backups_title">النُّسَخ الإحتياطية</string>
-    <string name="pref_section_backups_summary">إعداد نسخٍ احتياطي تلقائي إلى موقع من اختيارك، أو تفعيل المشاركة في نظام النسخ الاحتياطي السحابي للأندرويد.</string>
-    <string name="pref_section_icon_packs">حزمة الأيقونات</string>
-    <string name="pref_section_icon_packs_summary">إدارة واستيراد حزمة الأيقونات</string>
-    <string name="pref_select_theme_title">النمط</string>
-    <string name="pref_view_mode_title">وضع العرض</string>
+    <string name="pref_section_backups_title">نُسخ احتياطية</string>
+    <string name="pref_section_backups_summary">أنشئ نسخ احتياطية تلقائية إلى موقع من اختيارك أو فَعِّل المشاركة في نظام النسخ الاحتياطي السحابي للأندرويد.</string>
+    <string name="pref_section_icon_packs">حزم الأيقونات</string>
+    <string name="pref_section_icon_packs_summary">أدِر واستورد حزم الأيقونات</string>
+    <string name="pref_select_theme_title">سِمة</string>
+    <string name="pref_view_mode_title">نمط العرض</string>
     <string name="pref_lang_title">اللغة</string>
-    <string name="pref_show_icons_title">إظهار الأيقونات</string>
-    <string name="pref_show_icons_summary">عرض الأيقونات بجانب كل مدخل</string>
+    <string name="pref_show_icons_title">أظهر الأيقونات</string>
+    <string name="pref_show_icons_summary">اعرض الأيقونات بجانب كل مدخل</string>
     <string name="pref_code_group_size_title">تجميع أرقام الكود</string>
-    <string name="pref_code_group_size_summary">اختر عدد الخانات المستخدمة في تجميع الرموز</string>
-    <string name="pref_account_name_position_title">إظهار اسم الحساب</string>
-    <string name="pref_shared_issuer_account_name_title">إظهار اسم الحساب فقط عند الضرورة</string>
-    <string name="pref_shared_issuer_account_name_summary">إظهار أسماء الحسابات فقط عندما يشاركون نفس المصدر. سيتم إخفاء أسماء الحسابات الأخرى.</string>
+    <string name="pref_code_group_size_summary">حدد عدد الأرقام لتجميع الرموز حسبها</string>
+    <string name="pref_account_name_position_title">اضهِر اسم الحساب</string>
+    <string name="pref_shared_issuer_account_name_title">اضهِر اسم الحساب فقط عند الضرورة</string>
+    <string name="pref_shared_issuer_account_name_summary">أضهِر أسماء الحسابات فقط عندما يشتركون نفس المصدر. سيتم إخفاء أسماء الحسابات الأخرى.</string>
     <string name="pref_account_name_position_summary_override">تجاوز هذا الإعداد عن طريق وضع عرض البلاط. سيتم عرض اسم الحساب دائمًا أسفل المصدر.</string>
     <string name="pref_import_file_title">استيراد من ملف</string>
     <string name="pref_import_file_summary">استيراد الرموز من ملف</string>
@@ -128,7 +128,7 @@
         <item quantity="other">%d مجموعة حُددت</item>
     </plurals>
     <string name="export_no_groups_selected">لم يُحدد مجموعات للتصدير</string>
-    <string name="export_html_title" context="The title of an HTML export document">Aegis تصدير أداة المصادقة</string>
+    <string name="export_html_title" comment="The title of an HTML export document">Aegis تصدير أداة المصادقة</string>
     <string name="choose_authentication_method">الأمان</string>
     <string name="authentication_method_explanation">تطبيق Aegis هو تطبيق مصادقة يركز على الأمان. تخزّن الرموز في مخزن، يمكن تشفيره اختياريًا بكلمة مرور من اختيارك. إذا حصل مهاجم على ملف المخزن المشفر الخاص بك، فإنه لن يتمكن من الوصول إلى المحتوى بدون معرفة كلمة المرور.\n\nلقد حددنا مسبقًا الخيار الذي نعتقد أنه يناسب جهازك.</string>
     <string name="authentication_method_none">بلا</string>
@@ -176,6 +176,8 @@
     <string name="set_up_biometric">تعيين الفتح البيومتري</string>
     <string name="copy">نسخ</string>
     <string name="edit">تعديل</string>
+    <string name="select_all">حدد الكل</string>
+    <string name="assign_icons">تعيين أيقونات</string>
     <string name="favorite" comment="Verb">أضِف للمفضلة</string>
     <string name="unfavorite" comment="Verb">أزِل من المفضلة</string>
     <string name="error_all_caps">خطأ</string>
@@ -218,6 +220,7 @@
     <string name="discard_changes">تجاهل التغييرات؟</string>
     <string name="discard_changes_description">لم يتم حفظ تغييراتك</string>
     <string name="saving_profile_error">حدث خطأ أثناء حفظ الملف الشخصي</string>
+    <string name="saving_assign_icons_error">خطأ في تعيين الأيقونات</string>
     <string name="welcome">مرحبًا</string>
     <string name="app_description">Aegis تطبيق مصادقة ثنائية مجاني، وآمن، ومفتوح المصدر</string>
     <string name="setup_completed">اكتمل الإعداد</string>
@@ -308,6 +311,8 @@
     <string name="unlocking_vault">يتم فتح قفل المخزن</string>
     <string name="remove_group">إزالة المجموعة</string>
     <string name="remove_group_description">هل ترغب حقًا في إزالة هذه المجموعة؟ ستتحول المدخلات في هذه المجموعة تلقائيًا إلى &quot;غير مجمّعة&quot;</string>
+    <string name="remove_unused_groups">حذف المجموعات غير المستخدمة</string>
+    <string name="remove_unused_groups_description">هل أنت متأكد من أنك تريد حذف جميع المجموعات التي لم يتم تعيينها إلى إدخال؟</string>
     <string name="remove_icon_pack">حذف حزمة الأيقونات</string>
     <string name="remove_icon_pack_description">هل أنت متأكد من أنك تريد إزالة حزمة الأيقونات هذه؟ لن تتأثر المدخلات التي تستخدم الرموز من هذه الحزمة.</string>
     <string name="details">التفاصيل</string>
@@ -315,7 +320,7 @@
     <string name="lock">قفل</string>
     <string name="name">الاسم</string>
     <string name="no_group">بلا مجموعة</string>
-    <string name="sort">الفرز</string>
+    <string name="sort" comment="Title of the Sort button in the top action bar of the main view">الفرز</string>
     <string name="sort_alphabetically">المصدِّر (أ إلى ي)</string>
     <string name="sort_alphabetically_reverse">المصدِّر (ي إلى أ)</string>
     <string name="sort_alphabetically_name">الحساب (أ إلى ي)</string>
@@ -330,7 +335,7 @@
     <string name="preference_reset_usage_count">إعادة تعيين عدد الاستخدام</string>
     <string name="preference_reset_usage_count_summary">إعادة تعيين عدد الاستخدام لكل إدخال في مخزنك</string>
     <string name="preference_reset_usage_count_dialog">هل أنت متأكد من أنك تريد جعل العداد لكل مدخل في خزنتك يصبح 0؟</string>
-    <string name="note">ملاحظة</string>
+    <string name="note" comment="Users can add a note to an entry">ملاحظة</string>
     <string name="clear">مسح</string>
     <string name="pref_highlight_entry_title">ابرز الرموز عندما تُنقر</string>
     <string name="pref_highlight_entry_summary">يسهل تمييز الرموز عن بعضها بتسليط الضوء عليهم عندما يتم النقر عليهم</string>
@@ -356,12 +361,12 @@
     <string name="unknown_issuer">مصدِّر غير معروف</string>
     <string name="unknown_account_name">اسم الحساب غير معروف</string>
     <plurals name="import_error_dialog">
-        <item quantity="zero">لم يستطع Aegis استيراد 0 رموز. سيتم تخطي تلك الرموز. اضغط على \'التفاصيل\' لرؤية المزيد من المعلومات حول الأخطاء.</item>
-        <item quantity="one">لم يستطع Aegis استيراد رمز %d. سيتم تخطي ذلك الرمز. اضغط على \'التفاصيل\' لرؤية المزيد من المعلومات حول الأخطاء.</item>
-        <item quantity="two">لم يستطع Aegis استيراد رمزين. سيتم تخطي ذلك الرمز. اضغط على \'التفاصيل\' لرؤية المزيد من المعلومات حول الأخطاء.</item>
-        <item quantity="few">لم يستطع Aegis استيراد %d رموز. سيتم تخطي تلك الرموز. اضغط على \'التفاصيل\' لرؤية المزيد من المعلومات حول الأخطاء.</item>
-        <item quantity="many">لم يستطع Aegis استيراد %d رموز. سيتم تخطي تلك الرموز. اضغط على \'التفاصيل\' لرؤية المزيد من المعلومات حول الأخطاء.</item>
-        <item quantity="other">لم يستطع Aegis استيراد %d رموز. سيتم تخطي تلك الرموز. اضغط على \'التفاصيل\' لرؤية المزيد من المعلومات حول الأخطاء.</item>
+        <item quantity="zero">تعذر Aegis استيراد %d رمز. سيتم تخطي هذا الرمز. اضغط \'التفاصيل\' للاطلاع على مزيد من المعلومات حول الخطأ.</item>
+        <item quantity="one">تعذر Aegis استيراد %d رمز. سيتم تخطي هذا الرمز. اضغط \'التفاصيل\' للاطلاع على مزيد من المعلومات حول الخطأ.</item>
+        <item quantity="two">تعذر Aegis استيراد %d رمز. سيتم تخطي هذا الرمز. اضغط \'التفاصيل\' للاطلاع على مزيد من المعلومات حول الخطأ.</item>
+        <item quantity="few">تعذر Aegis استيراد %d رموز. سيتم تخطي هذا الرمز. اضغط \'التفاصيل\' للاطلاع على مزيد من المعلومات حول الخطأ.</item>
+        <item quantity="many">تعذر Aegis استيراد %d رموز. سيتم تخطي هذا الرمز. اضغط \'التفاصيل\' للاطلاع على مزيد من المعلومات حول الخطأ.</item>
+        <item quantity="other">تعذر Aegis استيراد %d رموز. سيتم تخطي هذا الرمز. اضغط \'التفاصيل\' للاطلاع على مزيد من المعلومات حول الخطأ.</item>
     </plurals>
     <string name="unable_to_process_deeplink">تعذرت معالجة الارتباط العميق</string>
     <string name="unable_to_read_qrcode_file">غير قادر على قراءة ومعالجة رمز QR من الملف: %s.</string>
@@ -409,6 +414,7 @@
     <string name="backup_error_bar_message"><b>النسخ الاحتياطي للمخزن فشل مؤخرًا</b></string>
     <string name="backup_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">         فشلت محاولة النسخ الاحتياطي للمخزون باستخدام %s بسبب حدوث خطأ. تمت محاولة النسخ الاحتياطي %s. الرجاء التحقق من إعدادات النسخ الاحتياطي للتأكد من أن النسخ الاحتياطي يمكن أن يكتمل بنجاح.
     </string>
+    <string name="backup_permission_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">فشلت محاولة النسخ الاحتياطي الأخيرة للمحفظة باستخدام %s لأن Aegis لم يكن لديه الإذن قراءة وجهة النسخ الاحتياطي. تمت محاولة النسخ الاحتياطي %s. يمكن أن يحدث هذا الخطأ إذا قمت بنقل/إعادة تسمية وجهة النسخ الاحتياطي أو إذا قمت للتو باستعادة Aegis من نسخة احتياطية. الرجاء إعادة إعداد وجهة النسخ الإحتياطي.    </string>
     <string name="backup_system_builtin">النسخ الاحتياطية التلقائية المضنة في Aegis</string>
     <string name="backup_system_android">نظام النسخ الاحتياطي السحابي للأندرويد</string>
     <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">        أحدث نسخة احتياطية قديمة (%s)
@@ -462,13 +468,15 @@
     <string name="title_activity_edit_entry">تعديل الإدخال</string>
     <string name="title_activity_scan_qr">قم بمسح رمز QR</string>
     <string name="title_activity_import_entries">استيراد المدخلات</string>
+    <string name="title_activity_assign_icons">تعيين أيقونات</string>
     <string name="dialog_wipe_entries_title">حذف المدخلات</string>
     <string name="dialog_wipe_entries_message">يحتوي مخزنك بالفعل على إدخالات. هل تريد إزالة هذه الإدخالات قبل استيراد هذا المِلَفّ؟\n\n<b>عند القيام بذلك، ستفقد الوصول بشكل دائم إلى الإدخالات الموجودة في الخزنة.</b></string>
     <string name="dialog_wipe_entries_checkbox">حذف محتويات المخزن</string>
     <string name="panic_trigger_ignore_toast">تلقى Aegis حالة من الذعر ولكن الإعداد معطل، مع التجاهل</string>
     <string name="pref_panic_trigger_title">حذف المخزن على الزناد الذعر</string>
     <string name="pref_panic_trigger_summary">احذف المخزن عند تلقي مصدر ذعر من Ripple</string>
-    <string name="import_vault">استيراد مخزن</string>
+    <string name="import_vault">استيراد مخزن Aegis</string>
+    <string name="import_vault_hint">هل تريد الاستيراد من تطبيق 2FA مختلف؟ أكمل الإعداد أولاً ثم انتقل إلى قائمة الإعدادات.</string>
     <plurals name="import_duplicate_toast">
         <item quantity="zero">لم يُؤشَّر %d من التكرار المحتمل. الرجاء مراجعة قائمة الإدخالات.</item>
         <item quantity="one">لم يُؤشَّر %d من التكرار المحتمل. الرجاء مراجعة قائمة الإدخالات.</item>
@@ -486,7 +494,7 @@
     <string name="importer_help_bitwarden">توفير مِلَفّ تصدير / نسخ احتياطي لـ Bitwarden. الملفات المشفرة غير مدعومة.</string>
     <string name="importer_help_battle_net_authenticator">قم بتوفير نسخة من <b>/data/data/com.blizzard.bma/shared_prefs/com.blizzard.bma.AUTH_STORE.xml</b>، الموجود في مجلد المساحة الداخلية لمصادق Battle.net.</string>
     <string name="importer_help_duo">توفير نسخة من <b>/data/data/com.duosecurity.duomobile/files/duokit/accounts.json</b>، الموجودة في دليل التخزين الداخلي لـ DUO.</string>
-    <string name="importer_help_freeotp">توفير نسخة من <b> /data/data/org.fedorahosted.freeotp/shared_prefs/tokens.xml</b>، الموجودة في دليل التخزين الداخلي لـ FreeOTP.</string>
+    <string name="importer_help_freeotp">قم بتوفير نسخة من <b>/data/data/org.fedorahosted.freeotp/shared_prefs/tokens.xml</b>، الموجود في مجلد أو دليل التخزين الداخلي لـ FreeOTP (1.x).</string>
     <string name="importer_help_freeotp_plus">توفير ملف تصدير FreeOTP +.</string>
     <string name="importer_help_google_authenticator"><b>يتم دعم ملفات قاعدة البيانات فقط من Google Authenticator v5.10 والإصدارات السابقة</b>.\n\nتوفير نسخة من<b>/data/data/com.google.android.apps.authenticator2/databases/databases</b>،الموجود في دليل التخزين الداخلي لـ Google Authenticator.</string>
     <string name="importer_help_microsoft_authenticator">توفير نسخة من<b>/data/data/com.azure.authenticator/databases/PhoneFactor</b>، الموجود في دليل التخزين الداخلي لـ Microsoft Authenticator.</string>
@@ -494,6 +502,8 @@
     <string name="importer_help_steam"><b>لا يتم دعم Steam v3.0 والإصدارات الأحدث</b>. توفير نسخة من<b>/data/data/com.valvesoftware.android.steam.community/files/Steamguard-*.json</b>، الموجود في دليل التخزين الداخلي لـ Steam.</string>
     <string name="importer_help_totp_authenticator">توفير مِلَفّ تصدير TOTP Authenticator.</string>
     <string name="importer_help_winauth">توفير مِلَفّ تصدير WinAuth.</string>
+    <string name="import_assign_icons_dialog_title">تعيين أيقونات</string>
+    <string name="import_assign_icons_dialog_text">هل تريد تعيين أيقونات إلى المدخلات المستوردة؟</string>
     <string name="importer_encrypted_exception_google_authenticator">تخطَّى الإدخال المشفر: %s</string>
     <string name="importer_help_direct">استيراد الإدخالات مباشرة من %s. يتطلب هذا تثبيت التطبيق على هذا الجهاز ومنح حق الوصول إلى الجذر Aegis.</string>
     <string name="groups">المجموعات</string>

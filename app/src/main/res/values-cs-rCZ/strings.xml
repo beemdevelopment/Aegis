@@ -122,7 +122,7 @@
         <item quantity="other">Vybráno %d skupin</item>
     </plurals>
     <string name="export_no_groups_selected">Nebyly vybrány žádné skupiny k exportu</string>
-    <string name="export_html_title" context="The title of an HTML export document">Export Aegis Authenticator</string>
+    <string name="export_html_title" comment="The title of an HTML export document">Export Aegis Authenticator</string>
     <string name="choose_authentication_method">Zabezpečení</string>
     <string name="authentication_method_explanation">Aegis je 2FA aplikace zaměřená na bezpečnost. Tokeny jsou uloženy v trezoru, který může být zašifrovaný vámi zvoleným heslem. Získá-li útočník váš zašifrovaný trezor, bez hesla se do něj nedostane.\n\nPředvybrali jsme možnost, která by podle nás měla nejvíce vyhovovat vašemu zařízení.</string>
     <string name="authentication_method_none">Žádné</string>
@@ -170,6 +170,8 @@
     <string name="set_up_biometric">Nastavení biometrického odemčení</string>
     <string name="copy">Kopírovat</string>
     <string name="edit">Upravit</string>
+    <string name="select_all">Vybrat vše</string>
+    <string name="assign_icons">Přiřadit ikony</string>
     <string name="favorite" comment="Verb">Oblíbené</string>
     <string name="unfavorite" comment="Verb">Odebrat z oblízených</string>
     <string name="error_all_caps">CHYBA</string>
@@ -208,6 +210,7 @@
     <string name="discard_changes">Zahodit změny?</string>
     <string name="discard_changes_description">Změny nebyly uloženy</string>
     <string name="saving_profile_error">Chyba při ukládání profilu</string>
+    <string name="saving_assign_icons_error">Chyba při přiřazování ikon</string>
     <string name="welcome">Vítejte</string>
     <string name="app_description">Aegis je bezpečná, bezplatná a open source 2FA aplikace</string>
     <string name="setup_completed">Nastavení dokončeno</string>
@@ -292,6 +295,8 @@
     <string name="unlocking_vault">Odemykání trezoru</string>
     <string name="remove_group">Odstranit skupinu</string>
     <string name="remove_group_description">Opravdu chcete odstranit tuto skupinu? Záznamy z ní budou automaticky přemístěny do „Žádná skupina“.</string>
+    <string name="remove_unused_groups">Odstranit nepoužívané skupiny</string>
+    <string name="remove_unused_groups_description">Opravdu chcete odstranit všechny skupiny, které nemají přidělený záznam?</string>
     <string name="remove_icon_pack">Odstranit balíček ikon</string>
     <string name="remove_icon_pack_description">Opravdu chcete odstranit tento balíček ikon? Položky, které používají ikony z tohoto balíčku, nebudou dotčeny.</string>
     <string name="details">Podrobnosti</string>
@@ -299,7 +304,7 @@
     <string name="lock">Uzamknout</string>
     <string name="name">Název</string>
     <string name="no_group">Žádná skupina</string>
-    <string name="sort">Řazení</string>
+    <string name="sort" comment="Title of the Sort button in the top action bar of the main view">Řazení</string>
     <string name="sort_alphabetically">Poskytovatel (A → Z)</string>
     <string name="sort_alphabetically_reverse">Poskytovatel (Z → A)</string>
     <string name="sort_alphabetically_name">Účet (A → Z)</string>
@@ -314,7 +319,7 @@
     <string name="preference_reset_usage_count">Resetovat počet použití</string>
     <string name="preference_reset_usage_count_summary">Resetovat počet použití u každé položky ve vašem trezoru</string>
     <string name="preference_reset_usage_count_dialog">Opravdu chcete nastavit počet použití všech položek na 0?</string>
-    <string name="note">Poznámka</string>
+    <string name="note" comment="Users can add a note to an entry">Poznámka</string>
     <string name="clear">Vymazat</string>
     <string name="pref_highlight_entry_title">Zvýraznit tokeny po klepnutí</string>
     <string name="pref_highlight_entry_summary">Usnadnit vzájemné rozlišení tokenů dočasným zvýrazněním po kleputí</string>
@@ -340,10 +345,10 @@
     <string name="unknown_issuer">Neznámý poskytovatel</string>
     <string name="unknown_account_name">Neznámý název účtu</string>
     <plurals name="import_error_dialog">
-        <item quantity="one">Nepovedlo se importovat %d token. Tento token bude přeskočen. Klepněte na „podrobnosti“ pro více informací o chybách.</item>
-        <item quantity="few">Nepovedlo se importovat %d tokeny. Tyto tokeny budou přeskočeny. Klepněte na „podrobnosti“ pro více informací o chybách.</item>
-        <item quantity="many">Nepovedlo se importovat %d tokenů. Tyto tokeny budou přeskočeny. Klepněte na „podrobnosti“ pro více informací o chybách.</item>
-        <item quantity="other">Nepovedlo se importovat %d tokenů. Tyto tokeny budou přeskočeny. Klepněte na „podrobnosti“ pro více informací o chybách.</item>
+        <item quantity="one">Nepodařilo se importovat %d token. Tento token bude přeskočen. Klepněte na „podrobnosti” pro více informací o chybě.</item>
+        <item quantity="few">Nepodařilo se importovat %d tokeny. Tyto tokeny budou přeskočeny. Klepněte na „podrobnosti” pro více informací o chybách.</item>
+        <item quantity="many">Nepodařilo se importovat %d tokenů. Tyto tokeny budou přeskočeny. Klepněte na „podrobnosti” pro více informací o chybách.</item>
+        <item quantity="other">Nepodařilo se importovat %d tokenů. Tyto tokeny budou přeskočeny. Klepněte na „podrobnosti” pro více informací o chybách.</item>
     </plurals>
     <string name="unable_to_process_deeplink">Nepodařilo se zpracovat odkaz</string>
     <string name="unable_to_read_qrcode_file">Nepodařilo se přečíst a zpracovat QR kód ze souboru: %s.</string>
@@ -388,6 +393,8 @@
     <string name="google_qr_export_unexpected">Očekáván QR kód #%d, avšak naskenován byl #%d</string>
     <string name="backup_error_bar_message"><b>Vytvoření zálohy trezoru se nedávno nezdařilo</b></string>
     <string name="backup_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">        Pokus o nedávnou zálohu trezoru pomocí %s selhal, protože došlo k chybě. Pokus o zálohu byl uskutečněn %s. Zkontrolujte prosím svá nastavení pro ujištění se, že zálohy mohou být úspěšně dokončeny.
+    </string>
+    <string name="backup_permission_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">        Nedávný pokus o zálohu trezoru pomocí %s selhal, protože Aegis neměl oprávnění k zápisu do cílového adresáře. Pokus o zálohu byl proveden %s. Tato chyba může nastat, když přesunete/přejmenujete cíl zálohy nebo pokud jste nedávno obnovili Aegis ze zálohy. Nastavte prosím znovu cíl pro zálohu.
     </string>
     <string name="backup_system_builtin">Zabudované zálohy aplikace Aegis</string>
     <string name="backup_system_android">Cloudový zálohovací systém systému Android</string>
@@ -440,13 +447,15 @@
     <string name="title_activity_edit_entry">Upravit položku</string>
     <string name="title_activity_scan_qr">Naskenovat QR kód</string>
     <string name="title_activity_import_entries">Importovat položky</string>
+    <string name="title_activity_assign_icons">Přiřadit ikony</string>
     <string name="dialog_wipe_entries_title">Vyčistit položky</string>
     <string name="dialog_wipe_entries_message">Váš trezor už obsahuje záznamy. Chcete tyto záznamy smazat před importem tohoto souboru?\n\n<b>Přístup ke všem stávajícím položkám v trezoru trvale ztratíte.</b></string>
     <string name="dialog_wipe_entries_checkbox">Vymazat obsah trezoru</string>
     <string name="panic_trigger_ignore_toast">Aegis zachytila signál paniky, ale ignoruje ho, protože nastavení reakce je vypnuto</string>
     <string name="pref_panic_trigger_title">Smazat trezor při signálu paniky</string>
     <string name="pref_panic_trigger_summary">Smazat trezor při obdržení signálu paniky z aplikace Ripple</string>
-    <string name="import_vault">Importovat trezor</string>
+    <string name="import_vault">Importovat trezor Aegisu</string>
+    <string name="import_vault_hint">Chcete importovat data z jiné 2FA aplikace? Dokončete nastavení a poté přejděte do nabídky nastavení.</string>
     <plurals name="import_duplicate_toast">
         <item quantity="one">Zrušeno označení %d možné duplicity. Zkontrolujte prosím seznam položek.</item>
         <item quantity="few">Zrušeno označení %d možných duplicit. Zkontrolujte prosím seznam položek.</item>
@@ -462,7 +471,7 @@
     <string name="importer_help_bitwarden">Vyberte soubor exportu/zálohy Bitwardenu. Šifrované soubory nejsou podporovány.</string>
     <string name="importer_help_battle_net_authenticator">Dodejte kopii <b>/data/data/com.blizzard.bma/shared_prefs/com.blizzard.bma.AUTH_STORE.xml</b>, která se nachází v interním úložišti Battle.net Authenticator.</string>
     <string name="importer_help_duo">Dodejte kopii <b>/data/data/com.duosecurity.duomobile/files/duokit/accounts.json</b>, která se nachází v interním úložišti DUO.</string>
-    <string name="importer_help_freeotp">Dodejte kopii <b>/data/data/org.fedorahosted.freeotp/shared_prefs/tokens.xml</b>, která se nachází v interním úložišti FreeOTP.</string>
+    <string name="importer_help_freeotp">Dodejte kopii <b>/data/data/org.fedorahosted.freeotp/shared_prefs/tokens.xml</b>, která se nachází v interním úložišti FreeOTP (1.x).</string>
     <string name="importer_help_freeotp_plus">Dodjete soubor exportu FreeOTP+.</string>
     <string name="importer_help_google_authenticator"><b>Jsou podporovány pouze databázové soubory z aplikace Google Authenticator v5.10 a starších</b>.\n\nPoužijte kopii <b>/data/com.google.android.apps.authenticator2/databases/databases</b> umístěného v interním úložišti aplikace Google Authenticator.</string>
     <string name="importer_help_microsoft_authenticator">Dodejte kopii <b>/data/data/com.azure.authenticator/databases/PhoneFactor</b>, která se nachází v interním úložišti Microsoft Authenticator.</string>
@@ -470,6 +479,8 @@
     <string name="importer_help_steam"><b>Steam v3.0 a novější nejsou podporovány</b>. Dodejte kopii souboru <b>/data/data/com.valvesoftware.android.steam.community/files/Steamguard-*.json</b> umístěného v interním úložném adresáři aplikace Steam.</string>
     <string name="importer_help_totp_authenticator">Dodejte soubor exportu TOTP.</string>
     <string name="importer_help_winauth">Dodejte soubor exportu WinAuth.</string>
+    <string name="import_assign_icons_dialog_title">Přiřadit ikony</string>
+    <string name="import_assign_icons_dialog_text">Chcete přiřadit ikony k importovaným záznamům?</string>
     <string name="importer_encrypted_exception_google_authenticator">Šifrovaná položka byla přeskočena: %s</string>
     <string name="importer_help_direct">Importovat záznamy přímo z %s. Aplikace musí být nainstalována a aplikaci Aegis musí být udělen root přístup.</string>
     <string name="groups">Skupiny</string>

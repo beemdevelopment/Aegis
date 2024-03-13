@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="action_settings">設定</string>
-    <string name="action_about">このプログラムについて</string>
+    <string name="action_about">Aegis について</string>
     <string name="action_delete">削除</string>
     <string name="action_transfer">転送</string>
     <string name="action_edit_icon">アイコンを編集</string>
     <string name="action_reset_usage_count">使用回数をリセット</string>
-    <string name="action_reset_usage_count_dialog">このエントリーの使用回数を0に設定してもよろしいですか？</string>
+    <string name="action_reset_usage_count_dialog">本当に、このエントリーの使用回数を 0 に設定しますか？</string>
     <string name="action_default_icon">既定のアイコンを復元</string>
-    <string name="discard">破棄する</string>
+    <string name="discard">破棄</string>
     <string name="save">保存</string>
     <string name="issuer">発行者</string>
-    <string name="yandex_pin">PIN (4～16桁)</string>
-    <string name="motp_pin">PIN (4桁)</string>
+    <string name="yandex_pin">PIN (4～16 桁)</string>
+    <string name="motp_pin">PIN (4 桁)</string>
     <string name="suggested">提案</string>
     <string name="usage_count">使用回数</string>
     <string name="warning">警告</string>
@@ -113,7 +113,7 @@
         <item quantity="other">%d グループを選択しました</item>
     </plurals>
     <string name="export_no_groups_selected">エクスポートするグループが選択されていません</string>
-    <string name="export_html_title" context="The title of an HTML export document">Aegis Authenticator のエクスポート</string>
+    <string name="export_html_title" comment="The title of an HTML export document">Aegis Authenticator のエクスポート</string>
     <string name="choose_authentication_method">セキュリティ</string>
     <string name="authentication_method_explanation">Aegisはセキュリティに重点を置いた2FAアプリです。トークンは保管庫に保存され、必要に応じて選択したパスワードで暗号化できます。 攻撃者が暗号化された保管庫ファイルを取得した場合、パスワードを知らずにアクセスすることはできません。\n\nお使いのデバイスに最適なオプションを事前に選択しました。</string>
     <string name="authentication_method_none">なし</string>
@@ -149,6 +149,7 @@
     <string name="share">共有する</string>
     <string name="yes">はい</string>
     <string name="no">いいえ</string>
+    <string name="undo">元に戻す</string>
     <string name="unlock">ロック解除</string>
     <string name="advanced">高度な設定</string>
     <string name="counter">カウンター</string>
@@ -160,6 +161,8 @@
     <string name="set_up_biometric">生体認証ロック解除の設定</string>
     <string name="copy">コピー</string>
     <string name="edit">編集</string>
+    <string name="select_all">すべて選択</string>
+    <string name="assign_icons">アイコンを割り当てる</string>
     <string name="favorite" comment="Verb">お気に入りに追加</string>
     <string name="unfavorite" comment="Verb">お気に入りを解除</string>
     <string name="error_all_caps">エラー</string>
@@ -192,6 +195,7 @@
     <string name="discard_changes">変更を破棄しますか？</string>
     <string name="discard_changes_description">変更は保存されていません</string>
     <string name="saving_profile_error">プロファイルの保存中にエラーが発生しました</string>
+    <string name="saving_assign_icons_error">アイコンの割り当てエラー</string>
     <string name="welcome">ようこそ</string>
     <string name="app_description">Aegisは、無料で安全なオープンソースの2FAアプリです</string>
     <string name="setup_completed">セットアップが完了しました</string>
@@ -267,6 +271,8 @@
     <string name="unlocking_vault">保管庫のロックを解除しています</string>
     <string name="remove_group">グループを削除</string>
     <string name="remove_group_description">このグループを削除してもよろしいですか？このグループのエントリーは自動的に「グループなし」に切り替わります。</string>
+    <string name="remove_unused_groups">未使用のグループを削除</string>
+    <string name="remove_unused_groups_description">エントリーに割り当てられていないすべてのグループを削除してもよろしいですか？</string>
     <string name="remove_icon_pack">アイコンパックを削除</string>
     <string name="remove_icon_pack_description">このアイコンパックを削除してもよろしいですか？このパックからアイコンを使用するエントリーは影響を受けません。</string>
     <string name="details">詳細</string>
@@ -274,7 +280,7 @@
     <string name="lock">ロックする</string>
     <string name="name">名前</string>
     <string name="no_group">グループなし</string>
-    <string name="sort">並び替え</string>
+    <string name="sort" comment="Title of the Sort button in the top action bar of the main view">並び替え</string>
     <string name="sort_alphabetically">発行者 (A to Z)</string>
     <string name="sort_alphabetically_reverse">発行者 (Z to A)</string>
     <string name="sort_alphabetically_name">アカウント (A to Z)</string>
@@ -289,7 +295,7 @@
     <string name="preference_reset_usage_count">使用回数をリセット</string>
     <string name="preference_reset_usage_count_summary">保管庫のすべてのエントリーの使用回数をリセットする</string>
     <string name="preference_reset_usage_count_dialog">保管庫のすべてのエントリーの使用回数を0に設定してもよろしいですか？</string>
-    <string name="note">メモ</string>
+    <string name="note" comment="Users can add a note to an entry">メモ</string>
     <string name="clear">クリア</string>
     <string name="pref_highlight_entry_title">タップ時にトークンを強調表示する</string>
     <string name="pref_highlight_entry_summary">タップ時に一時的に強調表示することで、トークンが互いに区別しやすくなります。</string>
@@ -315,7 +321,7 @@
     <string name="unknown_issuer">不明な発行者</string>
     <string name="unknown_account_name">不明なアカウント名</string>
     <plurals name="import_error_dialog">
-        <item quantity="other">Aegisは %d 個のトークンをインポートできませんでした。これらのトークンはスキップされます。エラーの詳細を見るには「詳細」を押してください。</item>
+        <item quantity="other">Aegisは %d 個のトークンをインポートできませんでした。これらのトークンはスキップされます。エラーの詳細を確認するには「詳細」をタップします。</item>
     </plurals>
     <string name="unable_to_process_deeplink">ディープリンクを処理できません</string>
     <string name="unable_to_read_qrcode_file">ファイル %s からQRコードを読み取り処理できません。</string>
@@ -357,6 +363,10 @@
     </plurals>
     <string name="google_qr_export_unexpected">QRコード#%dを期待していましたが、代わりに#%dをスキャンしました</string>
     <string name="backup_error_bar_message"><b>保管庫のバックアップが失敗しました</b></string>
+    <string name="backup_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">        %s を使用した保管庫のバックアップはエラーのため失敗しました。処理が正常終了するよう、バックアップ設定を確認してください。
+    </string>
+    <string name="backup_permission_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">        Aegis にはバックアップ先に書き込む権限がないため、%s を使用した保管庫のバックアップに失敗しました。バックアップの失敗は %sです。このエラーは、バックアップ先の移動/名前を変更した場合や、最近 Aegis をバックアップから復元した場合に発生することがあります。バックアップ先を再設定してみてください。
+    </string>
     <string name="backup_system_builtin">Aegisの内蔵自動バックアップ</string>
     <string name="backup_system_android">Androidのクラウドバックアップシステム</string>
     <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">        最新のバックアップが古くなっています (%s)
@@ -405,13 +415,18 @@
     <string name="title_activity_edit_entry">エントリーを編集</string>
     <string name="title_activity_scan_qr">QRコードをスキャン</string>
     <string name="title_activity_import_entries">エントリーをインポート</string>
+    <string name="title_activity_assign_icons">アイコンを割り当てる</string>
     <string name="dialog_wipe_entries_title">エントリーを消去</string>
     <string name="dialog_wipe_entries_message">あなたの保管庫には既にエントリーが含まれています。このファイルをインポートする前に、これらのエントリーを削除しますか？\n\n<b>その場合、保管庫内の既存のエントリーへのアクセスが永久に失われます。</b></string>
     <string name="dialog_wipe_entries_checkbox">保管庫の内容を消去</string>
     <string name="panic_trigger_ignore_toast">イージスはパニックトリガーを受信しましたが、設定は無効になっています。</string>
     <string name="pref_panic_trigger_title">パニックトリガー時に保管庫を削除</string>
     <string name="pref_panic_trigger_summary">Rippleからパニックトリガーを受信したときに保管庫を削除する</string>
-    <string name="import_vault">保管庫をインポート</string>
+    <string name="import_vault">Aegis 保管庫をインポート</string>
+    <string name="import_vault_hint">別の2FAアプリからインポートしたい場合は、まずセットアップを完了してから、設定メニューに進みます。</string>
+    <plurals name="import_duplicate_toast">
+        <item quantity="other">%d 個の重複が見つかりました。エントリーのリストを確認してください。</item>
+    </plurals>
     <string name="importer_help_2fas">2FAS Authenticatorのバックアップファイルを提供します。</string>
     <string name="importer_help_aegis">Aegisのエクスポート/バックアップファイルを提供します。</string>
     <string name="importer_help_authenticator_plus">Authenticator Plusの<b>Settings -&gt; Backup &amp; Restore -&gt; Export as Text and HTML</b>で取得したエクスポートファイルを提供します。</string>
@@ -421,7 +436,7 @@
     <string name="importer_help_bitwarden">Bitwarden のエクスポート/バックアップファイルを提供します。暗号化されたファイルはサポートされていません。</string>
     <string name="importer_help_battle_net_authenticator">Battle.net Authenticator の内部ストレージディレクトリにある<b>/data/data/com.blizzard.bma/shared_prefs/com.blizzard.bma.AUTH_STORE.xml</b>, のコピーを提供します。</string>
     <string name="importer_help_duo">DUOの内部ストレージディレクトリにある <b>/data/data/com.duosecurity.duomobile/files/duokit/accounts.json</b>のコピーを提供します。</string>
-    <string name="importer_help_freeotp">FreeOTPの内部ストレージディレクトリにある <b>/data/data/org.fedorahosted.freeotp/shared_prefs/tokens.xml</b>のコピーを提供します。</string>
+    <string name="importer_help_freeotp">FreeOTP (1.x) の内部ストレージディレクトリにある <b>/data/data/org.fedorahosted.freeotp/shared_prefs/tokens.xml</b> のコピーを提供します。</string>
     <string name="importer_help_freeotp_plus">FreeOTP+のエクスポートファイルを提供します。</string>
     <string name="importer_help_google_authenticator"><b>Google Authenticator v5.10 およびそれ以前のデータベースファイルのみサポートされています。</b>.\n\nGoogle Authenticator の内部ストレージディレクトリにある<b>/data/data/com.google.android.apps.authenticator2/databases/databases</b> のコピーを提供します。</string>
     <string name="importer_help_microsoft_authenticator">Microsoft Authenticatorの内部ストレージディレクトリにある <b>/data/data/com.azure.authenticator/databases/PhoneFactor</b>のコピーを提供します。</string>
@@ -429,6 +444,8 @@
     <string name="importer_help_steam"><b>Steam v3.0 およびそれ以降のバージョンはサポートされていません。</b>. Steam の内部ストレージディレクトリにある <b>/data/data/com.valvesoftware.android.steam.community/files/Steamguard-*.json</b>のコピーを提供します。</string>
     <string name="importer_help_totp_authenticator">TOTP Authenticatorのエクスポートファイルを提供します。</string>
     <string name="importer_help_winauth">WinAuthのエクスポートファイルを提供します。</string>
+    <string name="import_assign_icons_dialog_title">アイコンを割り当てる</string>
+    <string name="import_assign_icons_dialog_text">インポートされたエントリーにアイコンを割り当てますか？</string>
     <string name="importer_encrypted_exception_google_authenticator">暗号化されたエントリーがスキップされました: %s</string>
     <string name="importer_help_direct">%sからエントリーを直接インポートします。これにはアプリをデバイスにインストールし、root権限をAegisに許可する必要があります。</string>
     <string name="groups">グループ</string>

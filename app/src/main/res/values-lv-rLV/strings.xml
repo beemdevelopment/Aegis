@@ -119,7 +119,7 @@
         <item quantity="other">Atlasītas %d kopas</item>
     </plurals>
     <string name="export_no_groups_selected">Nav atlasītu kopu izdošanai</string>
-    <string name="export_html_title" context="The title of an HTML export document">Aegis Authenticator izdošana</string>
+    <string name="export_html_title" comment="The title of an HTML export document">Aegis Authenticator izdošana</string>
     <string name="choose_authentication_method">Drošība</string>
     <string name="authentication_method_explanation">Aegis ir uz drošību vērsta 2FA lietotne. Kodi tiek turēti glabātavā, ko ir iespējams šifrēt ar paša izvēlētu paroli. Ja uzbrucēji iegūst šifrēto glabātavas datni, tie nevarēs piekļūt tās saturam, nezinot paroli.\n\nTika atlasīta iespēja, kurai vajadzētu būt vispiemērotākajai šai ierīcei.</string>
     <string name="authentication_method_none">Nekas</string>
@@ -167,6 +167,8 @@
     <string name="set_up_biometric">Uzstādīt atslēgšanu ar biometriju</string>
     <string name="copy">Ievietot starpliktuvē</string>
     <string name="edit">Labot</string>
+    <string name="select_all">Atlasīt visus</string>
+    <string name="assign_icons">Piešķirt ikonas</string>
     <string name="favorite" comment="Verb">Pievienot izlasei</string>
     <string name="unfavorite" comment="Verb">Izņemt no izlases</string>
     <string name="error_all_caps">KĻŪDA</string>
@@ -203,6 +205,7 @@
     <string name="discard_changes">Atmest izmaiņas?</string>
     <string name="discard_changes_description">Izmaiņas netika saglabātas</string>
     <string name="saving_profile_error">Kļūda saglabājot profilu</string>
+    <string name="saving_assign_icons_error">Ikonu piešķiršanā atgadījās kļūda</string>
     <string name="welcome">Sveiciens!</string>
     <string name="app_description">Aegis ir bezmaksas, droša un atvērtā pirmkoda 2FA lietotne</string>
     <string name="setup_completed">Uzstādīšana pabeigta</string>
@@ -284,6 +287,8 @@
     <string name="unlocking_vault">Atslēgšana ar biometriju</string>
     <string name="remove_group">Noņemt kopu</string>
     <string name="remove_group_description">Vai tiešām noņemt šo kopu? Tās ieraksti tiks pārmainīti uz \"Nav kopas\".</string>
+    <string name="remove_unused_groups">Izdzēst neizmantotās kopas</string>
+    <string name="remove_unused_groups_description">Vai tiešām izdzēst visas kopas, kas nav piesaistītas kādam ierakstam?</string>
     <string name="remove_icon_pack">Noņemt ikonu pakotni</string>
     <string name="remove_icon_pack_description">Vai tiešām noņemt šo ikonu pakotni? Netiks ietekmēti ieraksti, kuros ir izmantotas pakotnē esošās ikonas.</string>
     <string name="details">Izklāsts</string>
@@ -291,7 +296,7 @@
     <string name="lock">Aizslēgt</string>
     <string name="name">Nosaukums</string>
     <string name="no_group">Bez kopas</string>
-    <string name="sort">Kārtot</string>
+    <string name="sort" comment="Title of the Sort button in the top action bar of the main view">Kārtot</string>
     <string name="sort_alphabetically">Izsniedzējs (no A līdz Z)</string>
     <string name="sort_alphabetically_reverse">Izsniedzējs (no Z līdz A)</string>
     <string name="sort_alphabetically_name">Konts (no A līdz Z)</string>
@@ -306,7 +311,7 @@
     <string name="preference_reset_usage_count">Atiestatīt izmantošanas reižu skaitu</string>
     <string name="preference_reset_usage_count_summary">Atiestatīt izmantošanas reižu skaitu ikkatram glabātavas ierakstam</string>
     <string name="preference_reset_usage_count_dialog">Vai tiešām kā visu glabātavas ierakstu izmantošanas reižu skaitu norādīt 0?</string>
-    <string name="note">Piezīme</string>
+    <string name="note" comment="Users can add a note to an entry">Piezīme</string>
     <string name="clear">Notīrīt</string>
     <string name="pref_highlight_entry_title">Izcelt kodus, kad piesit</string>
     <string name="pref_highlight_entry_summary">Padarīt kodus vieglāk atšķiramus citu no cita, īslaicīgi izceļot tos, kad tiem piesit</string>
@@ -332,7 +337,7 @@
     <string name="unknown_issuer">Nezināms izsniedzējs</string>
     <string name="unknown_account_name">Nezināms konta nosaukums</string>
     <plurals name="import_error_dialog">
-        <item quantity="zero">Aegis nevarēja ievietot %d kodu. Spiest uz \"Izklāsts\", lai redzētu vairāk informācijas par kļūdām.</item>
+        <item quantity="zero">Aegis nevarēja ievietot %d kodus. Tie tiks izlaisti. Spiest uz \"Izklāsts\", lai redzētu vairāk informācijas par kļūdām.</item>
         <item quantity="one">Aegis nevarēja ievietot %d kodu. Tas tiks izlaists. Spiest uz \"Izklāsts\", lai redzētu vairāk informācijas par kļūdām.</item>
         <item quantity="other">Aegis nevarēja ievietot %d kodus. Tie tiks izlaisti. Spiest uz \"Izklāsts\", lai redzētu vairāk informācijas par kļūdām.</item>
     </plurals>
@@ -378,6 +383,8 @@
     <string name="google_qr_export_unexpected">Sagaidāms kvadrātkods #%d, bet tā vietā nolasīts #%d</string>
     <string name="backup_error_bar_message"><b>Glabātavas dublēšana nesen neizdevās</b></string>
     <string name="backup_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">        Nesens rezerves kopijas veidošanas mēģinājums, izmantojot %s, neizdevās, jo atgadījās kļūda. Rezerves kopiju tika mēģināts izveidot %s. Lūgums pārskatīt rezerves kopēšanas iestatījumus, lai pārliecinātos, ka var veiksmīgi veikt rezerves kopiju izveidošanu.
+    </string>
+    <string name="backup_permission_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">        Nesens glabātavas dublēšanas mēģinājums izmantojot %s neizdevās, jo Aegis nebija atļaujas rakstīt rezerves kopijas paredzētajā vietā. Dublēšana tika mēģināta %s. Šī kļūda var atgadīties, ja tika pārvietota vai pāsaukta rezerves kopiju atrašanās vieta vai ja nesen Aegis tika atjaunots no rezerves kopijas. Lūgums atkārtoti iestatī rezerves kopiju atrašanās vietu.
     </string>
     <string name="backup_system_builtin">Aegis iebūvētā automātisko rezerves kopiju veidošana</string>
     <string name="backup_system_android">Android mākoņa rezerves kopiju sistēma</string>
@@ -429,13 +436,15 @@
     <string name="title_activity_edit_entry">Labot ierakstu</string>
     <string name="title_activity_scan_qr">Nolasīt kvadrātkodu</string>
     <string name="title_activity_import_entries">Ievietot ierakstus</string>
+    <string name="title_activity_assign_icons">Piešķirt ikonas</string>
     <string name="dialog_wipe_entries_title">Notīrīt ierakstus</string>
     <string name="dialog_wipe_entries_message">Glabātava jau satur ierakstus. Vai tos noņemt, pirms tiek ievietota šī datne?\n\n<b>Šādi rīkojoties, tiks zaudēta piekļuve pašreizējiem glabātavas ierakstiem.</b></string>
     <string name="dialog_wipe_entries_checkbox">Notīrīt glabātavas saturu</string>
     <string name="panic_trigger_ignore_toast">Aegis saņēma trauksmes izsaukumu, bet iestatījums ir atspējots, tādēļ tas netiek ņemts vērā</string>
     <string name="pref_panic_trigger_title">Izdzēst glabātavu pēc trauksmes izsaukuma</string>
     <string name="pref_panic_trigger_summary">Izdzēst glabātavu, kad trauksmes izsaukums ir saņemts no Ripple</string>
-    <string name="import_vault">Ievietot glabātavu</string>
+    <string name="import_vault">Ievietot Aegis glabātavu</string>
+    <string name="import_vault_hint">Ir vēlēšanās ievietot no citas 2FA lietotnes? Vispirms jāpabeidz uzstādīšana un tad jādodas uz iestatījumu izvēlni.</string>
     <string name="importer_help_2fas">Padot 2FAS Authenticator izdošanas datni.</string>
     <string name="importer_help_aegis">Padot Aegis izdošanas/rezerves kopijas datni.</string>
     <string name="importer_help_authenticator_plus">Padot Authenticator Plus izdošanas datni, kas ir iegūta ar <b>Iestatījumi -&gt; Dublēšana un atjaunošana -&gt; Izdot kā tekstu un HTML</b>.</string>
@@ -445,7 +454,7 @@
     <string name="importer_help_bitwarden">Padot Bitwarden izdošanas/rezerves kopijas datni. Šifrētas datnes netiek atbalstītas.</string>
     <string name="importer_help_battle_net_authenticator">Padot <b>/data/data/com.blizzard.bma/shared_prefs/com.blizzard.bma.AUTH_STORE.xml</b> kopiju, kas atrodas iekšējās krātuves Battle.net Authenticator mapē.</string>
     <string name="importer_help_duo">Padot <b>/data/data/com.duosecurity.duomobile/files/duokit/accounts.json</b> kopiju, kas atrodas iekšējās krātuves DUO mapē.</string>
-    <string name="importer_help_freeotp">Padot <b>/data/data/org.fedorahosted.freeotp/shared_prefs/tokens.xml</b> kopiju, kas atrodas iekšējās krātuves FreeOTP mapē.</string>
+    <string name="importer_help_freeotp">Padot <b>/data/data/org.fedorahosted.freeotp/shared_prefs/tokens.xml</b> kopiju, kas atrodas iekšējās krātuves FreeOTP (1.x) mapē.</string>
     <string name="importer_help_freeotp_plus">Padot FreeOTP+ izdošanas datni.</string>
     <string name="importer_help_google_authenticator"><b>Tek atbalstītas tikai datubāzes datnes no Goole Authenticator v5.10 un agrāka</b>.\n\nJāpadod kopija no <b>/data/data/com.google.android.apps.authenticator2/databases/databases</b>, kas atrodas iekšējās krātuves Google Authenticator mapē.</string>
     <string name="importer_help_microsoft_authenticator">Padot <b>/data/data/com.azure.authenticator/databases/PhoneFactor</b> kopiju, kas atrodas iekšējās krātuves Microsoft Authenticator mapē.</string>
@@ -453,6 +462,8 @@
     <string name="importer_help_steam"><b>Steam v3.0 un jaunāki laidieni netiek atbalstīti</b>. Jāpadod <b>/data/data/com.valvesoftware.android.steam.community/files/Steamguard-*.json</b> dublējums, kas atrodas iekšējās krātuves Steam mapē.</string>
     <string name="importer_help_totp_authenticator">Padot TOTP Authenticator izdošanas datni.</string>
     <string name="importer_help_winauth">Padot WinAuth izdošanas datni.</string>
+    <string name="import_assign_icons_dialog_title">Piešķirt ikonas</string>
+    <string name="import_assign_icons_dialog_text">Vai piešķirt ikonas ievietotajiem ierakstiem?</string>
     <string name="importer_encrypted_exception_google_authenticator">Tika izlaists šifrēts ieraksts: %s</string>
     <string name="importer_help_direct">Ievietot ierakstus uzreiz no %s. Tam ir nepieciešams, lai lietotne ir uzstādīta šajā ierīcē un lai Aegis ir nodrošināta saknes piekļuve.</string>
     <string name="groups">Kopas</string>

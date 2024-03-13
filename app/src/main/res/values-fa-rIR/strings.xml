@@ -227,10 +227,6 @@
     <string name="small_mode_title">کوچک</string>
     <string name="unknown_issuer">صادر کننده نامشخص</string>
     <string name="unknown_account_name">حساب کاربری نامشخص</string>
-    <plurals name="import_error_dialog">
-        <item quantity="one">%d توکن اضافه نشدند. برای اطلاعات بیشتر از دکمه جزییات استفاده نمایید.</item>
-        <item quantity="other">%d توکن اضافه نشدند. برای اطلاعات بیشتر از دکمه جزییات استفاده نمایید.</item>
-    </plurals>
     <string name="unable_to_generate_qrcode">عدم توانایی در ساخت بارکد دوبعدی</string>
     <string name="select_picture">انتخاب تصویر</string>
     <string name="select_icon">انتخاب آیکون</string>
@@ -295,9 +291,6 @@
 <b>/data/data/com.authy.authy/shared_prefs/com.authy.storage.tokens.authenticator.xml</b>,
 واقع شده در حافظه داخلی Authy.</string>
     <string name="importer_help_andotp">تهیه فایل بکاپ / خروجی از andOTP.</string>
-    <string name="importer_help_freeotp">تهیه کپی از
-<b>/data/data/org.fedorahosted.freeotp/shared_prefs/tokens.xml</b>,
-واقع شده در حافظه داخلیFreeOTP.</string>
     <string name="importer_help_freeotp_plus">تهیه فایل صدور برای FreeOTP+.</string>
     <string name="importer_help_microsoft_authenticator">تهیه کپی از
 <b>/data/data/com.azure.authenticator/databases/PhoneFactor</b>,

@@ -119,7 +119,7 @@
         <item quantity="other">נבחרו %d קבוצות</item>
     </plurals>
     <string name="export_no_groups_selected">לא נבחרו קבוצות לייצוא</string>
-    <string name="export_html_title" context="The title of an HTML export document">Aegis מאמת ייצוא</string>
+    <string name="export_html_title" comment="The title of an HTML export document">Aegis מאמת ייצוא</string>
     <string name="choose_authentication_method">אבטחה</string>
     <string name="authentication_method_explanation">Aegis היא אפליקציית אימות דו-שלבי ממוקדת אבטחה. אסימונים מאוחסנים בכספת, שבאופן אופציונלי ניתן להצפין באמצעות סיסמה לבחירתך. אם תוקף משיג את קובץ הכספת המוצפן שלך, הוא לא יוכל לגשת לתוכן מבלי לדעת את הסיסמה. \n\nבחרנו מראש באפשרות שלדעתנו תתאים ביותר למכשיר שלך.</string>
     <string name="authentication_method_none">ללא</string>
@@ -266,7 +266,7 @@
     <string name="lock">נעל</string>
     <string name="name">שם</string>
     <string name="no_group">אין קבוצה</string>
-    <string name="sort">מיין</string>
+    <string name="sort" comment="Title of the Sort button in the top action bar of the main view">מיין</string>
     <string name="sort_alphabetically">מנפיק (א\' עד ת\')</string>
     <string name="sort_alphabetically_reverse">מנפיק (ת עד א)</string>
     <string name="sort_alphabetically_name">חשבון (א\' עד ת\')</string>
@@ -281,7 +281,7 @@
     <string name="preference_reset_usage_count">אפס ספירת שימוש</string>
     <string name="preference_reset_usage_count_summary">איפוס ספירת השימוש של כל ערך בכספת</string>
     <string name="preference_reset_usage_count_dialog">האם אתה בטוח שברצונך להגדיר את ספירת השימוש של כל ערך בכספת שלך ל- 0?</string>
-    <string name="note">הערה</string>
+    <string name="note" comment="Users can add a note to an entry">הערה</string>
     <string name="clear">נקה</string>
     <string name="pref_highlight_entry_title">סימון טוקנים בעת הקשה</string>
     <string name="pref_highlight_entry_summary">הפוך אסימונים לקלים יותר להבחנה זה מזה על-ידי הדגשתם באופן זמני בעת הקשה עליהם</string>
@@ -393,7 +393,6 @@
     <string name="panic_trigger_ignore_toast">Aegis קיבל הפעלת פאניקה אך ההגדרה מושבתת, מתעלמת</string>
     <string name="pref_panic_trigger_title">מחק את הכספת בהפעלת הפאניקה</string>
     <string name="pref_panic_trigger_summary">מחק את הכספת בהפעלת הפאניקה</string>
-    <string name="import_vault">ייצוא כספת</string>
     <string name="importer_help_2fas">ספק קובץ גיבוי של 2FAS Authenticator.</string>
     <string name="importer_help_aegis">ספק קובץ ייצוא/גיבוי של Aegis.</string>
     <string name="importer_help_authenticator_plus">ספק קובץ ייצוא של Authenticator Plus שהושג דרך <b>הגדרות -&gt; גיבוי &amp; שחזור -&gt; ייצוא כטקסט ו-HTML</b>.</string>
@@ -403,7 +402,6 @@
     <string name="importer_help_bitwarden">ספק קובץ יצוא/גיבוי של Bitwarden. קבצים מוצפנים אינם נתמכים.</string>
     <string name="importer_help_battle_net_authenticator">ספק עותק של <b>/data/data/com.blizzard.bma/shared_prefs/com.blizzard.bma.AUTH_STORE.xml</b>, הממוקם בספריית האחסון הפנימית של Battle.net Authenticator.</string>
     <string name="importer_help_duo">ספק עותק של <b>/data/data/com.duosecurity.duomobile/files/duokit/accounts.json</b>, הממוקם בספריית האחסון הפנימית של DUO.</string>
-    <string name="importer_help_freeotp">ספק עותק של <b>/data/data/org.fedorahosted.freeotp/shared_prefs/tokens.xml</b>, הממוקם בספריית האחסון הפנימית של FreeOTP.</string>
     <string name="importer_help_freeotp_plus">ספק קובץ יצוא FreeOTP+.</string>
     <string name="importer_help_google_authenticator"><b>רק קבצי מסד נתונים מ-Google Authenticator v5.10 ואילך נתמכים</b>. \n\nספק עותק של<b> /data/data</b>/com.google.android.apps.authenticator2/databases/databases, הממוקם בספריית האחסון הפנימית של Google Authenticator.</string>
     <string name="importer_help_microsoft_authenticator">ספק עותק של <b>/data/data/com.azure.authenticator/databases/PhoneFactor</b>, הממוקם בספריית האחסון הפנימית של Microsoft Authenticator.</string>

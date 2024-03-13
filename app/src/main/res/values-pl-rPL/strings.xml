@@ -122,7 +122,7 @@
         <item quantity="other">%d zaznaczonych grup</item>
     </plurals>
     <string name="export_no_groups_selected">Nie wybrano grup do eksportu</string>
-    <string name="export_html_title" context="The title of an HTML export document">Eksport Aegis Authenticator</string>
+    <string name="export_html_title" comment="The title of an HTML export document">Eksport Aegis Authenticator</string>
     <string name="choose_authentication_method">Bezpieczeństwo</string>
     <string name="authentication_method_explanation">Aegis to aplikacja uwierzytelniająca zorientowana na bezpieczeństwo. Tokeny są przechowywane w sejfie, który może zostać opcjonalnie zaszyfrowany przy użyciu wybranego przez Ciebie hasła. Jeśli atakujący uzyska zaszyfrowany plik sejfu, nie będzie mógł uzyskać dostępu do zawartości bez znajomości hasła.\n\nZaznaczyliśmy opcję, która najlepiej powinna pasować do Twojego urządzenia.</string>
     <string name="authentication_method_none">Brak</string>
@@ -170,6 +170,8 @@
     <string name="set_up_biometric">Ustaw autoryzację biometryczną</string>
     <string name="copy">Kopiuj</string>
     <string name="edit">Edytuj</string>
+    <string name="select_all">Wybierz wszystko</string>
+    <string name="assign_icons">Przypisz ikony</string>
     <string name="favorite" comment="Verb">Dodaj do ulubionych</string>
     <string name="unfavorite" comment="Verb">Usuń z ulubionych</string>
     <string name="error_all_caps">BŁĄD</string>
@@ -208,6 +210,7 @@
     <string name="discard_changes">Czy chcesz odrzucić zmiany?</string>
     <string name="discard_changes_description">Zmiany nie zostały zapisane</string>
     <string name="saving_profile_error">Wystąpił błąd podczas zapisywania profilu</string>
+    <string name="saving_assign_icons_error">Błąd podczas przypisywania ikon</string>
     <string name="welcome">Witaj</string>
     <string name="app_description">Aegis jest darmową, bezpieczną i otwartoźródłową aplikacją uwierzytelniającą</string>
     <string name="setup_completed">Konfiguracja została zakończona</string>
@@ -292,6 +295,8 @@
     <string name="unlocking_vault">Odblokowywanie sejfu</string>
     <string name="remove_group">Usuń grupę</string>
     <string name="remove_group_description">Czy na pewno chcesz usunąć tę grupę? Wpisy z tej grupy zostaną automatycznie przeniesione do kategorii \'Brak grupy\'.</string>
+    <string name="remove_unused_groups">Usuń nieużywane grupy</string>
+    <string name="remove_unused_groups_description">Czy na pewno chcesz usunąć wszystkie grupy, które nie mają przypisanego żadnego wpisu?</string>
     <string name="remove_icon_pack">Usuń pakiet ikon</string>
     <string name="remove_icon_pack_description">Czy na pewno chcesz usunąć ten pakiet ikon? Wpisy, które używają ikon z tego pakietu nie zostaną zmienione.</string>
     <string name="details">Szczegóły</string>
@@ -299,7 +304,7 @@
     <string name="lock">Zablokuj</string>
     <string name="name">Nazwa</string>
     <string name="no_group">Brak grupy</string>
-    <string name="sort">Sortuj</string>
+    <string name="sort" comment="Title of the Sort button in the top action bar of the main view">Sortuj</string>
     <string name="sort_alphabetically">Wydawca (od A do Z)</string>
     <string name="sort_alphabetically_reverse">Wydawca (od Z do A)</string>
     <string name="sort_alphabetically_name">Konto (od A do Z)</string>
@@ -314,7 +319,7 @@
     <string name="preference_reset_usage_count">Zeruj licznik użycia</string>
     <string name="preference_reset_usage_count_summary">Zresetuj liczbę użyć każdego wpisu w Twoim sejfie</string>
     <string name="preference_reset_usage_count_dialog">Czy na pewno chcesz ustawić liczbę użyć każdego wpisu w sejfie na 0?</string>
-    <string name="note">Notatki</string>
+    <string name="note" comment="Users can add a note to an entry">Notatki</string>
     <string name="clear">Wyczyść</string>
     <string name="pref_highlight_entry_title">Podświetl tokeny podczas kliknięcia</string>
     <string name="pref_highlight_entry_summary">Wyróżnij tokeny od siebie poprzez tymczasowe podświetlenie po ich kliknięciu</string>
@@ -340,10 +345,10 @@
     <string name="unknown_issuer">Nieznany wydawca</string>
     <string name="unknown_account_name">Nieznana nazwa konta</string>
     <plurals name="import_error_dialog">
-        <item quantity="one">Aplikacja Aegis nie może zaimportować %d tokenu. Te tokeny zostaną pominięte. Kliknij \'Szczegóły\', aby zobaczyć więcej informacji o błędach.</item>
-        <item quantity="few">Aplikacja Aegis nie może zaimportować %d tokenów. Te tokeny zostaną pominięte. Kliknij \'Szczegóły\', aby zobaczyć więcej informacji o błędach.</item>
-        <item quantity="many">Aplikacja Aegis nie może zaimportować %d tokenów. Te tokeny zostaną pominięte. Kliknij \'Szczegóły\', aby zobaczyć więcej informacji o błędach.</item>
-        <item quantity="other">Aplikacja Aegis nie może zaimportować %d tokenów. Te tokeny zostaną pominięte. Kliknij \'Szczegóły\', aby zobaczyć więcej informacji o błędach.</item>
+        <item quantity="one">Aplikacja Aegis nie może zaimportować %d token. Ten token zostanie pominięty. Kliknij \'szczegóły\', aby zobaczyć więcej informacji o błędzie.</item>
+        <item quantity="few">Aplikacja Aegis nie może zaimportować %d tokenów. Te tokeny zostaną pominięte. Kliknij \'szczegóły\', aby zobaczyć więcej informacji o błędach.</item>
+        <item quantity="many">Aplikacja Aegis nie może zaimportować %d tokenów. Te tokeny zostaną pominięte. Kliknij \'szczegóły\', aby zobaczyć więcej informacji o błędach.</item>
+        <item quantity="other">Aplikacja Aegis nie może zaimportować %d tokenów. Te tokeny zostaną pominięte. Kliknij \'szczegóły\', aby zobaczyć więcej informacji o błędach.</item>
     </plurals>
     <string name="unable_to_process_deeplink">Nie można przetworzyć głębokiego linku</string>
     <string name="unable_to_read_qrcode_file">Nie można odczytać i przetworzyć kodu QR z pliku: %s.</string>
@@ -388,6 +393,8 @@
     <string name="google_qr_export_unexpected">Aplikacja oczekiwała kodu QR nr %d, lecz zeskanowano kod nr %d</string>
     <string name="backup_error_bar_message"><b>Ostatnia kopia zapasowa sejfu nie powiodła się</b></string>
     <string name="backup_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">Ostatnia próba wykonania kopii zapasowej sejfu z użyciem %s nie powiodła się, ponieważ wystąpił błąd. Kopia zapasowa została wykonana w: %s. Sprawdź ustawienia kopii zapasowej, aby upewnić się, że wykonywanie kopii zapasowych może się pomyślnie zakończyć.    </string>
+    <string name="backup_permission_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">Niedawna próba wykonania kopii zapasowej używając %s nie powiodła się, ponieważ Aegis nie miał uprawnienia do zapisu w wybranym folderze. Próba zapisu była wykonana %s. Teb błąd może wystąpić po przeniesieniu/zmianie nazwy wybranego folderu lub po niedawnym przywróceniu Aegis z kopii zapasowej. Proszę wybrać poprawny folder.
+    </string>
     <string name="backup_system_builtin">Wbudowane automatyczne kopie zapasowe Aegis</string>
     <string name="backup_system_android">System kopii zapasowej w chmurze Android</string>
     <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">        Najnowsza kopia zapasowa jest nieaktualna (%s)
@@ -439,13 +446,15 @@
     <string name="title_activity_edit_entry">Edytuj wpis</string>
     <string name="title_activity_scan_qr">Skanuj kod QR</string>
     <string name="title_activity_import_entries">Importuj wpisy</string>
+    <string name="title_activity_assign_icons">Przypisz ikony</string>
     <string name="dialog_wipe_entries_title">Wyczyść wpisy</string>
     <string name="dialog_wipe_entries_message">Twój sejf zawiera już wpisy. Czy chcesz usunąć te wpisy przed zaimportowaniem tego pliku?\n\n<b>W ten sposób trwale stracisz dostęp do obecnych wpisów w sejfie.</b></string>
     <string name="dialog_wipe_entries_checkbox">Wyczyść zawartość sejfu</string>
     <string name="panic_trigger_ignore_toast">Aegis otrzymał wyzwalacz paniki, ale ustawienie jest wyłączone, ignorowanie</string>
     <string name="pref_panic_trigger_title">Usuń sejf przy wyzwalaczu paniki</string>
     <string name="pref_panic_trigger_summary">Usuń sejf po otrzymaniu wyzwalacza paniki z Ripple</string>
-    <string name="import_vault">Import sejfu</string>
+    <string name="import_vault">Zaimportuj sejf Aegis</string>
+    <string name="import_vault_hint">Chcesz zaimportować z innej aplikacji 2FA? Ukończ konfigurację, a następnie przejdź do menu ustawień.</string>
     <plurals name="import_duplicate_toast">
         <item quantity="one">Odznaczono %d potencjalny duplikat. Sprawdź listę.</item>
         <item quantity="few">Odznaczono %d potencjalne duplikaty. Sprawdź listę.</item>
@@ -456,22 +465,24 @@
     <string name="importer_help_aegis">Dostarcz plik zapasowy Aegis.</string>
     <string name="importer_help_authenticator_plus">Dostarcz plik eksportu Authenticator Plus uzyskany w <b>Ustawienia -&gt; Kopia zapasowa &amp; Przywróć -&gt; Eksportuj jako tekst i HTML</b>.</string>
     <string name="importer_help_authenticator_pro">Dostarcz plik eksportu Authenticator Pro uzyskany przez <b>Ustawienia -&gt; Kopia zapasowa -&gt; Kopia zapasowa do zaszyfrowanego pliku (zalecana)</b>.</string>
-    <string name="importer_help_authy">Dostarcz kopię <b>/data/data/com.authy.authy/shared_prefs/com.authy.storage.tokens.authenticator.xml</b>, znajdującą się w wewnętrznym katalogu przechowywania danych Authy.</string>
+    <string name="importer_help_authy">Dostarcz kopię <b>/data/data/com.authy.authy/shared_prefs/com.authy.storage.tokens.authenticator.xml</b>, znajdującą się w wewnętrznym katalogu pamięci Authy.</string>
     <string name="importer_help_andotp">Dostarcz plik andOTP eksportu/kopii zapasowej.</string>
     <string name="importer_help_bitwarden">Dostarcz plik kopii zapasowej Bitwarden. Zaszyfrowane pliki nie są obsługiwane.</string>
     <string name="importer_help_battle_net_authenticator">Dostarcz kopię
 <b>/data/data/com.blizzard.bma/shared_prefs/com.blizzard.bma.AUTH_STORE.xml</b>, znajdującą się w wewnętrznym katalogu przechowywania danych aplikacji Battle.net Authenticator.</string>
     <string name="importer_help_duo">Dostarcz kopię <b>/data/data/com.duosecurity.duomobile/files/duokit/accounts.json</b>, znajdującą się w wewnętrznym katalogu pamięci DUO.</string>
-    <string name="importer_help_freeotp">Dostarcz kopię <b>/data/data/org.fedorahosted.freeotp/shared_prefs/tokens.xml</b>, znajdującą się w wewnętrznym katalogu przechowywania danych Authy.</string>
+    <string name="importer_help_freeotp">Dostarcz kopię <b>/data/data/org.fedorahosted.freeotp/shared_prefs/tokens.xml</b>, znajdującą się w wewnętrznym katalogu pamięci FreeOTP (1.x).</string>
     <string name="importer_help_freeotp_plus">Dostarcz plik eksportu FreeOTP+.</string>
     <string name="importer_help_google_authenticator"><b>Obsługiwane są tylko pliki bazy danych z Google Authenticator v5.10 i wcześniej</b>.\n\nDostarcz kopię <b>/data/com.google.android.apps.authenticator2/databases/databases</b>, zlokalizowane w wewnętrznym katalogu pamięci Google Authenticator.</string>
-    <string name="importer_help_microsoft_authenticator">Dostarcz kopię <b>/data/data/com.azure.authenticator/databases/PhoneFactor</b>, znajdującą się w wewnętrznym katalogu przechowywania danych Authy.</string>
+    <string name="importer_help_microsoft_authenticator">Dostarcz kopię <b>/data/data/com.azure.authenticator/databases/PhoneFactor</b>, znajdującą się w wewnętrznym katalogu pamięci Microsoft Authenticator.</string>
     <string name="importer_help_plain_text">Dostarcz plik tekstowy z URI Google Authenticator w każdej linii.</string>
     <string name="importer_help_steam"><b>Steam v3.0 i nowsze nie są wspierane</b>. Dostarcz kopię 
 <b>/data/data/com.valvesoftware.android.steam.community/files/Steamguard-*.json</b>,
 zlokalizowanego w wewnętrznym katalogu Steam.</string>
     <string name="importer_help_totp_authenticator">Dostarcz plik eksportowy TOTP Authenticator.</string>
     <string name="importer_help_winauth">Dostarcz plik eksportowy WinAuth.</string>
+    <string name="import_assign_icons_dialog_title">Przypisz ikony</string>
+    <string name="import_assign_icons_dialog_text">Czy chcesz przypisać ikony do zaimportowanych wpisów?</string>
     <string name="importer_encrypted_exception_google_authenticator">Zaszyfrowany wpis został pominięty: %s</string>
     <string name="importer_help_direct">Importuj wpisy bezpośrednio z %s. Wymaga to zainstalowania aplikacji na tym urządzeniu i dostępu roota dla Aegis.</string>
     <string name="groups">Grupy</string>
