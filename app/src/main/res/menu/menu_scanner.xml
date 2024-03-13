@@ -8,6 +8,6 @@
         android:id="@+id/action_camera"
         android:icon="@drawable/ic_outline_camera_front_24"
         android:title="@string/switch_camera"
-        app:showAsAction="always"/>
-
+        app:iconTint="?attr/colorOnDark"
+        app:showAsAction="always" />
 </menu>
