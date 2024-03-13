@@ -75,8 +75,13 @@ public class AuthyImporter extends DatabaseImporter {
         JSONArray array;
         JSONArray authyArray;
         try {
-            array = readFile(new SuFile(path, String.format("%s.xml", _authFilename)), String.format("%s.key", _authFilename));
-            authyArray = readFile(new SuFile(path, String.format("%s.xml", _authyFilename)), String.format("%s.key", _authyFilename));
+            SuFile file1 = new SuFile(path, String.format("%s.xml", _authFilename));
+            file1.setShell(shell);
+            SuFile file2 = new SuFile(path, String.format("%s.xml", _authyFilename));
+            file2.setShell(shell);
+
+            array = readFile(file1, String.format("%s.key", _authFilename));
+            authyArray = readFile(file2, String.format("%s.key", _authyFilename));
         } catch (IOException | XmlPullParserException e) {
             throw new DatabaseImporterException(e);
         }
