@@ -18,7 +18,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 public class IconPack {
     private UUID _uuid;
@@ -59,9 +58,21 @@ public class IconPack {
             return new ArrayList<>();
         }
 
-        return _icons.stream()
-                .filter(i -> i.isSuggestedFor(issuer))
-                .collect(Collectors.toList());
+        List<Icon> icons = new ArrayList<>();
+        for (Icon icon : _icons) {
+            MatchType matchType = icon.getMatchFor(issuer);
+            if (matchType != null) {
+                // Inverse matches (entry issuer contains icon name) are less likely
+                // to be good, so position them at the end of the list.
+                if (matchType.equals(MatchType.NORMAL)) {
+                    icons.add(0, icon);
+                } else if (matchType.equals(MatchType.INVERSE)) {
+                    icons.add(icon);
+                }
+            }
+        }
+
+        return icons;
     }
 
     @Nullable
@@ -162,15 +173,24 @@ public class IconPack {
             return _category;
         }
 
-        public List<String> getIssuers() {
-            return Collections.unmodifiableList(_issuers);
-        }
+        private MatchType getMatchFor(String issuer) {
+            String lowerEntryIssuer = issuer.toLowerCase();
 
-        public boolean isSuggestedFor(String issuer) {
-            String lowerIssuer = issuer.toLowerCase();
-            return getIssuers().stream()
-                    .map(String::toLowerCase)
-                    .anyMatch(is -> is.contains(lowerIssuer) || lowerIssuer.contains(is));
+            boolean inverseMatch = false;
+            for (String is : _issuers) {
+                String lowerIconIssuer = is.toLowerCase();
+                if (lowerIconIssuer.contains(lowerEntryIssuer)) {
+                    return MatchType.NORMAL;
+                }
+                if (lowerEntryIssuer.contains(lowerIconIssuer)) {
+                    inverseMatch = true;
+                }
+            }
+            if (inverseMatch) {
+                return MatchType.INVERSE;
+            }
+
+            return null;
         }
 
         public static Icon fromJson(JSONObject obj) throws JSONException {
@@ -187,5 +207,10 @@ public class IconPack {
 
             return new Icon(filename, name, category, issuers);
         }
+    }
+
+    private enum MatchType {
+        NORMAL,
+        INVERSE
     }
 }
