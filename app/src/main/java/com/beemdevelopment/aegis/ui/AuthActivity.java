@@ -33,6 +33,7 @@ import com.beemdevelopment.aegis.ui.dialogs.Dialogs;
 import com.beemdevelopment.aegis.ui.tasks.PasswordSlotDecryptTask;
 import com.beemdevelopment.aegis.vault.VaultFile;
 import com.beemdevelopment.aegis.vault.VaultFileCredentials;
+import com.beemdevelopment.aegis.vault.VaultRepository;
 import com.beemdevelopment.aegis.vault.VaultRepositoryException;
 import com.beemdevelopment.aegis.vault.slots.BiometricSlot;
 import com.beemdevelopment.aegis.vault.slots.PasswordSlot;
@@ -53,7 +54,9 @@ public class AuthActivity extends AegisActivity {
 
     private EditText _textPassword;
 
+    private VaultFile _vaultFile;
     private SlotList _slots;
+
     private SecretKey _bioKey;
     private BiometricSlot _bioSlot;
     private BiometricPrompt _bioPrompt;
@@ -103,17 +106,17 @@ public class AuthActivity extends AegisActivity {
             _inhibitBioPrompt = savedInstanceState.getBoolean("inhibitBioPrompt", false);
         }
 
-        if (_vaultManager.getVaultFileError() != null) {
-            Dialogs.showErrorDialog(this, R.string.vault_load_error, _vaultManager.getVaultFileError(), (dialog, which) -> {
+        try {
+            _vaultFile = VaultRepository.readVaultFile(this);
+        } catch (VaultRepositoryException e) {
+            Dialogs.showErrorDialog(this, R.string.vault_load_error, e, (dialog, which) -> {
                 getOnBackPressedDispatcher().onBackPressed();
             });
             return;
         }
 
-        VaultFile vaultFile = _vaultManager.getVaultFile();
-        _slots = vaultFile.getHeader().getSlots();
-
         // only show the biometric prompt if the api version is new enough, permission is granted, a scanner is found and a biometric slot is found
+        _slots = _vaultFile.getHeader().getSlots();
         if (_slots.has(BiometricSlot.class) && BiometricsHelper.isAvailable(this)) {
             boolean invalidated = false;
 
@@ -281,7 +284,7 @@ public class AuthActivity extends AegisActivity {
         VaultFileCredentials creds = new VaultFileCredentials(key, _slots);
 
         try {
-            _vaultManager.unlock(creds);
+            _vaultManager.loadFrom(_vaultFile, creds);
             if (isSlotRepaired) {
                 saveAndBackupVault();
             }

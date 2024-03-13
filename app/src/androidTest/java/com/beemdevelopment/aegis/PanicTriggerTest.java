@@ -1,7 +1,6 @@
 package com.beemdevelopment.aegis;
 
 import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertThrows;
 import static org.junit.Assert.assertTrue;
 
@@ -32,11 +31,10 @@ public class PanicTriggerTest extends AegisTest {
     @Test
     public void testPanicTriggerDisabled() {
         assertFalse(_prefs.isPanicTriggerEnabled());
+        assertTrue(_vaultManager.isVaultLoaded());
         launchPanic();
         assertTrue(_vaultManager.isVaultLoaded());
         _vaultManager.getVault();
-        assertFalse(_vaultManager.isVaultFileLoaded());
-        assertNull(_vaultManager.getVaultFileError());
         assertTrue(VaultRepository.fileExists(getApp()));
     }
 
@@ -44,11 +42,10 @@ public class PanicTriggerTest extends AegisTest {
     public void testPanicTriggerEnabled() {
         _prefs.setIsPanicTriggerEnabled(true);
         assertTrue(_prefs.isPanicTriggerEnabled());
+        assertTrue(_vaultManager.isVaultLoaded());
         launchPanic();
         assertFalse(_vaultManager.isVaultLoaded());
         assertThrows(IllegalStateException.class, () -> _vaultManager.getVault());
-        assertFalse(_vaultManager.isVaultFileLoaded());
-        assertNull(_vaultManager.getVaultFileError());
         assertFalse(VaultRepository.fileExists(getApp()));
     }
 
