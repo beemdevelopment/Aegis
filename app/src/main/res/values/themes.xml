@@ -1,0 +1,235 @@
+<resources>
+    <style name="Base.Theme.Aegis.Light" parent="Theme.Material3.Light">
+        <!-- Material colors -->
+        <item name="colorPrimary">@color/md_theme_light_primary</item>
+        <item name="colorOnPrimary">@color/md_theme_light_onPrimary</item>
+        <item name="colorPrimaryContainer">@color/md_theme_light_primaryContainer</item>
+        <item name="colorOnPrimaryContainer">@color/md_theme_light_onPrimaryContainer</item>
+        <item name="colorPrimaryFixed">@color/md_theme_light_primaryFixed</item>
+        <item name="colorOnPrimaryFixed">@color/md_theme_light_onPrimaryFixed</item>
+        <item name="colorPrimaryFixedDim">@color/md_theme_light_primaryFixedDim</item>
+        <item name="colorOnPrimaryFixedVariant">@color/md_theme_light_onPrimaryFixedVariant</item>
+        <item name="colorSecondary">@color/md_theme_light_secondary</item>
+        <item name="colorOnSecondary">@color/md_theme_light_onSecondary</item>
+        <item name="colorSecondaryContainer">@color/md_theme_light_secondaryContainer</item>
+        <item name="colorOnSecondaryContainer">@color/md_theme_light_onSecondaryContainer</item>
+        <item name="colorSecondaryFixed">@color/md_theme_light_secondaryFixed</item>
+        <item name="colorOnSecondaryFixed">@color/md_theme_light_onSecondaryFixed</item>
+        <item name="colorSecondaryFixedDim">@color/md_theme_light_secondaryFixedDim</item>
+        <item name="colorOnSecondaryFixedVariant">@color/md_theme_light_onSecondaryFixedVariant</item>
+        <item name="colorTertiary">@color/md_theme_light_tertiary</item>
+        <item name="colorOnTertiary">@color/md_theme_light_onTertiary</item>
+        <item name="colorTertiaryContainer">@color/md_theme_light_tertiaryContainer</item>
+        <item name="colorOnTertiaryContainer">@color/md_theme_light_onTertiaryContainer</item>
+        <item name="colorTertiaryFixed">@color/md_theme_light_tertiaryFixed</item>
+        <item name="colorOnTertiaryFixed">@color/md_theme_light_onTertiaryFixed</item>
+        <item name="colorTertiaryFixedDim">@color/md_theme_light_tertiaryFixedDim</item>
+        <item name="colorOnTertiaryFixedVariant">@color/md_theme_light_onTertiaryFixedVariant</item>
+        <item name="colorError">@color/md_theme_light_error</item>
+        <item name="colorErrorContainer">@color/md_theme_light_errorContainer</item>
+        <item name="colorOnError">@color/md_theme_light_onError</item>
+        <item name="colorOnErrorContainer">@color/md_theme_light_onErrorContainer</item>
+        <item name="android:colorBackground">@color/md_theme_light_background</item>
+        <item name="colorOnBackground">@color/md_theme_light_onBackground</item>
+        <item name="colorOutline">@color/md_theme_light_outline</item>
+        <item name="colorOnSurfaceInverse">@color/md_theme_light_inverseOnSurface</item>
+        <item name="colorSurfaceInverse">@color/md_theme_light_inverseSurface</item>
+        <item name="colorPrimaryInverse">@color/md_theme_light_inversePrimary</item>
+        <item name="colorOutlineVariant">@color/md_theme_light_outlineVariant</item>
+        <item name="colorSurface">@color/md_theme_light_surface</item>
+        <item name="colorOnSurface">@color/md_theme_light_onSurface</item>
+        <item name="colorSurfaceVariant">@color/md_theme_light_surfaceVariant</item>
+        <item name="colorOnSurfaceVariant">@color/md_theme_light_onSurfaceVariant</item>
+        <item name="colorSurfaceContainerHighest">@color/md_theme_light_surfaceContainerHighest</item>
+        <item name="colorSurfaceContainerHigh">@color/md_theme_light_surfaceContainerHigh</item>
+        <item name="colorSurfaceContainer">@color/md_theme_light_surfaceContainer</item>
+        <item name="colorSurfaceContainerLow">@color/md_theme_light_surfaceContainerLow</item>
+        <item name="colorSurfaceContainerLowest">@color/md_theme_light_surfaceContainerLowest</item>
+        <item name="colorSurfaceDim">@color/md_theme_light_surfaceDim</item>
+        <item name="colorSurfaceBright">@color/md_theme_light_surfaceBright</item>
+        <!-- Custom colors -->
+        <item name="colorFavorite">@color/aegis_theme_all_favorite</item>
+        <item name="colorPrimaryAlternative">?attr/colorPrimary</item>
+        <item name="colorOnDark">@android:color/white</item>
+        <item name="colorSuccess">@color/aegis_theme_light_success</item>
+        <item name="colorOnSurfaceDim">@color/aegis_theme_light_onSurfaceDim</item>
+        <!-- Intro colors -->
+        <item name="dot_color">?attr/colorSurfaceVariant</item>
+        <item name="dot_color_selected">?attr/colorOnSurfaceVariant</item>
+        <!-- Styles -->
+        <item name="dropdownStyle">@style/Widget.Aegis.Dropdown</item>
+        <item name="preferenceTheme">@style/ThemeOverlay.Aegis.Preference</item>
+        <item name="actionModeTheme">@style/ThemeOverlay.Aegis.ActionMode</item>
+        <item name="materialAlertDialogTheme">@style/ThemeOverlay.Aegis.AlertDialog</item>
+        <!-- Settings -->
+        <item name="windowActionModeOverlay">true</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Base.Theme.Aegis.Dark" parent="Theme.Material3.Dark">
+        <!-- Material colors -->
+        <item name="colorPrimary">@color/md_theme_dark_primary</item>
+        <item name="colorOnPrimary">@color/md_theme_dark_onPrimary</item>
+        <item name="colorPrimaryContainer">@color/md_theme_dark_primaryContainer</item>
+        <item name="colorOnPrimaryContainer">@color/md_theme_dark_onPrimaryContainer</item>
+        <item name="colorPrimaryFixed">@color/md_theme_dark_primaryFixed</item>
+        <item name="colorOnPrimaryFixed">@color/md_theme_dark_onPrimaryFixed</item>
+        <item name="colorPrimaryFixedDim">@color/md_theme_dark_primaryFixedDim</item>
+        <item name="colorOnPrimaryFixedVariant">@color/md_theme_dark_onPrimaryFixedVariant</item>
+        <item name="colorSecondary">@color/md_theme_dark_secondary</item>
+        <item name="colorOnSecondary">@color/md_theme_dark_onSecondary</item>
+        <item name="colorSecondaryContainer">@color/md_theme_dark_secondaryContainer</item>
+        <item name="colorOnSecondaryContainer">@color/md_theme_dark_onSecondaryContainer</item>
+        <item name="colorSecondaryFixed">@color/md_theme_dark_secondaryFixed</item>
+        <item name="colorOnSecondaryFixed">@color/md_theme_dark_onSecondaryFixed</item>
+        <item name="colorSecondaryFixedDim">@color/md_theme_dark_secondaryFixedDim</item>
+        <item name="colorOnSecondaryFixedVariant">@color/md_theme_dark_onSecondaryFixedVariant</item>
+        <item name="colorTertiary">@color/md_theme_dark_tertiary</item>
+        <item name="colorOnTertiary">@color/md_theme_dark_onTertiary</item>
+        <item name="colorTertiaryContainer">@color/md_theme_dark_tertiaryContainer</item>
+        <item name="colorOnTertiaryContainer">@color/md_theme_dark_onTertiaryContainer</item>
+        <item name="colorTertiaryFixed">@color/md_theme_dark_tertiaryFixed</item>
+        <item name="colorOnTertiaryFixed">@color/md_theme_dark_onTertiaryFixed</item>
+        <item name="colorTertiaryFixedDim">@color/md_theme_dark_tertiaryFixedDim</item>
+        <item name="colorOnTertiaryFixedVariant">@color/md_theme_dark_onTertiaryFixedVariant</item>
+        <item name="colorError">@color/md_theme_dark_error</item>
+        <item name="colorErrorContainer">@color/md_theme_dark_errorContainer</item>
+        <item name="colorOnError">@color/md_theme_dark_onError</item>
+        <item name="colorOnErrorContainer">@color/md_theme_dark_onErrorContainer</item>
+        <item name="android:colorBackground">@color/md_theme_dark_background</item>
+        <item name="colorOnBackground">@color/md_theme_dark_onBackground</item>
+        <item name="colorOutline">@color/md_theme_dark_outline</item>
+        <item name="colorOnSurfaceInverse">@color/md_theme_dark_inverseOnSurface</item>
+        <item name="colorSurfaceInverse">@color/md_theme_dark_inverseSurface</item>
+        <item name="colorPrimaryInverse">@color/md_theme_dark_inversePrimary</item>
+        <item name="colorOutlineVariant">@color/md_theme_dark_outlineVariant</item>
+        <item name="colorSurface">@color/md_theme_dark_surface</item>
+        <item name="colorOnSurface">@color/md_theme_dark_onSurface</item>
+        <item name="colorSurfaceVariant">@color/md_theme_dark_surfaceVariant</item>
+        <item name="colorOnSurfaceVariant">@color/md_theme_dark_onSurfaceVariant</item>
+        <item name="colorSurfaceContainerHighest">@color/md_theme_dark_surfaceContainerHighest</item>
+        <item name="colorSurfaceContainerHigh">@color/md_theme_dark_surfaceContainerHigh</item>
+        <item name="colorSurfaceContainer">@color/md_theme_dark_surfaceContainer</item>
+        <item name="colorSurfaceContainerLow">@color/md_theme_dark_surfaceContainerLow</item>
+        <item name="colorSurfaceContainerLowest">@color/md_theme_dark_surfaceContainerLowest</item>
+        <item name="colorSurfaceDim">@color/md_theme_dark_surfaceDim</item>
+        <item name="colorSurfaceBright">@color/md_theme_dark_surfaceBright</item>
+        <!-- Custom colors -->
+        <item name="colorFavorite">@color/aegis_theme_all_favorite</item>
+        <item name="colorPrimaryAlternative">?attr/colorPrimaryInverse</item>
+        <item name="colorOnDark">@android:color/white</item>
+        <item name="colorSuccess">@color/aegis_theme_dark_success</item>
+        <item name="colorOnSurfaceDim">@color/aegis_theme_dark_onSurfaceDim</item>
+        <!-- Intro colors -->
+        <item name="dot_color">?attr/colorSurfaceVariant</item>
+        <item name="dot_color_selected">?attr/colorOnSurfaceVariant</item>
+        <!-- Styles -->
+        <item name="dropdownStyle">@style/Widget.Aegis.Dropdown</item>
+        <item name="preferenceTheme">@style/ThemeOverlay.Aegis.Preference</item>
+        <item name="actionModeTheme">@style/ThemeOverlay.Aegis.ActionMode</item>
+        <item name="materialAlertDialogTheme">@style/ThemeOverlay.Aegis.AlertDialog</item>
+        <!-- Settings -->
+        <item name="windowActionModeOverlay">true</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Base.Theme.Aegis.Amoled" parent="Base.Theme.Aegis.Dark">
+        <item name="android:colorBackground">#000000</item>
+        <item name="colorSurface">#000000</item>
+        <item name="colorSurfaceVariant">#000000</item>
+        <item name="colorSurfaceContainerHighest">#000000</item>
+        <item name="colorSurfaceContainerHigh">#000000</item>
+        <item name="colorSurfaceContainer">#000000</item>
+        <item name="colorSurfaceContainerLow">#000000</item>
+        <item name="colorSurfaceContainerLowest">#000000</item>
+        <item name="colorSurfaceDim">#000000</item>
+        <item name="colorSurfaceBright">#000000</item>
+    </style>
+
+    <style name="Theme.Aegis.Light" parent="Base.Theme.Aegis.Light">
+    </style>
+    <style name="Theme.Aegis.Light.Fullscreen" parent="Theme.Aegis.Light">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
+    </style>
+
+    <style name="Theme.Aegis.Dark" parent="Base.Theme.Aegis.Dark">
+    </style>
+    <style name="Theme.Aegis.Dark.Fullscreen" parent="Theme.Aegis.Dark">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
+    </style>
+
+    <style name="Theme.Aegis.Amoled" parent="Base.Theme.Aegis.Amoled">
+    </style>
+    <style name="Theme.Aegis.Amoled.Fullscreen" parent="Theme.Aegis.Amoled">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
+    </style>
+
+    <style name="Widget.Aegis.Dropdown" parent="Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu" />
+
+    <style name="ThemeOverlay.Aegis.Preference" parent="@style/PreferenceThemeOverlay">
+        <item name="android:tint">?attr/colorOnSurface</item>
+        <item name="switchPreferenceCompatStyle">@style/Preference.Aegis.SwitchPreference</item>
+    </style>
+
+    <style name="Preference.Aegis.SwitchPreference" parent="@style/Preference.SwitchPreferenceCompat.Material">
+        <item name="widgetLayout">@layout/view_preference_switch</item>
+    </style>
+
+    <style name="Widget.Aegis.EntryCardView" parent="Widget.Material3.CardView.Elevated">
+        <item name="materialThemeOverlay">@style/ThemeOverlay.Aegis.EntryCardView</item>
+    </style>
+
+    <style name="Widget.Aegis.CompactEntryCardView" parent="Widget.Material3.CardView.Elevated">
+        <item name="materialThemeOverlay">@style/ThemeOverlay.Aegis.CompactEntryCardView</item>
+    </style>
+
+    <style name="ThemeOverlay.Aegis.EntryCardView" parent="">
+        <item name="colorSurfaceContainerLow">?attr/colorSurfaceContainer</item>
+    </style>
+
+    <style name="ThemeOverlay.Aegis.CompactEntryCardView" parent="">
+        <item name="colorSurfaceContainerLow">?attr/colorSurface</item>
+    </style>
+
+    <style name="Widget.Aegis.ErrorCardView" parent="Widget.Material3.CardView.Filled">
+        <item name="materialThemeOverlay">@style/ThemeOverlay.Aegis.ErrorCardView</item>
+    </style>
+
+    <style name="ThemeOverlay.Aegis.ErrorCardView" parent="">
+        <item name="colorSurfaceContainerHighest">?attr/colorErrorContainer</item>
+    </style>
+
+    <style name="ThemeOverlay.Aegis.ActionMode" parent="">
+        <!-- Magically give the action mode icons the right color -->
+        <item name="actionButtonStyle">@style/Widget.AppCompat.ActionButton</item>
+        <!-- The hack below is necessary to force the action mode overflow menu to the right color -->
+        <item name="actionBarPopupTheme">@style/Widget.Material3.PopupMenu.ContextMenu</item>
+    </style>
+
+    <style name="ThemeOverlay.Aegis.AlertDialog" parent="ThemeOverlay.Material3.MaterialAlertDialog.Centered">
+
+    </style>
+
+    <style name="ThemeOverlay.Aegis.AlertDialog.Error">
+        <item name="android:alertDialogIcon">@drawable/ic_outline_error_24</item>
+        <item name="materialAlertDialogTitleIconStyle">@style/Widget.Aegis.AlertDialog.Icon.Error</item>
+    </style>
+
+    <style name="ThemeOverlay.Aegis.AlertDialog.Warning">
+        <item name="android:alertDialogIcon">@drawable/ic_outline_warning_24</item>
+        <item name="materialAlertDialogTitleIconStyle">@style/Widget.Aegis.AlertDialog.Icon.Error</item>
+    </style>
+
+    <style name="Widget.Aegis.AlertDialog.Icon.Error" parent="@style/MaterialAlertDialog.Material3.Title.Icon.CenterStacked">
+        <item name="android:tint">?attr/colorError</item>
+    </style>
+
+    <style name="Widget.Aegis.AlertDialog.Icon.Warning" parent="@style/MaterialAlertDialog.Material3.Title.Icon.CenterStacked">
+        <item name="android:tint">?attr/colorError</item>
+    </style>
+</resources>

@@ -8,6 +8,7 @@ import androidx.preference.Preference;
 import com.beemdevelopment.aegis.CopyBehavior;
 import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.ui.dialogs.Dialogs;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 public class BehaviorPreferencesFragment extends PreferencesFragment {
     private Preference _entryPausePreference;
@@ -23,7 +24,7 @@ public class BehaviorPreferencesFragment extends PreferencesFragment {
         copyBehaviorPreference.setOnPreferenceClickListener(preference -> {
             int currentCopyBehavior1 = _prefs.getCopyBehavior().ordinal();
 
-            Dialogs.showSecureDialog(new AlertDialog.Builder(requireContext())
+            Dialogs.showSecureDialog(new MaterialAlertDialogBuilder(requireContext())
                     .setTitle(getString(R.string.choose_copy_behavior))
                     .setSingleChoiceItems(R.array.copy_behavior_titles, currentCopyBehavior1, (dialog, which) -> {
                         int i = ((AlertDialog) dialog).getListView().getCheckedItemPosition();

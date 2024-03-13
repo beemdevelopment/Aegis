@@ -25,8 +25,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.OnBackPressedCallback;
@@ -37,8 +35,8 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.view.ActionMode;
 import androidx.appcompat.widget.SearchView;
 
-import com.beemdevelopment.aegis.CopyBehavior;
 import com.beemdevelopment.aegis.AccountNamePosition;
+import com.beemdevelopment.aegis.CopyBehavior;
 import com.beemdevelopment.aegis.Preferences;
 import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.SortCategory;
@@ -51,11 +49,13 @@ import com.beemdevelopment.aegis.otp.OtpInfoException;
 import com.beemdevelopment.aegis.ui.dialogs.Dialogs;
 import com.beemdevelopment.aegis.ui.fragments.preferences.BackupsPreferencesFragment;
 import com.beemdevelopment.aegis.ui.fragments.preferences.PreferencesFragment;
+import com.beemdevelopment.aegis.ui.models.ErrorCardInfo;
 import com.beemdevelopment.aegis.ui.tasks.QrDecodeTask;
 import com.beemdevelopment.aegis.ui.views.EntryListView;
 import com.beemdevelopment.aegis.util.TimeUtils;
 import com.beemdevelopment.aegis.vault.VaultEntry;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.common.base.Strings;
 
@@ -87,8 +87,6 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
     private Menu _menu;
     private SearchView _searchView;
     private EntryListView _entryListView;
-    private LinearLayout _btnErrorBar;
-    private TextView _textErrorBar;
 
     private FabScrollHelper _fabScrollHelper;
 
@@ -222,9 +220,6 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
 
              Dialogs.showSecureDialog(dialog);
          });
-
-        _btnErrorBar = findViewById(R.id.btn_error_bar);
-        _textErrorBar = findViewById(R.id.text_error_bar);
 
         _fabScrollHelper = new FabScrollHelper(fab);
         _selectedEntries = new ArrayList<>();
@@ -458,7 +453,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
                 boolean isSingleBatch = GoogleAuthInfo.Export.isSingleBatch(googleAuthExports);
                 if (!isSingleBatch && errors.size() > 0) {
                     errors.add(getString(R.string.unrelated_google_auth_batches_error));
-                    Dialogs.showMultiMessageDialog(this, R.string.import_error_title, getString(R.string.no_tokens_can_be_imported), errors, null);
+                    Dialogs.showMultiErrorDialog(this, R.string.import_error_title, getString(R.string.no_tokens_can_be_imported), errors, null);
                     return;
                 } else if (!isSingleBatch) {
                     Dialogs.showErrorDialog(this, R.string.import_google_auth_failure, getString(R.string.unrelated_google_auth_batches_error));
@@ -473,7 +468,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
             }
 
             if ((errors.size() > 0 && results.size() > 1) || errors.size() > 1) {
-                Dialogs.showMultiMessageDialog(this, R.string.import_error_title, getString(R.string.unable_to_read_qrcode_files, uris.size() - errors.size(), uris.size()), errors, dialogDismissHandler);
+                Dialogs.showMultiErrorDialog(this, R.string.import_error_title, getString(R.string.unable_to_read_qrcode_files, uris.size() - errors.size(), uris.size()), errors, dialogDismissHandler);
             } else if (errors.size() > 0) {
                 Dialogs.showErrorDialog(this, getString(R.string.unable_to_read_qrcode_file, results.get(0).getFileName()), errors.get(0), dialogDismissHandler);
             } else {
@@ -691,7 +686,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         handleIncomingIntent();
         updateLockIcon();
         doShortcutActions();
-        updateErrorBar();
+        updateErrorCard();
     }
 
     private void deleteEntries(List<VaultEntry> entries) {
@@ -851,49 +846,49 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         }
     }
 
-    private void updateErrorBar() {
-        Preferences.BackupResult backupRes = _prefs.getErroredBackupResult();
-        if (backupRes != null) {
-            _textErrorBar.setText(R.string.backup_error_bar_message);
-            _btnErrorBar.setOnClickListener(view -> {
-                Dialogs.showBackupErrorDialog(this, backupRes, (dialog, which) -> {
-                    startPreferencesActivity(BackupsPreferencesFragment.class, "pref_backups");
-                });
-            });
-            _btnErrorBar.setVisibility(View.VISIBLE);
-        } else if (_prefs.isBackupsReminderNeeded() && _prefs.isBackupReminderEnabled()) {
-            Date date = _prefs.getLatestBackupOrExportTime();
-            if (date != null) {
-                _textErrorBar.setText(getString(R.string.backup_reminder_bar_message_with_latest, TimeUtils.getElapsedSince(this, date)));
-            } else {
-                _textErrorBar.setText(R.string.backup_reminder_bar_message);
-            }
-            _btnErrorBar.setOnClickListener(view -> {
-                Dialogs.showSecureDialog(new AlertDialog.Builder(this)
-                        .setTitle(R.string.backup_reminder_bar_dialog_title)
-                        .setMessage(R.string.backup_reminder_bar_dialog_summary)
-                        .setPositiveButton(R.string.backup_reminder_bar_dialog_accept, (dialog, whichButton) -> {
-                            startPreferencesActivity(BackupsPreferencesFragment.class, "pref_backups");
-                        })
-                        .setNegativeButton(android.R.string.cancel, null)
-                        .create());
-            });
-            _btnErrorBar.setVisibility(View.VISIBLE);
-        } else if (_prefs.isPlaintextBackupWarningNeeded()) {
-            _textErrorBar.setText(R.string.backup_plaintext_export_warning);
-            _btnErrorBar.setOnClickListener(view -> showPlaintextExportWarningOptions());
-            _btnErrorBar.setVisibility(View.VISIBLE);
-        } else {
-            _btnErrorBar.setVisibility(View.GONE);
-        }
-    }
+   private void updateErrorCard() {
+       ErrorCardInfo info = null;
+
+       Preferences.BackupResult backupRes = _prefs.getErroredBackupResult();
+       if (backupRes != null) {
+           info = new ErrorCardInfo(getString(R.string.backup_error_bar_message), view -> {
+               Dialogs.showBackupErrorDialog(this, backupRes, (dialog, which) -> {
+                   startPreferencesActivity(BackupsPreferencesFragment.class, "pref_backups");
+               });
+           });
+       } else if (_prefs.isBackupsReminderNeeded() && _prefs.isBackupReminderEnabled()) {
+           String text;
+           Date date = _prefs.getLatestBackupOrExportTime();
+           if (date != null) {
+               text = getString(R.string.backup_reminder_bar_message_with_latest, TimeUtils.getElapsedSince(this, date));
+           } else {
+               text = getString(R.string.backup_reminder_bar_message);
+           }
+           info = new ErrorCardInfo(text, view -> {
+               Dialogs.showSecureDialog(new MaterialAlertDialogBuilder(this, R.style.ThemeOverlay_Aegis_AlertDialog_Error)
+                       .setTitle(R.string.backup_reminder_bar_dialog_title)
+                       .setMessage(R.string.backup_reminder_bar_dialog_summary)
+                       .setIconAttribute(android.R.attr.alertDialogIcon)
+                       .setPositiveButton(R.string.backup_reminder_bar_dialog_accept, (dialog, whichButton) -> {
+                           startPreferencesActivity(BackupsPreferencesFragment.class, "pref_backups");
+                       })
+                       .setNegativeButton(android.R.string.cancel, null)
+                       .create());
+           });
+       } else if (_prefs.isPlaintextBackupWarningNeeded()) {
+           info = new ErrorCardInfo(getString(R.string.backup_plaintext_export_warning), view -> showPlaintextExportWarningOptions());
+       }
+
+       _entryListView.setErrorCardInfo(info);
+   }
 
     private void showPlaintextExportWarningOptions() {
         View view = LayoutInflater.from(this).inflate(R.layout.dialog_plaintext_warning, null);
 
-        AlertDialog dialog = new AlertDialog.Builder(this)
+        AlertDialog dialog = new MaterialAlertDialogBuilder(this, R.style.ThemeOverlay_Aegis_AlertDialog_Warning)
                 .setTitle(R.string.backup_plaintext_export_warning)
                 .setView(view)
+                .setIconAttribute(android.R.attr.alertDialogIcon)
                 .setPositiveButton(android.R.string.ok, null)
                 .setNegativeButton(android.R.string.cancel, null)
                 .create();
@@ -910,7 +905,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
                 _prefs.setIsPlaintextBackupWarningDisabled(checkBox.isChecked());
                 _prefs.setIsPlaintextBackupWarningNeeded(false);
 
-                updateErrorBar();
+                updateErrorCard();
             });
         });
 
@@ -926,8 +921,6 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
                 setFavoriteMenuItemVisiblity();
                 setIsMultipleSelected(_selectedEntries.size() > 1);
             }
-
-            return;
         }
     }
 
@@ -957,14 +950,14 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
 
         if (_selectedEntries.size() == 1){
             if (_selectedEntries.get(0).isFavorite()) {
-                toggleFavoriteMenuItem.setIcon(R.drawable.ic_set_favorite);
+                toggleFavoriteMenuItem.setIcon(R.drawable.ic_filled_star_24);
                 toggleFavoriteMenuItem.setTitle(R.string.unfavorite);
             } else {
-                toggleFavoriteMenuItem.setIcon(R.drawable.ic_unset_favorite);
+                toggleFavoriteMenuItem.setIcon(R.drawable.ic_outline_star_24);
                 toggleFavoriteMenuItem.setTitle(R.string.favorite);
             }
         } else {
-            toggleFavoriteMenuItem.setIcon(R.drawable.ic_unset_favorite);
+            toggleFavoriteMenuItem.setIcon(R.drawable.ic_outline_star_24);
             toggleFavoriteMenuItem.setTitle(String.format("%s / %s", getString(R.string.favorite), getString(R.string.unfavorite)));
         }
     }

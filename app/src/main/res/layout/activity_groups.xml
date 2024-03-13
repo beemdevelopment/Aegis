@@ -4,18 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?attr/background"
+    android:fitsSystemWindows="true"
     tools:context="com.beemdevelopment.aegis.ui.GroupManagerActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:theme="@style/ThemeOverlay.Aegis.AppBar">
-        <androidx.appcompat.widget.Toolbar
+        android:fitsSystemWindows="true">
+        <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorAppBar" />
+            android:layout_height="?attr/actionBarSize" />
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.recyclerview.widget.RecyclerView
@@ -44,8 +43,7 @@
                 android:id="@+id/imageView"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:src="@drawable/ic_layers_black_24dp"
-                app:tint="?attr/primaryText" />
+                android:src="@drawable/ic_outline_layers_24" />
 
             <TextView
                 android:id="@+id/textView"
@@ -53,7 +51,6 @@
                 android:layout_height="wrap_content"
                 android:text="@string/empty_group_list_title"
                 android:paddingTop="17dp"
-                android:textColor="?attr/primaryText"
                 android:textSize="18sp" />
 
             <TextView

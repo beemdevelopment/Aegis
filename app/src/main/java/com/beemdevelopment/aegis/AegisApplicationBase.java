@@ -22,8 +22,6 @@ import com.beemdevelopment.aegis.receivers.VaultLockReceiver;
 import com.beemdevelopment.aegis.ui.MainActivity;
 import com.beemdevelopment.aegis.util.IOUtils;
 import com.beemdevelopment.aegis.vault.VaultManager;
-import com.mikepenz.iconics.Iconics;
-import com.mikepenz.material_design_iconic_typeface_library.MaterialDesignIconic;
 import com.topjohnwu.superuser.Shell;
 
 import java.util.Collections;
@@ -47,9 +45,6 @@ public abstract class AegisApplicationBase extends Application {
     public void onCreate() {
         super.onCreate();
         _vaultManager = EarlyEntryPoints.get(this, EntryPoint.class).getVaultManager();
-
-        Iconics.init(this);
-        Iconics.registerFont(new MaterialDesignIconic());
 
         VaultLockReceiver lockReceiver = new VaultLockReceiver();
         IntentFilter intentFilter = new IntentFilter(Intent.ACTION_SCREEN_OFF);

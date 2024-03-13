@@ -40,6 +40,7 @@ import com.beemdevelopment.aegis.vault.VaultEntry;
 import com.beemdevelopment.aegis.vault.slots.PasswordSlot;
 import com.beemdevelopment.aegis.vault.slots.Slot;
 import com.beemdevelopment.aegis.vault.slots.SlotException;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.nulabinc.zxcvbn.Strength;
@@ -87,9 +88,10 @@ public class Dialogs {
         }
         textMessage.setText(message);
 
-        showSecureDialog(new AlertDialog.Builder(context)
+        showSecureDialog(new MaterialAlertDialogBuilder(context, R.style.ThemeOverlay_Aegis_AlertDialog_Warning)
                 .setTitle(title)
                 .setView(view)
+                .setIconAttribute(android.R.attr.alertDialogIcon)
                 .setPositiveButton(android.R.string.yes, onDelete)
                 .setNegativeButton(android.R.string.no, null)
                 .create());
@@ -108,9 +110,10 @@ public class Dialogs {
     }
 
     public static void showDiscardDialog(Context context, DialogInterface.OnClickListener onSave, DialogInterface.OnClickListener onDiscard) {
-        showSecureDialog(new AlertDialog.Builder(context)
+        showSecureDialog(new MaterialAlertDialogBuilder(context, R.style.ThemeOverlay_Aegis_AlertDialog_Warning)
                 .setTitle(context.getString(R.string.discard_changes))
                 .setMessage(context.getString(R.string.discard_changes_description))
+                .setIconAttribute(android.R.attr.alertDialogIcon)
                 .setPositiveButton(R.string.save, onSave)
                 .setNegativeButton(R.string.discard, onDiscard)
                 .create());
@@ -138,7 +141,7 @@ public class Dialogs {
             }
         });
 
-        AlertDialog dialog = new AlertDialog.Builder(activity)
+        AlertDialog dialog = new MaterialAlertDialogBuilder(activity)
                 .setTitle(R.string.set_password)
                 .setView(view)
                 .setPositiveButton(android.R.string.ok, null)
@@ -209,7 +212,7 @@ public class Dialogs {
         }
         inputLayout.setHint(hintId);
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(context)
+        MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(context)
                 .setTitle(titleId)
                 .setView(view)
                 .setPositiveButton(android.R.string.ok, null);
@@ -272,7 +275,7 @@ public class Dialogs {
         CheckBox checkBox = view.findViewById(R.id.checkbox);
         checkBox.setText(checkboxMessageId);
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(context)
+        MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(context)
                 .setTitle(titleId)
                 .setView(view)
                 .setNegativeButton(R.string.no, (dialog1, which) ->
@@ -306,7 +309,7 @@ public class Dialogs {
         numberPicker.setValue(currentValue);
         numberPicker.setWrapSelectorWheel(true);
 
-        AlertDialog dialog = new AlertDialog.Builder(context)
+        AlertDialog dialog = new MaterialAlertDialogBuilder(context)
                 .setTitle(R.string.set_number)
                 .setView(view)
                 .setPositiveButton(android.R.string.ok, (dialog1, which) ->
@@ -331,7 +334,7 @@ public class Dialogs {
         numberPicker.setValue(currentVersionCount / 5 - 1);
         numberPicker.setWrapSelectorWheel(false);
 
-        AlertDialog dialog = new AlertDialog.Builder(context)
+        AlertDialog dialog = new MaterialAlertDialogBuilder(context)
                 .setTitle(R.string.set_number)
                 .setView(view)
                 .setPositiveButton(android.R.string.ok, (dialog1, which) ->
@@ -372,10 +375,11 @@ public class Dialogs {
         TextView textMessage = view.findViewById(R.id.error_message);
         textMessage.setText(message);
 
-        AlertDialog dialog = new AlertDialog.Builder(context)
+        AlertDialog dialog = new MaterialAlertDialogBuilder(context, R.style.ThemeOverlay_Aegis_AlertDialog_Error)
                 .setTitle(R.string.error_occurred)
                 .setView(view)
                 .setCancelable(false)
+                .setIconAttribute(android.R.attr.alertDialogIcon)
                 .setPositiveButton(android.R.string.ok, (dialog1, which) -> {
                     if (listener != null) {
                         listener.onClick(dialog1, which);
@@ -412,34 +416,35 @@ public class Dialogs {
         Dialogs.showErrorDialog(context, message, backupRes.getError(), listener);
     }
 
-    public static void showMultiMessageDialog(
+    public static void showMultiErrorDialog(
             Context context, @StringRes int title, String message, List<CharSequence> messages, DialogInterface.OnClickListener listener) {
-        Dialogs.showSecureDialog(new AlertDialog.Builder(context)
+        Dialogs.showSecureDialog(new MaterialAlertDialogBuilder(context, R.style.ThemeOverlay_Aegis_AlertDialog_Error)
                 .setTitle(title)
                 .setMessage(message)
                 .setCancelable(false)
+                .setIconAttribute(android.R.attr.alertDialogIcon)
                 .setPositiveButton(android.R.string.ok, (dialog, which) -> {
                     if (listener != null) {
                         listener.onClick(dialog, which);
                     }
                 })
                 .setNeutralButton(context.getString(R.string.details), (dialog, which) -> {
-                    showDetailedMultiMessageDialog(context, title, messages, listener);
+                    showDetailedMultiErrorDialog(context, title, messages, listener);
                 })
                 .create());
     }
 
-    public static <T extends Throwable> void showMultiErrorDialog(
+    public static <T extends Throwable> void showMultiExceptionDialog(
             Context context, @StringRes int title, String message, List<T> errors, DialogInterface.OnClickListener listener) {
         List<CharSequence> messages = new ArrayList<>();
         for (Throwable e : errors) {
             messages.add(e.toString());
         }
 
-        showMultiMessageDialog(context, title, message, messages, listener);
+        showMultiErrorDialog(context, title, message, messages, listener);
     }
 
-    private static void showDetailedMultiMessageDialog(
+    private static void showDetailedMultiErrorDialog(
             Context context, @StringRes int title, List<CharSequence> messages, DialogInterface.OnClickListener listener) {
         SpannableStringBuilder builder = new SpannableStringBuilder();
         for (CharSequence message : messages) {
@@ -447,10 +452,11 @@ public class Dialogs {
             builder.append("\n\n");
         }
 
-        AlertDialog dialog = new AlertDialog.Builder(context)
+        AlertDialog dialog = new MaterialAlertDialogBuilder(context, R.style.ThemeOverlay_Aegis_AlertDialog_Error)
                 .setTitle(title)
                 .setMessage(builder)
                 .setCancelable(false)
+                .setIconAttribute(android.R.attr.alertDialogIcon)
                 .setPositiveButton(android.R.string.ok, (dialog1, which) -> {
                     if (listener != null) {
                         listener.onClick(dialog1, which);
@@ -477,10 +483,11 @@ public class Dialogs {
         View view = LayoutInflater.from(context).inflate(R.layout.dialog_time_sync, null);
         CheckBox checkBox = view.findViewById(R.id.check_warning_disable);
 
-        showSecureDialog(new AlertDialog.Builder(context)
+        showSecureDialog(new MaterialAlertDialogBuilder(context, R.style.ThemeOverlay_Aegis_AlertDialog_Warning)
                 .setTitle(R.string.time_sync_warning_title)
                 .setView(view)
                 .setCancelable(false)
+                .setIconAttribute(android.R.attr.alertDialogIcon)
                 .setPositiveButton(R.string.yes, (dialog, which) -> {
                     if (checkBox.isChecked()) {
                         prefs.setIsTimeSyncWarningEnabled(false);
@@ -515,7 +522,7 @@ public class Dialogs {
             setImporterHelpText(helpText, importers.get(position), isDirect);
         });
 
-        Dialogs.showSecureDialog(new AlertDialog.Builder(context)
+        Dialogs.showSecureDialog(new MaterialAlertDialogBuilder(context)
                 .setTitle(R.string.choose_application)
                 .setView(view)
                 .setPositiveButton(android.R.string.ok, (dialog1, which) -> {
@@ -536,11 +543,12 @@ public class Dialogs {
             errorDetails.append("\n\n");
         }
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(context)
+        MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(context, R.style.ThemeOverlay_Aegis_AlertDialog_Warning)
                 .setTitle(R.string.partial_google_auth_import)
                 .setMessage(context.getString(R.string.partial_google_auth_import_warning, missingIndexesAsString))
                 .setView(view)
                 .setCancelable(false)
+                .setIconAttribute(android.R.attr.alertDialogIcon)
                 .setPositiveButton(context.getString(R.string.import_partial_export_anyway, entries), (dialog, which) -> {
                     dismissHandler.onClick(dialog, which);
                 })

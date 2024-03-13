@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:foreground="?android:attr/selectableItemBackground"
+    android:layout_height="wrap_content"
+    android:elevation="0dp"
     android:clickable="true"
     android:focusable="true"
-    android:layout_height="wrap_content"
-    android:background="@drawable/rounded_background"
-    android:elevation="4dp"
-    android:orientation="vertical">
+    app:checkedIcon="@null"
+    app:cardElevation="0dp"
+    style="@style/Widget.Aegis.EntryCardView">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:background="?attr/cardBackground"
+        android:background="?attr/colorSurfaceContainerLow"
         android:id="@+id/rlCardEntry"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -28,7 +28,6 @@
             android:layout_height="wrap_content"
             android:maxLines="1"
             android:ellipsize="end"
-            android:textColor="?attr/primaryText"
             android:text="Issuer"
             android:textStyle="bold"
             android:textSize="18sp"/>
@@ -38,7 +37,6 @@
             android:layout_height="wrap_content"
             android:maxLines="1"
             android:ellipsize="end"
-            android:textColor="@color/secondary_text"
             android:text="AccountName"
             android:textSize="14sp"
             android:layout_marginBottom="8dp"/>
@@ -58,7 +56,6 @@
             <ImageView
                 android:layout_width="32dp"
                 android:layout_height="32dp"
-                app:tint="?attr/iconColorPrimary"
                 android:alpha="0.7"
                 android:src="@drawable/baseline_arrow_right_24"
                 android:layout_marginStart="5dp"
@@ -82,8 +79,7 @@
                 android:layout_height="wrap_content"
                 android:clickable="true"
                 android:focusable="true"
-                android:src="@drawable/ic_reset_image"
-                app:tint="?attr/iconColorPrimary"
+                android:src="@drawable/ic_outline_reset_image_24"
                 android:paddingStart="15dp"
                 android:paddingEnd="15dp"
                 android:paddingTop="12.5dp"
@@ -95,4 +91,4 @@
 
 
     </LinearLayout>
-</LinearLayout>
+</com.google.android.material.card.MaterialCardView>

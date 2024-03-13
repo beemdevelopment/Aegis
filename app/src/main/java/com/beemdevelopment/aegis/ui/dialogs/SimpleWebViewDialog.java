@@ -18,6 +18,7 @@ import androidx.fragment.app.DialogFragment;
 import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.Theme;
 import com.beemdevelopment.aegis.helpers.ThemeHelper;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.common.io.CharStreams;
 
 import java.io.IOException;
@@ -44,14 +45,14 @@ public abstract class SimpleWebViewDialog extends DialogFragment {
             view = LayoutInflater.from(requireContext()).inflate(R.layout.dialog_web_view, null);
         } catch (InflateException e) {
             e.printStackTrace();
-            return new AlertDialog.Builder(requireContext())
+            return new MaterialAlertDialogBuilder(requireContext())
                     .setTitle(android.R.string.dialog_alert_title)
                     .setMessage(getString(R.string.webview_error))
                     .setPositiveButton(android.R.string.ok, null)
                     .show();
         }
 
-        AlertDialog dialog = new AlertDialog.Builder(requireContext())
+        AlertDialog dialog = new MaterialAlertDialogBuilder(requireContext())
                 .setTitle(_title)
                 .setView(view)
                 .setPositiveButton(android.R.string.ok, null)
@@ -69,12 +70,11 @@ public abstract class SimpleWebViewDialog extends DialogFragment {
     }
 
     protected String getBackgroundColor() {
-        int backgroundColorResource = _theme == Theme.AMOLED ? R.attr.cardBackgroundFocused : R.attr.cardBackground;
-        return colorToCSS(ThemeHelper.getThemeColor(backgroundColorResource, requireContext().getTheme()));
+        return colorToCSS(ThemeHelper.getThemeColor(com.google.android.material.R.attr.colorSurfaceContainerHigh, requireContext().getTheme()));
     }
 
     protected String getTextColor() {
-        return colorToCSS(0xFFFFFF & ThemeHelper.getThemeColor(R.attr.primaryText, requireContext().getTheme()));
+        return colorToCSS(0xFFFFFF & ThemeHelper.getThemeColor(com.google.android.material.R.attr.colorOnSurface, requireContext().getTheme()));
     }
 
     @SuppressLint("DefaultLocale")

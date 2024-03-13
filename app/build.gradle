@@ -139,7 +139,6 @@ dependencies {
     implementation "androidx.camera:camera-camera2:$cameraxVersion"
     implementation "androidx.camera:camera-lifecycle:$cameraxVersion"
     implementation "androidx.camera:camera-view:$cameraxVersion"
-    implementation 'androidx.cardview:cardview:1.0.0'
     implementation "androidx.core:core:1.12.0"
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation 'androidx.documentfile:documentfile:1.0.1'
@@ -162,8 +161,6 @@ dependencies {
     implementation 'com.google.android.material:material:1.11.0'
     implementation 'com.google.protobuf:protobuf-javalite:3.25.1'
     implementation 'com.google.zxing:core:3.5.2'
-    implementation "com.mikepenz:iconics-core:3.2.5"
-    implementation 'com.mikepenz:material-design-iconic-typeface:2.2.0.5@aar'
     implementation 'com.nulab-inc:zxcvbn:1.8.2'
     implementation 'de.hdodenhof:circleimageview:3.1.0'
     implementation 'de.psdev.licensesdialog:licensesdialog:2.2.0'

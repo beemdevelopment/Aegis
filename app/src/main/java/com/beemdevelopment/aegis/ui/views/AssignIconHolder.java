@@ -47,7 +47,7 @@ public class AssignIconHolder extends RecyclerView.ViewHolder implements AssignI
         if (_entry.getNewIcon() != null) {
             GlideHelper.loadIcon(Glide.with(_view.getContext()), _entry.getNewIcon(), _newIcon);
         } else {
-            GlideHelper.loadResource(Glide.with(_view.getContext()), R.drawable.ic_icon_unselected, _newIcon);
+            GlideHelper.loadResource(Glide.with(_view.getContext()), R.drawable.ic_unselected, _newIcon);
         }
 
         _btnReset.setVisibility(_entry.getNewIcon() != null ? View.VISIBLE : View.INVISIBLE);

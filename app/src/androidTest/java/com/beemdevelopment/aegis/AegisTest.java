@@ -2,15 +2,19 @@ package com.beemdevelopment.aegis;
 
 import android.view.View;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.test.espresso.UiController;
 import androidx.test.espresso.ViewAction;
+import androidx.test.espresso.matcher.BoundedMatcher;
 import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.rule.GrantPermissionRule;
 
 import com.beemdevelopment.aegis.crypto.CryptoUtils;
 import com.beemdevelopment.aegis.crypto.SCryptParameters;
 import com.beemdevelopment.aegis.otp.OtpInfo;
+import com.beemdevelopment.aegis.ui.views.EntryHolder;
 import com.beemdevelopment.aegis.vault.VaultEntry;
 import com.beemdevelopment.aegis.vault.VaultFileCredentials;
 import com.beemdevelopment.aegis.vault.VaultManager;
@@ -20,6 +24,7 @@ import com.beemdevelopment.aegis.vault.slots.PasswordSlot;
 import com.beemdevelopment.aegis.vault.slots.SlotException;
 import com.beemdevelopment.aegis.vectors.VaultEntries;
 
+import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 import org.junit.Before;
 import org.junit.Rule;
@@ -175,6 +180,23 @@ public abstract class AegisTest {
             public void perform(UiController uiController, View view) {
                 View v = view.findViewById(id);
                 v.performClick();
+            }
+        };
+    }
+
+    @NonNull
+    protected static Matcher<RecyclerView.ViewHolder> withOtpType(Class<? extends OtpInfo> otpClass) {
+        return new BoundedMatcher<RecyclerView.ViewHolder, EntryHolder>(EntryHolder.class) {
+            @Override
+            public boolean matchesSafely(EntryHolder holder) {
+                return holder != null
+                        && holder.getEntry() != null
+                        && holder.getEntry().getInfo().getClass().equals(otpClass);
+            }
+
+            @Override
+            public void describeTo(Description description) {
+                description.appendText(String.format("with otp type '%s'", otpClass.getSimpleName()));
             }
         };
     }

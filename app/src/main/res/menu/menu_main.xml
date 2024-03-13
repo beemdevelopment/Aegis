@@ -9,12 +9,12 @@
         app:actionViewClass="androidx.appcompat.widget.SearchView"/>
     <item
         android:id="@+id/action_lock"
-        android:icon="@drawable/ic_lock"
+        android:icon="@drawable/ic_outline_lock_24"
         app:showAsAction="ifRoom"
         android:title="@string/lock"/>
     <item
         android:id="@+id/action_sort"
-        android:icon="@drawable/ic_action_sort"
+        android:icon="@drawable/ic_outline_sort_24"
         app:showAsAction="always"
         android:title="@string/sort">
         <menu>

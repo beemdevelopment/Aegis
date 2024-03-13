@@ -16,6 +16,7 @@ import com.beemdevelopment.aegis.ui.fragments.preferences.PreferencesFragment;
 public class PreferencesActivity extends AegisActivity implements
         PreferenceFragmentCompat.OnPreferenceStartFragmentCallback {
     private Fragment _fragment;
+    private CharSequence _prefTitle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +49,10 @@ public class PreferencesActivity extends AegisActivity implements
             }
         } else {
             _fragment = getSupportFragmentManager().findFragmentById(R.id.content);
+            _prefTitle = savedInstanceState.getCharSequence("prefTitle");
+            if (_prefTitle != null) {
+                setTitle(_prefTitle);
+            }
         }
     }
 
@@ -69,6 +74,7 @@ public class PreferencesActivity extends AegisActivity implements
             // this is done so we don't lose anything if the fragment calls recreate on this activity
             outState.putParcelable("result", ((PreferencesFragment) _fragment).getResult());
         }
+        outState.putCharSequence("prefTitle", _prefTitle);
         super.onSaveInstanceState(outState);
     }
 
@@ -90,7 +96,8 @@ public class PreferencesActivity extends AegisActivity implements
         _fragment.setTargetFragment(caller, 0);
         showFragment(_fragment);
 
-        setTitle(pref.getTitle());
+        _prefTitle = pref.getTitle();
+        setTitle(_prefTitle);
         return true;
     }
 

@@ -19,6 +19,7 @@ import androidx.preference.SwitchPreferenceCompat;
 
 import com.beemdevelopment.aegis.Preferences;
 import com.beemdevelopment.aegis.R;
+import com.beemdevelopment.aegis.helpers.ThemeHelper;
 import com.beemdevelopment.aegis.ui.dialogs.Dialogs;
 import com.beemdevelopment.aegis.vault.VaultRepositoryException;
 
@@ -195,9 +196,9 @@ public class BackupsPreferencesFragment extends PreferencesFragment {
 
         // TODO: Find out why setting the tint of the icon doesn't work
         if (backupFailed) {
-            pref.setIcon(R.drawable.ic_info_outline_black_24dp);
+            pref.setIcon(R.drawable.ic_outline_error_24);
         } else if (res != null) {
-            pref.setIcon(R.drawable.ic_check_black_24dp);
+            pref.setIcon(R.drawable.ic_outline_check_24);
         } else {
             pref.setIcon(null);
         }
@@ -205,21 +206,20 @@ public class BackupsPreferencesFragment extends PreferencesFragment {
 
     private CharSequence getBackupStatusMessage(@Nullable Preferences.BackupResult res) {
         String message;
-        int color = R.color.warning_color;
+        int colorAttr = com.google.android.material.R.attr.colorError;
         if (res == null) {
             message = getString(R.string.backup_status_none);
         } else if (res.isSuccessful()) {
-            color = R.color.success_color;
+            colorAttr = R.attr.colorSuccess;
             message = getString(R.string.backup_status_success, res.getElapsedSince(requireContext()));
         } else {
             message = getString(R.string.backup_status_failed, res.getElapsedSince(requireContext()));
         }
 
+        int color = ThemeHelper.getThemeColor(colorAttr, requireContext().getTheme());
         Spannable spannable = new SpannableString(message);
-        spannable.setSpan(new ForegroundColorSpan(getResources().getColor(color)), 0, message.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-        if (color == R.color.warning_color) {
-            spannable.setSpan(new StyleSpan(Typeface.BOLD), 0, message.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-        }
+        spannable.setSpan(new ForegroundColorSpan(color), 0, message.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        spannable.setSpan(new StyleSpan(Typeface.BOLD), 0, message.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         return spannable;
     }
 

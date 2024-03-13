@@ -37,6 +37,7 @@ import com.beemdevelopment.aegis.helpers.UiRefresher;
 import com.beemdevelopment.aegis.otp.TotpInfo;
 import com.beemdevelopment.aegis.ui.dialogs.Dialogs;
 import com.beemdevelopment.aegis.ui.glide.GlideHelper;
+import com.beemdevelopment.aegis.ui.models.ErrorCardInfo;
 import com.beemdevelopment.aegis.ui.models.VaultGroupModel;
 import com.beemdevelopment.aegis.util.UUIDMap;
 import com.beemdevelopment.aegis.vault.VaultEntry;
@@ -131,7 +132,9 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
         layoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
             @Override
             public int getSpanSize(int position) {
-                if (_viewMode == ViewMode.TILES && position == _adapter.getEntriesCount()) {
+                if (_viewMode == ViewMode.TILES
+                        && (_adapter.isPositionFooter(position)
+                        || _adapter.isPositionErrorCard(position))) {
                     return 2;
                 }
 
@@ -376,6 +379,10 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
         _adapter.setTapToRevealTime(number);
     }
 
+    public void setErrorCardInfo(ErrorCardInfo info) {
+        _adapter.setErrorCardInfo(info);
+    }
+
     public void addEntry(VaultEntry entry) {
         addEntry(entry, false);
     }
@@ -472,7 +479,7 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
     }
 
     private void addChipTo(ChipGroup chipGroup, VaultGroupModel group) {
-        Chip chip = (Chip) getLayoutInflater().inflate(R.layout.chip_material, null, false);
+        Chip chip = (Chip) getLayoutInflater().inflate(R.layout.chip_group_filter, null, false);
         chip.setText(group.getName());
         chip.setCheckable(true);
         chip.setChecked(_groupFilter != null && _groupFilter.contains(group.getUUID()));
@@ -600,7 +607,7 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
     }
 
     private void updateEmptyState() {
-        if (_adapter.getEntriesCount() > 0) {
+        if (_adapter.getShownEntriesCount() > 0) {
             _recyclerView.setVisibility(View.VISIBLE);
             _emptyStateView.setVisibility(View.GONE);
         } else {
@@ -636,6 +643,11 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
 
         @Override
         public void getItemOffsets(@NonNull Rect outRect, @NonNull View view, @NonNull RecyclerView parent, @NonNull RecyclerView.State state) {
+            if (_adapter.isPositionErrorCard(parent.getChildAdapterPosition(view))) {
+                outRect.top = MetricsHelper.convertDpToPixels(requireContext(), 4);
+                return;
+            }
+
             if (_adapter.isPositionFooter(parent.getChildAdapterPosition(view))) {
                 int pixels = MetricsHelper.convertDpToPixels(requireContext(), 20);
                 outRect.top = pixels;
@@ -662,41 +674,43 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
                 return;
             }
 
-            // The footer always has a top and bottom margin
-            if (_adapter.isPositionFooter(adapterPosition)) {
+            // The error card and the footer always have a top and bottom margin
+            if (_adapter.isPositionErrorCard(adapterPosition)
+                    || _adapter.isPositionFooter(adapterPosition)) {
                 outRect.top = _height;
                 outRect.bottom = _height;
                 return;
             }
 
-            // The first entry should have a top margin, but only if the group chip is not shown
-            if (adapterPosition == 0 && (_groups == null || _groups.isEmpty())) {
+            int entryIndex = _adapter.translateEntryPosToIndex(adapterPosition);
+            // The first entry should have a top margin, but only if the group chip is not shown and the error card is not shown
+            if (entryIndex == 0 && (_groups == null || _groups.isEmpty()) && !_adapter.isErrorCardShown()) {
                 outRect.top = _height;
             }
 
             // Only non-favorite entries have a bottom margin, except for the final favorite entry
             int totalFavorites = _adapter.getShownFavoritesCount();
             if (totalFavorites == 0
-                    || (adapterPosition < _adapter.getEntriesCount() && !_adapter.getEntryAt(adapterPosition).isFavorite())
-                    || totalFavorites == adapterPosition + 1) {
+                    || (entryIndex < _adapter.getShownEntriesCount() && !_adapter.getEntryAtPos(adapterPosition).isFavorite())
+                    || totalFavorites == entryIndex + 1) {
                 outRect.bottom = _height;
             }
 
             if (totalFavorites > 0) {
                 // If this entry is the last favorite entry in the list, it should always have
                 // a bottom margin, regardless of the view mode
-                if (adapterPosition == totalFavorites - 1) {
+                if (entryIndex == totalFavorites - 1) {
                     outRect.bottom = _height;
                 }
 
                 // If this is the first non-favorite entry, it should have a top margin
-                if (adapterPosition == totalFavorites) {
+                if (entryIndex == totalFavorites) {
                     outRect.top = _height;
                 }
             }
 
             // The last entry should never have a bottom margin
-            if (_adapter.getEntriesCount() == adapterPosition + 1) {
+            if (_adapter.getShownEntriesCount() == entryIndex + 1) {
                 outRect.bottom = 0;
             }
         }
@@ -734,7 +748,11 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
                 return Collections.emptyList();
             }
 
-            VaultEntry entry = _adapter.getEntryAt(position);
+            if (_adapter.getItemViewType(position) == R.layout.card_error) {
+                return Collections.emptyList();
+            }
+
+            VaultEntry entry = _adapter.getEntryAtPos(position);
             if (!entry.hasIcon()) {
                 return Collections.emptyList();
             }

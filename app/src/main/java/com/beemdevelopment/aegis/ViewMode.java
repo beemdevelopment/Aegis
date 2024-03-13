@@ -44,7 +44,7 @@ public enum ViewMode {
             return 4;
         }
 
-        return 20;
+        return 8;
     }
 
     public int getColumnSpan() {

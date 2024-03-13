@@ -45,6 +45,7 @@ import com.beemdevelopment.aegis.vault.VaultRepository;
 import com.beemdevelopment.aegis.vault.VaultRepositoryException;
 import com.beemdevelopment.aegis.vault.slots.PasswordSlot;
 import com.beemdevelopment.aegis.vault.slots.SlotException;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.textfield.TextInputLayout;
 
 import java.io.File;
@@ -202,7 +203,7 @@ public class ImportExportPreferencesFragment extends PreferencesFragment {
             groupsSelection.addItems(groupsArray, false);
         }
 
-        AlertDialog dialog = new AlertDialog.Builder(requireContext())
+        AlertDialog dialog = new MaterialAlertDialogBuilder(requireContext())
                 .setTitle(R.string.pref_export_summary)
                 .setView(view)
                 .setNeutralButton(R.string.share, null)

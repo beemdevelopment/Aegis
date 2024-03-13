@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?attr/background"
+    android:fitsSystemWindows="true"
     tools:context="com.beemdevelopment.aegis.ui.IntroActivity">
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/pager"
@@ -14,17 +14,20 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toTopOf="@+id/btnPrevious" />
-    <ImageButton
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btnPrevious"
         android:layout_width="65dp"
         android:layout_height="65dp"
-        android:layout_margin="10dp"
-        android:src="@drawable/circular_button_prev"
-        app:tint="?attr/iconColorPrimary"
-        android:background="?selectableItemBackgroundBorderless"
+        android:layout_marginVertical="10dp"
+        android:layout_marginHorizontal="20dp"
         android:visibility="invisible"
+        app:icon="@drawable/ic_outline_arrow_left_alt_24"
+        app:iconSize="30dp"
+        app:iconGravity="textStart"
+        app:iconPadding="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        style="@style/Widget.Material3.Button.IconButton.Filled.Tonal" />
     <com.beemdevelopment.aegis.ui.intro.SlideIndicator
         android:id="@+id/slideIndicator"
         android:layout_width="0dp"
@@ -33,14 +36,17 @@
         app:layout_constraintStart_toEndOf="@+id/btnPrevious"
         app:layout_constraintEnd_toStartOf="@+id/btnNext"
         app:layout_constraintBottom_toBottomOf="parent" />
-    <ImageButton
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btnNext"
         android:layout_width="65dp"
         android:layout_height="65dp"
-        android:layout_margin="10dp"
-        android:src="@drawable/circular_button_next"
-        app:tint="?attr/iconColorPrimary"
-        android:background="?selectableItemBackgroundBorderless"
+        android:layout_marginVertical="10dp"
+        android:layout_marginHorizontal="20dp"
+        app:icon="@drawable/ic_outline_arrow_right_alt_24"
+        app:iconSize="30dp"
+        app:iconGravity="textStart"
+        app:iconPadding="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        style="@style/Widget.Material3.Button.IconButton.Filled.Tonal" />
 </androidx.constraintlayout.widget.ConstraintLayout>

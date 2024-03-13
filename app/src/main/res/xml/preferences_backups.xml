@@ -8,7 +8,7 @@
         android:selectable="false"
         android:summary="@string/backup_warning_password"
         app:isPreferenceVisible="false"
-        app:icon="@drawable/ic_info_outline_black_24dp" />
+        app:icon="@drawable/ic_outline_info_24" />
     <PreferenceCategory
         android:title="@string/pref_cat_backups_auto">
         <androidx.preference.SwitchPreferenceCompat
@@ -16,7 +16,7 @@
             android:key="pref_backups"
             android:title="@string/pref_backups_title"
             android:summary="@string/pref_backups_summary"
-            app:icon="@drawable/ic_cloud_upload_outline_black_24dp" />
+            app:icon="@drawable/ic_outline_cloud_upload_24" />
 
         <androidx.preference.SwitchPreferenceCompat
             android:key="pref_backup_reminder"
@@ -46,7 +46,7 @@
             android:key="pref_android_backups"
             android:title="@string/pref_android_backups_title"
             android:summary="@string/pref_android_backups_summary"
-            app:icon="@drawable/ic_android" />
+            app:icon="@drawable/ic_outline_android_24" />
         <Preference
             android:key="pref_status_backup_android"
             android:persistent="false"

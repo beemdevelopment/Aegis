@@ -9,11 +9,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?attr/background"
         android:orientation="vertical">
 
         <LinearLayout
-            android:id="@+id/linearLayout2"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
@@ -22,22 +20,19 @@
             android:orientation="vertical">
 
             <ImageView
-                android:id="@+id/imageView2"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_marginBottom="20dp"
                 app:srcCompat="@drawable/ic_aegis_iconx" />
 
             <TextView
-                android:id="@+id/textView2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-light"
                 android:singleLine="false"
                 android:text="@string/authentication_multiline"
                 android:textStyle="bold"
-                android:textSize="@dimen/auth_leader_text_size"
-                android:textColor="?attr/authText" />
+                android:textSize="32sp"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -51,7 +46,7 @@
                     android:paddingBottom="25dp"
                     app:hintEnabled="false"
                     app:passwordToggleEnabled="true"
-                    app:passwordToggleTint="#949494">
+                    app:passwordToggleTint="?attr/colorOnSurface">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/text_password"
@@ -71,12 +66,8 @@
                         android:id="@+id/button_decrypt"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/button_rounded_corners"
-                        android:backgroundTint="@color/colorPrimary"
                         android:minWidth="125dp"
-                        android:text="@string/unlock"
-                        android:textColor="@color/primary_text_inverted"
-                        android:textStyle="bold" />
+                        android:text="@string/unlock" />
 
                 </LinearLayout>
 
@@ -109,10 +100,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|center"
-            android:textStyle="bold"
-            android:textAllCaps="true"
             android:text="@string/app_name_full"
-            android:paddingVertical="50dp"
-            android:textColor="@color/divider" />
+            android:textSize="15sp"
+            android:textAllCaps="true"
+            android:textStyle="bold"
+            android:textColor="?attr/colorOnSurfaceDim"
+            android:paddingVertical="50dp" />
     </LinearLayout>
 </ScrollView>

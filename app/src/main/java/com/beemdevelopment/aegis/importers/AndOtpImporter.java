@@ -21,6 +21,7 @@ import com.beemdevelopment.aegis.ui.dialogs.Dialogs;
 import com.beemdevelopment.aegis.ui.tasks.PBKDFTask;
 import com.beemdevelopment.aegis.util.IOUtils;
 import com.beemdevelopment.aegis.vault.VaultEntry;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.topjohnwu.superuser.io.SuFile;
 
 import org.json.JSONArray;
@@ -182,7 +183,7 @@ public class AndOtpImporter extends DatabaseImporter {
                     context.getResources().getString(R.string.andotp_old_format)
             };
 
-            Dialogs.showSecureDialog(new AlertDialog.Builder(context)
+            Dialogs.showSecureDialog(new MaterialAlertDialogBuilder(context)
                     .setTitle(R.string.choose_andotp_importer)
                     .setSingleChoiceItems(choices, 0, null)
                     .setPositiveButton(android.R.string.ok, (dialog, which) -> {

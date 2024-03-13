@@ -1,8 +1,0 @@
-<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
-<item android:top="7dp" android:left="7dp" android:right="7dp" android:bottom="7dp">
-    <vector android:height="24dp" android:viewportHeight="3328"  android:tint="#FFFFFF"
-        android:viewportWidth="3333" android:width="24.036058dp">
-        <path android:fillColor="#FF000000" android:fillType="evenOdd" android:pathData="M5,0h1211v1206L5,1206L5,0zM3025,3025h309v304h-309v-304zM2432,3025h309v290h-618v-592h299v-300h304v-598h309v294h294v304h-294v304h-603v299zM1515,2417h299v-304h-289v-304h289v-304h-294v304h-309v-304h304L1515,603h309v902h299v304h294v-304h309v304h-294v304h-309v598h-299v603h-309v-897zM3020,1505h309v304h-309v-304zM608,1505h309v304L608,1809v-304zM5,1505h309v304L5,1809v-304zM1515,0h309v304h-309L1515,0zM0,2118h1211v1206L0,3324L0,2118zM294,2411h623v620L294,3031v-620zM2118,0h1211v1206L2118,1206L2118,0zM2412,293h623v620h-623L2412,293zM299,293h623v620L299,913L299,293z"/>
-    </vector>
-</item>
-</layer-list>

@@ -2,7 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"   >
     <item android:id="@+id/toggle_checkboxes"
-        android:icon="@drawable/ic_done_all_black_24dp"
+        android:icon="@drawable/ic_outline_done_all_24"
         android:title="@string/toggle_checkboxes"
         app:showAsAction="always" />
     <item android:id="@+id/toggle_wipe_vault"

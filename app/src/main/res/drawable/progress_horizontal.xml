@@ -2,9 +2,8 @@
     <item android:id="@android:id/progress">
         <clip>
             <shape>
-                <solid android:color="@color/colorAccent"/>
+                <solid android:color="?attr/colorPrimaryAlternative"/>
             </shape>
         </clip>
     </item>
-
 </layer-list>

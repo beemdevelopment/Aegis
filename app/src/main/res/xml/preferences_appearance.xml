@@ -11,12 +11,16 @@
             android:title="@string/pref_select_theme_title"
             app:iconSpaceReserved="false"/>
 
-        <ListPreference
+        <androidx.preference.SwitchPreferenceCompat
+            android:defaultValue="false"
+            android:key="pref_dynamic_colors"
+            android:title="@string/pref_dynamic_colors_title"
+            android:summary="@string/pref_dynamic_colors_summary"
+            app:iconSpaceReserved="false"/>
+
+        <Preference
             android:key="pref_lang"
             android:title="@string/pref_lang_title"
-            android:summary="%s"
-            android:entries="@array/pref_lang_entries"
-            android:entryValues="@array/pref_lang_values"
             android:defaultValue="system"
             app:iconSpaceReserved="false"/>
     </PreferenceCategory>
@@ -37,12 +41,10 @@
             android:summary="@string/pref_show_icons_summary"
             app:iconSpaceReserved="false"/>
 
-        <ListPreference
+        <Preference
             android:key="pref_code_group_size_string"
             android:title="@string/pref_code_group_size_title"
             android:summary="@string/pref_code_group_size_summary"
-            android:entries="@array/pref_code_groupings"
-            android:entryValues="@array/pref_code_groupings_values"
             android:defaultValue="GROUPING_THREES"
             app:iconSpaceReserved="false"/>
 

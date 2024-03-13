@@ -4,7 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:foreground="?android:attr/selectableItemBackground"
-    android:background="?attr/cardBackground"
     android:clickable="true"
     android:focusable="true"
     android:orientation="horizontal">
@@ -21,7 +20,6 @@
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-light"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="?attr/primaryText"
             android:textSize="18sp"
             android:textStyle="normal|bold"
             android:gravity="center_vertical"
@@ -33,7 +31,6 @@
             android:layout_marginTop="2dp"
             android:ellipsize="end"
             android:maxLines="1"
-            android:textColor="@color/extra_info_text"
             android:textSize="14sp"
             tools:text="AccountName" />
     </LinearLayout>

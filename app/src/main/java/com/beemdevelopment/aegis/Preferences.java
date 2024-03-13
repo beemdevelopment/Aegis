@@ -145,6 +145,10 @@ public class Preferences {
         return CodeGrouping.valueOf(value);
     }
 
+    public void setCodeGroupSize(CodeGrouping codeGroupSize) {
+        _prefs.edit().putString("pref_code_group_size_string", codeGroupSize.name()).apply();
+    }
+
     public boolean isIntroDone() {
         return _prefs.getBoolean("pref_intro", false);
     }
@@ -196,6 +200,10 @@ public class Preferences {
 
     public void setCurrentTheme(Theme theme) {
         _prefs.edit().putInt("pref_current_theme", theme.ordinal()).apply();
+    }
+
+    public boolean isDynamicColorsEnabled() {
+        return _prefs.getBoolean("pref_dynamic_colors", false);
     }
 
     public ViewMode getCurrentViewMode() {
@@ -266,8 +274,16 @@ public class Preferences {
         return _prefs.getInt("pref_timeout", -1);
     }
 
+    public String getLanguage() {
+        return _prefs.getString("pref_lang", "system");
+    }
+
+    public void setLanguage(String lang) {
+        _prefs.edit().putString("pref_lang", lang).apply();
+    }
+
     public Locale getLocale() {
-        String lang = _prefs.getString("pref_lang", "system");
+        String lang = getLanguage();
 
         if (lang.equals("system")) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {

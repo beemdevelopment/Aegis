@@ -26,7 +26,6 @@ import androidx.activity.result.contract.ActivityResultContracts.StartActivityFo
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AlertDialog;
 
 import com.amulyakhare.textdrawable.TextDrawable;
 import com.avito.android.krop.KropView;
@@ -68,6 +67,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.target.CustomTarget;
 import com.bumptech.glide.request.transition.Transition;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
@@ -164,7 +164,7 @@ public class EditEntryActivity extends AegisActivity {
 
         ActionBar bar = getSupportActionBar();
         if (bar != null) {
-            bar.setHomeAsUpIndicator(R.drawable.ic_close);
+            bar.setHomeAsUpIndicator(R.drawable.ic_outline_close_24);
             bar.setDisplayHomeAsUpEnabled(true);
         }
 
@@ -473,7 +473,7 @@ public class EditEntryActivity extends AegisActivity {
         } else if (itemId == R.id.action_edit_icon) {
             startIconSelection();
         } else if (itemId == R.id.action_reset_usage_count) {
-            Dialogs.showSecureDialog(new AlertDialog.Builder(this)
+            Dialogs.showSecureDialog(new MaterialAlertDialogBuilder(this)
                     .setTitle(R.string.action_reset_usage_count)
                     .setMessage(R.string.action_reset_usage_count_dialog)
                     .setPositiveButton(android.R.string.yes, (dialog, which) -> resetUsageCount())
@@ -754,9 +754,10 @@ public class EditEntryActivity extends AegisActivity {
     }
 
     private void onSaveError(String msg) {
-        Dialogs.showSecureDialog(new AlertDialog.Builder(this)
+        Dialogs.showSecureDialog(new MaterialAlertDialogBuilder(this, R.style.ThemeOverlay_Aegis_AlertDialog_Error)
                 .setTitle(getString(R.string.saving_profile_error))
                 .setMessage(msg)
+                .setIconAttribute(android.R.attr.alertDialogIcon)
                 .setPositiveButton(android.R.string.ok, null)
                 .create());
     }
