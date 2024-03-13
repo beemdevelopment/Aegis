@@ -22,11 +22,11 @@ import com.beemdevelopment.aegis.Preferences;
 import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.Theme;
 import com.beemdevelopment.aegis.ThemeMap;
-import com.beemdevelopment.aegis.helpers.ThemeHelper;
 import com.beemdevelopment.aegis.icons.IconPackManager;
 import com.beemdevelopment.aegis.vault.VaultManager;
 import com.beemdevelopment.aegis.vault.VaultRepositoryException;
 import com.google.android.material.color.DynamicColors;
+import com.google.android.material.color.MaterialColors;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
@@ -251,7 +251,7 @@ public abstract class AegisActivity extends AppCompatActivity implements VaultMa
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 int statusBarColor = visibility == View.VISIBLE
-                        ? ThemeHelper.getThemeColor(com.google.android.material.R.attr.colorSurfaceContainer, getTheme())
+                        ? MaterialColors.getColor(actionModeView, com.google.android.material.R.attr.colorSurfaceContainer)
                         : _statusBarColor;
                 getWindow().setStatusBarColor(statusBarColor);
             }

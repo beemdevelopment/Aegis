@@ -16,11 +16,11 @@ import androidx.annotation.StringRes;
 
 import com.beemdevelopment.aegis.BuildConfig;
 import com.beemdevelopment.aegis.R;
-import com.beemdevelopment.aegis.helpers.ThemeHelper;
 import com.beemdevelopment.aegis.licenses.GlideLicense;
 import com.beemdevelopment.aegis.licenses.ProtobufLicense;
 import com.beemdevelopment.aegis.ui.dialogs.ChangelogDialog;
 import com.beemdevelopment.aegis.ui.dialogs.LicenseDialog;
+import com.google.android.material.color.MaterialColors;
 
 import de.psdev.licensesdialog.LicenseResolver;
 import de.psdev.licensesdialog.LicensesDialog;
@@ -148,7 +148,8 @@ public class AboutActivity extends AegisActivity {
     }
 
     private String getThemeColorAsHex(@AttrRes int attributeId) {
-        return String.format("%06X", (0xFFFFFF & ThemeHelper.getThemeColor(attributeId, getTheme())));
+        int color = MaterialColors.getColor(this, attributeId, getClass().getCanonicalName());
+        return String.format("%06X", 0xFFFFFF & color);
     }
 
     @Override

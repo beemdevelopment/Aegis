@@ -17,7 +17,7 @@ import androidx.fragment.app.DialogFragment;
 
 import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.Theme;
-import com.beemdevelopment.aegis.helpers.ThemeHelper;
+import com.google.android.material.color.MaterialColors;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.common.io.CharStreams;
 
@@ -70,11 +70,21 @@ public abstract class SimpleWebViewDialog extends DialogFragment {
     }
 
     protected String getBackgroundColor() {
-        return colorToCSS(ThemeHelper.getThemeColor(com.google.android.material.R.attr.colorSurfaceContainerHigh, requireContext().getTheme()));
+        int color = MaterialColors.getColor(
+                requireContext(),
+                com.google.android.material.R.attr.colorSurfaceContainerHigh,
+                getClass().getCanonicalName()
+        );
+        return colorToCSS(color);
     }
 
     protected String getTextColor() {
-        return colorToCSS(0xFFFFFF & ThemeHelper.getThemeColor(com.google.android.material.R.attr.colorOnSurface, requireContext().getTheme()));
+        int color = MaterialColors.getColor(
+                requireContext(),
+                com.google.android.material.R.attr.colorOnSurface,
+                getClass().getCanonicalName()
+        );
+        return colorToCSS(0xFFFFFF & color);
     }
 
     @SuppressLint("DefaultLocale")

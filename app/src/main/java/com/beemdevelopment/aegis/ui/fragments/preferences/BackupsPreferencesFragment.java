@@ -19,9 +19,9 @@ import androidx.preference.SwitchPreferenceCompat;
 
 import com.beemdevelopment.aegis.Preferences;
 import com.beemdevelopment.aegis.R;
-import com.beemdevelopment.aegis.helpers.ThemeHelper;
 import com.beemdevelopment.aegis.ui.dialogs.Dialogs;
 import com.beemdevelopment.aegis.vault.VaultRepositoryException;
+import com.google.android.material.color.MaterialColors;
 
 public class BackupsPreferencesFragment extends PreferencesFragment {
     private SwitchPreferenceCompat _androidBackupsPreference;
@@ -216,7 +216,7 @@ public class BackupsPreferencesFragment extends PreferencesFragment {
             message = getString(R.string.backup_status_failed, res.getElapsedSince(requireContext()));
         }
 
-        int color = ThemeHelper.getThemeColor(colorAttr, requireContext().getTheme());
+        int color = MaterialColors.getColor(requireContext(), colorAttr, getClass().getCanonicalName());
         Spannable spannable = new SpannableString(message);
         spannable.setSpan(new ForegroundColorSpan(color), 0, message.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         spannable.setSpan(new StyleSpan(Typeface.BOLD), 0, message.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);

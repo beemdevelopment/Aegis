@@ -32,7 +32,6 @@ import com.beemdevelopment.aegis.ViewMode;
 import com.beemdevelopment.aegis.helpers.AnimationsHelper;
 import com.beemdevelopment.aegis.helpers.MetricsHelper;
 import com.beemdevelopment.aegis.helpers.SimpleItemTouchHelperCallback;
-import com.beemdevelopment.aegis.helpers.ThemeHelper;
 import com.beemdevelopment.aegis.helpers.UiRefresher;
 import com.beemdevelopment.aegis.otp.TotpInfo;
 import com.beemdevelopment.aegis.ui.dialogs.Dialogs;
@@ -635,7 +634,7 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
     private class CompactDividerDecoration extends MaterialDividerItemDecoration {
         public CompactDividerDecoration() {
             super(requireContext(), DividerItemDecoration.VERTICAL);
-            setDividerColor(ThemeHelper.getThemeColor(androidx.appcompat.R.attr.divider, requireContext().getTheme()));
+            setDividerColorResource(requireContext(), android.R.color.transparent);
             setLastItemDecorated(false);
             setDividerThickness(MetricsHelper.convertDpToPixels(requireContext(), 0.5f));
         }
