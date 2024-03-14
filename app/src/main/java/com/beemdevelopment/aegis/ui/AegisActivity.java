@@ -26,6 +26,7 @@ import com.beemdevelopment.aegis.icons.IconPackManager;
 import com.beemdevelopment.aegis.vault.VaultManager;
 import com.beemdevelopment.aegis.vault.VaultRepositoryException;
 import com.google.android.material.color.DynamicColors;
+import com.google.android.material.color.DynamicColorsOptions;
 import com.google.android.material.color.MaterialColors;
 
 import java.lang.reflect.Field;
@@ -122,7 +123,11 @@ public abstract class AegisActivity extends AppCompatActivity implements VaultMa
         setTheme(theme);
 
         if (_prefs.isDynamicColorsEnabled()) {
-            DynamicColors.applyToActivityIfAvailable(this);
+            DynamicColorsOptions.Builder optsBuilder = new DynamicColorsOptions.Builder();
+            if (getConfiguredTheme().equals(Theme.AMOLED)) {
+                optsBuilder.setThemeOverlay(R.style.ThemeOverlay_Aegis_Dynamic_Amoled);
+            }
+            DynamicColors.applyToActivityIfAvailable(this, optsBuilder.build());
         }
     }
 
