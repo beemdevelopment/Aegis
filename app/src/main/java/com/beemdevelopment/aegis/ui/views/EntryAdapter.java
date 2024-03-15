@@ -375,6 +375,7 @@ public class EntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         }
 
         sortShownEntries();
+        checkPeriodUniformity();
         _view.onListChange();
         notifyDataSetChanged();
     }
@@ -667,6 +668,10 @@ public class EntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
         if (infos.isEmpty()) {
             return -1;
+        }
+
+        if (infos.size() == 1) {
+            return infos.get(0).getPeriod();
         }
 
         Map<Integer, Integer> occurrences = new HashMap<>();
