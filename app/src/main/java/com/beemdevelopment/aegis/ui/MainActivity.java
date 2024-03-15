@@ -241,6 +241,11 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
             _prefs.setUsageCount(usageMap);
         }
 
+        Map<UUID, Long> lastUsedMap = _entryListView.getLastUsedTimestamps();
+        if (lastUsedMap != null) {
+            _prefs.setLastUsedTimestamps(lastUsedMap);
+        }
+
         super.onPause();
     }
 
@@ -696,6 +701,8 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
             // update the usage counts in case they are edited outside of the EntryListView
             _entryListView.setUsageCounts(_prefs.getUsageCounts());
 
+            _entryListView.setLastUsedTimestamps(_prefs.getLastUsedTimestamps());
+
             // refresh all codes to prevent showing old ones
             _entryListView.refresh(false);
         } else {
@@ -825,6 +832,8 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
                     sortCategory = SortCategory.ACCOUNT_REVERSED;
                 } else if (subItemId == R.id.menu_sort_usage_count) {
                     sortCategory = SortCategory.USAGE_COUNT;
+                } else if (subItemId == R.id.menu_sort_last_used) {
+                    sortCategory = SortCategory.LAST_USED;
                 } else {
                     sortCategory = SortCategory.CUSTOM;
                 }
@@ -847,6 +856,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
     private void loadEntries() {
         if (!_loaded) {
             _entryListView.setUsageCounts(_prefs.getUsageCounts());
+            _entryListView.setLastUsedTimestamps(_prefs.getLastUsedTimestamps());
             _entryListView.addEntries(_vaultManager.getVault().getEntries());
             _entryListView.runEntriesAnimation();
             _loaded = true;

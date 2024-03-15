@@ -37,6 +37,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -51,6 +52,7 @@ public class EntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     private List<VaultEntry> _shownEntries;
     private List<VaultEntry> _selectedEntries;
     private Map<UUID, Integer> _usageCounts;
+    private Map<UUID, Long> _lastUsedTimestamps;
     private VaultEntry _focusedEntry;
     private VaultEntry _clickedEntry;
     private Preferences.CodeGrouping _codeGroupSize;
@@ -190,6 +192,7 @@ public class EntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     public void addEntries(Collection<VaultEntry> entries) {
         for (VaultEntry entry: entries) {
             entry.setUsageCount(_usageCounts.containsKey(entry.getUUID()) ? _usageCounts.get(entry.getUUID()) : 0);
+            entry.setLastUsedTimestamp(_lastUsedTimestamps.containsKey(entry.getUUID()) ? _lastUsedTimestamps.get(entry.getUUID()) : 0);
         }
 
         _entries.addAll(entries);
@@ -406,6 +409,10 @@ public class EntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     public void setUsageCounts(Map<UUID, Integer> usageCounts) { _usageCounts = usageCounts; }
 
     public Map<UUID, Integer> getUsageCounts() { return _usageCounts; }
+
+    public void setLastUsedTimestamps(Map<UUID, Long> lastUsedTimestamps) { _lastUsedTimestamps = lastUsedTimestamps; }
+
+    public Map<UUID, Long> getLastUsedTimestamps() { return _lastUsedTimestamps; }
 
     public int getShownFavoritesCount() {
         return (int) _shownEntries.stream().filter(VaultEntry::isFavorite).count();
@@ -805,6 +812,8 @@ public class EntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             int usageCount = _usageCounts.get(entry.getUUID());
             _usageCounts.put(entry.getUUID(), ++usageCount);
         }
+
+        _lastUsedTimestamps.put(entry.getUUID(), new Date().getTime());
     }
 
     public boolean isDragAndDropAllowed() {

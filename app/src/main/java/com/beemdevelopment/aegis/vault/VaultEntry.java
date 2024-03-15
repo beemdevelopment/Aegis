@@ -23,6 +23,7 @@ public class VaultEntry extends UUIDMap.Value {
     private VaultEntryIcon _icon;
     private boolean _isFavorite;
     private int _usageCount;
+    private long _lastUsedTimestamp;
     private String _note = "";
     private String _oldGroup;
     private Set<UUID> _groups = new TreeSet<>();
@@ -135,6 +136,10 @@ public class VaultEntry extends UUIDMap.Value {
         return _usageCount;
     }
 
+    public long getLastUsedTimestamp() {
+        return _lastUsedTimestamp;
+    }
+
     public String getNote() {
         return _note;
     }
@@ -142,8 +147,6 @@ public class VaultEntry extends UUIDMap.Value {
     public boolean isFavorite() {
         return _isFavorite;
     }
-
-    ;
 
     public void setName(String name) {
         _name = name;
@@ -186,6 +189,8 @@ public class VaultEntry extends UUIDMap.Value {
     public void setUsageCount(int usageCount) {
         _usageCount = usageCount;
     }
+
+    public void setLastUsedTimestamp(long lastUsedTimestamp) { _lastUsedTimestamp = lastUsedTimestamp; }
 
     public void setNote(String note) {
         _note = note;

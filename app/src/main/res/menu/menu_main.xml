@@ -40,6 +40,9 @@
                 <item
                     android:id="@+id/menu_sort_usage_count"
                     android:title="@string/sort_usage_count"/>
+                <item
+                    android:id="@+id/menu_sort_last_used"
+                    android:title="@string/sort_last_used"/>
             </group>
         </menu>
     </item>

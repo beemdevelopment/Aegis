@@ -19,6 +19,7 @@ import android.widget.AutoCompleteTextView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import androidx.activity.OnBackPressedCallback;
 import androidx.activity.result.ActivityResultLauncher;
@@ -75,10 +76,12 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
@@ -113,6 +116,7 @@ public class EditEntryActivity extends AegisActivity {
     private LinearLayout _textPinLayout;
     private TextInputEditText _textUsageCount;
     private TextInputEditText _textNote;
+    private TextView _textLastUsed;
 
     private AutoCompleteTextView _dropdownType;
     private AutoCompleteTextView _dropdownAlgo;
@@ -200,6 +204,7 @@ public class EditEntryActivity extends AegisActivity {
         _textPinLayout = findViewById(R.id.layout_pin);
         _textUsageCount = findViewById(R.id.text_usage_count);
         _textNote = findViewById(R.id.text_note);
+        _textLastUsed = findViewById(R.id.text_last_used);
         _dropdownType = findViewById(R.id.dropdown_type);
         DropdownHelper.fillDropdown(this, _dropdownType, R.array.otp_types_array);
         _dropdownAlgoLayout = findViewById(R.id.dropdown_algo_layout);
@@ -378,6 +383,7 @@ public class EditEntryActivity extends AegisActivity {
         });
 
         _textUsageCount.setText(_prefs.getUsageCount(entryUUID).toString());
+        setLastUsedTimestamp(_prefs.getLastUsedTimestamp(entryUUID));
     }
 
     private void updateAdvancedFieldStatus(String otpType) {
@@ -606,6 +612,16 @@ public class EditEntryActivity extends AegisActivity {
         }
 
         saveAndFinish(entry, false);
+    }
+
+    private void setLastUsedTimestamp(long timestamp) {
+        String readableDate = getString(R.string.last_used_never);
+        if (timestamp != 0) {
+            DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.MEDIUM, DateFormat.MEDIUM, Locale.getDefault());
+            readableDate = dateFormat.format(new Date(timestamp));
+        }
+
+        _textLastUsed.setText(String.format("%s: %s", getString(R.string.last_used), readableDate));
     }
 
     private void deleteAndFinish(VaultEntry entry) {
