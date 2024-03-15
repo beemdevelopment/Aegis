@@ -61,7 +61,7 @@ public class TwoFASImporter extends DatabaseImporter {
             String json = new String(IOUtils.readAll(stream), StandardCharsets.UTF_8);
             JSONObject obj = new JSONObject(json);
             int version = obj.getInt("schemaVersion");
-            if (version > 4) {
+            if (version > 5) {
                 throw new DatabaseImporterException(String.format("Unsupported schema version: %d", version));
             }
 
