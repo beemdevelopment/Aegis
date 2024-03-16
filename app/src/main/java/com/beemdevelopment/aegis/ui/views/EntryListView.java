@@ -47,9 +47,12 @@ import com.bumptech.glide.RequestBuilder;
 import com.bumptech.glide.integration.recyclerview.RecyclerViewPreloader;
 import com.bumptech.glide.util.ViewPreloadSizeProvider;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
+import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
 import com.google.android.material.divider.MaterialDividerItemDecoration;
+import com.google.android.material.shape.CornerFamily;
+import com.google.android.material.shape.ShapeAppearanceModel;
 import com.google.common.base.Strings;
 
 import java.util.Collection;
@@ -639,6 +642,27 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
         void onEntryListTouch();
     }
 
+    private void decorateFavoriteEntries(@NonNull View view, @NonNull RecyclerView parent) {
+        int adapterPosition = parent.getChildAdapterPosition(view);
+        int entryIndex = _adapter.translateEntryPosToIndex(adapterPosition);
+        int totalFavorites = _adapter.getShownFavoritesCount();
+
+        if (entryIndex < totalFavorites) {
+            ShapeAppearanceModel model = ((MaterialCardView)view).getShapeAppearanceModel();
+            ShapeAppearanceModel.Builder builder = model.toBuilder();
+            if ((entryIndex == 0 && totalFavorites > 1) || (entryIndex < (totalFavorites - 1))) {
+                builder.setBottomLeftCorner(CornerFamily.ROUNDED, 0);
+                builder.setBottomRightCorner(CornerFamily.ROUNDED, 0);
+            }
+            if (entryIndex > 0) {
+                builder.setTopLeftCorner(CornerFamily.ROUNDED, 0);
+                builder.setTopRightCorner(CornerFamily.ROUNDED, 0);
+            }
+
+            ((MaterialCardView)view).setShapeAppearanceModel(builder.build());
+        }
+    }
+
     private class CompactDividerDecoration extends MaterialDividerItemDecoration {
         public CompactDividerDecoration() {
             super(requireContext(), DividerItemDecoration.VERTICAL);
@@ -660,6 +684,8 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
                 outRect.bottom = pixels;
                 return;
             }
+
+            decorateFavoriteEntries(view, parent);
 
             super.getItemOffsets(outRect, view, parent, state);
         }
@@ -713,6 +739,8 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
                 if (entryIndex == totalFavorites) {
                     outRect.top = _height;
                 }
+
+                decorateFavoriteEntries(view, parent);
             }
 
             // The last entry should never have a bottom margin
