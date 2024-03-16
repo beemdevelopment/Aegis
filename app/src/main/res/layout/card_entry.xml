@@ -65,18 +65,6 @@
             android:paddingRight="16dp"
             android:paddingStart="16dp">
 
-            <TextView
-                android:id="@+id/profile_copied"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:includeFontPadding="false"
-                android:maxLines="1"
-                android:text="@string/copied"
-                android:layout_above="@+id/description"
-                android:layout_alignStart="@+id/profile_code"
-                android:textSize="16sp"
-                android:visibility="invisible" />
-
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -106,6 +94,18 @@
                     tools:text=" - AccountName" />
 
             </RelativeLayout>
+
+            <TextView
+                android:id="@+id/profile_copied"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:includeFontPadding="false"
+                android:maxLines="1"
+                android:text="@string/copied"
+                android:layout_alignStart="@+id/description"
+                android:layout_below="@id/description"
+                android:textSize="16sp"
+                android:visibility="invisible" />
 
             <TextView
                 android:layout_width="wrap_content"

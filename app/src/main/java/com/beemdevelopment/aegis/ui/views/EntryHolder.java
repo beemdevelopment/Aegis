@@ -161,10 +161,6 @@ public class EntryHolder extends RecyclerView.ViewHolder {
                 profileNameLayoutParams.setMarginStart(0);
                 _profileName.setLayoutParams(profileNameLayoutParams);
                 _profileName.setVisibility(View.VISIBLE);
-
-                copiedLayoutParams = (RelativeLayout.LayoutParams) _profileCopied.getLayoutParams();
-                copiedLayoutParams.addRule(RelativeLayout.ABOVE, R.id.profile_account_name);
-                _profileCopied.setLayoutParams(copiedLayoutParams);
                 break;
 
             case END:
@@ -175,10 +171,6 @@ public class EntryHolder extends RecyclerView.ViewHolder {
                 profileNameLayoutParams.removeRule(RelativeLayout.BELOW);
                 _profileName.setLayoutParams(profileNameLayoutParams);
                 _profileName.setVisibility(View.VISIBLE);
-
-                copiedLayoutParams = (RelativeLayout.LayoutParams) _profileCopied.getLayoutParams();
-                copiedLayoutParams.addRule(RelativeLayout.ABOVE, R.id.description);
-                _profileCopied.setLayoutParams(copiedLayoutParams);
                 break;
         }
     }

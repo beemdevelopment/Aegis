@@ -72,8 +72,8 @@
             android:includeFontPadding="false"
             android:maxLines="1"
             android:text="@string/copied"
-            android:layout_above="@+id/description"
-            android:layout_alignStart="@+id/profile_code"
+            android:layout_alignStart="@+id/description"
+            android:layout_below="@id/description"
             android:textSize="13sp"
             android:visibility="invisible" />
 
