@@ -16,7 +16,7 @@ jobs:
       security-events: write
     steps:
     - name: Checkout
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
     - name: Exclude paths
       # The importers are excluded from analysis, because some of the apps Aegis
       # can import from don't have such great crypto, which will cause false
@@ -24,18 +24,18 @@ jobs:
       run: |
         find app/src/main/java/com/beemdevelopment/aegis/importers ! \( -name AegisImporter.java -o -name "DatabaseImporter*" \) -type f -exec rm -f {} +
         sed -i '/Importer.class/d' app/src/main/java/com/beemdevelopment/aegis/importers/DatabaseImporter.java
-    - uses: actions/setup-java@v3
+    - uses: actions/setup-java@v4
       with:
         java-version: '17'
         distribution: 'temurin'
         cache: 'gradle'
     - name: Initialize CodeQL
-      uses: github/codeql-action/init@v2
+      uses: github/codeql-action/init@v3
       with:
         languages: java
     - name: Build
       run: ./gradlew assembleDebug
     - name: Perform CodeQL Analysis
-      uses: github/codeql-action/analyze@v2
+      uses: github/codeql-action/analyze@v3
       with:
         category: "/language:${{matrix.language}}"

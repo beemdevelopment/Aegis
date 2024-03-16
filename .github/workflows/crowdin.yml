@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     if: github.repository == 'beemdevelopment/Aegis'
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Install crowdin-cli
         run: |
           wget https://github.com/crowdin/crowdin-cli/releases/download/3.7.2/crowdin-cli.zip
