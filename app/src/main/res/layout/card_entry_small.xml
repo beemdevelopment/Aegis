@@ -15,7 +15,6 @@
 
     <LinearLayout
         android:orientation="horizontal"
-        android:background="?attr/colorSurfaceContainerLow"
         android:id="@+id/rlCardEntry"
         android:paddingTop="5dp"
         android:paddingBottom="5dp"
@@ -27,6 +26,8 @@
             android:layout_width="15dp"
             android:layout_height="match_parent"
             android:layout_marginStart="-11dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
             android:backgroundTint="?attr/colorFavorite"
             android:background="@drawable/favorite_indicator" />
 
