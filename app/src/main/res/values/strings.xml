@@ -303,7 +303,10 @@
     <string name="sort_alphabetically_name">Account (A to Z)</string>
     <string name="sort_alphabetically_name_reverse">Account (Z to A)</string>
     <string name="sort_usage_count">Usage count</string>
+    <string name="sort_last_used">Last used</string>
     <string name="sort_custom">Custom</string>
+    <string name="last_used">Last used</string>
+    <string name="last_used_never">never</string>
     <string name="new_group">New group…</string>
     <string name="group">Group</string>
     <string name="group_name_hint">Group name</string>

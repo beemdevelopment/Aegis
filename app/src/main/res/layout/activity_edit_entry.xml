@@ -377,8 +377,22 @@
                             </com.google.android.material.textfield.TextInputLayout>
                         </LinearLayout>
                     </LinearLayout>
+                    <TextView
+                        android:id="@+id/text_last_used"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="16dp"
+                        android:paddingBottom="16dp"
+                        android:layout_centerInParent="true"
+                        android:layout_gravity="bottom|center"
+                        android:textSize="14sp" />
                 </LinearLayout>
+
+
             </RelativeLayout>
+
         </LinearLayout>
     </ScrollView>
+
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

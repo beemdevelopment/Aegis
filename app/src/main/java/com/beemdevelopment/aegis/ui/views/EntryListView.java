@@ -223,6 +223,14 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
         return _adapter.getUsageCounts();
     }
 
+    public void setLastUsedTimestamps(Map<UUID, Long> lastUsedTimestamps) {
+        _adapter.setLastUsedTimestamps(lastUsedTimestamps);
+    }
+
+    public Map<UUID, Long> getLastUsedTimestamps() {
+        return  _adapter.getLastUsedTimestamps();
+    }
+
     public void setSearchFilter(String search) {
         _adapter.setSearchFilter(search);
         _touchCallback.setIsLongPressDragEnabled(_adapter.isDragAndDropAllowed());

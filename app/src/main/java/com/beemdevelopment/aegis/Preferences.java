@@ -235,8 +235,49 @@ public class Preferences {
         setUsageCount(usageCounts);
     }
 
+    public long getLastUsedTimestamp(UUID uuid) {
+        Map<UUID, Long> timestamps = getLastUsedTimestamps();
+        if (timestamps != null && timestamps.size() > 0){
+            Long timestamp = timestamps.get(uuid);
+            return timestamp != null ? timestamp : 0;
+        }
+
+        return 0;
+    }
+
     public void clearUsageCount() {
         _prefs.edit().remove("pref_usage_count").apply();
+    }
+
+    public Map<UUID, Long> getLastUsedTimestamps() {
+        Map<UUID, Long> lastUsedTimestamps = new HashMap<>();
+        String lastUsedTimestamp = _prefs.getString("pref_last_used_timestamps", "");
+        try {
+            JSONArray arr = new JSONArray(lastUsedTimestamp);
+            for (int i = 0; i < arr.length(); i++) {
+                JSONObject json = arr.getJSONObject(i);
+                lastUsedTimestamps.put(UUID.fromString(json.getString("uuid")), json.getLong("timestamp"));
+            }
+        } catch (JSONException ignored) {
+        }
+
+        return lastUsedTimestamps;
+    }
+
+    public void setLastUsedTimestamps(Map<UUID, Long> lastUsedTimestamps) {
+        JSONArray lastUsedTimestampJson = new JSONArray();
+        for (Map.Entry<UUID, Long> entry : lastUsedTimestamps.entrySet()) {
+            JSONObject entryJson = new JSONObject();
+            try {
+                entryJson.put("uuid", entry.getKey());
+                entryJson.put("timestamp", entry.getValue());
+                lastUsedTimestampJson.put(entryJson);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+
+        _prefs.edit().putString("pref_last_used_timestamps", lastUsedTimestampJson.toString()).apply();
     }
 
     public Map<UUID, Integer> getUsageCounts() {
