@@ -16,14 +16,9 @@ import androidx.annotation.StringRes;
 
 import com.beemdevelopment.aegis.BuildConfig;
 import com.beemdevelopment.aegis.R;
-import com.beemdevelopment.aegis.licenses.GlideLicense;
-import com.beemdevelopment.aegis.licenses.ProtobufLicense;
 import com.beemdevelopment.aegis.ui.dialogs.ChangelogDialog;
 import com.beemdevelopment.aegis.ui.dialogs.LicenseDialog;
 import com.google.android.material.color.MaterialColors;
-
-import de.psdev.licensesdialog.LicenseResolver;
-import de.psdev.licensesdialog.LicensesDialog;
 
 public class AboutActivity extends AegisActivity {
 
@@ -53,12 +48,15 @@ public class AboutActivity extends AegisActivity {
         View btnLicense = findViewById(R.id.btn_license);
         btnLicense.setOnClickListener(v -> {
             LicenseDialog.create()
-                    .setTheme(getConfiguredTheme())
+                    .setTheme(_themeHelper.getConfiguredTheme())
                     .show(getSupportFragmentManager(), null);
         });
 
         View btnThirdPartyLicenses = findViewById(R.id.btn_third_party_licenses);
-        btnThirdPartyLicenses.setOnClickListener(v -> showThirdPartyLicenseDialog());
+        btnThirdPartyLicenses.setOnClickListener(v -> {
+            Intent intent = new Intent(this, LicensesActivity.class);
+            startActivity(intent);
+        });
 
         TextView appVersion = findViewById(R.id.app_version);
         appVersion.setText(getCurrentAppVersion());
@@ -89,7 +87,7 @@ public class AboutActivity extends AegisActivity {
         View btnChangelog = findViewById(R.id.btn_changelog);
         btnChangelog.setOnClickListener(v -> {
             ChangelogDialog.create()
-                    .setTheme(getConfiguredTheme())
+                    .setTheme(_themeHelper.getConfiguredTheme())
                     .show(getSupportFragmentManager(), null);
         });
     }
@@ -124,27 +122,6 @@ public class AboutActivity extends AegisActivity {
         mailIntent.putExtra(Intent.EXTRA_SUBJECT, R.string.app_name_full);
 
         startActivity(Intent.createChooser(mailIntent, getString(R.string.email)));
-    }
-
-    private void showThirdPartyLicenseDialog() {
-        String stylesheet = getString(R.string.custom_notices_format_style);
-        String backgroundColor = getThemeColorAsHex(com.google.android.material.R.attr.colorSurfaceContainerLow);
-        String textColor = getThemeColorAsHex(com.google.android.material.R.attr.colorOnSurface);
-        String licenseColor = getThemeColorAsHex(com.google.android.material.R.attr.colorSurfaceContainerLow);
-        String linkColor = getThemeColorAsHex(com.google.android.material.R.attr.colorAccent);
-
-        stylesheet = String.format(stylesheet, backgroundColor, textColor, licenseColor, linkColor);
-
-        LicenseResolver.registerLicense(new GlideLicense());
-        LicenseResolver.registerLicense(new ProtobufLicense());
-
-        new LicensesDialog.Builder(this)
-                .setNotices(R.raw.notices)
-                .setTitle(R.string.third_party_licenses)
-                .setNoticesCssStyle(stylesheet)
-                .setIncludeOwnLicense(true)
-                .build()
-                .show();
     }
 
     private String getThemeColorAsHex(@AttrRes int attributeId) {

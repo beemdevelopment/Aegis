@@ -20,20 +20,17 @@ import androidx.core.view.ViewPropertyAnimatorCompat;
 
 import com.beemdevelopment.aegis.Preferences;
 import com.beemdevelopment.aegis.R;
-import com.beemdevelopment.aegis.Theme;
 import com.beemdevelopment.aegis.ThemeMap;
+import com.beemdevelopment.aegis.helpers.ThemeHelper;
 import com.beemdevelopment.aegis.icons.IconPackManager;
 import com.beemdevelopment.aegis.vault.VaultManager;
 import com.beemdevelopment.aegis.vault.VaultRepositoryException;
-import com.google.android.material.color.DynamicColors;
-import com.google.android.material.color.DynamicColorsOptions;
 import com.google.android.material.color.MaterialColors;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Locale;
-import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -46,6 +43,7 @@ import dagger.hilt.components.SingletonComponent;
 @AndroidEntryPoint
 public abstract class AegisActivity extends AppCompatActivity implements VaultManager.LockListener {
     protected Preferences _prefs;
+    protected ThemeHelper _themeHelper;
 
     @Inject
     protected VaultManager _vaultManager;
@@ -59,6 +57,7 @@ public abstract class AegisActivity extends AppCompatActivity implements VaultMa
     protected void onCreate(Bundle savedInstanceState) {
         // set the theme and locale before creating the activity
         _prefs = EarlyEntryPoints.get(getApplicationContext(), PrefEntryPoint.class).getPreferences();
+        _themeHelper = new ThemeHelper(this, _prefs);
         onSetTheme();
         setLocale(_prefs.getLocale());
         super.onCreate(savedInstanceState);
@@ -111,39 +110,7 @@ public abstract class AegisActivity extends AppCompatActivity implements VaultMa
      * Called when the activity is expected to set its theme.
      */
     protected void onSetTheme() {
-        setTheme(ThemeMap.DEFAULT);
-    }
-
-    /**
-     * Sets the theme of the activity. The actual style that is set is picked from the
-     * given map, based on the theme configured by the user.
-     */
-    protected void setTheme(Map<Theme, Integer> themeMap) {
-        int theme = themeMap.get(getConfiguredTheme());
-        setTheme(theme);
-
-        if (_prefs.isDynamicColorsEnabled()) {
-            DynamicColorsOptions.Builder optsBuilder = new DynamicColorsOptions.Builder();
-            if (getConfiguredTheme().equals(Theme.AMOLED)) {
-                optsBuilder.setThemeOverlay(R.style.ThemeOverlay_Aegis_Dynamic_Amoled);
-            }
-            DynamicColors.applyToActivityIfAvailable(this, optsBuilder.build());
-        }
-    }
-
-    protected Theme getConfiguredTheme() {
-        Theme theme = _prefs.getCurrentTheme();
-
-        if (theme == Theme.SYSTEM || theme == Theme.SYSTEM_AMOLED) {
-            int currentNightMode = getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
-            if (currentNightMode == Configuration.UI_MODE_NIGHT_YES) {
-                theme = theme == Theme.SYSTEM_AMOLED ? Theme.AMOLED : Theme.DARK;
-            } else {
-                theme = Theme.LIGHT;
-            }
-        }
-
-        return theme;
+        _themeHelper.setTheme(ThemeMap.DEFAULT);
     }
 
     protected void setLocale(Locale locale) {

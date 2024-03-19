@@ -1,0 +1,6 @@
+{
+    "uniqueId": "com.github.topjohnwu.libsu:.*::regex",
+    "licenses": [
+        "Apache-2.0"
+    ]
+}
