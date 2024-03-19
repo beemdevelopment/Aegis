@@ -3,9 +3,11 @@ package com.beemdevelopment.aegis.ui.views;
 import static androidx.recyclerview.widget.RecyclerView.NO_POSITION;
 
 import android.annotation.SuppressLint;
+import android.content.res.TypedArray;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -14,10 +16,11 @@ import android.view.animation.LayoutAnimationController;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
+import androidx.annotation.AttrRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.StyleRes;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -50,7 +53,6 @@ import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
-import com.google.android.material.divider.MaterialDividerItemDecoration;
 import com.google.android.material.shape.CornerFamily;
 import com.google.android.material.shape.ShapeAppearanceModel;
 import com.google.common.base.Strings;
@@ -70,8 +72,7 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
     private ItemTouchHelper _touchHelper;
 
     private RecyclerView _recyclerView;
-    private RecyclerView.ItemDecoration _verticalDividerDecoration;
-    private RecyclerView.ItemDecoration _horizontalDividerDecoration;
+    private RecyclerView.ItemDecoration _itemDecoration;
     private ViewPreloadSizeProvider<VaultEntry> _preloadSizeProvider;
     private TotpProgressBar _progressBar;
     private boolean _showProgress;
@@ -255,7 +256,7 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
             _touchCallback.setDragFlags(ItemTouchHelper.UP | ItemTouchHelper.DOWN);
         }
 
-        ((GridLayoutManager)_recyclerView.getLayoutManager()).setSpanCount(mode.getColumnSpan());
+        ((GridLayoutManager)_recyclerView.getLayoutManager()).setSpanCount(mode.getSpanCount());
     }
 
     public void startDrag(RecyclerView.ViewHolder viewHolder) {
@@ -591,28 +592,18 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
     }
 
     private void updateDividerDecoration() {
-        if (_verticalDividerDecoration != null) {
-            _recyclerView.removeItemDecoration(_verticalDividerDecoration);
+        if (_itemDecoration != null) {
+            _recyclerView.removeItemDecoration(_itemDecoration);
         }
 
-        if(_horizontalDividerDecoration != null) {
-            _recyclerView.removeItemDecoration(_horizontalDividerDecoration);
-        }
-
-        float height = _viewMode.getDividerHeight();
-        float width = _viewMode.getDividerWidth();
-        if (_showProgress && height == 0) {
-            _verticalDividerDecoration = new CompactDividerDecoration();
+        float offset = _viewMode.getItemOffset();
+        if (_viewMode == ViewMode.TILES) {
+            _itemDecoration = new TileSpaceItemDecoration(offset);
         } else {
-            _verticalDividerDecoration = new VerticalSpaceItemDecoration(height);
+            _itemDecoration = new VerticalSpaceItemDecoration(offset);
         }
 
-        if (width != 0) {
-            _horizontalDividerDecoration = new TileSpaceItemDecoration(width, height);
-            _recyclerView.addItemDecoration(_horizontalDividerDecoration);
-        } else {
-            _recyclerView.addItemDecoration(_verticalDividerDecoration);
-        }
+        _recyclerView.addItemDecoration(_itemDecoration);
     }
 
     private void updateEmptyState() {
@@ -642,61 +633,18 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
         void onEntryListTouch();
     }
 
-    private void decorateFavoriteEntries(@NonNull View view, @NonNull RecyclerView parent) {
-        int adapterPosition = parent.getChildAdapterPosition(view);
-        int entryIndex = _adapter.translateEntryPosToIndex(adapterPosition);
-        int totalFavorites = _adapter.getShownFavoritesCount();
-
-        if (entryIndex < totalFavorites) {
-            ShapeAppearanceModel model = ((MaterialCardView)view).getShapeAppearanceModel();
-            ShapeAppearanceModel.Builder builder = model.toBuilder();
-            if ((entryIndex == 0 && totalFavorites > 1) || (entryIndex < (totalFavorites - 1))) {
-                builder.setBottomLeftCorner(CornerFamily.ROUNDED, 0);
-                builder.setBottomRightCorner(CornerFamily.ROUNDED, 0);
-            }
-            if (entryIndex > 0) {
-                builder.setTopLeftCorner(CornerFamily.ROUNDED, 0);
-                builder.setTopRightCorner(CornerFamily.ROUNDED, 0);
-            }
-
-            ((MaterialCardView)view).setShapeAppearanceModel(builder.build());
-        }
-    }
-
-    private class CompactDividerDecoration extends MaterialDividerItemDecoration {
-        public CompactDividerDecoration() {
-            super(requireContext(), DividerItemDecoration.VERTICAL);
-            setDividerColorResource(requireContext(), android.R.color.transparent);
-            setLastItemDecorated(false);
-            setDividerThickness(MetricsHelper.convertDpToPixels(requireContext(), 0.5f));
-        }
-
-        @Override
-        public void getItemOffsets(@NonNull Rect outRect, @NonNull View view, @NonNull RecyclerView parent, @NonNull RecyclerView.State state) {
-            if (_adapter.isPositionErrorCard(parent.getChildAdapterPosition(view))) {
-                outRect.top = MetricsHelper.convertDpToPixels(requireContext(), 4);
-                return;
-            }
-
-            if (_adapter.isPositionFooter(parent.getChildAdapterPosition(view))) {
-                int pixels = MetricsHelper.convertDpToPixels(requireContext(), 20);
-                outRect.top = pixels;
-                outRect.bottom = pixels;
-                return;
-            }
-
-            decorateFavoriteEntries(view, parent);
-
-            super.getItemOffsets(outRect, view, parent, state);
-        }
-    }
-
     private class VerticalSpaceItemDecoration extends RecyclerView.ItemDecoration {
-        private final int _height;
+        private final int _offset;
+        private final ShapeAppearanceModel _defaultShapeModel;
 
-        private VerticalSpaceItemDecoration(float dp) {
-            // convert dp to pixels
-            _height = MetricsHelper.convertDpToPixels(requireContext(), dp);
+        private VerticalSpaceItemDecoration(float offset) {
+            _offset = MetricsHelper.convertDpToPixels(requireContext(), offset);
+
+            int shapeAppearanceId = getStyledAttrs(R.style.Widget_Aegis_EntryCardView,
+                    com.google.android.material.R.attr.shapeAppearance);
+
+            _defaultShapeModel = ShapeAppearanceModel.builder(
+                    requireContext(), shapeAppearanceId, 0).build();
         }
 
         @Override
@@ -707,17 +655,21 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
             }
 
             // The error card and the footer always have a top and bottom margin
-            if (_adapter.isPositionErrorCard(adapterPosition)
-                    || _adapter.isPositionFooter(adapterPosition)) {
-                outRect.top = _height;
-                outRect.bottom = _height;
+            if (_adapter.isPositionErrorCard(adapterPosition)) {
+                outRect.top = _viewMode == ViewMode.COMPACT ? _offset * 4 : _offset;
+                outRect.bottom = _offset;
+                return;
+            }
+            if (_adapter.isPositionFooter(adapterPosition)) {
+                outRect.top = _offset * 2;
+                outRect.bottom = _offset;
                 return;
             }
 
             int entryIndex = _adapter.translateEntryPosToIndex(adapterPosition);
             // The first entry should have a top margin, but only if the group chip is not shown and the error card is not shown
             if (entryIndex == 0 && (_groups == null || _groups.isEmpty()) && !_adapter.isErrorCardShown()) {
-                outRect.top = _height;
+                outRect.top = _offset;
             }
 
             // Only non-favorite entries have a bottom margin, except for the final favorite entry
@@ -725,39 +677,58 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
             if (totalFavorites == 0
                     || (entryIndex < _adapter.getShownEntriesCount() && !_adapter.getEntryAtPos(adapterPosition).isFavorite())
                     || totalFavorites == entryIndex + 1) {
-                outRect.bottom = _height;
-            }
-
-            if (totalFavorites > 0) {
-                // If this entry is the last favorite entry in the list, it should always have
-                // a bottom margin, regardless of the view mode
-                if (entryIndex == totalFavorites - 1) {
-                    outRect.bottom = _height;
-                }
-
-                // If this is the first non-favorite entry, it should have a top margin
-                if (entryIndex == totalFavorites) {
-                    outRect.top = _height;
-                }
-
-                decorateFavoriteEntries(view, parent);
+                outRect.bottom = _offset;
             }
 
             // The last entry should never have a bottom margin
             if (_adapter.getShownEntriesCount() == entryIndex + 1) {
                 outRect.bottom = 0;
             }
+
+            decorateFavoriteEntries((MaterialCardView) view, parent);
+        }
+
+        private void decorateFavoriteEntries(@NonNull MaterialCardView view, @NonNull RecyclerView parent) {
+            int adapterPosition = parent.getChildAdapterPosition(view);
+            int entryIndex = _adapter.translateEntryPosToIndex(adapterPosition);
+            int totalFavorites = _adapter.getShownFavoritesCount();
+
+            ShapeAppearanceModel.Builder builder = _defaultShapeModel.toBuilder();
+            if (entryIndex < totalFavorites) {
+                if ((entryIndex == 0 && totalFavorites > 1) || (entryIndex < (totalFavorites - 1))) {
+                    builder.setBottomLeftCorner(CornerFamily.ROUNDED, 0);
+                    builder.setBottomRightCorner(CornerFamily.ROUNDED, 0);
+                }
+                if (entryIndex > 0) {
+                    builder.setTopLeftCorner(CornerFamily.ROUNDED, 0);
+                    builder.setTopRightCorner(CornerFamily.ROUNDED, 0);
+                }
+            }
+
+            view.setShapeAppearanceModel(builder.build());
+            view.setClipToOutline(true);
+        }
+
+        private int getStyledAttrs(@StyleRes int styleId, @AttrRes int attrId) {
+            TypedArray cardAttrs = null;
+            try {
+                cardAttrs = requireContext().obtainStyledAttributes(styleId, new int[]{attrId});
+                TypedValue value = new TypedValue();
+                cardAttrs.getValue(0, value);
+                return value.data;
+            } finally {
+                if (cardAttrs != null) {
+                    cardAttrs.recycle();
+                }
+            }
         }
     }
 
     private class TileSpaceItemDecoration extends RecyclerView.ItemDecoration {
-        private final int _width;
-        private final int _height;
+        private final int _offset;
 
-        private TileSpaceItemDecoration(float width, float height) {
-            // convert dp to pixels
-            _width = MetricsHelper.convertDpToPixels(requireContext(), width);
-            _height = MetricsHelper.convertDpToPixels(requireContext(), height);
+        private TileSpaceItemDecoration(float offset) {
+            _offset = MetricsHelper.convertDpToPixels(requireContext(), offset);
         }
 
         @Override
@@ -767,10 +738,21 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
                 return;
             }
 
-            outRect.left = _width;
-            outRect.right = _width;
-            outRect.top = _height;
-            outRect.bottom = _height;
+            outRect.left = _offset;
+            outRect.right = _offset;
+            outRect.top = _offset;
+            outRect.bottom = _offset;
+
+            if (_adapter.isPositionErrorCard(adapterPosition)
+                    || (isInFirstEntryRow(adapterPosition) && !_adapter.isErrorCardShown())
+                    || _adapter.isPositionFooter(adapterPosition)) {
+                outRect.top *= 2;
+            }
+        }
+
+        private boolean isInFirstEntryRow(int pos) {
+            int index = _adapter.translateEntryPosToIndex(pos);
+            return index >= 0 && index < _viewMode.getSpanCount();
         }
     }
 
