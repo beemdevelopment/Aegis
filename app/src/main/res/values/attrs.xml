@@ -6,6 +6,7 @@
     <attr name="colorOnDark" />
     <attr name="colorSuccess" />
     <attr name="colorOnSurfaceDim" />
+    <attr name="colorCode" />
 
     <declare-styleable name="SlideIndicator">
         <attr name="dot_radius" format="dimension" />

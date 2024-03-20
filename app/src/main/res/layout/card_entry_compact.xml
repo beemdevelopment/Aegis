@@ -122,6 +122,7 @@
                 android:includeFontPadding="false"
                 android:fallbackLineSpacing="false"
                 android:textSize="26sp"
+                android:textColor="?attr/colorCode"
                 android:layout_marginStart="6dp"
                 android:layout_alignParentStart="true"
                 android:layout_marginTop="0dp"

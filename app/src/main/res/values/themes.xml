@@ -53,6 +53,7 @@
         <item name="colorOnDark">@android:color/white</item>
         <item name="colorSuccess">@color/aegis_theme_light_success</item>
         <item name="colorOnSurfaceDim">@color/aegis_theme_light_onSurfaceDim</item>
+        <item name="colorCode">?attr/colorPrimary</item>
         <!-- Intro colors -->
         <item name="dot_color">?attr/colorSurfaceVariant</item>
         <item name="dot_color_selected">?attr/colorOnSurfaceVariant</item>
@@ -121,6 +122,7 @@
         <item name="colorOnDark">@android:color/white</item>
         <item name="colorSuccess">@color/aegis_theme_dark_success</item>
         <item name="colorOnSurfaceDim">@color/aegis_theme_dark_onSurfaceDim</item>
+        <item name="colorCode">?attr/colorPrimary</item>
         <!-- Intro colors -->
         <item name="dot_color">?attr/colorSurfaceVariant</item>
         <item name="dot_color_selected">?attr/colorOnSurfaceVariant</item>
@@ -146,6 +148,7 @@
         <item name="colorSurfaceContainerLowest">#000000</item>
         <item name="colorSurfaceDim">#000000</item>
         <item name="colorSurfaceBright">#000000</item>
+        <item name="colorCode">@android:color/white</item>
     </style>
 
     <style name="ThemeOverlay.Aegis.Dynamic.Amoled" parent="ThemeOverlay.Material3.DynamicColors.Dark">
@@ -159,6 +162,7 @@
         <item name="colorSurfaceContainerLowest">#000000</item>
         <item name="colorSurfaceDim">#000000</item>
         <item name="colorSurfaceBright">#000000</item>
+        <item name="colorCode">@android:color/white</item>
     </style>
 
     <style name="Theme.Aegis.Light" parent="Base.Theme.Aegis.Light">
