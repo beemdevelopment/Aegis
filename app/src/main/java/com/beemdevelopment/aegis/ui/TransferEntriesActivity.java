@@ -152,7 +152,7 @@ public class TransferEntriesActivity extends AegisActivity {
         _entriesCount.setText(getResources().getQuantityString(R.plurals.qr_count, _authInfos.size(), _currentEntryCount, _authInfos.size()));
 
         @ColorInt int backgroundColor = Color.WHITE;
-        if (getConfiguredTheme() == Theme.LIGHT) {
+        if (_themeHelper.getConfiguredTheme() == Theme.LIGHT) {
             TypedValue typedValue = new TypedValue();
             getTheme().resolveAttribute(androidx.appcompat.R.attr.background, typedValue, true);
             backgroundColor = typedValue.data;

@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'com.google.protobuf'
 apply plugin: 'dagger.hilt.android.plugin'
+apply plugin: 'com.mikepenz.aboutlibraries.plugin'
 
 def getCmdOutput = { cmd ->
     def stdout = new ByteArrayOutputStream()
@@ -120,6 +121,17 @@ protobuf {
     }
 }
 
+aboutLibraries {
+    // Tasks for aboutLibraries are not run automatically to keep the build reproducible
+    // To update manually: ./gradlew app:exportLibraryDefinitions -PaboutLibraries.exportPath=src/main/res/raw
+    prettyPrint = true
+    configPath = "app/config"
+    fetchRemoteFunding = false
+    registerAndroidTasks = false
+    exclusionPatterns = [~"javax.annotation.*"]
+    duplicationMode = com.mikepenz.aboutlibraries.plugin.DuplicateMode.MERGE
+}
+
 dependencies {
     def cameraxVersion = '1.3.1'
     def glideVersion = '4.16.0'
@@ -161,9 +173,12 @@ dependencies {
     implementation 'com.google.android.material:material:1.11.0'
     implementation 'com.google.protobuf:protobuf-javalite:3.25.1'
     implementation 'com.google.zxing:core:3.5.2'
+    implementation("com.mikepenz:aboutlibraries:11.1.0") {
+        exclude group: 'com.mikepenz', module: 'aboutlibraries-core'
+    }
+    implementation "com.mikepenz:aboutlibraries-core-android:11.1.0"
     implementation 'com.nulab-inc:zxcvbn:1.8.2'
     implementation 'de.hdodenhof:circleimageview:3.1.0'
-    implementation 'de.psdev.licensesdialog:licensesdialog:2.2.0'
     implementation 'net.lingala.zip4j:zip4j:2.11.5'
     implementation 'info.guardianproject.trustedintents:trustedintents:0.2'
     implementation 'org.bouncycastle:bcprov-jdk18on:1.77'

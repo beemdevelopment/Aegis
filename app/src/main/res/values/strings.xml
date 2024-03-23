@@ -420,22 +420,6 @@
     <string name="backup_plaintext_warning_explanation">This warning is shown because you recently exported an unencrypted copy of the vault. To maintain security of your tokens, we recommend deleting this file once it\'s no longer needed.</string>
     <string name="switch_camera">Switch camera</string>
 
-    <string name="custom_notices_format_style" translatable="false" >
-        body {
-            background-color: #%1$s;
-            color: #%2$s;
-            font-family: sans-serif;
-            overflow-wrap: break-word;
-        }
-        pre {
-            background-color: #%3$s;
-            padding: 1em;
-            white-space: pre-wrap;
-        }
-        a {
-            color: #%4$s;
-        }
-    </string>
     <string name="empty_list">There are no codes to be shown. Start adding entries by tapping the plus sign in the bottom right corner</string>
     <string name="empty_list_title">No entries found</string>
     <string name="empty_group_list">There are no groups to be shown. Add groups in the edit screen of an entry</string>
@@ -474,6 +458,7 @@
     <string name="title_activity_scan_qr">Scan a QR code</string>
     <string name="title_activity_import_entries">Import entries</string>
     <string name="title_activity_assign_icons">Assign icons</string>
+    <string name="title_activity_licenses">Third-party licenses</string>
     <string name="dialog_wipe_entries_title">Wipe entries</string>
     <string name="dialog_wipe_entries_message">Your vault already contains entries. Do you want to remove these entries before importing this file?\n\n<b>In doing so, you will permanently lose access to the existing entries in the vault.</b></string>
     <string name="dialog_wipe_entries_checkbox">Wipe vault contents</string>

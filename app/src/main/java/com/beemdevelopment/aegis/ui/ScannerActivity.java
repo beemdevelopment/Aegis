@@ -89,7 +89,7 @@ public class ScannerActivity extends AegisActivity implements QrCodeAnalyzer.Lis
 
     @Override
     protected void onSetTheme() {
-        setTheme(ThemeMap.FULLSCREEN);
+        _themeHelper.setTheme(ThemeMap.FULLSCREEN);
     }
 
     @Override

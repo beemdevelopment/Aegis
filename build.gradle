@@ -15,6 +15,10 @@ buildscript {
     }
 }
 
+plugins {
+    id 'com.mikepenz.aboutlibraries.plugin' version '11.1.0'
+}
+
 allprojects {
     repositories {
         mavenCentral()
