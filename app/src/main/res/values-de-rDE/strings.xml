@@ -445,7 +445,7 @@
     <string name="importer_help_authy">Gib eine Kopie von <b>/data/data/com.authy.authy/shared_prefs/com.authy.storage.tokens.authenticator.xml</b> an, die sich im internen Speicherverzeichnis von Authy befindet.</string>
     <string name="importer_help_andotp">Gib eine andOTP-Export-/Sicherungsdatei an.</string>
     <string name="importer_help_bitwarden">Gib eine Bitwarden-Export-/Sicherungsdatei an. Verschlüsselte Dateien werden nicht unterstützt.</string>
-    <string name="importer_help_battle_net_authenticator">Gib eine Kopie von <b>/data/data/com.blizzard.bma/shared_prefs/com.blizzard.bma.AUTH_STORE.xml</b> an, die sich im internen Speicherverzeichnis von Battle.net Authenticator befindet.</string>
+    <string name="importer_help_battle_net_authenticator">Gib eine Kopie von <b>/data/data/com.blizzard.messenger/shared_prefs/com.blizzard.messenger.authenticator_preferences.xml</b> an, die sich im internen Speicherverzeichnis von Battle.net Authenticator befindet.</string>
     <string name="importer_help_duo">Gib eine Kopie von <b>/data/data/com.duosecurity.duomobile/files/duokit/accounts.json</b> an, die sich im internen Speicherverzeichnis von DUO befindet.</string>
     <string name="importer_help_freeotp">Gib eine Kopie von <b>/data/data/org.fedorahosted.freeotp/shared_prefs/tokens.xml</b> an, die sich im internen Speicherverzeichnis von FreeOTP (1.X) befindet.</string>
     <string name="importer_help_freeotp_plus">Gib eine FreeOTP+-Exportdatei an.</string>

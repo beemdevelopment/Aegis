@@ -1,7 +1,10 @@
 <?xml version='1.0' encoding='utf-8' standalone='yes' ?>
 <map>
-    <int name="com.blizzard.bma.AUTH_STORE_HASH_VERSION" value="20600015" />
-    <string name="com.blizzard.bma.AUTH_STORE.HASH">09ec179861450806035080d113c5f05e62f67316110eec1bd495a9cdb65a3cb3f93b1f80b80b4507f0c8894e25fb5d494b31692d76b8bc5fac</string>
-    <long name="com.blizzard.bma.AUTH_STORE.CLOCK_OFFSET" value="193" />
-    <long name="com.blizzard.bma.AUTH_STORE.LAST_MODIFIED" value="1668980752290" />
+    <string name="com.blizzard.messenger.AUTHENTICATOR_CREDENTIALS_ENCRYPTION_TYPE">MASK</string>
+    <boolean name="com.blizzard.messenger.AUTHENTICATOR_SETUP_POSTPONE_LOGIN" value="false" />
+    <string name="com.blizzard.messenger.AUTHENTICATOR_DEVICE_SECRET">09ec179861450806035080d113c5f05e62f67316110eec1bd495a9cdb65a3cb3f93b1f80b80b4507</string>
+    <string name="com.blizzard.messenger.PREF_AUTHENTICATION_PROVIDER_HOST_URL">oauth.battle.net</string>
+    <string name="com.blizzard.messenger.AUTHENTICATOR_BGS_REGION_CODE">EU</string>
+    <string name="com.blizzard.messenger.AUTHENTICATOR_SERIAL">6cdd0ace62165b48525585d508c7f35832</string>
+    <long name="com.blizzard.messenger.AUTHENTICATOR_SERVER_TIME_DIFF" value="15" />
 </map>

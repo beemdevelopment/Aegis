@@ -445,7 +445,7 @@
     <string name="importer_help_authy">Anna kopio tiedostosta <b>/data/data/com.authy.authy/shared_prefs/com.authy.storage.tokens.authenticator.xml</b>, joka sijaitsee Authyn sisäisessä tallennushakemistossa.</string>
     <string name="importer_help_andotp">Anna andOTP:n vienti-/varmuuskopiotiedosto.</string>
     <string name="importer_help_bitwarden">Anna Bitwardenin vienti-/varmuuskopiotiedosto. Salattuja tiedostoja ei tueta.</string>
-    <string name="importer_help_battle_net_authenticator">Anna kopio tiedostosta <b>/data/data/com.blizzard.bma/shared_prefs/com.blizzard.bma.AUTH_STORE.xml</b>, joka sijaitsee Battle.net Authenticatorin sisäisessä tallennushakemistossa.</string>
+    <string name="importer_help_battle_net_authenticator">Anna kopio tiedostosta <b>/data/data/com.blizzard.messenger/shared_prefs/com.blizzard.messenger.authenticator_preferences.xml</b>, joka sijaitsee Battle.net Authenticatorin sisäisessä tallennushakemistossa.</string>
     <string name="importer_help_duo">Anna kopio tiedostosta <b>/data/data/com.duosecurity.duomobile/files/duokit/accounts.json</b>, joka sijaitsee DUO:n sisäisessä tallennushakemistossa.</string>
     <string name="importer_help_freeotp">Anna kopio tiedostosta <b>/data/data/org.fedorahosted.freeotp/shared_prefs/tokens.xml</b>, joka sijaitsee FreeOTP:n (1.x) sisäisessä tallennushakemistossa.</string>
     <string name="importer_help_freeotp_plus">Anna FreeOTP+:n vientitiedosto.</string>

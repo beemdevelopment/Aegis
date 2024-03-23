@@ -435,7 +435,7 @@
     <string name="importer_help_authy">Cung cấp một bản sao của <b>/data/data/com.authy.authy/shared_prefs/com.authy.storage.tokens.authenticator.xml</b>, nằm trong thư mục bộ nhớ trong của Authy.</string>
     <string name="importer_help_andotp">Cung cấp một file xuất/sao lưu andOTP.</string>
     <string name="importer_help_bitwarden">Hãy chọn file xuất/sao lưu của Bitwarden. Tệp mã hoá không được hỗ trợ.</string>
-    <string name="importer_help_battle_net_authenticator">Cung cấp một bản sao <b>/data/data/com.blizzard.bma/shared_prefs/com.blizzard.bma.AUTH_STORE.xml</b>, nằm trong thư mục lưu trữ nội bộ của Battle.net Authenticator.</string>
+    <string name="importer_help_battle_net_authenticator">Cung cấp một bản sao <b>/data/data/com.blizzard.messenger/shared_prefs/com.blizzard.messenger.authenticator_preferences.xml</b>, nằm trong thư mục lưu trữ nội bộ của Battle.net Authenticator.</string>
     <string name="importer_help_duo">Cung cấp một bản sao của <b>/data/data/com.duosecurity.duomobile/files/duokit/accounts.json</b>, nằm trong thư mục bộ nhớ trong của DUO.</string>
     <string name="importer_help_freeotp">Cung cấp một bản sao của <b>/data/data/org.fedorahosted.freeotp/shared_prefs/tokens.xml</b>, nằm ở thư mục của FreeOTP (1.x) trên bộ nhớ trong.</string>
     <string name="importer_help_freeotp_plus">Cung cấp một file xuất FreeOTP+.</string>

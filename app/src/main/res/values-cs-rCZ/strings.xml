@@ -469,7 +469,7 @@
     <string name="importer_help_authy">Dodejte kopii <b>/data/data/com.authy.authy/shared_prefs/com.authy.storage.tokens.authenticator.xml</b>, která se nachází v interním úložišti Authy.</string>
     <string name="importer_help_andotp">Dodejte soubor exportu/zálohy andOTP.</string>
     <string name="importer_help_bitwarden">Vyberte soubor exportu/zálohy Bitwardenu. Šifrované soubory nejsou podporovány.</string>
-    <string name="importer_help_battle_net_authenticator">Dodejte kopii <b>/data/data/com.blizzard.bma/shared_prefs/com.blizzard.bma.AUTH_STORE.xml</b>, která se nachází v interním úložišti Battle.net Authenticator.</string>
+    <string name="importer_help_battle_net_authenticator">Dodejte kopii <b>/data/data/com.blizzard.messenger/shared_prefs/com.blizzard.messenger.authenticator_preferences.xml</b>, která se nachází v interním úložišti Battle.net Authenticator.</string>
     <string name="importer_help_duo">Dodejte kopii <b>/data/data/com.duosecurity.duomobile/files/duokit/accounts.json</b>, která se nachází v interním úložišti DUO.</string>
     <string name="importer_help_freeotp">Dodejte kopii <b>/data/data/org.fedorahosted.freeotp/shared_prefs/tokens.xml</b>, která se nachází v interním úložišti FreeOTP (1.x).</string>
     <string name="importer_help_freeotp_plus">Dodjete soubor exportu FreeOTP+.</string>

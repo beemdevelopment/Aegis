@@ -444,7 +444,7 @@
     <string name="importer_help_authy">Fournir une copie de <b>/data/com.authy.authy/shared_prefs/com.authy.storage.tokens.authenticator.xml</b>, situé dans le répertoire de stockage interne d\'Authy.</string>
     <string name="importer_help_andotp">Fournir un export/sauvegarde andOTP.</string>
     <string name="importer_help_bitwarden">Fournir un export/sauvegarde Bitwarden. Les fichiers chiffrés ne sont pas pris en charge.</string>
-    <string name="importer_help_battle_net_authenticator">Fournir une copie de <b>/data/data/com.blizzard.bma/shared_prefs/com.blizzard.bma.AUTH_STORE.xml</b>, situé dans le répertoire de stockage interne de Battle.net Authenticator.</string>
+    <string name="importer_help_battle_net_authenticator">Fournir une copie de <b>/data/data/com.blizzard.messenger/shared_prefs/com.blizzard.messenger.authenticator_preferences.xml</b>, situé dans le répertoire de stockage interne de Battle.net Authenticator.</string>
     <string name="importer_help_duo">Fournir une copie de <b>/data/data/com.duosecurity.duomobile/files/duokit/accounts.json</b>, situé dans le répertoire de stockage interne de DUO.</string>
     <string name="importer_help_freeotp">Fournir une copie de <b>/data/data/org.fedorahosted.freeotp/shared_prefs/tokens.xml</b>, situé dans le répertoire de stockage interne de FreeOTP (1.x).</string>
     <string name="importer_help_freeotp_plus">Fournir un export FreeOTP+.</string>

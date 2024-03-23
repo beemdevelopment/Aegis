@@ -444,7 +444,7 @@
     <string name="importer_help_authy">Furnizează o copie a <b>/data/data/com.authy.authy/shared_prefs/com.authy.storage.tokens.authenticator.xml</b>, localizată în directorul de stocare internă al Authy.</string>
     <string name="importer_help_andotp">Furnizați un fişier de export/copie de rezervă andOTP.</string>
     <string name="importer_help_bitwarden">Furnizează un fișier de backup din aplicația Bitwarden. Fișierele criptate nu sunt suportate.</string>
-    <string name="importer_help_battle_net_authenticator">Furnizează o copie a <b>/data/data/com.blizzard.bma/shared_prefs/com.blizzard.bma.AUTH_STORE.xml</b>, localizată în directorul de stocare internă al Battle.net Authenticator.</string>
+    <string name="importer_help_battle_net_authenticator">Furnizează o copie a <b>/data/data/com.blizzard.messenger/shared_prefs/com.blizzard.messenger.authenticator_preferences.xml</b>, localizată în directorul de stocare internă al Battle.net Authenticator.</string>
     <string name="importer_help_duo">Furnizează o copie a <b>/data/data/com.duosecurity.duomobile/files/duokit/accounts.json</b>, localizată în dosarul din memoria internă al DUO.</string>
     <string name="importer_help_freeotp">Furnizează o copie a <b>/data/data/org.fedorahosted.freeotp/shared_prefs/tokens.xml</b>, localizată în dosarul din stocarea internă a FreeOTP (1.x).</string>
     <string name="importer_help_freeotp_plus">Furnizează un fișier de export FreeOTP+.</string>

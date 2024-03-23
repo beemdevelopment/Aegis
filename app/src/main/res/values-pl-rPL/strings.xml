@@ -469,7 +469,7 @@
     <string name="importer_help_andotp">Dostarcz plik andOTP eksportu/kopii zapasowej.</string>
     <string name="importer_help_bitwarden">Dostarcz plik kopii zapasowej Bitwarden. Zaszyfrowane pliki nie są obsługiwane.</string>
     <string name="importer_help_battle_net_authenticator">Dostarcz kopię
-<b>/data/data/com.blizzard.bma/shared_prefs/com.blizzard.bma.AUTH_STORE.xml</b>, znajdującą się w wewnętrznym katalogu przechowywania danych aplikacji Battle.net Authenticator.</string>
+<b>/data/data/com.blizzard.messenger/shared_prefs/com.blizzard.messenger.authenticator_preferences.xml</b>, znajdującą się w wewnętrznym katalogu przechowywania danych aplikacji Battle.net Authenticator.</string>
     <string name="importer_help_duo">Dostarcz kopię <b>/data/data/com.duosecurity.duomobile/files/duokit/accounts.json</b>, znajdującą się w wewnętrznym katalogu pamięci DUO.</string>
     <string name="importer_help_freeotp">Dostarcz kopię <b>/data/data/org.fedorahosted.freeotp/shared_prefs/tokens.xml</b>, znajdującą się w wewnętrznym katalogu pamięci FreeOTP (1.x).</string>
     <string name="importer_help_freeotp_plus">Dostarcz plik eksportu FreeOTP+.</string>

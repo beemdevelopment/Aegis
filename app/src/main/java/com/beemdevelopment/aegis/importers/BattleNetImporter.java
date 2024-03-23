@@ -11,6 +11,7 @@ import com.beemdevelopment.aegis.otp.OtpInfoException;
 import com.beemdevelopment.aegis.otp.TotpInfo;
 import com.beemdevelopment.aegis.util.PreferenceParser;
 import com.beemdevelopment.aegis.vault.VaultEntry;
+import com.google.common.base.Strings;
 import com.topjohnwu.superuser.io.SuFile;
 
 import org.xmlpull.v1.XmlPullParser;
@@ -18,12 +19,10 @@ import org.xmlpull.v1.XmlPullParserException;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.List;
 
 public class BattleNetImporter extends DatabaseImporter {
-    private static final String _pkgName = "com.blizzard.bma";
-    private static final String _subPath = "shared_prefs/com.blizzard.bma.AUTH_STORE.xml";
+    private static final String _pkgName = "com.blizzard.messenger";
+    private static final String _subPath = "shared_prefs/com.blizzard.messenger.authenticator_preferences.xml";
 
     private static final byte[] _key;
 
@@ -46,71 +45,80 @@ public class BattleNetImporter extends DatabaseImporter {
 
     @Override
     protected State read(InputStream stream, boolean isInternal) throws DatabaseImporterException {
+        final String serialKey = "com.blizzard.messenger.AUTHENTICATOR_SERIAL";
+        final String secretKey = "com.blizzard.messenger.AUTHENTICATOR_DEVICE_SECRET";
+
         try {
             XmlPullParser parser = Xml.newPullParser();
             parser.setFeature(XmlPullParser.FEATURE_PROCESS_NAMESPACES, false);
             parser.setInput(stream, null);
             parser.nextTag();
 
-            List<String> entries = new ArrayList<>();
+            String serial = "";
+            String secretValue = null;
             for (PreferenceParser.XmlEntry entry : PreferenceParser.parse(parser)) {
-                if (entry.Name.equals("com.blizzard.bma.AUTH_STORE.HASH")) {
-                    entries.add(entry.Value);
-                    break;
+                if (entry.Name.equals(secretKey)) {
+                    secretValue = entry.Value;
+                } else if (entry.Name.equals(serialKey)) {
+                    serial = entry.Value;
                 }
             }
-            return new BattleNetImporter.State(entries);
+
+            if (secretValue == null) {
+                throw new DatabaseImporterException(String.format("Key not found: %s", secretKey));
+            }
+
+            return new BattleNetImporter.State(serial, secretValue);
         } catch (XmlPullParserException | IOException e) {
             throw new DatabaseImporterException(e);
         }
     }
 
     public static class State extends DatabaseImporter.State {
-        private final List<String> _entries;
+        private final String _serial;
+        private final String _secretValue;
 
-        public State(List<String> entries) {
+        public State(String serial, String secretValue) {
             super(false);
-            _entries = entries;
+            _serial = serial;
+            _secretValue = secretValue;
         }
 
         @Override
         public Result convert() {
             Result result = new Result();
 
-            for (String str : _entries) {
-                try {
-                    VaultEntry entry = convertEntry(str);
-                    result.addEntry(entry);
-                } catch (DatabaseImporterEntryException e) {
-                    result.addError(e);
-                }
+            try {
+                VaultEntry entry = convertEntry(_serial, _secretValue);
+                result.addEntry(entry);
+            } catch (DatabaseImporterEntryException e) {
+                result.addError(e);
             }
 
             return result;
         }
 
-        private static VaultEntry convertEntry(String hashString) throws DatabaseImporterEntryException {
+        private static VaultEntry convertEntry(String serial, String secretString) throws DatabaseImporterEntryException {
             try {
-                byte[] hash = Hex.decode(hashString);
-                if (hash.length != _key.length) {
-                    throw new DatabaseImporterEntryException(String.format("Unexpected hash length: %d", hash.length), hashString);
+                if (!Strings.isNullOrEmpty(serial)) {
+                    serial = unmask(serial);
                 }
-
-                StringBuilder sb = new StringBuilder();
-                for (int i = 0; i < hash.length; i++) {
-                    char c = (char) (hash[i] ^ _key[i]);
-                    sb.append(c);
-                }
-
-                final int secretLen = 40;
-                byte[] secret = Hex.decode(sb.substring(0, secretLen));
-                String serial = sb.substring(secretLen);
-
+                byte[] secret = Hex.decode(unmask(secretString));
                 OtpInfo info = new TotpInfo(secret, OtpInfo.DEFAULT_ALGORITHM, 8, TotpInfo.DEFAULT_PERIOD);
                 return new VaultEntry(info, serial, "Battle.net");
             } catch (OtpInfoException | EncodingException e) {
-                throw new DatabaseImporterEntryException(e, hashString);
+                throw new DatabaseImporterEntryException(e, secretString);
             }
+        }
+
+        private static String unmask(String s) throws EncodingException {
+            byte[] ds = Hex.decode(s);
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < ds.length; i++) {
+                char c = (char) (ds[i] ^ _key[i]);
+                sb.append(c);
+            }
+            return sb.toString();
         }
     }
 }
