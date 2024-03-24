@@ -39,8 +39,10 @@ public class IconHolder extends RecyclerView.ViewHolder {
 
     public void loadIcon(Context context) {
         if (_isCustom) {
+            Glide.with(context).clear(_imageView);
             int tint = MaterialColors.getColor(itemView, com.google.android.material.R.attr.colorOnSurfaceVariant);
-            GlideHelper.loadResource(Glide.with(context), R.drawable.ic_outline_add_24, tint, _imageView);
+            _imageView.setColorFilter(tint);
+            _imageView.setImageResource(R.drawable.ic_outline_add_24);
         } else {
             GlideHelper.loadIconFile(Glide.with(context), _iconFile, _iconType, _imageView);
         }

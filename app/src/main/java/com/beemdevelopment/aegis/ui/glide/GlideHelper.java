@@ -4,10 +4,8 @@ import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.widget.ImageView;
 
-import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.RawRes;
 
 import com.amulyakhare.textdrawable.TextDrawable;
 import com.beemdevelopment.aegis.helpers.TextDrawableHelper;
@@ -36,21 +34,6 @@ public class GlideHelper {
 
     public static void loadIcon(RequestManager rm, IconPack.Icon icon, ImageView targetView) {
         loadIconFile(rm, icon.getFile(), icon.getIconType(), targetView);
-    }
-
-    public static void loadResource(RequestManager rm, @RawRes @DrawableRes @Nullable Integer resourceId, ImageView targetView) {
-        loadResource(rm, resourceId, null, targetView);
-    }
-
-    public static void loadResource(RequestManager rm, @RawRes @DrawableRes @Nullable Integer resourceId, @Nullable Integer tint, ImageView targetView) {
-        setCommonOptions(rm.load(resourceId), null)
-                .listener(new ViewReadyListener<>(view -> {
-                    if (tint != null) {
-                        view.setColorFilter(tint);
-                    }
-                    setLayerType(targetView, IconType.INVALID);
-                }))
-                .into(targetView);
     }
 
     public static void loadEntryIcon(RequestManager rm, VaultEntry entry, ImageView targetView) {
