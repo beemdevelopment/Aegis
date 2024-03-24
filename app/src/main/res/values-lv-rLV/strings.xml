@@ -457,7 +457,7 @@
     <string name="importer_help_authy">Padot <b>/data/data/com.authy.authy/shared_prefs/com.authy.storage.tokens.authenticator.xml</b> kopiju, kas atrodas iekšējās krātuves Authy mapē.</string>
     <string name="importer_help_andotp">Padot andOTP izdošanas/rezerves kopijas datni.</string>
     <string name="importer_help_bitwarden">Padot Bitwarden izdošanas/rezerves kopijas datni. Šifrētas datnes netiek atbalstītas.</string>
-    <string name="importer_help_battle_net_authenticator">Padot <b>/data/data/com.blizzard.bma/shared_prefs/com.blizzard.bma.AUTH_STORE.xml</b> kopiju, kas atrodas iekšējās krātuves Battle.net Authenticator mapē.</string>
+    <string name="importer_help_battle_net_authenticator">Padot <b>/data/data/com.blizzard.messenger/shared_prefs/com.blizzard.messenger.authenticator_preferences.xml</b> kopiju, kas atrodas iekšējās krātuves Battle.net Authenticator mapē.</string>
     <string name="importer_help_duo">Padot <b>/data/data/com.duosecurity.duomobile/files/duokit/accounts.json</b> kopiju, kas atrodas iekšējās krātuves DUO mapē.</string>
     <string name="importer_help_freeotp">Padot <b>/data/data/org.fedorahosted.freeotp/shared_prefs/tokens.xml</b> kopiju, kas atrodas iekšējās krātuves FreeOTP (1.x) mapē.</string>
     <string name="importer_help_freeotp_plus">Padot FreeOTP+ izdošanas datni.</string>

@@ -450,7 +450,7 @@
     <string name="importer_help_authy">Leverje in kopy oan fan <b>/data/data/com.authy.authy/shared_prefs/com.authy.storage.tokens.authenticator.xml</b>, pleatst yn de ynterne ûnthâldmap fan Authy.</string>
     <string name="importer_help_andotp">Leverje in andOTP-eksport-/reservekopybestân oan.</string>
     <string name="importer_help_bitwarden">Leverje in Bitwarden-eksport-/reservekopybestân oan. Fersifere bestannen wurde net stipe.</string>
-    <string name="importer_help_battle_net_authenticator">Leverje in kopy oan fan <b>/data/data/com.blizzard.bma/shared_prefs/com.blizzard.bma.AUTH_STORE.xml</b>, pleatst yn de ynterne ûnthâldmap fan Battle.net Authenticator.</string>
+    <string name="importer_help_battle_net_authenticator">Leverje in kopy oan fan <b>/data/data/com.blizzard.messenger/shared_prefs/com.blizzard.messenger.authenticator_preferences.xml</b>, pleatst yn de ynterne ûnthâldmap fan Battle.net Authenticator.</string>
     <string name="importer_help_duo">Leverje in kopy oan fan <b>/data/data/com.duosecurity.duomobile/files/duokit/accounts.json</b>, pleatst yn de ynterne ûnthâldmap fan DUO.</string>
     <string name="importer_help_freeotp">Leverje in kopy oan fan <b>/data/data/org.fedorahosted.freeotp/shared_prefs/tokens.xml</b>, pleatst yn de ynterne ûnthâldmap fan FreeOTP (1.x).</string>
     <string name="importer_help_freeotp_plus">Leverje in FreeOTP-eksportbestân oan.</string>

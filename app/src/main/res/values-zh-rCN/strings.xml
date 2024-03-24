@@ -433,7 +433,7 @@
     <string name="importer_help_authy">提供 <b>/data/data/com.authy.authy/shared_prefs/com.authy.storage.tokens.authenticator.xml</b> 的一个副本，位于 Authy 的内部存储目录。</string>
     <string name="importer_help_andotp">提供 andOTP 导出/备份文件。</string>
     <string name="importer_help_bitwarden">提供 Bitwarden 导出 / 备份文件。不支持加密的文件。</string>
-    <string name="importer_help_battle_net_authenticator">提供<b>/data/data/com.blizzard.bma/shared_prefs/com.blizzard.bma.AUTH_STORE.xml</b> 的拷贝, 位于Battle.net Authenticator内部存储目录。</string>
+    <string name="importer_help_battle_net_authenticator">提供<b>/data/data/com.blizzard.messenger/shared_prefs/com.blizzard.messenger.authenticator_preferences.xml</b> 的拷贝, 位于Battle.net Authenticator内部存储目录。</string>
     <string name="importer_help_duo">提供 <b>/data/data/com.duosecurity.duomobile/files/duokit/accounts.json</b> 的一个副本，位于 DUO 的内部存储目录。</string>
     <string name="importer_help_freeotp">提供 <b>/data/data/org.fedorahosted.freeotp/shared_prefs/tokens.xml</b> 的一个副本，位于 FreeOTP (1.x) 内部存储目录。</string>
     <string name="importer_help_freeotp_plus">提供 FreeOTP+ 导出文件。</string>

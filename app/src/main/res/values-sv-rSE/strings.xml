@@ -445,7 +445,7 @@
     <string name="importer_help_authy">Tillhandahåll en kopia av <b>/data/data/com.authy.authy/shared_prefs/com.authy.storage.tokens.authenticator.xml</b>, som finns i den interna lagringskatalogen för Authy.</string>
     <string name="importer_help_andotp">Tillhandahåll en export-/säkerhetskopieringsfil från andOTP.</string>
     <string name="importer_help_bitwarden">Tillhandahåll en export-/säkerhetskopieringsfil från Bitwarden. Krypterade filer stöds ej.</string>
-    <string name="importer_help_battle_net_authenticator">Tillhandahåll en kopia av <b>/data/data/com.blizzard.bma/shared_prefs/com.blizzard.bma.AUTH_STORE.xml</b>, som finns i den interna lagringskatalogen för Battle.net Authenticator.</string>
+    <string name="importer_help_battle_net_authenticator">Tillhandahåll en kopia av <b>/data/data/com.blizzard.messenger/shared_prefs/com.blizzard.messenger.authenticator_preferences.xml</b>, som finns i den interna lagringskatalogen för Battle.net Authenticator.</string>
     <string name="importer_help_duo">Tillhandahåll en kopia av <b>/data/data/com.duosecurity.duomobile/files/duokit/accounts.json</b>, som finns i den interna lagringskatalogen för DUO.</string>
     <string name="importer_help_freeotp">Tillhandahåll en kopia av <b>/data/data/org.fedorahosted.freeotp/shared_prefs/tokens.xml</b>, som finns i den interna lagringskatalogen för FreeOTP (1.x).</string>
     <string name="importer_help_freeotp_plus">Tillhandahåll en exportfil från FreeOTP+.</string>

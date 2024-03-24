@@ -157,7 +157,7 @@
         <package android:name="com.valvesoftware.android.steam.community" />
         <package android:name="com.authenticator.authservice2" />
         <package android:name="com.duosecurity.duomobile" />
-        <package android:name="com.blizzard.bma" />
+        <package android:name="com.blizzard.messenger" />
     </queries>
 
 </manifest>

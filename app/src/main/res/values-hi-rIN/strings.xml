@@ -414,7 +414,7 @@
     <string name="importer_help_authy">Authy की आंतरिक संग्रहण निर्देशिका में स्थित <b>/data/data/com.authy.authy/shared_prefs/com.authy.storage.tokens.authenticator.xml</b> की एक प्रति प्रदान करें।</string>
     <string name="importer_help_andotp">एक andOTP निर्यात/बैकअप फ़ाइल की आपूर्ति करें।</string>
     <string name="importer_help_bitwarden">एक बिटवर्डन निर्यात/बैकअप फ़ाइल की आपूर्ति करें। एन्क्रिप्टेड फ़ाइलें समर्थित नहीं हैं।</string>
-    <string name="importer_help_battle_net_authenticator">इंटरनल स्टोरेज की Battle.net ऑथेंटिकेटर डायरेक्ट्री में स्थित <b>/data/data/com.blizzard.bma/shared_prefs/com.blizzard.bma.AUTH_STORE.xml</b> की एक प्रति प्रदान करें।</string>
+    <string name="importer_help_battle_net_authenticator">इंटरनल स्टोरेज की Battle.net ऑथेंटिकेटर डायरेक्ट्री में स्थित <b>/data/data/com.blizzard.messenger/shared_prefs/com.blizzard.messenger.authenticator_preferences.xml</b> की एक प्रति प्रदान करें।</string>
     <string name="importer_help_duo">DUO की आंतरिक संग्रहण निर्देशिका में स्थित <b>/data/data/com.duosecurity.duomobile/files/duokit/accounts.json</b> की एक प्रति प्रदान करें।</string>
     <string name="importer_help_freeotp_plus">एक फ्रीओटीपी+ निर्यात फ़ाइल की आपूर्ति करें।</string>
     <string name="importer_help_google_authenticator"><b>केवल गूगल प्रमाणक v5.10 और पूर्व की डेटाबेस फ़ाइलें समर्थित हैं</b>।\n\n<b>/data/data/com.google.android.apps.authenticator2/databases/databases</b> की एक प्रति प्रदान करें, गूगल प्रमाणक की आंतरिक संग्रहण निर्देशिका में स्थित है।</string>

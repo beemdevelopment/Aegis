@@ -492,7 +492,7 @@
     <string name="importer_help_authy">توفير نسخة من <b> /data/data/com.authy.authy/shared_prefs/com.authy.storage.tokens.authenticator.xml</b>، الموجود في دليل التخزين الداخلي لـ Authy.</string>
     <string name="importer_help_andotp">توفير مِلَفّ تصدير / نسخ احتياطي andOTP.</string>
     <string name="importer_help_bitwarden">توفير مِلَفّ تصدير / نسخ احتياطي لـ Bitwarden. الملفات المشفرة غير مدعومة.</string>
-    <string name="importer_help_battle_net_authenticator">قم بتوفير نسخة من <b>/data/data/com.blizzard.bma/shared_prefs/com.blizzard.bma.AUTH_STORE.xml</b>، الموجود في مجلد المساحة الداخلية لمصادق Battle.net.</string>
+    <string name="importer_help_battle_net_authenticator">قم بتوفير نسخة من <b>/data/data/com.blizzard.messenger/shared_prefs/com.blizzard.messenger.authenticator_preferences.xml</b>، الموجود في مجلد المساحة الداخلية لمصادق Battle.net.</string>
     <string name="importer_help_duo">توفير نسخة من <b>/data/data/com.duosecurity.duomobile/files/duokit/accounts.json</b>، الموجودة في دليل التخزين الداخلي لـ DUO.</string>
     <string name="importer_help_freeotp">قم بتوفير نسخة من <b>/data/data/org.fedorahosted.freeotp/shared_prefs/tokens.xml</b>، الموجود في مجلد أو دليل التخزين الداخلي لـ FreeOTP (1.x).</string>
     <string name="importer_help_freeotp_plus">توفير ملف تصدير FreeOTP +.</string>
