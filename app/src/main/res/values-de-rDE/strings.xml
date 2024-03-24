@@ -26,13 +26,15 @@
     <string name="pref_section_appearance_summary">Das Design, die Sprache und andere Einstellungen anpassen, die das Erscheinungsbild der App betreffen.</string>
     <string name="pref_section_security_title">Sicherheit</string>
     <string name="pref_section_security_summary">Verschlüsselung, biometrisches Entsperren, automatisches Sperren und andere Sicherheitseinstellungen konfigurieren.</string>
-    <string name="pref_section_import_export_title">Import &amp; Export</string>
-    <string name="pref_section_import_export_summary">Sicherungskopien von Aegis oder anderen Authentifizierungs-Apps importieren und Exporte der Aegis-Datenbank erstellen.</string>
+    <string name="pref_section_import_export_title">Importieren &amp; exportieren</string>
+    <string name="pref_section_import_export_summary">Sicherungskopien von Aegis oder anderen Authentifizierungs-Apps importieren und Exportdateien der Aegis-Datenbank erstellen.</string>
     <string name="pref_section_backups_title">Sicherungen</string>
     <string name="pref_section_backups_summary">Automatisierte Sicherungen an einem Speicherort deiner Wahl oder das Verwenden des Cloud-Sicherungssystems von Android einrichten.</string>
     <string name="pref_section_icon_packs">Symbolpakete</string>
     <string name="pref_section_icon_packs_summary">Symbolpakete verwalten und importieren.</string>
     <string name="pref_select_theme_title">Design</string>
+    <string name="pref_dynamic_colors_title">Dynamische Farben</string>
+    <string name="pref_dynamic_colors_summary">Overlay basierend auf den Farben deines Android-Designs anwenden</string>
     <string name="pref_view_mode_title">Darstellungsstil</string>
     <string name="pref_lang_title">Sprache</string>
     <string name="pref_show_icons_title">Symbole anzeigen</string>
@@ -89,10 +91,10 @@
     <string name="pref_auto_lock_type_back_button">Die Zurück-Taste gedrückt wird</string>
     <string name="pref_auto_lock_type_minimize">Die App minimiert wird</string>
     <string name="pref_auto_lock_type_device_lock">Das Gerät gesperrt wird</string>
-    <string name="pref_backup_password_category">Sicherung &amp; Export</string>
-    <string name="pref_backup_password_title">Eigenes Passwort für Sicherung &amp; Export</string>
-    <string name="pref_backup_password_summary">Wenn diese Option aktiviert ist, kann das Passwort, das zum Entsperren der App verwendet wird, nicht mehr zum Entschlüsseln von Sicherungen und Exporten verwendet werden.</string>
-    <string name="pref_backup_password_change_title">Passwort für Sicherungen &amp; Export ändern</string>
+    <string name="pref_backup_password_category">Sichern &amp; exportieren</string>
+    <string name="pref_backup_password_title">Eigenes Passwort für »Sichern &amp; exportieren«</string>
+    <string name="pref_backup_password_summary">Wenn diese Option aktiviert ist, kann das Passwort, das zum Entsperren der App verwendet wird, nicht mehr zum Entschlüsseln von Sicherungen und Exportdateien verwendet werden.</string>
+    <string name="pref_backup_password_change_title">Passwort für »Sichern &amp; exportieren« ändern</string>
     <string name="pref_backup_password_change_summary">Gib ein neues Passwort ein, mit dem die Datenbank während der Sicherung und des Exportierens verschlüsselt wird.</string>
     <string name="pref_encryption_title">Verschlüsselung</string>
     <string name="pref_encryption_summary">Datenbank verschlüsseln und sie mittels eines Passworts oder biometrischen Daten entsperren</string>
@@ -103,7 +105,7 @@
     <string name="export_encrypted">Datenbank verschlüsseln</string>
     <string name="export_help">Mit dieser Aktion wird die Datenbank aus dem internen Speicher von Aegis exportiert. Wähle das Format aus, in dem der Export erfolgen soll:</string>
     <string name="export_warning_unencrypted">Du bist dabei, eine unverschlüsselte Kopie deiner Aegis-Datenbank zu exportieren. <b>Dies wird nicht empfohlen</b>.</string>
-    <string name="export_warning_password">Exporte werden mit einem separaten Passwort verschlüsselt, das in den Sicherheitseinstellungen konfiguriert wurde.</string>
+    <string name="export_warning_password">Exportdateien werden mit einem separaten Passwort verschlüsselt, das in den Sicherheitseinstellungen konfiguriert wurde.</string>
     <string name="understand_risk_accept">Ich bin mir des Risikos bewusst</string>
     <string name="export_format_aegis">Aegis (.JSON)</string>
     <string name="export_format_google_auth_uri">Textdatei (.TXT)</string>
@@ -116,7 +118,7 @@
         <item quantity="other">%d Gruppen ausgewählt</item>
     </plurals>
     <string name="export_no_groups_selected">Keine Gruppen zum Exportieren ausgewählt</string>
-    <string name="export_html_title" comment="The title of an HTML export document">Aegis Authenticator-Export</string>
+    <string name="export_html_title" comment="The title of an HTML export document">Aegis-Authenticator-Exportdatei</string>
     <string name="choose_authentication_method">Sicherheit</string>
     <string name="authentication_method_explanation">Aegis ist eine auf Sicherheit ausgerichtete 2FA-App. Die Token werden in einer Datenbank gespeichert, die optional mit einem Passwort deiner Wahl verschlüsselt werden kann. Wenn ein Angreifer an deine verschlüsselte Datenbankdatei gelangt, kann er ohne Kenntnis des Passworts nicht auf den Inhalt zugreifen.\n\nWir haben die Optionen voreingestellt, die unserer Meinung nach am besten zu deinem Gerät passen.</string>
     <string name="authentication_method_none">Keine</string>
@@ -130,8 +132,8 @@
     <string name="authentication_multiline" comment="The newline in the middle is used for aesthetic purposes">Datenbank\nentsperren</string>
     <string name="auth_use_biometrics">Stattdessen <font fgcolor="#FF0D86C1">biometrische Daten</font> verwenden</string>
     <string name="set_password">Passwort eingeben</string>
-    <string name="set_group">Bitte einen Gruppennamen eingeben</string>
-    <string name="set_number">Bitte eine Zahl eingeben</string>
+    <string name="set_group">Gruppennamen eingeben</string>
+    <string name="set_number">Eine Zahl eingeben</string>
     <string name="set_password_confirm">Bitte bestätige das Passwort</string>
     <string name="invalid_password">Das Passwort ist falsch</string>
     <string name="invalidated_biometrics">Es wurde eine Änderung in den Sicherheitseinstellungen deines Geräts erkannt. Bitte navigiere zu »Aegis -&gt; Einstellungen -&gt; Sicherheit -&gt; Biometrisches Entsperren«, um biometrisches Entsperren zu deaktivieren und wieder zu aktivieren.</string>
@@ -274,7 +276,7 @@
     <string name="missing_qr_code_descriptor">• QR-Code %d</string>
     <string name="import_partial_export_anyway">%d Token trotzdem importieren</string>
     <string name="import_google_auth_failure">Importieren von Google Authenticator-Export fehlgeschlagen</string>
-    <string name="unrelated_google_auth_batches_error">Der Export enthält Informationen über ein nicht zugehöriges Set. Versuche, jeweils 1 Set zu importieren.</string>
+    <string name="unrelated_google_auth_batches_error">Die Exportdatei enthält Informationen über ein nicht zugehöriges Set. Versuche, jeweils 1 Set zu importieren.</string>
     <string name="no_tokens_can_be_imported">Daher können keine Token importiert werden</string>
     <string name="unlocking_vault">Entsperren der Datenbank</string>
     <string name="remove_group">Gruppe entfernen</string>
@@ -294,7 +296,10 @@
     <string name="sort_alphabetically_name">Konto (A bis Z)</string>
     <string name="sort_alphabetically_name_reverse">Konto (Z bis A)</string>
     <string name="sort_usage_count">Verwendungszähler</string>
+    <string name="sort_last_used">Zuletzt verwendet</string>
     <string name="sort_custom">Benutzerdefiniert</string>
+    <string name="last_used">Zuletzt verwendet</string>
+    <string name="last_used_never">niemals</string>
     <string name="new_group">Neue Gruppe …</string>
     <string name="group">Gruppe</string>
     <string name="group_name_hint">Gruppenname</string>
@@ -352,8 +357,8 @@
     <string name="github_description">Quellcode, Probleme und Informationen</string>
     <string name="license">Lizenz</string>
     <string name="license_description">Aegis Authenticator ist lizenziert unter GPLv3</string>
-    <string name="third_party_licenses">Drittanbieter-Lizenzen</string>
-    <string name="third_party_licenses_description">Lizenzen der Drittanbieter-Bibliotheken, die Aegis verwendet</string>
+    <string name="third_party_licenses">Lizenzen von Dritten</string>
+    <string name="third_party_licenses_description">Lizenzen für die von Aegis verwendeten Bibliotheken von Dritten</string>
     <string name="country_netherlands">Niederlande</string>
     <string name="email_us">Eine E-Mail schreiben</string>
     <string name="visit_website">Besuche unsere Website</string>
@@ -426,6 +431,7 @@
     <string name="title_activity_scan_qr">Scanne einen QR-Code</string>
     <string name="title_activity_import_entries">Einträge importieren</string>
     <string name="title_activity_assign_icons">Symbole zuweisen</string>
+    <string name="title_activity_licenses">Lizenzen von Dritten</string>
     <string name="dialog_wipe_entries_title">Einträge löschen</string>
     <string name="dialog_wipe_entries_message">Deine Datenbank enthält bereits Einträge. Möchtest du diese Einträge entfernen, bevor diese Datei importiert wird?\n\n<b>Wenn du dies tust, verlierst du dauerhaft den Zugriff auf die vorhandenen Einträge in der Datenbank.</b></string>
     <string name="dialog_wipe_entries_checkbox">Datenbankinhalt löschen</string>
@@ -438,10 +444,10 @@
         <item quantity="one">Auswahl für %d potenzielles Duplikat aufgehoben. Bitte überprüfe die Einträge.</item>
         <item quantity="other">Auswahl für %d potenzielle Duplikate aufgehoben. Bitte überprüfe die Einträge.</item>
     </plurals>
-    <string name="importer_help_2fas">Gib eine 2FAS Authenticator-Sicherungsdatei an.</string>
+    <string name="importer_help_2fas">Gib eine 2FAS-Authenticator-Sicherungsdatei an.</string>
     <string name="importer_help_aegis">Gib eine Aegis-Export-/Sicherungsdatei an.</string>
-    <string name="importer_help_authenticator_plus">Gib eine Authenticator Plus-Exportdatei an, die du über <b>Einstellungen -&gt; Sicherung &amp; Rücksicherung -&gt; Exportieren als Text und HTML Format</b> erhältst.</string>
-    <string name="importer_help_authenticator_pro">Gib eine Authenticator Pro-Exportdatei an, die du über <b>Einstellungen -&gt; Sicherung -&gt; Als verschlüsselte Datei sichern (empfohlen)</b> erhältst.</string>
+    <string name="importer_help_authenticator_plus">Gib eine Authenticator-Plus-Exportdatei an, die du über <b>Einstellungen -&gt; Sicherung &amp; Rücksicherung -&gt; Exportieren als Text und HTML Format</b> erhältst.</string>
+    <string name="importer_help_authenticator_pro">Gib eine Authenticator-Pro-Exportdatei an, die du über <b>Einstellungen -&gt; Sicherung -&gt; Als verschlüsselte Datei sichern (empfohlen)</b> erhältst.</string>
     <string name="importer_help_authy">Gib eine Kopie von <b>/data/data/com.authy.authy/shared_prefs/com.authy.storage.tokens.authenticator.xml</b> an, die sich im internen Speicherverzeichnis von Authy befindet.</string>
     <string name="importer_help_andotp">Gib eine andOTP-Export-/Sicherungsdatei an.</string>
     <string name="importer_help_bitwarden">Gib eine Bitwarden-Export-/Sicherungsdatei an. Verschlüsselte Dateien werden nicht unterstützt.</string>

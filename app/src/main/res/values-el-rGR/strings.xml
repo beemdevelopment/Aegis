@@ -33,6 +33,8 @@
     <string name="pref_section_icon_packs">Πακέτα εικονιδίων</string>
     <string name="pref_section_icon_packs_summary">Διαχείριση και εισαγωγή πακέτων εικονιδίων</string>
     <string name="pref_select_theme_title">Θέμα</string>
+    <string name="pref_dynamic_colors_title">Δυναμικά χρώματα</string>
+    <string name="pref_dynamic_colors_summary">Εφαρμόστε μια επικάλυψη με βάση τα χρώματα του θέματός σας Android</string>
     <string name="pref_view_mode_title">Τρόπος προβολής</string>
     <string name="pref_lang_title">Γλώσσα</string>
     <string name="pref_show_icons_title">Εμφάνιση εικονιδίων</string>
@@ -294,7 +296,10 @@
     <string name="sort_alphabetically_name">Λογαριασμός (Α προς Ζ)</string>
     <string name="sort_alphabetically_name_reverse">Λογαριασμός (Z προς A)</string>
     <string name="sort_usage_count">Αριθμός χρήσεων</string>
+    <string name="sort_last_used">Τελευταία χρήση</string>
     <string name="sort_custom">Προσαρμογή</string>
+    <string name="last_used">Τελευταία χρήση</string>
+    <string name="last_used_never">ποτέ</string>
     <string name="new_group">Νέα ομάδα…</string>
     <string name="group">Ομάδα</string>
     <string name="group_name_hint">Όνομα ομάδας</string>
@@ -425,6 +430,7 @@
     <string name="title_activity_scan_qr">Σάρωση κωδικού QR</string>
     <string name="title_activity_import_entries">Εισαγωγή καταχωρήσεων</string>
     <string name="title_activity_assign_icons">Αντιστοίχιση εικονιδίων</string>
+    <string name="title_activity_licenses">Άδειες χρήσης τρίτων</string>
     <string name="dialog_wipe_entries_title">Διαγραφή καταχωρήσεων</string>
     <string name="dialog_wipe_entries_message">Η κρύπτη σας περιέχει ήδη καταχωρήσεις. Θέλετε να καταργήσετε αυτές τις καταχωρήσεις πριν από την εισαγωγή αυτού του αρχείου;\n\n <b> Με αυτόν τον τρόπο, θα χάσετε μόνιμα την πρόσβαση στις υπάρχουσες καταχωρήσεις στην κρύπτη. </b></string>
     <string name="dialog_wipe_entries_checkbox">Διαγραφή περιεχομένων κρύπτης</string>

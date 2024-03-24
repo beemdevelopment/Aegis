@@ -33,6 +33,8 @@
     <string name="pref_section_icon_packs">Packs d\'icônes</string>
     <string name="pref_section_icon_packs_summary">Gérer et importer des packs d\'icônes</string>
     <string name="pref_select_theme_title">Thème</string>
+    <string name="pref_dynamic_colors_title">Couleurs dynamiques</string>
+    <string name="pref_dynamic_colors_summary">Appliquer une surcouche basée sur les couleurs de votre thème Android</string>
     <string name="pref_view_mode_title">Mode d\'affichage</string>
     <string name="pref_lang_title">Langue</string>
     <string name="pref_show_icons_title">Afficher les icônes</string>
@@ -294,7 +296,10 @@
     <string name="sort_alphabetically_name">Compte (de A à Z)</string>
     <string name="sort_alphabetically_name_reverse">Compte (de Z à A)</string>
     <string name="sort_usage_count">Nombre d\'utilisations</string>
+    <string name="sort_last_used">Dernière utilisation</string>
     <string name="sort_custom">Personnalisé</string>
+    <string name="last_used">Dernière utilisation</string>
+    <string name="last_used_never">jamais</string>
     <string name="new_group">Nouveau groupe…</string>
     <string name="group">Groupe</string>
     <string name="group_name_hint">Nom de groupe</string>
@@ -425,6 +430,7 @@
     <string name="title_activity_scan_qr">Scanner un code QR</string>
     <string name="title_activity_import_entries">Importer des entrées</string>
     <string name="title_activity_assign_icons">Association des icônes</string>
+    <string name="title_activity_licenses">Licences tierces</string>
     <string name="dialog_wipe_entries_title">Effacer les entrées</string>
     <string name="dialog_wipe_entries_message">Votre coffre-fort contient déjà des entrées. Voulez-vous supprimer ces entrées avant d\'importer ce fichier ?\n\n<b>En faisant cela, vous perdrez définitivement l\'accès aux entrées existantes dans le coffre-fort.</b></string>
     <string name="dialog_wipe_entries_checkbox">Effacer le contenu du coffre-fort</string>

@@ -33,6 +33,8 @@
     <string name="pref_section_icon_packs">Pacchetti di icone</string>
     <string name="pref_section_icon_packs_summary">Gestisci e importa i pacchetti di icone</string>
     <string name="pref_select_theme_title">Tema</string>
+    <string name="pref_dynamic_colors_title">Colori dinamici</string>
+    <string name="pref_dynamic_colors_summary">Applica una sovrapposizione basata sui colori del tema di Android</string>
     <string name="pref_view_mode_title">Visualizzazione delle voci</string>
     <string name="pref_lang_title">Lingua</string>
     <string name="pref_show_icons_title">Mostra le icone</string>
@@ -294,7 +296,10 @@
     <string name="sort_alphabetically_name">Account (A-Z)</string>
     <string name="sort_alphabetically_name_reverse">Account (Z-A)</string>
     <string name="sort_usage_count">Numero di utilizzi</string>
+    <string name="sort_last_used">Ultimo utilizzato</string>
     <string name="sort_custom">Personalizzato</string>
+    <string name="last_used">Ultimo utilizzato</string>
+    <string name="last_used_never">mai</string>
     <string name="new_group">Nuovo gruppo…</string>
     <string name="group">Gruppo</string>
     <string name="group_name_hint">Nome gruppo</string>
@@ -425,6 +430,7 @@
     <string name="title_activity_scan_qr">Scansiona un codice QR</string>
     <string name="title_activity_import_entries">Importa voci</string>
     <string name="title_activity_assign_icons">Assegna icone</string>
+    <string name="title_activity_licenses">Licenze di terze parti</string>
     <string name="dialog_wipe_entries_title">Cancella voci</string>
     <string name="dialog_wipe_entries_message">La tua cassaforte contiene già delle voci. Rimuovere queste voci prima di importare questo file?\n\n<b>In questo modo, perderai definitivamente l\'accesso alle voci esistenti nella cassaforte.</b></string>
     <string name="dialog_wipe_entries_checkbox">Cancella contenuto della cassaforte</string>

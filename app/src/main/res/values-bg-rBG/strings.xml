@@ -23,7 +23,7 @@
     <string name="pref_section_behavior_title">Поведение</string>
     <string name="pref_section_behavior_summary">Настройки на поведението при взаимодействие със списъка със записи.</string>
     <string name="pref_section_appearance_title">Външен вид</string>
-    <string name="pref_section_appearance_summary">Изберете темата, езика и други настройки, които влияят на външния вид на приложението.</string>
+    <string name="pref_section_appearance_summary">Тема, език и други настройки, които влияят на външния вид на приложението.</string>
     <string name="pref_section_security_title">Сигурност</string>
     <string name="pref_section_security_summary">Настройки на шифроване, отключване с биометрични данни, автоматично заключване и други настройки за сигурност.</string>
     <string name="pref_section_import_export_title">Внасяне и изнасяне</string>
@@ -33,6 +33,8 @@
     <string name="pref_section_icon_packs">Пакети с икони</string>
     <string name="pref_section_icon_packs_summary">Управление и внасяне на пакети с икони</string>
     <string name="pref_select_theme_title">Тема</string>
+    <string name="pref_dynamic_colors_title">Динамични цветове</string>
+    <string name="pref_dynamic_colors_summary">Цвета на прозрачния слой да подхожда на темата на Андроид</string>
     <string name="pref_view_mode_title">Изглед на списъка</string>
     <string name="pref_lang_title">Език</string>
     <string name="pref_show_icons_title">Показване на икони</string>
@@ -294,7 +296,10 @@
     <string name="sort_alphabetically_name">Профил (А → Я)</string>
     <string name="sort_alphabetically_name_reverse">Профил (Я → А)</string>
     <string name="sort_usage_count">Брой използвания</string>
+    <string name="sort_last_used">Последно използване</string>
     <string name="sort_custom">По избор</string>
+    <string name="last_used">Последно използване</string>
+    <string name="last_used_never">никога</string>
     <string name="new_group">Нова група…</string>
     <string name="group">Група</string>
     <string name="group_name_hint">Име на групата</string>

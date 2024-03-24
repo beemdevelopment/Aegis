@@ -33,6 +33,8 @@
     <string name="pref_section_icon_packs">Ikonu pakotnes</string>
     <string name="pref_section_icon_packs_summary">Pārvaldīt un ievietot ikonu pakotnes</string>
     <string name="pref_select_theme_title">Izskats</string>
+    <string name="pref_dynamic_colors_title">Dinamiskas krāsas</string>
+    <string name="pref_dynamic_colors_summary">Pielietot pārklājumu, kas pielāgots izvēlētā Android izskata krāsām</string>
     <string name="pref_view_mode_title">Skata veids</string>
     <string name="pref_lang_title">Valoda</string>
     <string name="pref_show_icons_title">Rādīt ikonas</string>
@@ -302,7 +304,10 @@
     <string name="sort_alphabetically_name">Konts (no A līdz Z)</string>
     <string name="sort_alphabetically_name_reverse">Konts (no Z līdz A)</string>
     <string name="sort_usage_count">Izmantošanas reižu skaits</string>
+    <string name="sort_last_used">Pēdējoreiz izmantots</string>
     <string name="sort_custom">Pielāgots</string>
+    <string name="last_used">Pēdējoreiz izmantots</string>
+    <string name="last_used_never">nekad</string>
     <string name="new_group">Jauna kopa…</string>
     <string name="group">Kopa</string>
     <string name="group_name_hint">Kopas nosaukums</string>

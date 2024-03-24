@@ -33,6 +33,8 @@
     <string name="pref_section_icon_packs">Balíčky ikon</string>
     <string name="pref_section_icon_packs_summary">Správa a import balíčků ikon</string>
     <string name="pref_select_theme_title">Vzhled</string>
+    <string name="pref_dynamic_colors_title">Dynamické barvy</string>
+    <string name="pref_dynamic_colors_summary">Použít překryv založený na barvách vašeho motivu systému Android</string>
     <string name="pref_view_mode_title">Režim zobrazení</string>
     <string name="pref_lang_title">Jazyk</string>
     <string name="pref_show_icons_title">Zobrazit ikony</string>
@@ -310,7 +312,10 @@
     <string name="sort_alphabetically_name">Účet (A → Z)</string>
     <string name="sort_alphabetically_name_reverse">Účet (Z → A)</string>
     <string name="sort_usage_count">Počet použití</string>
+    <string name="sort_last_used">Naposledy použito</string>
     <string name="sort_custom">Vlastní</string>
+    <string name="last_used">Naposledy použito</string>
+    <string name="last_used_never">nikdy</string>
     <string name="new_group">Nová skupina…</string>
     <string name="group">Skupina</string>
     <string name="group_name_hint">Název skupiny</string>
@@ -448,6 +453,7 @@
     <string name="title_activity_scan_qr">Naskenovat QR kód</string>
     <string name="title_activity_import_entries">Importovat položky</string>
     <string name="title_activity_assign_icons">Přiřadit ikony</string>
+    <string name="title_activity_licenses">Licence třetích stran</string>
     <string name="dialog_wipe_entries_title">Vyčistit položky</string>
     <string name="dialog_wipe_entries_message">Váš trezor už obsahuje záznamy. Chcete tyto záznamy smazat před importem tohoto souboru?\n\n<b>Přístup ke všem stávajícím položkám v trezoru trvale ztratíte.</b></string>
     <string name="dialog_wipe_entries_checkbox">Vymazat obsah trezoru</string>

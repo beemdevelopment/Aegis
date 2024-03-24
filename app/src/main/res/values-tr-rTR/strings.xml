@@ -33,6 +33,8 @@
     <string name="pref_section_icon_packs">İkon paketleri</string>
     <string name="pref_section_icon_packs_summary">İkon paketlerini yönet ve içe aktar</string>
     <string name="pref_select_theme_title">Tema</string>
+    <string name="pref_dynamic_colors_title">Dinamik renkler</string>
+    <string name="pref_dynamic_colors_summary">Android temanızın renklerine göre bir kaplama uygulayın</string>
     <string name="pref_view_mode_title">Görüntüleme biçimi</string>
     <string name="pref_lang_title">Dil</string>
     <string name="pref_show_icons_title">Simgeleri göster</string>
@@ -294,7 +296,10 @@
     <string name="sort_alphabetically_name">Hesap (A\'dan  Z\'ye)</string>
     <string name="sort_alphabetically_name_reverse">Hesap (Z\'den A\'ya)</string>
     <string name="sort_usage_count">Kullanım sayısı</string>
+    <string name="sort_last_used">Son kullanım</string>
     <string name="sort_custom">İsteğe göre</string>
+    <string name="last_used">Son kullanım</string>
+    <string name="last_used_never">asla</string>
     <string name="new_group">Yeni grup…</string>
     <string name="group">Grup</string>
     <string name="group_name_hint">Grup adı</string>

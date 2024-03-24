@@ -33,6 +33,8 @@
     <string name="pref_section_icon_packs">Pacote de ícones</string>
     <string name="pref_section_icon_packs_summary">Gerencie e importe pacotes de ícones</string>
     <string name="pref_select_theme_title">Tema</string>
+    <string name="pref_dynamic_colors_title">Cores dinâmicas</string>
+    <string name="pref_dynamic_colors_summary">Aplicar uma sobreposição baseada nas cores do seu tema Android</string>
     <string name="pref_view_mode_title">Modo de exibição</string>
     <string name="pref_lang_title">Idioma</string>
     <string name="pref_show_icons_title">Mostrar Ícones</string>
@@ -294,7 +296,10 @@
     <string name="sort_alphabetically_name">Conta (A to Z)</string>
     <string name="sort_alphabetically_name_reverse">Conta (Z to A)</string>
     <string name="sort_usage_count">Contagem de uso</string>
+    <string name="sort_last_used">Último uso</string>
     <string name="sort_custom">Personalizado</string>
+    <string name="last_used">Último uso</string>
+    <string name="last_used_never">nunca</string>
     <string name="new_group">Novo grupo…</string>
     <string name="group">Grupo</string>
     <string name="group_name_hint">Nome do grupo</string>
@@ -425,6 +430,7 @@
     <string name="title_activity_scan_qr">Escanear QR code</string>
     <string name="title_activity_import_entries">Importar entradas</string>
     <string name="title_activity_assign_icons">Atribuir ícones</string>
+    <string name="title_activity_licenses">Licenças de terceiros</string>
     <string name="dialog_wipe_entries_title">Limpar entradas</string>
     <string name="dialog_wipe_entries_message">O seu cofre já contém entradas. Você quer remover essas entradas antes de importar este arquivo?\n\n<b>Ao fazer isso, você perderá permanentemente o acesso às entradas existentes no cofre.</b></string>
     <string name="dialog_wipe_entries_checkbox">Limpar conteúdo do cofre</string>

@@ -33,6 +33,8 @@
     <string name="pref_section_icon_packs">Kuvakepaketit</string>
     <string name="pref_section_icon_packs_summary">Hallitse ja tuo kuvakepaketteja</string>
     <string name="pref_select_theme_title">Teema</string>
+    <string name="pref_dynamic_colors_title">Dynaamiset värit</string>
+    <string name="pref_dynamic_colors_summary">Käytä Android-teemasi väreihin perustuvaa ulkoasua</string>
     <string name="pref_view_mode_title">Näkymätila</string>
     <string name="pref_lang_title">Kieli</string>
     <string name="pref_show_icons_title">Näytä kuvakkeet</string>

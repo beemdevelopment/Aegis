@@ -33,6 +33,8 @@
     <string name="pref_section_icon_packs">Piktogrampakketten</string>
     <string name="pref_section_icon_packs_summary">Piktogrampakketten beheare en ymportearje.</string>
     <string name="pref_select_theme_title">Tema</string>
+    <string name="pref_dynamic_colors_title">Dynamyske kleuren</string>
+    <string name="pref_dynamic_colors_summary">Overlay tapasse op basis fan de kleuren fan dyn Android-tema</string>
     <string name="pref_view_mode_title">Werjeftemodus</string>
     <string name="pref_lang_title">Taal</string>
     <string name="pref_show_icons_title">Piktogrammen toane</string>
@@ -294,7 +296,10 @@
     <string name="sort_alphabetically_name">Account (A t/m Z)</string>
     <string name="sort_alphabetically_name_reverse">Account (Z t/m A)</string>
     <string name="sort_usage_count">Gebrûksteller</string>
+    <string name="sort_last_used">Lêst brûkt</string>
     <string name="sort_custom">Oanpast</string>
+    <string name="last_used">Lêst brûkt</string>
+    <string name="last_used_never">nea</string>
     <string name="new_group">Nije groep…</string>
     <string name="group">Groep</string>
     <string name="group_name_hint">Groepsnamme</string>

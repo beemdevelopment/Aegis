@@ -21,9 +21,9 @@
     <string name="pref_cat_backups_android">Android</string>
     <string name="pref_cat_backups_auto">Còpies de seguretat automàtiques</string>
     <string name="pref_section_behavior_title">Comportament</string>
-    <string name="pref_section_behavior_summary">Configurar comportament al interactuar amb les entrades.</string>
+    <string name="pref_section_behavior_summary">Configurar comportament en interactuar amb les entrades.</string>
     <string name="pref_section_appearance_title">Aparença</string>
-    <string name="pref_section_appearance_summary">Ajustar tema, idioma i altres configuracions que afectin a l\'aparença de l\'app.</string>
+    <string name="pref_section_appearance_summary">Ajustar tema, idioma i altres configuracions que afectin l\'aparença de l\'app.</string>
     <string name="pref_section_security_title">Seguretat</string>
     <string name="pref_section_security_summary">Configurar xifrat, desbloqueig biometric i altres opcions de seguretat.</string>
     <string name="pref_section_import_export_title">Importa i exporta</string>
@@ -33,6 +33,8 @@
     <string name="pref_section_icon_packs">Paquets d\'icones</string>
     <string name="pref_section_icon_packs_summary">Gestiona i importa paquets d\'icones</string>
     <string name="pref_select_theme_title">Tema</string>
+    <string name="pref_dynamic_colors_title">Colors dinàmics</string>
+    <string name="pref_dynamic_colors_summary">Aplica una superposició basada en els colors del teu tema d\'Android</string>
     <string name="pref_view_mode_title">Mode de visualització</string>
     <string name="pref_lang_title">Idioma</string>
     <string name="pref_show_icons_title">Mostra icones</string>
@@ -40,6 +42,9 @@
     <string name="pref_code_group_size_title">Agrupació dels dígits</string>
     <string name="pref_code_group_size_summary">Triar nombre de digits per agrupar els codis</string>
     <string name="pref_account_name_position_title">Mostra el nom del compte</string>
+    <string name="pref_shared_issuer_account_name_title">Mostra el nom del compte només quan sigui necessari</string>
+    <string name="pref_shared_issuer_account_name_summary">Mostra el nom de compte només quan es comparteixi el mateix emissor. Altres noms de compte estaran ocults.</string>
+    <string name="pref_account_name_position_summary_override">S\'omet aquesta configuració en usar la visualització en mosaic. Els noms de compte es mostraran sempre a sota de l\'emissor.</string>
     <string name="pref_import_file_title">Importa des d\'un fitxer</string>
     <string name="pref_import_file_summary">Importar fitxes des d\'un fitxer</string>
     <string name="pref_android_backups_title">Copies al núvol d\'Android</string>
@@ -72,7 +77,7 @@
         <item quantity="one">S\'ha omès %d entrada incompatible</item>
         <item quantity="other">S\'han omès %d entrades incompatibles</item>
     </plurals>
-    <string name="pref_password_reminder_summary">Mostra un %s recordatori per a introduir la contrasenya, per tal a què no se t\'oblidi.</string>
+    <string name="pref_password_reminder_summary">Mostra %s un recordatori per a introduir la contrasenya, per tal a què no se t\'oblidi.</string>
     <string name="pref_password_reminder_summary_disabled">Desactivat</string>
     <string name="pref_secure_screen_title">Seguretat de pantalla</string>
     <string name="pref_secure_screen_summary">Bloqueja les captures de pantalla de la aplicació</string>
@@ -125,13 +130,16 @@
     <string name="authentication_method_biometrics_description">A mśe de la contrasenya, les dades biomètriques enregistrades al dispositiu, com una emprempta digital o la cara, es poden fer servir per a desbloquejar la volta.</string>
     <string name="authentication">Desbloqueja la volta</string>
     <string name="authentication_multiline" comment="The newline in the middle is used for aesthetic purposes">Desbloqueja\nla volta</string>
-    <string name="auth_use_biometrics">O toca aqui per a fer servir el <font fgcolor="#FF0D86C1">desbloqueig biomètric</font></string>
+    <string name="auth_use_biometrics">O toca aquí per a fer servir el <font fgcolor="#FF0D86C1">desbloqueig biomètric</font></string>
     <string name="set_password">Si et plau, introdueix una contrasenya</string>
     <string name="set_group">Introdueix un nom de grup</string>
     <string name="set_number">Introdueix un número</string>
     <string name="set_password_confirm">Confirma la contrasenya</string>
     <string name="invalid_password">La contrasenya no és correcta</string>
     <string name="invalidated_biometrics">S\'ha detectat un canvi en la configuració de seguretat del dispositiu. Si us plau, ves a \"Aegis -&gt; Configuració -&gt; Seguretat -&gt; Desbloqueig biomètric\" per a desactivar i reactivar-lo.</string>
+    <string name="password_reminder">Introdueix la contrasenya. T\'ho demanarem ocasionalment per tal que no te n\'oblidis.</string>
+    <string name="password_reminder_dialog_title">Desbloqueig biomètric per defecte</string>
+    <string name="password_reminder_dialog_message">Ocasionalment et demanarem la contrasenya per tal que no te n\'oblidis i no perdis l\'accés a la teva volta. Després d\'entrar la contrasenya, l\'Aegis tornarà al desbloqueig biomètric per defecte. Et tornarem a demanar la contrasenya en el proper recordatori.</string>
     <string name="password_reminder_freq_never">Mai</string>
     <string name="password_reminder_freq_weekly">Setmanalment</string>
     <string name="password_reminder_freq_biweekly">Cada dues setmanes</string>
@@ -146,6 +154,7 @@
     <string name="share">Comparteix</string>
     <string name="yes">Si</string>
     <string name="no">No</string>
+    <string name="undo">Desfés</string>
     <string name="unlock">Desbloqueja</string>
     <string name="advanced">Avançat</string>
     <string name="counter">Comptador</string>
@@ -236,7 +245,9 @@
     <string name="choose_totpauth_importer">Està la còpia del TOTP Authenticator xifrada amb una contrasenya?</string>
     <string name="choose_application">Tria l\'aplicació de la que vols importar</string>
     <string name="choose_theme">Tria l\'aparença</string>
+    <string name="choose_account_name_position">Selecciona la posició del nom del compte que desitges</string>
     <string name="choose_view_mode">Tria el mode de visualització</string>
+    <string name="choose_copy_behavior">Selecciona el comportament de còpia que desitges</string>
     <string name="parsing_file_error">S\'ha produït un error en analitzar el fitxer</string>
     <string name="file_not_found">Error: no s\'ha trobat el fitxer</string>
     <string name="reading_file_error">S\'ha produït un error mentre s\'intentava carregar el fitxer</string>
@@ -248,7 +259,7 @@
         <item quantity="other">%d entrades importades</item>
     </plurals>
     <plurals name="entries_shown">
-        <item quantity="one">Mostrant %d entrades</item>
+        <item quantity="one">Mostrant %d entrada</item>
         <item quantity="other">Mostrant %d entrades</item>
     </plurals>
     <string name="intro_import_error_title">S\'ha produït un error en importar la volta</string>
@@ -270,6 +281,8 @@
     <string name="unlocking_vault">Desbloquejant la volta</string>
     <string name="remove_group">Elimina el grup</string>
     <string name="remove_group_description">Segur que vols eliminar aquest grup? Les entrades canviaran automàticament a \"Sense grup\".</string>
+    <string name="remove_unused_groups">Esborrar grups no utilitzats</string>
+    <string name="remove_unused_groups_description">Estàs segur que vols esborrar tots els grups que no estan assignats a una entrada?</string>
     <string name="remove_icon_pack">Esborra el paquet d\'icones</string>
     <string name="remove_icon_pack_description">Segur que vols eliminar aquest paquet d\'icones? Les entrades que fan servir icones d\'aquest paquet no es veuran afectades.</string>
     <string name="details">Detalls</string>
@@ -283,7 +296,10 @@
     <string name="sort_alphabetically_name">Compte (A a Z)</string>
     <string name="sort_alphabetically_name_reverse">Compte (Z a A)</string>
     <string name="sort_usage_count">Utilitzacions</string>
+    <string name="sort_last_used">Últim usat</string>
     <string name="sort_custom">Personalitza</string>
+    <string name="last_used">Últim usat</string>
+    <string name="last_used_never">mai</string>
     <string name="new_group">Grup nou…</string>
     <string name="group">Grup</string>
     <string name="group_name_hint">Nom del grup</string>
@@ -317,6 +333,10 @@
     <string name="tiles_mode_title">Mosaic</string>
     <string name="unknown_issuer">Emissor desconegut</string>
     <string name="unknown_account_name">Nom de compte desconegut</string>
+    <plurals name="import_error_dialog">
+        <item quantity="one">L\'Aegis no pot importar %d fitxa. Aquesta fitxa es descartarà. Prem \"detalls\" per a veure més informació d\'aquest error.</item>
+        <item quantity="other">L\'Aegis no pot importar %d fitxes. Aquestes fitxes es descartaran. Prem \"detalls\" per a veure més informació d\'aquest error.</item>
+    </plurals>
     <string name="unable_to_process_deeplink">No es pot processar l\'enllaç profund</string>
     <string name="unable_to_read_qrcode_file">No es pot llegir i processar el codi QR del fitxer: %s.</string>
     <string name="unable_to_process_shared_text">No es pot processar el text compartit com a OTP</string>
@@ -358,6 +378,8 @@
     <string name="google_qr_export_unexpected">S\'esperava codi QR #%d, però s\'ha trobat #%d en el seu lloc</string>
     <string name="backup_error_bar_message"><b>Ha fallat la còpia de seguretat recentment</b></string>
     <string name="backup_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">Una còpia de seguretat de la volta utilitzant %s ha fallat. La còpia s\'ha intentat %s. Si us plau, comprova la configuració de la còpia per a assegurar-te de que les còpies es poden fer correctament.
+    </string>
+    <string name="backup_permission_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">        Un intent recent de còpia de seguretat de la volta usant %s ha fallat perquè l\'Aegis no té permís d\'escriptura en el destí de la còpia de seguretat. La còpia s\'ha intentat %s. Aquest error pot aparèixer si has mogut/reanomenat el destí de la còpia de seguretat o si has restaurat l\'Aegis recentment des d\'una còpia de seguretat. Si us plau torna a configurar el destí de la còpia de seguretat.
     </string>
     <string name="backup_system_builtin">Còpies de seguretat integrades a Aegis</string>
     <string name="backup_system_android">Còpia al núvol d\'Android</string>

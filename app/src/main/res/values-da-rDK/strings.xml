@@ -33,6 +33,8 @@
     <string name="pref_section_icon_packs">Ikonpakker</string>
     <string name="pref_section_icon_packs_summary">Håndtere og importere ikonpakker</string>
     <string name="pref_select_theme_title">Tema</string>
+    <string name="pref_dynamic_colors_title">Dynamiske farver</string>
+    <string name="pref_dynamic_colors_summary">Anvend en overlejring baseret på Android-temaets farver</string>
     <string name="pref_view_mode_title">Visningstilstand</string>
     <string name="pref_lang_title">Sprog</string>
     <string name="pref_show_icons_title">Vis ikoner</string>
@@ -294,7 +296,10 @@
     <string name="sort_alphabetically_name">Konto (A til Z)</string>
     <string name="sort_alphabetically_name_reverse">Konto (Z til A)</string>
     <string name="sort_usage_count">Brugstælling</string>
+    <string name="sort_last_used">Senest brugt</string>
     <string name="sort_custom">Tilpasset</string>
+    <string name="last_used">Senest brugt</string>
+    <string name="last_used_never">aldrig</string>
     <string name="new_group">Ny gruppe…</string>
     <string name="group">Gruppe</string>
     <string name="group_name_hint">Gruppenavn</string>
@@ -426,6 +431,7 @@
     <string name="title_activity_scan_qr">Scan en QR-kode</string>
     <string name="title_activity_import_entries">Importer poster</string>
     <string name="title_activity_assign_icons">Tildel ikoner</string>
+    <string name="title_activity_licenses">Tredjepartslicenser</string>
     <string name="dialog_wipe_entries_title">Ryd poster</string>
     <string name="dialog_wipe_entries_message">Din boks indeholder allerede poster. Vil du fjerne disse poster før import af denne fil?\n\n<b>Ved at gøre dette, vil du permanent miste adgang til de eksisterende poster i boksen.</b></string>
     <string name="dialog_wipe_entries_checkbox">Ryd boksens indhold</string>

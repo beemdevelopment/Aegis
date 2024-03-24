@@ -33,8 +33,8 @@
     <string name="pref_section_icon_packs">Gói biểu tượng</string>
     <string name="pref_section_icon_packs_summary">Quản lý và nhập gói biểu tượng</string>
     <string name="pref_select_theme_title">Chủ đề</string>
-    <string name="pref_dynamic_colors_title">Màu tương thích</string>
-    <string name="pref_dynamic_colors_summary">Áp dụng lớp phủ dựa trên màu sắc chủ đề Android của bạn</string>
+    <string name="pref_dynamic_colors_title">Màu linh động</string>
+    <string name="pref_dynamic_colors_summary">Sử dụng màu tuỳ theo màu sắc chủ đề Android của bạn</string>
     <string name="pref_view_mode_title">Chế độ xem</string>
     <string name="pref_lang_title">Ngôn ngữ</string>
     <string name="pref_show_icons_title">Hiện biểu tượng</string>
@@ -288,7 +288,10 @@
     <string name="sort_alphabetically_name">Tài khoản (A đến Z)</string>
     <string name="sort_alphabetically_name_reverse">Tài khoản (Z đến A)</string>
     <string name="sort_usage_count">Số lần sử dụng</string>
+    <string name="sort_last_used">Dùng lần cuối</string>
     <string name="sort_custom">Tùy chỉnh</string>
+    <string name="last_used">Dùng lần cuối</string>
+    <string name="last_used_never">chưa từng</string>
     <string name="new_group">Nhãn mới…</string>
     <string name="group">Nhãn</string>
     <string name="group_name_hint">Tên nhãn</string>

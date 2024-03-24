@@ -33,6 +33,8 @@
     <string name="pref_section_icon_packs">Наборы значков</string>
     <string name="pref_section_icon_packs_summary">Управление наборами значков</string>
     <string name="pref_select_theme_title">Тема</string>
+    <string name="pref_dynamic_colors_title">Динамические цвета</string>
+    <string name="pref_dynamic_colors_summary">Использовать наложение на основе цветов темы Android</string>
     <string name="pref_view_mode_title">Режим отображения</string>
     <string name="pref_lang_title">Язык</string>
     <string name="pref_show_icons_title">Показывать значки</string>
@@ -310,7 +312,10 @@
     <string name="sort_alphabetically_name">Учётная запись (А→Я)</string>
     <string name="sort_alphabetically_name_reverse">Учётная запись (Я→А)</string>
     <string name="sort_usage_count">Количество использований</string>
+    <string name="sort_last_used">Последнее использование</string>
     <string name="sort_custom">Произвольно</string>
+    <string name="last_used">Последнее использование</string>
+    <string name="last_used_never">никогда</string>
     <string name="new_group">Новая группа…</string>
     <string name="group">Группа</string>
     <string name="group_name_hint">Название группы</string>
@@ -448,6 +453,7 @@
     <string name="title_activity_scan_qr">Сканировать QR-код</string>
     <string name="title_activity_import_entries">Импорт записей</string>
     <string name="title_activity_assign_icons">Назначить значки</string>
+    <string name="title_activity_licenses">Сторонние лицензии</string>
     <string name="dialog_wipe_entries_title">Очистить записи</string>
     <string name="dialog_wipe_entries_message">В хранилище уже есть записи. Хотите удалить их перед импортом файла?\n\n<b>Если вы удалите существующие записи, то навсегда потеряете к ним доступ.</b></string>
     <string name="dialog_wipe_entries_checkbox">Очистить содержимое хранилища</string>

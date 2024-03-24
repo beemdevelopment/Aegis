@@ -33,6 +33,8 @@
     <string name="pref_section_icon_packs">Set de pictograme</string>
     <string name="pref_section_icon_packs_summary">Gestionați și importați pachete de pictograme</string>
     <string name="pref_select_theme_title">Temă</string>
+    <string name="pref_dynamic_colors_title">Culori dinamice</string>
+    <string name="pref_dynamic_colors_summary">Aplică o culoare principală pe baza culorilor temei tale Android</string>
     <string name="pref_view_mode_title">Mod de vizualizare</string>
     <string name="pref_lang_title">Limbă</string>
     <string name="pref_show_icons_title">Arată pictograme</string>
@@ -42,6 +44,7 @@
     <string name="pref_account_name_position_title">Arată numele contului</string>
     <string name="pref_shared_issuer_account_name_title">Arată numele contului doar atunci când este necesar</string>
     <string name="pref_shared_issuer_account_name_summary">Arată numai numele de cont ce au același emitent. Alte nume de cont vor fi ascunse.</string>
+    <string name="pref_account_name_position_summary_override">Această setare este suprascrisă de modul vizualizare tiles. Numele contului va fi afișat întotdeauna sub emitent.</string>
     <string name="pref_import_file_title">Importă din fișier</string>
     <string name="pref_import_file_summary">Importă token-uri dintr-un fișier</string>
     <string name="pref_android_backups_title">Backup-uri Android în cloud</string>
@@ -137,6 +140,9 @@
     <string name="set_password_confirm">Te rugăm să confirmi parola</string>
     <string name="invalid_password">Parola este incorectă</string>
     <string name="invalidated_biometrics">A fost detectată o modificare a setărilor de securitate ale dispozitivului. Vă rugăm să mergeţi la \"Aegis -&gt; Setări -&gt; Securitate -&gt; Deblocare biometrică\" pentru a dezactiva şi reactiva deblocarea biometrică.</string>
+    <string name="password_reminder">Te rugăm să introduci parola. Uneori îți cerem să faci asta pentru a nu o uita.</string>
+    <string name="password_reminder_dialog_title">Deblocare biometrică în mod implicit</string>
+    <string name="password_reminder_dialog_message">Vă recomandăm ocazional să introduci parola pentru a te asigura că nu ai uitat-o. După introducerea parolei o dată, Aegis va reveni la deblocarea biometrică până când este timpul pentru o altă reamintire a parolei.</string>
     <string name="password_reminder_freq_never">Niciodată</string>
     <string name="password_reminder_freq_weekly">Săptămânal</string>
     <string name="password_reminder_freq_biweekly">La doua săptămâni</string>
@@ -283,6 +289,8 @@
     <string name="unlocking_vault">Deblocarea seifului</string>
     <string name="remove_group">Elimină grupul</string>
     <string name="remove_group_description">Ești sigur că dorești să ștergi acest grup? Intrările din acest grup vor comuta automat la \'Niciun grup\'.</string>
+    <string name="remove_unused_groups">Ștergeți grupurile neutilizate</string>
+    <string name="remove_unused_groups_description">Sunteţi sigur că doriţi să ştergeţi toate grupurile care nu sunt atribuite unei intrări?</string>
     <string name="remove_icon_pack">Ștergeți pachetul de pictograme</string>
     <string name="remove_icon_pack_description">Sunteţi sigur că doriţi să ştergeţi acest pachet de pictograme? Intrările care folosesc pictograme din acest pachet nu vor fi afectate.</string>
     <string name="details">Detalii</string>
@@ -296,7 +304,10 @@
     <string name="sort_alphabetically_name">Cont (A - Z)</string>
     <string name="sort_alphabetically_name_reverse">Cont (Z - A)</string>
     <string name="sort_usage_count">Numărul de utilizări</string>
+    <string name="sort_last_used">Utilizat ultima dată</string>
     <string name="sort_custom">Personalizat</string>
+    <string name="last_used">Utilizat ultima dată</string>
+    <string name="last_used_never">niciodată</string>
     <string name="new_group">Grup nou…</string>
     <string name="group">Grup</string>
     <string name="group_name_hint">Numele grupului</string>
@@ -327,6 +338,7 @@
     <string name="normal_viewmode_title">Normal</string>
     <string name="compact_mode_title">Compact</string>
     <string name="small_mode_title">Mic</string>
+    <string name="tiles_mode_title">Tiles</string>
     <string name="unknown_issuer">Emitent necunoscut</string>
     <string name="unknown_account_name">Nume de cont necunoscut</string>
     <string name="unable_to_process_deeplink">Nu se poate procesa link-ul</string>

@@ -17,7 +17,7 @@
     <string name="usage_count">Contador de uso</string>
     <string name="warning">Advertencia</string>
     <string name="pref_cat_appearance_app">Aplicación</string>
-    <string name="pref_cat_appearance_entries">Entradas</string>
+    <string name="pref_cat_appearance_entries">Elementos</string>
     <string name="pref_cat_backups_android">Android</string>
     <string name="pref_cat_backups_auto">Copias de seguridad automáticas</string>
     <string name="pref_section_behavior_title">Comportamiento</string>
@@ -33,28 +33,30 @@
     <string name="pref_section_icon_packs">Paquetes de iconos</string>
     <string name="pref_section_icon_packs_summary">Administrar e importar paquetes de iconos</string>
     <string name="pref_select_theme_title">Tema</string>
+    <string name="pref_dynamic_colors_title">Colores dinámicos</string>
+    <string name="pref_dynamic_colors_summary">Colorea la interfaz con el mismo esquema de colores de tu sistema Android</string>
     <string name="pref_view_mode_title">Modo de visualización</string>
     <string name="pref_lang_title">Idioma</string>
     <string name="pref_show_icons_title">Mostrar iconos</string>
     <string name="pref_show_icons_summary">Mostrar iconos al lado de cada entrada</string>
     <string name="pref_code_group_size_title">Agrupación de los dígitos del código</string>
-    <string name="pref_code_group_size_summary">Seleccione el número de dígitos por los que agrupar los códigos</string>
+    <string name="pref_code_group_size_summary">Elige el número de dígitos por los que agrupar los códigos</string>
     <string name="pref_account_name_position_title">Mostrar el nombre de la cuenta</string>
     <string name="pref_shared_issuer_account_name_title">Mostrar el nombre de la cuenta solo cuando sea necesario</string>
     <string name="pref_shared_issuer_account_name_summary">Mostrar nombres de cuenta solo cuando compartan el mismo emisor. Se ocultarán otros nombres de cuenta.</string>
-    <string name="pref_account_name_position_summary_override">Este ajuste es anulado por el modo de vista de baldosas. El nombre de la cuenta siempre se mostrará debajo del emisor.</string>
+    <string name="pref_account_name_position_summary_override">Este ajuste no tiene efecto cuando aparecen en recuadros; el nombre de la cuenta siempre se mostrará debajo del emisor.</string>
     <string name="pref_import_file_title">Importar desde un archivo</string>
     <string name="pref_import_file_summary">Importar tokens desde un archivo</string>
     <string name="pref_android_backups_title">Copias de seguridad en la nube de Android</string>
     <string name="pref_android_backups_summary">Permitir que el sistema de copia de seguridad en la nube de Android incluya la bóveda de Aegis en sus copias de seguridad. Esto sólo es compatible con las bóvedas cifradas.</string>
-    <string name="pref_android_backups_hint"><i>Las copias de seguridad de dispositivo a dispositivo (D2D) siempre están permitidas, independientemente de la configuración anterior</i></string>
+    <string name="pref_android_backups_hint"><i>Las copias de seguridad de dispositivo a dispositivo (D2D) siempre se permiten, independientemente de la configuración anterior</i></string>
     <string name="pref_backups_title">Respaldar automáticamente la bóveda</string>
     <string name="pref_backups_summary">Crear automáticamente una copia de seguridad de la bóveda en un almacenamiento externo cuando se produzcan cambios. Esto solo está soportado para las bóvedas cifradas.</string>
     <string name="pref_backups_reminder_title">Recordatorio de copia de seguridad</string>
     <string name="pref_backups_reminder_summary">Mostrar un recordatorio para hacer una copia de seguridad de tu bóveda en caso de que no hayas hecho una copia de tus últimos cambios.</string>
     <string name="pref_backups_reminder_dialog_title">Desactivar recordatorio de copia de seguridad</string>
     <string name="pref_backups_reminder_dialog_summary">Deshabilitar este recordatorio significa que Aegis no te dirá si tienes o no cambios que aún no están respaldados. Esto te pone en riesgo de perder el acceso a tus tokens. ¿Estás seguro de que quieres desactivar el recordatorio?</string>
-    <string name="pref_backups_location_title">Directorio para los archivos de copia de seguridad</string>
+    <string name="pref_backups_location_title">Carpeta para copias de seguridad</string>
     <string name="pref_backups_location_summary">Las copias de seguridad se guardarán en</string>
     <string name="pref_backups_trigger_title">Lanzar una copia de seguridad</string>
     <string name="pref_backups_trigger_summary">Lanzar una copia de seguridad manualmente</string>
@@ -77,7 +79,7 @@
     </plurals>
     <string name="pref_password_reminder_summary">Para evitar olvidarla, solicitarme la contraseña con esta frecuencia: %s.</string>
     <string name="pref_password_reminder_summary_disabled">Desactivado</string>
-    <string name="pref_secure_screen_title">Seguridad en pantalla</string>
+    <string name="pref_secure_screen_title">Pantalla protegida</string>
     <string name="pref_secure_screen_summary">Bloquea las capturas de pantalla y otros intentos de captura dentro de la aplicación</string>
     <string name="pref_tap_to_reveal_title">Pulsa para mostrar</string>
     <string name="pref_tap_to_reveal_summary">Los tokens se ocultarán por defecto. Pulse sobre ellos para revelar el código.</string>
@@ -129,10 +131,10 @@
     <string name="authentication">Desbloquear la bóveda</string>
     <string name="authentication_multiline" comment="The newline in the middle is used for aesthetic purposes">Desbloquear\nla bóveda</string>
     <string name="auth_use_biometrics">O pulsa aquí para utilizar la <font fgcolor="#FF0D86C1">biometría</font></string>
-    <string name="set_password">Por favor introduzca una contraseña</string>
-    <string name="set_group">Por favor introduzca un nombre de grupo</string>
-    <string name="set_number">Por favor introduzca un número</string>
-    <string name="set_password_confirm">Por favor confirme la contraseña</string>
+    <string name="set_password">Escribe una contraseña</string>
+    <string name="set_group">Escribe un nombre de grupo</string>
+    <string name="set_number">Escribe un número</string>
+    <string name="set_password_confirm">Asegúrate de que la contraseña esté bien</string>
     <string name="invalid_password">La contraseña es incorrecta</string>
     <string name="invalidated_biometrics">Se ha detectado un cambio en la configuración de seguridad de su dispositivo. Por favor, vaya a \"Aegis -&gt; Configuración -&gt; Seguridad -&gt; Desbloqueo biométrico\" para desactivar y reactivar el desbloqueo biométrico.</string>
     <string name="password_reminder">Por favor, introduzca su contraseña. Le pediremos que lo haga ocasionalmente para que no la olvide.</string>
@@ -150,7 +152,7 @@
     <string name="algorithm_hint">Función hash</string>
     <string name="type">Tipo</string>
     <string name="share">Compartir</string>
-    <string name="yes">Si</string>
+    <string name="yes">Sí</string>
     <string name="no">No</string>
     <string name="undo">Deshacer</string>
     <string name="unlock">Desbloquear</string>
@@ -171,7 +173,7 @@
     <string name="error_all_caps">ERROR</string>
     <string name="password">Contraseña</string>
     <string name="confirm_password">Confirmar contraseña</string>
-    <string name="show_password">Mostrar contraseña</string>
+    <string name="show_password">Ver contraseña</string>
     <string name="new_entry">Nueva entrada</string>
     <string name="add_new_entry">Añadir nueva entrada</string>
     <string name="unlock_vault_error">No se pudo desbloquear la bóveda</string>
@@ -192,22 +194,22 @@
     <string name="delete_entry">Eliminar entrada</string>
     <string name="delete_entry_description">¿Está seguro de que desea eliminar esta entrada?</string>
     <string name="delete_entry_explanation">Esta acción no desactiva 2FA para:\n<b>%s</b>\n\nPara prevenir la pérdida de acceso, asegúrate de que has desactivado 2FA o que tienes una forma alternativa de generar códigos para este servicio.</string>
-    <string name="delete_entries">Eliminar entradas</string>
+    <string name="delete_entries">Eliminar elementos</string>
     <plurals name="delete_entries_description">
         <item quantity="one">¿Está seguro de que desea eliminar %d entrada?</item>
         <item quantity="other">¿Está seguro de que desea eliminar %d entradas?</item>
     </plurals>
     <string name="discard_changes">¿Descartar cambios?</string>
-    <string name="discard_changes_description">Sus cambios no se han guardado</string>
-    <string name="saving_profile_error">Error al guardar el perfil</string>
+    <string name="discard_changes_description">Tus cambios no se han guardado</string>
+    <string name="saving_profile_error">Hubo un error al guardar el perfil</string>
     <string name="saving_assign_icons_error">Error al asignar iconos</string>
-    <string name="welcome">Bienvenido</string>
+    <string name="welcome">Te damos la bienvenida</string>
     <string name="app_description">Aegis es una aplicación 2FA gratuita, segura y de código abierto</string>
-    <string name="setup_completed">Configuración completada</string>
+    <string name="setup_completed">Se ha completado la configuración</string>
     <string name="setup_completed_description">Aegis se ha configurado y está listo para funcionar.</string>
     <string name="vault_not_found">Bóveda no encontrada, iniciando la configuración…</string>
     <string name="copied">Copiado</string>
-    <string name="errors_copied">Errores copiados al portapapeles</string>
+    <string name="errors_copied">Se han copiado los errores al portapapeles</string>
     <string name="version_copied">Versión copiada al portapapeles</string>
     <string name="error_occurred">Se ha producido un error</string>
     <string name="decryption_error">Se ha producido un error tratando de desbloquear la bóveda</string>
@@ -219,7 +221,7 @@
     <string name="biometric_init_error">Se ha producido un error mientras se trataba de preparar la autenticación biométrica. Esto normalmente sólo ocurre si se cambiaron los ajustes de seguridad del dispositivo. Por favor, desbloquee la bóveda con su contraseña y reconfigure la autenticación biométrica en la configuración de Aegis.</string>
     <string name="disable_encryption">Desactivar cifrado</string>
     <string name="disable_encryption_description">¿Está seguro de que desea desactivar el cifrado?. Esto provocará que la bóveda sea almacenada en texto plano. <b>Las copias de seguridad automáticas también serán desactivadas</b>.</string>
-    <string name="enable_encryption_error">Se ha producido un error tratando de activar el cifrado</string>
+    <string name="enable_encryption_error">Se ha producido un error al intentar activar el cifrado</string>
     <string name="disable_encryption_error">Se ha producido un error tratando de desactivar el cifrado</string>
     <string name="backup_successful">La copia de seguridad se programó correctamente</string>
     <string name="backup_error">Se ha producido un error mientras se trataba de crear una copia de seguridad</string>
@@ -241,14 +243,14 @@
     <string name="andotp_old_format">Formato antiguo (v0.6.2 o anterior) </string>
     <string name="choose_andotp_importer">¿Qué formato tiene el archivo de copia de seguridad de andOTP?</string>
     <string name="choose_totpauth_importer">¿Está cifrada con una contraseña esta copia de seguridad de TOTP Authenticator?</string>
-    <string name="choose_application">Seleccione la aplicación desde la que desea importar</string>
-    <string name="choose_theme">Seleccione su tema deseado</string>
+    <string name="choose_application">Elige la aplicación desde la que importar los datos</string>
+    <string name="choose_theme">Elige el esquema de colores que más te guste</string>
     <string name="choose_account_name_position">Seleccione la posición del nombre de la cuenta deseada</string>
-    <string name="choose_view_mode">Seleccione su modo de visualización deseado</string>
+    <string name="choose_view_mode">Elige un modo de visualización</string>
     <string name="choose_copy_behavior">Seleccione el comportamiento de copia deseado</string>
-    <string name="parsing_file_error">Se ha producido un error procesando el archivo</string>
+    <string name="parsing_file_error">Se ha producido un error al intentar procesar el archivo</string>
     <string name="file_not_found">Error: Archivo no encontrado</string>
-    <string name="reading_file_error">Se ha producido un error tratando de leer el archivo</string>
+    <string name="reading_file_error">Se ha producido un error al intentar leer el archivo</string>
     <string name="app_lookup_error">Error: La aplicación no está instalada</string>
     <string name="app_version_error">La versión de %s que está instalada no es compatible. Las versiones recientes han comenzado a cifrar algunos de los archivos en el directorio de almacenamiento interno, haciendo que Aegis no pueda acceder a la información que necesita para la importación. Intentar importar probablemente resultará en un error. ¿Deseas continuar de todos modos?</string>
     <string name="root_error">Error: No se puede obtener acceso a la raíz</string>
@@ -267,7 +269,7 @@
     <string name="encryption_set_password_error">Se ha producido un error tratando de establecer la contraseña.</string>
     <string name="encryption_enable_biometrics_error">Se ha producido un error mientras se trataba de habilitar el desbloqueo biométrico. Algunos dispositivos tienen implementaciones deficientes de autenticación biométrica y es probable que el suyo sea uno de ellos. Considere cambiar a una configuración de sólo contraseña en su lugar.</string>
     <string name="no_cameras_available">No hay ninguna cámara disponible</string>
-    <string name="read_qr_error">Se ha producido un error tratando de leer el código QR</string>
+    <string name="read_qr_error">Se ha producido un error al intentar leer el código QR</string>
     <string name="read_qr_error_phonefactor">Aegis no es compatible con el algoritmo 2FA propietario de Microsoft. Por favor, asegúrese de seleccionar \"Configurar aplicación sin notificaciones\" al configurar 2FA en Office 365.</string>
     <string name="partial_google_auth_import">Se ha detectado una exportación incompleta de Google Authenticator</string>
     <string name="partial_google_auth_import_warning">Faltan algunos códigos QR en su importación. Los siguientes códigos no fueron encontrados:\n\n<b>%s</b>\n\nPuede continuar importando esta exportación parcial pero recomendamos volver a intentarlo con todos los códigos QR para que no se arriesgue a perder el acceso a ningún token.</string>
@@ -278,7 +280,7 @@
     <string name="no_tokens_can_be_imported">Como resultado no se puede importar ningún token</string>
     <string name="unlocking_vault">Desbloqueando la bóveda</string>
     <string name="remove_group">Eliminar grupo</string>
-    <string name="remove_group_description">¿Está seguro de que desea eliminar este grupo? Las entradas se moverán automáticamente a \'Sin grupo\'.</string>
+    <string name="remove_group_description">¿Seguro que quieres borrar este grupo? Sus elementos se moverán automáticamente a «Sin grupo».</string>
     <string name="remove_unused_groups">Eliminar grupos no utilizados</string>
     <string name="remove_unused_groups_description">¿Estás seguro de que deseas eliminar todos los grupos que no están asignados a una entrada?</string>
     <string name="remove_icon_pack">Eliminar paquete de iconos</string>
@@ -294,19 +296,22 @@
     <string name="sort_alphabetically_name">Cuenta (A a Z)</string>
     <string name="sort_alphabetically_name_reverse">Cuenta (Z a A)</string>
     <string name="sort_usage_count">Contador de uso</string>
+    <string name="sort_last_used">Último uso</string>
     <string name="sort_custom">Personalizado</string>
+    <string name="last_used">Último uso</string>
+    <string name="last_used_never">nunca</string>
     <string name="new_group">Nuevo grupo…</string>
     <string name="group">Grupo</string>
     <string name="group_name_hint">Nombre del grupo</string>
     <string name="preference_manage_groups">Editar grupos</string>
-    <string name="preference_manage_groups_summary">Gestione y elimine sus grupos aquí</string>
+    <string name="preference_manage_groups_summary">Gestiona y borra tus grupos</string>
     <string name="preference_reset_usage_count">Reiniciar contador de uso</string>
     <string name="preference_reset_usage_count_summary">Restablece el contador de uso de cada entrada de su bóveda</string>
     <string name="preference_reset_usage_count_dialog">¿Está seguro de que desea establecer el recuento de uso de cada entrada de su bóveda a 0?</string>
     <string name="note" comment="Users can add a note to an entry">Nota</string>
     <string name="clear">Restablecer</string>
-    <string name="pref_highlight_entry_title">Resaltar tokens al pulsarlos</string>
-    <string name="pref_highlight_entry_summary">Hace que los tokens sean más fáciles de distinguir entre ellos resaltándolos temporalmente tras ser pulsados</string>
+    <string name="pref_highlight_entry_title">Resaltar los códigos temporales al pulsar</string>
+    <string name="pref_highlight_entry_summary">Resalta temporalmente cada código que toques sobre los demás para que sea más fácil de distinguir</string>
     <string name="pref_minimize_on_copy_title">Minimizar al copiar</string>
     <string name="pref_minimize_on_copy_summary">Minimiza la app después de copiar un token</string>
     <string name="pref_copy_behavior_title">Copiar tokens al portapapeles</string>
@@ -391,7 +396,7 @@
     <string name="backup_plaintext_warning_explanation">Esta advertencia se muestra porque recientemente exportaste una copia no encriptada de la bóveda. Para mantener la seguridad de tus tokens, recomendamos eliminar este archivo cuando deje de ser necesario.</string>
     <string name="switch_camera">Cambiar cámara</string>
     <string name="empty_list">Todavía no tienes ningún código; añade alguno pulsando en el botón «+» de la esquina inferior derecha</string>
-    <string name="empty_list_title">No hay entradas</string>
+    <string name="empty_list_title">No hay ninguna clave</string>
     <string name="empty_group_list">No hay grupos que mostrar. Añada grupos en la pantalla de edición de una entrada</string>
     <string name="empty_group_list_title">No se encontraron grupos</string>
     <string name="no_icon_packs">Aún no se ha importado ningún paquete de iconos. Pulse el signo + para importar uno. Consejo: pruebe <a href="https://aegis-icons.github.io">aegis-icons</a>.</string>
@@ -426,6 +431,7 @@
     <string name="title_activity_scan_qr">Escanear un código QR</string>
     <string name="title_activity_import_entries">Importar entradas</string>
     <string name="title_activity_assign_icons">Asignar iconos</string>
+    <string name="title_activity_licenses">Licencias de terceros</string>
     <string name="dialog_wipe_entries_title">Limpiar entradas</string>
     <string name="dialog_wipe_entries_message">Su bóveda ya contiene entradas. ¿Desea eliminarlas antes de importar este archivo?\n\n<b>Al hacerlo, perderá permanentemente el acceso a las entradas existentes en la bóveda.</b></string>
     <string name="dialog_wipe_entries_checkbox">Limpiar el contenido de la bóveda</string>
