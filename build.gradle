@@ -24,7 +24,13 @@ allprojects {
         mavenCentral()
         google()
         maven { url 'https://jitpack.io' }
-        jcenter()
+        maven {
+            url 'https://jcenter.bintray.com'
+            content {
+                includeModule('com.amulyakhare', 'com.amulyakhare.textdrawable')
+                includeModule('info.guardianproject.trustedintents', 'trustedintents')
+            }
+        }
     }
 }
 
