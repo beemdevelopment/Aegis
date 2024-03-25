@@ -1,4 +1,11 @@
 <resources>
+    <style name="Theme.Aegis.Launch" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- colorPrimary in the root theme sets the task description color (seen in task switcher) -->
+        <item name="colorPrimary">@color/md_theme_light_primary</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+    </style>
+
     <style name="Base.Theme.Aegis.Light" parent="Theme.Material3.Light">
         <!-- Material colors -->
         <item name="colorPrimary">@color/md_theme_light_primary</item>
