@@ -447,6 +447,7 @@
     <string name="password_strength_fair">Fair</string>
     <string name="password_strength_good">Good</string>
     <string name="password_strength_strong">Strong</string>
+    <string name="password_strength_unknown">Password too long for strength analysis</string>
     <string name="pref_pin_keyboard_title">Use PIN keyboard on lockscreen</string>
     <string name="pref_pin_keyboard_summary">Enable this if you want to enable the PIN keyboard on the lockscreen. This only works for numeric passwords</string>
 

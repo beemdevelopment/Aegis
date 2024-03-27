@@ -1,10 +1,12 @@
 package com.beemdevelopment.aegis.ui.slides;
 
-import android.content.res.ColorStateList;
-import android.graphics.Color;
+import static com.beemdevelopment.aegis.ui.slides.SecurityPickerSlide.CRYPT_TYPE_BIOMETRIC;
+import static com.beemdevelopment.aegis.ui.slides.SecurityPickerSlide.CRYPT_TYPE_INVALID;
+import static com.beemdevelopment.aegis.ui.slides.SecurityPickerSlide.CRYPT_TYPE_NONE;
+import static com.beemdevelopment.aegis.ui.slides.SecurityPickerSlide.CRYPT_TYPE_PASS;
+
 import android.os.Bundle;
 import android.text.Editable;
-import android.text.TextWatcher;
 import android.text.method.PasswordTransformationMethod;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,6 +25,7 @@ import com.beemdevelopment.aegis.helpers.BiometricSlotInitializer;
 import com.beemdevelopment.aegis.helpers.BiometricsHelper;
 import com.beemdevelopment.aegis.helpers.EditTextHelper;
 import com.beemdevelopment.aegis.helpers.PasswordStrengthHelper;
+import com.beemdevelopment.aegis.helpers.SimpleTextWatcher;
 import com.beemdevelopment.aegis.ui.dialogs.Dialogs;
 import com.beemdevelopment.aegis.ui.intro.SlideFragment;
 import com.beemdevelopment.aegis.ui.tasks.KeyDerivationTask;
@@ -32,16 +35,9 @@ import com.beemdevelopment.aegis.vault.slots.PasswordSlot;
 import com.beemdevelopment.aegis.vault.slots.Slot;
 import com.beemdevelopment.aegis.vault.slots.SlotException;
 import com.google.android.material.textfield.TextInputLayout;
-import com.nulabinc.zxcvbn.Strength;
-import com.nulabinc.zxcvbn.Zxcvbn;
 
 import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
-
-import static com.beemdevelopment.aegis.ui.slides.SecurityPickerSlide.CRYPT_TYPE_BIOMETRIC;
-import static com.beemdevelopment.aegis.ui.slides.SecurityPickerSlide.CRYPT_TYPE_INVALID;
-import static com.beemdevelopment.aegis.ui.slides.SecurityPickerSlide.CRYPT_TYPE_NONE;
-import static com.beemdevelopment.aegis.ui.slides.SecurityPickerSlide.CRYPT_TYPE_PASS;
 
 public class SecuritySetupSlide extends SlideFragment {
     private EditText _textPassword;
@@ -76,27 +72,15 @@ public class SecuritySetupSlide extends SlideFragment {
             }
         });
 
-        _textPassword.addTextChangedListener(new TextWatcher() {
-            private Zxcvbn _zxcvbn = new Zxcvbn();
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                Strength strength = _zxcvbn.measure(_textPassword.getText());
-                _barPasswordStrength.setProgress(strength.getScore());
-                _barPasswordStrength.setProgressTintList(ColorStateList.valueOf(Color.parseColor(PasswordStrengthHelper.getColor(strength.getScore()))));
-                _textPasswordStrength.setText((_textPassword.getText().length() != 0) ? PasswordStrengthHelper.getString(strength.getScore(), requireContext()) : "");
-                _textPasswordWrapper.setError(strength.getFeedback().getWarning());
-                strength.wipe();
-            }
-
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-            }
+        _textPassword.addTextChangedListener(new SimpleTextWatcher(new SimpleTextWatcher.Listener() {
+            private final PasswordStrengthHelper passStrength = new PasswordStrengthHelper(
+                    _textPassword, _barPasswordStrength, _textPasswordStrength, _textPasswordWrapper);
 
             @Override
             public void afterTextChanged(Editable s) {
+                passStrength.measure(requireContext());
             }
-        });
+        }));
 
         return view;
     }
