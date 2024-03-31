@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:foreground="?android:attr/selectableItemBackground"
+    android:clickable="true"
+    android:focusable="true"
+    android:orientation="horizontal"
+    app:cardElevation="0dp"
+    style="@style/Widget.Aegis.EntryCardView">
+    <LinearLayout
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center_vertical">
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:paddingTop="12dp"
+            android:paddingStart="14dp">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/iv_icon_view"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_alignParentStart="true"
+                android:background="?attr/colorTertiaryContainer"
+                android:cropToPadding="true"
+                android:padding="2dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_lock_open"
+                app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.Aegis.ImageView.Rounded" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="bottom"
+            android:id="@+id/relativeLayout"
+            android:paddingTop="16dp"
+            android:paddingBottom="16dp"
+            android:paddingEnd="12dp"
+            android:paddingLeft="12dp"
+            android:paddingRight="12dp"
+            android:paddingStart="12dp">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/description">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/text_audit_log_title"
+                    android:text="@string/issuer"
+                    android:textStyle="bold"
+                    android:includeFontPadding="false"
+                    android:textSize="16sp"
+                    android:ellipsize="end"
+                    android:maxLines="1"/>
+
+
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/text_audit_log_description"
+                android:layoutDirection="ltr"
+                android:layout_below="@id/description"
+                android:includeFontPadding="false"
+                tools:text="The vault has been succesfully unlocked"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="4dp"
+                android:textStyle="normal"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/text_audit_log_reference"
+                android:layoutDirection="ltr"
+                android:layout_below="@id/text_audit_log_description"
+                android:includeFontPadding="false"
+                tools:text="Aegis (authenticator)"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="4dp"
+                android:textStyle="italic"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/text_audit_log_timestamp"
+                android:layoutDirection="ltr"
+                android:layout_below="@id/text_audit_log_reference"
+                android:includeFontPadding="false"
+                tools:text="Today at 5:59 PM"
+                android:textSize="12sp"
+                android:layout_alignParentStart="true"
+                android:textColor="?attr/colorOutline"
+                android:layout_marginTop="8dp"
+                android:textStyle="normal"/>
+
+        </RelativeLayout>
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>

@@ -8,6 +8,8 @@ import android.os.Build;
 import android.os.ParcelFileDescriptor;
 import android.util.Log;
 
+import com.beemdevelopment.aegis.database.AppDatabase;
+import com.beemdevelopment.aegis.database.AuditLogRepository;
 import com.beemdevelopment.aegis.util.IOUtils;
 import com.beemdevelopment.aegis.vault.VaultFile;
 import com.beemdevelopment.aegis.vault.VaultRepository;
@@ -25,12 +27,16 @@ public class AegisBackupAgent extends BackupAgent {
 
     private Preferences _prefs;
 
+    private AuditLogRepository _auditLogRepository;
+
     @Override
     public void onCreate() {
         super.onCreate();
 
         // Cannot use injection with Dagger Hilt here, because the app is launched in a restricted mode on restore
         _prefs = new Preferences(this);
+        AppDatabase appDatabase = AegisModule.provideAppDatabase(this);
+        _auditLogRepository = AegisModule.provideAuditLogRepository(appDatabase);
     }
 
     @Override
@@ -53,6 +59,7 @@ public class AegisBackupAgent extends BackupAgent {
         // report any runtime exceptions, in addition to the expected IOExceptions.
         try {
             fullBackup(data);
+            _auditLogRepository.addAndroidBackupCreatedEvent();
             _prefs.setAndroidBackupResult(new Preferences.BackupResult(null));
         } catch (Exception e) {
             Log.e(TAG, String.format("onFullBackup() failed: %s", e));

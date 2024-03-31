@@ -15,6 +15,7 @@ import com.beemdevelopment.aegis.Preferences;
 import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.crypto.KeyStoreHandle;
 import com.beemdevelopment.aegis.crypto.KeyStoreHandleException;
+import com.beemdevelopment.aegis.database.AuditLogRepository;
 import com.beemdevelopment.aegis.services.NotificationService;
 import com.beemdevelopment.aegis.ui.dialogs.Dialogs;
 
@@ -37,12 +38,15 @@ public class VaultManager {
     private final List<LockListener> _lockListeners;
     private boolean _blockAutoLock;
 
-    public VaultManager(@NonNull Context context) {
+    private final AuditLogRepository _auditLogRepository;
+
+    public VaultManager(@NonNull Context context, AuditLogRepository auditLogRepository) {
         _context = context;
         _prefs = new Preferences(_context);
-        _backups = new VaultBackupManager(_context);
+        _backups = new VaultBackupManager(_context, auditLogRepository);
         _androidBackups = new BackupManager(context);
         _lockListeners = new ArrayList<>();
+        _auditLogRepository = auditLogRepository;
     }
 
     /**

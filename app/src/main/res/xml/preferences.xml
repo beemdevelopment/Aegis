@@ -40,4 +40,10 @@
         app:title="@string/pref_section_import_export_title"
         app:summary="@string/pref_section_import_export_summary" />
 
+    <Preference
+        android:fragment="com.beemdevelopment.aegis.ui.fragments.preferences.AuditLogPreferencesFragment"
+        app:icon="@drawable/ic_timeline_24"
+        app:title="@string/pref_section_audit_log_title"
+        app:summary="@string/pref_section_audit_log_summary" />
+
 </androidx.preference.PreferenceScreen>

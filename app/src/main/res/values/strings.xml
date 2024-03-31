@@ -31,6 +31,8 @@
     <string name="pref_section_security_summary">Configure encryption, biometric unlock, auto lock and other security settings.</string>
     <string name="pref_section_import_export_title">Import &amp; Export</string>
     <string name="pref_section_import_export_summary">Import backups of Aegis or other authenticator apps. Create manual exports of your Aegis vault.</string>
+    <string name="pref_section_audit_log_title">Audit log</string>
+    <string name="pref_section_audit_log_summary">Find a list of all reported important events that happened within the app.</string>
     <string name="pref_section_backups_title">Backups</string>
     <string name="pref_section_backups_summary">Set up automatic backups to a location of your choosing or enable participation in Android\'s cloud backup system.</string>
     <string name="pref_section_icon_packs">Icon packs</string>
@@ -105,6 +107,28 @@
     <string name="pref_biometrics_summary">Allow biometric authentication to unlock the vault</string>
     <string name="pref_set_password_title">Change password</string>
     <string name="pref_set_password_summary">Set a new password which you will need to unlock your vault</string>
+
+    <string name="no_events_title">No reported events</string>
+    <string name="no_events_description">No important events have been reported within the app</string>
+    <string name="event_title_vault_unlocked">Vault unlocked</string>
+    <string name="event_description_vault_unlocked">The vault has been successfully unlocked</string>
+    <string name="event_title_backup_created">Backup created</string>
+    <string name="event_description_backup_created">A backup of the vault has been successfully created</string>
+    <string name="event_title_android_backup_created">Backup created by Android</string>
+    <string name="event_description_android_backup_created">A backup of the vault has been successfully created by Android</string>
+    <string name="event_title_vault_exported">Vault exported</string>
+    <string name="event_description_vault_exported">A copy of the vault has been exported</string>
+    <string name="event_title_entry_shared">Entry shared</string>
+    <string name="event_description_entry_shared">An entry was shared</string>
+    <string name="event_title_vault_unlock_failed_password">Vault unlock failed (password)</string>
+    <string name="event_description_vault_unlock_failed_password">An attempt to unlock the vault with a password failed</string>
+    <string name="event_title_vault_unlock_failed_biometrics">Vault unlock failed (biometrics)</string>
+    <string name="event_description_vault_unlock_failed_biometrics">An attempt to unlock the vault with biometrics failed</string>
+    <string name="event_unknown">Unknown event type</string>
+
+    <string name="today_at_time">Today at %1$s</string>
+    <string name="day_of_week_at_time">%1$s at %2$s</string>
+    <string name="date_format">dd/MM/yyyy</string>
 
     <string name="export_encrypted">Encrypt the vault</string>
     <string name="export_help">This action will export the vault out of Aegis\' internal storage. Select the format you\'d like your export to be in:</string>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center|fill_vertical"
+        android:visibility="gone"
+        android:id="@+id/vEmptyList"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingBottom="150dp">
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                android:src="@drawable/ic_timeline_24" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/no_events_title"
+                android:paddingTop="17dp"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/txt_no_audit_logs"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:lineSpacingExtra="5dp"
+                android:paddingTop="7dp"
+                android:text="@string/no_events_description"
+                android:textAlignment="center" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/list_audit_log"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="vertical"
+        android:scrollbarStyle="outsideOverlay"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

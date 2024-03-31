@@ -344,6 +344,8 @@ public class AuthActivity extends AegisActivity {
                 finish(result.getKey(), result.isSlotRepaired());
             } else {
                 _decryptButton.setEnabled(true);
+
+                _auditLogRepository.addVaultUnlockFailedPasswordEvent();
                 onInvalidPassword();
             }
         }
@@ -356,6 +358,7 @@ public class AuthActivity extends AegisActivity {
             _bioPrompt = null;
 
             if (!BiometricsHelper.isCanceled(errorCode)) {
+                _auditLogRepository.addVaultUnlockFailedBiometricsEvent();
                 Toast.makeText(AuthActivity.this, errString, Toast.LENGTH_LONG).show();
             }
         }

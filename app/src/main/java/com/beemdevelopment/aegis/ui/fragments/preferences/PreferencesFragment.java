@@ -13,6 +13,7 @@ import androidx.preference.PreferenceFragmentCompat;
 
 import com.beemdevelopment.aegis.Preferences;
 import com.beemdevelopment.aegis.R;
+import com.beemdevelopment.aegis.database.AuditLogRepository;
 import com.beemdevelopment.aegis.helpers.AnimationsHelper;
 import com.beemdevelopment.aegis.ui.dialogs.Dialogs;
 import com.beemdevelopment.aegis.vault.VaultManager;
@@ -37,6 +38,9 @@ public abstract class PreferencesFragment extends PreferenceFragmentCompat {
 
     @Inject
     VaultManager _vaultManager;
+
+    @Inject
+    protected AuditLogRepository _auditLogRepository;
 
     @Override
     @CallSuper

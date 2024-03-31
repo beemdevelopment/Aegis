@@ -17,14 +17,23 @@ import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.LifecycleEventObserver;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.ProcessLifecycleOwner;
+import androidx.room.Room;
 
+import com.beemdevelopment.aegis.database.AppDatabase;
+import com.beemdevelopment.aegis.database.AuditLogEntry;
+import com.beemdevelopment.aegis.database.AuditLogRepository;
 import com.beemdevelopment.aegis.receivers.VaultLockReceiver;
 import com.beemdevelopment.aegis.ui.MainActivity;
 import com.beemdevelopment.aegis.util.IOUtils;
 import com.beemdevelopment.aegis.vault.VaultManager;
 import com.topjohnwu.superuser.Shell;
 
+import org.checkerframework.checker.units.qual.A;
+
 import java.util.Collections;
+import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import dagger.hilt.InstallIn;
 import dagger.hilt.android.EarlyEntryPoint;

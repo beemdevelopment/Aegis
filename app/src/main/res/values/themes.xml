@@ -258,4 +258,9 @@
     <style name="Widget.Aegis.AlertDialog.Icon.Warning" parent="@style/MaterialAlertDialog.Material3.Title.Icon.CenterStacked">
         <item name="android:tint">?attr/colorError</item>
     </style>
+
+    <style name="ShapeAppearanceOverlay.Aegis.ImageView.Rounded" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">8dp</item>
+    </style>
 </resources>

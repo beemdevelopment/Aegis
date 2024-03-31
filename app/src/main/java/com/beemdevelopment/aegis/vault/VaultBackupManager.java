@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.documentfile.provider.DocumentFile;
 
 import com.beemdevelopment.aegis.Preferences;
+import com.beemdevelopment.aegis.database.AuditLogRepository;
 import com.beemdevelopment.aegis.util.IOUtils;
 
 import java.io.File;
@@ -41,17 +42,20 @@ public class VaultBackupManager {
     private final Context _context;
     private final Preferences _prefs;
     private final ExecutorService _executor;
+    private final AuditLogRepository _auditLogRepository;
 
-    public VaultBackupManager(Context context) {
+    public VaultBackupManager(Context context, AuditLogRepository auditLogRepository) {
         _context = context;
         _prefs = new Preferences(context);
         _executor = Executors.newSingleThreadExecutor();
+        _auditLogRepository = auditLogRepository;
     }
 
     public void scheduleBackup(File tempFile, Uri dirUri, int versionsToKeep) {
         _executor.execute(() -> {
             try {
                 createBackup(tempFile, dirUri, versionsToKeep);
+                _auditLogRepository.addBackupCreatedEvent();
                 _prefs.setBuiltInBackupResult(new Preferences.BackupResult(null));
             } catch (VaultRepositoryException | VaultBackupPermissionException e) {
                 e.printStackTrace();
