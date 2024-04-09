@@ -188,10 +188,13 @@ public class Dialogs {
         showSecureDialog(dialog);
     }
 
-    private static void showTextInputDialog(Context context, @StringRes int titleId, @StringRes int messageId, @StringRes int hintId, TextInputListener listener, DialogInterface.OnCancelListener cancelListener, boolean isSecret) {
+    private static void showTextInputDialog(Context context, @StringRes int titleId, @StringRes int messageId, @StringRes int hintId, TextInputListener listener, DialogInterface.OnCancelListener cancelListener, boolean isSecret,@Nullable String hint) {
         final AtomicReference<Button> buttonOK = new AtomicReference<>();
         View view = LayoutInflater.from(context).inflate(R.layout.dialog_text_input, null);
         TextInputEditText input = view.findViewById(R.id.text_input);
+        if(hint != null) {
+            input.setText(hint);
+        }
         input.addTextChangedListener(new SimpleTextWatcher(text -> {
             if (buttonOK.get() != null) {
                 buttonOK.get().setEnabled(!text.toString().isEmpty());
@@ -233,12 +236,16 @@ public class Dialogs {
         showSecureDialog(dialog);
     }
 
+    public static void showTextInputDialog(Context context, @StringRes int titleId, @StringRes int hintId, TextInputListener listener, String text) {
+        showTextInputDialog(context, titleId, 0, hintId, listener, null, false, text);
+    }
+
     private static void showTextInputDialog(Context context, @StringRes int titleId, @StringRes int hintId, TextInputListener listener, boolean isSecret) {
-        showTextInputDialog(context, titleId, 0, hintId, listener, null, isSecret);
+        showTextInputDialog(context, titleId, 0, hintId, listener, null, isSecret, null);
     }
 
     public static void showTextInputDialog(Context context, @StringRes int titleId, @StringRes int hintId, TextInputListener listener, @Nullable DialogInterface.OnCancelListener onCancel) {
-        showTextInputDialog(context, titleId, 0, hintId, listener, onCancel, false);
+        showTextInputDialog(context, titleId, 0, hintId, listener, onCancel, false, null);
     }
 
     public static void showPasswordInputDialog(Context context, TextInputListener listener) {
@@ -246,19 +253,19 @@ public class Dialogs {
     }
 
     public static void showPasswordInputDialog(Context context, TextInputListener listener, DialogInterface.OnCancelListener cancelListener) {
-        showTextInputDialog(context, R.string.set_password, 0, R.string.password, listener, cancelListener, true);
+        showTextInputDialog(context, R.string.set_password, 0, R.string.password, listener, cancelListener, true, null);
     }
 
     public static void showPasswordInputDialog(Context context, @StringRes int messageId, TextInputListener listener) {
-        showTextInputDialog(context, R.string.set_password, messageId, R.string.password, listener, null, true);
+        showTextInputDialog(context, R.string.set_password, messageId, R.string.password, listener, null, true, null);
     }
 
     public static void showPasswordInputDialog(Context context, @StringRes int messageId, TextInputListener listener, DialogInterface.OnCancelListener cancelListener) {
-        showTextInputDialog(context, R.string.set_password, messageId, R.string.password, listener, cancelListener, true);
+        showTextInputDialog(context, R.string.set_password, messageId, R.string.password, listener, cancelListener, true, null);
     }
 
     public static void showPasswordInputDialog(Context context, @StringRes int titleId, @StringRes int messageId, TextInputListener listener, DialogInterface.OnCancelListener cancelListener) {
-        showTextInputDialog(context, titleId, messageId, R.string.password, listener, cancelListener, true);
+        showTextInputDialog(context, titleId, messageId, R.string.password, listener, cancelListener, true, null);
     }
 
     public static void showCheckboxDialog(Context context, @StringRes int titleId, @StringRes int messageId, @StringRes int checkboxMessageId, CheckboxInputListener listener) {

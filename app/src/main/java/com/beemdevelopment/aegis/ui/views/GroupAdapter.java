@@ -10,6 +10,7 @@ import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.vault.VaultGroup;
 
 import java.util.ArrayList;
+import java.util.UUID;
 
 public class GroupAdapter extends RecyclerView.Adapter<GroupHolder> {
     private GroupAdapter.Listener _listener;
@@ -31,6 +32,13 @@ public class GroupAdapter extends RecyclerView.Adapter<GroupHolder> {
         }
     }
 
+    public void replaceGroup(UUID uuid, VaultGroup newGroup) {
+        VaultGroup oldGroup = getGroupByUUID(uuid);
+        int position = _groups.indexOf(oldGroup);
+        _groups.set(position, newGroup);
+        notifyItemChanged(position);
+    }
+
     public void removeGroup(VaultGroup group) {
         int position = _groups.indexOf(group);
         _groups.remove(position);
@@ -46,10 +54,23 @@ public class GroupAdapter extends RecyclerView.Adapter<GroupHolder> {
     @Override
     public void onBindViewHolder(GroupHolder holder, int position) {
         holder.setData(_groups.get(position));
+        holder.setOnEditClickListener(v -> {
+            int position12 = holder.getAdapterPosition();
+            _listener.onEditGroup(_groups.get(position12));
+        });
         holder.setOnDeleteClickListener(v -> {
             int position12 = holder.getAdapterPosition();
             _listener.onRemoveGroup(_groups.get(position12));
         });
+    }
+
+    private VaultGroup getGroupByUUID(UUID uuid) {
+        for (VaultGroup group : _groups) {
+            if (group.getUUID().equals(uuid)) {
+                return group;
+            }
+        }
+        return null;
     }
 
     @Override
@@ -58,6 +79,7 @@ public class GroupAdapter extends RecyclerView.Adapter<GroupHolder> {
     }
 
     public interface Listener {
+        void onEditGroup(VaultGroup group);
         void onRemoveGroup(VaultGroup group);
     }
 }

@@ -287,6 +287,10 @@ public class VaultRepository {
         removeGroup(group);
     }
 
+    public void renameGroup(VaultGroup renamedGroup) {
+        _vault.getGroups().replace(renamedGroup);
+    }
+
     public void removeGroup(VaultGroup group) {
         for (VaultEntry entry : getEntries()) {
             entry.removeGroup(group.getUUID());
