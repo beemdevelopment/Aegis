@@ -7,6 +7,7 @@ import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
 import static androidx.test.espresso.action.ViewActions.longClick;
 import static androidx.test.espresso.action.ViewActions.pressBack;
+import static androidx.test.espresso.action.ViewActions.scrollTo;
 import static androidx.test.espresso.action.ViewActions.typeText;
 import static androidx.test.espresso.matcher.ViewMatchers.hasDescendant;
 import static androidx.test.espresso.matcher.ViewMatchers.isDescendantOfA;
@@ -118,10 +119,11 @@ public class OverallTest extends AegisTest {
         onView(withId(R.id.rvKeyProfiles)).perform(RecyclerViewActions.actionOnItemAtPosition(entryPosOffset + 1, longClick()));
         onView(withId(R.id.action_edit)).perform(click());
         onView(withId(R.id.text_name)).perform(clearText(), typeText("Bob"), closeSoftKeyboard());
-        onView(withId(R.id.dropdown_group)).perform(click());
-        onView(withText(R.string.new_group)).inRoot(RootMatchers.isPlatformPopup()).perform(click());
+        onView(withId(R.id.text_group)).perform(click());
+        onView(withId(R.id.addGroup)).inRoot(RootMatchers.isDialog()).perform(click());
         onView(withId(R.id.text_input)).perform(typeText(_groupName), closeSoftKeyboard());
         onView(withId(android.R.id.button1)).perform(click());
+        onView(withText(R.string.save)).perform(click());
         onView(isRoot()).perform(pressBack());
         onView(withId(android.R.id.button1)).perform(click());
 
@@ -188,7 +190,7 @@ public class OverallTest extends AegisTest {
         onView(withId(R.id.fab)).perform(click());
         onView(withId(R.id.fab_enter)).perform(click());
 
-        onView(withId(R.id.accordian_header)).perform(click());
+        onView(withId(R.id.accordian_header)).perform(scrollTo(), click());
         onView(withId(R.id.text_name)).perform(typeText(entry.getName()), closeSoftKeyboard());
         onView(withId(R.id.text_issuer)).perform(typeText(entry.getIssuer()), closeSoftKeyboard());
 
@@ -208,7 +210,7 @@ public class OverallTest extends AegisTest {
                 throw new RuntimeException(String.format("Unexpected entry type: %s", entry.getInfo().getClass().getSimpleName()));
             }
 
-            onView(withId(R.id.dropdown_type)).perform(click());
+            onView(withId(R.id.dropdown_type)).perform(scrollTo(), click());
             onView(withText(otpType)).inRoot(RootMatchers.isPlatformPopup()).perform(click());
         }
 
