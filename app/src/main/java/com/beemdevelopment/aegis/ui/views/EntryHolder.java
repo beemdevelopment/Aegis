@@ -129,7 +129,7 @@ public class EntryHolder extends RecyclerView.ViewHolder {
         }
         _profileIssuer.setText(profileIssuer);
         _profileName.setText(profileName);
-        setAccountNameLayout(_accountNamePosition);
+        setAccountNameLayout(_accountNamePosition, !profileIssuer.isEmpty() && !profileName.isEmpty());
 
         if (_hidden) {
             hideCode();
@@ -142,7 +142,7 @@ public class EntryHolder extends RecyclerView.ViewHolder {
         itemView.setAlpha(dimmed ? DIMMED_ALPHA : DEFAULT_ALPHA);
     }
 
-    private void setAccountNameLayout(AccountNamePosition accountNamePosition) {
+    private void setAccountNameLayout(AccountNamePosition accountNamePosition, Boolean hasBothIssuerAndName) {
         if (_viewMode == ViewMode.TILES) {
             return;
         }
@@ -167,8 +167,10 @@ public class EntryHolder extends RecyclerView.ViewHolder {
             default:
                 profileNameLayoutParams = (RelativeLayout.LayoutParams) _profileName.getLayoutParams();
                 profileNameLayoutParams.addRule(RelativeLayout.END_OF, R.id.profile_issuer);
-                profileNameLayoutParams.setMarginStart(24);
                 profileNameLayoutParams.removeRule(RelativeLayout.BELOW);
+                if (hasBothIssuerAndName) {
+                    profileNameLayoutParams.setMarginStart(24);
+                }
                 _profileName.setLayoutParams(profileNameLayoutParams);
                 _profileName.setVisibility(View.VISIBLE);
                 break;
