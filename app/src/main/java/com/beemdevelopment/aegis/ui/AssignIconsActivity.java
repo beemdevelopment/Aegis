@@ -42,6 +42,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 public class AssignIconsActivity extends AegisActivity implements AssignIconAdapter.Listener {
     private AssignIconAdapter _adapter;
@@ -184,7 +185,11 @@ public class AssignIconsActivity extends AegisActivity implements AssignIconAdap
 
     @Override
     public void onAssignIconEntryClick(AssignIconEntry entry) {
-        BottomSheetDialog dialog = IconPickerDialog.create(this, Collections.singletonList(_favoriteIconPack), entry.getEntry().getIssuer(), false, new IconAdapter.Listener() {
+        List<IconPack> iconPacks = _iconPackManager.getIconPacks().stream()
+                .sorted(Comparator.comparing(IconPack::getName))
+                .collect(Collectors.toList());
+
+        BottomSheetDialog dialog = IconPickerDialog.create(this, iconPacks, entry.getEntry().getIssuer(), false, new IconAdapter.Listener() {
             @Override
             public void onIconSelected(IconPack.Icon icon) {
                 entry.setNewIcon(icon);
