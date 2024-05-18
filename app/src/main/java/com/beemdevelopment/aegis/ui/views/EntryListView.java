@@ -59,6 +59,7 @@ import com.google.common.base.Strings;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -167,6 +168,29 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
 
     public void setPreloadView(View view) {
         _preloadSizeProvider.setView(view);
+    }
+
+    @Override
+    public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
+        super.onViewStateRestored(savedInstanceState);
+        if (savedInstanceState == null) {
+            return;
+        }
+
+        HashSet<UUID> filter = (HashSet<UUID>) savedInstanceState.getSerializable("prefGroupFilter");
+        if (filter != null) {
+            _prefGroupFilter = filter;
+        }
+    }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        // user can apply _groupFilter without saving
+        // restore _groupFilter as _prefGroupFilter in order to reapply correct filter after screen rotate
+        if (_groupFilter != null) {
+            outState.putSerializable("prefGroupFilter", new HashSet<>(_groupFilter));
+        }
     }
 
     @Override
