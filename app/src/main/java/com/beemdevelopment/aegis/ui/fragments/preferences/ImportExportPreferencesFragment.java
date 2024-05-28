@@ -23,6 +23,7 @@ import androidx.preference.Preference;
 
 import com.beemdevelopment.aegis.BuildConfig;
 import com.beemdevelopment.aegis.R;
+import com.beemdevelopment.aegis.database.AuditLogRepository;
 import com.beemdevelopment.aegis.helpers.DropdownHelper;
 import com.beemdevelopment.aegis.importers.DatabaseImporter;
 import com.beemdevelopment.aegis.otp.GoogleAuthInfo;
@@ -63,6 +64,7 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 import javax.crypto.Cipher;
+import javax.inject.Inject;
 
 public class ImportExportPreferencesFragment extends PreferencesFragment {
     // keep a reference to the type of database converter that was selected
@@ -277,6 +279,7 @@ public class ImportExportPreferencesFragment extends PreferencesFragment {
                         .setType(getExportMimeType(getExportRequestCode(pos, encrypt)))
                         .putExtra(Intent.EXTRA_TITLE, fileInfo.toString());
 
+                _auditLogRepository.addVaultExportedEvent();
                 ActivityResultLauncher<Intent> resultLauncher = getExportRequestLauncher(pos, encrypt);
                 _vaultManager.fireIntentLauncher(this, intent, resultLauncher);
             });
@@ -320,7 +323,7 @@ public class ImportExportPreferencesFragment extends PreferencesFragment {
 
                     // if the user creates an export, hide the backup reminder
                     _prefs.setLatestExportTimeNow();
-
+                    _auditLogRepository.addVaultExportedEvent();
                     Uri uri = FileProvider.getUriForFile(requireContext(), BuildConfig.FILE_PROVIDER_AUTHORITY, file);
                     Intent intent = new Intent(Intent.ACTION_SEND)
                             .setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
@@ -559,7 +562,7 @@ public class ImportExportPreferencesFragment extends PreferencesFragment {
             } else {
                 // if the user creates an export, hide the backup reminder
                 _prefs.setLatestExportTimeNow();
-
+                _auditLogRepository.addVaultExportedEvent();
                 Toast.makeText(requireContext(), getString(R.string.exported_vault), Toast.LENGTH_SHORT).show();
             }
         }

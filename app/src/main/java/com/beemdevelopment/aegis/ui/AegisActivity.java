@@ -21,6 +21,7 @@ import androidx.core.view.ViewPropertyAnimatorCompat;
 import com.beemdevelopment.aegis.Preferences;
 import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.ThemeMap;
+import com.beemdevelopment.aegis.database.AuditLogRepository;
 import com.beemdevelopment.aegis.helpers.ThemeHelper;
 import com.beemdevelopment.aegis.icons.IconPackManager;
 import com.beemdevelopment.aegis.vault.VaultManager;
@@ -47,6 +48,9 @@ public abstract class AegisActivity extends AppCompatActivity implements VaultMa
 
     @Inject
     protected VaultManager _vaultManager;
+
+    @Inject
+    protected AuditLogRepository _auditLogRepository;
 
     @Inject
     protected IconPackManager _iconPackManager;
