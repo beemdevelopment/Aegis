@@ -132,9 +132,10 @@ public class AppearancePreferencesFragment extends PreferencesFragment {
 
         String[] codeGroupings = getResources().getStringArray(R.array.pref_code_groupings_values);
         String[] codeGroupingNames = getResources().getStringArray(R.array.pref_code_groupings);
-        int currentCodeGroupingIndex = Arrays.asList(codeGroupings).indexOf(_prefs.getCodeGroupSize().name());
         Preference codeDigitGroupingPreference = requirePreference("pref_code_group_size_string");
         codeDigitGroupingPreference.setOnPreferenceClickListener(preference -> {
+            int currentCodeGroupingIndex = Arrays.asList(codeGroupings).indexOf(_prefs.getCodeGroupSize().name());
+
             Dialogs.showSecureDialog(new MaterialAlertDialogBuilder(requireContext())
                     .setTitle(R.string.pref_code_group_size_title)
                     .setSingleChoiceItems(codeGroupingNames, currentCodeGroupingIndex, (dialog, which) -> {
