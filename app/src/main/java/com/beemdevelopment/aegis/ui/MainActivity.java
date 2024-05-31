@@ -1047,6 +1047,9 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
 
     @Override
     public void onSaveGroupFilter(Set<UUID> groupFilter) {
+        if (_vaultManager.getVault().isGroupsMigrationFresh()) {
+            saveAndBackupVault();
+        }
         _prefs.setGroupFilter(groupFilter);
     }
 

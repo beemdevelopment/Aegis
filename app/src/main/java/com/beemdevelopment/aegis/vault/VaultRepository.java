@@ -314,6 +314,10 @@ public class VaultRepository {
                 .collect(Collectors.toList());
     }
 
+    public boolean isGroupsMigrationFresh() {
+        return _vault.isGroupsMigrationFresh();
+    }
+
     public VaultFileCredentials getCredentials() {
         return _creds == null ? null : _creds.clone();
     }
