@@ -1,1 +1,0 @@
-Çevrimiçi hizmetlerinde doğrulama kodlarınızı yönetmeniz için özgür, güvenli ve açık kaynak 2FA uygulaması

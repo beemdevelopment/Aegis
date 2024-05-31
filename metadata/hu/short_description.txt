@@ -1,1 +1,0 @@
-Szabad, biztonságos és nyílt forráskódú kétfaktoros hitelesítő alkalmazás
