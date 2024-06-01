@@ -20,6 +20,8 @@ import androidx.annotation.AttrRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StyleRes;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.ItemTouchHelper;
@@ -49,6 +51,7 @@ import com.bumptech.glide.ListPreloader;
 import com.bumptech.glide.RequestBuilder;
 import com.bumptech.glide.integration.recyclerview.RecyclerViewPreloader;
 import com.bumptech.glide.util.ViewPreloadSizeProvider;
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.chip.Chip;
@@ -529,6 +532,12 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
     private void initializeGroupChip() {
         View view = getLayoutInflater().inflate(R.layout.dialog_select_groups, null);
         BottomSheetDialog dialog = new BottomSheetDialog(requireContext());
+        NestedScrollView scrollView = view.findViewById(R.id.scrollView);
+        ConstraintLayout.LayoutParams layoutParams = (ConstraintLayout.LayoutParams) scrollView.getLayoutParams();
+        layoutParams.matchConstraintMaxHeight = getResources().getConfiguration().screenHeightDp;
+
+        dialog.getBehavior().setState(BottomSheetBehavior.STATE_EXPANDED);
+        dialog.getBehavior().setSkipCollapsed(false);
         dialog.setContentView(view);
 
         ChipGroup chipGroup = view.findViewById(R.id.groupChipGroup);
