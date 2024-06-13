@@ -23,6 +23,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.Toast;
@@ -285,6 +286,13 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
     @Override
     public void onEntryListTouch() {
         _isDPadPressed = false;
+
+        if (_searchView != null && !_searchView.isIconified()) {
+            InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            if (inputMethodManager != null && getCurrentFocus() != null) {
+                inputMethodManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+            }
+        }
     }
 
     private void onPreferencesResult(Intent data) {
