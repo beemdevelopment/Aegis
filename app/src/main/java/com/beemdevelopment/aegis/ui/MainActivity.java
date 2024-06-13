@@ -23,6 +23,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.Toast;
@@ -34,6 +35,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.view.ActionMode;
 import androidx.appcompat.widget.SearchView;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 
 import com.beemdevelopment.aegis.AccountNamePosition;
 import com.beemdevelopment.aegis.CopyBehavior;
@@ -285,6 +288,15 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
     @Override
     public void onEntryListTouch() {
         _isDPadPressed = false;
+
+        if (_searchView != null && !_searchView.isIconified()) {
+            if (ViewCompat.getRootWindowInsets(findViewById(android.R.id.content).getRootView()).isVisible(WindowInsetsCompat.Type.ime())) {
+                InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                if (inputMethodManager != null && getCurrentFocus() != null) {
+                    inputMethodManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+                }
+            }
+        }
     }
 
     private void onPreferencesResult(Intent data) {
