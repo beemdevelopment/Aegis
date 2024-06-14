@@ -28,6 +28,8 @@
     <string name="pref_section_security_summary">Configurați criptarea, deblocarea biometrică, blocarea automată și alte setări de securitate.</string>
     <string name="pref_section_import_export_title">Importă &amp; Exportă</string>
     <string name="pref_section_import_export_summary">Importă copii de rezervă ale Aegis sau ale altor aplicații de autentificare. Creează exporturi manuale în seiful dvs. Aegis.</string>
+    <string name="pref_section_audit_log_title">Jurnal de audit</string>
+    <string name="pref_section_audit_log_summary">Găsiți o listă cu toate evenimentele importante raportate care s-au întâmplat în cadrul aplicației.</string>
     <string name="pref_section_backups_title">Copii de rezervă</string>
     <string name="pref_section_backups_summary">Configurați backup-urile automate într-o locație în care alegeți sau activați participarea la sistemul Android de backup în cloud.</string>
     <string name="pref_section_icon_packs">Set de pictograme</string>
@@ -104,6 +106,26 @@
     <string name="pref_biometrics_summary">Permite autentificarea biometrică pentru a debloca seiful</string>
     <string name="pref_set_password_title">Schimbă parola</string>
     <string name="pref_set_password_summary">Setează o parolă nouă cu care va trebui să deblochezi seiful</string>
+    <string name="no_events_title">Nu s-au raportat evenimente</string>
+    <string name="no_events_description">Nu au fost raportate evenimente importante în cadrul aplicației</string>
+    <string name="event_title_vault_unlocked">Seif deblocat</string>
+    <string name="event_description_vault_unlocked">Seiful a fost deblocat cu succes</string>
+    <string name="event_title_backup_created">Copie de rezervă creată</string>
+    <string name="event_description_backup_created">O copie de rezervă a seifului a fost creată cu succes</string>
+    <string name="event_title_android_backup_created">Android a creat o copie de rezervă</string>
+    <string name="event_description_android_backup_created">O copie de rezervă a seifului a fost creată cu succes de Android</string>
+    <string name="event_title_vault_exported">Seif exportat</string>
+    <string name="event_description_vault_exported">O copie a seifului a fost exportată</string>
+    <string name="event_title_entry_shared">Element distribuit</string>
+    <string name="event_description_entry_shared">Un element a fost distribuit</string>
+    <string name="event_title_vault_unlock_failed_password">Deblocarea seifului a eșuat (parolă)</string>
+    <string name="event_description_vault_unlock_failed_password">Încercarea de a debloca seiful cu o parolă a eșuat</string>
+    <string name="event_title_vault_unlock_failed_biometrics">Deblocarea seifului a eșuat (biometrie)</string>
+    <string name="event_description_vault_unlock_failed_biometrics">Încercarea de a debloca seiful cu datele biometrice a eșuat</string>
+    <string name="event_unknown">Tipul evenimentului este necunoscut</string>
+    <string name="today_at_time">Astăzi, la %1$s</string>
+    <string name="day_of_week_at_time">%1$s la %2$s</string>
+    <string name="date_format">zz/ll/aaaa</string>
     <string name="export_encrypted">Criptează seiful</string>
     <string name="export_help">Această acțiune va exporta seiful din spațiul de stocare al aplicaţiei. Selectează formatul în care dorești exportul:</string>
     <string name="export_warning_unencrypted">Ești pe cale să exportezi o copie necriptată a seifului Aegis. <b>Acest lucru nu este recomandat</b>.</string>
@@ -287,6 +309,7 @@
     <string name="unrelated_google_auth_batches_error">Exportul conține informații pentru un calup neasociat. Încercați să importați câte un calup pe rând.</string>
     <string name="no_tokens_can_be_imported">Nu se pot importa token-uri drept rezultat</string>
     <string name="unlocking_vault">Deblocarea seifului</string>
+    <string name="rename_group">Redenumește grupul</string>
     <string name="remove_group">Elimină grupul</string>
     <string name="remove_group_description">Ești sigur că dorești să ștergi acest grup? Intrările din acest grup vor comuta automat la \'Niciun grup\'.</string>
     <string name="remove_unused_groups">Ștergeți grupurile neutilizate</string>
@@ -426,6 +449,7 @@
     <string name="password_strength_fair">Acceptabilă</string>
     <string name="password_strength_good">Bună</string>
     <string name="password_strength_strong">Puternică</string>
+    <string name="password_strength_unknown">Parola este prea lungă pentru ai analiza eficacitatea</string>
     <string name="pref_pin_keyboard_title">Utilizează tastatura PIN pe ecranul de blocare</string>
     <string name="pref_pin_keyboard_summary">Activează dacă dorești să activezi tastatura PIN pe ecranul de blocare. Acest lucru funcționează numai pentru parolele numerice</string>
     <string name="title_activity_preferences">Setări</string>
@@ -436,6 +460,7 @@
     <string name="title_activity_scan_qr">Scanează cod QR</string>
     <string name="title_activity_import_entries">Importă intrări</string>
     <string name="title_activity_assign_icons">Atribuie pictograme</string>
+    <string name="title_activity_licenses">Licențe terțe</string>
     <string name="dialog_wipe_entries_title">Șterge intrările</string>
     <string name="dialog_wipe_entries_message">Seiful tău conține deja intrări. Dorești să ştergi aceste intrări înainte de a importa acest fişier?\n\n<b>Făcând acest lucru, vei pierde permanent accesul la intrările existente din seif.</b></string>
     <string name="dialog_wipe_entries_checkbox">Şterge conţinutul seifului</string>
@@ -456,7 +481,6 @@
     <string name="importer_help_authy">Furnizează o copie a <b>/data/data/com.authy.authy/shared_prefs/com.authy.storage.tokens.authenticator.xml</b>, localizată în directorul de stocare internă al Authy.</string>
     <string name="importer_help_andotp">Furnizați un fişier de export/copie de rezervă andOTP.</string>
     <string name="importer_help_bitwarden">Furnizează un fișier de backup din aplicația Bitwarden. Fișierele criptate nu sunt suportate.</string>
-    <string name="importer_help_battle_net_authenticator">Furnizează o copie a <b>/data/data/com.blizzard.messenger/shared_prefs/com.blizzard.messenger.authenticator_preferences.xml</b>, localizată în directorul de stocare internă al Battle.net Authenticator.</string>
     <string name="importer_help_duo">Furnizează o copie a <b>/data/data/com.duosecurity.duomobile/files/duokit/accounts.json</b>, localizată în dosarul din memoria internă al DUO.</string>
     <string name="importer_help_freeotp">Furnizează o copie a <b>/data/data/org.fedorahosted.freeotp/shared_prefs/tokens.xml</b>, localizată în dosarul din stocarea internă a FreeOTP (1.x).</string>
     <string name="importer_help_freeotp_plus">Furnizează un fișier de export FreeOTP+.</string>

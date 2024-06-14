@@ -434,7 +434,6 @@
     <string name="importer_help_authy">Authyの内部ストレージディレクトリにある <b>/data/data/com.authy/shared_prefs/com.auth.storage.tokens.authenticator.xml</b>のコピーを提供します。</string>
     <string name="importer_help_andotp">andOTPのエクスポート/バックアップ ファイルを提供します。</string>
     <string name="importer_help_bitwarden">Bitwarden のエクスポート/バックアップファイルを提供します。暗号化されたファイルはサポートされていません。</string>
-    <string name="importer_help_battle_net_authenticator">Battle.net Authenticator の内部ストレージディレクトリにある<b>/data/data/com.blizzard.messenger/shared_prefs/com.blizzard.messenger.authenticator_preferences.xml</b>, のコピーを提供します。</string>
     <string name="importer_help_duo">DUOの内部ストレージディレクトリにある <b>/data/data/com.duosecurity.duomobile/files/duokit/accounts.json</b>のコピーを提供します。</string>
     <string name="importer_help_freeotp">FreeOTP (1.x) の内部ストレージディレクトリにある <b>/data/data/org.fedorahosted.freeotp/shared_prefs/tokens.xml</b> のコピーを提供します。</string>
     <string name="importer_help_freeotp_plus">FreeOTP+のエクスポートファイルを提供します。</string>

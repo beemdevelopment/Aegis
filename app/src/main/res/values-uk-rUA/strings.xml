@@ -426,7 +426,6 @@
     <string name="importer_help_authy">Надайте копію <b>/data/data/com.authy.authy/shared_prefs/com.authy.storage.tokens.authenticator.xml</b>, що знаходиться в каталозі Authy у внутрішній пам\'яті.</string>
     <string name="importer_help_andotp">Надайте файл експорту/резервної копії andOTP.</string>
     <string name="importer_help_bitwarden">Надайте файл експорту/резервного копіювання Bitwarden. Зашифровані файли не підтримуються.</string>
-    <string name="importer_help_battle_net_authenticator">Необхідна копія файлу <b>/data/data/com.blizzard.messenger/shared_prefs/com.blizzard.messenger.authenticator_preferences.xml</b>, який знаходиться у внутрішньому каталозі пам’яті Battle.net Authenticator.</string>
     <string name="importer_help_duo">Надайте копію <b>/data/data/com.duosecurity.duomobile/files/duokit/accounts.json</b>, що знаходиться у каталозі DUO у внутрішній пам\'яті.</string>
     <string name="importer_help_freeotp_plus">Надайте файл експортований з FreeOTP+.</string>
     <string name="importer_help_google_authenticator"><b>Підтримуються лише файли бази даних Google Authenticator v5.10 та попередніх версій</b>.\n\nНадайте копію <b>/data/data/com.google.android.apps.authenticator2/databases/databases</b>, що знаходиться у каталозі Google Authenticator у внутрішній пам\'яті.</string>

@@ -28,6 +28,8 @@
     <string name="pref_section_security_summary">Nakonfigurujte šifrovanie, biometrické odomknutie, automatické uzamknutie a ďalšie nastavenia zabezpečenia.</string>
     <string name="pref_section_import_export_title">Import &amp; export dát</string>
     <string name="pref_section_import_export_summary">Importujte zálohy Aegis alebo iných autentifikačných aplikácií. Vytvorte manuálne exporty svojho trezoru Aegis.</string>
+    <string name="pref_section_audit_log_title">Denník záznamov</string>
+    <string name="pref_section_audit_log_summary">Nájdite zoznam všetkých nahlásených dôležitých udalosti, ktoré sa stali v aplikácii.</string>
     <string name="pref_section_backups_title">Zálohy</string>
     <string name="pref_section_backups_summary">Nastavte automatické zálohovanie na miesto podľa vášho výberu alebo povoľte účasť v cloudovom zálohovacom systéme Androidu.</string>
     <string name="pref_section_icon_packs">Balíčky ikon</string>
@@ -100,6 +102,26 @@
     <string name="pref_biometrics_summary">Povoliť biometrické overenie na odomknutie trezoru</string>
     <string name="pref_set_password_title">Zmeniť heslo</string>
     <string name="pref_set_password_summary">Zadajte nové heslo, ktoré budete potrebovať na odomknutie trezoru</string>
+    <string name="no_events_title">Žiadne nahlásené udalosti</string>
+    <string name="no_events_description">V aplikácii neboli nahlásené žiadne dôležité udalosti</string>
+    <string name="event_title_vault_unlocked">Trezor je odomknutý</string>
+    <string name="event_description_vault_unlocked">Trezor bol úspešne odomknutý</string>
+    <string name="event_title_backup_created">Záloha vytvorená</string>
+    <string name="event_description_backup_created">Záloha trezoru bola úspešne vytvorená</string>
+    <string name="event_title_android_backup_created">Záloha vytvorená systémom Android</string>
+    <string name="event_description_android_backup_created">Záloha trezoru bola úspešne vytvorená systémom Android</string>
+    <string name="event_title_vault_exported">Trezor exportovaný</string>
+    <string name="event_description_vault_exported">Kópia trezoru bola exportovaná</string>
+    <string name="event_title_entry_shared">Záznam zdieľaný</string>
+    <string name="event_description_entry_shared">Záznam bol zdieľaný</string>
+    <string name="event_title_vault_unlock_failed_password">Odomknutie trezora sa nepodarilo (heslo)</string>
+    <string name="event_description_vault_unlock_failed_password">Pokus o odomknutie trezora s heslom zlyhalo</string>
+    <string name="event_title_vault_unlock_failed_biometrics">Odomknutie trezora sa nepodarilo (biometria)</string>
+    <string name="event_description_vault_unlock_failed_biometrics">Pokus o odomknutie trezora s biometriou zlyhalo</string>
+    <string name="event_unknown">Neznámy typ udalosti</string>
+    <string name="today_at_time">Dnes o %1$s</string>
+    <string name="day_of_week_at_time">%1$s o %2$s</string>
+    <string name="date_format">dd. mm. yyyy</string>
     <string name="export_encrypted">Šifrovať trezor</string>
     <string name="export_help">Touto akciou sa exportuje trezor z interného úložiska Aegis. Vyberte formát, v ktorom chcete mať export:</string>
     <string name="export_warning_unencrypted">Chystáte sa exportovať nezašifrovanú kópiu svojho trezoru Aegis. <b> Toto sa neodporúča </b>.</string>
@@ -227,9 +249,13 @@
     <string name="no_cameras_available">K dispozícii nie sú žiadne kamery</string>
     <string name="read_qr_error">Pri pokuse o načítanie kódu QR sa vyskytla chyba</string>
     <string name="read_qr_error_phonefactor">Aegis nie je kompatibilný s proprietárnym algoritmom 2FA spoločnosti Microsoft. Pri konfigurácii 2FA v Office 365 nezabudnite vybrať možnosť „Nastaviť aplikáciu bez upozornení“.</string>
+    <string name="missing_qr_code_descriptor">• QR kód %d</string>
     <string name="unlocking_vault">Odomykanie trezoru</string>
+    <string name="rename_group">Premenovať Skupinu</string>
     <string name="remove_group">Odstránenie skupiny</string>
     <string name="remove_group_description">Ste si istí, že chcete odstrániť túto skupinu? Záznamy v tejto skupine budú automaticky prehodené na \'Žiadna skupina\'.</string>
+    <string name="remove_unused_groups">Odstrániť nepoužité skupiny</string>
+    <string name="remove_unused_groups_description">Ste si istí, že chcete odstrániť všetky skupiny, ktoré nie sú priradené k záznamu?</string>
     <string name="remove_icon_pack">Odstrániť balíček ikon</string>
     <string name="remove_icon_pack_description">Ste si istí, že chcete odstrániť tento balíček ikon? Záznamy, ktoré používajú ikony z tohto balíka, nebudú ovplyvnené.</string>
     <string name="details">Podrobnosti</string>
@@ -243,7 +269,10 @@
     <string name="sort_alphabetically_name">Účet (od A po Z)</string>
     <string name="sort_alphabetically_name_reverse">Účet (od Z po A)</string>
     <string name="sort_usage_count">Počet použití</string>
+    <string name="sort_last_used">Naposledy použité</string>
     <string name="sort_custom">Vlastné</string>
+    <string name="last_used">Naposledy použité</string>
+    <string name="last_used_never">nikdy</string>
     <string name="new_group">Nová skupina…</string>
     <string name="group">Skupina</string>
     <string name="group_name_hint">Názov skupiny</string>
@@ -258,6 +287,7 @@
     <string name="pref_minimize_on_copy_title">Minimalizovať pri kopírovaní</string>
     <string name="pref_minimize_on_copy_summary">Minimalizujte aplikáciu po skopírovaní tokenu</string>
     <string name="pref_copy_behavior_title">Kopírovať tokeny do schránky</string>
+    <string name="pref_pause_entry_title">Zmraziť tokeny po klepnutí</string>
     <string name="pin_keyboard_disabled">Heslo bolo zmenené. Klávesnica pre PIN sa už nebude zobrazovať.</string>
     <string name="selected">Zvolené</string>
     <string name="dark_theme_title">Tmavá téma</string>
@@ -308,6 +338,7 @@
     <string name="backup_reminder_bar_message">        Zmeny nie sú zálohované
     </string>
     <string name="backup_reminder_bar_dialog_title">Zmeny nie sú zálohované</string>
+    <string name="backup_plaintext_export_warning"><b>Trezor bol nedávno exportovaný ako obyčajný text</b></string>
     <string name="switch_camera">Prepnúť fotoaparát</string>
     <string name="empty_list_title">Neboli nájdené žiadne záznamy</string>
     <string name="empty_group_list_title">Neboli nájdené žiadne skupiny</string>

@@ -147,6 +147,7 @@
     <string name="share">分享</string>
     <string name="yes">確定</string>
     <string name="no">取消</string>
+    <string name="undo">復原</string>
     <string name="unlock">解鎖</string>
     <string name="advanced">進階設定</string>
     <string name="counter">計數器</string>
@@ -158,6 +159,8 @@
     <string name="set_up_biometric">設定生物特徵辨識解鎖</string>
     <string name="copy">複製</string>
     <string name="edit">編輯</string>
+    <string name="select_all">選擇全部</string>
+    <string name="assign_icons">分配圖示</string>
     <string name="favorite" comment="Verb">加入最愛</string>
     <string name="unfavorite" comment="Verb">移出最愛</string>
     <string name="error_all_caps">錯誤</string>
@@ -175,6 +178,7 @@
     <string name="reading_file">讀取檔案中</string>
     <string name="requesting_root_access">需要使用 root</string>
     <string name="analyzing_qr">分析 QR code 中</string>
+    <string name="analyzing_qr_multiple">正在分析 QR 圖碼 %d/%d (%s)</string>
     <plurals name="added_new_entries">
         <item quantity="other">增加 %d 個條目進保險箱</item>
     </plurals>
@@ -234,6 +238,9 @@
     <plurals name="imported_entries_count">
         <item quantity="other">已匯入 %d 個條目</item>
     </plurals>
+    <plurals name="entries_shown">
+        <item quantity="other">正在顯示 %d 條條目</item>
+    </plurals>
     <string name="intro_import_error_title">匯入至保險箱時發生錯誤</string>
     <string name="import_error_title">匯入時發生了一些錯誤。</string>
     <string name="exporting_vault_error">匯出保險箱時發生錯誤</string>
@@ -244,10 +251,14 @@
     <string name="read_qr_error">試圖讀取QR碼時出錯</string>
     <string name="read_qr_error_phonefactor">Aegis 不相容於微軟私有的雙因素驗證演算法。請確保在 Microsoft 365 設定雙因素驗證時選擇「設定無通知的應用程式」。</string>
     <string name="partial_google_auth_import">偵測到不完整的 Google Authenticator 匯出</string>
+    <string name="missing_qr_code_descriptor">• QR 圖碼 %d</string>
+    <string name="import_partial_export_anyway">仍要匯入 %d 個令牌</string>
     <string name="import_google_auth_failure">匯入 Google Authenticator 失敗</string>
     <string name="unlocking_vault">解鎖保險箱</string>
+    <string name="rename_group">重新命名群組</string>
     <string name="remove_group">移除群組</string>
     <string name="remove_group_description">您確定要刪除這個群組嗎？此群組內的條目將自動移動到「無群組」。</string>
+    <string name="remove_unused_groups">刪除未使用的群組</string>
     <string name="remove_icon_pack">移除圖示合輯</string>
     <string name="details">詳細資訊</string>
     <string name="show_error_details">顯示錯誤詳細內容</string>
@@ -260,7 +271,10 @@
     <string name="sort_alphabetically_name">帳戶（A 到 Z）</string>
     <string name="sort_alphabetically_name_reverse">帳戶（Z 到 A）</string>
     <string name="sort_usage_count">使用次數</string>
+    <string name="sort_last_used">最近已使用</string>
     <string name="sort_custom">自訂</string>
+    <string name="last_used">最近已使用</string>
+    <string name="last_used_never">從不</string>
     <string name="new_group">新增群組…</string>
     <string name="group">群組</string>
     <string name="group_name_hint">群組名稱</string>
@@ -273,6 +287,8 @@
     <string name="clear">清除</string>
     <string name="pref_highlight_entry_title">強調選取的憑證</string>
     <string name="pref_highlight_entry_summary">輕觸後暫時凸顯該驗證碼以與它者區分</string>
+    <string name="pref_minimize_on_copy_title">複製後最小化</string>
+    <string name="pref_copy_behavior_title">複製令牌至剪貼簿</string>
     <string name="pref_pause_entry_title">被觸碰時凍結驗證碼</string>
     <string name="pref_pause_entry_summary">輕觸以暫停驗證碼的自動更新機制：只要驗證碼還在焦點上，它們就不會被自動更新。需要啟用「輕觸以顯示」或「強調選取的憑證」功能。</string>
     <string name="pin_keyboard_description">請輸入您的密碼以啟用 PIN 鍵盤。請注意，只有當您的密碼僅由數字構成時才能使用</string>
@@ -332,6 +348,7 @@
     <string name="backup_system_android">Android 雲端備份</string>
     <string name="backup_reminder_bar_dialog_summary">        尚未備份最近針對保險箱的操作。週期性的備份是避免遺失登入方法的最佳良方。請考慮在設定選單內啟用自動備份。
     </string>
+    <string name="backup_reminder_bar_dialog_accept">設置備份</string>
     <string name="backup_plaintext_export_warning"><b>最近保險箱曾匯出為純文字</b></string>
     <string name="pref_show_plaintext_warning_hint">不再顯示這則警告</string>
     <string name="backup_plaintext_warning_explanation">本警示會跳出來因為您最近匯出了未加密的保險箱複本。為保護憑證的安全性，我們建議您在不需要使用後刪除此檔案。</string>
@@ -345,6 +362,9 @@
     <string name="pick_icon">選取圖示</string>
     <string name="uncategorized">未分類</string>
     <string name="done">完成</string>
+    <plurals name="qr_count">
+        <item quantity="other">%d / %d QR 圖碼</item>
+    </plurals>
     <string name="next">下一個</string>
     <string name="previous">上一個</string>
     <string name="copy_uri">複製 URI</string>
@@ -358,6 +378,7 @@
     <string name="password_strength_fair">中等</string>
     <string name="password_strength_good">好</string>
     <string name="password_strength_strong">强</string>
+    <string name="password_strength_unknown">密碼太長，無法進行強度分析</string>
     <string name="pref_pin_keyboard_title">在螢幕鎖定畫面上使用 PIN 鍵盤</string>
     <string name="pref_pin_keyboard_summary">啟用此選項以螢幕鎖定畫面上使用 PIN 鍵盤，密碼僅支援純數字</string>
     <string name="title_activity_preferences">設定</string>
@@ -367,6 +388,8 @@
     <string name="title_activity_edit_entry">編輯條目</string>
     <string name="title_activity_scan_qr">掃描QR碼</string>
     <string name="title_activity_import_entries">匯入條目</string>
+    <string name="title_activity_assign_icons">分配圖示</string>
+    <string name="title_activity_licenses">第三方許可證</string>
     <string name="dialog_wipe_entries_title">清除條目</string>
     <string name="dialog_wipe_entries_message">您的保險箱中已包含某些條目，您是否想在匯入這個檔案前，先移除這些重複的條目？\n\n<b>如此將永久刪除保險箱中原本存在的重複條目。</b></string>
     <string name="dialog_wipe_entries_checkbox">清除保險箱中的所有內容</string>
@@ -379,8 +402,12 @@
     <string name="importer_help_plain_text">提供純文字檔，其中每行都是完整的 Google Authenticator URI</string>
     <string name="importer_help_totp_authenticator">提供 TOTP 驗證程式的匯出檔。</string>
     <string name="importer_help_winauth">提供 WinAuth 的匯出檔。</string>
+    <string name="import_assign_icons_dialog_title">分配圖示</string>
+    <string name="importer_encrypted_exception_google_authenticator">已跳過已加密的條目：%s</string>
     <string name="importer_help_direct">直接從 %s 匯入條目。這個裝置需已安裝此應用程式且 Aegis 擁有 root 權限。</string>
     <string name="groups">群組</string>
+    <string name="pref_focus_search">在應用程式啟動時把焦點放在搜尋上</string>
+    <string name="pref_focus_search_summary">開啟應用程式後立即把焦點放在搜尋上</string>
     <string name="pref_grouping_halves">對分</string>
     <string name="pref_grouping_none">未分組</string>
     <string name="pref_grouping_size_two">分成兩群</string>

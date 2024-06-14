@@ -394,7 +394,6 @@
     <string name="importer_help_authy">Forni una copia del ficheru <b>com.authy.storage.tokens.authenticator.xml</b> que s\'alluga na direición «/data/data/com.authy.authy/shared_prefs/», dientro del direutoriu del almacenamientu internu d\'Authy.</string>
     <string name="importer_help_andotp">Forni un ficheru d\'esportación/copia de seguranza d\'AndOTP.</string>
     <string name="importer_help_bitwarden">Forni un ficheru d\'esportación/copia de seguranza de Bitwarden. Los ficheros cifraos nun son compatibles.</string>
-    <string name="importer_help_battle_net_authenticator">Forni una copia del ficheru <b>com.blizzard.bma.AUTH_STORE.xml</b> que s\'alluga na direición «/data/data/com.blizzard.bma/shared_prefs/», dientro del direutoriu del almacenamientu internu de Battle.net Authenticator.</string>
     <string name="importer_help_duo">Forni una copia del ficheru <b>accounts.json</b> que s\'alluga na direición «/data/data/com.duosecurity.duomobile/files/duokit/», dientro del direutoriu del almacenamientu internu de DUO.</string>
     <string name="importer_help_freeotp_plus">Forni un ficheru d\'esportación de FreeOTP+.</string>
     <string name="importer_help_google_authenticator"><b>Namás les bases de datos de la versión 5.10 ya les inferiores de Google Authenticator son compatibles.</b>\n\nForni una copia de <b>databases</b> que s\'alluga na direición «/data/data/com.google.android.apps.authenticator2/databases/», dientro del direutoriu del almacenamientu internu de Google Authenticator.</string>

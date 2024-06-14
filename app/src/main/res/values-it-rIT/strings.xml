@@ -279,6 +279,7 @@
     <string name="unrelated_google_auth_batches_error">L\'esportazione contiene informazioni per un lotto non correlato. Provare a importare un lotto alla volta.</string>
     <string name="no_tokens_can_be_imported">Di conseguenza non è possibile importare token</string>
     <string name="unlocking_vault">Sblocco della cassaforte</string>
+    <string name="rename_group">Rinomina gruppo</string>
     <string name="remove_group">Rimuovi gruppo</string>
     <string name="remove_group_description">Sei sicuro di voler rimuovere questo gruppo? Gli elementi in questo gruppo verranno automaticamente spostati in \'Nessun gruppo\'.</string>
     <string name="remove_unused_groups">Elimina gruppi non utilizzati</string>
@@ -296,9 +297,9 @@
     <string name="sort_alphabetically_name">Account (A-Z)</string>
     <string name="sort_alphabetically_name_reverse">Account (Z-A)</string>
     <string name="sort_usage_count">Numero di utilizzi</string>
-    <string name="sort_last_used">Ultimo utilizzato</string>
+    <string name="sort_last_used">Ultimo utilizzo</string>
     <string name="sort_custom">Personalizzato</string>
-    <string name="last_used">Ultimo utilizzato</string>
+    <string name="last_used">Ultimo utilizzo</string>
     <string name="last_used_never">mai</string>
     <string name="new_group">Nuovo gruppo…</string>
     <string name="group">Gruppo</string>
@@ -420,6 +421,7 @@
     <string name="password_strength_fair">Sufficiente</string>
     <string name="password_strength_good">Buona</string>
     <string name="password_strength_strong">Forte</string>
+    <string name="password_strength_unknown">Password troppo lunga per l\'analisi della robustezza</string>
     <string name="pref_pin_keyboard_title">Usa la tastiera PIN nella schermata di blocco</string>
     <string name="pref_pin_keyboard_summary">Abilita questa opzione se vuoi utilizzare la tastiera PIN nella schermata di blocco. Funziona solo per le password numeriche</string>
     <string name="title_activity_preferences">Impostazioni</string>

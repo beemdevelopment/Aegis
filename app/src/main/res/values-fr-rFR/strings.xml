@@ -28,6 +28,8 @@
     <string name="pref_section_security_summary">Configurer le chiffrement, le déverrouillage biométrique, le verrouillage automatique et d\'autres paramètres de sécurité.</string>
     <string name="pref_section_import_export_title">Importer &amp; Exporter</string>
     <string name="pref_section_import_export_summary">Importer des sauvegardes d\'Aegis ou d\'autres applications d\'authentification. Créez des exportations manuelles de votre coffre Aegis.</string>
+    <string name="pref_section_audit_log_title">Journal d\'audit</string>
+    <string name="pref_section_audit_log_summary">Trouver une liste de tous les événements importants signalés qui se sont produits dans l\'application.</string>
     <string name="pref_section_backups_title">Sauvegardes</string>
     <string name="pref_section_backups_summary">Configurer des sauvegardes automatiques à l\'emplacement de votre choix ou activer la participation au système de sauvegarde cloud d\'Android.</string>
     <string name="pref_section_icon_packs">Packs d\'icônes</string>
@@ -77,7 +79,7 @@
         <item quantity="one">%d entrée incompatible a été ignorée</item>
         <item quantity="other">%d entrées incompatibles ont été ignorées</item>
     </plurals>
-    <string name="pref_password_reminder_summary">Afficher un rappel %s pour saisir le mot de passe, afin que vous ne l\'oubliiez pas.</string>
+    <string name="pref_password_reminder_summary">Afficher un rappel %s pour saisir le mot de passe, afin que vous ne l\'oubliez pas.</string>
     <string name="pref_password_reminder_summary_disabled">Désactivé</string>
     <string name="pref_secure_screen_title">Sécurité de l\'écran</string>
     <string name="pref_secure_screen_summary">Bloquer les captures d\'écran et autres tentatives de capture de l\'écran dans l\'application</string>
@@ -102,6 +104,26 @@
     <string name="pref_biometrics_summary">Autoriser l\'authentification biométrique pour déverrouiller le coffre-fort</string>
     <string name="pref_set_password_title">Changer le mot de passe</string>
     <string name="pref_set_password_summary">Définir un nouveau mot de passe dont vous aurez besoin pour déverrouiller votre coffre-fort</string>
+    <string name="no_events_title">Aucun événement signalé</string>
+    <string name="no_events_description">Aucun événement important n\'a été signalé dans l\'application</string>
+    <string name="event_title_vault_unlocked">Coffre-fort déverrouillé</string>
+    <string name="event_description_vault_unlocked">Le coffre-fort a été déverrouillé avec succès</string>
+    <string name="event_title_backup_created">Sauvegarde créée</string>
+    <string name="event_description_backup_created">Une sauvegarde du coffre-fort a été créée avec succès</string>
+    <string name="event_title_android_backup_created">Sauvegarde créée par Android</string>
+    <string name="event_description_android_backup_created">Une sauvegarde du coffre-fort a été créée avec succès par Android</string>
+    <string name="event_title_vault_exported">Coffre-fort exporté</string>
+    <string name="event_description_vault_exported">Une copie du coffre-fort a été exportée</string>
+    <string name="event_title_entry_shared">Entrée partagée</string>
+    <string name="event_description_entry_shared">Une entrée a été partagée</string>
+    <string name="event_title_vault_unlock_failed_password">Le déverrouillage du coffre-fort a échoué (mot de passe)</string>
+    <string name="event_description_vault_unlock_failed_password">Une tentative de déverrouillage du coffre-fort avec un mot de passe a échoué</string>
+    <string name="event_title_vault_unlock_failed_biometrics">Le déverrouillage du coffre-fort a échoué (données biométriques)</string>
+    <string name="event_description_vault_unlock_failed_biometrics">Une tentative de déverrouillage du coffre-fort avec des données biométriques a échoué</string>
+    <string name="event_unknown">Type d\'événement inconnu</string>
+    <string name="today_at_time">Ajourd\'hui à %1$s</string>
+    <string name="day_of_week_at_time">%1$s à %2$s</string>
+    <string name="date_format">dd/MM/yyyy</string>
     <string name="export_encrypted">Chiffrer le coffre-fort</string>
     <string name="export_help">Cette action exportera le coffre-fort à partir du stockage interne d\'Aegis. Sélectionnez le format vers lequel vous souhaitez faire votre export :</string>
     <string name="export_warning_unencrypted">Vous êtes sur le point d\'exporter une copie non chiffrée de votre coffre-fort Aegis. <b>Ce n\'est pas recommandé</b>.</string>
@@ -137,7 +159,7 @@
     <string name="set_password_confirm">Veuillez confirmer le mot de passe</string>
     <string name="invalid_password">Le mot de passe est incorrect</string>
     <string name="invalidated_biometrics">Un changement dans les paramètres de sécurité de votre appareil a été détecté. Veuillez aller dans \"Aegis -&gt; Paramètres -&gt; Sécurité -&gt; Déverrouillage biométrique\" pour désactiver et réactiver le déverrouillage biométrique.</string>
-    <string name="password_reminder">Veuillez saisir votre mot de passe. Nous vous demandons de le faire de temps en temps afin que vous ne l\'oubliiez pas.</string>
+    <string name="password_reminder">Veuillez saisir votre mot de passe. Nous vous demandons de le faire de temps en temps afin que vous ne l\'oubliez pas.</string>
     <string name="password_reminder_dialog_title">Déverrouillage biométrique par défaut</string>
     <string name="password_reminder_dialog_message">Nous vous demandons de temps en temps de saisir votre mot de passe à la place afin de nous assurer que vous ne ne l\'avez pas oublié et que l\'accès à votre coffre-fort ne soit pas bloqué. Après avoir saisi votre mot de passe une fois, Aegis utilisera de nouveau le déverrouillage biométrique par défaut jusqu\'à ce qu\'il soit temps pour un autre rappel de mot de passe.</string>
     <string name="password_reminder_freq_never">Jamais</string>
@@ -279,6 +301,7 @@
     <string name="unrelated_google_auth_batches_error">L\'export contient des informations pour un lot non lié. Essayez d\'importer 1 lot à la fois.</string>
     <string name="no_tokens_can_be_imported">Aucun jeton ne peut être importé en conséquence</string>
     <string name="unlocking_vault">Déverrouillage du coffre-fort</string>
+    <string name="rename_group">Renommer le groupe</string>
     <string name="remove_group">Supprimer groupe</string>
     <string name="remove_group_description">Êtes-vous sûr de vouloir supprimer ce groupe ? Les entrées dans ce groupe seront basculées automatiquement dans \"Aucun groupe\".</string>
     <string name="remove_unused_groups">Supprimer les groupes inutilisés</string>
@@ -420,6 +443,7 @@
     <string name="password_strength_fair">Acceptable</string>
     <string name="password_strength_good">Satisfaisant</string>
     <string name="password_strength_strong">Fort</string>
+    <string name="password_strength_unknown">Mot de passe trop long pour que sa force puisse être analysée</string>
     <string name="pref_pin_keyboard_title">Utiliser le clavier PIN sur l\'écran de verrouillage</string>
     <string name="pref_pin_keyboard_summary">Activez ceci si vous voulez activer le clavier PIN sur l\'écran de verrouillage. Cela ne fonctionne que pour les mots de passe numériques</string>
     <string name="title_activity_preferences">Paramètres</string>

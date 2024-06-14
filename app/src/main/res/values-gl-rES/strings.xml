@@ -450,7 +450,6 @@
     <string name="importer_help_authy">Proporciona unha copia de <b>/data/data/com.authy.authy/shared_prefs/com.authy.storage.tokens.authenticator.xml</b>, localizado no directorio do almacenamento interno de Authy.</string>
     <string name="importer_help_andotp">Proporciona un ficheiro de copia de seguridade ou de exportación de andOTP.</string>
     <string name="importer_help_bitwarden">Proporciona un ficheiro de copia de seguridade ou de exportación de Bitwarden. Non se admiten os ficheiros cifrados.</string>
-    <string name="importer_help_battle_net_authenticator">Proporciona unha copia de <b>/data/data/com.blizzard.messenger/shared_prefs/com.blizzard.messenger.authenticator_preferences.xml</b>, localizado no directorio do almacenamento interno de Battle.net Authenticator.</string>
     <string name="importer_help_duo">Proporciona unha copia de <b>/data/data/com.duosecurity.duomobile/files/duokit/accounts.json</b>, localizado no directorio do almacenamento interno de DUO.</string>
     <string name="importer_help_freeotp">Proporciona unha copia de <b>/data/data/org.fedorahosted.freeotp/shared_prefs/tokens.xml</b>, localizado no directorio do almacenamento interno de FreeOTP (1.x).</string>
     <string name="importer_help_freeotp_plus">Proporciona un ficheiro de exportación de FreeOTP+.</string>

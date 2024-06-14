@@ -28,8 +28,10 @@
     <string name="pref_section_security_summary">Configurar xifrat, desbloqueig biometric i altres opcions de seguretat.</string>
     <string name="pref_section_import_export_title">Importa i exporta</string>
     <string name="pref_section_import_export_summary">Importa còpies de seguretat d\'Aegis o altres aplicacions d\'autentificació. Exporta manualment la caixa forta d\'Aegis.</string>
+    <string name="pref_section_audit_log_title">Registre d\'auditoria</string>
+    <string name="pref_section_audit_log_summary">Llista de tots els esdeveniments importants registrats de l\'aplicació.</string>
     <string name="pref_section_backups_title">Còpies de seguretat</string>
-    <string name="pref_section_backups_summary">Configura còpies de seguretat automàtiques a la ubicació que triïs o activa la copia al núvol d\'Android.</string>
+    <string name="pref_section_backups_summary">Configura còpies de seguretat automàtiques a la ubicació que triïs o activa la còpia al núvol d\'Android.</string>
     <string name="pref_section_icon_packs">Paquets d\'icones</string>
     <string name="pref_section_icon_packs_summary">Gestiona i importa paquets d\'icones</string>
     <string name="pref_select_theme_title">Tema</string>
@@ -48,14 +50,14 @@
     <string name="pref_import_file_title">Importa des d\'un fitxer</string>
     <string name="pref_import_file_summary">Importar fitxes des d\'un fitxer</string>
     <string name="pref_android_backups_title">Copies al núvol d\'Android</string>
-    <string name="pref_android_backups_summary">Permetre al sistema de còpies al núvol d\'Android incloure la volta d\'Aegis a les còpies. Això només funciona per voltes xifrades.</string>
+    <string name="pref_android_backups_summary">Permetre al sistema de còpies al núvol d\'Android incloure la caixa forta d\'Aegis a les còpies. Això només funciona per caixes fortes xifrades.</string>
     <string name="pref_android_backups_hint"><i>Les còpies dispositiu-a-dispositiu (D2D) sempre estan permeses, sense tenir en compte la configuració de dalt</i></string>
-    <string name="pref_backups_title">Copia la volta automàticament</string>
-    <string name="pref_backups_summary">Crear còpies de seguretat de la volta a l\'emmagatzematge extern quan es facin canvis. Això només funciona per a voltes xifrades.</string>
+    <string name="pref_backups_title">Copia la caixa forta automàticament</string>
+    <string name="pref_backups_summary">Crear còpies de seguretat de la caixa forta a l\'emmagatzematge extern quan es facin canvis. Això només funciona per a caixes fortes xifrades.</string>
     <string name="pref_backups_reminder_title">Recordatori de còpia</string>
-    <string name="pref_backups_reminder_summary">Mostra un recordatori per a fer còpia de seguretat de la volta si no has desat els teus últims canvis.</string>
+    <string name="pref_backups_reminder_summary">Mostra un recordatori per a fer còpia de seguretat de la caixa forta si no has desat els teus últims canvis.</string>
     <string name="pref_backups_reminder_dialog_title">Desactivar recordatori de còpia</string>
-    <string name="pref_backups_reminder_dialog_summary">Desactivant aquest recordatori, Aegis no et dira si tens canvis dels que no hagis fet una copia de seguretat. Això posa en risc l\'accés als teus tokens. Segur que vols desactivar el recordatori?</string>
+    <string name="pref_backups_reminder_dialog_summary">Desactivant aquest recordatori, l\'Aegis no t\'alertarà en cas de tenir fitxes sense còpia de seguretat. Això posa en risc l\'accés a les teves fitxes. Segur que vols desactivar el recordatori?</string>
     <string name="pref_backups_location_title">Directori per a les còpies</string>
     <string name="pref_backups_location_summary">Les còpies es desaran a</string>
     <string name="pref_backups_trigger_title">Disparador de còpia</string>
@@ -68,7 +70,7 @@
     <string name="pref_import_app_title">Importar des d\'app</string>
     <string name="pref_import_app_summary">Importar fitxes des d\'una aplicació (cal root)</string>
     <string name="pref_export_title">Exporta</string>
-    <string name="pref_export_summary">Exporta la volta</string>
+    <string name="pref_export_summary">Exporta la caixa forta</string>
     <string name="pref_password_reminder_title">Recordatori de contrasenya</string>
     <string name="pref_google_auth_export_title">Exportar per Google Authenticator</string>
     <string name="pref_google_auth_export_descriptor">Genera codis QR d\'exportació compatibles amb Google Authenticator</string>
@@ -95,16 +97,36 @@
     <string name="pref_backup_password_title">Diferent contrasenya que per còpia de seguretat i exportació</string>
     <string name="pref_backup_password_summary">Si està activat, la contrasenya que s\'utilitza per desbloquejar l\'aplicació ja no es pot utilitzar per desxifrar còpies de seguretat i exportacions.</string>
     <string name="pref_backup_password_change_title">Canviar la contrasenya per a la còpia de seguretat i exportar</string>
-    <string name="pref_backup_password_change_summary">Definir una contrasenya nova que s\'utilitzarà per xifrar la volta durant la còpia de seguretat i l\'exportació.</string>
+    <string name="pref_backup_password_change_summary">Definir una contrasenya nova que s\'utilitzarà per xifrar la caixa forta durant la còpia de seguretat i l\'exportació.</string>
     <string name="pref_encryption_title">Xifrat</string>
-    <string name="pref_encryption_summary">Xifra la volta i desbloqueja-la amb contrasenya o biometrics</string>
+    <string name="pref_encryption_summary">Xifra la caixa forta i desbloqueja-la amb contrasenya o biomètrics</string>
     <string name="pref_biometrics_title">Desbloqueig biomètric</string>
-    <string name="pref_biometrics_summary">Permet l\'autenticació biomètrica per a desbloquejar la volta</string>
+    <string name="pref_biometrics_summary">Permet l\'autenticació biomètrica per a desbloquejar la caixa forta</string>
     <string name="pref_set_password_title">Canvia la contrasenya</string>
-    <string name="pref_set_password_summary">Defineix una nova contrasenya per a desbloquejar la volta</string>
-    <string name="export_encrypted">Xifra la volta</string>
-    <string name="export_help">Això exportarà la volta fora d\'Aegis. Tria el format en el que s\'ha d\'exportar:</string>
-    <string name="export_warning_unencrypted">Això exportarà una còpia sense xifrar de la volta d\'Aegis. <b>No recomanat</b>.</string>
+    <string name="pref_set_password_summary">Defineix una nova contrasenya per a desbloquejar la caixa forta</string>
+    <string name="no_events_title">Cap esdeveniment registrat</string>
+    <string name="no_events_description">No s\'ha informat d\'esdeveniments importants dins l\'aplicació</string>
+    <string name="event_title_vault_unlocked">S\'ha desbloquejat la volta</string>
+    <string name="event_description_vault_unlocked">La volta s\'ha desbloquejat satisfactòriament</string>
+    <string name="event_title_backup_created">Còpia de seguretat creada</string>
+    <string name="event_description_backup_created">S\'ha creat satisfactòriament una còpia de seguretat de la volta</string>
+    <string name="event_title_android_backup_created">Còpia de seguretat creada per l\'Android</string>
+    <string name="event_description_android_backup_created">L\'Android ha creat satisfactòriament una còpia de seguretat de la volta</string>
+    <string name="event_title_vault_exported">S\'ha exportat la volta</string>
+    <string name="event_description_vault_exported">S\'ha exportat una còpia de la volta</string>
+    <string name="event_title_entry_shared">Entrada compartida</string>
+    <string name="event_description_entry_shared">S\'ha compartit una entrada</string>
+    <string name="event_title_vault_unlock_failed_password">No s\'ha pogut desbloquejar la volta (contrasenya)</string>
+    <string name="event_description_vault_unlock_failed_password">Hi ha hagut un intent de desbloquejar la volta amb una contrasenya incorrecta</string>
+    <string name="event_title_vault_unlock_failed_biometrics">No s\'ha pogut desbloquejar la volta (dades biomètriques)</string>
+    <string name="event_description_vault_unlock_failed_biometrics">Hi ha hagut un intent de desbloquejar la volta amb dades biomètriques incorrectes</string>
+    <string name="event_unknown">Tipus d\'esdeveniment desconegut</string>
+    <string name="today_at_time">Avui a les %1$s</string>
+    <string name="day_of_week_at_time">%1$s a les %2$s</string>
+    <string name="date_format">dd/MM/yyyy</string>
+    <string name="export_encrypted">Xifra la caixa forta</string>
+    <string name="export_help">Això exportarà la caixa forta fora d\'Aegis. Tria el format en el que s\'ha d\'exportar:</string>
+    <string name="export_warning_unencrypted">Això exportarà una còpia sense xifrar de la caixa forta d\'Aegis. <b>No recomanat</b>.</string>
     <string name="export_warning_password">Les exportacions es xifren fent servir una contrasenya diferent, configurada a la secció de seguretat.</string>
     <string name="understand_risk_accept">Entenc el risc</string>
     <string name="export_format_aegis">Aegis (.JSON)</string>
@@ -120,16 +142,16 @@
     <string name="export_no_groups_selected">No s\'han triat grups per a exportar</string>
     <string name="export_html_title" comment="The title of an HTML export document">Exportat d\'Aegis Authenticator</string>
     <string name="choose_authentication_method">Seguretat</string>
-    <string name="authentication_method_explanation">Aegis es una app d\'A2F. Les fitxes es desen a una volta que opcionalment pot ser xifrada amb una contrasenya. Si un atacant obté el fitxer de la volta, no hi podrà accedir sense la contrasenya.\n\nHem preseleccionat la opció que creiem que anirà millor al teu dispositiu.</string>
+    <string name="authentication_method_explanation">Aegis es una app d\'A2F. Les fitxes es desen a una caixa forta que opcionalment pot ser xifrada amb una contrasenya. Si un atacant obté el fitxer de la caixa forta, no hi podrà accedir sense la contrasenya.\n\nHem preseleccionat la opció que creiem que anirà millor al teu dispositiu.</string>
     <string name="authentication_method_none">Cap</string>
-    <string name="authentication_method_none_description">No cal contrasenya pet a desbloquejar la volta i no es xifrarà.<b>No recomanat</b>.</string>
+    <string name="authentication_method_none_description">No cal contrasenya pet a desbloquejar la caixa forta i no es xifrarà.<b>No recomanat</b>.</string>
     <string name="authentication_method_password">Contrasenya</string>
-    <string name="authentication_method_password_description">Cal una contrasenya per a desbloquejar la volta.</string>
+    <string name="authentication_method_password_description">Cal una contrasenya per a desbloquejar la caixa forta.</string>
     <string name="authentication_method_password_explanation">Atenció: Si t\'oblides de la contrasenya, perdràs l\'accés a les fitxes. No hi ha cap manera de recuperar la contrasenya.</string>
     <string name="authentication_method_biometrics">Dades biomètriques</string>
-    <string name="authentication_method_biometrics_description">A mśe de la contrasenya, les dades biomètriques enregistrades al dispositiu, com una emprempta digital o la cara, es poden fer servir per a desbloquejar la volta.</string>
-    <string name="authentication">Desbloqueja la volta</string>
-    <string name="authentication_multiline" comment="The newline in the middle is used for aesthetic purposes">Desbloqueja\nla volta</string>
+    <string name="authentication_method_biometrics_description">A més de la contrasenya, les dades biomètriques enregistrades al dispositiu, com una emprempta digital o la cara, es poden fer servir per a desbloquejar la caixa forta.</string>
+    <string name="authentication">Desbloqueja la caixa forta</string>
+    <string name="authentication_multiline" comment="The newline in the middle is used for aesthetic purposes">Desbloqueja la \ncaixa forta</string>
     <string name="auth_use_biometrics">O toca aquí per a fer servir el <font fgcolor="#FF0D86C1">desbloqueig biomètric</font></string>
     <string name="set_password">Si et plau, introdueix una contrasenya</string>
     <string name="set_group">Introdueix un nom de grup</string>
@@ -139,7 +161,7 @@
     <string name="invalidated_biometrics">S\'ha detectat un canvi en la configuració de seguretat del dispositiu. Si us plau, ves a \"Aegis -&gt; Configuració -&gt; Seguretat -&gt; Desbloqueig biomètric\" per a desactivar i reactivar-lo.</string>
     <string name="password_reminder">Introdueix la contrasenya. T\'ho demanarem ocasionalment per tal que no te n\'oblidis.</string>
     <string name="password_reminder_dialog_title">Desbloqueig biomètric per defecte</string>
-    <string name="password_reminder_dialog_message">Ocasionalment et demanarem la contrasenya per tal que no te n\'oblidis i no perdis l\'accés a la teva volta. Després d\'entrar la contrasenya, l\'Aegis tornarà al desbloqueig biomètric per defecte. Et tornarem a demanar la contrasenya en el proper recordatori.</string>
+    <string name="password_reminder_dialog_message">Ocasionalment et demanarem la contrasenya per tal que no te n\'oblidis i no perdis l\'accés a la teva caixa forta. Després d\'entrar la contrasenya, l\'Aegis tornarà al desbloqueig biomètric per defecte. Et tornarem a demanar la contrasenya en el proper recordatori.</string>
     <string name="password_reminder_freq_never">Mai</string>
     <string name="password_reminder_freq_weekly">Setmanalment</string>
     <string name="password_reminder_freq_biweekly">Cada dues setmanes</string>
@@ -176,19 +198,19 @@
     <string name="show_password">Mostra la contrasenya</string>
     <string name="new_entry">Entrada nova</string>
     <string name="add_new_entry">Afegeix nova entrada</string>
-    <string name="unlock_vault_error">No es pot desbloquejar la volta</string>
+    <string name="unlock_vault_error">No es pot desbloquejar la caixa forta</string>
     <string name="unlock_vault_error_description">Contrasenya incorrecta. Assegura\'t de que no t\'has equivocat.</string>
     <string name="password_equality_error">Les contrasenyes han de ser idèntiques, i no estar buides</string>
     <string name="snackbar_authentication_method">Si us plau, tria un mètode d\'autenticació</string>
-    <string name="encrypting_vault">Xifrant la volta</string>
-    <string name="exporting_vault">Exporta la volta</string>
+    <string name="encrypting_vault">Xifrant la caixa forta</string>
+    <string name="exporting_vault">Exporta la caixa forta</string>
     <string name="reading_file">S\'està llegint el fitxer</string>
     <string name="requesting_root_access">Demanant accés root</string>
     <string name="analyzing_qr">Anàlisi del codi QR</string>
     <string name="analyzing_qr_multiple">Anàlisi del codi QR %d/%d (%s)</string>
     <plurals name="added_new_entries">
-        <item quantity="one">S\'ha afegit una entrada nova a la volta</item>
-        <item quantity="other">S\'han afegit %d entrades noves a la volta</item>
+        <item quantity="one">S\'ha afegit %d entrada nova a la caixa forta</item>
+        <item quantity="other">S\'han afegit %d entrades noves a la caixa forta</item>
     </plurals>
     <string name="importing_icon_pack">Important paquet d\'icones</string>
     <string name="delete_entry">Esborra l\'entrada</string>
@@ -207,20 +229,20 @@
     <string name="app_description">Aegis es una app d\'A2F gratuïta, segura i de codi lliure</string>
     <string name="setup_completed">Configuració completada</string>
     <string name="setup_completed_description">S\'ha configurat Aegis i està llest per a funcionar.</string>
-    <string name="vault_not_found">No s\'ha trobat cap volta, iniciant configuració…</string>
+    <string name="vault_not_found">No s\'ha trobat cap caixa forta, iniciant configuració…</string>
     <string name="copied">Copiat</string>
     <string name="errors_copied">Errors copiant al porta-retalls</string>
     <string name="version_copied">Versió copiada al porta-retalls</string>
     <string name="error_occurred">S\'ha produït un error</string>
-    <string name="decryption_error">S\'ha produït un error al desbloquejar la volta</string>
-    <string name="decryption_corrupt_error">S\'ha produït un error al desbloquejar la volta. El fitxer de volta pot estar fet malbé.</string>
-    <string name="saving_error">S\'ha produït un error al desar la volta</string>
-    <string name="vault_init_error">S\'ha produït un error al inicialitzar la volta</string>
-    <string name="vault_load_error">S\'ha produït un error al carregar la volta</string>
-    <string name="biometric_decrypt_error">S\'ha produït un error al desxifrar la volta amb l\'autenticació biomètrica. Això sol passar si la configuració de seguretat del dispositiu ha canviat. Si us plau, deslboqueja la volta amb la teva contrasenya i reconfigura l\'autenticació biomètrica.</string>
-    <string name="biometric_init_error">S\'ha produït un error al preparar l\'autenticació biomètrica. Això sol passar si la configuració de seguretat del dispositiu ha canviat. Si us plau, deslboqueja la volta amb la teva contrasenya i reconfigura l\'autenticació biomètrica.</string>
+    <string name="decryption_error">S\'ha produït un error al desbloquejar la caixa forta</string>
+    <string name="decryption_corrupt_error">S\'ha produït un error al desbloquejar la caixa forta. El fitxer pot estar fet malbé.</string>
+    <string name="saving_error">S\'ha produït un error al desar la caixa forta</string>
+    <string name="vault_init_error">S\'ha produït un error al inicialitzar la caixa forta</string>
+    <string name="vault_load_error">S\'ha produït un error al carregar la caixa forta</string>
+    <string name="biometric_decrypt_error">S\'ha produït un error al desxifrar la caixa forta amb l\'autenticació biomètrica. Això sol passar si la configuració de seguretat del dispositiu ha canviat. Si us plau, deslboqueja la caixa amb la teva contrasenya i reconfigura l\'autenticació biomètrica.</string>
+    <string name="biometric_init_error">S\'ha produït un error al preparar l\'autenticació biomètrica. Això sol passar si la configuració de seguretat del dispositiu ha canviat. Si us plau, deslboqueja la caixa forta amb la teva contrasenya i reconfigura l\'autenticació biomètrica.</string>
     <string name="disable_encryption">Desactivar xifrat</string>
-    <string name="disable_encryption_description">Segur que vols desactivar el xifrat? Això causarà que la volta s\'emmagatzemi en text clar. <b>Les copies de seguretat automàtiques es desactivaran</b>.</string>
+    <string name="disable_encryption_description">Segur que vols desactivar el xifrat? Això causarà que la caixa forta s\'emmagatzemi en text clar. <b>Les copies de seguretat automàtiques es desactivaran</b>.</string>
     <string name="enable_encryption_error">S\'ha produït un error en activar el xifrat</string>
     <string name="disable_encryption_error">S\'ha produït un error en desactivar el xifrat</string>
     <string name="backup_successful">S\'ha programat la còpia de seguretat</string>
@@ -262,10 +284,10 @@
         <item quantity="one">Mostrant %d entrada</item>
         <item quantity="other">Mostrant %d entrades</item>
     </plurals>
-    <string name="intro_import_error_title">S\'ha produït un error en importar la volta</string>
+    <string name="intro_import_error_title">S\'ha produït un error en importar la caixa forta</string>
     <string name="import_error_title">S\'han produït errors al importar</string>
-    <string name="exporting_vault_error">S\'ha produït un error mentre s\'intentava exportar la volta</string>
-    <string name="exported_vault">S\'ha exportat la volta</string>
+    <string name="exporting_vault_error">S\'ha produït un error mentre s\'intentava exportar la caixa forta</string>
+    <string name="exported_vault">S\'ha exportat la caixa forta</string>
     <string name="encryption_set_password_error">S\'ha produït un error al intentar definir la contrasenya.</string>
     <string name="encryption_enable_biometrics_error">S\'ha produït un error al intentar activar el desbloqueig biomètric. Alguns dispositius tenen una implementació deficient i es possible que passi amb el teu. Considera canviar a una configuració amb contrasenya.</string>
     <string name="no_cameras_available">No hi ha càmeres disponibles</string>
@@ -278,7 +300,8 @@
     <string name="import_google_auth_failure">No s\'ha pogut importar l\'exportació de Google Authenticator</string>
     <string name="unrelated_google_auth_batches_error">L\'exportació conté informació d\'un lot no relacionat. Proveu d\'importar 1 lot alhora.</string>
     <string name="no_tokens_can_be_imported">Com a resultat, no es poden importar tokens</string>
-    <string name="unlocking_vault">Desbloquejant la volta</string>
+    <string name="unlocking_vault">Desbloquejant la caixa forta</string>
+    <string name="rename_group">Canvia el nom del grup</string>
     <string name="remove_group">Elimina el grup</string>
     <string name="remove_group_description">Segur que vols eliminar aquest grup? Les entrades canviaran automàticament a \"Sense grup\".</string>
     <string name="remove_unused_groups">Esborrar grups no utilitzats</string>
@@ -313,7 +336,7 @@
     <string name="pref_highlight_entry_title">Il·luminar les fitxes al tocar</string>
     <string name="pref_highlight_entry_summary">Fes les fitxes més fàcils de distingir de la resta il·luminant-les temporalment quan les toquis</string>
     <string name="pref_minimize_on_copy_title">Minimitzar al copiar</string>
-    <string name="pref_minimize_on_copy_summary">Minimitzar l\'aplicació després de copiar un token</string>
+    <string name="pref_minimize_on_copy_summary">Minimitzar l\'aplicació després de copiar una fitxa</string>
     <string name="pref_copy_behavior_title">Copia les fitxes al porta-retalls</string>
     <string name="pref_pause_entry_title">Congela la fitxa al tocar</string>
     <string name="pref_pause_entry_summary">Pausa l\'actualització automàtica de la fitxa al tocar-la. No s\'actualitzará mentre estigui marcada. Cal tenir \"Il·lumina les fitxes al tocar\" o \"Toca per a mostrar\".</string>
@@ -344,13 +367,13 @@
     <string name="unable_to_generate_qrcode">La generació del codi QR ha fallat</string>
     <string name="select_picture">Tria imatge</string>
     <string name="select_icon">Tria icona</string>
-    <string name="tile_open_vault" comment="label for a quick settings tile that opens the app when tapped">Orbir Volta</string>
+    <string name="tile_open_vault" comment="label for a quick settings tile that opens the app when tapped">Obrir caixa forta</string>
     <string name="tile_open_scanner" comment="label for a quick settings tile that opens the QR code scanner when tapped">Obrir escàner</string>
     <string name="toggle_checkboxes">Alternar selecció</string>
     <string name="search">Cerca</string>
     <string name="channel_name_lock_status">Estat del bloqueig</string>
-    <string name="channel_description_lock_status">Aegis pot crear una notificació persistent per a avisar-te de que la volta està desbloquejada</string>
-    <string name="vault_unlocked_state">La volta està desbloquejada. Toca aquí per a bloquejar-la.</string>
+    <string name="channel_description_lock_status">Aegis pot crear una notificació persistent per a avisar-te de que la caixa forta està desbloquejada</string>
+    <string name="vault_unlocked_state">La caixa forta està desbloquejada. Toca aquí per a bloquejar-la.</string>
     <string name="version">Versió</string>
     <string name="changelog">Registre de canvis</string>
     <string name="whats_new">Què hi ha de nou</string>
@@ -377,9 +400,9 @@
     </plurals>
     <string name="google_qr_export_unexpected">S\'esperava codi QR #%d, però s\'ha trobat #%d en el seu lloc</string>
     <string name="backup_error_bar_message"><b>Ha fallat la còpia de seguretat recentment</b></string>
-    <string name="backup_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">Una còpia de seguretat de la volta utilitzant %s ha fallat. La còpia s\'ha intentat %s. Si us plau, comprova la configuració de la còpia per a assegurar-te de que les còpies es poden fer correctament.
+    <string name="backup_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">Una còpia de seguretat de la caixa forta utilitzant %s ha fallat. La còpia s\'ha intentat %s. Si us plau, comprova la configuració de la còpia per a assegurar-te de que les còpies es poden fer correctament.
     </string>
-    <string name="backup_permission_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">        Un intent recent de còpia de seguretat de la volta usant %s ha fallat perquè l\'Aegis no té permís d\'escriptura en el destí de la còpia de seguretat. La còpia s\'ha intentat %s. Aquest error pot aparèixer si has mogut/reanomenat el destí de la còpia de seguretat o si has restaurat l\'Aegis recentment des d\'una còpia de seguretat. Si us plau torna a configurar el destí de la còpia de seguretat.
+    <string name="backup_permission_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">        Un intent recent de còpia de seguretat de la caixa forta utilitzant %s ha fallat perquè l\'Aegis no té permís d\'escriptura en el destí de la còpia de seguretat. La còpia s\'ha intentat %s. Aquest error pot aparèixer si has mogut/reanomenat el destí de la còpia de seguretat o si has restaurat l\'Aegis recentment des d\'una còpia de seguretat. Si us plau torna a configurar el destí de la còpia de seguretat.
     </string>
     <string name="backup_system_builtin">Còpies de seguretat integrades a Aegis</string>
     <string name="backup_system_android">Còpia al núvol d\'Android</string>
@@ -389,9 +412,9 @@
     <string name="backup_reminder_bar_dialog_summary">        No s\'ha fet una còpia de seguretat dels últims canvis. Es important fer còpies regularment per a evitar perdre l\'accés als teus comptes. Si us plau, considera activar les còpies automàtiques al menú de configuració.
     </string>
     <string name="backup_reminder_bar_dialog_accept">Configurar còpies de seguretat</string>
-    <string name="backup_plaintext_export_warning"><b>La volta s\'ha exportat recentment en text sense format</b></string>
+    <string name="backup_plaintext_export_warning"><b>La caixa forta s\'ha exportat recentment en text sense format</b></string>
     <string name="pref_show_plaintext_warning_hint">No tornis a mostrar aquesta advertència</string>
-    <string name="backup_plaintext_warning_explanation">Aquest avís es mostra perquè recentment heu exportat una còpia no xifrada de la volta. Per mantenir la seguretat dels vostres tokens, us recomanem que suprimiu aquest fitxer quan ja no sigui necessari.</string>
+    <string name="backup_plaintext_warning_explanation">Aquest avís es mostra perquè recentment heu exportat una còpia no xifrada de la caixa forta. Per mantenir la seguretat dels vostres tokens, us recomanem que suprimiu aquest fitxer quan ja no sigui necessari.</string>
     <string name="switch_camera">Canvia la càmera</string>
     <string name="empty_list">No hi ha codis a mostrar. Afegeix entrades tocant el signe més de la cantonada inferior dreta</string>
     <string name="empty_list_title">No s\'ha trobat cap entrada</string>
@@ -419,6 +442,7 @@
     <string name="password_strength_fair">Correcta</string>
     <string name="password_strength_good">Bona</string>
     <string name="password_strength_strong">Forta</string>
+    <string name="password_strength_unknown">Contrasenya massa llarga per a l\'anàlisi de fortalesa</string>
     <string name="pref_pin_keyboard_title">Fes servir teclat PIN a la pantalla de bloqueig</string>
     <string name="pref_pin_keyboard_summary">Activa això si vols fer servir el teclat pin. Només funciona per a contrasenyes numèriques</string>
     <string name="title_activity_preferences">Configuració</string>
@@ -429,13 +453,14 @@
     <string name="title_activity_scan_qr">Escaneja un codi QR</string>
     <string name="title_activity_import_entries">Importa entrades</string>
     <string name="title_activity_assign_icons">Assignar icones</string>
+    <string name="title_activity_licenses">Llicències de tercers</string>
     <string name="dialog_wipe_entries_title">Elimina entrades</string>
-    <string name="dialog_wipe_entries_message">La teva volta ja té entrades. Vols eliminar les entrades abans d\'importar aquest fitxer?\n\n<b>Si ho fas, perdràs l\'accés a les entrades que tens actualment.</b></string>
-    <string name="dialog_wipe_entries_checkbox">Eliminar contingut de la volta</string>
+    <string name="dialog_wipe_entries_message">La teva caixa forta ja té entrades. Vols eliminar les entrades abans d\'importar aquest fitxer?\n\n<b>Si ho fas, perdràs l\'accés a les entrades que tens actualment.</b></string>
+    <string name="dialog_wipe_entries_checkbox">Eliminar contingut de la caixa forta</string>
     <string name="panic_trigger_ignore_toast">S\'ha rebut el botó del pànic, però està deshabilitat a la configuració, ho hem ignorat</string>
-    <string name="pref_panic_trigger_title">Eliminar la volta amb el botó del pànic</string>
-    <string name="pref_panic_trigger_summary">Eliminar la volta amb el botó del pànic si es rep des de Ripple</string>
-    <string name="import_vault">Importar la volta d\'Aegis</string>
+    <string name="pref_panic_trigger_title">Eliminar la caixa forta amb el botó del pànic</string>
+    <string name="pref_panic_trigger_summary">Eliminar la caixa forta amb el botó del pànic si es rep des de Ripple</string>
+    <string name="import_vault">Importar la caixa forta d\'Aegis</string>
     <string name="import_vault_hint">Vols importar des d\'una app 2FA diferent? Completa primer la configuració i llavors ves al menú de configuració.</string>
     <plurals name="import_duplicate_toast">
         <item quantity="one">%d possible duplicat desmarcat. Revisa la llista d\'entrades.</item>
@@ -448,7 +473,7 @@
     <string name="importer_help_authy">Subministra una còpia de <b>/data/data/com.authy.authy/shared_prefs/com.authy.storage.tokens.authenticator.xml</b>, que està a l\'emmagatzematge intern del teu dispositiu, al directori del Authy.</string>
     <string name="importer_help_andotp">Subministra un fitxer exportat del andOTP.</string>
     <string name="importer_help_bitwarden">Subministreu un fitxer d\'exportació/còpia de seguretat de Bitwarden. Els fitxers xifrats no són compatibles.</string>
-    <string name="importer_help_battle_net_authenticator">Proporciona una copia de <b>/data/data/com.blizzard.messenger/shared_prefs/com.blizzard.messenger.authenticator_preferences.xml</b>, trobat al directori del autenticador de Battle.net.</string>
+    <string name="importer_help_battle_net_authenticator">Proporciona una còpia de <b>/data/data/com.blizzard.messenger/shared_prefs/com.blizzard.messenger.authenticator_preferences.xml</b>, que es troba al directori de l\'autenticador de Battle.net.</string>
     <string name="importer_help_duo">Subministra una còpia de <b>/data/data/com.duosecurity.duomobile/files/duokit/accounts.json</b>, que està a l\'emmagatzematge intern del teu dispositiu, al directori del DUO.</string>
     <string name="importer_help_freeotp">Subministra una còpia de <b>/data/data/org.fedorahosted.freeotp/shared_prefs/tokens.xml</b>, que està a l\'emmagatzematge intern del teu dispositiu, al directori del FreeOTP (1.x).</string>
     <string name="importer_help_freeotp_plus">Subministra un fitxer exportat del FreeOTP+.</string>

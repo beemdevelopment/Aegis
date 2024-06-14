@@ -28,6 +28,8 @@
     <string name="pref_section_security_summary">Instellen van versleuteling, biometrische ontgrendeling, automatische vergrendeling en andere beveiligingsinstellingen.</string>
     <string name="pref_section_import_export_title">Importeren &amp; Exporteren</string>
     <string name="pref_section_import_export_summary">Back-ups van Aegis of andere authenticator-apps importeren. Maak handmatige export van je Aegis-kluis aan.</string>
+    <string name="pref_section_audit_log_title">Auditlogboek</string>
+    <string name="pref_section_audit_log_summary">Lijst met alle gerapporteerde belangrijke gebeurtenissen in de app bekijken.</string>
     <string name="pref_section_backups_title">Back-ups</string>
     <string name="pref_section_backups_summary">Automatische back-ups op een zelfgekozen locatie instellen, of meedoen met Androids cloud-back-upsysteem inschakelen.</string>
     <string name="pref_section_icon_packs">Pictogrampakketten</string>
@@ -102,6 +104,26 @@
     <string name="pref_biometrics_summary">Sta biometrische authenticatie toe om de kluis te ontgrendelen</string>
     <string name="pref_set_password_title">Wachtwoord wijzigen</string>
     <string name="pref_set_password_summary">Stel een nieuw wachtwoord in waarmee je de kluis kunt ontgrendelen</string>
+    <string name="no_events_title">Geen gerapporteerde gebeurtenissen</string>
+    <string name="no_events_description">Geen belangrijke gebeurtenissen in de app gerapporteerd</string>
+    <string name="event_title_vault_unlocked">Kluis ontgrendeld</string>
+    <string name="event_description_vault_unlocked">De kluis is met succes ontgrendeld</string>
+    <string name="event_title_backup_created">Back-up gemaakt</string>
+    <string name="event_description_backup_created">Er is met succes een back-up van de kluis gemaakt</string>
+    <string name="event_title_android_backup_created">Back-up gemaakt door Android</string>
+    <string name="event_description_android_backup_created">Er is met succes een back-up van de kluis gemaakt door Android</string>
+    <string name="event_title_vault_exported">Kluis geëxporteerd</string>
+    <string name="event_description_vault_exported">Een kopie van de kluis is geëxporteerd</string>
+    <string name="event_title_entry_shared">Item gedeeld</string>
+    <string name="event_description_entry_shared">Een item is gedeeld</string>
+    <string name="event_title_vault_unlock_failed_password">Kluis ontgrendelen mislukt (wachtwoord)</string>
+    <string name="event_description_vault_unlock_failed_password">Een poging om de kluis met een wachtwoord te ontgrendelen is mislukt</string>
+    <string name="event_title_vault_unlock_failed_biometrics">Kluis ontgrendelen mislukt (biometrie)</string>
+    <string name="event_description_vault_unlock_failed_biometrics">Een poging om de kluis te ontgrendelen met biometrie is mislukt</string>
+    <string name="event_unknown">Onbekende gebeurtenis</string>
+    <string name="today_at_time">Vandaag om %1$s</string>
+    <string name="day_of_week_at_time">%1$s om %2$s</string>
+    <string name="date_format">dd-mm-jjjj</string>
     <string name="export_encrypted">Kluis versleutelen</string>
     <string name="export_help">Deze actie zal de kluis exporteren uit de interne opslag van Aegis. Selecteer het formaat waarin je de export wilt:</string>
     <string name="export_warning_unencrypted">Je staat op het punt een onversleutelde kopie van de Aegis-kluis te exporteren. <b>Dit wordt niet aanbevolen</b>.</string>
@@ -127,7 +149,7 @@
     <string name="authentication_method_password_description">Een wachtwoord is nodig om de kluis te ontgrendelen.</string>
     <string name="authentication_method_password_explanation">Waarschuwing: Als je je wachtwoord vergeet, verlies je permanent toegang tot je tokens. Er is geen manier om deze te herstellen zonder het wachtwoord.</string>
     <string name="authentication_method_biometrics">Biometrie</string>
-    <string name="authentication_method_biometrics_description">Naast een wachtwoord kunnen biometrische gegevens die geregistreerd zijn op dit apparaat, zoals een vingerafdruk of je gezicht, gebruikt worden om de kluis te ontgrendelen.</string>
+    <string name="authentication_method_biometrics_description">Naast een wachtwoord kan biometrie die geregistreerd is op dit apparaat, zoals een vingerafdruk of je gezicht, gebruikt worden om de kluis te ontgrendelen.</string>
     <string name="authentication">Ontgrendel de kluis</string>
     <string name="authentication_multiline" comment="The newline in the middle is used for aesthetic purposes">Ontgrendel\nde kluis</string>
     <string name="auth_use_biometrics">Of tik hier om <font fgcolor="#FF0D86C1">biometrie</font> te gebruiken</string>
@@ -279,6 +301,7 @@
     <string name="unrelated_google_auth_batches_error">Export bevat informatie voor een niet gerelateerde batch. Probeer 1 batch tegelijk te importeren.</string>
     <string name="no_tokens_can_be_imported">Hierdoor kunnen geen tokens worden geïmporteerd</string>
     <string name="unlocking_vault">Kluis wordt ontgrendeld</string>
+    <string name="rename_group">Groep hernoemen</string>
     <string name="remove_group">Groep verwijderen</string>
     <string name="remove_group_description">Weet je zeker dat je deze groep wilt verwijderen? Alle items binnen deze groep worden automatisch verplaatst naar ‘Geen groep’.</string>
     <string name="remove_unused_groups">Ongebruikte groepen verwijderen</string>
@@ -421,6 +444,7 @@
     <string name="password_strength_fair">Redelijk</string>
     <string name="password_strength_good">Goed</string>
     <string name="password_strength_strong">Sterk</string>
+    <string name="password_strength_unknown">Wachtwoord te lang voor sterkte-analyse</string>
     <string name="pref_pin_keyboard_title">PIN-toetsen op vergrendelscherm</string>
     <string name="pref_pin_keyboard_summary">Schakel dit in als je het PIN-toetsenbord op het vergrendelscherm wilt gebruiken. Werkt alleen bij numerieke wachtwoorden</string>
     <string name="title_activity_preferences">Instellingen</string>
@@ -431,6 +455,7 @@
     <string name="title_activity_scan_qr">QR-code scannen</string>
     <string name="title_activity_import_entries">Items importeren</string>
     <string name="title_activity_assign_icons">Pictogrammen toewijzen</string>
+    <string name="title_activity_licenses">Licenties van derden</string>
     <string name="dialog_wipe_entries_title">Items wissen</string>
     <string name="dialog_wipe_entries_message">Je kluis bevat al items. Wil je deze items verwijderen voordat je dit bestand importeert?\n\n<b>Hiermee verlies je permanent toegang tot de bestaande items in de kluis.</b></string>
     <string name="dialog_wipe_entries_checkbox">Inhoud van kluis wissen</string>

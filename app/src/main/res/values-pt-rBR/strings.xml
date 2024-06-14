@@ -28,6 +28,8 @@
     <string name="pref_section_security_summary">Configure criptografia, desbloqueio biométrico, bloqueio automático e outras configurações de segurança.</string>
     <string name="pref_section_import_export_title">Importar &amp; Exportar</string>
     <string name="pref_section_import_export_summary">Importe backups do Aegis ou outros aplicativos de autenticação. Crie exportações manuais do seu cofre Aegis.</string>
+    <string name="pref_section_audit_log_title">Registro de auditoria</string>
+    <string name="pref_section_audit_log_summary">Encontre uma lista de todos os eventos importantes reportados que aconteceram no app.</string>
     <string name="pref_section_backups_title">Backups</string>
     <string name="pref_section_backups_summary">Configura backups automáticos em um local da sua escolha ou habilita a participação no sistema de backup em nuvem do Android.</string>
     <string name="pref_section_icon_packs">Pacote de ícones</string>
@@ -44,7 +46,7 @@
     <string name="pref_account_name_position_title">Mostrar nome da conta</string>
     <string name="pref_shared_issuer_account_name_title">Exibir o nome da conta apenas quando necessário</string>
     <string name="pref_shared_issuer_account_name_summary">Mostra os nomes de conta apenas quando eles compartilham o mesmo emissor. Outros nomes de conta serão ocultados.</string>
-    <string name="pref_account_name_position_summary_override">Esta configuração é substituída pelo modo de visualização de blocos (tiles view). O nome da conta será sempre mostrado abaixo do emissor.</string>
+    <string name="pref_account_name_position_summary_override">Esta configuração é substituída pelo modo de visualização em grade. O nome da conta será sempre mostrado abaixo do emissor.</string>
     <string name="pref_import_file_title">Importar de arquivo</string>
     <string name="pref_import_file_summary">Importa tokens de um arquivo</string>
     <string name="pref_android_backups_title">Backups na nuvem do Android</string>
@@ -102,6 +104,26 @@
     <string name="pref_biometrics_summary">Permite autenticação por biometria para desbloquear o cofre</string>
     <string name="pref_set_password_title">Trocar senha</string>
     <string name="pref_set_password_summary">Define uma nova senha que será necessária para desbloquear o cofre</string>
+    <string name="no_events_title">Nenhum evento reportado</string>
+    <string name="no_events_description">Nenhum evento importante foi reportado no app</string>
+    <string name="event_title_vault_unlocked">Cofre desbloqueado</string>
+    <string name="event_description_vault_unlocked">O cofre foi desbloqueado com sucesso</string>
+    <string name="event_title_backup_created">Backup criado</string>
+    <string name="event_description_backup_created">Um backup do cofre foi criado com sucesso</string>
+    <string name="event_title_android_backup_created">Backup criado pelo Android</string>
+    <string name="event_description_android_backup_created">Um backup do cofre foi criado com sucesso pelo Android</string>
+    <string name="event_title_vault_exported">Cofre exportado</string>
+    <string name="event_description_vault_exported">Uma cópia do cofre foi exportada</string>
+    <string name="event_title_entry_shared">Entrada compartilhada</string>
+    <string name="event_description_entry_shared">Uma entrada foi compartilhada</string>
+    <string name="event_title_vault_unlock_failed_password">O desbloqueio do cofre falhou (senha)</string>
+    <string name="event_description_vault_unlock_failed_password">Uma tentativa de desbloquear o cofre com uma senha falhou</string>
+    <string name="event_title_vault_unlock_failed_biometrics">Falha ao desbloquear o cofre (biometria)</string>
+    <string name="event_description_vault_unlock_failed_biometrics">Uma tentativa de desbloquear o cofre com a biometria falhou</string>
+    <string name="event_unknown">Tipo de evento desconhecido</string>
+    <string name="today_at_time">Hoje às %1$s</string>
+    <string name="day_of_week_at_time">%1$s em %2$s</string>
+    <string name="date_format">dd/MM/yyyy</string>
     <string name="export_encrypted">Criptografar o cofre</string>
     <string name="export_help">Esta ação irá exportar o cofre para fora do armazenamento interno do Aegis. Selecione o formato em que você gostaria que sua exportação esteja:</string>
     <string name="export_warning_unencrypted">Você está prestes a exportar uma cópia não criptografada de seu cofre Aegis. <b>Isso não é recomendado</b>.</string>
@@ -191,13 +213,13 @@
         <item quantity="other">Adicionadas %d novas entradas ao cofre</item>
     </plurals>
     <string name="importing_icon_pack">Importando pacote de ícones</string>
-    <string name="delete_entry">Deletar entrada</string>
-    <string name="delete_entry_description">Você tem certeza que deseja deletar essa entrada?</string>
+    <string name="delete_entry">Excluir entrada</string>
+    <string name="delete_entry_description">Tem certeza que deseja excluir essa entrada?</string>
     <string name="delete_entry_explanation">Esta ação não desativa a 2FA para:\n<b>%s</b>\n\nPara evitar a perda de acesso, certifique-se de ter desabilitado a 2FA ou de ter uma maneira alternativa de gerar códigos para este serviço.</string>
-    <string name="delete_entries">Deletar entradas</string>
+    <string name="delete_entries">Excluir entradas</string>
     <plurals name="delete_entries_description">
-        <item quantity="one">Você tem certeza que deseja deletar %d entrada?</item>
-        <item quantity="other">Você tem certeza que deseja deletar %d entradas?</item>
+        <item quantity="one">Você tem certeza que deseja excluir %d entrada?</item>
+        <item quantity="other">Você tem certeza que deseja excluir %d entradas?</item>
     </plurals>
     <string name="discard_changes">Descartar mudanças?</string>
     <string name="discard_changes_description">Suas mudanças não foram salvas</string>
@@ -279,6 +301,7 @@
     <string name="unrelated_google_auth_batches_error">A exportação contém informações para um lote não relacionado. Tente importar 1 lote de cada vez.</string>
     <string name="no_tokens_can_be_imported">Como resultado, nenhum token pode ser importado</string>
     <string name="unlocking_vault">Desbloqueando o cofre</string>
+    <string name="rename_group">Renomear Grupo</string>
     <string name="remove_group">Remover grupo</string>
     <string name="remove_group_description">Você tem certeza que deseja remover esse grupo? Entradas nesse grupo serão automaticamente para \'Sem grupo\'.</string>
     <string name="remove_unused_groups">Excluir grupos não utilizados</string>
@@ -304,7 +327,7 @@
     <string name="group">Grupo</string>
     <string name="group_name_hint">Nome do grupo</string>
     <string name="preference_manage_groups">Editar grupos</string>
-    <string name="preference_manage_groups_summary">Gerencie e delete seus grupos aqui</string>
+    <string name="preference_manage_groups_summary">Gerencie e exclua seus grupos aqui</string>
     <string name="preference_reset_usage_count">Redefinir contagem de uso</string>
     <string name="preference_reset_usage_count_summary">Redefinir a contagem de uso de todas as entradas no seu cofre</string>
     <string name="preference_reset_usage_count_dialog">Tem certeza que deseja definir a contagem de uso de todas as entradas no seu cofre para 0?</string>
@@ -330,7 +353,7 @@
     <string name="normal_viewmode_title">Normal</string>
     <string name="compact_mode_title">Compacto</string>
     <string name="small_mode_title">Pequeno</string>
-    <string name="tiles_mode_title">Tiles</string>
+    <string name="tiles_mode_title">Grade</string>
     <string name="unknown_issuer">Nome do serviço desconhecido</string>
     <string name="unknown_account_name">Nome da conta desconhecido</string>
     <plurals name="import_error_dialog">
@@ -420,6 +443,7 @@
     <string name="password_strength_fair">Média</string>
     <string name="password_strength_good">Boa</string>
     <string name="password_strength_strong">Forte</string>
+    <string name="password_strength_unknown">Senha muito longa para análise de força</string>
     <string name="pref_pin_keyboard_title">Usar o teclado PIN na tela de bloqueio</string>
     <string name="pref_pin_keyboard_summary">Ative esta opção se quiser habilitar o teclado PIN na tela de bloqueio. Isso só funciona para senhas numéricas</string>
     <string name="title_activity_preferences">Configurações</string>

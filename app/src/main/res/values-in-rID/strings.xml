@@ -434,7 +434,6 @@
 <b>/data/data/com.authy.authy/shared_prefs/com.authy.storage.tokens.authenticator.xml</b>, yang terletak di direktori penyimpanan internal Authy.</string>
     <string name="importer_help_andotp">Siapkan berkas ekspor/cadangan andOTP.</string>
     <string name="importer_help_bitwarden">Masukkan berkas cadangan/ekspor Bitwarden. Berkas terenkripsi tidak didukung.</string>
-    <string name="importer_help_battle_net_authenticator">Sediakan salinan <b>/data/data/com.blizzard.messenger/shared_prefs/com.blizzard.messenger.authenticator_preferences.xml</b>, yang terletak di direktori penyimpanan internal Battle.net Authenticator.</string>
     <string name="importer_help_duo">Siapkan salinan
 <b>/data/data/com.duosecurity.duomobile/files/duokit/accounts.json</b>, yang terletak di direktori penyimpanan internal DUO.</string>
     <string name="importer_help_freeotp">Berikan salinan dari <b>/data/data/org.fedorahosted.freeotp/shared_prefs/tokens.xml</b> yang terletak di direktori penyimpanan internal FreeOTP (1.x).</string>

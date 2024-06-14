@@ -28,6 +28,8 @@
     <string name="pref_section_security_summary">Skonfiguruj szyfrowanie, autoryzację biometryczną, automatyczną blokadę i inne ustawienia bezpieczeństwa.</string>
     <string name="pref_section_import_export_title">Import i eksport</string>
     <string name="pref_section_import_export_summary">Importuj kopie zapasowe aplikacji Aegis lub innych aplikacji uwierzytelniających. Utwórz ręczne kopie zapasowe sejfu Aegis.</string>
+    <string name="pref_section_audit_log_title">Dziennik zdarzeń</string>
+    <string name="pref_section_audit_log_summary">Znajdź listę wszystkich zgłoszonych ważnych zdarzeń, które miały miejsce w aplikacji.</string>
     <string name="pref_section_backups_title">Kopie zapasowe</string>
     <string name="pref_section_backups_summary">Skonfiguruj automatyczne kopie zapasowe w wybranej lokalizacji lub włącz uczestnictwo w systemie kopii zapasowej w chmurze Android.</string>
     <string name="pref_section_icon_packs">Pakiety ikon</string>
@@ -106,6 +108,26 @@
     <string name="pref_biometrics_summary">Zezwalaj na odblokowywanie aplikacji za pomocą autoryzacji biometrycznej</string>
     <string name="pref_set_password_title">Zmień hasło</string>
     <string name="pref_set_password_summary">Ustaw nowe hasło do odblokowywania sejfu</string>
+    <string name="no_events_title">Brak zgłoszonych zdarzeń</string>
+    <string name="no_events_description">Żadne ważne zdarzenia nie zostały zgłoszone w aplikacji</string>
+    <string name="event_title_vault_unlocked">Sejf odblokowany</string>
+    <string name="event_description_vault_unlocked">Sejf został pomyślnie odblokowany</string>
+    <string name="event_title_backup_created">Kopia zapasowa utworzona</string>
+    <string name="event_description_backup_created">Kopia zapasowa sejfu została pomyślnie utworzona</string>
+    <string name="event_title_android_backup_created">Kopia zapasowa utworzona przez Androida</string>
+    <string name="event_description_android_backup_created">Kopia zapasowa sejfu została pomyślnie utworzona przez Androida</string>
+    <string name="event_title_vault_exported">Sejf został wyeksportowany</string>
+    <string name="event_description_vault_exported">Kopia sejfu została wyeksportowana</string>
+    <string name="event_title_entry_shared">Wpis udostępniony</string>
+    <string name="event_description_entry_shared">Wpis został udostępniony</string>
+    <string name="event_title_vault_unlock_failed_password">Odblokowanie sejfu nie powiodło się (hasło)</string>
+    <string name="event_description_vault_unlock_failed_password">Próba odblokowania sejfu z hasłem nie powiodła się</string>
+    <string name="event_title_vault_unlock_failed_biometrics">Odblokowanie sejfu nie powiodło się (biometryczne)</string>
+    <string name="event_description_vault_unlock_failed_biometrics">Próba odblokowania sejfu za pomocą biometrii nie powiodła się</string>
+    <string name="event_unknown">Nieznany typ zdarzenia</string>
+    <string name="today_at_time">Dzisiaj o %1$s</string>
+    <string name="day_of_week_at_time">%1$s o %2$s</string>
+    <string name="date_format">dd/MM/yyyy</string>
     <string name="export_encrypted">Zaszyfruj sejf</string>
     <string name="export_help">Ta czynność wyeksportuje sejf z wewnętrznej przestrzeni dyskowej aplikacji Aegis. Wybierz format eksportowanego pliku:</string>
     <string name="export_warning_unencrypted">Wyeksportujesz sejf aplikacji Aegis w niezaszyfrowanym formacie. <b>Ta opcja nie jest zalecana</b>.</string>
@@ -295,6 +317,7 @@
     <string name="unrelated_google_auth_batches_error">Eksport zawiera informacje dla niepowiązanej partii. Spróbuj importować 1 partię jednocześnie.</string>
     <string name="no_tokens_can_be_imported">Nie można zaimportować żadnych tokenów</string>
     <string name="unlocking_vault">Odblokowywanie sejfu</string>
+    <string name="rename_group">Zmień Nazwę Grupy</string>
     <string name="remove_group">Usuń grupę</string>
     <string name="remove_group_description">Czy na pewno chcesz usunąć tę grupę? Wpisy z tej grupy zostaną automatycznie przeniesione do kategorii \'Brak grupy\'.</string>
     <string name="remove_unused_groups">Usuń nieużywane grupy</string>
@@ -442,6 +465,7 @@
     <string name="password_strength_fair">Przyzwoite</string>
     <string name="password_strength_good">Dobre</string>
     <string name="password_strength_strong">Silne</string>
+    <string name="password_strength_unknown">Hasło jest zbyt długie, by przeprowadzić analizę bezpieczeństwa</string>
     <string name="pref_pin_keyboard_title">Używaj klawiatury numerycznej na ekranie blokady</string>
     <string name="pref_pin_keyboard_summary">Włącz tę opcję, jeśli chcesz włączyć klawiaturę numeryczną na ekranie blokady. Ta klawiatura działa tylko z numerycznymi hasłami</string>
     <string name="title_activity_preferences">Ustawienia</string>
@@ -475,7 +499,7 @@
     <string name="importer_help_andotp">Dostarcz plik andOTP eksportu/kopii zapasowej.</string>
     <string name="importer_help_bitwarden">Dostarcz plik kopii zapasowej Bitwarden. Zaszyfrowane pliki nie są obsługiwane.</string>
     <string name="importer_help_battle_net_authenticator">Dostarcz kopię
-<b>/data/data/com.blizzard.messenger/shared_prefs/com.blizzard.messenger.authenticator_preferences.xml</b>, znajdującą się w wewnętrznym katalogu przechowywania danych aplikacji Battle.net Authenticator.</string>
+<b>/data/data/com.blizzard.messenger/shared_prefs/com.blizzard.messenger.authenticator_preferences.xml</b>, znajdującą się w wewnętrznym katalogu pamięci Battle.net Authenticator.</string>
     <string name="importer_help_duo">Dostarcz kopię <b>/data/data/com.duosecurity.duomobile/files/duokit/accounts.json</b>, znajdującą się w wewnętrznym katalogu pamięci DUO.</string>
     <string name="importer_help_freeotp">Dostarcz kopię <b>/data/data/org.fedorahosted.freeotp/shared_prefs/tokens.xml</b>, znajdującą się w wewnętrznym katalogu pamięci FreeOTP (1.x).</string>
     <string name="importer_help_freeotp_plus">Dostarcz plik eksportu FreeOTP+.</string>
