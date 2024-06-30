@@ -311,6 +311,7 @@
     <string name="no_tokens_can_be_imported">No tokens can be imported as a result</string>
     <string name="unlocking_vault">Unlocking the vault</string>
     <string name="rename_group">Rename Group</string>
+    <string name="no_group_selection">If no group is selected, the entry will be added to the \'No group\'</string>
     <string name="remove_group">Remove group</string>
     <string name="remove_group_description">Are you sure you want to remove this group? Entries in this group will automatically switch to \'No group\'.</string>
     <string name="remove_unused_groups">Delete unused groups</string>

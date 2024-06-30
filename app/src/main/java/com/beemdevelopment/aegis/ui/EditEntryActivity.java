@@ -1,6 +1,5 @@
 package com.beemdevelopment.aegis.ui;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
@@ -16,6 +15,7 @@ import android.view.animation.AccelerateInterpolator;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.widget.AutoCompleteTextView;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -68,6 +68,8 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.target.CustomTarget;
 import com.bumptech.glide.request.transition.Transition;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
+import com.google.android.material.chip.Chip;
+import com.google.android.material.chip.ChipGroup;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
@@ -85,7 +87,6 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
-import java.util.Objects;
 import java.util.Set;
 import java.util.UUID;
 import java.util.concurrent.atomic.AtomicReference;
@@ -107,6 +108,8 @@ public class EditEntryActivity extends AegisActivity {
 
     private TextInputEditText _textName;
     private TextInputEditText _textIssuer;
+    private TextInputLayout _textGroupLayout;
+    private TextInputEditText _textGroup;
     private TextInputEditText _textPeriodCounter;
     private TextInputLayout _textPeriodCounterLayout;
     private TextInputEditText _textDigits;
@@ -121,8 +124,7 @@ public class EditEntryActivity extends AegisActivity {
     private AutoCompleteTextView _dropdownType;
     private AutoCompleteTextView _dropdownAlgo;
     private TextInputLayout _dropdownAlgoLayout;
-    private AutoCompleteTextView _dropdownGroup;
-    private List<VaultGroupModel> _dropdownGroupList = new ArrayList<>();
+    private List<UUID> _selectedGroups = new ArrayList<>();
 
     private KropView _kropView;
 
@@ -195,6 +197,8 @@ public class EditEntryActivity extends AegisActivity {
         _saveImageButton = findViewById(R.id.iv_saveImage);
         _textName = findViewById(R.id.text_name);
         _textIssuer = findViewById(R.id.text_issuer);
+        _textGroup = findViewById(R.id.text_group);
+        _textGroupLayout = findViewById(R.id.text_group_layout);
         _textPeriodCounter = findViewById(R.id.text_period_counter);
         _textPeriodCounterLayout = findViewById(R.id.text_period_counter_layout);
         _textDigits = findViewById(R.id.text_digits);
@@ -210,9 +214,6 @@ public class EditEntryActivity extends AegisActivity {
         _dropdownAlgoLayout = findViewById(R.id.dropdown_algo_layout);
         _dropdownAlgo = findViewById(R.id.dropdown_algo);
         DropdownHelper.fillDropdown(this, _dropdownAlgo, R.array.otp_algo_array);
-        _dropdownGroup = findViewById(R.id.dropdown_group);
-        updateGroupDropdownList();
-        DropdownHelper.fillDropdown(this, _dropdownGroup, _dropdownGroupList);
 
         // if this is NOT a manually entered entry, move the "Secret" field from basic to advanced settings
         if (!_isNew || !_isManual) {
@@ -286,10 +287,15 @@ public class EditEntryActivity extends AegisActivity {
 
         Set<UUID> groups = _origEntry.getGroups();
         if (groups.isEmpty()) {
-            setGroup(new VaultGroupModel(getString(R.string.no_group)));
+            _textGroup.setText(getString(R.string.no_group));
         } else {
-            VaultGroup group = _vaultManager.getVault().getGroupByUUID(groups.iterator().next());
-            setGroup(new VaultGroupModel(group));
+            String text = groups.stream().map(uuid -> {
+                VaultGroup group = _vaultManager.getVault().getGroupByUUID(uuid);
+                return group.getName();
+            })
+            .collect(Collectors.joining(", "));
+            _selectedGroups.addAll(groups);
+            _textGroup.setText(text);
         }
 
         // Update the icon if the issuer or name has changed
@@ -298,11 +304,11 @@ public class EditEntryActivity extends AegisActivity {
 
         // Register listeners to trigger validation
         _textIssuer.addTextChangedListener(_validationListener);
+        _textGroup.addTextChangedListener(_validationListener);
         _textName.addTextChangedListener(_validationListener);
         _textNote.addTextChangedListener(_validationListener);
         _textSecret.addTextChangedListener(_validationListener);
         _dropdownType.addTextChangedListener(_validationListener);
-        _dropdownGroup.addTextChangedListener(_validationListener);
         _dropdownAlgo.addTextChangedListener(_validationListener);
         _textPeriodCounter.addTextChangedListener(_validationListener);
         _textDigits.addTextChangedListener(_validationListener);
@@ -354,36 +360,107 @@ public class EditEntryActivity extends AegisActivity {
             startIconSelection();
         });
 
-        _dropdownGroup.setOnItemClickListener((parent, view, position, id) -> {
-            VaultGroupModel selectedGroup = _dropdownGroupList.get(position);
-            if (selectedGroup.isPlaceholder() && Objects.equals(selectedGroup.getName(), getString(R.string.new_group))) {
-                Dialogs.TextInputListener onAddGroup = text -> {
-                    String groupName = new String(text).trim();
-                    if (!groupName.isEmpty()) {
-                        VaultGroup group = _vaultManager.getVault().findGroupByName(groupName);
-                        if (group == null) {
-                            group = new VaultGroup(groupName);
-                            _vaultManager.getVault().addGroup(group);
-                        }
-
-                        updateGroupDropdownList();
-                        setGroup(new VaultGroupModel(group));
-                    }
-                };
-
-                DialogInterface.OnCancelListener onCancel = dialogInterface -> {
-                    VaultGroupModel previous = (VaultGroupModel) _dropdownGroup.getTag();
-                    _dropdownGroup.setText(previous.getName(), false);
-                };
-
-                Dialogs.showTextInputDialog(EditEntryActivity.this, R.string.set_group, R.string.group_name_hint, onAddGroup, onCancel);
-            } else {
-                setGroup(_dropdownGroupList.get(position));
+        _textGroup.setShowSoftInputOnFocus(false);
+        _textGroup.setOnClickListener(v -> showGroupSelectionDialog());
+        _textGroup.setOnFocusChangeListener((v, hasFocus) -> {
+            if (hasFocus) {
+                showGroupSelectionDialog();
             }
+        });
+
+        _textGroupLayout.setOnClickListener(v -> {
+            showGroupSelectionDialog();
         });
 
         _textUsageCount.setText(_prefs.getUsageCount(entryUUID).toString());
         setLastUsedTimestamp(_prefs.getLastUsedTimestamp(entryUUID));
+    }
+
+    private void showGroupSelectionDialog() {
+        BottomSheetDialog dialog = new BottomSheetDialog(this);
+        View view = getLayoutInflater().inflate(R.layout.dialog_select_groups, null);
+        dialog.setContentView(view);
+
+        ChipGroup chipGroup = view.findViewById(R.id.groupChipGroup);
+        TextView addGroupInfo = view.findViewById(R.id.addGroupInfo);
+        LinearLayout addGroup = view.findViewById(R.id.addGroup);
+        Button clearButton = view.findViewById(R.id.btnClear);
+        Button saveButton = view.findViewById(R.id.btnSave);
+
+        chipGroup.removeAllViews();
+        addGroupInfo.setVisibility(View.VISIBLE);
+        addGroup.setVisibility(View.VISIBLE);
+
+        for (VaultGroup group : _groups) {
+            addChipTo(chipGroup, new VaultGroupModel(group), false);
+        }
+
+        addGroup.setOnClickListener(v1 -> {
+            Dialogs.TextInputListener onAddGroup = text -> {
+                String groupName = new String(text).trim();
+                if (!groupName.isEmpty()) {
+                    VaultGroup group = _vaultManager.getVault().findGroupByName(groupName);
+                    if (group == null) {
+                        group = new VaultGroup(groupName);
+                        _vaultManager.getVault().addGroup(group);
+                    }
+
+                    _selectedGroups.add(group.getUUID());
+                    addChipTo(chipGroup, new VaultGroupModel(group), true);
+                }
+            };
+
+            Dialogs.showTextInputDialog(EditEntryActivity.this, R.string.set_group, R.string.group_name_hint, onAddGroup);
+        });
+
+        saveButton.setOnClickListener(v1 -> {
+            if(getCheckedUUID(chipGroup).isEmpty()) {
+                _selectedGroups.clear();
+                _textGroup.setText(getString(R.string.no_group));
+            } else {
+                _selectedGroups.clear();
+                _selectedGroups.addAll(getCheckedUUID(chipGroup));
+                _textGroup.setText(getCheckedNames(chipGroup));
+            }
+            dialog.dismiss();
+        });
+
+        clearButton.setOnClickListener(v1 -> {
+            chipGroup.clearCheck();
+        });
+
+        Dialogs.showSecureDialog(dialog);
+    }
+
+    private void addChipTo(ChipGroup chipGroup, VaultGroupModel group, Boolean isNew) {
+        Chip chip = (Chip) getLayoutInflater().inflate(R.layout.chip_group_filter, null, false);
+        chip.setText(group.getName());
+        chip.setCheckable(true);
+
+        chip.setChecked((!_selectedGroups.isEmpty() && _selectedGroups.contains(group.getUUID())) || isNew);
+        chip.setCheckedIconVisible(true);
+        chip.setTag(group);
+        chipGroup.addView(chip);
+    }
+
+    private static Set<UUID> getCheckedUUID(ChipGroup chipGroup) {
+        return chipGroup.getCheckedChipIds().stream()
+                .map(i -> {
+                    Chip chip = chipGroup.findViewById(i);
+                    VaultGroupModel group = (VaultGroupModel) chip.getTag();
+                    return group.getUUID();
+                })
+                .collect(Collectors.toSet());
+    }
+
+    private static String getCheckedNames(ChipGroup chipGroup) {
+        return chipGroup.getCheckedChipIds().stream()
+                .map(i -> {
+                    Chip chip = chipGroup.findViewById(i);
+                    VaultGroupModel group = (VaultGroupModel) chip.getTag();
+                    return group.getName();
+                })
+                .collect(Collectors.joining(", "));
     }
 
     private void updateAdvancedFieldStatus(String otpType) {
@@ -398,11 +475,6 @@ public class EditEntryActivity extends AegisActivity {
         boolean visible = otpType.equals(YandexInfo.ID) || otpType.equals(MotpInfo.ID);
         _textPinLayout.setVisibility(visible ? View.VISIBLE : View.GONE);
         _textPin.setHint(otpType.equals(MotpInfo.ID) ? R.string.motp_pin : R.string.yandex_pin);
-    }
-
-    private void setGroup(VaultGroupModel group) {
-        _dropdownGroup.setText(group.getName(), false);
-        _dropdownGroup.setTag(group);
     }
 
     private void openAdvancedSettings() {
@@ -423,13 +495,6 @@ public class EditEntryActivity extends AegisActivity {
         fadeIn.setAnimationListener(new SimpleAnimationEndListener((a) -> {
             _advancedSettings.setVisibility(View.VISIBLE);
         }));
-    }
-
-    private void updateGroupDropdownList() {
-        _dropdownGroupList.clear();
-        _dropdownGroupList.add(new VaultGroupModel(getString(R.string.new_group)));
-        _dropdownGroupList.addAll(_groups.stream().map(VaultGroupModel::new).collect(Collectors.toList()));
-        _dropdownGroupList.add(new VaultGroupModel(getString(R.string.no_group)));
     }
 
     private boolean hasUnsavedChanges(VaultEntry newEntry) {
@@ -731,13 +796,10 @@ public class EditEntryActivity extends AegisActivity {
         entry.setName(_textName.getText().toString());
         entry.setNote(_textNote.getText().toString());
 
-        VaultGroupModel group = (VaultGroupModel) _dropdownGroup.getTag();
-        if (group.isPlaceholder()) {
+        if (_selectedGroups.isEmpty()) {
             entry.setGroups(new HashSet<>());
         } else {
-            Set<UUID> groups = new HashSet<>();
-            groups.add(group.getUUID());
-            entry.setGroups(groups);
+            entry.setGroups(new HashSet<>(_selectedGroups));
         }
 
         if (_hasChangedIcon) {
