@@ -6,8 +6,8 @@ buildscript {
         google()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:8.2.0'
-        classpath 'com.google.dagger:hilt-android-gradle-plugin:2.50'
+        classpath 'com.android.tools.build:gradle:8.3.1'
+        classpath 'com.google.dagger:hilt-android-gradle-plugin:2.51.1'
         classpath 'com.google.protobuf:protobuf-gradle-plugin:0.9.4'
 
         // NOTE: Do not place your application dependencies here; they belong
@@ -21,8 +21,8 @@ plugins {
 
 allprojects {
     repositories {
-        mavenCentral()
         google()
+        mavenCentral()
         maven { url 'https://jitpack.io' }
         maven {
             url 'https://jcenter.bintray.com'
