@@ -127,6 +127,18 @@ are available in the [test
 data](/app/src/test/resources/com/beemdevelopment/aegis/importers) folder.
 There's also an example Python script that can decrypt an Aegis vault given the
 password: [decrypt.py](/docs/decrypt.py).
+To use the python script you first need to install the required python packages with the command (use python3 and pip3 if you use linux):
+```
+pip install -r requirements.txt
+```
+Then the vault can be decrypted by with the command:
+```python
+python decrypt.py --input <path_to_vault>  [--output <path_to_output>.json]
+```
+you will then be promted for the vault password and the vault will either be decrypted to the specified location or printed to the console, depending on whether the output is specified.
+
+If you want to run the script in a virtual environment to avoid installing the packages globally you can create a virtual environment.
+see [Python venv docs](https://docs.python.org/3/library/venv.html#creating-virtual-environments) for more information.
 
 ### Header
 
