@@ -28,7 +28,7 @@ android {
         applicationId "${packageName}"
         minSdkVersion 21
         targetSdkVersion 34
-        versionCode 68
+        versionCode 69
         versionName "3.1.1-beta1"
         multiDexEnabled true
         buildConfigField "String", "GIT_HASH", "\"${getGitHash()}\""
