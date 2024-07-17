@@ -657,8 +657,8 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
     }
 
     @Override
-    protected void onResume() {
-        super.onResume();
+    protected void onStart() {
+        super.onStart();
 
         if (_vaultManager.isVaultInitNeeded()) {
             if (_prefs.isIntroDone()) {
