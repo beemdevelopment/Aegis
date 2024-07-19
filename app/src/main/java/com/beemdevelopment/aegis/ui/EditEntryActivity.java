@@ -127,7 +127,7 @@ public class EditEntryActivity extends AegisActivity {
     private KropView _kropView;
 
     private RelativeLayout _advancedSettingsHeader;
-    private RelativeLayout _advancedSettings;
+    private LinearLayout _advancedSettingsLayout;
 
     private BackPressHandler _backPressHandler;
     private IconBackPressHandler _iconBackPressHandler;
@@ -241,7 +241,7 @@ public class EditEntryActivity extends AegisActivity {
 
         _advancedSettingsHeader = findViewById(R.id.accordian_header);
         _advancedSettingsHeader.setOnClickListener(v -> openAdvancedSettings());
-        _advancedSettings = findViewById(R.id.expandableLayout);
+        _advancedSettingsLayout = findViewById(R.id.layout_advanced);
 
         // fill the fields with values if possible
         GlideHelper.loadEntryIcon(Glide.with(this), _origEntry, _iconView);
@@ -411,17 +411,13 @@ public class EditEntryActivity extends AegisActivity {
         fadeOut.setDuration((long) (220 * AnimationsHelper.Scale.ANIMATOR.getValue(this)));
         _advancedSettingsHeader.startAnimation(fadeOut);
 
-        Animation fadeIn = new AlphaAnimation(0, 1);
-        fadeIn.setInterpolator(new AccelerateInterpolator());
-        fadeIn.setDuration((long) (250 * AnimationsHelper.Scale.ANIMATOR.getValue(this)));
-
         fadeOut.setAnimationListener(new SimpleAnimationEndListener((a) -> {
             _advancedSettingsHeader.setVisibility(View.GONE);
-            _advancedSettings.startAnimation(fadeIn);
-        }));
-
-        fadeIn.setAnimationListener(new SimpleAnimationEndListener((a) -> {
-            _advancedSettings.setVisibility(View.VISIBLE);
+            _advancedSettingsLayout.setVisibility(View.VISIBLE);
+            _advancedSettingsLayout.animate()
+                    .setInterpolator(new AccelerateInterpolator())
+                    .setDuration((long) (250 * AnimationsHelper.Scale.ANIMATOR.getValue(this)))
+                    .alpha(1);
         }));
     }
 

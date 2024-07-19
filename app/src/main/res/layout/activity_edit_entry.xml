@@ -251,149 +251,143 @@
                         android:textStyle="bold" />
 
                 </RelativeLayout>
-                <RelativeLayout
-                    android:id="@+id/expandableLayout"
+                <LinearLayout
+                    android:id="@+id/layout_advanced"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:visibility="gone">
+                    android:orientation="vertical"
+                    android:visibility="gone"
+                    android:alpha="0"
+                    android:layout_marginHorizontal="10dp">
                     <LinearLayout
-                        android:id="@+id/layout_advanced"
+                        android:id="@+id/layout_type_algo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:layout_marginHorizontal="10dp">
-                        <LinearLayout
-                            android:id="@+id/layout_type_algo"
-                            android:layout_width="match_parent"
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal">
+                        <ImageView
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp"
+                            android:src="@drawable/ic_outline_info_24"
+                            app:tint="?attr/colorOnSurface"
+                            android:layout_marginStart="5dp"
+                            android:layout_marginEnd="15dp"
+                            android:layout_gravity="center_vertical"/>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
                             android:orientation="horizontal">
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:src="@drawable/ic_outline_info_24"
-                                app:tint="?attr/colorOnSurface"
-                                android:layout_marginStart="5dp"
-                                android:layout_marginEnd="15dp"
-                                android:layout_gravity="center_vertical"/>
 
-                            <LinearLayout
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:orientation="horizontal">
-
-                                <com.google.android.material.textfield.TextInputLayout
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginEnd="5dp"
-                                    android:layout_weight="2"
-                                    android:hint="@string/type"
-                                    style="?attr/dropdownStyle">
-                                    <AutoCompleteTextView
-                                        android:id="@+id/dropdown_type"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:inputType="none"/>
-                                </com.google.android.material.textfield.TextInputLayout>
-                                <com.google.android.material.textfield.TextInputLayout
-                                    android:id="@+id/dropdown_algo_layout"
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginStart="5dp"
-                                    android:layout_weight="2"
-                                    android:hint="@string/algorithm_hint"
-                                    style="?attr/dropdownStyle">
-                                    <AutoCompleteTextView
-                                        android:id="@+id/dropdown_algo"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:inputType="none" />
-                                </com.google.android.material.textfield.TextInputLayout>
-                            </LinearLayout>
-                        </LinearLayout>
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginStart="44.5dp">
                             <com.google.android.material.textfield.TextInputLayout
-                                android:id="@+id/text_period_counter_layout"
-                                android:hint="@string/period_hint"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_marginEnd="5dp"
-                                android:layout_weight="1">
-                                <com.google.android.material.textfield.TextInputEditText
-                                    android:id="@+id/text_period_counter"
+                                android:layout_weight="2"
+                                android:hint="@string/type"
+                                style="?attr/dropdownStyle">
+                                <AutoCompleteTextView
+                                    android:id="@+id/dropdown_type"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:inputType="text"/>
+                                    android:inputType="none"/>
                             </com.google.android.material.textfield.TextInputLayout>
                             <com.google.android.material.textfield.TextInputLayout
-                                android:id="@+id/text_digits_layout"
-                                android:hint="@string/digits"
+                                android:id="@+id/dropdown_algo_layout"
                                 android:layout_width="0dp"
-                                android:layout_height="match_parent"
+                                android:layout_height="wrap_content"
                                 android:layout_marginStart="5dp"
-                                android:layout_weight="1">
-                                <com.google.android.material.textfield.TextInputEditText
-                                    android:id="@+id/text_digits"
+                                android:layout_weight="2"
+                                android:hint="@string/algorithm_hint"
+                                style="?attr/dropdownStyle">
+                                <AutoCompleteTextView
+                                    android:id="@+id/dropdown_algo"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:inputType="text"/>
+                                    android:inputType="none" />
                             </com.google.android.material.textfield.TextInputLayout>
                         </LinearLayout>
-                        <LinearLayout
-                            android:id="@+id/layout_usage_count"
-                            android:layout_width="match_parent"
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginStart="44.5dp">
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/text_period_counter_layout"
+                            android:hint="@string/period_hint"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp"
-                            android:weightSum="2"
-                            android:orientation="horizontal">
-                            <ImageView
-                                android:layout_width="wrap_content"
+                            android:layout_marginEnd="5dp"
+                            android:layout_weight="1">
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/text_period_counter"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:src="@drawable/ic_counter_black_24"
-                                app:tint="?attr/colorOnSurface"
-                                android:layout_marginStart="5dp"
-                                android:layout_marginEnd="15dp"
-                                android:layout_gravity="center_vertical"/>
-
-                            <LinearLayout
-                                android:layout_width="0dp"
+                                android:inputType="text"/>
+                        </com.google.android.material.textfield.TextInputLayout>
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/text_digits_layout"
+                            android:hint="@string/digits"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="5dp"
+                            android:layout_weight="1">
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/text_digits"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:orientation="horizontal">
-
-                                <com.google.android.material.textfield.TextInputLayout
-                                    android:hint="@string/usage_count"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginEnd="5dp">
-                                    <com.google.android.material.textfield.TextInputEditText
-                                        android:id="@+id/text_usage_count"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:enabled="false"
-                                        android:inputType="number"/>
-                                </com.google.android.material.textfield.TextInputLayout>
-                            </LinearLayout>
-                        </LinearLayout>
-                        <TextView
-                            android:id="@+id/text_last_used"
+                                android:inputType="text"/>
+                        </com.google.android.material.textfield.TextInputLayout>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/layout_usage_count"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:weightSum="2"
+                        android:orientation="horizontal">
+                        <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:paddingTop="16dp"
-                            android:paddingBottom="16dp"
-                            android:layout_centerInParent="true"
-                            android:layout_gravity="bottom|center"
-                            android:textSize="14sp" />
+                            android:src="@drawable/ic_counter_black_24"
+                            app:tint="?attr/colorOnSurface"
+                            android:layout_marginStart="5dp"
+                            android:layout_marginEnd="15dp"
+                            android:layout_gravity="center_vertical"/>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:hint="@string/usage_count"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="5dp">
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/text_usage_count"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:enabled="false"
+                                    android:inputType="number"/>
+                            </com.google.android.material.textfield.TextInputLayout>
+                        </LinearLayout>
                     </LinearLayout>
-
-
-                </RelativeLayout>
+                    <TextView
+                        android:id="@+id/text_last_used"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="16dp"
+                        android:paddingBottom="16dp"
+                        android:layout_centerInParent="true"
+                        android:layout_gravity="bottom|center"
+                        android:textSize="14sp" />
+                </LinearLayout>
 
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
