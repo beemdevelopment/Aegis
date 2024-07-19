@@ -857,6 +857,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
 
     private void loadEntries() {
         if (!_loaded) {
+            _entryListView.setGroups(_vaultManager.getVault().getUsedGroups());
             _entryListView.setUsageCounts(_prefs.getUsageCounts());
             _entryListView.setLastUsedTimestamps(_prefs.getLastUsedTimestamps());
             _entryListView.addEntries(_vaultManager.getVault().getEntries());
