@@ -244,8 +244,8 @@ public class Dialogs {
         showTextInputDialog(context, titleId, 0, hintId, listener, null, isSecret, null);
     }
 
-    public static void showTextInputDialog(Context context, @StringRes int titleId, @StringRes int hintId, TextInputListener listener, @Nullable DialogInterface.OnCancelListener onCancel) {
-        showTextInputDialog(context, titleId, 0, hintId, listener, onCancel, false, null);
+    public static void showTextInputDialog(Context context, @StringRes int titleId, @StringRes int hintId, TextInputListener listener) {
+        showTextInputDialog(context, titleId, 0, hintId, listener, null, false, null);
     }
 
     public static void showPasswordInputDialog(Context context, TextInputListener listener) {
