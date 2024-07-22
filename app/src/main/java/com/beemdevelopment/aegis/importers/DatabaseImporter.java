@@ -44,6 +44,7 @@ public abstract class DatabaseImporter {
         _importers.add(new Definition("Google Authenticator", GoogleAuthImporter.class, R.string.importer_help_google_authenticator, true));
         _importers.add(new Definition("Microsoft Authenticator", MicrosoftAuthImporter.class, R.string.importer_help_microsoft_authenticator, true));
         _importers.add(new Definition("Plain text", GoogleAuthUriImporter.class, R.string.importer_help_plain_text, false));
+        _importers.add(new Definition("Proton Pass", ProtonPassImporter.class, R.string.importer_help_proton_pass, true));
         _importers.add(new Definition("Steam", SteamImporter.class, R.string.importer_help_steam, true));
         _importers.add(new Definition("TOTP Authenticator", TotpAuthenticatorImporter.class, R.string.importer_help_totp_authenticator, true));
         _importers.add(new Definition("WinAuth", WinAuthImporter.class, R.string.importer_help_winauth, false));

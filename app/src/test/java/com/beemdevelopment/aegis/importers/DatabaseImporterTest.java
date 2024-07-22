@@ -210,6 +210,12 @@ public class DatabaseImporterTest {
     }
 
     @Test
+    public void testImportProtonPassZip() throws DatabaseImporterException, IOException, OtpInfoException {
+        List<VaultEntry> entries = importPlain(ProtonPassImporter.class, "proton_pass.zip");
+        checkImportedProtonPassEntries(entries);
+    }
+
+    @Test
     public void testImportFreeOtp() throws IOException, DatabaseImporterException, OtpInfoException {
         List<VaultEntry> entries = importPlain(FreeOtpImporter.class, "freeotp.xml");
         checkImportedFreeOtpEntries(entries);
@@ -438,6 +444,14 @@ public class DatabaseImporterTest {
             } else {
                 checkImportedEntry(entry);
             }
+        }
+    }
+
+    private void checkImportedProtonPassEntries(List<VaultEntry> entries) throws OtpInfoException {
+        for (VaultEntry entry : entries)
+        {
+            entry.getGroups().clear();
+            checkImportedEntry(entry);
         }
     }
 
