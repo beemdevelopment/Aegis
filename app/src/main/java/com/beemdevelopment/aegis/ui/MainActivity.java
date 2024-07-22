@@ -520,7 +520,6 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
 
     private void onIntroResult() {
         loadEntries();
-        checkTimeSyncSetting();
     }
 
     private void checkTimeSyncSetting() {
@@ -537,7 +536,6 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         _auditLogRepository.addVaultUnlockedEvent();
 
         loadEntries();
-        checkTimeSyncSetting();
     }
 
     private void startScanActivity() {
