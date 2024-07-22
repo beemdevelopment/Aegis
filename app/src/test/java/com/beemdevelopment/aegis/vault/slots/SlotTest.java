@@ -1,7 +1,6 @@
 package com.beemdevelopment.aegis.vault.slots;
 
 import static org.junit.Assert.assertArrayEquals;
-import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertThrows;
 
 import com.beemdevelopment.aegis.crypto.CryptoUtils;
@@ -96,22 +95,21 @@ public class SlotTest {
     }
 
     @Test
-    public void testPasswordSlotExclusion() {
-        SlotList slots = new SlotList();
-        PasswordSlot passSlot = new PasswordSlot();
-        PasswordSlot passSlot2 = new PasswordSlot();
-        slots.add(passSlot);
-        slots.add(passSlot2);
-
-        assertArrayEquals(slots.getValues().toArray(), slots.exportable().getValues().toArray());
-
-        SlotList backupSlots = new SlotList();
+    public void testNonExportableSlotsExclusion() {
+        Slot rawSlot = new RawSlot();
+        Slot passwordSlot = new PasswordSlot();
+        Slot biometricSlot = new BiometricSlot();
         PasswordSlot backupSlot = new PasswordSlot();
         backupSlot.setIsBackup(true);
+        SlotList slots = new SlotList();
+        slots.add(rawSlot);
+        slots.add(passwordSlot);
+        slots.add(biometricSlot);
         slots.add(backupSlot);
-        backupSlots.add(backupSlot);
-
-        assertArrayEquals(backupSlots.getValues().toArray(), slots.exportable().getValues().toArray());
-        assertNotEquals(slots.getValues().toArray(), slots.exportable().getValues().toArray());
+        SlotList actual = slots.exportable();
+        SlotList expected = new SlotList();
+        expected.add(rawSlot);
+        expected.add(backupSlot);
+        assertArrayEquals(expected.getValues().toArray(), actual.getValues().toArray());
     }
 }
