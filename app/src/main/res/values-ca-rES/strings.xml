@@ -123,7 +123,6 @@
     <string name="event_unknown">Tipus d\'esdeveniment desconegut</string>
     <string name="today_at_time">Avui a les %1$s</string>
     <string name="day_of_week_at_time">%1$s a les %2$s</string>
-    <string name="date_format">dd/MM/yyyy</string>
     <string name="export_encrypted">Xifra la caixa forta</string>
     <string name="export_help">Això exportarà la caixa forta fora d\'Aegis. Tria el format en el que s\'ha d\'exportar:</string>
     <string name="export_warning_unencrypted">Això exportarà una còpia sense xifrar de la caixa forta d\'Aegis. <b>No recomanat</b>.</string>

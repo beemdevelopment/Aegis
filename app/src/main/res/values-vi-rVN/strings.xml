@@ -121,7 +121,6 @@
     <string name="event_unknown">Sự kiện chưa rõ</string>
     <string name="today_at_time">%1$s hôm nay</string>
     <string name="day_of_week_at_time">%2$s lúc %1$s</string>
-    <string name="date_format">dd/MM/yyyy</string>
     <string name="export_encrypted">Mã hoá kho</string>
     <string name="export_help">Hành động này sẽ xuất kho ra ngoài bộ nhớ trong của Aegis. Hãy chọn định dạng bản xuất:</string>
     <string name="export_warning_unencrypted">Bạn sắp xuất một bản sao chưa được mã khóa của kho Aegis. <b>Việc này không được khuyến khích</b>.</string>

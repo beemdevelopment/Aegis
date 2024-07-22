@@ -123,7 +123,6 @@
     <string name="event_unknown">Tuntematon tapahtumatyyppi</string>
     <string name="today_at_time">Tänään klo %1$s</string>
     <string name="day_of_week_at_time">%1$s klo %2$s</string>
-    <string name="date_format">dd/MM/yyyy</string>
     <string name="export_encrypted">Salaa holvi</string>
     <string name="export_help">Tämä toiminto vie holvin ulos Aegisin sisäisestä tallennustilasta. Valitse viennin tiedostomuoto:</string>
     <string name="export_warning_unencrypted">Olet viemässä salaamattoman kopion Aegis-holvistasi. <b>Tätä ei suositella</b>.</string>

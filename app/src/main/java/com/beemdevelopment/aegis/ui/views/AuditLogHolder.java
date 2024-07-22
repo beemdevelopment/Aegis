@@ -20,6 +20,7 @@ import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 import java.time.temporal.ChronoUnit;
 
 public class AuditLogHolder extends RecyclerView.ViewHolder {
@@ -133,7 +134,7 @@ public class AuditLogHolder extends RecyclerView.ViewHolder {
             String formattedTime = timestamp.format(timeFormatter);
             return context.getString(R.string.day_of_week_at_time, dayOfWeek, formattedTime);
         } else {
-            DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern(context.getString(R.string.date_format));
+            DateTimeFormatter dateFormatter = DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM);
             return timestamp.format(dateFormatter);
         }
     }

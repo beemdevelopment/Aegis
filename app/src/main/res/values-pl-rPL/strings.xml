@@ -127,7 +127,6 @@
     <string name="event_unknown">Nieznany typ zdarzenia</string>
     <string name="today_at_time">Dzisiaj o %1$s</string>
     <string name="day_of_week_at_time">%1$s o %2$s</string>
-    <string name="date_format">dd/MM/yyyy</string>
     <string name="export_encrypted">Zaszyfruj sejf</string>
     <string name="export_help">Ta czynność wyeksportuje sejf z wewnętrznej przestrzeni dyskowej aplikacji Aegis. Wybierz format eksportowanego pliku:</string>
     <string name="export_warning_unencrypted">Wyeksportujesz sejf aplikacji Aegis w niezaszyfrowanym formacie. <b>Ta opcja nie jest zalecana</b>.</string>

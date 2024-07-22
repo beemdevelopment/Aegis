@@ -125,7 +125,6 @@
     <string name="event_unknown">Tipul evenimentului este necunoscut</string>
     <string name="today_at_time">Astăzi, la %1$s</string>
     <string name="day_of_week_at_time">%1$s la %2$s</string>
-    <string name="date_format">zz/ll/aaaa</string>
     <string name="export_encrypted">Criptează seiful</string>
     <string name="export_help">Această acțiune va exporta seiful din spațiul de stocare al aplicaţiei. Selectează formatul în care dorești exportul:</string>
     <string name="export_warning_unencrypted">Ești pe cale să exportezi o copie necriptată a seifului Aegis. <b>Acest lucru nu este recomandat</b>.</string>

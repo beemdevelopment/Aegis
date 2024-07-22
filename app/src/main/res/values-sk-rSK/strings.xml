@@ -121,7 +121,6 @@
     <string name="event_unknown">Neznámy typ udalosti</string>
     <string name="today_at_time">Dnes o %1$s</string>
     <string name="day_of_week_at_time">%1$s o %2$s</string>
-    <string name="date_format">dd. mm. yyyy</string>
     <string name="export_encrypted">Šifrovať trezor</string>
     <string name="export_help">Touto akciou sa exportuje trezor z interného úložiska Aegis. Vyberte formát, v ktorom chcete mať export:</string>
     <string name="export_warning_unencrypted">Chystáte sa exportovať nezašifrovanú kópiu svojho trezoru Aegis. <b> Toto sa neodporúča </b>.</string>

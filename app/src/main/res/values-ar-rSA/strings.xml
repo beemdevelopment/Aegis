@@ -131,7 +131,6 @@
     <string name="event_unknown">نوع الحدث غير معروف</string>
     <string name="today_at_time">اليوم على %1$s</string>
     <string name="day_of_week_at_time">%1$s في %2$s</string>
-    <string name="date_format">dd/MM/yyyy</string>
     <string name="export_encrypted">تشفير المخزن</string>
     <string name="export_help">هذا الإجراء سيصدر المخزن خارج ذاكرة تخزين Aegis الداخلية. حدد الصيغة التي ترغب بأن يكون التصدير عليها:</string>
     <string name="export_warning_unencrypted">أنت على وشك تصدير نسخة غير مشفرة من مخزن Aegis. <b>لا يُنصح بهذا</b>.</string>

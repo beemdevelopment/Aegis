@@ -123,7 +123,6 @@
     <string name="event_unknown">Unbekend barrenstype</string>
     <string name="today_at_time">Hjoed om %1$s</string>
     <string name="day_of_week_at_time">%1$s om %2$s</string>
-    <string name="date_format">dd/mm/jjjj</string>
     <string name="export_encrypted">Fersiferje de klûs</string>
     <string name="export_help">Dizze aksje sil de klûs eksportearje út it ynterne ûnthâld fan Aegis. Selektearje it formaat wêryn’tsto de eksport wolst:</string>
     <string name="export_warning_unencrypted">Do stiest op it punt in ûnfersifere kopy fan de Aegis-klûs te eksportearjen. <b>Dit wurdt net oanrekommandearre</b>.</string>
