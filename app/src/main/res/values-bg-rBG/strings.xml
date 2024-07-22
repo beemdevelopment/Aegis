@@ -123,7 +123,6 @@
     <string name="event_unknown">Неизвестен вид събитие</string>
     <string name="today_at_time">Днес в %1$s</string>
     <string name="day_of_week_at_time">%1$s в %2$s</string>
-    <string name="date_format">dd.MM.yyyy</string>
     <string name="export_encrypted">Шифровайте трезора</string>
     <string name="export_help">По този начин ще бъде изнесен трезора на Aegis от вътрешното хранилище. Изберете формата на данните, в който искате да бъдат изнесени:</string>
     <string name="export_warning_unencrypted">На път сте да изнесете нешифровано копие на трезора на Aegis. <b>Това е силно непрепоръчително</b>.</string>

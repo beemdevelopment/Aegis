@@ -121,7 +121,6 @@
     <string name="event_unknown">未知事件类型</string>
     <string name="today_at_time">今天 %1$s</string>
     <string name="day_of_week_at_time">%2$s 的 %1$s</string>
-    <string name="date_format">日/月/年</string>
     <string name="export_encrypted">加密数据库</string>
     <string name="export_help">此操作将从 Aegis 的内部存储中导出数据库。选择您想要的导出格式：</string>
     <string name="export_warning_unencrypted">您将导出一个未加密的 Aegis 数据库副本。<b>不建议这么做</b></string>

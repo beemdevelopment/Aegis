@@ -128,7 +128,6 @@
 
     <string name="today_at_time">Today at %1$s</string>
     <string name="day_of_week_at_time">%1$s at %2$s</string>
-    <string name="date_format">dd/MM/yyyy</string>
 
     <string name="export_encrypted">Encrypt the vault</string>
     <string name="export_help">This action will export the vault out of Aegis\' internal storage. Select the format you\'d like your export to be in:</string>

@@ -123,7 +123,6 @@
     <string name="event_unknown">Tipo de evento desconhecido</string>
     <string name="today_at_time">Hoje às %1$s</string>
     <string name="day_of_week_at_time">%1$s em %2$s</string>
-    <string name="date_format">dd/MM/yyyy</string>
     <string name="export_encrypted">Criptografar o cofre</string>
     <string name="export_help">Esta ação irá exportar o cofre para fora do armazenamento interno do Aegis. Selecione o formato em que você gostaria que sua exportação esteja:</string>
     <string name="export_warning_unencrypted">Você está prestes a exportar uma cópia não criptografada de seu cofre Aegis. <b>Isso não é recomendado</b>.</string>

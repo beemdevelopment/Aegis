@@ -123,7 +123,6 @@
     <string name="event_unknown">Tipo de evento desconocido</string>
     <string name="today_at_time">Hoy a las %1$s</string>
     <string name="day_of_week_at_time">%1$s a las %2$s</string>
-    <string name="date_format">día/mes/año</string>
     <string name="export_encrypted">Cifrar la bóveda</string>
     <string name="export_help">Esta acción exportará la bóveda fuera del almacenamiento interno de Aegis. Seleccione el formato al que desea exportar:</string>
     <string name="export_warning_unencrypted">Estás a punto de exportar una copia sin cifrar de tu bóveda de Aegis. <b>No se recomienda en absoluto</b>.</string>

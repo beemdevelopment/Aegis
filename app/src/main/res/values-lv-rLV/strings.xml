@@ -125,7 +125,6 @@
     <string name="event_unknown">Nezināms notikuma veids</string>
     <string name="today_at_time">Šodien %1$s</string>
     <string name="day_of_week_at_time">%1$s %2$s</string>
-    <string name="date_format">dd.MM.yyyy.</string>
     <string name="export_encrypted">Šifrēt glabātavu</string>
     <string name="export_help">Šī darbība izgūs glabātavas saturu no Aegis iekšējās krātuves. Jāatlasa veidols, kurā izgūt datus:</string>
     <string name="export_warning_unencrypted">Tiks izgūts nešifrēts Aegis glabātavas atveidojums. <b>Tas nav ieteicams</b>.</string>

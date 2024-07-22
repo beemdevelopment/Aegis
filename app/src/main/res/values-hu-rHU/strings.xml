@@ -123,7 +123,6 @@
     <string name="event_unknown">Ismeretlen eseménytípus</string>
     <string name="today_at_time">Ma %1$s-kor</string>
     <string name="day_of_week_at_time">%1$s %2$s-kor</string>
-    <string name="date_format">yyyy. MM. dd.</string>
     <string name="export_encrypted">A széf titkosítása</string>
     <string name="export_help">Ez a művelet exportálja a széfet az Aegis belső tárolójából. Válassza ki az exportálás formátumát:</string>
     <string name="export_warning_unencrypted">Arra készül, hogy egy titkosítatlan Aegis széfet exportáljon. <b>Ez nem ajánlott</b>.</string>
