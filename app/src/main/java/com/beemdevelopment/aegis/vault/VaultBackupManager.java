@@ -118,7 +118,7 @@ public class VaultBackupManager {
     }
 
     private void enforceVersioning(DocumentFile dir, int versionsToKeep) {
-        if (versionsToKeep < 0) {
+        if (versionsToKeep <= 0) {
             return;
         }
 
