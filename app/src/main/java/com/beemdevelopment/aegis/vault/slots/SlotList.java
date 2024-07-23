@@ -75,6 +75,7 @@ public class SlotList extends UUIDMap<Slot> {
 
     /**
      * Returns a copy of this SlotList that is suitable for exporting.
+     * Strips biometric slots.
      * In case there's a backup password slot, any regular password slots are stripped.
      */
     public SlotList exportable() {
@@ -85,18 +86,16 @@ public class SlotList extends UUIDMap<Slot> {
                 break;
             }
         }
-
-        if (!hasBackupSlots) {
-            return this;
-        }
-
         SlotList slots = new SlotList();
         for (Slot slot : this) {
-            if (!(slot instanceof PasswordSlot) || ((PasswordSlot) slot).isBackup()) {
-                slots.add(slot);
+            if (slot instanceof BiometricSlot) {
+                continue;
             }
+            if (hasBackupSlots && slot instanceof PasswordSlot && !((PasswordSlot) slot).isBackup()) {
+                continue;
+            }
+            slots.add(slot);
         }
-
         return slots;
     }
 }
