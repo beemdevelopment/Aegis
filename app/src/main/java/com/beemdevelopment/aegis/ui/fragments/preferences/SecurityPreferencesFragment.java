@@ -55,18 +55,10 @@ public class SecurityPreferencesFragment extends PreferencesFragment {
 
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
-        super.onCreatePreferences(savedInstanceState, rootKey);
         addPreferencesFromResource(R.xml.preferences_security);
-
-        Preference tapToRevealPreference = requirePreference("pref_tap_to_reveal");
-        tapToRevealPreference.setOnPreferenceChangeListener((preference, newValue) -> {
-            getResult().putExtra("needsRefresh", true);
-            return true;
-        });
 
         Preference screenPreference = requirePreference("pref_secure_screen");
         screenPreference.setOnPreferenceChangeListener((preference, newValue) -> {
-            getResult().putExtra("needsRecreate", true);
             Window window = requireActivity().getWindow();
             if ((boolean) newValue) {
                 window.addFlags(WindowManager.LayoutParams.FLAG_SECURE);
@@ -82,7 +74,6 @@ public class SecurityPreferencesFragment extends PreferencesFragment {
             Dialogs.showTapToRevealTimeoutPickerDialog(requireContext(), _prefs.getTapToRevealTime(), number -> {
                 _prefs.setTapToRevealTime(number);
                 tapToRevealTimePreference.setSummary(number + " seconds");
-                getResult().putExtra("needsRefresh", true);
             });
             return false;
         });

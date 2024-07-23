@@ -1,8 +1,6 @@
 package com.beemdevelopment.aegis.ui.fragments.preferences;
 
-import android.app.Activity;
 import android.content.Intent;
-import android.os.Bundle;
 import android.view.animation.Animation;
 
 import androidx.annotation.CallSuper;
@@ -31,8 +29,6 @@ public abstract class PreferencesFragment extends PreferenceFragmentCompat {
     public static final int CODE_EXPORT_GOOGLE_URI = 7;
     public static final int CODE_EXPORT_HTML = 8;
 
-    private Intent _result;
-
     @Inject
     Preferences _prefs;
 
@@ -41,12 +37,6 @@ public abstract class PreferencesFragment extends PreferenceFragmentCompat {
 
     @Inject
     protected AuditLogRepository _auditLogRepository;
-
-    @Override
-    @CallSuper
-    public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
-        setResult(new Intent());
-    }
 
     @Override
     @CallSuper
@@ -61,10 +51,6 @@ public abstract class PreferencesFragment extends PreferenceFragmentCompat {
         }
     }
 
-    public Intent getResult() {
-        return _result;
-    }
-
     @Override
     @Nullable
     public Animation onCreateAnimation(int transit, boolean enter, int nextAnim) {
@@ -73,11 +59,6 @@ public abstract class PreferencesFragment extends PreferenceFragmentCompat {
         }
 
         return super.onCreateAnimation(transit, enter, nextAnim);
-    }
-
-    public void setResult(Intent result) {
-        _result = result;
-        requireActivity().setResult(Activity.RESULT_OK, _result);
     }
 
     protected boolean saveAndBackupVault() {

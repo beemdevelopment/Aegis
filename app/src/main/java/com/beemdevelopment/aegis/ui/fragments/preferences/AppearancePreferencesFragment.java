@@ -27,7 +27,6 @@ public class AppearancePreferencesFragment extends PreferencesFragment {
 
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
-        super.onCreatePreferences(savedInstanceState, rootKey);
         addPreferencesFromResource(R.xml.preferences_appearance);
 
         _groupsPreference = requirePreference("pref_groups");
@@ -62,7 +61,6 @@ public class AppearancePreferencesFragment extends PreferencesFragment {
 
                         dialog.dismiss();
 
-                        getResult().putExtra("needsRecreate", true);
                         requireActivity().recreate();
                     })
                     .setNegativeButton(android.R.string.cancel, null)
@@ -74,7 +72,6 @@ public class AppearancePreferencesFragment extends PreferencesFragment {
         Preference dynamicColorsPreference = requirePreference("pref_dynamic_colors");
         dynamicColorsPreference.setEnabled(DynamicColors.isDynamicColorAvailable());
         dynamicColorsPreference.setOnPreferenceChangeListener((preference, newValue) -> {
-            getResult().putExtra("needsRecreate", true);
             requireActivity().recreate();
             return true;
         });
@@ -96,7 +93,6 @@ public class AppearancePreferencesFragment extends PreferencesFragment {
 
                             dialog.dismiss();
 
-                            getResult().putExtra("needsRecreate", true);
                             requireActivity().recreate();
                         })
                         .setNegativeButton(android.R.string.cancel, null)
@@ -120,7 +116,6 @@ public class AppearancePreferencesFragment extends PreferencesFragment {
                         int i = ((AlertDialog) dialog).getListView().getCheckedItemPosition();
                         _prefs.setCurrentViewMode(ViewMode.fromInteger(i));
                         viewModePreference.setSummary(String.format("%s: %s", getString(R.string.selected), getResources().getStringArray(R.array.view_mode_titles)[i]));
-                        getResult().putExtra("needsRefresh", true);
                         overrideAccountNamePosition(ViewMode.fromInteger(i) == ViewMode.TILES);
                         dialog.dismiss();
                     })
@@ -143,16 +138,9 @@ public class AppearancePreferencesFragment extends PreferencesFragment {
                         _prefs.setCodeGroupSize(Preferences.CodeGrouping.valueOf(codeGroupings[newCodeGroupingIndex]));
 
                         dialog.dismiss();
-                        getResult().putExtra("needsRefresh", true);
                     })
                     .setNegativeButton(android.R.string.cancel, null)
                     .create());
-            return true;
-        });
-
-        Preference onlyShowNecessaryAccountNames = requirePreference("pref_shared_issuer_account_name");
-        onlyShowNecessaryAccountNames.setOnPreferenceChangeListener((preference, newValue) -> {
-            getResult().putExtra("needsRefresh", true);
             return true;
         });
 
@@ -168,18 +156,11 @@ public class AppearancePreferencesFragment extends PreferencesFragment {
                         int i = ((AlertDialog) dialog).getListView().getCheckedItemPosition();
                         _prefs.setAccountNamePosition(AccountNamePosition.fromInteger(i));
                         _currentAccountNamePositionPreference.setSummary(String.format("%s: %s", getString(R.string.selected), getResources().getStringArray(R.array.account_name_position_titles)[i]));
-                        getResult().putExtra("needsRefresh", true);
                         dialog.dismiss();
                     })
                     .setNegativeButton(android.R.string.cancel, null)
                     .create());
 
-            return true;
-        });
-
-        Preference showIconsPreference = requirePreference("pref_show_icons");
-        showIconsPreference.setOnPreferenceChangeListener((preference, newValue) -> {
-            getResult().putExtra("needsRefresh", true);
             return true;
         });
 

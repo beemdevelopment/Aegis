@@ -7,7 +7,6 @@ import com.beemdevelopment.aegis.R;
 public class MainPreferencesFragment extends PreferencesFragment {
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
-        super.onCreatePreferences(savedInstanceState, rootKey);
         addPreferencesFromResource(R.xml.preferences);
     }
 }
