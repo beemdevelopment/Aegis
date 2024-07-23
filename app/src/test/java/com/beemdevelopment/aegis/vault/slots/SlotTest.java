@@ -96,20 +96,84 @@ public class SlotTest {
 
     @Test
     public void testNonExportableSlotsExclusion() {
-        Slot rawSlot = new RawSlot();
+        // If a backup password slot, multiple regular password slots and a biometric slot are present:
+        // -> The Regular password slots and the biometric slot get stripped
         Slot passwordSlot = new PasswordSlot();
+        Slot passwordSlot2 = new PasswordSlot();
         Slot biometricSlot = new BiometricSlot();
         PasswordSlot backupSlot = new PasswordSlot();
         backupSlot.setIsBackup(true);
         SlotList slots = new SlotList();
-        slots.add(rawSlot);
         slots.add(passwordSlot);
+        slots.add(passwordSlot2);
         slots.add(biometricSlot);
         slots.add(backupSlot);
         SlotList actual = slots.exportable();
         SlotList expected = new SlotList();
-        expected.add(rawSlot);
         expected.add(backupSlot);
+        assertArrayEquals(expected.getValues().toArray(), actual.getValues().toArray());
+
+        // If a backup password slot, a regular password slot and a biometric slot are present:
+        // -> The Regular password slot and the biometric slot get stripped
+        slots = new SlotList();
+        slots.add(passwordSlot);
+        slots.add(biometricSlot);
+        slots.add(backupSlot);
+        actual = slots.exportable();
+        expected = new SlotList();
+        expected.add(backupSlot);
+        assertArrayEquals(expected.getValues().toArray(), actual.getValues().toArray());
+
+        // If a backup password slot and a regular password slot are present:
+        // -> The regular password slot get stripped
+        slots = new SlotList();
+        slots.add(passwordSlot);
+        slots.add(backupSlot);
+        actual = slots.exportable();
+        expected = new SlotList();
+        expected.add(backupSlot);
+        assertArrayEquals(expected.getValues().toArray(), actual.getValues().toArray());
+
+        // If a backup password slot and multiple regular password slot are present:
+        // -> The regular password slots get stripped
+        slots = new SlotList();
+        slots.add(passwordSlot);
+        slots.add(passwordSlot2);
+        slots.add(backupSlot);
+        actual = slots.exportable();
+        expected = new SlotList();
+        expected.add(backupSlot);
+        assertArrayEquals(expected.getValues().toArray(), actual.getValues().toArray());
+
+        // If multiple regular password slots and a biometric slot are present:
+        // -> The biometric slot gets stripped
+        slots = new SlotList();
+        slots.add(passwordSlot);
+        slots.add(passwordSlot2);
+        slots.add(biometricSlot);
+        actual = slots.exportable();
+        expected = new SlotList();
+        expected.add(passwordSlot);
+        expected.add(passwordSlot2);
+        assertArrayEquals(expected.getValues().toArray(), actual.getValues().toArray());
+
+        // If a regular password slot and a biometric slot are present
+        // -> The biometric slot gets stripped
+        slots = new SlotList();
+        slots.add(passwordSlot);
+        slots.add(biometricSlot);
+        actual = slots.exportable();
+        expected = new SlotList();
+        expected.add(passwordSlot);
+        assertArrayEquals(expected.getValues().toArray(), actual.getValues().toArray());
+
+        // If a regular password slot is present
+        // -> No slots get stripped
+        slots = new SlotList();
+        slots.add(passwordSlot);
+        actual = slots.exportable();
+        expected = new SlotList();
+        expected.add(passwordSlot);
         assertArrayEquals(expected.getValues().toArray(), actual.getValues().toArray());
     }
 }
