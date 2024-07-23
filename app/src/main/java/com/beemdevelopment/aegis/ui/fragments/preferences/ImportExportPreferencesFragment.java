@@ -23,7 +23,6 @@ import androidx.preference.Preference;
 
 import com.beemdevelopment.aegis.BuildConfig;
 import com.beemdevelopment.aegis.R;
-import com.beemdevelopment.aegis.database.AuditLogRepository;
 import com.beemdevelopment.aegis.helpers.DropdownHelper;
 import com.beemdevelopment.aegis.importers.DatabaseImporter;
 import com.beemdevelopment.aegis.otp.GoogleAuthInfo;
@@ -64,17 +63,11 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 import javax.crypto.Cipher;
-import javax.inject.Inject;
 
 public class ImportExportPreferencesFragment extends PreferencesFragment {
     // keep a reference to the type of database converter that was selected
     private DatabaseImporter.Definition _importerDef;
     private Vault.EntryFilter _exportFilter;
-
-    private final ActivityResultLauncher<Intent> importResultLauncher =
-            registerForActivityResult(new StartActivityForResult(), activityResult -> {
-                getResult().putExtra("needsRecreate", true);
-            });
 
     private final ActivityResultLauncher<Intent> importSelectResultLauncher =
             registerForActivityResult(new StartActivityForResult(), activityResult -> {
@@ -102,7 +95,6 @@ public class ImportExportPreferencesFragment extends PreferencesFragment {
 
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
-        super.onCreatePreferences(savedInstanceState, rootKey);
         addPreferencesFromResource(R.xml.preferences_import_export);
 
         if (savedInstanceState != null) {
@@ -169,7 +161,7 @@ public class ImportExportPreferencesFragment extends PreferencesFragment {
         Intent intent = new Intent(requireContext(), ImportEntriesActivity.class);
         intent.putExtra("importerDef", importerDef);
         intent.putExtra("file", file);
-        importResultLauncher.launch(intent);
+        startActivity(intent);
     }
 
     private void startExport() {

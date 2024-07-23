@@ -38,12 +38,9 @@ import androidx.appcompat.widget.SearchView;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import com.beemdevelopment.aegis.AccountNamePosition;
-import com.beemdevelopment.aegis.CopyBehavior;
 import com.beemdevelopment.aegis.Preferences;
 import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.SortCategory;
-import com.beemdevelopment.aegis.ViewMode;
 import com.beemdevelopment.aegis.helpers.FabScrollHelper;
 import com.beemdevelopment.aegis.helpers.PermissionHelper;
 import com.beemdevelopment.aegis.otp.GoogleAuthInfo;
@@ -136,12 +133,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
             });
 
     private final ActivityResultLauncher<Intent> preferenceResultLauncher =
-            registerForActivityResult(new StartActivityForResult(), activityResult -> {
-                if (activityResult.getResultCode() != RESULT_OK || activityResult.getData() == null) {
-                    return;
-                }
-                onPreferencesResult(activityResult.getData());
-            });
+            registerForActivityResult(new StartActivityForResult(), activityResult -> onPreferencesResult());
 
     private final ActivityResultLauncher<Intent> editEntryResultLauncher =
             registerForActivityResult(new StartActivityForResult(), activityResult -> {
@@ -299,34 +291,10 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         }
     }
 
-    private void onPreferencesResult(Intent data) {
+    private void onPreferencesResult() {
         // refresh the entire entry list if needed
         if (_loaded) {
-            if (data.getBooleanExtra("needsRecreate", false)) {
-                recreate();
-            } else if (data.getBooleanExtra("needsRefresh", false)) {
-                AccountNamePosition accountNamePosition = _prefs.getAccountNamePosition();
-                boolean showIcons = _prefs.isIconVisible();
-                boolean onlyShowNecessaryAccountNames = _prefs.onlyShowNecessaryAccountNames();
-                Preferences.CodeGrouping codeGroupSize = _prefs.getCodeGroupSize();
-                boolean highlightEntry = _prefs.isEntryHighlightEnabled();
-                boolean pauseFocused = _prefs.isPauseFocusedEnabled();
-                boolean tapToReveal = _prefs.isTapToRevealEnabled();
-                int tapToRevealTime = _prefs.getTapToRevealTime();
-                ViewMode viewMode = _prefs.getCurrentViewMode();
-                CopyBehavior copyBehavior = _prefs.getCopyBehavior();
-                _entryListView.setAccountNamePosition(accountNamePosition);
-                _entryListView.setOnlyShowNecessaryAccountNames(onlyShowNecessaryAccountNames);
-                _entryListView.setShowIcon(showIcons);
-                _entryListView.setCodeGroupSize(codeGroupSize);
-                _entryListView.setHighlightEntry(highlightEntry);
-                _entryListView.setPauseFocused(pauseFocused);
-                _entryListView.setTapToReveal(tapToReveal);
-                _entryListView.setTapToRevealTime(tapToRevealTime);
-                _entryListView.setViewMode(viewMode);
-                _entryListView.setCopyBehavior(copyBehavior);
-                _entryListView.refresh(true);
-            }
+            recreate();
         }
     }
 
@@ -871,7 +839,9 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
             _entryListView.setUsageCounts(_prefs.getUsageCounts());
             _entryListView.setLastUsedTimestamps(_prefs.getLastUsedTimestamps());
             _entryListView.addEntries(_vaultManager.getVault().getEntries());
-            _entryListView.runEntriesAnimation();
+            if (!_isRecreated) {
+                _entryListView.runEntriesAnimation();
+            }
             _loaded = true;
         }
     }

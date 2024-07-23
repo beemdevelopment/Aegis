@@ -52,7 +52,6 @@ public class BackupsPreferencesFragment extends PreferencesFragment {
 
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
-        super.onCreatePreferences(savedInstanceState, rootKey);
         addPreferencesFromResource(R.xml.preferences_backups);
 
         _backupsPasswordWarningPreference = requirePreference("pref_backups_warning_password");
