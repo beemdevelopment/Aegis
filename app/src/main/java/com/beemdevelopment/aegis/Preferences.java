@@ -33,6 +33,7 @@ public class Preferences {
     public static final int AUTO_LOCK_ON_BACK_BUTTON = 1 << 1;
     public static final int AUTO_LOCK_ON_MINIMIZE = 1 << 2;
     public static final int AUTO_LOCK_ON_DEVICE_LOCK = 1 << 3;
+    public static final int BACKUPS_VERSIONS_INFINITE = -1;
 
     public static final int[] AUTO_LOCK_SETTINGS = {
             AUTO_LOCK_ON_BACK_BUTTON,

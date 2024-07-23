@@ -118,6 +118,10 @@ public class VaultBackupManager {
     }
 
     private void enforceVersioning(DocumentFile dir, int versionsToKeep) {
+        if (versionsToKeep < 0) {
+            return;
+        }
+
         Log.i(TAG, String.format("Scanning directory %s for backup files", Uri.decode(dir.getUri().toString())));
 
         List<BackupFile> files = new ArrayList<>();
