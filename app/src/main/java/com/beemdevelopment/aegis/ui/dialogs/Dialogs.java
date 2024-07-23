@@ -318,25 +318,32 @@ public class Dialogs {
     }
 
     public static void showBackupVersionsPickerDialog(Context context, int currentVersionCount, NumberInputListener listener) {
-        final int max = 30;
-        String[] numbers = new String[max / 5];
-        for (int i = 0; i < numbers.length; i++) {
-            numbers[i] = Integer.toString(i * 5 + 5);
+        String infinite = context.getString(R.string.pref_backups_versions_infinite);
+        String[] values = {"5", "10", "15", "20", "25", "30", infinite};
+        int[] numbers = {5, 10, 15, 20, 25, 30, Preferences.BACKUPS_VERSIONS_INFINITE};
+        int selectedIndex;
+        if (currentVersionCount == Preferences.BACKUPS_VERSIONS_INFINITE) {
+            selectedIndex = numbers.length - 1;
+        } else {
+            selectedIndex = currentVersionCount / 5 - 1;
         }
 
         View view = LayoutInflater.from(context).inflate(R.layout.dialog_number_picker, null);
         NumberPicker numberPicker = view.findViewById(R.id.numberPicker);
-        numberPicker.setDisplayedValues(numbers);
-        numberPicker.setMaxValue(numbers.length - 1);
+        numberPicker.setDisplayedValues(values);
+        numberPicker.setMaxValue(values.length - 1);
         numberPicker.setMinValue(0);
-        numberPicker.setValue(currentVersionCount / 5 - 1);
+        numberPicker.setValue(selectedIndex);
         numberPicker.setWrapSelectorWheel(false);
 
         AlertDialog dialog = new MaterialAlertDialogBuilder(context)
                 .setTitle(R.string.set_number)
                 .setView(view)
-                .setPositiveButton(android.R.string.ok, (dialog1, which) ->
-                        listener.onNumberInputResult(numberPicker.getValue()))
+                .setPositiveButton(android.R.string.ok, (dialog1, which) -> {
+                    int index = numberPicker.getValue();
+                    int number = numbers[index];
+                    listener.onNumberInputResult(number);
+                })
                 .create();
 
         showSecureDialog(dialog);

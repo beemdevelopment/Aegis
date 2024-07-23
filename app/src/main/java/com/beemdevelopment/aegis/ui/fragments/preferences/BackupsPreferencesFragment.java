@@ -131,12 +131,11 @@ public class BackupsPreferencesFragment extends PreferencesFragment {
         });
 
         _backupsVersionsPreference = requirePreference("pref_backups_versions");
-        _backupsVersionsPreference.setSummary(getResources().getQuantityString(R.plurals.pref_backups_versions_summary, _prefs.getBackupsVersionCount(), _prefs.getBackupsVersionCount()));
+        updateBackupsVersionsSummary();
         _backupsVersionsPreference.setOnPreferenceClickListener(preference -> {
             Dialogs.showBackupVersionsPickerDialog(requireContext(), _prefs.getBackupsVersionCount(), number -> {
-                number = number * 5 + 5;
                 _prefs.setBackupsVersionCount(number);
-                _backupsVersionsPreference.setSummary(getResources().getQuantityString(R.plurals.pref_backups_versions_summary, _prefs.getBackupsVersionCount(), _prefs.getBackupsVersionCount()));
+                updateBackupsVersionsSummary();
             });
             return false;
         });
@@ -240,6 +239,16 @@ public class BackupsPreferencesFragment extends PreferencesFragment {
         } catch (VaultRepositoryException e) {
             e.printStackTrace();
             Dialogs.showErrorDialog(requireContext(), R.string.backup_error, e);
+        }
+    }
+
+    private void updateBackupsVersionsSummary() {
+        int count = _prefs.getBackupsVersionCount();
+        if (count == Preferences.BACKUPS_VERSIONS_INFINITE) {
+            _backupsVersionsPreference.setSummary(R.string.pref_backups_versions_infinite_summary);
+        } else {
+            String summary = getResources().getQuantityString(R.plurals.pref_backups_versions_summary, count, count);
+            _backupsVersionsPreference.setSummary(summary);
         }
     }
 }
