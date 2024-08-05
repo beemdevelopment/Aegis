@@ -550,7 +550,7 @@ public class EntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                             case SINGLETAP:
                                 if (!handled) {
                                     _view.onEntryCopy(entry);
-                                    entryHolder.animateCopyText(_viewMode != ViewMode.TILES);
+                                    entryHolder.animateCopyText();
                                     _clickedEntry = null;
                                 }
                                 break;
@@ -559,7 +559,7 @@ public class EntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
                                 if(entry == _clickedEntry) {
                                     _view.onEntryCopy(entry);
-                                    entryHolder.animateCopyText(_viewMode != ViewMode.TILES);
+                                    entryHolder.animateCopyText();
                                     _clickedEntry = null;
                                 } else {
                                     _clickedEntry = entry;

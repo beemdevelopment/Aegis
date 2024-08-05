@@ -116,7 +116,7 @@ public class AppearancePreferencesFragment extends PreferencesFragment {
                         int i = ((AlertDialog) dialog).getListView().getCheckedItemPosition();
                         _prefs.setCurrentViewMode(ViewMode.fromInteger(i));
                         viewModePreference.setSummary(String.format("%s: %s", getString(R.string.selected), getResources().getStringArray(R.array.view_mode_titles)[i]));
-                        overrideAccountNamePosition(ViewMode.fromInteger(i) == ViewMode.TILES);
+                        refreshAccountNamePositionText();
                         dialog.dismiss();
                     })
                     .setNegativeButton(android.R.string.cancel, null)
@@ -156,6 +156,7 @@ public class AppearancePreferencesFragment extends PreferencesFragment {
                         int i = ((AlertDialog) dialog).getListView().getCheckedItemPosition();
                         _prefs.setAccountNamePosition(AccountNamePosition.fromInteger(i));
                         _currentAccountNamePositionPreference.setSummary(String.format("%s: %s", getString(R.string.selected), getResources().getStringArray(R.array.account_name_position_titles)[i]));
+                        refreshAccountNamePositionText();
                         dialog.dismiss();
                     })
                     .setNegativeButton(android.R.string.cancel, null)
@@ -164,15 +165,15 @@ public class AppearancePreferencesFragment extends PreferencesFragment {
             return true;
         });
 
-        overrideAccountNamePosition(_prefs.getCurrentViewMode() == ViewMode.TILES);
+        refreshAccountNamePositionText();
     }
 
-    private void overrideAccountNamePosition(boolean override) {
+    private void refreshAccountNamePositionText() {
+        boolean override = (_prefs.getCurrentViewMode() == ViewMode.TILES && _prefs.getAccountNamePosition() == AccountNamePosition.END);
+
         if (override) {
-            _currentAccountNamePositionPreference.setEnabled(false);
-            _currentAccountNamePositionPreference.setSummary(getString(R.string.pref_account_name_position_summary_override));
+            _currentAccountNamePositionPreference.setSummary(String.format("%s: %s. %s", getString(R.string.selected), getResources().getStringArray(R.array.account_name_position_titles)[_prefs.getAccountNamePosition().ordinal()], getString(R.string.pref_account_name_position_summary_override)));
         } else {
-            _currentAccountNamePositionPreference.setEnabled(true);
             _currentAccountNamePositionPreference.setSummary(String.format("%s: %s", getString(R.string.selected), getResources().getStringArray(R.array.account_name_position_titles)[_prefs.getAccountNamePosition().ordinal()]));
         }
     }
