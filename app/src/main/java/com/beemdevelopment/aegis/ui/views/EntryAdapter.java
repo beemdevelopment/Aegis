@@ -74,6 +74,7 @@ public class EntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     private Handler _doubleTapHandler;
     private boolean _pauseFocused;
     private ErrorCardInfo _errorCardInfo;
+    private boolean _isArchiveEnabled;
 
     // keeps track of the EntryHolders that are currently bound
     private List<EntryHolder> _holders;
@@ -309,7 +310,13 @@ public class EntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         String issuer = entry.getIssuer().toLowerCase();
         String name = entry.getName().toLowerCase();
 
-        if (!_groupFilter.isEmpty()) {
+        if (!_isArchiveEnabled && entry.isArchived()) {
+            return true;
+        }
+
+        if (_isArchiveEnabled && !entry.isArchived()) {
+            return true;
+        } else if (!_groupFilter.isEmpty()) {
             if (groups.isEmpty() && !_groupFilter.contains(null)) {
                 return true;
             }
@@ -863,6 +870,11 @@ public class EntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
     private void updateFooter() {
         notifyItemChanged(getItemCount() - 1);
+    }
+
+    public void enableArchive(boolean enable) {
+        _isArchiveEnabled = enable;
+        updateShownEntries();
     }
 
     private class FooterView extends RecyclerView.ViewHolder {

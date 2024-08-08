@@ -142,10 +142,20 @@ public class OverallTest extends AegisTest {
         onView(withId(R.id.action_share_qr)).perform(click());
         onView(withId(R.id.btnNext)).perform(click()).perform(click()).perform(click());
 
-        onView(withId(R.id.rvKeyProfiles)).perform(RecyclerViewActions.actionOnItemAtPosition(entryPosOffset + 0, longClick()));
+        onView(withId(R.id.rvKeyProfiles)).perform(RecyclerViewActions.actionOnItemAtPosition(entryPosOffset, longClick()));
+        onView(withId(R.id.rvKeyProfiles)).perform(RecyclerViewActions.actionOnItemAtPosition(entryPosOffset + 1, click()));
         onView(allOf(isDescendantOfA(withClassName(containsString("ActionBarContextView"))), withClassName(containsString("OverflowMenuButton")))).perform(click());
         onView(withText(R.string.action_delete)).perform(click());
         onView(withId(android.R.id.button1)).perform(click());
+        onView(withId(R.id.chip_archive)).perform(click());
+        onView(withId(R.id.rvKeyProfiles)).perform(RecyclerViewActions.actionOnItemAtPosition(entryPosOffset, longClick()));
+        onView(allOf(isDescendantOfA(withClassName(containsString("ActionBarContextView"))), withClassName(containsString("OverflowMenuButton")))).perform(click());
+        onView(withText(R.string.action_delete)).perform(click());
+        onView(withId(android.R.id.button1)).perform(click());
+        onView(withId(R.id.rvKeyProfiles)).perform(RecyclerViewActions.actionOnItemAtPosition(entryPosOffset, longClick()));
+        onView(allOf(isDescendantOfA(withClassName(containsString("ActionBarContextView"))), withClassName(containsString("OverflowMenuButton")))).perform(click());
+        onView(withText(R.string.action_restore)).perform(click());
+        onView(withId(R.id.chip_archive)).perform(click());
 
         openContextualActionModeOverflowMenu();
         onView(withText(R.string.lock)).perform(click());

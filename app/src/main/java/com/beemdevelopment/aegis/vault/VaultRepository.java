@@ -306,7 +306,9 @@ public class VaultRepository {
     public Collection<VaultGroup> getUsedGroups() {
         Set<UUID> usedGroups = new HashSet<>();
         for (VaultEntry entry : getEntries()) {
-            usedGroups.addAll(entry.getGroups());
+            if (!entry.isArchived()) {
+                usedGroups.addAll(entry.getGroups());
+            }
         }
 
         return getGroups().stream()

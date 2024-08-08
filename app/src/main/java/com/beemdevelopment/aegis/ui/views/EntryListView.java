@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.view.animation.LayoutAnimationController;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.annotation.AttrRes;
 import androidx.annotation.NonNull;
@@ -86,6 +87,8 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
     private Chip _groupChip;
     private Set<UUID> _groupFilter;
     private Set<UUID> _prefGroupFilter;
+    private boolean _isArchiveEnabled;
+    private TextView _archiveEmptyText;
 
     private UiRefresher _refresher;
 
@@ -108,7 +111,16 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
         _progressBar = view.findViewById(R.id.progressBar);
         _groupChip = view.findViewById(R.id.chip_group);
         initializeGroupChip();
-
+        Chip archiveChip = view.findViewById(R.id.chip_archive);
+        archiveChip.setOnCheckedChangeListener((v, isChecked) -> {
+            _isArchiveEnabled = isChecked;
+            boolean groupsEmpty = _groups == null || _groups.isEmpty();
+            int visibility = !groupsEmpty && !isChecked ? View.VISIBLE : View.GONE;
+            _groupChip.setVisibility(visibility);
+            _adapter.enableArchive(isChecked);
+            updateEmptyState();
+            _listener.onArchiveEnabled(isChecked);
+        });
         // set up the recycler view
         _recyclerView = view.findViewById(R.id.rvKeyProfiles);
         _recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -166,6 +178,7 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
         });
 
         _emptyStateView = view.findViewById(R.id.vEmptyList);
+        _archiveEmptyText = view.findViewById(R.id.archive_empty_text);
         return view;
     }
 
@@ -367,7 +380,7 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
             _progressBar.start();
             _refresher.start();
         } else {
-            _progressBar.setVisibility(View.GONE);
+            _progressBar.setVisibility(View.INVISIBLE);
             _progressBar.stop();
             _refresher.stop();
         }
@@ -506,6 +519,7 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
 
     public void replaceEntry(UUID uuid, VaultEntry newEntry) {
         _adapter.replaceEntry(uuid, newEntry);
+        updateEmptyState();
     }
 
     public void runEntriesAnimation() {
@@ -643,9 +657,12 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
         if (_adapter.getShownEntriesCount() > 0) {
             _recyclerView.setVisibility(View.VISIBLE);
             _emptyStateView.setVisibility(View.GONE);
-        } else {
-            if (Strings.isNullOrEmpty(_adapter.getSearchFilter())) {
-                _recyclerView.setVisibility(View.GONE);
+            _archiveEmptyText.setVisibility(View.GONE);
+        } else if (Strings.isNullOrEmpty(_adapter.getSearchFilter())) {
+            _recyclerView.setVisibility(View.GONE);
+            if (_isArchiveEnabled) {
+                _archiveEmptyText.setVisibility(View.VISIBLE);
+            } else {
                 _emptyStateView.setVisibility(View.VISIBLE);
             }
         }
@@ -664,6 +681,7 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
         void onListChange();
         void onSaveGroupFilter(Set<UUID> groupFilter);
         void onEntryListTouch();
+        void onArchiveEnabled(boolean enabled);
     }
 
     private class VerticalSpaceItemDecoration extends RecyclerView.ItemDecoration {

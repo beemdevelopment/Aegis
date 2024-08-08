@@ -11,23 +11,37 @@
         android:layout_height="4dp"
         android:progressDrawable="@drawable/progress_horizontal"
         android:id="@+id/progressBar"
-        android:visibility="gone"
+        android:visibility="invisible"
         android:max="5000"/>
 
-    <com.google.android.material.chip.Chip
-        android:id="@+id/chip_group"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/groups"
-        android:layout_gravity="end"
-        android:layout_marginEnd="8dp"
-        android:visibility="gone"
-        app:chipEndPadding="6dp"
-        app:chipIcon="@drawable/ic_outline_filter_list_24"
-        app:chipIconTint="?attr/colorOnSurface"
-        app:chipIconSize="18dp"
-        app:chipStrokeWidth="1dp"
-        app:iconStartPadding="6dp" />
+        android:layout_gravity="end">
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chip_group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/groups"
+            android:layout_gravity="end"
+            android:layout_marginEnd="8dp"
+            app:chipEndPadding="6dp"
+            app:chipIcon="@drawable/ic_outline_filter_list_24"
+            app:chipIconTint="?attr/colorOnSurface"
+            app:chipIconSize="18dp"
+            app:chipStrokeWidth="1dp"
+            app:iconStartPadding="6dp" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chip_archive"
+            style="@style/Widget.Material3.Chip.Filter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:text="@string/archive" />
+
+    </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
@@ -78,4 +92,13 @@
         </LinearLayout>
 
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/archive_empty_text"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="@string/archive_empty"
+        android:gravity="center"
+        android:visibility="gone" />
+
 </LinearLayout>

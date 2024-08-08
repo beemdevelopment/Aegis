@@ -41,6 +41,13 @@
         app:showAsAction="always"/>
 
     <item
+        android:id="@+id/action_restore"
+        android:title="@string/action_restore"
+        android:orderInCategory="120"
+        android:icon="@drawable/ic_outline_refresh_24"
+        app:showAsAction="ifRoom"/>
+
+    <item
         android:id="@+id/action_delete"
         android:title="@string/action_delete"
         android:orderInCategory="400"
