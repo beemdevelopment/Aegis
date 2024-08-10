@@ -241,7 +241,7 @@ public class AuthActivity extends AegisActivity {
         popup.setFocusable(false);
         popup.setOutsideTouchable(true);
         _textPassword.post(() -> {
-            if (isFinishing()) {
+            if (isFinishing() || !_textPassword.isAttachedToWindow()) {
                 return;
             }
 
