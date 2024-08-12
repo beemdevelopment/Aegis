@@ -1,7 +1,9 @@
 package com.beemdevelopment.aegis.ui.views;
 
 import android.os.Handler;
+import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -108,6 +110,9 @@ public class EntryHolder extends RecyclerView.ViewHolder {
         _codeGrouping = groupSize;
         _viewMode = viewMode;
         _accountNamePosition = accountNamePosition;
+        if (viewMode.equals(ViewMode.TILES) && _accountNamePosition == AccountNamePosition.END) {
+            _accountNamePosition = AccountNamePosition.BELOW;
+        }
 
         _selected.clearAnimation();
         _selected.setVisibility(View.GONE);
@@ -143,15 +148,25 @@ public class EntryHolder extends RecyclerView.ViewHolder {
     }
 
     private void setAccountNameLayout(AccountNamePosition accountNamePosition, Boolean hasBothIssuerAndName) {
-        if (_viewMode == ViewMode.TILES) {
-            return;
-        }
-
         RelativeLayout.LayoutParams profileNameLayoutParams;
-        RelativeLayout.LayoutParams copiedLayoutParams;
+
         switch (accountNamePosition) {
             case HIDDEN:
                 _profileName.setVisibility(View.GONE);
+
+                if (_viewMode == ViewMode.TILES) {
+                    _profileCopied.setGravity(Gravity.CENTER_VERTICAL);
+                    ((RelativeLayout.LayoutParams)_profileCopied.getLayoutParams()).removeRule(RelativeLayout.BELOW);
+                    _profileCopied.getLayoutParams().height = ViewGroup.LayoutParams.MATCH_PARENT;
+                    _profileCopied.setTextSize(14);
+
+                    _profileIssuer.getLayoutParams().height = ViewGroup.LayoutParams.MATCH_PARENT;
+                    _profileIssuer.setGravity(Gravity.CENTER_VERTICAL);
+                    _profileIssuer.setTextSize(14);
+
+                    _profileName.setVisibility(View.GONE);
+                }
+
                 break;
 
             case BELOW:
@@ -349,7 +364,7 @@ public class EntryHolder extends RecyclerView.ViewHolder {
         animateAlphaTo(DEFAULT_ALPHA);
     }
 
-    public void animateCopyText(boolean includeSlideAnimation) {
+    public void animateCopyText() {
         _animationHandler.removeCallbacksAndMessages(null);
 
         Animation slideDownFadeIn = AnimationsHelper.loadScaledAnimation(itemView.getContext(), R.anim.slide_down_fade_in);
@@ -357,23 +372,25 @@ public class EntryHolder extends RecyclerView.ViewHolder {
         Animation fadeOut = AnimationsHelper.loadScaledAnimation(itemView.getContext(), R.anim.fade_out);
         Animation fadeIn = AnimationsHelper.loadScaledAnimation(itemView.getContext(), R.anim.fade_in);
 
-        if (includeSlideAnimation) {
+        // Use slideDown animation when user is not using Tiles mode
+        if (_viewMode != ViewMode.TILES) {
             _profileCopied.startAnimation(slideDownFadeIn);
-           View fadeOutView = (_accountNamePosition == AccountNamePosition.BELOW) ? _profileName : _description;
-
-        fadeOutView.startAnimation(slideDownFadeOut);
+            View fadeOutView = (_accountNamePosition == AccountNamePosition.BELOW) ? _profileName : _description;
+            fadeOutView.startAnimation(slideDownFadeOut);
 
             _animationHandler.postDelayed(() -> {
                 _profileCopied.startAnimation(fadeOut);
                 fadeOutView.startAnimation(fadeIn);
             }, 3000);
         } else {
+            View visibleProfileText = _accountNamePosition == AccountNamePosition.BELOW ? _profileName : _profileIssuer;
+
             _profileCopied.startAnimation(fadeIn);
-            _profileName.startAnimation(fadeOut);
+            visibleProfileText.startAnimation(fadeOut);
 
             _animationHandler.postDelayed(() -> {
                 _profileCopied.startAnimation(fadeOut);
-                _profileName.startAnimation(fadeIn);
+                visibleProfileText.startAnimation(fadeIn);
             }, 3000);
         }
     }
