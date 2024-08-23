@@ -1,6 +1,11 @@
 package com.beemdevelopment.aegis.ui.views;
 
+import android.graphics.Paint;
+import android.graphics.Rect;
 import android.os.Handler;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.style.RelativeSizeSpan;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +22,7 @@ import com.beemdevelopment.aegis.Preferences;
 import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.ViewMode;
 import com.beemdevelopment.aegis.helpers.AnimationsHelper;
+import com.beemdevelopment.aegis.helpers.CenterVerticalSpan;
 import com.beemdevelopment.aegis.helpers.SimpleAnimationEndListener;
 import com.beemdevelopment.aegis.helpers.UiRefresher;
 import com.beemdevelopment.aegis.otp.HotpInfo;
@@ -276,6 +282,10 @@ public class EntryHolder extends RecyclerView.ViewHolder {
     }
 
     private void updateCode() {
+        _profileCode.setText(getOtp());
+    }
+
+    private String getOtp() {
         OtpInfo info = _entry.getInfo();
 
         // In previous versions of Aegis, it was possible to import entries with an empty
@@ -292,7 +302,7 @@ public class EntryHolder extends RecyclerView.ViewHolder {
             otp = _view.getResources().getString(R.string.error_all_caps);
         }
 
-        _profileCode.setText(otp);
+        return otp;
     }
 
     private String formatCode(String code) {
@@ -330,10 +340,51 @@ public class EntryHolder extends RecyclerView.ViewHolder {
     }
 
     public void hideCode() {
-        String hiddenText = new String(new char[_entry.getInfo().getDigits()]).replace("\0", Character.toString(HIDDEN_CHAR));
-        hiddenText = formatCode(hiddenText);
-        _profileCode.setText(hiddenText);
+        String code = getOtp();
+        String hiddenText = code.replaceAll("\\S", Character.toString(HIDDEN_CHAR));
+        updateTextViewWithDots(_profileCode,  hiddenText, code);
+
         _hidden = true;
+    }
+
+    private void updateTextViewWithDots(TextView textView, String hiddenCode, String code) {
+        Paint paint = new Paint();
+        paint.setTextSize(_profileCode.getTextSize());
+
+        // Calculate the difference between the actual code width and the dots width
+        float codeWidth = paint.measureText(code);
+        float dotsWidth = paint.measureText(hiddenCode);
+        float scaleFactor = codeWidth / dotsWidth;
+        scaleFactor = (float)(Math.round(scaleFactor * 10.0) / 10.0);
+
+        // If scale is higher or equal to 0.8, do nothing and proceed with the normal text rendering
+        if (scaleFactor >= 0.8) {
+            textView.setText(hiddenCode);
+            return;
+        }
+
+        // We need to use an invisible character in order to get the height of the profileCode textview consistent
+        // Tokens without a space (ie Steam TOTP) will get misaligned without this
+        SpannableString dotsString = new SpannableString("\u200B" + hiddenCode);
+
+        // Only scale the digits/characters, skip the spaces
+        int start = 1;
+        for (int i = 0; i <= dotsString.length(); i++) {
+            if (i == dotsString.length() || dotsString.charAt(i) == ' ') {
+                if (i > start) {
+                    dotsString.setSpan(new RelativeSizeSpan(scaleFactor), start, i, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                }
+
+                start = i + 1;
+            }
+        }
+
+        Rect dotsRectBounds = new Rect();
+        paint.getTextBounds(hiddenCode, 1, hiddenCode.length(), dotsRectBounds);
+
+        // Use custom CenterVerticalSpan to make sure the dots are vertically aligned
+        dotsString.setSpan(new CenterVerticalSpan(dotsRectBounds), 1, dotsString.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        textView.setText(dotsString);
     }
 
     public void showIcon(boolean show) {
