@@ -2544,29 +2544,6 @@
             ]
         },
         {
-            "uniqueId": "de.hdodenhof:circleimageview",
-            "funding": [
-                
-            ],
-            "developers": [
-                {
-                    "name": "Henning Dodenhof"
-                }
-            ],
-            "artifactVersion": "3.1.0",
-            "description": "A fast circular ImageView for Android",
-            "scm": {
-                "connection": "scm:git@github.com:hdodenhof/CircleImageView.git",
-                "url": "https://github.com/hdodenhof/CircleImageView",
-                "developerConnection": "scm:git@github.com:hdodenhof/CircleImageView.git"
-            },
-            "name": "CircleImageView",
-            "website": "https://github.com/hdodenhof/CircleImageView",
-            "licenses": [
-                "Apache-2.0"
-            ]
-        },
-        {
             "uniqueId": "info.guardianproject.trustedintents:trustedintents",
             "funding": [
                 

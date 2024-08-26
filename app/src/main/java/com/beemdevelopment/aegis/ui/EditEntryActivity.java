@@ -71,6 +71,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+import com.google.android.material.imageview.ShapeableImageView;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
@@ -92,8 +93,6 @@ import java.util.UUID;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Collectors;
 
-import de.hdodenhof.circleimageview.CircleImageView;
-
 public class EditEntryActivity extends AegisActivity {
     private boolean _isNew = false;
     private boolean _isManual = false;
@@ -103,7 +102,7 @@ public class EditEntryActivity extends AegisActivity {
     // keep track of icon changes separately as the generated jpeg's are not deterministic
     private boolean _hasChangedIcon = false;
     private IconPack.Icon _selectedIcon;
-    private CircleImageView _iconView;
+    private ShapeableImageView _iconView;
     private ImageView _saveImageButton;
 
     private TextInputEditText _textName;

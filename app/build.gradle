@@ -189,7 +189,6 @@ dependencies {
     }
     implementation 'com.mikepenz:aboutlibraries-core-android:11.2.2'
     implementation 'com.nulab-inc:zxcvbn:1.9.0'
-    implementation 'de.hdodenhof:circleimageview:3.1.0'
     implementation 'net.lingala.zip4j:zip4j:2.11.5'
     implementation 'org.bouncycastle:bcprov-jdk18on:1.78.1'
     implementation 'org.simpleflatmapper:sfm-csv:8.2.3'
