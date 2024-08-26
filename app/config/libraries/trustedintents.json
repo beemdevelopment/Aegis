@@ -1,0 +1,23 @@
+{
+    "uniqueId": "info.guardianproject.trustedintents:trustedintents",
+    "funding": [
+        
+    ],
+    "developers": [
+        {
+            "name": "Guardian Project"
+        }
+    ],
+    "artifactVersion": "0.2",
+    "description": "TrustedIntents is a library for flexible trusted interactions between Android apps.  It is modeled after Android's `signature` protection level for permissions.  The key difference is that the framework allows the trusted signature to be set, rather than requiring to match the current app's signature.",
+    "scm": {
+        "connection": "scm:https://github.com/guardianproject/TrustedIntents.git",
+        "url": "scm:https://github.com/guardianproject/TrustedIntents",
+        "developerConnection": "scm:git@github.com:guardianproject/TrustedIntents.git"
+    },
+    "name": "TrustedIntents",
+    "website": "https://guardianproject.info/code/trustedintents",
+    "licenses": [
+        "3ca920d1875f7ad7ab04a2a331958577"
+    ]
+}

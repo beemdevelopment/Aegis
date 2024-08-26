@@ -155,3 +155,8 @@ Swing by our Matrix room to interact with other contributors:
 
 This project is licensed under the GNU General Public License v3.0. See the
 [LICENSE](LICENSE) file for details.
+
+A couple of libraries vendored in Aegis' repository are licensed under a
+different license:
+- [TextDrawable](app/src/main/java/com/amulyakhare/textdrawable)
+- [TrustedIntents](app/src/main/java/info/guardianproject/trustedintents)
