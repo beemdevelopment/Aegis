@@ -1,5 +1,14 @@
 {
     "uniqueId": "com.amulyakhare:com.amulyakhare.textdrawable",
+    "funding": [
+        
+    ],
+    "developers": [
+        
+    ],
+    "artifactVersion": "1.0.1",
+    "description": "This light-weight library provides images with letter/text like the Gmail app. It extends the Drawable class thus can be used with existing/custom/network ImageView classes. Also included is a fluent interface for creating drawables and a customizable ColorGenerator.",
+    "name": "textdrawable",
     "licenses": [
         "MIT"
     ]
