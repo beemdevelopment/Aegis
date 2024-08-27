@@ -6,10 +6,8 @@ import android.view.View;
 import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -64,10 +62,12 @@ public class AuditLogPreferencesFragment extends Fragment {
             _noAuditLogsView.setVisibility(entries1.isEmpty() ? View.VISIBLE : View.GONE);
 
             for (AuditLogEntry entry : entries1) {
-
                 VaultEntry referencedEntry = null;
                 if (entry.getReference() != null) {
-                     referencedEntry = _vaultManager.getVault().getEntryByUUID(UUID.fromString(entry.getReference()));
+                    UUID referencedEntryUUID = UUID.fromString(entry.getReference());
+                    if (_vaultManager.getVault().hasEntryByUUID(referencedEntryUUID)) {
+                        referencedEntry = _vaultManager.getVault().getEntryByUUID(referencedEntryUUID);
+                    }
                 }
 
                 AuditLogEntryModel auditLogEntryModel = new AuditLogEntryModel(entry, referencedEntry);

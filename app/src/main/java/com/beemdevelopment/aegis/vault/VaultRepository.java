@@ -225,6 +225,10 @@ public class VaultRepository {
         _vault.getEntries().add(entry);
     }
 
+    public boolean hasEntryByUUID(UUID uuid) {
+        return _vault.getEntries().has(uuid);
+    }
+
     public VaultEntry getEntryByUUID(UUID uuid) {
         return _vault.getEntries().getByUUID(uuid);
     }
