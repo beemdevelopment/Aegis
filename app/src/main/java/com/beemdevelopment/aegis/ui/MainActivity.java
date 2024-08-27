@@ -195,6 +195,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         _entryListView.setSortCategory(_prefs.getCurrentSortCategory(), false);
         _entryListView.setViewMode(_prefs.getCurrentViewMode());
         _entryListView.setCopyBehavior(_prefs.getCopyBehavior());
+        _entryListView.setSearchBehaviorMask(_prefs.getSearchBehaviorMask());
         _entryListView.setPrefGroupFilter(_prefs.getGroupFilter());
 
          FloatingActionButton fab = findViewById(R.id.fab);
