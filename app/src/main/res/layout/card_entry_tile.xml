@@ -46,14 +46,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent">
 
-                    <de.hdodenhof.circleimageview.CircleImageView
+                    <com.google.android.material.imageview.ShapeableImageView
                         android:id="@+id/ivTextDrawable"
                         android:layout_width="24dp"
                         android:layout_height="24dp"
                         android:layout_marginEnd="6dp"
-                        android:layout_alignParentStart="true" />
+                        android:layout_alignParentStart="true"
+                        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.Aegis.ImageView.Circle" />
 
-                    <de.hdodenhof.circleimageview.CircleImageView
+                    <com.google.android.material.imageview.ShapeableImageView
                         android:id="@+id/ivSelected"
                         android:layout_width="24dp"
                         android:layout_height="24dp"
@@ -61,7 +62,8 @@
                         android:layout_alignParentStart="true"
                         android:src="@drawable/item_selected"
                         android:visibility="gone"
-                        app:civ_circle_background_color="?attr/colorPrimaryAlternative" />
+                        android:background="?attr/colorPrimaryAlternative"
+                        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.Aegis.ImageView.Circle" />
             </RelativeLayout>
 
             <RelativeLayout

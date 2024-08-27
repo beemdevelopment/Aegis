@@ -37,12 +37,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="250dp">
 
-                    <de.hdodenhof.circleimageview.CircleImageView
+                    <com.google.android.material.imageview.ShapeableImageView
                         android:id="@+id/profile_drawable"
                         android:layout_width="100dp"
                         android:layout_height="100dp"
                         android:layout_centerHorizontal="true"
-                        android:layout_centerVertical="true" />
+                        android:layout_centerVertical="true"
+                        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.Aegis.ImageView.Circle" />
 
                     <com.avito.android.krop.KropView
                         android:id="@+id/krop_view"
