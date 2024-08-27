@@ -14,21 +14,6 @@
         android:visibility="gone"
         android:max="5000"/>
 
-    <com.google.android.material.chip.Chip
-        android:id="@+id/chip_group"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/groups"
-        android:layout_gravity="end"
-        android:layout_marginEnd="8dp"
-        android:visibility="gone"
-        app:chipEndPadding="6dp"
-        app:chipIcon="@drawable/ic_outline_filter_list_24"
-        app:chipIconTint="?attr/colorOnSurface"
-        app:chipIconSize="18dp"
-        app:chipStrokeWidth="1dp"
-        app:iconStartPadding="6dp" />
-
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="0dp"

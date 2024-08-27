@@ -12,6 +12,7 @@
     <string name="action_default_icon">Restore default icon</string>
     <string name="discard">Discard</string>
     <string name="save">Save</string>
+    <string name="all">All</string>
     <string name="issuer">Issuer</string>
     <string name="yandex_pin">PIN (4–16 digits)</string>
     <string name="motp_pin">PIN (4 digits)</string>

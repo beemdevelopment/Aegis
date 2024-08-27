@@ -32,6 +32,7 @@ import androidx.activity.OnBackPressedCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts.StartActivityForResult;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.view.ActionMode;
 import androidx.appcompat.widget.SearchView;
@@ -50,21 +51,29 @@ import com.beemdevelopment.aegis.ui.dialogs.Dialogs;
 import com.beemdevelopment.aegis.ui.fragments.preferences.BackupsPreferencesFragment;
 import com.beemdevelopment.aegis.ui.fragments.preferences.PreferencesFragment;
 import com.beemdevelopment.aegis.ui.models.ErrorCardInfo;
+import com.beemdevelopment.aegis.ui.models.VaultGroupModel;
 import com.beemdevelopment.aegis.ui.tasks.QrDecodeTask;
 import com.beemdevelopment.aegis.ui.views.EntryListView;
 import com.beemdevelopment.aegis.util.TimeUtils;
+import com.beemdevelopment.aegis.util.UUIDMap;
 import com.beemdevelopment.aegis.vault.VaultEntry;
 import com.beemdevelopment.aegis.vault.VaultFile;
+import com.beemdevelopment.aegis.vault.VaultGroup;
 import com.beemdevelopment.aegis.vault.VaultRepository;
 import com.beemdevelopment.aegis.vault.VaultRepositoryException;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
+import com.google.android.material.chip.Chip;
+import com.google.android.material.chip.ChipGroup;
+import com.google.android.material.color.MaterialColors;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.common.base.Strings;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -90,6 +99,11 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
     private Menu _menu;
     private SearchView _searchView;
     private EntryListView _entryListView;
+
+    private Collection<VaultGroup> _groups;
+    private ChipGroup _groupChip;
+    private Set<UUID> _groupFilter;
+    private Set<UUID> _prefGroupFilter;
 
     private FabScrollHelper _fabScrollHelper;
 
@@ -196,7 +210,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         _entryListView.setViewMode(_prefs.getCurrentViewMode());
         _entryListView.setCopyBehavior(_prefs.getCopyBehavior());
         _entryListView.setSearchBehaviorMask(_prefs.getSearchBehaviorMask());
-        _entryListView.setPrefGroupFilter(_prefs.getGroupFilter());
+        _prefGroupFilter = _prefs.getGroupFilter();
 
          FloatingActionButton fab = findViewById(R.id.fab);
          fab.setOnClickListener(v -> {
@@ -220,8 +234,148 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
              Dialogs.showSecureDialog(dialog);
          });
 
+        _groupChip = findViewById(R.id.groupChipGroup);
         _fabScrollHelper = new FabScrollHelper(fab);
         _selectedEntries = new ArrayList<>();
+    }
+
+    public void setGroups(Collection<VaultGroup> groups) {
+        _groups = groups;
+        _groupChip.setVisibility(_groups.isEmpty() ? View.GONE : View.VISIBLE);
+
+        if (_prefGroupFilter != null) {
+            Set<UUID> groupFilter = cleanGroupFilter(_prefGroupFilter);
+            _prefGroupFilter = null;
+            if (!groupFilter.isEmpty()) {
+                _groupFilter = groupFilter;
+                _entryListView.setGroupFilter(groupFilter, false);
+            }
+        } else if (_groupFilter != null) {
+            Set<UUID> groupFilter = cleanGroupFilter(_groupFilter);
+            if (!_groupFilter.equals(groupFilter)) {
+                _groupFilter = groupFilter;
+                _entryListView.setGroupFilter(groupFilter, true);
+            }
+        }
+
+        _entryListView.setGroups(groups);
+        initializeGroups();
+    }
+
+    private void initializeGroups() {
+        _groupChip.removeAllViews();
+
+        addChipTo(_groupChip, new VaultGroupModel(getString(R.string.all)));
+
+        for (VaultGroup group : _groups) {
+            addChipTo(_groupChip, new VaultGroupModel(group));
+        }
+
+        addSaveChip(_groupChip);
+    }
+
+    private Set<UUID> cleanGroupFilter(Set<UUID> groupFilter) {
+        Set<UUID> groupUuids = _groups.stream().map(UUIDMap.Value::getUUID).collect(Collectors.toSet());
+
+        return groupFilter.stream()
+                .filter(g -> g == null || groupUuids.contains(g))
+                .collect(Collectors.toSet());
+    }
+
+    private void addChipTo(ChipGroup chipGroup, VaultGroupModel group) {
+        Chip chip = (Chip) getLayoutInflater().inflate(R.layout.chip_group_filter, null, false);
+        chip.setText(group.getName());
+        chip.setCheckable(true);
+        chip.setCheckedIconVisible(false);
+        chip.setChecked(_groupFilter != null && _groupFilter.contains(group.getUUID()));
+
+        if (group.isPlaceholder()) {
+            chip.setId(0);
+            chip.setTag(null);
+            chip.setChecked(_groupFilter == null);
+            chip.setOnClickListener(v -> {
+                setSaveChipVisibility(true);
+
+                Chip checkedChip = (Chip) chipGroup.getChildAt(0);
+                boolean checkedState = checkedChip.isChecked();
+                chipGroup.clearCheck();
+
+                Set<UUID> groupFilter = getGroupFilter(chipGroup);
+                if (!checkedState) {
+                    groupFilter = new HashSet<>();
+                    groupFilter.add(null);
+
+                    checkedChip.setChecked(false);
+                } else {
+                    checkedChip.setChecked(true);
+                }
+
+                _groupFilter = groupFilter;
+                _entryListView.setGroupFilter(groupFilter, true);
+            });
+
+            chipGroup.addView(chip);
+            return;
+        }
+
+
+        chip.setOnCheckedChangeListener((group1, checkedId) -> {
+            setSaveChipVisibility(true);
+            Set<UUID> groupFilter = getGroupFilter(chipGroup);
+
+            if (groupFilter.isEmpty()) {
+                groupFilter.add(null);
+            } else {
+                Chip allGroupsChip = (Chip) chipGroup.getChildAt(0);
+                allGroupsChip.setChecked(false);
+            }
+
+            _groupFilter = groupFilter;
+            _entryListView.setGroupFilter(groupFilter, true);
+        });
+
+        chip.setTag(group);
+        chipGroup.addView(chip);
+    }
+
+    private void addSaveChip(ChipGroup chipGroup) {
+        Chip chip = (Chip) getLayoutInflater().inflate(R.layout.chip_group_filter, null, false);
+
+        chip.setText(getString(R.string.save));
+        chip.setVisibility(View.GONE);
+        chip.setChipStrokeWidth(0);
+        chip.setCheckable(false);
+        chip.setChipBackgroundColorResource(android.R.color.transparent);
+        chip.setTextColor(MaterialColors.getColor(chip.getRootView(), com.google.android.material.R.attr.colorSecondary));
+        chip.setClickable(true);
+        chip.setCheckedIconVisible(false);
+        chip.setOnClickListener(v -> {
+            onSaveGroupFilter(_groupFilter);
+            setSaveChipVisibility(false);
+        });
+
+        chipGroup.addView(chip);
+    }
+
+    private void setSaveChipVisibility(boolean visible) {
+        Chip saveChip = (Chip) _groupChip.getChildAt(_groupChip.getChildCount() - 1);
+        saveChip.setChecked(false);
+        saveChip.setVisibility(visible ? View.VISIBLE : View.GONE);
+    }
+
+    private static Set<UUID> getGroupFilter(ChipGroup chipGroup) {
+        return chipGroup.getCheckedChipIds().stream()
+                .map(i -> {
+                    Chip chip = chipGroup.findViewById(i);
+                    if (chip.getTag() != null) {
+                        VaultGroupModel group = (VaultGroupModel) chip.getTag();
+                        return group.getUUID();
+                    }
+
+                    return null;
+                })
+                .filter(Objects::nonNull)
+                .collect(Collectors.toSet());
     }
 
     @Override
@@ -252,6 +406,10 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         instance.putString("submittedSearchQuery", _submittedSearchQuery);
         instance.putBoolean("isDoingIntro", _isDoingIntro);
         instance.putBoolean("isAuthenticating", _isAuthenticating);
+
+        if (_groupFilter != null) {
+            instance.putSerializable("prefGroupFilter", new HashSet<>(_groupFilter));
+        }
     }
 
     @Override
@@ -677,7 +835,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
             startAuthActivity(false);
         } else if (_loaded) {
             // update the list of groups in the entry list view so that the chip gets updated
-            _entryListView.setGroups(_vaultManager.getVault().getUsedGroups());
+            setGroups(_vaultManager.getVault().getUsedGroups());
 
             // update the usage counts in case they are edited outside of the EntryListView
             _entryListView.setUsageCounts(_prefs.getUsageCounts());
@@ -717,7 +875,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
 
         updateLockIcon();
         if (_loaded) {
-            _entryListView.setGroups(_vaultManager.getVault().getUsedGroups());
+            setGroups(_vaultManager.getVault().getUsedGroups());
             updateSortCategoryMenu();
         }
 
@@ -836,7 +994,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
 
     private void loadEntries() {
         if (!_loaded) {
-            _entryListView.setGroups(_vaultManager.getVault().getUsedGroups());
+            setGroups(_vaultManager.getVault().getUsedGroups());
             _entryListView.setUsageCounts(_prefs.getUsageCounts());
             _entryListView.setLastUsedTimestamps(_prefs.getLastUsedTimestamps());
             _entryListView.addEntries(_vaultManager.getVault().getEntries());
@@ -928,6 +1086,19 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         });
 
         Dialogs.showSecureDialog(dialog);
+    }
+
+    @Override
+    public void onRestoreInstanceState(@Nullable Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        if (savedInstanceState == null) {
+            return;
+        }
+
+        HashSet<UUID> filter = (HashSet<UUID>) savedInstanceState.getSerializable("prefGroupFilter");
+        if (filter != null) {
+            _prefGroupFilter = filter;
+        }
     }
 
     @Override
