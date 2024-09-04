@@ -127,6 +127,7 @@
     <string name="event_title_vault_unlock_failed_biometrics">Vault unlock failed (biometrics)</string>
     <string name="event_description_vault_unlock_failed_biometrics">An attempt to unlock the vault with biometrics failed</string>
     <string name="event_unknown">Unknown event type</string>
+    <string name="audit_log_entry_deleted">(deleted)</string>
 
     <string name="today_at_time">Today at %1$s</string>
     <string name="day_of_week_at_time">%1$s at %2$s</string>

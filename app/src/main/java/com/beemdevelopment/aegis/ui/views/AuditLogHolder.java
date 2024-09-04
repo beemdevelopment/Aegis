@@ -61,6 +61,10 @@ public class AuditLogHolder extends RecyclerView.ViewHolder {
         if (auditLogEntryModel.getReferencedVaultEntry() != null) {
             VaultEntry referencedVaultEntry = auditLogEntryModel.getReferencedVaultEntry();
             _auditLogEntryReference.setText(String.format("%s (%s)", referencedVaultEntry.getIssuer(), referencedVaultEntry.getName()));
+            _auditLogEntryReference.setVisibility(View.VISIBLE);
+        } else if (auditLogEntryModel.getAuditLogEntry().getReference() != null) {
+            _auditLogEntryReference.setText(R.string.audit_log_entry_deleted);
+            _auditLogEntryReference.setVisibility(View.VISIBLE);
         } else {
             _auditLogEntryReference.setVisibility(View.GONE);
         }
