@@ -368,7 +368,7 @@
     <string name="normal_viewmode_title">Normální</string>
     <string name="compact_mode_title">Kompaktní</string>
     <string name="small_mode_title">Malý</string>
-    <string name="tiles_mode_title">Názvy</string>
+    <string name="tiles_mode_title">Dlaždice</string>
     <string name="unknown_issuer">Neznámý poskytovatel</string>
     <string name="unknown_account_name">Neznámý název účtu</string>
     <plurals name="import_error_dialog">
