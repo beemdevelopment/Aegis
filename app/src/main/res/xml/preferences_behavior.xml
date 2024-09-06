@@ -8,6 +8,11 @@
         android:title="@string/pref_focus_search"
         android:summary="@string/pref_focus_search_summary"
         app:iconSpaceReserved="false"/>
+    <Preference
+        android:defaultValue="false"
+        android:key="pref_search_behavior"
+        android:title="@string/pref_search_behavior_title"
+        app:iconSpaceReserved="false"/>
     <androidx.preference.SwitchPreferenceCompat
         android:defaultValue="false"
         android:key="pref_minimize_on_copy"

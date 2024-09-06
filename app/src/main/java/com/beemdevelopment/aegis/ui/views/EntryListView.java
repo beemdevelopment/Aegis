@@ -222,6 +222,10 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
         _adapter.setCopyBehavior(copyBehavior);
     }
 
+    public void setSearchBehaviorMask(int searchBehaviorMask) {
+        _adapter.setSearchBehaviorMask(searchBehaviorMask);
+    }
+
     public List<VaultEntry> selectAllEntries() {
         return _adapter.selectAllEntries();
     }
@@ -599,6 +603,7 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
 
     public void setGroups(Collection<VaultGroup> groups) {
         _groups = groups;
+        _adapter.setGroups(groups);
         _groupChip.setVisibility(_groups.isEmpty() ? View.GONE : View.VISIBLE);
         updateDividerDecoration();
 

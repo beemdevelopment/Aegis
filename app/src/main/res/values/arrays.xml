@@ -125,6 +125,13 @@
         <item>@string/pref_auto_lock_type_device_lock</item>
     </string-array>
 
+    <string-array name="pref_search_behavior_types">
+        <item>@string/pref_search_behavior_type_issuer</item>
+        <item>@string/pref_search_behavior_type_name</item>
+        <item>@string/pref_search_behavior_type_note</item>
+        <item>@string/pref_search_behavior_type_groups</item>
+    </string-array>
+
     <string-array name="export_formats">
         <item>@string/export_format_aegis</item>
         <item>@string/export_format_html</item>
