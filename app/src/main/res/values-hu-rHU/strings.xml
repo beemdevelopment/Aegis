@@ -46,7 +46,7 @@
     <string name="pref_account_name_position_title">A fióknév megjelenítése</string>
     <string name="pref_shared_issuer_account_name_title">A fióknév megjelenítése csak akkor, ha szükséges</string>
     <string name="pref_shared_issuer_account_name_summary">A fióknevek megjelenítése csak akkor, ha megegyezik a kibocsátójuk. A többi fióknév rejtve lesz.</string>
-    <string name="pref_account_name_position_summary_override">Ezt a beállítást felülbírálja a csempenézetes mód. A fióknév mindig látható lesz a kibocsátó alatt.</string>
+    <string name="pref_account_name_position_summary_override">Ezt a beállítást felülbírálja a csempenézetes mód. A fióknév látható lesz a kibocsátó alatt.</string>
     <string name="pref_import_file_title">Importálás fájlból</string>
     <string name="pref_import_file_summary">Tokenek importálása fájlból</string>
     <string name="pref_android_backups_title">Android felhős mentések</string>
@@ -63,10 +63,12 @@
     <string name="pref_backups_trigger_title">Biztonsági mentés készítése</string>
     <string name="pref_backups_trigger_summary">Biztonsági mentés kézi indítása</string>
     <string name="pref_backups_versions_title">Megtartandó verziók száma</string>
+    <string name="pref_backups_versions_infinite">\u221E</string>
     <plurals name="pref_backups_versions_summary">
         <item quantity="one">%1$d verzió megtartása a mentésből</item>
         <item quantity="other">%1$d verzió megtartása a mentésből</item>
     </plurals>
+    <string name="pref_backups_versions_infinite_summary">Végtelen számú verzió megtartása a biztonsági mentésből</string>
     <string name="pref_import_app_title">Importálás alkalmazásból</string>
     <string name="pref_import_app_summary">Tokenek importálása alkalmazásból (root hozzáférés szükséges)</string>
     <string name="pref_export_title">Exportálás</string>
@@ -121,6 +123,7 @@
     <string name="event_title_vault_unlock_failed_biometrics">A széf feloldása nem sikerült (biometrikus adatok)</string>
     <string name="event_description_vault_unlock_failed_biometrics">A széf biometikus adatokkal való feloldása nem sikerült</string>
     <string name="event_unknown">Ismeretlen eseménytípus</string>
+    <string name="audit_log_entry_deleted">(törölve)</string>
     <string name="today_at_time">Ma %1$s-kor</string>
     <string name="day_of_week_at_time">%1$s %2$s-kor</string>
     <string name="export_encrypted">A széf titkosítása</string>
@@ -301,6 +304,7 @@
     <string name="no_tokens_can_be_imported">Ennek eredményeképp egyetlen token sem importálható</string>
     <string name="unlocking_vault">A széf feloldása</string>
     <string name="rename_group">Csoport átnevezése</string>
+    <string name="no_group_selection">Ha egy bejegyzés egy csoportnak sem tagja, akkor a „Nincs csoport” alatt található.</string>
     <string name="remove_group">Csoport eltávolítása</string>
     <string name="remove_group_description">Biztos, hogy eltávolítja ezt a csoportot? A csoport bejegyzései automatikusan „Csoport nélküli” elemek lesznek.</string>
     <string name="remove_unused_groups">Nem használt csoportok törlése</string>

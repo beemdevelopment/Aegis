@@ -46,7 +46,6 @@
     <string name="pref_account_name_position_title">Pokaż nazwę konta</string>
     <string name="pref_shared_issuer_account_name_title">Pokaż nazwę konta tylko w razie potrzeby</string>
     <string name="pref_shared_issuer_account_name_summary">Pokazuj nazwy kont tylko, gdy są z tego samego wydawcy. Inne nazwy kont zostaną ukryte.</string>
-    <string name="pref_account_name_position_summary_override">To ustawienie jest nadpisane przez tryb wyświetlania pól. Nazwa konta będzie zawsze wyświetlana pod wydawcą.</string>
     <string name="pref_import_file_title">Importuj z pliku</string>
     <string name="pref_import_file_summary">Importuj tokeny z aplikacji</string>
     <string name="pref_android_backups_title">Kopia zapasowa Android w chmurze</string>
@@ -317,6 +316,7 @@
     <string name="no_tokens_can_be_imported">Nie można zaimportować żadnych tokenów</string>
     <string name="unlocking_vault">Odblokowywanie sejfu</string>
     <string name="rename_group">Zmień Nazwę Grupy</string>
+    <string name="no_group_selection">Jeśli wpis nie jest częścią żadnej grupy, można go znaleźć pod \"Brak grupy\".</string>
     <string name="remove_group">Usuń grupę</string>
     <string name="remove_group_description">Czy na pewno chcesz usunąć tę grupę? Wpisy z tej grupy zostaną automatycznie przeniesione do kategorii \'Brak grupy\'.</string>
     <string name="remove_unused_groups">Usuń nieużywane grupy</string>

@@ -40,14 +40,13 @@
     <string name="pref_view_mode_title">Režim zobrazenia</string>
     <string name="pref_lang_title">Jazyk</string>
     <string name="pref_show_icons_title">Zobraziť ikony</string>
-    <string name="pref_show_icons_summary">Zobrazte ikony vedľa každého záznamu</string>
+    <string name="pref_show_icons_summary">Zobraziť ikony vedľa každého záznamu</string>
     <string name="pref_code_group_size_title">Zoskupenie číselných znakov</string>
     <string name="pref_code_group_size_summary">Vyberte číslo po koľkých čísliciach sa majú zoskupovať kódy</string>
     <string name="pref_account_name_position_title">Zobraziť názov účtu</string>
     <string name="pref_shared_issuer_account_name_title">Zobrazovať názov účtu iba pokiaľ to je potrebné</string>
     <string name="pref_shared_issuer_account_name_summary">Zobraziť názvy účtov len v prípade, že majú rovnakého vydavateľa. Ostatné názvy účtov budú skryté.</string>
-    <string name="pref_account_name_position_summary_override">Toto nastavenie je prepísané režimom zobrazenia Dlaždice. Názov účtu bude vždy viditeľný pod vydavateľom.</string>
-    <string name="pref_import_file_title">Importovanie zo súboru</string>
+    <string name="pref_import_file_title">Importovať zo súboru</string>
     <string name="pref_import_file_summary">Importovať tokeny zo súboru</string>
     <string name="pref_android_backups_title">Zálohy na Android cloude</string>
     <string name="pref_android_backups_summary">Povoliť zálohovaciemu systému Android Cloud zahrnúť Aegis\' trezor v ich zálohách. Táto možnosť je podporovaná iba pre šifrované trezory.</string>
@@ -63,13 +62,15 @@
     <string name="pref_backups_trigger_title">Spustiť zálohu</string>
     <string name="pref_backups_trigger_summary">Ručné spustenie zálohy</string>
     <string name="pref_backups_versions_title">Počet verzií na uchovanie</string>
+    <string name="pref_backups_versions_infinite">\u221E</string>
     <plurals name="pref_backups_versions_summary">
         <item quantity="one">Ponechať %1$d verziu zálohy</item>
         <item quantity="few">Ponechať %1$d verzie zálohy</item>
         <item quantity="many">Ponechať %1$d verzií zálohy</item>
         <item quantity="other">Ponechať %1$d verzií zálohy</item>
     </plurals>
-    <string name="pref_import_app_title">Importovanie z aplikácie</string>
+    <string name="pref_backups_versions_infinite_summary">Ponechať nekonečné množstvo verzií zálohy</string>
+    <string name="pref_import_app_title">Importovať z aplikácie</string>
     <string name="pref_import_app_summary">Importovať tokeny z aplikácie (vyžaduje sa prístup root)</string>
     <string name="pref_export_title">Exportovať</string>
     <string name="pref_export_summary">Exportovať trezor</string>
@@ -104,7 +105,7 @@
     <string name="pref_set_password_summary">Zadajte nové heslo, ktoré budete potrebovať na odomknutie trezoru</string>
     <string name="no_events_title">Žiadne nahlásené udalosti</string>
     <string name="no_events_description">V aplikácii neboli nahlásené žiadne dôležité udalosti</string>
-    <string name="event_title_vault_unlocked">Trezor je odomknutý</string>
+    <string name="event_title_vault_unlocked">Trezor odomknutý</string>
     <string name="event_description_vault_unlocked">Trezor bol úspešne odomknutý</string>
     <string name="event_title_backup_created">Záloha vytvorená</string>
     <string name="event_description_backup_created">Záloha trezoru bola úspešne vytvorená</string>
@@ -123,7 +124,7 @@
     <string name="day_of_week_at_time">%1$s o %2$s</string>
     <string name="export_encrypted">Šifrovať trezor</string>
     <string name="export_help">Touto akciou sa exportuje trezor z interného úložiska Aegis. Vyberte formát, v ktorom chcete mať export:</string>
-    <string name="export_warning_unencrypted">Chystáte sa exportovať nezašifrovanú kópiu svojho trezoru Aegis. <b> Toto sa neodporúča </b>.</string>
+    <string name="export_warning_unencrypted">Chystáte sa exportovať nezašifrovanú kópiu svojho trezoru Aegis. <b>Toto sa neodporúča</b>.</string>
     <string name="export_warning_password">Exporty sú šifrované pomocou samostatného hesla nakonfigurovaného v nastaveniach zabezpečenia.</string>
     <string name="understand_risk_accept">Rozumiem rizikám</string>
     <string name="export_format_aegis">Aegis (.JSON)</string>
@@ -181,6 +182,7 @@
     <string name="copy">Kopírovať</string>
     <string name="edit">Upraviť</string>
     <string name="select_all">Vybrať všetko</string>
+    <string name="assign_icons">Priradiť ikonky</string>
     <string name="favorite" comment="Verb">Obľúbené</string>
     <string name="unfavorite" comment="Verb">Odobrať z obľúbených</string>
     <string name="error_all_caps">CHYBA</string>
@@ -202,6 +204,12 @@
     <string name="delete_entry">Odstrániť položku</string>
     <string name="delete_entry_description">Naozaj chcete túto položku odstrániť?</string>
     <string name="delete_entries">Vymazať položky</string>
+    <plurals name="delete_entries_description">
+        <item quantity="one">Naozaj chcete odstrániť %d položku?</item>
+        <item quantity="few">Naozaj chcete odstrániť %d položky?</item>
+        <item quantity="many">Naozaj chcete odstrániť %d položiek?</item>
+        <item quantity="other">Naozaj chcete odstrániť %d položiek?</item>
+    </plurals>
     <string name="discard_changes">Zrušiť zmeny?</string>
     <string name="discard_changes_description">Vaše zmeny neboli uložené</string>
     <string name="saving_profile_error">Pri ukladaní profilu sa vyskytla chyba</string>
@@ -338,12 +346,20 @@
     </string>
     <string name="backup_reminder_bar_dialog_title">Zmeny nie sú zálohované</string>
     <string name="backup_plaintext_export_warning"><b>Trezor bol nedávno exportovaný ako obyčajný text</b></string>
+    <string name="pref_show_plaintext_warning_hint">Toto upozornenie viac nezobrazovať</string>
     <string name="switch_camera">Prepnúť fotoaparát</string>
     <string name="empty_list_title">Neboli nájdené žiadne záznamy</string>
     <string name="empty_group_list_title">Neboli nájdené žiadne skupiny</string>
     <string name="no_icon_packs">Zatiaľ neboli importované žiadne balíčky ikon. Klepnite na znamienko plus aby ste ho importovali. Tip: vyskúšajte <a href="https://aegis-icons.github.io">aegis-icons</a>.</string>
     <string name="no_icon_packs_title">Žiadne balíčky ikon</string>
+    <string name="uncategorized">Nezaradené</string>
     <string name="done">Hotovo</string>
+    <plurals name="qr_count">
+        <item quantity="one">%d / %d QR kódu</item>
+        <item quantity="few">%d / %d QR kódov</item>
+        <item quantity="many">%d / %d QR kódov</item>
+        <item quantity="other">%d / %d QR kódov</item>
+    </plurals>
     <string name="next">Ďalšie</string>
     <string name="previous">Predchádzajúce</string>
     <string name="copy_uri">Skopírovať URI</string>
@@ -363,6 +379,9 @@
     <string name="title_activity_about">O programe</string>
     <string name="title_activity_edit_entry">Upraviť záznam</string>
     <string name="title_activity_scan_qr">Skenovať QR kód</string>
+    <string name="title_activity_assign_icons">Priradiť ikonky</string>
+    <string name="import_vault">Importovať Aegis trezor</string>
+    <string name="importer_help_aegis">Poskytnite súbor exportu/zálohy Aegisu.</string>
     <string name="importer_help_bitwarden">Nahrajte súbor s Bitwarden exportom/zálohou. Šifrované súbory nie sú podporované.</string>
     <string name="groups">Skupiny</string>
     <string name="pref_focus_search">Zamerať vyhľadávanie pri spustení aplikácie</string>
@@ -376,4 +395,34 @@
     <string name="pref_copy_behavior_single_tap">Jedno klepnutie</string>
     <string name="pref_copy_behavior_double_tap">Dvojité poklepanie</string>
     <string name="pref_account_name_position_hidden">Skryté</string>
+    <plurals name="time_elapsed_seconds">
+        <item quantity="one">Pred %d sekundou</item>
+        <item quantity="few">Pred %d sekundami</item>
+        <item quantity="many">Pred %d sekundami</item>
+        <item quantity="other">Pred %d sekundami</item>
+    </plurals>
+    <plurals name="time_elapsed_minutes">
+        <item quantity="one">Pred %d minútou</item>
+        <item quantity="few">Pred %d minútami</item>
+        <item quantity="many">Pred %d minútami</item>
+        <item quantity="other">Pred %d minútami</item>
+    </plurals>
+    <plurals name="time_elapsed_hours">
+        <item quantity="one">Pred %d hodinou</item>
+        <item quantity="few">Pred %d hodinami</item>
+        <item quantity="many">Pred %d hodinami</item>
+        <item quantity="other">Pred %d hodinami</item>
+    </plurals>
+    <plurals name="time_elapsed_days">
+        <item quantity="one">Pred %d dňom</item>
+        <item quantity="few">Pred %d dňami</item>
+        <item quantity="many">Pred %d dňami</item>
+        <item quantity="other">Pred %d dňami</item>
+    </plurals>
+    <plurals name="time_elapsed_years">
+        <item quantity="one">Pred %d rokom</item>
+        <item quantity="few">Pred %d rokmi</item>
+        <item quantity="many">Pred %d rokmi</item>
+        <item quantity="other">Pred %d rokmi</item>
+    </plurals>
 </resources>

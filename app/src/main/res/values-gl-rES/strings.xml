@@ -28,6 +28,8 @@
     <string name="pref_section_security_summary">Configura o cifrado, o desbloqueo por biometría, o bloqueo automático e outros axustes de seguridade.</string>
     <string name="pref_section_import_export_title">Importar e exportar</string>
     <string name="pref_section_import_export_summary">Importa copias de seguridade de Aegis ou de outras aplicacións de autenticación. Exporta manualmente o teu almacén de Aegis.</string>
+    <string name="pref_section_audit_log_title">Rexistro de auditoría</string>
+    <string name="pref_section_audit_log_summary">Atopa unha lista de tódolos eventos importantes que ocorreron na app.</string>
     <string name="pref_section_backups_title">Copias de seguridade</string>
     <string name="pref_section_backups_summary">Configura copias de seguridade automáticas na localización que escollas ou activa a participación no sistema de copias de seguridade na nube de Android.</string>
     <string name="pref_section_icon_packs">Paquetes de iconas</string>
@@ -44,7 +46,6 @@
     <string name="pref_account_name_position_title">Mostrar o nome da conta</string>
     <string name="pref_shared_issuer_account_name_title">Mostrar o nome da conta só cando sexa necesario</string>
     <string name="pref_shared_issuer_account_name_summary">Mostrar nomes de conta só cando teñan o mesmo emisor. Os demáis nomes de conta ocultaranse.</string>
-    <string name="pref_account_name_position_summary_override">Este axuste está anulado polo modo de visualización de mosaico. O nome da conta mostrarase sempre debaixo do emisor.</string>
     <string name="pref_import_file_title">Importar desde un ficheiro</string>
     <string name="pref_import_file_summary">Importar tokens desde un ficheiro</string>
     <string name="pref_android_backups_title">Copias de seguridade na nube de Android</string>
@@ -61,10 +62,12 @@
     <string name="pref_backups_trigger_title">Executar copia de seguridade</string>
     <string name="pref_backups_trigger_summary">Lanza manualmente unha copia de seguridade</string>
     <string name="pref_backups_versions_title">Número de versións a manter</string>
+    <string name="pref_backups_versions_infinite">\u221E</string>
     <plurals name="pref_backups_versions_summary">
         <item quantity="one">Manter %1$d versión da copia de seguridade</item>
         <item quantity="other">Manter %1$d versións da copia de seguridade</item>
     </plurals>
+    <string name="pref_backups_versions_infinite_summary">Manter un número ilimitado de versións da copia de seguridade</string>
     <string name="pref_import_app_title">Importar desde unha aplicación</string>
     <string name="pref_import_app_summary">Importar tokens desde unha aplicación (require acceso root)</string>
     <string name="pref_export_title">Exportar</string>
@@ -102,6 +105,25 @@
     <string name="pref_biometrics_summary">Permite a autenticación mediante biometría para desbloquear o almacén</string>
     <string name="pref_set_password_title">Cambiar contrasinal</string>
     <string name="pref_set_password_summary">Establece un novo contrasinal co que desbloquear o teu almacén</string>
+    <string name="no_events_title">Non hai ningún evento rexistrado</string>
+    <string name="no_events_description">Non se rexistrou ningún evento importante na app</string>
+    <string name="event_title_vault_unlocked">Almacén desbloqueado</string>
+    <string name="event_description_vault_unlocked">O almacén desbloqueouse correctamente</string>
+    <string name="event_title_backup_created">Copia de seguridade creada</string>
+    <string name="event_description_backup_created">Creouse correctamente unha copia de seguridade do almacén</string>
+    <string name="event_title_android_backup_created">Creada copia de seguridade de Android</string>
+    <string name="event_description_android_backup_created">Android creou correctamente unha copia de seguridade do almacén</string>
+    <string name="event_title_vault_exported">Almacén exportado</string>
+    <string name="event_description_vault_exported">Exportouse unha copia do almacén</string>
+    <string name="event_title_entry_shared">Entrada compartida</string>
+    <string name="event_description_entry_shared">Compartiuse unha entrada</string>
+    <string name="event_title_vault_unlock_failed_password">Fallo de desbloqueo do almacén (contrasinal)</string>
+    <string name="event_description_vault_unlock_failed_password">Houbo un intento errado de desbloquear o almacén mediante contrasinal</string>
+    <string name="event_title_vault_unlock_failed_biometrics">Fallo de desbloqueo do almacén (biometría)</string>
+    <string name="event_description_vault_unlock_failed_biometrics">Houbo un intento errado de desbloquear o almacén mediante datos biométricos</string>
+    <string name="event_unknown">Tipo de evento descoñecido</string>
+    <string name="today_at_time">Hoxe ás %1$s</string>
+    <string name="day_of_week_at_time">%1$s ás %2$s</string>
     <string name="export_encrypted">Cifrar o almacén</string>
     <string name="export_help">Esta acción exportará o almacén fóra do almacenamento interno de Aegis. Escolle o formato no que o queiras exportar:</string>
     <string name="export_warning_unencrypted">Estás a piques de exportar unha copia non cifrada do teu almacén de Aegis. <b>Isto non está recomendado</b>.</string>
@@ -279,6 +301,8 @@
     <string name="unrelated_google_auth_batches_error">A exportación contén información sobre un lote non relacionado. Intenta importar 1 lote de cada vez.</string>
     <string name="no_tokens_can_be_imported">Polo tanto, non se pode importar ningún token</string>
     <string name="unlocking_vault">Desbloqueando o almacén</string>
+    <string name="rename_group">Renomear o grupo</string>
+    <string name="no_group_selection">Os elementos que non sexan parte de ningún grupo poderanse atopar dentro de \"Sen grupo\".</string>
     <string name="remove_group">Quitar grupo</string>
     <string name="remove_group_description">Tes a certeza de que queres quitar este grupo? As entradas deste grupo pasarán automaticamente a \"Sen grupo\".</string>
     <string name="remove_unused_groups">Borrar grupos sen usar</string>
@@ -421,6 +445,7 @@
     <string name="password_strength_fair">Aceptable</string>
     <string name="password_strength_good">Boa</string>
     <string name="password_strength_strong">Forte</string>
+    <string name="password_strength_unknown">O contrasinal é demasiado longo para a análise de robustez</string>
     <string name="pref_pin_keyboard_title">Usar teclado PIN na pantalla de bloqueo</string>
     <string name="pref_pin_keyboard_summary">Activa isto se queres habilitar o teclado do PIN na pantalla de bloqueo. Isto só funciona para os contrasinais numéricos</string>
     <string name="title_activity_preferences">Axustes</string>
@@ -431,6 +456,7 @@
     <string name="title_activity_scan_qr">Escanear un código QR</string>
     <string name="title_activity_import_entries">Importar entradas</string>
     <string name="title_activity_assign_icons">Asignar iconas</string>
+    <string name="title_activity_licenses">Licenzas de terceiros</string>
     <string name="dialog_wipe_entries_title">Limpar entradas</string>
     <string name="dialog_wipe_entries_message">O teu almacén xa contén entradas. Queres eliminalas antes de importar o ficheiro?\n\n<b>Se o fas, perderás o acceso ás entradas existentes no almacén para sempre.</b></string>
     <string name="dialog_wipe_entries_checkbox">Limpar o contido do almacén</string>
@@ -450,6 +476,7 @@
     <string name="importer_help_authy">Proporciona unha copia de <b>/data/data/com.authy.authy/shared_prefs/com.authy.storage.tokens.authenticator.xml</b>, localizado no directorio do almacenamento interno de Authy.</string>
     <string name="importer_help_andotp">Proporciona un ficheiro de copia de seguridade ou de exportación de andOTP.</string>
     <string name="importer_help_bitwarden">Proporciona un ficheiro de copia de seguridade ou de exportación de Bitwarden. Non se admiten os ficheiros cifrados.</string>
+    <string name="importer_help_battle_net_authenticator">Proporciona unha copia de <b>/data/data/com.blizzard.messenger/shared_prefs/com.blizzard.messenger.authenticator_preferences.xml</b>, localizado no directorio do almacenamento interno de Battle.net Authenticator.</string>
     <string name="importer_help_duo">Proporciona unha copia de <b>/data/data/com.duosecurity.duomobile/files/duokit/accounts.json</b>, localizado no directorio do almacenamento interno de DUO.</string>
     <string name="importer_help_freeotp">Proporciona unha copia de <b>/data/data/org.fedorahosted.freeotp/shared_prefs/tokens.xml</b>, localizado no directorio do almacenamento interno de FreeOTP (1.x).</string>
     <string name="importer_help_freeotp_plus">Proporciona un ficheiro de exportación de FreeOTP+.</string>

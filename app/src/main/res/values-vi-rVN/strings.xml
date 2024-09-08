@@ -46,9 +46,9 @@
     <string name="pref_account_name_position_title">Hiện tên tài khoản</string>
     <string name="pref_shared_issuer_account_name_title">Hiện tên tài khoản khi cần</string>
     <string name="pref_shared_issuer_account_name_summary">Chỉ hiện tên tài khoản khi có cùng dịch vụ. Những tên tài khoản khác sẽ bị ẩn.</string>
-    <string name="pref_account_name_position_summary_override">Cài đặt này bị ghi đè bởi chế độ xem theo ô. Tên tài khoản sẽ luôn được hiển thị bên dưới dịch vụ.</string>
-    <string name="pref_import_file_title">Nhập từ file</string>
-    <string name="pref_import_file_summary">Nhập token từ một file</string>
+    <string name="pref_account_name_position_summary_override">Cài đặt này bị ghi đè bởi chế độ xem theo ô. Tên tài khoản sẽ hiển thị bên dưới dịch vụ.</string>
+    <string name="pref_import_file_title">Nhập từ tập tin</string>
+    <string name="pref_import_file_summary">Nhập mã từ tập tin</string>
     <string name="pref_android_backups_title">Sao lưu trên mây Android</string>
     <string name="pref_android_backups_summary">Cho phép hệ thống sao lưu trên mây Android lưu trữ kho Aegis. Chỉ hỗ trợ các kho được mã hoá.</string>
     <string name="pref_android_backups_hint"><i>Các bản sao lưu thiết bị (D2D) luôn được cho phép, không kể cài đặt trên</i></string>
@@ -63,9 +63,11 @@
     <string name="pref_backups_trigger_title">Bật sao lưu</string>
     <string name="pref_backups_trigger_summary">Bật sao lưu thủ công</string>
     <string name="pref_backups_versions_title">Số lượng phiên bản tối đa</string>
+    <string name="pref_backups_versions_infinite">\u221E</string>
     <plurals name="pref_backups_versions_summary">
         <item quantity="other">Giữ %1$d phiên bản của bản sao lưu</item>
     </plurals>
+    <string name="pref_backups_versions_infinite_summary">Không giới hạn số bản sao lưu</string>
     <string name="pref_import_app_title">Nhập từ ứng dụng</string>
     <string name="pref_import_app_summary">Nhập token từ một ứng dụng (yêu cầu truy cập root)</string>
     <string name="pref_export_title">Xuất</string>
@@ -81,8 +83,8 @@
     <string name="pref_password_reminder_summary_disabled">Tắt</string>
     <string name="pref_secure_screen_title">Bảo vệ màn hình</string>
     <string name="pref_secure_screen_summary">Chặn chụp ảnh màn hình trong ứng dụng.</string>
-    <string name="pref_tap_to_reveal_title">Nhấn để hiện ra</string>
-    <string name="pref_tap_to_reveal_summary">Các token sẽ được ẩn theo mặc định. Nhấn vào các token để hiện ra mã.</string>
+    <string name="pref_tap_to_reveal_title">Nhấn để hiện</string>
+    <string name="pref_tap_to_reveal_summary">Mã số được ẩn, nhấn vào thì mới hiện.</string>
     <string name="pref_tap_to_reveal_time_title">Thời gian chờ nhấn</string>
     <string name="pref_auto_lock_title">Tự động khóa</string>
     <string name="pref_auto_lock_summary">Khi %s</string>
@@ -100,8 +102,14 @@
     <string name="pref_encryption_summary">Khóa kho bằng mật khẩu hoặc sinh trắc học</string>
     <string name="pref_biometrics_title">Sinh trắc học</string>
     <string name="pref_biometrics_summary">Dùng sinh trắc học để mở khóa kho</string>
+    <string name="pref_search_behavior_summary">Tìm trong: %s</string>
+    <string name="pref_search_behavior_prompt">Tìm trong các mục</string>
+    <string name="pref_search_behavior_type_name">Tên</string>
+    <string name="pref_search_behavior_type_issuer">Dịch vụ</string>
+    <string name="pref_search_behavior_type_note">Ghi chú</string>
+    <string name="pref_search_behavior_type_groups">Nhãn</string>
     <string name="pref_set_password_title">Đổi mật khẩu</string>
-    <string name="pref_set_password_summary">Đặt một mật khẩu mở khóa kho mới</string>
+    <string name="pref_set_password_summary">Đặt mật khẩu mở khóa kho mới</string>
     <string name="no_events_title">Chưa có</string>
     <string name="no_events_description">Không có sự kiện nào trong ứng dụng</string>
     <string name="event_title_vault_unlocked">Đã mở khóa</string>
@@ -119,15 +127,16 @@
     <string name="event_title_vault_unlock_failed_biometrics">Chưa thể mở khóa (sinh trắc học)</string>
     <string name="event_description_vault_unlock_failed_biometrics">Mở khóa kho bằng sinh trắc học không thành công</string>
     <string name="event_unknown">Sự kiện chưa rõ</string>
+    <string name="audit_log_entry_deleted">(đã xóa)</string>
     <string name="today_at_time">%1$s hôm nay</string>
     <string name="day_of_week_at_time">%2$s lúc %1$s</string>
     <string name="export_encrypted">Mã hoá kho</string>
     <string name="export_help">Hành động này sẽ xuất kho ra ngoài bộ nhớ trong của Aegis. Hãy chọn định dạng bản xuất:</string>
     <string name="export_warning_unencrypted">Bạn sắp xuất một bản sao chưa được mã khóa của kho Aegis. <b>Việc này không được khuyến khích</b>.</string>
     <string name="export_warning_password">Quá trình xuất được mã hóa bằng mật khẩu riêng được định cấu hình trong cài đặt Bảo mật.</string>
-    <string name="understand_risk_accept">Tôi hiểu rủi ro này</string>
+    <string name="understand_risk_accept">Tôi hiểu rủi ro</string>
     <string name="export_format_aegis">Aegis (.JSON)</string>
-    <string name="export_format_google_auth_uri">File văn bản (.TXT)</string>
+    <string name="export_format_google_auth_uri">Tập tin văn bản thuần (.TXT)</string>
     <string name="export_format_html">Trang web (.HTML)</string>
     <string name="export_format_hint">Định dạng xuất</string>
     <string name="export_all_groups">Xuất tất cả nhãn</string>
@@ -138,36 +147,37 @@
     <string name="export_no_groups_selected">Chưa chọn nhãn để xuất</string>
     <string name="export_html_title" comment="The title of an HTML export document">Xuất Aegis Authenticator</string>
     <string name="choose_authentication_method">Bảo mật</string>
-    <string name="authentication_method_explanation">Aegis là một ứng dụng Xác minh 2 bước tập trung vào bảo mật. Các token được lưu trữ trong một kho mã hoá bằng mật khẩu do bạn chọn. Nếu một kẻ tấn công lấy được file kho mã hoá của bạn, họ sẽ không thể truy cập nội dung vì không biết mật khẩu.\n\nChúng tôi đã đề xuất tùy chọn phù hợp nhất với thiết bị của bạn.</string>
+    <string name="authentication_method_explanation">Aegis là ứng dụng xác thực hai yếu tố chú trọng vào bảo mật. Mã xác thực được lưu trong kho và kho này có thể được mã hóa bằng mật khẩu do bạn nhập. Trường hợp kẻ tấn công lấy được tập tin chứa kho này, y không thể truy cập nội dung trong kho nếu không biết mật khẩu.\n\nChúng tôi đã đề xuất tùy chọn phù hợp nhất với thiết bị của bạn.</string>
     <string name="authentication_method_none">Không</string>
-    <string name="authentication_method_none_description">Không cần mật khẩu để mở khóa kho và nó sẽ không được mã hóa. <b>Tùy chọn này không được khuyến khích</b>.</string>
+    <string name="authentication_method_none_description">Kho không được mã hóa và không cần mật khẩu để mở.
+<b>Tùy chọn này không được khuyến khích</b>.</string>
     <string name="authentication_method_password">Mật khẩu</string>
     <string name="authentication_method_password_description">Cần mật khẩu để mở khóa kho.</string>
-    <string name="authentication_method_password_explanation">Cảnh báo: Nếu bạn quên mật khẩu, bạn sẽ vĩnh viễn mất quyền truy cập vào các token. Không có cách nào để khôi phục chúng.</string>
+    <string name="authentication_method_password_explanation">Cảnh báo: Nếu bạn quên mật khẩu, sẽ không có cách để truy cập các mã xác thực. Khôi phục không cần mật khẩu là chuyện trong mơ.</string>
     <string name="authentication_method_biometrics">Sinh trắc học</string>
-    <string name="authentication_method_biometrics_description">Bên cạnh mật khẩu, thì sinh trắc học đã được đăng ký trên thiết bị, như vân tay hoặc khuôn mặt, có thể được sử dụng để mở khóa kho.</string>
+    <string name="authentication_method_biometrics_description">Cùng với mật khẩu, sinh trắc học như vân tay hoặc khuôn mặt được đăng ký trên thiết bị có thể được dùng để mở khóa kho.</string>
     <string name="authentication">Mở khóa kho</string>
     <string name="authentication_multiline" comment="The newline in the middle is used for aesthetic purposes">Mở khóa\nkho</string>
-    <string name="auth_use_biometrics">Hoặc nhấn vào đây để đổi sang <font fgcolor="#FF0D86C1">sinh trắc học</font></string>
+    <string name="auth_use_biometrics">Nhấn vào đây để đổi sang <font fgcolor="#FF0D86C1">sinh trắc học</font></string>
     <string name="set_password">Vui lòng nhập mật khẩu</string>
     <string name="set_group">Vui lòng nhập tên nhãn</string>
     <string name="set_number">Vui lòng nhập số</string>
-    <string name="set_password_confirm">Vui lòng lặp lại mật khẩu</string>
-    <string name="invalid_password">Mật khẩu không chính xác</string>
+    <string name="set_password_confirm">Xác nhận lại mật khẩu</string>
+    <string name="invalid_password">Mật khẩu không đúng</string>
     <string name="invalidated_biometrics">Đã phát hiện một thay đổi trong cài đặt bảo mật của thiết bị. Vui lòng đi đến \"Aegis &gt; Cài đặt &gt; Bảo mật &gt; Mở khóa sinh trắc học\" để tắt và bật lại mở khóa sinh trắc học.</string>
     <string name="password_reminder">Vui lòng nhập mật khẩu. Chúng tôi thỉnh thoảng hỏi điều này để cho bạn không quên mật khẩu.</string>
     <string name="password_reminder_dialog_title">Mở khóa sinh trắc học theo mặc định</string>
-    <string name="password_reminder_dialog_message">Đôi khi, chúng tôi nhắc bạn nhập mật khẩu để đảm bảo bạn không quên mật khẩu và không bị khóa khỏi kho của mình. Sau khi nhập mật khẩu của bạn một lần, Aegis sẽ mặc định quay lại mở khóa sinh trắc học cho đến khi đến lúc nhắc nhở mật khẩu khác.</string>
+    <string name="password_reminder_dialog_message">Thỉnh thoảng chúng tôi nhắc bạn nhập mật khẩu để đảm bảo bạn không quên mật khẩu và không mất quyền truy cập vào kho của mình. Sau khi nhập mật khẩu của bạn, Aegis sẽ mặc định quay lại mở khóa sinh trắc học cho đến khi đến lần nhắc tiếp theo.</string>
     <string name="password_reminder_freq_never">Không bao giờ</string>
-    <string name="password_reminder_freq_weekly">Hàng tuần</string>
+    <string name="password_reminder_freq_weekly">Hằng tuần</string>
     <string name="password_reminder_freq_biweekly">Nửa tháng</string>
     <string name="password_reminder_freq_monthly">Hàng tháng</string>
-    <string name="password_reminder_freq_quarterly">Hàng quý</string>
+    <string name="password_reminder_freq_quarterly">Mỗi ba tháng</string>
     <string name="enter_password_2fas_message">Bản sao lưu 2FAS này được mã hóa. Vui lòng nhập mật khẩu ở dưới.</string>
     <string name="enter_password_authy_message">Các token Authy của bạn đã được mã hóa. Vui lòng đóng Aegis, mở Authy và mở khóa các token bằng mật khẩu của bạn. Bên cạnh đó, Aegis cũng có thể thử giải mã các token Authy cho bạn, nếu bạn nhập mật khẩu ở dưới.</string>
-    <string name="enter_password_aegis_title">Vui lòng nhập mật khẩu nhập</string>
+    <string name="enter_password_aegis_title">Vui lòng nhập mật khẩu để nhập</string>
     <string name="period_hint">Thời hạn (s)</string>
-    <string name="algorithm_hint">Hash</string>
+    <string name="algorithm_hint">Hàm băm</string>
     <string name="type">Loại</string>
     <string name="share">Chia sẻ</string>
     <string name="yes">Có</string>
@@ -182,8 +192,8 @@
     <string name="scan_image">Quét ảnh</string>
     <string name="enter_manually">Nhập thủ công</string>
     <string name="set_up_biometric">Thiết lập mở khóa sinh trắc học</string>
-    <string name="copy">Sao chép</string>
-    <string name="edit">Chỉnh sửa</string>
+    <string name="copy">Chép</string>
+    <string name="edit">Sửa</string>
     <string name="select_all">Chọn tất cả</string>
     <string name="assign_icons">Gán biểu tượng</string>
     <string name="favorite" comment="Verb">Thích</string>
@@ -195,12 +205,12 @@
     <string name="new_entry">Mục mới</string>
     <string name="add_new_entry">Thêm mục mới</string>
     <string name="unlock_vault_error">Không thể mở khóa kho</string>
-    <string name="unlock_vault_error_description">Mật khẩu không chính xác. Hãy chắc chắn là bạn không nhập nhầm mật khẩu.</string>
+    <string name="unlock_vault_error_description">Mật khẩu không chính xác. Hãy chắc chắn là bạn không gõ nhầm.</string>
     <string name="password_equality_error">Các mật khẩu nên y hệt nhau và không trống</string>
     <string name="snackbar_authentication_method">Vui lòng chọn một phương pháp xác minh</string>
     <string name="encrypting_vault">Đang mã hoá kho</string>
     <string name="exporting_vault">Đang xuất kho</string>
-    <string name="reading_file">Đang đọc file</string>
+    <string name="reading_file">Đang đọc tập tin</string>
     <string name="requesting_root_access">Yêu cầu truy cập root</string>
     <string name="analyzing_qr">Đang phân tích mã QR</string>
     <string name="analyzing_qr_multiple">Đang phân tích mã QR %d/%d (%s)</string>
@@ -210,7 +220,7 @@
     <string name="importing_icon_pack">Đang nhập gói biểu tượng</string>
     <string name="delete_entry">Xóa mục</string>
     <string name="delete_entry_description">Bạn có chắc bạn muốn xóa mục này không?</string>
-    <string name="delete_entry_explanation">Việc này không tắt Xác minh 2 bước cho:\n<b>%s</b>\n\nĐể tránh mất quyền truy cập, hãy chắc chắn rằng bạn đã tắt Xác Thực 2 Bước hoặc bạn có một cách khác để tạo mã cho dịch vụ này.</string>
+    <string name="delete_entry_explanation">Hành động này không tắt Xác thực 2 yếu tố cho:\n<b>%s</b>\n\nĐể tránh mất quyền truy cập, hãy chắc chắn rằng bạn đã tắt Xác thực 2 yếu tố hoặc bạn có một cách khác để tạo mã cho dịch vụ này.</string>
     <string name="delete_entries">Xóa các mục</string>
     <plurals name="delete_entries_description">
         <item quantity="other">Bạn có chắc muốn xóa %d mục?</item>
@@ -220,7 +230,7 @@
     <string name="saving_profile_error">Lỗi khi lưu hồ sơ</string>
     <string name="saving_assign_icons_error">Lỗi khi gán biểu tượng</string>
     <string name="welcome">Chào mừng</string>
-    <string name="app_description">Aegis là một ứng dụng Xác minh 2 bước tự do, bảo mật và mã nguồn mở</string>
+    <string name="app_description">Aegis là một ứng dụng xác thực 2 yếu tố tự do, bảo mật và nguồn mở</string>
     <string name="setup_completed">Thiết lập hoàn tất</string>
     <string name="setup_completed_description">Aegis đã được thiết lập và sẵn sàng hoạt động.</string>
     <string name="vault_not_found">Không tìm thấy kho, đang bắt đầu thiết lập…</string>
@@ -229,14 +239,14 @@
     <string name="version_copied">Đã sao chép phiên bản vào bộ nhớ tạm</string>
     <string name="error_occurred">Đã xảy ra lỗi</string>
     <string name="decryption_error">Đã xảy ra lỗi trong khi mở khóa kho</string>
-    <string name="decryption_corrupt_error">Đã xảy ra lỗi trong khi mở khóa kho. File kho của bạn có thể bị hỏng.</string>
+    <string name="decryption_corrupt_error">Đã xảy ra lỗi trong khi mở khóa kho. Tập tin kho của bạn có thể bị hỏng.</string>
     <string name="saving_error">Đã xảy ra lỗi trong khi lưu kho</string>
     <string name="vault_init_error">Đã xảy ra lỗi trong khi khởi tạo kho</string>
     <string name="vault_load_error">Đã xảy ra lỗi trong khi nạp kho từ bộ nhớ</string>
     <string name="biometric_decrypt_error">Đã xảy ra lỗi trong khi giải mã kho bằng xác minh sinh trắc học. Điều này thường chỉ xảy ra nếu cài đặt bảo mật của thiết bị đã được thay đổi. Vui lòng mở khóa kho bằng mật khẩu và thiết lập lại xác minh sinh trắc học trong cài đặt của Aegis.</string>
     <string name="biometric_init_error">Đã xảy ra lỗi trong khi chuẩn bị xác minh sinh trắc học. Điều này thường chỉ xảy ra nếu cài đặt bảo mật của thiết bị đã được thay đổi. Vui lòng mở khóa kho bằng mật khẩu và thiết lập lại xác minh sinh trắc học trong cài đặt của Aegis.</string>
     <string name="disable_encryption">Tắt mã hóa</string>
-    <string name="disable_encryption_description">Bạn có chắc muốn tắt mã hóa không? Việc này sẽ khiến kho được lưu trữ dưới dạng văn bản thuần. <b>Các bản sao lưu tự động cũng sẽ bị tắt</b>.</string>
+    <string name="disable_encryption_description">Bạn có chắc muốn tắt mã hóa không? Làm vậy sẽ khiến kho được lưu trữ dưới dạng văn bản thuần. <b>Sao lưu tự động cũng sẽ bị tắt</b>.</string>
     <string name="enable_encryption_error">Đã xảy ra lỗi trong khi bật mã hóa</string>
     <string name="disable_encryption_error">Đã xảy ra lỗi trong khi tắt mã hóa</string>
     <string name="backup_successful">Đã lên lịch sao lưu thành công</string>
@@ -254,9 +264,9 @@
     </plurals>
     <string name="icon_custom">Tùy chỉnh</string>
     <string name="permission_denied">Quyền bị từ chối</string>
-    <string name="andotp_new_format">Định dạng mới (v0.6.3 hoặc mới hơn) </string>
-    <string name="andotp_old_format">Định dạng cũ (v0.6.2 hoặc cũ hơn) </string>
-    <string name="choose_andotp_importer">File sao lưu andOTP có định dạng gì?</string>
+    <string name="andotp_new_format">Định dạng mới (v0.6.3 trở lên) </string>
+    <string name="andotp_old_format">Định dạng cũ (v0.6.2 trở xuống) </string>
+    <string name="choose_andotp_importer">Tập tin sao lưu andOTP sử dụng định dạng nào?</string>
     <string name="choose_totpauth_importer">Bản sao lưu TOTP Authenticator này có được mã hóa bằng mật khẩu không?</string>
     <string name="choose_application">Chọn ứng dụng mà bạn muốn nhập từ đó</string>
     <string name="choose_theme">Chọn chủ đề bạn thích</string>
@@ -264,10 +274,10 @@
     <string name="choose_view_mode">Chọn chế độ xem bạn thích</string>
     <string name="choose_copy_behavior">Chọn thao tác sao chép mà bạn thích</string>
     <string name="parsing_file_error">Đã xảy ra lỗi trong khi xử lý file</string>
-    <string name="file_not_found">Lỗi: Không tìm thấy file</string>
-    <string name="reading_file_error">Đã xảy ra lỗi trong khi đọc file</string>
+    <string name="file_not_found">Lỗi: Không tìm thấy tập tin</string>
+    <string name="reading_file_error">Đã xảy ra lỗi trong khi đọc tập tin</string>
     <string name="app_lookup_error">Lỗi: Ứng dụng không được cài đặt</string>
-    <string name="app_version_error">Phiên bản %s không được hỗ trợ. Các phiên bản gần đây đã bắt đầu mã hóa một số file trong thư mục lưu trữ nội bộ, khiến Aegis không thể truy cập thông tin cần thiết để nhập. Việc cố gắng nhập có thể dẫn đến lỗi. Bạn vẫn muốn tiếp tục?</string>
+    <string name="app_version_error">Phiên bản %s không được hỗ trợ. Các phiên bản gần đây đã bắt đầu mã hóa một số tập tin trong thư mục lưu trữ nội bộ, khiến Aegis không thể truy cập thông tin cần thiết để nhập. Việc cố gắng nhập có thể dẫn đến lỗi. Bạn vẫn muốn tiếp tục?</string>
     <string name="root_error">Lỗi: Không thể nhận quyền truy cập root</string>
     <plurals name="imported_entries_count">
         <item quantity="other">Đã nhập %d mục</item>
@@ -293,6 +303,7 @@
     <string name="no_tokens_can_be_imported">Do đó, không thể nhập token nào</string>
     <string name="unlocking_vault">Đang mở khóa kho</string>
     <string name="rename_group">Đổi tên nhóm</string>
+    <string name="no_group_selection">Nếu một mục không thuộc bất kỳ nhóm nào, nó sẽ ở trong \"Chưa có nhóm\".</string>
     <string name="remove_group">Xóa nhãn</string>
     <string name="remove_group_description">Bạn có chắc muốn xóa nhãn này? Các mục trong nhãn này sẽ tự động chuyển thành \"Không nhãn\".</string>
     <string name="remove_unused_groups">Xóa nhãn không dùng</string>
@@ -329,6 +340,7 @@
     <string name="pref_minimize_on_copy_title">Thu nhỏ khi sao chép</string>
     <string name="pref_minimize_on_copy_summary">Thu nhỏ ứng dụng sau khi sao chép một token</string>
     <string name="pref_copy_behavior_title">Sao chép token vào bộ nhớ tạm</string>
+    <string name="pref_search_behavior_title">Hành vi tìm kiếm</string>
     <string name="pref_pause_entry_title">Đóng băng token khi nhấn vào</string>
     <string name="pref_pause_entry_summary">Tạm dừng làm mới tự động các token bằng cách nhấn vào chúng.</string>
     <string name="pin_keyboard_description">Nhập mật khẩu để bật bàn phím mã PIN. Lưu ý rằng việc này chỉ được nếu mật khẩu của bạn chỉ chứa các chữ số</string>
@@ -351,7 +363,7 @@
         <item quantity="other">Aegis không thể nhập %d token. Các token đó sẽ bị bỏ qua. Hãy nhấn \'Chi tiết\' để xem thêm thông tin về các lỗi.</item>
     </plurals>
     <string name="unable_to_process_deeplink">Không thể xử lý deep link</string>
-    <string name="unable_to_read_qrcode_file">Không thể đọc và xử lý mã QR từ file: %s.</string>
+    <string name="unable_to_read_qrcode_file">Không thể đọc và xử lý mã QR từ tập tin: %s.</string>
     <string name="unable_to_process_shared_text">Không thể xử lý văn bản được chia sẻ dưới dạng OTP</string>
     <string name="unable_to_read_qrcode_files">Không thể đọc và xử lý vài mã QR. Chỉ %d/%d mục sẽ được nhập.</string>
     <string name="unable_to_generate_qrcode">Không thể tạo mã QR</string>
@@ -405,7 +417,7 @@
     <string name="backup_reminder_bar_dialog_accept">Thiết lập sao lưu</string>
     <string name="backup_plaintext_export_warning"><b>Kho gần đây đã được xuất ở dạng văn bản thuần</b></string>
     <string name="pref_show_plaintext_warning_hint">Không hiện cảnh báo này nữa</string>
-    <string name="backup_plaintext_warning_explanation">Cảnh báo này xuất hiện vì gần đây bạn đã xuất một bản sao chưa được mã hóa của kho. Để duy trì tính bảo mật cho token, chúng tôi khuyên bạn nên xóa file này khi nó không còn cần thiết nữa.</string>
+    <string name="backup_plaintext_warning_explanation">Cảnh báo này xuất hiện vì gần đây bạn đã xuất một bản sao chưa được mã hóa của kho. Để giữ an toàn mã xác thực của bạn, chúng tôi khuyên bạn nên xóa tập tin này ngay khi bạn không còn cần đến nữa.</string>
     <string name="switch_camera">Đổi camera</string>
     <string name="empty_list">Chưa có mã nào. Hãy bắt đầu thêm bằng cách nhấn vào ký hiệu dấu cộng ở góc dưới bên phải</string>
     <string name="empty_list_title">Chưa có mục nào</string>
@@ -445,7 +457,7 @@
     <string name="title_activity_assign_icons">Gán biểu tượng</string>
     <string name="title_activity_licenses">Giấy phép bên thứ ba</string>
     <string name="dialog_wipe_entries_title">Xóa toàn bộ mục</string>
-    <string name="dialog_wipe_entries_message">Kho của bạn đã chứa các mục. Bạn có muốn xóa các mục đó trước khi nhập tệp này không?\n\n<b>Nếu làm vậy, bạn sẽ vĩnh viễn mất quyền truy cập vào các mục hiện có trong kho.</b></string>
+    <string name="dialog_wipe_entries_message">Kho của bạn đã chứa các mục. Bạn có muốn xóa các mục đó trước khi nhập từ tập tin này không?\n\n<b>Nếu làm vậy, bạn sẽ vĩnh viễn mất quyền truy cập vào các mục hiện có trong kho.</b></string>
     <string name="dialog_wipe_entries_checkbox">Xóa toàn bộ nội dung kho</string>
     <string name="panic_trigger_ignore_toast">Aegis đã nhận kích hoạt khẩn nhưng cài đặt bị tắt, đang bỏ qua</string>
     <string name="pref_panic_trigger_title">Xóa kho khẩn cấp</string>
@@ -455,23 +467,23 @@
     <plurals name="import_duplicate_toast">
         <item quantity="other">Bỏ đánh dấu %d mục khả năng trùng lặp. Vui lòng xem lại danh sách các mục.</item>
     </plurals>
-    <string name="importer_help_2fas">Cung cấp một file sao lưu 2FAS Authenticator.</string>
+    <string name="importer_help_2fas">Cung cấp một tập tin sao lưu 2FAS Authenticator.</string>
     <string name="importer_help_aegis">Cung cấp một file xuất/sao lưu Aegis.</string>
-    <string name="importer_help_authenticator_plus">Cung cấp một file xuất Authenticator Plus được nhận qua <b>Cài đặt -&gt; Sao lưu &amp; Khôi phục -&gt; Xuất dưới dạng Văn bản và HTML</b>.</string>
-    <string name="importer_help_authenticator_pro">Cung cấp file xuất Authenticator Pro có được thông qua <b>Cài đặt -&gt; Sao lưu -&gt; Sao lưu file mã hóa (đề xuất)</b>.</string>
+    <string name="importer_help_authenticator_plus">Cung cấp một tập tin xuất Authenticator Plus được nhận qua <b>Cài đặt -&gt; Sao lưu &amp; Khôi phục -&gt; Xuất dưới dạng Văn bản và HTML</b>.</string>
+    <string name="importer_help_authenticator_pro">Cung cấp tập tin xuất Authenticator Pro có được thông qua <b>Cài đặt -&gt; Sao lưu -&gt; Sao lưu tập tin mã hóa (đề xuất)</b>.</string>
     <string name="importer_help_authy">Cung cấp một bản sao của <b>/data/data/com.authy.authy/shared_prefs/com.authy.storage.tokens.authenticator.xml</b>, nằm trong thư mục bộ nhớ trong của Authy.</string>
-    <string name="importer_help_andotp">Cung cấp một file xuất/sao lưu andOTP.</string>
-    <string name="importer_help_bitwarden">Hãy chọn file xuất/sao lưu của Bitwarden. Tệp mã hoá không được hỗ trợ.</string>
+    <string name="importer_help_andotp">Cung cấp một tập tin xuất/sao lưu andOTP.</string>
+    <string name="importer_help_bitwarden">Hãy chọn tập tin xuất/sao lưu của Bitwarden. Tập tin mã hoá không được hỗ trợ.</string>
     <string name="importer_help_battle_net_authenticator">Cung cấp một bản sao của <b>/data/data/com.blizzard.messenger/shared_prefs/com.blizzard.messenger.authenticator_preferences.xml</b>, nằm trong thư mục bộ nhớ trong của Battle.net Authenticator.</string>
     <string name="importer_help_duo">Cung cấp một bản sao của <b>/data/data/com.duosecurity.duomobile/files/duokit/accounts.json</b>, nằm trong thư mục bộ nhớ trong của DUO.</string>
     <string name="importer_help_freeotp">Cung cấp một bản sao của <b>/data/data/org.fedorahosted.freeotp/shared_prefs/tokens.xml</b>, nằm ở thư mục của FreeOTP (1.x) trên bộ nhớ trong.</string>
-    <string name="importer_help_freeotp_plus">Cung cấp một file xuất FreeOTP+.</string>
-    <string name="importer_help_google_authenticator"><b>Chỉ có file cơ sở dữ liệu từ Google Authenticator v5.10 và cũ hơn mới được hỗ trợ</b>.\n\nHãy lấy bản sao của <b>/data/data/com.google.android.apps.authenticator2/databases/databases</b> ở trong thư mục bộ nhớ trong của Google Authenticator.</string>
+    <string name="importer_help_freeotp_plus">Cung cấp một tập tin xuất FreeOTP+.</string>
+    <string name="importer_help_google_authenticator"><b>Chỉ có tập tin cơ sở dữ liệu từ Google Authenticator v5.10 và cũ hơn mới được hỗ trợ</b>.\n\nHãy lấy bản sao của <b>/data/data/com.google.android.apps.authenticator2/databases/databases</b> ở trong thư mục bộ nhớ trong của Google Authenticator.</string>
     <string name="importer_help_microsoft_authenticator">Cung cấp một bản sao của <b>/data/data/com.azure.authenticator/databases/PhoneFactor</b>, nằm trong thư mục bộ nhớ trong của Microsoft Authenticator.</string>
-    <string name="importer_help_plain_text">Cung cấp một file văn bản thuần có một URI Google Authenticator trên mỗi dòng.</string>
+    <string name="importer_help_plain_text">Cung cấp một tập tin văn bản thuần có một URI Google Authenticator trên mỗi dòng.</string>
     <string name="importer_help_steam"><b>Không hỗ trợ Steam v3.0 trở lên</b>. Cung cấp một bản sao <b>/data/data/com.valvesoftware.android.steam.community/files/Steamguard-*.json</b>, nằm trong thư mục lưu trữ nội bộ của Steam.</string>
-    <string name="importer_help_totp_authenticator">Cung cấp một file xuất TOTP Authenticator.</string>
-    <string name="importer_help_winauth">Cung cấp một file xuất WinAuth.</string>
+    <string name="importer_help_totp_authenticator">Cung cấp một tập tin xuất TOTP Authenticator.</string>
+    <string name="importer_help_winauth">Cung cấp một tập tin xuất WinAuth.</string>
     <string name="import_assign_icons_dialog_title">Gán biểu tượng</string>
     <string name="import_assign_icons_dialog_text">Bạn có chắc muốn gán biểu tượng vào những mục đã nhập?</string>
     <string name="importer_encrypted_exception_google_authenticator">Đã bỏ qua mục mã hoá: %s</string>

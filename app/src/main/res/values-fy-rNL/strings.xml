@@ -46,7 +46,7 @@
     <string name="pref_account_name_position_title">Accountnamme toane</string>
     <string name="pref_shared_issuer_account_name_title">Accountnamme allinnich wannear nedich toane</string>
     <string name="pref_shared_issuer_account_name_summary">Accountnammen allinnich toane wannear’t se deselde útjouwer diele. Oare accountnammen wurde ferstoppe.</string>
-    <string name="pref_account_name_position_summary_override">Dizze ynstelling wurdt oerskreaun troch de tegelwerjeftemodus. Accountnamme wurdt altyd toand ûnder de útjouwer.</string>
+    <string name="pref_account_name_position_summary_override">Dizze ynstelling wurdt oerskreaun troch de werjeftemodus Tegels. Accountnamme wurdt ûnder de útjouwer toand.</string>
     <string name="pref_import_file_title">Ut bestân ymportearje</string>
     <string name="pref_import_file_summary">Tokens fan in bestân út ymportearje</string>
     <string name="pref_android_backups_title">Android cloud-reservekopyen</string>
@@ -63,10 +63,12 @@
     <string name="pref_backups_trigger_title">No in reservekopy meitsje</string>
     <string name="pref_backups_trigger_summary">Hânmjittich in reservekopy meitsje</string>
     <string name="pref_backups_versions_title">Oantal ferzjes om te bewarjen</string>
+    <string name="pref_backups_versions_infinite">\u221E</string>
     <plurals name="pref_backups_versions_summary">
         <item quantity="one">Bewarje %1$d ferzje fan de reservekopy</item>
         <item quantity="other">Bewarje %1$d ferzjes fan de reservekopy</item>
     </plurals>
+    <string name="pref_backups_versions_infinite_summary">Uneinich oantal ferzjes fan de reservekopy bewarje</string>
     <string name="pref_import_app_title">Fan in app út ymportearje</string>
     <string name="pref_import_app_summary">Tokens fan in app út ymportearje (fereasket root-tagong)</string>
     <string name="pref_export_title">Eksportearje</string>
@@ -121,6 +123,7 @@
     <string name="event_title_vault_unlock_failed_biometrics">Klûs ûntskoatteljen mislearre (biometrysk)</string>
     <string name="event_description_vault_unlock_failed_biometrics">In besykjen om de klûs mei in wachtwurd te ûntskoatteljen mei biometryske gegevens is mislearre</string>
     <string name="event_unknown">Unbekend barrenstype</string>
+    <string name="audit_log_entry_deleted">(fuortsmiten)</string>
     <string name="today_at_time">Hjoed om %1$s</string>
     <string name="day_of_week_at_time">%1$s om %2$s</string>
     <string name="export_encrypted">Fersiferje de klûs</string>
@@ -301,6 +304,7 @@
     <string name="no_tokens_can_be_imported">Hjirtroch kinne gjin tokens ymportearre wurde</string>
     <string name="unlocking_vault">Klûs wurdt ûntskoattele</string>
     <string name="rename_group">Groep omneame</string>
+    <string name="no_group_selection">As in item net yn in groep sit, kin dit fûn wurde ûnder ‘Gjin groep’.</string>
     <string name="remove_group">Groep fuortsmite</string>
     <string name="remove_group_description">Bisto wis datsto dizze groep fuortsmite wolst? Alle items binnen dizze groep wurde automatysk ferpleatst nei ‘Gjin groep’.</string>
     <string name="remove_unused_groups">Net brûkte groepen fuortsmite</string>

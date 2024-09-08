@@ -42,7 +42,6 @@
     <string name="pref_account_name_position_title">アカウント名を表示</string>
     <string name="pref_shared_issuer_account_name_title">必要に応じてアカウント名のみ表示</string>
     <string name="pref_shared_issuer_account_name_summary">同じ発行者を共有するたびにアカウント名のみを表示します。他のアカウント名は非表示になります。</string>
-    <string name="pref_account_name_position_summary_override">この設定はタイル表示モードで上書きされています。アカウント名は常に発行者の下に表示されます。</string>
     <string name="pref_import_file_title">ファイルからインポート</string>
     <string name="pref_import_file_summary">ファイルからトークンをインポート</string>
     <string name="pref_android_backups_title">Androidクラウドバックアップ</string>

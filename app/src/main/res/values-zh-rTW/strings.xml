@@ -33,6 +33,7 @@
     <string name="pref_section_icon_packs">圖示合輯</string>
     <string name="pref_section_icon_packs_summary">管理與匯入圖示合輯</string>
     <string name="pref_select_theme_title">主題</string>
+    <string name="pref_dynamic_colors_summary">基於您的 Android 主題配色設定程式配色</string>
     <string name="pref_view_mode_title">檢視模式</string>
     <string name="pref_lang_title">語言</string>
     <string name="pref_show_icons_title">顯示圖示</string>
@@ -42,7 +43,6 @@
     <string name="pref_account_name_position_title">顯示帳戶名稱</string>
     <string name="pref_shared_issuer_account_name_title">只在必要時顯示帳戶名稱</string>
     <string name="pref_shared_issuer_account_name_summary">只顯示擁有共同發行者的帳戶名稱（並隱藏其他帳戶名稱）</string>
-    <string name="pref_account_name_position_summary_override">本項設定將被「條列式顯示模式」覆蓋，帳戶名稱將總是在發行者之下顯示。</string>
     <string name="pref_import_file_title">從檔案匯入</string>
     <string name="pref_import_file_summary">從檔案匯入憑證</string>
     <string name="pref_android_backups_title">Android 雲端備份</string>
@@ -97,6 +97,13 @@
     <string name="pref_biometrics_summary">允許使用生物特徵辨識驗證來解鎖保險箱</string>
     <string name="pref_set_password_title">變更密碼</string>
     <string name="pref_set_password_summary">為保險箱設定新解鎖密碼</string>
+    <string name="event_title_vault_unlocked">保險箱已解鎖</string>
+    <string name="event_description_vault_unlocked">保險箱已成功解鎖</string>
+    <string name="event_title_backup_created">備份已建立</string>
+    <string name="event_description_backup_created">保險箱備份已成功建立</string>
+    <string name="event_title_android_backup_created">備份已由 Android 建立</string>
+    <string name="event_description_android_backup_created">保險箱備份已由 Android 成功建立</string>
+    <string name="today_at_time">今天 %1$s</string>
     <string name="export_encrypted">加密保險箱</string>
     <string name="export_help">此動作將保險箱從 Aegis 的內部儲存空間裡匯出，請選擇欲匯出的格式：</string>
     <string name="export_warning_unencrypted">即將匯出未加密的 Aegis 保險箱。<b>不建議</b>。</string>
@@ -307,6 +314,7 @@
     <string name="unknown_issuer">未知的服務商</string>
     <string name="unknown_account_name">未知帳戶</string>
     <string name="unable_to_read_qrcode_file">無法從 %s 檔案讀取和處理QR碼</string>
+    <string name="unable_to_process_shared_text">無法將共用文本作為 OTP 進行處理</string>
     <string name="unable_to_generate_qrcode">無法產生QR碼</string>
     <string name="select_picture">選擇圖片</string>
     <string name="select_icon">選擇圖示</string>
@@ -346,6 +354,8 @@
     </string>
     <string name="backup_system_builtin">Aegis 內建的自動備份</string>
     <string name="backup_system_android">Android 雲端備份</string>
+    <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">        最新的備份已過時 (%s)    
+    </string>
     <string name="backup_reminder_bar_dialog_summary">        尚未備份最近針對保險箱的操作。週期性的備份是避免遺失登入方法的最佳良方。請考慮在設定選單內啟用自動備份。
     </string>
     <string name="backup_reminder_bar_dialog_accept">設置備份</string>

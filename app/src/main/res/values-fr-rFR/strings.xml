@@ -46,7 +46,7 @@
     <string name="pref_account_name_position_title">Afficher le nom de compte</string>
     <string name="pref_shared_issuer_account_name_title">Afficher le nom de compte seulement si nécessaire</string>
     <string name="pref_shared_issuer_account_name_summary">Afficher les noms de compte seulement lorsqu\'ils partagent le même émetteur. Les autres noms de compte seront masqués.</string>
-    <string name="pref_account_name_position_summary_override">Ce paramètre est remplacé par le mode d\'affichage des tuiles. Le nom de compte sera toujours affiché sous l\'émetteur.</string>
+    <string name="pref_account_name_position_summary_override">Ce paramètre est remplacé par le mode d\'affichage par tuiles. Le nom de compte sera affiché sous l\'émetteur.</string>
     <string name="pref_import_file_title">Importer depuis un fichier</string>
     <string name="pref_import_file_summary">Importer des jetons depuis un fichier</string>
     <string name="pref_android_backups_title">Sauvegardes cloud d\'Android</string>
@@ -63,10 +63,12 @@
     <string name="pref_backups_trigger_title">Déclencher la sauvegarde</string>
     <string name="pref_backups_trigger_summary">Déclencher manuellement une sauvegarde</string>
     <string name="pref_backups_versions_title">Nombre de versions à conserver</string>
+    <string name="pref_backups_versions_infinite">\u221E</string>
     <plurals name="pref_backups_versions_summary">
         <item quantity="one">Conserver %1$d version de la sauvegarde</item>
         <item quantity="other">Conserver %1$d versions de la sauvegarde</item>
     </plurals>
+    <string name="pref_backups_versions_infinite_summary">Conserver un nombre infini de versions de la sauvegarde</string>
     <string name="pref_import_app_title">Importer depuis une application</string>
     <string name="pref_import_app_summary">Importer des jetons depuis une application (nécessite un accès root)</string>
     <string name="pref_export_title">Exporter</string>
@@ -102,6 +104,12 @@
     <string name="pref_encryption_summary">Chiffrer le coffre-fort et le déverrouiller avec un mot de passe ou la biométrie</string>
     <string name="pref_biometrics_title">Déverrouillage biométrique</string>
     <string name="pref_biometrics_summary">Autoriser l\'authentification biométrique pour déverrouiller le coffre-fort</string>
+    <string name="pref_search_behavior_summary">Recherchez par : %s</string>
+    <string name="pref_search_behavior_prompt">Rechercher dans l\'un des champs suivants</string>
+    <string name="pref_search_behavior_type_name">Nom</string>
+    <string name="pref_search_behavior_type_issuer">Émetteur</string>
+    <string name="pref_search_behavior_type_note">Note</string>
+    <string name="pref_search_behavior_type_groups">Groupes</string>
     <string name="pref_set_password_title">Changer le mot de passe</string>
     <string name="pref_set_password_summary">Définir un nouveau mot de passe dont vous aurez besoin pour déverrouiller votre coffre-fort</string>
     <string name="no_events_title">Aucun événement signalé</string>
@@ -121,6 +129,7 @@
     <string name="event_title_vault_unlock_failed_biometrics">Le déverrouillage du coffre-fort a échoué (données biométriques)</string>
     <string name="event_description_vault_unlock_failed_biometrics">Une tentative de déverrouillage du coffre-fort avec des données biométriques a échoué</string>
     <string name="event_unknown">Type d\'événement inconnu</string>
+    <string name="audit_log_entry_deleted">(supprimé)</string>
     <string name="today_at_time">Ajourd\'hui à %1$s</string>
     <string name="day_of_week_at_time">%1$s à %2$s</string>
     <string name="export_encrypted">Chiffrer le coffre-fort</string>
@@ -301,6 +310,7 @@
     <string name="no_tokens_can_be_imported">Aucun jeton ne peut être importé en conséquence</string>
     <string name="unlocking_vault">Déverrouillage du coffre-fort</string>
     <string name="rename_group">Renommer le groupe</string>
+    <string name="no_group_selection">Si une entrée ne fait partie d\'aucun groupe, elle peut être trouvée sous \"Aucun groupe\".</string>
     <string name="remove_group">Supprimer groupe</string>
     <string name="remove_group_description">Êtes-vous sûr de vouloir supprimer ce groupe ? Les entrées dans ce groupe seront basculées automatiquement dans \"Aucun groupe\".</string>
     <string name="remove_unused_groups">Supprimer les groupes inutilisés</string>
@@ -337,6 +347,7 @@
     <string name="pref_minimize_on_copy_title">Minimiser lors de la copie</string>
     <string name="pref_minimize_on_copy_summary">Minimiser l\'application après avoir copié un jeton</string>
     <string name="pref_copy_behavior_title">Copier les jetons dans le presse-papier</string>
+    <string name="pref_search_behavior_title">Comportement de recherche</string>
     <string name="pref_pause_entry_title">Geler les jetons lorsqu\'ils sont appuyés</string>
     <string name="pref_pause_entry_summary">Mettre en pause l\'actualisation automatique des jetons en appuyant dessus. Les jetons ne seront plus mis à jour tant qu\'ils seront ciblés. Nécessite « Surligner les jetons lorsqu\'ils sont appuyés » ou « Appuyer pour révéler ».</string>
     <string name="pin_keyboard_description">Saisissez votre mot de passe pour activer le clavier PIN. Notez que cela ne fonctionne que si votre mot de passe est composé uniquement de chiffres</string>

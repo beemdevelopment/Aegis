@@ -44,7 +44,6 @@
     <string name="pref_account_name_position_title">Mostra il nome dell\'account</string>
     <string name="pref_shared_issuer_account_name_title">Mostra il nome dell\'account solo se necessario</string>
     <string name="pref_shared_issuer_account_name_summary">Mostra i nomi degli account quando condividono lo stesso servizio. I nomi degli altri account verranno nascosti.</string>
-    <string name="pref_account_name_position_summary_override">Questa impostazione è sovrascritta dalla visualizzazione a schede. Il nome dell\'account verrà sempre mostrato sotto al servizio.</string>
     <string name="pref_import_file_title">Importa da un file</string>
     <string name="pref_import_file_summary">Importa i token da un file</string>
     <string name="pref_android_backups_title">Backup cloud di Android</string>

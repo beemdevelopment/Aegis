@@ -46,7 +46,7 @@
     <string name="pref_account_name_position_title">Mostrar el nombre de la cuenta</string>
     <string name="pref_shared_issuer_account_name_title">Solo mostrar nombres de cuenta necesarios</string>
     <string name="pref_shared_issuer_account_name_summary">Mostrar nombres de cuenta solo cuando compartan el mismo emisor. Se ocultarán otros nombres de cuenta.</string>
-    <string name="pref_account_name_position_summary_override">Este ajuste no tiene efecto cuando aparecen en recuadros; el nombre de la cuenta siempre se mostrará debajo del emisor.</string>
+    <string name="pref_account_name_position_summary_override">Este ajuste no tiene efecto cuando aparecen en recuadros; el nombre de la cuenta se mostrará debajo del emisor.</string>
     <string name="pref_import_file_title">Importar desde un archivo</string>
     <string name="pref_import_file_summary">Importa tus claves desde un archivo</string>
     <string name="pref_android_backups_title">Copias de seguridad en la nube de Android</string>
@@ -63,10 +63,12 @@
     <string name="pref_backups_trigger_title">Lanzar una copia de seguridad</string>
     <string name="pref_backups_trigger_summary">Lanzar una copia de seguridad manualmente</string>
     <string name="pref_backups_versions_title">Número de versiones a conservar</string>
+    <string name="pref_backups_versions_infinite">\u221E</string>
     <plurals name="pref_backups_versions_summary">
         <item quantity="one">Conservar %1$d versión de la copia de seguridad</item>
         <item quantity="other">Conservar %1$d versiones de la copia de seguridad</item>
     </plurals>
+    <string name="pref_backups_versions_infinite_summary">No borrar ninguna copia de seguridad antigua</string>
     <string name="pref_import_app_title">Importar desde una aplicación</string>
     <string name="pref_import_app_summary">Importa tus claves desde una aplicación (mediante superusuario o «root»)</string>
     <string name="pref_export_title">Exportar</string>
@@ -102,6 +104,12 @@
     <string name="pref_encryption_summary">Cifra la bóveda y la desbloquea mediante una contraseña o biometría</string>
     <string name="pref_biometrics_title">Desbloqueo biométrico</string>
     <string name="pref_biometrics_summary">Permite la autenticación biométrica para desbloquear la bóveda</string>
+    <string name="pref_search_behavior_summary">Campos a buscar: %s</string>
+    <string name="pref_search_behavior_prompt">Incluir los datos de estos campos en tus búsquedas</string>
+    <string name="pref_search_behavior_type_name">Nombre</string>
+    <string name="pref_search_behavior_type_issuer">Emisor</string>
+    <string name="pref_search_behavior_type_note">Notas</string>
+    <string name="pref_search_behavior_type_groups">Grupos</string>
     <string name="pref_set_password_title">Cambiar contraseña</string>
     <string name="pref_set_password_summary">Crea una nueva contraseña que necesitarás para desbloquear tu bóveda</string>
     <string name="no_events_title">No parece haber ningún cambio</string>
@@ -121,6 +129,7 @@
     <string name="event_title_vault_unlock_failed_biometrics">Hubo un fallo al desbloquear la bóveda (biometría)</string>
     <string name="event_description_vault_unlock_failed_biometrics">Hubo un intento fallido al utilizar el desbloqueo biométrico</string>
     <string name="event_unknown">Tipo de evento desconocido</string>
+    <string name="audit_log_entry_deleted">(borrado)</string>
     <string name="today_at_time">Hoy a las %1$s</string>
     <string name="day_of_week_at_time">%1$s a las %2$s</string>
     <string name="export_encrypted">Cifrar la bóveda</string>
@@ -301,6 +310,7 @@
     <string name="no_tokens_can_be_imported">Como consecuencia no se pudo importar ninguna de las claves</string>
     <string name="unlocking_vault">Desbloqueando la bóveda</string>
     <string name="rename_group">Renombrar grupo</string>
+    <string name="no_group_selection">El resto de elementos que no hayas asignado apareceran como «Sin agrupar».</string>
     <string name="remove_group">Eliminar grupo</string>
     <string name="remove_group_description">¿Seguro que quieres borrar este grupo? Sus elementos se moverán automáticamente a «Sin grupo».</string>
     <string name="remove_unused_groups">Eliminar grupos no utilizados</string>
@@ -337,6 +347,7 @@
     <string name="pref_minimize_on_copy_title">Minimizar al copiar</string>
     <string name="pref_minimize_on_copy_summary">Minimiza la aplicación tras copiar claves</string>
     <string name="pref_copy_behavior_title">Copiar claves en el portapapeles</string>
+    <string name="pref_search_behavior_title">Comportamiento de búsqueda</string>
     <string name="pref_pause_entry_title">Congelar claves al tocarlas</string>
     <string name="pref_pause_entry_summary">Pausa la recarga automática de las claves al tocarlas, por lo que no irán cambiando según expiran. Es necesario que también actives «Resaltar códigos al pulsar» o «Pulsar para mostrar».</string>
     <string name="pin_keyboard_description">Escribe tu contraseña para activar el teclado PIN. Ten en cuenta que esto solo funciona si tu contraseña son todo números</string>

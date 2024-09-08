@@ -46,7 +46,7 @@
     <string name="pref_account_name_position_title">Zobrazit název účtu</string>
     <string name="pref_shared_issuer_account_name_title">Název účtu zobrazit pouze v případě potřeby</string>
     <string name="pref_shared_issuer_account_name_summary">Názvy účtů zobrazit pouze, pokud mají stejného poskytovatele. Ostatní názvy účtů budou skryty.</string>
-    <string name="pref_account_name_position_summary_override">Toto nastavení je přepsáno režimem zobrazení názvů. Název účtu bude vždy zobrazen pod poskytovatelem.</string>
+    <string name="pref_account_name_position_summary_override">Toto nastavení je přepsáno režimem zobrazení dlaždic. Název účtu bude zobrazen pod poskytovatelem.</string>
     <string name="pref_import_file_title">Importovat ze souboru</string>
     <string name="pref_import_file_summary">Importovat tokeny ze souboru</string>
     <string name="pref_android_backups_title">Cloudové zálohování systému Android</string>
@@ -63,12 +63,14 @@
     <string name="pref_backups_trigger_title">Spustit zálohování</string>
     <string name="pref_backups_trigger_summary">Ručně spustit zálohování</string>
     <string name="pref_backups_versions_title">Počet verzí k uchování</string>
+    <string name="pref_backups_versions_infinite">\u221E</string>
     <plurals name="pref_backups_versions_summary">
         <item quantity="one">Uchovat %1$d verzi zálohy</item>
         <item quantity="few">Uchovat %1$d verze zálohy</item>
         <item quantity="many">Uchovat %1$d verzí zálohy</item>
         <item quantity="other">Uchovat %1$d verzí zálohy</item>
     </plurals>
+    <string name="pref_backups_versions_infinite_summary">Ponechat nekonečný počet verzí zálohy</string>
     <string name="pref_import_app_title">Importovat z aplikace</string>
     <string name="pref_import_app_summary">Importovat tokeny z aplikace (vyžaduje root přístup)</string>
     <string name="pref_export_title">Exportovat</string>
@@ -106,6 +108,12 @@
     <string name="pref_encryption_summary">Šifrovat trezor a odemykat jej pomocí hesla, nebo biometrie</string>
     <string name="pref_biometrics_title">Biometrické odemknutí</string>
     <string name="pref_biometrics_summary">Povolit biometrické ověření pro odemčení trezoru</string>
+    <string name="pref_search_behavior_summary">Hledat v: %s</string>
+    <string name="pref_search_behavior_prompt">Hledat ve kterémkoli z následujících polí</string>
+    <string name="pref_search_behavior_type_name">Název</string>
+    <string name="pref_search_behavior_type_issuer">Vydavatel</string>
+    <string name="pref_search_behavior_type_note">Poznámka</string>
+    <string name="pref_search_behavior_type_groups">Skupiny</string>
     <string name="pref_set_password_title">Změnit heslo</string>
     <string name="pref_set_password_summary">Nastavení nového hesla potřebného pro odemčení trezoru</string>
     <string name="no_events_title">Žádné nahlášené události</string>
@@ -125,6 +133,7 @@
     <string name="event_title_vault_unlock_failed_biometrics">Odemčení trezoru selhalo (biometrika)</string>
     <string name="event_description_vault_unlock_failed_biometrics">Pokus o odemknutí trezoru pomocí biometriky se nezdařil</string>
     <string name="event_unknown">Neznámý typ události</string>
+    <string name="audit_log_entry_deleted">(odstraněno)</string>
     <string name="today_at_time">Dnes v %1$s</string>
     <string name="day_of_week_at_time">%1$s v %2$s</string>
     <string name="export_encrypted">Šifrovat trezor</string>
@@ -317,6 +326,7 @@
     <string name="no_tokens_can_be_imported">Nebyly importovány žádné tokeny</string>
     <string name="unlocking_vault">Odemykání trezoru</string>
     <string name="rename_group">Přejmenovat skupinu</string>
+    <string name="no_group_selection">Pokud není záznam součástí žádné skupiny, najdete jej v kategorii „Žádná skupina“.</string>
     <string name="remove_group">Odstranit skupinu</string>
     <string name="remove_group_description">Opravdu chcete odstranit tuto skupinu? Záznamy z ní budou automaticky přemístěny do „Žádná skupina“.</string>
     <string name="remove_unused_groups">Odstranit nepoužívané skupiny</string>
@@ -353,6 +363,7 @@
     <string name="pref_minimize_on_copy_title">Minimalizovat při kopírování</string>
     <string name="pref_minimize_on_copy_summary">Minimalizovat aplikaci po zkopírování tokenu</string>
     <string name="pref_copy_behavior_title">Zkopírovat tokeny do schránky</string>
+    <string name="pref_search_behavior_title">Chování vyhledávání</string>
     <string name="pref_pause_entry_title">Zmrazit tokeny po klepnutí</string>
     <string name="pref_pause_entry_summary">Pozastavit automatické obnovování tokenů klepnutím na ně. Tokeny nebudou aktualizovány, dokud jsou zaměřeny. Vyžaduje \"Zvýraznit tokeny po klepnutí\" nebo \"Klepnutím zobrazit\".</string>
     <string name="pin_keyboard_description">Zadejte své heslo pro povolení PIN klávesnice. Toto funguje jen pokud používáte číselné heslo.</string>
@@ -368,7 +379,7 @@
     <string name="normal_viewmode_title">Normální</string>
     <string name="compact_mode_title">Kompaktní</string>
     <string name="small_mode_title">Malý</string>
-    <string name="tiles_mode_title">Názvy</string>
+    <string name="tiles_mode_title">Dlaždice</string>
     <string name="unknown_issuer">Neznámý poskytovatel</string>
     <string name="unknown_account_name">Neznámý název účtu</string>
     <plurals name="import_error_dialog">

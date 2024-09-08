@@ -46,7 +46,7 @@
     <string name="pref_account_name_position_title">Εμφάνιση του ονόματος λογαριασμού</string>
     <string name="pref_shared_issuer_account_name_title">Εμφάνιση ονόματος λογαριασμού μόνο όταν είναι απαραίτητο</string>
     <string name="pref_shared_issuer_account_name_summary">Εμφάνιση μόνο ονομάτων λογαριασμών κάθε φορά που μοιράζονται τον ίδιο εκδότη. Άλλα ονόματα λογαριασμών θα αποκρύπτονται.</string>
-    <string name="pref_account_name_position_summary_override">Αυτή η ρύθμιση αντικαθίσταται από τη λειτουργία προβολής πλακιδίων. Το όνομα λογαριασμού θα εμφανίζεται πάντα κάτω από τον εκδότη.</string>
+    <string name="pref_account_name_position_summary_override">Αυτή η ρύθμιση αντικαθίσταται από τη λειτουργία προβολής πλακιδίων. Το όνομα λογαριασμού θα εμφανίζεται κάτω από τον εκδότη.</string>
     <string name="pref_import_file_title">Εισαγωγή από αρχείο</string>
     <string name="pref_import_file_summary">Εισαγωγή αναγνωριστικών από αρχείο</string>
     <string name="pref_android_backups_title">Αντίγραφα ασφαλείας cloud Android</string>
@@ -63,10 +63,12 @@
     <string name="pref_backups_trigger_title">\'Εναυσμα αντιγράφου ασφαλείας</string>
     <string name="pref_backups_trigger_summary">Χειροκίνητη ενεργοποίηση δημιουργίας αντιγράφου ασφαλείας</string>
     <string name="pref_backups_versions_title">Αριθμός εκδόσεων που θα κρατηθούν</string>
+    <string name="pref_backups_versions_infinite">\u221E</string>
     <plurals name="pref_backups_versions_summary">
         <item quantity="one">Διατηρήστε την %1$d έκδοση του αντιγράφου ασφαλείας</item>
         <item quantity="other">Διατηρήστε τις %1$d εκδόσεις του αντιγράφου ασφαλείας</item>
     </plurals>
+    <string name="pref_backups_versions_infinite_summary">Διατηρήστε έναν άπειρο αριθμό εκδόσεων του αντιγράφου ασφαλείας</string>
     <string name="pref_import_app_title">Εισαγωγή από εφαρμογή</string>
     <string name="pref_import_app_summary">Εισαγωγή αναγνωριστικών από εφαρμογή (απαιτείται πρόσβαση root)</string>
     <string name="pref_export_title">Εξαγωγή</string>
@@ -102,6 +104,12 @@
     <string name="pref_encryption_summary">Κρυπτογράφηση της κρύπτης και ξεκλείδωμα με κωδικό ή βιομετρία</string>
     <string name="pref_biometrics_title">Βιομετρικό ξεκλείδωμα</string>
     <string name="pref_biometrics_summary">Αποδοχή βιομετρικής πιστοποίησης για να ξεκλειδώσετε την κρύπτη</string>
+    <string name="pref_search_behavior_summary">Αναζήτηση μέσω: %s</string>
+    <string name="pref_search_behavior_prompt">Αναζήτηση σε οποιοδήποτε από τα ακόλουθα πεδία</string>
+    <string name="pref_search_behavior_type_name">Όνομα</string>
+    <string name="pref_search_behavior_type_issuer">Εκδότης</string>
+    <string name="pref_search_behavior_type_note">Σημείωση</string>
+    <string name="pref_search_behavior_type_groups">Ομάδες</string>
     <string name="pref_set_password_title">Αλλαγή κωδικού</string>
     <string name="pref_set_password_summary">Ορισμός νέου κωδικού που θα χρειαστεί για να ξεκλειδώσετε την κρύπτης σας</string>
     <string name="no_events_title">Δεν έχουν αναφερθεί συμβάντα</string>
@@ -121,6 +129,7 @@
     <string name="event_title_vault_unlock_failed_biometrics">Το ξεκλείδωμα της κρύπτης απέτυχε (βιομετρικά)</string>
     <string name="event_description_vault_unlock_failed_biometrics">Αποτυχία προσπάθειας ξεκλειδώματος της κρύπτης με βιομετρικά στοιχεία</string>
     <string name="event_unknown">Άγνωστος τύπος συμβάντος</string>
+    <string name="audit_log_entry_deleted">(διαγράφηκε)</string>
     <string name="today_at_time">Σήμερα στις %1$s</string>
     <string name="day_of_week_at_time">%1$s στις %2$s</string>
     <string name="export_encrypted">Κρυπτογράφηση κρύπτης</string>
@@ -301,6 +310,7 @@
     <string name="no_tokens_can_be_imported">Ως αποτέλεσμα, δεν μπορούν να εισαχθούν αναγνωστικά</string>
     <string name="unlocking_vault">Ξεκλείδωμα κρύπτης</string>
     <string name="rename_group">Μετονομασία Ομάδας</string>
+    <string name="no_group_selection">Εάν μια καταχώρηση δεν αποτελεί μέρος οποιασδήποτε ομάδας, μπορεί να βρεθεί στο \"Χωρίς ομάδα\".</string>
     <string name="remove_group">Κατάργηση ομάδας</string>
     <string name="remove_group_description">Είστε βέβαιοι ότι θέλετε να καταργήσετε αυτήν την ομάδα; Οι καταχωρίσεις σε αυτήν θα μεταβούν αυτόματα στο \"Χωρίς ομάδα\".</string>
     <string name="remove_unused_groups">Διαγραφή αχρησιμοποίητων ομάδων</string>
@@ -337,6 +347,7 @@
     <string name="pref_minimize_on_copy_title">Ελαχιστοποίηση κατά την αντιγραφή</string>
     <string name="pref_minimize_on_copy_summary">Ελαχιστοποίηση της εφαρμογής μετά την αντιγραφή ενός αναγνωριστικού</string>
     <string name="pref_copy_behavior_title">Αντιγραφή αναγνωριστικών στο πρόχειρο</string>
+    <string name="pref_search_behavior_title">Συμπεριφορά αναζήτησης</string>
     <string name="pref_pause_entry_title">Πάγωμα αναγνωριστικών όταν πατηθούν</string>
     <string name="pref_pause_entry_summary">Παύση της αυτόματης ανανέωσης των αναγνωριστικών πατώντας τα. Τα αναγνωριστικά δεν θα ενημερώνονται όσο είναι συγκεντρωμένα. Απαιτεί \"Επισήμανση αναγνωριστικών όταν πατηθούν\" ή \"Πατήστε για αποκάλυψη\".</string>
     <string name="pin_keyboard_description">Εισαγάγετε τον κωδικό πρόσβασής σας για να ενεργοποιήσετε το πληκτρολόγιο PIN. Λάβετε υπόψη ότι αυτό λειτουργεί μόνο εάν ο κωδικός πρόσβασής σας αποτελείται μόνο από αριθμούς</string>

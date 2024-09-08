@@ -46,7 +46,7 @@
     <string name="pref_account_name_position_title">Mostra el nom del compte</string>
     <string name="pref_shared_issuer_account_name_title">Mostra el nom del compte només quan sigui necessari</string>
     <string name="pref_shared_issuer_account_name_summary">Mostra el nom de compte només quan es comparteixi el mateix emissor. Altres noms de compte estaran ocults.</string>
-    <string name="pref_account_name_position_summary_override">S\'omet aquesta configuració en usar la visualització en mosaic. Els noms de compte es mostraran sempre a sota de l\'emissor.</string>
+    <string name="pref_account_name_position_summary_override">S\'omet aquesta configuració en usar la visualització en mosaic. Els noms de compte es mostraran a sota de l\'emissor.</string>
     <string name="pref_import_file_title">Importa des d\'un fitxer</string>
     <string name="pref_import_file_summary">Importar fitxes des d\'un fitxer</string>
     <string name="pref_android_backups_title">Copies al núvol d\'Android</string>
@@ -63,10 +63,12 @@
     <string name="pref_backups_trigger_title">Disparador de còpia</string>
     <string name="pref_backups_trigger_summary">Llançar còpia manualment</string>
     <string name="pref_backups_versions_title">Nombre de versions a mantenir</string>
+    <string name="pref_backups_versions_infinite">\u221E</string>
     <plurals name="pref_backups_versions_summary">
         <item quantity="one">Mantindre %1$d versions a la còpia</item>
         <item quantity="other">Mantindre %1$d versions a la còpia</item>
     </plurals>
+    <string name="pref_backups_versions_infinite_summary">Mantén un nombre infinit de versions de la còpia de seguretat</string>
     <string name="pref_import_app_title">Importar des d\'app</string>
     <string name="pref_import_app_summary">Importar fitxes des d\'una aplicació (cal root)</string>
     <string name="pref_export_title">Exporta</string>
@@ -102,6 +104,12 @@
     <string name="pref_encryption_summary">Xifra la caixa forta i desbloqueja-la amb contrasenya o biomètrics</string>
     <string name="pref_biometrics_title">Desbloqueig biomètric</string>
     <string name="pref_biometrics_summary">Permet l\'autenticació biomètrica per a desbloquejar la caixa forta</string>
+    <string name="pref_search_behavior_summary">Busca a: %s</string>
+    <string name="pref_search_behavior_prompt">Buscar en qualsevol d\'aquests camps</string>
+    <string name="pref_search_behavior_type_name">Nom</string>
+    <string name="pref_search_behavior_type_issuer">Emissor</string>
+    <string name="pref_search_behavior_type_note">Nota</string>
+    <string name="pref_search_behavior_type_groups">Grups</string>
     <string name="pref_set_password_title">Canvia la contrasenya</string>
     <string name="pref_set_password_summary">Defineix una nova contrasenya per a desbloquejar la caixa forta</string>
     <string name="no_events_title">Cap esdeveniment registrat</string>
@@ -121,6 +129,7 @@
     <string name="event_title_vault_unlock_failed_biometrics">No s\'ha pogut desbloquejar la volta (dades biomètriques)</string>
     <string name="event_description_vault_unlock_failed_biometrics">Hi ha hagut un intent de desbloquejar la volta amb dades biomètriques incorrectes</string>
     <string name="event_unknown">Tipus d\'esdeveniment desconegut</string>
+    <string name="audit_log_entry_deleted">(esborrat)</string>
     <string name="today_at_time">Avui a les %1$s</string>
     <string name="day_of_week_at_time">%1$s a les %2$s</string>
     <string name="export_encrypted">Xifra la caixa forta</string>
@@ -301,6 +310,7 @@
     <string name="no_tokens_can_be_imported">Com a resultat, no es poden importar tokens</string>
     <string name="unlocking_vault">Desbloquejant la caixa forta</string>
     <string name="rename_group">Canvia el nom del grup</string>
+    <string name="no_group_selection">Si una entrada no pertany a cap grup, es podrà trobar a \"Sense grup\".</string>
     <string name="remove_group">Elimina el grup</string>
     <string name="remove_group_description">Segur que vols eliminar aquest grup? Les entrades canviaran automàticament a \"Sense grup\".</string>
     <string name="remove_unused_groups">Esborrar grups no utilitzats</string>
@@ -337,6 +347,7 @@
     <string name="pref_minimize_on_copy_title">Minimitzar al copiar</string>
     <string name="pref_minimize_on_copy_summary">Minimitzar l\'aplicació després de copiar una fitxa</string>
     <string name="pref_copy_behavior_title">Copia les fitxes al porta-retalls</string>
+    <string name="pref_search_behavior_title">Comportament de la cerca</string>
     <string name="pref_pause_entry_title">Congela la fitxa al tocar</string>
     <string name="pref_pause_entry_summary">Pausa l\'actualització automàtica de la fitxa al tocar-la. No s\'actualitzará mentre estigui marcada. Cal tenir \"Il·lumina les fitxes al tocar\" o \"Toca per a mostrar\".</string>
     <string name="pin_keyboard_description">Introdueix la teva contrasenya per a activar el teclat PIN. Això només funcionarà si la contrasenya només té dígits</string>

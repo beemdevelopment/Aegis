@@ -46,7 +46,7 @@
     <string name="pref_account_name_position_title">显示账户名称</string>
     <string name="pref_shared_issuer_account_name_title">仅在必要时显示账户名</string>
     <string name="pref_shared_issuer_account_name_summary">仅在多项具有相同颁发者时显示账户名。隐藏其他账户名。</string>
-    <string name="pref_account_name_position_summary_override">此设置被瓷贴视图模式覆盖。账户名将始终显示在发行者下方。</string>
+    <string name="pref_account_name_position_summary_override">此设置被瓷贴视图模式覆盖。账户名将显示在发行者下方。</string>
     <string name="pref_import_file_title">从文件导入</string>
     <string name="pref_import_file_summary">从文件导入令牌</string>
     <string name="pref_android_backups_title">Android 云备份</string>
@@ -63,9 +63,11 @@
     <string name="pref_backups_trigger_title">触发备份</string>
     <string name="pref_backups_trigger_summary">手动触发备份</string>
     <string name="pref_backups_versions_title">要保留的版本数</string>
+    <string name="pref_backups_versions_infinite">\u221E</string>
     <plurals name="pref_backups_versions_summary">
         <item quantity="other">保留 %1$d 个版本备份</item>
     </plurals>
+    <string name="pref_backups_versions_infinite_summary">备份版本无限量保留</string>
     <string name="pref_import_app_title">从应用导入</string>
     <string name="pref_import_app_summary">从其他应用导入令牌（需要 root 权限）</string>
     <string name="pref_export_title">导出</string>
@@ -100,6 +102,12 @@
     <string name="pref_encryption_summary">加密数据库，并在解锁时要求密码或生物识别验证。</string>
     <string name="pref_biometrics_title">生物识别解锁</string>
     <string name="pref_biometrics_summary">通过生物识别验证来解锁数据库</string>
+    <string name="pref_search_behavior_summary">搜索方式：%s</string>
+    <string name="pref_search_behavior_prompt">搜索下列任意字段</string>
+    <string name="pref_search_behavior_type_name">名称</string>
+    <string name="pref_search_behavior_type_issuer">颁发者</string>
+    <string name="pref_search_behavior_type_note">备注</string>
+    <string name="pref_search_behavior_type_groups">分组</string>
     <string name="pref_set_password_title">更改密码</string>
     <string name="pref_set_password_summary">设置解锁数据库所需的新密码</string>
     <string name="no_events_title">没有报告的事件</string>
@@ -119,6 +127,7 @@
     <string name="event_title_vault_unlock_failed_biometrics">密码库解锁失败 (生物特征)</string>
     <string name="event_description_vault_unlock_failed_biometrics">尝试用生物特征解锁保险库失败</string>
     <string name="event_unknown">未知事件类型</string>
+    <string name="audit_log_entry_deleted">(已删除)</string>
     <string name="today_at_time">今天 %1$s</string>
     <string name="day_of_week_at_time">%2$s 的 %1$s</string>
     <string name="export_encrypted">加密数据库</string>
@@ -293,6 +302,7 @@
     <string name="no_tokens_can_be_imported">没有可导入的令牌</string>
     <string name="unlocking_vault">解锁数据库</string>
     <string name="rename_group">重命名组</string>
+    <string name="no_group_selection">不在任何组中的条目会出现在“无分组”中。</string>
     <string name="remove_group">删除分组</string>
     <string name="remove_group_description">您确定要删除这个分组吗？此分组内的条目将自动移动到“无分组”。</string>
     <string name="remove_unused_groups">删除未使用的组</string>
@@ -329,6 +339,7 @@
     <string name="pref_minimize_on_copy_title">复制时最小化</string>
     <string name="pref_minimize_on_copy_summary">复制令牌后最小化应用</string>
     <string name="pref_copy_behavior_title">复制令牌到剪贴板</string>
+    <string name="pref_search_behavior_title">搜索行为</string>
     <string name="pref_pause_entry_title">轻按冻结令牌</string>
     <string name="pref_pause_entry_summary">通过轻按令牌来暂停它们的自动刷新。 只要被聚焦，令牌就不会更新。 需要启用“轻按突出显示令牌”或“轻按显示”。</string>
     <string name="pin_keyboard_description">请输入您的密码以启用 PIN 键盘。请注意，只有当您的密码仅由数字构成时才能使用</string>

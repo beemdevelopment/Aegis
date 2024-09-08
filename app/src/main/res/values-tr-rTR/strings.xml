@@ -44,7 +44,6 @@
     <string name="pref_account_name_position_title">Hesap adını göster</string>
     <string name="pref_shared_issuer_account_name_title">Hesap adını yalnızca gerektiğinde göster</string>
     <string name="pref_shared_issuer_account_name_summary">Hesap adlarını yalnızca aynı sağlayıcıyı paylaştıklarında göster. Diğer hesap adları gizlenecektir.</string>
-    <string name="pref_account_name_position_summary_override">Bu ayar, döşeme görüntüleme modu tarafından geçersiz kılınır. Hesap adı her zaman kartı veren kuruluşun altında gösterilecektir.</string>
     <string name="pref_import_file_title">Dosyadan içeriye aktar</string>
     <string name="pref_import_file_summary">Veritabanını dosyadan içeriye aktar</string>
     <string name="pref_android_backups_title">Android bulut yedekleme</string>

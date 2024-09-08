@@ -46,7 +46,6 @@
     <string name="pref_account_name_position_title">اضهِر اسم الحساب</string>
     <string name="pref_shared_issuer_account_name_title">اضهِر اسم الحساب فقط عند الضرورة</string>
     <string name="pref_shared_issuer_account_name_summary">أضهِر أسماء الحسابات فقط عندما يشتركون نفس المصدر. سيتم إخفاء أسماء الحسابات الأخرى.</string>
-    <string name="pref_account_name_position_summary_override">تجاوز هذا الإعداد عن طريق وضع عرض البلاط. سيتم عرض اسم الحساب دائمًا أسفل المصدر.</string>
     <string name="pref_import_file_title">استيراد من ملف</string>
     <string name="pref_import_file_summary">استيراد الرموز من ملف</string>
     <string name="pref_android_backups_title">النسخ الاحتياطية السحابية للأندرويد</string>
@@ -63,6 +62,7 @@
     <string name="pref_backups_trigger_title">اصنع نسخة احتياطية</string>
     <string name="pref_backups_trigger_summary">قم بعمل نسخة احتياطية يدويًّا</string>
     <string name="pref_backups_versions_title">عدد الإصدارات المراد الاحتفاظ بها</string>
+    <string name="pref_backups_versions_infinite">\u221E</string>
     <plurals name="pref_backups_versions_summary">
         <item quantity="zero">احتفظ ب%1$d إصدارات من النسخ الاحتياطية</item>
         <item quantity="one">احتفظ بإصدار واحد من النسخ الاحتياطية</item>
@@ -71,6 +71,7 @@
         <item quantity="many">احتفظ ب%1$d إصدارات من النسخ الاحتياطية</item>
         <item quantity="other">احتفظ ب%1$d إصدارات من النسخ الاحتياطية</item>
     </plurals>
+    <string name="pref_backups_versions_infinite_summary">الاحتفاظ بعدد غير محدود من النُسخ الاحتياطية</string>
     <string name="pref_import_app_title">استيراد من تطبيق</string>
     <string name="pref_import_app_summary">استيراد الرموز من تطبيق (يتطلب الوصول إلى الجذر root)</string>
     <string name="pref_export_title">تصدير</string>
@@ -333,8 +334,9 @@
     <string name="no_tokens_can_be_imported">نتيجة لذلك، لا يمكن استيراد أي رموز</string>
     <string name="unlocking_vault">يتم فتح قفل المخزن</string>
     <string name="rename_group">إعادة تسمية المجموعة</string>
+    <string name="no_group_selection">إذا لم يكن الإدخال جزءا من أي مجموعة، يمكن العثور عليه تحت \"بلا مجموعة\".</string>
     <string name="remove_group">إزالة المجموعة</string>
-    <string name="remove_group_description">هل ترغب حقًا في إزالة هذه المجموعة؟ ستتحول المدخلات في هذه المجموعة تلقائيًا إلى &quot;غير مجمّعة&quot;</string>
+    <string name="remove_group_description">هل ترغب حقًا في إزالة هذه المجموعة؟ ستتحول المدخلات في هذه المجموعة تلقائيًا إلى \'بلا مجموعة\'.</string>
     <string name="remove_unused_groups">حذف المجموعات غير المستخدمة</string>
     <string name="remove_unused_groups_description">هل أنت متأكد من أنك تريد حذف جميع المجموعات التي لم يتم تعيينها إلى إدخال؟</string>
     <string name="remove_icon_pack">حذف حزمة الأيقونات</string>

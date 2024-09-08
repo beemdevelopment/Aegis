@@ -38,7 +38,6 @@
     <string name="pref_account_name_position_title">ಖಾತೆಯ ಹೆಸರನ್ನು ತೋರಿಸಿ</string>
     <string name="pref_shared_issuer_account_name_title">ಅಗತ್ಯವಿದ್ದಾಗ ಮಾತ್ರ ಖಾತೆಯ ಹೆಸರನ್ನು ತೋರಿಸಿ</string>
     <string name="pref_shared_issuer_account_name_summary">ಒಂದೇ ವಿತರಕರನ್ನು ಹಂಚಿಕೊಂಡಾಗ ಮಾತ್ರ ಖಾತೆಯ ಹೆಸರುಗಳನ್ನು ತೋರಿಸಿ. ಇತರ ಖಾತೆಯ ಹೆಸರುಗಳನ್ನು ಮರೆಮಾಡಲಾಗುತ್ತದೆ.</string>
-    <string name="pref_account_name_position_summary_override">ಈ ಸೆಟ್ಟಿಂಗ್ ಟೈಲ್ಸ್ ವ್ಯೂ ಮೋಡ್‌ನಲ್ಲಿ ಅನ್ವಯಿಸುವುದಿಲ. ಖಾತೆಯ ಹೆಸರನ್ನು ಯಾವಾಗಲೂ ವಿತರಕರ ಕೆಳಗೆ ತೋರಿಸಲಾಗುತ್ತದೆ.</string>
     <string name="pref_import_file_title">ಫೈಲಿಂದ ಆಮದಿಸು</string>
     <string name="pref_import_file_summary">ಫೈಲ್‌ನಿಂದ ಟೋಕನ್ಗಳ್ಳನ್ನು ಆಮದು ಮಾಡಿಕೊಳ್ಳಿ</string>
     <string name="pref_android_backups_title">ಆಂಡ್ರಾಯ್ಡ್ ಕ್ಲೌಡ್ ಬ್ಯಾಕ್‌ಅಪ್‌ಗಳು</string>

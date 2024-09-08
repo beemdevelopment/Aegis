@@ -10,7 +10,7 @@
     <string name="action_default_icon">Restaurar ícone padrão</string>
     <string name="discard">Descartar</string>
     <string name="save">Salvar</string>
-    <string name="issuer">Nome do serviço</string>
+    <string name="issuer">Emissor</string>
     <string name="yandex_pin">PIN (4–16 dígitos)</string>
     <string name="motp_pin">PIN (4 dígitos)</string>
     <string name="suggested">Sugerido</string>
@@ -46,7 +46,7 @@
     <string name="pref_account_name_position_title">Mostrar nome da conta</string>
     <string name="pref_shared_issuer_account_name_title">Exibir o nome da conta apenas quando necessário</string>
     <string name="pref_shared_issuer_account_name_summary">Mostra os nomes de conta apenas quando eles compartilham o mesmo emissor. Outros nomes de conta serão ocultados.</string>
-    <string name="pref_account_name_position_summary_override">Esta configuração é substituída pelo modo de visualização em grade. O nome da conta será sempre mostrado abaixo do emissor.</string>
+    <string name="pref_account_name_position_summary_override">Esta configuração é substituída pelo modo de visualização em grade. O nome da conta será mostrado abaixo do emissor.</string>
     <string name="pref_import_file_title">Importar de arquivo</string>
     <string name="pref_import_file_summary">Importa tokens de um arquivo</string>
     <string name="pref_android_backups_title">Backups na nuvem do Android</string>
@@ -63,10 +63,12 @@
     <string name="pref_backups_trigger_title">Ativar backup</string>
     <string name="pref_backups_trigger_summary">Ativa manualmente um backup</string>
     <string name="pref_backups_versions_title">Número de versões a manter</string>
+    <string name="pref_backups_versions_infinite">\u221E</string>
     <plurals name="pref_backups_versions_summary">
         <item quantity="one">Manter %1$d versão do backup</item>
         <item quantity="other">Manter %1$d versões do backup</item>
     </plurals>
+    <string name="pref_backups_versions_infinite_summary">Manter um número infinito de versões do backup</string>
     <string name="pref_import_app_title">Importar de um app</string>
     <string name="pref_import_app_summary">Importa tokens de um app (requer acesso root)</string>
     <string name="pref_export_title">Exportar</string>
@@ -102,6 +104,12 @@
     <string name="pref_encryption_summary">Criptografa o cofre e o desbloqueia com uma senha ou biometria</string>
     <string name="pref_biometrics_title">Desbloqueio biométrico</string>
     <string name="pref_biometrics_summary">Permite autenticação por biometria para desbloquear o cofre</string>
+    <string name="pref_search_behavior_summary">Pesquisar por %s</string>
+    <string name="pref_search_behavior_prompt">Pesquisar em qualquer um dos seguintes campos</string>
+    <string name="pref_search_behavior_type_name">Nome</string>
+    <string name="pref_search_behavior_type_issuer">Emissor</string>
+    <string name="pref_search_behavior_type_note">Nota</string>
+    <string name="pref_search_behavior_type_groups">Grupos</string>
     <string name="pref_set_password_title">Trocar senha</string>
     <string name="pref_set_password_summary">Define uma nova senha que será necessária para desbloquear o cofre</string>
     <string name="no_events_title">Nenhum evento reportado</string>
@@ -121,6 +129,7 @@
     <string name="event_title_vault_unlock_failed_biometrics">Falha ao desbloquear o cofre (biometria)</string>
     <string name="event_description_vault_unlock_failed_biometrics">Uma tentativa de desbloquear o cofre com a biometria falhou</string>
     <string name="event_unknown">Tipo de evento desconhecido</string>
+    <string name="audit_log_entry_deleted">(excluído)</string>
     <string name="today_at_time">Hoje às %1$s</string>
     <string name="day_of_week_at_time">%1$s em %2$s</string>
     <string name="export_encrypted">Criptografar o cofre</string>
@@ -301,6 +310,7 @@
     <string name="no_tokens_can_be_imported">Como resultado, nenhum token pode ser importado</string>
     <string name="unlocking_vault">Desbloqueando o cofre</string>
     <string name="rename_group">Renomear Grupo</string>
+    <string name="no_group_selection">Se um item não faz parte de qualquer grupo, ele pode ser encontrada em \"Sem grupo\".</string>
     <string name="remove_group">Remover grupo</string>
     <string name="remove_group_description">Você tem certeza que deseja remover esse grupo? Entradas nesse grupo serão automaticamente para \'Sem grupo\'.</string>
     <string name="remove_unused_groups">Excluir grupos não utilizados</string>
@@ -313,10 +323,10 @@
     <string name="name">Conta</string>
     <string name="no_group">Sem grupo</string>
     <string name="sort" comment="Title of the Sort button in the top action bar of the main view">Ordenar</string>
-    <string name="sort_alphabetically">Nome (A to Z)</string>
-    <string name="sort_alphabetically_reverse">Nome (Z to A)</string>
-    <string name="sort_alphabetically_name">Conta (A to Z)</string>
-    <string name="sort_alphabetically_name_reverse">Conta (Z to A)</string>
+    <string name="sort_alphabetically">Emissor (A a Z)</string>
+    <string name="sort_alphabetically_reverse">Emissor (Z a A)</string>
+    <string name="sort_alphabetically_name">Conta (A a Z)</string>
+    <string name="sort_alphabetically_name_reverse">Conta (Z a A)</string>
     <string name="sort_usage_count">Contagem de uso</string>
     <string name="sort_last_used">Último uso</string>
     <string name="sort_custom">Personalizado</string>
@@ -337,6 +347,7 @@
     <string name="pref_minimize_on_copy_title">Minimizar ao copiar</string>
     <string name="pref_minimize_on_copy_summary">Minimizar o aplicativo após copiar um token</string>
     <string name="pref_copy_behavior_title">Copiar tokens para a área de transferência</string>
+    <string name="pref_search_behavior_title">Comportamento de pesquisa</string>
     <string name="pref_pause_entry_title">Congelar tokens quando tocados</string>
     <string name="pref_pause_entry_summary">Pausa a atualização automática dos tokens ao tocá-los. Tokens não serão atualizados desde que o foco esteja neles. Requer \"Destacar tokens quando tocados\" ou \"Tocar para exibir\".</string>
     <string name="pin_keyboard_description">Digite sua senha para ativar o teclado PIN. Observe que isso só funciona se a sua senha for constituída apenas por números</string>
@@ -353,7 +364,7 @@
     <string name="compact_mode_title">Compacto</string>
     <string name="small_mode_title">Pequeno</string>
     <string name="tiles_mode_title">Grade</string>
-    <string name="unknown_issuer">Nome do serviço desconhecido</string>
+    <string name="unknown_issuer">Emissor desconhecido</string>
     <string name="unknown_account_name">Nome da conta desconhecido</string>
     <plurals name="import_error_dialog">
         <item quantity="one">Aegis não pôde importar %d token. Esse token será ignorado. Pressione \'detalhes\' para ver mais informações sobre o erro.</item>

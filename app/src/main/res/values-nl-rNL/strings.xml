@@ -46,7 +46,7 @@
     <string name="pref_account_name_position_title">Accountnaam tonen</string>
     <string name="pref_shared_issuer_account_name_title">Accountnaam alleen indien nodig tonen</string>
     <string name="pref_shared_issuer_account_name_summary">Accountnamen alleen tonen wanneer ze dezelfde uitgever hebben. Andere accountnamen worden verborgen.</string>
-    <string name="pref_account_name_position_summary_override">Deze instelling wordt overschreven door de tegelweergavemodus. Accountnaam wordt altijd getoond onder de uitgever.</string>
+    <string name="pref_account_name_position_summary_override">Instelling wordt overschreven door de weergavemodus Tegels. Accountnaam wordt getoond onder de uitgever.</string>
     <string name="pref_import_file_title">Importeren vanuit een bestand</string>
     <string name="pref_import_file_summary">Importeer tokens vanuit een bestand</string>
     <string name="pref_android_backups_title">Android-cloudback-ups</string>
@@ -63,10 +63,12 @@
     <string name="pref_backups_trigger_title">Maak nu een back-up</string>
     <string name="pref_backups_trigger_summary">Handmatig een back-up aanzetten</string>
     <string name="pref_backups_versions_title">Aantal versies om te behouden</string>
+    <string name="pref_backups_versions_infinite">\u221E</string>
     <plurals name="pref_backups_versions_summary">
         <item quantity="one">Behoud %1$d versie van de back-up</item>
         <item quantity="other">Behoud %1$d versies van de back-up</item>
     </plurals>
+    <string name="pref_backups_versions_infinite_summary">Oneindig aantal versies van de back-up bewaren</string>
     <string name="pref_import_app_title">Importeren vanuit een app</string>
     <string name="pref_import_app_summary">Importeer tokens vanuit een app (vereist root-access)</string>
     <string name="pref_export_title">Exporteren</string>
@@ -102,6 +104,12 @@
     <string name="pref_encryption_summary">Versleutel de kluis en ontgrendel deze met een wachtwoord of biometrie</string>
     <string name="pref_biometrics_title">Ontgrendelen met biometrie</string>
     <string name="pref_biometrics_summary">Sta biometrische authenticatie toe om de kluis te ontgrendelen</string>
+    <string name="pref_search_behavior_summary">Zoek door: %s</string>
+    <string name="pref_search_behavior_prompt">Zoek in een van de volgende velden</string>
+    <string name="pref_search_behavior_type_name">Naam</string>
+    <string name="pref_search_behavior_type_issuer">Uitgever</string>
+    <string name="pref_search_behavior_type_note">Notitie</string>
+    <string name="pref_search_behavior_type_groups">Groepen</string>
     <string name="pref_set_password_title">Wachtwoord wijzigen</string>
     <string name="pref_set_password_summary">Stel een nieuw wachtwoord in waarmee je de kluis kunt ontgrendelen</string>
     <string name="no_events_title">Geen gerapporteerde gebeurtenissen</string>
@@ -121,6 +129,7 @@
     <string name="event_title_vault_unlock_failed_biometrics">Kluis ontgrendelen mislukt (biometrie)</string>
     <string name="event_description_vault_unlock_failed_biometrics">Een poging om de kluis te ontgrendelen met biometrie is mislukt</string>
     <string name="event_unknown">Onbekende gebeurtenis</string>
+    <string name="audit_log_entry_deleted">(verwijderd)</string>
     <string name="today_at_time">Vandaag om %1$s</string>
     <string name="day_of_week_at_time">%1$s om %2$s</string>
     <string name="export_encrypted">Kluis versleutelen</string>
@@ -301,6 +310,7 @@
     <string name="no_tokens_can_be_imported">Hierdoor kunnen geen tokens worden geïmporteerd</string>
     <string name="unlocking_vault">Kluis wordt ontgrendeld</string>
     <string name="rename_group">Groep hernoemen</string>
+    <string name="no_group_selection">Als een item niet in een groep zit, kan dit worden gevonden onder ‘Geen groep’.</string>
     <string name="remove_group">Groep verwijderen</string>
     <string name="remove_group_description">Weet je zeker dat je deze groep wilt verwijderen? Alle items binnen deze groep worden automatisch verplaatst naar ‘Geen groep’.</string>
     <string name="remove_unused_groups">Ongebruikte groepen verwijderen</string>
@@ -337,6 +347,7 @@
     <string name="pref_minimize_on_copy_title">Na kopiëren minimaliseren</string>
     <string name="pref_minimize_on_copy_summary">Na kopiëren van een code de app minimaliseren</string>
     <string name="pref_copy_behavior_title">Codes naar het klembord kopiëren</string>
+    <string name="pref_search_behavior_title">Zoekgedrag</string>
     <string name="pref_pause_entry_title">Codes bevriezen na aantikken</string>
     <string name="pref_pause_entry_summary">Pauzeer automatisch verversen van codes door erop te tikken. Codes zullen niet worden bijgewerkt zolang ze gefocust zijn. Vereist ‘Codes markeren na aantikken’ of ‘Aantikken om te laten zien’.</string>
     <string name="pin_keyboard_description">Voer je wachtwoord in om het PIN-toetsenbord in te schakelen. Let op: dit werkt alleen als je wachtwoord uit cijfers bestaat</string>

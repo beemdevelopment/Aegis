@@ -33,6 +33,7 @@
     <string name="pref_section_icon_packs">Пакети піктограм</string>
     <string name="pref_section_icon_packs_summary">Керування та імпорт пакетами піктограм</string>
     <string name="pref_select_theme_title">Тема</string>
+    <string name="pref_dynamic_colors_title">Динамічні кольори</string>
     <string name="pref_view_mode_title">Режим перегляду</string>
     <string name="pref_lang_title">Мова</string>
     <string name="pref_show_icons_title">Показувати піктограми</string>

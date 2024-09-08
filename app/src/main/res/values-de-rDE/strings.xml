@@ -6,7 +6,7 @@
     <string name="action_transfer">Übertragen</string>
     <string name="action_edit_icon">Symbol bearbeiten</string>
     <string name="action_reset_usage_count">Verwendungszähler zurücksetzen</string>
-    <string name="action_reset_usage_count_dialog">Anzahl der Verwendungen dieses Eintrags auf 0 setzen?</string>
+    <string name="action_reset_usage_count_dialog">Den Verwendungszähler dieses Eintrags auf 0 setzen?</string>
     <string name="action_default_icon">Standardsymbol wiederherstellen</string>
     <string name="discard">Verwerfen</string>
     <string name="save">Speichern</string>
@@ -26,12 +26,12 @@
     <string name="pref_section_appearance_summary">Das Design, die Sprache und andere Einstellungen anpassen, die das Erscheinungsbild der App betreffen.</string>
     <string name="pref_section_security_title">Sicherheit</string>
     <string name="pref_section_security_summary">Verschlüsselung, biometrisches Entsperren, automatisches Sperren und andere Sicherheitseinstellungen konfigurieren.</string>
-    <string name="pref_section_import_export_title">Importieren &amp; exportieren</string>
+    <string name="pref_section_import_export_title">Importieren und exportieren</string>
     <string name="pref_section_import_export_summary">Sicherungskopien von Aegis oder anderen Authentifizierungs-Apps importieren und Exportdateien der Aegis-Datenbank erstellen.</string>
-    <string name="pref_section_audit_log_title">Überwachungsprotokoll</string>
-    <string name="pref_section_audit_log_summary">Hier findest du eine Liste aller wichtigen Ereignisse, die innerhalb der App registriert wurden.</string>
+    <string name="pref_section_audit_log_title">Audit-Log</string>
+    <string name="pref_section_audit_log_summary">Liste aller wichtigen Ereignisse, die innerhalb der App registriert wurden.</string>
     <string name="pref_section_backups_title">Sicherungen</string>
-    <string name="pref_section_backups_summary">Automatisierte Sicherungen an einem Speicherort deiner Wahl oder das Verwenden des Cloud-Sicherungssystems von Android einrichten.</string>
+    <string name="pref_section_backups_summary">Automatisierte Sicherungen zu einem gewünschten Speicherort einrichten oder das Android-eigenen Cloud-Sicherungssystems aktivieren.</string>
     <string name="pref_section_icon_packs">Symbolpakete</string>
     <string name="pref_section_icon_packs_summary">Symbolpakete verwalten und importieren.</string>
     <string name="pref_select_theme_title">Design</string>
@@ -44,9 +44,9 @@
     <string name="pref_code_group_size_title">Zifferngruppierung</string>
     <string name="pref_code_group_size_summary">Anzahl der Ziffern für das Gruppieren von Codes festlegen</string>
     <string name="pref_account_name_position_title">Kontonamen anzeigen</string>
-    <string name="pref_shared_issuer_account_name_title">Kontonamen nur anzeigen, wenn notwendig</string>
+    <string name="pref_shared_issuer_account_name_title">Kontonamen nur bei Bedarf anzeigen</string>
     <string name="pref_shared_issuer_account_name_summary">Kontonamen nur anzeigen, wenn sie denselben Herausgeber haben. Andere Kontonamen werden ausgeblendet.</string>
-    <string name="pref_account_name_position_summary_override">Diese Einstellung wird durch die Kachelansicht überschrieben. Kontonamen werden immer unterhalb des Herausgebers angezeigt.</string>
+    <string name="pref_account_name_position_summary_override">Diese Einstellung wird durch die Kachelansicht überschrieben. Der Kontoname wird unterhalb des Herausgebers angezeigt.</string>
     <string name="pref_import_file_title">Aus Datei importieren</string>
     <string name="pref_import_file_summary">Token aus einer Datei importieren</string>
     <string name="pref_android_backups_title">Cloud-Sicherungen von Android</string>
@@ -58,15 +58,17 @@
     <string name="pref_backups_reminder_summary">Erinnerung zur Sicherung der Datenbank anzeigen, falls die letzten Änderungen nicht gesichert wurden.</string>
     <string name="pref_backups_reminder_dialog_title">Erinnerung für Sicherungen deaktivieren</string>
     <string name="pref_backups_reminder_dialog_summary">Das Deaktivieren dieser Erinnerung bedeutet, dass Aegis nicht mitteilt, ob Änderungen vorgenommen wurden, die noch nicht gesichert sind. Dadurch besteht die Gefahr, dass der Zugriff auf deine Token verloren geht. Möchtest du die Erinnerung wirklich deaktivieren?</string>
-    <string name="pref_backups_location_title">Ordner für Sicherungsdateien</string>
+    <string name="pref_backups_location_title">Sicherungsverzeichnis</string>
     <string name="pref_backups_location_summary">Sicherungskopien werden gespeichert in</string>
-    <string name="pref_backups_trigger_title">Sicherungskopie auslösen</string>
+    <string name="pref_backups_trigger_title">Sicherung auslösen</string>
     <string name="pref_backups_trigger_summary">Manuell eine Sicherung auslösen</string>
     <string name="pref_backups_versions_title">Anzahl der zu behaltenden Versionen</string>
+    <string name="pref_backups_versions_infinite">\u221E</string>
     <plurals name="pref_backups_versions_summary">
-        <item quantity="one">%1$d Version der Sicherung behalten</item>
-        <item quantity="other">%1$d Versionen der Sicherung behalten</item>
+        <item quantity="one">%1$d Version der Sicherungsdatei speichern</item>
+        <item quantity="other">%1$d Versionen der Sicherungsdatei speichern</item>
     </plurals>
+    <string name="pref_backups_versions_infinite_summary">Unendlich viele Versionen der Sicherungsdatei speichern</string>
     <string name="pref_import_app_title">Aus App importieren</string>
     <string name="pref_import_app_summary">Token aus einer App importieren (benötigt Root-Zugriff)</string>
     <string name="pref_export_title">Exportieren</string>
@@ -79,13 +81,13 @@
         <item quantity="one">%d inkompatibler Eintrag wurde übersprungen</item>
         <item quantity="other">%d inkompatible Einträge wurden übersprungen</item>
     </plurals>
-    <string name="pref_password_reminder_summary">Zeigt %s eine Erinnerung zur Eingabe des Passworts an, damit du es nicht vergisst.</string>
+    <string name="pref_password_reminder_summary">Zeigt %s eine Erinnerung zur Eingabe des Passworts an, damit es nicht vergessen wird.</string>
     <string name="pref_password_reminder_summary_disabled">Deaktiviert</string>
     <string name="pref_secure_screen_title">Bildschirmsicherheit</string>
     <string name="pref_secure_screen_summary">Bildschirmfotos und andere Aufnahmeversuche innerhalb der App blockieren</string>
     <string name="pref_tap_to_reveal_title">Zum Aufdecken antippen</string>
-    <string name="pref_tap_to_reveal_summary">Token werden standardmäßig ausgeblendet. Tippe auf die Token, um den Code anzuzeigen.</string>
-    <string name="pref_tap_to_reveal_time_title">Zeitüberschreitung für die Anzeige durch Antippen</string>
+    <string name="pref_tap_to_reveal_summary">Token werden standardmäßig ausgeblendet. Der Code wird durch Antippen des Tokens sichtbar.</string>
+    <string name="pref_tap_to_reveal_time_title">Zeitlimit für aufgedeckte Token</string>
     <string name="pref_auto_lock_title">Automatisches Sperren</string>
     <string name="pref_auto_lock_summary">Wenn %s</string>
     <string name="pref_auto_lock_summary_disabled">Deaktiviert</string>
@@ -93,15 +95,21 @@
     <string name="pref_auto_lock_type_back_button">Die Zurück-Taste gedrückt wird</string>
     <string name="pref_auto_lock_type_minimize">Die App minimiert wird</string>
     <string name="pref_auto_lock_type_device_lock">Das Gerät gesperrt wird</string>
-    <string name="pref_backup_password_category">Sicherung &amp; Exportdatei</string>
-    <string name="pref_backup_password_title">Unterschiedliches Passwort für Sicherung &amp; Exportdatei</string>
+    <string name="pref_backup_password_category">Sicherung und Exportdatei</string>
+    <string name="pref_backup_password_title">Separates Passwort für Sicherung und Exportdatei</string>
     <string name="pref_backup_password_summary">Wenn diese Option aktiviert ist, kann das Passwort, das zum Entsperren der App verwendet wird, nicht mehr zum Entschlüsseln von Sicherungen und Exportdateien verwendet werden.</string>
-    <string name="pref_backup_password_change_title">Passwort für Sicherung &amp; Exportdatei ändern</string>
+    <string name="pref_backup_password_change_title">Passwort für Sicherung und Exportdatei ändern</string>
     <string name="pref_backup_password_change_summary">Gib ein neues Passwort ein, mit dem die Datenbank während der Sicherung und des Exportierens verschlüsselt wird.</string>
     <string name="pref_encryption_title">Verschlüsselung</string>
     <string name="pref_encryption_summary">Datenbank verschlüsseln und sie mittels eines Passworts oder biometrischen Daten entsperren</string>
     <string name="pref_biometrics_title">Biometrisches Entsperren</string>
     <string name="pref_biometrics_summary">Biometrische Authentifizierung zum Entsperren der Datenbank erlauben</string>
+    <string name="pref_search_behavior_summary">Durchsuchen: %s</string>
+    <string name="pref_search_behavior_prompt">Folgende Felder durchsuchen</string>
+    <string name="pref_search_behavior_type_name">Name</string>
+    <string name="pref_search_behavior_type_issuer">Herausgeber</string>
+    <string name="pref_search_behavior_type_note">Notiz</string>
+    <string name="pref_search_behavior_type_groups">Gruppen</string>
     <string name="pref_set_password_title">Passwort ändern</string>
     <string name="pref_set_password_summary">Ein neues Passwort zum Entsperren der Datenbank festlegen</string>
     <string name="no_events_title">Keine gemeldeten Ereignisse</string>
@@ -121,6 +129,7 @@
     <string name="event_title_vault_unlock_failed_biometrics">Entsperren der Datenbank fehlgeschlagen (Biometrie)</string>
     <string name="event_description_vault_unlock_failed_biometrics">Ein Versuch, die Datenbank mittels Biometrie zu entsperren, schlug fehl</string>
     <string name="event_unknown">Unbekanntes Ereignis</string>
+    <string name="audit_log_entry_deleted">(gelöscht)</string>
     <string name="today_at_time">Heute um %1$s</string>
     <string name="day_of_week_at_time">%1$s um %2$s</string>
     <string name="export_encrypted">Datenbank verschlüsseln</string>
@@ -301,6 +310,7 @@
     <string name="no_tokens_can_be_imported">Daher können keine Token importiert werden</string>
     <string name="unlocking_vault">Entsperren der Datenbank</string>
     <string name="rename_group">Gruppe umbenennen</string>
+    <string name="no_group_selection">Wenn ein Eintrag keiner Gruppe zugewiesen ist, befindet er sich unter »Keine Gruppe«.</string>
     <string name="remove_group">Gruppe entfernen</string>
     <string name="remove_group_description">Möchtest du diese Gruppe wirklich entfernen? Einträge in dieser Gruppe wechseln automatisch zu »Keine Gruppe«.</string>
     <string name="remove_unused_groups">Nicht verwendete Gruppen löschen</string>
@@ -328,8 +338,8 @@
     <string name="preference_manage_groups">Gruppen bearbeiten</string>
     <string name="preference_manage_groups_summary">Verwalten und Löschen von Gruppen</string>
     <string name="preference_reset_usage_count">Verwendungszähler zurücksetzen</string>
-    <string name="preference_reset_usage_count_summary">Anzahl der Verwendungen für jeden Eintrag in der Datenbank zurücksetzen</string>
-    <string name="preference_reset_usage_count_dialog">Anzahl der Verwendungen aller Einträge in der Datenbank auf 0 setzen?</string>
+    <string name="preference_reset_usage_count_summary">Verwendungszähler für jeden Eintrag in der Datenbank zurücksetzen</string>
+    <string name="preference_reset_usage_count_dialog">Den Verwendungszähler aller Einträge in der Datenbank auf 0 setzen?</string>
     <string name="note" comment="Users can add a note to an entry">Notiz</string>
     <string name="clear">Löschen</string>
     <string name="pref_highlight_entry_title">Token beim Antippen hervorheben</string>
@@ -337,6 +347,7 @@
     <string name="pref_minimize_on_copy_title">Beim Kopieren minimieren</string>
     <string name="pref_minimize_on_copy_summary">App nach dem Kopieren eines Tokens minimieren</string>
     <string name="pref_copy_behavior_title">Token in die Zwischenablage kopieren</string>
+    <string name="pref_search_behavior_title">Suchverhalten</string>
     <string name="pref_pause_entry_title">Token beim Antippen einfrieren</string>
     <string name="pref_pause_entry_summary">Automatisches Aktualisieren der Token durch Antippen anhalten. Die Token werden nicht aktualisiert, solange sie hervorgehoben sind. Erfordert »Token beim Antippen hervorheben« oder »Zum Aufdecken antippen«.</string>
     <string name="pin_keyboard_description">Gib dein Passwort ein, um die PIN-Tastatur zu aktivieren. Beachte, dass dies nur funktioniert, wenn dein Passwort nur aus Zahlen besteht</string>
@@ -437,7 +448,7 @@
     <string name="uri_copied_to_clipboard">URI in die Zwischenablage kopiert</string>
     <string name="transfer_entry">Eintrag übertragen</string>
     <string name="transfer_entry_description">Scanne diesen QR-Code mit der Authentifizierungs-App, zu der du diesen Eintrag übertragen möchtest</string>
-    <string name="google_auth_compatible_transfer_description">Scanne diese QR-Codes mit Aegis oder Google Authenticator.\n\nAufgrund der Einschränkungen der Google Authenticator-App sind nur TOTP- &amp; HOTP-Token enthalten, die SHA1 verwenden und 6-stellige Codes erzeugen</string>
+    <string name="google_auth_compatible_transfer_description">Scanne diese QR-Codes mit Aegis oder Google Authenticator.\n\nAufgrund der Einschränkungen der Google Authenticator-App sind nur TOTP- und HOTP-Token enthalten, die SHA1 verwenden und 6-stellige Codes erzeugen</string>
     <string name="password_strength_very_weak">Sehr schwach</string>
     <string name="password_strength_weak">Schwach</string>
     <string name="password_strength_fair">Mittel</string>

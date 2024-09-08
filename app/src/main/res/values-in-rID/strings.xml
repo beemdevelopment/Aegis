@@ -28,11 +28,15 @@
     <string name="pref_section_security_summary">Menyesuaikan enkripsi, buka kunci dengan biometrik, penguncian otomatis, dan pengaturan keamanan lainnya.</string>
     <string name="pref_section_import_export_title">Impor &amp; Ekspor</string>
     <string name="pref_section_import_export_summary">Impor cadangan dari Aegis atau aplikasi autentikasi lainnya. Buat ekspor manual dari brankas Aegis.</string>
+    <string name="pref_section_audit_log_title">Log audit</string>
+    <string name="pref_section_audit_log_summary">Temukan daftar semua peristiwa penting yang dilaporkan yang terjadi di dalam aplikasi.</string>
     <string name="pref_section_backups_title">Cadangan</string>
     <string name="pref_section_backups_summary">Atur pencadangan otomatis ke lokasi yang Anda pilih atau aktifkan partisipasi di sistem pencadangan awan Android.</string>
     <string name="pref_section_icon_packs">Paket Ikon</string>
     <string name="pref_section_icon_packs_summary">Kelola dan impor paket ikon</string>
     <string name="pref_select_theme_title">Tema</string>
+    <string name="pref_dynamic_colors_title">Warna dinamis</string>
+    <string name="pref_dynamic_colors_summary">Terapkan lapisan berdasarkan warna tema Android Anda</string>
     <string name="pref_view_mode_title">Mode tampilan</string>
     <string name="pref_lang_title">Bahasa</string>
     <string name="pref_show_icons_title">Tampilkan ikon</string>
@@ -59,9 +63,11 @@
     <string name="pref_backups_trigger_title">Perintah pencadangan</string>
     <string name="pref_backups_trigger_summary">Perintah pencadangan secara manual</string>
     <string name="pref_backups_versions_title">Nomor versi untuk disimpan</string>
+    <string name="pref_backups_versions_infinite">\u221E</string>
     <plurals name="pref_backups_versions_summary">
         <item quantity="other">Simpan %1$d versi cadangan</item>
     </plurals>
+    <string name="pref_backups_versions_infinite_summary">Simpan cadangan dalam jumlah tak terbatas</string>
     <string name="pref_import_app_title">Impor dari aplikasi</string>
     <string name="pref_import_app_summary">Impor token dari aplikasi (membutuhkan akses root)</string>
     <string name="pref_export_title">Ekspor</string>
@@ -98,6 +104,26 @@
     <string name="pref_biometrics_summary">Izinkan otentikasi biometrik untuk membuka brankas</string>
     <string name="pref_set_password_title">Ganti kata sandi</string>
     <string name="pref_set_password_summary">Atur kata sandi baru untuk digunkan membuka brankas Anda</string>
+    <string name="no_events_title">Tidak ada kejadian yang dilaporkan</string>
+    <string name="no_events_description">Tidak ada kejadian penting yang dilaporkan dalam aplikasi ini</string>
+    <string name="event_title_vault_unlocked">Brankas terbuka</string>
+    <string name="event_description_vault_unlocked">Brankas telah berhasil dibuka</string>
+    <string name="event_title_backup_created">Cadangan dibuat</string>
+    <string name="event_description_backup_created">Cadangan brankas telah berhasil dibuat</string>
+    <string name="event_title_android_backup_created">Cadangan dibuat oleh Android</string>
+    <string name="event_description_android_backup_created">Cadangan brankas telah berhasil dibuat oleh Android</string>
+    <string name="event_title_vault_exported">Brankas diekspor</string>
+    <string name="event_description_vault_exported">Salinan brankas telah diekspor</string>
+    <string name="event_title_entry_shared">Entri dibagikan</string>
+    <string name="event_description_entry_shared">Sebuah entri telah dibagikan</string>
+    <string name="event_title_vault_unlock_failed_password">Gagal membuka kunci brankas (kata sandi)</string>
+    <string name="event_description_vault_unlock_failed_password">Upaya membuka kunci brankas dengan kata sandi gagal</string>
+    <string name="event_title_vault_unlock_failed_biometrics">Gagal membuka kunci brankas (biometrik)</string>
+    <string name="event_description_vault_unlock_failed_biometrics">Upaya membuka kunci brankas dengan biometrik gagal</string>
+    <string name="event_unknown">Jenis peristiwa tidak diketahui</string>
+    <string name="audit_log_entry_deleted">(terhapus)</string>
+    <string name="today_at_time">Hari ini pada %1$s</string>
+    <string name="day_of_week_at_time">Hari %1$s pada %2$s</string>
     <string name="export_encrypted">Enkripsi brankas</string>
     <string name="export_help">Tindakan ini akan mengekspor brankas dari penyimpanan internal Aegis. Pilih format yang Anda inginkan untuk ekspor:</string>
     <string name="export_warning_unencrypted">Anda akan mengekspor salinan tidak terenkripsi dari brankas Aegis Anda. <b>Ini tidak disarankan</b>.</string>
@@ -269,6 +295,8 @@
     <string name="unrelated_google_auth_batches_error">Ekspor berisi informasi untuk batch yang tidak terkait. Coba impor 1 batch dalam satu waktu.</string>
     <string name="no_tokens_can_be_imported">Tidak ada token yang dapat diimpor sebagai hasilnya</string>
     <string name="unlocking_vault">Buka brankas</string>
+    <string name="rename_group">Ganti Nama Grup</string>
+    <string name="no_group_selection">Jika sebuah entri bukan merupakan bagian dari grup mana pun, entri tersebut dapat ditemukan di bawah “Tidak ada grup”.</string>
     <string name="remove_group">Hapus kelompok</string>
     <string name="remove_group_description">Apakah Anda yakin ingin menghapus kelompok ini? Catatan dalam kelompok ini akan secara otomatis beralih ke \'Tidak ada kelompok\'.</string>
     <string name="remove_unused_groups">Menghapus grup yang tidak digunakan</string>
@@ -286,7 +314,10 @@
     <string name="sort_alphabetically_name">Akun (A ke Z)</string>
     <string name="sort_alphabetically_name_reverse">Akun (Z ke A)</string>
     <string name="sort_usage_count">Jumlah penggunaan</string>
+    <string name="sort_last_used">Terakhir digunakan</string>
     <string name="sort_custom">Kustom</string>
+    <string name="last_used">Terakhir digunakan</string>
+    <string name="last_used_never">tidak pernah</string>
     <string name="new_group">Kelompok baru…</string>
     <string name="group">Kelompok</string>
     <string name="group_name_hint">Nama kelompok</string>
@@ -405,6 +436,7 @@
     <string name="password_strength_fair">Baik</string>
     <string name="password_strength_good">Baik</string>
     <string name="password_strength_strong">Kuat</string>
+    <string name="password_strength_unknown">Kata sandi terlalu panjang untuk analisis kekuatan</string>
     <string name="pref_pin_keyboard_title">Gunakan keyboard PIN di layar kunci</string>
     <string name="pref_pin_keyboard_summary">Aktifkan ini jika Anda ingin mengaktifkan keyboard PIN di layar kunci. Ini hanya berfungsi untuk kata sandi numerik</string>
     <string name="title_activity_preferences">Pengaturan</string>
@@ -415,6 +447,7 @@
     <string name="title_activity_scan_qr">Pindai kode QR</string>
     <string name="title_activity_import_entries">Impor entri</string>
     <string name="title_activity_assign_icons">Tetapkan ikon</string>
+    <string name="title_activity_licenses">Lisensi pihak ketiga</string>
     <string name="dialog_wipe_entries_title">Hapus catatan</string>
     <string name="dialog_wipe_entries_message">Brankas Anda sudah memiliki catatan. Apakah Anda ingin menghapus catatan ini tanpa mengimpor berkas ini?\n\n<b>Jika ini dilakukan, Anda akan kehilangan akses secara permanen ke catatan yang ada di brankas.</b></string>
     <string name="dialog_wipe_entries_checkbox">Hapus konten brankas</string>
@@ -434,6 +467,7 @@
 <b>/data/data/com.authy.authy/shared_prefs/com.authy.storage.tokens.authenticator.xml</b>, yang terletak di direktori penyimpanan internal Authy.</string>
     <string name="importer_help_andotp">Siapkan berkas ekspor/cadangan andOTP.</string>
     <string name="importer_help_bitwarden">Masukkan berkas cadangan/ekspor Bitwarden. Berkas terenkripsi tidak didukung.</string>
+    <string name="importer_help_battle_net_authenticator">Sediakan salinan <b>/data/data/com.blizzard.messenger/shared_prefs/com.blizzard.messenger.authenticator_preferences.xml</b>, yang terletak di direktori penyimpanan internal Battle.net Authenticator.</string>
     <string name="importer_help_duo">Siapkan salinan
 <b>/data/data/com.duosecurity.duomobile/files/duokit/accounts.json</b>, yang terletak di direktori penyimpanan internal DUO.</string>
     <string name="importer_help_freeotp">Berikan salinan dari <b>/data/data/org.fedorahosted.freeotp/shared_prefs/tokens.xml</b> yang terletak di direktori penyimpanan internal FreeOTP (1.x).</string>
