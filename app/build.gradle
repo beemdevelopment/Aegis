@@ -28,8 +28,8 @@ android {
         applicationId "${packageName}"
         minSdkVersion 21
         targetSdkVersion 34
-        versionCode 70
-        versionName "3.1.1"
+        versionCode 71
+        versionName "3.2"
         multiDexEnabled true
         buildConfigField "String", "GIT_HASH", "\"${getGitHash()}\""
         buildConfigField "String", "GIT_BRANCH", "\"${getGitBranch()}\""
