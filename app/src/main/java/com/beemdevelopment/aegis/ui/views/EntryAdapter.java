@@ -556,11 +556,11 @@ public class EntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                         if (_highlightEntry || _tempHighlightEntry || _tapToReveal) {
                             if (_focusedEntry == entry) {
                                 resetFocus();
-
-                                // Prevent copying when singletap is set and focus is reset
-                                handled = _copyBehavior == CopyBehavior.SINGLETAP;
                             } else {
                                 focusEntry(entry, _tapToRevealTime);
+
+                                // Prevent copying when singletap is set and the entry is being revealed
+                                handled = _copyBehavior == CopyBehavior.SINGLETAP && _tapToReveal;
                             }
                         }
 
