@@ -1,9 +1,14 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:id="@android:id/progress">
-        <clip>
+        <scale android:scaleWidth="100%">
             <shape>
                 <solid android:color="?attr/colorPrimaryAlternative"/>
+                <corners
+                    android:topLeftRadius="0dp"
+                    android:topRightRadius="2dp"
+                    android:bottomLeftRadius="0dp"
+                    android:bottomRightRadius="2dp" />
             </shape>
-        </clip>
+        </scale>
     </item>
 </layer-list>
