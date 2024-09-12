@@ -7,12 +7,14 @@ import android.view.ViewGroup;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.beemdevelopment.aegis.R;
+import com.beemdevelopment.aegis.helpers.ItemTouchHelperAdapter;
+import com.beemdevelopment.aegis.util.CollectionUtils;
 import com.beemdevelopment.aegis.vault.VaultGroup;
 
 import java.util.ArrayList;
 import java.util.UUID;
 
-public class GroupAdapter extends RecyclerView.Adapter<GroupHolder> {
+public class GroupAdapter extends RecyclerView.Adapter<GroupHolder> implements ItemTouchHelperAdapter {
     private GroupAdapter.Listener _listener;
     private ArrayList<VaultGroup> _groups;
 
@@ -30,6 +32,10 @@ public class GroupAdapter extends RecyclerView.Adapter<GroupHolder> {
         } else {
             notifyItemInserted(position);
         }
+    }
+
+    public ArrayList<VaultGroup> getGroups() {
+        return _groups;
     }
 
     public void replaceGroup(UUID uuid, VaultGroup newGroup) {
@@ -63,6 +69,18 @@ public class GroupAdapter extends RecyclerView.Adapter<GroupHolder> {
             _listener.onRemoveGroup(_groups.get(position12));
         });
     }
+
+    @Override
+    public void onItemMove(int firstPosition, int secondPosition) {
+        CollectionUtils.move(_groups, firstPosition, secondPosition);
+        notifyItemMoved(firstPosition, secondPosition);
+    }
+
+    @Override
+    public void onItemDismiss(int position) { }
+
+    @Override
+    public void onItemDrop(int position) { }
 
     private VaultGroup getGroupByUUID(UUID uuid) {
         for (VaultGroup group : _groups) {

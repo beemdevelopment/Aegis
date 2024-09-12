@@ -7,6 +7,7 @@ import android.view.View;
 
 import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -14,12 +15,8 @@ import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.ui.dialogs.Dialogs;
 import com.beemdevelopment.aegis.ui.views.GroupAdapter;
 import com.beemdevelopment.aegis.util.Cloner;
-import com.beemdevelopment.aegis.vault.VaultEntryException;
 import com.beemdevelopment.aegis.vault.VaultGroup;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -30,7 +27,6 @@ import java.util.UUID;
 public class GroupManagerActivity extends AegisActivity implements GroupAdapter.Listener {
     private GroupAdapter _adapter;
     private HashSet<UUID> _removedGroups;
-    private HashSet<VaultGroup> _renamedGroups;
     private RecyclerView _groupsView;
     private View _emptyStateView;
     private BackPressHandler _backPressHandler;
@@ -51,25 +47,37 @@ public class GroupManagerActivity extends AegisActivity implements GroupAdapter.
         getOnBackPressedDispatcher().addCallback(this, _backPressHandler);
 
         _removedGroups = new HashSet<>();
-        _renamedGroups = new HashSet<>();
         if (savedInstanceState != null) {
             List<String> removedGroups = savedInstanceState.getStringArrayList("removedGroups");
-            List<String> renamedGroups = savedInstanceState.getStringArrayList("renamedGroups");
             if (removedGroups != null) {
                 for (String uuid : removedGroups) {
                     _removedGroups.add(UUID.fromString(uuid));
                 }
             }
-            if (renamedGroups != null) {
-                for (String groupObject : renamedGroups) {
-                    try {
-                        _renamedGroups.add(VaultGroup.fromJson(new JSONObject(groupObject)));
-                    } catch (VaultEntryException | JSONException ignored) {
-                        // This is intentionally ignored since the json object is valid
-                    }
-                }
-            }
         }
+
+        ItemTouchHelper touchHelper = new ItemTouchHelper(new ItemTouchHelper.Callback() {
+            @Override
+            public int getMovementFlags(
+                    @NonNull RecyclerView recyclerView,
+                    @NonNull RecyclerView.ViewHolder viewHolder) {
+
+                return makeMovementFlags(ItemTouchHelper.UP | ItemTouchHelper.DOWN, 0);
+            }
+
+            @Override
+            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+                int draggedItemIndex = viewHolder.getBindingAdapterPosition();
+                int targetIndex = target.getBindingAdapterPosition();
+
+                _adapter.onItemMove(draggedItemIndex, targetIndex);
+
+                return true;
+            }
+
+            @Override
+            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) { }
+        });
 
         _adapter = new GroupAdapter(this);
         _groupsView = findViewById(R.id.list_groups);
@@ -77,17 +85,13 @@ public class GroupManagerActivity extends AegisActivity implements GroupAdapter.
         _groupsView.setLayoutManager(layoutManager);
         _groupsView.setAdapter(_adapter);
         _groupsView.setNestedScrollingEnabled(false);
+        touchHelper.attachToRecyclerView(_groupsView);
 
         for (VaultGroup group : _vaultManager.getVault().getGroups()) {
             if (!_removedGroups.contains(group.getUUID())) {
                 _adapter.addGroup(group);
             }
         }
-
-        for(VaultGroup group: _renamedGroups) {
-            _adapter.replaceGroup(group.getUUID(), group);
-        }
-
 
         _emptyStateView = findViewById(R.id.vEmptyList);
         updateEmptyState();
@@ -100,12 +104,7 @@ public class GroupManagerActivity extends AegisActivity implements GroupAdapter.
         for (UUID uuid : _removedGroups) {
             removed.add(uuid.toString());
         }
-        ArrayList<String> renamed = new ArrayList<>();
-        for (VaultGroup group : _renamedGroups) {
-            renamed.add(group.toJson().toString());
-        }
 
-        outState.putStringArrayList("renamedGroups", renamed);
         outState.putStringArrayList("removedGroups", removed);
     }
 
@@ -116,7 +115,6 @@ public class GroupManagerActivity extends AegisActivity implements GroupAdapter.
             if (!newGroupName.isEmpty()) {
                 VaultGroup newGroup = Cloner.clone(group);
                 newGroup.setName(newGroupName);
-                _renamedGroups.add(newGroup);
                 _adapter.replaceGroup(group.getUUID(), newGroup);
                 _backPressHandler.setEnabled(true);
             }
@@ -166,23 +164,16 @@ public class GroupManagerActivity extends AegisActivity implements GroupAdapter.
             for (UUID uuid : _removedGroups) {
                 _vaultManager.getVault().removeGroup(uuid);
             }
-
-            saveAndBackupVault();
         }
-        if (!_renamedGroups.isEmpty()) {
-            _renamedGroups.removeIf(group -> _removedGroups.contains(group.getUUID()));
-            for (VaultGroup renamedGroup : _renamedGroups) {
-                _vaultManager.getVault().renameGroup(renamedGroup);
-            }
 
-            saveAndBackupVault();
-        }
+        _vaultManager.getVault().replaceGroups(_adapter.getGroups());
+        saveAndBackupVault();
 
         finish();
     }
 
     private void discardAndFinish() {
-        if (_removedGroups.isEmpty() && _renamedGroups.isEmpty()) {
+        if (_removedGroups.isEmpty()) {
             finish();
             return;
         }
