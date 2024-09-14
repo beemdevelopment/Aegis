@@ -81,6 +81,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
     private boolean _isDPadPressed;
     private boolean _isDoingIntro;
     private boolean _isAuthenticating;
+    private boolean _isArchiveEnabled;
 
     private String _submittedSearchQuery;
     private String _pendingSearchQuery;
@@ -167,6 +168,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         _isDPadPressed = false;
         _isDoingIntro = false;
         _isAuthenticating = false;
+        _isArchiveEnabled = false;
         if (savedInstanceState != null) {
             _isRecreated = true;
             _pendingSearchQuery = savedInstanceState.getString("pendingSearchQuery");
@@ -701,15 +703,6 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         updateErrorCard();
     }
 
-    private void deleteEntries(List<VaultEntry> entries) {
-        for (VaultEntry entry: entries) {
-            VaultEntry oldEntry = _vaultManager.getVault().removeEntry(entry);
-            _entryListView.removeEntry(oldEntry);
-        }
-
-        saveAndBackupVault();
-    }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         _menu = menu;
@@ -938,6 +931,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
             } else {
                 setFavoriteMenuItemVisiblity();
                 setIsMultipleSelected(_selectedEntries.size() > 1);
+                setRestoreMenuItemVisibility();
             }
         }
     }
@@ -980,6 +974,11 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         }
     }
 
+    private void setRestoreMenuItemVisibility() {
+        MenuItem restoreMenuItem = _actionMode.getMenu().findItem(R.id.action_restore);
+        restoreMenuItem.setVisible(_isArchiveEnabled);
+    }
+
     @Override
     public void onLongEntryClick(VaultEntry entry) {
         if (!_selectedEntries.isEmpty()) {
@@ -996,6 +995,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         _actionModeBackPressHandler.setEnabled(true);
         setFavoriteMenuItemVisiblity();
         setAssignIconsMenuItemVisibility();
+        setRestoreMenuItemVisibility();
     }
 
     @Override
@@ -1036,6 +1036,14 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
     }
 
     @Override
+    public void onArchiveEnabled(boolean enabled) {
+        _isArchiveEnabled = enabled;
+        if (_actionMode != null) {
+            _actionMode.finish();
+        }
+    }
+
+    @Override
     public void onLocked(boolean userInitiated) {
         if (_actionMode != null) {
             _actionMode.finish();
@@ -1073,6 +1081,47 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         clipboard.setPrimaryClip(clip);
         if (_prefs.isMinimizeOnCopyEnabled()) {
             moveTaskToBack(true);
+        }
+    }
+
+    private void onActionRestore(ActionMode mode) {
+        for (VaultEntry entry : _selectedEntries) {
+            entry.setIsArchived(false);
+            _entryListView.replaceEntry(entry.getUUID(), entry);
+        }
+        _entryListView.setGroups(_vaultManager.getVault().getUsedGroups());
+        saveAndBackupVault();
+        mode.finish();
+    }
+
+    private void onActionDelete(ActionMode mode) {
+        if (_isArchiveEnabled) {
+            Dialogs.showDeleteEntriesDialog(MainActivity.this, _selectedEntries, (dialog, which) -> {
+                deleteEntries();
+                saveAndBackupVault();
+                mode.finish();
+            });
+        } else {
+            Dialogs.showArchiveEntriesDialog(MainActivity.this, _selectedEntries.size(), (dialog, which) -> {
+                archiveEntries();
+                _entryListView.setGroups(_vaultManager.getVault().getUsedGroups());
+                saveAndBackupVault();
+                mode.finish();
+            });
+        }
+    }
+
+    private void deleteEntries() {
+        for (VaultEntry entry : _selectedEntries) {
+            VaultEntry oldEntry = _vaultManager.getVault().removeEntry(entry);
+            _entryListView.removeEntry(oldEntry);
+        }
+    }
+
+    private void archiveEntries() {
+        for (VaultEntry entry : _selectedEntries) {
+            entry.setIsArchived(true);
+            _entryListView.replaceEntry(entry.getUUID(), entry);
         }
     }
 
@@ -1171,12 +1220,10 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
                 startActivity(intent);
 
                 mode.finish();
+            } else if (itemId == R.id.action_restore) {
+                onActionRestore(mode);
             } else if (itemId == R.id.action_delete) {
-                Dialogs.showDeleteEntriesDialog(MainActivity.this, _selectedEntries, (d, which) -> {
-                    deleteEntries(_selectedEntries);
-                    _entryListView.setGroups(_vaultManager.getVault().getUsedGroups());
-                    mode.finish();
-                });
+                onActionDelete(mode);
             } else if (itemId == R.id.action_select_all) {
                 _selectedEntries = _entryListView.selectAllEntries();
                 setFavoriteMenuItemVisiblity();

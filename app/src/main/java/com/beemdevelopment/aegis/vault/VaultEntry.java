@@ -27,6 +27,7 @@ public class VaultEntry extends UUIDMap.Value {
     private String _note = "";
     private String _oldGroup;
     private Set<UUID> _groups = new TreeSet<>();
+    private boolean _isArchived;
 
     private VaultEntry(UUID uuid, OtpInfo info) {
         super(uuid);
@@ -66,6 +67,7 @@ public class VaultEntry extends UUIDMap.Value {
                 groupUuids.put(uuid.toString());
             }
             obj.put("groups", groupUuids);
+            obj.put("archived", _isArchived);
 
         } catch (JSONException e) {
             throw new RuntimeException(e);
@@ -90,6 +92,7 @@ public class VaultEntry extends UUIDMap.Value {
             entry.setIssuer(obj.getString("issuer"));
             entry.setNote(obj.optString("note", ""));
             entry.setIsFavorite(obj.optBoolean("favorite", false));
+            entry.setIsArchived(obj.optBoolean("archived", false));
 
             // If the entry contains a list of group UUID's, assume conversion from the
             // old group system has already taken place and ignore the old group field.
@@ -148,6 +151,10 @@ public class VaultEntry extends UUIDMap.Value {
         return _isFavorite;
     }
 
+    public boolean isArchived() {
+        return _isArchived;
+    }
+
     public void setName(String name) {
         _name = name;
     }
@@ -200,6 +207,10 @@ public class VaultEntry extends UUIDMap.Value {
         _isFavorite = isFavorite;
     }
 
+    public void setIsArchived(boolean isArchived) {
+        _isArchived = isArchived;
+    }
+
     void setOldGroup(String oldGroup) {
         _oldGroup = oldGroup;
     }
@@ -230,7 +241,8 @@ public class VaultEntry extends UUIDMap.Value {
                 && Objects.equals(getIcon(), entry.getIcon())
                 && getNote().equals(entry.getNote())
                 && isFavorite() == entry.isFavorite()
-                && getGroups().equals(entry.getGroups());
+                && getGroups().equals(entry.getGroups())
+                && isArchived() == entry.isArchived();
     }
 
     /**
