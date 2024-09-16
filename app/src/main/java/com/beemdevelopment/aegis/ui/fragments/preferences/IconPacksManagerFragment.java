@@ -107,15 +107,7 @@ public class IconPacksManagerFragment extends Fragment implements IconPackAdapte
                 .setMessage(R.string.remove_icon_pack_description)
                 .setIconAttribute(android.R.attr.alertDialogIcon)
                 .setPositiveButton(android.R.string.yes, (dialog, whichButton) -> {
-                    try {
-                        _iconPackManager.removeIconPack(pack);
-                    } catch (IconPackException e) {
-                        e.printStackTrace();
-                        Dialogs.showErrorDialog(requireContext(), R.string.icon_pack_delete_error, e);
-                        return;
-                    }
-                    _adapter.removeIconPack(pack);
-                    updateEmptyState();
+                    removeIconPack(pack);
                 })
                 .setNegativeButton(android.R.string.no, null)
                 .create());
