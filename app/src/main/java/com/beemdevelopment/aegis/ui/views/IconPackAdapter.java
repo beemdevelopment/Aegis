@@ -35,8 +35,10 @@ public class IconPackAdapter extends RecyclerView.Adapter<IconPackHolder> {
 
     public void removeIconPack(IconPack pack) {
         int position = _iconPacks.indexOf(pack);
-        _iconPacks.remove(position);
-        notifyItemRemoved(position);
+        if (position >= 0) {
+            _iconPacks.remove(position);
+            notifyItemRemoved(position);
+        }
     }
 
     @NonNull
