@@ -86,7 +86,6 @@
             <com.google.android.material.chip.ChipGroup
                 android:id="@+id/groupChipGroup"
                 android:paddingStart="8dp"
-                android:paddingEnd="8dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
             </com.google.android.material.chip.ChipGroup>

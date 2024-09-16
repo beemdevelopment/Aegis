@@ -177,12 +177,10 @@ public class OverallTest extends AegisTest {
     }
 
     private void changeGroupFilter(String text) {
-        onView(withId(R.id.chip_group)).perform(click());
         if (text == null) {
-            onView(withId(R.id.btnClear)).perform(click());
+            onView(allOf(withText(R.string.all), isDescendantOfA(withId(R.id.groupChipGroup)))).perform(click());
         } else {
-            onView(withText(text)).perform(click());
-            onView(isRoot()).perform(pressBack());
+            onView(allOf(withText(text), isDescendantOfA(withId(R.id.groupChipGroup)))).perform(click());
         }
     }
 
