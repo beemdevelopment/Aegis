@@ -37,6 +37,6 @@ message MigrationPayload {
   repeated OtpParameters otp_parameters = 1;
   int32 version = 2;
   int32 batch_size = 3;
-  int32 batch_index = 4;
+  optional int32 batch_index = 4;
   int32 batch_id = 5;
 }
