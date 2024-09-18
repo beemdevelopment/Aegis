@@ -98,7 +98,7 @@
                                 android:id="@+id/text_name"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:inputType="text"/>
+                                android:inputType="textCapSentences"/>
                         </com.google.android.material.textfield.TextInputLayout>
                     </LinearLayout>
                     <LinearLayout
@@ -117,7 +117,7 @@
                                 android:maxLines="1"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:inputType="text"/>
+                                android:inputType="textCapSentences"/>
                         </com.google.android.material.textfield.TextInputLayout>
                     </LinearLayout>
 
@@ -171,7 +171,7 @@
                                 android:id="@+id/text_note"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:inputType="text|textMultiLine"/>
+                                android:inputType="text|textMultiLine|textCapSentences"/>
                         </com.google.android.material.textfield.TextInputLayout>
                     </LinearLayout>
                     <LinearLayout
