@@ -22,6 +22,7 @@ import androidx.core.content.FileProvider;
 import androidx.preference.Preference;
 
 import com.beemdevelopment.aegis.BuildConfig;
+import com.beemdevelopment.aegis.GroupPlaceholderType;
 import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.helpers.DropdownHelper;
 import com.beemdevelopment.aegis.importers.DatabaseImporter;
@@ -190,7 +191,7 @@ public class ImportExportPreferencesFragment extends PreferencesFragment {
             checkBoxExportAllGroups.setVisibility(View.VISIBLE);
 
             ArrayList<VaultGroupModel> groupsArray = new ArrayList<>();
-            groupsArray.add(new VaultGroupModel(getString(R.string.no_group)));
+            groupsArray.add(new VaultGroupModel(requireContext(), GroupPlaceholderType.NO_GROUP));
             groupsArray.addAll(groups.stream().map(VaultGroupModel::new).collect(Collectors.toList()));
 
             groupsSelection.setCheckedItemsCountTextRes(R.plurals.export_groups_selected_count);
