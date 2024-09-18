@@ -159,9 +159,14 @@
         <item name="colorCode">@android:color/white</item>
     </style>
 
+    <style name="ThemeOverlay.Aegis.Dynamic.Dark" parent="ThemeOverlay.Material3.DynamicColors.Dark">
+        <item name="colorPrimaryAlternative">?attr/colorPrimary</item>
+    </style>
+
     <style name="ThemeOverlay.Aegis.Dynamic.Amoled" parent="ThemeOverlay.Material3.DynamicColors.Dark">
         <!-- Setting android:colorBackground to #000000 on API 28 and below causes smearing -->
         <item name="android:colorBackground">@android:color/black</item>
+        <item name="colorPrimaryAlternative">@android:color/white</item>
         <item name="colorSurface">#000000</item>
         <item name="colorSurfaceVariant">#000000</item>
         <item name="colorSurfaceContainerHighest">#000000</item>
