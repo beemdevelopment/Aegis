@@ -24,6 +24,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.Toast;
@@ -42,6 +43,7 @@ import androidx.core.view.WindowInsetsCompat;
 import com.beemdevelopment.aegis.Preferences;
 import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.SortCategory;
+import com.beemdevelopment.aegis.helpers.DropdownHelper;
 import com.beemdevelopment.aegis.helpers.FabScrollHelper;
 import com.beemdevelopment.aegis.helpers.PermissionHelper;
 import com.beemdevelopment.aegis.otp.GoogleAuthInfo;
@@ -67,6 +69,8 @@ import com.google.android.material.chip.ChipGroup;
 import com.google.android.material.color.MaterialColors;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.common.base.Strings;
 
 import java.util.ArrayList;
@@ -79,6 +83,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 import java.util.UUID;
+import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Collectors;
 
 public class MainActivity extends AegisActivity implements EntryListView.Listener {
@@ -486,6 +491,76 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
 
         assignIconIntent.putExtra("entries", assignIconEntriesIds);
         assignIconsResultLauncher.launch(assignIconIntent);
+    }
+
+    private void startAssignGroupsDialog() {
+        View view = LayoutInflater.from(this).inflate(R.layout.dialog_select_group, null);
+        TextInputLayout groupSelectionLayout = view.findViewById(R.id.group_selection_layout);
+        AutoCompleteTextView groupsSelection = view.findViewById(R.id.group_selection_dropdown);
+        TextInputLayout newGroupLayout = view.findViewById(R.id.text_group_name_layout);
+        TextInputEditText newGroupText = view.findViewById(R.id.text_group_name);
+
+        Collection<VaultGroup> groups = _vaultManager.getVault().getUsedGroups();
+        List<VaultGroupModel> groupModels = new ArrayList<>();
+        groupModels.add(new VaultGroupModel(getString(R.string.new_group)));
+        groupModels.addAll(groups.stream().map(VaultGroupModel::new).collect(Collectors.toList()));
+        DropdownHelper.fillDropdown(this, groupsSelection, groupModels);
+
+        AtomicReference<VaultGroupModel> groupModelRef = new AtomicReference<>();
+        groupsSelection.setOnItemClickListener((parent, view1, position, id) -> {
+            VaultGroupModel groupModel = (VaultGroupModel) parent.getItemAtPosition(position);
+            groupModelRef.set(groupModel);
+
+            if (groupModel.isPlaceholder()) {
+                newGroupLayout.setVisibility(View.VISIBLE);
+                newGroupText.requestFocus();
+            } else {
+                newGroupLayout.setVisibility(View.GONE);
+            }
+
+            groupSelectionLayout.setError(null);
+        });
+
+        AlertDialog dialog = new MaterialAlertDialogBuilder(this)
+                .setTitle(R.string.assign_groups)
+                .setView(view)
+                .setPositiveButton(android.R.string.ok, null)
+                .setNegativeButton(android.R.string.cancel, null)
+                .create();
+
+        dialog.setOnShowListener(d -> {
+            Button btnPos = dialog.getButton(AlertDialog.BUTTON_POSITIVE);
+            btnPos.setOnClickListener(v -> {
+                VaultGroupModel groupModel = groupModelRef.get();
+                if (groupModel == null) {
+                    groupSelectionLayout.setError(getString(R.string.error_required_field));
+                    return;
+                }
+
+                if (groupModel.isPlaceholder()) {
+                    String newGroupName = newGroupText.getText().toString().trim();
+                    if (newGroupName.isEmpty()) {
+                        newGroupLayout.setError(getString(R.string.error_required_field));
+                        return;
+                    }
+
+                    VaultGroup group = new VaultGroup(newGroupName);
+                    _vaultManager.getVault().addGroup(group);
+                    groupModel = new VaultGroupModel(group);
+                }
+
+                for (VaultEntry selectedEntry : _selectedEntries) {
+                    selectedEntry.addGroup(groupModel.getUUID());
+                }
+
+                dialog.dismiss();
+                saveAndBackupVault();
+                _actionMode.finish();
+                setGroups(_vaultManager.getVault().getUsedGroups());
+            });
+        });
+
+        Dialogs.showSecureDialog(dialog);
     }
 
     private void startIntroActivity() {
@@ -1355,6 +1430,8 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
             } else if (itemId == R.id.action_assign_icons) {
                 startAssignIconsActivity(_selectedEntries);
                 mode.finish();
+            } else if (itemId == R.id.action_assign_groups) {
+                startAssignGroupsDialog();
             } else {
                 return false;
             }
