@@ -41,6 +41,13 @@
             android:summary="@string/pref_show_icons_summary"
             app:iconSpaceReserved="false"/>
 
+        <androidx.preference.SwitchPreferenceCompat
+            android:defaultValue="true"
+            android:key="pref_expiration_state"
+            android:title="@string/pref_expiration_state_title"
+            android:summary="@string/pref_expiration_state_summary"
+            app:iconSpaceReserved="false"/>
+
         <Preference
             android:key="pref_code_group_size_string"
             android:title="@string/pref_code_group_size_title"
