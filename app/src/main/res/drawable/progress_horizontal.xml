@@ -2,7 +2,7 @@
     <item android:id="@android:id/progress">
         <scale android:scaleWidth="100%">
             <shape>
-                <solid android:color="?attr/colorPrimaryAlternative"/>
+                <solid android:color="?attr/colorProgressbar"/>
                 <corners
                     android:topLeftRadius="0dp"
                     android:topRightRadius="2dp"

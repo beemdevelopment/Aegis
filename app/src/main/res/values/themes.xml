@@ -57,6 +57,7 @@
         <!-- Custom colors -->
         <item name="colorFavorite">@color/aegis_theme_all_favorite</item>
         <item name="colorPrimaryAlternative">?attr/colorPrimary</item>
+        <item name="colorProgressbar">?attr/colorPrimaryAlternative</item>
         <item name="colorOnDark">@android:color/white</item>
         <item name="colorSuccess">@color/aegis_theme_light_success</item>
         <item name="colorOnSurfaceDim">@color/aegis_theme_light_onSurfaceDim</item>
@@ -126,6 +127,7 @@
         <!-- Custom colors -->
         <item name="colorFavorite">@color/aegis_theme_all_favorite</item>
         <item name="colorPrimaryAlternative">?attr/colorPrimaryInverse</item>
+        <item name="colorProgressbar">?attr/colorPrimaryAlternative</item>
         <item name="colorOnDark">@android:color/white</item>
         <item name="colorSuccess">@color/aegis_theme_dark_success</item>
         <item name="colorOnSurfaceDim">@color/aegis_theme_dark_onSurfaceDim</item>
@@ -157,6 +159,11 @@
         <item name="colorSurfaceDim">#000000</item>
         <item name="colorSurfaceBright">#000000</item>
         <item name="colorCode">@android:color/white</item>
+        <item name="colorProgressbar">@android:color/white</item>
+    </style>
+
+    <style name="ThemeOverlay.Aegis.Dynamic.Dark" parent="ThemeOverlay.Material3.DynamicColors.Dark">
+        <item name="colorProgressbar">?attr/colorCode</item>
     </style>
 
     <style name="ThemeOverlay.Aegis.Dynamic.Amoled" parent="ThemeOverlay.Material3.DynamicColors.Dark">
@@ -172,6 +179,7 @@
         <item name="colorSurfaceDim">#000000</item>
         <item name="colorSurfaceBright">#000000</item>
         <item name="colorCode">@android:color/white</item>
+        <item name="colorProgressbar">@android:color/white</item>
     </style>
 
     <style name="Theme.Aegis.Light" parent="Base.Theme.Aegis.Light">

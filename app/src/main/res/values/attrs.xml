@@ -3,6 +3,7 @@
     <attr name="dropdownStyle" format="reference" />
     <attr name="colorFavorite" format="color" />
     <attr name="colorPrimaryAlternative" format="color" />
+    <attr name="colorProgressbar" format="color" />
     <attr name="colorOnDark" />
     <attr name="colorSuccess" />
     <attr name="colorOnSurfaceDim" />
