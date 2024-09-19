@@ -85,6 +85,12 @@ public class DatabaseImporterTest {
     }
 
     @Test
+    public void testImportEnteAuth() throws IOException, DatabaseImporterException, OtpInfoException {
+        List<VaultEntry> entries = importPlain(EnteAuthImporter.class, "ente_auth.txt");
+        checkImportedEntries(entries);
+    }
+
+    @Test
     public void testImportWinAuth() throws IOException, DatabaseImporterException, OtpInfoException {
         List<VaultEntry> entries = importPlain(WinAuthImporter.class, "plain.txt");
         for (VaultEntry entry : entries) {
