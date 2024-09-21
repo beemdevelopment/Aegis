@@ -554,7 +554,7 @@ public class Dialogs {
                 .setView(view)
                 .setCancelable(false)
                 .setIconAttribute(android.R.attr.alertDialogIcon)
-                .setPositiveButton(context.getResources().getQuantityText(R.plurals.import_partial_export_anyway, entries), (dialog, which) -> {
+                .setPositiveButton(context.getResources().getQuantityString(R.plurals.import_partial_export_anyway, entries, entries), (dialog, which) -> {
                     dismissHandler.onClick(dialog, which);
                 })
                 .setNegativeButton(android.R.string.cancel, null);
