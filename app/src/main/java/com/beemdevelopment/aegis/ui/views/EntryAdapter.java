@@ -15,6 +15,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.beemdevelopment.aegis.AccountNamePosition;
@@ -49,8 +51,7 @@ import java.util.UUID;
 
 public class EntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements ItemTouchHelperAdapter {
     private EntryListView _view;
-    private List<VaultEntry> _entries;
-    private List<VaultEntry> _shownEntries;
+    private EntryList _entryList;
     private List<VaultEntry> _selectedEntries;
     private Collection<VaultGroup> _groups;
     private Map<UUID, Integer> _usageCounts;
@@ -77,14 +78,12 @@ public class EntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     private Handler _dimHandler;
     private Handler _doubleTapHandler;
     private boolean _pauseFocused;
-    private ErrorCardInfo _errorCardInfo;
 
     // keeps track of the EntryHolders that are currently bound
     private List<EntryHolder> _holders;
 
     public EntryAdapter(EntryListView view) {
-        _entries = new ArrayList<>();
-        _shownEntries = new ArrayList<>();
+        _entryList = new EntryList();
         _selectedEntries = new ArrayList<>();
         _groupFilter = new TreeSet<>();
         _holders = new ArrayList<>();
@@ -145,173 +144,45 @@ public class EntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     }
 
     public void setErrorCardInfo(ErrorCardInfo info) {
-        ErrorCardInfo oldInfo = _errorCardInfo;
-        _errorCardInfo = info;
-
-        if (oldInfo == null && info != null) {
-            notifyItemInserted(0);
-        } else if (oldInfo != null && info == null) {
-            notifyItemRemoved(0);
-        } else {
-            notifyItemChanged(0);
+        if (Objects.equals(info, _entryList.getErrorCardInfo())) {
+            return;
         }
+
+        replaceEntryList(new EntryList(
+                _entryList.getEntries(),
+                _entryList.getShownEntries(),
+                info
+        ));
     }
 
-    public VaultEntry getEntryAtPos(int position) {
-        return _shownEntries.get(translateEntryPosToIndex(position));
+    public VaultEntry getEntryAtPosition(int position) {
+        return _entryList.getShownEntries().get(_entryList.translateEntryPosToIndex(position));
     }
 
-    public int addEntry(VaultEntry entry) {
-        _entries.add(entry);
-        if (isEntryFiltered(entry)) {
-            return -1;
-        }
-
-        int position = -1;
-        Comparator<VaultEntry> comparator = _sortCategory.getComparator();
-        if (comparator != null) {
-            // insert the entry in the correct order
-            // note: this assumes that _shownEntries has already been sorted
-            for (int i = getShownFavoritesCount(); i < _shownEntries.size(); i++) {
-                if (comparator.compare(_shownEntries.get(i), entry) > 0) {
-                    _shownEntries.add(i, entry);
-                    position = translateEntryIndexToPos(i);
-                    notifyItemInserted(position);
-                    break;
-                }
-            }
-        }
-
-        if (position < 0) {
-            _shownEntries.add(entry);
-
-            position = translateEntryIndexToPos(getShownEntriesCount() - 1);
-            if (position == 0) {
-                notifyDataSetChanged();
-            } else {
-                notifyItemInserted(position);
-            }
-        }
-
-        _view.onListChange();
-        checkPeriodUniformity();
-        updateFooter();
-        return position;
+    public int getEntryPosition(VaultEntry entry) {
+        return _entryList.translateEntryIndexToPos(_entryList.getShownEntries().indexOf(entry));
     }
 
-    public void addEntries(Collection<VaultEntry> entries) {
-        for (VaultEntry entry: entries) {
+    public void setEntries(List<VaultEntry> entries) {
+        // TODO: Move these fields to separate dedicated model for the UI
+        for (VaultEntry entry : entries) {
             entry.setUsageCount(_usageCounts.containsKey(entry.getUUID()) ? _usageCounts.get(entry.getUUID()) : 0);
             entry.setLastUsedTimestamp(_lastUsedTimestamps.containsKey(entry.getUUID()) ? _lastUsedTimestamps.get(entry.getUUID()) : 0);
         }
 
-        _entries.addAll(entries);
-        updateShownEntries();
-        checkPeriodUniformity(true);
-    }
-
-    public void removeEntry(VaultEntry entry) {
-        _entries.remove(entry);
-
-        if (_shownEntries.contains(entry)) {
-            int index = _shownEntries.indexOf(entry);
-            _shownEntries.remove(index);
-
-            int position = translateEntryIndexToPos(index);
-            notifyItemRemoved(position);
-
-            updateFooter();
-        }
-
-        _view.onListChange();
-        checkPeriodUniformity();
-    }
-
-    public void removeEntry(UUID uuid) {
-        VaultEntry entry = getEntryByUUID(uuid);
-        removeEntry(entry);
+        replaceEntryList(new EntryList(
+                entries,
+                calculateShownEntries(entries),
+                _entryList.getErrorCardInfo()
+        ));
     }
 
     public void clearEntries() {
-        _entries.clear();
-        _shownEntries.clear();
-        notifyDataSetChanged();
-        checkPeriodUniformity();
+        replaceEntryList(new EntryList());
     }
 
-    public void replaceEntry(UUID uuid, VaultEntry newEntry) {
-        VaultEntry oldEntry = getEntryByUUID(uuid);
-        _entries.set(_entries.indexOf(oldEntry), newEntry);
-
-        if (_shownEntries.contains(oldEntry)) {
-            int index = _shownEntries.indexOf(oldEntry);
-            int position = translateEntryIndexToPos(index);
-            if (isEntryFiltered(newEntry)) {
-                _shownEntries.remove(index);
-                notifyItemRemoved(position);
-            } else {
-                _shownEntries.set(index, newEntry);
-                notifyItemChanged(position);
-            }
-
-            sortShownEntries();
-            int newIndex = _shownEntries.indexOf(newEntry);
-            int newPosition = translateEntryIndexToPos(newIndex);
-            if (newPosition != NO_POSITION && position != newPosition) {
-                notifyItemMoved(position, newPosition);
-            }
-        } else if (!isEntryFiltered(newEntry)) {
-            // NOTE: This logic is wrong, because sorting is not taken into account. This code
-            // path is currently never hit though, because it is not possible to edit an entry
-            // that is not shown.
-            _shownEntries.add(newEntry);
-
-            int position = getItemCount() - 1;
-            notifyItemInserted(position);
-        }
-
-        checkPeriodUniformity();
-        updateFooter();
-    }
-
-    private VaultEntry getEntryByUUID(UUID uuid) {
-        for (VaultEntry entry : _entries) {
-            if (entry.getUUID().equals(uuid)) {
-                return entry;
-            }
-        }
-
-        return null;
-    }
-
-    /**
-     * Translates the given entry position in the recycler view, to its index in the shown entries list.
-     */
     public int translateEntryPosToIndex(int position) {
-        if (position == NO_POSITION) {
-            return NO_POSITION;
-        }
-
-        if (isErrorCardShown()) {
-            position -= 1;
-        }
-
-        return position;
-    }
-
-    /**
-     * Translates the given entry index in the shown entries list, to its position in the recycler view.
-     */
-    private int translateEntryIndexToPos(int index) {
-        if (index == NO_POSITION) {
-            return NO_POSITION;
-        }
-
-        if (isErrorCardShown()) {
-            index += 1;
-        }
-
-        return index;
+        return _entryList.translateEntryPosToIndex(position);
     }
 
     private boolean isEntryFiltered(VaultEntry entry) {
@@ -348,7 +219,7 @@ public class EntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
     public void refresh(boolean hard) {
         if (hard) {
-            updateShownEntries();
+            refreshEntryList();
         } else {
             for (EntryHolder holder : _holders) {
                 holder.refresh();
@@ -363,8 +234,7 @@ public class EntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         }
 
         _groupFilter = groups;
-        updateShownEntries();
-        checkPeriodUniformity();
+        refreshEntryList();
     }
 
     public void setSortCategory(SortCategory category, boolean apply) {
@@ -374,7 +244,7 @@ public class EntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
         _sortCategory = category;
         if (apply) {
-            updateShownEntries();
+            refreshEntryList();
         }
     }
 
@@ -383,25 +253,59 @@ public class EntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     }
 
     public void setSearchFilter(String search) {
-        _searchFilter = (search != null && !search.isEmpty()) ? search.toLowerCase().trim() : null;
-        updateShownEntries();
+        String newSearchFilter = (search != null && !search.isEmpty())
+                ? search.toLowerCase().trim() : null;
+
+        if (!Objects.equals(_searchFilter, newSearchFilter)) {
+            _searchFilter = newSearchFilter;
+            refreshEntryList();
+        }
     }
 
-    private void updateShownEntries() {
-        // clear the list of shown entries first
-        _shownEntries.clear();
+    private void refreshEntryList() {
+        replaceEntryList(new EntryList(
+                _entryList.getEntries(),
+                calculateShownEntries(_entryList.getEntries()),
+                _entryList.getErrorCardInfo()
+        ));
+    }
 
-        // add entries back that are not filtered out
-        for (VaultEntry entry : _entries) {
+    private void replaceEntryList(EntryList newEntryList) {
+        DiffUtil.DiffResult diffRes = DiffUtil.calculateDiff(new DiffCallback(_entryList, newEntryList));
+        _entryList = newEntryList;
+        updatePeriodUniformity();
+
+        // This scroll position trick is required in order to not have the recycler view
+        // jump to some random position after a large change (like resorting entries)
+        // Related: https://issuetracker.google.com/issues/70149059
+        int scrollPos = _view.getScrollPosition();
+        diffRes.dispatchUpdatesTo(this);
+        _view.scrollToPosition(scrollPos);
+        _view.onListChange();
+    }
+
+    private List<VaultEntry> calculateShownEntries(List<VaultEntry> entries) {
+        List<VaultEntry> res = new ArrayList<>();
+        for (VaultEntry entry : entries) {
             if (!isEntryFiltered(entry)) {
-                _shownEntries.add(entry);
+                res.add(entry);
             }
         }
 
-        sortShownEntries();
-        checkPeriodUniformity();
-        _view.onListChange();
-        notifyDataSetChanged();
+        sortEntries(res, _sortCategory);
+        return res;
+    }
+
+    private static void sortEntries(List<VaultEntry> entries, SortCategory sortCategory) {
+        if (sortCategory != null) {
+            Comparator<VaultEntry> comparator = sortCategory.getComparator();
+            if (comparator != null) {
+                Collections.sort(entries, comparator);
+            }
+        }
+
+        Comparator<VaultEntry> favoriteComparator = new FavoriteComparator();
+        Collections.sort(entries, favoriteComparator);
     }
 
     private boolean isEntryDraggable(VaultEntry entry) {
@@ -410,18 +314,6 @@ public class EntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                 && _selectedEntries.size() == 1
                 && !_selectedEntries.get(0).isFavorite()
                 && _selectedEntries.get(0) == entry;
-    }
-
-    private void sortShownEntries() {
-        if (_sortCategory != null) {
-            Comparator<VaultEntry> comparator = _sortCategory.getComparator();
-            if (comparator != null) {
-                Collections.sort(_shownEntries, comparator);
-            }
-        }
-
-        Comparator<VaultEntry> favoriteComparator = new FavoriteComparator();
-        Collections.sort(_shownEntries, favoriteComparator);
     }
 
     public void setViewMode(ViewMode viewMode) {
@@ -439,7 +331,7 @@ public class EntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     public Map<UUID, Long> getLastUsedTimestamps() { return _lastUsedTimestamps; }
 
     public int getShownFavoritesCount() {
-        return (int) _shownEntries.stream().filter(VaultEntry::isFavorite).count();
+        return (int) _entryList.getShownEntries().stream().filter(VaultEntry::isFavorite).count();
     }
 
     @Override
@@ -451,43 +343,48 @@ public class EntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     public void onItemDrop(int position) {
         // moving entries is not allowed when a filter is applied
         // footer cant be moved, nor can items be moved below it
-        if (!_groupFilter.isEmpty() || isPositionFooter(position) || isPositionErrorCard(position)) {
+        if (!_groupFilter.isEmpty() || _entryList.isPositionFooter(position) || _entryList.isPositionErrorCard(position)) {
             return;
         }
 
-        int index = translateEntryPosToIndex(position);
-        _view.onEntryDrop(_shownEntries.get(index));
+        int index = _entryList.translateEntryPosToIndex(position);
+        _view.onEntryDrop(_entryList.getShownEntries().get(index));
     }
 
     @Override
     public void onItemMove(int firstPosition, int secondPosition) {
-        // moving entries is not allowed when a filter is applied
-        // footer cant be moved, nor can items be moved below it
+        // Moving entries is not allowed when a filter is applied. The footer can't be
+        // moved, nor can items be moved below it
         if (!_groupFilter.isEmpty()
-                || isPositionFooter(firstPosition) || isPositionFooter(secondPosition)
-                || isPositionErrorCard(firstPosition) || isPositionErrorCard(secondPosition)) {
+                || _entryList.isPositionFooter(firstPosition) || _entryList.isPositionFooter(secondPosition)
+                || _entryList.isPositionErrorCard(firstPosition) || _entryList.isPositionErrorCard(secondPosition)) {
             return;
         }
 
-        // notify the vault first
-        int firstIndex = translateEntryPosToIndex(firstPosition);
-        int secondIndex = translateEntryPosToIndex(secondPosition);
-        _view.onEntryMove(_entries.get(firstIndex), _entries.get(secondIndex));
+        // Notify the vault about the entry position change first
+        int firstIndex = _entryList.translateEntryPosToIndex(firstPosition);
+        int secondIndex = _entryList.translateEntryPosToIndex(secondPosition);
+        VaultEntry firstEntry = _entryList.getShownEntries().get(firstIndex);
+        VaultEntry secondEntry = _entryList.getShownEntries().get(secondIndex);
+        _view.onEntryMove(firstEntry, secondEntry);
 
-        // then update our end
-        CollectionUtils.move(_entries, firstIndex, secondIndex);
-        CollectionUtils.move(_shownEntries, firstIndex, secondIndex);
-
-        notifyItemMoved(firstPosition, secondPosition);
+        // Then update the visual end
+        List<VaultEntry> newEntries = new ArrayList<>(_entryList.getEntries());
+        CollectionUtils.move(newEntries, newEntries.indexOf(firstEntry), newEntries.indexOf(secondEntry));
+        replaceEntryList(new EntryList(
+                newEntries,
+                calculateShownEntries(newEntries),
+                _entryList.getErrorCardInfo()
+        ));
     }
 
     @Override
     public int getItemViewType(int position) {
-        if (isPositionErrorCard(position)) {
+        if (_entryList.isPositionErrorCard(position)) {
             return R.layout.card_error;
         }
 
-        if (isPositionFooter(position)) {
+        if (_entryList.isPositionFooter(position)) {
             return R.layout.card_footer;
         }
 
@@ -502,7 +399,7 @@ public class EntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         View view = inflater.inflate(viewType, parent, false);
 
         if (viewType == R.layout.card_error) {
-            holder = new ErrorCardHolder(view, _errorCardInfo);
+            holder = new ErrorCardHolder(view, Objects.requireNonNull(_entryList.getErrorCardInfo()));
         }  else if (viewType == R.layout.card_footer) {
             holder = new FooterView(view);
         } else {
@@ -528,8 +425,8 @@ public class EntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     public void onBindViewHolder(final RecyclerView.ViewHolder holder, int position) {
         if (holder instanceof EntryHolder) {
             EntryHolder entryHolder = (EntryHolder) holder;
-            int index = translateEntryPosToIndex(position);
-            VaultEntry entry = _shownEntries.get(index);
+            int index = _entryList.translateEntryPosToIndex(position);
+            VaultEntry entry = _entryList.getShownEntries().get(index);
 
             boolean hidden = _tapToReveal && entry != _focusedEntry;
             boolean paused = _pauseFocused && entry == _focusedEntry;
@@ -538,7 +435,7 @@ public class EntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             boolean showAccountName = true;
             if (_onlyShowNecessaryAccountNames) {
                 // Only show account name when there's multiple entries found with the same issuer.
-                showAccountName = _entries.stream()
+                showAccountName = _entryList.getEntries().stream()
                         .filter(x -> x.getIssuer().equals(entry.getIssuer()))
                         .count() > 1;
             }
@@ -616,8 +513,8 @@ public class EntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                         entryHolder.setFocusedAndAnimate(true);
                     }
 
-                    int index = translateEntryPosToIndex(position);
-                    boolean returnVal = _view.onLongEntryClick(_shownEntries.get(index));
+                    int index = _entryList.translateEntryPosToIndex(position);
+                    boolean returnVal = _view.onLongEntryClick(_entryList.getShownEntries().get(index));
                     if (_selectedEntries.size() == 0 || isEntryDraggable(entry)) {
                         _view.startDrag(entryHolder);
                     }
@@ -663,15 +560,10 @@ public class EntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         }
     }
 
-    private void checkPeriodUniformity() {
-        checkPeriodUniformity(false);
-    }
-
-    private void checkPeriodUniformity(boolean force) {
+    private void updatePeriodUniformity() {
         int mostFrequentPeriod = getMostFrequentPeriod();
         boolean uniform = isPeriodUniform();
-
-        if (!force && uniform == _isPeriodUniform && mostFrequentPeriod == _uniformPeriod) {
+        if (uniform == _isPeriodUniform && mostFrequentPeriod == _uniformPeriod) {
             return;
         }
 
@@ -689,7 +581,7 @@ public class EntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
     public int getMostFrequentPeriod() {
         List<TotpInfo> infos = new ArrayList<>();
-        for (VaultEntry entry : _shownEntries) {
+        for (VaultEntry entry : _entryList.getShownEntries()) {
             OtpInfo info = entry.getInfo();
             if (info instanceof TotpInfo) {
                 infos.add((TotpInfo) info);
@@ -804,7 +696,7 @@ public class EntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     public List<VaultEntry> selectAllEntries() {
         _selectedEntries.clear();
 
-        for (VaultEntry entry: _shownEntries) {
+        for (VaultEntry entry: _entryList.getShownEntries()) {
             for (EntryHolder holder: _holders) {
                 if (holder.getEntry() == entry) {
                     holder.setFocused(true);
@@ -858,34 +750,23 @@ public class EntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
     @Override
     public int getItemCount() {
-        // Always at least one item because of the footer
-        // Two in case there's also an error card
-        int baseCount = 1;
-        if (isErrorCardShown()) {
-            baseCount++;
-        }
-
-        return baseCount + getShownEntriesCount();
+        return _entryList.getItemCount();
     }
 
     public int getShownEntriesCount() {
-        return _shownEntries.size();
+        return _entryList.getShownEntries().size();
     }
 
     public boolean isPositionFooter(int position) {
-        return position == (getItemCount() - 1);
+        return _entryList.isPositionFooter(position);
     }
 
     public boolean isPositionErrorCard(int position) {
-        return isErrorCardShown() && position == 0;
+        return _entryList.isPositionErrorCard(position);
     }
 
     public boolean isErrorCardShown() {
-        return _errorCardInfo != null;
-    }
-
-    private void updateFooter() {
-        notifyItemChanged(getItemCount() - 1);
+        return _entryList.isErrorCardShown();
     }
 
     private class FooterView extends RecyclerView.ViewHolder {
@@ -909,6 +790,151 @@ public class EntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
             TextView textView = _footerView.findViewById(R.id.entries_shown_count);
             textView.setText(entriesShownSpannable);
+        }
+    }
+
+    private static class EntryList {
+        private final List<VaultEntry> _entries;
+        private final List<VaultEntry> _shownEntries;
+        private final ErrorCardInfo _errorCardInfo;
+
+        public EntryList() {
+            this(new ArrayList<>(), new ArrayList<>(), null);
+        }
+
+        public EntryList(
+                @NonNull List<VaultEntry> entries,
+                @NonNull List<VaultEntry> shownEntries,
+                @Nullable ErrorCardInfo errorCardInfo
+        ) {
+            _entries = entries;
+            _shownEntries = shownEntries;
+            _errorCardInfo = errorCardInfo;
+        }
+
+        public List<VaultEntry> getEntries() {
+            return _entries;
+        }
+
+        public List<VaultEntry> getShownEntries() {
+            return _shownEntries;
+        }
+
+        public int getItemCount() {
+            // Always at least one item because of the footer
+            // Two in case there's also an error card
+            int baseCount = 1;
+            if (isErrorCardShown()) {
+                baseCount++;
+            }
+
+            return baseCount + getShownEntries().size();
+        }
+
+        @Nullable
+        public ErrorCardInfo getErrorCardInfo() {
+            return _errorCardInfo;
+        }
+
+        public boolean isErrorCardShown() {
+            return _errorCardInfo != null;
+        }
+
+        public boolean isPositionErrorCard(int position) {
+            return isErrorCardShown() && position == 0;
+        }
+
+        public boolean isPositionFooter(int position) {
+            return position == (getItemCount() - 1);
+        }
+
+        /**
+         * Translates the given entry position in the recycler view, to its index in the shown entries list.
+         */
+        public int translateEntryPosToIndex(int position) {
+            if (position == NO_POSITION) {
+                return NO_POSITION;
+            }
+
+            if (isErrorCardShown()) {
+                position -= 1;
+            }
+
+            return position;
+        }
+
+        /**
+         * Translates the given entry index in the shown entries list, to its position in the recycler view.
+         */
+        public int translateEntryIndexToPos(int index) {
+            if (index == NO_POSITION) {
+                return NO_POSITION;
+            }
+
+            if (isErrorCardShown()) {
+                index += 1;
+            }
+
+            return index;
+        }
+
+    }
+
+    private static class DiffCallback extends DiffUtil.Callback {
+        private final EntryList _old;
+        private final EntryList _new;
+
+        public DiffCallback(EntryList oldList, EntryList newList) {
+            _old = oldList;
+            _new = newList;
+        }
+
+        @Override
+        public int getOldListSize() {
+            return _old.getItemCount();
+        }
+
+        @Override
+        public int getNewListSize() {
+            return _new.getItemCount();
+        }
+
+        @Override
+        public boolean areItemsTheSame(int oldItemPosition, int newItemPosition) {
+            if (_old.isPositionErrorCard(oldItemPosition) != _new.isPositionErrorCard(newItemPosition)
+                    || _old.isPositionFooter(oldItemPosition) != _new.isPositionFooter(newItemPosition)) {
+                return false;
+            }
+
+            if ((_old.isPositionFooter(oldItemPosition) && _new.isPositionFooter(newItemPosition))
+                    || (_old.isPositionErrorCard(oldItemPosition) && _new.isPositionErrorCard(newItemPosition))) {
+                return true;
+            }
+
+            int oldEntryIndex = _old.translateEntryPosToIndex(oldItemPosition);
+            int newEntryIndex = _new.translateEntryPosToIndex(newItemPosition);
+            if (oldEntryIndex < 0 || newEntryIndex < 0) {
+                return false;
+            }
+
+            return _old.getShownEntries().get(oldEntryIndex).getUUID()
+                    .equals(_new.getShownEntries().get(newEntryIndex).getUUID());
+        }
+
+        @Override
+        public boolean areContentsTheSame(int oldItemPosition, int newItemPosition) {
+            if (_old.isPositionFooter(oldItemPosition) && _new.isPositionFooter(newItemPosition)) {
+                return _old.getShownEntries().size() == _new.getShownEntries().size();
+            }
+
+            if (_old.isPositionErrorCard(oldItemPosition) && _new.isPositionErrorCard(newItemPosition)) {
+                return Objects.equals(_old.getErrorCardInfo(), _new.getErrorCardInfo());
+            }
+
+            int oldEntryIndex = _old.translateEntryPosToIndex(oldItemPosition);
+            int newEntryIndex = _new.translateEntryPosToIndex(newItemPosition);
+            return _old.getShownEntries().get(oldEntryIndex)
+                    .equals(_new.getShownEntries().get(newEntryIndex));
         }
     }
 

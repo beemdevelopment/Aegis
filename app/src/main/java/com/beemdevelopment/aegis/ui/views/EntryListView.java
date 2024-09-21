@@ -50,6 +50,7 @@ import com.google.android.material.shape.CornerFamily;
 import com.google.android.material.shape.ShapeAppearanceModel;
 import com.google.common.base.Strings;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
@@ -156,6 +157,14 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
         _preloadSizeProvider.setView(view);
     }
 
+    public int getScrollPosition() {
+        return ((LinearLayoutManager) _recyclerView.getLayoutManager()).findFirstVisibleItemPosition();
+    }
+
+    public void scrollToPosition(int position) {
+        _recyclerView.getLayoutManager().scrollToPosition(position);
+    }
+
     @Override
     public void onDestroyView() {
         _refresher.destroy();
@@ -167,14 +176,10 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
         updateDividerDecoration();
     }
 
-    public void setGroupFilter(Set<UUID> groups, boolean animate) {
+    public void setGroupFilter(Set<UUID> groups) {
         _adapter.setGroupFilter(groups);
         _touchCallback.setIsLongPressDragEnabled(_adapter.isDragAndDropAllowed());
         updateEmptyState();
-
-        if (animate) {
-            runEntriesAnimation();
-        }
     }
 
     public void setIsLongPressDragEnabled(boolean enabled) {
@@ -207,10 +212,6 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
     public void setSortCategory(SortCategory sortCategory, boolean apply) {
         _adapter.setSortCategory(sortCategory, apply);
         _touchCallback.setIsLongPressDragEnabled(_adapter.isDragAndDropAllowed());
-
-        if (apply) {
-            runEntriesAnimation();
-        }
     }
 
     public void setUsageCounts(Map<UUID, Integer> usageCounts) {
@@ -388,61 +389,57 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
         _adapter.setErrorCardInfo(info);
     }
 
-    public void addEntry(VaultEntry entry) {
-        addEntry(entry, false);
-    }
-
     @SuppressLint("ClickableViewAccessibility")
-    public void addEntry(VaultEntry entry, boolean focusEntry) {
-        int position = _adapter.addEntry(entry);
-        updateEmptyState();
+    public void onEntryAdded(VaultEntry entry) {
+        int position = _adapter.getEntryPosition(entry);
+        if (position < 0) {
+            return;
+        }
 
         LinearLayoutManager layoutManager = (LinearLayoutManager) _recyclerView.getLayoutManager();
-        if (focusEntry && position >= 0) {
-            if ((_recyclerView.canScrollVertically(1) && position > layoutManager.findLastCompletelyVisibleItemPosition())
-                    || (_recyclerView.canScrollVertically(-1) && position < layoutManager.findFirstCompletelyVisibleItemPosition())) {
-                boolean smoothScroll = !AnimationsHelper.Scale.TRANSITION.isZero(requireContext());
-                RecyclerView.OnScrollListener scrollListener = new RecyclerView.OnScrollListener() {
-                    private void handleScroll() {
-                        _recyclerView.removeOnScrollListener(this);
-                        _recyclerView.setOnTouchListener(null);
-                        tempHighlightEntry(entry);
-                    }
-
-                    @Override
-                    public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
-                        if (smoothScroll && newState == RecyclerView.SCROLL_STATE_IDLE) {
-                            handleScroll();
-                        }
-                    }
-
-                    @Override
-                    public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
-                        if (!smoothScroll) {
-                            handleScroll();
-                        }
-                    }
-                };
-                _recyclerView.addOnScrollListener(scrollListener);
-                _recyclerView.setOnTouchListener((v, event) -> {
-                    if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                        _recyclerView.removeOnScrollListener(scrollListener);
-                        _recyclerView.stopScroll();
-                        _recyclerView.setOnTouchListener(null);
-                    }
-
-                    return false;
-                });
-                // We can't easily control the speed of the smooth scroll animation, but we
-                // can at least disable it if animations are disabled
-                if (smoothScroll) {
-                    _recyclerView.smoothScrollToPosition(position);
-                } else {
-                    _recyclerView.scrollToPosition(position);
+        if ((_recyclerView.canScrollVertically(1) && position > layoutManager.findLastCompletelyVisibleItemPosition())
+                || (_recyclerView.canScrollVertically(-1) && position < layoutManager.findFirstCompletelyVisibleItemPosition())) {
+            boolean smoothScroll = !AnimationsHelper.Scale.TRANSITION.isZero(requireContext());
+            RecyclerView.OnScrollListener scrollListener = new RecyclerView.OnScrollListener() {
+                private void handleScroll() {
+                    _recyclerView.removeOnScrollListener(this);
+                    _recyclerView.setOnTouchListener(null);
+                    tempHighlightEntry(entry);
                 }
+
+                @Override
+                public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+                    if (smoothScroll && newState == RecyclerView.SCROLL_STATE_IDLE) {
+                        handleScroll();
+                    }
+                }
+
+                @Override
+                public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                    if (!smoothScroll) {
+                        handleScroll();
+                    }
+                }
+            };
+            _recyclerView.addOnScrollListener(scrollListener);
+            _recyclerView.setOnTouchListener((v, event) -> {
+                if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                    _recyclerView.removeOnScrollListener(scrollListener);
+                    _recyclerView.stopScroll();
+                    _recyclerView.setOnTouchListener(null);
+                }
+
+                return false;
+            });
+            // We can't easily control the speed of the smooth scroll animation, but we
+            // can at least disable it if animations are disabled
+            if (smoothScroll) {
+                _recyclerView.smoothScrollToPosition(position);
             } else {
-                tempHighlightEntry(entry);
+                _recyclerView.scrollToPosition(position);
             }
+        } else {
+            tempHighlightEntry(entry);
         }
     }
 
@@ -453,27 +450,14 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
         _adapter.focusEntry(entry, secondsToFocus);
     }
 
-    public void addEntries(Collection<VaultEntry> entries) {
-        _adapter.addEntries(entries);
-        updateEmptyState();
-    }
-
-    public void removeEntry(VaultEntry entry) {
-        _adapter.removeEntry(entry);
-        updateEmptyState();
-    }
-
-    public void removeEntry(UUID uuid) {
-        _adapter.removeEntry(uuid);
+    public void setEntries(Collection<VaultEntry> entries) {
+        _adapter.setEntries(new ArrayList<>(entries));
         updateEmptyState();
     }
 
     public void clearEntries() {
         _adapter.clearEntries();
-    }
-
-    public void replaceEntry(UUID uuid, VaultEntry newEntry) {
-        _adapter.replaceEntry(uuid, newEntry);
+        updateEmptyState();
     }
 
     public void runEntriesAnimation() {
@@ -572,7 +556,7 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
             // Only non-favorite entries have a bottom margin, except for the final favorite entry
             int totalFavorites = _adapter.getShownFavoritesCount();
             if (totalFavorites == 0
-                    || (entryIndex < _adapter.getShownEntriesCount() && !_adapter.getEntryAtPos(adapterPosition).isFavorite())
+                    || (entryIndex < _adapter.getShownEntriesCount() && !_adapter.getEntryAtPosition(adapterPosition).isFavorite())
                     || totalFavorites == entryIndex + 1) {
                 outRect.bottom = _offset;
             }
@@ -665,7 +649,7 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
                 return Collections.emptyList();
             }
 
-            VaultEntry entry = _adapter.getEntryAtPos(position);
+            VaultEntry entry = _adapter.getEntryAtPosition(position);
             if (!entry.hasIcon()) {
                 return Collections.emptyList();
             }

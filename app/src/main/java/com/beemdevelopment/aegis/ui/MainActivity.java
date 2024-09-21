@@ -149,7 +149,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
                 if (activityResult.getResultCode() != RESULT_OK || activityResult.getData() == null) {
                     return;
                 }
-                onAssignIconsResult(activityResult.getData());
+                onAssignIconsResult();
             });
 
     private final ActivityResultLauncher<Intent> preferenceResultLauncher =
@@ -160,7 +160,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
                 if (activityResult.getResultCode() != RESULT_OK || activityResult.getData() == null) {
                     return;
                 }
-                onEditEntryResult(activityResult.getData());
+                onEditEntryResult();
             });
 
     private final ActivityResultLauncher<Intent> addEntryResultLauncher =
@@ -255,13 +255,13 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
             _prefGroupFilter = null;
             if (!groupFilter.isEmpty()) {
                 _groupFilter = groupFilter;
-                _entryListView.setGroupFilter(groupFilter, false);
+                _entryListView.setGroupFilter(groupFilter);
             }
         } else if (_groupFilter != null) {
             Set<UUID> groupFilter = cleanGroupFilter(_groupFilter);
             if (!_groupFilter.equals(groupFilter)) {
                 _groupFilter = groupFilter;
-                _entryListView.setGroupFilter(groupFilter, true);
+                _entryListView.setGroupFilter(groupFilter);
             }
         }
 
@@ -316,7 +316,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
             if (!isChecked) {
                 group1.setChecked(false);
                 _groupFilter = groupFilter;
-                _entryListView.setGroupFilter(groupFilter, false);
+                _entryListView.setGroupFilter(groupFilter);
                 return;
             }
 
@@ -328,7 +328,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
             }
 
             _groupFilter = groupFilter;
-            _entryListView.setGroupFilter(groupFilter, false);
+            _entryListView.setGroupFilter(groupFilter);
         });
 
         chipGroup.addView(chip);
@@ -573,31 +573,20 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         if (_loaded) {
             UUID entryUUID = (UUID) data.getSerializableExtra("entryUUID");
             VaultEntry entry = _vaultManager.getVault().getEntryByUUID(entryUUID);
-            _entryListView.addEntry(entry, true);
+            _entryListView.setEntries(_vaultManager.getVault().getEntries());
+            _entryListView.onEntryAdded(entry);
         }
     }
 
-    private void onEditEntryResult(Intent data) {
+    private void onEditEntryResult() {
         if (_loaded) {
-            UUID entryUUID = (UUID) data.getSerializableExtra("entryUUID");
-
-            if (data.getBooleanExtra("delete", false)) {
-                _entryListView.removeEntry(entryUUID);
-            } else {
-                VaultEntry entry = _vaultManager.getVault().getEntryByUUID(entryUUID);
-                _entryListView.replaceEntry(entryUUID, entry);
-            }
+            _entryListView.setEntries(_vaultManager.getVault().getEntries());
         }
     }
 
-    private void onAssignIconsResult(Intent data) {
+    private void onAssignIconsResult() {
         if (_loaded) {
-            ArrayList<UUID> entryUUIDs = (ArrayList<UUID>) data.getSerializableExtra("entryUUIDs");
-
-            for (UUID entryUUID: entryUUIDs) {
-                VaultEntry entry = _vaultManager.getVault().getEntryByUUID(entryUUID);
-                _entryListView.replaceEntry(entryUUID, entry);
-            }
+            _entryListView.setEntries(_vaultManager.getVault().getEntries());
         }
     }
 
@@ -695,14 +684,11 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         if (entries.size() == 1) {
             startEditEntryActivityForNew(entries.get(0));
         } else if (entries.size() > 1) {
-            for (VaultEntry entry: entries) {
-                _vaultManager.getVault().addEntry(entry);
-                _entryListView.addEntry(entry);
-            }
-
             if (saveAndBackupVault()) {
                 Toast.makeText(this, getResources().getQuantityString(R.plurals.added_new_entries, entries.size(), entries.size()), Toast.LENGTH_LONG).show();
             }
+
+            _entryListView.setEntries(_vaultManager.getVault().getEntries());
         }
     }
 
@@ -925,15 +911,6 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         updateErrorCard();
     }
 
-    private void deleteEntries(List<VaultEntry> entries) {
-        for (VaultEntry entry: entries) {
-            VaultEntry oldEntry = _vaultManager.getVault().removeEntry(entry);
-            _entryListView.removeEntry(oldEntry);
-        }
-
-        saveAndBackupVault();
-    }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         _menu = menu;
@@ -1063,7 +1040,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
             setGroups(_vaultManager.getVault().getUsedGroups());
             _entryListView.setUsageCounts(_prefs.getUsageCounts());
             _entryListView.setLastUsedTimestamps(_prefs.getLastUsedTimestamps());
-            _entryListView.addEntries(_vaultManager.getVault().getEntries());
+            _entryListView.setEntries(_vaultManager.getVault().getEntries());
             if (!_isRecreated) {
                 _entryListView.runEntriesAnimation();
             }
@@ -1291,6 +1268,13 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         }
     }
 
+    @Override
+    protected boolean saveAndBackupVault() {
+        boolean res = super.saveAndBackupVault();
+        updateErrorCard();
+        return res;
+    }
+
     @SuppressLint("InlinedApi")
     private void copyEntryCode(VaultEntry entry) {
         String otp;
@@ -1387,12 +1371,13 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
                 mode.finish();
             } else if (itemId == R.id.action_toggle_favorite) {
                 for (VaultEntry entry : _selectedEntries) {
-                    entry.setIsFavorite(!entry.isFavorite());
-                    _entryListView.replaceEntry(entry.getUUID(), entry);
+                    _vaultManager.getVault().editEntry(entry, newEntry -> {
+                        newEntry.setIsFavorite(!newEntry.isFavorite());
+                    });
                 }
-                _entryListView.refresh(true);
 
                 saveAndBackupVault();
+                _entryListView.setEntries(_vaultManager.getVault().getEntries());
                 mode.finish();
             } else if (itemId == R.id.action_share_qr) {
                 Intent intent = new Intent(getBaseContext(), TransferEntriesActivity.class);
@@ -1410,8 +1395,12 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
                 mode.finish();
             } else if (itemId == R.id.action_delete) {
                 Dialogs.showDeleteEntriesDialog(MainActivity.this, _selectedEntries, (d, which) -> {
-                    deleteEntries(_selectedEntries);
+                    for (VaultEntry entry : _selectedEntries) {
+                        _vaultManager.getVault().removeEntry(entry);
+                    }
+                    saveAndBackupVault();
                     _entryListView.setGroups(_vaultManager.getVault().getUsedGroups());
+                    _entryListView.setEntries(_vaultManager.getVault().getEntries());
                     mode.finish();
                 });
             } else if (itemId == R.id.action_select_all) {
