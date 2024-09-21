@@ -211,7 +211,6 @@
     <string name="reading_file">Läser fil</string>
     <string name="requesting_root_access">Begär rotåtkomst</string>
     <string name="analyzing_qr">Analyserar rutkod</string>
-    <string name="analyzing_qr_multiple">Analyserar rutkod %d/%d (%s)</string>
     <plurals name="added_new_entries">
         <item quantity="one">Lade till %d ny post i valvet</item>
         <item quantity="other">Lade till %d nya poster i valvet</item>
@@ -368,7 +367,6 @@
     <string name="unable_to_process_deeplink">Kunde inte bearbeta djuplänk</string>
     <string name="unable_to_read_qrcode_file">Kunde inte läsa och bearbeta rutkod från fil: %s.</string>
     <string name="unable_to_process_shared_text">Kunde inte bearbeta delad text som OTP</string>
-    <string name="unable_to_read_qrcode_files">Kunde inte läsa och bearbeta några av rutkoderna. Endast %d/%d poster kommer att importeras.</string>
     <string name="unable_to_generate_qrcode">Kunde inte generera rutkod</string>
     <string name="select_picture">Välj bild</string>
     <string name="select_icon">Välj ikon</string>
@@ -399,16 +397,7 @@
     <string name="time_sync_warning_message">Aegis förlitar sig på att systemtiden är i synk för att kunna generera korrekta koder. En avvikelse på bara några sekunder kan resultera i felaktiga koder. Det verkar som om din enhet inte är konfigurerad för att synkronisera tiden automatiskt. Vill du göra det nu?</string>
     <string name="time_sync_warning_disable">Sluta varna mig. Jag vet vad jag gör.</string>
     <string name="google_qr_export_unrelated">Orelaterad rutkod hittades. Pröva att starta om skannern.</string>
-    <plurals name="google_qr_export_scanned">
-        <item quantity="one">Skannade %d/%d rutkoder</item>
-        <item quantity="other">Skannade %d/%d rutkoder</item>
-    </plurals>
-    <string name="google_qr_export_unexpected">Förutsatte rutkod #%d men skannade #%d i stället</string>
     <string name="backup_error_bar_message"><b>Säkerhetskopiering av valvet misslyckades nyligen</b></string>
-    <string name="backup_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">        Ett nyligt försök att säkerhetskopiera valvet via %s misslyckades eftersom ett fel uppstod. Försöket gjordes för %s. Vänligen kontrollera dina säkerhetskopieringsinställningar för att se till att säkerhetskopior kan skapas framgångsrikt.
-    </string>
-    <string name="backup_permission_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">        Ett nyligt försök att säkerhetskopiera valvet via %s misslyckades eftersom Aegis inte hade behörighet att skriva till lagringsplatsen för säkerhetskopior. Försöket gjordes för %s. Detta fel kan uppstå om du har flyttat/bytt namn på lagringsplatsen för säkerhetskopior eller om du nyligen har återställt Aegis från en säkerhetskopia. Vänligen konfigurera om lagringsplatsen för säkerhetskopior.
-    </string>
     <string name="backup_system_builtin">Aegis inbyggda automatiska säkerhetskopior</string>
     <string name="backup_system_android">Androids molnsäkerhetskopieringssystem</string>
     <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">        Senaste säkerhetskopian är föråldrad (%s)

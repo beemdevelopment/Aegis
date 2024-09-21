@@ -213,7 +213,6 @@
     <string name="reading_file">Đang đọc tập tin</string>
     <string name="requesting_root_access">Yêu cầu truy cập root</string>
     <string name="analyzing_qr">Đang phân tích mã QR</string>
-    <string name="analyzing_qr_multiple">Đang phân tích mã QR %d/%d (%s)</string>
     <plurals name="added_new_entries">
         <item quantity="other">Đã thêm %d mục mới vào kho</item>
     </plurals>
@@ -365,7 +364,6 @@
     <string name="unable_to_process_deeplink">Không thể xử lý deep link</string>
     <string name="unable_to_read_qrcode_file">Không thể đọc và xử lý mã QR từ tập tin: %s.</string>
     <string name="unable_to_process_shared_text">Không thể xử lý văn bản được chia sẻ dưới dạng OTP</string>
-    <string name="unable_to_read_qrcode_files">Không thể đọc và xử lý vài mã QR. Chỉ %d/%d mục sẽ được nhập.</string>
     <string name="unable_to_generate_qrcode">Không thể tạo mã QR</string>
     <string name="select_picture">Chọn ảnh</string>
     <string name="select_icon">Chọn biểu tượng</string>
@@ -396,15 +394,7 @@
     <string name="time_sync_warning_message">Aegis dựa vào việc thời gian hệ thống được đồng bộ để tạo các mã chính xác. Một sự sai lệch chỉ vài giây cũng có thể dẫn đến các mã không chính xác. Có vẻ như thiết bị của bạn không được thiết lập tự đồng bộ thời gian. Bạn có muốn bật tính năng này?</string>
     <string name="time_sync_warning_disable">Đừng cảnh báo tôi nữa. Tôi biết tôi đang làm gì.</string>
     <string name="google_qr_export_unrelated">Đã tìm thấy mã QR không liên quan. Hãy thử khởi động lại trình quét.</string>
-    <plurals name="google_qr_export_scanned">
-        <item quantity="other">Đã quét %d/%d mã QR</item>
-    </plurals>
-    <string name="google_qr_export_unexpected">Dự định quét mã QR #%d, nhưng thay vào đó đã quét #%d</string>
     <string name="backup_error_bar_message"><b>Sao lưu kho thất bại</b></string>
-    <string name="backup_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">        Một bản sao lưu kho gần đây bằng cách sử dụng %s đã thất bại. Bản sao lưu đã thử %s. Vui lòng kiểm tra cài đặt sao lưu của bạn để đảm bảo quá trình sao lưu có thể hoàn tất.
-    </string>
-    <string name="backup_permission_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">        Lần sao lưu kho gần đây bằng %s không thành công vì Aegis không có quyền ghi vào thư mục. Đã thử sao lưu %s. Lỗi này có thể xảy ra nếu bạn di chuyển/đổi tên thư mục sao lưu hoặc nếu gần đây bạn đã khôi phục Aegis từ bản sao lưu. Vui lòng chọn lại thư mục sao lưu.
-    </string>
     <string name="backup_system_builtin">Sao lưu tự động tích hợp của Aegis</string>
     <string name="backup_system_android">Sao lưu đám mây của Android</string>
     <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">        Bản sao lưu cuối cùng đã cũ (%s)

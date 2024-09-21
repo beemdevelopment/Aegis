@@ -117,7 +117,6 @@
     <string name="snackbar_authentication_method">Pasirinkite tapatybės nustatymo metodą</string>
     <string name="encrypting_vault">Šifruojama slėptuvė</string>
     <string name="analyzing_qr">Analizuojamas QR kodas</string>
-    <string name="analyzing_qr_multiple">Analizuojamas QR kodas %d/%d (%s)</string>
     <string name="importing_icon_pack">Importuojamas piktogramų paketas</string>
     <string name="delete_entry">Ištrinti įrašą</string>
     <string name="delete_entry_description">Ar tikrai norite ištrinti šį įrašą?</string>
@@ -245,7 +244,6 @@
     <string name="time_sync_warning_title">Automatinis laiko sinchronizavimas</string>
     <string name="time_sync_warning_disable">Daugiau manęs nebeįspėkite. Aš žinau, ką darau.</string>
     <string name="google_qr_export_unrelated">Rastas nesusijęs QR kodas. Pabandykite paleisti skenerį iš naujo.</string>
-    <string name="google_qr_export_unexpected">Tikėtasi #%d QR kodo, bet vietoj to, nuskenuotas #%d</string>
     <string name="backup_reminder_bar_message">        Pakeitimų atsarginė kopija nėra daroma
     </string>
     <string name="pref_show_plaintext_warning_hint">Daugiau neberodyti šio įspėjimo</string>

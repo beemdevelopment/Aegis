@@ -212,7 +212,6 @@
     <string name="reading_file">Citire fişier</string>
     <string name="requesting_root_access">Solicită acces root</string>
     <string name="analyzing_qr">Se analizează codul QR</string>
-    <string name="analyzing_qr_multiple">Se analizează codul QR %d%d (%s)</string>
     <plurals name="added_new_entries">
         <item quantity="one">Au fost adăugate %d de noi intrări în seif</item>
         <item quantity="few">Au fost adăugate %d noi intrări în seif</item>
@@ -375,7 +374,6 @@
     <string name="unable_to_process_deeplink">Nu se poate procesa link-ul</string>
     <string name="unable_to_read_qrcode_file">Nu se poate citi și procesa codul QR din fișierul: %s.</string>
     <string name="unable_to_process_shared_text">Imposibil de procesat textul partajat ca un cod OTP</string>
-    <string name="unable_to_read_qrcode_files">Nu se pot citi şi procesa unele dintre codurile QR. Doar %d/%d intrări vor fi importate.</string>
     <string name="unable_to_generate_qrcode">Nu se poate genera codul QR</string>
     <string name="select_picture">Selectare imagine</string>
     <string name="select_icon">Selectare pictogramă</string>
@@ -406,16 +404,7 @@
     <string name="time_sync_warning_message">Aegis-ul se bazează pe un sistem de timp pentru a fi sincronizat pentru a genera codurile corecte. O abatere de doar câteva secunde ar putea duce la coduri incorecte. Se pare că dispozitivul tău nu este configurat pentru a sincroniza automat timpul. Dorești să faci acest lucru acum?</string>
     <string name="time_sync_warning_disable">Nu mă mai avertiza. Ştiu ce fac.</string>
     <string name="google_qr_export_unrelated">Cod QR negăsit găsit. Încearcă să repornești scanerul.</string>
-    <plurals name="google_qr_export_scanned">
-        <item quantity="one">Cod %d/%d QR scanat</item>
-        <item quantity="few">Coduri %d/%d QR scanate</item>
-        <item quantity="other">Coduri %d/%d QR scanate</item>
-    </plurals>
-    <string name="google_qr_export_unexpected">Se aștepta codul QR #%d, dar scanat #%d în schimb</string>
     <string name="backup_error_bar_message"><b>Copia de rezervă a seifului a eșuat recent</b></string>
-    <string name="backup_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">O încercare recentă de backup a seifului folosind %s a eșuat deoarece a apărut o eroare. S-a încercat crearea unei copii de siguranță la: %s. Vă rugăm să verificați setările copiilor de rezervă pentru a vă asigura că acestea pot fii create cu succes.    </string>
-    <string name="backup_permission_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">        O încercare recentă de backup a seifului folosind %s a eșuat deoarece Aegis nu a avut permisiunea de a scrie în dosarul destinație. Sa încercat creearea unui backup la %s. Această eroare poate apărea dacă ați mutat/redenumit destinația copiei de rezervă sau dacă ați restaurat recent Aegis dintr-o copie de rezervă. Vă rugăm să reconfiguraţi destinaţia copiei de rezervă.
-    </string>
     <string name="backup_system_builtin">Copiile de siguranță încorporate în aplicație</string>
     <string name="backup_system_android">Sistemul de backup în cloud Android</string>
     <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">        Ultima copie de rezervă este învechită (%s)

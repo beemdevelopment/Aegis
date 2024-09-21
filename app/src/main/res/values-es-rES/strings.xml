@@ -215,7 +215,6 @@
     <string name="reading_file">Leyendo archivo</string>
     <string name="requesting_root_access">Solicitando acceso a la raíz</string>
     <string name="analyzing_qr">Analizando código QR</string>
-    <string name="analyzing_qr_multiple">Analizando código QR %d/%d (%s)</string>
     <plurals name="added_new_entries">
         <item quantity="one">Añadida %d nueva entrada a la bóveda</item>
         <item quantity="other">Añadidas %d nuevas claves a la bóveda</item>
@@ -373,7 +372,6 @@
     <string name="unable_to_process_deeplink">No se puede procesar el enlace profundo</string>
     <string name="unable_to_read_qrcode_file">No se puede leer y procesar el código QR del archivo: %s.</string>
     <string name="unable_to_process_shared_text">No se puede procesar el texto compartido como OTP</string>
-    <string name="unable_to_read_qrcode_files">No se pueden leer y procesar algunos de los códigos QR. Solo se importarán %d/%d entradas.</string>
     <string name="unable_to_generate_qrcode">No se puede generar el código QR</string>
     <string name="select_picture">Seleccionar imagen</string>
     <string name="select_icon">Seleccionar icono</string>
@@ -404,16 +402,7 @@
     <string name="time_sync_warning_message">Aegis depende que la hora de tu dispositivo esté bien para generar códigos válidos en cada momento. Una pequeña diferencia de unos segundos podría hacer que los códigos no se acepten. Parece que tu dispositivo no está configurado para sincronizar automáticamente la hora. ¿Quieres hacerlo ahora?</string>
     <string name="time_sync_warning_disable">No molestar, sé muy bien lo que hago.</string>
     <string name="google_qr_export_unrelated">Encontrado código QR no relacionado. Intente reiniciar el escáner.</string>
-    <plurals name="google_qr_export_scanned">
-        <item quantity="one">Escaneado %d/%d código QR</item>
-        <item quantity="other">Escaneados %d/%d códigos QR</item>
-    </plurals>
-    <string name="google_qr_export_unexpected">Se esperaba el código QR número %d, pero parece que has escaneado el número %d</string>
     <string name="backup_error_bar_message"><b>La copia de seguridad de la bóveda ha fallado recientemente</b></string>
-    <string name="backup_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">        Ha fallado una copia de la bóveda mediante %s realizada %s. Asegúrate de que la configuración esté bien para evitar problemas.
-    </string>
-    <string name="backup_permission_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">        Ha fallado una copia de la bóveda mediante %s realizada %s porque Aegis no tenía permiso para escribir la carpeta elegida. Este error puede producirse si se ha movido o renombrado la carpeta o si has importado los ajustes de Aegis desde otro dispositivo. Vuelve a configurar la carpeta destino.
-    </string>
     <string name="backup_system_builtin">Copias de seguridad automáticas de Aegis</string>
     <string name="backup_system_android">Sistema de copias de seguridad en la nube de Android</string>
     <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">        La última copia de seguridad está desactualizada (%s)

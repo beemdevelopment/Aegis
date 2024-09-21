@@ -215,7 +215,6 @@
     <string name="reading_file">Прочитане на файла</string>
     <string name="requesting_root_access">Достъп до правата на суперпотребителя</string>
     <string name="analyzing_qr">Анализиране на QR кода</string>
-    <string name="analyzing_qr_multiple">Анализиране на QR код %d/%d (%s)</string>
     <plurals name="added_new_entries">
         <item quantity="one">Към хранилището е добавен %d запис</item>
         <item quantity="other">Към хранилището са добавени %d записа</item>
@@ -373,7 +372,6 @@
     <string name="unable_to_process_deeplink">Грешка при обработка на препратка към секция в приложението</string>
     <string name="unable_to_read_qrcode_file">Грешка при прочитане и обработка на QR кода от файла: %s.</string>
     <string name="unable_to_process_shared_text">Грешка при обработка на споделения текст като еднократна парола</string>
-    <string name="unable_to_read_qrcode_files">Грешка при прочитане и обработка на някои от QR кодовете. %d от общо %d записа са внесени.</string>
     <string name="unable_to_generate_qrcode">Грешка при създаване на QR код</string>
     <string name="select_picture">Изберете картина</string>
     <string name="select_icon">Изберете икона</string>
@@ -404,16 +402,7 @@
     <string name="time_sync_warning_message">Aegis разчита системният часовник да бъде верен, за да може да изчислява правилните кодове. Отклонение от само няколко секунди може да доведе до грешни изчисления. Изглежда устройството не е настроено да се сверява. Искате ли да го настроите сега?</string>
     <string name="time_sync_warning_disable">Без предупреждения. Аз зная какво правя.</string>
     <string name="google_qr_export_unrelated">Намерен е несвързан QR код. Рестартирате скенера.</string>
-    <plurals name="google_qr_export_scanned">
-        <item quantity="one">Сканирани %d/%d QR кодове</item>
-        <item quantity="other">Сканирани %d/%d QR кодове</item>
-    </plurals>
-    <string name="google_qr_export_unexpected">Очакван е QR код №%d, но е сканиран №%d</string>
     <string name="backup_error_bar_message"><b>Резервно копие на хранилището е било неуспешно</b></string>
-    <string name="backup_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">        Един от последните опити за резервно копие на хранилището чрез %s е неуспешен поради грешка. Това се е случило %s. Проверете настройките и се уверете, че резервни копия могат да бъдат създавани с тези настройки.
-    </string>
-    <string name="backup_permission_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">        Скорошен опит за резервно копие на хранилището с използване на %s е неуспешен, защото Aegis няма разрешение да записва в местоназначението. Опитът е направен %s. Такава грешка може да възникне, ако сте преместили или преименували местоназначението или ако наскоро сте възстановили Aegis от резервно копие. Настройте местоназначението за резервно копие.
-    </string>
     <string name="backup_system_builtin">Вградените резервни копия на Aegis</string>
     <string name="backup_system_android">Облачните резервни копия на Андроид</string>
     <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">        Последното резервно копие е остаряло (%s)

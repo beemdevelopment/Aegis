@@ -215,7 +215,6 @@
     <string name="reading_file">Læser fil</string>
     <string name="requesting_root_access">Anmoder om root-adgang</string>
     <string name="analyzing_qr">Analyserer QR-kode</string>
-    <string name="analyzing_qr_multiple">Analyserer QR-kode %d/%d (%s)</string>
     <plurals name="added_new_entries">
         <item quantity="one">Tilføjede %d ny post til boksen</item>
         <item quantity="other">Tilføjede %d nye poster til boksen</item>
@@ -373,7 +372,6 @@
     <string name="unable_to_process_deeplink">Dybt link kan ikke behandles</string>
     <string name="unable_to_read_qrcode_file">Kan ikke læse og behandle QR-koden fra filen: %s.</string>
     <string name="unable_to_process_shared_text">Kan ikke behandle delt tekst som OTP</string>
-    <string name="unable_to_read_qrcode_files">Kan ikke læse og behandle nogle af QR-koderne. Kun %d/%d poster importeres.</string>
     <string name="unable_to_generate_qrcode">Kan ikke generere QR-kode</string>
     <string name="select_picture">Vælg billede</string>
     <string name="select_icon">Vælg ikon</string>
@@ -404,16 +402,7 @@
     <string name="time_sync_warning_message">Aegis er afhængig af systemtiden for at være i synk til generering af korrekte koder. En afvigelse på kun et par sekunder kan resultere i forkerte koder. Det ser ud til, at enheden ikke er opsat til auto-synk af tid. Opsæt dette nu?</string>
     <string name="time_sync_warning_disable">Ophør med at advare mig. Jeg ved, hvad jeg gør.</string>
     <string name="google_qr_export_unrelated">Ikke-relateret QR-kode fundet. Prøv at genstarte skanneren.</string>
-    <plurals name="google_qr_export_scanned">
-        <item quantity="one">Skannede %d/%d QR-koder</item>
-        <item quantity="other">Skannede %d/%d QR-koder</item>
-    </plurals>
-    <string name="google_qr_export_unexpected">Forventede QR kode #%d, men skannede #%d i stedet</string>
     <string name="backup_error_bar_message"><b>Bokssikkerhedskopiering mislykkedes for nylig</b></string>
-    <string name="backup_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">        Et nyligt Bokssikkerhedskopieringsforsøg vha. %s mislykkedes, da en fejl opstod. Sikkerhedskopieringen blev forsøgt: %s. Tjek sikkerhedskopieringsindstillingerne for at sikre, at sikkerhedskopieringer kan fuldføres.
-    </string>
-    <string name="backup_permission_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">        Et nyligt Bokssikkerhedskopieringsforsøg vha. %s fejlede grundet Aegis\' manglende skriverettighed på sikkerhedskopidestinationen. Sikkerhedskopieringen forsøgt %s. Fejlen kan opstå, hvis sikkerhedskopidestinationen er blevet flyttet/omdøbt, eller Aegis for nylig er gendannet fra en sikkerhedskopi. Genopsæt sikkerhedskopidestination.
-    </string>
     <string name="backup_system_builtin">Aegis\' indbyggede automatiske sikkerhedskopieringer</string>
     <string name="backup_system_android">Android cloud-sikkerhedskopieringssystem</string>
     <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">        Seneste sikkerhedskopi er forældet (%s)

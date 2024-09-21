@@ -185,7 +185,6 @@
     <string name="reading_file">讀取檔案中</string>
     <string name="requesting_root_access">需要使用 root</string>
     <string name="analyzing_qr">分析 QR code 中</string>
-    <string name="analyzing_qr_multiple">正在分析 QR 圖碼 %d/%d (%s)</string>
     <plurals name="added_new_entries">
         <item quantity="other">增加 %d 個條目進保險箱</item>
     </plurals>
@@ -345,13 +344,7 @@
     <string name="time_sync_warning_message">僅幾秒鐘的偏差可能會導致驗證碼錯誤。您的裝置似乎未設定為自動同步時間。您現在要設定自動同步時間嗎？</string>
     <string name="time_sync_warning_disable">不要再次提醒。我知道我在做什麼。</string>
     <string name="google_qr_export_unrelated">找到不相關的QR碼。請嘗試重新掃描。</string>
-    <plurals name="google_qr_export_scanned">
-        <item quantity="other">已掃描 %d/%d</item>
-    </plurals>
-    <string name="google_qr_export_unexpected">預期QR碼 %d，已掃描 %d</string>
     <string name="backup_error_bar_message"><b>近期的保險箱備份失敗</b></string>
-    <string name="backup_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">        因為錯誤發生，最近一次嘗試使用 %s 的備份行為失敗。本次備份使用 %s。請檢查您的備份設定以確保備份能順利完成。
-    </string>
     <string name="backup_system_builtin">Aegis 內建的自動備份</string>
     <string name="backup_system_android">Android 雲端備份</string>
     <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">        最新的備份已過時 (%s)    

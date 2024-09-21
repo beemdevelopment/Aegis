@@ -215,7 +215,6 @@
     <string name="reading_file">Bestand lezen</string>
     <string name="requesting_root_access">Root-toegang wordt aangevraagd</string>
     <string name="analyzing_qr">QR-code analyseren</string>
-    <string name="analyzing_qr_multiple">QR-code analyseren %d/%d (%s)</string>
     <plurals name="added_new_entries">
         <item quantity="one">%d nieuwe items aan de kluis toegevoegd</item>
         <item quantity="other">%d nieuwe items aan de kluis toegevoegd</item>
@@ -373,7 +372,6 @@
     <string name="unable_to_process_deeplink">Kan de deeplink niet verwerken</string>
     <string name="unable_to_read_qrcode_file">Kan de QR-code van bestand niet lezen en verwerken: %s.</string>
     <string name="unable_to_process_shared_text">Kan gedeelde tekst niet verwerken als OTP</string>
-    <string name="unable_to_read_qrcode_files">Kan sommige QR-codes niet lezen en verwerken. Alleen %d/%d items worden geïmporteerd.</string>
     <string name="unable_to_generate_qrcode">Kan de QR-code niet genereren</string>
     <string name="select_picture">Foto selecteren</string>
     <string name="select_icon">Icoon selecteren</string>
@@ -404,16 +402,7 @@
     <string name="time_sync_warning_message">Aegis is afhankelijk van gesynchroniseerde systeemtijd om juiste codes te genereren. Een afwijking van slechts enkele seconden kan leiden tot onjuiste codes. Het lijkt erop dat je apparaat niet is ingesteld om de tijd automatisch te synchroniseren. Wil je dit nu doen?</string>
     <string name="time_sync_warning_disable">Stop met me te waarschuwen. Ik weet wat ik doe.</string>
     <string name="google_qr_export_unrelated">Ongerelateerde QR-code gevonden. Probeer de scanner opnieuw te starten.</string>
-    <plurals name="google_qr_export_scanned">
-        <item quantity="one">%d/%d QR-code gescand</item>
-        <item quantity="other">%d/%d QR-codes gescand</item>
-    </plurals>
-    <string name="google_qr_export_unexpected">QR-code #%d werd verwacht, maar in plaats daarvan #%d gescand</string>
     <string name="backup_error_bar_message"><b>Kluis back-up onlangs mislukt</b></string>
-    <string name="backup_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">        Een recente back-up van de kluis met %s mislukte omdat er iets misging. De back-uppoging was op %s. Controleer de back-upinstellingen om zeker te zijn dat back-ups met succes kunnen worden voltooid.
-    </string>
-    <string name="backup_permission_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">        Een recente poging een reservekopie van de kluis te maken met %s is mislukt. Aegis heeft geen toestemming om te schrijven naar de back-uplocatie. De back-up is %s geprobeerd. Deze fout kan optreden als je de back-uplocatie hebt verplaatst/hernoemd of als je onlangs een Aegis-back-up hebt hersteld. Configureer de back-uplocatie opnieuw.
-    </string>
     <string name="backup_system_builtin">het ingebouwde automatische back-ups van Aegis</string>
     <string name="backup_system_android">het cloud back-upsysteem van Android</string>
     <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">        De meest recente back-up is verouderd (%s)

@@ -219,7 +219,6 @@
     <string name="reading_file">قراءة الملف</string>
     <string name="requesting_root_access">طلب صلاحية الجذر</string>
     <string name="analyzing_qr">تحليل رمز QR</string>
-    <string name="analyzing_qr_multiple">تحليل رمز QR %d/%d (%s)</string>
     <plurals name="added_new_entries">
         <item quantity="zero">تم إضافة %d مدخل جديد إلى المخزن</item>
         <item quantity="one">تم إضافة %d مدخل جديد إلى المخزن</item>
@@ -400,7 +399,6 @@
     <string name="unable_to_process_deeplink">تعذرت معالجة الارتباط العميق</string>
     <string name="unable_to_read_qrcode_file">غير قادر على قراءة ومعالجة رمز QR من الملف: %s.</string>
     <string name="unable_to_process_shared_text">غير قادر على معالجة النص المُشارك ك OTP</string>
-    <string name="unable_to_read_qrcode_files">غير قادر على قراءة ومعالجة بعض رموز QR. سيتم استيراد %d/%d فقط من المدخلات.</string>
     <string name="unable_to_generate_qrcode">تعذّر توليد كود QR</string>
     <string name="select_picture">اختر صورة</string>
     <string name="select_icon">اختر أيقونة</string>
@@ -431,19 +429,7 @@
     <string name="time_sync_warning_message">يعتمد Aegis على وقت النظام لتوليد الأكواد الصحيحة. انحراف بمقادر بضعة ثواني يمكن أن يؤدي إلى أكواد خاطئة. يبدوا أن جهازك غير معيّن إلى مزامنة الوقت تلقائيًا. هل ترغب بفعل ذلك الآن؟</string>
     <string name="time_sync_warning_disable">إيقاف تحذيري. أنا أعرف ما أفعله.</string>
     <string name="google_qr_export_unrelated">تم العثور على كود QR لا علاقة له. حاول إعادة تشغيل الماسح.</string>
-    <plurals name="google_qr_export_scanned">
-        <item quantity="zero">تم مسح %d/%d رمز QR</item>
-        <item quantity="one">تم مسح %d/%d رمز QR</item>
-        <item quantity="two">تم مسح %d/%d رموز QR</item>
-        <item quantity="few">تم مسح %d/%d رموز QR</item>
-        <item quantity="many">تم مسح %d/%d رمز QR</item>
-        <item quantity="other">تم مسح %d/%d رمز QR</item>
-    </plurals>
-    <string name="google_qr_export_unexpected">انتظرت كود QR #%d، ولكن مسحت #%d بدلًا منه</string>
     <string name="backup_error_bar_message"><b>النسخ الاحتياطي للمخزن فشل مؤخرًا</b></string>
-    <string name="backup_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">         فشلت محاولة النسخ الاحتياطي للمخزون باستخدام %s بسبب حدوث خطأ. تمت محاولة النسخ الاحتياطي %s. الرجاء التحقق من إعدادات النسخ الاحتياطي للتأكد من أن النسخ الاحتياطي يمكن أن يكتمل بنجاح.
-    </string>
-    <string name="backup_permission_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">فشلت محاولة النسخ الاحتياطي الأخيرة للمحفظة باستخدام %s لأن Aegis لم يكن لديه الإذن قراءة وجهة النسخ الاحتياطي. تمت محاولة النسخ الاحتياطي %s. يمكن أن يحدث هذا الخطأ إذا قمت بنقل/إعادة تسمية وجهة النسخ الاحتياطي أو إذا قمت للتو باستعادة Aegis من نسخة احتياطية. الرجاء إعادة إعداد وجهة النسخ الإحتياطي.    </string>
     <string name="backup_system_builtin">النسخ الاحتياطية التلقائية المضنة في Aegis</string>
     <string name="backup_system_android">نظام النسخ الاحتياطي السحابي للأندرويد</string>
     <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">        أحدث نسخة احتياطية قديمة (%s)

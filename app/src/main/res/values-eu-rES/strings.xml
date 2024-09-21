@@ -209,7 +209,6 @@
     <string name="reading_file">Fitxategia irakurtzen</string>
     <string name="requesting_root_access">Root sarbidea eskatzen</string>
     <string name="analyzing_qr">QR kodea aztertzen</string>
-    <string name="analyzing_qr_multiple">QR kodea aztertzen %d/%d (%s)</string>
     <plurals name="added_new_entries">
         <item quantity="one">Sarrera berri %d gehitu da</item>
         <item quantity="other">%d sarrera berri gehitu dira</item>
@@ -366,7 +365,6 @@
     <string name="unable_to_process_deeplink">Ezin izan da esteka sakona prozesatu</string>
     <string name="unable_to_read_qrcode_file">Ezin izan da fitxategian oinarritutako QR kodea prozesatu: %s.</string>
     <string name="unable_to_process_shared_text">Ezin izan da partekatutako testua OTP bezala prozesatu</string>
-    <string name="unable_to_read_qrcode_files">Ezin izan dira QR kode batzuk irakurri eta prozesatu. %d/%d sarrera inportatuko dira bakarrik.</string>
     <string name="unable_to_generate_qrcode">Ezin da QR kodea sortu</string>
     <string name="select_picture">Aukeratu irudia</string>
     <string name="select_icon">Aukeratu ikonoa</string>
@@ -397,14 +395,7 @@
     <string name="time_sync_warning_message">Aegis-ek konfiantza du sistemaren denboran, kode zuzenak sortzeko sinkronizatuta egoteko. Segundo batzuetako desbideratzea kode okerrak eragin ditzake. Badirudi zure gailua ez dagoela denbora automatikoki sinkronizatzeko konfiguratuta. Orain egitea gustatuko litzaizuke?</string>
     <string name="time_sync_warning_disable">Utzi aholkuak emateari. Badakit zer egiten ari naizen.</string>
     <string name="google_qr_export_unrelated">Erlazionatu gabeko QR kodea aurkitu da. Saiatu eskanerra berrabiarazten.</string>
-    <plurals name="google_qr_export_scanned">
-        <item quantity="one">%d/%d eskaneatutako QR kodeak</item>
-        <item quantity="other">%d/%d eskaneatutako QR kodeak</item>
-    </plurals>
-    <string name="google_qr_export_unexpected">Itxarondako QR kodea #%d, baina haren ordez #%d eskaneatuta</string>
     <string name="backup_error_bar_message"><b>Biltegiaren segurtasun-kopiak akatsa eman du berriki</b></string>
-    <string name="backup_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">%s erabiliz egindako biltegiaren segurtasun kopiak huts egin du. Saiakera noiz egin den: %s. Ziurtatu segurtasun kopien ezarpenak ondo daudela hauek ondo egin daitezen.    </string>
-    <string name="backup_permission_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">%s erabiliz egin den segurtasun-kopia baten saiakerak huts egin du Aegisek ez baitu baimenik helburuan ezer idazteko. Segurtasun kopiaren saiakera %s izan da. Errore hau kopia mugitu/berrizendatu egin duzulako izan daiteke edo Aegis segurtasun-kopia batetik berrezarri duzulako. Konfiguratu berriz zure kopien helburu karpeta.    </string>
     <string name="backup_system_builtin">Aegisek egindako segurtasun kopia automatikoak</string>
     <string name="backup_system_android">Androidek lainoan egidako segurtasun kopiak</string>
     <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">Azken segurtasun kopia zaharregia da (%s)

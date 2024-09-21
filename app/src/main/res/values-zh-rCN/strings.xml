@@ -212,7 +212,6 @@
     <string name="reading_file">正在读取文件</string>
     <string name="requesting_root_access">正在请求 root 权限</string>
     <string name="analyzing_qr">正在分析二维码</string>
-    <string name="analyzing_qr_multiple">正在分析二维码 %d/%d (%s)</string>
     <plurals name="added_new_entries">
         <item quantity="other">添加了 %d 个新条目到保险库</item>
     </plurals>
@@ -364,7 +363,6 @@
     <string name="unable_to_process_deeplink">无法处理深层链接</string>
     <string name="unable_to_read_qrcode_file">无法从文件读取和处理二维码: %s。</string>
     <string name="unable_to_process_shared_text">无法将共享文本作为 OTP 进行处理</string>
-    <string name="unable_to_read_qrcode_files">无法读取和处理一些二维码。仅导入 %d/%d 条目。</string>
     <string name="unable_to_generate_qrcode">无法生成二维码</string>
     <string name="select_picture">选择图片</string>
     <string name="select_icon">选择图标</string>
@@ -395,14 +393,7 @@
     <string name="time_sync_warning_message">Aegis 依靠系统时间来同步生成正确的验证码。仅几秒钟的偏差可能会导致验证码错误。您的设备似乎未配置为自动同步时间。您现在要设置自动同步时间吗？</string>
     <string name="time_sync_warning_disable">不要再次提醒。我知道我在做什么。</string>
     <string name="google_qr_export_unrelated">找到不相关的二维码。请尝试重新扫描。</string>
-    <plurals name="google_qr_export_scanned">
-        <item quantity="other">已扫描 %d/%d 二维码</item>
-    </plurals>
-    <string name="google_qr_export_unexpected">预期二维码 #%d，已扫描 #%d</string>
     <string name="backup_error_bar_message"><b>数据库最近备份失败</b></string>
-    <string name="backup_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">因发生错误，上次使用 %s 备份密码库的尝试失败。尝试于 %s。请检查您的备份设置以确保备份成功完成。    </string>
-    <string name="backup_permission_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">        上次使用 %s 备份密码库失败，Aegis 缺少写入备份目标的权限。尝试于 %s。错误可能因为您最近移动或重命名了备份目标，或者您最近从一个备份中还原了 Aegis ，请重新配置备份目标。
-    </string>
     <string name="backup_system_builtin">Aegis 内置的自动备份</string>
     <string name="backup_system_android">Android 的云备份系统</string>
     <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">        最新备份已过时 (%s)

@@ -221,7 +221,6 @@
     <string name="reading_file">Čtení souboru</string>
     <string name="requesting_root_access">Žádání o přístup root</string>
     <string name="analyzing_qr">Analyzování QR kódu</string>
-    <string name="analyzing_qr_multiple">Analyzuji QR kód %d/%d (%s)</string>
     <plurals name="added_new_entries">
         <item quantity="one">Do trezoru byl přidán %d nový záznam</item>
         <item quantity="few">Do trezoru byly přidány %d nové záznamy</item>
@@ -391,7 +390,6 @@
     <string name="unable_to_process_deeplink">Nepodařilo se zpracovat odkaz</string>
     <string name="unable_to_read_qrcode_file">Nepodařilo se přečíst a zpracovat QR kód ze souboru: %s.</string>
     <string name="unable_to_process_shared_text">Nepodařilo se zpracovat sdílený text jako OTP</string>
-    <string name="unable_to_read_qrcode_files">Nepodařilo se přečíst a zpracovat některé QR kódy. Bude importováno pouze %d/%d položek.</string>
     <string name="unable_to_generate_qrcode">QR kód nelze vygenerovat</string>
     <string name="select_picture">Vyberte obrázek</string>
     <string name="select_icon">Vybrat ikonu</string>
@@ -422,18 +420,7 @@
     <string name="time_sync_warning_message">Aegis při generování správných kódů spoléhá na synchronizaci systémového času. Odchylka pouze několika sekund může mít za následek nesprávné kódy. Zdá se, že vaše zařízení není nakonfigurováno pro automatickou synchronizaci času. Chcete nastavit automatickou synchronizaci času?</string>
     <string name="time_sync_warning_disable">Už mě neupozorňujte. Vím, co dělám.</string>
     <string name="google_qr_export_unrelated">Nalezen nesouvisející QR kód. Zkuste skener restartovat.</string>
-    <plurals name="google_qr_export_scanned">
-        <item quantity="one">Naskenován %d/%d QR kódu</item>
-        <item quantity="few">Naskenováno %d/%d QR kódů</item>
-        <item quantity="many">Naskenováno %d/%d QR kódů</item>
-        <item quantity="other">Naskenováno %d/%d QR kódů</item>
-    </plurals>
-    <string name="google_qr_export_unexpected">Očekáván QR kód #%d, avšak naskenován byl #%d</string>
     <string name="backup_error_bar_message"><b>Vytvoření zálohy trezoru se nedávno nezdařilo</b></string>
-    <string name="backup_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">        Pokus o nedávnou zálohu trezoru pomocí %s selhal, protože došlo k chybě. Pokus o zálohu byl uskutečněn %s. Zkontrolujte prosím svá nastavení pro ujištění se, že zálohy mohou být úspěšně dokončeny.
-    </string>
-    <string name="backup_permission_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">        Nedávný pokus o zálohu trezoru pomocí %s selhal, protože Aegis neměl oprávnění k zápisu do cílového adresáře. Pokus o zálohu byl proveden %s. Tato chyba může nastat, když přesunete/přejmenujete cíl zálohy nebo pokud jste nedávno obnovili Aegis ze zálohy. Nastavte prosím znovu cíl pro zálohu.
-    </string>
     <string name="backup_system_builtin">Zabudované zálohy aplikace Aegis</string>
     <string name="backup_system_android">Cloudový zálohovací systém systému Android</string>
     <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">        Poslední záloha je zastaralá (%s)

@@ -250,11 +250,6 @@
     <string name="time_sync_warning_message">این برنامه نیاز به زمان دقیق برای ساختن کد جدید دارد. تفاوت چند ثانیه‌ای ممکن است باعث ایجاد کد اشتباه شود. به نظر می‌رسد ساعت دستگاه شما به صورت خودکار تنظیم نشده است. آیا میخواهید این کار را انجام دهید؟</string>
     <string name="time_sync_warning_disable">دیگر به من هشدار نده. می‌دانم دارم چکار می‌کنم.</string>
     <string name="google_qr_export_unrelated">یک بارکد دوبعدی نا مربوط دریافت شد. لطفا اسکنر خود را ریستارت کنید.</string>
-    <plurals name="google_qr_export_scanned">
-        <item quantity="one">%d/%d بارکد دوبعدیs اسکن شد</item>
-        <item quantity="other">%d/%d بارکد دوبعدیs اسکن شد</item>
-    </plurals>
-    <string name="google_qr_export_unexpected">بجای اینکه بارکد دوبعدی %d اسکن شود، بارکد دوبعدی %d اسکن شد.</string>
     <string name="backup_error_bar_message"><b>خطا پشتیبان گیری از مخزن</b></string>
     <string name="switch_camera">تغییر دوربین</string>
     <string name="empty_list">کدی برای نمایش موجود ندارد. لطفا برای اضافه کردن از دکمه به علاوه در پایین صفحه استفاده کنید.</string>

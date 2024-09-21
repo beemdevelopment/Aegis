@@ -173,7 +173,6 @@
     <string name="reading_file">फ़ाइल डेटा पढ़ना</string>
     <string name="requesting_root_access">रूट एक्सेस रिक्वेस्ट कर रहा</string>
     <string name="analyzing_qr">क्यूआर कोड एनालाइज कर रहा है</string>
-    <string name="analyzing_qr_multiple">एनालाइजिंग क्यूआर कोड %d/%d (%s)</string>
     <plurals name="added_new_entries">
         <item quantity="one">वॉल्ट में %d नयी एंट्री जोड़ी गई</item>
         <item quantity="other">वॉल्ट में %d नयी एंट्रीज जोड़ी गईं </item>
@@ -314,7 +313,6 @@
     <string name="unable_to_process_deeplink">डीप लिंक प्रक्रिया करने में असमर्थ</string>
     <string name="unable_to_read_qrcode_file">क्यूआर कोड को फाइल:%s से पढ़ने और प्रोसेस करने में असमर्थ.</string>
     <string name="unable_to_process_shared_text">शेयर्ड टेक्स्ट को ओटीपी के रूप में प्रोसेस करने में असफल</string>
-    <string name="unable_to_read_qrcode_files">कुछ क्यूआर कोड को पढ़ने और प्रोसेस करने में असमर्थ। केवल %d/%d प्रविष्टियाँ इंपोर्ट की जाएंगी।</string>
     <string name="unable_to_generate_qrcode">क्यूआर कोड उत्पन्न करने में असमर्थ</string>
     <string name="select_picture">छवि चयन करें</string>
     <string name="select_icon">आइकन चयन करें</string>
@@ -345,13 +343,7 @@
     <string name="time_sync_warning_message">Aegis सही कोड उत्पन्न करने के लिए सिस्टम समय पर निर्भर करता है। केवल कुछ सेकंड के विचलन से गलत कोड हो सकते हैं। ऐसा लगता है कि आपका डिवाइस समय को स्वचालित रूप से सिंक्रनाइज़ करने के लिए कॉन्फ़िगर नहीं किया गया है। क्या आप अब ऐसा करना चाहेंगे?</string>
     <string name="time_sync_warning_disable">मुझे चेतावनी देना बंद करें। मैं जानता हूँ मैं क्या कर रहा हूँ</string>
     <string name="google_qr_export_unrelated">असंबंधित क्यूआर कोड मिला। स्कैनर को पुनरारंभ करने का प्रयास करें।</string>
-    <plurals name="google_qr_export_scanned">
-        <item quantity="one">%d/%d क्यूआर कोड स्कैन किए गए</item>
-        <item quantity="other">%d/%d क्यूआर कोड स्कैन किए गए</item>
-    </plurals>
-    <string name="google_qr_export_unexpected">अपेक्षित क्यूआर कोड #%d, लेकिन इसके बजाय #%d को स्कैन किया गया</string>
     <string name="backup_error_bar_message"><b>हाल ही में वॉल्ट बैकअप विफल रहा</b></string>
-    <string name="backup_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">        %s का उपयोग करके हाल ही में वॉल्ट बैकअप का प्रयास विफल हो गया क्योंकि कोई त्रुटि उत्पन्न हुई। बैकअप का प्रयास %s किया गया था. यह सुनिश्चित करने के लिए कि बैकअप सफलतापूर्वक पूरा हो सकता है, कृपया अपनी बैकअप सेटिंग्स जांचें।</string>
     <string name="backup_system_builtin">एजिस के बिल्ट-इन स्वचालित बैकअप्स </string>
     <string name="backup_system_android">एंड्रॉयड क्लाउड बैकअप सिस्टम </string>
     <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">        लेटेस्ट बैकअप आउटडेटेड है (%s)

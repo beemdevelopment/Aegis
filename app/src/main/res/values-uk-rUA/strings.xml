@@ -173,7 +173,6 @@
     <string name="reading_file">Читання файлу</string>
     <string name="requesting_root_access">Запит на root-доступ</string>
     <string name="analyzing_qr">Аналіз QR-коду</string>
-    <string name="analyzing_qr_multiple">Аналіз QR-коду %d/%d (%s)</string>
     <plurals name="added_new_entries">
         <item quantity="one">Додано %d новий запис у сховище</item>
         <item quantity="few">Додано %d нові записи у сховище</item>
@@ -325,7 +324,6 @@
     <string name="unable_to_process_deeplink">Не вдалося обробити глибоке посилання</string>
     <string name="unable_to_read_qrcode_file">Не вдається прочитати і обробити QR-код із файлу: %s.</string>
     <string name="unable_to_process_shared_text">Неможливо обробити вхідний текст як OTP</string>
-    <string name="unable_to_read_qrcode_files">Не вдалося прочитати та обробити деякі з QR-кодів. Буде імпортовано лише %d/%d запис/и/ів.</string>
     <string name="unable_to_generate_qrcode">Не вдається згенерувати QR-код</string>
     <string name="select_picture">Виберіть зображення</string>
     <string name="select_icon">Виберіть іконку</string>
@@ -356,16 +354,7 @@
     <string name="time_sync_warning_message">Aegis залежить від системного часу для генерації правильних кодів. Відхилення всього на кілька секунд може призвести до неправильних кодів. Схоже, ваш пристрій не налаштовано на автоматичну синхронізацію часу. Бажаєте зробити це зараз?</string>
     <string name="time_sync_warning_disable">Припиніть мене попереджати. Я знаю, що роблю.</string>
     <string name="google_qr_export_unrelated">Знайдено непов\'язаний QR-код. Спробуйте перезапустити сканер.</string>
-    <plurals name="google_qr_export_scanned">
-        <item quantity="one">Відскановано %d/%d QR-кодів</item>
-        <item quantity="few">Відскановано %d/%d QR-кодів</item>
-        <item quantity="many">Відскановано %d/%d QR-кодів</item>
-        <item quantity="other">Відскановано %d/%d QR-кодів</item>
-    </plurals>
-    <string name="google_qr_export_unexpected">Очікувався QR-код #%d, але замість цього відскановано #%d</string>
     <string name="backup_error_bar_message"><b>Нещодавно не вдалося створити резервну копію сховища</b></string>
-    <string name="backup_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">        Недавня спроба резервного копіювання сховища з використанням %s зазнала невдачі. Спроба створити резервну копію була здійснена о %s. Будь ласка, перевірте налаштування резервного копіювання, щоб переконатися, що резервні копії будуть успішно виконані.
-    </string>
     <string name="backup_system_builtin">Вбудоване автоматичне резервне копіювання Aegis</string>
     <string name="backup_system_android">Система хмарного резервного копіювання Android</string>
     <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">        Остання резервна копія застаріла (%s)

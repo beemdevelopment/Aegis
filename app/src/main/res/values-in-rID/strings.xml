@@ -206,7 +206,6 @@
     <string name="reading_file">Baca berkas</string>
     <string name="requesting_root_access">Meminta akses root</string>
     <string name="analyzing_qr">Menganalisis kode QR</string>
-    <string name="analyzing_qr_multiple">Menganalisis kode QR %d/%d (%s)</string>
     <plurals name="added_new_entries">
         <item quantity="other">Menambahkan %d entri baru ke brankas</item>
     </plurals>
@@ -357,7 +356,6 @@
     <string name="unable_to_process_deeplink">Tidak dapat memproses tautan dalam</string>
     <string name="unable_to_read_qrcode_file">Tidak dapat membaca dan memproses kode QR dari berkas: %s.</string>
     <string name="unable_to_process_shared_text">Tidak dapat memproses teks bersama sebagai OTP</string>
-    <string name="unable_to_read_qrcode_files">Tidak dapat membaca dan memproses beberapa dari kode QR. Hanya %d/%d entri yang akan diimpor.</string>
     <string name="unable_to_generate_qrcode">Tidak dapat membuat kode QR</string>
     <string name="select_picture">Pilih gambar</string>
     <string name="select_icon">Pilih ikon</string>
@@ -388,15 +386,6 @@
     <string name="time_sync_warning_message">Aegis mengandalkan waktu sistem untuk disinkronkan menjadi kode yang benar. Selisih hanya beberapa detik dapat menyebabkan kode salah. Sepertinya perangkat Anda tidak dikonfigurasi untuk menyinkronkan waktu secara otomatis. Apakah Anda ingin melakukannya sekarang?</string>
     <string name="time_sync_warning_disable">Berhenti memperingatkan saya. Saya tahu apa yang saya lakukan.</string>
     <string name="google_qr_export_unrelated">Ditemukan kode QR yang tidak terkait. Coba mulai ulang pemindai.</string>
-    <plurals name="google_qr_export_scanned">
-        <item quantity="other">Pindai %d/%d code QR</item>
-    </plurals>
-    <string name="google_qr_export_unexpected">Kode QR yang ditemukan #%d, namun hanya #%d yang dipindai</string>
-    <string name="backup_error_bar_message"><b>Pencadangan Brankas baru-baru ini gagal</b></string>
-    <string name="backup_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">        Upaya pencadangan vault baru-baru ini menggunakan %s gagal karena terjadi kesalahan. Pencadangan dilakukan dengan menggunakan %s. Periksa pengaturan pencadangan Anda untuk memastikan pencadangan berhasil diselesaikan.
-    </string>
-    <string name="backup_permission_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">        Upaya pencadangan vault baru-baru ini menggunakan %s gagal karena Aegis tidak memiliki izin untuk menulis ke tujuan pencadangan. Pencadangan telah dicoba %s. Kesalahan ini dapat terjadi jika Anda memindahkan/mengganti nama tujuan pencadangan atau jika Anda baru saja memulihkan Aegis dari pencadangan. Harap konfigurasikan ulang tujuan pencadangan.
-    </string>
     <string name="backup_system_builtin">Pencadangan otomatis bawaan Aegis</string>
     <string name="backup_system_android">Sistem pencadangan awan Android</string>
     <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">        Backup terakhir sudah kedaluwarsa (%s)

@@ -215,7 +215,6 @@
     <string name="reading_file">S\'està llegint el fitxer</string>
     <string name="requesting_root_access">Demanant accés root</string>
     <string name="analyzing_qr">Anàlisi del codi QR</string>
-    <string name="analyzing_qr_multiple">Anàlisi del codi QR %d/%d (%s)</string>
     <plurals name="added_new_entries">
         <item quantity="one">S\'ha afegit %d entrada nova a la caixa forta</item>
         <item quantity="other">S\'han afegit %d entrades noves a la caixa forta</item>
@@ -373,7 +372,6 @@
     <string name="unable_to_process_deeplink">No es pot processar l\'enllaç profund</string>
     <string name="unable_to_read_qrcode_file">No es pot llegir i processar el codi QR del fitxer: %s.</string>
     <string name="unable_to_process_shared_text">No es pot processar el text compartit com a OTP</string>
-    <string name="unable_to_read_qrcode_files">No es poden llegir i processar alguns dels codis QR. Només s\'importaran %d/%d entrades.</string>
     <string name="unable_to_generate_qrcode">La generació del codi QR ha fallat</string>
     <string name="select_picture">Tria imatge</string>
     <string name="select_icon">Tria icona</string>
@@ -404,16 +402,7 @@
     <string name="time_sync_warning_message">Cal que l\'hora del sistema sigui correcta per tal de generar codis correctes. Una desviació d\'uns quants segons pot causar codis no vàlids. Sembla que el teu dispositiu no està configurat per a sincronitzar la hora automàticament. Vols activar-ho ara?</string>
     <string name="time_sync_warning_disable">No cal que m\'avisis més. Sé el que estic fent.</string>
     <string name="google_qr_export_unrelated">Codi QR no vàlid. Prova-ho un altre cop.</string>
-    <plurals name="google_qr_export_scanned">
-        <item quantity="one">S\'ha escanejat %d/%d codi QR</item>
-        <item quantity="other">S\'han escanejat %d/%d codis QR</item>
-    </plurals>
-    <string name="google_qr_export_unexpected">S\'esperava codi QR #%d, però s\'ha trobat #%d en el seu lloc</string>
     <string name="backup_error_bar_message"><b>Ha fallat la còpia de seguretat recentment</b></string>
-    <string name="backup_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">Una còpia de seguretat de la caixa forta utilitzant %s ha fallat. La còpia s\'ha intentat %s. Si us plau, comprova la configuració de la còpia per a assegurar-te de que les còpies es poden fer correctament.
-    </string>
-    <string name="backup_permission_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">        Un intent recent de còpia de seguretat de la caixa forta utilitzant %s ha fallat perquè l\'Aegis no té permís d\'escriptura en el destí de la còpia de seguretat. La còpia s\'ha intentat %s. Aquest error pot aparèixer si has mogut/reanomenat el destí de la còpia de seguretat o si has restaurat l\'Aegis recentment des d\'una còpia de seguretat. Si us plau torna a configurar el destí de la còpia de seguretat.
-    </string>
     <string name="backup_system_builtin">Còpies de seguretat integrades a Aegis</string>
     <string name="backup_system_android">Còpia al núvol d\'Android</string>
     <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">L\'última còpia de seguretat és molt antiga (%s)    </string>

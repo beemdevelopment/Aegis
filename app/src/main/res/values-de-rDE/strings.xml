@@ -215,7 +215,6 @@
     <string name="reading_file">Datei wird gelesen</string>
     <string name="requesting_root_access">Root-Zugriff wird angefordert</string>
     <string name="analyzing_qr">QR-Code wird analysiert</string>
-    <string name="analyzing_qr_multiple">QR-Code %d/%d (%s) wird analysiert</string>
     <plurals name="added_new_entries">
         <item quantity="one">%d neuer Eintrag zur Datenbank hinzugefügt</item>
         <item quantity="other">%d neue Einträge zur Datenbank hinzugefügt</item>
@@ -373,7 +372,6 @@
     <string name="unable_to_process_deeplink">Deep-Link konnte nicht verarbeitet werden</string>
     <string name="unable_to_read_qrcode_file">QR-Code konnte nicht aus der Datei gelesen und verarbeitet werden: %s.</string>
     <string name="unable_to_process_shared_text">Gemeinsamer Text kann nicht als OTP verarbeitet werden</string>
-    <string name="unable_to_read_qrcode_files">Einige der QR-Codes konnten nicht gelesen und verarbeitet werden. Nur %d/%d Einträge werden importiert.</string>
     <string name="unable_to_generate_qrcode">QR-Code konnte nicht generiert werden</string>
     <string name="select_picture">Bild auswählen</string>
     <string name="select_icon">Symbol auswählen</string>
@@ -404,16 +402,7 @@
     <string name="time_sync_warning_message">Aegis ist auf die Synchronisierung der Systemzeit angewiesen, um korrekte Codes zu generieren. Eine Abweichung von nur wenigen Sekunden kann zu falschen Codes führen. Es sieht so aus, als ob dein Gerät nicht so konfiguriert ist, dass es die Zeit automatisch synchronisiert. Möchtest du das jetzt tun?</string>
     <string name="time_sync_warning_disable">Höre auf, mich zu warnen. Ich weiß, was ich tue.</string>
     <string name="google_qr_export_unrelated">Nicht zugehöriger QR-Code gefunden. Versuche, den Scanner neu zu starten.</string>
-    <plurals name="google_qr_export_scanned">
-        <item quantity="one">1 QR-Code gescannt</item>
-        <item quantity="other">%d/%d QR-Codes gescannt</item>
-    </plurals>
-    <string name="google_qr_export_unexpected">QR-Code #%d erwartet, stattdessen wurde #%d gescannt</string>
     <string name="backup_error_bar_message"><b>Sicherungskopie ist kürzlich fehlgeschlagen</b></string>
-    <string name="backup_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">        Ein kürzlicher Sicherungsversuch der Datenbank mit %s ist fehlgeschlagen, da ein Fehler aufgetreten ist. Die Sicherung wurde am %s versucht. Bitte überprüfe deine Sicherungseinstellungen, um sicherzustellen, dass Sicherungen erfolgreich abgeschlossen werden können.
-    </string>
-    <string name="backup_permission_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">        Ein kürzlich durchgeführter Sicherungsversuch auf %s schlug fehl, da Aegis keine Berechtigung zum Schreiben auf das Sicherungsziel hatte. Die Sicherung wurde %s versucht. Dieser Fehler kann auftreten, wenn das Sicherungsziel verschoben/umbenannt wurde oder wenn Aegis kürzlich aus einer Sicherung wiederhergestellt wurde. Bitte konfiguriere das Sicherungsziel neu.
-    </string>
     <string name="backup_system_builtin">Automatisierte Sicherungen von Aegis</string>
     <string name="backup_system_android">Cloud-Sicherungssystem von Android</string>
     <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">        Die letzte Sicherung ist veraltet (%s)

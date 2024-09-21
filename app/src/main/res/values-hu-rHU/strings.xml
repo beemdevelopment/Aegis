@@ -209,7 +209,6 @@
     <string name="reading_file">Fájl olvasása</string>
     <string name="requesting_root_access">Root hozzáférés igénylése</string>
     <string name="analyzing_qr">QR-kód elemzése</string>
-    <string name="analyzing_qr_multiple">QR-kód elemzése %d./%d (%s)</string>
     <plurals name="added_new_entries">
         <item quantity="one">%d új bejegyzés hozzáadva a széfhez</item>
         <item quantity="other">%d új bejegyzés hozzáadva a széfhez</item>
@@ -366,7 +365,6 @@
     <string name="unable_to_process_deeplink">Az alkalmazáshivatkozás nem dolgozható fel</string>
     <string name="unable_to_read_qrcode_file">A QR-kód nem olvasható le és dolgozható fel a fájlból: %s.</string>
     <string name="unable_to_process_shared_text">A megosztott szöveg nem dolgozható fel OTP-ként</string>
-    <string name="unable_to_read_qrcode_files">Egyes QR-kódok nem olvashatók le és dolgozhatók fel. Csak %d/%d bejegyzés lesz importálva.</string>
     <string name="unable_to_generate_qrcode">A QR-kód nem állítható elő</string>
     <string name="select_picture">Kép kiválasztása</string>
     <string name="select_icon">Ikon kiválasztása</string>
@@ -397,16 +395,7 @@
     <string name="time_sync_warning_message">Az Aegis a rendszeridőre támaszkodik a helyes kódok előállításánál. Néhány másodperces eltérés is hibás kódok előállítását eredményezheti. Úgy tűnik az eszközön nincs bekapcsolva az automatikus időszinkronizálás. Be akarja most ezt kapcsolni?</string>
     <string name="time_sync_warning_disable">Ne figyelmeztessen. Tudom mit csinálok.</string>
     <string name="google_qr_export_unrelated">Nem kapcsolódó QR-kód található. Próbálja meg újraindítani a leolvasót.</string>
-    <plurals name="google_qr_export_scanned">
-        <item quantity="one">%d/%d QR-kód leolvasva</item>
-        <item quantity="other">%d/%d QR-kód leolvasva</item>
-    </plurals>
-    <string name="google_qr_export_unexpected">A várt #%d QR-kód helyett ez került leolvasásra: #%d</string>
     <string name="backup_error_bar_message"><b>Egy széf mentése nemrég sikertelen volt</b></string>
-    <string name="backup_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">        Egy közelmúltbeli, az %s használó széfmentés sikertelen volt, mert hiba történt. A biztonsági mentés ekkor volt megpróbálva: %s. Ellenőrizze a biztonsági mentési beállításokat, hogy biztosítsa a mentések sikeres végrehajtását.
-    </string>
-    <string name="backup_permission_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">        A közelmúltban egy széf „%s” típusú biztonsági mentése nem sikerült, mert az Aegisnek nem volt engedélyeze a cél helyére írni. A biztonsági mentés kísérlete %s volt. Ez a hiba akkor történhet, ha áthelyezte/átnevezte a biztonsági mnentés célját, vagy ha nemrég állította vissza mentésből az Aegist. Állítsa be újra a biztonsági mentés helyét.
-    </string>
     <string name="backup_system_builtin">Aegis beépített biztonsági mentését</string>
     <string name="backup_system_android">Android felhős mentési rendszerét</string>
     <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">        A legfrissebb biztonsági mentés elavult (%s)

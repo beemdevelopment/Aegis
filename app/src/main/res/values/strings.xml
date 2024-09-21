@@ -225,7 +225,7 @@
     <string name="reading_file">Reading file</string>
     <string name="requesting_root_access">Requesting root access</string>
     <string name="analyzing_qr">Analyzing QR code</string>
-    <string name="analyzing_qr_multiple">Analyzing QR code %d/%d (%s)</string>
+    <string name="analyzing_qr_multiple">Analyzing QR code %1$d/%2$d (%3$s)</string>
     <plurals name="added_new_entries">
         <item quantity="one">Added %d new entry to the vault</item>
         <item quantity="other">Added %d new entries to the vault</item>
@@ -385,7 +385,7 @@
     <string name="unable_to_process_deeplink">Unable to process deep link</string>
     <string name="unable_to_read_qrcode_file">Unable to read and process QR code from file: %s.</string>
     <string name="unable_to_process_shared_text">Unable to process shared text as OTP</string>
-    <string name="unable_to_read_qrcode_files">Unable to read and process some of the QR codes. Only %d/%d entries will be imported.</string>
+    <string name="unable_to_read_qrcode_files">Unable to read and process some of the QR codes. Only %1$d/%2$d entries will be imported.</string>
     <string name="unable_to_generate_qrcode">Unable to generate QR code</string>
     <string name="select_picture">Select picture</string>
     <string name="select_icon">Select icon</string>
@@ -421,20 +421,20 @@
     <string name="time_sync_warning_disable">Stop warning me. I know what I\'m doing.</string>
     <string name="google_qr_export_unrelated">Unrelated QR code found. Try restarting the scanner.</string>
     <plurals name="google_qr_export_scanned">
-        <item quantity="one">Scanned %d/%d QR codes</item>
-        <item quantity="other">Scanned %d/%d QR codes</item>
+        <item quantity="one">Scanned %1$d/%2$d QR codes</item>
+        <item quantity="other">Scanned %1$d/%2$d QR codes</item>
     </plurals>
-    <string name="google_qr_export_unexpected">Expected QR code #%d, but scanned #%d instead</string>
+    <string name="google_qr_export_unexpected">Expected QR code #%1$d, but scanned #%2$d instead</string>
     <string name="backup_error_bar_message"><b>Vault backup failed recently</b></string>
     <string
         name="backup_error_dialog_details"
         comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">
-        A recent vault backup attempt using %s failed because an error occurred. The backup was attempted %s. Please check your backup settings to make sure backups can complete successfully.
+        A recent vault backup attempt using %1$s failed because an error occurred. The backup was attempted %2$s. Please check your backup settings to make sure backups can complete successfully.
     </string>
     <string
         name="backup_permission_error_dialog_details"
         comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">
-        A recent vault backup attempt using %s failed because Aegis did not have permission to write to the backup destination. The backup was attempted %s. This error can occur if you moved/renamed the backup destination or if you recently restored Aegis from a backup. Please reconfigure the backup destination.
+        A recent vault backup attempt using %1$s failed because Aegis did not have permission to write to the backup destination. The backup was attempted %2$s. This error can occur if you moved/renamed the backup destination or if you recently restored Aegis from a backup. Please reconfigure the backup destination.
     </string>
     <string name="backup_system_builtin">Aegis\' built-in automatic backups</string>
     <string name="backup_system_android">Android\'s cloud backup system</string>

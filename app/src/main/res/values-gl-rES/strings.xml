@@ -207,7 +207,6 @@
     <string name="reading_file">Lendo ficheiro</string>
     <string name="requesting_root_access">Pedindo acceso root</string>
     <string name="analyzing_qr">Analizando código QR</string>
-    <string name="analyzing_qr_multiple">Analizando código QR %d/%d (%s)</string>
     <plurals name="added_new_entries">
         <item quantity="one">Engadida %d nova entrada ao almacén</item>
         <item quantity="other">Engadidas %d novas entradas ao almacén</item>
@@ -364,7 +363,6 @@
     <string name="unable_to_process_deeplink">Non se puido procesar o enlace profundo</string>
     <string name="unable_to_read_qrcode_file">Non se puido ler e procesar o código QR do ficheiro: %s.</string>
     <string name="unable_to_process_shared_text">Non se puido procesar o texto compartido como OTP</string>
-    <string name="unable_to_read_qrcode_files">Non se puideron ler e procesar algúns dos códigos QR. Só se importarán %d/%d entradas.</string>
     <string name="unable_to_generate_qrcode">Non se puido xerar o código QR</string>
     <string name="select_picture">Seleccionar imaxe</string>
     <string name="select_icon">Seleccionar icona</string>
@@ -395,16 +393,7 @@
     <string name="time_sync_warning_message">Aegis depende de que a hora do sistema estea sincronizada para poder xerar códigos correctos. Unha desviación de tan só uns poucos segundos pode resultar en que os códigos sexan incorrectos. Semella que o teu dispositivo non está configurado para sincronizar automaticamente a hora. Queres configuralo agora?</string>
     <string name="time_sync_warning_disable">Non me avises máis. Sei o que fago.</string>
     <string name="google_qr_export_unrelated">Atopouse un código QR non relacionado. Proba a reiniciar o escáner.</string>
-    <plurals name="google_qr_export_scanned">
-        <item quantity="one">%d/%d código QR escaneado</item>
-        <item quantity="other">%d/%d códigos QR escaneados</item>
-    </plurals>
-    <string name="google_qr_export_unexpected">Esperábase o código QR nº %d, pero escaneouse o nº %d</string>
     <string name="backup_error_bar_message"><b>A copia de seguridade do almacén fallou recentemente</b></string>
-    <string name="backup_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">        Un intento de facer unha copia de seguridade do almacén usando %s fallou debido a algún erro. A copia de seguridade intentouse %s. Comproba os axustes da copia de seguridade para asegurarte de que poidan completar correctamente.
-    </string>
-    <string name="backup_permission_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">        Un recente intento de copia de seguridade utilizando %s fallou porque Aegis non tiña permiso de escritura no destino da copia de seguridade. A copia de seguridade intentouse %s. Este erro pode ocorrer se moveches ou renomeaches o destino ou se fai pouco que recuperaches Aegis desde unha copia de seguridade. Volve a configurar o destino da copia de seguridade.
-    </string>
     <string name="backup_system_builtin">Copias de seguridade automáticas de Aegis</string>
     <string name="backup_system_android">Copias de seguridade na nube de Android</string>
     <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">        A última copia de seguridade está desactualizada (%s)

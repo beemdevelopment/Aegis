@@ -180,7 +180,6 @@
     <string name="reading_file">קריאת קובץ</string>
     <string name="requesting_root_access">בקשת גישה לשורש</string>
     <string name="analyzing_qr">ניתוח קוד QR</string>
-    <string name="analyzing_qr_multiple">מנתח קוד QR %d/%d (%s)</string>
     <plurals name="added_new_entries">
         <item quantity="one">הוספה %d כניסה חדשה לכספת</item>
         <item quantity="two">נוספו %d ערכים חדשים לכספת</item>
@@ -307,7 +306,6 @@
     <string name="unable_to_process_deeplink">לא ניתן לעבד קישור עמוק</string>
     <string name="unable_to_read_qrcode_file">לא ניתן לקרוא ולעבד קוד QR מהקובץ: %s.</string>
     <string name="unable_to_process_shared_text">לא ניתן לעבד טקסט משותף כ-OTP</string>
-    <string name="unable_to_read_qrcode_files">לא ניתן לקרוא ולעבד חלק מקודי ה-QR. רק %d/%d ערכים ייובאו.</string>
     <string name="unable_to_generate_qrcode">לא ניתן ליצור קוד QR</string>
     <string name="select_picture">בחר תמונה</string>
     <string name="select_icon">בחר סמל</string>
@@ -338,10 +336,7 @@
     <string name="time_sync_warning_message">Aegis מסתמכת על זמן המערכת להיות מסונכרן כדי ליצור קודים נכונים. סטייה של מספר שניות בלבד עלולה לגרום לקודים שגויים. נראה שהמכשיר שלך לא מוגדר לסנכרון אוטומטי של השעה. האם תרצה לעשות זאת כעת?</string>
     <string name="time_sync_warning_disable">תפסיק להזהיר אותי. אני יודע מה אני עושה.</string>
     <string name="google_qr_export_unrelated">נמצא קוד QR לא קשור. נסה להפעיל מחדש את הסורק.</string>
-    <string name="google_qr_export_unexpected">צפי לקוד QR #%d, אך במקום זאת נסרק #%d</string>
     <string name="backup_error_bar_message"><b>גיבוי הכספת נכשל לאחרונה</b></string>
-    <string name="backup_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">        ניסיון גיבוי של כספת לאחרונה באמצעות %s נכשל מכיוון שאירעה שגיאה. בוצע ניסיון הגיבוי %s. אנא בדוק את הגדרות הגיבוי שלך כדי לוודא שהגיבויים יכולים להסתיים בהצלחה.
-    </string>
     <string name="backup_system_builtin">גיבויים אוטומטיים מובנים של Aegis</string>
     <string name="backup_system_android">מערכת גיבוי בענן של אנדרואיד</string>
     <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">        הגיבוי האחרון מיושן (%s)

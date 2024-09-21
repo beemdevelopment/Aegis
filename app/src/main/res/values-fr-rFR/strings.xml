@@ -215,7 +215,6 @@
     <string name="reading_file">Lecture du fichier</string>
     <string name="requesting_root_access">Demande d\'accès root</string>
     <string name="analyzing_qr">Analyse du code QR</string>
-    <string name="analyzing_qr_multiple">Analyse du code QR %d/%d (%s)</string>
     <plurals name="added_new_entries">
         <item quantity="one">Ajout de %d nouvelle entrée dans le coffre-fort</item>
         <item quantity="other">Ajout de %d nouvelles entrées dans le coffre-fort</item>
@@ -373,7 +372,6 @@
     <string name="unable_to_process_deeplink">Impossible de traiter le lien profond</string>
     <string name="unable_to_read_qrcode_file">Impossible de lire et de traiter le code QR depuis le fichier : %s.</string>
     <string name="unable_to_process_shared_text">Impossible de traiter le texte partagé comme OTP</string>
-    <string name="unable_to_read_qrcode_files">Impossible de lire et de traiter certains codes QR. Seules %d/%d entrées seront importées.</string>
     <string name="unable_to_generate_qrcode">Impossible de générer le code QR</string>
     <string name="select_picture">Sélectionner image</string>
     <string name="select_icon">Sélectionner une icône</string>
@@ -404,15 +402,7 @@
     <string name="time_sync_warning_message">Aegis s\'appuie sur l\'heure du système pour être synchronisé afin de générer des codes corrects. Un écart de quelques secondes seulement pourrait aboutir à des codes incorrects. Il semble que votre appareil n\'est pas configuré pour synchroniser le temps automatiquement. Souhaitez-vous le faire maintenant ?</string>
     <string name="time_sync_warning_disable">Arrêter de m\'avertir. Je sais ce que je fais.</string>
     <string name="google_qr_export_unrelated">Code QR non lié trouvé. Essayez de redémarrer le scanner.</string>
-    <plurals name="google_qr_export_scanned">
-        <item quantity="one">%d/%d code QR scanné</item>
-        <item quantity="other">%d/%d codes QR scannés</item>
-    </plurals>
-    <string name="google_qr_export_unexpected">Code QR n°%d attendu, mais n°%d scanné à la place</string>
     <string name="backup_error_bar_message"><b>La sauvegarde du coffre-fort a échoué récemment</b></string>
-    <string name="backup_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">Une tentative récente de sauvegarde du coffre-fort en utilisant %s a échoué car une erreur est survenue. La sauvegarde a été tentée %s. Veuillez vérifier vos paramètres de sauvegarde pour vous assurer que les sauvegardes peuvent être terminées avec succès.    </string>
-    <string name="backup_permission_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">        Une récente tentative de sauvegarde du coffre-fort en utilisant %s a échoué car Aegis n\'avait pas la permission d\'écrire dans la destination de la sauvegarde. La sauvegarde a été tentée %s. Cette erreur peut se produire si vous avez déplacé/renommé la destination de la sauvegarde ou si vous avez récemment restauré Aegis depuis une sauvegarde. Veuillez reconfigurer la destination de la sauvegarde.
-    </string>
     <string name="backup_system_builtin">Sauvegardes automatiques intégrées dans Aegis</string>
     <string name="backup_system_android">Système de sauvegarde cloud d\'Android</string>
     <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">        La dernière sauvegarde est obsolète (%s)

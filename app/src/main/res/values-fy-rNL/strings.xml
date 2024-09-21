@@ -209,7 +209,6 @@
     <string name="reading_file">Bestân lêze</string>
     <string name="requesting_root_access">Root-tagong wurdt oanfrege</string>
     <string name="analyzing_qr">QR-koade analysearje</string>
-    <string name="analyzing_qr_multiple">QR-koade analysearje %d/%d (%s)</string>
     <plurals name="added_new_entries">
         <item quantity="one">%d nij item tafoege oan de klûs</item>
         <item quantity="other">%d nije items tafoege oan de klûs</item>
@@ -366,7 +365,6 @@
     <string name="unable_to_process_deeplink">Deeplink kin net ferwurke wurde</string>
     <string name="unable_to_read_qrcode_file">QR-koade koe net út bestân lêzen en ferwurke wurde: %s.</string>
     <string name="unable_to_process_shared_text">Dielde tekst kin net as OTP ferwurke wurde</string>
-    <string name="unable_to_read_qrcode_files">Guon QR-koaden kinne net lêzen en ferwurke wurde. Allinnich%d/%d items wurde ymportearre.</string>
     <string name="unable_to_generate_qrcode">QR-koade koe net generearre wurde</string>
     <string name="select_picture">Ofbylding selektearje</string>
     <string name="select_icon">Piktogram selektearje</string>
@@ -397,16 +395,7 @@
     <string name="time_sync_warning_message">Aegis is ôfhinklik fan syngronisearre systeemtiid om krekte koaden te generearjen. In ôfwiking fan op syn minst inkelde sekonden kin liede ta net krekte koaden. It liket derop dat dyn apparaat net ynsteld is om de tiid automatysk te syngronisearjen. Wolsto dit no dwaan?</string>
     <string name="time_sync_warning_disable">Stop mei my te warskôgjen. Ik wit wat ik doch.</string>
     <string name="google_qr_export_unrelated">Net relatearre QR-koade fûn. Probearje de scanner opnij te starten.</string>
-    <plurals name="google_qr_export_scanned">
-        <item quantity="one">%d/%d QR-koade scand</item>
-        <item quantity="other">%d/%d QR-koaden scand</item>
-    </plurals>
-    <string name="google_qr_export_unexpected">QR-koade #%d waard ferwachte, mar yn stee dêrfan #%d scand</string>
     <string name="backup_error_bar_message"><b>Klûsreservekopy koartlyn mislearre</b></string>
-    <string name="backup_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">        In resinte reservekopy fan de klûs mei %s mislearre, omdat der wat misgien is. De reservekopybesykjen wie op %s. Kontrolearje de resevekopy-ynstellingen om wis te wêzen dat reservekopyen mei sukses foltôge wurde kinne.
-    </string>
-    <string name="backup_permission_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">        In resint besykjen in reservekopy fan de klûs te meitsjen mei %s is mislearre. Aegis hat gjin tastimming om te skriuwen nei de reservekopylokaasje. De reservekopy is %s probearre. Dizze flater kin barre as jo de reservekopylokaasje ferpleatst/omneamd hawwe of as jo koartlyn in Aegis-reservekopy wersteld hawwe. Konfigurearje de reservekopylokaasje opnij.
-    </string>
     <string name="backup_system_builtin">it ynboude automatyske reservekopyen fan Aegis</string>
     <string name="backup_system_android">it cloudreservekopysysteem fan Android</string>
     <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">        De meast resinte reservekopy is ferâldere (%s)

@@ -184,7 +184,6 @@
     <string name="reading_file">Lettura del file in corso</string>
     <string name="requesting_root_access">Richiesta accesso root</string>
     <string name="analyzing_qr">Analisi del codice QR</string>
-    <string name="analyzing_qr_multiple">Analisi del codice QR %d/%d (%s)</string>
     <plurals name="added_new_entries">
         <item quantity="one">Aggiunta %d nuova voce alla cassaforte</item>
         <item quantity="other">Aggiunte %d nuove voci alla cassaforte</item>
@@ -340,7 +339,6 @@
     <string name="unable_to_process_deeplink">Impossibile elaborare il collegamento</string>
     <string name="unable_to_read_qrcode_file">Impossibile leggere ed elaborare il codice QR dal file: %s.</string>
     <string name="unable_to_process_shared_text">Impossibile elaborare il testo condiviso come OTP</string>
-    <string name="unable_to_read_qrcode_files">Impossibile leggere ed elaborare alcuni dei codici QR. Ne verranno importati solo %d/%d.</string>
     <string name="unable_to_generate_qrcode">Impossibile generare il codice QR</string>
     <string name="select_picture">Seleziona immagine</string>
     <string name="select_icon">Seleziona icona</string>
@@ -371,16 +369,7 @@
     <string name="time_sync_warning_message">Aegis si basa sull\'esatta sincronizzazione dell\'orario di sistema per generare codici corretti. Una deviazione di pochi secondi potrebbe portare a codici errati. Sembra che il tuo dispositivo non sia configurato per sincronizzare automaticamente l\'ora. Vuoi farlo adesso?</string>
     <string name="time_sync_warning_disable">Smettetela di avvertirmi. So cosa sto facendo.</string>
     <string name="google_qr_export_unrelated">Trovato codice QR non correlato. Prova a riavviare lo scanner.</string>
-    <plurals name="google_qr_export_scanned">
-        <item quantity="one">Scansionato %d/%d codici QR</item>
-        <item quantity="other">Scansionati %d/%d codici QR</item>
-    </plurals>
-    <string name="google_qr_export_unexpected">Previsto codice QR #%d, ma scansionato #%d invece</string>
     <string name="backup_error_bar_message"><b>Backup della cassaforte fallito recentemente</b></string>
-    <string name="backup_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">        Un recente tentativo di backup della cassaforte utilizzando %s non è riuscito perché si è verificato un errore. Il backup è stato tentato %s. Controlla le impostazioni di backup per assicurarti che i backup possano essere completati correttamente.
-    </string>
-    <string name="backup_permission_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">        Un recente tentativo di backup della cassaforte con %s non è riuscito perché Aegis non aveva l\'autorizzazione di scrittura nella destinazione del backup. Il backup è stato tentato %s. Questo errore può verificarsi se hai spostato o rinominato la destinazione del backup o se hai recentemente ripristinato Aegis da un backup. Configura nuovamente la destinazione del backup.
-    </string>
     <string name="backup_system_builtin">i backup automatici integrati di Aegis</string>
     <string name="backup_system_android">il sistema di backup su cloud di Android</string>
     <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">        L\'ultimo backup è vecchio (%s)

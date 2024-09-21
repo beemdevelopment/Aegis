@@ -215,7 +215,6 @@
     <string name="reading_file">Lendo arquivo</string>
     <string name="requesting_root_access">Solicitando acesso root</string>
     <string name="analyzing_qr">Analisando QR code</string>
-    <string name="analyzing_qr_multiple">Analisando o QR code %d/%d (%s)</string>
     <plurals name="added_new_entries">
         <item quantity="one">Adicionada %d nova entrada ao cofre</item>
         <item quantity="other">Adicionadas %d novas entradas ao cofre</item>
@@ -373,7 +372,6 @@
     <string name="unable_to_process_deeplink">Incapaz de processar a ligação profunda</string>
     <string name="unable_to_read_qrcode_file">Incapaz de ler e processar o QR code do arquivo: %s.</string>
     <string name="unable_to_process_shared_text">Incapaz de processar texto compartilhado como OTP</string>
-    <string name="unable_to_read_qrcode_files">Não foi possível ler e processar alguns dos QR codes. Apenas %d/%d serão importadas.</string>
     <string name="unable_to_generate_qrcode">Não foi possível gerar o QR code</string>
     <string name="select_picture">Selecionar imagem</string>
     <string name="select_icon">Selecionar ícone</string>
@@ -404,15 +402,7 @@
     <string name="time_sync_warning_message">Aegis depende da hora do sistema para ficar em sincronia para gerar os códigos corretos. Uma diferença de apenas alguns segundos poderia resultar em códigos incorretos. Parece que seu dispositivo não está configurado para sincronizar automaticamente a hora. Gostaria de ativar essa opção agora?</string>
     <string name="time_sync_warning_disable">Pare de me avisar. Eu sei o que estou fazendo.</string>
     <string name="google_qr_export_unrelated">QR code não relacionado encontrado. Tente reiniciar o scanner.</string>
-    <plurals name="google_qr_export_scanned">
-        <item quantity="one">%d/%d QR code escaneado</item>
-        <item quantity="other">%d/%d QR codes escaneados</item>
-    </plurals>
-    <string name="google_qr_export_unexpected">Esperados #%d QR code, mas escaneados #%d ao invés</string>
     <string name="backup_error_bar_message"><b>Backup do cofre falhou recentemente</b></string>
-    <string name="backup_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">        Uma tentativa recente de backup do cofre utilizando o %s falhou, pois ocorreu um erro. O backup foi tentado %s. Por favor, verifique as configurações de backup para garantir que ele possa ser concluído com sucesso.    </string>
-    <string name="backup_permission_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">        Uma recente tentativa de backup de segurança do cofre usando %s falhou porque o Aegis não tem permissão para escrever no destino da cópia de segurança. O backup foi tentado %s. Este erro pode ocorrer se você mover/renomeou o destino do backup ou se você restaurou recentemente Aegis de um backup. Por favor, reconfigure o destino do backup.
-    </string>
     <string name="backup_system_builtin">Backups automáticos do Aegis</string>
     <string name="backup_system_android">Sistema de backup em nuvem do Android</string>
     <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">        O backup mais recente está desatualizado (%s)

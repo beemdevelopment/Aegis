@@ -211,7 +211,6 @@
     <string name="reading_file">Odczytywanie pliku</string>
     <string name="requesting_root_access">Żądanie dostępu do roota</string>
     <string name="analyzing_qr">Analizowanie kodu QR</string>
-    <string name="analyzing_qr_multiple">Analizowanie kodu QR %d/%d (%s)</string>
     <plurals name="added_new_entries">
         <item quantity="one">Dodano %d nowy wpis do sejfu</item>
         <item quantity="few">Dodano %d nowe wpisy do sejfu</item>
@@ -380,7 +379,6 @@
     <string name="unable_to_process_deeplink">Nie można przetworzyć głębokiego linku</string>
     <string name="unable_to_read_qrcode_file">Nie można odczytać i przetworzyć kodu QR z pliku: %s.</string>
     <string name="unable_to_process_shared_text">Nie można przetworzyć udostępnionego tekstu jako OTP</string>
-    <string name="unable_to_read_qrcode_files">Nie można odczytać i przetworzyć niektórych kodów QR. Zaimportowano tylko %d/%d wpisów.</string>
     <string name="unable_to_generate_qrcode">Nie udało się wygenerować kodu QR</string>
     <string name="select_picture">Wybierz obraz</string>
     <string name="select_icon">Wybierz ikonę</string>
@@ -411,17 +409,7 @@
     <string name="time_sync_warning_message">Aby wygenerować poprawne kody, aplikacja Aegis korzysta z synchronizacji czasu systemowego. Różnica czasu zaledwie kilku sekund może spowodować nieprawidłowe kody. Wygląda na to, że Twoje urządzenie nie jest skonfigurowane do automatycznej synchronizacji czasu. Czy chcesz skorzystać z tej funkcji?</string>
     <string name="time_sync_warning_disable">Nie ostrzegaj mnie. Wiem co robię.</string>
     <string name="google_qr_export_unrelated">Znaleziono niepowiązany kod QR. Spróbuj ponownie uruchomić skaner.</string>
-    <plurals name="google_qr_export_scanned">
-        <item quantity="one">Zeskanowano %d/%d kodów QR</item>
-        <item quantity="few">Zeskanowano %d/%d kodów QR</item>
-        <item quantity="many">Zeskanowano %d/%d kodów QR</item>
-        <item quantity="other">Zeskanowano %d/%d kodów QR</item>
-    </plurals>
-    <string name="google_qr_export_unexpected">Aplikacja oczekiwała kodu QR nr %d, lecz zeskanowano kod nr %d</string>
     <string name="backup_error_bar_message"><b>Ostatnia kopia zapasowa sejfu nie powiodła się</b></string>
-    <string name="backup_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">Ostatnia próba wykonania kopii zapasowej sejfu z użyciem %s nie powiodła się, ponieważ wystąpił błąd. Kopia zapasowa została wykonana w: %s. Sprawdź ustawienia kopii zapasowej, aby upewnić się, że wykonywanie kopii zapasowych może się pomyślnie zakończyć.    </string>
-    <string name="backup_permission_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">Niedawna próba wykonania kopii zapasowej używając %s nie powiodła się, ponieważ Aegis nie miał uprawnienia do zapisu w wybranym folderze. Próba zapisu była wykonana %s. Teb błąd może wystąpić po przeniesieniu/zmianie nazwy wybranego folderu lub po niedawnym przywróceniu Aegis z kopii zapasowej. Proszę wybrać poprawny folder.
-    </string>
     <string name="backup_system_builtin">Wbudowane automatyczne kopie zapasowe Aegis</string>
     <string name="backup_system_android">System kopii zapasowej w chmurze Android</string>
     <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">        Najnowsza kopia zapasowa jest nieaktualna (%s)

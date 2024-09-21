@@ -165,7 +165,6 @@
     <string name="exporting_vault">Esportando l\'arca</string>
     <string name="reading_file">Lleendo\'l ficheru</string>
     <string name="analyzing_qr">Analizándo\'l códigu QR</string>
-    <string name="analyzing_qr_multiple">Analizando\'l códigu QR %d/%d (%s)</string>
     <plurals name="added_new_entries">
         <item quantity="one">Amestóse %d entrada nueva a l\'arca</item>
         <item quantity="other">Amestáronse %d entraes nueves a l\'arca</item>
@@ -305,7 +304,6 @@
     <string name="unable_to_process_deeplink">Nun ye posible procesar l\'enllaz fondu</string>
     <string name="unable_to_read_qrcode_file">Nun se posible lleer ya procesar el códigu QR del ficheru: %s.</string>
     <string name="unable_to_process_shared_text">Nun ye posible procesar el testu compartíu como cadena d\'OTP</string>
-    <string name="unable_to_read_qrcode_files">Nun ye posible lleer ya procesar dalgunos códigos QR. Namás van esportase %d/%d entraes.</string>
     <string name="unable_to_generate_qrcode">Nun ye posible xenerar el códigu QR</string>
     <string name="select_picture">Seleición d\'una semeya</string>
     <string name="select_icon">Seleición d\'un iconu</string>
@@ -336,11 +334,6 @@
     <string name="time_sync_warning_message">Aegis encóntase na hora del sistema pa xenerar códigos correutos ya la esviación d\'unos segundos na hora podría facer que se xeneren códigos incorreutos. Paez que\'l preséu nun ta configuráu pa sincronizar automáticamente la hora. ¿Quies facelo agora?</string>
     <string name="time_sync_warning_disable">Dexar d\'alvertime, sé lo que faigo.</string>
     <string name="google_qr_export_unrelated">Atopóse un códigu QR que nun tien rellación. Prueba a reaniciar l\'escaniador.</string>
-    <plurals name="google_qr_export_scanned">
-        <item quantity="one">Escanióse %d/%d códigos QR</item>
-        <item quantity="other">Escaniáronse %d/%d códigos QR</item>
-    </plurals>
-    <string name="google_qr_export_unexpected">Esperábase\'l códigu QR #%d, mas escanióse\'l #%d</string>
     <string name="backup_error_bar_message"><b>La copia de seguranza de l\'arca falló apocayá</b></string>
     <string name="backup_system_builtin">Copies de seguranza automátiques d\'Aegis</string>
     <string name="backup_system_android">Sistema de copies de segurazan na ñube d\'Android</string>
