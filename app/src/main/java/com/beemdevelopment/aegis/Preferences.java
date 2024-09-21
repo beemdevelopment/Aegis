@@ -5,9 +5,9 @@ import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Build;
-import android.preference.PreferenceManager;
 
 import androidx.annotation.Nullable;
+import androidx.preference.PreferenceManager;
 
 import com.beemdevelopment.aegis.util.JsonUtils;
 import com.beemdevelopment.aegis.util.TimeUtils;
