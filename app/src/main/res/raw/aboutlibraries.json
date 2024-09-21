@@ -1,6 +1,6 @@
 {
     "metadata": {
-        "generated": "2024-08-26T21:01:22.99Z"
+        "generated": "2024-09-21T10:56:03.535Z"
     },
     "libraries": [
         {
@@ -13,14 +13,14 @@
                     "name": "The Android Open Source Project"
                 }
             ],
-            "artifactVersion": "1.9.1",
+            "artifactVersion": "1.9.2",
             "description": "Provides the base Activity subclass and the relevant hooks to build a composable structure on top.",
             "scm": {
                 "connection": "scm:git:https://android.googlesource.com/platform/frameworks/support",
                 "url": "https://cs.android.com/androidx/platform/frameworks/support"
             },
             "name": "Activity",
-            "website": "https://developer.android.com/jetpack/androidx/releases/activity#1.9.1",
+            "website": "https://developer.android.com/jetpack/androidx/releases/activity#1.9.2",
             "licenses": [
                 "Apache-2.0"
             ],
@@ -38,14 +38,14 @@
                     "name": "The Android Open Source Project"
                 }
             ],
-            "artifactVersion": "1.9.1",
+            "artifactVersion": "1.9.2",
             "description": "Kotlin extensions for 'activity' artifact",
             "scm": {
                 "connection": "scm:git:https://android.googlesource.com/platform/frameworks/support",
                 "url": "https://cs.android.com/androidx/platform/frameworks/support"
             },
             "name": "Activity Kotlin Extensions",
-            "website": "https://developer.android.com/jetpack/androidx/releases/activity#1.9.1",
+            "website": "https://developer.android.com/jetpack/androidx/releases/activity#1.9.2",
             "licenses": [
                 "Apache-2.0"
             ],
@@ -630,7 +630,7 @@
             "developers": [
                 
             ],
-            "artifactVersion": "8.5.0",
+            "artifactVersion": "8.5.2",
             "description": "",
             "name": "androidx.databinding:viewbinding",
             "licenses": [
@@ -867,14 +867,14 @@
                     "name": "The Android Open Source Project"
                 }
             ],
-            "artifactVersion": "2.8.4",
+            "artifactVersion": "2.8.6",
             "description": "Android Lifecycle-Common",
             "scm": {
                 "connection": "scm:git:https://android.googlesource.com/platform/frameworks/support",
                 "url": "https://cs.android.com/androidx/platform/frameworks/support"
             },
             "name": "Lifecycle-Common",
-            "website": "https://developer.android.com/jetpack/androidx/releases/lifecycle#2.8.4",
+            "website": "https://developer.android.com/jetpack/androidx/releases/lifecycle#2.8.6",
             "licenses": [
                 "Apache-2.0"
             ],
@@ -892,14 +892,14 @@
                     "name": "The Android Open Source Project"
                 }
             ],
-            "artifactVersion": "2.8.4",
+            "artifactVersion": "2.8.6",
             "description": "Android Lifecycle LiveData",
             "scm": {
                 "connection": "scm:git:https://android.googlesource.com/platform/frameworks/support",
                 "url": "https://cs.android.com/androidx/platform/frameworks/support"
             },
             "name": "Lifecycle LiveData",
-            "website": "https://developer.android.com/jetpack/androidx/releases/lifecycle#2.8.4",
+            "website": "https://developer.android.com/jetpack/androidx/releases/lifecycle#2.8.6",
             "licenses": [
                 "Apache-2.0"
             ],
@@ -917,14 +917,14 @@
                     "name": "The Android Open Source Project"
                 }
             ],
-            "artifactVersion": "2.8.4",
+            "artifactVersion": "2.8.6",
             "description": "Android Lifecycle LiveData Core",
             "scm": {
                 "connection": "scm:git:https://android.googlesource.com/platform/frameworks/support",
                 "url": "https://cs.android.com/androidx/platform/frameworks/support"
             },
             "name": "Lifecycle LiveData Core",
-            "website": "https://developer.android.com/jetpack/androidx/releases/lifecycle#2.8.4",
+            "website": "https://developer.android.com/jetpack/androidx/releases/lifecycle#2.8.6",
             "licenses": [
                 "Apache-2.0"
             ],
@@ -942,14 +942,14 @@
                     "name": "The Android Open Source Project"
                 }
             ],
-            "artifactVersion": "2.8.4",
+            "artifactVersion": "2.8.6",
             "description": "Kotlin extensions for 'livedata-core' artifact",
             "scm": {
                 "connection": "scm:git:https://android.googlesource.com/platform/frameworks/support",
                 "url": "https://cs.android.com/androidx/platform/frameworks/support"
             },
             "name": "LiveData Core Kotlin Extensions",
-            "website": "https://developer.android.com/jetpack/androidx/releases/lifecycle#2.8.4",
+            "website": "https://developer.android.com/jetpack/androidx/releases/lifecycle#2.8.6",
             "licenses": [
                 "Apache-2.0"
             ],
@@ -967,14 +967,14 @@
                     "name": "The Android Open Source Project"
                 }
             ],
-            "artifactVersion": "2.8.4",
+            "artifactVersion": "2.8.6",
             "description": "Kotlin extensions for 'livedata' artifact",
             "scm": {
                 "connection": "scm:git:https://android.googlesource.com/platform/frameworks/support",
                 "url": "https://cs.android.com/androidx/platform/frameworks/support"
             },
             "name": "LiveData Kotlin Extensions",
-            "website": "https://developer.android.com/jetpack/androidx/releases/lifecycle#2.8.4",
+            "website": "https://developer.android.com/jetpack/androidx/releases/lifecycle#2.8.6",
             "licenses": [
                 "Apache-2.0"
             ],
@@ -992,14 +992,14 @@
                     "name": "The Android Open Source Project"
                 }
             ],
-            "artifactVersion": "2.8.4",
+            "artifactVersion": "2.8.6",
             "description": "Android Lifecycle Process",
             "scm": {
                 "connection": "scm:git:https://android.googlesource.com/platform/frameworks/support",
                 "url": "https://cs.android.com/androidx/platform/frameworks/support"
             },
             "name": "Lifecycle Process",
-            "website": "https://developer.android.com/jetpack/androidx/releases/lifecycle#2.8.4",
+            "website": "https://developer.android.com/jetpack/androidx/releases/lifecycle#2.8.6",
             "licenses": [
                 "Apache-2.0"
             ],
@@ -1017,14 +1017,14 @@
                     "name": "The Android Open Source Project"
                 }
             ],
-            "artifactVersion": "2.8.4",
+            "artifactVersion": "2.8.6",
             "description": "Android Lifecycle Runtime",
             "scm": {
                 "connection": "scm:git:https://android.googlesource.com/platform/frameworks/support",
                 "url": "https://cs.android.com/androidx/platform/frameworks/support"
             },
             "name": "Lifecycle Runtime",
-            "website": "https://developer.android.com/jetpack/androidx/releases/lifecycle#2.8.4",
+            "website": "https://developer.android.com/jetpack/androidx/releases/lifecycle#2.8.6",
             "licenses": [
                 "Apache-2.0"
             ],
@@ -1042,14 +1042,14 @@
                     "name": "The Android Open Source Project"
                 }
             ],
-            "artifactVersion": "2.8.4",
+            "artifactVersion": "2.8.6",
             "description": "Kotlin extensions for 'lifecycle' artifact",
             "scm": {
                 "connection": "scm:git:https://android.googlesource.com/platform/frameworks/support",
                 "url": "https://cs.android.com/androidx/platform/frameworks/support"
             },
             "name": "Lifecycle Kotlin Extensions",
-            "website": "https://developer.android.com/jetpack/androidx/releases/lifecycle#2.8.4",
+            "website": "https://developer.android.com/jetpack/androidx/releases/lifecycle#2.8.6",
             "licenses": [
                 "Apache-2.0"
             ],
@@ -1067,14 +1067,14 @@
                     "name": "The Android Open Source Project"
                 }
             ],
-            "artifactVersion": "2.8.4",
+            "artifactVersion": "2.8.6",
             "description": "Android Lifecycle ViewModel",
             "scm": {
                 "connection": "scm:git:https://android.googlesource.com/platform/frameworks/support",
                 "url": "https://cs.android.com/androidx/platform/frameworks/support"
             },
             "name": "Lifecycle ViewModel",
-            "website": "https://developer.android.com/jetpack/androidx/releases/lifecycle#2.8.4",
+            "website": "https://developer.android.com/jetpack/androidx/releases/lifecycle#2.8.6",
             "licenses": [
                 "Apache-2.0"
             ],
@@ -1092,14 +1092,14 @@
                     "name": "The Android Open Source Project"
                 }
             ],
-            "artifactVersion": "2.8.4",
+            "artifactVersion": "2.8.6",
             "description": "Kotlin extensions for 'viewmodel' artifact",
             "scm": {
                 "connection": "scm:git:https://android.googlesource.com/platform/frameworks/support",
                 "url": "https://cs.android.com/androidx/platform/frameworks/support"
             },
             "name": "Lifecycle ViewModel Kotlin Extensions",
-            "website": "https://developer.android.com/jetpack/androidx/releases/lifecycle#2.8.4",
+            "website": "https://developer.android.com/jetpack/androidx/releases/lifecycle#2.8.6",
             "licenses": [
                 "Apache-2.0"
             ],
@@ -1117,14 +1117,14 @@
                     "name": "The Android Open Source Project"
                 }
             ],
-            "artifactVersion": "2.8.4",
+            "artifactVersion": "2.8.6",
             "description": "Android Lifecycle ViewModel",
             "scm": {
                 "connection": "scm:git:https://android.googlesource.com/platform/frameworks/support",
                 "url": "https://cs.android.com/androidx/platform/frameworks/support"
             },
             "name": "Lifecycle ViewModel with SavedState",
-            "website": "https://developer.android.com/jetpack/androidx/releases/lifecycle#2.8.4",
+            "website": "https://developer.android.com/jetpack/androidx/releases/lifecycle#2.8.6",
             "licenses": [
                 "Apache-2.0"
             ],
@@ -2304,7 +2304,7 @@
             "developers": [
                 
             ],
-            "artifactVersion": "2.26.1",
+            "artifactVersion": "2.28.0",
             "description": "Error Prone is a static analysis tool for Java that catches common programming mistakes at compile-time.",
             "scm": {
                 "connection": "scm:git:https://github.com/google/error-prone.git",
@@ -2350,7 +2350,7 @@
             "developers": [
                 
             ],
-            "artifactVersion": "33.2.1-android",
+            "artifactVersion": "33.3.0-android",
             "description": "Guava is a suite of core and expanded libraries that include\n    utility classes, Google's collections, I/O classes, and\n    much more.",
             "scm": {
                 "connection": "scm:git:https://github.com/google/guava.git",
@@ -2416,7 +2416,7 @@
             "developers": [
                 
             ],
-            "artifactVersion": "4.27.3",
+            "artifactVersion": "4.28.2",
             "description": "Lite version of Protocol Buffers library. This version is optimized for code size, but does\n    not guarantee API/ABI stability.",
             "scm": {
                 "connection": "scm:git:https://github.com/protocolbuffers/protobuf.git",
@@ -2484,7 +2484,7 @@
                     "name": "Mike Penz"
                 }
             ],
-            "artifactVersion": "11.2.2",
+            "artifactVersion": "11.2.3",
             "description": "AboutLibraries automatically detects all dependencies of a project and collects their information including the license. Optionally visualising it via the provided ui components.",
             "scm": {
                 "connection": "scm:git@github.com:mikepenz/AboutLibraries.git",
@@ -2714,7 +2714,7 @@
                     "name": "Suzanne Millstein"
                 }
             ],
-            "artifactVersion": "3.42.0",
+            "artifactVersion": "3.43.0",
             "description": "checker-qual contains annotations (type qualifiers) that a programmer\nwrites to specify Java code for type-checking by the Checker Framework.",
             "scm": {
                 "connection": "scm:git:https://github.com/typetools/checker-framework.git",
@@ -2870,7 +2870,7 @@
                     "name": "Kotlin Team"
                 }
             ],
-            "artifactVersion": "2.0.0",
+            "artifactVersion": "2.0.20",
             "description": "Kotlin Standard Library",
             "scm": {
                 "connection": "scm:git:https://github.com/JetBrains/kotlin.git",
@@ -3030,7 +3030,7 @@
                     "name": "JetBrains Team"
                 }
             ],
-            "artifactVersion": "1.6.3",
+            "artifactVersion": "1.7.1",
             "description": "Kotlin multiplatform serialization runtime library",
             "scm": {
                 "url": "https://github.com/Kotlin/kotlinx.serialization"
@@ -3052,7 +3052,7 @@
                     "name": "JetBrains Team"
                 }
             ],
-            "artifactVersion": "1.6.3",
+            "artifactVersion": "1.7.1",
             "description": "Kotlin multiplatform serialization runtime library",
             "scm": {
                 "url": "https://github.com/Kotlin/kotlinx.serialization"
@@ -3074,7 +3074,7 @@
                     "name": "JetBrains Team"
                 }
             ],
-            "artifactVersion": "1.6.3",
+            "artifactVersion": "1.7.1",
             "description": "Kotlin multiplatform serialization runtime library",
             "scm": {
                 "url": "https://github.com/Kotlin/kotlinx.serialization"
