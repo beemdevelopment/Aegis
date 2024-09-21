@@ -1,4 +1,4 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="UnusedResources">
     <color name="md_theme_light_primary">#2b5bb5</color>
     <color name="md_theme_light_onPrimary">#ffffff</color>
     <color name="md_theme_light_primaryContainer">#d9e2ff</color>

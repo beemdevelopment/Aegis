@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name" translatable="false">Aegis</string>
     <string name="app_name_full" translatable="false">Aegis Authenticator</string>
     <string name="org_name_full" translatable="false">Beem Development</string>
@@ -555,23 +555,23 @@
     <string name="pref_account_name_position_end">Next to the issuer</string>
     <string name="pref_account_name_position_below">Below the issuer</string>
 
-    <plurals name="time_elapsed_seconds">
+    <plurals name="time_elapsed_seconds" tools:ignore="UnusedResources">
         <item quantity="one">%d second ago</item>
         <item quantity="other">%d seconds ago</item>
     </plurals>
-    <plurals name="time_elapsed_minutes">
+    <plurals name="time_elapsed_minutes" tools:ignore="UnusedResources">
         <item quantity="one">%d minute ago</item>
         <item quantity="other">%d minutes ago</item>
     </plurals>
-    <plurals name="time_elapsed_hours">
+    <plurals name="time_elapsed_hours" tools:ignore="UnusedResources">
         <item quantity="one">%d hour ago</item>
         <item quantity="other">%d hours ago</item>
     </plurals>
-    <plurals name="time_elapsed_days">
+    <plurals name="time_elapsed_days" tools:ignore="UnusedResources">
         <item quantity="one">%d day ago</item>
         <item quantity="other">%d days ago</item>
     </plurals>
-    <plurals name="time_elapsed_years">
+    <plurals name="time_elapsed_years" tools:ignore="UnusedResources">
         <item quantity="one">%d year ago</item>
         <item quantity="other">%d years ago</item>
     </plurals>

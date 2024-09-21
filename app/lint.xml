@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <lint>
+    <issue id="MissingTranslation" severity="ignore" />
+    <issue id="MissingQuantity" severity="ignore" />
     <issue id="InvalidPackage">
         <ignore regexp="X509LDAPCertStoreSpi" />
     </issue>
     <issue id="NotificationPermission">
         <ignore regexp="com.bumptech.glide.request.target.NotificationTarget" />
     </issue>
-    <issue id="ResourceType" severity="Warning" />
+    <issue id="UnusedResources" severity="error">
+        <ignore path="res/raw/aboutlibraries.json" />
+        <ignore regexp="res/mipmap.*/ic_launcher_debug.*.png" />
+    </issue>
 </lint>
