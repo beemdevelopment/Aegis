@@ -249,7 +249,6 @@
     <string name="partial_google_auth_import">Detectóse una esportación incompleta de Google Authenticator</string>
     <string name="partial_google_auth_import_warning">Falten dalgunos códigos QR na importación. Nun s\'atoparon los códigos siguientes:\n\n<b>%s</b>\n\nPues siguir cola importación d\'esta esportación parcial mas aconseyamos volver tentalo con tolos códigos QR pa que nun t\'arriesgues a perder l\'accesu a nengún pase.</string>
     <string name="missing_qr_code_descriptor">• Códigu QR %d</string>
-    <string name="import_partial_export_anyway">Importar %d pases de toes toes</string>
     <string name="import_google_auth_failure">La importación de la esportación de Google Authenticator falló</string>
     <string name="unrelated_google_auth_batches_error">La esportación contién información d\'un llote que nun tien rellación. Prueba a importar llotes d\'unu nunu.</string>
     <string name="no_tokens_can_be_imported">Como resultáu, nun se pue importar nengún pase</string>

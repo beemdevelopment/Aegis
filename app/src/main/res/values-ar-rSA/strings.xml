@@ -327,7 +327,6 @@
     <string name="partial_google_auth_import">اكتُشف تصدير Google Authenticator غير مكتمل</string>
     <string name="partial_google_auth_import_warning">بعض رموز QR مفقودة من الاستيراد. لم يتم العثور على الرموز التالية:\n\n<b>%s</b>\n\nيمكنك الاستمرار في استيراد هذا التصدير الجزئي ولكننا نوصي بإعادة المحاولة باستخدام جميع رموز QR حتى لا تخاطر بفقدان الوصول إلى أي رموز.</string>
     <string name="missing_qr_code_descriptor">• رمز QR %d</string>
-    <string name="import_partial_export_anyway">استيراد %d رموز على أي حال</string>
     <string name="import_google_auth_failure">فشل استيراد تصدير Google Authenticator</string>
     <string name="unrelated_google_auth_batches_error">يحتوي التصدير على معلومات عن دُفعة غير ذات صلة. حاول استيراد دفعة واحدة في كل مرة.</string>
     <string name="no_tokens_can_be_imported">نتيجة لذلك، لا يمكن استيراد أي رموز</string>

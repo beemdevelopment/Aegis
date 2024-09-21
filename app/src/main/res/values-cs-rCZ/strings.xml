@@ -319,7 +319,6 @@
     <string name="partial_google_auth_import">Zjištěn neúplný export z Google Authenticator</string>
     <string name="partial_google_auth_import_warning">Ve vašem importu chybí některé QR kódy. Nebyly nalezeny následující kódy:\n\n<b>%s</b>\n\nMůžete pokračovat s importováním tohoto částečného exportu, ale doporučujeme to zkusit znovu se všemi QR kódy, abyste neriskovali ztrátu přístupu k některým tokenům.</string>
     <string name="missing_qr_code_descriptor">• QR kód %d</string>
-    <string name="import_partial_export_anyway">Přesto importovat %d tokenů</string>
     <string name="import_google_auth_failure">Importování exportu z Google Authenticator selhalo</string>
     <string name="unrelated_google_auth_batches_error">Export obsahuje informace o nesouvisejícím balíku. Zkuste importovat 1 balík najednou.</string>
     <string name="no_tokens_can_be_imported">Nebyly importovány žádné tokeny</string>

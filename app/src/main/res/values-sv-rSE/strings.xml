@@ -299,7 +299,6 @@
     <string name="partial_google_auth_import">Ofullständig Google Authenticator-export upptäckt</string>
     <string name="partial_google_auth_import_warning">Vissa rutkoder saknas från din import. Följande koder hittades inte:\n\n<b>%s</b>\n\nDu kan fortsätta att importera denna partiella export, men vi rekommenderar att du försöker igen med alla rutkoder, så att du inte riskerar att förlora åtkomst till några polletter.</string>
     <string name="missing_qr_code_descriptor">• rutkod %d</string>
-    <string name="import_partial_export_anyway">Importera %d polletter ändå</string>
     <string name="import_google_auth_failure">Import av Google Authenticator-export misslyckades</string>
     <string name="unrelated_google_auth_batches_error">Exporten innehåller information gällande en orelaterad omgång. Försök att importera 1 omgång i taget.</string>
     <string name="no_tokens_can_be_imported">Inga polletter kan importeras till följd av detta</string>

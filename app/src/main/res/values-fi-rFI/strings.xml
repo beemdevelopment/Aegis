@@ -297,7 +297,6 @@
     <string name="partial_google_auth_import">Puutteellinen Google Authenticatorin varmuuskopio havaittu</string>
     <string name="partial_google_auth_import_warning">Jotkin QR-koodit puuttuvat tuonnistasi. Seuraavia koodeja ei löytynyt:\n\n<b>%s</b>\n\nVoit jatkaa tämän osittaisen viennin tuontia, mutta suosittelemme kokeilemaan uudelleen kaikilla QR-koodeilla, jotta et menetä pääsyä todennuskoodeihin.</string>
     <string name="missing_qr_code_descriptor">• QR-koodi %d</string>
-    <string name="import_partial_export_anyway">Tuo %d todennuskoodia silti</string>
     <string name="import_google_auth_failure">Google Authenticatorin varmuuskopion tuonti epäonnistui</string>
     <string name="unrelated_google_auth_batches_error">Vienti sisältää tietoa liittymättömästä erästä. Yritä tuoda 1 erä kerrallaan.</string>
     <string name="no_tokens_can_be_imported">Tämän seurauksena yhtäkään todennuskoodia ei voitu tuoda</string>

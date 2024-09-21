@@ -258,7 +258,6 @@
     <string name="read_qr_error_phonefactor">Aegis 不相容於微軟私有的雙因素驗證演算法。請確保在 Microsoft 365 設定雙因素驗證時選擇「設定無通知的應用程式」。</string>
     <string name="partial_google_auth_import">偵測到不完整的 Google Authenticator 匯出</string>
     <string name="missing_qr_code_descriptor">• QR 圖碼 %d</string>
-    <string name="import_partial_export_anyway">仍要匯入 %d 個令牌</string>
     <string name="import_google_auth_failure">匯入 Google Authenticator 失敗</string>
     <string name="unlocking_vault">解鎖保險箱</string>
     <string name="rename_group">重新命名群組</string>

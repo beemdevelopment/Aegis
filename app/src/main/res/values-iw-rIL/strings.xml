@@ -251,7 +251,6 @@
     <string name="partial_google_auth_import">זוהה ייצוא לא שלם של Google Authenticator</string>
     <string name="partial_google_auth_import_warning">כמה קודי QR חסרים בייבוא שלך. הקודים הבאים לא נמצאו:\n\n<b>%s</b>\n\nתוכל להמשיך לייבא את הייצוא החלקי הזה, אך אנו ממליצים לנסות שוב עם כל קודי ה-QR כדי לא להסתכן באובדן גישה לכל קודי אסימונים.</string>
     <string name="missing_qr_code_descriptor">• קוד QR %d</string>
-    <string name="import_partial_export_anyway">ייבוא אסימוני %d בכל מקרה</string>
     <string name="import_google_auth_failure">ייבוא ייצוא מאמת Google נכשל</string>
     <string name="unrelated_google_auth_batches_error">ייצוא מכיל מידע עבור אצווה לא קשורה. נסה לייבא אצווה אחת בכל פעם.</string>
     <string name="no_tokens_can_be_imported">לא ניתן לייבא אסימונים כתוצאה מכך</string>

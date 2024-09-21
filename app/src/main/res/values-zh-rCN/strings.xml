@@ -295,7 +295,6 @@
     <string name="partial_google_auth_import">检测到不完整的 Google 身份验证器导出</string>
     <string name="partial_google_auth_import_warning">您的导入缺少一些  QR 码。 找不到下列代码：\n\n<b>%s</b>\n\n您仍可以继续导入已有部分，但建议您重试所有 QR 码，以避免出现丢失令牌的风险。</string>
     <string name="missing_qr_code_descriptor">• QR 码 %d</string>
-    <string name="import_partial_export_anyway">继续导入 %d 个令牌</string>
     <string name="import_google_auth_failure">导入 Google 身份验证器的导出文件失败</string>
     <string name="unrelated_google_auth_batches_error">导出文件包含多个批次的内容。请一次只导入一个批次。</string>
     <string name="no_tokens_can_be_imported">没有可导入的令牌</string>

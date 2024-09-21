@@ -262,7 +262,6 @@
     <string name="partial_google_auth_import">不完全な Google Authenticator のエクスポートが検出されました</string>
     <string name="partial_google_auth_import_warning">インポート内の一部のQRコードが見つかりません。以下のコードが見つかりませんでした:\n\n<b>%s</b>\n\n正常な部分のみでインポートを継続することはできますが、トークンへのアクセス方法を失う危険性があるため、すべてのQRコードを再試行することをお勧めします。</string>
     <string name="missing_qr_code_descriptor">• QRコード %d</string>
-    <string name="import_partial_export_anyway">とにかく %d 個のトークンをインポートする</string>
     <string name="import_google_auth_failure">Google Authenticator エクスポートのインポートに失敗しました</string>
     <string name="unrelated_google_auth_batches_error">エクスポートには関連のないバッチの情報が含まれています。一度にひとつのバッチをインポートしてください。</string>
     <string name="no_tokens_can_be_imported">インポートできるトークンはありません</string>

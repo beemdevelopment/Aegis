@@ -303,7 +303,6 @@
     <string name="partial_google_auth_import">Export Google Authenticator incomplet détecté</string>
     <string name="partial_google_auth_import_warning">Certains codes QR sont manquants dans votre export. Les codes suivants n\'ont pas été trouvés :\n\n<b>%s</b>\n\nVous pouvez continuer à importer cet export partiel, mais nous vous recommandons de réessayer avec tous les codes QR afin de ne risquer de perdre l\'accès à aucun jeton.</string>
     <string name="missing_qr_code_descriptor">• code QR %d</string>
-    <string name="import_partial_export_anyway">Importer %d jetons quand même</string>
     <string name="import_google_auth_failure">L\'import de l\'export Google Authenticator a échoué</string>
     <string name="unrelated_google_auth_batches_error">L\'export contient des informations pour un lot non lié. Essayez d\'importer 1 lot à la fois.</string>
     <string name="no_tokens_can_be_imported">Aucun jeton ne peut être importé en conséquence</string>

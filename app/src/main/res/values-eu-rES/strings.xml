@@ -297,7 +297,6 @@
     <string name="partial_google_auth_import">Google Authenticatorren esportazioa ez da osoa</string>
     <string name="partial_google_auth_import_warning">QR kode batzuk falta dira zure inportazioan. Kode hauek ez dira aurktu: \n\n<b>%s</b>\n\nZatikako inportazio honekin jarrai dezakezu baina berriz ere QR kode guztiekin saiatzea gomendatzen dizugu tokenetarako sarrera gal ez dezazun.</string>
     <string name="missing_qr_code_descriptor">• QR kodea %d</string>
-    <string name="import_partial_export_anyway">Inportatu %d token edonola ere</string>
     <string name="import_google_auth_failure">Google Authenticatorren esportazioa inportatzeak huts egin du</string>
     <string name="unrelated_google_auth_batches_error">Esportazioak zerikusirik ez duen sorta baten informazioa du. Saiatu sorta bakoitza bere aldetik inportatzen.</string>
     <string name="no_tokens_can_be_imported">Ez izan da tokenik inportatu</string>

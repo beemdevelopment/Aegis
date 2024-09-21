@@ -303,7 +303,6 @@
     <string name="partial_google_auth_import">Установени са частично изнасени данни за Google Authenticator</string>
     <string name="partial_google_auth_import_warning">Няколко QR кода не са внесени. Следните кодове липсват:\n\n<b>%s</b>\n\nМожете да продължите с частично внесените данни, но е препоръчително да направите нов опит с всички QR кодове без да рискувате загуба на кодове за защите.</string>
     <string name="missing_qr_code_descriptor">• QR код %d</string>
-    <string name="import_partial_export_anyway">Внасяне на %d кода за достъп въпреки това</string>
     <string name="import_google_auth_failure">Грешка при внасяне към Google Authenticator</string>
     <string name="unrelated_google_auth_batches_error">Изнесеното съдържа части от несвързана порция кодове. Внасяйте всяка порция поотделно.</string>
     <string name="no_tokens_can_be_imported">Като резултат не са внесени кодове за защита</string>

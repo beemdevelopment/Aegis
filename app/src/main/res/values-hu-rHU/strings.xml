@@ -297,7 +297,6 @@
     <string name="partial_google_auth_import">Hiányos Google Authenticator export észlelve</string>
     <string name="partial_google_auth_import_warning">Néhány QR-kód hiányzik az importból. Ezek a kódok nem találhatók:\n\n<b>%s</b>\n\nFolytathatja a részleges export importálását, de javasoljuk, hogy próbálja újra az összes QR-kóddal, hogy ne kockáztassa a hozzáférése elvesztését egyetlen tokennél sem.</string>
     <string name="missing_qr_code_descriptor">• %d. QR-kód</string>
-    <string name="import_partial_export_anyway">%d token importálása mindenképp</string>
     <string name="import_google_auth_failure">A Google Authenticator export importálása sikertelen</string>
     <string name="unrelated_google_auth_batches_error">Az export nem kapcsolódó köteg információit tartalmazza. Egyszerre csak 1 köteget próbáljon meg importálni.</string>
     <string name="no_tokens_can_be_imported">Ennek eredményeképp egyetlen token sem importálható</string>

@@ -303,7 +303,6 @@
     <string name="partial_google_auth_import">Εντοπίστηκε ημιτελής εξαγωγή του Επαληθευτή Google</string>
     <string name="partial_google_auth_import_warning">Ορισμένοι κωδικοί QR λείπουν από την εισαγωγή σας. Οι ακόλουθοι κωδικοί δεν βρέθηκαν:\n\n<b>%s</b>\n\nΜπορείτε να συνεχίσετε την εισαγωγή αυτής της μερικής εξαγωγής, αλλά σας συνιστούμε να ξαναδοκιμάσετε με όλους τους κωδικούς QR ώστε να μην κινδυνεύετε να χάσετε πρόσβαση σε οποιαδήποτε αναγνωστικά.</string>
     <string name="missing_qr_code_descriptor">• Κωδικός QR %d</string>
-    <string name="import_partial_export_anyway">Εισαγωγή %d αναγνωριστικών ούτως ή άλλως</string>
     <string name="import_google_auth_failure">Η εισαγωγή της εξαγωγής του Επαληθευτή Google απέτυχε</string>
     <string name="unrelated_google_auth_batches_error">Η εξαγωγή περιέχει πληροφορίες για μια άσχετη παρτίδα. Δοκιμάστε να εισαγάγετε 1 παρτίδα τη φορά.</string>
     <string name="no_tokens_can_be_imported">Ως αποτέλεσμα, δεν μπορούν να εισαχθούν αναγνωστικά</string>

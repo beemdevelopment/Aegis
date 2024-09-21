@@ -258,7 +258,6 @@
     <string name="partial_google_auth_import">अपूर्ण गूगल ऑथेंटिकेटर एक्सपोर्ट का पता चला</string>
     <string name="partial_google_auth_import_warning">आपके इंपोर्ट से कुछ क्यूआर कोड गायब हैं। निम्नलिखित कोड नहीं मिले:\n\n<b>%s</b>\n\nआप इस आंशिक एक्सपोर्ट को इंपोर्ट करना जारी रख सकते हैं लेकिन हम सभी क्यूआर कोड के साथ पुनः प्रयास करने की सलाह देते हैं ताकि आप किसी भी टोकन तक पहुंच खोने का जोखिम न उठाएं|</string>
     <string name="missing_qr_code_descriptor">• क्यूआर कोड %d </string>
-    <string name="import_partial_export_anyway">फिर भी %d टोकंस इंपोर्ट करें</string>
     <string name="import_google_auth_failure">गूगल ऑथेंटिकेटर एक्सपोर्ट को इंपोर्ट करना असफल हुआ</string>
     <string name="unrelated_google_auth_batches_error">एक्सपोर्ट में किसी असंबंधित बैच की जानकारी शामिल है. एक समय में 1 बैच इंपोर्ट करने का प्रयास करें।</string>
     <string name="no_tokens_can_be_imported">परिणामस्वरूप कोई टोकन आयात नहीं किया जा सकता</string>

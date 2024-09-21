@@ -303,7 +303,6 @@
     <string name="partial_google_auth_import">Ufuldstændig Google Authenticator-eksport detekteret</string>
     <string name="partial_google_auth_import_warning">Nogle QR-koder mangler i importen. Flg. koder er ikke fundet:\n\n<b>%s</b>\n\nMan kan fortsætte med import af denne delvise eksport, dog anbefales det at prøve igen med alle QR-koderne, så man ikke risikerer at miste adgang til nogle tokens.</string>
     <string name="missing_qr_code_descriptor">• QR-kode %d</string>
-    <string name="import_partial_export_anyway">Importér %d tokens alligevel</string>
     <string name="import_google_auth_failure">Import af Google Authenticator-eksport mislykkedes</string>
     <string name="unrelated_google_auth_batches_error">Eksporten indeholder information om et urelateret sæt. Prøv at importere 1 sæt ad gangen.</string>
     <string name="no_tokens_can_be_imported">Som konsekvens, kan ingen tokener importeres</string>

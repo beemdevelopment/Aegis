@@ -305,7 +305,6 @@
     <string name="partial_google_auth_import">S-a detectat exportul incomplet a datelor din autentificatorul Google</string>
     <string name="partial_google_auth_import_warning">Unele coduri QR lipsesc din fișerul importat. Următoarele coduri nu au fost găsite:\n\n<b>%s</b>\n\nPuteţi continua importul acestui fișier parţial, dar vă recomandăm să încercaţi din nou cu toate codurile QR pentru a nu risca pierderea niciunui token.</string>
     <string name="missing_qr_code_descriptor">• codul QR %d</string>
-    <string name="import_partial_export_anyway">Importă jetoanele %d oricum</string>
     <string name="import_google_auth_failure">Importarea din Google Authenticator a eșuat</string>
     <string name="unrelated_google_auth_batches_error">Exportul conține informații pentru un calup neasociat. Încercați să importați câte un calup pe rând.</string>
     <string name="no_tokens_can_be_imported">Nu se pot importa token-uri drept rezultat</string>

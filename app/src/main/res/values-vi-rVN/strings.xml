@@ -296,7 +296,6 @@
     <string name="partial_google_auth_import">Đã phát hiện quá trình xuất Google Authenticator chưa hoàn tất</string>
     <string name="partial_google_auth_import_warning">Một số mã QR bị thiếu trong quá trình nhập. Không tìm thấy các mã sau:\n\n<b>%s</b>\n\nBạn có thể tiếp tục nhập bản xuất này nhưng chúng tôi khuyên bạn nên thử lại với tất cả các mã QR để không có nguy cơ mất quyền truy cập vào bất kỳ token nào.</string>
     <string name="missing_qr_code_descriptor">• Mã QR %d</string>
-    <string name="import_partial_export_anyway">Vẫn cứ nhập %d token</string>
     <string name="import_google_auth_failure">Quá trình xuất Google Authenticator thất bại</string>
     <string name="unrelated_google_auth_batches_error">Bản xuất chứa thông tin về một batch không liên quan. Hãy thử nhập 1 batch mỗi lần.</string>
     <string name="no_tokens_can_be_imported">Do đó, không thể nhập token nào</string>

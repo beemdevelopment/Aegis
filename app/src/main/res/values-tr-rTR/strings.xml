@@ -272,7 +272,6 @@
     <string name="partial_google_auth_import">Eksik Google Authenticator dışa aktarımı algılandı</string>
     <string name="partial_google_auth_import_warning">İçe aktarma işleminizde bazı QR kodları eksik. aşağıdaki kodlar bulunamadı:\n\n<b>%s</b>\n\nBu kısmi dışa aktarmayı içe aktarmaya devam edebilirsiniz, ancak herhangi bir tokena erişimi kaybetme riskine girmemek için tüm QR kodlarıyla yeniden denemenizi öneririz.</string>
     <string name="missing_qr_code_descriptor">• QR kodu %d</string>
-    <string name="import_partial_export_anyway">Yine de %d tokenı içe aktar</string>
     <string name="import_google_auth_failure">Dışa aktarılmış Google Authenticator dosyasını içe aktarma işlemi başarısız oldu</string>
     <string name="unrelated_google_auth_batches_error">Dışa aktarma, ilgisiz bir toplu iş için bilgi içerir. Bir seferde 1 partiyi içe aktarmayı deneyin.</string>
     <string name="no_tokens_can_be_imported">Sonuç olarak hiçbir token içe aktarılamaz</string>

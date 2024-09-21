@@ -303,7 +303,6 @@
     <string name="partial_google_auth_import">S\'ha detectat una exportació incompleta de Google Authenticator</string>
     <string name="partial_google_auth_import_warning">Falten alguns codis QR a la importació. No s\'han trobat els codis següents:\n\n<b>%s</b>\n\nPodeu continuar important aquesta exportació parcial, però us recomanem que torneu a provar amb tots els codis QR perquè no us arriscareu a perdre l\'accés a cap token.</string>
     <string name="missing_qr_code_descriptor">• codi QR %d</string>
-    <string name="import_partial_export_anyway">Importeu %d tokens de totes maneres</string>
     <string name="import_google_auth_failure">No s\'ha pogut importar l\'exportació de Google Authenticator</string>
     <string name="unrelated_google_auth_batches_error">L\'exportació conté informació d\'un lot no relacionat. Proveu d\'importar 1 lot alhora.</string>
     <string name="no_tokens_can_be_imported">Com a resultat, no es poden importar tokens</string>

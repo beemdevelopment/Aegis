@@ -311,7 +311,6 @@
     <string name="partial_google_auth_import">Noteikta nepilnīga Google Authenticator izgūšanas datne</string>
     <string name="partial_google_auth_import_warning">Trūkst dažu kvadrātkodu no ievietošanas. Šie kodi netika atrasti:\n\n<b>%s</b>\n\nVar turpināt ievietošanu no šīs nepilnīgās izgūšanas datnes, bet mēs iesakām mēģināt atkārtoti ar visiem kvadrātkodiem, lai nebūtu jāzaudē piekļuve kodiem.</string>
     <string name="missing_qr_code_descriptor">• kvadrātkods %d</string>
-    <string name="import_partial_export_anyway">Vienalga ievietot %d kodus</string>
     <string name="import_google_auth_failure">Neizdevās ievietošana no Google Authenticator izgūšanas datnes</string>
     <string name="unrelated_google_auth_batches_error">Izgūšanas datne satur informāciju par nesaistītu kopumu. Var mēģināt ievietot atsevišķi pa vienam kopumam.</string>
     <string name="no_tokens_can_be_imported">Iznākumā nevar ievietot nevienu kodu</string>

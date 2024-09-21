@@ -303,7 +303,6 @@
     <string name="partial_google_auth_import">Unvollständiger Google Authenticator-Export erkannt</string>
     <string name="partial_google_auth_import_warning">Einige QR-Codes fehlen in deinem Importversuch. Die folgenden Codes wurden nicht gefunden:\n\n<b>%s</b>\n\nDu kannst mit dem Importieren dieses Teilexports fortfahren, aber wir empfehlen es mit allen QR-Codes erneut zu versuchen, damit du nicht riskierst, den Zugriff auf Token zu verlieren.</string>
     <string name="missing_qr_code_descriptor">• QR-Code %d</string>
-    <string name="import_partial_export_anyway">%d Token trotzdem importieren</string>
     <string name="import_google_auth_failure">Importieren von Google Authenticator-Export fehlgeschlagen</string>
     <string name="unrelated_google_auth_batches_error">Die Exportdatei enthält Informationen über ein nicht zugehöriges Set. Versuche, jeweils 1 Set zu importieren.</string>
     <string name="no_tokens_can_be_imported">Daher können keine Token importiert werden</string>

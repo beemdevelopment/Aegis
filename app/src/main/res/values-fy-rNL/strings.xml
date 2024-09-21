@@ -297,7 +297,6 @@
     <string name="partial_google_auth_import">Net folsleine Google Authenticator-eksport detektearre</string>
     <string name="partial_google_auth_import_warning">Inkelde QR-koaden ûntbrekke yn de ymport. De folgjende koaden binne net fûn:\n\n<b>%s</b>\n\nDo kinst trochgean mei it ymportearjen fan dizze ûnfolsleine eksport, mar wy rekommandearje oan it opnij te probearjen mei alle QR-koaden, sadatsto net it risiko rinst de tagong ta tokens te ferliezen.</string>
     <string name="missing_qr_code_descriptor">• QR-koade %d</string>
-    <string name="import_partial_export_anyway">%d tokens dochs ymportearje</string>
     <string name="import_google_auth_failure">Ymportearjen fan Google Authenticator-eksport mislearre</string>
     <string name="unrelated_google_auth_batches_error">Eksport befettet ynformaasje foar in net relatearre batch. Probearje 1 batch tagelyk te ymportearjen.</string>
     <string name="no_tokens_can_be_imported">Hjirtroch kinne gjin tokens ymportearre wurde</string>

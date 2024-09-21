@@ -289,7 +289,6 @@
     <string name="partial_google_auth_import">Ekspor Google Authenticator tidak lengkap terdeteksi</string>
     <string name="partial_google_auth_import_warning">Beberapa kode QR tidak ditemukan dalam impor Anda. Kode berikut ini tidak ditemukan:\n\n<b>%s</b>\n\nAnda dapat melanjutkan mengimpor ekspor parsial ini, tetapi kami sarankan untuk mencoba kembali dengan semua kode QR agar Anda tidak mengambil risiko kehilangan akses ke token apa pun.</string>
     <string name="missing_qr_code_descriptor">• - Kode QR %d</string>
-    <string name="import_partial_export_anyway">Tetap mengimpor %d token</string>
     <string name="import_google_auth_failure">Mengimpor ekspor Google Authenticator gagal</string>
     <string name="unrelated_google_auth_batches_error">Ekspor berisi informasi untuk batch yang tidak terkait. Coba impor 1 batch dalam satu waktu.</string>
     <string name="no_tokens_can_be_imported">Tidak ada token yang dapat diimpor sebagai hasilnya</string>
