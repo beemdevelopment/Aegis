@@ -1,23 +1,31 @@
 package com.beemdevelopment.aegis.ui.models;
 
+import android.content.Context;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
+import com.beemdevelopment.aegis.GroupPlaceholderType;
 import com.beemdevelopment.aegis.vault.VaultGroup;
+
 import java.io.Serializable;
 import java.util.UUID;
 
 public class VaultGroupModel implements Serializable {
     private final VaultGroup _group;
-    private final String _placeholderName;
+    private final GroupPlaceholderType _placeholderType;
+    private final String _placeholderText;
 
     public VaultGroupModel(VaultGroup group) {
         _group = group;
-        _placeholderName = null;
+        _placeholderText = null;
+        _placeholderType = null;
     }
 
-    public VaultGroupModel(String placeholderName) {
+    public VaultGroupModel(Context context, GroupPlaceholderType placeholderType) {
         _group = null;
-        _placeholderName = placeholderName;
+        _placeholderType = placeholderType;
+        _placeholderText = context.getString(placeholderType.getStringRes());
     }
 
     public VaultGroup getGroup() {
@@ -25,11 +33,15 @@ public class VaultGroupModel implements Serializable {
     }
 
     public String getName() {
-        return _group != null ? _group.getName() : _placeholderName;
+        return _group != null ? _group.getName() : _placeholderText;
+    }
+
+    public GroupPlaceholderType getPlaceholderType() {
+        return _placeholderType;
     }
 
     public boolean isPlaceholder() {
-        return _group == null;
+        return _placeholderType != null;
     }
 
     @Nullable

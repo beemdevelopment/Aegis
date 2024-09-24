@@ -40,6 +40,7 @@ import androidx.appcompat.widget.SearchView;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.beemdevelopment.aegis.GroupPlaceholderType;
 import com.beemdevelopment.aegis.Preferences;
 import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.SortCategory;
@@ -271,12 +272,12 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
     private void initializeGroups() {
         _groupChip.removeAllViews();
 
-        addChipTo(_groupChip, new VaultGroupModel(getString(R.string.all)));
-
         for (VaultGroup group : _groups) {
             addChipTo(_groupChip, new VaultGroupModel(group));
         }
 
+        GroupPlaceholderType placeholderType = GroupPlaceholderType.NO_GROUP;
+        addChipTo(_groupChip, new VaultGroupModel(this, placeholderType));
         addSaveChip(_groupChip);
     }
 
@@ -296,51 +297,40 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         chip.setChecked(_groupFilter != null && _groupFilter.contains(group.getUUID()));
 
         if (group.isPlaceholder()) {
-            chip.setId(0);
-            chip.setTag(null);
-            chip.setChecked(_groupFilter == null);
-            chip.setOnClickListener(v -> {
-                setSaveChipVisibility(true);
+            GroupPlaceholderType groupPlaceholderType = group.getPlaceholderType();
+            chip.setTag(groupPlaceholderType);
 
-                Chip checkedChip = (Chip) chipGroup.getChildAt(0);
-                boolean checkedState = checkedChip.isChecked();
-                chipGroup.clearCheck();
-
-                Set<UUID> groupFilter = getGroupFilter(chipGroup);
-                if (!checkedState) {
-                    groupFilter = new HashSet<>();
-                    groupFilter.add(null);
-
-                    checkedChip.setChecked(false);
-                } else {
-                    checkedChip.setChecked(true);
-                }
-
-                _groupFilter = groupFilter;
-                _entryListView.setGroupFilter(groupFilter, true);
-            });
-
-            chipGroup.addView(chip);
-            return;
+            if (groupPlaceholderType == GroupPlaceholderType.ALL) {
+                chip.setChecked(_groupFilter == null);
+            } else if (groupPlaceholderType == GroupPlaceholderType.NO_GROUP) {
+                chip.setChecked(_groupFilter != null && _groupFilter.contains(null));
+            }
+        } else {
+            chip.setTag(group);
         }
 
-
-        chip.setOnCheckedChangeListener((group1, checkedId) -> {
+        chip.setOnCheckedChangeListener((group1, isChecked) -> {
+            Set<UUID> groupFilter = new HashSet<>();
             setSaveChipVisibility(true);
-            Set<UUID> groupFilter = getGroupFilter(chipGroup);
 
-            if (groupFilter.isEmpty()) {
+            if (!isChecked) {
+                group1.setChecked(false);
+                _groupFilter = groupFilter;
+                _entryListView.setGroupFilter(groupFilter, false);
+                return;
+            }
+
+            Object chipTag = group1.getTag();
+            if (chipTag == GroupPlaceholderType.NO_GROUP) {
                 groupFilter.add(null);
             } else {
-                Chip allGroupsChip = (Chip) chipGroup.getChildAt(0);
-                allGroupsChip.setChecked(false);
+                groupFilter = getGroupFilter(chipGroup);
             }
 
             _groupFilter = groupFilter;
-            _entryListView.setGroupFilter(groupFilter, true);
+            _entryListView.setGroupFilter(groupFilter, false);
         });
 
-        chip.setTag(group);
         chipGroup.addView(chip);
     }
 
@@ -373,7 +363,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         return chipGroup.getCheckedChipIds().stream()
                 .map(i -> {
                     Chip chip = chipGroup.findViewById(i);
-                    if (chip.getTag() != null) {
+                    if (chip.getTag() instanceof VaultGroupModel) {
                         VaultGroupModel group = (VaultGroupModel) chip.getTag();
                         return group.getUUID();
                     }

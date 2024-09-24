@@ -178,7 +178,7 @@ public class OverallTest extends AegisTest {
 
     private void changeGroupFilter(String text) {
         if (text == null) {
-            onView(allOf(withText(R.string.all), isDescendantOfA(withId(R.id.groupChipGroup)))).perform(click());
+            onView(allOf(withText(R.string.no_group), isDescendantOfA(withId(R.id.groupChipGroup)))).perform(click());
         } else {
             onView(allOf(withText(text), isDescendantOfA(withId(R.id.groupChipGroup)))).perform(click());
         }
