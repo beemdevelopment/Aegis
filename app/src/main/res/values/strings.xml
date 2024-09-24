@@ -211,6 +211,9 @@
     <string name="edit">Edit</string>
     <string name="select_all">Select all</string>
     <string name="assign_icons">Assign icons</string>
+    <string name="assign_groups">Assign to group</string>
+    <string name="assign_groups_dialog_summary">Select a group you wish to assign the selected entries to.</string>
+    <string name="assign_groups_dialog_dropdown">Select group</string>
     <string name="favorite" comment="Verb">Favorite</string>
     <string name="unfavorite" comment="Verb">Unfavorite</string>
     <string name="error_all_caps">ERROR</string>
@@ -254,6 +257,7 @@
     <string name="copied">Copied</string>
     <string name="errors_copied">Errors copied to the clipboard</string>
     <string name="version_copied">Version copied to the clipboard</string>
+    <string name="error_required_field">This field is required</string>
     <string name="error_occurred">An error occurred</string>
     <string name="decryption_error">An error occurred while trying to unlock the vault</string>
     <string name="decryption_corrupt_error">An error occurred while trying to unlock the vault. Your vault file might be corrupt.</string>

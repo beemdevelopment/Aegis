@@ -34,6 +34,12 @@
         app:showAsAction="never"/>
 
     <item
+        android:id="@+id/action_assign_groups"
+        android:title="@string/assign_groups"
+        android:orderInCategory="100"
+        app:showAsAction="never"/>
+
+    <item
         android:id="@+id/action_share_qr"
         android:title="@string/action_transfer"
         android:orderInCategory="110"
