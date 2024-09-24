@@ -493,7 +493,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
 
         Collection<VaultGroup> groups = _vaultManager.getVault().getUsedGroups();
         List<VaultGroupModel> groupModels = new ArrayList<>();
-        groupModels.add(new VaultGroupModel(getString(R.string.new_group)));
+        groupModels.add(new VaultGroupModel(this, GroupPlaceholderType.NEW_GROUP));
         groupModels.addAll(groups.stream().map(VaultGroupModel::new).collect(Collectors.toList()));
         DropdownHelper.fillDropdown(this, groupsSelection, groupModels);
 
