@@ -125,6 +125,11 @@ public class AppearancePreferencesFragment extends PreferencesFragment {
             return true;
         });
 
+        Preference showExpirationStatePreference = requirePreference("pref_expiration_state");
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
+            showExpirationStatePreference.setSummary(getString(R.string.pref_expiration_state_fallback));
+        }
+
         String[] codeGroupings = getResources().getStringArray(R.array.pref_code_groupings_values);
         String[] codeGroupingNames = getResources().getStringArray(R.array.pref_code_groupings);
         Preference codeDigitGroupingPreference = requirePreference("pref_code_group_size_string");

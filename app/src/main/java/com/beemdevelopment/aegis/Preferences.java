@@ -153,6 +153,10 @@ public class Preferences {
         return _prefs.getBoolean("pref_show_icons", true);
     }
 
+    public boolean getShowExpirationState() {
+        return _prefs.getBoolean("pref_expiration_state", true);
+    }
+
     public CodeGrouping getCodeGroupSize() {
         String value = _prefs.getString("pref_code_group_size_string", "GROUPING_THREES");
 

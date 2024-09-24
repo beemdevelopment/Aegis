@@ -38,7 +38,6 @@ import com.beemdevelopment.aegis.helpers.UiRefresher;
 import com.beemdevelopment.aegis.otp.TotpInfo;
 import com.beemdevelopment.aegis.ui.glide.GlideHelper;
 import com.beemdevelopment.aegis.ui.models.ErrorCardInfo;
-import com.beemdevelopment.aegis.util.UUIDMap;
 import com.beemdevelopment.aegis.vault.VaultEntry;
 import com.beemdevelopment.aegis.vault.VaultGroup;
 import com.bumptech.glide.Glide;
@@ -53,12 +52,10 @@ import com.google.common.base.Strings;
 
 import java.util.Collection;
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 public class EntryListView extends Fragment implements EntryAdapter.Listener {
     private EntryAdapter _adapter;
@@ -71,6 +68,7 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
     private ViewPreloadSizeProvider<VaultEntry> _preloadSizeProvider;
     private TotpProgressBar _progressBar;
     private boolean _showProgress;
+    private boolean _showExpirationState;
     private ViewMode _viewMode;
     private LinearLayout _emptyStateView;
 
@@ -363,6 +361,11 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
 
     public void setShowIcon(boolean showIcon) {
         _adapter.setShowIcon(showIcon);
+    }
+
+    public void setShowExpirationState(boolean showExpirationState) {
+        _showExpirationState = showExpirationState;
+        _adapter.setShowExpirationState(showExpirationState);
     }
 
     public void setHighlightEntry(boolean highlightEntry) {
