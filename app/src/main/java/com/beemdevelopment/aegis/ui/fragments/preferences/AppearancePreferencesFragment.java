@@ -77,7 +77,7 @@ public class AppearancePreferencesFragment extends PreferencesFragment {
         });
 
         Preference langPreference = requirePreference("pref_lang");
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.M) {
             String[] langs = getResources().getStringArray(R.array.pref_lang_values);
             String[] langNames = getResources().getStringArray(R.array.pref_lang_entries);
             List<String> langList = Arrays.asList(langs);
