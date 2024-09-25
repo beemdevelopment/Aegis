@@ -149,7 +149,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
                 if (activityResult.getResultCode() != RESULT_OK || activityResult.getData() == null) {
                     return;
                 }
-                onAssignEntriesResult(activityResult.getData());
+                onAssignIconsResult(activityResult.getData());
             });
 
     private final ActivityResultLauncher<Intent> preferenceResultLauncher =
@@ -590,7 +590,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         }
     }
 
-    private void onAssignEntriesResult(Intent data) {
+    private void onAssignIconsResult(Intent data) {
         if (_loaded) {
             ArrayList<UUID> entryUUIDs = (ArrayList<UUID>) data.getSerializableExtra("entryUUIDs");
 
