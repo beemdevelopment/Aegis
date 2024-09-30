@@ -153,6 +153,10 @@ public class Preferences {
         return _prefs.getBoolean("pref_show_icons", true);
     }
 
+    public boolean getShowNextCode() {
+        return _prefs.getBoolean("pref_show_next_code", false);
+    }
+
     public boolean getShowExpirationState() {
         return _prefs.getBoolean("pref_expiration_state", true);
     }

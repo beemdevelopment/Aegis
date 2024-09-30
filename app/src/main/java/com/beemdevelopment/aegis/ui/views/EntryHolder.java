@@ -50,6 +50,7 @@ public class EntryHolder extends RecyclerView.ViewHolder {
     private View _favoriteIndicator;
     private TextView _profileName;
     private TextView _profileCode;
+    private TextView _nextProfileCode;
     private TextView _profileIssuer;
     private TextView _profileCopied;
     private ImageView _profileDrawable;
@@ -74,6 +75,7 @@ public class EntryHolder extends RecyclerView.ViewHolder {
     private UiRefresher _refresher;
     private Handler _animationHandler;
     private AnimatorSet _expirationAnimSet;
+    private boolean _showNextCode;
     private boolean _showExpirationState;
 
     private Animation _scaleIn;
@@ -85,6 +87,7 @@ public class EntryHolder extends RecyclerView.ViewHolder {
         _view = (MaterialCardView) view;
         _profileName = view.findViewById(R.id.profile_account_name);
         _profileCode = view.findViewById(R.id.profile_code);
+        _nextProfileCode = view.findViewById(R.id.next_profile_code);
         _profileIssuer = view.findViewById(R.id.profile_issuer);
         _profileCopied = view.findViewById(R.id.profile_copied);
         _description = view.findViewById(R.id.description);
@@ -115,7 +118,7 @@ public class EntryHolder extends RecyclerView.ViewHolder {
         });
     }
 
-    public void setData(VaultEntry entry, Preferences.CodeGrouping groupSize, ViewMode viewMode, AccountNamePosition accountNamePosition, boolean showIcon, boolean showProgress, boolean hidden, boolean paused, boolean dimmed, boolean showExpirationState) {
+    public void setData(VaultEntry entry, Preferences.CodeGrouping groupSize, ViewMode viewMode, AccountNamePosition accountNamePosition, boolean showIcon, boolean showProgress, boolean hidden, boolean paused, boolean dimmed, boolean showExpirationState, boolean showNextCode) {
         _entry = entry;
         _hidden = hidden;
         _paused = paused;
@@ -131,6 +134,7 @@ public class EntryHolder extends RecyclerView.ViewHolder {
         _selected.setVisibility(View.GONE);
         _selectedHandler.removeCallbacksAndMessages(null);
         _animationHandler.removeCallbacksAndMessages(null);
+        _showNextCode = entry.getInfo() instanceof TotpInfo && showNextCode;
         _showExpirationState = _entry.getInfo() instanceof TotpInfo && showExpirationState;
 
         _favoriteIndicator.setVisibility(_entry.isFavorite() ? View.VISIBLE : View.INVISIBLE);
@@ -140,6 +144,7 @@ public class EntryHolder extends RecyclerView.ViewHolder {
 
         // only show the button if this entry is of type HotpInfo
         _buttonRefresh.setVisibility(entry.getInfo() instanceof HotpInfo ? View.VISIBLE : View.GONE);
+        _nextProfileCode.setVisibility(_showNextCode ? View.VISIBLE : View.GONE);
 
         String profileIssuer = entry.getIssuer();
         String profileName = entry.getName();
@@ -284,16 +289,24 @@ public class EntryHolder extends RecyclerView.ViewHolder {
 
     public void refreshCode() {
         if (!_hidden && !_paused) {
-            updateCode();
+            updateCodes();
             startExpirationAnimation();
         }
     }
 
-    private void updateCode() {
+    private void updateCodes() {
         _profileCode.setText(getOtp());
+
+        if (_showNextCode) {
+            _nextProfileCode.setText(getOtp(1));
+        }
     }
 
     private String getOtp() {
+        return getOtp(0);
+    }
+
+    private String getOtp(int offset) {
         OtpInfo info = _entry.getInfo();
 
         // In previous versions of Aegis, it was possible to import entries with an empty
@@ -302,7 +315,12 @@ public class EntryHolder extends RecyclerView.ViewHolder {
         // the OTP, instead of crashing.
         String otp;
         try {
-            otp = info.getOtp();
+            if (info instanceof TotpInfo) {
+                otp = ((TotpInfo)info).getOtp((System.currentTimeMillis() / 1000) + ((long) (offset) * ((TotpInfo) _entry.getInfo()).getPeriod()));
+            } else {
+                otp = info.getOtp();
+            }
+
             if (!(info instanceof SteamInfo || info instanceof YandexInfo)) {
                 otp = formatCode(otp);
             }
@@ -343,7 +361,7 @@ public class EntryHolder extends RecyclerView.ViewHolder {
     }
 
     public void revealCode() {
-        updateCode();
+        updateCodes();
         startExpirationAnimation();
         _hidden = false;
     }
@@ -352,6 +370,7 @@ public class EntryHolder extends RecyclerView.ViewHolder {
         String code = getOtp();
         String hiddenText = code.replaceAll("\\S", Character.toString(HIDDEN_CHAR));
         updateTextViewWithDots(_profileCode,  hiddenText, code);
+        updateTextViewWithDots(_nextProfileCode,  hiddenText, code);
         stopExpirationAnimation();
         _hidden = true;
     }
@@ -480,7 +499,7 @@ public class EntryHolder extends RecyclerView.ViewHolder {
         if (_paused) {
             stopExpirationAnimation();
         } else if (!_hidden) {
-            updateCode();
+            updateCodes();
             startExpirationAnimation();
         }
     }

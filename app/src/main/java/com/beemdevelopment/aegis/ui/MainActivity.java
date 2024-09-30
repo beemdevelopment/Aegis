@@ -208,6 +208,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         _entryListView.setAccountNamePosition(_prefs.getAccountNamePosition());
         _entryListView.setShowIcon(_prefs.isIconVisible());
         _entryListView.setShowExpirationState(_prefs.getShowExpirationState());
+        _entryListView.setShowNextCode(_prefs.getShowNextCode());
         _entryListView.setOnlyShowNecessaryAccountNames(_prefs.onlyShowNecessaryAccountNames());
         _entryListView.setHighlightEntry(_prefs.isEntryHighlightEnabled());
         _entryListView.setPauseFocused(_prefs.isPauseFocusedEnabled());
