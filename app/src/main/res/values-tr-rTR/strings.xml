@@ -400,7 +400,6 @@
     <string name="copy_uri">URI\'ı kopyala</string>
     <string name="unable_to_copy_uri_to_clipboard">URI panoya kopyalanamıyor</string>
     <string name="uri_copied_to_clipboard">URI panoya kopyalandı</string>
-    <string name="transfer_entry">Girdiyi aktar</string>
     <string name="transfer_entry_description">Bu kare kodu aktarmak istediğiniz doğrulayıcı uygulamasıyla okutun</string>
     <string name="google_auth_compatible_transfer_description">Bu QR kodlarını Aegis veya Google Authenticator ile tarayın.\in\Google Authenticator uygulamasının sınırlamaları nedeniyle, yalnızca TOTP &amp; SHA1 kullanan ve 6 basamaklı kodlar üreten TOTP belirteçleri dahildir</string>
     <string name="password_strength_very_weak">Çok zayıf</string>

@@ -364,7 +364,6 @@
     <string name="copy_uri">העתק שורת כתובת</string>
     <string name="unable_to_copy_uri_to_clipboard">לא ניתן להעתיק URI ללוח</string>
     <string name="uri_copied_to_clipboard">URI שהועתק ללוח</string>
-    <string name="transfer_entry">העברת ערך</string>
     <string name="transfer_entry_description">סרוק קוד QR זה באמצעות אפליקציית המאמת שאליה ברצונך להעביר ערך זה</string>
     <string name="google_auth_compatible_transfer_description">סרוק קודי QR אלה באמצעות Aegis אוGoogle Authenticator.\n\n בשל מגבלות אפליקציית מאמת Google, רק אסימוני TOTP &amp; HOTP המשתמשים ב- SHA1 ומייצרים קודים בני 6 ספרות כלולים</string>
     <string name="password_strength_very_weak">חלש מאוד</string>

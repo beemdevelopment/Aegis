@@ -385,7 +385,6 @@
     <string name="copy_uri">Копіювати URI</string>
     <string name="unable_to_copy_uri_to_clipboard">Не вдалося скопіювати URI в буфер обміну</string>
     <string name="uri_copied_to_clipboard">URI скопійовано в буфер обміну</string>
-    <string name="transfer_entry">Передати запис</string>
     <string name="transfer_entry_description">Відскануйте цей QR-код за допомогою додатка для авторизації, куди ви хочете перенести цей запис</string>
     <string name="google_auth_compatible_transfer_description">Проскануйте ці QR-коди за допомогою Aegis або Google Authenticator.\n\nУ зв\'язку з обмеженнями програми Google Authenticator включаються лише TOTP &amp; HOTP токени з використанням SHA1 і генерацією 6-цифрових кодів</string>
     <string name="password_strength_very_weak">Дуже слабкий</string>

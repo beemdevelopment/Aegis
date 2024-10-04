@@ -426,7 +426,6 @@
     <string name="copy_uri">Kopiatu URIa</string>
     <string name="unable_to_copy_uri_to_clipboard">Ezin da URIa arbelean kopiatu</string>
     <string name="uri_copied_to_clipboard">URIa arbelean kopiatu da</string>
-    <string name="transfer_entry">Transferitu sarrera</string>
     <string name="transfer_entry_description">Eskaneatu QR kode hau sarrera transferitu nahi diozun aitentifikazio-aplikazioarekin</string>
     <string name="google_auth_compatible_transfer_description">Eskaneatu QR kode hauek Aegis edo Google Authenticator erabiliz.\n\nGoogle Authenticator aplikazioaren mugak direla eta, SHA1 darabilten eta 6 zenbakiko kodeak erabiltzen dituzten TOTP &amp; HOTP tokenak bakarrik sartzen dira</string>
     <string name="password_strength_very_weak">Oso ahula</string>

@@ -416,7 +416,6 @@
     <string name="copy_uri">Salin URI</string>
     <string name="unable_to_copy_uri_to_clipboard">Tidak dapat menyalin URI ke clipboard</string>
     <string name="uri_copied_to_clipboard">URI disalin ke papan klip</string>
-    <string name="transfer_entry">Pindahkan entri</string>
     <string name="transfer_entry_description">Pindai kode QR ini dengan aplikasi autentikasi yang ingin Anda pindahkan ke sana entri ini</string>
     <string name="google_auth_compatible_transfer_description">Pindai kode QR ini dengan Aegis atau Google Authenticator.\n\nKarena keterbatasan aplikasi Google Authenticator, hanya token TOTP &amp; HOTP yang menggunakan SHA1 dan menghasilkan kode 6 digit yang disertakan</string>
     <string name="password_strength_very_weak">Sangat lemah</string>

@@ -465,7 +465,6 @@
     <string name="copy_uri">نسخ URI</string>
     <string name="unable_to_copy_uri_to_clipboard">تعذر نسخ URI إلى الحافظة</string>
     <string name="uri_copied_to_clipboard">نُسخ URI إلى الحافظة</string>
-    <string name="transfer_entry">نقل المدخل</string>
     <string name="transfer_entry_description">امسح كود QR هذا بتطبيق المصادقة الذي ترغب بنقل ذلك المدخل إليه</string>
     <string name="google_auth_compatible_transfer_description">امسح رموز ال QR هذه بواسطة Aegis أو Google Authenticator.\n\nبسبب القيود في تطبيق Google Authenticator، فقط رموز TOTP &amp; HOTP التي تستعمل SHA1 وتنتِج كود من 6 خانات هي من سيتم إدراجها</string>
     <string name="password_strength_very_weak">ضعيف جدًا</string>

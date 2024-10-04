@@ -437,7 +437,6 @@
     <string name="copy_uri">Copiere URL</string>
     <string name="unable_to_copy_uri_to_clipboard">Nu se poate copia în clipboard</string>
     <string name="uri_copied_to_clipboard">URI copiat în clipboard</string>
-    <string name="transfer_entry">Transfer intrare</string>
     <string name="transfer_entry_description">Scanează acest cod QR cu aplicația de autentificare pe care dorești să o transferi</string>
     <string name="google_auth_compatible_transfer_description">Scanați aceste coduri QR cu Aegis sau Google Authenticator.\n\nDatorită limitărilor aplicației Google Authenticator, numai token-urile TOTP &amp; HOTP care folosesc SHA1 și produc coduri de 6 cifre sunt incluse</string>
     <string name="password_strength_very_weak">Foarte slabă</string>

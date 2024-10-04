@@ -425,7 +425,6 @@
     <string name="copy_uri">Sao chép URL</string>
     <string name="unable_to_copy_uri_to_clipboard">Không thể sao chép vào bộ nhớ tạm</string>
     <string name="uri_copied_to_clipboard">Đã sao chép vào bộ nhớ tạm</string>
-    <string name="transfer_entry">Truyền mục</string>
     <string name="transfer_entry_description">Quét mã QR này bằng ứng dụng xác minh mà bạn muốn truyền mục này đến</string>
     <string name="google_auth_compatible_transfer_description">Quét các mã QR này bằng Aegis hoặc Google Authenticator.\n\nDo hạn chế của ứng dụng Google Authenticator, chỉ token TOTP &amp; HOTP sử dụng SHA1 và tạo mã gồm 6 chữ số dùng được</string>
     <string name="password_strength_very_weak">Rất yếu</string>

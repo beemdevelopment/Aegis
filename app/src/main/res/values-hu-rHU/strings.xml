@@ -427,7 +427,6 @@
     <string name="copy_uri">URI másolása</string>
     <string name="unable_to_copy_uri_to_clipboard">Nem lehet az URI-t a vágólapra másolni</string>
     <string name="uri_copied_to_clipboard">Az URI a vágólapra másolva</string>
-    <string name="transfer_entry">Bejegyzés átvitele</string>
     <string name="transfer_entry_description">Olvassa le ezt a QR-kódot azzal hitelesítő alkalmazással, amelybe át akarja vinni</string>
     <string name="google_auth_compatible_transfer_description">Olvassa le ezeket a QR-kódokat az Aegisszel vagy a Google Hitelesítővel.\n\nA Google Hitelesítő korlátozásai miatt csak az SHA1-et használó és 6 számjegyű kódot előállító TOTP és HOTP tokenek szerepelnek itt.</string>
     <string name="password_strength_very_weak">Nagyon gyenge</string>

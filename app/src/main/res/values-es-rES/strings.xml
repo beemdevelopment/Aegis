@@ -434,7 +434,6 @@
     <string name="copy_uri">Copiar URI</string>
     <string name="unable_to_copy_uri_to_clipboard">No se puede copiar el URI al portapapeles</string>
     <string name="uri_copied_to_clipboard">Se ha copiado el URI al portapapeles</string>
-    <string name="transfer_entry">Transferir clave</string>
     <string name="transfer_entry_description">Escanea este código QR con la aplicación de autenticación a la que vayas a importar esta clave</string>
     <string name="google_auth_compatible_transfer_description">Escanea estos códigos QR con Aegis o Google Authenticator.\n\nDebido a limitaciones técnicas de Google Authenticator solo se incluirán claves de tipo TOTP y HOTP que usen SHA1 y produzcan códigos de 6 dígitos</string>
     <string name="password_strength_very_weak">Muy débil</string>
