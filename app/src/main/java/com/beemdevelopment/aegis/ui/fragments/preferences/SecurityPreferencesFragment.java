@@ -96,7 +96,7 @@ public class SecurityPreferencesFragment extends PreferencesFragment {
                                 return;
                             }
 
-                            _prefs.setIsBackupsEnabled(false);
+                            _prefs.disableBackups();
                             _prefs.setIsAndroidBackupsEnabled(false);
                             updateEncryptionPreferences();
                         })

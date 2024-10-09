@@ -20,6 +20,7 @@ import androidx.preference.SwitchPreferenceCompat;
 import com.beemdevelopment.aegis.Preferences;
 import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.ui.dialogs.Dialogs;
+import com.beemdevelopment.aegis.vault.VaultBackupManager;
 import com.beemdevelopment.aegis.vault.VaultRepositoryException;
 import com.google.android.material.color.MaterialColors;
 
@@ -27,6 +28,7 @@ public class BackupsPreferencesFragment extends PreferencesFragment {
     private SwitchPreferenceCompat _androidBackupsPreference;
     private SwitchPreferenceCompat _backupsPreference;
     private SwitchPreferenceCompat _backupReminderPreference;
+    private SwitchPreferenceCompat _singleBackupPreference;
     private Preference _backupsLocationPreference;
     private Preference _backupsTriggerPreference;
     private Preference _backupsVersionsPreference;
@@ -35,6 +37,14 @@ public class BackupsPreferencesFragment extends PreferencesFragment {
     private Preference _builtinBackupStatusPreference;
     private Preference _androidBackupStatusPreference;
 
+    private final ActivityResultLauncher<Intent> createBackupFileLauncher =
+            registerForActivityResult(new StartActivityForResult(), activityResult -> {
+                Intent data = activityResult.getData();
+                int resultCode = activityResult.getResultCode();
+                if (data != null) {
+                    onBackupFileCreated(resultCode, data);
+                }
+            });
     private final ActivityResultLauncher<Intent> backupsResultLauncher =
             registerForActivityResult(new StartActivityForResult(), activityResult -> {
                 Intent data = activityResult.getData();
@@ -77,7 +87,7 @@ public class BackupsPreferencesFragment extends PreferencesFragment {
             if ((boolean) newValue) {
                 selectBackupsLocation();
             } else {
-                _prefs.setIsBackupsEnabled(false);
+                _prefs.disableBackups();
                 updateBackupPreference();
             }
 
@@ -106,6 +116,17 @@ public class BackupsPreferencesFragment extends PreferencesFragment {
             updateBackupPreference();
             if ((boolean) newValue) {
                 _vaultManager.scheduleAndroidBackup();
+            }
+            return false;
+        });
+
+        _singleBackupPreference = requirePreference("pref_single_backup");
+        _singleBackupPreference.setOnPreferenceChangeListener((preference, newValue) -> {
+            if ((boolean) newValue) {
+                createBackupFile();
+            } else {
+                _prefs.clearBackupFileLocation();
+                updateBackupPreference();
             }
             return false;
         });
@@ -147,6 +168,17 @@ public class BackupsPreferencesFragment extends PreferencesFragment {
         }
     }
 
+    private void onBackupFileCreated(int resultCode, Intent data) {
+        Uri uri = data.getData();
+        if (resultCode != Activity.RESULT_OK || uri == null) {
+            return;
+        }
+        int flags = Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION;
+        requireContext().getContentResolver().takePersistableUriPermission(uri, flags);
+        _prefs.setBackupFileLocation(uri);
+        scheduleBackup();
+    }
+
     private void onSelectBackupsLocationResult(int resultCode, Intent data) {
         Uri uri = data.getData();
         if (resultCode != Activity.RESULT_OK || uri == null) {
@@ -168,15 +200,18 @@ public class BackupsPreferencesFragment extends PreferencesFragment {
         boolean androidBackupEnabled = _prefs.isAndroidBackupsEnabled() && encrypted;
         boolean backupEnabled = _prefs.isBackupsEnabled() && encrypted;
         boolean backupReminderEnabled = _prefs.isBackupReminderEnabled();
+        boolean singleBackupEnabled = _prefs.isSingleBackupEnabled();
         _backupsPasswordWarningPreference.setVisible(_vaultManager.getVault().isBackupPasswordSet());
         _androidBackupsPreference.setChecked(androidBackupEnabled);
         _androidBackupsPreference.setEnabled(encrypted);
         _backupsPreference.setChecked(backupEnabled);
         _backupsPreference.setEnabled(encrypted);
         _backupReminderPreference.setChecked(backupReminderEnabled);
-        _backupsLocationPreference.setVisible(backupEnabled);
+        _singleBackupPreference.setChecked(singleBackupEnabled);
+        _singleBackupPreference.setVisible(backupEnabled);
+        _backupsLocationPreference.setVisible(backupEnabled && !singleBackupEnabled);
         _backupsTriggerPreference.setVisible(backupEnabled);
-        _backupsVersionsPreference.setVisible(backupEnabled);
+        _backupsVersionsPreference.setVisible(backupEnabled && !singleBackupEnabled);
         if (backupEnabled) {
             updateBackupStatus(_builtinBackupStatusPreference, _prefs.getBuiltInBackupResult());
         }
@@ -219,6 +254,15 @@ public class BackupsPreferencesFragment extends PreferencesFragment {
         spannable.setSpan(new ForegroundColorSpan(color), 0, message.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         spannable.setSpan(new StyleSpan(Typeface.BOLD), 0, message.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         return spannable;
+    }
+
+    private void createBackupFile() {
+        String fileName = VaultBackupManager.FILENAME_PREFIX +".json";
+        Intent intent = new Intent(Intent.ACTION_CREATE_DOCUMENT)
+                .addCategory(Intent.CATEGORY_OPENABLE)
+                .setType("application/json")
+                .putExtra(Intent.EXTRA_TITLE, fileName);
+        _vaultManager.fireIntentLauncher(this, intent, createBackupFileLauncher);
     }
 
     private void selectBackupsLocation() {

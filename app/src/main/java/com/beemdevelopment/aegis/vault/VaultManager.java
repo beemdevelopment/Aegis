@@ -173,7 +173,7 @@ public class VaultManager {
                 _repo.export(outStream);
             }
 
-            _backups.scheduleBackup(tempFile, _prefs.getBackupsLocation(), _prefs.getBackupsVersionCount());
+            _backups.scheduleBackup(tempFile);
         } catch (IOException e) {
             throw new VaultRepositoryException(e);
         }

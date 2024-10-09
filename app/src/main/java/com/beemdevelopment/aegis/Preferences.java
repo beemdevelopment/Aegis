@@ -396,6 +396,11 @@ public class Preferences {
         setBuiltInBackupResult(null);
     }
 
+    public void disableBackups() {
+        setIsBackupsEnabled(false);
+        clearBackupFileLocation();
+    }
+
     public boolean isBackupReminderEnabled() {
         return _prefs.getBoolean("pref_backup_reminder", true);
     }
@@ -595,6 +600,25 @@ public class Preferences {
         } catch (JSONException e) {
             return Collections.emptySet();
         }
+    }
+
+    @Nullable
+    public Uri getBackupFileLocation() {
+        String value = _prefs.getString("pref_backup_file_location", null);
+        return value != null ? Uri.parse(value) : null;
+    }
+
+    public boolean isSingleBackupEnabled() {
+        return getBackupFileLocation() != null;
+    }
+
+    public void setBackupFileLocation(@Nullable Uri uri) {
+        String value = uri != null ? uri.toString() : null;
+        _prefs.edit().putString("pref_backup_file_location", value).apply();
+    }
+
+    public void clearBackupFileLocation() {
+        setBackupFileLocation(null);
     }
 
     public static class BackupResult {
