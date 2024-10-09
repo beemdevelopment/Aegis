@@ -60,6 +60,7 @@ public class EntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     private Preferences.CodeGrouping _codeGroupSize;
     private AccountNamePosition _accountNamePosition;
     private boolean _showIcon;
+    private boolean _showNextCode;
     private boolean _showExpirationState;
     private boolean _onlyShowNecessaryAccountNames;
     private boolean _highlightEntry;
@@ -114,6 +115,10 @@ public class EntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
     public void setShowIcon(boolean showIcon) {
         _showIcon = showIcon;
+    }
+
+    public void setShowNextCode(boolean showNextCode) {
+        _showNextCode = showNextCode;
     }
 
     public void setShowExpirationState(boolean showExpirationState) {
@@ -544,7 +549,7 @@ public class EntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             }
 
             AccountNamePosition accountNamePosition = showAccountName ? _accountNamePosition : AccountNamePosition.HIDDEN;
-            entryHolder.setData(entry, _codeGroupSize, _viewMode, accountNamePosition, _showIcon, showProgress, hidden, paused, dimmed, _showExpirationState);
+            entryHolder.setData(entry, _codeGroupSize, _viewMode, accountNamePosition, _showIcon, showProgress, hidden, paused, dimmed, _showExpirationState, _showNextCode);
             entryHolder.setFocused(_selectedEntries.contains(entry));
             entryHolder.setShowDragHandle(isEntryDraggable(entry));
 

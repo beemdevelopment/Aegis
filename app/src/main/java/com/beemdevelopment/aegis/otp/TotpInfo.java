@@ -37,7 +37,9 @@ public class TotpInfo extends OtpInfo {
         }
     }
 
-    public String getOtp(long time) {
+    public String getOtp(long time) throws OtpInfoException {
+        checkSecret();
+
         try {
             OTP otp = TOTP.generateOTP(getSecret(), getAlgorithm(true), getDigits(), getPeriod(), time);
             return otp.toString();

@@ -48,6 +48,8 @@
     <string name="pref_code_group_size_title">Code digit grouping</string>
     <string name="pref_code_group_size_summary">Select number of digits to group codes by</string>
     <string name="pref_account_name_position_title">Show the account name</string>
+    <string name="pref_show_next_code_title">Show next code</string>
+    <string name="pref_show_next_code_summary">Generate and show the next code ahead of time</string>
     <string name="pref_expiration_state_title">Indicate when codes are about to expire</string>
     <string name="pref_expiration_state_summary">Change the color of the codes and have them blink when they are about to expire</string>
     <string name="pref_expiration_state_fallback">Change the color of the codes when they are about to expire</string>

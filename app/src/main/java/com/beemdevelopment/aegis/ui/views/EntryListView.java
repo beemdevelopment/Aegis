@@ -363,6 +363,10 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
         _adapter.setShowIcon(showIcon);
     }
 
+    public void setShowNextCode(boolean showNextCode) {
+        _adapter.setShowNextCode(showNextCode);
+    }
+
     public void setShowExpirationState(boolean showExpirationState) {
         _showExpirationState = showExpirationState;
         _adapter.setShowExpirationState(showExpirationState);

@@ -42,6 +42,13 @@
             app:iconSpaceReserved="false"/>
 
         <androidx.preference.SwitchPreferenceCompat
+            android:defaultValue="false"
+            android:key="pref_show_next_code"
+            android:title="@string/pref_show_next_code_title"
+            android:summary="@string/pref_show_next_code_summary"
+            app:iconSpaceReserved="false"/>
+
+        <androidx.preference.SwitchPreferenceCompat
             android:defaultValue="true"
             android:key="pref_expiration_state"
             android:title="@string/pref_expiration_state_title"

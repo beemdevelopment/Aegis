@@ -85,8 +85,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/description"
-            android:layout_alignStart="@+id/profile_code">
-
+            android:layout_alignStart="@+id/profile_codes_layout">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -95,6 +94,7 @@
                 android:text="@string/issuer"
                 android:textStyle="bold"
                 android:includeFontPadding="false"
+                android:fallbackLineSpacing="false"
                 android:textSize="13sp"
                 android:ellipsize="end"
                 android:maxLines="1"/>
@@ -112,23 +112,50 @@
         </RelativeLayout>
 
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:fontFamily="sans-serif-light"
-                tools:text="012 345"
-                android:id="@+id/profile_code"
-                android:layoutDirection="ltr"
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_marginBottom="0dp"
+                android:paddingBottom="0dp"
+                android:id="@+id/profile_codes_layout"
                 android:layout_below="@id/description"
-                android:includeFontPadding="false"
-                android:fallbackLineSpacing="false"
-                android:textSize="26sp"
-                android:textColor="?attr/colorCode"
                 android:layout_marginStart="6dp"
-                android:layout_alignParentStart="true"
-                android:layout_marginTop="0dp"
-                android:textStyle="normal|bold"/>
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:fontFamily="sans-serif-light"
+                    tools:text="012 345"
+                    android:id="@+id/profile_code"
+                    android:layoutDirection="ltr"
+                    android:layout_below="@id/description"
+                    android:includeFontPadding="false"
+                    android:fallbackLineSpacing="false"
+                    android:textSize="26sp"
+                    android:textColor="?attr/colorCode"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginTop="0dp"
+                    android:textStyle="normal|bold"/>
+
+                <TextView
+                    android:id="@+id/next_profile_code"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:letterSpacing="-0.01"
+                    android:layout_marginTop="0dp"
+                    android:paddingTop="0dp"
+                    android:paddingStart="2dp"
+                    android:textColor="?attr/colorOnSurfaceDim"
+                    android:textSize="16sp"
+                    android:textStyle="normal|bold"
+                    android:fallbackLineSpacing="false"
+                    android:includeFontPadding="false"
+                    tools:text="412 643"/>
+            </LinearLayout>
+
+
 
         </RelativeLayout>
 
