@@ -61,7 +61,6 @@ public class EntryHolder extends RecyclerView.ViewHolder {
     private ViewMode _viewMode;
 
     private final ImageView _selected;
-    private final Handler _selectedHandler;
 
     private Preferences.CodeGrouping _codeGrouping = Preferences.CodeGrouping.NO_GROUPING;
     private AccountNamePosition _accountNamePosition = AccountNamePosition.HIDDEN;
@@ -73,7 +72,8 @@ public class EntryHolder extends RecyclerView.ViewHolder {
     private MaterialCardView _view;
 
     private UiRefresher _refresher;
-    private Handler _animationHandler;
+    private Handler _copyAnimationHandler;
+    private Handler _expirationHandler;
     private AnimatorSet _expirationAnimSet;
     private boolean _showNextCode;
     private boolean _showExpirationState;
@@ -97,8 +97,8 @@ public class EntryHolder extends RecyclerView.ViewHolder {
         _dragHandle = view.findViewById(R.id.drag_handle);
         _favoriteIndicator = view.findViewById(R.id.favorite_indicator);
 
-        _selectedHandler = new Handler();
-        _animationHandler = new Handler();
+        _copyAnimationHandler = new Handler();
+        _expirationHandler = new Handler();
 
         _progressBar = view.findViewById(R.id.progressBar);
 
@@ -132,8 +132,8 @@ public class EntryHolder extends RecyclerView.ViewHolder {
 
         _selected.clearAnimation();
         _selected.setVisibility(View.GONE);
-        _selectedHandler.removeCallbacksAndMessages(null);
-        _animationHandler.removeCallbacksAndMessages(null);
+        _copyAnimationHandler.removeCallbacksAndMessages(null);
+        _expirationHandler.removeCallbacksAndMessages(null);
         _showNextCode = entry.getInfo() instanceof TotpInfo && showNextCode;
         _showExpirationState = _entry.getInfo() instanceof TotpInfo && showExpirationState;
 
@@ -435,7 +435,7 @@ public class EntryHolder extends RecyclerView.ViewHolder {
             if (info.getMillisTillNextRotation() < totalStateDuration) {
                 _profileCode.setTextColor(color);
             } else {
-                _animationHandler.postDelayed(() -> {
+                _expirationHandler.postDelayed(() -> {
                     _profileCode.setTextColor(color);
                 }, info.getMillisTillNextRotation() - totalStateDuration);
             }
@@ -471,6 +471,7 @@ public class EntryHolder extends RecyclerView.ViewHolder {
     }
 
     private void stopExpirationAnimation() {
+        _expirationHandler.removeCallbacksAndMessages(null);
         if (_expirationAnimSet != null) {
             _expirationAnimSet.cancel();
             _expirationAnimSet = null;
@@ -513,7 +514,7 @@ public class EntryHolder extends RecyclerView.ViewHolder {
     }
 
     public void animateCopyText() {
-        _animationHandler.removeCallbacksAndMessages(null);
+        _copyAnimationHandler.removeCallbacksAndMessages(null);
 
         Animation slideDownFadeIn = AnimationsHelper.loadScaledAnimation(itemView.getContext(), R.anim.slide_down_fade_in);
         Animation slideDownFadeOut = AnimationsHelper.loadScaledAnimation(itemView.getContext(), R.anim.slide_down_fade_out);
@@ -526,7 +527,7 @@ public class EntryHolder extends RecyclerView.ViewHolder {
             View fadeOutView = (_accountNamePosition == AccountNamePosition.BELOW) ? _profileName : _description;
             fadeOutView.startAnimation(slideDownFadeOut);
 
-            _animationHandler.postDelayed(() -> {
+            _copyAnimationHandler.postDelayed(() -> {
                 _profileCopied.startAnimation(fadeOut);
                 fadeOutView.startAnimation(fadeIn);
             }, 3000);
@@ -536,7 +537,7 @@ public class EntryHolder extends RecyclerView.ViewHolder {
             _profileCopied.startAnimation(fadeIn);
             visibleProfileText.startAnimation(fadeOut);
 
-            _animationHandler.postDelayed(() -> {
+            _copyAnimationHandler.postDelayed(() -> {
                 _profileCopied.startAnimation(fadeOut);
                 visibleProfileText.startAnimation(fadeIn);
             }, 3000);
