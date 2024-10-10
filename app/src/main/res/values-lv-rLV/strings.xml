@@ -444,7 +444,6 @@
     <string name="copy_uri">Ievietot URI starpliktuvē</string>
     <string name="unable_to_copy_uri_to_clipboard">Nebija iespējams ievietot URI starpliktuvē</string>
     <string name="uri_copied_to_clipboard">URI tika ievietots starpliktuvē</string>
-    <string name="transfer_entry">Pārvietot ierakstu</string>
     <string name="transfer_entry_description">Nolasīt šo kvadrātkodu ar autentificētāja lietotni, uz kuru ir vēlme pārvietot šo ierakstu</string>
     <string name="google_auth_compatible_transfer_description">Nolasīt šos kvadrātkodus ar Aegis vai Google Authenticator.\n\nIerobežojumu dēļ Google Authenticator lietotnē, ir iekļautas tikai TOTP un HOTP pilnvaras, kam ir izmantots SHA1 un kas veido sešciparu kodus</string>
     <string name="password_strength_very_weak">Ļoti vāja</string>

@@ -434,7 +434,6 @@
     <string name="copy_uri">URI kopieren</string>
     <string name="unable_to_copy_uri_to_clipboard">URI konnte nicht in die Zwischenablage kopiert werden</string>
     <string name="uri_copied_to_clipboard">URI in die Zwischenablage kopiert</string>
-    <string name="transfer_entry">Eintrag übertragen</string>
     <string name="transfer_entry_description">Scanne diesen QR-Code mit der Authentifizierungs-App, zu der du diesen Eintrag übertragen möchtest</string>
     <string name="google_auth_compatible_transfer_description">Scanne diese QR-Codes mit Aegis oder Google Authenticator.\n\nAufgrund der Einschränkungen der Google Authenticator-App sind nur TOTP- und HOTP-Token enthalten, die SHA1 verwenden und 6-stellige Codes erzeugen</string>
     <string name="password_strength_very_weak">Sehr schwach</string>

@@ -427,7 +427,6 @@
     <string name="copy_uri">URI kopiearje</string>
     <string name="unable_to_copy_uri_to_clipboard">Kin URI net nei klamboerd kopiearje</string>
     <string name="uri_copied_to_clipboard">URI nei klamboerd kopiearre</string>
-    <string name="transfer_entry">Item oerbringe</string>
     <string name="transfer_entry_description">Scan dizze QR-koade mei de autentikator-app wêr’tsto dit item nei oerbringe wolst</string>
     <string name="google_auth_compatible_transfer_description">Scan dizze QR-koaden mei Aegis of Google Authenticator.\n\nFanwegen beheiningen fan de Google Authenticator-app, binne allinnich TOTP- &amp; HOTP-tokens dy’t SHA1 brûke en 6-siferige koaden produsearje opnommen</string>
     <string name="password_strength_very_weak">Hiel swak</string>

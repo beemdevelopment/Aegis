@@ -429,7 +429,6 @@
     <string name="copy_uri">Kopiera URI</string>
     <string name="unable_to_copy_uri_to_clipboard">Kunde inte kopiera URI till urklipp</string>
     <string name="uri_copied_to_clipboard">URI kopierad till urklipp</string>
-    <string name="transfer_entry">Överför post</string>
     <string name="transfer_entry_description">Skanna denna rutkod med den autentiseringsapp som du vill överföra denna post till</string>
     <string name="google_auth_compatible_transfer_description">Skanna dessa rutkoder med Aegis eller Google Authenticator.\n\nPå grund av begränsningar i Google Authenticator-appen inkluderas endast TOTP- &amp; HOTP-polletter som använder SHA1 och producerar 6-siffriga koder.</string>
     <string name="password_strength_very_weak">Mycket svagt</string>

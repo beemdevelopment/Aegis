@@ -364,7 +364,6 @@
     <string name="previous">Predchádzajúce</string>
     <string name="copy_uri">Skopírovať URI</string>
     <string name="uri_copied_to_clipboard">URI bola skopírovaná do schránky</string>
-    <string name="transfer_entry">Prenos záznamu</string>
     <string name="transfer_entry_description">Naskenujte tento QR kód pomocou overovacej aplikácie, do ktorej chcete tento záznam preniesť</string>
     <string name="google_auth_compatible_transfer_description">Naskenujte tieto QR kódy s aplikáciou Aegis alebo Google Authenticator.\n\nKvôli limitáciám aplikácie Google Authenticator sú zahrnuté iba TOTP &amp; HOTP tokény, ktoré používajú SHA1 a obsahujú 6 číselné kódy</string>
     <string name="password_strength_very_weak">Veľmi slabé</string>

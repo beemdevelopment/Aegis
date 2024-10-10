@@ -10,15 +10,16 @@ import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.PersistableBundle;
-import android.util.TypedValue;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
+import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.ColorInt;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.Theme;
@@ -27,6 +28,8 @@ import com.beemdevelopment.aegis.otp.GoogleAuthInfo;
 import com.beemdevelopment.aegis.otp.GoogleAuthInfoException;
 import com.beemdevelopment.aegis.otp.Transferable;
 import com.beemdevelopment.aegis.ui.dialogs.Dialogs;
+import com.google.android.material.color.MaterialColors;
+import com.google.android.material.imageview.ShapeableImageView;
 import com.google.zxing.WriterException;
 
 import java.util.ArrayList;
@@ -34,7 +37,7 @@ import java.util.List;
 
 public class TransferEntriesActivity extends AegisActivity {
     private List<Transferable> _authInfos;
-    private ImageView _qrImage;
+    private ShapeableImageView _qrImage;
     private TextView _description;
     private TextView _issuer;
     private TextView _accountName;
@@ -62,7 +65,7 @@ public class TransferEntriesActivity extends AegisActivity {
         _previousButton = findViewById(R.id.btnPrevious);
         _copyButton = findViewById(R.id.btnCopyClipboard);
 
-        if (getSupportActionBar() != null){
+        if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setDisplayShowHomeEnabled(true);
         }
@@ -88,7 +91,7 @@ public class TransferEntriesActivity extends AegisActivity {
         });
 
         _previousButton.setOnClickListener(v -> {
-            if (_currentEntryCount > 1 ) {
+            if (_currentEntryCount > 1) {
                 _nextButton.setText(R.string.next);
                 _currentEntryCount--;
                 generateQR();
@@ -116,14 +119,39 @@ public class TransferEntriesActivity extends AegisActivity {
                 if (clipboard != null) {
                     clipboard.setPrimaryClip(clip);
                 }
-                Toast.makeText(this,R.string.uri_copied_to_clipboard, Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, R.string.uri_copied_to_clipboard, Toast.LENGTH_SHORT).show();
 
             } catch (GoogleAuthInfoException e) {
                 Dialogs.showErrorDialog(this, R.string.unable_to_copy_uri_to_clipboard, e);
             }
         });
 
-        generateQR();
+        // Calculate sensible dimensions for the QR code depending on whether we're in landscape
+        _qrImage.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+                ConstraintLayout layout = findViewById(R.id.layoutShareEntry);
+                if (layout.getWidth() > layout.getHeight()) {
+                    int squareSize = (int) (0.5 * layout.getHeight());
+                    ViewGroup.LayoutParams params = _qrImage.getLayoutParams();
+                    params.width = squareSize;
+                    params.height = squareSize;
+                    _qrImage.setLayoutParams(params);
+                }
+
+                generateQR();
+
+                _qrImage.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+            }
+        });
+    }
+
+    @Override
+    public void onAttachedToWindow() {
+        // Max brightness to make the QR codes easier to scan
+        WindowManager.LayoutParams attrs = getWindow().getAttributes();
+        attrs.screenBrightness = 1.0f;
+        getWindow().setAttributes(attrs);
     }
 
     @Override
@@ -151,16 +179,13 @@ public class TransferEntriesActivity extends AegisActivity {
 
         _entriesCount.setText(getResources().getQuantityString(R.plurals.qr_count, _authInfos.size(), _currentEntryCount, _authInfos.size()));
 
-        @ColorInt int backgroundColor = Color.WHITE;
-        if (_themeHelper.getConfiguredTheme() == Theme.LIGHT) {
-            TypedValue typedValue = new TypedValue();
-            getTheme().resolveAttribute(androidx.appcompat.R.attr.background, typedValue, true);
-            backgroundColor = typedValue.data;
-        }
+        int backgroundColor = _themeHelper.getConfiguredTheme() == Theme.LIGHT
+                ? MaterialColors.getColor(_qrImage, com.google.android.material.R.attr.colorSurfaceContainer)
+                : Color.WHITE;
 
         Bitmap bitmap;
         try {
-            bitmap = QrCodeHelper.encodeToBitmap(selectedEntry.getUri().toString(), 512, 512, backgroundColor);
+            bitmap = QrCodeHelper.encodeToBitmap(selectedEntry.getUri().toString(), _qrImage.getWidth(), _qrImage.getWidth(), backgroundColor);
         } catch (WriterException | GoogleAuthInfoException e) {
             Dialogs.showErrorDialog(this, R.string.unable_to_generate_qrcode, e);
             return;

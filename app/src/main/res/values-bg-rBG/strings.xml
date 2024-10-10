@@ -434,7 +434,6 @@
     <string name="copy_uri">Копиране на адреса</string>
     <string name="unable_to_copy_uri_to_clipboard">Грешка при копиране на адреса</string>
     <string name="uri_copied_to_clipboard">Адресът е копиран</string>
-    <string name="transfer_entry">Прехвърляне на запис</string>
     <string name="transfer_entry_description">Сканирайте QR кода с приложението за удостоверяване, в което искате да прехвърлите този запис</string>
     <string name="google_auth_compatible_transfer_description">Сканирайте тези кодове в Aegis или Google Authenticator.\n\nПоради ограничения в приложението на Google Authenticator са включени само кодовете, които използват SHA1 и извеждат 6 цифри</string>
     <string name="password_strength_very_weak">Много слаба</string>

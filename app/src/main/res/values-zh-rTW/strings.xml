@@ -372,7 +372,6 @@
     <string name="copy_uri">複製 URI</string>
     <string name="unable_to_copy_uri_to_clipboard">無法複製 URI 到剪貼簿</string>
     <string name="uri_copied_to_clipboard">URI 已複製到剪貼簿</string>
-    <string name="transfer_entry">轉移條目</string>
     <string name="transfer_entry_description">使用您想轉移至其他驗證器應用程式，請掃描此QR碼</string>
     <string name="google_auth_compatible_transfer_description">請使用 Aegis 或 Google Authenticator 掃描以下 QR Code。\n\n由於 Google Authenticator 程式的限制，將僅包含使用 SHA1 並產生六位數密碼的 TOTP &amp; HOTP 憑證</string>
     <string name="password_strength_very_weak">很弱</string>

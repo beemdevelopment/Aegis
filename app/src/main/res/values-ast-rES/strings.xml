@@ -357,7 +357,6 @@
     <string name="previous">Anterior</string>
     <string name="unable_to_copy_uri_to_clipboard">Nun ye posible copiar la URI al cartafueyu</string>
     <string name="uri_copied_to_clipboard">La URI copióse al cartafueyu</string>
-    <string name="transfer_entry">Tresferencia d\'una entrada</string>
     <string name="transfer_entry_description">Escania esti códígu QR cola aplicación autenticadora a la que quies tresferir esta entrada</string>
     <string name="google_auth_compatible_transfer_description">Escania estos códigos QR con Aegis o con Google Authenticator.\n\nPola mor de les llendes de l\'aplicación Google Authenticator, namás s\'inclúin pases TOTP ya HOTP qu\'usen el hash SHA1 ya produzan códigos de 6 díxitos</string>
     <string name="password_strength_very_weak">Perpoco segura</string>

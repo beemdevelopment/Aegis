@@ -427,7 +427,6 @@
     <string name="copy_uri">Kopioi URI</string>
     <string name="unable_to_copy_uri_to_clipboard">URI:a ei voitu kopioida leikepöydälle</string>
     <string name="uri_copied_to_clipboard">URI kopioitiin leikepöydälle</string>
-    <string name="transfer_entry">Siirrä kohde</string>
     <string name="transfer_entry_description">Skannaa tämä QR-koodi todennussovelluksella, johon haluat siirtää tämän kohteen</string>
     <string name="google_auth_compatible_transfer_description">Skannaa nämä QR-koodit Aegisilla tai Google Authenticatorilla.\n\nGoogle Authenticator -sovelluksen rajoitusten vuoksi, vain SHA1-suojausta ja 6-numeroisia koodeja tuottavat TOTP- ja HOTP-todennuskoodit sisällytetään</string>
     <string name="password_strength_very_weak">Erittäin heikko</string>

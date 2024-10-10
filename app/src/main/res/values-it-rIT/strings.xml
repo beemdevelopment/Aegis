@@ -400,7 +400,6 @@
     <string name="copy_uri">Copia URI</string>
     <string name="unable_to_copy_uri_to_clipboard">Impossibile copiare l\'URI negli appunti</string>
     <string name="uri_copied_to_clipboard">URI copiato negli appunti</string>
-    <string name="transfer_entry">Trasferisci voce</string>
     <string name="transfer_entry_description">Scansiona questo codice QR con l\'app di autenticazione a cui vuoi trasferire questa voce</string>
     <string name="google_auth_compatible_transfer_description">Scansiona questi codici QR con Aegis o Google Authenticator.\n\nA causa delle limitazioni dell\'app Google Authenticator, sono inclusi solo i token TOTP e HOTP che utilizzano SHA1 e producono codici a 6 cifre</string>
     <string name="password_strength_very_weak">Molto debole</string>

@@ -374,7 +374,6 @@
     <string name="copy_uri">URI को कॉपी करें</string>
     <string name="unable_to_copy_uri_to_clipboard">क्लिपबोर्ड पर कॉपी करने में असमर्थ</string>
     <string name="uri_copied_to_clipboard">क्लिपबोर्ड में कॉपी हो गया</string>
-    <string name="transfer_entry">प्रविष्टि स्थानांतरित करें</string>
     <string name="transfer_entry_description">इस क्यूआर कोड को उस ऑथेंटिकेटर ऐप के साथ स्कैन करें जिसमें आप इस प्रविष्टि को स्थानांतरित करना चाहते हैं</string>
     <string name="google_auth_compatible_transfer_description">इन क्यूआर कोड को एजिस या गूगल ऑथेंटिकेटर से स्कैन करें।\n\n गूगल ऑथेंटिकेटर ऐप की सीमाओं के कारण, केवल TOTP &amp; HOTP टोकन जो SHA1 का उपयोग करते हैं और 6-अंकीय कोड उत्पन्न करते हैं, शामिल हैं</string>
     <string name="password_strength_very_weak">बहुत कमज़ोर</string>

@@ -259,7 +259,6 @@
     <string name="done">انجام شد</string>
     <string name="next">بعدی</string>
     <string name="previous">قبلی</string>
-    <string name="transfer_entry">انتقال آیتم‌ها</string>
     <string name="transfer_entry_description">این بارکد دوبعدی را توسط برنامه ای که علاقه دارید توکن منتقل شود اسکن کنید.</string>
     <string name="password_strength_very_weak">خیلی ضعیف</string>
     <string name="password_strength_weak">ضعیف</string>

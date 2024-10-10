@@ -260,7 +260,6 @@
     <string name="copy_uri">Kopijuoti URI</string>
     <string name="unable_to_copy_uri_to_clipboard">Nepavyko nukopijuoti URI į iškarpinę</string>
     <string name="uri_copied_to_clipboard">URI nukopijuotas į iškarpinę</string>
-    <string name="transfer_entry">Perkelti įrašą</string>
     <string name="transfer_entry_description">Nuskenuokite šį QR kodą naudodami tapatybės nustatymo programėlę, į kurią norite perkelti šį įrašą</string>
     <string name="password_strength_very_weak">Labai silpnas</string>
     <string name="password_strength_weak">Silpnas</string>

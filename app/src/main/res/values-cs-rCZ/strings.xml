@@ -454,7 +454,6 @@
     <string name="copy_uri">Kopírovat URI</string>
     <string name="unable_to_copy_uri_to_clipboard">Nepodařilo se zkopírovat URI do schránky</string>
     <string name="uri_copied_to_clipboard">URI zkopírována do schránky</string>
-    <string name="transfer_entry">Přenést položku</string>
     <string name="transfer_entry_description">Naskenujte tento QR kód ověřovací aplikací, do které chcete položku přenést</string>
     <string name="google_auth_compatible_transfer_description">Naskenujte tyto QR kódy s aplikací Aegis nebo Google Authenticator.\n\nKvůli limitacím aplikace Google Authenticator jsou zahrnuty pouze 6-místné tokeny TOTP a HOTP využívající SHA1</string>
     <string name="password_strength_very_weak">Velmi slabé</string>

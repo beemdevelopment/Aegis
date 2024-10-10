@@ -443,7 +443,6 @@
     <string name="copy_uri">Kopiuj URI</string>
     <string name="unable_to_copy_uri_to_clipboard">Nie można skopiować URI do schowka</string>
     <string name="uri_copied_to_clipboard">Skopiowano URI do schowka</string>
-    <string name="transfer_entry">Przenieś wpis</string>
     <string name="transfer_entry_description">Zeskanuj kod QR za pomocą aplikacji uwierzytelniającej, do której chcesz przenieść ten wpis</string>
     <string name="google_auth_compatible_transfer_description">Zeskanuj te kody QR za pomocą Aegis lub Google Authenticator.\n\nZ powodu ograniczeń w aplikacji Google Authenticator, tylko tokeny TOTP &amp; HOTP, które używają SHA1 i generują 6 cyfrowe kody są uwzględniane</string>
     <string name="password_strength_very_weak">Bardzo słabe</string>
