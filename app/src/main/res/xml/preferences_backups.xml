@@ -23,6 +23,11 @@
             android:title="@string/pref_backups_reminder_title"
             android:summary="@string/pref_backups_reminder_summary" />
 
+        <SwitchPreferenceCompat
+            android:key="pref_single_backup"
+            android:title="@string/pref_single_backup_title"
+            android:summary="@string/pref_single_backup_summary" />
+
         <Preference
             android:key="pref_backups_location"
             android:title="@string/pref_backups_location_title"
