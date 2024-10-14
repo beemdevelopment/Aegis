@@ -69,7 +69,7 @@ public class SimpleItemTouchHelperCallback extends ItemTouchHelper.Callback {
         int swipeFlags = 0;
         if (adapter.isPositionFooter(position)
                 || adapter.isPositionErrorCard(position)
-                || adapter.getEntryAtPos(position) != _selectedEntry
+                || adapter.getEntryAtPosition(position) != _selectedEntry
                 || !isLongPressDragEnabled()) {
             return makeMovementFlags(0, swipeFlags);
         }
