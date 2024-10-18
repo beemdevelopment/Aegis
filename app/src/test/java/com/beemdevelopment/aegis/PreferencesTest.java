@@ -7,6 +7,7 @@ import static org.junit.Assert.assertTrue;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.os.Build;
 
 import androidx.preference.PreferenceManager;
 import androidx.test.core.app.ApplicationProvider;
@@ -14,10 +15,12 @@ import androidx.test.core.app.ApplicationProvider;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.RobolectricTestRunner;
+import org.robolectric.annotation.Config;
 
 import java.util.Date;
 
 @RunWith(RobolectricTestRunner.class)
+@Config(sdk = Build.VERSION_CODES.UPSIDE_DOWN_CAKE)
 public class PreferencesTest {
     @Test
     public void testIsPasswordReminderNeeded() {

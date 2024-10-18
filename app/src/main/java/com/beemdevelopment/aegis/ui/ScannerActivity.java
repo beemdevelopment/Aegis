@@ -18,7 +18,6 @@ import androidx.camera.view.PreviewView;
 import androidx.core.content.ContextCompat;
 
 import com.beemdevelopment.aegis.R;
-import com.beemdevelopment.aegis.ThemeMap;
 import com.beemdevelopment.aegis.helpers.QrCodeAnalyzer;
 import com.beemdevelopment.aegis.otp.GoogleAuthInfo;
 import com.beemdevelopment.aegis.otp.GoogleAuthInfoException;
@@ -85,11 +84,6 @@ public class ScannerActivity extends AegisActivity implements QrCodeAnalyzer.Lis
 
             bindPreview(_cameraProvider);
         }, ContextCompat.getMainExecutor(this));
-    }
-
-    @Override
-    protected void onSetTheme() {
-        _themeHelper.setTheme(ThemeMap.FULLSCREEN);
     }
 
     @Override

@@ -176,23 +176,11 @@
 
     <style name="Theme.Aegis.Light" parent="Base.Theme.Aegis.Light">
     </style>
-    <style name="Theme.Aegis.Light.Fullscreen" parent="Theme.Aegis.Light">
-        <item name="android:windowNoTitle">true</item>
-        <item name="android:windowFullscreen">true</item>
-    </style>
 
     <style name="Theme.Aegis.Dark" parent="Base.Theme.Aegis.Dark">
     </style>
-    <style name="Theme.Aegis.Dark.Fullscreen" parent="Theme.Aegis.Dark">
-        <item name="android:windowNoTitle">true</item>
-        <item name="android:windowFullscreen">true</item>
-    </style>
 
     <style name="Theme.Aegis.Amoled" parent="Base.Theme.Aegis.Amoled">
-    </style>
-    <style name="Theme.Aegis.Amoled.Fullscreen" parent="Theme.Aegis.Amoled">
-        <item name="android:windowNoTitle">true</item>
-        <item name="android:windowFullscreen">true</item>
     </style>
 
     <style name="Widget.Aegis.Dropdown" parent="Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu" />
