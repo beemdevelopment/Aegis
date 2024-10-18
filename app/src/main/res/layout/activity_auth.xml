@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
+    android:fitsSystemWindows="true"
     tools:context="com.beemdevelopment.aegis.ui.AuthActivity">
     <LinearLayout
         android:layout_width="match_parent"

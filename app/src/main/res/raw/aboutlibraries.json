@@ -1,6 +1,6 @@
 {
     "metadata": {
-        "generated": "2024-09-21T10:56:03.535Z"
+        "generated": "2024-10-18T11:49:53.854Z"
     },
     "libraries": [
         {
@@ -13,14 +13,14 @@
                     "name": "The Android Open Source Project"
                 }
             ],
-            "artifactVersion": "1.9.2",
+            "artifactVersion": "1.9.3",
             "description": "Provides the base Activity subclass and the relevant hooks to build a composable structure on top.",
             "scm": {
                 "connection": "scm:git:https://android.googlesource.com/platform/frameworks/support",
                 "url": "https://cs.android.com/androidx/platform/frameworks/support"
             },
             "name": "Activity",
-            "website": "https://developer.android.com/jetpack/androidx/releases/activity#1.9.2",
+            "website": "https://developer.android.com/jetpack/androidx/releases/activity#1.9.3",
             "licenses": [
                 "Apache-2.0"
             ],
@@ -38,14 +38,14 @@
                     "name": "The Android Open Source Project"
                 }
             ],
-            "artifactVersion": "1.9.2",
+            "artifactVersion": "1.9.3",
             "description": "Kotlin extensions for 'activity' artifact",
             "scm": {
                 "connection": "scm:git:https://android.googlesource.com/platform/frameworks/support",
                 "url": "https://cs.android.com/androidx/platform/frameworks/support"
             },
             "name": "Activity Kotlin Extensions",
-            "website": "https://developer.android.com/jetpack/androidx/releases/activity#1.9.2",
+            "website": "https://developer.android.com/jetpack/androidx/releases/activity#1.9.3",
             "licenses": [
                 "Apache-2.0"
             ],
@@ -2350,7 +2350,7 @@
             "developers": [
                 
             ],
-            "artifactVersion": "33.3.0-android",
+            "artifactVersion": "33.3.1-android",
             "description": "Guava is a suite of core and expanded libraries that include\n    utility classes, Google's collections, I/O classes, and\n    much more.",
             "scm": {
                 "connection": "scm:git:https://github.com/google/guava.git",

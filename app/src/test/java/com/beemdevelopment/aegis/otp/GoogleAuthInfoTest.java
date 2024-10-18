@@ -2,11 +2,15 @@ package com.beemdevelopment.aegis.otp;
 
 import static org.junit.Assert.assertThrows;
 
+import android.os.Build;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.RobolectricTestRunner;
+import org.robolectric.annotation.Config;
 
 @RunWith(RobolectricTestRunner.class)
+@Config(sdk = Build.VERSION_CODES.UPSIDE_DOWN_CAKE)
 public class GoogleAuthInfoTest {
     @Test
     public void testGoogleAuthInfoEmptySecret() throws GoogleAuthInfoException {
