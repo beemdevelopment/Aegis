@@ -40,7 +40,7 @@ public abstract class DatabaseImporter {
         _importers.add(new Definition("Bitwarden", BitwardenImporter.class, R.string.importer_help_bitwarden, false));
         _importers.add(new Definition("Duo", DuoImporter.class, R.string.importer_help_duo, true));
         _importers.add(new Definition("Ente Auth", EnteAuthImporter.class, R.string.importer_help_ente_auth, false));
-        _importers.add(new Definition("FreeOTP (1.x)", FreeOtpImporter.class, R.string.importer_help_freeotp, true));
+        _importers.add(new Definition("FreeOTP", FreeOtpImporter.class, R.string.importer_help_freeotp, true));
         _importers.add(new Definition("FreeOTP+ (JSON)", FreeOtpPlusImporter.class, R.string.importer_help_freeotp_plus, true));
         _importers.add(new Definition("Google Authenticator", GoogleAuthImporter.class, R.string.importer_help_google_authenticator, true));
         _importers.add(new Definition("Microsoft Authenticator", MicrosoftAuthImporter.class, R.string.importer_help_microsoft_authenticator, true));

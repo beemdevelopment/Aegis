@@ -216,21 +216,57 @@ public class DatabaseImporterTest {
     }
 
     @Test
-    public void testImportFreeOtp() throws IOException, DatabaseImporterException, OtpInfoException {
+    public void testImportFreeOtpV1() throws IOException, DatabaseImporterException, OtpInfoException {
         List<VaultEntry> entries = importPlain(FreeOtpImporter.class, "freeotp.xml");
-        checkImportedFreeOtpEntries(entries);
+        checkImportedFreeOtpEntriesV1(entries);
+    }
+
+    @Test
+    public void testImportFreeOtpV2Api23() throws IOException, DatabaseImporterException, OtpInfoException {
+        List<VaultEntry> entries = importEncrypted(FreeOtpImporter.class, "freeotp_v2_api23.xml", encryptedState -> {
+            final char[] password = "test".toCharArray();
+            return ((FreeOtpImporter.EncryptedState) encryptedState).decrypt(password);
+        });
+        checkImportedEntries(entries);
+    }
+
+    @Test
+    public void testImportFreeOtpV2Api25() throws IOException, DatabaseImporterException, OtpInfoException {
+        List<VaultEntry> entries = importEncrypted(FreeOtpImporter.class, "freeotp_v2_api25.xml", encryptedState -> {
+            final char[] password = "test".toCharArray();
+            return ((FreeOtpImporter.EncryptedState) encryptedState).decrypt(password);
+        });
+        checkImportedEntries(entries);
+    }
+
+    @Test
+    public void testImportFreeOtpV2Api27() throws IOException, DatabaseImporterException, OtpInfoException {
+        List<VaultEntry> entries = importEncrypted(FreeOtpImporter.class, "freeotp_v2_api27.xml", encryptedState -> {
+            final char[] password = "test".toCharArray();
+            return ((FreeOtpImporter.EncryptedState) encryptedState).decrypt(password);
+        });
+        checkImportedEntries(entries);
+    }
+
+    @Test
+    public void testImportFreeOtpV2Api34() throws IOException, DatabaseImporterException, OtpInfoException {
+        List<VaultEntry> entries = importEncrypted(FreeOtpImporter.class, "freeotp_v2_api34.xml", encryptedState -> {
+            final char[] password = "test".toCharArray();
+            return ((FreeOtpImporter.EncryptedState) encryptedState).decrypt(password);
+        });
+        checkImportedEntries(entries);
     }
 
     @Test
     public void testImportFreeOtpPlus() throws IOException, DatabaseImporterException, OtpInfoException {
         List<VaultEntry> entries = importPlain(FreeOtpPlusImporter.class, "freeotp_plus.json");
-        checkImportedFreeOtpEntries(entries);
+        checkImportedFreeOtpEntriesV1(entries);
     }
 
     @Test
     public void testImportFreeOtpPlusInternal() throws IOException, DatabaseImporterException, OtpInfoException {
         List<VaultEntry> entries = importPlain(FreeOtpPlusImporter.class, "freeotp_plus_internal.xml", true);
-        checkImportedFreeOtpEntries(entries);
+        checkImportedFreeOtpEntriesV1(entries);
     }
 
     @Test
@@ -423,7 +459,7 @@ public class DatabaseImporterTest {
         }
     }
 
-    private void checkImportedFreeOtpEntries(List<VaultEntry> entries) throws OtpInfoException {
+    private void checkImportedFreeOtpEntriesV1(List<VaultEntry> entries) throws OtpInfoException {
         for (VaultEntry entry : entries) {
             // for some reason, FreeOTP adds -1 to the counter
             VaultEntry entryVector = getEntryVectorBySecret(entry.getInfo().getSecret());
