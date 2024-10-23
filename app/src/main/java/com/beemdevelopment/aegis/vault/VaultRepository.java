@@ -7,6 +7,7 @@ import androidx.annotation.Nullable;
 import androidx.core.util.AtomicFile;
 
 import com.beemdevelopment.aegis.otp.GoogleAuthInfo;
+import com.beemdevelopment.aegis.util.Cloner;
 import com.beemdevelopment.aegis.util.IOUtils;
 import com.google.zxing.WriterException;
 
@@ -249,6 +250,13 @@ public class VaultRepository {
         return _vault.getEntries().replace(entry);
     }
 
+    public VaultEntry editEntry(VaultEntry entry, EntryEditor editor) {
+        VaultEntry newEntry = Cloner.clone(entry);
+        editor.edit(newEntry);
+        replaceEntry(newEntry);
+        return newEntry;
+    }
+
     /**
      * Moves entry1 to the position of entry2.
      */
@@ -343,5 +351,9 @@ public class VaultRepository {
         }
 
         return getCredentials().getSlots().findBackupPasswordSlots().size() > 0;
+    }
+
+    public interface EntryEditor {
+        void edit(VaultEntry entry);
     }
 }
