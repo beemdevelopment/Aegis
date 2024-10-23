@@ -386,7 +386,6 @@
     <string name="copy_uri">URIをコピー</string>
     <string name="unable_to_copy_uri_to_clipboard">URIをクリップボードにコピーできません</string>
     <string name="uri_copied_to_clipboard">URI をクリップボードにコピーしました</string>
-    <string name="transfer_entry">エントリーを転送</string>
     <string name="transfer_entry_description">このエントリーを別の認証アプリに転送するには、このQRコードをスキャンしてください</string>
     <string name="google_auth_compatible_transfer_description">QRコードを Aegis または Google Authenticator でスキャンしてください。\n\nGoogle Authenticator アプリの制限のため、SHA1 を使用し6桁のコードを生成する TOTP と HOTP トークンのみが含まれます。</string>
     <string name="password_strength_very_weak">非常に弱い</string>

@@ -433,7 +433,6 @@
     <string name="copy_uri">Αντιγραφή URI</string>
     <string name="unable_to_copy_uri_to_clipboard">Αδυναμία αντιγραφής του URI στο πρόχειρο</string>
     <string name="uri_copied_to_clipboard">Το URI αντιγράφηκε στο πρόχειρο</string>
-    <string name="transfer_entry">Μεταφορά καταχώρησης</string>
     <string name="transfer_entry_description">Σαρώστε αυτόν τον κωδικό QR με την εφαρμογή ελέγχου ταυτότητας στην οποία θέλετε να μεταφέρετε αυτήν την καταχώριση</string>
     <string name="google_auth_compatible_transfer_description">Σαρώστε αυτούς τους κωδικούς QR με το Aegis ή το Google Authenticator.\n\nΛόγω περιορισμών της εφαρμογής Google Authenticator, περιλαμβάνονται μόνο αναγνωριστικά TOTP &amp; HOTP που χρησιμοποιούν SHA1 και παράγουν 6ψήφιους κωδικούς</string>
     <string name="password_strength_very_weak">Πολύ αδύναμος</string>

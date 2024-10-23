@@ -434,7 +434,6 @@
     <string name="copy_uri">URI kopiëren</string>
     <string name="unable_to_copy_uri_to_clipboard">Kan URI niet naar klembord kopiëren</string>
     <string name="uri_copied_to_clipboard">URI naar klembord gekopieerd</string>
-    <string name="transfer_entry">Item overzetten</string>
     <string name="transfer_entry_description">Scan deze QR-code met de authenticator-app waar je dit item naar wilt overzetten</string>
     <string name="google_auth_compatible_transfer_description">Scan deze QR-codes met Aegis of Google Authenticator.\n\nVanwege beperkingen van de Google Authenticator app, zijn alleen TOTP- &amp; HOTP-tokens die SHA1 gebruiken en 6-cijferige codes produceren opgenomen</string>
     <string name="password_strength_very_weak">Zeer zwak</string>

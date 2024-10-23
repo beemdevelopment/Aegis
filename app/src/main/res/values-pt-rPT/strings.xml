@@ -420,7 +420,6 @@
     <string name="copy_uri">Copiar URI</string>
     <string name="unable_to_copy_uri_to_clipboard">Não é possível copiar o URI para a área de transferência</string>
     <string name="uri_copied_to_clipboard">URI copiado para a área de transferência</string>
-    <string name="transfer_entry">Transferir entrada</string>
     <string name="transfer_entry_description">Digitalize este código QR com a aplicação de autenticação para a qual gostaria de transferir esta entrada</string>
     <string name="google_auth_compatible_transfer_description">Digitalize estes códigos QR com o Aegis ou o Google Authenticator.\n\nDevido às limitações do Google Authenticator, apenas estão incluídos os tokens TOTP e HOTP que utilizam SHA1 e produzem códigos de 6 dígitos</string>
     <string name="password_strength_very_weak">Muito Fraca</string>

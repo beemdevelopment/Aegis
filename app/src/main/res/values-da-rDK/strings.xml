@@ -434,7 +434,6 @@
     <string name="copy_uri">Kopiér URI</string>
     <string name="unable_to_copy_uri_to_clipboard">Kunne ikke kopiere URI til udklipsholder</string>
     <string name="uri_copied_to_clipboard">URI kopieret til udklipsholder</string>
-    <string name="transfer_entry">Overfør post</string>
     <string name="transfer_entry_description">Scan denne QR-kode med den autentificerings-app, du gerne vil overføre denne post til</string>
     <string name="google_auth_compatible_transfer_description">Skan disse QR-koder med Aegis eller Google Authenticator.\n\nGrundet begrænsninger i Google Authenticator-appen inkluderes kun TOTP- og HOTP-tokener, som bruger SHA1 og genererer 6-cifrede koder</string>
     <string name="password_strength_very_weak">Meget svag</string>
