@@ -24,6 +24,10 @@
             android:summary="@string/pref_backups_reminder_summary" />
 
         <Preference
+            android:key="pref_versioning_strategy"
+            android:title="@string/pref_backups_versioning_strategy_title" />
+
+        <Preference
             android:key="pref_backups_location"
             android:title="@string/pref_backups_location_title"
             android:summary="@string/pref_backups_location_summary" />

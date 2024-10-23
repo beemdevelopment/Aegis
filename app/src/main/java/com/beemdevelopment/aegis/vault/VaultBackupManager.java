@@ -1,5 +1,6 @@
 package com.beemdevelopment.aegis.vault;
 
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.UriPermission;
 import android.net.Uri;
@@ -9,6 +10,7 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.documentfile.provider.DocumentFile;
 
+import com.beemdevelopment.aegis.BackupsVersioningStrategy;
 import com.beemdevelopment.aegis.Preferences;
 import com.beemdevelopment.aegis.database.AuditLogRepository;
 import com.beemdevelopment.aegis.util.IOUtils;
@@ -51,10 +53,10 @@ public class VaultBackupManager {
         _auditLogRepository = auditLogRepository;
     }
 
-    public void scheduleBackup(File tempFile, Uri dirUri, int versionsToKeep) {
+    public void scheduleBackup(File tempFile) {
         _executor.execute(() -> {
             try {
-                createBackup(tempFile, dirUri, versionsToKeep);
+                createBackup(tempFile);
                 _auditLogRepository.addBackupCreatedEvent();
                 _prefs.setBuiltInBackupResult(new Preferences.BackupResult(null));
             } catch (VaultRepositoryException | VaultBackupPermissionException e) {
@@ -62,6 +64,46 @@ public class VaultBackupManager {
                 _prefs.setBuiltInBackupResult(new Preferences.BackupResult(e));
             }
         });
+    }
+
+    private void createBackup(File tempFile)
+            throws VaultRepositoryException, VaultBackupPermissionException {
+        BackupsVersioningStrategy strategy = _prefs.getBackupVersioningStrategy();
+        Uri uri = _prefs.getBackupsLocation();
+        if (uri == null) {
+            throw new VaultRepositoryException("getBackupsLocation returned null");
+        }
+        if (strategy == BackupsVersioningStrategy.SINGLE_BACKUP) {
+            createBackup(tempFile, uri);
+        } else if (strategy == BackupsVersioningStrategy.MULTIPLE_BACKUPS) {
+            int versionsToKeep = _prefs.getBackupsVersionCount();
+            createBackup(tempFile, uri, versionsToKeep);
+        }
+    }
+
+    private void createBackup(File tempFile, Uri fileUri)
+            throws VaultRepositoryException, VaultBackupPermissionException {
+        Log.i(TAG, String.format("Creating backup at %s", fileUri));
+        try {
+            if (!hasPermissionsAt(fileUri)) {
+                throw new VaultBackupPermissionException("No persisted URI permissions");
+            }
+            ContentResolver resolver = _context.getContentResolver();
+            try (FileInputStream inStream = new FileInputStream(tempFile)) {
+                OutputStream outStream = resolver.openOutputStream(fileUri, "wt");
+                if (outStream == null) {
+                    throw new IOException("openOutputStream returned null");
+                }
+                IOUtils.copy(inStream, outStream);
+            } catch (IOException exception) {
+                throw new VaultRepositoryException(exception);
+            }
+        } catch (VaultRepositoryException | VaultBackupPermissionException exception) {
+            Log.e(TAG, String.format("Unable to create backup: %s", exception));
+            throw exception;
+        } finally {
+            tempFile.delete();
+        }
     }
 
     private void createBackup(File tempFile, Uri dirUri, int versionsToKeep)

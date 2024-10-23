@@ -6,6 +6,7 @@ import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Build;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.preference.PreferenceManager;
 
@@ -595,6 +596,33 @@ public class Preferences {
         } catch (JSONException e) {
             return Collections.emptySet();
         }
+    }
+
+    @NonNull
+    public BackupsVersioningStrategy getBackupVersioningStrategy() {
+        Uri uri = getBackupsLocation();
+        if (uri == null) {
+            return BackupsVersioningStrategy.UNDEFINED;
+        }
+        String path = uri.getPath();
+        if (path == null) {
+            return BackupsVersioningStrategy.UNDEFINED;
+        }
+        String[] pathArray = path.split("/");
+        if (pathArray.length < 2) {
+            return BackupsVersioningStrategy.UNDEFINED;
+        }
+        String type = pathArray[1];
+        if (type.equals("tree")) {
+            return BackupsVersioningStrategy.MULTIPLE_BACKUPS;
+        } else if (type.equals("document")) {
+            return BackupsVersioningStrategy.SINGLE_BACKUP;
+        }
+        return BackupsVersioningStrategy.UNDEFINED;
+    }
+
+    public boolean isSingleBackupEnabled() {
+        return getBackupVersioningStrategy() == BackupsVersioningStrategy.SINGLE_BACKUP;
     }
 
     public static class BackupResult {

@@ -67,8 +67,14 @@
     <string name="pref_backups_reminder_summary">Show a reminder to backup your vault in case you haven\'t backed up your latest changes.</string>
     <string name="pref_backups_reminder_dialog_title">Disable backup reminder</string>
     <string name="pref_backups_reminder_dialog_summary">Disabling this reminder means Aegis won\'t tell you whether or not you have changes that are not backed up yet. This puts you at risk of losing access to your tokens. Are you sure you want to disable the reminder?</string>
-    <string name="pref_backups_location_title">Directory for backup files</string>
+    <string name="pref_backups_versioning_strategy_title">Versioning strategy</string>
+    <string name="pref_backups_versioning_strategy_keep_x_versions">Keep x versions</string>
+    <string name="pref_backups_versioning_strategy_single_backup">Single backup</string>
+    <string name="pref_backups_versioning_strategy_single_backup_warning">The selected versioning strategy is not reliable and not recommended. A single backup failure could lead to losing your only backup.</string>
+    <string name="pref_backups_versioning_strategy_dialog_title">Select your desired versioning strategy</string>
+    <string name="pref_backups_location_title">Backup location</string>
     <string name="pref_backups_location_summary">Backups will be stored at</string>
+    <string name="pref_backup_location_summary">Backup will be stored at</string>
     <string name="pref_backups_trigger_title">Trigger backup</string>
     <string name="pref_backups_trigger_summary">Manually trigger a backup</string>
     <string name="pref_backups_versions_title">Number of versions to keep</string>
