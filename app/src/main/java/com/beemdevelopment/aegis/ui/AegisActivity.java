@@ -4,7 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.res.Configuration;
-import android.os.Build;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +12,6 @@ import android.view.WindowManager;
 import android.widget.Toast;
 
 import androidx.annotation.CallSuper;
-import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.view.ActionMode;
@@ -26,6 +25,7 @@ import com.beemdevelopment.aegis.helpers.ThemeHelper;
 import com.beemdevelopment.aegis.icons.IconPackManager;
 import com.beemdevelopment.aegis.vault.VaultManager;
 import com.beemdevelopment.aegis.vault.VaultRepositoryException;
+import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.color.MaterialColors;
 
 import java.lang.reflect.Field;
@@ -186,13 +186,9 @@ public abstract class AegisActivity extends AppCompatActivity implements VaultMa
     private class ActionModeStatusGuardHack {
         private Field _fadeAnimField;
         private Field _actionModeViewField;
-
-        @ColorInt
-        private final int _statusBarColor;
+        private Drawable _appBarBackground;
 
         private ActionModeStatusGuardHack() {
-            _statusBarColor = getWindow().getStatusBarColor();
-
             try {
                 _fadeAnimField = getDelegate().getClass().getDeclaredField("mFadeAnim");
                 _fadeAnimField.setAccessible(true);
@@ -216,20 +212,26 @@ public abstract class AegisActivity extends AppCompatActivity implements VaultMa
                 return;
             }
 
-            if (fadeAnim == null || actionModeView == null) {
+            AppBarLayout appBarLayout = findViewById(R.id.app_bar_layout);
+            if (appBarLayout != null && _appBarBackground == null) {
+                _appBarBackground = appBarLayout.getBackground();
+            }
+
+            if (fadeAnim == null || actionModeView == null || appBarLayout == null || _appBarBackground == null) {
                 return;
             }
 
             fadeAnim.cancel();
 
-            actionModeView.setVisibility(visibility);
-            actionModeView.setAlpha(visibility == View.VISIBLE ? 1f : 0f);
-
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                int statusBarColor = visibility == View.VISIBLE
-                        ? MaterialColors.getColor(actionModeView, com.google.android.material.R.attr.colorSurfaceContainer)
-                        : _statusBarColor;
-                getWindow().setStatusBarColor(statusBarColor);
+            if (visibility == View.VISIBLE) {
+                actionModeView.setVisibility(visibility);
+                actionModeView.setAlpha(1f);
+                int color = MaterialColors.getColor(appBarLayout, com.google.android.material.R.attr.colorSurfaceContainer);
+                appBarLayout.setBackgroundColor(color);
+            } else {
+                actionModeView.setVisibility(visibility);
+                actionModeView.setAlpha(0f);
+                appBarLayout.setBackground(_appBarBackground);
             }
         }
     }
