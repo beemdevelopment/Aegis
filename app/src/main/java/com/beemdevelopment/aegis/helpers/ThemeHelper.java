@@ -33,7 +33,10 @@ public class ThemeHelper {
             DynamicColorsOptions.Builder optsBuilder = new DynamicColorsOptions.Builder();
             if (getConfiguredTheme().equals(Theme.AMOLED)) {
                 optsBuilder.setThemeOverlay(R.style.ThemeOverlay_Aegis_Dynamic_Amoled);
+            } else if (getConfiguredTheme().equals(Theme.DARK)) {
+                optsBuilder.setThemeOverlay(R.style.ThemeOverlay_Aegis_Dynamic_Dark);
             }
+
             DynamicColors.applyToActivityIfAvailable(_activity, optsBuilder.build());
         }
     }
