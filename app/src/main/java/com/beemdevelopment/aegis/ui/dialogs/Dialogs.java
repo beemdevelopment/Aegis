@@ -19,6 +19,8 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.NumberPicker;
 import android.widget.ProgressBar;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,6 +29,7 @@ import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import androidx.appcompat.app.AlertDialog;
 
+import com.beemdevelopment.aegis.BackupsVersioningStrategy;
 import com.beemdevelopment.aegis.Preferences;
 import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.helpers.EditTextHelper;
@@ -577,6 +580,54 @@ public class Dialogs {
         showSecureDialog(dialog);
     }
 
+    public static void showBackupsVersioningStrategy(Context context, BackupsVersioningStrategy currentStrategy, BackupsVersioningStrategyListener listener) {
+        View view = LayoutInflater.from(context).inflate(R.layout.dialog_backups_versioning_strategy, null);
+        RadioGroup radioGroup = view.findViewById(R.id.radio_group);
+        RadioButton keepXVersionsButton = view.findViewById(R.id.keep_x_versions_button);
+        RadioButton singleBackupButton = view.findViewById(R.id.single_backup_button);
+        TextView warningText = view.findViewById(R.id.warning_text);
+        CheckBox riskAccept = view.findViewById(R.id.risk_accept);
+        final AtomicReference<Button> positiveButtonRef = new AtomicReference<>();
+        radioGroup.setOnCheckedChangeListener((group, checkedId) -> {
+            Button positiveButton = positiveButtonRef.get();
+            if (positiveButton != null) {
+                positiveButton.setEnabled(checkedId == keepXVersionsButton.getId());
+            }
+            int visibility = checkedId == singleBackupButton.getId() ? View.VISIBLE : View.GONE;
+            warningText.setVisibility(visibility);
+            riskAccept.setVisibility(visibility);
+        });
+        riskAccept.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            Button positiveButton = positiveButtonRef.get();
+            if (positiveButton != null) {
+                positiveButton.setEnabled(isChecked);
+            }
+        });
+        AlertDialog alertDialog = new MaterialAlertDialogBuilder(context)
+                .setTitle(R.string.pref_backups_versioning_strategy_dialog_title)
+                .setView(view)
+                .setPositiveButton(android.R.string.ok, (dialog, which) -> {
+                    int checkedId = radioGroup.getCheckedRadioButtonId();
+                    if (checkedId == keepXVersionsButton.getId()) {
+                        listener.onStrategySelectionResult(BackupsVersioningStrategy.MULTIPLE_BACKUPS);
+                    } else if (checkedId == singleBackupButton.getId()) {
+                        listener.onStrategySelectionResult(BackupsVersioningStrategy.SINGLE_BACKUP);
+                    }
+                })
+                .setNegativeButton(android.R.string.cancel, null)
+                .create();
+        alertDialog.setOnShowListener(dialog -> {
+            Button positiveButton = alertDialog.getButton(AlertDialog.BUTTON_POSITIVE);
+            positiveButtonRef.set(positiveButton);
+            if (currentStrategy == BackupsVersioningStrategy.MULTIPLE_BACKUPS) {
+                radioGroup.check(keepXVersionsButton.getId());
+            } else if (currentStrategy == BackupsVersioningStrategy.SINGLE_BACKUP) {
+                radioGroup.check(singleBackupButton.getId());
+            }
+        });
+        showSecureDialog(alertDialog);
+    }
+
     private static void setImporterHelpText(TextView view, DatabaseImporter.Definition definition, boolean isDirect) {
         if (isDirect) {
             view.setText(view.getResources().getString(R.string.importer_help_direct, definition.getName()));
@@ -604,5 +655,9 @@ public class Dialogs {
 
     public interface ImporterListener {
         void onImporterSelectionResult(DatabaseImporter.Definition definition);
+    }
+
+    public interface BackupsVersioningStrategyListener {
+        void onStrategySelectionResult(BackupsVersioningStrategy strategy);
     }
 }

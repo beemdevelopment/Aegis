@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingStart="20dp"
+    android:paddingTop="20dp"
+    android:paddingEnd="20dp"
+    android:orientation="vertical">
+
+    <RadioGroup
+        android:id="@+id/radio_group"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RadioButton
+            android:id="@+id/keep_x_versions_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/pref_backups_versioning_strategy_keep_x_versions" />
+
+        <RadioButton
+            android:id="@+id/single_backup_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/pref_backups_versioning_strategy_single_backup" />
+
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/warning_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="5dp"
+        android:paddingEnd="5dp"
+        android:text="@string/pref_backups_versioning_strategy_single_backup_warning"
+        android:textColor="?attr/colorError" />
+
+    <CheckBox
+        android:id="@+id/risk_accept"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/understand_risk_accept" />
+
+</LinearLayout>
