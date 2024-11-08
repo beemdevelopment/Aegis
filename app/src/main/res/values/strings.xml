@@ -5,6 +5,7 @@
     <string name="action_settings">Settings</string>
     <string name="action_about">About</string>
     <string name="action_delete">Delete</string>
+    <string name="action_restore">Restore</string>
     <string name="action_transfer">Transfer</string>
     <string name="action_edit_icon">Edit icon</string>
     <string name="action_reset_usage_count">Reset usage count</string>
@@ -247,6 +248,14 @@
         <item quantity="one">Are you sure you want to delete %d entry?</item>
         <item quantity="other">Are you sure you want to delete %d entries?</item>
     </plurals>
+    <plurals name="archive_entry">
+        <item quantity="one">Archive entry</item>
+        <item quantity="other">Archive entries</item>
+    </plurals>
+    <plurals name="archive_entry_description">
+        <item quantity="one">Are you sure you want to archive this entry?</item>
+        <item quantity="other">Are you sure you want to archive these entries?</item>
+    </plurals>
     <string name="discard_changes">Discard changes?</string>
     <string name="discard_changes_description">Your changes have not been saved</string>
     <string name="saving_profile_error">Error saving profile</string>
@@ -470,6 +479,7 @@
 
     <string name="empty_list">There are no codes to be shown. Start adding entries by tapping the plus sign in the bottom right corner</string>
     <string name="empty_list_title">No entries found</string>
+    <string name="archive_empty">Archive is empty</string>
     <string name="empty_group_list">There are no groups to be shown. Add groups in the edit screen of an entry</string>
     <string name="empty_group_list_title">No groups found</string>
     <string name="no_icon_packs">No icon packs have been imported yet. Tap the plus sign to import one. Tip: try <a href="https://aegis-icons.github.io">aegis-icons</a>.</string>
@@ -546,6 +556,7 @@
 
     <string name="importer_help_direct">Import entries directly from %s. This requires the app to be installed on this device and for root access to be granted to Aegis.</string>
     <string name="groups">Groups</string>
+    <string name="archive">Archive</string>
     <string name="pref_focus_search">Focus search on app start</string>
     <string name="pref_focus_search_summary">Focus the search immediately after opening the app.</string>
 

@@ -96,6 +96,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
     private boolean _isDPadPressed;
     private boolean _isDoingIntro;
     private boolean _isAuthenticating;
+    private boolean _isArchiveEnabled;
 
     private String _submittedSearchQuery;
     private String _pendingSearchQuery;
@@ -187,6 +188,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         _isDPadPressed = false;
         _isDoingIntro = false;
         _isAuthenticating = false;
+        _isArchiveEnabled = false;
         if (savedInstanceState != null) {
             _isRecreated = true;
             _pendingSearchQuery = savedInstanceState.getString("pendingSearchQuery");
@@ -249,7 +251,6 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
 
     public void setGroups(Collection<VaultGroup> groups) {
         _groups = groups;
-        _groupChip.setVisibility(_groups.isEmpty() ? View.GONE : View.VISIBLE);
 
         if (_prefGroupFilter != null) {
             Set<UUID> groupFilter = cleanGroupFilter(_prefGroupFilter);
@@ -273,13 +274,17 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
     private void initializeGroups() {
         _groupChip.removeAllViews();
 
+        addArchiveChip(_groupChip);
+
         for (VaultGroup group : _groups) {
             addChipTo(_groupChip, new VaultGroupModel(group));
         }
 
-        GroupPlaceholderType placeholderType = GroupPlaceholderType.NO_GROUP;
-        addChipTo(_groupChip, new VaultGroupModel(this, placeholderType));
-        addSaveChip(_groupChip);
+        if (!_groups.isEmpty()) {
+            GroupPlaceholderType placeholderType = GroupPlaceholderType.NO_GROUP;
+            addChipTo(_groupChip, new VaultGroupModel(this, placeholderType));
+            addSaveChip(_groupChip);
+        }
     }
 
     private Set<UUID> cleanGroupFilter(Set<UUID> groupFilter) {
@@ -288,6 +293,21 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         return groupFilter.stream()
                 .filter(g -> g == null || groupUuids.contains(g))
                 .collect(Collectors.toSet());
+    }
+
+    private void addArchiveChip(ChipGroup chipGroup) {
+        Chip chip = (Chip) getLayoutInflater().inflate(R.layout.chip_group_filter, null, false);
+        chip.setText(getString(R.string.archive));
+        chip.setCheckedIconVisible(false);
+        chip.setOnCheckedChangeListener((button, isChecked) -> {
+            _isArchiveEnabled = isChecked;
+            if (_actionMode != null) {
+                _actionMode.finish();
+            }
+            chip.setChecked(isChecked);
+            _entryListView.enableArchive(isChecked);
+        });
+        chipGroup.addView(chip);
     }
 
     private void addChipTo(ChipGroup chipGroup, VaultGroupModel group) {
@@ -1153,6 +1173,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
             } else {
                 setFavoriteMenuItemVisiblity();
                 setIsMultipleSelected(_selectedEntries.size() > 1);
+                setRestoreMenuItemVisibility();
             }
         }
     }
@@ -1195,6 +1216,11 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         }
     }
 
+    private void setRestoreMenuItemVisibility() {
+        MenuItem restoreMenuItem = _actionMode.getMenu().findItem(R.id.action_restore);
+        restoreMenuItem.setVisible(_isArchiveEnabled);
+    }
+
     @Override
     public void onLongEntryClick(VaultEntry entry) {
         if (!_selectedEntries.isEmpty()) {
@@ -1211,6 +1237,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         _actionModeBackPressHandler.setEnabled(true);
         setFavoriteMenuItemVisiblity();
         setAssignIconsMenuItemVisibility();
+        setRestoreMenuItemVisibility();
     }
 
     @Override
@@ -1295,6 +1322,40 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         clipboard.setPrimaryClip(clip);
         if (_prefs.isMinimizeOnCopyEnabled()) {
             moveTaskToBack(true);
+        }
+    }
+
+    private void onActionRestore(ActionMode mode) {
+        for (VaultEntry entry : _selectedEntries) {
+            entry.setIsArchived(false);
+        }
+        saveAndBackupVault();
+        _entryListView.setGroups(_vaultManager.getVault().getUsedGroups());
+        _entryListView.setEntries(_vaultManager.getVault().getEntries());
+        mode.finish();
+    }
+
+    private void onActionDelete(ActionMode mode) {
+        if (_isArchiveEnabled) {
+            Dialogs.showDeleteEntriesDialog(MainActivity.this, _selectedEntries, (d, which) -> {
+                for (VaultEntry entry : _selectedEntries) {
+                    _vaultManager.getVault().removeEntry(entry);
+                }
+                saveAndBackupVault();
+                _entryListView.setGroups(_vaultManager.getVault().getUsedGroups());
+                _entryListView.setEntries(_vaultManager.getVault().getEntries());
+                mode.finish();
+            });
+        } else {
+            Dialogs.showArchiveEntriesDialog(MainActivity.this, _selectedEntries.size(), (dialog, which) -> {
+                for (VaultEntry entry : _selectedEntries) {
+                    entry.setIsArchived(true);
+                }
+                saveAndBackupVault();
+                _entryListView.setGroups(_vaultManager.getVault().getUsedGroups());
+                _entryListView.setEntries(_vaultManager.getVault().getEntries());
+                mode.finish();
+            });
         }
     }
 
@@ -1394,16 +1455,10 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
                 startActivity(intent);
 
                 mode.finish();
+            } else if (itemId == R.id.action_restore) {
+                onActionRestore(mode);
             } else if (itemId == R.id.action_delete) {
-                Dialogs.showDeleteEntriesDialog(MainActivity.this, _selectedEntries, (d, which) -> {
-                    for (VaultEntry entry : _selectedEntries) {
-                        _vaultManager.getVault().removeEntry(entry);
-                    }
-                    saveAndBackupVault();
-                    _entryListView.setGroups(_vaultManager.getVault().getUsedGroups());
-                    _entryListView.setEntries(_vaultManager.getVault().getEntries());
-                    mode.finish();
-                });
+                onActionDelete(mode);
             } else if (itemId == R.id.action_select_all) {
                 _selectedEntries = _entryListView.selectAllEntries();
                 setFavoriteMenuItemVisiblity();
