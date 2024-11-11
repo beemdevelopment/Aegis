@@ -46,7 +46,7 @@ public class FreeOtpPlusImporter extends DatabaseImporter {
                     entries.add(array.getJSONObject(i));
                 }
 
-                state = new FreeOtpImporter.State(entries);
+                state = new FreeOtpImporter.DecryptedStateV1(entries);
             } catch (IOException | JSONException e) {
                 throw new DatabaseImporterException(e);
             }

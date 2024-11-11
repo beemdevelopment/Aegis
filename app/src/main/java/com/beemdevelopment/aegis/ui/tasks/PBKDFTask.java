@@ -3,6 +3,11 @@ package com.beemdevelopment.aegis.ui.tasks;
 import android.content.Context;
 
 import com.beemdevelopment.aegis.R;
+import com.beemdevelopment.aegis.crypto.CryptoUtils;
+
+import org.bouncycastle.crypto.digests.SHA512Digest;
+import org.bouncycastle.crypto.generators.PKCS5S2ParametersGenerator;
+import org.bouncycastle.crypto.params.KeyParameter;
 
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
@@ -31,6 +36,15 @@ public class PBKDFTask extends ProgressDialogTask<PBKDFTask.Params, SecretKey> {
 
     public static SecretKey deriveKey(Params params) {
         try {
+            // Some older versions of Android (< 26) do not support PBKDF2withHmacSHA512, so use
+            // BouncyCastle's implementation instead.
+            if (params.getAlgorithm().equals("PBKDF2withHmacSHA512")) {
+                PKCS5S2ParametersGenerator gen = new PKCS5S2ParametersGenerator(new SHA512Digest());
+                gen.init(CryptoUtils.toBytes(params.getPassword()), params.getSalt(), params.getIterations());
+                byte[] key = ((KeyParameter) gen.generateDerivedParameters(params.getKeySize())).getKey();
+                return new SecretKeySpec(key, "AES");
+            }
+
             SecretKeyFactory factory = SecretKeyFactory.getInstance(params.getAlgorithm());
             KeySpec spec = new PBEKeySpec(params.getPassword(), params.getSalt(), params.getIterations(), params.getKeySize());
             SecretKey key = factory.generateSecret(spec);
