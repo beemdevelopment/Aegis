@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="action_settings">Cài đặt</string>
     <string name="action_about">Giới thiệu</string>
     <string name="action_delete">Xóa</string>
@@ -10,6 +10,7 @@
     <string name="action_default_icon">Dùng biểu tượng mặc định</string>
     <string name="discard">Không đổi</string>
     <string name="save">Lưu</string>
+    <string name="all">Tất cả</string>
     <string name="issuer">Dịch vụ</string>
     <string name="yandex_pin">PIN (4–16 chữ số)</string>
     <string name="motp_pin">PIN (4 chữ số)</string>
@@ -44,6 +45,11 @@
     <string name="pref_code_group_size_title">Gộp nhóm chữ số mã</string>
     <string name="pref_code_group_size_summary">Chọn số lượng chữ số để gộp mã</string>
     <string name="pref_account_name_position_title">Hiện tên tài khoản</string>
+    <string name="pref_show_next_code_title">Hiện mã kế tiếp</string>
+    <string name="pref_show_next_code_summary">Tạo và hiỆn mã tiếp theo trước thời hạn</string>
+    <string name="pref_expiration_state_title">Nhấp nháy khi mã sắp hết hạn</string>
+    <string name="pref_expiration_state_summary">Thay đổi màu sắc của mã và nhấp nháy khi mã sắp hết hạn</string>
+    <string name="pref_expiration_state_fallback">Thay đổi màu sắc của mã khi mã sắp hết hạn</string>
     <string name="pref_shared_issuer_account_name_title">Hiện tên tài khoản khi cần</string>
     <string name="pref_shared_issuer_account_name_summary">Chỉ hiện tên tài khoản khi có cùng dịch vụ. Những tên tài khoản khác sẽ bị ẩn.</string>
     <string name="pref_account_name_position_summary_override">Cài đặt này bị ghi đè bởi chế độ xem theo ô. Tên tài khoản sẽ hiển thị bên dưới dịch vụ.</string>
@@ -58,7 +64,6 @@
     <string name="pref_backups_reminder_summary">Hiện lời nhắc sao lưu kho của bạn trong trường hợp bạn chưa sao lưu các thay đổi mới nhất.</string>
     <string name="pref_backups_reminder_dialog_title">Tắt nhắc nhở sao lưu</string>
     <string name="pref_backups_reminder_dialog_summary">Tắt lời nhắc này có nghĩa là Aegis sẽ không cho bạn biết liệu bạn có những thay đổi chưa được sao lưu hay không. Điều này khiến bạn có nguy cơ mất quyền truy cập vào token của mình. Bạn có chắc muốn tắt lời nhắc?</string>
-    <string name="pref_backups_location_title">Thư mục sao lưu</string>
     <string name="pref_backups_location_summary">Các bản sao lưu sẽ được lưu vào</string>
     <string name="pref_backups_trigger_title">Bật sao lưu</string>
     <string name="pref_backups_trigger_summary">Bật sao lưu thủ công</string>
@@ -196,6 +201,9 @@
     <string name="edit">Sửa</string>
     <string name="select_all">Chọn tất cả</string>
     <string name="assign_icons">Gán biểu tượng</string>
+    <string name="assign_groups">Gán nhãn</string>
+    <string name="assign_groups_dialog_summary">Chọn nhãn mà bạn muốn gán các mục đã chọn.</string>
+    <string name="assign_groups_dialog_dropdown">Chọn nhãn</string>
     <string name="favorite" comment="Verb">Thích</string>
     <string name="unfavorite" comment="Verb">Bỏ thích</string>
     <string name="error_all_caps">LỖI</string>
@@ -213,6 +221,7 @@
     <string name="reading_file">Đang đọc tập tin</string>
     <string name="requesting_root_access">Yêu cầu truy cập root</string>
     <string name="analyzing_qr">Đang phân tích mã QR</string>
+    <string name="analyzing_qr_multiple">Đang phân tích mã QR %1$d/%2$d (%3$s)</string>
     <plurals name="added_new_entries">
         <item quantity="other">Đã thêm %d mục mới vào kho</item>
     </plurals>
@@ -236,6 +245,7 @@
     <string name="copied">Đã sao chép</string>
     <string name="errors_copied">Đã sao chép các lỗi vào bộ nhớ tạm</string>
     <string name="version_copied">Đã sao chép phiên bản vào bộ nhớ tạm</string>
+    <string name="error_required_field">Mục này bắt buộc phải điền</string>
     <string name="error_occurred">Đã xảy ra lỗi</string>
     <string name="decryption_error">Đã xảy ra lỗi trong khi mở khóa kho</string>
     <string name="decryption_corrupt_error">Đã xảy ra lỗi trong khi mở khóa kho. Tập tin kho của bạn có thể bị hỏng.</string>
@@ -296,6 +306,9 @@
     <string name="partial_google_auth_import">Đã phát hiện quá trình xuất Google Authenticator chưa hoàn tất</string>
     <string name="partial_google_auth_import_warning">Một số mã QR bị thiếu trong quá trình nhập. Không tìm thấy các mã sau:\n\n<b>%s</b>\n\nBạn có thể tiếp tục nhập bản xuất này nhưng chúng tôi khuyên bạn nên thử lại với tất cả các mã QR để không có nguy cơ mất quyền truy cập vào bất kỳ token nào.</string>
     <string name="missing_qr_code_descriptor">• Mã QR %d</string>
+    <plurals name="import_partial_export_anyway">
+        <item quantity="other">Vẫn cứ nhập %d token</item>
+    </plurals>
     <string name="import_google_auth_failure">Quá trình xuất Google Authenticator thất bại</string>
     <string name="unrelated_google_auth_batches_error">Bản xuất chứa thông tin về một batch không liên quan. Hãy thử nhập 1 batch mỗi lần.</string>
     <string name="no_tokens_can_be_imported">Do đó, không thể nhập token nào</string>
@@ -363,6 +376,7 @@
     <string name="unable_to_process_deeplink">Không thể xử lý deep link</string>
     <string name="unable_to_read_qrcode_file">Không thể đọc và xử lý mã QR từ tập tin: %s.</string>
     <string name="unable_to_process_shared_text">Không thể xử lý văn bản được chia sẻ dưới dạng OTP</string>
+    <string name="unable_to_read_qrcode_files">Không thể đọc và xử lý vài mã QR. Chỉ %1$d/%2$d mục sẽ được nhập.</string>
     <string name="unable_to_generate_qrcode">Không thể tạo mã QR</string>
     <string name="select_picture">Chọn ảnh</string>
     <string name="select_icon">Chọn biểu tượng</string>
@@ -393,7 +407,15 @@
     <string name="time_sync_warning_message">Aegis dựa vào việc thời gian hệ thống được đồng bộ để tạo các mã chính xác. Một sự sai lệch chỉ vài giây cũng có thể dẫn đến các mã không chính xác. Có vẻ như thiết bị của bạn không được thiết lập tự đồng bộ thời gian. Bạn có muốn bật tính năng này?</string>
     <string name="time_sync_warning_disable">Đừng cảnh báo tôi nữa. Tôi biết tôi đang làm gì.</string>
     <string name="google_qr_export_unrelated">Đã tìm thấy mã QR không liên quan. Hãy thử khởi động lại trình quét.</string>
+    <plurals name="google_qr_export_scanned">
+        <item quantity="other">Đã quét %1$d/%2$d mã QR</item>
+    </plurals>
+    <string name="google_qr_export_unexpected">Dự định quét mã QR #%1$d, nhưng thay vào đó đã quét #%2$d</string>
     <string name="backup_error_bar_message"><b>Sao lưu kho thất bại</b></string>
+    <string name="backup_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">        Một bản sao lưu kho gần đây bằng cách sử dụng %1$s đã thất bại. Bản sao lưu đã thử %2$s. Vui lòng kiểm tra cài đặt sao lưu của bạn để đảm bảo quá trình sao lưu có thể hoàn tất.
+    </string>
+    <string name="backup_permission_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">        Lần sao lưu kho gần đây bằng %1$s không thành công vì Aegis không có quyền ghi vào thư mục. Đã thử sao lưu %2$s. Lỗi này có thể xảy ra nếu bạn di chuyển/đổi tên thư mục sao lưu hoặc nếu gần đây bạn đã khôi phục Aegis từ bản sao lưu. Vui lòng chọn lại thư mục sao lưu.
+    </string>
     <string name="backup_system_builtin">Sao lưu tự động tích hợp của Aegis</string>
     <string name="backup_system_android">Sao lưu đám mây của Android</string>
     <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">        Bản sao lưu cuối cùng đã cũ (%s)
@@ -464,7 +486,7 @@
     <string name="importer_help_bitwarden">Hãy chọn tập tin xuất/sao lưu của Bitwarden. Tập tin mã hoá không được hỗ trợ.</string>
     <string name="importer_help_battle_net_authenticator">Cung cấp một bản sao của <b>/data/data/com.blizzard.messenger/shared_prefs/com.blizzard.messenger.authenticator_preferences.xml</b>, nằm trong thư mục bộ nhớ trong của Battle.net Authenticator.</string>
     <string name="importer_help_duo">Cung cấp một bản sao của <b>/data/data/com.duosecurity.duomobile/files/duokit/accounts.json</b>, nằm trong thư mục bộ nhớ trong của DUO.</string>
-    <string name="importer_help_freeotp">Cung cấp một bản sao của <b>/data/data/org.fedorahosted.freeotp/shared_prefs/tokens.xml</b>, nằm ở thư mục của FreeOTP (1.x) trên bộ nhớ trong.</string>
+    <string name="importer_help_ente_auth">Cung cấp tệp xuất Ente Auth. Hiện tại chỉ hỗ trợ các tệp chưa được mã hóa.</string>
     <string name="importer_help_freeotp_plus">Cung cấp một tập tin xuất FreeOTP+.</string>
     <string name="importer_help_google_authenticator"><b>Chỉ có tập tin cơ sở dữ liệu từ Google Authenticator v5.10 và cũ hơn mới được hỗ trợ</b>.\n\nHãy lấy bản sao của <b>/data/data/com.google.android.apps.authenticator2/databases/databases</b> ở trong thư mục bộ nhớ trong của Google Authenticator.</string>
     <string name="importer_help_microsoft_authenticator">Cung cấp một bản sao của <b>/data/data/com.azure.authenticator/databases/PhoneFactor</b>, nằm trong thư mục bộ nhớ trong của Microsoft Authenticator.</string>
@@ -490,19 +512,19 @@
     <string name="pref_account_name_position_hidden">Ẩn</string>
     <string name="pref_account_name_position_end">Kế bên dịch vụ</string>
     <string name="pref_account_name_position_below">Dưới dịch vụ</string>
-    <plurals name="time_elapsed_seconds">
+    <plurals name="time_elapsed_seconds" tools:ignore="UnusedResources">
         <item quantity="other">%ds trước</item>
     </plurals>
-    <plurals name="time_elapsed_minutes">
+    <plurals name="time_elapsed_minutes" tools:ignore="UnusedResources">
         <item quantity="other">%d phút</item>
     </plurals>
-    <plurals name="time_elapsed_hours">
+    <plurals name="time_elapsed_hours" tools:ignore="UnusedResources">
         <item quantity="other">%d giờ trước</item>
     </plurals>
-    <plurals name="time_elapsed_days">
+    <plurals name="time_elapsed_days" tools:ignore="UnusedResources">
         <item quantity="other">%d ngày trước</item>
     </plurals>
-    <plurals name="time_elapsed_years">
+    <plurals name="time_elapsed_years" tools:ignore="UnusedResources">
         <item quantity="other">%d năm trước</item>
     </plurals>
     <plurals name="dropdown_checkboxes_default_count">

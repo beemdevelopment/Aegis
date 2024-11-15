@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="action_settings">Ezarpenak</string>
     <string name="action_about">Honi buruz</string>
     <string name="action_delete">Ezabatu</string>
@@ -10,6 +10,7 @@
     <string name="action_default_icon">Berrezarri abiarazle lehentsia</string>
     <string name="discard">Baztertu</string>
     <string name="save">Gorde</string>
+    <string name="all">Guztiak</string>
     <string name="issuer">Igorlea</string>
     <string name="yandex_pin">PIN (4–16 zenbaki)</string>
     <string name="motp_pin">PIN (4 zenbaki)</string>
@@ -44,6 +45,11 @@
     <string name="pref_code_group_size_title">Kode-digituen taldekatzea</string>
     <string name="pref_code_group_size_summary">Aukeratu kodeak zenbat zenbakiko taldetan taldekatuko diren</string>
     <string name="pref_account_name_position_title">Erakutsi kontuaren izena</string>
+    <string name="pref_show_next_code_title">Erakutsi hurrengo kodea</string>
+    <string name="pref_show_next_code_summary">Sortu eta erakutsi hurrengo kodea aurrez</string>
+    <string name="pref_expiration_state_title">Erakutsi iraungitzera doazen kodeak</string>
+    <string name="pref_expiration_state_summary">Aldatu kodeen koloreak eta keinuak gehitu iraungitzera doazenean</string>
+    <string name="pref_expiration_state_fallback">Aldatu kodeen koloreak iraungitzera doazenean</string>
     <string name="pref_shared_issuer_account_name_title">Kontuaren izena beharrezkoa denean bakarrik erakutsi</string>
     <string name="pref_shared_issuer_account_name_summary">Kontuen izenak jaulkitzaile bera dutenean bakarrik erakutsi. Beste kontu izenak ezkutuan egongo dira.</string>
     <string name="pref_account_name_position_summary_override">Ezarpen hau lauzen bistak gainidazten du. Kontuaren izena jaulkitzailearen azpian erakutsiko da beti.</string>
@@ -58,7 +64,6 @@
     <string name="pref_backups_reminder_summary">Erakutsi segurtasun kopia egiteko gogorarazpena zure azken aldaketen kopiarik ez bada egin.</string>
     <string name="pref_backups_reminder_dialog_title">Desaktibatu segurtasun kopiaren gogorarazpena</string>
     <string name="pref_backups_reminder_dialog_summary">Gogorarazpena desaktibatzean Aegisek ez dizu kopien inguruko abisurik emango. Honek zure gakoak galtzea ekar dezake. Gogorarazpena desaktibatu egin nahi duzu?</string>
-    <string name="pref_backups_location_title">Segurtasun-kopiak egiteko direktorioa</string>
     <string name="pref_backups_location_summary">Segurtasun-kopiak hemen gordeko dira</string>
     <string name="pref_backups_trigger_title">Segurtasun-kopien abiarazlea</string>
     <string name="pref_backups_trigger_summary">Abiarazi segurtasun-kopia eskuz</string>
@@ -104,6 +109,12 @@
     <string name="pref_encryption_summary">Zifratu biltegia eta desblokeatu pasahitzarekin edo biometriarekin</string>
     <string name="pref_biometrics_title">Desblokeatze biometrikoa</string>
     <string name="pref_biometrics_summary">Baimendu autentifikazio biometrikoa biltegia desblokeatzeko</string>
+    <string name="pref_search_behavior_summary">Bilatu: %s</string>
+    <string name="pref_search_behavior_prompt">Bilatu eremu guzti hauetan</string>
+    <string name="pref_search_behavior_type_name">Izena</string>
+    <string name="pref_search_behavior_type_issuer">Jaulkitzailea</string>
+    <string name="pref_search_behavior_type_note">Oharra</string>
+    <string name="pref_search_behavior_type_groups">Taldeak</string>
     <string name="pref_set_password_title">Aldatu pasahitza</string>
     <string name="pref_set_password_summary">Ezarri biltegia desblokeatzeko erabiliko duzun pasahitz berria</string>
     <string name="no_events_title">Ez dago gertaerarik</string>
@@ -192,6 +203,9 @@
     <string name="edit">Editatu</string>
     <string name="select_all">Aukeratu guztiak</string>
     <string name="assign_icons">Esleitu ikonoak</string>
+    <string name="assign_groups">Esleitu taldeari</string>
+    <string name="assign_groups_dialog_summary">Aukeratu aukeratutako elementuak zein talderi esleitu.</string>
+    <string name="assign_groups_dialog_dropdown">Aukeratu taldea</string>
     <string name="favorite" comment="Verb">Gogokoa</string>
     <string name="unfavorite" comment="Verb">Gogokoetatik kendu</string>
     <string name="error_all_caps">Errorea</string>
@@ -209,6 +223,7 @@
     <string name="reading_file">Fitxategia irakurtzen</string>
     <string name="requesting_root_access">Root sarbidea eskatzen</string>
     <string name="analyzing_qr">QR kodea aztertzen</string>
+    <string name="analyzing_qr_multiple">QR kodea aztertzen %1$d/%2$d (%3$s)</string>
     <plurals name="added_new_entries">
         <item quantity="one">Sarrera berri %d gehitu da</item>
         <item quantity="other">%d sarrera berri gehitu dira</item>
@@ -234,6 +249,7 @@
     <string name="copied">Kopiatuta</string>
     <string name="errors_copied">Erroreak arbelera kopiatu dira</string>
     <string name="version_copied">Bertsioa arbelera kopiatu da</string>
+    <string name="error_required_field">Eremu hau derrigorrezkoa da</string>
     <string name="error_occurred">Errore bat gertatu da</string>
     <string name="decryption_error">Errorea gertatu da biltegia desblokeatzen saiatzean</string>
     <string name="decryption_corrupt_error">Errorea gertatu da biltegia desblokeatzen saiatzean. Zure biltegi-fitxategia hondatuta egon daiteke.</string>
@@ -297,6 +313,10 @@
     <string name="partial_google_auth_import">Google Authenticatorren esportazioa ez da osoa</string>
     <string name="partial_google_auth_import_warning">QR kode batzuk falta dira zure inportazioan. Kode hauek ez dira aurktu: \n\n<b>%s</b>\n\nZatikako inportazio honekin jarrai dezakezu baina berriz ere QR kode guztiekin saiatzea gomendatzen dizugu tokenetarako sarrera gal ez dezazun.</string>
     <string name="missing_qr_code_descriptor">• QR kodea %d</string>
+    <plurals name="import_partial_export_anyway">
+        <item quantity="one">Inportatu token %d edonola ere</item>
+        <item quantity="other">Inportatu %d token edonola ere</item>
+    </plurals>
     <string name="import_google_auth_failure">Google Authenticatorren esportazioa inportatzeak huts egin du</string>
     <string name="unrelated_google_auth_batches_error">Esportazioak zerikusirik ez duen sorta baten informazioa du. Saiatu sorta bakoitza bere aldetik inportatzen.</string>
     <string name="no_tokens_can_be_imported">Ez izan da tokenik inportatu</string>
@@ -339,6 +359,7 @@
     <string name="pref_minimize_on_copy_title">Txikitu kopiatzean</string>
     <string name="pref_minimize_on_copy_summary">Aplikazioa txikitu tokena kopiatutakoan</string>
     <string name="pref_copy_behavior_title">Kopiatu tokenak arbelera</string>
+    <string name="pref_search_behavior_title">Bilaketaren portaera</string>
     <string name="pref_pause_entry_title">Izoztu tokenak ukitzean</string>
     <string name="pref_pause_entry_summary">Gelditu tokenak automatikoki freskatzea beraietan sakatzean. Tokenak ez dira eguneratuko ukitzen ez badituzu. \"Nabarmendu tokenak ukitzean\" edo \"Sakatu erakusteko\" aukeratuta izatea eskatzen du.</string>
     <string name="pin_keyboard_description">Sartu pasahitza PIN teklatua gaitzeko. Kontuan izan honek zure pasahitzak zenbakiak soilik baditu funtzionatzen duela</string>
@@ -364,6 +385,7 @@
     <string name="unable_to_process_deeplink">Ezin izan da esteka sakona prozesatu</string>
     <string name="unable_to_read_qrcode_file">Ezin izan da fitxategian oinarritutako QR kodea prozesatu: %s.</string>
     <string name="unable_to_process_shared_text">Ezin izan da partekatutako testua OTP bezala prozesatu</string>
+    <string name="unable_to_read_qrcode_files">Ezin izan dira QR kode batzuk irakurri eta prozesatu. %1$d/%2$d elementu bakarrik inportatuko dira.</string>
     <string name="unable_to_generate_qrcode">Ezin da QR kodea sortu</string>
     <string name="select_picture">Aukeratu irudia</string>
     <string name="select_icon">Aukeratu ikonoa</string>
@@ -394,7 +416,14 @@
     <string name="time_sync_warning_message">Aegis-ek konfiantza du sistemaren denboran, kode zuzenak sortzeko sinkronizatuta egoteko. Segundo batzuetako desbideratzea kode okerrak eragin ditzake. Badirudi zure gailua ez dagoela denbora automatikoki sinkronizatzeko konfiguratuta. Orain egitea gustatuko litzaizuke?</string>
     <string name="time_sync_warning_disable">Utzi aholkuak emateari. Badakit zer egiten ari naizen.</string>
     <string name="google_qr_export_unrelated">Erlazionatu gabeko QR kodea aurkitu da. Saiatu eskanerra berrabiarazten.</string>
+    <plurals name="google_qr_export_scanned">
+        <item quantity="one">%1$d/%2$d QR kode eskaneatuta</item>
+        <item quantity="other">%1$d/%2$d QR kode eskaneatuta</item>
+    </plurals>
+    <string name="google_qr_export_unexpected">#%1$d QR kodea espero zen baina #%2$d eskaneatu da</string>
     <string name="backup_error_bar_message"><b>Biltegiaren segurtasun-kopiak akatsa eman du berriki</b></string>
+    <string name="backup_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">%1$s erabiliz egindako biltegiaren segurtasun kopiak huts egin du. Saiakera noiz egin den: %2$s. Ziurtatu segurtasun kopien ezarpenak ondo daudela hauek ondo egin daitezen.    </string>
+    <string name="backup_permission_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">%1$s erabiliz egin den segurtasun-kopia baten saiakerak huts egin du Aegisek ez baitu baimenik helburuan ezer idazteko. Segurtasun kopiaren saiakera %2$s izan da. Errore hau kopia mugitu/berrizendatu egin duzulako izan daiteke edo Aegis segurtasun-kopia batetik berrezarri duzulako. Konfiguratu berriz zure kopien helburu karpeta.    </string>
     <string name="backup_system_builtin">Aegisek egindako segurtasun kopia automatikoak</string>
     <string name="backup_system_android">Androidek lainoan egidako segurtasun kopiak</string>
     <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">Azken segurtasun kopia zaharregia da (%s)
@@ -466,8 +495,11 @@
     <string name="importer_help_bitwarden">Kargatu Bitwardenen esportazio/segurtasun-kopia fitxategi bat. Ezin dituzu zifratutako fitxategiak kargatu.</string>
     <string name="importer_help_battle_net_authenticator">Battle.net Authenticatoren <b>/data/data/com.blizzard.messenger/shared_prefs/com.blizzard.messenger.authenticator_preferences.xml</b> fitxategia aukeratu.</string>
     <string name="importer_help_duo">Aukeratu <b>/data/data/com.duosecurity.duomobile/files/duokit/accounts.json</b> fitxategia, DUOren karpeten barruan dagoena.</string>
-    <string name="importer_help_freeotp">FreeTOPren (1.x bersioa) barne karpetan dagoen <b>/data/data/org.fedorahosted.freeotp/shared_prefs/tokens.xml</b> fitxategia aukeratu.</string>
+    <string name="importer_help_ente_auth">Kargatu Ente Auth esportazio fitxategia. Momentuz zifratu gabeko fitxategiak bakarrik kargatu daitezke.</string>
+    <string name="importer_help_freeotp">FreeOTP 2: Kargatu segurtasun-kopiaren fitxategia. \nFreeOTP 1.x: kargatu FreeOTPren barne-biltegiratzeko karpetan dagoen <b>/data/data/org.fedorahosted.freeotp/shared_prefs/tokens.xml</b> fitxategia.</string>
     <string name="importer_help_freeotp_plus">FreeOTP+en esportazio fitxategia aukeratu.</string>
+    <string name="importer_warning_title_freeotp2">FreeOTP 2rekin bateragarritasuna</string>
+    <string name="importer_warning_message_freeotp2">Hainbat arazo daude FreeOTP 2rekin eta segurtasun-kopia okerrak eragin ditzagete. Aegis ahalik eta elementu gehien berreskuratzen saiatuko da baina horietako batzuk edo agian guztiek huts egitea gerta daiteke.</string>
     <string name="importer_help_google_authenticator">&lt;b&gt;Google Authenticator aplikazioaren v5.10 bertsioa edo lehenagokoak diren datu-baseak erabili daitezke. \n\n&lt;b&gt;data/data/com.google.android.apps.authenticator2/databases/databases&lt;/b&gt; fitxategiaren kopia bat eman, berau Google Authenticator aplikazioaren barne biltegiratzean dago.</string>
     <string name="importer_help_microsoft_authenticator">Microsoft Authenticatoren <b>/data/data/com.azure.authenticator/databases/PhoneFactor</b> fitxategia aukeratu.</string>
     <string name="importer_help_plain_text">Google Authenticator URIak dituen testu hutseko fitxategia aukeratu.</string>
@@ -493,23 +525,23 @@
     <string name="pref_account_name_position_hidden">Ezkutua</string>
     <string name="pref_account_name_position_end">Jaulkitzailearen ostean</string>
     <string name="pref_account_name_position_below">Jaulkitzailearen azpian</string>
-    <plurals name="time_elapsed_seconds">
+    <plurals name="time_elapsed_seconds" tools:ignore="UnusedResources">
         <item quantity="one">Duela segundo %d</item>
         <item quantity="other">Duela %d segundo</item>
     </plurals>
-    <plurals name="time_elapsed_minutes">
+    <plurals name="time_elapsed_minutes" tools:ignore="UnusedResources">
         <item quantity="one">Duela minutu %d</item>
         <item quantity="other">Duela %d minutu</item>
     </plurals>
-    <plurals name="time_elapsed_hours">
+    <plurals name="time_elapsed_hours" tools:ignore="UnusedResources">
         <item quantity="one">Duela ordu %d</item>
         <item quantity="other">Duela %d ordu</item>
     </plurals>
-    <plurals name="time_elapsed_days">
+    <plurals name="time_elapsed_days" tools:ignore="UnusedResources">
         <item quantity="one">Duela egun %d</item>
         <item quantity="other">Duela %d egun</item>
     </plurals>
-    <plurals name="time_elapsed_years">
+    <plurals name="time_elapsed_years" tools:ignore="UnusedResources">
         <item quantity="one">Duela urte %d</item>
         <item quantity="other">Duela %d urte</item>
     </plurals>

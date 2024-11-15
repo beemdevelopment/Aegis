@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="action_settings">Pengaturan</string>
     <string name="action_about">Tentang</string>
     <string name="action_delete">Hapus</string>
@@ -58,7 +58,6 @@
     <string name="pref_backups_reminder_summary">Tampilkan pengingat untuk mencadangkan cadangan jika Anda belum mencadangkan perubahan terakhir.</string>
     <string name="pref_backups_reminder_dialog_title">Menonaktifkan pengingat cadangan</string>
     <string name="pref_backups_reminder_dialog_summary">Dengan menonaktifkan pengingat ini, Aegis tidak akan memberi tahu Anda apakah Anda memiliki perubahan yang belum dicadangkan atau tidak. Hal ini membuat Anda berisiko kehilangan akses ke token Anda. Apakah Anda yakin ingin menonaktifkan pengingat ini?</string>
-    <string name="pref_backups_location_title">Direktori untuk cadangan berkas</string>
     <string name="pref_backups_location_summary">Cadangan akan disimpan di</string>
     <string name="pref_backups_trigger_title">Perintah pencadangan</string>
     <string name="pref_backups_trigger_summary">Perintah pencadangan secara manual</string>
@@ -385,6 +384,7 @@
     <string name="time_sync_warning_message">Aegis mengandalkan waktu sistem untuk disinkronkan menjadi kode yang benar. Selisih hanya beberapa detik dapat menyebabkan kode salah. Sepertinya perangkat Anda tidak dikonfigurasi untuk menyinkronkan waktu secara otomatis. Apakah Anda ingin melakukannya sekarang?</string>
     <string name="time_sync_warning_disable">Berhenti memperingatkan saya. Saya tahu apa yang saya lakukan.</string>
     <string name="google_qr_export_unrelated">Ditemukan kode QR yang tidak terkait. Coba mulai ulang pemindai.</string>
+    <string name="backup_error_bar_message"><b>Pencadangan Brankas baru-baru ini gagal</b></string>
     <string name="backup_system_builtin">Pencadangan otomatis bawaan Aegis</string>
     <string name="backup_system_android">Sistem pencadangan awan Android</string>
     <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">        Backup terakhir sudah kedaluwarsa (%s)
@@ -457,7 +457,6 @@
     <string name="importer_help_battle_net_authenticator">Sediakan salinan <b>/data/data/com.blizzard.messenger/shared_prefs/com.blizzard.messenger.authenticator_preferences.xml</b>, yang terletak di direktori penyimpanan internal Battle.net Authenticator.</string>
     <string name="importer_help_duo">Siapkan salinan
 <b>/data/data/com.duosecurity.duomobile/files/duokit/accounts.json</b>, yang terletak di direktori penyimpanan internal DUO.</string>
-    <string name="importer_help_freeotp">Berikan salinan dari <b>/data/data/org.fedorahosted.freeotp/shared_prefs/tokens.xml</b> yang terletak di direktori penyimpanan internal FreeOTP (1.x).</string>
     <string name="importer_help_freeotp_plus">Siapkan berkas ekspor FreeOTP+.</string>
     <string name="importer_help_google_authenticator"><b>Hanya berkas basis data dari Google Authenticator v5.10 dan sebelumnya yang didukung</b>.\n\nMasukkan salinan dari <b>/data/data/com.google.android.apps.authenticator2/databases/databases</b>, yang tersimpan di direktori penyimpanan internal Google Authenticator.</string>
     <string name="importer_help_microsoft_authenticator">Siapkan salinan
@@ -484,19 +483,19 @@
     <string name="pref_account_name_position_hidden">Tersembunyi</string>
     <string name="pref_account_name_position_end">Di sebelah emiten</string>
     <string name="pref_account_name_position_below">Di bawah emiten</string>
-    <plurals name="time_elapsed_seconds">
+    <plurals name="time_elapsed_seconds" tools:ignore="UnusedResources">
         <item quantity="other">%d detik yang lalu</item>
     </plurals>
-    <plurals name="time_elapsed_minutes">
+    <plurals name="time_elapsed_minutes" tools:ignore="UnusedResources">
         <item quantity="other">%d menit yang lalu</item>
     </plurals>
-    <plurals name="time_elapsed_hours">
+    <plurals name="time_elapsed_hours" tools:ignore="UnusedResources">
         <item quantity="other">%d jam yang lalu</item>
     </plurals>
-    <plurals name="time_elapsed_days">
+    <plurals name="time_elapsed_days" tools:ignore="UnusedResources">
         <item quantity="other">%d hari yang lalu</item>
     </plurals>
-    <plurals name="time_elapsed_years">
+    <plurals name="time_elapsed_years" tools:ignore="UnusedResources">
         <item quantity="other">%d tahun yang lalu</item>
     </plurals>
     <plurals name="dropdown_checkboxes_default_count">

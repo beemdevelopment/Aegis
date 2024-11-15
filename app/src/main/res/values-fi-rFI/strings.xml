@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="action_settings">Asetukset</string>
     <string name="action_about">Tietoja</string>
     <string name="action_delete">Poista</string>
@@ -10,6 +10,7 @@
     <string name="action_default_icon">Palauta oletuskuvake</string>
     <string name="discard">Hylkää</string>
     <string name="save">Tallenna</string>
+    <string name="all">Kaikki</string>
     <string name="issuer">Myöntäjä</string>
     <string name="yandex_pin">PIN (4 - 16 numeroa)</string>
     <string name="motp_pin">PIN (4 numeroa)</string>
@@ -44,6 +45,11 @@
     <string name="pref_code_group_size_title">Koodinumeroiden ryhmittely</string>
     <string name="pref_code_group_size_summary">Valitse koodien ryhmittelyyn käytettävien numeroiden määrä</string>
     <string name="pref_account_name_position_title">Näytä tilin nimi</string>
+    <string name="pref_show_next_code_title">Näytä seuraava koodi</string>
+    <string name="pref_show_next_code_summary">Luo ja näytä seuraava koodi etukäteen</string>
+    <string name="pref_expiration_state_title">Ilmoita, milloin koodit ovat vanhentumassa</string>
+    <string name="pref_expiration_state_summary">Muuta koodien väriä ja laita ne vilkkumaan, kun ne ovat vanhentumassa</string>
+    <string name="pref_expiration_state_fallback">Vaihda koodien väriä, kun ne ovat vanhentumassa</string>
     <string name="pref_shared_issuer_account_name_title">Näytä tilin nimi vain tarvittaessa</string>
     <string name="pref_shared_issuer_account_name_summary">Näytä tilien nimet vain silloin, kun niillä on sama myöntäjä. Muiden tilien nimet piilotetaan.</string>
     <string name="pref_account_name_position_summary_override">Tämä asetus ohitetaan laatat-näkymätilassa. Tilin nimi näytetään myöntäjän alapuolella.</string>
@@ -58,7 +64,6 @@
     <string name="pref_backups_reminder_summary">Muistuta holvisi varmuuskopioimisesta, jos viimeisimpiä muutoksiasi ei ole varmuuskopioitu.</string>
     <string name="pref_backups_reminder_dialog_title">Poista varmuuskopiomuistutus käytöstä</string>
     <string name="pref_backups_reminder_dialog_summary">Tämän muistutuksen poistaminen käytöstä tarkoittaa, että Aegis ei kerro sinulle, onko sinulla varmuuskopioimattomia muutoksia. Tämän vaarantaa pääsysi todennuskoodeihisi. Haluatko varmasti poistaa muistutuksen käytöstä?</string>
-    <string name="pref_backups_location_title">Varmuuskopiotiedostojen hakemisto</string>
     <string name="pref_backups_location_summary">Varmuuskopiot tallennetaan sijaintiin</string>
     <string name="pref_backups_trigger_title">Varmuuskopion käynnistys</string>
     <string name="pref_backups_trigger_summary">Käynnistä varmuuskopio manuaalisesti</string>
@@ -104,6 +109,12 @@
     <string name="pref_encryption_summary">Salaa holvi ja avaa se salasanalla tai biometrialla</string>
     <string name="pref_biometrics_title">Biometrinen lukituksen avaus</string>
     <string name="pref_biometrics_summary">Salli holvin avaus biometrisillä tiedoilla</string>
+    <string name="pref_search_behavior_summary">Hae: %s</string>
+    <string name="pref_search_behavior_prompt">Haku seuraavista kentistä</string>
+    <string name="pref_search_behavior_type_name">Nimi</string>
+    <string name="pref_search_behavior_type_issuer">Myöntäjä</string>
+    <string name="pref_search_behavior_type_note">Muistiinpano</string>
+    <string name="pref_search_behavior_type_groups">Ryhmät</string>
     <string name="pref_set_password_title">Vaihda salasana</string>
     <string name="pref_set_password_summary">Aseta uusi holvin avaamiseen tarvittava salasana</string>
     <string name="no_events_title">Ei raportoituja tapahtumia</string>
@@ -192,6 +203,9 @@
     <string name="edit">Muokkaa</string>
     <string name="select_all">Valitse kaikki</string>
     <string name="assign_icons">Määritä kuvakkeet</string>
+    <string name="assign_groups">Lisää ryhmään</string>
+    <string name="assign_groups_dialog_summary">Valitse ryhmä, johon haluat lisätä valitut kohteet.</string>
+    <string name="assign_groups_dialog_dropdown">Valitse ryhmä</string>
     <string name="favorite" comment="Verb">Lisää suosikiksi</string>
     <string name="unfavorite" comment="Verb">Poista suosikeista</string>
     <string name="error_all_caps">VIRHE</string>
@@ -209,6 +223,7 @@
     <string name="reading_file">Luetaan tiedostoa</string>
     <string name="requesting_root_access">Pyydetään root-oikeuksia</string>
     <string name="analyzing_qr">Analysoidaan QR-koodia</string>
+    <string name="analyzing_qr_multiple">Luetaan QR-koodia %1$d/%2$d (%3$s)</string>
     <plurals name="added_new_entries">
         <item quantity="one">%d uusi kohde lisätty holviin</item>
         <item quantity="other">%d uutta kohdetta lisätty holviin</item>
@@ -234,6 +249,7 @@
     <string name="copied">Kopioitu</string>
     <string name="errors_copied">Virheet kopioitiin leikepöydälle</string>
     <string name="version_copied">Versio kopioitiin leikepöydälle</string>
+    <string name="error_required_field">Tämä kenttä vaaditaan</string>
     <string name="error_occurred">Tapahtui virhe</string>
     <string name="decryption_error">Holvin avaamisessa tapahtui virhe</string>
     <string name="decryption_corrupt_error">Holvin avaamisessa tapahtui virhe. Holvitiedostosi saattaa olla korruptoitunut.</string>
@@ -297,6 +313,10 @@
     <string name="partial_google_auth_import">Puutteellinen Google Authenticatorin varmuuskopio havaittu</string>
     <string name="partial_google_auth_import_warning">Jotkin QR-koodit puuttuvat tuonnistasi. Seuraavia koodeja ei löytynyt:\n\n<b>%s</b>\n\nVoit jatkaa tämän osittaisen viennin tuontia, mutta suosittelemme kokeilemaan uudelleen kaikilla QR-koodeilla, jotta et menetä pääsyä todennuskoodeihin.</string>
     <string name="missing_qr_code_descriptor">• QR-koodi %d</string>
+    <plurals name="import_partial_export_anyway">
+        <item quantity="one">Tuo %d todennuskoodi silti</item>
+        <item quantity="other">Tuo %d todennuskoodia silti</item>
+    </plurals>
     <string name="import_google_auth_failure">Google Authenticatorin varmuuskopion tuonti epäonnistui</string>
     <string name="unrelated_google_auth_batches_error">Vienti sisältää tietoa liittymättömästä erästä. Yritä tuoda 1 erä kerrallaan.</string>
     <string name="no_tokens_can_be_imported">Tämän seurauksena yhtäkään todennuskoodia ei voitu tuoda</string>
@@ -339,6 +359,7 @@
     <string name="pref_minimize_on_copy_title">Pienennä kopioidessa</string>
     <string name="pref_minimize_on_copy_summary">Pienennä sovellus todennuskoodin kopioinnin jälkeen</string>
     <string name="pref_copy_behavior_title">Kopioi todennuskoodit leikepöydälle</string>
+    <string name="pref_search_behavior_title">Hakukäyttäytyminen</string>
     <string name="pref_pause_entry_title">Jäädytä todennuskoodit napauttamalla</string>
     <string name="pref_pause_entry_summary">Keskeytä todennuskoodien automaattinen päivitys napauttamalla niitä. Todennuskoodit eivät päivity automaattisesti, niin kauan kun ne ovat valittuina. Vaatii \"Korosta todennuskoodit napauttamalla\" tai \"Paljasta napauttamalla\" -asetusten käyttöönottoa.</string>
     <string name="pin_keyboard_description">Ota PIN-näppäimistö käyttöön antamalla salasanasi. Tämä toimii vain, jos salasanasi koostuu pelkästään numeroista</string>
@@ -364,6 +385,7 @@
     <string name="unable_to_process_deeplink">Syvää linkkiä ei voitu käsitellä</string>
     <string name="unable_to_read_qrcode_file">Tiedoston %s QR-koodia ei voitu lukea ja käsitellä.</string>
     <string name="unable_to_process_shared_text">Jaettua tekstiä ei voitu käsitellä OTP:nä</string>
+    <string name="unable_to_read_qrcode_files">Joitakin QR-koodeja ei voitu lukea ja käsitellä. Vain %1$d/%2$d kohdetta tuodaan.</string>
     <string name="unable_to_generate_qrcode">QR-koodia ei voitu luoda</string>
     <string name="select_picture">Valitse kuva</string>
     <string name="select_icon">Valitse kuvake</string>
@@ -394,7 +416,16 @@
     <string name="time_sync_warning_message">Aegis vaatii, että järjestelmän aika on synkronoitu oikeiden koodien luomiseksi. Vain muutaman sekunnin poikkeama voi johtaa virheellisiin koodeihin. Näyttää siltä, että laitettasi ei ole määritetty synkronoimaan aika automaattisesti. Haluatko tehdä niin nyt?</string>
     <string name="time_sync_warning_disable">Lopeta varoitus. Tiedän mitä teen.</string>
     <string name="google_qr_export_unrelated">Asiaankuulumaton QR-koodi löytyi. Yritä käynnistää skanneri uudelleen.</string>
+    <plurals name="google_qr_export_scanned">
+        <item quantity="one">%1$d/%2$d QR-koodi skannattu</item>
+        <item quantity="other">%1$d/%2$d QR-koodia skannattu</item>
+    </plurals>
+    <string name="google_qr_export_unexpected">Odotettiin QR-koodia #%1$d, mutta skannattiin #%2$d sen sijaan</string>
     <string name="backup_error_bar_message"><b>Holvin varmuuskopiointi epäonnistui äskettäin</b></string>
+    <string name="backup_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">        Äskettäinen holvin varmuuskopiointiyritys %1$s käyttämällä epäonnistui, koska tapahtui virhe. Varmuuskopiointia yritettiin %2$s. Tarkista varmuuskopiointiasetukset varmistaaksesi, että varmuuskopiointi onnistuu.
+    </string>
+    <string name="backup_permission_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">        Äskettäinen holvin varmuuskopiointiyritys %1$s käyttäen epäonnistui, koska Aegisilla ei ollut kirjoitusoikeutta varmuuskopiointikohteeseen. Varmuuskopiointia yritettiin %2$s. Tämä virhe voi ilmetä, jos olet siirtänyt tai nimennyt varmuuskopiointikohteen uudelleen tai jos olet hiljattain palauttanut Aegiksen varmuuskopiosta. Määritä varmuuskopiointikohde uudelleen.
+    </string>
     <string name="backup_system_builtin">Aegisin sisäänrakennetut automaattiset varmuuskopiot</string>
     <string name="backup_system_android">Androidin pilvivarmuuskopiointijärjestelmä</string>
     <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">        Viimeisin varmuuskopiointi on vanhentunut (%s)
@@ -467,7 +498,7 @@
     <string name="importer_help_bitwarden">Anna Bitwardenin vienti-/varmuuskopiotiedosto. Salattuja tiedostoja ei tueta.</string>
     <string name="importer_help_battle_net_authenticator">Anna kopio tiedostosta <b>/data/data/com.blizzard.messenger/shared_prefs/com.blizzard.messenger.authenticator_preferences.xml</b>, joka sijaitsee Battle.net Authenticatorin sisäisessä tallennushakemistossa.</string>
     <string name="importer_help_duo">Anna kopio tiedostosta <b>/data/data/com.duosecurity.duomobile/files/duokit/accounts.json</b>, joka sijaitsee DUO:n sisäisessä tallennushakemistossa.</string>
-    <string name="importer_help_freeotp">Anna kopio tiedostosta <b>/data/data/org.fedorahosted.freeotp/shared_prefs/tokens.xml</b>, joka sijaitsee FreeOTP:n (1.x) sisäisessä tallennushakemistossa.</string>
+    <string name="importer_help_ente_auth">Anna Ente Auth -vientitiedosto. Vain salaamattomia tiedostoja tuetaan tällä hetkellä.</string>
     <string name="importer_help_freeotp_plus">Anna FreeOTP+:n vientitiedosto.</string>
     <string name="importer_help_google_authenticator"><b>Vain Google Authenticator v5.10 tai vanhemman tietokantatiedostoja tuetaan</b>.\n\nAnna kopio kohteesta <b>/data/data/com.google.android.apps.authenticator2/databases/databases</b>, joka sijaitsee Google Authenticatorin sisäisessä tallennushakemistossa.</string>
     <string name="importer_help_microsoft_authenticator">Anna kopio tiedostosta <b>/data/data/com.azure.authenticator/databases/PhoneFactor</b>, joka sijaitsee Microsoft Authenticatorin sisäisessä tallennushakemistossa.</string>
@@ -493,23 +524,23 @@
     <string name="pref_account_name_position_hidden">Piilotettu</string>
     <string name="pref_account_name_position_end">Myöntäjän vierellä</string>
     <string name="pref_account_name_position_below">Myöntäjän alla</string>
-    <plurals name="time_elapsed_seconds">
+    <plurals name="time_elapsed_seconds" tools:ignore="UnusedResources">
         <item quantity="one">%d sekunti sitten</item>
         <item quantity="other">%d sekuntia sitten</item>
     </plurals>
-    <plurals name="time_elapsed_minutes">
+    <plurals name="time_elapsed_minutes" tools:ignore="UnusedResources">
         <item quantity="one">%d minuutti sitten</item>
         <item quantity="other">%d minuuttia sitten</item>
     </plurals>
-    <plurals name="time_elapsed_hours">
+    <plurals name="time_elapsed_hours" tools:ignore="UnusedResources">
         <item quantity="one">%d tunti sitten</item>
         <item quantity="other">%d tuntia sitten</item>
     </plurals>
-    <plurals name="time_elapsed_days">
+    <plurals name="time_elapsed_days" tools:ignore="UnusedResources">
         <item quantity="one">%d päivä sitten</item>
         <item quantity="other">%d päivää sitten</item>
     </plurals>
-    <plurals name="time_elapsed_years">
+    <plurals name="time_elapsed_years" tools:ignore="UnusedResources">
         <item quantity="one">%d vuosi sitten</item>
         <item quantity="other">%d vuotta sitten</item>
     </plurals>

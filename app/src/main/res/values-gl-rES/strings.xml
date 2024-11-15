@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="action_settings">Axustes</string>
     <string name="action_about">Información</string>
     <string name="action_delete">Eliminar</string>
@@ -57,7 +57,6 @@
     <string name="pref_backups_reminder_summary">Mostra un recordatorio para facer a copia de seguridade do almacén, no caso de que non fixeras ningunha copia dos teus últimos cambios.</string>
     <string name="pref_backups_reminder_dialog_title">Desactivar recordatorio da copia de seguridade</string>
     <string name="pref_backups_reminder_dialog_summary">Se desactivas este recordatorio, Aegis non che dirá se hai cambios sen gardar ou non nas copias de seguridade, polo que estarás no risco de perder o acceso aos teus tokens. Tes a certeza de que queres desactivar o recordatorio?</string>
-    <string name="pref_backups_location_title">Directorio para os ficheiros das copias de seguridade</string>
     <string name="pref_backups_location_summary">As copias de seguridade gardaranse en</string>
     <string name="pref_backups_trigger_title">Executar copia de seguridade</string>
     <string name="pref_backups_trigger_summary">Lanza manualmente unha copia de seguridade</string>
@@ -465,7 +464,6 @@
     <string name="importer_help_bitwarden">Proporciona un ficheiro de copia de seguridade ou de exportación de Bitwarden. Non se admiten os ficheiros cifrados.</string>
     <string name="importer_help_battle_net_authenticator">Proporciona unha copia de <b>/data/data/com.blizzard.messenger/shared_prefs/com.blizzard.messenger.authenticator_preferences.xml</b>, localizado no directorio do almacenamento interno de Battle.net Authenticator.</string>
     <string name="importer_help_duo">Proporciona unha copia de <b>/data/data/com.duosecurity.duomobile/files/duokit/accounts.json</b>, localizado no directorio do almacenamento interno de DUO.</string>
-    <string name="importer_help_freeotp">Proporciona unha copia de <b>/data/data/org.fedorahosted.freeotp/shared_prefs/tokens.xml</b>, localizado no directorio do almacenamento interno de FreeOTP (1.x).</string>
     <string name="importer_help_freeotp_plus">Proporciona un ficheiro de exportación de FreeOTP+.</string>
     <string name="importer_help_google_authenticator"><b>Só se admiten ficheiros de base de datos de Google Authenticator v5.10 e anteriores</b>.\n\nProporciona unha copia de <b>/data/data/com.google.android.apps.authenticator2/databases/databases</b>, localizado no directorio do almacenamento interno de Google Authenticator.</string>
     <string name="importer_help_microsoft_authenticator">Proporciona unha copia de <b>/data/data/com.azure.authenticator/databases/PhoneFactor</b>, localizado no directorio do almacenamento interno de Microsoft Authenticator.</string>
@@ -491,23 +489,23 @@
     <string name="pref_account_name_position_hidden">Oculto</string>
     <string name="pref_account_name_position_end">Ao lado do emisor</string>
     <string name="pref_account_name_position_below">Debaixo do emisor</string>
-    <plurals name="time_elapsed_seconds">
+    <plurals name="time_elapsed_seconds" tools:ignore="UnusedResources">
         <item quantity="one">fai %d segundo</item>
         <item quantity="other">fai %d segundos</item>
     </plurals>
-    <plurals name="time_elapsed_minutes">
+    <plurals name="time_elapsed_minutes" tools:ignore="UnusedResources">
         <item quantity="one">fai %d minuto</item>
         <item quantity="other">fai %d minutos</item>
     </plurals>
-    <plurals name="time_elapsed_hours">
+    <plurals name="time_elapsed_hours" tools:ignore="UnusedResources">
         <item quantity="one">fai %d hora</item>
         <item quantity="other">fai %d horas</item>
     </plurals>
-    <plurals name="time_elapsed_days">
+    <plurals name="time_elapsed_days" tools:ignore="UnusedResources">
         <item quantity="one">fai %d día</item>
         <item quantity="other">fai %d días</item>
     </plurals>
-    <plurals name="time_elapsed_years">
+    <plurals name="time_elapsed_years" tools:ignore="UnusedResources">
         <item quantity="one">fai %d ano</item>
         <item quantity="other">fai %d anos</item>
     </plurals>

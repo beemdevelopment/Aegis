@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="action_settings">Configurações</string>
     <string name="action_about">Sobre</string>
     <string name="action_delete">Excluir</string>
@@ -10,6 +10,7 @@
     <string name="action_default_icon">Restaurar ícone padrão</string>
     <string name="discard">Descartar</string>
     <string name="save">Salvar</string>
+    <string name="all">Tudo</string>
     <string name="issuer">Emissor</string>
     <string name="yandex_pin">PIN (4–16 dígitos)</string>
     <string name="motp_pin">PIN (4 dígitos)</string>
@@ -44,6 +45,11 @@
     <string name="pref_code_group_size_title">Agrupamento de dígitos</string>
     <string name="pref_code_group_size_summary">Selecione o número de dígitos para agrupar códigos</string>
     <string name="pref_account_name_position_title">Mostrar nome da conta</string>
+    <string name="pref_show_next_code_title">Mostrar próximo código</string>
+    <string name="pref_show_next_code_summary">Gerar e mostrar o próximo código antes do tempo</string>
+    <string name="pref_expiration_state_title">Indicar quando códigos estão prestes a expirar</string>
+    <string name="pref_expiration_state_summary">Mudar a cor dos códigos e fazê-los piscar quando estão prestes a expirar</string>
+    <string name="pref_expiration_state_fallback">Mudar a cor dos códigos quando estão prestes a expirar</string>
     <string name="pref_shared_issuer_account_name_title">Exibir o nome da conta apenas quando necessário</string>
     <string name="pref_shared_issuer_account_name_summary">Mostra os nomes de conta apenas quando eles compartilham o mesmo emissor. Outros nomes de conta serão ocultados.</string>
     <string name="pref_account_name_position_summary_override">Esta configuração é substituída pelo modo de visualização em grade. O nome da conta será mostrado abaixo do emissor.</string>
@@ -58,7 +64,6 @@
     <string name="pref_backups_reminder_summary">Mostrar um lembrete para fazer backup do seu cofre caso você não o tenha feito de suas alterações mais recentes.</string>
     <string name="pref_backups_reminder_dialog_title">Desabilitar lembrete de backup</string>
     <string name="pref_backups_reminder_dialog_summary">Desativar este lembrete significa que o Aegis não vai te dizer se você tem ou não alterações que ainda não foram salvas. Isso te coloca em risco de perder acesso aos seus tokens. Tem certeza de que deseja desativar o lembrete?</string>
-    <string name="pref_backups_location_title">Diretório para aquivos de backup</string>
     <string name="pref_backups_location_summary">Backups são armazenados em</string>
     <string name="pref_backups_trigger_title">Ativar backup</string>
     <string name="pref_backups_trigger_summary">Ativa manualmente um backup</string>
@@ -198,6 +203,9 @@
     <string name="edit">Editar</string>
     <string name="select_all">Selecionar tudo</string>
     <string name="assign_icons">Atribuir ícones</string>
+    <string name="assign_groups">Atribuir ao grupo</string>
+    <string name="assign_groups_dialog_summary">Selecione um grupo para o qual deseja atribuir os itens selecionados.</string>
+    <string name="assign_groups_dialog_dropdown">Selecionar grupo</string>
     <string name="favorite" comment="Verb">Favorito</string>
     <string name="unfavorite" comment="Verb">Remover dos favoritos</string>
     <string name="error_all_caps">ERRO</string>
@@ -215,6 +223,7 @@
     <string name="reading_file">Lendo arquivo</string>
     <string name="requesting_root_access">Solicitando acesso root</string>
     <string name="analyzing_qr">Analisando QR code</string>
+    <string name="analyzing_qr_multiple">Lendo código QR %1$d/%2$d (%3$s)</string>
     <plurals name="added_new_entries">
         <item quantity="one">Adicionada %d nova entrada ao cofre</item>
         <item quantity="other">Adicionadas %d novas entradas ao cofre</item>
@@ -240,6 +249,7 @@
     <string name="copied">Copiado</string>
     <string name="errors_copied">Erros copiados para a área de transferência</string>
     <string name="version_copied">Versão copiada para a área de transferência</string>
+    <string name="error_required_field">Este campo é obrigatório</string>
     <string name="error_occurred">Um erro ocorreu</string>
     <string name="decryption_error">Um erro ocorreu durante a tentativa de desbloqueio do cofre</string>
     <string name="decryption_corrupt_error">Um erro ocorreu durante a tentativa de desbloqueio do cofre. Seu arquivo do cofre pode estar corrompido.</string>
@@ -303,6 +313,10 @@
     <string name="partial_google_auth_import">Exportação incompleta do Google Authenticator detectada</string>
     <string name="partial_google_auth_import_warning">Alguns QR codes estão faltando em sua importação. Os seguintes códigos não foram encontrados:\n\n<b>%s</b>\n\nVocê pode continuar importando esta exportação parcial, mas recomendamos tentar novamente com todos os códigos QR para que não corra o risco de perder o acesso a quaisquer tokens.</string>
     <string name="missing_qr_code_descriptor">• QR code %d</string>
+    <plurals name="import_partial_export_anyway">
+        <item quantity="one">Importar %d token mesmo assim</item>
+        <item quantity="other">Importar %d tokens mesmo assim</item>
+    </plurals>
     <string name="import_google_auth_failure">Falha ao importar exportação do Google Authenticator</string>
     <string name="unrelated_google_auth_batches_error">A exportação contém informações para um lote não relacionado. Tente importar 1 lote de cada vez.</string>
     <string name="no_tokens_can_be_imported">Como resultado, nenhum token pode ser importado</string>
@@ -371,6 +385,7 @@
     <string name="unable_to_process_deeplink">Incapaz de processar a ligação profunda</string>
     <string name="unable_to_read_qrcode_file">Incapaz de ler e processar o QR code do arquivo: %s.</string>
     <string name="unable_to_process_shared_text">Incapaz de processar texto compartilhado como OTP</string>
+    <string name="unable_to_read_qrcode_files">Não foi possível ler e processar alguns dos códigos QR. Somente %1$d de %2$d itens serão importados.</string>
     <string name="unable_to_generate_qrcode">Não foi possível gerar o QR code</string>
     <string name="select_picture">Selecionar imagem</string>
     <string name="select_icon">Selecionar ícone</string>
@@ -401,7 +416,17 @@
     <string name="time_sync_warning_message">Aegis depende da hora do sistema para ficar em sincronia para gerar os códigos corretos. Uma diferença de apenas alguns segundos poderia resultar em códigos incorretos. Parece que seu dispositivo não está configurado para sincronizar automaticamente a hora. Gostaria de ativar essa opção agora?</string>
     <string name="time_sync_warning_disable">Pare de me avisar. Eu sei o que estou fazendo.</string>
     <string name="google_qr_export_unrelated">QR code não relacionado encontrado. Tente reiniciar o scanner.</string>
+    <plurals name="google_qr_export_scanned">
+        <item quantity="one">%1$d de %2$d códigos QR escaneados</item>
+        <item quantity="other">%1$d de %2$d códigos QR escaneados</item>
+    </plurals>
+    <string name="google_qr_export_unexpected">Esperado código QR #%1$d, mas #%2$d foi escaneado em vez disso</string>
     <string name="backup_error_bar_message"><b>Backup do cofre falhou recentemente</b></string>
+    <string name="backup_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">        Uma tentativa recente de backup do cofre usando %1$s falhou por conta de um erro. A tentativa foi feita %2$s. Verifique suas configurações de backup para ter certeza que backups possam ser feitos com sucesso.
+    </string>
+    <string name="backup_permission_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">Uma tentativa recente de backup do cofre usando %1$s falhou pois o Aegis não tinha permissão para escrever no local do backup. A tentativa foi feita %2$s. Este erro pode ocorrer se você moveu ou renomeou o local de backup ou se recentemente restaurou um backup do Aegis.
+Por favor, configure o local de backup.
+    </string>
     <string name="backup_system_builtin">Backups automáticos do Aegis</string>
     <string name="backup_system_android">Sistema de backup em nuvem do Android</string>
     <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">        O backup mais recente está desatualizado (%s)
@@ -474,8 +499,11 @@
     <string name="importer_help_bitwarden">Forneça um arquivo de exportação/backup do Bitwarden. Arquivos criptografados não são suportados.</string>
     <string name="importer_help_battle_net_authenticator">Forneça uma cópia de <b>/data/data/com.blizzard.messenger/shared_prefs/com.blizzard.messenger.authenticator_preferences.xml</b>, localizado no diretório de armazenamento interno do Battle.net Authenticator.</string>
     <string name="importer_help_duo">Forneça uma cópia de <b>/data/data/com.duosecurity.duomobile/files/duokit/accounts.json</b>, localizada no diretório de armazenamento interno do DUO.</string>
-    <string name="importer_help_freeotp">Fornecer uma cópia de <b>/data/data/org.fedorahosted.freeotp/shared_prefs/tokens.xml</b>, localizado no diretório de armazenamento interno do FreeOTP.</string>
+    <string name="importer_help_ente_auth">Fornecer um arquivo de exportação de Ente Auth. Atualmente são suportados apenas arquivos não criptografados.</string>
+    <string name="importer_help_freeotp">FreeOTP 2: Forneça um arquivo de backup.\nFreeOTP 1.x: Forneça uma cópia de <b>/data/data/org.fedorahosted.freeotp/shared_prefs/tokens.xml</b>, localizado na pasta de armazenamento interno do FreeOTP.</string>
     <string name="importer_help_freeotp_plus">Fornecer um arquivo de exportação FreeOTP+.</string>
+    <string name="importer_warning_title_freeotp2">Compatibilidade com o FreeOTP 2</string>
+    <string name="importer_warning_message_freeotp2">Existe um número de problemas com o FreeOTP 2 que podem resultar em backups corrompidos. O Aegis tentará salvar o máximo de itens possíveis, mas é possível que alguns ou até todos falhem ao ser importados.</string>
     <string name="importer_help_google_authenticator"><b>Apenas os arquivos de banco de dados do Google Authenticator v5.10 e anteriores são suportados</b>.\n\nForneça uma cópia de <b>/data/data/com.google.android.apps.authenticator2/databases/databases</b>, localizado no diretório de armazenamento interno do Google Authenticator.</string>
     <string name="importer_help_microsoft_authenticator">Fornecer uma cópia de <b>/data/data/com.azure.authenticator/databases/PhoneFactor</b>, localizado no diretório de armazenamento interno do Microsoft Authenticator.</string>
     <string name="importer_help_plain_text">Fornecer um arquivo de texto simples com um URI do Google Authenticator em cada linha.</string>
@@ -500,23 +528,23 @@
     <string name="pref_account_name_position_hidden">Oculto</string>
     <string name="pref_account_name_position_end">Ao lado do emissor</string>
     <string name="pref_account_name_position_below">Abaixo do emissor</string>
-    <plurals name="time_elapsed_seconds">
+    <plurals name="time_elapsed_seconds" tools:ignore="UnusedResources">
         <item quantity="one">%d segundo atrás</item>
         <item quantity="other">%d segundos atrás</item>
     </plurals>
-    <plurals name="time_elapsed_minutes">
+    <plurals name="time_elapsed_minutes" tools:ignore="UnusedResources">
         <item quantity="one">%d minuto atrás</item>
         <item quantity="other">%d minutos atrás</item>
     </plurals>
-    <plurals name="time_elapsed_hours">
+    <plurals name="time_elapsed_hours" tools:ignore="UnusedResources">
         <item quantity="one">%d hora atrás</item>
         <item quantity="other">%d horas atrás</item>
     </plurals>
-    <plurals name="time_elapsed_days">
+    <plurals name="time_elapsed_days" tools:ignore="UnusedResources">
         <item quantity="one">%d dia atrás</item>
         <item quantity="other">%d dias atrás</item>
     </plurals>
-    <plurals name="time_elapsed_years">
+    <plurals name="time_elapsed_years" tools:ignore="UnusedResources">
         <item quantity="one">%d ano atrás</item>
         <item quantity="other">%d anos atrás</item>
     </plurals>

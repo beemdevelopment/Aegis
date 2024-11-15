@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="action_settings">Definições</string>
     <string name="action_about">Acerca</string>
     <string name="action_delete">Eliminar</string>
@@ -57,7 +57,6 @@
     <string name="pref_backups_reminder_summary">Mostrar lembrete para efetuar os backups, se as últimas alterações não tiverem sido guardadas.</string>
     <string name="pref_backups_reminder_dialog_title">Desativar lembrete de backup</string>
     <string name="pref_backups_reminder_dialog_summary">Se desativar esta opção, a aplicação não irá mostrar o lembrete mesmo que as últimas alterações não tenham sido guardadas. Desta forma, os seus \'tokens\' de acesso estarão em risco. Tem a certeza de que deseja desativar o lembrete?</string>
-    <string name="pref_backups_location_title">Diretório para os backups</string>
     <string name="pref_backups_location_summary">Os backups serão guardados em</string>
     <string name="pref_backups_trigger_title">Ativar backup</string>
     <string name="pref_backups_trigger_summary">Ativar manualmente</string>
@@ -460,7 +459,6 @@
     <string name="importer_help_bitwarden">Forneça um ficheiro de exportação/backup Bitwarden. Os ficheiros encriptados não são suportados.</string>
     <string name="importer_help_battle_net_authenticator">Forneça uma cópia de <b>/data/data/com.blizzard.messenger/shared_prefs/com.blizzard.messenger.authenticator_preferences.xml</b>, localizado no diretório de armazenamento interno do Autenticador Battle.net.</string>
     <string name="importer_help_duo">Forneça uma cópia de <b>/data/data/com.duosecurity.duomobile/files/duokit/accounts.json</b>, localizada no diretório de armazenamento interno do DUO.</string>
-    <string name="importer_help_freeotp">Forneça uma cópia de <b>/data/data/org.fedorahosted.freeotp/shared_prefs/tokens.xml</b>, localizado no diretório de armazenamento interno do FreeOTP (1.x).</string>
     <string name="importer_help_freeotp_plus">Fornecer um arquivo de exportação FreeOTP+.</string>
     <string name="importer_help_google_authenticator"><b>Apenas são suportados ficheiros de bases de dados do Google Authenticator v5.10 e anteriores</b>.\n\nForneça uma cópia de <b>/data/data/com.google.android.apps.authenticator2/databases/databases</b>, localizada no diretório de armazenamento interno do Google Authenticator.</string>
     <string name="importer_help_microsoft_authenticator">Fornecer uma cópia de <b>/data/data/com.azure.authenticator/databases/PhoneFactor</b>, localizado no diretório de armazenamento interno do Microsoft Authenticator.</string>
@@ -486,23 +484,23 @@
     <string name="pref_account_name_position_hidden">Ocultar / Ocultos</string>
     <string name="pref_account_name_position_end">Ao lado do emissor</string>
     <string name="pref_account_name_position_below">Abaixo do emissor</string>
-    <plurals name="time_elapsed_seconds">
+    <plurals name="time_elapsed_seconds" tools:ignore="UnusedResources">
         <item quantity="one">há %d segundo</item>
         <item quantity="other">há %d segundos</item>
     </plurals>
-    <plurals name="time_elapsed_minutes">
+    <plurals name="time_elapsed_minutes" tools:ignore="UnusedResources">
         <item quantity="one">há %d minuto</item>
         <item quantity="other">há %d minutos</item>
     </plurals>
-    <plurals name="time_elapsed_hours">
+    <plurals name="time_elapsed_hours" tools:ignore="UnusedResources">
         <item quantity="one">há %d hora</item>
         <item quantity="other">há %d horas</item>
     </plurals>
-    <plurals name="time_elapsed_days">
+    <plurals name="time_elapsed_days" tools:ignore="UnusedResources">
         <item quantity="one">há %d dia</item>
         <item quantity="other">há %d dias</item>
     </plurals>
-    <plurals name="time_elapsed_years">
+    <plurals name="time_elapsed_years" tools:ignore="UnusedResources">
         <item quantity="one">Há %d ano</item>
         <item quantity="other">Há %d anos</item>
     </plurals>

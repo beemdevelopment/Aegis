@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="action_settings">Nastavení</string>
     <string name="action_about">O aplikaci</string>
     <string name="action_delete">Odstranit</string>
@@ -10,6 +10,7 @@
     <string name="action_default_icon">Obnovit původní ikonu</string>
     <string name="discard">Zahodit</string>
     <string name="save">Uložit</string>
+    <string name="all">Vše</string>
     <string name="issuer">Poskytovatel</string>
     <string name="yandex_pin">PIN (4–16 číslic)</string>
     <string name="motp_pin">PIN (4 číslice)</string>
@@ -44,6 +45,11 @@
     <string name="pref_code_group_size_title">Seskupení číslic kódu</string>
     <string name="pref_code_group_size_summary">Vyberte počet číslic, po kterých se mají seskupovat kódy</string>
     <string name="pref_account_name_position_title">Zobrazit název účtu</string>
+    <string name="pref_show_next_code_title">Zobrazit další kód</string>
+    <string name="pref_show_next_code_summary">Vygenerovat a zobrazit další kód před vypršením času</string>
+    <string name="pref_expiration_state_title">Uveďte, kdy vyprší platnost kódů</string>
+    <string name="pref_expiration_state_summary">Při vypršení kódy změní barvu a budou blikat</string>
+    <string name="pref_expiration_state_fallback">Při vypršení kódy změní barvu</string>
     <string name="pref_shared_issuer_account_name_title">Název účtu zobrazit pouze v případě potřeby</string>
     <string name="pref_shared_issuer_account_name_summary">Názvy účtů zobrazit pouze, pokud mají stejného poskytovatele. Ostatní názvy účtů budou skryty.</string>
     <string name="pref_account_name_position_summary_override">Toto nastavení je přepsáno režimem zobrazení dlaždic. Název účtu bude zobrazen pod poskytovatelem.</string>
@@ -58,7 +64,6 @@
     <string name="pref_backups_reminder_summary">Zobrazit připomenutí k zálohování vašeho trezoru, pokud jste nezálohovali své poslední změny.</string>
     <string name="pref_backups_reminder_dialog_title">Zakázat připomenutí zálohy</string>
     <string name="pref_backups_reminder_dialog_summary">Vypnutí tohoto připomenutí znamená, že vám Aegis neřekne, zda máte změny, které ještě nejsou zálohovány. Tím se vystavíte riziku ztráty přístupu k vašim tokenům. Opravdu chcete zakázat připomenutí?</string>
-    <string name="pref_backups_location_title">Složka pro soubory záloh</string>
     <string name="pref_backups_location_summary">Zálohy budou uloženy v</string>
     <string name="pref_backups_trigger_title">Spustit zálohování</string>
     <string name="pref_backups_trigger_summary">Ručně spustit zálohování</string>
@@ -204,6 +209,9 @@
     <string name="edit">Upravit</string>
     <string name="select_all">Vybrat vše</string>
     <string name="assign_icons">Přiřadit ikony</string>
+    <string name="assign_groups">Přiřadit ke skupině</string>
+    <string name="assign_groups_dialog_summary">Vyberte skupinu, do které chcete přiřadit vybrané položky.</string>
+    <string name="assign_groups_dialog_dropdown">Vybrat skupinu</string>
     <string name="favorite" comment="Verb">Oblíbené</string>
     <string name="unfavorite" comment="Verb">Odebrat z oblízených</string>
     <string name="error_all_caps">CHYBA</string>
@@ -221,6 +229,7 @@
     <string name="reading_file">Čtení souboru</string>
     <string name="requesting_root_access">Žádání o přístup root</string>
     <string name="analyzing_qr">Analyzování QR kódu</string>
+    <string name="analyzing_qr_multiple">Analyzuji QR kód %1$d/%2$d (%3$s)</string>
     <plurals name="added_new_entries">
         <item quantity="one">Do trezoru byl přidán %d nový záznam</item>
         <item quantity="few">Do trezoru byly přidány %d nové záznamy</item>
@@ -250,6 +259,7 @@
     <string name="copied">Zkopírováno</string>
     <string name="errors_copied">Chyby zkopírovány do schránky</string>
     <string name="version_copied">Verze zkopírována do schránky</string>
+    <string name="error_required_field">Toto pole je povinné</string>
     <string name="error_occurred">Došlo k chybě</string>
     <string name="decryption_error">Při odemykání trezoru došlo k chybě</string>
     <string name="decryption_corrupt_error">Došlo k chybě při odemykání trezoru. Váš trezor může být poškozen.</string>
@@ -319,6 +329,12 @@
     <string name="partial_google_auth_import">Zjištěn neúplný export z Google Authenticator</string>
     <string name="partial_google_auth_import_warning">Ve vašem importu chybí některé QR kódy. Nebyly nalezeny následující kódy:\n\n<b>%s</b>\n\nMůžete pokračovat s importováním tohoto částečného exportu, ale doporučujeme to zkusit znovu se všemi QR kódy, abyste neriskovali ztrátu přístupu k některým tokenům.</string>
     <string name="missing_qr_code_descriptor">• QR kód %d</string>
+    <plurals name="import_partial_export_anyway">
+        <item quantity="one">Přesto importovat %d token</item>
+        <item quantity="few">Přesto importovat %d tokeny</item>
+        <item quantity="many">Přesto importovat %d tokenů</item>
+        <item quantity="other">Přesto importovat %d tokenů</item>
+    </plurals>
     <string name="import_google_auth_failure">Importování exportu z Google Authenticator selhalo</string>
     <string name="unrelated_google_auth_batches_error">Export obsahuje informace o nesouvisejícím balíku. Zkuste importovat 1 balík najednou.</string>
     <string name="no_tokens_can_be_imported">Nebyly importovány žádné tokeny</string>
@@ -389,6 +405,7 @@
     <string name="unable_to_process_deeplink">Nepodařilo se zpracovat odkaz</string>
     <string name="unable_to_read_qrcode_file">Nepodařilo se přečíst a zpracovat QR kód ze souboru: %s.</string>
     <string name="unable_to_process_shared_text">Nepodařilo se zpracovat sdílený text jako OTP</string>
+    <string name="unable_to_read_qrcode_files">Nepodařilo se přečíst a zpracovat některé QR kódy. Bude importováno pouze %1$d/%2$d položek.</string>
     <string name="unable_to_generate_qrcode">QR kód nelze vygenerovat</string>
     <string name="select_picture">Vyberte obrázek</string>
     <string name="select_icon">Vybrat ikonu</string>
@@ -419,7 +436,18 @@
     <string name="time_sync_warning_message">Aegis při generování správných kódů spoléhá na synchronizaci systémového času. Odchylka pouze několika sekund může mít za následek nesprávné kódy. Zdá se, že vaše zařízení není nakonfigurováno pro automatickou synchronizaci času. Chcete nastavit automatickou synchronizaci času?</string>
     <string name="time_sync_warning_disable">Už mě neupozorňujte. Vím, co dělám.</string>
     <string name="google_qr_export_unrelated">Nalezen nesouvisející QR kód. Zkuste skener restartovat.</string>
+    <plurals name="google_qr_export_scanned">
+        <item quantity="one">Naskenován %1$d/%2$d QR kód</item>
+        <item quantity="few">Naskenovány %1$d/%2$d QR kódy</item>
+        <item quantity="many">Naskenováno %1$d/%2$d QR kódů</item>
+        <item quantity="other">Naskenováno %1$d/%2$d QR kódů</item>
+    </plurals>
+    <string name="google_qr_export_unexpected">Očekáván QR kód #%1$d, avšak naskenován byl #%2$d</string>
     <string name="backup_error_bar_message"><b>Vytvoření zálohy trezoru se nedávno nezdařilo</b></string>
+    <string name="backup_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">        Pokus o nedávnou zálohu trezoru pomocí %1$s selhal, protože došlo k chybě. Pokus o zálohu byl uskutečněn %2$s. Zkontrolujte prosím svá nastavení pro ujištění se, že zálohy mohou být úspěšně dokončeny.
+    </string>
+    <string name="backup_permission_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">        Nedávný pokus o zálohu trezoru pomocí %1$s selhal, protože Aegis neměl oprávnění k zápisu do cílového adresáře. Pokus o zálohu byl proveden %2$s. Tato chyba může nastat, když přesunete/přejmenujete cíl zálohy nebo pokud jste nedávno obnovili Aegis ze zálohy. Nastavte prosím znovu cíl pro zálohu.
+    </string>
     <string name="backup_system_builtin">Zabudované zálohy aplikace Aegis</string>
     <string name="backup_system_android">Cloudový zálohovací systém systému Android</string>
     <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">        Poslední záloha je zastaralá (%s)
@@ -496,8 +524,11 @@
     <string name="importer_help_bitwarden">Vyberte soubor exportu/zálohy Bitwardenu. Šifrované soubory nejsou podporovány.</string>
     <string name="importer_help_battle_net_authenticator">Dodejte kopii <b>/data/data/com.blizzard.messenger/shared_prefs/com.blizzard.messenger.authenticator_preferences.xml</b>, která se nachází v interním úložišti Battle.net Authenticator.</string>
     <string name="importer_help_duo">Dodejte kopii <b>/data/data/com.duosecurity.duomobile/files/duokit/accounts.json</b>, která se nachází v interním úložišti DUO.</string>
-    <string name="importer_help_freeotp">Dodejte kopii <b>/data/data/org.fedorahosted.freeotp/shared_prefs/tokens.xml</b>, která se nachází v interním úložišti FreeOTP (1.x).</string>
+    <string name="importer_help_ente_auth">Dodejte soubor exportu Ente Auth. V současné odbě jsou podporovány pouze nešifrované soubory.</string>
+    <string name="importer_help_freeotp">FreeOTP 2: Dodejte záložní soubor.\nFreeOTP 1.x: Dodejte kopii souboru <b>/data/data/org.fedorahosted.freeotp/shared_prefs/tokens.xml</b>, umístěného v interním úložišti aplikace FreeOTP.</string>
     <string name="importer_help_freeotp_plus">Dodjete soubor exportu FreeOTP+.</string>
+    <string name="importer_warning_title_freeotp2">Kompatibilita s FreeOTP 2</string>
+    <string name="importer_warning_message_freeotp2">Ve FreeOTP 2 existuje řada problémů, které mohou vést k poškození záloh. Aegis se pokusí zachránit co nejvíce záznamů, ale je možné, že se některé nebo dokonce všechny nepodaří importovat.</string>
     <string name="importer_help_google_authenticator"><b>Jsou podporovány pouze databázové soubory z aplikace Google Authenticator v5.10 a starších</b>.\n\nPoužijte kopii <b>/data/com.google.android.apps.authenticator2/databases/databases</b> umístěného v interním úložišti aplikace Google Authenticator.</string>
     <string name="importer_help_microsoft_authenticator">Dodejte kopii <b>/data/data/com.azure.authenticator/databases/PhoneFactor</b>, která se nachází v interním úložišti Microsoft Authenticator.</string>
     <string name="importer_help_plain_text">Dodejte prostý textový soubor Google Authenticator URI na každý řádek.</string>
@@ -522,31 +553,31 @@
     <string name="pref_account_name_position_hidden">Skryté</string>
     <string name="pref_account_name_position_end">Vedle poskytovatele</string>
     <string name="pref_account_name_position_below">Pod poskytovatelem</string>
-    <plurals name="time_elapsed_seconds">
+    <plurals name="time_elapsed_seconds" tools:ignore="UnusedResources">
         <item quantity="one">před %d sekundou</item>
         <item quantity="few">před %d sekundami</item>
         <item quantity="many">před %d sekundami</item>
         <item quantity="other">před %d sekundami</item>
     </plurals>
-    <plurals name="time_elapsed_minutes">
+    <plurals name="time_elapsed_minutes" tools:ignore="UnusedResources">
         <item quantity="one">před %d minutou</item>
         <item quantity="few">před %d minutami</item>
         <item quantity="many">před %d minutami</item>
         <item quantity="other">před %d minutami</item>
     </plurals>
-    <plurals name="time_elapsed_hours">
+    <plurals name="time_elapsed_hours" tools:ignore="UnusedResources">
         <item quantity="one">před %d hodinou</item>
         <item quantity="few">před %d hodinami</item>
         <item quantity="many">před %d hodinami</item>
         <item quantity="other">před %d hodinami</item>
     </plurals>
-    <plurals name="time_elapsed_days">
+    <plurals name="time_elapsed_days" tools:ignore="UnusedResources">
         <item quantity="one">před %d dnem</item>
         <item quantity="few">před %d dny</item>
         <item quantity="many">před %d dny</item>
         <item quantity="other">před %d dny</item>
     </plurals>
-    <plurals name="time_elapsed_years">
+    <plurals name="time_elapsed_years" tools:ignore="UnusedResources">
         <item quantity="one">před %d rokem</item>
         <item quantity="few">před %d lety</item>
         <item quantity="many">před %d lety</item>

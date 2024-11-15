@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="action_settings">Ρυθμίσεις</string>
     <string name="action_about">Σχετικά</string>
     <string name="action_delete">Διαγραφή</string>
@@ -10,6 +10,7 @@
     <string name="action_default_icon">Επαναφορά προεπιλεγμένου εικονιδίου</string>
     <string name="discard">Απόρριψη</string>
     <string name="save">Αποθήκευση</string>
+    <string name="all">Όλα</string>
     <string name="issuer">Εκδότης</string>
     <string name="yandex_pin">PIN (4-16 ψηφία)</string>
     <string name="motp_pin">PIN (4 ψηφία)</string>
@@ -44,6 +45,11 @@
     <string name="pref_code_group_size_title">Ομαδοποίηση ψηφίων κωδικού</string>
     <string name="pref_code_group_size_summary">Επιλέξτε τον αριθμό των ψηφίων για να ομαδοποιήσετε τους κωδικούς κατά</string>
     <string name="pref_account_name_position_title">Εμφάνιση του ονόματος λογαριασμού</string>
+    <string name="pref_show_next_code_title">Εμφάνιση επόμενου κώδικα</string>
+    <string name="pref_show_next_code_summary">Δημιουργία και εμφάνιση του επόμενου κώδικα νωρίτερα</string>
+    <string name="pref_expiration_state_title">Επισημαίνει πότε οι κωδικοί πρόκειται να λήξουν</string>
+    <string name="pref_expiration_state_summary">Αλλάζει το χρώμα των κωδικών και του κάνει να αναβοσβήνουν όταν πρόκειται να λήξουν</string>
+    <string name="pref_expiration_state_fallback">Αλλάζει το χρώμα των κωδικών όταν πρόκειται να λήξουν</string>
     <string name="pref_shared_issuer_account_name_title">Εμφάνιση ονόματος λογαριασμού μόνο όταν είναι απαραίτητο</string>
     <string name="pref_shared_issuer_account_name_summary">Εμφάνιση μόνο ονομάτων λογαριασμών κάθε φορά που μοιράζονται τον ίδιο εκδότη. Άλλα ονόματα λογαριασμών θα αποκρύπτονται.</string>
     <string name="pref_account_name_position_summary_override">Αυτή η ρύθμιση αντικαθίσταται από τη λειτουργία προβολής πλακιδίων. Το όνομα λογαριασμού θα εμφανίζεται κάτω από τον εκδότη.</string>
@@ -58,8 +64,14 @@
     <string name="pref_backups_reminder_summary">Εμφάνιση υπενθύμισης για δημιουργία αντιγράφων ασφαλείας σε περίπτωση που δεν έχετε δημιουργήσει αντίγραφα ασφαλείας των τελευταίων σας αλλαγών.</string>
     <string name="pref_backups_reminder_dialog_title">Απενεργοποίηση υπενθύμισης αντιγράφων ασφαλείας</string>
     <string name="pref_backups_reminder_dialog_summary">Η απενεργοποίηση αυτής της υπενθύμισης σημαίνει ότι το Aegis δεν θα σας ενημερώσει εάν έχετε ή όχι αλλαγές για τις οποίες δεν έχουν δημιουργηθεί ακόμα αντίγραφα ασφαλείας. Αυτό σας θέτει σε κίνδυνο να χάσετε την πρόσβαση στα διακριτικά σας. Είστε βέβαιοι ότι θέλετε να απενεργοποιήσετε την υπενθύμιση;</string>
-    <string name="pref_backups_location_title">Κατάλογος για τα αντίγραφα ασφαλείας αρχείων</string>
+    <string name="pref_backups_versioning_strategy_title">Στρατηγική αντιγράφων ασφαλείας</string>
+    <string name="pref_backups_versioning_strategy_keep_x_versions">Διατήρηση αρκετών εκδόσεων</string>
+    <string name="pref_backups_versioning_strategy_single_backup">Μονό αντίγραφο ασφαλείας</string>
+    <string name="pref_backups_versioning_strategy_single_backup_warning">Η επιλεγμένη στρατηγική δημιουργίας αντιγράφων ασφαλείας δεν είναι αξιόπιστη και δεν συνιστάται. Μια μεμονωμένη αποτυχία δημιουργίας αντιγράφων ασφαλείας μπορεί να οδηγήσει στην απώλεια του μοναδικού αντιγράφου ασφαλείας.</string>
+    <string name="pref_backups_versioning_strategy_dialog_title">Επιλέξτε την στρατηγική αντιγράφου ασφαλείας</string>
+    <string name="pref_backups_location_title">Τοποθεσία αντιγράφου ασφαλείας</string>
     <string name="pref_backups_location_summary">Τα αντίγραφα ασφαλείας θα αποθηκευτούν στo</string>
+    <string name="pref_backup_location_summary">Το αντίγραφο ασφαλείας θα αποθηκευτεί στο</string>
     <string name="pref_backups_trigger_title">\'Εναυσμα αντιγράφου ασφαλείας</string>
     <string name="pref_backups_trigger_summary">Χειροκίνητη ενεργοποίηση δημιουργίας αντιγράφου ασφαλείας</string>
     <string name="pref_backups_versions_title">Αριθμός εκδόσεων που θα κρατηθούν</string>
@@ -198,6 +210,9 @@
     <string name="edit">Επεξεργασία</string>
     <string name="select_all">Επιλογή όλων</string>
     <string name="assign_icons">Αντιστοίχιση εικονιδίων</string>
+    <string name="assign_groups">Αντιστοίχιση σε ομάδα</string>
+    <string name="assign_groups_dialog_summary">Επιλέξτε μια ομάδα στην οποία θέλετε να αντιστοιχίσετε τις επιλεγμένες καταχωρήσεις.</string>
+    <string name="assign_groups_dialog_dropdown">Επιλογή ομάδας</string>
     <string name="favorite" comment="Verb">Προσθήκη στα αγαπημένα</string>
     <string name="unfavorite" comment="Verb">Αφαίρεση από αγαπημένα</string>
     <string name="error_all_caps">ΣΦΑΛΜΑ</string>
@@ -215,6 +230,7 @@
     <string name="reading_file">Ανάγνωση αρχείου</string>
     <string name="requesting_root_access">Αίτηση πρόσβασης root</string>
     <string name="analyzing_qr">Ανάλυση κωδικού QR</string>
+    <string name="analyzing_qr_multiple">Ανάλυση κωδικού QR %1$d/%2$d (%3$s)</string>
     <plurals name="added_new_entries">
         <item quantity="one">Προστέθηκε %d νέα καταχώρηση στην κρύπτη</item>
         <item quantity="other">Προστέθηκαν %d νέες καταχωρήσεις στην κρύπτη</item>
@@ -240,6 +256,7 @@
     <string name="copied">Αντιγράφηκε</string>
     <string name="errors_copied">Αντιγράφηκαν σφάλματα στο πρόχειρο</string>
     <string name="version_copied">Η έκδοση αντιγράφτηκε στο πρόχειρο</string>
+    <string name="error_required_field">Αυτό το πεδίο είναι υποχρεωτικό</string>
     <string name="error_occurred">Παρουσιάστηκε σφάλμα</string>
     <string name="decryption_error">Παρουσιάστηκε σφάλμα κατά την προσπάθεια ξεκλειδώματος της κρύπτης</string>
     <string name="decryption_corrupt_error">Παρουσιάστηκε σφάλμα κατά την προσπάθεια ξεκλειδώματος της κρύπτης. Το αρχείο κρύπτης σας ενδέχεται να είναι κατεστραμμένο.</string>
@@ -303,6 +320,10 @@
     <string name="partial_google_auth_import">Εντοπίστηκε ημιτελής εξαγωγή του Επαληθευτή Google</string>
     <string name="partial_google_auth_import_warning">Ορισμένοι κωδικοί QR λείπουν από την εισαγωγή σας. Οι ακόλουθοι κωδικοί δεν βρέθηκαν:\n\n<b>%s</b>\n\nΜπορείτε να συνεχίσετε την εισαγωγή αυτής της μερικής εξαγωγής, αλλά σας συνιστούμε να ξαναδοκιμάσετε με όλους τους κωδικούς QR ώστε να μην κινδυνεύετε να χάσετε πρόσβαση σε οποιαδήποτε αναγνωστικά.</string>
     <string name="missing_qr_code_descriptor">• Κωδικός QR %d</string>
+    <plurals name="import_partial_export_anyway">
+        <item quantity="one">Εισαγωγή %d αναγνωριστικού ούτως ή άλλως</item>
+        <item quantity="other">Εισαγωγή %d αναγνωριστικών ούτως ή άλλως</item>
+    </plurals>
     <string name="import_google_auth_failure">Η εισαγωγή της εξαγωγής του Επαληθευτή Google απέτυχε</string>
     <string name="unrelated_google_auth_batches_error">Η εξαγωγή περιέχει πληροφορίες για μια άσχετη παρτίδα. Δοκιμάστε να εισαγάγετε 1 παρτίδα τη φορά.</string>
     <string name="no_tokens_can_be_imported">Ως αποτέλεσμα, δεν μπορούν να εισαχθούν αναγνωστικά</string>
@@ -371,6 +392,7 @@
     <string name="unable_to_process_deeplink">Δεν είναι δυνατή η επεξεργασία βαθιάς σύνδεσης</string>
     <string name="unable_to_read_qrcode_file">Αδυναμία ανάγνωσης και επεξεργασίας QR κωδικού από αρχείο: %s.</string>
     <string name="unable_to_process_shared_text">Δεν είναι δυνατή η επεξεργασία κοινόχρηστου κειμένου ως OTP</string>
+    <string name="unable_to_read_qrcode_files">Δεν είναι δυνατή η ανάγνωση και επεξεργασία μερικών QR κωδικών. Θα εισαχθούν μόνο %1$d/%2$d καταχωρήσεις.</string>
     <string name="unable_to_generate_qrcode">Δεν είναι δυνατή η δημιουργία κωδικού QR</string>
     <string name="select_picture">Επιλέξτε εικόνα</string>
     <string name="select_icon">Επιλέξτε εικονίδιο</string>
@@ -401,7 +423,16 @@
     <string name="time_sync_warning_message">Το Aegis βασίζεται στον χρόνο του συστήματος για να είναι συγχρονισμένο για τη δημιουργία σωστών κωδικών. Μια απόκλιση λίγων δευτερολέπτων θα μπορούσε να οδηγήσει σε εσφαλμένους κωδικούς. Φαίνεται ότι η συσκευή σας δεν έχει ρυθμιστεί ώστε να συγχρονίζει αυτόματα την ώρα. Θα θέλατε να το κάνετε τώρα;</string>
     <string name="time_sync_warning_disable">Σταμάτα να με προειδοποιείς. Ξέρω τι κάνω.</string>
     <string name="google_qr_export_unrelated">Βρέθηκε μη σχετικός κωδικός QR. Δοκιμάστε να κάνετε επανεκκίνηση του σαρωτή.</string>
+    <plurals name="google_qr_export_scanned">
+        <item quantity="one">Σαρωμένος %1$d/%2$d κωδικός QR</item>
+        <item quantity="other">Σαρωμένοι %1$d/%2$d κωδικοί QR</item>
+    </plurals>
+    <string name="google_qr_export_unexpected">Αναμενόταν κωδικός QR #%1$d, αλλά σαρώθηκε #%2$d αντί αυτού</string>
     <string name="backup_error_bar_message"><b>Η δημιουργία αντιγράφων ασφαλείας κρύπτης απέτυχε πρόσφατα</b></string>
+    <string name="backup_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">        Μια πρόσφατη προσπάθεια δημιουργίας αντιγράφων ασφαλείας κρύπτης με χρήση %1$s απέτυχε επειδή παρουσιάστηκε σφάλμα. Έγινε προσπάθεια δημιουργίας αντιγράφων ασφαλείας %2$s. Παρακαλώ ελέγξτε τις ρυθμίσεις δημιουργίας αντιγράφων ασφαλείας για να βεβαιωθείτε ότι τα αντίγραφα ασφαλείας μπορούν να ολοκληρωθούν με επιτυχία.
+    </string>
+    <string name="backup_permission_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">        Μια πρόσφατη προσπάθεια δημιουργίας αντιγράφων ασφαλείας κρύπτης με χρήση %1$s απέτυχε επειδή το Aegis δεν είχε άδεια να εγγράψει στον προορισμό αντιγράφου ασφαλείας. Το αντίγραφο ασφαλείας επιχειρήθηκε %2$s. Αυτό το σφάλμα μπορεί να συμβεί αν μετακινήσατε / μετονομάσατε τον προορισμό αντιγράφου ασφαλείας ή αν αποκαταστήσατε πρόσφατα το Aegis από ένα αντίγραφο ασφαλείας. Παρακαλώ ρυθμίστε ξανά τον προορισμό του αντιγράφου ασφαλείας.
+    </string>
     <string name="backup_system_builtin">Ενσωματωμένα αυτόματα αντίγραφα ασφαλείας του Aegis</string>
     <string name="backup_system_android">Σύστημα αντιγράφων ασφαλείας στο cloud του Android</string>
     <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">        Το τελευταίο αντίγραφο ασφαλείας είναι παρωχημένο (%s)
@@ -473,8 +504,11 @@
     <string name="importer_help_bitwarden">Παρέχετε ένα αρχείο εξαγωγής/αντιγράφων ασφαλείας Bitwarden. Τα κρυπτογραφημένα αρχεία δεν υποστηρίζονται.</string>
     <string name="importer_help_battle_net_authenticator">Παρέχει ένα αντίγραφο του <b> /data/data/com.blizzard.messenger/shared_prefs/com.blizzard.messenger.authenticator_preferences.xml </b>, που βρίσκεται στον κατάλογο εσωτερικού χώρου αποθήκευσης του Επαληθευτή Battle.net.</string>
     <string name="importer_help_duo">Παρέχετε ένα αντίγραφο του <b>/data/data/com.duosecurity.duomobile/files/duokit/accounts.json</b>, που βρίσκεται στον εσωτερικό κατάλογο αποθήκευσης του DUO.</string>
-    <string name="importer_help_freeotp">Παρέχετε ένα αντίγραφο του <b> /data/data/org.fedorahosted.freeotp/shared_prefs/tokens.xml </b>, που βρίσκεται στον κατάλογο εσωτερικής αποθήκευσης του FreeOTP (1.x).</string>
+    <string name="importer_help_ente_auth">Παρέχετε ένα αρχείο εξαγωγής Ente Auth. Προς το παρόν υποστηρίζονται μόνο μη κρυπτογραφημένα αρχεία.</string>
+    <string name="importer_help_freeotp">FreeOTP 2: Παρέχετε ένα αρχείο αντιγράφου ασφαλείας.\nFreeOTP 1.x: Παρέχετε ένα αντίγραφο του <b>/data/org.fedorahosted.freeotp/shared_prefs/tokens.xml</b>, που βρίσκεται στον εσωτερικό κατάλογο αποθήκευσης του FreeOTP.</string>
     <string name="importer_help_freeotp_plus">Παρέχετε ένα αρχείο εξαγωγής FreeOTP +.</string>
+    <string name="importer_warning_title_freeotp2">Συμβατότητα FreeOTP 2</string>
+    <string name="importer_warning_message_freeotp2">Υπάρχουν μια σειρά από ζητήματα στο FreeOTP 2 που μπορεί να οδηγήσει σε κατεστραμμένα αντίγραφα ασφαλείας. Το Aegis θα προσπαθήσει να διασώσει όσο το δυνατόν περισσότερες καταχωρήσεις, αλλά είναι πιθανό η εισαγωγή κάποιων ή ακόμα και όλων να αποτύχει.</string>
     <string name="importer_help_google_authenticator"><b>Υποστηρίζονται μόνο αρχεία βάσης δεδομένων από το Google Authenticator έκδοση 5.10 και παλαιότερα</b>.\n\nΠαρέχετε ένα αντίγραφο του <b>/data/data/com.google.android.apps.authenticator2/databases/databases</b>, που βρίσκεται στον εσωτερικό κατάλογο αποθήκευσης του Google Authenticator.</string>
     <string name="importer_help_microsoft_authenticator">Παρέχεi ένα αντίγραφο του <b> /data/data/com.azure.authenticator/databases/PhoneFactor </b>, που βρίσκεται στον κατάλογο εσωτερικής αποθήκευσης του Microsoft Authenticator.</string>
     <string name="importer_help_plain_text">Παρέχεi ένα αρχείο απλού κειμένου με ένα URI Επαληθευτή Google σε κάθε γραμμή.</string>
@@ -499,23 +533,23 @@
     <string name="pref_account_name_position_hidden">Κρυφό</string>
     <string name="pref_account_name_position_end">Δίπλα στον εκδότη</string>
     <string name="pref_account_name_position_below">Κάτω από τον εκδότη</string>
-    <plurals name="time_elapsed_seconds">
+    <plurals name="time_elapsed_seconds" tools:ignore="UnusedResources">
         <item quantity="one">%d δευτερόλεπτο πριν</item>
         <item quantity="other">%d δευτερόλεπτα πριν</item>
     </plurals>
-    <plurals name="time_elapsed_minutes">
+    <plurals name="time_elapsed_minutes" tools:ignore="UnusedResources">
         <item quantity="one">%d λεπτό πριν</item>
         <item quantity="other">%d λεπτά πριν</item>
     </plurals>
-    <plurals name="time_elapsed_hours">
+    <plurals name="time_elapsed_hours" tools:ignore="UnusedResources">
         <item quantity="one">%d ώρα πριν</item>
         <item quantity="other">%d ώρες πριν</item>
     </plurals>
-    <plurals name="time_elapsed_days">
+    <plurals name="time_elapsed_days" tools:ignore="UnusedResources">
         <item quantity="one">%d ημέρα πριν</item>
         <item quantity="other">%d ημέρες πριν</item>
     </plurals>
-    <plurals name="time_elapsed_years">
+    <plurals name="time_elapsed_years" tools:ignore="UnusedResources">
         <item quantity="one">%d χρόνο πριν</item>
         <item quantity="other">%d χρόνια πριν</item>
     </plurals>

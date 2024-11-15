@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="action_settings">設定</string>
     <string name="action_about">關於</string>
     <string name="action_delete">刪除</string>
@@ -10,6 +10,7 @@
     <string name="action_default_icon">恢復為默認圖示</string>
     <string name="discard">放棄</string>
     <string name="save">儲存</string>
+    <string name="all">所有</string>
     <string name="issuer">服務商</string>
     <string name="yandex_pin">PIN (4 到 16 碼)</string>
     <string name="motp_pin">PIN (4 位數)</string>
@@ -28,11 +29,13 @@
     <string name="pref_section_security_summary">設定加密、生物特徵辨識解鎖、自動鎖定以及其他安全性選項。</string>
     <string name="pref_section_import_export_title">匯入 &amp; 匯出</string>
     <string name="pref_section_import_export_summary">匯入 Aegis 或其他驗證程式的備份檔，或手動匯出 Aegis 保險箱。</string>
+    <string name="pref_section_audit_log_title">稽核記錄</string>
     <string name="pref_section_backups_title">備份</string>
     <string name="pref_section_backups_summary">設定自動備份至指定位置或啟用 Android 內建的雲端備份系統。</string>
     <string name="pref_section_icon_packs">圖示合輯</string>
     <string name="pref_section_icon_packs_summary">管理與匯入圖示合輯</string>
     <string name="pref_select_theme_title">主題</string>
+    <string name="pref_dynamic_colors_title">動態色彩</string>
     <string name="pref_dynamic_colors_summary">基於您的 Android 主題配色設定程式配色</string>
     <string name="pref_view_mode_title">檢視模式</string>
     <string name="pref_lang_title">語言</string>
@@ -41,6 +44,7 @@
     <string name="pref_code_group_size_title">分組顯示驗證碼</string>
     <string name="pref_code_group_size_summary">選擇群組編號</string>
     <string name="pref_account_name_position_title">顯示帳戶名稱</string>
+    <string name="pref_show_next_code_title">顯示下一組驗證碼</string>
     <string name="pref_shared_issuer_account_name_title">只在必要時顯示帳戶名稱</string>
     <string name="pref_shared_issuer_account_name_summary">只顯示擁有共同發行者的帳戶名稱（並隱藏其他帳戶名稱）</string>
     <string name="pref_import_file_title">從檔案匯入</string>
@@ -53,7 +57,6 @@
     <string name="pref_backups_reminder_title">備份提醒</string>
     <string name="pref_backups_reminder_summary">提示您備份保險箱以避免最後的變更狀態未被加入備份。</string>
     <string name="pref_backups_reminder_dialog_title">關閉備份提醒</string>
-    <string name="pref_backups_location_title">備份檔案的目錄</string>
     <string name="pref_backups_location_summary">備份將儲存在</string>
     <string name="pref_backups_trigger_title">觸發備份</string>
     <string name="pref_backups_trigger_summary">手動觸發備份</string>
@@ -95,6 +98,10 @@
     <string name="pref_encryption_summary">加密保險箱，並以密碼或生物特徵辨識解鎖。</string>
     <string name="pref_biometrics_title">生物特徵辨識解鎖</string>
     <string name="pref_biometrics_summary">允許使用生物特徵辨識驗證來解鎖保險箱</string>
+    <string name="pref_search_behavior_type_name">名稱</string>
+    <string name="pref_search_behavior_type_issuer">簽發者</string>
+    <string name="pref_search_behavior_type_note">備註</string>
+    <string name="pref_search_behavior_type_groups">群組</string>
     <string name="pref_set_password_title">變更密碼</string>
     <string name="pref_set_password_summary">為保險箱設定新解鎖密碼</string>
     <string name="event_title_vault_unlocked">保險箱已解鎖</string>
@@ -103,7 +110,14 @@
     <string name="event_description_backup_created">保險箱備份已成功建立</string>
     <string name="event_title_android_backup_created">備份已由 Android 建立</string>
     <string name="event_description_android_backup_created">保險箱備份已由 Android 成功建立</string>
+    <string name="event_title_vault_exported">已匯出保險箱</string>
+    <string name="event_title_entry_shared">已分享項目</string>
+    <string name="event_description_entry_shared">已分享一筆資料</string>
+    <string name="event_title_vault_unlock_failed_password">密碼庫解鎖失敗（密碼）</string>
+    <string name="event_title_vault_unlock_failed_biometrics">密碼庫解鎖失敗（生物特徵辨識）</string>
+    <string name="audit_log_entry_deleted">（已刪除）</string>
     <string name="today_at_time">今天 %1$s</string>
+    <string name="day_of_week_at_time">%1$s 的 %2$s</string>
     <string name="export_encrypted">加密保險箱</string>
     <string name="export_help">此動作將保險箱從 Aegis 的內部儲存空間裡匯出，請選擇欲匯出的格式：</string>
     <string name="export_warning_unencrypted">即將匯出未加密的 Aegis 保險箱。<b>不建議</b>。</string>
@@ -123,7 +137,7 @@
     <string name="choose_authentication_method">安全性</string>
     <string name="authentication_method_explanation">Aegis 是一款安全第一的雙因素驗證（2FA）應用程式。憑證儲存於特殊的保險箱檔案中，此保險箱可依照使用者的設定以密碼金鑰加密。就算駭客取得了被加密的保險箱檔案，他們也無法在不知道密碼的情況下取得內含的憑證。 \n\n我們已預先為您的裝置選擇了我們認為最適合的選項。</string>
     <string name="authentication_method_none">沒有</string>
-    <string name="authentication_method_none_description">保險箱並未上鎖也未加密。 <b>不建議使用此選項</b>。</string>
+    <string name="authentication_method_none_description">保險箱並未上鎖也未加密。<b>不建議使用此選項</b>。</string>
     <string name="authentication_method_password">密碼</string>
     <string name="authentication_method_password_description">需要密碼來解鎖保險箱。</string>
     <string name="authentication_method_password_explanation">警告：如果您忘記密碼，您將會無法還原憑證而不可逆的失去它們。</string>
@@ -168,6 +182,8 @@
     <string name="edit">編輯</string>
     <string name="select_all">選擇全部</string>
     <string name="assign_icons">分配圖示</string>
+    <string name="assign_groups">指派給群組</string>
+    <string name="assign_groups_dialog_dropdown">選擇群組</string>
     <string name="favorite" comment="Verb">加入最愛</string>
     <string name="unfavorite" comment="Verb">移出最愛</string>
     <string name="error_all_caps">錯誤</string>
@@ -185,6 +201,7 @@
     <string name="reading_file">讀取檔案中</string>
     <string name="requesting_root_access">需要使用 root</string>
     <string name="analyzing_qr">分析 QR code 中</string>
+    <string name="analyzing_qr_multiple">正在分析 QR Code %1$d/%2$d (%3$s)</string>
     <plurals name="added_new_entries">
         <item quantity="other">增加 %d 個條目進保險箱</item>
     </plurals>
@@ -198,6 +215,7 @@
     <string name="discard_changes">要捨棄變更嗎？</string>
     <string name="discard_changes_description">您的變更尚未儲存</string>
     <string name="saving_profile_error">儲存設定檔時發生錯誤</string>
+    <string name="saving_assign_icons_error">指派圖示時發生錯誤</string>
     <string name="welcome">歡迎使用</string>
     <string name="app_description">Aegis 是一款免費、安全與開放原始碼的雙因素驗證（2FA）應用程式</string>
     <string name="setup_completed">設定完成</string>
@@ -206,6 +224,7 @@
     <string name="copied">已複製</string>
     <string name="errors_copied">錯誤已複製至剪貼簿</string>
     <string name="version_copied">版本號已複製至剪貼簿</string>
+    <string name="error_required_field">此欄位必填</string>
     <string name="error_occurred">發生了一個錯誤</string>
     <string name="decryption_error">解鎖保險箱時發生錯誤</string>
     <string name="decryption_corrupt_error">解鎖保險箱時發生錯誤，您的保險箱檔案可能已損壞。</string>
@@ -257,7 +276,7 @@
     <string name="read_qr_error">試圖讀取QR碼時出錯</string>
     <string name="read_qr_error_phonefactor">Aegis 不相容於微軟私有的雙因素驗證演算法。請確保在 Microsoft 365 設定雙因素驗證時選擇「設定無通知的應用程式」。</string>
     <string name="partial_google_auth_import">偵測到不完整的 Google Authenticator 匯出</string>
-    <string name="missing_qr_code_descriptor">• QR 圖碼 %d</string>
+    <string name="missing_qr_code_descriptor">• QR Code %d</string>
     <string name="import_google_auth_failure">匯入 Google Authenticator 失敗</string>
     <string name="unlocking_vault">解鎖保險箱</string>
     <string name="rename_group">重新命名群組</string>
@@ -294,6 +313,7 @@
     <string name="pref_highlight_entry_summary">輕觸後暫時凸顯該驗證碼以與它者區分</string>
     <string name="pref_minimize_on_copy_title">複製後最小化</string>
     <string name="pref_copy_behavior_title">複製令牌至剪貼簿</string>
+    <string name="pref_search_behavior_title">搜尋行為</string>
     <string name="pref_pause_entry_title">被觸碰時凍結驗證碼</string>
     <string name="pref_pause_entry_summary">輕觸以暫停驗證碼的自動更新機制：只要驗證碼還在焦點上，它們就不會被自動更新。需要啟用「輕觸以顯示」或「強調選取的憑證」功能。</string>
     <string name="pin_keyboard_description">請輸入您的密碼以啟用 PIN 鍵盤。請注意，只有當您的密碼僅由數字構成時才能使用</string>
@@ -311,7 +331,7 @@
     <string name="tiles_mode_title">平鋪</string>
     <string name="unknown_issuer">未知的服務商</string>
     <string name="unknown_account_name">未知帳戶</string>
-    <string name="unable_to_read_qrcode_file">無法從 %s 檔案讀取和處理QR碼</string>
+    <string name="unable_to_read_qrcode_file">無法從 %s 檔案讀取和處理 QR Code</string>
     <string name="unable_to_process_shared_text">無法將共用文本作為 OTP 進行處理</string>
     <string name="unable_to_generate_qrcode">無法產生QR碼</string>
     <string name="select_picture">選擇圖片</string>
@@ -396,11 +416,19 @@
     <string name="dialog_wipe_entries_checkbox">清除保險箱中的所有內容</string>
     <string name="pref_panic_trigger_title">危急時刪除保險箱</string>
     <string name="pref_panic_trigger_summary">從 Ripple 收到危急指令時刪除保險箱</string>
+    <string name="import_vault">匯入 Aegis 金鑰庫</string>
+    <string name="import_vault_hint">想從其他 2FA 驗證器應用程式匯入？先完成首次設定，就可在設定功能表中匯入。</string>
     <string name="importer_help_authy">提供 <b>/data/data/com.authy.authy/shared_prefs/com.authy.storage.tokens.authenticator.xml</b> 的複本，其位於 Authy 的內部儲存空間。</string>
     <string name="importer_help_andotp">提供 andOTP 的匯出/備份檔。</string>
+    <string name="importer_help_bitwarden">請提供 Bitwarden 匯出/備份檔案。不支援加密檔案。</string>
+    <string name="importer_help_battle_net_authenticator">請提供 <b>/data/data/com.blizzard.messenger/shared_prefs/com.blizzard.messenger.authenticator_preferences.xml</b> 的副本；其位於 Battle.net Authenticator 的內部儲存空間。</string>
+    <string name="importer_help_duo">請提供 <b>/data/data/com.duosecurity.duomobile/files/duokit/accounts.json</b> 的副本，其位於 DUO 的內部儲存空間。</string>
+    <string name="importer_help_ente_auth">請提供 Ente Auth 匯出檔案。目前只支援未加密的檔案。</string>
     <string name="importer_help_freeotp_plus">提供 FreeOTP+ 的匯出檔。</string>
+    <string name="importer_help_google_authenticator"><b>僅支援 Google Authenticator v5.10 及之前版本的資料庫檔案</b>。\n\n請提供 <b>/data/data/com.google.android.apps.authenticator2/databases/databases</b> 的副本，其位於 Google Authenticator 的內部儲存空間中。</string>
     <string name="importer_help_microsoft_authenticator">提供 <b>/data/data/com.azure.authenticator/databases/PhoneFactor</b> 的複本，其位於 Microsoft Authenticator 的內部儲存空間。</string>
     <string name="importer_help_plain_text">提供純文字檔，其中每行都是完整的 Google Authenticator URI</string>
+    <string name="importer_help_steam"><b>僅支援 Steam v3.0或更新版本</b>。 請提供 <b>/data/data/com.valvesoftware.android.steam.community/files/Steamguard-*.json</b> 的副本，其位於 Steam 的內部儲存空間。</string>
     <string name="importer_help_totp_authenticator">提供 TOTP 驗證程式的匯出檔。</string>
     <string name="importer_help_winauth">提供 WinAuth 的匯出檔。</string>
     <string name="import_assign_icons_dialog_title">分配圖示</string>
@@ -420,19 +448,19 @@
     <string name="pref_account_name_position_hidden">隱藏</string>
     <string name="pref_account_name_position_end">在發行者旁</string>
     <string name="pref_account_name_position_below">在發行者下</string>
-    <plurals name="time_elapsed_seconds">
+    <plurals name="time_elapsed_seconds" tools:ignore="UnusedResources">
         <item quantity="other">%d 秒前</item>
     </plurals>
-    <plurals name="time_elapsed_minutes">
+    <plurals name="time_elapsed_minutes" tools:ignore="UnusedResources">
         <item quantity="other">%d 分前</item>
     </plurals>
-    <plurals name="time_elapsed_hours">
+    <plurals name="time_elapsed_hours" tools:ignore="UnusedResources">
         <item quantity="other">%d 小時前</item>
     </plurals>
-    <plurals name="time_elapsed_days">
+    <plurals name="time_elapsed_days" tools:ignore="UnusedResources">
         <item quantity="other">%d 天前</item>
     </plurals>
-    <plurals name="time_elapsed_years">
+    <plurals name="time_elapsed_years" tools:ignore="UnusedResources">
         <item quantity="other">%d 年前</item>
     </plurals>
     <plurals name="dropdown_checkboxes_default_count">

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="action_settings">Iestatījumi</string>
     <string name="action_about">Par</string>
     <string name="action_delete">Dzēst</string>
@@ -10,6 +10,7 @@
     <string name="action_default_icon">Atjaunot noklusējuma ikonu</string>
     <string name="discard">Atmest</string>
     <string name="save">Saglabāt</string>
+    <string name="all">Visas</string>
     <string name="issuer">Izsniedzējs</string>
     <string name="yandex_pin">PIN (4-16 cipari)</string>
     <string name="motp_pin">PIN (4 cipari)</string>
@@ -44,6 +45,11 @@
     <string name="pref_code_group_size_title">Koda ciparu kopošana</string>
     <string name="pref_code_group_size_summary">Atlasīt koda ciparu kopu lielumu</string>
     <string name="pref_account_name_position_title">Rādīt konta nosaukumu</string>
+    <string name="pref_show_next_code_title">Rādīt nākamo kodu</string>
+    <string name="pref_show_next_code_summary">Izveidot un rādīt nākamo kodu pirms laika</string>
+    <string name="pref_expiration_state_title">Norādīt, kad beigsies kodu derīgums</string>
+    <string name="pref_expiration_state_summary">Mainīt kodu krāsu un likt tiem mirgot, kad to derīgums tūlīt beigsies</string>
+    <string name="pref_expiration_state_fallback">Mainīt kodu krāsu, kad to derīgums tūlīt beigsies</string>
     <string name="pref_shared_issuer_account_name_title">Radīt konta nosaukumu tikai tad, kad nepieciešams</string>
     <string name="pref_shared_issuer_account_name_summary">Rādīt kontu nosaukumu kad vien tiem ir viens un tas pats izdevējs. Citu kontu nosaukums būs paslēpts.</string>
     <string name="pref_account_name_position_summary_override">Šis iestatījums netiek ņemts vērā mozaīkas skatā. Konta nosaukums tiks parādīts zem izdevēja.</string>
@@ -58,8 +64,14 @@
     <string name="pref_backups_reminder_summary">Rādīt glabātavas rezerves kopijas izveidošanas atgādinājumu gadījumā, ja pēdējās izmaiņas nav dublētas.</string>
     <string name="pref_backups_reminder_dialog_title">Atspējot rezerves kopiju izveidošanas atgādinājumu</string>
     <string name="pref_backups_reminder_dialog_summary">Šī atgādinājuma atspējošana nozīmē, ka Aegis neziņos, vai ir vai nav izmaiņu, kuras vēl nav dublētas. Tas rada iespējamību zaudēt piekļuvi kodiem. Vai tiešām atspējot atgādinājumu?</string>
-    <string name="pref_backups_location_title">Rezerves kopiju datņu mape</string>
+    <string name="pref_backups_versioning_strategy_title">Rezerves kopiju stratēģija</string>
+    <string name="pref_backups_versioning_strategy_keep_x_versions">Paturēt noteiktu versiju skaitu</string>
+    <string name="pref_backups_versioning_strategy_single_backup">Viena rezerves kopija</string>
+    <string name="pref_backups_versioning_strategy_single_backup_warning">Atlasītā rezerves kopiju stratēģija nav uzticama, tāpēc tā nav ieteicama. Kļūme vienīgajā rezerves kopijā var novest pie vienīgās rezerves kopijas zaudēšanas.</string>
+    <string name="pref_backups_versioning_strategy_dialog_title">Atlasīt rezerves kopiju stratēģiju</string>
+    <string name="pref_backups_location_title">Rezerves kopiju atrašanās vieta</string>
     <string name="pref_backups_location_summary">Rezerves kopijas tiks glabātas</string>
+    <string name="pref_backup_location_summary">Rezerves kopijas tiks glabātas</string>
     <string name="pref_backups_trigger_title">Veikt dublēšanu</string>
     <string name="pref_backups_trigger_summary">Pašrocīgi veikt dublēšanu</string>
     <string name="pref_backups_versions_title">Paturamo rezerves kopiju skaits</string>
@@ -201,6 +213,9 @@
     <string name="edit">Labot</string>
     <string name="select_all">Atlasīt visus</string>
     <string name="assign_icons">Piešķirt ikonas</string>
+    <string name="assign_groups">Piešķirt kopai</string>
+    <string name="assign_groups_dialog_summary">Jāatlasa kopa, kurai piešķirt atlasītos ierakstus.</string>
+    <string name="assign_groups_dialog_dropdown">Atlasīt kopu</string>
     <string name="favorite" comment="Verb">Pievienot izlasei</string>
     <string name="unfavorite" comment="Verb">Izņemt no izlases</string>
     <string name="error_all_caps">KĻŪDA</string>
@@ -218,6 +233,7 @@
     <string name="reading_file">Nolasa datni</string>
     <string name="requesting_root_access">Pieprasa neierobežotu piekļuvi</string>
     <string name="analyzing_qr">Notiek kvadrātkoda nolasīšana</string>
+    <string name="analyzing_qr_multiple">Apstrādā kvadrātkodu %1$d/%2$d (%3$s)</string>
     <plurals name="added_new_entries">
         <item quantity="zero">Glabātavai pievienoti %d jaunu ierakstu</item>
         <item quantity="one">Glabātavai pievienots %d jauns ieraksts</item>
@@ -245,6 +261,7 @@
     <string name="copied">Ievietots starpliktuvē</string>
     <string name="errors_copied">Kļūdas ir ievietotas starpliktuvē</string>
     <string name="version_copied">Laidiena numurs ir ievietots starpliktuvē</string>
+    <string name="error_required_field">Šis lauks ir nepieciešams</string>
     <string name="error_occurred">Atgadījusies kļūda</string>
     <string name="decryption_error">Atgadījusies kļūda glabātavas atslēgšanā</string>
     <string name="decryption_corrupt_error">Atgadījusies kļūda glabātavas atslēgšanā. Tās datne var būt bojāta.</string>
@@ -311,6 +328,11 @@
     <string name="partial_google_auth_import">Noteikta nepilnīga Google Authenticator izgūšanas datne</string>
     <string name="partial_google_auth_import_warning">Trūkst dažu kvadrātkodu no ievietošanas. Šie kodi netika atrasti:\n\n<b>%s</b>\n\nVar turpināt ievietošanu no šīs nepilnīgās izgūšanas datnes, bet mēs iesakām mēģināt atkārtoti ar visiem kvadrātkodiem, lai nebūtu jāzaudē piekļuve kodiem.</string>
     <string name="missing_qr_code_descriptor">• kvadrātkods %d</string>
+    <plurals name="import_partial_export_anyway">
+        <item quantity="zero">Vienalga ievietot %d kodus</item>
+        <item quantity="one">Vienalga ievietot %d kodu</item>
+        <item quantity="other">Vienalga ievietot %d kodus</item>
+    </plurals>
     <string name="import_google_auth_failure">Neizdevās ievietošana no Google Authenticator izgūšanas datnes</string>
     <string name="unrelated_google_auth_batches_error">Izgūšanas datne satur informāciju par nesaistītu kopumu. Var mēģināt ievietot atsevišķi pa vienam kopumam.</string>
     <string name="no_tokens_can_be_imported">Iznākumā nevar ievietot nevienu kodu</string>
@@ -380,6 +402,7 @@
     <string name="unable_to_process_deeplink">Nevar apstrādāt dziļo saiti</string>
     <string name="unable_to_read_qrcode_file">Nav iespējams nolasīt un apstrādāt kvadrātkodu no datnes: %s.</string>
     <string name="unable_to_process_shared_text">Nav iespējams apstrādāt kopīgoto tekstu kā OTP</string>
+    <string name="unable_to_read_qrcode_files">Nav iespējams nolasīt un apstrādāt dažus no kvadrātkodiem. Tiks ievietoti tikai %1$d/%2$d ieraksti.</string>
     <string name="unable_to_generate_qrcode">Nav iespējams izveidot kvadrātkodu</string>
     <string name="select_picture">Atlasīt attēlu</string>
     <string name="select_icon">Atlasīt ikonu</string>
@@ -410,7 +433,17 @@
     <string name="time_sync_warning_message">Aegis paļaujas, ka sistēmas laiks sakrīt, lai izveidotu pareizus kodus. Dažu sekunžu nobīde var izraisīt nepareizus kodus. Izskatās, ka šī ierīce nav uzstādīta, lai automātiski sinhronizētu laiku. Vai izdarīt to tagad?</string>
     <string name="time_sync_warning_disable">Nebrīdināt mani. Es zinu, ko es daru.</string>
     <string name="google_qr_export_unrelated">Atrasts nesaistīts kvadrātkods. Jāmēģina pārsāknēt nolasītāju.</string>
+    <plurals name="google_qr_export_scanned">
+        <item quantity="zero">Nolasīti %1$d/%2$d kvadrātkodi</item>
+        <item quantity="one">Nolasīts %1$d/%2$d kvadrātkods</item>
+        <item quantity="other">Nolasīti %1$d/%2$d QR attēliem</item>
+    </plurals>
+    <string name="google_qr_export_unexpected">Sagaidāms kvadrātkods #%1$d, bet tā vietā nolasīts #%2$d</string>
     <string name="backup_error_bar_message"><b>Glabātavas dublēšana nesen neizdevās</b></string>
+    <string name="backup_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">        Nesens rezerves kopijas veidošanas mēģinājums, izmantojot %1$s, neizdevās, jo atgadījās kļūda. Rezerves kopiju tika mēģināts izveidot %2$s. Lūgums pārskatīt rezerves kopēšanas iestatījumus, lai pārliecinātos, ka var veiksmīgi veikt rezerves kopiju izveidošanu.
+    </string>
+    <string name="backup_permission_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">        Nesens glabātavas dublēšanas mēģinājums izmantojot %1$s neizdevās, jo Aegis nebija atļaujas rakstīt rezerves kopijas paredzētajā vietā. Dublēšana tika mēģināta %2$s. Šī kļūda var atgadīties, ja tika pārvietota vai pāsaukta rezerves kopiju atrašanās vieta vai ja nesen Aegis tika atjaunots no rezerves kopijas. Lūgums atkārtoti iestatīt rezerves kopiju atrašanās vietu.
+    </string>
     <string name="backup_system_builtin">Aegis iebūvētā automātisko rezerves kopiju veidošana</string>
     <string name="backup_system_android">Android mākoņa rezerves kopiju sistēma</string>
     <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">        Jaunākā rezerves kopija ir novecojusi (%s)
@@ -485,8 +518,11 @@
     <string name="importer_help_bitwarden">Jāiesniedz Bitwarden izgūšanas/rezerves kopijas datne. Šifrētas datnes netiek atbalstītas.</string>
     <string name="importer_help_battle_net_authenticator">Jāiesniedz <b>/data/data/com.blizzard.messenger/shared_prefs/com.blizzard.messenger.authenticator_preferences.xml</b> kopija, kas atrodas iekšējās krātuves Battle.net Authenticator mapē.</string>
     <string name="importer_help_duo">Jāiesniedz <b>/data/data/com.duosecurity.duomobile/files/duokit/accounts.json</b> kopija, kas atrodas iekšējās krātuves DUO mapē.</string>
-    <string name="importer_help_freeotp">Jāiesniedz <b>/data/data/org.fedorahosted.freeotp/shared_prefs/tokens.xml</b> kopija, kas atrodas iekšējās krātuves FreeOTP (1.x) mapē.</string>
+    <string name="importer_help_ente_auth">Jāiesniedz Ente Auth izgūšanas datne. Pašlaik tiek atbalstītas tikai nešifrētas datnes.</string>
+    <string name="importer_help_freeotp">FreeOTP 2: jāpadod rezerves kopijas datne.\nFreeOTP 1.x: jāpadod <b>/data/data/org.fedorahosted.freeotp/shared_prefs/tokens.xml</b> kopija, kas atrodas iekšējās krātuves FreeOTP mapē.</string>
     <string name="importer_help_freeotp_plus">Jāiesniedz FreeOTP+ izgūšanas datne.</string>
+    <string name="importer_warning_title_freeotp2">FreeOTP 2 saderība</string>
+    <string name="importer_warning_message_freeotp2">Pastāv vairākas FreeOTP 2 nepilnības, kas var beigties ar bojātām rezerves kopijām. Aegis mēģinās saglābt pēc iespējas vairāk ierakstu, bet ir iespējams, ka dažus no tiem vai pat visus neizdodas ievietot.</string>
     <string name="importer_help_google_authenticator"><b>Tek atbalstītas tikai datubāzes datnes no Goole Authenticator v5.10 un agrāka</b>.\n\nJāiesniedz kopija no <b>/data/data/com.google.android.apps.authenticator2/databases/databases</b>, kas atrodas iekšējās krātuves Google Authenticator mapē.</string>
     <string name="importer_help_microsoft_authenticator">Jāiesniedz <b>/data/data/com.azure.authenticator/databases/PhoneFactor</b> kopija, kas atrodas iekšējās krātuves Microsoft Authenticator mapē.</string>
     <string name="importer_help_plain_text">Jāiesniedz vienkārša teksta datne, kuras katra līnija satur vienu Google Authenticator URI.</string>
@@ -511,27 +547,27 @@
     <string name="pref_account_name_position_hidden">Paslēpts</string>
     <string name="pref_account_name_position_end">Aiz izdevēja</string>
     <string name="pref_account_name_position_below">Zem izdevēja</string>
-    <plurals name="time_elapsed_seconds">
+    <plurals name="time_elapsed_seconds" tools:ignore="UnusedResources">
         <item quantity="zero">pirms %d sekundēm</item>
         <item quantity="one">pirms %d sekundes</item>
         <item quantity="other">Pirms %d sekundēm</item>
     </plurals>
-    <plurals name="time_elapsed_minutes">
+    <plurals name="time_elapsed_minutes" tools:ignore="UnusedResources">
         <item quantity="zero">Pirms %d minūtēm</item>
         <item quantity="one">Pirms %d minūtes</item>
         <item quantity="other">Pirms %d minūtēm</item>
     </plurals>
-    <plurals name="time_elapsed_hours">
+    <plurals name="time_elapsed_hours" tools:ignore="UnusedResources">
         <item quantity="zero">Pirms %d stundām</item>
         <item quantity="one">Pirms %d stundas</item>
         <item quantity="other">Pirms %d stundām</item>
     </plurals>
-    <plurals name="time_elapsed_days">
+    <plurals name="time_elapsed_days" tools:ignore="UnusedResources">
         <item quantity="zero">Pirms %d dienām</item>
         <item quantity="one">Pirms %d dienas</item>
         <item quantity="other">Pirms %d dienām</item>
     </plurals>
-    <plurals name="time_elapsed_years">
+    <plurals name="time_elapsed_years" tools:ignore="UnusedResources">
         <item quantity="zero">Pirms %d gadiem</item>
         <item quantity="one">Pirms %d gada</item>
         <item quantity="other">Pirms %d gadiem</item>

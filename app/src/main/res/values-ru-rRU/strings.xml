@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="action_settings">Настройки</string>
     <string name="action_about">О программе</string>
     <string name="action_delete">Удалить</string>
     <string name="action_transfer">Передача</string>
-    <string name="action_edit_icon">Изменить значок</string>
+    <string name="action_edit_icon">Сменить значок</string>
     <string name="action_reset_usage_count">Сбросить счётчик использований</string>
     <string name="action_reset_usage_count_dialog">Установить количество использований для этой записи на 0?</string>
     <string name="action_default_icon">Восстановить значок по умолчанию</string>
     <string name="discard">Отмена</string>
     <string name="save">Сохранить</string>
+    <string name="all">Все</string>
     <string name="issuer">Эмитент</string>
     <string name="yandex_pin">PIN-код (4–16 цифр)</string>
     <string name="motp_pin">PIN-код (4 цифры)</string>
@@ -44,6 +45,11 @@
     <string name="pref_code_group_size_title">Перегруппировка цифр кода</string>
     <string name="pref_code_group_size_summary">Выберите количество цифр для группировки кодов</string>
     <string name="pref_account_name_position_title">Показывать имя учётной записи</string>
+    <string name="pref_show_next_code_title">Показывать следующий код</string>
+    <string name="pref_show_next_code_summary">Заранее вычислять и показывать следующий код</string>
+    <string name="pref_expiration_state_title">Индикация окончания срока действия кодов</string>
+    <string name="pref_expiration_state_summary">Изменять цвет и начинать мигание кодов, когда срок их действия истекает</string>
+    <string name="pref_expiration_state_fallback">Изменять цвет кодов, когда срок их действия истекает</string>
     <string name="pref_shared_issuer_account_name_title">Показывать имя учётной записи только при необходимости</string>
     <string name="pref_shared_issuer_account_name_summary">Показывать названия учётных записей только в случае, если у них один эмитент. Названия других учётных записей не будут отображаться.</string>
     <string name="pref_account_name_position_summary_override">Эта настройка переопределяется плиточным режимом просмотра. Название учётной записи будет отображаться под эмитентом.</string>
@@ -58,8 +64,14 @@
     <string name="pref_backups_reminder_summary">Показывать напоминание о необходимости создания резервной копии хранилища, если резервирование последних изменений ещё не выполнялось.</string>
     <string name="pref_backups_reminder_dialog_title">Отключить напоминание о резервном копировании</string>
     <string name="pref_backups_reminder_dialog_summary">Отключение этого напоминания означает, что Aegis не будет сообщать вам о наличии изменений, резервная копия которых ещё не создана. В результате вы рискуете потерять доступ к своим ключам. Вы уверены, что хотите отключить напоминание?</string>
-    <string name="pref_backups_location_title">Папка для резервных копий</string>
+    <string name="pref_backups_versioning_strategy_title">Стратегия резервного копирования</string>
+    <string name="pref_backups_versioning_strategy_keep_x_versions">Несколько версий резервных копий</string>
+    <string name="pref_backups_versioning_strategy_single_backup">Одна резервная копия</string>
+    <string name="pref_backups_versioning_strategy_single_backup_warning">Выбранная стратегия резервного копирования ненадёжна и не рекомендуется. Один сбой при резервировании может привести к потере вашей единственной резервной копии.</string>
+    <string name="pref_backups_versioning_strategy_dialog_title">Выберите стратегию резервного копирования</string>
+    <string name="pref_backups_location_title">Расположение резервных копий</string>
     <string name="pref_backups_location_summary">Резервные копии будут храниться в</string>
+    <string name="pref_backup_location_summary">Резервная копия будет храниться в</string>
     <string name="pref_backups_trigger_title">Создать резервную копию</string>
     <string name="pref_backups_trigger_summary">Создание резервной копии вручную</string>
     <string name="pref_backups_versions_title">Количество хранимых версий</string>
@@ -204,6 +216,9 @@
     <string name="edit">Изменить</string>
     <string name="select_all">Выбрать все</string>
     <string name="assign_icons">Назначить значки</string>
+    <string name="assign_groups">Назначить группу</string>
+    <string name="assign_groups_dialog_summary">Выберите группу, в которую вы хотите отнести выбранные записи.</string>
+    <string name="assign_groups_dialog_dropdown">Выберите группу</string>
     <string name="favorite" comment="Verb">В избранное</string>
     <string name="unfavorite" comment="Verb">Убрать из избранного</string>
     <string name="error_all_caps">ОШИБКА</string>
@@ -221,6 +236,7 @@
     <string name="reading_file">Чтение файла</string>
     <string name="requesting_root_access">Запрос root-доступа</string>
     <string name="analyzing_qr">Анализ QR-кода</string>
+    <string name="analyzing_qr_multiple">Анализ QR-кода %1$d/%2$d (%3$s)</string>
     <plurals name="added_new_entries">
         <item quantity="one">Добавлена %d новая запись в хранилище</item>
         <item quantity="few">Добавлены %d новые записи в хранилище</item>
@@ -250,6 +266,7 @@
     <string name="copied">Скопировано</string>
     <string name="errors_copied">Ошибки скопированы в буфер обмена</string>
     <string name="version_copied">Версия скопирована в буфер обмена</string>
+    <string name="error_required_field">Поле обязательно для заполнения</string>
     <string name="error_occurred">Произошла ошибка</string>
     <string name="decryption_error">Произошла ошибка при попытке разблокировать хранилище</string>
     <string name="decryption_corrupt_error">Произошла ошибка при попытке разблокировать хранилище. Файл хранилища может быть повреждён.</string>
@@ -286,7 +303,7 @@
     <string name="choose_totpauth_importer">Эта резервная копия TOTP Authenticator зашифрована паролем?</string>
     <string name="choose_application">Выберите приложение, из которого хотите импортировать</string>
     <string name="choose_theme">Выберите тему</string>
-    <string name="choose_account_name_position">Выбор места названия учётной записи</string>
+    <string name="choose_account_name_position">Выберите место названия учётной записи</string>
     <string name="choose_view_mode">Выберите режим отображения</string>
     <string name="choose_copy_behavior">Настройка копирования</string>
     <string name="parsing_file_error">Произошла ошибка при попытке разобрать файл</string>
@@ -319,6 +336,12 @@
     <string name="partial_google_auth_import">Обнаружен неполный экспорт Google Authenticator</string>
     <string name="partial_google_auth_import_warning">Некоторые QR-коды отсутствуют в импорте. Следующие коды не найдены:\n\n<b>%s</b>\n\nВы можете продолжить импорт этого неполного экспорта, но лучше сделать повторный экспорт со всеми QR-кодами, чтобы избежать риска потери доступа к ключам.</string>
     <string name="missing_qr_code_descriptor">• QR-код %d</string>
+    <plurals name="import_partial_export_anyway">
+        <item quantity="one">Принудительно импортировать %d ключ</item>
+        <item quantity="few">Принудительно импортировать %d ключа</item>
+        <item quantity="many">Принудительно импортировать %d ключей</item>
+        <item quantity="other">Принудительно импортировать %d ключей</item>
+    </plurals>
     <string name="import_google_auth_failure">Невожможно импортировать экспорт из Google Authenticator</string>
     <string name="unrelated_google_auth_batches_error">Экспорт содержит информацию для несвязанного пакета. Попробуйте импортировать по 1 пакету за раз.</string>
     <string name="no_tokens_can_be_imported">В результате ни один ключ не может быть импортирован</string>
@@ -389,7 +412,8 @@
     <string name="unable_to_process_deeplink">Невозможно обработать глубокую ссылку</string>
     <string name="unable_to_read_qrcode_file">Невозможно считать и обработать QR-код из файла: %s.</string>
     <string name="unable_to_process_shared_text">Невозможно обработать текст как OTP</string>
-    <string name="unable_to_generate_qrcode">Невозможно сгенерировать QR-код</string>
+    <string name="unable_to_read_qrcode_files">Невозможно считать и обработать некоторые QR-коды. Импортируется только %1$d/%2$d.</string>
+    <string name="unable_to_generate_qrcode">Невозможно создать QR-код</string>
     <string name="select_picture">Выберите изображение</string>
     <string name="select_icon">Выберите значок</string>
     <string name="tile_open_vault" comment="label for a quick settings tile that opens the app when tapped">Открыть хранилище</string>
@@ -419,7 +443,18 @@
     <string name="time_sync_warning_message">Aegis полагается на системное время для генерации правильных кодов. Отклонение всего в несколько секунд может привести к неверным кодам. Кажется, ваше устройство не настроено для автоматической синхронизации времени. Хотите сделать это сейчас?</string>
     <string name="time_sync_warning_disable">Прекратите меня предупреждать, я знаю, что делаю.</string>
     <string name="google_qr_export_unrelated">Найден несвязанный QR-код. Попробуйте перезапустить сканер.</string>
+    <plurals name="google_qr_export_scanned">
+        <item quantity="one">Отсканирован %1$d/%2$d QR-код</item>
+        <item quantity="few">Отсканированы %1$d/%2$d QR-кода</item>
+        <item quantity="many">Отсканировано %1$d/%2$d QR-кодов</item>
+        <item quantity="other">Отсканировано %1$d/%2$d QR-кодов</item>
+    </plurals>
+    <string name="google_qr_export_unexpected">Ожидался QR-код #%1$d, но вместо этого отсканирован #%2$d</string>
     <string name="backup_error_bar_message"><b>Недавно произошла ошибка резервного копирования хранилища</b></string>
+    <string name="backup_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">Последнее резервное копирование хранилища с использованием %1$s не выполнено из-за ошибки. Попытка производилась %2$s. Убедитесь, что настройки резервного копирования правильные.
+    </string>
+    <string name="backup_permission_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">        Недавняя попытка резервного копирования хранилища с использованием %1$s не выполнена, поскольку у Aegis нет разрешения на запись в место назначения резервной копии. Попытка создания резервной копии была %2$s. Эта ошибка может возникать, если вы переместили/переименовали место назначения резервной копии или если недавно восстановили параметры Aegis из резервной копии. Пожалуйста, перенастройте место назначения резервной копии.
+    </string>
     <string name="backup_system_builtin">Встроенное автоматическое резервирование Aegis</string>
     <string name="backup_system_android">Системное облачное резервирование Android</string>
     <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">        Резервная копия устарела (%s)
@@ -496,8 +531,11 @@
     <string name="importer_help_bitwarden">Необходим файл экспорта/резервной копии Bitwarden. Зашифрованные файлы не поддерживаются.</string>
     <string name="importer_help_battle_net_authenticator">Необходима копия файла <b>/data/data/com.blizzard.messenger/shared_prefs/com.blizzard.messenger.authenticator_preferences.xml</b>, расположенного в папке «Battle.net Authenticator» во внутренней памяти.</string>
     <string name="importer_help_duo">Необходима копия файла <b>/data/data/com.duosecurity.duomobile/files/duokit/accounts.json</b>, расположенного в папке «DUO» во внутренней памяти.</string>
-    <string name="importer_help_freeotp">Необходима копия файла <b>/data/data/org.fedorahosted.freeotp/shared_prefs/tokens.xml</b>, расположенного в папке «FreeOTP (1.x)» во внутренней памяти.</string>
+    <string name="importer_help_ente_auth">Необходим файл экспорта Ente Auth. В настоящее время поддерживаются только незашифрованные файлы.</string>
+    <string name="importer_help_freeotp">FreeOTP 2: необходим файл резервной копии.\nFreeOTP 1.x: необходима копия файла <b>/data/data/org.fedorahosted.freeotp/shared_prefs/tokens.xml</b>, расположенного в папке «FreeOTP» во внутренней памяти.</string>
     <string name="importer_help_freeotp_plus">Необходим файл экспорта FreeOTP+.</string>
+    <string name="importer_warning_title_freeotp2">Совместимость с FreeOTP 2</string>
+    <string name="importer_warning_message_freeotp2">В FreeOTP 2 существует ряд проблем, которые могут привести к повреждению резервных копий. Aegis постарается сохранить как можно больше записей, но возможно, что некоторые или даже все из них не удастся импортировать.</string>
     <string name="importer_help_google_authenticator"><b>Поддерживаются только файлы баз данных Google Authenticator версии 5.10 и более ранних</b>.\n\nНеобходима копия файла <b>/data/data/com.google.android.apps.authenticator2/databases/databases</b>, расположенного в папке «Google Authenticator» во внутренней памяти.</string>
     <string name="importer_help_microsoft_authenticator">Необходима копия файла <b>/data/data/com.azure.authenticator/databases/PhoneFactor</b>, расположенного в папке «Microsoft Authenticator» во внутренней памяти.</string>
     <string name="importer_help_plain_text">Необходим текстовый файл с URI Google Authenticator в каждой строке.</string>
@@ -523,31 +561,31 @@
     <string name="pref_account_name_position_hidden">Скрыта</string>
     <string name="pref_account_name_position_end">После эмитента</string>
     <string name="pref_account_name_position_below">Под эмитентом</string>
-    <plurals name="time_elapsed_seconds">
+    <plurals name="time_elapsed_seconds" tools:ignore="UnusedResources">
         <item quantity="one">%d секунду назад</item>
         <item quantity="few">%d секунды назад</item>
         <item quantity="many">%d секунд назад</item>
         <item quantity="other">%d секунд назад</item>
     </plurals>
-    <plurals name="time_elapsed_minutes">
+    <plurals name="time_elapsed_minutes" tools:ignore="UnusedResources">
         <item quantity="one">%d минуту назад</item>
         <item quantity="few">%d минуты назад</item>
         <item quantity="many">%d минут назад</item>
         <item quantity="other">%d минут назад</item>
     </plurals>
-    <plurals name="time_elapsed_hours">
+    <plurals name="time_elapsed_hours" tools:ignore="UnusedResources">
         <item quantity="one">%d час назад</item>
         <item quantity="few">%d часа назад</item>
         <item quantity="many">%d часов назад</item>
         <item quantity="other">%d часов назад</item>
     </plurals>
-    <plurals name="time_elapsed_days">
+    <plurals name="time_elapsed_days" tools:ignore="UnusedResources">
         <item quantity="one">%d день назад</item>
         <item quantity="few">%d дня назад</item>
         <item quantity="many">%d дней назад</item>
         <item quantity="other">%d дней назад</item>
     </plurals>
-    <plurals name="time_elapsed_years">
+    <plurals name="time_elapsed_years" tools:ignore="UnusedResources">
         <item quantity="one">%d год назад</item>
         <item quantity="few">%d года назад</item>
         <item quantity="many">%d лет назад</item>

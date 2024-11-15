@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="action_settings">الإعدادات</string>
     <string name="action_about">عنّا</string>
     <string name="action_delete">احذف</string>
@@ -10,6 +10,7 @@
     <string name="action_default_icon">استعد الأيقونة الافتراضية</string>
     <string name="discard">تجاهل</string>
     <string name="save">احفظ</string>
+    <string name="all">الكل</string>
     <string name="issuer">المصدِّر</string>
     <string name="yandex_pin">رمز PIN (يتكون من 4-16 رقمًا)</string>
     <string name="motp_pin">رمز PIN (4 أرقام)</string>
@@ -41,9 +42,10 @@
     <string name="pref_lang_title">اللغة</string>
     <string name="pref_show_icons_title">أظهر الأيقونات</string>
     <string name="pref_show_icons_summary">اعرض الأيقونات بجانب كل مدخل</string>
-    <string name="pref_code_group_size_title">تجميع أرقام الكود</string>
+    <string name="pref_code_group_size_title">تجميع أرقام الرمز</string>
     <string name="pref_code_group_size_summary">حدد عدد الأرقام لتجميع الرموز حسبها</string>
     <string name="pref_account_name_position_title">اضهِر اسم الحساب</string>
+    <string name="pref_show_next_code_title">أظهِر الرمز التالي</string>
     <string name="pref_shared_issuer_account_name_title">اضهِر اسم الحساب فقط عند الضرورة</string>
     <string name="pref_shared_issuer_account_name_summary">أضهِر أسماء الحسابات فقط عندما يشتركون نفس المصدر. سيتم إخفاء أسماء الحسابات الأخرى.</string>
     <string name="pref_import_file_title">استيراد من ملف</string>
@@ -57,7 +59,6 @@
     <string name="pref_backups_reminder_summary">أظهر تذكيرًا للاحتفاظ بنسخة احتياطية من مخزنك في حالة عدم إجراء نسخ احتياطي لآخر تغييراتك.</string>
     <string name="pref_backups_reminder_dialog_title">تعطيل تذكير النسخ الاحتياطي</string>
     <string name="pref_backups_reminder_dialog_summary">يعني تعطيل هذا التذكير أن Aegis لن يخبرك بما إذا كان لديك تغييرات لم يتم نسخها احتياطيًا حتى الآن أم لا. هذا يعرضك لخطر فقدان الوصول إلى الرموز الخاصة بك. هل أنت متأكد أنك تريد تعطيل التذكير؟</string>
-    <string name="pref_backups_location_title">مجلد ملفات النسخ الاحتياطية</string>
     <string name="pref_backups_location_summary">سيتم تخزين النسخ الاحتياطية في</string>
     <string name="pref_backups_trigger_title">اصنع نسخة احتياطية</string>
     <string name="pref_backups_trigger_summary">قم بعمل نسخة احتياطية يدويًّا</string>
@@ -111,6 +112,10 @@
     <string name="pref_encryption_summary">قم بتشفير المخزن وفك قفله بكملة مرور أو مصادقة بيومترية</string>
     <string name="pref_biometrics_title">الفتح البيومتري</string>
     <string name="pref_biometrics_summary">السماح بالمصادقة البيومترية لفتح قفل المخزن</string>
+    <string name="pref_search_behavior_type_name">الاسم</string>
+    <string name="pref_search_behavior_type_issuer">المصدِّر</string>
+    <string name="pref_search_behavior_type_note">ملاحظة</string>
+    <string name="pref_search_behavior_type_groups">المجموعات</string>
     <string name="pref_set_password_title">تغيير كلمة المرور</string>
     <string name="pref_set_password_summary">تعيين كلمة مرور جديدة، ستحتاجها لفتح قفل المخزن</string>
     <string name="no_events_title">لا توجد أحداث مبلّغ عنها</string>
@@ -130,6 +135,7 @@
     <string name="event_title_vault_unlock_failed_biometrics">فشل فتح القفل (القياسات الحيوية)</string>
     <string name="event_description_vault_unlock_failed_biometrics">فشلت محاولة لفتح المخزن باستخدام القياسات الحيوية</string>
     <string name="event_unknown">نوع الحدث غير معروف</string>
+    <string name="audit_log_entry_deleted">(محذوف)</string>
     <string name="today_at_time">اليوم على %1$s</string>
     <string name="day_of_week_at_time">%1$s في %2$s</string>
     <string name="export_encrypted">تشفير المخزن</string>
@@ -202,6 +208,9 @@
     <string name="edit">تعديل</string>
     <string name="select_all">حدد الكل</string>
     <string name="assign_icons">تعيين أيقونات</string>
+    <string name="assign_groups">تعيين للمجموعة</string>
+    <string name="assign_groups_dialog_summary">حدد مجموعة ترغب في تعيين المواد المختارة إليها.</string>
+    <string name="assign_groups_dialog_dropdown">حدد المجموعة</string>
     <string name="favorite" comment="Verb">أضِف للمفضلة</string>
     <string name="unfavorite" comment="Verb">أزِل من المفضلة</string>
     <string name="error_all_caps">خطأ</string>
@@ -219,6 +228,7 @@
     <string name="reading_file">قراءة الملف</string>
     <string name="requesting_root_access">طلب صلاحية الجذر</string>
     <string name="analyzing_qr">تحليل رمز QR</string>
+    <string name="analyzing_qr_multiple">جارِ تحليل الرمز %1$d/%2$d (%3$s)</string>
     <plurals name="added_new_entries">
         <item quantity="zero">تم إضافة %d مدخل جديد إلى المخزن</item>
         <item quantity="one">تم إضافة %d مدخل جديد إلى المخزن</item>
@@ -252,6 +262,7 @@
     <string name="copied">تم النسخ</string>
     <string name="errors_copied">تم نسخ الخطأ للحافظة</string>
     <string name="version_copied">تم نسخ الإصدار إلى الحافظة</string>
+    <string name="error_required_field">يُرجى ملء الحقل</string>
     <string name="error_occurred">حدث خطأ ما</string>
     <string name="decryption_error">حدث خطأ أثناء محاولة فك قفل المخزن</string>
     <string name="decryption_corrupt_error">حدث خطأ أثناء محاولة فك قفل المخزن. قد يكون ملف المخزن الخاص بك تالف.</string>
@@ -369,6 +380,7 @@
     <string name="pref_minimize_on_copy_title">تصغير عند النسخ</string>
     <string name="pref_minimize_on_copy_summary">تصغير التطبيق بعد نسخ رمز</string>
     <string name="pref_copy_behavior_title">نسخ الرموز إلى الحافظة</string>
+    <string name="pref_search_behavior_title">سلوك البحث</string>
     <string name="pref_pause_entry_title">تجميد الرموز عند النقر عليها</string>
     <string name="pref_pause_entry_summary">أوقف التحديث التلقائي للرموز عن طريق النقر عليها. لن يُحديث الرموز طالما أنها مركزة. يتطلب \"تمييز الرموز عند النقر عليها\" أو \"النقر للكشف\".</string>
     <string name="pin_keyboard_description">أدخل كلمة المرور لتفعيل لوحة مفاتيح PIN. لاحظ أن هذا يعمل فقط إذا كانت كلمة المرور الخاصة بك تتكون فقط من أرقام</string>
@@ -509,8 +521,10 @@
     <string name="importer_help_bitwarden">توفير مِلَفّ تصدير / نسخ احتياطي لـ Bitwarden. الملفات المشفرة غير مدعومة.</string>
     <string name="importer_help_battle_net_authenticator">يرجى توفير نسخة من <b>/data/data/com.blizzard.messenger/shared_prefs/com.blizzard.messenger.authenticator_preferences.xml</b>، الموجود في دليل التخزين الداخلي لـ Battle.net Authenticator.</string>
     <string name="importer_help_duo">توفير نسخة من <b>/data/data/com.duosecurity.duomobile/files/duokit/accounts.json</b>، الموجودة في دليل التخزين الداخلي لـ DUO.</string>
-    <string name="importer_help_freeotp">قم بتوفير نسخة من <b>/data/data/org.fedorahosted.freeotp/shared_prefs/tokens.xml</b>، الموجود في مجلد أو دليل التخزين الداخلي لـ FreeOTP (1.x).</string>
+    <string name="importer_help_ente_auth">قم بتوفير ملف تصدير Ente Auth. حاليا فقط الملفات غير المشفرة مدعومة.</string>
     <string name="importer_help_freeotp_plus">توفير ملف تصدير FreeOTP +.</string>
+    <string name="importer_warning_title_freeotp2">توافق مع FreeOTP 2</string>
+    <string name="importer_warning_message_freeotp2">هناك عدد من المشاكل في FreeOTP 2 التي يمكن أن تؤدي إلى وجود نسخ احتياطية فاسدة. سوف يحاول درع إنقاذ أكبر عدد ممكن من الإدخالات، ولكن من الممكن أن يفشل البعض أو حتى الجميع في الاستيراد.</string>
     <string name="importer_help_google_authenticator"><b>يتم دعم ملفات قاعدة البيانات فقط من Google Authenticator v5.10 والإصدارات السابقة</b>.\n\nتوفير نسخة من<b>/data/data/com.google.android.apps.authenticator2/databases/databases</b>،الموجود في دليل التخزين الداخلي لـ Google Authenticator.</string>
     <string name="importer_help_microsoft_authenticator">توفير نسخة من<b>/data/data/com.azure.authenticator/databases/PhoneFactor</b>، الموجود في دليل التخزين الداخلي لـ Microsoft Authenticator.</string>
     <string name="importer_help_plain_text">توفير مِلَفّ نصي عادي مع Google Authenticator URI في كل سطر.</string>
@@ -535,7 +549,7 @@
     <string name="pref_account_name_position_hidden">مختفي</string>
     <string name="pref_account_name_position_end">بجانب المصدر</string>
     <string name="pref_account_name_position_below">أسفل المصدر</string>
-    <plurals name="time_elapsed_seconds">
+    <plurals name="time_elapsed_seconds" tools:ignore="UnusedResources">
         <item quantity="zero">منذ %d ثواني</item>
         <item quantity="one">منذ %d ثانية</item>
         <item quantity="two">منذ %d ثواني</item>
@@ -543,7 +557,7 @@
         <item quantity="many">منذ %d ثانية</item>
         <item quantity="other">منذ %d ثواني</item>
     </plurals>
-    <plurals name="time_elapsed_minutes">
+    <plurals name="time_elapsed_minutes" tools:ignore="UnusedResources">
         <item quantity="zero">منذ %d دقيقة</item>
         <item quantity="one">منذ %d دقيقة</item>
         <item quantity="two">منذ %d دقائق</item>
@@ -551,7 +565,7 @@
         <item quantity="many">منذ %d دقيقة</item>
         <item quantity="other">منذ %d دقيقة</item>
     </plurals>
-    <plurals name="time_elapsed_hours">
+    <plurals name="time_elapsed_hours" tools:ignore="UnusedResources">
         <item quantity="zero">منذ %d ساعة</item>
         <item quantity="one">منذ %d ساعة</item>
         <item quantity="two">منذ %d ساعات</item>
@@ -559,7 +573,7 @@
         <item quantity="many">منذ %d ساعة</item>
         <item quantity="other">منذ %d ساعة</item>
     </plurals>
-    <plurals name="time_elapsed_days">
+    <plurals name="time_elapsed_days" tools:ignore="UnusedResources">
         <item quantity="zero">منذ %d يوم</item>
         <item quantity="one">منذ %d يوم</item>
         <item quantity="two">منذ %d أيام</item>
@@ -567,7 +581,7 @@
         <item quantity="many">منذ %d يوم</item>
         <item quantity="other">منذ %d يوم</item>
     </plurals>
-    <plurals name="time_elapsed_years">
+    <plurals name="time_elapsed_years" tools:ignore="UnusedResources">
         <item quantity="zero">منذ %d سنة</item>
         <item quantity="one">منذ %d سنة</item>
         <item quantity="two">منذ %d سنوات</item>

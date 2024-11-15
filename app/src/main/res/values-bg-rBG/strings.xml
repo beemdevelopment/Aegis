@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="action_settings">Настройки</string>
     <string name="action_about">Относно</string>
     <string name="action_delete">Изтриване</string>
@@ -10,6 +10,7 @@
     <string name="action_default_icon">Възстановяване на подразбирана икона</string>
     <string name="discard">Отхвърляне</string>
     <string name="save">Запазване</string>
+    <string name="all">Всички</string>
     <string name="issuer">Издател</string>
     <string name="yandex_pin">PIN (4–16 цифри)</string>
     <string name="motp_pin">PIN (4 цифри)</string>
@@ -44,6 +45,11 @@
     <string name="pref_code_group_size_title">Групиране на цифрите на кода</string>
     <string name="pref_code_group_size_summary">Изберете как да бъдат групирани цифрите на кода</string>
     <string name="pref_account_name_position_title">Име на профила</string>
+    <string name="pref_show_next_code_title">Показване на следващия код</string>
+    <string name="pref_show_next_code_summary">Предварително създаване и показване на следващия код</string>
+    <string name="pref_expiration_state_title">Индикатор за изтичащи кодове</string>
+    <string name="pref_expiration_state_summary">Променете цвета на кодовете и мигането, когато изтичат</string>
+    <string name="pref_expiration_state_fallback">Променете цвета на кодовете, когато изтичат</string>
     <string name="pref_shared_issuer_account_name_title">Показване на името на профила при необходимост</string>
     <string name="pref_shared_issuer_account_name_summary">Показва имената на профилите само когато имат един и същ издател. Другите имена на профили ще бъдат скрити.</string>
     <string name="pref_account_name_position_summary_override">Тази настройка е заменена от режима на изглед на плочки. Името на профила ще се показва под издателя.</string>
@@ -58,7 +64,6 @@
     <string name="pref_backups_reminder_summary">Покзва напомняне да направите резервно копие, в случай че нямате копие на последните промени.</string>
     <string name="pref_backups_reminder_dialog_title">Изключване на напомняне за резервно копие</string>
     <string name="pref_backups_reminder_dialog_summary">Ако изключите напомнянето, Aegis няма да ви казва дали имате промени, за които няма резервно копие. Това ви излага на риск от загуба на достъп до съответните профили. Сигурни ли сте, че искате да изключите това напомняне?</string>
-    <string name="pref_backups_location_title">Папка за резервни копия</string>
     <string name="pref_backups_location_summary">Резервните копия ще бъдат създавани в</string>
     <string name="pref_backups_trigger_title">Създаване на резервно копие</string>
     <string name="pref_backups_trigger_summary">Ръчно създава резервни копия</string>
@@ -198,6 +203,9 @@
     <string name="edit">Променяне</string>
     <string name="select_all">Избиране на всички</string>
     <string name="assign_icons">Задаване на икони</string>
+    <string name="assign_groups">Прибавяне към група</string>
+    <string name="assign_groups_dialog_summary">Изберете групата, в която да добавите избраните записи.</string>
+    <string name="assign_groups_dialog_dropdown">Избиране на група</string>
     <string name="favorite" comment="Verb">Добавя в избрани</string>
     <string name="unfavorite" comment="Verb">Премахва от избраните</string>
     <string name="error_all_caps">ГРЕШКА</string>
@@ -215,6 +223,7 @@
     <string name="reading_file">Прочитане на файла</string>
     <string name="requesting_root_access">Достъп до правата на суперпотребителя</string>
     <string name="analyzing_qr">Анализиране на QR кода</string>
+    <string name="analyzing_qr_multiple">Анализиране на QR код %1$d/%2$d (%3$s)</string>
     <plurals name="added_new_entries">
         <item quantity="one">Към хранилището е добавен %d запис</item>
         <item quantity="other">Към хранилището са добавени %d записа</item>
@@ -240,6 +249,7 @@
     <string name="copied">Копирано</string>
     <string name="errors_copied">Грешките са копирани</string>
     <string name="version_copied">Изданието е копирано</string>
+    <string name="error_required_field">Полето е задължително</string>
     <string name="error_occurred">Възникна грешка</string>
     <string name="decryption_error">Грешка при отключване на хранилището</string>
     <string name="decryption_corrupt_error">Грешка при отключване на хранилището. Възможно е файлът на хранилището да е повреден.</string>
@@ -303,6 +313,10 @@
     <string name="partial_google_auth_import">Установени са частично изнасени данни за Google Authenticator</string>
     <string name="partial_google_auth_import_warning">Няколко QR кода не са внесени. Следните кодове липсват:\n\n<b>%s</b>\n\nМожете да продължите с частично внесените данни, но е препоръчително да направите нов опит с всички QR кодове без да рискувате загуба на кодове за защите.</string>
     <string name="missing_qr_code_descriptor">• QR код %d</string>
+    <plurals name="import_partial_export_anyway">
+        <item quantity="one">Внасяне на %d код за достъп въпреки това</item>
+        <item quantity="other">Внасяне на %d кода за достъп въпреки това</item>
+    </plurals>
     <string name="import_google_auth_failure">Грешка при внасяне към Google Authenticator</string>
     <string name="unrelated_google_auth_batches_error">Изнесеното съдържа части от несвързана порция кодове. Внасяйте всяка порция поотделно.</string>
     <string name="no_tokens_can_be_imported">Като резултат не са внесени кодове за защита</string>
@@ -371,6 +385,7 @@
     <string name="unable_to_process_deeplink">Грешка при обработка на препратка към секция в приложението</string>
     <string name="unable_to_read_qrcode_file">Грешка при прочитане и обработка на QR кода от файла: %s.</string>
     <string name="unable_to_process_shared_text">Грешка при обработка на споделения текст като еднократна парола</string>
+    <string name="unable_to_read_qrcode_files">Грешка при прочитане и обработка на някои от кодовете за QR. %1$d от общо %2$d записа са внесени.</string>
     <string name="unable_to_generate_qrcode">Грешка при създаване на QR код</string>
     <string name="select_picture">Изберете картина</string>
     <string name="select_icon">Изберете икона</string>
@@ -401,7 +416,16 @@
     <string name="time_sync_warning_message">Aegis разчита системният часовник да бъде верен, за да може да изчислява правилните кодове. Отклонение от само няколко секунди може да доведе до грешни изчисления. Изглежда устройството не е настроено да се сверява. Искате ли да го настроите сега?</string>
     <string name="time_sync_warning_disable">Без предупреждения. Аз зная какво правя.</string>
     <string name="google_qr_export_unrelated">Намерен е несвързан QR код. Рестартирате скенера.</string>
+    <plurals name="google_qr_export_scanned">
+        <item quantity="one">Сканиран %1$d/%2$d код за QR</item>
+        <item quantity="other">Сканирани %1$d/%2$d кодове за QR</item>
+    </plurals>
+    <string name="google_qr_export_unexpected">Очакван е код за QR №%1$d, но е сканиран №%2$d</string>
     <string name="backup_error_bar_message"><b>Резервно копие на хранилището е било неуспешно</b></string>
+    <string name="backup_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">        Един от последните опити за резервно копие на хранилището чрез %1$s е неуспешен поради грешка. Това се е случило %2$s. Проверете настройките и се уверете, че резервни копия могат да бъдат създавани с тези настройки.
+    </string>
+    <string name="backup_permission_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">        Скорошен опит за резервно копие на хранилището с използване на %1$s е неуспешен, защото Aegis няма права за запис в местоназначението. Опитът е направен %2$s. Такава грешка може да възникне, ако сте преместили или преименували местоназначението или ако наскоро сте възстановили Aegis от резервно копие. Настройте местоназначението за резервно копие.
+    </string>
     <string name="backup_system_builtin">Вградените резервни копия на Aegis</string>
     <string name="backup_system_android">Облачните резервни копия на Андроид</string>
     <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">        Последното резервно копие е остаряло (%s)
@@ -474,8 +498,11 @@
     <string name="importer_help_bitwarden">Изберете изнесен файл или резервно копие на Bitwarden. Шифровани файлове не се поддържат.</string>
     <string name="importer_help_battle_net_authenticator">Изберете копие на файла <b>/data/data/com.blizzard.messenger/shared_prefs/com.blizzard.messenger.authenticator_preferences.xml</b>, който се намира в папката с данни на Battle.net Authenticator.</string>
     <string name="importer_help_duo">Изберете копие на файла <b>/data/data/com.duosecurity.duomobile/files/duokit/accounts.json</b>, който се намира в папката с данни на DUO.</string>
-    <string name="importer_help_freeotp">Изберете копие на файла <b>/data/data/org.fedorahosted.freeotp/shared_prefs/tokens.xml</b>, който се намира в папката с данни на FreeOTP (1.x).</string>
+    <string name="importer_help_ente_auth">Изберете файл с резервно копие на Ente Auth. За момента се поддържат само нешифровани резервни копия.</string>
+    <string name="importer_help_freeotp">FreeOTP 2: Изберете резервно копие на файла.\nFreeOTP 1.x: Изберете копие на файла <b>/data/data/org.fedorahosted.freeotp/shared_prefs/tokens.xml</b>, който се намира в папката с данни на FreeOTP.</string>
     <string name="importer_help_freeotp_plus">Изберете изнесен файл от FreeOTP+.</string>
+    <string name="importer_warning_title_freeotp2">Съвместимост с FreeOTP 2</string>
+    <string name="importer_warning_message_freeotp2">Открити са редица дефекти във FreeOTP 2, които биха могли да доведат до повреждане на резервните копия. Aegis ще се опита да възстанови възможно най-много записи, но е възможно някои или дори всички от тях да не бъдат внесени.</string>
     <string name="importer_help_google_authenticator"><b>Поддържат се файлове на Google Authenticator v5.10 и по-предишни издания.</b>\n\nИзберете копие на файла <b>/data/data/com.google.android.apps.authenticator2/databases/databases</b>, който се намира в папката с данни на Google Authenticator.</string>
     <string name="importer_help_microsoft_authenticator">Изберете копие на файла <b>/data/data/com.azure.authenticator/databases/PhoneFactor</b>, който се намира в папката с данни на Microsoft Authenticator.</string>
     <string name="importer_help_plain_text">Изберете чист текстов файл с Google Authenticator URI, по един на ред.</string>
@@ -500,23 +527,23 @@
     <string name="pref_account_name_position_hidden">Скрито</string>
     <string name="pref_account_name_position_end">До издателя</string>
     <string name="pref_account_name_position_below">Под издателя</string>
-    <plurals name="time_elapsed_seconds">
+    <plurals name="time_elapsed_seconds" tools:ignore="UnusedResources">
         <item quantity="one">преди %d секунда</item>
         <item quantity="other">преди %d секунди</item>
     </plurals>
-    <plurals name="time_elapsed_minutes">
+    <plurals name="time_elapsed_minutes" tools:ignore="UnusedResources">
         <item quantity="one">преди %d минута</item>
         <item quantity="other">преди %d минути</item>
     </plurals>
-    <plurals name="time_elapsed_hours">
+    <plurals name="time_elapsed_hours" tools:ignore="UnusedResources">
         <item quantity="one">преди %d час</item>
         <item quantity="other">преди %d часа</item>
     </plurals>
-    <plurals name="time_elapsed_days">
+    <plurals name="time_elapsed_days" tools:ignore="UnusedResources">
         <item quantity="one">преди %d ден</item>
         <item quantity="other">преди %d дена</item>
     </plurals>
-    <plurals name="time_elapsed_years">
+    <plurals name="time_elapsed_years" tools:ignore="UnusedResources">
         <item quantity="one">преди %d година</item>
         <item quantity="other">преди %d години</item>
     </plurals>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="action_settings">Paramètres</string>
     <string name="action_about">À propos</string>
     <string name="action_delete">Supprimer</string>
@@ -10,6 +10,7 @@
     <string name="action_default_icon">Restaurer l\'icône par défaut</string>
     <string name="discard">Annuler</string>
     <string name="save">Enregistrer</string>
+    <string name="all">Tout</string>
     <string name="issuer">Émetteur</string>
     <string name="yandex_pin">PIN (4–16 chiffres)</string>
     <string name="motp_pin">Code PIN (4 chiffres)</string>
@@ -44,6 +45,11 @@
     <string name="pref_code_group_size_title">Regroupement des chiffres du code</string>
     <string name="pref_code_group_size_summary">Sélectionner le nombre de chiffres par lequel regrouper les codes</string>
     <string name="pref_account_name_position_title">Afficher le nom de compte</string>
+    <string name="pref_show_next_code_title">Afficher le code suivant</string>
+    <string name="pref_show_next_code_summary">Générer et afficher le code suivant à l\'avance</string>
+    <string name="pref_expiration_state_title">Indiquer quand les codes sont sur le point d\'expirer</string>
+    <string name="pref_expiration_state_summary">Changer la couleur des codes et les faire clignoter quand ils sont sur le point d\'expirer</string>
+    <string name="pref_expiration_state_fallback">Changer la couleur des codes quand ils sont sur le point d\'expirer</string>
     <string name="pref_shared_issuer_account_name_title">Afficher le nom de compte seulement si nécessaire</string>
     <string name="pref_shared_issuer_account_name_summary">Afficher les noms de compte seulement lorsqu\'ils partagent le même émetteur. Les autres noms de compte seront masqués.</string>
     <string name="pref_account_name_position_summary_override">Ce paramètre est remplacé par le mode d\'affichage par tuiles. Le nom de compte sera affiché sous l\'émetteur.</string>
@@ -58,7 +64,6 @@
     <string name="pref_backups_reminder_summary">Afficher un rappel pour sauvegarder votre coffre-fort si vous n\'avez pas sauvegardé vos dernières modifications.</string>
     <string name="pref_backups_reminder_dialog_title">Désactiver le rappel de sauvegarde</string>
     <string name="pref_backups_reminder_dialog_summary">Désactiver ce rappel signifie qu\'Aegis ne vous dira pas si vous avez ou non des modifications qui ne sont pas encore sauvegardées. Cela vous expose au risque de perdre l\'accès à vos jetons. Êtes-vous sûr de vouloir désactiver le rappel ?</string>
-    <string name="pref_backups_location_title">Répertoire des fichiers de sauvegarde</string>
     <string name="pref_backups_location_summary">Les sauvegardes seront enregistrées dans</string>
     <string name="pref_backups_trigger_title">Déclencher la sauvegarde</string>
     <string name="pref_backups_trigger_summary">Déclencher manuellement une sauvegarde</string>
@@ -198,6 +203,9 @@
     <string name="edit">Modifier</string>
     <string name="select_all">Tout sélectionner</string>
     <string name="assign_icons">Association des icônes</string>
+    <string name="assign_groups">Associer au groupe</string>
+    <string name="assign_groups_dialog_summary">Sélectionnez un groupe auquel vous souhaitez assigner les entrées sélectionnées.</string>
+    <string name="assign_groups_dialog_dropdown">Sélectionner groupe</string>
     <string name="favorite" comment="Verb">Ajouter aux favoris</string>
     <string name="unfavorite" comment="Verb">Retirer des favoris</string>
     <string name="error_all_caps">ERREUR</string>
@@ -215,6 +223,7 @@
     <string name="reading_file">Lecture du fichier</string>
     <string name="requesting_root_access">Demande d\'accès root</string>
     <string name="analyzing_qr">Analyse du code QR</string>
+    <string name="analyzing_qr_multiple">Analyse du code QR %1$d/%2$d (%3$s)</string>
     <plurals name="added_new_entries">
         <item quantity="one">Ajout de %d nouvelle entrée dans le coffre-fort</item>
         <item quantity="other">Ajout de %d nouvelles entrées dans le coffre-fort</item>
@@ -240,6 +249,7 @@
     <string name="copied">Copié</string>
     <string name="errors_copied">Erreurs copiées dans le presse-papier</string>
     <string name="version_copied">Version copiée dans le presse-papier</string>
+    <string name="error_required_field">Ce champ est obligatoire</string>
     <string name="error_occurred">Une erreur s\'est produite</string>
     <string name="decryption_error">Une erreur est survenue en essayant de déverrouiller le coffre-fort</string>
     <string name="decryption_corrupt_error">Une erreur est survenue en essayant de déverrouiller le coffre-fort. Le fichier de votre coffre-fort est peut-être corrompu.</string>
@@ -303,6 +313,10 @@
     <string name="partial_google_auth_import">Export Google Authenticator incomplet détecté</string>
     <string name="partial_google_auth_import_warning">Certains codes QR sont manquants dans votre export. Les codes suivants n\'ont pas été trouvés :\n\n<b>%s</b>\n\nVous pouvez continuer à importer cet export partiel, mais nous vous recommandons de réessayer avec tous les codes QR afin de ne risquer de perdre l\'accès à aucun jeton.</string>
     <string name="missing_qr_code_descriptor">• code QR %d</string>
+    <plurals name="import_partial_export_anyway">
+        <item quantity="one">Importer quand même %d jeton</item>
+        <item quantity="other">Importer quand même %d jetons</item>
+    </plurals>
     <string name="import_google_auth_failure">L\'import de l\'export Google Authenticator a échoué</string>
     <string name="unrelated_google_auth_batches_error">L\'export contient des informations pour un lot non lié. Essayez d\'importer 1 lot à la fois.</string>
     <string name="no_tokens_can_be_imported">Aucun jeton ne peut être importé en conséquence</string>
@@ -371,6 +385,7 @@
     <string name="unable_to_process_deeplink">Impossible de traiter le lien profond</string>
     <string name="unable_to_read_qrcode_file">Impossible de lire et de traiter le code QR depuis le fichier : %s.</string>
     <string name="unable_to_process_shared_text">Impossible de traiter le texte partagé comme OTP</string>
+    <string name="unable_to_read_qrcode_files">Impossible de lire et traiter certains codes QR. %1$d/%2$d entrées seulement seront importées.</string>
     <string name="unable_to_generate_qrcode">Impossible de générer le code QR</string>
     <string name="select_picture">Sélectionner image</string>
     <string name="select_icon">Sélectionner une icône</string>
@@ -401,7 +416,16 @@
     <string name="time_sync_warning_message">Aegis s\'appuie sur l\'heure du système pour être synchronisé afin de générer des codes corrects. Un écart de quelques secondes seulement pourrait aboutir à des codes incorrects. Il semble que votre appareil n\'est pas configuré pour synchroniser le temps automatiquement. Souhaitez-vous le faire maintenant ?</string>
     <string name="time_sync_warning_disable">Arrêter de m\'avertir. Je sais ce que je fais.</string>
     <string name="google_qr_export_unrelated">Code QR non lié trouvé. Essayez de redémarrer le scanner.</string>
+    <plurals name="google_qr_export_scanned">
+        <item quantity="one">%1$d/%2$d code QR scanné</item>
+        <item quantity="other">%1$d/%2$d codes QR scannés</item>
+    </plurals>
+    <string name="google_qr_export_unexpected">Code QR n°%1$d attendu, mais n°%2$d scanné à la place</string>
     <string name="backup_error_bar_message"><b>La sauvegarde du coffre-fort a échoué récemment</b></string>
+    <string name="backup_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">        Une tentative récente de sauvegarde du coffre-fort en utilisant %1$s a échoué car une erreur est survenue. La sauvegarde a été tentée %2$s. Veuillez vérifier vos paramètres de sauvegarde pour vous assurer que les sauvegardes peuvent se terminer avec succès.
+    </string>
+    <string name="backup_permission_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">        Une tentative récente de sauvegarde du coffre-fort en utilisant %1$s a échoué car Aegis n\'avait pas la permission d\'écrire dans la destination de la sauvegarde. La sauvegarde a été tentée %2$s. Cette erreur peut se produire si vous avez déplacé/renommé la destination de la sauvegarde ou si vous avez récemment restauré Aegis depuis une sauvegarde. Veuillez reconfigurer la destination de la sauvegarde.
+    </string>
     <string name="backup_system_builtin">Sauvegardes automatiques intégrées dans Aegis</string>
     <string name="backup_system_android">Système de sauvegarde cloud d\'Android</string>
     <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">        La dernière sauvegarde est obsolète (%s)
@@ -474,8 +498,11 @@
     <string name="importer_help_bitwarden">Fournir un export/sauvegarde Bitwarden. Les fichiers chiffrés ne sont pas pris en charge.</string>
     <string name="importer_help_battle_net_authenticator">Fournir une copie de <b>/data/data/com.blizzard.messenger/shared_prefs/com.blizzard.messenger.authenticator_preferences.xml</b>, situé dans le répertoire de stockage interne de Battle.net Authenticator.</string>
     <string name="importer_help_duo">Fournir une copie de <b>/data/data/com.duosecurity.duomobile/files/duokit/accounts.json</b>, situé dans le répertoire de stockage interne de DUO.</string>
-    <string name="importer_help_freeotp">Fournir une copie de <b>/data/data/org.fedorahosted.freeotp/shared_prefs/tokens.xml</b>, situé dans le répertoire de stockage interne de FreeOTP (1.x).</string>
+    <string name="importer_help_ente_auth">Fournir un export Ente Auth. Actuellement, seuls les fichiers non chiffrés sont pris en charge.</string>
+    <string name="importer_help_freeotp">FreeOTP 2 : Fournir une sauvegarde.\nFreeOTP 1.x : Fournir une copie de <b>/data/data/org.fedorahosted.freeotp/shared_prefs/tokens.xml</b>, situé dans le répertoire de stockage interne de FreeOTP.</string>
     <string name="importer_help_freeotp_plus">Fournir un export FreeOTP+.</string>
+    <string name="importer_warning_title_freeotp2">Compatibilité FreeOTP 2</string>
+    <string name="importer_warning_message_freeotp2">Il y a un certain nombre de problèmes dans FreeOTP 2 qui peuvent entraîner des sauvegardes corrompues. Aegis essaiera de récupérer autant d\'entrées que possible, mais il est possible que certaines ou même la totalité ne parviennent pas à être importées.</string>
     <string name="importer_help_google_authenticator"><b>Seuls les fichiers de base de données de Google Authenticator v5.10 et antérieures sont pris en charge</b>.\n\nFournir une copie de <b>/data/data/com.google.android.apps.authenticator2/databases/databases</b>, situé dans le répertoire de stockage interne de Google Authenticator.</string>
     <string name="importer_help_microsoft_authenticator">Fournir une copie de <b>/data/data/com.azure.authenticator/databases/PhoneFactor</b>, situé dans le répertoire de stockage interne de Microsoft Authenticator.</string>
     <string name="importer_help_plain_text">Fournir un fichier texte brut avec une URI Google Authenticator sur chaque ligne.</string>
@@ -500,23 +527,23 @@
     <string name="pref_account_name_position_hidden">Masqué</string>
     <string name="pref_account_name_position_end">À côté de l\'émetteur</string>
     <string name="pref_account_name_position_below">En dessous de l\'émetteur</string>
-    <plurals name="time_elapsed_seconds">
+    <plurals name="time_elapsed_seconds" tools:ignore="UnusedResources">
         <item quantity="one">Il y a %d seconde</item>
         <item quantity="other">Il y a %d secondes</item>
     </plurals>
-    <plurals name="time_elapsed_minutes">
+    <plurals name="time_elapsed_minutes" tools:ignore="UnusedResources">
         <item quantity="one">Il y a %d minute</item>
         <item quantity="other">Il y a %d minutes</item>
     </plurals>
-    <plurals name="time_elapsed_hours">
+    <plurals name="time_elapsed_hours" tools:ignore="UnusedResources">
         <item quantity="one">Il y a %d heure</item>
         <item quantity="other">Il y a %d heures</item>
     </plurals>
-    <plurals name="time_elapsed_days">
+    <plurals name="time_elapsed_days" tools:ignore="UnusedResources">
         <item quantity="one">il y a %d jour</item>
         <item quantity="other">Il y a %d jours</item>
     </plurals>
-    <plurals name="time_elapsed_years">
+    <plurals name="time_elapsed_years" tools:ignore="UnusedResources">
         <item quantity="one">Il y a %d an</item>
         <item quantity="other">Il y a %d ans</item>
     </plurals>

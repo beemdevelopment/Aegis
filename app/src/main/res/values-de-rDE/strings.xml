@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="action_settings">Einstellungen</string>
     <string name="action_about">Über</string>
     <string name="action_delete">Löschen</string>
@@ -10,6 +10,7 @@
     <string name="action_default_icon">Standardsymbol wiederherstellen</string>
     <string name="discard">Verwerfen</string>
     <string name="save">Speichern</string>
+    <string name="all">Alle</string>
     <string name="issuer">Herausgeber</string>
     <string name="yandex_pin">PIN (4–16 Ziffern)</string>
     <string name="motp_pin">PIN (4 Ziffern)</string>
@@ -19,7 +20,7 @@
     <string name="pref_cat_appearance_app">App</string>
     <string name="pref_cat_appearance_entries">Einträge</string>
     <string name="pref_cat_backups_android">Android</string>
-    <string name="pref_cat_backups_auto">Automatisierte Sicherungen</string>
+    <string name="pref_cat_backups_auto">Automatische Backups</string>
     <string name="pref_section_behavior_title">Verhalten</string>
     <string name="pref_section_behavior_summary">Das Verhalten bei der Interaktion mit der Eintragsliste anpassen.</string>
     <string name="pref_section_appearance_title">Erscheinungsbild</string>
@@ -44,6 +45,11 @@
     <string name="pref_code_group_size_title">Zifferngruppierung</string>
     <string name="pref_code_group_size_summary">Anzahl der Ziffern für das Gruppieren von Codes festlegen</string>
     <string name="pref_account_name_position_title">Kontonamen anzeigen</string>
+    <string name="pref_show_next_code_title">Nächsten Code anzeigen</string>
+    <string name="pref_show_next_code_summary">Den nächsten Code im Voraus generieren und anzeigen</string>
+    <string name="pref_expiration_state_title">Ablaufende Codes kennzeichnen</string>
+    <string name="pref_expiration_state_summary">Ablaufende Codes mit einer anderen Farbe darstellen und blinken lassen</string>
+    <string name="pref_expiration_state_fallback">Ablaufende Codes mit einer anderen Farbe darstellen</string>
     <string name="pref_shared_issuer_account_name_title">Kontonamen nur bei Bedarf anzeigen</string>
     <string name="pref_shared_issuer_account_name_summary">Kontonamen nur anzeigen, wenn sie denselben Herausgeber haben. Andere Kontonamen werden ausgeblendet.</string>
     <string name="pref_account_name_position_summary_override">Diese Einstellung wird durch die Kachelansicht überschrieben. Der Kontoname wird unterhalb des Herausgebers angezeigt.</string>
@@ -58,7 +64,6 @@
     <string name="pref_backups_reminder_summary">Erinnerung zur Sicherung der Datenbank anzeigen, falls die letzten Änderungen nicht gesichert wurden.</string>
     <string name="pref_backups_reminder_dialog_title">Erinnerung für Sicherungen deaktivieren</string>
     <string name="pref_backups_reminder_dialog_summary">Das Deaktivieren dieser Erinnerung bedeutet, dass Aegis nicht mitteilt, ob Änderungen vorgenommen wurden, die noch nicht gesichert sind. Dadurch besteht die Gefahr, dass der Zugriff auf deine Token verloren geht. Möchtest du die Erinnerung wirklich deaktivieren?</string>
-    <string name="pref_backups_location_title">Sicherungsverzeichnis</string>
     <string name="pref_backups_location_summary">Sicherungskopien werden gespeichert in</string>
     <string name="pref_backups_trigger_title">Sicherung auslösen</string>
     <string name="pref_backups_trigger_summary">Manuell eine Sicherung auslösen</string>
@@ -198,6 +203,9 @@
     <string name="edit">Bearbeiten</string>
     <string name="select_all">Alle auswählen</string>
     <string name="assign_icons">Symbole zuweisen</string>
+    <string name="assign_groups">Einer Gruppe zuweisen</string>
+    <string name="assign_groups_dialog_summary">Wähle eine Gruppe aus, die du den ausgewählten Einträgen zuweisen möchtest.</string>
+    <string name="assign_groups_dialog_dropdown">Gruppe auswählen</string>
     <string name="favorite" comment="Verb">Zu Favoriten hinzufügen</string>
     <string name="unfavorite" comment="Verb">Aus Favoriten entfernen</string>
     <string name="error_all_caps">FEHLER</string>
@@ -215,6 +223,7 @@
     <string name="reading_file">Datei wird gelesen</string>
     <string name="requesting_root_access">Root-Zugriff wird angefordert</string>
     <string name="analyzing_qr">QR-Code wird analysiert</string>
+    <string name="analyzing_qr_multiple">QR-Code %1$d von %2$d (%3$s) wird analysiert …</string>
     <plurals name="added_new_entries">
         <item quantity="one">%d neuer Eintrag zur Datenbank hinzugefügt</item>
         <item quantity="other">%d neue Einträge zur Datenbank hinzugefügt</item>
@@ -240,6 +249,7 @@
     <string name="copied">Kopiert</string>
     <string name="errors_copied">Fehlermeldungen in die Zwischenablage kopiert</string>
     <string name="version_copied">Version in die Zwischenablage kopiert</string>
+    <string name="error_required_field">Pflichtfeld</string>
     <string name="error_occurred">Ein Fehler ist aufgetreten</string>
     <string name="decryption_error">Beim Entsperren der Datenbank ist ein Fehler aufgetreten</string>
     <string name="decryption_corrupt_error">Beim Entsperren der Datenbank ist ein Fehler aufgetreten. Deine Datenbankdatei könnte beschädigt sein.</string>
@@ -303,6 +313,10 @@
     <string name="partial_google_auth_import">Unvollständiger Google Authenticator-Export erkannt</string>
     <string name="partial_google_auth_import_warning">Einige QR-Codes fehlen in deinem Importversuch. Die folgenden Codes wurden nicht gefunden:\n\n<b>%s</b>\n\nDu kannst mit dem Importieren dieses Teilexports fortfahren, aber wir empfehlen es mit allen QR-Codes erneut zu versuchen, damit du nicht riskierst, den Zugriff auf Token zu verlieren.</string>
     <string name="missing_qr_code_descriptor">• QR-Code %d</string>
+    <plurals name="import_partial_export_anyway">
+        <item quantity="one">%d Token trotzdem importieren</item>
+        <item quantity="other">%d Token trotzdem importieren</item>
+    </plurals>
     <string name="import_google_auth_failure">Importieren von Google Authenticator-Export fehlgeschlagen</string>
     <string name="unrelated_google_auth_batches_error">Die Exportdatei enthält Informationen über ein nicht zugehöriges Set. Versuche, jeweils 1 Set zu importieren.</string>
     <string name="no_tokens_can_be_imported">Daher können keine Token importiert werden</string>
@@ -371,6 +385,7 @@
     <string name="unable_to_process_deeplink">Deep-Link konnte nicht verarbeitet werden</string>
     <string name="unable_to_read_qrcode_file">QR-Code konnte nicht aus der Datei gelesen und verarbeitet werden: %s.</string>
     <string name="unable_to_process_shared_text">Gemeinsamer Text kann nicht als OTP verarbeitet werden</string>
+    <string name="unable_to_read_qrcode_files">Einige der QR-Codes konnten nicht gelesen und verarbeitet werden. Nur %1$d von %2$d Einträge werden importiert.</string>
     <string name="unable_to_generate_qrcode">QR-Code konnte nicht generiert werden</string>
     <string name="select_picture">Bild auswählen</string>
     <string name="select_icon">Symbol auswählen</string>
@@ -401,7 +416,16 @@
     <string name="time_sync_warning_message">Aegis ist auf die Synchronisierung der Systemzeit angewiesen, um korrekte Codes zu generieren. Eine Abweichung von nur wenigen Sekunden kann zu falschen Codes führen. Es sieht so aus, als ob dein Gerät nicht so konfiguriert ist, dass es die Zeit automatisch synchronisiert. Möchtest du das jetzt tun?</string>
     <string name="time_sync_warning_disable">Höre auf, mich zu warnen. Ich weiß, was ich tue.</string>
     <string name="google_qr_export_unrelated">Nicht zugehöriger QR-Code gefunden. Versuche, den Scanner neu zu starten.</string>
+    <plurals name="google_qr_export_scanned">
+        <item quantity="one">%1$d von %2$d QR-Codes gescannt</item>
+        <item quantity="other">%1$d von %2$d QR-Codes gescannt</item>
+    </plurals>
+    <string name="google_qr_export_unexpected">QR-Code Nr. %1$d erwartet, stattdessen wurde Nr. %2$d gescannt</string>
     <string name="backup_error_bar_message"><b>Sicherungskopie ist kürzlich fehlgeschlagen</b></string>
+    <string name="backup_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">        Ein kürzlicher Sicherungsversuch der Datenbank mit %1$s ist fehlgeschlagen, da ein Fehler aufgetreten ist. Das Erstellen einer Sicherung wurde am %2$s versucht. Bitte überprüfe deine Sicherungseinstellungen, damit Sicherungen erfolgreich abgeschlossen werden können.
+    </string>
+    <string name="backup_permission_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">        Ein kürzlicher Sicherungsversuch der Datenbank mit %1$s ist fehlgeschlagen, da Aegis keine Berechtigung zum Schreiben auf das Sicherungsziel hatte. Das Erstellen einer Sicherung wurde am %2$s versucht. Dieser Fehler kann auftreten, wenn das Sicherungsziel verschoben/umbenannt wurde oder wenn Aegis kürzlich aus einer Sicherung wiederhergestellt wurde. Bitte konfiguriere das Sicherungsziel neu.
+    </string>
     <string name="backup_system_builtin">Automatisierte Sicherungen von Aegis</string>
     <string name="backup_system_android">Cloud-Sicherungssystem von Android</string>
     <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">        Die letzte Sicherung ist veraltet (%s)
@@ -474,8 +498,11 @@
     <string name="importer_help_bitwarden">Gib eine Bitwarden-Export-/Sicherungsdatei an. Verschlüsselte Dateien werden nicht unterstützt.</string>
     <string name="importer_help_battle_net_authenticator">Gib eine Kopie von <b>/data/data/com.blizzard.messenger/shared_prefs/com.blizzard.messenger.authenticator_preferences.xml</b> an, die sich im internen Speicherverzeichnis von Battle.net Authenticator befindet.</string>
     <string name="importer_help_duo">Gib eine Kopie von <b>/data/data/com.duosecurity.duomobile/files/duokit/accounts.json</b> an, die sich im internen Speicherverzeichnis von DUO befindet.</string>
-    <string name="importer_help_freeotp">Gib eine Kopie von <b>/data/data/org.fedorahosted.freeotp/shared_prefs/tokens.xml</b> an, die sich im internen Speicherverzeichnis von FreeOTP (1.X) befindet.</string>
+    <string name="importer_help_ente_auth">Gib eine Ente Auth-Exportdatei an. Derzeit werden nur unverschlüsselte Dateien unterstützt.</string>
+    <string name="importer_help_freeotp">FreeOTP 2: Gib eine Sicherungsdatei an.\nFreeOTP 1.X: Gib eine Kopie von <b>/data/data/org.fedorahosted.freeotp/shared_prefs/tokens.xml</b>, die sich im internen Speicherverzeichnis von FreeOTP befindet.</string>
     <string name="importer_help_freeotp_plus">Gib eine FreeOTP+-Exportdatei an.</string>
+    <string name="importer_warning_title_freeotp2">Kompatibilität mit FreeOTP 2</string>
+    <string name="importer_warning_message_freeotp2">Es gibt in FreeOTP 2 eine Reihe von Problemen, die zu beschädigten Sicherungsdateien führen können. Aegis wird versuchen, so viele Einträge wie möglich zu retten. Es ist möglich, dass das Importieren einiger oder sogar aller Einträge fehlschlägt.</string>
     <string name="importer_help_google_authenticator"><b>Es werden nur Datenbankdateien von Google Authenticator bis Version 5.10 unterstützt</b>.\n\nGib eine Kopie von <b>/data/data/com.google.android.apps.authenticator2/databases/databases</b> an, die sich im internen Speicherverzeichnis von Google Authenticator befindet.</string>
     <string name="importer_help_microsoft_authenticator">Gib eine Kopie von <b>/data/data/com.azure.authenticator/databases/PhoneFactor</b> an, die sich im internen Speicherverzeichnis von Microsoft Authenticator befindet.</string>
     <string name="importer_help_plain_text">Gib eine Klartextdatei an, die in jeder Zeile eine Google-Authenticator-URI enthält.</string>
@@ -500,23 +527,23 @@
     <string name="pref_account_name_position_hidden">Ausgeblendet</string>
     <string name="pref_account_name_position_end">Neben dem Herausgeber</string>
     <string name="pref_account_name_position_below">Unterhalb des Herausgebers</string>
-    <plurals name="time_elapsed_seconds">
+    <plurals name="time_elapsed_seconds" tools:ignore="UnusedResources">
         <item quantity="one">vor %d Sekunde</item>
         <item quantity="other">vor %d Sekunden</item>
     </plurals>
-    <plurals name="time_elapsed_minutes">
+    <plurals name="time_elapsed_minutes" tools:ignore="UnusedResources">
         <item quantity="one">vor %d Minute</item>
         <item quantity="other">vor %d Minuten</item>
     </plurals>
-    <plurals name="time_elapsed_hours">
+    <plurals name="time_elapsed_hours" tools:ignore="UnusedResources">
         <item quantity="one">vor %d Stunde</item>
         <item quantity="other">vor %d Stunden</item>
     </plurals>
-    <plurals name="time_elapsed_days">
+    <plurals name="time_elapsed_days" tools:ignore="UnusedResources">
         <item quantity="one">vor %d Tag</item>
         <item quantity="other">vor %d Tagen</item>
     </plurals>
-    <plurals name="time_elapsed_years">
+    <plurals name="time_elapsed_years" tools:ignore="UnusedResources">
         <item quantity="one">vor %d Jahr</item>
         <item quantity="other">vor %d Jahren</item>
     </plurals>

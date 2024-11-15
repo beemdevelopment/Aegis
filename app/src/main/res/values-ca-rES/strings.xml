@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="action_settings">Configuració</string>
     <string name="action_about">Quant a</string>
     <string name="action_delete">Esborrar</string>
@@ -10,6 +10,7 @@
     <string name="action_default_icon">Restaurar l\'icona predeterminada</string>
     <string name="discard">Descartar</string>
     <string name="save">Guardar</string>
+    <string name="all">Tot</string>
     <string name="issuer">Emissor</string>
     <string name="yandex_pin">PIN (4–16 digits)</string>
     <string name="motp_pin">PIN (4 digits)</string>
@@ -44,6 +45,11 @@
     <string name="pref_code_group_size_title">Agrupació dels dígits</string>
     <string name="pref_code_group_size_summary">Triar nombre de digits per agrupar els codis</string>
     <string name="pref_account_name_position_title">Mostra el nom del compte</string>
+    <string name="pref_show_next_code_title">Mostrar el proper codi</string>
+    <string name="pref_show_next_code_summary">Genera i mostra el proper codi anticipadament</string>
+    <string name="pref_expiration_state_title">Avisa quan els codis són a punt de caducar</string>
+    <string name="pref_expiration_state_summary">Canvia el color dels codis i fer que parpellegin quan estan a punt de caducar</string>
+    <string name="pref_expiration_state_fallback">Canvia el color dels codis quan són a punt de caducar</string>
     <string name="pref_shared_issuer_account_name_title">Mostra el nom del compte només quan sigui necessari</string>
     <string name="pref_shared_issuer_account_name_summary">Mostra el nom de compte només quan es comparteixi el mateix emissor. Altres noms de compte estaran ocults.</string>
     <string name="pref_account_name_position_summary_override">S\'omet aquesta configuració en usar la visualització en mosaic. Els noms de compte es mostraran a sota de l\'emissor.</string>
@@ -58,7 +64,6 @@
     <string name="pref_backups_reminder_summary">Mostra un recordatori per a fer còpia de seguretat de la caixa forta si no has desat els teus últims canvis.</string>
     <string name="pref_backups_reminder_dialog_title">Desactivar recordatori de còpia</string>
     <string name="pref_backups_reminder_dialog_summary">Desactivant aquest recordatori, l\'Aegis no t\'alertarà en cas de tenir fitxes sense còpia de seguretat. Això posa en risc l\'accés a les teves fitxes. Segur que vols desactivar el recordatori?</string>
-    <string name="pref_backups_location_title">Directori per a les còpies</string>
     <string name="pref_backups_location_summary">Les còpies es desaran a</string>
     <string name="pref_backups_trigger_title">Disparador de còpia</string>
     <string name="pref_backups_trigger_summary">Llançar còpia manualment</string>
@@ -198,6 +203,9 @@
     <string name="edit">Edita</string>
     <string name="select_all">Seleccionar-ho tot</string>
     <string name="assign_icons">Assignar icones</string>
+    <string name="assign_groups">Assignar a grup</string>
+    <string name="assign_groups_dialog_summary">Tria el grup on vols assignar les entrades seleccionades.</string>
+    <string name="assign_groups_dialog_dropdown">Tria un grup</string>
     <string name="favorite" comment="Verb">Preferit</string>
     <string name="unfavorite" comment="Verb">No preferit</string>
     <string name="error_all_caps">ERROR</string>
@@ -215,6 +223,7 @@
     <string name="reading_file">S\'està llegint el fitxer</string>
     <string name="requesting_root_access">Demanant accés root</string>
     <string name="analyzing_qr">Anàlisi del codi QR</string>
+    <string name="analyzing_qr_multiple">Analitzant el codi QR %1$d/%2$d (%3$s)</string>
     <plurals name="added_new_entries">
         <item quantity="one">S\'ha afegit %d entrada nova a la caixa forta</item>
         <item quantity="other">S\'han afegit %d entrades noves a la caixa forta</item>
@@ -240,6 +249,7 @@
     <string name="copied">Copiat</string>
     <string name="errors_copied">Errors copiant al porta-retalls</string>
     <string name="version_copied">Versió copiada al porta-retalls</string>
+    <string name="error_required_field">Aquest camp és obligatori</string>
     <string name="error_occurred">S\'ha produït un error</string>
     <string name="decryption_error">S\'ha produït un error al desbloquejar la caixa forta</string>
     <string name="decryption_corrupt_error">S\'ha produït un error al desbloquejar la caixa forta. El fitxer pot estar fet malbé.</string>
@@ -303,6 +313,10 @@
     <string name="partial_google_auth_import">S\'ha detectat una exportació incompleta de Google Authenticator</string>
     <string name="partial_google_auth_import_warning">Falten alguns codis QR a la importació. No s\'han trobat els codis següents:\n\n<b>%s</b>\n\nPodeu continuar important aquesta exportació parcial, però us recomanem que torneu a provar amb tots els codis QR perquè no us arriscareu a perdre l\'accés a cap token.</string>
     <string name="missing_qr_code_descriptor">• codi QR %d</string>
+    <plurals name="import_partial_export_anyway">
+        <item quantity="one">Importeu %d fitxa de totes maneres</item>
+        <item quantity="other">Importeu %d fitxes de totes maneres</item>
+    </plurals>
     <string name="import_google_auth_failure">No s\'ha pogut importar l\'exportació de Google Authenticator</string>
     <string name="unrelated_google_auth_batches_error">L\'exportació conté informació d\'un lot no relacionat. Proveu d\'importar 1 lot alhora.</string>
     <string name="no_tokens_can_be_imported">Com a resultat, no es poden importar tokens</string>
@@ -371,6 +385,7 @@
     <string name="unable_to_process_deeplink">No es pot processar l\'enllaç profund</string>
     <string name="unable_to_read_qrcode_file">No es pot llegir i processar el codi QR del fitxer: %s.</string>
     <string name="unable_to_process_shared_text">No es pot processar el text compartit com a OTP</string>
+    <string name="unable_to_read_qrcode_files">No es poden llegir i processar alguns dels codis QR. Només s\'importaran %1$d/%2$d entrades.</string>
     <string name="unable_to_generate_qrcode">La generació del codi QR ha fallat</string>
     <string name="select_picture">Tria imatge</string>
     <string name="select_icon">Tria icona</string>
@@ -401,7 +416,16 @@
     <string name="time_sync_warning_message">Cal que l\'hora del sistema sigui correcta per tal de generar codis correctes. Una desviació d\'uns quants segons pot causar codis no vàlids. Sembla que el teu dispositiu no està configurat per a sincronitzar la hora automàticament. Vols activar-ho ara?</string>
     <string name="time_sync_warning_disable">No cal que m\'avisis més. Sé el que estic fent.</string>
     <string name="google_qr_export_unrelated">Codi QR no vàlid. Prova-ho un altre cop.</string>
+    <plurals name="google_qr_export_scanned">
+        <item quantity="one">S\'ha escanejat %1$d/%2$d codi QR</item>
+        <item quantity="other">S\'han escanejat %1$d/%2$d codis QR</item>
+    </plurals>
+    <string name="google_qr_export_unexpected">S\'esperava codi QR #%1$d, però s\'ha trobat #%2$d en el seu lloc</string>
     <string name="backup_error_bar_message"><b>Ha fallat la còpia de seguretat recentment</b></string>
+    <string name="backup_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">Una còpia de seguretat de la caixa forta utilitzant %1$s ha fallat. La còpia s\'ha intentat %2$s. Si us plau, comprova la configuració de la còpia per a assegurar-te de que les còpies es poden fer correctament.
+    </string>
+    <string name="backup_permission_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">        Un intent recent de còpia de seguretat de la caixa forta utilitzant %1$s ha fallat perquè l\'Aegis no té permís d\'escriptura en el destí de la còpia de seguretat. La còpia s\'ha intentat %2$s. Aquest error pot aparèixer si has mogut/reanomenat el destí de la còpia de seguretat o si has restaurat l\'Aegis recentment des d\'una còpia de seguretat. Si us plau torna a configurar el destí de la còpia de seguretat.
+    </string>
     <string name="backup_system_builtin">Còpies de seguretat integrades a Aegis</string>
     <string name="backup_system_android">Còpia al núvol d\'Android</string>
     <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">L\'última còpia de seguretat és molt antiga (%s)    </string>
@@ -472,8 +496,11 @@
     <string name="importer_help_bitwarden">Subministreu un fitxer d\'exportació/còpia de seguretat de Bitwarden. Els fitxers xifrats no són compatibles.</string>
     <string name="importer_help_battle_net_authenticator">Proporciona una còpia de <b>/data/data/com.blizzard.messenger/shared_prefs/com.blizzard.messenger.authenticator_preferences.xml</b>, que es troba al directori de l\'autenticador de Battle.net.</string>
     <string name="importer_help_duo">Subministra una còpia de <b>/data/data/com.duosecurity.duomobile/files/duokit/accounts.json</b>, que està a l\'emmagatzematge intern del teu dispositiu, al directori del DUO.</string>
-    <string name="importer_help_freeotp">Subministra una còpia de <b>/data/data/org.fedorahosted.freeotp/shared_prefs/tokens.xml</b>, que està a l\'emmagatzematge intern del teu dispositiu, al directori del FreeOTP (1.x).</string>
+    <string name="importer_help_ente_auth">Subministra un fitxer exportat d\'Ente Auth. Per ara només acceptem fitxers sense xifrar.</string>
+    <string name="importer_help_freeotp">FreeOTP 2: Subministra un fitxer de còpia de seguretat.\nFreeOTP 1.x: Subministra una còpia de <b>/data/data/org.fedorahosted.freeotp/shared_prefs/tokens.xml</b>, que està a l\'emmagatzematge intern del teu dispositiu, al directori del FreeOTP.</string>
     <string name="importer_help_freeotp_plus">Subministra un fitxer exportat del FreeOTP+.</string>
+    <string name="importer_warning_title_freeotp2">Compatibilitat FreeOTP 2</string>
+    <string name="importer_warning_message_freeotp2">Hi ha diversos problemes en el FreeOTP 2 que poden resultar en còpies de seguretat defectuoses. L\'Aegis provarà de recuperar el màxim d\'entrades possible, però potser algunes entrades o totes elles no es puguin importar.</string>
     <string name="importer_help_google_authenticator">&lt;b&gt;Només s\'admeten fitxers de bases de dades de Google Authenticator v5.10 i anteriors&lt;/b&gt;.\n\nProporcioneu una còpia de &lt;b&gt;/data/data/com.google.android.apps.authenticator2/databases/databases&lt; /b&gt;, situada al directori d\'emmagatzematge intern de Google Authenticator.</string>
     <string name="importer_help_microsoft_authenticator">Subministra una còpia de <b>/data/data/com.azure.authenticator/databases/PhoneFactor</b>, que està a l\'emmagatzematge intern del teu dispositiu, al directori del Microsoft Authenticator.</string>
     <string name="importer_help_plain_text">Subministra un fitxer de text pla amb una URI de Google Authenticator a cada línia.</string>
@@ -498,23 +525,23 @@
     <string name="pref_account_name_position_hidden">Ocult</string>
     <string name="pref_account_name_position_end">Al costat de l\'emissor</string>
     <string name="pref_account_name_position_below">A sota de l\'emissor</string>
-    <plurals name="time_elapsed_seconds">
+    <plurals name="time_elapsed_seconds" tools:ignore="UnusedResources">
         <item quantity="one">fa %d segon</item>
         <item quantity="other">fa %d segons</item>
     </plurals>
-    <plurals name="time_elapsed_minutes">
+    <plurals name="time_elapsed_minutes" tools:ignore="UnusedResources">
         <item quantity="one">fa %d minut</item>
         <item quantity="other">fa %d minuts</item>
     </plurals>
-    <plurals name="time_elapsed_hours">
+    <plurals name="time_elapsed_hours" tools:ignore="UnusedResources">
         <item quantity="one">Fa %d hora</item>
         <item quantity="other">fa %d hores</item>
     </plurals>
-    <plurals name="time_elapsed_days">
+    <plurals name="time_elapsed_days" tools:ignore="UnusedResources">
         <item quantity="one">fa %d dia</item>
         <item quantity="other">fa %d dies</item>
     </plurals>
-    <plurals name="time_elapsed_years">
+    <plurals name="time_elapsed_years" tools:ignore="UnusedResources">
         <item quantity="one">fa %d any</item>
         <item quantity="other">fa %d anys</item>
     </plurals>

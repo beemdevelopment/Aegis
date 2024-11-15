@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="action_settings">Configuración</string>
     <string name="action_about">Tocante a</string>
     <string name="action_delete">Desaniciar</string>
@@ -46,7 +46,6 @@
     <string name="pref_android_backups_hint"><i>Siempres se permiten les copies de seguranza D2D, independientemente de la configuración d\'arriba</i></string>
     <string name="pref_backups_title">Crear automáticamente copies de seguranza</string>
     <string name="pref_backups_summary">Crea automáticamente copies de seguranza de l\'arca nel almacenamientu esternu al facer cambeos. Esta opción namás ye compatible coles arques cifraes.</string>
-    <string name="pref_backups_location_title">Direutoriu pa les copies de seguranza</string>
     <string name="pref_backups_location_summary">Les copies de seguranza van atroxase en</string>
     <string name="pref_backups_trigger_title">Facer una copia de seguranza</string>
     <string name="pref_backups_trigger_summary">Fai manualmente una copia de seguranza</string>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="action_settings">Налаштування</string>
     <string name="action_about">Про додаток</string>
     <string name="action_delete">Видалити</string>
@@ -49,7 +49,6 @@
     <string name="pref_android_backups_hint"><i>Резервне копіювання між пристроями працюватиме завжди, незалежно від налаштування вище</i></string>
     <string name="pref_backups_title">Автоматично створювати резервні копії сховища</string>
     <string name="pref_backups_summary">Автоматично створювати резервні копії сховища на зовнішніх носіях при внесенні змін. Підтримується лише для зашифрованих сховищ.</string>
-    <string name="pref_backups_location_title">Каталог для резервних копій</string>
     <string name="pref_backups_location_summary">Резервні копії будуть зберігатися в</string>
     <string name="pref_backups_trigger_title">Запустити резервне копіювання</string>
     <string name="pref_backups_trigger_summary">Вручну запустити створення резервної копії</string>
@@ -435,31 +434,31 @@
     <string name="pref_grouping_size_four">4 цифри у групі</string>
     <string name="pref_copy_behavior_never">Ніколи</string>
     <string name="pref_account_name_position_hidden">Приховано</string>
-    <plurals name="time_elapsed_seconds">
+    <plurals name="time_elapsed_seconds" tools:ignore="UnusedResources">
         <item quantity="one">%d секунду тому</item>
         <item quantity="few">%d секунди тому</item>
         <item quantity="many">%d секунд тому</item>
         <item quantity="other">%d секунд тому</item>
     </plurals>
-    <plurals name="time_elapsed_minutes">
+    <plurals name="time_elapsed_minutes" tools:ignore="UnusedResources">
         <item quantity="one">%d хвилину тому</item>
         <item quantity="few">%d хвилини тому</item>
         <item quantity="many">%d хвилин тому</item>
         <item quantity="other">%d хвилин тому</item>
     </plurals>
-    <plurals name="time_elapsed_hours">
+    <plurals name="time_elapsed_hours" tools:ignore="UnusedResources">
         <item quantity="one">%d годину тому</item>
         <item quantity="few">%d години тому</item>
         <item quantity="many">%d годин тому</item>
         <item quantity="other">%d годин тому</item>
     </plurals>
-    <plurals name="time_elapsed_days">
+    <plurals name="time_elapsed_days" tools:ignore="UnusedResources">
         <item quantity="one">%d день тому</item>
         <item quantity="few">%d дні тому</item>
         <item quantity="many">%d днів тому</item>
         <item quantity="other">%d днів тому</item>
     </plurals>
-    <plurals name="time_elapsed_years">
+    <plurals name="time_elapsed_years" tools:ignore="UnusedResources">
         <item quantity="one">%d рік тому</item>
         <item quantity="few">%d роки тому</item>
         <item quantity="many">%d років тому</item>

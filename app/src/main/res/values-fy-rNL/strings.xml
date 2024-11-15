@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="action_settings">Ynstellingen</string>
     <string name="action_about">Oer</string>
     <string name="action_delete">Fuortsmite</string>
     <string name="action_transfer">Oersette</string>
     <string name="action_edit_icon">Piktogram oanpasse</string>
     <string name="action_reset_usage_count">Gebrûksteller op 0 ynstelle</string>
-    <string name="action_reset_usage_count_dialog">Bisto wis datsto de gebrûksteller fan dit item op 0 sette wolst?</string>
+    <string name="action_reset_usage_count_dialog">Binne jo wis dat jo de gebrûksteller fan dit item op 0 sette wolle?</string>
     <string name="action_default_icon">Standert piktogram opnij ynstelle</string>
     <string name="discard">Ungedien meitsje</string>
     <string name="save">Bewarje</string>
+    <string name="all">Alle</string>
     <string name="issuer">Utjouwer</string>
     <string name="yandex_pin">PIN (4–16 sifers)</string>
     <string name="motp_pin">PIN (4 sifers)</string>
@@ -44,6 +45,11 @@
     <string name="pref_code_group_size_title">Koadesifergroepearring</string>
     <string name="pref_code_group_size_summary">Selektearje oantal sifers om de koaden op te groepearjen</string>
     <string name="pref_account_name_position_title">Accountnamme toane</string>
+    <string name="pref_show_next_code_title">Folgjende koade toane</string>
+    <string name="pref_show_next_code_summary">Generearje en toan de folgjende koade yn it foar</string>
+    <string name="pref_expiration_state_title">Jou oan wannear’t koaden op it punt stean te ferrinen</string>
+    <string name="pref_expiration_state_summary">Wizigje de kleur fan de koaden en lit se knipperje wannear’t se op it punt stean te ferrinnen</string>
+    <string name="pref_expiration_state_fallback">Wizigje de kleur fan de koaden wannear’t se op it punt stean te ferrinnen</string>
     <string name="pref_shared_issuer_account_name_title">Accountnamme allinnich wannear nedich toane</string>
     <string name="pref_shared_issuer_account_name_summary">Accountnammen allinnich toane wannear’t se deselde útjouwer diele. Oare accountnammen wurde ferstoppe.</string>
     <string name="pref_account_name_position_summary_override">Dizze ynstelling wurdt oerskreaun troch de werjeftemodus Tegels. Accountnamme wurdt ûnder de útjouwer toand.</string>
@@ -57,9 +63,15 @@
     <string name="pref_backups_reminder_title">Reservekopyen oantinken</string>
     <string name="pref_backups_reminder_summary">Toan in oantinken om in reservekopy fan dyn klûs te meitsjen, asto noch gjin reservekopy hast fan de lêste wizigingen.</string>
     <string name="pref_backups_reminder_dialog_title">Reservekopy-oantinken útskeakelje</string>
-    <string name="pref_backups_reminder_dialog_summary">Utskeakeljen fan dit oantinken betsjut dat Aegis dy net fertelle sil oftsto wizigingen hast dêr’t noch net in reservekopy fan makke is. Hjirmei rinsto it risiko om de tagong ta tokens te ferliezen. Bisto wis datsto dit oantinken útskeakelje wolst?</string>
-    <string name="pref_backups_location_title">Map foar reservekopybestannen</string>
+    <string name="pref_backups_reminder_dialog_summary">Utskeakeljen fan dit oantinken betsjut dat Aegis jo net fertelle sil oft jo wizigingen hawwe dêr’t noch net in reservekopy fan makke is. Hjirmei rinne jo it risiko om de tagong ta tokens te ferliezen. Binne jo wis dat jo dit oantinken útskeakelje wolst?</string>
+    <string name="pref_backups_versioning_strategy_title">Reservekopystrategy</string>
+    <string name="pref_backups_versioning_strategy_keep_x_versions">In oantal ferzjes behâlde</string>
+    <string name="pref_backups_versioning_strategy_single_backup">Ien inkelde reservekopy</string>
+    <string name="pref_backups_versioning_strategy_single_backup_warning">De selektearre reservekopystrategy is net betrouber en wurdt net oanrekommandearre. In inkelde reservekopymislearring soe liede kinne ta it ferliezen fan jo iennige reservekopy.</string>
+    <string name="pref_backups_versioning_strategy_dialog_title">Selektearje in reservekopystrategy</string>
+    <string name="pref_backups_location_title">Reservekopylokaasje</string>
     <string name="pref_backups_location_summary">Reservekopyen sille bewarre wurde yn</string>
+    <string name="pref_backup_location_summary">Reservekopy sil bewarre wurde yn</string>
     <string name="pref_backups_trigger_title">No in reservekopy meitsje</string>
     <string name="pref_backups_trigger_summary">Hânmjittich in reservekopy meitsje</string>
     <string name="pref_backups_versions_title">Oantal ferzjes om te bewarjen</string>
@@ -81,7 +93,7 @@
         <item quantity="one">%d ynkompatibel item oerslaggen</item>
         <item quantity="other">%d ynkompatibele items oerslaggen</item>
     </plurals>
-    <string name="pref_password_reminder_summary">Toan in oantinken %s om it wachtwurd yn te fieren, sadatsto dizze net ferjitst.</string>
+    <string name="pref_password_reminder_summary">Toan in oantinken %s om it wachtwurd yn te fieren, sadat jo dizze net ferjitte.</string>
     <string name="pref_password_reminder_summary_disabled">Utskeakele</string>
     <string name="pref_secure_screen_title">Skermbeskoatteling</string>
     <string name="pref_secure_screen_summary">Blokkearje skermôfdrukken en oare besykjen ta skermopnamen binnen dizze app.</string>
@@ -104,8 +116,14 @@
     <string name="pref_encryption_summary">Fersiferje de klûs en ûntskoattelje dizze mei in wachtwurd of biometry.</string>
     <string name="pref_biometrics_title">Biometrysk ûntskoattelje</string>
     <string name="pref_biometrics_summary">Biometryske autentikaasje tastean om de klûs te ûntskoatteljen</string>
+    <string name="pref_search_behavior_summary">Sykje troch: %s</string>
+    <string name="pref_search_behavior_prompt">Sykje yn ien fan de folgjende fjilden</string>
+    <string name="pref_search_behavior_type_name">Namme</string>
+    <string name="pref_search_behavior_type_issuer">Utjouwer</string>
+    <string name="pref_search_behavior_type_note">Notysje</string>
+    <string name="pref_search_behavior_type_groups">Groepen</string>
     <string name="pref_set_password_title">Wachtwurd wizigje</string>
-    <string name="pref_set_password_summary">Stel in nij wachtwurd yn wêrmei’tsto de klûs ûntskoattelje kinst</string>
+    <string name="pref_set_password_summary">Stel in nij wachtwurd yn wêrmei’t jo de klûs ûntskoattelje kinne</string>
     <string name="no_events_title">Gjin rapportearre barrens</string>
     <string name="no_events_description">Gjin wichtige ôfspraken binnen de app rapportearre</string>
     <string name="event_title_vault_unlocked">Klûs ûntskoattele</string>
@@ -127,7 +145,7 @@
     <string name="today_at_time">Hjoed om %1$s</string>
     <string name="day_of_week_at_time">%1$s om %2$s</string>
     <string name="export_encrypted">Fersiferje de klûs</string>
-    <string name="export_help">Dizze aksje sil de klûs eksportearje út it ynterne ûnthâld fan Aegis. Selektearje it formaat wêryn’tsto de eksport wolst:</string>
+    <string name="export_help">Dizze aksje sil de klûs eksportearje út it ynterne ûnthâld fan Aegis. Selektearje it formaat wêryn’t jo de eksport wolle:</string>
     <string name="export_warning_unencrypted">Do stiest op it punt in ûnfersifere kopy fan de Aegis-klûs te eksportearjen. <b>Dit wurdt net oanrekommandearre</b>.</string>
     <string name="export_warning_password">Eksporten wurde fersifere mei in apart wachtwurd ynsteld yn de befeiligingsynstellingen.</string>
     <string name="understand_risk_accept">Ik begryp it risiko</string>
@@ -161,16 +179,16 @@
     <string name="set_password_confirm">Befêstigje it wachtwurd</string>
     <string name="invalid_password">It wachtwurd kloppet net</string>
     <string name="invalidated_biometrics">Der is in wiziging yn de befeiligingsynstellingen fan dyn apparaat detektearre. Gean nei ‘Aegis -&gt; Ynstellingen -&gt; Befeiliging -&gt; Untskoattelje mei biometry’ om biometryske ferifikaasje wer yn te skeakeljen.</string>
-    <string name="password_reminder">Fier dyn wachtwurd yn. Wy freegje dy sa no en dan om dit te dwaan, sadatsto it net ferjitst.</string>
+    <string name="password_reminder">Fier jo wachtwurd yn. Wy freegje jo sa no en dan om dit te dwaan, sadat jo it net ferjitte.</string>
     <string name="password_reminder_dialog_title">Standert biometrysk ûntskoattelje</string>
-    <string name="password_reminder_dialog_message">Wy freegje dy sa no en dan om dyn wachtwurd yn te fieren, sadatsto it net ferjitst en do de tagong ts dyn klûs ferliest. Neidatsto ien kear dyn wachtwurd ynfierd hast, sil Aegis standert weromgean nei biometrysk ûntskoattelje, oant it tiid is foar in oar omtinken oan dyn wachtwurd.</string>
+    <string name="password_reminder_dialog_message">Wy freegje jo sa no en dan om jo wachtwurd yn te fieren, sadat jo it net ferjitte en jo de tagong ta jo klûs ferlieze. Neidat jo ien kear jo wachtwurd ynfierd hawwe, sil Aegis standert weromgean nei biometrysk ûntskoattelje, oant it tiid is foar in oar omtinken oan jo wachtwurd.</string>
     <string name="password_reminder_freq_never">Nea</string>
     <string name="password_reminder_freq_weekly">Wykliks</string>
     <string name="password_reminder_freq_biweekly">Twawykliks</string>
     <string name="password_reminder_freq_monthly">Moanliks</string>
     <string name="password_reminder_freq_quarterly">Elk fearnsjier</string>
     <string name="enter_password_2fas_message">It liket derop dat dizze 2FAS-reservekopy fersifere is. Fier it wachtwurd hjirûnder yn.</string>
-    <string name="enter_password_authy_message">It liket derop datsto Authy-tokens fersifere binne. Slút Aegis, iepenje Authy en ûntskoattelje de tokens mei dyn wachtwurd. Yn stee dêrfan kin Aegis ek probearje om dyn Authy-tokens te dekodearjen asto hjirûnder dyn wachtwurd ynfollest.</string>
+    <string name="enter_password_authy_message">It liket derop dat jo Authy-tokens fersifere binne. Slút Aegis, iepenje Authy en ûntskoattelje de tokens mei jo wachtwurd. Yn stee dêrfan kin Aegis ek probearje om jo Authy-tokens te dekodearjen as jo hjirûnder jo wachtwurd ynfolje.</string>
     <string name="enter_password_aegis_title">Fier it ymportwachtwurd yn</string>
     <string name="period_hint">Tiid (sekonden)</string>
     <string name="algorithm_hint">Hash-funksje</string>
@@ -192,6 +210,9 @@
     <string name="edit">Bewurkje</string>
     <string name="select_all">Alles selektearje</string>
     <string name="assign_icons">Piktogrammen tawize</string>
+    <string name="assign_groups">Oan groep tawize</string>
+    <string name="assign_groups_dialog_summary">Selektearje in groep wêroan jo de selektearre items tawize wolle.</string>
+    <string name="assign_groups_dialog_dropdown">Groep selektearje</string>
     <string name="favorite" comment="Verb">Oan favoriten tafoegje</string>
     <string name="unfavorite" comment="Verb">Ut favoriten fuortsmite</string>
     <string name="error_all_caps">FLATER</string>
@@ -201,7 +222,7 @@
     <string name="new_entry">Nij item</string>
     <string name="add_new_entry">Nij item tafoegje</string>
     <string name="unlock_vault_error">Klûs koe net ûntskoattele wurde</string>
-    <string name="unlock_vault_error_description">Wachtwurd net krekt. Kontrolearje oftsto it wachtwurd korrekt ynfierd hast.</string>
+    <string name="unlock_vault_error_description">Wachtwurd net krekt. Kontrolearje oft jo it wachtwurd korrekt ynfierd hawwe.</string>
     <string name="password_equality_error">Wachtwurden moatte oerien komme en meie net leech wêze</string>
     <string name="snackbar_authentication_method">Kies in oanmeldmetoade</string>
     <string name="encrypting_vault">De klûs wurdt fersifere</string>
@@ -209,18 +230,19 @@
     <string name="reading_file">Bestân lêze</string>
     <string name="requesting_root_access">Root-tagong wurdt oanfrege</string>
     <string name="analyzing_qr">QR-koade analysearje</string>
+    <string name="analyzing_qr_multiple">QR-koade analysearje %1$d/%2$d (%3$s)</string>
     <plurals name="added_new_entries">
         <item quantity="one">%d nij item tafoege oan de klûs</item>
         <item quantity="other">%d nije items tafoege oan de klûs</item>
     </plurals>
     <string name="importing_icon_pack">Piktogrampakket ymportearje</string>
     <string name="delete_entry">Item fuortsmite</string>
-    <string name="delete_entry_description">Bisto wis datsto dit item fuortsmite wolst?</string>
-    <string name="delete_entry_explanation">Dizze aksje skeakelet 2FA net út foar:\n<b>%s</b>\n\n. Soargje derfoar datsto 2FA útskeakele hast of datsto in oare manier hast om koaden foar dizze tsjinst te generearjen, om foar te kommen datsto tagong ferliest.</string>
+    <string name="delete_entry_description">Binne jo wis dat jo dit item fuortsmite wolle?</string>
+    <string name="delete_entry_explanation">Dizze aksje skeakelet 2FA net út foar:\n<b>%s</b>\n\n. Soargje derfoar dat jo 2FA útskeakele hawwe of dat jo in oare manier hawwe om koaden foar dizze tsjinst te generearjen, om foar te kommen dat jo tagong ferlieze.</string>
     <string name="delete_entries">Items fuortsmite</string>
     <plurals name="delete_entries_description">
-        <item quantity="one">Bisto wis datsto %d item fuortsmite wolst?</item>
-        <item quantity="other">Bisto wis datsto %d items fuortsmite wolst?</item>
+        <item quantity="one">Binne jo wis dat jo %d item fuortsmite wolle?</item>
+        <item quantity="other">Binne jo wis dat jo %d items fuortsmite wolle?</item>
     </plurals>
     <string name="discard_changes">Wizigingen annulearje?</string>
     <string name="discard_changes_description">Dyn wizigingen binne net bewarre</string>
@@ -234,6 +256,7 @@
     <string name="copied">Kopiearre</string>
     <string name="errors_copied">Flaters binne nei klamboerd kopiearre</string>
     <string name="version_copied">Ferzje is nei klamboerd kopiearre</string>
+    <string name="error_required_field">Dit fjild is fereaske</string>
     <string name="error_occurred">Der is in flater bard</string>
     <string name="decryption_error">Der is in flater bard wylst it ûntskoatteljen fan de klûs</string>
     <string name="decryption_corrupt_error">Der is in flater bard wylst it ûntskoatteljen fan de klûs. It klûsbestân kin skansearre wêze.</string>
@@ -243,7 +266,7 @@
     <string name="biometric_decrypt_error">Der is in flater bard wylst it dekodearjen fan de klûs mei biometryske ferifikaasje. Dit bart meastentiids allinnich as de befeiligingsynstellingen fan dyn apparaat wizige binne. Untskoattelje de klûs mei dyn wachtwurd en konfigurearje biometryske autentikaasje opnij yn de ynstellingen fan Aegis.</string>
     <string name="biometric_init_error">Der is in flater bard wylst it ynstellen fan biometryske ferifikaasje. Dit bart meastentiids allinnich as de befeiligingsynstellingen fan dyn apparaat wizige binne. Untskoattelje de klûs mei dyn wachtwurd en konfigurearje biometryske autentikaasje opnij yn de ynstellingen fan Aegis.</string>
     <string name="disable_encryption">Fersifering útskeakelje</string>
-    <string name="disable_encryption_description">Bisto wis datsto fersifering útskeakelje wolst? Hjirtroch sil de klûs yn platte tekst bewarre wurde. <b>Automatyske reservekopyen wurde ek útskeakele</b>.</string>
+    <string name="disable_encryption_description">Binne jo wis dat jo fersifering útskeakelje wolle? Hjirtroch sil de klûs yn platte tekst bewarre wurde. <b>Automatyske reservekopyen wurde ek útskeakele</b>.</string>
     <string name="enable_encryption_error">Der is in flater bard by it ynskeakeljen fan fersifering</string>
     <string name="disable_encryption_error">Der is in flater bard by it útskeakeljen fan fersifering</string>
     <string name="backup_successful">Plannen fan de reservekopy is slagge</string>
@@ -254,7 +277,7 @@
     <string name="backup_warning_password">Reservekopyen wurde fersifere mei in apart wachtwurd ynsteld yn de befeiligingsynstellingen</string>
     <string name="documentsui_error">DocumentsUI liket te ûntbrekken op dyn apparaat. Dit is in wichtich systeemûnderdiel, nedich foar it selektearjen en meitsjen fan dokuminten. Asto in ark brûkt hast om dyn apparaat te &quot;debloaten&quot; hasto it mooglik mei fersin fuortsmiten en silsto it opnij ynstallearje moatte.</string>
     <string name="icon_pack_import_error">Der is in flater bard wylst it ymportearjen fan in piktogrampakket</string>
-    <string name="icon_pack_import_exists_error">It piktogrampakket datsto probearrest te ymportearjen bestiet al. Wolsto it oerskriuwe?</string>
+    <string name="icon_pack_import_exists_error">It piktogrampakket dat jo probearje te ymportearjen bestiet al. Wolle jo it oerskriuwe?</string>
     <string name="icon_pack_delete_error">Der is in flater bard wylst it fuortsmiten fan in piktogrampakket</string>
     <plurals name="icon_pack_info">
         <item quantity="one">%d piktogram</item>
@@ -266,7 +289,7 @@
     <string name="andotp_old_format">Ald formaat (v0.6.2 of âlder) </string>
     <string name="choose_andotp_importer">Hokker formaat hat it andOTP reservekopybestân?</string>
     <string name="choose_totpauth_importer">Is dizze TOTP-autentikator-reservekopy fersifere mei in wachtwurd?</string>
-    <string name="choose_application">Selektearje de applikaasje wêrútsto ymportearje wolst</string>
+    <string name="choose_application">Selektearje de applikaasje wêrút jo ymportearje wolle</string>
     <string name="choose_theme">Selektearje dyn winske tema</string>
     <string name="choose_account_name_position">Selektearje jo winske accountnammeposysje</string>
     <string name="choose_view_mode">Selektearje dyn winske werjeftemodus</string>
@@ -293,10 +316,14 @@
     <string name="encryption_enable_biometrics_error">Der is in flater bard by it ynskeakeljen fan biometrysk ûntskoatteljen. Guon apparaten hawwe in minne ymplemintaasje fan biometryske autentikaasje, dy fan dy is der wierskynlik ien fan. Tink ris nei om allinnich in wachtwurd te brûken.</string>
     <string name="no_cameras_available">Gjin kamera’s beskikber</string>
     <string name="read_qr_error">Der is in flater bard wylst it lêzen fan de QR-koade</string>
-    <string name="read_qr_error_phonefactor">Aegis is net kompatibel mei it eigen 2FA-algoritme fan Microsoft. Soargje derfoar datsto ‘Applicatie zonder meldingen instellen’ selektearrest by it konfigurearjen fan 2FA yn Office 365.</string>
+    <string name="read_qr_error_phonefactor">Aegis is net kompatibel mei it eigen 2FA-algoritme fan Microsoft. Soargje derfoar dat jo ‘Applicatie zonder meldingen instellen’ selektearje by it konfigurearjen fan 2FA yn Office 365.</string>
     <string name="partial_google_auth_import">Net folsleine Google Authenticator-eksport detektearre</string>
     <string name="partial_google_auth_import_warning">Inkelde QR-koaden ûntbrekke yn de ymport. De folgjende koaden binne net fûn:\n\n<b>%s</b>\n\nDo kinst trochgean mei it ymportearjen fan dizze ûnfolsleine eksport, mar wy rekommandearje oan it opnij te probearjen mei alle QR-koaden, sadatsto net it risiko rinst de tagong ta tokens te ferliezen.</string>
     <string name="missing_qr_code_descriptor">• QR-koade %d</string>
+    <plurals name="import_partial_export_anyway">
+        <item quantity="one">%d token dochs ymportearje</item>
+        <item quantity="other">%d tokens dochs ymportearje</item>
+    </plurals>
     <string name="import_google_auth_failure">Ymportearjen fan Google Authenticator-eksport mislearre</string>
     <string name="unrelated_google_auth_batches_error">Eksport befettet ynformaasje foar in net relatearre batch. Probearje 1 batch tagelyk te ymportearjen.</string>
     <string name="no_tokens_can_be_imported">Hjirtroch kinne gjin tokens ymportearre wurde</string>
@@ -306,7 +333,7 @@
     <string name="remove_group">Groep fuortsmite</string>
     <string name="remove_group_description">Bisto wis datsto dizze groep fuortsmite wolst? Alle items binnen dizze groep wurde automatysk ferpleatst nei ‘Gjin groep’.</string>
     <string name="remove_unused_groups">Net brûkte groepen fuortsmite</string>
-    <string name="remove_unused_groups_description">Bisto wis datsto alle groepen, dy’t net tawizen binne ta in item, fuortsmite wolle?</string>
+    <string name="remove_unused_groups_description">Binne jo wis dat jo alle groepen, dy’t net tawizen binne ta in item, fuortsmite wolle?</string>
     <string name="remove_icon_pack">Piktogrammepakket fuortsmite</string>
     <string name="remove_icon_pack_description">Bisto wis datsto dit piktogrammepakket fuortsmite wolst? Items dy’t piktogrammen út dit pakket brûke, wurde net beynfloede.</string>
     <string name="details">Details</string>
@@ -339,6 +366,7 @@
     <string name="pref_minimize_on_copy_title">By kopiearjen minimalisearje</string>
     <string name="pref_minimize_on_copy_summary">App nei kopiearjen fan in koade minimalisearje</string>
     <string name="pref_copy_behavior_title">Koaden nei it klamboerd kopiearje</string>
+    <string name="pref_search_behavior_title">Sykgedrach</string>
     <string name="pref_pause_entry_title">Tokens by oantikken befrieze</string>
     <string name="pref_pause_entry_summary">Automatysk ferfarskjen fan koaden troch derop te tikken stopje. Koaden sille net bywurke wurde sa lang se fokust binne. Fereasket ‘Koaden markearje nei oantikken’ of ‘Oantikke om te toanen’.</string>
     <string name="pin_keyboard_description">Fier dyn wachtwurd yn om it PIN-toetseboerd yn te skeakeljen. Let op: dit wurket allinnich as dyn wachtwurd út sifers bestiet</string>
@@ -364,6 +392,7 @@
     <string name="unable_to_process_deeplink">Deeplink kin net ferwurke wurde</string>
     <string name="unable_to_read_qrcode_file">QR-koade koe net út bestân lêzen en ferwurke wurde: %s.</string>
     <string name="unable_to_process_shared_text">Dielde tekst kin net as OTP ferwurke wurde</string>
+    <string name="unable_to_read_qrcode_files">Guon QR-koaden kinne net lêzen en ferwurke wurde. Allinnich%1$d/%2$d items wurde ymportearre.</string>
     <string name="unable_to_generate_qrcode">QR-koade koe net generearre wurde</string>
     <string name="select_picture">Ofbylding selektearje</string>
     <string name="select_icon">Piktogram selektearje</string>
@@ -394,7 +423,16 @@
     <string name="time_sync_warning_message">Aegis is ôfhinklik fan syngronisearre systeemtiid om krekte koaden te generearjen. In ôfwiking fan op syn minst inkelde sekonden kin liede ta net krekte koaden. It liket derop dat dyn apparaat net ynsteld is om de tiid automatysk te syngronisearjen. Wolsto dit no dwaan?</string>
     <string name="time_sync_warning_disable">Stop mei my te warskôgjen. Ik wit wat ik doch.</string>
     <string name="google_qr_export_unrelated">Net relatearre QR-koade fûn. Probearje de scanner opnij te starten.</string>
+    <plurals name="google_qr_export_scanned">
+        <item quantity="one">%1$d/%2$d QR-koade scand</item>
+        <item quantity="other">%1$d/%2$d QR-koaden scand</item>
+    </plurals>
+    <string name="google_qr_export_unexpected">QR-koade #%1$d ferwachte, yn stee dêrfan #%2$d scand</string>
     <string name="backup_error_bar_message"><b>Klûsreservekopy koartlyn mislearre</b></string>
+    <string name="backup_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">        In resinte reservekopy fan de klûs mei %1$s mislearre, omdat der wat misgien is. De reservekopybesykjen wie op %2$s. Kontrolearje de resevekopy-ynstellingen om wis te wêzen dat reservekopyen mei sukses foltôge wurde kinne.
+    </string>
+    <string name="backup_permission_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">        In resint besykjen in reservekopy fan de klûs te meitsjen mei %1$s is mislearre. Aegis hat gjin tastimming om te skriuwen nei de reservekopylokaasje. De reservekopy is %2$s probearre. Dizze flater kin barre as jo de reservekopylokaasje ferpleatst/omneamd hawwe of as jo koartlyn in Aegis-reservekopy wersteld hawwe. Konfigurearje de reservekopylokaasje opnij.
+    </string>
     <string name="backup_system_builtin">it ynboude automatyske reservekopyen fan Aegis</string>
     <string name="backup_system_android">it cloudreservekopysysteem fan Android</string>
     <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">        De meast resinte reservekopy is ferâldere (%s)
@@ -467,8 +505,11 @@
     <string name="importer_help_bitwarden">Leverje in Bitwarden-eksport-/reservekopybestân oan. Fersifere bestannen wurde net stipe.</string>
     <string name="importer_help_battle_net_authenticator">Leverje in kopy oan fan <b>/data/data/com.blizzard.messenger/shared_prefs/com.blizzard.messenger.authenticator_preferences.xml</b>, pleatst yn de ynterne ûnthâldmap fan Battle.net Authenticator.</string>
     <string name="importer_help_duo">Leverje in kopy oan fan <b>/data/data/com.duosecurity.duomobile/files/duokit/accounts.json</b>, pleatst yn de ynterne ûnthâldmap fan DUO.</string>
-    <string name="importer_help_freeotp">Leverje in kopy oan fan <b>/data/data/org.fedorahosted.freeotp/shared_prefs/tokens.xml</b>, pleatst yn de ynterne ûnthâldmap fan FreeOTP (1.x).</string>
+    <string name="importer_help_ente_auth">Fier in Ente Auth-eksportbestân yn. Op dit stuit wurde allinnich net-fersifere bestannen stipe.</string>
+    <string name="importer_help_freeotp">FreeOTP 2: Leverje in kopy.\nFreeOTP 1.x: Leverje in kopy oan fan <b>/data/data/org.fedorahosted.freeotp/shared_prefs/tokens.xml</b>, pleatst yn de ynterne ûnthâldmap fan FreeOTP.</string>
     <string name="importer_help_freeotp_plus">Leverje in FreeOTP-eksportbestân oan.</string>
+    <string name="importer_warning_title_freeotp2">Kompatibiliteit mei FreeOTP 2</string>
+    <string name="importer_warning_message_freeotp2">Der binne in oantal problemen yn FreeOTP 2 dy’t ta korrupte reservekopyen liede kinne. Aegis sil probearje safolle mooglik items te rêden, mar it is mooglik dat guon of sels alles net te ymportearjen is.</string>
     <string name="importer_help_google_authenticator"><b>Allinnich databasebestannen fan Google Authenticator v5.10 en earder wurde stipe</b>.\n\nLeverje in kopy oan fan <b>/data/data/com.google.android.apps.authenticator2/databases/databases</b>, pleatst yn de ynterne ûnthâldmap fan Google Authenticator.</string>
     <string name="importer_help_microsoft_authenticator">Leverje in kopy oan fan <b>/data/data/com.azure.authenticator/databases/PhoneFactor</b>, pleatst yn de ynterne ûnthâldmap fan Microsoft Authenticator.</string>
     <string name="importer_help_plain_text">Leverje in tekstbestân oan mei in Google Authenticator-URI op elke rigel.</string>
@@ -493,23 +534,23 @@
     <string name="pref_account_name_position_hidden">Ferstoppe</string>
     <string name="pref_account_name_position_end">Njonken de útjouwer</string>
     <string name="pref_account_name_position_below">Under de útjouwer</string>
-    <plurals name="time_elapsed_seconds">
+    <plurals name="time_elapsed_seconds" tools:ignore="UnusedResources">
         <item quantity="one">%d sekonde lyn</item>
         <item quantity="other">%d sekonden lyn</item>
     </plurals>
-    <plurals name="time_elapsed_minutes">
+    <plurals name="time_elapsed_minutes" tools:ignore="UnusedResources">
         <item quantity="one">%d minút lyn</item>
         <item quantity="other">%d minuten lyn</item>
     </plurals>
-    <plurals name="time_elapsed_hours">
+    <plurals name="time_elapsed_hours" tools:ignore="UnusedResources">
         <item quantity="one">%d oere lyn</item>
         <item quantity="other">%d oeren lyn</item>
     </plurals>
-    <plurals name="time_elapsed_days">
+    <plurals name="time_elapsed_days" tools:ignore="UnusedResources">
         <item quantity="one">%d dei lyn</item>
         <item quantity="other">%d dagen lyn</item>
     </plurals>
-    <plurals name="time_elapsed_years">
+    <plurals name="time_elapsed_years" tools:ignore="UnusedResources">
         <item quantity="one">%d jier lyn</item>
         <item quantity="other">%d jierren lyn</item>
     </plurals>

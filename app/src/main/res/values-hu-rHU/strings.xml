@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="action_settings">Beállítások</string>
     <string name="action_about">Névjegy</string>
     <string name="action_delete">Törlés</string>
@@ -10,6 +10,7 @@
     <string name="action_default_icon">Alapértelmezett ikon visszaállítása</string>
     <string name="discard">Elvetés</string>
     <string name="save">Mentés</string>
+    <string name="all">Összes</string>
     <string name="issuer">Kibocsátó</string>
     <string name="yandex_pin">PIN (4–16 számjegy)</string>
     <string name="motp_pin">PIN (4 számjegy)</string>
@@ -29,7 +30,7 @@
     <string name="pref_section_import_export_title">Importálás és exportálás</string>
     <string name="pref_section_import_export_summary">Az Aegis vagy más hitelesítő alkalmazás mentésének importálása. Kézi exportálások készítése az Aegis-széfjéről.</string>
     <string name="pref_section_audit_log_title">Auditnapló</string>
-    <string name="pref_section_audit_log_summary">Találja meg az alkalmazáson belül jelentett fontos eseményeket.</string>
+    <string name="pref_section_audit_log_summary">Az alkalmazáson belül történt összes bejelentett fontos esemény listája.</string>
     <string name="pref_section_backups_title">Biztonsági mentések</string>
     <string name="pref_section_backups_summary">Automatikus biztonsági mentés beállítása az általa választott helyre, vagy az Android felhős mentésének bekapcsolása.</string>
     <string name="pref_section_icon_packs">Ikoncsomagok</string>
@@ -44,6 +45,11 @@
     <string name="pref_code_group_size_title">Kód számjegyeinek csoportosítása</string>
     <string name="pref_code_group_size_summary">Válasszon csoportosítási számot</string>
     <string name="pref_account_name_position_title">A fióknév megjelenítése</string>
+    <string name="pref_show_next_code_title">Következő kód megjelenítése</string>
+    <string name="pref_show_next_code_summary">A következő kód előállítása és megjelenítése előre</string>
+    <string name="pref_expiration_state_title">A lejáró kódok speciális jelzése</string>
+    <string name="pref_expiration_state_summary">A lejáró kódok színének módosítása, és villogtatás a lejáratuk előtt</string>
+    <string name="pref_expiration_state_fallback">A lejáró kódok színének módosítása</string>
     <string name="pref_shared_issuer_account_name_title">A fióknév megjelenítése csak akkor, ha szükséges</string>
     <string name="pref_shared_issuer_account_name_summary">A fióknevek megjelenítése csak akkor, ha megegyezik a kibocsátójuk. A többi fióknév rejtve lesz.</string>
     <string name="pref_account_name_position_summary_override">Ezt a beállítást felülbírálja a csempenézetes mód. A fióknév látható lesz a kibocsátó alatt.</string>
@@ -58,7 +64,6 @@
     <string name="pref_backups_reminder_summary">Emlékeztető megjelenítése, ha a legutóbbi változtatásokról nem készült biztonsági mentés.</string>
     <string name="pref_backups_reminder_dialog_title">Biztonsági mentési emlékeztető kikapcsolása</string>
     <string name="pref_backups_reminder_dialog_summary">Az emlékeztető kikapcsolása után az Aegis nem fogja jelezni hogy a változásokról készült-e biztonsági mentés. Ezzel az adatvesztést kockáztatja. Biztos, hogy kikapcsolja az emlékeztetőt?</string>
-    <string name="pref_backups_location_title">A biztonsági mentések könyvtára</string>
     <string name="pref_backups_location_summary">A biztonsági mentések itt lesznek tárolva:</string>
     <string name="pref_backups_trigger_title">Biztonsági mentés készítése</string>
     <string name="pref_backups_trigger_summary">Biztonsági mentés kézi indítása</string>
@@ -104,6 +109,12 @@
     <string name="pref_encryption_summary">A széf titkosítása, és jelszavas vagy biometrikus feloldás beállítása</string>
     <string name="pref_biometrics_title">Biometrikus feloldás</string>
     <string name="pref_biometrics_summary">Biometrikus hitelesítés engedélyezése a széf feloldásához</string>
+    <string name="pref_search_behavior_summary">Keresés ezek között: %s</string>
+    <string name="pref_search_behavior_prompt">Keresés a következő mezőkben</string>
+    <string name="pref_search_behavior_type_name">Név</string>
+    <string name="pref_search_behavior_type_issuer">Kibocsátó</string>
+    <string name="pref_search_behavior_type_note">Megjegyzés</string>
+    <string name="pref_search_behavior_type_groups">Csoportok</string>
     <string name="pref_set_password_title">Jelszó módosítása</string>
     <string name="pref_set_password_summary">Új jelszó beállítása, mellyel feloldhatja a széfet</string>
     <string name="no_events_title">Nincs jelentett esemény</string>
@@ -192,6 +203,9 @@
     <string name="edit">Szerkesztés</string>
     <string name="select_all">Összes kijelölése</string>
     <string name="assign_icons">Ikonok hozzárendelése</string>
+    <string name="assign_groups">Csoporthoz rendelés</string>
+    <string name="assign_groups_dialog_summary">Válassza ki, hogy a kiválasztott elemek mely csoporthoz legyenek rendelve.</string>
+    <string name="assign_groups_dialog_dropdown">Csoport kiválasztása</string>
     <string name="favorite" comment="Verb">Kedvencnek jelölés</string>
     <string name="unfavorite" comment="Verb">Eltávolítás a kedvencek közül</string>
     <string name="error_all_caps">HIBA</string>
@@ -209,6 +223,7 @@
     <string name="reading_file">Fájl olvasása</string>
     <string name="requesting_root_access">Root hozzáférés igénylése</string>
     <string name="analyzing_qr">QR-kód elemzése</string>
+    <string name="analyzing_qr_multiple">%1$d./%2$d QR-kód elemzése (%3$s)</string>
     <plurals name="added_new_entries">
         <item quantity="one">%d új bejegyzés hozzáadva a széfhez</item>
         <item quantity="other">%d új bejegyzés hozzáadva a széfhez</item>
@@ -234,6 +249,7 @@
     <string name="copied">Másolva</string>
     <string name="errors_copied">Hibák a vágólapra másolva</string>
     <string name="version_copied">Verzió a vágólapra másolva</string>
+    <string name="error_required_field">Ez a mező kötelező</string>
     <string name="error_occurred">Hiba történt</string>
     <string name="decryption_error">Hiba történt a széf feloldásakor</string>
     <string name="decryption_corrupt_error">Hiba történt a széf feloldásakor. A széf fájlja megsérülhetett.</string>
@@ -297,6 +313,10 @@
     <string name="partial_google_auth_import">Hiányos Google Authenticator export észlelve</string>
     <string name="partial_google_auth_import_warning">Néhány QR-kód hiányzik az importból. Ezek a kódok nem találhatók:\n\n<b>%s</b>\n\nFolytathatja a részleges export importálását, de javasoljuk, hogy próbálja újra az összes QR-kóddal, hogy ne kockáztassa a hozzáférése elvesztését egyetlen tokennél sem.</string>
     <string name="missing_qr_code_descriptor">• %d. QR-kód</string>
+    <plurals name="import_partial_export_anyway">
+        <item quantity="one">%d token importálása mindenképp</item>
+        <item quantity="other">%d token importálása mindenképp</item>
+    </plurals>
     <string name="import_google_auth_failure">A Google Authenticator export importálása sikertelen</string>
     <string name="unrelated_google_auth_batches_error">Az export nem kapcsolódó köteg információit tartalmazza. Egyszerre csak 1 köteget próbáljon meg importálni.</string>
     <string name="no_tokens_can_be_imported">Ennek eredményeképp egyetlen token sem importálható</string>
@@ -339,6 +359,7 @@
     <string name="pref_minimize_on_copy_title">Minimalizálás másoláskor</string>
     <string name="pref_minimize_on_copy_summary">Az alkalmazás minimalizálása a token másolása után</string>
     <string name="pref_copy_behavior_title">Tokenek másolása a vágólapra</string>
+    <string name="pref_search_behavior_title">Keresés viselkedése</string>
     <string name="pref_pause_entry_title">Tokenek befagyasztása koppintáskor</string>
     <string name="pref_pause_entry_summary">A tokenek automatikus frissítésének szüneteltetése koppintás után. A tokenek addig nem frissülnek, míg fókuszban vannak. Ehhez szükséges a „Tokenek kiemelése koppintáskor” vagy a „Koppintás a felfedéshez\" beállítás.</string>
     <string name="pin_keyboard_description">Írja be jelszavát a PIN-billentyűzet bekapcsolásához. Ez csak akkor működik, ha jelszava csak számokból áll.</string>
@@ -364,6 +385,7 @@
     <string name="unable_to_process_deeplink">Az alkalmazáshivatkozás nem dolgozható fel</string>
     <string name="unable_to_read_qrcode_file">A QR-kód nem olvasható le és dolgozható fel a fájlból: %s.</string>
     <string name="unable_to_process_shared_text">A megosztott szöveg nem dolgozható fel OTP-ként</string>
+    <string name="unable_to_read_qrcode_files">Egyes QR-kódok nem olvashatók le és dolgozhatók fel. Csak %1$d/%2$d bejegyzés lesz importálva.</string>
     <string name="unable_to_generate_qrcode">A QR-kód nem állítható elő</string>
     <string name="select_picture">Kép kiválasztása</string>
     <string name="select_icon">Ikon kiválasztása</string>
@@ -394,7 +416,16 @@
     <string name="time_sync_warning_message">Az Aegis a rendszeridőre támaszkodik a helyes kódok előállításánál. Néhány másodperces eltérés is hibás kódok előállítását eredményezheti. Úgy tűnik az eszközön nincs bekapcsolva az automatikus időszinkronizálás. Be akarja most ezt kapcsolni?</string>
     <string name="time_sync_warning_disable">Ne figyelmeztessen. Tudom mit csinálok.</string>
     <string name="google_qr_export_unrelated">Nem kapcsolódó QR-kód található. Próbálja meg újraindítani a leolvasót.</string>
+    <plurals name="google_qr_export_scanned">
+        <item quantity="one">%1$d/%2$d QR-kód leolvasva</item>
+        <item quantity="other">%1$d/%2$d QR-kód leolvasva</item>
+    </plurals>
+    <string name="google_qr_export_unexpected">A várt #%1$d QR-kód helyett ez lett leolvasva: #%2$d</string>
     <string name="backup_error_bar_message"><b>Egy széf mentése nemrég sikertelen volt</b></string>
+    <string name="backup_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">        Egy közelmúltbeli, az %1$s használó széfmentés sikertelen volt, mert hiba történt. A biztonsági mentés ekkor volt megpróbálva: %2$s. Ellenőrizze a biztonsági mentési beállításokat, hogy biztosítsa a mentések sikeres végrehajtását.
+    </string>
+    <string name="backup_permission_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">        Egy közelmúltbeli, az %1$s használó széfmentés sikertelen volt, mert az Aegisnek nem volt engedélye, hogy a mentési célra írjon. A biztonsági mentés ekkor volt megpróbálva: %2$s. Ez a hiba akkor történhet, ha áthelyezte/átnevezte a biztonsági mentés célját, vagy ha nemrég állította vissza mentésből az Aegist. Állítsa be újra a biztonsági mentés célját.
+    </string>
     <string name="backup_system_builtin">Aegis beépített biztonsági mentését</string>
     <string name="backup_system_android">Android felhős mentési rendszerét</string>
     <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">        A legfrissebb biztonsági mentés elavult (%s)
@@ -467,7 +498,7 @@
     <string name="importer_help_bitwarden">Adja meg a Bitwarden egy exportját vagy biztonsági mentési fájlját. A titkosított fájlok nem támogatottak.</string>
     <string name="importer_help_battle_net_authenticator">Adja meg a <b>/data/data/com.blizzard.messenger/shared_prefs/com.blizzard.messenger.authenticator_preferences.xml</b> másolatát, mely a Battle.net Authenticator belső háttértáron levő mappájában található.</string>
     <string name="importer_help_duo">Adja meg a <b>/data/data/com.duosecurity.duomobile/files/duokit/accounts.json</b> másolatát, mely a DUO belső háttértáron levő mappájában található.</string>
-    <string name="importer_help_freeotp">Adja meg a <b>/data/data/org.fedorahosted.freeotp/shared_prefs/tokens.xml</b> másolatát, mely a FreeOTP (1.x) belső háttértáron levő mappájában található.</string>
+    <string name="importer_help_ente_auth">Adjon meg egy Ente Auth exportfájlt. Jelenleg csak a titkosítatlan fájlok támogatottak.</string>
     <string name="importer_help_freeotp_plus">Adja meg a FreeOTP+ egy exportfájlját.</string>
     <string name="importer_help_google_authenticator"><b>Csak a Google Hitelesítő v5.10 és korábbi verziói támogatottak</b>.\n\nAdja meg a <b>/data/data/com.google.android.apps.authenticator2/databases/databases</b> másolatát, mely a Google Hitelesítő belső háttértáron lévő mappájában található.</string>
     <string name="importer_help_microsoft_authenticator">Adja meg a <b>/data/data/com.azure.authenticator/databases/PhoneFactor</b> másolatát, mely a Microsoft Authenticator belső háttértáron levő mappájában található.</string>
@@ -493,23 +524,23 @@
     <string name="pref_account_name_position_hidden">Rejtett</string>
     <string name="pref_account_name_position_end">A kibocsátó mellett</string>
     <string name="pref_account_name_position_below">A kibocsátó alatt</string>
-    <plurals name="time_elapsed_seconds">
+    <plurals name="time_elapsed_seconds" tools:ignore="UnusedResources">
         <item quantity="one">%d másodperce</item>
         <item quantity="other">%d másodperce</item>
     </plurals>
-    <plurals name="time_elapsed_minutes">
+    <plurals name="time_elapsed_minutes" tools:ignore="UnusedResources">
         <item quantity="one">%d perce</item>
         <item quantity="other">%d perce</item>
     </plurals>
-    <plurals name="time_elapsed_hours">
+    <plurals name="time_elapsed_hours" tools:ignore="UnusedResources">
         <item quantity="one">%d órája</item>
         <item quantity="other">%d órája</item>
     </plurals>
-    <plurals name="time_elapsed_days">
+    <plurals name="time_elapsed_days" tools:ignore="UnusedResources">
         <item quantity="one">%d napja</item>
         <item quantity="other">%d napja</item>
     </plurals>
-    <plurals name="time_elapsed_years">
+    <plurals name="time_elapsed_years" tools:ignore="UnusedResources">
         <item quantity="one">%d éve</item>
         <item quantity="other">%d éve</item>
     </plurals>

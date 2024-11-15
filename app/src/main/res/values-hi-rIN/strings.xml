@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="action_settings">सेटिंग</string>
     <string name="action_about">हमारे बारे में</string>
     <string name="action_delete">हटाएँ</string>
@@ -50,7 +50,6 @@
     <string name="pref_backups_reminder_summary">यदि आपने अपने नवीनतम परिवर्तनों का बैकअप नहीं लिया है तो अपनी वॉल्ट का बैकअप लेने के लिए एक रिमाइंडर दिखाएँ।</string>
     <string name="pref_backups_reminder_dialog_title">बैकअप रिमाइंडर बंद करें</string>
     <string name="pref_backups_reminder_dialog_summary">इस रिमाइंडर को बंद करने का मतलब है कि एजिस आपको यह नहीं बताएगा कि आपके पास ऐसे परिवर्तन हैं या नहीं जिनका अभी तक बैकअप नहीं लिया गया है। इससे आपको अपने टोकन तक पहुंच खोने का खतरा रहता है। क्या आप वाकई रिमाइंडर बंद करना चाहते हैं?</string>
-    <string name="pref_backups_location_title">बैकअप फाइल्स के लिए स्थान</string>
     <string name="pref_backups_location_summary">बैकअप को इसमें सहेजा जाएगा</string>
     <string name="pref_backups_trigger_title">ट्रिगर बैकअप</string>
     <string name="pref_backups_trigger_summary">हाथ से बैकअप ट्रिगर करें</string>
@@ -422,23 +421,23 @@
     <string name="pref_grouping_size_two">२ का समूह</string>
     <string name="pref_grouping_size_three">३ का समूह</string>
     <string name="pref_grouping_size_four">४ का समूह</string>
-    <plurals name="time_elapsed_seconds">
+    <plurals name="time_elapsed_seconds" tools:ignore="UnusedResources">
         <item quantity="one">%d सेकंड पहले</item>
         <item quantity="other">%d सेकंड्स पहले</item>
     </plurals>
-    <plurals name="time_elapsed_minutes">
+    <plurals name="time_elapsed_minutes" tools:ignore="UnusedResources">
         <item quantity="one">%d मिनट पहले</item>
         <item quantity="other">%d मिनट्स पहले</item>
     </plurals>
-    <plurals name="time_elapsed_hours">
+    <plurals name="time_elapsed_hours" tools:ignore="UnusedResources">
         <item quantity="one">%d घंटा पहले</item>
         <item quantity="other">%d घंटे पहले</item>
     </plurals>
-    <plurals name="time_elapsed_days">
+    <plurals name="time_elapsed_days" tools:ignore="UnusedResources">
         <item quantity="one">%d दिन पहले</item>
         <item quantity="other">%d दिनों पहले</item>
     </plurals>
-    <plurals name="time_elapsed_years">
+    <plurals name="time_elapsed_years" tools:ignore="UnusedResources">
         <item quantity="one">%d वर्ष पहले</item>
         <item quantity="other">%d वर्षों पहले</item>
     </plurals>

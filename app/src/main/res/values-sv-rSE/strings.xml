@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="action_settings">Inställningar</string>
     <string name="action_about">Om</string>
     <string name="action_delete">Radera</string>
@@ -10,6 +10,7 @@
     <string name="action_default_icon">Återställ standardikon</string>
     <string name="discard">Ignorera</string>
     <string name="save">Spara</string>
+    <string name="all">Alla</string>
     <string name="issuer">Utfärdare</string>
     <string name="yandex_pin">Pinkod (4–16 siffror)</string>
     <string name="motp_pin">Pinkod (4 siffror)</string>
@@ -29,7 +30,7 @@
     <string name="pref_section_import_export_title">Import &amp; export</string>
     <string name="pref_section_import_export_summary">Importera säkerhetskopior från Aegis eller andra autentiseringsappar. Skapa manuella exporter av ditt Aegis-valv.</string>
     <string name="pref_section_audit_log_title">Granskningslogg</string>
-    <string name="pref_section_audit_log_summary">Hitta en lista över alla rapporterade viktiga händelser som hände i appen.</string>
+    <string name="pref_section_audit_log_summary">Hitta en lista över alla rapporterade viktiga händelser som har inträffat i appen.</string>
     <string name="pref_section_backups_title">Säkerhetskopior</string>
     <string name="pref_section_backups_summary">Ställ in automatiska säkerhetskopior till en plats som du väljer eller aktivera deltagande i Androids molnsäkerhetskopieringssystem.</string>
     <string name="pref_section_icon_packs">Ikonpaket</string>
@@ -44,6 +45,11 @@
     <string name="pref_code_group_size_title">Gruppering av kodsiffror</string>
     <string name="pref_code_group_size_summary">Välj antal siffror att gruppera koder efter</string>
     <string name="pref_account_name_position_title">Visa kontonamn</string>
+    <string name="pref_show_next_code_title">Visa nästa kod</string>
+    <string name="pref_show_next_code_summary">Generera och visa nästa kod i förtid</string>
+    <string name="pref_expiration_state_title">Indikera när koder är på väg att utlöpa</string>
+    <string name="pref_expiration_state_summary">Ändra färgen på koderna och få dem att blinka när de är på väg att utlöpa</string>
+    <string name="pref_expiration_state_fallback">Ändra färgen på koderna när de är på väg att utlöpa</string>
     <string name="pref_shared_issuer_account_name_title">Visa kontonamn endast vid behov</string>
     <string name="pref_shared_issuer_account_name_summary">Visa kontonamn endast när de har samma utfärdare. Andra kontonamn kommer att döljas.</string>
     <string name="pref_account_name_position_summary_override">Denna inställning åsidosätts av visningsläget paneler. Kontonamn kommer att visas nedanför utfärdaren.</string>
@@ -58,7 +64,6 @@
     <string name="pref_backups_reminder_summary">Visa en påminnelse om att säkerhetskopiera ditt valv ifall du inte har säkerhetskopierat dina senaste ändringar.</string>
     <string name="pref_backups_reminder_dialog_title">Inaktivera påminnelse om säkerhetskopiering</string>
     <string name="pref_backups_reminder_dialog_summary">Inaktivering av denna påminnelse innebär att Aegis inte kommer att meddela dig om du har ändringar som ännu inte har säkerhetskopierats. Detta utsätter dig för risken att förlora åtkomst till dina polletter. Är du säker på att du vill inaktivera påminnelsen?</string>
-    <string name="pref_backups_location_title">Katalog för säkerhetskopior</string>
     <string name="pref_backups_location_summary">Säkerhetskopior kommer att lagras i</string>
     <string name="pref_backups_trigger_title">Skapa säkerhetskopia</string>
     <string name="pref_backups_trigger_summary">Skapa en säkerhetskopia manuellt</string>
@@ -104,7 +109,11 @@
     <string name="pref_encryption_summary">Kryptera valvet och lås upp det med ett lösenord eller biometri</string>
     <string name="pref_biometrics_title">Biometrisk upplåsning</string>
     <string name="pref_biometrics_summary">Tillåt biometrisk autentisering för att låsa upp valvet</string>
+    <string name="pref_search_behavior_summary">Sök igenom: %s</string>
+    <string name="pref_search_behavior_prompt">Sök i något av följande fält</string>
     <string name="pref_search_behavior_type_name">Namn</string>
+    <string name="pref_search_behavior_type_issuer">Utfärdare</string>
+    <string name="pref_search_behavior_type_note">Anteckning</string>
     <string name="pref_search_behavior_type_groups">Grupper</string>
     <string name="pref_set_password_title">Ändra lösenord</string>
     <string name="pref_set_password_summary">Ange ett nytt lösenord som kommer att krävas för att låsa upp ditt valv</string>
@@ -126,7 +135,7 @@
     <string name="event_description_vault_unlock_failed_biometrics">Ett försök att låsa upp valvet med biometri misslyckades</string>
     <string name="event_unknown">Okänd händelsetyp</string>
     <string name="audit_log_entry_deleted">(raderad)</string>
-    <string name="today_at_time">Idag kl. %1$s</string>
+    <string name="today_at_time">I dag kl. %1$s</string>
     <string name="day_of_week_at_time">%1$s kl. %2$s</string>
     <string name="export_encrypted">Kryptera valvet</string>
     <string name="export_help">Denna åtgärd kommer att exportera valvet från Aegis interna lagring. Välj det format som du vill att din export ska vara i:</string>
@@ -194,6 +203,9 @@
     <string name="edit">Redigera</string>
     <string name="select_all">Markera alla</string>
     <string name="assign_icons">Tilldela ikoner</string>
+    <string name="assign_groups">Tilldela till grupp</string>
+    <string name="assign_groups_dialog_summary">Välj en grupp som du vill tilldela de valda posterna till.</string>
+    <string name="assign_groups_dialog_dropdown">Välj grupp</string>
     <string name="favorite" comment="Verb">Favoritmarkera</string>
     <string name="unfavorite" comment="Verb">Ta bort som favorit</string>
     <string name="error_all_caps">FEL</string>
@@ -211,6 +223,7 @@
     <string name="reading_file">Läser fil</string>
     <string name="requesting_root_access">Begär rotåtkomst</string>
     <string name="analyzing_qr">Analyserar rutkod</string>
+    <string name="analyzing_qr_multiple">Analyserar rutkod %1$d/%2$d (%3$s)</string>
     <plurals name="added_new_entries">
         <item quantity="one">Lade till %d ny post i valvet</item>
         <item quantity="other">Lade till %d nya poster i valvet</item>
@@ -236,6 +249,7 @@
     <string name="copied">Kopierad</string>
     <string name="errors_copied">Fel kopierade till urklipp</string>
     <string name="version_copied">Version kopierad till urklipp</string>
+    <string name="error_required_field">Detta fält är obligatoriskt</string>
     <string name="error_occurred">Ett fel uppstod</string>
     <string name="decryption_error">Ett fel uppstod när valvet skulle låsas upp</string>
     <string name="decryption_corrupt_error">Ett fel uppstod när valvet skulle låsas upp. Din valvfil kan vara korrupt.</string>
@@ -299,6 +313,10 @@
     <string name="partial_google_auth_import">Ofullständig Google Authenticator-export upptäckt</string>
     <string name="partial_google_auth_import_warning">Vissa rutkoder saknas från din import. Följande koder hittades inte:\n\n<b>%s</b>\n\nDu kan fortsätta att importera denna partiella export, men vi rekommenderar att du försöker igen med alla rutkoder, så att du inte riskerar att förlora åtkomst till några polletter.</string>
     <string name="missing_qr_code_descriptor">• rutkod %d</string>
+    <plurals name="import_partial_export_anyway">
+        <item quantity="one">Importera %d pollett ändå</item>
+        <item quantity="other">Importera %d polletter ändå</item>
+    </plurals>
     <string name="import_google_auth_failure">Import av Google Authenticator-export misslyckades</string>
     <string name="unrelated_google_auth_batches_error">Exporten innehåller information gällande en orelaterad omgång. Försök att importera 1 omgång i taget.</string>
     <string name="no_tokens_can_be_imported">Inga polletter kan importeras till följd av detta</string>
@@ -341,6 +359,7 @@
     <string name="pref_minimize_on_copy_title">Minimera vid kopiering</string>
     <string name="pref_minimize_on_copy_summary">Minimerar appen efter att en pollett har kopierats</string>
     <string name="pref_copy_behavior_title">Kopiera polletter till urklipp</string>
+    <string name="pref_search_behavior_title">Sökbeteende</string>
     <string name="pref_pause_entry_title">Frys polletter vid tryck</string>
     <string name="pref_pause_entry_summary">Pausa automatisk uppdatering av polletterna genom att trycka på dem. Polletterna kommer inte att uppdateras så länge som de är i fokus. Kräver \"Markera polletter vid tryck\" eller \"Tryck för att visa\".</string>
     <string name="pin_keyboard_description">Ange ditt lösenord för att aktivera pinkodstangentbordet. Observera att detta bara fungerar om ditt lösenord endast består av siffror.</string>
@@ -366,6 +385,7 @@
     <string name="unable_to_process_deeplink">Kunde inte bearbeta djuplänk</string>
     <string name="unable_to_read_qrcode_file">Kunde inte läsa och bearbeta rutkod från fil: %s.</string>
     <string name="unable_to_process_shared_text">Kunde inte bearbeta delad text som OTP</string>
+    <string name="unable_to_read_qrcode_files">Kunde inte läsa och bearbeta några av rutkoderna. Endast %1$d/%2$d poster kommer att importeras.</string>
     <string name="unable_to_generate_qrcode">Kunde inte generera rutkod</string>
     <string name="select_picture">Välj bild</string>
     <string name="select_icon">Välj ikon</string>
@@ -396,7 +416,16 @@
     <string name="time_sync_warning_message">Aegis förlitar sig på att systemtiden är i synk för att kunna generera korrekta koder. En avvikelse på bara några sekunder kan resultera i felaktiga koder. Det verkar som om din enhet inte är konfigurerad för att synkronisera tiden automatiskt. Vill du göra det nu?</string>
     <string name="time_sync_warning_disable">Sluta varna mig. Jag vet vad jag gör.</string>
     <string name="google_qr_export_unrelated">Orelaterad rutkod hittades. Pröva att starta om skannern.</string>
+    <plurals name="google_qr_export_scanned">
+        <item quantity="one">Skannade %1$d/%2$d rutkod</item>
+        <item quantity="other">Skannade %1$d/%2$d rutkoder</item>
+    </plurals>
+    <string name="google_qr_export_unexpected">Förutsatte rutkod #%1$d men skannade #%2$d i stället</string>
     <string name="backup_error_bar_message"><b>Säkerhetskopiering av valvet misslyckades nyligen</b></string>
+    <string name="backup_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">        Ett nyligt försök att säkerhetskopiera valvet via %1$s misslyckades eftersom ett fel uppstod. Försöket gjordes för %2$s. Vänligen kontrollera dina säkerhetskopieringsinställningar för att se till att säkerhetskopior kan skapas framgångsrikt.
+    </string>
+    <string name="backup_permission_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">        Ett nyligt försök att säkerhetskopiera valvet via %1$s misslyckades eftersom Aegis inte hade behörighet att skriva till lagringsplatsen för säkerhetskopior. Försöket gjordes för %2$s. Detta fel kan uppstå om du har flyttat/bytt namn på lagringsplatsen för säkerhetskopior eller om du nyligen har återställt Aegis från en säkerhetskopia. Vänligen konfigurera om lagringsplatsen för säkerhetskopior.
+    </string>
     <string name="backup_system_builtin">Aegis inbyggda automatiska säkerhetskopior</string>
     <string name="backup_system_android">Androids molnsäkerhetskopieringssystem</string>
     <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">        Senaste säkerhetskopian är föråldrad (%s)
@@ -469,7 +498,7 @@
     <string name="importer_help_bitwarden">Tillhandahåll en export-/säkerhetskopieringsfil från Bitwarden. Krypterade filer stöds ej.</string>
     <string name="importer_help_battle_net_authenticator">Tillhandahåll en kopia av <b>/data/data/com.blizzard.messenger/shared_prefs/com.blizzard.messenger.authenticator_preferences.xml</b>, som finns i den interna lagringskatalogen för Battle.net Authenticator.</string>
     <string name="importer_help_duo">Tillhandahåll en kopia av <b>/data/data/com.duosecurity.duomobile/files/duokit/accounts.json</b>, som finns i den interna lagringskatalogen för DUO.</string>
-    <string name="importer_help_freeotp">Tillhandahåll en kopia av <b>/data/data/org.fedorahosted.freeotp/shared_prefs/tokens.xml</b>, som finns i den interna lagringskatalogen för FreeOTP (1.x).</string>
+    <string name="importer_help_ente_auth">Tillhandahåll en exportfil från Ente Auth. För närvarande stöds endast okrypterade filer.</string>
     <string name="importer_help_freeotp_plus">Tillhandahåll en exportfil från FreeOTP+.</string>
     <string name="importer_help_google_authenticator"><b>Endast databasfiler från Google Authenticator v5.10 och tidigare stöds.</b>\n\nTillhandahåll en kopia av <b>/data/data/com.google.android.apps.authenticator2/databases/databases</b>, som finns i den interna lagringskatalogen för Google Authenticator.</string>
     <string name="importer_help_microsoft_authenticator">Tillhandahåll en kopia av <b>/data/data/com.azure.authenticator/databases/PhoneFactor</b>, som finns i den interna lagringskatalogen för Microsoft Authenticator.</string>
@@ -495,23 +524,23 @@
     <string name="pref_account_name_position_hidden">Dolt</string>
     <string name="pref_account_name_position_end">Bredvid utfärdaren</string>
     <string name="pref_account_name_position_below">Nedanför utfärdaren</string>
-    <plurals name="time_elapsed_seconds">
+    <plurals name="time_elapsed_seconds" tools:ignore="UnusedResources">
         <item quantity="one">%d sekund sedan</item>
         <item quantity="other">%d sekunder sedan</item>
     </plurals>
-    <plurals name="time_elapsed_minutes">
+    <plurals name="time_elapsed_minutes" tools:ignore="UnusedResources">
         <item quantity="one">%d minut sedan</item>
         <item quantity="other">%d minuter sedan</item>
     </plurals>
-    <plurals name="time_elapsed_hours">
+    <plurals name="time_elapsed_hours" tools:ignore="UnusedResources">
         <item quantity="one">%d timme sedan</item>
         <item quantity="other">%d timmar sedan</item>
     </plurals>
-    <plurals name="time_elapsed_days">
+    <plurals name="time_elapsed_days" tools:ignore="UnusedResources">
         <item quantity="one">%d dag sedan</item>
         <item quantity="other">%d dagar sedan</item>
     </plurals>
-    <plurals name="time_elapsed_years">
+    <plurals name="time_elapsed_years" tools:ignore="UnusedResources">
         <item quantity="one">%d år sedan</item>
         <item quantity="other">%d år sedan</item>
     </plurals>

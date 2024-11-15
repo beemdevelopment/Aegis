@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="action_settings">设置</string>
     <string name="action_about">关于</string>
     <string name="action_delete">删除</string>
@@ -10,6 +10,7 @@
     <string name="action_default_icon">恢复默认图标</string>
     <string name="discard">放弃</string>
     <string name="save">保存</string>
+    <string name="all">全部</string>
     <string name="issuer">服务商</string>
     <string name="yandex_pin">PIN (4-16 位数字)</string>
     <string name="motp_pin">PIN (4 位数)</string>
@@ -44,6 +45,11 @@
     <string name="pref_code_group_size_title">分组显示验证码</string>
     <string name="pref_code_group_size_summary">选择按多少位数字进行代码分组</string>
     <string name="pref_account_name_position_title">显示账户名称</string>
+    <string name="pref_show_next_code_title">显示下一组代码</string>
+    <string name="pref_show_next_code_summary">提前显示下一组代码</string>
+    <string name="pref_expiration_state_title">显示代码将要过期</string>
+    <string name="pref_expiration_state_summary">更改代码的颜色，并在代码即将过期时闪烁。</string>
+    <string name="pref_expiration_state_fallback">当代码即将过期时，更改代码的颜色</string>
     <string name="pref_shared_issuer_account_name_title">仅在必要时显示账户名</string>
     <string name="pref_shared_issuer_account_name_summary">仅在多项具有相同颁发者时显示账户名。隐藏其他账户名。</string>
     <string name="pref_account_name_position_summary_override">此设置被瓷贴视图模式覆盖。账户名将显示在发行者下方。</string>
@@ -58,8 +64,14 @@
     <string name="pref_backups_reminder_summary">如果没有备份最新的变更，提醒您备份自己的数据库。</string>
     <string name="pref_backups_reminder_dialog_title">禁用提醒备份</string>
     <string name="pref_backups_reminder_dialog_summary">禁用后 Aegis 不会再提醒您备份变更。这有可能促使您遗失令牌。确定禁用吗？</string>
-    <string name="pref_backups_location_title">备份文件目录</string>
+    <string name="pref_backups_versioning_strategy_title">备份策略</string>
+    <string name="pref_backups_versioning_strategy_keep_x_versions">保留版本数</string>
+    <string name="pref_backups_versioning_strategy_single_backup">单个备份</string>
+    <string name="pref_backups_versioning_strategy_single_backup_warning">所选的备份策略不可靠、不推荐。单个备份如遇故障可能导致您遗失唯一的备份。</string>
+    <string name="pref_backups_versioning_strategy_dialog_title">选择备份策略</string>
+    <string name="pref_backups_location_title">备份位置</string>
     <string name="pref_backups_location_summary">备份将存储在</string>
+    <string name="pref_backup_location_summary">备份将存储在</string>
     <string name="pref_backups_trigger_title">触发备份</string>
     <string name="pref_backups_trigger_summary">手动触发备份</string>
     <string name="pref_backups_versions_title">要保留的版本数</string>
@@ -195,6 +207,9 @@
     <string name="edit">编辑</string>
     <string name="select_all">全选</string>
     <string name="assign_icons">分配图标</string>
+    <string name="assign_groups">分配给组</string>
+    <string name="assign_groups_dialog_summary">选择您想要将选中条目分配到的组。</string>
+    <string name="assign_groups_dialog_dropdown">选择组</string>
     <string name="favorite" comment="Verb">加入收藏</string>
     <string name="unfavorite" comment="Verb">取消收藏</string>
     <string name="error_all_caps">错误</string>
@@ -212,6 +227,7 @@
     <string name="reading_file">正在读取文件</string>
     <string name="requesting_root_access">正在请求 root 权限</string>
     <string name="analyzing_qr">正在分析二维码</string>
+    <string name="analyzing_qr_multiple">正在分析二维码 %1$d/%2$d (%3$s)</string>
     <plurals name="added_new_entries">
         <item quantity="other">添加了 %d 个新条目到保险库</item>
     </plurals>
@@ -235,6 +251,7 @@
     <string name="copied">已复制</string>
     <string name="errors_copied">错误已复制到剪贴板</string>
     <string name="version_copied">版本号已复制到剪贴板</string>
+    <string name="error_required_field">此字段为必填</string>
     <string name="error_occurred">发生了一个错误</string>
     <string name="decryption_error">试图解锁数据库时出错</string>
     <string name="decryption_corrupt_error">尝试解锁数据库时发生错误，您的数据库文件可能已损坏。</string>
@@ -295,6 +312,9 @@
     <string name="partial_google_auth_import">检测到不完整的 Google 身份验证器导出</string>
     <string name="partial_google_auth_import_warning">您的导入缺少一些  QR 码。 找不到下列代码：\n\n<b>%s</b>\n\n您仍可以继续导入已有部分，但建议您重试所有 QR 码，以避免出现丢失令牌的风险。</string>
     <string name="missing_qr_code_descriptor">• QR 码 %d</string>
+    <plurals name="import_partial_export_anyway">
+        <item quantity="other">继续导入 %d 个令牌</item>
+    </plurals>
     <string name="import_google_auth_failure">导入 Google 身份验证器的导出文件失败</string>
     <string name="unrelated_google_auth_batches_error">导出文件包含多个批次的内容。请一次只导入一个批次。</string>
     <string name="no_tokens_can_be_imported">没有可导入的令牌</string>
@@ -362,6 +382,7 @@
     <string name="unable_to_process_deeplink">无法处理深层链接</string>
     <string name="unable_to_read_qrcode_file">无法从文件读取和处理二维码: %s。</string>
     <string name="unable_to_process_shared_text">无法将共享文本作为 OTP 进行处理</string>
+    <string name="unable_to_read_qrcode_files">无法读取和处理一些二维码。将只导入 %2$d 中的 %1$d 个条目。</string>
     <string name="unable_to_generate_qrcode">无法生成二维码</string>
     <string name="select_picture">选择图片</string>
     <string name="select_icon">选择图标</string>
@@ -392,7 +413,15 @@
     <string name="time_sync_warning_message">Aegis 依靠系统时间来同步生成正确的验证码。仅几秒钟的偏差可能会导致验证码错误。您的设备似乎未配置为自动同步时间。您现在要设置自动同步时间吗？</string>
     <string name="time_sync_warning_disable">不要再次提醒。我知道我在做什么。</string>
     <string name="google_qr_export_unrelated">找到不相关的二维码。请尝试重新扫描。</string>
+    <plurals name="google_qr_export_scanned">
+        <item quantity="other">已扫描 %1$d 个 二维码，共 %2$d 个</item>
+    </plurals>
+    <string name="google_qr_export_unexpected">预期二维码 #%1$d，但扫描了 #%2$d</string>
     <string name="backup_error_bar_message"><b>数据库最近备份失败</b></string>
+    <string name="backup_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">        最近使用%1$s 备份密码库的尝试失败了，因为发生了错误。 备份尝试发生在 %2$s 前。请检查你的备份设备，确保备份可以成功完成。
+    </string>
+    <string name="backup_permission_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">        最近使用 %1$s 备份密码库的尝试失败了，因为 Aegis 没有写入备份目的地的权限。备份尝试发生在%2$s前。发生错误的原因可能是你 移动或重命名了备份目的地或者你近期从备份恢复了 Aegis。请重新配置备份目的地。
+    </string>
     <string name="backup_system_builtin">Aegis 内置的自动备份</string>
     <string name="backup_system_android">Android 的云备份系统</string>
     <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">        最新备份已过时 (%s)
@@ -462,8 +491,11 @@
     <string name="importer_help_bitwarden">提供 Bitwarden 导出 / 备份文件。不支持加密的文件。</string>
     <string name="importer_help_battle_net_authenticator">提供 <b>/data/data/com.blizzard.messenger/shared_prefs/com.blizzard.messenger.authenticator_preferences.xml</b> 的副本，这位于 Battle.net Authenticator 的内部存储目录。</string>
     <string name="importer_help_duo">提供 <b>/data/data/com.duosecurity.duomobile/files/duokit/accounts.json</b> 的一个副本，位于 DUO 的内部存储目录。</string>
-    <string name="importer_help_freeotp">提供 <b>/data/data/org.fedorahosted.freeotp/shared_prefs/tokens.xml</b> 的一个副本，位于 FreeOTP (1.x) 内部存储目录。</string>
+    <string name="importer_help_ente_auth">提供一个 Ente Auth 导出文件。目前只支持未加密文件。</string>
+    <string name="importer_help_freeotp">FreeOTP 2: 提供备份文件.\nFreeOTP 1.x: 提供<b>/data/data/org.fedorahosted.freeotp/shared_prefs/tokens.xml</b>的副本，位于 FreeOTP 的内部存储目录。</string>
     <string name="importer_help_freeotp_plus">提供 FreeOTP+ 导出文件。</string>
+    <string name="importer_warning_title_freeotp2">FreeOTP 2 兼容性</string>
+    <string name="importer_warning_message_freeotp2">FreeOTP 2 有许多问题可能导致备份损坏。 Aegis 将试着挽救尽可能多的条目，但有些条目甚至全部都未能导入。</string>
     <string name="importer_help_google_authenticator"><b>仅支持来自 Google Authenticator v5.10 及先前版本的数据库</b>。\n\n提供 <b>/data/data/com.google.android.apps.authenticator2/databases/databases</b> 的副本，文件位于 Google Authenticator 的内部存储目录。</string>
     <string name="importer_help_microsoft_authenticator">提供 <b>/data/data/com.azure.authenticator/databases/PhoneFactor</b> 的一个副本，位于 Microsoft Authenticator 的内部存储目录。</string>
     <string name="importer_help_plain_text">提供一个每一行都有一个 Google Authenticator URI 的纯文本文件。</string>
@@ -488,19 +520,19 @@
     <string name="pref_account_name_position_hidden">隐藏</string>
     <string name="pref_account_name_position_end">发行者旁边</string>
     <string name="pref_account_name_position_below">发行者下方</string>
-    <plurals name="time_elapsed_seconds">
+    <plurals name="time_elapsed_seconds" tools:ignore="UnusedResources">
         <item quantity="other">%d 秒前</item>
     </plurals>
-    <plurals name="time_elapsed_minutes">
+    <plurals name="time_elapsed_minutes" tools:ignore="UnusedResources">
         <item quantity="other">%d 分钟前</item>
     </plurals>
-    <plurals name="time_elapsed_hours">
+    <plurals name="time_elapsed_hours" tools:ignore="UnusedResources">
         <item quantity="other">%d 小时前</item>
     </plurals>
-    <plurals name="time_elapsed_days">
+    <plurals name="time_elapsed_days" tools:ignore="UnusedResources">
         <item quantity="other">%d 天前</item>
     </plurals>
-    <plurals name="time_elapsed_years">
+    <plurals name="time_elapsed_years" tools:ignore="UnusedResources">
         <item quantity="other">%d 年前</item>
     </plurals>
     <plurals name="dropdown_checkboxes_default_count">

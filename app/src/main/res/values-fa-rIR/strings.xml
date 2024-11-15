@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="action_settings">تنظیمات</string>
     <string name="action_about">درباره‌</string>
     <string name="action_delete">حذف</string>
@@ -41,7 +41,6 @@
     <string name="pref_android_backups_hint"><i>پشتیبان‌گیریِ دستگاه به دستگاه (D2D) بدون در نظر گرفتن تنظیمات بالا، همواره مجاز است</i></string>
     <string name="pref_backups_title">بصورت خودکار از مخزن پشتیبانگیری شود</string>
     <string name="pref_backups_summary">به صورت خودکار از مخزن ها در کارت حافظه پیشتیبان گیری شود. این ویژگی فقط مخصوص مخزن های رمزگذاری شده است.</string>
-    <string name="pref_backups_location_title">مقصد ذخیره فایل‌های پشتیبان گیری</string>
     <string name="pref_backups_location_summary">فایل‌ها پشتیبان گیری در این آدرس ذخیره می‌شوند</string>
     <string name="pref_backups_trigger_title">پشتیبان‌گیری</string>
     <string name="pref_backups_trigger_summary">گرفتن پیشتیبان به صورت دستی</string>

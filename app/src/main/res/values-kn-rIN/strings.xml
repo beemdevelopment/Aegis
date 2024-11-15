@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="action_settings">ಸಿದ್ಢತೆಗಳು</string>
     <string name="action_about">ಅಪ್ಲಿಕೇಶನ್ ಬಗ್ಗೆ</string>
     <string name="action_delete">ಅಳಿಸು</string>
@@ -48,7 +48,6 @@
     <string name="pref_backups_reminder_summary">ನಿಮ್ಮ ಇತ್ತೀಚಿನ ಬದಲಾವಣೆಗಳನ್ನು ನೀವು ಬ್ಯಾಕಪ್ ಮಾಡದಿದ್ದಲ್ಲಿ ನಿಮ್ಮ ವಾಲ್ಟ್ ಅನ್ನು ಬ್ಯಾಕಪ್ ಮಾಡಲು ಜ್ಞಾಪನೆಯನ್ನು ತೋರಿಸಲಾಗುವುದು.</string>
     <string name="pref_backups_reminder_dialog_title">ಬ್ಯಾಕಪ್ ಜ್ಞಾಪನೆಯನ್ನು ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಿ</string>
     <string name="pref_backups_reminder_dialog_summary">ಈ ಜ್ಞಾಪನೆಯನ್ನು ನಿಷ್ಕ್ರಿಯಗೊಳಿಸುವುದು ಎಂದರೆ ನೀವು ಇನ್ನೂ ಬ್ಯಾಕಪ್ ಮಾಡದ ಬದಲಾವಣೆಗಳನ್ನು ಹೊಂದಿದ್ದೀರಾ ಅಥವಾ ಇಲ್ಲವೇ ಎಂಬುದನ್ನು Aegis ನಿಮಗೆ ತಿಳಿಸುವುದಿಲ್ಲ. ಇದರಿಂದ ನಿಮ್ಮ ಟೋಕನ್ಗಳನ್ನೂ ಕಳೆದುಕೊಳ್ಳುವ ಸಂಭವವಿರುತ್ತದೆ. ಜ್ಞಾಪನೆಯನ್ನು ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಲು ನೀವು ಖಚಿತವಾಗಿ ಬಯಸುವಿರಾ?</string>
-    <string name="pref_backups_location_title">ಬ್ಯಾಕಪ್ ಫೈಲುಗಳನ್ನು ಇಲ್ಲಿ ಶೇಕರಿಸಲಾಗುತ್ತದೆ</string>
     <string name="pref_backups_location_summary">ಬ್ಯಾಕಪ್‌ಗಳನ್ನು ಇಲ್ಲಿ ಸಂಗ್ರಹಿಸಲಾಗುತ್ತದೆ</string>
     <string name="pref_backups_trigger_title">ಬ್ಯಾಕಪ್ ಮಾಡು</string>
     <string name="pref_backups_trigger_summary">ಈಗಲೇ ಬ್ಯಾಕಪ್ ಮಾಡಲು ಇಲ್ಲಿ ಒತ್ತಿ</string>
@@ -199,23 +198,23 @@
     <string name="empty_list_title">ಯಾವುದೇ ಎಂಟ್ರಿಗಳು ಕಂಡುಬಂದಿಲ್ಲ</string>
     <string name="title_activity_manage_groups">ಗುಂಪುಗಳನ್ನು ನಿರ್ವಹಿಸು</string>
     <string name="title_activity_about">ಅಪ್ಲಿಕೇಶನ್ ಬಗ್ಗೆ</string>
-    <plurals name="time_elapsed_seconds">
+    <plurals name="time_elapsed_seconds" tools:ignore="UnusedResources">
         <item quantity="one">%d ಸೆಕೆಂಡ್ ಹಿಂದೆ</item>
         <item quantity="other">%d ಸೆಕೆಂಡ್ಗಳ ಹಿಂದೆ</item>
     </plurals>
-    <plurals name="time_elapsed_minutes">
+    <plurals name="time_elapsed_minutes" tools:ignore="UnusedResources">
         <item quantity="one">%d ನಿಮಿಷದ ಹಿಂದೆ</item>
         <item quantity="other">%d ನಿಮಿಷಗಳ ಹಿಂದೆ</item>
     </plurals>
-    <plurals name="time_elapsed_hours">
+    <plurals name="time_elapsed_hours" tools:ignore="UnusedResources">
         <item quantity="one">%d ಗಂಟೆಯ ಹಿಂದೆ</item>
         <item quantity="other">%d ಗಂಟೆಗಳ ಹಿಂದೆ</item>
     </plurals>
-    <plurals name="time_elapsed_days">
+    <plurals name="time_elapsed_days" tools:ignore="UnusedResources">
         <item quantity="one">%d ದಿನಗಳ ಹಿಂದೆ</item>
         <item quantity="other">%d ದಿನಗಳ ಹಿಂದೆ</item>
     </plurals>
-    <plurals name="time_elapsed_years">
+    <plurals name="time_elapsed_years" tools:ignore="UnusedResources">
         <item quantity="one">%d ವರ್ಷದ ಹಿಂದೆ</item>
         <item quantity="other">%d ವರ್ಷಗಳ ಹಿಂದೆ</item>
     </plurals>

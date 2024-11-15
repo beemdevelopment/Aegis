@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="action_settings">Ajustes</string>
     <string name="action_about">Acerca de</string>
     <string name="action_delete">Eliminar</string>
@@ -10,6 +10,7 @@
     <string name="action_default_icon">Volver al icono original</string>
     <string name="discard">Descartar</string>
     <string name="save">Guardar</string>
+    <string name="all">Todo</string>
     <string name="issuer">Emisor</string>
     <string name="yandex_pin">PIN (4-16 dígitos)</string>
     <string name="motp_pin">PIN (4 dígitos)</string>
@@ -44,6 +45,11 @@
     <string name="pref_code_group_size_title">Agrupación de los dígitos del código</string>
     <string name="pref_code_group_size_summary">Elige el número de dígitos por los que agrupar los códigos</string>
     <string name="pref_account_name_position_title">Mostrar el nombre de la cuenta</string>
+    <string name="pref_show_next_code_title">Ver siguiente clave</string>
+    <string name="pref_show_next_code_summary">Generar y mostrar la siguiente clave antes de tiempo</string>
+    <string name="pref_expiration_state_title">Indica cuándo están a punto de expirar los códigos</string>
+    <string name="pref_expiration_state_summary">Cambia el color de los códigos y póngalos en parpadeo cuando estén a punto de expirar</string>
+    <string name="pref_expiration_state_fallback">Cambia el color de los códigos y póngalos en parpadeo cuando estén a punto de expirar</string>
     <string name="pref_shared_issuer_account_name_title">Solo mostrar nombres de cuenta necesarios</string>
     <string name="pref_shared_issuer_account_name_summary">Mostrar nombres de cuenta solo cuando compartan el mismo emisor. Se ocultarán otros nombres de cuenta.</string>
     <string name="pref_account_name_position_summary_override">Este ajuste no tiene efecto cuando aparecen en recuadros; el nombre de la cuenta se mostrará debajo del emisor.</string>
@@ -58,8 +64,14 @@
     <string name="pref_backups_reminder_summary">Mostrar un recordatorio para hacer una copia de seguridad de tu bóveda en caso de que no hayas hecho una copia de tus últimos cambios.</string>
     <string name="pref_backups_reminder_dialog_title">Desactivar recordatorio de copia de seguridad</string>
     <string name="pref_backups_reminder_dialog_summary">Al desactivar el recordatorio Aegis no te dirá si tienes o no cambios que aún no están respaldados. Te arriesgas a perder tus claves. ¿Estás seguro de querer desactivarlo?</string>
-    <string name="pref_backups_location_title">Carpeta para copias de seguridad</string>
+    <string name="pref_backups_versioning_strategy_title">Estrategia de respaldo</string>
+    <string name="pref_backups_versioning_strategy_keep_x_versions">Mantener varias versiones</string>
+    <string name="pref_backups_versioning_strategy_single_backup">Respaldo único</string>
+    <string name="pref_backups_versioning_strategy_single_backup_warning">La estrategia de copia de seguridad seleccionada no es fiable ni recomendable. Un único fallo de copia de seguridad podría hacer que lo pierdas todo.</string>
+    <string name="pref_backups_versioning_strategy_dialog_title">Elige una estrategia de respaldo</string>
+    <string name="pref_backups_location_title">Ubicación del respaldo</string>
     <string name="pref_backups_location_summary">Las copias de seguridad se guardarán en</string>
+    <string name="pref_backup_location_summary">La copia de seguridad se guardará en</string>
     <string name="pref_backups_trigger_title">Lanzar una copia de seguridad</string>
     <string name="pref_backups_trigger_summary">Lanzar una copia de seguridad manualmente</string>
     <string name="pref_backups_versions_title">Número de versiones a conservar</string>
@@ -198,6 +210,9 @@
     <string name="edit">Editar</string>
     <string name="select_all">Seleccionar todo</string>
     <string name="assign_icons">Asignar iconos</string>
+    <string name="assign_groups">Asignar al grupo</string>
+    <string name="assign_groups_dialog_summary">Seleccione un grupo al que desea asignar las entradas seleccionadas.</string>
+    <string name="assign_groups_dialog_dropdown">Seleccionar grupo</string>
     <string name="favorite" comment="Verb">Marcar favorito</string>
     <string name="unfavorite" comment="Verb">Desmarcar favorito</string>
     <string name="error_all_caps">ERROR</string>
@@ -215,6 +230,7 @@
     <string name="reading_file">Leyendo archivo</string>
     <string name="requesting_root_access">Solicitando acceso a la raíz</string>
     <string name="analyzing_qr">Analizando código QR</string>
+    <string name="analyzing_qr_multiple">Analizando código QR %1$d de %2$d (%3$s)</string>
     <plurals name="added_new_entries">
         <item quantity="one">Añadida %d nueva entrada a la bóveda</item>
         <item quantity="other">Añadidas %d nuevas claves a la bóveda</item>
@@ -240,6 +256,7 @@
     <string name="copied">Copiado</string>
     <string name="errors_copied">Se han copiado los errores al portapapeles</string>
     <string name="version_copied">Versión copiada al portapapeles</string>
+    <string name="error_required_field">Este campo es obligatorio</string>
     <string name="error_occurred">Se ha producido un error</string>
     <string name="decryption_error">Se ha producido un error tratando de desbloquear la bóveda</string>
     <string name="decryption_corrupt_error">Se ha producido un error al intentar abrir la bóveda. El archivo podría estar dañado.</string>
@@ -303,6 +320,10 @@
     <string name="partial_google_auth_import">Se ha detectado una exportación incompleta de Google Authenticator</string>
     <string name="partial_google_auth_import_warning">Algunos código QR de importación no están. Faltan los siguientes códigos:\n\n<b>%s</b>\n\nPuedes seguir adelante con esta importación parcial, pero te recomendamos volver a probar otra vez a escanear todos los códigos QR para evitar que pierdas el acceso a alguno de ellos.</string>
     <string name="missing_qr_code_descriptor">• código QR %d</string>
+    <plurals name="import_partial_export_anyway">
+        <item quantity="one">Aún así quieres seguir con la importación de este código</item>
+        <item quantity="other">Seguir con la importación de estos %d códigos</item>
+    </plurals>
     <string name="import_google_auth_failure">Ha fallado la importación de lo exportado de Google Authenticator</string>
     <string name="unrelated_google_auth_batches_error">La exportación contiene información para un lote no relacionado. Intente importar 1 lote a la vez.</string>
     <string name="no_tokens_can_be_imported">Como consecuencia no se pudo importar ninguna de las claves</string>
@@ -361,7 +382,7 @@
     <string name="normal_viewmode_title">Normal</string>
     <string name="compact_mode_title">Compacto</string>
     <string name="small_mode_title">Pequeño</string>
-    <string name="tiles_mode_title">Baldosas</string>
+    <string name="tiles_mode_title">Casillas</string>
     <string name="unknown_issuer">Emisor desconocido</string>
     <string name="unknown_account_name">Nombre de cuenta desconocido</string>
     <plurals name="import_error_dialog">
@@ -371,6 +392,7 @@
     <string name="unable_to_process_deeplink">No se puede procesar el enlace profundo</string>
     <string name="unable_to_read_qrcode_file">No se puede leer y procesar el código QR del archivo: %s.</string>
     <string name="unable_to_process_shared_text">No se puede procesar el texto compartido como OTP</string>
+    <string name="unable_to_read_qrcode_files">No se pueden leer y procesar algunos de los códigos QR. Solo se importarán %1$d de %2$d.</string>
     <string name="unable_to_generate_qrcode">No se puede generar el código QR</string>
     <string name="select_picture">Seleccionar imagen</string>
     <string name="select_icon">Seleccionar icono</string>
@@ -401,7 +423,16 @@
     <string name="time_sync_warning_message">Aegis depende que la hora de tu dispositivo esté bien para generar códigos válidos en cada momento. Una pequeña diferencia de unos segundos podría hacer que los códigos no se acepten. Parece que tu dispositivo no está configurado para sincronizar automáticamente la hora. ¿Quieres hacerlo ahora?</string>
     <string name="time_sync_warning_disable">No molestar, sé muy bien lo que hago.</string>
     <string name="google_qr_export_unrelated">Encontrado código QR no relacionado. Intente reiniciar el escáner.</string>
+    <plurals name="google_qr_export_scanned">
+        <item quantity="one">Se han escaneado %1$d de %2$d códigos QR</item>
+        <item quantity="other">Se han escaneado%1$d de %2$d códigos QR</item>
+    </plurals>
+    <string name="google_qr_export_unexpected">Se esperaba el código QR número %1$d, pero parece que has escaneado el número %2$d</string>
     <string name="backup_error_bar_message"><b>La copia de seguridad de la bóveda ha fallado recientemente</b></string>
+    <string name="backup_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">        Ha fallado una copia de la bóveda mediante %1$s realizada %2$s. Asegúrate de que la configuración esté bien para evitar problemas.
+    </string>
+    <string name="backup_permission_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">        Ha fallado una copia de la bóveda mediante %1$s realizada %2$s porque Aegis no tenía permiso para escribir la carpeta elegida. Este error puede producirse si se ha movido o renombrado la carpeta o si has importado los ajustes de Aegis desde otro dispositivo. Vuelve a configurar la carpeta destino.
+    </string>
     <string name="backup_system_builtin">Copias de seguridad automáticas de Aegis</string>
     <string name="backup_system_android">Sistema de copias de seguridad en la nube de Android</string>
     <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">        La última copia de seguridad está desactualizada (%s)
@@ -431,9 +462,9 @@
     </plurals>
     <string name="next">Siguiente</string>
     <string name="previous">Anterior</string>
-    <string name="copy_uri">Copiar URI</string>
-    <string name="unable_to_copy_uri_to_clipboard">No se puede copiar el URI al portapapeles</string>
-    <string name="uri_copied_to_clipboard">Se ha copiado el URI al portapapeles</string>
+    <string name="copy_uri">Copiar dirección URI</string>
+    <string name="unable_to_copy_uri_to_clipboard">No se puede copiar la dirección URI en el portapapeles</string>
+    <string name="uri_copied_to_clipboard">Se ha copiado la dirección URI al portapapeles</string>
     <string name="transfer_entry_description">Escanea este código QR con la aplicación de autenticación a la que vayas a importar esta clave</string>
     <string name="google_auth_compatible_transfer_description">Escanea estos códigos QR con Aegis o Google Authenticator.\n\nDebido a limitaciones técnicas de Google Authenticator solo se incluirán claves de tipo TOTP y HOTP que usen SHA1 y produzcan códigos de 6 dígitos</string>
     <string name="password_strength_very_weak">Muy débil</string>
@@ -453,8 +484,8 @@
     <string name="title_activity_import_entries">Importar entradas</string>
     <string name="title_activity_assign_icons">Asignar iconos</string>
     <string name="title_activity_licenses">Licencias de terceros</string>
-    <string name="dialog_wipe_entries_title">Limpiar entradas</string>
-    <string name="dialog_wipe_entries_message">Tu bóveda no está vacía. ¿Quieres borrar todos los elementos actuales antes de importar este archivo?\n\n<b>Al hacerlo perderás cualquiera de las claves que ya existen en la bóveda.</b></string>
+    <string name="dialog_wipe_entries_title">Borrado de claves</string>
+    <string name="dialog_wipe_entries_message">Tu bóveda no está vacía. ¿Quieres borrar todos las claves actuales antes de importar este archivo?\n\n<b>Al hacerlo perderás cualquiera de las claves que ya existen en la bóveda.</b></string>
     <string name="dialog_wipe_entries_checkbox">Limpiar el contenido de la bóveda</string>
     <string name="panic_trigger_ignore_toast">Aegis ha recibido el activador de pánico pero la configuración está deshabilitada, ignorando</string>
     <string name="pref_panic_trigger_title">Eliminar la bóveda al activar el pánico</string>
@@ -474,8 +505,11 @@
     <string name="importer_help_bitwarden">Suministra un archivo de exportación/copia de seguridad de Bitwarden. Los archivos encriptados no están soportados.</string>
     <string name="importer_help_battle_net_authenticator">Proporciona una copia del archivo <b>/data/data/com.blizzard.messenger/shared_prefs/com.blizzard.messenger.authenticator_preferences.xml</b>, ubicado en la carpeta de almacenamiento interno del Authenticator de Battle.net.</string>
     <string name="importer_help_duo">Suministre una copia de <b>/data/data/com.duosecurity.duomobile/files/duokit/accounts.json</b>, localizado en el directorio de almacenamiento interno de DUO.</string>
-    <string name="importer_help_freeotp">Proporciona una copia del archivo <b>/data/data/org.fedorahosted.freeotp/shared_prefs/tokens.xml</b>, ubicado en la carpeta de almacenamiento interno de FreeOTP (1.x).</string>
+    <string name="importer_help_ente_auth">Proporciona un archivo exportado desde Ente Auth, ten en cuenta que sólo se admiten archivos sin cifrar.</string>
+    <string name="importer_help_freeotp">FreeOTP 2: Proporciona una copia del archivo de respaldo exportado. En las versiones 1.x: Proporciona el archivo <b>/data/data/org.fedorahosted.freeotp/shared_prefs/tokens.xml</b>, ubicado en la carpeta de almacenamiento interno de FreeOTP.</string>
     <string name="importer_help_freeotp_plus">Suministre un archivo exportado de FreeOTP+.</string>
+    <string name="importer_warning_title_freeotp2">Compatibilidad con FreeOTP 2</string>
+    <string name="importer_warning_message_freeotp2">Hay una serie de problemas en FreeOTP 2 que pueden hacer que la exportación genere un archivo incompleto o no válido. Aegis intentará rescatar tantos elementos como sea posible, pero es posible que solo unos pocos (o ninguno) se pueda importar.</string>
     <string name="importer_help_google_authenticator"><b>Solo funcionará con archivos de base de datos de Google Authenticator v5.10 e inferiores</b>.\n\nProporciona una copia del archivo <b>/data/data/com.google.android.apps.authenticator2/databases/databases</b>, ubicado en la carpeta de almacenamiento interno de Google Authenticator.</string>
     <string name="importer_help_microsoft_authenticator">Suministre una copia de <b>/data/data/com.azure.authenticator/databases/PhoneFactor</b>, localizado en el directorio de almacenamiento interno de Microsoft Authenticator.</string>
     <string name="importer_help_plain_text">Suministre un archivo de texto plano con una URI de Google Authenticator en cada línea.</string>
@@ -500,23 +534,23 @@
     <string name="pref_account_name_position_hidden">Oculto</string>
     <string name="pref_account_name_position_end">Junto al emisor</string>
     <string name="pref_account_name_position_below">Debajo del emisor</string>
-    <plurals name="time_elapsed_seconds">
+    <plurals name="time_elapsed_seconds" tools:ignore="UnusedResources">
         <item quantity="one">Hace %d segundo</item>
         <item quantity="other">Hace %d segundos</item>
     </plurals>
-    <plurals name="time_elapsed_minutes">
+    <plurals name="time_elapsed_minutes" tools:ignore="UnusedResources">
         <item quantity="one">Hace %d minuto</item>
         <item quantity="other">Hace %d minutos</item>
     </plurals>
-    <plurals name="time_elapsed_hours">
+    <plurals name="time_elapsed_hours" tools:ignore="UnusedResources">
         <item quantity="one">Hace %d hora</item>
         <item quantity="other">Hace %d horas</item>
     </plurals>
-    <plurals name="time_elapsed_days">
+    <plurals name="time_elapsed_days" tools:ignore="UnusedResources">
         <item quantity="one">Hace %d día</item>
         <item quantity="other">Hace %d días</item>
     </plurals>
-    <plurals name="time_elapsed_years">
+    <plurals name="time_elapsed_years" tools:ignore="UnusedResources">
         <item quantity="one">Hace %d año</item>
         <item quantity="other">Hace %d años</item>
     </plurals>

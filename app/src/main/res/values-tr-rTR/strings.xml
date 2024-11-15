@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="action_settings">Ayarlar</string>
     <string name="action_about">Hakkında</string>
     <string name="action_delete">Sil</string>
@@ -55,7 +55,6 @@
     <string name="pref_backups_reminder_summary">En son değişikliklerinizi yedeklemediyseniz kasanızı yedeklemeniz için bir hatırlatıcı gösterir.</string>
     <string name="pref_backups_reminder_dialog_title">Yedekleme hatırlatıcıyı devre dışı bırak</string>
     <string name="pref_backups_reminder_dialog_summary">Bu hatırlatıcıyı devre dışı bırakmak, Aegis\'in henüz yedeklenmemiş değişiklikleriniz olup olmadığını size söylemeyeceği anlamına gelir. Bu sizi belirteçlerinize erişimi kaybetme riskiyle karşı karşıya bırakır. Hatırlatıcıyı devre dışı bırakmak istediğinizden emin misiniz?</string>
-    <string name="pref_backups_location_title">Yedek dosyaların kaydedileceği klasör</string>
     <string name="pref_backups_location_summary">Yedekler şurada depolanacak</string>
     <string name="pref_backups_trigger_title">Yedeklemeyi tetikle</string>
     <string name="pref_backups_trigger_summary">Yedeklemeyi elle tetikle</string>
@@ -438,7 +437,6 @@
     <string name="importer_help_andotp">andOTP dışa aktarım dosyasını sağlayın.</string>
     <string name="importer_help_bitwarden">Bitwarden\'a ait bir yedekleme/aktarma dosyası sağlayın. Şifrelenmiş dosyalar desteklenmiyor.</string>
     <string name="importer_help_duo">DUO\'nun dahili depolama dizininde bulunan <b>/data/data/com.duosecurity.duomobile/files/duokit/accounts.json</b> dosyasının bir kopyasını sağlayın.</string>
-    <string name="importer_help_freeotp">FreeOTP\'nin (1.x) dahili depolama dizininde bulunan <b>/data/data/org.fedorahosted.freeotp/shared_prefs/tokens.xml</b> dosyasının bir kopyasını sağlayın.</string>
     <string name="importer_help_freeotp_plus">FreeOTP+ dışa aktarım dosyasını sağlayın.</string>
     <string name="importer_help_google_authenticator"><b>Yalnızca Google Authenticator v5.10 ve önceki sürümlerdeki veritabanı dosyaları desteklenir</b>.\n\nGoogle Authenticator\'ın dahili depolama dizininde bulunan<b>/data/data/com.google.android.apps.authenticator2/databases/databases</b>dosyasının bir kopyasını temin edin.</string>
     <string name="importer_help_microsoft_authenticator"><b>/data/data/com.azure.authenticator/databases/PhoneFactor</b>dosyasını sağlayın, Microsoft Authenticator\'ın dahili depolama konumunda bulunabilir.</string>
@@ -464,23 +462,23 @@
     <string name="pref_account_name_position_hidden">Gizli</string>
     <string name="pref_account_name_position_end">Yayınlayanın yanında</string>
     <string name="pref_account_name_position_below">Yayınlayanın altında</string>
-    <plurals name="time_elapsed_seconds">
+    <plurals name="time_elapsed_seconds" tools:ignore="UnusedResources">
         <item quantity="one">%d saniye önce</item>
         <item quantity="other">%d saniye önce</item>
     </plurals>
-    <plurals name="time_elapsed_minutes">
+    <plurals name="time_elapsed_minutes" tools:ignore="UnusedResources">
         <item quantity="one">%d dakika önce</item>
         <item quantity="other">%d dakika önce</item>
     </plurals>
-    <plurals name="time_elapsed_hours">
+    <plurals name="time_elapsed_hours" tools:ignore="UnusedResources">
         <item quantity="one">%d saat önce</item>
         <item quantity="other">%d saat önce</item>
     </plurals>
-    <plurals name="time_elapsed_days">
+    <plurals name="time_elapsed_days" tools:ignore="UnusedResources">
         <item quantity="one">%d gün önce</item>
         <item quantity="other">%d gün önce</item>
     </plurals>
-    <plurals name="time_elapsed_years">
+    <plurals name="time_elapsed_years" tools:ignore="UnusedResources">
         <item quantity="one">%d yıl önce</item>
         <item quantity="other">%d yıl önce</item>
     </plurals>

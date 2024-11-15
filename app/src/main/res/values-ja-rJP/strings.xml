@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="action_settings">設定</string>
     <string name="action_about">Aegis について</string>
     <string name="action_delete">削除</string>
@@ -53,7 +53,6 @@
     <string name="pref_backups_reminder_summary">最近の変更をバックアップしていない場合に、保管庫をバックアップするよう通知を表示します。</string>
     <string name="pref_backups_reminder_dialog_title">バックアップリマインダーを無効化</string>
     <string name="pref_backups_reminder_dialog_summary">このリマインダーを無効にすると、Aegisはバックアップしていない変更があるかどうかを知らせません。これにより、トークンにアクセスできなくなる危険性があります。本当にリマインダーを無効にしてもよろしいですか？</string>
-    <string name="pref_backups_location_title">バックアップファイルのディレクトリ</string>
     <string name="pref_backups_location_summary">バックアップの保存場所</string>
     <string name="pref_backups_trigger_title">バックアップのトリガー</string>
     <string name="pref_backups_trigger_summary">手動でバックアップを開始する</string>
@@ -422,7 +421,6 @@
     <string name="importer_help_andotp">andOTPのエクスポート/バックアップ ファイルを提供します。</string>
     <string name="importer_help_bitwarden">Bitwarden のエクスポート/バックアップファイルを提供します。暗号化されたファイルはサポートされていません。</string>
     <string name="importer_help_duo">DUOの内部ストレージディレクトリにある <b>/data/data/com.duosecurity.duomobile/files/duokit/accounts.json</b>のコピーを提供します。</string>
-    <string name="importer_help_freeotp">FreeOTP (1.x) の内部ストレージディレクトリにある <b>/data/data/org.fedorahosted.freeotp/shared_prefs/tokens.xml</b> のコピーを提供します。</string>
     <string name="importer_help_freeotp_plus">FreeOTP+のエクスポートファイルを提供します。</string>
     <string name="importer_help_google_authenticator"><b>Google Authenticator v5.10 およびそれ以前のデータベースファイルのみサポートされています。</b>.\n\nGoogle Authenticator の内部ストレージディレクトリにある<b>/data/data/com.google.android.apps.authenticator2/databases/databases</b> のコピーを提供します。</string>
     <string name="importer_help_microsoft_authenticator">Microsoft Authenticatorの内部ストレージディレクトリにある <b>/data/data/com.azure.authenticator/databases/PhoneFactor</b>のコピーを提供します。</string>
@@ -448,19 +446,19 @@
     <string name="pref_account_name_position_hidden">非表示</string>
     <string name="pref_account_name_position_end">次の発行者</string>
     <string name="pref_account_name_position_below">前の発行者</string>
-    <plurals name="time_elapsed_seconds">
+    <plurals name="time_elapsed_seconds" tools:ignore="UnusedResources">
         <item quantity="other">%d 秒前</item>
     </plurals>
-    <plurals name="time_elapsed_minutes">
+    <plurals name="time_elapsed_minutes" tools:ignore="UnusedResources">
         <item quantity="other">%d 分前</item>
     </plurals>
-    <plurals name="time_elapsed_hours">
+    <plurals name="time_elapsed_hours" tools:ignore="UnusedResources">
         <item quantity="other">%d 時間前</item>
     </plurals>
-    <plurals name="time_elapsed_days">
+    <plurals name="time_elapsed_days" tools:ignore="UnusedResources">
         <item quantity="other">%d 日前</item>
     </plurals>
-    <plurals name="time_elapsed_years">
+    <plurals name="time_elapsed_years" tools:ignore="UnusedResources">
         <item quantity="other">%d 年前</item>
     </plurals>
     <plurals name="dropdown_checkboxes_default_count">

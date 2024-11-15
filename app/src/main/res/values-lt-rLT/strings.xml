@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="action_settings">Nustatymai</string>
     <string name="action_about">Apie</string>
     <string name="action_delete">Ištrinti</string>
@@ -38,8 +38,8 @@
     <string name="pref_android_backups_summary">Leisti „Android“ debesijos atsarginių kopijų sistemai įtraukti Aegis slėptuves į „Android“ atsargines kopijas. Tai palaikoma tik šifruotoms slėptuvėms.</string>
     <string name="pref_backups_title">Automatiškai daryti slėptuvės atsargines kopijas</string>
     <string name="pref_backups_summary">Atlikus pakeitimus, automatiškai daryti slėptuvės atsarginę kopiją išorinėje saugykloje. Tai palaikoma tik šifruotoms slėptuvėms.</string>
-    <string name="pref_backups_location_title">Atsarginės kopijos failų katalogas</string>
     <string name="pref_backups_location_summary">Atsarginės kopijos bus saugomos ties</string>
+    <string name="pref_backups_versions_infinite">\u221E</string>
     <plurals name="pref_backups_versions_summary">
         <item quantity="one">Laikyti %1$d atsarginės kopijos versiją</item>
         <item quantity="few">Laikyti %1$d atsarginės kopijos versijas</item>
@@ -73,6 +73,7 @@
     <string name="export_warning_unencrypted">Jūs ketinate eksportuoti nešifruotą savo Aegis slėptuvės kopiją. <b>Tai nerekomenduojama</b>.</string>
     <string name="export_format_aegis">Aegis (.JSON)</string>
     <string name="export_format_google_auth_uri">Tekstinis failas (.TXT)</string>
+    <string name="export_format_html">Saityno puslapis (.HTML)</string>
     <string name="export_format_hint">Eksportavimo formatas</string>
     <string name="choose_authentication_method">Saugumas</string>
     <string name="authentication_method_explanation">Aegis yra į saugumą orientuota 2FA programėlė. Prieigos raktai yra saugomi slėptuvėje, kuri gali būti pasirinktinai šifruojama naudojant pasirinktą slaptažodį. Jei užpuolikas gaus jūsų šifruotą slėptuvės failą, jis, nežinodamas slaptažodžio, negalės pasiekti slėptuvės turinio.\n\nMes iš anksto pažymėjome parinktį, kuri mūsų manymu labiausiai tinka jūsų įrenginiui.</string>
@@ -97,6 +98,7 @@
     <string name="share">Bendrinti</string>
     <string name="yes">Taip</string>
     <string name="no">Ne</string>
+    <string name="undo">Atšaukti</string>
     <string name="unlock">Atrakinti</string>
     <string name="advanced">Išplėstiniai</string>
     <string name="digits">Skaitmenys</string>
@@ -117,6 +119,7 @@
     <string name="snackbar_authentication_method">Pasirinkite tapatybės nustatymo metodą</string>
     <string name="encrypting_vault">Šifruojama slėptuvė</string>
     <string name="analyzing_qr">Analizuojamas QR kodas</string>
+    <string name="analyzing_qr_multiple">Analizuojamas QR kodas %1$d/%2$d (%3$s)</string>
     <string name="importing_icon_pack">Importuojamas piktogramų paketas</string>
     <string name="delete_entry">Ištrinti įrašą</string>
     <string name="delete_entry_description">Ar tikrai norite ištrinti šį įrašą?</string>
@@ -130,6 +133,7 @@
     <string name="discard_changes">Atmesti pakeitimus?</string>
     <string name="discard_changes_description">Jūsų pakeitimai neįrašyti</string>
     <string name="saving_profile_error">Klaida įrašant profilį</string>
+    <string name="saving_assign_icons_error">Klaida priskiriant piktogramas</string>
     <string name="welcome">Sveiki</string>
     <string name="app_description">Aegis yra nemokama, saugi ir atvirojo kodo dviejų faktorių tapatybės nustatymo (2FA) programėlė</string>
     <string name="setup_completed">Sąranka užbaigta</string>
@@ -186,7 +190,9 @@
     <string name="read_qr_error">Bandant perskaityti QR kodą, įvyko klaida</string>
     <string name="missing_qr_code_descriptor">• QR kodas %d</string>
     <string name="unlocking_vault">Atrakinama slėptuvė</string>
+    <string name="rename_group">Pervadinti grupę</string>
     <string name="remove_group">Šalinti grupę</string>
+    <string name="remove_unused_groups">Ištrinti nenaudojamas grupes</string>
     <string name="remove_icon_pack">Šalinti piktogramų paketą</string>
     <string name="remove_icon_pack_description">Ar tikrai norite pašalinti šį piktogramų paketą? Tai nepaveiks įrašų, kurie naudoja piktogramas iš šio paketo.</string>
     <string name="details">Išsamiau</string>
@@ -194,11 +200,13 @@
     <string name="lock">Užrakinti</string>
     <string name="name">Pavadinimas</string>
     <string name="no_group">Nėra grupės</string>
+    <string name="sort" comment="Title of the Sort button in the top action bar of the main view">Rikiuoti</string>
     <string name="sort_alphabetically">Leidėjas (A–Ž)</string>
     <string name="sort_alphabetically_reverse">Leidėjas (Ž–A)</string>
     <string name="sort_alphabetically_name">Paskyra (A-Ž)</string>
     <string name="sort_alphabetically_name_reverse">Paskyra (Ž-A)</string>
     <string name="sort_usage_count">Naudojimų skaičius</string>
+    <string name="last_used_never">niekada</string>
     <string name="new_group">Nauja grupė…</string>
     <string name="group">Grupė</string>
     <string name="group_name_hint">Grupės pavadinimas</string>
@@ -208,6 +216,7 @@
     <string name="clear">Išvalyti</string>
     <string name="pref_highlight_entry_title">Bakstelėjus, paryškinti prieigos raktus</string>
     <string name="pref_highlight_entry_summary">Bakstelėjus ant prieigos raktų, laikinai juos paryškinti ir padaryti taip, kad juos būtų lengviau atskirti</string>
+    <string name="pref_search_behavior_title">Paieškos elgsena</string>
     <string name="pin_keyboard_description">Norėdami įjungti PIN kodo klaviatūrą, įveskite slaptažodį. Turėkite omenyje, jog tai veikia tik tuo atveju, jei jūsų slaptažodis yra sudarytas tik iš skaitmenų</string>
     <string name="pin_keyboard_error">Klaida įjungiant PIN kodo klaviatūrą</string>
     <string name="pin_keyboard_error_description">Neįmanoma nustatyti PIN kodo klaviatūros. Jūsų slaptažodis privalo būti sudarytas tik iš skaitmenų.</string>
@@ -275,6 +284,8 @@
     <string name="title_activity_edit_entry">Taisyti įrašą</string>
     <string name="title_activity_scan_qr">Skenuokite QR kodą</string>
     <string name="title_activity_import_entries">Importuoti įrašus</string>
+    <string name="title_activity_assign_icons">Priskirti piktogramas</string>
+    <string name="title_activity_licenses">Trečiųjų šalių licencijos</string>
     <string name="dialog_wipe_entries_title">Išvalyti įrašus</string>
     <string name="dialog_wipe_entries_message">Jūsų slėptuvėje jau yra įrašai. Ar prieš importuodami šį failą, norite pašalinti šiuos įrašus?\n\n<b>Tai atlikę, visam laikui prarasite prieigą prie šiuo metu slėptuvėje esančių įrašų.</b></string>
     <string name="dialog_wipe_entries_checkbox">Išvalyti slėptuvės turinį</string>
@@ -289,8 +300,10 @@
     <string name="importer_help_plain_text">Pateikite grynojo teksto failą, kurio kiekvienoje eilutėje būtų Google Authenticator URI.</string>
     <string name="importer_help_totp_authenticator">Pateikite TOTP Authenticator eksportuotą failą.</string>
     <string name="importer_help_winauth">Pateikite WinAuth eksportuotą failą.</string>
+    <string name="import_assign_icons_dialog_title">Priskirti piktogramas</string>
     <string name="importer_encrypted_exception_google_authenticator">Šifruotas įrašas buvo praleistas: %s</string>
     <string name="groups">Grupės</string>
     <string name="pref_focus_search">Paleidus programėlę, fokusuoti paiešką</string>
     <string name="pref_focus_search_summary">Atvėrus programėlę, nedelsiant fokusuoti paieškos laukelį.</string>
+    <string name="pref_copy_behavior_never">Niekada</string>
 </resources>

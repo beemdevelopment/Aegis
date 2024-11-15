@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="action_settings">Impostazioni</string>
     <string name="action_about">Informazioni</string>
     <string name="action_delete">Elimina</string>
@@ -10,6 +10,7 @@
     <string name="action_default_icon">Ripristina l\'icona predefinita</string>
     <string name="discard">Annulla</string>
     <string name="save">Salva</string>
+    <string name="all">Tutti</string>
     <string name="issuer">Servizio</string>
     <string name="yandex_pin">PIN (4–16 cifre)</string>
     <string name="motp_pin">PIN (4 cifre)</string>
@@ -55,7 +56,6 @@
     <string name="pref_backups_reminder_summary">Mostra un promemoria per effettuare il backup della cassaforte nel caso in cui non sia stato fatto dopo le ultime modifiche.</string>
     <string name="pref_backups_reminder_dialog_title">Disabilita i promemoria di backup</string>
     <string name="pref_backups_reminder_dialog_summary">Se disabiliti i promemoria, Aegis non ti avviserà delle eventuali modifiche di cui non hai ancora effettuato il backup. Ciò comporta il rischio di perdere l\'accesso ai tuoi token. Sei sicuro di voler disabilitare i promemoria?</string>
-    <string name="pref_backups_location_title">Cartella per i file di backup</string>
     <string name="pref_backups_location_summary">I backup saranno salvati in</string>
     <string name="pref_backups_trigger_title">Effettua un backup</string>
     <string name="pref_backups_trigger_summary">Effettua un backup manualmente</string>
@@ -209,6 +209,7 @@
     <string name="copied">Copiato</string>
     <string name="errors_copied">Codice errore copiato negli appunti</string>
     <string name="version_copied">Versione copiata negli appunti</string>
+    <string name="error_required_field">Questo campo è necessario</string>
     <string name="error_occurred">Si è verificato un errore</string>
     <string name="decryption_error">Si è verificato un errore nello sblocco della cassaforte</string>
     <string name="decryption_corrupt_error">Si è verificato un errore durante lo sblocco della cassaforte. Il file della cassaforte potrebbe essere danneggiato.</string>
@@ -440,7 +441,6 @@
     <string name="importer_help_bitwarden">Seleziona un file di esportazione/backup di Bitwarden. I file crittografati non sono supportati.</string>
     <string name="importer_help_battle_net_authenticator">Seleziona una copia di <b>/data/data/com.blizzard.messenger/shared_prefs/com.blizzard.messenger.authenticator_preferences.xml</b>, situata nella directory della memoria interna di Battle.net Authenticator.</string>
     <string name="importer_help_duo">Seleziona una copia di <b>/data/data/com.duosecurity.duomobile/files/duokit/accounts.json</b>, che si trova nella cartella di archiviazione interna di DUO.</string>
-    <string name="importer_help_freeotp">Seleziona una copia di <b>/data/data/org.fedorahosted.freeotp/shared_prefs/tokens.xml</b>, che si trova nella cartella di archiviazione interna di FreeOTP (1.x).</string>
     <string name="importer_help_freeotp_plus">Seleziona un file di esportazione di FreeOTP+.</string>
     <string name="importer_help_google_authenticator"><b>Sono supportati solo i file di database di Google Authenticator v5.10 e precedenti</b>.\n\nSeleziona una copia di<b>/data/data/com.google.android.apps.authenticator2/databases/databases</b>, che si trova nella cartella di archiviazione interna di Google Authenticator.</string>
     <string name="importer_help_microsoft_authenticator">Seleziona una copia di <b>/data/data/com.azure.authenticator/databases/PhoneFactor</b>, che si trova nella cartella di archiviazione interna di Microsoft Authenticator.</string>
@@ -466,23 +466,23 @@
     <string name="pref_account_name_position_hidden">Nascosto</string>
     <string name="pref_account_name_position_end">Accanto al servizio</string>
     <string name="pref_account_name_position_below">Sotto all\'emittente</string>
-    <plurals name="time_elapsed_seconds">
+    <plurals name="time_elapsed_seconds" tools:ignore="UnusedResources">
         <item quantity="one">%d secondo fa</item>
         <item quantity="other">%d secondi fa</item>
     </plurals>
-    <plurals name="time_elapsed_minutes">
+    <plurals name="time_elapsed_minutes" tools:ignore="UnusedResources">
         <item quantity="one">%d minuto fa</item>
         <item quantity="other">%d minuti fa</item>
     </plurals>
-    <plurals name="time_elapsed_hours">
+    <plurals name="time_elapsed_hours" tools:ignore="UnusedResources">
         <item quantity="one">%d ora fa</item>
         <item quantity="other">%d ore fa</item>
     </plurals>
-    <plurals name="time_elapsed_days">
+    <plurals name="time_elapsed_days" tools:ignore="UnusedResources">
         <item quantity="one">%d giorno fa</item>
         <item quantity="other">%d giorni fa</item>
     </plurals>
-    <plurals name="time_elapsed_years">
+    <plurals name="time_elapsed_years" tools:ignore="UnusedResources">
         <item quantity="one">%d anno fa</item>
         <item quantity="other">%d anni fa</item>
     </plurals>
