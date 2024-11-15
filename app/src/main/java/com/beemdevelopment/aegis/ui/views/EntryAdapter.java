@@ -433,9 +433,9 @@ public class EntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             int index = _entryList.translateEntryPosToIndex(position);
             VaultEntry entry = _entryList.getShownEntries().get(index);
 
-            boolean hidden = _tapToReveal && entry != _focusedEntry;
-            boolean paused = _pauseFocused && entry == _focusedEntry;
-            boolean dimmed = (_highlightEntry || _tempHighlightEntry) && _focusedEntry != null && _focusedEntry != entry;
+            boolean hidden = _tapToReveal && !entry.equals(_focusedEntry);
+            boolean paused = _pauseFocused && entry.equals(_focusedEntry);
+            boolean dimmed = (_highlightEntry || _tempHighlightEntry) && _focusedEntry != null && !_focusedEntry.equals(entry);
             boolean showProgress = entry.getInfo() instanceof TotpInfo && ((TotpInfo) entry.getInfo()).getPeriod() != getMostFrequentPeriod();
             boolean showAccountName = true;
             if (_onlyShowNecessaryAccountNames) {
@@ -461,7 +461,7 @@ public class EntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
                     if (_selectedEntries.isEmpty()) {
                         if (_highlightEntry || _tempHighlightEntry || _tapToReveal) {
-                            if (_focusedEntry == entry) {
+                            if (_focusedEntry != null && _focusedEntry.equals(entry)) {
                                 resetFocus();
                             } else {
                                 focusEntry(entry, _tapToRevealTime);
@@ -628,7 +628,7 @@ public class EntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         _dimHandler.removeCallbacksAndMessages(null);
 
         for (EntryHolder holder : _holders) {
-            if (holder.getEntry() != _focusedEntry) {
+            if (!holder.getEntry().equals(_focusedEntry)) {
                 if (_highlightEntry || _tempHighlightEntry) {
                     holder.dim();
                 }
@@ -703,7 +703,7 @@ public class EntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
         for (VaultEntry entry: _entryList.getShownEntries()) {
             for (EntryHolder holder: _holders) {
-                if (holder.getEntry() == entry) {
+                if (holder.getEntry().equals(entry)) {
                     holder.setFocused(true);
                 }
             }
@@ -718,7 +718,7 @@ public class EntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     public void deselectAllEntries() {
         for (VaultEntry entry: _selectedEntries) {
             for (EntryHolder holder : _holders) {
-                if (holder.getEntry() == entry) {
+                if (holder.getEntry().equals(entry)) {
                     holder.setFocusedAndAnimate(false);
                     break;
                 }
