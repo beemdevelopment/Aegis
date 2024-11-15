@@ -694,8 +694,10 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
     }
 
     private void updateSortCategoryMenu() {
-        SortCategory category = _prefs.getCurrentSortCategory();
-        _menu.findItem(category.getMenuItem()).setChecked(true);
+        if (_menu != null) {
+            SortCategory category = _prefs.getCurrentSortCategory();
+            _menu.findItem(category.getMenuItem()).setChecked(true);
+        }
     }
 
     private void onIntroResult() {
@@ -908,6 +910,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
 
         handleIncomingIntent();
         updateLockIcon();
+        updateSortCategoryMenu();
         doShortcutActions();
         updateErrorCard();
     }
@@ -917,14 +920,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         _menu = menu;
         getMenuInflater().inflate(R.menu.menu_main, menu);
 
-        updateLockIcon();
-        if (_loaded) {
-            setGroups(_vaultManager.getVault().getUsedGroups());
-            updateSortCategoryMenu();
-        }
-
         MenuItem searchViewMenuItem = menu.findItem(R.id.mi_search);
-
         _searchView = (SearchView) searchViewMenuItem.getActionView();
         _searchView.setMaxWidth(Integer.MAX_VALUE);
         _searchView.setOnQueryTextFocusChangeListener((v, hasFocus) -> {
