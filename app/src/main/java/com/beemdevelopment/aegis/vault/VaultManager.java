@@ -5,12 +5,14 @@ import android.app.backup.BackupManager;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.beemdevelopment.aegis.BackupsVersioningStrategy;
 import com.beemdevelopment.aegis.Preferences;
 import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.crypto.KeyStoreHandle;
@@ -172,8 +174,11 @@ public class VaultManager {
             try (OutputStream outStream = new FileOutputStream(tempFile)) {
                 _repo.export(outStream);
             }
+            BackupsVersioningStrategy strategy = _prefs.getBackupVersioningStrategy();
+            Uri uri = _prefs.getBackupsLocation();
+            int versionsToKeep = _prefs.getBackupsVersionCount();
 
-            _backups.scheduleBackup(tempFile, _prefs.getBackupsLocation(), _prefs.getBackupsVersionCount());
+            _backups.scheduleBackup(tempFile, strategy, uri, versionsToKeep);
         } catch (IOException e) {
             throw new VaultRepositoryException(e);
         }

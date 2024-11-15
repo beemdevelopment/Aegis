@@ -17,9 +17,11 @@ import androidx.annotation.Nullable;
 import androidx.preference.Preference;
 import androidx.preference.SwitchPreferenceCompat;
 
+import com.beemdevelopment.aegis.BackupsVersioningStrategy;
 import com.beemdevelopment.aegis.Preferences;
 import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.ui.dialogs.Dialogs;
+import com.beemdevelopment.aegis.vault.VaultBackupManager;
 import com.beemdevelopment.aegis.vault.VaultRepositoryException;
 import com.google.android.material.color.MaterialColors;
 
@@ -27,6 +29,7 @@ public class BackupsPreferencesFragment extends PreferencesFragment {
     private SwitchPreferenceCompat _androidBackupsPreference;
     private SwitchPreferenceCompat _backupsPreference;
     private SwitchPreferenceCompat _backupReminderPreference;
+    private Preference _versioningStrategyPreference;
     private Preference _backupsLocationPreference;
     private Preference _backupsTriggerPreference;
     private Preference _backupsVersionsPreference;
@@ -75,7 +78,13 @@ public class BackupsPreferencesFragment extends PreferencesFragment {
         _backupsPreference = requirePreference("pref_backups");
         _backupsPreference.setOnPreferenceChangeListener((preference, newValue) -> {
             if ((boolean) newValue) {
-                selectBackupsLocation();
+                Dialogs.showBackupsVersioningStrategy(requireContext(), BackupsVersioningStrategy.MULTIPLE_BACKUPS, strategy -> {
+                    if (strategy == BackupsVersioningStrategy.MULTIPLE_BACKUPS) {
+                        selectBackupsLocation();
+                    } else if (strategy == BackupsVersioningStrategy.SINGLE_BACKUP) {
+                        createBackupFile();
+                    }
+                });
             } else {
                 _prefs.setIsBackupsEnabled(false);
                 updateBackupPreference();
@@ -100,6 +109,24 @@ public class BackupsPreferencesFragment extends PreferencesFragment {
             return false;
         });
 
+        _versioningStrategyPreference = requirePreference("pref_versioning_strategy");
+        updateBackupsVersioningStrategySummary();
+        _versioningStrategyPreference.setOnPreferenceClickListener(preference -> {
+            BackupsVersioningStrategy currentStrategy = _prefs.getBackupVersioningStrategy();
+            Dialogs.showBackupsVersioningStrategy(requireContext(), currentStrategy, strategy -> {
+                if (strategy == currentStrategy) {
+                    return;
+                }
+                if (strategy == BackupsVersioningStrategy.MULTIPLE_BACKUPS) {
+                    selectBackupsLocation();
+                } else if (strategy == BackupsVersioningStrategy.SINGLE_BACKUP) {
+                    createBackupFile();
+                }
+            });
+            return true;
+        });
+
+
         _androidBackupsPreference = requirePreference("pref_android_backups");
         _androidBackupsPreference.setOnPreferenceChangeListener((preference, newValue) -> {
             _prefs.setIsAndroidBackupsEnabled((boolean) newValue);
@@ -110,13 +137,15 @@ public class BackupsPreferencesFragment extends PreferencesFragment {
             return false;
         });
 
-        Uri backupLocation = _prefs.getBackupsLocation();
         _backupsLocationPreference = requirePreference("pref_backups_location");
-        if (backupLocation != null) {
-            _backupsLocationPreference.setSummary(String.format("%s: %s", getString(R.string.pref_backups_location_summary), Uri.decode(backupLocation.toString())));
-        }
+        updateBackupsLocationSummary();
         _backupsLocationPreference.setOnPreferenceClickListener(preference -> {
-            selectBackupsLocation();
+            BackupsVersioningStrategy currentStrategy = _prefs.getBackupVersioningStrategy();
+            if (currentStrategy == BackupsVersioningStrategy.MULTIPLE_BACKUPS) {
+                selectBackupsLocation();
+            } else if (currentStrategy == BackupsVersioningStrategy.SINGLE_BACKUP) {
+                createBackupFile();
+            }
             return false;
         });
 
@@ -158,9 +187,10 @@ public class BackupsPreferencesFragment extends PreferencesFragment {
 
         _prefs.setBackupsLocation(uri);
         _prefs.setIsBackupsEnabled(true);
-        _backupsLocationPreference.setSummary(String.format("%s: %s", getString(R.string.pref_backups_location_summary), Uri.decode(uri.toString())));
         updateBackupPreference();
         scheduleBackup();
+        updateBackupsVersioningStrategySummary();
+        updateBackupsLocationSummary();
     }
 
     private void updateBackupPreference() {
@@ -174,9 +204,10 @@ public class BackupsPreferencesFragment extends PreferencesFragment {
         _backupsPreference.setChecked(backupEnabled);
         _backupsPreference.setEnabled(encrypted);
         _backupReminderPreference.setChecked(backupReminderEnabled);
+        _versioningStrategyPreference.setVisible(backupEnabled);
         _backupsLocationPreference.setVisible(backupEnabled);
         _backupsTriggerPreference.setVisible(backupEnabled);
-        _backupsVersionsPreference.setVisible(backupEnabled);
+        _backupsVersionsPreference.setVisible(backupEnabled && _prefs.getBackupVersioningStrategy() != BackupsVersioningStrategy.SINGLE_BACKUP);
         if (backupEnabled) {
             updateBackupStatus(_builtinBackupStatusPreference, _prefs.getBuiltInBackupResult());
         }
@@ -221,6 +252,14 @@ public class BackupsPreferencesFragment extends PreferencesFragment {
         return spannable;
     }
 
+    private void createBackupFile() {
+        Intent intent = new Intent(Intent.ACTION_CREATE_DOCUMENT)
+                .addCategory(Intent.CATEGORY_OPENABLE)
+                .setType("application/json")
+                .putExtra(Intent.EXTRA_TITLE, VaultBackupManager.FILENAME_SINGLE);
+        _vaultManager.fireIntentLauncher(this, intent, backupsResultLauncher);
+    }
+
     private void selectBackupsLocation() {
         Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT_TREE);
         intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION
@@ -239,6 +278,30 @@ public class BackupsPreferencesFragment extends PreferencesFragment {
             e.printStackTrace();
             Dialogs.showErrorDialog(requireContext(), R.string.backup_error, e);
         }
+    }
+
+    private void updateBackupsVersioningStrategySummary() {
+        BackupsVersioningStrategy currentStrategy = _prefs.getBackupVersioningStrategy();
+        if (currentStrategy == BackupsVersioningStrategy.MULTIPLE_BACKUPS) {
+            _versioningStrategyPreference.setSummary(R.string.pref_backups_versioning_strategy_keep_x_versions);
+        } else if (currentStrategy == BackupsVersioningStrategy.SINGLE_BACKUP) {
+            _versioningStrategyPreference.setSummary(R.string.pref_backups_versioning_strategy_single_backup);
+        }
+    }
+
+    private void updateBackupsLocationSummary() {
+        Uri backupsLocation = _prefs.getBackupsLocation();
+        BackupsVersioningStrategy currentStrategy = _prefs.getBackupVersioningStrategy();
+        String text;
+        if (currentStrategy == BackupsVersioningStrategy.MULTIPLE_BACKUPS) {
+            text = getString(R.string.pref_backups_location_summary);
+        } else if (currentStrategy == BackupsVersioningStrategy.SINGLE_BACKUP) {
+            text = getString(R.string.pref_backup_location_summary);
+        } else {
+            return;
+        }
+        String summary = String.format("%s: %s", text, Uri.decode(backupsLocation.toString()));
+        _backupsLocationPreference.setSummary(summary);
     }
 
     private void updateBackupsVersionsSummary() {

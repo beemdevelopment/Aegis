@@ -6,7 +6,9 @@ import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Build;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.provider.DocumentsContractCompat;
 import androidx.preference.PreferenceManager;
 
 import com.beemdevelopment.aegis.util.JsonUtils;
@@ -594,6 +596,19 @@ public class Preferences {
             return filter;
         } catch (JSONException e) {
             return Collections.emptySet();
+        }
+    }
+
+    @NonNull
+    public BackupsVersioningStrategy getBackupVersioningStrategy() {
+        Uri uri = getBackupsLocation();
+        if (uri == null) {
+            return BackupsVersioningStrategy.UNDEFINED;
+        }
+        if (DocumentsContractCompat.isTreeUri(uri)) {
+            return BackupsVersioningStrategy.MULTIPLE_BACKUPS;
+        } else {
+            return BackupsVersioningStrategy.SINGLE_BACKUP;
         }
     }
 
