@@ -38,13 +38,13 @@ public class YandexInfo extends TotpInfo {
     }
 
     @Override
-    public String getOtp() {
+    public String getOtp(long time) {
         if (_pin == null) {
             throw new IllegalStateException("PIN must be set before generating an OTP");
         }
 
         try {
-            YAOTP otp = YAOTP.generateOTP(getSecret(), getPin(), getDigits(), getAlgorithm(true), getPeriod());
+            YAOTP otp = YAOTP.generateOTP(getSecret(), getPin(), getDigits(), getAlgorithm(true), getPeriod(), time);
             return otp.toString();
         } catch (InvalidKeyException | NoSuchAlgorithmException | IOException e) {
             throw new RuntimeException(e);

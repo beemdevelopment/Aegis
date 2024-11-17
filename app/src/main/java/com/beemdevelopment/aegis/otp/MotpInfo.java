@@ -31,20 +31,6 @@ public class MotpInfo extends TotpInfo {
     }
 
     @Override
-    public String getOtp() {
-        if (_pin == null) {
-            throw new IllegalStateException("PIN must be set before generating an OTP");
-        }
-
-        try {
-            MOTP otp = MOTP.generateOTP(getSecret(), getAlgorithm(false), getDigits(), getPeriod(), getPin());
-            return otp.toString();
-        } catch (NoSuchAlgorithmException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    @Override
     public String getOtp(long time) {
         if (_pin == null) {
             throw new IllegalStateException("PIN must be set before generating an OTP");
