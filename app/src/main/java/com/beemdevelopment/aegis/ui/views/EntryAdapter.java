@@ -37,6 +37,7 @@ import com.beemdevelopment.aegis.vault.VaultEntry;
 import com.beemdevelopment.aegis.vault.VaultGroup;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
@@ -196,6 +197,19 @@ public class EntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         String name = entry.getName().toLowerCase();
         String note = entry.getNote().toLowerCase();
 
+        if (_searchFilter != null) {
+            String[] tokens = _searchFilter.toLowerCase().split("\\s+");
+
+            // Return true if not all tokens match at least one of the relevant fields
+            return !Arrays.stream(tokens)
+                    .allMatch(token ->
+                            ((_searchBehaviorMask & Preferences.SEARCH_IN_ISSUER) != 0 && issuer.contains(token)) ||
+                                    ((_searchBehaviorMask & Preferences.SEARCH_IN_NAME) != 0 && name.contains(token)) ||
+                                    ((_searchBehaviorMask & Preferences.SEARCH_IN_NOTE) != 0 && note.contains(token)) ||
+                                    ((_searchBehaviorMask & Preferences.SEARCH_IN_GROUPS) != 0 && doesAnyGroupMatchSearchFilter(groups, token))
+                    );
+        }
+
         if (!_groupFilter.isEmpty()) {
             if (groups.isEmpty() && !_groupFilter.contains(null)) {
                 return true;
@@ -205,14 +219,7 @@ public class EntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             }
         }
 
-        if (_searchFilter == null) {
-            return false;
-        }
-
-        return ((_searchBehaviorMask & Preferences.SEARCH_IN_ISSUER) == 0 || !issuer.contains(_searchFilter))
-                && ((_searchBehaviorMask & Preferences.SEARCH_IN_NAME) == 0 || !name.contains(_searchFilter))
-                && ((_searchBehaviorMask & Preferences.SEARCH_IN_NOTE) == 0 || !note.contains(_searchFilter))
-                && ((_searchBehaviorMask & Preferences.SEARCH_IN_GROUPS) == 0 || !doesAnyGroupMatchSearchFilter(entry.getGroups(), _searchFilter));
+        return false;
     }
 
     private boolean doesAnyGroupMatchSearchFilter(Set<UUID> entryGroupUUIDs, String searchFilter) {

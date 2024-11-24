@@ -930,6 +930,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         _searchView.setOnCloseListener(() -> {
             boolean enabled = _submittedSearchQuery != null;
             _searchViewBackPressHandler.setEnabled(enabled);
+            _groupChip.setVisibility(_groups.isEmpty() ? View.GONE : View.VISIBLE);
             return false;
         });
 
@@ -963,6 +964,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         });
         _searchView.setOnSearchClickListener(v -> {
             String query = _submittedSearchQuery != null ? _submittedSearchQuery : _pendingSearchQuery;
+            _groupChip.setVisibility(View.GONE);
             _searchView.setQuery(query, false);
         });
 
@@ -1028,6 +1030,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
     }
 
     private void collapseSearchView() {
+        _groupChip.setVisibility(_groups.isEmpty() ? View.GONE : View.VISIBLE);
         _searchView.setQuery(null, false);
         _searchView.setIconified(true);
     }
