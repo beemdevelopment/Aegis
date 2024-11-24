@@ -64,7 +64,14 @@
     <string name="pref_backups_reminder_summary">Zobrazit připomenutí k zálohování vašeho trezoru, pokud jste nezálohovali své poslední změny.</string>
     <string name="pref_backups_reminder_dialog_title">Zakázat připomenutí zálohy</string>
     <string name="pref_backups_reminder_dialog_summary">Vypnutí tohoto připomenutí znamená, že vám Aegis neřekne, zda máte změny, které ještě nejsou zálohovány. Tím se vystavíte riziku ztráty přístupu k vašim tokenům. Opravdu chcete zakázat připomenutí?</string>
+    <string name="pref_backups_versioning_strategy_title">Strategie zálohování</string>
+    <string name="pref_backups_versioning_strategy_keep_x_versions">Zachovat několik verzí</string>
+    <string name="pref_backups_versioning_strategy_single_backup">Jedna záloha</string>
+    <string name="pref_backups_versioning_strategy_single_backup_warning">Zvolená strategie zálohování není spolehlivá a není doporučená. Selhání jedné zálohy může vést ke ztrátě vaší jediné zálohy.</string>
+    <string name="pref_backups_versioning_strategy_dialog_title">Vyberte strategii zálohování</string>
+    <string name="pref_backups_location_title">Umístění záloh</string>
     <string name="pref_backups_location_summary">Zálohy budou uloženy v</string>
+    <string name="pref_backup_location_summary">Zálohy budou uloženy v adresáři</string>
     <string name="pref_backups_trigger_title">Spustit zálohování</string>
     <string name="pref_backups_trigger_summary">Ručně spustit zálohování</string>
     <string name="pref_backups_versions_title">Počet verzí k uchování</string>

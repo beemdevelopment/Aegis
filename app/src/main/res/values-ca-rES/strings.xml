@@ -64,7 +64,14 @@
     <string name="pref_backups_reminder_summary">Mostra un recordatori per a fer còpia de seguretat de la caixa forta si no has desat els teus últims canvis.</string>
     <string name="pref_backups_reminder_dialog_title">Desactivar recordatori de còpia</string>
     <string name="pref_backups_reminder_dialog_summary">Desactivant aquest recordatori, l\'Aegis no t\'alertarà en cas de tenir fitxes sense còpia de seguretat. Això posa en risc l\'accés a les teves fitxes. Segur que vols desactivar el recordatori?</string>
+    <string name="pref_backups_versioning_strategy_title">Estratègia de còpia de seguretat</string>
+    <string name="pref_backups_versioning_strategy_keep_x_versions">Mantenir un nombre de versions</string>
+    <string name="pref_backups_versioning_strategy_single_backup">Còpia de seguretat única</string>
+    <string name="pref_backups_versioning_strategy_single_backup_warning">L\'estratègia de còpia de seguretat seleccionada no és fiable i no es recomana. Una fallada de la còpia de seguretat pot resultar en la pèrdua de la teva única còpia de seguretat.</string>
+    <string name="pref_backups_versioning_strategy_dialog_title">Selecciona una estratègia de còpia de seguretat</string>
+    <string name="pref_backups_location_title">Ubicació de la còpia de seguretat</string>
     <string name="pref_backups_location_summary">Les còpies es desaran a</string>
+    <string name="pref_backup_location_summary">La còpia de seguretat es desarà a</string>
     <string name="pref_backups_trigger_title">Disparador de còpia</string>
     <string name="pref_backups_trigger_summary">Llançar còpia manualment</string>
     <string name="pref_backups_versions_title">Nombre de versions a mantenir</string>

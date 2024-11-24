@@ -67,7 +67,7 @@
     <string name="pref_backups_versioning_strategy_title">Back-upstrategie</string>
     <string name="pref_backups_versioning_strategy_keep_x_versions">Een aantal versies behouden</string>
     <string name="pref_backups_versioning_strategy_single_backup">Een enkele back-up</string>
-    <string name="pref_backups_versioning_strategy_single_backup_warning">De geselecteerde back-upstrategie is niet betrouwbaar en wordt niet aanbevolen. Een enkele back-upmislukking zou kunnen leiden tot het verliezen van uw enige back-up.</string>
+    <string name="pref_backups_versioning_strategy_single_backup_warning">De geselecteerde back-upstrategie is niet betrouwbaar en wordt niet aanbevolen. Een enkele mislukte back-up kan leiden tot het verliezen van de enige back-up.</string>
     <string name="pref_backups_versioning_strategy_dialog_title">Selecteer een back-upstrategie</string>
     <string name="pref_backups_location_title">Back-uplocatie</string>
     <string name="pref_backups_location_summary">Back-ups zullen worden opgeslagen in</string>

@@ -64,7 +64,14 @@
     <string name="pref_backups_reminder_summary">Покзва напомняне да направите резервно копие, в случай че нямате копие на последните промени.</string>
     <string name="pref_backups_reminder_dialog_title">Изключване на напомняне за резервно копие</string>
     <string name="pref_backups_reminder_dialog_summary">Ако изключите напомнянето, Aegis няма да ви казва дали имате промени, за които няма резервно копие. Това ви излага на риск от загуба на достъп до съответните профили. Сигурни ли сте, че искате да изключите това напомняне?</string>
+    <string name="pref_backups_versioning_strategy_title">Стратегия за резервни копия</string>
+    <string name="pref_backups_versioning_strategy_keep_x_versions">Пазене на определен брой версии</string>
+    <string name="pref_backups_versioning_strategy_single_backup">Едно резервно копие</string>
+    <string name="pref_backups_versioning_strategy_single_backup_warning">Избраната стеатегия е ненадеждна и не се препоръчва. Повредата да едно резервно копие ще доведе до загуба на единственото резервно копие.</string>
+    <string name="pref_backups_versioning_strategy_dialog_title">Изберете стратегия за резервните копия</string>
+    <string name="pref_backups_location_title">Място на резервните копия</string>
     <string name="pref_backups_location_summary">Резервните копия ще бъдат създавани в</string>
+    <string name="pref_backup_location_summary">Резервните копия ще бъдат създавани в</string>
     <string name="pref_backups_trigger_title">Създаване на резервно копие</string>
     <string name="pref_backups_trigger_summary">Ръчно създава резервни копия</string>
     <string name="pref_backups_versions_title">Брой версии, които трябва да се запазят</string>

@@ -20,7 +20,7 @@
     <string name="pref_cat_appearance_app">App</string>
     <string name="pref_cat_appearance_entries">Einträge</string>
     <string name="pref_cat_backups_android">Android</string>
-    <string name="pref_cat_backups_auto">Automatische Backups</string>
+    <string name="pref_cat_backups_auto">Automatisierte Sicherungen</string>
     <string name="pref_section_behavior_title">Verhalten</string>
     <string name="pref_section_behavior_summary">Das Verhalten bei der Interaktion mit der Eintragsliste anpassen.</string>
     <string name="pref_section_appearance_title">Erscheinungsbild</string>
@@ -64,7 +64,14 @@
     <string name="pref_backups_reminder_summary">Erinnerung zur Sicherung der Datenbank anzeigen, falls die letzten Änderungen nicht gesichert wurden.</string>
     <string name="pref_backups_reminder_dialog_title">Erinnerung für Sicherungen deaktivieren</string>
     <string name="pref_backups_reminder_dialog_summary">Das Deaktivieren dieser Erinnerung bedeutet, dass Aegis nicht mitteilt, ob Änderungen vorgenommen wurden, die noch nicht gesichert sind. Dadurch besteht die Gefahr, dass der Zugriff auf deine Token verloren geht. Möchtest du die Erinnerung wirklich deaktivieren?</string>
+    <string name="pref_backups_versioning_strategy_title">Sicherungsstrategie</string>
+    <string name="pref_backups_versioning_strategy_keep_x_versions">Bestimmte Anzahl an Sicherungen behalten</string>
+    <string name="pref_backups_versioning_strategy_single_backup">Einzelne Sicherung</string>
+    <string name="pref_backups_versioning_strategy_single_backup_warning">Die ausgewählte Sicherungsstrategie ist unzuverlässig und wird nicht empfohlen. Eine einzelne, fehlerhafte Sicherung könnte zum vollständigen Verlust führen.</string>
+    <string name="pref_backups_versioning_strategy_dialog_title">Eine Sicherungsstrategie auswählen</string>
+    <string name="pref_backups_location_title">Speicherort für die Sicherungskopie</string>
     <string name="pref_backups_location_summary">Sicherungskopien werden gespeichert in</string>
+    <string name="pref_backup_location_summary">Sicherungskopie wird gespeichert in</string>
     <string name="pref_backups_trigger_title">Sicherung auslösen</string>
     <string name="pref_backups_trigger_summary">Manuell eine Sicherung auslösen</string>
     <string name="pref_backups_versions_title">Anzahl der zu behaltenden Versionen</string>
@@ -417,7 +424,7 @@
     <string name="time_sync_warning_disable">Höre auf, mich zu warnen. Ich weiß, was ich tue.</string>
     <string name="google_qr_export_unrelated">Nicht zugehöriger QR-Code gefunden. Versuche, den Scanner neu zu starten.</string>
     <plurals name="google_qr_export_scanned">
-        <item quantity="one">%1$d von %2$d QR-Codes gescannt</item>
+        <item quantity="one">%1$d von %2$d QR-Code gescannt</item>
         <item quantity="other">%1$d von %2$d QR-Codes gescannt</item>
     </plurals>
     <string name="google_qr_export_unexpected">QR-Code Nr. %1$d erwartet, stattdessen wurde Nr. %2$d gescannt</string>

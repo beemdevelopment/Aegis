@@ -64,7 +64,14 @@
     <string name="pref_backups_reminder_summary">Muistuta holvisi varmuuskopioimisesta, jos viimeisimpiä muutoksiasi ei ole varmuuskopioitu.</string>
     <string name="pref_backups_reminder_dialog_title">Poista varmuuskopiomuistutus käytöstä</string>
     <string name="pref_backups_reminder_dialog_summary">Tämän muistutuksen poistaminen käytöstä tarkoittaa, että Aegis ei kerro sinulle, onko sinulla varmuuskopioimattomia muutoksia. Tämän vaarantaa pääsysi todennuskoodeihisi. Haluatko varmasti poistaa muistutuksen käytöstä?</string>
+    <string name="pref_backups_versioning_strategy_title">Varmuuskopiointistrategia</string>
+    <string name="pref_backups_versioning_strategy_keep_x_versions">Säilytä useita versioita</string>
+    <string name="pref_backups_versioning_strategy_single_backup">Yksi varmuuskopio</string>
+    <string name="pref_backups_versioning_strategy_single_backup_warning">Valittu varmuuskopiointistrategia ei ole luotettava eikä sitä suositella. Yksi varmuuskopiointivirhe voi johtaa ainoan varmuuskopiosi menettämiseen.</string>
+    <string name="pref_backups_versioning_strategy_dialog_title">Valitse varmuuskopiointistrategia</string>
+    <string name="pref_backups_location_title">Varmuuskopion sijainti</string>
     <string name="pref_backups_location_summary">Varmuuskopiot tallennetaan sijaintiin</string>
+    <string name="pref_backup_location_summary">Varmuuskopio tallennetaan sijaintiin</string>
     <string name="pref_backups_trigger_title">Varmuuskopion käynnistys</string>
     <string name="pref_backups_trigger_summary">Käynnistä varmuuskopio manuaalisesti</string>
     <string name="pref_backups_versions_title">Säilytettävien versioiden määrä</string>
@@ -499,7 +506,10 @@
     <string name="importer_help_battle_net_authenticator">Anna kopio tiedostosta <b>/data/data/com.blizzard.messenger/shared_prefs/com.blizzard.messenger.authenticator_preferences.xml</b>, joka sijaitsee Battle.net Authenticatorin sisäisessä tallennushakemistossa.</string>
     <string name="importer_help_duo">Anna kopio tiedostosta <b>/data/data/com.duosecurity.duomobile/files/duokit/accounts.json</b>, joka sijaitsee DUO:n sisäisessä tallennushakemistossa.</string>
     <string name="importer_help_ente_auth">Anna Ente Auth -vientitiedosto. Vain salaamattomia tiedostoja tuetaan tällä hetkellä.</string>
+    <string name="importer_help_freeotp">FreeOTP 2: Toimita varmuuskopiotiedosto.\nFreeOTP 1.x: Toimita kopio tiedostosta <b>/data/data/org.fedorahosted.freeotp/shared_prefs/tokens.xml</b>, joka sijaitsee FreeOTP:n sisäisessä tallennushakemistossa.</string>
     <string name="importer_help_freeotp_plus">Anna FreeOTP+:n vientitiedosto.</string>
+    <string name="importer_warning_title_freeotp2">FreeOTP 2 -yhteensopivuus</string>
+    <string name="importer_warning_message_freeotp2">FreeOTP 2:ssa on useita ongelmia, jotka voivat johtaa vioittuneisiin varmuuskopioihin. Aegis yrittää pelastaa mahdollisimman monta kohdetta, mutta on mahdollista, että joidenkin tai jopa kaikkien kohteiden tuonti epäonnistuu.</string>
     <string name="importer_help_google_authenticator"><b>Vain Google Authenticator v5.10 tai vanhemman tietokantatiedostoja tuetaan</b>.\n\nAnna kopio kohteesta <b>/data/data/com.google.android.apps.authenticator2/databases/databases</b>, joka sijaitsee Google Authenticatorin sisäisessä tallennushakemistossa.</string>
     <string name="importer_help_microsoft_authenticator">Anna kopio tiedostosta <b>/data/data/com.azure.authenticator/databases/PhoneFactor</b>, joka sijaitsee Microsoft Authenticatorin sisäisessä tallennushakemistossa.</string>
     <string name="importer_help_plain_text">Anna raakatekstitiedosto, joka sisältää Google Authenticatorin URIn jokaisella rivillä.</string>

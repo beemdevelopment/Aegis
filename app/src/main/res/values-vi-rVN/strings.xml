@@ -64,7 +64,14 @@
     <string name="pref_backups_reminder_summary">Hiện lời nhắc sao lưu kho của bạn trong trường hợp bạn chưa sao lưu các thay đổi mới nhất.</string>
     <string name="pref_backups_reminder_dialog_title">Tắt nhắc nhở sao lưu</string>
     <string name="pref_backups_reminder_dialog_summary">Tắt lời nhắc này có nghĩa là Aegis sẽ không cho bạn biết liệu bạn có những thay đổi chưa được sao lưu hay không. Điều này khiến bạn có nguy cơ mất quyền truy cập vào token của mình. Bạn có chắc muốn tắt lời nhắc?</string>
+    <string name="pref_backups_versioning_strategy_title">Chiến lược sao lưu</string>
+    <string name="pref_backups_versioning_strategy_keep_x_versions">Giữ một số phiên bản</string>
+    <string name="pref_backups_versioning_strategy_single_backup">Sao lưu đơn</string>
+    <string name="pref_backups_versioning_strategy_single_backup_warning">Chiến lược sao lưu được chọn không đáng tin cậy và không được khuyến khích. Một lỗi sao lưu duy nhất có thể dẫn đến mất bản sao lưu duy nhất của bạn.</string>
+    <string name="pref_backups_versioning_strategy_dialog_title">Chọn chiến lược sao lưu</string>
+    <string name="pref_backups_location_title">Vị trí sao lưu</string>
     <string name="pref_backups_location_summary">Các bản sao lưu sẽ được lưu vào</string>
+    <string name="pref_backup_location_summary">Bản sao lưu sẽ được lưu vào</string>
     <string name="pref_backups_trigger_title">Bật sao lưu</string>
     <string name="pref_backups_trigger_summary">Bật sao lưu thủ công</string>
     <string name="pref_backups_versions_title">Số lượng phiên bản tối đa</string>
@@ -487,7 +494,10 @@
     <string name="importer_help_battle_net_authenticator">Cung cấp một bản sao của <b>/data/data/com.blizzard.messenger/shared_prefs/com.blizzard.messenger.authenticator_preferences.xml</b>, nằm trong thư mục bộ nhớ trong của Battle.net Authenticator.</string>
     <string name="importer_help_duo">Cung cấp một bản sao của <b>/data/data/com.duosecurity.duomobile/files/duokit/accounts.json</b>, nằm trong thư mục bộ nhớ trong của DUO.</string>
     <string name="importer_help_ente_auth">Cung cấp tệp xuất Ente Auth. Hiện tại chỉ hỗ trợ các tệp chưa được mã hóa.</string>
+    <string name="importer_help_freeotp">FreeOTP 2: Cung cấp một file sao lưu.\nFreeOTP 1.x: Cung cấp một bản sao <b>/data/data/org.fedorahosted.freeotp/shared_prefs/tokens.xml</b>, nằm trong thư mục lưu trữ nội bộ của FreeOTP.</string>
     <string name="importer_help_freeotp_plus">Cung cấp một tập tin xuất FreeOTP+.</string>
+    <string name="importer_warning_title_freeotp2">Tương thích FreeOTP 2</string>
+    <string name="importer_warning_message_freeotp2">Có một số vấn đề trong FreeOTP 2 có thể dẫn đến việc sao lưu bị hỏng. Aegis sẽ cố gắng cứu càng nhiều mục nhập càng tốt, nhưng có thể một số hoặc thậm chí tất cả các mục nhập đều không nhập được.</string>
     <string name="importer_help_google_authenticator"><b>Chỉ có tập tin cơ sở dữ liệu từ Google Authenticator v5.10 và cũ hơn mới được hỗ trợ</b>.\n\nHãy lấy bản sao của <b>/data/data/com.google.android.apps.authenticator2/databases/databases</b> ở trong thư mục bộ nhớ trong của Google Authenticator.</string>
     <string name="importer_help_microsoft_authenticator">Cung cấp một bản sao của <b>/data/data/com.azure.authenticator/databases/PhoneFactor</b>, nằm trong thư mục bộ nhớ trong của Microsoft Authenticator.</string>
     <string name="importer_help_plain_text">Cung cấp một tập tin văn bản thuần có một URI Google Authenticator trên mỗi dòng.</string>

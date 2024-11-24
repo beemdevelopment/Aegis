@@ -28,7 +28,7 @@
     <string name="pref_section_security_title">Befeiliging</string>
     <string name="pref_section_security_summary">Ynstellen fan fersifering, biometrysk ûntskoatteljen, automatysk fergrindelje en oare befeiligingsynstellingen.</string>
     <string name="pref_section_import_export_title">Ymportearje &amp; Eksportearje</string>
-    <string name="pref_section_import_export_summary">Reservekopyen fan Aegis of oare autentikator-apps ymportearje. Meitsje hânmjittige eksport fan dyn Aegis-klûs oan.</string>
+    <string name="pref_section_import_export_summary">Reservekopyen fan Aegis of oare autentikator-apps ymportearje. Meitsje hânmjittige eksport fan jo Aegis-klûs oan.</string>
     <string name="pref_section_audit_log_title">Auditlochboek</string>
     <string name="pref_section_audit_log_summary">Sykje in list mei alle rapporteare wichtige ôfspraken dy’t yn de app plakfûn hawwe.</string>
     <string name="pref_section_backups_title">Reservekopyen</string>
@@ -37,7 +37,7 @@
     <string name="pref_section_icon_packs_summary">Piktogrampakketten beheare en ymportearje.</string>
     <string name="pref_select_theme_title">Tema</string>
     <string name="pref_dynamic_colors_title">Dynamyske kleuren</string>
-    <string name="pref_dynamic_colors_summary">Overlay tapasse op basis fan de kleuren fan dyn Android-tema</string>
+    <string name="pref_dynamic_colors_summary">Overlay tapasse op basis fan de kleuren fan jo Android-tema</string>
     <string name="pref_view_mode_title">Werjeftemodus</string>
     <string name="pref_lang_title">Taal</string>
     <string name="pref_show_icons_title">Piktogrammen toane</string>
@@ -61,7 +61,7 @@
     <string name="pref_backups_title">Automatysk klûsreservekopy meitsje</string>
     <string name="pref_backups_summary">Automatysk reservekopyen meitsje fan de klûs op eksterne ûnthâld wannear’t der wizigingen binne. Allinnich stipe foar fersifere klûzen.</string>
     <string name="pref_backups_reminder_title">Reservekopyen oantinken</string>
-    <string name="pref_backups_reminder_summary">Toan in oantinken om in reservekopy fan dyn klûs te meitsjen, asto noch gjin reservekopy hast fan de lêste wizigingen.</string>
+    <string name="pref_backups_reminder_summary">Toan in oantinken om in reservekopy fan jo klûs te meitsjen, as jo noch gjin reservekopy hawwe fan de lêste wizigingen.</string>
     <string name="pref_backups_reminder_dialog_title">Reservekopy-oantinken útskeakelje</string>
     <string name="pref_backups_reminder_dialog_summary">Utskeakeljen fan dit oantinken betsjut dat Aegis jo net fertelle sil oft jo wizigingen hawwe dêr’t noch net in reservekopy fan makke is. Hjirmei rinne jo it risiko om de tagong ta tokens te ferliezen. Binne jo wis dat jo dit oantinken útskeakelje wolst?</string>
     <string name="pref_backups_versioning_strategy_title">Reservekopystrategy</string>
@@ -162,14 +162,14 @@
     <string name="export_no_groups_selected">Gjin groepen keazen om te eksportearjen</string>
     <string name="export_html_title" comment="The title of an HTML export document">Aegis Authenticator Export</string>
     <string name="choose_authentication_method">Befeiliging</string>
-    <string name="authentication_method_explanation">Aegis is in op feilichheid rjochte 2FA-applikaasje. Tokens wurde bewarre yn in klûs, dy’t opsjoneel fersifere wurde kin mei in wachtwurd nei eigen idee. As in oanfaller dyn fersifere klûsbestân yn hannen kriget, sil dizze gjin tagong hawwe ta de ynhâld sûnder it wachtwurd te kennen.\n\nWy hawwe de opsje keazen dy’t neffens ús it beste past by dyn apparaat.</string>
+    <string name="authentication_method_explanation">Aegis is in op feilichheid rjochte 2FA-applikaasje. Tokens wurde bewarre yn in klûs, dy’t opsjoneel fersifere wurde kin mei in wachtwurd nei eigen idee. As in oanfaller jo fersifere klûsbestân yn hannen krijt, sil dizze gjin tagong hawwe ta de ynhâld sûnder it wachtwurd te kennen.\n\nWy hawwe de opsje keazen dy’t neffens ús it beste past by jo apparaat.</string>
     <string name="authentication_method_none">Gjin</string>
     <string name="authentication_method_none_description">Do hast gjin wachtwurd nedich om de klûs te ûntskoatteljen en de klûs sil net fersifere wurde. <b>Dizze opsje wurdt net oanrekommandearre</b>.</string>
     <string name="authentication_method_password">Wachtwurd</string>
     <string name="authentication_method_password_description">In wachtwurd is nedich om de klûs te ûntskoatteljen.</string>
-    <string name="authentication_method_password_explanation">Warskôging: Asto dyn wachtwurd ferjitst, ferliesto permanint tagong ta dyn tokens. Der is gjin manier om dizze te werstellen sûnder it wachtwurd.</string>
+    <string name="authentication_method_password_explanation">Warskôging: As jo jo wachtwurd ferjitte, ferlieze jo permanint tagong ta jo tokens. Der is gjin manier om dizze te werstellen sûnder it wachtwurd.</string>
     <string name="authentication_method_biometrics">Biometry</string>
-    <string name="authentication_method_biometrics_description">Njonken in wachtwurd kinne biometryske gegevens dy’t registrearre binne op dit apparaat, lykas in fingerôfdruk of dyn gesicht, brûkt wurde om de klûs te ûntskoatteljen.</string>
+    <string name="authentication_method_biometrics_description">Njonken in wachtwurd kinne biometryske gegevens dy’t registrearre binne op dit apparaat, lykas in fingerôfdruk of jo gesicht, brûkt wurde om de klûs te ûntskoatteljen.</string>
     <string name="authentication">Klûs ûntskoattelje</string>
     <string name="authentication_multiline" comment="The newline in the middle is used for aesthetic purposes">Klûs\nûntskoattelje</string>
     <string name="auth_use_biometrics">Of tik hjir om <font fgcolor="#FF0D86C1">biometry</font> te brûken</string>
@@ -178,7 +178,7 @@
     <string name="set_number">Kies in getal</string>
     <string name="set_password_confirm">Befêstigje it wachtwurd</string>
     <string name="invalid_password">It wachtwurd kloppet net</string>
-    <string name="invalidated_biometrics">Der is in wiziging yn de befeiligingsynstellingen fan dyn apparaat detektearre. Gean nei ‘Aegis -&gt; Ynstellingen -&gt; Befeiliging -&gt; Untskoattelje mei biometry’ om biometryske ferifikaasje wer yn te skeakeljen.</string>
+    <string name="invalidated_biometrics">Der is in wiziging yn de befeiligingsynstellingen fan jo apparaat detektearre. Gean nei ‘Aegis -&gt; Ynstellingen -&gt; Befeiliging -&gt; Untskoattelje mei biometry’ om biometryske ferifikaasje wer yn te skeakeljen.</string>
     <string name="password_reminder">Fier jo wachtwurd yn. Wy freegje jo sa no en dan om dit te dwaan, sadat jo it net ferjitte.</string>
     <string name="password_reminder_dialog_title">Standert biometrysk ûntskoattelje</string>
     <string name="password_reminder_dialog_message">Wy freegje jo sa no en dan om jo wachtwurd yn te fieren, sadat jo it net ferjitte en jo de tagong ta jo klûs ferlieze. Neidat jo ien kear jo wachtwurd ynfierd hawwe, sil Aegis standert weromgean nei biometrysk ûntskoattelje, oant it tiid is foar in oar omtinken oan jo wachtwurd.</string>
@@ -245,7 +245,7 @@
         <item quantity="other">Binne jo wis dat jo %d items fuortsmite wolle?</item>
     </plurals>
     <string name="discard_changes">Wizigingen annulearje?</string>
-    <string name="discard_changes_description">Dyn wizigingen binne net bewarre</string>
+    <string name="discard_changes_description">Jo wizigingen binne net bewarre</string>
     <string name="saving_profile_error">Flater by bewarjen profyl</string>
     <string name="saving_assign_icons_error">Flater by tawizen piktogrammen</string>
     <string name="welcome">Wolkom</string>
@@ -263,8 +263,8 @@
     <string name="saving_error">Der is in flater bard wylst it bewarjen fan de klûs</string>
     <string name="vault_init_error">Der is in flater bard wylst it inisjalisearjen fan de klûs</string>
     <string name="vault_load_error">Der is in flater bard wylst it laden fan de klûs fan it ûnthâld út</string>
-    <string name="biometric_decrypt_error">Der is in flater bard wylst it dekodearjen fan de klûs mei biometryske ferifikaasje. Dit bart meastentiids allinnich as de befeiligingsynstellingen fan dyn apparaat wizige binne. Untskoattelje de klûs mei dyn wachtwurd en konfigurearje biometryske autentikaasje opnij yn de ynstellingen fan Aegis.</string>
-    <string name="biometric_init_error">Der is in flater bard wylst it ynstellen fan biometryske ferifikaasje. Dit bart meastentiids allinnich as de befeiligingsynstellingen fan dyn apparaat wizige binne. Untskoattelje de klûs mei dyn wachtwurd en konfigurearje biometryske autentikaasje opnij yn de ynstellingen fan Aegis.</string>
+    <string name="biometric_decrypt_error">Der is in flater bard wylst it dekodearjen fan de klûs mei biometryske ferifikaasje. Dit bart meastentiids allinnich as de befeiligingsynstellingen fan jo apparaat wizige binne. Untskoattelje de klûs mei jo wachtwurd en konfigurearje biometryske autentikaasje opnij yn de ynstellingen fan Aegis.</string>
+    <string name="biometric_init_error">Der is in flater bard wylst it ynstellen fan biometryske ferifikaasje. Dit bart meastentiids allinnich as de befeiligingsynstellingen fan jo apparaat wizige binne. Untskoattelje de klûs mei jo wachtwurd en konfigurearje biometryske autentikaasje opnij yn de ynstellingen fan Aegis.</string>
     <string name="disable_encryption">Fersifering útskeakelje</string>
     <string name="disable_encryption_description">Binne jo wis dat jo fersifering útskeakelje wolle? Hjirtroch sil de klûs yn platte tekst bewarre wurde. <b>Automatyske reservekopyen wurde ek útskeakele</b>.</string>
     <string name="enable_encryption_error">Der is in flater bard by it ynskeakeljen fan fersifering</string>
@@ -275,7 +275,7 @@
     <string name="backup_status_failed">De meast resinte mislearre reservekopy: %s</string>
     <string name="backup_status_none">Der binne noch gjin reservekopyen makke</string>
     <string name="backup_warning_password">Reservekopyen wurde fersifere mei in apart wachtwurd ynsteld yn de befeiligingsynstellingen</string>
-    <string name="documentsui_error">DocumentsUI liket te ûntbrekken op dyn apparaat. Dit is in wichtich systeemûnderdiel, nedich foar it selektearjen en meitsjen fan dokuminten. Asto in ark brûkt hast om dyn apparaat te &quot;debloaten&quot; hasto it mooglik mei fersin fuortsmiten en silsto it opnij ynstallearje moatte.</string>
+    <string name="documentsui_error">DocumentsUI liket te ûntbrekken op jo apparaat. Dit is in wichtich systeemûnderdiel, nedich foar it selektearjen en meitsjen fan dokuminten. As jo in ark brûkt hawwe om jo apparaat te &quot;debloaten&quot; hawwe jo it mooglik mei fersin fuortsmiten en sille jo it opnij ynstallearje moatte.</string>
     <string name="icon_pack_import_error">Der is in flater bard wylst it ymportearjen fan in piktogrampakket</string>
     <string name="icon_pack_import_exists_error">It piktogrampakket dat jo probearje te ymportearjen bestiet al. Wolle jo it oerskriuwe?</string>
     <string name="icon_pack_delete_error">Der is in flater bard wylst it fuortsmiten fan in piktogrampakket</string>
@@ -290,15 +290,15 @@
     <string name="choose_andotp_importer">Hokker formaat hat it andOTP reservekopybestân?</string>
     <string name="choose_totpauth_importer">Is dizze TOTP-autentikator-reservekopy fersifere mei in wachtwurd?</string>
     <string name="choose_application">Selektearje de applikaasje wêrút jo ymportearje wolle</string>
-    <string name="choose_theme">Selektearje dyn winske tema</string>
+    <string name="choose_theme">Selektearje jo winske tema</string>
     <string name="choose_account_name_position">Selektearje jo winske accountnammeposysje</string>
-    <string name="choose_view_mode">Selektearje dyn winske werjeftemodus</string>
+    <string name="choose_view_mode">Selektearje jo winske werjeftemodus</string>
     <string name="choose_copy_behavior">Selektearje it winske gedrach foar kopiearjen</string>
     <string name="parsing_file_error">Der is in flater bard wylst it oersetten fan it bestân</string>
     <string name="file_not_found">Flater: Bestân net fûn</string>
     <string name="reading_file_error">Der is in flater bard wylst it lêzen fan it bestân</string>
     <string name="app_lookup_error">Flater: App is net ynstallearre</string>
-    <string name="app_version_error">De ynstallearre ferzje fan %s wurdt net stipe. Resinte ferzjes binne begûn mei it fersiferjen fan inkelde bestannen yn de ynterne ûnthâldmap. Hjirtroch hat Aegis gjin tagong ta de ynformaasje dy’t nedich is om te ymportearjen. Ymportearjen sil wierskynlik in flater opleverje. Wolsto dochs trochgean?</string>
+    <string name="app_version_error">De ynstallearre ferzje fan %s wurdt net stipe. Resinte ferzjes binne begûn mei it fersiferjen fan inkelde bestannen yn de ynterne ûnthâldmap. Hjirtroch hat Aegis gjin tagong ta de ynformaasje dy’t nedich is om te ymportearjen. Ymportearjen sil wierskynlik in flater opleverje. Wolle jo dochs trochgean?</string>
     <string name="root_error">Flater: Kin gjin root-tagong krije</string>
     <plurals name="imported_entries_count">
         <item quantity="one">%d item ymportearre</item>
@@ -313,12 +313,12 @@
     <string name="exporting_vault_error">Der is in flater bard wylst it eksportearjen fan de klûs</string>
     <string name="exported_vault">De klûs is eksportearre</string>
     <string name="encryption_set_password_error">Der is in flater bard wylst it ynstellen fan it wachtwurd.</string>
-    <string name="encryption_enable_biometrics_error">Der is in flater bard by it ynskeakeljen fan biometrysk ûntskoatteljen. Guon apparaten hawwe in minne ymplemintaasje fan biometryske autentikaasje, dy fan dy is der wierskynlik ien fan. Tink ris nei om allinnich in wachtwurd te brûken.</string>
+    <string name="encryption_enable_biometrics_error">Der is in flater bard by it ynskeakeljen fan biometrysk ûntskoatteljen. Guon apparaten hawwe in minne ymplemintaasje fan biometryske autentikaasje, dy fan jo is der wierskynlik ien fan. Tink ris nei om allinnich in wachtwurd te brûken.</string>
     <string name="no_cameras_available">Gjin kamera’s beskikber</string>
     <string name="read_qr_error">Der is in flater bard wylst it lêzen fan de QR-koade</string>
     <string name="read_qr_error_phonefactor">Aegis is net kompatibel mei it eigen 2FA-algoritme fan Microsoft. Soargje derfoar dat jo ‘Applicatie zonder meldingen instellen’ selektearje by it konfigurearjen fan 2FA yn Office 365.</string>
     <string name="partial_google_auth_import">Net folsleine Google Authenticator-eksport detektearre</string>
-    <string name="partial_google_auth_import_warning">Inkelde QR-koaden ûntbrekke yn de ymport. De folgjende koaden binne net fûn:\n\n<b>%s</b>\n\nDo kinst trochgean mei it ymportearjen fan dizze ûnfolsleine eksport, mar wy rekommandearje oan it opnij te probearjen mei alle QR-koaden, sadatsto net it risiko rinst de tagong ta tokens te ferliezen.</string>
+    <string name="partial_google_auth_import_warning">Inkelde QR-koaden ûntbrekke yn de ymport. De folgjende koaden binne net fûn:\n\n<b>%s</b>\n\nJo kinne trochgean mei it ymportearjen fan dizze ûnfolsleine eksport, mar wy rekommandearje oan it opnij te probearjen mei alle QR-koaden, sadat jo net it risiko rinne de tagong ta tokens te ferliezen.</string>
     <string name="missing_qr_code_descriptor">• QR-koade %d</string>
     <plurals name="import_partial_export_anyway">
         <item quantity="one">%d token dochs ymportearje</item>
@@ -331,11 +331,11 @@
     <string name="rename_group">Groep omneame</string>
     <string name="no_group_selection">As in item net yn in groep sit, kin dit fûn wurde ûnder ‘Gjin groep’.</string>
     <string name="remove_group">Groep fuortsmite</string>
-    <string name="remove_group_description">Bisto wis datsto dizze groep fuortsmite wolst? Alle items binnen dizze groep wurde automatysk ferpleatst nei ‘Gjin groep’.</string>
+    <string name="remove_group_description">Binne jo wis dat jo dizze groep fuortsmite wolle? Alle items binnen dizze groep wurde automatysk ferpleatst nei ‘Gjin groep’.</string>
     <string name="remove_unused_groups">Net brûkte groepen fuortsmite</string>
     <string name="remove_unused_groups_description">Binne jo wis dat jo alle groepen, dy’t net tawizen binne ta in item, fuortsmite wolle?</string>
     <string name="remove_icon_pack">Piktogrammepakket fuortsmite</string>
-    <string name="remove_icon_pack_description">Bisto wis datsto dit piktogrammepakket fuortsmite wolst? Items dy’t piktogrammen út dit pakket brûke, wurde net beynfloede.</string>
+    <string name="remove_icon_pack_description">Binne jo wis dat jo dit piktogrammepakket fuortsmite wolle? Items dy’t piktogrammen út dit pakket brûke, wurde net beynfloede.</string>
     <string name="details">Details</string>
     <string name="show_error_details">Flaterdetails toane</string>
     <string name="lock">Beskoattelje</string>
@@ -355,10 +355,10 @@
     <string name="group">Groep</string>
     <string name="group_name_hint">Groepsnamme</string>
     <string name="preference_manage_groups">Groepen bewurkje</string>
-    <string name="preference_manage_groups_summary">Behear en smyt hjir dyn groepen fuort</string>
+    <string name="preference_manage_groups_summary">Behear en smyt hjir jo groepen fuort</string>
     <string name="preference_reset_usage_count">Gebrûksteller op 0 ynstelle</string>
-    <string name="preference_reset_usage_count_summary">De gebrûksteller fan elk item yn dyn klûs opnij ynstelle</string>
-    <string name="preference_reset_usage_count_dialog">Bisto wis datsto de gebrûksteller fan alle items yn de klûs op 0 sette wolst?</string>
+    <string name="preference_reset_usage_count_summary">De gebrûksteller fan elk item yn jo klûs opnij ynstelle</string>
+    <string name="preference_reset_usage_count_dialog">Binne jo wis dat jo de gebrûksteller fan alle items yn de klûs op 0 sette wolle?</string>
     <string name="note" comment="Users can add a note to an entry">Notysje</string>
     <string name="clear">Wiskje</string>
     <string name="pref_highlight_entry_title">Koaden markearje nei oantikken</string>
@@ -369,7 +369,7 @@
     <string name="pref_search_behavior_title">Sykgedrach</string>
     <string name="pref_pause_entry_title">Tokens by oantikken befrieze</string>
     <string name="pref_pause_entry_summary">Automatysk ferfarskjen fan koaden troch derop te tikken stopje. Koaden sille net bywurke wurde sa lang se fokust binne. Fereasket ‘Koaden markearje nei oantikken’ of ‘Oantikke om te toanen’.</string>
-    <string name="pin_keyboard_description">Fier dyn wachtwurd yn om it PIN-toetseboerd yn te skeakeljen. Let op: dit wurket allinnich as dyn wachtwurd út sifers bestiet</string>
+    <string name="pin_keyboard_description">Fier jo wachtwurd yn om it PIN-toetseboerd yn te skeakeljen. Let op: dit wurket allinnich as jo wachtwurd út sifers bestiet</string>
     <string name="pin_keyboard_error">Flater by ynskeakeljen fan PIN-toetseboerd</string>
     <string name="pin_keyboard_error_description">It is net mooglik om PIN-toetseboerd yn te stellen. It wachtwurd mei allinnich út sifers bestean.</string>
     <string name="pin_keyboard_disabled">Wachtwurd wizige. It PIN-toetseboerd wurdt net mear werjûn.</string>
@@ -420,7 +420,7 @@
     <string name="webview_error">Dit apparaat stipet gjin webview, hokker nedich is om de wizigingen te besjen. It mist in systeemkomponint.</string>
     <string name="email">E-mailadres</string>
     <string name="time_sync_warning_title">Automatyske tiidsyngronisaasje</string>
-    <string name="time_sync_warning_message">Aegis is ôfhinklik fan syngronisearre systeemtiid om krekte koaden te generearjen. In ôfwiking fan op syn minst inkelde sekonden kin liede ta net krekte koaden. It liket derop dat dyn apparaat net ynsteld is om de tiid automatysk te syngronisearjen. Wolsto dit no dwaan?</string>
+    <string name="time_sync_warning_message">Aegis is ôfhinklik fan syngronisearre systeemtiid om krekte koaden te generearjen. In ôfwiking fan op syn minst inkelde sekonden kin liede ta net krekte koaden. It liket derop dat jo apparaat net ynsteld is om de tiid automatysk te syngronisearjen. Wolle jo dit no dwaan?</string>
     <string name="time_sync_warning_disable">Stop mei my te warskôgjen. Ik wit wat ik doch.</string>
     <string name="google_qr_export_unrelated">Net relatearre QR-koade fûn. Probearje de scanner opnij te starten.</string>
     <plurals name="google_qr_export_scanned">
@@ -445,7 +445,7 @@
     <string name="backup_reminder_bar_dialog_accept">Reservekopyen ynstelle</string>
     <string name="backup_plaintext_export_warning"><b>De klûs is resint eksportearre yn platte tekst</b></string>
     <string name="pref_show_plaintext_warning_hint">Dizze warskôging net opnij toane</string>
-    <string name="backup_plaintext_warning_explanation">Dizze warskôging wurdt toand, omdatsto resint in net-fersifere kopy fan de klûs eksportearre hast. Om dyn tokens feilich te hâlden, riede wy oan dit bestân fuort te smiten asto it net mear nedich hast.</string>
+    <string name="backup_plaintext_warning_explanation">Dizze warskôging wurdt toand, omdat jo resint in net-fersifere kopy fan de klûs eksportearre hawwe. Om jo tokens feilich te hâlden, riede wy oan dit bestân fuort te smiten as jo it net mear nedich hawwe.</string>
     <string name="switch_camera">Kamera wikselje</string>
     <string name="empty_list">Der binne gjin koaden om te toanen. Begjin mei it tafoegjen fan items troch op it plusteken yn de rjochterûnderhoek te tikken.</string>
     <string name="empty_list_title">Gjin items fûn</string>
@@ -465,7 +465,7 @@
     <string name="copy_uri">URI kopiearje</string>
     <string name="unable_to_copy_uri_to_clipboard">Kin URI net nei klamboerd kopiearje</string>
     <string name="uri_copied_to_clipboard">URI nei klamboerd kopiearre</string>
-    <string name="transfer_entry_description">Scan dizze QR-koade mei de autentikator-app wêr’tsto dit item nei oerbringe wolst</string>
+    <string name="transfer_entry_description">Scan dizze QR-koade mei de autentikator-app wêr’t jo dit item nei oerbringe wolle</string>
     <string name="google_auth_compatible_transfer_description">Scan dizze QR-koaden mei Aegis of Google Authenticator.\n\nFanwegen beheiningen fan de Google Authenticator-app, binne allinnich TOTP- &amp; HOTP-tokens dy’t SHA1 brûke en 6-siferige koaden produsearje opnommen</string>
     <string name="password_strength_very_weak">Hiel swak</string>
     <string name="password_strength_weak">Swak</string>
@@ -474,7 +474,7 @@
     <string name="password_strength_strong">Sterk</string>
     <string name="password_strength_unknown">Wachtwurd te lang foar sterkte-analyze</string>
     <string name="pref_pin_keyboard_title">PIN-toetsen op beskoattelskerm</string>
-    <string name="pref_pin_keyboard_summary">Skeakelje dit yn asto it PIN-toetseboerd op it beskoattelskerm brûke wolst. Wurket allinnich by numerike wachtwurden</string>
+    <string name="pref_pin_keyboard_summary">Skeakelje dit yn as jo it PIN-toetseboerd op it beskoattelskerm brûke wolle. Wurket allinnich by numerike wachtwurden</string>
     <string name="title_activity_preferences">Ynstellingen</string>
     <string name="title_activity_manage_groups">Groepen beheare</string>
     <string name="title_activity_transfer">Items oerbringe</string>
@@ -485,13 +485,13 @@
     <string name="title_activity_assign_icons">Piktogrammen tawize</string>
     <string name="title_activity_licenses">Lisinsjes fan tredden</string>
     <string name="dialog_wipe_entries_title">Items wiskje</string>
-    <string name="dialog_wipe_entries_message">Dyn klûs befettet al items. Wolsto dizze items fuortsmite eardatsto dit bestân ymportearrest?\n\n<b>Hjirmei ferliesto permanint tagong ta de besteande items yn de klûs.</b></string>
+    <string name="dialog_wipe_entries_message">Jo klûs befettet al items. Wollle jo dizze items fuortsmite eardat jo dit bestân ymportearje?\n\n<b>Hjirmei ferlieze jo permanint tagong ta de besteande items yn de klûs.</b></string>
     <string name="dialog_wipe_entries_checkbox">Klûsynhâld wiskje</string>
     <string name="panic_trigger_ignore_toast">Aegis hat panyktrigger ûntfongen, mar ynstelling is útskeakele, wurdt negearre</string>
     <string name="pref_panic_trigger_title">Klûs fuortsmite by panyktrigger</string>
     <string name="pref_panic_trigger_summary">Klûs fuortsmite by ûntfangen fan Ripple-panyktrigger</string>
     <string name="import_vault">Aegis-klûs ymportearje</string>
-    <string name="import_vault_hint">Wolsto út in oare 2FA-app ymportearje? Foltôgje earst de konfiguraasje en gean dan nei it ynstellingenmenu.</string>
+    <string name="import_vault_hint">Wolle jo út in oare 2FA-app ymportearje? Foltôgje earst de konfiguraasje en gean dan nei it ynstellingenmenu.</string>
     <plurals name="import_duplicate_toast">
         <item quantity="one">%d potinsjele dûbeling net oanfinkt. Kontrolearje de list mei items.</item>
         <item quantity="other">%d potinsjele dûbelingen net oanfinkt. Kontrolearje de list mei items.</item>
@@ -517,7 +517,7 @@
     <string name="importer_help_totp_authenticator">Leverje in TOTP-autentikator-eksportbestân oan.</string>
     <string name="importer_help_winauth">Leverje in WinAuth-eksportbestân oan.</string>
     <string name="import_assign_icons_dialog_title">Piktogrammen tawize</string>
-    <string name="import_assign_icons_dialog_text">Wolsto piktogrammen tawize oan de ymportearre items?</string>
+    <string name="import_assign_icons_dialog_text">Wolle jo piktogrammen tawize oan de ymportearre items?</string>
     <string name="importer_encrypted_exception_google_authenticator">Fersifere item is oerslaggen: %s</string>
     <string name="importer_help_direct">Ymportearje items streekrjocht fan %s út. Dit fereasket dat de app op dit apparaat stiet en dat root-tagong oan Aegis ferliend wurdt.</string>
     <string name="groups">Groepen</string>

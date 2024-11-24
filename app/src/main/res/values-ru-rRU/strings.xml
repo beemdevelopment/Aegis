@@ -68,7 +68,7 @@
     <string name="pref_backups_versioning_strategy_keep_x_versions">Несколько версий резервных копий</string>
     <string name="pref_backups_versioning_strategy_single_backup">Одна резервная копия</string>
     <string name="pref_backups_versioning_strategy_single_backup_warning">Выбранная стратегия резервного копирования ненадёжна и не рекомендуется. Один сбой при резервировании может привести к потере вашей единственной резервной копии.</string>
-    <string name="pref_backups_versioning_strategy_dialog_title">Выберите стратегию резервного копирования</string>
+    <string name="pref_backups_versioning_strategy_dialog_title">Выберите стратегию резервирования</string>
     <string name="pref_backups_location_title">Расположение резервных копий</string>
     <string name="pref_backups_location_summary">Резервные копии будут храниться в</string>
     <string name="pref_backup_location_summary">Резервная копия будет храниться в</string>

@@ -64,7 +64,14 @@
     <string name="pref_backups_reminder_summary">Emlékeztető megjelenítése, ha a legutóbbi változtatásokról nem készült biztonsági mentés.</string>
     <string name="pref_backups_reminder_dialog_title">Biztonsági mentési emlékeztető kikapcsolása</string>
     <string name="pref_backups_reminder_dialog_summary">Az emlékeztető kikapcsolása után az Aegis nem fogja jelezni hogy a változásokról készült-e biztonsági mentés. Ezzel az adatvesztést kockáztatja. Biztos, hogy kikapcsolja az emlékeztetőt?</string>
+    <string name="pref_backups_versioning_strategy_title">Biztonsági mentési stratégia</string>
+    <string name="pref_backups_versioning_strategy_keep_x_versions">Verziószámok megtartása</string>
+    <string name="pref_backups_versioning_strategy_single_backup">Egyszeri biztonsági mentés</string>
+    <string name="pref_backups_versioning_strategy_single_backup_warning">A kiválasztott biztonsági mentési stratégia nem megbízható és nem ajánlott. Az egyszeri biztonsági mentés meghibásodása az egyetlen biztonsági mentés elvesztéséhez vezethet.</string>
+    <string name="pref_backups_versioning_strategy_dialog_title">Biztonsági mentési stratégia kiválasztása</string>
+    <string name="pref_backups_location_title">Biztonsági mentés helye</string>
     <string name="pref_backups_location_summary">A biztonsági mentések itt lesznek tárolva:</string>
+    <string name="pref_backup_location_summary">A biztonsági mentés itt lesz tárolva:</string>
     <string name="pref_backups_trigger_title">Biztonsági mentés készítése</string>
     <string name="pref_backups_trigger_summary">Biztonsági mentés kézi indítása</string>
     <string name="pref_backups_versions_title">Megtartandó verziók száma</string>
@@ -155,7 +162,7 @@
     <string name="export_no_groups_selected">Nincs exportálandó csoport kiválasztva</string>
     <string name="export_html_title" comment="The title of an HTML export document">Aegis hitelesítő exportja</string>
     <string name="choose_authentication_method">Biztonság</string>
-    <string name="authentication_method_explanation">Az Aegis egy biztonságközpontú 2FA alkalmazás. A tokenek egy széfben vannak tárolva, mely akár tetszőleges jelszóval titkosítható. Ha egy támadó megszerzi a titkosított széffájlt, a jelszó ismerete nélkül akkor sem fog tudni hozzáférni a tartalmához.\n\nElőre ezt a beállítást választottuk, mert úgy véljük ez lenne a legmegfelelőbb az eszköze számára.</string>
+    <string name="authentication_method_explanation">Az Aegis egy biztonságközpontú kétfaktoros hitelesítő alkalmazás. A tokenek egy széfben vannak tárolva, mely akár tetszőleges jelszóval titkosítható. Ha egy támadó megszerzi a titkosított széffájlt, a jelszó ismerete nélkül akkor sem fog tudni hozzáférni a tartalmához.\n\nElőre ezt a beállítást választottuk, mert úgy véljük ez lenne a legmegfelelőbb az eszköze számára.</string>
     <string name="authentication_method_none">Nincs</string>
     <string name="authentication_method_none_description">Nem szükséges jelszó a széf zárolásához, és nem lesz titkosítva.<b>Ez a beállítás nem ajánlott</b>.</string>
     <string name="authentication_method_password">Jelszó</string>
@@ -195,7 +202,7 @@
     <string name="counter">Számláló</string>
     <string name="digits">Számjegyek</string>
     <string name="secret">Titok</string>
-    <string name="scan">QR-kód leolvasása</string>
+    <string name="scan">QR-kód beolvasása</string>
     <string name="scan_image">Kép beolvasása</string>
     <string name="enter_manually">Kézi megadás</string>
     <string name="set_up_biometric">Biometrikus adatokkal való feloldás beállítása</string>
@@ -242,7 +249,7 @@
     <string name="saving_profile_error">Hiba a profil mentésekor</string>
     <string name="saving_assign_icons_error">Hiba az ikonok hozzárendelésekor</string>
     <string name="welcome">Üdvözöljük</string>
-    <string name="app_description">Az Aegis egy szabad, biztonságos és nyílt forráskódú két faktoros hitelesítő alkalmazás</string>
+    <string name="app_description">Az Aegis egy szabad, biztonságos és nyílt forráskódú kétfaktoros hitelesítő alkalmazás</string>
     <string name="setup_completed">Beállítás kész</string>
     <string name="setup_completed_description">Az Aegis beállításra került, és használatra kész.</string>
     <string name="vault_not_found">Széf nem található, beállítás indítása…</string>
@@ -308,7 +315,7 @@
     <string name="encryption_set_password_error">Hiba történt a jelszó beállításakor.</string>
     <string name="encryption_enable_biometrics_error">Hiba történt a biometrikus feloldás engedélyezésekor. Egyes eszközök rossz minőségű biometrikus hitelesítési megvalósítással rendelkeznek, és valószínűleg az Öné is ilyen. Fontolja meg, hogy jelszavas beállításra váltson.</string>
     <string name="no_cameras_available">Nem érhető el kamera</string>
-    <string name="read_qr_error">Hiba történt a QR-kód leolvasásakor</string>
+    <string name="read_qr_error">Hiba történt a QR-kód beolvasásakor</string>
     <string name="read_qr_error_phonefactor">Az Aegis nem kompatiblis a Microsoft zárt 2FA algoritmusával. Győződjön meg arról, hogy az „Alkalmazás telepítése értesítések nélkül” lehetőséget választja, amikor beállítja az Office 365 2FA-t.</string>
     <string name="partial_google_auth_import">Hiányos Google Authenticator export észlelve</string>
     <string name="partial_google_auth_import_warning">Néhány QR-kód hiányzik az importból. Ezek a kódok nem találhatók:\n\n<b>%s</b>\n\nFolytathatja a részleges export importálását, de javasoljuk, hogy próbálja újra az összes QR-kóddal, hogy ne kockáztassa a hozzáférése elvesztését egyetlen tokennél sem.</string>
@@ -397,7 +404,7 @@
     <string name="channel_description_lock_status">Az Aegis állandó értesítést tud megjeleníteni, ha a széf zárolva van</string>
     <string name="vault_unlocked_state">A széf fel van oldva. Koppintson a zároláshoz.</string>
     <string name="version">Verzió</string>
-    <string name="changelog">Változásnapló</string>
+    <string name="changelog">Változáslista</string>
     <string name="whats_new">Újdonságok</string>
     <string name="github_description">Forráskód, problémák és információk</string>
     <string name="license">Licenc</string>
@@ -415,12 +422,12 @@
     <string name="time_sync_warning_title">Automatikus időszinkronizálás</string>
     <string name="time_sync_warning_message">Az Aegis a rendszeridőre támaszkodik a helyes kódok előállításánál. Néhány másodperces eltérés is hibás kódok előállítását eredményezheti. Úgy tűnik az eszközön nincs bekapcsolva az automatikus időszinkronizálás. Be akarja most ezt kapcsolni?</string>
     <string name="time_sync_warning_disable">Ne figyelmeztessen. Tudom mit csinálok.</string>
-    <string name="google_qr_export_unrelated">Nem kapcsolódó QR-kód található. Próbálja meg újraindítani a leolvasót.</string>
+    <string name="google_qr_export_unrelated">Nem kapcsolódó QR-kód található. Próbálja meg újraindítani a QR-kód-olvasót.</string>
     <plurals name="google_qr_export_scanned">
-        <item quantity="one">%1$d/%2$d QR-kód leolvasva</item>
-        <item quantity="other">%1$d/%2$d QR-kód leolvasva</item>
+        <item quantity="one">%1$d/%2$d QR-kód beolvasva</item>
+        <item quantity="other">%1$d/%2$d QR-kód beolvasva</item>
     </plurals>
-    <string name="google_qr_export_unexpected">A várt #%1$d QR-kód helyett ez lett leolvasva: #%2$d</string>
+    <string name="google_qr_export_unexpected">A várt #%1$d QR-kód helyett ez lett beolvasva: #%2$d</string>
     <string name="backup_error_bar_message"><b>Egy széf mentése nemrég sikertelen volt</b></string>
     <string name="backup_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">        Egy közelmúltbeli, az %1$s használó széfmentés sikertelen volt, mert hiba történt. A biztonsági mentés ekkor volt megpróbálva: %2$s. Ellenőrizze a biztonsági mentési beállításokat, hogy biztosítsa a mentések sikeres végrehajtását.
     </string>
@@ -473,7 +480,7 @@
     <string name="title_activity_transfer">Bejegyzések másolása</string>
     <string name="title_activity_about">Névjegy</string>
     <string name="title_activity_edit_entry">Bejegyzés szerkesztése</string>
-    <string name="title_activity_scan_qr">QR-kód leolvasása</string>
+    <string name="title_activity_scan_qr">Egy QR-kód beolvasása</string>
     <string name="title_activity_import_entries">Bejegyzések importálása</string>
     <string name="title_activity_assign_icons">Ikonok hozzárendelése</string>
     <string name="title_activity_licenses">Harmadik felek licencei</string>
@@ -499,7 +506,10 @@
     <string name="importer_help_battle_net_authenticator">Adja meg a <b>/data/data/com.blizzard.messenger/shared_prefs/com.blizzard.messenger.authenticator_preferences.xml</b> másolatát, mely a Battle.net Authenticator belső háttértáron levő mappájában található.</string>
     <string name="importer_help_duo">Adja meg a <b>/data/data/com.duosecurity.duomobile/files/duokit/accounts.json</b> másolatát, mely a DUO belső háttértáron levő mappájában található.</string>
     <string name="importer_help_ente_auth">Adjon meg egy Ente Auth exportfájlt. Jelenleg csak a titkosítatlan fájlok támogatottak.</string>
+    <string name="importer_help_freeotp">FreeOTP 2: Egy biztonsági mentési fájlt tárol.\nFeeOTP 1.x: A következő biztonsági mentési fájl másolatát: <b>/data/data/org.fedorahosted.freeotp/shared_prefs/tokens.xml</b> tárolja, amely a FreeOTP belső tárolási könyvtárában található.</string>
     <string name="importer_help_freeotp_plus">Adja meg a FreeOTP+ egy exportfájlját.</string>
+    <string name="importer_warning_title_freeotp2">FreeOTP 2 kompatibilitás</string>
+    <string name="importer_warning_message_freeotp2">A FreeOTP 2-ben számos olyan probléma van, amely hibás biztonsági mentéseket eredményezhet. Az Aegis megpróbálja megmenteni a lehető legtöbb bejegyzést, de lehetséges, hogy néhány vagy akár az összes bejegyzés importálása sikertelen lesz.</string>
     <string name="importer_help_google_authenticator"><b>Csak a Google Hitelesítő v5.10 és korábbi verziói támogatottak</b>.\n\nAdja meg a <b>/data/data/com.google.android.apps.authenticator2/databases/databases</b> másolatát, mely a Google Hitelesítő belső háttértáron lévő mappájában található.</string>
     <string name="importer_help_microsoft_authenticator">Adja meg a <b>/data/data/com.azure.authenticator/databases/PhoneFactor</b> másolatát, mely a Microsoft Authenticator belső háttértáron levő mappájában található.</string>
     <string name="importer_help_plain_text">Adjon meg egy szöveges fájlt, melynek minden sorában Google Hitelesítő URI található.</string>

@@ -64,7 +64,14 @@
     <string name="pref_backups_reminder_summary">Arată un mesaj pentru a salva seiful în cazul în care nu ai făcut backup la ultimele modificări.</string>
     <string name="pref_backups_reminder_dialog_title">Dezactivează alerta de backup</string>
     <string name="pref_backups_reminder_dialog_summary">Dezactivarea acestei alerte înseamnă că Addis nu îți va spune dacă ai sau nu schimbări care nu sunt încă salvate. Acest lucru te pune în pericol de a pierde accesul la Cohen-urile tale. Ești sigur că vrei să dezactivezi alerta?</string>
+    <string name="pref_backups_versioning_strategy_title">Strategie de backup</string>
+    <string name="pref_backups_versioning_strategy_keep_x_versions">Păstrează un număr de versiuni</string>
+    <string name="pref_backups_versioning_strategy_single_backup">O singură copie de rezervă</string>
+    <string name="pref_backups_versioning_strategy_single_backup_warning">Strategia de backup selectată nu este fiabilă și nu este recomandată. Un singur backup nereușit ar putea duce la pierderea singurei tale copii de rezervă.</string>
+    <string name="pref_backups_versioning_strategy_dialog_title">Selectează o strategie de backup</string>
+    <string name="pref_backups_location_title">Locație backup</string>
     <string name="pref_backups_location_summary">Copiile de rezervă vor fi stocate la</string>
+    <string name="pref_backup_location_summary">Copiile de rezervă vor fi stocate la</string>
     <string name="pref_backups_trigger_title">Declanșare copie de rezervă</string>
     <string name="pref_backups_trigger_summary">Declanșează manual o copie de rezervă</string>
     <string name="pref_backups_versions_title">Numărul de versiuni de păstrat</string>

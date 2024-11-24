@@ -64,7 +64,14 @@
     <string name="pref_backups_reminder_summary">Mostrar um lembrete para fazer backup do seu cofre caso você não o tenha feito de suas alterações mais recentes.</string>
     <string name="pref_backups_reminder_dialog_title">Desabilitar lembrete de backup</string>
     <string name="pref_backups_reminder_dialog_summary">Desativar este lembrete significa que o Aegis não vai te dizer se você tem ou não alterações que ainda não foram salvas. Isso te coloca em risco de perder acesso aos seus tokens. Tem certeza de que deseja desativar o lembrete?</string>
+    <string name="pref_backups_versioning_strategy_title">Estratégia de backup</string>
+    <string name="pref_backups_versioning_strategy_keep_x_versions">Manter várias versões</string>
+    <string name="pref_backups_versioning_strategy_single_backup">Um único backup</string>
+    <string name="pref_backups_versioning_strategy_single_backup_warning">A estratégia de backup selecionada não é adequada e não é recomendada. Uma única falha no backup pode levar à perda de seu único backup.</string>
+    <string name="pref_backups_versioning_strategy_dialog_title">Selecione uma estratégia de backup</string>
+    <string name="pref_backups_location_title">Localização do backup</string>
     <string name="pref_backups_location_summary">Backups são armazenados em</string>
+    <string name="pref_backup_location_summary">O backup será armazenado em</string>
     <string name="pref_backups_trigger_title">Ativar backup</string>
     <string name="pref_backups_trigger_summary">Ativa manualmente um backup</string>
     <string name="pref_backups_versions_title">Número de versões a manter</string>

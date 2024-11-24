@@ -64,7 +64,14 @@
     <string name="pref_backups_reminder_summary">Afficher un rappel pour sauvegarder votre coffre-fort si vous n\'avez pas sauvegardé vos dernières modifications.</string>
     <string name="pref_backups_reminder_dialog_title">Désactiver le rappel de sauvegarde</string>
     <string name="pref_backups_reminder_dialog_summary">Désactiver ce rappel signifie qu\'Aegis ne vous dira pas si vous avez ou non des modifications qui ne sont pas encore sauvegardées. Cela vous expose au risque de perdre l\'accès à vos jetons. Êtes-vous sûr de vouloir désactiver le rappel ?</string>
+    <string name="pref_backups_versioning_strategy_title">Stratégie de sauvegarde</string>
+    <string name="pref_backups_versioning_strategy_keep_x_versions">Conserver plusieurs versions</string>
+    <string name="pref_backups_versioning_strategy_single_backup">Sauvegarde unique</string>
+    <string name="pref_backups_versioning_strategy_single_backup_warning">La stratégie de sauvegarde sélectionnée n\'est pas fiable et pas recommandée. Un seul échec de la sauvegarde pourrait entraîner la perte de votre unique sauvegarde.</string>
+    <string name="pref_backups_versioning_strategy_dialog_title">Sélectionner une stratégie de sauvegarde</string>
+    <string name="pref_backups_location_title">Emplacement de sauvegarde</string>
     <string name="pref_backups_location_summary">Les sauvegardes seront enregistrées dans</string>
+    <string name="pref_backup_location_summary">La sauvegarde sera enregistrée dans</string>
     <string name="pref_backups_trigger_title">Déclencher la sauvegarde</string>
     <string name="pref_backups_trigger_summary">Déclencher manuellement une sauvegarde</string>
     <string name="pref_backups_versions_title">Nombre de versions à conserver</string>

@@ -64,7 +64,14 @@
     <string name="pref_backups_reminder_summary">Vis en påmindelse om at sikkerhedskopiere Boksen, såfremt dette ikke er sket ifm. de seneste ændringer.</string>
     <string name="pref_backups_reminder_dialog_title">Deaktivér sikkerhedskopieringspåmindelse</string>
     <string name="pref_backups_reminder_dialog_summary">Deaktiverer du denne påmindelse, fortæller Aegis dig ikke, om nogen ændringer endnu ikke er sikkerhedskopieret. Dermed risikerer du at miste adgang til dine tokens. Er du sikker på, at du vil deaktivere påmindelsen?</string>
+    <string name="pref_backups_versioning_strategy_title">Sikkerhedskopieringsstrategi</string>
+    <string name="pref_backups_versioning_strategy_keep_x_versions">Behold et antal versioner</string>
+    <string name="pref_backups_versioning_strategy_single_backup">Enkelt sikkerhedskopi</string>
+    <string name="pref_backups_versioning_strategy_single_backup_warning">Den valgte sikkerhedskopieringsstrategi er ikke pålidelig og anbefales ikke. En enkelt sikkerhedskopifejl kan føre til tab af den eneste eksisterende sikkerhedskopi.</string>
+    <string name="pref_backups_versioning_strategy_dialog_title">Vælg en sikkerhedskopieringsstrategi</string>
+    <string name="pref_backups_location_title">Sikkerhedskopiplacering</string>
     <string name="pref_backups_location_summary">Sikkerhedskopier gemmes på</string>
+    <string name="pref_backup_location_summary">Sikkerhedskopi gemmes på</string>
     <string name="pref_backups_trigger_title">Udløs sikkerhedskopiering</string>
     <string name="pref_backups_trigger_summary">Udløs manuelt en sikkerhedskopiering</string>
     <string name="pref_backups_versions_title">Antal versioner at beholde</string>
