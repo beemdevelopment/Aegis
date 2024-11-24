@@ -25,10 +25,10 @@ public class YAOTP {
     public static YAOTP generateOTP(byte[] secret, String pin, int digits, String otpAlgo, long period)
             throws NoSuchAlgorithmException, InvalidKeyException, IOException {
         long seconds = System.currentTimeMillis() / 1000;
-        return generateOTP(secret, pin, digits, otpAlgo, seconds, period);
+        return generateOTP(secret, pin, digits, otpAlgo, period, seconds);
     }
 
-    public static YAOTP generateOTP(byte[] secret, String pin, int digits, String otpAlgo, long seconds, long period)
+    public static YAOTP generateOTP(byte[] secret, String pin, int digits, String otpAlgo, long period, long seconds)
             throws NoSuchAlgorithmException, InvalidKeyException, IOException {
         byte[] pinWithHash;
         byte[] pinBytes = pin.getBytes(StandardCharsets.UTF_8);

@@ -32,8 +32,8 @@ public class YAOTPTest {
                     testCase.pin,
                     8,
                     "HmacSHA256",
-                    testCase.timestamp,
-                    30
+                    30,
+                    testCase.timestamp
             );
             assertEquals(testCase.expected, otp.toString());
         }
