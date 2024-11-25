@@ -920,6 +920,9 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         _menu = menu;
         getMenuInflater().inflate(R.menu.menu_main, menu);
 
+        updateLockIcon();
+        updateSortCategoryMenu();
+
         MenuItem searchViewMenuItem = menu.findItem(R.id.mi_search);
         _searchView = (SearchView) searchViewMenuItem.getActionView();
         _searchView.setMaxWidth(Integer.MAX_VALUE);
