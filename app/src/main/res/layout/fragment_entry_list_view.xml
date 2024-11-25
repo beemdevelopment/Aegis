@@ -63,4 +63,13 @@
         </LinearLayout>
 
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/archive_empty_text"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="@string/archive_empty"
+        android:gravity="center"
+        android:visibility="gone" />
+
 </LinearLayout>

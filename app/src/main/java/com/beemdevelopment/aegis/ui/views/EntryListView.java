@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.LayoutAnimationController;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.annotation.AttrRes;
 import androidx.annotation.NonNull;
@@ -72,6 +73,8 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
     private boolean _showExpirationState;
     private ViewMode _viewMode;
     private LinearLayout _emptyStateView;
+    private boolean _isArchiveEnabled;
+    private TextView _archiveEmptyText;
 
     private UiRefresher _refresher;
 
@@ -150,6 +153,7 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
         });
 
         _emptyStateView = view.findViewById(R.id.vEmptyList);
+        _archiveEmptyText = view.findViewById(R.id.archive_empty_text);
         return view;
     }
 
@@ -471,6 +475,12 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
         _recyclerView.scheduleLayoutAnimation();
     }
 
+    public void enableArchive(boolean enable) {
+        _isArchiveEnabled = enable;
+        _adapter.enableArchive(enable);
+        updateEmptyState();
+    }
+
     private void setShowProgress(boolean showProgress) {
         _showProgress = showProgress;
         updateDividerDecoration();
@@ -495,9 +505,12 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
         if (_adapter.getShownEntriesCount() > 0) {
             _recyclerView.setVisibility(View.VISIBLE);
             _emptyStateView.setVisibility(View.GONE);
-        } else {
-            if (Strings.isNullOrEmpty(_adapter.getSearchFilter())) {
-                _recyclerView.setVisibility(View.GONE);
+            _archiveEmptyText.setVisibility(View.GONE);
+        } else if (Strings.isNullOrEmpty(_adapter.getSearchFilter())) {
+            _recyclerView.setVisibility(View.GONE);
+            if (_isArchiveEnabled) {
+                _archiveEmptyText.setVisibility(View.VISIBLE);
+            } else {
                 _emptyStateView.setVisibility(View.VISIBLE);
             }
         }

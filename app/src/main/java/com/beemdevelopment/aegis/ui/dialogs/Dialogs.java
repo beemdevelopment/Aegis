@@ -96,6 +96,19 @@ public class Dialogs {
                 .create());
     }
 
+    public static void showArchiveEntriesDialog(Context context, int count, DialogInterface.OnClickListener onArchive) {
+        String title = context.getResources().getQuantityString(R.plurals.archive_entry, count);
+        String message = context.getResources().getQuantityString(R.plurals.archive_entry_description, count);
+        Dialog dialog = new MaterialAlertDialogBuilder(context, R.style.ThemeOverlay_Aegis_AlertDialog_Warning)
+                .setTitle(title)
+                .setMessage(message)
+                .setIconAttribute(android.R.attr.alertDialogIcon)
+                .setPositiveButton(android.R.string.ok, onArchive)
+                .setNegativeButton(android.R.string.no, null)
+                .create();
+        showSecureDialog(dialog);
+    }
+
     private static String getVaultEntryName(Context context, VaultEntry entry) {
         if (!entry.getIssuer().isEmpty() && !entry.getName().isEmpty()) {
             return String.format("%s (%s)", entry.getIssuer(), entry.getName());
