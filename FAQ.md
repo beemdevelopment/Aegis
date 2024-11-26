@@ -1,3 +1,5 @@
+#subscribe
+
 # FAQ
 
 ## General
