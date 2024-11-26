@@ -15,6 +15,7 @@ import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.ui.dialogs.Dialogs;
 import com.beemdevelopment.aegis.ui.views.GroupAdapter;
 import com.beemdevelopment.aegis.util.Cloner;
+import com.beemdevelopment.aegis.helpers.ViewHelper;
 import com.beemdevelopment.aegis.vault.VaultGroup;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
@@ -39,6 +40,7 @@ public class GroupManagerActivity extends AegisActivity implements GroupAdapter.
         }
         setContentView(R.layout.activity_groups);
         setSupportActionBar(findViewById(R.id.toolbar));
+        ViewHelper.setupAppBarInsets(findViewById(R.id.app_bar_layout));
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setDisplayShowHomeEnabled(true);

@@ -6,6 +6,9 @@ import android.view.View;
 import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LiveData;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -57,6 +60,17 @@ public class AuditLogPreferencesFragment extends Fragment {
         _auditLogRecyclerView.setLayoutManager(layoutManager);
         _auditLogRecyclerView.setAdapter(_adapter);
         _auditLogRecyclerView.setNestedScrollingEnabled(false);
+
+        ViewCompat.setOnApplyWindowInsetsListener(_auditLogRecyclerView, (targetView, windowInsets) -> {
+            Insets insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars() | WindowInsetsCompat.Type.displayCutout());
+            targetView.setPadding(
+                    0,
+                    0,
+                    0,
+                    insets.bottom
+            );
+            return WindowInsetsCompat.CONSUMED;
+        });
 
         entries.observe(getViewLifecycleOwner(), entries1 -> {
             _noAuditLogsView.setVisibility(entries1.isEmpty() ? View.VISIBLE : View.GONE);

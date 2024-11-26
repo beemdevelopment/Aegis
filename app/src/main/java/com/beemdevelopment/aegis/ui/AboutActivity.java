@@ -13,11 +13,15 @@ import android.widget.Toast;
 
 import androidx.annotation.AttrRes;
 import androidx.annotation.StringRes;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 
 import com.beemdevelopment.aegis.BuildConfig;
 import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.ui.dialogs.ChangelogDialog;
 import com.beemdevelopment.aegis.ui.dialogs.LicenseDialog;
+import com.beemdevelopment.aegis.helpers.ViewHelper;
 import com.google.android.material.color.MaterialColors;
 
 public class AboutActivity extends AegisActivity {
@@ -39,6 +43,7 @@ public class AboutActivity extends AegisActivity {
 
         setContentView(R.layout.activity_about);
         setSupportActionBar(findViewById(R.id.toolbar));
+        ViewHelper.setupAppBarInsets(findViewById(R.id.app_bar_layout));
 
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -89,6 +94,17 @@ public class AboutActivity extends AegisActivity {
             ChangelogDialog.create()
                     .setTheme(_themeHelper.getConfiguredTheme())
                     .show(getSupportFragmentManager(), null);
+        });
+
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.about_scroll_view), (targetView, windowInsets) -> {
+            Insets insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars() | WindowInsetsCompat.Type.displayCutout());
+            targetView.setPadding(
+                    0,
+                    0,
+                    0,
+                    insets.bottom
+            );
+            return WindowInsetsCompat.CONSUMED;
         });
     }
 

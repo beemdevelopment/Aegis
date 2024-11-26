@@ -6,6 +6,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.text.method.LinkMovementMethod;
 import android.view.View;
+import android.view.ViewGroup.MarginLayoutParams;
 import android.view.animation.Animation;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -14,6 +15,9 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts.StartActivityForResult;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -66,6 +70,19 @@ public class IconPacksManagerFragment extends Fragment implements IconPackAdapte
         FloatingActionButton fab = view.findViewById(R.id.fab);
         fab.setOnClickListener(v -> startImportIconPack());
         _fabScrollHelper = new FabScrollHelper(fab);
+
+        final MarginLayoutParams fabInitialMargin = (MarginLayoutParams) fab.getLayoutParams();
+        ViewCompat.setOnApplyWindowInsetsListener(fab, (targetView, windowInsets) -> {
+            Insets insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars() | WindowInsetsCompat.Type.displayCutout());
+
+            MarginLayoutParams marginParams = (MarginLayoutParams) targetView.getLayoutParams();
+            marginParams.leftMargin = fabInitialMargin.leftMargin + insets.left;
+            marginParams.bottomMargin = fabInitialMargin.bottomMargin + insets.bottom;
+            marginParams.rightMargin = fabInitialMargin.rightMargin + insets.right;
+            targetView.setLayoutParams(marginParams);
+
+            return WindowInsetsCompat.CONSUMED;
+        });
 
         _noIconPacksView = view.findViewById(R.id.vEmptyList);
         ((TextView) view.findViewById(R.id.txt_no_icon_packs)).setMovementMethod(LinkMovementMethod.getInstance());

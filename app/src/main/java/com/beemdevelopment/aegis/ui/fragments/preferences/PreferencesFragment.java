@@ -1,13 +1,20 @@
 package com.beemdevelopment.aegis.ui.fragments.preferences;
 
 import android.content.Intent;
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.ViewGroup;
 import android.view.animation.Animation;
 
 import androidx.annotation.CallSuper;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.beemdevelopment.aegis.Preferences;
 import com.beemdevelopment.aegis.R;
@@ -59,6 +66,23 @@ public abstract class PreferencesFragment extends PreferenceFragmentCompat {
         }
 
         return super.onCreateAnimation(transit, enter, nextAnim);
+    }
+
+    @NonNull
+    @Override
+    public RecyclerView onCreateRecyclerView(@NonNull LayoutInflater inflater, @NonNull ViewGroup parent, @Nullable Bundle savedInstanceState) {
+        RecyclerView recyclerView = super.onCreateRecyclerView(inflater, parent, savedInstanceState);
+        ViewCompat.setOnApplyWindowInsetsListener(recyclerView, (targetView, windowInsets) -> {
+            Insets insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars() | WindowInsetsCompat.Type.displayCutout());
+            targetView.setPadding(
+                    0,
+                    0,
+                    0,
+                    insets.bottom
+            );
+            return WindowInsetsCompat.CONSUMED;
+        });
+        return recyclerView;
     }
 
     protected boolean saveAndBackupVault() {
