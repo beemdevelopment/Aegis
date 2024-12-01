@@ -39,8 +39,7 @@
                     android:id="@+id/groupChipGroup"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:selectionRequired="true"
-                    app:singleSelection="true"/>
+                    app:selectionRequired="true"/>
             </LinearLayout>
         </HorizontalScrollView>
     </com.google.android.material.appbar.AppBarLayout>

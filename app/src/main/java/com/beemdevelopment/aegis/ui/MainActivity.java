@@ -274,6 +274,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
 
     private void initializeGroups() {
         _groupChip.removeAllViews();
+        _groupChip.setSingleSelection(!_prefs.isGroupMultiselectEnabled());
 
         for (VaultGroup group : _groups) {
             addChipTo(_groupChip, new VaultGroupModel(group));
@@ -313,29 +314,24 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         }
 
         chip.setOnCheckedChangeListener((group1, isChecked) -> {
-            Set<UUID> groupFilter = new HashSet<>();
             if (_actionMode != null) {
                 _actionMode.finish();
             }
 
             setSaveChipVisibility(true);
 
-            if (!isChecked) {
-                group1.setChecked(false);
+            // Reset group filter if last checked group gets unchecked
+            if (!isChecked && _groupFilter.size() == 1) {
+                Set<UUID> groupFilter = new HashSet<>();
+
+                chipGroup.clearCheck();
                 _groupFilter = groupFilter;
                 _entryListView.setGroupFilter(groupFilter);
                 return;
             }
 
-            Object chipTag = group1.getTag();
-            if (chipTag == GroupPlaceholderType.NO_GROUP) {
-                groupFilter.add(null);
-            } else {
-                groupFilter = getGroupFilter(chipGroup);
-            }
-
-            _groupFilter = groupFilter;
-            _entryListView.setGroupFilter(groupFilter);
+            _groupFilter = getGroupFilter(chipGroup);
+            _entryListView.setGroupFilter(_groupFilter);
         });
 
         chipGroup.addView(chip);
@@ -368,8 +364,10 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
 
     private static Set<UUID> getGroupFilter(ChipGroup chipGroup) {
         return chipGroup.getCheckedChipIds().stream()
+                .filter(Objects::nonNull)
                 .map(i -> {
                     Chip chip = chipGroup.findViewById(i);
+
                     if (chip.getTag() instanceof VaultGroupModel) {
                         VaultGroupModel group = (VaultGroupModel) chip.getTag();
                         return group.getUUID();
@@ -377,7 +375,6 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
 
                     return null;
                 })
-                .filter(Objects::nonNull)
                 .collect(Collectors.toSet());
     }
 
