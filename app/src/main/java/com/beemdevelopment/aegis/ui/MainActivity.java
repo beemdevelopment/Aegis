@@ -280,6 +280,8 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         GroupPlaceholderType placeholderType = GroupPlaceholderType.NO_GROUP;
         addChipTo(_groupChip, new VaultGroupModel(this, placeholderType));
         addSaveChip(_groupChip);
+
+        _groupChip.setSingleSelection(!_prefs.isGroupMultiselectEnabled());
     }
 
     private Set<UUID> cleanGroupFilter(Set<UUID> groupFilter) {
@@ -314,7 +316,8 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
             Set<UUID> groupFilter = new HashSet<>();
             setSaveChipVisibility(true);
 
-            if (!isChecked) {
+            // Reset group filter if last checked group gets unchecked
+            if (!isChecked && _groupFilter.size() == 1) {
                 group1.setChecked(false);
                 _groupFilter = groupFilter;
                 _entryListView.setGroupFilter(groupFilter);

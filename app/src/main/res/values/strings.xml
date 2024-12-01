@@ -373,6 +373,8 @@
 
     <string name="pref_highlight_entry_title">Highlight tokens when tapped</string>
     <string name="pref_highlight_entry_summary">Make tokens easier to distinguish from each other by temporarily highlighting them when tapped</string>
+    <string name="pref_groups_multiselect_title">Multiselect groups</string>
+    <string name="pref_groups_multiselect_summary">Allow the selection of multiple groups at the same time</string>
     <string name="pref_minimize_on_copy_title">Minimize on copy</string>
     <string name="pref_minimize_on_copy_summary">Minimize the app after copying a token</string>
     <string name="pref_copy_behavior_title">Copy tokens to the clipboard</string>
