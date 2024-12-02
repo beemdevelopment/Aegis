@@ -685,6 +685,10 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         if (entries.size() == 1) {
             startEditEntryActivityForNew(entries.get(0));
         } else if (entries.size() > 1) {
+            for (VaultEntry entry: entries) {
+                _vaultManager.getVault().addEntry(entry);
+            }
+
             if (saveAndBackupVault()) {
                 Toast.makeText(this, getResources().getQuantityString(R.plurals.added_new_entries, entries.size(), entries.size()), Toast.LENGTH_LONG).show();
             }
