@@ -312,6 +312,10 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
 
         chip.setOnCheckedChangeListener((group1, isChecked) -> {
             Set<UUID> groupFilter = new HashSet<>();
+            if (_actionMode != null) {
+                _actionMode.finish();
+            }
+
             setSaveChipVisibility(true);
 
             if (!isChecked) {
