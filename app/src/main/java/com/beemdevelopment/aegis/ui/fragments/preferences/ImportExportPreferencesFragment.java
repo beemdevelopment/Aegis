@@ -296,7 +296,7 @@ public class ImportExportPreferencesFragment extends PreferencesFragment {
                 boolean encrypt = checkBoxEncrypt.isChecked();
                 try {
                     VaultBackupManager.FileInfo fileInfo = getExportFileInfo(pos, encrypt);
-                    file = File.createTempFile(fileInfo.getFilename() + "-", "." + fileInfo.getExtension(), getExportCacheDir());
+                    file = new File(getExportCacheDir(), fileInfo.toString());
                 } catch (IOException e) {
                     e.printStackTrace();
                     Dialogs.showErrorDialog(requireContext(), R.string.exporting_vault_error, e);
