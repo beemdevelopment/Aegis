@@ -355,7 +355,7 @@
     <string name="group">Grup</string>
     <string name="group_name_hint">Nom del grup</string>
     <string name="preference_manage_groups">Edita els grups</string>
-    <string name="preference_manage_groups_summary">Gestiona i elimina els grups aqui</string>
+    <string name="preference_manage_groups_summary">Gestiona i elimina els grups aquí</string>
     <string name="preference_reset_usage_count">Reiniciar comptador d\'usos</string>
     <string name="preference_reset_usage_count_summary">Reinicia el comptador d\'usos de totes les entrades</string>
     <string name="preference_reset_usage_count_dialog">Segur que vols reiniciar el comptador d\'us de cada entrada a 0?</string>

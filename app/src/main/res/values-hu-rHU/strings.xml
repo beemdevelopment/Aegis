@@ -65,7 +65,7 @@
     <string name="pref_backups_reminder_dialog_title">Biztonsági mentési emlékeztető kikapcsolása</string>
     <string name="pref_backups_reminder_dialog_summary">Az emlékeztető kikapcsolása után az Aegis nem fogja jelezni hogy a változásokról készült-e biztonsági mentés. Ezzel az adatvesztést kockáztatja. Biztos, hogy kikapcsolja az emlékeztetőt?</string>
     <string name="pref_backups_versioning_strategy_title">Biztonsági mentési stratégia</string>
-    <string name="pref_backups_versioning_strategy_keep_x_versions">Verziószámok megtartása</string>
+    <string name="pref_backups_versioning_strategy_keep_x_versions">Több verzió megtartása</string>
     <string name="pref_backups_versioning_strategy_single_backup">Egyszeri biztonsági mentés</string>
     <string name="pref_backups_versioning_strategy_single_backup_warning">A kiválasztott biztonsági mentési stratégia nem megbízható és nem ajánlott. Az egyszeri biztonsági mentés meghibásodása az egyetlen biztonsági mentés elvesztéséhez vezethet.</string>
     <string name="pref_backups_versioning_strategy_dialog_title">Biztonsági mentési stratégia kiválasztása</string>

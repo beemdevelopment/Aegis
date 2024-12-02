@@ -37,7 +37,7 @@
     <string name="pref_section_icon_packs_summary">Symbolpakete verwalten und importieren.</string>
     <string name="pref_select_theme_title">Design</string>
     <string name="pref_dynamic_colors_title">Dynamische Farben</string>
-    <string name="pref_dynamic_colors_summary">Overlay basierend auf den Farben deines Android-Designs anwenden</string>
+    <string name="pref_dynamic_colors_summary">Design basierend auf den Systemfarben anpassen</string>
     <string name="pref_view_mode_title">Darstellungsstil</string>
     <string name="pref_lang_title">Sprache</string>
     <string name="pref_show_icons_title">Symbole anzeigen</string>
