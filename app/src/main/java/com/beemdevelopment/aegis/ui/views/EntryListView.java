@@ -19,6 +19,9 @@ import androidx.annotation.AttrRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StyleRes;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.ItemTouchHelper;
@@ -147,6 +150,23 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
             public long getMillisTillNextRefresh() {
                 return TotpInfo.getMillisTillNextRotation(_adapter.getMostFrequentPeriod());
             }
+        });
+
+        final int rvInitialPaddingLeft = _recyclerView.getPaddingLeft();
+        final int rvInitialPaddingTop = _recyclerView.getPaddingTop();
+        final int rvInitialPaddingRight = _recyclerView.getPaddingRight();
+        final int rvInitialPaddingBottom = _recyclerView.getPaddingBottom();
+
+        ViewCompat.setOnApplyWindowInsetsListener(_recyclerView, (targetView, windowInsets) -> {
+            Insets insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars() | WindowInsetsCompat.Type.displayCutout());
+            // left and right padding seems to be handled by fitsSystemWindows="true" on the CoordinatorLayout in activity_main.xml
+            targetView.setPadding(
+                    rvInitialPaddingLeft,
+                    rvInitialPaddingTop,
+                    rvInitialPaddingRight,
+                    rvInitialPaddingBottom + insets.bottom
+            );
+            return WindowInsetsCompat.CONSUMED;
         });
 
         _emptyStateView = view.findViewById(R.id.vEmptyList);

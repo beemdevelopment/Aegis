@@ -28,6 +28,7 @@ import com.beemdevelopment.aegis.otp.GoogleAuthInfo;
 import com.beemdevelopment.aegis.otp.GoogleAuthInfoException;
 import com.beemdevelopment.aegis.otp.Transferable;
 import com.beemdevelopment.aegis.ui.dialogs.Dialogs;
+import com.beemdevelopment.aegis.helpers.ViewHelper;
 import com.google.android.material.color.MaterialColors;
 import com.google.android.material.imageview.ShapeableImageView;
 import com.google.zxing.WriterException;
@@ -55,6 +56,7 @@ public class TransferEntriesActivity extends AegisActivity {
         }
         setContentView(R.layout.activity_share_entry);
         setSupportActionBar(findViewById(R.id.toolbar));
+        ViewHelper.setupAppBarInsets(findViewById(R.id.app_bar_layout));
 
         _qrImage = findViewById(R.id.ivQrCode);
         _description = findViewById(R.id.tvDescription);

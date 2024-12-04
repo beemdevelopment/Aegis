@@ -13,6 +13,7 @@ import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.ui.fragments.preferences.AppearancePreferencesFragment;
 import com.beemdevelopment.aegis.ui.fragments.preferences.MainPreferencesFragment;
 import com.beemdevelopment.aegis.ui.fragments.preferences.PreferencesFragment;
+import com.beemdevelopment.aegis.helpers.ViewHelper;
 
 public class PreferencesActivity extends AegisActivity implements
         PreferenceFragmentCompat.OnPreferenceStartFragmentCallback {
@@ -27,6 +28,7 @@ public class PreferencesActivity extends AegisActivity implements
         }
         setContentView(R.layout.activity_preferences);
         setSupportActionBar(findViewById(R.id.toolbar));
+        ViewHelper.setupAppBarInsets(findViewById(R.id.app_bar_layout));
         getSupportFragmentManager()
                 .registerFragmentLifecycleCallbacks(new FragmentResumeListener(), true);
 

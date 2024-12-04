@@ -20,6 +20,7 @@
         android:paddingHorizontal="8dp"
         android:scrollbars="vertical"
         android:scrollbarStyle="outsideOverlay"
+        android:clipToPadding="false"
         android:id="@+id/rvKeyProfiles"
         android:layout_weight="1"/>
 
