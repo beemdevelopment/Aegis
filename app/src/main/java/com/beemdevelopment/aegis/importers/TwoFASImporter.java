@@ -4,9 +4,9 @@ import android.content.Context;
 
 import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.crypto.CryptoUtils;
-import com.beemdevelopment.aegis.encoding.Base32;
 import com.beemdevelopment.aegis.encoding.Base64;
 import com.beemdevelopment.aegis.encoding.EncodingException;
+import com.beemdevelopment.aegis.otp.GoogleAuthInfo;
 import com.beemdevelopment.aegis.otp.HotpInfo;
 import com.beemdevelopment.aegis.otp.OtpInfo;
 import com.beemdevelopment.aegis.otp.OtpInfoException;
@@ -16,6 +16,7 @@ import com.beemdevelopment.aegis.ui.dialogs.Dialogs;
 import com.beemdevelopment.aegis.util.IOUtils;
 import com.beemdevelopment.aegis.util.JsonUtils;
 import com.beemdevelopment.aegis.vault.VaultEntry;
+import com.google.common.base.Strings;
 import com.topjohnwu.superuser.io.SuFile;
 
 import org.json.JSONArray;
@@ -173,9 +174,12 @@ public class TwoFASImporter extends DatabaseImporter {
 
         private static VaultEntry convertEntry(JSONObject obj) throws DatabaseImporterEntryException {
             try {
-                byte[] secret = Base32.decode(obj.getString("secret"));
+                byte[] secret = GoogleAuthInfo.parseSecret(obj.getString("secret"));
                 JSONObject info = obj.getJSONObject("otp");
-                String issuer = info.optString("issuer");
+                String issuer = obj.optString("name");
+                if (Strings.isNullOrEmpty(issuer)) {
+                    issuer = info.optString("issuer");
+                }
                 String name = info.optString("account");
                 int digits = info.optInt("digits", TotpInfo.DEFAULT_DIGITS);
                 String algorithm = info.optString("algorithm", TotpInfo.DEFAULT_ALGORITHM);
