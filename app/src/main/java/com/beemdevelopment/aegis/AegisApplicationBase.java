@@ -9,6 +9,7 @@ import android.content.pm.ShortcutInfo;
 import android.content.pm.ShortcutManager;
 import android.graphics.drawable.Icon;
 import android.os.Build;
+import android.provider.Settings;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
@@ -17,23 +18,14 @@ import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.LifecycleEventObserver;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.ProcessLifecycleOwner;
-import androidx.room.Room;
 
-import com.beemdevelopment.aegis.database.AppDatabase;
-import com.beemdevelopment.aegis.database.AuditLogEntry;
-import com.beemdevelopment.aegis.database.AuditLogRepository;
 import com.beemdevelopment.aegis.receivers.VaultLockReceiver;
 import com.beemdevelopment.aegis.ui.MainActivity;
 import com.beemdevelopment.aegis.util.IOUtils;
 import com.beemdevelopment.aegis.vault.VaultManager;
 import com.topjohnwu.superuser.Shell;
 
-import org.checkerframework.checker.units.qual.A;
-
 import java.util.Collections;
-import java.util.List;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 import dagger.hilt.InstallIn;
 import dagger.hilt.android.EarlyEntryPoint;
@@ -114,9 +106,16 @@ public abstract class AegisApplicationBase extends Application {
     private class AppLifecycleObserver implements LifecycleEventObserver {
         @Override
         public void onStateChanged(@NonNull LifecycleOwner source, @NonNull Lifecycle.Event event) {
-            if (event == Lifecycle.Event.ON_STOP
-                    && _vaultManager.isAutoLockEnabled(Preferences.AUTO_LOCK_ON_MINIMIZE)
-                    && !_vaultManager.isAutoLockBlocked()) {
+            if (event != Lifecycle.Event.ON_STOP ) {
+                return;
+            }
+
+            // Immediately lock if "Don't keep activities" is enabled to work around an issue where
+            // MainActivity is destroyed before the ACTION_SCREEN_OFF intent is received
+            boolean lockOnMinimize = _vaultManager.isAutoLockEnabled(Preferences.AUTO_LOCK_ON_MINIMIZE)
+                    || Settings.Global.getInt(getContentResolver(), Settings.Global.ALWAYS_FINISH_ACTIVITIES, 0) != 0;
+
+            if (lockOnMinimize && !_vaultManager.isAutoLockBlocked()) {
                 _vaultManager.lock(false);
             }
         }
