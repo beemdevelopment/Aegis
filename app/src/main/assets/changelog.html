@@ -31,6 +31,13 @@
     </head>
     <body>
         <div></div>
+        <h3>Version 3.3.3</h3>
+        <h4>Fixes</h4>
+        <ul>
+            <li>Some users ran into out of memory conditions due to large icons in their vault file. We've introduced a temporary measure that should help in most cases, but we'll follow up with a more comprehensive fix soon.</li>
+            <li>Window insets were not always applied correctly, causing parts of the UI to appear off-screen</li>
+            <li>The 2FAS importer did not tolerate spaces for secrets and was not always able to extract the issuer</li>
+        </ul>
         <h3>Version 3.3.2</h3>
         <h4>New</h4>
         <ul>
