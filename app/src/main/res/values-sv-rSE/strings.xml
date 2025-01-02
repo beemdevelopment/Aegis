@@ -64,7 +64,14 @@
     <string name="pref_backups_reminder_summary">Visa en påminnelse om att säkerhetskopiera ditt valv ifall du inte har säkerhetskopierat dina senaste ändringar.</string>
     <string name="pref_backups_reminder_dialog_title">Inaktivera påminnelse om säkerhetskopiering</string>
     <string name="pref_backups_reminder_dialog_summary">Inaktivering av denna påminnelse innebär att Aegis inte kommer att meddela dig om du har ändringar som ännu inte har säkerhetskopierats. Detta utsätter dig för risken att förlora åtkomst till dina polletter. Är du säker på att du vill inaktivera påminnelsen?</string>
+    <string name="pref_backups_versioning_strategy_title">Strategi för säkerhetskopiering</string>
+    <string name="pref_backups_versioning_strategy_keep_x_versions">Behåll ett antal versioner</string>
+    <string name="pref_backups_versioning_strategy_single_backup">Enstaka säkerhetskopia</string>
+    <string name="pref_backups_versioning_strategy_single_backup_warning">Den valda strategin för säkerhetskopiering är inte tillförlitlig och rekommenderas inte. Ett enda säkerhetskopieringsfel kan leda till att du förlorar din enda säkerhetskopia.</string>
+    <string name="pref_backups_versioning_strategy_dialog_title">Välj en strategi för säkerhetskopiering</string>
+    <string name="pref_backups_location_title">Plats för säkerhetskopior</string>
     <string name="pref_backups_location_summary">Säkerhetskopior kommer att lagras i</string>
+    <string name="pref_backup_location_summary">Säkerhetskopia kommer att lagras i</string>
     <string name="pref_backups_trigger_title">Skapa säkerhetskopia</string>
     <string name="pref_backups_trigger_summary">Skapa en säkerhetskopia manuellt</string>
     <string name="pref_backups_versions_title">Antal versioner att behålla</string>
@@ -499,7 +506,10 @@
     <string name="importer_help_battle_net_authenticator">Tillhandahåll en kopia av <b>/data/data/com.blizzard.messenger/shared_prefs/com.blizzard.messenger.authenticator_preferences.xml</b>, som finns i den interna lagringskatalogen för Battle.net Authenticator.</string>
     <string name="importer_help_duo">Tillhandahåll en kopia av <b>/data/data/com.duosecurity.duomobile/files/duokit/accounts.json</b>, som finns i den interna lagringskatalogen för DUO.</string>
     <string name="importer_help_ente_auth">Tillhandahåll en exportfil från Ente Auth. För närvarande stöds endast okrypterade filer.</string>
+    <string name="importer_help_freeotp">FreeOTP 2: Tillhandahåll en säkerhetskopiefil.\nFreeOTP 1.x: Tillhandahåll en kopia av <b>/data/data/org.fedorahosted.freeotp/shared_prefs/tokens.xml</b>, som finns i den interna lagringskatalogen för FreeOTP.</string>
     <string name="importer_help_freeotp_plus">Tillhandahåll en exportfil från FreeOTP+.</string>
+    <string name="importer_warning_title_freeotp2">FreeOTP 2-kompatibilitet</string>
+    <string name="importer_warning_message_freeotp2">Det finns ett antal problem i FreeOTP 2 som kan resultera i korrupta säkerhetskopior. Aegis kommer att försöka att rädda så många poster som möjligt, men det är möjligt att vissa eller till och med alla av dem inte kan importeras.</string>
     <string name="importer_help_google_authenticator"><b>Endast databasfiler från Google Authenticator v5.10 och tidigare stöds.</b>\n\nTillhandahåll en kopia av <b>/data/data/com.google.android.apps.authenticator2/databases/databases</b>, som finns i den interna lagringskatalogen för Google Authenticator.</string>
     <string name="importer_help_microsoft_authenticator">Tillhandahåll en kopia av <b>/data/data/com.azure.authenticator/databases/PhoneFactor</b>, som finns i den interna lagringskatalogen för Microsoft Authenticator.</string>
     <string name="importer_help_plain_text">Tillhandahåll en klartextfil med en Google Authenticator-URI per rad.</string>

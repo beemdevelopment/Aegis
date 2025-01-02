@@ -29,6 +29,7 @@
     <string name="pref_section_security_summary">Configura la crittografia, lo sblocco biometrico, il blocco automatico e altre impostazioni di sicurezza.</string>
     <string name="pref_section_import_export_title">Importa / Esporta</string>
     <string name="pref_section_import_export_summary">Importa i backup di Aegis o di altre applicazioni di autenticazione. Crea esportazioni manuali della tua cassaforte di Aegis.</string>
+    <string name="pref_section_audit_log_summary">Trova un elenco di tutti gli eventi importanti segnalati che sono avvenuti nell\'app.</string>
     <string name="pref_section_backups_title">Backup</string>
     <string name="pref_section_backups_summary">Imposta i backup automatici in una posizione a tua scelta o abilita la partecipazione al sistema di backup cloud di Android.</string>
     <string name="pref_section_icon_packs">Pacchetti di icone</string>
@@ -43,6 +44,11 @@
     <string name="pref_code_group_size_title">Raggruppamento delle cifre dei codici</string>
     <string name="pref_code_group_size_summary">Seleziona il numero di cifre per cui raggruppare i codici</string>
     <string name="pref_account_name_position_title">Mostra il nome dell\'account</string>
+    <string name="pref_show_next_code_title">Mostra il codice successivo</string>
+    <string name="pref_show_next_code_summary">Genera e mostra il codice successivo in anticipo</string>
+    <string name="pref_expiration_state_title">Mostra quando qualche codice sta per scadere</string>
+    <string name="pref_expiration_state_summary">Cambia il colore e fa\' lampeggiare i codici che stanno per scadere</string>
+    <string name="pref_expiration_state_fallback">Cambia il colore dei codici quando stanno per scadere</string>
     <string name="pref_shared_issuer_account_name_title">Mostra il nome dell\'account solo se necessario</string>
     <string name="pref_shared_issuer_account_name_summary">Mostra i nomi degli account quando condividono lo stesso servizio. I nomi degli altri account verranno nascosti.</string>
     <string name="pref_import_file_title">Importa da un file</string>
@@ -56,7 +62,11 @@
     <string name="pref_backups_reminder_summary">Mostra un promemoria per effettuare il backup della cassaforte nel caso in cui non sia stato fatto dopo le ultime modifiche.</string>
     <string name="pref_backups_reminder_dialog_title">Disabilita i promemoria di backup</string>
     <string name="pref_backups_reminder_dialog_summary">Se disabiliti i promemoria, Aegis non ti avviserà delle eventuali modifiche di cui non hai ancora effettuato il backup. Ciò comporta il rischio di perdere l\'accesso ai tuoi token. Sei sicuro di voler disabilitare i promemoria?</string>
+    <string name="pref_backups_versioning_strategy_title">Strategia di backup</string>
+    <string name="pref_backups_versioning_strategy_single_backup">Backup singolo</string>
+    <string name="pref_backups_versioning_strategy_dialog_title">Seleziona una strategia di backup</string>
     <string name="pref_backups_location_summary">I backup saranno salvati in</string>
+    <string name="pref_backup_location_summary">I backup saranno salvati in</string>
     <string name="pref_backups_trigger_title">Effettua un backup</string>
     <string name="pref_backups_trigger_summary">Effettua un backup manualmente</string>
     <string name="pref_backups_versions_title">Numero di versioni da salvare</string>

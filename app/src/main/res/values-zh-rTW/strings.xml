@@ -57,10 +57,14 @@
     <string name="pref_backups_reminder_title">備份提醒</string>
     <string name="pref_backups_reminder_summary">提示您備份保險箱以避免最後的變更狀態未被加入備份。</string>
     <string name="pref_backups_reminder_dialog_title">關閉備份提醒</string>
+    <string name="pref_backups_versioning_strategy_title">備份策略</string>
+    <string name="pref_backups_versioning_strategy_dialog_title">選擇備份策略</string>
+    <string name="pref_backups_location_title">備份位置</string>
     <string name="pref_backups_location_summary">備份將儲存在</string>
     <string name="pref_backups_trigger_title">觸發備份</string>
     <string name="pref_backups_trigger_summary">手動觸發備份</string>
     <string name="pref_backups_versions_title">保留的版本數</string>
+    <string name="pref_backups_versions_infinite">\u221E</string>
     <plurals name="pref_backups_versions_summary">
         <item quantity="other">保留 %1$d 個備份</item>
     </plurals>
@@ -115,6 +119,7 @@
     <string name="event_description_entry_shared">已分享一筆資料</string>
     <string name="event_title_vault_unlock_failed_password">密碼庫解鎖失敗（密碼）</string>
     <string name="event_title_vault_unlock_failed_biometrics">密碼庫解鎖失敗（生物特徵辨識）</string>
+    <string name="event_unknown">未知的事件類型</string>
     <string name="audit_log_entry_deleted">（已刪除）</string>
     <string name="today_at_time">今天 %1$s</string>
     <string name="day_of_week_at_time">%1$s 的 %2$s</string>
