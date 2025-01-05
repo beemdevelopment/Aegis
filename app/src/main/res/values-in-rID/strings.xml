@@ -484,7 +484,6 @@
     <string name="importer_help_2fas">Sediakan sebuah berkas cadangan Autetikator 2FAS.</string>
     <string name="importer_help_aegis">Siapkan berkas ekspor/cadangan Aegis.</string>
     <string name="importer_help_authenticator_plus">Siapkan berkas ekspor Authenticator Plus yang didapat melalui<b>Pengaturan -&gt; Pemulihan &amp; Cadangan -&gt; Ekspor sebagai Teks dan HTML</b>.</string>
-    <string name="importer_help_authenticator_pro">Sediakan file ekspor Authenticator Pro yang diperoleh melalui <b>Pengaturan -&gt; Cadangkan -&gt; Cadangkan ke file terenkripsi (disarankan)</b>.</string>
     <string name="importer_help_authy">Siapkan salinan
 <b>/data/data/com.authy.authy/shared_prefs/com.authy.storage.tokens.authenticator.xml</b>, yang terletak di direktori penyimpanan internal Authy.</string>
     <string name="importer_help_andotp">Siapkan berkas ekspor/cadangan andOTP.</string>

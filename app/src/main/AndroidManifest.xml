@@ -150,7 +150,7 @@
     </application>
 
     <queries>
-        <package android:name="me.jmh.authenticatorpro" />
+        <package android:name="com.stratumauth.app" />
         <package android:name="com.authy.authy" />
         <package android:name="org.fedorahosted.freeotp" />
         <package android:name="org.liberty.android.freeotpplus" />

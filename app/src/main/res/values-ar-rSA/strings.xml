@@ -515,7 +515,6 @@
     <string name="importer_help_2fas">توفير مِلَفّ النسخ الاحتياطي 2FAS Authenticator.</string>
     <string name="importer_help_aegis">توفير مِلَفّ Aegis للتصدير / النسخ الاحتياطي.</string>
     <string name="importer_help_authenticator_plus">توفير مِلَفّ تصدير Authenticator Plus الذي تم الحصول عليه من خلال <b>الإعدادات -&gt; النسخ الاحتياطي &amp; استعادة -&gt; تصدير كنص و HTML</b>.</string>
-    <string name="importer_help_authenticator_pro">توفير مِلَفّ تصدير Authenticator Pro الذي تم الحصول عليه من خلال &lt;b&gt;الإعدادات -&gt; النسخ الاحتياطي -&gt; النسخ الاحتياطي إلى مِلَفّ مشفر (مستحسن).</string>
     <string name="importer_help_authy">توفير نسخة من <b> /data/data/com.authy.authy/shared_prefs/com.authy.storage.tokens.authenticator.xml</b>، الموجود في دليل التخزين الداخلي لـ Authy.</string>
     <string name="importer_help_andotp">توفير مِلَفّ تصدير / نسخ احتياطي andOTP.</string>
     <string name="importer_help_bitwarden">توفير مِلَفّ تصدير / نسخ احتياطي لـ Bitwarden. الملفات المشفرة غير مدعومة.</string>

@@ -487,7 +487,6 @@
     <string name="importer_help_2fas">Cung cấp một tập tin sao lưu 2FAS Authenticator.</string>
     <string name="importer_help_aegis">Cung cấp một file xuất/sao lưu Aegis.</string>
     <string name="importer_help_authenticator_plus">Cung cấp một tập tin xuất Authenticator Plus được nhận qua <b>Cài đặt -&gt; Sao lưu &amp; Khôi phục -&gt; Xuất dưới dạng Văn bản và HTML</b>.</string>
-    <string name="importer_help_authenticator_pro">Cung cấp tập tin xuất Authenticator Pro có được thông qua <b>Cài đặt -&gt; Sao lưu -&gt; Sao lưu tập tin mã hóa (đề xuất)</b>.</string>
     <string name="importer_help_authy">Cung cấp một bản sao của <b>/data/data/com.authy.authy/shared_prefs/com.authy.storage.tokens.authenticator.xml</b>, nằm trong thư mục bộ nhớ trong của Authy.</string>
     <string name="importer_help_andotp">Cung cấp một tập tin xuất/sao lưu andOTP.</string>
     <string name="importer_help_bitwarden">Hãy chọn tập tin xuất/sao lưu của Bitwarden. Tập tin mã hoá không được hỗ trợ.</string>

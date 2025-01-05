@@ -498,7 +498,6 @@
     <string name="importer_help_2fas">Παρέχετε ένα αντίγραφο ασφαλείας 2FAS Authenticator.</string>
     <string name="importer_help_aegis">Παρέχετε ένα αρχείο εξαγωγής/αντιγράφων ασφαλείας Aegis.</string>
     <string name="importer_help_authenticator_plus">Παρέχετε ένα αρχείο εξαγωγής Authenticator Plus που αποκτήθηκε μέσω των <b> Ρυθμίσεων - &gt; Αντιγράφων ασφαλείας &amp; Επαναφορά - &gt; Εξαγωγή ως Κείμενο και HTML </b>.</string>
-    <string name="importer_help_authenticator_pro">Παρέχεται ένα αρχείο εξαγωγής Authenticator Pro που λαμβάνεται μέσω <b>Ρυθμίσεις -&gt; Δημιουργία αντιγράφων ασφαλείας -&gt; Δημιουργία σε κρυπτογραφημένο αρχείο (συνιστάται)</b>.</string>
     <string name="importer_help_authy">Παρέχετε ένα αντίγραφο του <b>/data/data/com.authy.authy/shared_prefs/com.authy.storage.tokens.authenticator.xml</b>, που βρίσκεται στον κατάλογο εσωτερικής αποθήκευσης του Authy.</string>
     <string name="importer_help_andotp">Παρέχετε ένα αρχείο εξαγωγής/αντιγράφου ασφαλείας andOTP.</string>
     <string name="importer_help_bitwarden">Παρέχετε ένα αρχείο εξαγωγής/αντιγράφων ασφαλείας Bitwarden. Τα κρυπτογραφημένα αρχεία δεν υποστηρίζονται.</string>

@@ -497,7 +497,6 @@
     <string name="importer_help_2fas">Subministra un fitxer exportat del 2FAS Authenticator.</string>
     <string name="importer_help_aegis">Subministra un fitxer exportat del Aegis.</string>
     <string name="importer_help_authenticator_plus">Subministra un fitxer exportat del Authenticator Plus, obtingut amb <b>Settings -&gt; Backup &amp; Restore -&gt; Export as Text and HTML</b>.</string>
-    <string name="importer_help_authenticator_pro">Proveeix un fitxer exportat d\'Authenticat Pro, aconseguit a <b>Settings &gt; Back up &gt; Back up to encrypted file (recommended)</b>.</string>
     <string name="importer_help_authy">Subministra una còpia de <b>/data/data/com.authy.authy/shared_prefs/com.authy.storage.tokens.authenticator.xml</b>, que està a l\'emmagatzematge intern del teu dispositiu, al directori del Authy.</string>
     <string name="importer_help_andotp">Subministra un fitxer exportat del andOTP.</string>
     <string name="importer_help_bitwarden">Subministreu un fitxer d\'exportació/còpia de seguretat de Bitwarden. Els fitxers xifrats no són compatibles.</string>

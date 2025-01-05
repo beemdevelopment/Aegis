@@ -525,7 +525,6 @@
     <string name="importer_help_2fas">Dodejte záložní soubor 2FAS Authenticator.</string>
     <string name="importer_help_aegis">Dodejte soubor exportu/zálohy Aegis.</string>
     <string name="importer_help_authenticator_plus">Dodejte exportovaný soubor Authenticator Plus získaný přes <b>Nastavení -&gt; Záloha a obnovení -&gt; Exportovat jako text a HTML</b>.</string>
-    <string name="importer_help_authenticator_pro">Dodejte exportovaný soubor Authenticator Pro získaný přes <b>Nastavení -&gt; Záloha -&gt; Exportovat do šifrovaného souboru (doporučeno)</b>.</string>
     <string name="importer_help_authy">Dodejte kopii <b>/data/data/com.authy.authy/shared_prefs/com.authy.storage.tokens.authenticator.xml</b>, která se nachází v interním úložišti Authy.</string>
     <string name="importer_help_andotp">Dodejte soubor exportu/zálohy andOTP.</string>
     <string name="importer_help_bitwarden">Vyberte soubor exportu/zálohy Bitwardenu. Šifrované soubory nejsou podporovány.</string>

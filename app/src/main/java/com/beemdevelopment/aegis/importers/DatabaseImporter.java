@@ -34,7 +34,6 @@ public abstract class DatabaseImporter {
         _importers.add(new Definition("Aegis", AegisImporter.class, R.string.importer_help_aegis, false));
         _importers.add(new Definition("andOTP", AndOtpImporter.class, R.string.importer_help_andotp, false));
         _importers.add(new Definition("Authenticator Plus", AuthenticatorPlusImporter.class, R.string.importer_help_authenticator_plus, false));
-        _importers.add(new Definition("Authenticator Pro", AuthenticatorProImporter.class, R.string.importer_help_authenticator_pro, true));
         _importers.add(new Definition("Authy", AuthyImporter.class, R.string.importer_help_authy, true));
         _importers.add(new Definition("Battle.net Authenticator", BattleNetImporter.class, R.string.importer_help_battle_net_authenticator, true));
         _importers.add(new Definition("Bitwarden", BitwardenImporter.class, R.string.importer_help_bitwarden, false));
@@ -46,6 +45,7 @@ public abstract class DatabaseImporter {
         _importers.add(new Definition("Microsoft Authenticator", MicrosoftAuthImporter.class, R.string.importer_help_microsoft_authenticator, true));
         _importers.add(new Definition("Plain text", GoogleAuthUriImporter.class, R.string.importer_help_plain_text, false));
         _importers.add(new Definition("Steam", SteamImporter.class, R.string.importer_help_steam, true));
+        _importers.add(new Definition("Stratum (Authenticator Pro)", StratumImporter.class, R.string.importer_help_stratum, true));
         _importers.add(new Definition("TOTP Authenticator", TotpAuthenticatorImporter.class, R.string.importer_help_totp_authenticator, true));
         _importers.add(new Definition("WinAuth", WinAuthImporter.class, R.string.importer_help_winauth, false));
     }

@@ -45,11 +45,11 @@ import javax.crypto.NoSuchPaddingException;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.IvParameterSpec;
 
-public class AuthenticatorProImporter extends DatabaseImporter {
+public class StratumImporter extends DatabaseImporter {
     private static final String HEADER = "AUTHENTICATORPRO";
     private static final String HEADER_LEGACY = "AuthenticatorPro";
-    private static final String PKG_NAME = "me.jmh.authenticatorpro";
-    private static final String PKG_DB_PATH = "files/proauth.db3";
+    private static final String PKG_NAME = "com.stratumauth.app";
+    private static final String PKG_DB_PATH = "databases/authenticator.db3";
 
     private enum Algorithm {
         SHA1,
@@ -57,7 +57,7 @@ public class AuthenticatorProImporter extends DatabaseImporter {
         SHA512
     }
 
-    public AuthenticatorProImporter(Context context) {
+    public StratumImporter(Context context) {
         super(context);
     }
 
@@ -169,7 +169,7 @@ public class AuthenticatorProImporter extends DatabaseImporter {
                 Argon2Task.Params params = getKeyDerivationParams(password);
                 Argon2Task task = new Argon2Task(context, key -> {
                     try {
-                        AuthenticatorProImporter.JsonState state = decrypt(key);
+                        StratumImporter.JsonState state = decrypt(key);
                         listener.onStateDecrypted(state);
                     } catch (DatabaseImporterException e) {
                         listener.onError(e);
@@ -244,7 +244,7 @@ public class AuthenticatorProImporter extends DatabaseImporter {
                 PBKDFTask.Params params = getKeyDerivationParams(password);
                 PBKDFTask task = new PBKDFTask(context, key -> {
                     try {
-                        AuthenticatorProImporter.JsonState state = decrypt(key);
+                        StratumImporter.JsonState state = decrypt(key);
                         listener.onStateDecrypted(state);
                     } catch (DatabaseImporterException e) {
                         listener.onError(e);

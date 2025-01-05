@@ -388,7 +388,6 @@
     <string name="importer_help_2fas">ספק קובץ גיבוי של 2FAS Authenticator.</string>
     <string name="importer_help_aegis">ספק קובץ ייצוא/גיבוי של Aegis.</string>
     <string name="importer_help_authenticator_plus">ספק קובץ ייצוא של Authenticator Plus שהושג דרך <b>הגדרות -&gt; גיבוי &amp; שחזור -&gt; ייצוא כטקסט ו-HTML</b>.</string>
-    <string name="importer_help_authenticator_pro">ספק קובץ ייצוא של Authenticator Pro שהושג דרך <b>הגדרות -&gt; גיבוי -&gt; גבה לקובץ מוצפן (מומלץ)</b>.</string>
     <string name="importer_help_authy">ספק עותק של <b>/data/data/com.authy.authy/shared_prefs/com.authy.storage.tokens.authenticator.xml</b>, הממוקם בספריית האחסון הפנימית של Authy.</string>
     <string name="importer_help_andotp">ספק קובץ יצוא/גיבוי andOTP.</string>
     <string name="importer_help_bitwarden">ספק קובץ יצוא/גיבוי של Bitwarden. קבצים מוצפנים אינם נתמכים.</string>

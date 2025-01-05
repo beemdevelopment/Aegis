@@ -489,7 +489,6 @@
     <string name="importer_help_2fas">Aukeratu 2FAS Authenticator segurtasun-kopia fitxategia.</string>
     <string name="importer_help_aegis">Aegisen esportazio/segurtasun-kopia fitxategia aukeratu.</string>
     <string name="importer_help_authenticator_plus">Authenticator Plus esportazio fitxategia aukeratu. Lortzeko modua: <b>Settings -&gt; Backup &amp; Restore -&gt; Export as Text and HTML</b>.</string>
-    <string name="importer_help_authenticator_pro">Aukeratu Authenticator Proren esportazio fitxategia <b>Settings -&gt; Back up -&gt; Back up to encrypted file (recommended)</b> aukeratik lortu bezala.</string>
     <string name="importer_help_authy"><b>/data/data/com.authy.authy/shared_prefs/com.authy.storage.tokens.authenticator.xml</b> fitxategia aukeratu.</string>
     <string name="importer_help_andotp">andOTPren esportazio/segurtasun-kopia fitxategia aukeratu.</string>
     <string name="importer_help_bitwarden">Kargatu Bitwardenen esportazio/segurtasun-kopia fitxategi bat. Ezin dituzu zifratutako fitxategiak kargatu.</string>
