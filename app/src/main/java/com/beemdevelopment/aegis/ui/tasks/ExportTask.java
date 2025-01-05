@@ -34,6 +34,8 @@ public class ExportTask extends ProgressDialogTask<ExportTask.Params, Exception>
             return null;
         } catch (IOException e) {
             return e;
+        } finally {
+            boolean ignored = params.getFile().delete();
         }
     }
 
