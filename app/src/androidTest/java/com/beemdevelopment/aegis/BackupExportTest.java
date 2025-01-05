@@ -61,13 +61,20 @@ import org.junit.Test;
 import org.junit.rules.RuleChain;
 import org.junit.rules.TestRule;
 import org.junit.runner.RunWith;
+import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserException;
+import org.xmlpull.v1.XmlPullParserFactory;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
+import java.nio.charset.StandardCharsets;
 import java.util.Collection;
 import java.util.List;
+import java.util.Locale;
 
 import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
@@ -183,7 +190,9 @@ public class BackupExportTest extends AegisTest {
         onView(withText(R.string.export_format_html)).inRoot(RootMatchers.isPlatformPopup()).perform(click());
         onView(withId(android.R.id.button1)).perform(click());
         onView(withId(R.id.checkbox_accept)).perform(click());
-        doExport();
+        File file = doExport();
+
+        checkHtmlExport(file);
     }
 
     @Test
@@ -196,7 +205,9 @@ public class BackupExportTest extends AegisTest {
         onView(withText(R.string.export_format_html)).inRoot(RootMatchers.isPlatformPopup()).perform(click());
         onView(withId(android.R.id.button1)).perform(click());
         onView(withId(R.id.checkbox_accept)).perform(click());
-        doExport();
+        File file = doExport();
+
+        checkHtmlExport(file);
     }
 
     @Test
@@ -378,6 +389,26 @@ public class BackupExportTest extends AegisTest {
         }
 
         checkReadEntries(entries);
+    }
+
+    private void checkHtmlExport(File file) {
+        try (InputStream inStream = new FileInputStream(file)) {
+            Reader inReader = new InputStreamReader(inStream, StandardCharsets.UTF_8);
+            XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
+            XmlPullParser parser = factory.newPullParser();
+            parser.setInput(inReader);
+            while (parser.getEventType() != XmlPullParser.START_TAG) {
+                parser.next();
+            }
+            if (!parser.getName().toLowerCase(Locale.ROOT).equals("html")) {
+                throw new RuntimeException("not an html document!");
+            }
+            while (parser.getEventType() != XmlPullParser.END_DOCUMENT) {
+                parser.next();
+            }
+        } catch (IOException | XmlPullParserException e) {
+            throw new RuntimeException("Unable to read html export file", e);
+        }
     }
 
     private void checkReadEntries(Collection<VaultEntry> entries) {
