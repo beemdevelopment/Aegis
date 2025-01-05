@@ -35,12 +35,14 @@ import com.beemdevelopment.aegis.encoding.Base32;
 import com.beemdevelopment.aegis.encoding.EncodingException;
 import com.beemdevelopment.aegis.encoding.Hex;
 import com.beemdevelopment.aegis.helpers.AnimationsHelper;
+import com.beemdevelopment.aegis.helpers.BitmapHelper;
 import com.beemdevelopment.aegis.helpers.DropdownHelper;
 import com.beemdevelopment.aegis.helpers.EditTextHelper;
 import com.beemdevelopment.aegis.helpers.SafHelper;
 import com.beemdevelopment.aegis.helpers.SimpleAnimationEndListener;
 import com.beemdevelopment.aegis.helpers.SimpleTextWatcher;
 import com.beemdevelopment.aegis.helpers.TextDrawableHelper;
+import com.beemdevelopment.aegis.helpers.ViewHelper;
 import com.beemdevelopment.aegis.icons.IconPack;
 import com.beemdevelopment.aegis.icons.IconType;
 import com.beemdevelopment.aegis.otp.GoogleAuthInfo;
@@ -59,7 +61,6 @@ import com.beemdevelopment.aegis.ui.tasks.ImportFileTask;
 import com.beemdevelopment.aegis.ui.views.IconAdapter;
 import com.beemdevelopment.aegis.util.Cloner;
 import com.beemdevelopment.aegis.util.IOUtils;
-import com.beemdevelopment.aegis.helpers.ViewHelper;
 import com.beemdevelopment.aegis.vault.VaultEntry;
 import com.beemdevelopment.aegis.vault.VaultEntryIcon;
 import com.beemdevelopment.aegis.vault.VaultGroup;
@@ -76,7 +77,6 @@ import com.google.android.material.imageview.ShapeableImageView;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -103,6 +103,7 @@ public class EditEntryActivity extends AegisActivity {
     // keep track of icon changes separately as the generated jpeg's are not deterministic
     private boolean _hasChangedIcon = false;
     private IconPack.Icon _selectedIcon;
+    private String _pickedMimeType;
     private ShapeableImageView _iconView;
     private ImageView _saveImageButton;
 
@@ -140,8 +141,8 @@ public class EditEntryActivity extends AegisActivity {
                 if (activityResult.getResultCode() != RESULT_OK || data == null || data.getData() == null) {
                     return;
                 }
-                String fileType = SafHelper.getMimeType(this, data.getData());
-                if (fileType != null && fileType.equals(IconType.SVG.toMimeType())) {
+                _pickedMimeType = SafHelper.getMimeType(this, data.getData());
+                if (_pickedMimeType != null && _pickedMimeType.equals(IconType.SVG.toMimeType())) {
                     ImportFileTask.Params params = new ImportFileTask.Params(data.getData(), "icon", null);
                     ImportFileTask task = new ImportFileTask(this, result -> {
                         if (result.getError() == null) {
@@ -804,11 +805,12 @@ public class EditEntryActivity extends AegisActivity {
                 VaultEntryIcon icon;
                 if (_selectedIcon == null) {
                     Bitmap bitmap = ((BitmapDrawable) _iconView.getDrawable()).getBitmap();
-                    ByteArrayOutputStream stream = new ByteArrayOutputStream();
-                    // the quality parameter is ignored for PNG
-                    bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
-                    byte[] data = stream.toByteArray();
-                    icon = new VaultEntryIcon(data, IconType.PNG);
+                    IconType iconType = _pickedMimeType == null
+                            ? IconType.INVALID : IconType.fromMimeType(_pickedMimeType);
+                    if (iconType == IconType.INVALID) {
+                        iconType = bitmap.hasAlpha() ? IconType.PNG : IconType.JPEG;
+                    }
+                    icon = BitmapHelper.toVaultEntryIcon(bitmap, iconType);
                 } else {
                     byte[] iconBytes;
                     try (FileInputStream inStream = new FileInputStream(_selectedIcon.getFile())){

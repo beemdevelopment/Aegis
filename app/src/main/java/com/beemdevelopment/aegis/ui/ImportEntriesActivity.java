@@ -15,17 +15,21 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.beemdevelopment.aegis.R;
+import com.beemdevelopment.aegis.helpers.BitmapHelper;
 import com.beemdevelopment.aegis.helpers.FabScrollHelper;
+import com.beemdevelopment.aegis.helpers.ViewHelper;
+import com.beemdevelopment.aegis.icons.IconType;
 import com.beemdevelopment.aegis.importers.DatabaseImporter;
 import com.beemdevelopment.aegis.importers.DatabaseImporterEntryException;
 import com.beemdevelopment.aegis.importers.DatabaseImporterException;
 import com.beemdevelopment.aegis.ui.dialogs.Dialogs;
 import com.beemdevelopment.aegis.ui.models.ImportEntry;
+import com.beemdevelopment.aegis.ui.tasks.IconOptimizationTask;
 import com.beemdevelopment.aegis.ui.tasks.RootShellTask;
 import com.beemdevelopment.aegis.ui.views.ImportEntriesAdapter;
 import com.beemdevelopment.aegis.util.UUIDMap;
-import com.beemdevelopment.aegis.helpers.ViewHelper;
 import com.beemdevelopment.aegis.vault.VaultEntry;
+import com.beemdevelopment.aegis.vault.VaultEntryIcon;
 import com.beemdevelopment.aegis.vault.VaultGroup;
 import com.beemdevelopment.aegis.vault.VaultRepository;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
@@ -40,8 +44,10 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 public class ImportEntriesActivity extends AegisActivity {
     private View _view;
@@ -172,7 +178,7 @@ public class ImportEntriesActivity extends AegisActivity {
                 state.decrypt(this, new DatabaseImporter.DecryptListener() {
                     @Override
                     public void onStateDecrypted(DatabaseImporter.State state) {
-                        importDatabase(state);
+                        processDecryptedImporterState(state);
                     }
 
                     @Override
@@ -187,7 +193,7 @@ public class ImportEntriesActivity extends AegisActivity {
                     }
                 });
             } else {
-                importDatabase(state);
+                processDecryptedImporterState(state);
             }
         } catch (DatabaseImporterException e) {
             e.printStackTrace();
@@ -195,8 +201,7 @@ public class ImportEntriesActivity extends AegisActivity {
         }
     }
 
-    private void importDatabase(DatabaseImporter.State state) {
-        List<ImportEntry> importEntries = new ArrayList<>();
+    private void processDecryptedImporterState(DatabaseImporter.State state) {
         DatabaseImporter.Result result;
         try {
             result = state.convert();
@@ -206,8 +211,29 @@ public class ImportEntriesActivity extends AegisActivity {
             return;
         }
 
-        UUIDMap<VaultEntry> entries = result.getEntries();
-        for (VaultEntry entry : entries.getValues()) {
+        Map<UUID, VaultEntryIcon> icons = result.getEntries().getValues().stream()
+                .filter(e -> e.getIcon() != null
+                        && !e.getIcon().getType().equals(IconType.SVG)
+                        && !BitmapHelper.isVaultEntryIconOptimized(e.getIcon()))
+                .collect(Collectors.toMap(VaultEntry::getUUID, VaultEntry::getIcon));
+        if (!icons.isEmpty()) {
+            IconOptimizationTask task = new IconOptimizationTask(this, newIcons -> {
+                for (Map.Entry<UUID, VaultEntryIcon> mapEntry : newIcons.entrySet()) {
+                    VaultEntry entry = result.getEntries().getByUUID(mapEntry.getKey());
+                    entry.setIcon(mapEntry.getValue());
+                }
+
+                processImporterResult(result);
+            });
+            task.execute(getLifecycle(), icons);
+        } else {
+            processImporterResult(result);
+        }
+    }
+
+    private void processImporterResult(DatabaseImporter.Result result) {
+        List<ImportEntry> importEntries = new ArrayList<>();
+        for (VaultEntry entry : result.getEntries().getValues()) {
             ImportEntry importEntry = new ImportEntry(entry);
             _adapter.addEntry(importEntry);
             importEntries.add(importEntry);

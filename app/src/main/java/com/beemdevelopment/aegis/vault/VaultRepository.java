@@ -333,6 +333,14 @@ public class VaultRepository {
         return _vault.isGroupsMigrationFresh();
     }
 
+    public boolean areIconsOptimized() {
+        return _vault.areIconsOptimized();
+    }
+
+    public void setIconsOptimized(boolean optimized) {
+        _vault.setIconsOptimized(optimized);
+    }
+
     public VaultFileCredentials getCredentials() {
         return _creds == null ? null : _creds.clone();
     }

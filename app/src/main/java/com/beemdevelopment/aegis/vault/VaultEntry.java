@@ -103,8 +103,14 @@ public class VaultEntry extends UUIDMap.Value {
                 entry.setOldGroup(JsonUtils.optString(obj, "group"));
             }
 
-            VaultEntryIcon icon = VaultEntryIcon.fromJson(obj);
-            entry.setIcon(icon);
+            // Silently ignore any errors that occur when trying to parse the icon of an
+            // entry. This allows us to introduce new icon types in the future (e.g. WebP)
+            // without breaking compatibility with older versions of Aegis.
+            try {
+                VaultEntryIcon icon = VaultEntryIcon.fromJson(obj);
+                entry.setIcon(icon);
+            } catch (VaultEntryIconException ignored) {
+            }
 
             return entry;
         } catch (OtpInfoException | JSONException e) {
