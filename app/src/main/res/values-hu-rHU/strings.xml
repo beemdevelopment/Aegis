@@ -499,7 +499,6 @@
     <string name="importer_help_2fas">Adja meg a 2FAS Authenticator egy biztonsági mentési fájlját.</string>
     <string name="importer_help_aegis">Adja meg az Aegis egy exportját vagy biztonsági mentési fájlját.</string>
     <string name="importer_help_authenticator_plus">Adja meg az Authenticator Plus egy exportfájlját, melyet a <b>Beállítások -&gt; Mentés és visszaállítás -&gt; Exportálás szövegként vagy HTML-ként</b> résznél állíthat elő.</string>
-    <string name="importer_help_authenticator_pro">Adja meg az Authenticator Plus egy exportfájlját, melyet a <b>Beállítások -&gt; Biztonsági mentés -&gt; Biztonsági mentés titkosított fájlba (ajánlott)</b> résznél állíthat elő.</string>
     <string name="importer_help_authy">Adja meg a <b>/data/data/com.authy.authy/shared_prefs/com.authy.storage.tokens.authenticator.xml</b> másolatát, mely az Authy belső háttértáron levő mappájában található.</string>
     <string name="importer_help_andotp">Adja meg az andOTP egy exportját vagy biztonsági mentési fájlját.</string>
     <string name="importer_help_bitwarden">Adja meg a Bitwarden egy exportját vagy biztonsági mentési fájlját. A titkosított fájlok nem támogatottak.</string>

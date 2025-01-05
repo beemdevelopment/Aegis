@@ -512,7 +512,6 @@
     <string name="importer_help_2fas">Jāiesniedz 2FAS Authenticator izgūšanas datne.</string>
     <string name="importer_help_aegis">Jāiesniedz Aegis izgūšanas/rezerves kopijas datne.</string>
     <string name="importer_help_authenticator_plus">Jāiesniedz Authenticator Plus izgūšanas datne, kas ir iegūta ar <b>Iestatījumi -&gt; Dublēšana un atjaunošana -&gt; Izgūt kā tekstu un HTML</b>.</string>
-    <string name="importer_help_authenticator_pro">Jāiesniedz Authenticator Pro izgūšanas datne, kas ir iegūstama <b>Iestatījumi -&gt; Rezerves kopijas -&gt; Dublēt šifrētā datnē (ieteicams)</b>.</string>
     <string name="importer_help_authy">Jāiesniedz <b>/data/data/com.authy.authy/shared_prefs/com.authy.storage.tokens.authenticator.xml</b> kopija, kas atrodas iekšējās krātuves Authy mapē.</string>
     <string name="importer_help_andotp">Jāiesniedz andOTP izgūšanas/rezerves kopijas datne.</string>
     <string name="importer_help_bitwarden">Jāiesniedz Bitwarden izgūšanas/rezerves kopijas datne. Šifrētas datnes netiek atbalstītas.</string>

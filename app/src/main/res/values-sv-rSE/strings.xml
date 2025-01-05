@@ -499,7 +499,6 @@
     <string name="importer_help_2fas">Tillhandahåll en säkerhetskopieringsfil från 2FAS Authenticator.</string>
     <string name="importer_help_aegis">Tillhandahåll en export-/säkerhetskopieringsfil från Aegis.</string>
     <string name="importer_help_authenticator_plus">Tillhandahåll en exportfil från Authenticator Plus som har erhållits genom <b>Settings -&gt; Backup &amp; Restore -&gt; Export as Text and HTML</b>.</string>
-    <string name="importer_help_authenticator_pro">Tillhandahåll en exportfil från Authenticator Pro som har erhållits genom <b>Inställningar -&gt; Säkerhetskopiera -&gt; Säkerhetskopiera till krypterad fil (rekommenderas)</b>.</string>
     <string name="importer_help_authy">Tillhandahåll en kopia av <b>/data/data/com.authy.authy/shared_prefs/com.authy.storage.tokens.authenticator.xml</b>, som finns i den interna lagringskatalogen för Authy.</string>
     <string name="importer_help_andotp">Tillhandahåll en export-/säkerhetskopieringsfil från andOTP.</string>
     <string name="importer_help_bitwarden">Tillhandahåll en export-/säkerhetskopieringsfil från Bitwarden. Krypterade filer stöds ej.</string>

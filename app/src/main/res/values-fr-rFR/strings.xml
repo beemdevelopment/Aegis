@@ -499,7 +499,6 @@
     <string name="importer_help_2fas">Fournir une sauvegarde 2FAS Authenticator.</string>
     <string name="importer_help_aegis">Fournir un export/sauvegarde Aegis.</string>
     <string name="importer_help_authenticator_plus">Fournir un export Authenticator Plus obtenu via <b>Paramètres -&gt; Sauvegarde &amp; Restauration -&gt; Exporter en tant que texte et HTML</b>.</string>
-    <string name="importer_help_authenticator_pro">Fournir un export Authenticator Pro obtenu via <b>Paramètres -&gt; Sauvegarde -&gt; Sauvegarder en tant que fichier chiffré (recommandé)</b>.</string>
     <string name="importer_help_authy">Fournir une copie de <b>/data/com.authy.authy/shared_prefs/com.authy.storage.tokens.authenticator.xml</b>, situé dans le répertoire de stockage interne d\'Authy.</string>
     <string name="importer_help_andotp">Fournir un export/sauvegarde andOTP.</string>
     <string name="importer_help_bitwarden">Fournir un export/sauvegarde Bitwarden. Les fichiers chiffrés ne sont pas pris en charge.</string>

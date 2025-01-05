@@ -530,7 +530,6 @@
     <string name="importer_help_2fas">Supply a 2FAS Authenticator backup file.</string>
     <string name="importer_help_aegis">Supply an Aegis export/backup file.</string>
     <string name="importer_help_authenticator_plus">Supply an Authenticator Plus export file obtained through <b>Settings -> Backup &amp; Restore -> Export as Text and HTML</b>.</string>
-    <string name="importer_help_authenticator_pro">Supply an Authenticator Pro export file obtained through <b>Settings -> Back up -> Back up to encrypted file (recommended)</b>.</string>
     <string name="importer_help_authy">Supply a copy of <b>/data/data/com.authy.authy/shared_prefs/com.authy.storage.tokens.authenticator.xml</b>, located in the internal storage directory of Authy.</string>
     <string name="importer_help_andotp">Supply an andOTP export/backup file.</string>
     <string name="importer_help_bitwarden">Supply a Bitwarden export/backup file. Encrypted files are not supported.</string>
@@ -545,6 +544,7 @@
     <string name="importer_help_microsoft_authenticator">Supply a copy of <b>/data/data/com.azure.authenticator/databases/PhoneFactor</b>, located in the internal storage directory of Microsoft Authenticator.</string>
     <string name="importer_help_plain_text">Supply a plain text file with a Google Authenticator URI on each line.</string>
     <string name="importer_help_steam"><b>Steam v3.0 and newer are not supported</b>. Supply a copy of <b>/data/data/com.valvesoftware.android.steam.community/files/Steamguard-*.json</b>, located in the internal storage directory of Steam.</string>
+    <string name="importer_help_stratum">Supply a Stratum export file obtained through <b>Settings -> Back up -> Back up to encrypted file (recommended)</b>.</string>
     <string name="importer_help_totp_authenticator">Supply a TOTP Authenticator export file.</string>
     <string name="importer_help_winauth">Supply a WinAuth export file.</string>
     <string name="import_assign_icons_dialog_title">Assign icons</string>

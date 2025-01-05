@@ -149,32 +149,32 @@ public class DatabaseImporterTest {
     }
 
     @Test
-    public void testImportAuthProEncrypted() throws DatabaseImporterException, IOException, OtpInfoException {
-        List<VaultEntry> entries = importEncrypted(AuthenticatorProImporter.class, "authpro_encrypted.bin", state -> {
+    public void testImportStratumEncrypted() throws DatabaseImporterException, IOException, OtpInfoException {
+        List<VaultEntry> entries = importEncrypted(StratumImporter.class, "stratum_encrypted.bin", state -> {
             char[] password = "test".toCharArray();
-            return ((AuthenticatorProImporter.EncryptedState) state).decrypt(password);
+            return ((StratumImporter.EncryptedState) state).decrypt(password);
         });
         checkImportedEntries(entries);
     }
 
     @Test
-    public void testImportAuthProEncryptedLegacy() throws DatabaseImporterException, IOException, OtpInfoException {
-        List<VaultEntry> entries = importEncrypted(AuthenticatorProImporter.class, "authpro_encrypted_legacy.bin", state -> {
+    public void testImportStratumEncryptedLegacy() throws DatabaseImporterException, IOException, OtpInfoException {
+        List<VaultEntry> entries = importEncrypted(StratumImporter.class, "stratum_encrypted_legacy.bin", state -> {
             char[] password = "test".toCharArray();
-            return ((AuthenticatorProImporter.LegacyEncryptedState) state).decrypt(password);
+            return ((StratumImporter.LegacyEncryptedState) state).decrypt(password);
         });
         checkImportedEntries(entries);
     }
 
     @Test
-    public void testImportAuthProInternal() throws DatabaseImporterException, IOException, OtpInfoException {
-        List<VaultEntry> entries = importPlain(AuthenticatorProImporter.class, "authpro_internal.db", true);
+    public void testImportStratumInternal() throws DatabaseImporterException, IOException, OtpInfoException {
+        List<VaultEntry> entries = importPlain(StratumImporter.class, "stratum_internal.db", true);
         checkImportedEntries(entries);
     }
 
     @Test
-    public void testImportAuthProPlain() throws DatabaseImporterException, IOException, OtpInfoException {
-        List<VaultEntry> entries = importPlain(AuthenticatorProImporter.class, "authpro_plain.json");
+    public void testImportStratumPlain() throws DatabaseImporterException, IOException, OtpInfoException {
+        List<VaultEntry> entries = importPlain(StratumImporter.class, "stratum_plain.json");
         checkImportedEntries(entries);
     }
 

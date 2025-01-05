@@ -499,7 +499,6 @@
     <string name="importer_help_2fas">Proporciona un ficheiro de copia de seguridade de 2FAS Authenticator.</string>
     <string name="importer_help_aegis">Proporciona un ficheiro de copia de seguridade ou de exportación de Aegis.</string>
     <string name="importer_help_authenticator_plus">Proporciona un ficheiro de exportación de Authenticator Plus obtido mediante <b>Axustes -&gt; Copia de seguridade e restauración -&gt; Exportar como texto e HTML</b>.</string>
-    <string name="importer_help_authenticator_pro">Proporciona un ficheiro de exportación de Authenticator Pro, obtido desde <b>Axustes -&gt; Copia de seguridade -&gt; Facer copia de seguridade nun ficheiro cifrado (recomendado)</b>.</string>
     <string name="importer_help_authy">Proporciona unha copia de <b>/data/data/com.authy.authy/shared_prefs/com.authy.storage.tokens.authenticator.xml</b>, localizado no directorio do almacenamento interno de Authy.</string>
     <string name="importer_help_andotp">Proporciona un ficheiro de copia de seguridade ou de exportación de andOTP.</string>
     <string name="importer_help_bitwarden">Proporciona un ficheiro de copia de seguridade ou de exportación de Bitwarden. Non se admiten os ficheiros cifrados.</string>

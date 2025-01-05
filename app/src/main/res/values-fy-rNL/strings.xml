@@ -499,7 +499,6 @@
     <string name="importer_help_2fas">Leverje in 2FAS-autentikator-eksportbestân oan.</string>
     <string name="importer_help_aegis">Leverje in Aegis-eksport-/reservekopybestân oan.</string>
     <string name="importer_help_authenticator_plus">Leverje in Authenticator Plus-eksportbestân oan krigen fia <b>Ynstellingen -&gt; Reservekopy &amp; Werstelle -&gt; Eksportearje as Tekst en HTML</b>.</string>
-    <string name="importer_help_authenticator_pro">Leverje in Authenticator Pro-eksportbestân oan krigen fia <b>Ynstellingen -&gt; Reservekopy -&gt; Reservekopy nei fersifere bestân (oanrekommandearre)</b>.</string>
     <string name="importer_help_authy">Leverje in kopy oan fan <b>/data/data/com.authy.authy/shared_prefs/com.authy.storage.tokens.authenticator.xml</b>, pleatst yn de ynterne ûnthâldmap fan Authy.</string>
     <string name="importer_help_andotp">Leverje in andOTP-eksport-/reservekopybestân oan.</string>
     <string name="importer_help_bitwarden">Leverje in Bitwarden-eksport-/reservekopybestân oan. Fersifere bestannen wurde net stipe.</string>

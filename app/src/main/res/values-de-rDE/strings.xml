@@ -499,7 +499,6 @@
     <string name="importer_help_2fas">Gib eine 2FAS-Authenticator-Sicherungsdatei an.</string>
     <string name="importer_help_aegis">Gib eine Aegis-Export-/Sicherungsdatei an.</string>
     <string name="importer_help_authenticator_plus">Gib eine Authenticator-Plus-Exportdatei an, die du über <b>Einstellungen -&gt; Sicherung &amp; Rücksicherung -&gt; Exportieren als Text und HTML Format</b> erhältst.</string>
-    <string name="importer_help_authenticator_pro">Gib eine Authenticator-Pro-Exportdatei an, die du über <b>Einstellungen -&gt; Sicherung -&gt; Als verschlüsselte Datei sichern (empfohlen)</b> erhältst.</string>
     <string name="importer_help_authy">Gib eine Kopie von <b>/data/data/com.authy.authy/shared_prefs/com.authy.storage.tokens.authenticator.xml</b> an, die sich im internen Speicherverzeichnis von Authy befindet.</string>
     <string name="importer_help_andotp">Gib eine andOTP-Export-/Sicherungsdatei an.</string>
     <string name="importer_help_bitwarden">Gib eine Bitwarden-Export-/Sicherungsdatei an. Verschlüsselte Dateien werden nicht unterstützt.</string>

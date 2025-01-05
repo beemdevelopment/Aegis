@@ -499,7 +499,6 @@
     <string name="importer_help_2fas">Stil en 2FAS-godkendelse sikkerhedskopifil til rådighed.</string>
     <string name="importer_help_aegis">Levér en Aegis eksport/backup fil.</string>
     <string name="importer_help_authenticator_plus">Levér en Authenticator Plus-eksportfil opnået gennem <b>Indstillinger -&gt; Sikkerhedskopi &amp; Gendan -&gt; Eksport som tekst og HTML</b>.</string>
-    <string name="importer_help_authenticator_pro">Benyt en Authenticator Pro-eksportfil genereret via <b>Indstillinger -&gt; Sikkerhedskopiering -&gt; Sikkerhedskopiering til krypteret fil (anbefalet)</b>.</string>
     <string name="importer_help_authy">Levér en kopi af <b>/data/data/com.authy.authy/shared_prefs/com.authy.storage.tokens.authenticator.xml</b>, der er placeret i den interne lagermappe i Authy.</string>
     <string name="importer_help_andotp">Levér en andOTP eksport/backup fil.</string>
     <string name="importer_help_bitwarden">Vælg en Bitwarden-eksport-/sikkerhedskopifil. Krypterede filer understøttes ikke.</string>

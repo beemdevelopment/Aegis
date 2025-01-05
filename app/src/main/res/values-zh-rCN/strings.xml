@@ -485,7 +485,6 @@
     <string name="importer_help_2fas">提供一个 2FAS 身份验证器备份文件。</string>
     <string name="importer_help_aegis">提供一个 Aegis 导出/备份文件。</string>
     <string name="importer_help_authenticator_plus">提供一个通过 <b>设置 -&gt; 备份 &amp; 还原 -&gt; 导出为纯文本和 HTML</b> 获得的 Authenticator Plus 导出文件。</string>
-    <string name="importer_help_authenticator_pro">提供一个用如下方式获取的 Authenticator Pro 导出文件：<b>设置 -&gt; 备份 -&gt; 备份到加密文件（推荐）</b>。</string>
     <string name="importer_help_authy">提供 <b>/data/data/com.authy.authy/shared_prefs/com.authy.storage.tokens.authenticator.xml</b> 的一个副本，位于 Authy 的内部存储目录。</string>
     <string name="importer_help_andotp">提供 andOTP 导出/备份文件。</string>
     <string name="importer_help_bitwarden">提供 Bitwarden 导出 / 备份文件。不支持加密的文件。</string>

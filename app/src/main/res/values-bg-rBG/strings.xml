@@ -499,7 +499,6 @@
     <string name="importer_help_2fas">Изберете файл с резервно копие на 2FAS Authenticator.</string>
     <string name="importer_help_aegis">Изберете изнесен файл или резервно копие на Aegis.</string>
     <string name="importer_help_authenticator_plus">Изберете файл с резервно копие на Authenticator Plus, получен от <b>Настройки → Резервни копия и възстановяване → Изнасяне като текст и HTML</b>.</string>
-    <string name="importer_help_authenticator_pro">Изберете файл с резервно копие на Authenticator Pro, получен от <b>Настройки → Резервно копие → Резервно копие в шифрован файл (препотъчително)</b>.</string>
     <string name="importer_help_authy">Изберете копие на файла <b>/data/data/com.authy.authy/shared_prefs/com.authy.storage.tokens.authenticator.xml</b>, който се намира в папката с данни на Authy.</string>
     <string name="importer_help_andotp">Изберете изнесен файл или резервно копие на andOTP.</string>
     <string name="importer_help_bitwarden">Изберете изнесен файл или резервно копие на Bitwarden. Шифровани файлове не се поддържат.</string>

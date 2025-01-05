@@ -499,7 +499,6 @@
     <string name="importer_help_2fas">Anna 2FAS Authenticatorin varmuuskopiotiedosto.</string>
     <string name="importer_help_aegis">Anna Aegisisin vienti-/varmuuskopiotiedosto.</string>
     <string name="importer_help_authenticator_plus">Anna Authenticator Plus -varmuuskopiotiedosto, jonka saat menemällä <b>Asetukset -&gt;Varmuuskopiointi ja palautus -&gt; Vie teksti- tai HTML-tiedostona</b>.</string>
-    <string name="importer_help_authenticator_pro">Toimita Authenticator Pro -vientitiedosto, jonka löydät menemällä <b>Asetukset -&gt; Varmuuskopioi -&gt; Varmuuskopioi salattuun tiedostoon (suositus)</b>.</string>
     <string name="importer_help_authy">Anna kopio tiedostosta <b>/data/data/com.authy.authy/shared_prefs/com.authy.storage.tokens.authenticator.xml</b>, joka sijaitsee Authyn sisäisessä tallennushakemistossa.</string>
     <string name="importer_help_andotp">Anna andOTP:n vienti-/varmuuskopiotiedosto.</string>
     <string name="importer_help_bitwarden">Anna Bitwardenin vienti-/varmuuskopiotiedosto. Salattuja tiedostoja ei tueta.</string>

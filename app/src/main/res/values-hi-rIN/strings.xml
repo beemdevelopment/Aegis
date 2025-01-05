@@ -399,7 +399,6 @@
     <string name="importer_help_aegis">एजिस निर्यात/बैकअप फ़ाइल की आपूर्ति करें।</string>
     <string name="importer_help_authenticator_plus">एक प्रमाणक प्लस निर्यात फ़ाइल की आपूर्ति करें
 <b>सेटिंग्स -&gt; बैकअप &amp; पुनर्स्थापना -&gt; पाठ और HTML के रूप में निर्यात करें</b>।</string>
-    <string name="importer_help_authenticator_pro"><b>सेटिंग्स -&gt; बैक अप -&gt; के माध्यम से प्राप्त ऑथेंटिकेटर प्रो एक्सपोर्ट फ़ाइल की आपूर्ति करें।  एन्क्रिप्टेड फ़ाइल का बैकअप लें (अनुशंसित)</b>।</string>
     <string name="importer_help_authy">Authy की आंतरिक संग्रहण निर्देशिका में स्थित <b>/data/data/com.authy.authy/shared_prefs/com.authy.storage.tokens.authenticator.xml</b> की एक प्रति प्रदान करें।</string>
     <string name="importer_help_andotp">एक andOTP निर्यात/बैकअप फ़ाइल की आपूर्ति करें।</string>
     <string name="importer_help_bitwarden">एक बिटवर्डन निर्यात/बैकअप फ़ाइल की आपूर्ति करें। एन्क्रिप्टेड फ़ाइलें समर्थित नहीं हैं।</string>

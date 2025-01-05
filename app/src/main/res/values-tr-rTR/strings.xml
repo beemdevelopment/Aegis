@@ -432,7 +432,6 @@
     <string name="importer_help_2fas">2FAS Authenticator dışa aktarım dosyasını sağlayın.</string>
     <string name="importer_help_aegis">Aegis dışarı aktarım/yedek dosyası sağlayın.</string>
     <string name="importer_help_authenticator_plus"><b>Ayarlar -&gt; Yedekleme &amp; Geri Yükleme -&gt; Metin ya da HTML olarak dışa aktar</b> yolunu izleyerek bir Authenticator Plus dışa aktarım dosyası sağlayın.</string>
-    <string name="importer_help_authenticator_pro"><b>Ayarlar -&gt;; Yedekle -&gt;; Şifreli dosyaya yedekle (önerilir)</b> aracılığıyla elde edilen bir Authenticator Pro dışa aktarma dosyası sağlar.</string>
     <string name="importer_help_authy"><b>/data/data/com.authy.authy/shared_prefs/com.authy.storage.tokens.authenticator.xml</b>dosyasını sağlayın, Authy\'nin dahili depolama konumunda bulunabilir.</string>
     <string name="importer_help_andotp">andOTP dışa aktarım dosyasını sağlayın.</string>
     <string name="importer_help_bitwarden">Bitwarden\'a ait bir yedekleme/aktarma dosyası sağlayın. Şifrelenmiş dosyalar desteklenmiyor.</string>
