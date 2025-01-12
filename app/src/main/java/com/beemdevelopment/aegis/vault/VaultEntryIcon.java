@@ -23,6 +23,8 @@ public class VaultEntryIcon implements Serializable {
     private final byte[] _hash;
     private final IconType _type;
 
+    public static final int MAX_DIMENS = 512;
+
     public VaultEntryIcon(byte @NonNull [] bytes, @NonNull IconType type) {
         this(bytes, type, generateHash(bytes, type));
     }
@@ -70,7 +72,7 @@ public class VaultEntryIcon implements Serializable {
     }
 
     @Nullable
-    static VaultEntryIcon fromJson(@NonNull JSONObject obj) throws VaultEntryException {
+    static VaultEntryIcon fromJson(@NonNull JSONObject obj) throws VaultEntryIconException {
         try {
             Object icon = obj.get("icon");
             if (icon == JSONObject.NULL) {
@@ -80,7 +82,7 @@ public class VaultEntryIcon implements Serializable {
             String mime = JsonUtils.optString(obj, "icon_mime");
             IconType iconType = mime == null ? IconType.JPEG : IconType.fromMimeType(mime);
             if (iconType == IconType.INVALID) {
-                throw new VaultEntryException(String.format("Bad icon MIME type: %s", mime));
+                throw new VaultEntryIconException(String.format("Bad icon MIME type: %s", mime));
             }
 
             byte[] iconBytes = Base64.decode((String) icon);
@@ -92,7 +94,7 @@ public class VaultEntryIcon implements Serializable {
 
             return new VaultEntryIcon(iconBytes, iconType);
         } catch (JSONException | EncodingException e) {
-            throw new VaultEntryException(e);
+            throw new VaultEntryIconException(e);
         }
     }
 

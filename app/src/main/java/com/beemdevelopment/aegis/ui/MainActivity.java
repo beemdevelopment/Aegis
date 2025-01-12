@@ -44,9 +44,12 @@ import com.beemdevelopment.aegis.GroupPlaceholderType;
 import com.beemdevelopment.aegis.Preferences;
 import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.SortCategory;
+import com.beemdevelopment.aegis.helpers.BitmapHelper;
 import com.beemdevelopment.aegis.helpers.DropdownHelper;
 import com.beemdevelopment.aegis.helpers.FabScrollHelper;
 import com.beemdevelopment.aegis.helpers.PermissionHelper;
+import com.beemdevelopment.aegis.helpers.ViewHelper;
+import com.beemdevelopment.aegis.icons.IconType;
 import com.beemdevelopment.aegis.otp.GoogleAuthInfo;
 import com.beemdevelopment.aegis.otp.GoogleAuthInfoException;
 import com.beemdevelopment.aegis.otp.OtpInfoException;
@@ -55,12 +58,13 @@ import com.beemdevelopment.aegis.ui.fragments.preferences.BackupsPreferencesFrag
 import com.beemdevelopment.aegis.ui.fragments.preferences.PreferencesFragment;
 import com.beemdevelopment.aegis.ui.models.ErrorCardInfo;
 import com.beemdevelopment.aegis.ui.models.VaultGroupModel;
+import com.beemdevelopment.aegis.ui.tasks.IconOptimizationTask;
 import com.beemdevelopment.aegis.ui.tasks.QrDecodeTask;
 import com.beemdevelopment.aegis.ui.views.EntryListView;
 import com.beemdevelopment.aegis.util.TimeUtils;
 import com.beemdevelopment.aegis.util.UUIDMap;
-import com.beemdevelopment.aegis.helpers.ViewHelper;
 import com.beemdevelopment.aegis.vault.VaultEntry;
+import com.beemdevelopment.aegis.vault.VaultEntryIcon;
 import com.beemdevelopment.aegis.vault.VaultFile;
 import com.beemdevelopment.aegis.vault.VaultGroup;
 import com.beemdevelopment.aegis.vault.VaultRepository;
@@ -724,6 +728,37 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         }
     }
 
+    private void checkIconOptimization() {
+        if (!_vaultManager.getVault().areIconsOptimized()) {
+            Map<UUID, VaultEntryIcon> oldIcons = _vaultManager.getVault().getEntries().stream()
+                    .filter(e -> e.getIcon() != null
+                            && !e.getIcon().getType().equals(IconType.SVG)
+                            && !BitmapHelper.isVaultEntryIconOptimized(e.getIcon()))
+                    .collect(Collectors.toMap(VaultEntry::getUUID, VaultEntry::getIcon));
+
+            if (!oldIcons.isEmpty()) {
+                IconOptimizationTask task = new IconOptimizationTask(this, this::onIconsOptimized);
+                task.execute(getLifecycle(), oldIcons);
+            } else {
+                onIconsOptimized(Collections.emptyMap());
+            }
+        }
+    }
+
+    private void onIconsOptimized(Map<UUID, VaultEntryIcon> newIcons) {
+        for (Map.Entry<UUID, VaultEntryIcon> mapEntry : newIcons.entrySet()) {
+            VaultEntry entry = _vaultManager.getVault().getEntryByUUID(mapEntry.getKey());
+            entry.setIcon(mapEntry.getValue());
+        }
+
+        _vaultManager.getVault().setIconsOptimized(true);
+        saveAndBackupVault();
+
+        if (!newIcons.isEmpty()) {
+            _entryListView.setEntries(_vaultManager.getVault().getEntries());
+        }
+    }
+
     private void onDecryptResult() {
         _auditLogRepository.addVaultUnlockedEvent();
 
@@ -912,6 +947,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         } else {
             loadEntries();
             checkTimeSyncSetting();
+            checkIconOptimization();
         }
 
         _lockBackPressHandler.setEnabled(

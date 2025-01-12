@@ -15,6 +15,7 @@ public class Vault {
     private static final int VERSION = 3;
     private final UUIDMap<VaultEntry> _entries = new UUIDMap<>();
     private final UUIDMap<VaultGroup> _groups = new UUIDMap<>();
+    private boolean _iconsOptimized = true;
 
     // Whether we've migrated the group list to the new format while parsing the vault
     private boolean _isGroupsMigrationFresh = false;
@@ -42,6 +43,7 @@ public class Vault {
             obj.put("version", VERSION);
             obj.put("entries", entriesArray);
             obj.put("groups", groupsArray);
+            obj.put("icons_optimized", _iconsOptimized);
 
             return obj;
         } catch (JSONException e) {
@@ -86,6 +88,10 @@ public class Vault {
 
                 entries.add(entry);
             }
+
+            if (!obj.optBoolean("icons_optimized")) {
+                vault.setIconsOptimized(false);
+            }
         } catch (VaultEntryException | JSONException e) {
             throw new VaultException(e);
         }
@@ -99,6 +105,14 @@ public class Vault {
 
     public boolean isGroupsMigrationFresh() {
         return _isGroupsMigrationFresh;
+    }
+
+    public void setIconsOptimized(boolean optimized) {
+        _iconsOptimized = optimized;
+    }
+
+    public boolean areIconsOptimized() {
+        return _iconsOptimized;
     }
 
     public boolean migrateOldGroup(VaultEntry entry) {

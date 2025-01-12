@@ -236,6 +236,8 @@
     <string name="snackbar_authentication_method">Please select an authentication method</string>
     <string name="encrypting_vault">Encrypting the vault</string>
     <string name="exporting_vault">Exporting the vault</string>
+    <string name="optimizing_icon">Optimizing icon</string>
+    <string name="optimizing_icon_multiple">Optimizing icons %1$d/%2$d</string>
     <string name="reading_file">Reading file</string>
     <string name="requesting_root_access">Requesting root access</string>
     <string name="analyzing_qr">Analyzing QR code</string>
