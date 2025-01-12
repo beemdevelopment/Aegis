@@ -233,6 +233,8 @@
     <string name="snackbar_authentication_method">Wybierz metodę uwierzytelnienia</string>
     <string name="encrypting_vault">Szyfrowanie sejfu</string>
     <string name="exporting_vault">Eksportowanie sejfu</string>
+    <string name="optimizing_icon">Optymalizacja ikony</string>
+    <string name="optimizing_icon_multiple">Optymalizacja ikon %1$d/%2$d</string>
     <string name="reading_file">Odczytywanie pliku</string>
     <string name="requesting_root_access">Żądanie dostępu do roota</string>
     <string name="analyzing_qr">Analizowanie kodu QR</string>
@@ -541,6 +543,7 @@
     <string name="importer_help_steam"><b>Steam v3.0 i nowsze nie są wspierane</b>. Dostarcz kopię 
 <b>/data/data/com.valvesoftware.android.steam.community/files/Steamguard-*.json</b>,
 zlokalizowanego w wewnętrznym katalogu Steam.</string>
+    <string name="importer_help_stratum">Dostarcz plik eksportu Stratum uzyskany przez <b>Ustawienia -&gt; Kopia zapasowa -&gt; Kopia zapasowa do zaszyfrowanego pliku (zalecana)</b>.</string>
     <string name="importer_help_totp_authenticator">Dostarcz plik eksportowy TOTP Authenticator.</string>
     <string name="importer_help_winauth">Dostarcz plik eksportowy WinAuth.</string>
     <string name="import_assign_icons_dialog_title">Przypisz ikony</string>

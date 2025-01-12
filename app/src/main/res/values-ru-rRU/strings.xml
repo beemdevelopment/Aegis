@@ -540,6 +540,7 @@
     <string name="importer_help_plain_text">Необходим текстовый файл с URI Google Authenticator в каждой строке.</string>
     <string name="importer_help_steam"><b>Steam v3.0 и новее не поддерживаются</b>. 
 Необходима копия файла <b>/data/data/com.valvesoftware.android.steam.community/files/Steamguard-*.json</b>, расположенного в папке «Steam» во внутренней памяти.</string>
+    <string name="importer_help_stratum">Необходим файл экспорта Stratum, полученный через <b>«Настройки» → «Резервное копирование» → «Резервное копирование в зашифрованный файл (рекомендуется)»</b>.</string>
     <string name="importer_help_totp_authenticator">Необходим файл экспорта TOTP Authenticator.</string>
     <string name="importer_help_winauth">Необходим файл экспорта WinAuth.</string>
     <string name="import_assign_icons_dialog_title">Назначить значки</string>

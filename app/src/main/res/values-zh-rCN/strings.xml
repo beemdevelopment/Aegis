@@ -499,6 +499,7 @@
     <string name="importer_help_microsoft_authenticator">提供 <b>/data/data/com.azure.authenticator/databases/PhoneFactor</b> 的一个副本，位于 Microsoft Authenticator 的内部存储目录。</string>
     <string name="importer_help_plain_text">提供一个每一行都有一个 Google Authenticator URI 的纯文本文件。</string>
     <string name="importer_help_steam"><b>不支持 Steam v3.0 和更新版本</b>。提供 <b>/data/data/com.valvesoftware.android.steam.community/files/Steamguard-*.json</b>的副本, 位于Steam 内部存储目录。</string>
+    <string name="importer_help_stratum">提供一个用如下方式获取的 Stratum 导出文件：<b>设置 -&gt; 备份 -&gt; 备份到加密文件（推荐）</b>。</string>
     <string name="importer_help_totp_authenticator">提供一个 TOTP 身份验证器导出文件。</string>
     <string name="importer_help_winauth">提供 WinAuth 导出文件。</string>
     <string name="import_assign_icons_dialog_title">分配图标</string>

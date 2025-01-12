@@ -22,7 +22,7 @@
     <string name="pref_cat_backups_android">Android</string>
     <string name="pref_cat_backups_auto">Copias de seguridad automáticas</string>
     <string name="pref_section_behavior_title">Comportamiento</string>
-    <string name="pref_section_behavior_summary">Personaliza la funcionalidad y cómo se interactua con la lista de claves.</string>
+    <string name="pref_section_behavior_summary">Personaliza la funcionalidad y cómo se interactúa con la lista de claves.</string>
     <string name="pref_section_appearance_title">Apariencia</string>
     <string name="pref_section_appearance_summary">Ajusta el esquema de colores, idioma y otros parámetros relacionados con el aspecto de la aplicación.</string>
     <string name="pref_section_security_title">Seguridad</string>
@@ -34,7 +34,7 @@
     <string name="pref_section_backups_title">Copias de seguridad</string>
     <string name="pref_section_backups_summary">Configura copias de seguridad automáticas en una carpeta local o activa el sistema de copia de seguridad en la nube de Android.</string>
     <string name="pref_section_icon_packs">Paquetes de iconos</string>
-    <string name="pref_section_icon_packs_summary">Gestiona e importa tus paquetes de iconos</string>
+    <string name="pref_section_icon_packs_summary">Gestiona e importa tus paquetes de iconos.</string>
     <string name="pref_select_theme_title">Tema</string>
     <string name="pref_dynamic_colors_title">Colores dinámicos</string>
     <string name="pref_dynamic_colors_summary">Colorear la interfaz con el mismo esquema de colores de tu tema de Android</string>
@@ -43,7 +43,7 @@
     <string name="pref_show_icons_title">Mostrar iconos</string>
     <string name="pref_show_icons_summary">Mostrar iconos al lado de cada clave</string>
     <string name="pref_code_group_size_title">Agrupación de los dígitos del código</string>
-    <string name="pref_code_group_size_summary">Elige el número de dígitos por los que agrupar los códigos</string>
+    <string name="pref_code_group_size_summary">Elige el número de dígitos por los que agrupar los códigos, dejando un espacio entre sí</string>
     <string name="pref_account_name_position_title">Mostrar el nombre de la cuenta</string>
     <string name="pref_show_next_code_title">Ver siguiente clave</string>
     <string name="pref_show_next_code_summary">Generar y mostrar la siguiente clave antes de tiempo</string>
@@ -227,6 +227,8 @@
     <string name="snackbar_authentication_method">Elige una forma de autenticarte</string>
     <string name="encrypting_vault">Cifrando la bóveda</string>
     <string name="exporting_vault">Exportando la bóveda</string>
+    <string name="optimizing_icon">Optimizando el icono</string>
+    <string name="optimizing_icon_multiple">Optimizando iconos: %1$d de %2$d</string>
     <string name="reading_file">Leyendo archivo</string>
     <string name="requesting_root_access">Solicitando acceso a la raíz</string>
     <string name="analyzing_qr">Analizando código QR</string>
@@ -276,9 +278,9 @@
     <string name="backup_status_none">Aún no se han realizado copias de seguridad</string>
     <string name="backup_warning_password">Las copias de seguridad se cifran usando una contraseña separada configurada en la configuración de seguridad</string>
     <string name="documentsui_error">Tu dispositivo parece no tener DocumentsUI. Es un componente del sistema importante y necesario para elegir y crear archivos. Si utilizaste una herramienta para desinstalar (o hacer «debloat» de) aplicaciones que vienen de fábrica es posible que la hayas eliminado accidentalmente, tendrás que volverla a instalarla.</string>
-    <string name="icon_pack_import_error">Se ha producido un error tratando de importar un paquete de iconos</string>
+    <string name="icon_pack_import_error">Se ha producido un error al intentar importar un paquete de iconos</string>
     <string name="icon_pack_import_exists_error">El paquete de iconos a importar ya existe. ¿Quieres reemplazarlo?</string>
-    <string name="icon_pack_delete_error">Se ha producido un error tratando de eliminar un paquete de iconos</string>
+    <string name="icon_pack_delete_error">Se ha producido un error al intentar borrar un paquete de iconos</string>
     <plurals name="icon_pack_info">
         <item quantity="one">%d icono</item>
         <item quantity="other">%d iconos</item>
@@ -321,7 +323,7 @@
     <string name="partial_google_auth_import_warning">Algunos código QR de importación no están. Faltan los siguientes códigos:\n\n<b>%s</b>\n\nPuedes seguir adelante con esta importación parcial, pero te recomendamos volver a probar otra vez a escanear todos los códigos QR para evitar que pierdas el acceso a alguno de ellos.</string>
     <string name="missing_qr_code_descriptor">• código QR %d</string>
     <plurals name="import_partial_export_anyway">
-        <item quantity="one">Aún así quieres seguir con la importación de este código</item>
+        <item quantity="one">Seguir con la importación de este código</item>
         <item quantity="other">Seguir con la importación de estos %d códigos</item>
     </plurals>
     <string name="import_google_auth_failure">Ha fallado la importación de lo exportado de Google Authenticator</string>
@@ -334,8 +336,8 @@
     <string name="remove_group_description">¿Seguro que quieres borrar este grupo? Sus elementos se moverán automáticamente a «Sin grupo».</string>
     <string name="remove_unused_groups">Eliminar grupos no utilizados</string>
     <string name="remove_unused_groups_description">¿Seguro que quieres borrar todos los grupos que estén vacíos y no tengan ninguna clave dentro?</string>
-    <string name="remove_icon_pack">Eliminar paquete de iconos</string>
-    <string name="remove_icon_pack_description">¿Está seguro de que desea eliminar este paquete de iconos? Las entradas que usen iconos de este paquete no se verán afectadas.</string>
+    <string name="remove_icon_pack">Borrar paquete de iconos</string>
+    <string name="remove_icon_pack_description">¿Seguro que quieres borrar este paquete de iconos? Las claves que ya utilicen algún icono de este paquete no se verán afectadas.</string>
     <string name="details">Más detalles</string>
     <string name="show_error_details">Mostrar detalles del error</string>
     <string name="lock">Bloquear</string>
@@ -362,7 +364,7 @@
     <string name="note" comment="Users can add a note to an entry">Nota</string>
     <string name="clear">Restablecer</string>
     <string name="pref_highlight_entry_title">Resaltar códigos al pulsar</string>
-    <string name="pref_highlight_entry_summary">Resalta temporalmente cada código temporal que toques sobre los demás para que sea más fácil de distinguir</string>
+    <string name="pref_highlight_entry_summary">Resalta temporalmente cada clave que toques sobre las demás para que sea más fácil de distinguir</string>
     <string name="pref_minimize_on_copy_title">Minimizar al copiar</string>
     <string name="pref_minimize_on_copy_summary">Minimiza la aplicación tras copiar claves</string>
     <string name="pref_copy_behavior_title">Copiar claves en el portapapeles</string>
@@ -408,11 +410,11 @@
     <string name="whats_new">Novedades</string>
     <string name="github_description">Código fuente, problemas e información</string>
     <string name="license">Licencia</string>
-    <string name="license_description">Aegis Authenticator está licenciado bajo GPLv3</string>
+    <string name="license_description">Aegis Authenticator se distribuye bajo los términos de la licencia GPLv3</string>
     <string name="third_party_licenses">Licencias de terceros</string>
     <string name="third_party_licenses_description">Licencias de las bibliotecas de terceros usadas por Aegis</string>
     <string name="country_netherlands">Países Bajos</string>
-    <string name="email_us">Escribir un correo</string>
+    <string name="email_us">Contacta por correo electrónico</string>
     <string name="visit_website">Visita nuestra web</string>
     <string name="about_support">Soporte</string>
     <string name="support_rate">Valorar</string>
@@ -451,8 +453,8 @@
     <string name="empty_list_title">No hay ninguna clave</string>
     <string name="empty_group_list">Todavía no hay ningún grupo; añade uno en la pantalla de editar claves</string>
     <string name="empty_group_list_title">No se encontraron grupos</string>
-    <string name="no_icon_packs">Aún no se ha importado ningún paquete de iconos. Pulse el signo + para importar uno. Consejo: pruebe <a href="https://aegis-icons.github.io">aegis-icons</a>.</string>
-    <string name="no_icon_packs_title">Sin paquetes de iconos</string>
+    <string name="no_icon_packs">Aún no se ha importado ningún paquete de iconos. Pulsa «+» para importar uno. Consejo: te recomendamos que pruebes <a href="https://aegis-icons.github.io">aegis-icons</a>.</string>
+    <string name="no_icon_packs_title">No parece haber ningún paquete de iconos</string>
     <string name="pick_icon">Seleccione un icono</string>
     <string name="uncategorized">Sin categorizar</string>
     <string name="done">Hecho</string>
@@ -513,6 +515,7 @@
     <string name="importer_help_microsoft_authenticator">Suministre una copia de <b>/data/data/com.azure.authenticator/databases/PhoneFactor</b>, localizado en el directorio de almacenamiento interno de Microsoft Authenticator.</string>
     <string name="importer_help_plain_text">Suministre un archivo de texto plano con una URI de Google Authenticator en cada línea.</string>
     <string name="importer_help_steam"><b>Steam v3.0 y posteriores no son compatibles</b>. Proporcione una copia de <b>/data/data/com.valvesoftware.android.steam.community/files/Steamguard-*.json</b>, ubicado en el directorio de almacenamiento interno de Steam.</string>
+    <string name="importer_help_stratum">Suministra un archivo de exportación de Stratum obtenido a través de <b>Configuración -&gt; Copias de seguridad -&gt; Copia de seguridad en archivo cifrado (recomendado)</b>.</string>
     <string name="importer_help_totp_authenticator">Suministre un archivo exportado de TOTP Authenticator.</string>
     <string name="importer_help_winauth">Suministre un archivo exportado de WinAuth.</string>
     <string name="import_assign_icons_dialog_title">Asignar iconos</string>
@@ -522,11 +525,11 @@
     <string name="groups">Grupos</string>
     <string name="pref_focus_search">Resaltar el buscador al inicio</string>
     <string name="pref_focus_search_summary">Enfoca la búsqueda inmediatamente después de abrir la aplicación.</string>
-    <string name="pref_grouping_halves">Mitades</string>
-    <string name="pref_grouping_none">Sin agrupación</string>
-    <string name="pref_grouping_size_two">Grupos de 2</string>
-    <string name="pref_grouping_size_three">Grupos de 3</string>
-    <string name="pref_grouping_size_four">Grupos de 4</string>
+    <string name="pref_grouping_halves">En dos mitades</string>
+    <string name="pref_grouping_none">Sin agrupar</string>
+    <string name="pref_grouping_size_two">En grupos de dos</string>
+    <string name="pref_grouping_size_three">En grupos de tres</string>
+    <string name="pref_grouping_size_four">En grupos de cuatro</string>
     <string name="pref_copy_behavior_never">Nunca</string>
     <string name="pref_copy_behavior_single_tap">Un toque</string>
     <string name="pref_copy_behavior_double_tap">Dos toques</string>

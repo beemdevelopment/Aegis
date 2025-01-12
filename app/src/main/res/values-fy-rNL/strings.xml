@@ -513,6 +513,7 @@
     <string name="importer_help_microsoft_authenticator">Leverje in kopy oan fan <b>/data/data/com.azure.authenticator/databases/PhoneFactor</b>, pleatst yn de ynterne ûnthâldmap fan Microsoft Authenticator.</string>
     <string name="importer_help_plain_text">Leverje in tekstbestân oan mei in Google Authenticator-URI op elke rigel.</string>
     <string name="importer_help_steam"><b>Steam v3.0 en nijer wurde net stipe</b>. Soargje foar in kopy fan <b>/data/data/com.valvesoftware.android.steam.community/files/Steamguard-*.json</b>, te finen yn de ynterne ûnthâldmap fan Steam.</string>
+    <string name="importer_help_stratum">Leverje in Stratum-eksportbestân oan, ûntfongen fia <b>Ynstellingen -&gt; Reservekopy -&gt; Reservekopy nei fersifere bestân (oanrekommandearre)</b>.</string>
     <string name="importer_help_totp_authenticator">Leverje in TOTP-autentikator-eksportbestân oan.</string>
     <string name="importer_help_winauth">Leverje in WinAuth-eksportbestân oan.</string>
     <string name="import_assign_icons_dialog_title">Piktogrammen tawize</string>

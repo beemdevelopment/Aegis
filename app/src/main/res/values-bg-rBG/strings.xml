@@ -513,6 +513,7 @@
     <string name="importer_help_microsoft_authenticator">Изберете копие на файла <b>/data/data/com.azure.authenticator/databases/PhoneFactor</b>, който се намира в папката с данни на Microsoft Authenticator.</string>
     <string name="importer_help_plain_text">Изберете чист текстов файл с Google Authenticator URI, по един на ред.</string>
     <string name="importer_help_steam"><b>Поддържат се файлове на Steam v3.0 и по-нови издания.</b>\n\nИзберете копие на файла <b>/data/data/com.valvesoftware.android.steam.community/files/Steamguard-*.json</b>, който се намира в папката с данни на Steam.</string>
+    <string name="importer_help_stratum">Изберете файл с резервно копие на Stratum, получен от <b>Настройки → Резервно копие → Резервно копие в шифрован файл (препотъчително)</b>.</string>
     <string name="importer_help_totp_authenticator">Изберете изнесен файл от TOTP Authenticator.</string>
     <string name="importer_help_winauth">Изберете изнесен файл от WinAuth.</string>
     <string name="import_assign_icons_dialog_title">Задаване на икони</string>

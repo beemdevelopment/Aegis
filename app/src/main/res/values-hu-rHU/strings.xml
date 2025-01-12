@@ -358,7 +358,7 @@
     <string name="preference_manage_groups_summary">Itt kezelheti és törölheti a csoportokat</string>
     <string name="preference_reset_usage_count">Használati számláló visszaállítása</string>
     <string name="preference_reset_usage_count_summary">Minden bejegyzés használati számlálójának visszaállítása</string>
-    <string name="preference_reset_usage_count_dialog">Biztos, hogy visszaállítja a széf összes bejegyzésének használati számlálóját 0-ra?</string>
+    <string name="preference_reset_usage_count_dialog">Biztos, hogy visszaállítja a széf összes bejegyzésének használati számlálóját nullára?</string>
     <string name="note" comment="Users can add a note to an entry">Megjegyzés</string>
     <string name="clear">Törlés</string>
     <string name="pref_highlight_entry_title">Tokenek kiemelése koppintáskor</string>
@@ -513,6 +513,7 @@
     <string name="importer_help_microsoft_authenticator">Adja meg a <b>/data/data/com.azure.authenticator/databases/PhoneFactor</b> másolatát, mely a Microsoft Authenticator belső háttértáron levő mappájában található.</string>
     <string name="importer_help_plain_text">Adjon meg egy szöveges fájlt, melynek minden sorában Google Hitelesítő URI található.</string>
     <string name="importer_help_steam"><b>A Steam v3.0 és újabb verziói nem támogatottak</b>. Adja hozzá a <b>/data/data/com.valvesoftware.android.steam.community/files/Steamguard-*.json</b> mappából, mely a Steam belső háttértáron levő mappája.</string>
+    <string name="importer_help_stratum">Adjon meg egy Stratum-exportálási fájlt, amelyet a <b>Beállítások &gt; Biztonsági mentés &gt; Biztonsági mentés titkosított fájlba (ajánlott)</b> menüpontban lehet előállítani.</string>
     <string name="importer_help_totp_authenticator">Adjon meg egy TOTP Autheticator exportfájlt.</string>
     <string name="importer_help_winauth">Adjon meg egy WinAuth exportfájlt.</string>
     <string name="import_assign_icons_dialog_title">Ikonok hozzárendelése</string>

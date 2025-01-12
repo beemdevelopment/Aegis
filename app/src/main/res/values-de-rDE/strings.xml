@@ -227,6 +227,8 @@
     <string name="snackbar_authentication_method">Bitte wähle eine Authentifizierungsmethode aus</string>
     <string name="encrypting_vault">Verschlüsselung der Datenbank</string>
     <string name="exporting_vault">Exportieren der Datenbank</string>
+    <string name="optimizing_icon">Symbol wird optimiert</string>
+    <string name="optimizing_icon_multiple">Symbol %1$d/%2$d wird optimiert</string>
     <string name="reading_file">Datei wird gelesen</string>
     <string name="requesting_root_access">Root-Zugriff wird angefordert</string>
     <string name="analyzing_qr">QR-Code wird analysiert</string>
@@ -513,6 +515,7 @@
     <string name="importer_help_microsoft_authenticator">Gib eine Kopie von <b>/data/data/com.azure.authenticator/databases/PhoneFactor</b> an, die sich im internen Speicherverzeichnis von Microsoft Authenticator befindet.</string>
     <string name="importer_help_plain_text">Gib eine Klartextdatei an, die in jeder Zeile eine Google-Authenticator-URI enthält.</string>
     <string name="importer_help_steam"><b>Steam v3.0 und neuer wird nicht unterstützt</b>. Gib eine Kopie von <b>/data/data/com.valvesoftware.android.steam.community/files/Steamguard-*.json</b> an, die sich im internen Speicherverzeichnis von Steam befindet.</string>
+    <string name="importer_help_stratum">Gib eine Stratum-Exportdatei an, die du über <b>Einstellungen -&gt; Sicherung -&gt; Als verschlüsselte Datei sichern (empfohlen)</b> erhältst.</string>
     <string name="importer_help_totp_authenticator">Gib eine TOTP-Authenticator-Exportdatei an.</string>
     <string name="importer_help_winauth">Gib eine WinAuth-Exportdatei an.</string>
     <string name="import_assign_icons_dialog_title">Symbole zuweisen</string>

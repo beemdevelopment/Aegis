@@ -227,6 +227,8 @@
     <string name="snackbar_authentication_method">Si us plau, tria un mètode d\'autenticació</string>
     <string name="encrypting_vault">Xifrant la caixa forta</string>
     <string name="exporting_vault">Exporta la caixa forta</string>
+    <string name="optimizing_icon">Optimitzant icona</string>
+    <string name="optimizing_icon_multiple">Optimitzant icones %1$d/%2$d</string>
     <string name="reading_file">S\'està llegint el fitxer</string>
     <string name="requesting_root_access">Demanant accés root</string>
     <string name="analyzing_qr">Anàlisi del codi QR</string>
@@ -511,6 +513,7 @@
     <string name="importer_help_microsoft_authenticator">Subministra una còpia de <b>/data/data/com.azure.authenticator/databases/PhoneFactor</b>, que està a l\'emmagatzematge intern del teu dispositiu, al directori del Microsoft Authenticator.</string>
     <string name="importer_help_plain_text">Subministra un fitxer de text pla amb una URI de Google Authenticator a cada línia.</string>
     <string name="importer_help_steam"><b>Steam v3.0 i posteriors no són compatibles</b>. Proporcioneu una còpia de <b>/data/data/com.valvesoftware.android.steam.community/files/Steamguard-*.json</b>, que es troba al directori d\'emmagatzematge intern de Steam.</string>
+    <string name="importer_help_stratum">Proveeix un fitxer exportat de Stratum, aconseguit a <b>Settings &gt; Back up &gt; Back up to encrypted file (recommended)</b>.</string>
     <string name="importer_help_totp_authenticator">Subministra un fitxer exportat del TOTP Authenticator.</string>
     <string name="importer_help_winauth">Subministra un fitxer exportat del WinAuth.</string>
     <string name="import_assign_icons_dialog_title">Assignar icones</string>

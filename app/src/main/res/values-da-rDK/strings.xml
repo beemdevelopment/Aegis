@@ -513,6 +513,7 @@
     <string name="importer_help_microsoft_authenticator">Levér en kopi af <b>/data/data/com.azure.authenticator/databases/PhoneFactor</b>, der er placeret i den interne lagermappe i Microsoft Authenticator.</string>
     <string name="importer_help_plain_text">Levér en almindelig tekstfil med en Google Authenticator URI på hver linje.</string>
     <string name="importer_help_steam"><b>Steam v3.0 og nyere understøttes ikke</b>. Levér en kopi af <b>/data/data/com.valvesoftware.android.steam.community/files/Steamguard-*.json</b> fra den interne lagermappe i Steam.</string>
+    <string name="importer_help_stratum">Benyt en Stratum-eksportfil genereret via <b>Indstillinger -&gt; Sikkerhedskopiering -&gt; Sikkerhedskopiering til krypteret fil (anbefalet)</b>.</string>
     <string name="importer_help_totp_authenticator">Levér en TOTP Authenticator eksportfil.</string>
     <string name="importer_help_winauth">Levér en WinAuth eksportfil.</string>
     <string name="import_assign_icons_dialog_title">Tildel ikoner</string>

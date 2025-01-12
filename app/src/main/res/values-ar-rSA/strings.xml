@@ -46,8 +46,13 @@
     <string name="pref_code_group_size_summary">حدد عدد الأرقام لتجميع الرموز حسبها</string>
     <string name="pref_account_name_position_title">اضهِر اسم الحساب</string>
     <string name="pref_show_next_code_title">أظهِر الرمز التالي</string>
+    <string name="pref_show_next_code_summary">ولّد وأظهِر الكود التالي قبل الوقت</string>
+    <string name="pref_expiration_state_title">أشر متى تكون الرموز على وشك الانتهاء</string>
+    <string name="pref_expiration_state_summary">غيّر لون الرموز البرمجية وجعلها غير واضحة عندما تكون على وشك الانتهاء</string>
+    <string name="pref_expiration_state_fallback">غيّر لون الرموز عندما تكون على وشك الانتهاء</string>
     <string name="pref_shared_issuer_account_name_title">اضهِر اسم الحساب فقط عند الضرورة</string>
     <string name="pref_shared_issuer_account_name_summary">أضهِر أسماء الحسابات فقط عندما يشتركون نفس المصدر. سيتم إخفاء أسماء الحسابات الأخرى.</string>
+    <string name="pref_account_name_position_summary_override">تم تجاوز هذا الإعداد بوضع عرض البلاط. سيتم عرض اسم الحساب أسفل المُصدّر.</string>
     <string name="pref_import_file_title">استيراد من ملف</string>
     <string name="pref_import_file_summary">استيراد الرموز من ملف</string>
     <string name="pref_android_backups_title">النسخ الاحتياطية السحابية للأندرويد</string>
@@ -59,7 +64,14 @@
     <string name="pref_backups_reminder_summary">أظهر تذكيرًا للاحتفاظ بنسخة احتياطية من مخزنك في حالة عدم إجراء نسخ احتياطي لآخر تغييراتك.</string>
     <string name="pref_backups_reminder_dialog_title">تعطيل تذكير النسخ الاحتياطي</string>
     <string name="pref_backups_reminder_dialog_summary">يعني تعطيل هذا التذكير أن Aegis لن يخبرك بما إذا كان لديك تغييرات لم يتم نسخها احتياطيًا حتى الآن أم لا. هذا يعرضك لخطر فقدان الوصول إلى الرموز الخاصة بك. هل أنت متأكد أنك تريد تعطيل التذكير؟</string>
+    <string name="pref_backups_versioning_strategy_title">استراتيجية النسخ الاحتياطي</string>
+    <string name="pref_backups_versioning_strategy_keep_x_versions">احتفظ بعدد من الإصدارات</string>
+    <string name="pref_backups_versioning_strategy_single_backup">نُسخة احتياطية واحدة</string>
+    <string name="pref_backups_versioning_strategy_single_backup_warning">استراتيجية النسخ الاحتياطي المحددة غير موثوقة ولا يُنصح بها. فشل احتياطي واحد يمكن أن يؤدي إلى فقدان النسخة الاحتياطية الوحيدة.</string>
+    <string name="pref_backups_versioning_strategy_dialog_title">حدد استراتيجية النسخ الاحتياطي</string>
+    <string name="pref_backups_location_title">موقع النسخة الاحتياطية</string>
     <string name="pref_backups_location_summary">سيتم تخزين النسخ الاحتياطية في</string>
+    <string name="pref_backup_location_summary">سيتم تخزين النسخ الاحتياطي في</string>
     <string name="pref_backups_trigger_title">اصنع نسخة احتياطية</string>
     <string name="pref_backups_trigger_summary">قم بعمل نسخة احتياطية يدويًّا</string>
     <string name="pref_backups_versions_title">عدد الإصدارات المراد الاحتفاظ بها</string>
@@ -72,7 +84,7 @@
         <item quantity="many">احتفظ ب%1$d إصدارات من النسخ الاحتياطية</item>
         <item quantity="other">احتفظ ب%1$d إصدارات من النسخ الاحتياطية</item>
     </plurals>
-    <string name="pref_backups_versions_infinite_summary">الاحتفاظ بعدد غير محدود من النُسخ الاحتياطية</string>
+    <string name="pref_backups_versions_infinite_summary">احتفظ بعدد غير محدود من النُسخ الاحتياطية</string>
     <string name="pref_import_app_title">استيراد من تطبيق</string>
     <string name="pref_import_app_summary">استيراد الرموز من تطبيق (يتطلب الوصول إلى الجذر root)</string>
     <string name="pref_export_title">تصدير</string>
@@ -112,6 +124,8 @@
     <string name="pref_encryption_summary">قم بتشفير المخزن وفك قفله بكملة مرور أو مصادقة بيومترية</string>
     <string name="pref_biometrics_title">الفتح البيومتري</string>
     <string name="pref_biometrics_summary">السماح بالمصادقة البيومترية لفتح قفل المخزن</string>
+    <string name="pref_search_behavior_summary">البحث من خلال: %s</string>
+    <string name="pref_search_behavior_prompt">البحث في أي من الحقول التالية</string>
     <string name="pref_search_behavior_type_name">الاسم</string>
     <string name="pref_search_behavior_type_issuer">المصدِّر</string>
     <string name="pref_search_behavior_type_note">ملاحظة</string>
@@ -200,7 +214,7 @@
     <string name="counter">العداد</string>
     <string name="digits">الأرقام</string>
     <string name="secret">السر</string>
-    <string name="scan">امسح كود QR</string>
+    <string name="scan">امسح رمز QR</string>
     <string name="scan_image">امسح الصورة</string>
     <string name="enter_manually">أدخل يدويًا</string>
     <string name="set_up_biometric">تعيين الفتح البيومتري</string>
@@ -225,6 +239,8 @@
     <string name="snackbar_authentication_method">الرجاء تحديد طريقة مصادقة</string>
     <string name="encrypting_vault">يتم تشفير المخزن</string>
     <string name="exporting_vault">يجري تصدير المخزن</string>
+    <string name="optimizing_icon">تحسين الأيقونة</string>
+    <string name="optimizing_icon_multiple">تحسين الأيقونات %1$d/%2$d</string>
     <string name="reading_file">قراءة الملف</string>
     <string name="requesting_root_access">طلب صلاحية الجذر</string>
     <string name="analyzing_qr">تحليل رمز QR</string>
@@ -338,6 +354,14 @@
     <string name="partial_google_auth_import">اكتُشف تصدير Google Authenticator غير مكتمل</string>
     <string name="partial_google_auth_import_warning">بعض رموز QR مفقودة من الاستيراد. لم يتم العثور على الرموز التالية:\n\n<b>%s</b>\n\nيمكنك الاستمرار في استيراد هذا التصدير الجزئي ولكننا نوصي بإعادة المحاولة باستخدام جميع رموز QR حتى لا تخاطر بفقدان الوصول إلى أي رموز.</string>
     <string name="missing_qr_code_descriptor">• رمز QR %d</string>
+    <plurals name="import_partial_export_anyway">
+        <item quantity="zero">استيراد %d رموز على أي حال</item>
+        <item quantity="one">استيراد رمز %d على أي حال</item>
+        <item quantity="two">استيراد رمزين على أي حال</item>
+        <item quantity="few">استيراد %d رموز على أي حال</item>
+        <item quantity="many">استيراد %d رموز على أي حال</item>
+        <item quantity="other">استيراد %d رموز على أي حال</item>
+    </plurals>
     <string name="import_google_auth_failure">فشل استيراد تصدير Google Authenticator</string>
     <string name="unrelated_google_auth_batches_error">يحتوي التصدير على معلومات عن دُفعة غير ذات صلة. حاول استيراد دفعة واحدة في كل مرة.</string>
     <string name="no_tokens_can_be_imported">نتيجة لذلك، لا يمكن استيراد أي رموز</string>
@@ -410,6 +434,7 @@
     <string name="unable_to_process_deeplink">تعذرت معالجة الارتباط العميق</string>
     <string name="unable_to_read_qrcode_file">غير قادر على قراءة ومعالجة رمز QR من الملف: %s.</string>
     <string name="unable_to_process_shared_text">غير قادر على معالجة النص المُشارك ك OTP</string>
+    <string name="unable_to_read_qrcode_files">غير قادر على قراءة ومعالجة بعض رموز QR. سيتم استيراد %1$d/%2$d فقط من المدخلات.</string>
     <string name="unable_to_generate_qrcode">تعذّر توليد كود QR</string>
     <string name="select_picture">اختر صورة</string>
     <string name="select_icon">اختر أيقونة</string>
@@ -440,7 +465,19 @@
     <string name="time_sync_warning_message">يعتمد Aegis على وقت النظام لتوليد الأكواد الصحيحة. انحراف بمقادر بضعة ثواني يمكن أن يؤدي إلى أكواد خاطئة. يبدوا أن جهازك غير معيّن إلى مزامنة الوقت تلقائيًا. هل ترغب بفعل ذلك الآن؟</string>
     <string name="time_sync_warning_disable">إيقاف تحذيري. أنا أعرف ما أفعله.</string>
     <string name="google_qr_export_unrelated">تم العثور على كود QR لا علاقة له. حاول إعادة تشغيل الماسح.</string>
+    <plurals name="google_qr_export_scanned">
+        <item quantity="zero">تم مسح %1$d/%2$d رموز QR</item>
+        <item quantity="one">تم مسح %1$d/%2$d رمز QR</item>
+        <item quantity="two">تم مسح %1$d/%2$d رموز QR</item>
+        <item quantity="few">تم مسح %1$d/%2$d رموز QR</item>
+        <item quantity="many">تم مسح %1$d/%2$d رموز QR</item>
+        <item quantity="other">تم مسح %1$d/%2$d رموز QR</item>
+    </plurals>
+    <string name="google_qr_export_unexpected">انتظرت رمز QR #%1$d، ولكن مسحت #%2$d بدلًا منه</string>
     <string name="backup_error_bar_message"><b>النسخ الاحتياطي للمخزن فشل مؤخرًا</b></string>
+    <string name="backup_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">         فشلت محاولة النسخ الاحتياطي للمخزون باستخدام %1$s بسبب حدوث خطأ. تمت محاولة النسخ الاحتياطي %2$s. الرجاء التحقق من إعدادات النسخ الاحتياطي للتأكد من أن النسخ الاحتياطي يمكن أن يكتمل بنجاح.
+    </string>
+    <string name="backup_permission_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">فشلت محاولة النسخ الاحتياطي الأخيرة للمخزون باستخدام %1$s لأن Aegis لم يكن لديه الإذن قراءة وجهة النسخ الاحتياطي. تمت محاولة النسخ الاحتياطي %2$s. يمكن أن يحدث هذا الخطأ إذا قمت بنقل/إعادة تسمية وجهة النسخ الاحتياطي أو إذا قمت للتو باستعادة Aegis من نسخة احتياطية. الرجاء إعادة إعداد وجهة النسخ الإحتياطي.    </string>
     <string name="backup_system_builtin">النسخ الاحتياطية التلقائية المضنة في Aegis</string>
     <string name="backup_system_android">نظام النسخ الاحتياطي السحابي للأندرويد</string>
     <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">        أحدث نسخة احتياطية قديمة (%s)
@@ -521,6 +558,7 @@
     <string name="importer_help_battle_net_authenticator">يرجى توفير نسخة من <b>/data/data/com.blizzard.messenger/shared_prefs/com.blizzard.messenger.authenticator_preferences.xml</b>، الموجود في دليل التخزين الداخلي لـ Battle.net Authenticator.</string>
     <string name="importer_help_duo">توفير نسخة من <b>/data/data/com.duosecurity.duomobile/files/duokit/accounts.json</b>، الموجودة في دليل التخزين الداخلي لـ DUO.</string>
     <string name="importer_help_ente_auth">قم بتوفير ملف تصدير Ente Auth. حاليا فقط الملفات غير المشفرة مدعومة.</string>
+    <string name="importer_help_freeotp">FreeOTP 2: توفير ملف احتياطي.\nFreeOTP 1.x: توفير نسخة من <b>/data/data/org.fedorahosted.freeotp/shared_prefs/tokens.xml</b>، الموجود في دليل التخزين الداخلي لـ FreeOTP.</string>
     <string name="importer_help_freeotp_plus">توفير ملف تصدير FreeOTP +.</string>
     <string name="importer_warning_title_freeotp2">توافق مع FreeOTP 2</string>
     <string name="importer_warning_message_freeotp2">هناك عدد من المشاكل في FreeOTP 2 التي يمكن أن تؤدي إلى وجود نسخ احتياطية فاسدة. سوف يحاول درع إنقاذ أكبر عدد ممكن من الإدخالات، ولكن من الممكن أن يفشل البعض أو حتى الجميع في الاستيراد.</string>
@@ -528,6 +566,7 @@
     <string name="importer_help_microsoft_authenticator">توفير نسخة من<b>/data/data/com.azure.authenticator/databases/PhoneFactor</b>، الموجود في دليل التخزين الداخلي لـ Microsoft Authenticator.</string>
     <string name="importer_help_plain_text">توفير مِلَفّ نصي عادي مع Google Authenticator URI في كل سطر.</string>
     <string name="importer_help_steam"><b>لا يتم دعم Steam v3.0 والإصدارات الأحدث</b>. توفير نسخة من<b>/data/data/com.valvesoftware.android.steam.community/files/Steamguard-*.json</b>، الموجود في دليل التخزين الداخلي لـ Steam.</string>
+    <string name="importer_help_stratum">جهّز ملف تصدير Stratum تم الحصول عليه من خلال <b>الإعدادات -&gt; النسخ الاحتياطي -&gt; النسخ الاحتياطي للملف المشفر (موصى به)</b>.</string>
     <string name="importer_help_totp_authenticator">توفير مِلَفّ تصدير TOTP Authenticator.</string>
     <string name="importer_help_winauth">توفير مِلَفّ تصدير WinAuth.</string>
     <string name="import_assign_icons_dialog_title">تعيين أيقونات</string>

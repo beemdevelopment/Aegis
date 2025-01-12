@@ -539,6 +539,7 @@
     <string name="importer_help_microsoft_authenticator">Dodejte kopii <b>/data/data/com.azure.authenticator/databases/PhoneFactor</b>, která se nachází v interním úložišti Microsoft Authenticator.</string>
     <string name="importer_help_plain_text">Dodejte prostý textový soubor Google Authenticator URI na každý řádek.</string>
     <string name="importer_help_steam"><b>Steam v3.0 a novější nejsou podporovány</b>. Dodejte kopii souboru <b>/data/data/com.valvesoftware.android.steam.community/files/Steamguard-*.json</b> umístěného v interním úložném adresáři aplikace Steam.</string>
+    <string name="importer_help_stratum">Dodejte exportovaný soubor Stratum získaný přes <b>Nastavení -&gt; Záloha -&gt; Exportovat do šifrovaného souboru (doporučeno)</b>.</string>
     <string name="importer_help_totp_authenticator">Dodejte soubor exportu TOTP.</string>
     <string name="importer_help_winauth">Dodejte soubor exportu WinAuth.</string>
     <string name="import_assign_icons_dialog_title">Přiřadit ikony</string>

@@ -227,6 +227,8 @@
     <string name="snackbar_authentication_method">Vänligen välj en autentiseringsmetod</string>
     <string name="encrypting_vault">Krypterar valvet</string>
     <string name="exporting_vault">Exporterar valvet</string>
+    <string name="optimizing_icon">Optimerar ikon</string>
+    <string name="optimizing_icon_multiple">Optimerar ikoner %1$d/%2$d</string>
     <string name="reading_file">Läser fil</string>
     <string name="requesting_root_access">Begär rotåtkomst</string>
     <string name="analyzing_qr">Analyserar rutkod</string>
@@ -294,7 +296,7 @@
     <string name="choose_account_name_position">Välj önskad kontonamnsplacering</string>
     <string name="choose_view_mode">Välj önskat visningsläge</string>
     <string name="choose_copy_behavior">Välj önskat kopieringsbeteende</string>
-    <string name="parsing_file_error">Ett fel uppstod när filen skulle analyseras</string>
+    <string name="parsing_file_error">Ett fel uppstod när filen skulle tolkas</string>
     <string name="file_not_found">Fel: Filen hittades inte</string>
     <string name="reading_file_error">Ett fel uppstod när filen skulle läsas</string>
     <string name="app_lookup_error">Fel: Appen är inte installerad</string>
@@ -513,6 +515,7 @@
     <string name="importer_help_microsoft_authenticator">Tillhandahåll en kopia av <b>/data/data/com.azure.authenticator/databases/PhoneFactor</b>, som finns i den interna lagringskatalogen för Microsoft Authenticator.</string>
     <string name="importer_help_plain_text">Tillhandahåll en klartextfil med en Google Authenticator-URI per rad.</string>
     <string name="importer_help_steam"><b>Steam v3.0 och senare stöds inte.</b> Tillhandahåll en kopia av <b>/data/data/com.valvesoftware.android.steam.community/files/Steamguard-*.json</b>, som finns i den interna lagringskatalogen för Steam.</string>
+    <string name="importer_help_stratum">Tillhandahåll en exportfil från Stratum som har erhållits genom <b>Inställningar -&gt; Säkerhetskopiera -&gt; Säkerhetskopiera till krypterad fil (rekommenderas)</b>.</string>
     <string name="importer_help_totp_authenticator">Tillhandahåll en exportfil från TOTP Authenticator.</string>
     <string name="importer_help_winauth">Tillhandahåll en exportfil från WinAuth.</string>
     <string name="import_assign_icons_dialog_title">Tilldela ikoner</string>

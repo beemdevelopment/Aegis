@@ -227,6 +227,8 @@
     <string name="snackbar_authentication_method">Παρακαλώ επιλέξτε μέθοδο ελέγχου ταυτότητας</string>
     <string name="encrypting_vault">Κρυπτογράφηση κρύπτης</string>
     <string name="exporting_vault">Εξαγωγή της κρύπτης</string>
+    <string name="optimizing_icon">Βελτιστοποίηση εικονιδίου</string>
+    <string name="optimizing_icon_multiple">Βελτιστοποίηση εικονιδίων %1$d/%2$d</string>
     <string name="reading_file">Ανάγνωση αρχείου</string>
     <string name="requesting_root_access">Αίτηση πρόσβασης root</string>
     <string name="analyzing_qr">Ανάλυση κωδικού QR</string>
@@ -512,6 +514,7 @@
     <string name="importer_help_microsoft_authenticator">Παρέχεi ένα αντίγραφο του <b> /data/data/com.azure.authenticator/databases/PhoneFactor </b>, που βρίσκεται στον κατάλογο εσωτερικής αποθήκευσης του Microsoft Authenticator.</string>
     <string name="importer_help_plain_text">Παρέχεi ένα αρχείο απλού κειμένου με ένα URI Επαληθευτή Google σε κάθε γραμμή.</string>
     <string name="importer_help_steam"><b>Το Steam v3.0 και νεότερα δεν υποστηρίζονται</b>. Παρέχετε αντίγραφο του <b>/data/data/com.valvesoftware. ndroid.steam.community/files/Steamguard-*.json</b>, που βρίσκεται στον εσωτερικό κατάλογο αποθήκευσης του Steam.</string>
+    <string name="importer_help_stratum">Παροχή ενός αρχείου εξαγωγής Stratum που λαμβάνεται μέσω <b>Ρυθμίσεις -&gt; Αντίγραφα ασφαλείας -&gt; Δημιουργία αντιγράφου ασφαλείας σε κρυπτογραφημένο αρχείο (συνιστάται)</b>.</string>
     <string name="importer_help_totp_authenticator">Παρέχετε ένα αρχείο εξαγωγής TOTP Authenticator.</string>
     <string name="importer_help_winauth">Παρέχετε ένα αρχείο εξαγωγής WinAuth.</string>
     <string name="import_assign_icons_dialog_title">Αντιστοίχιση εικονιδίων</string>

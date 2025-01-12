@@ -46,7 +46,7 @@
     <string name="pref_code_group_size_summary">Chọn số lượng chữ số để gộp mã</string>
     <string name="pref_account_name_position_title">Hiện tên tài khoản</string>
     <string name="pref_show_next_code_title">Hiện mã kế tiếp</string>
-    <string name="pref_show_next_code_summary">Tạo và hiỆn mã tiếp theo trước thời hạn</string>
+    <string name="pref_show_next_code_summary">Hiện mã mới trước thời hạn</string>
     <string name="pref_expiration_state_title">Nhấp nháy khi mã sắp hết hạn</string>
     <string name="pref_expiration_state_summary">Thay đổi màu sắc của mã và nhấp nháy khi mã sắp hết hạn</string>
     <string name="pref_expiration_state_fallback">Thay đổi màu sắc của mã khi mã sắp hết hạn</string>
@@ -63,17 +63,17 @@
     <string name="pref_backups_reminder_title">Nhắc nhở sao lưu</string>
     <string name="pref_backups_reminder_summary">Hiện lời nhắc sao lưu kho của bạn trong trường hợp bạn chưa sao lưu các thay đổi mới nhất.</string>
     <string name="pref_backups_reminder_dialog_title">Tắt nhắc nhở sao lưu</string>
-    <string name="pref_backups_reminder_dialog_summary">Tắt lời nhắc này có nghĩa là Aegis sẽ không cho bạn biết liệu bạn có những thay đổi chưa được sao lưu hay không. Điều này khiến bạn có nguy cơ mất quyền truy cập vào token của mình. Bạn có chắc muốn tắt lời nhắc?</string>
+    <string name="pref_backups_reminder_dialog_summary">Tắt lời nhắc này có nghĩa là Aegis sẽ không cho bạn biết liệu bạn có những thay đổi chưa được sao lưu hay không. Điều này khiến bạn có nguy cơ mất quyền truy cập vào mã của mình. Bạn có chắc muốn tắt lời nhắc?</string>
     <string name="pref_backups_versioning_strategy_title">Chiến lược sao lưu</string>
-    <string name="pref_backups_versioning_strategy_keep_x_versions">Giữ một số phiên bản</string>
-    <string name="pref_backups_versioning_strategy_single_backup">Sao lưu đơn</string>
+    <string name="pref_backups_versioning_strategy_keep_x_versions">Nhiều bản sao</string>
+    <string name="pref_backups_versioning_strategy_single_backup">Một bản sao</string>
     <string name="pref_backups_versioning_strategy_single_backup_warning">Chiến lược sao lưu được chọn không đáng tin cậy và không được khuyến khích. Một lỗi sao lưu duy nhất có thể dẫn đến mất bản sao lưu duy nhất của bạn.</string>
     <string name="pref_backups_versioning_strategy_dialog_title">Chọn chiến lược sao lưu</string>
     <string name="pref_backups_location_title">Vị trí sao lưu</string>
     <string name="pref_backups_location_summary">Các bản sao lưu sẽ được lưu vào</string>
     <string name="pref_backup_location_summary">Bản sao lưu sẽ được lưu vào</string>
-    <string name="pref_backups_trigger_title">Bật sao lưu</string>
-    <string name="pref_backups_trigger_summary">Bật sao lưu thủ công</string>
+    <string name="pref_backups_trigger_title">Thực hiện sao lưu</string>
+    <string name="pref_backups_trigger_summary">Sao lưu ngay cho tôi</string>
     <string name="pref_backups_versions_title">Số lượng phiên bản tối đa</string>
     <string name="pref_backups_versions_infinite">\u221E</string>
     <plurals name="pref_backups_versions_summary">
@@ -81,7 +81,7 @@
     </plurals>
     <string name="pref_backups_versions_infinite_summary">Không giới hạn số bản sao lưu</string>
     <string name="pref_import_app_title">Nhập từ ứng dụng</string>
-    <string name="pref_import_app_summary">Nhập token từ một ứng dụng (yêu cầu truy cập root)</string>
+    <string name="pref_import_app_summary">Nhập mã từ một ứng dụng (yêu cầu truy cập root)</string>
     <string name="pref_export_title">Xuất</string>
     <string name="pref_export_summary">Xuất kho</string>
     <string name="pref_password_reminder_title">Nhắc mật khẩu</string>
@@ -97,7 +97,7 @@
     <string name="pref_secure_screen_summary">Chặn chụp ảnh màn hình trong ứng dụng.</string>
     <string name="pref_tap_to_reveal_title">Nhấn để hiện</string>
     <string name="pref_tap_to_reveal_summary">Mã số được ẩn, nhấn vào thì mới hiện.</string>
-    <string name="pref_tap_to_reveal_time_title">Thời gian chờ nhấn</string>
+    <string name="pref_tap_to_reveal_time_title">Thời hạn hiển thị mã</string>
     <string name="pref_auto_lock_title">Tự động khóa</string>
     <string name="pref_auto_lock_summary">Khi %s</string>
     <string name="pref_auto_lock_summary_disabled">Tắt</string>
@@ -314,11 +314,11 @@
     <string name="partial_google_auth_import_warning">Một số mã QR bị thiếu trong quá trình nhập. Không tìm thấy các mã sau:\n\n<b>%s</b>\n\nBạn có thể tiếp tục nhập bản xuất này nhưng chúng tôi khuyên bạn nên thử lại với tất cả các mã QR để không có nguy cơ mất quyền truy cập vào bất kỳ token nào.</string>
     <string name="missing_qr_code_descriptor">• Mã QR %d</string>
     <plurals name="import_partial_export_anyway">
-        <item quantity="other">Vẫn cứ nhập %d token</item>
+        <item quantity="other">Vẫn cứ nhập %d mã</item>
     </plurals>
     <string name="import_google_auth_failure">Quá trình xuất Google Authenticator thất bại</string>
     <string name="unrelated_google_auth_batches_error">Bản xuất chứa thông tin về một batch không liên quan. Hãy thử nhập 1 batch mỗi lần.</string>
-    <string name="no_tokens_can_be_imported">Do đó, không thể nhập token nào</string>
+    <string name="no_tokens_can_be_imported">Do đó, không thể nhập mã nào</string>
     <string name="unlocking_vault">Đang mở khóa kho</string>
     <string name="rename_group">Đổi tên nhóm</string>
     <string name="no_group_selection">Nếu một mục không thuộc bất kỳ nhóm nào, nó sẽ ở trong \"Chưa có nhóm\".</string>
@@ -354,13 +354,13 @@
     <string name="note" comment="Users can add a note to an entry">Chú thích</string>
     <string name="clear">Xóa</string>
     <string name="pref_highlight_entry_title">Làm nổi bật token khi nhấn vào</string>
-    <string name="pref_highlight_entry_summary">Làm cho các token dễ phân biệt với nhau hơn</string>
+    <string name="pref_highlight_entry_summary">Làm cho các mã dễ phân biệt với nhau hơn</string>
     <string name="pref_minimize_on_copy_title">Thu nhỏ khi sao chép</string>
-    <string name="pref_minimize_on_copy_summary">Thu nhỏ ứng dụng sau khi sao chép một token</string>
-    <string name="pref_copy_behavior_title">Sao chép token vào bộ nhớ tạm</string>
+    <string name="pref_minimize_on_copy_summary">Thu nhỏ ứng dụng sau khi sao chép một mã</string>
+    <string name="pref_copy_behavior_title">Sao chép mã vào bộ nhớ tạm</string>
     <string name="pref_search_behavior_title">Hành vi tìm kiếm</string>
-    <string name="pref_pause_entry_title">Đóng băng token khi nhấn vào</string>
-    <string name="pref_pause_entry_summary">Tạm dừng làm mới tự động các token bằng cách nhấn vào chúng.</string>
+    <string name="pref_pause_entry_title">Đóng băng mã khi nhấn vào</string>
+    <string name="pref_pause_entry_summary">Không tự động hiện mã mới khi đã nhấn vào mã.</string>
     <string name="pin_keyboard_description">Nhập mật khẩu để bật bàn phím mã PIN. Lưu ý rằng việc này chỉ được nếu mật khẩu của bạn chỉ chứa các chữ số</string>
     <string name="pin_keyboard_error">Lỗi khi bật bàn phím mã PIN</string>
     <string name="pin_keyboard_error_description">Không thể đặt bàn phím mã PIN. Mật khẩu của bạn phải chỉ chứa các chữ số.</string>
@@ -378,7 +378,7 @@
     <string name="unknown_issuer">Dịch vụ chưa rõ</string>
     <string name="unknown_account_name">Tên tài khoản không xác định</string>
     <plurals name="import_error_dialog">
-        <item quantity="other">Aegis không thể nhập %d token. Các token đó sẽ bị bỏ qua. Hãy nhấn \'Chi tiết\' để xem thêm thông tin về các lỗi.</item>
+        <item quantity="other">Aegis không thể nhập %d mã. Các mã đó sẽ bị bỏ qua. Nhấn \'Chi tiết\' để xem thêm thông tin về lỗi.</item>
     </plurals>
     <string name="unable_to_process_deeplink">Không thể xử lý deep link</string>
     <string name="unable_to_read_qrcode_file">Không thể đọc và xử lý mã QR từ tập tin: %s.</string>
@@ -437,7 +437,7 @@
     <string name="pref_show_plaintext_warning_hint">Không hiện cảnh báo này nữa</string>
     <string name="backup_plaintext_warning_explanation">Cảnh báo này xuất hiện vì gần đây bạn đã xuất một bản sao chưa được mã hóa của kho. Để giữ an toàn mã xác thực của bạn, chúng tôi khuyên bạn nên xóa tập tin này ngay khi bạn không còn cần đến nữa.</string>
     <string name="switch_camera">Đổi camera</string>
-    <string name="empty_list">Chưa có mã nào. Hãy bắt đầu thêm bằng cách nhấn vào ký hiệu dấu cộng ở góc dưới bên phải</string>
+    <string name="empty_list">Chưa có mã nào. Thêm mã mới bằng cách nhấn vào dấu cộng ở góc dưới bên phải</string>
     <string name="empty_list_title">Chưa có mục nào</string>
     <string name="empty_group_list">Chưa có nhãn nào. Hãy thêm các nhãn khi chỉnh sửa một mục</string>
     <string name="empty_group_list_title">Chưa có nhãn nào</string>
@@ -455,7 +455,7 @@
     <string name="unable_to_copy_uri_to_clipboard">Không thể sao chép vào bộ nhớ tạm</string>
     <string name="uri_copied_to_clipboard">Đã sao chép vào bộ nhớ tạm</string>
     <string name="transfer_entry_description">Quét mã QR này bằng ứng dụng xác minh mà bạn muốn truyền mục này đến</string>
-    <string name="google_auth_compatible_transfer_description">Quét các mã QR này bằng Aegis hoặc Google Authenticator.\n\nDo hạn chế của ứng dụng Google Authenticator, chỉ token TOTP &amp; HOTP sử dụng SHA1 và tạo mã gồm 6 chữ số dùng được</string>
+    <string name="google_auth_compatible_transfer_description">Quét các mã QR này bằng Aegis hoặc Google Authenticator.\n\nDo hạn chế của ứng dụng Google Authenticator, chỉ mã TOTP &amp; HOTP 6 chữ số sử dụng SHA1 là dùng được</string>
     <string name="password_strength_very_weak">Rất yếu</string>
     <string name="password_strength_weak">Yếu</string>
     <string name="password_strength_fair">Khá</string>
@@ -501,6 +501,7 @@
     <string name="importer_help_microsoft_authenticator">Cung cấp một bản sao của <b>/data/data/com.azure.authenticator/databases/PhoneFactor</b>, nằm trong thư mục bộ nhớ trong của Microsoft Authenticator.</string>
     <string name="importer_help_plain_text">Cung cấp một tập tin văn bản thuần có một URI Google Authenticator trên mỗi dòng.</string>
     <string name="importer_help_steam"><b>Không hỗ trợ Steam v3.0 trở lên</b>. Cung cấp một bản sao <b>/data/data/com.valvesoftware.android.steam.community/files/Steamguard-*.json</b>, nằm trong thư mục lưu trữ nội bộ của Steam.</string>
+    <string name="importer_help_stratum">Cung cấp tập tin xuất Stratum có được thông qua <b>Cài đặt -&gt; Sao lưu -&gt; Sao lưu tập tin mã hóa (đề xuất)</b>.</string>
     <string name="importer_help_totp_authenticator">Cung cấp một tập tin xuất TOTP Authenticator.</string>
     <string name="importer_help_winauth">Cung cấp một tập tin xuất WinAuth.</string>
     <string name="import_assign_icons_dialog_title">Gán biểu tượng</string>
