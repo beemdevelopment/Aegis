@@ -52,6 +52,7 @@ import java.util.stream.Collectors;
 public class ImportEntriesActivity extends AegisActivity {
     private View _view;
     private Menu _menu;
+    private RecyclerView _entriesView;
     private ImportEntriesAdapter _adapter;
     private FabScrollHelper _fabScrollHelper;
 
@@ -74,8 +75,8 @@ public class ImportEntriesActivity extends AegisActivity {
         bar.setDisplayHomeAsUpEnabled(true);
 
         _adapter = new ImportEntriesAdapter();
-        RecyclerView entriesView = findViewById(R.id.list_entries);
-        entriesView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+        _entriesView = findViewById(R.id.list_entries);
+        _entriesView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
@@ -84,9 +85,9 @@ public class ImportEntriesActivity extends AegisActivity {
         });
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        entriesView.setLayoutManager(layoutManager);
-        entriesView.setAdapter(_adapter);
-        entriesView.setNestedScrollingEnabled(false);
+        _entriesView.setLayoutManager(layoutManager);
+        _entriesView.setAdapter(_adapter);
+        _entriesView.setNestedScrollingEnabled(false);
 
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(v -> {
@@ -358,6 +359,31 @@ public class ImportEntriesActivity extends AegisActivity {
 
         _adapter.setCheckboxStates(duplicateEntries, false);
         Snackbar snackbar = Snackbar.make(_view, getResources().getQuantityString(R.plurals.import_duplicate_toast, duplicateEntries.size(), duplicateEntries.size()), Snackbar.LENGTH_INDEFINITE);
+        snackbar.addCallback(new Snackbar.Callback() {
+            @Override
+            public void onShown(Snackbar sb) {
+                int snackbarHeight = sb.getView().getHeight();
+
+                _entriesView.setPadding(
+                        _entriesView.getPaddingLeft(),
+                        _entriesView.getPaddingTop(),
+                        _entriesView.getPaddingRight(),
+                        _entriesView.getPaddingBottom() + snackbarHeight * 2
+                );
+            }
+
+            @Override
+            public void onDismissed(Snackbar sb, int event) {
+                int snackbarHeight = sb.getView().getHeight();
+
+                _entriesView.setPadding(
+                        _entriesView.getPaddingLeft(),
+                        _entriesView.getPaddingTop(),
+                        _entriesView.getPaddingRight(),
+                        _entriesView.getPaddingBottom() - snackbarHeight * 2
+                );
+            }
+        });
         snackbar.setAction(R.string.undo, new View.OnClickListener() {
             @Override
             public void onClick(View v) {
