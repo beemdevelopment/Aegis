@@ -894,6 +894,13 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
     }
 
     @Override
+    protected void onStop() {
+        super.onStop();
+
+        _entryListView.onRefreshStop();
+    }
+
+    @Override
     protected void onStart() {
         super.onStart();
 
@@ -944,14 +951,18 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
 
             // refresh all codes to prevent showing old ones
             _entryListView.refresh(false);
+
+            _entryListView.onRefreshStart();
         } else {
             loadEntries();
             checkTimeSyncSetting();
             checkIconOptimization();
+
+            _entryListView.onRefreshStart();
         }
 
         _lockBackPressHandler.setEnabled(
-                _vaultManager.isAutoLockEnabled(Preferences.AUTO_LOCK_ON_BACK_BUTTON)
+            _vaultManager.isAutoLockEnabled(Preferences.AUTO_LOCK_ON_BACK_BUTTON)
         );
 
         handleIncomingIntent();

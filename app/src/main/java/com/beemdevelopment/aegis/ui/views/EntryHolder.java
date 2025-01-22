@@ -67,7 +67,6 @@ public class EntryHolder extends RecyclerView.ViewHolder {
 
     private boolean _hidden;
     private boolean _paused;
-
     private TotpProgressBar _progressBar;
     private MaterialCardView _view;
 
@@ -112,13 +111,21 @@ public class EntryHolder extends RecyclerView.ViewHolder {
             }
 
             @Override
+            public void onExpiring() { }
+
+            @Override
             public long getMillisTillNextRefresh() {
                 return ((TotpInfo) _entry.getInfo()).getMillisTillNextRotation();
+            }
+
+            @Override
+            public long getPeriodMillis() {
+                return ((TotpInfo) _entry.getInfo()).getPeriod() * 1000L;
             }
         });
     }
 
-    public void setData(VaultEntry entry, Preferences.CodeGrouping groupSize, ViewMode viewMode, AccountNamePosition accountNamePosition, boolean showIcon, boolean showProgress, boolean hidden, boolean paused, boolean dimmed, boolean showExpirationState, boolean showNextCode) {
+    public void setData(VaultEntry entry, Preferences.CodeGrouping groupSize, ViewMode viewMode, AccountNamePosition accountNamePosition, boolean showIcon, boolean nonUniform, boolean hidden, boolean paused, boolean dimmed, boolean showExpirationState, boolean showNextCode) {
         _entry = entry;
         _hidden = hidden;
         _paused = paused;
@@ -140,7 +147,7 @@ public class EntryHolder extends RecyclerView.ViewHolder {
         _favoriteIndicator.setVisibility(_entry.isFavorite() ? View.VISIBLE : View.INVISIBLE);
 
         // only show the progress bar if there is no uniform period and the entry type is TotpInfo
-        setShowProgress(showProgress);
+        setShowProgress(nonUniform);
 
         // only show the button if this entry is of type HotpInfo
         _buttonRefresh.setVisibility(entry.getInfo() instanceof HotpInfo ? View.VISIBLE : View.GONE);

@@ -2,6 +2,8 @@ package com.beemdevelopment.aegis.helpers;
 
 import android.os.Handler;
 
+import com.beemdevelopment.aegis.VibrationPatterns;
+
 public class UiRefresher {
     private boolean _running;
     private Listener _listener;
@@ -23,7 +25,6 @@ public class UiRefresher {
         }
         _running = true;
 
-        _listener.onRefresh();
         _handler.postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -31,6 +32,27 @@ public class UiRefresher {
                 _handler.postDelayed(this, _listener.getMillisTillNextRefresh());
             }
         }, _listener.getMillisTillNextRefresh());
+
+        _handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                _listener.onExpiring();
+                _handler.postDelayed(this, getNextRun());
+            }
+        },  getInitialRun());
+    }
+
+    private long getInitialRun() {
+        long sum = _listener.getMillisTillNextRefresh() - VibrationPatterns.getLengthInMillis(VibrationPatterns.EXPIRING);
+        if (sum < 0) {
+            return getNextRun();
+        }
+
+        return sum;
+    }
+
+    private long getNextRun() {
+        return (_listener.getMillisTillNextRefresh() + _listener.getPeriodMillis()) - VibrationPatterns.getLengthInMillis(VibrationPatterns.EXPIRING);
     }
 
     public void stop() {
@@ -40,6 +62,8 @@ public class UiRefresher {
 
     public interface Listener {
         void onRefresh();
+        void onExpiring();
         long getMillisTillNextRefresh();
+        long getPeriodMillis();
     }
 }

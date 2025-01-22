@@ -90,6 +90,10 @@ public class Preferences {
         return _prefs.getBoolean("pref_highlight_entry", false);
     }
 
+    public boolean isHapticFeedbackEnabled() {
+        return _prefs.getBoolean("pref_haptic_feedback", true);
+    }
+
     public boolean isPauseFocusedEnabled() {
         boolean dependenciesEnabled = isTapToRevealEnabled() || isEntryHighlightEnabled();
         if (!dependenciesEnabled) return false;
