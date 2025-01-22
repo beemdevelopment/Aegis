@@ -33,11 +33,13 @@ import com.beemdevelopment.aegis.CopyBehavior;
 import com.beemdevelopment.aegis.Preferences;
 import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.SortCategory;
+import com.beemdevelopment.aegis.VibrationPatterns;
 import com.beemdevelopment.aegis.ViewMode;
 import com.beemdevelopment.aegis.helpers.AnimationsHelper;
 import com.beemdevelopment.aegis.helpers.MetricsHelper;
 import com.beemdevelopment.aegis.helpers.SimpleItemTouchHelperCallback;
 import com.beemdevelopment.aegis.helpers.UiRefresher;
+import com.beemdevelopment.aegis.helpers.VibrationHelper;
 import com.beemdevelopment.aegis.otp.TotpInfo;
 import com.beemdevelopment.aegis.ui.glide.GlideHelper;
 import com.beemdevelopment.aegis.ui.models.ErrorCardInfo;
@@ -144,6 +146,10 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
             @Override
             public void onRefresh() {
                 refresh(false);
+
+                if (_recyclerView.isShown()) {
+                    VibrationHelper.vibratePattern(getContext(), VibrationPatterns.REFRESH_CODE);
+                }
             }
 
             @Override

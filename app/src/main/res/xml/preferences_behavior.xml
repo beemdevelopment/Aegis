@@ -27,6 +27,13 @@
         app:iconSpaceReserved="false"/>
 
     <androidx.preference.SwitchPreferenceCompat
+        android:defaultValue="true"
+        android:key="pref_haptic_feedback"
+        android:title="@string/pref_haptic_feedback_title"
+        android:summary="@string/pref_haptic_feedback_summary"
+        app:iconSpaceReserved="false"/>
+
+    <androidx.preference.SwitchPreferenceCompat
         android:defaultValue="false"
         android:key="pref_highlight_entry"
         android:title="@string/pref_highlight_entry_title"
