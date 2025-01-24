@@ -62,6 +62,7 @@
         <item name="colorSuccess">@color/aegis_theme_light_success</item>
         <item name="colorOnSurfaceDim">@color/aegis_theme_light_onSurfaceDim</item>
         <item name="colorCode">?attr/colorPrimary</item>
+        <item name="colorCodeHidden">?attr/colorOutlineVariant</item>
         <!-- Intro colors -->
         <item name="dot_color">?attr/colorSurfaceVariant</item>
         <item name="dot_color_selected">?attr/colorOnSurfaceVariant</item>
@@ -132,6 +133,7 @@
         <item name="colorSuccess">@color/aegis_theme_dark_success</item>
         <item name="colorOnSurfaceDim">@color/aegis_theme_dark_onSurfaceDim</item>
         <item name="colorCode">?attr/colorPrimary</item>
+        <item name="colorCodeHidden">?attr/colorOutlineVariant</item>
         <!-- Intro colors -->
         <item name="dot_color">?attr/colorSurfaceVariant</item>
         <item name="dot_color_selected">?attr/colorOnSurfaceVariant</item>
@@ -159,6 +161,7 @@
         <item name="colorSurfaceDim">#000000</item>
         <item name="colorSurfaceBright">#000000</item>
         <item name="colorCode">@android:color/white</item>
+        <item name="colorCodeHidden">#2F2F2F</item>
         <item name="colorProgressbar">@android:color/white</item>
     </style>
 
@@ -179,6 +182,7 @@
         <item name="colorSurfaceDim">#000000</item>
         <item name="colorSurfaceBright">#000000</item>
         <item name="colorCode">@android:color/white</item>
+        <item name="colorCodeHidden">#2F2F2F</item>
         <item name="colorProgressbar">@android:color/white</item>
     </style>
 

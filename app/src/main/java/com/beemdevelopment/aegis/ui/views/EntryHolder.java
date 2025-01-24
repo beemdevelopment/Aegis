@@ -369,9 +369,11 @@ public class EntryHolder extends RecyclerView.ViewHolder {
     public void hideCode() {
         String code = getOtp();
         String hiddenText = code.replaceAll("\\S", Character.toString(HIDDEN_CHAR));
+        stopExpirationAnimation();
+
         updateTextViewWithDots(_profileCode,  hiddenText, code);
         updateTextViewWithDots(_nextProfileCode,  hiddenText, code);
-        stopExpirationAnimation();
+
         _hidden = true;
     }
 
@@ -384,6 +386,7 @@ public class EntryHolder extends RecyclerView.ViewHolder {
         float dotsWidth = paint.measureText(hiddenCode);
         float scaleFactor = codeWidth / dotsWidth;
         scaleFactor = (float)(Math.round(scaleFactor * 10.0) / 10.0);
+        textView.setTextColor(MaterialColors.getColor(textView, R.attr.colorCodeHidden));
 
         // If scale is higher or equal to 0.8, do nothing and proceed with the normal text rendering
         if (scaleFactor >= 0.8) {
