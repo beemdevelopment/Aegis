@@ -518,11 +518,10 @@ public class ImportExportPreferencesFragment extends PreferencesFragment {
                 file = File.createTempFile(VaultRepository.FILENAME_PREFIX_EXPORT + "-", ".json", getExportCacheDir());
                 outStream = new FileOutputStream(file);
                 cb.exportVault(outStream);
-
-                new ExportTask(requireContext(), new ExportResultListener()).execute(getLifecycle(), new ExportTask.Params(file, uri));
             } catch (VaultRepositoryException | IOException e) {
                 e.printStackTrace();
                 Dialogs.showErrorDialog(requireContext(), R.string.exporting_vault_error, e);
+                return;
             } finally {
                 try {
                     if (outStream != null) {
@@ -532,6 +531,8 @@ public class ImportExportPreferencesFragment extends PreferencesFragment {
                     e.printStackTrace();
                 }
             }
+
+            new ExportTask(requireContext(), new ExportResultListener()).execute(getLifecycle(), new ExportTask.Params(file, uri));
         }, _exportFilter);
         _exportFilter = null;
     }
