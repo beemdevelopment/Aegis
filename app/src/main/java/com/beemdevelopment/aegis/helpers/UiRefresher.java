@@ -23,7 +23,6 @@ public class UiRefresher {
         }
         _running = true;
 
-        _listener.onRefresh();
         _handler.postDelayed(new Runnable() {
             @Override
             public void run() {

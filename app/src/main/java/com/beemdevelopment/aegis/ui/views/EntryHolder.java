@@ -1,5 +1,7 @@
 package com.beemdevelopment.aegis.ui.views;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ArgbEvaluator;
 import android.animation.ObjectAnimator;
@@ -25,11 +27,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.beemdevelopment.aegis.AccountNamePosition;
 import com.beemdevelopment.aegis.Preferences;
 import com.beemdevelopment.aegis.R;
+import com.beemdevelopment.aegis.VibrationPatterns;
 import com.beemdevelopment.aegis.ViewMode;
 import com.beemdevelopment.aegis.helpers.AnimationsHelper;
 import com.beemdevelopment.aegis.helpers.CenterVerticalSpan;
 import com.beemdevelopment.aegis.helpers.SimpleAnimationEndListener;
 import com.beemdevelopment.aegis.helpers.UiRefresher;
+import com.beemdevelopment.aegis.helpers.VibrationHelper;
 import com.beemdevelopment.aegis.otp.HotpInfo;
 import com.beemdevelopment.aegis.otp.OtpInfo;
 import com.beemdevelopment.aegis.otp.OtpInfoException;
@@ -67,6 +71,7 @@ public class EntryHolder extends RecyclerView.ViewHolder {
 
     private boolean _hidden;
     private boolean _paused;
+    private boolean _nonUniform;
 
     private TotpProgressBar _progressBar;
     private MaterialCardView _view;
@@ -118,12 +123,13 @@ public class EntryHolder extends RecyclerView.ViewHolder {
         });
     }
 
-    public void setData(VaultEntry entry, Preferences.CodeGrouping groupSize, ViewMode viewMode, AccountNamePosition accountNamePosition, boolean showIcon, boolean showProgress, boolean hidden, boolean paused, boolean dimmed, boolean showExpirationState, boolean showNextCode) {
+    public void setData(VaultEntry entry, Preferences.CodeGrouping groupSize, ViewMode viewMode, AccountNamePosition accountNamePosition, boolean showIcon, boolean nonUniform, boolean hidden, boolean paused, boolean dimmed, boolean showExpirationState, boolean showNextCode) {
         _entry = entry;
         _hidden = hidden;
         _paused = paused;
         _codeGrouping = groupSize;
         _viewMode = viewMode;
+        _nonUniform = nonUniform;
 
         _accountNamePosition = accountNamePosition;
         if (viewMode.equals(ViewMode.TILES) && _accountNamePosition == AccountNamePosition.END) {
@@ -140,7 +146,7 @@ public class EntryHolder extends RecyclerView.ViewHolder {
         _favoriteIndicator.setVisibility(_entry.isFavorite() ? View.VISIBLE : View.INVISIBLE);
 
         // only show the progress bar if there is no uniform period and the entry type is TotpInfo
-        setShowProgress(showProgress);
+        setShowProgress(nonUniform);
 
         // only show the button if this entry is of type HotpInfo
         _buttonRefresh.setVisibility(entry.getInfo() instanceof HotpInfo ? View.VISIBLE : View.GONE);
@@ -460,6 +466,16 @@ public class EntryHolder extends RecyclerView.ViewHolder {
         final int blinkDuration = 3000;
         ValueAnimator delayAnim2 = ValueAnimator.ofFloat(0f, 0f);
         delayAnim2.setDuration((long) ((totalStateDuration - blinkDuration) / durationScale));
+        delayAnim2.addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                if (!_nonUniform) {
+                    if (itemView.isShown()) {
+                        VibrationHelper.vibratePattern(itemView.getContext(), VibrationPatterns.EXPIRING);
+                    }
+                }
+            }
+        });
 
         ObjectAnimator alphaAnim = ObjectAnimator.ofFloat(_profileCode, "alpha", 1f, .5f);
         alphaAnim.setDuration((long) (500 / durationScale));
