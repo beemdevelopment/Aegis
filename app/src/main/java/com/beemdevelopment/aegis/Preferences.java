@@ -86,6 +86,10 @@ public class Preferences {
         return _prefs.getBoolean("pref_tap_to_reveal", false);
     }
 
+    public boolean isGroupMultiselectEnabled() {
+        return _prefs.getBoolean("pref_groups_multiselect", false);
+    }
+
     public boolean isEntryHighlightEnabled() {
         return _prefs.getBoolean("pref_highlight_entry", false);
     }
