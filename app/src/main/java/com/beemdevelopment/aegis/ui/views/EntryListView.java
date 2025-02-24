@@ -200,6 +200,7 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
         _adapter.setGroupFilter(groups);
         _touchCallback.setIsLongPressDragEnabled(_adapter.isDragAndDropAllowed());
         updateEmptyState();
+        updateDividerDecoration();
     }
 
     public void setIsLongPressDragEnabled(boolean enabled) {
@@ -232,6 +233,7 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
     public void setSortCategory(SortCategory sortCategory, boolean apply) {
         _adapter.setSortCategory(sortCategory, apply);
         _touchCallback.setIsLongPressDragEnabled(_adapter.isDragAndDropAllowed());
+        updateDividerDecoration();
     }
 
     public void setUsageCounts(Map<UUID, Integer> usageCounts) {
@@ -253,8 +255,8 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
     public void setSearchFilter(String search) {
         _adapter.setSearchFilter(search);
         _touchCallback.setIsLongPressDragEnabled(_adapter.isDragAndDropAllowed());
-
         updateEmptyState();
+        updateDividerDecoration();
     }
 
     public void setSelectedEntry(VaultEntry entry) {
