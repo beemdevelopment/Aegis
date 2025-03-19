@@ -1,0 +1,14 @@
+project_id: "372633"
+preserve_hierarchy: true
+base_path: "app/src/main"
+base_url: "https://api.crowdin.com"
+api_token_env: "CROWDIN_PERSONAL_TOKEN"
+files:
+  - type: "android"
+    source: "res/values/strings.xml"
+    dest: "strings.xml"
+    translation: "res/values-%android_code%/%original_file_name%"
+  - type: "android"
+    source: "res/values-v29/strings.xml"
+    dest: "strings-v29.xml"
+    translation: "res/values-%android_code%-v29/%original_file_name%"

@@ -13,19 +13,13 @@ jobs:
       - uses: actions/checkout@v4
       - name: Install crowdin-cli
         run: |
-          wget https://github.com/crowdin/crowdin-cli/releases/download/3.7.2/crowdin-cli.zip
-          echo "ee9f838b819ccedc33c9b2537055e5ba7d7934561b24df1e1a6274cbd6e27f2d  crowdin-cli.zip" | sha256sum -c
+          wget https://github.com/crowdin/crowdin-cli/releases/download/4.6.1/crowdin-cli.zip
+          echo "7afd70de3a747ac631a5bad7866008163ae1d50c4606b5773f0b90a5481ffde2  crowdin-cli.zip" | sha256sum -c
           unzip crowdin-cli.zip -d crowdin-cli
       - name: Upload to Crowdin
         env:
-          CROWDIN_TOKEN: "${{ secrets.CROWDIN_TOKEN }}"
+          CROWDIN_PERSONAL_TOKEN: "${{ secrets.CROWDIN_TOKEN }}"
         run: |
-          java -jar ./crowdin-cli/3.7.2/crowdin-cli.jar upload sources \
+          java -jar ./crowdin-cli/4.6.1/crowdin-cli.jar upload sources \
             --no-progress \
-            --token "$CROWDIN_TOKEN" \
-            --project-id 372633 \
-            --base-path app/src/main \
-            --source res/values/strings.xml \
-            --translation "res/values-%android_code%/%original_file_name%" \
-            --dest strings.xml \
             --branch master
