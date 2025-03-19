@@ -1,0 +1,18 @@
+"base_path": "app/src/main"
+
+"preserve_hierarchy": true
+
+"files": [
+  {
+    "source": "res/values/strings.xml",
+    "dest": "strings.xml",
+    "translation": "res/values-%android_code%/%original_file_name%",
+    "type": "android"
+  },
+  {
+    "source": "res/values-v29/strings.xml",
+    "dest": "strings-v29.xml",
+    "translation": "res/values-%android_code%-v29/%original_file_name%",
+    "type": "android"
+  }
+]
