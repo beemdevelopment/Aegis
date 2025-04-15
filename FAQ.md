@@ -86,6 +86,14 @@ Another common setup is to configure Aegis to back up to a folder on local
 storage of your device and then have a separate app (like
 [Syncthing](https://syncthing.net/)) sync that folder anywhere you want.
 
+## Encrypted Backups
+
+### Why do I not get prompted to enter an encryption password when exporting?
+
+Aegis uses the same password you have configured to encrypt your vault as the
+password which is used when exporting and importing your vault; so when prompted, 
+you will enter that when importing your vault.
+
 ## Importing
 
 ### When importing from Authenticator Plus, an error is shown claiming that Accounts.txt is missing
