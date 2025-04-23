@@ -10,6 +10,7 @@ import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.PersistableBundle;
+import android.provider.Settings;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,6 +48,8 @@ public class TransferEntriesActivity extends AegisActivity {
     private Button _previousButton;
     private Button _copyButton;
     private int _currentEntryCount = 1;
+    private float _deviceBrightness;
+    private boolean _isMaxBrightnessSet = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -146,13 +149,33 @@ public class TransferEntriesActivity extends AegisActivity {
                 _qrImage.getViewTreeObserver().removeOnGlobalLayoutListener(this);
             }
         });
+
+        _deviceBrightness = getSystemBrightness();
+        _qrImage.setOnClickListener(v -> {
+            if (!_isMaxBrightnessSet) {
+                setBrightness(1f);
+                _isMaxBrightnessSet = true;
+            } else {
+                setBrightness(_deviceBrightness);
+                _isMaxBrightnessSet = false;
+            }
+        });
     }
 
-    @Override
-    public void onAttachedToWindow() {
-        // Max brightness to make the QR codes easier to scan
+    private float getSystemBrightness() {
+        int brightness = 0;
+        try {
+            brightness = Settings.System.getInt(getContentResolver(), Settings.System.SCREEN_BRIGHTNESS);
+        } catch (Settings.SettingNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        return brightness / 255f;
+    }
+
+    private void setBrightness(float brightnessAmount) {
         WindowManager.LayoutParams attrs = getWindow().getAttributes();
-        attrs.screenBrightness = 1.0f;
+        attrs.screenBrightness = brightnessAmount;
         getWindow().setAttributes(attrs);
     }
 

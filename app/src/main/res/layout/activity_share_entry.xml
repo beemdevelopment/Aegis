@@ -25,8 +25,8 @@
         android:id="@+id/layoutShareEntry"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingHorizontal="30dp"
-        android:layout_marginTop="?attr/actionBarSize">
+        android:layout_marginTop="?attr/actionBarSize"
+        android:paddingHorizontal="30dp">
 
         <TextView
             android:id="@+id/tvDescription"
@@ -34,44 +34,44 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="@string/transfer_entry_description"
-            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toTopOf="@+id/ivQrCode"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/ivQrCode"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.Aegis.ImageView.Rounded"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintDimensionRatio="1:1"
-            app:layout_constraintVertical_bias="0.3"
-            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.3"
+            app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.Aegis.ImageView.Rounded" />
 
         <TextView
             android:id="@+id/tvIssuer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            tools:text="Issuer"
             android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ivQrCode" />
+            app:layout_constraintTop_toBottomOf="@+id/ivQrCode"
+            tools:text="Issuer" />
 
         <TextView
             android:id="@+id/tvAccountName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            tools:text="Accountname"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvIssuer" />
+            app:layout_constraintTop_toBottomOf="@+id/tvIssuer"
+            tools:text="Accountname" />
 
         <Button
             android:id="@+id/btnCopyClipboard"
@@ -80,17 +80,19 @@
             android:text="@string/copy_uri"
             android:textAllCaps="false"
             android:visibility="invisible"
+            app:layout_constraintBottom_toTopOf="@id/tvEntriesCount"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvAccountName"
-            app:layout_constraintBottom_toTopOf="@id/tvEntriesCount" />
+            app:layout_constraintVertical_bias="0.134" />
 
         <Button
             android:id="@+id/btnNext"
+            style="@style/Widget.Material3.Button.TextButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="4dp"
-            style="@style/Widget.Material3.Button.TextButton"
             android:text="@string/next"
             android:textAllCaps="false"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -98,11 +100,11 @@
 
         <Button
             android:id="@+id/btnPrevious"
+            style="@style/Widget.Material3.Button.TextButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="4dp"
             android:layout_marginBottom="4dp"
-            style="@style/Widget.Material3.Button.TextButton"
             android:text="@string/previous"
             android:textAllCaps="false"
             android:visibility="invisible"
@@ -117,6 +119,16 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/btnNext"
             app:layout_constraintStart_toStartOf="@+id/btnPrevious" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/transfer_entry_brightness"
+            app:layout_constraintBottom_toTopOf="@+id/tvEntriesCount"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnCopyClipboard" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
