@@ -298,8 +298,8 @@ public class FreeOtpImporter extends DatabaseImporter {
         private static VaultEntry convertEntry(JSONObject obj) throws DatabaseImporterEntryException {
             try {
                 String type = obj.getString("type").toLowerCase(Locale.ROOT);
-                String algo = obj.getString("algo");
-                int digits = obj.getInt("digits");
+                String algo = obj.optString("algo", OtpInfo.DEFAULT_ALGORITHM);
+                int digits = obj.optInt("digits", OtpInfo.DEFAULT_DIGITS);
                 byte[] secret = toBytes(obj.getJSONArray("secret"));
 
                 String issuer = obj.getString("issuerExt");
@@ -308,7 +308,7 @@ public class FreeOtpImporter extends DatabaseImporter {
                 OtpInfo info;
                 switch (type) {
                     case "totp":
-                        int period = obj.getInt("period");
+                        int period = obj.optInt("period", TotpInfo.DEFAULT_PERIOD);
                         if (issuer.equals("Steam")) {
                             info = new SteamInfo(secret, algo, digits, period);
                         } else {
