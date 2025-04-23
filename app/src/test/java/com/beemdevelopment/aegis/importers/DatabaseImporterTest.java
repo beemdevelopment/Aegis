@@ -258,6 +258,15 @@ public class DatabaseImporterTest {
     }
 
     @Test
+    public void testImportFreeOtpV2NullAlgo() throws IOException, DatabaseImporterException, OtpInfoException {
+        List<VaultEntry> entries = importEncrypted(FreeOtpImporter.class, "freeotp_v2_null_algo.xml", encryptedState -> {
+            final char[] password = "test".toCharArray();
+            return ((FreeOtpImporter.EncryptedState) encryptedState).decrypt(password);
+        });
+        checkImportedEntries(entries);
+    }
+
+    @Test
     public void testImportFreeOtpPlus() throws IOException, DatabaseImporterException, OtpInfoException {
         List<VaultEntry> entries = importPlain(FreeOtpPlusImporter.class, "freeotp_plus.json");
         checkImportedFreeOtpEntriesV1(entries);
