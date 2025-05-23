@@ -1,5 +1,8 @@
 package com.beemdevelopment.aegis.vault;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 import com.beemdevelopment.aegis.encoding.Base64;
 import com.beemdevelopment.aegis.encoding.EncodingException;
 import com.beemdevelopment.aegis.encoding.Hex;
@@ -7,8 +10,6 @@ import com.beemdevelopment.aegis.icons.IconType;
 import com.beemdevelopment.aegis.util.JsonUtils;
 import com.google.common.hash.HashCode;
 
-import org.checkerframework.checker.nullness.qual.NonNull;
-import org.checkerframework.checker.nullness.qual.Nullable;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -25,21 +26,21 @@ public class VaultEntryIcon implements Serializable {
 
     public static final int MAX_DIMENS = 512;
 
-    public VaultEntryIcon(byte @NonNull [] bytes, @NonNull IconType type) {
+    public VaultEntryIcon(@NonNull byte[] bytes, @NonNull IconType type) {
         this(bytes, type, generateHash(bytes, type));
     }
 
-    VaultEntryIcon(byte @NonNull [] bytes, @NonNull IconType type, byte @NonNull [] hash) {
+    VaultEntryIcon(@NonNull byte[] bytes, @NonNull IconType type, @NonNull byte[] hash) {
         _bytes = bytes;
         _hash = hash;
         _type = type;
     }
 
-    public byte @NonNull [] getBytes() {
+    public @NonNull byte[] getBytes() {
         return _bytes;
     }
 
-    public byte @NonNull [] getHash() {
+    public @NonNull byte[] getHash() {
         return _hash;
     }
 
@@ -98,7 +99,7 @@ public class VaultEntryIcon implements Serializable {
         }
     }
 
-    private static byte @NonNull [] generateHash(byte @NonNull [] bytes, @NonNull IconType type) {
+    private static @NonNull byte[] generateHash(@NonNull byte[] bytes, @NonNull IconType type) {
         try {
             MessageDigest md = MessageDigest.getInstance("SHA-256");
             md.update(type.toMimeType().getBytes(StandardCharsets.UTF_8));

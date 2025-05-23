@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Intent;
-import android.os.Build;
 import android.os.IBinder;
 
 import androidx.annotation.Nullable;
@@ -29,11 +28,7 @@ public class NotificationService extends Service {
 
     @SuppressLint("LaunchActivityFromNotification")
     public void serviceMethod() {
-        int flags = PendingIntent.FLAG_ONE_SHOT;
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            flags |= PendingIntent.FLAG_IMMUTABLE;
-        }
-
+        int flags = PendingIntent.FLAG_ONE_SHOT | PendingIntent.FLAG_IMMUTABLE;
         Intent intent = new Intent(this, VaultLockReceiver.class);
         intent.setAction(VaultLockReceiver.ACTION_LOCK_VAULT);
         intent.setPackage(BuildConfig.APPLICATION_ID);

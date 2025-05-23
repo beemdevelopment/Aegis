@@ -1,6 +1,6 @@
 {
     "metadata": {
-        "generated": "2024-10-18T11:49:53.854Z"
+        "generated": "2025-05-23T11:52:25.992Z"
     },
     "libraries": [
         {
@@ -13,14 +13,14 @@
                     "name": "The Android Open Source Project"
                 }
             ],
-            "artifactVersion": "1.9.3",
+            "artifactVersion": "1.10.1",
             "description": "Provides the base Activity subclass and the relevant hooks to build a composable structure on top.",
             "scm": {
                 "connection": "scm:git:https://android.googlesource.com/platform/frameworks/support",
                 "url": "https://cs.android.com/androidx/platform/frameworks/support"
             },
             "name": "Activity",
-            "website": "https://developer.android.com/jetpack/androidx/releases/activity#1.9.3",
+            "website": "https://developer.android.com/jetpack/androidx/releases/activity#1.10.1",
             "licenses": [
                 "Apache-2.0"
             ],
@@ -38,14 +38,14 @@
                     "name": "The Android Open Source Project"
                 }
             ],
-            "artifactVersion": "1.9.3",
+            "artifactVersion": "1.10.1",
             "description": "Kotlin extensions for 'activity' artifact",
             "scm": {
                 "connection": "scm:git:https://android.googlesource.com/platform/frameworks/support",
                 "url": "https://cs.android.com/androidx/platform/frameworks/support"
             },
             "name": "Activity Kotlin Extensions",
-            "website": "https://developer.android.com/jetpack/androidx/releases/activity#1.9.3",
+            "website": "https://developer.android.com/jetpack/androidx/releases/activity#1.10.1",
             "licenses": [
                 "Apache-2.0"
             ],
@@ -63,14 +63,14 @@
                     "name": "The Android Open Source Project"
                 }
             ],
-            "artifactVersion": "1.4.0",
+            "artifactVersion": "1.4.1",
             "description": "Java annotation for use on unstable Android API surfaces. When used in conjunction with the Experimental annotation lint checks, this annotation provides functional parity with Kotlin's Experimental annotation.",
             "scm": {
                 "connection": "scm:git:https://android.googlesource.com/platform/frameworks/support",
                 "url": "https://cs.android.com/androidx/platform/frameworks/support"
             },
             "name": "Experimental annotation",
-            "website": "https://developer.android.com/jetpack/androidx/releases/annotation#1.4.0",
+            "website": "https://developer.android.com/jetpack/androidx/releases/annotation#1.4.1",
             "licenses": [
                 "Apache-2.0"
             ],
@@ -88,14 +88,14 @@
                     "name": "The Android Open Source Project"
                 }
             ],
-            "artifactVersion": "1.8.0",
+            "artifactVersion": "1.9.1",
             "description": "Provides source annotations for tooling and readability.",
             "scm": {
                 "connection": "scm:git:https://android.googlesource.com/platform/frameworks/support",
                 "url": "https://cs.android.com/androidx/platform/frameworks/support"
             },
             "name": "Annotation",
-            "website": "https://developer.android.com/jetpack/androidx/releases/annotation#1.8.0",
+            "website": "https://developer.android.com/jetpack/androidx/releases/annotation#1.9.1",
             "licenses": [
                 "Apache-2.0"
             ],
@@ -229,17 +229,20 @@
                     "name": "The Android Open Source Project"
                 }
             ],
-            "artifactVersion": "1.3.4",
+            "artifactVersion": "1.4.2",
             "description": "Camera2 implementation and extensions for the Jetpack Camera Library, a library providing a consistent and reliable camera foundation that enables great camera driven experiences across all of Android.",
             "scm": {
                 "connection": "scm:git:https://android.googlesource.com/platform/frameworks/support",
                 "url": "https://cs.android.com/androidx/platform/frameworks/support"
             },
             "name": "Camera2",
-            "website": "https://developer.android.com/jetpack/androidx/releases/camera#1.3.4",
+            "website": "https://developer.android.com/jetpack/androidx/releases/camera#1.4.2",
             "licenses": [
                 "Apache-2.0"
-            ]
+            ],
+            "organization": {
+                "name": "The Android Open Source Project"
+            }
         },
         {
             "uniqueId": "androidx.camera:camera-core",
@@ -251,18 +254,21 @@
                     "name": "The Android Open Source Project"
                 }
             ],
-            "artifactVersion": "1.3.4",
+            "artifactVersion": "1.4.2",
             "description": "Core components for the Jetpack Camera Library, a library providing a consistent and reliable camera foundation that enables great camera driven experiences across all of Android.",
             "scm": {
                 "connection": "scm:git:https://android.googlesource.com/platform/frameworks/support",
                 "url": "https://cs.android.com/androidx/platform/frameworks/support"
             },
             "name": "Camera Core",
-            "website": "https://developer.android.com/jetpack/androidx/releases/camera#1.3.4",
+            "website": "https://developer.android.com/jetpack/androidx/releases/camera#1.4.2",
             "licenses": [
                 "Apache-2.0",
                 "44d1a25c593283261968a15c8cc213cd"
-            ]
+            ],
+            "organization": {
+                "name": "The Android Open Source Project"
+            }
         },
         {
             "uniqueId": "androidx.camera:camera-lifecycle",
@@ -274,17 +280,20 @@
                     "name": "The Android Open Source Project"
                 }
             ],
-            "artifactVersion": "1.3.4",
+            "artifactVersion": "1.4.2",
             "description": "Lifecycle components for the Jetpack Camera Library, a library providing a consistent and reliable camera foundation that enables great camera driven experiences across all of Android.",
             "scm": {
                 "connection": "scm:git:https://android.googlesource.com/platform/frameworks/support",
                 "url": "https://cs.android.com/androidx/platform/frameworks/support"
             },
             "name": "Camera Lifecycle",
-            "website": "https://developer.android.com/jetpack/androidx/releases/camera#1.3.4",
+            "website": "https://developer.android.com/jetpack/androidx/releases/camera#1.4.2",
             "licenses": [
                 "Apache-2.0"
-            ]
+            ],
+            "organization": {
+                "name": "The Android Open Source Project"
+            }
         },
         {
             "uniqueId": "androidx.camera:camera-video",
@@ -296,17 +305,20 @@
                     "name": "The Android Open Source Project"
                 }
             ],
-            "artifactVersion": "1.3.4",
+            "artifactVersion": "1.4.2",
             "description": "Video components for the Jetpack Camera Library, a library providing a consistent and reliable camera foundation that enables great camera driven experiences across all of Android.",
             "scm": {
                 "connection": "scm:git:https://android.googlesource.com/platform/frameworks/support",
                 "url": "https://cs.android.com/androidx/platform/frameworks/support"
             },
             "name": "Camera Video",
-            "website": "https://developer.android.com/jetpack/androidx/releases/camera#1.3.4",
+            "website": "https://developer.android.com/jetpack/androidx/releases/camera#1.4.2",
             "licenses": [
                 "Apache-2.0"
-            ]
+            ],
+            "organization": {
+                "name": "The Android Open Source Project"
+            }
         },
         {
             "uniqueId": "androidx.camera:camera-view",
@@ -318,17 +330,20 @@
                     "name": "The Android Open Source Project"
                 }
             ],
-            "artifactVersion": "1.3.4",
+            "artifactVersion": "1.4.2",
             "description": "UI tools for the Jetpack Camera Library, a library providing a consistent and reliable camera foundation that enables great camera driven experiences across all of Android.",
             "scm": {
                 "connection": "scm:git:https://android.googlesource.com/platform/frameworks/support",
                 "url": "https://cs.android.com/androidx/platform/frameworks/support"
             },
             "name": "Camera View",
-            "website": "https://developer.android.com/jetpack/androidx/releases/camera#1.3.4",
+            "website": "https://developer.android.com/jetpack/androidx/releases/camera#1.4.2",
             "licenses": [
                 "Apache-2.0"
-            ]
+            ],
+            "organization": {
+                "name": "The Android Open Source Project"
+            }
         },
         {
             "uniqueId": "androidx.cardview:cardview",
@@ -353,7 +368,7 @@
             ]
         },
         {
-            "uniqueId": "androidx.collection:collection",
+            "uniqueId": "androidx.collection:collection-jvm",
             "funding": [
                 
             ],
@@ -362,17 +377,20 @@
                     "name": "The Android Open Source Project"
                 }
             ],
-            "artifactVersion": "1.1.0",
+            "artifactVersion": "1.4.2",
             "description": "Standalone efficient collections.",
             "scm": {
                 "connection": "scm:git:https://android.googlesource.com/platform/frameworks/support",
-                "url": "http://source.android.com"
+                "url": "https://cs.android.com/androidx/platform/frameworks/support"
             },
-            "name": "Support collections",
-            "website": "http://developer.android.com/tools/extras/support-library.html",
+            "name": "collections",
+            "website": "https://developer.android.com/jetpack/androidx/releases/collection#1.4.2",
             "licenses": [
                 "Apache-2.0"
-            ]
+            ],
+            "organization": {
+                "name": "The Android Open Source Project"
+            }
         },
         {
             "uniqueId": "androidx.collection:collection-ktx",
@@ -384,17 +402,20 @@
                     "name": "The Android Open Source Project"
                 }
             ],
-            "artifactVersion": "1.1.0",
+            "artifactVersion": "1.4.2",
             "description": "Kotlin extensions for 'collection' artifact",
             "scm": {
                 "connection": "scm:git:https://android.googlesource.com/platform/frameworks/support",
-                "url": "http://source.android.com"
+                "url": "https://cs.android.com/androidx/platform/frameworks/support"
             },
             "name": "Collections Kotlin Extensions",
-            "website": "http://developer.android.com/tools/extras/support-library.html",
+            "website": "https://developer.android.com/jetpack/androidx/releases/collection#1.4.2",
             "licenses": [
                 "Apache-2.0"
-            ]
+            ],
+            "organization": {
+                "name": "The Android Open Source Project"
+            }
         },
         {
             "uniqueId": "androidx.concurrent:concurrent-futures",
@@ -450,17 +471,20 @@
                     "name": "The Android Open Source Project"
                 }
             ],
-            "artifactVersion": "2.1.4",
-            "description": "ConstraintLayout for Android",
+            "artifactVersion": "2.2.1",
+            "description": "This library offers a flexible and adaptable way to position and animate widgets",
             "scm": {
-                "connection": "git@github.com:androidx/constraintlayout.git",
-                "url": "https://github.com/androidx/constraintlayout"
+                "connection": "scm:git:https://android.googlesource.com/platform/frameworks/support",
+                "url": "https://cs.android.com/androidx/platform/frameworks/support"
             },
-            "name": "Android ConstraintLayout",
-            "website": "http://tools.android.com",
+            "name": "ConstraintLayout",
+            "website": "https://developer.android.com/jetpack/androidx/releases/constraintlayout#2.2.1",
             "licenses": [
                 "Apache-2.0"
-            ]
+            ],
+            "organization": {
+                "name": "The Android Open Source Project"
+            }
         },
         {
             "uniqueId": "androidx.constraintlayout:constraintlayout-core",
@@ -472,17 +496,20 @@
                     "name": "The Android Open Source Project"
                 }
             ],
-            "artifactVersion": "1.0.4",
-            "description": "ConstraintLayout core",
+            "artifactVersion": "1.1.1",
+            "description": "This library contains engines and algorithms for constraint based layout and complex animations (it is used by the ConstraintLayout library)",
             "scm": {
-                "connection": "git@github.com:androidx/constraintlayout.git",
-                "url": "https://github.com/androidx/constraintlayout"
+                "connection": "scm:git:https://android.googlesource.com/platform/frameworks/support",
+                "url": "https://cs.android.com/androidx/platform/frameworks/support"
             },
-            "name": "Android ConstraintLayout Core",
-            "website": "http://tools.android.com",
+            "name": "ConstraintLayout Core",
+            "website": "https://developer.android.com/jetpack/androidx/releases/constraintlayout#1.1.1",
             "licenses": [
                 "Apache-2.0"
-            ]
+            ],
+            "organization": {
+                "name": "The Android Open Source Project"
+            }
         },
         {
             "uniqueId": "androidx.coordinatorlayout:coordinatorlayout",
@@ -516,14 +543,14 @@
                     "name": "The Android Open Source Project"
                 }
             ],
-            "artifactVersion": "1.13.1",
+            "artifactVersion": "1.16.0",
             "description": "Provides backward-compatible implementations of Android platform APIs and features.",
             "scm": {
                 "connection": "scm:git:https://android.googlesource.com/platform/frameworks/support",
                 "url": "https://cs.android.com/androidx/platform/frameworks/support"
             },
             "name": "Core",
-            "website": "https://developer.android.com/jetpack/androidx/releases/core#1.13.1",
+            "website": "https://developer.android.com/jetpack/androidx/releases/core#1.16.0",
             "licenses": [
                 "Apache-2.0"
             ],
@@ -541,14 +568,39 @@
                     "name": "The Android Open Source Project"
                 }
             ],
-            "artifactVersion": "1.13.1",
+            "artifactVersion": "1.16.0",
             "description": "Kotlin extensions for 'core' artifact",
             "scm": {
                 "connection": "scm:git:https://android.googlesource.com/platform/frameworks/support",
                 "url": "https://cs.android.com/androidx/platform/frameworks/support"
             },
             "name": "Core Kotlin Extensions",
-            "website": "https://developer.android.com/jetpack/androidx/releases/core#1.13.1",
+            "website": "https://developer.android.com/jetpack/androidx/releases/core#1.16.0",
+            "licenses": [
+                "Apache-2.0"
+            ],
+            "organization": {
+                "name": "The Android Open Source Project"
+            }
+        },
+        {
+            "uniqueId": "androidx.core:core-viewtree",
+            "funding": [
+                
+            ],
+            "developers": [
+                {
+                    "name": "The Android Open Source Project"
+                }
+            ],
+            "artifactVersion": "1.0.0",
+            "description": "Provides ViewTree extensions packaged for use by other core androidx libraries",
+            "scm": {
+                "connection": "scm:git:https://android.googlesource.com/platform/frameworks/support",
+                "url": "https://cs.android.com/androidx/platform/frameworks/support"
+            },
+            "name": "androidx.core:core-viewtree",
+            "website": "https://developer.android.com/jetpack/androidx/releases/core#1.0.0",
             "licenses": [
                 "Apache-2.0"
             ],
@@ -647,17 +699,20 @@
                     "name": "The Android Open Source Project"
                 }
             ],
-            "artifactVersion": "1.0.1",
+            "artifactVersion": "1.1.0",
             "description": "The Support Library is a static library that you can add to your Android application in order to use APIs that are either not available for older platform versions or utility APIs that aren't a part of the framework APIs. Compatible on devices running API 14 or later.",
             "scm": {
                 "connection": "scm:git:https://android.googlesource.com/platform/frameworks/support",
-                "url": "http://source.android.com"
+                "url": "https://cs.android.com/androidx/platform/frameworks/support"
             },
-            "name": "Support Document File",
-            "website": "http://developer.android.com/tools/extras/support-library.html",
+            "name": "Document File",
+            "website": "https://developer.android.com/jetpack/androidx/releases/documentfile#1.1.0",
             "licenses": [
                 "Apache-2.0"
-            ]
+            ],
+            "organization": {
+                "name": "The Android Open Source Project"
+            }
         },
         {
             "uniqueId": "androidx.drawerlayout:drawerlayout",
@@ -867,14 +922,14 @@
                     "name": "The Android Open Source Project"
                 }
             ],
-            "artifactVersion": "2.8.6",
+            "artifactVersion": "2.9.0",
             "description": "Android Lifecycle-Common",
             "scm": {
                 "connection": "scm:git:https://android.googlesource.com/platform/frameworks/support",
                 "url": "https://cs.android.com/androidx/platform/frameworks/support"
             },
             "name": "Lifecycle-Common",
-            "website": "https://developer.android.com/jetpack/androidx/releases/lifecycle#2.8.6",
+            "website": "https://developer.android.com/jetpack/androidx/releases/lifecycle#2.9.0",
             "licenses": [
                 "Apache-2.0"
             ],
@@ -892,14 +947,14 @@
                     "name": "The Android Open Source Project"
                 }
             ],
-            "artifactVersion": "2.8.6",
+            "artifactVersion": "2.9.0",
             "description": "Android Lifecycle LiveData",
             "scm": {
                 "connection": "scm:git:https://android.googlesource.com/platform/frameworks/support",
                 "url": "https://cs.android.com/androidx/platform/frameworks/support"
             },
             "name": "Lifecycle LiveData",
-            "website": "https://developer.android.com/jetpack/androidx/releases/lifecycle#2.8.6",
+            "website": "https://developer.android.com/jetpack/androidx/releases/lifecycle#2.9.0",
             "licenses": [
                 "Apache-2.0"
             ],
@@ -917,14 +972,14 @@
                     "name": "The Android Open Source Project"
                 }
             ],
-            "artifactVersion": "2.8.6",
+            "artifactVersion": "2.9.0",
             "description": "Android Lifecycle LiveData Core",
             "scm": {
                 "connection": "scm:git:https://android.googlesource.com/platform/frameworks/support",
                 "url": "https://cs.android.com/androidx/platform/frameworks/support"
             },
             "name": "Lifecycle LiveData Core",
-            "website": "https://developer.android.com/jetpack/androidx/releases/lifecycle#2.8.6",
+            "website": "https://developer.android.com/jetpack/androidx/releases/lifecycle#2.9.0",
             "licenses": [
                 "Apache-2.0"
             ],
@@ -942,14 +997,14 @@
                     "name": "The Android Open Source Project"
                 }
             ],
-            "artifactVersion": "2.8.6",
+            "artifactVersion": "2.9.0",
             "description": "Kotlin extensions for 'livedata-core' artifact",
             "scm": {
                 "connection": "scm:git:https://android.googlesource.com/platform/frameworks/support",
                 "url": "https://cs.android.com/androidx/platform/frameworks/support"
             },
             "name": "LiveData Core Kotlin Extensions",
-            "website": "https://developer.android.com/jetpack/androidx/releases/lifecycle#2.8.6",
+            "website": "https://developer.android.com/jetpack/androidx/releases/lifecycle#2.9.0",
             "licenses": [
                 "Apache-2.0"
             ],
@@ -967,14 +1022,14 @@
                     "name": "The Android Open Source Project"
                 }
             ],
-            "artifactVersion": "2.8.6",
+            "artifactVersion": "2.9.0",
             "description": "Kotlin extensions for 'livedata' artifact",
             "scm": {
                 "connection": "scm:git:https://android.googlesource.com/platform/frameworks/support",
                 "url": "https://cs.android.com/androidx/platform/frameworks/support"
             },
             "name": "LiveData Kotlin Extensions",
-            "website": "https://developer.android.com/jetpack/androidx/releases/lifecycle#2.8.6",
+            "website": "https://developer.android.com/jetpack/androidx/releases/lifecycle#2.9.0",
             "licenses": [
                 "Apache-2.0"
             ],
@@ -992,14 +1047,14 @@
                     "name": "The Android Open Source Project"
                 }
             ],
-            "artifactVersion": "2.8.6",
+            "artifactVersion": "2.9.0",
             "description": "Android Lifecycle Process",
             "scm": {
                 "connection": "scm:git:https://android.googlesource.com/platform/frameworks/support",
                 "url": "https://cs.android.com/androidx/platform/frameworks/support"
             },
             "name": "Lifecycle Process",
-            "website": "https://developer.android.com/jetpack/androidx/releases/lifecycle#2.8.6",
+            "website": "https://developer.android.com/jetpack/androidx/releases/lifecycle#2.9.0",
             "licenses": [
                 "Apache-2.0"
             ],
@@ -1017,14 +1072,14 @@
                     "name": "The Android Open Source Project"
                 }
             ],
-            "artifactVersion": "2.8.6",
+            "artifactVersion": "2.9.0",
             "description": "Android Lifecycle Runtime",
             "scm": {
                 "connection": "scm:git:https://android.googlesource.com/platform/frameworks/support",
                 "url": "https://cs.android.com/androidx/platform/frameworks/support"
             },
             "name": "Lifecycle Runtime",
-            "website": "https://developer.android.com/jetpack/androidx/releases/lifecycle#2.8.6",
+            "website": "https://developer.android.com/jetpack/androidx/releases/lifecycle#2.9.0",
             "licenses": [
                 "Apache-2.0"
             ],
@@ -1042,14 +1097,14 @@
                     "name": "The Android Open Source Project"
                 }
             ],
-            "artifactVersion": "2.8.6",
+            "artifactVersion": "2.9.0",
             "description": "Kotlin extensions for 'lifecycle' artifact",
             "scm": {
                 "connection": "scm:git:https://android.googlesource.com/platform/frameworks/support",
                 "url": "https://cs.android.com/androidx/platform/frameworks/support"
             },
             "name": "Lifecycle Kotlin Extensions",
-            "website": "https://developer.android.com/jetpack/androidx/releases/lifecycle#2.8.6",
+            "website": "https://developer.android.com/jetpack/androidx/releases/lifecycle#2.9.0",
             "licenses": [
                 "Apache-2.0"
             ],
@@ -1067,14 +1122,14 @@
                     "name": "The Android Open Source Project"
                 }
             ],
-            "artifactVersion": "2.8.6",
+            "artifactVersion": "2.9.0",
             "description": "Android Lifecycle ViewModel",
             "scm": {
                 "connection": "scm:git:https://android.googlesource.com/platform/frameworks/support",
                 "url": "https://cs.android.com/androidx/platform/frameworks/support"
             },
             "name": "Lifecycle ViewModel",
-            "website": "https://developer.android.com/jetpack/androidx/releases/lifecycle#2.8.6",
+            "website": "https://developer.android.com/jetpack/androidx/releases/lifecycle#2.9.0",
             "licenses": [
                 "Apache-2.0"
             ],
@@ -1092,14 +1147,14 @@
                     "name": "The Android Open Source Project"
                 }
             ],
-            "artifactVersion": "2.8.6",
+            "artifactVersion": "2.9.0",
             "description": "Kotlin extensions for 'viewmodel' artifact",
             "scm": {
                 "connection": "scm:git:https://android.googlesource.com/platform/frameworks/support",
                 "url": "https://cs.android.com/androidx/platform/frameworks/support"
             },
             "name": "Lifecycle ViewModel Kotlin Extensions",
-            "website": "https://developer.android.com/jetpack/androidx/releases/lifecycle#2.8.6",
+            "website": "https://developer.android.com/jetpack/androidx/releases/lifecycle#2.9.0",
             "licenses": [
                 "Apache-2.0"
             ],
@@ -1117,14 +1172,14 @@
                     "name": "The Android Open Source Project"
                 }
             ],
-            "artifactVersion": "2.8.6",
+            "artifactVersion": "2.9.0",
             "description": "Android Lifecycle ViewModel",
             "scm": {
                 "connection": "scm:git:https://android.googlesource.com/platform/frameworks/support",
                 "url": "https://cs.android.com/androidx/platform/frameworks/support"
             },
             "name": "Lifecycle ViewModel with SavedState",
-            "website": "https://developer.android.com/jetpack/androidx/releases/lifecycle#2.8.6",
+            "website": "https://developer.android.com/jetpack/androidx/releases/lifecycle#2.9.0",
             "licenses": [
                 "Apache-2.0"
             ],
@@ -1317,17 +1372,20 @@
                     "name": "The Android Open Source Project"
                 }
             ],
-            "artifactVersion": "1.3.1",
+            "artifactVersion": "1.4.0",
             "description": "Allows libraries to prepopulate ahead of time compilation traces to be read by ART",
             "scm": {
                 "connection": "scm:git:https://android.googlesource.com/platform/frameworks/support",
                 "url": "https://cs.android.com/androidx/platform/frameworks/support"
             },
-            "name": "androidx.profileinstaller:profileinstaller",
-            "website": "https://developer.android.com/jetpack/androidx/releases/profileinstaller#1.3.1",
+            "name": "Profile Installer",
+            "website": "https://developer.android.com/jetpack/androidx/releases/profileinstaller#1.4.0",
             "licenses": [
                 "Apache-2.0"
-            ]
+            ],
+            "organization": {
+                "name": "The Android Open Source Project"
+            }
         },
         {
             "uniqueId": "androidx.recyclerview:recyclerview",
@@ -1339,17 +1397,20 @@
                     "name": "The Android Open Source Project"
                 }
             ],
-            "artifactVersion": "1.3.2",
+            "artifactVersion": "1.4.0",
             "description": "Android Support RecyclerView",
             "scm": {
                 "connection": "scm:git:https://android.googlesource.com/platform/frameworks/support",
                 "url": "https://cs.android.com/androidx/platform/frameworks/support"
             },
-            "name": "Support RecyclerView",
-            "website": "https://developer.android.com/jetpack/androidx/releases/recyclerview#1.3.2",
+            "name": "RecyclerView",
+            "website": "https://developer.android.com/jetpack/androidx/releases/recyclerview#1.4.0",
             "licenses": [
                 "Apache-2.0"
-            ]
+            ],
+            "organization": {
+                "name": "The Android Open Source Project"
+            }
         },
         {
             "uniqueId": "androidx.resourceinspection:resourceinspection-annotation",
@@ -1374,7 +1435,7 @@
             ]
         },
         {
-            "uniqueId": "androidx.room:room-common",
+            "uniqueId": "androidx.room:room-common-jvm",
             "funding": [
                 
             ],
@@ -1383,20 +1444,23 @@
                     "name": "The Android Open Source Project"
                 }
             ],
-            "artifactVersion": "2.6.1",
+            "artifactVersion": "2.7.1",
             "description": "Android Room-Common",
             "scm": {
                 "connection": "scm:git:https://android.googlesource.com/platform/frameworks/support",
                 "url": "https://cs.android.com/androidx/platform/frameworks/support"
             },
             "name": "Room-Common",
-            "website": "https://developer.android.com/jetpack/androidx/releases/room#2.6.1",
+            "website": "https://developer.android.com/jetpack/androidx/releases/room#2.7.1",
             "licenses": [
                 "Apache-2.0"
-            ]
+            ],
+            "organization": {
+                "name": "The Android Open Source Project"
+            }
         },
         {
-            "uniqueId": "androidx.room:room-runtime",
+            "uniqueId": "androidx.room:room-runtime-android",
             "funding": [
                 
             ],
@@ -1405,17 +1469,20 @@
                     "name": "The Android Open Source Project"
                 }
             ],
-            "artifactVersion": "2.6.1",
+            "artifactVersion": "2.7.1",
             "description": "Android Room-Runtime",
             "scm": {
                 "connection": "scm:git:https://android.googlesource.com/platform/frameworks/support",
                 "url": "https://cs.android.com/androidx/platform/frameworks/support"
             },
             "name": "Room-Runtime",
-            "website": "https://developer.android.com/jetpack/androidx/releases/room#2.6.1",
+            "website": "https://developer.android.com/jetpack/androidx/releases/room#2.7.1",
             "licenses": [
                 "Apache-2.0"
-            ]
+            ],
+            "organization": {
+                "name": "The Android Open Source Project"
+            }
         },
         {
             "uniqueId": "androidx.savedstate:savedstate",
@@ -1427,17 +1494,20 @@
                     "name": "The Android Open Source Project"
                 }
             ],
-            "artifactVersion": "1.2.1",
+            "artifactVersion": "1.3.0",
             "description": "Android Lifecycle Saved State",
             "scm": {
                 "connection": "scm:git:https://android.googlesource.com/platform/frameworks/support",
                 "url": "https://cs.android.com/androidx/platform/frameworks/support"
             },
             "name": "Saved State",
-            "website": "https://developer.android.com/jetpack/androidx/releases/savedstate#1.2.1",
+            "website": "https://developer.android.com/jetpack/androidx/releases/savedstate#1.3.0",
             "licenses": [
                 "Apache-2.0"
-            ]
+            ],
+            "organization": {
+                "name": "The Android Open Source Project"
+            }
         },
         {
             "uniqueId": "androidx.savedstate:savedstate-ktx",
@@ -1449,17 +1519,20 @@
                     "name": "The Android Open Source Project"
                 }
             ],
-            "artifactVersion": "1.2.1",
+            "artifactVersion": "1.3.0",
             "description": "Kotlin extensions for 'savedstate' artifact",
             "scm": {
                 "connection": "scm:git:https://android.googlesource.com/platform/frameworks/support",
                 "url": "https://cs.android.com/androidx/platform/frameworks/support"
             },
             "name": "SavedState Kotlin Extensions",
-            "website": "https://developer.android.com/jetpack/androidx/releases/savedstate#1.2.1",
+            "website": "https://developer.android.com/jetpack/androidx/releases/savedstate#1.3.0",
             "licenses": [
                 "Apache-2.0"
-            ]
+            ],
+            "organization": {
+                "name": "The Android Open Source Project"
+            }
         },
         {
             "uniqueId": "androidx.slidingpanelayout:slidingpanelayout",
@@ -1484,7 +1557,7 @@
             ]
         },
         {
-            "uniqueId": "androidx.sqlite:sqlite",
+            "uniqueId": "androidx.sqlite:sqlite-android",
             "funding": [
                 
             ],
@@ -1493,20 +1566,23 @@
                     "name": "The Android Open Source Project"
                 }
             ],
-            "artifactVersion": "2.4.0",
-            "description": "Android DB",
+            "artifactVersion": "2.5.0",
+            "description": "SQLite API",
             "scm": {
                 "connection": "scm:git:https://android.googlesource.com/platform/frameworks/support",
                 "url": "https://cs.android.com/androidx/platform/frameworks/support"
             },
             "name": "SQLite",
-            "website": "https://developer.android.com/jetpack/androidx/releases/sqlite#2.4.0",
+            "website": "https://developer.android.com/jetpack/androidx/releases/sqlite#2.5.0",
             "licenses": [
                 "Apache-2.0"
-            ]
+            ],
+            "organization": {
+                "name": "The Android Open Source Project"
+            }
         },
         {
-            "uniqueId": "androidx.sqlite:sqlite-framework",
+            "uniqueId": "androidx.sqlite:sqlite-framework-android",
             "funding": [
                 
             ],
@@ -1515,17 +1591,20 @@
                     "name": "The Android Open Source Project"
                 }
             ],
-            "artifactVersion": "2.4.0",
-            "description": "The implementation of Support SQLite library using the framework code.",
+            "artifactVersion": "2.5.0",
+            "description": "The implementation of SQLite library using the framework code.",
             "scm": {
                 "connection": "scm:git:https://android.googlesource.com/platform/frameworks/support",
                 "url": "https://cs.android.com/androidx/platform/frameworks/support"
             },
             "name": "SQLite Framework Integration",
-            "website": "https://developer.android.com/jetpack/androidx/releases/sqlite#2.4.0",
+            "website": "https://developer.android.com/jetpack/androidx/releases/sqlite#2.5.0",
             "licenses": [
                 "Apache-2.0"
-            ]
+            ],
+            "organization": {
+                "name": "The Android Open Source Project"
+            }
         },
         {
             "uniqueId": "androidx.startup:startup-runtime",
@@ -1631,14 +1710,36 @@
                     "name": "The Android Open Source Project"
                 }
             ],
-            "artifactVersion": "1.0.0",
+            "artifactVersion": "1.2.0",
             "description": "Android Tracing",
             "scm": {
                 "connection": "scm:git:https://android.googlesource.com/platform/frameworks/support",
                 "url": "https://cs.android.com/androidx/platform/frameworks/support"
             },
             "name": "Android Tracing",
-            "website": "https://developer.android.com/jetpack/androidx/releases/tracing#1.0.0",
+            "website": "https://developer.android.com/jetpack/androidx/releases/tracing#1.2.0",
+            "licenses": [
+                "Apache-2.0"
+            ]
+        },
+        {
+            "uniqueId": "androidx.tracing:tracing-ktx",
+            "funding": [
+                
+            ],
+            "developers": [
+                {
+                    "name": "The Android Open Source Project"
+                }
+            ],
+            "artifactVersion": "1.2.0",
+            "description": "Android Tracing",
+            "scm": {
+                "connection": "scm:git:https://android.googlesource.com/platform/frameworks/support",
+                "url": "https://cs.android.com/androidx/platform/frameworks/support"
+            },
+            "name": "Android Tracing Runtime Kotlin Extensions",
+            "website": "https://developer.android.com/jetpack/androidx/releases/tracing#1.2.0",
             "licenses": [
                 "Apache-2.0"
             ]
@@ -2154,7 +2255,7 @@
             "developers": [
                 
             ],
-            "artifactVersion": "2.52",
+            "artifactVersion": "2.56.2",
             "description": "A fast dependency injector for Android and Java.",
             "scm": {
                 "connection": "scm:git:git://github.com/google/dagger.git",
@@ -2179,7 +2280,7 @@
             "developers": [
                 
             ],
-            "artifactVersion": "2.52",
+            "artifactVersion": "2.56.2",
             "description": "A fast dependency injector for Android and Java.",
             "scm": {
                 "connection": "scm:git:git://github.com/google/dagger.git",
@@ -2204,7 +2305,7 @@
             "developers": [
                 
             ],
-            "artifactVersion": "2.52",
+            "artifactVersion": "2.56.2",
             "description": "A fast dependency injector for Android and Java.",
             "scm": {
                 "connection": "scm:git:git://github.com/google/dagger.git",
@@ -2229,7 +2330,7 @@
             "developers": [
                 
             ],
-            "artifactVersion": "2.52",
+            "artifactVersion": "2.56.2",
             "description": "A fast dependency injector for Android and Java.",
             "scm": {
                 "connection": "scm:git:git://github.com/google/dagger.git",
@@ -2254,7 +2355,7 @@
             "developers": [
                 
             ],
-            "artifactVersion": "2.52",
+            "artifactVersion": "2.56.2",
             "description": "A fast dependency injector for Android and Java.",
             "scm": {
                 "connection": "scm:git:git://github.com/google/dagger.git",
@@ -2279,7 +2380,7 @@
             "developers": [
                 
             ],
-            "artifactVersion": "2.19.1",
+            "artifactVersion": "2.34.0",
             "description": "Error Prone is a static analysis tool for Java that catches common programming mistakes at compile-time.",
             "scm": {
                 "connection": "scm:git:https://github.com/google/error-prone.git",
@@ -2304,7 +2405,7 @@
             "developers": [
                 
             ],
-            "artifactVersion": "2.28.0",
+            "artifactVersion": "2.36.0",
             "description": "Error Prone is a static analysis tool for Java that catches common programming mistakes at compile-time.",
             "scm": {
                 "connection": "scm:git:https://github.com/google/error-prone.git",
@@ -2329,7 +2430,7 @@
             "developers": [
                 
             ],
-            "artifactVersion": "1.0.2",
+            "artifactVersion": "1.0.3",
             "description": "Contains\n    com.google.common.util.concurrent.internal.InternalFutureFailureAccess and\n    InternalFutures. Most users will never need to use this artifact. Its\n    classes are conceptually a part of Guava, but they're in this separate\n    artifact so that Android libraries can use them without pulling in all of\n    Guava (just as they can use ListenableFuture by depending on the\n    listenablefuture artifact).",
             "scm": {
                 "connection": "scm:git:https://github.com/google/guava.git",
@@ -2350,7 +2451,7 @@
             "developers": [
                 
             ],
-            "artifactVersion": "33.3.1-android",
+            "artifactVersion": "33.4.8-android",
             "description": "Guava is a suite of core and expanded libraries that include\n    utility classes, Google's collections, I/O classes, and\n    much more.",
             "scm": {
                 "connection": "scm:git:https://github.com/google/guava.git",
@@ -2416,7 +2517,7 @@
             "developers": [
                 
             ],
-            "artifactVersion": "4.28.2",
+            "artifactVersion": "4.31.0",
             "description": "Lite version of Protocol Buffers library. This version is optimized for code size, but does\n    not guarantee API/ABI stability.",
             "scm": {
                 "connection": "scm:git:https://github.com/protocolbuffers/protobuf.git",
@@ -2427,6 +2528,31 @@
             "licenses": [
                 "BSD-3-Clause"
             ]
+        },
+        {
+            "uniqueId": "com.google.testparameterinjector:test-parameter-injector",
+            "funding": [
+                
+            ],
+            "developers": [
+                
+            ],
+            "artifactVersion": "1.18",
+            "description": "A simple yet powerful parameterized test runner.",
+            "scm": {
+                "connection": "scm:git:git://github.com/google/testparameterinjector.git",
+                "url": "http://github.com/google/testparameterinjector/",
+                "developerConnection": "scm:git:ssh://git@github.com/google/testparameterinjector.git"
+            },
+            "name": "TestParameterInjector for JUnit4",
+            "website": "https://github.com/google/testparameterinjector",
+            "licenses": [
+                "Apache-2.0"
+            ],
+            "organization": {
+                "url": "http://www.google.com/",
+                "name": "Google Inc."
+            }
         },
         {
             "uniqueId": "com.google.zxing:core",
@@ -2688,13 +2814,13 @@
                     "name": "The Legion of the Bouncy Castle Inc."
                 }
             ],
-            "artifactVersion": "1.78.1",
-            "description": "The Bouncy Castle Crypto package is a Java implementation of cryptographic algorithms. This jar contains JCE provider and lightweight API for the Bouncy Castle Cryptography APIs for JDK 1.8 and up.",
+            "artifactVersion": "1.80",
+            "description": "The Bouncy Castle Crypto package is a Java implementation of cryptographic algorithms. This jar contains the JCA/JCE provider and low-level API for the BC Java version 1.80 for Java 8 and later.",
             "scm": {
                 "url": "https://github.com/bcgit/bc-java"
             },
             "name": "Bouncy Castle Provider",
-            "website": "https://www.bouncycastle.org/java.html",
+            "website": "https://www.bouncycastle.org/download/bouncy-castle-java/",
             "licenses": [
                 "73252b46f36df25ef51a7994de439aea"
             ]
@@ -2710,19 +2836,22 @@
                     "name": "Michael Ernst"
                 },
                 {
-                    "organisationUrl": "https://www.cs.washington.edu/",
+                    "organisationUrl": "http://uwaterloo.ca/",
+                    "name": "Werner M. Dietl"
+                },
+                {
+                    "organisationUrl": "https://www.cs.washington.edu/research/plse/",
                     "name": "Suzanne Millstein"
                 }
             ],
-            "artifactVersion": "3.43.0",
-            "description": "checker-qual contains annotations (type qualifiers) that a programmer\nwrites to specify Java code for type-checking by the Checker Framework.",
+            "artifactVersion": "2.5.5",
+            "description": "Checker Qual is the set of annotations (qualifiers) and supporting classes\n        used by the Checker Framework to type check Java source code.  Please\n        see artifact:\n        org.checkerframework:checker",
             "scm": {
-                "connection": "scm:git:https://github.com/typetools/checker-framework.git",
-                "url": "https://github.com/typetools/checker-framework.git",
-                "developerConnection": "scm:git:ssh://git@github.com/typetools/checker-framework.git"
+                "connection": "https://github.com/typetools/checker-framework.git",
+                "url": "https://github.com/typetools/checker-framework.git"
             },
             "name": "Checker Qual",
-            "website": "https://checkerframework.org/",
+            "website": "https://checkerframework.org",
             "licenses": [
                 "MIT"
             ]
@@ -2870,7 +2999,7 @@
                     "name": "Kotlin Team"
                 }
             ],
-            "artifactVersion": "2.0.20",
+            "artifactVersion": "2.1.10",
             "description": "Kotlin Standard Library",
             "scm": {
                 "connection": "scm:git:https://github.com/JetBrains/kotlin.git",
@@ -2878,54 +3007,6 @@
                 "developerConnection": "scm:git:https://github.com/JetBrains/kotlin.git"
             },
             "name": "Kotlin Stdlib",
-            "website": "https://kotlinlang.org/",
-            "licenses": [
-                "Apache-2.0"
-            ]
-        },
-        {
-            "uniqueId": "org.jetbrains.kotlin:kotlin-stdlib-jdk7",
-            "funding": [
-                
-            ],
-            "developers": [
-                {
-                    "organisationUrl": "https://www.jetbrains.com",
-                    "name": "Kotlin Team"
-                }
-            ],
-            "artifactVersion": "1.8.22",
-            "description": "Kotlin Standard Library JDK 7 extension",
-            "scm": {
-                "connection": "scm:git:https://github.com/JetBrains/kotlin.git",
-                "url": "https://github.com/JetBrains/kotlin",
-                "developerConnection": "scm:git:https://github.com/JetBrains/kotlin.git"
-            },
-            "name": "Kotlin Stdlib Jdk7",
-            "website": "https://kotlinlang.org/",
-            "licenses": [
-                "Apache-2.0"
-            ]
-        },
-        {
-            "uniqueId": "org.jetbrains.kotlin:kotlin-stdlib-jdk8",
-            "funding": [
-                
-            ],
-            "developers": [
-                {
-                    "organisationUrl": "https://www.jetbrains.com",
-                    "name": "Kotlin Team"
-                }
-            ],
-            "artifactVersion": "1.8.22",
-            "description": "Kotlin Standard Library JDK 8 extension",
-            "scm": {
-                "connection": "scm:git:https://github.com/JetBrains/kotlin.git",
-                "url": "https://github.com/JetBrains/kotlin",
-                "developerConnection": "scm:git:https://github.com/JetBrains/kotlin.git"
-            },
-            "name": "Kotlin Stdlib Jdk8",
             "website": "https://kotlinlang.org/",
             "licenses": [
                 "Apache-2.0"
@@ -3030,7 +3111,7 @@
                     "name": "JetBrains Team"
                 }
             ],
-            "artifactVersion": "1.7.1",
+            "artifactVersion": "1.7.3",
             "description": "Kotlin multiplatform serialization runtime library",
             "scm": {
                 "url": "https://github.com/Kotlin/kotlinx.serialization"
@@ -3052,7 +3133,7 @@
                     "name": "JetBrains Team"
                 }
             ],
-            "artifactVersion": "1.7.1",
+            "artifactVersion": "1.7.3",
             "description": "Kotlin multiplatform serialization runtime library",
             "scm": {
                 "url": "https://github.com/Kotlin/kotlinx.serialization"
@@ -3074,7 +3155,7 @@
                     "name": "JetBrains Team"
                 }
             ],
-            "artifactVersion": "1.7.1",
+            "artifactVersion": "1.7.3",
             "description": "Kotlin multiplatform serialization runtime library",
             "scm": {
                 "url": "https://github.com/Kotlin/kotlinx.serialization"
@@ -3119,7 +3200,7 @@
                     "name": "Douglas Crockford"
                 }
             ],
-            "artifactVersion": "20240303",
+            "artifactVersion": "20250517",
             "description": "JSON is a light-weight, language independent, data interchange format.\n        See http://www.JSON.org/\n\n        The files in this package implement JSON encoders/decoders in Java.\n        It also includes the capability to convert between JSON and XML, HTTP\n        headers, Cookies, and CDL.\n\n        This is a reference implementation. There are a large number of JSON packages\n        in Java. Perhaps someday the Java community will standardize on one. Until\n        then, choose carefully.",
             "scm": {
                 "connection": "scm:git:git://github.com/douglascrockford/JSON-java.git",
@@ -3159,6 +3240,29 @@
             }
         },
         {
+            "uniqueId": "org.jspecify:jspecify",
+            "funding": [
+                
+            ],
+            "developers": [
+                {
+                    "name": "Kevin Bourrillion"
+                }
+            ],
+            "artifactVersion": "1.0.0",
+            "description": "An artifact of well-named and well-specified annotations to power static analysis checks",
+            "scm": {
+                "connection": "scm:git:git@github.com:jspecify/jspecify.git",
+                "url": "https://github.com/jspecify/jspecify/",
+                "developerConnection": "scm:git:git@github.com:jspecify/jspecify.git"
+            },
+            "name": "JSpecify annotations",
+            "website": "http://jspecify.org/",
+            "licenses": [
+                "Apache-2.0"
+            ]
+        },
+        {
             "uniqueId": "org.ow2.asm:asm",
             "funding": [
                 
@@ -3174,7 +3278,7 @@
                     "name": "Remi Forax"
                 }
             ],
-            "artifactVersion": "9.7",
+            "artifactVersion": "9.7.1",
             "description": "ASM, a very small and fast Java bytecode manipulation framework",
             "scm": {
                 "connection": "scm:git:https://gitlab.ow2.org/asm/asm/",
@@ -3207,7 +3311,7 @@
                     "name": "Remi Forax"
                 }
             ],
-            "artifactVersion": "9.7",
+            "artifactVersion": "9.7.1",
             "description": "Static code analysis API of ASM, a very small and fast Java bytecode manipulation framework",
             "scm": {
                 "connection": "scm:git:https://gitlab.ow2.org/asm/asm/",
@@ -3240,7 +3344,7 @@
                     "name": "Remi Forax"
                 }
             ],
-            "artifactVersion": "9.7",
+            "artifactVersion": "9.7.1",
             "description": "Usefull class adapters based on ASM, a very small and fast Java bytecode manipulation framework",
             "scm": {
                 "connection": "scm:git:https://gitlab.ow2.org/asm/asm/",
@@ -3273,7 +3377,7 @@
                     "name": "Remi Forax"
                 }
             ],
-            "artifactVersion": "9.7",
+            "artifactVersion": "9.7.1",
             "description": "Tree API of ASM, a very small and fast Java bytecode manipulation framework",
             "scm": {
                 "connection": "scm:git:https://gitlab.ow2.org/asm/asm/",
@@ -3306,7 +3410,7 @@
                     "name": "Remi Forax"
                 }
             ],
-            "artifactVersion": "9.7",
+            "artifactVersion": "9.7.1",
             "description": "Utilities for ASM, a very small and fast Java bytecode manipulation framework",
             "scm": {
                 "connection": "scm:git:https://gitlab.ow2.org/asm/asm/",
@@ -3341,7 +3445,7 @@
                     "name": "Christian Williams"
                 }
             ],
-            "artifactVersion": "4.13",
+            "artifactVersion": "4.14.1",
             "description": "An alternative Android testing framework.",
             "scm": {
                 "connection": "scm:git:git://github.com/robolectric/robolectric.git",
@@ -3372,7 +3476,7 @@
                     "name": "Christian Williams"
                 }
             ],
-            "artifactVersion": "4.13",
+            "artifactVersion": "4.14.1",
             "description": "An alternative Android testing framework.",
             "scm": {
                 "connection": "scm:git:git://github.com/robolectric/robolectric.git",
@@ -3403,7 +3507,7 @@
                     "name": "Christian Williams"
                 }
             ],
-            "artifactVersion": "4.13",
+            "artifactVersion": "4.14.1",
             "description": "An alternative Android testing framework.",
             "scm": {
                 "connection": "scm:git:git://github.com/robolectric/robolectric.git",
@@ -3426,7 +3530,7 @@
                     "name": "The Android Open Source Projects"
                 }
             ],
-            "artifactVersion": "1.0.12",
+            "artifactVersion": "1.0.16",
             "description": "Robolectric Nativeruntime Distribution Compat",
             "scm": {
                 "connection": "https://android.googlesource.com/platform/manifest.git",
@@ -3456,7 +3560,7 @@
                     "name": "Christian Williams"
                 }
             ],
-            "artifactVersion": "4.13",
+            "artifactVersion": "4.14.1",
             "description": "An alternative Android testing framework.",
             "scm": {
                 "connection": "scm:git:git://github.com/robolectric/robolectric.git",
@@ -3487,7 +3591,7 @@
                     "name": "Christian Williams"
                 }
             ],
-            "artifactVersion": "4.13",
+            "artifactVersion": "4.14.1",
             "description": "An alternative Android testing framework.",
             "scm": {
                 "connection": "scm:git:git://github.com/robolectric/robolectric.git",
@@ -3518,7 +3622,7 @@
                     "name": "Christian Williams"
                 }
             ],
-            "artifactVersion": "4.13",
+            "artifactVersion": "4.14.1",
             "description": "An alternative Android testing framework.",
             "scm": {
                 "connection": "scm:git:git://github.com/robolectric/robolectric.git",
@@ -3549,7 +3653,7 @@
                     "name": "Christian Williams"
                 }
             ],
-            "artifactVersion": "4.13",
+            "artifactVersion": "4.14.1",
             "description": "An alternative Android testing framework.",
             "scm": {
                 "connection": "scm:git:git://github.com/robolectric/robolectric.git",
@@ -3580,7 +3684,7 @@
                     "name": "Christian Williams"
                 }
             ],
-            "artifactVersion": "4.13",
+            "artifactVersion": "4.14.1",
             "description": "An alternative Android testing framework.",
             "scm": {
                 "connection": "scm:git:git://github.com/robolectric/robolectric.git",
@@ -3611,7 +3715,7 @@
                     "name": "Christian Williams"
                 }
             ],
-            "artifactVersion": "4.13",
+            "artifactVersion": "4.14.1",
             "description": "An alternative Android testing framework.",
             "scm": {
                 "connection": "scm:git:git://github.com/robolectric/robolectric.git",
@@ -3642,7 +3746,7 @@
                     "name": "Christian Williams"
                 }
             ],
-            "artifactVersion": "4.13",
+            "artifactVersion": "4.14.1",
             "description": "An alternative Android testing framework.",
             "scm": {
                 "connection": "scm:git:git://github.com/robolectric/robolectric.git",
@@ -3673,7 +3777,7 @@
                     "name": "Christian Williams"
                 }
             ],
-            "artifactVersion": "4.13",
+            "artifactVersion": "4.14.1",
             "description": "An alternative Android testing framework.",
             "scm": {
                 "connection": "scm:git:git://github.com/robolectric/robolectric.git",
@@ -3704,7 +3808,7 @@
                     "name": "Christian Williams"
                 }
             ],
-            "artifactVersion": "4.13",
+            "artifactVersion": "4.14.1",
             "description": "An alternative Android testing framework.",
             "scm": {
                 "connection": "scm:git:git://github.com/robolectric/robolectric.git",
@@ -3897,6 +4001,32 @@
             "website": "http://github.com/arnaudroger/SimpleFlatMapper/sfm-util",
             "licenses": [
                 "MIT"
+            ]
+        },
+        {
+            "uniqueId": "org.yaml:snakeyaml",
+            "funding": [
+                
+            ],
+            "developers": [
+                {
+                    "name": "Andrey Somov"
+                },
+                {
+                    "name": "Alexander Maslov"
+                }
+            ],
+            "artifactVersion": "2.3",
+            "description": "YAML 1.1 parser and emitter for Java",
+            "scm": {
+                "connection": "scm:git:http://bitbucket.org/snakeyaml/snakeyaml",
+                "url": "https://bitbucket.org/snakeyaml/snakeyaml/src",
+                "developerConnection": "scm:git:ssh://git@bitbucket.org/snakeyaml/snakeyaml"
+            },
+            "name": "SnakeYAML",
+            "website": "https://bitbucket.org/snakeyaml/snakeyaml",
+            "licenses": [
+                "Apache-2.0"
             ]
         }
     ],
