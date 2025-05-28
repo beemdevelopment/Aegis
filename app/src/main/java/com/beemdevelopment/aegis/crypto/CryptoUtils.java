@@ -1,7 +1,5 @@
 package com.beemdevelopment.aegis.crypto;
 
-import android.os.Build;
-
 import com.beemdevelopment.aegis.crypto.bc.SCrypt;
 
 import java.io.ByteArrayOutputStream;
@@ -23,7 +21,6 @@ import javax.crypto.KeyGenerator;
 import javax.crypto.NoSuchPaddingException;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.GCMParameterSpec;
-import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 
 public class CryptoUtils {
@@ -66,13 +63,7 @@ public class CryptoUtils {
         // generate the nonce if none is given
         // we are not allowed to do this ourselves as "setRandomizedEncryptionRequired" is set to true
         if (nonce != null) {
-            AlgorithmParameterSpec spec;
-            // apparently kitkat doesn't support GCMParameterSpec
-            if (Build.VERSION.SDK_INT == Build.VERSION_CODES.KITKAT) {
-                spec = new IvParameterSpec(nonce);
-            } else {
-                spec = new GCMParameterSpec(CRYPTO_AEAD_TAG_SIZE * 8, nonce);
-            }
+            AlgorithmParameterSpec spec = new GCMParameterSpec(CRYPTO_AEAD_TAG_SIZE * 8, nonce);
             cipher.init(opmode, key, spec);
         } else {
             cipher.init(opmode, key);

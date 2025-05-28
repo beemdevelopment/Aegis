@@ -1,10 +1,7 @@
 package com.beemdevelopment.aegis.crypto;
 
-import android.os.Build;
 import android.security.keystore.KeyGenParameterSpec;
 import android.security.keystore.KeyProperties;
-
-import androidx.annotation.RequiresApi;
 
 import java.io.IOException;
 import java.security.InvalidAlgorithmParameterException;
@@ -45,10 +42,6 @@ public class KeyStoreHandle {
     }
 
     public SecretKey generateKey(String id) throws KeyStoreHandleException {
-        if (!isSupported()) {
-            throw new KeyStoreHandleException("Symmetric KeyStore keys are not supported in this version of Android");
-        }
-
         try {
             KeyGenerator generator = KeyGenerator.getInstance(KeyProperties.KEY_ALGORITHM_AES, STORE_NAME);
             generator.init(new KeyGenParameterSpec.Builder(id,
@@ -87,14 +80,13 @@ public class KeyStoreHandle {
             throw new KeyStoreHandleException(e);
         }
 
-        if (isSupported() && isKeyPermanentlyInvalidated(key)) {
+        if (isKeyPermanentlyInvalidated(key)) {
             return null;
         }
 
         return key;
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.M)
     private static boolean isKeyPermanentlyInvalidated(SecretKey key) {
         // try to initialize a dummy cipher and see if an InvalidKeyException is thrown
         try {
@@ -126,9 +118,5 @@ public class KeyStoreHandle {
         } catch (KeyStoreException e) {
             throw new KeyStoreHandleException(e);
         }
-    }
-
-    public static boolean isSupported() {
-        return Build.VERSION.SDK_INT >= Build.VERSION_CODES.M;
     }
 }

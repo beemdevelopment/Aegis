@@ -6,8 +6,8 @@ buildscript {
         google()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:8.7.2'
-        classpath 'com.google.dagger:hilt-android-gradle-plugin:2.52'
+        classpath 'com.android.tools.build:gradle:8.10.0'
+        classpath 'com.google.dagger:hilt-android-gradle-plugin:2.56.2'
         classpath 'com.google.protobuf:protobuf-gradle-plugin:0.9.4'
 
         // NOTE: Do not place your application dependencies here; they belong
