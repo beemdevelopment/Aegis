@@ -1,6 +1,7 @@
 package com.beemdevelopment.aegis.ui;
 
 import android.content.Intent;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
@@ -27,6 +28,7 @@ import androidx.activity.result.contract.ActivityResultContracts.StartActivityFo
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
 
 import com.amulyakhare.textdrawable.TextDrawable;
 import com.avito.android.krop.KropView;
@@ -87,6 +89,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Set;
@@ -852,8 +855,90 @@ public class EditEntryActivity extends AegisActivity {
             return false;
         }
 
+        if (_isNew) {
+            for (VaultEntry existing : _vaultManager.getVault().getEntries()) {
+                if (entry.hasSameNameAndIssuer(existing)) {
+                    showDuplicateBottomSheet(entry);
+                    return false;
+                }
+            }
+        }
+
         addAndFinish(entry);
         return true;
+    }
+
+    private void showDuplicateBottomSheet(VaultEntry newEntry) {
+        BottomSheetDialog dialog = new BottomSheetDialog(this);
+        View view = getLayoutInflater().inflate(R.layout.dialog_duplicate_entry, null);
+        dialog.setContentView(view);
+
+        dialog.setCancelable(false);
+
+        View overwrite = view.findViewById(R.id.overwrite_entry);
+        View addSuffix = view.findViewById(R.id.create_new_entry);
+        View cancel = view.findViewById(R.id.cancel_save);
+
+        TextView suffixSubtext = view.findViewById(R.id.duplicate_suffix_subtitle);
+
+        String baseName = newEntry.getName();
+        Set<String> existingNames = new HashSet<>();
+        for (VaultEntry e : _vaultManager.getVault().getEntries()) {
+            if (e.getIssuer().equals(newEntry.getIssuer())) {
+                existingNames.add(e.getName());
+            }
+        }
+
+        int counter = 2;
+        String newName;
+        do {
+            newName = baseName + " #" + counter++;
+        } while (existingNames.contains(newName));
+
+        suffixSubtext.setText(getString(R.string.dialog_duplicate_entry_suffix_subtitle, newName));
+
+        overwrite.setOnClickListener(v -> {
+            List<VaultEntry> duplicates = new ArrayList<>();
+            for (VaultEntry existing : _vaultManager.getVault().getEntries()) {
+                if (existing.hasSameNameAndIssuer(newEntry)) {
+                    duplicates.add(existing);
+                }
+            }
+
+            Resources res = getResources();
+            String message = res.getQuantityString(
+                    R.plurals.dialog_duplicate_entry_overwrite_dialog_message,
+                    duplicates.size(),
+                    duplicates.size(),
+                    newEntry.getIssuer(),
+                    newEntry.getName()
+            );
+
+            new MaterialAlertDialogBuilder(this)
+                    .setTitle(R.string.dialog_duplicate_entry_overwrite_dialog_title)
+                    .setMessage(message)
+                    .setPositiveButton(R.string.action_delete, (d, which) -> {
+                        for (VaultEntry dup : duplicates) {
+                            _vaultManager.getVault().removeEntry(dup);
+                        }
+
+                        dialog.dismiss();
+                        addAndFinish(newEntry);
+                    })
+                    .setNegativeButton(android.R.string.no, null)
+                    .show();
+        });
+
+        String finalNewName = newName;
+        addSuffix.setOnClickListener(v -> {
+            newEntry.setName(finalNewName);
+            dialog.dismiss();
+            addAndFinish(newEntry);
+        });
+
+        cancel.setOnClickListener(v -> dialog.dismiss());
+
+        Dialogs.showSecureDialog(dialog);
     }
 
     private static void setViewEnabled(View view, boolean enabled) {

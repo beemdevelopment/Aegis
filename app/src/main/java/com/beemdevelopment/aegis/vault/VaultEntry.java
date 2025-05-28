@@ -239,6 +239,10 @@ public class VaultEntry extends UUIDMap.Value {
                 && getGroups().equals(entry.getGroups());
     }
 
+    public boolean hasSameNameAndIssuer(VaultEntry entry) {
+        return getName().equals(entry.getName()) && getIssuer().equals(entry.getIssuer());
+    }
+
     /**
      * Reports whether this entry has its values set to the defaults.
      */
