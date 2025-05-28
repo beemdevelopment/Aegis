@@ -93,6 +93,14 @@ android {
         }
     }
 
+    // Required to make the APK reproducible
+    aaptOptions {
+        cruncherEnabled = false
+    }
+    defaultConfig {
+        vectorDrawables.generatedDensities = []
+    }
+
     packagingOptions {
         // R8 doesn't remove these resources, so exclude them manually. This reduces APK size by 4MB.
         resources {
