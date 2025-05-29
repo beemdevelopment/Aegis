@@ -33,11 +33,13 @@ import com.beemdevelopment.aegis.CopyBehavior;
 import com.beemdevelopment.aegis.Preferences;
 import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.SortCategory;
+import com.beemdevelopment.aegis.VibrationPatterns;
 import com.beemdevelopment.aegis.ViewMode;
 import com.beemdevelopment.aegis.helpers.AnimationsHelper;
 import com.beemdevelopment.aegis.helpers.MetricsHelper;
 import com.beemdevelopment.aegis.helpers.SimpleItemTouchHelperCallback;
 import com.beemdevelopment.aegis.helpers.UiRefresher;
+import com.beemdevelopment.aegis.helpers.VibrationHelper;
 import com.beemdevelopment.aegis.otp.TotpInfo;
 import com.beemdevelopment.aegis.ui.glide.GlideHelper;
 import com.beemdevelopment.aegis.ui.models.ErrorCardInfo;
@@ -66,13 +68,13 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
     private Listener _listener;
     private SimpleItemTouchHelperCallback _touchCallback;
     private ItemTouchHelper _touchHelper;
+    private VibrationHelper _vibrationHelper;
 
     private RecyclerView _recyclerView;
     private RecyclerView.ItemDecoration _itemDecoration;
     private ViewPreloadSizeProvider<VaultEntry> _preloadSizeProvider;
     private TotpProgressBar _progressBar;
     private boolean _showProgress;
-    private boolean _showExpirationState;
     private ViewMode _viewMode;
     private LinearLayout _emptyStateView;
 
@@ -95,6 +97,7 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_entry_list_view, container, false);
         _progressBar = view.findViewById(R.id.progressBar);
+        _vibrationHelper = new VibrationHelper(getContext());
 
         // set up the recycler view
         _recyclerView = view.findViewById(R.id.rvKeyProfiles);
@@ -144,11 +147,22 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
             @Override
             public void onRefresh() {
                 refresh(false);
+                 _vibrationHelper.vibratePattern(getContext(), VibrationPatterns.REFRESH_CODE);
+            }
+
+            @Override
+            public void onExpiring() {
+                _vibrationHelper.vibratePattern(getContext(), VibrationPatterns.EXPIRING);
             }
 
             @Override
             public long getMillisTillNextRefresh() {
                 return TotpInfo.getMillisTillNextRotation(_adapter.getMostFrequentPeriod());
+            }
+
+            @Override
+            public long getPeriodMillis() {
+                return _adapter.getMostFrequentPeriod() * 1000L;
             }
         });
 
@@ -189,6 +203,16 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
     public void onDestroyView() {
         _refresher.destroy();
         super.onDestroyView();
+    }
+
+    public void onRefreshStop() {
+        _refresher.stop();
+    }
+
+    public void onRefreshStart() {
+        if (_adapter.getMostFrequentPeriod() != -1){
+            _refresher.start();
+        }
     }
 
     public void setGroups(Collection<VaultGroup> groups) {
@@ -355,11 +379,11 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
             _progressBar.setVisibility(View.VISIBLE);
             _progressBar.setPeriod(period);
             _progressBar.start();
-            _refresher.start();
+            onRefreshStart();
         } else {
             _progressBar.setVisibility(View.GONE);
             _progressBar.stop();
-            _refresher.stop();
+            onRefreshStop();
         }
     }
 
@@ -391,7 +415,6 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
     }
 
     public void setShowExpirationState(boolean showExpirationState) {
-        _showExpirationState = showExpirationState;
         _adapter.setShowExpirationState(showExpirationState);
     }
 
