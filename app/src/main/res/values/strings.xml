@@ -373,6 +373,21 @@
     <string name="note" comment="Users can add a note to an entry">Note</string>
     <string name="clear">Clear</string>
 
+    <string name="dialog_duplicate_entry_title">Duplicate entry</string>
+    <string name="dialog_duplicate_entry_message">This entry has the same name and issuer as one or more existing entries. How would you like to proceed?</string>
+    <string name="dialog_duplicate_entry_overwrite_title">Overwrite existing entry/entries</string>
+    <string name="dialog_duplicate_entry_overwrite_subtitle">Replace the existing entry or entries with the new one. This action cannot be undone</string>
+    <string name="dialog_duplicate_entry_suffix_title">Add suffix</string>
+    <string name="dialog_duplicate_entry_suffix_subtitle">Add a suffix to the name of this new entry. The new name will be: %s</string>
+    <string name="dialog_duplicate_entry_cancel_title">Cancel save</string>
+    <string name="dialog_duplicate_entry_cancel_subtitle">Allows you to edit the entry before attempting to save it again</string>
+    <plurals name="dialog_duplicate_entry_overwrite_dialog_message">
+        <item quantity="one">Are you sure you want to delete %d entry with the following name:\n\n%s - %s</item>
+        <item quantity="other">Are you sure you want to delete %d entries with the following name:\n\n%s - %s</item>
+    </plurals>
+
+    <string name="dialog_duplicate_entry_overwrite_dialog_title">Confirm deletion</string>
+
     <string name="pref_haptic_feedback_summary">Make your device vibrate when codes are refreshing</string>
     <string name="pref_haptic_feedback_title">Haptic feedback</string>
     <string name="pref_highlight_entry_title">Highlight tokens when tapped</string>
