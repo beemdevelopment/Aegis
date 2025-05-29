@@ -433,7 +433,7 @@ public class EntryHolder extends RecyclerView.ViewHolder {
 
         final int totalStateDuration = 7000;
         TotpInfo info = (TotpInfo) _entry.getInfo();
-        if (info.getPeriod() * 1000 < totalStateDuration) {
+        if (info.getPeriod() * 1000 <= totalStateDuration) {
             _profileCode.setTextColor(MaterialColors.getColor(_profileCode, com.google.android.material.R.attr.colorError));
             return;
         }
