@@ -365,6 +365,8 @@
     <string name="clear">Rensa</string>
     <string name="pref_highlight_entry_title">Markera polletter vid tryck</string>
     <string name="pref_highlight_entry_summary">Gör polletterna lättare att särskilja från varandra genom att tillfälligt markera dem vid tryck</string>
+    <string name="pref_groups_multiselect_title">Välj flera grupper</string>
+    <string name="pref_groups_multiselect_summary">Tillåt val av flera grupper samtidigt</string>
     <string name="pref_minimize_on_copy_title">Minimera vid kopiering</string>
     <string name="pref_minimize_on_copy_summary">Minimerar appen efter att en pollett har kopierats</string>
     <string name="pref_copy_behavior_title">Kopiera polletter till urklipp</string>
@@ -468,6 +470,7 @@
     <string name="unable_to_copy_uri_to_clipboard">Kunde inte kopiera URI till urklipp</string>
     <string name="uri_copied_to_clipboard">URI kopierad till urklipp</string>
     <string name="transfer_entry_description">Skanna denna rutkod med den autentiseringsapp som du vill överföra denna post till</string>
+    <string name="transfer_entry_brightness">Tryck på rutkoden för att växla till/från full ljusstyrka på skärmen</string>
     <string name="google_auth_compatible_transfer_description">Skanna dessa rutkoder med Aegis eller Google Authenticator.\n\nPå grund av begränsningar i Google Authenticator-appen inkluderas endast TOTP- &amp; HOTP-polletter som använder SHA1 och producerar 6-siffriga koder.</string>
     <string name="password_strength_very_weak">Mycket svagt</string>
     <string name="password_strength_weak">Svagt</string>

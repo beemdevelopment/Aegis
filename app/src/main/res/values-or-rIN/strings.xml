@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="action_settings">ସେଟିଂ</string>
+    <string name="action_transfer">ଅନ୍ତରଣ</string>
+    <string name="usage_count">ଵ୍ୟଵହାର ଗଣନା</string>
+    <string name="pref_cat_appearance_app">ଆପ୍</string>
+    <string name="pref_section_behavior_title">ଆଚରଣ</string>
+    <string name="pref_section_appearance_title">ରୂପ</string>
+    <string name="pref_select_theme_title">ଥିମ୍</string>
+    <string name="pref_view_mode_title">ଦର୍ଶନ ମୋଡ୍</string>
+    <string name="pref_lang_title">ଭାଷା</string>
+    <string name="pref_set_password_title">ପାସ୍‌ୱର୍ଡ଼ ବଦଳାନ୍ତୁ</string>
+    <string name="authentication_method_password">ପାସ୍‌ୱର୍ଡ଼</string>
+    <string name="password_reminder_freq_never">କେବେ ନୁହେଁ</string>
+    <string name="password_reminder_freq_weekly">ସାପ୍ତାହିକ</string>
+    <string name="password_reminder_freq_biweekly">ଦ୍ୱି-ସାପ୍ତାହିକ</string>
+    <string name="password_reminder_freq_monthly">ମାସିକ</string>
+    <string name="password_reminder_freq_quarterly">ତ୍ରୈମାସିକ</string>
+    <string name="yes">ହଁ</string>
+    <string name="no">ନାହିଁ</string>
+    <string name="advanced">ଵିକଶିତ</string>
+    <string name="edit">ସମ୍ପାଦନା</string>
+    <string name="password">ପାସ୍‌ୱର୍ଡ଼</string>
+    <string name="show_password">ପାସ୍‌ୱର୍ଡ଼ ଦେଖାଅ</string>
+    <string name="welcome">ସ୍ୱାଗତ</string>
+    <string name="details">ଵିଵରଣୀ</string>
+    <string name="name">ନାମ</string>
+    <string name="sort" comment="Title of the Sort button in the top action bar of the main view">ସଜାନ୍ତୁ</string>
+    <string name="sort_usage_count">ଵ୍ୟଵହାର ଗଣନା</string>
+    <string name="new_group">ନୂଆ ଗୋଷ୍ଠୀ…</string>
+    <string name="group">ଗୋଷ୍ଠୀ</string>
+    <string name="group_name_hint">ଗୋଷ୍ଠୀ ନାମ</string>
+    <string name="preference_manage_groups">ଗୋଷ୍ଠୀ ସମ୍ପାଦନା</string>
+    <string name="dark_theme_title">ଗାଢ଼ ଥିମ୍</string>
+    <string name="light_theme_title">ହାଲୁକା ଥିମ୍</string>
+    <string name="amoled_theme_title">AMOLED ଥିମ୍</string>
+    <string name="search">ସନ୍ଧାନ</string>
+    <string name="version">ସଂସ୍କରଣ</string>
+    <string name="about_support">ସମର୍ଥନ</string>
+</resources>

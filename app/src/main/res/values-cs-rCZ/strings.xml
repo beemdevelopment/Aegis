@@ -233,6 +233,8 @@
     <string name="snackbar_authentication_method">Zvolte prosím způsob ověření</string>
     <string name="encrypting_vault">Šifrování trezoru</string>
     <string name="exporting_vault">Exportování trezoru</string>
+    <string name="optimizing_icon">Optimalizace ikony</string>
+    <string name="optimizing_icon_multiple">Optimalizace ikon %1$d/%2$d</string>
     <string name="reading_file">Čtení souboru</string>
     <string name="requesting_root_access">Žádání o přístup root</string>
     <string name="analyzing_qr">Analyzování QR kódu</string>
@@ -381,6 +383,8 @@
     <string name="clear">Vymazat</string>
     <string name="pref_highlight_entry_title">Zvýraznit tokeny po klepnutí</string>
     <string name="pref_highlight_entry_summary">Usnadnit vzájemné rozlišení tokenů dočasným zvýrazněním po kleputí</string>
+    <string name="pref_groups_multiselect_title">Vícenásobný výběr skupin</string>
+    <string name="pref_groups_multiselect_summary">Povolit současný výběr více skupin</string>
     <string name="pref_minimize_on_copy_title">Minimalizovat při kopírování</string>
     <string name="pref_minimize_on_copy_summary">Minimalizovat aplikaci po zkopírování tokenu</string>
     <string name="pref_copy_behavior_title">Zkopírovat tokeny do schránky</string>
@@ -490,6 +494,7 @@
     <string name="unable_to_copy_uri_to_clipboard">Nepodařilo se zkopírovat URI do schránky</string>
     <string name="uri_copied_to_clipboard">URI zkopírována do schránky</string>
     <string name="transfer_entry_description">Naskenujte tento QR kód ověřovací aplikací, do které chcete položku přenést</string>
+    <string name="transfer_entry_brightness">Klepnutím na QR kód přepnete na jas celé obrazovky</string>
     <string name="google_auth_compatible_transfer_description">Naskenujte tyto QR kódy s aplikací Aegis nebo Google Authenticator.\n\nKvůli limitacím aplikace Google Authenticator jsou zahrnuty pouze 6-místné tokeny TOTP a HOTP využívající SHA1</string>
     <string name="password_strength_very_weak">Velmi slabé</string>
     <string name="password_strength_weak">Slabé</string>

@@ -64,7 +64,14 @@
     <string name="pref_backups_reminder_summary">Erakutsi segurtasun kopia egiteko gogorarazpena zure azken aldaketen kopiarik ez bada egin.</string>
     <string name="pref_backups_reminder_dialog_title">Desaktibatu segurtasun kopiaren gogorarazpena</string>
     <string name="pref_backups_reminder_dialog_summary">Gogorarazpena desaktibatzean Aegisek ez dizu kopien inguruko abisurik emango. Honek zure gakoak galtzea ekar dezake. Gogorarazpena desaktibatu egin nahi duzu?</string>
+    <string name="pref_backups_versioning_strategy_title">Segurtasun kopien estrategia</string>
+    <string name="pref_backups_versioning_strategy_keep_x_versions">Bertsio kopuru bat mantendu</string>
+    <string name="pref_backups_versioning_strategy_single_backup">Segurtasun kopia bakarra</string>
+    <string name="pref_backups_versioning_strategy_single_backup_warning">Aukeratutako estrategia ez da fidagarria eta ez dugu gomendatzen. Segurtasun kopia bakarrak huts egiten badu datuak galdu egin ditzakezu.</string>
+    <string name="pref_backups_versioning_strategy_dialog_title">Aukeratu segurtasun kopien estrategia</string>
+    <string name="pref_backups_location_title">Segurtasun kopien kokalekua</string>
     <string name="pref_backups_location_summary">Segurtasun-kopiak hemen gordeko dira</string>
+    <string name="pref_backup_location_summary">Segurtasun-kopiak hemen gordeko dira</string>
     <string name="pref_backups_trigger_title">Segurtasun-kopien abiarazlea</string>
     <string name="pref_backups_trigger_summary">Abiarazi segurtasun-kopia eskuz</string>
     <string name="pref_backups_versions_title">Gorde beharreko bertsio kopurua</string>
@@ -220,6 +227,8 @@
     <string name="snackbar_authentication_method">Aukeratu autentifikazio modua mesedez</string>
     <string name="encrypting_vault">Biltegia zifratzen</string>
     <string name="exporting_vault">Biltegia esportatzen</string>
+    <string name="optimizing_icon">Ikonoak optimizatzen</string>
+    <string name="optimizing_icon_multiple">Ikonoak optimizatzen %1$d/%2$d</string>
     <string name="reading_file">Fitxategia irakurtzen</string>
     <string name="requesting_root_access">Root sarbidea eskatzen</string>
     <string name="analyzing_qr">QR kodea aztertzen</string>
@@ -356,6 +365,8 @@
     <string name="clear">Garbitu</string>
     <string name="pref_highlight_entry_title">Nabarmendu tokenak ukitzean</string>
     <string name="pref_highlight_entry_summary">Egin elkarrengandik errazago bereizten diren tokenak, sakatzen dituzunean aldi baterako nabarmenduz</string>
+    <string name="pref_groups_multiselect_title">Talde bat baino gehiago aukeratu</string>
+    <string name="pref_groups_multiselect_summary">Talde bat baino gehiago aldi berean aukeratzea baimendu</string>
     <string name="pref_minimize_on_copy_title">Txikitu kopiatzean</string>
     <string name="pref_minimize_on_copy_summary">Aplikazioa txikitu tokena kopiatutakoan</string>
     <string name="pref_copy_behavior_title">Kopiatu tokenak arbelera</string>
@@ -456,6 +467,7 @@
     <string name="unable_to_copy_uri_to_clipboard">Ezin da URIa arbelean kopiatu</string>
     <string name="uri_copied_to_clipboard">URIa arbelean kopiatu da</string>
     <string name="transfer_entry_description">Eskaneatu QR kode hau sarrera transferitu nahi diozun aitentifikazio-aplikazioarekin</string>
+    <string name="transfer_entry_brightness">Sakatu QR kodea pantaila osoan ikusteko</string>
     <string name="google_auth_compatible_transfer_description">Eskaneatu QR kode hauek Aegis edo Google Authenticator erabiliz.\n\nGoogle Authenticator aplikazioaren mugak direla eta, SHA1 darabilten eta 6 zenbakiko kodeak erabiltzen dituzten TOTP &amp; HOTP tokenak bakarrik sartzen dira</string>
     <string name="password_strength_very_weak">Oso ahula</string>
     <string name="password_strength_weak">Ahula</string>
@@ -504,6 +516,7 @@
     <string name="importer_help_plain_text">Google Authenticator URIak dituen testu hutseko fitxategia aukeratu.</string>
     <string name="importer_help_steam"><b>Steam v3.0 eta berriagoak ezin dira erabili.</b>erabili
 <b>/data/data/com.valvesoftware.android.steam.community/files/Steamguard-*.json</b> fitxategiaren kopia, berau Steamen barne biltegiratzearen karpetan egongo da.</string>
+    <string name="importer_help_stratum">Aukeratu Stratumen esportazio fitxategia <b>Settings -&gt; Back up -&gt; Back up to encrypted file (recommended)</b> aukeratik lortu bezala.</string>
     <string name="importer_help_totp_authenticator">TOTP Authenticatoren esportazio fitxategia aukeratu.</string>
     <string name="importer_help_winauth">WinAuthen esportazio fitxategia aukeratu.</string>
     <string name="import_assign_icons_dialog_title">Esleitu ikonoak</string>

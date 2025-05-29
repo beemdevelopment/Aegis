@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="action_settings">Arventenn</string>
+    <string name="action_about">Diwar-benn</string>
+    <string name="action_delete">Dilemel</string>
+    <string name="action_transfer">Kas</string>
+    <string name="action_edit_icon">Cheñch arlun</string>
+    <string name="action_reset_usage_count">Lakaat an niver implij evel kregiñ</string>
+    <string name="action_reset_usage_count_dialog">Sur oc\'h o peus c\'hoant lakaat ar c\'honter implij da mann ?</string>
+    <string name="action_default_icon">Lakaat an arlun da zefot</string>
+    <string name="discard">Lemel</string>
+    <string name="save">Enrolañ</string>
+    <string name="issuer">Skigner</string>
+    <string name="yandex_pin">PIN (4–16 niver)</string>
+    <string name="motp_pin">PIN (4 sifr)</string>
+    <string name="suggested">Aliañ</string>
+    <string name="usage_count">Niver a implij</string>
+    <string name="warning">Diwall</string>
+    <string name="pref_cat_appearance_app">Arload</string>
+    <string name="pref_cat_appearance_entries">Enkas</string>
+    <string name="pref_cat_backups_android">Android</string>
+    <string name="pref_cat_backups_auto">Gwared automatek</string>
+    <string name="pref_section_behavior_title">Emzalc\'h</string>
+</resources>

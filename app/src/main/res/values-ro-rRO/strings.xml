@@ -230,6 +230,8 @@
     <string name="snackbar_authentication_method">Te rugăm să selectezi o metodă de autentificare</string>
     <string name="encrypting_vault">Criptează seiful</string>
     <string name="exporting_vault">Exportă seiful</string>
+    <string name="optimizing_icon">Se optimizează pictograma</string>
+    <string name="optimizing_icon_multiple">Se optimizează pictogramele %1$d/%2$d</string>
     <string name="reading_file">Citire fişier</string>
     <string name="requesting_root_access">Solicită acces root</string>
     <string name="analyzing_qr">Se analizează codul QR</string>
@@ -367,6 +369,8 @@
     <string name="clear">Șterge</string>
     <string name="pref_highlight_entry_title">Evidențiază simbolurile când apăsați</string>
     <string name="pref_highlight_entry_summary">Fă token-urile mai ușor să se distingă între ele prin evidențierea lor temporară atunci când sunt apăsate</string>
+    <string name="pref_groups_multiselect_title">Grupuri multiple</string>
+    <string name="pref_groups_multiselect_summary">Permite selecția mai multor grupuri în același timp</string>
     <string name="pref_minimize_on_copy_title">Minimizează după copiere</string>
     <string name="pref_minimize_on_copy_summary">Minimizează aplicația după copierea unui token</string>
     <string name="pref_copy_behavior_title">Copiați tokenul în clipboard</string>

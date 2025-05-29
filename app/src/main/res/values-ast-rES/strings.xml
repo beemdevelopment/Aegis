@@ -10,6 +10,7 @@
     <string name="action_default_icon">Reafitar l\'iconu</string>
     <string name="discard">Escartar</string>
     <string name="save">Guardar</string>
+    <string name="all">Too</string>
     <string name="issuer">Emisor</string>
     <string name="yandex_pin">PIN (4–16 díxitos)</string>
     <string name="motp_pin">PIN (4 díxitos)</string>
@@ -28,17 +29,26 @@
     <string name="pref_section_security_summary">Configura\'l cifráu, el bloquéu biométricu, el bloquéu automáticu ya otros valores de seguranza.</string>
     <string name="pref_section_import_export_title">Importación ya esportación</string>
     <string name="pref_section_import_export_summary">Importa les copies de seguranza d\'Aeguis o d\'otres aplicaciones del mesmu tipu. Crea ficheros d\'esportación manuales de l\'arca d\'Aeguis.</string>
+    <string name="pref_section_audit_log_title">Rexistros d\'auditoría</string>
     <string name="pref_section_backups_title">Copies de seguranza</string>
     <string name="pref_section_backups_summary">Configura\'l llugar onde s\'atroxen les copies de seguranza o activa la participación nel sistema de copies de seguranza na ñube d\'Android.</string>
     <string name="pref_section_icon_packs">Paquetes d\'iconos</string>
     <string name="pref_section_icon_packs_summary">Xestiona ya importa paquetes d\'iconos</string>
     <string name="pref_select_theme_title">Estilu</string>
+    <string name="pref_dynamic_colors_title">Colores dinámicos</string>
     <string name="pref_view_mode_title">Mou de la visualización</string>
     <string name="pref_lang_title">Llingua</string>
     <string name="pref_show_icons_title">Amosar los iconos</string>
     <string name="pref_show_icons_summary">Amuesa los iconos al llau de cada entrada</string>
     <string name="pref_code_group_size_title">Agrupamientu de díxitos</string>
     <string name="pref_code_group_size_summary">Seleiciona\'l númberu de díxitos pol que s\'agrupen los códigos</string>
+    <string name="pref_account_name_position_title">Amosar el nome de la cuenta</string>
+    <string name="pref_show_next_code_title">Amosar el códigu siguiente</string>
+    <string name="pref_show_next_code_summary">Xenera y amuesa\'l códigu siguiente per adelantao</string>
+    <string name="pref_expiration_state_title">Indicar cuándo tán a piques de caducar los códigos</string>
+    <string name="pref_expiration_state_summary">Camuda\'l color de los códigos y fai que parpaguien cuando tán a piques de caducar</string>
+    <string name="pref_expiration_state_fallback">Camuda\'l color de los códigos cuando tán a piques de caducar</string>
+    <string name="pref_shared_issuer_account_name_title">Amosar el nome de la cuenta namás cuando seya necesariu</string>
     <string name="pref_import_file_title">Importar d\'un ficheru</string>
     <string name="pref_import_file_summary">Importa los pases d\'un ficheru</string>
     <string name="pref_android_backups_title">Copies de seguranza na ñube</string>
@@ -46,7 +56,12 @@
     <string name="pref_android_backups_hint"><i>Siempres se permiten les copies de seguranza D2D, independientemente de la configuración d\'arriba</i></string>
     <string name="pref_backups_title">Crear automáticamente copies de seguranza</string>
     <string name="pref_backups_summary">Crea automáticamente copies de seguranza de l\'arca nel almacenamientu esternu al facer cambeos. Esta opción namás ye compatible coles arques cifraes.</string>
+    <string name="pref_backups_reminder_title">Recordatoriu de copia de seguranza</string>
+    <string name="pref_backups_versioning_strategy_title">Estratexa de copies de seguranza</string>
+    <string name="pref_backups_versioning_strategy_dialog_title">Seleiciona una estratexa de copies de seguranza</string>
+    <string name="pref_backups_location_title">Llocalización de les copies de seguranza</string>
     <string name="pref_backups_location_summary">Les copies de seguranza van atroxase en</string>
+    <string name="pref_backup_location_summary">La copia de seguranza va atroxase en</string>
     <string name="pref_backups_trigger_title">Facer una copia de seguranza</string>
     <string name="pref_backups_trigger_summary">Fai manualmente una copia de seguranza</string>
     <string name="pref_backups_versions_title">Númberu de versiones a caltener</string>
@@ -89,8 +104,31 @@
     <string name="pref_encryption_summary">Cifra l\'arca ya desblóquiala con una contraseña o cola biometría</string>
     <string name="pref_biometrics_title">Desbloquéu biométricu</string>
     <string name="pref_biometrics_summary">Permite que l\'autenticación biométrica desbloquie l\'arca</string>
+    <string name="pref_search_behavior_type_name">Nome</string>
+    <string name="pref_search_behavior_type_issuer">Emisor</string>
+    <string name="pref_search_behavior_type_note">Nota</string>
+    <string name="pref_search_behavior_type_groups">Grupos</string>
     <string name="pref_set_password_title">Camudar la contraseña</string>
     <string name="pref_set_password_summary">Configura la contraseña que vas precisar pa desbloquiar l\'arca</string>
+    <string name="no_events_title">Nun s\'informó de nengún eventu</string>
+    <string name="no_events_description">Nun s\'informó de nengún eventu importante na aplicación</string>
+    <string name="event_title_vault_unlocked">Arca desbloquiada</string>
+    <string name="event_description_vault_unlocked">L\'arca desbloquióse correutamente</string>
+    <string name="event_title_backup_created">Copia de seguranza creada</string>
+    <string name="event_description_backup_created">Creóse una copia de seguranza de l\'arca correutamente</string>
+    <string name="event_title_android_backup_created">Copia de seguranza creada por Android</string>
+    <string name="event_description_android_backup_created">Android creó una copia de seguranza de l\'arca correutamente</string>
+    <string name="event_title_vault_exported">Arca esportada</string>
+    <string name="event_description_vault_exported">Esportóse una copia de l\'arca</string>
+    <string name="event_title_entry_shared">Entrada compartida</string>
+    <string name="event_description_entry_shared">Compartióse una entrada</string>
+    <string name="event_title_vault_unlock_failed_password">Error de desbloquéu de l\'arca (contraseña)</string>
+    <string name="event_description_vault_unlock_failed_password">Hebo un intentu de desbloquiar l\'arca con una contraseña que falló</string>
+    <string name="event_title_vault_unlock_failed_biometrics">Error de desbloquéu de l\'arca (biometría)</string>
+    <string name="event_description_vault_unlock_failed_biometrics">Hebo un intentu de desbloquiar l\'arca cola biometría que falló</string>
+    <string name="event_unknown">Tipu d\'eventu desconocíu</string>
+    <string name="today_at_time">Güei a les %1$s</string>
+    <string name="day_of_week_at_time">%1$s a les %2$s</string>
     <string name="export_encrypted">Cifrar l\'arca</string>
     <string name="export_help">Esta aición esporta l\'arca fuera del almacenamientu internu d\'Aegis. Seleiciona\'l formatu col que quies esportar:</string>
     <string name="export_warning_unencrypted">Tas a piques d\'esportar una copia ensin cifrar de l\'arca d\'Aegis. <b>Nun s\'aconseya</b>.</string>
@@ -100,6 +138,7 @@
     <string name="export_format_google_auth_uri">Ficheru de testu (.TXT)</string>
     <string name="export_format_html">Páxina web (.HTML)</string>
     <string name="export_format_hint">Formatu de la esportación</string>
+    <string name="export_all_groups">Esportar tolos grupos</string>
     <plurals name="export_groups_selected_count">
         <item quantity="one">Seleicionóse %d grupu</item>
         <item quantity="other">Seleicionáronse %d grupos</item>
@@ -137,6 +176,7 @@
     <string name="share">Compartir</string>
     <string name="yes">Sí</string>
     <string name="no">Non</string>
+    <string name="undo">Desfacer</string>
     <string name="unlock">Desbloquiar</string>
     <string name="advanced">Configuración avanzada</string>
     <string name="counter">Contador</string>
@@ -148,6 +188,7 @@
     <string name="set_up_biometric">Configuración del desbloquéu biométricu</string>
     <string name="copy">Copiar</string>
     <string name="edit">Editar</string>
+    <string name="assign_groups_dialog_dropdown">Seleiciona un grupu</string>
     <string name="favorite" comment="Verb">Meter en Favoritos</string>
     <string name="unfavorite" comment="Verb">Quitar en Favoritos</string>
     <string name="error_all_caps">ERROR</string>
@@ -163,7 +204,9 @@
     <string name="encrypting_vault">Cifrando l\'arca</string>
     <string name="exporting_vault">Esportando l\'arca</string>
     <string name="reading_file">Lleendo\'l ficheru</string>
+    <string name="requesting_root_access">Consiguiendo l\'accesu de superusuariu</string>
     <string name="analyzing_qr">Analizándo\'l códigu QR</string>
+    <string name="analyzing_qr_multiple">Analizando\'l códigu QR %1$d/%2$d (%3$s)</string>
     <plurals name="added_new_entries">
         <item quantity="one">Amestóse %d entrada nueva a l\'arca</item>
         <item quantity="other">Amestáronse %d entraes nueves a l\'arca</item>
@@ -228,6 +271,7 @@
     <string name="reading_file_error">Prodúxose un error mentanto se lleía\'l ficheru</string>
     <string name="app_lookup_error">Error: l\'aplicación nun ta instalada</string>
     <string name="app_version_error">La versión instalada de «%s» nun ye compatible. Les versiones nueves comenzaron a cifrar dalgunos ficheros nel direutoriu del almacenamientu internu, lo que fai qu\'Aegis nun seya a acceder a la información que precisa pa la importación. Ye probable qu\'al tentar d\'importar se produza un error. ¿Quies siguir de toes toes?</string>
+    <string name="root_error">Error: nun ye posible consiguir l\'accesu de superusuariu</string>
     <plurals name="imported_entries_count">
         <item quantity="one">Importóse %d entrada</item>
         <item quantity="other">Importáronse %d entraes</item>
@@ -252,8 +296,10 @@
     <string name="unrelated_google_auth_batches_error">La esportación contién información d\'un llote que nun tien rellación. Prueba a importar llotes d\'unu nunu.</string>
     <string name="no_tokens_can_be_imported">Como resultáu, nun se pue importar nengún pase</string>
     <string name="unlocking_vault">Desbloquiando l\'arca</string>
+    <string name="rename_group">Renomar grupu</string>
     <string name="remove_group">Desaniciu d\'un grupu</string>
     <string name="remove_group_description">¿De xuru que quies quitar esti grupu? Les entraes d\'esti grupu cambien automáticamente al grupu «Ensin grupu».</string>
+    <string name="remove_unused_groups">Desaniciar grupos ensin usu</string>
     <string name="remove_icon_pack">Desaniciu d\'un paquete d\'iconos</string>
     <string name="remove_icon_pack_description">¿De xuru que quies quitar esti paquete d\'iconos? Esta aición nun va tener nengún efeutu sobre les entraes qu\'usen iconos d\'esti paquete.</string>
     <string name="details">Detalles</string>
@@ -267,7 +313,9 @@
     <string name="sort_alphabetically_name">Nome de cuenta (de l\'A a la Z)</string>
     <string name="sort_alphabetically_name_reverse">Nome de cuenta (de la Z a l\'A)</string>
     <string name="sort_usage_count">Númberu d\'usos</string>
+    <string name="sort_last_used">Últimu usu</string>
     <string name="sort_custom">Orde personalizáu</string>
+    <string name="last_used">Últimu usu</string>
     <string name="new_group">Grupu nuevu…</string>
     <string name="group">Grupu</string>
     <string name="group_name_hint">Nome del grupu</string>
@@ -282,6 +330,7 @@
     <string name="pref_highlight_entry_summary">Fai que los pases s\'estremen meyor al rescamplalos temporalmente cuando toques nellos</string>
     <string name="pref_minimize_on_copy_title">Minimizar al copiar</string>
     <string name="pref_minimize_on_copy_summary">Minimiza l\'aplicación dempués de copiar un pase</string>
+    <string name="pref_search_behavior_title">Comportamientu de la busca</string>
     <string name="pref_pause_entry_title">Paralizar los pases al tocalos</string>
     <string name="pref_pause_entry_summary">Posa l\'anovamientu automáticu de los pases al tocar nellos y, polo tanto, nun s\'anueven mentanto tengan el focu. Esta opción rique l\'activación de les opciones «Rescamplar los pases al tocalos» o «Tocar pa desvelar».</string>
     <string name="pin_keyboard_description">Activa la contraseña p\'activar el tecláu numbéricu. Decátate qu\'esta opción namás funciona si la contraseña ta formada namás por númberos</string>
@@ -302,6 +351,7 @@
     <string name="unable_to_process_deeplink">Nun ye posible procesar l\'enllaz fondu</string>
     <string name="unable_to_read_qrcode_file">Nun se posible lleer ya procesar el códigu QR del ficheru: %s.</string>
     <string name="unable_to_process_shared_text">Nun ye posible procesar el testu compartíu como cadena d\'OTP</string>
+    <string name="unable_to_read_qrcode_files">Nun ye posible lleer ya procesar dalgunos códigos QR. Namás van importase %1$d/%2$d entraes.</string>
     <string name="unable_to_generate_qrcode">Nun ye posible xenerar el códigu QR</string>
     <string name="select_picture">Seleición d\'una semeya</string>
     <string name="select_icon">Seleición d\'un iconu</string>
@@ -332,7 +382,10 @@
     <string name="time_sync_warning_message">Aegis encóntase na hora del sistema pa xenerar códigos correutos ya la esviación d\'unos segundos na hora podría facer que se xeneren códigos incorreutos. Paez que\'l preséu nun ta configuráu pa sincronizar automáticamente la hora. ¿Quies facelo agora?</string>
     <string name="time_sync_warning_disable">Dexar d\'alvertime, sé lo que faigo.</string>
     <string name="google_qr_export_unrelated">Atopóse un códigu QR que nun tien rellación. Prueba a reaniciar l\'escaniador.</string>
+    <string name="google_qr_export_unexpected">Esperábase\'l códigu QR #%1$d, mas escanióse\'l #%2$d</string>
     <string name="backup_error_bar_message"><b>La copia de seguranza de l\'arca falló apocayá</b></string>
+    <string name="backup_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">        Falló un intentu recién de facer una copia de seguranza de l\'arca con «%1$s» porque se produxo un error (data de l\'aición: %2$s). Revisa la configuración pa que les copies de seguranza puedan facese correutamente.
+    </string>
     <string name="backup_system_builtin">Copies de seguranza automátiques d\'Aegis</string>
     <string name="backup_system_android">Sistema de copies de segurazan na ñube d\'Android</string>
     <string name="backup_plaintext_export_warning"><b>L\'arca esportóse apocayá a un ficheru de testu planu</b></string>
@@ -354,6 +407,7 @@
     </plurals>
     <string name="next">Siguiente</string>
     <string name="previous">Anterior</string>
+    <string name="copy_uri">Copiar la URI</string>
     <string name="unable_to_copy_uri_to_clipboard">Nun ye posible copiar la URI al cartafueyu</string>
     <string name="uri_copied_to_clipboard">La URI copióse al cartafueyu</string>
     <string name="transfer_entry_description">Escania esti códígu QR cola aplicación autenticadora a la que quies tresferir esta entrada</string>
@@ -372,20 +426,25 @@
     <string name="title_activity_edit_entry">Edición d\'una entrada</string>
     <string name="title_activity_scan_qr">Escanéu d\'un códigu QR</string>
     <string name="title_activity_import_entries">Importación d\'entraes</string>
+    <string name="title_activity_licenses">Llicencies de terceros</string>
     <string name="dialog_wipe_entries_title">Borráu d\'entraes</string>
     <string name="dialog_wipe_entries_message">L\'arca xá contién entraes. ¿Quies quitales enantes d\'importar esti ficheru?\n\n<b>Al facelo, vas perder permanentemente l\'accesu a les entraes esistentes de l\'arca.</b></string>
     <string name="dialog_wipe_entries_checkbox">Borrar el conteníu de l\'arca</string>
     <string name="panic_trigger_ignore_toast">Aegis recibió un eventu de pánicu mas la opción ta desactivada</string>
     <string name="pref_panic_trigger_title">Desaniciar l\'arca n\'eventos de pánicu</string>
     <string name="pref_panic_trigger_summary">Desaniciar l\'arca al recibir un eventu de pánicu de Ripple</string>
+    <string name="import_vault">Importar un arca d\'Aegis</string>
     <string name="importer_help_2fas">Forni una copia de seguranza de 2FAS Authenticator.</string>
     <string name="importer_help_aegis">Forni un ficheru d\'esportación/copia de seguranza d\'Aegis.</string>
     <string name="importer_help_authenticator_plus">Forni un ficheru d\'esportación d\'Authenticator Plus que se consigue pente <b>Configuración -&gt; Copia de seguranza ya restauración -&gt; Esportar como testu ya HTML</b>.</string>
     <string name="importer_help_authy">Forni una copia del ficheru <b>com.authy.storage.tokens.authenticator.xml</b> que s\'alluga na direición «/data/data/com.authy.authy/shared_prefs/», dientro del direutoriu del almacenamientu internu d\'Authy.</string>
     <string name="importer_help_andotp">Forni un ficheru d\'esportación/copia de seguranza d\'AndOTP.</string>
     <string name="importer_help_bitwarden">Forni un ficheru d\'esportación/copia de seguranza de Bitwarden. Los ficheros cifraos nun son compatibles.</string>
+    <string name="importer_help_battle_net_authenticator">Forni una copia del ficheru <b>/data/data/com.blizzard.messenger/shared_prefs/com.blizzard.messenger.authenticator_preferences.xml</b>, llocalizáu nel direutoriu del almacenamientu internu de Battle.net Authenticator.</string>
     <string name="importer_help_duo">Forni una copia del ficheru <b>accounts.json</b> que s\'alluga na direición «/data/data/com.duosecurity.duomobile/files/duokit/», dientro del direutoriu del almacenamientu internu de DUO.</string>
+    <string name="importer_help_freeotp">FreeOTP 2: forni una copia de seguranza.\nFreeOTP 1.x: forni una copia del ficheru <b>/data/data/org.fedorahosted.freeotp/shared_prefs/tokens.xml</b>, llocalizáu nel direutoriu del almacenamientu internu de FreeOTP.</string>
     <string name="importer_help_freeotp_plus">Forni un ficheru d\'esportación de FreeOTP+.</string>
+    <string name="importer_warning_title_freeotp2">Compatibilidá con FreeOTP 2</string>
     <string name="importer_help_google_authenticator"><b>Namás les bases de datos de la versión 5.10 ya les inferiores de Google Authenticator son compatibles.</b>\n\nForni una copia de <b>databases</b> que s\'alluga na direición «/data/data/com.google.android.apps.authenticator2/databases/», dientro del direutoriu del almacenamientu internu de Google Authenticator.</string>
     <string name="importer_help_microsoft_authenticator">Forni una copia del ficheru <b>PhoneFactor</b> que s\'alluga na direición «/data/data/com.azure.authenticator/databases/», dientro del direutoriu del almacenamientu internu de Microsoft Authenticator.</string>
     <string name="importer_help_plain_text">Forni un ficheru en testu planu con una URI de Google Authenticator en cada llinia.</string>
@@ -402,6 +461,15 @@
     <string name="pref_grouping_size_two">Grupos de 2</string>
     <string name="pref_grouping_size_three">Grupos de 3</string>
     <string name="pref_grouping_size_four">Grupos de 4</string>
+    <string name="pref_copy_behavior_never">Enxamás</string>
+    <string name="pref_copy_behavior_single_tap">Un toque</string>
+    <string name="pref_copy_behavior_double_tap">Dos toques</string>
+    <string name="pref_account_name_position_end">Al llau l\'emisor</string>
+    <string name="pref_account_name_position_below">Embaxo l\'emisor</string>
+    <plurals name="time_elapsed_minutes" tools:ignore="UnusedResources">
+        <item quantity="one">fai %d minutu</item>
+        <item quantity="other">fai %d minutos</item>
+    </plurals>
     <plurals name="dropdown_checkboxes_default_count">
         <item quantity="one">Seleicionóse %d elementu</item>
         <item quantity="other">Seleicionáronse %d elementos</item>

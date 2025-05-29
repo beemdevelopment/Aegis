@@ -227,6 +227,8 @@
     <string name="snackbar_authentication_method">Vælg bekræftelsesmetode</string>
     <string name="encrypting_vault">Krypterer Boksen</string>
     <string name="exporting_vault">Eksporterer Boksen</string>
+    <string name="optimizing_icon">Optimerer ikon</string>
+    <string name="optimizing_icon_multiple">Optimerer ikoner %1$d/%2$d</string>
     <string name="reading_file">Læser fil</string>
     <string name="requesting_root_access">Anmoder om root-adgang</string>
     <string name="analyzing_qr">Analyserer QR-kode</string>
@@ -363,6 +365,8 @@
     <string name="clear">Ryd</string>
     <string name="pref_highlight_entry_title">Fremhæv tokener ved tryk</string>
     <string name="pref_highlight_entry_summary">Gør tokener lettere at skelne fra hinanden ved midlertidigt at fremhæve dem, når der trykkes på dem</string>
+    <string name="pref_groups_multiselect_title">Multivalg af grupper</string>
+    <string name="pref_groups_multiselect_summary">Muliggør valg af flere grupper samtidig</string>
     <string name="pref_minimize_on_copy_title">Minimér under kopiering</string>
     <string name="pref_minimize_on_copy_summary">Minimér appen efter kopiering af et token</string>
     <string name="pref_copy_behavior_title">Kopiér tokener til udklipsholder</string>
@@ -466,6 +470,7 @@
     <string name="unable_to_copy_uri_to_clipboard">Kunne ikke kopiere URI til udklipsholder</string>
     <string name="uri_copied_to_clipboard">URI kopieret til udklipsholder</string>
     <string name="transfer_entry_description">Scan denne QR-kode med den autentificerings-app, du gerne vil overføre denne post til</string>
+    <string name="transfer_entry_brightness">Tryk på QR-koden for at skifte fuldskærmslysstyrke</string>
     <string name="google_auth_compatible_transfer_description">Skan disse QR-koder med Aegis eller Google Authenticator.\n\nGrundet begrænsninger i Google Authenticator-appen inkluderes kun TOTP- og HOTP-tokener, som bruger SHA1 og genererer 6-cifrede koder</string>
     <string name="password_strength_very_weak">Meget svag</string>
     <string name="password_strength_weak">Svag</string>

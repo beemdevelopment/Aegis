@@ -401,6 +401,8 @@
     <string name="clear">مسح</string>
     <string name="pref_highlight_entry_title">ابرز الرموز عندما تُنقر</string>
     <string name="pref_highlight_entry_summary">يسهل تمييز الرموز عن بعضها بتسليط الضوء عليهم عندما يتم النقر عليهم</string>
+    <string name="pref_groups_multiselect_title">مجموعات متعددة الإختيار</string>
+    <string name="pref_groups_multiselect_summary">السماح باختيار مجموعات متعددة في نفس الوقت</string>
     <string name="pref_minimize_on_copy_title">تصغير عند النسخ</string>
     <string name="pref_minimize_on_copy_summary">تصغير التطبيق بعد نسخ رمز</string>
     <string name="pref_copy_behavior_title">نسخ الرموز إلى الحافظة</string>
@@ -515,6 +517,7 @@
     <string name="unable_to_copy_uri_to_clipboard">تعذر نسخ URI إلى الحافظة</string>
     <string name="uri_copied_to_clipboard">نُسخ URI إلى الحافظة</string>
     <string name="transfer_entry_description">امسح كود QR هذا بتطبيق المصادقة الذي ترغب بنقل ذلك المدخل إليه</string>
+    <string name="transfer_entry_brightness">اضغط على رمز الاستجابة السريعة لتبديل سطوع الشاشة بالكامل</string>
     <string name="google_auth_compatible_transfer_description">امسح رموز ال QR هذه بواسطة Aegis أو Google Authenticator.\n\nبسبب القيود في تطبيق Google Authenticator، فقط رموز TOTP &amp; HOTP التي تستعمل SHA1 وتنتِج كود من 6 خانات هي من سيتم إدراجها</string>
     <string name="password_strength_very_weak">ضعيف جدًا</string>
     <string name="password_strength_weak">ضعيف</string>

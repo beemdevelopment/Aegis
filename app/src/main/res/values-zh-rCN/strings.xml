@@ -224,6 +224,8 @@
     <string name="snackbar_authentication_method">请选择身份验证方法</string>
     <string name="encrypting_vault">正在加密数据库</string>
     <string name="exporting_vault">正在导出数据库</string>
+    <string name="optimizing_icon">优化图标</string>
+    <string name="optimizing_icon_multiple">正在优化第 %1$d 个图标，共 %2$d 个</string>
     <string name="reading_file">正在读取文件</string>
     <string name="requesting_root_access">正在请求 root 权限</string>
     <string name="analyzing_qr">正在分析二维码</string>
@@ -354,6 +356,8 @@
     <string name="clear">清空</string>
     <string name="pref_highlight_entry_title">点击时高亮令牌</string>
     <string name="pref_highlight_entry_summary">使令牌在点击后暂时高亮显示以便区分</string>
+    <string name="pref_groups_multiselect_title">多选分组</string>
+    <string name="pref_groups_multiselect_summary">允许同时选中多个分组</string>
     <string name="pref_minimize_on_copy_title">复制时最小化</string>
     <string name="pref_minimize_on_copy_summary">复制令牌后最小化应用</string>
     <string name="pref_copy_behavior_title">复制令牌到剪贴板</string>
@@ -453,6 +457,7 @@
     <string name="unable_to_copy_uri_to_clipboard">无法复制 URI 到剪贴板</string>
     <string name="uri_copied_to_clipboard">URI 已复制到剪贴板</string>
     <string name="transfer_entry_description">使用您想将此条目迁移到的其它身份验证器应用扫描此二维码</string>
+    <string name="transfer_entry_brightness">轻按二维码切换全屏亮度</string>
     <string name="google_auth_compatible_transfer_description">使用 Aegis 或 Google 身份验证器扫描这些二维码。\n\n由于 Google 身份验证器应用的限制， 只包含使用 SHA1 并生成 6 位数字代码的 TOTP &amp; HOTP 令牌</string>
     <string name="password_strength_very_weak">很弱</string>
     <string name="password_strength_weak">弱</string>

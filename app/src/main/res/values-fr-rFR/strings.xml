@@ -227,6 +227,8 @@
     <string name="snackbar_authentication_method">Veuillez sélectionner une méthode d\'authentification</string>
     <string name="encrypting_vault">Chiffrement du coffre-fort</string>
     <string name="exporting_vault">Export du coffre-fort</string>
+    <string name="optimizing_icon">Optimisation de l\'icône</string>
+    <string name="optimizing_icon_multiple">Optimisation des icônes %1$d/%2$d</string>
     <string name="reading_file">Lecture du fichier</string>
     <string name="requesting_root_access">Demande d\'accès root</string>
     <string name="analyzing_qr">Analyse du code QR</string>
@@ -363,6 +365,8 @@
     <string name="clear">Effacer</string>
     <string name="pref_highlight_entry_title">Surligner les jetons lorsqu\'ils sont appuyés</string>
     <string name="pref_highlight_entry_summary">Rendre les jetons plus faciles à distinguer les uns des autres en les surlignant temporairement lorsqu\'ils sont appuyés</string>
+    <string name="pref_groups_multiselect_title">Groupes avec sélection multiple</string>
+    <string name="pref_groups_multiselect_summary">Autoriser la sélection de plusieurs groupes en même temps</string>
     <string name="pref_minimize_on_copy_title">Minimiser lors de la copie</string>
     <string name="pref_minimize_on_copy_summary">Minimiser l\'application après avoir copié un jeton</string>
     <string name="pref_copy_behavior_title">Copier les jetons dans le presse-papier</string>
@@ -466,6 +470,7 @@
     <string name="unable_to_copy_uri_to_clipboard">Impossible de copier l\'URI dans le presse-papier</string>
     <string name="uri_copied_to_clipboard">URI copiée dans le presse-papier</string>
     <string name="transfer_entry_description">Scannez ce code QR avec l\'application d\'authentification vers laquelle vous souhaitez transférer cette entrée</string>
+    <string name="transfer_entry_brightness">Appuyer sur le code QR pour activer la luminosité maximale</string>
     <string name="google_auth_compatible_transfer_description">Scannez ces codes QR avec Aegis ou Google Authenticator.\n\nEn raison des limitations de l\'application Google Authenticator, seuls les jetons TOTP &amp; HOTP qui utilisent SHA1 et produisent des codes à 6 chiffres sont inclus</string>
     <string name="password_strength_very_weak">Très faible</string>
     <string name="password_strength_weak">Faible</string>

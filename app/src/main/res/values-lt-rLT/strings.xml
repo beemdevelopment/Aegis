@@ -4,10 +4,11 @@
     <string name="action_about">Apie</string>
     <string name="action_delete">Ištrinti</string>
     <string name="action_transfer">Perkelti</string>
-    <string name="action_edit_icon">Taisyti piktogramą</string>
+    <string name="action_edit_icon">Redaguoti piktogramą</string>
     <string name="action_default_icon">Atkurti numatytąją piktogramą</string>
     <string name="discard">Atmesti</string>
-    <string name="save">Įrašyti</string>
+    <string name="save">Išsaugoti</string>
+    <string name="all">Viskas</string>
     <string name="issuer">Leidėjas</string>
     <string name="usage_count">Naudojimų skaičius</string>
     <string name="warning">Įspėjimas</string>

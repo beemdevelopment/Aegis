@@ -227,6 +227,8 @@
     <string name="snackbar_authentication_method">Tes que escoller un método de autenticación</string>
     <string name="encrypting_vault">Cifrando o almacén</string>
     <string name="exporting_vault">Exportando o almacén</string>
+    <string name="optimizing_icon">Optimizando a icona</string>
+    <string name="optimizing_icon_multiple">Optimizando iconas %1$d/%2$d</string>
     <string name="reading_file">Lendo ficheiro</string>
     <string name="requesting_root_access">Pedindo acceso root</string>
     <string name="analyzing_qr">Analizando código QR</string>
@@ -363,6 +365,8 @@
     <string name="clear">Restablecer</string>
     <string name="pref_highlight_entry_title">Resaltar tokens ao premelos</string>
     <string name="pref_highlight_entry_summary">Resalta temporalmente os tokens cando se preman para podelos distinguir máis facilmente</string>
+    <string name="pref_groups_multiselect_title">Selección múltiple de grupos</string>
+    <string name="pref_groups_multiselect_summary">Permite ter seleccionados varios grupos ao mesmo tempo</string>
     <string name="pref_minimize_on_copy_title">Minimizar ao copiar</string>
     <string name="pref_minimize_on_copy_summary">Minimiza a aplicación despois de copiar un token</string>
     <string name="pref_copy_behavior_title">Copiar códigos no portapapeis</string>
@@ -466,6 +470,7 @@
     <string name="unable_to_copy_uri_to_clipboard">Non se puido copiar a URI no portapapeis</string>
     <string name="uri_copied_to_clipboard">URI copiada no portapapeis</string>
     <string name="transfer_entry_description">Escanea este código QR coa aplicación de autenticación á que queiras transferirlle esta entrada</string>
+    <string name="transfer_entry_brightness">Preme no código QR para poñer ou quitar o brillo da pantalla ao máximo</string>
     <string name="google_auth_compatible_transfer_description">Escanea estes códigos QR con Aegis ou con Google Authenticator.\n\nDebido ás limitacións de Google Authenticator, só se inclúen os tokens TOTP e HOTP que usen SHA1 e produzan códigos de 6 cifras</string>
     <string name="password_strength_very_weak">Moi feble</string>
     <string name="password_strength_weak">Feble</string>
@@ -513,6 +518,7 @@
     <string name="importer_help_microsoft_authenticator">Proporciona unha copia de <b>/data/data/com.azure.authenticator/databases/PhoneFactor</b>, localizado no directorio do almacenamento interno de Microsoft Authenticator.</string>
     <string name="importer_help_plain_text">Proporciona un ficheiro de texto plano cunha URI de Google Authenticator en cada liña.</string>
     <string name="importer_help_steam"><b>Steam v3.0 e versións superiores non son compatibles</b>. Proporciona unha copia de <b>/data/data/com.valvesoftware.android.steam.community/files/Steamguard-*.json</b>, localizado no directorio do almacenamento interno de Steam.</string>
+    <string name="importer_help_stratum">Proporciona un ficheiro de exportación de Stratum, obtido desde <b>Axustes -&gt; Copia de seguridade -&gt; Facer copia de seguridade nun ficheiro cifrado (recomendado)</b>.</string>
     <string name="importer_help_totp_authenticator">Proporciona un ficheiro de exportación de TOTP Authenticator.</string>
     <string name="importer_help_winauth">Proporciona un ficheiro de exportación de WinAuth.</string>
     <string name="import_assign_icons_dialog_title">Asignar iconas</string>

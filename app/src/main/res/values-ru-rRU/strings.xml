@@ -233,6 +233,8 @@
     <string name="snackbar_authentication_method">Выберите метод аутентификации</string>
     <string name="encrypting_vault">Шифрование хранилища</string>
     <string name="exporting_vault">Экспортирование хранилища</string>
+    <string name="optimizing_icon">Оптимизация значка</string>
+    <string name="optimizing_icon_multiple">Оптимизация значков: %1$d/%2$d</string>
     <string name="reading_file">Чтение файла</string>
     <string name="requesting_root_access">Запрос root-доступа</string>
     <string name="analyzing_qr">Анализ QR-кода</string>
@@ -381,6 +383,8 @@
     <string name="clear">Очистить</string>
     <string name="pref_highlight_entry_title">Выделять ключи при нажатии</string>
     <string name="pref_highlight_entry_summary">Сделать ключи более различимыми, временно выделяя их при нажатии</string>
+    <string name="pref_groups_multiselect_title">Мультивыбор групп</string>
+    <string name="pref_groups_multiselect_summary">Разрешить одновременный выбор нескольких групп</string>
     <string name="pref_minimize_on_copy_title">Сворачивать при копировании</string>
     <string name="pref_minimize_on_copy_summary">Сворачивать приложение после копирования ключа</string>
     <string name="pref_copy_behavior_title">Копировать ключи в буфер обмена</string>
@@ -490,6 +494,7 @@
     <string name="unable_to_copy_uri_to_clipboard">Невозможно скопировать URI в буфер обмена</string>
     <string name="uri_copied_to_clipboard">URI скопирован в буфер обмена</string>
     <string name="transfer_entry_description">Отсканируйте QR-код с помощью приложения для аутентификации, в которое вы хотите передать эту запись.</string>
+    <string name="transfer_entry_brightness">Нажатие на QR-код переключает полную яркость экрана</string>
     <string name="google_auth_compatible_transfer_description">Сканируйте эти QR-коды в Aegis или Google Authenticator. Из-за ограничений приложения Google Authenticator, включены только ключи TOTP и HOTP, использующие SHA1 и создающие 6-значные коды.</string>
     <string name="password_strength_very_weak">Очень слабый</string>
     <string name="password_strength_weak">Слабый</string>

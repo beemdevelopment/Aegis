@@ -227,6 +227,8 @@
     <string name="snackbar_authentication_method">Изберете метод за удостоверяване</string>
     <string name="encrypting_vault">Шифроване на трезора</string>
     <string name="exporting_vault">Изнасяне на трезора</string>
+    <string name="optimizing_icon">Оптимизиране на пиктограма</string>
+    <string name="optimizing_icon_multiple">Оптимизиране на пиктограми %1$d/%2$d</string>
     <string name="reading_file">Прочитане на файла</string>
     <string name="requesting_root_access">Достъп до правата на суперпотребителя</string>
     <string name="analyzing_qr">Анализиране на QR кода</string>
@@ -363,6 +365,8 @@
     <string name="clear">Изчистване</string>
     <string name="pref_highlight_entry_title">Осветяване на запис при докосване</string>
     <string name="pref_highlight_entry_summary">Прави записите в списъка по-лесни за различаване един от друг, като при докосване временно ги осветява</string>
+    <string name="pref_groups_multiselect_title">Групи за множествен избор</string>
+    <string name="pref_groups_multiselect_summary">Дава възможност за избиране на няколко групи едновременно</string>
     <string name="pref_minimize_on_copy_title">Свиване при копиране</string>
     <string name="pref_minimize_on_copy_summary">Приложението се свива при копиране на код за достъп</string>
     <string name="pref_copy_behavior_title">Копиране на кодове за защита в междинната памет</string>
@@ -466,6 +470,7 @@
     <string name="unable_to_copy_uri_to_clipboard">Грешка при копиране на адреса</string>
     <string name="uri_copied_to_clipboard">Адресът е копиран</string>
     <string name="transfer_entry_description">Сканирайте QR кода с приложението за удостоверяване, в което искате да прехвърлите този запис</string>
+    <string name="transfer_entry_brightness">Докоснете QR, за да превключите пълна яркост при цял екран</string>
     <string name="google_auth_compatible_transfer_description">Сканирайте тези кодове в Aegis или Google Authenticator.\n\nПоради ограничения в приложението на Google Authenticator са включени само кодовете, които използват SHA1 и извеждат 6 цифри</string>
     <string name="password_strength_very_weak">Много слаба</string>
     <string name="password_strength_weak">Слаба</string>

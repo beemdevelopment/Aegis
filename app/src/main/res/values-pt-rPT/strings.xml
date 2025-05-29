@@ -10,6 +10,7 @@
     <string name="action_default_icon">Restaurar ícone padrão</string>
     <string name="discard">Descartar</string>
     <string name="save">Guardar</string>
+    <string name="all">Tudo</string>
     <string name="issuer">Emitente</string>
     <string name="yandex_pin">PIN (4-16 dígitos)</string>
     <string name="motp_pin">PIN (4 dígitos)</string>
@@ -44,8 +45,14 @@
     <string name="pref_code_group_size_title">Agrupamento de dígitos</string>
     <string name="pref_code_group_size_summary">Selecione o número de dígitos para agrupar os códigos</string>
     <string name="pref_account_name_position_title">Mostrar nome da conta</string>
+    <string name="pref_show_next_code_title">Mostrar próximo código</string>
+    <string name="pref_show_next_code_summary">Gerar e mostrar o próximo código antes do tempo</string>
+    <string name="pref_expiration_state_title">Indicar quando os códigos estão prestes a expirar</string>
+    <string name="pref_expiration_state_summary">Alterar a cor dos códigos e fazê-los piscar quando eles estiverem prestes a expirar</string>
+    <string name="pref_expiration_state_fallback">Alterar a cor dos códigos quando eles estiverem prestes a expirar</string>
     <string name="pref_shared_issuer_account_name_title">Exibir o nome da conta apenas quando necessário</string>
     <string name="pref_shared_issuer_account_name_summary">Mostrar apenas os nomes das contas sempre que estas partilhem o mesmo titular. Os outros nomes de contas serão ocultados.</string>
+    <string name="pref_account_name_position_summary_override">Esta definição é anulada pelo modo de visualização em mosaico. O nome da conta será apresentado por baixo do emissor.</string>
     <string name="pref_import_file_title">Importar de um ficheiro</string>
     <string name="pref_import_file_summary">Importar \'tokens\' de um ficheiro</string>
     <string name="pref_android_backups_title">Backups na nuvem Android</string>
@@ -57,6 +64,8 @@
     <string name="pref_backups_reminder_summary">Mostrar lembrete para efetuar os backups, se as últimas alterações não tiverem sido guardadas.</string>
     <string name="pref_backups_reminder_dialog_title">Desativar lembrete de backup</string>
     <string name="pref_backups_reminder_dialog_summary">Se desativar esta opção, a aplicação não irá mostrar o lembrete mesmo que as últimas alterações não tenham sido guardadas. Desta forma, os seus \'tokens\' de acesso estarão em risco. Tem a certeza de que deseja desativar o lembrete?</string>
+    <string name="pref_backups_versioning_strategy_title">Estratégia de backup</string>
+    <string name="pref_backups_versioning_strategy_keep_x_versions">Manter várias versões</string>
     <string name="pref_backups_location_summary">Os backups serão guardados em</string>
     <string name="pref_backups_trigger_title">Ativar backup</string>
     <string name="pref_backups_trigger_summary">Ativar manualmente</string>
@@ -100,6 +109,12 @@
     <string name="pref_encryption_summary">Cifrar cofre e apenas desbloquear com palavra-passe ou biometria</string>
     <string name="pref_biometrics_title">Desbloqueio biométrico</string>
     <string name="pref_biometrics_summary">Permitir autenticação biométrica para desbloquear o cofre</string>
+    <string name="pref_search_behavior_summary">Pesquisar por %s</string>
+    <string name="pref_search_behavior_prompt">Pesquisar em qualquer um dos seguintes campos</string>
+    <string name="pref_search_behavior_type_name">Nome</string>
+    <string name="pref_search_behavior_type_issuer">Emissor</string>
+    <string name="pref_search_behavior_type_note">Nota</string>
+    <string name="pref_search_behavior_type_groups">Grupos</string>
     <string name="pref_set_password_title">Alterar palavra-passe</string>
     <string name="pref_set_password_summary">Defina a palavra-passe que será utilizada para desbloquear o cofre</string>
     <string name="no_events_title">Sem eventos relatados</string>
@@ -187,6 +202,9 @@
     <string name="edit">Editar</string>
     <string name="select_all">Selecionar tudo</string>
     <string name="assign_icons">Atribuir ícones</string>
+    <string name="assign_groups">Atribuir ao grupo</string>
+    <string name="assign_groups_dialog_summary">Selecione o grupo ao qual deseja atribuir os itens selecionados.</string>
+    <string name="assign_groups_dialog_dropdown">Selecione o grupo</string>
     <string name="favorite" comment="Verb">Favorito</string>
     <string name="unfavorite" comment="Verb">Remover dos favoritos</string>
     <string name="error_all_caps">ERRO</string>
@@ -201,9 +219,12 @@
     <string name="snackbar_authentication_method">Por favor, selecione um método de autenticação</string>
     <string name="encrypting_vault">A encriptar o cofre</string>
     <string name="exporting_vault">A exportar o cofre</string>
+    <string name="optimizing_icon">Otimizando o ícone</string>
+    <string name="optimizing_icon_multiple">Otimizando os ícones %1$d/%2$d</string>
     <string name="reading_file">A ler o ficheiro</string>
     <string name="requesting_root_access">Pedir acesso root</string>
     <string name="analyzing_qr">A analisar o código QR</string>
+    <string name="analyzing_qr_multiple">Analisando o código QR %1$d/%2$d (%3$s)</string>
     <plurals name="added_new_entries">
         <item quantity="one">Adicionada %d nova entrada ao cofre</item>
         <item quantity="other">Adicionadas %d novas entradas ao cofre</item>
@@ -229,6 +250,7 @@
     <string name="copied">Copiado</string>
     <string name="errors_copied">Erros copiados para a área de transferência</string>
     <string name="version_copied">Versão copiada para a área de transferência</string>
+    <string name="error_required_field">Este campo é necessário</string>
     <string name="error_occurred">Ocorreu um erro</string>
     <string name="decryption_error">Ocorreu um erro ao tentar desbloquear o cofre</string>
     <string name="decryption_corrupt_error">Ocorreu um erro ao tentar desbloquear o cofre. O ficheiro do cofre pode estar corrompido.</string>
@@ -297,6 +319,7 @@
     <string name="no_tokens_can_be_imported">Nenhum token pode ser importado como resultado</string>
     <string name="unlocking_vault">A desbloquear o cofre</string>
     <string name="rename_group">Mudar o nome do grupo</string>
+    <string name="no_group_selection">Se uma entrada não faz parte de um grupo, pode ser encontrada em \"Sem grupo\".</string>
     <string name="remove_group">Remover grupo</string>
     <string name="remove_group_description">Tem a certeza de que pretende remover este grupo? As entradas neste grupo mudarão automaticamente para \'Sem grupo\'.</string>
     <string name="remove_unused_groups">Apagar grupos não utilizados</string>
@@ -330,9 +353,11 @@
     <string name="clear">Limpar</string>
     <string name="pref_highlight_entry_title">Realçar tokens quando tocados</string>
     <string name="pref_highlight_entry_summary">Faça com que os tokens sejam mais fáceis de distinguir um do outro destacando-os temporariamente ao tocá-los</string>
+    <string name="pref_groups_multiselect_summary">Permitir a seleção de vários grupos ao mesmo tempo</string>
     <string name="pref_minimize_on_copy_title">Minimizar ao copiar</string>
     <string name="pref_minimize_on_copy_summary">Após copiar um token, minimizar a aplicação </string>
     <string name="pref_copy_behavior_title">Copiar tokens para a área de transferência</string>
+    <string name="pref_search_behavior_title">Comportamento da pesquisa</string>
     <string name="pref_pause_entry_title">Congelar tokens quando tocados</string>
     <string name="pref_pause_entry_summary">Pausar a atualização automática dos tokens ao tocar neles. Os tokens não serão atualizados desde que estejam em foco. Requer \"Realçar tokens quando tocados\" ou \"Toque para mostrar\".</string>
     <string name="pin_keyboard_description">Digite sua senha para ativar o teclado PIN. Observe que isso só funciona se a sua senha for constituída apenas por números</string>
@@ -358,6 +383,7 @@
     <string name="unable_to_process_deeplink">Não é possível processar a ligação profunda</string>
     <string name="unable_to_read_qrcode_file">Não foi possível ler e processar o código QR do ficheiro: %s.</string>
     <string name="unable_to_process_shared_text">Não é possível processar o texto partilhado como OTP</string>
+    <string name="unable_to_read_qrcode_files">Impossível ler e processar alguns códigos QR. Apenas as entradas %1$d/%2$d serão importadas.</string>
     <string name="unable_to_generate_qrcode">Não foi possível gerar o código QR</string>
     <string name="select_picture">Selecionar imagem</string>
     <string name="select_icon">Selecionar ícone</string>
@@ -388,6 +414,7 @@
     <string name="time_sync_warning_message">O Aegis depende da hora do sistema para estar sincronizado para gerar códigos corretos. Um desvio de apenas alguns segundos pode resultar em códigos incorretos. Parece que o seu dispositivo não está configurado para sincronizar automaticamente o tempo. Gostaria de o fazer agora?</string>
     <string name="time_sync_warning_disable">Para de me avisar. Eu sei o que estou a fazer.</string>
     <string name="google_qr_export_unrelated">Código QR não relacionado. Experimente reiniciar o digitalizador.</string>
+    <string name="google_qr_export_unexpected">Esperado o código QR #%1$d, mas digitalizado #%2$d em vez disso</string>
     <string name="backup_error_bar_message"><b>O ‘backup’ do cofre falhou recentemente</b></string>
     <string name="backup_system_builtin">backups automáticos do Aegis</string>
     <string name="backup_system_android">sistema de backup na nuvem do Android</string>
@@ -459,6 +486,7 @@
     <string name="importer_help_battle_net_authenticator">Forneça uma cópia de <b>/data/data/com.blizzard.messenger/shared_prefs/com.blizzard.messenger.authenticator_preferences.xml</b>, localizado no diretório de armazenamento interno do Autenticador Battle.net.</string>
     <string name="importer_help_duo">Forneça uma cópia de <b>/data/data/com.duosecurity.duomobile/files/duokit/accounts.json</b>, localizada no diretório de armazenamento interno do DUO.</string>
     <string name="importer_help_freeotp_plus">Fornecer um arquivo de exportação FreeOTP+.</string>
+    <string name="importer_warning_title_freeotp2">Compatibilidade FreeOTP 2</string>
     <string name="importer_help_google_authenticator"><b>Apenas são suportados ficheiros de bases de dados do Google Authenticator v5.10 e anteriores</b>.\n\nForneça uma cópia de <b>/data/data/com.google.android.apps.authenticator2/databases/databases</b>, localizada no diretório de armazenamento interno do Google Authenticator.</string>
     <string name="importer_help_microsoft_authenticator">Fornecer uma cópia de <b>/data/data/com.azure.authenticator/databases/PhoneFactor</b>, localizado no diretório de armazenamento interno do Microsoft Authenticator.</string>
     <string name="importer_help_plain_text">Fornecer um arquivo de texto simples com um URI do Google Authenticator em cada linha.</string>

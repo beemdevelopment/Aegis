@@ -365,6 +365,7 @@
     <string name="clear">Limpar</string>
     <string name="pref_highlight_entry_title">Destacar tokens quando tocados</string>
     <string name="pref_highlight_entry_summary">Torna tokens mais fáceis de distinguir dos outros destacando eles temporariamente quando tocados</string>
+    <string name="pref_groups_multiselect_summary">Permitir a seleção de vários grupos ao mesmo tempo</string>
     <string name="pref_minimize_on_copy_title">Minimizar ao copiar</string>
     <string name="pref_minimize_on_copy_summary">Minimizar o aplicativo após copiar um token</string>
     <string name="pref_copy_behavior_title">Copiar tokens para a área de transferência</string>

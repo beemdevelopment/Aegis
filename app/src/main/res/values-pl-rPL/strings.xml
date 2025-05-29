@@ -383,6 +383,8 @@
     <string name="clear">Wyczyść</string>
     <string name="pref_highlight_entry_title">Podświetl tokeny podczas kliknięcia</string>
     <string name="pref_highlight_entry_summary">Wyróżnij tokeny od siebie poprzez tymczasowe podświetlenie po ich kliknięciu</string>
+    <string name="pref_groups_multiselect_title">Wybór wielokrotny grup</string>
+    <string name="pref_groups_multiselect_summary">Zezwalaj na wybór wielu grup jednocześnie</string>
     <string name="pref_minimize_on_copy_title">Zminimalizuj przy skopiowaniu</string>
     <string name="pref_minimize_on_copy_summary">Zminimalizuj aplikację po skopiowaniu tokenu</string>
     <string name="pref_copy_behavior_title">Skopiuj tokeny do schowka</string>
@@ -491,6 +493,7 @@
     <string name="unable_to_copy_uri_to_clipboard">Nie można skopiować URI do schowka</string>
     <string name="uri_copied_to_clipboard">Skopiowano URI do schowka</string>
     <string name="transfer_entry_description">Zeskanuj kod QR za pomocą aplikacji uwierzytelniającej, do której chcesz przenieść ten wpis</string>
+    <string name="transfer_entry_brightness">Stuknij kod QR, aby przełączyć pełną jasność ekranu</string>
     <string name="google_auth_compatible_transfer_description">Zeskanuj te kody QR za pomocą Aegis lub Google Authenticator.\n\nZ powodu ograniczeń w aplikacji Google Authenticator, tylko tokeny TOTP &amp; HOTP, które używają SHA1 i generują 6 cyfrowe kody są uwzględniane</string>
     <string name="password_strength_very_weak">Bardzo słabe</string>
     <string name="password_strength_weak">Słabe</string>

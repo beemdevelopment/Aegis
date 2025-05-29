@@ -29,6 +29,7 @@
     <string name="pref_section_security_summary">Configura la crittografia, lo sblocco biometrico, il blocco automatico e altre impostazioni di sicurezza.</string>
     <string name="pref_section_import_export_title">Importa / Esporta</string>
     <string name="pref_section_import_export_summary">Importa i backup di Aegis o di altre applicazioni di autenticazione. Crea esportazioni manuali della tua cassaforte di Aegis.</string>
+    <string name="pref_section_audit_log_title">Registro di controllo</string>
     <string name="pref_section_audit_log_summary">Trova un elenco di tutti gli eventi importanti segnalati che sono avvenuti nell\'app.</string>
     <string name="pref_section_backups_title">Backup</string>
     <string name="pref_section_backups_summary">Imposta i backup automatici in una posizione a tua scelta o abilita la partecipazione al sistema di backup cloud di Android.</string>
@@ -51,6 +52,7 @@
     <string name="pref_expiration_state_fallback">Cambia il colore dei codici quando stanno per scadere</string>
     <string name="pref_shared_issuer_account_name_title">Mostra il nome dell\'account solo se necessario</string>
     <string name="pref_shared_issuer_account_name_summary">Mostra i nomi degli account quando condividono lo stesso servizio. I nomi degli altri account verranno nascosti.</string>
+    <string name="pref_account_name_position_summary_override">Questa impostazione è sovrascritta dalla visualizzazione a schede. Il nome dell\'account verrà mostrato sotto a quello del servizio.</string>
     <string name="pref_import_file_title">Importa da un file</string>
     <string name="pref_import_file_summary">Importa i token da un file</string>
     <string name="pref_android_backups_title">Backup cloud di Android</string>
@@ -63,17 +65,22 @@
     <string name="pref_backups_reminder_dialog_title">Disabilita i promemoria di backup</string>
     <string name="pref_backups_reminder_dialog_summary">Se disabiliti i promemoria, Aegis non ti avviserà delle eventuali modifiche di cui non hai ancora effettuato il backup. Ciò comporta il rischio di perdere l\'accesso ai tuoi token. Sei sicuro di voler disabilitare i promemoria?</string>
     <string name="pref_backups_versioning_strategy_title">Strategia di backup</string>
+    <string name="pref_backups_versioning_strategy_keep_x_versions">Mantieni un numero di versioni</string>
     <string name="pref_backups_versioning_strategy_single_backup">Backup singolo</string>
+    <string name="pref_backups_versioning_strategy_single_backup_warning">La strategia di backup selezionata non è affidabile e non è consigliata. Un singolo errore di backup potrebbe portare alla perdita dell\'unico salvataggio presente.</string>
     <string name="pref_backups_versioning_strategy_dialog_title">Seleziona una strategia di backup</string>
+    <string name="pref_backups_location_title">Percorso del backup</string>
     <string name="pref_backups_location_summary">I backup saranno salvati in</string>
     <string name="pref_backup_location_summary">I backup saranno salvati in</string>
     <string name="pref_backups_trigger_title">Effettua un backup</string>
     <string name="pref_backups_trigger_summary">Effettua un backup manualmente</string>
     <string name="pref_backups_versions_title">Numero di versioni da salvare</string>
+    <string name="pref_backups_versions_infinite">\u221E</string>
     <plurals name="pref_backups_versions_summary">
         <item quantity="one">Salva %1$d versione del backup</item>
         <item quantity="other">Salva %1$d versioni del backup</item>
     </plurals>
+    <string name="pref_backups_versions_infinite_summary">Mantieni un numero infinito di versioni del backup</string>
     <string name="pref_import_app_title">Importa da app</string>
     <string name="pref_import_app_summary">Importa i token da un\'altra app (richiede i permessi di root)</string>
     <string name="pref_export_title">Esporta</string>
@@ -109,8 +116,34 @@
     <string name="pref_encryption_summary">Cripta il database e sbloccalo con password o impronta digitale</string>
     <string name="pref_biometrics_title">Sblocco biometrico</string>
     <string name="pref_biometrics_summary">Consenti l\'autenticazione biometrica per sbloccare la cassaforte</string>
+    <string name="pref_search_behavior_summary">Cerca attraverso: %s</string>
+    <string name="pref_search_behavior_prompt">Cerca in uno dei seguenti campi</string>
+    <string name="pref_search_behavior_type_name">Nome</string>
+    <string name="pref_search_behavior_type_issuer">Servizio</string>
+    <string name="pref_search_behavior_type_note">Nota</string>
+    <string name="pref_search_behavior_type_groups">Gruppi</string>
     <string name="pref_set_password_title">Cambia password</string>
     <string name="pref_set_password_summary">Modifica la password utilizzata per sbloccare la tua cassaforte</string>
+    <string name="no_events_title">Nessun evento segnalato</string>
+    <string name="no_events_description">Non sono stati segnalati eventi importanti all\'interno dell\'applicazione</string>
+    <string name="event_title_vault_unlocked">Cassaforte sbloccata</string>
+    <string name="event_description_vault_unlocked">La cassaforte è stata sbloccata con successo</string>
+    <string name="event_title_backup_created">Backup creato</string>
+    <string name="event_description_backup_created">Un backup della cassaforte è stato creato con successo</string>
+    <string name="event_title_android_backup_created">Backup creato da Android</string>
+    <string name="event_description_android_backup_created">Un backup della cassaforte è stato creato con successo da Android</string>
+    <string name="event_title_vault_exported">Cassaforte esportata</string>
+    <string name="event_description_vault_exported">Una copia della cassaforte è stata esportata</string>
+    <string name="event_title_entry_shared">Elemento condiviso</string>
+    <string name="event_description_entry_shared">Un elemento è stato condiviso</string>
+    <string name="event_title_vault_unlock_failed_password">Sblocco della cassaforte non riuscito (password)</string>
+    <string name="event_description_vault_unlock_failed_password">Un tentativo di sbloccare la cassaforte con una password non riuscito</string>
+    <string name="event_title_vault_unlock_failed_biometrics">Sblocco della cassaforte non riuscito (biometrica)</string>
+    <string name="event_description_vault_unlock_failed_biometrics">Un tentativo di sbloccare la cassaforte con dati biometrici non riuscito</string>
+    <string name="event_unknown">Tipo di evento sconosciuto</string>
+    <string name="audit_log_entry_deleted">(eliminato)</string>
+    <string name="today_at_time">Oggi alle %1$s</string>
+    <string name="day_of_week_at_time">%1$s alle %2$s</string>
     <string name="export_encrypted">Cripta la cassaforte</string>
     <string name="export_help">Questa azione esporterà la cassaforte al di fuori dello spazio di archiviazione interno di Aegis. Seleziona il formato che vorresti utilizzare per l\'esportazione:</string>
     <string name="export_warning_unencrypted">Stai per esportare una copia non criptata della tua cassaforte Aegis. <b>Questo non è consigliato</b>.</string>
@@ -177,6 +210,9 @@
     <string name="edit">Modifica</string>
     <string name="select_all">Seleziona tutto</string>
     <string name="assign_icons">Assegna icone</string>
+    <string name="assign_groups">Assegna al gruppo</string>
+    <string name="assign_groups_dialog_summary">Selezionare un gruppo al quale assegnare l\'elemento selezionato.</string>
+    <string name="assign_groups_dialog_dropdown">Seleziona un gruppo</string>
     <string name="favorite" comment="Verb">Aggiungi ai preferiti</string>
     <string name="unfavorite" comment="Verb">Rimuovi dai preferiti</string>
     <string name="error_all_caps">ERRORE</string>
@@ -191,9 +227,12 @@
     <string name="snackbar_authentication_method">Seleziona un metodo di autenticazione</string>
     <string name="encrypting_vault">Crittografia della cassaforte in corso</string>
     <string name="exporting_vault">Esportazione della cassaforte in corso</string>
+    <string name="optimizing_icon">Ottimizzazione icona</string>
+    <string name="optimizing_icon_multiple">Ottimizzazione icone %1$d/%2$d</string>
     <string name="reading_file">Lettura del file in corso</string>
     <string name="requesting_root_access">Richiesta accesso root</string>
     <string name="analyzing_qr">Analisi del codice QR</string>
+    <string name="analyzing_qr_multiple">Analisi del codice QR %1$d/%2$d (%3$s)</string>
     <plurals name="added_new_entries">
         <item quantity="one">Aggiunta %d nuova voce alla cassaforte</item>
         <item quantity="other">Aggiunte %d nuove voci alla cassaforte</item>
@@ -283,11 +322,16 @@
     <string name="partial_google_auth_import">Rilevata esportazione di Google Authenticator incompleta</string>
     <string name="partial_google_auth_import_warning">Alcuni codici QR non sono presenti nell\'importazione. Non sono stati trovati i seguenti codici:\n\n<b>%s</b>\n\nPuoi continuare a importare questa esportazione parziale, ma ti consigliamo di riprovare con tutti i codici QR in modo da non perdere l\'accesso ai token.</string>
     <string name="missing_qr_code_descriptor">• QR code %d</string>
+    <plurals name="import_partial_export_anyway">
+        <item quantity="one">Importa comunque il token %d</item>
+        <item quantity="other">Importa comunque i token %d</item>
+    </plurals>
     <string name="import_google_auth_failure">Importazione dell\'esportazione di Google Authenticator non riuscita</string>
     <string name="unrelated_google_auth_batches_error">L\'esportazione contiene informazioni per un lotto non correlato. Provare a importare un lotto alla volta.</string>
     <string name="no_tokens_can_be_imported">Di conseguenza non è possibile importare token</string>
     <string name="unlocking_vault">Sblocco della cassaforte</string>
     <string name="rename_group">Rinomina gruppo</string>
+    <string name="no_group_selection">Se un elemento non fa parte di alcun gruppo, può essere trovato in \"Nessun gruppo\".</string>
     <string name="remove_group">Rimuovi gruppo</string>
     <string name="remove_group_description">Sei sicuro di voler rimuovere questo gruppo? Gli elementi in questo gruppo verranno automaticamente spostati in \'Nessun gruppo\'.</string>
     <string name="remove_unused_groups">Elimina gruppi non utilizzati</string>
@@ -321,9 +365,12 @@
     <string name="clear">Pulisci</string>
     <string name="pref_highlight_entry_title">Evidenzia i token al tocco</string>
     <string name="pref_highlight_entry_summary">Rendi i token più facili da distinguere, evidenziandoli temporaneamente quando vengono toccati</string>
+    <string name="pref_groups_multiselect_title">Gruppi multiselezione</string>
+    <string name="pref_groups_multiselect_summary">Consente la selezione multipla di più gruppi contemporaneamente</string>
     <string name="pref_minimize_on_copy_title">Minimizza alla copia</string>
     <string name="pref_minimize_on_copy_summary">Minimizza l\'app dopo aver copiato un token</string>
     <string name="pref_copy_behavior_title">Copia i token negli appunti</string>
+    <string name="pref_search_behavior_title">Comportamento di ricerca</string>
     <string name="pref_pause_entry_title">Blocca i token con un tocco</string>
     <string name="pref_pause_entry_summary">Metti in pausa l\'aggiornamento automatico dei token toccandoli. I token non si aggiorneranno finché sono evidenziati. Richiede \"Evidenzia i token al tocco\" o \"Tocca per mostrare\".</string>
     <string name="pin_keyboard_description">Inserisci la password per abilitare la tastiera PIN. Funziona solo se la password è composta di soli numeri</string>
@@ -349,6 +396,7 @@
     <string name="unable_to_process_deeplink">Impossibile elaborare il collegamento</string>
     <string name="unable_to_read_qrcode_file">Impossibile leggere ed elaborare il codice QR dal file: %s.</string>
     <string name="unable_to_process_shared_text">Impossibile elaborare il testo condiviso come OTP</string>
+    <string name="unable_to_read_qrcode_files">Impossibile leggere ed elaborare alcuni dei codici QR. Solo %1$d/%2$d elementi verranno importati.</string>
     <string name="unable_to_generate_qrcode">Impossibile generare il codice QR</string>
     <string name="select_picture">Seleziona immagine</string>
     <string name="select_icon">Seleziona icona</string>
@@ -379,7 +427,16 @@
     <string name="time_sync_warning_message">Aegis si basa sull\'esatta sincronizzazione dell\'orario di sistema per generare codici corretti. Una deviazione di pochi secondi potrebbe portare a codici errati. Sembra che il tuo dispositivo non sia configurato per sincronizzare automaticamente l\'ora. Vuoi farlo adesso?</string>
     <string name="time_sync_warning_disable">Smettetela di avvertirmi. So cosa sto facendo.</string>
     <string name="google_qr_export_unrelated">Trovato codice QR non correlato. Prova a riavviare lo scanner.</string>
+    <plurals name="google_qr_export_scanned">
+        <item quantity="one">Scansionato %1$d/%2$d codici QR</item>
+        <item quantity="other">Scansionati %1$d/%2$d codici QR</item>
+    </plurals>
+    <string name="google_qr_export_unexpected">Atteso il codice QR #%1$d, ma invece è stato scansionato #%2$d</string>
     <string name="backup_error_bar_message"><b>Backup della cassaforte fallito recentemente</b></string>
+    <string name="backup_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">        Un recente tentativo di backup della cassaforte con %1$s non è riuscito perché si è verificato un errore. Il backup è stato tentato %2$s. Verificare le impostazioni di backup per assicurarsi che i backup possano essere completati correttamente.
+    </string>
+    <string name="backup_permission_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">        Un recente tentativo di backup della cassaforte con %1$s non è riuscito perché Aegis non aveva l\'autorizzazione di scrittura nella destinazione del backup. Il backup è stato tentato %2$s. Questo errore può verificarsi se è stato spostata o rinominata la destinazione del backup o se recentemente è stato ripristinato Aegis da un backup. Configurare nuovamente la destinazione del backup.
+    </string>
     <string name="backup_system_builtin">i backup automatici integrati di Aegis</string>
     <string name="backup_system_android">il sistema di backup su cloud di Android</string>
     <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">        L\'ultimo backup è vecchio (%s)
@@ -412,6 +469,7 @@
     <string name="unable_to_copy_uri_to_clipboard">Impossibile copiare l\'URI negli appunti</string>
     <string name="uri_copied_to_clipboard">URI copiato negli appunti</string>
     <string name="transfer_entry_description">Scansiona questo codice QR con l\'app di autenticazione a cui vuoi trasferire questa voce</string>
+    <string name="transfer_entry_brightness">Tocca il codice QR per attivare o disattivare la luminosità a schermo intero</string>
     <string name="google_auth_compatible_transfer_description">Scansiona questi codici QR con Aegis o Google Authenticator.\n\nA causa delle limitazioni dell\'app Google Authenticator, sono inclusi solo i token TOTP e HOTP che utilizzano SHA1 e producono codici a 6 cifre</string>
     <string name="password_strength_very_weak">Molto debole</string>
     <string name="password_strength_weak">Debole</string>
@@ -450,11 +508,16 @@
     <string name="importer_help_bitwarden">Seleziona un file di esportazione/backup di Bitwarden. I file crittografati non sono supportati.</string>
     <string name="importer_help_battle_net_authenticator">Seleziona una copia di <b>/data/data/com.blizzard.messenger/shared_prefs/com.blizzard.messenger.authenticator_preferences.xml</b>, situata nella directory della memoria interna di Battle.net Authenticator.</string>
     <string name="importer_help_duo">Seleziona una copia di <b>/data/data/com.duosecurity.duomobile/files/duokit/accounts.json</b>, che si trova nella cartella di archiviazione interna di DUO.</string>
+    <string name="importer_help_ente_auth">Fornire un file di esportazione di Ente Auth. Attualmente sono supportati solo i file non criptati.</string>
+    <string name="importer_help_freeotp">FreeOTP 2: Fornire un file di backup.\nFreeOTP 1.x: Fornire una copia di <b>/data/data/org.fedorahosted.freeotp/shared_prefs/tokens.xml</b>, che si trova nella directory di archiviazione interna di FreeOTP.</string>
     <string name="importer_help_freeotp_plus">Seleziona un file di esportazione di FreeOTP+.</string>
+    <string name="importer_warning_title_freeotp2">Compatibilità con FreeOTP 2</string>
+    <string name="importer_warning_message_freeotp2">Ci sono diversi problemi in FreeOTP 2 che possono portare a backup danneggiati. Aegis cercherà di recuperare il maggior numero possibile di voci, ma è possibile che alcune o addirittura tutte non vengano importate.</string>
     <string name="importer_help_google_authenticator"><b>Sono supportati solo i file di database di Google Authenticator v5.10 e precedenti</b>.\n\nSeleziona una copia di<b>/data/data/com.google.android.apps.authenticator2/databases/databases</b>, che si trova nella cartella di archiviazione interna di Google Authenticator.</string>
     <string name="importer_help_microsoft_authenticator">Seleziona una copia di <b>/data/data/com.azure.authenticator/databases/PhoneFactor</b>, che si trova nella cartella di archiviazione interna di Microsoft Authenticator.</string>
     <string name="importer_help_plain_text">Seleziona un file di testo con un URI di Google Authenticator in ogni riga.</string>
     <string name="importer_help_steam"><b>Steam v3.0 e versioni successive non sono supportate</b>. Seleziona una copia di <b>/data/data/com.valvesoftware.android.steam.community/files/Steamguard-*.json</b>, che si trova nella cartella di archiviazione interna di Steam.</string>
+    <string name="importer_help_stratum">Fornire un file di esportazione di Stratum ottenuto tramite <b>Impostazioni -&gt; Backup -&gt; Backup su file criptato (consigliato)</b>.</string>
     <string name="importer_help_totp_authenticator">Seleziona un file di esportazione di TOTP Authenticator.</string>
     <string name="importer_help_winauth">Seleziona un file di esportazione di WinAuth.</string>
     <string name="import_assign_icons_dialog_title">Assegna icone</string>

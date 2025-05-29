@@ -224,6 +224,8 @@
     <string name="snackbar_authentication_method">Pilih metode otentikasi</string>
     <string name="encrypting_vault">Mengenkripsi brankas</string>
     <string name="exporting_vault">Ekspor brankas</string>
+    <string name="optimizing_icon">Mengoptimasi ikon</string>
+    <string name="optimizing_icon_multiple">Mengoptimasi ikon %1$d/%2$d</string>
     <string name="reading_file">Baca berkas</string>
     <string name="requesting_root_access">Meminta akses root</string>
     <string name="analyzing_qr">Menganalisis kode QR</string>
@@ -354,6 +356,8 @@
     <string name="clear">Bersihkan</string>
     <string name="pref_highlight_entry_title">Sorot token saat disentuh</string>
     <string name="pref_highlight_entry_summary">Jadikan token untuk lebih mudah dibedakan satu sama lain dengan menyorotnya saat disentuh</string>
+    <string name="pref_groups_multiselect_title">Pilih berganda grup</string>
+    <string name="pref_groups_multiselect_summary">Mengizinkan memilih beberapa grup pada saat yang sama</string>
     <string name="pref_minimize_on_copy_title">Meminimalkan penyalinan</string>
     <string name="pref_minimize_on_copy_summary">Meminimalkan aplikasi setelah menyalin token</string>
     <string name="pref_copy_behavior_title">Menyalin token ke papan klip</string>
@@ -501,6 +505,7 @@
 <b>/data/data/com.azure.authenticator/databases/PhoneFactor</b>, yang terletak di direktori penyimpanan internal Microsoft Authenticator.</string>
     <string name="importer_help_plain_text">Siapkan berkas plain text Google Authenticator dengan URI di setiap baris.</string>
     <string name="importer_help_steam"><b>Steam v3.0 dan yang lebih baru tidak didukung</b>. Sediakan salinan <b>/data/data/com.valvesoftware.android.steam.community/files/Steamguard-*.json</b>, yang terletak di direktori penyimpanan internal Steam.</string>
+    <string name="importer_help_stratum">Sediakan berkas ekspor Stratum yang diperoleh melalui <b>Pengaturan -&gt; Cadangkan -&gt; Cadangkan ke berkas terenkripsi (disarankan)</b>.</string>
     <string name="importer_help_totp_authenticator">Siapkan berkas ekspor Autentikasi TOTP.</string>
     <string name="importer_help_winauth">Siapkan berkas ekspor WinAuth.</string>
     <string name="import_assign_icons_dialog_title">Tetapkan ikon</string>

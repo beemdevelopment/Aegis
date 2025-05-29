@@ -363,8 +363,25 @@
     <string name="preference_reset_usage_count_dialog">Είστε βέβαιοι ότι θέλετε να ορίσετε τον αριθμό χρήσης κάθε εισόδου στην κρύπτη σας στο 0;</string>
     <string name="note" comment="Users can add a note to an entry">Σημείωση</string>
     <string name="clear">Εκκαθάριση</string>
+    <string name="dialog_duplicate_entry_title">Διπλότυπη καταχώρηση</string>
+    <string name="dialog_duplicate_entry_message">Αυτή η καταχώρηση έχει το ίδιο όνομα και τον ίδιο εκδότη με μία ή περισσότερες υπάρχουσες καταχωρήσεις. Πώς θα θέλατε να προχωρήσετε;</string>
+    <string name="dialog_duplicate_entry_overwrite_title">Αντικατάσταση υπάρχουσας/ων καταχώρησης/ων</string>
+    <string name="dialog_duplicate_entry_overwrite_subtitle">Αντικατάσταση της υπάρχουσας καταχώρησης ή καταχωρήσεων με τη νέα. Αυτή η ενέργεια δεν μπορεί να αναιρεθεί</string>
+    <string name="dialog_duplicate_entry_suffix_title">Προσθήκη επιθήματος</string>
+    <string name="dialog_duplicate_entry_suffix_subtitle">Προσθέστε ένα επίθημα στο όνομα αυτής της νέας καταχώρησης. Το νέο όνομα θα είναι: %s</string>
+    <string name="dialog_duplicate_entry_cancel_title">Ακύρωση αποθήκευσης</string>
+    <string name="dialog_duplicate_entry_cancel_subtitle">Σας επιτρέπει να επεξεργαστείτε την καταχώρηση πριν επιχειρήσετε να την αποθηκεύσετε ξανά</string>
+    <plurals name="dialog_duplicate_entry_overwrite_dialog_message">
+        <item quantity="one">Είστε βέβαιοι ότι θέλετε να διαγράψετε την καταχώρηση %d με το ακόλουθο όνομα:\n\n%s - %s</item>
+        <item quantity="other">Είστε βέβαιοι ότι θέλετε να διαγράψετε καταχωρήσεις %d με το ακόλουθο όνομα:\n\n%s - %s</item>
+    </plurals>
+    <string name="dialog_duplicate_entry_overwrite_dialog_title">Επιβεβαίωση διαγραφής</string>
+    <string name="pref_haptic_feedback_summary">Κάντε τη συσκευή σας να δονείται όταν ανανεώνονται οι κωδικοί</string>
+    <string name="pref_haptic_feedback_title">Απτική ανάδραση</string>
     <string name="pref_highlight_entry_title">Επισήμανση αναγνωριστικών όταν πατηθεί</string>
     <string name="pref_highlight_entry_summary">Κάνετε τα αναγνωριστικά να ξεχωρίζουν ευκολότερα το ένα από το άλλο, επισημαίνοντας τα προσωρινά όταν τα πατήσετε</string>
+    <string name="pref_groups_multiselect_title">Πολλαπλή επιλογή ομάδων</string>
+    <string name="pref_groups_multiselect_summary">Να επιτρέπεται η επιλογή πολλαπλών ομάδων ταυτόχρονα</string>
     <string name="pref_minimize_on_copy_title">Ελαχιστοποίηση κατά την αντιγραφή</string>
     <string name="pref_minimize_on_copy_summary">Ελαχιστοποίηση της εφαρμογής μετά την αντιγραφή ενός αναγνωριστικού</string>
     <string name="pref_copy_behavior_title">Αντιγραφή αναγνωριστικών στο πρόχειρο</string>
@@ -467,6 +484,7 @@
     <string name="unable_to_copy_uri_to_clipboard">Αδυναμία αντιγραφής του URI στο πρόχειρο</string>
     <string name="uri_copied_to_clipboard">Το URI αντιγράφηκε στο πρόχειρο</string>
     <string name="transfer_entry_description">Σαρώστε αυτόν τον κωδικό QR με την εφαρμογή ελέγχου ταυτότητας στην οποία θέλετε να μεταφέρετε αυτήν την καταχώριση</string>
+    <string name="transfer_entry_brightness">Πατήστε τον κωδικό QR για εναλλαγή φωτεινότητας πλήρους οθόνης</string>
     <string name="google_auth_compatible_transfer_description">Σαρώστε αυτούς τους κωδικούς QR με το Aegis ή το Google Authenticator.\n\nΛόγω περιορισμών της εφαρμογής Google Authenticator, περιλαμβάνονται μόνο αναγνωριστικά TOTP &amp; HOTP που χρησιμοποιούν SHA1 και παράγουν 6ψήφιους κωδικούς</string>
     <string name="password_strength_very_weak">Πολύ αδύναμος</string>
     <string name="password_strength_weak">Αδύναμος</string>

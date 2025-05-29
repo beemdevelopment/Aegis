@@ -227,6 +227,8 @@
     <string name="snackbar_authentication_method">Válasszon hitelesítési módot</string>
     <string name="encrypting_vault">A széf titkosítása</string>
     <string name="exporting_vault">A széf exportálása</string>
+    <string name="optimizing_icon">Ikon optimalizálása</string>
+    <string name="optimizing_icon_multiple">Ikonok optimalizálása %1$d/%2$d</string>
     <string name="reading_file">Fájl olvasása</string>
     <string name="requesting_root_access">Root hozzáférés igénylése</string>
     <string name="analyzing_qr">QR-kód elemzése</string>
@@ -363,6 +365,8 @@
     <string name="clear">Törlés</string>
     <string name="pref_highlight_entry_title">Tokenek kiemelése koppintáskor</string>
     <string name="pref_highlight_entry_summary">A tokenek könnyebb megkülönböztethetősége érdekében ideiglenesen ki lesznek emelve koppintáskor</string>
+    <string name="pref_groups_multiselect_title">Csoportok többszörös kiválasztása</string>
+    <string name="pref_groups_multiselect_summary">Több csoport egyidejű kiválasztásának engedélyezése</string>
     <string name="pref_minimize_on_copy_title">Minimalizálás másoláskor</string>
     <string name="pref_minimize_on_copy_summary">Az alkalmazás minimalizálása a token másolása után</string>
     <string name="pref_copy_behavior_title">Tokenek másolása a vágólapra</string>
@@ -466,6 +470,7 @@
     <string name="unable_to_copy_uri_to_clipboard">Nem lehet az URI-t a vágólapra másolni</string>
     <string name="uri_copied_to_clipboard">Az URI a vágólapra másolva</string>
     <string name="transfer_entry_description">Olvassa le ezt a QR-kódot azzal hitelesítő alkalmazással, amelybe át akarja vinni</string>
+    <string name="transfer_entry_brightness">Koppintson a QR-kódra a teljes fényerő be- és kikapcsolásához</string>
     <string name="google_auth_compatible_transfer_description">Olvassa le ezeket a QR-kódokat az Aegisszel vagy a Google Hitelesítővel.\n\nA Google Hitelesítő korlátozásai miatt csak az SHA1-et használó és 6 számjegyű kódot előállító TOTP és HOTP tokenek szerepelnek itt.</string>
     <string name="password_strength_very_weak">Nagyon gyenge</string>
     <string name="password_strength_weak">Gyenge</string>
@@ -513,7 +518,7 @@
     <string name="importer_help_microsoft_authenticator">Adja meg a <b>/data/data/com.azure.authenticator/databases/PhoneFactor</b> másolatát, mely a Microsoft Authenticator belső háttértáron levő mappájában található.</string>
     <string name="importer_help_plain_text">Adjon meg egy szöveges fájlt, melynek minden sorában Google Hitelesítő URI található.</string>
     <string name="importer_help_steam"><b>A Steam v3.0 és újabb verziói nem támogatottak</b>. Adja hozzá a <b>/data/data/com.valvesoftware.android.steam.community/files/Steamguard-*.json</b> mappából, mely a Steam belső háttértáron levő mappája.</string>
-    <string name="importer_help_stratum">Adjon meg egy Stratum-exportálási fájlt, amelyet a <b>Beállítások &gt; Biztonsági mentés &gt; Biztonsági mentés titkosított fájlba (ajánlott)</b> menüpontban lehet előállítani.</string>
+    <string name="importer_help_stratum">Adjon meg egy Stratum exportálási fájlt, amelyet a <b>Beállítások &gt; Biztonsági mentés &gt; Biztonsági mentés titkosított fájlba (ajánlott)</b> menüpontban lehet előállítani.</string>
     <string name="importer_help_totp_authenticator">Adjon meg egy TOTP Autheticator exportfájlt.</string>
     <string name="importer_help_winauth">Adjon meg egy WinAuth exportfájlt.</string>
     <string name="import_assign_icons_dialog_title">Ikonok hozzárendelése</string>

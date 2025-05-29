@@ -227,6 +227,8 @@
     <string name="snackbar_authentication_method">Kies een inlogmethode</string>
     <string name="encrypting_vault">De kluis wordt versleuteld</string>
     <string name="exporting_vault">De kluis wordt geëxporteerd</string>
+    <string name="optimizing_icon">Pictogram wordt geoptimaliseerd</string>
+    <string name="optimizing_icon_multiple">Pictogrammen %1$d/%2$d worden geoptimaliseerd</string>
     <string name="reading_file">Bestand lezen</string>
     <string name="requesting_root_access">Root-toegang wordt aangevraagd</string>
     <string name="analyzing_qr">QR-code analyseren</string>
@@ -363,6 +365,8 @@
     <string name="clear">Wissen</string>
     <string name="pref_highlight_entry_title">Codes markeren na aantikken</string>
     <string name="pref_highlight_entry_summary">Maak codes makkelijker te onderscheiden van elkaar door ze tijdelijk te markeren na het aantikken</string>
+    <string name="pref_groups_multiselect_title">Meerdere groepen selecteren</string>
+    <string name="pref_groups_multiselect_summary">Selectie van meerdere groepen tegelijkertijd toestaan</string>
     <string name="pref_minimize_on_copy_title">Na kopiëren minimaliseren</string>
     <string name="pref_minimize_on_copy_summary">Na kopiëren van een code de app minimaliseren</string>
     <string name="pref_copy_behavior_title">Codes naar het klembord kopiëren</string>
@@ -466,6 +470,7 @@
     <string name="unable_to_copy_uri_to_clipboard">Kan URI niet naar klembord kopiëren</string>
     <string name="uri_copied_to_clipboard">URI naar klembord gekopieerd</string>
     <string name="transfer_entry_description">Scan deze QR-code met de authenticator-app waar je dit item naar wilt overzetten</string>
+    <string name="transfer_entry_brightness">QR-code aantikken om helderheid op volledig scherm te schakelen</string>
     <string name="google_auth_compatible_transfer_description">Scan deze QR-codes met Aegis of Google Authenticator.\n\nVanwege beperkingen van de Google Authenticator app, zijn alleen TOTP- &amp; HOTP-tokens die SHA1 gebruiken en 6-cijferige codes produceren opgenomen</string>
     <string name="password_strength_very_weak">Zeer zwak</string>
     <string name="password_strength_weak">Zwak</string>

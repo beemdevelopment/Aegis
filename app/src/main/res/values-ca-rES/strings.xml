@@ -365,6 +365,8 @@
     <string name="clear">Neteja</string>
     <string name="pref_highlight_entry_title">Il·luminar les fitxes al tocar</string>
     <string name="pref_highlight_entry_summary">Fes les fitxes més fàcils de distingir de la resta il·luminant-les temporalment quan les toquis</string>
+    <string name="pref_groups_multiselect_title">Selecció múltiple de grups</string>
+    <string name="pref_groups_multiselect_summary">Permet la selecció de múltiples grups al mateix temps</string>
     <string name="pref_minimize_on_copy_title">Minimitzar al copiar</string>
     <string name="pref_minimize_on_copy_summary">Minimitzar l\'aplicació després de copiar una fitxa</string>
     <string name="pref_copy_behavior_title">Copia les fitxes al porta-retalls</string>
@@ -466,6 +468,7 @@
     <string name="unable_to_copy_uri_to_clipboard">No s\'ha pogut copiar la URI</string>
     <string name="uri_copied_to_clipboard">URI copiada al porta-retalls</string>
     <string name="transfer_entry_description">Escaneja aquest codi QR amb l\'aplicació d\'autenticació a la que vols transferir aquesta entrada</string>
+    <string name="transfer_entry_brightness">Toca el codi QR per canviar a màxima brillantor</string>
     <string name="google_auth_compatible_transfer_description">Escanegeu aquests codis QR amb Aegis o Google Authenticator.\n\n A causa de les limitacions de l\'aplicació Google Authenticator, només s\'inclouen tokens TOTP &amp; HOTP que utilitzen SHA1 i produeixen codis de 6 dígits</string>
     <string name="password_strength_very_weak">Molt feble</string>
     <string name="password_strength_weak">Feble</string>

@@ -6,7 +6,7 @@
     <string name="action_transfer">Pārsūtīt</string>
     <string name="action_edit_icon">Labot ikonu</string>
     <string name="action_reset_usage_count">Atiestatīt izmantošanas reižu skaitu</string>
-    <string name="action_reset_usage_count_dialog">Vai tiešām kā šī ieraksta izmantošanas reižu skaitu norādīt 0?</string>
+    <string name="action_reset_usage_count_dialog">Vai tiešām iestatīt šī ieraksta izmantošanas reižu skaitu 0?</string>
     <string name="action_default_icon">Atjaunot noklusējuma ikonu</string>
     <string name="discard">Atmest</string>
     <string name="save">Saglabāt</string>
@@ -129,11 +129,11 @@
     <string name="no_events_title">Nav notikumu</string>
     <string name="no_events_description">Nav ziņots par svarīgiem notikumiem, kas ir bijuši lietotnē</string>
     <string name="event_title_vault_unlocked">Glabātava atslēgta</string>
-    <string name="event_description_vault_unlocked">Glabātava tika veiksmīgi atslēgta</string>
+    <string name="event_description_vault_unlocked">Glabātava tika sekmīgi atslēgta</string>
     <string name="event_title_backup_created">Rezerves kopija izveidota</string>
-    <string name="event_description_backup_created">Glabātavas rezerves kopija tika veiksmīgi izveidota</string>
+    <string name="event_description_backup_created">Glabātavas rezerves kopija tika sekmīgi izveidota</string>
     <string name="event_title_android_backup_created">Android izveidota rezerves kopiju</string>
-    <string name="event_description_android_backup_created">Android veiksmīgi izveidtoja glabātavas rezerves kopiju</string>
+    <string name="event_description_android_backup_created">Android sekmīgi izveidoja glabātavas rezerves kopiju</string>
     <string name="event_title_vault_exported">Glabātava izgūta</string>
     <string name="event_description_vault_exported">Tika izgūta glabātavas kopija</string>
     <string name="event_title_entry_shared">Ieraksts kopīgots</string>
@@ -230,6 +230,8 @@
     <string name="snackbar_authentication_method">Lūgums atlasīt autentificēšanās veidu</string>
     <string name="encrypting_vault">Šifrē glabātavu</string>
     <string name="exporting_vault">Izgūst glabātavu</string>
+    <string name="optimizing_icon">Optimizē ikonu</string>
+    <string name="optimizing_icon_multiple">Optimizē ikonas: %1$d/%2$d</string>
     <string name="reading_file">Nolasa datni</string>
     <string name="requesting_root_access">Pieprasa neierobežotu piekļuvi</string>
     <string name="analyzing_qr">Notiek kvadrātkoda nolasīšana</string>
@@ -254,7 +256,7 @@
     <string name="saving_profile_error">Kļūda saglabājot profilu</string>
     <string name="saving_assign_icons_error">Ikonu piešķiršanā atgadījās kļūda</string>
     <string name="welcome">Sveiciens!</string>
-    <string name="app_description">Aegis ir bezmaksas, droša un atvērtā pirmkoda 2FA lietotne</string>
+    <string name="app_description">Aegis ir bezmaksas, atvērta pirmkoda un droša 2FA lietotne</string>
     <string name="setup_completed">Uzstādīšana pabeigta</string>
     <string name="setup_completed_description">Aegis ir uzstādīta un ir gatava izmantošanai.</string>
     <string name="vault_not_found">Nav atrasta glabātava, tiek uzsākta uzstādīšana…</string>
@@ -274,9 +276,9 @@
     <string name="disable_encryption_description">Vai tiešām atspējot šifrēšanu? Tādējādi glabātava tiks glabāta kā vienkāršs teksts. <b>Tiks atspējota arī automātiskā dublēšana</b>.</string>
     <string name="enable_encryption_error">Atgadījusies kļūda šifrēšanas iespējošanā</string>
     <string name="disable_encryption_error">Atgadījusies kļūda šifrēšanas atspējošanā</string>
-    <string name="backup_successful">Dublēšana ir veiksmīgi ieplānota</string>
+    <string name="backup_successful">Rezerves kopēšana tika sekmīgi ieplānota</string>
     <string name="backup_error">Atgadījusies kļūda dublējuma izveidošanā</string>
-    <string name="backup_status_success">Visjaunākā veiksmīgā rezerves kopija: %s</string>
+    <string name="backup_status_success">Visjaunākā sekmīgā rezerves kopija: %s</string>
     <string name="backup_status_failed">Visjaunākā neizdevusies rezerves kopija: %s</string>
     <string name="backup_status_none">Vēl nav veikta neviena rezerves kopēšana</string>
     <string name="backup_warning_password">Rezerves kopijas ir ar šifrētas ar paroli, kas ir norādīta drošības iestatījumos</string>
@@ -372,6 +374,8 @@
     <string name="clear">Notīrīt</string>
     <string name="pref_highlight_entry_title">Izcelt kodus, kad piesit</string>
     <string name="pref_highlight_entry_summary">Padarīt kodus vieglāk atšķiramus citu no cita, īslaicīgi izceļot tos, kad tiem piesit</string>
+    <string name="pref_groups_multiselect_title">Vairāku kopu atlasīšana</string>
+    <string name="pref_groups_multiselect_summary">Ļaut vienlaicīgi atlasīt vairākas kopas</string>
     <string name="pref_minimize_on_copy_title">Samazināt pēc ievietošanas starpliktuvē</string>
     <string name="pref_minimize_on_copy_summary">Samazināt lietotni pēc koda ievietošanas starpliktuvē</string>
     <string name="pref_copy_behavior_title">Ievietot tekstvienības starpliktuvē</string>
@@ -440,7 +444,7 @@
     </plurals>
     <string name="google_qr_export_unexpected">Sagaidāms kvadrātkods #%1$d, bet tā vietā nolasīts #%2$d</string>
     <string name="backup_error_bar_message"><b>Glabātavas dublēšana nesen neizdevās</b></string>
-    <string name="backup_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">        Nesens rezerves kopijas veidošanas mēģinājums, izmantojot %1$s, neizdevās, jo atgadījās kļūda. Rezerves kopiju tika mēģināts izveidot %2$s. Lūgums pārskatīt rezerves kopēšanas iestatījumus, lai pārliecinātos, ka var veiksmīgi veikt rezerves kopiju izveidošanu.
+    <string name="backup_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">        Nesens rezerves kopijas veidošanas mēģinājums, izmantojot %1$s, neizdevās, jo atgadījās kļūda. Rezerves kopiju tika mēģināts izveidot %2$s. Lūgums pārskatīt rezerves kopēšanas iestatījumus, lai pārliecinātos, ka var sekmīgi veikt rezerves kopiju izveidošanu.
     </string>
     <string name="backup_permission_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">        Nesens glabātavas dublēšanas mēģinājums izmantojot %1$s neizdevās, jo Aegis nebija atļaujas rakstīt rezerves kopijas paredzētajā vietā. Dublēšana tika mēģināta %2$s. Šī kļūda var atgadīties, ja tika pārvietota vai pāsaukta rezerves kopiju atrašanās vieta vai ja nesen Aegis tika atjaunots no rezerves kopijas. Lūgums atkārtoti iestatīt rezerves kopiju atrašanās vietu.
     </string>
@@ -478,6 +482,7 @@
     <string name="unable_to_copy_uri_to_clipboard">Nebija iespējams ievietot URI starpliktuvē</string>
     <string name="uri_copied_to_clipboard">URI tika ievietots starpliktuvē</string>
     <string name="transfer_entry_description">Nolasīt šo kvadrātkodu ar autentificētāja lietotni, uz kuru ir vēlme pārvietot šo ierakstu</string>
+    <string name="transfer_entry_brightness">Piesist kvadrātkodam, lai pārslēgtu pilnu ekrāna spilgtumu</string>
     <string name="google_auth_compatible_transfer_description">Nolasīt šos kvadrātkodus ar Aegis vai Google Authenticator.\n\nIerobežojumu dēļ Google Authenticator lietotnē, ir iekļautas tikai TOTP un HOTP pilnvaras, kam ir izmantots SHA1 un kas veido sešciparu kodus</string>
     <string name="password_strength_very_weak">Ļoti vāja</string>
     <string name="password_strength_weak">Vāja</string>

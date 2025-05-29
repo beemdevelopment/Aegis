@@ -36,19 +36,19 @@
     <string name="pref_section_icon_packs">Gói biểu tượng</string>
     <string name="pref_section_icon_packs_summary">Quản lý và nhập gói biểu tượng.</string>
     <string name="pref_select_theme_title">Chủ đề</string>
-    <string name="pref_dynamic_colors_title">Màu linh động</string>
+    <string name="pref_dynamic_colors_title">Màu tương thích</string>
     <string name="pref_dynamic_colors_summary">Theo màu sắc chủ đề Android</string>
     <string name="pref_view_mode_title">Chế độ xem</string>
     <string name="pref_lang_title">Ngôn ngữ</string>
     <string name="pref_show_icons_title">Hiện biểu tượng</string>
-    <string name="pref_show_icons_summary">Hiện biểu tượng kế bên mỗi mục</string>
+    <string name="pref_show_icons_summary">Kế bên mỗi mục</string>
     <string name="pref_code_group_size_title">Gộp nhóm chữ số mã</string>
     <string name="pref_code_group_size_summary">Chọn số lượng chữ số để gộp mã</string>
-    <string name="pref_account_name_position_title">Hiện tên tài khoản</string>
+    <string name="pref_account_name_position_title">Vị trí tên tài khoản</string>
     <string name="pref_show_next_code_title">Hiện mã kế tiếp</string>
-    <string name="pref_show_next_code_summary">Hiện mã mới trước thời hạn</string>
-    <string name="pref_expiration_state_title">Nhấp nháy khi mã sắp hết hạn</string>
-    <string name="pref_expiration_state_summary">Thay đổi màu sắc của mã và nhấp nháy khi mã sắp hết hạn</string>
+    <string name="pref_show_next_code_summary">Trước khi mã hiện tại hết hạn</string>
+    <string name="pref_expiration_state_title">Báo mã sắp hết hạn</string>
+    <string name="pref_expiration_state_summary">Thay đổi màu sắc của mã và nhấp nháy</string>
     <string name="pref_expiration_state_fallback">Thay đổi màu sắc của mã khi mã sắp hết hạn</string>
     <string name="pref_shared_issuer_account_name_title">Hiện tên tài khoản khi cần</string>
     <string name="pref_shared_issuer_account_name_summary">Chỉ hiện tên tài khoản khi có cùng dịch vụ. Những tên tài khoản khác sẽ bị ẩn.</string>
@@ -59,7 +59,7 @@
     <string name="pref_android_backups_summary">Cho phép hệ thống sao lưu trên mây Android lưu trữ kho Aegis. Chỉ hỗ trợ các kho được mã hoá.</string>
     <string name="pref_android_backups_hint"><i>Các bản sao lưu thiết bị (D2D) luôn được cho phép, không kể cài đặt trên</i></string>
     <string name="pref_backups_title">Tự động sao lưu kho</string>
-    <string name="pref_backups_summary">Tự động tạo bản sao lưu của kho trên bộ nhớ ngoài khi có thay đổi. Chỉ hỗ trợ cho các kho được mã hóa.</string>
+    <string name="pref_backups_summary">Tự động tạo bản sao lưu kho trên bộ nhớ ngoài khi có thay đổi. Chỉ hỗ trợ các kho được mã hóa.</string>
     <string name="pref_backups_reminder_title">Nhắc nhở sao lưu</string>
     <string name="pref_backups_reminder_summary">Hiện lời nhắc sao lưu kho của bạn trong trường hợp bạn chưa sao lưu các thay đổi mới nhất.</string>
     <string name="pref_backups_reminder_dialog_title">Tắt nhắc nhở sao lưu</string>
@@ -91,13 +91,13 @@
     <plurals name="pref_google_auth_export_incompatible_entries">
         <item quantity="other">Đã bỏ qua %d mục không tương thích</item>
     </plurals>
-    <string name="pref_password_reminder_summary">Hiện lời nhắc %s để nhập mật khẩu, tránh bị quên nó.</string>
+    <string name="pref_password_reminder_summary">Nhắc nhập mật khẩu %s để tránh bị quên</string>
     <string name="pref_password_reminder_summary_disabled">Tắt</string>
     <string name="pref_secure_screen_title">Bảo vệ màn hình</string>
-    <string name="pref_secure_screen_summary">Chặn chụp ảnh màn hình trong ứng dụng.</string>
+    <string name="pref_secure_screen_summary">Chặn chụp ảnh màn hình trong ứng dụng</string>
     <string name="pref_tap_to_reveal_title">Nhấn để hiện</string>
-    <string name="pref_tap_to_reveal_summary">Mã số được ẩn, nhấn vào thì mới hiện.</string>
-    <string name="pref_tap_to_reveal_time_title">Thời hạn hiển thị mã</string>
+    <string name="pref_tap_to_reveal_summary">Ẩn mã, nhấn vào mới hiện</string>
+    <string name="pref_tap_to_reveal_time_title">Thời gian hiển thị mã</string>
     <string name="pref_auto_lock_title">Tự động khóa</string>
     <string name="pref_auto_lock_summary">Khi %s</string>
     <string name="pref_auto_lock_summary_disabled">Tắt</string>
@@ -107,7 +107,7 @@
     <string name="pref_auto_lock_type_device_lock">Thiết bị bị khóa</string>
     <string name="pref_backup_password_category">Sao lưu &amp; xuất</string>
     <string name="pref_backup_password_title">Mật khẩu riêng cho sao lưu &amp; xuất</string>
-    <string name="pref_backup_password_summary">Không dùng chung mật khẩu mở khóa kho.</string>
+    <string name="pref_backup_password_summary">Không dùng chung mật khẩu mở khóa kho</string>
     <string name="pref_backup_password_change_title">Đổi mật khẩu cho sao lưu &amp; xuất</string>
     <string name="pref_backup_password_change_summary">Đặt mật khẩu mới để mã hóa kho khi sao lưu và xuất.</string>
     <string name="pref_encryption_title">Mã hóa</string>
@@ -124,20 +124,20 @@
     <string name="pref_set_password_summary">Đặt mật khẩu mở khóa kho mới</string>
     <string name="no_events_title">Chưa có</string>
     <string name="no_events_description">Không có sự kiện nào trong ứng dụng</string>
-    <string name="event_title_vault_unlocked">Đã mở khóa</string>
+    <string name="event_title_vault_unlocked">Mở khóa kho</string>
     <string name="event_description_vault_unlocked">Đã mở khóa kho thành công</string>
-    <string name="event_title_backup_created">Đã sao lưu</string>
+    <string name="event_title_backup_created">Tạo sao lưu</string>
     <string name="event_description_backup_created">Đã tạo bản sao kho thành công</string>
-    <string name="event_title_android_backup_created">Bản sao tạo bởi Android</string>
+    <string name="event_title_android_backup_created">Tạo sao lưu bằng Android</string>
     <string name="event_description_android_backup_created">Đã tạo bản sao kho thành công bằng Android</string>
-    <string name="event_title_vault_exported">Đã xuất kho</string>
+    <string name="event_title_vault_exported">Xuất kho</string>
     <string name="event_description_vault_exported">Đã xuất một bản sao kho</string>
-    <string name="event_title_entry_shared">Đã chia sẻ hoạt động</string>
-    <string name="event_description_entry_shared">Đã chia sẻ một hoạt động</string>
-    <string name="event_title_vault_unlock_failed_password">Chưa thể mở khóa (mật khẩu)</string>
-    <string name="event_description_vault_unlock_failed_password">Mở khóa kho bằng mật khẩu không thành công</string>
-    <string name="event_title_vault_unlock_failed_biometrics">Chưa thể mở khóa (sinh trắc học)</string>
-    <string name="event_description_vault_unlock_failed_biometrics">Mở khóa kho bằng sinh trắc học không thành công</string>
+    <string name="event_title_entry_shared">Chia sẻ mục trong kho</string>
+    <string name="event_description_entry_shared">Đã chia sẻ một mục</string>
+    <string name="event_title_vault_unlock_failed_password">Mở khóa kho thất bại (mật khẩu)</string>
+    <string name="event_description_vault_unlock_failed_password">Mở khóa kho bằng mật khẩu thất bại</string>
+    <string name="event_title_vault_unlock_failed_biometrics">Mở khóa kho thất bại (sinh trắc học)</string>
+    <string name="event_description_vault_unlock_failed_biometrics">Mở khóa kho bằng sinh trắc học thất bại</string>
     <string name="event_unknown">Sự kiện chưa rõ</string>
     <string name="audit_log_entry_deleted">(đã xóa)</string>
     <string name="today_at_time">%1$s hôm nay</string>
@@ -186,9 +186,9 @@
     <string name="password_reminder_freq_monthly">Hàng tháng</string>
     <string name="password_reminder_freq_quarterly">Mỗi ba tháng</string>
     <string name="enter_password_2fas_message">Bản sao lưu 2FAS này được mã hóa. Vui lòng nhập mật khẩu ở dưới.</string>
-    <string name="enter_password_authy_message">Các token Authy của bạn đã được mã hóa. Vui lòng đóng Aegis, mở Authy và mở khóa các token bằng mật khẩu của bạn. Bên cạnh đó, Aegis cũng có thể thử giải mã các token Authy cho bạn, nếu bạn nhập mật khẩu ở dưới.</string>
+    <string name="enter_password_authy_message">Các mã Authy của bạn đã được mã hóa. Vui lòng đóng Aegis, mở Authy và mở khóa các mã bằng mật khẩu của bạn. Bên cạnh đó, Aegis cũng có thể thử giải các mã Authy cho bạn, nếu bạn nhập mật khẩu ở dưới.</string>
     <string name="enter_password_aegis_title">Vui lòng nhập mật khẩu để nhập</string>
-    <string name="period_hint">Thời hạn (s)</string>
+    <string name="period_hint">Đếm ngược (s)</string>
     <string name="algorithm_hint">Hàm băm</string>
     <string name="type">Loại</string>
     <string name="share">Chia sẻ</string>
@@ -209,7 +209,7 @@
     <string name="select_all">Chọn tất cả</string>
     <string name="assign_icons">Gán biểu tượng</string>
     <string name="assign_groups">Gán nhãn</string>
-    <string name="assign_groups_dialog_summary">Chọn nhãn mà bạn muốn gán các mục đã chọn.</string>
+    <string name="assign_groups_dialog_summary">Chọn nhãn muốn gán cho các mục đã chọn.</string>
     <string name="assign_groups_dialog_dropdown">Chọn nhãn</string>
     <string name="favorite" comment="Verb">Thích</string>
     <string name="unfavorite" comment="Verb">Bỏ thích</string>
@@ -225,6 +225,8 @@
     <string name="snackbar_authentication_method">Vui lòng chọn một phương pháp xác minh</string>
     <string name="encrypting_vault">Đang mã hoá kho</string>
     <string name="exporting_vault">Đang xuất kho</string>
+    <string name="optimizing_icon">Tối ưu hóa biểu tượng</string>
+    <string name="optimizing_icon_multiple">Tối ưu hóa biểu tượng %1$d/%2$d</string>
     <string name="reading_file">Đang đọc tập tin</string>
     <string name="requesting_root_access">Yêu cầu truy cập root</string>
     <string name="analyzing_qr">Đang phân tích mã QR</string>
@@ -311,7 +313,7 @@
     <string name="read_qr_error">Đã xảy ra lỗi trong khi đọc mã QR</string>
     <string name="read_qr_error_phonefactor">Aegis không tương thích với thuật toán Xác minh 2 bước độc quyền của Microsoft. Vui lòng chắc chắn là bạn chọn \"Thiết lập ứng dụng không có thông báo\" khi thiết lập Xác minh 2 bước trong Office 365.</string>
     <string name="partial_google_auth_import">Đã phát hiện quá trình xuất Google Authenticator chưa hoàn tất</string>
-    <string name="partial_google_auth_import_warning">Một số mã QR bị thiếu trong quá trình nhập. Không tìm thấy các mã sau:\n\n<b>%s</b>\n\nBạn có thể tiếp tục nhập bản xuất này nhưng chúng tôi khuyên bạn nên thử lại với tất cả các mã QR để không có nguy cơ mất quyền truy cập vào bất kỳ token nào.</string>
+    <string name="partial_google_auth_import_warning">Một số mã QR bị thiếu trong quá trình nhập. Không tìm thấy các mã sau:\n\n<b>%s</b>\n\nBạn có thể tiếp tục nhập bản xuất này nhưng chúng tôi khuyên bạn nên thử lại với tất cả các mã QR để không có nguy cơ mất quyền truy cập vào bất kỳ mã nào.</string>
     <string name="missing_qr_code_descriptor">• Mã QR %d</string>
     <plurals name="import_partial_export_anyway">
         <item quantity="other">Vẫn cứ nhập %d mã</item>
@@ -334,45 +336,47 @@
     <string name="name">Tên</string>
     <string name="no_group">Không</string>
     <string name="sort" comment="Title of the Sort button in the top action bar of the main view">Sắp xếp</string>
-    <string name="sort_alphabetically">Dịch vụ (A đến Z)</string>
-    <string name="sort_alphabetically_reverse">Dịch vụ (Z đến A)</string>
-    <string name="sort_alphabetically_name">Tài khoản (A đến Z)</string>
-    <string name="sort_alphabetically_name_reverse">Tài khoản (Z đến A)</string>
+    <string name="sort_alphabetically">Dịch vụ (A → Z)</string>
+    <string name="sort_alphabetically_reverse">Dịch vụ (Z → A)</string>
+    <string name="sort_alphabetically_name">Tài khoản (A → Z)</string>
+    <string name="sort_alphabetically_name_reverse">Tài khoản (Z → A)</string>
     <string name="sort_usage_count">Số lần sử dụng</string>
-    <string name="sort_last_used">Dùng lần cuối</string>
+    <string name="sort_last_used">Lần dùng cuối</string>
     <string name="sort_custom">Tùy chỉnh</string>
     <string name="last_used">Dùng lần cuối</string>
     <string name="last_used_never">chưa từng</string>
     <string name="new_group">Nhãn mới…</string>
     <string name="group">Nhãn</string>
     <string name="group_name_hint">Tên nhãn</string>
-    <string name="preference_manage_groups">Chỉnh sửa nhãn</string>
-    <string name="preference_manage_groups_summary">Quản lý và xóa các nhãn</string>
+    <string name="preference_manage_groups">Quản lý nhãn</string>
+    <string name="preference_manage_groups_summary">Chỉnh sửa hoặc xóa các nhãn</string>
     <string name="preference_reset_usage_count">Đặt lại số lần sử dụng</string>
-    <string name="preference_reset_usage_count_summary">Đặt lại số lần sử dụng của mọi mục trong kho</string>
+    <string name="preference_reset_usage_count_summary">Đối với mọi mục trong kho</string>
     <string name="preference_reset_usage_count_dialog">Bạn có chắc muốn đặt số lần sử dụng của mọi mục trong kho của bạn về 0 không?</string>
     <string name="note" comment="Users can add a note to an entry">Chú thích</string>
     <string name="clear">Xóa</string>
-    <string name="pref_highlight_entry_title">Làm nổi bật token khi nhấn vào</string>
-    <string name="pref_highlight_entry_summary">Làm cho các mã dễ phân biệt với nhau hơn</string>
-    <string name="pref_minimize_on_copy_title">Thu nhỏ khi sao chép</string>
-    <string name="pref_minimize_on_copy_summary">Thu nhỏ ứng dụng sau khi sao chép một mã</string>
-    <string name="pref_copy_behavior_title">Sao chép mã vào bộ nhớ tạm</string>
+    <string name="pref_highlight_entry_title">Làm nổi bật mã khi nhấn vào</string>
+    <string name="pref_highlight_entry_summary">Giúp các mã dễ phân biệt với nhau hơn</string>
+    <string name="pref_groups_multiselect_title">Chọn nhiều nhãn</string>
+    <string name="pref_groups_multiselect_summary">Cho phép chọn nhiều nhãn cùng lúc</string>
+    <string name="pref_minimize_on_copy_title">Thu nhỏ ứng dụng</string>
+    <string name="pref_minimize_on_copy_summary">Sau khi sao chép một mã</string>
+    <string name="pref_copy_behavior_title">Lưu mã vào bộ nhớ tạm</string>
     <string name="pref_search_behavior_title">Hành vi tìm kiếm</string>
     <string name="pref_pause_entry_title">Đóng băng mã khi nhấn vào</string>
-    <string name="pref_pause_entry_summary">Không tự động hiện mã mới khi đã nhấn vào mã.</string>
+    <string name="pref_pause_entry_summary">Không tự động tạo mã tiếp theo nữa</string>
     <string name="pin_keyboard_description">Nhập mật khẩu để bật bàn phím mã PIN. Lưu ý rằng việc này chỉ được nếu mật khẩu của bạn chỉ chứa các chữ số</string>
     <string name="pin_keyboard_error">Lỗi khi bật bàn phím mã PIN</string>
     <string name="pin_keyboard_error_description">Không thể đặt bàn phím mã PIN. Mật khẩu của bạn phải chỉ chứa các chữ số.</string>
     <string name="pin_keyboard_disabled">Mật khẩu đã thay đổi. Bàn phím mã PIN sẽ không được hiện nữa.</string>
-    <string name="selected">Đã chọn</string>
+    <string name="selected">Đang dùng</string>
     <string name="dark_theme_title">Tối</string>
     <string name="light_theme_title">Sáng</string>
     <string name="amoled_theme_title">AMOLED</string>
     <string name="system_theme_title">Mặc định hệ thống</string>
     <string name="system_amoled_theme_title">Mặc định hệ thống (AMOLED)</string>
     <string name="normal_viewmode_title">Bình thường</string>
-    <string name="compact_mode_title">Thu gọn</string>
+    <string name="compact_mode_title">Gọn gàng</string>
     <string name="small_mode_title">Nhỏ</string>
     <string name="tiles_mode_title">Ô</string>
     <string name="unknown_issuer">Dịch vụ chưa rõ</string>
@@ -427,10 +431,10 @@
     <string name="backup_system_android">Sao lưu đám mây của Android</string>
     <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">        Bản sao lưu cuối cùng đã cũ (%s)
     </string>
-    <string name="backup_reminder_bar_message">        Thay đổi chưa được lưu
+    <string name="backup_reminder_bar_message">        Chưa sao lưu thay đổi
     </string>
-    <string name="backup_reminder_bar_dialog_title">Thay đổi chưa được lưu</string>
-    <string name="backup_reminder_bar_dialog_summary">        Những thay đổi gần đây chưa được sao lưu. Hãy sao lưu thường xuyên để tránh mất quyền truy cập vào tài khoản của bạn. Vui lòng cân nhắc việc thiết lập sao lưu tự động trong menu cài đặt.
+    <string name="backup_reminder_bar_dialog_title">Chưa sao lưu thay đổi</string>
+    <string name="backup_reminder_bar_dialog_summary">        Những thay đổi gần đây chưa được sao lưu. Để tránh mất quyền truy cập vào tài khoản của bạn, hãy cân nhắc việc thiết lập sao lưu tự động.
     </string>
     <string name="backup_reminder_bar_dialog_accept">Thiết lập sao lưu</string>
     <string name="backup_plaintext_export_warning"><b>Kho gần đây đã được xuất ở dạng văn bản thuần</b></string>
@@ -439,7 +443,7 @@
     <string name="switch_camera">Đổi camera</string>
     <string name="empty_list">Chưa có mã nào. Thêm mã mới bằng cách nhấn vào dấu cộng ở góc dưới bên phải</string>
     <string name="empty_list_title">Chưa có mục nào</string>
-    <string name="empty_group_list">Chưa có nhãn nào. Hãy thêm các nhãn khi chỉnh sửa một mục</string>
+    <string name="empty_group_list">Hãy thêm các nhãn khi chỉnh sửa một mục</string>
     <string name="empty_group_list_title">Chưa có nhãn nào</string>
     <string name="no_icon_packs">Chưa nhập gói biểu tượng nào. Hãy nhấn vào ký hiệu dấu cộng để nhập một gói. Mẹo: thử <a href="https://aegis-icons.github.io">aegis-icons</a>.</string>
     <string name="no_icon_packs_title">Chưa có gói biểu tượng</string>
@@ -455,7 +459,8 @@
     <string name="unable_to_copy_uri_to_clipboard">Không thể sao chép vào bộ nhớ tạm</string>
     <string name="uri_copied_to_clipboard">Đã sao chép vào bộ nhớ tạm</string>
     <string name="transfer_entry_description">Quét mã QR này bằng ứng dụng xác minh mà bạn muốn truyền mục này đến</string>
-    <string name="google_auth_compatible_transfer_description">Quét các mã QR này bằng Aegis hoặc Google Authenticator.\n\nDo hạn chế của ứng dụng Google Authenticator, chỉ mã TOTP &amp; HOTP 6 chữ số sử dụng SHA1 là dùng được</string>
+    <string name="transfer_entry_brightness">Nhấn vào mã QR để chuyển đổi độ sáng toàn màn hình</string>
+    <string name="google_auth_compatible_transfer_description">Quét các mã QR này bằng Aegis hoặc Google Authenticator.\n\nDo hạn chế của ứng dụng Google Authenticator, chỉ áp dụng với mã TOTP &amp; HOTP 6 chữ số sử dụng SHA1</string>
     <string name="password_strength_very_weak">Rất yếu</string>
     <string name="password_strength_weak">Yếu</string>
     <string name="password_strength_fair">Khá</string>
@@ -463,7 +468,7 @@
     <string name="password_strength_strong">Mạnh</string>
     <string name="password_strength_unknown">Mật khẩu quá dài</string>
     <string name="pref_pin_keyboard_title">Dùng mã PIN trên màn hình khóa</string>
-    <string name="pref_pin_keyboard_summary">Chỉ áp dụng với các mật khẩu chỉ chứa chữ số.</string>
+    <string name="pref_pin_keyboard_summary">Chỉ áp dụng với các mật khẩu là số</string>
     <string name="title_activity_preferences">Cài đặt</string>
     <string name="title_activity_manage_groups">Quản lý nhãn</string>
     <string name="title_activity_transfer">Truyền các mục</string>
@@ -509,8 +514,8 @@
     <string name="importer_encrypted_exception_google_authenticator">Đã bỏ qua mục mã hoá: %s</string>
     <string name="importer_help_direct">Nhập các mục trực tiếp từ %s. Việc này yêu cầu ứng dụng được cài đặt trên thiết bị này và quyền truy cập root được cấp cho Aegis.</string>
     <string name="groups">Nhãn</string>
-    <string name="pref_focus_search">Tìm kiếm khi mở ứng dụng</string>
-    <string name="pref_focus_search_summary">Hiện tìm kiếm ngay sau khi mở ứng dụng.</string>
+    <string name="pref_focus_search">Khởi động tìm kiếm</string>
+    <string name="pref_focus_search_summary">Hiện tìm kiếm ngay sau khi mở ứng dụng</string>
     <string name="pref_grouping_halves">Một nửa</string>
     <string name="pref_grouping_none">Không gộp</string>
     <string name="pref_grouping_size_two">Gộp 2</string>

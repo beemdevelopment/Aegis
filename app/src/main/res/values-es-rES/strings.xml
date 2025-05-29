@@ -365,6 +365,8 @@
     <string name="clear">Restablecer</string>
     <string name="pref_highlight_entry_title">Resaltar códigos al pulsar</string>
     <string name="pref_highlight_entry_summary">Resalta temporalmente cada clave que toques sobre las demás para que sea más fácil de distinguir</string>
+    <string name="pref_groups_multiselect_title">Selección multiple de grupos</string>
+    <string name="pref_groups_multiselect_summary">Permite seleccionar varios grupos a la vez</string>
     <string name="pref_minimize_on_copy_title">Minimizar al copiar</string>
     <string name="pref_minimize_on_copy_summary">Minimiza la aplicación tras copiar claves</string>
     <string name="pref_copy_behavior_title">Copiar claves en el portapapeles</string>
@@ -468,6 +470,7 @@
     <string name="unable_to_copy_uri_to_clipboard">No se puede copiar la dirección URI en el portapapeles</string>
     <string name="uri_copied_to_clipboard">Se ha copiado la dirección URI al portapapeles</string>
     <string name="transfer_entry_description">Escanea este código QR con la aplicación de autenticación a la que vayas a importar esta clave</string>
+    <string name="transfer_entry_brightness">Pulsa el código QR para subir/bajar el brillo a pantalla completa</string>
     <string name="google_auth_compatible_transfer_description">Escanea estos códigos QR con Aegis o Google Authenticator.\n\nDebido a limitaciones técnicas de Google Authenticator solo se incluirán claves de tipo TOTP y HOTP que usen SHA1 y produzcan códigos de 6 dígitos</string>
     <string name="password_strength_very_weak">Muy débil</string>
     <string name="password_strength_weak">Débil</string>

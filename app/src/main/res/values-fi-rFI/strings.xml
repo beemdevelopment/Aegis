@@ -227,6 +227,8 @@
     <string name="snackbar_authentication_method">Valitse todennusmenetelmä</string>
     <string name="encrypting_vault">Holvia salataan</string>
     <string name="exporting_vault">Viedään holvia</string>
+    <string name="optimizing_icon">Optimoidaan kuvaketta</string>
+    <string name="optimizing_icon_multiple">Optimoidaan kuvakkeita %1$d/%2$d</string>
     <string name="reading_file">Luetaan tiedostoa</string>
     <string name="requesting_root_access">Pyydetään root-oikeuksia</string>
     <string name="analyzing_qr">Analysoidaan QR-koodia</string>
@@ -363,6 +365,8 @@
     <string name="clear">Tyhjennä</string>
     <string name="pref_highlight_entry_title">Korosta todennuskoodit napauttamalla</string>
     <string name="pref_highlight_entry_summary">Tee todennuskoodeista helpompi erottaa toisistaan korostamalla niitä tilapäisesti napauttamalla</string>
+    <string name="pref_groups_multiselect_title">Valitse useita ryhmiä</string>
+    <string name="pref_groups_multiselect_summary">Salli useiden ryhmien valitseminen samanaikaisesti</string>
     <string name="pref_minimize_on_copy_title">Pienennä kopioidessa</string>
     <string name="pref_minimize_on_copy_summary">Pienennä sovellus todennuskoodin kopioinnin jälkeen</string>
     <string name="pref_copy_behavior_title">Kopioi todennuskoodit leikepöydälle</string>
@@ -466,6 +470,7 @@
     <string name="unable_to_copy_uri_to_clipboard">URI:a ei voitu kopioida leikepöydälle</string>
     <string name="uri_copied_to_clipboard">URI kopioitiin leikepöydälle</string>
     <string name="transfer_entry_description">Skannaa tämä QR-koodi todennussovelluksella, johon haluat siirtää tämän kohteen</string>
+    <string name="transfer_entry_brightness">Napauta QR-koodia muuttaaksesi koko näytön kirkkautta</string>
     <string name="google_auth_compatible_transfer_description">Skannaa nämä QR-koodit Aegisilla tai Google Authenticatorilla.\n\nGoogle Authenticator -sovelluksen rajoitusten vuoksi, vain SHA1-suojausta ja 6-numeroisia koodeja tuottavat TOTP- ja HOTP-todennuskoodit sisällytetään</string>
     <string name="password_strength_very_weak">Erittäin heikko</string>
     <string name="password_strength_weak">Heikko</string>
@@ -513,6 +518,7 @@
     <string name="importer_help_microsoft_authenticator">Anna kopio tiedostosta <b>/data/data/com.azure.authenticator/databases/PhoneFactor</b>, joka sijaitsee Microsoft Authenticatorin sisäisessä tallennushakemistossa.</string>
     <string name="importer_help_plain_text">Anna raakatekstitiedosto, joka sisältää Google Authenticatorin URIn jokaisella rivillä.</string>
     <string name="importer_help_steam"><b>Steamin versiota 3.0 ja uudempia ei tueta</b>. Toimita kopio tiedostosta <b>/data/data/com.valvesoftware.android.steam.community/files/Steamguard-*.json</b>, joka sijaitsee Steamin sisäisen tallennustilan hakemistossa.</string>
+    <string name="importer_help_stratum">Toimita Starum-vientitiedosto, jonka löydät menemällä <b>Asetukset -&gt; Varmuuskopioi -&gt; Varmuuskopioi salattuun tiedostoon (suositus)</b>.</string>
     <string name="importer_help_totp_authenticator">Anna TOTP Authenticatorin vientitiedosto.</string>
     <string name="importer_help_winauth">Anna WinAuthin vientitiedosto.</string>
     <string name="import_assign_icons_dialog_title">Määritä kuvakkeet</string>

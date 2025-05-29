@@ -227,6 +227,8 @@
     <string name="snackbar_authentication_method">Kies in oanmeldmetoade</string>
     <string name="encrypting_vault">De klûs wurdt fersifere</string>
     <string name="exporting_vault">De klûs wurdt eksportearre</string>
+    <string name="optimizing_icon">Piktogram wurdt optimalisearre</string>
+    <string name="optimizing_icon_multiple">Piktogrammen %1$d/%2$d wurde optimalisearre</string>
     <string name="reading_file">Bestân lêze</string>
     <string name="requesting_root_access">Root-tagong wurdt oanfrege</string>
     <string name="analyzing_qr">QR-koade analysearje</string>
@@ -363,6 +365,8 @@
     <string name="clear">Wiskje</string>
     <string name="pref_highlight_entry_title">Koaden markearje nei oantikken</string>
     <string name="pref_highlight_entry_summary">Meitsje koaden makliker te ûnderskieden fan inoar troch se tydlik te markearjen nei it oantikken</string>
+    <string name="pref_groups_multiselect_title">Meardere groepen selektearje</string>
+    <string name="pref_groups_multiselect_summary">Seleksje fan meardere groepen tagelyk tastean</string>
     <string name="pref_minimize_on_copy_title">By kopiearjen minimalisearje</string>
     <string name="pref_minimize_on_copy_summary">App nei kopiearjen fan in koade minimalisearje</string>
     <string name="pref_copy_behavior_title">Koaden nei it klamboerd kopiearje</string>
@@ -466,6 +470,7 @@
     <string name="unable_to_copy_uri_to_clipboard">Kin URI net nei klamboerd kopiearje</string>
     <string name="uri_copied_to_clipboard">URI nei klamboerd kopiearre</string>
     <string name="transfer_entry_description">Scan dizze QR-koade mei de autentikator-app wêr’t jo dit item nei oerbringe wolle</string>
+    <string name="transfer_entry_brightness">Tik op de QR-koade om helderheid op folslein skerm te skeakeljen</string>
     <string name="google_auth_compatible_transfer_description">Scan dizze QR-koaden mei Aegis of Google Authenticator.\n\nFanwegen beheiningen fan de Google Authenticator-app, binne allinnich TOTP- &amp; HOTP-tokens dy’t SHA1 brûke en 6-siferige koaden produsearje opnommen</string>
     <string name="password_strength_very_weak">Hiel swak</string>
     <string name="password_strength_weak">Swak</string>
