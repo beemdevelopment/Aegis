@@ -373,7 +373,7 @@
     <string name="note" comment="Users can add a note to an entry">Note</string>
     <string name="clear">Clear</string>
 
-    <string name="dialog_duplicate_entry_title">Duplicate entry</string>
+    <string name="dialog_duplicate_entry_title" comment="'Duplicate' is a noun here">Duplicate entry</string>
     <string name="dialog_duplicate_entry_message">This entry has the same name and issuer as one or more existing entries. How would you like to proceed?</string>
     <string name="dialog_duplicate_entry_overwrite_title">Overwrite existing entry/entries</string>
     <string name="dialog_duplicate_entry_overwrite_subtitle">Replace the existing entry or entries with the new one. This action cannot be undone</string>
