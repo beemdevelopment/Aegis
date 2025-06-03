@@ -123,24 +123,33 @@ documentation](docs/iconpacks.md).
   Unofficial monochrome-styled 2FA icons.
 
   [<img width=500 alt="aegis-icons preview"
-  src="https://raw.githubusercontent.com/aegis-icons/aegis-icons/master/showcase.png">](https://github.com/aegis-icons/aegis-icons)
+  src="metadata/en-US/images/iconPacks/aegis-icons.png">](https://github.com/aegis-icons/aegis-icons)
 
 - [delta-aegis-icons](https://github.com/Delta-Icons/aegis-icons)
 
   Delta version of the unofficial monochrome-styled 2FA icon pack aegis-icons.
 
-- [aegis-simple-icons](https://github.com/alexbakker/aegis-simple-icons) *
+  [<img width=500 alt="delta-icons preview"
+  src="metadata/en-US/images/iconPacks/delta-icons.png">](https://github.com/Delta-Icons/aegis-icons)
+
+- [aegis-simple-icons](https://github.com/alexbakker/aegis-simple-icons) \*
 
   This project periodically generates an icon pack for Aegis based on [Simple
   Icons](https://simpleicons.org/).
 
-- [aegis-simple-icons-outlined](https://github.com/michaelschattgen/aegis-simple-icons-outlined) *
+  [<img width=500 alt="aegis-simple-icons preview"
+  src="metadata/en-US/images/iconPacks/aegis-simple-icons.png">](https://github.com/alexbakker/aegis-simple-icons)
+
+- [aegis-simple-icons-outlined](https://github.com/michaelschattgen/aegis-simple-icons-outlined) \*
 
   This is a variant on the aegis-simple-icons pack where the icons contain no solid background and just the outlines are being used.
- 
+
+  [<img width=500 alt="aegis-simple-icons-outlined preview"
+  src="metadata/en-US/images/iconPacks/aegis-simple-icons-outlined.png">](https://github.com/michaelschattgen/aegis-simple-icons-outlined)
+
 \* The icons are automatically generated, so
-  not all of them are as high quality as the ones you'll find in
-  [aegis-icons](https://github.com/aegis-icons/aegis-icons).
+not all of them are as high quality as the ones you'll find in
+[aegis-icons](https://github.com/aegis-icons/aegis-icons).
 
 ## Contributing
 
@@ -158,5 +167,6 @@ This project is licensed under the GNU General Public License v3.0. See the
 
 A couple of libraries vendored in Aegis' repository are licensed under a
 different license:
+
 - [TextDrawable](app/src/main/java/com/amulyakhare/textdrawable)
 - [TrustedIntents](app/src/main/java/info/guardianproject/trustedintents)
