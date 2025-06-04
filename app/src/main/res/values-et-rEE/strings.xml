@@ -363,6 +363,21 @@
     <string name="preference_reset_usage_count_dialog">Kas sa oled kindel, et soovid nullida andmehoidla kõikide kirjete kasutuskordade loenduri?</string>
     <string name="note" comment="Users can add a note to an entry">Märkus</string>
     <string name="clear">Tühjenda</string>
+    <string name="dialog_duplicate_entry_title" comment="'Duplicate' is a noun here">Topeltkirje</string>
+    <string name="dialog_duplicate_entry_message">Sellel kirjel on sama nimi ja väljaandja, kui veel ühel või mitmel kirjel. Kuidas peaksime jätkama?</string>
+    <string name="dialog_duplicate_entry_overwrite_title">Kirjuta olemasolev kirje või kirjed üle</string>
+    <string name="dialog_duplicate_entry_overwrite_subtitle">Asenda olemasolev(ad) kirje või kirjed uuega. Seda tegevust ei saa tagasi pöörata</string>
+    <string name="dialog_duplicate_entry_suffix_title">Lisa eesliide</string>
+    <string name="dialog_duplicate_entry_suffix_subtitle">Lisa eesliide uuele kirje nimele. Seega uus nimi saab olema: %s</string>
+    <string name="dialog_duplicate_entry_cancel_title">Katkesta salvestamine</string>
+    <string name="dialog_duplicate_entry_cancel_subtitle">Võimaldab sul enne uut salvestuskatset muuta kirjet</string>
+    <plurals name="dialog_duplicate_entry_overwrite_dialog_message">
+        <item quantity="one">Kas sa oled kindel, et soovid kustutada %d kirje järgneva nimega:\n\n%s - %s</item>
+        <item quantity="other">Kas sa oled kindel, et soovid kustutada %d kirjet järgnevate nimedega:\n\n%s - %s</item>
+    </plurals>
+    <string name="dialog_duplicate_entry_overwrite_dialog_title">Kinnita kustutamine</string>
+    <string name="pref_haptic_feedback_summary">Anna koodide muutumisest märgi värinaga</string>
+    <string name="pref_haptic_feedback_title">Haptiline tagasiside</string>
     <string name="pref_highlight_entry_title">Puudutamisel tõsta kinnituskood esile</string>
     <string name="pref_highlight_entry_summary">Peale kinnituskoodi puudutamist tõsta ta ajutiselt esile ja tee seeläbi teistest kergemini eristatavaks</string>
     <string name="pref_groups_multiselect_title">Vali mitu grupi korraga</string>

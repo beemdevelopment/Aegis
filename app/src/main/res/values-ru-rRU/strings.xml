@@ -4,7 +4,7 @@
     <string name="action_about">О программе</string>
     <string name="action_delete">Удалить</string>
     <string name="action_transfer">Передача</string>
-    <string name="action_edit_icon">Сменить значок</string>
+    <string name="action_edit_icon">Изменить значок</string>
     <string name="action_reset_usage_count">Сбросить счётчик использований</string>
     <string name="action_reset_usage_count_dialog">Установить количество использований для этой записи на 0?</string>
     <string name="action_default_icon">Восстановить значок по умолчанию</string>
@@ -381,6 +381,23 @@
     <string name="preference_reset_usage_count_dialog">Установить количество использований для каждой записи в хранилище на 0?</string>
     <string name="note" comment="Users can add a note to an entry">Заметка</string>
     <string name="clear">Очистить</string>
+    <string name="dialog_duplicate_entry_title" comment="'Duplicate' is a noun here">Дублировать запись</string>
+    <string name="dialog_duplicate_entry_message">Эта запись имеет такое же имя и эмитента, как и в одной или нескольких существующих записях. Как поступить?</string>
+    <string name="dialog_duplicate_entry_overwrite_title">Перезаписать существующую запись/записи</string>
+    <string name="dialog_duplicate_entry_overwrite_subtitle">Заменить существующую запись или записи новой. Это действие не может быть отменено.</string>
+    <string name="dialog_duplicate_entry_suffix_title">Добавить суффикс</string>
+    <string name="dialog_duplicate_entry_suffix_subtitle">Создать новую запись с суффиксом в имени. Новое имя будет: %s</string>
+    <string name="dialog_duplicate_entry_cancel_title">Отменить сохранение</string>
+    <string name="dialog_duplicate_entry_cancel_subtitle">Разрешать редактировать запись перед повторным сохранением</string>
+    <plurals name="dialog_duplicate_entry_overwrite_dialog_message">
+        <item quantity="one">Удалить %d запись с именем:\n\n%s — %s</item>
+        <item quantity="few">Удалить %d записи с именем:\n\n%s — %s</item>
+        <item quantity="many">Удалить %d записей с именем:\n\n%s — %s</item>
+        <item quantity="other">Удалить %d записей с именем:\n\n%s — %s</item>
+    </plurals>
+    <string name="dialog_duplicate_entry_overwrite_dialog_title">Подтвердить удаление</string>
+    <string name="pref_haptic_feedback_summary">Включать вибрацию устройства при обновлении кодов</string>
+    <string name="pref_haptic_feedback_title">Виброотклик</string>
     <string name="pref_highlight_entry_title">Выделять ключи при нажатии</string>
     <string name="pref_highlight_entry_summary">Сделать ключи более различимыми, временно выделяя их при нажатии</string>
     <string name="pref_groups_multiselect_title">Мультивыбор групп</string>

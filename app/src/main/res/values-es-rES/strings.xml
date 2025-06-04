@@ -241,9 +241,9 @@
     <string name="delete_entry">Borrar clave</string>
     <string name="delete_entry_description">¿Seguro de que quieres borrar la clave?</string>
     <string name="delete_entry_explanation">Esta acción no desactiva 2FA para:\n<b>%s</b>\n\nPara prevenir la pérdida de acceso, asegúrate de que has desactivado 2FA o que tienes una forma alternativa de generar códigos para este servicio.</string>
-    <string name="delete_entries">Eliminar elementos</string>
+    <string name="delete_entries">Borrar claves</string>
     <plurals name="delete_entries_description">
-        <item quantity="one">¿Está seguro de que desea eliminar %d entrada?</item>
+        <item quantity="one">¿Seguro de que desea eliminar %d clave?</item>
         <item quantity="other">¿Seguro que quieres borrar %d claves?</item>
     </plurals>
     <string name="discard_changes">¿Descartar cambios?</string>
@@ -303,11 +303,11 @@
     <string name="app_version_error">La versión de %s que está instalada no es compatible. Las versiones recientes han comenzado a cifrar algunos de los archivos en el directorio de almacenamiento interno, haciendo que Aegis no pueda acceder a la información que necesita para la importación. Intentar importar probablemente resultará en un error. ¿Deseas continuar de todos modos?</string>
     <string name="root_error">Error: No se puede obtener acceso a la raíz</string>
     <plurals name="imported_entries_count">
-        <item quantity="one">Importada %d entrada</item>
+        <item quantity="one">Importada %d clave</item>
         <item quantity="other">Importadas %d claves</item>
     </plurals>
     <plurals name="entries_shown">
-        <item quantity="one">Mostrando %d entrada</item>
+        <item quantity="one">Mostrando %d clave</item>
         <item quantity="other">Mostrando %d claves</item>
     </plurals>
     <string name="intro_import_error_title">Se ha producido un error al importar la bóveda</string>
@@ -363,6 +363,21 @@
     <string name="preference_reset_usage_count_dialog">¿Seguro de que quieres resetear el contador de uso de todas las claves y dejarlos a cero?</string>
     <string name="note" comment="Users can add a note to an entry">Nota</string>
     <string name="clear">Restablecer</string>
+    <string name="dialog_duplicate_entry_title" comment="'Duplicate' is a noun here">Hay un código duplicado</string>
+    <string name="dialog_duplicate_entry_message">Este código tiene el mismo nombre y emisor que otros que ya están en la lista. ¿Qué quieres hacer?</string>
+    <string name="dialog_duplicate_entry_overwrite_title">Sobrescribir códigos</string>
+    <string name="dialog_duplicate_entry_overwrite_subtitle">Reemplazarlos. Esta acción no se puede deshacer</string>
+    <string name="dialog_duplicate_entry_suffix_title">Añadir sufijo</string>
+    <string name="dialog_duplicate_entry_suffix_subtitle">Añade un sufijo al nombre de este nuevo código. El nuevo nombre será: %s</string>
+    <string name="dialog_duplicate_entry_cancel_title">No guardar</string>
+    <string name="dialog_duplicate_entry_cancel_subtitle">Permite editarlo antes de volverlo a guardar</string>
+    <plurals name="dialog_duplicate_entry_overwrite_dialog_message">
+        <item quantity="one">¿Seguro que quieres borrar %d elemento con el siguiente nombre:\n\n%s - %s?</item>
+        <item quantity="other">¿Seguro que quieres borrar %d elementos con el siguiente nombre:\n\n%s - %s?</item>
+    </plurals>
+    <string name="dialog_duplicate_entry_overwrite_dialog_title">Confirmar borrado</string>
+    <string name="pref_haptic_feedback_summary">Hace vibrar tu dispositivo al actualizar los códigos</string>
+    <string name="pref_haptic_feedback_title">Vibración</string>
     <string name="pref_highlight_entry_title">Resaltar códigos al pulsar</string>
     <string name="pref_highlight_entry_summary">Resalta temporalmente cada clave que toques sobre las demás para que sea más fácil de distinguir</string>
     <string name="pref_groups_multiselect_title">Selección multiple de grupos</string>

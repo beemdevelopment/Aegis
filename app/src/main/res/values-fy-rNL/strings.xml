@@ -363,6 +363,21 @@
     <string name="preference_reset_usage_count_dialog">Binne jo wis dat jo de gebrûksteller fan alle items yn de klûs op 0 sette wolle?</string>
     <string name="note" comment="Users can add a note to an entry">Notysje</string>
     <string name="clear">Wiskje</string>
+    <string name="dialog_duplicate_entry_title" comment="'Duplicate' is a noun here">Ynfier bestiet al</string>
+    <string name="dialog_duplicate_entry_message">Dizze ynfier hat deselde namme en útjouwer as ien of mear besteande fermeldingen. Hoe wolsto fierder gean?</string>
+    <string name="dialog_duplicate_entry_overwrite_title">Besteande ynfier/items oerskriuwe</string>
+    <string name="dialog_duplicate_entry_overwrite_subtitle">Ferfang de besteande ynfier of fermeldingen troch de nije. Dizze aksje kin net ûngedien makke wurde</string>
+    <string name="dialog_duplicate_entry_suffix_title">Foegje suffix ta</string>
+    <string name="dialog_duplicate_entry_suffix_subtitle">Foegje in achterfoechsel ta oan de namme fan dizze nije ynfier. De nije namme wurdt %s</string>
+    <string name="dialog_duplicate_entry_cancel_title">Bewarjen annulearje</string>
+    <string name="dialog_duplicate_entry_cancel_subtitle">Hjirmei kinne jo it item bewurkjen eardat jo it opnij probearje te bewarjen</string>
+    <plurals name="dialog_duplicate_entry_overwrite_dialog_message">
+        <item quantity="one">Bisto wis datsto %d ynfier mei de folgjende namme fuortsmite wolst:\n\n%s - %s</item>
+        <item quantity="other">Bisto wis datsto %d ynfier mei de folgjende namme fuortsmite wolst:\n\n%s - %s</item>
+    </plurals>
+    <string name="dialog_duplicate_entry_overwrite_dialog_title">Fuortsmiten befêstigje</string>
+    <string name="pref_haptic_feedback_summary">Lit dy apparaat trille wannear’t de koaden fernije</string>
+    <string name="pref_haptic_feedback_title">Haptyske feedback</string>
     <string name="pref_highlight_entry_title">Koaden markearje nei oantikken</string>
     <string name="pref_highlight_entry_summary">Meitsje koaden makliker te ûnderskieden fan inoar troch se tydlik te markearjen nei it oantikken</string>
     <string name="pref_groups_multiselect_title">Meardere groepen selektearje</string>

@@ -372,6 +372,22 @@
     <string name="preference_reset_usage_count_dialog">Vai tiešām kā visu glabātavas ierakstu izmantošanas reižu skaitu norādīt 0?</string>
     <string name="note" comment="Users can add a note to an entry">Piezīme</string>
     <string name="clear">Notīrīt</string>
+    <string name="dialog_duplicate_entry_title" comment="'Duplicate' is a noun here">Ieraksts atkārtojas</string>
+    <string name="dialog_duplicate_entry_message">Šim ierakstam ir tāds pats nosaukums un izdevējs kā vienaim vai vairākiem citiem esošiem ierakstiem. Kā Tu vēlētos turpināt?</string>
+    <string name="dialog_duplicate_entry_overwrite_title">Izvietot esošo ierakstu/ierakstus</string>
+    <string name="dialog_duplicate_entry_overwrite_subtitle">Aizvietot esošo ierakstu vai ierakstus ar jauno. Šī darbība ir neatgriezeniska</string>
+    <string name="dialog_duplicate_entry_suffix_title">Pievienot piedēkli</string>
+    <string name="dialog_duplicate_entry_suffix_subtitle">Pievienot piedēkli jaunajam ierakstam. Jaunais nosaukums būs: %s</string>
+    <string name="dialog_duplicate_entry_cancel_title">Atcelt saglabāšanu</string>
+    <string name="dialog_duplicate_entry_cancel_subtitle">Ļauj labot ierakstu pirms vēlreiz mēģināt to saglabāt</string>
+    <plurals name="dialog_duplicate_entry_overwrite_dialog_message">
+        <item quantity="zero">Vai tiešām izdzēst %d ierakstu ar šādu nosaukumu:\n\n%s - %s</item>
+        <item quantity="one">Vai tiešām izdzēst %d ierakstu ar šādu nosaukumu:\n\n%s - %s</item>
+        <item quantity="other">Vai tiešām izdzēst %d ierakstus ar šādu nosaukumu:\n\n%s - %s</item>
+    </plurals>
+    <string name="dialog_duplicate_entry_overwrite_dialog_title">Apstiprināt izdzēšanu</string>
+    <string name="pref_haptic_feedback_summary">Likt ierīcēi ietrīcēties, kad kodi tiek atsvaidzināti</string>
+    <string name="pref_haptic_feedback_title">Sajūtu atgriezeniskā saite</string>
     <string name="pref_highlight_entry_title">Izcelt kodus, kad piesit</string>
     <string name="pref_highlight_entry_summary">Padarīt kodus vieglāk atšķiramus citu no cita, īslaicīgi izceļot tos, kad tiem piesit</string>
     <string name="pref_groups_multiselect_title">Vairāku kopu atlasīšana</string>

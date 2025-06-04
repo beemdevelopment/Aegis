@@ -381,6 +381,23 @@
     <string name="preference_reset_usage_count_dialog">Opravdu chcete nastavit počet použití všech položek na 0?</string>
     <string name="note" comment="Users can add a note to an entry">Poznámka</string>
     <string name="clear">Vymazat</string>
+    <string name="dialog_duplicate_entry_title" comment="'Duplicate' is a noun here">Duplicitní položka</string>
+    <string name="dialog_duplicate_entry_message">Tato položka má stejný název a poskytovatele, jako jedna nebo více existujících. Jak chcete pokračovat?</string>
+    <string name="dialog_duplicate_entry_overwrite_title">Přepsat existující položky</string>
+    <string name="dialog_duplicate_entry_overwrite_subtitle">Nahradit existující položku nebo položky novou. Tato akce je nevratná</string>
+    <string name="dialog_duplicate_entry_suffix_title">Přidat příponu</string>
+    <string name="dialog_duplicate_entry_suffix_subtitle">Přidat příponu k názvu této položky. Nový název bude: %s</string>
+    <string name="dialog_duplicate_entry_cancel_title">Zrušit uložení</string>
+    <string name="dialog_duplicate_entry_cancel_subtitle">Umožňuje upravit položku před pokusem o její opětovné uložení</string>
+    <plurals name="dialog_duplicate_entry_overwrite_dialog_message">
+        <item quantity="one">Opravdu chcete odstranit %d položku s následujícím názvem:\n\n%s - %s</item>
+        <item quantity="few">Opravdu chcete odstranit %d položky s následujícím názvem:\n\n%s - %s</item>
+        <item quantity="many">Opravdu chcete odstranit %d položek s následujícím názvem:\n\n%s - %s</item>
+        <item quantity="other">Opravdu chcete odstranit %d položek s následujícím názvem:\n\n%s - %s</item>
+    </plurals>
+    <string name="dialog_duplicate_entry_overwrite_dialog_title">Potvrdit odstranění</string>
+    <string name="pref_haptic_feedback_summary">Vibrovat při změně kódů</string>
+    <string name="pref_haptic_feedback_title">Haptická odezva</string>
     <string name="pref_highlight_entry_title">Zvýraznit tokeny po klepnutí</string>
     <string name="pref_highlight_entry_summary">Usnadnit vzájemné rozlišení tokenů dočasným zvýrazněním po kleputí</string>
     <string name="pref_groups_multiselect_title">Vícenásobný výběr skupin</string>

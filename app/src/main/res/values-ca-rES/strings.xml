@@ -363,6 +363,21 @@
     <string name="preference_reset_usage_count_dialog">Segur que vols reiniciar el comptador d\'us de cada entrada a 0?</string>
     <string name="note" comment="Users can add a note to an entry">Nota</string>
     <string name="clear">Neteja</string>
+    <string name="dialog_duplicate_entry_title" comment="'Duplicate' is a noun here">Entrada duplicada</string>
+    <string name="dialog_duplicate_entry_message">Aquesta entrada té el mateix nom i emissor que una altra entrada. Com vols continuar?</string>
+    <string name="dialog_duplicate_entry_overwrite_title">Sobreescriure l\'entrada/des existents</string>
+    <string name="dialog_duplicate_entry_overwrite_subtitle">Reemplaçar l\'entrada/des existents per la nova. Aquesta acció no es pot desfer</string>
+    <string name="dialog_duplicate_entry_suffix_title">Afegir un sufix</string>
+    <string name="dialog_duplicate_entry_suffix_subtitle">Afegir un sufix al nom d\'aquesta nova entrada. El nou nom serà: %s</string>
+    <string name="dialog_duplicate_entry_cancel_title">Cancel·la el guardat</string>
+    <string name="dialog_duplicate_entry_cancel_subtitle">Et permet editar l\'entrada abans de tornar a intentar el guardat</string>
+    <plurals name="dialog_duplicate_entry_overwrite_dialog_message">
+        <item quantity="one">Estàs segur de voler esborrar %d entrada amb aquest nom:\n\n%s - %s</item>
+        <item quantity="other">Estàs segur de voler esborrar %d entrades amb aquests noms:\n\n%s - %s</item>
+    </plurals>
+    <string name="dialog_duplicate_entry_overwrite_dialog_title">Confirma la supressió</string>
+    <string name="pref_haptic_feedback_summary">Fes que el dispositiu vibri quan s\'actualitzin els codis</string>
+    <string name="pref_haptic_feedback_title">Resposta hàptica</string>
     <string name="pref_highlight_entry_title">Il·luminar les fitxes al tocar</string>
     <string name="pref_highlight_entry_summary">Fes les fitxes més fàcils de distingir de la resta il·luminant-les temporalment quan les toquis</string>
     <string name="pref_groups_multiselect_title">Selecció múltiple de grups</string>

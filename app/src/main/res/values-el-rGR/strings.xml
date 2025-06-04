@@ -363,7 +363,7 @@
     <string name="preference_reset_usage_count_dialog">Είστε βέβαιοι ότι θέλετε να ορίσετε τον αριθμό χρήσης κάθε εισόδου στην κρύπτη σας στο 0;</string>
     <string name="note" comment="Users can add a note to an entry">Σημείωση</string>
     <string name="clear">Εκκαθάριση</string>
-    <string name="dialog_duplicate_entry_title">Διπλότυπη καταχώρηση</string>
+    <string name="dialog_duplicate_entry_title" comment="'Duplicate' is a noun here">Διπλότυπη καταχώρηση</string>
     <string name="dialog_duplicate_entry_message">Αυτή η καταχώρηση έχει το ίδιο όνομα και τον ίδιο εκδότη με μία ή περισσότερες υπάρχουσες καταχωρήσεις. Πώς θα θέλατε να προχωρήσετε;</string>
     <string name="dialog_duplicate_entry_overwrite_title">Αντικατάσταση υπάρχουσας/ων καταχώρησης/ων</string>
     <string name="dialog_duplicate_entry_overwrite_subtitle">Αντικατάσταση της υπάρχουσας καταχώρησης ή καταχωρήσεων με τη νέα. Αυτή η ενέργεια δεν μπορεί να αναιρεθεί</string>

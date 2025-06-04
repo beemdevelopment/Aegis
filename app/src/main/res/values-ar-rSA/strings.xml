@@ -399,6 +399,25 @@
     <string name="preference_reset_usage_count_dialog">هل أنت متأكد من أنك تريد جعل العداد لكل مدخل في خزنتك يصبح 0؟</string>
     <string name="note" comment="Users can add a note to an entry">ملاحظة</string>
     <string name="clear">مسح</string>
+    <string name="dialog_duplicate_entry_title" comment="'Duplicate' is a noun here">إدخال مكرر</string>
+    <string name="dialog_duplicate_entry_message">هذا الإدخال يحمل نفس الاسم والمصدر كواحد أو أكثر من الإدخالات الموجودة. كيف ترغب في المتابعة؟</string>
+    <string name="dialog_duplicate_entry_overwrite_title">الكتابة فوق إدخال/إدخالات موجودة</string>
+    <string name="dialog_duplicate_entry_overwrite_subtitle">استبدل الإدخال أو الإدخالات الموجودة بالإدخال الجديد. لا يمكن التراجع عن هذا الإجراء</string>
+    <string name="dialog_duplicate_entry_suffix_title">أضف لاحقة</string>
+    <string name="dialog_duplicate_entry_suffix_subtitle">أضف لاحقة إلى اسم هذا الإدخال الجديد. الاسم الجديد سيكون هو: %s</string>
+    <string name="dialog_duplicate_entry_cancel_title">ألغِ الحفظ</string>
+    <string name="dialog_duplicate_entry_cancel_subtitle">يسمح لك بتعديل الإدخال قبل محاولة حفظه مرة أخرى</string>
+    <plurals name="dialog_duplicate_entry_overwrite_dialog_message">
+        <item quantity="zero">هل أنت متأكد من أنك تريد حذف الإدخال %d بالاسم التالي:\n\n%s - %s</item>
+        <item quantity="one">هل أنت متأكد من أنك تريد حذف مدخل بالاسم التالي:\n\n%s - %s</item>
+        <item quantity="two">هل أنت متأكد من أنك تريد حذف مدخلان بالاسم التالي:\n\n%s - %s</item>
+        <item quantity="few">هل أنت متأكد من أنك تريد حذف %d مدخلات بالاسم التالي:\n\n%s - %s</item>
+        <item quantity="many">هل أنت متأكد من أنك تريد حذف %d مدخل بالاسم التالي:\n\n%s - %s</item>
+        <item quantity="other">هل أنت متأكد من أنك تريد حذف %d مدخل بالاسم التالي:\n\n%s - %s</item>
+    </plurals>
+    <string name="dialog_duplicate_entry_overwrite_dialog_title">تأكيد الحذف</string>
+    <string name="pref_haptic_feedback_summary">اجعل جهازك يهتز عند تحديث الرموز</string>
+    <string name="pref_haptic_feedback_title">الاستجابة اللمسية</string>
     <string name="pref_highlight_entry_title">ابرز الرموز عندما تُنقر</string>
     <string name="pref_highlight_entry_summary">يسهل تمييز الرموز عن بعضها بتسليط الضوء عليهم عندما يتم النقر عليهم</string>
     <string name="pref_groups_multiselect_title">مجموعات متعددة الإختيار</string>

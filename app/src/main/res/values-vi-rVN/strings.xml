@@ -355,6 +355,20 @@
     <string name="preference_reset_usage_count_dialog">Bạn có chắc muốn đặt số lần sử dụng của mọi mục trong kho của bạn về 0 không?</string>
     <string name="note" comment="Users can add a note to an entry">Chú thích</string>
     <string name="clear">Xóa</string>
+    <string name="dialog_duplicate_entry_title" comment="'Duplicate' is a noun here">Trùng lặp mục</string>
+    <string name="dialog_duplicate_entry_message">Mục này có cùng tên và dịch vụ với một hoặc nhiều mục hiện có. Bạn muốn tiếp tục như thế nào?</string>
+    <string name="dialog_duplicate_entry_overwrite_title">Ghi đè lên các mục đã tồn tại</string>
+    <string name="dialog_duplicate_entry_overwrite_subtitle">Thay thế mục hiện có bằng mục mới. Hành động này không thể hoàn tác</string>
+    <string name="dialog_duplicate_entry_suffix_title">Thêm hậu tố</string>
+    <string name="dialog_duplicate_entry_suffix_subtitle">Thêm hậu tố vào tên của mục mới này. Tên mới sẽ là: %s</string>
+    <string name="dialog_duplicate_entry_cancel_title">Hủy lưu</string>
+    <string name="dialog_duplicate_entry_cancel_subtitle">Cho phép bạn chỉnh sửa mục trước khi lưu lại</string>
+    <plurals name="dialog_duplicate_entry_overwrite_dialog_message">
+        <item quantity="other">Bạn có chắc muốn xóa %d mục có tên sau:\n\n%s - %s</item>
+    </plurals>
+    <string name="dialog_duplicate_entry_overwrite_dialog_title">Xác nhận xóa</string>
+    <string name="pref_haptic_feedback_summary">Rung thiết bị khi mã được làm mới</string>
+    <string name="pref_haptic_feedback_title">Phản hồi rung</string>
     <string name="pref_highlight_entry_title">Làm nổi bật mã khi nhấn vào</string>
     <string name="pref_highlight_entry_summary">Giúp các mã dễ phân biệt với nhau hơn</string>
     <string name="pref_groups_multiselect_title">Chọn nhiều nhãn</string>

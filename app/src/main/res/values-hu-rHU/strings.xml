@@ -363,6 +363,21 @@
     <string name="preference_reset_usage_count_dialog">Biztos, hogy visszaállítja a széf összes bejegyzésének használati számlálóját nullára?</string>
     <string name="note" comment="Users can add a note to an entry">Megjegyzés</string>
     <string name="clear">Törlés</string>
+    <string name="dialog_duplicate_entry_title" comment="'Duplicate' is a noun here">Ismétlődő bejegyzés</string>
+    <string name="dialog_duplicate_entry_message">Ennek a bejegyzésnek ugyanaz a neve és kibocsátója, mint egy vagy több meglévő bejegyzésnek. Hogyan folytatja?</string>
+    <string name="dialog_duplicate_entry_overwrite_title">Meglévő bejegyzések felülírása</string>
+    <string name="dialog_duplicate_entry_overwrite_subtitle">A meglévő bejegyzések lecserélése egy újjal. Ez a művelet nem vonható vissza.</string>
+    <string name="dialog_duplicate_entry_suffix_title">Utótag hozzáadása</string>
+    <string name="dialog_duplicate_entry_suffix_subtitle">Utótag hozzáadása ehhez a bejegyzéshez. Az új név ez lesz: %s</string>
+    <string name="dialog_duplicate_entry_cancel_title">Mentés megszakítása</string>
+    <string name="dialog_duplicate_entry_cancel_subtitle">Lehetővé teszi a bejegyzés szerkesztését mielőtt újból megpróbálná menteni</string>
+    <plurals name="dialog_duplicate_entry_overwrite_dialog_message">
+        <item quantity="one">Biztos, hogy töröl %d bejegyzést a következő névvel:\n\n%s – %s</item>
+        <item quantity="other">Biztos, hogy töröl %d bejegyzést a következő névvel:\n\n%s – %s</item>
+    </plurals>
+    <string name="dialog_duplicate_entry_overwrite_dialog_title">Törlés megerősítése</string>
+    <string name="pref_haptic_feedback_summary">Az eszköz rezgetése, amikor a kódok frissülnek</string>
+    <string name="pref_haptic_feedback_title">Haptikus visszajelzés</string>
     <string name="pref_highlight_entry_title">Tokenek kiemelése koppintáskor</string>
     <string name="pref_highlight_entry_summary">A tokenek könnyebb megkülönböztethetősége érdekében ideiglenesen ki lesznek emelve koppintáskor</string>
     <string name="pref_groups_multiselect_title">Csoportok többszörös kiválasztása</string>

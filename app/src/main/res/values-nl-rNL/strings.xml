@@ -363,6 +363,21 @@
     <string name="preference_reset_usage_count_dialog">Weet je zeker dat je de gebruikteller van alle items in de kluis op 0 wilt zetten?</string>
     <string name="note" comment="Users can add a note to an entry">Notitie</string>
     <string name="clear">Wissen</string>
+    <string name="dialog_duplicate_entry_title" comment="'Duplicate' is a noun here">Item bestaat al</string>
+    <string name="dialog_duplicate_entry_message">Dit item heeft dezelfde naam en uitgever als een of meer bestaande items. Hoe wil je verder gaan?</string>
+    <string name="dialog_duplicate_entry_overwrite_title">Bestaande item(s) overschrijven</string>
+    <string name="dialog_duplicate_entry_overwrite_subtitle">Vervang de bestaande items door de nieuwe. Deze actie kan niet ongedaan worden gemaakt</string>
+    <string name="dialog_duplicate_entry_suffix_title">Achtervoegsel toevoegen</string>
+    <string name="dialog_duplicate_entry_suffix_subtitle">Voeg een achtervoegsel toe aan de naam van het nieuwe item. De nieuwe naam wordt %s</string>
+    <string name="dialog_duplicate_entry_cancel_title">Opslaan annuleren</string>
+    <string name="dialog_duplicate_entry_cancel_subtitle">Hiermee kan je het item bewerken voordat je het opnieuw probeert op te slaan</string>
+    <plurals name="dialog_duplicate_entry_overwrite_dialog_message">
+        <item quantity="one">Weet je zeker dat je %d item met de volgende naam wil verwijderen:\n\n%s - %s</item>
+        <item quantity="other">Weet je zeker dat je %d items met de volgende naam wil verwijderen:\n\n%s - %s</item>
+    </plurals>
+    <string name="dialog_duplicate_entry_overwrite_dialog_title">Verwijdering bevestigen</string>
+    <string name="pref_haptic_feedback_summary">Laat je apparaat trillen wanneer de codes verversen</string>
+    <string name="pref_haptic_feedback_title">Haptische feedback</string>
     <string name="pref_highlight_entry_title">Codes markeren na aantikken</string>
     <string name="pref_highlight_entry_summary">Maak codes makkelijker te onderscheiden van elkaar door ze tijdelijk te markeren na het aantikken</string>
     <string name="pref_groups_multiselect_title">Meerdere groepen selecteren</string>

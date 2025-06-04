@@ -363,6 +363,21 @@
     <string name="preference_reset_usage_count_dialog">Sikker på, at alle brugstællingsposter i din Boks skal nulstilles?</string>
     <string name="note" comment="Users can add a note to an entry">Notat</string>
     <string name="clear">Ryd</string>
+    <string name="dialog_duplicate_entry_title" comment="'Duplicate' is a noun here">Dubletpost</string>
+    <string name="dialog_duplicate_entry_message">Denne post har samme navn og udsteder som mindst én eksisterende post. Hvordan skal der fortsættes?</string>
+    <string name="dialog_duplicate_entry_overwrite_title">Overskriv eksisterende post(er)</string>
+    <string name="dialog_duplicate_entry_overwrite_subtitle">Erstat eksisterende post(er) med den nye. Denne handling kan ikke fortrydes</string>
+    <string name="dialog_duplicate_entry_suffix_title">Tilføj endelse</string>
+    <string name="dialog_duplicate_entry_suffix_subtitle">Føj en endelse til navnet på denne nye post. Det nye navn vil være: %s</string>
+    <string name="dialog_duplicate_entry_cancel_title">Afbryd gem</string>
+    <string name="dialog_duplicate_entry_cancel_subtitle">Muliggør at redigere posten inden den igen forsøges gemt</string>
+    <plurals name="dialog_duplicate_entry_overwrite_dialog_message">
+        <item quantity="one">Sikker på, at der skal slettes %d post med flg. navn:\n\n%s - %s</item>
+        <item quantity="other">Sikker på, at der skal slettes %d poster med flg. navn:\n\n%s - %s</item>
+    </plurals>
+    <string name="dialog_duplicate_entry_overwrite_dialog_title">Bekræft sletning</string>
+    <string name="pref_haptic_feedback_summary">Få enheden til at vibrere, når koder opdateres</string>
+    <string name="pref_haptic_feedback_title">Haptisk feedback</string>
     <string name="pref_highlight_entry_title">Fremhæv tokener ved tryk</string>
     <string name="pref_highlight_entry_summary">Gør tokener lettere at skelne fra hinanden ved midlertidigt at fremhæve dem, når der trykkes på dem</string>
     <string name="pref_groups_multiselect_title">Multivalg af grupper</string>

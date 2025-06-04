@@ -354,6 +354,20 @@
     <string name="preference_reset_usage_count_dialog">您确定要将数据库中所有条目的使用计数设置为 0？</string>
     <string name="note" comment="Users can add a note to an entry">备注</string>
     <string name="clear">清空</string>
+    <string name="dialog_duplicate_entry_title" comment="'Duplicate' is a noun here">复制条目</string>
+    <string name="dialog_duplicate_entry_message">此条目与一个或多个现有条目具有相同的名称和发行者。您想如何继续？</string>
+    <string name="dialog_duplicate_entry_overwrite_title">覆盖现有的条目</string>
+    <string name="dialog_duplicate_entry_overwrite_subtitle">用新条目替换现有条目。此操作不能撤消</string>
+    <string name="dialog_duplicate_entry_suffix_title">添加后缀</string>
+    <string name="dialog_duplicate_entry_suffix_subtitle">添加后缀后新条目的名称。新名称将是： %s</string>
+    <string name="dialog_duplicate_entry_cancel_title">取消保存</string>
+    <string name="dialog_duplicate_entry_cancel_subtitle">允许您在尝试再次保存之前编辑条目</string>
+    <plurals name="dialog_duplicate_entry_overwrite_dialog_message">
+        <item quantity="other">您确定要删除以下名称的 %d 条记录：\n\n%s - %s</item>
+    </plurals>
+    <string name="dialog_duplicate_entry_overwrite_dialog_title">确认删除</string>
+    <string name="pref_haptic_feedback_summary">代码刷新时使您的设备振动</string>
+    <string name="pref_haptic_feedback_title">触觉反馈</string>
     <string name="pref_highlight_entry_title">点击时高亮令牌</string>
     <string name="pref_highlight_entry_summary">使令牌在点击后暂时高亮显示以便区分</string>
     <string name="pref_groups_multiselect_title">多选分组</string>
