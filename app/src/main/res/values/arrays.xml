@@ -43,6 +43,7 @@
         <item>Dutch</item>
         <item>Dutch (Frysian)</item>
         <item>English</item>
+        <item>Estonian</item>
         <item>Finnish</item>
         <item>French</item>
         <item>Galician</item>
@@ -55,14 +56,18 @@
         <item>Indonesian</item>
         <item>Japanese</item>
         <item>Kannada</item>
+        <item>Korean</item>
         <item>Latvian</item>
         <item>Lithuanian</item>
+        <item>Norwegian (Bokmål)</item>
+        <item>Malayalam</item>
         <item>Persian</item>
         <item>Polish</item>
         <item>Portuguese</item>
         <item>Portuguese (Brazilian)</item>
         <item>Romanian</item>
         <item>Russian</item>
+        <item>Serbian</item>
         <item>Slovak</item>
         <item>Spanish</item>
         <item>Swedish</item>
@@ -84,6 +89,7 @@
         <item>nl</item>
         <item>fy_NL</item>
         <item>en</item>
+        <item>et</item>
         <item>fi</item>
         <item>fr</item>
         <item>gl</item>
@@ -96,14 +102,18 @@
         <item>in</item>
         <item>ja</item>
         <item>kn</item>
+        <item>ko</item>
         <item>lv</item>
         <item>lt</item>
+        <item>nb</item>
+        <item>ml</item>
         <item>fa</item>
         <item>pl</item>
         <item>pt_PT</item>
         <item>pt_BR</item>
         <item>ro</item>
         <item>ru</item>
+        <item>sr</item>
         <item>sk</item>
         <item>es</item>
         <item>sv</item>
