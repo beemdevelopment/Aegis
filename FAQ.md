@@ -1,36 +1,4 @@
-# FAQ
 
-## General
-
-### How can I contribute?
-
-There are lots of ways! Please refer to our [contributing
-guide](https://github.com/beemdevelopment/Aegis/blob/master/CONTRIBUTING.md).
-
-### Why is the latest version not on F-Droid yet?
-
-We don't release new versions of Aegis on F-Droid ourselves. Once we've released
-a new version on GitHub, F-Droid will usually kick off their automatic build
-process a day later and publish the app to their repository a couple of days
-afterwards. It can sometimes take up to a week for a new version to appear on
-F-Droid.
-
-### Can you port Aegis to iOS/Windows/MacOS/Browser Extension?
-
-We don't have plans to port Aegis to other platforms.
-
-### Can you add support for Autofill?
-
-On Android, only one app can be active in the Autofill slot at a time, and since
-this is typically occupied by the password manager, we don't see much value in
-adding support for this feature in Aegis.
-
-### What is the difference between exporting and backing up?
-
-Exporting is done manually and backups are done automatically. The format of the
-vault file is exactly the same for both.
-
-## Security
 
 ### I can no longer use biometrics to unlock the app. What should I do?
 
