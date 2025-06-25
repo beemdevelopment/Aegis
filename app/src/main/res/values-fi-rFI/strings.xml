@@ -363,6 +363,13 @@
     <string name="preference_reset_usage_count_dialog">Haluatko varmasti nollata kaikkien holvisi kohteiden käyttömäärän?</string>
     <string name="note" comment="Users can add a note to an entry">Muistiinpano</string>
     <string name="clear">Tyhjennä</string>
+    <string name="dialog_duplicate_entry_overwrite_title">Korvaa olemassa olevat kohteet</string>
+    <string name="dialog_duplicate_entry_overwrite_subtitle">Korvaa olemassa olevat kohteet uusilla. Tätä toimintoa ei voi kumota</string>
+    <string name="dialog_duplicate_entry_suffix_title">Lisää pääte</string>
+    <string name="dialog_duplicate_entry_cancel_title">Peruuta tallennus</string>
+    <string name="dialog_duplicate_entry_overwrite_dialog_title">Vahvista poisto</string>
+    <string name="pref_haptic_feedback_summary">Laitteesi värisee, kun koodit päivittyvät</string>
+    <string name="pref_haptic_feedback_title">Haptinen palaute</string>
     <string name="pref_highlight_entry_title">Korosta todennuskoodit napauttamalla</string>
     <string name="pref_highlight_entry_summary">Tee todennuskoodeista helpompi erottaa toisistaan korostamalla niitä tilapäisesti napauttamalla</string>
     <string name="pref_groups_multiselect_title">Valitse useita ryhmiä</string>

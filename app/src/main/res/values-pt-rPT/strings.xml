@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
     <string name="action_settings">Definições</string>
-    <string name="action_about">Acerca</string>
+    <string name="action_about">Acerca de</string>
     <string name="action_delete">Eliminar</string>
     <string name="action_transfer">Transferir</string>
     <string name="action_edit_icon">Editar ícone</string>
@@ -56,7 +56,7 @@
     <string name="pref_import_file_title">Importar de um ficheiro</string>
     <string name="pref_import_file_summary">Importar \'tokens\' de um ficheiro</string>
     <string name="pref_android_backups_title">Backups na nuvem Android</string>
-    <string name="pref_android_backups_summary">Permitir que o sistema de backup na nuvem Android inclua o cofre Aegis nos seus backups. Apenas possível para cofres cifrados.</string>
+    <string name="pref_android_backups_summary">Permitir que o sistema de backup na nuvem Android inclua o cofre Aegis nos seus backups. Apenas possível para cofres encriptados.</string>
     <string name="pref_android_backups_hint"><i>Backups \'Device-to-device\' (D2D) serão sempre permitidos, independentemente das definições acima</i></string>
     <string name="pref_backups_title">Backup automático do cofre</string>
     <string name="pref_backups_summary">Cria automaticamente backups no armazenamento externo, sempre que forem efetuadas alterações. Apenas possível para cofres cifrados.</string>
@@ -66,16 +66,23 @@
     <string name="pref_backups_reminder_dialog_summary">Se desativar esta opção, a aplicação não irá mostrar o lembrete mesmo que as últimas alterações não tenham sido guardadas. Desta forma, os seus \'tokens\' de acesso estarão em risco. Tem a certeza de que deseja desativar o lembrete?</string>
     <string name="pref_backups_versioning_strategy_title">Estratégia de backup</string>
     <string name="pref_backups_versioning_strategy_keep_x_versions">Manter várias versões</string>
+    <string name="pref_backups_versioning_strategy_single_backup">Cópia de segurança única</string>
+    <string name="pref_backups_versioning_strategy_single_backup_warning">A estratégia de backup selecionada não é nem fiável, nem recomendada. Uma única falha no backup pode levar à perda da sua única cópia de segurança.</string>
+    <string name="pref_backups_versioning_strategy_dialog_title">Selecione uma estratégia de backup</string>
+    <string name="pref_backups_location_title">Localização da cópia de segurança</string>
     <string name="pref_backups_location_summary">Os backups serão guardados em</string>
+    <string name="pref_backup_location_summary">As cópias de segurança serão guardadas em</string>
     <string name="pref_backups_trigger_title">Ativar backup</string>
     <string name="pref_backups_trigger_summary">Ativar manualmente</string>
     <string name="pref_backups_versions_title">Número de versões a manter</string>
+    <string name="pref_backups_versions_infinite">\u221E</string>
     <plurals name="pref_backups_versions_summary">
         <item quantity="one">Manter %1$d versão do backup</item>
         <item quantity="other">Manter %1$d versões do backup</item>
     </plurals>
+    <string name="pref_backups_versions_infinite_summary">Manter todas as versões de cópias de segurança efetuadas</string>
     <string name="pref_import_app_title">Importar de uma aplicação</string>
-    <string name="pref_import_app_summary">Importar \'tokens\' de uma aplicação (requer acesso root)</string>
+    <string name="pref_import_app_summary">Importar tokens de uma aplicação (requer acesso root)</string>
     <string name="pref_export_title">Exportar</string>
     <string name="pref_export_summary">Exportar cofre</string>
     <string name="pref_password_reminder_title">Lembrete de palavra-passe</string>
@@ -104,9 +111,9 @@
     <string name="pref_backup_password_title">Palavra-passe distinta para backups e exportação</string>
     <string name="pref_backup_password_summary">Se ativa, a palavra-passe utilizada para desbloquear a aplicação não pode ser utilizada para decifrar backups e exportações.</string>
     <string name="pref_backup_password_change_title">Alterar palavra-passe para backups e exportação</string>
-    <string name="pref_backup_password_change_summary">Defina a nova palavra-passe que será utilizada para cifrar o cofre durante os backups e a exportação.</string>
-    <string name="pref_encryption_title">Cifra</string>
-    <string name="pref_encryption_summary">Cifrar cofre e apenas desbloquear com palavra-passe ou biometria</string>
+    <string name="pref_backup_password_change_summary">Defina a nova palavra-passe que será utilizada para encriptar o cofre durante cópias de segurança e exportação.</string>
+    <string name="pref_encryption_title">Encriptação</string>
+    <string name="pref_encryption_summary">Encriptar o cofre e apenas desbloquear com palavra-passe ou biometria</string>
     <string name="pref_biometrics_title">Desbloqueio biométrico</string>
     <string name="pref_biometrics_summary">Permitir autenticação biométrica para desbloquear o cofre</string>
     <string name="pref_search_behavior_summary">Pesquisar por %s</string>
@@ -134,12 +141,13 @@
     <string name="event_title_vault_unlock_failed_biometrics">O desbloqueio do cofre falhou (biometria)</string>
     <string name="event_description_vault_unlock_failed_biometrics">Falha ao tentar desbloquear o cofre com biometria</string>
     <string name="event_unknown">Tipo de evento desconhecido</string>
+    <string name="audit_log_entry_deleted">(apagada)</string>
     <string name="today_at_time">Hoje às %1$s</string>
     <string name="day_of_week_at_time">%1$s às %2$s</string>
-    <string name="export_encrypted">Cifrar cofre</string>
+    <string name="export_encrypted">Encriptar o cofre</string>
     <string name="export_help">Esta ação irá exportar o cofre para fora do armazenamento interno do Aegis. Selecione o formato para a exportação:</string>
-    <string name="export_warning_unencrypted">Está prestes a exportar uma cópia não cifrada do seu cofre Aegis. <b>Isto não é recomendado</b>.</string>
-    <string name="export_warning_password">As exportações serão cifradas com a palavra-passe definida nas definições de segurança.</string>
+    <string name="export_warning_unencrypted">Está prestes a exportar uma cópia não encriptada do seu cofre Aegis. <b>Isto não é recomendado</b>.</string>
+    <string name="export_warning_password">As exportações serão encriptadas com a palavra-passe definida nas definições de segurança.</string>
     <string name="understand_risk_accept">Eu compreendo os riscos</string>
     <string name="export_format_aegis">Aegis (.JSON)</string>
     <string name="export_format_google_auth_uri">Ficheiro de texto (.TXT)</string>
@@ -154,21 +162,21 @@
     <string name="export_no_groups_selected">Nenhum grupo selecionado para exportar</string>
     <string name="export_html_title" comment="The title of an HTML export document">Exportação do Aegis Authenticator</string>
     <string name="choose_authentication_method">Segurança</string>
-    <string name="authentication_method_explanation">Aegis é uma aplicação 2FA focada em segurança. Tokens são armazenados num cofre, que pode opcionalmente ser criptografado com uma palavra-passe da sua escolha. Se um invasor obtiver o ficheiro criptografado do cofre, ele não conseguirá aceder ao conteúdo sem saber a palavra-passe.\n\nA opção que achamos que seria melhor para o seu dispositivo foi pré-selecionada.</string>
+    <string name="authentication_method_explanation">O Aegis é uma aplicação 2FA focada em segurança. Tokens são armazenados num cofre, que pode opcionalmente ser criptografado com uma palavra-passe da sua escolha. Se um invasor obtiver o ficheiro criptografado do cofre, não conseguirá aceder ao conteúdo sem saber a palavra-passe.\n\nA opção que achamos que seria melhor para o seu dispositivo foi pré-selecionada.</string>
     <string name="authentication_method_none">Nenhum</string>
     <string name="authentication_method_none_description">Não será necessária uma palavra-passe para desbloquear o cofre e este não será encriptado. <b>Esta opção não é recomendada</b>.</string>
-    <string name="authentication_method_password">Senha</string>
+    <string name="authentication_method_password">Palavra-passe</string>
     <string name="authentication_method_password_description">É necessária uma palavra-passe para desbloquear o cofre.</string>
     <string name="authentication_method_password_explanation">Aviso: Se se esquecer da sua palavra-passe, perderá permanentemente o acesso aos seus tokens. Não há como recuperá-los sem a mesma.</string>
     <string name="authentication_method_biometrics">Biometria</string>
-    <string name="authentication_method_biometrics_description">Além de uma senha, a biometria registrada neste dispositivo, como uma impressão digital ou seu rosto, pode ser usada para desbloquear o cofre.</string>
+    <string name="authentication_method_biometrics_description">Para além de uma palavra-passe, a biometria registada neste dispositivo, como uma impressão digital ou o seu rosto, pode ser usada para desbloquear o cofre.</string>
     <string name="authentication">Desbloquear o cofre</string>
-    <string name="authentication_multiline" comment="The newline in the middle is used for aesthetic purposes">Desbloqueie\no cofre</string>
+    <string name="authentication_multiline" comment="The newline in the middle is used for aesthetic purposes">Desbloqueie\no seu cofre</string>
     <string name="auth_use_biometrics">Ou toque aqui para usar <font fgcolor="#FF0D86C1">biometria</font></string>
-    <string name="set_password">Por favor, insira uma senha</string>
+    <string name="set_password">Introduza uma palavra-passe</string>
     <string name="set_group">Por favor, insira o nome do grupo</string>
     <string name="set_number">Por favor, insira um número</string>
-    <string name="set_password_confirm">Por favor, confirme a senha</string>
+    <string name="set_password_confirm">Confirme a palavra-passe</string>
     <string name="invalid_password">A senha está incorreta</string>
     <string name="invalidated_biometrics">Foi detetada uma alteração nas definições de segurança do dispositivo. Aceda a \"Aegis -&gt; Definições -&gt; Segurança -&gt; Desbloqueio biométrico\" para desativar e reativar o desbloqueio biométrico.</string>
     <string name="password_reminder">Por favor, introduza a palavra-passe. Ocasionalmente, pedimos-lhe que o faça para que não se esqueça dela.</string>
@@ -193,8 +201,8 @@
     <string name="advanced">Avançado</string>
     <string name="counter">Contador</string>
     <string name="digits">Dígitos</string>
-    <string name="secret">Secreto</string>
-    <string name="scan">Escanear código QR</string>
+    <string name="secret">Segredo</string>
+    <string name="scan">Ler código QR</string>
     <string name="scan_image">Digitalizar imagem</string>
     <string name="enter_manually">Inserir manualmente</string>
     <string name="set_up_biometric">Configurar o desbloqueio biométrico</string>
@@ -210,7 +218,7 @@
     <string name="error_all_caps">ERRO</string>
     <string name="password">Palavra-passe</string>
     <string name="confirm_password">Confirme a Senha</string>
-    <string name="show_password">Mostrar senha</string>
+    <string name="show_password">Mostrar palavra-passe</string>
     <string name="new_entry">Nova entrada</string>
     <string name="add_new_entry">Adicionar nova entrada</string>
     <string name="unlock_vault_error">Não foi possível desbloquear o cofre</string>
@@ -243,9 +251,9 @@
     <string name="saving_profile_error">Erro ao guardar o perfil</string>
     <string name="saving_assign_icons_error">Erro ao atribuir ícones</string>
     <string name="welcome">Bem-vindo</string>
-    <string name="app_description">Aegis é uma aplicação 2FA gratuita, segura e open source</string>
+    <string name="app_description">O Aegis é uma aplicação 2FA gratuita, segura e de código aberto</string>
     <string name="setup_completed">Configuração concluída</string>
-    <string name="setup_completed_description">Aegis foi configurado e está pronto para uso.</string>
+    <string name="setup_completed_description">O Aegis foi configurado e está pronto a ser usado.</string>
     <string name="vault_not_found">Cofre não encontrado, a iniciar configuração…</string>
     <string name="copied">Copiado</string>
     <string name="errors_copied">Erros copiados para a área de transferência</string>
@@ -314,6 +322,10 @@
     <string name="partial_google_auth_import">Foi detetada uma exportação incompleta do Google Authenticator </string>
     <string name="partial_google_auth_import_warning">Faltam alguns códigos QR na sua importação. Os seguintes códigos não foram encontrados:\n\n<b>%s</b>\n\nPode continuar a importar esta exportação parcial, mas recomendamos que tente novamente com todos os códigos QR para não correr o risco de perder o acesso a quaisquer tokens.</string>
     <string name="missing_qr_code_descriptor">• Código QR %d</string>
+    <plurals name="import_partial_export_anyway">
+        <item quantity="one">Importar %d token mesmo assim</item>
+        <item quantity="other">Importar %d tokens mesmo assim</item>
+    </plurals>
     <string name="import_google_auth_failure">Falha ao importar a exportação do Google Authenticator</string>
     <string name="unrelated_google_auth_batches_error">A exportação contém informações para um lote não relacionado. Experimente importar um lote de cada vez.</string>
     <string name="no_tokens_can_be_imported">Nenhum token pode ser importado como resultado</string>
@@ -351,8 +363,12 @@
     <string name="preference_reset_usage_count_dialog">Tem a certeza de que pretende definir a contagem de utilização de cada entrada no seu cofre como 0?</string>
     <string name="note" comment="Users can add a note to an entry">Nota</string>
     <string name="clear">Limpar</string>
+    <string name="dialog_duplicate_entry_title" comment="'Duplicate' is a noun here">Entrada duplicada</string>
+    <string name="pref_haptic_feedback_summary">Faça o seu dispositivo vibrar quando os códigos forem atualizados</string>
+    <string name="pref_haptic_feedback_title">Resposta háptica</string>
     <string name="pref_highlight_entry_title">Realçar tokens quando tocados</string>
-    <string name="pref_highlight_entry_summary">Faça com que os tokens sejam mais fáceis de distinguir um do outro destacando-os temporariamente ao tocá-los</string>
+    <string name="pref_highlight_entry_summary">Torne os tokens mais fáceis de distinguir uns dos outros, destacando-os temporariamente quando toca neles</string>
+    <string name="pref_groups_multiselect_title">Seleção múltipla de grupos</string>
     <string name="pref_groups_multiselect_summary">Permitir a seleção de vários grupos ao mesmo tempo</string>
     <string name="pref_minimize_on_copy_title">Minimizar ao copiar</string>
     <string name="pref_minimize_on_copy_summary">Após copiar um token, minimizar a aplicação </string>
@@ -372,7 +388,7 @@
     <string name="system_amoled_theme_title">Definido pela Economia de bateria (AMOLED)</string>
     <string name="normal_viewmode_title">Normal</string>
     <string name="compact_mode_title">Compacto</string>
-    <string name="small_mode_title">Pequena</string>
+    <string name="small_mode_title">Pequeno</string>
     <string name="tiles_mode_title">Blocos</string>
     <string name="unknown_issuer">Emissor desconhecido</string>
     <string name="unknown_account_name">Nome de conta desconhecido</string>
@@ -414,6 +430,10 @@
     <string name="time_sync_warning_message">O Aegis depende da hora do sistema para estar sincronizado para gerar códigos corretos. Um desvio de apenas alguns segundos pode resultar em códigos incorretos. Parece que o seu dispositivo não está configurado para sincronizar automaticamente o tempo. Gostaria de o fazer agora?</string>
     <string name="time_sync_warning_disable">Para de me avisar. Eu sei o que estou a fazer.</string>
     <string name="google_qr_export_unrelated">Código QR não relacionado. Experimente reiniciar o digitalizador.</string>
+    <plurals name="google_qr_export_scanned">
+        <item quantity="one">%1$d/%2$d códigos QR digitalizados</item>
+        <item quantity="other">%1$d/%2$d códigos QR digitalizados</item>
+    </plurals>
     <string name="google_qr_export_unexpected">Esperado o código QR #%1$d, mas digitalizado #%2$d em vez disso</string>
     <string name="backup_error_bar_message"><b>O ‘backup’ do cofre falhou recentemente</b></string>
     <string name="backup_system_builtin">backups automáticos do Aegis</string>
@@ -428,11 +448,11 @@
     <string name="pref_show_plaintext_warning_hint">Não mostrar este aviso novamente</string>
     <string name="backup_plaintext_warning_explanation">Este aviso é mostrado porque exportou recentemente uma cópia não encriptada do cofre. Para manter a segurança dos seus tokens, recomendamos que elimine este ficheiro quando já não for necessário.</string>
     <string name="switch_camera">Trocar câmara</string>
-    <string name="empty_list">Não há códigos a serem mostrados. Comece a adicionar entradas tocando no sinal de mais no canto inferior direito</string>
+    <string name="empty_list">Não há códigos a mostrar. Comece a adicionar entradas através do botão + no canto inferior direito</string>
     <string name="empty_list_title">Nenhuma entrada encontrada</string>
-    <string name="empty_group_list">Não há grupos a serem mostrados. Adicione grupos na tela de edição de uma entrada</string>
+    <string name="empty_group_list">Não existem grupos a mostrar. Adicione grupos no ecrã de edição de uma entrada</string>
     <string name="empty_group_list_title">Nenhum grupo encontrado</string>
-    <string name="no_icon_packs">Ainda não foram importados quaisquer pacotes de ícones. Toque no sinal de mais para importar um. Dica: experimente <a href="https://aegis-icons.github.io">aegis-icons</a>.</string>
+    <string name="no_icon_packs">Ainda não foram importados quaisquer pacotes de ícones. Toque no botão + para importar um. Dica: experimente os <a href="https://aegis-icons.github.io">aegis-icons</a>.</string>
     <string name="no_icon_packs_title">Sem pacotes de ícones</string>
     <string name="pick_icon">Selecionar ícone</string>
     <string name="uncategorized">Sem categoria</string>
@@ -455,7 +475,7 @@
     <string name="password_strength_strong">Forte</string>
     <string name="password_strength_unknown">Palavra-passe demasiado longa para a análise de resistência</string>
     <string name="pref_pin_keyboard_title">Usar o teclado numérico no ecrã de bloqueio</string>
-    <string name="pref_pin_keyboard_summary">Ative esta opção se quiser habilitar o teclado PIN na tela de bloqueio. Isso só funciona para senhas numéricas</string>
+    <string name="pref_pin_keyboard_summary">Ative esta opção se quiser ativar o teclado numérico no ecrã de bloqueio. Isto só funciona para palavras-passe numéricas</string>
     <string name="title_activity_preferences">Configurações</string>
     <string name="title_activity_manage_groups">Gerir grupos</string>
     <string name="title_activity_transfer">Transferir entradas</string>
@@ -472,7 +492,7 @@
     <string name="pref_panic_trigger_title">Excluir cofre após gatilho de pânico</string>
     <string name="pref_panic_trigger_summary">Excluir cofre quando um gatilho de pânico é recebido do Ripple</string>
     <string name="import_vault">Importar cofre do Aegis</string>
-    <string name="import_vault_hint">Pretende importar de uma aplicação 2FA diferente? Conclua a configuração primeiro e depois vá para as definições.</string>
+    <string name="import_vault_hint">Quer importar de uma aplicação 2FA diferente? Conclua a configuração inicial e aceda às definições.</string>
     <plurals name="import_duplicate_toast">
         <item quantity="one">Desmarcado %d potencial duplo. Reveja a lista de entradas.</item>
         <item quantity="other">Desmarcados %d potencial duplos. Reveja a lista de entradas.</item>

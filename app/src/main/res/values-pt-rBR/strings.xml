@@ -363,8 +363,24 @@
     <string name="preference_reset_usage_count_dialog">Tem certeza que deseja definir a contagem de uso de todas as entradas no seu cofre para 0?</string>
     <string name="note" comment="Users can add a note to an entry">Nota</string>
     <string name="clear">Limpar</string>
+    <string name="dialog_duplicate_entry_title" comment="'Duplicate' is a noun here">Entrada duplicada</string>
+    <string name="dialog_duplicate_entry_message">Esta entrada tem o mesmo nome e emissor que uma ou mais entradas existentes. Como você gostaria de proceder?</string>
+    <string name="dialog_duplicate_entry_overwrite_title">Sobrescrever entrada(s) existente(s)</string>
+    <string name="dialog_duplicate_entry_overwrite_subtitle">Substituir a(s) entrada(s) existente(s) pela nova. Esta ação não poderá ser desfeita</string>
+    <string name="dialog_duplicate_entry_suffix_title">Adicionar sufixo</string>
+    <string name="dialog_duplicate_entry_suffix_subtitle">Adicionar sufixo ao nome da nova entrada. O novo nome será: %s</string>
+    <string name="dialog_duplicate_entry_cancel_title">Cancelar salvamento</string>
+    <string name="dialog_duplicate_entry_cancel_subtitle">Permitir a edição da entrada antes de tentar salvá-la novamente</string>
+    <plurals name="dialog_duplicate_entry_overwrite_dialog_message">
+        <item quantity="one">Tem certeza de que deseja excluir %d entrada com o seguinte nome:\n\n%s - %s</item>
+        <item quantity="other">Tem certeza de que deseja excluir %d entradas com os seguintes nomes:\n\n%s - %s</item>
+    </plurals>
+    <string name="dialog_duplicate_entry_overwrite_dialog_title">Confirmar exclusão</string>
+    <string name="pref_haptic_feedback_summary">Ativar vibração do dispositivo ao atualizar os códigos</string>
+    <string name="pref_haptic_feedback_title">Resposta tátil</string>
     <string name="pref_highlight_entry_title">Destacar tokens quando tocados</string>
     <string name="pref_highlight_entry_summary">Torna tokens mais fáceis de distinguir dos outros destacando eles temporariamente quando tocados</string>
+    <string name="pref_groups_multiselect_title">Múltipla seleção de grupos</string>
     <string name="pref_groups_multiselect_summary">Permitir a seleção de vários grupos ao mesmo tempo</string>
     <string name="pref_minimize_on_copy_title">Minimizar ao copiar</string>
     <string name="pref_minimize_on_copy_summary">Minimizar o aplicativo após copiar um token</string>
@@ -470,6 +486,7 @@ Por favor, configure o local de backup.
     <string name="unable_to_copy_uri_to_clipboard">Não foi possível copiar URI para área de transferência</string>
     <string name="uri_copied_to_clipboard">URI copiada para a área de transferência</string>
     <string name="transfer_entry_description">Escaneie esse QR code com o app autenticador para o qual você gostaria de transferir essa entrada</string>
+    <string name="transfer_entry_brightness">Toque no código QR para alternar para brilho máximo da tela</string>
     <string name="google_auth_compatible_transfer_description">Escaneie esses QR codes com Aegis ou Google Authenticator.\n\nDevido a limitações do aplicativo Google Authenticator, apenas TOTP &amp; tokens HOTP que usam SHA1 e produzem códigos de 6 dígitos estão incluídos</string>
     <string name="password_strength_very_weak">Muito fraca</string>
     <string name="password_strength_weak">Fraca</string>

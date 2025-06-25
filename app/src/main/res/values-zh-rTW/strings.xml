@@ -58,9 +58,12 @@
     <string name="pref_backups_reminder_summary">提示您備份保險箱以避免最後的變更狀態未被加入備份。</string>
     <string name="pref_backups_reminder_dialog_title">關閉備份提醒</string>
     <string name="pref_backups_versioning_strategy_title">備份策略</string>
+    <string name="pref_backups_versioning_strategy_single_backup">單一備份</string>
+    <string name="pref_backups_versioning_strategy_single_backup_warning">您選擇的備份方案並不可靠，我們也強烈反對。要是此單一備份有任何錯誤，將導致您失去唯一的備份。</string>
     <string name="pref_backups_versioning_strategy_dialog_title">選擇備份策略</string>
     <string name="pref_backups_location_title">備份位置</string>
     <string name="pref_backups_location_summary">備份將儲存在</string>
+    <string name="pref_backup_location_summary">備份將儲存於</string>
     <string name="pref_backups_trigger_title">觸發備份</string>
     <string name="pref_backups_trigger_summary">手動觸發備份</string>
     <string name="pref_backups_versions_title">保留的版本數</string>
@@ -68,6 +71,7 @@
     <plurals name="pref_backups_versions_summary">
         <item quantity="other">保留 %1$d 個備份</item>
     </plurals>
+    <string name="pref_backups_versions_infinite_summary">保留不限版本數的備份</string>
     <string name="pref_import_app_title">從其他應用程式匯入</string>
     <string name="pref_import_app_summary">從其他應用程式匯入驗證碼（需要系統管理員 root 權限）</string>
     <string name="pref_export_title">匯出</string>
@@ -102,6 +106,8 @@
     <string name="pref_encryption_summary">加密保險箱，並以密碼或生物特徵辨識解鎖。</string>
     <string name="pref_biometrics_title">生物特徵辨識解鎖</string>
     <string name="pref_biometrics_summary">允許使用生物特徵辨識驗證來解鎖保險箱</string>
+    <string name="pref_search_behavior_summary">在 %s 中搜尋</string>
+    <string name="pref_search_behavior_prompt">在以下項目中搜尋</string>
     <string name="pref_search_behavior_type_name">名稱</string>
     <string name="pref_search_behavior_type_issuer">簽發者</string>
     <string name="pref_search_behavior_type_note">備註</string>
@@ -115,10 +121,13 @@
     <string name="event_title_android_backup_created">備份已由 Android 建立</string>
     <string name="event_description_android_backup_created">保險箱備份已由 Android 成功建立</string>
     <string name="event_title_vault_exported">已匯出保險箱</string>
+    <string name="event_description_vault_exported">已匯出一份保險箱的複本</string>
     <string name="event_title_entry_shared">已分享項目</string>
     <string name="event_description_entry_shared">已分享一筆資料</string>
     <string name="event_title_vault_unlock_failed_password">密碼庫解鎖失敗（密碼）</string>
+    <string name="event_description_vault_unlock_failed_password">以密碼解鎖保險箱的失敗乙次</string>
     <string name="event_title_vault_unlock_failed_biometrics">密碼庫解鎖失敗（生物特徵辨識）</string>
+    <string name="event_description_vault_unlock_failed_biometrics">以生物特徵解鎖保險箱的失敗乙次</string>
     <string name="event_unknown">未知的事件類型</string>
     <string name="audit_log_entry_deleted">（已刪除）</string>
     <string name="today_at_time">今天 %1$s</string>
@@ -179,7 +188,7 @@
     <string name="counter">計數器</string>
     <string name="digits">位數</string>
     <string name="secret">密鑰</string>
-    <string name="scan">掃描QR碼</string>
+    <string name="scan">掃描 QR Code</string>
     <string name="scan_image">掃描圖片</string>
     <string name="enter_manually">手動輸入</string>
     <string name="set_up_biometric">設定生物特徵辨識解鎖</string>
@@ -203,9 +212,11 @@
     <string name="snackbar_authentication_method">請選擇驗證方式</string>
     <string name="encrypting_vault">正在加密保險箱</string>
     <string name="exporting_vault">正在匯出保險箱</string>
+    <string name="optimizing_icon">正在最佳化圖示</string>
+    <string name="optimizing_icon_multiple">正在最佳化圖示 %1$d/%2$d</string>
     <string name="reading_file">讀取檔案中</string>
     <string name="requesting_root_access">需要使用 root</string>
-    <string name="analyzing_qr">分析 QR code 中</string>
+    <string name="analyzing_qr">分析 QR Code 中</string>
     <string name="analyzing_qr_multiple">正在分析 QR Code %1$d/%2$d (%3$s)</string>
     <plurals name="added_new_entries">
         <item quantity="other">增加 %d 個條目進保險箱</item>
@@ -265,6 +276,7 @@
     <string name="file_not_found">錯誤：找不到檔案</string>
     <string name="reading_file_error">試圖開啟檔案時發生錯誤</string>
     <string name="app_lookup_error">錯誤：應用程式未安裝</string>
+    <string name="root_error">錯誤：無法取得 root 權限</string>
     <plurals name="imported_entries_count">
         <item quantity="other">已匯入 %d 個條目</item>
     </plurals>
@@ -278,16 +290,19 @@
     <string name="encryption_set_password_error">試圖設定密碼時發生錯誤。</string>
     <string name="encryption_enable_biometrics_error">嘗試啟用生物特徵辨識解鎖時發生錯誤。某些裝置的生物特徵辨識認證實作欠佳，您手中的裝置或許就是其中之一。考慮改用僅密碼設定。</string>
     <string name="no_cameras_available">鏡頭不可用</string>
-    <string name="read_qr_error">試圖讀取QR碼時出錯</string>
+    <string name="read_qr_error">試圖讀取 QR Code 時出錯</string>
     <string name="read_qr_error_phonefactor">Aegis 不相容於微軟私有的雙因素驗證演算法。請確保在 Microsoft 365 設定雙因素驗證時選擇「設定無通知的應用程式」。</string>
     <string name="partial_google_auth_import">偵測到不完整的 Google Authenticator 匯出</string>
+    <string name="partial_google_auth_import_warning">您的匯入中缺少部分 QR Code。詳情如下：\n\n<b>%s</b>\n\n您可以繼續匯入這份闕漏的匯出檔，但我們建議您在補齊 QR Code 後再嘗試匯入，以免無法存取憑證。</string>
     <string name="missing_qr_code_descriptor">• QR Code %d</string>
     <string name="import_google_auth_failure">匯入 Google Authenticator 失敗</string>
     <string name="unlocking_vault">解鎖保險箱</string>
     <string name="rename_group">重新命名群組</string>
+    <string name="no_group_selection">倘若一個條目並不歸類在任何群組內，它會被歸類進「無群組」。</string>
     <string name="remove_group">移除群組</string>
     <string name="remove_group_description">您確定要刪除這個群組嗎？此群組內的條目將自動移動到「無群組」。</string>
     <string name="remove_unused_groups">刪除未使用的群組</string>
+    <string name="remove_unused_groups_description">您確定要刪除所有沒有歸類任何條目的群組嗎？</string>
     <string name="remove_icon_pack">移除圖示合輯</string>
     <string name="details">詳細資訊</string>
     <string name="show_error_details">顯示錯誤詳細內容</string>
@@ -314,6 +329,13 @@
     <string name="preference_reset_usage_count_dialog">確定要將保險箱內所有條目的使用次數重設為零嗎？</string>
     <string name="note" comment="Users can add a note to an entry">備註</string>
     <string name="clear">清除</string>
+    <string name="dialog_duplicate_entry_title" comment="'Duplicate' is a noun here">複製條目</string>
+    <string name="dialog_duplicate_entry_message">本條目與其他既存條目具有相同的名稱或發行者。您想要怎麼做？</string>
+    <string name="dialog_duplicate_entry_overwrite_title">覆蓋既存條目（們）</string>
+    <string name="dialog_duplicate_entry_overwrite_subtitle">使用新的設定置換既存的條目（們），本更動無法復原</string>
+    <string name="dialog_duplicate_entry_suffix_title">增加尾註</string>
+    <string name="dialog_duplicate_entry_suffix_subtitle">為新的條目增加一個後綴詞，新的名稱如下：%s</string>
+    <string name="dialog_duplicate_entry_cancel_title">取消儲存</string>
     <string name="pref_highlight_entry_title">強調選取的憑證</string>
     <string name="pref_highlight_entry_summary">輕觸後暫時凸顯該驗證碼以與它者區分</string>
     <string name="pref_minimize_on_copy_title">複製後最小化</string>
@@ -338,7 +360,7 @@
     <string name="unknown_account_name">未知帳戶</string>
     <string name="unable_to_read_qrcode_file">無法從 %s 檔案讀取和處理 QR Code</string>
     <string name="unable_to_process_shared_text">無法將共用文本作為 OTP 進行處理</string>
-    <string name="unable_to_generate_qrcode">無法產生QR碼</string>
+    <string name="unable_to_generate_qrcode">無法產生 QR Code</string>
     <string name="select_picture">選擇圖片</string>
     <string name="select_icon">選擇圖示</string>
     <string name="tile_open_vault" comment="label for a quick settings tile that opens the app when tapped">打開保險箱</string>
@@ -367,12 +389,21 @@
     <string name="time_sync_warning_title">自動同步時間</string>
     <string name="time_sync_warning_message">僅幾秒鐘的偏差可能會導致驗證碼錯誤。您的裝置似乎未設定為自動同步時間。您現在要設定自動同步時間嗎？</string>
     <string name="time_sync_warning_disable">不要再次提醒。我知道我在做什麼。</string>
-    <string name="google_qr_export_unrelated">找到不相關的QR碼。請嘗試重新掃描。</string>
+    <string name="google_qr_export_unrelated">發現無關的 QR Code。請重新開啟掃描器。</string>
+    <plurals name="google_qr_export_scanned">
+        <item quantity="other">已掃描 %1$d/%2$d 個 QR Code</item>
+    </plurals>
+    <string name="google_qr_export_unexpected">預期 QR Code 個數 %1$d，然而已掃描個數 %2$d</string>
     <string name="backup_error_bar_message"><b>近期的保險箱備份失敗</b></string>
+    <string name="backup_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">        最近一次嘗試使用 %1$s 的備份行為失敗。本次備份發生於 %2$s。請檢查您的備份設定以確保備份能順利完成。
+    </string>
     <string name="backup_system_builtin">Aegis 內建的自動備份</string>
     <string name="backup_system_android">Android 雲端備份</string>
     <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">        最新的備份已過時 (%s)    
     </string>
+    <string name="backup_reminder_bar_message">        變更尚未備份。
+    </string>
+    <string name="backup_reminder_bar_dialog_title">變更尚未備份</string>
     <string name="backup_reminder_bar_dialog_summary">        尚未備份最近針對保險箱的操作。週期性的備份是避免遺失登入方法的最佳良方。請考慮在設定選單內啟用自動備份。
     </string>
     <string name="backup_reminder_bar_dialog_accept">設置備份</string>
@@ -390,14 +421,15 @@
     <string name="uncategorized">未分類</string>
     <string name="done">完成</string>
     <plurals name="qr_count">
-        <item quantity="other">%d / %d QR 圖碼</item>
+        <item quantity="other">%d / %d QR Code</item>
     </plurals>
     <string name="next">下一個</string>
     <string name="previous">上一個</string>
     <string name="copy_uri">複製 URI</string>
     <string name="unable_to_copy_uri_to_clipboard">無法複製 URI 到剪貼簿</string>
     <string name="uri_copied_to_clipboard">URI 已複製到剪貼簿</string>
-    <string name="transfer_entry_description">使用您想轉移至其他驗證器應用程式，請掃描此QR碼</string>
+    <string name="transfer_entry_description">請使用您欲轉移至的驗證器應用程式掃描此 QR Code</string>
+    <string name="transfer_entry_brightness">觸碰 QR code 使螢幕達到最大亮度</string>
     <string name="google_auth_compatible_transfer_description">請使用 Aegis 或 Google Authenticator 掃描以下 QR Code。\n\n由於 Google Authenticator 程式的限制，將僅包含使用 SHA1 並產生六位數密碼的 TOTP &amp; HOTP 憑證</string>
     <string name="password_strength_very_weak">很弱</string>
     <string name="password_strength_weak">弱</string>
@@ -412,7 +444,7 @@
     <string name="title_activity_transfer">轉移條目</string>
     <string name="title_activity_about">關於</string>
     <string name="title_activity_edit_entry">編輯條目</string>
-    <string name="title_activity_scan_qr">掃描QR碼</string>
+    <string name="title_activity_scan_qr">掃描 QR Code</string>
     <string name="title_activity_import_entries">匯入條目</string>
     <string name="title_activity_assign_icons">分配圖示</string>
     <string name="title_activity_licenses">第三方許可證</string>

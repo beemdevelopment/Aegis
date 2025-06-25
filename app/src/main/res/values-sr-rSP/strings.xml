@@ -95,7 +95,6 @@
         <item quantity="few">Прескочено %d некомпатибилних уноса</item>
         <item quantity="other">Прескочено %d некомпатибилних уноса</item>
     </plurals>
-    <string name="pref_password_reminder_summary">Приказивање подсетника о лозинци да бисте унели лозинку, тако да је не заборавите.</string>
     <string name="pref_password_reminder_summary_disabled">Онемогућено</string>
     <string name="pref_secure_screen_title">Безбедност екрана</string>
     <string name="pref_secure_screen_summary">Блокирај снимке екрана и остале покушаје снимања екрана у апликацији</string>

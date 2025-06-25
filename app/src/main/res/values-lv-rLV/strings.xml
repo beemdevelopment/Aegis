@@ -20,7 +20,7 @@
     <string name="pref_cat_appearance_app">Lietotne</string>
     <string name="pref_cat_appearance_entries">Ieraksti</string>
     <string name="pref_cat_backups_android">Android</string>
-    <string name="pref_cat_backups_auto">Automātiska dublēšana</string>
+    <string name="pref_cat_backups_auto">Automātiska rezerves kopēšana</string>
     <string name="pref_section_behavior_title">Uzvedība</string>
     <string name="pref_section_behavior_summary">Pielāgot uzvedību, kad notiek mijiedarbība ar ierakstu sarakstu.</string>
     <string name="pref_section_appearance_title">Izskats</string>
@@ -32,7 +32,7 @@
     <string name="pref_section_audit_log_title">Audita žurnāls</string>
     <string name="pref_section_audit_log_summary">Saraksts, kurā ir ierakstīti visi svarīgie notiekumi, kas ir bijuši lietotnē.</string>
     <string name="pref_section_backups_title">Rezerves kopijas</string>
-    <string name="pref_section_backups_summary">Uzstādīt automātisko dublēšanu paša izvēlētā vietā vai iespējot dalību Android mākoņa dublēšanas sistēmā.</string>
+    <string name="pref_section_backups_summary">Uzstādīt automātisko rezerves kopēšanu paša izvēlētā vietā vai iespējot dalību Android mākoņa dublēšanas sistēmā.</string>
     <string name="pref_section_icon_packs">Ikonu pakotnes</string>
     <string name="pref_section_icon_packs_summary">Pārvaldīt un ievietot ikonu pakotnes</string>
     <string name="pref_select_theme_title">Izskats</string>
@@ -56,14 +56,14 @@
     <string name="pref_import_file_title">Ievietot no datnes</string>
     <string name="pref_import_file_summary">Ievietot kodus no datnes</string>
     <string name="pref_android_backups_title">Android mākoņa rezerves kopijas</string>
-    <string name="pref_android_backups_summary">Ļaut Android mākoņa dublēšanas sistēmai iekļaut Aegis glabātavu rezerves kopijās. Tas tiek nodrošināts tikai šifrētām glabātavām.</string>
-    <string name="pref_android_backups_hint"><i>No ierīces uz ierīci (angliski Device-to-device (D2D)) rezerves kopijas vienmēr ir atļautas, neatkarīgi no augšup esošā iestatījuma</i></string>
-    <string name="pref_backups_title">Automātiski dublēt glabātavu</string>
+    <string name="pref_android_backups_summary">Ļaut Android mākoņa rezerves kopēšanas sistēmai iekļaut Aegis glabātavu rezerves kopijās. Tas tiek nodrošināts tikai šifrētām glabātavām.</string>
+    <string name="pref_android_backups_hint"><i>No ierīces uz ierīci (angliski Device-to-device (D2D)) rezerves kopijas vienmēr ir atļautas, neatkarīgi no augstāk esošā iestatījuma</i></string>
+    <string name="pref_backups_title">Automātiski veikt glabātavas rezerves kopēšanu</string>
     <string name="pref_backups_summary">Automātiski izveidot glabātavas rezerves kopijas ārējā krātuvē, kad tiek veiktas izmaiņas. Tas tiek nodrošināts tikai šifrētām glabātavām.</string>
     <string name="pref_backups_reminder_title">Rezerves kopiju veidošanas atgādinājums</string>
-    <string name="pref_backups_reminder_summary">Rādīt glabātavas rezerves kopijas izveidošanas atgādinājumu gadījumā, ja pēdējās izmaiņas nav dublētas.</string>
+    <string name="pref_backups_reminder_summary">Rādīt glabātavas rezerves kopijas izveidošanas atgādinājumu gadījumā, ja pēdējās izmaiņas nav iekļautas rezerves kopijās.</string>
     <string name="pref_backups_reminder_dialog_title">Atspējot rezerves kopiju izveidošanas atgādinājumu</string>
-    <string name="pref_backups_reminder_dialog_summary">Šī atgādinājuma atspējošana nozīmē, ka Aegis neziņos, vai ir vai nav izmaiņu, kuras vēl nav dublētas. Tas rada iespējamību zaudēt piekļuvi kodiem. Vai tiešām atspējot atgādinājumu?</string>
+    <string name="pref_backups_reminder_dialog_summary">Šī atgādinājuma atspējošana nozīmē, ka Aegis neziņos, vai ir vai nav izmaiņu, kuras vēl nav iekļautas rezerves kopijās. Tas rada iespējamību zaudēt piekļuvi kodiem. Vai tiešām atspējot atgādinājumu?</string>
     <string name="pref_backups_versioning_strategy_title">Rezerves kopiju stratēģija</string>
     <string name="pref_backups_versioning_strategy_keep_x_versions">Paturēt noteiktu versiju skaitu</string>
     <string name="pref_backups_versioning_strategy_single_backup">Viena rezerves kopija</string>
@@ -72,8 +72,8 @@
     <string name="pref_backups_location_title">Rezerves kopiju atrašanās vieta</string>
     <string name="pref_backups_location_summary">Rezerves kopijas tiks glabātas</string>
     <string name="pref_backup_location_summary">Rezerves kopijas tiks glabātas</string>
-    <string name="pref_backups_trigger_title">Veikt dublēšanu</string>
-    <string name="pref_backups_trigger_summary">Pašrocīgi veikt dublēšanu</string>
+    <string name="pref_backups_trigger_title">Izraisīt rezerves kopēšanu</string>
+    <string name="pref_backups_trigger_summary">Pašrocīgi izraisīt rezerves kopēšanu</string>
     <string name="pref_backups_versions_title">Paturamo rezerves kopiju skaits</string>
     <string name="pref_backups_versions_infinite">\u221E</string>
     <plurals name="pref_backups_versions_summary">
@@ -109,11 +109,11 @@
     <string name="pref_auto_lock_type_back_button">Ir nospiesta poga \"Atpakaļ\"</string>
     <string name="pref_auto_lock_type_minimize">Lietotne ir samazināta</string>
     <string name="pref_auto_lock_type_device_lock">Ierīce ir aizslēgta</string>
-    <string name="pref_backup_password_category">Dublēšana un izgūšana</string>
-    <string name="pref_backup_password_title">Atsevišķa dublēšanas un izgūšanas parole</string>
+    <string name="pref_backup_password_category">Rezerves kopēšana un izgūšana</string>
+    <string name="pref_backup_password_title">Atsevišķa rezerves kopēšanas un izgūšanas parole</string>
     <string name="pref_backup_password_summary">Ja iespējots, paroli, kas tiek izmantota lietotnes atslēgšanai, nevarēs izmantot rezerves kopiju un izgūšanas datņu atšifrēšanai.</string>
-    <string name="pref_backup_password_change_title">Mainīt dublēšanas un izgūšanas paroli</string>
-    <string name="pref_backup_password_change_summary">Iestatīt jaunu paroli, kas tiks izmantota, lai šifrētu glabātavu dublēšanas un izgūšanas laikā.</string>
+    <string name="pref_backup_password_change_title">Mainīt rezerves kopēšanas un izgūšanas paroli</string>
+    <string name="pref_backup_password_change_summary">Iestatīt jaunu paroli, kas tiks izmantota, lai šifrētu glabātavu rezerves kopēšanas un izgūšanas laikā.</string>
     <string name="pref_encryption_title">Šifrēšana</string>
     <string name="pref_encryption_summary">Šifrēt glabātavu un atslēgt to ar paroli vai biometriju</string>
     <string name="pref_biometrics_title">Atslēgšana ar biometriju</string>
@@ -132,7 +132,7 @@
     <string name="event_description_vault_unlocked">Glabātava tika sekmīgi atslēgta</string>
     <string name="event_title_backup_created">Rezerves kopija izveidota</string>
     <string name="event_description_backup_created">Glabātavas rezerves kopija tika sekmīgi izveidota</string>
-    <string name="event_title_android_backup_created">Android izveidota rezerves kopiju</string>
+    <string name="event_title_android_backup_created">Android izveidota rezerves kopija</string>
     <string name="event_description_android_backup_created">Android sekmīgi izveidoja glabātavas rezerves kopiju</string>
     <string name="event_title_vault_exported">Glabātava izgūta</string>
     <string name="event_description_vault_exported">Tika izgūta glabātavas kopija</string>
@@ -190,7 +190,7 @@
     <string name="password_reminder_freq_biweekly">Divreiz nedēļā</string>
     <string name="password_reminder_freq_monthly">Ik mēnesi</string>
     <string name="password_reminder_freq_quarterly">Ik ceturksni</string>
-    <string name="enter_password_2fas_message">Izskatās, ka šis 2FAS dublējums ir šifrēts. Lūgums zemāk ievadīt paroli.</string>
+    <string name="enter_password_2fas_message">Izskatās, ka šī 2FAS rezerves kopija ir šifrēta. Lūgums zemāk ievadīt paroli.</string>
     <string name="enter_password_authy_message">Izskatās, ka Authy kodi ir šifrēti. Lūgums aizvērt Aegis, atvērt Authy un atslēgt kodus ar paroli. Aegis var arī mēģināt atšifrēt Authy kodus, ja tiek ievadīta parole zemāk esošajā laukā.</string>
     <string name="enter_password_aegis_title">Lūgums ievadīt ievietošanas paroli</string>
     <string name="period_hint">Laika posms (sekundes)</string>
@@ -273,11 +273,11 @@
     <string name="biometric_decrypt_error">Atgadījusies kļūda glabātavas atšifrēšanā ar biometrisko autentificēšanos. Tā parasti notiek tikai tad, ja tika mainīti ierīces drošības iestatījumi. Lūgums atslēgt glabātavu ar paroli un atkārtoti uzstādīt biometrisko autentificēšanos Aegis iestatījumos.</string>
     <string name="biometric_init_error">Atgadījusies kļūda biometriskās autentificēšanās sagatavošanā. Tā parasti notiek tikai tad, ja tika mainīti ierīces drošības iestatījumi. Lūgums atslēgt glabātavu ar paroli un atkārtoti uzstādīt biometrisko autentificēšanos Aegis iestatījumos.</string>
     <string name="disable_encryption">Atspējot šifrēšanu</string>
-    <string name="disable_encryption_description">Vai tiešām atspējot šifrēšanu? Tādējādi glabātava tiks glabāta kā vienkāršs teksts. <b>Tiks atspējota arī automātiskā dublēšana</b>.</string>
+    <string name="disable_encryption_description">Vai tiešām atspējot šifrēšanu? Tādējādi glabātava tiks glabāta kā vienkāršs teksts. <b>Tiks atspējota arī automātiskā rezerves kopēšana</b>.</string>
     <string name="enable_encryption_error">Atgadījusies kļūda šifrēšanas iespējošanā</string>
     <string name="disable_encryption_error">Atgadījusies kļūda šifrēšanas atspējošanā</string>
     <string name="backup_successful">Rezerves kopēšana tika sekmīgi ieplānota</string>
-    <string name="backup_error">Atgadījusies kļūda dublējuma izveidošanā</string>
+    <string name="backup_error">Atgadījusies kļūda rezerves kopijas izveidošanā</string>
     <string name="backup_status_success">Visjaunākā sekmīgā rezerves kopija: %s</string>
     <string name="backup_status_failed">Visjaunākā neizdevusies rezerves kopija: %s</string>
     <string name="backup_status_none">Vēl nav veikta neviena rezerves kopēšana</string>
@@ -459,24 +459,24 @@
         <item quantity="other">Nolasīti %1$d/%2$d QR attēliem</item>
     </plurals>
     <string name="google_qr_export_unexpected">Sagaidāms kvadrātkods #%1$d, bet tā vietā nolasīts #%2$d</string>
-    <string name="backup_error_bar_message"><b>Glabātavas dublēšana nesen neizdevās</b></string>
+    <string name="backup_error_bar_message"><b>Glabātavas rezerves kopēšana nesen neizdevās</b></string>
     <string name="backup_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">        Nesens rezerves kopijas veidošanas mēģinājums, izmantojot %1$s, neizdevās, jo atgadījās kļūda. Rezerves kopiju tika mēģināts izveidot %2$s. Lūgums pārskatīt rezerves kopēšanas iestatījumus, lai pārliecinātos, ka var sekmīgi veikt rezerves kopiju izveidošanu.
     </string>
-    <string name="backup_permission_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">        Nesens glabātavas dublēšanas mēģinājums izmantojot %1$s neizdevās, jo Aegis nebija atļaujas rakstīt rezerves kopijas paredzētajā vietā. Dublēšana tika mēģināta %2$s. Šī kļūda var atgadīties, ja tika pārvietota vai pāsaukta rezerves kopiju atrašanās vieta vai ja nesen Aegis tika atjaunots no rezerves kopijas. Lūgums atkārtoti iestatīt rezerves kopiju atrašanās vietu.
+    <string name="backup_permission_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">        Nesens glabātavas rezerves kopēšanas mēģinājums ar %1$s neizdevās, jo Aegis nebija atļaujas rakstīt rezerves kopijas paredzētajā vietā. Rezerves kopēšana tika mēģināta %2$s. Šī kļūda var atgadīties, ja tika pārvietota vai pāsaukta rezerves kopiju atrašanās vieta vai ja nesen Aegis tika atjaunots no rezerves kopijas. Lūgums atkārtoti iestatīt rezerves kopiju atrašanās vietu.
     </string>
-    <string name="backup_system_builtin">Aegis iebūvētā automātisko rezerves kopiju veidošana</string>
+    <string name="backup_system_builtin">Aegis iebūvētā automātiskā rezerves kopēšana</string>
     <string name="backup_system_android">Android mākoņa rezerves kopiju sistēma</string>
     <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">        Jaunākā rezerves kopija ir novecojusi (%s)
     </string>
-    <string name="backup_reminder_bar_message">        Izmaiņām nav rezerves kopiju
+    <string name="backup_reminder_bar_message">        Izmaiņas nav rezerves kopijās
     </string>
-    <string name="backup_reminder_bar_dialog_title">Izmaiņām nav rezerves kopiju</string>
-    <string name="backup_reminder_bar_dialog_summary">        Nesenas glabātavas izmaiņas vēl nav dublētas. Ir svarīgi laiku pa laikam veidot rezerves kopijas, lai novērstu kontu piekļuves zaudēšanu. Lūgums apsvērt iestatīt automātisko rezerves kopiju veidošanu iestatījumu izvēlnē.
+    <string name="backup_reminder_bar_dialog_title">Izmaiņās nav rezerves kopijās</string>
+    <string name="backup_reminder_bar_dialog_summary">        Nesenas glabātavas izmaiņas vēl nav rezerves kopijās. Ir svarīgi laiku pa laikam veidot rezerves kopijas, lai novērstu kontu piekļuves zaudēšanu. Lūgums apsvērt iestatīt automātisko rezerves kopiju veidošanu iestatījumu izvēlnē.
     </string>
     <string name="backup_reminder_bar_dialog_accept">Iestatīt rezerves kopiju veidošanu</string>
     <string name="backup_plaintext_export_warning"><b>Glabātava nesen tika izgūta kā vienkāršs teksts</b></string>
     <string name="pref_show_plaintext_warning_hint">Vairs nerādīt šo brīdinājumu</string>
-    <string name="backup_plaintext_warning_explanation">Šis brīdinājums tiek parādīts, jo nesen tika izgūta nešifrēta glabātavas kopija. Lai nodrošinātu kodu drošību, ir ieteicams izdzēst šo datni, tiklīdz tas vairs nav nepieciešams.</string>
+    <string name="backup_plaintext_warning_explanation">Šis brīdinājums tiek parādīts, jo nesen tika izgūta nešifrēta glabātavas kopija. Lai nodrošinātu kodu drošību, ir ieteicams izdzēst šo datni, tiklīdz tā vairs nav nepieciešama.</string>
     <string name="switch_camera">Pārslēgt kameru</string>
     <string name="empty_list">Nav kodu, ko attēlot. Ierakstus var pievienot, piesitot apakšējā labajā stūrī esošajai \"+\" zīmei</string>
     <string name="empty_list_title">Nav atrastu ierakstu</string>
@@ -531,11 +531,11 @@
         <item quantity="other">Noņemta atzīme %d iespējamiem dublikātiem. Lūgums pārskatīt ierakstu sarakstu.</item>
     </plurals>
     <string name="importer_help_2fas">Jāiesniedz 2FAS Authenticator izgūšanas datne.</string>
-    <string name="importer_help_aegis">Jāiesniedz Aegis izgūšanas/rezerves kopijas datne.</string>
-    <string name="importer_help_authenticator_plus">Jāiesniedz Authenticator Plus izgūšanas datne, kas ir iegūta ar <b>Iestatījumi -&gt; Dublēšana un atjaunošana -&gt; Izgūt kā tekstu un HTML</b>.</string>
+    <string name="importer_help_aegis">Jāiesniedz Aegis izgūšanas / rezerves kopijas datne.</string>
+    <string name="importer_help_authenticator_plus">Jāiesniedz Authenticator Plus izgūšanas datne, kas ir iegūta ar <b>Iestatījumi -&gt; Rezerves kopēšana un atjaunošana -&gt; Izgūt kā tekstu un HTML</b>.</string>
     <string name="importer_help_authy">Jāiesniedz <b>/data/data/com.authy.authy/shared_prefs/com.authy.storage.tokens.authenticator.xml</b> kopija, kas atrodas iekšējās krātuves Authy mapē.</string>
-    <string name="importer_help_andotp">Jāiesniedz andOTP izgūšanas/rezerves kopijas datne.</string>
-    <string name="importer_help_bitwarden">Jāiesniedz Bitwarden izgūšanas/rezerves kopijas datne. Šifrētas datnes netiek atbalstītas.</string>
+    <string name="importer_help_andotp">Jāiesniedz andOTP izgūšanas / rezerves kopijas datne.</string>
+    <string name="importer_help_bitwarden">Jāiesniedz Bitwarden izgūšanas / rezerves kopijas datne. Šifrētas datnes netiek atbalstītas.</string>
     <string name="importer_help_battle_net_authenticator">Jāiesniedz <b>/data/data/com.blizzard.messenger/shared_prefs/com.blizzard.messenger.authenticator_preferences.xml</b> kopija, kas atrodas iekšējās krātuves Battle.net Authenticator mapē.</string>
     <string name="importer_help_duo">Jāiesniedz <b>/data/data/com.duosecurity.duomobile/files/duokit/accounts.json</b> kopija, kas atrodas iekšējās krātuves DUO mapē.</string>
     <string name="importer_help_ente_auth">Jāiesniedz Ente Auth izgūšanas datne. Pašlaik tiek atbalstītas tikai nešifrētas datnes.</string>

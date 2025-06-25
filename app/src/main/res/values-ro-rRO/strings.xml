@@ -367,6 +367,15 @@
     <string name="preference_reset_usage_count_dialog">Sunteţi sigur că doriţi să setaţi numărul de utilizări pentru fiecare intrare din seif la 0?</string>
     <string name="note" comment="Users can add a note to an entry">Notă</string>
     <string name="clear">Șterge</string>
+    <string name="dialog_duplicate_entry_title" comment="'Duplicate' is a noun here">Intrare duplicat</string>
+    <string name="dialog_duplicate_entry_message">Această intrare are același nume și emitent ca una sau mai multe intrări existente. Cum ați dori să continuați?</string>
+    <string name="dialog_duplicate_entry_overwrite_title">Rescrie intrarea/intrările existente</string>
+    <string name="dialog_duplicate_entry_overwrite_subtitle">Înlocuiţi intrarea sau intrările existente cu cea nouă. Această acţiune nu poate fi anulată</string>
+    <string name="dialog_duplicate_entry_suffix_title">Adaugă sufix</string>
+    <string name="dialog_duplicate_entry_suffix_subtitle">Adaugă un sufix la numele acestei noi intrări. Noul nume va fi: %s</string>
+    <string name="dialog_duplicate_entry_cancel_title">Anulează salvarea</string>
+    <string name="dialog_duplicate_entry_cancel_subtitle">Vă permite să editaţi intrarea înainte de a încerca să o salvaţi din nou</string>
+    <string name="dialog_duplicate_entry_overwrite_dialog_title">Confirmă ștergerea</string>
     <string name="pref_highlight_entry_title">Evidențiază simbolurile când apăsați</string>
     <string name="pref_highlight_entry_summary">Fă token-urile mai ușor să se distingă între ele prin evidențierea lor temporară atunci când sunt apăsate</string>
     <string name="pref_groups_multiselect_title">Grupuri multiple</string>

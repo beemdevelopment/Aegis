@@ -363,6 +363,19 @@
     <string name="preference_reset_usage_count_dialog">Сигурни ли сте, че желаете броя на използванията на всеки запис в хранилището да бъде нулиран?</string>
     <string name="note" comment="Users can add a note to an entry">Бележка</string>
     <string name="clear">Изчистване</string>
+    <string name="dialog_duplicate_entry_title" comment="'Duplicate' is a noun here">Дублирано</string>
+    <string name="dialog_duplicate_entry_message">Записът има същото име и издател като вече съществуващи записи. Как да продължим?</string>
+    <string name="dialog_duplicate_entry_overwrite_title">Презаписване на съществуващите записи</string>
+    <string name="dialog_duplicate_entry_overwrite_subtitle">Заменя съществуващите записи с новия. Действието е необратимо</string>
+    <string name="dialog_duplicate_entry_suffix_title">Добавяне на наставка</string>
+    <string name="dialog_duplicate_entry_suffix_subtitle">Добавяне на наставка към името на записа. Новото име ще бъде: %s</string>
+    <string name="dialog_duplicate_entry_cancel_title">Отказ от запазването</string>
+    <string name="dialog_duplicate_entry_cancel_subtitle">Дава възможност за повторна промяна преди запазване</string>
+    <plurals name="dialog_duplicate_entry_overwrite_dialog_message">
+        <item quantity="one">Желаете ли да бъде премахнат %d елемент с име: \n\n%s - %s</item>
+        <item quantity="other">Желаете ли да бъдат премахнати %d елемента с име: \n\n%s - %s</item>
+    </plurals>
+    <string name="dialog_duplicate_entry_overwrite_dialog_title">Потвърждаване на премахване</string>
     <string name="pref_haptic_feedback_summary">Кара устройството да вибрира при презареждане на кодовете</string>
     <string name="pref_haptic_feedback_title">Тактилна обратна връзка</string>
     <string name="pref_highlight_entry_title">Осветяване на запис при докосване</string>
