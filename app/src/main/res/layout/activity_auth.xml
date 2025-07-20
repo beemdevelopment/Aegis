@@ -42,19 +42,39 @@
                 android:orientation="vertical">
 
                 <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/layout_standard"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingBottom="12dp"
                     app:hintEnabled="false"
                     app:passwordToggleEnabled="true"
-                    app:passwordToggleTint="?attr/colorOnSurface">
+                    app:passwordToggleTint="?attr/colorOnSurface"
+                    android:visibility="visible">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/text_password"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="@string/password"
-                        android:inputType="textPassword" />
+                        android:inputType="textPassword"/>
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/layout_no_autofill"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="12dp"
+                    app:hintEnabled="false"
+                    app:passwordToggleEnabled="true"
+                    app:passwordToggleTint="?attr/colorOnSurface"
+                    android:visibility="gone">
+
+                    <com.beemdevelopment.aegis.ui.components.NoAutofillEditText
+                        android:id="@+id/text_password_no_autofill"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/password"
+                        android:inputType="numberPassword"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <LinearLayout

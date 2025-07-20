@@ -42,6 +42,7 @@ import com.beemdevelopment.aegis.vault.slots.SlotException;
 import com.beemdevelopment.aegis.vault.slots.SlotIntegrityException;
 import com.beemdevelopment.aegis.vault.slots.SlotList;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.List;
 
@@ -72,7 +73,22 @@ public class AuthActivity extends AegisActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_auth);
-        _textPassword = findViewById(R.id.text_password);
+
+        TextInputLayout layoutStandard = findViewById(R.id.layout_standard);
+        TextInputLayout layoutNoAutofill = findViewById(R.id.layout_no_autofill);
+        EditText editStandard = findViewById(R.id.text_password);
+        EditText editNoAutofill = findViewById(R.id.text_password_no_autofill);
+
+        if (_prefs.isPinKeyboardEnabled()) {
+            layoutStandard.setVisibility(View.GONE);
+            layoutNoAutofill.setVisibility(View.VISIBLE);
+            _textPassword = editNoAutofill;
+        } else {
+            layoutStandard.setVisibility(View.VISIBLE);
+            layoutNoAutofill.setVisibility(View.GONE);
+            _textPassword = editStandard;
+        }
+
         LinearLayout boxBiometricInfo = findViewById(R.id.box_biometric_info);
         _decryptButton = findViewById(R.id.button_decrypt);
         TextView biometricsButton = findViewById(R.id.button_biometrics);
@@ -85,10 +101,6 @@ public class AuthActivity extends AegisActivity {
             }
             return false;
         });
-
-        if (_prefs.isPinKeyboardEnabled()) {
-            _textPassword.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_VARIATION_PASSWORD);
-        }
 
         Intent intent = getIntent();
         if (savedInstanceState == null) {
