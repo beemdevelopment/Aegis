@@ -390,6 +390,12 @@ public class DatabaseImporterTest {
         checkImportedEntries(entries);
     }
 
+    @Test
+    public void testImportProtonAuthenticator() throws IOException, DatabaseImporterException, OtpInfoException {
+        List<VaultEntry> entries = importPlain(ProtonAuthenticatorImporter.class, "proton_authenticator.json");
+        checkImportedEntries(entries);
+    }
+
     private List<VaultEntry> importPlain(Class<? extends DatabaseImporter> type, String resName)
             throws IOException, DatabaseImporterException {
         return importPlain(type, resName, false);
