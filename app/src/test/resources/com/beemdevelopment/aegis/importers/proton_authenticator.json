@@ -1,0 +1,32 @@
+{
+  "version": 1,
+  "entries": [
+    {
+      "id": "a19e0019-47e3-4d3b-af63-6dad0cb49e31",
+      "content": {
+        "uri": "otpauth://totp/Deno:Mason?secret=4SJHB4GSD43FZBAI7C2HLRJGPQ&issuer=Deno&algorithm=SHA1&digits=6&period=30",
+        "entry_type": "Totp",
+        "name": "Mason"
+      },
+      "note": null
+    },
+    {
+      "id": "4603c576-5d93-4c7f-8c26-bed6dc4493fc",
+      "content": {
+        "uri": "otpauth://totp/SPDX:James?secret=5OM4WOOGPLQEF6UGN3CPEOOLWU&issuer=SPDX&algorithm=SHA256&digits=7&period=20",
+        "entry_type": "Totp",
+        "name": "James"
+      },
+      "note": null
+    },
+    {
+      "id": "4fae25ae-16ed-4f15-a887-3bbb50b34d5e",
+      "content": {
+        "uri": "otpauth://totp/Airbnb:Elijah?secret=7ELGJSGXNCCTV3O6LKJWYFV2RA&issuer=Airbnb&algorithm=SHA512&digits=8&period=50",
+        "entry_type": "Totp",
+        "name": "Elijah"
+      },
+      "note": null
+    }
+  ]
+}
