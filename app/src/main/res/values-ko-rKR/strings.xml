@@ -355,6 +355,20 @@
     <string name="preference_reset_usage_count_dialog">보관함 속 모든 항목의 사용횟수를 0으로 초기화하시겠나요?</string>
     <string name="note" comment="Users can add a note to an entry">메모</string>
     <string name="clear">지우기</string>
+    <string name="dialog_duplicate_entry_title" comment="'Duplicate' is a noun here">항목 복제</string>
+    <string name="dialog_duplicate_entry_message">이 항목과 같은 공급자와 이름을 가진 항목이 존재합니다. 진행하시겠나요?</string>
+    <string name="dialog_duplicate_entry_overwrite_title">존재하는 항목 덮어쓰기</string>
+    <string name="dialog_duplicate_entry_overwrite_subtitle">기존에 존재하던 항목을 덮어씁니다. 다시 되돌릴 수 없습니다</string>
+    <string name="dialog_duplicate_entry_suffix_title">접미사 추가</string>
+    <string name="dialog_duplicate_entry_suffix_subtitle">새로운 항목 이름에 접미사를 추가합니다. 앞으로의 이렇게 됩니다: %s</string>
+    <string name="dialog_duplicate_entry_cancel_title">저장 취소</string>
+    <string name="dialog_duplicate_entry_cancel_subtitle">저장을 다시하기 전에 편집할 수 있게 합니다</string>
+    <plurals name="dialog_duplicate_entry_overwrite_dialog_message">
+        <item quantity="other">다음 이름을 가진 %d개 항목을 삭제하시겠나요?\n\n%s - %s</item>
+    </plurals>
+    <string name="dialog_duplicate_entry_overwrite_dialog_title">삭제 확인</string>
+    <string name="pref_haptic_feedback_summary">코드가 갱신될 때 기기가 진동합니다</string>
+    <string name="pref_haptic_feedback_title">햅틱 피드백</string>
     <string name="pref_highlight_entry_title">터치되었을 때 토큰 강조하기</string>
     <string name="pref_highlight_entry_summary">터치되었을 때 일시적으로 토큰을 강조하여 구분하기 쉽게 합니다</string>
     <string name="pref_groups_multiselect_title">다중 그룹 선택</string>

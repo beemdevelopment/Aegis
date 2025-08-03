@@ -43,14 +43,14 @@
     <string name="pref_show_icons_title">Показывать значки</string>
     <string name="pref_show_icons_summary">Показывать значки рядом с каждой записью</string>
     <string name="pref_code_group_size_title">Перегруппировка цифр кода</string>
-    <string name="pref_code_group_size_summary">Выберите количество цифр для группировки кодов</string>
-    <string name="pref_account_name_position_title">Показывать имя учётной записи</string>
+    <string name="pref_code_group_size_summary">Выбор количества цифр для группировки кодов</string>
+    <string name="pref_account_name_position_title">Показывать название учётной записи</string>
     <string name="pref_show_next_code_title">Показывать следующий код</string>
     <string name="pref_show_next_code_summary">Заранее вычислять и показывать следующий код</string>
-    <string name="pref_expiration_state_title">Индикация окончания срока действия кодов</string>
+    <string name="pref_expiration_state_title">Индикация окончания действия кодов</string>
     <string name="pref_expiration_state_summary">Изменять цвет и начинать мигание кодов, когда срок их действия истекает</string>
     <string name="pref_expiration_state_fallback">Изменять цвет кодов, когда срок их действия истекает</string>
-    <string name="pref_shared_issuer_account_name_title">Показывать имя учётной записи только при необходимости</string>
+    <string name="pref_shared_issuer_account_name_title">Показывать учётную запись только при необходимости</string>
     <string name="pref_shared_issuer_account_name_summary">Показывать названия учётных записей только в случае, если у них один эмитент. Названия других учётных записей не будут отображаться.</string>
     <string name="pref_account_name_position_summary_override">Эта настройка переопределяется плиточным режимом просмотра. Название учётной записи будет отображаться под эмитентом.</string>
     <string name="pref_import_file_title">Импорт из файла</string>
@@ -374,7 +374,7 @@
     <string name="new_group">Новая группа…</string>
     <string name="group">Группа</string>
     <string name="group_name_hint">Название группы</string>
-    <string name="preference_manage_groups">Редактировать группы</string>
+    <string name="preference_manage_groups">Управление группами</string>
     <string name="preference_manage_groups_summary">Редактирование и удаление ваших групп</string>
     <string name="preference_reset_usage_count">Сброс счётчика использований</string>
     <string name="preference_reset_usage_count_summary">Сброс количества использований каждой записи в хранилище</string>
@@ -560,6 +560,7 @@
     <string name="importer_help_google_authenticator"><b>Поддерживаются только файлы баз данных Google Authenticator версии 5.10 и более ранних</b>.\n\nНеобходима копия файла <b>/data/data/com.google.android.apps.authenticator2/databases/databases</b>, расположенного в папке «Google Authenticator» во внутренней памяти.</string>
     <string name="importer_help_microsoft_authenticator">Необходима копия файла <b>/data/data/com.azure.authenticator/databases/PhoneFactor</b>, расположенного в папке «Microsoft Authenticator» во внутренней памяти.</string>
     <string name="importer_help_plain_text">Необходим текстовый файл с URI Google Authenticator в каждой строке.</string>
+    <string name="importer_help_proton_authenticator">Необходим файл экспорта Proton Authenticator, полученный через <b>«Настройки» → «Экспорт»</b>.</string>
     <string name="importer_help_steam"><b>Steam v3.0 и новее не поддерживаются</b>. 
 Необходима копия файла <b>/data/data/com.valvesoftware.android.steam.community/files/Steamguard-*.json</b>, расположенного в папке «Steam» во внутренней памяти.</string>
     <string name="importer_help_stratum">Необходим файл экспорта Stratum, полученный через <b>«Настройки» → «Резервное копирование» → «Резервное копирование в зашифрованный файл (рекомендуется)»</b>.</string>

@@ -532,6 +532,7 @@
     <string name="importer_help_google_authenticator"><b>Alleen database-bestanden van Google Authenticator v5.10 en eerder worden ondersteund</b>.\n\nLever een kopie aan van <b>/data/data/com.google.android.apps.authenticator2/databases/databases</b>, geplaatst in de interne opslagmap van Google Authenticator.</string>
     <string name="importer_help_microsoft_authenticator">Lever een kopie aan van <b>/data/data/com.azure.authenticator/databases/PhoneFactor</b>, geplaatst in de interne opslagmap van Microsoft Authenticator.</string>
     <string name="importer_help_plain_text">Lever een tekstbestand aan met een Google Authenticator URI op elke regel.</string>
+    <string name="importer_help_proton_authenticator">Lever een Proton Authenticator-exportbestand (.json) verkregen via <b>Instellingen -&gt; Exporteren</b>.</string>
     <string name="importer_help_steam"><b>Steam v3.0 en nieuwer worden niet ondersteund</b>. Zorg voor een kopie van <b>/data/data/com.valvesoftware.android.steam.community/files/Steamguard-*.json</b>, te vinden in de interne opslagmap van Steam.</string>
     <string name="importer_help_stratum">Lever een Stratum-exportbestand aan verkregen via <b>Instellingen -&gt; Back-up -&gt; Back-up naar versleuteld bestand (aanbevolen)</b>.</string>
     <string name="importer_help_totp_authenticator">Lever een TOTP Authenticator-exportbestand aan.</string>

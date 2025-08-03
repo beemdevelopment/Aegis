@@ -560,6 +560,7 @@
     <string name="importer_help_google_authenticator"><b>Obsługiwane są tylko pliki bazy danych z Google Authenticator v5.10 i wcześniej</b>.\n\nDostarcz kopię <b>/data/com.google.android.apps.authenticator2/databases/databases</b>, zlokalizowane w wewnętrznym katalogu pamięci Google Authenticator.</string>
     <string name="importer_help_microsoft_authenticator">Dostarcz kopię <b>/data/data/com.azure.authenticator/databases/PhoneFactor</b>, znajdującą się w wewnętrznym katalogu pamięci Microsoft Authenticator.</string>
     <string name="importer_help_plain_text">Dostarcz plik tekstowy z URI Google Authenticator w każdej linii.</string>
+    <string name="importer_help_proton_authenticator">Dostarcz plik eksportowy Proton Authenticator (.json) uzyskany poprzez <b>Ustawienia -&gt; Eksportuj</b>.</string>
     <string name="importer_help_steam"><b>Steam v3.0 i nowsze nie są wspierane</b>. Dostarcz kopię 
 <b>/data/data/com.valvesoftware.android.steam.community/files/Steamguard-*.json</b>,
 zlokalizowanego w wewnętrznym katalogu Steam.</string>

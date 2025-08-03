@@ -363,6 +363,17 @@
     <string name="preference_reset_usage_count_dialog">Är du säker på att du vill ändra antalet användningar av alla poster i ditt valv till 0?</string>
     <string name="note" comment="Users can add a note to an entry">Anteckning</string>
     <string name="clear">Rensa</string>
+    <string name="dialog_duplicate_entry_title" comment="'Duplicate' is a noun here">Duplicerad post</string>
+    <string name="dialog_duplicate_entry_message">Denna post har samma namn och utfärdare som en eller flera befintliga poster. Hur vill du gå vidare?</string>
+    <string name="dialog_duplicate_entry_overwrite_title">Skriv över befintlig post eller befintliga poster</string>
+    <string name="dialog_duplicate_entry_overwrite_subtitle">Ersätt den befintliga posten eller de befintliga posterna med den/de nya. Åtgärden kan inte ångras</string>
+    <string name="dialog_duplicate_entry_suffix_title">Lägg till suffix</string>
+    <string name="dialog_duplicate_entry_suffix_subtitle">Lägg till ett suffix till namnet på den här nya posten. Det nya namnet blir: %s</string>
+    <string name="dialog_duplicate_entry_cancel_title">Avbryt spara</string>
+    <string name="dialog_duplicate_entry_cancel_subtitle">Gör att du kan redigera posten innan du försöker spara den igen</string>
+    <string name="dialog_duplicate_entry_overwrite_dialog_title">Bekräfta borttagning</string>
+    <string name="pref_haptic_feedback_summary">Få enheten att vibrera när koder uppdateras</string>
+    <string name="pref_haptic_feedback_title">Haptisk återkoppling</string>
     <string name="pref_highlight_entry_title">Markera polletter vid tryck</string>
     <string name="pref_highlight_entry_summary">Gör polletterna lättare att särskilja från varandra genom att tillfälligt markera dem vid tryck</string>
     <string name="pref_groups_multiselect_title">Välj flera grupper</string>

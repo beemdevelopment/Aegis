@@ -532,6 +532,7 @@
     <string name="importer_help_google_authenticator"><b>Seuls les fichiers de base de données de Google Authenticator v5.10 et antérieures sont pris en charge</b>.\n\nFournir une copie de <b>/data/data/com.google.android.apps.authenticator2/databases/databases</b>, situé dans le répertoire de stockage interne de Google Authenticator.</string>
     <string name="importer_help_microsoft_authenticator">Fournir une copie de <b>/data/data/com.azure.authenticator/databases/PhoneFactor</b>, situé dans le répertoire de stockage interne de Microsoft Authenticator.</string>
     <string name="importer_help_plain_text">Fournir un fichier texte brut avec une URI Google Authenticator sur chaque ligne.</string>
+    <string name="importer_help_proton_authenticator">Fournir un export Proton Authenticator (.json) obtenu via <b>Paramètres -&gt; Exporter</b>.</string>
     <string name="importer_help_steam"><b>Steam 3.0 et plus récents ne sont pas pris en charge</b>. Fournissez une copie de <b>/data/data/com.valvesoftware. ndroid.steam.community/files/Steamguard-*.json</b>, situé dans le répertoire de stockage interne de Steam.</string>
     <string name="importer_help_stratum">Fournir un export Stratum obtenu via <b>Paramètres -&gt; Sauvegarde -&gt; Sauvegarder en tant que fichier chiffré (recommandé)</b>.</string>
     <string name="importer_help_totp_authenticator">Fournir un export TOTP Authenticator.</string>

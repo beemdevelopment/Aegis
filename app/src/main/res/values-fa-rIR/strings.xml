@@ -14,6 +14,7 @@
     <string name="yandex_pin">پین (۴ تا ١۶ رقم)</string>
     <string name="suggested">پیشنهادی</string>
     <string name="usage_count">تعداد دفعات استفاده</string>
+    <string name="warning">اخطار</string>
     <string name="pref_cat_appearance_app">نرم افزار</string>
     <string name="pref_cat_appearance_entries">مطالب</string>
     <string name="pref_cat_backups_android">اندروید</string>
@@ -33,7 +34,10 @@
     <string name="pref_select_theme_title">پوسته</string>
     <string name="pref_view_mode_title">حالت نمایش</string>
     <string name="pref_lang_title">زبان</string>
+    <string name="pref_show_icons_title">نمایش آیکون ها</string>
     <string name="pref_code_group_size_title">حالت نمایش کد</string>
+    <string name="pref_account_name_position_title">نمایش نام حساب کاربری</string>
+    <string name="pref_shared_issuer_account_name_title">نمایش نام اکانت فقط در مواقع لازم</string>
     <string name="pref_import_file_title">وارد کردن از فایل</string>
     <string name="pref_import_file_summary">وارد کردن توکن ها از فایل</string>
     <string name="pref_android_backups_title">پشتیبان‌گیری ابری Android</string>
@@ -41,7 +45,16 @@
     <string name="pref_android_backups_hint"><i>پشتیبان‌گیریِ دستگاه به دستگاه (D2D) بدون در نظر گرفتن تنظیمات بالا، همواره مجاز است</i></string>
     <string name="pref_backups_title">بصورت خودکار از مخزن پشتیبانگیری شود</string>
     <string name="pref_backups_summary">به صورت خودکار از مخزن ها در کارت حافظه پیشتیبان گیری شود. این ویژگی فقط مخصوص مخزن های رمزگذاری شده است.</string>
+    <string name="pref_backups_reminder_title">یادآوری پشتیبان‌گیری</string>
+    <string name="pref_backups_reminder_summary">نمایش یادآوری برای پشتیبان گیری از داده ها در صورتی که شما تغییرات اخیرتان را پشتیبان گیری نکرده اید.</string>
+    <string name="pref_backups_reminder_dialog_title">غیر فعال کردن یادآوری پشتیبان گیری</string>
+    <string name="pref_backups_versioning_strategy_title">روش پشتیبان‌گیری</string>
+    <string name="pref_backups_versioning_strategy_keep_x_versions">نگه داشتن تعدادی نسخه پشتیبان</string>
+    <string name="pref_backups_versioning_strategy_single_backup">یک نسخه پشتیبان</string>
+    <string name="pref_backups_versioning_strategy_dialog_title">یک روش پشتیبان‌گیری انتخاب کنید</string>
+    <string name="pref_backups_location_title">مکان ذخیره پشتیبان</string>
     <string name="pref_backups_location_summary">فایل‌ها پشتیبان گیری در این آدرس ذخیره می‌شوند</string>
+    <string name="pref_backup_location_summary">فایل های پشتیبان گیری در این مکان ذخیره می‌شوند</string>
     <string name="pref_backups_trigger_title">پشتیبان‌گیری</string>
     <string name="pref_backups_trigger_summary">گرفتن پیشتیبان به صورت دستی</string>
     <string name="pref_backups_versions_title">تعداد نسخه‌هایی که مایلید نگه‌دارید</string>
@@ -49,11 +62,13 @@
         <item quantity="one">نگه داشتن %1$d نسخه از فایل پشتیبان‌گیری</item>
         <item quantity="other">نگه داشتن %1$d نسخه از فایل پشتیبان‌گیری</item>
     </plurals>
+    <string name="pref_backups_versions_infinite_summary">بی‌نهایت نسخه پشتیبان ذخیره شود</string>
     <string name="pref_import_app_title">وارد کردن از برنامه</string>
     <string name="pref_import_app_summary">وارد کردن توکن‌ها از برنامه (نیاز به دسترسی روت)</string>
     <string name="pref_export_title">صادر کردن</string>
     <string name="pref_export_summary">صادر کردن مخزن</string>
     <string name="pref_password_reminder_title">یادآوری کلمه عبور</string>
+    <string name="pref_google_auth_export_title">استخراج داده ها برای Google Authenticator</string>
     <string name="pref_password_reminder_summary">یک یادآوری %s هنگام وارد کردن گذرواژه نمایش دهید، تا آن را فراموش نکنید.</string>
     <string name="pref_password_reminder_summary_disabled">غیرفعال</string>
     <string name="pref_secure_screen_title">امنیت صفحه</string>

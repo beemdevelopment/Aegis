@@ -364,6 +364,18 @@
     <string name="note" comment="Users can add a note to an entry">Nota</string>
     <string name="clear">Limpar</string>
     <string name="dialog_duplicate_entry_title" comment="'Duplicate' is a noun here">Entrada duplicada</string>
+    <string name="dialog_duplicate_entry_message">Esta entrada tem o mesmo nome e emissor que uma ou mais entradas já existentes. Como gostaria de proceder?</string>
+    <string name="dialog_duplicate_entry_overwrite_title">Substituir entrada(s) existente(s)</string>
+    <string name="dialog_duplicate_entry_overwrite_subtitle">Substituir a(s) entrada(s) existente(s) pela nova. Esta ação não pode ser anulada.</string>
+    <string name="dialog_duplicate_entry_suffix_title">Adicionar sufixo</string>
+    <string name="dialog_duplicate_entry_suffix_subtitle">Adicione um sufixo ao nome desta nova entrada. O novo nome será: %s</string>
+    <string name="dialog_duplicate_entry_cancel_title">Cancelar guardar</string>
+    <string name="dialog_duplicate_entry_cancel_subtitle">Permite-lhe editar a entrada antes de tentar guardá-la novamente.</string>
+    <plurals name="dialog_duplicate_entry_overwrite_dialog_message">
+        <item quantity="one">Tem a certeza de que pretende eliminar %d entrada com o seguinte nome:\n\n%s - %s</item>
+        <item quantity="other">Tem a certeza de que pretende eliminar %d entradas com o seguinte nome:\n\n%s - %s</item>
+    </plurals>
+    <string name="dialog_duplicate_entry_overwrite_dialog_title">Confirmar eliminação</string>
     <string name="pref_haptic_feedback_summary">Faça o seu dispositivo vibrar quando os códigos forem atualizados</string>
     <string name="pref_haptic_feedback_title">Resposta háptica</string>
     <string name="pref_highlight_entry_title">Realçar tokens quando tocados</string>
@@ -436,6 +448,8 @@
     </plurals>
     <string name="google_qr_export_unexpected">Esperado o código QR #%1$d, mas digitalizado #%2$d em vez disso</string>
     <string name="backup_error_bar_message"><b>O ‘backup’ do cofre falhou recentemente</b></string>
+    <string name="backup_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">Uma tentativa recente de backup do cofre usando %1$s falhou devido a um erro. A tentativa ocorreu %2$s. Por favor, verifique as suas configurações de backup para assegurar que os backups possam ser concluídos com sucesso.</string>
+    <string name="backup_permission_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">Uma tentativa recente de backup do cofre usando %1$s falhou devido à falta de permissão do Aegis para escrever no destino do backup. A tentativa ocorreu %2$s. Este erro pode acontecer se alterou o local/nome do destino do backup ou se restaurou o Aegis a partir de um backup, recentemente. Por favor, redefina novamente o destino do backup.</string>
     <string name="backup_system_builtin">backups automáticos do Aegis</string>
     <string name="backup_system_android">sistema de backup na nuvem do Android</string>
     <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">O último backup está desatualizado (%s)</string>
@@ -467,6 +481,7 @@
     <string name="unable_to_copy_uri_to_clipboard">Não é possível copiar o URI para a área de transferência</string>
     <string name="uri_copied_to_clipboard">URI copiado para a área de transferência</string>
     <string name="transfer_entry_description">Digitalize este código QR com a aplicação de autenticação para a qual gostaria de transferir esta entrada</string>
+    <string name="transfer_entry_brightness">Clique no código QR para ativar/desativar o brilho máximo no ecrã inteiro</string>
     <string name="google_auth_compatible_transfer_description">Digitalize estes códigos QR com o Aegis ou o Google Authenticator.\n\nDevido às limitações do Google Authenticator, apenas estão incluídos os tokens TOTP e HOTP que utilizam SHA1 e produzem códigos de 6 dígitos</string>
     <string name="password_strength_very_weak">Muito Fraca</string>
     <string name="password_strength_weak">Fraca</string>
@@ -505,12 +520,17 @@
     <string name="importer_help_bitwarden">Forneça um ficheiro de exportação/backup Bitwarden. Os ficheiros encriptados não são suportados.</string>
     <string name="importer_help_battle_net_authenticator">Forneça uma cópia de <b>/data/data/com.blizzard.messenger/shared_prefs/com.blizzard.messenger.authenticator_preferences.xml</b>, localizado no diretório de armazenamento interno do Autenticador Battle.net.</string>
     <string name="importer_help_duo">Forneça uma cópia de <b>/data/data/com.duosecurity.duomobile/files/duokit/accounts.json</b>, localizada no diretório de armazenamento interno do DUO.</string>
+    <string name="importer_help_ente_auth">Disponibilize um ficheiro de exportação do Ente Auth. De momento, só são aceites ficheiros não encriptados.</string>
+    <string name="importer_help_freeotp">FreeOTP 2: Disponibilize um ficheiro de backup.\nFreeOTP 1.x: Disponibilize uma cópia do ficheiro <b>/data/data/org.fedorahosted.freeotp/shared_prefs/tokens.xml</b>, presente no armazenamento interno do FreeOTP.</string>
     <string name="importer_help_freeotp_plus">Fornecer um arquivo de exportação FreeOTP+.</string>
     <string name="importer_warning_title_freeotp2">Compatibilidade FreeOTP 2</string>
+    <string name="importer_warning_message_freeotp2">No FreeOTP 2, existem diversos problemas que podem resultar em backups danificados. O Aegis tentará recuperar o maior número possível de entradas, mas é possível que algumas ou mesmo todas falhem ao importar.</string>
     <string name="importer_help_google_authenticator"><b>Apenas são suportados ficheiros de bases de dados do Google Authenticator v5.10 e anteriores</b>.\n\nForneça uma cópia de <b>/data/data/com.google.android.apps.authenticator2/databases/databases</b>, localizada no diretório de armazenamento interno do Google Authenticator.</string>
     <string name="importer_help_microsoft_authenticator">Fornecer uma cópia de <b>/data/data/com.azure.authenticator/databases/PhoneFactor</b>, localizado no diretório de armazenamento interno do Microsoft Authenticator.</string>
     <string name="importer_help_plain_text">Fornecer um arquivo de texto simples com um URI do Google Authenticator em cada linha.</string>
+    <string name="importer_help_proton_authenticator">Forneça um arquivo de exportação do Proton Authenticator (.json) obtido através de <b>Configurações -&gt; Exportar</b>.</string>
     <string name="importer_help_steam"><b>Steam v3.0 e versões mais recentes não são suportadas</b>. Forneça uma cópia de <b>/data/data/com.valvesoftware.android.steam.community/files/Steamguard-*.json</b>, localizada no diretório de armazenamento interno do Steam.</string>
+    <string name="importer_help_stratum">Disponibilize um ficheiro de exportação Stratum obtido através de <b>Definições —&gt; Backup —&gt; Fazer backup para ficheiro encriptado (recomendado)</b>.</string>
     <string name="importer_help_totp_authenticator">Fornecer um arquivo de exportação de Autenticador TOTP.</string>
     <string name="importer_help_winauth">Fornecer um arquivo de exportação do WinAuth.</string>
     <string name="import_assign_icons_dialog_title">Atribuir ícones</string>

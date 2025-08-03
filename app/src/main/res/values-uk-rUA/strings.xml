@@ -10,6 +10,7 @@
     <string name="action_default_icon">Відновити стандартну піктограму</string>
     <string name="discard">Відхилити</string>
     <string name="save">Зберегти</string>
+    <string name="all">Всі</string>
     <string name="issuer">Емітент</string>
     <string name="yandex_pin">PIN-код (4–16 цифр)</string>
     <string name="motp_pin">PIN-код (4 цифри)</string>
@@ -28,12 +29,15 @@
     <string name="pref_section_security_summary">Налаштуйте шифрування, біометричне розблокування, автоблокування та інші параметри безпеки.</string>
     <string name="pref_section_import_export_title">Імпорт &amp; Експорт</string>
     <string name="pref_section_import_export_summary">Імпортуйте резервні копії створені додатком Aegis або іншими додатками. Експортуйте ваше Aegis сховище.</string>
+    <string name="pref_section_audit_log_title">Журнал подій</string>
+    <string name="pref_section_audit_log_summary">Список усіх повідомлень про важливі події, що відбулися в додатку.</string>
     <string name="pref_section_backups_title">Резервні копії</string>
     <string name="pref_section_backups_summary">Налаштуйте автоматичне резервне копіювання до місця на ваш вибір, або увімкніть використання системи резервного копіювання Android.</string>
     <string name="pref_section_icon_packs">Пакети піктограм</string>
     <string name="pref_section_icon_packs_summary">Керування та імпорт пакетами піктограм</string>
     <string name="pref_select_theme_title">Тема</string>
     <string name="pref_dynamic_colors_title">Динамічні кольори</string>
+    <string name="pref_dynamic_colors_summary">Застосувати накладення на основі кольорів вашої теми Android</string>
     <string name="pref_view_mode_title">Режим перегляду</string>
     <string name="pref_lang_title">Мова</string>
     <string name="pref_show_icons_title">Показувати піктограми</string>
@@ -41,7 +45,14 @@
     <string name="pref_code_group_size_title">Групування цифр</string>
     <string name="pref_code_group_size_summary">Виберіть як групувати цифри у токенах</string>
     <string name="pref_account_name_position_title">Показати ім\'я облікового запису</string>
+    <string name="pref_show_next_code_title">Показати наступний код</string>
+    <string name="pref_show_next_code_summary">Створити та показати наступний код заздалегідь</string>
+    <string name="pref_expiration_state_title">Повідомляти про закінчення терміну дії кодів</string>
+    <string name="pref_expiration_state_summary">Змінити колір кодів і зробити так, щоб вони блимали, коли термін їх дії добігає кінця</string>
+    <string name="pref_expiration_state_fallback">Змінити колір кодів, коли термін їх дії добігає кінця</string>
     <string name="pref_shared_issuer_account_name_title">Показувати ім\'я облікового запису лише за необхідності</string>
+    <string name="pref_shared_issuer_account_name_summary">Показувати імена облікових записів тільки в тому випадку, якщо вони мають одного емітента. Інші імена облікових записів будуть приховані.</string>
+    <string name="pref_account_name_position_summary_override">Цей параметр перекривається режимом перегляду плиток. Ім\'я облікового запису буде показано під емітентом.</string>
     <string name="pref_import_file_title">Імпорт з файлу</string>
     <string name="pref_import_file_summary">Імпортувати токени з файлу</string>
     <string name="pref_android_backups_title">Резервні копії в хмарі Android</string>
@@ -49,16 +60,29 @@
     <string name="pref_android_backups_hint"><i>Резервне копіювання між пристроями працюватиме завжди, незалежно від налаштування вище</i></string>
     <string name="pref_backups_title">Автоматично створювати резервні копії сховища</string>
     <string name="pref_backups_summary">Автоматично створювати резервні копії сховища на зовнішніх носіях при внесенні змін. Підтримується лише для зашифрованих сховищ.</string>
+    <string name="pref_backups_reminder_title">Нагадування про резервне копіювання</string>
+    <string name="pref_backups_reminder_summary">Показати нагадування про необхідність створити резервну копію сховища, якщо ви ще не створили резервну копію після останніх змін.</string>
+    <string name="pref_backups_reminder_dialog_title">Вимкнути нагадування про резервне копіювання</string>
+    <string name="pref_backups_reminder_dialog_summary">Вимкнення цього нагадування означає, що Aegis не повідомлятиме вас про наявність змін, які ще не були збережені. Це створює ризик втрати доступу до ваших токенів. Ви впевнені, що хочете вимкнути нагадування?</string>
+    <string name="pref_backups_versioning_strategy_title">Стратегія резервного копіювання</string>
+    <string name="pref_backups_versioning_strategy_keep_x_versions">Зберігати кілька версій</string>
+    <string name="pref_backups_versioning_strategy_single_backup">Одноразове резервне копіювання</string>
+    <string name="pref_backups_versioning_strategy_single_backup_warning">Вибрана стратегія резервного копіювання не є надійною і не рекомендується. Один збій резервного копіювання може призвести до втрати вашої єдиної резервної копії.</string>
+    <string name="pref_backups_versioning_strategy_dialog_title">Виберіть стратегію резервного копіювання</string>
+    <string name="pref_backups_location_title">Місце зберігання резервної копії</string>
     <string name="pref_backups_location_summary">Резервні копії будуть зберігатися в</string>
+    <string name="pref_backup_location_summary">Резервна копія буде зберігатися в</string>
     <string name="pref_backups_trigger_title">Запустити резервне копіювання</string>
     <string name="pref_backups_trigger_summary">Вручну запустити створення резервної копії</string>
     <string name="pref_backups_versions_title">Кількість версій, які необхідно зберігати</string>
+    <string name="pref_backups_versions_infinite">\u221E</string>
     <plurals name="pref_backups_versions_summary">
         <item quantity="one">Зберігати %1$d версію резервної копії</item>
         <item quantity="few">Зберігати %1$d версії резервної копії</item>
         <item quantity="many">Зберігати %1$d версій резервної копії</item>
         <item quantity="other">Зберігати %1$d версій резервної копії</item>
     </plurals>
+    <string name="pref_backups_versions_infinite_summary">Зберігати необмежену кількість резервних копій</string>
     <string name="pref_import_app_title">Імпорт з додатка</string>
     <string name="pref_import_app_summary">Імпортувати токени з додатка (необхідно мати root-доступ)</string>
     <string name="pref_export_title">Експорт</string>
@@ -96,18 +120,51 @@
     <string name="pref_encryption_summary">Шифрувати сховище і розблоковувати його за допомогою паролю або біометрики</string>
     <string name="pref_biometrics_title">Біометричне розблокування</string>
     <string name="pref_biometrics_summary">Дозволити біометричну автентифікацію для розблокування сховища</string>
+    <string name="pref_search_behavior_summary">Пошук по: %s</string>
+    <string name="pref_search_behavior_prompt">Шукати в будь-якому з наступних полів</string>
+    <string name="pref_search_behavior_type_name">Назва</string>
+    <string name="pref_search_behavior_type_issuer">Емітент</string>
+    <string name="pref_search_behavior_type_note">Нотатка</string>
+    <string name="pref_search_behavior_type_groups">Групи</string>
     <string name="pref_set_password_title">Змінити пароль</string>
     <string name="pref_set_password_summary">Встановіть новий пароль, який вам буде потрібний для розблокування вашого сховища</string>
+    <string name="no_events_title">Не повідомлялося про жодні події</string>
+    <string name="no_events_description">У додатку не було повідомлено про жодні важливі події</string>
+    <string name="event_title_vault_unlocked">Сховище розблоковано</string>
+    <string name="event_description_vault_unlocked">Сховище успішно розблоковано</string>
+    <string name="event_title_backup_created">Резервна копія створена</string>
+    <string name="event_description_backup_created">Резервну копію сховища успішно створено</string>
+    <string name="event_title_android_backup_created">Android створив резервну копію</string>
+    <string name="event_description_android_backup_created">Android успішно створив резервну копію сховища</string>
+    <string name="event_title_vault_exported">Сховище експортовано</string>
+    <string name="event_description_vault_exported">Копія сховища була експортована</string>
+    <string name="event_title_entry_shared">Записом поділились</string>
+    <string name="event_description_entry_shared">Записом поділились</string>
+    <string name="event_title_vault_unlock_failed_password">Не вдалося розблокувати сховище (пароль)</string>
+    <string name="event_description_vault_unlock_failed_password">Не вдалось розблокувати сховище за допомогою пароля</string>
+    <string name="event_title_vault_unlock_failed_biometrics">Не вдалося розблокувати сховище (біометрія)</string>
+    <string name="event_description_vault_unlock_failed_biometrics">Не вдалось розблокувати сховище за допомогою біометрії</string>
+    <string name="event_unknown">Невідомий тип події</string>
+    <string name="audit_log_entry_deleted">(видалено)</string>
+    <string name="today_at_time">Сьогодні о %1$s</string>
+    <string name="day_of_week_at_time">%1$s о %2$s</string>
     <string name="export_encrypted">Зашифрувати сховище</string>
     <string name="export_help">Ця дія експортує внутрішнє сховище додатка Aegis. Виберіть формат:</string>
     <string name="export_warning_unencrypted">Ви збираєтеся експортувати незашифровану копію вашого сховища Aegis. <b>Це не рекомендується</b>.</string>
     <string name="export_warning_password">Експортовані копії зашифровано окремим паролем, що був заданий в налаштуваннях безпеки.</string>
+    <string name="understand_risk_accept">Я розумію ризик</string>
     <string name="export_format_aegis">Aegis (.JSON)</string>
     <string name="export_format_google_auth_uri">Текстовий файл (.TXT)</string>
     <string name="export_format_html">Веб-сторінка (.HTML)</string>
     <string name="export_format_hint">Формат експорту</string>
     <string name="export_all_groups">Експортувати усі групи</string>
     <string name="export_choose_groups">Оберіть групи для експорту</string>
+    <plurals name="export_groups_selected_count">
+        <item quantity="one">%d групу обрано</item>
+        <item quantity="few">%d групи обрано</item>
+        <item quantity="many">%d груп обрано</item>
+        <item quantity="other">%d груп обрано</item>
+    </plurals>
     <string name="export_no_groups_selected">Не вибрано жодної групи для експорту</string>
     <string name="export_html_title" comment="The title of an HTML export document">Експорт Aegis Authenticator</string>
     <string name="choose_authentication_method">Безпека</string>
@@ -128,7 +185,9 @@
     <string name="set_password_confirm">Будь ласка, підтвердьте пароль</string>
     <string name="invalid_password">Неправильний пароль</string>
     <string name="invalidated_biometrics">Виявлено зміни в налаштуваннях безпеки вашого пристрою. Будь ласка, перейдіть до \"Aegis -&gt; Налаштування -&gt; Безпека -&gt; Біометричне розблокування\", щоб вимкнути та повторно увімкнути біометричне розблокування.</string>
+    <string name="password_reminder">Будь ласка, введіть свій пароль. Ми іноді просимо вас це зробити, щоб ви його не забули.</string>
     <string name="password_reminder_dialog_title">Біометричне розблокування за замовчуванням</string>
+    <string name="password_reminder_dialog_message">Іноді ми просимо вас ввести пароль, щоб переконатися, що ви його не забули та не втратите доступ до свого сховища. Після одноразового введення пароля Aegis повернеться до біометричного розблокування, поки не настане час для наступного нагадування про пароль.</string>
     <string name="password_reminder_freq_never">Ніколи</string>
     <string name="password_reminder_freq_weekly">Щотижня</string>
     <string name="password_reminder_freq_biweekly">Двічі на тиждень</string>
@@ -143,6 +202,7 @@
     <string name="share">Поділитися</string>
     <string name="yes">Так</string>
     <string name="no">Ні</string>
+    <string name="undo">Скасувати</string>
     <string name="unlock">Розблокувати</string>
     <string name="advanced">Розширені</string>
     <string name="counter">Лічильник</string>
@@ -155,6 +215,10 @@
     <string name="copy">Копіювати</string>
     <string name="edit">Редагувати</string>
     <string name="select_all">Вибрати все</string>
+    <string name="assign_icons">Призначити піктограми</string>
+    <string name="assign_groups">Призначити групу</string>
+    <string name="assign_groups_dialog_summary">Виберіть групу, до якої ви хочете призначити вибрані записи.</string>
+    <string name="assign_groups_dialog_dropdown">Виберіть групу</string>
     <string name="favorite" comment="Verb">Додати до улюблених</string>
     <string name="unfavorite" comment="Verb">Вилучити з улюбленого</string>
     <string name="error_all_caps">ПОМИЛКА</string>
@@ -169,9 +233,12 @@
     <string name="snackbar_authentication_method">Будь ласка, виберіть спосіб автентифікації</string>
     <string name="encrypting_vault">Шифрування сховища</string>
     <string name="exporting_vault">Експорт сховища</string>
+    <string name="optimizing_icon">Оптимізація піктограми</string>
+    <string name="optimizing_icon_multiple">Оптимізація піктограм %1$d із %2$d</string>
     <string name="reading_file">Читання файлу</string>
     <string name="requesting_root_access">Запит на root-доступ</string>
     <string name="analyzing_qr">Аналіз QR-коду</string>
+    <string name="analyzing_qr_multiple">Аналіз QR-коду %1$d із %2$d (%3$s)</string>
     <plurals name="added_new_entries">
         <item quantity="one">Додано %d новий запис у сховище</item>
         <item quantity="few">Додано %d нові записи у сховище</item>
@@ -192,6 +259,7 @@
     <string name="discard_changes">Відхилити зміни?</string>
     <string name="discard_changes_description">Ваші зміни не були збережені</string>
     <string name="saving_profile_error">Помилка під час збереження профілю</string>
+    <string name="saving_assign_icons_error">Помилка при призначенні піктограм</string>
     <string name="welcome">Ласкаво просимо</string>
     <string name="app_description">Aegis є безкоштовним, безпечним та відкритим додатком для 2FA</string>
     <string name="setup_completed">Налаштування завершено</string>
@@ -200,6 +268,7 @@
     <string name="copied">Скопійовано</string>
     <string name="errors_copied">Помилки скопійовано в буфер обміну</string>
     <string name="version_copied">Версію скопійовано в буфер обміну</string>
+    <string name="error_required_field">Це поле обовʼязкове</string>
     <string name="error_occurred">Виникла помилка</string>
     <string name="decryption_error">Сталася помилка під час спроби розблокувати сховище</string>
     <string name="decryption_corrupt_error">Сталася помилка під час спроби розблокувати сховище. Можливо, файл сховища пошкоджено.</string>
@@ -236,7 +305,9 @@
     <string name="choose_totpauth_importer">Чи ця резервна копія TOTP Authenticator зашифрована паролем?</string>
     <string name="choose_application">Виберіть програму, з якої ви хочете імпортувати</string>
     <string name="choose_theme">Виберіть бажану тему</string>
+    <string name="choose_account_name_position">Виберіть бажане розташування імені облікового запису</string>
     <string name="choose_view_mode">Виберіть бажаний режим перегляду</string>
+    <string name="choose_copy_behavior">Виберіть бажану поведінку копіювання</string>
     <string name="parsing_file_error">Сталася помилка під час спроби проаналізувати файл</string>
     <string name="file_not_found">Помилка: Файл не знайдено</string>
     <string name="reading_file_error">Сталася помилка при спробі прочитати файл</string>
@@ -267,12 +338,22 @@
     <string name="partial_google_auth_import">Виявлено неповний експорт з Google Authenticator</string>
     <string name="partial_google_auth_import_warning">Деякі QR-коди відсутні у вашому імпорті. Наступні коди не були знайдені:\n\n<b>%s</b>\n\nВи можете продовжити імпорт цього часткового файлу експорту, але ми рекомендуємо спробувати ще раз з усіма QR-кодами, щоб уникнути ризику втрати доступу до токенів.</string>
     <string name="missing_qr_code_descriptor">• QR-код %d</string>
+    <plurals name="import_partial_export_anyway">
+        <item quantity="one">Все одно імпортувати %d токен</item>
+        <item quantity="few">Все одно імпортувати %d токена</item>
+        <item quantity="many">Все одно імпортувати %d токенів</item>
+        <item quantity="other">Все одно імпортувати %d токенів</item>
+    </plurals>
     <string name="import_google_auth_failure">Не вдалося імпортувати дані з Google Authenticator</string>
     <string name="unrelated_google_auth_batches_error">Експорт містить інформацію про непов\'язаний пакет. Спробуйте імпортувати пакети по одному.</string>
     <string name="no_tokens_can_be_imported">В результаті жоден токен не може бути імпортований</string>
     <string name="unlocking_vault">Розблокування сховища</string>
+    <string name="rename_group">Перейменувати групу</string>
+    <string name="no_group_selection">Якщо запис не входить до жодної групи, його можна знайти в розділі «Без групи».</string>
     <string name="remove_group">Видалити групу</string>
     <string name="remove_group_description">Ви впевнені, що хочете видалити цю групу? Записи у цій групі автоматично перемістяться в \'Без групи\'.</string>
+    <string name="remove_unused_groups">Видалити невикористані групи</string>
+    <string name="remove_unused_groups_description">Ви впевнені, що хочете видалити всі групи, які не прив\'язані до жодного запису?</string>
     <string name="remove_icon_pack">Видалити набір піктограм</string>
     <string name="remove_icon_pack_description">Ви впевнені, що хочете видалити цей пакет піктограм? Записи які використовують даний пакет, не будуть порушені.</string>
     <string name="details">Деталі</string>
@@ -286,7 +367,10 @@
     <string name="sort_alphabetically_name">Обліковий запис (A - Я)</string>
     <string name="sort_alphabetically_name_reverse">Обліковий запис (Я - А)</string>
     <string name="sort_usage_count">Кількість використання</string>
+    <string name="sort_last_used">Востаннє використано</string>
     <string name="sort_custom">Довільно</string>
+    <string name="last_used">Востаннє використано</string>
+    <string name="last_used_never">ніколи</string>
     <string name="new_group">Нова група…</string>
     <string name="group">Група</string>
     <string name="group_name_hint">Назва групи</string>
@@ -297,11 +381,31 @@
     <string name="preference_reset_usage_count_dialog">Ви впевнені, що хочете встановити кількість використань для кожного запису у вашому сховищі на 0?</string>
     <string name="note" comment="Users can add a note to an entry">Нотатка</string>
     <string name="clear">Очистити</string>
+    <string name="dialog_duplicate_entry_title" comment="'Duplicate' is a noun here">Дублювати запис</string>
+    <string name="dialog_duplicate_entry_message">Цей запис має таку саму назву та емітента, як один або декілька наявних записів. Як ви бажаєте продовжити?</string>
+    <string name="dialog_duplicate_entry_overwrite_title">Перезаписати наявний запис/записи</string>
+    <string name="dialog_duplicate_entry_overwrite_subtitle">Замініть наявний запис або записи новим. Цю дію неможливо скасувати</string>
+    <string name="dialog_duplicate_entry_suffix_title">Додати суфікс</string>
+    <string name="dialog_duplicate_entry_suffix_subtitle">Додайте суфікс до назви цього нового запису. Нова назва буде: %s</string>
+    <string name="dialog_duplicate_entry_cancel_title">Скасувати збереження</string>
+    <string name="dialog_duplicate_entry_cancel_subtitle">Дозволяє редагувати запис перед повторною спробою збереження</string>
+    <plurals name="dialog_duplicate_entry_overwrite_dialog_message">
+        <item quantity="one">Ви впевнені, що хочете видалити %d запис із наступними іменами:\n\n%s - %s</item>
+        <item quantity="few">Ви впевнені, що хочете видалити %d записи із наступними іменами:\n\n%s - %s</item>
+        <item quantity="many">Ви впевнені, що хочете видалити %d записів із наступними іменами:\n\n%s - %s</item>
+        <item quantity="other">Ви впевнені, що хочете видалити %d записів із наступними іменами:\n\n%s - %s</item>
+    </plurals>
+    <string name="dialog_duplicate_entry_overwrite_dialog_title">Підтвердити видалення</string>
+    <string name="pref_haptic_feedback_summary">Увімкнути вібрацію пристрою під час оновлення кодів</string>
+    <string name="pref_haptic_feedback_title">Тактильний зворотний зв\'язок</string>
     <string name="pref_highlight_entry_title">Підсвічувати токени при натисканні</string>
     <string name="pref_highlight_entry_summary">Підсвічувати токени при натисканні для того, щоб їх було легше відрізнити один від одного</string>
+    <string name="pref_groups_multiselect_title">Вибрати декілька груп</string>
+    <string name="pref_groups_multiselect_summary">Дозволити вибір декількох груп одночасно</string>
     <string name="pref_minimize_on_copy_title">Згортати при копіюванні</string>
     <string name="pref_minimize_on_copy_summary">Згортати додаток після копіювання токена</string>
     <string name="pref_copy_behavior_title">Скопіювати токени в буфер обміну</string>
+    <string name="pref_search_behavior_title">Поведінка пошуку</string>
     <string name="pref_pause_entry_title">Заморожувати токени при натисканні</string>
     <string name="pref_pause_entry_summary">Призупиніть автоматичне оновлення токенів, натиснувши на них. Токени не будуть оновлюватися, поки вони підсвічені. Потребує увімкненої опції \"Підсвічувати токени при натисканні\", або \"Безпека -> Показувати після дотику\".</string>
     <string name="pin_keyboard_description">Введіть свій пароль, щоб увімкнути PIN-клавіатуру. Зауважте, що це можливо лише, якщо ваш пароль складається виключно з цифр</string>
@@ -317,11 +421,19 @@
     <string name="normal_viewmode_title">Стандартний</string>
     <string name="compact_mode_title">Компактний</string>
     <string name="small_mode_title">Зменшений</string>
+    <string name="tiles_mode_title">Плитки</string>
     <string name="unknown_issuer">Невідомий емітент</string>
     <string name="unknown_account_name">Невідома назва облікового запису</string>
+    <plurals name="import_error_dialog">
+        <item quantity="one">Aegis не зміг імпортувати %d токен. Цей токен буде пропущено. Натисніть «деталі», щоб переглянути додаткову інформацію про помилку.</item>
+        <item quantity="few">Aegis не зміг імпортувати %d токени. Ці токени буде пропущено. Натисніть «деталі», щоб переглянути додаткову інформацію про помилку.</item>
+        <item quantity="many">Aegis не зміг імпортувати %d токенів. Ці токени буде пропущено. Натисніть «деталі», щоб переглянути додаткову інформацію про помилку.</item>
+        <item quantity="other">Aegis не зміг імпортувати %d токенів. Ці токени буде пропущено. Натисніть «деталі», щоб переглянути додаткову інформацію про помилку.</item>
+    </plurals>
     <string name="unable_to_process_deeplink">Не вдалося обробити глибоке посилання</string>
     <string name="unable_to_read_qrcode_file">Не вдається прочитати і обробити QR-код із файлу: %s.</string>
     <string name="unable_to_process_shared_text">Неможливо обробити вхідний текст як OTP</string>
+    <string name="unable_to_read_qrcode_files">Неможливо прочитати та обробити деякі QR-коди. Буде імпортовано лише %1$d із %2$d записів.</string>
     <string name="unable_to_generate_qrcode">Не вдається згенерувати QR-код</string>
     <string name="select_picture">Виберіть зображення</string>
     <string name="select_icon">Виберіть іконку</string>
@@ -352,13 +464,24 @@
     <string name="time_sync_warning_message">Aegis залежить від системного часу для генерації правильних кодів. Відхилення всього на кілька секунд може призвести до неправильних кодів. Схоже, ваш пристрій не налаштовано на автоматичну синхронізацію часу. Бажаєте зробити це зараз?</string>
     <string name="time_sync_warning_disable">Припиніть мене попереджати. Я знаю, що роблю.</string>
     <string name="google_qr_export_unrelated">Знайдено непов\'язаний QR-код. Спробуйте перезапустити сканер.</string>
+    <plurals name="google_qr_export_scanned">
+        <item quantity="one">Відскановано %1$d із %2$d QR-кодів</item>
+        <item quantity="few">Відскановано %1$d із %2$d QR-кодів</item>
+        <item quantity="many">Відскановано %1$d із %2$d QR-кодів</item>
+        <item quantity="other">Відскановано %1$d із %2$d QR-кодів</item>
+    </plurals>
+    <string name="google_qr_export_unexpected">Очікувався QR-код #%1$d, але замість цього було відскановано #%2$d</string>
     <string name="backup_error_bar_message"><b>Нещодавно не вдалося створити резервну копію сховища</b></string>
+    <string name="backup_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">Нещодавня спроба створення резервної копії сховища за допомогою %1$s не вдалася через помилку. Спроба створення резервної копії була здійснена %2$s. Перевірте налаштування резервного копіювання, щоб переконатися, що резервне копіювання може бути успішно завершене.    </string>
+    <string name="backup_permission_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">Нещодавня спроба створення резервної копії сховища за допомогою %1$s не вдалася, оскільки Aegis не мав дозволу на запис у місце призначення резервної копії. Спроба створення резервної копії була здійснена %2$s. Ця помилка може виникнути, якщо ви перемістили/перейменували місце призначення резервної копії або нещодавно відновили Aegis із резервної копії. Будь ласка, переналаштуйте місце призначення резервної копії    </string>
     <string name="backup_system_builtin">Вбудоване автоматичне резервне копіювання Aegis</string>
     <string name="backup_system_android">Система хмарного резервного копіювання Android</string>
     <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">        Остання резервна копія застаріла (%s)
     </string>
     <string name="backup_reminder_bar_message">        Резервну копію змін не створено
     </string>
+    <string name="backup_reminder_bar_dialog_title">Зміни не збережені</string>
+    <string name="backup_reminder_bar_dialog_summary">Останні зміни в сховищі ще не були збережені. Важливо регулярно створювати резервні копії, щоб уникнути втрати доступу до своїх облікових записів. Рекомендуємо налаштувати автоматичне створення резервних копій в налаштуваннях    </string>
     <string name="backup_reminder_bar_dialog_accept">Налаштування резервних копій</string>
     <string name="backup_plaintext_export_warning"><b>Сховище нещодавно було експортовано у вигляді звичайного тексту</b></string>
     <string name="pref_show_plaintext_warning_hint">Не показувати це попередження в майбутньому</string>
@@ -385,12 +508,14 @@
     <string name="unable_to_copy_uri_to_clipboard">Не вдалося скопіювати URI в буфер обміну</string>
     <string name="uri_copied_to_clipboard">URI скопійовано в буфер обміну</string>
     <string name="transfer_entry_description">Відскануйте цей QR-код за допомогою додатка для авторизації, куди ви хочете перенести цей запис</string>
+    <string name="transfer_entry_brightness">Натисніть на QR-код, щоб перемкнутися між максимальною та звичайною яскравістю</string>
     <string name="google_auth_compatible_transfer_description">Проскануйте ці QR-коди за допомогою Aegis або Google Authenticator.\n\nУ зв\'язку з обмеженнями програми Google Authenticator включаються лише TOTP &amp; HOTP токени з використанням SHA1 і генерацією 6-цифрових кодів</string>
     <string name="password_strength_very_weak">Дуже слабкий</string>
     <string name="password_strength_weak">Слабкий</string>
     <string name="password_strength_fair">Нормальний</string>
     <string name="password_strength_good">Добрий</string>
     <string name="password_strength_strong">Сильний</string>
+    <string name="password_strength_unknown">Пароль занадто довгий для аналізу надійності</string>
     <string name="pref_pin_keyboard_title">PIN-клавіатура на екрані блокування</string>
     <string name="pref_pin_keyboard_summary">Увімкніть, якщо хочете увімкнути PIN-клавіатуру на екрані блокування. Це працює тільки для числових паролів</string>
     <string name="title_activity_preferences">Налаштування</string>
@@ -400,6 +525,8 @@
     <string name="title_activity_edit_entry">Редагування запису</string>
     <string name="title_activity_scan_qr">Сканування QR-коду</string>
     <string name="title_activity_import_entries">Імпортування записів</string>
+    <string name="title_activity_assign_icons">Призначити піктограми</string>
+    <string name="title_activity_licenses">Ліцензії сторонніх виробників</string>
     <string name="dialog_wipe_entries_title">Очистити записи</string>
     <string name="dialog_wipe_entries_message">Ваше сховище вже містить записи. Видалити ці записи перед імпортом цього файлу?\n\n<b>При цьому ви назавжди втратите доступ до наявних записів у сховищі.</b></string>
     <string name="dialog_wipe_entries_checkbox">Очистити вміст сховища</string>
@@ -407,20 +534,35 @@
     <string name="pref_panic_trigger_title">Видалити сховище при панічному тригері</string>
     <string name="pref_panic_trigger_summary">Видалити сховище після отримання панічного тригера Ripple</string>
     <string name="import_vault">Імпорт сховища Aegis</string>
+    <string name="import_vault_hint">Хочете імпортувати дані з іншої програми 2FA? Спочатку завершіть налаштування, а потім перейдіть в налаштування.</string>
+    <plurals name="import_duplicate_toast">
+        <item quantity="one">Неперевірений %d потенційний дублікат. Будь ласка, перегляньте список записів.</item>
+        <item quantity="few">Неперевірені %d потенційних дублікатів. Будь ласка, перегляньте список записів.</item>
+        <item quantity="many">Неперевірені %d потенційних дублікатів. Будь ласка, перегляньте список записів.</item>
+        <item quantity="other">Неперевірені %d потенційних дублікатів. Будь ласка, перегляньте список записів.</item>
+    </plurals>
     <string name="importer_help_2fas">Надайте файл резервної копії 2FAS Authenticator.</string>
     <string name="importer_help_aegis">Надайте файл експорту/резервної копії Aegis.</string>
     <string name="importer_help_authenticator_plus">Надайте файл експорту Authenticator Plus, отриманий через <b>Settings -&gt; Backup &amp; Restore -&gt; Export as Text and HTML</b>.</string>
     <string name="importer_help_authy">Надайте копію <b>/data/data/com.authy.authy/shared_prefs/com.authy.storage.tokens.authenticator.xml</b>, що знаходиться в каталозі Authy у внутрішній пам\'яті.</string>
     <string name="importer_help_andotp">Надайте файл експорту/резервної копії andOTP.</string>
     <string name="importer_help_bitwarden">Надайте файл експорту/резервного копіювання Bitwarden. Зашифровані файли не підтримуються.</string>
+    <string name="importer_help_battle_net_authenticator">Надайте копію файлу <b>/data/data/com.blizzard.messenger/shared_prefs/com.blizzard.messenger.authenticator_preferences.xml</b>, який знаходиться у внутрішньому каталозі Battle.net Authenticator.</string>
     <string name="importer_help_duo">Надайте копію <b>/data/data/com.duosecurity.duomobile/files/duokit/accounts.json</b>, що знаходиться у каталозі DUO у внутрішній пам\'яті.</string>
+    <string name="importer_help_ente_auth">Надайте файл експорту Ente Auth. Наразі підтримуються лише незашифровані файли.</string>
+    <string name="importer_help_freeotp">FreeOTP 2: Надайте файл резервної копії.\nFreeOTP 1.x: Надайте копію файлу <b>/data/data/org.fedorahosted.freeotp/shared_prefs/tokens.xml</b>, який знаходиться у внутрішньому каталозі FreeOTP.</string>
     <string name="importer_help_freeotp_plus">Надайте файл експортований з FreeOTP+.</string>
+    <string name="importer_warning_title_freeotp2">Сумісність з FreeOTP 2</string>
+    <string name="importer_warning_message_freeotp2">У FreeOTP 2 є ряд проблем, які можуть призвести до пошкодження резервних копій. Aegis спробує врятувати якомога більше записів, але можливо, що деякі або навіть усі з них не вдасться імпортувати.</string>
     <string name="importer_help_google_authenticator"><b>Підтримуються лише файли бази даних Google Authenticator v5.10 та попередніх версій</b>.\n\nНадайте копію <b>/data/data/com.google.android.apps.authenticator2/databases/databases</b>, що знаходиться у каталозі Google Authenticator у внутрішній пам\'яті.</string>
     <string name="importer_help_microsoft_authenticator">Надайте копію <b>/data/data/com.azure.authenticator/databases/PhoneFactor</b>, що знаходиться у каталозі Microsoft Authenticator у внутрішній пам\'яті.</string>
     <string name="importer_help_plain_text">Надайте звичайний текстовий файл з URI у форматі Google Authenticator у кожному рядку.</string>
+    <string name="importer_help_proton_authenticator">Надайте експортований файл Proton Authenticator (.json), отриманий через <b>«Налаштування -&gt; Експорт»</b>.</string>
     <string name="importer_help_steam"><b>Steam v3.0 і новіші версії не підтримуються</b>. Надайте копію <b>/data/data/com.valvesoftware.android.steam.community/files/Steamguard-*.json</b>, що знаходиться у каталозі Steam у внутрішній пам\'яті.</string>
+    <string name="importer_help_stratum">Надайте файл експорту Stratum, отриманий через <b>Налаштування -&gt; Резервне копіювання -&gt; Резервне копіювання в зашифрований файл (рекомендовано)</b>.</string>
     <string name="importer_help_totp_authenticator">Надайте файл експортований з TOTP Authenticator.</string>
     <string name="importer_help_winauth">Надайте файл експортований з WinAuth.</string>
+    <string name="import_assign_icons_dialog_title">Призначити піктограми</string>
     <string name="import_assign_icons_dialog_text">Ви хочете призначити значки для імпортованих записів?</string>
     <string name="importer_encrypted_exception_google_authenticator">Пропущено зашифрований запис: %s</string>
     <string name="importer_help_direct">Імпортувати записи безпосередньо з %s. Для цього потрібно встановити додаток на цьому пристрої і надати root-доступ додатку Aegis.</string>
@@ -433,7 +575,11 @@
     <string name="pref_grouping_size_three">3 цифри у групі</string>
     <string name="pref_grouping_size_four">4 цифри у групі</string>
     <string name="pref_copy_behavior_never">Ніколи</string>
+    <string name="pref_copy_behavior_single_tap">Один дотик</string>
+    <string name="pref_copy_behavior_double_tap">Подвійний дотик</string>
     <string name="pref_account_name_position_hidden">Приховано</string>
+    <string name="pref_account_name_position_end">Поруч з емітентом</string>
+    <string name="pref_account_name_position_below">Нижче емітента</string>
     <plurals name="time_elapsed_seconds" tools:ignore="UnusedResources">
         <item quantity="one">%d секунду тому</item>
         <item quantity="few">%d секунди тому</item>
@@ -463,5 +609,11 @@
         <item quantity="few">%d роки тому</item>
         <item quantity="many">%d років тому</item>
         <item quantity="other">%d років тому</item>
+    </plurals>
+    <plurals name="dropdown_checkboxes_default_count">
+        <item quantity="one">Вибрано %d елемент</item>
+        <item quantity="few">Вибрано %d елемента</item>
+        <item quantity="many">Вибрано %d елементів</item>
+        <item quantity="other">Вибрано %d елементів</item>
     </plurals>
 </resources>

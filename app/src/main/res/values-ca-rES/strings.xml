@@ -530,6 +530,7 @@
     <string name="importer_help_google_authenticator">&lt;b&gt;Només s\'admeten fitxers de bases de dades de Google Authenticator v5.10 i anteriors&lt;/b&gt;.\n\nProporcioneu una còpia de &lt;b&gt;/data/data/com.google.android.apps.authenticator2/databases/databases&lt; /b&gt;, situada al directori d\'emmagatzematge intern de Google Authenticator.</string>
     <string name="importer_help_microsoft_authenticator">Subministra una còpia de <b>/data/data/com.azure.authenticator/databases/PhoneFactor</b>, que està a l\'emmagatzematge intern del teu dispositiu, al directori del Microsoft Authenticator.</string>
     <string name="importer_help_plain_text">Subministra un fitxer de text pla amb una URI de Google Authenticator a cada línia.</string>
+    <string name="importer_help_proton_authenticator">Subministra un fitxer (.json) exportat del Proton Authenticator, obtingut a través de <b>Configuració -&gt; Exportar</b>.</string>
     <string name="importer_help_steam"><b>Steam v3.0 i posteriors no són compatibles</b>. Proporcioneu una còpia de <b>/data/data/com.valvesoftware.android.steam.community/files/Steamguard-*.json</b>, que es troba al directori d\'emmagatzematge intern de Steam.</string>
     <string name="importer_help_stratum">Proveeix un fitxer exportat de Stratum, aconseguit a <b>Settings &gt; Back up &gt; Back up to encrypted file (recommended)</b>.</string>
     <string name="importer_help_totp_authenticator">Subministra un fitxer exportat del TOTP Authenticator.</string>
