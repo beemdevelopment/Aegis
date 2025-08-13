@@ -11,14 +11,14 @@ def fileProviderAuthority = "${packageName}.fileprovider"
 def fileProviderAuthorityDebug = "${packageName}.debug.fileprovider"
 
 android {
-    compileSdk 33
+    compileSdk 35
 
     namespace packageName
 
     defaultConfig {
         applicationId "${packageName}"
         minSdkVersion 16
-        targetSdkVersion 33
+        targetSdkVersion 35
         versionCode 80
         versionName "3.4.1"
         multiDexEnabled true
