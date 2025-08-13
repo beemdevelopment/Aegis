@@ -28,12 +28,16 @@ public class BiometricSlotInitializer extends BiometricPrompt.AuthenticationCall
 
     public BiometricSlotInitializer(Fragment fragment, Listener listener) {
         _listener = listener;
-        _prompt = new BiometricPrompt(fragment, new UiThreadExecutor(), this);
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
+            _prompt = new BiometricPrompt(fragment, new UiThreadExecutor(), this);
+        }
     }
 
     public BiometricSlotInitializer(FragmentActivity activity, Listener listener) {
         _listener = listener;
-        _prompt = new BiometricPrompt(activity, new UiThreadExecutor(), this);
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
+            _prompt = new BiometricPrompt(activity, new UiThreadExecutor(), this);
+        }
     }
 
     /**
@@ -43,6 +47,11 @@ public class BiometricSlotInitializer extends BiometricPrompt.AuthenticationCall
      * initialized and delivered back through the listener.
      */
     public void authenticate(BiometricPrompt.PromptInfo info) {
+        if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.M) {
+            fail(0, "Biometric authentication is not supported on this device.");
+            return;
+        }
+
         if (_slot != null) {
             throw new IllegalStateException("Biometric authentication already in progress");
         }
@@ -114,19 +123,25 @@ public class BiometricSlotInitializer extends BiometricPrompt.AuthenticationCall
 
     @Override
     public void onAuthenticationError(int errorCode, @NonNull CharSequence errString) {
-        super.onAuthenticationError(errorCode, errString);
-        fail(errorCode, errString.toString());
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
+            super.onAuthenticationError(errorCode, errString);
+            fail(errorCode, errString.toString());
+        }
     }
 
     @Override
     public void onAuthenticationSucceeded(@NonNull BiometricPrompt.AuthenticationResult result) {
-        super.onAuthenticationSucceeded(result);
-        _listener.onInitializeSlot(_slot, Objects.requireNonNull(result.getCryptoObject()).getCipher());
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
+            super.onAuthenticationSucceeded(result);
+            _listener.onInitializeSlot(_slot, Objects.requireNonNull(result.getCryptoObject()).getCipher());
+        }
     }
 
     @Override
     public void onAuthenticationFailed() {
-        super.onAuthenticationFailed();
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
+            super.onAuthenticationFailed();
+        }
     }
 
     public interface Listener {

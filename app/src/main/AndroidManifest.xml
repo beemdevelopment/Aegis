@@ -20,17 +20,13 @@
     <application
         android:name=".AegisApplication"
         android:allowBackup="true"
-        android:fullBackupOnly="true"
         android:fullBackupContent="@xml/backup_rules_old"
-        android:dataExtractionRules="@xml/backup_rules"
         android:backupAgent=".AegisBackupAgent"
-        android:enableOnBackInvokedCallback="true"
         android:icon="@mipmap/${iconName}"
         android:label="Aegis"
         android:supportsRtl="true"
         android:largeHeap="true"
-        android:theme="@style/Theme.Aegis.Launch"
-        tools:targetApi="tiramisu">
+        android:theme="@style/Theme.Aegis.Launch">
         <activity android:name=".ui.TransferEntriesActivity"
             android:label="@string/title_activity_transfer" />
         <activity
@@ -109,7 +105,8 @@
             android:label="@string/tile_open_vault"
             android:icon="@drawable/ic_aegis_quicksettings"
             android:permission="android.permission.BIND_QUICK_SETTINGS_TILE"
-            android:exported="true">
+            android:exported="true"
+            tools:targetApi="n">
             <intent-filter>
                 <action android:name="android.service.quicksettings.action.QS_TILE" />
             </intent-filter>
@@ -122,7 +119,8 @@
             android:label="@string/tile_open_scanner"
             android:icon="@drawable/ic_aegis_quicksettings"
             android:permission="android.permission.BIND_QUICK_SETTINGS_TILE"
-            android:exported="true">
+            android:exported="true"
+            tools:targetApi="n">
             <intent-filter>
                 <action android:name="android.service.quicksettings.action.QS_TILE" />
             </intent-filter>

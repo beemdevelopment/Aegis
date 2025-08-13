@@ -11,9 +11,19 @@ public class BiometricsHelper {
     }
 
     public static BiometricManager getManager(Context context) {
+        if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.M) {
+            return null;
+        }
+
         BiometricManager manager = BiometricManager.from(context);
-        if (manager.canAuthenticate(BiometricManager.Authenticators.BIOMETRIC_STRONG) == BiometricManager.BIOMETRIC_SUCCESS) {
-            return manager;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.R) {
+            if (manager.canAuthenticate(BiometricManager.Authenticators.BIOMETRIC_STRONG) == BiometricManager.BIOMETRIC_SUCCESS) {
+                return manager;
+            }
+        } else {
+            if (manager.canAuthenticate() == BiometricManager.BIOMETRIC_SUCCESS) {
+                return manager;
+            }
         }
         return null;
     }

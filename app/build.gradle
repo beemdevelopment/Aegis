@@ -20,14 +20,14 @@ def fileProviderAuthority = "${packageName}.fileprovider"
 def fileProviderAuthorityDebug = "${packageName}.debug.fileprovider"
 
 android {
-    compileSdk 35
+    compileSdk 33
 
     namespace packageName
 
     defaultConfig {
         applicationId "${packageName}"
-        minSdkVersion 23
-        targetSdkVersion 35
+        minSdkVersion 16
+        targetSdkVersion 33
         versionCode 80
         versionName "3.4.1"
         multiDexEnabled true
@@ -98,7 +98,7 @@ android {
         cruncherEnabled = false
     }
     defaultConfig {
-        vectorDrawables.generatedDensities = []
+        vectorDrawables.useSupportLibrary = true
     }
 
     packagingOptions {
@@ -112,8 +112,8 @@ android {
     }
 
     compileOptions {
-        targetCompatibility JavaVersion.VERSION_17
-        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_1_8
         coreLibraryDesugaringEnabled true
     }
     lint {

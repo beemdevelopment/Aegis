@@ -240,7 +240,6 @@
                 </LinearLayout>
 
                 <RelativeLayout
-                    android:foreground="?android:attr/selectableItemBackground"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/accordian_header"
@@ -275,7 +274,8 @@
                     android:orientation="vertical"
                     android:visibility="gone"
                     android:alpha="0"
-                    android:layout_marginHorizontal="10dp">
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp">
                     <LinearLayout
                         android:id="@+id/layout_type_algo"
                         android:layout_width="match_parent"

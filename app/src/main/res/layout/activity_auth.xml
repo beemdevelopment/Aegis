@@ -16,7 +16,8 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:paddingHorizontal="48dp"
+            android:paddingLeft="48dp"
+            android:paddingRight="48dp"
             android:paddingTop="48dp"
             android:orientation="vertical">
 
@@ -126,6 +127,7 @@
             android:textAllCaps="true"
             android:textStyle="bold"
             android:textColor="?attr/colorOnSurfaceDim"
-            android:paddingVertical="50dp" />
+            android:paddingTop="50dp"
+            android:paddingBottom="50dp" />
     </LinearLayout>
 </ScrollView>
