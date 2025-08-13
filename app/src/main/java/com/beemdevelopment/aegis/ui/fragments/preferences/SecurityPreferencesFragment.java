@@ -109,34 +109,36 @@ public class SecurityPreferencesFragment extends PreferencesFragment {
 
         _biometricsPreference = requirePreference("pref_biometrics");
         _biometricsPreference.setOnPreferenceChangeListener((preference, newValue) -> {
-            VaultFileCredentials creds = _vaultManager.getVault().getCredentials();
-            SlotList slots = creds.getSlots();
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
+                VaultFileCredentials creds = _vaultManager.getVault().getCredentials();
+                SlotList slots = creds.getSlots();
 
-            if (!slots.has(BiometricSlot.class)) {
-                if (BiometricsHelper.isAvailable(requireContext())) {
-                    BiometricSlotInitializer initializer = new BiometricSlotInitializer(SecurityPreferencesFragment.this, new RegisterBiometricsListener());
-                    BiometricPrompt.PromptInfo info = new BiometricPrompt.PromptInfo.Builder()
-                            .setTitle(getString(R.string.set_up_biometric))
-                            .setNegativeButtonText(getString(android.R.string.cancel))
-                            .build();
-                    initializer.authenticate(info);
+                if (!slots.has(BiometricSlot.class)) {
+                    if (BiometricsHelper.isAvailable(requireContext())) {
+                        BiometricSlotInitializer initializer = new BiometricSlotInitializer(SecurityPreferencesFragment.this, new RegisterBiometricsListener());
+                        BiometricPrompt.PromptInfo info = new BiometricPrompt.PromptInfo.Builder()
+                                .setTitle(getString(R.string.set_up_biometric))
+                                .setNegativeButtonText(getString(android.R.string.cancel))
+                                .build();
+                        initializer.authenticate(info);
+                    }
+                } else {
+                    // remove the biometric slot
+                    BiometricSlot slot = slots.find(BiometricSlot.class);
+                    slots.remove(slot);
+                    _vaultManager.getVault().setCredentials(creds);
+
+                    // remove the KeyStore key
+                    try {
+                        KeyStoreHandle handle = new KeyStoreHandle();
+                        handle.deleteKey(slot.getUUID().toString());
+                    } catch (KeyStoreHandleException e) {
+                        e.printStackTrace();
+                    }
+
+                    saveAndBackupVault();
+                    updateEncryptionPreferences();
                 }
-            } else {
-                // remove the biometric slot
-                BiometricSlot slot = slots.find(BiometricSlot.class);
-                slots.remove(slot);
-                _vaultManager.getVault().setCredentials(creds);
-
-                // remove the KeyStore key
-                try {
-                    KeyStoreHandle handle = new KeyStoreHandle();
-                    handle.deleteKey(slot.getUUID().toString());
-                } catch (KeyStoreHandleException e) {
-                    e.printStackTrace();
-                }
-
-                saveAndBackupVault();
-                updateEncryptionPreferences();
             }
 
             return false;
@@ -271,12 +273,20 @@ public class SecurityPreferencesFragment extends PreferencesFragment {
             SlotList slots = _vaultManager.getVault().getCredentials().getSlots();
             boolean multiBackupPassword = slots.findBackupPasswordSlots().size() > 1;
             boolean multiPassword = slots.findRegularPasswordSlots().size() > 1;
-            boolean multiBio = slots.findAll(BiometricSlot.class).size() > 1;
-            boolean canUseBio = BiometricsHelper.isAvailable(requireContext());
             _setPasswordPreference.setEnabled(!multiPassword);
-            _biometricsPreference.setEnabled(canUseBio && !multiBio);
-            _biometricsPreference.setChecked(slots.has(BiometricSlot.class), true);
-            _passwordReminderPreference.setVisible(slots.has(BiometricSlot.class));
+
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
+                boolean multiBio = slots.findAll(BiometricSlot.class).size() > 1;
+                boolean canUseBio = BiometricsHelper.isAvailable(requireContext());
+                _biometricsPreference.setEnabled(canUseBio && !multiBio);
+                _biometricsPreference.setChecked(slots.has(BiometricSlot.class), true);
+                _passwordReminderPreference.setVisible(slots.has(BiometricSlot.class));
+            } else {
+                _biometricsPreference.setEnabled(false);
+                _biometricsPreference.setChecked(false, true);
+                _passwordReminderPreference.setVisible(false);
+            }
+
             _backupPasswordChangePreference.setEnabled(!multiBackupPassword);
         } else {
             _setPasswordPreference.setEnabled(false);
@@ -399,25 +409,29 @@ public class SecurityPreferencesFragment extends PreferencesFragment {
     private class RegisterBiometricsListener implements BiometricSlotInitializer.Listener {
         @Override
         public void onInitializeSlot(BiometricSlot slot, Cipher cipher) {
-            VaultFileCredentials creds = _vaultManager.getVault().getCredentials();
-            try {
-                slot.setKey(creds.getKey(), cipher);
-            } catch (SlotException e) {
-                e.printStackTrace();
-                onSlotInitializationFailed(0, e.toString());
-                return;
-            }
-            creds.getSlots().add(slot);
-            _vaultManager.getVault().setCredentials(creds);
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
+                VaultFileCredentials creds = _vaultManager.getVault().getCredentials();
+                try {
+                    slot.setKey(creds.getKey(), cipher);
+                } catch (SlotException e) {
+                    e.printStackTrace();
+                    onSlotInitializationFailed(0, e.toString());
+                    return;
+                }
+                creds.getSlots().add(slot);
+                _vaultManager.getVault().setCredentials(creds);
 
-            saveAndBackupVault();
-            updateEncryptionPreferences();
+                saveAndBackupVault();
+                updateEncryptionPreferences();
+            }
         }
 
         @Override
         public void onSlotInitializationFailed(int errorCode, @NonNull CharSequence errString) {
-            if (!BiometricsHelper.isCanceled(errorCode)) {
-                Dialogs.showErrorDialog(requireContext(), R.string.encryption_enable_biometrics_error, errString);
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
+                if (!BiometricsHelper.isCanceled(errorCode)) {
+                    Dialogs.showErrorDialog(requireContext(), R.string.encryption_enable_biometrics_error, errString);
+                }
             }
         }
     }

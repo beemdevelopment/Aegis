@@ -129,38 +129,40 @@ public class AuthActivity extends AegisActivity {
 
         // only show the biometric prompt if the api version is new enough, permission is granted, a scanner is found and a biometric slot is found
         _slots = _vaultFile.getHeader().getSlots();
-        if (_slots.has(BiometricSlot.class) && BiometricsHelper.isAvailable(this)) {
-            boolean invalidated = false;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
+            if (_slots.has(BiometricSlot.class) && BiometricsHelper.isAvailable(this)) {
+                boolean invalidated = false;
 
-            try {
-                // find a biometric slot with an id that matches an alias in the keystore
-                for (BiometricSlot slot : _slots.findAll(BiometricSlot.class)) {
-                    String id = slot.getUUID().toString();
-                    KeyStoreHandle handle = new KeyStoreHandle();
-                    if (handle.containsKey(id)) {
-                        SecretKey key = handle.getKey(id);
-                        // if 'key' is null, it was permanently invalidated
-                        if (key == null) {
-                            invalidated = true;
-                            continue;
+                try {
+                    // find a biometric slot with an id that matches an alias in the keystore
+                    for (BiometricSlot slot : _slots.findAll(BiometricSlot.class)) {
+                        String id = slot.getUUID().toString();
+                        KeyStoreHandle handle = new KeyStoreHandle();
+                        if (handle.containsKey(id)) {
+                            SecretKey key = handle.getKey(id);
+                            // if 'key' is null, it was permanently invalidated
+                            if (key == null) {
+                                invalidated = true;
+                                continue;
+                            }
+
+                            _bioSlot = slot;
+                            _bioKey = key;
+                            biometricsButton.setVisibility(View.VISIBLE);
+                            invalidated = false;
+                            break;
                         }
-
-                        _bioSlot = slot;
-                        _bioKey = key;
-                        biometricsButton.setVisibility(View.VISIBLE);
-                        invalidated = false;
-                        break;
                     }
+                } catch (KeyStoreHandleException e) {
+                    e.printStackTrace();
+                    Dialogs.showErrorDialog(this, R.string.biometric_init_error, e);
                 }
-            } catch (KeyStoreHandleException e) {
-                e.printStackTrace();
-                Dialogs.showErrorDialog(this, R.string.biometric_init_error, e);
-            }
 
-            // display a help message if a matching invalidated keystore entry was found
-            if (invalidated) {
-                boxBiometricInfo.setVisibility(View.VISIBLE);
-                biometricsButton.setVisibility(View.GONE);
+                // display a help message if a matching invalidated keystore entry was found
+                if (invalidated) {
+                    boxBiometricInfo.setVisibility(View.VISIBLE);
+                    biometricsButton.setVisibility(View.GONE);
+                }
             }
         }
 
@@ -177,21 +179,23 @@ public class AuthActivity extends AegisActivity {
             _decryptButton.setEnabled(false);
         });
 
-        biometricsButton.setOnClickListener(v -> {
-            if (_prefs.isPasswordReminderNeeded()) {
-                Dialogs.showSecureDialog(new MaterialAlertDialogBuilder(this, R.style.ThemeOverlay_Aegis_AlertDialog_Warning)
-                        .setTitle(getString(R.string.password_reminder_dialog_title))
-                        .setMessage(getString(R.string.password_reminder_dialog_message))
-                        .setCancelable(false)
-                        .setIconAttribute(android.R.attr.alertDialogIcon)
-                        .setPositiveButton(android.R.string.ok, (dialog1, which) -> {
-                            showBiometricPrompt();
-                        })
-                        .create());
-            } else {
-                showBiometricPrompt();
-            }
-        });
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
+            biometricsButton.setOnClickListener(v -> {
+                if (_prefs.isPasswordReminderNeeded()) {
+                    Dialogs.showSecureDialog(new MaterialAlertDialogBuilder(this, R.style.ThemeOverlay_Aegis_AlertDialog_Warning)
+                            .setTitle(getString(R.string.password_reminder_dialog_title))
+                            .setMessage(getString(R.string.password_reminder_dialog_message))
+                            .setCancelable(false))
+                            .setIconAttribute(android.R.attr.alertDialogIcon)
+                            .setPositiveButton(android.R.string.ok, (dialog1, which) -> {
+                                showBiometricPrompt();
+                            })
+                            .create());
+                } else {
+                    showBiometricPrompt();
+                }
+            });
+        }
     }
 
     @Override
@@ -216,8 +220,10 @@ public class AuthActivity extends AegisActivity {
             focusPasswordField();
         }
 
-        if (_bioKey != null && _bioPrompt == null && !_inhibitBioPrompt && !remindPassword) {
-            _bioPrompt = showBiometricPrompt();
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
+            if (_bioKey != null && _bioPrompt == null && !_inhibitBioPrompt && !remindPassword) {
+                _bioPrompt = showBiometricPrompt();
+            }
         }
 
         _inhibitBioPrompt = false;
@@ -225,9 +231,11 @@ public class AuthActivity extends AegisActivity {
 
     @Override
     public void onPause() {
-        if (!isChangingConfigurations() && _bioPrompt != null) {
-            _bioPrompt.cancelAuthentication();
-            _bioPrompt = null;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
+            if (!isChangingConfigurations() && _bioPrompt != null) {
+                _bioPrompt.cancelAuthentication();
+                _bioPrompt = null;
+            }
         }
 
         super.onPause();
@@ -235,8 +243,10 @@ public class AuthActivity extends AegisActivity {
 
     @Override
     public void onAttachedToWindow() {
-        if (_bioKey != null && _prefs.isPasswordReminderNeeded()) {
-            showPasswordReminder();
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
+            if (_bioKey != null && _prefs.isPasswordReminderNeeded()) {
+                showPasswordReminder();
+            }
         }
     }
 
@@ -268,28 +278,31 @@ public class AuthActivity extends AegisActivity {
     }
 
     public BiometricPrompt showBiometricPrompt() {
-        InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
-        imm.hideSoftInputFromWindow(_textPassword.getWindowToken(), 0);
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
+            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(_textPassword.getWindowToken(), 0);
 
-        Cipher cipher;
-        try {
-            cipher = _bioSlot.createDecryptCipher(_bioKey);
-        } catch (SlotException e) {
-            e.printStackTrace();
-            Dialogs.showErrorDialog(this, R.string.biometric_init_error, e);
-            return null;
+            Cipher cipher;
+            try {
+                cipher = _bioSlot.createDecryptCipher(_bioKey);
+            } catch (SlotException e) {
+                e.printStackTrace();
+                Dialogs.showErrorDialog(this, R.string.biometric_init_error, e);
+                return null;
+            }
+
+            BiometricPrompt.CryptoObject cryptoObj = new BiometricPrompt.CryptoObject(cipher);
+            BiometricPrompt prompt = new BiometricPrompt(this, new UiThreadExecutor(), new BiometricPromptListener());
+
+            BiometricPrompt.PromptInfo info = new BiometricPrompt.PromptInfo.Builder()
+                    .setTitle(getString(R.string.authentication))
+                    .setNegativeButtonText(getString(android.R.string.cancel))
+                    .setConfirmationRequired(false)
+                    .build();
+            prompt.authenticate(info, cryptoObj);
+            return prompt;
         }
-
-        BiometricPrompt.CryptoObject cryptoObj = new BiometricPrompt.CryptoObject(cipher);
-        BiometricPrompt prompt = new BiometricPrompt(this, new UiThreadExecutor(), new BiometricPromptListener());
-
-        BiometricPrompt.PromptInfo info = new BiometricPrompt.PromptInfo.Builder()
-                .setTitle(getString(R.string.authentication))
-                .setNegativeButtonText(getString(android.R.string.cancel))
-                .setConfirmationRequired(false)
-                .build();
-        prompt.authenticate(info, cryptoObj);
-        return prompt;
+        return null;
     }
 
     private void finish(MasterKey key, boolean isSlotRepaired) {
@@ -366,37 +379,43 @@ public class AuthActivity extends AegisActivity {
     private class BiometricPromptListener extends BiometricPrompt.AuthenticationCallback {
         @Override
         public void onAuthenticationError(int errorCode, @NonNull CharSequence errString) {
-            super.onAuthenticationError(errorCode, errString);
-            _bioPrompt = null;
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
+                super.onAuthenticationError(errorCode, errString);
+                _bioPrompt = null;
 
-            if (!BiometricsHelper.isCanceled(errorCode)) {
-                _auditLogRepository.addVaultUnlockFailedBiometricsEvent();
-                Toast.makeText(AuthActivity.this, errString, Toast.LENGTH_LONG).show();
+                if (!BiometricsHelper.isCanceled(errorCode)) {
+                    _auditLogRepository.addVaultUnlockFailedBiometricsEvent();
+                    Toast.makeText(AuthActivity.this, errString, Toast.LENGTH_LONG).show();
+                }
             }
         }
 
         @Override
         public void onAuthenticationSucceeded(@NonNull BiometricPrompt.AuthenticationResult result) {
-            super.onAuthenticationSucceeded(result);
-            _bioPrompt = null;
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
+                super.onAuthenticationSucceeded(result);
+                _bioPrompt = null;
 
-            MasterKey key;
-            BiometricSlot slot = _slots.find(BiometricSlot.class);
+                MasterKey key;
+                BiometricSlot slot = _slots.find(BiometricSlot.class);
 
-            try {
-                key = slot.getKey(result.getCryptoObject().getCipher());
-            } catch (SlotException | SlotIntegrityException e) {
-                e.printStackTrace();
-                Dialogs.showErrorDialog(AuthActivity.this, R.string.biometric_decrypt_error, e);
-                return;
+                try {
+                    key = slot.getKey(result.getCryptoObject().getCipher());
+                } catch (SlotException | SlotIntegrityException e) {
+                    e.printStackTrace();
+                    Dialogs.showErrorDialog(AuthActivity.this, R.string.biometric_decrypt_error, e);
+                    return;
+                }
+
+                finish(key, false);
             }
-
-            finish(key, false);
         }
 
         @Override
         public void onAuthenticationFailed() {
-            super.onAuthenticationFailed();
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
+                super.onAuthenticationFailed();
+            }
         }
     }
 }

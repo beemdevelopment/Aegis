@@ -3,17 +3,8 @@ apply plugin: 'com.google.protobuf'
 apply plugin: 'dagger.hilt.android.plugin'
 apply plugin: 'com.mikepenz.aboutlibraries.plugin'
 
-def getCmdOutput = { cmd ->
-    def stdout = new ByteArrayOutputStream()
-    exec {
-        commandLine cmd
-        standardOutput = stdout
-    }
-    return stdout.toString().trim()
-}
-
-def getGitHash = { -> return getCmdOutput(["git", "rev-parse", "--short", "HEAD"]) }
-def getGitBranch = { -> return getCmdOutput(["git", "rev-parse", "--abbrev-ref", "HEAD"]) }
+def getGitHash = { -> return "unknown" }
+def getGitBranch = { -> return "unknown" }
 
 def packageName = "com.beemdevelopment.aegis"
 def fileProviderAuthority = "${packageName}.fileprovider"
@@ -26,7 +17,7 @@ android {
 
     defaultConfig {
         applicationId "${packageName}"
-        minSdkVersion 23
+        minSdkVersion 16
         targetSdkVersion 35
         versionCode 80
         versionName "3.4.1"
@@ -98,7 +89,7 @@ android {
         cruncherEnabled = false
     }
     defaultConfig {
-        vectorDrawables.generatedDensities = []
+        vectorDrawables.useSupportLibrary = true
     }
 
     packagingOptions {
@@ -112,8 +103,8 @@ android {
     }
 
     compileOptions {
-        targetCompatibility JavaVersion.VERSION_17
-        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_1_8
         coreLibraryDesugaringEnabled true
     }
     lint {
@@ -191,7 +182,7 @@ dependencies {
     implementation "com.github.topjohnwu.libsu:core:${libsuVersion}"
     implementation "com.github.topjohnwu.libsu:io:${libsuVersion}"
     implementation "com.google.guava:guava:${guavaVersion}-android"
-    implementation 'com.google.android.material:material:1.12.0'
+    implementation 'com.google.android.material:material:1.4.0'
     implementation 'com.google.protobuf:protobuf-javalite:4.31.0'
     implementation 'com.google.zxing:core:3.5.3'
     implementation('com.mikepenz:aboutlibraries:11.2.3') {

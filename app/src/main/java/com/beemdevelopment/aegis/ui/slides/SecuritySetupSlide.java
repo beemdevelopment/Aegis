@@ -98,12 +98,14 @@ public class SecuritySetupSlide extends SlideFragment {
     }
 
     private void showBiometricPrompt() {
-        BiometricSlotInitializer initializer = new BiometricSlotInitializer(this, new BiometricsListener());
-        BiometricPrompt.PromptInfo info = new BiometricPrompt.PromptInfo.Builder()
-                .setTitle(getString(R.string.set_up_biometric))
-                .setNegativeButtonText(getString(android.R.string.cancel))
-                .build();
-        initializer.authenticate(info);
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
+            BiometricSlotInitializer initializer = new BiometricSlotInitializer(this, new BiometricsListener());
+            BiometricPrompt.PromptInfo info = new BiometricPrompt.PromptInfo.Builder()
+                    .setTitle(getString(R.string.set_up_biometric))
+                    .setNegativeButtonText(getString(android.R.string.cancel))
+                    .build();
+            initializer.authenticate(info);
+        }
     }
 
     private void deriveKey() {
@@ -119,8 +121,10 @@ public class SecuritySetupSlide extends SlideFragment {
             case CRYPT_TYPE_NONE:
                 return true;
             case CRYPT_TYPE_BIOMETRIC:
-                if (!_creds.getSlots().has(BiometricSlot.class)) {
-                    return false;
+                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
+                    if (!_creds.getSlots().has(BiometricSlot.class)) {
+                        return false;
+                    }
                 }
                 // intentional fallthrough
             case CRYPT_TYPE_PASS:
@@ -140,7 +144,7 @@ public class SecuritySetupSlide extends SlideFragment {
             Toast.makeText(requireContext(), R.string.password_equality_error, Toast.LENGTH_SHORT).show();
         } else if (_cryptType != SecurityPickerSlide.CRYPT_TYPE_BIOMETRIC) {
             deriveKey();
-        } else if (!_creds.getSlots().has(BiometricSlot.class)) {
+        } else if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M && !_creds.getSlots().has(BiometricSlot.class)) {
             showBiometricPrompt();
         }
     }
@@ -170,22 +174,26 @@ public class SecuritySetupSlide extends SlideFragment {
     private class BiometricsListener implements BiometricSlotInitializer.Listener {
         @Override
         public void onInitializeSlot(BiometricSlot slot, Cipher cipher) {
-            try {
-                slot.setKey(_creds.getKey(), cipher);
-                _creds.getSlots().add(slot);
-            } catch (SlotException e) {
-                e.printStackTrace();
-                onSlotInitializationFailed(0, e.toString());
-                return;
-            }
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
+                try {
+                    slot.setKey(_creds.getKey(), cipher);
+                    _creds.getSlots().add(slot);
+                } catch (SlotException e) {
+                    e.printStackTrace();
+                    onSlotInitializationFailed(0, e.toString());
+                    return;
+                }
 
-            deriveKey();
+                deriveKey();
+            }
         }
 
         @Override
         public void onSlotInitializationFailed(int errorCode, @NonNull CharSequence errString) {
-            if (!BiometricsHelper.isCanceled(errorCode)) {
-                Dialogs.showErrorDialog(requireContext(), R.string.encryption_enable_biometrics_error, errString);
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
+                if (!BiometricsHelper.isCanceled(errorCode)) {
+                    Dialogs.showErrorDialog(requireContext(), R.string.encryption_enable_biometrics_error, errString);
+                }
             }
         }
     }

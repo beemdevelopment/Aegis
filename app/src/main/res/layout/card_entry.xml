@@ -26,7 +26,7 @@
             android:layout_width="15dp"
             android:layout_height="match_parent"
             android:layout_marginStart="-11dp"
-            android:backgroundTint="?attr/colorFavorite"
+            app:backgroundTint="?attr/colorFavorite"
             android:background="@drawable/favorite_indicator" />
 
         <RelativeLayout
@@ -125,7 +125,6 @@
                     android:fontFamily="sans-serif-light"
                     tools:text="012 345"
                     android:id="@+id/profile_code"
-                    android:layoutDirection="ltr"
                     android:textSize="34sp"
                     android:layout_below="@id/description"
                     android:textColor="?attr/colorCode"
