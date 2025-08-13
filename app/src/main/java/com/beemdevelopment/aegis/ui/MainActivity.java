@@ -240,10 +240,15 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
                  dialog.dismiss();
                  startScanImageActivity();
              });
-             view.findViewById(R.id.fab_scan).setOnClickListener(v3 -> {
-                 dialog.dismiss();
-                 startScanActivity();
-             });
+             View fabScan = view.findViewById(R.id.fab_scan);
+             if (android.os.Build.VERSION.SDK_INT < 21) {
+                 fabScan.setVisibility(View.GONE);
+             } else {
+                 fabScan.setOnClickListener(v3 -> {
+                     dialog.dismiss();
+                     startScanActivity();
+                 });
+             }
 
              Dialogs.showSecureDialog(dialog);
          });
@@ -805,7 +810,9 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
 
         switch (action) {
             case "scan":
-                startScanActivity();
+                if (android.os.Build.VERSION.SDK_INT >= 21) {
+                    startScanActivity();
+                }
                 break;
         }
 

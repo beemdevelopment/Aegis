@@ -33,6 +33,7 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+@androidx.annotation.RequiresApi(21)
 public class ScannerActivity extends AegisActivity implements QrCodeAnalyzer.Listener {
     private ProcessCameraProvider _cameraProvider;
     private ListenableFuture<ProcessCameraProvider> _cameraProviderFuture;
@@ -52,6 +53,13 @@ public class ScannerActivity extends AegisActivity implements QrCodeAnalyzer.Lis
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        if (android.os.Build.VERSION.SDK_INT < 21) {
+            Toast.makeText(this, R.string.camera_not_supported, Toast.LENGTH_LONG).show();
+            finish();
+            return;
+        }
+
         if (abortIfOrphan(savedInstanceState)) {
             return;
         }
