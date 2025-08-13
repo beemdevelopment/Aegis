@@ -3,17 +3,8 @@ apply plugin: 'com.google.protobuf'
 apply plugin: 'dagger.hilt.android.plugin'
 apply plugin: 'com.mikepenz.aboutlibraries.plugin'
 
-def getCmdOutput = { cmd ->
-    def stdout = new ByteArrayOutputStream()
-    exec {
-        commandLine cmd
-        standardOutput = stdout
-    }
-    return stdout.toString().trim()
-}
-
-def getGitHash = { -> return getCmdOutput(["git", "rev-parse", "--short", "HEAD"]) }
-def getGitBranch = { -> return getCmdOutput(["git", "rev-parse", "--abbrev-ref", "HEAD"]) }
+def getGitHash = { -> return "unknown" }
+def getGitBranch = { -> return "unknown" }
 
 def packageName = "com.beemdevelopment.aegis"
 def fileProviderAuthority = "${packageName}.fileprovider"
