@@ -37,6 +37,13 @@ public class AboutActivity extends AegisActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        if (android.os.Build.VERSION.SDK_INT < 21) {
+            Toast.makeText(this, "About screen is not supported on this device.", Toast.LENGTH_LONG).show();
+            finish();
+            return;
+        }
+
         if (abortIfOrphan(savedInstanceState)) {
             return;
         }

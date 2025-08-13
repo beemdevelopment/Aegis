@@ -981,6 +981,10 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         _menu = menu;
         getMenuInflater().inflate(R.menu.menu_main, menu);
 
+        if (android.os.Build.VERSION.SDK_INT < 21) {
+            menu.findItem(R.id.action_about).setVisible(false);
+        }
+
         updateLockIcon();
         updateSortCategoryMenu();
 
@@ -1057,8 +1061,10 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         if (itemId == R.id.action_settings) {
             startPreferencesActivity();
         } else if (itemId == R.id.action_about) {
-            Intent intent = new Intent(this, AboutActivity.class);
-            startActivity(intent);
+            if (android.os.Build.VERSION.SDK_INT >= 21) {
+                Intent intent = new Intent(this, AboutActivity.class);
+                startActivity(intent);
+            }
         } else if (itemId == R.id.action_lock) {
             _vaultManager.lock(true);
         } else {
