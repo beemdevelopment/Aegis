@@ -182,7 +182,7 @@ dependencies {
     implementation "com.github.topjohnwu.libsu:core:${libsuVersion}"
     implementation "com.github.topjohnwu.libsu:io:${libsuVersion}"
     implementation "com.google.guava:guava:${guavaVersion}-android"
-    implementation 'com.google.android.material:material:1.12.0'
+    implementation 'com.google.android.material:material:1.4.0'
     implementation 'com.google.protobuf:protobuf-javalite:4.31.0'
     implementation 'com.google.zxing:core:3.5.3'
     implementation('com.mikepenz:aboutlibraries:11.2.3') {
