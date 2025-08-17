@@ -55,7 +55,7 @@
             android:id="@+id/button_delete_permanently"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/delete"
+            android:text="@string/action_delete"
             style="?android:attr/buttonBarButtonStyle" />
     </LinearLayout>
 
