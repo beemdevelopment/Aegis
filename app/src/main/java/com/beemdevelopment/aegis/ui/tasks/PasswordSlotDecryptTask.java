@@ -53,7 +53,7 @@ public class PasswordSlotDecryptTask extends ProgressDialogTask<PasswordSlotDecr
 
             }
         }
-        throw new SlotIntegrityException("No matching password slot found.");
+        throw new SlotIntegrityException(new Exception("No matching password slot found."));
     }
 
     public static Result decryptPasswordSlot(PasswordSlot slot, char[] password)

@@ -35,7 +35,7 @@ public class NfcTransferActivity extends AegisActivity implements NfcAdapter.Cre
             return;
         }
 
-        nfcAdapter.setNdefPushMessageCallback((NfcAdapter.CreateNdefMessageCallback) this, this);
+        nfcAdapter.setNdefPushMessageCallback((NfcAdapter.CreateNdefMessageCallback) this, this, this);
     }
 
     @Override
