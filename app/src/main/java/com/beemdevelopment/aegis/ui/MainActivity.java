@@ -1291,11 +1291,15 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         copyEntryCode(entry);
 
         // Update usage count and last used timestamp
-        int usageCount = _prefs.getUsageCount(entry.getUUID()) + 1;
-        _prefs.setUsageCount(entry.getUUID(), usageCount);
-        _prefs.setLastUsedTimestamp(entry.getUUID(), System.currentTimeMillis());
+        Map<UUID, Integer> usageCounts = _prefs.getUsageCounts();
+        usageCounts.put(entry.getUUID(), _prefs.getUsageCount(entry.getUUID()) + 1);
+        _prefs.setUsageCount(usageCounts);
 
-        _entryListView.setUsageCounts(_prefs.getUsageCounts());
+        Map<UUID, Long> lastUsedTimestamps = _prefs.getLastUsedTimestamps();
+        lastUsedTimestamps.put(entry.getUUID(), System.currentTimeMillis());
+        _prefs.setLastUsedTimestamps(lastUsedTimestamps);
+
+        _entryListView.setUsageCounts(usageCounts);
         _entryListView.setLastUsedTimestamps(_prefs.getLastUsedTimestamps());
     }
 

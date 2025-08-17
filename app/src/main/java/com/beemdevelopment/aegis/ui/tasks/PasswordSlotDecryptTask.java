@@ -45,6 +45,17 @@ public class PasswordSlotDecryptTask extends ProgressDialogTask<PasswordSlotDecr
         return null;
     }
 
+    public static MasterKey decryptWithPassword(List<PasswordSlot> slots, char[] password) throws SlotIntegrityException, SlotException {
+        for (PasswordSlot slot : slots) {
+            try {
+                return decryptPasswordSlot(slot, password).getKey();
+            } catch (SlotIntegrityException ignored) {
+
+            }
+        }
+        throw new SlotIntegrityException("No matching password slot found.");
+    }
+
     public static Result decryptPasswordSlot(PasswordSlot slot, char[] password)
             throws SlotIntegrityException, SlotException {
         MasterKey masterKey;

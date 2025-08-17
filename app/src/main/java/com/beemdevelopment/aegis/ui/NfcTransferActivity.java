@@ -35,7 +35,7 @@ public class NfcTransferActivity extends AegisActivity implements NfcAdapter.Cre
             return;
         }
 
-        nfcAdapter.setNdefPushMessageCallback(this, this);
+        nfcAdapter.setNdefPushMessageCallback((NfcAdapter.CreateNdefMessageCallback) this, this);
     }
 
     @Override
@@ -80,10 +80,12 @@ public class NfcTransferActivity extends AegisActivity implements NfcAdapter.Cre
                         if (vaultFile.isEncrypted()) {
                             com.beemdevelopment.aegis.ui.dialogs.Dialogs.showPasswordInputDialog(this, password -> {
                                 try {
-                                    com.beemdevelopment.aegis.vault.VaultFileCredentials creds = new com.beemdevelopment.aegis.vault.VaultFileCredentials(new String(password));
+                                    java.util.List<com.beemdevelopment.aegis.vault.slots.PasswordSlot> slots = vaultFile.getHeader().getSlots().findAll(com.beemdevelopment.aegis.vault.slots.PasswordSlot.class);
+                                    com.beemdevelopment.aegis.crypto.MasterKey masterKey = com.beemdevelopment.aegis.ui.tasks.PasswordSlotDecryptTask.decryptWithPassword(slots, password);
+                                    com.beemdevelopment.aegis.vault.VaultFileCredentials creds = new com.beemdevelopment.aegis.vault.VaultFileCredentials(masterKey, vaultFile.getHeader().getSlots());
                                     com.beemdevelopment.aegis.vault.Vault receivedVault = com.beemdevelopment.aegis.vault.Vault.fromJson(vaultFile.getContent(creds));
                                     showImportConfirmationDialog(receivedVault);
-                                } catch (com.beemdevelopment.aegis.vault.VaultFileException | org.json.JSONException | com.beemdevelopment.aegis.vault.VaultException e) {
+                                } catch (com.beemdevelopment.aegis.vault.slots.SlotException | com.beemdevelopment.aegis.vault.slots.SlotIntegrityException | com.beemdevelopment.aegis.vault.VaultFileException | org.json.JSONException | com.beemdevelopment.aegis.vault.VaultException e) {
                                     e.printStackTrace();
                                     Toast.makeText(this, "Failed to decrypt vault.", Toast.LENGTH_LONG).show();
                                 }
