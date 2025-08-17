@@ -119,8 +119,5 @@ public class NfcTransferActivity extends AegisActivity implements NfcAdapter.Cre
                 })
                 .setNegativeButton("Cancel", null)
                 .show();
-                }
-            }
-        }
     }
 }
