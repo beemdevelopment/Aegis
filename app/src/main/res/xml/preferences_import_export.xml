@@ -13,11 +13,6 @@
         android:summary="@string/pref_import_app_summary"
         app:iconSpaceReserved="false"/>
     <Preference
-        android:key="pref_nfc_transfer"
-        android:title="NFC Transfer"
-        android:summary="Transfer the vault to another device using NFC"
-        app:iconSpaceReserved="false"/>
-    <Preference
         android:key="pref_export"
         android:title="@string/pref_export_title"
         android:summary="@string/pref_export_summary"

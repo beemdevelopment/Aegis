@@ -128,13 +128,6 @@ public class ImportExportPreferencesFragment extends PreferencesFragment {
             return true;
         });
 
-        Preference nfcTransferPreference = requirePreference("pref_nfc_transfer");
-        nfcTransferPreference.setOnPreferenceClickListener(preference -> {
-            Intent intent = new Intent(requireContext(), com.beemdevelopment.aegis.ui.NfcTransferActivity.class);
-            startActivity(intent);
-            return true;
-        });
-
         Preference googleAuthStyleExportPreference = requirePreference("pref_google_auth_style_export");
         googleAuthStyleExportPreference.setOnPreferenceClickListener(preference -> {
             startGoogleAuthenticatorStyleExport();
