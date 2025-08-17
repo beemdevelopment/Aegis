@@ -21,6 +21,7 @@ public class NfcTransferActivity extends AegisActivity implements NfcAdapter.Cre
     private NfcAdapter nfcAdapter;
 
     @Override
+    @SuppressWarnings("deprecation")
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nfc_transfer);
@@ -35,7 +36,7 @@ public class NfcTransferActivity extends AegisActivity implements NfcAdapter.Cre
             return;
         }
 
-        nfcAdapter.setNdefPushMessageCallback((NfcAdapter.CreateNdefMessageCallback) this, this, this);
+        nfcAdapter.setNdefPushMessageCallback(this, this);
     }
 
     @Override
