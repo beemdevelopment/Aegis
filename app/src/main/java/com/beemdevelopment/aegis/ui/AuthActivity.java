@@ -355,8 +355,33 @@ public class AuthActivity extends AegisActivity {
 
                 finish(result.getKey(), result.isSlotRepaired());
             } else {
-                _decryptButton.setEnabled(true);
+                // Password didn't match regular slots, try duress slots
+                List<com.beemdevelopment.aegis.vault.slots.DuressPasswordSlot> duressSlots = _slots.findAll(com.beemdevelopment.aegis.vault.slots.DuressPasswordSlot.class);
+                if (duressSlots.isEmpty()) {
+                    _decryptButton.setEnabled(true);
+                    _auditLogRepository.addVaultUnlockFailedPasswordEvent();
+                    onInvalidPassword();
+                    return;
+                }
 
+                char[] password = EditTextHelper.getEditTextChars(_textPassword);
+                com.beemdevelopment.aegis.ui.tasks.DuressPasswordSlotDecryptTask.Params params = new com.beemdevelopment.aegis.ui.tasks.DuressPasswordSlotDecryptTask.Params(duressSlots, password);
+                com.beemdevelopment.aegis.ui.tasks.DuressPasswordSlotDecryptTask task = new com.beemdevelopment.aegis.ui.tasks.DuressPasswordSlotDecryptTask(AuthActivity.this, new DuressPasswordDerivationListener());
+                task.execute(getLifecycle(), params);
+            }
+        }
+    }
+
+    private class DuressPasswordDerivationListener implements com.beemdevelopment.aegis.ui.tasks.DuressPasswordSlotDecryptTask.Callback {
+        @Override
+        public void onTaskFinished(com.beemdevelopment.aegis.ui.tasks.DuressPasswordSlotDecryptTask.Result result) {
+            if (result != null) {
+                // Duress password correct, open empty vault
+                _vaultManager.setDecoyVault();
+                setResult(RESULT_OK);
+                finish();
+            } else {
+                _decryptButton.setEnabled(true);
                 _auditLogRepository.addVaultUnlockFailedPasswordEvent();
                 onInvalidPassword();
             }

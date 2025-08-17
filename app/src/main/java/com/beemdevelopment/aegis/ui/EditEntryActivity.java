@@ -691,7 +691,7 @@ public class EditEntryActivity extends AegisActivity {
     }
 
     private void deleteAndFinish(VaultEntry entry) {
-        _vaultManager.getVault().removeEntry(entry);
+        _vaultManager.getVault().softDeleteEntry(entry);
         saveAndFinish(entry, true);
     }
 
@@ -919,7 +919,7 @@ public class EditEntryActivity extends AegisActivity {
                     .setMessage(message)
                     .setPositiveButton(R.string.action_delete, (d, which) -> {
                         for (VaultEntry dup : duplicates) {
-                            _vaultManager.getVault().removeEntry(dup);
+                            _vaultManager.getVault().softDeleteEntry(dup);
                         }
 
                         dialog.dismiss();

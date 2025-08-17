@@ -29,6 +29,7 @@ public abstract class Slot extends UUIDMap.Value {
     public final static byte TYPE_RAW = 0x00;
     public final static byte TYPE_PASSWORD = 0x01;
     public final static byte TYPE_BIOMETRIC = 0x02;
+    public final static byte TYPE_DURESS_PASSWORD = 0x03;
 
     private byte[] _encryptedMasterKey;
     private CryptParameters _encryptedMasterKeyParams;
@@ -145,6 +146,16 @@ public abstract class Slot extends UUIDMap.Value {
                     break;
                 case Slot.TYPE_BIOMETRIC:
                     slot = new BiometricSlot(uuid, key, keyParams);
+                    break;
+                case Slot.TYPE_DURESS_PASSWORD:
+                    SCryptParameters duressScryptParams = new SCryptParameters(
+                            obj.getInt("n"),
+                            obj.getInt("r"),
+                            obj.getInt("p"),
+                            Hex.decode(obj.getString("salt"))
+                    );
+                    boolean duressRepaired = obj.optBoolean("repaired", false);
+                    slot = new DuressPasswordSlot(uuid, key, keyParams, duressScryptParams, duressRepaired);
                     break;
                 default:
                     throw new SlotException("unrecognized slot type");

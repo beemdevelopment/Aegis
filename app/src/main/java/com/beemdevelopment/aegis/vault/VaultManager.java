@@ -236,6 +236,14 @@ public class VaultManager {
         return _repo;
     }
 
+    public void setDecoyVault() {
+        if (isVaultLoaded()) {
+            throw new IllegalStateException("Vault manager is already initialized");
+        }
+
+        _repo = new VaultRepository(_context, new Vault(), null);
+    }
+
     /**
      * Starts an external activity, temporarily blocks automatic lock of Aegis and
      * shows an error dialog if the target activity is not found.

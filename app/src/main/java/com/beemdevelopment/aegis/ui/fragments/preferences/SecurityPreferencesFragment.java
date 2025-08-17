@@ -253,6 +253,42 @@ public class SecurityPreferencesFragment extends PreferencesFragment {
             Dialogs.showSetPasswordDialog(requireActivity(), new SetBackupPasswordListener());
             return false;
         });
+
+        Preference duressPasswordPreference = requirePreference("pref_duress_password");
+        duressPasswordPreference.setOnPreferenceClickListener(preference -> {
+            Dialogs.showSetPasswordDialog(requireActivity(), new SetDuressPasswordListener());
+            return false;
+        });
+    }
+
+    private class SetDuressPasswordListener implements Dialogs.PasswordSlotListener {
+        @Override
+        public void onSlotResult(PasswordSlot slot, Cipher cipher) {
+            try {
+                // We don't use the provided PasswordSlot, but create a DuressPasswordSlot
+                com.beemdevelopment.aegis.vault.slots.DuressPasswordSlot duressSlot = new com.beemdevelopment.aegis.vault.slots.DuressPasswordSlot();
+                VaultFileCredentials creds = _vaultManager.getVault().getCredentials();
+                duressSlot.setKey(creds.getKey(), cipher);
+
+                // Remove any existing duress password slots
+                for (Slot oldSlot : creds.getSlots().findAll(com.beemdevelopment.aegis.vault.slots.DuressPasswordSlot.class)) {
+                    creds.getSlots().remove(oldSlot);
+                }
+
+                creds.getSlots().add(duressSlot);
+                _vaultManager.getVault().setCredentials(creds);
+                saveAndBackupVault();
+                Toast.makeText(requireContext(), "Duress password set", Toast.LENGTH_SHORT).show();
+            } catch (SlotException e) {
+                onException(e);
+            }
+        }
+
+        @Override
+        public void onException(Exception e) {
+            e.printStackTrace();
+            Dialogs.showErrorDialog(requireContext(), R.string.encryption_set_password_error, e);
+        }
     }
 
     private void updateEncryptionPreferences() {

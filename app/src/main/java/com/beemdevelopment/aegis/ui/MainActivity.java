@@ -1047,7 +1047,10 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int itemId = item.getItemId();
-        if (itemId == R.id.action_settings) {
+        if (itemId == R.id.action_trash) {
+            Intent intent = new Intent(this, TrashActivity.class);
+            startActivity(intent);
+        } else if (itemId == R.id.action_settings) {
             startPreferencesActivity();
         } else if (itemId == R.id.action_about) {
             Intent intent = new Intent(this, AboutActivity.class);
@@ -1286,6 +1289,14 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
 
     public void onEntryCopy(VaultEntry entry) {
         copyEntryCode(entry);
+
+        // Update usage count and last used timestamp
+        int usageCount = _prefs.getUsageCount(entry.getUUID()) + 1;
+        _prefs.setUsageCount(entry.getUUID(), usageCount);
+        _prefs.setLastUsedTimestamp(entry.getUUID(), System.currentTimeMillis());
+
+        _entryListView.setUsageCounts(_prefs.getUsageCounts());
+        _entryListView.setLastUsedTimestamps(_prefs.getLastUsedTimestamps());
     }
 
     @Override
@@ -1453,7 +1464,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
             } else if (itemId == R.id.action_delete) {
                 Dialogs.showDeleteEntriesDialog(MainActivity.this, _selectedEntries, (d, which) -> {
                     for (VaultEntry entry : _selectedEntries) {
-                        _vaultManager.getVault().removeEntry(entry);
+                        _vaultManager.getVault().softDeleteEntry(entry);
                     }
                     saveAndBackupVault();
                     _entryListView.setGroups(_vaultManager.getVault().getUsedGroups());

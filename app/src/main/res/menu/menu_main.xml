@@ -47,6 +47,11 @@
         </menu>
     </item>
     <item
+        android:id="@+id/action_trash"
+        android:orderInCategory="90"
+        android:title="@string/trash"
+        app:showAsAction="never" />
+    <item
         android:id="@+id/action_settings"
         android:orderInCategory="100"
         android:title="@string/action_settings"

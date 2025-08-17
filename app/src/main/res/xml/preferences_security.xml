@@ -95,4 +95,14 @@
             android:summary="@string/pref_panic_trigger_summary"
             app:iconSpaceReserved="false"/>
     </PreferenceCategory>
+    <PreferenceCategory
+        android:title="Duress Password"
+        app:iconSpaceReserved="false">
+        <Preference
+            android:key="pref_duress_password"
+            android:title="Set Duress Password"
+            android:summary="Set a password that will open a decoy vault."
+            android:dependency="pref_encryption"
+            app:iconSpaceReserved="false"/>
+    </PreferenceCategory>
 </PreferenceScreen>

@@ -234,8 +234,16 @@ public class VaultRepository {
         return _vault.getEntries().getByUUID(uuid);
     }
 
-    public VaultEntry removeEntry(VaultEntry entry) {
+    public VaultEntry hardDeleteEntry(VaultEntry entry) {
         return _vault.getEntries().remove(entry);
+    }
+
+    public void softDeleteEntry(VaultEntry entry) {
+        editEntry(entry, e -> e.setDeletedTimestamp(System.currentTimeMillis()));
+    }
+
+    public void restoreEntry(VaultEntry entry) {
+        editEntry(entry, e -> e.setDeletedTimestamp(0));
     }
 
     /**
@@ -269,7 +277,15 @@ public class VaultRepository {
     }
 
     public Collection<VaultEntry> getEntries() {
-        return _vault.getEntries().getValues();
+        return _vault.getEntries().getValues().stream()
+                .filter(entry -> entry.getDeletedTimestamp() == 0)
+                .collect(Collectors.toList());
+    }
+
+    public Collection<VaultEntry> getDeletedEntries() {
+        return _vault.getEntries().getValues().stream()
+                .filter(entry -> entry.getDeletedTimestamp() != 0)
+                .collect(Collectors.toList());
     }
 
     public void addGroup(VaultGroup group) {

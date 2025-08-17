@@ -24,6 +24,7 @@ public class VaultEntry extends UUIDMap.Value {
     private boolean _isFavorite;
     private int _usageCount;
     private long _lastUsedTimestamp;
+    private long _deletedTimestamp = 0;
     private String _note = "";
     private String _oldGroup;
     private Set<UUID> _groups = new TreeSet<>();
@@ -58,6 +59,7 @@ public class VaultEntry extends UUIDMap.Value {
             obj.put("issuer", _issuer);
             obj.put("note", _note);
             obj.put("favorite", _isFavorite);
+            obj.put("deleted_ts", _deletedTimestamp);
             VaultEntryIcon.toJson(_icon, obj);
             obj.put("info", _info.toJson());
 
@@ -90,6 +92,7 @@ public class VaultEntry extends UUIDMap.Value {
             entry.setIssuer(obj.getString("issuer"));
             entry.setNote(obj.optString("note", ""));
             entry.setIsFavorite(obj.optBoolean("favorite", false));
+            entry.setDeletedTimestamp(obj.optLong("deleted_ts", 0));
 
             // If the entry contains a list of group UUID's, assume conversion from the
             // old group system has already taken place and ignore the old group field.
@@ -146,6 +149,10 @@ public class VaultEntry extends UUIDMap.Value {
         return _lastUsedTimestamp;
     }
 
+    public long getDeletedTimestamp() {
+        return _deletedTimestamp;
+    }
+
     public String getNote() {
         return _note;
     }
@@ -198,6 +205,10 @@ public class VaultEntry extends UUIDMap.Value {
 
     public void setLastUsedTimestamp(long lastUsedTimestamp) { _lastUsedTimestamp = lastUsedTimestamp; }
 
+    public void setDeletedTimestamp(long deletedTimestamp) {
+        _deletedTimestamp = deletedTimestamp;
+    }
+
     public void setNote(String note) {
         _note = note;
     }
@@ -236,6 +247,7 @@ public class VaultEntry extends UUIDMap.Value {
                 && Objects.equals(getIcon(), entry.getIcon())
                 && getNote().equals(entry.getNote())
                 && isFavorite() == entry.isFavorite()
+                && getDeletedTimestamp() == entry.getDeletedTimestamp()
                 && getGroups().equals(entry.getGroups());
     }
 
