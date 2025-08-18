@@ -1047,10 +1047,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int itemId = item.getItemId();
-        if (itemId == R.id.action_trash) {
-            Intent intent = new Intent(this, TrashActivity.class);
-            startActivity(intent);
-        } else if (itemId == R.id.action_settings) {
+        if (itemId == R.id.action_settings) {
             startPreferencesActivity();
         } else if (itemId == R.id.action_about) {
             Intent intent = new Intent(this, AboutActivity.class);
