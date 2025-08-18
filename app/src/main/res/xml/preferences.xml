@@ -46,4 +46,14 @@
         app:title="@string/pref_section_audit_log_title"
         app:summary="@string/pref_section_audit_log_summary" />
 
+    <Preference
+        app:icon="@drawable/ic_outline_delete_24"
+        app:title="@string/trash"
+        app:summary="View and manage deleted entries">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetPackage="com.beemdevelopment.aegis"
+            android:targetClass="com.beemdevelopment.aegis.ui.TrashActivity" />
+    </Preference>
+
 </androidx.preference.PreferenceScreen>
