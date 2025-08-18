@@ -1286,18 +1286,6 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
 
     public void onEntryCopy(VaultEntry entry) {
         copyEntryCode(entry);
-
-        // Update usage count and last used timestamp
-        Map<UUID, Integer> usageCounts = _prefs.getUsageCounts();
-        usageCounts.put(entry.getUUID(), _prefs.getUsageCount(entry.getUUID()) + 1);
-        _prefs.setUsageCount(usageCounts);
-
-        Map<UUID, Long> lastUsedTimestamps = _prefs.getLastUsedTimestamps();
-        lastUsedTimestamps.put(entry.getUUID(), System.currentTimeMillis());
-        _prefs.setLastUsedTimestamps(lastUsedTimestamps);
-
-        _entryListView.setUsageCounts(usageCounts);
-        _entryListView.setLastUsedTimestamps(_prefs.getLastUsedTimestamps());
     }
 
     @Override
@@ -1465,7 +1453,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
             } else if (itemId == R.id.action_delete) {
                 Dialogs.showDeleteEntriesDialog(MainActivity.this, _selectedEntries, (d, which) -> {
                     for (VaultEntry entry : _selectedEntries) {
-                        _vaultManager.getVault().softDeleteEntry(entry);
+                        _vaultManager.getVault().removeEntry(entry);
                     }
                     saveAndBackupVault();
                     _entryListView.setGroups(_vaultManager.getVault().getUsedGroups());
