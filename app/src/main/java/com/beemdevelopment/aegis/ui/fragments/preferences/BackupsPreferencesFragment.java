@@ -167,6 +167,22 @@ public class BackupsPreferencesFragment extends PreferencesFragment {
             });
             return false;
         });
+
+        Preference testBackupsLocationPreference = requirePreference("pref_test_backups_location");
+        testBackupsLocationPreference.setOnPreferenceClickListener(preference -> {
+            Uri backupsLocation = _prefs.getBackupsLocation();
+            if (backupsLocation != null) {
+                boolean success = new VaultBackupManager(requireContext(), _auditLogRepository).testBackupLocation(backupsLocation);
+                if (success) {
+                    Toast.makeText(requireContext(), "Test successful!", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(requireContext(), "Test failed. Please check the backup location and permissions.", Toast.LENGTH_LONG).show();
+                }
+            } else {
+                Toast.makeText(requireContext(), "No backup location set.", Toast.LENGTH_SHORT).show();
+            }
+            return true;
+        });
     }
 
     private void saveAndDisableBackupReminder(boolean understand) {
@@ -198,6 +214,7 @@ public class BackupsPreferencesFragment extends PreferencesFragment {
         boolean androidBackupEnabled = _prefs.isAndroidBackupsEnabled() && encrypted;
         boolean backupEnabled = _prefs.isBackupsEnabled() && encrypted;
         boolean backupReminderEnabled = _prefs.isBackupReminderEnabled();
+        requirePreference("pref_test_backups_location").setVisible(backupEnabled);
         _backupsPasswordWarningPreference.setVisible(_vaultManager.getVault().isBackupPasswordSet());
         _androidBackupsPreference.setChecked(androidBackupEnabled);
         _androidBackupsPreference.setEnabled(encrypted);

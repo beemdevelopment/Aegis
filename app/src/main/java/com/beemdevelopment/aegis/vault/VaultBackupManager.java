@@ -86,7 +86,7 @@ public class VaultBackupManager {
         Log.i(TAG, String.format("Creating backup at %s", fileUri));
         try {
             if (!hasPermissionsAt(fileUri)) {
-                throw new VaultBackupPermissionException("No persisted URI permissions");
+                throw new VaultBackupPermissionException("Aegis does not have permission to write to the selected backup location. Please select the backup location again.");
             }
             ContentResolver resolver = _context.getContentResolver();
             try (FileInputStream inStream = new FileInputStream(tempFile);
@@ -116,7 +116,7 @@ public class VaultBackupManager {
             Log.i(TAG, String.format("Creating backup at %s: %s", Uri.decode(dir.getUri().toString()), fileInfo.toString()));
 
             if (!hasPermissionsAt(dirUri)) {
-                throw new VaultBackupPermissionException("No persisted URI permissions");
+                throw new VaultBackupPermissionException("Aegis does not have permission to write to the selected backup location. Please select the backup location again.");
             }
 
             // If we create a file with a name that already exists, SAF will append a number
@@ -158,6 +158,27 @@ public class VaultBackupManager {
         }
 
         return false;
+    }
+
+    public boolean testBackupLocation(Uri uri) {
+        if (uri == null) {
+            return false;
+        }
+        try {
+            DocumentFile dir = DocumentFile.fromTreeUri(_context, uri);
+            if (dir == null || !dir.isDirectory() || !dir.canWrite()) {
+                return false;
+            }
+            DocumentFile testFile = dir.createFile("text/plain", "aegis_test_file");
+            if (testFile == null) {
+                return false;
+            }
+            testFile.delete();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 
     private void enforceVersioning(DocumentFile dir, int versionsToKeep) {

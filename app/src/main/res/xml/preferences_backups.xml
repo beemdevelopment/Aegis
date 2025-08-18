@@ -32,6 +32,9 @@
             android:title="@string/pref_backups_location_title"
             android:summary="@string/pref_backups_location_summary" />
         <Preference
+            android:key="pref_test_backups_location"
+            android:title="Test Location" />
+        <Preference
             android:key="pref_backups_trigger"
             android:title="@string/pref_backups_trigger_title"
             android:summary="@string/pref_backups_trigger_summary" />
