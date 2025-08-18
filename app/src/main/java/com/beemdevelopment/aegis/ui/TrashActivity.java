@@ -15,6 +15,15 @@ public class TrashActivity extends AegisActivity implements TrashEntryAdapter.Tr
     private RecyclerView recyclerView;
     private TrashEntryAdapter adapter;
 
+    private final androidx.activity.result.ActivityResultLauncher<Intent> authResultLauncher =
+            registerForActivityResult(new androidx.activity.result.contract.ActivityResultContracts.StartActivityForResult(), activityResult -> {
+                if (activityResult.getResultCode() == RESULT_OK) {
+                    loadDeletedEntries();
+                } else {
+                    finish();
+                }
+            });
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,8 +34,18 @@ public class TrashActivity extends AegisActivity implements TrashEntryAdapter.Tr
 
         recyclerView = findViewById(R.id.trash_recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+    }
 
-        loadDeletedEntries();
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        if (!_vaultManager.isVaultLoaded()) {
+            Intent intent = new Intent(this, AuthActivity.class);
+            authResultLauncher.launch(intent);
+        } else {
+            loadDeletedEntries();
+        }
     }
 
     private void loadDeletedEntries() {
