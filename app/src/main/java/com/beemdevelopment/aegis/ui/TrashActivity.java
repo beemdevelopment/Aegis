@@ -1,5 +1,6 @@
 package com.beemdevelopment.aegis.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
