@@ -70,4 +70,10 @@ public class TrashActivity extends AegisActivity implements TrashEntryAdapter.Tr
             adapter.removeItem(entry);
         });
     }
+
+    @Override
+    public void onLocked(boolean userInitiated) {
+        // Do nothing. This will prevent the activity from being finished when the vault is locked.
+        // The onStart() method will handle the case where the vault is not loaded.
+    }
 }

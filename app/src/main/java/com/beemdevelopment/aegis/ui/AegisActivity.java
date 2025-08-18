@@ -244,7 +244,6 @@ public abstract class AegisActivity extends AppCompatActivity implements VaultMa
         return !(this instanceof MainActivity)
                 && !(this instanceof AuthActivity)
                 && !(this instanceof IntroActivity)
-                && !(this instanceof TrashActivity)
                 && !_vaultManager.isVaultLoaded();
     }
 
