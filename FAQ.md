@@ -81,6 +81,7 @@ app is not possible.
 
 Cloud providers currently known to be supported:
 - Nextcloud
+- Google: Android Settings > Backup > Back up now; it's [on your Google Drive](https://drive.google.com/drive/u/0/backups)
 
 Another common setup is to configure Aegis to back up to a folder on local
 storage of your device and then have a separate app (like
