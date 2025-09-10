@@ -30,6 +30,12 @@ adding support for this feature in Aegis.
 Exporting is done manually and backups are done automatically. The format of the
 vault file is exactly the same for both.
 
+### Can it Sync?
+
+It cannot directly continously sync individual items between Android devices (e.g. two Mobiles or your Mobile and Tablet).
+
+You could however manually export and import.
+
 ## Security
 
 ### I can no longer use biometrics to unlock the app. What should I do?
