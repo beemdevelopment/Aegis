@@ -89,6 +89,10 @@ uninstalling the app and re-installing it. To convince yourself that the data
 wasn't just left on the device, you can _Clear storage_ and _Clear cache_
 in Aegis' App info _Storage and cache_ settings before uninstalling it.
 
+If Aegis is already installed and you see the welcome screen when starting the app 
+although you were expecting to restore your backup, reinstall the app. This should 
+help to get you into the restore process from above, asking you for your password.
+
 The password that it asks you for after a (re)install means that the restore
 from the Cloud provider worked! But it was sent encrypted to the Cloud provider.
 So you do need the Aegis vault password that you originally set on the previous device.
