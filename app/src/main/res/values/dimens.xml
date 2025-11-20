@@ -1,4 +1,5 @@
 <resources>
     <dimen name="fab_margin">16dp</dimen>
+    <dimen name="fab_menu_item_image_size">24dp</dimen>
     <dimen name="list_item_height">48dp</dimen>
 </resources>
