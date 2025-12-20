@@ -13,13 +13,11 @@ import com.beemdevelopment.aegis.services.LaunchScannerTileService;
 import com.beemdevelopment.aegis.vault.VaultManager;
 
 import javax.inject.Inject;
-
 import dagger.hilt.android.AndroidEntryPoint;
 
 @AndroidEntryPoint
 public class VaultLockReceiver extends BroadcastReceiver {
-    public static final String ACTION_LOCK_VAULT
-            = String.format("%s.LOCK_VAULT", BuildConfig.APPLICATION_ID);
+    public static final String ACTION_LOCK_VAULT = String.format("%s.LOCK_VAULT", BuildConfig.APPLICATION_ID);
 
     @Inject
     protected VaultManager _vaultManager;
@@ -27,28 +25,29 @@ public class VaultLockReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         String action = intent.getAction();
-        if (action == null) {
-            return;
+        if (action == null) return;
+
+        // Group 1: System-level refresh signals
+        if (Intent.ACTION_USER_UNLOCKED.equals(action) || Intent.ACTION_BOOT_COMPLETED.equals(action)) {
+            refreshQuickSettingsTiles(context);
+            return; // No need to process vault locking for these signals
         }
 
-        // Trigger Tile refresh when the device is unlocked after reboot
-        if (action.equals(Intent.ACTION_USER_UNLOCKED) || action.equals(Intent.ACTION_BOOT_COMPLETED)) {
-            TileService.requestListeningState(context, 
-                new ComponentName(context, LaunchAppTileService.class));
-            
-            // Optionally refresh the scanner tile if available
-            try {
-                TileService.requestListeningState(context, 
-                    new ComponentName(context, LaunchScannerTileService.class));
-            } catch (Exception ignored) {}
-            return;
+        // Group 2: Security/Locking signals
+        if (action.equals(ACTION_LOCK_VAULT) || action.equals(Intent.ACTION_SCREEN_OFF)) {
+            handleVaultAutoLock();
         }
+    }
 
-        // Existing vault lock logic
-        if (!action.equals(ACTION_LOCK_VAULT) && !action.equals(Intent.ACTION_SCREEN_OFF)) {
-            return;
-        }
+    private void refreshQuickSettingsTiles(Context context) {
+        // Force refresh all Aegis-related tiles
+        TileService.requestListeningState(context, new ComponentName(context, LaunchAppTileService.class));
+        try {
+            TileService.requestListeningState(context, new ComponentName(context, LaunchScannerTileService.class));
+        } catch (Exception ignored) {}
+    }
 
+    private void handleVaultAutoLock() {
         if (_vaultManager.isAutoLockEnabled(Preferences.AUTO_LOCK_ON_DEVICE_LOCK)) {
             _vaultManager.lock(false);
         }
