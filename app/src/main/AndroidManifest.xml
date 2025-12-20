@@ -5,10 +5,7 @@
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.USE_BIOMETRIC" />
     <uses-permission android:name="android.permission.VIBRATE" />
-
-    <!-- NOTE: Disabled for now. See issue: #1047
-    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
-    -->
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
     <uses-feature
         android:name="android.hardware.camera"
@@ -100,10 +97,6 @@
         </activity>
         <activity android:name=".ui.ExitActivity" />
 
-        <!-- NOTE: Disabled for now. See issue: #1047
-        <service android:name=".services.NotificationService" />
-        -->
-
         <service
             android:name=".services.LaunchAppTileService"
             android:label="@string/tile_open_vault"
@@ -130,9 +123,15 @@
                 android:value="true" />
         </service>
 
-        <receiver android:name=".receivers.VaultLockReceiver" android:exported="false">
+        <receiver 
+            android:name=".receivers.VaultLockReceiver" 
+            android:directBootAware="true"
+            android:exported="true">
             <intent-filter>
                 <action android:name="${applicationId}.LOCK_VAULT" />
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.USER_UNLOCKED" />
+                <action android:name="android.intent.action.SCREEN_OFF" />
             </intent-filter>
         </receiver>
 
