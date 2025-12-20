@@ -2,10 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.USE_BIOMETRIC" />
     <uses-permission android:name="android.permission.VIBRATE" />
-    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
     <uses-feature
         android:name="android.hardware.camera"
@@ -28,74 +29,29 @@
         android:largeHeap="true"
         android:theme="@style/Theme.Aegis.Launch"
         tools:targetApi="tiramisu">
+        
         <activity android:name=".ui.TransferEntriesActivity"
             android:label="@string/title_activity_transfer" />
-        <activity
-            android:name=".ui.AboutActivity"
+        <activity android:name=".ui.AboutActivity"
             android:label="@string/title_activity_about" />
-        <activity
-            android:name=".ui.ImportEntriesActivity"
+        <activity android:name=".ui.ImportEntriesActivity"
             android:label="@string/title_activity_import_entries" />
+        
         <activity
             android:name=".ui.MainActivity"
             android:exported="true"
             android:label="${title}">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
-
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-
                 <data android:scheme="otpauth" />
             </intent-filter>
-            <intent-filter>
-                <action android:name="android.intent.action.SEND" />
-                <action android:name="android.intent.action.SEND_MULTIPLE" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <data android:mimeType="image/*" />
-                <data android:mimeType="text/plain" />
-            </intent-filter>
         </activity>
-        <activity
-            android:name=".ui.ScannerActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize"
-            android:label="@string/title_activity_scan_qr"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.EditEntryActivity"
-            android:label="@string/title_activity_edit_entry" />
-        <activity
-            android:name=".ui.IntroActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.AuthActivity" />
-        <activity
-            android:name=".ui.PreferencesActivity"
-            android:label="@string/title_activity_preferences" />
-        <activity
-            android:name=".ui.GroupManagerActivity"
-            android:label="@string/title_activity_manage_groups" />
-        <activity android:name=".ui.AssignIconsActivity"
-            android:label="@string/title_activity_assign_icons"/>
-        <activity android:name=".ui.LicensesActivity"
-            android:label="@string/title_activity_licenses"/>
-        <activity
-            android:name=".ui.PanicResponderActivity"
-            android:exported="true"
-            android:launchMode="singleInstance"
-            android:noHistory="true"
-            android:theme="@android:style/Theme.NoDisplay">
-            <intent-filter>
-                <action android:name="info.guardianproject.panic.action.TRIGGER" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity android:name=".ui.ExitActivity" />
 
         <service
             android:name=".services.LaunchAppTileService"
@@ -130,6 +86,7 @@
             <intent-filter>
                 <action android:name="${applicationId}.LOCK_VAULT" />
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.LOCKED_BOOT_COMPLETED" />
                 <action android:name="android.intent.action.USER_UNLOCKED" />
                 <action android:name="android.intent.action.SCREEN_OFF" />
             </intent-filter>
@@ -151,15 +108,8 @@
 
     <queries>
         <package android:name="com.stratumauth.app" />
-        <package android:name="com.authy.authy" />
-        <package android:name="org.fedorahosted.freeotp" />
-        <package android:name="org.liberty.android.freeotpplus" />
         <package android:name="com.google.android.apps.authenticator2" />
         <package android:name="com.azure.authenticator" />
-        <package android:name="com.valvesoftware.android.steam.community" />
-        <package android:name="com.authenticator.authservice2" />
-        <package android:name="com.duosecurity.duomobile" />
-        <package android:name="com.blizzard.messenger" />
     </queries>
 
 </manifest>
