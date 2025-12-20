@@ -29,27 +29,13 @@
         android:largeHeap="true"
         android:theme="@style/Theme.Aegis.Launch"
         tools:targetApi="tiramisu">
-        
-        <activity android:name=".ui.TransferEntriesActivity"
-            android:label="@string/title_activity_transfer" />
-        <activity android:name=".ui.AboutActivity"
-            android:label="@string/title_activity_about" />
-        <activity android:name=".ui.ImportEntriesActivity"
-            android:label="@string/title_activity_import_entries" />
-        
-        <activity
-            android:name=".ui.MainActivity"
+
+        <activity android:name=".ui.MainActivity"
             android:exported="true"
             android:label="${title}">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-                <data android:scheme="otpauth" />
             </intent-filter>
         </activity>
 
@@ -99,17 +85,8 @@
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/file_paths">
-            </meta-data>
+                android:resource="@xml/file_paths" />
         </provider>
 
-        <meta-data android:name="android.webkit.WebView.MetricsOptOut" android:value="true" />
     </application>
-
-    <queries>
-        <package android:name="com.stratumauth.app" />
-        <package android:name="com.google.android.apps.authenticator2" />
-        <package android:name="com.azure.authenticator" />
-    </queries>
-
 </manifest>
