@@ -20,15 +20,15 @@ public class LaunchAppTileService extends TileService {
     @Override
     public void onStartListening() {
         super.onStartListening();
-        Tile tile = getQsTile();
-        if (tile == null) {
-            return;
-        }
+        updateTileState();
+    }
 
-        // Check if the credential-encrypted storage is unlocked
-        UserManager userManager = (UserManager) getSystemService(Context.USER_SERVICE);
-        if (userManager != null && !userManager.isUserUnlocked()) {
-            // Keep tile in safe inactive state until the user unlocks the phone
+    private void updateTileState() {
+        Tile tile = getQsTile();
+        if (tile == null) return;
+
+        // Centralized logic for Direct Boot safety
+        if (isDeviceLocked()) {
             tile.setState(Tile.STATE_INACTIVE);
             tile.updateTile();
             return;
@@ -38,15 +38,20 @@ public class LaunchAppTileService extends TileService {
             tile.setState(Tile.STATE_INACTIVE);
             tile.updateTile();
         } catch (Exception e) {
-            Log.e("LaunchAppTileService", "Failed to update tile state", e);
+            Log.e("LaunchAppTileService", "QS Tile refresh failed", e);
         }
+    }
+
+    private boolean isDeviceLocked() {
+        UserManager um = (UserManager) getSystemService(Context.USER_SERVICE);
+        return um != null && !um.isUserUnlocked();
     }
 
     @SuppressLint("StartActivityAndCollapseDeprecated")
     @Override
     public void onClick() {
         super.onClick();
-
+        // Clicking is only possible if the OS has enabled the tile
         Intent intent = new Intent(this, MainActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         intent.setAction(Intent.ACTION_MAIN);
