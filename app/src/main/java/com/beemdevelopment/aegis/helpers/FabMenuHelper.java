@@ -5,6 +5,7 @@ import android.graphics.Matrix;
 import android.graphics.drawable.Drawable;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.OvershootInterpolator;
 import android.widget.ImageView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -159,14 +160,19 @@ public class FabMenuHelper {
     }
 
     private void animateActionIn(View action, long delay) {
+        action.setVisibility(View.VISIBLE);
+        action.setAlpha(0f);
+        action.setScaleX(0.4f);
+        action.setScaleY(0.4f);
+
         action.animate()
-            .alpha(1f)
-            .scaleX(1f)
-            .scaleY(1f)
-            .setDuration(ANIMATION_DURATION)
-            .setStartDelay(delay)
-            .withStartAction(() -> action.setVisibility(View.VISIBLE))
-            .start();
+                .alpha(1f)
+                .scaleX(1f)
+                .scaleY(1f)
+                .setDuration(ANIMATION_DURATION)
+                .setStartDelay(delay)
+                .setInterpolator(new OvershootInterpolator(1.2f))
+                .start();
     }
 
     private void animateActionOut(View action, long delay) {
