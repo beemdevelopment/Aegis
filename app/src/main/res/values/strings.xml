@@ -539,6 +539,10 @@
     <string name="dialog_wipe_entries_message">Your vault already contains entries. Do you want to remove these entries before importing this file?\n\n<b>In doing so, you will permanently lose access to the existing entries in the vault.</b></string>
     <string name="dialog_wipe_entries_checkbox">Wipe vault contents</string>
 
+    <string name="import_from_clipboard_title">Import from clipboard</string>
+
+    <string name="import_from_clipboard_message">We found a valid otpauth uri on your clipboard.\n\n<b>Name</b>: %1$s\n<b>Issuer</b>: %2$s\n\nDo you want to use it to prefill this entry?</string>
+
     <string name="panic_trigger_ignore_toast">Aegis received panic trigger but setting is disabled, ignoring</string>
     <string name="pref_panic_trigger_title">Delete vault on panic trigger</string>
     <string name="pref_panic_trigger_summary">Delete vault when a panic trigger is received from Ripple</string>

@@ -17,6 +17,7 @@ import android.provider.Settings;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.style.StyleSpan;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -63,6 +64,7 @@ import com.beemdevelopment.aegis.ui.models.VaultGroupModel;
 import com.beemdevelopment.aegis.ui.tasks.IconOptimizationTask;
 import com.beemdevelopment.aegis.ui.tasks.QrDecodeTask;
 import com.beemdevelopment.aegis.ui.views.EntryListView;
+import com.beemdevelopment.aegis.util.ClipboardUtils;
 import com.beemdevelopment.aegis.util.TimeUtils;
 import com.beemdevelopment.aegis.util.UUIDMap;
 import com.beemdevelopment.aegis.vault.VaultEntry;
@@ -89,7 +91,6 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.SequencedMap;
 import java.util.Set;
 import java.util.UUID;
 import java.util.concurrent.atomic.AtomicReference;
@@ -252,7 +253,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         LinkedHashMap<View, Runnable> actions = new LinkedHashMap<>();
         actions.put(fabMenuLayout.findViewById(R.id.fab_menu_item_scan), this::startScanActivity);
         actions.put(fabMenuLayout.findViewById(R.id.fab_menu_item_scan_image), this::startScanImageActivity);
-        actions.put(fabMenuLayout.findViewById(R.id.fab_menu_item_enter), this::startEditEntryActivityForManual);
+        actions.put(fabMenuLayout.findViewById(R.id.fab_menu_item_enter), this::startEditEntryActivity);
 
         _fabMenuHelper = new FabMenuHelper(scrimOverlay, menuItemsContainer, fab, actions);
         _fabMenuHelper.setOnFabMenuStateChangeListener(_fabMenuBackPressHandler::setEnabled);
@@ -468,6 +469,34 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         if (_loaded) {
             recreate();
         }
+    }
+
+    private void startEditEntryActivity() {
+        String clip = ClipboardUtils.readText(this);
+        if (clip != null) {
+            GoogleAuthInfo parsed;
+            try {
+                parsed = GoogleAuthInfo.parseUri(clip.trim());
+                String message = getString(
+                        R.string.import_from_clipboard_message,
+                        parsed.getAccountName(),
+                        parsed.getIssuer()
+                );
+
+                Dialogs.showSecureDialog(new MaterialAlertDialogBuilder(this)
+                        .setTitle(R.string.import_from_clipboard_title)
+                        .setMessage(message)
+                        .setPositiveButton(R.string.yes, (dialog, which) -> startEditEntryActivityForNew(new VaultEntry(parsed)))
+                        .setNegativeButton(R.string.no,  (dialog, which) -> startEditEntryActivityForManual())
+                        .create());
+
+                return;
+            } catch (GoogleAuthInfoException e) {
+                Log.i("EntryActivity", "Clipboard did not contain a valid otpauth URI", e);
+            }
+        }
+
+        startEditEntryActivityForManual();
     }
 
     private void startEditEntryActivityForNew(VaultEntry entry) {
