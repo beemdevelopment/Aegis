@@ -197,7 +197,7 @@
                             app:passwordToggleTint="?attr/colorOnSurface"
                             app:passwordToggleEnabled="true">
 
-                            <com.google.android.material.textfield.TextInputEditText
+                            <com.beemdevelopment.aegis.ui.components.NoAutofillEditText
                                 android:id="@+id/text_secret"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
