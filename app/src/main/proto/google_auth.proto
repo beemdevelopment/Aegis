@@ -32,6 +32,7 @@ message MigrationPayload {
     DigitCount digits = 5;
     OtpType type = 6;
     int64 counter = 7;
+    string uniqueId = 8;
   }
 
   repeated OtpParameters otp_parameters = 1;
