@@ -81,6 +81,27 @@ app is not possible.
 
 Cloud providers currently known to be supported:
 - Nextcloud
+- Google: Android Settings > Backup > Back up now; it's [on your Google Drive](https://drive.google.com/drive/u/0/backups)
+
+When migrating to a new phone, just install Aegis again, and the Cloud provider
+will restore its backup to the new device. You can test restoring a backup by
+uninstalling the app and re-installing it. To convince yourself that the data
+wasn't just left on the device, you can _Clear storage_ and _Clear cache_
+in Aegis' App info _Storage and cache_ settings before uninstalling it.
+
+If Aegis is already installed and you see the welcome screen when starting the app 
+although you were expecting to restore your backup, reinstall the app. This should 
+help to get you into the restore process from above, asking you for your password.
+
+The password that it asks you for after a (re)install means that the restore
+from the Cloud provider worked! But it was sent encrypted to the Cloud provider.
+So you do need the Aegis vault password that you originally set on the previous device.
+
+If you recently added a new entry, then before doing such a test, make sure
+that Aegis' own _Backup Settings_ confirm the most recent backup was successful.
+For Google Cloud provider backup, you can explicitly trigger a backup from System
+_Settings > Back up or copy data > Back up data > Back up now._ (Which is only
+useful for testing; for normal use, it does it automagically at an appropriate time.)
 
 Another common setup is to configure Aegis to back up to a folder on local
 storage of your device and then have a separate app (like
