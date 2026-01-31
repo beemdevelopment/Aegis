@@ -107,3 +107,8 @@ workaround, you can try extracting the ZIP archive on a computer, recreating it
 without a password and then importing that into Aegis. Another option is
 extracting the ZIP archive on a computer and importing the resulting
 Accounts.txt file into Aegis with the "Plain text" import option.
+
+### From Google Authenticator
+
+Use _Transfer codes_ in Google Authenticator to generate a QR code to take out everything,
+and then Aegis use _Add new entry > Scan QR code_ (which NOT in Settings Import) to re-import, all in one go.
