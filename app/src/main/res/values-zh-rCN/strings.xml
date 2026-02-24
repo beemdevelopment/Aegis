@@ -493,6 +493,8 @@
     <string name="dialog_wipe_entries_title">擦除条目</string>
     <string name="dialog_wipe_entries_message">您的数据库已经包含条目。 您想要在导入此文件之前删除这些条目吗？\n\n<b>这样做，您将永久失去对数据库中现有条目的访问权限。</b></string>
     <string name="dialog_wipe_entries_checkbox">擦除数据库内容</string>
+    <string name="import_from_clipboard_title">从剪贴板导入</string>
+    <string name="import_from_clipboard_message">我们在您的剪贴板上找到了一个有效的 otpauth uri。\n\n<b>名称</b>: %1$s\n<b>发行者</b>: %2$s\n\n你想要使用它预填充此条目吗？</string>
     <string name="panic_trigger_ignore_toast">Aegis 收到紧急触发信号，但您未启用相关设置，忽略中</string>
     <string name="pref_panic_trigger_title">收到紧急触发信号时删除数据库</string>
     <string name="pref_panic_trigger_summary">从 Ripple 收到紧急触发信号时删除数据库</string>

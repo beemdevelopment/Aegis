@@ -48,8 +48,8 @@
     <string name="pref_show_next_code_title">Ver siguiente clave</string>
     <string name="pref_show_next_code_summary">Generar y mostrar la siguiente clave antes de tiempo</string>
     <string name="pref_expiration_state_title">Indica cuándo están a punto de expirar los códigos</string>
-    <string name="pref_expiration_state_summary">Cambia el color de los códigos y póngalos en parpadeo cuando estén a punto de expirar</string>
-    <string name="pref_expiration_state_fallback">Cambia el color de los códigos y póngalos en parpadeo cuando estén a punto de expirar</string>
+    <string name="pref_expiration_state_summary">Cambiar el color de los códigos y hacer que parpadeen cuando estén a punto de expirar</string>
+    <string name="pref_expiration_state_fallback">Cambiar el color de los códigos cuando estén a punto de expirar</string>
     <string name="pref_shared_issuer_account_name_title">Solo mostrar nombres de cuenta necesarios</string>
     <string name="pref_shared_issuer_account_name_summary">Mostrar nombres de cuenta solo cuando compartan el mismo emisor. Se ocultarán otros nombres de cuenta.</string>
     <string name="pref_account_name_position_summary_override">Este ajuste no tiene efecto cuando aparecen en recuadros; el nombre de la cuenta se mostrará debajo del emisor.</string>
@@ -507,6 +507,8 @@
     <string name="dialog_wipe_entries_title">Borrado de claves</string>
     <string name="dialog_wipe_entries_message">Tu bóveda no está vacía. ¿Quieres borrar todos las claves actuales antes de importar este archivo?\n\n<b>Al hacerlo perderás cualquiera de las claves que ya existen en la bóveda.</b></string>
     <string name="dialog_wipe_entries_checkbox">Limpiar el contenido de la bóveda</string>
+    <string name="import_from_clipboard_title">Importar desde el portapapeles</string>
+    <string name="import_from_clipboard_message">Parece que hay una dirección URI de otpauth en el portapapeles.\n\n<b>Nombre</b>: %1$s\n<b>Emisor</b>: %2$s\n\n¿Quieres autocompletar los datos con esto?</string>
     <string name="panic_trigger_ignore_toast">Aegis ha recibido el activador de pánico pero la configuración está deshabilitada, ignorando</string>
     <string name="pref_panic_trigger_title">Eliminar la bóveda al activar el pánico</string>
     <string name="pref_panic_trigger_summary">Eliminar la bóveda cuando se recibe una activación de pánico desde Ripple</string>

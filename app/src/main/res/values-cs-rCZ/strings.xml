@@ -47,7 +47,7 @@
     <string name="pref_account_name_position_title">Zobrazit název účtu</string>
     <string name="pref_show_next_code_title">Zobrazit další kód</string>
     <string name="pref_show_next_code_summary">Vygenerovat a zobrazit další kód před vypršením času</string>
-    <string name="pref_expiration_state_title">Uveďte, kdy vyprší platnost kódů</string>
+    <string name="pref_expiration_state_title">Naznačit, že kódy brzy vyprší</string>
     <string name="pref_expiration_state_summary">Při vypršení kódy změní barvu a budou blikat</string>
     <string name="pref_expiration_state_fallback">Při vypršení kódy změní barvu</string>
     <string name="pref_shared_issuer_account_name_title">Název účtu zobrazit pouze v případě potřeby</string>
@@ -57,7 +57,7 @@
     <string name="pref_import_file_summary">Importovat tokeny ze souboru</string>
     <string name="pref_android_backups_title">Cloudové zálohování systému Android</string>
     <string name="pref_android_backups_summary">Umožnit cloudovému zálohovacímu systému Androidu zahrnout zálohy trezoru Aegisu. Toto je podporováno pouze u šifrovaných trezorů.</string>
-    <string name="pref_android_backups_hint"><i>Zálohy \"zařízení na zařízení\" (D2D) jsou povoleny vždy, nezávisle na nastavení výše</i></string>
+    <string name="pref_android_backups_hint"><i>Zálohy „zařízení na zařízení“ (D2D) jsou povoleny vždy, nezávisle na nastavení výše</i></string>
     <string name="pref_backups_title">Automaticky zálohovat trezor</string>
     <string name="pref_backups_summary">Automaticky zálohovat trezor na externí úložiště při provedení změn. Tato možnost je dostupná jen pro šifrované trezory.</string>
     <string name="pref_backups_reminder_title">Připomenutí zálohy</string>
@@ -105,7 +105,7 @@
     <string name="pref_tap_to_reveal_summary">Ve výchozím stavu budou kódy skryté. Kód zobrazíte klepnutím na token.</string>
     <string name="pref_tap_to_reveal_time_title">Prodleva zobrazení kódu</string>
     <string name="pref_auto_lock_title">Automatické uzamknutí</string>
-    <string name="pref_auto_lock_summary">Když %s</string>
+    <string name="pref_auto_lock_summary">Kdy: %s</string>
     <string name="pref_auto_lock_summary_disabled">Vypnuto</string>
     <string name="pref_auto_lock_prompt">Automaticky zamknout Aegis…</string>
     <string name="pref_auto_lock_type_back_button">Při stisknutí tlačítka Zpět</string>
@@ -486,7 +486,7 @@
     <string name="backup_reminder_bar_dialog_summary">        Nedávné změny v trezoru ještě nebyly zálohovány. Je důležité provádět pravidelné zálohování, aby nedošlo ke ztrátě přístupu k účtům. Zvažte prosím nastavení automatického zálohování v nabídce nastavení.
     </string>
     <string name="backup_reminder_bar_dialog_accept">Nastavit zálohování</string>
-    <string name="backup_plaintext_export_warning"><b>Trezor byl nedávno exportován v plaintextu</b></string>
+    <string name="backup_plaintext_export_warning"><b>Trezor byl nedávno exportován v prostém textu</b></string>
     <string name="pref_show_plaintext_warning_hint">Toto varování již nezobrazovat</string>
     <string name="backup_plaintext_warning_explanation">Toto upozornění se zobrazuje, protože jste nedávno exportovali nešifrovanou kopii trezoru. Chcete-li zachovat bezpečnost svých tokenů, doporučujeme tento soubor odstranit, jakmile již nebude potřeba.</string>
     <string name="switch_camera">Přepnout fotoaparát</string>
@@ -511,7 +511,7 @@
     <string name="unable_to_copy_uri_to_clipboard">Nepodařilo se zkopírovat URI do schránky</string>
     <string name="uri_copied_to_clipboard">URI zkopírována do schránky</string>
     <string name="transfer_entry_description">Naskenujte tento QR kód ověřovací aplikací, do které chcete položku přenést</string>
-    <string name="transfer_entry_brightness">Klepnutím na QR kód přepnete na jas celé obrazovky</string>
+    <string name="transfer_entry_brightness">Klepnutím na QR kód přepnete plný jas obrazovky</string>
     <string name="google_auth_compatible_transfer_description">Naskenujte tyto QR kódy s aplikací Aegis nebo Google Authenticator.\n\nKvůli limitacím aplikace Google Authenticator jsou zahrnuty pouze 6-místné tokeny TOTP a HOTP využívající SHA1</string>
     <string name="password_strength_very_weak">Velmi slabé</string>
     <string name="password_strength_weak">Slabé</string>
@@ -533,6 +533,8 @@
     <string name="dialog_wipe_entries_title">Vyčistit položky</string>
     <string name="dialog_wipe_entries_message">Váš trezor už obsahuje záznamy. Chcete tyto záznamy smazat před importem tohoto souboru?\n\n<b>Přístup ke všem stávajícím položkám v trezoru trvale ztratíte.</b></string>
     <string name="dialog_wipe_entries_checkbox">Vymazat obsah trezoru</string>
+    <string name="import_from_clipboard_title">Importovat ze schránky</string>
+    <string name="import_from_clipboard_message">Ve vaší schránce jsme nalezli platnou adresu OTPAuth URI.\n\n<b>Název</b>: %1$s\n<b>Vydavatel</b>: %2$s\n\nChcete předvyplnit tuto položku?</string>
     <string name="panic_trigger_ignore_toast">Aegis zachytila signál paniky, ale ignoruje ho, protože nastavení reakce je vypnuto</string>
     <string name="pref_panic_trigger_title">Smazat trezor při signálu paniky</string>
     <string name="pref_panic_trigger_summary">Smazat trezor při obdržení signálu paniky z aplikace Ripple</string>
@@ -560,6 +562,7 @@
     <string name="importer_help_google_authenticator"><b>Jsou podporovány pouze databázové soubory z aplikace Google Authenticator v5.10 a starších</b>.\n\nPoužijte kopii <b>/data/com.google.android.apps.authenticator2/databases/databases</b> umístěného v interním úložišti aplikace Google Authenticator.</string>
     <string name="importer_help_microsoft_authenticator">Dodejte kopii <b>/data/data/com.azure.authenticator/databases/PhoneFactor</b>, která se nachází v interním úložišti Microsoft Authenticator.</string>
     <string name="importer_help_plain_text">Dodejte prostý textový soubor Google Authenticator URI na každý řádek.</string>
+    <string name="importer_help_proton_authenticator">Dodejte soubor exportu Proton Authenticator (.json) získaný přes <b>Nastavení -&gt; Export</b>.</string>
     <string name="importer_help_steam"><b>Steam v3.0 a novější nejsou podporovány</b>. Dodejte kopii souboru <b>/data/data/com.valvesoftware.android.steam.community/files/Steamguard-*.json</b> umístěného v interním úložném adresáři aplikace Steam.</string>
     <string name="importer_help_stratum">Dodejte exportovaný soubor Stratum získaný přes <b>Nastavení -&gt; Záloha -&gt; Exportovat do šifrovaného souboru (doporučeno)</b>.</string>
     <string name="importer_help_totp_authenticator">Dodejte soubor exportu TOTP.</string>

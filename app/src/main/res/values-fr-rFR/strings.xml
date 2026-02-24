@@ -507,6 +507,8 @@
     <string name="dialog_wipe_entries_title">Effacer les entrées</string>
     <string name="dialog_wipe_entries_message">Votre coffre-fort contient déjà des entrées. Voulez-vous supprimer ces entrées avant d\'importer ce fichier ?\n\n<b>En faisant cela, vous perdrez définitivement l\'accès aux entrées existantes dans le coffre-fort.</b></string>
     <string name="dialog_wipe_entries_checkbox">Effacer le contenu du coffre-fort</string>
+    <string name="import_from_clipboard_title">Importer depuis le presse-papier</string>
+    <string name="import_from_clipboard_message">Nous avons trouvé une uri otpauth valide dans votre presse-papier.\n\n<b>Nom</b> : %1$s\n<b>Émetteur</b> : %2$s\n\nVoulez-vous l\'utiliser pour pré-remplir cette entrée ?</string>
     <string name="panic_trigger_ignore_toast">Aegis a reçu le déclenchement d\'une alerte mais le paramètre est désactivé, il sera ignoré</string>
     <string name="pref_panic_trigger_title">Supprimer le coffre-fort lors du déclenchement de l\'alerte</string>
     <string name="pref_panic_trigger_summary">Supprimer le coffre-fort quand le déclenchement d\'une alerte est reçu de Ripple</string>

@@ -252,8 +252,8 @@
     <string name="saving_assign_icons_error">Viga ikoonide lisamisel</string>
     <string name="welcome">Tere tulemast</string>
     <string name="app_description">Aegis on vaba, turvaline ja avatud lähtekoodil põhinev kaheastmelise autentimise haldusrakendus</string>
-    <string name="setup_completed">Alseadistamine on lõppenud</string>
-    <string name="setup_completed_description">Aegis on seadistatud ja valmis tööks.</string>
+    <string name="setup_completed">Algseadistamine on lõppenud</string>
+    <string name="setup_completed_description">Aegis on seadistatud ja valmis tegutsema.</string>
     <string name="vault_not_found">Andmehoidlat ei leidu, alustan algseadistamisega…</string>
     <string name="copied">Kopeeritud</string>
     <string name="errors_copied">Vead on kopeeritud lõikelauale</string>
@@ -502,6 +502,8 @@
     <string name="dialog_wipe_entries_title">Kõikide kirjete kustutamine</string>
     <string name="dialog_wipe_entries_message">Sinu andmehoidlas juba leidub kirjeid. Kas sa soovid enne importimist need kirjed eemaldada?\n\n<b>Seda tehes kaotad sa jäädavalt ligipääsu eemaldatud kirjetele ja vastavale autentimisteenusele</b>.</string>
     <string name="dialog_wipe_entries_checkbox">Kustuta andmehoidla sisu</string>
+    <string name="import_from_clipboard_title">Impordi lõikelaualt</string>
+    <string name="import_from_clipboard_message">Me tuvastasime sinu lõikelaualt korrektse otpauth-tüüpi aadressi.\n\n<b>Nimi</b>: %1$s\n<b>Väljaandja</b>: %2$s\n\nKas sa tahaksid seda kasutada antud kirje esmaseks täitmiseks?</string>
     <string name="panic_trigger_ignore_toast">Aegis tuvastas paanikanupu vajutuse, kuid kuna vastav seadistus on keelatud, siis me ei tee midagi</string>
     <string name="pref_panic_trigger_title">Paanikanupu vajutusel kustuta andmehoidla</string>
     <string name="pref_panic_trigger_summary">Kui Guardian Projekti Ripple\'i rakenduses vajutatakse paanikanuppu, siis kustuta andmehoidla</string>
@@ -527,6 +529,7 @@
     <string name="importer_help_google_authenticator"><b>Toetatud on ainult Google Authenticatori versiooni 5.10 või varasemad failid</b>.\n\nAva <b>/data/data/com.google.android.apps.authenticator2/databases/databases</b> faili koopia, mille leiad Google Authenticatori sisemise andmeruumi kaustast.</string>
     <string name="importer_help_microsoft_authenticator">Ava <b>/data/data/com.azure.authenticator/databases/PhoneFactor</b> faili koopia, mille leiad Microsoft Authenticatori sisemisest andmeruumist.</string>
     <string name="importer_help_plain_text">Lisa siia lihttekstina vormindatud fail, kus iga Google Authenticatori URI asub omaette real.</string>
+    <string name="importer_help_proton_authenticator">Määratle Proton Authenticatori ekspordifail (.json), mille saad rakendusest siit: <b>Seadistused -&gt; Eksport</b>.</string>
     <string name="importer_help_steam"><b>Steam 3.0 ja uuemad pole toetatud</b>. Ava <b>/data/data/com.valvesoftware.android.steam.community/files/Steamguard-*.json</b> faili koopia, mille leiad Steami sisemise andmeruumi kaustast.</string>
     <string name="importer_help_stratum">Ava Stratumi ekspordifail, mille saad rakendusest valides <b>„Seadistused“ → „Varundus“ → „Varunda krüptitud faili (soovitatud)“</b>.</string>
     <string name="importer_help_totp_authenticator">Ava TOTP Authenticatori ekspordifail.</string>

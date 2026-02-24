@@ -10,6 +10,7 @@
     <string name="action_default_icon">Varsayılan simgeyi geri yükle</string>
     <string name="discard">Göz ardı et</string>
     <string name="save">Kaydet</string>
+    <string name="all">Hepsi</string>
     <string name="issuer">Sağlayıcı</string>
     <string name="yandex_pin">PIN (4-16 hane)</string>
     <string name="motp_pin">PIN (4 haneli)</string>
@@ -28,6 +29,8 @@
     <string name="pref_section_security_summary">Şifrelemeyi, biyometrik kilit açmayı, otomatik kilitlemeyi ve diğer güvenlik ayarlarını düzenle.</string>
     <string name="pref_section_import_export_title">İçe Aktar &amp; Dışa Aktar</string>
     <string name="pref_section_import_export_summary">Aegis ya da diğer doğrulayıcı uygulamaların yedeklerini içe aktar. Aegis deponu elle dışa aktar.</string>
+    <string name="pref_section_audit_log_title">Denetim kaydı</string>
+    <string name="pref_section_audit_log_summary">Uygulamadaki bütün raporlanmış önemli olayların listesini bul.</string>
     <string name="pref_section_backups_title">Yedekler</string>
     <string name="pref_section_backups_summary">İstediğin noktaya otomatik yedekleme ayarla veya Android\'in bulut yedekleme sistemine dahil olmayı etkinleştir.</string>
     <string name="pref_section_icon_packs">İkon paketleri</string>
@@ -42,8 +45,14 @@
     <string name="pref_code_group_size_title">Kod hanelerinin gruplanması</string>
     <string name="pref_code_group_size_summary">Kodların kaç basamakla gruplanacağını seçin</string>
     <string name="pref_account_name_position_title">Hesap adını göster</string>
+    <string name="pref_show_next_code_title">Sonraki kodu göster</string>
+    <string name="pref_show_next_code_summary">Sonraki kodu zamanından önce üret ve göster</string>
+    <string name="pref_expiration_state_title">Kodların süresinin ne zaman geçeceğini belirt</string>
+    <string name="pref_expiration_state_summary">Kodların süresi dolacağı zaman renklerini değiştir ve yanıp söndür</string>
+    <string name="pref_expiration_state_fallback">Kodların süresi dolacağı zaman renklerini değiştir</string>
     <string name="pref_shared_issuer_account_name_title">Hesap adını yalnızca gerektiğinde göster</string>
     <string name="pref_shared_issuer_account_name_summary">Hesap adlarını yalnızca aynı sağlayıcıyı paylaştıklarında göster. Diğer hesap adları gizlenecektir.</string>
+    <string name="pref_account_name_position_summary_override">Bu ayar, kutucuk görüntüleme modu tarafından geçersiz kılınır. Hesap adı, sağlayıcının altında gösterilecektir.</string>
     <string name="pref_import_file_title">Dosyadan içeriye aktar</string>
     <string name="pref_import_file_summary">Veritabanını dosyadan içeriye aktar</string>
     <string name="pref_android_backups_title">Android bulut yedekleme</string>
@@ -54,15 +63,24 @@
     <string name="pref_backups_reminder_title">Yedekleme hatırlatıcı</string>
     <string name="pref_backups_reminder_summary">En son değişikliklerinizi yedeklemediyseniz kasanızı yedeklemeniz için bir hatırlatıcı gösterir.</string>
     <string name="pref_backups_reminder_dialog_title">Yedekleme hatırlatıcıyı devre dışı bırak</string>
-    <string name="pref_backups_reminder_dialog_summary">Bu hatırlatıcıyı devre dışı bırakmak, Aegis\'in henüz yedeklenmemiş değişiklikleriniz olup olmadığını size söylemeyeceği anlamına gelir. Bu sizi belirteçlerinize erişimi kaybetme riskiyle karşı karşıya bırakır. Hatırlatıcıyı devre dışı bırakmak istediğinizden emin misiniz?</string>
+    <string name="pref_backups_reminder_dialog_summary">Bu hatırlatıcıyı devre dışı bırakmak, Aegis\'in henüz yedeklenmemiş değişiklikleriniz olup olmadığını size söylemeyeceği anlamına gelir. Bu sizi kodlarınıza erişimi kaybetme riskiyle karşı karşıya bırakır. Hatırlatıcıyı devre dışı bırakmak istediğinizden emin misiniz?</string>
+    <string name="pref_backups_versioning_strategy_title">Yedekleme yöntemi</string>
+    <string name="pref_backups_versioning_strategy_keep_x_versions">Şu sayıda versiyon tut</string>
+    <string name="pref_backups_versioning_strategy_single_backup">Tek yedekleme</string>
+    <string name="pref_backups_versioning_strategy_single_backup_warning">Seçilen yedekleme yöntemi güvenilir değildir ve önerilmez. Tek bir yedekleme hatası, tek yedeklemenizi kaybetmenize yol açabilir.</string>
+    <string name="pref_backups_versioning_strategy_dialog_title">Bir yedekleme yöntemi seçin</string>
+    <string name="pref_backups_location_title">Yedek konumu</string>
     <string name="pref_backups_location_summary">Yedekler şurada depolanacak</string>
+    <string name="pref_backup_location_summary">Yedek şurada depolanacak</string>
     <string name="pref_backups_trigger_title">Yedeklemeyi tetikle</string>
     <string name="pref_backups_trigger_summary">Yedeklemeyi elle tetikle</string>
     <string name="pref_backups_versions_title">Saklanacak sürüm sayısı</string>
+    <string name="pref_backups_versions_infinite">\u221E</string>
     <plurals name="pref_backups_versions_summary">
         <item quantity="one">Yedeğin %1$d tane sürümünü tut</item>
         <item quantity="other">Yedeğin %1$d tane sürümünü tut</item>
     </plurals>
+    <string name="pref_backups_versions_infinite_summary">Yedeğin sonsuz sayıda versiyonunu tut</string>
     <string name="pref_import_app_title">Uygulamadan içeriye aktar</string>
     <string name="pref_import_app_summary">Başka bir uygulamanın veritabanını içeriye aktar (kök kullanıcı erişimi gerektirir)</string>
     <string name="pref_export_title">Dışarıya aktar</string>
@@ -98,8 +116,34 @@
     <string name="pref_encryption_summary">Kasayı şifrele ve açmak için bir parola veya biyometrik doğrulama kullan</string>
     <string name="pref_biometrics_title">Biyometrik kilit açma</string>
     <string name="pref_biometrics_summary">Kasayı açmak üzere biyometrik kimrik doğrulamaya izin ver</string>
+    <string name="pref_search_behavior_summary">Şurada ara: %s</string>
+    <string name="pref_search_behavior_prompt">Aşağıdaki alanlardan herhangi birinde arama yap</string>
+    <string name="pref_search_behavior_type_name">İsim</string>
+    <string name="pref_search_behavior_type_issuer">Sağlayıcı</string>
+    <string name="pref_search_behavior_type_note">Not</string>
+    <string name="pref_search_behavior_type_groups">Gruplar</string>
     <string name="pref_set_password_title">Parolayı değiştir</string>
     <string name="pref_set_password_summary">Kasanızı açmak üzere kullanmak için yeni bir parola atayın</string>
+    <string name="no_events_title">Raporlanmış olay yok</string>
+    <string name="no_events_description">Uygulamada önemli bir olay raporlanmadı</string>
+    <string name="event_title_vault_unlocked">Kasa kilidi açıldı</string>
+    <string name="event_description_vault_unlocked">Kasa kilidi başarıyla açıldı</string>
+    <string name="event_title_backup_created">Yedek oluşturuldu</string>
+    <string name="event_description_backup_created">Kasanın yedeği başarıyla oluşturuldu</string>
+    <string name="event_title_android_backup_created">Yedek, Android tarafından oluşturuldu</string>
+    <string name="event_description_android_backup_created">Kasanın yedeği Android tarafından başarıyla oluşturuldu</string>
+    <string name="event_title_vault_exported">Kasa dışarı aktarıldı</string>
+    <string name="event_description_vault_exported">Kasanın kopyası dışarı aktarıldı</string>
+    <string name="event_title_entry_shared">Girdi paylaşıldı</string>
+    <string name="event_description_entry_shared">Bir girdi paylaşıldı</string>
+    <string name="event_title_vault_unlock_failed_password">Kasa kilidi açma başarısız oldu (şifre)</string>
+    <string name="event_description_vault_unlock_failed_password">Şifre ile kasa kilidi açma denemesi başarısız oldu</string>
+    <string name="event_title_vault_unlock_failed_biometrics">Kasa kilidi açma başarısız oldu (biyometrik)</string>
+    <string name="event_description_vault_unlock_failed_biometrics">Biyometri ile kasa kilidi açma denemesi başarısız oldu</string>
+    <string name="event_unknown">Bilinmeyen olay türü</string>
+    <string name="audit_log_entry_deleted">(silindi)</string>
+    <string name="today_at_time">Bugün saat %1$s</string>
+    <string name="day_of_week_at_time">%2$s günü saat %1$s</string>
     <string name="export_encrypted">Kasayı şifrele</string>
     <string name="export_help">Bu işlem kasayı Aegis\'in dahili deposundan dışarı aktaracaktır. Lütfen dışa aktarmak istediğiniz biçimi seçiniz:</string>
     <string name="export_warning_unencrypted">Aegis kasanızın şifrelenmemiş bir kopyasını dışa aktarmak üzeresiniz. <b>Bu işlem tavsiye edilmez</b>.</string>
@@ -166,6 +210,9 @@
     <string name="edit">Düzenle</string>
     <string name="select_all">Tümünü seç</string>
     <string name="assign_icons">Simgeleri ata</string>
+    <string name="assign_groups">Gruba ata</string>
+    <string name="assign_groups_dialog_summary">Seçilen girdileri istediğiniz bir gruba atayın.</string>
+    <string name="assign_groups_dialog_dropdown">Grup seçin</string>
     <string name="favorite" comment="Verb">Favorilere Ekle</string>
     <string name="unfavorite" comment="Verb">Favorilerden Çıkar</string>
     <string name="error_all_caps">HATA</string>
@@ -180,9 +227,12 @@
     <string name="snackbar_authentication_method">Lütfen bir kimlik doğrulama yöntemi seçin</string>
     <string name="encrypting_vault">Kasa Şifreleniyor</string>
     <string name="exporting_vault">Kasa dışarı aktarılıyor</string>
+    <string name="optimizing_icon">Simge optimize ediliyor</string>
+    <string name="optimizing_icon_multiple">Simgeler optimize ediliyor %2$d/%1$d</string>
     <string name="reading_file">Dosya okunuyor</string>
     <string name="requesting_root_access">Root erişimi denetleniyor</string>
     <string name="analyzing_qr">QR kodunu analiz ediliyor</string>
+    <string name="analyzing_qr_multiple">Kare kod analiz ediliyor %2$d/%1$d (%3$s)</string>
     <plurals name="added_new_entries">
         <item quantity="one">Kasaya %d yeni giriş eklendi</item>
         <item quantity="other">Kasaya %d yeni giriş eklendi</item>
@@ -208,6 +258,7 @@
     <string name="copied">Kopyalandı</string>
     <string name="errors_copied">Hatalar panoya kopyalandı</string>
     <string name="version_copied">Sürüm panoya kopyalandı</string>
+    <string name="error_required_field">Bu alan gerekli</string>
     <string name="error_occurred">Bir hata meydana geldi</string>
     <string name="decryption_error">Kasayı açmayı denerken bir hata meydana geldi</string>
     <string name="decryption_corrupt_error">Kasayı açmayı denerken bir hata meydana geldi. Kasa dosyanız bozuk olabilir.</string>
@@ -271,10 +322,16 @@
     <string name="partial_google_auth_import">Eksik Google Authenticator dışa aktarımı algılandı</string>
     <string name="partial_google_auth_import_warning">İçe aktarma işleminizde bazı QR kodları eksik. aşağıdaki kodlar bulunamadı:\n\n<b>%s</b>\n\nBu kısmi dışa aktarmayı içe aktarmaya devam edebilirsiniz, ancak herhangi bir tokena erişimi kaybetme riskine girmemek için tüm QR kodlarıyla yeniden denemenizi öneririz.</string>
     <string name="missing_qr_code_descriptor">• QR kodu %d</string>
+    <plurals name="import_partial_export_anyway">
+        <item quantity="one">Yine de kodu içeri aktar</item>
+        <item quantity="other">Yine de %d kodu içeri aktar</item>
+    </plurals>
     <string name="import_google_auth_failure">Dışa aktarılmış Google Authenticator dosyasını içe aktarma işlemi başarısız oldu</string>
     <string name="unrelated_google_auth_batches_error">Dışa aktarma, ilgisiz bir toplu iş için bilgi içerir. Bir seferde 1 partiyi içe aktarmayı deneyin.</string>
     <string name="no_tokens_can_be_imported">Sonuç olarak hiçbir token içe aktarılamaz</string>
     <string name="unlocking_vault">Kasa kilidi açılıyor</string>
+    <string name="rename_group">Grubu yeniden isimlendir</string>
+    <string name="no_group_selection">Eğer bir girdi herhangi bir grubun parçası değilse \"Grupsuz\"un içinde bulunabilir.</string>
     <string name="remove_group">Grubu sil</string>
     <string name="remove_group_description">Bu grubu silmek istediğinize emin misiniz? Bu gruptaki girdiler otomatik olarak \'Grupsuz\' grubuna geçecek.</string>
     <string name="remove_unused_groups">Kullanılmayan grupları sil</string>
@@ -306,11 +363,29 @@
     <string name="preference_reset_usage_count_dialog">Kasanızdaki bütün girdilerin kullanım sayısını sıfırlamak istediğinize emin misiniz?</string>
     <string name="note" comment="Users can add a note to an entry">Not</string>
     <string name="clear">Temizle</string>
+    <string name="dialog_duplicate_entry_title" comment="'Duplicate' is a noun here">Girdiyi çokla</string>
+    <string name="dialog_duplicate_entry_message">Bu girdi, var olan bir veya birden fazla girdiyle aynı ismi ve sağlayıcıyı içeriyor. Nasıl devam etmek istersiniz?</string>
+    <string name="dialog_duplicate_entry_overwrite_title">Var olan girdi/girdilerin üstüne yaz</string>
+    <string name="dialog_duplicate_entry_overwrite_subtitle">Var olan girdi veya girdileri yeni olanla değiştir. Bu işlem geri alınamaz</string>
+    <string name="dialog_duplicate_entry_suffix_title">Son ek ekle</string>
+    <string name="dialog_duplicate_entry_suffix_subtitle">Bu yeni girdinin ismine bir son ek ekleyin. Yeni isim şu olacak: %s</string>
+    <string name="dialog_duplicate_entry_cancel_title">Kaydı iptal et</string>
+    <string name="dialog_duplicate_entry_cancel_subtitle">Yeniden kaydetmeyi denemeden önce düzenlemenize olanak sağlar</string>
+    <plurals name="dialog_duplicate_entry_overwrite_dialog_message">
+        <item quantity="one">Şu isimdeki girdiyi silmek istediğinizden emin misiniz?:\n\n%s - %s</item>
+        <item quantity="other">Şu isimlerdeki %d girdiyi silmek istediğinizden emin misiniz?:\n\n%s - %s</item>
+    </plurals>
+    <string name="dialog_duplicate_entry_overwrite_dialog_title">Silmeyi onayla</string>
+    <string name="pref_haptic_feedback_summary">Kodlar yenilenirken cihazı titret</string>
+    <string name="pref_haptic_feedback_title">Dokunsal geri dönüş</string>
     <string name="pref_highlight_entry_title">Dokunulan kodları belirt</string>
     <string name="pref_highlight_entry_summary">Kodların birbirlerinden ayırt edilmelerini kolaylaştırmak için geçici olarak belirginleştir</string>
+    <string name="pref_groups_multiselect_title">Çoklu grup seçimi</string>
+    <string name="pref_groups_multiselect_summary">Tek seferde çoklu grup seçimine izin ver</string>
     <string name="pref_minimize_on_copy_title">Kopyalarken simge durumuna küçült</string>
     <string name="pref_minimize_on_copy_summary">Bir anahtarı kopyaladıktan sonra uygulamayı simge durumuna küçültün</string>
     <string name="pref_copy_behavior_title">Erişim anahtarlarını panoya kopyala</string>
+    <string name="pref_search_behavior_title">Arama davranışı</string>
     <string name="pref_pause_entry_title">Dokunulduğunda kodların yenilenmesini önle</string>
     <string name="pref_pause_entry_summary">Kodlara dokunarak yenilenmelerini önleyin. Odakta oldukları sürece kodlar yenilenmeyecektir. \"Dokunulan kodları belirt\" veya \"Görmek için dokunun\" açık olmasını gerektirir.</string>
     <string name="pin_keyboard_description">PIN klavyesini etkinleştirmek için şifrenizi girin. Bu şifreniz yalnızca rakamlardan oluşuyorsa çalışır</string>
@@ -336,6 +411,7 @@
     <string name="unable_to_process_deeplink">Derin bağlantı işlenemiyor</string>
     <string name="unable_to_read_qrcode_file">Dosyadan QR kodu okunamıyor ve işlenemiyor: %s.</string>
     <string name="unable_to_process_shared_text">OTP olarak paylaşılan metin işlenemiyor</string>
+    <string name="unable_to_read_qrcode_files">Bazı kare kodlar okunamadı ve işlenemedi. Sadece %2$d/%1$d girdi içeri aktarılacak.</string>
     <string name="unable_to_generate_qrcode">QR Kodu oluşturulamadı</string>
     <string name="select_picture">Resim seç</string>
     <string name="select_icon">Simge seç</string>
@@ -366,7 +442,16 @@
     <string name="time_sync_warning_message">Aegis doğru kodları oluşturmak üzere sistem zamanın senkron olmasına ihtiyaç duyar. Birkaç saniyelik sapma hatalı kod oluşumuna neden olabilir. Görünüşe göre cihazınız zamanı otomatik senkronize etmeye ayarlanmamış. Şimdi ayarlamak ister misiniz?</string>
     <string name="time_sync_warning_disable">Beni uyarmayı bırak. Ne yaptığımı biliyorum.</string>
     <string name="google_qr_export_unrelated">Alakasız QR kod bulundu. Tarayıcıyı yeniden başlatmayı deneyin.</string>
+    <plurals name="google_qr_export_scanned">
+        <item quantity="one">%2$d/%1$d kare kod tarandı</item>
+        <item quantity="other">%2$d/%1$d kare kod tarandı</item>
+    </plurals>
+    <string name="google_qr_export_unexpected">%1$d kare kod beklendi ama %2$d kare kod tarandı</string>
     <string name="backup_error_bar_message"><b>Kasa yedeklenmesi başarısız oldu</b></string>
+    <string name="backup_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">%1$s kullanılarak denenen kasa yedeklemesi oluşan bir hata sonucu başarısız oldu. Yedek %2$s kullanmaya çalıştı. Lütfen yedeklemelerin başarılı olabilmesi için yedekleme ayarlarınızı kontrol edin.
+    </string>
+    <string name="backup_permission_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">%1$s kullanılarak denenen kasa yedeklemesi Aegis\'in hedef yedekleme konumuna yazma erişimi olmaması sonucu başarısız oldu. Yedek %2$s kullanmaya çalıştı. Bu hata, yedekleme hedefini taşıdıysanız/yeniden isimlendirdiyseniz veya yakın zamanda Aegis\'i bir yedeklemeden geri yüklediyseniz oluşabilir. Lütfen yedekleme konumunu yeniden ayarlayın.
+    </string>
     <string name="backup_system_builtin">Aegis dahili otomatik yedekleri</string>
     <string name="backup_system_android">Android\'in bulut yedekleme sistemi</string>
     <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">        Son yedek güncel değil (%s)
@@ -400,12 +485,14 @@
     <string name="unable_to_copy_uri_to_clipboard">URI panoya kopyalanamıyor</string>
     <string name="uri_copied_to_clipboard">URI panoya kopyalandı</string>
     <string name="transfer_entry_description">Bu kare kodu aktarmak istediğiniz doğrulayıcı uygulamasıyla okutun</string>
+    <string name="transfer_entry_brightness">Tam ekran parlaklığı için kare koda dokunun</string>
     <string name="google_auth_compatible_transfer_description">Bu QR kodlarını Aegis veya Google Authenticator ile tarayın.\in\Google Authenticator uygulamasının sınırlamaları nedeniyle, yalnızca TOTP &amp; SHA1 kullanan ve 6 basamaklı kodlar üreten TOTP belirteçleri dahildir</string>
     <string name="password_strength_very_weak">Çok zayıf</string>
     <string name="password_strength_weak">Zayıf</string>
     <string name="password_strength_fair">İdare Eder</string>
     <string name="password_strength_good">İyi</string>
     <string name="password_strength_strong">Güçlü</string>
+    <string name="password_strength_unknown">Şifre, dayanıklılık analizi için fazla uzun</string>
     <string name="pref_pin_keyboard_title">Kilit ekranında PIN klavyesini kullan</string>
     <string name="pref_pin_keyboard_summary">Kilit ekranında PIN klavyesini kullanmak istiyorsanız aktive edin. Yalnızca rakamlardan oluşan şifrelerde çalışır</string>
     <string name="title_activity_preferences">Ayarlar</string>
@@ -435,12 +522,19 @@
     <string name="importer_help_authy"><b>/data/data/com.authy.authy/shared_prefs/com.authy.storage.tokens.authenticator.xml</b>dosyasını sağlayın, Authy\'nin dahili depolama konumunda bulunabilir.</string>
     <string name="importer_help_andotp">andOTP dışa aktarım dosyasını sağlayın.</string>
     <string name="importer_help_bitwarden">Bitwarden\'a ait bir yedekleme/aktarma dosyası sağlayın. Şifrelenmiş dosyalar desteklenmiyor.</string>
+    <string name="importer_help_battle_net_authenticator">Dahili depolamada Battle.net Authenticator dizininde bulunan <b>/data/data/com.blizzard.messenger/shared_prefs/com.blizzard.messenger.authenticator_preferences.xml</b> dosyasının bir kopyasını sağlayın.</string>
     <string name="importer_help_duo">DUO\'nun dahili depolama dizininde bulunan <b>/data/data/com.duosecurity.duomobile/files/duokit/accounts.json</b> dosyasının bir kopyasını sağlayın.</string>
+    <string name="importer_help_ente_auth">Bir Ente Auth çıktı dosyası sağlayın. Şu anlık sadece şifrelenmemiş dosyalar desteklenmektedir.</string>
+    <string name="importer_help_freeotp">FreeOTP 2: Bir yedek dosyası sağlayın.\nFreeOTP 1.x: Dahili depolamada FreeOTP dizininde bulunan <b>/data/data/org.fedorahosted.freeotp/shared_prefs/tokens.xml</b> dosyasının kopyasını sağlayın.</string>
     <string name="importer_help_freeotp_plus">FreeOTP+ dışa aktarım dosyasını sağlayın.</string>
+    <string name="importer_warning_title_freeotp2">FreeOTP 2 uyumluluğu</string>
+    <string name="importer_warning_message_freeotp2">FreeOTP 2\'de bozuk yedeğe yol açabilecek bir dizi sorun bulunmaktadır. Aegis olabildiğince fazla sayıda girdiyi kurtarmaya çalışacaktır fakat bazılarının hatta hepsinin içeri aktarılması başarısız olabilir.</string>
     <string name="importer_help_google_authenticator"><b>Yalnızca Google Authenticator v5.10 ve önceki sürümlerdeki veritabanı dosyaları desteklenir</b>.\n\nGoogle Authenticator\'ın dahili depolama dizininde bulunan<b>/data/data/com.google.android.apps.authenticator2/databases/databases</b>dosyasının bir kopyasını temin edin.</string>
     <string name="importer_help_microsoft_authenticator"><b>/data/data/com.azure.authenticator/databases/PhoneFactor</b>dosyasını sağlayın, Microsoft Authenticator\'ın dahili depolama konumunda bulunabilir.</string>
     <string name="importer_help_plain_text">Her bir satırında Google Authenticator URL\'leri bulunan bir düz metin belgesi sağlayın.</string>
+    <string name="importer_help_proton_authenticator"><b>Ayarlar -&gt; Dışa aktar</b> yoluyla elde edilen bir Proton Authenticator dışa aktarma dosyası (.json) sağlayın.</string>
     <string name="importer_help_steam"><b>Steam v3.0 ve daha yeni sürümler desteklenmez</b>. <b>/data/data/com.valvesoftware.android.steam.community/files/Steamguard-*.json</b> dosyasını sağlayın, Steam\'in dahili depolama konumunda bulunabilir.</string>
+    <string name="importer_help_stratum"><b>Ayarlar -&gt; Yedekle -&gt; Şifrelenmemiş dosyaya yedekle (önerilen) </b> yoluyla elde edilen bir Stratum dışa aktarma dosyası sağlayın.</string>
     <string name="importer_help_totp_authenticator">TOTP Authenticator dışa aktarım dosyasını sağlayın.</string>
     <string name="importer_help_winauth">WinAuth dışa aktarım dosyasını sağlayın.</string>
     <string name="import_assign_icons_dialog_title">Simgeleri ata</string>

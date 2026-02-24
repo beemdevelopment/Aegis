@@ -507,6 +507,8 @@
     <string name="dialog_wipe_entries_title">Items wissen</string>
     <string name="dialog_wipe_entries_message">Je kluis bevat al items. Wil je deze items verwijderen voordat je dit bestand importeert?\n\n<b>Hiermee verlies je permanent toegang tot de bestaande items in de kluis.</b></string>
     <string name="dialog_wipe_entries_checkbox">Inhoud van kluis wissen</string>
+    <string name="import_from_clipboard_title">Van klembord importeren</string>
+    <string name="import_from_clipboard_message">We vonden een geldige otpauth-uri op je klembord.\n\n<b>Naam</b>: %1$s\n<b>Uitgever</b>: %2$s\n\nWil je dit gebruiken om dit item te vullen?</string>
     <string name="panic_trigger_ignore_toast">Aegis heeft paniektrigger ontvangen, maar instelling is uitgeschakeld, wordt genegeerd</string>
     <string name="pref_panic_trigger_title">Kluis bij paniektrigger verwijderen</string>
     <string name="pref_panic_trigger_summary">Kluis bij ontvangen van Ripple-paniektrigger verwijderen</string>

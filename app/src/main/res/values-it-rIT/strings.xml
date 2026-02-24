@@ -363,6 +363,21 @@
     <string name="preference_reset_usage_count_dialog">Sei sicuro di voler riportare a zero il numero di utilizzi di ogni voce nella tua cassaforte?</string>
     <string name="note" comment="Users can add a note to an entry">Nota</string>
     <string name="clear">Pulisci</string>
+    <string name="dialog_duplicate_entry_title" comment="'Duplicate' is a noun here">Voce duplicata</string>
+    <string name="dialog_duplicate_entry_message">Questa voce ha lo stesso nome e lo stesso emittente di una o più voci esistenti. Come vuoi procedere?</string>
+    <string name="dialog_duplicate_entry_overwrite_title">Sovrascrivi la voce o le voci esistenti</string>
+    <string name="dialog_duplicate_entry_overwrite_subtitle">Sostituisci la voce o le voci esistenti con quella nuova. Questa azione non può essere annullata</string>
+    <string name="dialog_duplicate_entry_suffix_title">Aggiungi suffisso</string>
+    <string name="dialog_duplicate_entry_suffix_subtitle">Aggiungi un suffisso al nome di questa nuova voce. Il nuovo nome sarà:%s</string>
+    <string name="dialog_duplicate_entry_cancel_title">Annulla salvataggio</string>
+    <string name="dialog_duplicate_entry_cancel_subtitle">Consente di modificare la voce prima di tentare di salvarla di nuovo</string>
+    <plurals name="dialog_duplicate_entry_overwrite_dialog_message">
+        <item quantity="one">Sei sicuro di voler eliminare la voce %d con il seguente nome:\n\n%s - %s</item>
+        <item quantity="other">Sei sicuro di voler eliminare %d voci con il seguente nome:\n\n%s - %s</item>
+    </plurals>
+    <string name="dialog_duplicate_entry_overwrite_dialog_title">Conferma eliminazione</string>
+    <string name="pref_haptic_feedback_summary">Fai vibrare il dispositivo quando i codici si aggiornano</string>
+    <string name="pref_haptic_feedback_title">Feedback aptico</string>
     <string name="pref_highlight_entry_title">Evidenzia i token al tocco</string>
     <string name="pref_highlight_entry_summary">Rendi i token più facili da distinguere, evidenziandoli temporaneamente quando vengono toccati</string>
     <string name="pref_groups_multiselect_title">Gruppi multiselezione</string>
@@ -502,7 +517,7 @@
     </plurals>
     <string name="importer_help_2fas">Seleziona un backup di 2FAS Authenticator.</string>
     <string name="importer_help_aegis">Seleziona un file di backup di Aegis.</string>
-    <string name="importer_help_authenticator_plus">Seleziona un file di esportazione di Authenticator Plus ottenuto tramite <b>Impostazioni -&gt; Backup &amp; Ripristino -&gt; Esporta come testo e HTML</b>.</string>
+    <string name="importer_help_authenticator_plus">Seleziona un file di esportazione di Authenticator Plus ottenuto da <b>Impostazioni -&gt; Backup &amp; Ripristino -&gt; Esporta come testo e HTML</b>.</string>
     <string name="importer_help_authy">Seleziona una copia di <b>/data/data/com.authy.authy/shared_prefs/com.authy.storage.tokens.authenticator.xml</b>, situata nella directory della memoria interna di Authy.</string>
     <string name="importer_help_andotp">Seleziona un file di backup di andOTP.</string>
     <string name="importer_help_bitwarden">Seleziona un file di esportazione/backup di Bitwarden. I file crittografati non sono supportati.</string>
@@ -516,8 +531,9 @@
     <string name="importer_help_google_authenticator"><b>Sono supportati solo i file di database di Google Authenticator v5.10 e precedenti</b>.\n\nSeleziona una copia di<b>/data/data/com.google.android.apps.authenticator2/databases/databases</b>, che si trova nella cartella di archiviazione interna di Google Authenticator.</string>
     <string name="importer_help_microsoft_authenticator">Seleziona una copia di <b>/data/data/com.azure.authenticator/databases/PhoneFactor</b>, che si trova nella cartella di archiviazione interna di Microsoft Authenticator.</string>
     <string name="importer_help_plain_text">Seleziona un file di testo con un URI di Google Authenticator in ogni riga.</string>
+    <string name="importer_help_proton_authenticator">Seleziona un file di esportazione di Proton Authenticator (.json) ottenuto da <b>Impostazioni -&gt; Esporta</b>.</string>
     <string name="importer_help_steam"><b>Steam v3.0 e versioni successive non sono supportate</b>. Seleziona una copia di <b>/data/data/com.valvesoftware.android.steam.community/files/Steamguard-*.json</b>, che si trova nella cartella di archiviazione interna di Steam.</string>
-    <string name="importer_help_stratum">Fornire un file di esportazione di Stratum ottenuto tramite <b>Impostazioni -&gt; Backup -&gt; Backup su file criptato (consigliato)</b>.</string>
+    <string name="importer_help_stratum">Fornire un file di esportazione di Stratum ottenuto da <b>Impostazioni -&gt; Backup -&gt; Backup su file criptato (consigliato)</b>.</string>
     <string name="importer_help_totp_authenticator">Seleziona un file di esportazione di TOTP Authenticator.</string>
     <string name="importer_help_winauth">Seleziona un file di esportazione di WinAuth.</string>
     <string name="import_assign_icons_dialog_title">Assegna icone</string>

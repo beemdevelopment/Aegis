@@ -5,8 +5,8 @@
     <string name="action_delete">Apagar</string>
     <string name="action_transfer">Transferir</string>
     <string name="action_edit_icon">Editar ícone</string>
-    <string name="action_reset_usage_count">Redefinir contagem de uso</string>
-    <string name="action_reset_usage_count_dialog">Tem certeza que deseja definir a contagem de uso deste item para 0?</string>
+    <string name="action_reset_usage_count">Reconfigurar contagem de uso</string>
+    <string name="action_reset_usage_count_dialog">Tem certeza que deseja configurar a contagem de uso deste item para 0?</string>
     <string name="action_default_icon">Restaurar ícone padrão</string>
     <string name="discard">Descartar</string>
     <string name="save">Salvar</string>
@@ -32,7 +32,7 @@
     <string name="pref_section_audit_log_title">Registro de auditoria</string>
     <string name="pref_section_audit_log_summary">Encontre uma lista de todos os eventos importantes reportados que aconteceram dentro do aplicativo.</string>
     <string name="pref_section_backups_title">Backups</string>
-    <string name="pref_section_backups_summary">Configura os backups automáticos em um local da sua escolha ou ative a participação no sistema de backup em nuvem do Android.</string>
+    <string name="pref_section_backups_summary">Configure os backups automáticos em um local da sua escolha ou ative a participação no sistema de backup em nuvem do Android.</string>
     <string name="pref_section_icon_packs">Pacotes de ícones</string>
     <string name="pref_section_icon_packs_summary">Gerencie e importe pacotes de ícones</string>
     <string name="pref_select_theme_title">Tema</string>
@@ -111,7 +111,7 @@
     <string name="pref_backup_password_title">Senha separada para backups e exportação</string>
     <string name="pref_backup_password_summary">Se ativada, a senha usada para desbloquear o aplicativo não poderá ser mais utilizada para descriptografar backups e exportações.</string>
     <string name="pref_backup_password_change_title">Alterar senha para backups e exportação</string>
-    <string name="pref_backup_password_change_summary">Defina uma nova senha que será usada para criptografar o cofre durante backups e exportação.</string>
+    <string name="pref_backup_password_change_summary">Configure uma nova senha que será usada para criptografar o cofre durante backups e exportação.</string>
     <string name="pref_encryption_title">Criptografia</string>
     <string name="pref_encryption_summary">Criptografe o cofre e o desbloqueie com uma senha ou com biometria</string>
     <string name="pref_biometrics_title">Desbloqueio biométrico</string>
@@ -123,7 +123,7 @@
     <string name="pref_search_behavior_type_note">Observação</string>
     <string name="pref_search_behavior_type_groups">Grupos</string>
     <string name="pref_set_password_title">Alterar senha</string>
-    <string name="pref_set_password_summary">Defina uma nova senha que será necessária para desbloquear o cofre</string>
+    <string name="pref_set_password_summary">Configure uma nova senha que será necessária para desbloquear o cofre</string>
     <string name="no_events_title">Não há eventos reportados</string>
     <string name="no_events_description">Não há eventos importados que foram reportados dentro do app</string>
     <string name="event_title_vault_unlocked">Cofre desbloqueado</string>
@@ -350,7 +350,7 @@
     <string name="sort_alphabetically_name_reverse">Conta (Z a A)</string>
     <string name="sort_usage_count">Contagem de uso</string>
     <string name="sort_last_used">Último uso</string>
-    <string name="sort_custom">Personalizada</string>
+    <string name="sort_custom">Personalizado</string>
     <string name="last_used">Último uso</string>
     <string name="last_used_never">nunca</string>
     <string name="new_group">Novo grupo…</string>
@@ -358,9 +358,9 @@
     <string name="group_name_hint">Nome do grupo</string>
     <string name="preference_manage_groups">Editar grupos</string>
     <string name="preference_manage_groups_summary">Gerencie e apague seus grupos aqui</string>
-    <string name="preference_reset_usage_count">Redefinir contagem de uso</string>
-    <string name="preference_reset_usage_count_summary">Redefinir a contagem de uso de todos os itens no seu cofre</string>
-    <string name="preference_reset_usage_count_dialog">Tem certeza que deseja definir a contagem de uso de todos os itens no seu cofre para 0?</string>
+    <string name="preference_reset_usage_count">Reconfigurar contagem de uso</string>
+    <string name="preference_reset_usage_count_summary">Reconfigure a contagem de uso de todos os itens no seu cofre</string>
+    <string name="preference_reset_usage_count_dialog">Tem certeza que deseja configurar a contagem de uso de todos os itens no seu cofre para 0?</string>
     <string name="note" comment="Users can add a note to an entry">Observação</string>
     <string name="clear">Limpar</string>
     <string name="dialog_duplicate_entry_title" comment="'Duplicate' is a noun here">Item duplicado</string>
@@ -396,8 +396,8 @@
     <string name="dark_theme_title">Tema escuro</string>
     <string name="light_theme_title">Tema claro</string>
     <string name="amoled_theme_title">Tema AMOLED</string>
-    <string name="system_theme_title">Definir pela economia de bateria</string>
-    <string name="system_amoled_theme_title">Definir pela economia de bateria (AMOLED)</string>
+    <string name="system_theme_title">Configurado pela economia de bateria</string>
+    <string name="system_amoled_theme_title">Configurado pela economia de bateria (AMOLED)</string>
     <string name="normal_viewmode_title">Normal</string>
     <string name="compact_mode_title">Compacto</string>
     <string name="small_mode_title">Pequeno</string>
@@ -507,6 +507,8 @@
     <string name="dialog_wipe_entries_title">Limpar itens</string>
     <string name="dialog_wipe_entries_message">O seu cofre já contém itens. Você quer remover esses itens antes de importar este arquivo?\n\n<b>Ao fazer isso, você perderá permanentemente o acesso às entradas existentes no cofre.</b></string>
     <string name="dialog_wipe_entries_checkbox">Limpar conteúdo do cofre</string>
+    <string name="import_from_clipboard_title">Importar da área de transferência</string>
+    <string name="import_from_clipboard_message">Encontramos um URI de otpauth válido na sua área de transferência.\n\n<b>Nome</b>: %1$s\n<b>Emissor</b>: %2$s\n\nQuer usá-lo para preencher esta entrada?</string>
     <string name="panic_trigger_ignore_toast">O Aegis recebeu um gatilho de pânico, mas a configuração está desativada, portanto será ignorado</string>
     <string name="pref_panic_trigger_title">Apagar cofre após gatilho de pânico</string>
     <string name="pref_panic_trigger_summary">Apagar cofre ao receber um gatilho de pânico do Ripple</string>

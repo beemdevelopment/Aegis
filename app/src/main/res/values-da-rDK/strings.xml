@@ -507,6 +507,8 @@
     <string name="dialog_wipe_entries_title">Ryd poster</string>
     <string name="dialog_wipe_entries_message">Din boks indeholder allerede poster. Vil du fjerne disse poster før import af denne fil?\n\n<b>Ved at gøre dette, vil du permanent miste adgang til de eksisterende poster i boksen.</b></string>
     <string name="dialog_wipe_entries_checkbox">Ryd boksens indhold</string>
+    <string name="import_from_clipboard_title">Importér fra udklipsholder</string>
+    <string name="import_from_clipboard_message">En gyldig otpauth URI er fundet i udklipsholderen.\n\n<b>Navn</b>: %1$s\n<b>Udsteder</b>: %2$s\n\nSkal den bruges til forudfyldelse af dette indlæg?</string>
     <string name="panic_trigger_ignore_toast">Aegis modtog panikudløser, men indstilling er deaktiveret, ignorerer</string>
     <string name="pref_panic_trigger_title">Slet boks ved panikudløser</string>
     <string name="pref_panic_trigger_summary">Slet boks, når en panikudløser modtages fra Ripple</string>
@@ -532,6 +534,7 @@
     <string name="importer_help_google_authenticator"><b>Kun databasefiler fra Google Authenticator v5.10 og tidligere understøttes</b>.\n\nLeverer en kopi af <b>/data/data/com. google.android.apps.authenticator2/databaser/databaser</b>, placeret i Google Authenticators interne lagermappe.</string>
     <string name="importer_help_microsoft_authenticator">Levér en kopi af <b>/data/data/com.azure.authenticator/databases/PhoneFactor</b>, der er placeret i den interne lagermappe i Microsoft Authenticator.</string>
     <string name="importer_help_plain_text">Levér en almindelig tekstfil med en Google Authenticator URI på hver linje.</string>
+    <string name="importer_help_proton_authenticator">Benyt en Proton Authenticator-eksportfil (.json) dannet via <b>Indstillinger -&gt; Eksport</b>.</string>
     <string name="importer_help_steam"><b>Steam v3.0 og nyere understøttes ikke</b>. Levér en kopi af <b>/data/data/com.valvesoftware.android.steam.community/files/Steamguard-*.json</b> fra den interne lagermappe i Steam.</string>
     <string name="importer_help_stratum">Benyt en Stratum-eksportfil genereret via <b>Indstillinger -&gt; Sikkerhedskopiering -&gt; Sikkerhedskopiering til krypteret fil (anbefalet)</b>.</string>
     <string name="importer_help_totp_authenticator">Levér en TOTP Authenticator eksportfil.</string>

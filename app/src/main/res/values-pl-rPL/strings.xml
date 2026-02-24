@@ -532,6 +532,8 @@
     <string name="dialog_wipe_entries_title">Wyczyść wpisy</string>
     <string name="dialog_wipe_entries_message">Twój sejf zawiera już wpisy. Czy chcesz usunąć te wpisy przed zaimportowaniem tego pliku?\n\n<b>W ten sposób trwale stracisz dostęp do obecnych wpisów w sejfie.</b></string>
     <string name="dialog_wipe_entries_checkbox">Wyczyść zawartość sejfu</string>
+    <string name="import_from_clipboard_title">Importuj ze schowka</string>
+    <string name="import_from_clipboard_message">Znaleźliśmy prawidłowy identyfikator URI otpauth w schowku.\n\n<b>Nazwa</b>: %1$s\n<b>Wydawca</b>: %2$s\n\nCzy chcesz go użyć do wstępnego wypełnienia tego wpisu?</string>
     <string name="panic_trigger_ignore_toast">Aegis otrzymał wyzwalacz paniki, ale ustawienie jest wyłączone, ignorowanie</string>
     <string name="pref_panic_trigger_title">Usuń sejf przy wyzwalaczu paniki</string>
     <string name="pref_panic_trigger_summary">Usuń sejf po otrzymaniu wyzwalacza paniki z Ripple</string>

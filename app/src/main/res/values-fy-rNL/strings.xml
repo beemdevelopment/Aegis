@@ -507,6 +507,8 @@
     <string name="dialog_wipe_entries_title">Items wiskje</string>
     <string name="dialog_wipe_entries_message">Jo klûs befettet al items. Wollle jo dizze items fuortsmite eardat jo dit bestân ymportearje?\n\n<b>Hjirmei ferlieze jo permanint tagong ta de besteande items yn de klûs.</b></string>
     <string name="dialog_wipe_entries_checkbox">Klûsynhâld wiskje</string>
+    <string name="import_from_clipboard_title">Fan klamboerd ymportearje</string>
+    <string name="import_from_clipboard_message">Wy hawwe in jildige otpauth-uri op jo klamboerd fûn.\n\n<b>Namme</b>: %1$s\n<b>Utjouwer</b>: %2$s\n\nWolle jo dit brûke om dit item te foljen?</string>
     <string name="panic_trigger_ignore_toast">Aegis hat panyktrigger ûntfongen, mar ynstelling is útskeakele, wurdt negearre</string>
     <string name="pref_panic_trigger_title">Klûs fuortsmite by panyktrigger</string>
     <string name="pref_panic_trigger_summary">Klûs fuortsmite by ûntfangen fan Ripple-panyktrigger</string>
@@ -532,6 +534,7 @@
     <string name="importer_help_google_authenticator"><b>Allinnich databasebestannen fan Google Authenticator v5.10 en earder wurde stipe</b>.\n\nLeverje in kopy oan fan <b>/data/data/com.google.android.apps.authenticator2/databases/databases</b>, pleatst yn de ynterne ûnthâldmap fan Google Authenticator.</string>
     <string name="importer_help_microsoft_authenticator">Leverje in kopy oan fan <b>/data/data/com.azure.authenticator/databases/PhoneFactor</b>, pleatst yn de ynterne ûnthâldmap fan Microsoft Authenticator.</string>
     <string name="importer_help_plain_text">Leverje in tekstbestân oan mei in Google Authenticator-URI op elke rigel.</string>
+    <string name="importer_help_proton_authenticator">Leverje in Proton Authenticator-exportbestân (.json) krigen fia <b>Instellingen -&gt; Exporteren</b>.</string>
     <string name="importer_help_steam"><b>Steam v3.0 en nijer wurde net stipe</b>. Soargje foar in kopy fan <b>/data/data/com.valvesoftware.android.steam.community/files/Steamguard-*.json</b>, te finen yn de ynterne ûnthâldmap fan Steam.</string>
     <string name="importer_help_stratum">Leverje in Stratum-eksportbestân oan, ûntfongen fia <b>Ynstellingen -&gt; Reservekopy -&gt; Reservekopy nei fersifere bestân (oanrekommandearre)</b>.</string>
     <string name="importer_help_totp_authenticator">Leverje in TOTP-autentikator-eksportbestân oan.</string>

@@ -20,7 +20,7 @@
     <string name="pref_cat_appearance_app">App</string>
     <string name="pref_cat_appearance_entries">Einträge</string>
     <string name="pref_cat_backups_android">Android</string>
-    <string name="pref_cat_backups_auto">Automatisierte Sicherungen</string>
+    <string name="pref_cat_backups_auto">Automatische Sicherungen</string>
     <string name="pref_section_behavior_title">Verhalten</string>
     <string name="pref_section_behavior_summary">Das Verhalten bei der Interaktion mit der Eintragsliste anpassen.</string>
     <string name="pref_section_appearance_title">Erscheinungsbild</string>
@@ -29,10 +29,10 @@
     <string name="pref_section_security_summary">Verschlüsselung, biometrisches Entsperren, automatisches Sperren und andere Sicherheitseinstellungen konfigurieren.</string>
     <string name="pref_section_import_export_title">Importieren und exportieren</string>
     <string name="pref_section_import_export_summary">Sicherungskopien von Aegis oder anderen Authentifizierungs-Apps importieren und Exportdateien der Aegis-Datenbank erstellen.</string>
-    <string name="pref_section_audit_log_title">Audit-Log</string>
+    <string name="pref_section_audit_log_title">Auditprotokoll</string>
     <string name="pref_section_audit_log_summary">Liste aller wichtigen Ereignisse, die innerhalb der App registriert wurden.</string>
     <string name="pref_section_backups_title">Sicherungen</string>
-    <string name="pref_section_backups_summary">Automatisierte Sicherungen zu einem gewünschten Speicherort einrichten oder das Android-eigenen Cloud-Sicherungssystems aktivieren.</string>
+    <string name="pref_section_backups_summary">Automatische Sicherungen zu einem gewünschten Speicherort einrichten oder das Android-eigene Cloud-Sicherungssystem aktivieren.</string>
     <string name="pref_section_icon_packs">Symbolpakete</string>
     <string name="pref_section_icon_packs_summary">Symbolpakete verwalten und importieren.</string>
     <string name="pref_select_theme_title">Design</string>
@@ -104,7 +104,7 @@
     <string name="pref_auto_lock_summary">Wenn %s</string>
     <string name="pref_auto_lock_summary_disabled">Deaktiviert</string>
     <string name="pref_auto_lock_prompt">Aegis automatisch sperren, wenn</string>
-    <string name="pref_auto_lock_type_back_button">Die \"Zurück-Taste\" gedrückt wird</string>
+    <string name="pref_auto_lock_type_back_button">Die „Zurück“-Taste gedrückt wird</string>
     <string name="pref_auto_lock_type_minimize">Die App minimiert wird</string>
     <string name="pref_auto_lock_type_device_lock">Das Gerät gesperrt wird</string>
     <string name="pref_backup_password_category">Sicherung und Exportdatei</string>
@@ -268,7 +268,7 @@
     <string name="biometric_decrypt_error">Beim Versuch, die Datenbank mit biometrischer Authentifizierung zu entschlüsseln, ist ein Fehler aufgetreten. Dies geschieht in der Regel nur, wenn die Sicherheitseinstellungen deines Geräts geändert wurden. Bitte entsperre die Datenbank mit deinem Passwort und konfiguriere die biometrische Authentifizierung in den Einstellungen von Aegis neu.</string>
     <string name="biometric_init_error">Beim Versuch, die biometrische Authentifizierung vorzubereiten, ist ein Fehler aufgetreten. Dies geschieht in der Regel nur, wenn die Sicherheitseinstellungen deines Geräts geändert wurden. Bitte entsperre die Datenbank mit deinem Passwort und konfiguriere die biometrische Authentifizierung in den Einstellungen von Aegis neu.</string>
     <string name="disable_encryption">Verschlüsselung deaktivieren</string>
-    <string name="disable_encryption_description">Möchtest du die Verschlüsselung wirklich deaktivieren? Dadurch wird die Datenbank im Klartext gespeichert. <b>Automatisierte Sicherungen werden ebenfalls deaktiviert</b>.</string>
+    <string name="disable_encryption_description">Möchtest du die Verschlüsselung wirklich deaktivieren? Dadurch wird die Datenbank im Klartext gespeichert. <b>Automatische Sicherungen werden ebenfalls deaktiviert</b>.</string>
     <string name="enable_encryption_error">Bei der Aktivierung der Verschlüsselung ist ein Fehler aufgetreten</string>
     <string name="disable_encryption_error">Bei der Deaktivierung der Verschlüsselung ist ein Fehler aufgetreten</string>
     <string name="backup_successful">Die Sicherung wurde erfolgreich durchgeführt</string>
@@ -290,7 +290,7 @@
     <string name="andotp_new_format">Neues Format (v0.6.3 oder neuer) </string>
     <string name="andotp_old_format">Altes Format (v0.6.2 oder älter) </string>
     <string name="choose_andotp_importer">Welches Format hat die andOTP-Sicherungsdatei?</string>
-    <string name="choose_totpauth_importer">Ist diese TOTP Authenticator-Sicherungskopie mit einem Passwort verschlüsselt?</string>
+    <string name="choose_totpauth_importer">Ist diese TOTP-Authenticator-Sicherungskopie mit einem Passwort verschlüsselt?</string>
     <string name="choose_application">Wähle die App aus, aus der du importieren möchtest</string>
     <string name="choose_theme">Wähle das gewünschte Design aus</string>
     <string name="choose_account_name_position">Wähle die gewünschte Position des Kontonamens</string>
@@ -319,14 +319,14 @@
     <string name="no_cameras_available">Keine Kameras verfügbar</string>
     <string name="read_qr_error">Beim Lesen des QR-Codes ist ein Fehler aufgetreten</string>
     <string name="read_qr_error_phonefactor">Aegis ist nicht mit dem proprietären 2FA-Algorithmus von Microsoft kompatibel. Bitte vergewissere dich, dass du bei der Konfiguration von 2FA in Office 365 »Anwendung ohne Benachrichtigungen einrichten« auswählst.</string>
-    <string name="partial_google_auth_import">Unvollständiger Google Authenticator-Export erkannt</string>
+    <string name="partial_google_auth_import">Unvollständiger Google-Authenticator-Export erkannt</string>
     <string name="partial_google_auth_import_warning">Einige QR-Codes fehlen in deinem Importversuch. Die folgenden Codes wurden nicht gefunden:\n\n<b>%s</b>\n\nDu kannst mit dem Importieren dieses Teilexports fortfahren, aber wir empfehlen es mit allen QR-Codes erneut zu versuchen, damit du nicht riskierst, den Zugriff auf Token zu verlieren.</string>
     <string name="missing_qr_code_descriptor">• QR-Code %d</string>
     <plurals name="import_partial_export_anyway">
         <item quantity="one">%d Token trotzdem importieren</item>
         <item quantity="other">%d Token trotzdem importieren</item>
     </plurals>
-    <string name="import_google_auth_failure">Importieren von Google Authenticator-Export fehlgeschlagen</string>
+    <string name="import_google_auth_failure">Importieren von Google-Authenticator-Export fehlgeschlagen</string>
     <string name="unrelated_google_auth_batches_error">Die Exportdatei enthält Informationen über ein nicht zugehöriges Set. Versuche, jeweils 1 Set zu importieren.</string>
     <string name="no_tokens_can_be_imported">Daher können keine Token importiert werden</string>
     <string name="unlocking_vault">Entsperren der Datenbank</string>
@@ -452,14 +452,14 @@
     </string>
     <string name="backup_permission_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">        Ein kürzlicher Sicherungsversuch der Datenbank mit %1$s ist fehlgeschlagen, da Aegis keine Berechtigung zum Schreiben auf das Sicherungsziel hatte. Das Erstellen einer Sicherung wurde am %2$s versucht. Dieser Fehler kann auftreten, wenn das Sicherungsziel verschoben/umbenannt wurde oder wenn Aegis kürzlich aus einer Sicherung wiederhergestellt wurde. Bitte konfiguriere das Sicherungsziel neu.
     </string>
-    <string name="backup_system_builtin">Automatisierte Sicherungen von Aegis</string>
+    <string name="backup_system_builtin">Automatische Sicherungen von Aegis</string>
     <string name="backup_system_android">Cloud-Sicherungssystem von Android</string>
     <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">        Die letzte Sicherung ist veraltet (%s)
     </string>
     <string name="backup_reminder_bar_message">        Änderungen wurden noch nicht gesichert
     </string>
     <string name="backup_reminder_bar_dialog_title">Änderungen wurden noch nicht gesichert</string>
-    <string name="backup_reminder_bar_dialog_summary">        Kürzliche Änderungen an der Datenbank wurden noch nicht gesichert. Es ist wichtig, regelmäßig Sicherungen zu erstellen, damit du den Zugriff auf deine Konten nicht verlierst. Bitte denke daran, automatisierte Sicherungen im Einstellungsmenü einzurichten.
+    <string name="backup_reminder_bar_dialog_summary">        Kürzliche Änderungen an der Datenbank wurden noch nicht gesichert. Es ist wichtig, regelmäßig Sicherungen zu erstellen, damit du den Zugriff auf deine Konten nicht verlierst. Bitte denke daran, automatische Sicherungen im Einstellungsmenü einzurichten.
     </string>
     <string name="backup_reminder_bar_dialog_accept">Sicherung einrichten</string>
     <string name="backup_plaintext_export_warning"><b>Die Datenbank wurde kürzlich im Klartext exportiert</b></string>
@@ -507,6 +507,8 @@
     <string name="dialog_wipe_entries_title">Einträge löschen</string>
     <string name="dialog_wipe_entries_message">Deine Datenbank enthält bereits Einträge. Möchtest du diese Einträge entfernen, bevor diese Datei importiert wird?\n\n<b>Wenn du dies tust, verlierst du dauerhaft den Zugriff auf die vorhandenen Einträge in der Datenbank.</b></string>
     <string name="dialog_wipe_entries_checkbox">Datenbankinhalt löschen</string>
+    <string name="import_from_clipboard_title">Aus Zwischenablage importieren</string>
+    <string name="import_from_clipboard_message">Gültige otpauth-URI in der Zwischenablage erkannt.\n\n<b>Name</b>: %1$s\n<b>Herausgeber</b>: %2$s\n\nMöchtest du damit diesen Eintrag ausfüllen?</string>
     <string name="panic_trigger_ignore_toast">Aegis hat ein Paniksignal empfangen, aber die Einstellung ist deaktiviert – Paniksignal wird ignoriert</string>
     <string name="pref_panic_trigger_title">Datenbank bei Paniksignal löschen</string>
     <string name="pref_panic_trigger_summary">Datenbank löschen, wenn ein Paniksignal von Ripple empfangen wird</string>
@@ -524,7 +526,7 @@
     <string name="importer_help_bitwarden">Gib eine Bitwarden-Export-/Sicherungsdatei an. Verschlüsselte Dateien werden nicht unterstützt.</string>
     <string name="importer_help_battle_net_authenticator">Gib eine Kopie von <b>/data/data/com.blizzard.messenger/shared_prefs/com.blizzard.messenger.authenticator_preferences.xml</b> an, die sich im internen Speicherverzeichnis von Battle.net Authenticator befindet.</string>
     <string name="importer_help_duo">Gib eine Kopie von <b>/data/data/com.duosecurity.duomobile/files/duokit/accounts.json</b> an, die sich im internen Speicherverzeichnis von DUO befindet.</string>
-    <string name="importer_help_ente_auth">Gib eine Ente Auth-Exportdatei an. Derzeit werden nur unverschlüsselte Dateien unterstützt.</string>
+    <string name="importer_help_ente_auth">Gib eine Ente-Auth-Exportdatei an. Derzeit werden nur unverschlüsselte Dateien unterstützt.</string>
     <string name="importer_help_freeotp">FreeOTP 2: Gib eine Sicherungsdatei an.\nFreeOTP 1.X: Gib eine Kopie von <b>/data/data/org.fedorahosted.freeotp/shared_prefs/tokens.xml</b>, die sich im internen Speicherverzeichnis von FreeOTP befindet.</string>
     <string name="importer_help_freeotp_plus">Gib eine FreeOTP+-Exportdatei an.</string>
     <string name="importer_warning_title_freeotp2">Kompatibilität mit FreeOTP 2</string>
@@ -532,6 +534,7 @@
     <string name="importer_help_google_authenticator"><b>Es werden nur Datenbankdateien von Google Authenticator bis Version 5.10 unterstützt</b>.\n\nGib eine Kopie von <b>/data/data/com.google.android.apps.authenticator2/databases/databases</b> an, die sich im internen Speicherverzeichnis von Google Authenticator befindet.</string>
     <string name="importer_help_microsoft_authenticator">Gib eine Kopie von <b>/data/data/com.azure.authenticator/databases/PhoneFactor</b> an, die sich im internen Speicherverzeichnis von Microsoft Authenticator befindet.</string>
     <string name="importer_help_plain_text">Gib eine Klartextdatei an, die in jeder Zeile eine Google-Authenticator-URI enthält.</string>
+    <string name="importer_help_proton_authenticator">Gib eine Proton-Authenticator-Exportdatei (.json) an, die du über <b>Einstellungen -&gt; Exportieren</b> erhältst.</string>
     <string name="importer_help_steam"><b>Steam v3.0 und neuer wird nicht unterstützt</b>. Gib eine Kopie von <b>/data/data/com.valvesoftware.android.steam.community/files/Steamguard-*.json</b> an, die sich im internen Speicherverzeichnis von Steam befindet.</string>
     <string name="importer_help_stratum">Gib eine Stratum-Exportdatei an, die du über <b>Einstellungen -&gt; Sicherung -&gt; Als verschlüsselte Datei sichern (empfohlen)</b> erhältst.</string>
     <string name="importer_help_totp_authenticator">Gib eine TOTP-Authenticator-Exportdatei an.</string>

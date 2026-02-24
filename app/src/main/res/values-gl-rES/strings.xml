@@ -363,6 +363,21 @@
     <string name="preference_reset_usage_count_dialog">Tes a certeza de que queres poñer o contador de usos de tódalas entradas do teu almacén a cero?</string>
     <string name="note" comment="Users can add a note to an entry">Nota</string>
     <string name="clear">Restablecer</string>
+    <string name="dialog_duplicate_entry_title" comment="'Duplicate' is a noun here">Duplicar entrada</string>
+    <string name="dialog_duplicate_entry_message">Esta entrada ten o mesmo nome e provedor que unha xa existente. Como queres xestionar a situación?</string>
+    <string name="dialog_duplicate_entry_overwrite_title">Sobrescribindo a entrada(s) existente?</string>
+    <string name="dialog_duplicate_entry_overwrite_subtitle">Substituír a entrada ou entradas existentes coa nova. Esta acción non se pode desfacer</string>
+    <string name="dialog_duplicate_entry_suffix_title">Engadir sufixo</string>
+    <string name="dialog_duplicate_entry_suffix_subtitle">Engadir un sufixo ao nome desta nova entrada. O novo nome vai ser: %s</string>
+    <string name="dialog_duplicate_entry_cancel_title">Desbotar a xestión</string>
+    <string name="dialog_duplicate_entry_cancel_subtitle">Permite que poidas editar a entrada antes de volver a intentar gardala</string>
+    <plurals name="dialog_duplicate_entry_overwrite_dialog_message">
+        <item quantity="one">Ten certeza de querer eliminar a entrada %d co seguinte nome:\n\n%s - %s</item>
+        <item quantity="other">Ten certeza de querer eliminar %d entradas co seguinte nome:\n\n%s - %s</item>
+    </plurals>
+    <string name="dialog_duplicate_entry_overwrite_dialog_title">Confirmar a eliminación</string>
+    <string name="pref_haptic_feedback_summary">Facer que o dispositivo vibre cando se actualizan os códigos</string>
+    <string name="pref_haptic_feedback_title">Resposta táctil</string>
     <string name="pref_highlight_entry_title">Resaltar tokens ao premelos</string>
     <string name="pref_highlight_entry_summary">Resalta temporalmente os tokens cando se preman para podelos distinguir máis facilmente</string>
     <string name="pref_groups_multiselect_title">Selección múltiple de grupos</string>
@@ -517,6 +532,7 @@
     <string name="importer_help_google_authenticator"><b>Só se admiten ficheiros de base de datos de Google Authenticator v5.10 e anteriores</b>.\n\nProporciona unha copia de <b>/data/data/com.google.android.apps.authenticator2/databases/databases</b>, localizado no directorio do almacenamento interno de Google Authenticator.</string>
     <string name="importer_help_microsoft_authenticator">Proporciona unha copia de <b>/data/data/com.azure.authenticator/databases/PhoneFactor</b>, localizado no directorio do almacenamento interno de Microsoft Authenticator.</string>
     <string name="importer_help_plain_text">Proporciona un ficheiro de texto plano cunha URI de Google Authenticator en cada liña.</string>
+    <string name="importer_help_proton_authenticator">Aportar un ficheiro de exportación (.json) de Proton Authenticator obtido desde <b>Axustes -&gt; Exportar</b>.</string>
     <string name="importer_help_steam"><b>Steam v3.0 e versións superiores non son compatibles</b>. Proporciona unha copia de <b>/data/data/com.valvesoftware.android.steam.community/files/Steamguard-*.json</b>, localizado no directorio do almacenamento interno de Steam.</string>
     <string name="importer_help_stratum">Proporciona un ficheiro de exportación de Stratum, obtido desde <b>Axustes -&gt; Copia de seguridade -&gt; Facer copia de seguridade nun ficheiro cifrado (recomendado)</b>.</string>
     <string name="importer_help_totp_authenticator">Proporciona un ficheiro de exportación de TOTP Authenticator.</string>

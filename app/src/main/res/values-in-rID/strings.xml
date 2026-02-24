@@ -354,6 +354,20 @@
     <string name="preference_reset_usage_count_dialog">Apakah Anda yakin ingin mengatur ulang jumlah penggunaan semua entri di brankas Anda menjadi 0?</string>
     <string name="note" comment="Users can add a note to an entry">Catatan</string>
     <string name="clear">Bersihkan</string>
+    <string name="dialog_duplicate_entry_title" comment="'Duplicate' is a noun here">Duplikat entri</string>
+    <string name="dialog_duplicate_entry_message">Entri ini memiliki nama dan penerbit yang sama dengan satu atau lebih entri yang sudah ada. Bagaimana Anda ingin melanjutkan?</string>
+    <string name="dialog_duplicate_entry_overwrite_title">Ganti entri yang sudah ada</string>
+    <string name="dialog_duplicate_entry_overwrite_subtitle">Ganti entri yang ada dengan entri baru. Tindakan ini tidak dapat dibatalkan</string>
+    <string name="dialog_duplicate_entry_suffix_title">Tambahkan sufiks</string>
+    <string name="dialog_duplicate_entry_suffix_subtitle">Tambahkan sufiks ke nama entri baru ini. Nama baru akan menjadi: %s</string>
+    <string name="dialog_duplicate_entry_cancel_title">Batalkan penyimpanan</string>
+    <string name="dialog_duplicate_entry_cancel_subtitle">Memungkinkan Anda untuk mengedit entri sebelum mencoba menyimpannya kembali</string>
+    <plurals name="dialog_duplicate_entry_overwrite_dialog_message">
+        <item quantity="other">Apakah Anda yakin ingin menghapus %d entri dengan nama berikut:\n\n%s - %s</item>
+    </plurals>
+    <string name="dialog_duplicate_entry_overwrite_dialog_title">Konfirmasi penghapusan</string>
+    <string name="pref_haptic_feedback_summary">Buat perangkat Anda bergetar saat kode sedang diperbarui</string>
+    <string name="pref_haptic_feedback_title">Umpan balik haptic</string>
     <string name="pref_highlight_entry_title">Sorot token saat disentuh</string>
     <string name="pref_highlight_entry_summary">Jadikan token untuk lebih mudah dibedakan satu sama lain dengan menyorotnya saat disentuh</string>
     <string name="pref_groups_multiselect_title">Pilih berganda grup</string>
@@ -456,6 +470,7 @@
     <string name="unable_to_copy_uri_to_clipboard">Tidak dapat menyalin URI ke clipboard</string>
     <string name="uri_copied_to_clipboard">URI disalin ke papan klip</string>
     <string name="transfer_entry_description">Pindai kode QR ini dengan aplikasi autentikasi yang ingin Anda pindahkan ke sana entri ini</string>
+    <string name="transfer_entry_brightness">Ketuk kode QR untuk mengatur kecerahan layar penuh</string>
     <string name="google_auth_compatible_transfer_description">Pindai kode QR ini dengan Aegis atau Google Authenticator.\n\nKarena keterbatasan aplikasi Google Authenticator, hanya token TOTP &amp; HOTP yang menggunakan SHA1 dan menghasilkan kode 6 digit yang disertakan</string>
     <string name="password_strength_very_weak">Sangat lemah</string>
     <string name="password_strength_weak">Lemah</string>
@@ -504,6 +519,7 @@
     <string name="importer_help_microsoft_authenticator">Siapkan salinan
 <b>/data/data/com.azure.authenticator/databases/PhoneFactor</b>, yang terletak di direktori penyimpanan internal Microsoft Authenticator.</string>
     <string name="importer_help_plain_text">Siapkan berkas plain text Google Authenticator dengan URI di setiap baris.</string>
+    <string name="importer_help_proton_authenticator">Sediakan berkas ekspor Proton Authenticator (.json) yang diperoleh melalui <b>Pengaturan -&gt; Ekspor</b>.</string>
     <string name="importer_help_steam"><b>Steam v3.0 dan yang lebih baru tidak didukung</b>. Sediakan salinan <b>/data/data/com.valvesoftware.android.steam.community/files/Steamguard-*.json</b>, yang terletak di direktori penyimpanan internal Steam.</string>
     <string name="importer_help_stratum">Sediakan berkas ekspor Stratum yang diperoleh melalui <b>Pengaturan -&gt; Cadangkan -&gt; Cadangkan ke berkas terenkripsi (disarankan)</b>.</string>
     <string name="importer_help_totp_authenticator">Siapkan berkas ekspor Autentikasi TOTP.</string>

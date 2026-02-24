@@ -507,6 +507,8 @@
     <string name="dialog_wipe_entries_title">Премахване на записи</string>
     <string name="dialog_wipe_entries_message">Хранилището вече съдържа записи. Искате ли да бъдат премахнати, преди внасяне на файла?\n\n<b> По този начин безвъзвратно ще загубите достъп до съществуващите записи в хранилището.</b></string>
     <string name="dialog_wipe_entries_checkbox">Изпразване на хранилището</string>
+    <string name="import_from_clipboard_title">Внасяне на копираното</string>
+    <string name="import_from_clipboard_message">Установен е копиран otpauth адрес.\n\n<b>Име</b>: %1$s\n<b>Издател</b>: %2$s\n\nДа бъде ли използван за предварително попълване на формуляра?</string>
     <string name="panic_trigger_ignore_toast">Aegis получи сигнал за тревога, но настройката е изключена, пренебрегване на сигнала</string>
     <string name="pref_panic_trigger_title">Изтриване на хранилището при сигнал за тревога</string>
     <string name="pref_panic_trigger_summary">Изтрива хранилището, когато от Ripple е получен сигнал за тревога</string>

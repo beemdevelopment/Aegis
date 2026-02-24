@@ -533,6 +533,8 @@
     <string name="dialog_wipe_entries_title">Очистить записи</string>
     <string name="dialog_wipe_entries_message">В хранилище уже есть записи. Хотите удалить их перед импортом файла?\n\n<b>Если вы удалите существующие записи, то навсегда потеряете к ним доступ.</b></string>
     <string name="dialog_wipe_entries_checkbox">Очистить содержимое хранилища</string>
+    <string name="import_from_clipboard_title">Импорт из буфера обмена</string>
+    <string name="import_from_clipboard_message">В буфере обмена найден OTPauth URI.\n\n<b>Имя</b>: %1$s\n<b>Эмитент</b>: %2$s\n\nИспользовать эти данные для заполнения этой записи?</string>
     <string name="panic_trigger_ignore_toast">Получен сигнал паники, но настройка отключена — сигнал паники игнорируется</string>
     <string name="pref_panic_trigger_title">Удалять хранилище при панике</string>
     <string name="pref_panic_trigger_summary">Удалить хранилище при получении сигнала паники от Ripple</string>

@@ -507,6 +507,8 @@
     <string name="dialog_wipe_entries_title">Bejegyzések törlése</string>
     <string name="dialog_wipe_entries_message">A széfe már tartalmaz bejegyzéseket. Törli ezeket, mielőtt importálja az újakat?\n\n<b>Ha így dönt, végleg elveszíti a széfben már meglevő bejegyzéseket.</b></string>
     <string name="dialog_wipe_entries_checkbox">Széf ürítése</string>
+    <string name="import_from_clipboard_title">Importálás a vágólapról</string>
+    <string name="import_from_clipboard_message">Egy érvényes otpauth URI-t találtunk a vágólapon.\n\n<b>Név</b>: %1$s\n<b>Kiállító</b>:%2$s\n\nHasználja ezt a bejegyzés kitöltéséhez?</string>
     <string name="panic_trigger_ignore_toast">Az Aegis pánikgombja meg lett nyomva, de a beállítás ki van kapcsolva, figyelmen kívül hagyás</string>
     <string name="pref_panic_trigger_title">A széf törlése a pánikgomb megnyomásakor</string>
     <string name="pref_panic_trigger_summary">A széf törlése, ha a Ripple megnyomja a pánikgombot</string>
@@ -532,6 +534,7 @@
     <string name="importer_help_google_authenticator"><b>Csak a Google Hitelesítő v5.10 és korábbi verziói támogatottak</b>.\n\nAdja meg a <b>/data/data/com.google.android.apps.authenticator2/databases/databases</b> másolatát, mely a Google Hitelesítő belső háttértáron lévő mappájában található.</string>
     <string name="importer_help_microsoft_authenticator">Adja meg a <b>/data/data/com.azure.authenticator/databases/PhoneFactor</b> másolatát, mely a Microsoft Authenticator belső háttértáron levő mappájában található.</string>
     <string name="importer_help_plain_text">Adjon meg egy szöveges fájlt, melynek minden sorában Google Hitelesítő URI található.</string>
+    <string name="importer_help_proton_authenticator">Adjon meg egy Proton Authenticator exportfájlt (.json) –a <b>Beállítások -&gt; Exportálás</b> menüpontból szerezhető be.</string>
     <string name="importer_help_steam"><b>A Steam v3.0 és újabb verziói nem támogatottak</b>. Adja hozzá a <b>/data/data/com.valvesoftware.android.steam.community/files/Steamguard-*.json</b> mappából, mely a Steam belső háttértáron levő mappája.</string>
     <string name="importer_help_stratum">Adjon meg egy Stratum exportálási fájlt, amelyet a <b>Beállítások &gt; Biztonsági mentés &gt; Biztonsági mentés titkosított fájlba (ajánlott)</b> menüpontban lehet előállítani.</string>
     <string name="importer_help_totp_authenticator">Adjon meg egy TOTP Autheticator exportfájlt.</string>

@@ -520,6 +520,8 @@
     <string name="dialog_wipe_entries_title">Notīrīt ierakstus</string>
     <string name="dialog_wipe_entries_message">Glabātava jau satur ierakstus. Vai tos noņemt, pirms tiek ievietota šī datne?\n\n<b>Šādi rīkojoties, tiks zaudēta piekļuve pašreizējiem glabātavas ierakstiem.</b></string>
     <string name="dialog_wipe_entries_checkbox">Notīrīt glabātavas saturu</string>
+    <string name="import_from_clipboard_title">Ievietot no starpliktuves</string>
+    <string name="import_from_clipboard_message">Starpliktuvē tika atrasts derīgs otpauth URI.\n\n<b>Nosaukums</b>:%1$s\n<b>Izdevējs</b>: %2$s\n\nVai izmantot to, lai aizpildītu šo ievadi?</string>
     <string name="panic_trigger_ignore_toast">Aegis saņēma trauksmes izsaukumu, bet iestatījums ir atspējots, tādēļ tas netiek ņemts vērā</string>
     <string name="pref_panic_trigger_title">Izdzēst glabātavu pēc trauksmes izsaukuma</string>
     <string name="pref_panic_trigger_summary">Izdzēst glabātavu, kad trauksmes izsaukums ir saņemts no Ripple</string>
@@ -546,6 +548,7 @@
     <string name="importer_help_google_authenticator"><b>Tek atbalstītas tikai datubāzes datnes no Goole Authenticator v5.10 un agrāka</b>.\n\nJāiesniedz kopija no <b>/data/data/com.google.android.apps.authenticator2/databases/databases</b>, kas atrodas iekšējās krātuves Google Authenticator mapē.</string>
     <string name="importer_help_microsoft_authenticator">Jāiesniedz <b>/data/data/com.azure.authenticator/databases/PhoneFactor</b> kopija, kas atrodas iekšējās krātuves Microsoft Authenticator mapē.</string>
     <string name="importer_help_plain_text">Jāiesniedz vienkārša teksta datne, kuras katra līnija satur vienu Google Authenticator URI.</string>
+    <string name="importer_help_proton_authenticator">Jānorāda Proton Authenticator izguves datne (.json), kas iegūta <b>Settings -&gt; Export</b>.</string>
     <string name="importer_help_steam"><b>Steam v3.0 un jaunāks netiek atbalstīts</b>. Jāiesniedz <b>/data/data/com.valvesoftware.android.steam.community/files/Steamguard-*.json</b> kopija, kas atrodas iekšējās krātuves Steam mapē.</string>
     <string name="importer_help_stratum">Jāiesniedz Stratum izgūšanas datne, kas ir iegūstama <b>Iestatījumi -&gt; Rezerves kopijas -&gt; Dublēt šifrētā datnē (ieteicams)</b>.</string>
     <string name="importer_help_totp_authenticator">Jāiesniedz TOTP Authenticator izgūšanas datne.</string>

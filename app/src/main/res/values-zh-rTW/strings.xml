@@ -45,8 +45,13 @@
     <string name="pref_code_group_size_summary">選擇群組編號</string>
     <string name="pref_account_name_position_title">顯示帳戶名稱</string>
     <string name="pref_show_next_code_title">顯示下一組驗證碼</string>
+    <string name="pref_show_next_code_summary">預先產生並顯示下一組驗證碼</string>
+    <string name="pref_expiration_state_title">驗證碼將過期時顯示</string>
+    <string name="pref_expiration_state_summary">驗證碼將過期時，更改顯示色彩並閃爍</string>
+    <string name="pref_expiration_state_fallback">驗證碼將過期時，更改顯示色彩</string>
     <string name="pref_shared_issuer_account_name_title">只在必要時顯示帳戶名稱</string>
     <string name="pref_shared_issuer_account_name_summary">只顯示擁有共同發行者的帳戶名稱（並隱藏其他帳戶名稱）</string>
+    <string name="pref_account_name_position_summary_override">此選項將被「條列式顯示模式」覆蓋，帳號名稱將顯示在發行者下方。</string>
     <string name="pref_import_file_title">從檔案匯入</string>
     <string name="pref_import_file_summary">從檔案匯入憑證</string>
     <string name="pref_android_backups_title">Android 雲端備份</string>
@@ -58,6 +63,7 @@
     <string name="pref_backups_reminder_summary">提示您備份保險箱以避免最後的變更狀態未被加入備份。</string>
     <string name="pref_backups_reminder_dialog_title">關閉備份提醒</string>
     <string name="pref_backups_versioning_strategy_title">備份策略</string>
+    <string name="pref_backups_versioning_strategy_keep_x_versions">保留多份備份檔</string>
     <string name="pref_backups_versioning_strategy_single_backup">單一備份</string>
     <string name="pref_backups_versioning_strategy_single_backup_warning">您選擇的備份方案並不可靠，我們也強烈反對。要是此單一備份有任何錯誤，將導致您失去唯一的備份。</string>
     <string name="pref_backups_versioning_strategy_dialog_title">選擇備份策略</string>
@@ -258,7 +264,9 @@
     <string name="backup_status_success">最近備份成功: %s</string>
     <string name="backup_status_failed">最近備份失敗: %s</string>
     <string name="backup_status_none">尚未建立任何備份</string>
+    <string name="backup_warning_password">備份檔將使用安全性選項中設定的獨立密碼加密</string>
     <string name="documentsui_error">似乎無法在您的裝置上找到 DocumentsUI。此為新增與建立文件的重要系統元件。若您曾使用&quot;debloat&quot; 軟體替您的裝置「瘦身」，極有可能您誤刪此程式，請將其重新安裝。</string>
+    <string name="icon_pack_import_error">嘗試匯入圖示包時發生錯誤</string>
     <string name="icon_pack_delete_error">試圖刪除圖示合輯時出錯</string>
     <plurals name="icon_pack_info">
         <item quantity="other">%d 個圖示</item>
@@ -272,6 +280,7 @@
     <string name="choose_application">選擇欲匯入的來源應用程式</string>
     <string name="choose_theme">選擇您想要的主題</string>
     <string name="choose_view_mode">選擇您想要的檢視模式</string>
+    <string name="choose_copy_behavior">請選擇您想要的複製行為</string>
     <string name="parsing_file_error">試圖解構檔案時發生錯誤</string>
     <string name="file_not_found">錯誤：找不到檔案</string>
     <string name="reading_file_error">試圖開啟檔案時發生錯誤</string>
@@ -295,6 +304,9 @@
     <string name="partial_google_auth_import">偵測到不完整的 Google Authenticator 匯出</string>
     <string name="partial_google_auth_import_warning">您的匯入中缺少部分 QR Code。詳情如下：\n\n<b>%s</b>\n\n您可以繼續匯入這份闕漏的匯出檔，但我們建議您在補齊 QR Code 後再嘗試匯入，以免無法存取憑證。</string>
     <string name="missing_qr_code_descriptor">• QR Code %d</string>
+    <plurals name="import_partial_export_anyway">
+        <item quantity="other">還是匯入 %d 組 token</item>
+    </plurals>
     <string name="import_google_auth_failure">匯入 Google Authenticator 失敗</string>
     <string name="unlocking_vault">解鎖保險箱</string>
     <string name="rename_group">重新命名群組</string>
@@ -336,9 +348,15 @@
     <string name="dialog_duplicate_entry_suffix_title">增加尾註</string>
     <string name="dialog_duplicate_entry_suffix_subtitle">為新的條目增加一個後綴詞，新的名稱如下：%s</string>
     <string name="dialog_duplicate_entry_cancel_title">取消儲存</string>
+    <string name="dialog_duplicate_entry_overwrite_dialog_title">確認刪除</string>
+    <string name="pref_haptic_feedback_summary">重新整理時震動您的裝置</string>
+    <string name="pref_haptic_feedback_title">觸覺回饋</string>
     <string name="pref_highlight_entry_title">強調選取的憑證</string>
     <string name="pref_highlight_entry_summary">輕觸後暫時凸顯該驗證碼以與它者區分</string>
+    <string name="pref_groups_multiselect_title">多選群組</string>
+    <string name="pref_groups_multiselect_summary">允許同時選擇多個群組</string>
     <string name="pref_minimize_on_copy_title">複製後最小化</string>
+    <string name="pref_minimize_on_copy_summary">複製代碼之後將應用程式最小化</string>
     <string name="pref_copy_behavior_title">複製令牌至剪貼簿</string>
     <string name="pref_search_behavior_title">搜尋行為</string>
     <string name="pref_pause_entry_title">被觸碰時凍結驗證碼</string>
@@ -346,6 +364,7 @@
     <string name="pin_keyboard_description">請輸入您的密碼以啟用 PIN 鍵盤。請注意，只有當您的密碼僅由數字構成時才能使用</string>
     <string name="pin_keyboard_error">啟用 PIN 鍵盤時出錯</string>
     <string name="pin_keyboard_error_description">無法設定 PIN 鍵盤，您的密碼只能包含數字。</string>
+    <string name="pin_keyboard_disabled">密碼已變更，不會再顯示 PIN 鍵盤。</string>
     <string name="selected">選擇</string>
     <string name="dark_theme_title">暗黑主題</string>
     <string name="light_theme_title">明亮主題</string>
@@ -358,6 +377,10 @@
     <string name="tiles_mode_title">平鋪</string>
     <string name="unknown_issuer">未知的服務商</string>
     <string name="unknown_account_name">未知帳戶</string>
+    <plurals name="import_error_dialog">
+        <item quantity="other">Aegis 無法匯入 %d 組 token，已經忽略。若欲了解更詳細錯誤資訊，請按「詳細內容」。</item>
+    </plurals>
+    <string name="unable_to_process_deeplink">無法處理 deep link</string>
     <string name="unable_to_read_qrcode_file">無法從 %s 檔案讀取和處理 QR Code</string>
     <string name="unable_to_process_shared_text">無法將共用文本作為 OTP 進行處理</string>
     <string name="unable_to_generate_qrcode">無法產生 QR Code</string>
@@ -455,20 +478,29 @@
     <string name="pref_panic_trigger_summary">從 Ripple 收到危急指令時刪除保險箱</string>
     <string name="import_vault">匯入 Aegis 金鑰庫</string>
     <string name="import_vault_hint">想從其他 2FA 驗證器應用程式匯入？先完成首次設定，就可在設定功能表中匯入。</string>
+    <string name="importer_help_2fas">請提供 2FAS Authenticator 的備份檔。</string>
+    <string name="importer_help_aegis">請提供 Aegis 的匯出/備份檔。</string>
+    <string name="importer_help_authenticator_plus">請透過 Authenticator Plus 的 <b>選項 -> 備份與還原 -> 匯出為純文字與 HTML</b> 功能匯出，並提供匯出的檔案。</string>
     <string name="importer_help_authy">提供 <b>/data/data/com.authy.authy/shared_prefs/com.authy.storage.tokens.authenticator.xml</b> 的複本，其位於 Authy 的內部儲存空間。</string>
     <string name="importer_help_andotp">提供 andOTP 的匯出/備份檔。</string>
     <string name="importer_help_bitwarden">請提供 Bitwarden 匯出/備份檔案。不支援加密檔案。</string>
     <string name="importer_help_battle_net_authenticator">請提供 <b>/data/data/com.blizzard.messenger/shared_prefs/com.blizzard.messenger.authenticator_preferences.xml</b> 的副本；其位於 Battle.net Authenticator 的內部儲存空間。</string>
     <string name="importer_help_duo">請提供 <b>/data/data/com.duosecurity.duomobile/files/duokit/accounts.json</b> 的副本，其位於 DUO 的內部儲存空間。</string>
     <string name="importer_help_ente_auth">請提供 Ente Auth 匯出檔案。目前只支援未加密的檔案。</string>
+    <string name="importer_help_freeotp">FreeOTP 2：請提供備份檔。\nFreeOTP 1.x：請提供 FreeOTP 內部儲存空間目錄當中的 <b>/data/data/org.fedorahosted.freeotp/shared_prefs/tokens.xml</b> 的檔案副本。</string>
     <string name="importer_help_freeotp_plus">提供 FreeOTP+ 的匯出檔。</string>
+    <string name="importer_warning_title_freeotp2">FreeOTP 2 相容性</string>
+    <string name="importer_warning_message_freeotp2">FreeOTP 2 有一些問題，可能會造成備份檔毀損。Aegis 將盡可能修復備份項目，但還是可能會有一部分或全部項目無法匯入。</string>
     <string name="importer_help_google_authenticator"><b>僅支援 Google Authenticator v5.10 及之前版本的資料庫檔案</b>。\n\n請提供 <b>/data/data/com.google.android.apps.authenticator2/databases/databases</b> 的副本，其位於 Google Authenticator 的內部儲存空間中。</string>
     <string name="importer_help_microsoft_authenticator">提供 <b>/data/data/com.azure.authenticator/databases/PhoneFactor</b> 的複本，其位於 Microsoft Authenticator 的內部儲存空間。</string>
     <string name="importer_help_plain_text">提供純文字檔，其中每行都是完整的 Google Authenticator URI</string>
+    <string name="importer_help_proton_authenticator">請透過 Proton Authenticator 的 <b>選項 -> 匯出</b> 功能匯出 json 格式檔案，並提供於此處。</string>
     <string name="importer_help_steam"><b>僅支援 Steam v3.0或更新版本</b>。 請提供 <b>/data/data/com.valvesoftware.android.steam.community/files/Steamguard-*.json</b> 的副本，其位於 Steam 的內部儲存空間。</string>
+    <string name="importer_help_stratum">請透過 Stratum 的 <b>選項 -> 備份 -> 備份為加密檔案（建議）</b> 功能匯出，並提供於此處。</string>
     <string name="importer_help_totp_authenticator">提供 TOTP 驗證程式的匯出檔。</string>
     <string name="importer_help_winauth">提供 WinAuth 的匯出檔。</string>
     <string name="import_assign_icons_dialog_title">分配圖示</string>
+    <string name="import_assign_icons_dialog_text">您要對匯入的項目設定圖示嗎？</string>
     <string name="importer_encrypted_exception_google_authenticator">已跳過已加密的條目：%s</string>
     <string name="importer_help_direct">直接從 %s 匯入條目。這個裝置需已安裝此應用程式且 Aegis 擁有 root 權限。</string>
     <string name="groups">群組</string>

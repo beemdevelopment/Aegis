@@ -505,6 +505,8 @@
     <string name="dialog_wipe_entries_title">Elimina entrades</string>
     <string name="dialog_wipe_entries_message">La teva caixa forta ja té entrades. Vols eliminar les entrades abans d\'importar aquest fitxer?\n\n<b>Si ho fas, perdràs l\'accés a les entrades que tens actualment.</b></string>
     <string name="dialog_wipe_entries_checkbox">Eliminar contingut de la caixa forta</string>
+    <string name="import_from_clipboard_title">Importa des del porta-retalls</string>
+    <string name="import_from_clipboard_message">Hem trobat un URI otpauth vàlid al porta-retalls.\n\n<b>Nom</b>: %1$s\n<b>Emissor</b>: %2$s\n\nVols usar-lo per omplir aquesta entrada?</string>
     <string name="panic_trigger_ignore_toast">S\'ha rebut el botó del pànic, però està deshabilitat a la configuració, ho hem ignorat</string>
     <string name="pref_panic_trigger_title">Eliminar la caixa forta amb el botó del pànic</string>
     <string name="pref_panic_trigger_summary">Eliminar la caixa forta amb el botó del pànic si es rep des de Ripple</string>

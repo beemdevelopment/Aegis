@@ -518,6 +518,7 @@
     <string name="importer_help_google_authenticator"><b>Google Authenticator v5.10 및 이전 버전의 데이터베이스 파일만 지원됩니다</b>.\n\nGoogle Authenticator의 내부 저장소 위치 <b>/data/data/com.google.android.apps.authenticator2/databases/databases</b>에 존재하는 파일의 사본을 제공해주세요.</string>
     <string name="importer_help_microsoft_authenticator">Microsoft Authenticator의 내부 저장소 위치 <b>/data/data/com.azure.authenticator/databases/PhoneFactor</b>에 있는 파일의 사본을 제공해주세요.</string>
     <string name="importer_help_plain_text">각 줄에 Google Authenticator URI가 포함된 일반 텍스트 파일을 제공해주세요.</string>
+    <string name="importer_help_proton_authenticator"><b>설정 -&gt; 내보내기</b>를 통해Proton Authenticator의 내보내기 파일 (.json)을 지원합니다.</string>
     <string name="importer_help_steam"><b>Steam v3.0과 이후 버전은 지원되지 않습니다</b>. Steam의 내부 저장소 위치 <b>/data/data/com.valvesoftware.android.steam.community/files/Steamguard-*.json</b>에 있는 파일의 사본을 제공해주세요.</string>
     <string name="importer_help_stratum"><b>설정 -&gt; 백업 -&gt; 암호화된 파일로 백업하기 (권장)</b>으로 얻은 Stratum 내보내기 파일을 제공해주세요.</string>
     <string name="importer_help_totp_authenticator">TOTP Authenticator 내보내기 파일을 제공해주세요.</string>

@@ -371,6 +371,10 @@
     <string name="dialog_duplicate_entry_suffix_subtitle">Lägg till ett suffix till namnet på den här nya posten. Det nya namnet blir: %s</string>
     <string name="dialog_duplicate_entry_cancel_title">Avbryt spara</string>
     <string name="dialog_duplicate_entry_cancel_subtitle">Gör att du kan redigera posten innan du försöker spara den igen</string>
+    <plurals name="dialog_duplicate_entry_overwrite_dialog_message">
+        <item quantity="one">Är du säker på att du vill ta bort %d post med följande namn:\n\n%s - %s</item>
+        <item quantity="other">Är du säker på att du vill ta bort %d poster med följande namn:\n\n%s - %s</item>
+    </plurals>
     <string name="dialog_duplicate_entry_overwrite_dialog_title">Bekräfta borttagning</string>
     <string name="pref_haptic_feedback_summary">Få enheten att vibrera när koder uppdateras</string>
     <string name="pref_haptic_feedback_title">Haptisk återkoppling</string>
@@ -503,6 +507,8 @@
     <string name="dialog_wipe_entries_title">Rensa poster</string>
     <string name="dialog_wipe_entries_message">Ditt valv innehåller redan poster. Vill du ta bort dessa poster innan du importerar den här filen?\n\n<b>Genom att göra det så förlorar du åtkomst till de befintliga posterna i valvet för alltid.</b></string>
     <string name="dialog_wipe_entries_checkbox">Rensa valvets innehåll</string>
+    <string name="import_from_clipboard_title">Importera från urklipp</string>
+    <string name="import_from_clipboard_message">Vi hittade en giltig otpauth-uri i ditt urklipp.\n\n<b>Namn</b>: %1$s\n<b>Utgivare</b>: %2$s\n\nVill du använda den för att förifylla denna post?</string>
     <string name="panic_trigger_ignore_toast">Aegis tog emot en panikutlösare, men inställningen är inaktiverad - ignorerar</string>
     <string name="pref_panic_trigger_title">Radera valvet vid panikutlösare</string>
     <string name="pref_panic_trigger_summary">Radera valvet när en panikutlösare tas emot från Ripple</string>
@@ -528,6 +534,7 @@
     <string name="importer_help_google_authenticator"><b>Endast databasfiler från Google Authenticator v5.10 och tidigare stöds.</b>\n\nTillhandahåll en kopia av <b>/data/data/com.google.android.apps.authenticator2/databases/databases</b>, som finns i den interna lagringskatalogen för Google Authenticator.</string>
     <string name="importer_help_microsoft_authenticator">Tillhandahåll en kopia av <b>/data/data/com.azure.authenticator/databases/PhoneFactor</b>, som finns i den interna lagringskatalogen för Microsoft Authenticator.</string>
     <string name="importer_help_plain_text">Tillhandahåll en klartextfil med en Google Authenticator-URI per rad.</string>
+    <string name="importer_help_proton_authenticator">Ange en Proton Authenticator-exportfil (.json) som erhållits via <b>Inställningar -&gt; Exportera</b>.</string>
     <string name="importer_help_steam"><b>Steam v3.0 och senare stöds inte.</b> Tillhandahåll en kopia av <b>/data/data/com.valvesoftware.android.steam.community/files/Steamguard-*.json</b>, som finns i den interna lagringskatalogen för Steam.</string>
     <string name="importer_help_stratum">Tillhandahåll en exportfil från Stratum som har erhållits genom <b>Inställningar -&gt; Säkerhetskopiera -&gt; Säkerhetskopiera till krypterad fil (rekommenderas)</b>.</string>
     <string name="importer_help_totp_authenticator">Tillhandahåll en exportfil från TOTP Authenticator.</string>
