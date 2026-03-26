@@ -319,6 +319,10 @@ public class AuthActivity extends AegisActivity {
             return;
         }
 
+        _failedUnlockAttempts = 0;
+        saveFailedAttempts();
+        updateFailedAttemptsUI();
+
         setResult(RESULT_OK);
         finish();
     }
@@ -421,10 +425,6 @@ public class AuthActivity extends AegisActivity {
                 Dialogs.showErrorDialog(AuthActivity.this, R.string.biometric_decrypt_error, e);
                 return;
             }
-
-            _failedUnlockAttempts = 0;
-            saveFailedAttempts();
-            updateFailedAttemptsUI();
 
             finish(key, false);
         }
