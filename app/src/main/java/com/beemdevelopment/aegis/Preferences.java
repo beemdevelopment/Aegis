@@ -481,6 +481,18 @@ public class Preferences {
         setBackupResult(true, res);
     }
 
+    public boolean isDataWipingEnabled() {
+        return _prefs.getBoolean("pref_enable_data_wiping", false);
+    }
+
+    public int getMaxFailedAttemptsBeforeWipe() {
+        return _prefs.getInt("pref_max_failed_attempts", 10);
+    }
+
+    public void setMaxFailedAttemptsBeforeWipe(int attempts) {
+        _prefs.edit().putInt("pref_max_failed_attempts", attempts).apply();
+    }
+
     @Nullable
     public BackupResult getAndroidBackupResult() {
         return getBackupResult(false);
