@@ -78,13 +78,13 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <TextView
-                    android:id="@+id/text_failed_attempts"
+                    android:id="@+id/lockout_message"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Failed attempts: 0"
+                    android:text=""
                     android:textColor="@android:color/holo_red_dark"
                     android:textSize="14sp"
-                    android:paddingBottom="4dp"
+                    android:layout_marginBottom="16dp"
                     />
 
                 <LinearLayout

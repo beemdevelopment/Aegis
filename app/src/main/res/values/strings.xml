@@ -624,6 +624,6 @@
         <item quantity="other">%d items selected</item>
     </plurals>
 
-    <string name="failed_attempts">Failed attempts: %1$d</string>
     <string name="error_empty_password">Password cannot be empty</string>
+    <string name="lockout_message">%1$d failed attempts. Try again in %2$s</string>
 </resources>
