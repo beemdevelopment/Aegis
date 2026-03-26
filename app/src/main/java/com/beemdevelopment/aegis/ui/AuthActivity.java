@@ -66,6 +66,9 @@ public class AuthActivity extends AegisActivity {
     private int _failedUnlockAttempts;
     private TextView _textFailedAttempts;
 
+    private static final String PREFS_NAME = "auth_prefs";
+    private static final String KEY_FAILED_ATTEMPTS = "failed_attempts";
+
     // the first time this activity is resumed after creation, it's possible to inhibit showing the
     // biometric prompt by setting 'inhibitBioPrompt' to true through the intent
     private boolean _inhibitBioPrompt;
@@ -74,6 +77,8 @@ public class AuthActivity extends AegisActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_auth);
+
+        _failedUnlockAttempts = getSharedPreferences(PREFS_NAME, MODE_PRIVATE).getInt(KEY_FAILED_ATTEMPTS, 0);
 
         TextInputLayout layoutStandard = findViewById(R.id.layout_standard);
         TextInputLayout layoutNoAutofill = findViewById(R.id.layout_no_autofill);
@@ -174,8 +179,7 @@ public class AuthActivity extends AegisActivity {
             char[] password = EditTextHelper.getEditTextChars(_textPassword);
 
             if (password.length == 0) {
-                Toast.makeText(AuthActivity.this, "Password cannot be empty", Toast.LENGTH_SHORT).show();
-                return;
+                Toast.makeText(AuthActivity.this, getString(R.string.error_empty_password), Toast.LENGTH_SHORT).show();                return;
             }
 
             List<PasswordSlot> slots = _slots.findAll(PasswordSlot.class);
@@ -331,6 +335,7 @@ public class AuthActivity extends AegisActivity {
         _failedUnlockAttempts ++;
 
         updateFailedAttemptsUI();
+        saveFailedAttempts();
 
         if (_failedUnlockAttempts >= 3) {
             _textPassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
@@ -339,8 +344,17 @@ public class AuthActivity extends AegisActivity {
 
     private void updateFailedAttemptsUI() {
         if (_textFailedAttempts != null) {
-            _textFailedAttempts.setText("Failed attempts: " + _failedUnlockAttempts);
+            _textFailedAttempts.setText(
+                    getString(R.string.failed_attempts, _failedUnlockAttempts)
+            );
         }
+    }
+
+    private void saveFailedAttempts() {
+        getSharedPreferences(PREFS_NAME, MODE_PRIVATE)
+                .edit()
+                .putInt(KEY_FAILED_ATTEMPTS, _failedUnlockAttempts)
+                .apply();
     }
 
     private class BackPressHandler extends OnBackPressedCallback {
@@ -407,6 +421,10 @@ public class AuthActivity extends AegisActivity {
                 Dialogs.showErrorDialog(AuthActivity.this, R.string.biometric_decrypt_error, e);
                 return;
             }
+
+            _failedUnlockAttempts = 0;
+            saveFailedAttempts();
+            updateFailedAttemptsUI();
 
             finish(key, false);
         }
