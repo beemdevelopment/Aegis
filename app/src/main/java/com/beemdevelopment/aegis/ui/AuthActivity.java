@@ -64,6 +64,7 @@ public class AuthActivity extends AegisActivity {
     private Button _decryptButton;
 
     private int _failedUnlockAttempts;
+    private TextView _textFailedAttempts;
 
     // the first time this activity is resumed after creation, it's possible to inhibit showing the
     // biometric prompt by setting 'inhibitBioPrompt' to true through the intent
@@ -78,6 +79,8 @@ public class AuthActivity extends AegisActivity {
         TextInputLayout layoutNoAutofill = findViewById(R.id.layout_no_autofill);
         EditText editStandard = findViewById(R.id.text_password);
         EditText editNoAutofill = findViewById(R.id.text_password_no_autofill);
+        _textFailedAttempts = findViewById(R.id.text_failed_attempts);
+        updateFailedAttemptsUI();
 
         if (_prefs.isPinKeyboardEnabled()) {
             layoutStandard.setVisibility(View.GONE);
@@ -169,6 +172,12 @@ public class AuthActivity extends AegisActivity {
             imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
 
             char[] password = EditTextHelper.getEditTextChars(_textPassword);
+
+            if (password.length == 0) {
+                Toast.makeText(AuthActivity.this, "Password cannot be empty", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
             List<PasswordSlot> slots = _slots.findAll(PasswordSlot.class);
             PasswordSlotDecryptTask.Params params = new PasswordSlotDecryptTask.Params(slots, password);
             PasswordSlotDecryptTask task = new PasswordSlotDecryptTask(AuthActivity.this, new PasswordDerivationListener());
@@ -321,8 +330,16 @@ public class AuthActivity extends AegisActivity {
 
         _failedUnlockAttempts ++;
 
+        updateFailedAttemptsUI();
+
         if (_failedUnlockAttempts >= 3) {
             _textPassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+        }
+    }
+
+    private void updateFailedAttemptsUI() {
+        if (_textFailedAttempts != null) {
+            _textFailedAttempts.setText("Failed attempts: " + _failedUnlockAttempts);
         }
     }
 

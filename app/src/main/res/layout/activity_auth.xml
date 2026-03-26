@@ -77,6 +77,16 @@
                         android:inputType="numberPassword"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
+                <TextView
+                    android:id="@+id/text_failed_attempts"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Failed attempts: 0"
+                    android:textColor="@android:color/holo_red_dark"
+                    android:textSize="14sp"
+                    android:paddingBottom="4dp"
+                    />
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
