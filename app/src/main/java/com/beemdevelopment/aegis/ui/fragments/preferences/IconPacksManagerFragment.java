@@ -170,7 +170,8 @@ public class IconPacksManagerFragment extends Fragment implements IconPackAdapte
     }
 
     private void startImportIconPack() {
-        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+        Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
+        intent.addCategory(Intent.CATEGORY_OPENABLE);
         intent.setType("*/*");
         _vaultManager.fireIntentLauncher(this, intent, importResultLauncher);
     }

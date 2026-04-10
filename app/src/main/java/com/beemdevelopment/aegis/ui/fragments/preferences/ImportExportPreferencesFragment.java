@@ -107,7 +107,8 @@ public class ImportExportPreferencesFragment extends PreferencesFragment {
             Dialogs.showImportersDialog(requireContext(), false, definition -> {
                 _importerDef = definition;
 
-                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+                Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
+                intent.addCategory(Intent.CATEGORY_OPENABLE);
                 intent.setType("*/*");
                 _vaultManager.fireIntentLauncher(this, intent, importSelectResultLauncher);
             });
