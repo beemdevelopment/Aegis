@@ -80,6 +80,33 @@ public class Preferences {
 
             _prefs.edit().remove(prefCopyOnTapKey).apply();
         }
+
+        String prefCopyBehaviorKey = "pref_current_copy_behavior";
+        if (_prefs.contains(prefCopyBehaviorKey)
+                && !_prefs.contains("pref_single_tap_action")
+                && !_prefs.contains("pref_double_tap_action")) {
+            CopyBehavior copyBehavior = getCopyBehavior();
+
+            switch (copyBehavior) {
+                case SINGLETAP:
+                    setSingleTapAction(TapAction.COPY);
+                    setDoubleTapAction(TapAction.NONE);
+                    break;
+
+                case DOUBLETAP:
+                    setSingleTapAction(TapAction.NONE);
+                    setDoubleTapAction(TapAction.COPY);
+                    break;
+
+                case NEVER:
+                default:
+                    setSingleTapAction(TapAction.NONE);
+                    setDoubleTapAction(TapAction.NONE);
+                    break;
+            }
+
+            _prefs.edit().remove(prefCopyBehaviorKey).apply();
+        }
     }
 
     public boolean isTapToRevealEnabled() {
@@ -578,6 +605,28 @@ public class Preferences {
 
     public void setCopyBehavior(CopyBehavior copyBehavior) {
         _prefs.edit().putInt("pref_current_copy_behavior", copyBehavior.ordinal()).apply();
+    }
+
+    public TapAction getSingleTapAction() {
+        int def = TapAction.COPY.ordinal();
+        return TapAction.fromInteger(_prefs.getInt("pref_single_tap_action", def));
+    }
+
+    public void setSingleTapAction(TapAction tapAction) {
+        _prefs.edit().putInt("pref_single_tap_action", tapAction.ordinal()).apply();
+    }
+
+    public TapAction getDoubleTapAction() {
+        int def = TapAction.NONE.ordinal();
+        return TapAction.fromInteger(_prefs.getInt("pref_double_tap_action", def));
+    }
+
+    public void setDoubleTapAction(TapAction tapAction) {
+        _prefs.edit().putInt("pref_double_tap_action", tapAction.ordinal()).apply();
+    }
+
+    public boolean isReserveFirstTapEnabled() {
+        return _prefs.getBoolean("pref_reserve_first_tap", false);
     }
 
     public boolean isMinimizeOnCopyEnabled() {

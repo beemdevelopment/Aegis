@@ -6,7 +6,6 @@ import android.widget.Button;
 import androidx.appcompat.app.AlertDialog;
 import androidx.preference.Preference;
 
-import com.beemdevelopment.aegis.CopyBehavior;
 import com.beemdevelopment.aegis.Preferences;
 import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.ui.dialogs.Dialogs;
@@ -63,26 +62,6 @@ public class BehaviorPreferencesFragment extends PreferencesFragment {
             return true;
         });
 
-        int currentCopyBehavior = _prefs.getCopyBehavior().ordinal();
-        Preference copyBehaviorPreference = requirePreference("pref_copy_behavior");
-        copyBehaviorPreference.setSummary(String.format("%s: %s", getString(R.string.selected), getResources().getStringArray(R.array.copy_behavior_titles)[currentCopyBehavior]));
-        copyBehaviorPreference.setOnPreferenceClickListener(preference -> {
-            int currentCopyBehavior1 = _prefs.getCopyBehavior().ordinal();
-
-            Dialogs.showSecureDialog(new MaterialAlertDialogBuilder(requireContext())
-                    .setTitle(getString(R.string.choose_copy_behavior))
-                    .setSingleChoiceItems(R.array.copy_behavior_titles, currentCopyBehavior1, (dialog, which) -> {
-                        int i = ((AlertDialog) dialog).getListView().getCheckedItemPosition();
-                        _prefs.setCopyBehavior(CopyBehavior.fromInteger(i));
-                        copyBehaviorPreference.setSummary(String.format("%s: %s", getString(R.string.selected), getResources().getStringArray(R.array.copy_behavior_titles)[i]));
-                        dialog.dismiss();
-                    })
-                    .setNegativeButton(android.R.string.cancel, null)
-                    .create());
-
-            return true;
-        });
-
         Preference entryPausePreference = requirePreference("pref_pause_entry");
         entryPausePreference.setEnabled(_prefs.isTapToRevealEnabled() || _prefs.isEntryHighlightEnabled());
 
@@ -91,6 +70,18 @@ public class BehaviorPreferencesFragment extends PreferencesFragment {
             entryPausePreference.setEnabled(_prefs.isTapToRevealEnabled() || (boolean) newValue);
             return true;
         });
+
+        Preference tapActions = findPreference("pref_tap_actions");
+        if (tapActions != null) {
+            tapActions.setOnPreferenceClickListener(preference -> {
+                getParentFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.content, new TapActionsPreferencesFragment())
+                        .addToBackStack(null)
+                        .commit();
+                return true;
+            });
+        }
     }
 
     private String getSearchBehaviorSummary() {

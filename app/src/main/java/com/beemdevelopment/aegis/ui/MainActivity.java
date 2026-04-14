@@ -224,12 +224,14 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         _entryListView.setShowNextCode(_prefs.getShowNextCode());
         _entryListView.setOnlyShowNecessaryAccountNames(_prefs.onlyShowNecessaryAccountNames());
         _entryListView.setHighlightEntry(_prefs.isEntryHighlightEnabled());
+        _entryListView.setSingleTapAction(_prefs.getSingleTapAction());
+        _entryListView.setDoubleTapAction(_prefs.getDoubleTapAction());
+        _entryListView.setReserveFirstTap(_prefs.isReserveFirstTapEnabled());
         _entryListView.setPauseFocused(_prefs.isPauseFocusedEnabled());
         _entryListView.setTapToReveal(_prefs.isTapToRevealEnabled());
         _entryListView.setTapToRevealTime(_prefs.getTapToRevealTime());
         _entryListView.setViewMode(_prefs.getCurrentViewMode());
         _entryListView.setSortCategory(_prefs.getCurrentSortCategory(), false);
-        _entryListView.setCopyBehavior(_prefs.getCopyBehavior());
         _entryListView.setSearchBehaviorMask(_prefs.getSearchBehaviorMask());
         _prefGroupFilter = _prefs.getGroupFilter();
 
@@ -1220,6 +1222,11 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
                 setIsMultipleSelected(_selectedEntries.size() > 1);
             }
         }
+    }
+
+    @Override
+    public void onEntryEdit(VaultEntry entry) {
+        startEditEntryActivity(entry);
     }
 
     @Override
