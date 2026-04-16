@@ -367,6 +367,15 @@ public class AuthActivity extends AegisActivity {
     }
 
     private void onInvalidPassword() {
+        _failedUnlockAttempts++;
+        applyLockout();
+        saveFailedAttempts();
+
+        if (shouldWipeVault()) {
+            wipeVaultAndExit();
+            return;
+        }
+
         Dialogs.showSecureDialog(new MaterialAlertDialogBuilder(AuthActivity.this, R.style.ThemeOverlay_Aegis_AlertDialog_Error)
                 .setTitle(getString(R.string.unlock_vault_error))
                 .setMessage(getString(R.string.unlock_vault_error_description))
@@ -375,10 +384,7 @@ public class AuthActivity extends AegisActivity {
                 .setPositiveButton(android.R.string.ok, (dialog, which) -> selectPassword())
                 .create());
 
-        _failedUnlockAttempts ++;
 
-        applyLockout();
-        saveFailedAttempts();
         updateFailedAttemptsUI();
 
         if (isLockedOut()) {
@@ -482,6 +488,27 @@ public class AuthActivity extends AegisActivity {
                 _lockoutTimer = null;
             }
         }.start();
+    }
+
+    private boolean shouldWipeVault() {
+        return _prefs.isDataWipingEnabled() && _failedUnlockAttempts >= _prefs.getMaxFailedAttemptsBeforeWipe();
+    }
+
+    private void wipeVaultAndExit() {
+        _failedUnlockAttempts = 0;
+        _lockoutUntil = 0;
+        saveFailedAttempts();
+        saveLockoutUntil();
+
+        VaultRepository.deleteFile(this);
+        _vaultManager.lock(false);
+
+        finishApp();
+    }
+
+    private void finishApp() {
+        ExitActivity.exitAppAndRemoveFromRecents(this);
+        finishAndRemoveTask();
     }
 
     private class BackPressHandler extends OnBackPressedCallback {
