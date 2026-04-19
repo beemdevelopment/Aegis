@@ -324,7 +324,6 @@ public class EntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         return entry != null
                 && isDragAndDropAllowed()
                 && _selectedEntries.size() == 1
-                && !_selectedEntries.get(0).isFavorite()
                 && _selectedEntries.get(0) == entry;
     }
 

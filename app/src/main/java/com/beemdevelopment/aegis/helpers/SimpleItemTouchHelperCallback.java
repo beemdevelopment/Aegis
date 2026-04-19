@@ -32,14 +32,7 @@ public class SimpleItemTouchHelperCallback extends ItemTouchHelper.Callback {
     }
 
     public void setSelectedEntry(VaultEntry entry) {
-        if (entry == null) {
-            _selectedEntry = null;
-            return;
-        }
-
-        if (!entry.isFavorite()) {
-            _selectedEntry = entry;
-        }
+        _selectedEntry = entry;
     }
 
     @Override
@@ -80,13 +73,21 @@ public class SimpleItemTouchHelperCallback extends ItemTouchHelper.Callback {
     @Override
     public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder,
                           RecyclerView.ViewHolder target) {
-        int targetIndex = _adapter.translateEntryPosToIndex(target.getBindingAdapterPosition());
-        if (targetIndex < _adapter.getShownFavoritesCount()) {
+        int targetPosition = target.getBindingAdapterPosition();
+
+        if (_adapter.isPositionFooter(targetPosition) || _adapter.isPositionErrorCard(targetPosition)) {
+            return false;
+        }
+
+        VaultEntry sourceEntry = _adapter.getEntryAtPosition(viewHolder.getBindingAdapterPosition());
+        VaultEntry targetEntry = _adapter.getEntryAtPosition(targetPosition);
+
+        if (sourceEntry.isFavorite() != targetEntry.isFavorite()) {
             return false;
         }
 
         int firstPosition = viewHolder.getLayoutPosition();
-        int secondPosition = target.getBindingAdapterPosition();
+        int secondPosition = targetPosition;
 
         _adapter.onItemMove(firstPosition, secondPosition);
         _positionChanged = true;
