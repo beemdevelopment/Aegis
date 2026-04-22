@@ -376,14 +376,17 @@ public class AuthActivity extends AegisActivity {
             return;
         }
 
-        Dialogs.showSecureDialog(new MaterialAlertDialogBuilder(AuthActivity.this, R.style.ThemeOverlay_Aegis_AlertDialog_Error)
-                .setTitle(getString(R.string.unlock_vault_error))
-                .setMessage(getString(R.string.unlock_vault_error_description))
-                .setCancelable(false)
-                .setIconAttribute(android.R.attr.alertDialogIcon)
-                .setPositiveButton(android.R.string.ok, (dialog, which) -> selectPassword())
-                .create());
-
+        if (_prefs.isDataWipingEnabled() && _failedUnlockAttempts == _prefs.getMaxFailedAttemptsBeforeWipe() - 1) {
+            showDangerDialog();
+        } else {
+            Dialogs.showSecureDialog(new MaterialAlertDialogBuilder(AuthActivity.this, R.style.ThemeOverlay_Aegis_AlertDialog_Error)
+                    .setTitle(getString(R.string.unlock_vault_error))
+                    .setMessage(getString(R.string.unlock_vault_error_description))
+                    .setCancelable(false)
+                    .setIconAttribute(android.R.attr.alertDialogIcon)
+                    .setPositiveButton(android.R.string.ok, (dialog, which) -> selectPassword())
+                    .create());
+        }
 
         updateFailedAttemptsUI();
 
@@ -546,6 +549,46 @@ public class AuthActivity extends AegisActivity {
                 onInvalidPassword();
             }
         }
+    }
+
+    private void showDangerDialog() {
+        final int delayMillis = 5000;
+
+        androidx.appcompat.app.AlertDialog dialog = new MaterialAlertDialogBuilder(
+                AuthActivity.this,
+                R.style.ThemeOverlay_Aegis_AlertDialog_Error
+        )
+                .setTitle(getString(R.string.unlock_vault_error_danger))
+                .setMessage(getString(R.string.unlock_vault_error_description_danger))
+                .setCancelable(false)
+                .setIcon(R.drawable.ic_warning_24)
+                .setPositiveButton(getString(android.R.string.ok), null)
+                .create();
+
+        dialog.setOnShowListener(d -> {
+            Button positiveButton = dialog.getButton(androidx.appcompat.app.AlertDialog.BUTTON_POSITIVE);
+            positiveButton.setEnabled(false);
+
+            new CountDownTimer(delayMillis, 1000) {
+                @Override
+                public void onTick(long millisUntilFinished) {
+                    long secondsLeft = (millisUntilFinished + 999) / 1000;
+                    positiveButton.setText(getString(R.string.ok_with_timer, secondsLeft));
+                }
+
+                @Override
+                public void onFinish() {
+                    positiveButton.setText(getString(android.R.string.ok));
+                    positiveButton.setEnabled(true);
+                    positiveButton.setOnClickListener(v -> {
+                        dialog.dismiss();
+                        selectPassword();
+                    });
+                }
+            }.start();
+        });
+
+        Dialogs.showSecureDialog(dialog);
     }
 
     private class BiometricPromptListener extends BiometricPrompt.AuthenticationCallback {

@@ -236,6 +236,9 @@
     <string name="add_new_entry">Add new entry</string>
     <string name="unlock_vault_error">Couldn\'t unlock vault</string>
     <string name="unlock_vault_error_description">Incorrect password. Make sure you didn\'t mistype your password.</string>
+    <string name="unlock_vault_error_danger">Final attempt remaining</string>
+    <string name="unlock_vault_error_description_danger">For security reasons, your vault will be erased after the next failed attempt.</string>
+    <string name="ok_with_timer">OK (%1$d)</string>
     <string name="password_equality_error">Passwords should be identical and non-empty</string>
     <string name="snackbar_authentication_method">Please select an authentication method</string>
     <string name="encrypting_vault">Encrypting the vault</string>
