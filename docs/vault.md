@@ -314,6 +314,7 @@ The following algorithms are supported for HOTP and TOTP:
 |:----------|:---------|
 | SHA-1     | "SHA1"   |
 | SHA-256   | "SHA256" |
+| SHA-384   | "SHA384" |
 | SHA-512   | "SHA512" |
 
 ##### Steam

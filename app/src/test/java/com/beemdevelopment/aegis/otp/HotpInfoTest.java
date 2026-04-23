@@ -1,6 +1,7 @@
 package com.beemdevelopment.aegis.otp;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import com.beemdevelopment.aegis.crypto.otp.HOTPTest;
 
@@ -30,5 +31,10 @@ public class HotpInfoTest {
         info.setAlgorithm("SHA256");
         info = (HotpInfo) OtpInfo.fromJson("hotp", info.toJson());
         assertEquals("SHA256", info.getAlgorithm(false));
+    }
+
+    @Test
+    public void testSha384Valid() {
+        assertTrue(OtpInfo.isAlgorithmValid("SHA384"));
     }
 }
