@@ -22,6 +22,12 @@ public class TapActionsPreferencesFragment extends PreferencesFragment {
         boolean isTapToRevealEnabled = _prefs.isTapToRevealEnabled();
         SwitchPreferenceCompat reserveFirstTap = requirePreference("pref_reserve_first_tap");
         Preference tapActionsHint = requirePreference("pref_tap_actions_hint");
+
+        if (!isTapToRevealEnabled && reserveFirstTap.isChecked()) {
+            reserveFirstTap.setChecked(false);
+            _prefs.setReserveFirstTapEnabled(false);
+        }
+
         reserveFirstTap.setEnabled(isTapToRevealEnabled);
         tapActionsHint.setVisible(isTapToRevealEnabled);
 

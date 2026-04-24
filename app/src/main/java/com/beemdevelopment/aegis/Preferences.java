@@ -629,6 +629,10 @@ public class Preferences {
         return _prefs.getBoolean("pref_reserve_first_tap", false);
     }
 
+    public void setReserveFirstTapEnabled(boolean enabled) {
+        _prefs.edit().putBoolean("pref_reserve_first_tap", enabled).apply();
+    }
+
     public boolean isMinimizeOnCopyEnabled() {
         return _prefs.getBoolean("pref_minimize_on_copy", false);
     }

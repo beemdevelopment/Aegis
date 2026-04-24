@@ -1237,6 +1237,10 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
     @Override
     public void onDeselect(VaultEntry entry) {
         _selectedEntries.remove(entry);
+
+        if (_selectedEntries.isEmpty() && _actionMode != null) {
+            _actionMode.finish();
+        }
     }
 
     private void setIsMultipleSelected(boolean multipleSelected) {

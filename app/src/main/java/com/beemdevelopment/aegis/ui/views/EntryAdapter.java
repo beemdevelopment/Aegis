@@ -493,22 +493,37 @@ public class EntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                         return;
                     }
 
-                    ensurePhaseForEntry(entry);
+                    boolean hasDoubleTapAction = _doubleTapAction != TapAction.NONE;
 
-                    if (_tapPhase == TapPhase.REVEAL_OR_FOCUS && needsRevealOrHighlight(entry)) {
-                        focusEntry(entry, _tapToRevealTime);
-                        _tapPhase = TapPhase.FUNCTION;
+                    if (!hasDoubleTapAction) {
+                        ensurePhaseForEntry(entry);
 
-                        if (_reserveFirstTap) {
+                        if (_tapPhase == TapPhase.REVEAL_OR_FOCUS
+                                && _focusedEntry != null
+                                && _focusedEntry.equals(entry)
+                                && (_tapToReveal || _highlightEntry || _tempHighlightEntry)) {
+                            resetFocus();
+                            resetTapPhase();
                             return;
                         }
-                    }
 
-                    if (_reserveFirstTap && _tapPhase == TapPhase.HIDE_OR_UNFOCUS
-                            && _focusedEntry != null && _focusedEntry.equals(entry)) {
-                        cancelPendingSingleTap();
-                        resetFocus();
-                        resetTapPhase();
+                        if (_tapPhase == TapPhase.REVEAL_OR_FOCUS && needsRevealOrHighlight(entry)) {
+                            focusEntry(entry, _tapToRevealTime);
+                            _tapPhase = TapPhase.FUNCTION;
+
+                            if (_reserveFirstTap) {
+                                return;
+                            }
+                        }
+
+                        if (_reserveFirstTap && _tapPhase == TapPhase.HIDE_OR_UNFOCUS
+                                && _focusedEntry != null && _focusedEntry.equals(entry)) {
+                            resetFocus();
+                            resetTapPhase();
+                            return;
+                        }
+
+                        runTapAction(entryHolder, entry, _singleTapAction);
                         return;
                     }
 
@@ -529,6 +544,35 @@ public class EntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                         public void run() {
                             _pendingSingleTapRunnable = null;
                             _pendingTapEntry = null;
+
+                            ensurePhaseForEntry(entry);
+
+                            if (_tapPhase == TapPhase.REVEAL_OR_FOCUS
+                                    && _focusedEntry != null
+                                    && _focusedEntry.equals(entry)
+                                    && (_tapToReveal || _highlightEntry || _tempHighlightEntry)) {
+                                resetFocus();
+                                resetTapPhase();
+                                return;
+                            }
+
+                            if (_tapPhase == TapPhase.REVEAL_OR_FOCUS && needsRevealOrHighlight(entry)) {
+                                focusEntry(entry, _tapToRevealTime);
+
+                                if (_reserveFirstTap) {
+                                    _tapPhase = TapPhase.FUNCTION;
+                                    return;
+                                }
+
+                                _tapPhase = TapPhase.FUNCTION;
+                            }
+
+                            if (_reserveFirstTap && _tapPhase == TapPhase.HIDE_OR_UNFOCUS
+                                    && _focusedEntry != null && _focusedEntry.equals(entry)) {
+                                resetFocus();
+                                resetTapPhase();
+                                return;
+                            }
 
                             runTapAction(entryHolder, entry, _singleTapAction);
                         }
