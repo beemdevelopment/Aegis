@@ -66,7 +66,6 @@ public class AuthActivity extends AegisActivity {
     private Button _decryptButton;
 
     private int _failedUnlockAttempts;
-    private TextView _textFailedAttempts;
 
     private static final String PREFS_NAME = "auth_prefs";
     private static final String KEY_FAILED_ATTEMPTS = "failed_attempts";
@@ -199,7 +198,8 @@ public class AuthActivity extends AegisActivity {
             char[] password = EditTextHelper.getEditTextChars(_textPassword);
 
             if (password.length == 0) {
-                Toast.makeText(AuthActivity.this, getString(R.string.error_empty_password), Toast.LENGTH_SHORT).show();                return;
+                Toast.makeText(AuthActivity.this, getString(R.string.error_empty_password), Toast.LENGTH_SHORT).show();
+                return;
             }
 
             List<PasswordSlot> slots = _slots.findAll(PasswordSlot.class);
@@ -400,10 +400,6 @@ public class AuthActivity extends AegisActivity {
     }
 
     private void updateFailedAttemptsUI() {
-        if (_textFailedAttempts != null) {
-            _textFailedAttempts.setVisibility(View.GONE);
-        }
-
         if (_textLockout != null) {
             if (isLockedOut()) {
                 _textLockout.setVisibility(View.VISIBLE);
