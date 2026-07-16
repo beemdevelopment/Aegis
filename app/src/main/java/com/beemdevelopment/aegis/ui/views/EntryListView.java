@@ -33,6 +33,7 @@ import com.beemdevelopment.aegis.CopyBehavior;
 import com.beemdevelopment.aegis.Preferences;
 import com.beemdevelopment.aegis.R;
 import com.beemdevelopment.aegis.SortCategory;
+import com.beemdevelopment.aegis.TapAction;
 import com.beemdevelopment.aegis.VibrationPatterns;
 import com.beemdevelopment.aegis.ViewMode;
 import com.beemdevelopment.aegis.helpers.AnimationsHelper;
@@ -231,10 +232,6 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
         _touchCallback.setIsLongPressDragEnabled(enabled && _adapter.isDragAndDropAllowed());
     }
 
-    public void setCopyBehavior(CopyBehavior copyBehavior) {
-        _adapter.setCopyBehavior(copyBehavior);
-    }
-
     public void setSearchBehaviorMask(int searchBehaviorMask) {
         _adapter.setSearchBehaviorMask(searchBehaviorMask);
     }
@@ -359,6 +356,13 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
     }
 
     @Override
+    public void onEntryEdit(VaultEntry entry) {
+        if (_listener != null) {
+            _listener.onEntryEdit(entry);
+        }
+    }
+
+    @Override
     public void onSelect(VaultEntry entry) {
         if (_listener != null) {
             _listener.onSelect(entry);
@@ -420,6 +424,18 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
 
     public void setHighlightEntry(boolean highlightEntry) {
         _adapter.setHighlightEntry(highlightEntry);
+    }
+
+    public void setSingleTapAction(TapAction action) {
+        _adapter.setSingleTapAction(action);
+    }
+
+    public void setDoubleTapAction(TapAction action) {
+        _adapter.setDoubleTapAction(action);
+    }
+
+    public void setReserveFirstTap(boolean reserveFirstTap) {
+        _adapter.setReserveFirstTap(reserveFirstTap);
     }
 
     public void setPauseFocused(boolean pauseFocused) {
@@ -555,6 +571,7 @@ public class EntryListView extends Fragment implements EntryAdapter.Listener {
         void onEntryChange(VaultEntry entry);
         void onEntryCopy(VaultEntry entry);
         void onLongEntryClick(VaultEntry entry);
+        void onEntryEdit(VaultEntry entry);
         void onScroll(int dx, int dy);
         void onSelect(VaultEntry entry);
         void onDeselect(VaultEntry entry);
