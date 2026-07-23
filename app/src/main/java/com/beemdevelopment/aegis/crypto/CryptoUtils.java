@@ -72,8 +72,9 @@ public class CryptoUtils {
         return cipher;
     }
 
-    public static CryptResult encrypt(byte[] data, Cipher cipher)
-            throws BadPaddingException, IllegalBlockSizeException {
+public static CryptResult encrypt(byte[] data, Cipher cipher)
+        throws BadPaddingException, IllegalBlockSizeException {
+    synchronized (cipher) {
         // split off the tag to store it separately
         byte[] result = cipher.doFinal(data);
         byte[] tag = Arrays.copyOfRange(result, result.length - CRYPTO_AEAD_TAG_SIZE, result.length);
@@ -81,6 +82,7 @@ public class CryptoUtils {
 
         return new CryptResult(encrypted, new CryptParameters(cipher.getIV(), tag));
     }
+}
 
     public static CryptResult decrypt(byte[] encrypted, Cipher cipher, CryptParameters params)
             throws IOException, BadPaddingException, IllegalBlockSizeException {
