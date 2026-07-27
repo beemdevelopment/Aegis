@@ -62,6 +62,7 @@ public class AuthActivity extends AegisActivity {
     private BiometricSlot _bioSlot;
     private BiometricPrompt _bioPrompt;
     private Button _decryptButton;
+    private boolean _keystoreInvalidated;
 
     private int _failedUnlockAttempts;
 
@@ -162,6 +163,8 @@ public class AuthActivity extends AegisActivity {
                 boxBiometricInfo.setVisibility(View.VISIBLE);
                 biometricsButton.setVisibility(View.GONE);
             }
+
+            _keystoreInvalidated = invalidated;
         }
 
         _decryptButton.setOnClickListener(v -> {
@@ -306,7 +309,9 @@ public class AuthActivity extends AegisActivity {
             return;
         }
 
-        setResult(RESULT_OK);
+        Intent result = new Intent();
+        result.putExtra("keystoreInvalidated", _keystoreInvalidated);
+        setResult(RESULT_OK, result);
         finish();
     }
 

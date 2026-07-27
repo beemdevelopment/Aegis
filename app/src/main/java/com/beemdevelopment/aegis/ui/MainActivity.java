@@ -59,6 +59,7 @@ import com.beemdevelopment.aegis.otp.OtpInfoException;
 import com.beemdevelopment.aegis.ui.dialogs.Dialogs;
 import com.beemdevelopment.aegis.ui.fragments.preferences.BackupsPreferencesFragment;
 import com.beemdevelopment.aegis.ui.fragments.preferences.PreferencesFragment;
+import com.beemdevelopment.aegis.ui.fragments.preferences.SecurityPreferencesFragment;
 import com.beemdevelopment.aegis.ui.models.ErrorCardInfo;
 import com.beemdevelopment.aegis.ui.models.VaultGroupModel;
 import com.beemdevelopment.aegis.ui.tasks.IconOptimizationTask;
@@ -105,6 +106,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
     private boolean _isDPadPressed;
     private boolean _isDoingIntro;
     private boolean _isAuthenticating;
+    private boolean _keystoreInvalidated;
 
     private String _submittedSearchQuery;
     private String _pendingSearchQuery;
@@ -135,6 +137,9 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
             registerForActivityResult(new StartActivityForResult(), activityResult -> {
                 _isAuthenticating = false;
                 if (activityResult.getResultCode() == RESULT_OK) {
+                    Intent data = activityResult.getData();
+                    _keystoreInvalidated = data != null
+                            && data.getBooleanExtra("keystoreInvalidated", false);
                     onDecryptResult();
                 }
             });
@@ -205,6 +210,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
             _submittedSearchQuery = savedInstanceState.getString("submittedSearchQuery");
             _isDoingIntro = savedInstanceState.getBoolean("isDoingIntro");
             _isAuthenticating = savedInstanceState.getBoolean("isAuthenticating");
+            _keystoreInvalidated = savedInstanceState.getBoolean("keystoreInvalidated");
         }
 
         _lockBackPressHandler = new LockBackPressHandler();
@@ -420,6 +426,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         instance.putString("submittedSearchQuery", _submittedSearchQuery);
         instance.putBoolean("isDoingIntro", _isDoingIntro);
         instance.putBoolean("isAuthenticating", _isAuthenticating);
+        instance.putBoolean("keystoreInvalidated", _keystoreInvalidated);
 
         if (_groupFilter != null) {
             instance.putSerializable("prefGroupFilter", new HashSet<>(_groupFilter));
@@ -798,6 +805,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         _auditLogRepository.addVaultUnlockedEvent();
 
         loadEntries();
+        updateErrorCard();
     }
 
     private void startScanActivity() {
@@ -1160,41 +1168,50 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
         }
     }
 
-   private void updateErrorCard() {
-       ErrorCardInfo info = null;
+    private void updateErrorCard() {
+        ErrorCardInfo info = null;
 
-       Preferences.BackupResult backupRes = _prefs.getErroredBackupResult();
-       if (backupRes != null) {
-           info = new ErrorCardInfo(getString(R.string.backup_error_bar_message), view -> {
-               Dialogs.showBackupErrorDialog(this, backupRes, (dialog, which) -> {
-                   startPreferencesActivity(BackupsPreferencesFragment.class, "pref_backups");
-               });
-           });
-       } else if (_prefs.isBackupsReminderNeeded() && _prefs.isBackupReminderEnabled()) {
-           String text;
-           Date date = _prefs.getLatestBackupOrExportTime();
-           if (date != null) {
-               text = getString(R.string.backup_reminder_bar_message_with_latest, TimeUtils.getElapsedSince(this, date));
-           } else {
-               text = getString(R.string.backup_reminder_bar_message);
-           }
-           info = new ErrorCardInfo(text, view -> {
-               Dialogs.showSecureDialog(new MaterialAlertDialogBuilder(this, R.style.ThemeOverlay_Aegis_AlertDialog_Error)
-                       .setTitle(R.string.backup_reminder_bar_dialog_title)
-                       .setMessage(R.string.backup_reminder_bar_dialog_summary)
-                       .setIconAttribute(android.R.attr.alertDialogIcon)
-                       .setPositiveButton(R.string.backup_reminder_bar_dialog_accept, (dialog, whichButton) -> {
-                           startPreferencesActivity(BackupsPreferencesFragment.class, "pref_backups");
+        Preferences.BackupResult backupRes = _prefs.getErroredBackupResult();
+        if (_prefs.isPlaintextBackupWarningNeeded()) {
+            info = new ErrorCardInfo(getString(R.string.backup_plaintext_export_warning), view -> showPlaintextExportWarningOptions());
+        } else if (backupRes != null) {
+            info = new ErrorCardInfo(getString(R.string.backup_error_bar_message), view -> {
+                Dialogs.showBackupErrorDialog(this, backupRes, (dialog, which) -> {
+                    startPreferencesActivity(BackupsPreferencesFragment.class, "pref_backups");
+                });
+            });
+        } else if (_prefs.isBackupsReminderNeeded() && _prefs.isBackupReminderEnabled()) {
+            String text;
+            Date date = _prefs.getLatestBackupOrExportTime();
+            if (date != null) {
+                text = getString(R.string.backup_reminder_bar_message_with_latest, TimeUtils.getElapsedSince(this, date));
+            } else {
+                text = getString(R.string.backup_reminder_bar_message);
+            }
+            info = new ErrorCardInfo(text, view -> {
+                Dialogs.showSecureDialog(new MaterialAlertDialogBuilder(this, R.style.ThemeOverlay_Aegis_AlertDialog_Error)
+                        .setTitle(R.string.backup_reminder_bar_dialog_title)
+                        .setMessage(R.string.backup_reminder_bar_dialog_summary)
+                        .setIconAttribute(android.R.attr.alertDialogIcon)
+                        .setPositiveButton(R.string.backup_reminder_bar_dialog_accept, (dialog, whichButton) -> {
+                            startPreferencesActivity(BackupsPreferencesFragment.class, "pref_backups");
                        })
-                       .setNegativeButton(android.R.string.cancel, null)
-                       .create());
-           });
-       } else if (_prefs.isPlaintextBackupWarningNeeded()) {
-           info = new ErrorCardInfo(getString(R.string.backup_plaintext_export_warning), view -> showPlaintextExportWarningOptions());
-       }
+                        .setNegativeButton(android.R.string.cancel, null)
+                        .create());
+            });
+        } else if (_keystoreInvalidated) {
+            info = new ErrorCardInfo(getString(R.string.biometric_invalidated_bar_message), view -> {
+                _keystoreInvalidated = false;
+                Intent intent = new Intent(this, PreferencesActivity.class);
+                intent.putExtra("fragment", SecurityPreferencesFragment.class);
+                intent.putExtra("pref", "pref_biometrics");
+                intent.putExtra("reenableBiometrics", true);
+                preferenceResultLauncher.launch(intent);
+            });
+        }
 
-       _entryListView.setErrorCardInfo(info);
-   }
+        _entryListView.setErrorCardInfo(info);
+    }
 
     private void showPlaintextExportWarningOptions() {
         View view = LayoutInflater.from(this).inflate(R.layout.dialog_plaintext_warning, null);
