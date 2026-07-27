@@ -11,6 +11,7 @@ import android.content.SharedPreferences;
 import androidx.preference.PreferenceManager;
 import androidx.test.core.app.ApplicationProvider;
 
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.RobolectricTestRunner;
@@ -19,18 +20,26 @@ import java.util.Date;
 
 @RunWith(RobolectricTestRunner.class)
 public class PreferencesTest {
+    private Context _context;
+    private SharedPreferences _sharedPrefs;
+
+    @Before
+    public void setUp() {
+        _context = ApplicationProvider.getApplicationContext();
+        _sharedPrefs = PreferenceManager.getDefaultSharedPreferences(_context);
+        _sharedPrefs.edit().clear().commit();
+    }
+
     @Test
     public void testIsPasswordReminderNeeded() {
         long currTime = new Date().getTime();
-        Context context = ApplicationProvider.getApplicationContext();
-        Preferences prefs = new Preferences(context);
-        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);
+        Preferences prefs = new Preferences(_context);
 
         // make sure that the password reminder is enabled by default
         assertNotEquals(prefs.getPasswordReminderFrequency(), PassReminderFreq.NEVER);
 
         // if the old preference is set to false, the frequency should be NEVER
-        sharedPrefs.edit().putBoolean("pref_password_reminder", false).apply();
+        _sharedPrefs.edit().putBoolean("pref_password_reminder", false).apply();
         assertEquals(prefs.getPasswordReminderFrequency(), PassReminderFreq.NEVER);
         assertFalse(prefs.isPasswordReminderNeeded());
 
@@ -54,5 +63,37 @@ public class PreferencesTest {
         freq = PassReminderFreq.BIWEEKLY;
         prefs.setPasswordReminderFrequency(freq);
         assertFalse(prefs.isPasswordReminderNeeded(currTime));
+    }
+
+    @Test
+    public void testCopyBehaviorMigration() {
+        CopyBehavior[] copyBehaviors = {
+                CopyBehavior.NEVER,
+                CopyBehavior.SINGLETAP,
+                CopyBehavior.DOUBLETAP
+        };
+        TapAction[] singleTapActions = {
+                TapAction.NONE,
+                TapAction.COPY,
+                TapAction.NONE
+        };
+        TapAction[] doubleTapActions = {
+                TapAction.NONE,
+                TapAction.NONE,
+                TapAction.COPY
+        };
+
+        for (int i = 0; i < copyBehaviors.length; i++) {
+            _sharedPrefs.edit()
+                    .clear()
+                    .putInt("pref_current_copy_behavior", copyBehaviors[i].ordinal())
+                    .commit();
+
+            Preferences prefs = new Preferences(_context);
+
+            assertEquals(singleTapActions[i], prefs.getSingleTapAction());
+            assertEquals(doubleTapActions[i], prefs.getDoubleTapAction());
+            assertFalse(_sharedPrefs.contains("pref_current_copy_behavior"));
+        }
     }
 }

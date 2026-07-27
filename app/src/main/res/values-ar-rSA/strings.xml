@@ -319,7 +319,6 @@
     <string name="choose_theme">حدد السمة المطلوبة</string>
     <string name="choose_account_name_position">حدد موضع اسم الحساب المطلوب</string>
     <string name="choose_view_mode">حدد وضع العرض المطلوب</string>
-    <string name="choose_copy_behavior">حدد سلوك نُسختك</string>
     <string name="parsing_file_error">حدث خطأ أثناء محاولة تحليل الملف</string>
     <string name="file_not_found">خطأ: لم يتم العثور على الملف</string>
     <string name="reading_file_error">حدث خطأ أثناء محاولة قراءة الملف</string>
@@ -424,7 +423,6 @@
     <string name="pref_groups_multiselect_summary">السماح باختيار مجموعات متعددة في نفس الوقت</string>
     <string name="pref_minimize_on_copy_title">تصغير عند النسخ</string>
     <string name="pref_minimize_on_copy_summary">تصغير التطبيق بعد نسخ رمز</string>
-    <string name="pref_copy_behavior_title">انسخ الرموز إلى الحافظة</string>
     <string name="pref_search_behavior_title">سلوك البحث</string>
     <string name="pref_pause_entry_title">جمّد الرموز عند النقر عليها</string>
     <string name="pref_pause_entry_summary">أوقف التحديث التلقائي للرموز عن طريق النقر عليها. لن يُحدِّث الرموز مادام أنها مُركّزة. يتطلب \"ابرز الرموز عندما تُنقر\" أو \"انقر للكشف\".</string>
@@ -604,9 +602,6 @@
     <string name="pref_grouping_size_two">مجموعات من 2</string>
     <string name="pref_grouping_size_three">مجموعات من 3</string>
     <string name="pref_grouping_size_four">مجموعات من 4</string>
-    <string name="pref_copy_behavior_never">أبدًا</string>
-    <string name="pref_copy_behavior_single_tap">نقرة واحدة</string>
-    <string name="pref_copy_behavior_double_tap">نقرتين</string>
     <string name="pref_account_name_position_hidden">مختفي</string>
     <string name="pref_account_name_position_end">بجانب المصدر</string>
     <string name="pref_account_name_position_below">أسفل المصدر</string>

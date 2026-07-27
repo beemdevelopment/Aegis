@@ -307,7 +307,6 @@
     <string name="choose_theme">Виберіть бажану тему</string>
     <string name="choose_account_name_position">Виберіть бажане розташування імені облікового запису</string>
     <string name="choose_view_mode">Виберіть бажаний режим перегляду</string>
-    <string name="choose_copy_behavior">Виберіть бажану поведінку копіювання</string>
     <string name="parsing_file_error">Сталася помилка під час спроби проаналізувати файл</string>
     <string name="file_not_found">Помилка: Файл не знайдено</string>
     <string name="reading_file_error">Сталася помилка при спробі прочитати файл</string>
@@ -404,7 +403,6 @@
     <string name="pref_groups_multiselect_summary">Дозволити вибір декількох груп одночасно</string>
     <string name="pref_minimize_on_copy_title">Згортати при копіюванні</string>
     <string name="pref_minimize_on_copy_summary">Згортати додаток після копіювання токена</string>
-    <string name="pref_copy_behavior_title">Скопіювати токени в буфер обміну</string>
     <string name="pref_search_behavior_title">Поведінка пошуку</string>
     <string name="pref_pause_entry_title">Заморожувати токени при натисканні</string>
     <string name="pref_pause_entry_summary">Призупиніть автоматичне оновлення токенів, натиснувши на них. Токени не будуть оновлюватися, поки вони підсвічені. Потребує увімкненої опції \"Підсвічувати токени при натисканні\", або \"Безпека -> Показувати після дотику\".</string>
@@ -574,9 +572,6 @@
     <string name="pref_grouping_size_two">2 цифри у групі</string>
     <string name="pref_grouping_size_three">3 цифри у групі</string>
     <string name="pref_grouping_size_four">4 цифри у групі</string>
-    <string name="pref_copy_behavior_never">Ніколи</string>
-    <string name="pref_copy_behavior_single_tap">Один дотик</string>
-    <string name="pref_copy_behavior_double_tap">Подвійний дотик</string>
     <string name="pref_account_name_position_hidden">Приховано</string>
     <string name="pref_account_name_position_end">Поруч з емітентом</string>
     <string name="pref_account_name_position_below">Нижче емітента</string>

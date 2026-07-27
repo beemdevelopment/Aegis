@@ -295,7 +295,6 @@
     <string name="choose_theme">Valitse haluamasi teema</string>
     <string name="choose_account_name_position">Valitse haluamasi tilin nimen sijainti</string>
     <string name="choose_view_mode">Valitse haluamasi näkymätila</string>
-    <string name="choose_copy_behavior">Valitse haluttu kopiointikäyttäytyminen</string>
     <string name="parsing_file_error">Tiedoston jäsentämisessä tapahtui virhe</string>
     <string name="file_not_found">Virhe: Tiedostoa ei löydy</string>
     <string name="reading_file_error">Tiedoston lukemisessa tapahtui virhe</string>
@@ -376,7 +375,6 @@
     <string name="pref_groups_multiselect_summary">Salli useiden ryhmien valitseminen samanaikaisesti</string>
     <string name="pref_minimize_on_copy_title">Pienennä kopioidessa</string>
     <string name="pref_minimize_on_copy_summary">Pienennä sovellus todennuskoodin kopioinnin jälkeen</string>
-    <string name="pref_copy_behavior_title">Kopioi todennuskoodit leikepöydälle</string>
     <string name="pref_search_behavior_title">Hakukäyttäytyminen</string>
     <string name="pref_pause_entry_title">Jäädytä todennuskoodit napauttamalla</string>
     <string name="pref_pause_entry_summary">Keskeytä todennuskoodien automaattinen päivitys napauttamalla niitä. Todennuskoodit eivät päivity automaattisesti, niin kauan kun ne ovat valittuina. Vaatii \"Korosta todennuskoodit napauttamalla\" tai \"Paljasta napauttamalla\" -asetusten käyttöönottoa.</string>
@@ -540,9 +538,6 @@
     <string name="pref_grouping_size_two">Kahden ryhmissä</string>
     <string name="pref_grouping_size_three">Kolmen ryhmissä</string>
     <string name="pref_grouping_size_four">Neljän ryhmissä</string>
-    <string name="pref_copy_behavior_never">Ei koskaan</string>
-    <string name="pref_copy_behavior_single_tap">Yksi napautus</string>
-    <string name="pref_copy_behavior_double_tap">Kaksoisnapautus</string>
     <string name="pref_account_name_position_hidden">Piilotettu</string>
     <string name="pref_account_name_position_end">Myöntäjän vierellä</string>
     <string name="pref_account_name_position_below">Myöntäjän alla</string>

@@ -307,7 +307,6 @@
     <string name="choose_theme">Vyberte si vzhled rozhraní</string>
     <string name="choose_account_name_position">Vyberte požadovanou pozici názvu účtu</string>
     <string name="choose_view_mode">Vyberte si režim zobrazení</string>
-    <string name="choose_copy_behavior">Vyberte požadované chování kopírování</string>
     <string name="parsing_file_error">Při zpracování souboru došlo k chybě</string>
     <string name="file_not_found">Chyba: Soubor nenalezen</string>
     <string name="reading_file_error">Při pokusu o čtení souboru došlo k chybě</string>
@@ -404,7 +403,6 @@
     <string name="pref_groups_multiselect_summary">Povolit současný výběr více skupin</string>
     <string name="pref_minimize_on_copy_title">Minimalizovat při kopírování</string>
     <string name="pref_minimize_on_copy_summary">Minimalizovat aplikaci po zkopírování tokenu</string>
-    <string name="pref_copy_behavior_title">Zkopírovat tokeny do schránky</string>
     <string name="pref_search_behavior_title">Chování vyhledávání</string>
     <string name="pref_pause_entry_title">Zmrazit tokeny po klepnutí</string>
     <string name="pref_pause_entry_summary">Pozastavit automatické obnovování tokenů klepnutím na ně. Tokeny nebudou aktualizovány, dokud jsou zaměřeny. Vyžaduje \"Zvýraznit tokeny po klepnutí\" nebo \"Klepnutím zobrazit\".</string>
@@ -576,9 +574,6 @@
     <string name="pref_grouping_size_two">Skupiny 2</string>
     <string name="pref_grouping_size_three">Skupiny 3</string>
     <string name="pref_grouping_size_four">Skupiny 4</string>
-    <string name="pref_copy_behavior_never">Nikdy</string>
-    <string name="pref_copy_behavior_single_tap">Jedno klepnutí</string>
-    <string name="pref_copy_behavior_double_tap">Dvojité klepnutí</string>
     <string name="pref_account_name_position_hidden">Skryté</string>
     <string name="pref_account_name_position_end">Vedle poskytovatele</string>
     <string name="pref_account_name_position_below">Pod poskytovatelem</string>

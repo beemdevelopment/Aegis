@@ -295,7 +295,6 @@
     <string name="choose_theme">Изберете желаната тема</string>
     <string name="choose_account_name_position">Изберете къде да бъде показано името на профила</string>
     <string name="choose_view_mode">Изберете желания изглед на списъка</string>
-    <string name="choose_copy_behavior">Изберете действие, което да копира</string>
     <string name="parsing_file_error">Грешка при анализиране на файла</string>
     <string name="file_not_found">Грешка: Файлът не е намерен</string>
     <string name="reading_file_error">Грешка при прочитане на файла</string>
@@ -384,7 +383,6 @@
     <string name="pref_groups_multiselect_summary">Дава възможност за избиране на няколко групи едновременно</string>
     <string name="pref_minimize_on_copy_title">Свиване при копиране</string>
     <string name="pref_minimize_on_copy_summary">Приложението се свива при копиране на код за достъп</string>
-    <string name="pref_copy_behavior_title">Копиране на кодове за защита в междинната памет</string>
     <string name="pref_search_behavior_title">Начин на търсене</string>
     <string name="pref_pause_entry_title">Замразяване на запис при докосване</string>
     <string name="pref_pause_entry_summary">Спира автоматичното опресняване на кодовете след докосване. Необходимо е да е включено или „Осветяване на запис при докосване“, или „Показване при докосване“.</string>
@@ -549,9 +547,6 @@
     <string name="pref_grouping_size_two">В групи по 2</string>
     <string name="pref_grouping_size_three">В групи по 3</string>
     <string name="pref_grouping_size_four">В групи по 4</string>
-    <string name="pref_copy_behavior_never">Никога</string>
-    <string name="pref_copy_behavior_single_tap">Единично докосване</string>
-    <string name="pref_copy_behavior_double_tap">Двойно докосване</string>
     <string name="pref_account_name_position_hidden">Скрито</string>
     <string name="pref_account_name_position_end">До издателя</string>
     <string name="pref_account_name_position_below">Под издателя</string>

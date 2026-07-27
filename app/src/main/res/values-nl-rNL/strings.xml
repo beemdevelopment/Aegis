@@ -295,7 +295,6 @@
     <string name="choose_theme">Selecteer je gewenste thema</string>
     <string name="choose_account_name_position">Selecteer de plaats van de accountnaam</string>
     <string name="choose_view_mode">Selecteer je gewenste weergavemodus</string>
-    <string name="choose_copy_behavior">Selecteer het gedrag voor kopiëren</string>
     <string name="parsing_file_error">Er is een fout opgetreden tijdens het vertalen van het bestand</string>
     <string name="file_not_found">Fout: Bestand niet gevonden</string>
     <string name="reading_file_error">Er is een fout opgetreden tijdens het lezen van het bestand</string>
@@ -384,7 +383,6 @@
     <string name="pref_groups_multiselect_summary">Selectie van meerdere groepen tegelijkertijd toestaan</string>
     <string name="pref_minimize_on_copy_title">Na kopiëren minimaliseren</string>
     <string name="pref_minimize_on_copy_summary">Na kopiëren van een code de app minimaliseren</string>
-    <string name="pref_copy_behavior_title">Codes naar het klembord kopiëren</string>
     <string name="pref_search_behavior_title">Zoekgedrag</string>
     <string name="pref_pause_entry_title">Codes bevriezen na aantikken</string>
     <string name="pref_pause_entry_summary">Pauzeer automatisch verversen van codes door erop te tikken. Codes zullen niet worden bijgewerkt zolang ze gefocust zijn. Vereist ‘Codes markeren na aantikken’ of ‘Aantikken om te laten zien’.</string>
@@ -549,9 +547,6 @@
     <string name="pref_grouping_size_two">Groepen van 2</string>
     <string name="pref_grouping_size_three">Groepen van 3</string>
     <string name="pref_grouping_size_four">Groepen van 4</string>
-    <string name="pref_copy_behavior_never">Nooit</string>
-    <string name="pref_copy_behavior_single_tap">Enkele tik</string>
-    <string name="pref_copy_behavior_double_tap">Dubbele tik</string>
     <string name="pref_account_name_position_hidden">Verborgen</string>
     <string name="pref_account_name_position_end">Naast de uitgever</string>
     <string name="pref_account_name_position_below">Onder de uitgever</string>

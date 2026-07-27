@@ -272,7 +272,6 @@
     <string name="choose_theme">Vyberte si vašu želanú tému</string>
     <string name="choose_account_name_position">Vyberte si vašu želanú pozíciu názvu účtu</string>
     <string name="choose_view_mode">Vyberte si váš želaný režim zobrazenia</string>
-    <string name="choose_copy_behavior">Vyberte si vaše želané správanie kopírovania</string>
     <string name="parsing_file_error">Pri pokuse o analyzovanie súboru došlo k chybe</string>
     <string name="file_not_found">Chyba: Súbor nenájdený</string>
     <string name="reading_file_error">Pri pokuse o prečitanie súboru sa vyskytla chyba</string>
@@ -330,7 +329,6 @@
     <string name="pref_highlight_entry_title">Zvýrazniť tokeny po klepnutí</string>
     <string name="pref_minimize_on_copy_title">Minimalizovať pri kopírovaní</string>
     <string name="pref_minimize_on_copy_summary">Minimalizujte aplikáciu po skopírovaní tokenu</string>
-    <string name="pref_copy_behavior_title">Kopírovať tokeny do schránky</string>
     <string name="pref_search_behavior_title">Správanie pri vyhľadávaní</string>
     <string name="pref_pause_entry_title">Zmraziť tokeny po klepnutí</string>
     <string name="pin_keyboard_disabled">Heslo bolo zmenené. Klávesnica pre PIN sa už nebude zobrazovať.</string>
@@ -428,9 +426,6 @@
     <string name="pref_grouping_size_two">Zoskupovať po 2</string>
     <string name="pref_grouping_size_three">Zoskupovať po 3</string>
     <string name="pref_grouping_size_four">Zoskupovať po 4</string>
-    <string name="pref_copy_behavior_never">Nikdy</string>
-    <string name="pref_copy_behavior_single_tap">Jedno klepnutie</string>
-    <string name="pref_copy_behavior_double_tap">Dvojité poklepanie</string>
     <string name="pref_account_name_position_hidden">Skryté</string>
     <plurals name="time_elapsed_seconds" tools:ignore="UnusedResources">
         <item quantity="one">Pred %d sekundou</item>

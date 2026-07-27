@@ -295,7 +295,6 @@
     <string name="choose_theme">Tria l\'aparença</string>
     <string name="choose_account_name_position">Selecciona la posició del nom del compte que desitges</string>
     <string name="choose_view_mode">Tria el mode de visualització</string>
-    <string name="choose_copy_behavior">Selecciona el comportament de còpia que desitges</string>
     <string name="parsing_file_error">S\'ha produït un error en analitzar el fitxer</string>
     <string name="file_not_found">Error: no s\'ha trobat el fitxer</string>
     <string name="reading_file_error">S\'ha produït un error mentre s\'intentava carregar el fitxer</string>
@@ -384,7 +383,6 @@
     <string name="pref_groups_multiselect_summary">Permet la selecció de múltiples grups al mateix temps</string>
     <string name="pref_minimize_on_copy_title">Minimitzar al copiar</string>
     <string name="pref_minimize_on_copy_summary">Minimitzar l\'aplicació després de copiar una fitxa</string>
-    <string name="pref_copy_behavior_title">Copia les fitxes al porta-retalls</string>
     <string name="pref_search_behavior_title">Comportament de la cerca</string>
     <string name="pref_pause_entry_title">Congela la fitxa al tocar</string>
     <string name="pref_pause_entry_summary">Pausa l\'actualització automàtica de la fitxa al tocar-la. No s\'actualitzará mentre estigui marcada. Cal tenir \"Il·lumina les fitxes al tocar\" o \"Toca per a mostrar\".</string>
@@ -547,9 +545,6 @@
     <string name="pref_grouping_size_two">Grups de 2</string>
     <string name="pref_grouping_size_three">Grups de 3</string>
     <string name="pref_grouping_size_four">Grups de 4</string>
-    <string name="pref_copy_behavior_never">Mai</string>
-    <string name="pref_copy_behavior_single_tap">Un toc</string>
-    <string name="pref_copy_behavior_double_tap">Doble toc</string>
     <string name="pref_account_name_position_hidden">Ocult</string>
     <string name="pref_account_name_position_end">Al costat de l\'emissor</string>
     <string name="pref_account_name_position_below">A sota de l\'emissor</string>

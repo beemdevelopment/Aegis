@@ -10,7 +10,6 @@ import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
 
 import com.beemdevelopment.aegis.R;
-import com.beemdevelopment.aegis.ui.fragments.preferences.AppearancePreferencesFragment;
 import com.beemdevelopment.aegis.ui.fragments.preferences.MainPreferencesFragment;
 import com.beemdevelopment.aegis.ui.fragments.preferences.PreferencesFragment;
 import com.beemdevelopment.aegis.helpers.ViewHelper;
@@ -113,10 +112,8 @@ public class PreferencesActivity extends AegisActivity implements
     private class FragmentResumeListener extends FragmentManager.FragmentLifecycleCallbacks {
         @Override
         public void onFragmentStarted(@NonNull FragmentManager fm, @NonNull Fragment f) {
-            if (f instanceof MainPreferencesFragment) {
-                setTitle(R.string.action_settings);
-            } else if (f instanceof AppearancePreferencesFragment) {
-                _prefTitle = getString(R.string.pref_section_appearance_title);
+            if (f instanceof PreferencesFragment) {
+                _prefTitle = ((PreferencesFragment) f).getPreferenceScreen().getTitle();
                 setTitle(_prefTitle);
             }
         }

@@ -236,7 +236,6 @@
     <string name="choose_theme">テーマを選択してください</string>
     <string name="choose_account_name_position">アカウント名の位置を選択</string>
     <string name="choose_view_mode">表示モードを選択してください</string>
-    <string name="choose_copy_behavior">コピー時の動作を選択</string>
     <string name="parsing_file_error">ファイルの解析中にエラーが発生しました</string>
     <string name="file_not_found">エラー: ファイルが見つかりません</string>
     <string name="reading_file_error">ファイルの読み取り中にエラーが発生しました</string>
@@ -297,7 +296,6 @@
     <string name="pref_highlight_entry_summary">タップ時に一時的に強調表示することで、トークンが互いに区別しやすくなります。</string>
     <string name="pref_minimize_on_copy_title">コピー時に最小化</string>
     <string name="pref_minimize_on_copy_summary">トークンをコピーした後にアプリを最小化する</string>
-    <string name="pref_copy_behavior_title">トークンをクリップボードにコピー</string>
     <string name="pref_pause_entry_title">タップ時にトークンの更新を停止</string>
     <string name="pref_pause_entry_summary">トークンをタップすると、トークンの自動更新を一時停止します。フォーカスされている限り、トークンは更新されません。 「タップ時にトークンを強調表示する」または「タップして表示」の設定が必要です。</string>
     <string name="pin_keyboard_description">PINキーボードを有効にするにはパスワードを入力してください。これはパスワードが数字のみで構成されている場合にのみ機能します。</string>
@@ -439,9 +437,6 @@
     <string name="pref_grouping_size_two">2桁でグループ化</string>
     <string name="pref_grouping_size_three">3桁でグループ化</string>
     <string name="pref_grouping_size_four">4桁でグループ化</string>
-    <string name="pref_copy_behavior_never">何もしない</string>
-    <string name="pref_copy_behavior_single_tap">シングルタップ</string>
-    <string name="pref_copy_behavior_double_tap">ダブルタップ</string>
     <string name="pref_account_name_position_hidden">非表示</string>
     <string name="pref_account_name_position_end">次の発行者</string>
     <string name="pref_account_name_position_below">前の発行者</string>

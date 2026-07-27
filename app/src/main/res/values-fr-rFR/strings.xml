@@ -295,7 +295,6 @@
     <string name="choose_theme">Sélectionner le thème que vous désirez</string>
     <string name="choose_account_name_position">Sélectionner la position que vous désirez pour le nom de compte</string>
     <string name="choose_view_mode">Sélectionner le mode d\'affichage que vous désirez</string>
-    <string name="choose_copy_behavior">Sélectionner le comportement de copie que vous désirez</string>
     <string name="parsing_file_error">Une erreur est survenue en essayant d\'analyser le fichier</string>
     <string name="file_not_found">Erreur : Fichier introuvable</string>
     <string name="reading_file_error">Une erreur est survenue en essayant de lire le fichier</string>
@@ -384,7 +383,6 @@
     <string name="pref_groups_multiselect_summary">Autoriser la sélection de plusieurs groupes en même temps</string>
     <string name="pref_minimize_on_copy_title">Minimiser lors de la copie</string>
     <string name="pref_minimize_on_copy_summary">Minimiser l\'application après avoir copié un jeton</string>
-    <string name="pref_copy_behavior_title">Copier les jetons dans le presse-papier</string>
     <string name="pref_search_behavior_title">Comportement de recherche</string>
     <string name="pref_pause_entry_title">Geler les jetons lorsqu\'ils sont appuyés</string>
     <string name="pref_pause_entry_summary">Mettre en pause l\'actualisation automatique des jetons en appuyant dessus. Les jetons ne seront plus mis à jour tant qu\'ils seront ciblés. Nécessite « Surligner les jetons lorsqu\'ils sont appuyés » ou « Appuyer pour révéler ».</string>
@@ -549,9 +547,6 @@
     <string name="pref_grouping_size_two">Groupes de 2</string>
     <string name="pref_grouping_size_three">Groupes de 3</string>
     <string name="pref_grouping_size_four">Groupes de 4</string>
-    <string name="pref_copy_behavior_never">Jamais</string>
-    <string name="pref_copy_behavior_single_tap">Appui simple</string>
-    <string name="pref_copy_behavior_double_tap">Appui double</string>
     <string name="pref_account_name_position_hidden">Masqué</string>
     <string name="pref_account_name_position_end">À côté de l\'émetteur</string>
     <string name="pref_account_name_position_below">En dessous de l\'émetteur</string>

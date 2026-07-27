@@ -295,7 +295,6 @@
     <string name="choose_theme">Välj önskat tema</string>
     <string name="choose_account_name_position">Välj önskad kontonamnsplacering</string>
     <string name="choose_view_mode">Välj önskat visningsläge</string>
-    <string name="choose_copy_behavior">Välj önskat kopieringsbeteende</string>
     <string name="parsing_file_error">Ett fel uppstod när filen skulle tolkas</string>
     <string name="file_not_found">Fel: Filen hittades inte</string>
     <string name="reading_file_error">Ett fel uppstod när filen skulle läsas</string>
@@ -380,7 +379,6 @@
     <string name="pref_groups_multiselect_summary">Tillåt val av flera grupper samtidigt</string>
     <string name="pref_minimize_on_copy_title">Minimera vid kopiering</string>
     <string name="pref_minimize_on_copy_summary">Minimerar appen efter att en pollett har kopierats</string>
-    <string name="pref_copy_behavior_title">Kopiera polletter till urklipp</string>
     <string name="pref_search_behavior_title">Sökbeteende</string>
     <string name="pref_pause_entry_title">Frys polletter vid tryck</string>
     <string name="pref_pause_entry_summary">Pausa automatisk uppdatering av polletterna genom att trycka på dem. Polletterna kommer inte att uppdateras så länge som de är i fokus. Kräver \"Markera polletter vid tryck\" eller \"Tryck för att visa\".</string>
@@ -544,9 +542,6 @@
     <string name="pref_grouping_size_two">Grupper av 2</string>
     <string name="pref_grouping_size_three">Grupper av 3</string>
     <string name="pref_grouping_size_four">Grupper av 4</string>
-    <string name="pref_copy_behavior_never">Aldrig</string>
-    <string name="pref_copy_behavior_single_tap">Enkeltryck</string>
-    <string name="pref_copy_behavior_double_tap">Dubbeltryck</string>
     <string name="pref_account_name_position_hidden">Dolt</string>
     <string name="pref_account_name_position_end">Bredvid utfärdaren</string>
     <string name="pref_account_name_position_below">Nedanför utfärdaren</string>

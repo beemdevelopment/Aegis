@@ -295,7 +295,6 @@
     <string name="choose_theme">Elige el esquema de colores que más te guste</string>
     <string name="choose_account_name_position">Elige una posición para ubicar el nombre de la cuenta</string>
     <string name="choose_view_mode">Elige un modo de visualización</string>
-    <string name="choose_copy_behavior">Seleccione el comportamiento de copia deseado</string>
     <string name="parsing_file_error">Se ha producido un error al intentar procesar el archivo</string>
     <string name="file_not_found">Error: Archivo no encontrado</string>
     <string name="reading_file_error">Se ha producido un error al intentar leer el archivo</string>
@@ -384,7 +383,6 @@
     <string name="pref_groups_multiselect_summary">Permite seleccionar varios grupos a la vez</string>
     <string name="pref_minimize_on_copy_title">Minimizar al copiar</string>
     <string name="pref_minimize_on_copy_summary">Minimiza la aplicación tras copiar claves</string>
-    <string name="pref_copy_behavior_title">Copiar claves en el portapapeles</string>
     <string name="pref_search_behavior_title">Comportamiento de búsqueda</string>
     <string name="pref_pause_entry_title">Congelar claves al tocarlas</string>
     <string name="pref_pause_entry_summary">Pausa la recarga automática de las claves al tocarlas, por lo que no irán cambiando según expiran. Es necesario que también actives «Resaltar códigos al pulsar» o «Pulsar para mostrar».</string>
@@ -549,9 +547,6 @@
     <string name="pref_grouping_size_two">En grupos de dos</string>
     <string name="pref_grouping_size_three">En grupos de tres</string>
     <string name="pref_grouping_size_four">En grupos de cuatro</string>
-    <string name="pref_copy_behavior_never">Nunca</string>
-    <string name="pref_copy_behavior_single_tap">Un toque</string>
-    <string name="pref_copy_behavior_double_tap">Dos toques</string>
     <string name="pref_account_name_position_hidden">Oculto</string>
     <string name="pref_account_name_position_end">Junto al emisor</string>
     <string name="pref_account_name_position_below">Debajo del emisor</string>

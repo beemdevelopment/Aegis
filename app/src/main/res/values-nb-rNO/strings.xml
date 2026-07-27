@@ -291,7 +291,6 @@
     <string name="choose_theme">Velg ønsket tema</string>
     <string name="choose_account_name_position">Velg ønsket plassering av brukernavn</string>
     <string name="choose_view_mode">Velg ønsket visningsmodus</string>
-    <string name="choose_copy_behavior">Velg ønsket oppførsel for kopiering</string>
     <string name="parsing_file_error">Det oppsto en feil under forsøk på å analysere filen</string>
     <string name="file_not_found">Feil: Finner ikke filen</string>
     <string name="reading_file_error">Det oppsto en feil under forsøk på å lese filen</string>
@@ -357,7 +356,6 @@
     <string name="pref_highlight_entry_summary">Gjør det lettere å skille mellom koder ved å fremheve dem ved trykk</string>
     <string name="pref_minimize_on_copy_title">Minimer ved kopi</string>
     <string name="pref_minimize_on_copy_summary">Minimer appen etter å ha kopiert en kode</string>
-    <string name="pref_copy_behavior_title">Kopier koder til utklippstavlen</string>
     <string name="pref_pause_entry_title">Frys koder ved trykk</string>
     <string name="pref_pause_entry_summary">Pause autmatisk oppdatering av koder ved å trykke på dem. Koder vil ikke oppdateres så lenge de er i fokus. Krever «Fremhev koder ved trykk» eller «Trykk for å vise».</string>
     <string name="pin_keyboard_description">Skriv inn passordet ditt for å aktivere PIN-tastaturet. Merk at dette kun fungerer dersom passordet bare består av tall</string>
@@ -472,9 +470,6 @@
     <string name="pref_grouping_size_two">Grupper på 2</string>
     <string name="pref_grouping_size_three">Grupper på 3</string>
     <string name="pref_grouping_size_four">Grupper på 4</string>
-    <string name="pref_copy_behavior_never">Aldri</string>
-    <string name="pref_copy_behavior_single_tap">Enkelttrykk</string>
-    <string name="pref_copy_behavior_double_tap">Dobbelttrykk</string>
     <string name="pref_account_name_position_hidden">Skjult</string>
     <string name="pref_account_name_position_end">Ved siden av utstederen</string>
     <string name="pref_account_name_position_below">Under utstederen</string>

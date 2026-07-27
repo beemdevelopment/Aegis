@@ -24,6 +24,7 @@
         app:iconSpaceReserved="false" />
 
     <Preference
+        android:fragment="com.beemdevelopment.aegis.ui.fragments.preferences.TapActionsPreferencesFragment"
         android:key="pref_tap_actions"
         android:title="@string/pref_tap_actions_title"
         android:summary="@string/pref_tap_actions_summary"

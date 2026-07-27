@@ -301,7 +301,6 @@
     <string name="choose_theme">Atlasīt vēlamo izskatu</string>
     <string name="choose_account_name_position">Atlasīt vēlamo konta nosaukuma atrašanās vietu</string>
     <string name="choose_view_mode">Atlasīt vēlamo skata veidu</string>
-    <string name="choose_copy_behavior">Atlasīt vēlamo kopēšanas uzvedību</string>
     <string name="parsing_file_error">Atgadījusies kļūda datnes satura apstrādāšanā</string>
     <string name="file_not_found">Kļūda: datne nav atrasta</string>
     <string name="reading_file_error">Atgadījusies kļūda datnes nolasīšanā</string>
@@ -394,7 +393,6 @@
     <string name="pref_groups_multiselect_summary">Ļaut vienlaicīgi atlasīt vairākas kopas</string>
     <string name="pref_minimize_on_copy_title">Samazināt pēc ievietošanas starpliktuvē</string>
     <string name="pref_minimize_on_copy_summary">Samazināt lietotni pēc koda ievietošanas starpliktuvē</string>
-    <string name="pref_copy_behavior_title">Ievietot tekstvienības starpliktuvē</string>
     <string name="pref_search_behavior_title">Meklēšanas uzvedība</string>
     <string name="pref_pause_entry_title">Iesaldēt kodus pēc piesišanas tiem</string>
     <string name="pref_pause_entry_summary">Apturēt kodu atsvaidzināšanu, kad piesit. Kods netiks atjaunots, kamēr vien tas ir izcelts. Ir nepieciešams ieslēgt iestatījumu \"Izcelt kodus, kad piesit\" vai \"Piesist, lai atklātu\".</string>
@@ -562,9 +560,6 @@
     <string name="pref_grouping_size_two">Kopas no 2</string>
     <string name="pref_grouping_size_three">Kopas no 3</string>
     <string name="pref_grouping_size_four">Kopas no 4</string>
-    <string name="pref_copy_behavior_never">Nekad</string>
-    <string name="pref_copy_behavior_single_tap">Viens piesitiens</string>
-    <string name="pref_copy_behavior_double_tap">Divkāršs piesitiens</string>
     <string name="pref_account_name_position_hidden">Paslēpts</string>
     <string name="pref_account_name_position_end">Aiz izdevēja</string>
     <string name="pref_account_name_position_below">Zem izdevēja</string>

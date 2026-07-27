@@ -79,20 +79,12 @@ public class EntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     private Handler _doubleTapHandler;
     private boolean _pauseFocused;
 
+    // keeps track of the EntryHolders that are currently bound
     private List<EntryHolder> _holders;
-
-    private enum TapPhase {
-        REVEAL_OR_FOCUS,
-        FUNCTION,
-        HIDE_OR_UNFOCUS
-    }
 
     private TapAction _singleTapAction;
     private TapAction _doubleTapAction;
     private boolean _reserveFirstTap;
-
-    @Nullable private VaultEntry _phaseEntry;
-    private TapPhase _tapPhase = TapPhase.REVEAL_OR_FOCUS;
 
     @Nullable private VaultEntry _pendingTapEntry;
     @Nullable private Runnable _pendingSingleTapRunnable;
@@ -196,6 +188,7 @@ public class EntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     }
 
     public void setEntries(List<VaultEntry> entries) {
+        // TODO: Move these fields to separate dedicated model for the UI
         for (VaultEntry entry : entries) {
             entry.setUsageCount(_usageCounts.containsKey(entry.getUUID()) ? _usageCounts.get(entry.getUUID()) : 0);
             entry.setLastUsedTimestamp(_lastUsedTimestamps.containsKey(entry.getUUID()) ? _lastUsedTimestamps.get(entry.getUUID()) : 0);
@@ -225,6 +218,7 @@ public class EntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         if (_searchFilter != null) {
             String[] tokens = _searchFilter.toLowerCase().split("\\s+");
 
+            // Return true if not all tokens match at least one of the relevant fields
             return !Arrays.stream(tokens)
                     .allMatch(token ->
                             ((_searchBehaviorMask & Preferences.SEARCH_IN_ISSUER) != 0 && issuer.contains(token)) ||
@@ -311,6 +305,9 @@ public class EntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         _entryList = newEntryList;
         updatePeriodUniformity();
 
+        // This scroll position trick is required in order to not have the recycler view
+        // jump to some random position after a large change (like resorting entries)
+        // Related: https://issuetracker.google.com/issues/70149059
         int scrollPos = _view.getScrollPosition();
         diffRes.dispatchUpdatesTo(this);
         _view.scrollToPosition(scrollPos);
@@ -374,6 +371,8 @@ public class EntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
     @Override
     public void onItemDrop(int position) {
+        // moving entries is not allowed when a filter is applied
+        // footer cant be moved, nor can items be moved below it
         if (!_groupFilter.isEmpty() || _entryList.isPositionFooter(position) || _entryList.isPositionErrorCard(position)) {
             return;
         }
@@ -384,18 +383,22 @@ public class EntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
     @Override
     public void onItemMove(int firstPosition, int secondPosition) {
+        // Moving entries is not allowed when a filter is applied. The footer can't be
+        // moved, nor can items be moved below it
         if (!_groupFilter.isEmpty()
                 || _entryList.isPositionFooter(firstPosition) || _entryList.isPositionFooter(secondPosition)
                 || _entryList.isPositionErrorCard(firstPosition) || _entryList.isPositionErrorCard(secondPosition)) {
             return;
         }
 
+        // Notify the vault about the entry position change first
         int firstIndex = _entryList.translateEntryPosToIndex(firstPosition);
         int secondIndex = _entryList.translateEntryPosToIndex(secondPosition);
         VaultEntry firstEntry = _entryList.getShownEntries().get(firstIndex);
         VaultEntry secondEntry = _entryList.getShownEntries().get(secondIndex);
         _view.onEntryMove(firstEntry, secondEntry);
 
+        // Then update the visual end
         List<VaultEntry> newEntries = new ArrayList<>(_entryList.getEntries());
         CollectionUtils.move(newEntries, newEntries.indexOf(firstEntry), newEntries.indexOf(secondEntry));
         replaceEntryList(new EntryList(
@@ -461,6 +464,7 @@ public class EntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             boolean showProgress = entry.getInfo() instanceof TotpInfo && ((TotpInfo) entry.getInfo()).getPeriod() != getMostFrequentPeriod();
             boolean showAccountName = true;
             if (_onlyShowNecessaryAccountNames) {
+                // Only show account name when there's multiple entries found with the same issuer.
                 showAccountName = _entryList.getEntries().stream()
                         .filter(x -> x.getIssuer().equals(entry.getIssuer()))
                         .count() > 1;
@@ -482,58 +486,32 @@ public class EntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                         cancelPendingSingleTap();
 
                         if (_selectedEntries.contains(entry)) {
-                            _view.onDeselect(entry);
                             removeSelectedEntry(entry);
                             entryHolder.setFocusedAndAnimate(false);
+                            _view.onDeselect(entry);
                         } else {
                             entryHolder.setFocusedAndAnimate(true);
                             addSelectedEntry(entry);
                             _view.onSelect(entry);
                         }
+
+                        _view.onEntryClick(entry);
                         return;
                     }
 
-                    boolean hasDoubleTapAction = _doubleTapAction != TapAction.NONE;
-
-                    if (!hasDoubleTapAction) {
-                        ensurePhaseForEntry(entry);
-
-                        if (_tapPhase == TapPhase.REVEAL_OR_FOCUS
-                                && _focusedEntry != null
-                                && _focusedEntry.equals(entry)
-                                && (_tapToReveal || _highlightEntry || _tempHighlightEntry)) {
-                            resetFocus();
-                            resetTapPhase();
-                            return;
-                        }
-
-                        if (_tapPhase == TapPhase.REVEAL_OR_FOCUS && needsRevealOrHighlight(entry)) {
-                            focusEntry(entry, _tapToRevealTime);
-                            _tapPhase = TapPhase.FUNCTION;
-
-                            if (_reserveFirstTap) {
-                                return;
-                            }
-                        }
-
-                        if (_reserveFirstTap && _tapPhase == TapPhase.HIDE_OR_UNFOCUS
-                                && _focusedEntry != null && _focusedEntry.equals(entry)) {
-                            resetFocus();
-                            resetTapPhase();
-                            return;
-                        }
-
-                        runTapAction(entryHolder, entry, _singleTapAction);
+                    if (_doubleTapAction == TapAction.NONE) {
+                        handleSingleTap(entryHolder, entry);
                         return;
                     }
 
+                    // Only defer the single-tap flow when it can still become a double tap.
                     if (_pendingSingleTapRunnable != null) {
                         if (_pendingTapEntry != null && _pendingTapEntry.equals(entry)) {
                             cancelPendingSingleTap();
                             runTapAction(entryHolder, entry, _doubleTapAction);
                             return;
                         } else {
-                            cancelPendingSingleTap();
+                            runPendingSingleTap();
                         }
                     }
 
@@ -544,37 +522,7 @@ public class EntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                         public void run() {
                             _pendingSingleTapRunnable = null;
                             _pendingTapEntry = null;
-
-                            ensurePhaseForEntry(entry);
-
-                            if (_tapPhase == TapPhase.REVEAL_OR_FOCUS
-                                    && _focusedEntry != null
-                                    && _focusedEntry.equals(entry)
-                                    && (_tapToReveal || _highlightEntry || _tempHighlightEntry)) {
-                                resetFocus();
-                                resetTapPhase();
-                                return;
-                            }
-
-                            if (_tapPhase == TapPhase.REVEAL_OR_FOCUS && needsRevealOrHighlight(entry)) {
-                                focusEntry(entry, _tapToRevealTime);
-
-                                if (_reserveFirstTap) {
-                                    _tapPhase = TapPhase.FUNCTION;
-                                    return;
-                                }
-
-                                _tapPhase = TapPhase.FUNCTION;
-                            }
-
-                            if (_reserveFirstTap && _tapPhase == TapPhase.HIDE_OR_UNFOCUS
-                                    && _focusedEntry != null && _focusedEntry.equals(entry)) {
-                                resetFocus();
-                                resetTapPhase();
-                                return;
-                            }
-
-                            runTapAction(entryHolder, entry, _singleTapAction);
+                            handleSingleTap(entryHolder, entry);
                         }
                     };
 
@@ -603,6 +551,7 @@ public class EntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             entryHolder.itemView.setOnTouchListener(new View.OnTouchListener() {
                 @Override
                 public boolean onTouch(View v, MotionEvent event) {
+                    // Start drag if this is the only item selected
                     if (event.getActionMasked() == MotionEvent.ACTION_MOVE
                             && isEntryDraggable(entryHolder.getEntry())) {
                         _view.startDrag(entryHolder);
@@ -615,6 +564,7 @@ public class EntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             entryHolder.setOnRefreshClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    // this will only be called if the entry is of type HotpInfo
                     try {
                         ((HotpInfo) entry.getInfo()).incrementCounter();
                         focusEntry(entry, _tapToRevealTime);
@@ -622,7 +572,11 @@ public class EntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                         throw new RuntimeException(e);
                     }
 
+                    // notify the listener that the counter has been incremented
+                    // this gives it a chance to save the vault
                     _view.onEntryChange(entry);
+
+                    // finally, refresh the code in the UI
                     entryHolder.refreshCode();
                 }
             });
@@ -641,31 +595,32 @@ public class EntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         }
     }
 
-    private void resetTapPhase() {
-        _phaseEntry = null;
-        _tapPhase = TapPhase.REVEAL_OR_FOCUS;
-    }
-
-    private void ensurePhaseForEntry(VaultEntry entry) {
-        if (_phaseEntry == null || !_phaseEntry.equals(entry)) {
-            _phaseEntry = entry;
-            _tapPhase = TapPhase.REVEAL_OR_FOCUS;
+    private void runPendingSingleTap() {
+        Runnable runnable = _pendingSingleTapRunnable;
+        if (runnable != null) {
+            _doubleTapHandler.removeCallbacks(runnable);
+            runnable.run();
         }
     }
 
-    private boolean needsRevealOrHighlight(VaultEntry entry) {
-        if (_tapToReveal && (_focusedEntry == null || !_focusedEntry.equals(entry))) {
-            return true;
+    private void handleSingleTap(EntryHolder entryHolder, VaultEntry entry) {
+        if ((_tapToReveal || _highlightEntry || _tempHighlightEntry)
+                && entry.equals(_focusedEntry)) {
+            resetFocus();
+        } else if (_tapToReveal || _highlightEntry || _tempHighlightEntry) {
+            focusEntry(entry, _tapToRevealTime);
+
+            // Highlighting is visual feedback, so only hidden codes can reserve the first tap.
+            if (_tapToReveal && _reserveFirstTap) {
+                incrementUsageCount(entry);
+                return;
+            }
         }
-        if ((_highlightEntry || _tempHighlightEntry) && (_focusedEntry == null || !_focusedEntry.equals(entry))) {
-            return true;
-        }
-        return false;
+
+        runTapAction(entryHolder, entry, _singleTapAction);
     }
 
     private void runTapAction(EntryHolder entryHolder, VaultEntry entry, TapAction action) {
-        ensurePhaseForEntry(entry);
-
         boolean handled = false;
 
         switch (action) {
@@ -689,8 +644,6 @@ public class EntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         if (!handled) {
             _view.onEntryClick(entry);
         }
-
-        _tapPhase = TapPhase.HIDE_OR_UNFOCUS;
     }
 
     private void updatePeriodUniformity() {
@@ -797,8 +750,6 @@ public class EntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
         _focusedEntry = null;
         _tempHighlightEntry = false;
-
-        resetTapPhase();
     }
 
     private void updateDraggableStatus() {
@@ -956,6 +907,8 @@ public class EntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         }
 
         public int getItemCount() {
+            // Always at least one item because of the footer
+            // Two in case there's also an error card
             int baseCount = 1;
             if (isErrorCardShown()) {
                 baseCount++;
@@ -981,6 +934,9 @@ public class EntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             return position == (getItemCount() - 1);
         }
 
+        /**
+         * Translates the given entry position in the recycler view, to its index in the shown entries list.
+         */
         public int translateEntryPosToIndex(int position) {
             if (position == NO_POSITION) {
                 return NO_POSITION;
@@ -993,6 +949,9 @@ public class EntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             return position;
         }
 
+        /**
+         * Translates the given entry index in the shown entries list, to its position in the recycler view.
+         */
         public int translateEntryIndexToPos(int index) {
             if (index == NO_POSITION) {
                 return NO_POSITION;

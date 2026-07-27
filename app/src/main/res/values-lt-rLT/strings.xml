@@ -306,5 +306,4 @@
     <string name="groups">Grupės</string>
     <string name="pref_focus_search">Paleidus programėlę, fokusuoti paiešką</string>
     <string name="pref_focus_search_summary">Atvėrus programėlę, nedelsiant fokusuoti paieškos laukelį.</string>
-    <string name="pref_copy_behavior_never">Niekada</string>
 </resources>

@@ -295,7 +295,6 @@
     <string name="choose_theme">Selecione o tema</string>
     <string name="choose_account_name_position">Selecione a posição do nome da conta desejada</string>
     <string name="choose_view_mode">Selecione o modo de visualização</string>
-    <string name="choose_copy_behavior">Selecione o estilo de cópia que deseja efetuar </string>
     <string name="parsing_file_error">Ocorreu um erro ao tentar analisar o ficheiro</string>
     <string name="file_not_found">Erro: Ficheiro não encontrado</string>
     <string name="reading_file_error">Ocorreu um erro ao tentar ler o ficheiro</string>
@@ -384,7 +383,6 @@
     <string name="pref_groups_multiselect_summary">Permitir a seleção de vários grupos ao mesmo tempo</string>
     <string name="pref_minimize_on_copy_title">Minimizar ao copiar</string>
     <string name="pref_minimize_on_copy_summary">Após copiar um token, minimizar a aplicação </string>
-    <string name="pref_copy_behavior_title">Copiar tokens para a área de transferência</string>
     <string name="pref_search_behavior_title">Comportamento da pesquisa</string>
     <string name="pref_pause_entry_title">Congelar tokens quando tocados</string>
     <string name="pref_pause_entry_summary">Pausar a atualização automática dos tokens ao tocar neles. Os tokens não serão atualizados desde que estejam em foco. Requer \"Realçar tokens quando tocados\" ou \"Toque para mostrar\".</string>
@@ -545,9 +543,6 @@
     <string name="pref_grouping_size_two">Grupos de 2</string>
     <string name="pref_grouping_size_three">Grupos de 3</string>
     <string name="pref_grouping_size_four">Grupos de 4</string>
-    <string name="pref_copy_behavior_never">Nunca</string>
-    <string name="pref_copy_behavior_single_tap">Apenas um toque</string>
-    <string name="pref_copy_behavior_double_tap">Duplo toque</string>
     <string name="pref_account_name_position_hidden">Ocultar / Ocultos</string>
     <string name="pref_account_name_position_end">Ao lado do emissor</string>
     <string name="pref_account_name_position_below">Abaixo do emissor</string>

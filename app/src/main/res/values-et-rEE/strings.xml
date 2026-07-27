@@ -295,7 +295,6 @@
     <string name="choose_theme">Valid soovitud kujundus</string>
     <string name="choose_account_name_position">Vali sinu kasutajakonto nime asukoht</string>
     <string name="choose_view_mode">Vali sinu soovitud vaade</string>
-    <string name="choose_copy_behavior">Vali soovitud käitumine kopeerimisel</string>
     <string name="parsing_file_error">Faili töötlemisel tekkis viga</string>
     <string name="file_not_found">Viga: faili ei leidu</string>
     <string name="reading_file_error">Faili lugemisel tekkis viga</string>
@@ -384,7 +383,6 @@
     <string name="pref_groups_multiselect_summary">Võimalda mitme grupi korraga valimist</string>
     <string name="pref_minimize_on_copy_title">Kopeerimisel peida rakendus</string>
     <string name="pref_minimize_on_copy_summary">Peale kinnituskoodi kopeerimist minimeeri rakendus</string>
-    <string name="pref_copy_behavior_title">Kopeeri kinnituskoodid lõikelauale</string>
     <string name="pref_search_behavior_title">Otsingu toimimine</string>
     <string name="pref_pause_entry_title">Peale puudutamist peata kinnituskoodide muutumine</string>
     <string name="pref_pause_entry_summary">Puudutamisel peata kinnituskoodide automaatne uuendamine - seni kuni ta on fookuses kood ei muutu. Eeldab, et „Puudutamisel tõsta kinnituskood esile“ või „Näitamiseks puuduta“ on sisse lülitatud.</string>
@@ -543,9 +541,6 @@
     <string name="pref_grouping_size_two">Rühmita kahekaupa</string>
     <string name="pref_grouping_size_three">Rühmita kolmekaupa</string>
     <string name="pref_grouping_size_four">Rühmita neljakaupa</string>
-    <string name="pref_copy_behavior_never">Ära kopeeri iialgi</string>
-    <string name="pref_copy_behavior_single_tap">Kopeeri ühe puudutusega</string>
-    <string name="pref_copy_behavior_double_tap">Kopeeri kahe puudutusega</string>
     <string name="pref_account_name_position_hidden">Peidetud</string>
     <string name="pref_account_name_position_end">Väljaandja kõrval</string>
     <string name="pref_account_name_position_below">Väljaandja all</string>

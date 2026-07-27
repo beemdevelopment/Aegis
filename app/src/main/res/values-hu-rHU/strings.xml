@@ -295,7 +295,6 @@
     <string name="choose_theme">Válassza ki a kívánt témát</string>
     <string name="choose_account_name_position">Válassza ki a kívánt fióknév-pozíciót</string>
     <string name="choose_view_mode">Válassza ki a kívánt nézetmódot</string>
-    <string name="choose_copy_behavior">Válassza ki a kívánt másolási viselkedést</string>
     <string name="parsing_file_error">Hiba történt a fájl feldolgozásakor</string>
     <string name="file_not_found">Hiba: A fájl nem található</string>
     <string name="reading_file_error">Hiba történt a fájl olvasásakor</string>
@@ -384,7 +383,6 @@
     <string name="pref_groups_multiselect_summary">Több csoport egyidejű kiválasztásának engedélyezése</string>
     <string name="pref_minimize_on_copy_title">Minimalizálás másoláskor</string>
     <string name="pref_minimize_on_copy_summary">Az alkalmazás minimalizálása a token másolása után</string>
-    <string name="pref_copy_behavior_title">Tokenek másolása a vágólapra</string>
     <string name="pref_search_behavior_title">Keresés viselkedése</string>
     <string name="pref_pause_entry_title">Tokenek befagyasztása koppintáskor</string>
     <string name="pref_pause_entry_summary">A tokenek automatikus frissítésének szüneteltetése koppintás után. A tokenek addig nem frissülnek, míg fókuszban vannak. Ehhez szükséges a „Tokenek kiemelése koppintáskor” vagy a „Koppintás a felfedéshez\" beállítás.</string>
@@ -548,9 +546,6 @@
     <string name="pref_grouping_size_two">2-es csoportok</string>
     <string name="pref_grouping_size_three">3-as csoportok</string>
     <string name="pref_grouping_size_four">4-es csoportok</string>
-    <string name="pref_copy_behavior_never">Soha</string>
-    <string name="pref_copy_behavior_single_tap">Egy koppintás</string>
-    <string name="pref_copy_behavior_double_tap">Dupla koppintás</string>
     <string name="pref_account_name_position_hidden">Rejtett</string>
     <string name="pref_account_name_position_end">A kibocsátó mellett</string>
     <string name="pref_account_name_position_below">A kibocsátó alatt</string>

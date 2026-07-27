@@ -290,7 +290,6 @@
     <string name="choose_theme">Chọn chủ đề bạn thích</string>
     <string name="choose_account_name_position">Chọn vị trí tên tài khoản mà bạn thích</string>
     <string name="choose_view_mode">Chọn chế độ xem bạn thích</string>
-    <string name="choose_copy_behavior">Chọn thao tác sao chép mà bạn thích</string>
     <string name="parsing_file_error">Đã xảy ra lỗi trong khi xử lý file</string>
     <string name="file_not_found">Lỗi: Không tìm thấy tập tin</string>
     <string name="reading_file_error">Đã xảy ra lỗi trong khi đọc tập tin</string>
@@ -375,7 +374,6 @@
     <string name="pref_groups_multiselect_summary">Cho phép chọn nhiều nhãn cùng lúc</string>
     <string name="pref_minimize_on_copy_title">Thu nhỏ ứng dụng</string>
     <string name="pref_minimize_on_copy_summary">Sau khi sao chép một mã</string>
-    <string name="pref_copy_behavior_title">Lưu mã vào bộ nhớ tạm</string>
     <string name="pref_search_behavior_title">Hành vi tìm kiếm</string>
     <string name="pref_pause_entry_title">Đóng băng mã khi nhấn vào</string>
     <string name="pref_pause_entry_summary">Không tự động tạo mã tiếp theo nữa</string>
@@ -535,9 +533,6 @@
     <string name="pref_grouping_size_two">Gộp 2</string>
     <string name="pref_grouping_size_three">Gộp 3</string>
     <string name="pref_grouping_size_four">Gộp 4</string>
-    <string name="pref_copy_behavior_never">Không bao giờ</string>
-    <string name="pref_copy_behavior_single_tap">Nhấn một lần</string>
-    <string name="pref_copy_behavior_double_tap">Nhấn đúp</string>
     <string name="pref_account_name_position_hidden">Ẩn</string>
     <string name="pref_account_name_position_end">Kế bên dịch vụ</string>
     <string name="pref_account_name_position_below">Dưới dịch vụ</string>

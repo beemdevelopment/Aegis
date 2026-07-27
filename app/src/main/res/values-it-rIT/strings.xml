@@ -295,7 +295,6 @@
     <string name="choose_theme">Seleziona il tema</string>
     <string name="choose_account_name_position">Seleziona la tua posizione preferita per il nome dell\'account</string>
     <string name="choose_view_mode">Seleziona la modalità di visualizzazione</string>
-    <string name="choose_copy_behavior">Seleziona il comportamento desiderato per la copia</string>
     <string name="parsing_file_error">Si è verificato un errore durante l\'analisi del file</string>
     <string name="file_not_found">Errore: File non trovato</string>
     <string name="reading_file_error">Si è verificato un errore nel tentativo di leggere il file</string>
@@ -369,7 +368,6 @@
     <string name="pref_groups_multiselect_summary">Consente la selezione multipla di più gruppi contemporaneamente</string>
     <string name="pref_minimize_on_copy_title">Minimizza alla copia</string>
     <string name="pref_minimize_on_copy_summary">Minimizza l\'app dopo aver copiato un token</string>
-    <string name="pref_copy_behavior_title">Copia i token negli appunti</string>
     <string name="pref_search_behavior_title">Comportamento di ricerca</string>
     <string name="pref_pause_entry_title">Blocca i token con un tocco</string>
     <string name="pref_pause_entry_summary">Metti in pausa l\'aggiornamento automatico dei token toccandoli. I token non si aggiorneranno finché sono evidenziati. Richiede \"Evidenzia i token al tocco\" o \"Tocca per mostrare\".</string>
@@ -532,9 +530,6 @@
     <string name="pref_grouping_size_two">Gruppi di 2</string>
     <string name="pref_grouping_size_three">Gruppi di 3</string>
     <string name="pref_grouping_size_four">Gruppi di 4</string>
-    <string name="pref_copy_behavior_never">Mai</string>
-    <string name="pref_copy_behavior_single_tap">Tocco singolo</string>
-    <string name="pref_copy_behavior_double_tap">Doppio tocco</string>
     <string name="pref_account_name_position_hidden">Nascosto</string>
     <string name="pref_account_name_position_end">Accanto al servizio</string>
     <string name="pref_account_name_position_below">Sotto all\'emittente</string>

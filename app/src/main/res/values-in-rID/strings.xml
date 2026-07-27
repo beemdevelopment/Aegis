@@ -289,7 +289,6 @@
     <string name="choose_theme">Pilih tema yang Anda inginkan</string>
     <string name="choose_account_name_position">Pilih posisi nama akun yang Anda inginkan</string>
     <string name="choose_view_mode">Pilih mode tampilan yang Anda inginkan</string>
-    <string name="choose_copy_behavior">Pilih perilaku penyalinan yang Anda inginkan</string>
     <string name="parsing_file_error">Terjadi kesalahan saat mengurai berkas</string>
     <string name="file_not_found">Kesalahan: Berkas tidak ditemukan</string>
     <string name="reading_file_error">Terjadi kesalahan saat membaca berkas</string>
@@ -360,7 +359,6 @@
     <string name="pref_groups_multiselect_summary">Mengizinkan memilih beberapa grup pada saat yang sama</string>
     <string name="pref_minimize_on_copy_title">Meminimalkan penyalinan</string>
     <string name="pref_minimize_on_copy_summary">Meminimalkan aplikasi setelah menyalin token</string>
-    <string name="pref_copy_behavior_title">Menyalin token ke papan klip</string>
     <string name="pref_search_behavior_title">Aktivitas pencarian</string>
     <string name="pref_pause_entry_title">Bekukan token ketika disentuh</string>
     <string name="pref_pause_entry_summary">Hentikan penyegaran otomatis token dengan menyentuh mereka. Token tidak akan diperbarui selama mereka difokuskan. Membutuhkan \"Sorot token saat disentuh\" atau \"Sentuh untuk melihat.\"</string>
@@ -520,9 +518,6 @@
     <string name="pref_grouping_size_two">Dua kelompok</string>
     <string name="pref_grouping_size_three">Tiga kelompok</string>
     <string name="pref_grouping_size_four">Empat kelompok</string>
-    <string name="pref_copy_behavior_never">Tidak pernah</string>
-    <string name="pref_copy_behavior_single_tap">Ketuk sekali</string>
-    <string name="pref_copy_behavior_double_tap">Ketuk dua kali</string>
     <string name="pref_account_name_position_hidden">Tersembunyi</string>
     <string name="pref_account_name_position_end">Di sebelah emiten</string>
     <string name="pref_account_name_position_below">Di bawah emiten</string>

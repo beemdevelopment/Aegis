@@ -4,16 +4,14 @@
     android:title="@string/pref_tap_actions_title">
 
     <Preference
-        android:defaultValue="false"
         android:key="pref_single_tap_action"
         android:title="@string/pref_single_tap_action_title"
-        app:iconSpaceReserved="false"/>
+        app:iconSpaceReserved="false" />
 
     <Preference
-        android:defaultValue="false"
         android:key="pref_double_tap_action"
         android:title="@string/pref_double_tap_action_title"
-        app:iconSpaceReserved="false"/>
+        app:iconSpaceReserved="false" />
 
     <androidx.preference.SwitchPreferenceCompat
         android:key="pref_reserve_first_tap"
@@ -24,7 +22,7 @@
 
     <Preference
         android:key="pref_tap_actions_hint"
-        android:title="@string/pref_tap_actions_hint_title"
+        android:persistent="false"
         android:summary="@string/pref_tap_actions_hint_summary"
         android:selectable="false"
         app:iconSpaceReserved="false" />

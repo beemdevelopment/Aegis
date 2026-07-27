@@ -301,7 +301,6 @@
     <string name="choose_theme">Selectează tema dorită</string>
     <string name="choose_account_name_position">Selectați poziția dorită a numelui de cont</string>
     <string name="choose_view_mode">Selectează modul de vizualizare dorit</string>
-    <string name="choose_copy_behavior">Selectați comportamentul dorit la copiere</string>
     <string name="parsing_file_error">A apărut o eroare în timpul analizării fișierului</string>
     <string name="file_not_found">Eroare: Fișierul nu a fost găsit</string>
     <string name="reading_file_error">A apărut o eroare în timpul citirii fișierului</string>
@@ -382,7 +381,6 @@
     <string name="pref_groups_multiselect_summary">Permite selecția mai multor grupuri în același timp</string>
     <string name="pref_minimize_on_copy_title">Minimizează după copiere</string>
     <string name="pref_minimize_on_copy_summary">Minimizează aplicația după copierea unui token</string>
-    <string name="pref_copy_behavior_title">Copiați tokenul în clipboard</string>
     <string name="pref_search_behavior_title">Mod de căutare</string>
     <string name="pref_pause_entry_title">Îngheață jetoanele când sunt apăsate</string>
     <string name="pref_pause_entry_summary">Oprește reîmprospătarea automată a jetoanelor prin apăsarea lor. Token-urile nu se vor actualiza atâta timp cât sunt evidențiate. Necesită \"Evidențierea tokenurilor atunci când sunt apasate\" sau \"Atinge pentru a arăta\".</string>
@@ -541,9 +539,6 @@
     <string name="pref_grouping_size_two">Grupuri a câte 2</string>
     <string name="pref_grouping_size_three">Grupuri a câte 3</string>
     <string name="pref_grouping_size_four">Grupuri a câte 4</string>
-    <string name="pref_copy_behavior_never">Niciodată</string>
-    <string name="pref_copy_behavior_single_tap">O singură atingere</string>
-    <string name="pref_copy_behavior_double_tap">Atingere dublă</string>
     <string name="pref_account_name_position_hidden">Ascuns</string>
     <string name="pref_account_name_position_end">Alături de emitent</string>
     <string name="pref_account_name_position_below">Sub emitent</string>

@@ -295,7 +295,6 @@
     <string name="choose_theme">Hautatu zure itxura</string>
     <string name="choose_account_name_position">Aukeratu zure kontuaren izenaren posizioa</string>
     <string name="choose_view_mode">Aukeratu nahi duzun ikuspegia</string>
-    <string name="choose_copy_behavior">Aukeratu kopia egiteko nahi duzun portaera</string>
     <string name="parsing_file_error">Errorea gertatu da fitxategia analizatzen saiatzean</string>
     <string name="file_not_found">Errorea: Ez da fitxategia aurkitu</string>
     <string name="reading_file_error">Errorea gertatu da fitxategia irakurtzen saiatzean</string>
@@ -369,7 +368,6 @@
     <string name="pref_groups_multiselect_summary">Talde bat baino gehiago aldi berean aukeratzea baimendu</string>
     <string name="pref_minimize_on_copy_title">Txikitu kopiatzean</string>
     <string name="pref_minimize_on_copy_summary">Aplikazioa txikitu tokena kopiatutakoan</string>
-    <string name="pref_copy_behavior_title">Kopiatu tokenak arbelera</string>
     <string name="pref_search_behavior_title">Bilaketaren portaera</string>
     <string name="pref_pause_entry_title">Izoztu tokenak ukitzean</string>
     <string name="pref_pause_entry_summary">Gelditu tokenak automatikoki freskatzea beraietan sakatzean. Tokenak ez dira eguneratuko ukitzen ez badituzu. \"Nabarmendu tokenak ukitzean\" edo \"Sakatu erakusteko\" aukeratuta izatea eskatzen du.</string>
@@ -531,9 +529,6 @@
     <string name="pref_grouping_size_two">2ko taldeak</string>
     <string name="pref_grouping_size_three">3ko taldeak</string>
     <string name="pref_grouping_size_four">4ko taldeak</string>
-    <string name="pref_copy_behavior_never">Inoiz ez</string>
-    <string name="pref_copy_behavior_single_tap">Ukitu bat</string>
-    <string name="pref_copy_behavior_double_tap">Bi ikutu</string>
     <string name="pref_account_name_position_hidden">Ezkutua</string>
     <string name="pref_account_name_position_end">Jaulkitzailearen ostean</string>
     <string name="pref_account_name_position_below">Jaulkitzailearen azpian</string>

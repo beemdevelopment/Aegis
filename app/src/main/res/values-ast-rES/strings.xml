@@ -461,9 +461,6 @@
     <string name="pref_grouping_size_two">Grupos de 2</string>
     <string name="pref_grouping_size_three">Grupos de 3</string>
     <string name="pref_grouping_size_four">Grupos de 4</string>
-    <string name="pref_copy_behavior_never">Enxamás</string>
-    <string name="pref_copy_behavior_single_tap">Un toque</string>
-    <string name="pref_copy_behavior_double_tap">Dos toques</string>
     <string name="pref_account_name_position_end">Al llau l\'emisor</string>
     <string name="pref_account_name_position_below">Embaxo l\'emisor</string>
     <plurals name="time_elapsed_minutes" tools:ignore="UnusedResources">

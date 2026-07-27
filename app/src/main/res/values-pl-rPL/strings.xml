@@ -307,7 +307,6 @@
     <string name="choose_theme">Wybierz motyw jaki chcesz</string>
     <string name="choose_account_name_position">Wybierz miejsce nazwy konta</string>
     <string name="choose_view_mode">Wybierz widok jaki chcesz</string>
-    <string name="choose_copy_behavior">Wybierz pożądane zachowanie kopii</string>
     <string name="parsing_file_error">Wystąpił błąd podczas przetwarzania pliku</string>
     <string name="file_not_found">Błąd: Nie znaleziono pliku</string>
     <string name="reading_file_error">Wystąpił błąd podczas odczytywania pliku</string>
@@ -404,7 +403,6 @@
     <string name="pref_groups_multiselect_summary">Zezwalaj na wybór wielu grup jednocześnie</string>
     <string name="pref_minimize_on_copy_title">Zminimalizuj przy skopiowaniu</string>
     <string name="pref_minimize_on_copy_summary">Zminimalizuj aplikację po skopiowaniu tokenu</string>
-    <string name="pref_copy_behavior_title">Skopiuj tokeny do schowka</string>
     <string name="pref_search_behavior_title">Zachowanie wyszukiwania</string>
     <string name="pref_pause_entry_title">Zamroź tokeny po naciśnięciu</string>
     <string name="pref_pause_entry_summary">Wstrzymaj automatyczne odświeżanie tokenów poprzez dotknięcie ich. Tokeny nie będą aktualizowane tak długo, jak długo są podświetlone. Wymaga \"Podświetl tokeny podczas kliknięcia\" lub \"Kliknij, aby odkryć\".</string>
@@ -579,9 +577,6 @@ zlokalizowanego w wewnętrznym katalogu Steam.</string>
     <string name="pref_grouping_size_two">Grupy z 2 elementami</string>
     <string name="pref_grouping_size_three">Grupy z 3 elementami</string>
     <string name="pref_grouping_size_four">Grupy z 4 elementami</string>
-    <string name="pref_copy_behavior_never">Nigdy</string>
-    <string name="pref_copy_behavior_single_tap">Pojedyncze dotknięcie</string>
-    <string name="pref_copy_behavior_double_tap">Podwójne dotknięcie</string>
     <string name="pref_account_name_position_hidden">Ukryta</string>
     <string name="pref_account_name_position_end">Obok wydawcy</string>
     <string name="pref_account_name_position_below">Pod wydawcą</string>

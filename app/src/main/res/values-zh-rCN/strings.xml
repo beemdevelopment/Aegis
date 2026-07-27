@@ -289,7 +289,6 @@
     <string name="choose_theme">选择您想要的主题</string>
     <string name="choose_account_name_position">选择您期望的账户名称位置</string>
     <string name="choose_view_mode">选择您想要的视图模式</string>
-    <string name="choose_copy_behavior">选择如何复制</string>
     <string name="parsing_file_error">试图解析文件时出错</string>
     <string name="file_not_found">错误：文件未找到</string>
     <string name="reading_file_error">试图读取文件时出错</string>
@@ -374,7 +373,6 @@
     <string name="pref_groups_multiselect_summary">允许同时选中多个分组</string>
     <string name="pref_minimize_on_copy_title">复制时最小化</string>
     <string name="pref_minimize_on_copy_summary">复制令牌后最小化应用</string>
-    <string name="pref_copy_behavior_title">复制令牌到剪贴板</string>
     <string name="pref_search_behavior_title">搜索行为</string>
     <string name="pref_pause_entry_title">轻按冻结令牌</string>
     <string name="pref_pause_entry_summary">通过轻按令牌来暂停它们的自动刷新。 只要被聚焦，令牌就不会更新。 需要启用“轻按突出显示令牌”或“轻按显示”。</string>
@@ -534,9 +532,6 @@
     <string name="pref_grouping_size_two">2 位数</string>
     <string name="pref_grouping_size_three">3 位数</string>
     <string name="pref_grouping_size_four">4 位数</string>
-    <string name="pref_copy_behavior_never">从不</string>
-    <string name="pref_copy_behavior_single_tap">单击</string>
-    <string name="pref_copy_behavior_double_tap">双击</string>
     <string name="pref_account_name_position_hidden">隐藏</string>
     <string name="pref_account_name_position_end">发行者旁边</string>
     <string name="pref_account_name_position_below">发行者下方</string>

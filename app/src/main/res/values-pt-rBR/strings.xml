@@ -295,7 +295,6 @@
     <string name="choose_theme">Selecione o tema desejado</string>
     <string name="choose_account_name_position">Selecione a posição desejada para o nome da conta</string>
     <string name="choose_view_mode">Selecione o modo desejado para visualização</string>
-    <string name="choose_copy_behavior">Selecione o comportamento desejado para copiar</string>
     <string name="parsing_file_error">Ocorreu um erro ao tentar interpretar o arquivo</string>
     <string name="file_not_found">Erro: Arquivo não encontrado</string>
     <string name="reading_file_error">Ocorreu um erro ao tentar ler o arquivo</string>
@@ -384,7 +383,6 @@
     <string name="pref_groups_multiselect_summary">Permitir a seleção de vários grupos ao mesmo tempo</string>
     <string name="pref_minimize_on_copy_title">Minimizar ao copiar</string>
     <string name="pref_minimize_on_copy_summary">Minimizar o aplicativo após copiar um token</string>
-    <string name="pref_copy_behavior_title">Copiar tokens pra área de transferência</string>
     <string name="pref_search_behavior_title">Comportamento da pesquisa</string>
     <string name="pref_pause_entry_title">Congelar tokens ao tocar</string>
     <string name="pref_pause_entry_summary">Pausar a atualização automática dos tokens ao tocá-los. Tokens não serão atualizados desde que o foco esteja neles. Requer \"Destacar tokens ao tocar\" ou \"Tocar para revelar\".</string>
@@ -549,9 +547,6 @@
     <string name="pref_grouping_size_two">Grupos de 2</string>
     <string name="pref_grouping_size_three">Grupos de 3</string>
     <string name="pref_grouping_size_four">Grupos de 4</string>
-    <string name="pref_copy_behavior_never">Nunca</string>
-    <string name="pref_copy_behavior_single_tap">Um toque</string>
-    <string name="pref_copy_behavior_double_tap">Dois toques</string>
     <string name="pref_account_name_position_hidden">Oculto</string>
     <string name="pref_account_name_position_end">Ao lado do nome do serviço</string>
     <string name="pref_account_name_position_below">Abaixo do nome do serviço</string>

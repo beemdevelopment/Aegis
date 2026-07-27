@@ -290,7 +290,6 @@
     <string name="choose_theme">원하는 테마를 선택해주세요</string>
     <string name="choose_account_name_position">계정 이름 위치를 선택해주세요</string>
     <string name="choose_view_mode">보기 모드를 선택해주세요</string>
-    <string name="choose_copy_behavior">복사 방법을 선택해주세요</string>
     <string name="parsing_file_error">파일 파싱 중 오류 발생</string>
     <string name="file_not_found">오류: 파일을 찾을 수 없습니다</string>
     <string name="reading_file_error">파일을 읽던 중 오류가 발생했습니다</string>
@@ -375,7 +374,6 @@
     <string name="pref_groups_multiselect_summary">한 번에 여러 개의 그룹을 선택할 수 있게 합니다</string>
     <string name="pref_minimize_on_copy_title">복사할 때 최소화하기</string>
     <string name="pref_minimize_on_copy_summary">토큰을 복사한 후, 앱을 최소화합니다</string>
-    <string name="pref_copy_behavior_title">클립보드에 토큰 복사하기</string>
     <string name="pref_search_behavior_title">검색 행동</string>
     <string name="pref_pause_entry_title">터치되었을 때 토큰 얼리기</string>
     <string name="pref_pause_entry_summary">토큰을 탭하여 토큰의 자동 새로 고침을 일시 중지합니다. 토큰이 초점이 맞춰져 있는 동안에는 토큰이 업데이트되지 않습니다. “탭하면 토큰 강조 표시” 또는 ‘탭하여 표시’가 필요합니다.</string>
@@ -534,9 +532,6 @@
     <string name="pref_grouping_size_two">2개 그룹</string>
     <string name="pref_grouping_size_three">3개 그룹</string>
     <string name="pref_grouping_size_four">4개 그룹</string>
-    <string name="pref_copy_behavior_never">없음</string>
-    <string name="pref_copy_behavior_single_tap">단일 탭</string>
-    <string name="pref_copy_behavior_double_tap">두 번 탭</string>
     <string name="pref_account_name_position_hidden">숨김</string>
     <string name="pref_account_name_position_end">공급자 옆에</string>
     <string name="pref_account_name_position_below">공급자 아래에</string>

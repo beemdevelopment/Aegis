@@ -298,7 +298,6 @@
     <string name="choose_theme">Изаберите жељену тему</string>
     <string name="choose_account_name_position">Изаберите жељени положај назива налога</string>
     <string name="choose_view_mode">Изаберите жељени режим приказа</string>
-    <string name="choose_copy_behavior">Изаберите жељено понашање копирања</string>
     <string name="parsing_file_error">Дошло је до грешке приликом покушаја рашчлањивања фајла</string>
     <string name="file_not_found">Грешка: Фајл није пронађен</string>
     <string name="reading_file_error">Дошло је до грешке приликом покушаја читања фајла</string>
@@ -373,7 +372,6 @@
     <string name="pref_highlight_entry_summary">Привремено нагласи токене на додир како би били видљивији</string>
     <string name="pref_minimize_on_copy_title">Минимизирај приликом копирања</string>
     <string name="pref_minimize_on_copy_summary">Минимизирајте апликацију након копирања токена</string>
-    <string name="pref_copy_behavior_title">Копирај токене у привремену меморију</string>
     <string name="pref_search_behavior_title">Понашање претраге</string>
     <string name="pref_pause_entry_title">Замрзните токене на додир</string>
     <string name="pref_pause_entry_summary">Паузирајте аутоматско освежавање токена тако што ћете их додирнути. Токени се неће ажурирати све док су фокусирани. Ово захтева опције „Истакни токене приликом додира” или „Додирни за откривање”.</string>
@@ -538,9 +536,6 @@
     <string name="pref_grouping_size_two">Груписање по 2</string>
     <string name="pref_grouping_size_three">Груписање по 3</string>
     <string name="pref_grouping_size_four">Груписање по 4</string>
-    <string name="pref_copy_behavior_never">Никада</string>
-    <string name="pref_copy_behavior_single_tap">Један додир</string>
-    <string name="pref_copy_behavior_double_tap">Дупли додир</string>
     <string name="pref_account_name_position_hidden">Скривено</string>
     <string name="pref_account_name_position_end">Поред издавача</string>
     <string name="pref_account_name_position_below">Испод издавача</string>

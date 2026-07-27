@@ -307,7 +307,6 @@
     <string name="choose_theme">Выберите тему</string>
     <string name="choose_account_name_position">Выберите место названия учётной записи</string>
     <string name="choose_view_mode">Выберите режим отображения</string>
-    <string name="choose_copy_behavior">Настройка копирования</string>
     <string name="parsing_file_error">Произошла ошибка при попытке разобрать файл</string>
     <string name="file_not_found">Ошибка: файл не найден</string>
     <string name="reading_file_error">Произошла ошибка при попытке прочитать файл</string>
@@ -404,7 +403,6 @@
     <string name="pref_groups_multiselect_summary">Разрешить одновременный выбор нескольких групп</string>
     <string name="pref_minimize_on_copy_title">Сворачивать при копировании</string>
     <string name="pref_minimize_on_copy_summary">Сворачивать приложение после копирования ключа</string>
-    <string name="pref_copy_behavior_title">Копировать ключи в буфер обмена</string>
     <string name="pref_search_behavior_title">Поведение поиска</string>
     <string name="pref_pause_entry_title">Замораживать ключи при нажатии</string>
     <string name="pref_pause_entry_summary">Приостановить автоматическое обновление ключей принажатии на них. Ключи не будут обновляться до тех пор, пока отображаются. Для обновления потребуется «Выделять ключи при нажатии» или «Отображение по нажатию».</string>
@@ -578,9 +576,6 @@
     <string name="pref_grouping_size_two">Группы по 2</string>
     <string name="pref_grouping_size_three">Группы по 3</string>
     <string name="pref_grouping_size_four">Группы по 4</string>
-    <string name="pref_copy_behavior_never">Не копировать</string>
-    <string name="pref_copy_behavior_single_tap">Одиночным нажатием</string>
-    <string name="pref_copy_behavior_double_tap">Двойным нажатием</string>
     <string name="pref_account_name_position_hidden">Скрыта</string>
     <string name="pref_account_name_position_end">После эмитента</string>
     <string name="pref_account_name_position_below">Под эмитентом</string>

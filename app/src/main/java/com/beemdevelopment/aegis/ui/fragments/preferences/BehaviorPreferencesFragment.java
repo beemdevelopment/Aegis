@@ -71,17 +71,6 @@ public class BehaviorPreferencesFragment extends PreferencesFragment {
             return true;
         });
 
-        Preference tapActions = findPreference("pref_tap_actions");
-        if (tapActions != null) {
-            tapActions.setOnPreferenceClickListener(preference -> {
-                getParentFragmentManager()
-                        .beginTransaction()
-                        .replace(R.id.content, new TapActionsPreferencesFragment())
-                        .addToBackStack(null)
-                        .commit();
-                return true;
-            });
-        }
     }
 
     private String getSearchBehaviorSummary() {

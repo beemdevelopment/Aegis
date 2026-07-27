@@ -295,7 +295,6 @@
     <string name="choose_theme">Selektearje jo winske tema</string>
     <string name="choose_account_name_position">Selektearje jo winske accountnammeposysje</string>
     <string name="choose_view_mode">Selektearje jo winske werjeftemodus</string>
-    <string name="choose_copy_behavior">Selektearje it winske gedrach foar kopiearjen</string>
     <string name="parsing_file_error">Der is in flater bard wylst it oersetten fan it bestân</string>
     <string name="file_not_found">Flater: Bestân net fûn</string>
     <string name="reading_file_error">Der is in flater bard wylst it lêzen fan it bestân</string>
@@ -384,7 +383,6 @@
     <string name="pref_groups_multiselect_summary">Seleksje fan meardere groepen tagelyk tastean</string>
     <string name="pref_minimize_on_copy_title">By kopiearjen minimalisearje</string>
     <string name="pref_minimize_on_copy_summary">App nei kopiearjen fan in koade minimalisearje</string>
-    <string name="pref_copy_behavior_title">Koaden nei it klamboerd kopiearje</string>
     <string name="pref_search_behavior_title">Sykgedrach</string>
     <string name="pref_pause_entry_title">Tokens by oantikken befrieze</string>
     <string name="pref_pause_entry_summary">Automatysk ferfarskjen fan koaden troch derop te tikken stopje. Koaden sille net bywurke wurde sa lang se fokust binne. Fereasket ‘Koaden markearje nei oantikken’ of ‘Oantikke om te toanen’.</string>
@@ -548,9 +546,6 @@
     <string name="pref_grouping_size_two">Groepen fan 2</string>
     <string name="pref_grouping_size_three">Groepen fan 3</string>
     <string name="pref_grouping_size_four">Groepen fan 4</string>
-    <string name="pref_copy_behavior_never">Nea</string>
-    <string name="pref_copy_behavior_single_tap">Inkelde tik</string>
-    <string name="pref_copy_behavior_double_tap">Dûbele tik</string>
     <string name="pref_account_name_position_hidden">Ferstoppe</string>
     <string name="pref_account_name_position_end">Njonken de útjouwer</string>
     <string name="pref_account_name_position_below">Under de útjouwer</string>

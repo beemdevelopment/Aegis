@@ -82,30 +82,38 @@ public class Preferences {
         }
 
         String prefCopyBehaviorKey = "pref_current_copy_behavior";
+        String prefSingleTapActionKey = "pref_single_tap_action";
+        String prefDoubleTapActionKey = "pref_double_tap_action";
         if (_prefs.contains(prefCopyBehaviorKey)
-                && !_prefs.contains("pref_single_tap_action")
-                && !_prefs.contains("pref_double_tap_action")) {
+                && !_prefs.contains(prefSingleTapActionKey)
+                && !_prefs.contains(prefDoubleTapActionKey)) {
             CopyBehavior copyBehavior = getCopyBehavior();
+            TapAction singleTapAction;
+            TapAction doubleTapAction;
 
             switch (copyBehavior) {
                 case SINGLETAP:
-                    setSingleTapAction(TapAction.COPY);
-                    setDoubleTapAction(TapAction.NONE);
+                    singleTapAction = TapAction.COPY;
+                    doubleTapAction = TapAction.NONE;
                     break;
 
                 case DOUBLETAP:
-                    setSingleTapAction(TapAction.NONE);
-                    setDoubleTapAction(TapAction.COPY);
+                    singleTapAction = TapAction.NONE;
+                    doubleTapAction = TapAction.COPY;
                     break;
 
                 case NEVER:
                 default:
-                    setSingleTapAction(TapAction.NONE);
-                    setDoubleTapAction(TapAction.NONE);
+                    singleTapAction = TapAction.NONE;
+                    doubleTapAction = TapAction.NONE;
                     break;
             }
 
-            _prefs.edit().remove(prefCopyBehaviorKey).apply();
+            _prefs.edit()
+                    .putInt(prefSingleTapActionKey, singleTapAction.ordinal())
+                    .putInt(prefDoubleTapActionKey, doubleTapAction.ordinal())
+                    .remove(prefCopyBehaviorKey)
+                    .apply();
         }
     }
 
@@ -608,7 +616,7 @@ public class Preferences {
     }
 
     public TapAction getSingleTapAction() {
-        int def = TapAction.COPY.ordinal();
+        int def = TapAction.NONE.ordinal();
         return TapAction.fromInteger(_prefs.getInt("pref_single_tap_action", def));
     }
 
@@ -626,7 +634,7 @@ public class Preferences {
     }
 
     public boolean isReserveFirstTapEnabled() {
-        return _prefs.getBoolean("pref_reserve_first_tap", false);
+        return isTapToRevealEnabled() && _prefs.getBoolean("pref_reserve_first_tap", false);
     }
 
     public void setReserveFirstTapEnabled(boolean enabled) {

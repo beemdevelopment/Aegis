@@ -295,7 +295,6 @@
     <string name="choose_theme">Wähle das gewünschte Design aus</string>
     <string name="choose_account_name_position">Wähle die gewünschte Position des Kontonamens</string>
     <string name="choose_view_mode">Wähle den gewünschten Darstellungsstil aus</string>
-    <string name="choose_copy_behavior">Wähle dein gewünschtes Verhalten fürs Kopieren</string>
     <string name="parsing_file_error">Beim Analysieren der Datei ist ein Fehler aufgetreten</string>
     <string name="file_not_found">Fehler: Datei nicht gefunden</string>
     <string name="reading_file_error">Beim Lesen der Datei ist ein Fehler aufgetreten</string>
@@ -384,7 +383,6 @@
     <string name="pref_groups_multiselect_summary">Das Auswählen mehrerer Gruppen auf einmal ermöglichen</string>
     <string name="pref_minimize_on_copy_title">Beim Kopieren minimieren</string>
     <string name="pref_minimize_on_copy_summary">App nach dem Kopieren eines Tokens minimieren</string>
-    <string name="pref_copy_behavior_title">Token in die Zwischenablage kopieren</string>
     <string name="pref_search_behavior_title">Suchverhalten</string>
     <string name="pref_pause_entry_title">Token beim Antippen einfrieren</string>
     <string name="pref_pause_entry_summary">Automatisches Aktualisieren der Token durch Antippen anhalten. Die Token werden nicht aktualisiert, solange sie hervorgehoben sind. Erfordert »Token beim Antippen hervorheben« oder »Zum Aufdecken antippen«.</string>
@@ -548,9 +546,6 @@
     <string name="pref_grouping_size_two">2er-Gruppen</string>
     <string name="pref_grouping_size_three">3er-Gruppen</string>
     <string name="pref_grouping_size_four">4er-Gruppen</string>
-    <string name="pref_copy_behavior_never">Niemals</string>
-    <string name="pref_copy_behavior_single_tap">Einmal antippen</string>
-    <string name="pref_copy_behavior_double_tap">Zweimal antippen</string>
     <string name="pref_account_name_position_hidden">Ausgeblendet</string>
     <string name="pref_account_name_position_end">Neben dem Herausgeber</string>
     <string name="pref_account_name_position_below">Unterhalb des Herausgebers</string>
