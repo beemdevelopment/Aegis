@@ -311,6 +311,7 @@ public class AuthActivity extends AegisActivity {
 
         Intent result = new Intent();
         result.putExtra("keystoreInvalidated", _keystoreInvalidated);
+        result.putExtra("passwordReminderNeeded", _prefs.isPasswordReminderNeeded());
         setResult(RESULT_OK, result);
         finish();
     }
