@@ -60,12 +60,11 @@ public class CryptoUtils {
             InvalidAlgorithmParameterException, InvalidKeyException {
         Cipher cipher = Cipher.getInstance(CRYPTO_AEAD);
 
-        // generate the nonce if none is given
 if (nonce != null) {
     AlgorithmParameterSpec spec = new GCMParameterSpec(CRYPTO_AEAD_TAG_SIZE * 8, nonce);
     cipher.init(opmode, key, spec);
 } else {
-    cipher.init(opmode, key);
+    cipher.init(opmode, key, new byte[0]);
 }
 
         return cipher;
