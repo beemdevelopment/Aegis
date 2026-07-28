@@ -61,13 +61,12 @@ public class CryptoUtils {
         Cipher cipher = Cipher.getInstance(CRYPTO_AEAD);
 
         // generate the nonce if none is given
-        // we are not allowed to do this ourselves as "setRandomizedEncryptionRequired" is set to true
-        if (nonce != null) {
-            AlgorithmParameterSpec spec = new GCMParameterSpec(CRYPTO_AEAD_TAG_SIZE * 8, nonce);
-            cipher.init(opmode, key, spec);
-        } else {
-            cipher.init(opmode, key);
-        }
+if (nonce != null) {
+    AlgorithmParameterSpec spec = new GCMParameterSpec(CRYPTO_AEAD_TAG_SIZE * 8, nonce);
+    cipher.init(opmode, key, spec);
+} else {
+    cipher.init(opmode, key);
+}
 
         return cipher;
     }
