@@ -107,4 +107,6 @@
          These colors are used by AppCompatDelegateImpl.updateStatusGuardColor -->
     <color name="abc_decor_view_status_guard_light" tools:override="true">@android:color/transparent</color>
     <color name="abc_decor_view_status_guard" tools:override="true">@android:color/transparent</color>
+    <color name="ic_launcher_dark_theme_background">#000000</color>
+    <color name="ic_launcher_calculator_background">#28323B</color>
 </resources>

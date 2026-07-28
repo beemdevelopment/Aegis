@@ -24,12 +24,14 @@
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_marginBottom="20dp"
+                android:layout_gravity="center_horizontal"
                 app:srcCompat="@drawable/ic_aegis_iconx" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-light"
+                android:gravity="center_horizontal"
                 android:singleLine="false"
                 android:text="@string/authentication_multiline"
                 android:textStyle="bold"

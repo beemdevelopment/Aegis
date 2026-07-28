@@ -175,4 +175,26 @@
         <item>@string/pref_copy_behavior_single_tap</item>
         <item>@string/pref_copy_behavior_double_tap</item>
     </string-array>
+
+    <string-array name="app_icon_titles">
+        <item>@string/pref_app_icon_default</item>
+        <item>@string/pref_app_icon_calculator</item>
+        <item>@string/pref_app_icon_weather</item>
+        <item>@string/pref_app_icon_settings</item>
+        <item>@string/pref_app_icon_midnight_star</item>
+        <item>@string/pref_app_icon_dark_theme</item>
+        <item>@string/pref_app_icon_ocean_blue</item>
+        <item>@string/pref_app_icon_purple_gradient</item>
+    </string-array>
+
+    <string-array name="app_icon_values" translatable="false">
+        <item>Default</item>
+        <item>Calculator</item>
+        <item>Weather</item>
+        <item>Settings</item>
+        <item>MidnightStar</item>
+        <item>DarkTheme</item>
+        <item>OceanBlue</item>
+        <item>PurpleGradient</item>
+    </string-array>
 </resources>

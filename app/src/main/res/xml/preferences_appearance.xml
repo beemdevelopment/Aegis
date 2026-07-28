@@ -11,6 +11,11 @@
             android:title="@string/pref_select_theme_title"
             app:iconSpaceReserved="false"/>
 
+        <Preference
+            android:key="pref_app_icon"
+            android:title="@string/pref_app_icon_title"
+            app:iconSpaceReserved="false"/>
+
         <androidx.preference.SwitchPreferenceCompat
             android:defaultValue="false"
             android:key="pref_dynamic_colors"
