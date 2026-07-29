@@ -268,14 +268,6 @@ public class Preferences {
         _prefs.edit().putInt("pref_account_name_position", accountNamePosition.ordinal()).apply();
     }
 
-    public String getAppIcon() {
-        return _prefs.getString("pref_app_icon", "Default");
-    }
-
-    public void setAppIcon(String appIcon) {
-        _prefs.edit().putString("pref_app_icon", appIcon).commit();
-    }
-
     public Integer getUsageCount(UUID uuid) {
         Integer usageCount = getUsageCounts().get(uuid);
 

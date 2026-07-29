@@ -624,14 +624,4 @@
         <item quantity="one">%d item selected</item>
         <item quantity="other">%d items selected</item>
     </plurals>
-    <string name="pref_app_icon_title">App Icon</string>
-    <string name="pref_app_icon_default">Default</string>
-    <string name="pref_app_icon_calculator">Calculator</string>
-    <string name="pref_app_icon_weather">Weather</string>
-    <string name="pref_app_icon_settings">Settings</string>
-    <string name="pref_app_icon_midnight_star">Midnight Star</string>
-    <string name="pref_app_icon_dark_theme">Dark Theme</string>
-    <string name="pref_app_icon_ocean_blue">Ocean Blue</string>
-    <string name="pref_app_icon_purple_gradient">Purple Gradient</string>
-    <string name="pref_app_icon_warning">Changing the app icon will close the app and may remove it from your home screen folders. please save you data if any </string>
 </resources>
